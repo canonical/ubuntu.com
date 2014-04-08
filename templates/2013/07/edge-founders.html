@@ -1,11 +1,11 @@
-{% extends "ubuntu/templates/one-column.html" %}
+{% extends "templates/one-column.html" %}
 
 {% block title %}Ubuntu Edge founders page{% endblock %}
 
 {% block head_extra %}
 <style>
 	#main-content .row-hero {
-		background: #282828 url({{ STATIC_URL }}u/img/devices/edge_1_launch.jpg) 390% 65% no-repeat;
+		background: #282828 url({{ STATIC_URL }}img/devices/edge_1_launch.jpg) 390% 65% no-repeat;
 		color: #fff;
 		padding-top: 70px;
 		padding-bottom: 50px;
@@ -23,7 +23,7 @@
 		line-height: 1.3;
 	}
 	#main-content h2 {
-		background: url({{ STATIC_URL }}u/img/devices/edge-stripes.png) 0 50% no-repeat;
+		background: url({{ STATIC_URL }}img/devices/edge-stripes.png) 0 50% no-repeat;
 		padding-left: 70px;
 	}
 	ul.edge-founders {
@@ -65,7 +65,7 @@
 
 <div class="row no-border">
 <ul class="edge-founders no-bullets">
-	{% include "ubuntu/2013/07/_founders.html" %}
+	{% include "2013/07/_founders.html" %}
 </ul>
 
 <p id="fn1"><a href="#r1">* </a><strong>Plus 10,980 anonymous founders</strong></p>

@@ -1,11 +1,11 @@
-{% extends "ubuntu/download/_base_download.html" %}
+{% extends "download/_base_download.html" %}
 
 {% block title %}How to create a bootable USB stick on Ubuntu{% endblock %}
 
 {% block extra_body_class %}download-help{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to create a bootable USB stick on Ubuntu"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to create a bootable USB stick on Ubuntu"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -33,28 +33,28 @@
 					<span>3</span>
 					<div>
 						<p>Select the <strong>Startup Disk Creator</strong> to launch the app.</p>
-						<img src="{{ STATIC_URL }}u/img/download/create-usb-ubuntu-1.png" alt="" height="244" width="444">
+						<img src="{{ STATIC_URL }}img/download/create-usb-ubuntu-1.png" alt="" height="244" width="444">
 					</div>
 				</li>
 				<li>
 					<span>4</span>
 					<div>
 						<p>Click <strong>'Other'</strong> to choose the downloaded ISO file.</p>
-						<img src="{{ STATIC_URL }}u/img/download/create-usb-stick-on-ubuntu-2-12.10.png" alt="" height="149" width="444">
+						<img src="{{ STATIC_URL }}img/download/create-usb-stick-on-ubuntu-2-12.10.png" alt="" height="149" width="444">
 					</div>
 				</li>
 				<li>
 					<span>5</span>
 					<div>
 						<p>Select the file and click <strong>'Open'</strong>.</p>
-						<img src="{{ STATIC_URL }}u/img/download/create-usb-stick-on-ubuntu-3-12.10.png" alt="" height="375" width="444">
+						<img src="{{ STATIC_URL }}img/download/create-usb-stick-on-ubuntu-3-12.10.png" alt="" height="375" width="444">
 					</div>
 				</li>
 				<li>
 					<span>6</span>
 					<div>
 						<p>Select the USB stick in the bottom box and click <strong>'Make Startup Disk'</strong>.</p>
-						<img src="{{ STATIC_URL }}u/img/download/create-usb-stick-on-ubuntu-4-12.10.png" alt="" height="377" width="444">
+						<img src="{{ STATIC_URL }}img/download/create-usb-stick-on-ubuntu-4-12.10.png" alt="" height="377" width="444">
 					</div>
 				</li>
 				<li>
@@ -65,10 +65,10 @@
 				</li>
 			</ol>
 		</div><!-- /.box -->
-{% include "ubuntu/download/shared/_wiki_link.html" %}
-{% include "ubuntu/download/shared/_ask_ubuntu.html" %}
+{% include "download/shared/_wiki_link.html" %}
+{% include "download/shared/_ask_ubuntu.html" %}
 </div><!-- /.eight-col -->
-{% include "ubuntu/download/shared/_instalation_help.html" %}
+{% include "download/shared/_instalation_help.html" %}
 </div><!-- /.row -->
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

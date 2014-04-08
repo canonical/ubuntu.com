@@ -1,11 +1,11 @@
-{% extends "ubuntu/download/_base_download.html" %}
+{% extends "download/_base_download.html" %}
 
 {% block title %}Installing Ubuntu Server{% endblock %}
 
 {% block extra_body_class %}download-help{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server" page_title="Installing Ubuntu Server"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server" page_title="Installing Ubuntu Server"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -60,8 +60,8 @@
 		</ol>
 	</div><!-- /.box-highlight -->
 
-	{% include "ubuntu/download/shared/_wiki_link.html" %}
-	{% include "ubuntu/download/shared/_ask_ubuntu.html" %}
+	{% include "download/shared/_wiki_link.html" %}
+	{% include "download/shared/_ask_ubuntu.html" %}
 </div><!-- /.eight-col -->
 
 <div class="sidebar aside four-col last-col">

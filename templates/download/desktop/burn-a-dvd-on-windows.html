@@ -1,11 +1,11 @@
-{% extends "ubuntu/download/_base_download.html" %}
+{% extends "download/_base_download.html" %}
 
 {% block title %}How to burn a DVD on Windows{% endblock %}
 
 {% block extra_body_class %}download-help{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to burn a DVD on Windows"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to burn a DVD on Windows"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -22,14 +22,14 @@
 						<span>1</span>
 						<div>
 							<p>Right-click on an ISO image and choose <strong>'Open with &gt; Windows Disc Image Burner'</strong>.</p>
-							<img src="{{ STATIC_URL }}u/img/download/burn-cd-windows-1-12.10.png" alt="" height="450" width="444">
+							<img src="{{ STATIC_URL }}img/download/burn-cd-windows-1-12.10.png" alt="" height="450" width="444">
 						</div>
 					</li>
 					<li class="clearfix">
 						<span>2</span>
 						<div>
 							<p>Select a disc burner (drive) and choose <strong>'Burn'</strong>. If you check <strong>'Verify disc after burning'</strong>, it will confirm that the ISO image has been burned correctly.</p>
-							<img src="{{ STATIC_URL }}u/img/download/burn-cd-windows-2-12.10.png" alt="" height="427" width="444">
+							<img src="{{ STATIC_URL }}img/download/burn-cd-windows-2-12.10.png" alt="" height="427" width="444">
 						</div>
 					</li>
 				</ol>
@@ -53,7 +53,7 @@
 						<span>3</span>
 						<div>
 							<p>Open Infra Recorder and click the <strong>'Write Image'</strong> button in the main screen. Alternatively you can select the <strong>'Actions'</strong> menu, then <strong>'Burn image'</strong>.</p>
-							<img src="{{ STATIC_URL }}u/img/download/cd_windows_01_medium.jpg" alt="" height="408" width="448">
+							<img src="{{ STATIC_URL }}img/download/cd_windows_01_medium.jpg" alt="" height="408" width="448">
 						</div>
 					</li>
 					<li class="clearfix">
@@ -70,10 +70,10 @@
 					</li>
 				</ol>
 			</div><!-- /.box -->
-	{% include "ubuntu/download/shared/_wiki_link.html" %}
-	{% include "ubuntu/download/shared/_ask_ubuntu.html" %}
+	{% include "download/shared/_wiki_link.html" %}
+	{% include "download/shared/_ask_ubuntu.html" %}
 </div><!-- /.eight-col -->
-{% include "ubuntu/download/shared/_instalation_help.html" %}
+{% include "download/shared/_instalation_help.html" %}
 </div><!-- /.row -->
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

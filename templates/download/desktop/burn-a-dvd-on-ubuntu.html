@@ -1,11 +1,11 @@
-{% extends "ubuntu/download/_base_download.html" %}
+{% extends "download/_base_download.html" %}
 
 {% block title %}How to burn a DVD on Ubuntu{% endblock %}
 
 {% block extra_body_class %}download-help{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to burn a DVD on Ubuntu"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to burn a DVD on Ubuntu"  %}
 {% endblock second_level_nav_items %}
 
 
@@ -22,7 +22,7 @@
 					<span>1</span>
 					<div>
 						<p>Insert a blank CD into your burner. A 'CD/DVD Creator', 'Choose Disc Type' or 'Blank Disc' window might pop up. Close this, because we will not be using it.</p>
-						<img src="{{ STATIC_URL }}u/img/download/burn-cd-ubuntu-1.png" alt="" height="258" width="444">
+						<img src="{{ STATIC_URL }}img/download/burn-cd-ubuntu-1.png" alt="" height="258" width="444">
 					</div>
 				</li>
 				<li>
@@ -35,14 +35,14 @@
 					<span>3</span>
 					<div>
 						<p>Right click on the ISO file and choose <strong>'Write to Disc'</strong>.</p>
-						<img src="{{ STATIC_URL }}u/img/download/burn-cd-ubuntu-2-12.10.png" alt="" height="602" width="444">
+						<img src="{{ STATIC_URL }}img/download/burn-cd-ubuntu-2-12.10.png" alt="" height="602" width="444">
 					</div>
 				</li>
 				<li>
 					<span>4</span>
 					<div>
 						<p>Where it says 'Write disc to', you might have options such as 'File image' as well as your CD drive. Choose your CD drive. Your CD drive might show as something like 'BD-MLT UJ-210S'.</p>
-						<img src="{{ STATIC_URL }}u/img/download/burn-cd-ubuntu-3-12.10.png" alt="" height="225" width="444">
+						<img src="{{ STATIC_URL }}img/download/burn-cd-ubuntu-3-12.10.png" alt="" height="225" width="444">
 					</div>
 				</li>
 				<li>
@@ -65,10 +65,10 @@
 				</li>
 			</ol>
 		</div><!-- /.box -->
-{% include "ubuntu/download/shared/_wiki_link.html" %}
-{% include "ubuntu/download/shared/_ask_ubuntu.html" %}
+{% include "download/shared/_wiki_link.html" %}
+{% include "download/shared/_ask_ubuntu.html" %}
 </div><!-- /.eight-col -->
-{% include "ubuntu/download/shared/_instalation_help.html" %}
+{% include "download/shared/_instalation_help.html" %}
 </div><!-- /.row -->
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

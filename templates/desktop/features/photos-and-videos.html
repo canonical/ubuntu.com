@@ -1,27 +1,27 @@
-{% extends "ubuntu/desktop/base_desktop.html" %}
+{% extends "desktop/base_desktop.html" %}
 
 {% block title %}Photos and videos | Features{% endblock %}
 
 {% block body_classes %}audience-consumer{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Desktop" subsection_title="Features" page_title="Photos and videos"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" subsection_title="Features" page_title="Photos and videos"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-{% include "ubuntu/desktop/features/_features_header.html" with page_title="Photos and videos" %}
+{% include "desktop/features/_features_header.html" with page_title="Photos and videos" %}
 
 <div class="row intro">
 	<div class="four-col">
 		<p>Ubuntu is full of free apps to help you enjoy, manage, edit and share your photos and videos &mdash; whatever you use to take them. With fantastic support for cameras and phones, you won&rsquo;t need any extra drivers to get up and running.</p>
 			<ul class="no-bullets inline-icons no-margin-bottom">
-				<li><img src="{{ STATIC_URL }}u/img/icons/icon-vlc-48.png" width="42" height="96" title="VLC" alt="VLC icon" /></li>
-				<li class="last-item"><img src="{{ STATIC_URL }}u/img/icons/icon-totem-video-48.png" width="44" height="96" title="Totem video" alt="Totem video icon" /></li>
+				<li><img src="{{ STATIC_URL }}img/icons/icon-vlc-48.png" width="42" height="96" title="VLC" alt="VLC icon" /></li>
+				<li class="last-item"><img src="{{ STATIC_URL }}img/icons/icon-totem-video-48.png" width="44" height="96" title="Totem video" alt="Totem video icon" /></li>
 			</ul>
-		{% include "ubuntu/shared/_share_this.html" %}
+		{% include "shared/_share_this.html" %}
 	</div>
 	<div class="eight-col last-col no-margin">
-		<img class="touch-border right" src="{{ STATIC_URL }}u/img/desktop/features/screenshot-feartures-photos-main.jpg" width="636" height="327" alt="VLC media player on Ubuntu" />
+		<img class="touch-border right" src="{{ STATIC_URL }}img/desktop/features/screenshot-feartures-photos-main.jpg" width="636" height="327" alt="VLC media player on Ubuntu" />
 	</div>
 </div><!-- /.intro -->
 
@@ -31,14 +31,14 @@
 			<h3>Organise your photos</h3>
 			<p>With Shotwell, you can quickly and easily import, organise, edit and view your pictures. And you can share your favourite snaps on all popular photo sites and social networks.</p>
 		</div><!-- /.four-col -->
-			<img class="right" src="{{ STATIC_URL }}u/img/desktop/features/screenshots-photos-organise.png" alt="Shotwell on Ubuntu" width="287px" height="257px" />
+			<img class="right" src="{{ STATIC_URL }}img/desktop/features/screenshots-photos-organise.png" alt="Shotwell on Ubuntu" width="287px" height="257px" />
 	</div><!-- /.eight-col -->
 	<div class="four-col box last-col no-margin-bottom">
 		<h3>Photo and illustration tools</h3>
 		<p>Edit your photos or create professional illustrations and designs with tools like GIMP and Inkscape, available in the Ubuntu Software Centre.</p>
 		<ul class="no-bullets inline-icons no-margin-bottom">
-			<li><img src="{{ STATIC_URL }}u/img/icons/icon-gimp-48.png" width="48" height="48" title="GIMP" alt="GIMP icon" /></li>
-			<li class="last-item"><img src="{{ STATIC_URL }}u/img/icons/icon-inkscape-48.png" width="48" height="48" title="Inkscape" alt="Inkscape icon" /></li>
+			<li><img src="{{ STATIC_URL }}img/icons/icon-gimp-48.png" width="48" height="48" title="GIMP" alt="GIMP icon" /></li>
+			<li class="last-item"><img src="{{ STATIC_URL }}img/icons/icon-inkscape-48.png" width="48" height="48" title="Inkscape" alt="Inkscape icon" /></li>
 		</ul>
 	</div><!-- /.four-col -->
 </div><!-- /.row -->
@@ -49,15 +49,15 @@
 				<h3>Watch videos</h3>
 				<p class="four-col">Watch all your favourite content online from YouTube, BBC iPlayer and MSN Player. Or download and watch movies with VLC, available in the Ubuntu Software Centre.</p>
 			</div>
-				<img class="right" src="{{ STATIC_URL }}u/img/desktop/features/screenshot-photos-watch.png" width="288" height="253" alt="YouTube" />
+				<img class="right" src="{{ STATIC_URL }}img/desktop/features/screenshot-photos-watch.png" width="288" height="253" alt="YouTube" />
 		</div><!-- /.eight-col -->
 		<div class="four-col box last-col">
 			<h3>Edit your movies</h3>
 			<p>Edit your movies with PiTiVi and then watch them in Movie Player &mdash; or add VLC and OpenShot from the Ubuntu Software Centre, for compatibility with even more file formats.</p>
 			<ul class="no-bullets inline-icons no-margin-bottom">
-				<li><img src="{{ STATIC_URL }}u/img/icons/icon-pitivi-48.png" width="48" height="48" title="PiTiVi" alt="PiTiVi icon" /></li>
-				<li><img src="{{ STATIC_URL }}u/img/icons/icon-movieplayer-48.png" width="48" height="48" title="Movie Player" alt="Movie Player icon" /></li>
-				<li class="last-item"><img src="{{ STATIC_URL }}u/img/icons/icon-blender-48.png" width="48" height="48" title="Blender" alt="Blender icon" /></li>
+				<li><img src="{{ STATIC_URL }}img/icons/icon-pitivi-48.png" width="48" height="48" title="PiTiVi" alt="PiTiVi icon" /></li>
+				<li><img src="{{ STATIC_URL }}img/icons/icon-movieplayer-48.png" width="48" height="48" title="Movie Player" alt="Movie Player icon" /></li>
+				<li class="last-item"><img src="{{ STATIC_URL }}img/icons/icon-blender-48.png" width="48" height="48" title="Blender" alt="Blender icon" /></li>
 			</ul>
 		</div><!-- /.four-col -->
 	</div><!-- /.row -->
@@ -78,7 +78,7 @@
 			<ul class="vertical-divider">
 				<li class="four-col">
 					<div class="one-col">
-						<img src="{{ STATIC_URL }}u/img/icons/icon-gimp-48.png" width="48" height="48" alt="GIMP icon" />
+						<img src="{{ STATIC_URL }}img/icons/icon-gimp-48.png" width="48" height="48" alt="GIMP icon" />
 					</div>
 					<div class="three-col last-col">
 						<h4>GIMP</h4>
@@ -87,7 +87,7 @@
 				</li>
 				<li class="four-col">
 					<div class="one-col">
-						<img src="{{ STATIC_URL }}u/img/icons/icon-inkscape-48.png" width="48" height="48" alt="Inkscape icon" />
+						<img src="{{ STATIC_URL }}img/icons/icon-inkscape-48.png" width="48" height="48" alt="Inkscape icon" />
 					</div>
 					<div class="three-col last-col">
 						<h4>Inkscape</h4>
@@ -96,7 +96,7 @@
 				</li>
 				<li class="four-col last-col">
 					<div class="one-col">
-						<img src="{{ STATIC_URL }}u/img/icons/icon-cheese-48.png" width="48" height="48" alt="Cheese icon" />
+						<img src="{{ STATIC_URL }}img/icons/icon-cheese-48.png" width="48" height="48" alt="Cheese icon" />
 					</div>
 					<div class="three-col last-col">
 						<h4>Cheese</h4>
@@ -107,5 +107,5 @@
 		</div>
 	</div>
 </div><!-- /.row -->
-{% include "ubuntu/desktop/features/nav/_explore_ubuntu.html" %}
+{% include "desktop/features/nav/_explore_ubuntu.html" %}
 {% endblock content %}

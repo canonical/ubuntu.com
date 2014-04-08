@@ -1,10 +1,10 @@
-{% extends "ubuntu/download/_base_download.html" %}
+{% extends "download/_base_download.html" %}
 
 {% block title %}Contribute to Ubuntu{% endblock %}
 {% block extra_body_class %}contribute-to-ubuntu{% endblock %}
 
 {% block second_level_nav_items %}
-    {% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Contribute"  %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Contribute"  %}
 {% endblock second_level_nav_items %}
 
 {% block outer_content %}
@@ -147,7 +147,7 @@
                 </div>
 
                 <div class="price-equivalent">
-                    <img alt="T-shirt" src="{{ STATIC_URL }}u/img/contributions/t-shirt.png">
+                    <img alt="T-shirt" src="{{ STATIC_URL }}img/contributions/t-shirt.png">
                     <p class="title">The same price as</p>
                     <p class="desc">Peace, Love and Linux t-shirt</p>
                     <p class="price">$<span class="value">20</span></p>
@@ -182,7 +182,7 @@
 {% endblock outer_content %}
 
 {% block footer_extra %}
-<script src="{{ STATIC_URL }}u/js/helpers.js"></script>
+<script src="{{ STATIC_URL }}js/helpers.js"></script>
 <script>
 /**
  * Ubuntu YUI contribution sliders

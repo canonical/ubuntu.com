@@ -1,9 +1,9 @@
-{% extends "ubuntu/tv/base_tv.html" %}
+{% extends "tv/base_tv.html" %}
 
 {% block title %}Contributing to Ubuntu TV | Ubuntu TV{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="TV" page_title="Contributors"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="TV" page_title="Contributors"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -22,7 +22,7 @@
 		<p>Code contributions to Ubuntu TV follow the same process as the Unity project.</p>
 		<p><a href="http://www.canonical.com/contributors">Learn more about the process &rsaquo;</a></p>
 	</div>
-	<span><img src="{{ STATIC_URL }}u/img/pictograms/pictogram-community-124x124.gif" alt="" /></span>
+	<span><img src="{{ STATIC_URL }}img/pictograms/pictogram-community-124x124.gif" alt="" /></span>
 </div><!-- /.row -->
 
 <div class="row">
@@ -39,7 +39,7 @@
 		<h2>Communicating with other contributors</h2>
 		<p>The Ubuntu TV team uses email and IRC to keep in touch, plan work and manage releases. Start with the <a href="https://launchpad.net/ubuntutv">team Launchpad page</a>, where you can join our mailing list. There&rsquo;s a fair amount of traffic, but it&rsquo;s all signal! For real-time interaction, hop on to the #ubuntu-tv IRC channel on Freenode.</p>
 	</div><!-- /.eight-col -->
-	<span><img src="{{ STATIC_URL }}u/img/pictograms/pictogram-discussion-124x124.gif" alt="" /></span>
+	<span><img src="{{ STATIC_URL }}img/pictograms/pictogram-discussion-124x124.gif" alt="" /></span>
 </div><!-- /.row -->
 
 <div class="row">
@@ -57,12 +57,12 @@
 <div class="row">
 	<div class="twelve-col">
 		<h2>The architecture of Ubuntu TV</h2>
-		<img class="image-architecture" src="{{ STATIC_URL }}u/img/devices/diagram-architecture-841x330.jpg" width="841" height="330" alt="The layered architecture of Ubuntu TV - Hardware, Ubuntu Core, Example Apps, Lenses &amp; Scopes, Unity" />
+		<img class="image-architecture" src="{{ STATIC_URL }}img/devices/diagram-architecture-841x330.jpg" width="841" height="330" alt="The layered architecture of Ubuntu TV - Hardware, Ubuntu Core, Example Apps, Lenses &amp; Scopes, Unity" />
 	</div>
 </div><!-- /.row -->
 	
 <div class="row row-image-centered">
-	<span><img src="{{ STATIC_URL }}u/img/pictograms/pictogram-download-124x124.gif" alt="" /></span>
+	<span><img src="{{ STATIC_URL }}img/pictograms/pictogram-download-124x124.gif" alt="" /></span>
 	<div class="eight-col">
 		<h2>Download the code</h2>
 		<p>The entire source code for the Ubuntu TV demo is available on the <a href="https://launchpad.net/ubuntutv">Ubuntu TV Launchpad page</a>. To download, compile and run the code, you will need Ubuntu 11.10 and a working OpenGL driver, preferably with synchronisation to VBlank enabled.</p>

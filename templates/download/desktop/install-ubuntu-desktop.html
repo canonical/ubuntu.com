@@ -1,11 +1,11 @@
-{% extends "ubuntu/download/_base_download.html" %}
+{% extends "download/_base_download.html" %}
 
 {% block title %}Installing Ubuntu Desktop{% endblock %}
 
 {% block extra_body_class %}download-help{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Installing Ubuntu Desktop"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Installing Ubuntu Desktop"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -41,7 +41,7 @@
 						<li>You should also stay connected to the internet so you can get the latest updates while you install Ubuntu</li>
 						<li>If you're not connected to the internet, we'll help you set up wireless at the next step</li>
 					</ul>
-					<img src="{{ STATIC_URL }}u/img/download/desktop-install-1.png" width="444" height="340" alt="" />
+					<img src="{{ STATIC_URL }}img/download/desktop-install-1.png" width="444" height="340" alt="" />
 					</div>
 			</li>
 			<li class="clearfix">
@@ -49,7 +49,7 @@
 				<div>
 					<h3>Set up wireless</h3>
 					<p>If you are not connected to the internet, you will be asked to select a wireless network, if available. We advise you to connect during the installation so we can ensure your machine is up to date. So, if you set up your wireless network at this point, it&rsquo;s worth then clicking the Back button to go back to the last screen (Preparing to install Ubuntu) and ticking the box marked <strong>&lsquo;Download updates while installing&rsquo;</strong>.</p>
-					<img src="{{ STATIC_URL }}u/img/download/desktop-install-2.png" width="444" height="330" alt="" />
+					<img src="{{ STATIC_URL }}img/download/desktop-install-2.png" width="444" height="330" alt="" />
 				</div>
 			</li>
 			<li class="clearfix">
@@ -57,7 +57,7 @@
 				<div>
 					<h3>Allocate drive space</h3>
 					<p>Use the checkboxes to choose whether you'd like to Install Ubuntu alongside another operating system, delete your existing operating system and replace it with Ubuntu, or &mdash; if you're an advanced user &mdash; choose the <strong>'Something else'</strong> option</p>
-					<img src="{{ STATIC_URL }}u/img/download/desktop-install-3.png" width="444" height="283" alt="" />
+					<img src="{{ STATIC_URL }}img/download/desktop-install-3.png" width="444" height="283" alt="" />
 				</div>
 			</li>
 			<li class="clearfix">
@@ -67,7 +67,7 @@
 					<p>Depending on your previous selections, you can now verify that you have chosen the way in which you would like to install Ubuntu. The installation process will begin when you click the Install Now button.</p>
 					<p>Ubuntu needs about 4.5 GB to install, so add a few extra GB to allow for your files.</p>
 					<p>Not sure about this step? Windows users can <a href="/download/desktop/windows-installer">use the Windows installer</a>, which will install and uninstall Ubuntu in the same way as any other Windows application. It's simpler and completely safe.</p>
-					<img src="{{ STATIC_URL }}u/img/download/desktop-install-4.png" width="444" height="281" alt="" />
+					<img src="{{ STATIC_URL }}img/download/desktop-install-4.png" width="444" height="281" alt="" />
 				</div>
 			</li>
 			<li class="clearfix">
@@ -78,7 +78,7 @@
 					<div class="box box-tip">
 						<p class="clearfix"><strong>TIP:</strong> If you're having problems connecting to the Internet, use the menu in the top-right-hand corner to select a network.</p>
 					</div>
-					<img src="{{ STATIC_URL }}u/img/download/desktop-install-5.png" width="444" height="322" alt="" />
+					<img src="{{ STATIC_URL }}img/download/desktop-install-5.png" width="444" height="322" alt="" />
 				</div>
 			</li>
 			<li class="clearfix">
@@ -86,14 +86,14 @@
 				<div>
 					<h3>Select your preferred keyboard layout</h3>
 					<p>Click on the language option you need. If you&rsquo;re not sure, click the <strong>&lsquo;Detect Keyboard Layout&rsquo;</strong> button for help.</p>
-					<img src="{{ STATIC_URL }}u/img/download/desktop-install-6.png" width="444" height="323" alt="" />
+					<img src="{{ STATIC_URL }}img/download/desktop-install-6.png" width="444" height="323" alt="" />
 				</div>
 			</li>
 			<li class="clearfix">
 				<span>8</span>
 				<div>
 					<h3>Enter your login and password details</h3>
-					<img src="{{ STATIC_URL }}u/img/download/desktop-install-7.png" width="444" height="324" alt="" />
+					<img src="{{ STATIC_URL }}img/download/desktop-install-7.png" width="444" height="324" alt="" />
 				</div>
 			</li>
 			<li class="clearfix">
@@ -101,7 +101,7 @@
 				<div>
 					<h3>Learn more about Ubuntu while the system installs&hellip;</h3>
 					<p>&hellip;or make a cup of tea!</p>
-					<img src="{{ STATIC_URL }}u/img/download/desktop-install-8.png" width="444" height="323" alt="" />
+					<img src="{{ STATIC_URL }}img/download/desktop-install-8.png" width="444" height="323" alt="" />
 				</div>
 			</li>
 			<li class="clearfix">
@@ -109,15 +109,15 @@
 				<div>
 					<h3>That's it.</h3>
 					<p>All that&rsquo;s left is to restart your computer and start enjoying Ubuntu!</p>
-					<img src="{{ STATIC_URL }}u/img/download/desktop-install-9.png" width="444" height="119" alt="" />
+					<img src="{{ STATIC_URL }}img/download/desktop-install-9.png" width="444" height="119" alt="" />
 				</div>
 			</li>
 		</ol>
 	</div><!-- /.box-highlight -->
-	{% include "ubuntu/download/shared/_wiki_link.html" %}
-	{% include "ubuntu/download/shared/_ask_ubuntu.html" %}
+	{% include "download/shared/_wiki_link.html" %}
+	{% include "download/shared/_ask_ubuntu.html" %}
 </div><!-- /.eight-col -->
-{% include "ubuntu/download/shared/_instalation_help.html" %}
+{% include "download/shared/_instalation_help.html" %}
 </div><!-- /.row -->
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

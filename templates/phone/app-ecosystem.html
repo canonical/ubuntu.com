@@ -1,4 +1,4 @@
-{% extends "ubuntu/phone/base_phone.html" %}
+{% extends "phone/base_phone.html" %}
 
 {% block title %}App ecosystem | Ubuntu for phones{% endblock %}
 
@@ -7,7 +7,7 @@
 {% block meta_keywords %}Ubuntu, phone, smartphone, mobile, develop, developer, ISV, app, application, store, software, centre, center, purchase, ecommerce, revenue, content, channel, movie, music, mp3, album, book, magazine, SDK, API, HTML5, web, native, OpenGL, open source, Linux, Android, Unity, Ubuntu One, cloud, U1DB{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Phone" page_title="App ecosystem"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Phone" page_title="App ecosystem"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -20,7 +20,7 @@
 
 <div class="row row-app-grid no-margin">
 	<div class="six-col">
-		<img width="510" height="382" src="{{ STATIC_URL }}u/img/devices/phone-apps-grid-extended.png" alt="Collection of top apps available on Ubuntu Phone" />
+		<img width="510" height="382" src="{{ STATIC_URL }}img/devices/phone-apps-grid-extended.png" alt="Collection of top apps available on Ubuntu Phone" />
 	</div>
 	<div class="six-col last-col">
 		<h2>A quality core of apps</h2>
@@ -51,9 +51,9 @@
 <div class="row no-border">
 	<div class="four-col">
 		<ul class="no-bullets text-center">
-			<li class="four-col"><img src="{{ STATIC_URL }}u/img/logos/logo-everything-everywhere.png"  alt="Everywhere everywhere" /></li>
-			<li class="four-col {{ item_class }}"><img src="{{ STATIC_URL }}u/img/logos/logo-tmobile.png" alt="T Mobile" /></li>
-			<li class="verizon"><img src="{{ STATIC_URL }}u/img/logos/logo-verizon.png" alt="Verizon" /></li>
+			<li class="four-col"><img src="{{ STATIC_URL }}img/logos/logo-everything-everywhere.png"  alt="Everywhere everywhere" /></li>
+			<li class="four-col {{ item_class }}"><img src="{{ STATIC_URL }}img/logos/logo-tmobile.png" alt="T Mobile" /></li>
+			<li class="verizon"><img src="{{ STATIC_URL }}img/logos/logo-verizon.png" alt="Verizon" /></li>
 		</ul>
 	</div>
 	<div class="eight-col last-col">

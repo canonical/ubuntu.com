@@ -1,4 +1,4 @@
-{% extends "ubuntu/desktop/base_desktop.html" %}
+{% extends "desktop/base_desktop.html" %}
 
 {% block title %}Meet Ubuntu{% endblock %}
 {% block meta_description %}Fast, secure and stylishly simple, the Ubuntu operating system is used by 20 million people worldwide every day.{% endblock %}
@@ -7,7 +7,7 @@
 {% block extra_body_class %}desktop-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Overview"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Overview"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -16,7 +16,7 @@
 		<h1>Meet Ubuntu</h1>
 		<p class="intro">Fast, free and incredibly easy to use, the Ubuntu operating system powers millions of desktop PCs, laptops and servers around the world.</p>
 		<p><a href="/download/desktop/" class="link-cta-ubuntu">Get Ubuntu now</a></p>
-		{% include "ubuntu/shared/_share_this.html" %}
+		{% include "shared/_share_this.html" %}
 	</div><!-- / .five-col -->
 </div><!-- / .row -->
 
@@ -27,17 +27,17 @@
 		<li id="feature-for-you">
 			<h3><a href="/desktop/features">For you &rsaquo;</a></h3>
 			<p>Enjoy the simplicity of Ubuntu&rsquo;s stylish, intuitive interface. Fast, secure and with thousands of apps to choose.</p>
-			<img src="{{ STATIC_URL }}u/img/desktop/image-for-you.jpg" class="" alt="">
+			<img src="{{ STATIC_URL }}img/desktop/image-for-you.jpg" class="" alt="">
 		</li>
 		<li id="feature-for-business">
 			<h3><a href="/desktop/business">For business &rsaquo;</a></h3>
 			<p>Perfect for business use, Ubuntu is secure, intuitive and lightweight. Maintain access to legacy applications without paying for licenses you don&rsquo;t need.</p>
-			<img src="{{ STATIC_URL }}u/img/desktop/image-for-business.png" class="" alt="">
+			<img src="{{ STATIC_URL }}img/desktop/image-for-business.png" class="" alt="">
 		</li>
 		<li id="feature-for-developers">
 			<h3><a href="/desktop/developers">For developers &rsaquo;</a></h3>
 			<p>Ubuntu provides the largest selection of development tools and the fastest path to cloud deployment.</p>
-			<img src="{{ STATIC_URL }}u/img/desktop/image-for-developers.png" class="" alt="">
+			<img src="{{ STATIC_URL }}img/desktop/image-for-developers.png" class="" alt="">
 		</li>
 	</ul>
 </div><!-- /.row .tabbed-menu -->
@@ -48,7 +48,7 @@
 		<p>To use Ubuntu is to fall in love with it. The desktop environment is intuitive but powerful, so you can work quickly and accomplish all you can imagine. You&rsquo;ll be captivated by its elegance.</p>
 	</div>
 	<div class="seven-col last-col no-margin">
-		<img class="right" src="{{ STATIC_URL }}u/img/desktop/image-beautiful.jpg" alt="" width="514" height="284" />
+		<img class="right" src="{{ STATIC_URL }}img/desktop/image-beautiful.jpg" alt="" width="514" height="284" />
 	</div>
 </div><!-- / .row -->
 
@@ -84,7 +84,7 @@
 </div>
 
 <div class="row row-image-centered">
-	<span><img src="{{ STATIC_URL }}u/img/logos/logo-kylin-160.png" alt="Ubuntu Kylin logo" width="160" height="160" /></span>
+	<span><img src="{{ STATIC_URL }}img/logos/logo-kylin-160.png" alt="Ubuntu Kylin logo" width="160" height="160" /></span>
 	<div class="eight-col">
 		<h2>Ubuntu for China</h2>
 		<p>Ubuntu Kylin is an official flavour of Ubuntu that has been  fully customised for Chinese users. It has a translated and localised user interface and comes with many common Chinese applications installed by default.</p>
@@ -113,6 +113,6 @@
 		</div>
 </div><!-- / .row -->
 
-{% include "ubuntu/shared/_community.html" %}
+{% include "shared/_community.html" %}
 
 {% endblock content %}

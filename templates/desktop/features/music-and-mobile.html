@@ -1,27 +1,27 @@
-{% extends "ubuntu/desktop/base_desktop.html" %}
+{% extends "desktop/base_desktop.html" %}
 
 {% block title %}Music and mobile | Features{% endblock %}
 
 {% block body_classes %}audience-consumer{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Desktop" subsection_title="Features" page_title="Music and mobile"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" subsection_title="Features" page_title="Music and mobile"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-{% include "ubuntu/desktop/features/_features_header.html" with page_title="Music and mobile" %}
+{% include "desktop/features/_features_header.html" with page_title="Music and mobile" %}
 
 <div class="row intro">
 	<div class="four-col">
 		<p>Ubuntu works with all common portable music players, as well as Android phones and the iPhone. And you&rsquo;ll find all the tunes you&rsquo;ll ever need in the Ubuntu One Music Store.</p>
 		<ul class="no-bullets inline inline-icons">
-			<li><img src="{{ STATIC_URL }}u/img/icons/icon-rythmbox-reflex-48x88.png" width="50" height="88" title="Rhythmbox" alt="Rhythmbox icon" /></li>
-			<li><img src="{{ STATIC_URL }}u/img/icons/icon-banshee-reflex-38x88.png" width="48" height="88" title="Banshee" alt="Banshee icon" /></li>
+			<li><img src="{{ STATIC_URL }}img/icons/icon-rythmbox-reflex-48x88.png" width="50" height="88" title="Rhythmbox" alt="Rhythmbox icon" /></li>
+			<li><img src="{{ STATIC_URL }}img/icons/icon-banshee-reflex-38x88.png" width="48" height="88" title="Banshee" alt="Banshee icon" /></li>
 		</ul>
-		{% include "ubuntu/shared/_share_this.html" %}
+		{% include "shared/_share_this.html" %}
 	</div>
 	<div class="eight-col last-col no-margin">
-		<img class="touch-border" src="{{ STATIC_URL }}u/img/desktop/features/screenshot-features-music-main.png" width="636" height="327" alt="" />
+		<img class="touch-border" src="{{ STATIC_URL }}img/desktop/features/screenshot-features-music-main.png" width="636" height="327" alt="" />
 	</div>
 </div><!-- /.row -->
 
@@ -29,17 +29,17 @@
 	<div class="four-col box">
 		<h3>Find your tunes anywhere</h3>
 		<p>Ubuntu will find the music you want in an instant, whether it&rsquo;s already on your computer or available in an online store like Amazon. Just type a few letters, hit return and view the results.</p>
-		<img src="{{ STATIC_URL }}u/img/desktop/features/screenshot-features-music-anywhere.png" alt="" width="287" height="177" />
+		<img src="{{ STATIC_URL }}img/desktop/features/screenshot-features-music-anywhere.png" alt="" width="287" height="177" />
 	</div><!-- /.four-col -->
 	<div class="four-col box box-new-music">
 		<h3>New music is never far away</h3>
 		<p>Enjoy one-click access to the Ubuntu One Music Store, direct from your desktop. The Ubuntu One Music Store is just one of many web apps you can add to the Launcher.</p>
-		<img src="{{ STATIC_URL }}u/img/desktop/features/screenshot-ubuntu-one.png" alt="" width="287" height="177" />
+		<img src="{{ STATIC_URL }}img/desktop/features/screenshot-ubuntu-one.png" alt="" width="287" height="177" />
 	</div><!-- /.four-col -->
 	<div class="four-col last-col box">
 		<h3>Preview before you buy</h3>
 		<p>Right-click on an album to see a full-size shot of the artwork, complete with track listings. Then just click to hear any of the tracks, before you buy.</p>
-		<img src="{{ STATIC_URL }}u/img/desktop/features/screenshot-features-music-preview.png" alt="" width="287" height="177">
+		<img src="{{ STATIC_URL }}img/desktop/features/screenshot-features-music-preview.png" alt="" width="287" height="177">
 	</div><!-- /.four-col -->
 </div><!-- /.row -->
 
@@ -50,7 +50,7 @@
 			<ul class="vertical-divider ">
 				<li class="four-col">
 					<div class="one-col">
-						<img src="{{ STATIC_URL }}u/img/icons/icon-audacity-48.png" width="48" height="48" alt="Audacity icon" />
+						<img src="{{ STATIC_URL }}img/icons/icon-audacity-48.png" width="48" height="48" alt="Audacity icon" />
 					</div>
 					<div class="three-col last-col">
 						<h4>Audacity</h4>
@@ -59,7 +59,7 @@
 				</li>
 				<li class="four-col">
 					<div class="one-col">
-						<img src="{{ STATIC_URL }}u/img/icons/icon-jokosher-48.png" width="48" height="48" alt="Jokosher icon" />
+						<img src="{{ STATIC_URL }}img/icons/icon-jokosher-48.png" width="48" height="48" alt="Jokosher icon" />
 					</div>
 					<div class="three-col last-col">
 						<h4>Jokosher</h4>
@@ -68,7 +68,7 @@
 				</li>
 				<li class="four-col last-col">
 					<div class="one-col">
-						<img src="{{ STATIC_URL }}u/img/icons/icon-clementine-48.png" width="48" height="48" alt="Clementine icon" />
+						<img src="{{ STATIC_URL }}img/icons/icon-clementine-48.png" width="48" height="48" alt="Clementine icon" />
 					</div>
 					<div class="three-col last-col">
 						<h4>Clementine</h4>
@@ -79,5 +79,5 @@
 		</div>
 	</div>
 </div><!-- /.row -->
-{% include "ubuntu/desktop/features/nav/_explore_ubuntu.html" %}
+{% include "desktop/features/nav/_explore_ubuntu.html" %}
 {% endblock content %}

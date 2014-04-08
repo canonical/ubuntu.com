@@ -1,28 +1,28 @@
-{% extends "ubuntu/desktop/base_desktop.html" %}
+{% extends "desktop/base_desktop.html" %}
 
 {% block title %}Web browsing | Features{% endblock %}
 
 {% block body_classes %}audience-consumer{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Desktop" subsection_title="Features" page_title="Web browsing"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" subsection_title="Features" page_title="Web browsing"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-{% include "ubuntu/desktop/features/_features_header.html" with page_title="Web browsing" %}
+{% include "desktop/features/_features_header.html" with page_title="Web browsing" %}
 
 <div class="row intro">
 	<div class="four-col">
 		<p>With Firefox already installed, Ubuntu has everything you need to browse the web. You can choose more browsers, like Google Chrome, from the Ubuntu Software Centre.</p>
 		<ul class="no-bullets inline inline-icons no-margin-bottom">
-			<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-firefox-reflex-48x88.png" width="48" height="100" title="Firefox" alt="Firefox icon" /></li>
-			<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-chrome-reflex-48x88.png" width="48" height="100" title="Chrome" alt="Chrome icon" /></li>
-			<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-baidu-reflex-48x88.png" width="45" height="100" title="Baidu" alt="Baidu icon" /></li>
+			<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-firefox-reflex-48x88.png" width="48" height="100" title="Firefox" alt="Firefox icon" /></li>
+			<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-chrome-reflex-48x88.png" width="48" height="100" title="Chrome" alt="Chrome icon" /></li>
+			<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-baidu-reflex-48x88.png" width="45" height="100" title="Baidu" alt="Baidu icon" /></li>
 		</ul>
-		{% include "ubuntu/shared/_share_this.html" %}
+		{% include "shared/_share_this.html" %}
 	</div><!-- /.four-col -->
 	<div class="eight-col last-col no-margin">
-		<img class="touch-border" src="{{ STATIC_URL }}u/img/desktop/features/screenshot-features-web-616x326.png" width="636" height="327" alt="BBC Weather in Firefox on Ubuntu, the outlook looks good" />
+		<img class="touch-border" src="{{ STATIC_URL }}img/desktop/features/screenshot-features-web-616x326.png" width="636" height="327" alt="BBC Weather in Firefox on Ubuntu, the outlook looks good" />
 	</div><!-- /.four-col -->
 </div><!-- /.row -->
 
@@ -34,7 +34,7 @@
 	<div class="eight-col last-col box">
 		<h3>Built-in security</h3>
 		<p class="four-col">With automatic security updates, anti-phishing technology and defence against viruses and malware, Ubuntu and Firefox help you keep your private information private.</p>
-		<img class="right pull-bottom-right" src="{{ STATIC_URL }}u/img/desktop/features/screenshot-web-secure.png" width="288" height="218" alt="Lloyds TSB in Firebox on Ubuntu" />
+		<img class="right pull-bottom-right" src="{{ STATIC_URL }}img/desktop/features/screenshot-web-secure.png" width="288" height="218" alt="Lloyds TSB in Firebox on Ubuntu" />
 	</div><!-- /.eight-col -->
 </div><!-- /.row -->
 
@@ -45,7 +45,7 @@
 			<ul class="vertical-divider">
 				<li class="four-col">
 					<div class="one-col">
-						<img src="{{ STATIC_URL }}u/img/icons/icon-flash-48.png" width="48" height="48" alt="Adobe Flash icon" />
+						<img src="{{ STATIC_URL }}img/icons/icon-flash-48.png" width="48" height="48" alt="Adobe Flash icon" />
 					</div>
 					<div class="three-col last-col">
 						<h4>Adobe Flash Player</h4>
@@ -54,7 +54,7 @@
 				</li>
 				<li class="four-col">
 					<div class="one-col">
-						<img src="{{ STATIC_URL }}u/img/icons/icon-chromium-48.png" width="48" height="48" alt="Chromium icon" />
+						<img src="{{ STATIC_URL }}img/icons/icon-chromium-48.png" width="48" height="48" alt="Chromium icon" />
 					</div>
 					<div class="three-col last-col">
 						<h4>Chromium</h4>
@@ -63,7 +63,7 @@
 				</li>
 				<li class="four-col last-col">
 					<div class="one-col">
-						<img src="{{ STATIC_URL }}u/img/icons/icon-liferea-48.png" width="48" height="48" alt="Liferea icon" />
+						<img src="{{ STATIC_URL }}img/icons/icon-liferea-48.png" width="48" height="48" alt="Liferea icon" />
 					</div>
 					<div class="three-col last-col">
 						<h4>Liferea</h4>
@@ -74,5 +74,5 @@
 		</div>
 	</div><!-- /.box -->
 </div><!-- /.row -->
-{% include "ubuntu/desktop/features/nav/_explore_ubuntu.html" %}
+{% include "desktop/features/nav/_explore_ubuntu.html" %}
 {% endblock content %}

@@ -1,4 +1,4 @@
-{% extends "ubuntu/templates/base.html" %}
+{% extends "templates/base.html" %}
 
 {% block title %}The world's most popular free OS{% endblock %}
 {% block extra_body_class %}homepage {% block takeover_body_class %}{% endblock takeover_body_class %}{% endblock extra_body_class %}
@@ -8,7 +8,7 @@
 		{% block takeover_content %}
 		{% endblock takeover_content %}
     	{% block footer_content %}
-    		{% include "ubuntu/takeovers/_footer_homepage.html" %}
+    		{% include "takeovers/_footer_homepage.html" %}
      	{% endblock footer_content %}
    {% endblock content %}
 {% endblock outer_content %}
