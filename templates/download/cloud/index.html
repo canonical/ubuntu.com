@@ -1,0 +1,101 @@
+
+{% extends "ubuntu/download/_base_download.html" %}
+
+{% block title %}Download Ubuntu Server for cloud | Download{% endblock %}
+
+{% block extra_body_class %}download-cloud-home{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Cloud" page_title="Thank you"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+{% with ubuntu_release="13.10" openstack_version="Havana" %}
+<div class="row row-hero no-border">
+	<h1>Download Ubuntu Server for cloud</h1>
+		<div class="eight-col">
+			<p>Download Ubuntu Server {{ ubuntu_release }} to get the latest features (including the {{ openstack_version }} release of OpenStack) or stay with Ubuntu 12.04.4 for extended support. If you&rsquo;re a technical user and you&rsquo;re looking for specific version downloads, go to <a href="http://releases.ubuntu.com">releases.ubuntu.com</a>.</p>
+		</div><!-- /.eight-col -->
+		<div class="four-col last-col text-center">
+			<ul class="inline-icons">
+				<li><img src="{{ STATIC_URL }}u/img/pictograms/image-picto-ubuntu.png" width="77" height="77" alt="" /></li>
+				<li><img src="{{ STATIC_URL }}u/img/pictograms/image-picto-openstack.png" width="77" height="77" alt="" /></li>
+			</ul>
+		</div>
+	<div class="box-grey twelve-col no-margin-bottom">
+		<div class="box box-highlight clearfix">
+			<h3><strong>For extended support,</strong><br />choose Ubuntu Server 12.04.4 LTS</h3>
+			<div class="download-description eight-col">
+				<p>Ubuntu 12.04 LTS is a long-term support release, and has support guaranteed until April 2017. The OpenStack {{ openstack_version }} release is available via <br/>the <a href="/download/cloud/cloud-archive-instructions">Ubuntu Cloud Archive</a>.</p>
+				<p><a href="/download/cloud/install-ubuntu-cloud">Read the full installation instructions &rsaquo;</a></p>
+			</div>
+			<div class="four-col last-col">
+				<form class="form-download" action="/download/cloud/thank-you/" method="get">
+					<fieldset>
+						<input name="version" value="12.04.4" type="hidden">
+						<label for="input-bits">Choose your flavour</label>
+						<select id="input-bits" name="architecture">
+							<option value="i386">32-bit</option>
+							<option value="amd64" selected="selected">64-bit (recommended)</option>
+						</select>
+					</fieldset>
+					<div>
+						<button class="cta-large" type="submit">Get Ubuntu 12.04 LTS</button>
+					</div>
+				</form>
+			</div><!-- /.four-col -->
+		</div><!-- /.box -->
+		
+		<div class="box box-highlight clearfix">
+			<h3><strong>For the latest features,</strong><br />choose Ubuntu Server {{ ubuntu_release }}</strong></h3>
+			<div class="download-description eight-col">
+				<p>Ubuntu {{ ubuntu_release }} will be supported for 9 months and includes cutting-edge new features such as the {{ openstack_version }} release of OpenStack.</p>
+				<p><a href="/download/cloud/install-ubuntu-cloud">Read the full installation instructions &rsaquo;</a></p>
+			</div>
+			<div class="four-col last-col">
+				<form class="form-download single-download" action="/download/cloud/thank-you/" method="get">
+					<fieldset>
+						<input type="hidden" name="version" value="13.10" />
+						<input name="architecture" value="amd64" type="hidden">
+					</fieldset>
+					<div>
+						<button class="cta-large" type="submit">Get Ubuntu {{ ubuntu_release }}</button>
+					<span class="small">Ubuntu Server {{ ubuntu_release }} 64-bit version</span>
+					</div>
+				</form>
+			</div><!-- /.four-col -->
+		</div><!-- /.box -->
+	</div><!-- /.box -->
+</div><!-- /.row -->
+
+<div class="row no-border">
+	<h2>More tools and options</h2>
+	<div class="four-col box">
+		<h3><a href="/cloud/orchestration/juju">Service orchestration with Juju &rsaquo;</a></h3>
+		<p>With Juju, the service orchestration tool from the Ubuntu project, deployment instructions for cloud services can be stored in charms that can be used, stored and shared. We call it Devops Distilled.</p>
+	</div>
+	<div class="four-col box">
+		<h3><a href="/download/arm">Ubuntu for ARM &rsaquo;</a></h3>
+		<p>Ubuntu Server and Ubuntu Desktop for ARM are a general purpose OS for ARM-based systems. Please note that currently only Marvell Armada-XP (server only) and TI Panda development boards are supported.</p>
+	</div>
+	<div class="four-col sidebar last-col">
+		<h4>More options</h4>
+		<ul>
+			<li><a href="/download/desktop">Ubuntu Desktop</a></li>
+			<li><a href="http://shop.canonical.com/index.php?cPath=17">Buy DVDs from the shop</a></li>
+		</ul>
+		<h4>Release notes</h4>
+		<ul>
+			<li><a href="https://wiki.ubuntu.com/PrecisePangolin/ReleaseNotes/UbuntuServer">Ubuntu Server 12.04.4 LTS release notes</a></li>
+			<li><a href="https://wiki.ubuntu.com/SaucySalamander/ReleaseNotes">Ubuntu Server {{ ubuntu_release }} release notes</a></li>
+		</ul>
+	</div>
+	<div class="eight-col box-grey">
+		<h4>Alternative options</h4>
+		<p>Want to download via BitTorrent links, find regional mirrors to get DVD images, use the network installer or find previous versions of Ubuntu?</p>
+		<p><a class="link-arrow" href="/download/alternative-downloads">Take a look at a full list of our previous versions and alternative downloads</a></p>
+	</div>
+</div>
+{% endwith %}
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

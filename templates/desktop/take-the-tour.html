@@ -1,0 +1,19 @@
+{% extends "ubuntu/desktop/base_desktop.html" %}
+
+{% block title %}Take the tour{% endblock %}
+{% block body_classes %}audience-consumer{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Take the tour"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-border">
+	<div class="five-col">
+	 	<h1>Take the tour</h1>
+		<p>Experience the simplicity of Ubuntu&rsquo;s stylish and intuitive interface with our online interactive tour. Explore how to browse email, surf the web, view photos, create documents and find apps.</p>
+		<p><a class="link-cta-ubuntu" href="/tour/en">Start tour</a></p>
+		{% include "ubuntu/shared/_share_this.html" %}
+  </div><!-- /.five-col -->
+</div><!-- /.row -->
+{% endblock content %}

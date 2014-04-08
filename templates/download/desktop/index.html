@@ -1,0 +1,70 @@
+{% extends "ubuntu/download/_base_download.html" %}
+
+{% block title %}Download Ubuntu Desktop{% endblock %}
+
+{% block extra_body_class %}download-desktop-home{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" page_title="Desktop"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}	
+<div class="row row-hero no-border">
+	<div class="eight-col append-four">
+		<h1>Download Ubuntu Desktop</h1>
+		<p>You can choose between two options when you download Ubuntu for a desktop PC. Ubuntu 13.10 gives you all the latest features, while Ubuntu 12.04 <abbr title="Long Term Support">LTS</abbr> comes with extended support.</p>
+	</div><!-- /.eight-col -->
+	<div class="box-grey twelve-col no-margin-bottom">
+		<div class="box box-highlight clearfix">
+			<h3><strong>For extended support,</strong><br/>choose Ubuntu 12.04 LTS</h3>
+			<div class="download-description eight-col no-margin-bottom">
+				<p>Ubuntu 12.04.4 LTS is a long-term support release. It has continuous hardware support improvements as well as guaranteed security and support updates until April 2017.</p>
+				<p><a class="link-arrow" href="/download/desktop/install-desktop-long-term-support">Read the full installation instructions</a></p>
+			</div>
+			<div class="four-col last-col no-margin-bottom download-button">
+				<form class="form-download" action="/download/desktop/contribute/" method="get">
+					<fieldset>
+						<input type="hidden" name="version" value="12.04.4" />
+						<p class="smaller">If you have an older PC with less than 2GB of memory, choose the 32-bit download.</p>
+						<label for="input-bits-lts">Choose your flavour</label>
+						<select id="input-bits-lts" name="architecture">
+							<option value="amd64" selected="selected">64-bit</option>
+							<option value="i386">32-bit (for machines with less than 2GB RAM)</option>
+						</select>
+					</fieldset>
+					<div>
+						<button type="submit">Ubuntu 12.04 LTS</button>
+					</div>
+				</form>
+			</div><!-- /.four-col -->
+		</div><!-- /.box -->
+		
+		<div class="box box-highlight clearfix no-margin-bottom">
+			<h3><strong>For the latest features,</strong><br/>choose Ubuntu 13.10</h3>
+			<div class="download-description eight-col no-margin-bottom ">
+				<p>Ubuntu 13.10 will be supported for 9 months and includes cutting-edge new features that make your music, videos, documents and apps much easier to access.</p>
+				<p><a class="link-arrow" href="/download/desktop/install-desktop-latest">Read the full installation instructions</a></p>
+			</div>
+			<div class="four-col last-col no-margin-bottom download-button">
+				<form class="form-download" action="/download/desktop/contribute/" method="get">
+					<fieldset>
+						<input type="hidden" name="version" value="13.10" />
+						<p class="smaller">If you have an older PC with less than 2GB of memory, choose the 32-bit download.</p>
+						<label for="input-bits-latest">Choose your flavour</label>
+						<select id="input-bits-latest" name="architecture">
+							<option value="amd64" selected="selected">64-bit</option>
+							<option value="i386">32-bit (for machines with less than 2GB RAM)</option>
+						</select>
+					</fieldset>
+					<div>
+						<button type="submit">Ubuntu 13.10</button>
+					</div>
+				</form>
+			</div><!-- /.four-col -->
+		</div><!-- /.box -->
+	</div>
+</div><!-- /.row -->
+
+{% include "ubuntu/download/desktop/_other-ways.html" %}
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

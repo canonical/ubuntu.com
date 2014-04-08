@@ -1,0 +1,66 @@
+{% extends "ubuntu/download/_base_download.html" %}
+
+{% block title %}How to burn a DVD on OS X{% endblock %}
+
+{% block extra_body_class %}download-help{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to burn a DVD on OS X"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-padding-bottom">
+	<h1>How to burn a DVD on OS X</h1>
+</div>
+<div class="row no-border">
+	<div id="download-help" class="eight-col box box-grey no-border">
+	<p>The easiest way to burn an ISO, the file you need to install Ubuntu from a DVD, is by using <strong>Disk Utility</strong>. If you&rsquo;re using an older version of Mac OS X, you might not have the Disk Utility application. In this case, use Disk Copy.</p>
+		<div class="box box-highlight">
+			<ol class="no-bullets">
+				<li>
+					<span>1</span>
+					<div>
+						<p>Launch <strong>'Disk Utility'</strong> (Applications &rarr; Utilities &rarr; Disk Utility).</p>
+					</div>
+				</li>
+				<li>
+					<span>2</span>
+					<div>
+						<p>Insert your blank DVD.</p>
+					</div>
+				</li>					
+				<li>
+					<span>3</span>
+					<div>
+						<p>Drag and drop your .iso file to the left pane in Disk Utility. Now both the blank disc and the .iso should be listed.</p>
+					</div>
+				</li>
+				<li>
+					<span>4</span>
+					<div>
+						<p>Select the .iso file, and click on the <strong>'Burn'</strong> button in the toolbar.</p>
+						<img src="{{ STATIC_URL }}u/img/download/burn-cd-mac-1-12.10.png" alt="" height="377" width="444">
+					</div>
+				</li>
+				<li>
+					<span>5</span>
+					<div>
+						<p>Ensure that the <strong>'Verify burned data'</strong> checkbox is ticked (you may need to click on the disclosure triangle to see the checkbox).</p>
+						<img src="{{ STATIC_URL }}u/img/download/burn-cd-mac-2-12.10.png" alt="" height="377" width="444">
+					</div>
+				</li>
+				<li>
+					<span>6</span>
+					<div>
+						<p>Click <strong>'Burn'</strong>. The data will be burned and verified.</p>
+					</div>
+				</li>
+			</ol>
+		</div><!-- /.box -->
+{% include "ubuntu/download/shared/_wiki_link.html" %}
+{% include "ubuntu/download/shared/_ask_ubuntu.html" %}
+</div><!-- /.eight-col -->
+{% include "ubuntu/download/shared/_instalation_help.html" %}
+</div><!-- /.row -->
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

@@ -1,0 +1,181 @@
+/*	@section server
+-------------------------------------------------------------- 
+	Contents:
+		@section general
+		@section server-services
+-------------------------------------------------------------- */
+
+/*	@section general
+-------------------------------------------------------------- */
+body.server .row-hero { /* First bit of content on a page, normally contains h1 and sometimes a bit of blurb */
+	position: relative;	
+}
+
+body.server th { font-weight: normal; }
+body.server tfoot th { font-weight:  bold; }
+
+body.server .button-right {
+	margin-top: 18px;
+	margin-bottom: 0;
+}
+
+body.server .row-hero {
+	xbackground: #fff url('../img/patterns/enterprise-dot-pattern.png');
+}
+
+body.server .row-hero h2 {
+	color: $warm_grey;
+	padding-top: 20px;
+}
+
+body.server .row-hero { }
+
+body.server .row-experts .eight-col,
+body.server .row-support .six-col { border-right: 1px dotted $warm_grey; }
+
+body.server .row-support .six-col { min-height: 6em; }
+
+body.server .row-experts .last-col, body.server .row-support .last-col {
+	border: 0;
+	width: (246/$base)em
+}
+
+body.server .row-experts .last-col .link-cta-canonical { width: auto; }
+
+body.server .row-budget .box div {
+	border-bottom: 1px dotted $warm_grey; 
+	margin-bottom: .769em;
+}
+
+.row-support-systems-management {
+	background: #fff url(../img/desktop/screenshot-landscape-482x460.png) top right no-repeat;
+	min-height: 460px;
+}
+
+body.server .row-integration {
+	background: #efeeec url(../img/pictograms/pictogram-server-integration-352x90.png) 3em center no-repeat;
+	margin-bottom: 0;
+}
+
+body.server .row-integration div {
+	padding-left: $six_col;
+	padding-bottom: $gutter_width;
+}
+
+body.server .row-landscape img {
+	height: auto;
+	max-width: 100%;
+}
+
+body.server .row-community {	margin-bottom: 0; border-bottom: 0; }
+body.server .row-community .nine-col { background: #fff; }
+.row-juju-maas div {
+	padding-bottom: 0;
+}
+
+.row-juju-maas div h2 {
+	padding-top: 130px;
+}
+
+.row-juju-maas .box-juju h2 {
+	background: url(../img/pictograms/pictogram-juju-100x100.png) center top no-repeat;
+}
+
+.row-juju-maas .box-maas h2 {
+	background: url(../img/pictograms/pictogram-maas-100x100.png) center top no-repeat;
+}
+
+
+/*	@section server-services
+-------------------------------------------------------------- */
+body.server-services .row-hero {
+	background-image: none;
+	border: 0;
+	padding-bottom: 0;
+}
+
+body.server-services .row-hero h2 {
+	background: none;
+	color: inherit;
+	padding: 0;
+	text-align: left;
+}
+
+body.server-services .packages {	margin-bottom: 20px; }
+
+body.server-services .packages h2 {
+	background: #efeeec url(../img/cloud/bg-servicesserver-owl-125x101.png) no-repeat 20px 50%;
+	width: 45.5%;
+	padding-top: 85px;
+	padding-bottom: 77px;
+}
+
+body.server-services .packages dd {	min-height: 10em; }
+body.server-services .packages dd.price {	min-height: 0; }
+body.server-services .packages .price-annual  {	top: 220px; }
+body.server-services .row-ubuntu-advantage { padding-bottom: 0; }
+body.server-services .row-ubuntu-advantage h3 { @include font_size (19.5); }
+body.server-services .row-ubuntu-advantage .list-details { margin-bottom: 0; }
+body.server-services .row-ubuntu-advantage li.first { height: 38.7em; }
+
+body.server-services .row-blockquote {
+	background: #e2d4dc;
+	padding-top: $gutter_width;
+	margin-bottom: 0;
+	padding-bottom: $gutter_width/2;
+}
+
+body.server-services .row-blockquote p.last {
+	padding-left: 25px;
+	display: block;
+	float: left;
+}
+
+body.server-services .row-blockquote p a { @include font_size (16); }
+
+body.server-services .row-enterprise {
+	padding-top: $gutter_width;
+	margin-bottom: 0;
+	overflow: hidden;
+}
+
+body.server-services .row-ubuntu-advantage { padding-top: 30px; }
+
+body.server-services .row-enterprise .quote-canonical {
+	margin-right: 20px;
+	padding: 20px 40px 0 80px;
+}
+
+body.server-services .row-methodology {
+	background: #e2d4dc;
+	padding-top: $gutter_width;
+}
+
+body.server-services .row-methodology .arrow-left {
+	bottom: auto;
+	top: 20px;
+}
+
+body.server-hyperscale h1 {
+  float: none;
+  margin-bottom: 18px;
+}
+
+body.server-hyperscale .partner-logo {
+	height: 124px;
+	margin-top: -20px;
+}
+
+body.server-hyperscale .partner-logo img {
+	@include vertical-align;
+}
+
+body.server-hyperscale .welcome-hyperscale {
+  background: url("../img/business/hyperscale-servers.png") no-repeat scroll 575px center #fff;
+}
+
+body.server-contact-us .row-hero h2,
+body.server-thank-you .row-hero h2   {
+  color: #333;
+  padding-top: 0;
+}

@@ -1,0 +1,115 @@
+{% extends "ubuntu/phone/base_phone.html" %}
+
+{% block title %}Features and specifications | Ubuntu for Android | Ubuntu for phones{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Phone" subsection_title="Ubuntu for Android" page_title="Features and specifications"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+
+<div class="row row-hero">
+	<img class="right" src="{{ STATIC_URL }}u/img/devices/product-android-features-hero-418x325.png" width="418" height="325" alt="Ubuntu running from an Android phone" />
+	<h1>Features and specifications</h1>
+	<h2>A complete Ubuntu desktop for docked Android phones</h2>
+	<p>Ubuntu for Android provides a full desktop experience, including office software, web browsing, email and media applications, on Android phones docked to a screen and keyboard. Thanks to tight integration with the Android service layer, the transition between the two environments is seamless, making it easy to access the phone's services from the desktop when docked.</p>
+</div><!-- / .row -->
+
+<div class="row">	
+	<h3>Secure full-featured web</h3>
+	<div class="six-col">
+		<p>Sit back and enjoy a full desktop browser for multi-tab, multi-window web productivity. Ubuntu supports both Chromium and Firefox, the world's fastest browsers, and is naturally resistant to web malware, which is why enterprises and governments are adopting Ubuntu on desktops.</p>
+	</div>
+	<div class="six-col last-col">
+		<p>Surf on the move with the Android browser, then dock to continue your session on the desktop. You get the same web pages, the same bookmarks and the same browsing history, with all the real-estate of a desktop. Using web applications with a full keyboard and mouse is so much better than a tablet when you're at a desk, even in a hotel.</p>
+	</div>
+</div><!-- / .row -->
+
+
+<div class="row row-image-centered">
+	<span>
+		<img src="{{ STATIC_URL }}u/img/devices/product-android-contacts-442x249.png" alt="Contacts lense on Ubuntu" width="442" height="249" />
+	</span>
+	<div class="six-col">
+		<h3>Unified contacts</h3>
+		<p>Both Ubuntu and Android access the same mobile address book. So even when the phone is docked, you can view, edit, call, text or email a contact. You can even check their profiles on Facebook or Twitter.</p>
+	</div>
+</div><!-- / .row -->
+
+<div class="row row-image-centered">
+	<div class="six-col">
+		<h3>Calendar coordination</h3>
+		<p>As with your contacts, your Android calendar data is shared with Ubuntu. This enables synchronisation with any desktop or web-based calendar application, like Google Calendar.</p>
+	</div>
+	<span>
+		<img src="{{ STATIC_URL }}u/img/pictograms/pictogram-calendar-164x145.gif" alt="Contacts lense on Ubuntu" width="164" height="145" />
+	</span>
+</div><!-- / .row -->
+
+<div class="row row-image-centered">
+	<div class="six-col">
+		<h3>Messaging and calls</h3>
+		<p>Read and reply to incoming SMS messages from the desktop, using Ubuntu's message indicator. You can also make and receive calls via the desktop &mdash; and you'll be alerted to voicemails so you can manage them while you work.</p>
+	</div>
+	<span>
+		<img src="{{ STATIC_URL }}u/img/devices/product-android-messaging-442x249.png" alt="Incoming message on Ubuntu" width="442" height="249" />
+	</span>
+</div><!-- / .row -->
+
+<div class="row">
+	<div class="six-col">
+		<h3>Simple integrated settings</h3>
+		<p>Alarm clock settings on the phone can be synchronised to alert you when working in the Ubuntu environment. You'll have one place to enter wifi passwords and one place to pair your bluetooth headset, then everything just works.</p>
+	</div>
+	<div class="six-col last-col">
+		<h3>Photos</h3>
+		<p>Manage and view photos stored on your smartphone using the Ubuntu Gallery application. Then edit them on the Ubuntu desktop and save them back to the phone. Create, edit and consume, all on one device.</p>
+	</div>
+</div><!-- / .row -->
+
+<div class="row">
+	<div class="six-col">
+		<h3>Social networking services</h3>
+		<p>All your Android social network account credentials are synchronised seamlessly, using the Ubuntu social networking client  to provide easy access to your online communities.</p>
+	</div>
+</div><!-- / .row -->
+   
+<div class="row">
+	<div class="box box-padded twelve-col default-apps">
+		<h3>Default applications</h3>
+		<div>
+			<ul class="inline text-center">
+				<li><img src="{{ STATIC_URL }}u/img/devices/icon-android-chromium.png" title="Fast, secure web browsing" alt="Fast, secure web browsing" width="64" height="62" /><p>Chromium web browser</p></li>
+				<li><img src="{{ STATIC_URL }}u/img/devices/icon-android-calendar.png" title="Online calendar sharing" alt="Online calendar sharing" width="65" height="76" /><p>Google Calendar</p></li>
+				<li><img src="{{ STATIC_URL }}u/img/devices/icon-android-docs.png" title="Collaborative documents in the cloud" alt="Collaborative documents in the cloud" width="57" height="65" /><p>Google Docs</p></li>
+				<li><img src="{{ STATIC_URL }}u/img/devices/icon-android-thunderbird.png" title="Simple, efficient email" alt="Simple, efficient email" width="64" height="67" /><p>Thunderbird email client</p></li>
+				<li class="last-item"><img src="{{ STATIC_URL }}u/img/devices/icon-android-gwibber.png" title="Facebook and Twitter integration" alt="Facebook and Twitter integration" width="64" height="65" /><p>Gwibber</p></li>
+				<li class="bottom"><img src="{{ STATIC_URL }}u/img/devices/icon-android-vlc.png" title="Play movies in all common formats" alt="Play movies in all common formats" width="56" height="65" /><p>VLC Player</p></li>
+				<li class="bottom"><img src="{{ STATIC_URL }}u/img/devices/icon-android-pitivi.png" title="Edit and share your movies" alt="Edit and share your movies" width="65" height="65" /><p>PiTiVi</p></li>
+				<li class="bottom"><img src="{{ STATIC_URL }}u/img/devices/icon-android-rhythmbox.png" title="Plays all common music files" alt="Plays all common music files" width="72" height="72" /><p>Ubuntu Music Player</p></li>
+				<li class="bottom"><img src="{{ STATIC_URL }}u/img/devices/icon-android-shotwell.png" title="Save and edit all your photos" alt="Save and edit all your photos" width="63" height="63" /><p>Ubuntu Photo Gallery</p></li>
+				<li class="bottom last-item"><img src="{{ STATIC_URL }}u/img/devices/icon-android-dialler.png" title="Make calls direct from the desktop" alt="Make calls direct from the desktop" width="69" height="69" /><p>Android dialer</p></li>
+			</ul>
+		</div>
+	</div><!-- /.box -->
+</div><!-- / .row -->
+
+<div class="row no-border">
+	<div class="eight-col">
+		<h3>Technical specifications</h3>
+		<p>Ubuntu for Android requires minimal custom hardware enablement, allowing fast and cost-efficient core integration. It requires a core based on Android 2.3 (Gingerbread) or any subsequent version.</p>
+		<p>Ubuntu and Android share the same kernel. When docked, the Ubuntu OS boots and runs concurrently with Android. This allows both mobile and desktop functionality to co-exist in different runtimes.</p>
+		<p>Shared services and applications are delivered using a Convergence API module which ensures the tight integration between desktop and mobile environments. Work is balanced across the cores of the phone. When the handset is not docked,  both CPU cores transfer their full power to Android.</p>
+	</div><!-- /.eight-col-->
+	<div class="four-col last-col">
+			<ul class="list-ubuntu">
+				<li>Automatic security updates</li>
+				<li>Defence against viruses</li>
+				<li>Anti-phishing</li>
+				<li>File encryption</li>
+				<li>Password protection</li>
+				<li>Built with security in mind</li>
+			</ul>
+	</div><!-- /.four-col-->
+</div><!-- / .row -->
+{% endblock content %}

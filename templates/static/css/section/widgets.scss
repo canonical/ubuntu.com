@@ -1,0 +1,35 @@
+/* insights blog widget */
+#insights-feed ul { display: table; }
+
+#insights-feed ul li {
+	display: table-cell;
+	line-height: 1.4;
+	float: none;
+	padding-left: 20px;
+}
+
+#insights-feed ul li a {
+	display: block;
+	margin-bottom: 6px;
+}
+
+#insights-feed ul li span {
+	text-transform: uppercase;
+}
+
+#insights-feed ul li span.date {
+	text-transform: none;
+}
+
+#insights-feed ul li:first-child {
+	padding-left: 0;
+}
+
+#insights-feed ul li:last-child {
+	margin-right: 0;
+}
+
+/* non js enterprise promo */
+.yui3-js-enabled .row-enterprise-blog {
+	display: none;
+}

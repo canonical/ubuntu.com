@@ -1,0 +1,71 @@
+{% extends "ubuntu/download/_base_download.html" %}
+
+{% block title %}Upgrade Ubuntu{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Upgrade" tertiary="true" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}	
+<div class="row row-hero">
+	<div class="twelve-col">
+		<h1>Upgrade from Ubuntu 13.04 to 13.10</h1>
+	</div>
+	
+	<div class="warning box no-border twelve-col">
+		<p>We recommend you backup your existing Ubuntu installation before updating.</p>
+	</div>
+	
+	<div class="box box-image-centered box-grey no-border no-margin-bottom">
+		<span><img src="{{ STATIC_URL }}u/img/pictograms/pictogram-upgrade-grey-113x113.png" alt="" width="124" height="124"></span>
+		<div class="nine-col last-col">
+			<p>If you have a version of Ubuntu other than Ubuntu 13.04, please <a href="https://help.ubuntu.com/community/UpgradeNotes">read the upgrade notes</a> for more information on how to upgrade.</p>
+			<p>Before you start the upgrade, we recommend that you <a href="/getubuntu/releasenotes">read the release notes</a> for Ubuntu 13.10, which which include workarounds for any problems you might encounter.</p>
+		</div><!-- /.ten-col -->
+	</div><!-- /.box -->
+
+<div id="ubuntu-help" class="box box-grey no-border">
+<ol class="no-bullets">
+	<li class="box box-highlight clearfix">
+		<div class="one-col">
+			<span>1</span>
+		</div>
+		<div class="four-col">
+		<div>
+			<h2>Launch the update manager</h2>
+			<p>Press the <strong>Superkey (Windows key)</strong> to launch the Dash and search for <strong>Update Manager</strong></p>
+		</div>
+		</div>
+		<div class="six-col right">
+			<img src="{{ STATIC_URL }}u/img/download/desktop-update-1-20.10.png" width="444" height="465" alt="" />
+		</div>
+	</li>
+	<li class="box box-highlight clearfix">
+		<div class="one-col">
+			<span>2</span>
+		</div>
+		<div class="four-col">
+			<h2>Check for updates</h2>
+			<p>Click the <strong>Check</strong> button to check for new updates. If there are any updates to install, use the <strong>Install Updates</strong> button to install them, press <strong>Check</strong> again after that first update is complete &mdash; then press the <strong>Upgrade</strong> button.</p>
+		</div>
+		<div class="six-col right">
+			<img class="" src="{{ STATIC_URL }}u/img/download/desktop-update-2-20.10.png" width="444" height="463" alt="" />
+		</div>
+	</li>
+	<li class="box box-highlight clearfix">
+		<div class="one-col">
+			<span>3</span>
+		</div>
+		<div class="four-col">
+			<h2>Install the upgrade</h2>
+			<p>A message will appear informing you of the availability of the new release. Click <strong>Upgrade</strong> and follow the on-screen instructions.</p>
+		</div>
+		<div class="six-col right">
+			<img src="{{ STATIC_URL }}u/img/download/desktop-update-3-20.10.png" width="444" height="461" alt="" />
+		</div>
+	</li>
+</ol>
+{% include "ubuntu/download/shared/_ask_ubuntu.html" %}
+</div><!-- /.box -->
+</div><!-- /.row -->
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends "ubuntu/download/_base_download.html" %}
+
+{% block title %}Download Ubuntu{% endblock %}
+{% block extra_body_class %}download-home{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" page_title="Overview"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero">
+	<div class="seven-col">
+		<h1>Get Ubuntu</h1>
+		<p>Ubuntu is completely free to download, use and share.</p>
+	</div><!-- / .seven-col -->
+</div><!-- / .row -->
+
+<div class="row row-list-download no-border">
+	<div class="twelve-col desktop box box-highlight">
+		<div id="download-desktop">
+			<h2><a class="link-arrow" href="/download/desktop">Ubuntu Desktop</a></h2>
+			<p>Download Ubuntu desktop and replace your current operating system whether it&rsquo;s Windows or Mac OS, or, run Ubuntu alongside it.</p>
+		</div>
+		<p class="ubuntu-upgrade">Do you want to upgrade? <a class="link-arrow" href="/download/desktop/upgrade">Follow our simple guide</a></p>
+	</div><!-- /.four-col -->
+	
+	<div class="twelve-col equal-height">
+		<div class="six-col server box">
+			<h2><a class="link-arrow" href="/download/server">Ubuntu Server</a></h2>
+			<p>Whether you want to configure a simple file server or build a fifty thousand-node cloud, you can rely on Ubuntu Server and its five years of guaranteed free upgrades.</p>
+		</div><!-- /.four-col -->
+		<div class="six-col cloud last-col box">
+			<h2><a class="link-arrow" href="/download/cloud">Ubuntu Cloud</a></h2>
+			<p>Ubuntu Cloud comprises installation options for the OpenStack-based Ubuntu Cloud Infrastructure and Ubuntu Cloud Guest, all from within the Ubuntu Server download.</p>
+		</div><!-- /.four-col -->
+	</div><!-- /.twelve-col -->
+</div><!-- /.row -->
+
+{% include "ubuntu/download/desktop/_chinese-download.html" %}
+
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

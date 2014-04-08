@@ -1,0 +1,74 @@
+{% extends "ubuntu/phone/base_phone.html" %}
+
+{% block title %}Ubuntu on phones{% endblock %}
+
+{% block meta_keywords %}Ubuntu, phone, smartphone, mobile, cellphone, cell, OS, operating system, platform, open source, Linux, Canonical, OEM, network operator, Android, touch, handheld, multitouch, device, form factor, gestures, edge magic, PC, desktop, convergence, enterprise{% endblock %}
+{% block meta_description %}Ubuntu now runs on phones. With a beautifully designed, easy-to-use interface that enables users to find content and switch between apps faster than ever, it represents the alternative open source OS the mobile industry has been waiting for. Ubuntu offers OEMs and network operators two key opportunities: a high-end experience on low end phones and PC desktop convergence on powerful hardware.{% endblock %}
+
+{% block extra_body_class %}phone-home{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Overview"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero">
+	<div class="five-col">
+		<h1>We&rsquo;re mobile industry ready</h1>
+		<h2>Ubuntu brings a fast and beautiful experience to any phone.</h2>
+		<p><a class="link-cta-ubuntu" href="https://wiki.ubuntu.com/Touch/Install">Install Ubuntu for phones</a><br />
+		<em class="smaller">for developers and industry partners only</em></p>
+	</div><!-- /.five-col -->
+</div><!-- /.row -->
+
+<div class="row row-features vertical-divider touch-border no-border">
+	<div class="four-col">
+		<h3>Feature complete</h3>
+		<p>Run all of your favourite apps from the launcher and swipe effortlessly between them using Ubuntu&rsquo;s magic edges. Use the Dash to search phone and web, and keep your life and content organised with the brilliance of Ubuntu scopes.</p>
+		<p><a href="/phone/design">Learn more about Ubuntu's features&nbsp;&rsaquo;</a></p>
+		<img src="{{ STATIC_URL }}u/img/devices/phone-home-design-269x185.jpg" width="269" height="185" alt="Ubuntu phone running the gallery app" />
+	</div>
+
+	<div class="four-col">
+		<h3>Ready for your phone</h3>
+		<p>With all-native core apps and no Java overhead, Ubuntu runs well on entry-level smartphones &mdash; yet it uses the same drivers as Android. So now it&rsquo;s easy to bring a better experience to customers all over the world.</p>
+		<p><a href="/phone/operators-and-oems">Learn about working with us&nbsp;&rsaquo;</a></p>
+		<img src="{{ STATIC_URL }}u/img/devices/phone-home-industry-269x192.jpg" width="269" height="192" alt="Two Ubuntu phones side by side" />
+	</div>
+
+	<div class="four-col last-col">
+		<h3>Everything developers need</h3>
+		<p>Create gorgeous native apps or lightweight HTML5 apps easily, with our SDK. Repurpose web apps fast, so they look and work like their native cousins. With one OS for all form factors, one app can have interfaces for phone and desktop in just one upload to one store.</p>
+		<p><a href="/phone/app-ecosystem">Learn more about developing apps&nbsp;&rsaquo;</a></p>
+		<img src="{{ STATIC_URL }}u/img/devices/phone-home-developers-290x188.jpg" width="290" height="188" alt="Collection of top apps available on Ubuntu phone" />
+	</div>
+</div><!-- /.row -->
+
+{% include "ubuntu/shared/_edge_promo.html" %}
+
+<div class="row row-image-centered">
+	<span class="four-col">
+		<img src="{{ STATIC_URL }}u/img/logos/canonical-symbol-167x167.png" width="167" height="167" alt="Canonical logo" />
+	</span>
+	<div class="eight-col last-col">
+		<h2>Backed by Canonical</h2>
+		<p>We provide hardware enablement services to the world&rsquo;s biggest PC OEMs and, as a result, Ubuntu now ships pre-installed on 10% of the world&rsquo;s new PCs. With staff and offices all over the world, we have the resources you need to deliver Ubuntu on smartphones.</p>
+		<p><a href="/phone/backed-by-canonical">Learn more about Canonical &rsaquo;</a></p>
+	</div>
+</div><!-- /.row -->
+
+
+<div class="row no-border">
+	<div class="eight-col">
+		<h2>Introducing the Carrier Advisory Group</h2>
+		<p>The Carrier Advisory Group enables mobile operators to shape Ubuntu&rsquo;s product development, and provides the opportunity to be a potential launch partner.</p>
+		<p><a href="/phone/carrier-advisory-group">Read more about the CAG &rsaquo;</a></p>
+	</div>
+	<div class="twelve-col no-margin-bottom">
+		<ul class="inline inline-icons">
+			{% include "ubuntu/phone/shared/_cag_list.html" with image_width="120" image_height="60" small="true" %}
+		</ul>
+	</div>
+</div>
+
+{% endblock content %}

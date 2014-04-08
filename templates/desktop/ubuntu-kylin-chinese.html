@@ -1,0 +1,102 @@
+{% extends "ubuntu/desktop/base_desktop.html" %}
+
+{% block title %}中国的Ubuntu{% endblock %}
+{% block meta_description %}Ubuntu Kylin is a Chinese flavour of Ubuntu. Canonical partnered with CSIP and NUDT to produce a fully localised and customised version of Ubuntu.{% endblock %}
+{% block meta_keywords %}Ubuntu, Ubuntu Kylin, OS, China, Chinese, translated, China Software and Integrated Chip Promotions Centre, CSIP, National University of Defense Technology, NUDT, 13.10, download{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Desktop" subsection_title="Ubuntu Kylin" page_title="Ubuntu Kylin Chinese" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero">
+	<a class="lang-switch" href="/desktop/ubuntu-kylin">English version &rsaquo;</a>
+	<div class="six-col no-margin-bottom">
+		<h1 lang="zh">中国的Ubuntu</h1>
+		<p lang="zh">Ubuntu Kylin桌面项目从13.04开始正式成为Ubuntu的一部分，Ubuntu中国版本从此诞生。Ubuntu Kylin拥有标准Ubuntu的所有特性和功能，同时具有专为中文用户开发的本地化界面和定制体验&#12290;</p>
+		<p><a lang="zh" href="/download/desktop/zh-CN" class="link-cta-ubuntu">下载Ubuntu Kylin</a></p>
+		{% include "ubuntu/shared/_share_this.html" %}
+	</div><!-- / .five-col -->
+</div><!-- / .row -->
+
+<div class="row row-partnership">
+	<ul class="no-bulletes inline-icons clearfix">
+		<li><img src="{{ STATIC_URL }}u/img/desktop/logo-canonical-288.png" alt="Canonical" width="288" height="40" /></li>
+		<li><img src="{{ STATIC_URL }}u/img/desktop/logo-csip-180.png" alt="CSIP" width="180" height="71" /></li>
+		<li><img src="{{ STATIC_URL }}u/img/desktop/logo-nudt-288.png" alt="NUDT" width="288" height="72" /></li>
+	</ul>
+	<h2 lang="zh">全球伙伴关系</h2>
+	<p lang="zh" class="six-col">T为了创建Ubuntu Kylin，Canonial公司、中国软件与集成电路促进中心（CSIP）和国防科学技术大学（NUDT）共同成立了开源软件联合创新实验室，旨在提供一个高度本地化和定制化的Ubuntu版本</p>
+	<p lang="zh" class="six-col last-col">Ubuntu Kylin团队以开源社区模式运作，采用Ubuntu核心功能以更好的适应中文用户。除了本地化的Ubuntu软件中心、Ubuntu One和大部分Unity界面等，Ubuntu Kylin还包含许多常用的中文应用&#12290;</p>
+</div><!-- / .row -->
+
+<div class="row row-grey">
+	<div class="six-col no-margin-bottom">
+		<img  class="touch-border pull-left-40" src="{{ STATIC_URL }}u/img/desktop/image-youker-assistant.png" alt="" width="469" height="308" />
+	</div>
+	<div class="six-col last-col">
+		<h2 lang="zh">优客助手</h2>
+		<p lang="zh">优客助手是一个简单但强大的系统工具，用于帮助Windows用户尽可能快速、平滑的切换到Ubuntu平台。该集成工具可辅助用户完成日常的系统维护任务，如硬件检测和界面定制等。通过优客助手，用户无需担心如何学习使用Ubuntu系统&#12290;</p>
+	</div>
+</div><!-- / .row -->
+
+<div class="row">
+	<div class="six-col">
+		<h2 lang="zh">智能Scope</h2>
+		<p lang="zh">Ubuntu Kylin Dash面板为中文用户提供特定的、本地化的智能Scope，使中文在线资源搜索更加便捷、准确。图片搜索来自搜狗、视频搜索来自优酷、音乐搜索来自百度——所有这些结果都取自本地资源&#12290;</p>
+	</div>
+	<div class="six-col  no-margin-bottom last-col">
+		<img class="touch-border" src="{{ STATIC_URL }}u/img/desktop/image-smart-scopes.png" alt="" width="482" height="302" />
+	</div>
+</div><!-- / .row -->
+
+<div class="row">
+	<div class="six-col no-margin-bottom">
+		<img  class="touch-border pull-left-40" src="{{ STATIC_URL }}u/img/desktop/image-chinese-lunar-calendar.png" alt="" width="469" height="260" />
+	</div>
+	<div class="six-col last-col">
+		<h2 lang="zh">中国农历软件</h2>
+		<p lang="zh">除了西方公历以外，Ubuntu Kylin内置提供中国传统的农历功能，中国用户能够方便地根据国家假日和传统习俗安排他们的日常生活计划&#12290;</p>
+	</div>
+</div><!-- / .row -->
+
+<div class="row row-grey">
+	<div class="six-col">
+		<h2 lang="zh">金山WPS办公套件</h2>
+		<p lang="zh">中国最受欢迎的办公套件为Ubuntu Kylin上提供定制版。通过与金山公司的密切合作，用户现在可以充分使用WPS办公套件提供的字处理、电子表格和演示软件等强大功能&#12290;</p>
+	</div>
+	<div class="six-col no-margin-bottom last-col">
+		<img class="touch-border screenshot-shadowed" src="{{ STATIC_URL }}u/img/desktop/image-kingsoft-wps-office.png" alt="" width="488" height="260" />
+	</div>
+</div><!-- / .row -->
+
+<div class="row row-grey row-image-centered">
+	<span><img src="{{ STATIC_URL }}u/img/desktop/image-instant-messaging.png" alt="" width="289" height="211" /></span>
+	<div class="seven-col">
+		<h2 lang="zh">“莲”即时通信软件</h2>
+		<p lang="zh">“莲”即时通信软件由NUDT团队设计开发，用户不仅可以与朋友、家人保持联系，也可以作为企业级通信工具与同事进行沟通和协作&#12290;</p>
+	</div>
+</div><!-- / .row -->
+
+<div class="row row-image-centered">
+	<div class="eight-col">
+		<h2 lang="zh">其它重要特色</h2>
+		<ul class="list-ubuntu clear">
+			<li lang="zh">通过定制的Fcitx（小企鹅）输入法提供更加有效和智能的中文输入</li>
+			<li lang="zh">Ubuntu Kylin主题图标和壁纸</li>
+			<li lang="zh">即将推出——金山快盘云存储服务，为每位用户提供100GB免费存储空间&#12290;</li>
+		</ul>
+	</div>
+	<span><img src="{{ STATIC_URL }}u/img/desktop/image-kylin-icons.png" alt="" width="260" height="190" /></span>
+</div><!-- / .row -->
+
+<div class="row row-ubuntu-kylin-more row-image-centered no-border">
+	<span><img src="{{ STATIC_URL }}u/img/desktop/image-kylin.png" alt="image-kylin" width="320" height="320" /></span>
+	<div class="seven-col last-col">
+		<h2 lang="zh">找到更多</h2>
+		<p lang="zh">如果您希望进一步了解Ubuntu Kylin，加入社区&#65292;<br />或者获取更多其他信息，请访问官方网站&#12290;</p>
+		<p><a href="http://www.ubuntukylin.com" lang="zh">访问Ubuntu Kylin.com &rsaquo;</a></p>
+	</div>
+</div>
+
+{% endblock content %}

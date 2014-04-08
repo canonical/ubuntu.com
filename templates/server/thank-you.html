@@ -1,0 +1,20 @@
+{% extends "ubuntu/server/base_server.html" %}
+
+{% block title %}Thank you{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Server" subsection_title="Contact-us" page_title="Thank you"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-image-centered row-hero no-border">
+	<div class="seven-col">
+		<h1>Thank you</h1>
+		<h2>We&rsquo;re really excited about your interest in Ubuntu Server.</h2>
+	    <p>A member of our Server team will contact you shortly.</p>
+    </div>
+    <span>
+   		<img src="{{ STATIC_URL }}u/img/devices/pictogram-smile-purple.png" width="164" height="162" alt="Smile pictogram" />
+    </span>
+</div><!-- /.row -->
+{% endblock content %}

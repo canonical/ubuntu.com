@@ -1,0 +1,114 @@
+{% extends "ubuntu/cloud/base_cloud.html" %}
+
+{% block title %}Cloud computing with Ubuntu | Cloud{% endblock %}
+
+{% block meta_description %}Building an OpenStack cloud with Ubuntu OpenStack is the best way to get the most out of any public or private cloud deployment.{% endblock meta_description %}
+
+{% block meta_keywords %}OpenStack, Cloud, Ubuntu OpenStack, private cloud, public cloud, open-source,  IAAS, infrastructure, service, Ubuntu, Ubuntu cloud Infrastructure, Ubuntu cloud Guest, Juju, Maas, orchestration, deployment, provisioning, Jumpstart{% endblock meta_keywords %}
+
+{% block extra_body_class %}cloud-home{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Overview"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero">
+	<div class="hero clearfix">
+		<div itemscope itemtype="http://schema.org/Product">
+			<h1 itemprop="name">Ubuntu OpenStack</h1>
+			<p itemprop="description" class="tagline">Whether you are building a cloud or using Ubuntu in a public cloud, we have the software, tools and services that will help your business make the most of your infrastructure.</p>
+		</div>
+	</div>
+</div><!-- /.row -->
+
+<div class="row no-border">
+		<h2>The Ubuntu OpenStack solution</h2>
+		<p class="eight-col">Ubuntu Server 12.04 LTS and 13.10 with OpenStack&rsquo;s Havana release provide the most robust foundation for your cloud.  Complemented by a powerful set of tools and services to make the difference to your business.</p>
+</div><!-- /.row -->
+
+<div class="row tight-section row-openstack-solution">
+	<div class="vertical-divider">
+		<div class="four-col maas-col">
+			<h3><a href="/cloud/tools/maas">MAAS &rsaquo;</a></h3>
+			<p class="offer">Free software</p>
+			<p>Provision your hardware into a cloud in minutes. MAAS makes it easy to set up your hardware and turn your servers into a cloud.</p>
+		</div>
+		<div class="four-col juju-col">
+			<h3><a href="/cloud/tools/juju">Juju &rsaquo;</a></h3>
+			<p class="offer">Free software</p>
+			<p>Juju is a revolution in service orchestration. Set up and deploy services, like MySQL and Hadoop, in seconds, to any cloud running Ubuntu &mdash; public or private.</p>
+		</div>
+		<div class="four-col landscape-col last-col">
+			<h3><a href="/cloud/management">Landscape &rsaquo;</a></h3>
+			<p class="offer">Free for 30 days</p>
+			<p>Landscape is the ultimate cloud management tool. It makes sure the software is up-to-date, monitors the system&rsquo;s health and keeps your servers running perfectly.</p>
+		</div>
+	</div>
+</div><!-- /.row -->
+
+<div class="row row-grey row-image-centered">
+	<span><img src="{{ STATIC_URL }}u/img/pictograms/image-picto-grow-on-demand-180.png" alt="" width="180" height="180" /></span>
+	<div class="eight-col">
+		<h2>Building your own cloud?</h2>
+		<p>Ubuntu OpenStack is the  fastest, easiest and most robust way to build an open cloud.  As the reference operating system for OpenStack, Ubuntu includes everything you need for making a feature-rich OpenStack deployment. And we guide you through it all with our enterprise class support for both Ubuntu and OpenStack.</p>
+		<p><a href="/cloud/build-a-cloud">Learn how to build a cloud&nbsp;&rsaquo;</a></p>
+	</div>
+</div><!-- /.row -->
+<div class="row row-use-a-cloud">
+	<div class="eight-col">
+		<h2>Using Ubuntu in the cloud?</h2>
+		<p>Ubuntu is the most popular guest operating system on public clouds and the fastest growing scale-out platform. The following public clouds provide official, certified Ubuntu images.</p>
+		<p><a href="/cloud/use-a-cloud">Find out why Ubuntu Server is the best guest in your cloud &nbsp;&rsaquo;</a></p>
+		<ul class="inline-icons">
+			<li><img src="{{ STATIC_URL }}u/img/logos/logo-ibm-large.png" alt="IBM" width="110" height="50" /></li>
+			<li><img src="{{ STATIC_URL }}u/img/logos/logo-window-azure-large.png" alt="Windows Azure" width="245" height="50" /></li>
+			<li class="last-item"><img src="{{ STATIC_URL }}u/img/logos/logo-hp-cloud.png" alt="" width="150" height="50" /></li>
+		</ul>
+	</div>
+	<div class="four-col last-col box box-highlight resource resource-e-book">
+		<h2><a href="http://insights.ubuntu.com/checklist/cloud-model-checklist/">Public or private cloud?&nbsp;&rsaquo;</a></h2>
+		<p>Is your organisation better off using a public cloud or building its own private cloud? What factors and trade-offs should you consider?</p>
+		<p class="content-cat content-cat-e-book">E-book</p>
+	</div><!-- /.four-col -->
+</div><!-- /.row -->
+
+<div class="row row-grey no-padding-bottom">
+	<div class="ten-col">
+		<h2>Complete set of cloud tools for your cloud</h2>
+		<p>Whether you use Ubuntu in a public, private or hybrid cloud, we have tools to help you build, scale, manage and support your cloud.</p>
+		<p><a href="/cloud/tools/">Learn more about the Ubuntu OpenStack cloud toolset&nbsp;&rsaquo;</a></p>
+	</div>
+	<div class="twelve-col no-margin-bottom">
+		<img class="left" src="{{ STATIC_URL }}u/img/cloud/image-juju-window.png" alt="The Juju GUI in a web browser" width="904" height="453" />
+	</div>
+</div>
+
+<!--
+<div class="row row-image-centered no-border">
+	<div class="five-col">
+		<h2>Planning the Ubuntu OpenStack roadmap</h2>
+		<p>Your organisation relies on OpenStack. Shouldn&rsquo;t you have a say in its future?</p>
+		<p>
+			<a onclick="_gaq.push(['_trackEvent', 'External Link', 'Cloud openstack survey', 'Survey Monkey Link');" href="https://www.surveymonkey.com/s/L5B6MLB">Please take our quick survey &rsaquo;</a>
+		</p>
+	</div>
+	<span><img src="{{ STATIC_URL }}u/img/homepage/cloud-survey.png" alt="" width="260" /></span>
+</div>
+-->
+
+<div class="row row-image-centered no-border">
+	<div class="six-col">
+		<h2>13.10 and Havana are here</h2>
+		<p>Ubuntu OpenStack built with the Havana release is the fastest, easiest and most cost-effective way to build and support the most up to date OpenStack cloud.</p>
+		<p>
+			<a href="/download/cloud">Download now &rsaquo;</a>
+		</p>
+	</div>
+	<span><img src="{{ STATIC_URL }}u/img/cloud/image-havana-promo.png" alt="" /></span>
+</div><!-- /.row -->
+
+{% include "ubuntu/shared/_live_chat.html" %}
+
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

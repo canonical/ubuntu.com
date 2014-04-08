@@ -1,0 +1,187 @@
+html.lt-ie7 {
+	.row-box { overflow: hidden; }
+	font-size: 16px;
+	
+	a.link-cta-ubuntu { color: #fff; }
+
+	div { zoom: 1; } /* stops the shit hitting the fan */
+	
+	.wrapper { 
+		overflow: hidden; 
+		border: 1px solid #e9e9e9; /* to make up for the lack of box-shadow */
+		border-width: 0 1px;
+	}
+	
+	.inner-wrapper { 
+		border-bottom: 1px solid #c7c6c5; /* to make up for the lack of box-shadow */
+		padding-bottom: $gutter_width;
+	}
+	
+	header.banner .logo-ubuntu {
+		background: url(../img/ie/logo.gif) no-repeat;
+	    width: 118px;
+	    height: 27px;
+	    display: block;
+	    text-indent: -999em;
+	}
+	
+	#box-search {
+		float: none;
+		position: absolute;
+		right: $gutter_width;
+		top: 58px;
+	}
+	
+	#box-search form input.form-text { /* this is needed as we're using input[type="text"] in core.scss */
+		border: 1px solid #ccc;
+		float: left;
+		margin: 0 ( $gutter_width / 2 ) 0 0;
+		padding: 4px 4px 3px;
+		width: $two_col/* + $grid_gutter*/;
+	}
+		
+	footer { 
+		top: -10px; 
+		margin-bottom: -10px;
+		float: left;
+		position: relative;
+		display: block;
+		width: 100%/* + $gutter_width*/;
+	}
+	
+	/* homepage */
+	body.homepage .box a.link-cta-download { color: #fff; }
+	
+	body.homepage header.banner .nav-secondary ul { background: none; }
+	
+	/* ubuntu */
+	.row-do-more .six-col {
+		display: inline;
+	    width: $six_col/* - ($gutter_width / 2)*/;
+	}
+	
+	.quote-right-top { 
+		background: none; 
+		top: 0;
+		padding: 0;
+	}
+    
+	.quote-right-top p { color: $ubuntu_orange; }
+
+	.ubuntu-why-use-ubuntu .quote-right-right {
+		position: absolute;
+		left: -999em;
+	}
+	
+	.ubuntu-why-use-ubuntu .row-free .article  .quote-right-alt {
+    	height: 207px;
+    	top: -($gutter_width * 3.1);
+    	padding-top: 20px;
+	}
+	
+	body.ubuntu-why-is-it-free .quote-right {
+		background: none;
+		top: -($gutter_width * 3);
+		right:  -( 2 * $gutter_width );		
+		width: 220px;
+	}
+	
+	body.ubuntu-why-is-it-free .quote-right p { color: $ubuntu_orange; }
+	
+	/* business */
+	body.business .row-hero-business, body.business-desktop-remix .row-hero, .row-ubuntu-advantage {
+    	left: 18px;
+	}
+	
+	body.business .row-enterprise .six-col {
+		overflow: hidden;
+	}
+
+	body.business .row-enterprise .quote-canonical {
+	    background: #fff;
+		height: 0;
+		margin-top: $gutter_width;
+	    padding-bottom: 0;
+	}
+	
+	body.business .row-community {
+		padding-bottom: $gutter_width;
+	}
+		
+	body.business .row-community .nine-col {
+	    padding-left: $three_col;
+	    width: $nine_col - $four_col;
+	}
+	
+	/* cloud */
+	.row-cloud-guest .eight-col, 
+	.row-consultancy .eight-col {
+		border-right: 1px solid $warm_grey;
+		width: $eight_col/* - ( 4 * $gutter_width)*/;
+	}	
+	
+	.row-providers .six-col {
+		width: $six_col/* - ( 2 * $gutter_width)*/;
+	}
+	
+	/*	@subsection download > desktop/server & cloud
+	-------------------------------------------------------------- */
+	body.download .row-hero {
+		width: 100% - (20/$base);
+	}
+	
+	body.download .row-hero .intro { 
+		padding-right: 0; 
+		width: $six_col - (200/$base); 
+	}
+	
+	body.download .row-hero .intro p { 
+		padding-right: 20px; 
+	}
+	
+	#download-help {
+		background: $light_grey;
+		width: $eight_col/* - ( 8 * $gutter_width )*/;
+	}
+	
+	#download-help li span {
+	    margin-left: -(180/36)em;
+	    overflow: hidden;
+	    position: absolute;
+	}
+	
+	/* cloud */
+	.row-home .intro {
+		background: none;
+		padding: 0 19px $gutter_width 0;
+		width: $eight_col;
+	} 
+	.row-home .box-openstack-cloud {
+		background: none;
+		padding-top: 0;
+	}
+	.row-menu h3 {
+		display: block;
+		float: left;
+		clear: both;
+		width: $three_col/* - ( 1.5 * $gutter_width)*/;
+		margin-bottom: 0;
+	}
+	.row-features .list-features-content li .list-feature-footer {
+		bottom: -90px;
+		margin-left: -30px;
+		width: 673px;
+	}
+	.nav-list-features li {
+		margin-top: 13px;
+	}
+	.row-cloud-services div { 
+		padding-right: 0;
+		width: $three_col/* + (2 * $gutter_width)*/;
+	}
+	
+	/* min-height fixes */
+	footer nav ul li.two-col { height: 10em; }
+	body.download .row-hero .intro { height: 10em; }
+	
+} /* end html.lt-ie7 */

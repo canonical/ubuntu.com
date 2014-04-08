@@ -1,0 +1,84 @@
+{% extends "ubuntu/partners/base_partners.html" %}
+
+{% block title %}Partners{% endblock %}
+{% block extra_body_class %}partners-home{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Partners" page_title="Overview"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-margin-bottom">
+	<div class="five-col">
+		<h1>Partners</h1>
+		<p>Canonical partners help to ensure that Ubuntu will always be compatible with the latest hardware and software. And they provide a range of services from implementation support to specialist tools.</p>
+	</div><!-- / .five-col -->
+
+	<div class="seven-col last-col no-margin">
+		<img src="{{ STATIC_URL }}u/img/partners/partners-main.jpg" width="492" height="293" alt="Ubuntu running on a dell laptop" />
+	</div><!-- / .seven-col -->
+</div><!-- / .row -->
+
+<div class="row equal-height vertical-divider">
+	<div class="four-col">
+		<h2>Find a partner</h2>
+		<p>Canonical partners provide a variety of software, hardware and implementation services to help you make the most of your open-source IT environment.</p>
+		<ul class="no-bullets">
+			<li><a href="/partners/find-a-partner/hardware">Hardware partners&nbsp;&rsaquo;</a></li>
+			<li><a href="/partners/find-a-partner/isv/">ISV partners&nbsp;&rsaquo;</a></li>
+			<li><a href="/partners/find-a-partner/reseller/">Reseller partners&nbsp;&rsaquo;</a></li>
+		</ul>
+	</div><!-- / .four-col -->
+ 
+	<div class="four-col">
+		<h2>Certified software</h2>
+		<p>Certified software undergoes a rigorous testing process. It must be compatible with Ubuntu and easy to install and uninstall according to user requirements.</p>
+		<ul class="no-bullets">
+			<li><a href="http://webapps.ubuntu.com/partners/certified-software/">More about Ubuntu Certified software&nbsp;&rsaquo;</a></li>
+			<li><a href="/partners/contact-us">Certify your software&nbsp;&rsaquo;</a></li>
+		</ul>
+	</div><!-- / .four-col -->
+ 
+	<div class="four-col last-col">
+		<h2>Certified hardware</h2>
+		<p>Certified hardware must pass a series of validation tests conducted by Canonical. Users can be confident that any certified hardware will be compatible with Ubuntu.</p>
+		<ul class="no-bullets">
+			<li><a href="http://www.ubuntu.com/certification/">More about Ubuntu Certified hardware&nbsp;&rsaquo;</a></li>
+			<li><a href="https://certification.canonical.com/">Certify your hardware&nbsp;&rsaquo;</a></li>
+		</ul>
+	</div><!-- / .four-col -->
+	
+</div><!-- / .row -->
+
+<div class="row no-margin no-border">
+	<div class="six-col">
+			<h2>Become a partner</h2>
+			<p>With more than 20 million users, Ubuntu is growing in popularity every day. This huge installed base represents an enormous market for applications and services, from games and social media to cloud consulting for the enterprise. </p>
+			<p>Canonical supports the Ubuntu project, providing marketing support, product development strategy and enterprise services, in the form of the Ubuntu Advantage programme. By partnering with Canonical, your business could benefit from early information on where Ubuntu is heading, along with opportunities to share the spotlight at events.</p>
+			<p>Whether you&rsquo;re building clouds, software or hardware, there has never been a better time to become part of the team.</p>
+		<p><a class="link-cta-ubuntu" href="/partners/contact-us">Contact Canonical</a></p>
+	</div>
+	<div class="six-col last-col">
+		<blockquote class="quote quote-canonical-white"> 
+			<p>&quot;Having Canonical teams working on OpenStack and its integration with Ubuntu is priceless.<br /> It's a very natural fit.&quot;</p>
+			<p>Thierry Carrez, Release Manager, OpenStack</p>
+		</blockquote>
+	</div><!-- / .six-col -->
+</div>
+
+<div class="row">
+	<div class="box-padded-feature">
+		<h3>Featured partners</h3>
+		<div>
+			<ul class="no-bullets inline inline-icons">
+				<li><img src="{{ STATIC_URL }}u/img/partners/openstack-logo.png" alt="OpenStack Cloud Softwear" /></li>
+				<li><img src="{{ STATIC_URL }}u/img/partners/ibm-logo.gif" alt="IBM" /></li>
+				<li><img src="{{ STATIC_URL }}u/img/partners/cloudera-logo.png" alt="Cloudera" /></li>
+				<li><img src="{{ STATIC_URL }}u/img/partners/dell-logo.jpg" alt="Dell" /></li>
+				<li><img src="{{ STATIC_URL }}u/img/partners/asus-logo.png" alt="ASUS" /></li>
+				<li><img src="{{ STATIC_URL }}u/img/partners/lenovo-logo.jpg" alt="Lenovo" /></li>
+			</ul>
+		</div>
+	</div><!-- / .box -->
+</div><!-- / .row -->
+{% endblock content %}

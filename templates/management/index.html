@@ -1,0 +1,152 @@
+{% extends "ubuntu/management/base_management.html" %}
+
+{% block meta_description %}Landscape, the systems management tool provided with Ubuntu Advantage, Canonical's service programme, allows you to manage large-scale deployments of Ubuntu machines as easily as one, making it far more cost-effective to support large networks of desktops, servers and cloud instances.{% endblock %}
+
+{% block meta_keywords %}Landscape, systems management, Ubuntu, Canonical, Linux, Ubuntu Advantage, compliance, inventory, deployment, provision, provisioning, manage, management, monitor, monitoring, scriptable, enterprise, software, API, web, hosted, dedicated, desktop, server, cloud, OpenStack, Eucalyptus, Amazon, EC2, ROI, cost-effective, trial, free{% endblock %}
+
+{% block title %}Management{% endblock %}
+
+{% block extra_body_class %}management-home{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Management" page_title="Overview"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+
+<div class="row row-hero">
+	<h1>Systems management and support</h1>
+	<div class="eight-col no-margin-bottom">
+		<p>Ubuntu Advantage is the professional support package from Canonical, with Landscape, a systems management tool, built for running large-scale Ubuntu deployments on desktop, server or cloud.</p>
+		<p class="clearfix"><a class="link-cta-canonical" href="https://landscape.canonical.com/trial-registration">Try Landscape for free for 30 days</a></p>
+		<p><a href="/management/contact-us">Contact us about Ubuntu Advantage &rsaquo;</a></p>
+	</div><!-- /.six-col -->
+	<div class="four-col last-col">
+		<img alt="" width="288" height="155" src="{{ STATIC_URL }}u/img/management/ubuntu-advantage-hero.png" />
+	</div><!-- /.six-col -->
+</div><!-- /.row-hero -->
+
+<div class="row row-whats-included">
+	<div class="eight-col last-col no-margin-bottom">
+		<h2>Ubuntu Advantage: what&rsquo;s included?</h2>
+		<h3>Systems management: Landscape</h3>
+		<p>With the Landscape systems management tool, you can automate updates and manage physical, virtual and cloud-based systems from a single interface. It's easy to set up, easy to use and requires no special hardware. It features:</p>
+		<div class="four-col">
+			<ul class="list-canonical">
+				<li>Management at scale</li>
+				<li>Deploy or rollback security updates</li>
+				<li class="last-item">Compliance reports</li>
+			</ul>
+		</div>
+		<div class="four-col last-col">
+			<ul class="list-canonical">
+				<li>Role-based access</li>
+				<li class="last-item">Informative monitoring</li>
+			</ul>
+		</div>
+		<div class="six-col no-margin-bottom">
+			<p><a href="/management/landscape-features">Learn more about Landscape&nbsp;&rsaquo;</a></p>
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="vertical-divider">
+	<div class="four-col support">
+		<h3>24/7 support</h3>
+		<p>Canonical&rsquo;s Global Support &amp; Services team provides around-the-clock coverage for Ubuntu deployments all over the world. Telephone support gives you access to engineers with first-hand experience of your issues, while the online portal lets you track the progress of cases in real time.</p>
+	</div>
+	<div class="four-col technical-library">
+		<h3>Technical library</h3>
+		<p>Exclusive to Ubuntu Advantage subscribers, the Canonical Knowledge Base is an online library of articles on technical issues including security, migration and networking.</p>
+	</div>
+	<div class="four-col last-col legal-assurance">
+		<h3>Customer login</h3>
+		<p>Already a customer? Access the support portal or Canonical’s hosted Landscape service.</p>
+		<ul class="no-bullets">
+			<li><a href="https://login.ubuntu.com/+saml/init/salesforce/500/o ">Support portal login &rsaquo;</a></li>
+			<li><a href="https://landscape.canonical.com/">Landscape login &rsaquo;</a></li>
+		</ul>
+	</div>
+	</div>
+	<div class="twelve-col last-col margin-top no-margin-bottom">
+		<p><a href="/management/ubuntu-advantage">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="six-col">
+		<h2>Watch it in action</h2>
+		<p>With Landscape you can manage your machines from anywhere and with a fully scriptable API, you can integrate it with your current Linux management tools, extending their capabilities and giving you the power to do more with fewer resources.</p>
+		<p><a href="/management/working-with-landscape">Learn more about working with Landscape&nbsp;&rsaquo;</a></p>
+	</div>
+	<div class="six-col last-col">
+		<iframe width="442" height="249" src="http://www.youtube.com/embed/6pSslGRi-ew?rel=0&wmode=opaque&modestbranding=0" frameborder="0" allowfullscreen></iframe>
+	</div>
+</div>
+
+<div class="row row-quote row-grey">
+	<blockquote>
+		<p>&quot;Auditors love the fact that we have centralised tools for updating servers and reporting on every element of our infrastructure&quot;</p>
+		<cite>Kelly Corbin, Senior Systems Administrator at NA Bancard <br /><a class="link-arrow" href="http://insights.ubuntu.com/case-study/bancard-streamlines-pci-compliance-with-canonicals-landscape/">Read the case study</a></cite>
+	</blockquote>
+</div><!-- /.row quote no-border -->
+
+<div class="row row-return-investment">
+	<div class="six-col stat">
+		<dl>
+			<dt>1,121%</dt>
+			<dd>ROI over five years</dd>
+		</dl>
+	</div>
+	<div class="six-col last-col">
+		<h3>Cut your IT costs with Landscape</h3>
+		<p>Landscape is already used to manage hundreds of thousands of machines around the world, both physical and virtual, saving our customers money every day.</p>
+		<p><a class="link-arrow" href="/management/return-on-investment">Read more about the ROI you can expect with Landscape</a></p>
+		<p><a class="link-arrow" href="/management/ema-whitepaper">Read the TCO analysis from Enterprise <br/>Management Associates</a></p>
+	</div>
+</div><!-- /.row return-investment -->
+
+
+<div class="row row-quote row-grey">
+	<blockquote>
+		<p>&quot;Previously, we needed lots of people to deploy, maintain, upgrade and support infrastructure at our offices around the world&quot;</p>
+		<cite>Pawe&#322; Zi&#281;ba, Senior IT Innovation Consultant, Capgemini <br /><a class="link-arrow" href="http://insights.ubuntu.com/case-study/capgemini-bpo-deploys-hybrid-thin-client-solution-with-ubuntu-advantage/">Read the case study</a></cite>
+	</blockquote>
+</div><!-- /.row .quote -->
+
+<div class="row vertical-divider">
+	<div class="six-col">
+		<h3>Benefits for system administrators</h3>
+		<ul class="list-canonical">
+			<li>Solves the hardest management problems, including building and maintaining software repositories, managing different machine profiles, delegating permissions at a granular level, auditing others&rsquo; actions and accessing asset information in real time.</li>
+			<li>Integration with common client-side Linux sysadmin tooling, so you can see the same information about individual machines as you see in the terminal.</li>
+			<li>A complete API lets you use established technologies (e.g. Bash, Python) to borrow or build on Landscape&rsquo;s functionality.</li>
+			<li>Custom scripts need only be written to allow for the business logic unique to your organisation; common tasks (e.g. repository management) are already covered, so there&rsquo;s no need to re-invent the wheel.</li>
+			<li>You can manage machines remotely from anywhere you can access a web browser.</li>
+			<li>Receive alerts when updates become available for specific machines, or manage auto-update policies, instructing devices to update during set maintenance windows.</li>
+			<li class="last-item"><p>RBAC features for delegating certain activities on specific machines to others &mdash; reducing your workload without sacrificing control.</li>
+		</ul>
+		<a href="/management/working-with-landscape">Learn more about working with Landscape&nbsp;&rsaquo;</a>
+	</div>
+	<div class="six-col last-col">
+		<h3>Benefits for IT managers</h3>
+		<ul class="list-canonical">
+			<li>Automation of repetitive tasks at scale helps ensure uniformity across your IT estate and eliminates the costs associated with rectifying human errors.</li>
+			<li>By reducing the number of administrators required for basic, day-to-day management, your team are free to focus on more productive activities that deliver value to your organisation.</li>
+			<li>Custom reporting makes regulatory compliance significantly less problematic, costly and time consuming.</li>
+			<li>Unlike in-house systems that may have grown organically, Landscape scales with your environment, enabling you to manage up to 40,000 machines with a single instance.</li>
+			<li>Thanks to an extensive, scriptable API, Landscape can be easily integrated with your current configuration management, monitoring and ticketing systems.</li>
+			<li>Updates and future versions are delivered at no cost, because Landscape is part of the Ubuntu Advantage service subscription.</li>
+			<li class="last-item">Landscape can be used to manage desktop, server and cloud deployments, or subsets of those deployments that you define when you subscribe to Ubuntu Advantage.</li>
+		</ul>
+		<a href="/management/compliance">Learn how Landscape helps boost compliance&nbsp;&rsaquo;</a>
+	</div>
+</div><!-- /.row-->
+
+{% include "ubuntu/shared/_live_chat.html" %}
+
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

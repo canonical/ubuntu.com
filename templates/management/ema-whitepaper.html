@@ -1,0 +1,26 @@
+{% extends "ubuntu/management/base_management.html" %}
+
+{% block title %}Enterprise Class Ubuntu Management with Canonical Landscape{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Management" page_title="EMA whitepaper"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero">
+	<h1>Enterprise Class Ubuntu Management with Canonical Landscape</h1>
+</div>
+
+<div class="row no-border">
+	<h2>Download the white paper</h2>
+	<div class="six-col">
+		<p>In this recently-published white paper, Enterprise Management Associates detail the return on investment that can be expected when managing Ubuntu systems using Landscape. They outline the software&rsquo;s features before providing hard financial data based on real-world study of the software in use. </p>
+		<p>To download the entire white paper for free, <br/>just fill out the form. </p>
+		<iframe scrolling="no" height="530px" width="464px" src="https://pages.canonical.com/EMFWhitepaper_EMFGateway.html" name="Whitepaper form" style="border: 0;"></iframe>
+	</div>
+	<div class="five-col prepend-one last-col">
+		<img src="{{ STATIC_URL }}u/img/third-party-logos/logo-ema-300x95.jpg" alt="EMA logo" width="250" />
+	</div><!-- /.six-col -->
+</div><!-- /.row -->
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

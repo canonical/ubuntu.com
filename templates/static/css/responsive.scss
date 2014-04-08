@@ -1,0 +1,112 @@
+/* Smaller than standard 960 (devices and browsers) */
+@media only screen and (max-width: 959px) {
+  
+}
+
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+  
+}
+
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {
+  
+}
+
+/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+
+
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (max-width: 479px) {
+	body {
+		margin: 0;
+		padding: 0;
+	}
+	.wrapper { max-width: 65.333em;} /* 980px / 15px (baseline font); 980px + (60px x 2) = 1100px */	
+	.inner-wrapper { max-width: 100%; } /* 940px / 15px */
+	
+	.wrapper, .inner-wrapper, .row, .one-col, .two-col, .three-col, .four-col, .five-col, .six-col, .seven-col, .eight-col, .nine-col, .twelve-col {
+		clear: both;
+		display: block;
+		float: none;
+		height: auto;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
+	header {
+		background: $ubuntu_orange;
+		clear: both;
+		display: block;
+		height: auto;
+		margin: 0;
+		padding: 0;
+		position: relative;
+		width: 100%;
+	}
+	.logo-ubuntu {
+		background: $ubuntu_orange;
+		height: 60px;
+		display: block;
+		float: none;
+		position: relative;
+		top: auto;
+		left: 20px;
+		width: $five_col;
+	}
+	header .nav-secondary, header .nav-primary, header .nav-secondary ul, header .nav-primary ul {
+		clear: both;
+		display: block;
+		float: none;
+		margin: 0;
+		padding: 0;
+		position: relative;
+		height: auto;
+		width: 100%;
+		top: auto;
+	}
+	header .nav-primary ul {
+		background: $ubuntu_orange;
+	}
+	header .nav-secondary li, header .nav-primary li {
+		border-bottom: 1px solid #fff;
+		height: auto;
+		margin: 0;
+		padding: 0;
+		text-align: center;
+		width: 100%;
+	}
+	header .nav-primary li a:link, header .nav-primary li a:visited, header .nav-secondary li a:link, header .nav-secondary li a:visited {
+		border: 0;
+		height: auto;
+		margin: 0;
+		padding: 10px;
+		text-align: center;
+		width: 100%;
+	}
+	header .nav-primary li a:link, header .nav-primary li a:visited {
+		background: $ubuntu_orange;
+	}
+	.main-content {
+		padding: 0;
+	}
+	.box {
+		@include rounded_corners(0);
+		border-width: 1px 0 0;
+		padding: 20px 20px 0;
+	}
+	img { 
+		height: auto;
+		max-width: 100%; 
+	}	
+	div.row-image-centered img, 
+	div.box-image-centered img {
+		position: absolute;
+		left: -999em;
+	}
+
+}

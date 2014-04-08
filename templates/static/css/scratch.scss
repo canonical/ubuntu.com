@@ -1,0 +1,39 @@
+/*
+ * This stylesheet is used to override the core styles until the monthly merge.
+ * 
+ * Please comment your changes to help documentation.
+
+  	CONTENTS:
+	-----------------------------------------------------------------
+
+*/
+
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+/*
+ * 7 June 2013
+ * Remove blue glow on search focus.
+ * file: core-pattern
+ * line: 1456
+ */
+
+#box-search form input[type="text"] {
+  outline: none;
+}
+
+
+div.warning {
+    background-color: #fdffdc;
+    color: #333;
+    
+  p {
+    padding: 0;
+    margin: inherit;
+  }
+}

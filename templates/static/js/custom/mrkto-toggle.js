@@ -1,0 +1,1 @@
+$(document).ready(function(){console.log('working');var e=$("#tick_ces-in");var t=$("#tick_mwc-in");var n=$("#Question1");$("#tick_ces-in, #tick_mwc-in").change(function(){if(e.is(":checked")&&t.is(":checked")){n.val("CES,MWC")}else if(e.is(":checked")){n.val("CES")}else if(t.is(":checked")){n.val("MWC")}else{n.val("Neither")}})}) 

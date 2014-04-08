@@ -1,0 +1,209 @@
+/*
+ *  Welcome Screen CSS
+ *  author: Anthony Dillon
+ */
+
+#welcome {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	font-weight:400;
+	background:url(../img/black-bg-60.png);
+	background: rgba(0,0,0,0.6);
+	overflow:hidden;
+	display:none;
+}
+#welcome-screen {
+	width: 660px;
+	left: 0;
+	top: 0;
+		-moz-border-radius: 8px;
+		-webkit-border-radius: 8px;
+		-khtml-border-radius: 8px;
+	border-radius: 8px;
+		-moz-box-shadow: 0 0 10px #000;
+  		-webkit-box-shadow: 0 0 10px #000;
+	box-shadow: 0 0 10px #000;	
+	position: absolute;
+	color: #4c4c4c;
+	display: none;
+	padding: 30px 0 20px;
+	z-index:2;
+	background: url("../img/folder/chrome.png") repeat-x scroll 0 0 #fff;
+}
+#welcome-screen .control{
+	margin-bottom: 6px;
+    margin-top: -25px;
+}
+#welcome-screen .welcome-header{
+	background: url("../img/welcome/circle-of-friends.png") 20px 20px no-repeat #fff;
+	height: 108px;
+    padding: 7px 100px 0 110px;
+    border-bottom:1px solid #d5d5d5;
+}
+#welcome-screen .welcome-select{
+	border-top:1px solid #fff;
+	padding:15px;
+}
+#welcome-screen .welcome-select select{
+	margin-left:10px;
+}
+#welcome-screen h1 {
+	font-size: 25px;
+	line-height:1.3;
+	font-weight:500;
+	margin-bottom: 0px;
+	margin-top: 20px;
+}
+#welcome-screen h2 {
+	font-size: 16px;
+	font-weight:500;
+	margin-top: 5px;
+}
+#welcome-screen ul {
+	padding: 0;
+	overflow: hidden;
+	margin:0;
+	background-color: #F2F1F0;
+	border-bottom: 1px solid #D5D5D5;
+	margin-bottom:20px;
+}
+#welcome-screen li {
+	float: left;
+	list-style: none;
+}
+#welcome-screen li a {
+	padding: 28px 0 22px 57px;
+	display: block;
+	width: 160px;
+	text-decoration: none;
+	cursor: pointer;
+	font-size: 16px;
+	color: #333;
+	border-bottom:1px dotted #C0B7B0;
+	border-right:1px dotted #C0B7B0;
+}
+#welcome-screen li a:hover {
+	background-color: #fff;
+	color:#DD4814;
+}
+
+#welcome-screen li a.completed {
+	color:#AEA79F;
+	background: url("../img/welcome/completed.png") no-repeat 12px 15px !important;
+	background-color: #e8e8e8 !important;
+}
+#welcome-screen li img {
+	float:left;
+	margin-left: -48px;
+    margin-top: -20px;
+}
+#welcome-screen .browse-files {
+	background: url("../img/welcome/browse-files.png") no-repeat 12px 15px;
+}
+#welcome-screen .surf-the-web {
+	background: url("../img/welcome/surf-the-web.png") no-repeat 12px 15px;
+	border-right:0px;
+	border-top:1px solid #fff;
+}
+#welcome-screen .check-email {
+	background: url("../img/welcome/check-email.png") no-repeat 12px 15px;
+	border-top:1px solid #fff;
+}
+#welcome-screen .watch-video {
+	background: url("../img/welcome/watch-video.png") no-repeat 12px 15px;
+	border-right:0px;
+	border-bottom:0px;
+}
+#welcome-screen .view-photos {
+	background: url("../img/welcome/view-photos.png") no-repeat 12px 15px;
+	border-right:0px;
+}
+#welcome-screen .find-apps {
+	background: url("../img/welcome/find-apps.png") no-repeat 12px 15px;
+}
+#welcome-screen .create-documents {
+	background: url("../img/welcome/create-documents.png") no-repeat 15px 15px;
+}
+#welcome-screen .create-spreadsheets {
+	background: url("../img/welcome/create-spreadsheets.png") no-repeat 15px 15px;
+	border-bottom:0px;
+}
+#welcome-screen .create-presentations {
+	background: url("../img/welcome/create-presentations.png") no-repeat 15px 15px;
+	border-bottom: 0px;
+}
+#welcome-screen .listen-music{
+	background: url("../img/welcome/listen-to-music.png") no-repeat 12px 15px;
+}
+#welcome-screen .system-indicators{
+	background: url("../img/welcome/indicators.png") no-repeat 12px 15px;
+	border-bottom:1px solid #d5d5d5;
+}
+#welcome-screen .applications{
+	background: url("../img/welcome/applications.png") no-repeat 12px 15px;
+	border-right:0px;
+	border-bottom:1px solid #d5d5d5;
+}
+#welcome-screen .explore-mode, 
+#welcome-screen .tour-mode {
+	margin-right: 15px;
+	background: url("../img/welcome/background-link-explore.png") center center repeat-x;
+	color: #333;
+}
+#welcome-screen .download,
+#welcome-screen .explore-mode, 
+#welcome-screen .tour-mode {
+	padding: 10px 20px;
+		-moz-border-radius: 4px 4px 4px 4px;
+		-webkit-border-radius: 4px 4px 4px 4px;
+	border-radius: 4px 4px 4px 4px;
+	display: block;
+	float: right;
+	font-size: 14px;
+	text-decoration: none;
+	border: 1px solid #c0b7b0;
+	cursor: pointer;
+}
+#welcome-screen .download:active,
+#welcome-screen .explore-mode:active, 
+#welcome-screen .tour-mode:active {
+	position: relative;
+	top: -1px;
+}
+
+#welcome-screen .language-mode {
+		-moz-border-radius: 4px 4px 4px 4px;
+		-webkit-border-radius: 4px 4px 4px 4px;
+	border-radius: 4px 4px 4px 4px;
+	display: block;
+	float: left;
+	font-size: 14px;
+	text-decoration: none;
+	border: 1px solid #c0b7b0;
+	cursor: pointer;
+	margin-left: 15px;
+	background: url("../img/welcome/background-link-explore.png") center center repeat-x;
+	color: #333;
+	padding: 9px 0;
+	overflow:hidden;
+}
+
+#welcome-screen .language-mode a,
+#welcome-screen .language-mode span {
+	padding:11px;
+}
+
+#welcome-screen .primary,
+#welcome-screen .language-mode span {
+	background: url("../img/welcome/background-link-download.png") center center repeat-x;
+	color: #fff;
+}
+
+#welcome-screen .control {
+	background: url("../img/welcome/window-buttons.png") no-repeat;
+	padding-left:60px;
+}

@@ -1,0 +1,208 @@
+/* 
+ *  Shotwell CSS
+ *   author: Anthony Dillon
+ */
+
+#shotwell{
+	width:800px;
+	height:550px;
+	top:200px;
+	left:600px;
+	font-size:15px;
+	display:none;
+}
+
+#shotwell .sidebar{
+	float:left;
+	width:215px;
+	margin-right:10px;
+	margin-top:5px;
+}
+
+#shotwell .nav{
+	height:379px;
+	padding:1px;
+	margin-bottom:6px;
+	width:100%;
+	border:1px solid #bdbab7;
+}
+
+#shotwell .nav ul{
+	list-style: none;
+	padding:5px 0px 5px 10px;
+	margin:0px;
+	background:#dfdddb;
+}
+
+#shotwell .nav .library{
+	background:url(../img/shotwell/library-icon.png) no-repeat scroll 0px 2px;
+	padding-left:20px;
+	
+}
+
+#shotwell .nav ul.selected{
+	background: #F07746;
+    color: white;
+}
+
+#shotwell .details{
+	border:1px solid #bdbab7;
+	height:93px;
+	width:100%;
+	font-weight:bold;
+	padding: 1px;
+	padding-top:35px;
+}
+#shotwell .details div{
+	margin-bottom:5px;
+}
+
+#shotwell .details span{
+	font-weight:normal;
+}
+
+#shotwell .container {
+	margin-top:5px;
+	float: left;
+	width:572px;
+	border-left:1px solid #bdbab7;
+	padding:1px;
+}
+
+#shotwell .container .images{
+	background:#434343;
+	width:100%;
+	height: 478px;
+	overflow:auto;
+}
+
+#shotwell .container .singleImage{
+	overflow:hidden;
+	background:#000;
+}
+
+#shotwell .container .images div{
+	text-align:center;
+	display:inline-block;
+	vertical-align:top;
+	width:185px;
+}
+
+#shotwell .container .images div.large{
+	width:100%;
+}
+
+#shotwell .container .images div.large img{
+	width:90%;
+	border:0px;
+	opacity: 1;
+	margin-top:20px;
+}
+
+#shotwell .container .images img{
+	width:158px;
+	border:1px solid #aaaaaa;
+	opacity: 0.8;
+	-moz-border-radius:2px 2px 2px 2px;
+	-webkit-border-radius:2px 2px 2px 2px;
+	border-radius:2px 2px 2px 2px;
+	margin:6px;
+}
+
+#shotwell .container .images img.selected{
+	border: 3px solid #22ddff;
+	margin:4px;
+}
+
+#shotwell .container .images img:hover{
+	opacity: 1;
+}
+
+#shotwell .container .tools{
+	height:40px;
+	width:100%;
+}
+
+#shotwell .container .tools .slider-container{
+	width:250px;
+	float:right;
+	height: 20px;
+}
+
+#shotwell .container .tools .slider-container .small-icon{
+	width:14px;
+	height:25px;
+	background:url(../img/shotwell/slider-small.jpg) no-repeat scroll 0px 10px;
+	float:left;
+}
+
+#shotwell .container .tools .slider-container .slider{
+	width:195px;
+	height:40px;
+	float:left;
+	margin-top:15px;
+}
+
+#shotwell .container .tools .slider-container .ui-slider {
+	background:url("../img/background-slider.png") no-repeat scroll 0 0px transparent;
+}
+
+
+#shotwell .container .tools .slider-container .slider-active{
+	-moz-border-radius:5px 5px 5px 5px;
+	-webkit-border-radius:5px 5px 5px 5px;
+	border-radius:5px 5px 5px 5px;
+	background:#dd4814;
+	height: 3px;
+    margin-left: 15px;
+    margin-top: 17px;
+    position: relative;
+   width: 53px;
+   z-index:1;
+}
+
+#shotwell .container .tools .slider-container .slider .ui-slider-handle{
+	z-index:2;
+}
+
+#shotwell .container .tools .slider-container .large-icon{
+	width:14px;
+	height:40px;
+	margin-left: 211px;
+    margin-top: -54px;
+	background:url(../img/shotwell/slider-large.jpg) no-repeat scroll 0px 10px;
+	float:left;
+}
+
+#shotwell .container .tools .jump-image{
+	float:right;
+	margin:2px 5px;
+}
+
+#shotwell .container .tools .jump-image .prev{
+	height:36px;
+	width:35px;
+	overflow:hidden;
+	background:url(../img/firefox/backward-button.jpg) no-repeat;
+	float:right;
+}
+
+#shotwell  .container .tools .jump-image .prev:hover{
+	background-position: 0px -36px;
+}
+
+#shotwell .container .tools .jump-image .next{
+	height:36px;
+	width:35px;
+	overflow:hidden;
+	background:url(../img/firefox/forward-button.jpg) no-repeat;
+	float:right;
+}
+
+#shotwell .container .tools .jump-image .next:hover{
+	background-position: 0px -36px;
+}
+
+#shotwell .container .tools .jump-image .disabled{
+	background-position: 0px -72px !important;
+}

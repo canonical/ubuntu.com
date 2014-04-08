@@ -1,0 +1,83 @@
+{% extends "ubuntu/cloud/base_cloud.html" %}
+
+{% block title %}Ubuntu OIL | Ecosystem | Cloud{% endblock %}
+
+{% block meta_description %}Engage with the Ubuntu OpenStack Interoperability Lab (Ubuntu OIL) to develop and test your technologies’ interoperability with Ubuntu OpenStack and a range of software and hardware{% endblock meta_description %}
+
+{% block meta_keywords %}Cloud, OpenStack, Ubuntu, Server, Interoperability, testing, integration, ecosystem, UOIL, development, validation, affiliate, supporter, Technical Partner Progamme, lab, laboratory{% endblock meta_keywords %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Ecosystem" page_title="Ubuntu OpenStack interoperability lab" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero">
+	<div class="eight-col">
+		<h1>The Ubuntu OpenStack interoperability lab</h1>
+		<h2>Proven integration testing</h2>
+		<p>The Ubuntu Openstack ecosystem is growing fast.  This is good news.  But as the options in cloud building grow, so does the task of ensuring interoperability between all the components.</p>
+		<p>At Canonical we have deep experience of conformity and interoperability testing between OpenStack and Ubuntu.  To bring this to the wider ecosystem we&rsquo;ve opened a lab dedicated to testing components&rsquo; interoperability.  We want to be <br />able to present a wide a range of validated and supportable technical solutions.</p>
+	</div><!-- /.eight-col -->
+</div><!-- /.row row-hero -->
+<div class="row">
+	<div class="seven-col">
+		<h2>A sophisticated testing and integration process</h2>
+		<p>Our process tests current and future developments of OpenStack against current and future developments of Ubuntu Server and Server LTS. As the ecosystem has grown we&rsquo;ve expanded it to include different guest OSs, hypervisors and software-defined networking (SDN) stacks. We&rsquo;ve also worked with partners familiar with Ubuntu and OpenStack but unfamiliar with Juju, MAAS and charms, to help them more fully integrate their solution with Ubuntu.</p>
+		<p>The need for tested, integrated components has never been greater.  So how do you get involved?</p>
+	</div><!-- /.eight-col -->
+</div><!-- /.row -->
+<div class="row row-involved row-grey">
+	<div class="four-col">
+		<img src="{{ STATIC_URL }}u/img/cloud/image-charms.png" width="" height="" alt="" />
+	</div>
+	<div class="eight-col last-col">
+		<h2>Get involved</h2>
+		<p>Involvement in the lab is through our Technical Partner Programme, which gives you all the benefits of ensuring your components are compatible with the latest release of Ubuntu OpenStack enabling you to get to market faster, with less cost.</p>
+		<p>Through the interoperability lab we can classify your solution as &lsquo;Fully integrated&rsquo;, give it prime positioning on our website, and prime positioning in the Juju Charm Store.  </p>
+	</div><!-- /.eight-col -->
+</div><!-- /.row -->
+<div class="row row-included">
+	<h2>What&rsquo;s included?</h2>
+	<p>As a partner involved in the interoperability lab you can expect:</p>
+	<div class="six-col">
+		
+		<ul class="list-ubuntu">
+			<li>Ongoing maintenance</li>
+			<li>Test development</li>
+			<li>Comprehensive interoperability testing </li>
+			<li>Charm School</li>
+			<li>A continuous cadence of testing and reporting</li>
+		</ul>
+	</div>
+	<div class="six-col last-col">
+		<ul class="list-ubuntu">
+			<li>Technical alignment to synchronise development timelines</li>
+			<li>Marketing assistance including entry into our list of compatible solutions, joint revenue opportunities and support for joint solutions</li>
+			<li>Training in maximising returns in your strategic relationship with Canonical</li>
+		</ul>
+	</div>
+</div><!-- /.row -->
+<div class="row row-hero row-partners">
+	<div class="twelve-col">
+		<h2>Partners in the lab</h2>
+		<ul class="inline">
+			<li class="box"><img src="{{ STATIC_URL }}u/img/cloud/partners/logo-dell-160.png" width="160" height="80" alt="" /></li>
+			<li class="box"><img src="{{ STATIC_URL }}u/img/cloud/partners/logo-emc-160.png" width="160" height="80" alt="" /></li>
+			<li class="box"><img src="{{ STATIC_URL }}u/img/cloud/partners/logo-emulex-160.png" width="160" height="80" alt="" /></li>
+			<li class="box"><img src="{{ STATIC_URL }}u/img/cloud/partners/logo-fusion-io-160.png" width="160" height="80" alt="" /></li>
+			<li class="box"><img src="{{ STATIC_URL }}u/img/cloud/partners/logo-hp-160.png" width="160" height="80" alt="" /></li>
+			<li class="box"><img src="{{ STATIC_URL }}u/img/cloud/partners/logo-ibm-160.png" width="160" height="80" alt="" /></li>
+			<li class="box"><img src="{{ STATIC_URL }}u/img/cloud/partners/logo-inktank-160.png" width="160" height="80" alt="" /></li>
+			<li class="box"><img src="{{ STATIC_URL }}u/img/cloud/partners/logo-intel-160.png" width="160" height="80" alt="" /></li>
+			<li class="box"><img src="{{ STATIC_URL }}u/img/cloud/partners/logo-lsi-160.png" width="160" height="80" alt="" /></li>
+			<li class="box"><img src="{{ STATIC_URL }}u/img/cloud/partners/logo-open-compute-160.png" width="160" height="80" alt="" /></li>
+			<li class="box"><img src="{{ STATIC_URL }}u/img/cloud/partners/logo-seamicro-160.png" width="160" height="80" alt="" /></li>
+			<li class="box"><img src="{{ STATIC_URL }}u/img/cloud/partners/logo-vmware-160.png" width="160" height="80" alt="" /></li>
+		</ul>
+	</div>
+	<div class="eight-col">
+		<h3>Interested in joining the lab?</h3>
+		<p>To contact a Canonical representative about becoming involved in the lab as a technical programme partner, <a href="/partners/contact-us">please fill out this short form</a>, and we’ll be in touch.</p>
+	</div><!-- /.eight-col -->
+</div><!-- /.row -->
+{% endblock content %}

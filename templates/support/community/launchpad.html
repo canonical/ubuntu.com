@@ -1,0 +1,21 @@
+{% extends "ubuntu/support/_base_support.html" %}
+
+{% block title %}Launchpad | Ubuntu{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Support" subsection_title="Community" page_title="Launchpad"  tertiary="true" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-border">
+	<h1>Launchpad</h1>
+</div>
+
+<div class="row no-border">
+	<div class="eight-col">
+		<p><a href="https://launchpad.net/">Launchpad</a>, developed by <a href="http://www.canonical.com/">Canonical</a>, is a system used to keep track of many aspects of open-source development. Launchpad's features include code hosting, bug tracking, translation, feature blueprints and a community-based answer tracker.</p> 
+		<p>Ubuntu uses Launchpad for project management. You can visit Ubuntu's Launchpad project page for more information.</p> 
+		<p>Launchpad also allows you to <a href="https://answers.launchpad.net/ubuntu">ask for community support</a> or <a href="https://bugs.launchpad.net/ubuntu">report any problems</a> you are experiencing with Ubuntu.</p>
+	</div><!-- / .seven-col -->
+</div><!-- / .row -->
+{% endblock content %}

@@ -1,0 +1,102 @@
+{% extends "ubuntu/cloud/base_cloud.html" %}
+
+{% block title %}OpenStack with Ubuntu | Cloud{% endblock %}
+
+{% block meta_description %}Ubuntu OpenStack is the fastest and best-supported route to creating an OpenStack cloud.{% endblock meta_description %}
+{% block meta_keywords %}IAAS, OpenStack, Ubuntu, Ubuntu Cloud Infrastructure, private cloud infrastructure, infrastructure as a service, open cloud, opencloud, open source cloud, open private cloud, open public cloud, open hybrid cloud, OpenStack private cloud, OpenStack public cloud, cloud architecture, cloud deployment, cloud in business, cloud in enterprise, cloud in finance, cloud in public sector, cloud in government{% endblock meta_keywords %}
+
+{% block extra_body_class %}cloud-tools-openstack-home{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Cloud tools" page_title="OpenStack" tertiary="true" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero">
+	<div class="five-col">
+		<h1>OpenStack</h1>
+		<p class="intro">Ubuntu OpenStack is the fastest route to creating a fully supported OpenStack cloud.</p>
+		<p><a href="/cloud/management" onclick="_gaq.push(['_trackEvent', 'information', 'button', 'openstack']);">Learn more about Ubuntu Advantage &nbsp;&rsaquo;</a></p>
+	</div><!-- /.seven-col -->
+</div><!-- /.row -->
+
+<div class="row">
+	<h2>The world&rsquo;s leading open cloud platform</h2>
+	<div class="seven-col append-one">
+		<p>As an open-source project under the guidance of the OpenStack Foundation, OpenStack provides its users with a cloud architecture technology that&rsquo;s free from vendor lock-in and always will be. In addition, it aims to provide the following benefits:</p>
+		<ul class="list-canonical">
+			<li>The most modular and horizontally scalable platform</li>
+			<li>The broadest functionality</li>
+			<li>The fastest deployment process</li>
+			<li>The best development and management tools</li>
+			<li>Suitability for private and public clouds</li>
+			<li class="last-item">Low cost of ownership</li>
+		</ul>
+		<p>OpenStack is used by some of the world&rsquo;s largest public cloud providers, including HP and Rackspace, as well as many more commercial enterprises for high-volume private clouds. The easiest way to join them is to build your OpenStack cloud on Ubuntu.</p>
+	</div>
+
+	<div class="four-col box box-highlight resource resource-data-sheet last-col">
+		<h2><a href="http://insights.ubuntu.com/resources/factsheet/openstack-primer/" title="OpenStack Primer Datasheet">OpenStack Primer&nbsp;&rsaquo;</a></h2>
+		<p>New to OpenStack? Our OpenStack Primer tells you all you need to know to get started. Read it now.</p>
+		<p class="content-cat content-cat-data-sheet">Datasheet</p>
+	</div><!-- /.four-col -->
+</div><!-- /.row -->
+
+<div class="row">
+	<h2>Creating your cloud with Canonical</h2>
+	<div class="six-col">
+		<p>Canonical was the first company to commercially distribute and support OpenStack and Ubuntu remains the reference operating system for the project. Canonical provides mission critical and enterprise support to OpenStack users around the world through Ubuntu Advantage. Since 2011, we&rsquo;ve included the latest version of OpenStack in every Ubuntu release, as well as making it available for the latest long-term support Ubuntu release (LTS) in our unique Cloud Archive. Once you&rsquo;ve deployed Ubuntu OpenStack you can move to newer OpenStack versions and benefit from all their new features quickly and easily.</p>
+	</div>
+	<div class="six-col last-col">
+		<p>Ubuntu OpenStack is fully compatible and tested with many technologies organisations already run, such as VMware ESX, Solidfire Storage or Microsoft Windows so you can connect to your infrastructure. Canonical offers a range of products and services to ease your OpenStack cloud journey, from everyday support to bespoke consulting for complex cloud deployments. The Ubuntu Advantage service package includes tiered support options for your cloud infrastructure, instances and services, and access to Landscape, the world’s leading Ubuntu systems management tool.</p>
+		<p><a href="/cloud/management">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+	</div>
+</div><!-- /.row -->
+
+<div class="row">
+	<h2>Ubuntu: the foundation of OpenStack</h2>
+	<div class="seven-col">
+		<p>Ubuntu and OpenStack share a unique relationship. Their release schedules are synchronised, ensuring that OpenStack updates and releases are immediately available on Ubuntu. And Ubuntu’s status as the reference operating system for OpenStack means Ubuntu is the preferred development platform &mdash; the one the developers of OpenStack use every day. No other operating system is as tightly integrated with OpenStack &mdash; or as stringently tested. If you want to run OpenStack (and if you&rsquo;re interested in open cloud infrastructure, you definitely should), the best advice is to do so on Ubuntu.</p>
+	</div>
+	<div class="five-col last-col">
+		<p><iframe src="http://www.youtube.com/embed/0hhdaPf30Xc?rel=0" height="205" width="365"></iframe></p>
+	</div>
+</div><!-- /.row -->
+
+<div class="row">
+	<h2>Learning more about OpenStack</h2>
+	<div class="seven-col">
+		<p>OpenStack is a free software platform on which anyone can develop, test and deploy cloud applications and services. This layer of the cloud stack, known generically as Infrastructure as a Service (IAAS), forms the base for doing so.</p>
+		<p>OpenStack has quickly become the standard for open cloud infrastructure. OpenStack code is freely available under the Apache 2.0 licence, so anyone can install it, run it or contribute to the project. It&rsquo;s a development model that has fostered an enormous community, supported by a large and growing ecosystem of tools, solutions and service providers.</p>
+		<p><a href="http://www.openstack.org">Learn more at the OpenStack website&nbsp;&rsaquo;</a></p>
+	</div>
+	<div class="four-col prepend-one last-col">
+		<blockquote>
+			<p class="pull-quote no-indent">An enormous community, supported by a large and <strong>growing ecosystem</strong> of tools</p>
+		</blockquote>
+	</div>
+</div><!-- /.row -->
+   
+<div class="row row-grey">
+	<div class="twelve-col box box-highlight resource resource-case-study box-image-centered">
+		<div class="eight-col">
+			<h2><a href="http://insights.ubuntu.com/case-study/mercadolibre-builds-1000-node-ubuntu-cloud-for-it-on-demand/">Case study: Mercado Libre &rsaquo;</a></h2>
+			<p>International auction site Mercado Libre is Latin America&rsquo;s answer to eBay and the fourth largest online retailer in the world. When Mercado Libre needed to build a fully-featured, reliable and open cloud capable of handling its huge volumes of customer activity, it chose OpenStack running on Ubuntu.</p>
+			<p class="content-cat content-cat-case-study">Case study</p>
+		</div>
+		<span>
+			<img src="{{ STATIC_URL }}u/img/pictograms/pictogram-mercadolibre-220x142.png" height="142" width="220" alt="">
+		</span>
+	</div><!-- /.resource -->
+</div><!-- /.row -->
+
+<div class="row row-image-centered no-border">
+	<span><img src="{{ STATIC_URL }}u/img/pictograms/pictogram-server-143x143.png" height="143" width="143" alt=""></span>
+	<div class="eight-col">
+		<h2>Ubuntu&nbsp;OpenStack&nbsp;reference&nbsp;architecture</h2>
+		<p>Ubuntu is the reference operating system for OpenStack and therefore provides unrivalled compatibility with the leading open cloud platform. We&rsquo;ve put together a reference architecture for Ubuntu OpenStack that we recommend to our customers. It&rsquo;s continually evolving as we add new third-party components, high-availability (HA) options, and different configurations, so check back often for the latest insights.</p>
+		<p><a href="/cloud/tools/openstack/reference-architecture">See the Ubuntu OpenStack reference architecture&nbsp;&rsaquo;</a></p>
+
+	</div><!-- /.eight-col -->
+</div><!-- /.row -->
+{% endblock content %}

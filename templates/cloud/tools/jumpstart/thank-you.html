@@ -1,0 +1,57 @@
+{% extends "ubuntu/cloud/base_cloud.html" %}
+
+{% block title %}Thank you{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Private cloud" subsubsection_title="Jumpstart" page_title="Thank you" tertiary="true" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-border">
+	<h1>Thank you for enquiring about <br />Ubuntu Jumpstart</h1>
+	<h2>A member of our team will be in touch within <br><strong>five working days</strong></h2>
+</div><!-- /.row-hero -->
+	
+<div class="row equal-height no-border">
+	<h3>More about our enterprise services</h3>
+	<ul id="thank-you-extra" class="no-bullets">
+		<li class="advantage four-col first">
+			<h4>Ubuntu Advantage</h4>
+			<p>Purchase our desktop support and access Ubuntu experts whenever you need.</p>
+			<p><a href="/cloud/management">Learn about Ubuntu Advantage &rsaquo;</a></p>
+		</li>
+		<li class="cloud four-col">
+			<h4>Ubuntu OpenStack</h4>
+			<p>Our private cloud infrastructure platform based on Openstack.</p>
+			<p><a href="/cloud">Learn about Ubuntu OpenStack &rsaquo;</a></p>
+		</li>
+		<li class="jumpstart four-col last-col">
+			<h4>Landscape</h4>
+			<p>Manage Ubuntu in the enterprise with our private cloud infrastructure platform based on OpenStack.</p>
+			<p><a href="/business/landscape">Learn about Landscape &rsaquo;</a></p>
+		</li>
+	</ul>
+</div><!-- end row-->
+	
+{% endblock content %}
+{% block footer_extra %}
+<!-- Google Code for Services Canonical &mdash; contact us Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1012391776;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "-mBBCIC5vwMQ4L7f4gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1012391776/?value=0&amp;label=-mBBCIC5vwMQ4L7f4gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+{{ marketo }}
+{% endblock footer_extra %}

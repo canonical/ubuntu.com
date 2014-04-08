@@ -1,0 +1,77 @@
+{% extends "ubuntu/download/_base_download.html" %}
+
+{% block title %}Download Ubuntu Server for ARM{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" page_title="ARM"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-margin-bottom">
+	<h1>Ubuntu for ARM</h1>
+	<div class="box box-grey no-border">
+		<div class="box box-highlight clearfix no-margin-bottom vertical-divider">
+			<div class="eight-col">
+				<h2>Server</h2>
+				<p>Ubuntu Server for ARM is an ARM-compatible implementation of our well-known <a href="/server">Ubuntu Server</a>. Built for scale-out and deployed on leading Hyperscale-class products, including <a href="/partners/hp/moonshot">HP Moonshot</a>, Ubuntu Server for ARM includes the full set of workloads end-users expect from a general-purpose Operating System, including a LAMP stack, Ceph storage and Hadoop-based analytics.</p>
+				<p>Ubuntu Server for ARM is available for selected SoCs as an over-the-network installer. Network boot infrastructure is required.</p>
+				<p><a href="https://wiki.ubuntu.com/ARM/Server/Install">Read the full installation instructions &rsaquo;</a></p>
+			</div>
+			<div class="four-col last-col no-margin-bottom">
+				<h3>Certified SoCs</h3>
+					<h4>Calxeda ECX-1000 (Highbank)</h4>
+					<ul>
+						<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/precise-updates/main/installer-armhf/current/images/highbank/netboot/">12.04 LTS &rsaquo;</a></li>
+						<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/saucy/main/installer-armhf/current/images/generic/netboot/">13.10 &rsaquo;</a>  </li>
+					</ul>
+					<h4>Calxeda ECX-2000 (Midway) <br/><span class="note">featuring LPAE support</span></h4>
+					<ul>
+						<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/saucy/main/installer-armhf/current/images/generic-lpae/netboot/">13.10 &rsaquo;</a></li>
+					</ul>
+					
+					<h4>Marvell Armada XP</h4>
+						<ul>
+							<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/precise-updates/main/installer-armhf/current/images/armadaxp/netboot">12.04 LTS &rsaquo;</a> </li>
+						</ul>
+
+				<h3>Preview releases</h3>
+				
+				<h4>Cavium Thunder ARMv8 Developer Platform <br/><span class="note">registration required</span></h4>
+				
+				<ul>
+					<li><a href="http://www.cavium.com/thundersdk_access_application.html">13.10 &rsaquo;</a></li>
+				</ul>
+			</div>
+		</div><!-- /.box-highlight -->
+	</div><!-- /.box -->
+	
+	<div class="box box-grey no-border">
+		<div class="box box-highlight clearfix no-margin-bottom vertical-divider">
+			<div class="eight-col">
+				<h2>Desktop and client</h2>
+				<p>The ARM implementation of Ubuntu also supports popular mobile-focused platforms like the TI Pandaboard.</p>
+				<p>Installation of these images is device-dependent.</p>
+				<p><a href="https://wiki.ubuntu.com/ARM/OmapDesktopInstall">Read the full installation instructions for OMAP desktop &rsaquo;</a></p>
+			</div>
+			<div class="four-col last-col no-margin-bottom">
+				<h3>Community supported</h3>
+				<h4>TI OMAP4 (Pandaboard)</h4>
+				<ul>
+					<li><a href="http://cdimage.ubuntu.com/releases/12.04.4/release/ubuntu-12.04-preinstalled-desktop-armhf+omap4.img.gz">12.04 &rsaquo;</a> </li>
+				</ul>
+				
+				<h4>TI OMAP3 (Beagleboard)</h4>
+				<ul>
+					<li><a href="http://cdimage.ubuntu.com/releases/12.04.4/release/ubuntu-12.04-preinstalled-desktop-armhf+omap.img.gz">12.04 &rsaquo;</a> </li>
+				</ul>
+			</div>
+		</div><!-- /.box-highlight -->
+	</div><!-- /.box-grey -->
+
+	<div class="eight-col">
+		<h3>Looking for the x86 version?</h3>
+		<p>Visit the download page for fully supported versions of <a href="/download/">Ubuntu for x86 chipsets</a> including Intel Avoton and AMD Kabini.</p>
+	</div><!-- /.twelve-col -->
+</div><!-- /.row -->
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

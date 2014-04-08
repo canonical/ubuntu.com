@@ -1,0 +1,184 @@
+{% extends "ubuntu/download/_base_download.html" %}
+
+{% block title %}Installing Ubuntu Cloud{% endblock %}
+
+{% block extra_body_class %}download-help{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Cloud" page_title="Installing Ubuntu Cloud"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-border">
+	<div class="twelve-col">
+		<h1>Installing Ubuntu OpenStack</h1>
+		<p class="eight-col">There are three different Ubuntu OpenStack installation options, depending on whether you plan to build your own infrastructure, run Ubuntu as a guest on existing infrastructure (be it public or private) or you want to deploy services on a working cloud with Juju Charms.</p>
+	</div>
+	<div id="download-help" class="eight-col box box-grey no-border">
+    <h2 id="cloud-guest">Ubuntu Cloud Guest</h2>
+			<p>To run Ubuntu Cloud Guest on participating public clouds, the simplest way is to use the image that is maintained on their server. You can specialise the instances you create by passing a configuration script via user-data with <a href="https://help.ubuntu.com/community/CloudInit">cloud-init</a>.</p>
+		<div class="box box-highlight">
+			<dl class="clearfix">
+				<dt>Amazon Web Services (EC2)</dt>
+				<dd><a href="http://console.aws.amazon.com/ec2/home">Launch directly using Amazon EC2 console  &rsaquo;</a></dd>
+				<dd><a href="http://cloud-images.ubuntu.com/locator/ec2/">Locate a particular Ubuntu Cloud Guest AMI &rsaquo;</a></dd>
+				<dd><a href="https://help.ubuntu.com/community/EC2StartersGuide">The Ubuntu guide to getting started on EC2 &rsaquo;</a></dd>
+			</dl>
+			<dl class="clearfix last-item">
+				<dt>HP Cloud</dt>
+				<dd><a href="http://www.hpcloud.com/products-services/compute">Launch an Ubuntu virtual machine on HP Cloud &rsaquo;</a></dd>
+				<dd><a href="https://community.hpcloud.com/article/getting-started-guide">Guide to getting started on HP Cloud &rsaquo;</a></dd>
+			</dl>
+			<dl class="clearfix">
+				<dt>Windows Azure</dt>
+				<dd><a href="http://www.windowsazure.com/en-us/pricing/free-trial/">Windows Azure &rsaquo;</a></dd>
+				<dd><a href="http://www.windowsazure.com/en-us/documentation/services/virtual-machines/">Guide to getting started on Windows Azure &rsaquo;</a></dd>
+			</dl>
+			<dl class="clearfix">
+				<dt>Rackspace Cloud</dt>
+				<dd><a href="https://cart.rackspace.com/cloud/?cp_id=cloud_servers">Rackspace Cloud Servers &rsaquo;</a></dd>
+				<dd><a href="http://www.rackspace.com/knowledge_center/index.php/Ubuntu_-_Setup">Documentation &rsaquo;</a></dd>
+			</dl>
+	
+			<p>If you want to modify the standard images, or if you want to use an image on your private cloud, you can also get a detailed list of images and <a href="http://cloud-images.ubuntu.com/precise/current">download your own image</a>.</p>
+		</div><!-- /.box-highlight -->
+
+		<h2 id="cloud-infra">Ubuntu OpenStack</h2>
+		<h4>Live USB stick trial - 12.04.4 only</h4>
+		<p>The easiest way to try Ubuntu OpenStack is to create a bootable USB stick that will let you try OpenStack.</p>
+		
+		<div class="box box-highlight clearfix">
+			<ol class="no-bullets">
+				<li class="clearfix">
+					<span>1</span>
+					<div>
+						<p><a href="/download/cloud">Download Ubuntu Server for Cloud &rsaquo;</a></p>
+					</div>
+				</li>
+				<li class="clearfix">
+					<span>2</span>
+					<div>
+						<p>Create a startup disk USB Stick from the downloaded image, using Startup Disk Creator, pre-installed in Ubuntu 12.04.</p>
+					</div>
+				</li>
+				<li class="clearfix">
+					<span>3</span>
+					<div>
+						<p>When your USB stick is ready, insert it in your computer and reboot, selecting the stick as your startup device when prompted.</p>
+					</div>
+				</li>
+				<li class="clearfix">
+					<span>4</span>
+					<div>
+						<p>Start using your local private cloud.</p>
+					</div>
+				</li>
+			</ol>
+		</div><!-- /.box-highlight -->
+	
+		<p>See the <a href="https://help.ubuntu.com/community/UbuntuCloudInfrastructure#Ubuntu_Cloud_Live_Image">Ubuntu OpenStack documentation</a> for details.</p>
+	
+		<h4>Real-world deployment</h4>
+		<p>Ubuntu OpenStack is one of the many workloads you can deploy using Ubuntu Server.  A full deployment will require a minimum of 10 servers.</p>
+		<p>Here is a summary of the steps you will need to follow to deploy it:</p>
+	
+		<div class="box box-highlight">
+			<ol>
+				<li class="clearfix">
+					<span>1</span>
+					<div>
+						<p><a href="/download/cloud">Download Ubuntu Server for Cloud &rsaquo;</a></p>
+					</div>
+				</li>
+				<li class="clearfix">
+					<span>2</span>
+					<div>
+						<p>Burn your CD or create a bootable USB stick.</p>
+					</div>
+				</li>
+				<li class="clearfix">
+					<span>3</span>
+					<div>
+						<p>Install it and select &lsquo;MAAS&rsquo; when asked which workload to deploy details.</p>
+						<p><a class="link-arrow" href="https://wiki.ubuntu.com/ServerTeam/MAAS">More details on the Ubuntu wiki</a></p>
+					</div>
+				</li>
+				<li class="clearfix">
+					<span>4</span>
+					<div>
+						<p>Add six or more nodes to MAAS.</p>
+						<p><a class="link-arrow" href="https://wiki.ubuntu.com/ServerTeam/MAAS/AddNodes">More details on the Ubuntu wiki</a></p>
+					</div>
+				</li>
+				<li class="clearfix">
+					<span>5</span>
+					<div>
+						<p>Deploy Juju on MAAS.</p>
+						<p><a class="link-arrow" href="https://wiki.ubuntu.com/ServerTeam/MAAS/Juju">More details on the Ubuntu wiki</a></p>
+					</div>
+				</li>
+				<li class="clearfix">
+					<span>6</span>
+					<div>
+						<p>Deploy Ubuntu OpenStack&rsquo;s OpenStack component using Juju.</p>
+						<p><a class="link-arrow" href="https://help.ubuntu.com/community/UbuntuCloudInfrastructure#Deploying_Ubuntu_Cloud_Infrastructure_with_Juju">More details on the Ubuntu wiki</a></p>
+					</div>
+				</li>
+			</ol>
+		</div>
+
+		<p>For more details on the deployment process, please <a href="https://help.ubuntu.com/community/UbuntuCloudInfrastructure">read the documentation</a> wiki pages.</p>
+
+	<div class="row-version-break row-hero">
+		<h2 id="juju-charms">Juju Charms</h2>
+		<p>You can deploy services onto bare metal or any OpenStack/Amazon EC2 compatible cloud, with Juju Charms. In summary, you simply need to:</p>
+	</div><!-- /.row -->
+	
+		<div class="box box-highlight">
+			<ol>
+				<li class="clearfix">
+					<span>1</span>
+					<div>
+						<p><a href="https://juju.ubuntu.com/docs/getting-started.html">Install Juju (bootstrap) &rsaquo;</a></p>
+					</div>
+				</li>
+				<li class="clearfix">
+					<span>2</span>
+					<div>
+						<p>Set up the credentials for your target cloud.</p>
+					</div>
+				</li>
+				<li class="clearfix">
+					<span>3</span>
+					<div>
+						<p>Start deploying services.</p>
+					</div>
+				</li>
+			</ol>
+		</div>
+	{% include "ubuntu/download/shared/_wiki_link.html" %}
+	{% include "ubuntu/download/shared/_ask_ubuntu.html" %}
+	</div><!-- /#download-help -->
+
+<div class="sidebar aside four-col last-col">
+	<ul class="no-bullets">
+		<li class="cloud">
+			<h3><a href="#cloud-guest">Ubuntu Cloud Guest</a></h3>
+			<p>You want to run Ubuntu Server on a public or private cloud</p>
+		</li>
+		<li class="server">
+			<h3><a href="#cloud-infra">Ubuntu OpenStack</a></h3>
+			<p>You want to deploy your own OpenStack-based IAAS public or private cloud</p>
+		</li>
+		<li class="juju">
+			<h3><a href="#juju-charms">Juju Charms</a></h3>
+			<p>You want to deploy services on a cloud using Juju Charms</p>
+		</li>
+	</ul>
+</div><!-- /.sidebar -->
+
+</div><!-- /.row -->
+
+
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

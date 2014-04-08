@@ -1,0 +1,974 @@
+/*	@section pc
+--------------------------------------------------------------
+	Contents:
+		@section general
+		@section home
+		@section features
+			@subsection ubuntu > features > ubuntu-software-centre
+			@subsection ubuntu > features > photos and videos
+			@subsection ubuntu > features > ubuntu-one
+		@section desktop remix
+		@subsection for-business > desktop
+		@section desktop developer
+		@section desktop management (see management.scss)
+		@section contextualised footer #context-footer
+		@section UbuntuKylin
+
+-------------------------------------------------------------- */
+
+/*	@section general
+-------------------------------------------------------------- */
+body.desktop .share-this {
+	height: 25px;
+	position: relative;
+	display: block;
+	float: left;
+	clear: both;
+	width: 100%;
+}
+
+body.desktop .share-this iframe {
+	width: 80px;
+	padding: 0;
+	float: left;
+	display: inline-block;
+	margin: 0 0 0;
+}
+
+body.desktop .share-this iframe:first-child {
+	width: 80px;
+}
+body.desktop .share-this iframe:last-child {
+	margin-right: 0;
+}
+
+body.desktop .share-this .twitter-share-button {
+	width: 58px;
+	display: inline-block;
+	float: none;
+}
+
+body.desktop-features-home .share-this {
+	right: auto;
+}
+
+.box-get-ubuntu{
+  div {
+    min-height: 176px;
+  }
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+  div {
+    min-height: 173px;
+  }
+  }
+  li {
+    float: left;
+    list-style-type: none;
+    text-align: center;
+    width: 24.8%;
+    margin-top:20px;
+
+    a {
+      background: url(../img/pictograms/sprite-pictograms-get-ubuntu-66x772.png) top center no-repeat;
+      display:block;
+      padding-top:75px;
+      line-height: 1.3;
+    }
+  }
+  li.cd a { background-position: center -303px; }
+  li.windows a { background-position: center -606px; }
+  li.download a { background-position: center -919px; }
+
+  li a:hover { background-position: center -161px; }
+  li.cd a:hover { background-position: center -464px; }
+  li.windows a:hover { background-position: center -767px; }
+  li.download a:hover { background-position: center -1080px; }
+}
+
+/*	@section home
+-------------------------------------------------------------- */
+body.desktop-home {
+	.row-hero {
+		background: url(../img/desktop/image-meet-ubuntu.jpg) 290px 10px no-repeat;
+		p {
+			padding-right: 90px;
+		}
+	}
+	.row-hero h1 {
+	}
+	.share-this {
+		margin-top: 30px;
+	}
+	.intro {
+		@include font_size (23);
+		line-height: 1.3;
+		margin-bottom: 30px;
+		padding-right: 50px;
+	}
+	.accessible {
+		background: url(../img/desktop/desktop-accessible.jpg) 103% top no-repeat;
+		min-height: 311px;
+	}
+
+	.loaded {
+		background-image: url(../img/desktop/desktop-loaded.png);
+		background-position: left center;
+		background-repeat: no-repeat;
+	}
+
+	.take-the-tour {
+		background: url(../img/desktop/screenshot-demo.png) 104.3% top no-repeat;
+		min-height: 290px;
+	}
+
+	.row-free p.first {
+		padding-right: 186px;
+	}
+
+	.row-free > div.open-source {
+		background: url(../img/pictograms/pictogram-heart-166.png) 93% 40% no-repeat;
+	}
+
+	.row-free > div.backed-by-canonical {
+		background: url(../img/logos/canonical-logo-166.png) 93% 40% no-repeat;
+	}
+
+	.row-free blockquote {
+		margin-top: -70px;
+	}
+
+	.row-beautiful img {
+		position: relative;
+		margin: 0 -40px -20px 0;
+	}
+} /* end @section home */
+
+/*	@section features
+-------------------------------------------------------------- */
+body.desktop-features .intro {
+	padding-top: 0;
+}
+body.desktop-features .share-this {
+	margin-top: 25px;
+}
+
+img.touch-border {
+  margin-bottom: -20px;
+  position: relative;
+  display: block;
+}
+
+body.desktop-features .intro div { margin-bottom: 0; }
+
+body.desktop-features .row-hero,
+body.desktop-features .row-hero div,
+body.desktop-features .row-hero p,
+body.desktop-features .row-hero h1 {
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+body.desktop-features .row-hero h1 {
+	margin-bottom: 36px;
+}
+
+body.desktop-features .row-hero .link-cta-ubuntu {
+	margin: 15px 0 0 0;
+}
+
+body.desktop-features .row-your-ubuntu {
+	background: url("../img/desktop/features/image-your-ubuntu.jpg") 290px 10px no-repeat;
+	margin-bottom: 40px;
+	padding-bottom: 20px;
+	h1 {
+		margin-bottom: 0.267em;
+		position: relative;
+		z-index: 2;
+	}
+
+	img {
+		margin-top: -4em;
+		position: relative;
+		right: 0;
+		margin-bottom: 30px;
+		margin-right: 50px;
+		z-index: 0;
+		height: auto;
+	}
+
+}
+
+body.desktop-features .box-explore-ubuntu {
+	@include box_sizing;
+	background: $light_grey;
+		-moz-box-shadow: inset 0 0 2px 1px #dedede;
+		-webkit-box-shadow: inset 0 0 2px 1px #dedede;
+	box-shadow: inset 0 0 2px 1px #dedede;
+	margin: 0 0 20px 0;
+	margin-left: 40px;
+	margin-right: 40px;
+	position: relative;
+}
+
+body.desktop-features-home .row-explore-ubuntu {
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+}
+
+.row-what-is-new {
+	background: url("../img/desktop/features/image-smart-scopes.jpg") no-repeat;
+	padding-left: $six_col + 2.21238%;
+}
+
+body.desktop-features .box-explore-ubuntu {
+	margin-bottom: 40px;
+}
+
+body.desktop-features .box-explore-ubuntu h2 {
+	@include font_size (16);
+	color: $cool_grey;
+	margin-bottom: 1.25em;
+}
+
+body.desktop-features .box-explore-ubuntu ul {
+	margin: 0;
+}
+
+body.desktop-features .box-explore-ubuntu ul li {
+	float: left;
+	margin-bottom: 0;
+	padding-bottom: 0;
+	text-align: center;
+	width: 14.28%;
+}
+
+body.desktop-features .box-explore-ubuntu ul li a {
+	@include font_size (13);
+	color: $cool_grey;
+}
+
+body.desktop-features .box-explore-ubuntu ul li a:hover {
+	color: $ubuntu_orange;
+	text-decoration: none;
+}
+
+body.desktop-features .box-explore-ubuntu ul li p {
+	margin-bottom: 0;
+}
+
+/*body.desktop-features .box-explore-ubuntu li.current {
+	background: url("../img/tertiary-arrow.png") center bottom no-repeat;
+	padding-bottom: 42px;
+	margin-bottom: -22px;
+}
+*/
+body.desktop-features .box-explore-ubuntu li.current a {
+	color: $ubuntu_orange;
+}
+
+body.desktop-features .row-accessible {
+	border-bottom: 1px dotted $warm_grey;
+	height: 287px;
+	margin-bottom: 20px;
+}
+
+body.desktop-features .row-accessible img.pull-bottom-right {
+	margin-top: -19px;
+	margin-right: -41px;
+}
+
+body.desktop-features .row-compatible div {
+	margin-bottom: 0;
+}
+
+body.desktop-features .row-compatible img {
+	margin-top: 35px;
+}
+
+body.desktop-features .row-fast .box {
+	padding-bottom: 0;
+}
+
+body.desktop-features .row-fast blockquote {
+	position: absolute;
+	color: #fff;
+	width: 148px;
+	top: 58px;
+	left: 60px;
+}
+
+body.desktop-features .row-fast blockquote p:first-child {
+	@include font_size (20)
+}
+
+body.desktop-features .row-fast blockquote cite {
+	font-style: normal;
+}
+
+body.desktop-features .row-fast img {
+	margin-bottom: -20px;
+}
+
+body.desktop-features .row-developer {
+	@include: box_sizing;
+	background-image: url(../img/patterns/developer-dot-pattern.png);
+	position: relative;
+	margin-bottom: 40px;
+
+	h3, p {
+		background: #fff;
+	}
+}
+
+body.desktop-features .row-hero .box { background: none; }
+
+body.desktop-features .row .four-col h3,
+body.desktop-features .row .eight-col h3 {
+	@include font_size (16);
+	font-weight: normal;
+}
+
+body.desktop-features .box-compatible img {
+	margin: 55px 0 0 10px;
+}
+
+body.ubuntu .row-hero { position: relative; }
+
+body.desktop-features .box-skype img {
+	bottom: -11px;
+	position: relative;
+}
+
+body.desktop-features .box-padded-feature ul.vertical-divider {
+	margin-left: 0;
+}
+
+/* @subsection features > office-applications
+-------------------------------------------------------------- */
+.inline-icons li.row-text {
+	margin-right: 10px;
+}
+
+/*	@subsection games-apps
+-------------------------------------------------------------- */
+
+body.desktop-features-games-apps img.touch-border {
+	right: -14px;
+	bottom: -2px;
+}
+
+body.desktop-features-games-apps .intro img.touch-border {
+	right: -10px;
+	bottom: 0;
+}
+
+body.desktop-features .row-humble-indie-bundle {
+	background: url(../img/desktop/features/image-fez-background.jpg) no-repeat;
+	min-height: 360px;
+}
+
+#preload-fez {
+	background: url(../img/desktop/features/image-fez-gomez-rollover.gif) no-repeat;
+}
+
+body.desktop-features .row-humble-indie-bundle .fez {
+	background: url(../img/desktop/features/image-fez-gomez.gif) no-repeat;
+	width: 60px;
+	height: 60px;
+	position: absolute;
+	left: 560px;
+	top: 234px;
+}
+
+body.desktop-features .row-humble-indie-bundle .fez:hover {
+	background: url(../img/desktop/features/image-fez-gomez-rollover.gif) no-repeat;
+}
+
+body.desktop-features .row .box-ratings-and-reviews {
+	background: #fff url(../img/ubuntu/features/bg-usc-ratings-288x285.jpg) 0 170px no-repeat;
+	padding-bottom: 260px;
+}
+
+body.desktop-features .row .box-education-resources {
+
+}
+
+body.desktop-features .row .box-fun-and-games {
+
+}
+
+.free-apps h3 {
+	@include font_size (16);
+	font-weight: normal;
+}
+
+/* music an mobile page */
+.row-feats-intro .box {
+	padding-bottom: 190px;
+}
+
+.row-feats-intro img {
+	@include rounded_corners(0 0 4px 4px);
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+
+/* @subsection ubuntu > features > photos and videos  */
+.compatible-device {
+	@include rounded_corners();
+	background: $ubuntu_orange url(../img/ubuntu/features/photos-device-compatible-904x301.gif) no-repeat;
+	color: #fff;
+	min-height: 300px;
+	margin-bottom: $gutter_width;
+	width: 100%;
+}
+
+.compatible-device .article {
+	padding: $gutter_width $gutter_width $gutter_width $eight_col;
+}
+
+/* @subsection ubuntu > features > ubuntu-one */
+
+body.desktop-features-personal-cloud .one-intro {
+	padding-right: 20px;
+}
+
+body.desktop-features-personal-cloud .one-picto-list {
+	padding-left: 10px;
+}
+
+body.desktop-features-personal-cloud .row-one-features {
+	margin-bottom: 40px;
+}
+
+body.desktop-features-personal-cloud .row-one-features h3 {
+	@include font_size (16);
+	font-weight: normal;
+}
+
+body.desktop-features-personal-cloud .row-one-features ul li {
+	text-align: center;
+}
+
+body.desktop-features-personal-cloud .row-one-features ul li img {
+	margin-bottom: 20px;
+}
+
+body.desktop-features-personal-cloud .row-one-features ul li h3,
+body.desktop-features-personal-cloud .row-one-features ul li p {
+  text-align: left;
+}
+
+body.desktop-features-personal-cloud .row-one-features ul {
+	margin-bottom: 0;
+}
+
+/*	@section desktop remix
+-------------------------------------------------------------- */
+body.desktop-desktop-remix .row-hero {
+	padding-bottom: $gutter_width;
+}
+body.desktop-desktop-remix .row-hero div {
+	padding-bottom: $gutter_width;
+	padding-top: $gutter_width;
+}
+body.desktop-desktop-remix .row-hero h2{
+	color: #666;
+}
+body.desktop-desktop-remix p.intro {
+	@include font_size (23);
+	line-height: 1.3
+}
+body.desktop-desktop-remix .remix-download a {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+body.desktop-desktop-remix #mktFrmSubmit {
+	padding: 10px 14px;
+  font-family: Ubuntu, Arial, "libra sans", sans-serif;
+	@include font_size (16);
+}
+
+/* @subsection for-business > desktop
+-------------------------------------------------------------- */
+body.desktop-business {
+	.row-hero {
+		background: url(../img/business/desktop-for-business.jpg) right bottom no-repeat;
+		padding-bottom: 0;
+	}
+
+	.row-hero .quote {
+		top: 0;
+	}
+
+	.row-hero .quote-right-bottom {
+		padding-left: 46px;
+		padding-top: 70px;
+	}
+
+	th {
+		font-weight: normal;
+	}
+
+	tfoot th {
+		font-weight:  bold;
+	}
+
+	.row-list-ticks,
+	.row-methodology {
+		background: $light_grey;
+	}
+
+	.row-list-ticks {
+		@include rounded_corners(0 0 4px 4px);
+	}
+
+	.row-list-ticks ul {
+		padding-bottom: 0;
+		margin-bottom: 0;
+	}
+
+	.row-list-ticks li {
+		font-size: 14px;
+	}
+
+	.row-thin-client {
+		background: #fff url(../img/desktop/desktop-business-thin-client.jpg) 502px 0 no-repeat;
+		min-height: 326px;
+	}
+
+}
+
+/* enterprise blog promo on /business/desktop */
+body.business .row-enterprise-blog {
+	background: #fff;
+	padding-bottom: 10px;
+	padding-top: 20px;
+}
+
+body.business {
+  .item-download a,
+  .item-contact a,
+  .item-desktop a,
+  .item-server a,
+  .item-cloud a{
+    display: block;
+    height: 37px;
+    line-height: 37px;
+    padding-left: 47px;
+  }
+
+  .item-download a { background: url('../img/pictograms/pictogram-grey-download-37x37.png') no-repeat; }
+  .item-contact a { background: url('../img/pictograms/pictogram-grey-contact-37x37.png') no-repeat; }
+  .item-desktop a { background: url('../img/pictograms/pictogram-grey-desktop-37x37.png') no-repeat; }
+  .item-server a { background: url('../img/pictograms/pictogram-grey-server-37x37.png') no-repeat; }
+  .item-cloud a { background: url('../img/pictograms/pictogram-grey-cloud-37x37.png') no-repeat; }
+}
+
+body.desktop-business .row-developer-desktop .six-col img {
+	margin-top: 170px;
+}
+
+body.desktop-business .row-business-as-usual {
+	background: $light_grey url(../img/business/desktop-for-business.jpg) left $gutter_width no-repeat;
+}
+
+body.desktop-business .row-business-as-usual h3 {
+	@include font_size (16);
+	font-weight: 400;
+}
+
+body.desktop-business .row-business-as-usual .quote-right-bottom {
+	right: auto;
+	left: 3 * $gutter_width;
+	top: -3em;
+	padding: 60px 35px 60px 45px;
+}
+
+body.desktop-business .row-professional-support {
+	position: relative;
+	clear: both;
+}
+
+body.desktop-business .row-professional-support .link-cta-canonical {
+	position: absolute;
+	right: $gutter_width;
+	bottom: 2.5em;
+}
+
+body.desktop-business .row-methodology .box {
+	background: #fff;
+	border-color: $warm_grey;
+}
+
+body.desktop-business .row-methodology .list-ubuntu {
+	margin-right: -$gutter_width;
+}
+
+body.desktop-business .row-methodology .list-ubuntu li {
+	display: inline-block;
+	float: left;
+	margin-right: $gutter_width;
+	width: $three_col;
+}
+
+body.desktop-business .packages dd {
+	min-height: 100px;
+}
+
+body.desktop-business .packages dd.price {
+	min-height: 0;
+}
+
+body.desktop-business .packages dl {
+	width: 245px;
+	width: 29.7%;
+}
+
+body.desktop-business .row-ubuntu-advantage {
+	background-color: #efeeec;
+}
+
+body.desktop-business .row-ubuntu-advantage .list-details {
+	margin-bottom: 0;
+}
+
+body.desktop-business .row-ubuntu-advantage li.first {
+	height: 33.55em;
+}
+
+body.desktop-business .row-consultancy .quote {
+	margin-top: -80px;
+}
+
+body.desktop-business .row-methodology  {
+	background: #efeeec;
+}
+
+.row-community {
+	background: #fff url(../img/patterns/background-dots.png);
+	color: $cool_grey;
+	padding: 40px 20px 20px !important;
+}
+
+.row-community .eight-col,
+.row-community .eight-col.box,
+.row-community .six-col,
+.row-community .nine-col {
+	padding: 0 20px;
+}
+
+.row-community div.six-col, .box-community div.six-col, .row-community div.eight-col, {
+	background: rgba(255,255,255,1);
+	position: relative;
+}
+
+.where-to-find-us {
+  background: #fff;
+  margin: 0;
+  padding: 15px 20px;
+}
+
+.where-to-find-us ul {
+	margin-bottom: 0;
+}
+
+.row-community .where-to-find-us h3,
+.row-community .where-to-find-us h4 {
+	@include font_size (16);
+	border-bottom: 1px dotted $warm_grey;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+
+.where-to-find-us a { padding: 2px 0 2px 26px; }
+
+.where-to-find-us .ask-ubuntu a { background: url("../img/patterns/icon-irc.png") 0 2px no-repeat; }
+
+.where-to-find-us .mailing-lists a { background: url("../img/patterns/icon-mail.png") 0 2px no-repeat; }
+
+.where-to-find-us .ubuntu-blog a { background: url("../img/patterns/icon-rss.png") 0 2px no-repeat; }
+
+.row-community .nine-col div.six-col {
+    background: #fff;
+    float: left;
+    display: block;
+}
+
+body.desktop-business .row-community,
+body.server .row-community {
+	background: #fff url(../img/patterns/background-dots.png);
+	color: $cool_grey;
+}
+
+body.desktop-business .where-to-find-us,
+body.server .where-to-find-us {
+  background: #fff;
+  margin: 0;
+}
+
+body.desktop-business .row-community .where-to-find-us h3,
+body.desktop-business .row-community .where-to-find-us h4,
+body.server .row-community .where-to-find-us h3,
+body.server .row-community .where-to-find-us h4 {
+	@include font_size (16);
+	border-bottom: 1px dotted $warm_grey;
+	padding-bottom: 5px;
+	margin-bottom: 10px;
+}
+
+body.desktop-business .row-community .nine-col div,
+body.server .row-community .nine-col div {
+    background: #fff;
+    float: left;
+    display: block;
+}
+
+body.desktop-business .row-ubuntu-advantage {
+	background-color: #efeeec;
+}
+
+body.desktop-business-desktop .row-ubuntu-advantage .list-details {
+	margin-bottom: 0;
+}
+
+body.desktop-business-desktop .row-ubuntu-advantage li.first {
+	height: 33.55em;
+}
+
+body.desktop-business-desktop .row-consultancy .quote {
+	margin-top: -80px;
+}
+
+body.desktop-business-desktop .row-methodology  {
+	background: #efeeec;
+}
+
+/*	@section desktop developer
+-------------------------------------------------------------- */
+body.desktop-for-developers {
+	.row-hero {
+		background: url(../img/desktop/desktop-developer.png) 540px 120px no-repeat;
+	}
+	/* Why use Ubuntu for development? */
+	.row-why-ubuntu li {
+		font-size: 13px;
+	}
+
+	/* With Ubuntu, you're in good company */
+
+	/* All the tools developers need */
+
+	.row-developer-tools {
+		background-color: $box_solid_grey;
+		position: relative;
+		padding-top: 40px;
+		padding-bottom: 10px;
+	}
+
+	.row-developer-tools img {
+		position: absolute;
+		left: auto;
+		right: 0;
+		bottom: 0;
+	}
+
+	/* By developers, for developers */
+
+	.row-for-developers blockquote > p {
+		margin-left: 0.4em;
+		text-indent: -0.4em;
+		font-size: 30px;
+		line-height: 1.3;
+		color: #aea79f;
+	}
+
+	.row-for-developers blockquote > p cite {
+
+		display: block;
+		font-size: 16px;
+		font-weight: 300;
+		margin: 10px 0 0 0.8em;
+	}
+
+	/* Deployment made easy */
+
+	.row-easy-deployment {
+		background-color: $box_solid_grey;
+	}
+
+	/* A cutting-edge yet reliable release cadence */
+
+	.row-reliable-release {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+
+	.row-reliable-release img {
+		position: relative;
+		left: -40px;
+		margin-bottom: -24px;
+	}
+
+	.row-reliable-release h3 {
+		padding-top: 20px;
+	}
+
+	/* Support that's tailored to the needs of developers */
+
+	.row-tailored-support {
+		border-bottom: 0;
+	}
+
+	.row-tailored-support table {
+		margin: 20px 0;
+	}
+} /* end pc-developers-desktop */
+
+/*	@section photos-and-videos
+-------------------------------------------------------------- */
+.desktop-features-social-and-email .eight-col.box {
+	overflow: hidden;
+	position: relative;
+}
+
+.desktop-features-photos-and-videos .intro {
+	min-height: 337px;
+}
+.desktop-features-photos-and-videos .intro img.right {
+	bottom: 0;
+	position: absolute;
+	right: -40px;
+	top: 9px;
+}
+
+.desktop-features-photos-and-videos .eight-col.box img.right {
+	bottom: 0;
+	position: absolute;
+	right: 0;
+	top: auto;
+}
+
+.row-organise .box {
+	height: 258px;
+}
+
+/*	@section contextualised footer #context-footer
+-------------------------------------------------------------- */
+.desktop-context-footer .feature-two {
+	background: url(../img/pictograms/pictogram-download-136.png) 176% 22% no-repeat;
+	min-height: 170px;
+
+	p {
+		padding-right: 60px;
+	}
+
+}
+
+body.desktop-take-the-tour {
+  .row-hero {
+    background: url("../img/desktop/tour-screen.jpg") no-repeat scroll 425px 0;
+    min-height: 360px;
+  }
+}
+
+/*	@section UbuntuKylin
+-------------------------------------------------------------- */
+$item_margin: 40px;
+
+body.desktop-ubuntu-kylin, body.desktop-ubuntu-kylin-chinese {
+	.lang-switch {
+		position: absolute;
+		top: -20px;
+		right: 40px;
+	}
+	.screenshot-shadowed {
+		margin-left: -5px;
+	}
+	.row-hero {
+		background: url(../img/desktop/image-kylin-laptop.jpg) 498px 20px no-repeat;
+		padding-bottom: 55px;
+	}
+
+	.row-partnership ul {
+		margin-left: -$item_margin;
+
+		li {
+			margin-left: $item_margin;
+		}
+	}
+	.row-ubuntu-kylin-more img {
+		margin-top: -95px;
+	}
+} /* end body.desktop-ubuntukylin */
+
+body.desktop-ubuntu-kylin-chinese .row-hero {
+	padding-bottom: 80px;
+}
+
+.tabbed-menu-hover {
+	background: url(../img/desktop/image-for-you.jpg) 42px 40px no-repeat;
+	padding-bottom: 80px;
+}
+
+.tabbed-menu-hover li {
+	background: transparent;
+	margin-bottom: -20px;
+	padding-bottom: 20px;
+	float: left;
+	display: block;
+	position: relative;
+	z-index: 1;
+}
+
+.tabbed-menu-hover li p, .tabbed-menu-hover h3 {
+	position: relative;
+	z-index: 999;
+}
+
+.tabbed-menu-hover img {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+	right: 523px;
+  z-index: -50;
+  -webkit-transition:  opacity .25s ease;
+  -moz-transition: opacity .25s ease;
+  -o-transition:  opacity .25s ease;
+  -ms-transition:  opacity .25s ease;
+  transition:  opacity .25s ease;
+}
+
+li#feature-for-business > img, li#feature-for-business:hover > img {
+	z-index: 1;
+	top: -82px;
+	right: 523px;
+	left: auto;
+	opacity: 1;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	li#feature-for-business > img, li#feature-for-business:hover > img {
+		top: -80px;
+	}
+}
+li#feature-for-business > img { opacity: 0; }
+
+li#feature-for-developers > img, li#feature-for-developers:hover > img {
+	z-index: 1;
+	opacity: 1;
+	top: -212px;
+	right: 523px;
+	left: auto;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  li#feature-for-developers > img, li#feature-for-developers:hover > img {
+		top: -208px;
+  }
+}
+
+li#feature-for-developers > img { opacity: 0; }
+
+

@@ -1,0 +1,67 @@
+{% extends "ubuntu/partners/base_partners.html" %}
+
+{% block title %}ARM and Ubuntu{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Partners" page_title="Arm"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero row-image-centered">
+	<div class="seven-col">
+		<h1>Ubuntu and ARM</h1>
+		<p>ARM and Canonical are working together to deliver ARM processor support for the Ubuntu platform across many different classes of devices.</p>
+		<p>Ubuntu is the best scale-out server platform and the leader in Hyperscale computing for ARM.  Ubuntu is also active in supporting ARM for many other devices.</p>
+	</div><!-- /.six-col -->
+	<span><img src="{{ STATIC_URL }}u/img/partners/partners-logo-arm.png" alt="ARM logo" /></span>
+</div><!-- / .row -->
+<div class="row row-grey row-image-centered">
+	<span><img src="{{ STATIC_URL }}u/img/partners/pictos-server-hp-ubuntu.png" width="230" height="215" /></span>
+	<div class="six-col">
+		<h2>Scale out at speed with Ubuntu on HP Moonshot</h2>
+		<p>Ubuntu, the leading OS for x86 and ARM Hyperscale is partnering with HP to disrupt the server marketplace with <br/>HP Moonshot system &mdash; launching April 2013.</p>
+		<p>Ubuntu is the scale out leader and is fully integrated in the <br/>HP Moonshot system.</p>
+		<p><a href="/partners/hp/moonshot">Find out more &rsaquo;</a></p>
+	</div><!-- /.six-col -->
+</div><!-- /.row -->
+<div class="row">
+	<h2>ARM architecture</h2>
+	<div>
+		<p>The ARM Instruction Set Architecture (ISA) has rocketed in popularity since the company started licensing its CPU cores in 1990. It has become the de-facto standard for modern digital devices from cell phones to tablets, now shipping in millions of units.</p>
+		<p>ARM is also designing chips for use in servers in enterprise datacentres. In datacentres, multiple ARM-based servers are being deployed in hyperscale computing configurations, supported by the highly-scalable Ubuntu operating system.</p>
+		<p>The popularity of ARM ISA is a result of its high performance coupled with world-beating power efficiency and compelling price-points. </p>
+	</div>
+</div><!-- /.row -->
+<div class="row">
+	<h2>ARM and Canonical working together</h2>
+	<div>
+		<p>Since 2008, ARM and Canonical have worked together to optimise their technologies and enable a range of devices to run efficiently on Ubuntu and ARM architecture. Initial engineering collaboration focused on Cortex A8, A9 and A15-like processors with ARM and Canonical collaborating to ensure ARM architecture support in both Ubuntu and the Linux kernel.</p>
+		<p>This work has led to innovators like Calxeda, Marvell and Texas Instruments to provide specific System on a Chip (SoC) Ubuntu releases.</p>
+		<p>As a founding member of Linaro, Canonical is committed to making this cross industry collaboration successful.</p>
+	</div>
+</div><!-- /.row -->
+<div class="row">
+	<h2>Ubuntu in connected screens</h2>
+	<div>
+		<p>We live in a world of increasingly connected screens. Whether those screens are on smartphones, tablets, or other embedded systems, the processors behind those screens are often ARM-based.</p>
+		<p>Ubuntu is working to support a wide variety of devices based on ARM.</p>
+	</div>
+</div><!-- /.row -->
+
+<div class="row">
+	<h2>Hyperscale solutions</h2>
+	<div>
+		<p>ARM processors are already a key presence in the datacentre, powering devices such as networking routers and storage controllers. With the availability of higher performance, multi-core capable processor cores, the breadth of applications that can be addressed by ARM technologies is growing. Advanced server operating systems are therefore required.</p>
+		<p>ARM and Canonical have worked in close collaboration for a number of years to ensure that datacentres running advanced workloads such as distributed data processing or cloud infrastructure, run best on Ubuntu.</p>
+		<p>In November 2012 Canonical became a founding member of the Linaro Enterprise Group (LEG) which was set up to promote the ecosystem for ARM-based servers. </p>
+	</div>
+</div><!-- /.row -->
+
+<div class="row">
+	<h2>More information</h2>
+	<ul>
+		<li><a class="link-arrow" href="http://www.google.com/url?q=https%3A%2F%2Fwiki.ubuntu.com%2FARM&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGI_9PTfhD4fB1twf_rQnH8L9NWig">Ubuntu on ARM community</a></li>
+		<li><a class="link-arrow" href="http://www.google.com/url?q=https%3A%2F%2Fwiki.ubuntu.com%2FARMTeam&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHPWVf_0xoPSqpZq-C-1Y4E6mfBYg">Get involved in the Ubuntu on ARM community</a></li>
+	</ul>
+</div><!-- /.row -->
+{% endblock content %}

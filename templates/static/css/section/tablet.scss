@@ -1,0 +1,386 @@
+/*	@section tablet
+-------------------------------------------------------------- 
+	Contents:
+		@section general
+		@section tablet home
+		@section Get in touch and thank you
+		@section app ecosystem
+		@section tablet animations
+		@section contextualised footer #context-footer
+		
+-------------------------------------------------------------- */
+
+/*	@section general
+-------------------------------------------------------------- */
+.box-tablet { 
+	background: url("../img/devices/devices-tablet-hero-432x252.jpg") no-repeat scroll 98% center #FFFFFF; 
+	min-height: 15em;
+	padding-right: $six_col;
+}
+
+body.tablet  {
+  
+  .row {
+    padding-bottom: 30px;
+    padding-top: 50px;
+    margin-bottom: 0;
+  }
+  
+  .row img.shadow-fix {
+    margin-left: -40px;
+  }
+  
+  .row-tight {
+    padding-top: 0;
+  }
+  
+  .row h2 + img {
+    margin-top: 20px;
+  }
+  
+  .row-box-feature {
+  	background: url("../img/patterns/grey-textured-background.jpg");
+  }
+  
+  .row-hero {
+    min-height: 450px;
+    padding-top: 0;
+
+    .twelve-col { padding: 0 1em; }
+    .eight-col { margin-bottom: 0; }
+
+    a img {
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    
+    a.close-video {
+      margin-top: 5px;
+      img {
+        vertical-align: top;
+      }
+    }
+  }
+  
+  .row-bottom {
+  	background: none;
+  	border-bottom: 0;
+    padding-top: 0;
+    border-bottom: 0;
+    
+    div {
+      min-height: 305px;
+    }
+    
+    div p:first-of-type {
+      padding-right: 74px;
+    }
+    .meet-us {
+      background: url("../img/devices/phone-bottom-meet-us.png") no-repeat right 60px, url("../img/patterns/grey-textured-background.jpg");
+    }
+    
+    .when-its-here {
+      background: url("../img/devices/phone-bottom-find-out.png") no-repeat right 60px, url("../img/patterns/grey-textured-background.jpg");
+    }
+  }
+	.box-highlight { 
+		border: 0; 
+		margin-bottom: 40px;
+	}  
+  .box {
+    border: 0;
+    padding-bottom: 0;
+  }
+  .next-steps li {
+    border-bottom: 1px dotted #AEA79F;
+    padding: 8px 0 10px;
+  }
+  .next-steps li:first-child {
+    border-top: 1px dotted #AEA79F;
+  }
+}
+
+body.tablet-backed-by-canonical .row-hero,
+body.tablet-contact-us .row-hero,
+body.tablet-thank-you .row-hero {
+	min-height: 0;	
+}
+
+/*	@section tablet home
+-------------------------------------------------------------- */
+body.tablet-design {
+  .row-hero {
+    background: url("../img/devices/tablet-hero.jpg") no-repeat scroll 340px 50px;
+      -moz-transition: height 0.3s linear;
+      -webkit-ttransition: height 0.3s linear;
+      -o-transition: height 0.3s linear;
+    transition: height 0.3s linear;
+    
+    .video-link {
+      margin-top: 30px;
+    }
+    
+    .the-video {
+      position: absolute;
+      left: 0;
+      height: 554px;
+      width: 984px;
+      background: #fff;
+      display: none;
+      
+      p {
+        padding: 5px;
+        margin: 0 $gutter_width/2 0 $gutter_width;
+      }
+      
+      div {
+        margin-top: 20px;
+      }
+      
+    }
+    
+    .the-video.show {
+      display: block;
+      z-index: 10;
+    }
+    
+    a {
+      outline: none;
+    }
+  }
+  
+  .row-tight {
+    padding-top: 0;
+    
+    h3 {
+      margin-top: 40px;
+    }
+  }
+  
+  .naturally-neat h2 {
+    margin-top: 50px;
+  }
+  
+  .safer-sharing {
+    background: url("../img/devices/safer-sharing-bg.png") no-repeat scroll;
+    color: #fff;
+  }
+  
+  .gorgeous-gallery {
+    background: url("../img/devices/tablet-gallery-bg.jpg") no-repeat scroll;
+    height: 666px;
+  }
+  
+  .instant-share {
+    background: url("../img/devices/tablet-share-menu.png") no-repeat scroll;
+    height: 480px;
+  }
+  
+  .world-of-apps {
+    background: url("../img/devices/tablet-world-of-apps.jpg") no-repeat scroll right 57px;
+  }
+}
+
+/*	@section Get in touch and thank you
+-------------------------------------------------------------- */
+body.tablet-contact-us,
+body.tablet-thank-you {
+  
+  .row-hero {
+    height: auto;
+  }
+}
+
+body.tablet-operators-and-oems {
+  .row-hero {
+    background: url("../img/devices/tablet-hero-2.png") no-repeat scroll 340px 23px;
+    min-height: 440px;
+  }
+  
+  .row-dark-enterprise {
+    background: $dark_aubergine;
+    color: #fff;
+  }
+  
+  .pull-quote {
+    margin-top: 80px;
+  }
+  
+}
+
+/*	@section app ecosystem
+-------------------------------------------------------------- */
+body.tablet-app-ecosystem {
+  .row-hero {
+    background: url("../img/devices/tablet-hero-3.png") no-repeat scroll 400px 50px;
+  }
+  .write-apps {
+    background: url("../img/devices/phone-write-apps-background.png") no-repeat scroll right 55px;
+  }
+}
+
+/*	@section tablet animations
+-------------------------------------------------------------- */
+body.tablet {
+  .replay {
+    background: url("../img/devices/phone-animation-repeat.png") no-repeat;
+    width: 25px;
+    height: 21px;
+    overflow: hidden;
+    position: absolute;
+    outline: none;
+    top: 420px;
+    left: 280px;
+    display: none;
+  }
+  
+  .replay:hover {
+    background-position: 0 -21px;
+  }
+  
+  .slider-animation {
+    width: 682px;
+    height: 433px;
+    position: relative;
+    background: url("../img/devices/tablet-landscape-blank.png") no-repeat;
+    margin: 0 auto;
+  
+    .screen {  
+      width: 487px;
+      height: 306px;
+      position: absolute;
+      top: 47px;
+      left: 99px;
+      overflow: hidden;
+      
+      .launcher {
+        width: 44px;
+        height: 324px;
+        position: absolute;
+        top: 0;
+        left: -100px;
+      }
+      
+      .messages {
+        width: 155px;
+        height: 0px;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+  
+  .instant-launch {
+    margin-left: -50px;
+    .screen { 
+      background: url("../img/devices/tablet-landscape-album-screen.png") no-repeat;
+      .launcher {
+        background: url("../img/devices/tablet-launcher.png") no-repeat;
+      }
+      .screen-fade {
+        background: #000;
+        opacity: 0;
+        width: 487px;
+        height: 306px;
+      }
+    }
+  }
+  .instant-launch.run {
+    .screen .launcher {
+        -moz-transition: left 1s;
+        -webkit-transition: left 1s;
+        -o-transition: left 1s;
+      transition: left 1s;
+      left: 0;
+    }
+    .screen .screen-fade {
+        -moz-transition-delay: 1s;
+        -webkit-transition-delay: 1s;
+        -o-transition-delay: 1s;
+      transition-delay: 1s;
+        -moz-transition: opacity 1s;
+        -webkit-transition: opacity 1s;
+        -o-transition: opacity 1s;
+      transition: opacity 1s;
+      opacity: 0.3;
+    }
+  }
+  
+  .system-service {
+    margin-left: -40px;
+    .screen { 
+      background: url("../img/devices/tablet-google-doc-screen.png") no-repeat;
+      .messages {
+        background: url("../img/devices/tablet-messages.png") no-repeat;
+        height: 0;
+      }
+      .screen-fade {
+        background: #000;
+        opacity: 0;
+        width: 487px;
+        height: 306px;
+      }
+    }
+  }
+  .system-service.run {
+    .screen .messages {
+        -moz-transition: height .8s;
+        -webkit-transition: height .8s;
+        -o-transition: height .8s;
+      transition: height .8s;
+      height: 306px;
+    }
+    .screen .screen-fade {
+        -moz-transition-delay: .8s;
+        -webkit-transition-delay: .8s;
+        -o-transition-delay: .8s;
+      transition-delay: .8s;
+        -moz-transition: opacity .8s;
+        -webkit-transition: opacity .8s;
+        -o-transition: opacity .8s;
+      transition: opacity .8s;
+      opacity: 0.3;
+    }
+  }
+  
+  .content-controls{
+    margin-left: -50px;
+    .screen { 
+      background: url("../img/devices/tablet-video-screen.png") no-repeat;
+      .menu {
+        position: relative;
+        background: url("../img/devices/tablet-media-controls.png") no-repeat;
+        top: 306px;
+        width: 487px;
+        height: 27px;
+      }
+    }
+  }
+  .content-controls.run {
+    .screen .menu {
+        -moz-transition: top .5s;
+        -webkit-transition: top .5s;
+        -o-transition: top .5s;
+      transition: top .5s;
+      top: 280px;
+    }
+  }
+}
+
+.yui3-js-enabled body.tablet .replay {
+  display: block;
+}
+
+/*	@section contextualised footer #context-footer
+-------------------------------------------------------------- */
+.tablet-context-footer .feature-three {
+	background: url(../img/devices/phone-bottom-find-out.png) right center no-repeat;
+	min-height: 170px;
+	
+	p {
+		padding-right: 65px;
+	}
+
+}
+

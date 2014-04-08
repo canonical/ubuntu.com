@@ -1,0 +1,143 @@
+{% extends "ubuntu/management/base_management.html" %}
+
+{% block title %}Ubuntu Advantage | Management{% endblock %}
+{% block extra_body_class %}ubuntu-advantage{% endblock %}
+
+{% block meta_keywords %}Landscape, get, buy, price, subscribe, try, trial, free, 30, day, download, licence, systems management, application, solution, Ubuntu, Canonical, Linux, Ubuntu Advantage, web, hosted, dedicated, desktop, server, cloud{% endblock %}
+{% block meta_description %}You can access Landscape as a hosted service over the internet or as an application running on a dedicated server behind your firewall. Both options are part of the Ubuntu Advantage service package, however you can try Landscape for free for 30 days, without committing to a subscription. {% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Management" page_title="Ubuntu Advantage" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero">
+<h1>Ubuntu Advantage</h1>
+	<div class="eight-col">
+		<p>Ubuntu Advantage is the professional support package from the experts at Canonical, helping organisations around the world to manage their Ubuntu deployments. It includes access to Landscape, the systems management tool <br/>for using Ubuntu at scale, as well as 24/7 telephone support and the option of a dedicated Canonical support engineer on your premises. Ubuntu Advantage subscription tiers are based on the size of your deployment and the support you need.</p>
+
+		<p class="twelve-col"><a class="link-cta-canonical" href="http://shop.canonical.com/index.php?cPath=41" onclick="_gaq.push(['_trackEvent', 'Shop', 'Ubuntu Advantage', 'From management/ubuntu-advantage Buy now button']);">Buy now</a> <span>or <a href="/management/contact-us">contact us about Ubuntu Advantage &rsaquo;</a></span></p>
+	</div><!-- /.eight-col -->
+		
+</div><!-- .row row-hero -->
+
+<div class="row row-quote">
+	<blockquote cite="http://www.guardian.co.uk/technology/blog/2009/oct/27/ubuntu-koala-windows7-review">
+			<p>&ldquo;We worked very closely with Canonical. Their support has been invaluable in the development, deployment and support phases <br />of the project.&rdquo;</p>
+			<p><cite>Antonio Jos&eacute; S&aacute;enz Alban&eacute;s, Chief Technology Officer, Isotrol</cite></p>
+		</blockquote>
+</div>
+
+<div class="row row-grey row-desktop-management row-management">
+	<div class="four-col product-intro">
+		<h2>Desktop management</h2>
+		<p>From basic office tasks to complex development work, Ubuntu Advantage gives your organisation all the support you need to deploy and manage Ubuntu.</p>
+		<p><a href="/desktop/management">Learn more &rsaquo;</a></p>
+	</div>
+	<div class="eight-col equal-height last-col box">
+		<ul class="no-bullets vertical-divider three-divided">
+			<!--<li class="col">
+				<h3>Stateless</h3>
+				<p>For lightweight business use that only requires stateless applications like web browser and remote access client (Citrix, VMware View).</p>
+				<div class="price">
+					<p><span>$20</span> per desktop</p>
+				</div>
+			</li>-->
+			<li class="col">
+				<h3>Standard</h3>
+				<p>For general business use such as email, messaging and web browsing.</p>
+				<div class="price">
+					<p><span>$105</span> desktop per year</p>
+				</div>
+			</li>
+			<li class="col last-col">
+				<h3>Advanced</h3>
+				<p>For more intensive desktop usage, such as work conducted by developers.</p>
+				<div class="price">
+					<p><span>$165</span> desktop per year</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div><!-- .row -->
+
+<div class="row row-grey row-server-management row-management">
+	<div class="four-col product-intro">
+		<h2>Server management</h2>
+		<p>Whether it&rsquo;s for basic server workloads or high-availability clustering, Ubuntu Advantage has you covered.</p>
+		<p><a href="/server/management">Learn more &rsaquo;</a></p>
+	</div>
+	<div class="eight-col equal-height last-col box">
+		<ul class="no-bullets vertical-divider three-divided">
+			<li class="col">
+				<h3>Essential</h3>
+				<p>Ideal for common workloads such as ﬁle and print, email, network, web and application serving.</p>
+				<div class="price">
+					<p><span>$320</span> server per year</p>
+				</div>
+			</li>
+			<li class="col">
+				<h3>Standard</h3>
+				<p>Suitable for server virtualisation and integration into existing infrastructures such as Windows networks.</p>
+				<div class="price">
+					<p><span>$700</span> server per year</p>
+				</div>
+			</li>
+			<li class="col last-col">
+				<h3>Advanced</h3>
+				<p>Tailored for more advanced configurations such as high-availability failover and clustering.</p>
+				<div class="price">
+					<p><span>$1,200</span> server per year</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div><!-- .row -->
+
+<div class="row row-grey row-cloud-management row-management">
+	<div class="four-col product-intro">
+		<h2>Cloud management</h2>
+		<p>Ubuntu Advantage offers support and management tools to keep your business productive in the cloud.</p>
+		<p><a href="/cloud/management">Learn more &rsaquo;</a></p>
+	</div>
+	<div class="eight-col equal-height last-col box">
+		<ul class="no-bullets vertical-divider three-divided">
+			<li class="col">
+				<h3>Small</h3>
+				<p>For clouds running up to 100 nodes.</p>
+				<div class="price">
+					<p><span>&dollar;75,000</span> per year per <br/>availability zone</p>
+				</div>
+			</li>
+			<li class="col">
+				<h3>Medium</h3>
+				<p>For clouds running between 100 and 500 nodes.</p>
+				<div class="price">
+					<p><span>&dollar;180,000</span> per year per <br/>availability zone</p>
+				</div>
+			</li>
+			<li class="col last-col">
+				<h3>Large</h3>
+				<p>For clouds running more than 500 nodes.</p>
+				<div class="price">
+					<p><span>&dollar;350,000</span> per year per <br/>availability zone</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div><!-- .row -->
+
+<div class="row no-border">
+	<h2>Dedicated server available</h2>
+		<div class="six-col">
+			<p>Landscape is available as a hosted service delivered via the internet, or as a dedicated server installation behind your corporate firewall. In both cases the console can be accessed in any modern web browser.</p>
+			<p>The advantage of a hosted service is that you don&rsquo;t have to buy or support extra hardware. Updates and new features are delivered automatically, with no need for installation management.</p>
+		</div><!-- /.six-col -->
+		<div class="six-col last-col">
+			<p>If you&rsquo;d prefer a dedicated server running behind your firewall, Landscape can be installed on private hardware. This is functionally identical to the hosted service, but you control the hardware.</p>
+			<p>Whether Landscape fits your needs better as a hosted service or dedicated server, it&rsquo;s only available with a subscription to Ubuntu Advantage.</p>
+		</div><!-- /.six-col -->
+	<p class="twelve-col"><a href="/management/working-with-landscape">Find out more about working with Landscape &rsaquo;</a></p>
+</div><!-- /.row -->
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

@@ -1,0 +1,174 @@
+{% extends "ubuntu/phone/base_phone.html" %}
+
+{% block title %}Design and user experience | Ubuntu for phones{% endblock %}
+
+{% block meta_keywords %}Ubuntu, phone, smartphone, cellphone, mobile, user interface, GUI, UI, UX, edge magic, content, focus, app, native, web, HTML5, Unity, gestures, handheld, handset, touch, multitouch, touchscreen, device, form factor{% endblock %}
+{% block meta_description %}Ubuntu brings a stunning, natural new user interface to the mobile phone that's designed to immerse you in your content and applications and improve your flow between them. Edge magic - thumb gestures from all four edges of the screen - deliver a much faster way of finding content and switching between apps. Ubuntu allows the user to focus on their content, rather than on-screen application controls. And the Ubuntu phone fits perfectly into the wider family of Ubuntu interfaces, alongside the PC and TV. It's a uniquely, beautifully converged experience.{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Design"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row infographic no-margin no-border">
+	<div class="six-col">
+		<h1>A phone you can see yourself in</h1> 
+		<p>Ubuntu reflects you in the personalised graphics adorning the phone&rsquo;s welcome screen. Designed by artists who specialise in creating beautiful visualisations of complex data, the welcome screen evolves as you use the phone, to be perfectly unique and personal. This isn&rsquo;t so much a lock screen, it&rsquo;s a sign saying: &ldquo;come in&rdquo;. A signature flourish for Ubuntu and for you.</p>
+	</div>
+	<div class="six-col last-col no-print">
+		<img width="600" height="442" src="{{ STATIC_URL }}u/img/devices/infographic-3km-walked.png" class="main-image info-pic-0" alt="Ubuntu Phone infrographic showing distance walked" />
+		<img width="600" height="442" src="{{ STATIC_URL }}u/img/devices/infographic-7hours-at-rest.png" class="main-image info-pic-1 hide" alt="Ubuntu Phone infrographic showing hours at rest" />
+		<img width="600" height="442" src="{{ STATIC_URL }}u/img/devices/infographic-7messages-received.png" class="main-image info-pic-2 hide" alt="Ubuntu Phone infrographic showing messages received" />
+		<img width="600" height="442" src="{{ STATIC_URL }}u/img/devices/infographic-14tweets-received.png" class="main-image info-pic-3 hide" alt="Ubuntu Phone infrographic showing tweets received" />
+		<img width="600" height="442" src="{{ STATIC_URL }}u/img/devices/infographic-33minutes-talk-time.png" class="main-image info-pic-4 hide" alt="Ubuntu Phone infrographic showing duration of talk" />
+	</div>
+</div><!-- / .row -->
+
+<div class="row">
+	<div class="eight-col">
+		<h2>Naturally neat and organised</h2>
+		<p>We bring the world to your fingertips, and organise it all beautifully. Edge swipes make navigation effortless and efficient, with multiple scopes for different kinds of content making it easy to browse your home screen, apps, videos and music. Everything is stylish, neat and elegant.</p>
+	</div>
+	<div class="twelve-col">
+		<img width="904" height="408" class="touch-border" src="{{ STATIC_URL }}u/img/devices/phone-naturally-neat.jpg" alt="Ubuntu phones side by side show the consistancy between different screens"/>
+	</div>
+</div><!-- / .row -->
+
+<div class="row no-border">
+	<div class="eight-col">
+		<h2>Everything at your fingertips</h2>
+		<p>With great apps and intuitive gestures, the Ubuntu phone is quick to understand &mdash; soon you&rsquo;ll be racing between your content without a thought.  You can use natural swiping gestures from the edges of the screen to make it easier than ever to access your content and switch between apps.</p>
+	</div>
+</div><!-- /.row -->
+
+<div class="row row-pictures no-border edge-top"><!-- may also need phone-photos -->
+	<div class="five-col pictures-portrait">
+		<div class="feature-image">
+			<img src="{{ STATIC_URL }}u/img/devices/phone-portrait.png" alt="phone-portrait" width="258" height="447" />
+			<div></div>
+		</div>
+	</div>
+	<div class="edge-magic-content pictures-landscape six-col last-col">
+		<h3>A life in pictures</h3>
+		<p>The Gallery makes it easier than ever to organise, find and share your photos. We focus on the photo, and you can bring in the controls when you need them. Every shot is instantly uploaded to your Ubuntu One personal cloud account, making it available on all your devices &mdash; even iOS, Android and Windows.</p>
+		<div class="feature-image">
+			<img src="{{ STATIC_URL }}u/img/devices/phone-landscape.png" alt="phone-landscape" width="500" height="258" />
+			<div></div>
+		</div>
+	</div>
+</div><!-- / .row -->
+
+<div class="row no-border edge-magic edge-left">
+	<div class="edge-magic-content six-col">
+		<h3>Favourite apps</h3>
+		<p>Most people use a small group of apps regularly. With Ubuntu all it takes is a swipe from the left edge of the screen to reveal the Launcher with all your favourites &mdash; with equal positioning for native and web apps. There&rsquo;s room for everything you use daily, available instantly with a single touch from the welcome screen or any application.</p>
+	</div>
+	<div class="six-col last-col text-center">
+		<div class="slider-animation edge-magic-animation">
+			<div class="screen">
+				<div class="screen-fade"></div>
+				<div class="launcher"></div>
+			</div>
+		</div>
+		<a href="#" class="slideless replay"></a>
+	</div>
+</div><!-- /.row -->
+
+<div class="row no-border edge-magic edge-top">
+	<div class="six-col">
+		<div class="search-animation no-print">
+			<img width="258" height="446" src="{{ STATIC_URL }}u/img/devices/phone-portrait.png" alt="Ubuntu phone searching Toklien" />
+			<div class="slider-animation search-screen">
+				<div class="search-results">
+					<img width="182" height="1272" src="{{ STATIC_URL }}u/img/devices/phone-search-results.jpg" alt="Search results srceen on Ubuntu phone" />
+				</div>
+				<div class="search-search">
+					<img width="182" height="30" src="{{ STATIC_URL }}u/img/devices/phone-search-search-box.png" alt="Search box move up out of sights while scrolling results" />
+				</div>
+				<div class="search-title">
+					<img width="54" height="31" src="{{ STATIC_URL }}u/img/devices/phone-search-title.png" alt="Search box is replaced with search term during scroll" />
+				</div>
+			</div>
+			<a href="#" class="slideless replay"></a>
+		</div>
+	</div>
+	<div class="edge-magic-content six-col last-col">
+		<h3>Find anything, anywhere, instantly</h3>
+		<p>Ubuntu Dash and its &ldquo;smarter searches&rdquo; make finding content a breeze. Just search and watch the results come in &mdash; from everywhere. Looking for music? Ubuntu searches on your phone and at online retailers including Amazon and the Ubuntu One Music Store, so you can fill those gaps in your music collection.</p>
+		<p>Best of all, Ubuntu gets to know you over time, so the results will grow more relevant the more you search. Wherever it is, let Dash find it for you.</p>
+	</div>
+</div><!-- / .row -->
+
+<div class="row row-notifications edge-magic edge-left no-border">
+	<div class="edge-magic-content six-col">
+		<h3>Clever control of settings</h3>
+		<p>With Ubuntu, all of your notifications are gathered for your attention whenever you&rsquo;re ready &mdash; just swipe down from the top edge of the screen. You <br />can reply to Facebook, Twitter, text or picture messages and even return phone calls without leaving the notifications bar. You&rsquo;ll never miss a thing. It also lets you check the status of your phone and access core settings.</p>
+	</div>
+	<div class="six-col last-col text-center">
+		<div class="slider-animation notification-slider">
+			<div class="screen">
+				<div class="settings-screen"></div>
+				<div class="slider-knot"></div>
+			</div>
+		</div>
+		<a href="#" class="slideless replay"></a>
+	</div>
+</div><!-- / .row -->
+
+<div class="row no-border edge-magic edge-top">
+	<div class="six-col">
+		<div class="slider-animation go-back">
+			<div class="screen">
+				<div class="gallery-screen"></div>
+				<div class="camera-screen"></div>
+			</div>
+		</div>
+		<a href="#" class="slideless replay"></a>
+	</div>
+	<div class="edge-magic-content six-col last-col">
+		<h3>Always running</h3>
+		<p>Got apps running? A full left-to-right swipe reveals a screen showing them all, while a swipe from the right brings you instantly to the last app you were using. Switching between running applications has never been quicker or easier.</p>
+	</div>
+</div><!-- /.row -->
+
+<div class="row row-hud edge-magic edge-left no-border">
+	<div class="edge-magic-content six-col">
+		<h3>Your wish is my command</h3>
+		<p>Let Ubuntu be your virtual assistant. Find any command from any menu on the phone &mdash; image manipulation, movie editing, document management &mdash; you name it, the <abbr title="Heads-up display">HUD</abbr> can find it. The Dash helps you search content, and the HUD helps you edit, personalise or modify it. All it needs is your command.</p>
+	</div>
+	<div class="six-col last-col">
+		<div class="slider-animation">
+			<div class="screen">
+			</div>
+		</div>
+	</div>
+</div><!-- /.row -->
+
+<div class="row edge-magic edge-top edge-bottom no-margin">
+	<div class="six-col">
+		<div class="slider-animation content-controls">
+			<div class="screen">
+				<div class="gallery-screen"></div>
+				<div class="gallery-controls"></div>
+			</div>
+		</div>
+		<a href="#" class="slideless replay"></a>
+	</div>
+	<div class="edge-magic-content six-col last-col">
+		<h3>Content, not controls</h3>
+		<p>Swiping up from the bottom edge of the phone reveals app controls. You can hide or reveal them instantly, which means they don&rsquo;t take up room on the screen, leaving you free to focus on the stuff <br/>that matters. Immerse yourself in your photos, web pages, music, messages and apps.</p>
+	</div>
+</div><!-- / .row -->
+
+<div class="row row-app-grid no-margin no-border">
+	<div class="six-col">
+		<img width="510" height="382" src="{{ STATIC_URL }}u/img/devices/phone-apps-grid-extended.png" alt="Collection of top apps available on Ubuntu Phone" />
+	</div>
+	<div class="six-col last-col">
+		<h2>A whole world of apps</h2>
+		<p>Web applications sit alongside native apps on Ubuntu. They get their own icons and the same access to system notifications. So apps like Facebook, Twitter, Evernote, The Weather Channel and Dropbox are all available from day one &mdash; and thanks to our web app APIs, it&rsquo;s easy for web developers to make their sites install on the phone.</p>
+		<p>But Ubuntu isn&rsquo;t limited to HTML5. Native apps are blazingly fast, taking advantage of the full capabilities of the phone&rsquo;s processor and graphics hardware. And a mobile SDK does most of the work for you, giving you an Ubuntu look and feel.</p>
+		<p><a href="/phone/app-ecosystem">Developing for Ubuntu on smartphones &rsaquo;</a></p>
+	</div>
+</div><!-- / .row -->
+{% endblock content %}

@@ -1,0 +1,115 @@
+/*	@section tv
+-------------------------------------------------------------- 
+	Contents:
+		@section general
+		@section experience
+		@section commercial-info & contributors
+
+-------------------------------------------------------------- */
+
+/*	@section general
+-------------------------------------------------------------- */
+body.tv .row img.touch-border { 
+  margin-bottom: -$gutter_width; 
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+body.tv .row-hero p { padding-left: 0; }
+body.tv .row img { margin-bottom: -4px; }
+body.tv .row-hero h2 { @include font_size (36); }
+
+.box-tv {
+	min-height: 15em;
+	padding-right: $six_col;
+}
+
+.box-tv { background: #fff url(../img/devices/photo-industry-tv-427x247.jpg) 95% center no-repeat; }
+
+.tv .no-margin { margin-bottom: 0; }
+
+body.tv .row-hero iframe { margin-bottom: 20px }
+
+body.tv-experience .row-hero h2,
+body.tv-industry .row-hero h2,
+body.tv-features-and-specs .row-hero h2 { @include font_size (25); }
+body.tv-features-and-specs .inline-icons li { margin-top: 1.25em; }
+
+body.tv-features-and-specs .row-hero h2 { margin-bottom: 1em; }
+
+body.tv-home #main-content .row-hero {
+	padding-top: 20px;	
+}
+
+
+
+/*	@section experience
+-------------------------------------------------------------- */
+body.tv-experience .row-hero {
+	overflow: hidden;
+}
+
+body.tv-experience .row-hero .intro {
+	padding: 0 $seven_col 2em 0;
+	margin: 0;
+}
+
+body.tv-experience .inner-wrapper .row-hero .intro img {
+	position: absolute;
+	right: -120px;
+	bottom: -35px;
+}
+
+.row-tv-start .box {
+	background: url(../img/pictograms/pictogram-develop-125x125.png) $two_col top no-repeat;
+	padding-left: $six_col/* - $grid_gutter/*/;
+}
+
+.row-tv-talk {
+	@include rounded_corners(0);
+	padding-top: 0;
+}
+
+.row-tv-talk .box {
+	background: $light_grey;
+}
+
+/*	@section commercial-info & contributors
+-------------------------------------------------------------- */
+.tv-commercial-info .row-terms .article, 
+.tv-commercial-info .row-maintenance .article,
+.row-contributors .article,
+.row-get-involved .article {
+	background-position: $nine_col 48px;
+	background-repeat: no-repeat;
+	padding: 0 $four_col $gutter_width 0;
+}
+
+.tv-commercial-info .row-terms .article {
+	background-image: url(../img/pictograms/pictogram-partner-124x124.png);
+}
+
+.tv-commercial-info .row-maintenance .article {
+	background-image: url(../img/pictograms/pictogram-upgrade-124x124.png);
+}
+
+.tv-commercial-info .row-engineering .article {
+	background-image: url(../img/pictograms/pictogram-engineering-124x124.png);
+}	
+
+.tv-industry .row-hero .intro {
+	padding-right: $five_col;
+}
+
+body.tv .row-tv-contact {
+	border-bottom: 0;
+	padding: 20px 0 20px $grid_gutter;
+}
+
+body.tv #context-footer .feature-two {
+	background: url(../img/pictograms/pictogram-develop-125x125.png) 125% 20px no-repeat;
+}
+body.tv #context-footer .feature-two p {
+	padding-right: 60px;
+}

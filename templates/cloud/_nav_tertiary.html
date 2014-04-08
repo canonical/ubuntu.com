@@ -1,0 +1,26 @@
+	<ul>
+{% if level_5 == 'thank-you' %}
+		<li{% if level_5 == 'thank-you' %} class="active"{% endif %}>Thank you</li>
+{% endif %}
+{% if level_3 == 'thank-you' and not level_4 %}
+		<li{% if level_3 == 'thank-you' %} class="active"{% endif %}>Thank you</li>
+{% endif %}
+{% if level_2 == 'build-a-cloud' %}
+		<li{% if level_3 == 'turnkey-solutions' %} class="active"{% endif %}><a href="/cloud/build-a-cloud/turnkey-solutions">Turnkey solutions</a></li>
+		<li{% if level_3 == 'jumpstart' %} class="active"{% endif %}><a href="/cloud/build-a-cloud/jumpstart">Jumpstart</a></li>
+		<li{% if level_3 == 'openstack' %} class="active"{% endif %}><a href="/cloud/build-a-cloud/openstack">OpenStack</a></li>
+		<li{% if level_3 == 'reference-architecture' %} class="active"{% endif %}><a href="/cloud/build-a-cloud/reference-architecture">Reference architecture</a></li>
+{% endif %}
+{% if level_2 == 'use-a-cloud' %}
+		<li{% if level_3 == 'use-a-cloud' %} class="active"{% endif %}><a href="/cloud/use-a-cloud/guest">Cloud guest</a></li>
+{% endif %}
+{% if level_2 == 'tools' %}
+		<li{% if level_3 == 'juju' %} class="active"{% endif %}><a href="/cloud/tools/juju">Juju</a></li>
+		<li{% if level_3 == 'maas' %} class="active"{% endif %}><a href="/cloud/tools/maas">MAAS</a></li>
+		<li{% if level_3 == 'openstack' %} class="active"{% endif %}><a href="/cloud/tools/openstack">OpenStack</a></li>
+		<li{% if level_3 == 'jumpstart' %} class="active"{% endif %}><a href="/cloud/tools/jumpstart">Jumpstart</a></li>
+{% endif %}
+{% if level_2 == 'ecosystem' %}
+		<li{% if level_3 == 'ubuntu-oil' %} class="active"{% endif %}><a href="/cloud/ecosystem/ubuntu-oil">Ubuntu OpenStack interoperability lab</a></li>
+{% endif %}
+	</ul>

@@ -1,0 +1,77 @@
+{% extends "ubuntu/cloud/base_cloud.html" %}
+
+{% block title %}Use a cloud | Cloud{% endblock %}
+
+{% block meta_description %}Ubuntu is the most popular guest OS on both public and private clouds, thanks to its security, versatility and continually updated features.{% endblock meta_description %}
+
+{% block meta_keywords %}Ubuntu OpenStack, Ubuntu, public cloud, Ubuntu guest OS, Ubuntu server,Amazon cloud, AWS, Rackspace cloud, HP cloud, Joyent cloud , IBM cloud, cloud workloads, guest certification, OpenStack{% endblock meta_keywords %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Cloud tools" page_title="Use a cloud" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-image-centered">
+	<div class="seven-col">
+		<h1>Use a cloud</h1>
+		<p>Ubuntu is the most popular guest OS on both public and private clouds, thanks to its security, versatility and continually updated features. Spinning up an Ubuntu instance in your cloud couldn&rsquo;t be easier and Canonical offers industry-leading support.</p>
+	</div><!-- /.six-col -->
+	<span><img src="{{ STATIC_URL }}u/img/pictograms/pictogram-use-a-cloud.png" alt="pictogram-use-a-cloud" width="288" height="186" /></span>
+</div><!-- /.row row-hero -->
+
+<div class="row certified-public-clouds">
+	<div class="eight-col">
+		<h2>Certified public clouds</h2>
+		<p>Ubuntu is certified on a range of popular public clouds, with more being added every day. This ensures that you have the latest, official, secure, and reliable Ubuntu Server image.</p>
+		<ul class="inline-icons">
+			<li><img src="{{ STATIC_URL }}u/img/logos/logo-ibm-large.png" alt="IBM" width="110" height="50" /></li>
+			<li><img src="{{ STATIC_URL }}u/img/logos/logo-window-azure-large.png" alt="Windows Azure" width="245" height="50" /></li>
+			<li><img src="{{ STATIC_URL }}u/img/logos/logo-joyent-50.png" alt="Joyent" width="184" height="50" /></li>
+			<li class="last-item"><img src="{{ STATIC_URL }}u/img/logos/logo-hp-cloud.png" alt="" width="150" height="50" /></li>
+		</ul>
+	</div>
+	<div class="four-col box box-highlight resource resource-e-book last-col">
+		<h2><a href=" http://insights.ubuntu.com/whitepaper/ubuntu-cloud-guest/" title="Download Ubuntu Guest Factsheet">Running <br />Ubuntu Guest&nbsp;&rsaquo;</a></h2>
+		<p>We&rsquo;ve put together answers to your most frequently asked questions about using Ubuntu as a cloud guest.</p>
+		<p class="content-cat content-cat-factsheet">Factsheet</p>
+	</div><!-- /.four-col -->
+</div><!-- /.row -->
+
+<div class="row row-grey row-image-centered">
+	<span><img src="{{ STATIC_URL }}u/img/cloud/picto-workloads.png" alt="" height="211" /></span>
+	<div class="eight-col">
+		<h2>Your workloads on Ubuntu</h2>
+		<p>The efficiency of a workload is largely determined by the underlying platform and architecture. Ubuntu is the platform of choice for scale-out workloads, but it also offers workload-specific features to boost performance. This blog series gives you valuable insights on workload deployment best practices, important features, moving workloads, scaling in and out, rolling updates and more.</p>
+		<p><a href="http://insights.ubuntu.com/resources/when-it-comes-to-scale-size-doesnt-matter/" title="Blog: When it comes to scale size doesnt matter">Read the Ubuntu workloads blog&nbsp;&rsaquo;</a></p>
+	</div><!-- /.eight-col -->
+</div><!-- /.row -->
+
+<div class="row row-juju-man vertical-divider">
+	<div class="six-col box-juju">
+		<h2>Juju is everywhere Ubuntu is</h2>
+		<p>Juju is the best and quickest way to deploy and scale out your workloads. Whether it's Hadoop, Wordpress, or OpenERP, Juju allows you to get an entire cloud environment up and running in just a few commands, or mouse clicks.</p>
+		<p><a href="/cloud/tools/juju" title="">Learn more about Juju&nbsp;&rsaquo;</a></p>
+		<img src="{{ STATIC_URL }}u/img/cloud/image-juju-charms.png" alt="" width="482" height="211" />
+	</div><!-- /.six-col -->
+
+	<div class="six-col box-management last-col">
+		<h2>Management and support</h2>
+		<p>The Ubuntu Advantage support service has flexible Ubuntu Guest options. If you build your cloud on Ubuntu, a number of guest instances are supported for free, and this can be upgraded to cover more instances, more hours and higher entitlements. Thanks to Landscape, efficient management of those instances is only a few clicks away. </p>
+		<p><a href="/cloud/management">Find out all about support&nbsp;&rsaquo;</a></p>
+		<img src="{{ STATIC_URL }}u/img/cloud/image-landscape-cloud.png" alt="" width="923" height="516" />
+	</div><!-- /.seven-col -->
+</div><!-- /.row -->
+
+
+<div class="row developers-favourite no-border">
+	<div class="six-col">
+		<img src="{{ STATIC_URL }}u/img/desktop/meet-ubuntu.jpg" alt="Ubuntu running on XPS laptop" width="460" height="278" />
+	</div>
+	<div class="six-col push-down last-col">
+		<h2>Developers&rsquo; favourite</h2>
+		<p>Ubuntu is the most popular Linux distribution for development and deployment. If your developers already use Ubuntu, moving to the cloud is even easier.</p>
+		<p><a href="/desktop/developers">Read more about Ubuntu for developer workstations&nbsp;&rsaquo;</a></p>
+	</div>
+</div><!-- /.row -->
+
+{% endblock content %}

@@ -1,0 +1,63 @@
+{% extends "ubuntu/desktop/base_desktop.html" %}
+
+{% block title %}Ubuntu One is your personal cloud | Features{% endblock %}
+
+{% block body_classes %}audience-consumer{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Desktop" subsection_title="Features" page_title="Personal cloud"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+{% include "ubuntu/desktop/features/_features_header.html" with page_title="Personal cloud" %}
+
+<div class="row vertical-divider">
+	<h2 class="accessibility-aid">Ubuntu One</h2>	  
+	<p><img src="{{ STATIC_URL }}u/img/ubuntu/features/features-u1-banner-900x346.png" width="900" height="346" alt="" /></p>     	        
+	<div class="one-intro four-col">
+		<h2>Ubuntu One is your personal cloud.</h2>
+	</div>
+	<div class="one-picto-list seven-col last-col">
+		<div>
+			<p>Ubuntu One works on Windows, OS X, iOS, Android, the web and Ubuntu!</p>
+			<ul class="inline-icons no-bullets">
+				<li><img src="{{ STATIC_URL }}u/img/pictograms/pictogram-windows-36x36.png" width="36" height="36" title="Windows" alt="Windows pictogram" /></li>
+				<li><img src="{{ STATIC_URL }}u/img/pictograms/pictogram-osx-36x36.png" width="36" height="36" title="OS X" alt="OS X pictogram" /></li>
+				<li><img src="{{ STATIC_URL }}u/img/pictograms/pictogram-ios-36x36.png" width="36" height="36" title="iOS" alt="iOS pictogram" /></li>
+				<li><img src="{{ STATIC_URL }}u/img/pictograms/pictogram-android-36x36.png" width="36" height="36" title="Android" alt="Android pictogram" /></li>
+				<li><img src="{{ STATIC_URL }}u/img/pictograms/pictogram-web-36x36.png" width="36" height="36" title="Web" alt="Web pictogram" /></li>
+				<li><img src="{{ STATIC_URL }}u/img/pictograms/pictogram-ubuntu-36x36.png" width="36" height="36" title="Ubuntu" alt="Ubuntu pictogram" /></li>
+			</ul>
+		</div>
+	</div><!-- /.one-picto-list -->
+</div><!-- /.row -->
+
+<div class="row row-one-features">
+<div class="twelve-col">
+	<ul class="no-bullets vertical-divider equal-height twelve-col">
+		<li class="three-col">
+			<img src="{{ STATIC_URL }}u/img/pictograms/pictogram-your-cloud-80x80.png" width="80" height="80" alt="5GB of cloud storage" />
+			<h3>Your cloud</h3>
+			<p>Store your files on Ubuntu One and access them on all your devices. Instantly. 5GB free.</p>
+		</li>
+		<li class="three-col">
+			<img src="{{ STATIC_URL }}u/img/pictograms/pictogram-your-music-80x80.png" width="80" height="80" alt="Music pictogram" />
+			<h3>Your music</h3>
+			<p>Your music can be shared between your devices, too. Listen to any song, anywhere, any time.</p>
+		</li>
+		<li class="three-col">
+			<img src="{{ STATIC_URL }}u/img/pictograms/pictogram-your-network-80x80.png" width="80" height="80" alt="Network pictogram" />
+			<h3>Your network</h3>
+			<p>Share files with colleagues, photos with friends or link them to your social networks.</p>
+		</li>
+		<li class="three-col last-col last-item">
+			<img src="{{ STATIC_URL }}u/img/pictograms/pictogram-your-photos-80x80.png" width="80" height="80" alt="Snaptastic pictogram" />
+			<h3>Snaptastic!</h3>
+			<p>On iOS and Android, any photo can appear online and on any device, the instant you take it.</p>
+		</li>
+	</ul>
+	</div>
+	<p class="twelve-col"><a class="link-arrow" href="https://one.ubuntu.com">Learn more about Ubuntu One</a></p>
+</div><!-- /.row -->
+{% include "ubuntu/desktop/features/nav/_explore_ubuntu.html" %}
+{% endblock content %}

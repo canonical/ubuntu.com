@@ -1,0 +1,74 @@
+{% extends "ubuntu/download/_base_download.html" %}
+
+{% block title %}How to burn a DVD on Ubuntu{% endblock %}
+
+{% block extra_body_class %}download-help{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to burn a DVD on Ubuntu"  %}
+{% endblock second_level_nav_items %}
+
+
+{% block content %}
+<div class="row row-hero no-padding-bottom">
+<h1>How to burn a DVD on Ubuntu</h1>
+</div><!-- /.row row-hero -->
+<div class="row no-border">
+	<div id="download-help" class="eight-col box box-grey no-border">
+	<p>To create a DVD from which to install an up-to-date copy of Ubuntu, you first need to <a href="/download">download a copy of the latest version</a>. Once you&rsquo;ve done so, you can create your installation DVD. The procedure may differ slightly depending on which version of Ubuntu you are currently using.</p>
+		<div class="box box-highlight">
+			<ol class="no-bullets">
+				<li>
+					<span>1</span>
+					<div>
+						<p>Insert a blank CD into your burner. A 'CD/DVD Creator', 'Choose Disc Type' or 'Blank Disc' window might pop up. Close this, because we will not be using it.</p>
+						<img src="{{ STATIC_URL }}u/img/download/burn-cd-ubuntu-1.png" alt="" height="258" width="444">
+					</div>
+				</li>
+				<li>
+					<span>2</span>
+					<div>
+						<p>Look for the downloaded ISO file in the file browser.</p>
+					</div>
+				</li>
+				<li>
+					<span>3</span>
+					<div>
+						<p>Right click on the ISO file and choose <strong>'Write to Disc'</strong>.</p>
+						<img src="{{ STATIC_URL }}u/img/download/burn-cd-ubuntu-2-12.10.png" alt="" height="602" width="444">
+					</div>
+				</li>
+				<li>
+					<span>4</span>
+					<div>
+						<p>Where it says 'Write disc to', you might have options such as 'File image' as well as your CD drive. Choose your CD drive. Your CD drive might show as something like 'BD-MLT UJ-210S'.</p>
+						<img src="{{ STATIC_URL }}u/img/download/burn-cd-ubuntu-3-12.10.png" alt="" height="225" width="444">
+					</div>
+				</li>
+				<li>
+					<span>5</span>
+					<div>
+						<p>Select the write speed. If you are burning an Ubuntu Live CD (one that you may want to start your computer up from), it is recommended that you write at the lowest possible speed.</p>
+					</div>
+				</li>
+				<li>
+					<span>6</span>
+					<div>
+						<p>Start the burning process.</p>
+					</div>
+				</li>
+				<li>
+					<span>7</span>
+					<div>
+						<p>After burning is completed, verify that your CD contains multiple files and folders and not just the ISO file. This way you will know the process was completed correctly.</p>
+					</div>
+				</li>
+			</ol>
+		</div><!-- /.box -->
+{% include "ubuntu/download/shared/_wiki_link.html" %}
+{% include "ubuntu/download/shared/_ask_ubuntu.html" %}
+</div><!-- /.eight-col -->
+{% include "ubuntu/download/shared/_instalation_help.html" %}
+</div><!-- /.row -->
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

@@ -1,0 +1,107 @@
+{% extends "ubuntu/cloud/base_cloud.html" %}
+
+{% block title %}Cloud reference architecture | Cloud {% endblock %}
+{% block meta_description %}Ubuntu provides the reference architecture for the OpenStack project, the world’s leading open source cloud platform. Here is an overview of the architecture and outline of virtualisation options.{% endblock meta_description %}
+{% block meta_keywords %}Reference architecture, OpenStack, Ubuntu, Ubuntu Cloud Infrastructure, private cloud infrastructure, infrastructure as a service, open source, open cloud, open standards, virtualisation, hypervisor, KVM, Xen, LXC{% endblock meta_keywords %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title=" Cloud tools" page_title="Reference architecture"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero">
+	<div class="eight-col">
+		<h1>Cloud reference architecture</h1>
+		<p>OpenStack is the leading open cloud platform. Ubuntu is the reference operating system for the OpenStack project, which is why deploying OpenStack with Ubuntu is the best way to ensure a straightforward implementation.</p>
+	</div>
+</div><!-- /row -->
+
+<div class="row">
+	<h2>OpenStack logical architecture</h2>
+	<p><img src="{{ STATIC_URL }}u/img/cloud/openstack-logical-architecture.png" width="867" height="658" alt="OpenStack logical architecture" /></p>
+
+	<div class="tabbed-menu">
+		<ul class="no-bullets">
+			<li><a class="active slideless" href="#compute">Compute</a></li>
+			<li><a class="slideless" href="#storage">Storage</a></li>
+			<li><a class="slideless" href="#image-service">Image service</a></li>
+			<li><a class="slideless" href="#authentication-service">Authentication</a></li>
+			<li><a class="slideless" href="#management-service">Management</a></li>
+		</ul>
+		<img src="{{ STATIC_URL }}u/img/patterns/tabbed-nav-arrow.png" class="arrow" height="6" width="12" alt="">
+	</div>
+	<div id="compute" class="tabbed-content compute box-grey twelve-col">
+		<div class="eight-col">
+			<p>The OpenStack Compute component (codenamed Nova) enables you to provision and manage large networks of virtual machines, creating a redundant and scalable cloud-computing platform. It gives you everything you need to run instances, manage networks and control access through users and projects. Like the rest of the Ubuntu operating system, it supports most standard hardware configurations and well-known hypervisors.</p>
+		</div>
+	</div>
+	<div id="storage" class="tabbed-content box-grey hide twelve-col">
+		<div class="eight-col">
+			<p>OpenStack Object Storage (codenamed Swift) creates redundant, scalable object storage using clusters of standardised storage servers. Rather than a file system or real-time data storage system, it provides a long-term storage system for more permanent, static data. Examples include virtual machine images, photo storage, email storage and backup archiving. Canonical’s recommended alternative is Swift is Ceph, which provides a more feature-rich experience, and covers both object and block storage (block storage is the component that provides “disks” to the virtual machine).</p>
+		</div>
+	</div>
+	<div id="image-service" class="tabbed-content box-grey hide twelve-col">
+		<div class="six-col">
+			<p>The OpenStack Image Service (codenamed Glance) provides discovery, registration and delivery services for virtual disk images. It includes a standard REST interface for identifying them in back-end stores such as OpenStack Object Storage, with new virtual disk images being registered via the Image Service.</p>
+			<p>Administrators can also access information on publicly available disk images and use the client library for streaming virtual disk images.</p>
+		</div>
+		<div class="six-col last-col">
+			<p>A multi-format registry, the OpenStack Image Service allows uploads of private and public images in the following formats:</p>
+			<ul class="list-canonical smaller">
+				<li class="three-col">Raw</li>
+				<li class="three-col last-col">VHD (Hyper-V)</li>
+				<li class="three-col">VDI (VirtualBox)</li>
+				<li class="three-col last-col">qcow2 (Qemu/KVM)</li>
+				<li class="three-col last-item">Machine (kernel/ramdisk outside of image, also known as AMI)</li>
+			</ul>
+		</div>
+	</div>
+	<div id="authentication-service" class="tabbed-content box-grey hide twelve-col">
+		<div class="eight-col">
+			<p>The OpenStack Authentication service (codenamed Keystone) provides identity, token, catalogue and policy services for use by OpenStack components. It provides a pluggable back-end that has been designed to support various protocols (e.g. Basic Auth, OAuth, OpenID, PKI) for authentication and authorisation, allowing clients to obtain security tokens to access different cloud services.</p>
+		</div>
+	</div>
+	<div id="management-service" class="tabbed-content box-grey hide twelve-col">
+		<div class="six-col">
+			<p>The OpenStack management service or dashboard (codenamed Horizon) provides OpenStack users with a web-based user interface with which to control OpenStack&rsquo;s component services (Nova, Swift, Keystone, Glance) and a single API with which to access them.</p>
+			<p>The Horizon application also ships with a set of API abstractions for the core OpenStack projects, enabling developers to work on OpenStack without intimate knowledge of the APIs of every component.</p>
+		</div>
+		<div class="six-col last-col">
+			<p>There are three central dashboards, covering the core OpenStack applications:</p>
+			<ul class="list-canonical smaller">
+				<li>A user dashboard</li>
+				<li>A system dashboard</li>
+				<li class="last-item">A settings dashboard</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="row row-image-centered">
+	<div class="eight-col">
+		<h2>Virtualisation</h2>
+		<p>Ubuntu Server includes open-source hypervisors LXC and Xen, alongside its default option, KVM. All are supported as virtualisation options for Ubuntu OpenStack deployments.</p>
+		<p>Alternative hypervisors are compatible with OpenStack, however, allowing Ubuntu OpenStack to be deployed in custom configurations with almost any virtualisation technology. Supported options include:</p>
+		<ul class="list-canonical smaller clear">
+			<li>KVM (Kernel-based Virtual Machine)</li>
+			<li>LXC (Linux Containers)</li>
+			<li>Xen*</li>
+			<li>VMWare ESX</li>
+		</ul>
+		<p>A complete list of the features that can be controlled through OpenStack, by hypervisor, is available on the <a href="http://wiki.openstack.org/HypervisorSupportMatrix">OpenStack Wiki</a>.</p>
+		<p class="smaller">* Requires the nova-compute service to be installed on DomU</p>	
+	</div><!-- /.eight-col -->
+	<span><img src="{{ STATIC_URL }}u/img/pictograms/pictogram-virtualise-205x205.png" width="205" height="205" alt="" /></span>
+</div>
+
+<div class="row row-community row-image-centered no-border">
+	<span><img src="{{ STATIC_URL }}u/img/pictograms/pictogram-help-135.png" alt="" /></span>
+	<div class="eight-col">
+		<h2>Documentation and help</h2>
+		<p>The fastest and most accurate source of assistance on Ubuntu Cloud is the developer community responsible for the software. <a href="https://help.ubuntu.com/community/UbuntuCloudInfrastructure">You can get help from the Ubuntu community here</a>.</p>
+		<p>For technical documentation and further information on OpenStack, <a href="http://docs.openstack.org/">please visit the OpenStack documentation pages</a>.</p>
+	</div>
+</div><!-- /.row -->
+
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}
