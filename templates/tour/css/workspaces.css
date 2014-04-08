@@ -1,0 +1,55 @@
+/*
+ *  Workspaces CSS
+ * author: Anthony Dillon
+ */
+
+#workspaces{
+	background:url(../img/workspaces/gradient.jpg) repeat-x scroll 0px 0px #707070;
+	width:100%;
+	height:100%;
+	position:absolute;
+	left:0px;
+	top:0px;
+	opacity:0;
+}
+
+#void{
+	background:#000;
+	width:100%;
+	float:left;
+	height:50%;
+}
+
+#workspace-container{
+	width:650px;
+	margin:auto auto;
+	margin-top:150px;
+}
+#workspace-container .fadedOverlay{
+	float:left;
+	background:url(../img/workspaces/overlay.png);
+	margin:0px;
+}
+
+#workspace-container .selected{
+	background:none;
+}
+
+#workspace-container div{
+	background:url(../img/background.jpg) no-repeat;
+	background-size:300px 200px;
+	margin-left:15px;
+	margin-top:15px;
+	width:300px;
+	height:200px;
+	float:left;
+}
+
+#workspace-container .reflection{
+	margin-top:70px;
+	background:url(../img/workspaces/reflection.png);
+}
+
+#workspace3{
+	clear:both;
+}

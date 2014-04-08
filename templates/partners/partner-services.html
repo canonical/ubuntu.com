@@ -1,0 +1,67 @@
+{% extends "ubuntu/partners/base_partners.html" %}
+
+{% block title %}Partner services{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Partners" page_title="Partner services" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-margin-bottom">
+	<h1>Partner services</h1>
+	<p class="six-col">Canonical offers a full range of services to help our partners make the most of Ubuntu. Whether you need custom engineering, product certification or support, our team is on hand to help throughout your product life cycle.</p>
+</div><!-- / .row -->
+
+<div class="row">
+	<div class="eight-col">
+		<h2>Engineering services</h2>
+		<p>Canonical&rsquo;s OEM Partner Programme simplifies the process of pre-loading Ubuntu onto your hardware. Canonical offers a range of engagement models to suit your business.</p>
+		<p>As a partner you will have access to a worldwide development staff in multiple timezones, including a significant local presence in Taiwan and China. Pricing is based on the scope of technical effort plus annual unit volume commitment.</p>
+	</div>
+</div><!-- / .row -->
+
+<div class="row">
+	<div class="eight-col">
+		<h2>Custom engineering</h2>
+		<p>Canonical provides custom development services to help companies build their infrastructure on Ubuntu. From clouds for telcos to thin client migrations to building a phone or tablet, if your project needs expert custom Linux development, who better to ask than the company behind the world&rsquo;s fastest growing Linux distribution?</p>
+		<p>Pricing is based on scope of technical effort plus annual unit volume commitment. To find out more about our engineering services, <a href="/partners/contact-us">contact us today</a>.</p>
+	</div>
+</div><!-- / .row -->
+
+<div class="row no-border">
+	<div class="eight-col">
+		<h2>Hardware certification</h2>
+		<p>With hardware certification from Canonical, you can demonstrate compatibility with Ubuntu and ensure your devices make full use of Ubuntu's features. A growing community of users is looking for hardware that works with Ubuntu &mdash; and we can help you reach them.</p>
+		<p>Whether you manufacture components or systems, we'll help you achieve maximum compatibility and communicate your commitment to Ubuntu's users.</p>
+	</div>
+	<div class="twelve-col">
+		<h3>Certification features</h3>
+		<p>Key features of the hardware certification service are:</p>
+		
+		<ul class="list-canonical smaller six-col">
+			<li>
+				<h3>Development priority</h3>
+				<p>Any issues or regressions that risk your hardware's certification are given priority by Canonical's Ubuntu developers. Our certification staff collaborate with your engineers to identify where the issue resides so that together we can resolve it.</p>
+			</li>
+			<li>
+				<h3>Full compatibility testing</h3>
+				<p>Our extensive set of hardware and operating system tests ensure that your hardware is fully compatible with Ubuntu. Canonical's certification engineers work with the manufacturer to resolve any issues discovered and ensure that the testing is representative of in-field use. This ensures that certification is an efficient, collaborative process.</p>
+			</li>
+			<li>
+				<h3>Public certification</h3>
+				<p>Canonical publicly certifies your hardware and supports your commitment to working with the Ubuntu community. We provide you with materials to use on your hardware and publish your certification on the Ubuntu website. You'll benefit from clear communication with Ubuntu users.</p>
+			</li>
+		</ul>
+		<ul class="list-canonical smaller six-col last-col">
+			<li>
+				<h3>Hardware coverage</h3>
+				<p>Specific certification testing is undertaken for servers and desktops. Canonical's certification team will test hardware and operating features that users commonly expect from each platform type. Hardware manufacturers benefit from Ubuntu taking advantage of the full power of their components.</p>
+			</li>
+			<li>
+				<h3>Extensive user testing</h3>
+				<p>Ubuntu is known for its speed of innovation and its regular six-month releases. Certifying with Ubuntu ensures that your technology will reach a wide base of users who value innovation. Through our open development process and public platforms, you can take an active part in the community conversation. You benefit from quickly reaching key sections of the Linux market who influence other markets.</p>
+			</li>
+		</ul>
+	</div>
+</div><!-- / .row -->
+{% endblock content %}

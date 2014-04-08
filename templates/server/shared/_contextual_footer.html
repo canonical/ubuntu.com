@@ -1,0 +1,17 @@
+	<div class="feature-two three-col{% if level_2 == 'contact-us' %} six-col{% endif %}">
+		<h3>Download</h3>
+		<p>Whether you want to configure a simple file server or build a fifty thousand-node cloud, you can rely on Ubuntu Server and its five years of guaranteed free upgrades.</p>
+		<p><a href="/download/server" class="link-cta-ubuntu">Download now</a></p>
+	</div>
+	{% if level_2 != 'contact-us' %}<div class="feature-three three-col">
+		<h3>Ubuntu for business</h3>
+		<p>Contact us about <br />Ubuntu {% if level_2 == 'management' %}Advantage{% else %}Server{% endif %}.</p>
+		<p><a class="link-cta-ubuntu" href="/server/contact-us">Get in touch</a></p>
+	</div>{% endif %}
+	<div class="feature-four three-col last-col">
+		<h3>Further reading</h3>
+		<ul class="no-bullets smaller">
+			<li><a href="https://help.ubuntu.com/">Ubuntu Server guide&nbsp;&rsaquo;</a></li>
+			<li><a href="https://help.ubuntu.com/community/ServerFaq">Ubuntu Server <abbr title="Frequently Asked Questions">FAQ</abbr>s&nbsp;&rsaquo;</a></li>
+		</ul>
+	</div>

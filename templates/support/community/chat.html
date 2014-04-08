@@ -1,0 +1,22 @@
+{% extends "ubuntu/support/_base_support.html" %}
+
+{% block title %}Chat (IRC) | Ubuntu{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Support" subsection_title="Community" page_title="Ubuntu IRC channels"  tertiary="true" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-border">
+	<h1>Ubuntu IRC channels</h1>
+</div>
+
+<div class="row no-border">
+	<div class="eight-col">
+		<p>There are several Internet relay chat (IRC) channels on the freenode network (irc.freenode.net) used for Ubuntu support and development.</p>
+		<p>The best place to start for general help with Ubuntu or just to meet other Ubuntu users is <strong>#ubuntu</strong> or one of the many local language channels.</p>
+		<p>Specific channels are available for Ubuntu derivatives: <strong>#kubuntu</strong>, <strong>#edubuntu</strong>, <strong>#lubuntu</strong> and <strong>#xubuntu</strong> and separate channels relate to development, bugs, local community (LoCo) teams, accessibility and documentation. Choose from the current <a href="https://wiki.ubuntu.com/IRC/ChannelList">list of channels</a>.</p>
+		<p>When participating in Ubuntu IRC channels, please follow the <a href="/about/about-ubuntu/conduct">Code of Conduct</a>.</p>
+	</div><!-- / .seven-col -->
+</div><!-- / .row -->
+{% endblock content %}

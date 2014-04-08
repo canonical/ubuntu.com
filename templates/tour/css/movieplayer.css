@@ -1,0 +1,120 @@
+/* 
+ *  Movie Player CSS
+ *   author: Anthony Dillon
+ */
+
+#movieplayer{
+	width:700px;
+	left: 317px; 
+	top: 57px;
+	font-size:15px;
+	display:none;
+}
+
+#movieplayer .container{
+	background-color: #000000;
+	height:100%;
+}
+
+#movieplayer .container .video{
+	background:url(../img/movieplayer/splash.jpg) no-repeat scroll center center #000;
+	width:100%;
+	height: 494px;
+	margin-top: 5px;
+}
+
+#movieplayer .container .tools{
+	height:80px;
+	width:100%;
+}
+
+#movieplayer .container .tools .controlbuttons{
+	margin: 5px 10px;
+}
+
+#movieplayer .container .tools .controlbuttons .right{
+	float:right;
+}
+
+#movieplayer .container .tools .controlbuttons .left{
+	float:left;
+}
+
+#movieplayer .container .tools .controlbuttons .left div{
+	height:36px;
+	width:36px;
+	overflow:hidden;
+	float:left;
+}
+
+#movieplayer .container .tools .controlbuttons .left .rewind{
+	background:url(../img/movieplayer/rewind.jpg) no-repeat;
+}
+
+#movieplayer .container .tools .controlbuttons .left .play{
+	background:url(../img/movieplayer/play.jpg) no-repeat;
+}
+
+#movieplayer .container .tools .controlbuttons .left .forward{
+	background:url(../img/movieplayer/forward.jpg) no-repeat;
+}
+
+#movieplayer .container .tools .controlbuttons .left .fullscreen{
+	background:url(../img/movieplayer/fullscreen.jpg) no-repeat;
+}
+
+#movieplayer .container .tools .controlbuttons .right .volume{
+	height:36px;
+	width:36px;
+	overflow:hidden;
+	background:url(../img/movieplayer/volume.jpg) no-repeat;
+	float:right;
+}
+
+#movieplayer .container .tools .controlbuttons .active:hover{
+	background-position: 0px -36px;
+}
+
+
+#movieplayer .container .tools .time{
+	height: 20px;
+	margin:10px;
+}
+
+#movieplayer.fullsize .control{
+	margin-top: 0px;
+}
+
+#movieplayer .container .tools .time p{
+	float:left;
+	margin: 9px 0px;
+}
+
+#movieplayer .container .tools .time .timeslider{
+	float:left;
+}
+
+#movieplayer .container .tools .time .slider{
+	width:438px;
+	float:left;
+	margin-top:15px;
+}
+
+
+#movieplayer .container .tools .time .slider-active{
+	-moz-border-radius:5px 5px 5px 5px;
+	-webkit-border-radius:5px 5px 5px 5px;
+	border-radius:5px 5px 5px 5px;
+	background:#dd4814;
+	height: 3px;
+    margin-left: 15px;
+    margin-top: 17px;
+    position: relative;
+   width: 53px;
+   z-index:1;
+}
+
+#movieplayer .container .tools .time .slider .ui-slider-handle{
+	z-index:2;
+}
+

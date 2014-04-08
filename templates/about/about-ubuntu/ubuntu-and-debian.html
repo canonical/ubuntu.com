@@ -1,0 +1,26 @@
+{% extends "ubuntu/about/base_about.html" %}
+
+{% block title %}Ubuntu and Debian | About Ubuntu{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="About" subsection_title="About Ubuntu" page_title="Ubuntu and Debian" tertiary="true" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-border">
+	<h1>Ubuntu and Debian</h1>
+
+	<div class="eight-col">
+		<h3>Ubuntu and Debian are closely related.</h3>
+		<p>Ubuntu builds on the foundations of Debian's architecture and infrastructure, but has a different community and release process.</p>
+
+		<h3>About Debian</h3>
+		<p><a href="http://www.debian.org/">Debian</a> is 'the rock upon which Ubuntu is built'.</p>
+		<p>Debian is a volunteer project that works on developing a GNU/Linux operating system. The Debian project began more than a decade ago and has since grown to comprise more than 1,000 members with official developer status, and many more volunteers and contributors. It has expanded to encompass over 20,000 'packages' of free and open-source applications and documentation.</p>
+
+		<h3>About Ubuntu</h3>
+		<p>Ubuntu provides a system based on Debian with frequent, regular releases and a consistent desktop interface. It is backed by Canonical's commercial services and support on both the desktop and the server. It releases critical bug fixes and is never more than six months away from the latest version of anything in the open-source world.</p>
+		<p><a href="https://wiki.ubuntu.com/Debian">Learn more about how Debian and Ubuntu fit together</a>.</p>
+	</div><!-- / .seven-col -->
+</div><!-- / .row -->
+{% endblock content %}

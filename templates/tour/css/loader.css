@@ -1,0 +1,54 @@
+/* 
+ *  Loader CSS
+ *  author: Anthony Dillon
+ */
+
+#loader{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	z-index:1001;
+	background-color:  #210819;
+}
+
+#loader #dot-container{
+	position: absolute;
+	background:url(../img/loader/ubuntu-loader.gif) no-repeat;
+	width:300px;
+	height:169px;
+	top:40%;
+	left:40%;
+}
+
+#loader .dot{
+	background-color:#FFFFFF;
+	width:5px;
+	height:5px;
+		-moz-border-radius:5px 5px 5px 5px;
+		-webkit-border-radius:5px 5px 5px 5px;
+	border-radius:5px 5px 5px 5px;	
+		-moz-box-shadow: 0 0 1px 1px #FFFFFF;
+		-webkit-box-shadow: 0 0 1px 1px #FFFFFF;
+	box-shadow: 0 0 1px 1px #FFFFFF;
+	float:left;
+	margin-left:20px;
+	margin-top:55px;
+}
+
+#loader .dot.active{
+	background-color:#dd4814;
+		-moz-box-shadow: 0 0 1px 1px #dd4814;
+		-webkit-box-shadow: 0 0 1px 1px #dd4814;
+	box-shadow: 0 0 1px 1px #dd4814;
+}
+
+#loader noscript p{
+	margin-top:-170px;
+	margin-left:-30px;
+	border:1px solid #fff;
+	width:340px;
+	padding:20px;
+}
+

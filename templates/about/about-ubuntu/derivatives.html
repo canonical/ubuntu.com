@@ -1,0 +1,48 @@
+{% extends "ubuntu/about/base_about.html" %}
+
+{% block title %}Derivatives | About Ubuntu{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="About" subsection_title="About Ubuntu" page_title="Derivatives" tertiary="true" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-border">
+	<h1>Derivatives</h1>
+
+	<div class="eight-col">
+		<h3>Ubuntu is a popular operating system and a popular starting point for people who want to create their own operating systems.</h3>
+		<p>Derivatives of Ubuntu include local-language and hardware-specific versions.</p>
+		<p>Download Ubuntu flavor derivatives using the links below.</p>
+
+		<h3>Recognised Ubuntu flavours</h3>
+		<p>These are derivatives that use Ubuntu as their foundation and contribute significantly towards the project.</p>
+
+		<ul>
+			<li><a href="http://www.edubuntu.org/">Edubuntu</a> &mdash; Ubuntu for education</li>
+			<li><a href="http://ubuntugnome.org/">Ubuntu GNOME</a> &mdash; Ubuntu with the GNOME desktop environment</li>
+			<li><a href="http://www.kubuntu.org/">Kubuntu</a> &mdash; Ubuntu with the K Desktop environment</li>
+			<li><a href="http://www.ubuntukylin.com/">Ubuntu Kylin</a> &mdash; Ubuntu localised for China</li>
+			<li><a href="https://wiki.ubuntu.com/Lubuntu">Lubuntu</a> &mdash; Ubuntu that uses LXDE</li>
+			<li><a href="http://www.mythbuntu.org/">Mythbuntu</a> &mdash; Designed for creating a home theatre PC with MythTV</li>
+			<li><a href="http://ubuntustudio.org/">Ubuntu Studio</a> &mdash; Designed for multimedia editing and creation</li>
+			<li><a href="http://www.xubuntu.org/">Xubuntu</a> &mdash; Ubuntu with the XFCE desktop environment</li>
+		</ul>
+
+		<h3>Localised derivatives</h3>
+		<p>Due to space considerations, only a few languages are included on the Ubuntu CDs. Support for other languages can be found on DVD, and from sources around the Internet. The following derivatives have full language support for the relevant language directly on the CD.</p>
+
+		<ul>
+			<li>German</li>
+			<li>English (US, UK, AU)</li>
+			<li>Spanish</li>
+			<li>Portuguese</li>
+			<li>Brazilian Portuguese</li>
+			<li>Simplified Chinese</li>
+		</ul>
+
+		<h3>Other derivatives</h3>
+		<p>A complete list of known derivatives is maintained on the Ubuntu Wiki <a href="https://wiki.ubuntu.com/DerivativeTeam/Derivatives">Derivatives Team page.</a></p>
+	</div>
+</div><!-- / .row -->
+{% endblock content %}

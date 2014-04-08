@@ -1,0 +1,145 @@
+/*
+*  Tour System CSS
+*   author: Anthony Dillon
+*/
+
+#tour-guide{
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	width:100%;
+	height:50px;
+	background-color:#111;
+	z-index:100;
+}
+
+#tour-guide .guide-container{ 
+	width:90%;
+}
+
+#tour-guide .next-button{
+	position: relative;
+    width: 50px;
+    z-index: 2;
+	height:50px;
+	margin-right:150px;
+	float:right;
+	cursor:pointer;
+}
+
+#tour-guide .prev-button{
+	position: relative;
+    width: 50px;
+    z-index: 2;
+	height:50px;
+	float:left;
+	cursor:pointer;
+}
+
+#tour-guide .prev-button img{
+	margin:10px 0 0 25px;
+	cursor:pointer;
+}
+
+#tour-guide .next-button img{
+	margin:10px 0 0 25px;
+	cursor:pointer;
+}
+
+#tour-guide .explore-to-welcome{
+	position:absolute;
+	right:80px;
+	bottom:3px;
+	width:45px;
+	height:45px;
+		-moz-border-radius:10px 10px 10px 10px;
+		-webkit-border-radius:10px 10px 10px 10px;
+	border-radius:10px 10px 10px 10px;
+	background:url(../img/tourguide/back-to-welcome.png) no-repeat;
+	cursor: pointer;
+		-webkit-box-shadow: 0 0 5px #000000;
+		-moz-box-shadow: 0 0 5px #000000;
+	box-shadow: 0 0 5px #000000;
+}
+
+#tour-guide .explore-to-download{
+	position:absolute;
+	right:20px;
+	bottom:3px;
+	width:45px;
+	height:45px;
+		-moz-border-radius:10px 10px 10px 10px;
+		-webkit-border-radius:10px 10px 10px 10px;
+	border-radius:10px 10px 10px 10px;
+	background:url(../img/tourguide/back-to-download.png) no-repeat;
+	cursor: pointer;
+			-webkit-box-shadow: 0 0 5px #000000;
+		-moz-box-shadow: 0 0 5px #000000;
+	box-shadow: 0 0 5px #000000;
+
+}
+
+#tour-guide .guide-logo{
+	width:50px;
+	height:50px;
+	float:left;
+	background-repeat:no-repeat;
+	margin:0px 20px;
+}
+
+#tour-guide .guide-logo img{
+	height:46px;
+}
+
+#tour-guide h3{
+	font-size:20px;
+	display:inline;
+	position:relative;
+	top:13px;
+	margin-bottom:0px;
+}
+
+#tour-guide p{
+	font-size:16px;
+	display:inline;
+	font-weight: normal;
+	margin-left: 20px;
+	position:relative;
+	top:13px;
+	margin-bottom:0px;
+}
+
+#tour-guide .explore-tooltip-download{
+	height:20px;
+	background:url(../img/black-bg-20.png);
+	background-color:rgba(0,0,0,0.2);
+	display:none;
+	position: absolute;
+	bottom:55px;
+	right:10px;
+	padding:5px;
+	-moz-border-radius: 4px 4px 4px 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	border-radius: 4px 4px 4px 4px;
+	-moz-box-shadow: 0px 0px 5px #000;
+	-webkit-box-shadow: 0px 0px 5px #000;
+	box-shadow: 0px 0px 5px #000;
+}
+
+#tour-guide .explore-tooltip-welcome{
+	height:20px;
+	background:url(../img/black-bg-20.png);
+	background-color:rgba(0,0,0,0.2);
+	display:none;
+	position: absolute;
+	bottom:55px;
+	right:40px;
+	padding:5px;
+	-moz-border-radius: 4px 4px 4px 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	border-radius: 4px 4px 4px 4px;
+	-moz-box-shadow: 0px 0px 5px #000;
+	-webkit-box-shadow: 0px 0px 5px #000;
+	box-shadow: 0px 0px 5px #000;
+}
+

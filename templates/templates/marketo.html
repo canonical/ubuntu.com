@@ -1,0 +1,21 @@
+{% if marketo_id %}
+<!-- marketo -->
+<script>
+    (function() {
+        function initMunchkin() {
+            Munchkin.init('{{marketo_id}}',  {cookieAnon: false});
+        }
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+s.onreadystatechange = function() {
+            if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                initMunchkin();
+            }
+        };
+        s.onload = initMunchkin;
+        document.getElementsByTagName('body')[0].appendChild(s);
+    })(); 
+</script>
+{% endif %}

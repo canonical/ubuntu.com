@@ -1,0 +1,47 @@
+<div id="row-download-other" class="row no-border">
+	<h2>Other ways to get Ubuntu</h2>
+		<div id="download-other" class="eight-col">
+{% if level_3 == 'windows-installer' %}
+			<div class="desktop four-col box box-highlight">
+				<h3>Download Ubuntu</h3>
+				<p>Download Ubuntu directly. You will need to create a DVD or USB stick to install it this way. You can replace your current operating system, whether it’s Windows or Mac OS, or run Ubuntu alongside&nbsp;it.</p>
+				<p><a class="link-arrow" href="/download/desktop/">Get Ubuntu Desktop &rsaquo;</a></p>
+			</div><!-- /.desktop -->
+{% else %}
+{% if level_3 != 'zh-CN' %}
+			<div class="chinese four-col box box-highlight">
+				<h3>Ubuntu中文版本</h3>
+				<p>只需一张空白光盘或U盘，即可下载并安装 Ubuntu Kylin 13.10/Ubuntu 12.04 LTS 桌面操作系统 。无论当前的操作系统是 Windows 还是 Mac OS，您都可以用 Ubuntu Kylin/Ubuntu取代它</p>
+				<p><a href="/download/zh-CN">Ubuntu中文版本 &rsaquo;</a></p>
+			</div><!-- /.four-col -->
+{% endif %}
+{% endif %}
+{% if level_3 != 'zh-CN' %}
+			<div class="cd four-col last-col box box-highlight">
+				<h3>Buy 12.04 LTS CD</h3>
+				<p>If you&rsquo;d rather order an official Ubuntu 12.04 LTS CD and install it that way, they are available from the Ubuntu shop, at just &pound;8.50 for a pack of 10, plus postage and packing.</p>
+				<p><a class="link-arrow" href="http://shop.canonical.com/product_info.php?products_id=976">Buy Ubuntu CDs from the shop</a></p>
+			</div><!-- /.four-col -->
+{% else %}
+			<div class="cd eight-col last-col box box-highlight">
+				<h3>Buy 12.04 LTS CD</h3>
+				<p>If you&rsquo;d rather order an official Ubuntu 12.04 LTS CD and install it that way, they are available from the Ubuntu shop, at just &pound;8.50 for a pack of 10, plus postage and packing.</p>
+				<p><a class="link-arrow" href="http://shop.canonical.com/product_info.php?products_id=976">Buy Ubuntu CDs from the shop</a></p>
+			</div><!-- /.four-col -->
+{% endif %}
+
+			<p class="ubuntu-upgrade clear">Do you want to upgrade? <a class="link-arrow" href="/download/desktop/upgrade">Follow our simple guide</a></p>
+			<div class="alternative-options">
+				<h4>Alternative download options</h4>
+{% if level_3 == 'windows-installer' %}
+				<p>Want to download via BitTorrent links, find regional mirrors to get DVD images, use the network installer or find previous versions of Ubuntu?</p>
+				<p><a class="link-arrow" href="/download/alternative-downloads">Download alternative versions</a></p>
+{% else %}
+				<p>Want to download via BitTorrent links, get DVD images with more language packs, use the text-based alternate installer or find previous versions of Ubuntu?</p>
+				<p><a class="link-arrow" href="/download/alternative-downloads">Take a look at a full list of our previous versions and alternative downloads</a></p>
+{% endif %}
+			</div><!-- /.alternative-options -->
+	</div><!-- /#download-other -->
+
+{% include "ubuntu/download/shared/_instalation_help.html" %}
+</div><!-- /#row-other-ways -->

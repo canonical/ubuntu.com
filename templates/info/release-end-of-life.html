@@ -1,0 +1,27 @@
+{% extends "ubuntu/templates/one-column.html" %}
+
+{% block meta_description %}When an Ubuntu release reaches its "end of life" it receives no further maintenance updates, including critical security upgrades. It is highly recommended that you upgrade to a recent version of Ubuntu at this point.{% endblock %}
+{% block meta_keywords %}end of life, eol, release, release schedule, Ubuntu, Oneiric Ocelot, Natty Narwhal, Maverick Meerkat, Lucid Lynx (Desktop), Karmic Koala, Jaunty Jackalope, Intrepid Ibex, Hardy Heron, Gutsy Gibbon, Feisty Fawn, Edgy Eft, Dapper Drake, Breezy Badger, Hoary Hedgehog, Warty Warthog, Ubuntu 11.10 , Ubuntu 11.04, Ubuntu 10.10, Ubuntu 10.04, Ubuntu 9.10, Ubuntu 9.04, Ubuntu 8.10, Ubuntu 8.04.4 LTS, Ubuntu 8.04.3 LTS, Ubuntu 8.04.2 LTS, Ubuntu 8.04.1 LTS, Ubuntu 8.04 LTS, Ubuntu 8.04, Ubuntu 7.10, Ubuntu 7.04, Ubuntu 6.10, Ubuntu 6.06.2 LTS, Ubuntu 6.06.1 LTS, Ubuntu 6.06 LTS, Ubuntu 6.06, Ubuntu 5.10, Ubuntu 5.04, Ubuntu 4.10{% endblock %}
+
+{% block title %}Release end of life{% endblock %}
+
+{% block content %}
+<div class="row row-hero">
+	<h1>Release end of life</h1>
+	<div class="eight-col">
+		<p>When an Ubuntu release reaches its &ldquo;end of life&rdquo; it receives no further maintenance updates, including critical security upgrades. It is highly recommended that you upgrade to a recent version of Ubuntu at this point.</p> 
+		<p>This command will print the exact status of your system.</p> 
+		<pre>$ ubuntu-support-status</pre>
+		<p>For information on previous and upcoming releases and please see the <a href="https://wiki.ubuntu.com/Releases">Ubuntu wiki</a> for more details.</p>
+	</div>
+</div><!-- / .row -->
+<div class="row no-border">
+	<div class="four-col">
+		<h2>Nine years and 18 releases &mdash; and all on time</h2>
+		<p>Standard Ubuntu releases are supported for 9 to 18 months. Previous Ubuntu LTS (Long Term Support) releases are now supported for five  years on both the desktop and the server. During that time, there will be security fixes and other critical updates.</p>
+	</div>
+	<div class="eight-col last-col">
+		<img src="{{ STATIC_URL }}u/img/business/screenshot-server-release.png" width="596" height="549" alt="Ubuntu Desktop release cycle, 5 year long term support" />
+	</div>
+</div>
+{% endblock content %}

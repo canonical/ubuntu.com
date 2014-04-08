@@ -1,0 +1,47 @@
+{% extends "ubuntu/partners/base_partners.html" %}
+
+{% block title %}ASUS and Ubuntu{% endblock %}
+
+{% block meta_keywords %}Asus, Ubuntu, Asus X201E, preloaded with Ubuntu, Intel Chief River platform, Intel Celeron Dual-Core 847 Processor , Asus and Canonical, Asus netbooks, Asus notebooks, Asus with Linux, 12.04 LTS, linux computer, linux laptop{% endblock %}
+{% block meta_description %}ASUS computers now come preloaded with Ubuntu. ASUS and Canonical have been working together to bring great performing notebooks, netbooks and All-in-One PCs to consumer and enterprise.{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Partners" page_title="ASUS" tertiary="true" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero row-image-centered">
+	<div class="six-col">
+		<h1>ASUS and Ubuntu</h1>
+		<p>ASUS is a multinational computer manufacturer headquartered in Taipei, Taiwan.  They have been working with Canonical to bring great performing notebooks, netbooks and all in one computers  to consumers and enterprises.</p>
+	</div><!-- /.six-col -->
+	<span><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-asus-210x43.png" alt="ASUS" /></span>
+</div><!-- / .row -->
+
+<div class="row">
+	<div class="six-col">
+		<h2>ASUS 1015E with Ubuntu 12.04 LTS</h2>
+		<p>The 1015E is a high performing laptop in a compact and light package.  Dual-core processing power, USB 3.0, and Ubuntu&rsquo;s legendary speed ensure it&rsquo;s more than fast enough for email, the web, voice and video calls, or your favourite videos.  Whilst at 2.64lb, and 1&rdquo; thin, it&rsquo;s light and compact enough to fit in your bag, use comfortably at work, at home or anywhere in between.</p>
+		<p><a class="link-cta-ubuntu" href="http://www.amazon.com/ASUS-1015E-DS03-10-1-Inch-Laptop-Black/dp/B00COQK8QY/ref=sr_1_1?ie=UTF8&qid=1380718481&sr=8-1&keywords=1015E+ubuntu" onclick="_gaq.push(['_trackEvent', 'External Link', 'ASUS 1015E', 'From ASUS partner page Buy now link']);">Buy <span class="accessibility-aid">ASUS 1015E </span>now</a></p>
+		<!--<p><a href="/tour/12.04/en/" title="Take the Ubuntu 12.04 LTS Desktop Tour">Take the online tour of the Ubuntu 12.04 LTS desktop&nbsp;&rsaquo;</a></p> -->
+	</div>
+	<div class="six-col last-col">
+		<img src="{{ STATIC_URL }}u/img/partners/asus-1015e-12.04.jpg" alt="ASUS 1015E" />
+	</div>
+</div><!-- /.row -->
+
+
+
+<div class="row no-border">
+	<div class="six-col">
+		<h2>Certified systems</h2>
+			<p>ASUS and Canonical engineering teams synchronize efforts to ensure that hardware components are compatible with Ubuntu and fully functional.</p>
+			<p>ASUS and Canonical are committed to providing offerings into the market that meet specific needs.  If you are looking for a computer in a specific vertical market &mdash; enterprise, education, health, financial &mdash; you have an increasing number of machines that will be able to fit your needs.</p>
+			<p><a href="http://www.ubuntu.com/certification/desktop/make/Asus/?category=Desktop&amp;category=Laptop&amp;category=Netbook">See all ASUS systems certified by Ubuntu</a></p>
+	</div><!-- /.six-col -->
+	<div class="six-col last-col">
+		<img src="{{ STATIC_URL }}u/img/partners/partners-certified-220h.png" alt="" />
+	</div><!-- /.six-col -->
+</div><!-- /.row -->
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

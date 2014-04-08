@@ -1,0 +1,51 @@
+{% extends "ubuntu/download/_base_download.html" %}
+
+{% block title %}Download Ubuntu Desktop{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Windows installer"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}	
+<div class="row row-hero no-padding-bottom">
+	<div class="twelve-col">
+		<h1>Download the Windows installer <br />for Ubuntu Desktop</h1>
+	</div>
+
+	<div class="warning box box-image-centered no-border no-margin-bottom">
+		<span><img src="{{ STATIC_URL }}u/img/logos/windows-8-logo-grey.png" width="146" height="29" /></span>
+		<div class="nine-col last-col">
+			<h4>Have a new PC with the Windows 8 logo or using UEFI firmware?</h4>
+			<p>Please use a <a href="/download/desktop">64-bit flavour</a> of Ubuntu, installed directly to its own partition <br/>rather than using the Windows installer.<br/>
+			<a href="https://help.ubuntu.com/community/UEFI">Learn more&nbsp;&rsaquo;</a></p>
+		</div><!-- /.nine-col -->
+	</div><!-- /.warning -->
+</div><!-- /.row -->
+   
+<div class="row row-windows-installer no-border no-margin-bottom">
+<div class="box box-grey no-border">
+	<div class="box box-highlight clearfix">
+		<h3>Windows installer for Ubuntu Desktop</h3>
+		<div class="download-description eight-col">
+			<p>With Wubi, our officially supported Ubuntu installer for Windows, you can install and uninstall Ubuntu easily and safely. For 12.04 LTS only.</p>
+			<p><a class="link-arrow" href="/download/desktop/install-ubuntu-with-windows">Read the installation instructions</a></p>
+		</div>
+		<div class="four-col last-col">
+		<form class="form-download" action="http://www.ubuntu.com/pre-download" method="get">
+			<fieldset>
+				<input name="destination" value="desktop" type="hidden">
+				<input name="distro" value="wubi" type="hidden">
+				<input name="bits" value="" type="hidden">
+				<input name="release" value="lts" type="hidden">
+			</fieldset>
+			<div>
+				<button type="submit">Get the installer</button>
+			</div>
+		</form>
+		</div>
+	</div>
+</div>
+</div>
+{% include "ubuntu/download/desktop/_other-ways.html" %}
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

@@ -1,0 +1,70 @@
+{% extends "ubuntu/desktop/base_desktop.html" %}
+
+{% block title %}Games and apps | Features{% endblock %}
+
+{% block body_classes %}audience-consumer{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Desktop" subsection_title="Features" page_title="Find more apps"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+{% include "ubuntu/desktop/features/_features_header.html" with page_title="Games and apps" %}
+
+<div class="row intro">
+	<div class="five-col">
+		<p>Ubuntu Software Centre also gives you instant access to thousands of great applications &mdash; some free and some available commercially. You can also search for apps directly from the Dash. If you see something you like, you can get more information and then install it in just a couple of clicks.</p>
+		{% include "ubuntu/shared/_share_this.html" %}
+	</div>
+	<div class="seven-col last-col no-margin">
+		<img class="touch-border" src="{{ STATIC_URL }}u/img/desktop/features/image-software-centre.jpg" alt="image-software-centre" width="549" height="300" />
+	</div>
+</div><!-- /.row -->
+
+<div class="row row-funsies equal-height vertical-divider">
+	<div class="four-col education-resources">
+		<p><img src="{{ STATIC_URL }}u/img/desktop/features/image-educational-resources.png" alt="" width="204" height="49"/></p>
+		<h3>Educational resources</h3>
+		<p>The Ubuntu Software Centre comes with a range of apps that make learning fun and engaging.</p>
+	</div><!-- /.four-col -->
+	<div class="four-col ratings-and-reviews">
+		<p><img src="{{ STATIC_URL }}u/img/desktop/features/image-ratings-and-reviews.png" alt="stars" width="204" height="48" /></p>
+		<h3>Ratings and reviews</h3>
+		<p>Each application comes with ratings and reviews to make it easier for you to decide which apps you want to install.</p>
+	</div><!-- /.four-col -->
+	<div class="four-col last-col fun-and-games">
+		<p><img src="{{ STATIC_URL }}u/img/desktop/features/image-fun-and-games.png" alt="image-fun-and-games" width="204" height="48" /></p>
+		<h3>Fun and games</h3>
+		<p>From Sudoku to shoot-em-ups, we&rsquo;ve got loads of games that&rsquo;ll keep you busy for hours.</p>
+	</div><!-- /.four-col -->
+</div><!-- /.row -->		
+
+<div class="row row-humble-indie-bundle">
+	<div class="seven-col">
+		<h2>Humble Indie Bundle</h2>
+		<p>You can also pick up some incredible games directly from the Ubuntu Software Centre, as Ubuntu has teamed up with the regular Humble Indie Bundle charity sales. Pick from critically acclaimed titles such as Braid and Bastion, Limbo and FEZ.</p>
+		<div class="fez"><span id="preload-fez"></span></div>
+	</div>
+</div><!-- /.row -->
+
+<div class="row">
+	<div class="five-col">
+		<p class="five-col"><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-steam-365.png" width="365" height="90" alt="" /></p>
+		<h2>Steam on Ubuntu</h2>
+		<p>As the PC gaming resurgence continues at pace, Ubuntu has quickly become a great platform for cutting-edge games. Canonical and Valve have worked together to bring the world&rsquo;s biggest open gaming platform to Ubuntu, with more and more Linux-compatible games, so download Steam today and start playing thousands of titles.</p>
+	</div>
+	<div class="seven-col last-col no-margin">
+		<img class="touch-border" src="{{ STATIC_URL }}u/img/desktop/features/image-steam.jpg" alt="Steam screenshot" width="545" height="400"  />
+	</div>
+</div><!-- /.row -->
+	
+<div class="row row-developer row-image-centered">
+		<span><img class="" src="{{ STATIC_URL }}u/img/desktop/features/image-developer.png" alt="" width="442" height="135" /></span>
+		<div class="five-col last-col">
+			<h3>Create cool apps!</h3>
+			<p>Develop and publish your apps on Ubuntu, the world's third-most popular desktop <abbr title="Operating System">OS</abbr>.</p> 
+			<p><a class="link-arrow" href="http://developer.ubuntu.com">Get started today</a></p>
+		</div>
+</div><!-- /.row -->		
+{% include "ubuntu/desktop/features/nav/_explore_ubuntu.html" %}
+{% endblock content %}

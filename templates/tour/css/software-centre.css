@@ -1,0 +1,343 @@
+/*
+ *  Software Centre CSS
+ *  author: Anthony Dillon
+ */
+
+#software-centre{
+	width:800px;
+	height:555px;
+	top:200px;
+	left:600px;
+	display:none;
+}
+
+#software-centre .top-panel{
+	width:100%;
+	height:65px;
+	background:url(../img/software-centre/top-bg.jpg) repeat-x;
+	color: #DFDBD2;
+	text-align:center;
+}
+
+#software-centre .top-panel div{
+	float:left;
+}
+
+#software-centre .top-panel .back{
+	width:37px;
+	margin-top:15px;
+	margin-left:20px;
+	height:32px;
+	background:url(../img/software-centre/back.jpg) no-repeat scroll center center;
+}
+
+#software-centre .top-panel .forward{
+	width:37px;
+	height:32px;
+	margin-top:15px;
+	background:url(../img/software-centre/forward.jpg) no-repeat;
+}
+
+#software-centre .top-panel .forward:hover{
+	background-position: 0px -32px;
+}
+
+#software-centre .top-panel .back:hover{
+	background-position: 0px -32px;
+}
+
+#software-centre .top-panel .disabled{
+	background-position: 0px -64px !important;
+}
+
+#software-centre .top-panel img{
+	display:block;
+	margin:0px auto;
+}
+
+#software-centre .container{
+	height:460px;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+
+#software-centre .top-panel .all-software{
+	padding-top:10px;
+	width:98px;
+	height:54px;
+	margin-left:15px;
+	border-right:1px solid #373631;
+}
+
+#software-centre .top-panel .installed{
+	padding-top:10px;
+	width:98px;
+	height:54px;
+	color:#666;
+	margin-right:10px;
+	border-right:1px solid #373631;
+}
+
+#software-centre .top-panel .history{
+	padding-top:10px;
+	width:98px;
+	height:54px;
+	color:#666;
+	margin-right:10px;
+}
+
+#software-centre .top-panel .selected{
+	background:url(../img/software-centre/top-bg-selected.jpg) repeat-x;
+}
+
+#software-centre .header-image{
+	width:100%;
+	background: url("../img/software-centre/header.jpg") no-repeat scroll 0 0 #FFFFFF;
+    height: 188px;
+    	-moz-box-shadow: 0 1px 2px #888888;
+		-webkit-box-shadow: 0 1px 2px #888888;
+	box-shadow: 0 1px 2px #888888;
+}
+
+#software-centre .header-image span{
+	display:block;
+	position:relative;
+	left:241px;
+	top:63px;
+	color:#dd4814;
+	font-size:28px;
+}
+
+#software-centre .header-image .header-title{
+	font-size:48px;
+	font-weight:bold;
+	margin-bottom:7px;
+}
+
+#software-centre .navigation{
+	float:left;
+	width:144px;
+	background:#fff;
+		-moz-border-radius:10px 10px 10px 10px;
+		-webkit-border-radius:10px 10px 10px 10px;
+	border-radius:10px 10px 10px 10px;
+	border:1px solid #a9a5a7;
+	margin-left:15px;
+	margin-top:10px;
+	font-size: 12px;
+	height:348px;
+	margin-bottom:10px;
+		-moz-box-shadow: 0 2px 3px #888888;
+		-webkit-box-shadow: 0 2px 3px #888888;
+	box-shadow: 0 2px 3px #888888;
+}
+
+#software-centre .navigation ul{
+	padding-left:10px;
+	margin-top:5px;
+	list-style: none;
+}
+
+#software-centre .navigation ul li{
+	margin-bottom:10px;
+	color:#999;
+}
+
+#software-centre .whats-new{
+	float:left;
+	width: 602px;
+		-moz-border-radius:10px 10px 10px 10px;
+		-webkit-border-radius:10px 10px 10px 10px;
+	border-radius:10px 10px 10px 10px;
+	border:1px solid #a9a5a7;
+	font-size: 12px;
+	padding-bottom:5px;
+	margin:10px 0 0 10px;
+		-moz-box-shadow: 0 2px 3px #888888;
+		-webkit-box-shadow: 0 2px 3px #888888;
+	box-shadow: 0 2px 3px #888888;
+}
+
+#software-centre .whats-new h2{
+	width:100%;
+	padding:5px 0 0 5px;
+	height:26px;
+		-moz-border-radius:10px 10px 10px 10px;
+		-webkit-border-radius:10px 10px 10px 10px;
+	border-radius:10px 10px 10px 10px;
+	font-size: 14px;
+	overflow:hidden;
+	margin:0px;
+}
+
+#software-centre .whats-new .app-container div{
+	float:left;
+	height: 65px;
+	border-top:1px solid #e7e4e6;
+	border-left:1px solid #e7e4e6;
+	padding-left: 80px;
+    width: 119px;
+}
+
+#software-centre .whats-new .app-container div:active{
+	position:relative;
+	top:1px;
+	left:1px;
+}
+#software-centre .whats-new .app-container div h3{
+	margin:0px;
+	white-space:nowrap;
+	overflow:hidden;
+	margin-top:3px;
+}
+#software-centre .whats-new .app-container div p{
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+#software-centre .whats-new .app-container div p.cost{
+	color:#999;
+}
+
+#software-centre .whats-new .app-container .chromium{
+	background:url(../img/software-centre/logo-chromium.png) no-repeat scroll 10px 8px #ffffff;
+}
+#software-centre .whats-new .app-container .beep{
+	background:url(../img/software-centre/logo-beep.png) no-repeat scroll 10px 8px #ffffff;
+}
+#software-centre .whats-new .app-container .inkscape{
+	background:url(../img/software-centre/logo-inkscape.png) no-repeat scroll 10px 8px #ffffff;
+}
+#software-centre .whats-new .app-container .worldofgoo{
+	background:url(../img/software-centre/logo-world-of-goo.png) no-repeat scroll 10px 8px #ffffff;
+}
+#software-centre .whats-new .app-container .blender{
+	background:url(../img/software-centre/logo-blender.png) no-repeat scroll 10px 8px #ffffff;
+}
+#software-centre .whats-new .app-container .braid{
+	background:url(../img/software-centre/logo-braid.png) no-repeat scroll 10px 8px #ffffff;
+}
+
+#software-centre .whats-new .app-container .visolate{
+	background:url(../img/software-centre/visolate.png) no-repeat scroll 10px 8px #ffffff;
+}
+#software-centre .whats-new .app-container .okular{
+	background:url(../img/software-centre/okular.png) no-repeat scroll 10px 8px #ffffff;
+}
+#software-centre .whats-new .app-container .netSurf{
+	background:url(../img/software-centre/netsurf.png) no-repeat scroll 10px 8px #ffffff;
+}
+#software-centre .whats-new .app-container .vitables{
+	background:url(../img/software-centre/vitables.png) no-repeat scroll 10px 8px #ffffff;
+}
+#software-centre .whats-new .app-container .steadyflow{
+	background:url(../img/software-centre/steadyflow.png) no-repeat scroll 10px 8px #ffffff;
+}
+#software-centre .whats-new .app-container .openjdk{
+	background:url(../img/software-centre/openjdk.png) no-repeat scroll 10px 8px #ffffff;
+}
+
+#software-centre .detailed{
+	display:none;
+}
+
+#software-centre .detailed img.app-image{
+	float:left;
+	padding:0px 5px;
+}	
+
+#software-centre .detailed .title{
+	height:110px;
+	margin:0px 10px;
+}
+
+#software-centre .detailed .title h1{
+	margin-bottom:5px;
+}
+
+#software-centre .detailed .title p{
+	margin:0px;
+}
+
+#software-centre .detailed .title .rating{
+	color:#999999;
+	margin-top:10px;
+}
+#software-centre .detailed .title .rating img{
+	vertical-align:top;
+}
+
+#software-centre .detailed .price{
+	margin:0px 10px 20px 10px;
+	background:#f7f5f7;
+	border-top:1px dotted #999;
+	border-bottom:1px dotted #999;
+	padding: 10px 0px;
+}
+
+#software-centre .detailed .price .theprice{
+	font-weight:bold;
+}
+
+#software-centre .detailed .price .theprice.installed{
+	background:url('../img/software-centre/install-tick.png') no-repeat;
+	padding-left:30px;
+	padding-bottom: 10px;
+	padding-top:3px;
+}
+
+#software-centre .detailed .description{
+	margin:0px 10px;
+}
+
+#software-centre .detailed .description-container{
+	border-bottom:1px dotted #999;
+}
+
+#software-centre .detailed .description-image{
+	float:right;
+	padding:4px;
+	margin:10px;
+		-moz-border-radius:2px 2px 2px 2px;
+		-webkit-border-radius:2px 2px 2px 2px;
+	border-radius:2px 2px 2px 2px;
+	border:1px solid #b4b2b3;
+}
+
+#software-centre .detailed .button{
+	float:right;
+	margin-right:20px;
+	background:url(../img/software-centre/install-button.jpg) repeat-x;
+	padding:3px;
+	color:#666;
+		-moz-border-radius:2px;
+		-webkit-border-radius:2px;
+	border-radius:2px;
+	border:1px solid #b9b9b9;
+	margin-top:-3px;
+}
+
+#software-centre .detailed .button:hover{
+	background:url(../img/software-centre/install-button-over.jpg) repeat-x;
+}
+
+#software-centre .loading-bar{
+	background:#e5e3e1;
+	-webkit-border-radius:6px 6px 6px 6px;
+	-moz-border-radius:6px 6px 6px 6px;
+	border-radius:6px 6px 6px 6px;
+	height:20px;
+	width:150px;
+	float:right;
+	border-top: 1px solid #bab6b2;
+	border-bottom: 1px solid #fefefe;
+}
+
+#software-centre .loading-bar .progress{
+	-webkit-border-radius:6px 6px 6px 6px;
+	-moz-border-radius:6px 6px 6px 6px;
+	border-radius:6px 6px 6px 6px;
+	height:20px;
+	width:0px;
+	background:#dd4814 ;
+}

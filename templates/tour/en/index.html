@@ -1,0 +1,1581 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<title>Ubuntu online tour</title>
+		<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+		<meta charset="UTF-8" />
+		<meta name="description" content="Enjoy the simplicity of Ubuntu's stylish, intuitive interface. Take Ubuntu for a test drive with our online tour and download when you're ready!" />
+		<meta name="keywords" content="ubuntu, ubuntu online, ubuntu tour" />
+		<link rel="stylesheet" href="../css/loader.css" type="text/css" />
+		<link rel="stylesheet" href="../css/error.css" type="text/css" />
+		<link rel="stylesheet" href="../css/base.css" type="text/css" />
+		<link rel="stylesheet" href="../css/folder.css" type="text/css" />
+		<link rel="stylesheet" href="../css/firefox.css" type="text/css" />
+		<link rel="stylesheet" href="../css/email.css" type="text/css" />
+		<link rel="stylesheet" href="../css/systemoverlay.css" type="text/css" />
+		<link rel="stylesheet" href="../css/ubuntuone.css" type="text/css" />
+		<link rel="stylesheet" href="../css/shotwell.css" type="text/css" />
+		<link rel="stylesheet" href="../css/tourguide.css" type="text/css" />
+		<link rel="stylesheet" href="../css/welcome.css" type="text/css" />
+		<link rel="stylesheet" href="../css/shutdown.css" type="text/css" />
+		<link rel="stylesheet" href="../css/movieplayer.css" type="text/css" />
+		<link rel="stylesheet" href="../css/libre.css" type="text/css" />
+		<link rel="stylesheet" href="../css/notification.css" type="text/css" />
+		<link rel="stylesheet" href="../css/software-centre.css" type="text/css" />
+		<!--[if IE 8]>
+		<link rel="stylesheet" href="../css/iefix.css" type="text/css" />
+		<![endif]-->
+		<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,700' rel='stylesheet' type='text/css' />
+		<script type="text/javascript">
+			WebFontConfig = {
+				google : {
+					families : ['Ubuntu:400,700:latin']
+				}
+			}; (function() {
+				var wf = document.createElement('script');
+				wf.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+				wf.type = 'text/javascript';
+				wf.async = 'true';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(wf, s);
+			})();
+
+		</script>
+	</head>
+	<body>
+		<div id="loader">
+			<div id="dot-container">
+				<noscript>
+					<p>
+						This demo uses JavaScript. Either your browser doesn't support JavaScript, or it's currently switched off.
+						<br/>
+						<br/>
+						Don't panic. We've got <a href="/ubuntu/take-the-tour-gallery">a non-JavaScript version</a> of the online tour you can view instead. :)
+					</p>
+				</noscript>
+			</div>
+		</div>
+		<div id="top" class="dropShadow">
+			<div id="top-left">
+				<div id="control-buttons">
+					<div id="close"></div>
+					<div id="min"></div>
+					<div id="max"></div>
+				</div>
+				<div id="dash-control-buttons">
+					<div class="close"></div>
+					<div class="min"></div>
+					<div class="max"></div>
+				</div>
+				<div id="title"></div>
+			</div>
+			<div id="top-right">
+				<div id="message"><img src="../img/top/nomessage.png" class="message-logo" alt="" />
+					<ul class="drop-down">
+						<li class="disabled"><img src="../img/top/available.jpg" alt=""/> Available
+						</li>
+						<li class="disabled"><img src="../img/top/away.jpg" alt=""/> Away
+						</li>
+						<li class="disabled"><img src="../img/top/busy.jpg" alt=""/> Busy
+						</li>
+						<li class="disabled"><img src="../img/top/invisible.jpg" alt=""/> Invisible
+						</li>
+						<li class="disabled"><img src="../img/top/offline.jpg" alt=""/> Offline
+						</li>
+						<li class="divider"></li>
+						<li class="disabled"><img src="../img/top/chat.png" alt=""/> Chat
+						</li>
+						<li class="divider"></li>
+						<li class="disabled"><img src="../img/top/broadcast.png" alt=""/> Set Up Broadcast Account…
+						</li>
+						<li class="divider"></li>
+						<li class="disabled"><img src="../img/top/mail.png" alt=""/> Set Up Mail…
+						</li>
+						<li class="divider"></li>
+						<li class="disabled"><img src="../img/top/uone.png" alt=""/> Ubuntu One
+						</li>
+						<li class="divider"></li>
+						<li class="disabled">
+							Clear
+						</li>
+					</ul>
+				</div>
+				<div id="bluetooth"><img src="../img/top/bluetooth.png" alt=""/>
+					<ul class="drop-down">
+						<li class="disabled bluetooth">
+							Bluetooth On
+						</li>
+						<li>
+							Turn Off Bluetooth
+						</li>
+						<li class="divider"></li>
+						<li class="disabled BtOn">
+							Visible
+						</li>
+						<li class="divider BtOn"></li>
+						<li class="disabled BtOn">
+							Send files to device…
+						</li>
+						<li class="disabled BtOn">
+							Browse files on device…
+						</li>
+						<li class="divider"></li>
+						<li class="disabled BtOn">
+							Setup new device…
+						</li>
+						<li class="divider BtOn"></li>
+						<li class="disabled">
+							Preferences
+						</li>
+					</ul>
+				</div>
+				<div id="connection"><img src="../img/top/connection.png" alt=""/>
+					<ul class="drop-down">
+						<li class="disabled">
+							Auto eth0
+						</li>
+						<li class="disabled">
+							Disconnect
+						</li>
+						<li class="divider"></li>
+						<!--<li class="disabled"><img src="../img/top/wireless-icon.png" alt=""/> My Wireless Connection</li>
+						<li class="disabled">Disconnect</li>
+						<li class="divider"></li>-->
+						<li class="disabled">
+							Connection Information
+						</li>
+						<li class="disabled">
+							Edit Connections…
+						</li>
+					</ul>
+				</div>
+				<div id="speakers"><img src="../img/top/speakers3.png" class="speakers-logo"  alt=""/>
+					<ul class="drop-down">
+						<li>
+							Mute
+						</li>
+						<li class="system-volume">
+							<div class="large-icon"></div><div class="small-icon"></div><div class="slider"></div><div class="slider-active"></div>
+						</li>
+						<li class="divider"></li>
+						<li class="disabled"><img src="../img/top/rhythmbox.png" alt=""/> Rhythmbox
+						</li>
+						<li class="banshee">
+							<div class="banshee-rewind"></div><div class="banshee-forward"></div><div class="banshee-play"></div>
+						</li>
+						<li class="divider"></li>
+						<li class="disabled">
+							Sound Settings…
+						</li>
+					</ul>
+				</div>
+				<div id="time">
+					<p></p>
+					<ul class="drop-down">
+						<li class="system-calendar"></li>
+						<li class="divider"></li>
+						<li class="disabled">
+							Time &amp; Date Settings…
+						</li>
+					</ul>
+				</div>
+				<div id="power"><img src="../img/top/power.png"  alt=""/>
+					<ul class="drop-down">
+						<li class="disabled">
+							System Settings…
+						</li>
+						<li class="disabled">
+							Displays…
+						</li>
+						<li class="disabled">
+							Startup Applications…
+						</li>
+						<li class="disabled">
+							Software Up to Date
+						</li>
+						<li class="divider"></li>
+						<li class="disabled">
+							Attached Devices
+						</li>
+						<li class="disabled">
+							Printers
+						</li>
+						<li class="divider"></li>
+						<li class="disabled">
+							Lock Screen
+						</li>
+						<li class="disabled">
+							Log Out…
+						</li>
+						<li class="disabled">
+							Suspend
+						</li>
+						<li class="disabled">
+							Hibernate
+						</li>
+						<li>
+							Shut Down…
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="tooltip">
+			<div class="shadow-arrow"></div>
+			<div class="arrow-right"></div>
+			<div id="tooltip-text"></div>
+		</div>
+		<div id="menu">
+			<ul>
+				<li class="dash">
+					<span>Dash home</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<li class="home"><img src="../img/menu/open-arrow.png" class="open-arrow" alt=""/><span>Home Folder</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<li class="firefox"><img src="../img/menu/open-arrow.png" class="open-arrow" alt=""/><span>Firefox Web Browser</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<li class="software"><img src="../img/menu/open-arrow.png" class="open-arrow" alt=""/><span>Ubuntu Software Centre</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<li class="writer"><img src="../img/menu/open-arrow.png" class="open-arrow" alt=""/><span>LibreOffice Writer</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<li class="impress"><img src="../img/menu/open-arrow.png" class="open-arrow" alt=""/><span>LibreOffice Impress</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<li class="calc"><img src="../img/menu/open-arrow.png" class="open-arrow" alt=""/><span>LibreOffice Calc</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<li class="uone"><img src="../img/menu/open-arrow.png" class="open-arrow" alt=""/><span>Ubuntu One</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<li class="email"><img src="../img/menu/open-arrow.png" class="open-arrow" alt=""/><span>Thunderbird Mail</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<li class="shotwell temp"><img src="../img/menu/open-arrow.png" class="open-arrow" alt=""/><span>Shotwell Photo Manager</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<li class="movieplayer temp"><img src="../img/menu/open-arrow.png" class="open-arrow" alt=""/><span>Movie Player</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<!--<li class="workspace"><span>Workspace Switcher</span></li>-->
+				<li class="rubbish bottom">
+					<span>Rubbish bin</span>
+				</li>
+			</ul>
+		</div>
+		<div id="systemOverlay">
+			<div class="copyDash"></div>
+			<div id="overlayContents">
+				<input type="text" name="search" value="Search"/>
+				<div id="display-home" class="app-container">
+					<div class="recent-apps bottom"><img src="../img/overlay/recentapps.png" alt=""/> Applications <div class="app-list"></div>
+					</div>
+					<div class="recent-files bottom"><img src="../img/overlay/recentfiles.png" alt=""/> Files &amp; Folders<div class="app-list"></div>
+					</div>
+				</div>
+				<div id="display-apps" class="app-container">
+					<div class="frequently bottom"><img src="../img/overlay/recentapps.png" alt=""/> Recently Used <div class="app-list"></div>
+					</div>
+					<div class="installed"><img src="../img/overlay/installed.png" alt=""/> Installed<div class="app-list"></div>
+					</div>
+				</div>
+				<div id="display-find-files" class="app-container">
+					<div class="files bottom"><img src="../img/overlay/recentfiles.png" alt=""/> Recent<div class="app-list"></div>
+					</div>
+					<div class="downloads bottom"><img src="../img/overlay/downloaded.png" alt=""/> Downloads<div class="app-list"></div>
+					</div>
+					<div class="folders"><img src="../img/overlay/folders.png" alt=""/> Folders<div class="app-list"></div>
+					</div>
+					
+				</div>
+				<div id="display-find-music" class="app-container">
+					<div class="songs bottom"><img src="../img/overlay/folders.png" alt=""/> Songs<div class="app-list"></div>
+					</div>
+					<div class="albums"><img src="../img/overlay/folders.png" alt=""/> Albums<div class="app-list"></div>
+					</div>
+				</div>
+				<div id="display-find-video" class="app-container">
+					<div class="videos bottom"><img src="../img/overlay/folders.png" alt=""/> Videos<div class="app-list"></div>
+					</div>
+				</div>
+				<div id="display-search" class="app-container">
+					<div class="applications bottom"><img src="../img/overlay/search-apps-logo.jpg" alt=""/> Applications<div class="app-list"></div>
+					</div>
+					<div class="files"><img src="../img/overlay/search-files-logo.jpg" alt=""/> Files &amp; Folders<div class="app-list"></div>
+					</div>
+				</div>
+			</div>
+			<div id="dash-bottom-bar">
+				<div class="bottom-wrapper">
+					<div class="home-icon active"></div>
+					<div class="applications-icon"></div>
+					<div class="files-icon"></div>
+					<div class="music-icon"></div>
+					<div class="video-icon last"></div>
+				</div>
+			</div>
+		</div>
+		<div id="ubuntuone-window" class="uone window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="window-title">
+					Ubuntu One Control Panel
+				</div>
+			</div>
+			<div class="content">
+				<div class="header"></div>
+				<div class="body">
+					<h1>The Power of Your Personal Cloud</h1>
+					<div class="features">
+						<div class="files-anywhere">
+							<span class="logo"></span>
+							<div>
+								<h3>Files Anywhere</h3>
+								<p>
+									Backup and access your files from Ubuntu, Windows, Web or Mobile
+								</p>
+							</div>
+						</div>
+						<div class="rock-out">
+							<span class="logo"></span>
+							<div>
+								<h3>Rock Out</h3>
+								<p>
+									Your entire collection follows you around with music streaming to Android and iPhone
+								</p>
+							</div>
+						</div>
+						<div class="keep-connected">
+							<span class="logo"></span>
+							<div>
+								<h3>Keep Connected</h3>
+								<p>
+									Unify you contacts across Desktop, Mobile and Web
+								</p>
+							</div>
+						</div>
+						<div class="stay-productive">
+							<span class="logo"></span>
+							<div>
+								<h3>Stay Productive</h3>
+								<p>
+									Keep you firefox bookmarks and Tomboy notes synced
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="ubuntuone-buttons">
+						<div class="learn-more"><img src="../img/ubuntuone/ubuntuone-logo.jpg" width="47" height="48" alt=""/>
+							<div>
+								Learn More
+							</div>
+						</div>
+						<div class="join-now">
+							<h2>Join now</h2>
+						</div>
+						<div class="have-account">
+							I already have an account!
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="libreoffice-calc-window" class="calc window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="window-title">
+					Untitled 1 - LibreOffice Calc
+				</div>
+			</div>
+			<div class="content">
+				<span>File</span>
+				<span>Edit</span>
+				<span>View</span>
+				<span>Insert</span>
+				<span>Format</span>
+				<span>Table</span>
+				<span>Tools</span>
+				<span>Window</span>
+				<span>Help</span>
+			</div>
+		</div>
+		<div id="libreoffice-writer-window" class="writer window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="window-title">
+					Untitled 1 - LibreOffice Writer
+				</div>
+			</div>
+			<div class="content">
+				<span>File</span>
+				<span>Edit</span>
+				<span>View</span>
+				<span>Insert</span>
+				<span>Format</span>
+				<span>Table</span>
+				<span>Tools</span>
+				<span>Window</span>
+				<span>Help</span>
+			</div>
+		</div>
+		<div id="libreoffice-impress-window" class="impress window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="window-title">
+					Untitled 1 - LibreOffice Impress
+				</div>
+			</div>
+			<div class="content">
+				<span>File</span>
+				<span>Edit</span>
+				<span>View</span>
+				<span>Insert</span>
+				<span>Format</span>
+				<span>Table</span>
+				<span>Tools</span>
+				<span>Window</span>
+				<span>Help</span>
+			</div>
+		</div>
+		<div class="error-window window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="window-title"></div>
+			</div>
+			<div class="error-container">
+				<h1>Thanks for exploring Ubuntu!</h1>
+				<a class="download"  href="http://www.ubuntu.com/download/ubuntu/download?utm_source=tour&utm_medium=online&utm_campaign=tour">Download Ubuntu</a>
+				<h2>Remember, this is just a demo. You'll have to download it to enjoy the real thing!</h2>
+			</div>
+		</div>
+		<!--<div id="error-window" class="error-window window">
+		<div class="control">
+		<div class="close"></div>
+		<div class="window-title"></div>
+		</div>
+		<div class="content">
+		<img src="../img/error/warning.jpg"/>
+		<div class="message">
+		<p>Thanks for exploring Ubuntu</p>
+		<p>Remember, this is just a demo. You'll have to download it to enjoy the real thing!</p>
+		</div>
+		<div class="error-buttons"><div class="download highlight">Download Ubuntu</div></div>
+		</div>
+		</div>-->
+		<!--<div id="workspaces">
+		<div id="void">
+		<div id="workspace-container">
+		<div id="workspace1"><div class="fadedOverlay"></div></div>
+		<div id="workspace2"><div class="fadedOverlay"></div></div>
+		<div id="workspace3"><div class="fadedOverlay"></div></div>
+		<div id="workspace4"><div class="fadedOverlay"></div></div>
+		<div class="reflection" style="clear:both;"></div>
+		<div class="reflection"></div>
+		</div>
+		</div>
+		</div>-->
+		<div id="email-window" class="email-window window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="min"></div>
+				<div class="max"></div>
+				<div class="window-title">
+					Email
+				</div>
+			</div>
+			<div class="buttons">
+				<div class="email-get-mail">
+					Get Mail
+				</div>
+				<div class="email-divider"></div>
+				<div class="email-write">
+					Write
+				</div>
+				<!--<div class="email-address-book"></div>
+				<div class="email-divider"></div>
+				<div class="email-tag"></div>
+				<div class="email-search"><input type="text" name="submitEmailSearch" id="submitEmailSearch"/></div>-->
+			</div>
+			<div style="clear:both;"></div>
+			<div class="email-content">
+				<div class="folder-list">
+					<div class="bottom-buttons">
+						All Folders
+					</div>
+					<div style="clear:both;"></div>
+					<div class="list">
+						<div id="folder-inbox" class="selected"><img src="../img/email/inbox.png" alt=""/> Inbox
+						</div>
+						<div id="folder-draft"><img src="../img/email/drafts.png" alt=""/> Draft
+						</div>
+						<div id="folder-sent"><img src="../img/email/sent.png" alt=""/> Sent
+						</div>
+						<div id="folder-archive"><img src="../img/email/archive-logo.png" alt=""/> Archive
+						</div>
+						<div id="folder-trash"><img src="../img/email/trash.png" alt=""/> Trash
+						</div>
+					</div>
+				</div>
+				<div class="email-contents">
+					<div class="email-categories">
+						<div><img src="../img/email/t.png" alt=""/>
+						</div>
+						<div><img src="../img/email/star.png" alt=""/>
+						</div>
+						<div><img src="../img/email/clip.png" alt=""/>
+						</div>
+						<div class="subject">
+							Subject
+						</div>
+						<div><img src="../img/email/glasses.png" alt=""/>
+						</div>
+						<div class="from">
+							From
+						</div>
+						<div><img src="../img/email/fire.png" alt=""/>
+						</div>
+						<div class="date">
+							Date
+						</div>
+					</div>
+					<div style="clear:both;"></div>
+					<div class="email-list"></div>
+					<div class="email-body">
+						<div class="message-header">
+							<div class="email-buttons">
+								<div>
+									<span class="message-reply">reply</span>
+									<span class="message-forward">forward</span>
+									<span class="message-archive">archive</span>
+									<span class="message-junk">junk</span>
+									<span class="message-delete">delete</span>
+								</div>
+							</div>
+							<div style="clear:both;"></div>
+							<div class="date"></div>
+							<dl class="from">
+								<dt>
+									from
+								</dt><dd></dd>
+							</dl>
+							<dl class="subject">
+								<dt>
+									subject
+								</dt><dd></dd>
+							</dl>
+							<dl class="to">
+								<dt>
+									to
+								</dt><dd></dd>
+							</dl>
+							<dl class="cc">
+								<dt>
+									cc
+								</dt><dd></dd>
+							</dl>
+						</div>
+						<div class="junk-mail-banner"><img src="../img/email/large-fire.jpg" alt=""/> Junk Mail
+							<div class="not-junk">
+								Not Junk
+							</div>
+						</div>
+						<div class="message-body"></div>
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+				<div class="emails-info">
+					<div>
+						Unread: <span id="details-unread">1</span> Total: <span id="details-total">1</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="email-write" class="email-write window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="min"></div>
+				<div class="max"></div>
+				<div class="window-title">
+					Write: (no subject)
+				</div>
+			</div>
+			<div class="buttons">
+				<div id="write-send">
+					Send
+				</div>
+				<div class="email-divider"></div>
+				<div id="write-attach">
+					Attach
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+			<div id="write-from">
+				<div>
+					From:
+				</div>
+				<input type="text" name="from" value="You"/>
+			</div>
+			<div id="write-to">
+				<div>
+					To:
+				</div>
+				<input type="text" name="to"/>
+			</div>
+			<div id="write-subject">
+				<div>
+					Subject:
+				</div>
+				<input type="text" name="subject"/>
+			</div>
+			<div><img src="../img/email/disabled-format-buttons.jpg" width="853" height="32" alt=""/>
+			</div>
+			<div id="write-body">
+				<textarea name="body"></textarea>
+</div>			<div class="loading-bar">
+				<div class="progress"></div>
+			</div>
+		</div>
+		<div id="software-centre" class="software window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="min"></div>
+				<div class="max"></div>
+				<div class="window-title">
+					Ubuntu Software Centre
+				</div>
+			</div>
+			<div class="top-panel">
+				<div class="back disabled"></div>
+				<div class="forward disabled"></div>
+				<div class="all-software selected"><img src="../img/software-centre/all-software.png" alt=""/>All Software
+				</div>
+				<div class="installed"><img src="../img/software-centre/installed.png" alt=""/>Installed
+				</div>
+				<div class="history"><img src="../img/software-centre/history.png" alt=""/>History
+				</div>
+			</div>
+			<div class="container detailed">
+				<div class="title"><img src="../img/software-centre/visolate.png" class="app-image" width="100" alt=""/><h1>Visolate</h1>
+					<p class="subheading">
+						PCB CNC converter
+					</p>
+					<p class="rating"><img src="../img/software-centre/rating.jpg" alt="" /> (91 Ratings)
+					</p>
+				</div>
+				<div class="price">
+					<span class="theprice">Free</span><span class="button">Install</span>
+					<div class="loading-bar">
+						<div class="progress"></div>
+					</div>
+				</div>
+				<div class="description-container">
+					<div class="description-image"><img src="../img/software-centre/screenshot-blender.jpg" alt="" />
+					</div>
+					<div class="description"><img src="../img/software-centre/screenshot-blender.jpg" alt="" />Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quam augue, convallis id commodo id, tristique ac mi. Ut dapibus, neque eget elementum pretium, nunc turpis congue eros, et interdum nisi nisi at diam. Duis dictum, justo eget imperdiet pulvinar, dolor est fermentum nisl, luctus imperdiet metus elit a purus. Quisque nisl enim, lacinia ut venenatis in, porttitor eget orci. Quisque non nibh nec risus tincidunt sollicitudin vitae et nisl. Proin odio lacus, vulputate non auctor sit amet, dapibus quis tortor. Donec elit libero, pellentesque quis dictum sed, hendrerit non libero. Aliquam eu diam id leo auctor tincidunt. Phasellus cursus felis at nulla facilisis semper. Cras mauris urna, adipiscing sed scelerisque ut, gravida id neque. Mauris ut vestibulum justo. Curabitur convallis elementum pellentesque. Duis sit amet arcu ac eros pretium scelerisque. Nunc nec nisi nulla.
+					</div>
+					<div style="clear:both;"></div>
+				</div>
+			</div>
+			<div class="container home">
+				<div class="header-image">
+					<span class="header-title">Our star apps</span>
+					<span class="header-subtitle">Come and explore our favourites</span>
+				</div>
+				<div class="navigation">
+					<ul>
+						<li>
+							Accessories
+						</li>
+						<li>
+							Developer Tools
+						</li>
+						<li>
+							Education
+						</li>
+						<li>
+							Fonts
+						</li>
+						<li>
+							Games
+						</li>
+						<li>
+							Graphics
+						</li>
+						<li>
+							Internet
+						</li>
+						<li>
+							Office
+						</li>
+						<li>
+							Science &amp; Engineering
+						</li>
+						<li>
+							Sound &amp; Video
+						</li>
+						<li>
+							System
+						</li>
+						<li>
+							Themes &amp; Tweaks
+						</li>
+					</ul>
+				</div>
+				<div class="whats-new">
+					<h2> What's New</h2>
+					<div class="app-container">
+						<div class="chromium">
+							<h3>Chromium</h3>
+							<p>
+								Internet
+							</p>
+							<p class="cost">
+								Free
+							</p>
+						</div>
+						<div class="beep">
+							<h3>BEEP</h3>
+							<p>
+								Games
+							</p>
+							<p class="cost">
+								$9.99
+							</p>
+						</div>
+						<div class="inkscape">
+							<h3>Inkscape</h3>
+							<p>
+								Graphics
+							</p>
+							<p class="cost">
+								Free
+							</p>
+						</div>
+						<div class="worldofgoo">
+							<h3>World of Goo</h3>
+							<p>
+								Games
+							</p>
+							<p class="cost">
+								$19.99
+							</p>
+						</div>
+						<div class="blender">
+							<h3>Blender</h3>
+							<p>
+								Graphics
+							</p>
+							<p class="cost">
+								Free
+							</p>
+						</div>
+						<div class="braid">
+							<h3>Braid</h3>
+							<p>
+								Games
+							</p>
+							<p class="cost">
+								$9.99
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="whats-new">
+					<h2> Top Rated</h2>
+					<div class="app-container">
+						<div class="beep">
+							<h3>BEEP</h3>
+							<p>
+								Games
+							</p>
+							<p class="cost">
+								$9.99
+							</p>
+						</div>
+						<div class="chromium">
+							<h3>Chromium</h3>
+							<p>
+								Internet
+							</p>
+							<p class="cost">
+								Free
+							</p>
+						</div>
+						<div class="worldofgoo">
+							<h3>World of Goo</h3>
+							<p>
+								Games
+							</p>
+							<p class="cost">
+								$19.99
+							</p>
+						</div>
+						<div class="braid">
+							<h3>Braid</h3>
+							<p>
+								Games
+							</p>
+							<p class="cost">
+								$9.99
+							</p>
+						</div>
+						<div class="inkscape">
+							<h3>Inkscape</h3>
+							<p>
+								Graphics
+							</p>
+							<p class="cost">
+								Free
+							</p>
+						</div>
+						<div class="blender">
+							<h3>Blender</h3>
+							<p>
+								Graphics
+							</p>
+							<p class="cost">
+								Free
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="shotwell" class="shotwell window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="min"></div>
+				<div class="max"></div>
+				<div class="window-title">
+					Shotwell
+				</div>
+			</div>
+			<div class="sidebar">
+				<div class="nav">
+					<ul>
+						<li class="library">
+							Library
+						</li>
+					</ul>
+				</div>
+				<div class="details">
+					<div class="overall">
+						<div>
+							Items: <span class="items">16 Photos</span>
+						</div>
+						<div>
+							From: <span class="from">Fri 26 Oct, 2001</span>
+						</div>
+						<div>
+							To: <span class="to">Mon 11 October, 2010</span>
+						</div>
+					</div>
+					<div class="single">
+						<div>
+							Title: <span class="title"></span>
+						</div>
+						<div>
+							Date: <span class="date"></span>
+						</div>
+						<div>
+							Size: <span class="size"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="images"></div>
+				<div class="tools">
+					<div class="jump-image">
+						<div class="next"></div><div class="prev"></div>
+					</div>
+					<div class="slider-container">
+						<div class="small-icon"></div><div class="slider"></div><div class="slider-active"></div><div class="large-icon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="movieplayer" class="movieplayer window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="min"></div>
+				<div class="max"></div>
+				<div class="window-title">
+					Movie Player
+				</div>
+			</div>
+			<div class="container">
+				<div class="video"></div>
+			</div>
+		</div>
+		<div id="firefox-window" class="firefox-window window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="min"></div>
+				<div class="max"></div>
+				<div class="window-title">
+					Browse the web
+				</div>
+			</div>
+			<div class="buttons">
+				<div class="firefox-back"></div>
+				<div class="firefox-forward"></div>
+				<div class="firefox-url">
+					<input type="text" name="submitURL" id="submitURL" value="http://www.ubuntu.com"/>
+				</div>
+				<div class="firefox-search">
+					<input type="text" name="submitSearch" id="submitSearch" value="Wikipedia" class="fade-text"/>
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+			<div class="firefox-internet">
+				<div class="web-overlay-tran"></div>
+				<div class="theIframe">
+					<iframe src="../http://www.ubuntu.com" id="firefoxInternet" >
+						<p>
+							Your browser does not support iframes.
+						</p>
+					</iframe>
+				</div>
+			</div>
+		</div>
+		<div id="shutdown-window" class="window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="window-title">
+					Shut Down
+				</div>
+			</div>
+			<div class="content">
+				<img src="../img/powerwarning.jpg" alt=""/>
+				<div class="message">
+					<p>
+						Are you sure you want to close all programs and shutdown the computer?
+					</p>
+				</div>
+				<div class="shutdown-buttons">
+					<div class="shutdown highlight">
+						Shut Down
+					</div>
+					<div class="cancel">
+						Cancel
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="folder-window" class="folder window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="min"></div>
+				<div class="max"></div>
+				<div class="window-title"></div>
+			</div>
+			<div style="clear:both;"></div>
+			<div class="folder-list">
+				<div class="list">
+					<p>
+						Computer
+					</p>
+					<ul>
+						<li class="home selected" data-folder="home"><img src="../img/folder/home-icon.png" alt=""/> Home
+						</li>
+						<li class="desktop" data-folder="5"><img src="../img/folder/desktop-icon.png"  alt=""/> Desktop
+						</li>
+						<li class="documents" data-folder="0"><img src="../img/folder/documents-icon.png"  alt=""/> Documents
+						</li>
+						<li class="downloads" data-folder="1"><img src="../img/folder/downloads-icon.png"  alt=""/> Downloads
+						</li>
+						<li class="music" data-folder="2"><img src="../img/folder/music-icon.png"  alt=""/> Music
+						</li>
+						<li class="pictures" data-folder="4"><img src="../img/folder/pictures-icon.png"  alt=""/> Pictures
+						</li>
+						<li class="videos" data-folder="3"><img src="../img/folder/videos-icon.png"  alt=""/> Videos
+						</li>
+						<li class="rubbish" data-folder="bin"><img src="../img/folder/rubbish-icon.png"  alt=""/> Rubbish bin
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="folder-contents">
+				<div class="buttons">
+					<div class="folder-back"></div>
+					<div class="folder-forward"></div>
+				</div>
+				<div class="bottom-buttons"></div>
+				<div style="clear:both;"></div>
+				<div class="contents"></div>
+				<div class="selected-details"></div>
+			</div>
+		</div>
+		<!--<div id="welcome">
+			<div id="welcome-screen">
+				<div class="close"></div>
+				<h1>Welcome to the Ubuntu online tour!</h1>
+				<h2>Take Ubuntu for a test drive with our online demo.</h2>
+				<ul>
+					<li>
+						<a class="browse-files" href="#browse-files">Browse files</a>
+					</li>
+					<li>
+						<a class="surf-the-web" href="#surf-the-web">Surf the web</a>
+					</li>
+					<li>
+						<a class="check-email" href="#check-email">Check email</a>
+					</li>
+					<li>
+						<a class="view-photos" href="#view-photos">View photos</a>
+					</li>
+					<li>
+						<a class="find-apps" href="#find-apps">Find apps</a>
+					</li>
+					<li>
+						<a class="create-documents" href="#create-documents">Create documents</a>
+					</li>
+					<li>
+						<a class="create-spreadsheets" href="#create-spreadsheets">Create spreadsheets</a>
+					</li>
+					<li>
+						<a class="create-presentations" href="#create-presentations">Create presentations</a>
+					</li>
+				</ul>
+				<div class="language-mode">
+					<span class="active">English</span>
+					<a href="/tour/zh-CN/">中文</a>
+				</div>
+				<a class="explore-mode primary" href="#">Show yourself around</a>
+				<a class="tour-mode" href="#">Take the guided tour</a>
+			</div>
+		</div>-->
+		<div id="welcome">
+			<div id="welcome-screen" class="selected-window">
+				<div class="control">
+					<div class="window-title">Ubuntu tour</div>
+				</div>
+				<div class="welcome-header">
+					<h1>Welcome to the Ubuntu 12.10 tour!</h1>
+					<h2>Take Ubuntu for a test drive with our online demo.</h2>
+				</div>
+				<ul>
+					<li>
+						<a class="browse-files" href="#browse-files">Browse files</a>
+					</li>
+					<li>
+						<a class="check-email" href="#check-email">Check email</a>
+					</li>
+					<li>
+						<a class="surf-the-web" href="#surf-the-web">Surf the web</a>
+					</li>
+					<li>
+						<a class="find-apps" href="#find-apps">Find apps</a>
+					</li>
+					<li>
+						<a class="create-documents" href="#create-documents">Create documents</a>
+					</li>
+					<li>
+						<a class="view-photos" href="#view-photos">View photos</a>
+					</li>
+					<li>
+						<a class="create-presentations" href="#create-presentations">Create presentations</a>
+					</li>
+					<li>
+						<a class="create-spreadsheets" href="#create-spreadsheets">Create spreadsheets</a>
+					</li>
+					<li>
+						<a class="watch-video" href="#watch-video">Watch videos</a>
+					</li>
+				</ul>
+				<div class="language-mode">
+					<span class="active">English</span>
+					<a href="/tour/zh-CN/">中文</a>
+				</div>
+				<a class="explore-mode primary" href="#">Show yourself around</a>
+				<a class="tour-mode" href="#">Take the guided tour</a>
+			</div>
+		</div>
+		<div id="tour-guide">
+			<div class="next-button"><img src="../img/tourguide/arrow-next.png" alt="" />
+			</div>
+			<div class="prev-button"><img src="../img/tourguide/arrow-prev.png" alt="" />
+			</div>
+			<div class="guide-container welcome">
+				<div class="guide-logo"></div>
+				<h3></h3>
+				<p>
+					We hope you've enjoyed the Ubuntu online tour. <a href="http://www.ubuntu.com/download/ubuntu/download?utm_source=tour&utm_medium=online&utm_campaign=tour" target="_blank">Ready to download?</a> or <a href="/ubuntu/take-the-tour" >back to the site</a>
+				</p>
+			</div>
+			<div class="guide-container home">
+				<div class="guide-logo"><img src="../img/tourguide/file-small.png" />
+				</div>
+				<h3>Browse files</h3>
+				<p>
+					It’s quick and easy to access your folders and files from Ubuntu’s home folder.
+				</p>
+			</div>
+			<div class="guide-container firefox">
+				<div class="guide-logo"><img src="../img/tourguide/firefox-small.png" />
+				</div>
+				<h3>Surf the web</h3>
+				<p>
+					Browsing the web is fast and secure with Ubuntu and Firefox.
+				</p>
+			</div>
+			<div class="guide-container email">
+				<div class="guide-logo"><img src="../img/tourguide/mail-small.png" />
+				</div>
+				<h3>Check email</h3>
+				<p>
+					Read, write and send emails with Thunderbird. It’s easy and fast.
+				</p>
+			</div>
+			<div class="guide-container shotwell">
+				<div class="guide-logo"><img src="../img/tourguide/shotwell-small.png" />
+				</div>
+				<h3>View photos</h3>
+				<p>
+					You can upload, organise, edit and share your photos with Shotwell.
+				</p>
+			</div>
+			<div class="guide-container software">
+				<div class="guide-logo"><img src="../img/tourguide/apps-small.png" />
+				</div>
+				<h3>Find apps</h3>
+				<p>
+					Search and download apps fast from the Ubuntu Software Centre.
+				</p>
+			</div>
+			<div class="guide-container writer">
+				<div class="guide-logo"><img src="../img/tourguide/document-small.png" />
+				</div>
+				<h3>Create documents</h3>
+				<p>
+					LibreOffice Writer makes it easy to draft professional documents.
+				</p>
+			</div>
+			<div class="guide-container calc">
+				<div class="guide-logo"><img src="../img/tourguide/calc-small.png" />
+				</div>
+				<h3>Create spreadsheets</h3>
+				<p>
+					LibreOffice Calc has everything you need to create clear and accurate spreadsheets.
+				</p>
+			</div>
+			<div class="guide-container impress">
+				<div class="guide-logo"><img src="../img/tourguide/impress-small.png" />
+				</div>
+				<h3>Create presentations</h3>
+				<p>
+					Make a good impression with the intuitive LibreOffice Impress presentation tool.
+				</p>
+			</div>
+			<div class="guide-container movieplayer">
+				<div class="guide-logo"><img src="../img/tourguide/video-small.png" />
+				</div>
+				<h3>Watch videos</h3>
+				<p>
+					You can watch all your favourite films and videos, DVDs, downloads or movies you've created yourself.
+				</p>
+			</div>
+			<div class="explore-tooltip-download">
+				Download
+			</div>
+			<div class="explore-tooltip-welcome">
+				Welcome Screen
+			</div>
+			<div class="explore-to-welcome"></div>
+			<div class="explore-to-download"></div>
+		</div>
+		<div id="Translation-Strings">
+			<!--
+			* Email system
+			-->
+			<p class="_email_1_title_">
+				Accessible
+			</p>
+			<p class="_email_2_title_">
+				Fast
+			</p>
+			<p class="_email_3_title_">
+				Compatible
+			</p>
+			<p class="_email_4_title_">
+				Secure
+			</p>
+			<p class="_email_5_title_">
+				Your Ubuntu, your way
+			</p>
+			<p class="_email_1_body_">
+				Accessibility is central to the Ubuntu philosophy. We believe that computing is for everyone regardless of nationality, race, gender or disability. Fully translated into 38 languages, Ubuntu also includes essential assistive technologies, which are, of course, completely free.
+			</p>
+			<p class="_email_2_body_">
+				Ubuntu loads quickly on any computer, but it's super-fast on newer machines. With no unnecessary programs and trial software slowing things down, booting up and opening a browser takes seconds. Unlike other operating systems that leave you staring at the screen, waiting to get online. And Ubuntu won’t grow sluggish over time. It’s fast. And it stays fast.
+			</p>
+			<p class="_email_3_body_">
+				Ubuntu works brilliantly with a range of devices. Simply plug in your mp3 player, camera or printer and you’ll be up and running straight away. No installation CDs. No fuss. And it’s compatible with Windows too! So you can open, edit and share Microsoft Office documents stress-free.
+			</p>
+			<p class="_email_4_body_">
+				You can surf in safety with Ubuntu – confident that your files and data will stay protected. A built-in firewall and virus protection come as standard. And if a potential threat appears, we provide automatic updates which you can install in a single click. You get added security with AppArmor, which protects your important applications so attackers can’t access your system. And thanks to Firefox and gnome-keyring, Ubuntu helps you keep your private information private. So whether it’s accessing your bank account or sharing sensitive data with friends or colleagues, you’ll have peace of mind when you need it the most.
+			</p>
+			<p class="_email_5_body_">
+				Enjoy the simplicity of Ubuntu's stylish, intuitive interface. Fast, secure and with thousands of apps to choose from, Ubuntu gives you a clean and streamlined experience that you can really make your own.
+			</p>
+			<p class="_random_reply_">
+				Thanks for exploring Ubuntu! Remember, this is just a demo. You'll have to download it to enjoy the real thing!
+				<br/>
+				<br/>
+				<a href="http://www.ubuntu.com/download/ubuntu/download?utm_source=tour&utm_medium=online&utm_campaign=tour" target="_blank">Download Ubuntu</a>
+			</p>
+			<p class="_write_">
+				Write
+			</p>
+			<p class="_no_subject_">
+				no subject
+			</p>
+			<p class="_recipient_">
+				Recipient
+			</p>
+			<p class="_from_">
+				From
+			</p>
+			<p class="_you_">
+				You
+			</p>
+			<p class="_on_">
+				On
+			</p>
+			<p class="_wrote_">
+				wrote
+			</p>
+			<p class="_original_message_">
+				Original Message
+			</p>
+			<p class="_fwd_">
+				Fwd
+			</p>
+			<!--
+			* Folder System
+			-->
+			<p class="_home_folder_">
+				Home
+			</p>
+			<p class="_desktop_folder_">
+				Desktop
+			</p>
+			<p class="_pictures_folder_">
+				Pictures
+			</p>
+			<p class="_videos_folder_">
+				Videos
+			</p>
+			<p class="_music_folder_">
+				Music
+			</p>
+			<p class="_downloads_folder_">
+				Downloads
+			</p>
+			<p class="_documents_folder_">
+				Documents
+			</p>
+			<p class="_canonical_folder_">
+				Canonical
+			</p>
+			<p class="_backup_folder_">
+				Backup
+			</p>
+			<p class="_local_folder_">
+				Local
+			</p>
+			<p class="_work_folder_">
+				work
+			</p>
+			<p class="_branches_folder_">
+				branches
+			</p>
+			<p class="_rubbish_bin_folder_">
+				Rubbish bin
+			</p>
+			<!--
+			* Software Center System
+			-->
+			<p class="_remove_">
+				Remove
+			</p>
+			<p class="_price_free_">
+				Free
+			</p>
+			<p class="_installed_">
+				Installed
+			</p>
+			<p class="_install_">
+				Install
+			</p>
+			<p class="_installing_">
+				Installing
+			</p>
+			<p class="_chromium_app_">
+				Chromium Web Browser
+			</p>
+			<p class="_chromium_sub_">
+				Access the Internet
+			</p>
+			<p class="_chromium_desc_">
+				Chromium is an open-source browser project that aims to build a safer, faster, and more stable way for all Internet users to experience the web.
+				<br/>
+				<br/>
+				Chromium serves as a base for Google Chrome, which is Chromium rebranded (name and logo) with very few additions such as usage tracking and an auto-updater system.
+				<br/>
+				<br/>
+				This package contains the Chromium browser
+			</p>
+			<p class="_beep_app_">
+				BEEP
+			</p>
+			<p class="_beep_sub_">
+				A 2D platformer/shooter game with physics-based puzzles
+			</p>
+			<p class="_beep_desc_">
+				BEEP is a 2D side-scrolling platformer with physics-based gameplay. You control a small robot equipped with an anti-gravity device, a jet-pack and a gun. Drive, jump, fly, swim and shoot your way through 24 levels scattered across 6 unique environments.
+				<br/>
+				<br/>
+				Use BEEP’s anti-gravity device to directly manipulate the physics-based environments. The anti-gravity device is both a tool and a weapon. Use it to smash enemy robots, build towers and solve puzzles.
+				<br/>
+				<br/>
+				BEEP has traveled for thousands of years through deep space to explore the Galaxy. Traverse a foreign star system with the BEEP-ship and send robots to the surface of the planets.
+			</p>
+			<p class="_inkscape_app_">
+				Inkscape Vector Graphics Editor
+			</p>
+			<p class="_inkscape_sub_">
+				Create and edit Scalable Vector Graphics images
+			</p>
+			<p class="_inkscape_desc_">
+				Inkscape loads and saves a subset of the SVG (Scalable Vector Graphics) format, a standard maintained by the WWW consortium.
+				<br/>
+				<br/>
+				Inkscape user interface should be familiar from CorelDraw and similar drawing programs. There are rectangles, ellipses, text items, bitmap images and freehand curves. As an added bonus, both vector and bitmap objects can have alpha transparency and can be arbitrarily transformed.
+				<br/>
+				<br/>
+				Inkscape supports multiple opened files and multiple views per file. Graphics can be printed and exported to png bitmaps.
+				<br/>
+				<br/>
+				Some of the import and export features are provided using the packages dia, libwmf-bin, pstoedit, skencil, imagemagick, and perlmagick.
+				<br/>
+				<br/>
+				Other extensions use ruby, libxml-xql-perl, python-numpy, and python-lxml. You must have these packages to make full use of all extensions and effects.
+				<br/>
+				<br/>
+				If you want to use the spellchecker, you have to install aspell and the respective language-pack, e.g. aspell-en or aspell-de.
+			</p>
+			<p class="_world_of_goo_app_">
+				World of Goo
+			</p>
+			<p class="_world_of_goo_sub_">
+				Physics based puzzle/construction game
+			</p>
+			<p class="_world_of_goo_desc_">
+				Drag and drop living, squirming, talking globs of goo to build structures, bridges, cannonballs, zeppelins, and giant tongues. The millions of innocent goo balls that live in the beautiful World of Goo are curious to explore.
+				<br/>
+				<br/>
+				But they dont know that they are in a game, or that they are extremely delicious. The most addicting and awe-inspiring puzzle game will set you on an adventure that youll never forget!
+			</p>
+			<p class="_blender_app_">
+				Blender
+			</p>
+			<p class="_blender_sub_">
+				Create and edit 3D models and animations
+			</p>
+			<p class="_blender_desc_">
+				Blender is an integrated 3d suite for modelling, animation, rendering, post-production, interactive creation and playback (games). Blender has its own particular user interface, which is implemented entirely in OpenGL and designed with speed in mind. Python bindings are available for scripting; import/export features for popular file formats like 3D Studio and Wavefront Obj are implemented as scripts by the community. Stills, animations, models for games or other third party engines and interactive content in the form of a standalone binary and/or a web plug-in are common products of Blender use.
+			</p>
+			<p class="_braid_app_">
+				Braid
+			</p>
+			<p class="_braid_sub_">
+				Manipulate the flow of time to solve puzzles
+			</p>
+			<p class="_braid_desc_">
+				Manipulate the flow of time to solve puzzles Braid is a platform game in painterly style where you manipulate the flow of time to solve puzzles. Every puzzle in Braid is unique; there is no filler.
+				<br/>
+				<br/>
+				Braid treats your time and attention as precious, and it does everything it can to give you a mind-expanding experience.
+				<br/>
+				<br/>
+				All gameplay is based on time manipulation. Journey into worlds where time behaves strangely; observe, learn from, and then master these worlds.
+			</p>
+			<p class="_banshee_app_">
+				Banshee Media Player
+			</p>
+			<p class="_brasero_app_">
+				Brasero Disc Burner
+			</p>
+			<p class="_movie_player_app_">
+				Movie Player
+			</p>
+			<p class="_shotwell_app_">
+				Shotwell Photo Manager
+			</p>
+			<p class="_pitivi_app_">
+				PiTiVi Video Editor
+			</p>
+			<p class="_sound_recorder_app_">
+				Sound Recorder
+			</p>
+			<p class="_empathy_app_">
+				Empathy Internet Messageing
+			</p>
+			<p class="_thunderbird_app_">
+				Thunderbird Mail/News
+			</p>
+			<p class="_firefox_app_">
+				Firefox Web Browser
+			</p>
+			<p class="_gwibber_app_">
+				Gwibber Social Client
+			</p>
+			<p class="_remote_desktop_app_">
+				Remote Desktop Viewer
+			</p>
+			<p class="_terminal_app_">
+				Terminal Server Client
+			</p>
+			<p class="_about_me_app_">
+				About Me
+			</p>
+			<p class="_additional_drivers_app_">
+				Additional Drivers
+			</p>
+			<p class="_aisleroit_app_">
+				AisleRoit Solitaire
+			</p>
+			<p class="_appearance_app_">
+				Appearance
+			</p>
+			<p class="_bluetooth_app_">
+				Bluetooth
+			</p>
+			<!--
+			* Dash
+			-->
+			<p class="_search_">Search</p>
+			<!--
+			* Notifications
+			-->
+			<p class="_turn_off_bluetooth_">
+				Turn Off Bluetooth
+			</p>
+			<p class="_turn_on_bluetooth_">
+				Turn On Bluetooth
+			</p>
+			<p class="_visible_">
+				Visible
+			</p>
+			<p class="_mute_">
+				Mute
+			</p>
+			<p class="_unmute_">
+				Unmute
+			</p>
+			<p class="_shut_down_">
+				Shut Down…
+			</p>
+			<!--
+				Files Details - Images
+			-->
+			<p class="_photo_size_">
+				15.2KB	
+			</p>
+			<p class="_photo_date_">
+				Fri 26 Oct, 2001
+			</p>
+			<p class="_buck_off_title_">
+				Buck Off	
+			</p>
+			<p class="_darkening_clockwork_title_">
+				Darkening Clockwork
+			</p>
+			<p class="_dybbølsbro_station_title_">
+				Dybbølsbro Station
+			</p>
+			<p class="_federica_miglio_title_">
+				Federica Miglio
+			</p>
+			<p class="_jardin_polar_title_">
+				Jardin Polar
+			</p>
+			<p class="_langelinie_alle_title_">
+				Langelinie Alle
+			</p>
+			<p class="_momiji_dream_title_">
+				Momiji Dream
+			</p>
+			<p class="_mount_snowdon_title_">
+				Mount Snowdon
+			</p>
+			<p class="_not_alone_title_">
+				Not Alone
+			</p>
+			<p class="_power_of_words_title_">
+				Power Of Words
+			</p>
+			<p class="_purple_dancers_title_">
+				Purple Dancers
+			</p>
+			<p class="_sand_maze_title_">
+				Sand Maze
+			</p>
+			<p class="_small_flowers_title_">
+				Small Flowers
+			</p>
+			<p class="_stalking_ocelot_title_">
+				Stalking Ocelot
+			</p>
+			<p class="_the_grass_aint_greener_title_">
+				The Grass Aint Greener
+			</p>
+			<p class="_wildWheat_title_">
+				WildWheat
+			</p>
+			<!--
+				Files Details - Video
+			-->
+			<p class="_introduction_ubuntu_title_">
+				Introduction Ubuntu
+			</p>
+			<p class="_video_size_">
+				5.3MB
+			</p>
+			<p class="_video_date_">
+				Mon 11 October, 2010
+			</p>
+			<!--
+				Files Details - Music
+			-->
+			<p class="_happyness_title_">
+				Happyness
+			</p>
+			<p class="_music_size_">
+				3.3MB
+			</p>
+			<p class="_music_date_">
+				Weds 14 October, 2010
+			</p>
+		</div>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="../js/lang.js"></script>
+		<script type="text/javascript" src="../js/scripts.js"></script>
+		<script type="text/javascript" src="../js/welcomesystem.js"></script>
+		<script type="text/javascript" src="../js/guidedtoursystem.js"></script>
+		<script type="text/javascript" src="../js/filesystem.js"></script>
+		<script type="text/javascript" src="../js/folders.js"></script>
+		<script type="text/javascript" src="../js/systemoverlay.js"></script>
+		<script type="text/javascript" src="../js/systemmenu.js"></script>
+		<script type="text/javascript" src="../js/internetsystem.js"></script>
+		<script type="text/javascript" src="../js/emailsystem.js"></script>
+		<script type="text/javascript" src="../js/systemsettings.js"></script>
+		<script type="text/javascript" src="../js/email.js"></script>
+		<script type="text/javascript" src="../js/errormessage.js"></script>
+		<script type="text/javascript" src="../js/ubuntuonesystem.js"></script>
+		<script type="text/javascript" src="../js/file.js"></script>
+		<script type="text/javascript" src="../js/shotwellsystem.js"></script>
+		<script type="text/javascript" src="../js/shutdownSystem.js"></script>
+		<script type="text/javascript" src="../js/movieplayersystem.js"></script>
+		<script type="text/javascript" src="../js/libresystem.js"></script>
+		<script type="text/javascript" src="../js/softwaresystem.js"></script>
+		<script type="text/javascript" src="../js/notificationsystem.js"></script>
+		<script type="text/javascript" src="../js/analytics.js"></script>
+	</body>
+</html>

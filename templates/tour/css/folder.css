@@ -1,0 +1,245 @@
+/* 
+ *  Folder CSS 
+ *   author: Anthony Dillon
+ */
+
+#folder-window .buttons{
+	width:65px;
+	height:36px;
+	margin-top: 3px;
+	float:right;
+}
+
+#folder-window .bottom-buttons{
+	background:url(../img/folder/buttons-bg.jpg) repeat-x;
+	height:41px;
+	width:100%;
+}
+
+#folder-window .buttons div, #folder-window .bottom-buttons div{
+	float:left; 
+}
+
+#folder-window .folder-contents .bottom-buttons div{
+	color:white;
+	height:23px;
+	margin:2px 0 0 5px;
+	padding:5px;
+	line-height:24px;
+}
+
+#folder-window .folder-contents .bottom-buttons div.selected{
+	font-weight:bold;
+	border:1px solid #2c2c29;
+	background:#353531;
+		-moz-border-radius:4px 4px 4px 4px;
+		-webkit-border-radius:4px 4px 4px 4px;
+	border-radius:4px 4px 4px 4px;
+	background-position: 0 -29px;
+}
+#folder-window .folder-contents .bottom-buttons div img{
+	margin-top: -4px;
+	vertical-align: middle;
+	margin-right: 3px;
+}
+
+#folder-window .folder-contents .bottom-buttons span{
+	color:white;
+}
+
+.folder .folder-list{
+	float:left;
+}
+
+.folder .list{
+	height: 468px;
+	width:146px;
+}
+
+.folder .list p{
+	font-weight:bold;
+	margin:10px 0 0 20px;
+}
+
+.folder .list ul{
+	list-style: none;
+	padding:0px;
+	margin-top:5px;
+}
+
+.folder .list ul li{
+	padding:4px 0 4px 30px;
+	margin-right:5px;
+	vertical-align: middle;
+}
+
+.folder .list ul li.selected{
+	color:white;
+	background:#ed7543;
+}
+
+.folder .folder-contents{
+	float:left;
+}
+
+.folder .contents{
+	background-color:#f1f0ef;
+	height: 434px;
+    overflow: auto;
+    width: 584px;
+}
+
+.folder .selected-details{
+	min-width:25px;
+	height:19px;
+	float:right;
+	background:#fcfcbd;
+	margin-top:-21px;
+	border:1px solid #dbdb5a;
+	padding: 0 4px;
+	display:none;
+}
+
+.folder .file-details{
+	float:left;
+	height:20px;
+}
+
+#folder-window .buttons .folder-back{
+	width:30px;
+	height:37px;
+	overflow:hidden;
+	background: url(../img/folder/back.jpg) no-repeat 0px 0px;
+}
+
+#folder-window .buttons .folder-forward{
+	width:30px;
+	height:37px;
+	overflow:hidden;
+	background: url(../img/folder/forward.jpg) no-repeat 0px 0px;
+}
+
+#folder-window .buttons .folder-forward:hover,
+#folder-window .buttons .folder-back:hover {
+	background-position: 0px -39px;
+}
+#folder-window .buttons .disabled{
+ 	background-position: 0px -78px !important;
+ }
+#folder-window .buttons .folder-icon-view{
+	margin:5px 0px 0px 5px;
+}
+
+#folder-window.window{
+	background-color:#e6e4e3;
+}
+
+ 
+  .folder .folder-contents .contents .file.display-icon p{
+ 	width: 53px;
+ 	overflow:hidden;
+ 	margin:0 auto;
+ 	padding:2px;
+ 	-moz-border-radius: 4px 4px 4px 4px;
+  	-webkit-border-radius: 4px 4px 4px 4px;
+  	border-radius: 4px 4px 4px 4px;
+  }
+
+  .folder .buttons .folder-search{
+	width:36px;
+	height:38px;
+	overflow:hidden;
+	background: url(../img/folder/search.jpg) no-repeat 0px 0px;
+}
+.folder .buttons .folder-search:hover{
+	background-position: 0px -38px;
+ }
+ 
+.folder .folder-contents .contents .display-icon{
+ 	width:130px;
+ 	height:80px;
+ 	float:left;
+ 	text-align: center;
+ 	margin:10px;
+ 	line-height: 12px;
+ }
+ 
+.file-folder.display-icon p{
+ 	background:url(../img/folder/folder-icon.png) no-repeat 0px 0px;
+ 	height:38px;
+ 	width:47px;
+ 	overflow:hidden;
+ 	margin:0 auto;
+ }
+ .display-compact{
+ 	float:none;
+ 	height: 28px;
+ 	margin-top:5px;
+ 	width:150px;
+ }
+ 
+.display-compact p{
+ 	height:22px;
+ 	width:24px;
+ 	overflow:hidden;
+ 	float:left;
+ 	margin:0px 5px;
+ 	
+ }
+   .file-folder.display-compact p{
+   		background:url(../img/folder/folder-icon-list.png) no-repeat 0px 0px;
+   }
+    .file.display-compact p{
+   		background:url(../img/folder/file-icon-list.png) no-repeat 0px 0px;
+   }
+ 
+.folder .folder-contents .contents .file p.border{
+   	border: 1px solid #bbbeb7;
+}
+
+ 
+.folder .folder-contents .contents div h1{
+ 	color:transparent;
+ 	display:none;
+ }
+ 
+  .folder .folder-contents .contents  .display-icon span{
+  	-moz-border-radius: 4px 4px 4px 4px;
+  	-webkit-border-radius: 4px 4px 4px 4px;
+  	border-radius: 4px 4px 4px 4px;
+  	line-height: 22px;
+  }
+  
+  .folder .folder-contents .contents .display-icon.orange-overlay{
+  	background:url(../img/folder/orange-overlay.png);
+  	display:block;
+  	position:absolute;
+  	height:20px;
+  	width:37px;
+  	top:0px;
+  	left:0px;
+  }
+  
+  .contents .display-icon.over p{
+  	background-position: 0px -39px;
+  }
+  
+   .display-icon.selected p{
+   		background-position: 0px -78px !important;
+   }
+   
+  .contents .display-compact.over p{
+  	background-position: 0px -38px;
+  }
+  
+   .display-compact.selected p{
+   		background-position: 0px -44px !important;
+   }
+  
+ .selected span{
+ 	padding:2px 4px;
+  	background-color:#f08357;
+  	color:white;
+  }
+  
+

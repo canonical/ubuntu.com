@@ -1,0 +1,20 @@
+{% extends "ubuntu/tablet/base_tablet.html" %}
+
+{% block title %}Thank you | Ubuntu for tablets{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Tablet" page_title="Thank you"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero row-image-centered no-border">
+	<div class="eight-col">
+	<h1>Thank you</h1>
+		<h2>We appreciate your interest <br/>in Ubuntu on tablets.</h2>
+	    <p>We are working to prioritise our responses to partners. A member of our tablet team will contact you shortly.</p>
+    </div>
+    <span>
+   		<img src="{{ STATIC_URL }}u/img/devices/pictogram-smile-purple.png" width="164" height="162" alt="Smile pictogram" />
+    </span>
+</div><!-- /.row -->
+{% endblock content %}

@@ -1,0 +1,196 @@
+@charset "UTF-8";
+/**
+ * Ubuntu Core Front-End Framework
+ *
+ * Reset CSS file part of the Ubuntu Core Framework
+ * 
+ * @project		Ubuntu Core Front-End Framework
+ * @author		Web Team at Canonical Ltd
+ * @copyright	2012 Canonical Ltd
+ */
+
+/**
+ * Reset
+ *
+ * Resets and default styles for all simple elements
+ *
+ * @section defaults
+ * @see		http://meyerweb.com/eric/tools/css/reset/
+ * @see		http://developer.yahoo.com/yui/3/cssreset/
+ * @see		http://necolas.github.com/normalize.css/
+ */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, ol, ul, li,
+form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, nav, section { /** Corrects block level element display in older browsers. */
+    display: block;
+}
+audio, canvas, video { /** Corrects inline-block level element display in older browsers. */
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+audio:not([controls]) { /** Prevents modern browsers from displaying 'audio' without controls. */
+    display: none;
+}
+[hidden] { /** Styling for 'hidden' attribute not present in IE7/8/9, FF3, S4. */
+    display: none; 
+}
+html {
+    font-size: 100%; /** HACK_IE_LTE_7: Corrects text resizing oddly in IE6/7 when body font-size is set using em units. @see http://clagnut.com/blog/348/#c790 */
+    overflow-y: scroll;
+    -webkit-text-size-adjust: 100%; /** HACK_IOS: Prevents text size adjust after orientation change, without disabling user zoom. @see www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/ */
+    -ms-text-size-adjust: 100%;
+}
+body {
+	background: #fff url(http://www.ubuntu.com/sites/all/themes/ubuntu10/images/bg_dotted.png);
+	color: #333;
+	font-family: Ubuntu, Arial, "libra sans", sans-serif;
+	font-weight: 300;
+	/*line-height: 1;*/
+		-webkit-font-smoothing: antialiased;
+		-moz-font-smoothing: antialiased;
+		-o-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+}
+a:focus {
+    outline: thin dotted;
+}
+a:hover,
+a:active {
+    outline: 0;
+}
+ol, ul {
+	margin-left: 20px;
+	margin-bottom: 1.538em;
+}
+nav ul,
+nav ol {
+    list-style: none;
+    list-style-image: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote {
+	margin: 28px 20px;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+legend {
+    border: 0; /** HACK_IE_LTE_9: Corrects color not being inherited in IE6/7/8/9. */
+    *margin-left: -7px; /* HACK_IE_LTE_7: Corrects alignment displayed oddly in IE6/7. */
+}
+figure {
+    margin: 0;
+}
+svg:not(:root) { /** HACK_IE_9: Corrects overflow displayed oddly in IE 9. */
+    overflow: hidden;
+}
+img {
+    border: 0;
+}
+abbr[title] {
+	border-bottom: 1px dotted;
+	cursor: help;
+}
+button,
+input,
+select,
+textarea {
+    /*font-size: 100%;*/ /** Corrects font size not being inherited in all browsers. */
+    margin: 0; /** Addresses margins set differently in IE6/7, FF3+, S5, Chrome. */
+    vertical-align: baseline; /** Improves appearance and consistency in all browsers. */
+    *vertical-align: middle;
+}
+button,
+input {
+    line-height: normal; /** HACK_FF_3_4: setting line-height on 'input' using !important in the UA stylesheet. */
+}
+button,
+input[type="button"], 
+input[type="reset"], 
+input[type="submit"] {
+    cursor: pointer; /** Improves usability and consistency of cursor style between image-type 'input' and others. */
+    -webkit-appearance: button; /** HACK_IOS: Corrects inability to style clickable 'input' types. */
+    *overflow: visible;  /** HACK_IE_7: Removes inner spacing without affecting normal text inputs. Known issue: inner spacing remains in IE6. */
+}
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /** HACK_IE_8_9: Addresses box sizing set to content-box in IE8/9. */
+    padding: 0; /** HACK_IE_8_9: Removes excess padding in IE8/9. */
+}
+input[type="search"] {
+    -webkit-appearance: textfield; /** Addresses appearance set to searchfield in S5, Chrome. */
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; /** Addresses box-sizing set to border-box in S5, Chrome. */
+    box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-decoration { /** Removes inner padding that is displayed in S5, Chrome on OS X. */
+    -webkit-appearance: none;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner { /** HACK_FF_GTE_3: Removes inner padding and border in FF3+. */
+    border: 0;
+    padding: 0;
+}
+textarea {
+    overflow: auto; /** HACK_IE_LTE-_9: Removes default vertical scrollbar in IE6/7/8/9. */
+    vertical-align: top; /** Improves readability and alignment in all browsers. */
+}
+ins {
+	background: #fffbeb;
+	text-decoration: none;
+}
+small {
+    font-size: 75%;
+}
+sub,
+sup { /** Prevents sub and sup affecting line-height in all browsers. @see gist.github.com/413930 */
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+sup {
+	vertical-align: text-top;
+}
+sub {
+	vertical-align: text-bottom;
+}
+dfn {
+    font-style: italic;
+}
+mark {
+    background: #ff0;
+    color: #000;
+}
+pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}

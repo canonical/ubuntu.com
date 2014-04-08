@@ -1,0 +1,66 @@
+{% extends "ubuntu/phone/base_phone.html" %}
+
+{% block title %}App ecosystem | Ubuntu for phones{% endblock %}
+
+{% block meta_description %}Ubuntu brings a ready-made app ecosystem to the phone and with it, a tremendous opportunity for developers. The Ubuntu web apps API allows web developers to make their sites installable as apps on phones running Ubuntu. HTML5 apps can be ported quickly and native apps can be developed with the Ubuntu SDK.{% endblock %}
+
+{% block meta_keywords %}Ubuntu, phone, smartphone, mobile, develop, developer, ISV, app, application, store, software, centre, center, purchase, ecommerce, revenue, content, channel, movie, music, mp3, album, book, magazine, SDK, API, HTML5, web, native, OpenGL, open source, Linux, Android, Unity, Ubuntu One, cloud, U1DB{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Phone" page_title="App ecosystem"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero">
+	<div class="six-col">
+		<h1>A fast-evolving <br />app ecosystem</h1>
+		<p>We&rsquo;re working closely with selected partners to get their apps onto Ubuntu; Facebook, Twitter, Dropbox, Evernote and  Amazon will be available at launch.  We have also built an expanding set of core native apps with our community. And with our API, thousands of Ubuntu developers are taking up the challenge of building a single app that works across web, desktop and mobile.</p>
+	</div>
+</div><!-- / .row -->
+
+<div class="row row-app-grid no-margin">
+	<div class="six-col">
+		<img width="510" height="382" src="{{ STATIC_URL }}u/img/devices/phone-apps-grid-extended.png" alt="Collection of top apps available on Ubuntu Phone" />
+	</div>
+	<div class="six-col last-col">
+		<h2>A quality core of apps</h2>
+		<p>From browser to camera and everything in-between, Ubuntu has an excellent selection of core apps that have been designed, built and tested entirely by the Ubuntu community. With guidance from Canonical engineers and designers, they&rsquo;ve been planned and developed in the open from the start, which means consumers benefit from the ideas and talents of a global pool of creators.</p>
+		<p>Out of the box you can expect everyday apps such as Calendar, Clock, Calculator and Weather, joined by games like Sudoku and Dropping Letters. You&rsquo;ll even find power tools like Terminal and File Manager.</p>
+	</div>
+</div>
+
+<div class="row adapt-web-apps">
+	<div class="seven-col">
+		<h2>Adapt your web apps or go native</h2>
+		<p>Web apps are first class citizens on Ubuntu. Any HTML5 app can be adapted with ease. Additionally, we are working with cross-platform development frameworks like PhoneGap to make these apps work with Ubuntu.  And you can quickly adapt any web site to be installed as a phone app, with its own icon and access to system services.</p>
+		<p>For rich apps and graphics-heavy games, Ubuntu provides an amazing native developer environment using; QML for a slick development experience with engines in C or C++ and JavaScript for UI glue. We also give you full native OpenGL, which the top games companies use.</p>
+		<p>The QML toolkit and a sample application are available for download today, so there&rsquo;s no better time to get started.</p>
+		<p><a href="http://developer.ubuntu.com/gomobile">Get started &rsaquo;</a></p>
+	</div>
+</div><!-- / .row -->
+
+<div class="row write-apps">
+	<div class="seven-col">
+		<h2>Write apps for all Ubuntu devices </h2>
+		<p>The Ubuntu Software Centre will extend to deliver phone apps, enabling users to download and install applications in seconds. And here&rsquo;s the really amazing thing: thanks to the Ubuntu SDK, apps can be written to work on all Ubuntu form factors at once.</p>
+		<p>The full Ubuntu SDK is available right now to start building apps, and it&rsquo;s a very powerful tool. It comes with the latest QtCreator IDE 2.8.1 with improved device detection and management, plus system and service APIs for making use of the sensors and alarms in any handset. The UI Toolkit gives you all the latest Ubuntu designs so you can build your app to fit beautifully with the UI.</p>
+		<p class="no-margin-bottom"><a href="http://developer.ubuntu.com/get-started/">Download the SDK now &rsaquo;</a></p>
+	</div>
+</div><!-- / .row -->
+
+<div class="row no-border">
+	<div class="four-col">
+		<ul class="no-bullets text-center">
+			<li class="four-col"><img src="{{ STATIC_URL }}u/img/logos/logo-everything-everywhere.png"  alt="Everywhere everywhere" /></li>
+			<li class="four-col {{ item_class }}"><img src="{{ STATIC_URL }}u/img/logos/logo-tmobile.png" alt="T Mobile" /></li>
+			<li class="verizon"><img src="{{ STATIC_URL }}u/img/logos/logo-verizon.png" alt="Verizon" /></li>
+		</ul>
+	</div>
+	<div class="eight-col last-col">
+		<h2>Integrate to differentiate</h2>
+		<p>Ubuntu was designed for differentiation from the start, with a flexible framework in place for OEMs and carriers to apply branding and promote services -- without departing from the distinctive Ubuntu visual theme. Developers can use custom scopes to highlight featured content alongside the user’s local results, and services can be integrated directly into the front-end of some core applications. It’s all done at the service layer, so it’s powerful without ever leading to OS fragmentation.</p>
+		<p>Ubuntu already has the support of some of the world’s biggest mobile operators. Verizon, T-Mobile, EE and many others have signed up to the Carrier Advisory Group to help shape the Ubuntu mobile strategy.</p>
+		<p><a href="/phone/carrier-advisory-group">Find out more about the CAG &rsaquo;</a></p>
+	</div>
+</div><!-- / .row -->
+{% endblock content %}

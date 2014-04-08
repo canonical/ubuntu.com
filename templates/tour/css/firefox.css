@@ -1,0 +1,115 @@
+/* 
+ *  Firefox CSS 
+ *   author: Anthony Dillon
+ */
+
+#firefox-window{
+	width:900px;
+	height:600px;
+	top:100px;
+	left:400px;
+	display:none;
+}
+
+#firefox-window .buttons{
+	width:100%;
+	height:42px;
+	margin-top:6px;
+}
+
+#firefox-window .buttons div, #firefox-window  .bottom-buttons div{
+	float:left; 
+}
+
+#firefox-window .buttons .firefox-back{
+	height:36px;
+	width:35px;
+	overflow:hidden;
+	background:url(../img/firefox/backward-button.jpg) no-repeat;
+}
+
+#firefox-window .buttons .firefox-back:hover{
+	background-position: 0px -36px;
+}
+
+#firefox-window .buttons .firefox-forward{
+	height:36px;
+	width:35px;
+	overflow:hidden;
+	background:url(../img/firefox/forward-button.jpg) no-repeat;
+}
+
+#firefox-window .buttons .firefox-forward:hover{
+	background-position: 0px -36px;
+}
+
+#firefox-window .buttons .disabled{
+	background-position: 0px -72px !important;
+}
+
+#firefox-window .buttons input{
+	margin-top:5px;
+	height:20px;
+	background-color:#fff;
+	border: 1px solid #ada9a5;
+	-webkit-border-radius:2px 2px 2px 2px;
+	-moz-border-radius:2px 2px 2px 2px;
+	border-radius:2px 2px 2px 2px;	
+	padding:2px;
+}
+
+#firefox-window .buttons .firefox-url input{
+	width:420px;
+	margin-right:10px;
+	margin-left:10px;
+}
+
+#firefox-window .buttons .firefox-search input{
+	width:200px;
+	background:url(../img/firefox/search_icon.jpg) no-repeat center right;
+	background-color:#fff;
+}
+
+#firefox-window .buttons .firefox-search input.fade-text{
+	color:#666;
+	font-style:italic;
+}
+
+#firefox-window .buttons .inactive{
+	background-position: 0px -72px !important;
+}
+
+#firefox-window .firefox-internet .theIframe{
+	width:100%;
+	position: absolute;
+	left:0px;
+	top: 73px;
+	z-index:7;
+}
+
+#firefox-window .firefox-internet .theIframe iframe{
+	border:0px;
+}
+
+#firefox-window .firefox-internet .web-overlay-tran{
+	z-index:8;
+	width:100%;
+	height:200px;
+	position: absolute;
+	left:0px;
+	top: 73px;
+}
+
+#firefox-window .buttons .firefox-url input.fade-text{
+	color: #666;
+	font-style:italic;
+}
+
+#firefox-window.blurred .firefox-internet .theIframe{
+	display:none;
+}
+
+#firefoxInternet{
+	width:100%;
+	height:100%;
+}

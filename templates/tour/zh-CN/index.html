@@ -1,0 +1,1586 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+	<head>
+		<title>Ubuntu 在线体验</title>
+		<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+		<meta charset="UTF-8" />
+		<meta name="description" content="Enjoy the simplicity of Ubuntu's stylish, intuitive interface. Take Ubuntu for a test drive with our online tour and download when you're ready!" />
+		<meta name="keywords" content="ubuntu, ubuntu online, ubuntu tour" />
+		<link rel="stylesheet" href="../css/loader.css" type="text/css" />
+		<link rel="stylesheet" href="../css/error.css" type="text/css" />
+		<link rel="stylesheet" href="../css/base.css" type="text/css" />
+		<link rel="stylesheet" href="../css/folder.css" type="text/css" />
+		<link rel="stylesheet" href="../css/firefox.css" type="text/css" />
+		<link rel="stylesheet" href="../css/email.css" type="text/css" />
+		<link rel="stylesheet" href="../css/systemoverlay.css" type="text/css" />
+		<link rel="stylesheet" href="../css/ubuntuone.css" type="text/css" />
+		<link rel="stylesheet" href="../css/shotwell.css" type="text/css" />
+		<link rel="stylesheet" href="../css/tourguide.css" type="text/css" />
+		<link rel="stylesheet" href="../css/welcome.css" type="text/css" />
+		<link rel="stylesheet" href="../css/shutdown.css" type="text/css" />
+		<link rel="stylesheet" href="../css/movieplayer.css" type="text/css" />
+		<link rel="stylesheet" href="../css/libre.css" type="text/css" />
+		<link rel="stylesheet" href="../css/notification.css" type="text/css" />
+		<link rel="stylesheet" href="../css/software-centre.css" type="text/css" />
+		<!--[if IE 8]>
+		<link rel="stylesheet" href="../css/iefix.css" type="text/css" />
+		<![endif]-->
+		<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css' />
+		<script type="text/javascript">
+			WebFontConfig = {
+				google : {
+					families : ['Ubuntu:400,700:latin']
+				}
+			}; (function() {
+				var wf = document.createElement('script');
+				wf.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+				wf.type = 'text/javascript';
+				wf.async = 'true';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(wf, s);
+			})();
+
+		</script>
+	</head>
+	<body>
+		<div id="loader">
+			<div id="dot-container">
+				<noscript>
+					<p>
+						This demo uses JavaScript. Either your browser doesn't support JavaScript, or it's currently switched off.
+						<br/>
+						<br/>
+						Don't panic. We've got <a href="/ubuntu/take-the-tour-gallery">a non-JavaScript version</a> of the online tour you can view instead. :)
+					</p>
+				</noscript>
+			</div>
+		</div>
+		<div id="top" class="dropShadow">
+			<div id="top-left">
+				<div id="control-buttons">
+					<div id="close"></div>
+					<div id="min"></div>
+					<div id="max"></div>
+				</div>
+				<div id="dash-control-buttons">
+					<div class="close"></div>
+					<div class="min"></div>
+					<div class="max"></div>
+				</div>
+				<div id="title"></div>
+			</div>
+			<div id="top-right">
+				<div id="message"><img src="../img/top/nomessage.png" class="message-logo" alt="" />
+					<ul class="drop-down">
+						<li class="disabled"><img src="../img/top/available.jpg" alt=""/> 在线
+						</li>
+						<li class="disabled"><img src="../img/top/away.jpg" alt=""/> 离开
+						</li>
+						<li class="disabled"><img src="../img/top/busy.jpg" alt=""/> 忙碌
+						</li>
+						<li class="disabled"><img src="../img/top/invisible.jpg" alt=""/> 隐身
+						</li>
+						<li class="disabled"><img src="../img/top/offline.jpg" alt=""/> 离线
+						</li>
+						<li class="divider"></li>
+						<li class="disabled"><img src="../img/top/chat.png" alt=""/> 聊天
+						</li>
+						<li class="divider"></li>
+						<li class="disabled"><img src="../img/top/broadcast.png" alt=""/> 设定社交网络帐号…
+						</li>
+						<li class="divider"></li>
+						<li class="disabled"><img src="../img/top/mail.png" alt=""/> 设置电子邮箱...
+						</li>
+						<li class="divider"></li>
+						<li class="disabled"><img src="../img/top/uone.png" alt=""/> Ubuntu One
+						</li>
+						<li class="divider"></li>
+						<li class="disabled">
+							清空
+						</li>
+					</ul>
+				</div>
+				<div id="bluetooth"><img src="../img/top/bluetooth.png" alt=""/>
+					<ul class="drop-down">
+						<li class="disabled bluetooth">
+							打开蓝牙
+						</li>
+						<li>
+							关闭蓝牙
+						</li>
+						<li class="divider"></li>
+						<li class="disabled BtOn">
+							可见
+						</li>
+						<li class="divider BtOn"></li>
+						<li class="disabled BtOn">
+							发送文件到设备...
+						</li>
+						<li class="disabled BtOn">
+							浏览设备上的文件...
+						</li>
+						<li class="divider"></li>
+						<li class="disabled BtOn">
+							设置新设备...
+						</li>
+						<li class="divider BtOn"></li>
+						<li class="disabled">
+							首选项
+						</li>
+					</ul>
+				</div>
+				<div id="connection"><img src="../img/top/connection.png" alt=""/>
+					<ul class="drop-down">
+						<li class="disabled">
+							自动 eth0
+						</li>
+						<li class="disabled">
+							断开
+						</li>
+						<li class="divider"></li>
+						<!--<li class="disabled"><img src="../img/top/wireless-icon.png" alt=""/> My Wireless Connection</li>
+						<li class="disabled">断开</li>
+						<li class="divider"></li>-->
+						<li class="disabled">
+							连接信息
+						</li>
+						<li class="disabled">
+							编辑连接...
+						</li>
+					</ul>
+				</div>
+				<div id="speakers"><img src="../img/top/speakers3.png" class="speakers-logo"  alt=""/>
+					<ul class="drop-down">
+						<li>
+							静音
+						</li>
+						<li class="system-volume">
+							<div class="large-icon"></div><div class="small-icon"></div><div class="slider"></div><div class="slider-active"></div>
+						</li>
+						<li class="divider"></li>
+						<li class="disabled"><img src="../img/top/rhythmbox.png" alt=""/> Rhythmbox
+						</li>
+						<li class="banshee">
+							<div class="banshee-rewind"></div><div class="banshee-forward"></div><div class="banshee-play"></div>
+						</li>
+						<li class="divider"></li>
+						<li class="disabled">
+							声音设定...
+						</li>
+					</ul>
+				</div>
+				<div id="time">
+					<p></p>
+					<ul class="drop-down">
+						<li class="system-calendar"></li>
+						<li class="divider"></li>
+						<li class="disabled">
+							时间设置...
+						</li>
+					</ul>
+				</div>
+				<div id="power"><img src="../img/top/power.png"  alt=""/>
+					<ul class="drop-down">
+						<li class="disabled">
+							系统设置...
+						</li>
+						<li class="disabled">
+							显示...
+						</li>
+						<li class="disabled">
+							启动应用程序...
+						</li>
+						<li class="disabled">
+							软件已为最新
+						</li>
+						<li class="divider"></li>
+						<li class="disabled">
+							已连接的设备
+						</li>
+						<li class="disabled">
+							打印机
+						</li>
+						<li class="divider"></li>
+						<li class="disabled">
+							锁定屏幕
+						</li>
+						<li class="disabled">
+							注销...
+						</li>
+						<li class="disabled">
+							待机
+						</li>
+						<li class="disabled">
+							休眠
+						</li>
+						<li>
+							关机...
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="tooltip">
+			<div class="shadow-arrow"></div>
+			<div class="arrow-right"></div>
+			<div id="tooltip-text"></div>
+		</div>
+		<div id="menu">
+			<ul>
+				<li class="dash">
+					<span>主面板</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<li class="home"><img src="../img/menu/open-arrow.png" class="open-arrow" alt=""/><span>主文件夹</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<li class="firefox"><img src="../img/menu/open-arrow.png" class="open-arrow" alt=""/><span>Firefox 网络浏览器</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<li class="software"><img src="../img/menu/open-arrow.png" class="open-arrow" alt=""/><span>Ubuntu 软件中心</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<li class="writer"><img src="../img/menu/open-arrow.png" class="open-arrow" alt=""/><span>LibreOffice 文字处理</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<li class="impress"><img src="../img/menu/open-arrow.png" class="open-arrow" alt=""/><span>LibreOffice 演示文稿</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<li class="calc"><img src="../img/menu/open-arrow.png" class="open-arrow" alt=""/><span>LibreOffice 电子表格</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<li class="uone"><img src="../img/menu/open-arrow.png" class="open-arrow" alt=""/><span>Ubuntu One</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<li class="email"><img src="../img/menu/open-arrow.png" class="open-arrow" alt=""/><span>Thunderbird 邮件客户端</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<li class="shotwell temp"><img src="../img/menu/open-arrow.png" class="open-arrow" alt=""/><span>Shotwell 照片管理器</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<li class="movieplayer temp"><img src="../img/menu/open-arrow.png" class="open-arrow" alt=""/><span>电影播放机</span><img src="../img/menu/selected-arrow.png" class="selected-window-arrow" alt=""/>
+				</li>
+				<!--<li class="workspace"><span>Workspace Switcher</span></li>-->
+				<li class="rubbish bottom">
+					<span>回收站</span>
+				</li>
+			</ul>
+		</div>
+		<div id="systemOverlay">
+			<div class="copyDash"></div>
+			<div id="overlayContents">
+				<input type="text" name="search" value="Search"/>
+				<div id="display-home" class="app-container">
+					<div class="recent-apps bottom"><img src="../img/overlay/recentapps.png" alt=""/> 最近的应用 <div class="app-list"></div>
+					</div>
+					<div class="recent-files bottom"><img src="../img/overlay/recentfiles.png" alt=""/> 最近打开的文件<div class="app-list"></div>
+					</div>
+				</div>
+				<div id="display-apps" class="app-container">
+					<div class="frequently bottom"><img src="../img/overlay/recentapps.png" alt=""/> 最近使用的 <div class="app-list"></div>
+					</div>
+					<div class="installed bottom"><img src="../img/overlay/installed.png" alt=""/> 已安装<div class="app-list"></div>
+					</div>
+				</div>
+				<div id="display-find-files" class="app-container">
+					<div class="files bottom"><img src="../img/overlay/recentfiles.png" alt=""/> 最近的<div class="app-list"></div>
+					</div>
+					<div class="downloads bottom"><img src="../img/overlay/downloaded.png" alt=""/> 下载<div class="app-list"></div>
+					</div>
+					<div class="folders"><img src="../img/overlay/folders.png" alt=""/> 文件夹<div class="app-list"></div>
+					</div>
+					
+				</div>
+				<div id="display-find-music" class="app-container">
+					<div class="songs bottom"><img src="../img/overlay/folders.png" alt=""/> 曲目<div class="app-list"></div>
+					</div>
+					<div class="albums"><img src="../img/overlay/folders.png" alt=""/> 专辑<div class="app-list"></div>
+					</div>
+				</div>
+				<div id="display-find-video" class="app-container">
+					<div class="videos bottom"><img src="../img/overlay/folders.png" alt=""/> 视频<div class="app-list"></div>
+					</div>
+				</div>
+				<div id="display-search" class="app-container">
+					<div class="applications bottom"><img src="../img/overlay/search-apps-logo.jpg" alt=""/> 应用程序<div class="app-list"></div>
+					</div>
+					<div class="files"><img src="../img/overlay/search-files-logo.jpg" alt=""/> 文件和文件夹...<div class="app-list"></div>
+					</div>
+				</div>
+			</div>
+			<div id="dash-bottom-bar">
+				<div class="bottom-wrapper">
+					<div class="home-icon active"></div>
+					<div class="applications-icon"></div>
+					<div class="files-icon"></div>
+					<div class="music-icon"></div>
+					<div class="video-icon last"></div>
+				</div>
+			</div>
+		</div>
+		<div id="ubuntuone-window" class="uone window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="window-title">
+					Ubuntu One 控制面板
+				</div>
+			</div>
+			<div class="content">
+				<div class="header"></div>
+				<div class="body">
+					<h1>个人云的力量</h1>
+					<div class="features">
+						<div class="files-anywhere">
+							<span class="logo"></span>
+							<div>
+								<h3>随时随地使用自己的文件</h3>
+								<p>
+									在 Ubuntu、Windows、网页和手机上备份并访问您的文件
+								</p>
+							</div>
+						</div>
+						<div class="rock-out">
+							<span class="logo"></span>
+							<div>
+								<h3>随处聆听</h3>
+								<p>
+									所有收藏都可以同步到您的 Android 和 iPhone 手机上去
+								</p>
+							</div>
+						</div>
+						<div class="keep-connected">
+							<span class="logo"></span>
+							<div>
+								<h3>保持连接</h3>
+								<p>
+									在桌面，手机和网页上同步您的联系人
+								</p>
+							</div>
+						</div>
+						<div class="stay-productive">
+							<span class="logo"></span>
+							<div>
+								<h3>保持效率</h3>
+								<p>
+									同步您的 Firefox 书签和 Tomboy 笔记
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="ubuntuone-buttons">
+						<div class="learn-more"><img src="../img/ubuntuone/ubuntuone-logo.jpg" width="47" height="48" alt=""/>
+							<div>
+								了解更多
+							</div>
+						</div>
+						<div class="join-now">
+							<h2>现在就加入</h2>
+						</div>
+						<div class="have-account">
+							我已经有一个账户
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="libreoffice-calc-window" class="calc window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="window-title">
+					未命名 1 - LibreOffice 电子表格
+				</div>
+			</div>
+			<div class="content">
+				<span>文件</span>
+				<span>编辑</span>
+				<span>查看</span>
+				<span>插入</span>
+				<span>格式</span>
+				<span>表格</span>
+				<span>工具</span>
+				<span>窗口</span>
+				<span>帮助</span>
+			</div>
+		</div>
+		<div id="libreoffice-writer-window" class="writer window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="window-title">
+					未命名 - LibreOffice 文字处理
+				</div>
+			</div>
+			<div class="content">
+				<span>文件</span>
+				<span>编辑</span>
+				<span>查看</span>
+				<span>插入</span>
+				<span>格式</span>
+				<span>表格</span>
+				<span>工具</span>
+				<span>窗口</span>
+				<span>帮助</span>
+			</div>
+		</div>
+		<div id="libreoffice-impress-window" class="impress window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="window-title">
+					未命名 1 - LibreOffice 演示文稿
+				</div>
+			</div>
+			<div class="content">
+				<span>文件</span>
+				<span>编辑</span>
+				<span>查看</span>
+				<span>插入</span>
+				<span>格式</span>
+				<span>表格</span>
+				<span>工具</span>
+				<span>窗口</span>
+				<span>帮助</span>
+			</div>
+		</div>
+		<div class="error-window window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="window-title"></div>
+			</div>
+			<div class="error-container">
+				<h1>感谢体验 Ubuntu</h1>
+				<a class="download"  href="http://www.ubuntu.com/download/ubuntu/download?utm_source=tour&utm_medium=online&utm_campaign=tour" target="_blank">下载 Ubuntu</a>
+				<h2>请注意：这个仅仅是个在线演示。您需要下载后方可享用真实的功能</h2>
+			</div>
+		</div>
+		<!--<div id="error-window" class="error-window window">
+		<div class="control">
+		<div class="close"></div>
+		<div class="window-title"></div>
+		</div>
+		<div class="content">
+		<img src="../img/error/warning.jpg"/>
+		<div class="message">
+		<p>Thanks for exploring Ubuntu</p>
+		<p>请注意：这个仅仅是个在线演示。您需要下载后方可享用真实的功能</p>
+		</div>
+		<div class="error-buttons"><div class="download highlight">下载 Ubuntu</div></div>
+		</div>
+		</div>-->
+		<!--<div id="workspaces">
+		<div id="void">
+		<div id="workspace-container">
+		<div id="workspace1"><div class="fadedOverlay"></div></div>
+		<div id="workspace2"><div class="fadedOverlay"></div></div>
+		<div id="workspace3"><div class="fadedOverlay"></div></div>
+		<div id="workspace4"><div class="fadedOverlay"></div></div>
+		<div class="reflection" style="clear:both;"></div>
+		<div class="reflection"></div>
+		</div>
+		</div>
+		</div>-->
+		<div id="email-window" class="email-window window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="min"></div>
+				<div class="max"></div>
+				<div class="window-title">
+					电子邮件
+				</div>
+			</div>
+			<div class="buttons">
+				<div class="email-get-mail">
+					获取邮件
+				</div>
+				<div class="email-divider"></div>
+				<div class="email-write">
+					撰写
+				</div>
+				<!--<div class="email-address-book"></div>
+				<div class="email-divider"></div>
+				<div class="email-tag"></div>
+				<div class="email-search"><input type="text" name="submitEmailSearch" id="submitEmailSearch"/></div>-->
+			</div>
+			<div style="clear:both;"></div>
+			<div class="email-content">
+				<div class="folder-list">
+					<div class="bottom-buttons">
+						全部文件夹
+					</div>
+					<div style="clear:both;"></div>
+					<div class="list">
+						<div id="folder-inbox" class="selected"><img src="../img/email/inbox.png" alt=""/> 收件箱
+						</div>
+						<div id="folder-draft"><img src="../img/email/drafts.png" alt=""/> 草稿
+						</div>
+						<div id="folder-sent"><img src="../img/email/sent.png" alt=""/> 已发送
+						</div>
+						<div id="folder-archive"><img src="../img/email/archive-logo.png" alt=""/> 存档
+						</div>
+						<div id="folder-trash"><img src="../img/email/trash.png" alt=""/> 垃圾箱
+						</div>
+					</div>
+				</div>
+				<div class="email-contents">
+					<div class="email-categories">
+						<div><img src="../img/email/t.png" alt=""/>
+						</div>
+						<div><img src="../img/email/star.png" alt=""/>
+						</div>
+						<div><img src="../img/email/clip.png" alt=""/>
+						</div>
+						<div class="subject">
+							主题
+						</div>
+						<div><img src="../img/email/glasses.png" alt=""/>
+						</div>
+						<div class="from">
+							来自
+						</div>
+						<div><img src="../img/email/fire.png" alt=""/>
+						</div>
+						<div class="date">
+							日期
+						</div>
+					</div>
+					<div style="clear:both;"></div>
+					<div class="email-list"></div>
+					<div class="email-body">
+						<div class="message-header">
+							<div class="email-buttons">
+								<div>
+									<span class="message-reply">回复</span>
+									<span class="message-forward">转发</span>
+									<span class="message-archive">存档</span>
+									<span class="message-junk">垃圾</span>
+									<span class="message-delete">删除</span>
+								</div>
+							</div>
+							<div style="clear:both;"></div>
+							<div class="date"></div>
+							<dl class="from">
+								<dt>
+									来自
+								</dt><dd></dd>
+							</dl>
+							<dl class="subject">
+								<dt>
+									主题
+								</dt><dd></dd>
+							</dl>
+							<dl class="to">
+								<dt>
+									至
+								</dt><dd></dd>
+							</dl>
+							<dl class="cc">
+								<dt>
+									抄送
+								</dt><dd></dd>
+							</dl>
+						</div>
+						<div class="junk-mail-banner"><img src="../img/email/large-fire.jpg" alt=""/> 垃圾邮件
+							<div class="not-junk">
+								不是垃圾邮件
+							</div>
+						</div>
+						<div class="message-body"></div>
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+				<div class="emails-info">
+					<div>
+						未读: <span id="details-unread">1</span> 总计： <span id="details-total">1</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="email-write" class="email-write window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="min"></div>
+				<div class="max"></div>
+				<div class="window-title">
+					撰写
+				</div>
+			</div>
+			<div class="buttons">
+				<div id="write-send">
+					发送
+				</div>
+				<div class="email-divider"></div>
+				<div id="write-attach">
+					附加
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+			<div id="write-from">
+				<div>
+					发件人：
+				</div>
+				<input type="text" name="from" value="You"/>
+			</div>
+			<div id="write-to">
+				<div>
+					收件人：
+				</div>
+				<input type="text" name="to"/>
+			</div>
+			<div id="write-subject">
+				<div>
+					主题：
+				</div>
+				<input type="text" name="subject"/>
+			</div>
+			<div><img src="../img/email/disabled-format-buttons.jpg" width="853" height="32" alt=""/>
+			</div>
+			<div id="write-body">
+				<textarea name="body"></textarea>
+</div>			<div class="loading-bar">
+				<div class="progress"></div>
+			</div>
+		</div>
+		<div id="software-centre" class="software window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="min"></div>
+				<div class="max"></div>
+				<div class="window-title">
+					Ubuntu 软件中心
+				</div>
+			</div>
+			<div class="top-panel">
+				<div class="back disabled"></div>
+				<div class="forward disabled"></div>
+				<div class="all-software selected"><img src="../img/software-centre/all-software.png" alt=""/>所有软件
+				</div>
+				<div class="installed"><img src="../img/software-centre/installed.png" alt=""/>已安装
+				</div>
+				<div class="history"><img src="../img/software-centre/history.png" alt=""/>历史记录
+				</div>
+			</div>
+			<div class="container detailed">
+				<div class="title"><img src="../img/software-centre/visolate.png" class="app-image" width="100" alt=""/><h1>Visolate</h1>
+					<p class="subheading">
+						PCB CNC 转换器
+					</p>
+					<p class="rating"><img src="../img/software-centre/rating.jpg" alt="" /> (91 次打分)
+					</p>
+				</div>
+				<div class="price">
+					<span class="theprice">免费</span><span class="button">安装</span>
+					<div class="loading-bar">
+						<div class="progress"></div>
+					</div>
+				</div>
+				<div class="description-container">
+					<div class="description-image"><img src="../img/software-centre/screenshot-blender.jpg" alt="" />
+					</div>
+					<div class="description"><img src="../img/software-centre/screenshot-blender.jpg" alt="" />Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quam augue, convallis id commodo id, tristique ac mi. Ut dapibus, neque eget elementum pretium, nunc turpis congue eros, et interdum nisi nisi at diam. Duis dictum, justo eget imperdiet pulvinar, dolor est fermentum nisl, luctus imperdiet metus elit a purus. Quisque nisl enim, lacinia ut venenatis in, porttitor eget orci. Quisque non nibh nec risus tincidunt sollicitudin vitae et nisl. Proin odio lacus, vulputate non auctor sit amet, dapibus quis tortor. Donec elit libero, pellentesque quis dictum sed, hendrerit non libero. Aliquam eu diam id leo auctor tincidunt. Phasellus cursus felis at nulla facilisis semper. Cras mauris urna, adipiscing sed scelerisque ut, gravida id neque. Mauris ut vestibulum justo. Curabitur convallis elementum pellentesque. Duis sit amet arcu ac eros pretium scelerisque. Nunc nec nisi nulla.
+					</div>
+					<div style="clear:both;"></div>
+				</div>
+			</div>
+			<div class="container home">
+				<div class="header-image">
+					<span class="header-title">金牌应用程序</span>
+					<span class="header-subtitle">来看看我们喜欢的软件</span>
+				</div>
+				<div class="navigation">
+					<ul>
+						<li>
+							附件
+						</li>
+						<li>
+							开发工具
+						</li>
+						<li>
+							教育
+						</li>
+						<li>
+							字体
+						</li>
+						<li>
+							游戏
+						</li>
+						<li>
+							图形
+						</li>
+						<li>
+							互联网
+						</li>
+						<li>
+							办公
+						</li>
+						<li>
+							科学与工程
+						</li>
+						<li>
+							影音
+						</li>
+						<li>
+							系统
+						</li>
+						<li>
+							主题与系统增强
+						</li>
+					</ul>
+				</div>
+				<div class="whats-new">
+					<h2> 更新</h2>
+					<div class="app-container">
+						<div class="chromium">
+							<h3>Chromium 网页浏览器</h3>
+							<p>
+								互联网
+							</p>
+							<p class="cost">
+								免费
+							</p>
+						</div>
+						<div class="beep">
+							<h3>BEEP</h3>
+							<p>
+								游戏
+							</p>
+							<p class="cost">
+								$9.99
+							</p>
+						</div>
+						<div class="inkscape">
+							<h3>Inkscape 图形编辑器</h3>
+							<p>
+								图形
+							</p>
+							<p class="cost">
+								免费
+							</p>
+						</div>
+						<div class="worldofgoo">
+							<h3>World of Goo</h3>
+							<p>
+								游戏
+							</p>
+							<p class="cost">
+								$19.99
+							</p>
+						</div>
+						<div class="blender">
+							<h3>Blender</h3>
+							<p>
+								图形
+							</p>
+							<p class="cost">
+								免费
+							</p>
+						</div>
+						<div class="braid">
+							<h3>Braid</h3>
+							<p>
+								游戏
+							</p>
+							<p class="cost">
+								$9.99
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="whats-new">
+					<h2> 最高评分</h2>
+					<div class="app-container">
+						<div class="beep">
+							<h3>BEEP</h3>
+							<p>
+								游戏
+							</p>
+							<p class="cost">
+								$9.99
+							</p>
+						</div>
+						<div class="chromium">
+							<h3>Chromium 网页浏览器</h3>
+							<p>
+								互联网
+							</p>
+							<p class="cost">
+								免费
+							</p>
+						</div>
+						<div class="worldofgoo">
+							<h3>World of Goo</h3>
+							<p>
+								游戏
+							</p>
+							<p class="cost">
+								$19.99
+							</p>
+						</div>
+						<div class="braid">
+							<h3>Braid</h3>
+							<p>
+								游戏
+							</p>
+							<p class="cost">
+								$9.99
+							</p>
+						</div>
+						<div class="inkscape">
+							<h3>Inkscape 图形编辑器</h3>
+							<p>
+								图形
+							</p>
+							<p class="cost">
+								免费
+							</p>
+						</div>
+						<div class="blender">
+							<h3>Blender</h3>
+							<p>
+								图形
+							</p>
+							<p class="cost">
+								免费
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="shotwell" class="shotwell window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="min"></div>
+				<div class="max"></div>
+				<div class="window-title">
+					Shotwell 图片查看器
+				</div>
+			</div>
+			<div class="sidebar">
+				<div class="nav">
+					<ul>
+						<li class="library">
+							库
+						</li>
+					</ul>
+				</div>
+				<div class="details">
+					<div class="overall">
+						<div>
+							条目： <span class="items">16 张照片</span>
+						</div>
+						<div>
+							发件人： <span class="from">2001年10月26日星期五</span>
+						</div>
+						<div>
+							收件人： <span class="to">2010年10月11日星期一</span>
+						</div>
+					</div>
+					<div class="single">
+						<div>
+							标题： <span class="title"></span>
+						</div>
+						<div>
+							日期: <span class="date"></span>
+						</div>
+						<div>
+							大小： <span class="size"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="images"></div>
+				<div class="tools">
+					<div class="jump-image">
+						<div class="next"></div><div class="prev"></div>
+					</div>
+					<div class="slider-container">
+						<div class="small-icon"></div><div class="slider"></div><div class="slider-active"></div><div class="large-icon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="movieplayer" class="movieplayer window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="min"></div>
+				<div class="max"></div>
+				<div class="window-title">
+					电影播放机
+				</div>
+			</div>
+			<div class="container">
+				<div class="video"></div>
+			</div>
+		</div>
+		<div id="firefox-window" class="firefox-window window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="min"></div>
+				<div class="max"></div>
+				<div class="window-title">
+					浏览互联网
+				</div>
+			</div>
+			<div class="buttons">
+				<div class="firefox-back"></div>
+				<div class="firefox-forward"></div>
+				<div class="firefox-url">
+					<input type="text" name="submitURL" id="submitURL" value="http://www.ubuntu.com"/>
+				</div>
+				<div class="firefox-search">
+					<input type="text" name="submitSearch" id="submitSearch" value="Wikipedia" class="fade-text"/>
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+			<div class="firefox-internet">
+				<div class="web-overlay-tran"></div>
+				<div class="theIframe">
+					<iframe src="../http://www.ubuntu.com" id="firefoxInternet" >
+						<p>
+							您的浏览器不支持 iframes
+						</p>
+					</iframe>
+				</div>
+			</div>
+		</div>
+		<div id="shutdown-window" class="window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="window-title">
+					关机
+				</div>
+			</div>
+			<div class="content">
+				<img src="../img/powerwarning.jpg" alt=""/>
+				<div class="message">
+					<p>
+						您确定要关闭所有程序并关闭计算机？
+					</p>
+				</div>
+				<div class="shutdown-buttons">
+					<div class="shutdown highlight">
+						关机
+					</div>
+					<div class="cancel">
+						取消
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="folder-window" class="folder window">
+			<div class="control">
+				<div class="close"></div>
+				<div class="min"></div>
+				<div class="max"></div>
+				<div class="window-title"></div>
+			</div>
+			<div style="clear:both;"></div>
+			<div class="folder-list">
+				<div class="list">
+					<p>
+						计算机
+					</p>
+					<ul>
+						<li class="home selected" data-folder="home"><img src="../img/folder/home-icon.png" alt=""/> 主文件夹
+						</li>
+						<li class="desktop" data-folder="5"><img src="../img/folder/desktop-icon.png"  alt=""/> 桌面
+						</li>
+						<li class="documents" data-folder="0"><img src="../img/folder/documents-icon.png"  alt=""/> 文档
+						</li>
+						<li class="downloads" data-folder="1"><img src="../img/folder/downloads-icon.png"  alt=""/> 下载
+						</li>
+						<li class="music" data-folder="2"><img src="../img/folder/music-icon.png"  alt=""/> 音乐
+						</li>
+						<li class="pictures" data-folder="4"><img src="../img/folder/pictures-icon.png"  alt=""/> 图片
+						</li>
+						<li class="videos" data-folder="3"><img src="../img/folder/videos-icon.png"  alt=""/> 视频
+						</li>
+						<li class="rubbish" data-folder="bin"><img src="../img/folder/rubbish-icon.png"  alt=""/> 回收站
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="folder-contents">
+				<div class="buttons">
+					<div class="folder-back"></div>
+					<div class="folder-forward"></div>
+				</div>
+				<div class="bottom-buttons"></div>
+				<div style="clear:both;"></div>
+				<div class="contents"></div>
+				<div class="selected-details"></div>
+			</div>
+		</div>
+		<!--<div id="welcome">
+			<div id="welcome-screen">
+				<div class="close"></div>
+				<h1>欢迎尝试Ubuntu 在线体验</h1>
+				<h2>用我们的在线演示来尝试 Ubuntu。</h2>
+				<ul>
+					<li>
+						<a class="browse-files" href="#browse-files">浏览文件</a>
+					</li>
+					<li>
+						<a class="surf-the-web" href="#surf-the-web">浏览网络</a>
+					</li>
+					<li>
+						<a class="check-email" href="#check-email">检查邮件</a>
+					</li>
+					<li>
+						<a class="view-photos" href="#view-photos">观看照片</a>
+					</li>
+					<li>
+						<a class="find-apps" href="#find-apps">寻找程序</a>
+					</li>
+					<li>
+						<a class="create-documents" href="#create-documents">创建文档</a>
+					</li>
+					<li>
+						<a class="create-spreadsheets" href="#create-spreadsheets">创建表格</a>
+					</li>
+					<li>
+						<a class="create-presentations" href="#create-presentations">创建演示文稿</a>
+					</li>
+				</ul>
+				<div class="language-mode">
+					<span class="active">English</span>
+					<a href="/tour/zh-CN/">中文</a>
+				</div>
+				<a class="explore-mode primary" href="#">四处看看</a>
+				<a class="tour-mode" href="#">观看此向导</a>
+			</div>
+		</div>-->
+		
+		
+		
+		<div id="welcome">
+			<div id="welcome-screen" class="selected-window">
+				<div class="control">
+					<div class="window-title">W欢迎尝试Ubuntu 在线体验</div>
+				</div>
+				<div class="welcome-header">
+					<h1>W欢迎尝试Ubuntu 在线体验</h1>
+					<h2>用我们的在线演示来尝试 Ubuntu。</h2>
+				</div>
+				<ul>
+					<li>
+						<a class="browse-files" href="#browse-files">浏览文件</a>
+					</li>
+					<li>
+						<a class="check-email" href="#check-email">检查邮件</a>
+					</li>
+					<li>
+						<a class="surf-the-web" href="#surf-the-web">浏览网络</a>
+					</li>
+					<li>
+						<a class="find-apps" href="#find-apps">寻找程序</a>
+					</li>
+					<li>
+						<a class="create-documents" href="#create-documents">创建文档</a>
+					</li>
+					<li>
+						<a class="view-photos" href="#view-photos">观看照片</a>
+					</li>
+					<li>
+						<a class="create-presentations" href="#create-presentations">创建演示文稿</a>
+					</li>
+					<li>
+						<a class="create-spreadsheets" href="#create-spreadsheets">创建表格</a>
+					</li>
+				</ul>
+				<div class="language-mode">
+					<a href="/tour/en/">English</a>
+					<span class="active">中文</span>
+				</div>
+				<a class="explore-mode primary" href="#">四处看看</a>
+				<a class="tour-mode" href="#">观看此向导</a>
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		<div id="tour-guide">
+			<div class="next-button"><img src="../img/tourguide/arrow-next.png" alt="" />
+			</div>
+			<div class="prev-button"><img src="../img/tourguide/arrow-prev.png" alt="" />
+			</div>
+			<div class="guide-container welcome">
+				<div class="guide-logo"></div>
+				<h3></h3>
+				<p>
+					希望您喜欢 Ubuntu 在线漫游 <a href="http://www.ubuntu.com/download/ubuntu/download?utm_source=tour&utm_medium=online&utm_campaign=tour" target="_blank">准备好下载了吗？</a> 或 <a href="/ubuntu/take-the-tour" >返回网站</a>
+				</p>
+			</div>
+			<div class="guide-container home">
+				<div class="guide-logo"><img src="../img/tourguide/file-small.png" />
+				</div>
+				<h3>浏览文件</h3>
+				<p>
+					您可以轻松快捷的从 Ubuntu 的主目录访问您的文件和文件夹。
+				</p>
+			</div>
+			<div class="guide-container firefox">
+				<div class="guide-logo"><img src="../img/tourguide/firefox-small.png" />
+				</div>
+				<h3>浏览网络</h3>
+				<p>
+					使用Ubuntu 和 Firefox可以安全快速的浏览网络。
+				</p>
+			</div>
+			<div class="guide-container email">
+				<div class="guide-logo"><img src="../img/tourguide/mail-small.png" />
+				</div>
+				<h3>检查邮件</h3>
+				<p>
+					使用雷鸟来读、写和发送邮件，将会简便快捷。
+				</p>
+			</div>
+			<div class="guide-container shotwell">
+				<div class="guide-logo"><img src="../img/tourguide/shotwell-small.png" />
+				</div>
+				<h3>观看照片</h3>
+				<p>
+					您可以使用 Shotwell 上传、组织、编写和共享您的照片。
+				</p>
+			</div>
+			<div class="guide-container software">
+				<div class="guide-logo"><img src="../img/tourguide/apps-small.png" />
+				</div>
+				<h3>寻找程序</h3>
+				<p>
+					快速从Ubuntu软件中心搜索和下载应用。
+				</p>
+			</div>
+			<div class="guide-container writer">
+				<div class="guide-logo"><img src="../img/tourguide/document-small.png" />
+				</div>
+				<h3>创建文档</h3>
+				<p>
+					LibreOffice 文稿 让撰写专业文档变得更简单。
+				</p>
+			</div>
+			<div class="guide-container calc">
+				<div class="guide-logo"><img src="../img/tourguide/calc-small.png" />
+				</div>
+				<h3>创建表格</h3>
+				<p>
+					LibreOffice 表格提供了一切创建清晰精确表格之所需。
+				</p>
+			</div>
+			<div class="guide-container impress">
+				<div class="guide-logo"><img src="../img/tourguide/impress-small.png" />
+				</div>
+				<h3>创建演示文稿</h3>
+				<p>
+					使用直观的 LibreOffice 演示文稿 来创建一个良好的影响
+				</p>
+			</div>
+			<div class="guide-container movieplayer">
+				<div class="guide-logo"><img src="../img/tourguide/video-small.png" />
+				</div>
+				<h3>观看视频</h3>
+				<p>
+					您可以观看所有您喜爱的电影，视频，DVD，下载或者自创的视频。
+				</p>
+			</div>
+			<div class="explore-tooltip-download">
+				下载
+			</div>
+			<div class="explore-tooltip-welcome">
+				欢迎画面
+			</div>
+			<div class="explore-to-welcome"></div>
+			<div class="explore-to-download"></div>
+		</div>
+		<div id="Translation-Strings">
+			<!--
+			* Email system
+			-->
+			<p class="_email_1_title_">
+				辅助功能
+			</p>
+			<p class="_email_2_title_">
+				快速
+			</p>
+			<p class="_email_3_title_">
+				兼容
+			</p>
+			<p class="_email_4_title_">
+				安全
+			</p>
+			<p class="_email_5_title_">
+				你的 Ubuntu，你做主
+			</p>
+			<p class="_email_1_body_">
+				可用性是 Ubuntu 哲学的中心。我们相信计算机是给所有人使用的，不分民族、种族、性别，抑或残疾与否。Ubuntu 已被完整地翻译成38种语言，也同时包含必须的辅助技术，所有这些都是完全免费的。
+			</p>
+			<p class="_email_2_body_">
+				Ubuntu 在任何计算机上都能流畅运行，在新机器上更是无与伦比。没有不必要的程序或试用版软件拖慢启动速度，从开机到打开浏览器只需几秒钟。不同于其他操作系统，Ubuntu 不会让您面对着屏幕苦苦等待，因为它的速度飞快，而且能为您始终保持这种快速的体验。
+			</p>
+			<p class="_email_3_body_">
+				很多设备都可以很好的在 Ubuntu 下工作。只需将您的 MP3 播放器、相机或者打印机连接到计算机上，您就可以直接使用，这个过程轻松简单，无需驱动程序安装光盘。同时还和 Windows 系统兼容，所以您可以轻松地打开、编辑和分享微软Office的文档。
+			</p>
+			<p class="_email_4_body_">
+				您可以安全地使用 Ubuntu 上网冲浪 - 您的文件和数据会得到严密的保护。Ubuntu 内置防火墙和病毒防护功能。万一出现危险状况，您只需轻点鼠标即可获得我们为您提供的自动更新。通过使用 AppArmor，您的重要应用程序皆处于保护之下，使攻击者无法闯入系统。Firefox 和 gnome-keyring 则让 Ubuntu 能保护您的隐私信息不被泄漏。无论是访问银行账户，还是与同事和朋友共享敏感信息，您都可以高枕无忧。
+			</p>
+			<p class="_email_5_body_">
+				享受 Ubuntu 独具风格的直观界面。Ubuntu 快速、安全、拥有数千款应用可供选择，这是为您量身定制的简洁、连续的使用体验。
+			</p>
+			<p class="_random_reply_">
+				请注意：这个仅仅是个在线演示。您需要下载后方可享用真实的功能
+				<br/>
+				<br/>
+				<a href="http://www.ubuntu.com/download/ubuntu/download?utm_source=tour&utm_medium=online&utm_campaign=tour" target="_blank">下载 Ubuntu</a>
+			</p>
+			<p class="_write_">
+				撰写
+			</p>
+			<p class="_no_subject_">
+				无主题
+			</p>
+			<p class="_recipient_">
+				收件人
+			</p>
+			<p class="_from_">
+				来自
+			</p>
+			<p class="_you_">
+				您
+			</p>
+			<p class="_on_">
+				开启
+			</p>
+			<p class="_wrote_">
+				写道：
+			</p>
+			<p class="_original_message_">
+				原始信息
+			</p>
+			<p class="_fwd_">
+				转发
+			</p>
+			<!--
+			* Folder System
+			-->
+			<p class="_home_folder_">
+				主文件夹
+			</p>
+			<p class="_desktop_folder_">
+				桌面
+			</p>
+			<p class="_pictures_folder_">
+				图片
+			</p>
+			<p class="_videos_folder_">
+				视频
+			</p>
+			<p class="_music_folder_">
+				音乐
+			</p>
+			<p class="_downloads_folder_">
+				下载
+			</p>
+			<p class="_documents_folder_">
+				文档
+			</p>
+			<p class="_canonical_folder_">
+				Canonical
+			</p>
+			<p class="_backup_folder_">
+				备份
+			</p>
+			<p class="_local_folder_">
+				本地
+			</p>
+			<p class="_work_folder_">
+				工作
+			</p>
+			<p class="_branches_folder_">
+				分支
+			</p>
+			<p class="_rubbish_bin_folder_">
+				回收站
+			</p>
+			<!--
+			* Software Center System
+			-->
+			<p class="_remove_">
+				移除
+			</p>
+			<p class="_price_free_">
+				免费
+			</p>
+			<p class="_installed_">
+				已安装
+			</p>
+			<p class="_install_">
+				安装
+			</p>
+			<p class="_installing_">
+				正在安装
+			</p>
+			<p class="_chromium_app_">
+				Chromium 网页浏览器
+			</p>
+			<p class="_chromium_sub_">
+				访问互联网
+			</p>
+			<p class="_chromium_desc_">
+				Chromium 是一个开源的浏览器项目，致力于让所有用户都能安全、快速、稳定地访问网络。
+				<br/>
+				<br/>
+				Chromium 是 Google Chrome 的基础，只是名称和标志与 Chrome 不同，同时也去除了用户行为跟踪和自动升级系统。
+				<br/>
+				<br/>
+				此软件包含有 Chromium 浏览器
+			</p>
+			<p class="_beep_app_">
+				BEEP
+			</p>
+			<p class="_beep_sub_">
+				物理解谜类 2D 设计游戏
+			</p>
+			<p class="_beep_desc_">
+				BEEP 是一个使用物理引擎的横向卷轴游戏。游戏中您可以控制一个装配有反重力设备、飞行器和枪支的机器人，进行行驶、跳跃、飞行、游泳并射击开拓一条道路。游戏共24关，设有6个完全不同的场景。
+				<br/>
+				<br/>
+				使用 BEEP 的反重力装置来直接操控物理设施。反重力装置不仅是一种工具，还是一样武器。使用它来打击敌方的机器人、建造铁塔并解决问题。
+				<br/>
+				<br/>
+				BEEP 号从遥远的时空旅行了几千年来探索银河系。和 BEEP 号一起穿越一个陌生的星系并派出机器人登陆星球表面。
+			</p>
+			<p class="_inkscape_app_">
+				Inkscape 矢量图形编辑器
+			</p>
+			<p class="_inkscape_sub_">
+				创建和编辑可缩放矢量图形(SVG)图像
+			</p>
+			<p class="_inkscape_desc_">
+				Inkscape 可加载和保存 SVG 格式文件。SVG 格式是由万维网联盟维护的一个标准。
+				<br/>
+				<br/>
+				Inkscape 的用户界面与 CorelDraw 和同类的画图软件相似。它带有矩形、椭圆、文字、位图和自由曲线工具。此外，向量和位图对象都可以有 Alpha 透明度，并均可任意变形。
+				<br/>
+				<br/>
+				Inkscape 支持同时打开多个文件，以及每个文件多个查看器。图片可以打印或导出为 png 位图。
+				<br/>
+				<br/>
+				部分导入和导出特性由 dia, libwmf-bin, pstoedit skencil, imagemagick 和 perlmagick 等软件提供。
+				<br/>
+				<br/>
+				其它插件需要 ruby,  libxme-xql-perl,  python-numpy 和 python-lxml。为了让这些插件和特效工作，您需要安装这些软件包。
+				<br/>
+				<br/>
+				如果您要使用拼写检查，您需要安装 aspell 和相应的语言支持。例如: aspell-en 或者 aspell-de。
+			</p>
+			<p class="_world_of_goo_app_">
+				World of Goo
+			</p>
+			<p class="_world_of_goo_sub_">
+				包含物理学知识的拼图游戏
+			</p>
+			<p class="_world_of_goo_desc_">
+				拖拽一种名为粘豆包的粘性小球来搭建庞大复杂的结构，如桥梁、加农炮炮弹、齐柏林飞艇和巨舌。生活在粘粘世界里的成千上万的粘豆包想要探索世界！
+				<br/>
+				<br/>
+				但是它们不知道自己身处游戏之中，且十分美味。一段最让人着迷的迷宫会为您准备一段永远难忘的探险！
+			</p>
+			<p class="_blender_app_">
+				Blender
+			</p>
+			<p class="_blender_sub_">
+				创建和编辑三维模型及动画
+			</p>
+			<p class="_blender_desc_">
+				Blender 是一个集成 3D 套件，提供的功能包括但不限于：建模、动画、渲染、后期制作、交互式创作和回放。Blender 拥有一个完全用 OpenGL 实现并针对速度优化的界面。其具有 Python 绑定功能，可用于编写脚本。例如，对 3D Studio 和 Wavefront OBJ 这些流行的文件格式的导入导出功能就是由社区使用脚本实现 的。此外，Blender 可以完全正常地使用动画、游戏模型或其他以二进制格式或浏览器插件实现的第三方引擎和交互内容。
+			</p>
+			<p class="_braid_app_">
+				Braid
+			</p>
+			<p class="_braid_sub_">
+				操控时间流来解决问题
+			</p>
+			<p class="_braid_desc_">
+				操控时间流来解决问题 Braid 是一个拥有开放式画风的游戏，您通过操控时间流来解决问题。Braid 中的每个问题都是独一无二的，没有筛选。
+				<br/>
+				<br/>
+				Braid 珍视您的时间和精力，它会尽全部努力开拓您的思维。
+				<br/>
+				<br/>
+				所有游戏均基于时间操控。到一个时间概念与平常大不相同的地方旅行，观察、学习并主宰这些地方。
+			</p>
+			<p class="_banshee_app_">
+				Banshee 媒体播放器
+			</p>
+			<p class="_brasero_app_">
+				Brasero 光盘刻录器
+			</p>
+			<p class="_movie_player_app_">
+				电影播放机
+			</p>
+			<p class="_shotwell_app_">
+				Shotwell 照片管理器
+			</p>
+			<p class="_pitivi_app_">
+				PiTiVi 视频编辑器
+			</p>
+			<p class="_sound_recorder_app_">
+				录音机
+			</p>
+			<p class="_empathy_app_">
+				Empathy 即时通讯
+			</p>
+			<p class="_thunderbird_app_">
+				Thunderbird 邮件/新闻
+			</p>
+			<p class="_firefox_app_">
+				Firefox 网络浏览器
+			</p>
+			<p class="_gwibber_app_">
+				硅博社交网络客户端
+			</p>
+			<p class="_remote_desktop_app_">
+				远程桌面查看器
+			</p>
+			<p class="_terminal_app_">
+				终端服务客户端
+			</p>
+			<p class="_about_me_app_">
+				关于我
+			</p>
+			<p class="_additional_drivers_app_">
+				附加驱动
+			</p>
+			<p class="_aisleroit_app_">
+				纸牌王
+			</p>
+			<p class="_appearance_app_">
+				外观
+			</p>
+			<p class="_bluetooth_app_">
+				蓝牙
+			</p>
+			<!--
+			* Dash
+			-->
+			<p class="_search_">搜索</p>
+			<!--
+			* Notifications
+			-->
+			<p class="_turn_off_bluetooth_">
+				关闭蓝牙
+			</p>
+			<p class="_turn_on_bluetooth_">
+				打开蓝牙
+			</p>
+			<p class="_visible_">
+				可见
+			</p>
+			<p class="_mute_">
+				静音
+			</p>
+			<p class="_unmute_">
+				取消静音
+			</p>
+			<p class="_shut_down_">
+				关机...
+			</p>
+			<!--
+				Files Details - Images
+			-->
+			<p class="_photo_size_">
+				15.2KB	
+			</p>
+			<p class="_photo_date_">
+				2001年10月26日星期五
+			</p>
+			<p class="_buck_off_title_">
+				翘首	
+			</p>
+			<p class="_darkening_clockwork_title_">
+				变暗的时钟
+			</p>
+			<p class="_dybbølsbro_station_title_">
+				Dybbølsbro Station
+			</p>
+			<p class="_federica_miglio_title_">
+				Federica Miglio
+			</p>
+			<p class="_jardin_polar_title_">
+				Jardin Polar
+			</p>
+			<p class="_langelinie_alle_title_">
+				Langelinie Alle
+			</p>
+			<p class="_momiji_dream_title_">
+				Momiji Dream
+			</p>
+			<p class="_mount_snowdon_title_">
+				斯诺登之山
+			</p>
+			<p class="_not_alone_title_">
+				不孤单
+			</p>
+			<p class="_power_of_words_title_">
+				语言的力量
+			</p>
+			<p class="_purple_dancers_title_">
+				紫色花语
+			</p>
+			<p class="_sand_maze_title_">
+				沙漠迷宫
+			</p>
+			<p class="_small_flowers_title_">
+				小花
+			</p>
+			<p class="_stalking_ocelot_title_">
+				潜行的山猫
+			</p>
+			<p class="_the_grass_aint_greener_title_">
+				爱绿
+			</p>
+			<p class="_wildWheat_title_">
+				麦田
+			</p>
+			<!--
+				Files Details - Video
+			-->
+			<p class="_introduction_ubuntu_title_">
+				Ubuntu 简介
+			</p>
+			<p class="_video_size_">
+				5.3MB
+			</p>
+			<p class="_video_date_">
+				2010年10月11日星期一
+			</p>
+			<!--
+				Files Details - Music
+			-->
+			<p class="_happyness_title_">
+				喜悦
+			</p>
+			<p class="_music_size_">
+				3.3MB
+			</p>
+			<p class="_music_date_">
+				2010年08月14日 星期三
+			</p>
+		</div>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="../js/lang.js"></script>
+		<script type="text/javascript" src="../js/scripts.js"></script>
+		<script type="text/javascript" src="../js/welcomesystem.js"></script>
+		<script type="text/javascript" src="../js/guidedtoursystem.js"></script>
+		<script type="text/javascript" src="../js/filesystem.js"></script>
+		<script type="text/javascript" src="../js/folders.js"></script>
+		<script type="text/javascript" src="../js/systemoverlay.js"></script>
+		<script type="text/javascript" src="../js/systemmenu.js"></script>
+		<script type="text/javascript" src="../js/internetsystem.js"></script>
+		<script type="text/javascript" src="../js/emailsystem.js"></script>
+		<script type="text/javascript" src="../js/systemsettings.js"></script>
+		<script type="text/javascript" src="../js/email.js"></script>
+		<script type="text/javascript" src="../js/errormessage.js"></script>
+		<script type="text/javascript" src="../js/ubuntuonesystem.js"></script>
+		<script type="text/javascript" src="../js/file.js"></script>
+		<script type="text/javascript" src="../js/shotwellsystem.js"></script>
+		<script type="text/javascript" src="../js/shutdownSystem.js"></script>
+		<script type="text/javascript" src="../js/movieplayersystem.js"></script>
+		<script type="text/javascript" src="../js/libresystem.js"></script>
+		<script type="text/javascript" src="../js/softwaresystem.js"></script>
+		<script type="text/javascript" src="../js/notificationsystem.js"></script>
+		<script type="text/javascript" src="../js/analytics.js"></script>
+	</body>
+</html>

@@ -1,0 +1,195 @@
+{% extends "ubuntu/server/base_server.html" %}
+
+{% block title %}Ubuntu Server - for scale-out computing{% endblock %}
+{% block meta_description %}Fast, secure, deploy-anywhere technology for fast-moving companies. Whether you're already using Ubuntu or you're just thinking about making the switch, Canonical can help.{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Server" page_title="Overview"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero">
+	<h1>Ubuntu Server &mdash; for scale-out computing</h1>
+	<div class="row-image-centered">
+	<div class="six-col">
+		<p class="intro">The leading platform for scale-out, Ubuntu helps you make the most of your infrastructure. Whether you want to deploy a cloud, a Hadoop cluster or a web farm, Ubuntu Server delivers the best value scale-out performance available.</p>
+		<p class="button-right right"><a class="link-cta-ubuntu" href="/download/server">Download Ubuntu Server</a></p>
+	</div>
+	<span><img src="{{ STATIC_URL }}u/img/pictograms/pictogram-server-446x120.png" width="389" height="113" alt="" /></span>
+	</div>
+</div><!-- /.row -->
+
+<div class="row">
+	<h2>What&rsquo;s new in 13.10</h2>
+	<div class="six-col">
+		<h3>Juju Charms</h3>
+		<ul class="list-canonical">
+			<li>Local provider:  spin up a full application suite including all  supporting services on your machine</li>
+			<li>Manual provisioning:  you can now use pre-existing machines &mdash; no need for a cloud account</li>
+			<li>Manage Juju environments from Linux, OS X and Windows</li>
+			<li>Automatic provisioning support for Azure</li>
+		</ul>
+	</div>
+	<div class="six-col last-col">
+		<h3>OpenStack</h3>
+		<ul class="list-canonical">
+			<li>Havana built for 12.04 LTS, available through Cloud Archive</li>
+			<li>Introducing support for KVM Virtualization in ARM A15, and experimental ARM A15 support in Xen 4.3</li>
+			<li>Fast new installer &mdash; up to five times faster</li>
+		</ul>
+	</div>
+	<div class="eleven-col">
+		<p><a href="http://ubunt.eu/1310cloud">Read more in our 13.10 press release &rsaquo;</a></p>
+	</div>
+</div>
+
+<div class="row row-grey row-image-centered">
+	<span><img src="{{ STATIC_URL }}u/img/partners/pictos-server-hp-ubuntu.png" width="230" height="215" alt="" /></span>
+	<div class="six-col">
+		<h2>Scale-out at speed with Ubuntu on HP Moonshot</h2>
+		<p>Ubuntu, the leading OS for x86 and ARM hyperscale is partnering with HP to disrupt the server marketplace with <br/>HP Moonshot system.</p>
+		<p>Ubuntu is the scale-out leader and is fully integrated in the <br/>HP Moonshot system.</p>
+		<p><a href="/partners/hp/moonshot">Find out more &rsaquo;</a></p>
+	</div><!-- /.six-col -->
+</div><!-- /.row -->
+
+<div class="row">
+	<h2 id="performance-and-versatility">Performance and versatility</h2>
+	<h3>Fast, secure, deploy-anywhere technology for fast-moving companies</h3>
+	<div class="six-col">
+		<p>It doesn’t matter whether you want to deploy a NoSQL database, web farm or cloud. Ubuntu has the performance and versatility you need. Certified by leading hardware OEMs and with comprehensive deployment tools, so you can get the most from your infrastructure.</p>
+	</div><!-- /.six-col -->
+	<div class="six-col last-col">
+		<p>Our regular release cycle means that we support most of the latest applications. And our lean initial install and integrated deployment and orchestration technologies makes Ubuntu Server a great solution for simple deployment and management at scale.</p>
+	</div><!-- /.six-col -->
+
+	<div class="box-padded-feature clear">
+		<h3>Works with all your hardware and software</h3>
+		<div class="vertical-divider">
+			<div class="six-col">
+				<ul class="inline-icons clearfix">
+					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-lenovo-108x45.png" width="108" height="45" alt="Lenovo" /></li>
+					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-dell-45x45.png" width="45" height="45" alt="Dell" /></li>
+					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-ibm-46x45.png" width="46" height="45" alt="IBM" /></li>
+					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-hp-41x45.png" width="41" height="45" alt="HP" /></li>
+					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-intel-50x45.png" width="50" height="45" alt="Intel" /></li>
+				</ul>
+				<p><a href="/certification">View all certified hardware &rsaquo;</a></p>
+			</div><!-- /.six-col -->
+			<div class="six-col last-col">
+				<ul class="inline-icons clearfix">
+					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-centrify-94x45.png" width="94" height="45" alt="Centrify" /></li>
+					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-likewise-100x45.png" width="100" height="45" alt="Likewise" /></li>
+					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-openstack-45x45.png" width="45" height="45" alt="OpenStack" /></li>
+					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-openbravo-112x45.png" width="112" height="45" alt="Openbravo" /></li>
+				</ul>
+				<p><a href="/partners/certified-software">View all certified software &rsaquo;</a></p>
+			</div><!-- /.six-col -->
+		</div><!-- /.vertical-divider -->
+	</div><!-- /.box-padded-feature -->
+</div><!-- /.row -->
+
+<div class="row vertical-divider equal-height">
+	<div class="six-col">
+		<h2 id="make-your-it-budget-go-further">Scale without restrictions</h2>
+		<p>With no licence fees or subscription costs, Ubuntu Server can help you scale your data centre efficiently. Its streamlined architecture and automated deployment capabilities enables you to deliver more services with less computing power and fewer resources.</p>
+	</div><!-- /.seven-col -->
+	<div class="six-col last-col">
+				<h3>Read our success stories</h3>
+				<ul class="list">
+					<li><a href="http://insights.ubuntu.com/case-study/ubuntu-big-data-environment-provides-new-insight-into-music-industry-trends/">Ubuntu Big Data environment provides new insight into music industry trends &rsaquo;</a></li>
+					<li><a href="http://insights.ubuntu.com/case-study/ubuntu-powers-online-presence-for-heart-fm-capital-fm-and-classic-fm/">Ubuntu powers online presence for Heart FM, Capital FM and Classic FM &rsaquo;</a></li>
+					<li class="last-item"><a href="http://insights.ubuntu.com/case-study/jt-global-standardises-mission-critical-production-system-on-ubuntu/">JT Global standardises mission-critical production system on Ubuntu &rsaquo;</a></li>
+				</ul>
+	</div><!-- /.five-col -->
+</div><!-- /.row -->
+
+<div class="row row-grey row-release-schedule">
+	<div class="eight-col">
+		<img src="{{ STATIC_URL }}u/img/business/screenshot-server-release.png" width="596" height="549" alt="" />
+	</div><!-- /.eight-col -->
+	<div class="four-col last-col">
+		<h2 id="a-release-schedule-you-can-depend-on">A release schedule you can depend on</h2>
+		<h3>Stay up-to-date with free and regular updates and upgrades</h3>
+		<p>The Ubuntu Server release schedule fits in with your business needs. Standard releases every six months help you stay up-to-date with the very latest hardware and software changes. Long-term support (LTS) releases, supported for <strong>five years</strong>, are perfect if you're looking for more stability over a longer period of time.</p>
+	</div><!-- /.four-col -->
+</div><!-- /.row -->
+
+<div class="row row-support-systems-management">
+	<div class="six-col">
+		<h2 id="smarter-systems-management">Support and systems management</h2>
+		<p>The Ubuntu Advantage service offers efficient system administration with Landscape, fast problem resolution and access to Ubuntu experts as and when you need them.</p>
+		<p><a href="/server/management">Learn more about Ubuntu Advantage &rsaquo;</a></p>
+	</div><!-- /.six-col -->
+</div><!-- /.row -->
+
+<div class="row row-juju-maas equal-height vertical-divider">
+	<div class="six-col box-juju">
+		<h2>Juju &mdash; service orchestration</h2>
+		<p>With over 100 services ready to deploy, Juju enables you to build entire environments in the cloud easily with the Juju Designer GUI. Juju works with  public clouds like Amazon Web Services and HP Cloud,  private  clouds built on OpenStack or raw bare metal via MAAS.</p>
+		<p><a href="/cloud/orchestration/juju">Learn more about Juju &rsaquo;</a></p>
+	</div><!-- /.six-col -->
+	<div class="six-col box-maas last-col">
+		<h2>MAAS &mdash; bare metal provisioning</h2>
+		<p>MAAS is a system that makes it quick and easy to set up the physical hardware base on which to deploy complex services that need to scale up and down dynamically, like Ubuntu&rsquo;s OpenStack cloud infrastructure.</p>
+		<p><a href="/cloud/orchestration/maas">Learn more about MAAS &rsaquo;</a></p>
+	</div><!-- /.six-col -->
+</div><!-- .row -->
+
+<div class="row">
+	<h2 id="deploy-anywhere">Deploys anywhere</h2>
+	<div class="eight-col">
+		<h3>Choose from the most popular public clouds</h3>
+		<p>Want the power of Ubuntu Server in the public cloud? Ubuntu Cloud Guest offers all the goodness of Ubuntu Server, specially tailored for public cloud infrastructures and without any licence restrictions.</p>
+		<p>We provide images for more public cloud providers than anyone else and we make sure they&rsquo;re kept up-to-date. That means you can choose the very best software, hardware and services to meet your needs.</p>
+		<p>Ubuntu is the most widely used developer platform for open&dash;source cloud building, the reference operating system for OpenStack, and the most popular cloud guest operating system on private and public clouds globally.</p>
+		<p><a href="/cloud/public-cloud/guest">Learn more about Ubuntu Cloud Guest &rsaquo;</a></p>
+	</div><!-- /.seven-col -->
+	<div class="four-col last-col">
+		<p>Ubuntu Server is available now for:</p>
+		<ul class="list-canonical">
+			<li>Amazon Web Services</li>
+			<li>HP Cloud</li>
+			<li>Internap</li>
+			<li>Microsoft Windows Azure</li>
+			<li>Joyent</li>
+		</ul>
+	</div><!-- /.five-col -->
+</div><!-- /.row -->
+
+<div class="row">
+	<div class="four-col">
+		<div class="box-padded">
+			<h3 id="works-with-your-hardware-and-software">Our big data partners</h3>
+			<div>
+				<ul class="inline-icons text-center">
+					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-couchbase-100x35.png" width="100" height="35" alt="Couchbase" /></li>
+					<li class="last-item"><img src="{{ STATIC_URL }}vimg/third-party-logos/logo-cloudera-100x35.png" width="100" height="35" alt="Cloudera" /></li>
+					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-10gen-75x35.png" width="75" height="35" alt="10gen" /></li>
+					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-hortonworks-93x35.png" width="93" height="35" alt="Hortonworks" /></li>
+					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-lexisnexis-135x35.png" width="135" height="35" alt="LexisNexis" /></li>
+					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-mapr-60x35.png" width="60" height="35" alt="MapR" /></li>
+					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-datastax-129x35.png" width="129" height="35" alt="DataStax" /></li>
+				</ul>
+			</div>
+		</div><!-- /.box -->
+	</div><!-- /.six-col -->
+	<div class="eight-col last-col">
+		<h2 id="built-for-big-data">Built for big data and cloud</h2>
+		<h3>Speed and simplicity, on bare metal or in the cloud</h3>
+		<p>With its new rapid deployment tools, Ubuntu significantly speeds up the installation of server instances on bare metal. And our service orchestration tool, Juju, makes deploying big data services surprisingly simple &mdash; on bare metal or in the cloud. That's why vendors like 10gen, Cloudera, Couchbase, DataStax, Hortonworks, LexisNexis and Map-R partner with us.</p>
+		<p><a href="/cloud">Learn more about Ubuntu Cloud &rsaquo;</a></p>
+	</div><!-- /.six-col -->
+</div><!-- /.row -->
+
+<div class="row row-image-centered">
+	<div class="eight-col">
+		<h2 id="the-fast-track-to-virtualisation">The fast track to virtualisation</h2>
+		<p>Ready to boost efficiencies and reduce costs? Virtualise your servers with Ubuntu Server and KVM. When you use a secure, lean version of Ubuntu as a guest operating system for your application, you can create virtual machine images in minutes. KVM, Xen, VMware and LXC are all supported.</p>
+	</div><!-- /.six-col -->
+	<span><img src="{{ STATIC_URL }}u/img/pictograms/pictogram-start-153.png" width="153" height="153" alt="" /></span>
+</div><!-- /.row -->
+{% include "ubuntu/shared/_enterprise_blog.html" %}
+{% include "ubuntu/shared/_community.html" %}
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

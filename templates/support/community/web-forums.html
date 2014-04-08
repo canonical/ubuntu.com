@@ -1,0 +1,28 @@
+{% extends "ubuntu/support/_base_support.html" %}
+
+{% block title %}Web forums | Ubuntu{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Support" subsection_title="Community" page_title="Web forums"  tertiary="true" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-border">
+	<h1>Web forums</h1>
+</div>
+
+<div class="row no-border">
+	<div class="eight-col">
+		<h3>We'd like to thank our volunteer community members who run the web forums devoted to Ubuntu.</h3>
+		<p>The forums are a great place to meet other Ubuntu users and developers. You can also learn about the Ubuntu community without subscribing to high-traffic mailing lists and cluttering your inbox.</p>
+		<p>Please observe the same <a href="/about/about-ubuntu/conduct">Code of Conduct</a> on these forums as you would on any Ubuntu list or site.</p>
+	  
+		<h3>English-language forums:</h3>
+		<p><a href="http://www.ubuntuforums.org/">Ubuntu web forums</a></p>
+	  
+		<h3>Other languages:</h3>
+		<p>View web forums for non-English speakers available in <a href="/support/community/local-language">local languages</a>.</p>
+		<p>Once again, thanks to the community members who look after these forums.</p>
+	</div><!-- / .seven-col -->
+</div><!-- / .row -->
+{% endblock content %}

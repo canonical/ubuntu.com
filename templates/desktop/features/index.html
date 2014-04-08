@@ -1,0 +1,30 @@
+{% extends "ubuntu/desktop/base_desktop.html" %}
+{% block extra_body_class %}desktop-features-home{% endblock %}
+{% block title %}Features{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Features" tertiary="true"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero row-your-ubuntu">
+	<div class="four-col">
+		<h1>Your Ubuntu, your way</h1>
+		<p>Enjoy the simplicity of Ubuntu's stylish, intuitive interface. Fast, secure and with thousands of apps to choose from, Ubuntu gives you a clean and streamlined experience that you can really make your own.</p>
+		<p><a href="/download/desktop/" class="link-cta-ubuntu">Get Ubuntu now</a></p>
+	</div><!-- /.six-col -->
+	<div class="clear">{% include "ubuntu/shared/_share_this.html" %}</div>
+</div><!-- /.row -->
+
+<div class="row row-what-is-new">
+		<h2>The new smart scopes</h2>
+		<p>Ubuntu 13.10 brings ‘smart scopes’ into the Dash.  They revolutionise how you find and filter the content on your computer and the internet.</p>
+	
+		<p>Type any query into the Dash Home, and the smart scopes server will determine which categories of content are the most relevant to your search and return only the best results. The smart scopes server constantly improves its results by learning which categories and results are most useful to you over time.</p>
+</div><!-- /.row -->
+
+<div class="row row-explore-ubuntu no-border">
+{% include "ubuntu/desktop/features/nav/_explore_ubuntu.html" %}
+</div>
+{% endblock content %}
+{% block footer_extra %}{% endblock footer_extra %}

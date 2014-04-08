@@ -1,0 +1,93 @@
+{% extends "ubuntu/templates/one-column.html" %}
+
+{% block title %}Ubuntu tablet press pack{% endblock %}
+
+{% block content %}
+<div class="row row-hero">
+	<div class="four-col">
+		<h1>Ubuntu tablet press pack</h1>
+		<p>Ubuntu is a popular desktop OS that now offers a touch-based tablet interface, using gestures from all four edges of the screen to deliver a more immersive experience. It uniquely enables convergence of the mobile and PC worlds, boasting a stunning interface and a rich developer ecosystem.</p>
+	</div>
+	<div class="eight-col text-center last-col">
+		<img src="{{ STATIC_URL }}u/img/devices/tablet-hero.jpg" width="584" height="340" alt="Ubuntu on phone" style="margin-top: 10px;" />
+	</div>
+</div>
+
+<div class="row equal-height">
+	<h2>About Ubuntu tablet</h2>
+	<div class="four-col box-grey"><p>The Ubuntu family of interfaces now scales across all screens, so a phone can provide tablet, PC and TV experiences when docked</p></div>
+	<div class="four-col box-grey"><p>An Ubuntu tablet is a secure thin client that can be managed with the same tools as any Ubuntu server or desktop</p></div>
+	<div class="four-col last-col box-grey"><p>A single OS for phone, tablet, PC and TV</p></div>
+</div>
+
+<div class="row">
+	<div class="twelve-col">
+		<h2>Press and media assets</h2>
+		<p>You can find more information about Ubuntu and the tablet interface here:</p>
+	</div>
+	
+	<div class="four-col box-grey">
+		<h4>Download press release</h4>
+		<ul class="list">
+			<li><a href="{{ STATIC_URL }}u/files/section/devices/Ubuntu-tablet-press-release-en.pdf">English press release &rsaquo;</a></li>
+			<li><a href="{{ STATIC_URL }}u/files/section/devices/Ubuntu-tablet-press-release-cn.pdf">Chinese press release &rsaquo;</a></li>
+			<li class="last-item"><a href="{{ STATIC_URL }}u/files/section/devices/Ubuntu-tablet-press-release-es.pdf">Spanish press release &rsaquo;</a></li>
+		</ul>
+	</div>
+	<div class="four-col">
+		<ul class="list">
+			<li><a href="{{ STATIC_URL }}u/files/section/devices/Ubuntu-tablet-spokespeople.pdf">Download spokespeople bios &rsaquo;</a></li>
+			<li><a href="{{ STATIC_URL }}u/files/section/devices/Ubuntu-tablet-brochure.pdf">Download press brochure &rsaquo;</a></li>
+			<li class="last-item"><a href="http://design.ubuntu.com/downloads?metadata=element-logo+brand-ubuntu">Download Ubuntu logos &rsaquo;</a></li>
+		</ul>
+	</div>
+	<div class="four-col last-col ">
+		<ul class="list">
+			<li><a href="{{ STATIC_URL }}u/files/section/devices/Ubuntu-fast_facts.pdf">Download fast facts &rsaquo;</a></li>
+			<li><a href="{{ STATIC_URL }}u/files/section/devices/Ubuntu-tablet-product_image.zip">Download product image &rsaquo;</a></li>
+			<li class="last-item"><a href="/2013/02/press-pack-ubuntu-tablet/faq">Media FAQ &rsaquo;</a></li>
+		</ul>   
+	</div>
+</div>
+
+<div class="row">
+	<div class="twelve-col">
+		<h2>Videos</h2>
+		<p>Learn all about the Ubuntu mobile strategy and Ubuntu on tablets.</p>
+	</div>
+	<div class="six-col">
+		<h3>Full video <small>(6 mins) - <a href="http://v.youku.com/v_show/id_XNTE3Njc4MTM2">优酷视频 &rsaquo;</a></small></h3>
+		<p><iframe width="460" height="259" src="http://www.youtube.com/embed/h384z7Ph0gU?rel=0&vq=hd1080&showinfo=0" frameborder="0" allowfullscreen></iframe></p>
+	</div>
+	<div class="six-col last-col">
+		<h3>Trailer <small>(1 min)</small></h3>
+		<p><iframe width="460" height="259" src="http://www.youtube.com/embed/5_4fXQcxFRs?rel=0&vq=hd1080&showinfo=0" frameborder="0" allowfullscreen></iframe></p>
+	</div>
+</div>
+
+<div class="row">
+	<h2>Main features</h2>
+	<div class="six-col">
+		<ul class="list-ubuntu">
+			<li><strong>Real multitasking:</strong> Ubuntu&rsquo;s side stage allows a phone app on the screen at the same time as a tablet app to enable efficient multitasking and improve the usability of phone apps on tablets.</li>
+    		<li><strong>Secure multi-user:</strong> Multiple accounts on one tablet with full encryption for personal data, combined with the trusted Ubuntu security model makes it ideal for work and family use.</li>
+    		<li class="last-item"><strong>Voice controlled HUD productivity:</strong> The Heads-Up Display  makes it fast and easy to do complex things on touch devices and transforms touch interfaces for rich applications, bringing all the power of the PC to your tablet.</li>
+    	</ul>
+	</div>
+	<div class="six-col last-col">
+		<ul class="list-ubuntu">
+			<li><strong>Edge magic for cleaner apps:</strong> All four screen edges are used for navigation between apps, settings and controls, which means less clutter, more content, and sleeker hardware. No physical or soft buttons are required.</li>
+    		<li class="last-item"><strong>Content focus:</strong>  Media is neatly presented on the customisable home screen, which can search hundreds of sources.</li>
+		</ul>
+	</div>
+</div>
+
+<div class="row row-image-centered no-border">
+	<div class="eight-col">
+	<h2>About Canonical</h2>
+		<p>Canonical is the company behind Ubuntu and the leading provider of services for Ubuntu deployments in the enterprise. With global teams of developers, support staff and engineering centres, Canonical is uniquely positioned to help partners and customers make the most of Ubuntu. It also operates Ubuntu One, a cross-platform personal cloud service  for consumers. Canonical is a privately held company.</p>
+		<p>Ubuntu is a free, open-source platform for client, server and cloud computing. It is the most widely used Linux on the top 1000 websites by traffic, the reference platform for OpenStack deployments, the most popular guest OS on public clouds, and ships on PCs from Dell, Lenovo, HP and other brands. Since its launch in 2004, it has become the preferred choice for open desktop and scale-out computing, from Fortune 500 companies to hardware makers, content providers, software developers and consumers.</p>
+	</div>
+	<span><img src="{{ STATIC_URL }}u/img/logos/canonical-symbol-167x167.png" width="167" height="167" alt="Canonical logo" /></span>
+</div>
+{% endblock content %}

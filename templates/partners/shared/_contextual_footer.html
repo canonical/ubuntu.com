@@ -1,0 +1,18 @@
+{% if level_2 == 'hp' %}
+		<div class="feature-three three-col">
+			<h3>More information</h3>
+			<ul class="no-bullets">
+				<li><a href="http://www.hp.com/go/ubuntu">More about our relationship with HP&nbsp;&rsaquo;</a></li>
+				<li><a href="http://www.ubuntu.com/sites/default/files/active/pdfs/Brochure-Server-Edition-1004LTS.pdf">More about Ubuntu Server&nbsp;&rsaquo;</a></li>
+			</ul>
+		</div>
+		<div class="feature-four three-col last-col">
+			<h3>Further reading</h3>
+			{% include "ubuntu/templates/_further_reading_links.html" %}
+		</div>
+{% endif %}{% if level_2 != 'hp' %}
+		<div class="feature-four three-col last-col">
+			<h3>Further reading</h3>
+			{% include "ubuntu/templates/_further_reading_links.html" %}
+		</div>
+{% endif %}

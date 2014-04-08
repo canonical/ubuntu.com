@@ -1,0 +1,50 @@
+{% extends "ubuntu/about/base_about.html" %}
+
+{% block title %}Contact us{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="About" page_title="Contact us" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero">
+	<div class="eight-col">
+		<h1>Contact us</h1>
+		
+		<p>We try to respond to all enquiries as quickly as we can. Choose a contact channel below and we'll make sure we put you in touch with the right person.</p>
+		
+		<h2>Get involved</h2>
+		<p>There are many ways you can participate in the Ubuntu community, from simply giving advice to fellow Ubuntu users to becoming a maintainer of core packages.  Please <a href="http://community.ubuntu.com/contribute/">get involved</a>.</p>
+		
+		<h2>Technical assistance</h2>
+		<p>If you are looking for help with Ubuntu, <a href="/support">our support team</a> can help.</p>
+		
+		<h2>Web feedback</h2>
+		<p>If you have suggestions or corrections for ubuntu.com or canonical.com, email us at <a href="mailto:webmaster@ubuntu.com">webmaster@ubuntu.com</a> or <a href="mailto:webmaster@canonical.com">webmaster@canonical.com.</a></p>
+		
+		<h2>Sales enquiries</h2>
+		<p>Please <a href="/about/contact-us/form">contact Canonical</a> if you would like to discuss support, training or technical consulting.</p>
+		
+		<h2>Press enquiries</h2>
+		<p>Journalists or analysts seeking press information should email <a href="mailto:pr@canonical.com">pr@canonical.com</a>. We regret we cannot respond to non-media or analyst enquiries.</p>
+		
+		<div itemscope itemtype="http://schema.org/Organization">
+		<h2>Canonical address</h2>
+		<p>If you want to speak to someone right away, don't forget you can call or write to Canonical. The London-based office is a good place to start.</p>
+		</div>
+		<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+		<ul class="no-bullets">
+			<li itemprop="name"><strong>Canonical Group Limited</strong></li>
+			<li itemprop="streetAddress">5th Floor, Blue Fin Building</li>
+			<li itemprop="streetAddress">110 Southwark Street</li>
+			<li itemprop="postalCode">SE1 0SU</li>
+			<li itemprop="addressLocality">London, United Kingdom</li>
+		</ul>
+		</div>
+		<ul class="no-bullets">
+		  <li><strong>Main switchboard number:</strong><span itemprop="telephone"> +44 20 7630 2400</span></li>
+		  <li><strong>Main fax number:</strong><span itemprop="faxNumber"> +44 20 7630 2401</span></li>
+		</ul>
+	</div><!-- / .eight-col -->
+</div><!-- / .row -->
+{% endblock content %}

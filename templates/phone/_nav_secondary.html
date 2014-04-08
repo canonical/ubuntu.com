@@ -1,0 +1,10 @@
+	<ul{% if list_class %} class="{{ list_class }}"{% endif %}>
+		{% if arrow %} <li class="arrow-up"></li> {% endif %}
+		<li class="first{% if level_1 == 'phone' and not level_2 %} active{% endif %}"><a href="/phone">Overview</a></li>
+		<li{% if level_2 == 'features' %} class="active"{% endif %}><a href="/phone/features" >Features</a></li>
+		<li{% if level_2 == 'operators-and-oems' %} class="active"{% endif %}><a href="/phone/operators-and-oems" >Operators and OEMs</a></li>
+		<li{% if level_2 == 'app-ecosystem' %}  class="active"{% endif %}><a href="/phone/app-ecosystem">App ecosystem</a></li>
+		<li{% if level_2 == 'backed-by-canonical' %} class="last-item"{% endif %}{% if level_2 == 'ubuntu-for-android' %}  class="active"{% endif %}><a href="/phone/ubuntu-for-android">Ubuntu for Android</a></li>
+		<li{% if level_2 == 'carrier-advisory-group' %}  class="active"{% endif %}><a href="/phone/carrier-advisory-group">Carrier Advisory Group</a></li>
+		{% if location != "footer"%}<li{% if level_2 == 'backed-by-canonical' %} class="active"{% endif %}><a href="/phone/backed-by-canonical">Backed by Canonical</a></li>{% endif %}
+	</ul>

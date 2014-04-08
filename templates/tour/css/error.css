@@ -1,0 +1,58 @@
+/*
+ *  Error window CSS
+ *   author: Anthony Dillon
+ */
+
+.error-window{
+	left: 0;
+	width:600px;
+	top: 0;
+	display:none;
+	position: absolute;
+}
+
+.error-window .error-container{
+	padding: 63px 20px 20px 20px;
+	background: url("../img/error/background-download.png") no-repeat 0 -20px;
+	background-color: #efedec;
+	color: #4c4c4c;
+}
+
+.error-window  .control .close{
+	background:url(../img/error/close-button.png) no-repeat;
+}
+
+.error-window h1 {
+	color: #fff;
+	font-size: 24px;
+	font-weight:400;
+}
+
+.error-window  h2 {
+	padding: 10px 0;
+	font-size: 16px;
+	font-weight:400;
+	width:320px;
+	margin-top:50px;
+}
+
+.error-window .download {
+	padding: 10px 20px;
+		-moz-border-radius: 4px 4px 4px 4px;
+		-webkit-border-radius: 4px 4px 4px 4px;
+	border-radius: 4px 4px 4px 4px;
+	display: block;
+	float: right;
+	margin-top:50px;
+	font-size: 14px;
+	text-decoration: none;
+	border: 1px solid #c0b7b0;
+	cursor: pointer;
+	background: url("../img/welcome/background-link-download.png") center center repeat-x;
+	color: #fff;
+}
+
+.error-window .download:active {
+	position: relative;
+	top: 1px;
+}

@@ -1,0 +1,525 @@
+/* 
+Theme Name: Ubuntu
+Theme URI: http://canonical.com
+Description: Ubuntu theme
+Version: 1
+Author: Canonical Ltd 
+Author URI: http://canonical.com
+
+Copyright (C) 2012 Canonical Ltd 
+
+	Colour definitiions
+	-----------------------------------------------------------------
+	#dd4814; ubuntu orange (used for text links also on any site except canonical) 
+	#772953; canonical aubergine 
+	#77216f; light aubergine (consumer) 
+	#5e2750; mid aubergine (both) 
+	#2c001e; dark aubergine (enterprise) 
+	#aea79f; warm grey 
+	#333333; cool grey
+	#f7f7f7; light grey
+	
+	Notifications
+	#df382c; red 
+	#eca918; yellow 
+	#38b44a; green 
+	#19b6ee; cyan 
+	
+	Colour coded status - from negative to positive (icon: canonical circle) 
+	#df382c; red, for status that require immediate attention 
+	#aea79f; grey, for disabled status or ones that don't require attention 
+	#efb73e; yellow, for status that require attention 
+	#19b6ee; blue, for status that don't require action 
+	#38b44a; green, for positive status 
+*/	
+.animated{-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;-ms-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both;-webkit-animation-duration:1s;-moz-animation-duration:1s;-ms-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;}
+
+@-webkit-keyframes bounceIn {
+	0% { opacity: 0; -webkit-transform: scale(.3); }	
+	50% { opacity: 1; -webkit-transform: scale(1.05); }
+	70% { opacity: 1; -webkit-transform: scale(.9); }
+	100% { opacity: 1; -webkit-transform: scale(1); }
+}
+
+@-moz-keyframes bounceIn {
+	0% { opacity: 0; -moz-transform: scale(.3); }
+	50% { opacity: 1; -moz-transform: scale(1.05); }
+	70% { opacity: 1; -moz-transform: scale(.9); }
+	100% { opacity: 1; -moz-transform: scale(1); }
+}
+
+@-o-keyframes bounceIn {
+	0% { opacity: 0; -o-transform: scale(.3); }
+	50% { opacity: 1; -o-transform: scale(1.05); }
+	70% { opacity: 1; -o-transform: scale(.9); }
+	100% { opacity: 1; -o-transform: scale(1); }
+}
+
+@keyframes bounceIn {
+	0% { opacity: 0; transform: scale(.3); }
+	50% { opacity: 1; transform: scale(1.05); }
+	70% { opacity: 1; transform: scale(.9); }
+	100% { opacity: 1; transform: scale(1); }
+}
+
+body.archive header .page-item-16 {
+	background: #B83A10;
+}
+
+/* Your styles here */
+header.banner .logo-ubuntu span {
+    float: left;
+    font-weight: 300;
+    padding-left: 113px;
+    padding-right: 20px;
+    position: relative;
+    top: 6px;
+}
+
+.nav-primary li.active a {
+	background: #B83A10;
+}
+
+.nav-primary .page-item-490 {
+	position: absolute;
+	left: -999em;	
+}
+
+.nav-secondary {
+	margin-bottom: 0;
+}
+
+.nav-secondary a.active {
+	text-decoration: none;
+}
+
+body.error404 #main-content {
+	padding-bottom: 0;
+}
+body.error404 #main-content .row {
+	padding-top:0;
+	padding-bottom:0;
+}
+body.error404 #main-content .row div {
+	margin-bottom:-4px;
+}
+body.error404 #main-content .hero-box span {
+    color: #FFFFFF;
+    font-size: 36px;
+    position: absolute;
+    right: 49px;
+    top: 48px;
+}
+body.error404 #main-content .hero-box img {
+    margin-top: -12px;
+}
+body.error404 #main-content .hero-box .last-col {
+    padding-top: 70px;
+}
+
+/*
+ * Homepage styles
+ */
+
+body.home #main-content .row-hero {
+	background: url("//juju.ubuntu.com/wp-content/themes/ubuntu/library/images/grey-developer-bg.png");
+	margin-top: 0;
+	padding-top: 40px;
+	padding-bottom: 0; 
+}
+body.home #main-content .row-hero img.juju-logo {
+	margin-bottom: 10px;
+}
+body.home #main-content .row-hero img.left {
+	margin-top: 20px;
+}
+body.home #main-content .row-hero a.link-cta-ubuntu {
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+body.home #main-content .row-strap {
+	background: url("//juju.ubuntu.com/wp-content/themes/ubuntu/library/images/grey-developer-bg.png");
+		-moz-box-shadow: inset -5px 1px 6px #ccc, inset 0 0 0 transparent;
+		-webkit-box-shadow: inset -5px 1px 6px #ccc, inset 0 0 0 transparent;
+	box-shadow: inset -5px 1px 6px #ccc, 0 0 0 transparent;
+	margin-top: 20px;
+	margin-bottom: -20px;
+	border-radius: 0 4px 0 4px;
+}
+body.home #main-content .row-strap h4 {
+	margin-top: 20px;
+	font-size: 32px;
+}
+body.home #main-content .row-strap li {
+	border-right: 1px dotted #AEA79F;
+	padding-right: 20px;
+	margin-right: 10px;
+}
+body.home #main-content .row-strap li.last-item {
+	border: 0;
+}
+body.home #main-content .row-strap img {
+	border-radius: 0 0 6px 0;
+	position: absolute;
+	right: -40px;
+	top: -55px;
+}
+body.home #main-content .row-statement img {
+	margin-left: 55px;
+}
+body.home #main-content .row-statement .pull-quote {
+	margin-top: 10px;
+}
+/*
+ * Charms page styles
+ */
+body.page-charms #main-content .row-hero {
+	background: url("//juju.ubuntu.com/wp-content/themes/ubuntu/library/images/juju-charms-hero.png") no-repeat right 0;
+	min-height: 340px;
+}
+
+body.page-charms #main-content h3 img {
+	margin-right: 6px;
+	vertical-align: middle;
+}
+
+body.page-charms #main-content .row-everything-you-need div.box a {
+	display: block;
+	height: 100%;
+	color: #333;
+}
+body.page-charms #main-content .row-everything-you-need div.box a:hover {
+	color: #333;
+	text-decoration: none;
+}
+body.page-charms #main-content .row-everything-you-need div.box:hover {
+		-webkit-transition: background .3s ease-out;
+		-moz-transition: background .3s ease-out;
+	transition: background .3s ease-out;
+	background: #fafafa;
+	cursor: pointer;
+}
+body.page-charms #main-content .row-everything-you-need div.box:hover h3 {
+	color: #dd4814;
+	text-decoration: underline;
+}
+body.page-charms #main-content .row-everything-you-need div.box img {
+	margin-right: 10px;
+}
+body.page-features #main-content .row-search-charms {
+	overflow: hidden;
+	height: 400px;
+}
+/*body.page-features #main-content .row-search-charms .animation {
+		-webkit-transition: left 1s ease-in-out;
+		-moz-transition: left 1s ease-in-out;
+	transition: left 1s ease-in-out;
+	position: relative;
+	left: -330px;
+}
+body.page-features #main-content .row-search-charms .animation.run {
+	left: -40px;
+}*/
+body.page-features #main-content .row-search-charms img {
+	margin-top: -40px;
+	margin-left: -40px;
+}
+body.page-features #main-content .row-config-deploy {
+	overflow: hidden;
+	height: 480px;
+}
+body.page-features #main-content .row-config-deploy .animation {
+		-webkit-transition: top 1s ease-in-out;
+		-moz-transition: top 1s ease-in-out;
+	transition: top 1s ease-in-out;
+	position: relative;
+	left: 0;
+	top: -240px;
+}
+body.page-features #main-content .row-config-deploy .animation.run {
+	top: -712px;
+}
+
+body.page-features #main-content .row-connect {
+	background: url("//juju.ubuntu.com/wp-content/themes/ubuntu/library/images/grey-developer-bg.png");
+	overflow: hidden;
+}
+body.page-features #main-content .row-connect .animation {
+	position: relative;
+}
+body.page-features #main-content .row-connect .animation img {
+	-webkit-transition: all .6s ease 0;
+	   -moz-transition: all .6s ease 0;
+		 -o-transition: all .6s ease 0;
+			transition: all .6s ease 0;
+	position: relative;
+	z-index: 2;
+	opacity: 0;
+}
+body.page-features #main-content .row-connect .animation img.service-1 {
+	left: 0;
+	-webkit-animation-delay:.3s;
+	-moz-animation-delay:.3s;	
+	-o-animation-delay:.3s;
+	animation-delay:.3s;
+}
+body.page-features #main-content .row-connect .animation img.service-2 {
+	left: 150px;
+	top: 50px;
+}
+body.page-features #main-content .row-connect .animation img.service-3 {
+	-webkit-animation-delay:.6s;
+	-moz-animation-delay:.6s;	
+	-o-animation-delay:.6s;
+	animation-delay:.6s;
+	left: 300px;
+}
+body.page-features #main-content .row-connect .animation.run img.service-1,
+body.page-features #main-content .row-connect .animation.run img.service-2,
+body.page-features #main-content .row-connect .animation.run img.service-3 {
+	-webkit-animation-name: bounceIn;
+	-moz-animation-name: bounceIn;
+	-o-animation-name: bounceIn;
+	animation-name: bounceIn;
+}
+body.page-features #main-content .row-connect .animation img.connection {
+		-webkit-transition: opacity .4s ease 1.6s;
+		-moz-transition: opacity .4s ease 1.6s;
+	transition: opacity .4s ease 1.6s;
+	margin: 0 auto;
+	display: block;
+	position: relative;
+	opacity: 0;
+	z-index: 2;
+}
+body.page-features #main-content .row-connect .animation img.connection.wordpress-apache {
+	top: -85px;
+	left: -180px;
+}
+body.page-features #main-content .row-connect .animation img.connection.wordpress-mysql {
+	left: 165px;
+    top: -105px;
+    	-webkit-transition-delay:1.5s;
+		-moz-transition-delay:1.5s;
+	transition-delay:1.5s;
+}
+body.page-features #main-content .row-connect .animation.run img.connection {
+	opacity: 1;	
+}
+body.page-features #main-content .row-connect .animation .connection-line {
+		-webkit-transition: width .6s ease 1.2s;
+		-moz-transition: width .6s ease 1.2s;
+	transition: width .6s ease 1.2s;
+	height: 4px;
+	background: #38B44A;
+    position: relative;
+    width: 0;
+	z-index: 1;
+}
+body.page-features #main-content .row-connect .animation.run .connection-line {
+	width: 170px;
+}
+body.page-features #main-content .row-connect .animation .connection-line.wordpress-apache {
+	-webkit-transform: rotate(-164deg); 
+	-moz-transform: rotate(-164deg); 
+	-ms-transform: rotate(-164deg);
+	-o-transform: rotate(-164deg);
+	transform: rotate(-164deg);
+	left: 183px;
+	top: 127px;
+}
+body.page-features #main-content .row-connect .animation .connection-line.wordpress-mysql {
+    -webkit-transform: rotate(-18deg); 
+	-moz-transform: rotate(-18deg); 
+	-ms-transform: rotate(-18deg);
+	-o-transform: rotate(-18deg);
+	transform: rotate(-18deg);
+		-webkit-transition-delay:1.3s;
+		-moz-transition-delay:1.3s;
+	transition-delay:1.3s;
+	left: 530px;
+	top: 127px;
+}
+body.page-features #main-content .row-monitor-diagnose {
+	overflow: hidden;
+}
+body.page-features #main-content .row-monitor-diagnose .animation img {
+	position: absolute;
+	top: 0;
+	left: 30px;
+	display: none;
+}
+body.page-features #main-content .row-monitor-diagnose .animation img.show,
+body.page-features #main-content .row-monitor-diagnose .animation img.image-1 {
+	display: block;
+}
+body.page-features #main-content .row-scale-out {
+	background: url("//juju.ubuntu.com/wp-content/themes/ubuntu/library/images/juju-features-scale-out.png") no-repeat right -80px;
+}
+body.page-features #main-content .row-landscape {
+	background: url("//juju.ubuntu.com/wp-content/themes/ubuntu/library/images/juju-features-landscape.png") no-repeat left bottom;
+	height: 294px;
+}
+
+body.page-deployment #main-content .row-hero h2 {
+	border-top: 1px dotted #AEA79F;
+	padding-top: 24px;
+	margin-bottom: 30px;
+}
+body.page-deployment #main-content .row-added-intelligence {
+	overflow: hidden;
+	height: 400px;
+}
+body.page-deployment #main-content .inline-icons li {
+	margin-right: 40px;
+	margin-bottom: 30px;
+}
+body.page-deployment #main-content .inline-icons li.last-item {
+	margin-right: 0;
+}
+body.page-deployment .row-scale {
+	background: #F7F7F7 url('//juju.ubuntu.com/wp-content/uploads/2013/09/scale-in-all-direction-5.png') 403px 100% no-repeat; 
+	padding-bottom: 50px;
+}
+
+body #context-footer .download-footer {
+	background: url("//juju.ubuntu.com/wp-content/themes/ubuntu/library/images/picto-download-120.png") no-repeat scroll 240px center;
+	padding-right: 80px;
+}
+body #main-content .numbered-steps li {
+	padding: 20px 0 20px 20px;
+}
+body #main-content .numbered-steps li span,
+body.page-install #main-content .step span {
+	background-color: #DD4814;
+	border: 3px solid #DD4814;
+	border-radius: 20px;
+	color: #FFFFFF;
+	display: block;
+	float: left;
+	font-size: 1.25em;
+	height: 18px;
+	margin: -5px 10px 0.333em -1.222em;
+	padding: 6px;
+	line-height: 0.9;
+	text-align: center;
+	vertical-align: top;
+	width: 18px;
+}
+body.page-install #main-content .step span {
+	background-color: #aea79f;
+	border: 3px solid #aea79f;
+	border-radius: 40px;
+	font-size: 1.25em;
+	height: 26px;
+	margin-left: 0;	
+	padding: 12px 21px 20px 19px;
+	margin-right: 12px;
+}
+body.page-install #main-content .step {
+	margin: 0;
+	font-size: 32px;
+}
+body.page-install #main-content .step-one {
+	margin-bottom: 20px;
+}
+body.page-install #main-content .install-info h2,
+body.page-install #main-content .install-info-v2 h2 {
+	margin-bottom: 20px;
+}
+body.page-install #main-content .install-info img,
+body.page-install #main-content .install-info-v2 img {
+	display: block;
+	margin: 0 auto 20px;
+}
+
+body.page-install #main-content p.ubuntu-upgrade {
+    background: #F7F7F7;
+    border-top: 2px solid #E3E3E3;
+    display: block;
+    margin: 0 -21px -21px;
+    padding: 20px 0 20px 20px;
+}
+
+/* Community */
+body.page-community #main-content .row-narrow {
+	padding: 20px 40px;
+}
+body.page-community #main-content h2 {
+	margin-bottom: 16px;
+}
+body.page-community #main-content h3 img,
+body.page-community #main-content .row-narrow img {
+	vertical-align: middle;
+	margin-right: 10px;
+}
+body.page-community #main-content .row-juju-background {
+	background: url("/wp-content/uploads/2013/08/grey-developer-bg.png");
+}
+body.page-community #main-content .row-narrow p {
+	line-height: 1;	
+}
+body.page-resources #main-content .row-hero,
+body.page-easy-tasks-for-new-developers #main-content .row-hero {
+	background: url("//juju.ubuntu.com/wp-content/themes/ubuntu/library/images/juju-resources-hero.png") no-repeat scroll right center;
+	margin-top: 0;
+	padding-top: 40px;
+}
+body.page-juju-gui #main-content .row-hero {
+	background:url("//juju.ubuntu.com/wp-content/themes/ubuntu/library/images/juju-overview-window.png") no-repeat scroll right bottom;
+}
+
+footer.global .footer-a li li.social-facebook,
+footer.global .footer-a li li.social-twitter,
+footer.global .footer-a li li.social-google {
+	background: url("//juju.ubuntu.com/wp-content/themes/ubuntu/library/images/icons/icon-social-14.png") no-repeat scroll 0 0;
+	padding-left: 20px;
+	height: 14px;
+	margin-bottom: 8px;
+		-moz-border-radius: 0 4px 0 0;
+		-webkit-border-radius: 0 4px 0 0;
+	border-radius: 0 4px 0 0;
+}
+footer.global .footer-a li li.social-facebook {
+	margin-top: 4px;
+}
+footer.global .footer-a li li.social-twitter {
+	background-position: 0 -14px; 
+}
+footer.global .footer-a li li.social-google {
+	background-position: 0 -28px; 
+}
+footer.global .footer-a li li.social-facebook:hover {
+	background-position: 0 -42px; 
+}
+footer.global .footer-a li li.social-twitter:hover {
+	background-position: 0 -56px; 
+}
+footer.global .footer-a li li.social-google:hover {
+	background-position: 0 -70px; 
+}
+footer.global .footer-a li li.social-facebook a,
+footer.global .footer-a li li.social-twitter a,
+footer.global .footer-a li li.social-google a {
+	line-height: 14px;
+}
+
+/* promo (on home page) */
+.row-promo {
+	background: url("http://assets.ubuntu.com/sites/ubuntu/latest/u/img/homepage/charm/juju_bg.png") repeat;
+	padding-right: 0;
+	padding-bottom: 0;
+}
+.row-promo div {
+	background: url(http://assets.ubuntu.com/sites/ubuntu/latest/u/img/homepage/charm/image-juju-charms.png) 100% 0 no-repeat;
+	padding-right: 58%;
+	padding-bottom: 23px;
+}
+.row-promo h2 {
+	background: url(http://assets.ubuntu.com/sites/ubuntu/latest/u/img/homepage/charm/icon-juju-logo.png) no-repeat;
+	padding-top: 60px;
+}
+.row-promo p {
+	font-size: 19.5px;
+	padding-bottom: 10px;
+}

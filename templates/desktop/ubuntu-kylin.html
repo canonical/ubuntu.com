@@ -1,0 +1,102 @@
+{% extends "ubuntu/desktop/base_desktop.html" %}
+
+{% block title %}China's own Ubuntu{% endblock %}
+{% block meta_description %}Ubuntu Kylin is a Chinese flavour of Ubuntu. Canonical partnered with CSIP and NUDT to produce a fully localised and customised version of Ubuntu.{% endblock %}
+{% block meta_keywords %}Ubuntu, Ubuntu Kylin, OS, China, Chinese, translated, China Software and Integrated Chip Promotions Centre, CSIP, National University of Defense Technology, NUDT, 13.10, download{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Ubuntu Kylin" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero">
+	<a class="lang-switch" href="/desktop/ubuntu-kylin-chinese" lang="zh">中国版 &rsaquo;</a>
+	<div class="six-col no-margin-bottom">
+		<h1>China&rsquo;s own Ubuntu</h1>
+		<p>The Ubuntu Kylin Desktop Project, a formal part of Ubuntu since 13.04, is bringing Ubuntu to China. Ubuntu Kylin has all the features and functions of standard Ubuntu, but with fully localised interfaces and a customised experience built specifically for Chinese users.</p>
+		<p><a href="/download/desktop/zh-CN" class="link-cta-ubuntu">Download Ubuntu Kylin</a></p>
+		{% include "ubuntu/shared/_share_this.html" %}
+	</div><!-- / .five-col -->
+</div><!-- / .row -->
+
+<div class="row row-partnership">
+	<ul class="no-bulletes inline-icons clearfix">
+		<li><img src="{{ STATIC_URL }}u/img/desktop/logo-canonical-288.png" alt="Canonical" width="288" height="40" /></li>
+		<li><img src="{{ STATIC_URL }}u/img/desktop/logo-csip-180.png" alt="CSIP" width="180" height="71" /></li>
+		<li><img src="{{ STATIC_URL }}u/img/desktop/logo-nudt-288.png" alt="NUDT" width="288" height="72" /></li>
+	</ul>
+	<h2>A global partnership</h2>
+	<p class="six-col">To create Ubuntu Kylin, Canonical partnered with China Software and Integrated Circuit Promotions Centre (CSIP) and the National University of Defense Technology (NUDT) to produce a fully localised and customised version of Ubuntu.</p>
+	<p class="six-col last-col">The team is working together with the open-source community to adapt the core features of Ubuntu to better suit Chinese users. Along with localised versions of the Ubuntu Software Centre, Ubuntu One and much of the Unity interface, Ubuntu Kylin also features some of the most commonly used Chinese applications.</p>
+</div><!-- / .row -->
+
+<div class="row row-grey">
+	<div class="six-col no-margin-bottom">
+		<img  class="touch-border pull-left-40" src="{{ STATIC_URL }}u/img/desktop/image-youker-assistant.png" alt="" width="469" height="308" />
+	</div>
+	<div class="six-col last-col">
+		<h2>Youker Assistant</h2>
+		<p>Youker is a simple yet powerful tool built to help Windows users migrate to Ubuntu as quickly and as smoothly as possible. This integrated tool aids with routine system maintenance tasks such as detecting hardware and handling interface customisation. You don&rsquo;t need to worry about learning the Ubuntu way with Youker as your assistant.</p>
+	</div>
+</div><!-- / .row -->
+
+<div class="row">
+	<div class="six-col">
+		<h2>Smart Scopes</h2>
+		<p>Chinese users get special, localised smart scopes in the Ubuntu Kylin Dash, which make searching for online content easy and relevant. A search for images will include online results from Sogou, videos will bring up popular Youku clips, and music results come via Baidu &mdash; all alongside results from your local collections. It&rsquo;s the smarter way to find content.</p>
+	</div>
+	<div class="six-col  no-margin-bottom last-col">
+		<img class="touch-border" src="{{ STATIC_URL }}u/img/desktop/image-smart-scopes.png" alt="" width="482" height="302"/>
+	</div>
+</div><!-- / .row -->
+
+<div class="row">
+	<div class="six-col no-margin-bottom">
+		<img  class="touch-border pull-left-40" src="{{ STATIC_URL }}u/img/desktop/image-chinese-lunar-calendar.png" alt="" width="469" height="260" />
+	</div>
+	<div class="six-col last-col">
+		<h2>Chinese lunar calendar</h2>
+		<p>As well as the western Gregorian layout, Ubuntu Kylin&rsquo;s in-built calendar includes the traditional Chinese lunar layout, so Chinese users can keep up with their day-to-day plans while also respecting national holidays.</p>
+	</div>
+</div><!-- / .row -->
+
+<div class="row row-grey">
+	<div class="six-col">
+		<h2>Kingsoft WPS Office</h2>
+		<p>The most popular office suite in China is available on Ubuntu Kylin. We&rsquo;ve worked closely with Kingsoft, so you can make full use of its WPS Office package for word processing, spreadsheets and presentations.</p>
+	</div>
+	<div class="six-col no-margin-bottom last-col">
+		<img class="touch-border screenshot-shadowed" src="{{ STATIC_URL }}u/img/desktop/image-kingsoft-wps-office.png" alt="" width="488" height="260" />
+	</div>
+</div><!-- / .row -->
+
+<div class="row row-grey row-image-centered">
+	<span><img src="{{ STATIC_URL }}u/img/desktop/image-instant-messaging.png" alt="" width="289" height="211" /></span>
+	<div class="seven-col">
+		<h2>Lotus instant messaging</h2>
+		<p>Lotus instant messenger was written from the ground up by NUDT.  Not only can you keep up with friends and family, but colleagues as well, as it was designed for the enterprise environment. </p>
+	</div>
+</div><!-- / .row -->
+
+<div class="row row-image-centered">
+	<div class="eight-col">
+		<h2>Other key features</h2>
+		<ul class="list-ubuntu clear">
+			<li>Efficient and intelligent Chinese keyboard input.</li>
+			<li>Ubuntu Kylin themed icons and wallpapers.</li>
+			<li>Coming soon &mdash; Kingsoft Kuaipan cloud storage service, complete with 100GB of free storage for every user.</li>
+		</ul>
+	</div>
+	<span><img src="{{ STATIC_URL }}u/img/desktop/image-kylin-icons.png" alt="" width="260" height="190" /></span>
+</div><!-- / .row -->
+
+<div class="row row-ubuntu-kylin-more row-image-centered no-border">
+	<span><img src="{{ STATIC_URL }}u/img/desktop/image-kylin.png" alt="image-kylin" width="320" height="320" /></span>
+	<div class="seven-col last-col">
+		<h2>Find out more</h2>
+		<p>If you&rsquo;re keen to learn more about Ubuntu Kylin, join the community or get more  information, visit the official site.</p>
+		<p><a href="http://www.ubuntukylin.com">Visit UbuntuKylin.com &rsaquo;</a></p>
+	</div>
+</div>
+
+{% endblock content %}

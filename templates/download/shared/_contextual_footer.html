@@ -1,0 +1,59 @@
+{% if level_2 == 'desktop' and not level_3 or level_2 == 'zh-CN' or level_2 == 'windows-installer' or level_2 == 'alternative-downloads' %}	
+	<div class="feature-two four-col">
+		<h3>Interested in Ubuntu Desktop for your enterprise?</h3>
+		<p><a href="/desktop/contact-us">Get in touch&nbsp;&rsaquo;</a></p>
+	</div><!-- /.feature-two -->
+{% else %}
+{% if level_2 == 'cloud' and not level_3 %}
+	<div class="feature-two four-col">
+		<h3>Contact us about Ubuntu Cloud</h3>
+		<p><a href="/cloud/contact-us">Get in touch&nbsp;&rsaquo;</a></p>
+	</div><!-- /.feature-two -->
+{% else %}
+{% if level_2 == 'cloud' and level_3 == 'install-ubuntu-cloud' or level_3 == 'cloud-archive-instructions' %}
+	<div class="feature-two three-col">
+		<h3>Download Ubuntu Server for Cloud</h3>
+		<p><a href="/download/cloud">Download now&nbsp;&rsaquo;</a></p>
+	</div><!-- /.feature-two -->
+	<div class="feature-three three-col">
+		<h3>Contact us about Ubuntu Cloud</h3>
+		<p><a href="/cloud/contact-us">Get in touch&nbsp;&rsaquo;</a></p>
+	</div><!-- /.feature-two -->
+{% else %}
+{% if level_2 == 'cloud' %}
+	<div class="feature-two four-col">
+		<h3>Download Ubuntu Server for Cloud</h3>
+		<p><a href="/download/cloud">Download now&nbsp;&rsaquo;</a></p>
+	</div><!-- /.feature-two -->
+{% else %}
+{% if level_2 == 'server' and level_3 %}
+	<div class="feature-two three-col">
+		<h3>Download Ubuntu Server</h3>
+		<p><a href="/download/server">Download now&nbsp;&rsaquo;</a></p>
+	</div><!-- /.feature-two -->
+	<div class="feature-three three-col">
+		<h3>Contact us about Ubuntu Server</h3>
+		<p><a href="/server/contact-us">Get in touch&nbsp;&rsaquo;</a></p>
+	</div><!-- /.feature-two -->
+{% else %}
+{% if level_2 == 'server' and not level_3 %}
+	<div class="feature-three three-col">
+		<h3>Contact us about Ubuntu Server</h3>
+		<p><a href="/server/contact-us">Get in touch&nbsp;&rsaquo;</a></p>
+	</div><!-- /.feature-two -->
+{% else %}
+{% if level_2 == null %}
+{% else %}
+	<div class="feature-two three-col">
+		<h3>Download Ubuntu Desktop</h3>
+		<p><a href="/download/desktop">Download now&nbsp;&rsaquo;</a></p>
+	</div><!-- /.feature-two -->
+	<div class="feature-three three-col">
+		<h3>Interested in Ubuntu Desktop for your enterprise?</h3>
+		<p><a href="/desktop/contact-us">Get in touch&nbsp;&rsaquo;</a></p>
+	</div><!-- /.feature-two -->
+{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}
+	<div class="feature-four three-col last-col">
+		<h3>Further reading</h3>
+		{% include "ubuntu/templates/_further_reading_links.html" %}
+	</div><!-- /.feature-four -->
