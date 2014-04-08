@@ -1,10 +1,10 @@
-{% extends "ubuntu/tv/base_tv.html" %}
+{% extends "tv/base_tv.html" %}
 
 {% block title %}Ubuntu TV{% endblock %}
 {% block extra_body_class %}tv-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="TV" page_title="Overview"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="TV" page_title="Overview"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -32,7 +32,7 @@
 		<h2>Experience beautiful simplicity</h2>
 		<p>One interface, one device and one remote. And, of course, Ubuntu One.</p>
 		<p><a href="/tv/experience">Learn more about the experience &rsaquo;</a></p>
-	<p><img src="{{ STATIC_URL }}u/img/devices/screenshot-tv-homepage-wide-image-900x334.jpg" class="left touch-border" alt="Ubuntu TV's featured movie window" width="900" height="334" /></p>
+	<p><img src="{{ STATIC_URL }}img/devices/screenshot-tv-homepage-wide-image-900x334.jpg" class="left touch-border" alt="Ubuntu TV's featured movie window" width="900" height="334" /></p>
 </div><!-- /.row -->
 	
 <div class="row no-border">
@@ -41,9 +41,9 @@
 		<p><a href="/tv/features-and-specs">See the full list of features &rsaquo;</a></p>
 
 		<ul class="no-bullets">
-			<li class="four-col"><img src="{{ STATIC_URL }}u/img/devices/photo-tv-features-screen-1-282x220.jpg" alt="Ubuntu TV watch or record functionality" /></li>
-			<li class="four-col"><img src="{{ STATIC_URL }}u/img/devices/photo-tv-features-screen-2-282x220.jpg" alt="Ubuntu TV view trailer, rent or buy film functionality" /></li>
-			<li class="four-col last-col"><img src="{{ STATIC_URL }}u/img/devices/photo-tv-features-screen-3-282x220.jpg" alt="Ubuntu TV recorded movies and programs window" /></li>
+			<li class="four-col"><img src="{{ STATIC_URL }}img/devices/photo-tv-features-screen-1-282x220.jpg" alt="Ubuntu TV watch or record functionality" /></li>
+			<li class="four-col"><img src="{{ STATIC_URL }}img/devices/photo-tv-features-screen-2-282x220.jpg" alt="Ubuntu TV view trailer, rent or buy film functionality" /></li>
+			<li class="four-col last-col"><img src="{{ STATIC_URL }}img/devices/photo-tv-features-screen-3-282x220.jpg" alt="Ubuntu TV recorded movies and programs window" /></li>
 		</ul>
 </div><!-- /.row -->
 	{% endblock content %}

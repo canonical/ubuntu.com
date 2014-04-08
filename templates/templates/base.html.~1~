@@ -16,12 +16,12 @@
 
 <title>{% block title %}{% endblock %} | Ubuntu</title>
 
-<link rel="shortcut icon" href="{{ STATIC_URL }}u/img/favicon.ico" type="image/x-icon" />
-<link href='{{ STATIC_URL }}u/css/ubuntu-font.css' rel='stylesheet' type='text/css' />
-<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}u/css/ubuntu-styles.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}u/css/global.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}u/css/styles.css" />
-<link rel="stylesheet" type="text/css" media="print" href="{{ STATIC_URL }}u/css/core-print.css" />
+<link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" type="image/x-icon" />
+<link href='{{ STATIC_URL }}css/ubuntu-font.css' rel='stylesheet' type='text/css' />
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/ubuntu-styles.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/global.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/styles.css" />
+<link rel="stylesheet" type="text/css" media="print" href="{{ STATIC_URL }}css/core-print.css" />
 
 <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico">
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ STATIC_URL }}img/apple-touch-icon-144x144-precomposed.png">
@@ -37,45 +37,45 @@
 {% block head_extra %}{% endblock %}
 
 </head>
-<body class="{% if level_1 != "" %}{% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}{% endif %}{% if level_2 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}{% endif %}{% if level_3 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}-{{ level_3 }} {% endif %} {% include "ubuntu/templates/body-class.html" %}{% if extra_body_class != "" %} {% block extra_body_class %}{% endblock %}{% endif %}">
+<body class="{% if level_1 != "" %}{% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}{% endif %}{% if level_2 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}{% endif %}{% if level_3 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}-{{ level_3 }} {% endif %} {% include "templates/body-class.html" %}{% if extra_body_class != "" %} {% block extra_body_class %}{% endblock %}{% endif %}">
 
 <header class="banner global" role="banner">
 {% block header_banner %}
 	<nav role="navigation" class="nav-primary nav-right">
 		<div class="logo">
 			<a class="logo-ubuntu" href="/">
-				<img width="106" height="25" src="{{ STATIC_URL }}u/img/logos/logo-ubuntu-orange.png" alt="" />
+				<img width="106" height="25" src="{{ STATIC_URL }}img/logos/logo-ubuntu-orange.png" alt="" />
 			</a>
 		</div>
 		<ul>
 			<li class="accessibility-aid"><a accesskey="s" href="#main-content">Jump to content</a></li>
 
 			<li><a class="first{% if level_1 == 'cloud' %} active{% endif %}" href="/cloud">Cloud</a>
-				{% include "ubuntu/cloud/_nav_secondary.html" with arrow="true" promo="true" %}
+				{% include "cloud/_nav_secondary.html" with arrow="true" promo="true" %}
 			</li>
 			<li><a{% if level_1 == 'server' %} class="active"{% endif %} href="/server">Server</a>
-				{% include "ubuntu/server/_nav_secondary.html" with arrow="true" promo="true" %}
+				{% include "server/_nav_secondary.html" with arrow="true" promo="true" %}
 			</li>
 			<li><a {% if level_1 == 'desktop' %} class="active"{% endif %} href="/desktop">Desktop</a>
-				{% include "ubuntu/desktop/_nav_secondary.html" with arrow="true" promo="true" %}
+				{% include "desktop/_nav_secondary.html" with arrow="true" promo="true" %}
 			</li>
 			<li><a{% if level_1 == 'phone' %} class="active"{% endif %} href="/phone">Phone</a>
-				{% include "ubuntu/phone/_nav_secondary.html" with arrow="true" promo="true" %}
+				{% include "phone/_nav_secondary.html" with arrow="true" promo="true" %}
 			</li>
 			<li><a{% if level_1 == 'tablet' %} class="active"{% endif %} href="/tablet">Tablet</a>
-				{% include "ubuntu/tablet/_nav_secondary.html" with arrow="true" promo="true" %}
+				{% include "tablet/_nav_secondary.html" with arrow="true" promo="true" %}
 			</li>
 			<li><a{% if level_1 == 'tv' %} class="active"{% endif %} href="/tv">TV</a>
-				{% include "ubuntu/tv/_nav_secondary.html" with arrow="true" promo="true" %}
+				{% include "tv/_nav_secondary.html" with arrow="true" promo="true" %}
 			</li>
 			<li><a{% if level_1 == 'management' %} class="active"{% endif %} href="/management">Management</a>
-				{% include "ubuntu/management/_nav_secondary.html" with arrow="true" promo="true" %}
+				{% include "management/_nav_secondary.html" with arrow="true" promo="true" %}
 			</li>
 			<li><a{% if level_1 == 'download' %} class="active"{% endif %} href="/download">Download</a>
-				{% include "ubuntu/download/_nav_secondary.html" with arrow="true" promo="true" %}
+				{% include "download/_nav_secondary.html" with arrow="true" promo="true" %}
 			</li>
 		</ul>
-		{% include "ubuntu/templates/search.html" %}
+		{% include "templates/search.html" %}
 	</nav>
 {% endblock header_banner %}
 </header>
@@ -99,12 +99,12 @@
 </div><!-- /.wrapper -->
 
 <!-- footer content goes here -->
-{% include "ubuntu/templates/footer.html" %}
+{% include "templates/footer.html" %}
 
-<script src="{{ STATIC_URL }}u/js/plugins/yui-combined-min.js"></script>
-<script src="{{ STATIC_URL }}u/js/core.js"></script>
-<script src="{{ STATIC_URL }}u/js/scratch.js"></script>
-<script src="{{ STATIC_URL }}u/js/global.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/yui-combined-min.js"></script>
+<script src="{{ STATIC_URL }}js/core.js"></script>
+<script src="{{ STATIC_URL }}js/scratch.js"></script>
+<script src="{{ STATIC_URL }}js/global.js"></script>
 
 {% block footer_extra %}{% endblock %}
 

@@ -1,4 +1,4 @@
-{% extends "ubuntu/management/base_management.html" %}
+{% extends "management/base_management.html" %}
 
 {% block meta_description %}Landscape, the systems management tool provided with Ubuntu Advantage, Canonical's service programme, allows you to manage large-scale deployments of Ubuntu machines as easily as one, making it far more cost-effective to support large networks of desktops, servers and cloud instances.{% endblock %}
 
@@ -9,7 +9,7 @@
 {% block extra_body_class %}management-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Management" page_title="Overview"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Management" page_title="Overview"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -22,7 +22,7 @@
 		<p><a href="/management/contact-us">Contact us about Ubuntu Advantage &rsaquo;</a></p>
 	</div><!-- /.six-col -->
 	<div class="four-col last-col">
-		<img alt="" width="288" height="155" src="{{ STATIC_URL }}u/img/management/ubuntu-advantage-hero.png" />
+		<img alt="" width="288" height="155" src="{{ STATIC_URL }}img/management/ubuntu-advantage-hero.png" />
 	</div><!-- /.six-col -->
 </div><!-- /.row-hero -->
 
@@ -146,7 +146,7 @@
 	</div>
 </div><!-- /.row-->
 
-{% include "ubuntu/shared/_live_chat.html" %}
+{% include "shared/_live_chat.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

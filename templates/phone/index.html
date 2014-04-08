@@ -1,4 +1,4 @@
-{% extends "ubuntu/phone/base_phone.html" %}
+{% extends "phone/base_phone.html" %}
 
 {% block title %}Ubuntu on phones{% endblock %}
 
@@ -8,7 +8,7 @@
 {% block extra_body_class %}phone-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Overview"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Overview"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -26,29 +26,29 @@
 		<h3>Feature complete</h3>
 		<p>Run all of your favourite apps from the launcher and swipe effortlessly between them using Ubuntu&rsquo;s magic edges. Use the Dash to search phone and web, and keep your life and content organised with the brilliance of Ubuntu scopes.</p>
 		<p><a href="/phone/design">Learn more about Ubuntu's features&nbsp;&rsaquo;</a></p>
-		<img src="{{ STATIC_URL }}u/img/devices/phone-home-design-269x185.jpg" width="269" height="185" alt="Ubuntu phone running the gallery app" />
+		<img src="{{ STATIC_URL }}img/devices/phone-home-design-269x185.jpg" width="269" height="185" alt="Ubuntu phone running the gallery app" />
 	</div>
 
 	<div class="four-col">
 		<h3>Ready for your phone</h3>
 		<p>With all-native core apps and no Java overhead, Ubuntu runs well on entry-level smartphones &mdash; yet it uses the same drivers as Android. So now it&rsquo;s easy to bring a better experience to customers all over the world.</p>
 		<p><a href="/phone/operators-and-oems">Learn about working with us&nbsp;&rsaquo;</a></p>
-		<img src="{{ STATIC_URL }}u/img/devices/phone-home-industry-269x192.jpg" width="269" height="192" alt="Two Ubuntu phones side by side" />
+		<img src="{{ STATIC_URL }}img/devices/phone-home-industry-269x192.jpg" width="269" height="192" alt="Two Ubuntu phones side by side" />
 	</div>
 
 	<div class="four-col last-col">
 		<h3>Everything developers need</h3>
 		<p>Create gorgeous native apps or lightweight HTML5 apps easily, with our SDK. Repurpose web apps fast, so they look and work like their native cousins. With one OS for all form factors, one app can have interfaces for phone and desktop in just one upload to one store.</p>
 		<p><a href="/phone/app-ecosystem">Learn more about developing apps&nbsp;&rsaquo;</a></p>
-		<img src="{{ STATIC_URL }}u/img/devices/phone-home-developers-290x188.jpg" width="290" height="188" alt="Collection of top apps available on Ubuntu phone" />
+		<img src="{{ STATIC_URL }}img/devices/phone-home-developers-290x188.jpg" width="290" height="188" alt="Collection of top apps available on Ubuntu phone" />
 	</div>
 </div><!-- /.row -->
 
-{% include "ubuntu/shared/_edge_promo.html" %}
+{% include "shared/_edge_promo.html" %}
 
 <div class="row row-image-centered">
 	<span class="four-col">
-		<img src="{{ STATIC_URL }}u/img/logos/canonical-symbol-167x167.png" width="167" height="167" alt="Canonical logo" />
+		<img src="{{ STATIC_URL }}img/logos/canonical-symbol-167x167.png" width="167" height="167" alt="Canonical logo" />
 	</span>
 	<div class="eight-col last-col">
 		<h2>Backed by Canonical</h2>
@@ -66,7 +66,7 @@
 	</div>
 	<div class="twelve-col no-margin-bottom">
 		<ul class="inline inline-icons">
-			{% include "ubuntu/phone/shared/_cag_list.html" with image_width="120" image_height="60" small="true" %}
+			{% include "phone/shared/_cag_list.html" with image_width="120" image_height="60" small="true" %}
 		</ul>
 	</div>
 </div>

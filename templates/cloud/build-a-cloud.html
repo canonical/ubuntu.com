@@ -1,4 +1,4 @@
-{% extends "ubuntu/cloud/base_cloud.html" %}
+{% extends "cloud/base_cloud.html" %}
 
 {% block title %}Build a cloud | Cloud{% endblock %}
 
@@ -7,7 +7,7 @@
 {% block meta_keywords %}Ubuntu OpenStack, OpenStack, cloud, Juju, Maas, Ubuntu Guest, private cloud, public cloud{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Build a cloud" %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Build a cloud" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -17,14 +17,14 @@
 		<h2>Everything you need for an OpenStack cloud</h2>
 	</div><!-- /.six-col -->
 	<div class="eight-col last-col">
-		<img src="{{ STATIC_URL }}u/img/cloud/image-hero-build-infographic.png" alt="" />
+		<img src="{{ STATIC_URL }}img/cloud/image-hero-build-infographic.png" alt="" />
 	</div><!-- /.six-col -->
 </div>
 <div class="row tight-section">
 	<div class="vertical-divider">
 		<div class="three-col ubuntu-column">
-			<img src="{{ STATIC_URL }}u/img/pictograms/image-picto-ubuntu.png" width="77" height="77" alt="" />
-			<img src="{{ STATIC_URL }}u/img/pictograms/image-picto-openstack.png" width="77" height="77" alt="" />
+			<img src="{{ STATIC_URL }}img/pictograms/image-picto-ubuntu.png" width="77" height="77" alt="" />
+			<img src="{{ STATIC_URL }}img/pictograms/image-picto-openstack.png" width="77" height="77" alt="" />
 			<h3>Ubuntu Server with OpenStack</h3>
 			<p class="offer">Free software</p>
 			<p>The core of Ubuntu OpenStack. Includes the latest OpenStack release, tested, packaged, and fully integrated. Available through the &lsquo;Cloud Archive&rsquo;, ready to install. </p>
@@ -80,7 +80,7 @@
 			<p>Telcos and service providers face specific challenges when building public clouds.  You need to think hard about minimising risks to your cloud deployment, and have an estimate of your time to market. Ideally, you should learn from other companies&rsquo; experience with building public clouds. </p>
 			<p>Need help? <a href="/cloud/contact-us/">Contact us today &rsaquo;</a></p>
 		</div><!-- /.eight-col -->
-		<span><img src="{{ STATIC_URL }}u/img/pictograms/pictogram-public-cloud-350x350.png" width="200" height="200" alt="" /></span>
+		<span><img src="{{ STATIC_URL }}img/pictograms/pictogram-public-cloud-350x350.png" width="200" height="200" alt="" /></span>
 	</div>
 	<div class="twelve-col equal-height">
 		<div class="six-col box box-highlight resource resource-white-paper">
@@ -102,7 +102,7 @@
 		<p>Are you already running an Ubuntu OpenStack cloud? Or are you looking to move from proof of concept to production? Choosing your cloud technology is only the first step. Getting the most out of your resources is essential to running a successful cloud operation. We have compiled some tips and tricks from our experts to help you optimise your Ubuntu OpenStack deployment, cope with growth and increasing demand, and offer your internal and external customers a safe, reliable, and overall excellent cloud experience.</p>
 	</div><!-- /.eight-col -->
 	<div class="four-col last-col text-center">
-		<img src="{{ STATIC_URL }}u/img/pictograms/picto-partner-grey-180x180.png" width="180" height="180" alt="" />
+		<img src="{{ STATIC_URL }}img/pictograms/picto-partner-grey-180x180.png" width="180" height="180" alt="" />
 	</div><!-- /.four-col -->
 	<div class="equal-height">
 
@@ -134,7 +134,7 @@
 
 <div class="row row-interoperability">
 	<div class="five-col">
-		<img src="{{ STATIC_URL }}u/img/cloud/image-interoperability.png" alt="" />
+		<img src="{{ STATIC_URL }}img/cloud/image-interoperability.png" alt="" />
 	</div><!-- /.six-col -->
 	<div class="seven-col last-col">
 		<h2>Powerful ecosystem</h2>
@@ -145,7 +145,7 @@
 
 <div class="row no-border row-grey start-today">
 	<div class="three-col text-center">
-		<img src="{{ STATIC_URL }}u/img/pictograms/picto-jumpstart-orange-180x180.png" width="180" height="180" alt="" />
+		<img src="{{ STATIC_URL }}img/pictograms/picto-jumpstart-orange-180x180.png" width="180" height="180" alt="" />
 	</div>
 	<div class="seven-col last-col">
 		<h2>Start today</h2>
@@ -154,6 +154,6 @@
 	</div>
 </div><!-- /.row -->
 
-{% include "ubuntu/shared/_live_chat.html" %}
+{% include "shared/_live_chat.html" %}
 
 {% endblock content %}

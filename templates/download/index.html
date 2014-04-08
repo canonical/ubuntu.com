@@ -1,10 +1,10 @@
-{% extends "ubuntu/download/_base_download.html" %}
+{% extends "download/_base_download.html" %}
 
 {% block title %}Download Ubuntu{% endblock %}
 {% block extra_body_class %}download-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" page_title="Overview"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Download" page_title="Overview"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -36,7 +36,7 @@
 	</div><!-- /.twelve-col -->
 </div><!-- /.row -->
 
-{% include "ubuntu/download/desktop/_chinese-download.html" %}
+{% include "download/desktop/_chinese-download.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

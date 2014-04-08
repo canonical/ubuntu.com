@@ -1,11 +1,11 @@
 
-{% extends "ubuntu/server/base_server.html" %}
+{% extends "server/base_server.html" %}
 
 {% block title %}Server services | Server{% endblock %}
 {% block meta_description %}Fast, secure, deploy-anywhere technology for fast-moving companies. Whether you're already using Ubuntu or you're just thinking about making the switch, Canonical can help.{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Server" page_title="Hyperscale"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Server" page_title="Hyperscale"  %}
 {% endblock second_level_nav_items %}
 
 {% block header %}
@@ -67,7 +67,7 @@
 		<p>Ubuntu now runs on every significant ARM platform deployed in the datacentre, including the recently-announced Baidu storage cluster.</p>
 	</div><!-- /.eight-col -->
 	<span>
-		<img src="{{ STATIC_URL }}u/img/pictograms/pictogram-reduce-costs-199x199.png" width="199" height="199" alt="" />
+		<img src="{{ STATIC_URL }}img/pictograms/pictogram-reduce-costs-199x199.png" width="199" height="199" alt="" />
 	</span>
 </div><!-- /.row -->
 	
@@ -129,21 +129,21 @@
 	<ul class="partner-list no-bullets">
 		<li class="four-col box">
 			<div class="partner-logo text-center">
-				<img src="{{ STATIC_URL }}u/img/partners/partners-logo-hp.png" width="94" height="94" alt="" />
+				<img src="{{ STATIC_URL }}img/partners/partners-logo-hp.png" width="94" height="94" alt="" />
 			</div>
 			<p>Canonical has been involved in the development of Moonshot, HP&rsquo;s hyperscale platform, from its inception. Ubuntu is the only OS that supports the full range of HP Moonshot x86 and ARM Systems, announced by HP in April 2013, providing scale out innovation at speed.</p>
 			<p><a href="/partners/hp/moonshot">Learn more &rsaquo;</a></p>
 		</li>
 		<li class="box four-col">
 			<div class="partner-logo text-center">
-				<img src="{{ STATIC_URL }}u/img/partners/partners-logo-arm.png" width="150" height="45" alt="" />
+				<img src="{{ STATIC_URL }}img/partners/partners-logo-arm.png" width="150" height="45" alt="" />
 			</div>
 			<p>ARM and Canonical have worked in close collaboration for a number of years to ensure that datacentres running advanced workloads such as distributed data processing or cloud infrastructure, run best on Ubuntu.</p>
 			<p><a href="/partners/arm">Learn more &rsaquo;</a></p>
 		</li>
 		<li class="box four-col last-col">
 			<div class="partner-logo text-center">
-				<img src="{{ STATIC_URL }}u/img/partners/partners-logo-cavium.png" width="150" height="34" alt="" />
+				<img src="{{ STATIC_URL }}img/partners/partners-logo-cavium.png" width="150" height="34" alt="" />
 			</div>
 			<p>Cavium is a provider of highly integrated semiconductor processors that enable intelligent networking, communications, storage, video and security applications within enterprise, datacentre, broadband/consumer, and access and service provider equipment.</p>
 			<p><a href="http://www.cavium.com">Learn more &rsaquo;</a></p>
@@ -151,7 +151,7 @@
 	</ul>
 </div>
 
-{% include "ubuntu/shared/_ubuntu_advantage_whats_inlcuded.html" %}
+{% include "shared/_ubuntu_advantage_whats_inlcuded.html" %}
 
 <div class="row no-border">
 	<div class="twelve-col clearfix">
@@ -160,19 +160,19 @@
 				<div class="vertical-divider">
 					<div class="six-col">
 						<ul class="inline-icons clearfix">
-							<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-dell-45x45.png" width="45" height="45" alt="Dell" /></li>
-							<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-ibm-46x45.png" width="46" height="45" alt="IBM" /></li>
-							<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-hp-41x45.png" width="41" height="45" alt="HP" /></li>
-							<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-intel-50x45.png" width="50" height="45" alt="Intel" /></li>
+							<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-dell-45x45.png" width="45" height="45" alt="Dell" /></li>
+							<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-ibm-46x45.png" width="46" height="45" alt="IBM" /></li>
+							<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-hp-41x45.png" width="41" height="45" alt="HP" /></li>
+							<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-intel-50x45.png" width="50" height="45" alt="Intel" /></li>
 						</ul>
 						<p><a href="/certification">View all certified hardware &rsaquo;</a></p>
 					</div><!-- /.six-col -->
 					<div class="six-col last-col">
 						<ul class="inline-icons clearfix">
-							<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-centrify-94x45.png" width="94" height="45" alt="Centrify" /></li>
-							<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-likewise-100x45.png" width="100" height="45" alt="Likewise" /></li>
-							<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-openstack-45x45.png" width="45" height="45" alt="OpenStack" /></li>
-							<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-openbravo-112x45.png" width="112" height="45" alt="Openbravo" /></li>
+							<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-centrify-94x45.png" width="94" height="45" alt="Centrify" /></li>
+							<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-likewise-100x45.png" width="100" height="45" alt="Likewise" /></li>
+							<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-openstack-45x45.png" width="45" height="45" alt="OpenStack" /></li>
+							<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-openbravo-112x45.png" width="112" height="45" alt="Openbravo" /></li>
 						</ul>
 						<p><a href="/partners/certified-software">View all certified software &rsaquo;</a></p>
 					</div><!-- /.six-col -->

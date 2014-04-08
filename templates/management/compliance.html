@@ -1,11 +1,11 @@
-{% extends "ubuntu/management/base_management.html" %}
+{% extends "management/base_management.html" %}
 
 {% block title %}Compliance | Management{% endblock %}
 {% block meta_description %}Landscape, the systems management solution from Canonical, includes everything you need to ensure your Ubuntu deployment is fully compliant at all times, eliminating human error and time wasted on manual compilation of audit information. {% endblock %}
 {% block meta_keywords %}Landscape, systems management, Ubuntu, Canonical, compliance, compliant, regulations, regulatory, enterprise, software, patch, patching, report, reporting, log, logging, security, audit, RBAC, role-based access control, hardware, machine, desktop, server, cloud, complexity, automation{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Management" page_title="Compliance"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Management" page_title="Compliance"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -19,8 +19,8 @@
 
 <div class="row">
 	<div class="six-col">
-		<a href="{{ STATIC_URL }}u/img/business/screenshot-patch-1200x568.png">
-			<img class="flush-left" src="{{ STATIC_URL }}u/img/business/screenshot-patch-450x271.png" height="271" width="450" alt="" />
+		<a href="{{ STATIC_URL }}img/business/screenshot-patch-1200x568.png">
+			<img class="flush-left" src="{{ STATIC_URL }}img/business/screenshot-patch-450x271.png" height="271" width="450" alt="" />
 		</a>
 	</div><!-- /.six-col -->
 	<div class="six-col last-col">
@@ -38,16 +38,16 @@
 		<p><a class="link-arrow" href="/management/working-with-landscape">Watch the compliance and reporting video on the Working with Landscape page</a></p>
 	</div>
 	<div class="six-col last-col">
-		<a href="{{ STATIC_URL }}u/img/business/screenshot-rbac-1200x756.png">
-			<img class="flush-right" src="{{ STATIC_URL }}u/img/business/screenshot-rbac-450x271.png" height="271" width="450" alt="" />
+		<a href="{{ STATIC_URL }}img/business/screenshot-rbac-1200x756.png">
+			<img class="flush-right" src="{{ STATIC_URL }}img/business/screenshot-rbac-450x271.png" height="271" width="450" alt="" />
 		</a>
 	</div>
 </div><!-- .row -->
 
 <div class="row">
 	<div class="six-col">
-		<a href="{{ STATIC_URL }}u/img/business/screenshot-audit-1200x647.png">
-			<img class="flush-left" src="{{ STATIC_URL }}u/img/business/screenshot-audit-450x271.png" height="271" width="450" alt="" />
+		<a href="{{ STATIC_URL }}img/business/screenshot-audit-1200x647.png">
+			<img class="flush-left" src="{{ STATIC_URL }}img/business/screenshot-audit-450x271.png" height="271" width="450" alt="" />
 		</a>
 	</div><!-- /.six-col -->
 	<div class="six-col last-col">
@@ -63,8 +63,8 @@
 		<p>Landscape produces standardised compliance reports, showing which machines are up-to-date with security patches. Machines are clearly shown as compliant or non-compliant. For non-compliant machines, further detail is also available, including the total number of days for which they have been non-compliant (or out of contact with the Landscape server). The speed with which they are brought into compliance is also tracked, to accelerate the audit process.</p>
 	</div>
 	<div class="six-col last-col">
-		<a href="{{ STATIC_URL }}u/img/business/screenshot-compliance-755x601.png">
-			<img src="{{ STATIC_URL }}u/img/business/screenshot-compliance-450x271.png" height="271" width="450" alt="" />
+		<a href="{{ STATIC_URL }}img/business/screenshot-compliance-755x601.png">
+			<img src="{{ STATIC_URL }}img/business/screenshot-compliance-450x271.png" height="271" width="450" alt="" />
 		</a>
 	</div>
 </div><!-- .row -->

@@ -1,4 +1,4 @@
-{% extends "ubuntu/download/_base_download.html" %}
+{% extends "download/_base_download.html" %}
 
 {% block title %}
 {% if GET.version and GET.architecture %}
@@ -10,7 +10,7 @@ Thank you for your contribution
 {% block extra_body_class %}download-thankyou{% endblock %}
 
 {% block second_level_nav_items %}
-{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Thank you"  %}
+{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Thank you"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -32,19 +32,19 @@ Thank you for your contribution
 
         <div class="box-grey twelve-col no-margin-bottom download-cross-sells">
             <div class="four-col one box box-highlight">
-                <img alt="ubuntu one" src="{{ STATIC_URL }}u/img/download/ubuntu-one.png" />
+                <img alt="ubuntu one" src="{{ STATIC_URL }}img/download/ubuntu-one.png" />
                 <h3>Ubuntu One</h3>
                 <p>Your personal cloud for all your music, photos and files. Get your free 5GB account today.</p>
                 <p><a class="link-arrow" href="https://one.ubuntu.com">Learn more about Ubuntu One</a></p>
             </div><!-- /.four-col -->
             <div class="four-col support box box-highlight">
-                <img alt="ubuntu advantage" src="{{ STATIC_URL }}u/img/download/ubuntu-advantage.png" />
+                <img alt="ubuntu advantage" src="{{ STATIC_URL }}img/download/ubuntu-advantage.png" />
                 <h3>Ubuntu Advantage</h3>
                 <p>Purchase our desktop support and access Ubuntu experts whenever you need.</p>
                 <p><a class="link-arrow" href="http://shop.canonical.com/index.php?cPath=31">Learn more</a></p>
             </div><!-- /.four-col -->
             <div class="four-col ask last-col box box-highlight">
-                <img alt="ubuntu advantage" src="{{ STATIC_URL }}u/img/download/ask-ubuntu.png" />
+                <img alt="ubuntu advantage" src="{{ STATIC_URL }}img/download/ask-ubuntu.png" />
                 <h3>Ask Ubuntu</h3>
                 <p>Need help? Ask your questions here.</p>
                 <p><a class="link-arrow" href="http://askubuntu.com">Get help</a></p>
@@ -70,7 +70,7 @@ Thank you for your contribution
 {% endblock content %}
 
 {% block footer_extra %}
-<script src="{{ STATIC_URL }}u/js/helpers.js"></script>
+<script src="{{ STATIC_URL }}js/helpers.js"></script>
 
 <script>
 // Download file information

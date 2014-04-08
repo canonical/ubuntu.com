@@ -1,4 +1,4 @@
-{% extends "ubuntu/phone/base_phone.html" %}
+{% extends "phone/base_phone.html" %}
 
 {% block title %}Carrier Advisory Group | Ubuntu for phones{% endblock %}
 
@@ -6,7 +6,7 @@
 {% block meta_description %}The Canonical Carrier Advisory Group (CAG) enables mobile operators to shape the development of Ubuntu for smartphones.{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Carrier Advisory Group"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Carrier Advisory Group"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -14,7 +14,7 @@
 	<h1>Carrier Advisory Group</h1>
 	<div class="twelve-col">
 		<ul class="inline">
-			{% include "ubuntu/phone/shared/_cag_list.html" with image_width="160" image_height="80" item_class="box" %}
+			{% include "phone/shared/_cag_list.html" with image_width="160" image_height="80" item_class="box" %}
 		</ul>
 	</div>
 	<div class="six-col">
@@ -91,7 +91,7 @@
 
 <div class="row row-grey row-image-centered">
 	<span>
-		<img width="192" height="120" src="{{ STATIC_URL }}u/img/pictograms/pictograms-wide-industry-participation.png" alt="" />
+		<img width="192" height="120" src="{{ STATIC_URL }}img/pictograms/pictograms-wide-industry-participation.png" alt="" />
 	</span>
 	<div class="eight-col">
 		<h3>Wide industry participation</h3>
@@ -106,7 +106,7 @@
 		<p>Members will have early knowledge of silicon, as well as OEM and ODM partners involved in the Ubuntu mobile initiative.</p>
 	</div>
 	<span>
-		<img src="{{ STATIC_URL }}u/img/pictograms/pictogram-grey-partners.png" width="168" height="169" alt="" />
+		<img src="{{ STATIC_URL }}img/pictograms/pictogram-grey-partners.png" width="168" height="169" alt="" />
 	</span>
 </div><!-- / .row -->
 

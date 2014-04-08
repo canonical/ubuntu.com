@@ -1,10 +1,10 @@
-{% extends "ubuntu/management/base_management.html" %}
+{% extends "management/base_management.html" %}
 
 {% block title %}Return on investment | Management{% endblock %}
 {% block extra_body_class %}return-on-investment{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Management" page_title="Return on investment"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Management" page_title="Return on investment"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -73,8 +73,8 @@
 		<p>If you&rsquo;re already using Puppet for configuration management or Nagios for systems monitoring, Landscape can be integrated with your infrastructure easily, automating and extending these tools. There's no need to alter your existing deployment.</p>
 	</div><!-- /.six-col -->
 	<div class="six-col logos last-col">
-		<img src="{{ STATIC_URL }}u/img/third-party-logos/logo-nagios.png" alt="Nagios" width="150" height="38" />
-		<img src="{{ STATIC_URL }}u/img/third-party-logos/logo-puppet.png" alt="Puppet" width="150" height="47" />
+		<img src="{{ STATIC_URL }}img/third-party-logos/logo-nagios.png" alt="Nagios" width="150" height="38" />
+		<img src="{{ STATIC_URL }}img/third-party-logos/logo-puppet.png" alt="Puppet" width="150" height="47" />
 	</div><!-- /.six-col -->
 </div><!-- /.row -->
 {% endblock content %}

@@ -1,4 +1,4 @@
-{% extends "ubuntu/cloud/base_cloud.html" %}
+{% extends "cloud/base_cloud.html" %}
 
 {% block title %}Comprehensive tools to build your cloud | Cloud{% endblock %}
 
@@ -7,7 +7,7 @@
 {% block meta_keywords %}Ubuntu OpenStack, Juju, Maas, Jumpstart, deployment, orchestration, consulting, cloud consulting, cloud tools, cloud management{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Cloud tools" tertiary="true" %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Cloud tools" tertiary="true" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -16,11 +16,11 @@
 		<h1>Cloud tools</h1>
 		<p class="intro">You want to minimise the time to get your cloud infrastructure up and running and start offering your services to customers. We have the tools to get you there.</p>
 	</div><!-- /.seven-col -->
-	<span><img src="{{ STATIC_URL }}u/img/pictograms/pictogram-cloud-tools-288x187.png" alt="pictogram-cloud-tools-288x187" width="288" height="187" /></span>
+	<span><img src="{{ STATIC_URL }}img/pictograms/pictogram-cloud-tools-288x187.png" alt="pictogram-cloud-tools-288x187" width="288" height="187" /></span>
 </div><!-- /.row -->
 
 <div class="row row-juju">
-	<span><img src="{{ STATIC_URL }}u/img/cloud/image-juju.png" alt="image-juju" width="984" height="323" /></span>
+	<span><img src="{{ STATIC_URL }}img/cloud/image-juju.png" alt="image-juju" width="984" height="323" /></span>
 
 	<div class="six-col prepend-six last-col">
 		<h2>Orchestration with Juju</h2>
@@ -35,11 +35,11 @@
 		<p>MAAS is the bare-metal provisioning tool that turns your hardware environment into a cloud in minutes. It takes the pain out of detection and configuration and gets your servers ready for Juju.</p>
 		<p><a href="/cloud/tools/maas">Read more about MAAS&nbsp;&rsaquo;</a></p>
 	</div><!-- /.six-col -->
-	<span><img src="{{ STATIC_URL }}u/img/cloud/image-maas.png" alt="image-maas" width="426" height="211" /></span>
+	<span><img src="{{ STATIC_URL }}img/cloud/image-maas.png" alt="image-maas" width="426" height="211" /></span>
 </div><!-- /.row -->
 
 <div class="row row-image-centered row-grey">
-	<span><img src="{{ STATIC_URL }}u/img/cloud/image-openstack.png" alt="image-openstack" width="200" height="202" /></span>
+	<span><img src="{{ STATIC_URL }}img/cloud/image-openstack.png" alt="image-openstack" width="200" height="202" /></span>
 	<div class="eight-col last-col">
 		<h2>OpenStack</h2>
 		<p>OpenStack is the world&rsquo;s leading open-source cloud platform, developed by NASA using Ubuntu. It provides everything from compute, storage and network components to a management dashboard and a fully integrated usage-metering engine.</p>
@@ -75,6 +75,6 @@
 </p>
 		<p><a href="/cloud/tools/jumpstart">Read more about Jumpstart&nbsp;&rsaquo;</a></p>
 	</div><!-- /.six-col -->
-	<span><img src="{{ STATIC_URL }}u/img/cloud/image-jumpstart.png" alt="image-jumpstart" width="211" height="211" /></span>
+	<span><img src="{{ STATIC_URL }}img/cloud/image-jumpstart.png" alt="image-jumpstart" width="211" height="211" /></span>
 </div><!-- /.row -->
 {% endblock content %}

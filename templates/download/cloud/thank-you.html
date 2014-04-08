@@ -1,4 +1,4 @@
-{% extends "ubuntu/download/_base_download.html" %}
+{% extends "download/_base_download.html" %}
 
 {% block title %}
 {% if GET.version and GET.architecture %}
@@ -10,7 +10,7 @@ Thank you for your contribution
 {% block extra_body_class %}download-thankyou{% endblock %}
 
 {% block second_level_nav_items %}
-{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server for Cloud" page_title="Thank you"  %}
+{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server for Cloud" page_title="Thank you"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -27,20 +27,20 @@ Thank you for your contribution
 
         <div class="box-grey twelve-col no-margin-bottom download-cross-sells">
             <div class="four-col one box box-highlight">
-                <img alt="ubuntu one" src="{{ STATIC_URL }}u/img/download/cloud-jumpstart.png" />
+                <img alt="ubuntu one" src="{{ STATIC_URL }}img/download/cloud-jumpstart.png" />
                 <h3>Ubuntu Cloud Jumpstart</h3>
                 <p>A private cloud in five days, with a Canonical engineer on site to get it done.</p>
                 <p><a class="link-arrow" href="/cloud/private-cloud/jumpstart">Learn more about Cloud Jumpstart</a></p>
             </div><!-- /.four-col -->
             <div class="four-col support box box-highlight">
-                <img alt="ubuntu advantage" src="{{ STATIC_URL }}u/img/download/ubuntu-advantage.png" />
+                <img alt="ubuntu advantage" src="{{ STATIC_URL }}img/download/ubuntu-advantage.png" />
                 <h3>Ubuntu Advantage 
 for Cloud</h3>
                 <p>All the commercial support your cloud deployment needs.</p>
                 <p><a class="link-arrow" href="/cloud/management">Learn more about Ubuntu Cloud Advantage</a></p>
             </div><!-- /.four-col -->
             <div class="four-col ask last-col box box-highlight">
-                <img alt="ubuntu advantage" src="{{ STATIC_URL }}u/img/download/ask-ubuntu.png" />
+                <img alt="ubuntu advantage" src="{{ STATIC_URL }}img/download/ask-ubuntu.png" />
                 <h3>Ask Ubuntu</h3>
                 <p>Need help? Ask your questions here.</p>
                 <p><a class="link-arrow" href="http://askubuntu.com/questions/tagged/cloud">Get help</a></p>
@@ -66,7 +66,7 @@ for Cloud</h3>
 {% endblock content %}
 
 {% block footer_extra %}
-<script src="{{ STATIC_URL }}u/js/helpers.js"></script>
+<script src="{{ STATIC_URL }}js/helpers.js"></script>
 
 <script>
 // Download file information

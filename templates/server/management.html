@@ -1,10 +1,10 @@
-{% extends "ubuntu/server/base_server.html" %}
+{% extends "server/base_server.html" %}
 
 {% block title %}Server management{% endblock %}
 {% block extra_body_class %}server-server-management{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Server" page_title="Server management"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Server" page_title="Server management"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -140,13 +140,13 @@
 <p><a href="/management/contact-us">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
 </div><!-- /.row -->
 
-{% include "ubuntu/shared/_ubuntu_advantage_whats_inlcuded.html" %}
+{% include "shared/_ubuntu_advantage_whats_inlcuded.html" %}
 
 <div class="row row-community row-image-centered no-border no-margin-bottom">
-{% include "ubuntu/shared/_ubuntu_advantage_community.html" %}
+{% include "shared/_ubuntu_advantage_community.html" %}
 </div><!-- /.row -->
 
-{% include "ubuntu/shared/_live_chat.html" %}
+{% include "shared/_live_chat.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

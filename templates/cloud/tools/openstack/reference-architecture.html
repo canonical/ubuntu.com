@@ -1,11 +1,11 @@
-{% extends "ubuntu/cloud/base_cloud.html" %}
+{% extends "cloud/base_cloud.html" %}
 
 {% block title %}Cloud reference architecture | Cloud {% endblock %}
 {% block meta_description %}Ubuntu provides the reference architecture for the OpenStack project, the world’s leading open source cloud platform. Here is an overview of the architecture and outline of virtualisation options.{% endblock meta_description %}
 {% block meta_keywords %}Reference architecture, OpenStack, Ubuntu, Ubuntu Cloud Infrastructure, private cloud infrastructure, infrastructure as a service, open source, open cloud, open standards, virtualisation, hypervisor, KVM, Xen, LXC{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title=" Cloud tools" page_title="Reference architecture"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title=" Cloud tools" page_title="Reference architecture"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -18,7 +18,7 @@
 
 <div class="row">
 	<h2>OpenStack logical architecture</h2>
-	<p><img src="{{ STATIC_URL }}u/img/cloud/openstack-logical-architecture.png" width="867" height="658" alt="OpenStack logical architecture" /></p>
+	<p><img src="{{ STATIC_URL }}img/cloud/openstack-logical-architecture.png" width="867" height="658" alt="OpenStack logical architecture" /></p>
 
 	<div class="tabbed-menu">
 		<ul class="no-bullets">
@@ -28,7 +28,7 @@
 			<li><a class="slideless" href="#authentication-service">Authentication</a></li>
 			<li><a class="slideless" href="#management-service">Management</a></li>
 		</ul>
-		<img src="{{ STATIC_URL }}u/img/patterns/tabbed-nav-arrow.png" class="arrow" height="6" width="12" alt="">
+		<img src="{{ STATIC_URL }}img/patterns/tabbed-nav-arrow.png" class="arrow" height="6" width="12" alt="">
 	</div>
 	<div id="compute" class="tabbed-content compute box-grey twelve-col">
 		<div class="eight-col">
@@ -91,11 +91,11 @@
 		<p>A complete list of the features that can be controlled through OpenStack, by hypervisor, is available on the <a href="http://wiki.openstack.org/HypervisorSupportMatrix">OpenStack Wiki</a>.</p>
 		<p class="smaller">* Requires the nova-compute service to be installed on DomU</p>	
 	</div><!-- /.eight-col -->
-	<span><img src="{{ STATIC_URL }}u/img/pictograms/pictogram-virtualise-205x205.png" width="205" height="205" alt="" /></span>
+	<span><img src="{{ STATIC_URL }}img/pictograms/pictogram-virtualise-205x205.png" width="205" height="205" alt="" /></span>
 </div>
 
 <div class="row row-community row-image-centered no-border">
-	<span><img src="{{ STATIC_URL }}u/img/pictograms/pictogram-help-135.png" alt="" /></span>
+	<span><img src="{{ STATIC_URL }}img/pictograms/pictogram-help-135.png" alt="" /></span>
 	<div class="eight-col">
 		<h2>Documentation and help</h2>
 		<p>The fastest and most accurate source of assistance on Ubuntu Cloud is the developer community responsible for the software. <a href="https://help.ubuntu.com/community/UbuntuCloudInfrastructure">You can get help from the Ubuntu community here</a>.</p>

@@ -1,10 +1,10 @@
-{% extends "ubuntu/desktop/base_desktop.html" %}
+{% extends "desktop/base_desktop.html" %}
 
 {% block title %}Desktop management{% endblock %}
 {% block extra_body_class %}desktop-desktop-management{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Desktop management"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Desktop management"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -67,9 +67,9 @@
 		<tr>
 			<th scope="row" rowspan="2">Landscape systems management</th>
 			<th scope="row">Landscape Hosted Edition</th>
-			<!-- <td><img src="{{ STATIC_URL }}u/img/patterns/purpletick.gif" alt="Yes"></td> -->
-			<td><img src="{{ STATIC_URL }}u/img/patterns/purpletick.gif" alt="Yes"></td>
-			<td><img src="{{ STATIC_URL }}u/img/patterns/purpletick.gif" alt="Yes"></td>
+			<!-- <td><img src="{{ STATIC_URL }}img/patterns/purpletick.gif" alt="Yes"></td> -->
+			<td><img src="{{ STATIC_URL }}img/patterns/purpletick.gif" alt="Yes"></td>
+			<td><img src="{{ STATIC_URL }}img/patterns/purpletick.gif" alt="Yes"></td>
 		</tr>
 		<tr>
 			<th scope="row">Landscape Dedicated Server</th>
@@ -82,49 +82,49 @@
 		<tr>
 			<th scope="row" rowspan="1">Legal assurance</th>
 			<th scope="row"><a href="/ua-assurance-terms">Ubuntu Assurance programme</a></th>
-			<!-- <td><img src="{{ STATIC_URL }}u/img/patterns/purpletick.gif" alt="Yes"></td> -->
-			<td><img src="{{ STATIC_URL }}u/img/patterns/purpletick.gif" alt="Yes"></td>
-			<td><img src="{{ STATIC_URL }}u/img/patterns/purpletick.gif" alt="Yes"></td>
+			<!-- <td><img src="{{ STATIC_URL }}img/patterns/purpletick.gif" alt="Yes"></td> -->
+			<td><img src="{{ STATIC_URL }}img/patterns/purpletick.gif" alt="Yes"></td>
+			<td><img src="{{ STATIC_URL }}img/patterns/purpletick.gif" alt="Yes"></td>
 		</tr>
 	</tbody>
 	<tbody>
 		<tr>
 			<th scope="row" rowspan="6">Knowledge and support</th>
 			<th scope="row">Knowledge Base</th>
-			<!-- <td><img src="{{ STATIC_URL }}u/img/patterns/purpletick.gif" alt="Yes"></td>-->
-			<td><img src="{{ STATIC_URL }}u/img/patterns/purpletick.gif" alt="Yes"></td>
-			<td><img src="{{ STATIC_URL }}u/img/patterns/purpletick.gif" alt="Yes"></td>
+			<!-- <td><img src="{{ STATIC_URL }}img/patterns/purpletick.gif" alt="Yes"></td>-->
+			<td><img src="{{ STATIC_URL }}img/patterns/purpletick.gif" alt="Yes"></td>
+			<td><img src="{{ STATIC_URL }}img/patterns/purpletick.gif" alt="Yes"></td>
 		</tr>
 		<tr>
 			<th scope="row">Basic installation and applications</th>
-			<!-- <td><img src="{{ STATIC_URL }}u/img/patterns/purpletick.gif" alt="Yes"></td>-->
-			<td><img src="{{ STATIC_URL }}u/img/patterns/purpletick.gif" alt="Yes"></td>
-			<td><img src="{{ STATIC_URL }}u/img/patterns/purpletick.gif" alt="Yes"></td>
+			<!-- <td><img src="{{ STATIC_URL }}img/patterns/purpletick.gif" alt="Yes"></td>-->
+			<td><img src="{{ STATIC_URL }}img/patterns/purpletick.gif" alt="Yes"></td>
+			<td><img src="{{ STATIC_URL }}img/patterns/purpletick.gif" alt="Yes"></td>
 		</tr>
 		<tr>
 			<th scope="row">Installation, applications and systems administration support</th>
 			<!-- <td>
-				<p><img src="{{ STATIC_URL }}u/img/patterns/purpletick.gif" alt="Yes"></p>
+				<p><img src="{{ STATIC_URL }}img/patterns/purpletick.gif" alt="Yes"></p>
 				<ul class="smaller no-bullets">
 					<li>(*) support limited to stateless applications</li>
 					<li>(**) minimum 500 devices</li>
 					<li>(***) 12.04 LTS only</li>
 				</ul>
 			</td>-->
-			<td><img src="{{ STATIC_URL }}u/img/patterns/purpletick.gif" alt="Yes"></td>
-			<td><img src="{{ STATIC_URL }}u/img/patterns/purpletick.gif" alt="Yes"></td>
+			<td><img src="{{ STATIC_URL }}img/patterns/purpletick.gif" alt="Yes"></td>
+			<td><img src="{{ STATIC_URL }}img/patterns/purpletick.gif" alt="Yes"></td>
 		</tr>
 		<tr>
 			<th scope="row">Desktop virtualisation</th>
 			<!-- <td>&nbsp;</td>-->
 			<td>&nbsp;</td>
-			<td><img src="{{ STATIC_URL }}u/img/patterns/purpletick.gif" alt="Yes"></td>
+			<td><img src="{{ STATIC_URL }}img/patterns/purpletick.gif" alt="Yes"></td>
 		</tr>
 		<tr>
 			<th scope="row">Developer tools</th>
 			<!-- <td>&nbsp;</td>-->
 			<td>&nbsp;</td>
-			<td><img src="{{ STATIC_URL }}u/img/patterns/purpletick.gif" alt="Yes"></td>
+			<td><img src="{{ STATIC_URL }}img/patterns/purpletick.gif" alt="Yes"></td>
 		</tr>
 		<tr>
 			<th scope="row">Premium Service Engineer</th>
@@ -137,13 +137,13 @@
 <p><a href="/management/contact-us">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
 </div><!-- /.row -->
 
-{% include "ubuntu/shared/_ubuntu_advantage_whats_inlcuded.html" %}
+{% include "shared/_ubuntu_advantage_whats_inlcuded.html" %}
 
 <div class="row row-community row-image-centered no-border no-margin-bottom">
-{% include "ubuntu/shared/_ubuntu_advantage_community.html" %}
+{% include "shared/_ubuntu_advantage_community.html" %}
 </div><!-- /.row -->
 
-{% include "ubuntu/shared/_live_chat.html" %}
+{% include "shared/_live_chat.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

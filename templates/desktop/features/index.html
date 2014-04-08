@@ -1,9 +1,9 @@
-{% extends "ubuntu/desktop/base_desktop.html" %}
+{% extends "desktop/base_desktop.html" %}
 {% block extra_body_class %}desktop-features-home{% endblock %}
 {% block title %}Features{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Features" tertiary="true"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Features" tertiary="true"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -13,7 +13,7 @@
 		<p>Enjoy the simplicity of Ubuntu's stylish, intuitive interface. Fast, secure and with thousands of apps to choose from, Ubuntu gives you a clean and streamlined experience that you can really make your own.</p>
 		<p><a href="/download/desktop/" class="link-cta-ubuntu">Get Ubuntu now</a></p>
 	</div><!-- /.six-col -->
-	<div class="clear">{% include "ubuntu/shared/_share_this.html" %}</div>
+	<div class="clear">{% include "shared/_share_this.html" %}</div>
 </div><!-- /.row -->
 
 <div class="row row-what-is-new">
@@ -24,7 +24,7 @@
 </div><!-- /.row -->
 
 <div class="row row-explore-ubuntu no-border">
-{% include "ubuntu/desktop/features/nav/_explore_ubuntu.html" %}
+{% include "desktop/features/nav/_explore_ubuntu.html" %}
 </div>
 {% endblock content %}
 {% block footer_extra %}{% endblock footer_extra %}
