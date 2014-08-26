@@ -1,3 +1,11 @@
+Run site
+===
+
+``` bash
+sass --update templates/static/css/styles.scss &
+./manage runserver
+```
+
 Updating templates to work with this project
 ===
 
@@ -12,3 +20,4 @@ Updating sass files to compile correctly
 ``` bash
 perl -pi -e 's/\@import \"css\//\@import \"/g' `find . -name '*.scss'`
 ```
+=======
