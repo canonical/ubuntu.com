@@ -2,7 +2,7 @@ Run site
 ===
 
 ``` bash
-sass --update templates/static/css/styles.scss &
+sass --watch --debug-info templates/static/css/styles.scss &
 ./manage runserver
 ```
 
