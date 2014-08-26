@@ -9,4 +9,6 @@ perl -pi -e 's/\{\% (extends|include) "ubuntu\//{% $1 "/g' `find .`
 Updating sass files to compile correctly
 ===
 
+``` bash
 perl -pi -e 's/\@import \"css\//\@import \"/g' `find . -name '*.scss'`
+```
