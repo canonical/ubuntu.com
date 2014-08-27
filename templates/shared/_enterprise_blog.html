@@ -1,46 +1,42 @@
 {% block head_extra %}
-<script src="http://www.google.com/jsapi"></script>
+<script src="https://www.google.com/jsapi"></script>
 <script>google.load("feeds", "1")</script>
 {% endblock %}
 	<div id="insights-feed"></div>
 	<script>
        var feedcontainer=document.getElementById("insights-feed")
-			 var feedurl="http://insights.ubuntu.com/products-and-services/{{ level_1 }}/feed/"
-
-        // or if we wanted, for instance all the 'desktop' specific 'case studies', do this http://insights.ubuntu.com/topics/resources/case-studies/?products-and-services=desktop&feed=rss2
-        var feedlimit=4
-        var rssoutput="<div class='row row-grey'><h2 class='twelve-col'>Further reading from the Ubuntu Insights blog</h2><ul class='no-bullets vertical-divider'>"
-        function rssfeedsetup(){
-            var feedpointer=new google.feeds.Feed(feedurl) //Google Feed API method
+       var feedurl=document.location.protocol+"//insights.ubuntu.com/topic/{{ level_1 }}/feed/"       
+       var feedlimit=4
+       var rssoutput="<div class='row row-grey'><h2 class='twelve-col'>Further reading from Ubuntu Insights</h2><ul class='no-bullets vertical-divider med-six-col'>"
+       function rssfeedsetup(){
+       		var feedpointer=new google.feeds.Feed(feedurl) //Google Feed API method
             feedpointer.setNumEntries(feedlimit) //Google Feed API method
-            feedpointer.load(displayfeed) //Google Feed API method
+            feedpointer.load(displayfeed) //Google Feed  API method
         }
 
         function displayfeed(result){
             if (!result.error){
                 var thefeeds=result.feed.entries
                 for (var i=0; i<thefeeds.length; i++){
-                var pubDate = thefeeds[i].publishedDate
-                var date = new Date(pubDate);
-                var months = Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec");
-                var thedate = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
-                
-                rssoutput+="<li class='three-col'><span class='note clearfix'>{{ level_1 }}</span><a href='" + thefeeds[i].link + "'>" + thefeeds[i].title + "&nbsp;&rsaquo;</a><span class='date note clearfix'>" + thedate + "</span></li>"}
-                rssoutput+="</ul></div>"
-                feedcontainer.innerHTML=rssoutput
+              	  var pubDate = thefeeds[i].publishedDate
+              	  var date = new Date(pubDate);
+              	  var months = Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+              	  var thedate = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
+                	rssoutput+="<li class='three-col'><span class='note clearfix'>" + thefeeds[i].categories[0] + "</span><a href='" + thefeeds[i].link + "'>" + thefeeds[i].title + "&nbsp;&rsaquo;</a><span class='date note clearfix'>" + thedate + "</span></li>"}
+                	rssoutput+='</ul><p><a href="http://insights.ubuntu.com">Read more on Ubuntu Insights&nbsp;&rsaquo;</a></p></div>'
+             	   feedcontainer.innerHTML=rssoutput
 				}
-            else
-            	alert("")
-            }
-				
-				window.onload=function(){
+        	}
+			window.onload=function(){
 				rssfeedsetup()
-				}
+			}
 	</script>
-<div class="row row-enterprise-blog row-image-centered">
-	<span><img src="{{ STATIC_URL }}img/pictograms/pictogram-enterprise-blog-134x94.png" alt="" width="139" height="94" /></span>
-	<div class="nine-col">
-		<h2><a href="http://insights.ubuntu.com">Read the Ubuntu Insights blog &rsaquo;</a></h2>
-		<p>The decision-maker&rsquo;s guide to the cloud and open source enterprise computing.</p>
-	</div>
-</div>
+	<noscript>
+		<div class="row row-enterprise-blog row-image-centered">
+			<span><img src="{{ STATIC_URL }}img/pictograms/image-enterpriseblog.svg" alt="" width="139" height="94" /></span>
+			<div class="nine-col">
+				<h2><a href="http://insights.ubuntu.com">Read the Ubuntu Insights blog&nbsp;&rsaquo;</a></h2>
+				<p>The decision-maker&rsquo;s guide to the {{ level_1 }} and open source enterprise computing.</p>
+			</div>
+		</div>
+	</noscript>

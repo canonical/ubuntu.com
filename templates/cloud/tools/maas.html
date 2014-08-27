@@ -20,7 +20,9 @@
 
 <div class="row">
 	<div class="eight-col">
-		<iframe width="560" height="315" src="//www.youtube.com/embed/J1XH0SQARgo?showinfo=0" frameborder="0" allowfullscreen></iframe>
+		<div class="video-container">
+			<iframe width="560" height="315" src="//www.youtube.com/embed/J1XH0SQARgo?showinfo=0" frameborder="0" allowfullscreen></iframe>
+		</div>
 	</div>
 	<div class="four-col last-col">
 		<h2>Inside MAAS</h2>
@@ -47,7 +49,7 @@
 		<p>Hardware provisioned through MAAS can be provisioned dynamically, just like cloud instances &mdash; except that we&rsquo;re talking about the whole physical node. Through a simple web interface or API you can add, commission, update, deploy and recycle physical servers at will. As your needs change, you can respond rapidly, by adding new nodes and dynamically re-deploying them between services. When the time comes, nodes can be retired for use outside MAAS.</p>
 		<p><a href="http://maas.ubuntu.com/docs/install.html">Learn how to install MAAS&nbsp;&rsaquo;</a></p>
 	</div><!-- /.eight-col -->
-	
+
 	<div class="four-col last-col box box-highlight resource resource-data-sheet">
 		<h2><a href="http://insights.ubuntu.com/resources/factsheet/top-10-questions-about-maas/">MAAS FAQ&nbsp;&rsaquo;</a></h2>
 		<p>Top 10 Questions about MAAS. Your guide to MAAS, bare-metal provisioning, and more.</p>
@@ -57,7 +59,7 @@
 </div><!-- /.row -->
 
 <div class="row row-image-centered no-border">
-	<span><img src="{{ STATIC_URL }}img/cloud/logo-juju-171x174.png" alt="" /></span>
+	<span><img src="{{ STATIC_URL }}img/cloud/tools/maas/logo-juju.svg" alt="" width="172" height="176" /></span>
 	<div class="eight-col">
 		<h2>Deploy services in seconds using Juju</h2>
 		<p>With Juju you can deploy, orchestrate and scale services in your MAAS cluster in seconds. Don&rsquo;t spend hours planning and implementing a service deployment; just choose how many nodes your new service needs, then apply a pre-written charm. When your needs change, you can monitor, scale and adjust deployment parameters in real time, and when you're finished with a service, Juju can remove it without a trace. It's as easy as apt-get.</p>

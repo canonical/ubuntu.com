@@ -12,29 +12,38 @@
 <div class="row row-hero">
 	<div class="the-video">
 		<p class="left">
-			<a href="http://v.youku.com/v_show/id_XNTE3Njc4MTM2">优酷视频 &rsaquo;</a>
+			<a href="http://v.youku.com/v_show/id_XNTE3Njc4MTM2">优酷视频&nbsp;&rsaquo;</a>
 		</p>
 		<p class="right">
 			<a href="#" class="slideless close-video">Close the video <img src="{{ STATIC_URL }}img/devices/close-button.png" width="24" height="24" alt="Close icon" /></a>
 		</p>
 		<div></div>
 	</div>
-	<h1>Tastefully tactile</h1>
 	<div class="four-col">
+		<h1>Marvelously multi-talented</h1>
 		<h2>Ubuntu on tablets</h2>
-		<p>With unique multitasking productivity, effortless navigation and defence-ready security, Ubuntu raises the bar on tablet design and sets a new standard for the post-PC era. Bright. Brilliant. Beautiful. And naturally neat.</p>
-		<p class="video-link"><a href="https://www.youtube.com/watch?v=h384z7Ph0gU&hd=1" class="show-video"><img src="{{ STATIC_URL }}img/devices/play-video-icon.png" width="54" height="50" alt="Play icon" />Watch the video &rsaquo;</a></p>
+		<p>With unique multi-tasking productivity, secure sharing, and a beautiful interface which scales perfectly from 6.5&#8221; to 20&#8221; screens and beyond, Ubuntu releases new possibilities from the tablet, at work and at play.</p>
+		<p class="video-link"><a href="https://www.youtube.com/watch?v=h384z7Ph0gU&amp;hd=1" class="show-video"><img src="{{ STATIC_URL }}img/devices/play-video-icon.png" width="54" height="50" alt="Play icon" />Watch the video&nbsp;&rsaquo;</a></p>
+		<div class="video-container for-mobile">
+			<iframe width="100%" height="auto" src="//www.youtube.com/embed/h384z7Ph0gU" allowfullscreen></iframe>
+		</div>
 	</div><!-- /.four-col -->
+	<div class="eight-col last-col text-center priority-0">
+		<img src="{{ STATIC_URL }}img/devices/tablet-hero.jpg" alt="" width="625" height="363" />
+	</div>
 </div><!-- /.row -->
 
 <div class="row">
-	<img class="shadow-fix" src="{{ STATIC_URL }}img/devices/tablet-media-player-large.png" width="984" height="622" alt="Ubuntu tablet sharing a movie" />
+	<img src="{{ STATIC_URL }}img/tablet/image-tablet-music.jpg" width="976" height="622" alt="Ubuntu tablet sharing a movie" />
 	<div class="nine-col" id="multitasking-mojo">
 		<h2>Multitasking mojo</h2>
 		<p>Ubuntu&rsquo;s unique side stage places a phone and a tablet app on the same screen at the same time for amazing tablet productivity. True multitasking comes to the tablet.</p>
 	</div>
-	<div class="twelve-col">
-		<img class="shadow-fix" src="{{ STATIC_URL }}img/devices/tablet-multi-tasking.png" width="984" height="334" alt="Ubuntu tablet running multipule applications side by side" />
+	<div class="six-col">
+		<img class="shadow-fix" src="{{ STATIC_URL }}img/tablet/image-tablet-multitaskingmojo-1.jpg" width="512" height="321" alt="Ubuntu tablet running multiple applications side by side" />
+	</div>
+	<div class="six-col last-col">
+		<img class="shadow-fix" src="{{ STATIC_URL }}img/tablet/image-tablet-multitaskingmojo-2.jpg" width="512" height="321" alt="Ubuntu tablet running multipule applications side by side" />
 	</div>
 	<div class="six-col">
 		<p>Take calls in Skype while you work in a document, make notes&nbsp;on the side while you surf the web, tweet while you watch a movie.</p>
@@ -46,7 +55,15 @@
 
 <div class="row safer-sharing row-image-centered">
 	<span>
-		<img src="{{ STATIC_URL }}img/devices/safer-sharing-login.png" width="239" height="225" alt="Ubuntu login screen with multiple users" />
+		<div class="safer-sharing-image-load" data-width="300" data-src="{{ STATIC_URL }}img/tablet/image-tablet-safersharing{width}.png" data-alt="Ubuntu login screen with multiple users"></div>
+		<script>
+		    new Imager('.safer-sharing-image-load', {
+		        availableWidths: {
+		            300: '-small',
+		            768: '-medium'
+		        }
+		    });
+		</script>
 	</span>
 	<div class="six-col last-col">
 		<h2>Safer sharing</h2>
@@ -62,7 +79,7 @@
 	</div>
 </div>
 <div class="row row-tight no-border">
-	<div class="eight-col">
+	<div class="eight-col priority-0">
 		<div class="slider-animation instant-launch">
 			<div class="screen">
 				<div class="screen-fade"></div>
@@ -81,7 +98,7 @@
 		<h3>The system at your service</h3>
 		<p>Swipe through the top for any system service, search or setting. Switch networks, turn mobile data on, mute the volume, respond to incoming messages or block notifications without leaving your application. In fact, any system setting can be changed directly, without losing your place in the app. That makes Ubuntu the best tablet for staying focused in a connected world.</p>
 	</div>
-	<div class="eight-col last-col">
+	<div class="eight-col last-col priority-0">
 		<div class="slider-animation system-service">
 			<div class="screen">
 				<div class="screen-fade"></div>
@@ -92,7 +109,7 @@
 	</div>
 </div>
 <div class="row row-tight">
-	<div class="eight-col">
+	<div class="eight-col priority-0">
 		<div class="slider-animation content-controls">
 			<div class="screen">
 				<div class="menu"></div>
@@ -102,94 +119,95 @@
 	</div>
 	<div class="four-col last-col">
 		<h3>Celebrate content <br/>not controls</h3>
-		<p>Ubuntu feels cleaner, more spacious and less cluttered because we don&rsquo;t need buttons on every screen &ndash; your content is king. Swiping up from the bottom edge reveals app controls. <br />Don&rsquo;t swipe, you don&rsquo;t see any buttons or toolbars. You&rsquo;re free to focus on the stuff that matters &ndash; your photos, web pages, music, messages and apps.</p>
+		<p>Swiping up from the bottom edge reveals app controls. If you don&rsquo;t swipe, you don&rsquo;t see any buttons or toolbars &mdash; leaving you free to focus on the stuff that matters &mdash; your photos, web pages, music, messages and apps. Ubuntu feels cleaner, more spacious and less cluttered because we don’t need buttons on every screen &mdash; your content is king.</p>
 	</div>
 </div>
 
-<div class="row gorgeous-gallery">
+<div class="row gorgeous-gallery row-grey">
+	<div class="six-col for-mobile">
+		<img src="{{ STATIC_URL }}img/tablet/image-tablet-gorgeousgallery.jpg" alt="" />
+	</div>
 	<div class="six-col prepend-three">
 		<h2>A gorgeous gallery <br/>for your digital life</h2>
 		<p>The Gallery app is a stylish native Ubuntu application that <br />lets you organise and share photos. It&rsquo;s a great example of convergent app design and engineering: one app works on phone, tablet and desktop and it&rsquo;s equally beautiful and usable in every environment.</p>
-		<p>On the phone, you can browse photos, and on the tablet, <br />you can create albums &ndash; Ubuntu will organise your pictures into events by date or you can create custom collections.</p>
-		<p>Your photos are all instantly uploaded to your personal <br />cloud and available on all your devices &ndash; including those <br/>running iOS, Android and Windows. <br/>Share them with one touch.</p>
-	</div>
-</div><!-- /.row -->
-
-<div class="row">
-	<img class="shadow-fix" src="{{ STATIC_URL }}img/devices/tablet-voice-control-HUD.png" width="984" height="334" alt="Using HUD to search to application functions" />
-	<h2>Voice control in the HUD</h2>
-	<div class="six-col">
-		<p>The Ubuntu HUD makes complex application workflows simple on touch devices. This brings all the power of the <br />PC to your touch device. And with voice control, it&rsquo;s as if <br />you had an extra set of hands &ndash; a truly personal assistant.</p>
-	</div>
-	<div class="six-col last-col">
-		<p>Take the tablet where it has never been before &ndash; image manipulation, movie editing, document management, CAD. With an interface that scales from the tablet to a PC, Ubuntu brings potent apps into focus on touch devices.</p>
+		<p>Ubuntu will organise your pictures into events by date or you can create custom collections.</p>
+		<p>Your photos are all instantly uploaded to your personal cloud of choice and you can share them with one touch.</p>
 	</div>
 </div><!-- /.row -->
 
 <div class="row instant-share">
-	<div class="six-col last-col prepend-six">
+	<div class="six-col">
+		<img src="{{ STATIC_URL }}img/tablet/image-tablet-videoplayershare.png" alt="Share popover on Ubuntu touch" width="516" height="449" class="touch-top-left for-tablet" />
+	</div>
+	<div class="six-col last-col">
 		<h2>Instant share and <br />cloud connections</h2>
 		<p>Sharing is now built-in, with support for all the major networks. So any app can let you share with friends, family and co-workers.  One touch is all it takes.</p>
-		<p>Facebook and Twitter aren&rsquo;t the only ways to share. <br />Ubuntu One already has millions of users on Ubuntu, Android, Windows and Mac. Deeply integrated on Ubuntu devices, it provides free storage, paid-for music streaming services and <br />a foundation for cloud-based services from operators and device makers.</p>
+		<p>Facebook and Twitter aren&rsquo;t the only ways to share. Content services like music and photo streaming can be connected via an OEM or third-party cloud service.</p>
 	</div>
 </div><!-- /.row -->
 
 <div class="row world-of-apps">
-	<div class="six-col">
+	<div class="six-col for-tablet">
+		<img src="{{ STATIC_URL }}img/tablet/image-tablet-worldofapps-small.jpg" alt=""/>
+	</div>
+	<div class="six-col last-col">
 		<h2>A whole world of apps</h2>
 		<p>Web applications sit alongside native apps as equal citizens <br />on Ubuntu &ndash; with their own icons and access to system services. Facebook, Twitter, Google Maps, Gmail and Spotify are all available from day one &ndash; thanks to Ubuntu&rsquo;s brilliant web app system, developers can easily make their site install on the tablet as an app.</p>
-		<p>We aren&rsquo;t limited to HTML5. Native apps are blazingly fast, taking advantage of the full capabilities of the tablet&rsquo;s processor and graphics hardware. A mobile SDK does most <br />of the work for you, giving you that Ubuntu style. It&rsquo;s easy for Android and Blackberry developers to publish for the Ubuntu audience too, and since you&rsquo;re already running Ubuntu on your development workstations, everything you need is at your fingertips.</p>
-		<p><a href="/tablet/app-ecosystem">Learn more about developing for Ubuntu on tablets &rsaquo;</a></p>
+		<p>We aren&rsquo;t limited to HTML5. Native apps are blazingly fast, taking advantage of the full capabilities of the tablet&rsquo;s processor and graphics hardware. A mobile SDK does most of the work for you, giving you that Ubuntu style.</p>
+		<p>Best of all, Ubuntu’s common platform enables development of one application which can then be published across phone, tablet, desktop and TV.  Developer upload to user download can take five minutes flat.</p>
+		<p><a href="/tablet/app-ecosystem">Learn more about developing for Ubuntu on tablets&nbsp;&rsaquo;</a></p>
 	</div>
 </div><!-- /.row -->
 
 <div class="row">
 	<div class="twelve-col no-margin-bottom">
-		<img class="shadow-fix" src="{{ STATIC_URL }}img/devices/tablet-search.png" width="984" height="622" alt="Searching for New york on Ubuntu tablet" />
+		<img src="{{ STATIC_URL }}img/tablet/image-tablet-videos.jpg" width="976" height="622" alt="Searching for New York on Ubuntu tablet" />
 	</div>
 	<h2>Savvy search</h2>
 	<div class="six-col">
-		<p>Ubuntu presents results from hundred of sources in <br />one gorgeous page, saving you the trouble of comparison shopping or hunting down the right provider. You&rsquo;ll see information from your email and phone contacts alongside Facebook friends and followers on Twitter. </p>
+		<p>Just ask and Ubuntu presents results from hundreds of sources in one, gorgeous page, saving you the trouble of comparison shopping or hunting down the right provider. Interested in Superman?  Ubuntu searches the tablet and the web through its scopes, including retailers like Amazon or eBay.  </p>
 	</div>
 	<div class="six-col last-col">
-		<p>Looking for music? Ubuntu doesn&rsquo;t just search the tunes <br />on your tablet, it also searches online, giving you a choice <br />of tracks you don&rsquo;t yet own. It&rsquo;s really one search to rule <br />them all.</p>
+		<p>The video scope will return the film, the music scope will return the soundtrack, finding exactly what you want has never been so easy.</p>
 	</div>
 </div><!-- /.row -->
 
 <div class="row naturally-neat">
-	<div class="six-col">
-		<img class="shadow-fix" src="{{ STATIC_URL }}img/devices/tablet-home-portrait.jpg" width="510" height="662" alt="Ubuntu home screen displayed portrait" />
+	<div class="twelve-col no-margin-bottom">
+		<img src="{{ STATIC_URL }}img/tablet/image-tablet-scopes.jpg" width="975" height="622" alt="Searching for New york on Ubuntu tablet" />
 	</div>
-	<div class="six-col last-col">
-		<h2>Naturally neat home screen</h2>
-		<p>The stylish home screen organises all your most important information, selected from hundreds of sources &ndash; online or <br />on board.</p>
-		<p>You can customise the screen and search for any kind of content. Watch what you want with a single touch &ndash; no need to worry which app to find it in.</p>
+	<h2>Naturally neat with scopes</h2>
+	<div class="eight-col">
+		<p>Ubuntu&rsquo;s stylish home brings together information from hundreds of sources. Any kind of content can be surfaced directly in a scopes page: apps, music, videos and scopes are showcased front and centre.  Open what you want with a single touch &mdash; no need to worry which app to find it in.</p>
 	</div>
 </div><!-- /.row -->
 
 <div class="row row-image-centered">
 	<div class="six-col last-col">
 		<h2>Convergence that just clicks</h2>
-		<p>Today&rsquo;s tablets are as powerful as ultra-light laptops. Ubuntu uniquely supports a new category of convergence device &ndash; add a keyboard and mouse and your Ubuntu tablet becomes <br />a full PC and thin client, with access to Windows apps over standard protocols from Microsoft, Citrix, VMware and Wyse. That lets enterprise IT deploy a single, secure, portable corporate device for all kinds of applications.</p>
-		<p>Since it is pure Ubuntu, the tablet can be managed via Landscape, giving enterprises complete control over the users, apps, updated and access using the same tool they <br />use for Ubuntu servers and desktops today.</p>
+		<p>Today&rsquo;s tablets are as powerful as ultra-light laptops.  Designed for convergence, the option to dock with a keyboard and mouse will provide a full Ubuntu PC desktop experience in future.</p>
+		<p>And since it is pure Ubuntu, tablets can be managed via Canonical&rsquo;s proven systems management tool Landscape. That lets enterprise IT deploy a single, secure, portable corporate device for all kinds of applications. </p>
 	</div>
 	<span>
-		<img src="{{ STATIC_URL }}img/devices/tablet-convergence-illustration.jpg" width="357" height="310" alt="Ubuntu convergence illustration" />
+		<img src="{{ STATIC_URL }}img/tablet/image-tablet-converged.svg" class="priority-0" width="348" height="300" alt="Ubuntu convergence illustration" />
 	</span>
 </div><!-- /.row -->
 
-<div class="row row-grey equal-height row-grey">
-	<h2>Build a tablet with us</h2>
-	<img class="shadow-fix" src="{{ STATIC_URL }}img/devices/tablet-branded-and-apps.png" width="984" height="334" alt="Ubuntu tablet's interface branded with partners and grid of apps" />
+<div class="row row-grey row-grey row-build-a-tablet">
+	<div class="twelve-col">
+		<h2>Build a tablet with us</h2>
+	</div>
 	<div class="six-col">
-		<h3>Perfect for partners</h3>
-		<p>Canonical and Ubuntu enable industry partners to build devices that span the range, from low-BOM consumer electronics to enterprise-grade convergence devices for <br />the office, ruggedized, industrial and military. Fully customisable with branding, content and apps, Ubuntu <br />is the best choice for whatever tablet you want to make.</p>
-		<p><a href="/tablet/operators-and-oems">Work with us &rsaquo;</a></p>
+		<img src="{{ STATIC_URL }}img/tablet/image-tablet-everythingdevelopersneed.jpg" alt="List of app logos" width="432" height="300" />
+		<h3>Everything developers need</h3>
+		<p>Create gorgeous apps easily with our SDK: HTML5, Apache Cordova, OpenGL and a native toolkit giving you a full range of options for modern app development. With one OS for all form factors, you can build a single app with interfaces for the tablet, PC and phone &ndash; all published in a single upload. That&rsquo;s why leading game engines support Ubuntu, and why we&rsquo;re the favourite developer desktop for both cloud and mobile engineering.</p>
+		<p><a href="/tablet/app-ecosystem">Create your first tablet app for Ubuntu&nbsp;&rsaquo;</a></p>
 	</div>
 	<div class="six-col last-col">
-		<h3>Everything developers need</h3>
-		<p>Create gorgeous apps easily with our SDK: HTML5, OpenGL and a native toolkit giving you a full range of options for modern app development. With one OS for all form factors, you can build a single app with interfaces for the tablet, PC and phone &ndash; all published in a single upload. That&rsquo;s why leading game engines support Ubuntu, and why we&rsquo;re the favourite developer desktop for both cloud and mobile.</p>
-		<p><a href="/tablet/app-ecosystem">Create your first tablet app for Ubuntu &rsaquo;</a></p>
+		<img src="{{ STATIC_URL }}img/tablet/image-tablet-perfectforpartners.jpg" alt="Partner styled greeter screen" width="504" height="321" />
+		<h3>Perfect for partners</h3>
+		<p>Canonical and Ubuntu enable industry partners to build devices that span the range, from low-BOM consumer electronics to enterprise-grade convergence devices for <br />the office, ruggedised, industrial and military. Fully customisable with branding, content and apps, Ubuntu <br />is the best choice for whatever tablet you want to make.</p>
+		<p><a href="/tablet/operators-and-oems">Work with us&nbsp;&rsaquo;</a></p>
 	</div>
 </div><!-- /.row -->
 
@@ -197,10 +215,10 @@
 	<div class="eight-col">
 		<h2>Backed by Canonical</h2>
 		<p>We provide hardware enablement services to the world&rsquo;s biggest PC OEMs and, <br />as a result, Ubuntu is predicted to ship on almost 10% of the world&rsquo;s new branded PCs by 2014. With a global team of specialists covering enablement and optimisation, we have the resources you need to deliver amazing Ubuntu tablets.</p>
-		<p><a href="/tablet/backed-by-canonical">Learn more about Canonical &rsaquo;</a></p>
-	</div> 
+		<p><a href="/partners/backed-by-canonical">Learn more about Canonical&nbsp;&rsaquo;</a></p>
+	</div>
 	<span class="four-col last-col">
-		<img src="{{ STATIC_URL }}img/logos/canonical-symbol-167x167.png" width="167" height="167" alt="Canonical logo" />
+		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-canonical.svg" width="167" height="167" alt="Canonical logo" />
 	</span>
 </div><!-- /.row -->
 {% endblock content %}

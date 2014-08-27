@@ -7,35 +7,8 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero no-border">	
-	<h1>Thanks for getting in touch</h1>
-</div>
-
-<div class="row row-hero">
-	<h2>A member of our team will be in touch within <br/><strong>two working days</strong>.</h2>
-</div><!-- /.row-hero -->
-	
-<div class="row equal-height no-border">
-	<ul id="thank-you-extra" class="no-bullets">
-		<h3>More about our enterprise services</h3>
-		<li class="advantage four-col first">
-			<h4>Ubuntu Advantage</h4>
-			<p>Purchase our desktop support and access Ubuntu experts whenever you need.</p>
-			<p><a href="/cloud/management">Learn about Ubuntu Advantage &rsaquo;</a></p>
-		</li>
-		<li class="cloud four-col">
-			<h4>Ubuntu Cloud</h4>
-			<p>Our OpenStack-based public and private cloud platform.<br/><br/></p>
-			<p><a href="/cloud">Learn about Ubuntu Cloud &rsaquo;</a></p>
-		</li>
-		<li class="jumpstart four-col last-col">
-			<h4>Cloud Jumpstart</h4>
-			<p>Let a Canonical engineer build a seed cloud on your premises in just five days.</p>
-			<p><a href="/cloud/private-cloud/jumpstart">Learn about Cloud Jumpstart &rsaquo;</a></p>
-		</li>
-	</ul>
-</div><!-- end row-->
-	
+{% include "shared/_thank_you.html" with thanks_context="contacting us about Ubuntu Advantage" %}
+{% include "shared/_live_chat.html" %}
 {% endblock content %}
 {% block footer_extra %}
 <!-- Google Code for Services Canonical - contact us Conversion Page -->

@@ -11,11 +11,14 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero no-border no-padding-bottom">
-	<div class="seven-col no-margin-bottom">
-		<h1>Cloud labs</h1>
-		<p class="no-margin-bottom">There is so much goodness going on in the cloud on Ubuntu! Super-complex deployments turned into a breeze by Juju, ideas for new charms to write, great insights on cloud security, and beautiful new designs for GUI icons! This is the place where we post all this interesting content from the Ubuntu cloud team. </p>
-	</div><!-- /.eight-col -->
+<div class="row row-hero no-border row-image-centered">
+	<div class="seven-col">
+		<h1>Labs</h1>
+		<p>There is so much goodness going on in the cloud on Ubuntu! Super-complex deployments turned into a breeze by Juju, ideas for new charms to write, great insights on cloud security, and beautiful new designs for GUI icons! This is the place where we post all this interesting content from the Ubuntu cloud team. </p>
+	</div>
+	<span>
+		<img src="{{ STATIC_URL }}img/cloud/labs/image-cloudlabs.svg" alt="" width="288" height="186" />
+	</span>
 </div><!-- /.row row-hero -->
 
 <div class="row no-border">
@@ -36,28 +39,28 @@
 		<div class="box">
 			<h3><a href="http://ubuntuone.com/6fDDb4dq240auPL1qphq1p">Juju GUI walk-through&nbsp;&rsaquo;</a></h3>
 			<p>Check out the latest version of cloud magic! We&rsquo;ve just unveiled the new, and very fabulous Juju GUI, and you get a walk-through.</p>
-			<p class="note">Video</p>		
+			<p class="note">Video</p>
 		</div>
 	</div>
 	<div class="eight-col last-col">
 		<div class="box">
 			<h3><a href="https://www.youtube.com/watch?v=yRcqSjOGweo">Charm School: Charm overview&nbsp;&rsaquo;</a></h3>
-			<p><iframe width="554" height="312" src="//www.youtube.com/embed/yRcqSjOGweo?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe></p>
+			<p class="video-container"><iframe width="554" height="312" src="//www.youtube.com/embed/yRcqSjOGweo?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe></p>
 			<p>If you&rsquo;re itching to write your first charm, here is how to do it.
 		</div>
 		<div class="box">
-			<h3><a href="http://www.youtube.com/watch?v=HUtR3_YlKXU">Ubuntu Juju - migrate your infrastructure from ec2 to hpcloud&nbsp;&rsaquo;</a></h3>
-			<p><iframe width="554" height="312" src="//www.youtube.com/embed/HUtR3_YlKXU?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe></p>
+			<h3><a href="http://www.youtube.com/watch?v=HUtR3_YlKXU">Ubuntu Juju - migrate your infrastructure from EC2 to HP Cloud&nbsp;&rsaquo;</a></h3>
+			<p class="video-container"><iframe width="554" height="312" src="//www.youtube.com/embed/HUtR3_YlKXU?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe></p>
 			<p>Looking to migrate your infrastructure from ec2 to HP Cloud? Here is the magical way to do it using Juju.</p>
 		</div>
 		<div class="box">
 			<h3><a href="https://www.youtube.com/watch?v=kKQLhGZVN4A">Google I/O 2012 - Go in Production&nbsp;&rsaquo;</a></h3>
-			<p><iframe width="554" height="312" src="http://www.youtube.com/embed/kKQLhGZVN4A?version=3&rel=1&start=85&showinfo=0" frameborder="0" allowfullscreen></iframe></p>
+			<p class="video-container"><iframe width="554" height="312" src="http://www.youtube.com/embed/kKQLhGZVN4A?version=3&rel=1&start=85&showinfo=0" frameborder="0" allowfullscreen></iframe></p>
 			<p>Canonical&rsquo;s Gustavo Niemeyer gave a fantastic talk at Google I/O on Go in production.
 		</div>
 	</div>
 	<div class="eight-col">
-		<p class="note" id="fn1">* By sending us content you consent to Canonical&rsquo;s use of such content in its absolute discretion and that the content will not infringe the rights of any third party. The use and collection of the content will be in accordance with <a href="http://www.canonical.com/aboutus/privacypolicy">Canonical&rsquo;s privacy policy</a>.</p>
+		<p class="note" id="fn1">* By sending us content you consent to Canonical&rsquo;s use of such content in its absolute discretion and that the content will not infringe the rights of any third party. The use and collection of the content will be in accordance with <a href="http://www.vmware.com/cloud-computing">Canonical&rsquo;s privacy policy</a>.</p>
 	</div><!-- /.eight-col -->
 </div><!-- /.row -->
 {% endblock content %}

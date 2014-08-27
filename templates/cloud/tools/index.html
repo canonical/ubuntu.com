@@ -11,53 +11,58 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-image-centered">
+<div class="row row-hero">
 	<div class="seven-col">
 		<h1>Cloud tools</h1>
-		<p class="intro">You want to minimise the time to get your cloud infrastructure up and running and start offering your services to customers. We have the tools to get you there.</p>
+		<p class="intro">Want to minimise the time to get your cloud infrastructure up and running and start offering your services to customers? We have the tools to get you there.</p>
 	</div><!-- /.seven-col -->
-	<span><img src="{{ STATIC_URL }}img/pictograms/pictogram-cloud-tools-288x187.png" alt="pictogram-cloud-tools-288x187" width="288" height="187" /></span>
+	<div class="text-center five-col last-col">
+		<img src="{{ STATIC_URL }}img/cloud/tools/image-cloudtools.svg" alt="" width="288" height="186" />
+	</div>
 </div><!-- /.row -->
 
 <div class="row row-juju">
-	<span><img src="{{ STATIC_URL }}img/cloud/image-juju.png" alt="image-juju" width="984" height="323" /></span>
-
+	<span>
+		<div class="orchestration-image-load" data-width="984" data-src="{{ STATIC_URL }}img/cloud/tools/image-jujucharms{width}.png" data-alt=""></div>
+		<script>
+		    new Imager('.orchestration-image-load', {
+		        availableWidths: {
+		        	360: '-small',
+		            767: '-medium',
+		            900: '-large'
+		        }
+		    });
+		</script>
+	</span>
 	<div class="six-col prepend-six last-col">
 		<h2>Orchestration with Juju</h2>
 		<p>Juju is the game-changing service orchestration tool that&rsquo;s the fastest way to deploy OpenStack on Ubuntu. Its libraries of &lsquo;charms&rsquo; make it simple to deploy, configure and scale out cloud services with only a few simple commands.</p>
-		<p><a href="/cloud/tools/juju">Read more about Juju &rsaquo;</a></p>
+		<p><a href="/cloud/tools/juju">Read more about Juju&nbsp;&rsaquo;</a></p>
 	</div><!-- /.six-col -->
 </div><!-- /.row -->
 
-<div class="row row-image-centered">
+<div class="row">
 	<div class="six-col">
 		<h2>Provisioning with MAAS</h2>
 		<p>MAAS is the bare-metal provisioning tool that turns your hardware environment into a cloud in minutes. It takes the pain out of detection and configuration and gets your servers ready for Juju.</p>
 		<p><a href="/cloud/tools/maas">Read more about MAAS&nbsp;&rsaquo;</a></p>
 	</div><!-- /.six-col -->
-	<span><img src="{{ STATIC_URL }}img/cloud/image-maas.png" alt="image-maas" width="426" height="211" /></span>
-</div><!-- /.row -->
-
-<div class="row row-image-centered row-grey">
-	<span><img src="{{ STATIC_URL }}img/cloud/image-openstack.png" alt="image-openstack" width="200" height="202" /></span>
-	<div class="eight-col last-col">
-		<h2>OpenStack</h2>
-		<p>OpenStack is the world&rsquo;s leading open-source cloud platform, developed by NASA using Ubuntu. It provides everything from compute, storage and network components to a management dashboard and a fully integrated usage-metering engine.</p>
-		<p><a href="/cloud/tools/openstack">Read more about OpenStack &rsaquo;</a></p>
-	</div><!-- /.six-col -->
-</div><!-- /.row -->
-
-<div class="row row-computers-selected">
-	<div class="six-col">
-		<h2>Landscape</h2>
-		<p>Landscape is where the power of Ubuntu OpenStack really comes together. It allows you to monitor your cloud environment, manage updates, and produce timely and accurate compliance reports. The rich, web-based GUI gives you an instant overview of everything going on in your cloud, from hardware to workloads.</p>
-		<p><a href="/cloud/management">Read more about Landscape &rsaquo;</a></p>
-	</div><!-- /.six-col -->
-	<div class="six-col last-col computers-selected">
-		<p>25 <span>computers selected</span></p>
+	<div class="six-col last-col text-center">
+		<img src="{{ STATIC_URL }}img/cloud/image-maas.png" alt="image-maas" width="426" height="211" />
 	</div>
 </div><!-- /.row -->
 
+
+<div class="row row-computers-selected no-border">
+	<div class="six-col last-col priority-0 computers-selected">
+		<p>25<span>computers selected</span></p>
+	</div>
+	<div class="six-col">
+		<h2>Deploy, monitor and manage your cloud with Landscape</h2>
+		<p>Landscape is where the power of Ubuntu OpenStack really comes together. It allows you to build your cloud in minutes, then monitor it, manage it and produce timely and accurate compliance reports. The rich, web-based GUI gives you an instant overview of everything going on in your cloud, from hardware to workloads. </p>
+		<p><a href="/cloud/management">Read more about Landscape&nbsp;&rsaquo;</a></p>
+	</div><!-- /.six-col -->
+</div><!-- /.row -->
 
 {% comment %}
 <div class="row">
@@ -68,13 +73,5 @@
 	</div><!-- /.six-col -->
 </div><!-- /.row -->
 {% endcomment %}
-<div class="row row-image-centered no-border">
-	<div class="eight-col">
-		<h2>Jumpstart</h2>
-		<p>Jumpstart is a fast, low-risk way to plan and build a public or private cloud. For only $9,000, an on-site Canonical engineer will get your cloud fully up and running in five days. Let us do the hard work for you.
-</p>
-		<p><a href="/cloud/tools/jumpstart">Read more about Jumpstart&nbsp;&rsaquo;</a></p>
-	</div><!-- /.six-col -->
-	<span><img src="{{ STATIC_URL }}img/cloud/image-jumpstart.png" alt="image-jumpstart" width="211" height="211" /></span>
-</div><!-- /.row -->
+
 {% endblock content %}

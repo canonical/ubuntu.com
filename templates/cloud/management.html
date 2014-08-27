@@ -14,20 +14,17 @@
 {% block content %}
 <div class="row row-hero">
 	<h1>Cloud management</h1>
-		<div class="twelve-col">
-			<div class="six-col">
-				<p class="intro">Ubuntu OpenStack is fully supported through Ubuntu Advantage from Canonical, the company behind Ubuntu.</p>
-			</div>
-		</div><!-- /.twelve-col -->
-		<div class="twelve-col">
-			<div class="six-col no-margin-bottom">
-				<p>Ubuntu Advantage provides efficient systems administration, fast problem resolution and access to the Ubuntu and OpenStack experts as and when you need them. You can choose the level of support you need based on your workloads and cloud setup.</p>
-				<p><a href="/management">Find out more about Landscape &rsaquo;</a></p>
-			</div>
-			<div class="six-col no-margin-bottom last-col">
-				<p>Landscape is the systems management tool for Ubuntu OpenStack included with Ubuntu Advantage. It allows you to manage, audit and report on your  Ubuntu OpenStack cloud and services running within its easily as one, making your entire environment more cost-effective.</p>
-			</div>
-		</div><!-- /.twelve-col -->
+	<div class="six-col">
+		<p class="intro">Ubuntu OpenStack is fully supported through Ubuntu Advantage from Canonical, the company behind Ubuntu.</p>
+		<p>Ubuntu Advantage provides efficient systems administration, fast problem resolution and access to the Ubuntu and OpenStack experts as and when you need them. You can choose the level of support you need based on your workloads and cloud setup.</p>
+		<p><a href="/management">Find out more about Landscape&nbsp;&rsaquo;</a></p>
+	</div>
+	<div class="six-col last-col">
+		<div class="text-center">
+			<img src="{{ STATIC_URL }}img/cloud/management/image-cloudmanagement.svg" width="389" height="114" alt="" />
+		</div>
+		<p>Landscape is the systems management tool for Ubuntu OpenStack included with Ubuntu Advantage. It allows you to manage, audit and report on your  Ubuntu OpenStack cloud and services running within its easily as one, making your entire environment more cost-effective.</p>
+	</div>
 </div><!-- /.row -->
 
 <div class="row">
@@ -61,21 +58,21 @@
 				</tr>
 				<tr>
 					<th>Infrastructure 24/7 support</th>
-					<td><img src="/static/u/img/patterns/purpletick.gif" alt="Yes"></td>
-					<td><img src="/static/u/img/patterns/purpletick.gif" alt="Yes"></td>
-					<td><img src="/static/u/img/patterns/purpletick.gif" alt="Yes"></td>
+					<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes"></td>
+					<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes"></td>
+					<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes"></td>
 				</tr>
 				<tr>
 					<th>Landscape Dedicated Server</th>
-					<td><img src="/static/u/img/patterns/purpletick.gif" alt="Yes"></td>
-					<td><img src="/static/u/img/patterns/purpletick.gif" alt="Yes"></td>
-					<td><img src="/static/u/img/patterns/purpletick.gif" alt="Yes"></td>
+					<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes"></td>
+					<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes"></td>
+					<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes"></td>
 				</tr>
 				<tr>
 					<th>Unlimited supported Ubuntu guests*</th>
-					<td><img src="/static/u/img/patterns/purpletick.gif" alt="Yes"></td>
-					<td><img src="/static/u/img/patterns/purpletick.gif" alt="Yes"></td>
-					<td><img src="/static/u/img/patterns/purpletick.gif" alt="Yes"></td>
+					<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes"></td>
+					<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes"></td>
+					<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes"></td>
 				</tr>
 			</tbody>
 			<tfoot>
@@ -87,9 +84,9 @@
 				</tr>
 				<tr>
 					<th>Price per year per availability zone</th>
-					<td>&dollar;75,000</td>
-					<td>&dollar;180,000</td>
-					<td>&dollar;350,000</td>
+					<td>&dollar;75<span class="full">,000</span><span class="truncated">k</span></td>
+					<td>&dollar;180<span class="full">,000</span><span class="truncated">k</span></td>
+					<td>&dollar;350<span class="full">,000</span><span class="truncated">k</span></td>
 				</tr>
 			</tfoot>
 		</table>
@@ -138,7 +135,7 @@
 		</table>
 
 		<p id="fn1" class="right clearfix smaller">* Support for guests is limited to office hours, but can be upgraded to 24/7</p>
-		<p><a href="/management/contact-us">Contact us about Ubuntu Advantage &rsaquo;</a></p>
+		<p><a href="/management/contact-us">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
 	</div>
 </div><!-- /.row -->
 

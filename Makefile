@@ -1,62 +1,128 @@
-SHELL := /bin/bash
+SHELL := /bin/bash # Use bash syntax
 
-# Run the sass compiler, for CSS, and the development server
-develop:
-	$(MAKE) sass-watch
-	./manage.py runserver_plus 0.0.0.0:8000
+define HELP_TEXT
+Canonical.com website project
+===
 
+Usage:
+
+> make setup    # Install dependencies
+> make develop  # Auto-compile sass files and run the dev server
+
+endef
+
+# Variables
+##
+
+ENVPATH=${VIRTUAL_ENV}
+VEX=vex --path ${ENVPATH}
+ifeq ($(ENVPATH),)
+	ENVPATH=env
+endif
+
+##
+# Print help text
+##
+help:
+	$(info ${HELP_TEXT})
+
+##
+# Start the development server
+##
+develop: sass-watch dev-server
+
+##
+# Prepare the project
+##
+setup: install-dependencies update-env
+
+##
+# Run server
+##
+dev-server:
+	${VEX} ./manage.py runserver_plus 0.0.0.0:8000
+
+##
+# Run SASS watcher
+##
 sass-watch:
-	bundle exec sass --watch static/css/styles.scss:static/css/styles.css &
+	sass --debug-info --watch static/css/styles.scss &
 
-sass:
-	sass --update --force --style compressed static/css/styles.scss:static/css/styles.css
-	sass --update --force --style compressed static/css/core-print.scss:static/css/core-print.css
+##
+# Build SASS
+##
+sass-build:
+	sass --style compressed --update static/css/styles.scss
 
-# Install dependencies etc
-setup: setup-ruby setup-venv
+##
+# Get virtualenv ready
+##
+update-env:
+	${MAKE} create-env
 
-setup-ruby:
-	##
-	# Install dependencies
-	##
-	if [ ! $$(command -v bundle) ]; then sudo apt-get install bundler; fi
+	${VEX} ${MAKE} install-requirements
 
-	##
-	# Install gem dependencies
-	##
-	bundle update
+##
+# Make virtualenv directory if it doesn't exist and we're not in an env
+##
+create-env:
+	if [ ! -d ${ENVPATH} ]; then virtualenv ${ENVPATH}; fi
 
-setup-venv:
-	##
-	# Install virtualenv dependencies
-	##
+##
+# Install pip requirements
+# Only if inside a virtualenv
+##
+install-requirements:
+	if [ "${VIRTUAL_ENV}" ]; then pip install -r requirements/dev.txt; fi
+
+##
+# Install required system dependencies
+##
+install-dependencies:
+	if [ $$(command -v apt-get) ]; then ${MAKE} apt-dependencies; fi
+	if [ $$(command -v brew) ]; then ${MAKE} brew-dependencies; fi
+
+	if [ ! $$(command -v virtualenv) ]; then sudo pip install virtualenv; fi
+	if [ ! $$(command -v vex) ]; then sudo pip install vex; fi
+
+## Install dependencies with apt
+apt-dependencies:
 	if [ ! $$(command -v pip) ]; then sudo apt-get install python-pip; fi
-	if [ ! $$(command -v virtualenv) ]; then sudo apt-get install python-virtualenv; fi
+	if [ ! $$(command -v sass) ]; then sudo apt-get install ruby-sass; fi
 
-	##
-	# Make virtualenv directory if it doesn't exist
-	##
-	if [ ! -d "env" ]; then virtualenv env; fi
+## Install dependencies with brew
+brew-dependencies:
+	if [ ! $$(command -v pip) ]; then sudo easy_install pip; fi
+	if [ ! $$(command -v sass) ]; then sudo gem install sass; fi
 
-	##
-	# Install python dependencies
-	##
-	env/bin/pip install -r requirements/standard.txt
+update-templates:
+	rm -rf templates
+	rm -rf static
+	bzr branch lp:ubuntu-website-content templates
+	rm -rf templates/.bzr*
 
-	##
-	#
-	# Now run:
-	#
-	# > source env/bin/activate
-	#
-	# And when you're done:
-	#
-	# > deactivate
-	#
-	##
+	mv templates/static .
 
-# Alises
+	# Remove references to scss module
+	find templates -type f -name '*.html' | xargs sed -i '/^ *[{][%] load scss [%][}] *$$/d'
+	find templates -type f -name '*.html' | xargs sed -i 's/[{][%]\s*scss\s\+["]\([^"]\+\).scss["]\s*[%][}]/\1.css/g'
+	find static/css -type f -name '*.scss' | xargs sed -i 's/[%][%]/%/g'
+
+	# Rewrite old "ubuntu"-prefixed template includes
+	#perl -pi -e 's/\{\{ STATIC_URL \}\}u\//{{ STATIC_URL }}/g' `find .`
+	#perl -pi -e 's/\{\% (extends|include|with) "ubuntu\//{% $$1 "/g' `find .`
+
+	find templates -type f -name '*.html' | xargs sed -i 's/[{][{] *STATIC_URL *[}][}]u[/]/{{ STATIC_URL }}/g'
+	find templates -type f -name '*.html' | xargs sed -i 's/[{][%] *\(extends\|include\|with\) \+["]ubuntu[/]/{% \1 "/g'
+
+	find static/css -type f -name '*.scss' | xargs sed -i 's/[@]import ["]css[/]/@import "static\/css\//g'
+
+# The below targets
+# are just there to allow you to type "make it so"
+# as a replacement for "make" or "make develop"
+# - Thanks to https://directory.canonical.com/list/ircnick/deadlight/
 
 it:
+	# Nothing
 
 so: develop

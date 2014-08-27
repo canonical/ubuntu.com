@@ -1,0 +1,20 @@
+	<ul class="third-level-nav">
+
+		{% if level_2 == 'terms-and-policies' %}
+		<li{% if level_3 == 'terms' %} class="active"{% endif %}><a href="/legal/terms-and-policies/terms">Terms and conditions</a></li>
+		<li{% if level_3 == 'privacy-policy' %} class="active"{% endif %}><a href="/legal/terms-and-policies/privacy-policy">Privacy policy</a></li>
+		<li{% if level_3 == 'intellectual-property-policy' %} class="active"{% endif %}><a href="/legal/terms-and-policies/intellectual-property-policy">Intellectual property</a></li>
+		<li{% if level_3 == 'online-account-terms' %} class="active"{% endif %}><a href="/legal/terms-and-policies/online-account-terms">Online account terms</a></li>
+		<li{% if level_3 == 'terms-of-service' %} class="active"{% endif %}><a href="/legal/terms-and-policies/terms-of-service">U1 Terms of Service</a></li>
+		{% endif %}
+
+		{% if level_2 == 'ubuntu-advantage' %}
+		<li{% if level_3 == 'service-description' %} class="active"{% endif %}><a href="/legal/ubuntu-advantage/service-description">Service description</a></li>
+		<li{% if level_3 == 'assurance' %} class="active"{% endif %}><a href="/legal/ubuntu-advantage/assurance">Ubuntu Assurance</a></li>
+		{% endif %}
+
+		{% if level_2 == 'contributors' %}
+		<li{% if level_3 == 'licence-agreement-faq' %} class="active"{% endif %}><a href="/legal/contributors/licence-agreement-faq">Licence agreement FAQ</a></li>
+		<li{% if level_3 == 'submit' %} class="active"{% endif %}><a href="/legal/contributors/submit">Submit</a></li>
+		{% endif %}
+	</ul>

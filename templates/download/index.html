@@ -1,6 +1,6 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Download Ubuntu{% endblock %}
+{% block title %}Get Ubuntu | Download{% endblock %}
 {% block extra_body_class %}download-home{% endblock %}
 
 {% block second_level_nav_items %}
@@ -16,22 +16,37 @@
 </div><!-- / .row -->
 
 <div class="row row-list-download no-border">
-	<div class="twelve-col desktop box box-highlight">
-		<div id="download-desktop">
-			<h2><a class="link-arrow" href="/download/desktop">Ubuntu Desktop</a></h2>
+	<div class="box box-highlight clearfix">
+		<div class="two-col text-center">
+			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-download-orange.svg" alt="" width="113" height="113" />
+		</div>
+		<div class="ten-col last-col no-margin-bottom">
+			<h2><a href="/download/desktop">Ubuntu Desktop&nbsp;&rsaquo;</a></h2>
 			<p>Download Ubuntu desktop and replace your current operating system whether it&rsquo;s Windows or Mac OS, or, run Ubuntu alongside it.</p>
 		</div>
-		<p class="ubuntu-upgrade">Do you want to upgrade? <a class="link-arrow" href="/download/desktop/upgrade">Follow our simple guide</a></p>
-	</div><!-- /.four-col -->
-	
+	</div>
+	<div class="twelve-col">
+		<p class="ubuntu-upgrade">Do you want to upgrade? <a href="/download/desktop/upgrade">Follow our simple guide&nbsp;&rsaquo;</a></p>
+	</div>
+
 	<div class="twelve-col equal-height">
-		<div class="six-col server box">
-			<h2><a class="link-arrow" href="/download/server">Ubuntu Server</a></h2>
-			<p>Whether you want to configure a simple file server or build a fifty thousand-node cloud, you can rely on Ubuntu Server and its five years of guaranteed free upgrades.</p>
+		<div class="six-col box no-margin-bottom">
+			<div class="two-col text-center">
+				<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-server-darkaubergine.svg" alt="" width="113" height="113" class="media--image__vcentered" />
+			</div>
+			<div class="four-col last-col">
+				<h2><a href="/download/server">Ubuntu Server&nbsp;&rsaquo;</a></h2>
+				<p>Whether you want to configure a simple file server or build a fifty thousand-node cloud, you can rely on Ubuntu Server and its five years of guaranteed free upgrades.</p>
+			</div>
 		</div><!-- /.four-col -->
-		<div class="six-col cloud last-col box">
-			<h2><a class="link-arrow" href="/download/cloud">Ubuntu Cloud</a></h2>
-			<p>Ubuntu Cloud comprises installation options for the OpenStack-based Ubuntu Cloud Infrastructure and Ubuntu Cloud Guest, all from within the Ubuntu Server download.</p>
+		<div class="six-col last-col box no-margin-bottom">
+			<div class="two-col text-center">
+				<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-cloud-darkaubergine.svg" alt="" width="113" height="113" class="media--image__vcentered" />
+			</div>
+			<div class="four-col last-col">
+				<h2><a href="/download/cloud">Ubuntu Cloud&nbsp;&rsaquo;</a></h2>
+				<p>Ubuntu OpenStack enables you to provision your servers and build an OpenStack cloud on Ubuntu, all from one Ubuntu Server download.</p>
+			</div>
 		</div><!-- /.four-col -->
 	</div><!-- /.twelve-col -->
 </div><!-- /.row -->

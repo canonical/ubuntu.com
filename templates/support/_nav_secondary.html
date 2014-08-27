@@ -1,5 +1,4 @@
-	<ul{% if list_class %} class="{{ list_class }}"{% endif %}>
+	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
 		<li class="first{% if level_1 == 'support' and not level_2 %}  active{% endif %}"><a href="/support">Overview</a></li>
-		<li{% if level_2 == 'community' %} class="active"{% endif %}><a href="/support/community">Community support</a></li>
-		<li><a href="http://www.ubuntu.com/usn">Security notices</a></li>
+		<li><a href="http://www.ubuntu.com/usn/">Security notices</a></li>
 	</ul>

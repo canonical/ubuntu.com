@@ -1,6 +1,6 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Contribute to Ubuntu{% endblock %}
+{% block title %}Contribute to Ubuntu | Ubuntu{% endblock %}
 {% block extra_body_class %}contribute-to-ubuntu{% endblock %}
 
 {% block second_level_nav_items %}
@@ -15,12 +15,8 @@
         <p>&hellip;and put your money where your mouth is ;)</p>
     </div>
     <div class="contribution-intro">
-        <h1>Pay what you think it&rsquo;s worth</h1>
-        <p>Millions agree that Ubuntu is a great piece of software. But how much do you really think it&rsquo;s worth?</p>
-    </div>
-    <div class="contribution-intro">
-        <h1>Show Ubuntu some love</h1>
-        <p>Or, alternatively, help out in the bug tracker ;)</p>
+        <h1>Help shape the future of Ubuntu...</h1>
+        <p>...tell us what to do more of!</p>
     </div>
 </div>
 
@@ -28,48 +24,47 @@
     <form class="main-form" id="contributions-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <div class="row no-border">
             <div class="sliders-container noscript">
-                <div class="slider-area" id="desktop">
-                    <p>Make the desktop more amazing</p>
+                <div class="slider-area" id="ubuntu-desktop">
+                    <p class="title">Ubuntu Desktop</p>
 
                     <fieldset class="contribution-value">
                         <label for="amount-desktop">&#36; </label>
-                        <input type="number" max="125" id="amount-desktop" name="amount_1" value="2" class="amount-input" tabindex="1">
+                        <input type="number" min="0" max="125" id="amount-desktop" name="amount_1" value="2" class="amount-input" tabindex="1">
                     </fieldset>
                     
                     <div class="contribution-slider"></div>
 
                     <!--  Hidden fields -->
-                    <input type="hidden" name="item_name_1" value="Make the desktop more amazing">
-
+                    <input type="hidden" name="item_name_1" value="Ubuntu Desktop">
                 </div>
-                <div class="slider-area" id="performance">
-                    <p>Performance optimisation for games and apps</p>
+                <div class="slider-area" id="ubuntu-for-phone">
+                    <p class="title">Ubuntu for phone</p>
 
                     <fieldset class="contribution-value">
-                        <label for="amount_performance">&#36; </label>
-                        <input type="number" max="125" id="amount_performance" name="amount_2" value="2" class="amount-input"  tabindex="2">
+                        <label for="amount_phone">&#36; </label>
+                        <input type="number" max="125" id="amount_phone" name="amount_2" value="2" class="amount-input" tabindex="4">
                     </fieldset>
 
                     <div class="contribution-slider"></div>
-
+                    
                     <!-- hidden fields -->
-                    <input type="hidden" name="item_name_2" value="Performance optimisation for games and apps">
+                    <input type="hidden" name="item_name_2" value="Ubuntu for phone">
                 </div>
-                <div class="slider-area" id="hardware">
-                    <p>Improve hardware support on more PCs</p> 
+                <div class="slider-area" id="ubuntu-for-tablet">
+                    <p class="title">Ubuntu for tablet</p>
 
                     <fieldset class="contribution-value">
-                        <label for="amount_hardware">&#36; </label>
-                        <input type="number" max="125" id="amount_hardware" name="amount_3" value="2" class="amount-input" tabindex="3">
+                        <label for="amount_phone">&#36; </label>
+                        <input type="number" max="125" id="amount_phone" name="amount_3" value="2" class="amount-input" tabindex="4">
                     </fieldset>
 
                     <div class="contribution-slider"></div>
-
+                    
                     <!-- hidden fields -->
-                    <input type="hidden" name="item_name_3" value="Improve hardware support on more PCs">
+                    <input type="hidden" name="item_name_3" value="Ubuntu for tablet">
                 </div>
-                <div class="slider-area" id="phone">
-                    <p>Phone and tablet versions of Ubuntu</p>
+                <div class="slider-area" id="ubuntu-on-public-clouds">
+                    <p class="title">Ubuntu on public clouds</p>
 
                     <fieldset class="contribution-value">
                         <label for="amount_phone">&#36; </label>
@@ -79,53 +74,53 @@
                     <div class="contribution-slider"></div>
                     
                     <!-- hidden fields -->
-                    <input type="hidden" name="item_name_4" value="Phone and tablet versions of Ubuntu">
+                    <input type="hidden" name="item_name_4" value="Ubuntu on public clouds">
                 </div>
-                <div class="slider-area" id="community">
-                    <p>Community participation in Ubuntu development</p>
+                <div class="slider-area" id="cloud-tools">
+                    <p class="title">Cloud tools  (e.g. Juju, MAAS)</p>
 
                     <fieldset class="contribution-value">
-                        <label for="amount_community">&#36; </label>
-                        <input type="number" max="125" id="amount_community" name="amount_5" value="2" class="amount-input" tabindex="5">
+                        <label for="amount_phone">&#36; </label>
+                        <input type="number" max="125" id="amount_phone" name="amount_5" value="2" class="amount-input" tabindex="4">
                     </fieldset>
+
+                    <div class="contribution-slider"></div>
                     
+                    <!-- hidden fields -->
+                    <input type="hidden" name="item_name_5" value="Cloud tools  (e.g. Juju, MAAS)">
+                </div>
+                <div class="slider-area" id="ubuntu-server-with-openstack">
+                    <p class="title">Ubuntu Server with OpenStack</p>
+
+                    <fieldset class="contribution-value">
+                        <label for="amount_phone">&#36; </label>
+                        <input type="number" max="125" id="amount_phone" name="amount_6" value="2" class="amount-input" tabindex="4">
+                    </fieldset>
+
                     <div class="contribution-slider"></div>
                     
                     <!-- hidden fields -->
-                    <input type="hidden" name="item_name_5" value="Community participation in Ubuntu development">
+                    <input type="hidden" name="item_name_6" value="Ubuntu Server with OpenStack">
                 </div>
-                <div class="slider-area" id="upstream">
-                    <p>Better coordination with Debian and upstreams</p>
+                <div class="slider-area" id="community-projects">
+                    <p class="title">Community projects</p>
 
                     <fieldset class="contribution-value">
-                        <label for="amount_upstream">&#36; </label>
-                        <input type="number" max="125" id="amount_upstream" name="amount_6" value="2" class="amount-input" tabindex="6">
+                        <label for="amount_performance">&#36; </label>
+                        <input type="number" max="125" id="amount_performance" name="amount_7" value="2" class="amount-input"  tabindex="2">
                     </fieldset>
 
                     <div class="contribution-slider"></div>
 
                     <!-- hidden fields -->
-                    <input type="hidden" name="item_name_6" value="Better coordination with Debian and upstreams">
+                    <input type="hidden" name="item_name_7" value="Community projects">
                 </div>
-                <div class="slider-area" id="flavours">
-                    <p>Better support for flavours like Kubuntu, Xubuntu, Lubuntu</p>
+                <div class="slider-area" id="tip-to-canonical">
+                    <p class="title">Tip to Canonical</p> 
 
                     <fieldset class="contribution-value">
-                        <label for="amount_flavours">&#36; </label>
-                        <input type="number" max="125" id="amount_flavours" name="amount_7" value="2" class="amount-input" tabindex="7">
-                    </fieldset>
-
-                    <div class="contribution-slider"></div>
-
-                    <!-- hidden fields -->
-                    <input type="hidden" name="item_name_7" value="Better support for flavours">
-                </div>
-                <div class="slider-area" id="canonical">
-                    <p>Tip to Canonical &ndash; they help make it happen</p>
-
-                    <fieldset class="contribution-value">
-                        <label for="amount_canonical">&#36; </label>
-                        <input type="number" max="125" id="amount_canonical" name="amount_8" value="2" class="amount-input" tabindex="8">
+                        <label for="amount_hardware">&#36; </label>
+                        <input type="number" max="125" id="amount_hardware" name="amount_8" value="2" class="amount-input" tabindex="3">
                     </fieldset>
 
                     <div class="contribution-slider"></div>
@@ -166,14 +161,14 @@
                 <input type="hidden" name="no_shipping" value="1">
                 <input type="hidden" name="rm" value="1">
 
-                <input type="hidden" name="return" value="/download/desktop/thank-you/?version={{ request.GET.version }}&architecture={{ request.GET.architecture }}">
-                <input type="hidden" name="cancel_return" value="/download/desktop/thank-you/?version={{ request.GET.version }}&architecture={{ request.GET.architecture }}">
+                <input type="hidden" name="return" value="http://{{ request.META.HTTP_HOST }}/download/desktop/thank-you/?version={{ request.GET.version }}&architecture={{ request.GET.architecture }}">
+                <input type="hidden" name="cancel_return" value="http://{{ request.META.HTTP_HOST }}/download/desktop/thank-you/?version={{ request.GET.version }}&architecture={{ request.GET.architecture }}">
 
                 <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
                 <button type="submit" class="link-cta-ubuntu pay-with-paypal" tabindex="9">Pay with PayPal</button>
 
                 {% if request.GET.version and request.GET.architecture %}
-                <a href="/download/desktop/thank-you/?version={{ request.GET.version }}&architecture={{ request.GET.architecture.split|join:"+" }}" class="skip" tabindex="11">Not now, take me to the download &rsaquo;</a>
+                <a href="/download/desktop/thank-you/?version={{ request.GET.version }}&architecture={{ request.GET.architecture.split|join:"+" }}" class="skip" tabindex="11">Not now, take me to the download&nbsp;&rsaquo;</a>
                 {% endif %}
             </div>
         </div>
@@ -212,7 +207,7 @@
         { imageFile: 'happy-meal.png',      price: 7,    description: 'A Royale with Cheese '},
         { imageFile: 'cinema-ticket.png',   price: 10,   description: 'a night at the movies. By yourself.'},
         { imageFile: 'king-kong.png',       price: 15,   description: 'King Kong versus Godzilla on DVD'},
-        { imageFile: 't-shirt.png',         price: 20,   description: 'Peace, Love and Linux t-shirt'},
+        { imageFile: 't-shirt.png',         price: 20,   description: 'Peace, Love and Linux t-shirt (shirt not included)'},
         { imageFile: 'frying-pan.png',      price: 30,   description: 'stainless steel copper-bottom frying pan'},
         { imageFile: 'sega-controller.png', price: 50,   description: 'vintage SNES game bundle'},
         { imageFile: 'levi-501.png',        price: 60,   description: 'pair of vintage acid wash Levi 501s'},
@@ -293,10 +288,15 @@ function updateInputFromSlider( event ) {
 
 function updateSliderFromInput(event) {
     var input = event.target;
+    // Input can't be more than 125
     if (input.get('value') > 125) {
         input.set('value', 125);
     }
-    var value = parseInt(input.get('value')) || 2;
+    // Or less than zero
+    if (input.get('value') < 0) {
+        input.set('value', 0);
+    }
+    var value = parseInt(input.get('value')) || 0;
     var slider = input.getData('slider');
     slider.setValue(value);
 }
@@ -392,15 +392,20 @@ function updateFormTotals(changeEvent) {
     }
 
     if (skipLink) {
+        var zeroText = 'Download';
+        var currentText = submitButton.getHTML()
+        var originalText = submitButton.getData('originalContent');
+
         // Change the button text to download if total is zero
         if (finalAmount > 0) {
-            var originalContent = submitButton.getData('originalContent');
-            if (originalContent && submitButton.getHTML() != originalContent) {
-                submitButton.setHTML(originalContent);
+            if (originalText && currentText == zeroText) {
+                submitButton.setHTML(originalText);
             }
         } else {
-            submitButton.setData('originalContent', submitButton.getHTML());
-            submitButton.setHTML('Download');
+            if (currentText != zeroText) {
+                submitButton.setData('originalContent', currentText);
+            }
+            submitButton.setHTML(zeroText);
         }
     }
 }

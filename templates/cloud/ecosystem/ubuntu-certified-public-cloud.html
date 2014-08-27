@@ -1,0 +1,72 @@
+{% extends "cloud/base_cloud.html" %}
+
+{% block title %}Ubuntu Public Cloud Programme (PCP) | Ecosystem | Cloud{% endblock %}
+
+{% block meta_description %}Canonical has partnered with the leading public public cloud providers to deliver a seamless Ubuntu experience to our joint customers.{% endblock meta_description %}
+
+{% block meta_keywords %}Ubuntu, OpenStack, cloud ecosystem, cloud partners, cloud consulting, cloud tools, Canonical{% endblock meta_keywords %}
+
+{% block second_level_nav_items %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Ecosystem" page_title="Ubuntu OpenStack interoperability lab" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero row-image-centered no-border">
+		<div class="seven-col">
+			<h1>Ubuntu Certified Public Cloud</h1>
+			<p>Ubuntu is enormously popular with providers delivering public cloud services today. Its significant developer mindshare, favourable licensing model and policy of regular updates have made it the platform of choice for cloud guests the world over. </p>
+			<p>If you operate a public cloud or you&rsquo;re considering launching one, the Ubuntu Certified Public Cloud programme lets you make certified Ubuntu Server images available to these users, along with management, monitoring and commercial support from Canonical &mdash; all of which represent additional revenue opportunities.</p>
+		</div><!-- /.seven-col -->
+		<span><img src="{{ STATIC_URL }}img/cloud/ecosystem/ubuntu-public-cloud-programme/image-ubuntupubliccloudprogram.svg" width="320" height="320" class="" alt="" /></span>
+</div><!-- /.row row-hero -->
+
+<div class="row strip-dark">
+	<div class="eight-col">
+		<h2>What&rsquo;s included?</h2>
+		<p>As a partner in the Ubuntu Certified Public Cloud programme you can expect:</p>
+	</div>
+	<div class="six-col">
+		<ul class="list-ubuntu">
+			<li>Be featured as a certified partner on the Ubuntu website, including the ability to use Ubuntu Public Cloud certification logos</li>
+			<li>Joint marketing, including entry into our list of public clouds partners</li>
+			<li>Revenue-sharing upsells of <a href="/management">management tooling</a> and Ubuntu support offerings</li>
+		</ul>
+	</div>
+	<div class="six-col last-col">
+		<ul class="list-ubuntu">
+			<li>Certified Ubuntu cloud images, tuned and tested to your environment</li>
+			<li>Regular refresh of Ubuntu images increases security</li>
+			<li>Automated publication across all cloud availability zones facilitates operations</li>
+			<li>Local  Ubuntu archive mirrors deliver a fast maintenance and software installation experience</li>
+		</ul>
+	</div>
+</div>
+
+<div class="row">
+	<div class="eight-col">
+		<h2>A selection of our cloud partners</h2>
+		<p>We already work with the world&rsquo;s leading public cloud providers, our Premier Certified Public Cloud partners, collaborating with them on the technological developments that are driving cloud computing forward. These include <a href="https://juju.ubuntu.com">Juju</a>, a groundbreaking service orchestration tool bringing rapid deployment of complex applications to any cloud.</p>
+	</div>
+	<ul class="inline-logos no-bullets clear">
+		<li class="first-item"><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-amazonwebservices.svg" alt="AWS" /></li>
+		<li><img src="{{ STATIC_URL }}img/cloud/partners/logo-brightbox-160.png" alt="Brightbox" /></li>
+		<li><img src="{{ STATIC_URL }}img/cloud/logo-hpcloud.png" alt="HP cloud" /></li>
+		<li class="last-item clear-row"><img src="{{ STATIC_URL }}img/cloud/logo-ibm.png" alt="IBM" /></li>
+		<li><img src="{{ STATIC_URL }}img/cloud/logo-joyent.png" alt="Joyent" /></li>
+		<li class="last-item"><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-windowsazure.svg" alt="Azure" /></li>
+	</ul>
+</div><!-- /.row -->
+
+<div class="row row-grey row-image-centered no-border">
+	<span>
+		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-partner-midaubergine.svg" width="160" height="160" alt="" />
+	</span>
+	<div class="eight-col last-col">
+		<h2>Becoming a public cloud partner</h2>
+		<p>To learn more about joining the Ubuntu Public Cloud Programme, please contact Canonical today.</p>
+		<p><a href="/partners/contact-us" class="link-cta-ubuntu">Get in touch</a></p>
+	</div>
+</div>
+
+
+{% endblock content %}

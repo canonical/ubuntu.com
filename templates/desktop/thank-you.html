@@ -7,14 +7,5 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-image-centered row-hero no-border">
-	<div class="seven-col">
-		<h1>Thank you</h1>
-		<h2>We&rsquo;re really excited about your interest in Ubuntu.</h2>
-	  <p>A member of our team will contact you shortly.</p>
-	</div>
-	<span>
-		<img src="{{ STATIC_URL }}img/devices/pictogram-smile-purple.png" width="164" height="162" alt="Smile pictogram" />
-	</span>
-</div><!-- /.row -->
+{% include "shared/_thank_you.html" with thanks_context="your interest in Ubuntu" %}
 {% endblock content %}

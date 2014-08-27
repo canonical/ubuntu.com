@@ -7,32 +7,7 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero">
-	<h1>Thank you for enquiring about Cloud</h1>
-	<h2>A member of our team will be in touch within <br><strong>one working day</strong></h2>
-</div><!-- /.row-hero -->
-	
-<div class="row equal-height no-border">
-	<h3>More about our enterprise services</h3>
-	<ul id="thank-you-extra" class="no-bullets">
-		<li class="advantage four-col first">
-			<h4>Ubuntu Advantage</h4>
-			<p>Purchase our desktop support and access Ubuntu experts whenever you need.</p>
-			<p><a href="/cloud/management">Learn about Ubuntu Advantage &rsaquo;</a></p>
-		</li>
-		<li class="cloud four-col">
-			<h4>Cloud Jumpstart</h4>
-			<p>Let a Canonical engineer build a seed cloud on your premises in just five days.</p>
-			<p><a href="/cloud/private-cloud/jumpstart">Learn about Cloud Jumpstart &rsaquo;</a></p>
-		</li>
-		<li class="jumpstart four-col last-col">
-			<h4>Landscape</h4>
-			<p>Manage Ubuntu in the enterprise with our private cloud infrastructure platform based on OpenStack.</p>
-			<p><a href="/management">Learn about Landscape &rsaquo;</a></p>
-		</li>
-	</ul>
-</div><!-- end row-->
-
+{% include "shared/_thank_you.html" with thanks_context="enquiring about Cloud" %}
 {% include "shared/_live_chat.html" %}
 	
 {% endblock content %}
