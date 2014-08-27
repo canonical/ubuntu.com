@@ -1,11 +1,10 @@
 {% extends "base_index.html" %}
 
-{% block takeover_body_class %} homepage-vmw1{% endblock takeover_body_class %}
+{% block takeover_body_class %} homepage-jumpstart-takeover{% endblock takeover_body_class %}
 
 {% block takeover_content %}
-	{% include "takeovers/_vmw1_takeover.html" %}
+	{% if switcher %}
+		<a href="/" class="lang-switch" lang="zh">中文主页&nbsp;&rsaquo;</a>
+	{% endif %}
+	{% include "takeovers/_jumpstart_takeover.html" %}
 {% endblock takeover_content %}
-
-{% block footer_content %}
-	{% include "takeovers/_footer_homepage.html" %}
-{% endblock footer_content %}

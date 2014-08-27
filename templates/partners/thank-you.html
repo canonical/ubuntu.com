@@ -6,39 +6,7 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-
-<div class="row row-image-centered row-hero">
-	<div class="seven-col">
-		<h1>Thank you!</h1>
-		<h2>Thanks for your interest in the Canonical Partner Programme.</h2>
-		<p>We&rsquo;ll be in touch soon!</p>
-	</div>
-	<span>
-		<img src="{{ STATIC_URL }}img/devices/pictogram-smile-purple.png" width="164" height="162" alt="Smile pictogram" />
-	</span>
-</div><!-- /.row -->
-	
-<div class="row equal-height no-border">
-	<h3>More about our enterprise services</h3>
-	<ul id="thank-you-extra" class="no-bullets">
-		<li class="advantage four-col first">
-			<h4>Ubuntu Advantage</h4>
-			<p>Purchase our desktop support and access Ubuntu experts whenever you need.</p>
-			<p><a href="/cloud/management">Learn about Ubuntu Advantage &rsaquo;</a></p>
-		</li>
-		<li class="cloud four-col">
-			<h4>Cloud Jumpstart</h4>
-			<p>Let a Canonical engineer build a seed cloud on your premises in just five days.</p>
-			<p><a href="/cloud/private-cloud/jumpstart">Learn about Cloud Jumpstart &rsaquo;</a></p>
-		</li>
-		<li class="jumpstart four-col last-col">
-			<h4>Landscape</h4>
-			<p>Manage Ubuntu in the enterprise with our private cloud infrastructure platform based on OpenStack.</p>
-			<p><a href="/management">Learn about Landscape &rsaquo;</a></p>
-		</li>
-	</ul>
-</div><!-- end row-->
-	
+{% include "shared/_thank_you.html" with thanks_context="interest in the Canonical&nbsp;Partner&nbsp;Programme" %}
 {% endblock content %}
 {% block footer_extra %}
 <!-- Google Code for Services Canonical &mdash; contact us Conversion Page -->

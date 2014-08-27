@@ -14,33 +14,41 @@
 {% block content %}
 <div class="row row-hero">
 	<div class="five-col">
-		<h1>We&rsquo;re mobile industry ready</h1>
-		<h2>Ubuntu brings a fast and beautiful experience to any phone.</h2>
-		<p><a class="link-cta-ubuntu" href="https://wiki.ubuntu.com/Touch/Install">Install Ubuntu for phones</a><br />
-		<em class="smaller">for developers and industry partners only</em></p>
+		<h1>A beautiful experience</h1>
+		<h2>Users can surface their content naturally and industry can customise endlessly</h2>
+		<p><a href="/phone/scopes">Learn more about scopes&nbsp;&rsaquo;</a></p>
 	</div><!-- /.five-col -->
+	<div class="seven-col last-col text-center">
+		<img src="{{ STATIC_URL }}img/phone/image-phone-overview.jpg" width="567" height="302" alt="Ubuntu phone's with different state of screens" />
+	</div>
 </div><!-- /.row -->
 
 <div class="row row-features vertical-divider touch-border no-border">
 	<div class="four-col">
 		<h3>Feature complete</h3>
-		<p>Run all of your favourite apps from the launcher and swipe effortlessly between them using Ubuntu&rsquo;s magic edges. Use the Dash to search phone and web, and keep your life and content organised with the brilliance of Ubuntu scopes.</p>
-		<p><a href="/phone/design">Learn more about Ubuntu's features&nbsp;&rsaquo;</a></p>
-		<img src="{{ STATIC_URL }}img/devices/phone-home-design-269x185.jpg" width="269" height="185" alt="Ubuntu phone running the gallery app" />
+		<p>Run all of your favourite apps from the launcher and swipe effortlessly between them using Ubuntu&rsquo;s magic edges. Use the home scope to search phone and web, and keep your life and content organised with the brilliance of the Ubuntu’s scopes.</p>
+		<p><a href="/phone/design">Learn more about Ubuntu&rsquo;s features&nbsp;&rsaquo;</a></p>
+		<div class="text-center align-base">
+			<img src="{{ STATIC_URL }}img/phone/image-phone-featurecomplete.jpg" width="224" height="117" alt="Ubuntu phone running the gallery app" />
+		</div>
 	</div>
 
 	<div class="four-col">
 		<h3>Ready for your phone</h3>
 		<p>With all-native core apps and no Java overhead, Ubuntu runs well on entry-level smartphones &mdash; yet it uses the same drivers as Android. So now it&rsquo;s easy to bring a better experience to customers all over the world.</p>
 		<p><a href="/phone/operators-and-oems">Learn about working with us&nbsp;&rsaquo;</a></p>
-		<img src="{{ STATIC_URL }}img/devices/phone-home-industry-269x192.jpg" width="269" height="192" alt="Two Ubuntu phones side by side" />
+		<div class="text-center">
+			<img src="{{ STATIC_URL }}img/phone/image-phone-readyforyourphone.jpg" width="227" height="192" alt="Two Ubuntu phones side by side" />
+		</div>
 	</div>
 
 	<div class="four-col last-col">
-		<h3>Everything developers need</h3>
-		<p>Create gorgeous native apps or lightweight HTML5 apps easily, with our SDK. Repurpose web apps fast, so they look and work like their native cousins. With one OS for all form factors, one app can have interfaces for phone and desktop in just one upload to one store.</p>
+		<h3>All developers need</h3>
+		<p>Create gorgeous native apps or lightweight HTML5 apps easily, with our SDK. Repurpose web apps fast, so they look and work like their native cousins. With one OS for all form factors, one app can have interfaces for phone and desktop in just one upload.</p>
 		<p><a href="/phone/app-ecosystem">Learn more about developing apps&nbsp;&rsaquo;</a></p>
-		<img src="{{ STATIC_URL }}img/devices/phone-home-developers-290x188.jpg" width="290" height="188" alt="Collection of top apps available on Ubuntu phone" />
+		<div class="text-center">
+			<img src="{{ STATIC_URL }}img/devices/image-developers.jpg" alt="Collection of top apps available on Ubuntu phone" />
+		</div>
 	</div>
 </div><!-- /.row -->
 
@@ -48,12 +56,12 @@
 
 <div class="row row-image-centered">
 	<span class="four-col">
-		<img src="{{ STATIC_URL }}img/logos/canonical-symbol-167x167.png" width="167" height="167" alt="Canonical logo" />
+		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-canonical.svg" width="167" height="167" alt="Canonical logo" />
 	</span>
 	<div class="eight-col last-col">
 		<h2>Backed by Canonical</h2>
 		<p>We provide hardware enablement services to the world&rsquo;s biggest PC OEMs and, as a result, Ubuntu now ships pre-installed on 10% of the world&rsquo;s new PCs. With staff and offices all over the world, we have the resources you need to deliver Ubuntu on smartphones.</p>
-		<p><a href="/phone/backed-by-canonical">Learn more about Canonical &rsaquo;</a></p>
+		<p><a href="/partners/backed-by-canonical">Learn more about Canonical&nbsp;&rsaquo;</a></p>
 	</div>
 </div><!-- /.row -->
 
@@ -62,11 +70,15 @@
 	<div class="eight-col">
 		<h2>Introducing the Carrier Advisory Group</h2>
 		<p>The Carrier Advisory Group enables mobile operators to shape Ubuntu&rsquo;s product development, and provides the opportunity to be a potential launch partner.</p>
-		<p><a href="/phone/carrier-advisory-group">Read more about the CAG &rsaquo;</a></p>
+		<p><a href="/phone/carrier-advisory-group">Read more about the CAG&nbsp;&rsaquo;</a></p>
 	</div>
-	<div class="twelve-col no-margin-bottom">
-		<ul class="inline inline-icons">
-			{% include "phone/shared/_cag_list.html" with image_width="120" image_height="60" small="true" %}
+	<div class="twelve-col">
+		<ul class="inline-logos">
+			<li><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-everythingeverywhere.svg" alt="Everywhere everywhere" /></li>
+			<li><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-portugaltelecom.svg" alt="Portugal telecom" /></li>
+			<li><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-tmobile.svg" alt="T Mobile" /></li>
+			<li class="verizon"><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-verizon.svg" alt="Verizon" /></li>
+			<li class="last-item"><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-vodafone.svg" alt="Vodafone" /></li>
 		</ul>
 	</div>
 </div>

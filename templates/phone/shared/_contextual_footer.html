@@ -4,22 +4,38 @@
 		<p>We're ready to work with you now, so if you have plans for Android devices that could benefit from a little added Ubuntu, let us know.</p>
 		<a href="/phone/ubuntu-for-android/contact-us">Get in touch&nbsp;&rsaquo;</a>
 	</div>
-	<div class="feature-four three-col last-col">
+	<div class="feature-four six-col last-col">
 		<h3>Further reading</h3>
 		{% include "templates/_further_reading_links.html" %}
 	</div>
 {% else %}
-	<div class="feature-two three-col">
+	{% if level_2 == 'scopes' %}
+		<div class="feature-two four-col">
+			<h3>Start building now</h3>
+			<p>Mobile carriers, phone manufacturers and ISVs, contact us and get the commercial and technical lowdown on Ubuntu for phones.</p>
+			<p><a href="/phone/contact-us">Get in touch today &rsaquo;</a></p>
+		</div>
+		<div class="four-col">
+			<h3>More features</h3>
+			<p>Scopes are just one feature of the stunning Ubuntu experience on phones.</p>
+			<a href="/phone/features">Discover more phone features&nbsp;&rsaquo;</a>
+		</div>
+		<div class="feature-four four-col last-col">
+			<h3>Further reading</h3>
+			{% include "phone/shared/_further_reading_phone.html" %}
+		</div>
+	{% else %}
+	<div class="feature-two four-col">
 		<h3>Start building now</h3>
 		<p>Mobile carriers, phone manufacturers and ISVs, contact us and get the commercial and technical lowdown on Ubuntu for phones.</p>
-		<p><a href="/phone/contact-us">Get in touch today &rsaquo;</a></p>
+		<p><a href="/phone/contact-us">Get in touch today&nbsp;&rsaquo;</a></p>
 	</div>
-	<div class="feature-three three-col">
+	<div class="feature-three four-col">
 		<h3>Find out when it&rsquo;s here</h3>
 		<p>If you&rsquo;re not in the mobile industry, but you&rsquo;re as excited as we are about Ubuntu on smartphones, we can let you know when the first phone is released.</p>
 		<p><a href="/phone/register">Register to find out first&nbsp;&rsaquo;</a></p>
 	</div>
-	<div class="feature-four three-col last-col">
+	<div class="feature-four four-col last-col">
 		<h3>Further reading</h3>
 		<ul class="smaller no-bullets">
 			{% if level_2 == 'carrier-advisory-group' %}
@@ -27,12 +43,13 @@
 			<li><a href="http://insights.ubuntu.com/products-and-services/phone/">Check out our Insights blog&nbsp;&rsaquo;</a></li>
 			<li><a href="http://developer.ubuntu.com/">Start developing on Ubuntu mobile today&nbsp;&rsaquo;</a></li>
 			{% else %}
-			<li><a href="https://www.youtube.com/watch?v=cpWHJDLsqTU&feature=player_embedded#t=0">Watch the Ubuntu phone video</a></li>
-			<li><a href="http://www.ubuntu.com/2013/01/press-pack-ubuntu-phone">Ubuntu phone press release&nbsp;&rsaquo;</a></li>
-			<li><a href="http://insights.ubuntu.com/mobile/ubuntu-for-smartphones-grabs-global-headlines/">Ubuntu for smartphones grabs global headlines&nbsp;&rsaquo;</a></li>
-			<li><a href="http://insights.ubuntu.com/mobile/get-the-faqs-about-ubuntu-on-smartphones/"> Get the FAQs about Ubuntu on smartphones&nbsp;&rsaquo;</a></li>
-			<li><a href="http://insights.ubuntu.com/mobile/developers-get-the-full-support-they-need/">Developers get the full support they need&nbsp;&rsaquo;</a></li>
+			<li><a href="https://www.youtube.com/watch?v=cpWHJDLsqTU&amp;feature=player_embedded#t=0">Watch the Ubuntu phone video&nbsp;&rsaquo;</a></li>
+			<li><a href="http://insights.ubuntu.com/2014/02/01/mwc-2014-online-press-pack/">Ubuntu phone press release&nbsp;&rsaquo;</a></li>
+			<li><a href="https://insights.ubuntu.com/2013/02/15/ubuntu-for-smartphones-grabs-global-headlines/">Ubuntu for smartphones grabs global headlines&nbsp;&rsaquo;</a></li>
+			<li><a href="https://insights.ubuntu.com/2013/02/15/get-the-faqs-about-ubuntu-on-smartphones/"> Get the FAQs about Ubuntu on smartphones&nbsp;&rsaquo;</a></li>
+			<li><a href="https://insights.ubuntu.com/2013/02/15/developers-get-the-full-support-they-need/">Developers get the full support they need&nbsp;&rsaquo;</a></li>
 			{% endif %}
 		</ul>
 	</div>
+	{% endif %}
 {% endif %}

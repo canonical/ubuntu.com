@@ -9,8 +9,8 @@
 <div class="row row-hero">
 	<h1>Release end of life</h1>
 	<div class="eight-col">
-		<p>When an Ubuntu release reaches its &ldquo;end of life&rdquo; it receives no further maintenance updates, including critical security upgrades. It is highly recommended that you upgrade to a recent version of Ubuntu at this point.</p> 
-		<p>This command will print the exact status of your system.</p> 
+		<p>When an Ubuntu release reaches its &ldquo;end of life&rdquo; it receives no further maintenance updates, including critical security upgrades. It is highly recommended that you upgrade to a recent version of Ubuntu at this point.</p>
+		<p>This command will print the exact status of your system.</p>
 		<pre>$ ubuntu-support-status</pre>
 		<p>For information on previous and upcoming releases and please see the <a href="https://wiki.ubuntu.com/Releases">Ubuntu wiki</a> for more details.</p>
 	</div>
@@ -21,7 +21,19 @@
 		<p>Standard Ubuntu releases are supported for 9 to 18 months. Previous Ubuntu LTS (Long Term Support) releases are now supported for five  years on both the desktop and the server. During that time, there will be security fixes and other critical updates.</p>
 	</div>
 	<div class="eight-col last-col">
-		<img src="{{ STATIC_URL }}img/business/screenshot-server-release.png" width="596" height="549" alt="Ubuntu Desktop release cycle, 5 year long term support" />
+		<div class="releasecycle-image-load" data-width="580" data-src="{{ STATIC_URL }}img/graphs/image-release-cycle{width}.png" data-alt="Ubuntu Desktop release cycle, 5 year long term support"></div>
+		<script>
+		    new Imager('.releasecycle-image-load', {
+		        availableWidths: {
+		            305: '-small',
+		            431: '-medium',
+		            580: '-large'
+		        }
+		    });
+		</script>
+		<noscript>
+			<img src="{{ STATIC_URL }}img/graphs/image-release-cycle-large.png" width="580" height="427" alt="Ubuntu Desktop release cycle, 5 year long term support" />
+		</noscript>
 	</div>
 </div>
 {% endblock content %}

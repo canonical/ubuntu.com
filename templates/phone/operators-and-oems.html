@@ -14,13 +14,18 @@
 	<div class="six-col">
 		<h1>Built for the phone industry</h1>
 		<p>Ubuntu comes to phones with the specific needs of network operators, OEMs and ODMs in mind. It offers great performance on handsets with a low bill of materials, while opening up new opportunities for phone and PC convergence at the top end of the market. And there are many ways in which the user experience can be tailored to your brand.</p>
-		<p><a href="https://wiki.ubuntu.com/Touch/Install">Install Ubuntu for phones &rsaquo;</a><br />
+		<p><a href="https://wiki.ubuntu.com/Touch/Install">Install Ubuntu for phones&nbsp;&rsaquo;</a><br />
 		<em class="smaller">for developers and industry partners only</em></p>
+	</div>
+	<div class="six-col last-col">
+		<img src="{{ STATIC_URL }}img/phone/operators-and-oems/image-phone-operatorsandoems.jpg" alt="Two Ubuntu phones side by side" width="408" height="312" />
 	</div>
 </div><!-- /.row -->
 
-<div class="row row-image-centered">
-	<span><img src="{{ STATIC_URL }}img/devices/image-open-to-everyone.png" alt="" /></span>
+<div class="row">
+	<div class="six-col text-center">
+		<img src="{{ STATIC_URL }}img/devices/image-open-to-everyone.png" alt="" class="priority-0" />
+	</div>
 	<div class="six-col last-col">
 		<h2>We&rsquo;re open to everyone</h2>
 		<p>Ubuntu is an open source operating system, which means our code is shared openly throughout the development cycle.  We are transparent about our plans for future releases, so as a developer, carrier or manufacturer you can start building apps and phone designs for Ubuntu immediately.</p>
@@ -29,14 +34,24 @@
 </div><!-- /.row -->
 
 <div class="row">
-	<h2>Customise to your needs</h2>
+	<h2>Easy, endless customisation</h2>
 	<div class="six-col">
-		<p>We&rsquo;ve built Ubuntu to embrace operator and OEM content, services and branding from the beginning, in a way that leaves the all-important Ubuntu design and app ecosystem largely untouched. Canonical engages with OEMs and operators to enable them to ship phones with true service-layer differentiation that consumers will appreciate.</p>
+		<p>We&rsquo;ve built Ubuntu to include operator and OEM content, services and branding. Industry can place logos and specify colours on the expansive greeter screen, pre-install featured apps on the launcher, or create Scopes, all with Canonical&rsquo;s help if needed. Carriers specify the scopes their devices ship. So they can add useful scopes to deliver their own or partner services like local wireless, or city information.</p>
 	</div>
 	<div class="six-col last-col">
-		<p>Content can be surfaced in the home screen and search scopes, featured apps can be pre-installed and the UI has been designed with room for effective co-branding. Many of the core applications will accept back-end services coming through their front-end, so content can be surfaced without ever overwhelming the user.</p>
+		<p>New scopes are easy for industry to develop and publish, and can be built around campaigns or sponsorship tie-ins &mdash; with enough real-estate for brand partners. And default scopes like music and video can return prioritised content in search results with connected back-end services like billing, so the user won’t ever feel overwhelmed. It&rsquo;s customisation in a way users will appreciate.</p>
 	</div>
-	<img width="904" height="408" src="{{ STATIC_URL }}img/devices/phone-make-ubuntu-your-own.jpg" alt="Ubuntu phone customised"/>
+	<div class="twelve-col">
+		<div class="easyendlesscustomisation-image-load" data-width="919" data-src="{{ STATIC_URL }}img/phone/operators-and-oems/image-phone-easyendlesscustomisation{width}.jpg" data-alt="Ubuntu phone customised"></div>
+		<script>
+		    new Imager('.easyendlesscustomisation-image-load', {
+		        availableWidths: {
+							919: '-medium',
+	            320: '-small'
+		        }
+		    });
+		</script>
+	</div>
 </div><!-- /.row -->
 
 <div class="row">
@@ -47,7 +62,7 @@
 	</div><!-- /.six-col -->
 	<div class="six-col last-col">
 		<p>And at the high end, Ubuntu paves the way  for a new category of superphones, with a full PC desktop accessible just by docking the device to a monitor and keyboard. A handheld PC is the future of personal computing &mdash; true convergence.</p>
-		<p><a href="/phone/features">Learn more about the Ubuntu experience on smartphones &rsaquo;</a></p>
+		<p><a href="/phone/features">Learn more about the Ubuntu experience on smartphones&nbsp;&rsaquo;</a></p>
 	</div><!-- /.six-col -->
 	<div class="twelve-col last-col no-margin">
 		<table>
@@ -96,7 +111,9 @@
 		<p>Ubuntu has already been adapted to run on chipsets using ARM and Intel x86 architectures, with the core system based around a typical Android Board Support Package (BSP). So chipset vendors and hardware manufacturers don&rsquo;t need to invest in or maintain new hardware support packages. In short, if you already make handsets that run Android, the work needed to adopt Ubuntu for smartphones will be trivial.</p>
 	</div>
 	<div class="four-col prepend-one last-col">
-		<p class="pull-quote no-indent">If you already <br />make handsets that run Android, the work needed to adopt Ubuntu will be trivial</p>
+		<blockquote class="pull-quote">
+			<p><span>&ldquo;</span>If you already <br />make handsets that run Android, the work needed to adopt Ubuntu will be trivial&nbsp;&nbsp;<span>&rdquo;</span></p>
+		</blockquote>
 	</div>
 </div><!-- /.row -->
 
@@ -107,11 +124,11 @@
 		<p>With support for remote Windows apps over Microsoft RDP, Citrix or VMWare, the Ubuntu superphone is a complete enterprise solution &mdash; and a new opportunity for operators to deliver enterprise IT to SMEs in LTE markets. And because it enjoys the full capabilities of Ubuntu &mdash; including kernel-level control of every app &mdash; it puts the security and manageability of UNIX in your pocket.</p>
 	</div>
 	<div class="six-col last-col">
-		<img width="440" height="267" src="{{ STATIC_URL }}img/devices/converged-device-440x267.jpg" alt="Ubuntu phone docking to become a PC" />
+		<img width="440" height="248" src="{{ STATIC_URL }}img/phone/operators-and-oems/image-phone-convergence.jpg" alt="Ubuntu phone docking to become a PC" />
 	</div>
 </div><!-- /.row -->
 
-<div class="row">
+<div class="row combined-list">
 	<h2>The developer&rsquo;s favourite OS</h2>
 	<div class="six-col">
 		<ul class="list-ubuntu no-margin">
@@ -125,12 +142,15 @@
 			<li>HTML5 is fully supported but Ubuntu is not limited to HTML5. To use the full power of the hardware, you can develop native apps, using OpenGL and QML, with C or C++ and Javascript compiled for extra performance.</li>
 			<li class="no-border">Major game developers like EA, Valve and Unity Technologies are now committing to Ubuntu.</li>
 		</ul>
-		<a class="list-link" href="/phone/app-ecosystem">Learn more about developing apps for Ubuntu &rsaquo;</a>
+
+	</div>
+	<div class="twelve-col">
+		<a  href="/phone/app-ecosystem">Learn more about developing apps for Ubuntu&nbsp;&rsaquo;</a>
 	</div>
 </div><!-- /.row -->
 
 <div class="row row-image-centered">
-		<span><img src="{{ STATIC_URL }}img/devices/phone-global-solutions-pictogram.png" width="229" height="203" alt="Hello written in a number of languages in Ubuntu speak bubbles" /></span>
+		<span><img src="{{ STATIC_URL }}img/phone/operators-and-oems/image-globalsolutions.svg" width="225" height="200" alt="Hello written in a number of languages in Ubuntu speak bubbles" /></span>
 	<div class="six-col last-col">
 		<h2>A truly global solution</h2>
 		<p>Ubuntu is already used in over 70 countries and has been translated into over 40 languages. With 20 million desktop users around the world, it is both an established platform and an established global brand.</p>
@@ -142,8 +162,8 @@
 		<h2>Backed by Canonical</h2>
 		<p>Canonical is the global software vendor that provides commercial and design support to the Ubuntu project. Today, our hardware enablement team supports the pre-installation of Ubuntu on more than 10% of all new PCs shipped,worldwide.</p>
 		<p>Thanks to Canonical&rsquo;s relationships with its OEM partners, Ubuntu has an enormous retail presence in key emerging economies, with branded merchandising and trained retail staff in over 1,000 stores.</p>
-		<p><a href="/phone/backed-by-canonical">Learn more about how we support Ubuntu &rsaquo;</a></p>
+		<p><a href="/partners/backed-by-canonical">Learn more about how we support Ubuntu&nbsp;&rsaquo;</a></p>
 	</div>
-	<span><img src="{{ STATIC_URL }}img/logos/canonical-symbol-167x167.png" width="167" height="167" alt="Canonical logo" /></span>
+	<span><img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-canonical.svg" width="167" height="167" alt="Canonical logo" /></span>
 </div><!-- /.row -->
 {% endblock content %}

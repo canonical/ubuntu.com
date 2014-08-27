@@ -1,94 +1,89 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Download Ubuntu Server{% endblock %}
+{% block title %}Download Ubuntu Server | Download{% endblock %}
 
 {% block extra_body_class %}download-server-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Download" page_title="Server"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Download" page_title="Server" tertiary="true"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero no-border">
-	<h1>Download Ubuntu Server</h1>
-		<div class="eight-col">
-			<p>Download Ubuntu Server 13.10 to get the latest features (including the Havana release of OpenStack) or stay with Ubuntu 12.04 for extended support. If you&rsquo;re a technical user and you&rsquo;re looking for specific version downloads, go to <a href="http://releases.ubuntu.com">releases.ubuntu.com</a>.</p>
-		</div><!-- /.eight-col -->
-	<div class="box-grey twelve-col no-margin-bottom ">
-		<div class="box box-highlight clearfix">
-			<h3><strong>For extended support,</strong><br />choose Ubuntu Server 12.04.4 LTS</h3>
-			<div class="download-description eight-col">
-				<p>Ubuntu 12.04.4 LTS is a long-term support release, with support guaranteed until April 2017. Havana is available via <br/>the <a href="/download/cloud/cloud-archive-instructions">Ubuntu Cloud Archive</a>.</p>
-				<p><a class="link-arrow" href="/download/server/install-ubuntu-server">Read the full installation instructions</a></p>
+{% with ubuntu_release="14.04.1" openstack_version="Icehouse" %}
+<div class="row row-hero row-background no-border">
+	<div class="eight-col append-four">
+		<h1>Download Ubuntu Server</h1>
+	</div>
+	<div class="twelve-col">
+		<div class="box box-highlight clearfix vertical-divider">
+			<div class="eight-col no-margin-bottom">
+				<h2>Ubuntu Server {{ubuntu_release}} LTS</h2>
+				<p>The latest version of Ubuntu Server, including the {{openstack_version}} release of OpenStack and support guaranteed until April 2019.</p>
+				<p><a href="https://wiki.ubuntu.com/TrustyTahr/ReleaseNotes" class="external">Ubuntu Server {{ubuntu_release}} LTS release notes</a></p>
 			</div>
 			<div class="four-col last-col">
+				<p class="gap-from-top">64-bit only</p>
 				<form class="form-download" action="/download/server/thank-you/" method="get">
 					<fieldset>
-						<input name="version" value="12.04.4" type="hidden">
-						<label for="input-bits">Choose your flavour</label>
-						<select id="input-bits" name="architecture">
-							<option value="i386">32-bit</option>
-							<option value="amd64" selected="selected">64-bit (recommended)</option>
-						</select>
-					</fieldset>
-					<div>
-						<button type="submit">Get Ubuntu 12.04 LTS</button>
-					</div>
-				</form>
-			</div><!-- /.four-col -->
-		</div><!-- /.box -->
-		<div class="box box-highlight clearfix">
-			<h3><strong>For the latest features,</strong><br />choose Ubuntu Server 13.10</h3>
-			<div class="download-description eight-col">
-				<p>Ubuntu 13.10 will be supported for 9 months and includes cutting-edge new features such as the Havana release of OpenStack.</p>
-				<p><a class="link-arrow" href="/download/server/install-ubuntu-server">Read the full installation instructions</a></p>
-			</div>
-			<div class="four-col last-col">
-				<form class="form-download single-download" action="/download/server/thank-you/" method="get">
-					<fieldset>
-						<input name="version" value="13.10" type="hidden">
+						<input name="version" value="{{ubuntu_release}}" type="hidden">
 						<input name="architecture" value="amd64" type="hidden">
 					</fieldset>
 					<div>
-						<button class="cta-large" type="submit">Get Ubuntu 13.10</button>
-						<span class="small">Ubuntu Server 13.10 64-bit version</span>
+						<button type="submit">Download</button>
 					</div>
 				</form>
 			</div><!-- /.four-col -->
 		</div><!-- /.box -->
-	</div><!-- /.box -->
+	</div>
 </div><!-- /.row -->
 
-<div class="row no-border">
-	<h2>More tools and options</h2>
+<div class="row row-grey">
+	<div class="twelve-col">
+		<h2>How you can use Ubuntu Server</h2>
+	</div>
 	<div class="equal-height">
-		<div class="four-col box">
-			<h3><a href="/cloud/orchestration/juju">Service orchestration with Juju &rsaquo;</a></h3>
-			<p>With Juju, the service orchestration tool from the Ubuntu project, deployment instructions for cloud services can be stored in charms that can be used, stored and shared. We call it Devops Distilled.</p>
+		<div class="four-col box box-highlight">
+			<h3>Ubuntu Server for cloud</h3>
+			<p>Whether you&rsquo;re building your own cloud or you want to use a public cloud, with Ubuntu you have all the tools you need to provision, deploy and manage your cloud environment. </p>
+			<p><a href="/download/cloud">Download Ubuntu Server for cloud&nbsp;&rsaquo;</a></p>
 		</div>
-		<div class="four-col box">
-			<h3><a href="/download/arm">Ubuntu for ARM &rsaquo;</a></h3>
-			<p>Ubuntu Server and Ubuntu Desktop for ARM are a general purpose OS for ARM-based systems. A variety of SoC platforms are certified. Please note that currently only Calxeda ECX-1000 (Server only), Marvell Armada-XP (Server only) and TI Panda development boards are supported.</p>
+		<div class="four-col box box-highlight">
+			<h3>Ubuntu Server for ARM</h3>
+			<p>Optimised for hyperscale deployments and certified on a number of ARM chipsets, Ubuntu Server for ARM includes the 64-bit ARMv8 platforms.</p>
+			<p><a href="/download/server/arm">Download Ubuntu Server for ARM&nbsp;&rsaquo;</a></p>
 		</div>
-		<div class="four-col sidebar last-col">
-			<h4>More options</h4>
-			<ul>
-				<li><a href="/download/desktop">Ubuntu Desktop</a></li>
-				<li><a href="http://shop.canonical.com/index.php?cPath=17">Buy DVDs from the shop</a></li>
-			</ul>
-			<h4>Release notes</h4>
-			<ul>
-				<li><a href="https://wiki.ubuntu.com/SaucySalamander/ReleaseNotes">Ubuntu Server 13.10 release notes</a></li>
-				<li><a href="https://wiki.ubuntu.com/PrecisePangolin/ReleaseNotes/UbuntuServer">Ubuntu Server 12.04.4 LTS release notes</a></li>
-			</ul>
+		<div class="four-col last-col box box-highlight">
+			<h3>Ubuntu for POWER8</h3>
+			<p>Ubuntu is now available on the IBM POWER8 platform, bringing the entire Ubuntu and OpenStack ecosystem to IBM POWER8</p>
+			<p><a href="/download/server/power8">Get Ubuntu {{ubuntu_release}} for  POWER8&nbsp;&rsaquo;</a></p>
 		</div>
-	</div><!-- /.equal-height -->
-	<div class="eight-col box-grey">
-		<h4>Alternative options</h4>
-		<p>Want to download via BitTorrent links, find regional mirrors to get DVD images, use the network installer or find previous versions of Ubuntu?</p>
-		<p><a class="link-arrow" href="/download/alternative-downloads">Take a look at a full list of our previous versions and alternative downloads</a></p>
 	</div>
 </div>
 
+<div class="row no-border">
+	<div class="twelve-col">
+		<h2>Get the version you need</h2>
+	</div>
+	<div class="twelve-col">
+		<div class="equal-height vertical-divider">
+			<div class="four-col">
+				<h3 class="header--dvd">Buy DVDs from the Ubuntu shop</h3>
+				<p>Ubuntu Server 14.04 LTS is now available for purchase on DVD in the Ubuntu shop, along with the desktop version.</p>
+				<p><a href="http://shop.canonical.com/index.php?cPath=17" class="external">Go to the Ubuntu shop</a></p>
+			</div><!-- /.desktop -->
+			<div class="four-col">
+				<h3 class="header--download">Find alternative downloads</h3>
+				<p>Ubuntu is available via BitTorrent links and  regional mirrors. You can also use the network installer.</p>
+				<p><a href="/download/alternative-downloads">Alternative downloads&nbsp;&rsaquo;</a></p>
+			</div><!-- /.four-col -->
+			<div class="four-col last-col">
+				<h3 class="header--server">Download a previous release</h3>
+				<p>Looking for a previous LTS point release with its original stack? Older versions of Ubuntu remain available.</p>
+				<p><a href="http://releases.ubuntu.com" class="external">Previous releases</a></p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endwith %}
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

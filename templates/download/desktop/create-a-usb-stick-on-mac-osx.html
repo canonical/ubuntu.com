@@ -16,8 +16,8 @@
 	<div id="download-help" class="eight-col box box-grey no-border">
 	<p>We would encourage Mac users to download Ubuntu Desktop Edition by burning a CD. But if you prefer to use a USB stick, please follow the instructions below.</p>
 	<p><strong>Note:</strong> this procedure requires that you create an .img file from the .iso file you download.  It will also change the filesystem that is on the USB stick to make it bootable, so backup all data before continuing.</p>
-	
-		<div class="box box-tip">
+
+		<div class="box box-tip no-margin-bottom">
 			<p><strong>Tip:</strong> Drag and drop a file from Finder to Terminal to 'paste' the full path without risking typing errors.</p>
 		</div>
 
@@ -38,14 +38,14 @@
 				<li class="clearfix">
 					<span>3</span>
 					<div>
-						<p>Convert the .iso file to .img using the convert option of hdiutil (e.g.,hdiutil convert -format UDRW -o ~/path/to/target.img ~/path/to/ubuntu.iso)</p>
+						<p>Convert the .iso file to .img using the convert option of hdiutil e.g., <pre>hdiutil convert -format UDRW -o ~/path/to/target.img ~/path/to/ubuntu.iso</pre></p>
 						<p><strong>Note:</strong> OS X tends to put the .dmg ending on the output file automatically.</p>
 					</div>
 				</li>
 				<li class="clearfix">
 					<span>4</span>
 					<div>
-						<p>Run diskutil list to get the current list of devices.</p>
+						<p>Run <pre>diskutil list</pre> to get the current list of devices.</p>
 					</div>
 				</li>
 				<li class="clearfix">
@@ -57,19 +57,19 @@
 				<li class="clearfix">
 					<span>6</span>
 					<div>
-						<p>Run diskutil list again and determine the device node assigned to your flash media (e.g. /dev/disk2).</p>
+						<p>Run <pre>diskutil list</pre> again and determine the device node assigned to your flash media (e.g. /dev/disk2).</p>
 					</div>
 				</li>
 				<li class="clearfix">
 					<span>7</span>
 					<div>
-						<p>Run diskutil unmountDisk /dev/diskN (replace N with the disk number from the last command; in the previous example, N would be 2).</p>
+						<p>Run <pre>diskutil unmountDisk /dev/diskN</pre> (replace N with the disk number from the last command; in the previous example, N would be 2).</p>
 					</div>
 				</li>
 				<li class="clearfix">
 					<span>8</span>
 					<div>
-						<p>Execute sudo dd if=/path/to/downloaded.img of=/dev/rdiskN bs=1m (replace /path/to/downloaded.img with the path where the image file is located; for example, ./ubuntu.imgor ./ubuntu.dmg).</p>
+						<p>Execute <pre>sudo dd if=/path/to/downloaded.img of=/dev/rdiskN bs=1m</pre> (replace /path/to/downloaded.img with the path where the image file is located; for example, ./ubuntu.img or ./ubuntu.dmg).</p>
 						<ul>
 							<li>Using /dev/rdisk instead of /dev/disk may be faster</li>
 							<li>If you see the error dd: Invalid number '1m', you are using GNU dd. Use the same command but replace bs=1m with bs=1M</li>
@@ -80,7 +80,7 @@
 				<li class="clearfix">
 					<span>9</span>
 					<div>
-						<p>Run diskutil eject /dev/diskN and remove your flash media when the command completes.</p>
+						<p>Run <pre>diskutil eject /dev/diskN</pre> and remove your flash media when the command completes.</p>
 					</div>
 				</li>
 				<li class="clearfix">
@@ -91,10 +91,7 @@
 				</li>
 			</ol>
 		</div><!-- /.box -->
-	{% include "download/shared/_wiki_link.html" %}
-	{% include "download/shared/_ask_ubuntu.html" %}
 </div><!-- /.eight-col -->
-{% include "download/shared/_instalation_help.html" %}
 </div><!-- /.row -->
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

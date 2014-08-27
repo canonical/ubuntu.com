@@ -11,16 +11,19 @@
 
 {% block content %}
 <div class="row row-hero">
-	<h1>A fast-evolving <br />app ecosystem</h1>
-	<div class="four-col">
+		<h1>A fast-evolving app ecosystem</h1>
+	<div class="five-col">
 		<p>Already a very popular platform for web, Blackberry and Android mobile development, you&rsquo;ll want to bring all your apps to Ubuntu.</p>
-		<p>A great app will use the unique features in Ubuntu to create a fresh, uncluttered, purposeful and fast experience. Make one app binary for all form factors &ndash; web or native. You have it all at your fingertips when you run Ubuntu on <br />your workstation.</p>
+		<p>A great app will use the unique features in Ubuntu to create a fresh, uncluttered, purposeful and fast experience. Make one app binary for all form factors &ndash; web or native. You have it all at your fingertips when you run Ubuntu on your workstation.</p>
+	</div>
+	<div class="seven-col text-center last-col">
+		<img src="{{ STATIC_URL }}img/tablet/app-ecosystem/image-tablet-appecosystem.jpg" alt="Two Ubuntu tablets side by side" width="579" height="377" />
 	</div>
 </div><!-- / .row -->
 
 <div class="row">
 	<div class="twelve-col text-center">
-		<img class="shadow-fix" src="{{ STATIC_URL }}img/devices/tablet-app-carousel.png" width="984" height="288" alt="Carousel of app for Ubuntu tablet" />
+		<img src="{{ STATIC_URL }}img/tablet/app-ecosystem/image-tablet-welovetheweb.jpg" width="906" height="288" alt="Carousel of app for Ubuntu tablet" />
 	</div>
 	<h2>We love the web</h2>
 	<div class="six-col">
@@ -32,8 +35,8 @@
 </div><!-- / .row -->
 
 <div class="row">
-	<div class="six-col">
-		<img class="shadow-fix" src="{{ STATIC_URL }}img/devices/tablet-app-native-ski-safari.png" width="512" height="322" alt="Ski Safari game running on an Ubuntu tablet" />
+	<div class="six-col text-center">
+		<img class="shadow-fix" src="{{ STATIC_URL }}img/tablet/app-ecosystem/image-tablet-wealsogonative.jpg" width="512" height="322" alt="Ski Safari game running on an Ubuntu tablet" />
 	</div>
 	<div class="six-col last-col">
 		<h2>We also go native</h2>
@@ -46,11 +49,14 @@
 		<h2>One app on Ubuntu for all <br/>form factors</h2>
 		<p>Perhaps the most exciting thing about writing native apps for Ubuntu <br />is the opportunity to write and build a single app with responsive interfaces that allow it to run on any Ubuntu device. In other words, <br />you can use the Ubuntu SDK to build your app and, with some care and attention, make it available to users of Ubuntu PCs, phones and tablets &ndash; all in a single upload to the Ubuntu Software Centre.</p>
 	</div>
+	<div class="five-col last-col pull-right no-margin-bottom">
+		<img src="{{ STATIC_URL }}img/tablet/app-ecosystem/image-tablet-softwarecentre.jpg" alt="" width="390" height="401" class="for-tablet touch-border" />
+	</div>
 </div><!-- / .row -->
 
-<div class="row">
-	<div class="eight-col">
-		<img class="shadow-fix" src="{{ STATIC_URL }}img/devices/tablet-app-media-player.png" width="632" height="433" alt="Ubuntu tablet's media player" />
+<div class="row entertain-us">
+	<div class="eight-col text-center">
+		<img class="shadow-fix" src="{{ STATIC_URL }}img/tablet/app-ecosystem/image-tablet-entertainus.jpg" width="682" height="433" alt="Ubuntu tablet's media player" />
 	</div>
 	<div class="four-col last-col">
 		<h2>Entertain us</h2>
@@ -58,27 +64,15 @@
 	</div>
 </div><!-- / .row -->
 
-<div class="row row-image-centered">
-	<div class="seven-col">
-		<h2>Our cloud is your cloud</h2>
-		<p>The Ubuntu One personal cloud service provides every Ubuntu user with free storage space and the option to buy more. But for developers, Ubuntu One offers much more. The U1DB cloud-syncing database provides APIs to sync any kind of data to the cloud &ndash; not just files.</p>
-		<p>If you&rsquo;re a mobile operator and want a fast way to develop cloud-based services for your users, Ubuntu One enables you <br />to develop integrated, differentiating services, without the need to maintain your own infrastructure &ndash; manage identity, payments and service activation securely.</p>
-	</div>
-	
-	<span>
-		<img width="442" height="323" src="{{ STATIC_URL }}img/devices/UB1-diagram.png" alt="Ubuntu One syncing all Ubuntu devices together" />
-	</span>
-</div><!-- / .row -->
-
 <div class="row no-border row-image-centered">
-	
+
 	<span>
-		<img src="{{ STATIC_URL }}img/devices/phone-developer-pictograms.png" width="217" height="200" alt="Developer pictograms" />
+		<img src="{{ STATIC_URL }}img/tablet/app-ecosystem/image-tablet-startcreatingyourappnow.svg" width="217" height="200" alt="Developer pictograms" />
 	</span>
 	<div class="seven-col last-col">
 		<h2>Start creating your app now</h2>
 		<p>If you are writing apps for Ubuntu today, it&rsquo;s time to go mobile.  Download the Preview SDK and get started today.</p>
-		<p><a href="http://developer.ubuntu.com/gomobile">Go mobile &rsaquo;</a></p>
+		<p><a href="http://developer.ubuntu.com/gomobile">Go mobile&nbsp;&rsaquo;</a></p>
 	</div>
 </div><!-- / .row -->
 {% endblock content %}

@@ -1,0 +1,6 @@
+	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
+		<li class="first{% if level_1 == 'legal' and not level_2 %} active{% endif %}"><a href="/legal">Overview</a></li>
+		<li{% if level_2 == 'terms-and-policies' %} class="active" {% endif %}><a href="/legal/terms-and-policies">Terms and policies</a></li>
+		<li{% if level_2 == 'ubuntu-advantage' %} class="active" {% endif %}><a href="/legal/ubuntu-advantage">Ubuntu Advantage</a></li>
+		<li{% if level_2 == 'contributors' %} class="active" {% endif %}><a href="/legal/contributors">Contributors</a></li>
+	</ul>

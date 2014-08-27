@@ -1,0 +1,55 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Ubuntu for POWER8 | Download{% endblock %}
+
+{% block meta_description %}Ubuntu for POWER 8 brings the Ubuntu Server and Ubuntu Server for cloud with the OpenStack ecosystem to POWER8.{% endblock meta_description %}
+
+{% block meta_keywords %}Ubuntu Server, OpenStack, Cloud, Ubuntu OpenStack, IBM, POWER8, ppc64el, ppc64, Power Systems{% endblock meta_keywords %}
+
+
+{% block second_level_nav_items %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server" page_title="POWER8"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero row-background no-border">
+	<h1>Ubuntu for IBM POWER8</h1>
+	<div class="twelve-col">
+		<div class="box box-highlight clearfix">
+			<div class="six-col">
+				<h4>Ubuntu Server</h4>
+				<p>Includes Ubuntu Server for cloud</p>
+				<ul class="no-bullets">
+					<li><a href="http://cdimage.ubuntu.com/releases/14.04.1/release/" onclick="_gaq.push(['_trackEvent', 'External Link', 'POWER8 server download', 'From Download POWER8']);">14.04.1&nbsp;&rsaquo;</a></li>
+				</ul>
+			</div>
+			<div class="six-col last-col">
+				<h4>Netboot image</h4>
+				<ul class="no-bullets">
+					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/trusty/main/installer-ppc64el/" onclick="_gaq.push(['_trackEvent', 'External Link', 'POWER8 netboot download', 'From Download POWER8']);">14.04&nbsp;&rsaquo;</a></li>
+				</ul>
+			</div>
+		</div>
+	</div><!-- /.box -->
+</div>
+
+<div class="row row-grey">
+	<div class="box box-highlight clearfix">
+		<div class="eight-col no-margin-bottom">
+			<h3>Ubuntu 14.04.1 for IBM POWER8</h3>
+			<p>Ubuntu 14.04.1 brings with it, for the first time, support for IBM POWER8 including our MAAS provisioning, Juju cloud orchestration, Landscape systems management and Ubuntu OpenStack.</p>
+		</div>
+	</div>
+</div>
+
+<div class="row no-border">
+	<div class="eight-col">
+		<h3>Ready to deploy now</h3>
+		<p>Ubuntu for POWER8 brings the Ubuntu Server and Ubuntu Server for cloud with the OpenStack ecosystem to POWER8 enabling its ease of entry into the scale-out and Cloud markets.  Power is especially optimized for Mobile, Social, Cloud, Big Data and Analytics workloads.  Ubuntu and tooling such as Juju make managing and deploying those workloads trivial.</p>
+	</div><!-- /.twelve-col -->
+	<div class="four-col last-col text-center">
+		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-server-warmgrey.svg" alt="" width="200" height="200" />
+	</div>
+</div><!-- /.row -->
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

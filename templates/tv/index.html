@@ -12,15 +12,17 @@
 	<h1>TV for human beings</h1>
 </div>
 
-<div class="row row-grey row-hero">
+<div class="row row-grey">
 	<div class="intro four-col">
 		<h2>Everything you want in a TV.</h2>
 		<h2>In a TV.</h2>
 	</div>
 	<div class="eight-col last-col">
-		<iframe width="600" height="365" src="http://www.youtube.com/embed/jq_WaOLjdyQ?showinfo=0&amp;hd=1&amp;rel=0&amp;modestbranding=0"></iframe>
+		<div class="video-container">
+			<iframe width="600" height="365" src="//www.youtube.com/embed/jq_WaOLjdyQ?showinfo=0&amp;hd=1&amp;rel=0&amp;modestbranding=0"></iframe>
+		</div>
 	</div>
-	<ul class="twelve-col feature-list-four no-bullets">
+	<ul class="twelve-col feature-list-four no-bullets no-margin-bottom">
 		<li class="six-col box">Easy integration of broadcast, online services and applications.</li>
 		<li class="six-col box last-col">Modern broadcast TV experience &ndash; search , watch, record and play.</li>
 		<li class="six-col box">Millions of movies and TV shows streamed over the web on demand.</li>
@@ -29,21 +31,23 @@
 </div><!-- /.row -->
 
 <div class="row">
+	<div class="twelve-col no-margin-bottom">
 		<h2>Experience beautiful simplicity</h2>
-		<p>One interface, one device and one remote. And, of course, Ubuntu One.</p>
-		<p><a href="/tv/experience">Learn more about the experience &rsaquo;</a></p>
-	<p><img src="{{ STATIC_URL }}img/devices/screenshot-tv-homepage-wide-image-900x334.jpg" class="left touch-border" alt="Ubuntu TV's featured movie window" width="900" height="334" /></p>
+		<p>One interface, one device and one remote.</p>
+		<p><a href="/tv/experience">Learn more about the experience&nbsp;&rsaquo;</a></p>
+		<p><img src="{{ STATIC_URL }}img/devices/screenshot-tv-homepage-wide-image-900x334.jpg" class="left touch-border" alt="Ubuntu TV's featured movie window" width="900" height="334" /></p>
+	</div>
 </div><!-- /.row -->
-	
+
 <div class="row no-border">
 		<h2>See the features</h2>
 		<p>Everything from broadcast and web streaming to PVR and personal cloud.</p>
-		<p><a href="/tv/features-and-specs">See the full list of features &rsaquo;</a></p>
+		<p><a href="/tv/features-and-specs">See the full list of features&nbsp;&rsaquo;</a></p>
 
-		<ul class="no-bullets">
-			<li class="four-col"><img src="{{ STATIC_URL }}img/devices/photo-tv-features-screen-1-282x220.jpg" alt="Ubuntu TV watch or record functionality" /></li>
+		<ul class="no-bullets no-margin-bottom">
+			<li class="four-col"><img src="{{ STATIC_URL }}img/devices/photo-tv-features-screen-1-282x220.jpg" alt="Ubuntu TV watch or record functionality" class="priority-0" /></li>
 			<li class="four-col"><img src="{{ STATIC_URL }}img/devices/photo-tv-features-screen-2-282x220.jpg" alt="Ubuntu TV view trailer, rent or buy film functionality" /></li>
-			<li class="four-col last-col"><img src="{{ STATIC_URL }}img/devices/photo-tv-features-screen-3-282x220.jpg" alt="Ubuntu TV recorded movies and programs window" /></li>
+			<li class="four-col last-col"><img src="{{ STATIC_URL }}img/devices/photo-tv-features-screen-3-282x220.jpg" alt="Ubuntu TV recorded movies and programs window" class="priority-0" /></li>
 		</ul>
 </div><!-- /.row -->
 	{% endblock content %}

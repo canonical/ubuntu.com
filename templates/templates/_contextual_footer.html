@@ -3,13 +3,13 @@
 <div id="context-footer" class="{{ level_1 }}-context-footer no-border">
 <hr />
 	<div class="twelve-col vertical-divider">
-	{% with "ubuntu/"|add:level_1|add:"/shared/_contextual_footer.html" as contextual %}
-		<div class="feature-one three-col">
+	{% with ""|add:level_1|add:"/shared/_contextual_footer.html" as contextual %}
+		<!--<div class="feature-one three-col">
 			<h3>Explore further</h3>
-			{% with "ubuntu/"|add:level_1|add:"/_nav_secondary.html" as explore %}
+			{% with ""|add:level_1|add:"/_nav_secondary.html" as explore %}
 				{% include explore with list_class="list smaller" %}
 			{% endwith %}
-		</div>
+		</div>-->
 	{% include contextual %}
 	{% endwith %}
 	</div><!-- /.twelve-col -->

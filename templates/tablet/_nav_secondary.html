@@ -1,7 +1,5 @@
-	<ul{% if list_class %} class="{{ list_class }}"{% endif %}>
-		{% if arrow %} <li class="arrow-up"></li> {% endif %}
+	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
 		<li class="first{% if level_1 == 'tablet' and not level_2 %} active{% endif %}"><a href="/tablet">Design</a></li>
 		<li{% if level_2 == 'operators-and-oems' %} class="active"{% endif %}><a href="/tablet/operators-and-oems">Operators and OEMs</a></li>
 		<li{% if level_2 == 'backed-by-canonical' %} class="last-item"{% endif %}{% if level_2 == 'app-ecosystem' %} class="active"{% endif %}><a href="/tablet/app-ecosystem">App ecosystem</a></li>
-		{% if location != "footer" %}<li class="last-item{% if level_2 == 'backed-by-canonical' %} active{% endif %}"><a href="/tablet/backed-by-canonical">Backed by Canonical</a></li>{% endif %}
 	</ul>

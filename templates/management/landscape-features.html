@@ -8,151 +8,170 @@
 
 {% block content %}
 <div class="row row-hero no-border">
-	<div class="eight-col no-margin-bottom">
+	<div class="eight-col">
 		<h1>Landscape features</h1>
 		<p>Landscape allows you to manage thousands of Ubuntu machines as easily as one, making it far more cost-effective to support large and growing networks of desktops, servers and cloud instances.</p>
 	</div>
 </div><!-- /.landscape-intro -->
 
-<div class="row tabbed-menu no-border">
-	<ul class="no-bullets">
-		<li><a class="slideless active" href="#management">Software management</a></li>
-		<li><a class="slideless" href="#deployment">Deployment</a></li>
-		<li><a class="slideless" href="#monitoring">Monitoring</a></li>
-		<li><a class="slideless" href="#inventory">Inventory management</a></li>
-	</ul>
-	<img src="{{ STATIC_URL }}img/patterns/tabbed-nav-arrow.png" width="12" height="6" class="arrow" alt="">
-</div><!-- /.row .tabbed-menu -->
+<div class="row no-border">
+	<div class="tabbed-menu">
+		<ul class="no-bullets">
+			<li><a class="slideless active" href="#management">Software management</a></li>
+			<li><a class="slideless" href="#deployment">Deployment</a></li>
+			<li><a class="slideless" href="#monitoring">Monitoring</a></li>
+			<li><a class="slideless" href="#inventory">Inventory management</a></li>
+		</ul>
+	</div>
 
-<div id="management" class="tabbed-content management">
+<div id="management" class="tabbed-content management twelve-col">
+	<a class="accordion-button slideless" href="#management" data-hash="management">Software management</a>
 	<div class="no-border">
 		<h3>Making software management simple</h3>
-		<div class="six-col">
-			<ul class="list-canonical">
-				<li>Manage machines in bulk</li>
-				<li>Tag machines to associate them with different profiles</li>
-				<li>Transparent cross-platform support for x86 and ARM binaries</li>
-				<li>Specify update policies and maintenance windows, during which software updates can be performed</li>
-				<li>Ensure managed devices are up-to-date with the latest security fixes</li>
-				<li class="last-item">Hold a specific software package at a designated release, to prevent accidental breakage. Holds can be set using Landscape or the shell tools; both are recognised operationally</li>
-			</ul>
-		</div><!-- /.six-col -->
-		<div class="six-col last-col">
-			<ul class="list-canonical">
-				<li>Support a validation/integration workflow to ensure that updates don&rsquo;t break mission-critical applications</li>
-				<li>Make sure that only applications and updates vetted by your local IS team are installed</li>
-				<li>Install, remove and update packages to managed devices</li>
-				<li>Rollback software to a previously installed version, if a problem is discovered</li>
-				<li class="last-item">Provide custom repositories to internally <br/>provision applications</li>
-			</ul>
-		</div><!-- /.six-col -->
-	</div><!-- /#management -->
-	
-	<div class="row main-content no-border">
-		<div class="pattern-gallery">
-			<a class="right" href="{{ STATIC_URL }}img/business/screenshot-rollback-1046x547.png">
-				<img width="430" height="225" alt="Landscape rollback screen" src="{{ STATIC_URL }}img/business/screenshot-rollback-thumb-430x225.png" class="default">
-			</a>
-		</div><!-- /.pattern-gallery -->
-		<div class="content-text">
-			<p>Landscape offers a complete software management solution for Ubuntu, including patch management and compliance features. And because it is designed specifically for Ubuntu by Canonical, it offers more features than any platform-agnostic alternative could.</p>
-			<p>Landscape lets you manage machines in bulk, ensuring uniformity of configuration across your network. With tags, you can set up custom subgroups incredibly easily; just choose a tag while preparing a management task, then tag each machine accordingly. Tags remain in place &ndash; and are easy to add to new devices, even at provisioning time.</p>
-			<p>Client machines can be be assigned policies instructing them to automatically update &ndash; either with all available software updates or security patches only. Maintenance windows, new in the latest release, mean you can instruct a device to to update automatically at a specified time, for example, between 2am and 4am on Saturdays. If a device is powered off or not connected to the network (for example, a roving laptop), the update will not be performed until the next maintenance window.</p>
-			<p>By scripting to Landscape&rsquo;s API, administrators can operate custom repositories, which can be created as local repositories behind your firewall and mirrored across geographies. Packages can be even be copied in multiple repositories. Source list management provides control of the repositories configured on client machines, regardless of whether those repositories are managed by Landscape or not.</p>
-			<p><a class="link-arrow" href="/management/working-with-landscape#landscape-rbac-video">Watch the software management video on the working with Landscape page</a></p>
-		</div><!-- /.content-text -->
-	</div><!-- /.row .main-content -->
-</div><!-- /.tabbed-content .management -->
-
-	<div id="deployment" class="tabbed-content deployment hide">
-		<div class="points no-border">
-			<h3>Deployment &ndash; on the metal or in the cloud</h3>
+		<div class="combined-list">
 			<div class="six-col">
 				<ul class="list-canonical">
-					<li>Provision a new starter&rsquo;s desktop from <br/>standard templates</li>
-					<li>Deploy a new server remotely, from bare metal</li>
-					<li class="last-item">Rapidly deploy new cloud nodes into your private <br/>cloud infrastructure</li>
+					<li>Manage machines in bulk</li>
+					<li>Tag machines to associate them with different profiles</li>
+					<li>Transparent cross-platform support for x86 and ARM binaries</li>
+					<li>Specify update policies and maintenance windows, during which software updates can be performed</li>
+					<li>Ensure managed devices are up-to-date with the latest security fixes</li>
+					<li class="last-item">Hold a specific software package at a designated release, to prevent accidental breakage. Holds can be set using Landscape or the shell tools; both are recognised operationally</li>
 				</ul>
 			</div><!-- /.six-col -->
 			<div class="six-col last-col">
 				<ul class="list-canonical">
-					<li>Coordinate deployment at multiple sites, without affecting the WAN&rsquo;s performance</li>
-					<li>Roll out an entire private cloud directly at server unboxing</li>
-					<li class="last-item">Limit the number of cloud instances your administrators can purchase</li>
+					<li>Support a validation/integration workflow to ensure that updates don&rsquo;t break mission-critical applications</li>
+					<li>Make sure that only applications and updates vetted by your local IS team are installed</li>
+					<li>Install, remove and update packages to managed devices</li>
+					<li>Rollback software to a previously installed version, if a problem is discovered</li>
+					<li class="last-item">Provide custom repositories to internally provision&nbsp;applications</li>
 				</ul>
 			</div><!-- /.six-col -->
-		</div><!-- /#deployment -->
-		<div class="row main-content no-border">
-			<a class="right" href="{{ STATIC_URL }}img/business/screenshot-provisioning-1200x756.png">
-				<img width="430" height="225" alt="Landscape provisioning screen" src="{{ STATIC_URL }}img/business/screenshot-provisioning-crop-430x225.png" class="screenshot">
+		</div>
+	</div><!-- /#management -->
+
+		<div class="twelve-col">
+			<a href="{{ STATIC_URL }}img/management/landscape-features/image-landscape-1.jpg">
+				<img width="824" alt="Landscape rollback screen" src="{{ STATIC_URL }}img/management/landscape-features/image-landscape-1.jpg" class="default">
 			</a>
-			<div class="content-text">
+		</div><!-- /.pattern-gallery -->
+		<div class="eight-col">
+			<p>Landscape offers a complete software management solution for Ubuntu, including patch management and compliance features. And because it is designed specifically for Ubuntu by Canonical, it offers more features than any platform-agnostic alternative could.</p>
+			<p>Landscape lets you manage machines in bulk, ensuring uniformity of configuration across your network. With tags, you can set up custom subgroups incredibly easily; just choose a tag while preparing a management task, then tag each machine accordingly. Tags remain in place &ndash; and are easy to add to new devices, even at provisioning time.</p>
+			<p>Client machines can be be assigned policies instructing them to automatically update &ndash; either with all available software updates or security patches only. Maintenance windows, new in the latest release, mean you can instruct a device to to update automatically at a specified time, for example, between 2am and 4am on Saturdays. If a device is powered off or not connected to the network (for example, a roving laptop), the update will not be performed until the next maintenance window.</p>
+			<p>By scripting to Landscape&rsquo;s API, administrators can operate custom repositories, which can be created as local repositories behind your firewall and mirrored across geographies. Packages can be even be copied in multiple repositories. Source list management provides control of the repositories configured on client machines, regardless of whether those repositories are managed by Landscape or not.</p>
+			<p><a href="/management/working-with-landscape#landscape-rbac-video">Watch the software management video on the working with Landscape page&nbsp;&rsaquo;</a></p>
+		</div><!-- /.content-text -->
+</div><!-- /.tabbed-content .management -->
+
+	<div id="deployment" class="tabbed-content deployment twelve-col hide">
+		<a class="accordion-button slideless" href="#deployment" data-hash="deployment">Deployment</a>
+		<div class="points no-border">
+			<h3>Deployment &ndash; on the metal or in the cloud</h3>
+			<div class="combined-list">
+				<div class="six-col">
+					<ul class="list-canonical">
+						<li>Provision a new starter&rsquo;s desktop from standard&nbsp;templates</li>
+						<li>Deploy a new server remotely, from bare metal</li>
+						<li class="last-item">Rapidly deploy new cloud nodes into your private cloud&nbsp;infrastructure</li>
+					</ul>
+				</div><!-- /.six-col -->
+				<div class="six-col last-col">
+					<ul class="list-canonical">
+						<li>Coordinate deployment at multiple sites, without affecting the WAN&rsquo;s performance</li>
+						<li>Roll out an entire private cloud directly at server unboxing</li>
+						<li class="last-item">Limit the number of cloud instances your administrators can purchase</li>
+					</ul>
+				</div><!-- /.six-col -->
+			</div>
+		</div><!-- /#deployment -->
+		<div class="row main-content  no-border">
+			<div class="twelve-col">
+				<a href="{{ STATIC_URL }}img/management/landscape-features/image-landscape-2.jpg">
+					<img width="824" alt="Landscape provisioning screen" src="{{ STATIC_URL }}img/management/landscape-features/image-landscape-2.jpg" class="screenshot">
+				</a>
+			</div>
+			<div class="eight-col">
 				<p>Whether you need to install a fleet of desktop workstations or bring up the infrastructure for an entire OpenStack cloud, Landscape gives you the tools you need to do it quickly. It supports Ubuntu's cloud-init format, enabling the use of the same configuration structures in provisioning cloud and physical infrastructure. Additionally, Landscape's own data abstractions can be used in both the deployment and production phases of the system life-cycle, eliminating the need to keep different configuration files synchronised.</p>
 				<p>Landscape supports multiple deployment endpoints, with geographical mapping transparent to the administrator. This allows remote bare metal deployment to field offices where control is centralised but network load is local, shielding the WAN links from load.</p>
 				<p>In combination with Canonical&rsquo;s Metal as a Service (MAAS) technology, Landscape delivers a centralised console for rapid system provisioning. This gives you a unified view that&rsquo;s centrally controlled, while delivering the bits using the local network, close to their destination</p>
-				<div><a class="link-arrow" href="/management/working-with-landscape#landscape-videos">Watch the bare metal provisioning video on the Working with Landscape page</a></div>
+				<div><a href="/management/working-with-landscape#landscape-videos">Watch the bare metal provisioning video on the Working with Landscape page&nbsp;&rsaquo;</a></div>
 			</div><!-- /.content-text -->
 		</div><!-- /.row .main-content -->
 	</div><!-- /.tabbed-content .deployment -->
 
 	<div id="monitoring" class="tabbed-content monitoring hide">
+		<a class="accordion-button slideless" href="#monitoring" data-hash="monitoring">Monitoring</a>
 		<div class="no-border">
 			<h3>Monitoring</h3>
-			<div class="six-col">
-				<ul class="list-canonical">
-					<li>Helping you identify and troubleshoot user issues</li>
-					<li>Historical data archive of a system&rsquo;s critical variables</li>
-					<li class="last-item">Ready access to a list of all processes running on a system (rogue processes can be killed remotely)</li>
-				</ul>
-			</div><!-- /.six-col -->
-			<div class="six-col last-col">
-				<ul class="list-canonical">
-					<li>A graphical module that makes it easy to plot trends of temperature, disk and memory usage, system load or custom metrics</li>
-					<li class="last-item">Scriptable, custom trend information based on the parameters that matter to you</li>
-				</ul>
-			</div><!-- /.six-col -->
+			<div class="combined-list">
+				<div class="six-col">
+					<ul class="list-canonical">
+						<li>Helping you identify and troubleshoot user issues</li>
+						<li>Historical data archive of a system&rsquo;s critical variables</li>
+						<li class="last-item">Ready access to a list of all processes running on a system (rogue processes can be killed remotely)</li>
+					</ul>
+				</div><!-- /.six-col -->
+				<div class="six-col last-col">
+					<ul class="list-canonical">
+						<li>A graphical module that makes it easy to plot trends of temperature, disk and memory usage, system load or custom metrics</li>
+						<li class="last-item">Scriptable, custom trend information based on the parameters that matter to you</li>
+					</ul>
+				</div><!-- /.six-col -->
+			</div>
 		</div><!-- /#monitoring -->
 		<div class="row main-content no-border">
-			<a class="right" href="{{ STATIC_URL }}img/business/screenshot-monitoring-1200x642.png">
-				<img width="430" height="225" alt="Landscape monitoring screen" src="{{ STATIC_URL }}img/business/screenshot-monitoring-crop-430x225.png" class="screenshot">
-			</a>
-			<div class="content-text">
+			<div class="twelve-col">
+				<a href="{{ STATIC_URL }}img/management/landscape-features/image-landscape-3.jpg">
+					<img width="824" alt="Landscape monitoring screen" src="{{ STATIC_URL }}img/management/landscape-features/image-landscape-3.jpg" class="screenshot">
+				</a>
+			</div>
+			<div class="eight-col">
 				<p>When it comes to monitoring the performance of Ubuntu desktops, there is no more rapidly deployed or cost-effective tool than Landscape.</p>
 				<p>Landscape monitors systems through a management agent installed on each machine. The agent communicates with Landscape to update an automatically selected set of essential health metrics. Data is securely collected and stored in the Landscape database.</p>
 				<p>Collection of custom metrics can also be easily configured, in addition to those that are conveniently pre-configured and are collected out of the box. Access to load, bandwidth and other historical monitoring data can prove useful when troubleshooting intermittent system issues.</p>
-				<div><a class="link-arrow" href="/management/working-with-landscape">Watch the asset management video on the working with Landscape page</a></div>
+				<div><a href="/management/working-with-landscape">Watch the asset management video on the working with Landscape page&nbsp;&rsaquo;</a></div>
 			</div><!-- /.content-text -->
 		</div><!-- /.row main-content -->
 	</div><!-- /.tabbed-content .monitoring -->
 
 	<div id="inventory" class="tabbed-content inventory hide">
+		<a class="accordion-button slideless" href="#inventory" data-hash="inventory">Inventory management</a>
 		<div class="points no-border">
 			<h3>Inventory management</h3>
-			<div class="six-col">
-				<ul class="list-canonical">
-					<li class="last-item">Access full package information for all registered machines, including security notices applicable to the selected device.</li>
-				</ul>
-			</div><!-- /.six-col -->
-			<div class="six-col last-col">
-				<ul class="list-canonical">
-					<li class="last-item">Enjoy rapid access to a system&rsquo;s hardware properties to track hardware-specific issues</li>
-				</ul>
-			</div><!-- /.six-col -->
+			<div class="combined-list">
+				<div class="six-col">
+					<ul class="list-canonical">
+						<li class="last-item">Access full package information for all registered machines, including security notices applicable to the selected device.</li>
+					</ul>
+				</div><!-- /.six-col -->
+				<div class="six-col last-col">
+					<ul class="list-canonical">
+						<li class="last-item">Enjoy rapid access to a system&rsquo;s hardware properties to track hardware-specific issues</li>
+					</ul>
+				</div><!-- /.six-col -->
+			</div>
 		</div><!-- /#inventory -->
 		<div class="row main-content no-border">
 			<div class="pattern-gallery">
-				<a class="right" href="{{ STATIC_URL }}img/business/screenshot-1-hardware-inventory-1200x754.png">
-					<img width="430" height="225" alt="Landscape hardware inventory screen" src="{{ STATIC_URL }}img/business/screenshot-1-hardware-inventory-thumb-430x225.png" class="default">
-				</a>
+				<div class="twelve-col">
+					<a href="{{ STATIC_URL }}img/management/landscape-features/image-landscape-4.jpg">
+						<img width="824" alt="Landscape hardware inventory screen" src="{{ STATIC_URL }}img/management/landscape-features/image-landscape-4.jpg" class="default">
+					</a>
+				</div>
       </div><!-- /.pattern-gallery -->
-			<div class="content-text">
+			<div class="eight-col">
 				<p>Landscape&rsquo;s new inventory management features integrate seamlessly with its deployment functionality, making it possible to specify server hardware requirements when provisioning bare metal instances &ndash; and to keep track of the hardware capabilities of the asset fleet.</p>
 				<p>Landscape makes it easy to monitor the packages installed on any managed machine &ndash; essential in industry sectors with specific compliance overheads, for example, healthcare or financial services.</p>
 				<p>Data in the hardware inventory is now searchable, based on properties such as the MAC address of a given card or the version of Ubuntu installed on a specific machine. Dynamic search groups can be created, that repopulate with current data whenever the saved search is executed. Hardware-based criteria can be used as well as software; for example, you could create a group of &lsquo;all machines with more than 8GB of RAM&rsquo; or desktops with Intel video adapters&rsquo;.</p>
 				<p>Administrators will be pleased to note that the inventory is now Lshw-based, ensuring absolute consistency between the data stored locally in each Ubuntu installation and the data stored for that device remotely in Landscape.</p>
-				<div><a class="link-arrow" href="/management/working-with-landscape">Learn more about working with Landscape</a></div>
+				<div><a href="/management/working-with-landscape">Learn more about working with Landscape&nbsp;&rsaquo;</a></div>
 			</div><!-- /.content-text -->
 		</div><!-- /.row main-content -->
 	</div><!-- /.tabbed-content .inventory -->
+</div>
+{% include "shared/_live_chat.html" %}
+
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}
