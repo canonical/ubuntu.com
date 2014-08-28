@@ -72,3 +72,5 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 # Custom settings
 # ===============
 TEMPLATE_DIRS = [BASE_DIR + "/templates"]
+
+CACHE_MAX_AGE = 300
