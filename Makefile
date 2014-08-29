@@ -119,6 +119,30 @@ update-templates:
 
 	find static/css -type f -name '*.scss' | xargs sed -i 's/[@]import ["]css[/]/@import "static\/css\//g'
 
+update-templates-local:
+	rm -rf templates
+	rm -rf static
+	#bzr branch lp:ubuntu-website-content templates
+	bzr pull --directory ../ubuntu-website-content 
+	cp -rf ../ubuntu-website-content templates
+	rm -rf templates/.bzr*
+
+	mv templates/static .
+
+	# Remove references to scss module
+	find templates -type f -name '*.html' | xargs sed -i '/^ *[{][%] load scss [%][}] *$$/d'
+	find templates -type f -name '*.html' | xargs sed -i 's/[{][%]\s*scss\s\+["]\([^"]\+\).scss["]\s*[%][}]/\1.css/g'
+	find static/css -type f -name '*.scss' | xargs sed -i 's/[%][%]/%/g'
+
+	# Rewrite old "ubuntu"-prefixed template includes
+	#perl -pi -e 's/\{\{ STATIC_URL \}\}u\//{{ STATIC_URL }}/g' `find .`
+	#perl -pi -e 's/\{\% (extends|include|with) "ubuntu\//{% $$1 "/g' `find .`
+
+	find templates -type f -name '*.html' | xargs sed -i 's/[{][{] *STATIC_URL *[}][}]u[/]/{{ STATIC_URL }}/g'
+	find templates -type f -name '*.html' | xargs sed -i 's/[{][%] *\(extends\|include\|with\) \+["]ubuntu[/]/{% \1 "/g'
+
+	find static/css -type f -name '*.scss' | xargs sed -i 's/[@]import ["]css[/]/@import "static\/css\//g'
+
 # The below targets
 # are just there to allow you to type "make it so"
 # as a replacement for "make" or "make develop"
