@@ -8,6 +8,7 @@ from feedparser import parse
 from fenchurch import TemplateFinder
 from lib.gsa import GSAParser
 
+
 class DownloadView(TemplateFinder):
     def get_context_data(self, **kwargs):
         context = super(DownloadView, self).get_context_data(**kwargs)
