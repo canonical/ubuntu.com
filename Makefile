@@ -47,12 +47,14 @@ dev-server:
 ##
 sass-watch:
 	sass --debug-info --watch static/css/styles.scss &
+	sass --debug-info --watch static/css/core-print.scss &
 
 ##
 # Build SASS
 ##
 sass-build:
 	sass --style compressed --update static/css/styles.scss
+	sass --style compressed --update static/css/core-print.scss
 
 ##
 # Get virtualenv ready
