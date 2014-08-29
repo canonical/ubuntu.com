@@ -1,6 +1,6 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Download Ubuntu Desktop{% endblock %}
+{% block title %}Download Ubuntu Desktop | Download{% endblock %}
 
 {% block extra_body_class %}download-desktop-home{% endblock %}
 
@@ -8,56 +8,32 @@
 	{% include "templates/_nav_breadcrumb.html" with section_title="Download" page_title="Desktop"  %}
 {% endblock second_level_nav_items %}
 
-{% block content %}	
-<div class="row row-hero no-border">
+{% block content %}
+{% with ubuntu_release="14.04.1" openstack_version="Icehouse" %}
+<div class="row row-hero row-background no-border">
 	<div class="eight-col append-four">
 		<h1>Download Ubuntu Desktop</h1>
-		<p>You can choose between two options when you download Ubuntu for a desktop PC. Ubuntu 13.10 gives you all the latest features, while Ubuntu 12.04 <abbr title="Long Term Support">LTS</abbr> comes with extended support.</p>
 	</div><!-- /.eight-col -->
-	<div class="box-grey twelve-col no-margin-bottom">
-		<div class="box box-highlight clearfix">
-			<h3><strong>For extended support,</strong><br/>choose Ubuntu 12.04 LTS</h3>
-			<div class="download-description eight-col no-margin-bottom">
-				<p>Ubuntu 12.04.4 LTS is a long-term support release. It has continuous hardware support improvements as well as guaranteed security and support updates until April 2017.</p>
-				<p><a class="link-arrow" href="/download/desktop/install-desktop-long-term-support">Read the full installation instructions</a></p>
+	<div class="twelve-col">
+		<div class="box box-highlight clearfix vertical-divider">
+			<div class="eight-col no-margin-bottom">
+				<h2>Ubuntu {{ubuntu_release}} LTS</h2>
+				<p>The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ubuntu_release}} LTS comes with five years of security and maintenance updates, guaranteed.</p>
+				<p><a href="https://wiki.ubuntu.com/TrustyTahr/ReleaseNotes" class="external">Ubuntu {{ubuntu_release}} LTS release notes</a></p>
 			</div>
 			<div class="four-col last-col no-margin-bottom download-button">
-				<form class="form-download" action="/download/desktop/contribute/" method="get">
+				<form class="form-download gap-from-top" action="/download/desktop/contribute/" method="get">
 					<fieldset>
-						<input type="hidden" name="version" value="12.04.4" />
-						<p class="smaller">If you have an older PC with less than 2GB of memory, choose the 32-bit download.</p>
+						<input type="hidden" name="version" value="{{ubuntu_release}}" />
 						<label for="input-bits-lts">Choose your flavour</label>
 						<select id="input-bits-lts" name="architecture">
 							<option value="amd64" selected="selected">64-bit</option>
 							<option value="i386">32-bit (for machines with less than 2GB RAM)</option>
+							<option value="amd64+mac">64-bit Mac (AMD64)</option>
 						</select>
 					</fieldset>
 					<div>
-						<button type="submit">Ubuntu 12.04 LTS</button>
-					</div>
-				</form>
-			</div><!-- /.four-col -->
-		</div><!-- /.box -->
-		
-		<div class="box box-highlight clearfix no-margin-bottom">
-			<h3><strong>For the latest features,</strong><br/>choose Ubuntu 13.10</h3>
-			<div class="download-description eight-col no-margin-bottom ">
-				<p>Ubuntu 13.10 will be supported for 9 months and includes cutting-edge new features that make your music, videos, documents and apps much easier to access.</p>
-				<p><a class="link-arrow" href="/download/desktop/install-desktop-latest">Read the full installation instructions</a></p>
-			</div>
-			<div class="four-col last-col no-margin-bottom download-button">
-				<form class="form-download" action="/download/desktop/contribute/" method="get">
-					<fieldset>
-						<input type="hidden" name="version" value="13.10" />
-						<p class="smaller">If you have an older PC with less than 2GB of memory, choose the 32-bit download.</p>
-						<label for="input-bits-latest">Choose your flavour</label>
-						<select id="input-bits-latest" name="architecture">
-							<option value="amd64" selected="selected">64-bit</option>
-							<option value="i386">32-bit (for machines with less than 2GB RAM)</option>
-						</select>
-					</fieldset>
-					<div>
-						<button type="submit">Ubuntu 13.10</button>
+						<button type="submit">Download</button>
 					</div>
 				</form>
 			</div><!-- /.four-col -->
@@ -65,6 +41,39 @@
 	</div>
 </div><!-- /.row -->
 
+<div class="row row-grey row-easy-ways">
+	<div class="twelve-col">
+		<h2>Easy ways to switch to Ubuntu {{ubuntu_release}} LTS</h2>
+	</div>
+	<div class="equal-height">
+		<div class="four-col box box-highlight">
+			<h3 class="header--ubuntu">From Ubuntu</h3>
+			<p>If you&rsquo;re already running Ubuntu, you can upgrade in a few clicks from <a href="/download/desktop/upgrade">Software Updater</a>.</p>
+			<ul class="no-bullets">
+				<li><a href="/download/desktop/burn-a-dvd-on-ubuntu">How to burn a DVD on Ubuntu&nbsp;&rsaquo;</a></li>
+				<li><a href="/download/desktop/create-a-usb-stick-on-ubuntu">How to create a bootable USB stick on Ubuntu&nbsp;&rsaquo;</a></li>
+			</ul>
+		</div>
+		<div class="four-col box box-highlight">
+			<h3 class="header--windows">From Windows</h3>
+			<p>If you&rsquo;re using Windows 8 or any computer with a 64-bit processor, we recommend the 64-bit download.</p>
+			<ul class="no-bullets">
+				<li><a href="/download/desktop/burn-a-dvd-on-windows">How to burn a DVD on Windows&nbsp;&rsaquo;</a></li>
+				<li><a href="/download/desktop/create-a-usb-stick-on-windows">How to create a bootable USB stick on Windows&nbsp;&rsaquo;</a></li>
+			</ul>
+		</div>
+		<div class="four-col last-col box box-highlight">
+			<h3 class="header--mac">From Mac OS X</h3>
+			<p>Most Macs with Intel processors will work with either 64-bit or Mac images. If the 64-bit image doesn't work, try the Mac image.</p>
+			<ul class="no-bullets">
+				<li><a href="/download/desktop/burn-a-dvd-on-mac-osx">How to burn a DVD on OS X&nbsp;&rsaquo;</a></li>
+				<li><a href="/download/desktop/create-a-usb-stick-on-mac-osx">How to create a bootable USB stick on OS X&nbsp;&rsaquo;</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
 {% include "download/desktop/_other-ways.html" %}
+{% endwith %}
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

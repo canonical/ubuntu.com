@@ -1,30 +1,49 @@
 {% extends "desktop/base_desktop.html" %}
 {% block extra_body_class %}desktop-features-home{% endblock %}
-{% block title %}Features{% endblock %}
+{% block title %}Desktop features{% endblock %}
+{% block meta_description %}Learn about all the great features and default applications in the Ubuntu desktop operating system.{% endblock meta_description %}
+
+{% block meta_keywords %}Ubuntu, desktop, features, web browsing, office applications, social and email, music and mobile, photos and videos, games and apps, smart scopes{% endblock meta_keywords %}
+
 
 {% block second_level_nav_items %}
 	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Features" tertiary="true"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero row-your-ubuntu">
+<div class="row row-hero no-border">
 	<div class="four-col">
-		<h1>Your Ubuntu, your way</h1>
-		<p>Enjoy the simplicity of Ubuntu's stylish, intuitive interface. Fast, secure and with thousands of apps to choose from, Ubuntu gives you a clean and streamlined experience that you can really make your own.</p>
+		<h1>Reach out and touch it</h1>
+		<p>Enjoy the simplicity of Ubuntu's intuitive interface. Fast, secure and with thousands of apps to choose from, the sleek Ubuntu desktop experience is now optimised for multitouch devices, including laptop trackpads and touchscreens, as well as the familiar keyboard and mouse.</p>
 		<p><a href="/download/desktop/" class="link-cta-ubuntu">Get Ubuntu now</a></p>
-	</div><!-- /.six-col -->
-	<div class="clear">{% include "shared/_share_this.html" %}</div>
+	</div>
+	<div class="eight-col last-col text-center">
+		<img src="{{ STATIC_URL }}img/desktop/features/image-features.jpg" alt="Facebook loaded Firefox running on Ubuntu" width="654" height="330" />
+	</div>
+	<div class="clearfix">{% include "shared/_share_this.html" %}</div>
 </div><!-- /.row -->
 
 <div class="row row-what-is-new">
-		<h2>The new smart scopes</h2>
-		<p>Ubuntu 13.10 brings ‘smart scopes’ into the Dash.  They revolutionise how you find and filter the content on your computer and the internet.</p>
-	
-		<p>Type any query into the Dash Home, and the smart scopes server will determine which categories of content are the most relevant to your search and return only the best results. The smart scopes server constantly improves its results by learning which categories and results are most useful to you over time.</p>
+	<div class="six-col no-margin-bottom">
+		<img src="{{ STATIC_URL }}img/desktop/features/image-scopes.jpg" alt="" class="touch-border pull-left priority-0" width="464" height="474" />
+	</div>
+	<div class="six-col last-col">
+		<h2>Smarter searching</h2>
+		<p>Ubuntu 14.04 LTS includes a wealth of smart filters to make it faster and easier to find the content you need, whether it&rsquo;s stored on your computer or on the web.</p>
+		<p>Type any query into the Dash home and the Smart Scopes server will determine which categories of content are the most relevant to your search, returning only the best results. The server constantly improves its results by learning which categories and results are most useful to you over time.</p>
+	</div>
 </div><!-- /.row -->
 
-<div class="row row-explore-ubuntu no-border">
+<div class="row no-border">
+	<h2>First look: Unity 8</h2>
+	<div class="seven-col">
+		<p>If you&rsquo;re interested in the future of computing and you want to see how Ubuntu will look further down the line, you can download a preview version of Unity 8, Ubuntu&rsquo;s next-generation user interface. Designed to support a single user experience across the smartphone, the tablet and the PC, it uses the current version of Mir, the cross-platform display server being developed by the Ubuntu community. Do note, however, that Mir only works with open-source graphics drivers at present.</p>
+		<p>To download the preview of Unity 8, search for unity8-desktop-session-mir in the Ubuntu Software Centre.</p>
+	</div>
+	<div class="five-col last-col">
+		<img src="{{ STATIC_URL }}img/desktop/features/image-unity8.svg" alt="" width="299" height="213" />
+	</div>
+</div><!-- /.row -->
 {% include "desktop/features/nav/_explore_ubuntu.html" %}
-</div>
 {% endblock content %}
 {% block footer_extra %}{% endblock footer_extra %}

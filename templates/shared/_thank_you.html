@@ -1,0 +1,11 @@
+<div class="row row-hero no-border row-image-centered">
+	<div class="thank-you eight-col">
+		<h1>Thank you for {{ thanks_context }}</h1>
+		<p class="intro">A member of our team will be in touch {{ details }}within <strong>one working day</strong></p>
+	</div>
+	<span>
+		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
+	</span>
+</div><!-- /.row-hero -->
+
+{% include "shared/_thank_you_footer.html" %}	

@@ -1,8 +1,9 @@
-	<ul{% if list_class %} class="{{ list_class }}"{% endif %}>
+	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
 		<li class="first{% if level_1 == 'partners' and not level_2 %} active{% endif %}"><a href="/partners">Overview</a></li>
 		<li class="{% if level_2 == 'find-a-partner' %} active{% endif %}"><a href="/partners/find-a-partner">Find a partner</a></li>
 		<li class="{% if level_2 == 'ubuntu-certified' %} active{% endif %}"><a href="/partners/ubuntu-certified">Ubuntu Certified</a></li>
 		<li class="{% if level_2 == 'partner-programmes' %} active{% endif %}"><a href="/partners/partner-programmes">Partner programmes</a></li>
 		<li class="{% if level_2 == 'partner-services' %} active{% endif %}"><a href="/partners/partner-services">Partner services</a></li>
+		<li class="{% if level_2 == 'backed-by-canonical' %} active{% endif %}"><a href="/partners/backed-by-canonical">Backed by Canonical</a></li>
 		<li class="{% if level_2 == 'contact-us' %} active{% endif %}"><a href="/partners/contact-us">Contact Canonical</a></li>
 	</ul>

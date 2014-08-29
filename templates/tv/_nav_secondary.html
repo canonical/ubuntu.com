@@ -1,5 +1,4 @@
-	<ul{% if list_class %} class="{{ list_class }}"{% endif %}>
-		{% if arrow %} <li class="arrow-up"></li> {% endif %}
+	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
 		<li class="first{% if level_1 == 'tv' and not level_2 %} active{% endif %}"><a href="/tv">Overview</a></li>
 		<li{% if level_2 == 'experience' %} class="active"{% endif %}><a href="/tv/experience">Experience</a></li>
 		<li{% if level_2 == 'industry' %} class="active"{% endif %}><a href="/tv/industry">Industry</a></li>

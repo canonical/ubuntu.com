@@ -1,6 +1,7 @@
-	<nav class="box box-grey box-explore-ubuntu clearfix">
+<div class="row no-border row-explore-ubuntu">
+	<nav class="box box-grey box-explore-ubuntu clearfix priority-0">
 		<h2>Explore Ubuntu's features and apps</h2>
-		<ul class="no-bullets">
+		<ul class="no-bullets smaller">
 			<li{% if level_3 == 'web-browsing' %} class="current"{% endif %}>
 				<a href="/desktop/features/web-browsing">
 					<img src="{{ STATIC_URL }}img/ubuntu/features/icon-web-browsing-64x64.png" width="64" height="64" alt="" />
@@ -19,12 +20,6 @@
 					<p>Social and email</p>
 				</a>
 			</li>
-			<li{% if level_3 == 'music-and-mobile' %} class="current"{% endif %}>
-				<a href="/desktop/features/music-and-mobile">
-					<img src="{{ STATIC_URL }}img/ubuntu/features/icon-music-and-mobile-64x64.png" width="64" height="64" alt="" />
-					<p>Music and mobile</p>
-				</a>
-			</li>
 			<li{% if level_3 == 'photos-and-videos' %} class="current"{% endif %}>
 				<a href="/desktop/features/photos-and-videos">
 					<img src="{{ STATIC_URL }}img/ubuntu/features/icon-photos-and-videos-64x64.png" width="64" height="64" alt="" />
@@ -37,11 +32,6 @@
 					<p>Games and apps</p>
 				</a>
 			</li>
-			<li{% if level_3 == 'personal-cloud' %} class="current"{% endif %}>
-				<a href="/desktop/features/personal-cloud">
-					<img src="{{ STATIC_URL }}img/ubuntu/features/icon-personal-cloud-64x64.png" width="64" height="64" alt="" />
-					<p>Personal cloud</p>
-				</a>
-			</li>
 		</ul>
-	</nav><!-- /.row -->
+	</nav>
+</div>

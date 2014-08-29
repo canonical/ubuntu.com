@@ -1,0 +1,35 @@
+{% extends "legal/_base_legal.html" %}
+
+{% block title %}Ubuntu Advantage{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Legal" page_title="Ubuntu Advantage" tertiary="true" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+
+<div class="row row-hero no-border">
+	<div class="eight-col">
+		<h1>Ubuntu Advantage</h1>
+		<p><a href="/management/ubuntu-advantage">Ubuntu Advantage</a> is Canonical&rsquo;s service package for Ubuntu. It offers tiered levels of support for desktop, server and cloud deployments. In this section, you can see our service description, but don&rsquo;t forget that there will still be some details in your customer agreement that are specific to your deployment.</p>
+		<p>If you&rsquo;re interested in support for an Ubuntu deployment or you&rsquo;re a reseller and you want to offer it to your customers, you can <a href="http://ubuntu.com/management/ubuntu-advantage">learn more about Ubuntu Advantage here</a>.</p>
+	</div>
+	<div class="four-col last-col text-center">
+		<img src="{{ STATIC_URL }}img/legal/image-document-ubuntuassurance.svg" alt="Ubuntu Advantage" class="priority-0" />
+	</div>
+</div>
+
+<div class="row equal-height no-border">
+	<div class="six-col box">
+		<h3>Ubuntu Advantage service description</h3>
+		<p>This describes the services we provide to our Ubuntu Advantage customers. It mentions several Canonical products, but please note that we can only provide services for the products listed in your customer agreement.</p>
+		<p><a href="/legal/ubuntu-advantage/service-description">View the Ubuntu Advantage service description&nbsp;&rsaquo;</a></p>
+	</div>
+
+	<div class="six-col box last-col">
+		<h3>Ubuntu Assurance</h3>
+		<p>The Ubuntu Advantage Assurance Programme provides indemnification from Canonical against claims of intellectual property infringement support customers might face as a result of using Ubuntu. This agreement is part of all Canonical support contracts. </p>
+		<p><a href="/legal/ubuntu-advantage/assurance">View Ubuntu Advantage Assurance&nbsp;&rsaquo;</a></p>
+	</div>
+</div>
+{% endblock content %}

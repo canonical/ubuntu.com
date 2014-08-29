@@ -15,7 +15,7 @@
 <div class="row no-border">
 	<div id="download-help" class="eight-col box box-grey no-border">
 	<p>To create a USB stick from which you can install Ubuntu, you must first <a href="/download">download Ubuntu</a>. Then, follow these instructions:</p>
-		<div class="box box-highlight">
+		<div class="box box-highlight no-margin-bottom">
 			<ol class="no-bullets">
 				<li>
 					<span>1</span>
@@ -33,42 +33,47 @@
 					<span>3</span>
 					<div>
 						<p>Select the <strong>Startup Disk Creator</strong> to launch the app.</p>
-						<img src="{{ STATIC_URL }}img/download/create-usb-ubuntu-1.png" alt="" height="244" width="444">
+						<div class="help-image">
+							<img src="{{ STATIC_URL }}img/download/desktop/create-a-usb-stick-on-ubuntu/image-createausbstickonubuntu-1.jpg" alt="" height="280" width="444">
+							<a href="{{ STATIC_URL }}img/download/desktop/create-a-usb-stick-on-ubuntu/image-createausbstickonubuntu-1.jpg">Click to enlarge</a>
+						</div>
 					</div>
 				</li>
 				<li>
 					<span>4</span>
 					<div>
 						<p>Click <strong>'Other'</strong> to choose the downloaded ISO file.</p>
-						<img src="{{ STATIC_URL }}img/download/create-usb-stick-on-ubuntu-2-12.10.png" alt="" height="149" width="444">
 					</div>
 				</li>
 				<li>
 					<span>5</span>
 					<div>
 						<p>Select the file and click <strong>'Open'</strong>.</p>
-						<img src="{{ STATIC_URL }}img/download/create-usb-stick-on-ubuntu-3-12.10.png" alt="" height="375" width="444">
+						<div class="help-image">
+							<img src="{{ STATIC_URL }}img/download/desktop/create-a-usb-stick-on-ubuntu/image-createausbstickonubuntu-2.jpg" alt="" height="388" width="444">
+							<a href="{{ STATIC_URL }}img/download/desktop/create-a-usb-stick-on-ubuntu/image-createausbstickonubuntu-2.jpg">Click to enlarge</a>
+						</div>
 					</div>
 				</li>
 				<li>
 					<span>6</span>
 					<div>
 						<p>Select the USB stick in the bottom box and click <strong>'Make Startup Disk'</strong>.</p>
-						<img src="{{ STATIC_URL }}img/download/create-usb-stick-on-ubuntu-4-12.10.png" alt="" height="377" width="444">
+						<div class="help-image">
+							<img src="{{ STATIC_URL }}img/download/desktop/create-a-usb-stick-on-ubuntu/image-createausbstickonubuntu-3.jpg" alt="" height="375" width="450">
+							<a href="{{ STATIC_URL }}img/download/desktop/create-a-usb-stick-on-ubuntu/image-createausbstickonubuntu-3.jpg">Click to enlarge</a>
+						</div>
 					</div>
 				</li>
 				<li>
 					<span>7</span>
 					<div>
-						<p>That's it! When the process completes, you'll be ready to restart your computer and begin installing Ubuntu.</p>
+						<p>That&rsquo;s it! When the process completes, you&rsquo;ll be ready to restart your computer and begin installing Ubuntu.</p>
 					</div>
 				</li>
 			</ol>
 		</div><!-- /.box -->
-{% include "download/shared/_wiki_link.html" %}
-{% include "download/shared/_ask_ubuntu.html" %}
 </div><!-- /.eight-col -->
-{% include "download/shared/_instalation_help.html" %}
 </div><!-- /.row -->
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

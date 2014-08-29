@@ -1,23 +1,93 @@
-{% if level_2 == 'desktop' and not level_3 or level_2 == 'zh-CN' or level_2 == 'windows-installer' or level_2 == 'alternative-downloads' %}	
+{% if not level_2 %}
 	<div class="feature-two four-col">
-		<h3>Interested in Ubuntu Desktop for your enterprise?</h3>
-		<p><a href="/desktop/contact-us">Get in touch&nbsp;&rsaquo;</a></p>
+		<h3>Ubuntu desktop for enterprise</h3>
+		<p>Learn more about management with Landscape.</p>
+		<p><a href="/management">Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+	</div>
+	<div class="feature-three four-col">
+		<h3>Ubuntu Server for cloud</h3>
+		<p>Ubuntu OpenStack is the fastest way to build an enterprise-scale cloud.</p>
+		<p><a href="/cloud/openstack">Ubuntu OpenStack&nbsp;&rsaquo;</a></p>
+	</div>
+{% else %}
+{% if level_2 == 'alternative-downloads' %}
+	<div class="feature-two four-col">
+		<h3>More information</h3>
+		<p>Learn more about management with Landscape.</p>
+		<p><a href="/management">Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+		<p>Ubuntu OpenStack is the fastest way to build an enterprise-scale cloud.</p>
+		<p><a href="/cloud/openstack">Ubuntu OpenStack&nbsp;&rsaquo;</a></p>
+	</div>
+	<div class="feature-three four-col">
+		<h3>Installation guides</h3>
+		<p>If you need some help installing Ubuntu, please check out our step-by-step guides.</p>
+		<ul class="no-bullets">
+			<li><a href="/download/desktop/install-ubuntu-desktop">Install Ubuntu Desktop&nbsp;&rsaquo;</a></li>
+			<li><a href="/download/server/install-ubuntu-server">Installation instructions for Ubuntu Server&nbsp;&rsaquo;</a></li>
+			<li><a href="/download/cloud/install-ubuntu-cloud">Installation instructions for Ubuntu OpenStack&nbsp;&rsaquo;</a></li>
+		</ul>
+	</div>
+{% else %}
+{% if level_2 == 'desktop' and not level_3 or level_2 == 'zh-CN' %}
+	<div class="feature-two four-col">
+		<h3>Installation guides</h3>
+		<p>If you need some help installing Ubuntu, please check out our step-by-step guide.</p>
+		<p><a href="/download/desktop/install-ubuntu-desktop">Read the installation instructions&nbsp;&rsaquo;</a></p>
+		<p><a href="https://help.ubuntu.com/community/UbuntuHashes" class="external">View Ubuntu&rsquo;s md5 hashes</a></p>
+	</div>
+	<div class="feature-three four-col">
+		<h3>Try before you install</h3>
+		<p>There&rsquo;s no need to replace your operating system to try Ubuntu.</p>
+		<ul class="no-bullets">
+			<li><a href="/download/desktop/try-ubuntu-before-you-install">Run Ubuntu from a USB or CD&nbsp;&rsaquo;</a></li>
+			<li><a href="/desktop/take-the-tour">Take the online tour&nbsp;&rsaquo;</a></li>
+		</ul>
+	</div>
+{% else %}
+{% if level_2 == 'cloud' or level_2 == 'server' and level_3 == 'thank-you' %}
+	<div class="feature-two four-col">
+		<h3>Installation guides</h3>
+		<p>If you need some help installing Ubuntu, please check out our step-by-step guides.</p>
+		<ul class="no-bullets">
+			<li><a href="/download/server/install-ubuntu-server">Installation instructions for Ubuntu Server&nbsp;&rsaquo;</a></li>
+			<li><a href="/download/cloud/install-ubuntu-cloud">Installation instructions for Ubuntu OpenStack&nbsp;&rsaquo;</a></li>
+			<li><a href="https://help.ubuntu.com/community/UbuntuHashes" class="external">View Ubuntu&rsquo;s md5 hashes</a></li>
+			<li><a href="https://insights.ubuntu.com/2014/05/21/ubuntu-cloud-documentation-14-04lts/" class="external">Ubuntu Cloud Documentation</a></li>
+		</ul>
+	</div>
+	<div class="feature-three four-col">
+		<h3>Detailed documentation</h3>
+		<p><a class="external" href="https://wiki.ubuntu.com/DocumentationTeam/SystemDocumentation/UbuntuServerGuide">Ubuntu Server Guide</a></p>
+		<p><a class="external" href="https://help.ubuntu.com/14.04/index.html">Ubuntu 14.04 LTS documentation</a></p>
 	</div><!-- /.feature-two -->
 {% else %}
-{% if level_2 == 'cloud' and not level_3 %}
+{% if level_2 == 'desktop' and level_3 == 'thank-you' %}
 	<div class="feature-two four-col">
-		<h3>Contact us about Ubuntu Cloud</h3>
-		<p><a href="/cloud/contact-us">Get in touch&nbsp;&rsaquo;</a></p>
+		<h3>Installation guides</h3>
+		<p>If you need some help installing Ubuntu, please check out our step-by-step guides.</p>
+		<ul class="no-bullets">
+			<li><a href="/download/desktop/install-ubuntu-desktop">Installation instructions for Ubuntu for desktop&nbsp;&rsaquo;</a></li>
+			<li><a href="https://help.ubuntu.com/community/UbuntuHashes" class="external">View Ubuntu&rsquo;s md5 hashes</a></li>
+		</ul>
+	</div>
+	<div class="feature-three four-col">
+		<h3>Detailed documentation</h3>
+		<p><a class="external" href="https://wiki.ubuntu.com/DocumentationTeam/SystemDocumentation/UbuntuDesktopGuide">Ubuntu Desktop Guide</a></p>
+		<p><a class="external" href="https://help.ubuntu.com/14.04/index.html">Ubuntu 14.04 LTS documentation</a></p>
 	</div><!-- /.feature-two -->
 {% else %}
 {% if level_2 == 'cloud' and level_3 == 'install-ubuntu-cloud' or level_3 == 'cloud-archive-instructions' %}
-	<div class="feature-two three-col">
-		<h3>Download Ubuntu Server for Cloud</h3>
-		<p><a href="/download/cloud">Download now&nbsp;&rsaquo;</a></p>
-	</div><!-- /.feature-two -->
-	<div class="feature-three three-col">
-		<h3>Contact us about Ubuntu Cloud</h3>
-		<p><a href="/cloud/contact-us">Get in touch&nbsp;&rsaquo;</a></p>
+	<div class="feature-two four-col">
+		<h3>Installation guides</h3>
+		<p>If you need some help installing Ubuntu, please check out our step-by-step guides.</p>
+		<ul class="no-bullets">
+			<li><a href="/download/server/install-ubuntu-server">Installation instructions for Ubuntu Server&nbsp;&rsaquo;</a></li>
+		</ul>
+	</div>
+	<div class="feature-three four-col">
+		<h3>Detailed documentation</h3>
+		<p><a class="external" href="https://wiki.ubuntu.com/DocumentationTeam/SystemDocumentation/UbuntuServerGuide">Ubuntu Server Guide</a></p>
+		<p><a class="external" href="https://help.ubuntu.com/14.04/index.html">Ubuntu 14.04 LTS documentation</a></p>
 	</div><!-- /.feature-two -->
 {% else %}
 {% if level_2 == 'cloud' %}
@@ -26,34 +96,115 @@
 		<p><a href="/download/cloud">Download now&nbsp;&rsaquo;</a></p>
 	</div><!-- /.feature-two -->
 {% else %}
-{% if level_2 == 'server' and level_3 %}
-	<div class="feature-two three-col">
-		<h3>Download Ubuntu Server</h3>
-		<p><a href="/download/server">Download now&nbsp;&rsaquo;</a></p>
+{% if level_2 == 'server' and level_3 == 'arm' %}
+	<div class="feature-two four-col">
+		<h3>More info</h3>
+		<ul class="no-bullets">
+			<li><a href="/server/hyperscale">Ubuntu for the hyperscale era&nbsp;&rsaquo;</a></li>
+			<li><a class="external" href="https://wiki.ubuntu.com/ARM">Our step-by-step technical guide</a></li>
+		</ul>
+	</div>
+	<div class="feature-three four-col">
+		<h3>Alternative downloads</h3>
+		<p><a href="/download/server">Download the x86 version&nbsp;&rsaquo;</a></p>
 	</div><!-- /.feature-two -->
-	<div class="feature-three three-col">
-		<h3>Contact us about Ubuntu Server</h3>
-		<p><a href="/server/contact-us">Get in touch&nbsp;&rsaquo;</a></p>
+{% else %}
+{% if level_2 == 'server' and level_3 == 'POWER8' %}
+	<div class="feature-two four-col">
+		<h3>More info</h3>
+		<ul class="no-bullets">
+			<li><a href="http://insights.ubuntu.com/2014/06/13/ubuntu-and-power8-the-best-of-both-worlds/" class="external">Ubuntu and POWER8 - the best of both worlds&nbsp;&rsaquo;</a></li>
+		</ul>
+	</div>
+	<div class="feature-three four-col">
+		<h3>Alternative downloads</h3>
+		<p><a href="/download/server">Download the x86 version&nbsp;&rsaquo;</a></p>
+	</div><!-- /.feature-two -->
+{% else %}
+{% if level_2 == 'server' and level_3 == 'install-ubuntu-server' %}
+	<div class="feature-two four-col">
+		<h3>Download Ubuntu Server for cloud</h3>
+		<p>Ubuntu OpenStack cloud computing puts you in control of your IT infrastructure.</p>
+		<p><a href="/download/server" class="link-cta-ubuntu">Download now</a></p>
+	</div>
+	<div class="feature-three four-col">
+		<h3>Detailed documentation</h3>
+		<p><a class="external" href="https://wiki.ubuntu.com/DocumentationTeam/SystemDocumentation/UbuntuServerGuide">Ubuntu Server Guide</a></p>
+		<p><a class="external" href="https://help.ubuntu.com/14.04/index.html">Ubuntu 14.04 LTS documentation</a></p>
+	</div><!-- /.feature-two -->
+{% else %}
+{% if level_2 == 'server' and level_3 %}
+	<div class="feature-two four-col">
+		<h3>Installation guides</h3>
+		<p>If you need some help installing Ubuntu, please check out our step-by-step guides.</p>
+		<p><a href="/download/cloud/install-ubuntu-cloud">Installation instructions for Ubuntu OpenStack&nbsp;&rsaquo;</a></p>
+		<p><a href="https://help.ubuntu.com/community/UbuntuHashes" class="external">View Ubuntu&rsquo;s md5 hashes</a></p>
+	</div>
+	<div class="feature-three four-col">
+		<h3>Detailed documentation</h3>
+		<p><a class="external" href="https://wiki.ubuntu.com/DocumentationTeam/SystemDocumentation/UbuntuServerGuide">Ubuntu Server Guide</a></p>
+		<p><a class="external" href="https://help.ubuntu.com/14.04/index.html">Ubuntu 14.04 LTS documentation</a></p>
 	</div><!-- /.feature-two -->
 {% else %}
 {% if level_2 == 'server' and not level_3 %}
-	<div class="feature-three three-col">
-		<h3>Contact us about Ubuntu Server</h3>
-		<p><a href="/server/contact-us">Get in touch&nbsp;&rsaquo;</a></p>
+	<div class="feature-two four-col">
+		<h3>Installation guides</h3>
+		<ul class="no-bullets">
+			<li><a href="/download/server/install-ubuntu-server">Installation instructions for Ubuntu Server&nbsp;&rsaquo;</a></li>
+			<li><a href="/download/cloud/install-ubuntu-cloud">Installation instructions for Ubuntu OpenStack&nbsp;&rsaquo;</a></li>
+			<li><a href="https://help.ubuntu.com/community/UbuntuHashes" class="external">View Ubuntu&rsquo;s md5 hashes</a></li>
+		</ul>
+	</div>
+	<div class="feature-three four-col">
+		<h3>Detailed documentation</h3>
+		<p><a class="external" href="https://wiki.ubuntu.com/DocumentationTeam/SystemDocumentation/UbuntuServerGuide">Ubuntu Server Guide</a></p>
+		<p><a class="external" href="https://help.ubuntu.com/14.04/index.html">Ubuntu 14.04 LTS documentation</a></p>
 	</div><!-- /.feature-two -->
+{% else %}
+{% if level_2 == 'ubuntu-kylin' %}
+	<div class="feature-two four-col">
+		<h3>The community is here to help</h3>
+		<p>To learn more about Ubuntu Kylin or get help on installing or using it, visit <a href="http://www.ubuntukylin.com">www.ubuntukylin.com</a>.</p>
+	</div>
+{% else %}
+{% if level_2 == 'ubuntu-kylin-zh-CN' %}
+	<div class="feature-two four-col">
+		<h3>社区为您提供帮助</h3>
+		<p>要了解更多关于Ubuntu Kylin的信息，或获取有关安装和使用它的帮助，请访问 <a href="http://www.ubuntukylin.com">www.ubuntukylin.com</a>.</p>
+	</div>
 {% else %}
 {% if level_2 == null %}
 {% else %}
-	<div class="feature-two three-col">
-		<h3>Download Ubuntu Desktop</h3>
-		<p><a href="/download/desktop">Download now&nbsp;&rsaquo;</a></p>
+	<div class="feature-two four-col">
+		<h3>Download Ubuntu for desktop</h3>
+		<p>To download and install Ubuntu, all you need is a blank DVD or USB stick.</p>
+		<p><a href="/download/desktop" class="link-cta-ubuntu">Download now</a></p>
 	</div><!-- /.feature-two -->
-	<div class="feature-three three-col">
-		<h3>Interested in Ubuntu Desktop for your enterprise?</h3>
-		<p><a href="/desktop/contact-us">Get in touch&nbsp;&rsaquo;</a></p>
+	<div class="feature-three four-col">
+		<h3>Installation guides</h3>
+		<p>If you need some help installing Ubuntu, please check out our step-by-step guide.</p>
+		<p><a href="/download/desktop/install-ubuntu-desktop">Read the installation instructions&nbsp;&rsaquo;</a></p>
 	</div><!-- /.feature-two -->
-{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}
-	<div class="feature-four three-col last-col">
-		<h3>Further reading</h3>
-		{% include "templates/_further_reading_links.html" %}
-	</div><!-- /.feature-four -->
+{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}
+{% if level_2 != 'ubuntu-kylin-zh-CN' %}
+	<div class="feature-four four-col">
+		<h3>Helping hands</h3>
+		<p>If you get stuck, help is always at hand.</p>
+		<ul class="no-bullets">
+			<li><a class="external" href="http://askubuntu.com/">Ask Ubuntu</a></li>
+			<li><a class="external" href="http://ubuntuforums.org/">Ubuntu Forums</a></li>
+			<li><a class="external" href="http://discourse.ubuntu.com">Ubuntu Discourse</a></li>
+		</ul>
+	</div>
+{% endif %}
+{% if level_2 == 'ubuntu-kylin-zh-CN' %}
+	<div class="feature-four four-col">
+		<h3>援助之手</h3>
+		<p>如果您遇到问题, 帮助总是在身边。</p>
+		<ul class="no-bullets">
+			<li><a class="external" href="http://askubuntu.com/">Ask Ubuntu</a></li>
+			<li><a class="external" href="http://ubuntuforums.org/">Ubuntu Forums</a></li>
+			<li><a class="external" href="http://discourse.ubuntu.com">Ubuntu Discourse</a></li>
+		</ul>
+	</div>
+{% endif %}

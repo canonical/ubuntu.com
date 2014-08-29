@@ -8,80 +8,82 @@
 	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Alternative downloads"  %}
 {% endblock second_level_nav_items %}
 
-{% block content %}	
-<div class="row row-hero no-border">
-	<div class="twelve-col clearfix">
+{% block content %}
+<div class="row row-hero row-image-centered">
+	<div class="seven-col">
 		<h1>Alternative downloads</h1>
-	</div>
-	<div class="box box-grey no-border clear">
-		<div class="clearfix">
-			<p class="eight-col">These options include torrents, which can potentially mean a quicker download, our network installer for older systems and special configurations and links to our regional DVD image mirrors. If you don&rsquo;t specifically require any of these installers, we recommend using our <a href="/download">default installers</a>.</p>
-		</div><!-- /.clearfix -->
-		<div class="box box-highlight clearfix">
-			<h2>Network installer</h2>
-			<div class="eight-col">
-			<p>The network installer lets you install Ubuntu over the network. This is useful, for example, if you have an old machine with a non-bootable CD-ROM or a computer that can&rsquo;t run the graphical interface-based installer, either because they don&rsquo;t meet the minimum requirements for the live CD/DVD or because they require extra configuration before  the graphical desktop can be used, or if you want to install Ubuntu on a large number of computers at once.</p>
-			<ul>
-				<li><a class="link-arrow" href="http://cdimage.ubuntu.com/netboot/12.04/">Download the network installer for 12.04.4 LTS</a></li>
-				<li><a class="link-arrow" href="http://cdimage.ubuntu.com/netboot/13.10/">Download the network installer for 13.10</a></li>
-			</ul>	
-			</div>
-		</div><!-- /.box -->
-		<div class="box box-highlight">
-			<h2>BitTorrent</h2>
-			<p class="eleven-col append-four">BitTorrent is a peer-to-peer download network that sometimes enables higher download speeds and more reliable downloads of large files. You will need to install a-bitTorrent client on your computer in order to enable this download method.</p>
-
-			<h3>Ubuntu 13.10 torrents</h3>
-			<ul>
-				<li><a href="http://releases.ubuntu.com/13.10/ubuntu-13.10-desktop-amd64.iso.torrent">Ubuntu 13.10 Desktop (64-bit)</a></li>
-				<li><a href="http://releases.ubuntu.com/13.10/ubuntu-13.10-desktop-i386.iso.torrent">Ubuntu 13.10 Desktop (32-bit)</a></li>
-				<li><a href="http://releases.ubuntu.com/13.10/ubuntu-13.10-server-amd64.iso.torrent">Ubuntu 13.10 Server (64-bit)</a></li>
-				<li><a href="http://releases.ubuntu.com/13.10/ubuntu-13.10-server-i386.iso.torrent">Ubuntu 13.10 Server (32-bit)</a></li>
-			</ul>
-			<h3>Ubuntu 12.04.4 LTS torrents</h3>
-			<ul>
-				<li><a href="http://releases.ubuntu.com/12.04/ubuntu-12.04.4-alternate-amd64.iso.torrent">Ubuntu 12.04.4 alternate (64-bit)</a></li>
-				<li><a href="http://releases.ubuntu.com/12.04/ubuntu-12.04.4-alternate-i386.iso.torrent">Ubuntu 12.04.4 alternate (32-bit)</a></li>
-				<li><a href="http://releases.ubuntu.com/12.04/ubuntu-12.04.4-desktop-amd64.iso.torrent">Ubuntu 12.04.4 Desktop (64-bit)</a></li>
-				<li><a href="http://releases.ubuntu.com/12.04/ubuntu-12.04.4-desktop-i386.iso.torrent">Ubuntu 12.04.4 Desktop (32-bit)</a></li>
-				<li><a href="http://releases.ubuntu.com/12.04/ubuntu-12.04.4-server-amd64.iso.torrent">Ubuntu 12.04.4 Server (64-bit)</a></li>
-				<li><a href="http://releases.ubuntu.com/12.04/ubuntu-12.04.4-server-i386.iso.torrent">Ubuntu 12.04.4 Server (32-bit)</a></li>		
-			</ul>
-		</div><!-- /.box -->
-		<div class="box box-highlight clearfix">
-			<h2>Other images</h2>
-			<p class="eleven-col append-four">For other versions of the Ubuntu installer please select your nearest mirror; however, we recommend you use  the <a href="/download">standard installer</a> as all other packages are available in the Software Centre.</p>
-
-			<h3>Select the nearest mirror</h3>
-			<div class="four-col">
-				<ul>
-					<li><a href="http://mirror.eftel.com/ubuntu-dvd">Australia</a></li>
-					<li><a href="http://ftp.funet.fi/pub/Linux/INSTALL/Ubuntu/dvd-releases/releases">Finland</a></li>
-					<li><a href="ftp://ftp.free.fr/mirrors/ftp.ubuntu.com/dvd/current">France</a></li>
-					<li><a href="http://swtsrv.informatik.uni-mannheim.de/pub/linux/distributions/ubuntu-dvd-release">Germany</a></li>
-					<li><a href="http://ftp.ntua.gr/pub/linux/ubuntu-releases-dvd">Greece</a></li>
-					<li><a href="http://ftp.heanet.ie/pub/ubuntu-cdimage/releases">Ireland</a></li>
-					<li><a href="http://nl.archive.ubuntu.com/ubuntu-cdimages">Netherlands (1)</a></li>
-				</ul>	
-			</div><!-- /.four-col -->		
-			<div class="four-col last-col">
-				<ul>
-					<li><a href="http://nginyang.uvt.nl">Netherlands (2)</a></li>
-					<li><a href="http://mirror.yandex.ru/ubuntu-cdimage/releases">Russian Federation</a></li>
-					<li><a href="http://es.archive.ubuntu.com/cdimage/releases">Spain</a></li>
-					<li><a href="http://ftp.acc.umu.se/mirror/cdimage.ubuntu.com/releases">Sweden</a></li>
-					<li><a href="http://tw.archive.ubuntu.com/ubuntu-dvd-releases/releases">Taiwan</a></li>
-					<li><a href="http://www.mirrorservice.org/sites/cdimage.ubuntu.com/cdimage/releases">United Kingdom</a></li>
-					<li><a href="http://mirror.anl.gov/pub/ubuntu-iso/DVDs/ubuntu">United States</a></li>
-				</ul>
-			</div><!-- /.four-col -->		
-		</div><!-- /.box -->
-		<div class="box box-highlight clearfix">
-			<h2>Past releases and other flavours</h2>
-			<p class="eleven-col append-four">Looking for an older release of Ubuntu? Whether its Precise Pangolin 12.04.1 with the Precise stack or Karmic Koala 9.10, you can find them in our past releases.</p>
-			<p><a class="link-arrow" href="http://releases.ubuntu.com/">Past releases</a></p>
-		</div>
-	</div>
+		<p>These options include torrents, which can potentially mean a quicker download, our network installer for older systems and special configurations and links to our regional DVD image mirrors. If you don&rsquo;t specifically require any of these installers, we recommend using our <a href="/download">default installers</a>.</p>
+	</div><!-- /.eight-col -->
+    <span>
+        <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-download-warmgrey.svg" width="200" height="200" alt="" class="priority-0" />
+    </span>
+</div>
+<div class="row">
+    <h2>Network installer</h2>
+    <div class="eight-col">
+        <p>The network installer lets you install Ubuntu over the network. This is useful, for example, if you have an old machine with a non-bootable CD-ROM or a computer that can&rsquo;t run the graphical interface-based installer, either because they don&rsquo;t meet the minimum requirements for the live CD/DVD or because they require extra configuration before  the graphical desktop can be used, or if you want to install Ubuntu on a large number of computers at once.</p>
+        <ul>
+            <li><a href="http://cdimage.ubuntu.com/netboot/14.04/">Download the network installer for 14.04 LTS&nbsp;&rsaquo;</a></li>
+            <li><a href="http://cdimage.ubuntu.com/netboot/12.04/">Download network installer for 12.04 LTS&nbsp;&rsaquo;</a></li>
+        </ul>
+    </div><!-- /.eight-col -->
 </div><!-- /.row -->
+
+<div class="row">
+    <div class="eight-col append-four">
+        <h2>BitTorrent</h2>
+        <p>BitTorrent is a peer-to-peer download network that sometimes enables higher download speeds and more reliable downloads of large files. You will need to install a BitTorrent client on your computer in order to enable this download method.</p>
+    </div>
+    <div class="four-col">
+        <h3>Ubuntu 12.04.4 LTS torrents</h3>
+        <ul>
+            <li><a href="http://releases.ubuntu.com/12.04/ubuntu-12.04.4-alternate-amd64.iso.torrent">Ubuntu 12.04.4 alternate (64-bit)&nbsp;&rsaquo;</a></li>
+            <li><a href="http://releases.ubuntu.com/12.04/ubuntu-12.04.4-alternate-i386.iso.torrent">Ubuntu 12.04.4 alternate (32-bit)&nbsp;&rsaquo;</a></li>
+            <li><a href="http://releases.ubuntu.com/12.04/ubuntu-12.04.4-desktop-amd64.iso.torrent">Ubuntu 12.04.4 Desktop (64-bit)&nbsp;&rsaquo;</a></li>
+            <li><a href="http://releases.ubuntu.com/12.04/ubuntu-12.04.4-desktop-i386.iso.torrent">Ubuntu 12.04.4 Desktop (32-bit)&nbsp;&rsaquo;</a></li>
+            <li><a href="http://releases.ubuntu.com/12.04/ubuntu-12.04.4-server-amd64.iso.torrent">Ubuntu 12.04.4 Server (64-bit)&nbsp;&rsaquo;</a></li>
+            <li><a href="http://releases.ubuntu.com/12.04/ubuntu-12.04.4-server-i386.iso.torrent">Ubuntu 12.04.4 Server (32-bit)&nbsp;&rsaquo;</a></li>
+        </ul>
+    </div><!-- /.four-col -->
+    <div class="four-col last-col">
+        <h3>Ubuntu 14.04.1 LTS torrents</h3>
+        <ul>
+            <li><a href="http://releases.ubuntu.com/14.04.1/ubuntu-14.04.1-desktop-amd64.iso.torrent">Ubuntu 14.04.1 LTS Desktop (64-bit)&nbsp;&rsaquo;</a></li>
+            <li><a href="http://releases.ubuntu.com/14.04.1/ubuntu-14.04.1-desktop-i386.iso.torrent">Ubuntu 14.04.1 LTS Desktop (32-bit)&nbsp;&rsaquo;</a></li>
+            <li><a href="http://releases.ubuntu.com/14.04.1/ubuntu-14.04.1-server-amd64.iso.torrent">Ubuntu 14.04.1 LTS Server (64-bit)&nbsp;&rsaquo;</a></li>
+            <li><a href="http://releases.ubuntu.com/14.04.1/ubuntu-14.04.1-server-i386.iso.torrent">Ubuntu 14.04.1 LTS Server (32-bit)&nbsp;&rsaquo;</a></li>
+        </ul>
+    </div><!-- /.four-col -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="eight-col append-four">
+        <h2>Other images</h2>
+        <p>For other versions of the Ubuntu installer please select your nearest mirror; however, we recommend you use  the <a href="/download">standard installer</a> as all other packages are available in the Software Centre.</p>
+    </div>
+    <h3>Select the nearest mirror</h3>
+    <ul class="eight-col no-bullets">
+        <li class="four-col"><a href="http://ftp.funet.fi/pub/Linux/INSTALL/Ubuntu/dvd-releases/releases">Finland&nbsp;&rsaquo;</a></li>
+        <li class="four-col last-col"><a href="ftp://ftp.free.fr/mirrors/ftp.ubuntu.com/dvd/current">France&nbsp;&rsaquo;</a></li>
+        <li class="four-col"><a href="http://de.releases.ubuntu.com/">Germany</a></li>
+        <li class="four-col last-col"><a href="http://ftp.ntua.gr/pub/linux/ubuntu-releases-dvd">Greece&nbsp;&rsaquo;</a></li>
+        <li class="four-col"><a href="http://ftp.heanet.ie/pub/ubuntu-cdimage/releases">Ireland&nbsp;&rsaquo;</a></li>
+        <li class="four-col last-col"><a href="http://nl.archive.ubuntu.com/ubuntu-cdimages">Netherlands (1)&nbsp;&rsaquo;</a></li>
+        <li class="four-col"><a href="http://nginyang.uvt.nl">Netherlands (2)&nbsp;&rsaquo;</a></li>
+        <li class="four-col last-col"><a href="http://mirror.yandex.ru/ubuntu-cdimage/releases">Russian Federation&nbsp;&rsaquo;</a></li>
+        <li class="four-col"><a href="http://ftp.acc.umu.se/mirror/cdimage.ubuntu.com/releases">Sweden&nbsp;&rsaquo;</a></li>
+        <li class="four-col last-col"><a href="http://www.mirrorservice.org/sites/cdimage.ubuntu.com/cdimage/releases">United Kingdom&nbsp;&rsaquo;</a></li>
+        <li class="four-col"><a href="http://mirror.anl.gov/pub/ubuntu-iso/DVDs/ubuntu">United States&nbsp;&rsaquo;</a></li>
+    </ul>
+</div><!-- /.row -->
+
+<div class="row no-border">
+    <div class="eight-col">
+		<h2>Past releases and other flavours</h2>
+		<p>Looking for an older release of Ubuntu? Whether you need an obsolete release or a previous LTS point release with its original stack, you can find them in past releases.</p>
+		<p><a href="http://releases.ubuntu.com/">Past releases&nbsp;&rsaquo;</a></p>
+    </div><!-- /.eight-col -->
+</div><!-- /.row -->
+
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

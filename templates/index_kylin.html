@@ -1,0 +1,12 @@
+{% extends "base_index.html" %}
+
+{% block takeover_body_class %} homepage-kylin{% endblock takeover_body_class %}
+
+{% block takeover_content %}
+	<div class="lang-switch-wrapper strip-inner-wrapper"><a href="/global" class="lang-switch" lang="en">Global homepage&nbsp;&rsaquo;</a></div>
+	{% include "takeovers/_kylin.html" %}
+{% endblock takeover_content %}
+
+{% block footer_content %}
+	{% include "takeovers/_footer_homepage_kylin.html" %}
+{% endblock footer_content %}

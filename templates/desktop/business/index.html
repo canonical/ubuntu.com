@@ -13,8 +13,8 @@
 <div class="row row-hero">
 	<div class="seven-col">
 		<h1>Business as usual</h1>
-		<h2>Robust, beautiful and future-proof: There has never been a better time to use Ubuntu</h2>
-		<p>Why spend money on licences, when Ubuntu offers a lightweight, secure and intuitive operating system for free? With Ubuntu, it’s business as usual. Its ease of use means users can get up and running immediately. It comes with a full office suite which supports Windows file formats. Or you can continue using Microsoft Office hosted on Windows or Citrix servers. With support for Windows XP ending in April 2014, now is the perfect time to explore Ubuntu.</p>
+		<p class="intro">Robust, beautiful and future-proof: There has never been a better time to use Ubuntu</p>
+		<p>Why spend money on licenses, when Ubuntu offers a lightweight, secure and intuitive operating system for free? With Ubuntu, it’s business as usual. Its ease of use means users can get up and running immediately. It comes with a full office suite which supports Windows file formats. Or you can continue using Microsoft Office hosted on Windows or Citrix servers. With support for Windows XP having ended in April 2014, now is the perfect time to explore Ubuntu.</p>
 		<p><a href="/download/desktop/" class="link-cta-ubuntu">Get Ubuntu now</a></p>
 	</div><!-- /.six-col -->
 	<div class="four-col last-col">
@@ -27,25 +27,28 @@
 
 <div class="row row-support-systems-management">
 	<div class="six-col">
-		<h2>Easy to manage, <br />enterprise-wide</h2>
+		<h2>Easy to manage, enterprise-wide</h2>
 		<p>With Landscape, the commercial Ubuntu systems management tool from Canonical, IT administrators can easily manage thousands of end-user devices across your enterprise.</p>
 		<p>Our long-term support (LTS) releases offer stability and continuity, with regular updates for five years.</p>
 		<p><a href="/management">Learn more about systems management and support&nbsp;&rsaquo;</a></p>
 	</div>
+	<div class="six-col last-col pull-right no-margin-bottom">
+		<img src="{{ STATIC_URL }}img/desktop/business/image-landscape.jpg" alt="Landscape webpage with load data" width="482" height="494" class="touch-border" />
+	</div>
 </div>
 
-{% include "shared/_enterprise_blog.html" %}		
+{% include "shared/_enterprise_blog.html" %}
 
 <div class="row equal-height vertical-divider">
 	<div class="six-col">
 		<h2>Secure to its core</h2>
-		<p>Your users and data are safe, because the operating system is hardened against bugs and malware. The default settings prioritise security, and Ubuntu comes with a firewall, antivirus software and file and disk encryption tools.</p>
+		<p>Your users and data are safe, because the operating system is hardened against bugs and malware. The default settings prioritise security, and Ubuntu comes with a firewall and file and disk encryption tools.</p>
 		<p>Our security team works with vendors and the community to promptly fix potential vulnerabilities, and proactively develops and integrates new features to improve security.</p>
 	</div>
 	<div class="six-col last-col">
 		<h2>No hidden costs, no lock-in</h2>
 		<p>Looking to escape the cycle of endless Windows upgrades? Now, there's a real alternative. No licence fees and no licence tracking overhead. With Ubuntu, you can scale your desktop infrastructure while keeping your cost down. You only pay for the level of support you need.</p>
-		<p><a href="/download/desktop">Download now for free  &rsaquo;</a></p>
+		<p><a href="/download/desktop">Download now for free&nbsp;&rsaquo;</a></p>
 	</div>
 </div>
 
@@ -54,7 +57,7 @@
 	<p class="eight-col">Ubuntu is supported on X86 and ARM hardware, and nearly 70% of the PCs shipped by the major PC companies are now certified to work with Ubuntu.</p>
 	<div class="box-padded-feature twelve-col">
 		<h3 id="works-with-your-hardware-and-software">Works with all your hardware and software</h3>
-		<div class="vertical-divider">
+		<div>
 			<div class="six-col">
 				<ul class="inline-icons clearfix">
 					<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-lenovo-108x45.png" width="108" height="45" alt="Lenovo" /></li>
@@ -62,7 +65,7 @@
 					<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-toshiba-109x45.png" width="109" height="45" alt="Toshiba" /></li>
 					<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-hp-41x45.png" width="41" height="45" alt="HP" /></li>
 				</ul>
-				<p><a href="http://ubuntu.com/certification">View all certified hardware &rsaquo;</a></p>
+				<p><a href="http://ubuntu.com/certification">View all certified hardware&nbsp;&rsaquo;</a></p>
 			</div><!-- /.six-col -->
 			<div class="six-col last-col">
 				<ul class="inline-icons clearfix">
@@ -71,21 +74,43 @@
 					<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-libreoffice-106x45.png" width="106" height="45" alt="LibreOffice" /></li>
 					<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-arkeia-60x45.png" width="60" height="45" alt="Arkeia" /></li>
 				</ul>
-				<p><a href="/partners/certified-software">View all certified software &rsaquo;</a></p>
+				<p><a href="/partners/certified-software">View all certified software&nbsp;&rsaquo;</a></p>
 			</div><!-- /.six-col -->
 		</div><!-- /.vertical-divider -->
-	</div><!-- /.box-padded-feature -->	
+	</div><!-- /.box-padded-feature -->
 </div>
 
 <div class="row row-thin-client">
-	<div class="six-col no-margin-bottom">
+	<div class="six-col">
 		<h2>The perfect thin client</h2>
 		<p>Repurposing PCs as Ubuntu-based thin clients increases security and lowers complexity. All without incurring hardware expenses. Using our stateless login modes, no user data is left on the device after the user logs out.</p>
 		<p>With Ubuntu Advantage, which includes a subscription to the Landscape Hosted service,  you can centrally manage repurposed PCs without having to deploy management servers on premises.</p>
-		<p><a href="/desktop/management">Find out more about Ubuntu Advantage &rsaquo;</a></p>
+		<p class="no-margin-bottom"><a href="/desktop/management">Find out more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+	</div>
+	<div class="six-col last-col pull-right no-margin-bottom">
+		<img src="{{ STATIC_URL }}img/desktop/business/image-thinclient.jpg" alt="Remote login screen on Ubuntu" width="482" height="395" class="touch-border" />
 	</div>
 </div><!-- /.row -->
-		
+
+<div class="row equal-height">
+	<div class="seven-col">
+		<h2>The natural replacement for Windows XP</h2>
+		<p>With Windows XP reaching end of life and Windows 7 support ending soon, there’s never been a better time to switch to Ubuntu.</p>
+		<ul class="list-canonical">
+			<li>Free from licensing costs</li>
+			<li>Ranked the most secure OS of 11 tested by CESG, the UK national security agency</li> 
+			<li>Includes popular web browsers and Microsoft-compatible productivity software</li> 
+			<li>Support for multiple displays, HiDPI screens and touch devices</li>
+			<li>Fast access to a wide range of apps  in the Ubuntu Software Centre</li>
+			<li>Powerful desktop search with extensible scopes to make finding files faster</li>
+		</ul>
+		<p><a class="external" href="https://insights.ubuntu.com/2014/07/31/bukwang-pharmaceuticals-cut-it-costs-and-created-business-value-with-ubuntu/">Learn how Bukwang Pharmaceuticals benefited by switching from Windows to Ubuntu.</a></p>
+	</div>
+	<div class="five-col last-col align-center align-vertically">
+		<img class="priority-0" src="{{ STATIC_URL }}img/desktop/business/image-upgrade-banner.png" alt="Upgrade graph" />
+	</div>
+</div><!-- /.row -->
+
 <div class="row row-community row-image-centered no-border last-row">
 {% include "shared/_ubuntu_advantage_community.html" %}
 </div><!-- /.row -->
