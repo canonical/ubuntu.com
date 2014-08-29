@@ -64,6 +64,9 @@ update-env:
 
 	${VEX} ${MAKE} install-requirements
 
+	# Get download mirrors file
+	wget --output-document=/tmp/mirrors.rss https://launchpad.net/ubuntu/+cdmirrors-rss
+
 ##
 # Make virtualenv directory if it doesn't exist and we're not in an env
 ##
