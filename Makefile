@@ -142,6 +142,9 @@ update-templates-local:
 	find static/css -type f -name '*.scss' | xargs sed -i 's/[%][%]/%/g'  # Remove erroneous double-percent
 	find static/css -type f -name '*.scss' | xargs sed -i 's/[@]import ["]css[/]/@import "/g'  # Fix include paths for sass
 
+clean:
+	rm -rf env static/css/styles.css static/css/core-print.css
+
 # The below targets
 # are just there to allow you to type "make it so"
 # as a replacement for "make" or "make develop"
