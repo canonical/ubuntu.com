@@ -2,8 +2,6 @@ import json
 import sys
 from urllib2 import URLError
 
-from django.views.decorators.cache import cache_control
-from django.conf import settings
 from feedparser import parse
 from fenchurch import TemplateFinder
 from lib.gsa import GSAParser
@@ -22,14 +20,6 @@ class DownloadView(TemplateFinder):
         ]
         context['mirror_list'] = json.dumps(mirror_list)
         return context
-
-    @cache_control(public=True, max_age=settings.CACHE_MAX_AGE)
-    def get(self, request, *args, **kwargs):
-        return super(DownloadView, self).get(
-            request,
-            *args,
-            template='download/desktop/thank-you',
-            **kwargs)
 
 
 class SearchView(TemplateFinder):
