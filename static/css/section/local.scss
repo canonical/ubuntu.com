@@ -64,15 +64,16 @@ html.opera-mini {
   transition: background .2s ease-out;
   position: relative;
   cursor: pointer;
-  padding-bottom: 40px
+  padding-bottom: 40px;
 
-  &.four-col {
-    h2 a:link,
-    h2 a:visited { font-size: 1.125em; /* 36 / 32 */ }
+  &.four-col h2 {
+    a:link,
+    a:visited { font-size: 1.125em; /* 36 / 32 */ }
   }
-  &.twelve-col {
-    h2 a:link,
-    h2 a:visited { font-size: 1.40625em; /* 36 / 32 */ }
+
+  &.twelve-col h2 {
+    a:link,
+    a:visited { font-size: 1.40625em; /* 36 / 32 */ }
   }
   &:hover { background-color: #fafafa; }
 
@@ -229,7 +230,7 @@ footer.global {
 		}
 
 	}/* end footer-a */
-	
+
 	.footer-b {
 		padding: 0 0 20px;
 		margin: 0 auto;
@@ -375,11 +376,12 @@ html.opera-mini {
         overflow: visible;
         margin-left: -10px;
         margin-right: -10px;
-				padding-left: 10px; 
+				padding-left: 10px;
+
         &.last-item {
           padding-bottom: 0;
         }
-        
+
         h2 {
          	@include box_sizing();
          	margin: 0 0 10px 0;
@@ -397,7 +399,7 @@ html.opera-mini {
           &.active {
           	background-image: url("../img/arrow_up_9fa097.svg");
           }
-          
+
           &.active + ul.second-level-nav {
 						margin-bottom: -1px;
 						border-top: 1px solid #D4D7D4;
@@ -440,6 +442,7 @@ html.opera-mini {
             display: block;
           }
         }
+
         ul.second-level-nav {
           //margin-left: -10px;
           //padding-right: 25px;
@@ -458,7 +461,7 @@ html.opera-mini {
             width: 100%;
             float: left;
             padding-right: 10px;
-          
+
 
             a {
               //margin-left: -15px;
@@ -492,41 +495,40 @@ html.opera-mini {
       ul li {
         line-height: 1;
 
-          h2 {
+        h2 {
+        margin-left: 0;
+        margin-top: 0;
+        line-height: 1;
+
+          a {
+            line-height: 1;
+          }
+
+          span {
+            margin-right: 0;
+          }
+
+          li {
+            margin-left: 30px;
+          }
+        }
+        ul.second-level-nav li a {
           margin-left: 0;
-          margin-top: 0;
-          line-height: 1;
-
-            a {
-              line-height: 1;
-            }
-
-            span {
-              margin-right: 0;
-            }
-
-            li {
-              margin-left: 30px;
-            }
-          }
-          ul.second-level-nav li a {
-            margin-left: 0;
-            padding: 10px 20px;;
-          }
-          ul.second-level-nav li {
-            padding-right: 10px;
-          }
+          padding: 10px 20px;;
         }
-        ul.second-level-nav {
-          margin-left: -10px;
-          margin-right: -25px;
+        ul.second-level-nav li {
+          padding-right: 10px;
         }
-        ul li:first-of-type h2 {
-          border-top: 0;
-        }
-        ul li:last-of-type h2 {
-          border-bottom: 0;
-        }
+      }
+      ul.second-level-nav {
+        margin-left: -10px;
+        margin-right: -25px;
+      }
+      ul li:first-of-type h2 {
+        border-top: 0;
+      }
+      ul li:last-of-type h2 {
+        border-bottom: 0;
       }
     }
   }
@@ -534,7 +536,6 @@ html.opera-mini {
     padding-top: 0;
     margin-top: 0;
   }
-
 }
 
 
@@ -617,7 +618,7 @@ footer.global ul.inline li:after {
 	footer.global .footer-a {
 		padding-bottom: 20px;
 		margin-bottom: 20px;
-		
+
 		ul {
 			margin-left: -15px;
 		}
@@ -639,11 +640,11 @@ footer.global ul.inline li:after {
 		ul li {
 			border-right: 1px dotted $warm-grey;
 		}
-		
+
 		ul li a {
 			padding-right: 20px;
 		}
-		
+
 		ul li li {
 			border: 0;
 		}
@@ -701,7 +702,7 @@ footer.global ul.inline li:after {
       padding-right: 40px;
     }
   }
-  
+
   footer.global .footer-b li h2 a:after { content: ":"; }
 
 } // end @media only screen and (min-width : 984px)
