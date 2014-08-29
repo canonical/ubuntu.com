@@ -1,23 +1,27 @@
-Run site
+Ubuntu.com website project
 ===
 
-``` bash
-sass --update templates/static/css/styles.scss &
-./manage runserver
-```
-
-Updating templates to work with this project
-===
+To run the site locally:
 
 ``` bash
-perl -pi -e 's/\{\{ STATIC_URL \}\}u\//{{ STATIC_URL }}/g' `find .`
-perl -pi -e 's/\{\% (extends|include) "ubuntu\//{% $1 "/g' `find .`
+make setup    # Install dependencies - only needed the first time
+make develop  # Auto-compile sass files and run the dev server
 ```
 
-Updating sass files to compile correctly
-===
+Now visit <http://127.0.0.1:8000>
+
+Fenchurch
+---
+
+This site depends on [Fenchurch 3](https://launchpad.net/fenchurch/3.0.0) - which is currently a private repository. Make sure you have SSH access to the above repository before attempting to install dependencies.
+
+Updating templates from [ubuntu-website-content](https://launchpad.net/ubuntu-website-content)
+---
+
+Until this project is released, new template work will be being added to the [ubuntu-website-content](https://launchpad.net/ubuntu-website-content) project.
+
+To update the templates directory with the template changes from this repository:
 
 ``` bash
-perl -pi -e 's/\@import \"css\//\@import \"/g' `find . -name '*.scss'`
+make update-templates
 ```
-=======
