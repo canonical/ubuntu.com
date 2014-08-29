@@ -1,0 +1,133 @@
+{% extends "cloud/base_cloud.html" %}
+
+{% block title %}Ubuntu Cloud Jumpstart | Cloud{% endblock %}
+
+{% block meta_description %}Canonical engineers will deliver an Orange Box to your office and provide two full days of technical training, covering Ubuntu, MAAS, Juju, Landscape, and OpenStack all for &dollar;10K.{% endblock meta_description %}
+
+{% block meta_keywords %}Jumpstart Training, consulting, Ubuntu OpenStack, private cloud{% endblock meta_keywords %}
+
+{% block second_level_nav_items %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Jumpstart" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-border row-jumpstart-training">
+	<h1>Jumpstart Training</h1>
+	<div class="seven-col">
+		<p class="intro">Two full days of technical training, covering Ubuntu, MAAS, Juju, Landscape and OpenStack.</p>
+		<p>Canonical engineers will deliver an Orange Box to your office, that is yours for two weeks for $9,995 plus travel and accommodation (fixed at &dollar;2,500 in the US and &euro;2,500 worldwide), as you safely experiment with the industry leading Ubuntu ecosystem of cloud technologies at your own pace and with your own workloads. We will join you again, a couple of weeks later, to review what you learned and discuss scaling these tools into your own data center, onto your own enterprise hardware.</p>
+		<p><a class="link-cta-ubuntu" href="/cloud/jumpstart-training/order" onclick="_gaq.push(['_trackEvent', 'order', 'button', 'jumpstart']);">Order Jumpstart Training</a> or <a href="/cloud/jumpstart-training/contact-us">contact us for more details&nbsp;&rsaquo;</a></p>
+
+	</div><!-- /.seven-col -->
+	<div class="five-col last-col text-center">
+		<img alt="The Orange Box" src="{{ STATIC_URL }}img/cloud/orange-box/image-orangebox.png" />
+	</div>
+</div><!-- /.row .row-hero -->
+
+
+
+<div class="row no-border strip-dark">
+	<div class="eight-col last-col ">
+		<h2>What are the benefits?</h2>
+		<p>Pack your conference room with curious sysadmins and devops engineers for two full days of in depth training by Ubuntu cloud experts.</p>
+	</div><!-- /.eight-col -->
+	<div class="combined-list">
+		<div class="six-col">
+			<ul class="list-ubuntu smaller">
+				<li>Without disrupting your core network or production data center workloads,  prototype your OpenStack experience in a private sandbox environment within an Orange Box</li>
+				<li>Experiment with various storage alternatives, practice scaling services, destroy and rebuild the environment repeatedly</li>
+			</ul>
+		</div><!-- /.six-col -->
+		<div class="six-col last-col">
+			<ul class="list-ubuntu smaller">
+				<li>Deploy OpenStack, Hadoop, CloudFoundry, and hundreds of other workloads in minutes</li>
+				<li>After the two weeks, review your experience with a  Canonical engineer and discuss how your environment maps to these tools</li>
+			</ul>
+		</div>
+	</div>
+</div><!-- /.row -->
+
+<div class="row row-orange-box">
+	<div class="six-col text-center">
+		<img alt="The Orange Box" src="{{ STATIC_URL }}img/cloud/orange-box/image-whatsincluded.jpg" />
+	</div><!-- /.six-col -->
+	<div class="six-col last-col">
+		<h2>What is the Orange Box?</h2>
+		<p>The Orange Box is a complete mobile cluster and an easy, low-risk way to deploy OpenStack cloud infrastructure on your premises, for testing or proof of concept. There&rsquo;s no safer way to create your first cloud than with Canonical engineers by your side.  Each Orange Box contains 10 nodes, each with 4 cores, 16GB of RAM, and generous SSD storage.  The box is pre-loaded with Ubuntu 14.04 LTS, MAAS, and Juju.</p>
+		<div class="box box-highlight resource resource-data-sheet">
+			<h2><a href="https://insights.ubuntu.com/2014/05/13/jumpstart-training-with-the-orange-box/">Jumpstart Training&nbsp;datasheet&nbsp;&rsaquo;</a></h2>
+			<p>Learn what&rsquo;s inside the Orange Box &mdash; a complete mobile cluster with Metal as a Service (MAAS) and Juju.</p>
+			<p class="content-cat content-cat-webinar">Datasheet</p>
+			<div class='curl'></div>
+		</div>
+	</div><!-- /.six-col -->
+</div><!-- /.row -->
+
+<div class="row">
+	<h2>What the engineer will do</h2>
+	<div class="combined-list">
+		<div class="six-col">
+			<ul class="list-canonical smaller">
+				<li>Work with your ops team to design and deploy Ubuntu cloud Infrastructure on Orange Box</li>
+				<li>Share knowledge on the use of Ubuntu cloud guest (a version specifically designed for public or private clouds)</li>
+				<li>Deliver the required core build for Ubuntu Server</li>
+				<li>Plan and implement user and group requirements</li>
+				<li>Develop and integrate baseline security policies</li>
+			</ul>
+		</div><!-- /.six-col -->
+		<div class="six-col last-col">
+			<ul class="list-canonical smaller">
+				<li>Help with the deployment of Ubuntu cloud Infrastructure compute and/or storage services</li>
+				<li>Configure automated deployment tools</li>
+				<li>Help you develop a strategy for managing cloud capacity</li>
+				<li>Introduce your team to Juju and use it in your cloud environment</li>
+			</ul>
+		</div><!-- /.six-col -->
+	</div>
+</div><!-- /.row -->
+
+<div class="row row-grey">
+	<div class="three-col text-center">
+		<img src="{{ STATIC_URL }}img/logos/logo-pack/logo-openstack.svg" width="120" height="122" alt="Openstack logo" />
+	</div><!-- /.three-col -->
+	<div class="nine-col last-col">
+		<h2>OpenStack loves Ubuntu</h2>
+		<p>The reference architecture for OpenStack is based on Ubuntu. Jumpstart gives you a private cloud compatible with that architecture, on a pre-assembled fully tested mobile cluster.</p>
+        <p><a href="/cloud/openstack/reference-architecture">Learn more about the OpenStack reference architecture&nbsp;&rsaquo;</a></p>
+	</div><!-- /.nine-col -->
+</div><!-- /.row -->
+
+<div class="row">
+	<div class="eight-col">
+		<h2>Jumpstart is just the start</h2>
+		<p>Our standard Jumpstart Training engagement is limited to two days training from an Canonical engineer for Ubuntu OpenStack, MAAS and Juju deployments on our Orange Box, which you can use for a two week period for $10K &mdash; excluding expenses, travel and accommodation.  Additional support, assurance, consulting, integration and professional services are available on an individual basis.</p>
+		<p><a href="/cloud/jumpstart-training/order">Order Jumpstart Training today&nbsp;&rsaquo;</a></p>
+	</div><!-- /.eight-col -->
+	<div class="four-col last-col text-center">
+		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-training-midaubergine.svg" width="200" alt="Training Pictogram" />
+	</div>
+</div><!-- /.row -->
+
+<div class="row row-grey no-border">
+	<div class="four-col text-center priority-0">
+		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-shop-warmgrey.svg" width="200" alt="Shopping Pictogram" />
+	</div><!-- /.three-col -->
+	<div class="eight-col last-col">
+		<h2>Just need the hardware?</h2>
+		<p>If you already have experience of using Ubuntu, MAAS, Juju and OpenStack, you might prefer to buy the hardware alone, so you can build your own cloud. In which case, please contact our partner, <a href="mailto:cluster@tranquilpc.co.uk">TranquilPC</a>.</p>
+        <p><a class="external" href="http://www.tranquilpcshop.co.uk/ubuntu-orange-box">Build your Orange Box at TranquilPC</a></p>
+	</div><!-- /.nine-col -->
+</div><!-- /.row -->
+
+
+{% include "shared/_live_chat.html" %}
+{% endblock content %}
+{% block footer_extra %}
+<!-- twitter tracking code -->
+<script src="//platform.twitter.com/oct.js"></script>
+<script>twttr.conversion.trackPid('l4pwm');</script>
+<noscript>
+	<img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=l4pwm&p_id=Twitter" />
+	<img height="1" width="1" style="display:none;" alt="" src="//t.co/i/adsct?txn_id=l4pwm&p_id=Twitter" />
+</noscript>
+{{ marketo }}{% endblock footer_extra %}

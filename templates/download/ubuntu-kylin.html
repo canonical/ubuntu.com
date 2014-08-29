@@ -1,0 +1,44 @@
+
+{% extends "download/_base_download.html" %}
+
+{% block title %}Download Ubuntu Kylin | Download{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="zh-CN" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+{% with ubuntu_release="14.04.1" openstack_version="Icehouse" %}
+<div class="row row-hero row-background">
+	<a class="lang-switch" href="/download/ubuntu-kylin-zh-CN" lang="zh">中国版&nbsp;&rsaquo;</a>
+	<div class="eight-col append-four">
+		<h1>Download Ubuntu Kylin</h1>
+	</div>
+	<div class="twelve-col">
+		<div class="box box-highlight clearfix vertical-divider">
+			<div class="eight-col no-margin-bottom">
+				<h2>Ubuntu Kylin {{ubuntu_release}} LTS</h2>
+				<p>Click the orange button to the right and download the latest Ubuntu Kylin {{ubuntu_release}} LTS ISO image file. To install Ubuntu Kylin, burn the image file on a DVD or create a bootable USB disk.</p>
+			</div>
+			<div class="four-col last-col no-margin-bottom">
+				<form class="form-download lts" action="http://cdimage.ubuntu.com/ubuntukylin/releases/{{ubuntu_release}}/release/ubuntukylin-{{ubuntu_release}}-desktop-amd64.iso" method="get">
+					<fieldset>
+						<div>
+							<button type="submit" class="link-cta-ubuntu cta-large" onclick="_gaq.push(['_trackEvent', 'Download Link', '{{ubuntu_release}}', 'From English-language Chinese download']);">Download 64-bit</button>
+						</div>
+					</fieldset>
+				</form>
+				<form class="form-download lts" action="http://cdimage.ubuntu.com/ubuntukylin/releases/{{ubuntu_release}}/release/ubuntukylin-{{ubuntu_release}}-desktop-i386.iso" method="get">
+					<fieldset>
+						<div>
+							<button type="submit" class="link-cta-ubuntu cta-large" onclick="_gaq.push(['_trackEvent', 'Download Link', '{{ubuntu_release}}', 'From English-language Chinese download']);">Download 32-bit</button>
+						</div>
+					</fieldset>
+				</form>
+				<p class="note">If you have an older PC with less than 2GB of memory, choose the 32-bit download.</p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endwith %}
+{% endblock content %}

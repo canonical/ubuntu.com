@@ -1,49 +1,39 @@
 <ul class="breadcrumb">
 	{% if level_2 and not level_3 and not tertiary %}
-	<li><a href="/{{ level_1 }}/">{{ section_title }}</a> &rsaquo;</li>
-	{% else %}
-	{% if secondary %}
-	<li><a href="/{{ level_1 }}/">{{ section_title }}</a> &rsaquo;</li>
+	<li><a href="/{{ level_1 }}/">{{ section_title }}</a>&nbsp;&rsaquo;</li>
 	{% else %}
 	{% if level_3 %}
-	<li><a href="/{{ level_1 }}/">{{ section_title }}</a> &rsaquo;</li>
-	<li><a href="/{{ level_1 }}/{{ level_2 }}/">{{ subsection_title }}</a> &rsaquo;</li>
+	<li><a href="/{{ level_1 }}/">{{ section_title }}</a>&nbsp;&rsaquo;</li>
+	<li><a href="/{{ level_1 }}/{{ level_2 }}/">{{ subsection_title }}</a>&nbsp;&rsaquo;</li>
 	{% else %}
-	{% if level_2 %} 
-	<li><a href="/{{ level_1 }}/">{{ section_title }}</a> &rsaquo;</li>
-	<li class="active"><a href="/{{ level_1 }}/{{ level_2 }}/">{{ page_title }}</a> &rsaquo;</li>
+	{% if level_2 %}
+	<li><a href="/{{ level_1 }}/">{{ section_title }}</a>&nbsp;&rsaquo;</li>
+	<li class="active"><a href="/{{ level_1 }}/{{ level_2 }}/">{{ page_title }}</a>&nbsp;&rsaquo;</li>
 	{% else %}
-	<li><a href="/{{ level_1 }}/">{{ section_title }}</a> &rsaquo;</li>
-	{% endif %}
+	<li><a href="/{{ level_1 }}/">{{ section_title }}</a>&nbsp;&rsaquo;</li>
 	{% endif %}
 	{% endif %}
 	{% endif %}
 </ul>
 
-{% if secondary %}
-			{% with "ubuntu/"|add:level_1|add:"/_nav_secondary.html" as secondary %}
-			{% include secondary %}
-			{% endwith %}
-{% else %}
 {% if level_3 %}
-	{% with "ubuntu/"|add:level_1|add:"/_nav_tertiary.html" as tertiary %}
+	{% with ""|add:level_1|add:"/_nav_tertiary.html" as tertiary %}
 	{% include tertiary %}
 	{% endwith %}
 {% else %}
 	{% if level_2 %}
 		{% if tertiary %}
-			{% with "ubuntu/"|add:level_1|add:"/_nav_tertiary.html" as tertiary %}
+			{% with ""|add:level_1|add:"/_nav_tertiary.html" as tertiary %}
 			{% include tertiary %}
 			{% endwith %}
 		{% else %}
-			{% with "ubuntu/"|add:level_1|add:"/_nav_secondary.html" as secondary %}
+			{% with ""|add:level_1|add:"/_nav_secondary.html" as secondary %}
 			{% include secondary with icon="true" %}
 			{% endwith %}
 		{% endif %}
 	{% else %}
-		{% with "ubuntu/"|add:level_1|add:"/_nav_secondary.html" as secondary %}
+		{% with ""|add:level_1|add:"/_nav_secondary.html" as secondary %}
 		{% include secondary with icon="true" %}
 		{% endwith %}
 	{% endif %}
-{% endif %}
 {% endif %}

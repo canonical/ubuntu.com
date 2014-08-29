@@ -13,7 +13,7 @@
 <div class="row row-hero">
 	<div class="five-col">
 		<h1 class="accessibility-aid">Juju</h1>
-		<img src="{{ STATIC_URL }}img/logos/logo-juju-130.png" width="130" height="54" alt="Juju" />
+		<img src="{{ STATIC_URL }}img/cloud/tools/juju/logo-juju.svg" width="131" height="54" alt="Juju" />
 		<h2>Service orchestration made simple</h2>
 		<p>Juju is the game-changing service orchestration tool that lets you build entire cloud environments with only a few commands. Whether you want to deploy OpenStack itself, a workload on public or private clouds, or even directly on bare metal using <a href="/cloud/tools/maas">MAAS</a>, Juju is the fastest and simplest solution.</p>
 		<p><a href="https://jujucharms.com/sidebar/" class="link-cta-ubuntu">Test-drive the Juju GUI</a></p>
@@ -22,11 +22,13 @@
 
 <div class="row">
 	<div class="eight-col">
-		<iframe width="560" height="315" src="//www.youtube.com/embed/Lt9-a6pDxsA?list=UUJ65UG_WgFa_O_odbiBWZoA" frameborder="0" allowfullscreen></iframe>	
+		<div class="video-container">
+			<iframe width="560" height="315" src="//www.youtube.com/embed/Lt9-a6pDxsA?list=UUJ65UG_WgFa_O_odbiBWZoA" frameborder="0" allowfullscreen></iframe>
+		</div>
 	</div>
 	<div class="four-col last-col">
 		<h2>Inside Juju</h2>
-		<p>Juju encapsulates all the goodness of an application in a charm. So you get the best practice in deploying that service, right at your fingertips.</p>	
+		<p>Juju encapsulates all the goodness of an application in a charm. So you get the best practice in deploying that service, right at your fingertips.</p>
 	</div>
 </div><!-- /.row -->
 
@@ -43,16 +45,20 @@
 	</div>
 </div><!-- /.row -->
 
-<div class="row row-one-stop-shop vertical-divider">
+<div class="row row-one-stop-shop">
+	<div class="one-stop-shop-image-load" data-width="900" data-src="{{ STATIC_URL }}img/cloud/tools/juju/image-jujucharms{width}.jpg" data-alt=""></div>
+	<script>
+	    new Imager('.one-stop-shop-image-load', {
+	        availableWidths: {
+	            900: '-medium',
+	            320: '-small'
+	        }
+	    });
+	</script>
 	<div class="seven-col">
 		<h2>A one-stop shop</h2>
 		<p>With 100 charms and growing, the Juju charm store is your future destination for cloud-based enterprise applications. From back-end services such as Hadoop or MongoDB to enterprise applications such as OpenERP, whatever you need, there&rsquo;s a charm for that.</p>
 		<p><a href="https://jujucharms.com">Browse charms&nbsp;&rsaquo;</a></p>
-	</div>
-	<div class="five-col last-col">
-		<h2>Charm Championship</h2>
-		<p>You can save money with Juju, and now make money too. The most innovative charms will win $10,000.</p>
-		<p><a href="https://github.com/juju/charm-championship">How to enter&nbsp;&rsaquo;</a></p>
 	</div>
 </div>
 
@@ -68,7 +74,8 @@
 
 <div class="row no-padding-bottom row-config-scale">
 	<div class="four-col no-margin-bottom touch-border">
-		<img src="{{ STATIC_URL }}img/cloud/cloud-juju-inspector.jpg" width="290" height="618" class="left pull-left-40" alt="Juju GUI inspector" />
+		<img src="{{ STATIC_URL }}img/cloud/tools/juju/image-jujuinspector-small.jpg" width="290" height="274" class="for-mobile" alt="Juju GUI inspector" />
+		<img src="{{ STATIC_URL }}img/cloud/tools/juju/image-jujuinspector-medium.jpg" width="290" height="618" class="priority-0 left" alt="Juju GUI inspector" />
 	</div><!-- /.four-col -->
 	<div class="eight-col last-col">
 		<h2>Configure</h2>
@@ -83,12 +90,14 @@
 	</div><!-- /.four-col -->
 </div><!-- /.row -->
 
-<div class="row row-image-centered no-border row-join-the-fun">
-	<span><img src="{{ STATIC_URL }}img/cloud/cloud-juju-make-a-charm.png" width="180" height="180" alt="" /></span>
+<div class="row no-border row-join-the-fun">
+	<div class="three-col text-center">
+		<img src="{{ STATIC_URL }}img/cloud/cloud-juju-make-a-charm.png" width="180" height="180" alt="" />
+	</div>
 	<div class="nine-col last-col">
 		<h2>Can&rsquo;t get enough Juju?</h2>
 		<p>Juju is so amazing, we have a whole website dedicated to it. Whether you&rsquo;re interested in learning more about Juju, downloading and using it, or writing your own charms, this is the place for you!</p>
-		<p><a href="https://juju.ubuntu.com/">Learn more about Juju at juju.ubuntu.com &rsaquo;</a></p>
+		<p><a href="https://juju.ubuntu.com/">Learn more about Juju at juju.ubuntu.com&nbsp;&rsaquo;</a></p>
 	</div>
 </div><!-- /.row -->
 {% endblock content %}

@@ -1,10 +1,11 @@
-	<ul{% if list_class %} class="{{ list_class }}"{% endif %}>
-		{% if arrow %} <li class="arrow-up"></li> {% endif %}
+	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
 		<li class="first{% if level_1 == 'cloud' and not level_2 %} active{% endif %}"><a href="/cloud">Overview</a></li>
-		<li{% if level_2 == 'build-a-cloud' %} class="active" {% endif %}><a href="/cloud/build-a-cloud">Build a cloud</a></li>
-		<li{% if level_2 == 'use-a-cloud' %} class="active" {% endif %}><a href="/cloud/use-a-cloud">Use a cloud</a></li>
-		<li{% if level_2 == 'tools' %} class="active" {% endif %}><a href="/cloud/tools">Cloud tools</a></li>
+		<li{% if level_2 == 'openstack' %} class="active"{% endif %}><a href="/cloud/openstack">OpenStack</a></li>
+		<li{% if level_2 == 'bootstack' %} class="active"{% endif %}><a href="/cloud/bootstack">BootStack</a></li>
+		<li{% if level_2 == 'jumpstart-training' %} class="active"{% endif %}><a href="/cloud/jumpstart-training">Jumpstart Training</a></li>
+		<li{% if level_2 == 'public-cloud' %} class="active"{% endif %}><a href="/cloud/public-cloud">Public cloud</a></li>
+		<li{% if level_2 == 'tools' %} class="active"{% endif %}><a href="/cloud/tools">Tools</a></li>
 		<li{% if level_2 == 'management' %} class="active"{% endif %}><a href="/cloud/management">Cloud management</a></li>
-		<li{% if level_2 == 'labs' %} class="last-item" {% endif %}{% if level_2 == 'ecosystem' %} class="active"{% endif %}><a href="/cloud/ecosystem">Ecosystem</a></li>
-		<li{% if level_2 == 'labs' %} class="active" {% endif %}><a href="/cloud/labs">Cloud labs</a></li>
+		<li{% if level_2 == 'labs' %} class="last-item"{% endif %}{% if level_2 == 'ecosystem' %} class="active"{% endif %}><a href="/cloud/ecosystem">Ecosystem</a></li>
+		<li{% if level_2 == 'labs' %} class="active"{% endif %}><a href="/cloud/labs">Labs</a></li>
 	</ul>

@@ -1,8 +1,8 @@
-	<ul{% if list_class %} class="{{ list_class }}"{% endif %}>
-		{% if arrow %} <li class="arrow-up"></li> {% endif %}
+	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
 		<li class="first{% if level_1 == 'download' and not level_2 %} active{% endif %}"><a href="/download">Overview</a></li>
 		<li{% if level_2 == 'cloud' %} class="active"{% endif %}><a href="/download/cloud">Cloud</a></li>
 		<li{% if level_2 == 'server' %} class="active"{% endif %}><a href="/download/server">Server</a></li>
 		<li{% if level_2 == 'desktop' %} class="active"{% endif %}><a href="/download/desktop">Desktop</a></li>
-		<li{% if level_2 == 'zh-CN' %} class="active"{% endif %}><a href="/download/zh-CN">Ubuntu <span lang="zh">桌面版</span></a></li>
+		<li{% if level_2 == 'ubuntu-kylin' or level_2 == 'ubuntu-kylin-zh-CN' %} class="active"{% endif %}><a href="/download/ubuntu-kylin">Ubuntu Kylin</a></li>
+		<li{% if level_2 == 'alternative-downloads' %} class="active"{% endif %}><a href="/download/alternative-downloads">Alternative downloads</a></li>
 	</ul>

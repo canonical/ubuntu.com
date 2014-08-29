@@ -1,0 +1,121 @@
+/*	@section tv
+--------------------------------------------------------------
+	Contents:
+		@section general
+		@section experience
+		@section commercial-info & contributors
+
+-------------------------------------------------------------- */
+
+/*	@section general
+-------------------------------------------------------------- */
+
+
+body.tv .row-hero p { padding-left: 0; }
+.box-tv {
+	min-height: 15em;
+	padding-right: $six-col;
+}
+
+.box-tv { background: #fff url(../img/devices/photo-industry-tv-427x247.jpg) 95% center no-repeat; }
+
+.tv .no-margin { margin-bottom: 0; }
+
+body.tv .row-hero iframe { margin-bottom: 20px }
+body.tv-experience {
+	blockquote.quote-grey br {
+		display: block;
+	}
+}
+body.tv-features-and-specs .inline-icons li { margin-top: 1.25em; margin-bottom: 0; }
+
+body.tv-features-and-specs .row-hero h2 { margin-bottom: 1em; }
+
+
+
+/*	@section experience
+-------------------------------------------------------------- */
+body.tv-experience .row-hero {
+	overflow: hidden;
+}
+
+.row-tv-start .box {
+	background: url(../img/pictograms/pictogram-develop-125x125.png) $two-col top no-repeat;
+	padding-left: $six-col/* - $grid-gutter/*/;
+}
+
+.row-tv-talk {
+	@include rounded_corners(0);
+	padding-top: 0;
+}
+
+.row-tv-talk .box {
+	background: $light-grey;
+}
+
+/*	@section commercial-info & contributors
+-------------------------------------------------------------- */
+.tv-commercial-info .row-terms .article,
+.tv-commercial-info .row-maintenance .article,
+.row-contributors .article,
+.row-get-involved .article {
+	background-position: $nine-col 48px;
+	background-repeat: no-repeat;
+	padding: 0 $four-col $gutter-width 0;
+}
+
+.tv-commercial-info .row-terms .article {
+	background-image: url(../img/pictograms/pictogram-partner-124x124.png);
+}
+
+.tv-commercial-info .row-maintenance .article {
+	background-image: url(../img/pictograms/pictogram-upgrade-124x124.png);
+}
+
+.tv-commercial-info .row-engineering .article {
+	background-image: url(../img/pictograms/pictogram-engineering-124x124.png);
+}
+
+body.tv .row-tv-contact {
+	border-bottom: 0;
+	padding: 20px 0 20px $grid-gutter;
+}
+
+
+/* Medium / Tablet viewport
+-------------------------------------------------------------- */
+@media only screen and (min-width : 768px) {
+
+
+	body.tv-experience .row-hero h2,
+	body.tv-industry .row-hero h2,
+	body.tv-features-and-specs .row-hero h2 { @include font_size (25); }
+}
+
+/* Large / Desktop viewport
+-------------------------------------------------------------- */
+@media only screen and (min-width : 984px) {
+	body.tv-experience {
+	 	.row-hero .intro {
+			padding: 0 $seven-col 2em 0;
+			margin: 0;
+		}
+		.inner-wrapper .row-hero .intro img {
+			position: absolute;
+			right: -120px;
+			bottom: -35px;
+		}
+	}
+	body.tv #context-footer .feature-two {
+		background: url(../img/pictograms/picto-pack/picto-developer-warmgrey.svg) 95% 20px no-repeat;
+		background-size: 125px 125px;
+
+		p {
+			padding-right: 60px;
+		}
+	}
+	html.no-svg,
+	html.opera-mini {
+		background-image: url(../img/pictograms/pictogram-develop-125x125.png);
+	}
+}

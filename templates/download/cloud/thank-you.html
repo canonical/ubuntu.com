@@ -1,16 +1,10 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}
-{% if GET.version and GET.architecture %}
-Thanks for downloading Ubuntu Server for Cloud
-{% else %}
-Thank you for your contribution
-{% endif %}
-{% endblock %}
+{% block title %}Thank you | Download{% endblock %}
 {% block extra_body_class %}download-thankyou{% endblock %}
 
 {% block second_level_nav_items %}
-{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server for Cloud" page_title="Thank you"  %}
+{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server for cloud" page_title="Thank you"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -18,51 +12,41 @@ Thank you for your contribution
         <meta http-equiv="refresh" content="3;url=http://releases.ubuntu.com/{{ request.GET.version }}/ubuntu-{{ request.GET.version }}-server-{{ request.GET.architecture.split|join:"+" }}.iso">
     </noscript>
 
-    <div class="row no-border">
-        <h1>Thanks for downloading Ubuntu Server</h1>
-        <h2>For Cloud</h2>
-        <p>Your download should start automatically. If it doesn't, <a href="http://releases.ubuntu.com/{{ request.GET.version }}/ubuntu-{{ request.GET.version }}-server-{{ request.GET.architecture.split|join:"+" }}.iso">download now</a>.</p>
-
-        <p><a href="/download/cloud/install-ubuntu-cloud">Read the installation instructions</a></p>
-
-        <div class="box-grey twelve-col no-margin-bottom download-cross-sells">
+    <div class="row row-hero no-border">
+        <div class="eight-col">
+            <h1>Thank you for downloading Ubuntu Server for cloud</h1>
+            <p>Your download should start automatically. If it doesn&rsquo;t, <a href="http://releases.ubuntu.com/{{ request.GET.version }}/ubuntu-{{ request.GET.version }}-server-{{ request.GET.architecture.split|join:"+" }}.iso">download now</a>.</p>
+        </div>
+    </div>
+    <div class="row row-grey">
+        <div class="twelve-col no-margin-bottom equal-height">
             <div class="four-col one box box-highlight">
-                <img alt="ubuntu one" src="{{ STATIC_URL }}img/download/cloud-jumpstart.png" />
-                <h3>Ubuntu Cloud Jumpstart</h3>
-                <p>A private cloud in five days, with a Canonical engineer on site to get it done.</p>
-                <p><a class="link-arrow" href="/cloud/private-cloud/jumpstart">Learn more about Cloud Jumpstart</a></p>
+                <div class="four-col text-center">
+                    <img alt="ubuntu one" src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-startfirst-warmgrey.svg" width="113" height="113" />
+                </div>
+                <h3>Jumpstart Training</h3>
+                <p>Two full days of technical training, covering Ubuntu, MAAS, Juju, Landscape, and OpenStack.</p>
+                <p><a href="/cloud/jumpstart-training">Learn more about Jumpstart Training&nbsp;&rsaquo;</a></p>
             </div><!-- /.four-col -->
             <div class="four-col support box box-highlight">
-                <img alt="ubuntu advantage" src="{{ STATIC_URL }}img/download/ubuntu-advantage.png" />
-                <h3>Ubuntu Advantage 
-for Cloud</h3>
+                <div class="four-col text-center">
+                    <img alt="ubuntu advantage" src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-business-warmgrey.svg" width="113" height="113" />
+                </div>
+                <h3>Ubuntu Advantage for Cloud</h3>
                 <p>All the commercial support your cloud deployment needs.</p>
-                <p><a class="link-arrow" href="/cloud/management">Learn more about Ubuntu Cloud Advantage</a></p>
+                <p><a href="/management/ubuntu-advantage">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
             </div><!-- /.four-col -->
             <div class="four-col ask last-col box box-highlight">
-                <img alt="ubuntu advantage" src="{{ STATIC_URL }}img/download/ask-ubuntu.png" />
+                <div class="four-col text-center">
+                    <img alt="ubuntu advantage" src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-forum-warmgrey.svg" width="113" height="113" />
+                </div>
                 <h3>Ask Ubuntu</h3>
                 <p>Need help? Ask your questions here.</p>
-                <p><a class="link-arrow" href="http://askubuntu.com/questions/tagged/cloud">Get help</a></p>
+                <p><a href="http://askubuntu.com/questions/tagged/cloud" class="external">Get help</a></p>
             </div><!-- /.four-col -->
         </div><!-- /.row .row-box -->
 
     </div><!-- /.row .row-download -->
-    <div class="row row-next-steps equal-height vertical-divider no-border">
-        <h2>Useful next steps</h2>
-        <div class="four-col">
-            <h4><a href="https://help.ubuntu.com">Access documentation</a></h4>
-            <p>If you&rsquo;re stuck with a problem, take a look at the official documentation developed and maintained by the Ubuntu Documentation Team.</p>
-        </div>
-        <div class="four-col">
-            <h4><a href="https://help.ubuntu.com/community/InternetRelayChat">Live support chat</a></h4>
-            <p>If you would rather ask questions directly to the Ubuntu community, you can access our Internet relay chat (IRC) channel. Simply join the #ubuntu channel on irc.freenode.net.</p>
-        </div>
-        <div class="four-col last-col">
-            <h4><a href="http://www.ubuntu.com/community">Join the Ubuntu community</a></h4>
-            <p>Whether you're an experienced Linux user or you're just getting started with open-source software, there are lots of ways you can contribute to the Ubuntu project.</p>
-        </div>
-    </div>
 {% endblock content %}
 
 {% block footer_extra %}
@@ -78,6 +62,13 @@ var architecture = '{{ request.GET.architecture.split|join:"+" }}';
 var mirrors = {{ mirror_list|safe }};
 
 if (version && architecture) {
+    // Report to Google Analytics
+    YUI().use('event-base', function (Y) {
+        Y.on('domready', function () {
+            _gaq.push(['_trackEvent', 'Download', 'Downloaded', 'User downloaded Ubuntu (' + version + '-server-' + architecture + ')']);
+        });
+    });
+
     startDownload(mirrors, version, architecture, defaultLocation);
 }
 

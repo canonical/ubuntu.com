@@ -1,0 +1,352 @@
+@charset "UTF-8";
+/**
+ * Ubuntu Patterns Stylesheet
+ *
+ * The CSS file required by Ubuntu patterns page
+ *
+ * @project		Ubuntu Patterns
+ * @author		Web Team at Canonical Ltd
+ * @copyright	2012 Canonical Ltd
+ *
+ * @see 		http://design.ubuntu.com
+ */
+/**
+ * standard colors
+ *
+ * @colordef standard colors
+ */
+/* assets database path */
+/* usage: background: url(//assets.ubuntu.com/sites/ubuntu/latest/u/img//backgrounds/background.jpg) no-repeat 0 0; */
+/* ubuntu orange (used for text links also on any site except canonical) */
+/* used as background on pre text */
+/* canonical aubergine */
+/* light aubergine (consumer) */
+/* mid aubergine (both) */
+/* dark aubergine (enterprise) */
+/* warm grey */
+/* cool grey */
+/* light grey */
+/* notifications */
+/* red */
+/* yellow */
+/* green */
+/* cyan */
+/* colour coded status - from negative to positive (Icon: canonical circle) */
+/* red, for status that require immediate attention */
+/* grey, for disabled status or ones that don’t require attention */
+/* yellow, for status that require attention */
+/* blue, for status that don’t require action */
+/* green, for positive status */
+/* misc colours */
+/* This is the global link color, mainly used for links in content */
+/* grid variables */
+/**
+ * mixins
+ *
+ * @section mixins
+ */
+/* @section global nav
+-------------------------------------------------------------- */
+footer #nav-global {
+  display: block;
+  margin: 0 -10px;
+  margin-top: -4px;
+  margin-bottom: 10px;
+  overflow: hidden; }
+  footer #nav-global div {
+    display: none; }
+    footer #nav-global div.active {
+      border-top: 1px solid #d4d7d4;
+      display: block;
+      margin-top: -1px; }
+  footer #nav-global h2 {
+    letter-spacing: 0;
+    position: relative;
+    z-index: 2; }
+    footer #nav-global h2 span {
+      background-image: url("//assets.ubuntu.com/sites/ubuntu/latest/u/img//arrow_down_9fa097.svg");
+      background-position: 0 2px;
+      background-repeat: no-repeat;
+      -moz-background-size: 100% 100%;
+      -webkit-background-size: 100% 100%;
+      -o-background-size: 100% 100%;
+      background-size: 100% 100%;
+      clear: none;
+      display: inline-block;
+      margin-left: 6px;
+      float: right;
+      height: 13px;
+      width: 13px;
+      margin-right: 20px;
+      position: relative; }
+    footer #nav-global h2.active span {
+      background-image: url("//assets.ubuntu.com/sites/ubuntu/latest/u/img/arrow_up_9fa097.svg");
+      background-position: 0 0; }
+  footer #nav-global li ul {
+    clear: both;
+    display: block;
+    overflow: hidden;
+    float: left; }
+  footer #nav-global li.more {
+    width: 100%;
+    line-height: 0;
+    padding: 0;
+    margin: 0; }
+  footer #nav-global li.more a {
+    text-indent: -999em;
+    display: block;
+    padding: 0;
+    margin: 0;
+    border: 0; }
+  footer #nav-global li.more li a {
+    background: none;
+    text-indent: 0;
+    margin-left: 0;
+    font-size: 14px; }
+  footer #nav-global h2 {
+    border-bottom: 1px solid #D4D7D4;
+    color: #888888;
+    margin: 0;
+    padding: 10px 10px;
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 0.75em;
+    letter-spacing: .05em; }
+  footer #nav-global h2:before {
+    background-image: url("//assets.ubuntu.com/sites/ubuntu/latest/u/img/external-link-9fa097.svg");
+    -moz-background-size: 14px 14px;
+    -webkit-background-size: 14px 14px;
+    -o-background-size: 14px 14px;
+    background-size: 14px 14px;
+    background-repeat: no-repeat;
+    content: "";
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    margin-right: 3px;
+    top: 3px;
+    position: relative; }
+  footer #nav-global ul {
+    margin: 0;
+    padding: 0; }
+  footer #nav-global li a {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 1.14286 em;
+    margin-bottom: 0.75 em;
+    border-bottom: 1px solid #d4d7d4;
+    color: #333333;
+    display: block;
+    float: left;
+    overflow: hidden;
+    padding: 8px 10px;
+    text-align: left;
+    white-space: normal;
+    width: 100%;
+    margin-bottom: 0; }
+  footer #nav-global li a.external:after {
+    background: none; }
+  footer #nav-global li.more li a {
+    border-bottom: 1px solid #d4d7d4;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 8px 10px; }
+  footer #nav-global li.more li {
+    border-bottom: 1px solid #f2f2f4; }
+  footer #nav-global li {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-bottom: 1px solid #f2f2f4;
+    border-left: 1px solid #d4d7d4;
+    display: block;
+    float: left;
+    margin: 0;
+    width: 50%; }
+  footer #nav-global li:last-item,
+  footer #nav-global li:last-item a {
+    border: 0; }
+  footer #nav-global li:nth-child(odd) {
+    border-left: 0; }
+
+@media only screen and (min-width: 768px) {
+  body {
+    padding-top: 30px; }
+
+  #nav-global {
+    background: #efefef;
+    width: 100%;
+    height: 30px;
+    line-height: 19.2px;
+    display: block;
+    z-index: 101;
+    position: relative;
+    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    margin-top: -30px; }
+
+  #nav-global .nav-global-wrapper {
+    -moz-box-sizing: border-box;
+    background: none repeat scroll 0 0 #FFFFFF;
+    margin: 0 auto;
+    position: relative;
+    text-align: left;
+    width: 984px; }
+
+  #nav-global.drop-shadow {
+    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); }
+
+  #nav-global div {
+    background: #efefef;
+    box-shadow: none;
+    margin-top: 0;
+    margin-bottom: 0; }
+
+  #nav-global ul {
+    margin-bottom: 0;
+    margin-left: 0;
+    top: 0; }
+
+  #nav-global ul li {
+    float: left;
+    display: block;
+    text-align: left;
+    margin: 0;
+    height: 30px;
+    margin-top: -1px;
+    position: relative;
+    top: 0; }
+
+  #nav-global ul ul {
+    display: none;
+    float: none;
+    background: #fff;
+    position: absolute;
+    min-width: 120px;
+    top: 30px;
+    border-top: 1px solid #d7d7d7;
+    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3); }
+
+  #nav-global ul ul a:link, #nav-global ul ul a:visited {
+    border-top: none;
+    float: none; }
+
+  #nav-global ul ul li {
+    float: none; }
+
+  #nav-global ul ul li:first-of-type {
+    padding-top: 5px; }
+
+  #nav-global .more {
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    min-width: 60px; }
+
+  #nav-global .more span {
+    display: block;
+    top: -10px;
+    left: 46px;
+    line-height: 19.2px;
+    height: 0;
+    position: relative;
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1); }
+
+  #nav-global .open {
+    background: #fff;
+    min-width: 120px;
+    border-left: 1px solid #d7d7d7;
+    border-right: 1px solid #d7d7d7; }
+
+  #nav-global a:link, #nav-global a:visited {
+    color: #333;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.6;
+    border-top: 3px solid transparent;
+    border-bottom: 0;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding-top: 3px;
+    padding-bottom: 4px;
+    position: relative;
+    text-decoration: none;
+    -moz-transition: opacity 0.25s ease-in-out;
+    -webkit-transition: opacity 0.25s ease-in-out;
+    transition: opacity 0.25s ease-in-out;
+    display: block;
+    list-style-image: none; }
+
+  #nav-global a.active {
+    color: #dd4814;
+    border-top: 3px solid #dd4814;
+    text-decoration: none;
+    opacity: 1; }
+
+  #nav-global a:hover {
+    color: #dd4814;
+    text-decoration: none; }
+
+  #nav-global:hover a {
+    opacity: 1; }
+
+  #nav-global .open a:link,
+  #nav-global .open a:visited,
+  #nav-global .open span {
+    color: #dd4814;
+    opacity: 1; }
+
+  #nav-global .open ul a:link,
+  #nav-global .open ul a:visited {
+    color: #333;
+    opacity: 1; }
+
+  #nav-global .open ul a:hover {
+    color: #dd4814;
+    text-decoration: none; }
+
+  #nav-global .open ul {
+    display: block; }
+
+  #nav-global ul ul li:first-of-type a {
+    margin-left: 10px; }
+
+  body #nav-global li:first-of-type a {
+    margin-left: 0; }
+
+  /*
+  * Temp styles
+  */
+  .login-logout {
+    z-index: 5; } }
+@media only screen and (min-width: 768px) {
+  body #nav-global li:first-of-type a {
+    margin-left: 10px; } }
+@media only screen and (min-width: 768px) and (min-width: 768px) {
+  #nav-global .nav-global-wrapper {
+    width: auto !important; } }
+@media only screen and (max-width: 768px) {
+  body #nav-global li:first-of-type a {
+    margin-left: 10px; }
+
+  #nav-global .nav-global-wrapper {
+    width: 100%; } }
+@media only screen and (min-width: 984px) {
+  body #nav-global li:first-of-type a {
+    margin-left: 0; }
+
+  #nav-global .nav-global-wrapper {
+    width: 984px !important; } }

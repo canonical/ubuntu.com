@@ -1,18 +1,27 @@
 {% extends "about/base_about.html" %}
 
-{% block title %}Ubuntu Font{% endblock %}
+{% block title %}Ubuntu font{% endblock %}
 
 {% block content %}
 <div class="row row-hero">
 	<h1>Ubuntu font</h1>
 </div>
 
-<div class="row">
-		<p><img src="{{ STATIC_URL }}img/project/ubuntu-font.jpg" alt="" width="900" height="159" /></p>
-	
+<div class="row no-border">
+	<div class="twelve-col">
+		<div class="ubuntufont-image-load" data-width="900" data-src="{{ STATIC_URL }}img/about/ubuntu-font{width}.jpg" data-alt=""></div>
+		<script>
+		    new Imager('.ubuntufont-image-load', {
+		        availableWidths: {
+		            320: '-small',
+		            900: '-medium'
+		        }
+		    });
+		</script>
+	</div>
 	<div class="six-col">
 		<p>Fonts have become one of the most essential communication tools today.</p><p>They allow us to convey our thoughts to one another, be that by letter or text message, with clarity and purpose.</p><p>Dalton Maag, a London-based studio, has laid the foundations for the Ubuntu font project with a beautiful design that aims to produce every character to support every language and interest in the world.</p><p>This is the most ambitious font project ever undertaken. Its success depends on the willingness of designers around the world to participate and work with the teams at Dalton Maag and Canonical to deliver the most comprehensive font suite ever. It&rsquo;s a true testament to the power of collaborative working in technology and design.</p>
-	
+
 		<ul>
 			<li><a href="http://font.ubuntu.com">font.ubuntu.com</a></li>
 			<li><a href="http://www.designmuseum.org">designmuseum.org</a></li>

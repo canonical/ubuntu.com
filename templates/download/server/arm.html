@@ -1,0 +1,52 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Ubuntu for ARM | Download{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server" page_title="ARM"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero row-background no-border">
+	<h1>Ubuntu Server for ARM</h1>
+	<div class="twelve-col">
+		<div class="box box-highlight clearfix">
+			<div class="six-col">
+				<h4>Cavium Thunder ARMv8 Developer Platform</h4>
+				<p class="note">Registration required</p>
+				<ul class="no-bullets">
+					<li><a href="http://www.cavium.com/thundersdk_access_application.html" onclick="_gaq.push(['_trackEvent', 'External Link', 'ARM Cavium Thunder ARMv8 download', 'From Download ARM']);">14.04 LTS&nbsp;&rsaquo;</a></li>
+				</ul>
+			</div>
+			<div class="six-col last-col">
+				<h4>Marvell Armada XP</h4>
+				<ul class="no-bullets">
+					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/precise-updates/main/installer-armhf/current/images/armadaxp/netboot" onclick="_gaq.push(['_trackEvent', 'External Link', 'ARM Marvell Armada XP download', 'From Download ARM']);">12.04 LTS&nbsp;&rsaquo;</a></li>
+				</ul>
+			</div>
+		</div>
+	</div><!-- /.box -->
+</div>
+
+<div class="row row-grey">
+	<div class="box box-highlight clearfix">
+		<div class="eight-col no-margin-bottom">
+			<h3>Coming soon in 14.04 LTS</h3>
+			<p>We are happy to announce support for 64-bit ARMv8 systems as well as all released x86 and ARM based HP Moonshot cartridges, including our MAAS and Juju cloud tools.</p>
+			<p>Ubuntu Server 14.04 LTS for ARM server will be available soon.</p>
+		</div>
+	</div>
+</div>
+
+<div class="row no-border">
+	<div class="eight-col">
+		<h3>Ready to deploy now</h3>
+		<p>Built for hyperscale-class hardware including machines from the <a href="/partners/hp/moonshot">HP Moonshot</a> project, Ubuntu Server 14.04 LTS for ARM is a mature and fully-supported server operating system, including a LAMP stack, Ceph storage, Hadoop-based analytics and the Icehouse release of OpenStack, alongside tools for provisioning and scale-out deployment.</p>
+		<p>Ubuntu Server for ARM is available for selected SoCs as an over-the-network installer. Network boot infrastructure is required.</p>
+	</div><!-- /.twelve-col -->
+	<div class="four-col last-col text-center">
+		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-server-warmgrey.svg" alt="" width="200" height="200" />
+	</div>
+</div><!-- /.row -->
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

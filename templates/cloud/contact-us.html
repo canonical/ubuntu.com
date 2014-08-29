@@ -33,20 +33,20 @@
 
 {% block content %}
 <div class="row no-border">
-	<div class="eight-col">
+	<div class="seven-col">
 		<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="https://app-g.marketo.com/index.php/leadCapture/save" id="mktForm_1069" name="mktForm_1069">
 			<fieldset class="fieldset-1">
 				<h3>About you</h3>
 				<ul class="mktLblLeft">
-					<li class='mktFormReq mktField'><label>First name: <span>*</span></label><span class='mktInput'><input class='mktFormText mktFormString mktFReq' name="FirstName" id="FirstName" type='text' value=""  maxlength='255' tabIndex='1' /><span class='mktFormMsg'></span></span></li>
-					<li class='mktFormReq mktField'><label>Last name: <span>*</span></label><span class='mktInput'><input class='mktFormText mktFormString mktFReq' name="LastName" id="LastName" type='text' value=""  maxlength='255' tabIndex='2' /><span class='mktFormMsg'></span></span></li>
-					<li class='mktFormReq mktField'><label>Email address: <span>*</span></label><span class='mktInput'><input class='mktFormText mktFormEmail mktFReq' name="Email" id="Email" type='text' value=""  maxlength='255' tabIndex='3' /><span class='mktFormMsg'></span></span></li>
-					<li class='mktFormReq mktField'><label>Phone number: <span>*</span></label><span class='mktInput'><input class='mktFormText mktFormPhone mktFReq' name="Phone" id="Phone" type='text' value=""  maxlength='255' tabIndex='4' /><span class='mktFormMsg'></span></span></li>
+					<li class='mktFormReq mktField'><label>First name: <span>*</span></label><span class='mktInput'><input class='mktFormText mktFormString mktFReq' name="FirstName" id="FirstName" type='text' value=""  maxlength='255' tabIndex='1' required /><span class='mktFormMsg'></span></span></li>
+					<li class='mktFormReq mktField'><label>Last name: <span>*</span></label><span class='mktInput'><input class='mktFormText mktFormString mktFReq' name="LastName" id="LastName" type='text' value=""  maxlength='255' tabIndex='2' required /><span class='mktFormMsg'></span></span></li>
+					<li class='mktFormReq mktField'><label>Email address: <span>*</span></label><span class='mktInput'><input class='mktFormText mktFormEmail mktFReq' name="Email" id="Email" type='email' value=""  maxlength='255' tabIndex='3' required /><span class='mktFormMsg'></span></span></li>
+					<li class='mktFormReq mktField'><label>Phone number: <span>*</span></label><span class='mktInput'><input class='mktFormText mktFormPhone mktFReq' name="Phone" id="Phone" type='tel' value=""  maxlength='255' tabIndex='4' required /><span class='mktFormMsg'></span></span></li>
 					<li class="mktFormReq mktField">
 				<label for="Country">Country: <span>*</span></label>
 				<span class="mktInput">
-				<select class="mktFormSelect mktFReq" name="Country" id="Country" size="1" tabindex="5">
-					<option value="Select Country:" selected="selected">Select Country:</option>
+				<select class="mktFormSelect mktFReq" name="Country" id="Country" size="1" tabindex="5" required>
+					<option value="Select country:" selected="selected">Select country:</option>
 					<option value="AF">Afghanistan</option>
 					<option value="AX">&Aring;land Islands</option>
 					<option value="AL">Albania</option>
@@ -300,7 +300,7 @@
 			<li class="mktField">
 				<label for="State">State:</label>
 				<span class="mktInput">
-				<select class="mktFormSelect mktFReq" name="State" id="State" size="1" tabindex="6">
+				<select class="mktFormSelect mktFReq" name="State" id="State" size="1" tabindex="6" required>
 					<option value="SelectProvince" selected="selected">Select Province</option>
 					<option value="AB">Alberta</option>
 					<option value="BC">British Columbia</option>
@@ -377,24 +377,24 @@
 			<fieldset class="fieldset-2">
 				<h3>About your role</h3>
 				<ul class="mktLblLeft">
-					<li class='mktFormReq mktField'><label>Job role: <span>*</span></label><span class='mktInput'><select class='mktFormSelect mktFReq' name="Job_Role__c" id="Job_Role__c" size='1'  tabIndex='7'><option value='' selected='selected'>Please select:</option><option value='Business and Project Management'>Business and Project Management</option><option value='Database Development and Administration'>Database Development and Administration</option><option value='Education'>Education</option><option value='Enterprise Systems Analysis &amp; Integration'>Enterprise Systems Analysis &amp; Integration</option><option value='Hardware Operations and Management'>Hardware Operations and Management</option><option value='Home User'>Home User</option><option value='Individual'>Individual</option><option value='Network Design and Administration'>Network Design and Administration</option><option value='Owner/Self Employed'>Owner/Self Employed</option><option value='Press and Communications'>Press and Communications</option><option value='Programming/Software Engineering'>Programming/Software Engineering</option><option value='Smartphone User'>Smartphone User</option><option value='Technical Support'>Technical Support</option><option value='Technical Writing'>Technical Writing</option><option value='Ubuntu Enthusiast'>Ubuntu Enthusiast</option><option value='Web Development and Administration'>Web Development and Administration</option></select><span class='mktFormMsg'></span></span></li>
+					<li class='mktFormReq mktField'><label>Job role: <span>*</span></label><span class='mktInput'><select class='mktFormSelect mktFReq' name="Job_Role__c" id="Job_Role__c" size='1'  tabIndex='7' required><option value='' selected='selected'>Please select:</option><option value='Business and Project Management'>Business and Project Management</option><option value='Database Development and Administration'>Database Development and Administration</option><option value='Education'>Education</option><option value='Enterprise Systems Analysis &amp; Integration'>Enterprise Systems Analysis &amp; Integration</option><option value='Hardware Operations and Management'>Hardware Operations and Management</option><option value='Home User'>Home User</option><option value='Individual'>Individual</option><option value='Network Design and Administration'>Network Design and Administration</option><option value='Owner/Self Employed'>Owner/Self Employed</option><option value='Press and Communications'>Press and Communications</option><option value='Programming/Software Engineering'>Programming/Software Engineering</option><option value='Smartphone User'>Smartphone User</option><option value='Technical Support'>Technical Support</option><option value='Technical Writing'>Technical Writing</option><option value='Ubuntu Enthusiast'>Ubuntu Enthusiast</option><option value='Web Development and Administration'>Web Development and Administration</option></select><span class='mktFormMsg'></span></span></li>
 				</ul>
 			</fieldset>
 			<fieldset class="fieldset-3">
 				<h3>About your company</h3>
 				<ul class="mktLblLeft">
-					<li class='mktFormReq mktField'><label>Company name: <span>*</span></label><span class='mktInput'><input class='mktFormText mktFormString mktFReq' name="Company" id="Company" type='text' value=""  maxlength='255' tabIndex='8' /><span class='mktFormMsg'></span></span></li>
+					<li class='mktFormReq mktField'><label>Company name: <span>*</span></label><span class='mktInput'><input class='mktFormText mktFormString mktFReq' name="Company" id="Company" type='text' value=""  maxlength='255' tabIndex='8' required /><span class='mktFormMsg'></span></span></li>
 					<li class='mktField'><label>Industry:</label><span class='mktInput'><select class='mktFormSelect' name="Industry" id="Industry" size='1'  tabIndex='9'><option value='' selected='selected'>Please select:</option><option value='Accountancy &amp; Tax'>Accountancy &amp; Tax</option><option value='Aerospace &amp; Aviation'>Aerospace &amp; Aviation</option><option value='Automotive'>Automotive</option><option value='Banking &amp; Finance'>Banking &amp; Finance</option><option value='Business Consultancy'>Business Consultancy</option><option value='Charity &amp; Non-profit'>Charity &amp; Non-profit</option><option value='Construction'>Construction</option><option value='Consumer Products'>Consumer Products</option><option value='Consumer Services'>Consumer Services</option><option value='Defence &amp; Security'>Defence &amp; Security</option><option value='Education &amp; Training'>Education &amp; Training</option><option value='Electronics'>Electronics</option><option value='Engineering'>Engineering</option><option value='Entertainment &mdash; media/music/broadcast'>Entertainment &mdash; media/music/broadcast</option><option value='Facilities, Property &amp; Real Estate'>Facilities, Property &amp; Real Estate</option><option value='Government'>Government</option><option value='Healthcare &amp; Pharmaceuticals'>Healthcare &amp; Pharmaceuticals</option><option value='HR &amp; Recruitment'>HR &amp; Recruitment</option><option value='Information Technology'>Information Technology</option><option value='Insurance'>Insurance</option><option value='Internet &amp; New Media'>Internet &amp; New Media</option><option value='Legal'>Legal</option><option value='Leisure, Travel &amp; Hospitality'>Leisure, Travel &amp; Hospitality</option><option value='Manufacturer &mdash; Computer Hardware'>Manufacturer &mdash; Computer Hardware</option><option value='Manufacturer &mdash; Device/ Handset'>Manufacturer &mdash; Device/ Handset</option><option value='Manufacturer &mdash; Other'>Manufacturer &mdash; Other</option><option value='Marketing, PR &amp; Advertising'>Marketing, PR &amp; Advertising</option><option value='Media &mdash; publishing or news'>Media &mdash; publishing or news</option><option value='Oil &amp; Gas'>Oil &amp; Gas</option><option value='Public Sector'>Public Sector</option><option value='Retail &amp; e-commerce'>Retail &amp; e-commerce</option><option value='Science &amp; Environment'>Science &amp; Environment</option><option value='Software Development'>Software Development</option><option value='Supply Chain &amp; Logistics'>Supply Chain &amp; Logistics</option><option value='Telecommunications'>Telecommunications</option><option value='Transportation &amp; Distribution'>Transportation &amp; Distribution</option><option value='Utilities &amp; Energy'>Utilities &amp; Energy</option><option value='Other'>Other</option><option value='Not applicable (self)'>Not applicable (self)</option></select><span class='mktFormMsg'></span></span></li>
 				</ul>
-			</fieldset>	
-			<fieldset class="fieldset-4">				
-				<h3>IT and your organisation</h3>			
+			</fieldset>
+			<fieldset class="fieldset-4">
+				<h3>IT and your organisation</h3>
 				<ul class="mktLblLeft">
-					<li class='mktFormReq mktField'><label>How do you currently use Ubuntu? <span>*</span></label><span class='mktInput'><select class='mktFormSelect mktFReq' name="Ubuntu_User__c" id="Ubuntu_User__c" size='1'  tabIndex='10'><option value='' selected='selected'>Please select:</option><option value='Privately only'>Privately only</option><option value='Commercially only'>Commercially only</option><option value='Privately and commercially'>Privately and commercially</option><option value='Not at all'>Not at all</option></select><span class='mktFormMsg'></span></span></li>
-					<li class='mktFormReq mktField'><label>How many employees does your organisation have? <span>*</span></label><span class='mktInput'><select class='mktFormSelect mktFReq' name="num_employees__c" id="num_employees__c" size='1'  tabIndex='11'><option value='' selected='selected'>Please select:</option><option value='None'>None</option><option value='&lt;500'>&lt;500</option><option value='501-1000'>501-1000</option><option value='1001-2000'>1001-2000</option><option value='2001-5000'>2001-5000</option><option value='5000+'>5000+</option></select><span class='mktFormMsg'></span></span></li>
-					<li  class='mktFormReq mktField' ><label>Number of Ubuntu servers currently deployed:</label><span class='mktInput'><select class='mktFormSelect mktFReq' name="NumUbuntuServers__c" id="NumUbuntuServers__c" size='1'   tabIndex='11'><option value='' selected='selected'>Please select</option><option value='25 or less'>25 or less</option><option value='26 - 100'>26 - 100</option><option value='101 - 250'>101 - 250</option><option value='251 - 500'>251 - 500</option><option value='501 or more'>501 or more</option></select><span class='mktFormMsg'></span></span></li>
-					<li class='mktFormReq mktField'><label>Why are you interested in cloud? <span>*</span></label><span class='mktInput'><select class='mktFormSelect mktFReq' name="Why_Cloud__c" id="Why_Cloud__c" size='1' tabIndex='13'><option value='' selected='selected'>Please select:</option><option value='Increasing revenues'>Increasing revenues</option><option value='Minimising operational expenditure'>Minimising operational expenditure</option><option value='Optimising efficiency'>Optimising efficiency</option><option value='Handling spikes in traffic'>Handling spikes in traffic</option><option value='Technical'>Technical</option><option value='Other'>Other</option></select><span class='mktFormMsg'></span></span></li>
-					<li class='mktFormReq mktField'><label>How soon do you plan to deploy your cloud solution? <span>*</span></label><span class='mktInput'><select class='mktFormSelect mktFReq' name="Project_Timeframe__c" id="Project_Timeframe__c" size='1' tabIndex='14'><option value='' selected='selected'>Please select:</option><option value='Less than 3 months'>Less than 3 months</option><option value='3-6 months'>3-6 months</option><option value='6-12 months'>6-12 months</option><option value='No specific dates'>No specific dates</option></select><span class='mktFormMsg'></span></span></li>
+					<li class='mktFormReq mktField'><label>How do you currently use Ubuntu? <span>*</span></label><span class='mktInput'><select class='mktFormSelect mktFReq' name="Ubuntu_User__c" id="Ubuntu_User__c" size='1'  tabIndex='10' required ><option value='' selected='selected'>Please select:</option><option value='Privately only'>Privately only</option><option value='Commercially only'>Commercially only</option><option value='Privately and commercially'>Privately and commercially</option><option value='Not at all'>Not at all</option></select><span class='mktFormMsg'></span></span></li>
+					<li class='mktFormReq mktField'><label>How many employees does your organisation have? <span>*</span></label><span class='mktInput'><select class='mktFormSelect mktFReq' name="num_employees__c" id="num_employees__c" size='1'  tabIndex='11' required><option value='' selected='selected'>Please select:</option><option value='None'>None</option><option value='&lt;500'>&lt;500</option><option value='501-1000'>501-1000</option><option value='1001-2000'>1001-2000</option><option value='2001-5000'>2001-5000</option><option value='5000+'>5000+</option></select><span class='mktFormMsg'></span></span></li>
+					<li  class='mktFormReq mktField' ><label>Number of Ubuntu servers currently deployed: <span>*</span></label><span class='mktInput'><select class='mktFormSelect mktFReq' name="NumUbuntuServers__c" id="NumUbuntuServers__c" size='1'   tabIndex='11' required><option value='' selected='selected'>Please select</option><option value='25 or less'>25 or less</option><option value='26 - 100'>26 - 100</option><option value='101 - 250'>101 - 250</option><option value='251 - 500'>251 - 500</option><option value='501 or more'>501 or more</option></select><span class='mktFormMsg'></span></span></li>
+					<li class='mktFormReq mktField'><label>Why are you interested in cloud? <span>*</span></label><span class='mktInput'><select class='mktFormSelect mktFReq' name="Why_Cloud__c" id="Why_Cloud__c" size='1' tabIndex='13' required><option value='' selected='selected'>Please select:</option><option value='Increasing revenues'>Increasing revenues</option><option value='Minimising operational expenditure'>Minimising operational expenditure</option><option value='Optimising efficiency'>Optimising efficiency</option><option value='Handling spikes in traffic'>Handling spikes in traffic</option><option value='Technical'>Technical</option><option value='Other'>Other</option></select><span class='mktFormMsg'></span></span></li>
+					<li class='mktFormReq mktField'><label>How soon do you plan to deploy your cloud solution? <span>*</span></label><span class='mktInput'><select class='mktFormSelect mktFReq' name="Project_Timeframe__c" id="Project_Timeframe__c" size='1' tabIndex='14' required><option value='' selected='selected'>Please select:</option><option value='Less than 3 months'>Less than 3 months</option><option value='3-6 months'>3-6 months</option><option value='6-12 months'>6-12 months</option><option value='No specific dates'>No specific dates</option></select><span class='mktFormMsg'></span></span></li>
 				</ul>
 			</fieldset>
 			<fieldset class="fieldset-5">
@@ -403,7 +403,7 @@
 					<li class='mktFormReq mktField'>
 						<label for="Comments_from_lead__c">What would you like to talk to us about? <span>*</span></label>
 						<span class='mktInput'>
-							<textarea class='mktFormTextarea mktFormTextarea mktFReq' name="Comments_from_lead__c" id="Comments_from_lead__c" cols='20' rows='4' tabIndex='15'></textarea><span class='mktFormMsg'>
+							<textarea class='mktFormTextarea mktFormTextarea mktFReq' name="Comments_from_lead__c" id="Comments_from_lead__c" cols='20' rows='4' tabIndex='15' required></textarea><span class='mktFormMsg'>
 							</span>
 						</span>
 					</li>
@@ -413,7 +413,7 @@
 				<ul class="mktLblLeft">
 					<li class="mktField mktLblRight"><span class="mktInput mktLblRight"><input class="mktFormCheckbox" name="NewsletterOpt-In" id="NewsletterOpt-In" type="checkbox" value="1" tabindex="16"><label for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>&nbsp;<span class="mktFormMsg"></span></span></li>
 					<li>All information provided will be handled in accordance with the Canonical <a href="http://www.ubuntu.com/legal" target="_blank">privacy policy</a>.</li>
-					<li id="mktFrmButtons"><!--<label>&nbsp;</label>--><input id="mktFrmSubmit" type="submit" value="Submit" name="submitButton" tabindex="17" onclick="formSubmit(document.getElementById(&quot;mktForm_1069&quot;)); return false;">&nbsp;<input style="display: none;" id="mktFrmReset" type="reset" value="Clear" name="resetButton" onclick="formReset(document.getElementById(&quot;mktForm_1069&quot;)); return false;"></li>     
+					<li id="mktFrmButtons"><!--<label>&nbsp;</label>--><input id="mktFrmSubmit" type="submit" value="Submit" name="submitButton" tabindex="17" onclick="formSubmit(document.getElementById(&quot;mktForm_1069&quot;)); return false;">&nbsp;<input style="display: none;" id="mktFrmReset" type="reset" value="Clear" name="resetButton" onclick="formReset(document.getElementById(&quot;mktForm_1069&quot;)); return false;"></li>
 				</ul>
 			</fieldset>
 			<span style="display: none;"><input type="text" name="_marketo_comments" value="" /></span>
@@ -429,7 +429,12 @@
 			<input type="hidden" name="_mkt_disp" value="return" />
 			<input type="hidden" name="_mkt_trk" value="id:066-EOV-335&amp;token:_mch-canonical.com-1328112704280-30256" />
 		</form>
-	</div><!-- /.eight-col -->
+	</div><!-- /.seven-col -->
+	<div class="four-col last-col">
+		<h3>Keep up with the cloud</h3>
+		<p>If you want to keep up to date with everything happening around Ubuntu OpenStack, Juju, MAAS, Landscape, partners and more.</p>
+		<p><a href="https://pages.ubuntu.com/canonical-optin.html">Sign-up for our fortnightly newsletter&nbsp;&rsaquo;</a></p>
+	</div>	
 </div><!-- /.row -->
 
 <script type="text/javascript" src="http://www.ubuntu.com/misc/jquery.js"></script>
@@ -458,6 +463,6 @@ if ((typeof mktoPreFillFields != 'undefined') &&
 		</script>
 
 {% include "shared/_live_chat.html" %}
-		
+
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

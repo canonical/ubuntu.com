@@ -19,7 +19,7 @@
 		<h2>All broadcast television</h2>
 		<p>Terrestrial broadcast in US and EU standard formats, for standard or high definition content, with integrated electronic programme guides.</p>
 	</div><!-- / .six-col -->
-	
+
 	<div class="six-col last-col">
 		<h2>Cable and satellite possibilities</h2>
 		<p>Integrate your cable or satellite service into Ubuntu TV, to provide a unified customer experience. Ubuntu bridges the gap between television manufacturers and cable or satellite providers.</p>
@@ -46,7 +46,7 @@
 		<h2>Enhanced viewing</h2>
 		<p>Second-screen experiences are an emerging trend in broadcast television. Link phones or tablets to Ubuntu TV, presenting related content to viewers while they watch.  Provide information on movies by the same director, for example, or the  reaction on Twitter during live shows &mdash; without any distraction from the action.</p>
 	</div><!-- / .six-col -->
-	<div class="six-col last-col">
+	<div class="six-col last-col no-margin-bottom">
 		<img src="{{ STATIC_URL }}img/devices/screenshot-movie-440x331.jpg" width="440" height="331" alt="Ubuntu TV displaying movie details" />
 	</div><!-- / .six-col -->
 </div><!-- / .row -->
@@ -63,30 +63,20 @@
 </div><!-- / .row -->
 
 <div class="row">
-	<div class="six-col">
+	<div class="six-col no-margin-bottom">
 		<img src="{{ STATIC_URL }}img/devices/screenshot-pause-and-play-440x331.jpg" width="440" height="331" alt="Ubuntu TV pick up where you left off" />
 	</div><!-- / .six-col -->
-	
+
 	<div class="six-col last-col">
 		<h2>Pick up where you left off</h2>
 		<p>Viewers enjoy content on multiple devices &mdash; phones, tablets, and the TV. With Ubuntu TV, they can pick up where they left off on a different device. For example, a viewer can watch part of a movie on their phone, then watch the rest on the TV &mdash; without having to search for their place.</p>
 	</div><!-- / .six-col -->
 </div><!-- / .row -->
 
-<div class="row row-image-centered">
-	<div class="eight-col">
-		<h2>Sharing across devices</h2>
-		<p>Stream music, photos and videos from the PC to the TV. And with Ubuntu TV apps for iOS, Android and Ubuntu, media can be shared between the TV and portable devices using the personal cloud service, Ubuntu One.</p>
-	</div><!-- / .eight-col -->
-	<span>
-		<img src="{{ STATIC_URL }}img/pictograms/pictogram-share-124x124.png" width="124" height="124" alt="Ubuntu share pictogram" />
-	</span>
-</div><!-- / .row -->
-
 <div class="row">
 	<div class="eight-col">
 		<h2>Expandability built-in</h2>
-		<p>Ubuntu TV runs applications from you or from third party developers. Deliver apps through an online store, update them when necessary and benefit from the growing ecosystem of Ubuntu application developers.</p>	
+		<p>Ubuntu TV runs applications from you or from third party developers. Deliver apps through an online store, update them when necessary and benefit from the growing ecosystem of Ubuntu application developers.</p>
 	</div>
 </div><!-- / .row -->
 
@@ -96,25 +86,27 @@
 			<h3>Technical specifications and requirements</h3>
 			<div>
 				<p><span>Ubuntu TV benefits from the comprehensive hardware support that&rsquo;s always been a hallmark of Ubuntu for PCs. Highlights include:</span></p>
-				<ul class="list-ubuntu six-col">
-					<li>Support for ARM and x86 boards<sup><a href="#fn1" id="r1">1</a></sup></li>
-					<li>Local storage support for DVR functionality<sup><a href="#fn2" id="r2">2</a></sup></li>
-					<li>Minimum disk space: 2GB</li>
-					<li>Minimum memory: 1GB</li>
-					<li>Minimum video memory: 512 MB</li>
-					<li>HDMI</li>
-					<li>CEC support</li>
-				</ul>
-				
-				<ul class="list-ubuntu six-col last-col">
-					<li>Digital audio out</li>
-					<li>Hardware accelerated video capable of displaying content at 1080p<sup><a href="#fn3" id="r3">3</a></sup></li>
-					<li>Network connectivity: Gigabit Ethernet &amp; Wireless b/g/n</li>
-					<li>USB host support</li>
-					<li>Bluetooth HCI interface</li>
-					<li>Modular tuner for broadcast TV (satellite, cable, terrestrial)</li>
-				</ul>
-				
+				<div class="combined-list">
+					<ul class="list-ubuntu six-col">
+						<li>Support for ARM and x86 boards<sup><a href="#fn1" id="r1">1</a></sup></li>
+						<li>Local storage support for DVR functionality<sup><a href="#fn2" id="r2">2</a></sup></li>
+						<li>Minimum disk space: 2GB</li>
+						<li>Minimum memory: 1GB</li>
+						<li>Minimum video memory: 512 MB</li>
+						<li>HDMI</li>
+						<li class="last-item">CEC support</li>
+					</ul>
+
+					<ul class="list-ubuntu six-col last-col">
+						<li>Digital audio out</li>
+						<li>Hardware accelerated video capable of displaying content at 1080p<sup><a href="#fn3" id="r3">3</a></sup></li>
+						<li>Network connectivity: Gigabit Ethernet &amp; Wireless b/g/n</li>
+						<li>USB host support</li>
+						<li>Bluetooth HCI interface</li>
+						<li class="last-item">Modular tuner for broadcast TV (satellite, cable, terrestrial)</li>
+					</ul>
+				</div>
+
 				<div class="twelve-col no-bulletsd smaller">
 					<p id="fn1"><a href="#r1">1.</a> A list of supported boards can be provided</p>
 					<p id="fn2"><a href="#r2">2.</a> Solid-state storage recommended</p>

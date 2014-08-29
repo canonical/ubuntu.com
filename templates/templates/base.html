@@ -1,14 +1,16 @@
 <!doctype html>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en" dir="ltr"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en" dir="ltr"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en" dir="ltr"> <![endif]-->
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en" dir="ltr"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en" dir="ltr"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie10 lt-ie9" lang="en" dir="ltr"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js lt-ie10" lang="en" dir="ltr"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js{% block extra_html_class %}{% endblock %}" lang="en" dir="ltr"> <!--<![endif]-->
 <head>
 
 <meta charset="UTF-8" />
-<meta name="description" content="{% block meta_description %}Fast, secure and stylishly simple, the Ubuntu operating system is used by 20 million people worldwide every day.{% endblock %}" />
-<meta name="keywords" content="{% block meta_keywords %}Ubuntu, Ubuntu operating system, OS, Linux, Windows alternative, Mac alternative, thin client{% endblock %}" />
+<meta name="description" content="{% block meta_description %}Ubuntu is an open source software platform that runs everywhere from the smartphone, the tablet and the PC to the server and the cloud.{% endblock %}" />
+<meta name="keywords" content="{% block meta_keywords %}Ubuntu, Ubuntu operating system, OS, platform, Linux, distribution, OpenStack, Ubuntu OpenStack, Ubuntu Cloud, server, tablet, smartphone, phone, Windows alternative, Mac alternative, free software, open source, thin client, Juju, MAAS, Landscape, Ubuntu Advantage, download Ubuntu, deployment, provisioning, service orchestration, services, commercial support, paid support, long term support, LTS, 14.04, Trusty Tahr, Icehouse{% endblock %}" />
 <meta name="author" content="Canonical" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!--[if IE]>
 <meta http-equiv="X-UA-Compatible" content="IE=8">
@@ -17,29 +19,25 @@
 <title>{% block title %}{% endblock %} | Ubuntu</title>
 
 <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" type="image/x-icon" />
-<link href='//fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,700,700italic|Ubuntu+Mono' rel='stylesheet' type='text/css' />
-<link rel="stylesheet" type="text/css" media="screen" href="//assets.ubuntu.com/sites/guidelines/css/latest/ubuntu-styles.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/global.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/styles.css" />
-<link rel="stylesheet" type="text/css" media="print" href="{{ STATIC_URL }}css/core-print.css" />
 
-<link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico">
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ STATIC_URL }}img/apple-touch-icon-144x144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ STATIC_URL }}img/apple-touch-icon-114x114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ STATIC_URL }}img/apple-touch-icon-72x72-precomposed.png">
 <link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}img/apple-touch-icon-precomposed.png">
 <link type="text/plain" rel="author" href="{{ STATIC_URL }}files/humans.txt" />
 
-<!--[if lt IE 9]>
-<script src="https://html5shim.googlecode.com/svn/trunk/html5.js" /></script>
-<![endif]-->
+<!-- google fonts -->
+<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,700,700italic%7CUbuntu+Mono' rel='stylesheet' type='text/css' />
 
-<!-- Remove no-js class from <html> (Copied from Modernizr) -->
-<script>
-    var html = document.getElementsByTagName("html")[0];
-    var reJS = new RegExp('(^|\\s)no-js(\\s|$)');
-    html.className = html.className.replace(reJS, '$1js$2');
-</script>
+<!-- stylesheets -->
+<link rel="stylesheet" type="text/css" media="screen" href="//assets.ubuntu.com/sites/guidelines/css/responsive/latest/ubuntu-styles.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/styles.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/beta/global-responsive.css" />
+<link rel="stylesheet" type="text/css" media="print" href="{{ STATIC_URL }}css/core-print.css" />
+
+<!-- javascript -->
+<script src="{{ STATIC_URL }}js/plugins/modernizr.2.7.1.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/Imager.js"></script>
 
 {% block head_extra %}{% endblock %}
 
@@ -49,37 +47,37 @@
 <header class="banner global" role="banner">
 {% block header_banner %}
 	<nav role="navigation" class="nav-primary nav-right">
+		<span id="main-navigation-link"><a href="#main-navigation">Jump to site nav</a></span>
 		<div class="logo">
 			<a class="logo-ubuntu" href="/">
-				<img width="106" height="25" src="{{ STATIC_URL }}img/logos/logo-ubuntu-orange.png" alt="" />
+				<img width="106" height="25" src="{{ STATIC_URL }}img/logos/logo-ubuntu-orange.svg" alt="" />
 			</a>
 		</div>
 		<ul>
 			<li class="accessibility-aid"><a accesskey="s" href="#main-content">Jump to content</a></li>
-
 			<li><a class="first{% if level_1 == 'cloud' %} active{% endif %}" href="/cloud">Cloud</a>
-				{% include "cloud/_nav_secondary.html" with arrow="true" promo="true" %}
+				{% include "cloud/_nav_secondary.html" with promo="true" %}
 			</li>
 			<li><a{% if level_1 == 'server' %} class="active"{% endif %} href="/server">Server</a>
-				{% include "server/_nav_secondary.html" with arrow="true" promo="true" %}
+				{% include "server/_nav_secondary.html" with promo="true" %}
 			</li>
 			<li><a {% if level_1 == 'desktop' %} class="active"{% endif %} href="/desktop">Desktop</a>
-				{% include "desktop/_nav_secondary.html" with arrow="true" promo="true" %}
+				{% include "desktop/_nav_secondary.html" with promo="true" %}
 			</li>
 			<li><a{% if level_1 == 'phone' %} class="active"{% endif %} href="/phone">Phone</a>
-				{% include "phone/_nav_secondary.html" with arrow="true" promo="true" %}
+				{% include "phone/_nav_secondary.html" with promo="true" %}
 			</li>
 			<li><a{% if level_1 == 'tablet' %} class="active"{% endif %} href="/tablet">Tablet</a>
-				{% include "tablet/_nav_secondary.html" with arrow="true" promo="true" %}
+				{% include "tablet/_nav_secondary.html" with promo="true" %}
 			</li>
 			<li><a{% if level_1 == 'tv' %} class="active"{% endif %} href="/tv">TV</a>
-				{% include "tv/_nav_secondary.html" with arrow="true" promo="true" %}
+				{% include "tv/_nav_secondary.html" with promo="true" %}
 			</li>
 			<li><a{% if level_1 == 'management' %} class="active"{% endif %} href="/management">Management</a>
-				{% include "management/_nav_secondary.html" with arrow="true" promo="true" %}
+				{% include "management/_nav_secondary.html" with promo="true" %}
 			</li>
 			<li><a{% if level_1 == 'download' %} class="active"{% endif %} href="/download">Download</a>
-				{% include "download/_nav_secondary.html" with arrow="true" promo="true" %}
+				{% include "download/_nav_secondary.html" with promo="true" %}
 			</li>
 		</ul>
 		{% include "templates/search.html" %}
@@ -90,9 +88,7 @@
 <div id="main-content" class="inner-wrapper">
 {% if level_1 %}
 {% block second_level_nav %}
-<nav role="navigation" class="nav-secondary clearfix">
-{% spaceless %}{% block second_level_nav_items %}{% endblock second_level_nav_items %}{% endspaceless %}
-</nav>
+<nav role="navigation" class="nav-secondary clearfix">{% spaceless %}{% block second_level_nav_items %}{% endblock second_level_nav_items %}{% endspaceless %}</nav>
 {% endblock second_level_nav %}
 {% endif %}
 
@@ -108,11 +104,24 @@
 <!-- footer content goes here -->
 {% include "templates/footer.html" %}
 
+<!-- Use this only until Modernizr fixes Opera Mini background-size detection -->
+<script>
+	var isOperaMini = (navigator.userAgent.indexOf('Opera Mini') > -1);
+	if(isOperaMini) {
+		var root = document.documentElement;
+		root.className += " opera-mini";
+	}
+</script>
 <script src="{{ STATIC_URL }}js/plugins/yui-combined.min.js"></script>
+<script>
+	if(!core){ var core = {}; }
+	core.globalPrepend = 'body';
+</script>
 
-<script src="{{ STATIC_URL }}js/core.js"></script>
-<script src="{{ STATIC_URL }}js/scratch.js"></script>
+<script src="//assets.ubuntu.com/sites/guidelines/js/responsive/core.js"></script>
 <script src="{{ STATIC_URL }}js/global.js"></script>
+<script src="{{ STATIC_URL }}js/scratch.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/respond.min.js"></script>
 
 {% block footer_extra %}{% endblock %}
 
@@ -125,7 +134,7 @@
 
   (function() {
   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>
@@ -140,4 +149,4 @@
 </script>
 
 </body>
-</html>
+</html><!-- the end -->

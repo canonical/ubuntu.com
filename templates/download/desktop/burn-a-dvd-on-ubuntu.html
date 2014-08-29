@@ -16,13 +16,16 @@
 <div class="row no-border">
 	<div id="download-help" class="eight-col box box-grey no-border">
 	<p>To create a DVD from which to install an up-to-date copy of Ubuntu, you first need to <a href="/download">download a copy of the latest version</a>. Once you&rsquo;ve done so, you can create your installation DVD. The procedure may differ slightly depending on which version of Ubuntu you are currently using.</p>
-		<div class="box box-highlight">
+		<div class="box box-highlight no-margin-bottom">
 			<ol class="no-bullets">
 				<li>
 					<span>1</span>
 					<div>
 						<p>Insert a blank CD into your burner. A 'CD/DVD Creator', 'Choose Disc Type' or 'Blank Disc' window might pop up. Close this, because we will not be using it.</p>
-						<img src="{{ STATIC_URL }}img/download/burn-cd-ubuntu-1.png" alt="" height="258" width="444">
+						<div class="help-image">
+							<img src="{{ STATIC_URL }}img/download/desktop/burn-a-dvd-on-ubuntu/image-burnadvdonubuntu-1.jpg" alt="" height="258" width="444">
+							<a href="{{ STATIC_URL }}img/download/desktop/burn-a-dvd-on-ubuntu/image-burnadvdonubuntu-1.jpg">Click to enlarge</a>
+						</div>
 					</div>
 				</li>
 				<li>
@@ -35,14 +38,20 @@
 					<span>3</span>
 					<div>
 						<p>Right click on the ISO file and choose <strong>'Write to Disc'</strong>.</p>
-						<img src="{{ STATIC_URL }}img/download/burn-cd-ubuntu-2-12.10.png" alt="" height="602" width="444">
+						<div class="help-image">
+							<img src="{{ STATIC_URL }}img/download/desktop/burn-a-dvd-on-ubuntu/image-burnadvdonubuntu-2.jpg" alt="" height="539" width="444">
+							<a href="{{ STATIC_URL }}img/download/desktop/burn-a-dvd-on-ubuntu/image-burnadvdonubuntu-2.jpg">Click to enlarge</a>
+						</div>
 					</div>
 				</li>
 				<li>
 					<span>4</span>
 					<div>
 						<p>Where it says 'Write disc to', you might have options such as 'File image' as well as your CD drive. Choose your CD drive. Your CD drive might show as something like 'BD-MLT UJ-210S'.</p>
-						<img src="{{ STATIC_URL }}img/download/burn-cd-ubuntu-3-12.10.png" alt="" height="225" width="444">
+						<div class="help-image">
+							<img src="{{ STATIC_URL }}img/download/desktop/burn-a-dvd-on-ubuntu/image-burnadvdonubuntu-3.jpg" alt="" height="230" width="444">
+							<a href="{{ STATIC_URL }}img/download/desktop/burn-a-dvd-on-ubuntu/image-burnadvdonubuntu-3.jpg">Click to enlarge</a>
+						</div>
 					</div>
 				</li>
 				<li>
@@ -65,10 +74,7 @@
 				</li>
 			</ol>
 		</div><!-- /.box -->
-{% include "download/shared/_wiki_link.html" %}
-{% include "download/shared/_ask_ubuntu.html" %}
 </div><!-- /.eight-col -->
-{% include "download/shared/_instalation_help.html" %}
 </div><!-- /.row -->
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

@@ -1,64 +1,62 @@
 {% if level_2 == 'tools' and not level_3 %}
-	<div class="feature-two three-col">
+	<div class="feature-two four-col">
         <h3>Experience Juju</h3>
         <p>Access the demo to experience how easy it is to manage services in the cloud.</p>
 		<p><a href="https://jujucharms.com/sidebar/">Try the Juju demo&nbsp;&rsaquo;</a></p>
-{% endif %}{% if level_3 == 'juju' %}
-	<div class="feature-two three-col">
+{% endif %}{% if level_3 == 'juju' or level_3 == 'jumpstart-training' or level_3 == 'bootstack' %}
+	<div class="feature-two four-col">
         <h3>Experience Juju</h3>
         <p>Access our Juju demo to see how easy it is to manage services in the cloud. Plus, get more information, including training and how to join the Juju community.</p>
 		<p><a href="https://jujucharms.com/sidebar/">Try the Juju demo&nbsp;&rsaquo;</a></p>
 {% endif %}{% if level_3 == 'maas' %}
-	<div class="feature-two three-col picto-maas">
+	<div class="feature-two four-col picto-maas">
         <h3>Install MAAS</h3>
         <p>Metal as a Service (MAAS) brings the language of the cloud to physical servers.</p>
 		<p><a href="http://maas.ubuntu.com">Find out more at maas.ubuntu.com&nbsp;&rsaquo;</a></p>
-{% endif %}{% if level_3 == 'jumpstart' %}
-	<div class="feature-two three-col">
-		<h3>Ubuntu Openstack Jumpstart</h3>
-		<p>A private cloud in 5 days. With an on-site Canonical engineer to get it done. </p>
-		<p><a class="link-cta-ubuntu" href="/cloud/tools/jumpstart/contact-us">Get in touch</a></p>
-{% endif %}{% if level_2 != 'use-a-cloud' and level_2 != 'tools' and level_3 != 'juju' and level_3 != 'maas' and level_3 != 'jumpstart' or level_3 == 'openstack' %}
-	<div class="feature-two three-col">
+{% endif %}{% if level_2 != 'use-a-cloud' and level_2 != 'tools' and level_3 != 'juju' and level_3 != 'maas' and level_3 != 'jumpstart-training' or level_3 == 'openstack' %}
+	<div class="feature-two four-col">
 		<h3>Download Ubuntu OpenStack</h3>
 	    <p>Ubuntu OpenStack cloud computing puts you in control of your IT infrastructure. It helps you optimise resources and reduce costs while you access computing power as and when you need it.</p>
 		<p><a href="/download/cloud" class="link-cta-ubuntu">Download now</a></p>
 {% endif %}{% if level_2 == 'use-a-cloud'  %}
-	<div class="feature-two three-col">
+	<div class="feature-two four-col">
 		<h3>Try Ubuntu guest today</h3>
     	<p>Ubuntu is the most popular guest OS on both public and private clouds, thanks to its security, versatility and continually updated features. Spinning up an Ubuntu instance in your cloud couldn&rsquo;t be easier, and Canonical offers industry-leading support.</p>
 		<p><a href="http://cloud-images.ubuntu.com/precise/current/">Try Ubuntu guest today&nbsp;&rsaquo;</a></p>
 {% endif %}
 	</div><!-- /.feature-two -->
-	
+
 {% if level_2 == 'use-a-cloud' or level_3 == 'maas' %}
-	<div class="feature-three three-col">
+	<div class="feature-three four-col">
 		<h3>Download Ubuntu Openstack</h3>
 	    <p>Ubuntu Openstack cloud computing puts you in control of your IT infrastructure. It helps you optimise resources and reduce costs while you access computing power as and when you need it.</p>
 		<p><a href="/download/cloud" class="link-cta-ubuntu">Download now</a></p>
-{% endif %}{% if level_2 == 'tools' and not level_3 %}
-	<div class="feature-three three-col picto-maas">
+{% endif %}{% if level_3 == 'jumpstart-training' or level_3 == 'bootstack' or level_2 == 'tools' and  level_3 != 'maas' and level_3 != 'juju' %}
+	<div class="feature-three four-col picto-maas">
         <h3>Provisioning through MAAS</h3>
         <p>Metal as a Service (MAAS) brings the language of the cloud to physical servers.</p>
 		<p><a href="http://maas.ubuntu.com">Find out more at maas.ubuntu.com&nbsp;&rsaquo;</a></p>
 {% endif %}{% if level_3 == 'juju' %}
-	<div class="feature-three three-col picto">
+	<div class="feature-three four-col picto">
         <h3>Browse the Charm Store</h3>
         <p>Charms are scripts that can be written in any language to deploy and configure services.</p>
 		<p><a href="http://jujucharms.com">Find out more at jujucharms.com&nbsp;&rsaquo;</a></p>
-{% endif %}{% if level_2 == 'management' or level_3 == 'jumpstart' %}
-	<div class="feature-three three-col">
+{% endif %}{% if level_2 == 'management' %}
+	<div class="feature-three four-col">
         <h3>Ubuntu Advantage</h3>
         <p>The Ubuntu Advantage service offers efficient systems administration, fast problem resolution and access to the Ubuntu experts as and when you need them.</p>
 		<p><a href="/cloud/management">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
-{% endif %}{% if level_2 != 'use-a-cloud' and level_2 != 'management' and level_2 != 'tools' and not level_3 or level_3 == 'openstack' or level_3 == 'ubuntu-oil' %}
-	<div class="feature-three three-col picto">	
-		<h3>Talk to us about your cloud plans today</h3>
-		<p>Whatever stage your cloud plans are at right now, the cloud experts at Canonical can help you take the next steps.</p>
-		<p><a href="/cloud/contact-us">Contact us today&nbsp;&rsaquo;</a></p>
+{% endif %}{% if level_2 != 'use-a-cloud' and level_2 != 'management' and level_2 != 'tools' and not level_3 or level_2 == 'openstack' or level_3 == 'ubuntu-openstack-interoperability-lab' or level_3 == 'ubuntu-certified-public-cloud' or level_3 == 'reference-architecture' %}
+	<div class="feature-three four-col picto">
+		<h3>Talk to us</h3>
+		<p>Let our cloud experts help you take the next step.</p>
+		<p><a href="/cloud/contact-us">Contact us&nbsp;&rsaquo;</a></p>
+		<h3>Keep up to date</h3>
+		<p>Get our cloud newsletter.</p>
+		<p><a href="https://pages.ubuntu.com/canonical-optin.html">Sign-up today&nbsp;&rsaquo;</a></p>
 {% endif %}
 	</div><!-- /.feature-three -->
-	<div class="feature-four three-col last-col">
+	<div class="feature-four four-col last-col">
 		<h3>Further reading</h3>
 		{% include "cloud/shared/_further_reading_links.html" %}
 	</div>
