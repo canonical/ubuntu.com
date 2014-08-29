@@ -105,19 +105,17 @@ update-templates:
 
 	mv templates/static .
 
-	# Remove references to scss module
-	find templates -type f -name '*.html' | xargs sed -i '/^ *[{][%] load scss [%][}] *$$/d'
-	find templates -type f -name '*.html' | xargs sed -i 's/[{][%]\s*scss\s\+["]\([^"]\+\).scss["]\s*[%][}]/\1.css/g'
-	find static/css -type f -name '*.scss' | xargs sed -i 's/[%][%]/%/g'
+	# Template replacements
+	# ==
+	find templates -type f -name '*.html' | xargs sed -i '/^ *[{][%] load scss [%][}] *$$/d'  # Remove references to scss module
+	find templates -type f -name '*.html' | xargs sed -i 's/[{][%]\s*scss\s\+["]\([^"]\+\).scss["]\s*[%][}]/\1.css/g'  # Point to CSS instead of SCSS
+	find templates -type f -name '*.html' | xargs sed -i 's/[{][{] *STATIC_URL *[}][}]u[/]/{{ STATIC_URL }}/g'  # Fix static file locations
+	find templates -type f -name '*.html' | xargs sed -i 's/[{][%] *\(extends\|include\|with\) \+["]ubuntu[/]/{% \1 "/g'  # Remove "ubuntu" from include paths
 
-	# Rewrite old "ubuntu"-prefixed template includes
-	#perl -pi -e 's/\{\{ STATIC_URL \}\}u\//{{ STATIC_URL }}/g' `find .`
-	#perl -pi -e 's/\{\% (extends|include|with) "ubuntu\//{% $$1 "/g' `find .`
-
-	find templates -type f -name '*.html' | xargs sed -i 's/[{][{] *STATIC_URL *[}][}]u[/]/{{ STATIC_URL }}/g'
-	find templates -type f -name '*.html' | xargs sed -i 's/[{][%] *\(extends\|include\|with\) \+["]ubuntu[/]/{% \1 "/g'
-
-	find static/css -type f -name '*.scss' | xargs sed -i 's/[@]import ["]css[/]/@import "static\/css\//g'
+	# Stylesheet replacements
+	# ==
+	find static/css -type f -name '*.scss' | xargs sed -i 's/[%][%]/%/g'  # Remove erroneous double-percent
+	find static/css -type f -name '*.scss' | xargs sed -i 's/[@]import ["]css[/]/@import "/g'  # Fix include paths for sass
 
 update-templates-local:
 	rm -rf templates
@@ -129,19 +127,17 @@ update-templates-local:
 
 	mv templates/static .
 
-	# Remove references to scss module
-	find templates -type f -name '*.html' | xargs sed -i '/^ *[{][%] load scss [%][}] *$$/d'
-	find templates -type f -name '*.html' | xargs sed -i 's/[{][%]\s*scss\s\+["]\([^"]\+\).scss["]\s*[%][}]/\1.css/g'
-	find static/css -type f -name '*.scss' | xargs sed -i 's/[%][%]/%/g'
+	# Template replacements
+	# ==
+	find templates -type f -name '*.html' | xargs sed -i '/^ *[{][%] load scss [%][}] *$$/d'  # Remove references to scss module
+	find templates -type f -name '*.html' | xargs sed -i 's/[{][%]\s*scss\s\+["]\([^"]\+\).scss["]\s*[%][}]/\1.css/g'  # Point to CSS instead of SCSS
+	find templates -type f -name '*.html' | xargs sed -i 's/[{][{] *STATIC_URL *[}][}]u[/]/{{ STATIC_URL }}/g'  # Fix static file locations
+	find templates -type f -name '*.html' | xargs sed -i 's/[{][%] *\(extends\|include\|with\) \+["]ubuntu[/]/{% \1 "/g'  # Remove "ubuntu" from include paths
 
-	# Rewrite old "ubuntu"-prefixed template includes
-	#perl -pi -e 's/\{\{ STATIC_URL \}\}u\//{{ STATIC_URL }}/g' `find .`
-	#perl -pi -e 's/\{\% (extends|include|with) "ubuntu\//{% $$1 "/g' `find .`
-
-	find templates -type f -name '*.html' | xargs sed -i 's/[{][{] *STATIC_URL *[}][}]u[/]/{{ STATIC_URL }}/g'
-	find templates -type f -name '*.html' | xargs sed -i 's/[{][%] *\(extends\|include\|with\) \+["]ubuntu[/]/{% \1 "/g'
-
-	find static/css -type f -name '*.scss' | xargs sed -i 's/[@]import ["]css[/]/@import "static\/css\//g'
+	# Stylesheet replacements
+	# ==
+	find static/css -type f -name '*.scss' | xargs sed -i 's/[%][%]/%/g'  # Remove erroneous double-percent
+	find static/css -type f -name '*.scss' | xargs sed -i 's/[@]import ["]css[/]/@import "/g'  # Fix include paths for sass
 
 # The below targets
 # are just there to allow you to type "make it so"
