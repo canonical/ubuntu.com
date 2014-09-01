@@ -127,6 +127,8 @@ update-templates:
 	find static/css -type f -name '*.scss' | xargs sed -i 's/[%][%]/%/g'  # Remove erroneous double-percent
 	find static/css -type f -name '*.scss' | xargs sed -i 's/[@]import ["]css[/]/@import "/g'  # Fix include paths for sass
 
+	$(MAKE) sass-build  # Update local CSS files
+
 update-templates-local:
 	rm -rf templates
 	rm -rf static
@@ -148,6 +150,8 @@ update-templates-local:
 	# ==
 	find static/css -type f -name '*.scss' | xargs sed -i 's/[%][%]/%/g'  # Remove erroneous double-percent
 	find static/css -type f -name '*.scss' | xargs sed -i 's/[@]import ["]css[/]/@import "/g'  # Fix include paths for sass
+
+	$(MAKE) sass-build  # Update local CSS files
 
 clean:
 	rm -rf env static/css/styles.css static/css/core-print.css
