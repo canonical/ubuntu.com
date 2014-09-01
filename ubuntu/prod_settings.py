@@ -29,7 +29,7 @@ USE_L10N = True
 USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-TEMPLATE_DIRS = [BASE_DIR + "/templates"]
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, "templates")]
 
 # See http://tinyurl.com/django-context-processors
 TEMPLATE_CONTEXT_PROCESSORS = (
