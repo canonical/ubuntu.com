@@ -14,15 +14,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # Keep it secret, keep it safe!
 SECRET_KEY = 'g@=8y0p%v6hsk6n1p*^tqb@)g1#v7r!#e1x5^x!$bvm#u9hal4'
 
-DEBUG = True
-TEMPLATE_DEBUG = True
-ALLOWED_HOSTS = []
-
 # See https://docs.djangoproject.com/en/dev/ref/contrib/
 INSTALLED_APPS = (
     'django.contrib.staticfiles',  # Needed for STATICFILES_DIRS to work
 )
 
+DEBUG = True
 ROOT_URLCONF = 'ubuntu.urls'
 WSGI_APPLICATION = 'ubuntu.wsgi.application'
 LANGUAGE_CODE = 'en-us'
