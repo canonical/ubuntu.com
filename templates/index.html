@@ -1,10 +1,10 @@
 {% extends "base_index.html" %}
 
-{% block takeover_body_class %} homepage-jumpstart-takeover{% endblock takeover_body_class %}
+{% block takeover_body_class %} wef-takeover{% endblock takeover_body_class %}
 
 {% block takeover_content %}
 	{% if switcher %}
 		<a href="/" class="lang-switch" lang="zh">中文主页&nbsp;&rsaquo;</a>
 	{% endif %}
-	{% include "takeovers/_jumpstart_takeover.html" %}
+	{% include "takeovers/_wef_takeover.html" %}
 {% endblock takeover_content %}
