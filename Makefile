@@ -100,6 +100,13 @@ brew-dependencies:
 	if [ ! $$(command -v pip) ]; then sudo easy_install pip; fi
 	if [ ! $$(command -v sass) ]; then sudo gem install sass; fi
 
+
+##
+# Create the SSH tunnel to the GSA server to test search
+##
+search-setup-local:
+	ssh -f 10.55.60.86 -L 2000:tupilaq.internal:80 -N
+
 update-templates:
 	rm -rf templates
 	rm -rf static
