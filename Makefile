@@ -1,7 +1,7 @@
 SHELL := /bin/bash # Use bash syntax
 
 define HELP_TEXT
-Canonical.com website project
+Ubuntu.com website project
 ===
 
 Usage:
@@ -100,12 +100,17 @@ brew-dependencies:
 	if [ ! $$(command -v pip) ]; then sudo easy_install pip; fi
 	if [ ! $$(command -v sass) ]; then sudo gem install sass; fi
 
-
 ##
 # Create the SSH tunnel to the GSA server to test search
 ##
 search-setup-local:
 	ssh -f 10.55.60.86 -L 2000:tupilaq.internal:80 -N
+
+##
+# Delete any generated files
+##
+clean:
+	rm -rf env .sass-cache static/css/styles.css static/css/core-print.css
 
 update-templates:
 	rm -rf templates
@@ -153,9 +158,6 @@ update-templates-local:
 	find static/css -type f -name '*.scss' | xargs sed -i 's/[@]import ["]css[/]/@import "/g'  # Fix include paths for sass
 
 	$(MAKE) sass-build  # Update local CSS files
-
-clean:
-	rm -rf env static/css/styles.css static/css/core-print.css
 
 # The below targets
 # are just there to allow you to type "make it so"
