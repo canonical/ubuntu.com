@@ -29,7 +29,7 @@ help:
 ##
 # Start the development server
 ##
-develop: sass-watch dev-server
+develop: watch-sass dev-server
 
 ##
 # Prepare the project
@@ -45,16 +45,14 @@ dev-server:
 ##
 # Run SASS watcher
 ##
-sass-watch:
-	sass --debug-info --watch static/css/styles.scss &
-	sass --debug-info --watch static/css/core-print.scss &
+watch-sass:
+	sass --debug-info --watch static/css/ &
 
 ##
 # Build SASS
 ##
-sass-build:
-	sass --style compressed --update static/css/styles.scss
-	sass --style compressed --update static/css/core-print.scss
+sass:
+	sass --style compressed --update static/css/
 
 ##
 # Get virtualenv ready
