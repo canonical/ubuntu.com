@@ -30,10 +30,10 @@
 	Base grid sass, this lives in /sites/core/static/css/core-grid.scss
 	-----------------------------------------------------------------
 	$base: 			16;
-	$column_width:	( 60 / $base )+em;
-	$gutter-width: 	( 20 / $base )+em;
-	$grid_column: 	( 57 / $base )+em; nested columns
-	$grid-gutter: 	( 18 / $base )+em;
+	$column_width:	( 60 / $base )em;
+	$gutter-width: 	( 20 / $base )em;
+	$grid_column: 	( 57 / $base )em; nested columns
+	$grid-gutter: 	( 18 / $base )em;
 
 	Available grid widths
 	-----------------------------------------------------------------
@@ -163,8 +163,8 @@ body.download-desktop-upgrade {
 	background: $light-grey url(../img/pictograms/pictogram-windows-44x44.png) $gutter-width center no-repeat;
 	border-top: 2px solid #e3e3e3;
 	display: inline-block;
-	margin-left: -(25/$base)+em;
-	margin-right: -(25/$base)+em;
+	margin-left: -(25/$base)em;
+	margin-right: -(25/$base)em;
 	padding: $gutter-width $gutter-width $gutter-width 84px;
 }
 
@@ -971,7 +971,7 @@ html.opera-mini {
 	#ubuntu-help li span {
 		@include font_size (36);
 	  height: 38px;
-	  margin-left: -(80/36)+em;
+	  margin-left: -(80/36)em;
 	  padding: 0 21px 20px 19px;
 	}
 

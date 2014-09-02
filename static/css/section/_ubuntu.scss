@@ -35,10 +35,10 @@
 	Base grid sass, this lives in /sites/core/static/css/core-grid.scss
 	-----------------------------------------------------------------
 	$base: 			16;
-	$column_width:	( 60 / $base )+em;
-	$gutter-width: 	( 20 / $base )+em;
-	$grid_column: 	( 57 / $base )+em; nested columns
-	$grid-gutter: 	( 18 / $base )+em;
+	$column_width:	( 60 / $base )em;
+	$gutter-width: 	( 20 / $base )em;
+	$grid_column: 	( 57 / $base )em; nested columns
+	$grid-gutter: 	( 18 / $base )em;
 
 	Available grid widths
 	-----------------------------------------------------------------
@@ -322,7 +322,7 @@ body.ubuntu-take-the-tour .seven-col img {
 
 /* .ubuntu-why-use-ubuntu */ .row-download .article {
 	background: url(../img/ubuntu/whyuse-laptop-356x217.jpg) 20px 20px no-repeat;
-	min-height: (230/$base)+em;
+	min-height: (230/$base)em;
 	padding-left: $six-col;
 	padding-right: $one-col;
 	padding-top: 20px;
@@ -372,7 +372,7 @@ body.ubuntu-take-the-tour .seven-col img {
 	@include rounded_corners(4px);
 	background: $ubuntu-orange;
 	color: #fff;
-	margin: ( 4 / $base )+em 20px;
+	margin: ( 4 / $base )em 20px;
 	overflow: hidden;
 	padding: ( 2 * $gutter-width) 0 $gutter-width 77px;
 }
@@ -480,7 +480,7 @@ body.ubuntu-why-is-it-free ol.numbered-list {
 ol.numbered-list li {
 	@include rounded_corners(4px);
 	float: left;
-	margin-bottom: (2/$base)+em; /* 2px in em  + $gutter-width */
+	margin-bottom: (2/$base)em; /* 2px in em  + $gutter-width */
 	padding: 3.076em 0 0 80px;
 }
 

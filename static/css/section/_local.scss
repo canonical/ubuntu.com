@@ -3,9 +3,12 @@
  * Cookie policy style updates
  * To be updated in core-patterns
  */
-footer.global .legal.has-cookie {
-  /* if the cookie message is being displayed add padding so the legal links are still visible */
-  padding-bottom: 70px;
+footer.global {
+  ul.inline li:last-child { width: auto; }
+  .legal.has-cookie {
+    /* if the cookie message is being displayed add padding so the legal links are still visible */
+    padding-bottom: 70px;
+  }
 }
 
 .cookie-policy {

@@ -31,10 +31,10 @@
 	Base grid sass, this lives in /sites/core/static/css/core-grid.scss
 	-----------------------------------------------------------------
 	$base: 			16;
-	$column_width:	( 60 / $base )+em;
-	$gutter-width: 	( 20 / $base )+em;
-	$grid_column: 	( 57 / $base )+em; nested columns
-	$grid-gutter: 	( 18 / $base )+em;
+	$column_width:	( 60 / $base )em;
+	$gutter-width: 	( 20 / $base )em;
+	$grid_column: 	( 57 / $base )em; nested columns
+	$grid-gutter: 	( 18 / $base )em;
 
 	Available grid widths
 	-----------------------------------------------------------------
@@ -88,7 +88,7 @@ body.business .row-quote {
 }
 
 body.business p.desc {
-	min-height: (170/$base)+em;
+	min-height: (170/$base)em;
 }
 body.business .box .six-col { margin-bottom: 0; }
 
@@ -321,14 +321,14 @@ body.business-case-studies .row-services .four-col {
 
 body.business-case-studies .row-services .four-col img {
     background: #fff url(../img/patterns/background-dots.png);
-    padding: (20/$base)+em (85/$base)+em;
+    padding: (20/$base)em (85/$base)em;
     display: block;
     margin-bottom: 1.25em;
 }
 
 body.business-case-studies .row-services .four-col {
 	border-right: 1px dotted $warm-grey;
-	padding-right: (20/$base)+em;
+	padding-right: (20/$base)em;
 }
 
 body.business-case-studies .row-services .last-col {
@@ -337,7 +337,7 @@ body.business-case-studies .row-services .last-col {
 }
 
 body.business-case-studies .row-services .last-col img {
-    padding: (20/$base)+em (94/$base)+em;
+    padding: (20/$base)em (94/$base)em;
 }
 
 body.business-case-studies .row-services .four-col h4,
@@ -347,7 +347,7 @@ body.business-case-studies .row-services .four-col p {
 
 #thank-you-extra .four-col {
 	border-bottom: 1px dotted $warm-grey;
-	padding-bottom: (20/$base)+em;
+	padding-bottom: (20/$base)em;
 }
 
 #thank-you-extra .last-col {
@@ -545,7 +545,7 @@ body.pc-business .packages h2 {
 
 	#thank-you-extra .four-col {
 		border-right: 1px dotted $warm-grey;
-		padding-right: (20/$base)+em;
+		padding-right: (20/$base)em;
 		border-bottom: 0;
 	}
 

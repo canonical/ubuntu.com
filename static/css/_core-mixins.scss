@@ -21,8 +21,8 @@
 }
 
 @mixin font_size ($size: 16) {
-  font-size: ($size / $base)+em;
-  margin-bottom: (12 / $size)+em;
+  font-size: ($size / $base)em;
+  margin-bottom: (12 / $size)em;
 }
 
 @mixin box_sizing ($type: border-box) {
@@ -80,9 +80,9 @@
 // CSS3 colunms
 @mixin columns($num: 3, $gap: 20) {
   -moz-column-count: $num;
-  -moz-column-gap: ($gap / $base)+em;
+  -moz-column-gap: ($gap / $base)em;
   -webkit-column-count: $num;
-  -webkit-column-gap: ($gap / $base)+em;
+  -webkit-column-gap: ($gap / $base)em;
   column-count: $num;
-  column-gap: ($gap / $base)+em;
+  column-gap: ($gap / $base)em;
 }
