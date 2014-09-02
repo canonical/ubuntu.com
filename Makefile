@@ -129,6 +129,8 @@ update-templates:
 
 	# Stylesheet replacements
 	# ==
+	find static/css -name '*.css*' -exec rm {} +  # Remove any .css files - should only be .sass files
+	find static/css -name '*.scss' -not -regex '.*/\(styles.scss\|core-print.scss\|ie/.*\)' | rename 's/(.*\/)?([^\/]*)/$$1_$$2/'  # Rename .scss include files to have underscores
 	find static/css -type f -name '*.scss' | xargs sed -i 's/[%][%]/%/g'  # Remove erroneous double-percent
 	find static/css -type f -name '*.scss' | xargs sed -i 's/[@]import ["]css[/]/@import "/g'  # Fix include paths for sass
 	find static/css -type f -name '*.scss' | xargs sed -i 's/(\([^)]\)em/(\1)+em/g'  # Fix include paths for sass
@@ -150,12 +152,15 @@ update-templates-local:
 	find templates -type f -name '*.html' | xargs sed -i '/^ *[{][%] load scss [%][}] *$$/d'  # Remove references to scss module
 	find templates -type f -name '*.html' | xargs sed -i 's/[{][%]\s*scss\s\+["]\([^"]\+\).scss["]\s*[%][}]/\1.css/g'  # Point to CSS instead of SCSS
 	find templates -type f -name '*.html' | xargs sed -i 's/[{][{] *STATIC_URL *[}][}]u[/]/{{ STATIC_URL }}/g'  # Fix static file locations
-	find templates -type f -name '*.html' | xargs sed -i 's/[{][%] *\(extends\|include\|with\) \+["]ubuntu[/]/{% \1 "/g'  # Remove "ubuntu" from include paths
+	find templates -type f -name '*.html' | xargs sed -i 's/[{][%] *\(extends\|include\|with\) \+["]\(..[/]sites[/]\)\?ubuntu[/]/{% \1 "/g'  # Remove "ubuntu" from include paths
 
 	# Stylesheet replacements
 	# ==
+	find static/css -name '*.css*' -exec rm {} +  # Remove any .css files - should only be .sass files
+	find static/css -name '*.scss' -not -regex '.*/\(styles.scss\|core-print.scss\|ie/.*\)' | rename 's/(.*\/)?([^\/]*)/$$1_$$2/'  # Rename .scss include files to have underscores
 	find static/css -type f -name '*.scss' | xargs sed -i 's/[%][%]/%/g'  # Remove erroneous double-percent
 	find static/css -type f -name '*.scss' | xargs sed -i 's/[@]import ["]css[/]/@import "/g'  # Fix include paths for sass
+	find static/css -type f -name '*.scss' | xargs sed -i 's/(\([^)]\)em/(\1)+em/g'  # Fix include paths for sass
 
 	$(MAKE) sass-build  # Update local CSS files
 
