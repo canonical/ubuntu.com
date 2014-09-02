@@ -108,7 +108,8 @@ search-setup-local:
 # Delete any generated files
 ##
 clean:
-	rm -rf env .sass-cache static/css/styles.css static/css/core-print.css
+	rm -rf env .sass-cache
+	find static/css -name '*.css*' -exec rm {} +  # Remove any .css files - should only be .sass files
 
 update-templates:
 	rm -rf templates
