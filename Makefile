@@ -111,6 +111,18 @@ clean:
 	rm -rf env .sass-cache
 	find static/css -name '*.css*' -exec rm {} +  # Remove any .css files - should only be .sass files
 
+##
+# Rebuild the pip requirements cache, for non-internet-visible builds
+##
+rebuild-dependencies-cache:
+	rm -rf pip-cache
+	bzr branch lp:~webteam-backend/ubuntu-website/dependencies pip-cache
+	pip install --exists-action=w --download pip-cache/ -r requirements/standard.txt
+	bzr add .
+	bzr commit pip-cache/ -m 'automatically updated ubuntu website requirements'
+	bzr push --directory pip-cache lp:~webteam-backend/ubuntu-website/dependencies
+	rm -rf pip-cache src
+
 update-templates:
 	rm -rf templates
 	rm -rf static
