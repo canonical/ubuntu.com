@@ -24,12 +24,14 @@ ROOT_URLCONF = 'ubuntu.urls'
 WSGI_APPLICATION = 'ubuntu.wsgi.application'
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
-USE_I18N = True
-USE_L10N = True
-USE_TZ = True
+USE_I18N = False
+USE_L10N = False
+USE_TZ = False
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, "templates")]
+
+MIDDLEWARE_CLASSES = []
 
 # See http://tinyurl.com/django-context-processors
 TEMPLATE_CONTEXT_PROCESSORS = (
