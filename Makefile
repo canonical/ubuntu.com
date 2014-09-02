@@ -52,7 +52,7 @@ watch-sass:
 # Build SASS
 ##
 sass:
-	sass --style compressed --update static/css/
+	sass --style compressed --update static/css/ --force
 
 ##
 # Get virtualenv ready
@@ -140,6 +140,8 @@ update-templates:
 
 	# Stylesheet replacements
 	# ==
+	echo -e "@import '../core-constants'\n" | cat - static/css/ie/ie6.scss > /tmp/out && mv /tmp/out static/css/ie/ie6.scss  # Add "core-constants" to IE6 styles
+	echo -e "@import '../core-constants'\n" | cat - static/css/ie/ie7.scss > /tmp/out && mv /tmp/out static/css/ie/ie7.scss  # Add "core-constants" to IE7 styles
 	find static/css -name '*.css*' -exec rm {} +  # Remove any .css files - should only be .sass files
 	find static/css -name '*.scss' -not -regex '.*/\(styles.scss\|core-print.scss\|global-responsive.scss\|ie/.*\)' | rename 's/(.*\/)?([^\/]*)/$$1_$$2/'  # Rename .scss include files to have underscores
 	find static/css -type f -name '*.scss' | xargs sed -i 's/[%][%]/%/g'  # Remove erroneous double-percent
@@ -167,6 +169,8 @@ update-templates-local:
 
 	# Stylesheet replacements
 	# ==
+	echo -e "@import \"../core-constants\";\n" | cat - static/css/ie/ie6.scss > /tmp/out && mv /tmp/out static/css/ie/ie6.scss  # Add "core-constants" to IE6 styles
+	echo -e "@import \"../core-constants\";\n" | cat - static/css/ie/ie7.scss > /tmp/out && mv /tmp/out static/css/ie/ie7.scss  # Add "core-constants" to IE7 styles
 	find static/css -name '*.css*' -exec rm {} +  # Remove any .css files - should only be .sass files
 	find static/css -name '*.scss' -not -regex '.*/\(styles.scss\|core-print.scss\|global-responsive.scss\|ie/.*\)' | rename 's/(.*\/)?([^\/]*)/$$1_$$2/'  # Rename .scss include files to have underscores
 	find static/css -type f -name '*.scss' | xargs sed -i 's/[%][%]/%/g'  # Remove erroneous double-percent
