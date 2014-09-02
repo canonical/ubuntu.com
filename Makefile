@@ -129,12 +129,12 @@ update-templates:
 	# Stylesheet replacements
 	# ==
 	find static/css -name '*.css*' -exec rm {} +  # Remove any .css files - should only be .sass files
-	find static/css -name '*.scss' -not -regex '.*/\(styles.scss\|core-print.scss\|ie/.*\)' | rename 's/(.*\/)?([^\/]*)/$$1_$$2/'  # Rename .scss include files to have underscores
+	find static/css -name '*.scss' -not -regex '.*/\(styles.scss\|core-print.scss\|global-responsive.scss\|ie/.*\)' | rename 's/(.*\/)?([^\/]*)/$$1_$$2/'  # Rename .scss include files to have underscores
 	find static/css -type f -name '*.scss' | xargs sed -i 's/[%][%]/%/g'  # Remove erroneous double-percent
 	find static/css -type f -name '*.scss' | xargs sed -i 's/[@]import ["]css[/]/@import "/g'  # Fix include paths for sass
 	find static/css -type f -name '*.scss' | xargs sed -i 's/(\([^)]\)em/(\1)+em/g'  # Fix include paths for sass
 
-	$(MAKE) sass-build  # Update local CSS files
+	$(MAKE) sass  # Update local CSS files
 
 update-templates-local:
 	rm -rf templates
@@ -156,12 +156,12 @@ update-templates-local:
 	# Stylesheet replacements
 	# ==
 	find static/css -name '*.css*' -exec rm {} +  # Remove any .css files - should only be .sass files
-	find static/css -name '*.scss' -not -regex '.*/\(styles.scss\|core-print.scss\|ie/.*\)' | rename 's/(.*\/)?([^\/]*)/$$1_$$2/'  # Rename .scss include files to have underscores
+	find static/css -name '*.scss' -not -regex '.*/\(styles.scss\|core-print.scss\|global-responsive.scss\|ie/.*\)' | rename 's/(.*\/)?([^\/]*)/$$1_$$2/'  # Rename .scss include files to have underscores
 	find static/css -type f -name '*.scss' | xargs sed -i 's/[%][%]/%/g'  # Remove erroneous double-percent
 	find static/css -type f -name '*.scss' | xargs sed -i 's/[@]import ["]css[/]/@import "/g'  # Fix include paths for sass
 	find static/css -type f -name '*.scss' | xargs sed -i 's/(\([^)]\)em/(\1)+em/g'  # Fix include paths for sass
 
-	$(MAKE) sass-build  # Update local CSS files
+	$(MAKE) sass  # Update local CSS files
 
 # The below targets
 # are just there to allow you to type "make it so"
