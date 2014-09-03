@@ -5,7 +5,7 @@
 {% block body_classes %}audience-consumer{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" subsection_title="Features" page_title="Web browsing"  %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Desktop" subsection_title="Features" page_title="Web browsing"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -19,7 +19,7 @@
 			<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-chrome-reflex-48x88.png" width="48" height="100" title="Chrome" alt="Chrome icon" /></li>
 			<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-baidu-reflex-48x88.png" width="45" height="100" title="Baidu" alt="Baidu icon" /></li>
 		</ul>
-		{% include "shared/_share_this.html" %}
+		{% include "_includes/_share_this.html" %}
 	</div><!-- /.four-col -->
 	<div class="eight-col last-col no-margin pull-right">
 		<img class="touch-border" src="{{ STATIC_URL }}img/desktop/features/web-browsing/image-webbrowsing.jpg" width="630" height="360" alt="Firefox on Ubuntu" />

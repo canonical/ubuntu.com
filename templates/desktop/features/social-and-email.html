@@ -5,7 +5,7 @@
 {% block body_classes %}audience-consumer{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" subsection_title="Features" page_title="Social and email"  %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Desktop" subsection_title="Features" page_title="Social and email"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -22,7 +22,7 @@
 				<img src="{{ STATIC_URL }}img/icons/icon-empathy-reflex-48x88.png" width="44" height="88" title="Empathy" alt="Empathy icon" />
 			</li>
 		</ul>
-		{% include "shared/_share_this.html" %}
+		{% include "_includes/_share_this.html" %}
 	</div>
 	<div class="eight-col last-col no-margin pull-right">
 		<img class="touch-border" src="{{ STATIC_URL }}img/desktop/features/social-and-email/image-socialandemail.jpg" width="636" height="327" alt="Evolution on Ubuntu" />

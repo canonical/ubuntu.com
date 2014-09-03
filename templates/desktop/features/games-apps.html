@@ -5,7 +5,7 @@
 {% block body_classes %}audience-consumer{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" subsection_title="Features" page_title="Find more apps"  %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Desktop" subsection_title="Features" page_title="Find more apps"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -14,7 +14,7 @@
 <div class="row intro">
 	<div class="five-col">
 		<p>Ubuntu Software Centre also gives you instant access to thousands of great applications &mdash; some free and some available commercially. You can also search for apps directly from the Dash. If you see something you like, you can get more information and then install it in just a couple of clicks.</p>
-		{% include "shared/_share_this.html" %}
+		{% include "_includes/_share_this.html" %}
 	</div>
 	<div class="seven-col last-col no-margin pull-right">
 		<img class="touch-border" src="{{ STATIC_URL }}img/desktop/features/image-software-centre.jpg" alt="image-software-centre" width="549" height="300" />

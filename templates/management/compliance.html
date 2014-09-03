@@ -5,7 +5,7 @@
 {% block meta_keywords %}Landscape, systems management, Ubuntu, Canonical, compliance, compliant, regulations, regulatory, enterprise, software, patch, patching, report, reporting, log, logging, security, audit, RBAC, role-based access control, hardware, machine, desktop, server, cloud, complexity, automation{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Management" page_title="Compliance"  %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Management" page_title="Compliance"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -64,7 +64,7 @@
 	</div>
 </div><!-- .row -->
 
-{% include "shared/_live_chat.html" %}
+{% include "_includes/_live_chat.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

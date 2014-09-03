@@ -6,7 +6,7 @@
 {% block meta_description %}HP and Ubuntu partner page for ubuntu.com.  {% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Partners" page_title="HP" tertiary="true" %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Partners" page_title="HP" tertiary="true" %}
 {% endblock second_level_nav_items %}
 
 
@@ -20,7 +20,7 @@
 	<span><img src="{{ STATIC_URL }}img/partners/partners-logo-hp.png" alt="Dell" /></span>
 </div><!-- / .row -->
 
-{% include "shared/_moonshot_promo.html" %}
+{% include "_includes/_moonshot_promo.html" %}
 
 <div class="row">
 	<div class="six-col">

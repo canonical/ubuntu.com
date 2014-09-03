@@ -9,7 +9,7 @@
 {% block extra_body_class %}management-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Management" page_title="Overview"  %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Management" page_title="Overview"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -146,7 +146,7 @@
 	</div>
 </div><!-- /.row-->
 
-{% include "shared/_live_chat.html" %}
+{% include "_includes/_live_chat.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

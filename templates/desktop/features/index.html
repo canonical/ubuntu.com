@@ -7,7 +7,7 @@
 
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Features" tertiary="true"  %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Desktop" page_title="Features" tertiary="true"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -20,7 +20,7 @@
 	<div class="eight-col last-col text-center">
 		<img src="{{ STATIC_URL }}img/desktop/features/image-features.jpg" alt="Facebook loaded Firefox running on Ubuntu" width="654" height="330" />
 	</div>
-	<div class="clearfix">{% include "shared/_share_this.html" %}</div>
+	<div class="clearfix">{% include "_includes/_share_this.html" %}</div>
 </div><!-- /.row -->
 
 <div class="row row-what-is-new">

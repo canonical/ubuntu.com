@@ -3,7 +3,7 @@
 {% block title %}ARM and Ubuntu{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Partners" page_title="Arm"  %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Partners" page_title="Arm"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -16,7 +16,7 @@
 	<span><img src="{{ STATIC_URL }}img/partners/arm/logo-arm.png" alt="ARM logo" class="priority-0" /></span>
 </div><!-- / .row -->
 
-{% include "shared/_moonshot_promo.html" %}
+{% include "_includes/_moonshot_promo.html" %}
 
 <div class="row">
 	<h2>ARM architecture</h2>

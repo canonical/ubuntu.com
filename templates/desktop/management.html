@@ -4,7 +4,7 @@
 {% block extra_body_class %}desktop-desktop-management{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Desktop management"  %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Desktop" page_title="Desktop management"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -140,13 +140,13 @@
 <p><a href="/management/contact-us">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
 </div><!-- /.row -->
 
-{% include "shared/_ubuntu_advantage_whats_inlcuded.html" %}
+{% include "_includes/_ubuntu_advantage_whats_inlcuded.html" %}
 
 <div class="row row-community row-image-centered no-border no-margin-bottom">
-{% include "shared/_ubuntu_advantage_community.html" %}
+{% include "_includes/_ubuntu_advantage_community.html" %}
 </div><!-- /.row -->
 
-{% include "shared/_live_chat.html" %}
+{% include "_includes/_live_chat.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}
