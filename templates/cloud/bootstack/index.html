@@ -27,7 +27,7 @@
 {% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Your cloud" %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Cloud" page_title="Your cloud" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -115,6 +115,6 @@
 	</div><!-- /.eight-col -->
 </div><!-- /.row -->
 
-{% include "shared/_live_chat.html" %}
+{% include "_includes/_live_chat.html" %}
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

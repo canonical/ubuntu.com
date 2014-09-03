@@ -5,7 +5,7 @@
 {% block meta_keywords %}Ubuntu, Ubuntu Kylin, OS, China, Chinese, translated, China Software and Integrated Chip Promotions Centre, CSIP, National University of Defence Technology, NUDT, 13.10, download {% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Ubuntu Kylin" %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Desktop" page_title="Ubuntu Kylin" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -17,7 +17,7 @@
 		<p>Part of the Ubuntu project since early 2013, the latest version of Ubuntu Kylin promises five years’ worth of support, keeping your computer running safely and smoothly for years to come.</p>
 		<p><a href="/download/CN" class="link-cta-ubuntu">Download Ubuntu Kylin</a></p>
 		<p><img src="{{ STATIC_URL }}img/desktop/ubuntu-kylin/image-ubuntukylin.jpg" alt="" class="for-mobile" /></p>
-		{% include "shared/_share_this.html" %}
+		{% include "_includes/_share_this.html" %}
 	</div><!-- / .five-col -->
 </div><!-- / .row -->
 

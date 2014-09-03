@@ -7,7 +7,7 @@
 {% block meta_keywords %}Jumpstart Training, consulting, Ubuntu OpenStack, private cloud{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Jumpstart" %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Cloud" page_title="Jumpstart" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -120,7 +120,7 @@
 </div><!-- /.row -->
 
 
-{% include "shared/_live_chat.html" %}
+{% include "_includes/_live_chat.html" %}
 {% endblock content %}
 {% block footer_extra %}
 <!-- twitter tracking code -->

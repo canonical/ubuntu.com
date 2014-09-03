@@ -8,7 +8,7 @@
 {% block extra_body_class %}phone-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Overview"  %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Phone" page_title="Overview"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -52,7 +52,7 @@
 	</div>
 </div><!-- /.row -->
 
-{% include "shared/_edge_promo.html" %}
+{% include "_includes/_edge_promo.html" %}
 
 <div class="row row-image-centered">
 	<span class="four-col">

@@ -7,7 +7,7 @@
 {% block meta_description %}You can access Landscape as a hosted service over the internet or as an application running on a dedicated server behind your firewall. Both options are part of the Ubuntu Advantage service package, however you can try Landscape for free for 30 days, without committing to a subscription. {% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Management" page_title="Ubuntu Advantage" %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Management" page_title="Ubuntu Advantage" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -153,7 +153,7 @@
 	<p class="twelve-col"><a href="/management/working-with-landscape">Find out more about working with Landscape&nbsp;&rsaquo;</a></p>
 </div><!-- /.row -->
 
-{% include "shared/_live_chat.html" %}
+{% include "_includes/_live_chat.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

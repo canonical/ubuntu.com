@@ -7,7 +7,7 @@
 {% block meta_keywords %}Ubuntu BootStack, BootStack, private cloud, support, Ubuntu OpenStack, consulting, build a cloud, Ubuntu, Canonical{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="BootStack" page_title="Order" %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="BootStack" page_title="Order" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -757,6 +757,6 @@ if ((typeof mktoPreFillFields != 'undefined') &&
 	</div><!-- /.eight-col -->
 </div><!-- /.row -->
 
-{% include "shared/_live_chat.html" %}
+{% include "_includes/_live_chat.html" %}
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

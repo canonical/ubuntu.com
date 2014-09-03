@@ -42,7 +42,7 @@
 {% block head_extra %}{% endblock %}
 
 </head>
-<body class="{% if level_1 != "" %}{% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}{% endif %}{% if level_2 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}{% endif %}{% if level_3 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}-{{ level_3 }} {% endif %} {% include "templates/body-class.html" %}{% if extra_body_class != "" %} {% block extra_body_class %}{% endblock %}{% endif %}">
+<body class="{% if level_1 != "" %}{% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}{% endif %}{% if level_2 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}{% endif %}{% if level_3 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}-{{ level_3 }} {% endif %} {% include "_base/body-class.html" %}{% if extra_body_class != "" %} {% block extra_body_class %}{% endblock %}{% endif %}">
 
 <header class="banner global" role="banner">
 {% block header_banner %}
@@ -80,7 +80,7 @@
 				{% include "download/_nav_secondary.html" with promo="true" %}
 			</li>
 		</ul>
-		{% include "templates/search.html" %}
+		{% include "_base/search.html" %}
 	</nav>
 {% endblock header_banner %}
 </header>
@@ -102,7 +102,7 @@
 </div><!-- /.wrapper -->
 
 <!-- footer content goes here -->
-{% include "templates/footer.html" %}
+{% include "_base/footer.html" %}
 
 <!-- Use this only until Modernizr fixes Opera Mini background-size detection -->
 <script>

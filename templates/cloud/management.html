@@ -8,7 +8,7 @@
 {% block meta_keywords %}Landscape, cloud, Ubuntu Advantage, Ubuntu OpenStack, support, management, management tools, Ubuntu, system administration, patch management, third level support, SLA{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Cloud management"  %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Cloud" page_title="Cloud management"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -139,13 +139,13 @@
 	</div>
 </div><!-- /.row -->
 
-{% include "shared/_ubuntu_advantage_whats_inlcuded.html" %}
+{% include "_includes/_ubuntu_advantage_whats_inlcuded.html" %}
 
 <div class="row row-community row-image-centered no-border no-margin-bottom">
-{% include "shared/_ubuntu_advantage_community.html" %}
+{% include "_includes/_ubuntu_advantage_community.html" %}
 </div><!-- /.row -->
 
-{% include "shared/_live_chat.html" %}
+{% include "_includes/_live_chat.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

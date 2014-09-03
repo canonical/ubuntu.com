@@ -5,7 +5,7 @@
 {% block extra_body_class %}server-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Server" page_title="Overview"  %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Server" page_title="Overview"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -46,7 +46,7 @@
 	</div>
 </div>
 
-{% include "shared/_moonshot_promo.html" %}
+{% include "_includes/_moonshot_promo.html" %}
 
 <div class="row row-image-centered">
 	<div class="eight-col">
@@ -216,7 +216,7 @@
 	</div><!-- /.six-col -->
 	<span><img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-startfirst-darkaubergine.svg" width="153" height="153" alt="" /></span>
 </div><!-- /.row -->
-{% include "shared/_enterprise_blog.html" %}
-{% include "shared/_community.html" %}
+{% include "_includes/_enterprise_blog.html" %}
+{% include "_includes/_community.html" %}
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

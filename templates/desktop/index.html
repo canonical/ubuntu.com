@@ -7,7 +7,7 @@
 {% block extra_body_class %}desktop-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Overview"  %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Desktop" page_title="Overview"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -17,7 +17,7 @@
 		<p class="intro">Fast, free and incredibly easy to use, the Ubuntu operating system powers millions of desktop PCs, laptops and servers around the world.</p>
 		<p><a href="/download/desktop/" class="link-cta-ubuntu">Get Ubuntu now</a></p>
 		<img src="{{ STATIC_URL }}img/desktop/image-laptop.jpg" alt="Ubuntu laptop" class="for-mobile" />
-		{% include "shared/_share_this.html" %}
+		{% include "_includes/_share_this.html" %}
 	</div><!-- / .five-col -->
 </div><!-- / .row -->
 
@@ -129,6 +129,6 @@
 	</div>
 </div><!-- / .row -->
 
-{% include "shared/_community.html" %}
+{% include "_includes/_community.html" %}
 
 {% endblock content %}

@@ -2,7 +2,7 @@
 {% block title %}Cloud computing with Ubuntu{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Contact us"  %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Cloud" page_title="Contact us"  %}
 {% endblock second_level_nav_items %}
 
 {% block head_extra %}
@@ -462,7 +462,7 @@ if ((typeof mktoPreFillFields != 'undefined') &&
 			}
 		</script>
 
-{% include "shared/_live_chat.html" %}
+{% include "_includes/_live_chat.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

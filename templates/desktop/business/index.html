@@ -6,7 +6,7 @@
 {% block extra_body_class %}desktop-for-business{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Business"  %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Desktop" page_title="Business"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -37,7 +37,7 @@
 	</div>
 </div>
 
-{% include "shared/_enterprise_blog.html" %}
+{% include "_includes/_enterprise_blog.html" %}
 
 <div class="row equal-height vertical-divider">
 	<div class="six-col">
@@ -112,7 +112,7 @@
 </div><!-- /.row -->
 
 <div class="row row-community row-image-centered no-border last-row">
-{% include "shared/_ubuntu_advantage_community.html" %}
+{% include "_includes/_ubuntu_advantage_community.html" %}
 </div><!-- /.row -->
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

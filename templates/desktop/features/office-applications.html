@@ -5,7 +5,7 @@
 {% block body_classes %}audience-consumer{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" subsection_title="Features" page_title="Office applications"  %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Desktop" subsection_title="Features" page_title="Office applications"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -19,7 +19,7 @@
 			<li><img src="{{ STATIC_URL }}img/icons/icon-libreoffice-cal-reflex-40x88.png" width="40" height="88" title="Calc" alt="Calc icon" /></li>
 			<li><img src="{{ STATIC_URL }}img/icons/icon-libreoffice-impress-reflex-40x88.png" width="40" height="88" title="Impress" alt="Impress icon" /></li>
 		</ul>
-		{% include "shared/_share_this.html" %}
+		{% include "_includes/_share_this.html" %}
 	</div>
 	<div class="eight-col last-col no-margin pull-right">
 		<img class="touch-border" width="636" height="327" alt="LibreOffice on Ubuntu" src="{{ STATIC_URL }}img/desktop/features/office-applications/image-officeapps.jpg">

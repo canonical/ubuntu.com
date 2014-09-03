@@ -21,7 +21,7 @@
 {% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Jumpstart Training" page_title="Order" %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Jumpstart Training" page_title="Order" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -43,7 +43,7 @@
 <script> function mktoGetForm() {return document.getElementById('mktForm_1132'); }</script>
 <form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="https://pages.canonical.com/index.php/leadCapture/save" id="mktForm_1132" name="mktForm_1132">
 
-	<fieldset  class="fieldset-1">
+	<fieldset>
 		<h3>1. Company details</h3>
 					<ul class="mktLblLeft">
 						<li class='mktFormReq mktField'>
@@ -61,7 +61,7 @@
 					</ul>
 	</fieldset>
 
-	<fieldset class="fieldset-2">
+	<fieldset>
 
 		<h3>2. Scheduling</h3>
 
@@ -74,7 +74,7 @@
 		</ul>
 	</fieldset>
 
-	<fieldset class="fieldset-3">
+	<fieldset>
 
 		<h3>3. Additional comments or questions</h3>
 
@@ -86,20 +86,20 @@
 
 	</fieldset>
 
-	<fieldset class="fieldset-4">
-
+	<fieldset>
+	
 		<h3>4. Terms of service</h3>
 
-		<p><a href="{{ STATIC_URL }}files/cloud/Jumpstart_Training_Short_Form_Services_Agreement_21_Jul_2014.pdf">Please see the detailed Terms of Service</a> for a complete statement on the services offered. In order to complete this order form you will need a PO for the $10,000 fee.</p>
+		<p><a href="{{ STATIC_URL }}files/cloud/Jumpstart_Training_Short_Form_Services_Agreement_21_Jul_2014.pdf">Please see the detailed Terms of Service</a> for a complete statement on the services offered. In order to complete this order form you will need a PO for the &dollar;10,000 fee.</p>
 
-		<ul class="mktLblLeft">
-			<li class='mktField mktLblRight mktFormReq'>
-				<span class='mktInput mktLblRight'>
-					<input class='mktFReq mktFormCheckbox' name="accept_term_of_service__c" id="accept_term_of_service__c" type='checkbox' tabIndex='13' value="" required />
-					<label> I accept the Terms of Service</label>&nbsp;
-					<span class='mktFormMsg'></span>
-				</span>
-			</li>
+		<ul class="mktLblLeft">			
+			<li class="mktFormReq mktField"><label>I accept the Terms of Service </label><span class="mktInput">
+				<select class="mktFormSelect mktFReq" name="Accept_T_and_C__c" id="Accept_T_and_C__c" size="1" tabindex="14">
+					<option value='Accept terms:' selected='selected'>Please select:</option>
+					<option value="No" selected="selected">No</option>
+					<option value="Yes">Yes</option>
+				</select>
+				<span class="mktFormMsg"></span></span></li>
 		</ul>
 	</fieldset>
 

@@ -4,7 +4,7 @@
 {% block body_classes %}audience-consumer{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Take the tour"  %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Desktop" page_title="Take the tour"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -13,7 +13,7 @@
 		<div class="seven-col">
 	 		<h1>Ubuntu online tour</h1>
 	 		<p>This is the static version of the Ubuntu tour. To get the full version of the tour you'll need a modern browser with JavaScript enabled.</p>
-	 		{% include "shared/_share_this.html" %}
+	 		{% include "_includes/_share_this.html" %}
     </div><!-- /.four-col -->
   </div><!-- /.twelve-col -->
 

@@ -3,7 +3,7 @@
 {% block title %}Landscape features | Management{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Management" page_title="Landscape features"  %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Management" page_title="Landscape features"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -171,7 +171,7 @@
 		</div><!-- /.row main-content -->
 	</div><!-- /.tabbed-content .inventory -->
 </div>
-{% include "shared/_live_chat.html" %}
+{% include "_includes/_live_chat.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

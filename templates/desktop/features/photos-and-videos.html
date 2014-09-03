@@ -5,7 +5,7 @@
 {% block body_classes %}audience-consumer{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" subsection_title="Features" page_title="Photos and videos"  %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Desktop" subsection_title="Features" page_title="Photos and videos"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -18,7 +18,7 @@
 				<li><img src="{{ STATIC_URL }}img/icons/icon-vlc-48.png" width="42" height="96" title="VLC" alt="VLC icon" /></li>
 				<li class="last-item"><img src="{{ STATIC_URL }}img/icons/icon-totem-video-48.png" width="44" height="96" title="Totem video" alt="Totem video icon" /></li>
 			</ul>
-		{% include "shared/_share_this.html" %}
+		{% include "_includes/_share_this.html" %}
 	</div>
 	<div class="eight-col last-col no-margin pull-right">
 		<img class="left" src="{{ STATIC_URL }}img/desktop/features/photos-and-videos/image-photosandvideos.jpg" width="636" height="327" alt="VLC media player on Ubuntu" />

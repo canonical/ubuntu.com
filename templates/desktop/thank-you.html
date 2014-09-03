@@ -3,9 +3,9 @@
 {% block title %}Thank you{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Thank you" %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Desktop" page_title="Thank you" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-{% include "shared/_thank_you.html" with thanks_context="your interest in Ubuntu" %}
+{% include "_includes/_thank_you.html" with thanks_context="your interest in Ubuntu" %}
 {% endblock content %}

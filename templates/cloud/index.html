@@ -9,7 +9,7 @@
 {% block extra_body_class %}cloud-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Overview" %}
+	{% include "_base/_nav_breadcrumb.html" with section_title="Cloud" page_title="Overview" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -20,8 +20,8 @@
 	<div class="nine-col last-col">
 		<h1><span>Announcing:</span> BootStack</h1>
 		<p class="intro">Build, operate and optionally transfer.</p>
-		<p>A hosted or on-premise Ubuntu OpenStack cloud, built and operated by us until you&rsquo;re ready to take the keys.</p>
-		<p><a href="/cloud/bootstack">Learn more&nbsp;&rsaquo;</a></p>
+		<p class="eight-col">A hosted or on-premise Ubuntu OpenStack cloud, built and operated by us until you&rsquo;re ready to take the keys.</p>
+		<p class="clear"><a href="/cloud/bootstack">Learn more&nbsp;&rsaquo;</a></p>
 	</div>
 </div>
 
@@ -179,7 +179,7 @@
 }
 </style>
 
-{% include "shared/_live_chat.html" %}
+{% include "_includes/_live_chat.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}
