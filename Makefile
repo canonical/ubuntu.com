@@ -138,6 +138,7 @@ fixup-templates:
 
 	# Template replacements
 	# ==
+	sed -i '/download[/]server\s\s[/]download[/]server[/]download/d' redirects.txt  # Remove redirect loop problem
 	find templates/* -type f -name '*.html' | xargs sed -i '/^ *[{][%] load scss [%][}] *$$/d'  # Remove references to scss module
 	find templates/* -type f -name '*.html' | xargs sed -i 's/[{][%]\s*scss\s\+["]\([^"]\+\).scss["]\s*[%][}]/\1.css/g'  # Point to CSS instead of SCSS
 	find templates/* -type f -name '*.html' | xargs sed -i 's/[{][{] *STATIC_URL *[}][}]u[/]/{{ STATIC_URL }}/g'  # Fix static file locations
