@@ -116,12 +116,15 @@ clean:
 ##
 rebuild-dependencies-cache:
 	rm -rf pip-cache
-	bzr branch lp:~webteam-backend/ubuntu-website/dependencies pip-cache
+	$(MAKE) pip-cache
 	pip install --exists-action=w --download pip-cache/ -r requirements/standard.txt
 	cd pip-cache && bzr add .
 	bzr commit pip-cache/ -m 'automatically updated ubuntu website requirements'
 	bzr push --directory pip-cache lp:~webteam-backend/ubuntu-website/dependencies
 	rm -rf pip-cache src
+
+pip-cache:
+	bzr branch lp:~webteam-backend/ubuntu-website/dependencies pip-cache
 
 fixup-templates:
 	mv ./templates/redirects.txt .  # Put redirects in the project root
