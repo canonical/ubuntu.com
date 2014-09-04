@@ -17,6 +17,7 @@ SECRET_KEY = 'g@=8y0p%v6hsk6n1p*^tqb@)g1#v7r!#e1x5^x!$bvm#u9hal4'
 # See https://docs.djangoproject.com/en/dev/ref/contrib/
 INSTALLED_APPS = [
     'django.contrib.staticfiles',  # Needed for STATICFILES_DIRS to work
+    'template_extensions'
 ]
 
 DEBUG = True
@@ -37,5 +38,5 @@ MIDDLEWARE_CLASSES = []
 TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.static",     # {{ STATIC_URL }}
     "django.core.context_processors.request",    # {{ request }} object
-    "assets_template_context.asset_server_url",  # {{ ASSET_SERVER_URL }}
+    "template_extensions.asset_server_url",  # {{ ASSET_SERVER_URL }}
 ]
