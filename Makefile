@@ -142,8 +142,8 @@ fixup-templates:
 	find templates/* -type f -name '*.html' | xargs sed -i 's/[{][%]\s*scss\s\+["]\([^"]\+\).scss["]\s*[%][}]/\1.css/g'  # Point to CSS instead of SCSS
 	find templates/* -type f -name '*.html' | xargs sed -i 's/[{][{] *STATIC_URL *[}][}]u[/]/{{ STATIC_URL }}/g'  # Fix static file locations
 	find templates/* -type f -name '*.html' | xargs sed -i 's/[{][%] *\(extends\|include\|with\) \+["]\(..[/]sites[/]\)\?ubuntu[/]/{% \1 "/g'  # Remove "ubuntu" from include paths
-	find templates/* -type f -name '*.html' | xargs sed -i "s/[{][%]\s\+\(extends\|include\|with\)\s\+[\"']\([^\"']+[/]\)\?shared[/]/{% \1 \"\2_includes\//g"  # Replace any reference to shared with _includes
-	find templates/* -type f -name '*.html' | xargs sed -i "s/[{][%]\s\+\(extends\|include\|with\)\s\+[\"']\([^\"']+[/]\)\?templates[/]/{% \1 \"\2_base\//g"  # Replace any reference to templates with _base
+	find templates/* -type f -name '*.html' | xargs sed -i "s/[{][%]\s\+\(extends\|include\|with\)\s\+[\"']\([^}]\+[/]\)\?shared[/]/{% \1 \"\2_includes\//g"  # Replace any reference to shared with _includes
+	find templates/* -type f -name '*.html' | xargs sed -i "s/[{][%]\s\+\(extends\|include\|with\)\s\+[\"']\([^}]\+[/]\)\?templates[/]/{% \1 \"\2_base\//g"  # Replace any reference to templates with _base
 
 	# Stylesheet replacements
 	# ==
