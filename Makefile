@@ -118,7 +118,7 @@ rebuild-dependencies-cache:
 	rm -rf pip-cache
 	bzr branch lp:~webteam-backend/ubuntu-website/dependencies pip-cache
 	pip install --exists-action=w --download pip-cache/ -r requirements/standard.txt
-	bzr add .
+	cd pip-cache && bzr add .
 	bzr commit pip-cache/ -m 'automatically updated ubuntu website requirements'
 	bzr push --directory pip-cache lp:~webteam-backend/ubuntu-website/dependencies
 	rm -rf pip-cache src
