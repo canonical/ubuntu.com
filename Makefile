@@ -34,7 +34,7 @@ develop: watch-sass dev-server
 ##
 # Prepare the project
 ##
-setup: install-dependencies update-env
+setup: install-dependencies update-env mirrors-list
 
 ##
 # Run server
@@ -62,8 +62,6 @@ update-env:
 
 	${VEX} ${MAKE} install-requirements
 
-	# Get download mirrors file
-	wget --output-document=/tmp/mirrors.rss https://launchpad.net/ubuntu/+cdmirrors-rss
 
 ##
 # Make virtualenv directory if it doesn't exist and we're not in an env
@@ -110,6 +108,13 @@ search-setup-local:
 clean:
 	rm -rf env .sass-cache
 	find static/css -name '*.css*' -exec rm {} +  # Remove any .css files - should only be .sass files
+
+
+##
+# Get download mirrors file
+##
+mirrors-list:
+	wget --output-document=/tmp/mirrors.rss https://launchpad.net/ubuntu/+cdmirrors-rss
 
 ##
 # Rebuild the pip requirements cache, for non-internet-visible builds
