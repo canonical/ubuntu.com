@@ -169,7 +169,7 @@ update-templates:
 
 update-templates-local-pull:
 	bzr pull --directory ../ubuntu-website-content 
-	$(MAKE) update-template-local
+	$(MAKE) update-templates-local
 
 update-templates-local:
 	rm -rf templates
