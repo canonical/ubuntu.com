@@ -179,6 +179,10 @@ update-templates-local:
 
 	$(MAKE) fixup-templates
 
+update-bzr-repo:
+	-bzr init-repo bzr-repo
+	git fast-export -M --all | (cd bzr-repo; bzr fast-import -)
+
 # The below targets
 # are just there to allow you to type "make it so"
 # as a replacement for "make" or "make develop"
