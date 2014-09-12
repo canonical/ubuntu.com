@@ -1,9 +1,11 @@
 import json
 import sys
+import os
 from urllib2 import URLError
 
 from feedparser import parse
 from fenchurch import TemplateFinder
+
 from lib.gsa import GSAParser
 
 
@@ -17,8 +19,16 @@ class DownloadView(TemplateFinder):
 
         context = super(DownloadView, self).get_context_data(**kwargs)
 
-        with open('/tmp/mirrors.rss') as rss:
-            mirrors = parse(rss).entries
+        mirrors_path = os.path.join(
+            os.getcwd(),
+            'etc/mirrors.rss'
+        )
+
+        try:
+            with open(mirrors_path) as rss:
+                mirrors = parse(rss).entries
+        except IOError:
+            mirrors = []
 
         mirror_list = [
             {'link': mirror['link'], 'bandwidth': mirror['mirror_bandwidth']}
