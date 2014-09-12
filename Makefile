@@ -114,7 +114,7 @@ clean:
 # Get download mirrors file
 ##
 mirrors-list:
-	wget --output-document=/tmp/mirrors.rss https://launchpad.net/ubuntu/+cdmirrors-rss
+	wget --output-document=etc/mirrors.rss https://launchpad.net/ubuntu/+cdmirrors-rss
 
 ##
 # Rebuild the pip requirements cache, for non-internet-visible builds
@@ -127,6 +127,12 @@ rebuild-dependencies-cache:
 	bzr commit pip-cache/ -m 'automatically updated ubuntu website requirements'
 	bzr push --directory pip-cache lp:~webteam-backend/ubuntu-website/dependencies
 	rm -rf pip-cache src
+
+##
+# Setup cron to pull down mirrors file every 2 minutes
+##
+mirrors-cron:
+	echo "*/2 * * * * root `pwd`/scripts/get_mirrors_rss.sh" > /etc/cron.d/get-mirrors-rss
 
 pip-cache:
 	bzr branch lp:~webteam-backend/ubuntu-website/dependencies pip-cache
