@@ -137,7 +137,7 @@ mirrors-cron:
 ##
 # For dokku - build sass and run gunicorn
 ##
-dokku-start: sass run-gunicorn
+dokku-start: sass mirrors-cron run-gunicorn
 
 ##
 # Run the gunicorn app
