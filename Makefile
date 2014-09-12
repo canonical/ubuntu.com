@@ -134,6 +134,17 @@ rebuild-dependencies-cache:
 mirrors-cron:
 	echo "*/2 * * * * root `pwd`/scripts/get_mirrors_rss.sh" > /etc/cron.d/get-mirrors-rss
 
+##
+# For dokku - build sass and run gunicorn
+##
+dokku-start: sass run-gunicorn
+
+##
+# Run the gunicorn app
+##
+run-gunicorn:
+	gunicorn ubuntu.wsgi
+
 pip-cache:
 	bzr branch lp:~webteam-backend/ubuntu-website/dependencies pip-cache
 
