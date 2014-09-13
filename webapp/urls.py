@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, url
 from fenchurch import TemplateFinder
 
-from ubuntu.views import DownloadView, SearchView
+from views import DownloadView, SearchView
 
 urlpatterns = patterns(
     '',

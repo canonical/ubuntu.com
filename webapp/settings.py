@@ -22,8 +22,8 @@ INSTALLED_APPS = [
 ]
 
 DEBUG = True
-ROOT_URLCONF = 'ubuntu.urls'
-WSGI_APPLICATION = 'ubuntu.wsgi.application'
+ROOT_URLCONF = 'webapp.urls'
+WSGI_APPLICATION = 'webapp.wsgi.application'
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = False

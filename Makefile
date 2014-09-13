@@ -143,7 +143,7 @@ dokku-start: sass mirrors-cron run-gunicorn
 # Run the gunicorn app
 ##
 run-gunicorn:
-	gunicorn ubuntu.wsgi
+	gunicorn webapp.wsgi
 
 pip-cache:
 	bzr branch lp:~webteam-backend/ubuntu-website/dependencies pip-cache
