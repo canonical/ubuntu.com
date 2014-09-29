@@ -40,7 +40,7 @@ setup: install-dependencies update-env mirrors-list
 # Run server
 ##
 dev-server:
-	${VEX} ./manage.py runserver_plus 0.0.0.0:8000
+	${VEX} ./manage.py runserver_plus 0.0.0.0:8001
 
 ##
 # Run SASS watcher
