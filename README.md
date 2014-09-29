@@ -8,7 +8,7 @@ make setup    # Install dependencies - only needed the first time
 make develop  # Auto-compile sass files and run the dev server
 ```
 
-Now visit <http://127.0.0.1:8000>
+Now visit <http://127.0.0.1:8001>
 
 Fenchurch
 ---
