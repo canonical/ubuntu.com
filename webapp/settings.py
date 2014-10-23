@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'dj_static'
 ]
 
+ALLOWED_HOSTS = ['*']
 DEBUG = True
 ROOT_URLCONF = 'webapp.urls'
 WSGI_APPLICATION = 'webapp.wsgi.application'
