@@ -4,7 +4,7 @@
 {% block extra_body_class %}working-with-landscape{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "_base/_nav_breadcrumb.html" with section_title="Management" page_title="Working with landscape"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Management" page_title="Working with landscape"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -18,18 +18,13 @@
 
 	<div id="landscape-videos" class="row">
 		<div class="six-col">
-			<div class="video-container">
-				<iframe width="442" height="249" src="http://www.youtube.com/embed/yaFE4g8EcvI?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-			</div>
 			<h3>Software management in action</h3>
 			<p>In this short demonstration of Landscape in action, we show how quickly updates can be applied to thousands of machines &ndash; and how easy it is to roll back affected systems when an issue arises.</p>
 		</div><!-- /.six-col -->
 		<div class="six-col last-col">
 			<div class="video-container">
-				<iframe width="442" height="249" src="http://www.youtube.com/embed/mSfMn0eWc4A?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+				<iframe width="442" height="249" src="http://www.youtube.com/embed/yaFE4g8EcvI?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
 			</div>
-			<h3>Bare metal provisioning made easy</h3>
-			<p>Unbox a new consignment of servers, plug them in and attach them to the network &ndash; then let Landscape take over. Here, we show you how quickly Landscape can provision new hardware, from the metal up.</p>
 		</div><!-- /.six-col -->
 	</div><!-- /#landscape-videos -->
 
@@ -98,7 +93,7 @@
 		</div>
 	</div><!-- /.row -->
 
-{% include "_includes/_live_chat.html" %}
+{% include "shared/_live_chat.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

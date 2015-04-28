@@ -1,0 +1,175 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en" dir="ltr"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en" dir="ltr"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie10 lt-ie9" lang="en" dir="ltr"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js lt-ie10" lang="en" dir="ltr"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js{% block extra_html_class %}{% endblock %}" lang="en" dir="ltr"> <!--<![endif]-->
+<head>
+
+<meta charset="UTF-8" />
+<meta name="description" content="{% block meta_description %}Ubuntu is an open source software platform that runs everywhere from the smartphone, the tablet and the PC to the server and the cloud.{% endblock %}" />
+<meta name="keywords" content="{% block meta_keywords %}Ubuntu, Ubuntu operating system, OS, platform, Linux, distribution, OpenStack, Ubuntu OpenStack, Ubuntu Cloud, server, tablet, smartphone, phone, Windows alternative, Mac alternative, free software, open source, thin client, Juju, MAAS, Landscape, Ubuntu Advantage, download Ubuntu, deployment, provisioning, service orchestration, services, commercial support, paid support, long term support, LTS, 14.04, 14.10, Trusty Tahr, Utopic Unicorn, Icehouse, Juno{% endblock %}" />
+<meta name="author" content="Canonical" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="twitter:account_id" content="4503599627481511" />
+<meta name="google-site-verification" content="ddh2iq7ZuKf1LpkL_gtM_T7DkKDVD7ibq6Ceue4a_3M" />
+<meta name="theme-color" content="#DD4814">
+
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<![endif]-->
+
+<title>{% block title %}{% endblock %} | Ubuntu</title>
+
+<link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" type="image/x-icon" />
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ STATIC_URL }}img/apple-touch-icon-144x144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ STATIC_URL }}img/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ STATIC_URL }}img/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}img/apple-touch-icon-precomposed.png">
+<link type="text/plain" rel="author" href="{{ STATIC_URL }}files/humans.txt" />
+
+<!-- stylesheets -->
+<link rel="stylesheet" type="text/css" media="screen" href="//assets.ubuntu.com/sites/guidelines/css/responsive/latest/ubuntu-styles.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/styles.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/beta/global-responsive.css" />
+<link rel="stylesheet" type="text/css" media="print" href="{{ STATIC_URL }}css/core-print.css" />
+
+<!-- javascript -->
+<script src="{{ STATIC_URL }}js/plugins/modernizr.2.7.1.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/Imager.js"></script>
+
+{% block head_extra %}{% endblock %}
+
+<!-- Google tag manager -->{% comment %}Bug 1445370 relates{% endcomment %}
+<script>dataLayer = [];</script>
+
+</head>
+
+<body{% if level_1 == 'phone' %} onload="init();"{% endif %} class="{% if level_1 != "" %}{% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}{% endif %}{% if level_2 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}{% endif %}{% if level_3 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}-{{ level_3 }} {% endif %} {% include "templates/body-class.html" %}{% if extra_body_class != "" %} {% block extra_body_class %}{% endblock %}{% endif %}">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-K92JCQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K92JCQ');</script>
+<!-- End Google Tag Manager -->
+
+<header class="banner global" role="banner">
+{% block header_banner %}
+	<nav role="navigation" class="nav-primary nav-right">
+		<span id="main-navigation-link"><a href="#main-navigation">Jump to site nav</a></span>
+		<div class="logo">
+			<a class="logo-ubuntu" href="/">
+				<img width="106" height="25" src="{{ STATIC_URL }}img/logos/logo-ubuntu-orange.svg" alt="" />
+			</a>
+		</div>
+		<ul>
+			<li class="accessibility-aid"><a accesskey="s" href="#main-content">Jump to content</a></li>
+			<li><a class="first{% if level_1 == 'cloud' %} active{% endif %}" href="/cloud">Cloud</a>
+				{% include "cloud/_nav_secondary.html" with promo="true" %}
+			</li>
+			<li><a{% if level_1 == 'server' %} class="active"{% endif %} href="/server">Server</a>
+				{% include "server/_nav_secondary.html" with promo="true" %}
+			</li>
+			<li><a {% if level_1 == 'desktop' %} class="active"{% endif %} href="/desktop">Desktop</a>
+				{% include "desktop/_nav_secondary.html" with promo="true" %}
+			</li>
+			<li><a{% if level_1 == 'phone' %} class="active"{% endif %} href="/phone">Phone</a>
+				{% include "phone/_nav_secondary.html" with promo="true" %}
+			</li>
+			<li><a{% if level_1 == 'tablet' %} class="active"{% endif %} href="/tablet">Tablet</a>
+				{% include "tablet/_nav_secondary.html" with promo="true" %}
+			</li>
+			<li><a{% if level_1 == 'tv' %} class="active"{% endif %} href="/tv">TV</a>
+				{% include "tv/_nav_secondary.html" with promo="true" %}
+			</li>
+			<li><a{% if level_1 == 'management' %} class="active"{% endif %} href="/management">Management</a>
+				{% include "management/_nav_secondary.html" with promo="true" %}
+			</li>
+			<li><a{% if level_1 == 'download' %} class="active"{% endif %} href="/download">Download</a>
+				{% include "download/_nav_secondary.html" with promo="true" %}
+			</li>
+		</ul>
+		{% include "templates/search.html" %}
+	</nav>
+{% endblock header_banner %}
+</header>
+<div class="wrapper">
+<div id="main-content" class="inner-wrapper">
+{% if level_1 %}
+{% block second_level_nav %}
+<nav role="navigation" class="nav-secondary clearfix">{% spaceless %}{% block second_level_nav_items %}{% endblock second_level_nav_items %}{% endspaceless %}</nav>
+{% endblock second_level_nav %}
+{% endif %}
+
+{% block header %}{% endblock %}
+{% block content_container %}
+{% block outer_content %}
+{% endblock outer_content %}
+{% endblock content_container %}
+
+</div><!-- /.inner-wrapper -->
+</div><!-- /.wrapper -->
+
+<!-- footer content goes here -->
+{% include "templates/footer.html" %}
+
+<!-- Use this only until Modernizr fixes Opera Mini background-size detection -->
+<script>
+	var isOperaMini = (navigator.userAgent.indexOf('Opera Mini') > -1);
+	if(isOperaMini) {
+		var root = document.documentElement;
+		root.className += " opera-mini";
+	}
+</script>
+<script src="{{ STATIC_URL }}js/plugins/yui-combined.min.js"></script>
+<script>
+	if(!core){ var core = {}; }
+	core.globalPrepend = 'body';
+</script>
+
+<script src="//assets.ubuntu.com/sites/guidelines/js/responsive/core.js"></script>
+<script src="{{ STATIC_URL }}js/global.js"></script>
+<script src="{{ STATIC_URL }}js/scratch.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/respond.min.js"></script>
+
+{% block footer_extra %}{% endblock %}
+
+{% if google_analytics_id %}
+<!-- google analytics -->
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', '{{ google_analytics_id }}']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+{% endif %}
+
+<!-- Google Code for Remarketing Tag -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1012391776;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+	<div style="display:inline;">
+		<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1012391776/?value=0&amp;guid=ON&amp;script=0"/>
+	</div>
+</noscript>
+
+
+</body>
+</html>

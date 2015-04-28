@@ -1,9 +1,9 @@
 	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
 		<li class="first{% if level_1 == 'desktop' and not level_2 %} active{% endif %}"><a href="/desktop">Overview</a></li>
 		<li{% if level_2 == 'features' %} class="active"{% endif %}><a href="/desktop/features">Features</a></li>
-		<li{% if level_2 == 'business' %} class="active"{% endif %}><a href="/desktop/business">For business</a></li>
+		<li{% if level_2 == 'enterprise' %} class="active"{% endif %}><a href="/desktop/enterprise">For enterprise</a></li>
+		<li{% if level_2 == 'education' %} class="active"{% endif %}><a href="/desktop/education">For education	</a></li>
+		<li{% if level_2 == 'government' %} class="active"{% endif %}><a href="/desktop/government">For government</a></li>
 		<li{% if level_2 == 'developers' %} class="active"{% endif %}><a href="/desktop/developers">For developers</a></li>
-		<li{% if level_2 == 'take-the-tour' %} class="active"{% endif %}><a href="/desktop/take-the-tour">Take the tour</a></li>
-		<li{% if level_2 == 'ubuntu-kylin' %} class="last-item"{% endif %}{% if level_2 == 'management' %} class="active"{% endif %}><a href="/desktop/management">Desktop management</a></li>
-		<li{% if level_2 == 'ubuntu-kylin' or level_2 == "ubuntu-kylin-zh-CN" %} class="active"{% endif %}><a href="/desktop/{% if level_2 == "ubuntu-kylin-zh-CN" %}ubuntu-kylin-zh-CN{% else %}ubuntu-kylin{% endif %}">Ubuntu Kylin</a></li>
+		<li{% if level_2 == 'ubuntu-kylin' %} class="active"{% endif %}><a href="/desktop/ubuntukylin">For China</a></li>
 	</ul>

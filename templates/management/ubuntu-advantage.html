@@ -7,12 +7,12 @@
 {% block meta_description %}You can access Landscape as a hosted service over the internet or as an application running on a dedicated server behind your firewall. Both options are part of the Ubuntu Advantage service package, however you can try Landscape for free for 30 days, without committing to a subscription. {% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "_base/_nav_breadcrumb.html" with section_title="Management" page_title="Ubuntu Advantage" %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Management" page_title="Ubuntu Advantage" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row row-hero">
-<h1>Ubuntu Advantage</h1>
+	<h1>Ubuntu Advantage</h1>
 	<div class="eight-col">
 		<p>Ubuntu Advantage is the professional support package from the experts at Canonical, helping organisations around the world to manage their Ubuntu deployments. It includes access to Landscape, the systems management tool <br/>for using Ubuntu at scale, as well as 24/7 telephone support and the option of a dedicated Canonical support engineer on your premises. Ubuntu Advantage subscription tiers are based on the size of your deployment and the support you need.</p>
 
@@ -24,120 +24,296 @@
 
 </div><!-- .row row-hero -->
 
-<div class="row row-quote">
-	<blockquote class="pull-quote" cite="http://www.guardian.co.uk/technology/blog/2009/oct/27/ubuntu-koala-windows7-review">
-		<p><span>&ldquo;</span>We worked very closely with Canonical. Their support has been invaluable in the development, deployment and support phases of the project.&nbsp;&nbsp;<span>&rdquo;</span></p>
-		<p><cite>Antonio Jos&eacute; S&aacute;enz Alban&eacute;s, Chief Technology Officer, Isotrol</cite></p>
-	</blockquote>
+{% include "shared/_ubuntu_advantage_whats_inlcuded.html" %}
 
-</div>
-
-<div class="row row-grey row-desktop-management row-management">
-	<div class="four-col product-intro">
-		<div class="four-col text-center">
-			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-desktop-orange.svg" width="90" height="90" alt="" />
+<div class="row row-grey row-cloud-management row-management">
+	<div class="twelve-col">
+		<div class="seven-col product-intro">
+			<h2>Cloud management</h2>
+			<p>Ubuntu Advantage offers support and management tools to keep your business productive in the cloud.</p>
+			<p><a href="/cloud/management">Learn more&nbsp;&rsaquo;</a></p>
 		</div>
-		<h2>Desktop management</h2>
-		<p>From basic office tasks to complex development work, Ubuntu Advantage gives your organisation all the support you need to deploy and manage Ubuntu.</p>
-		<p><a href="/desktop/management">Learn more&nbsp;&rsaquo;</a></p>
+		<div class="prepend-two two-col text-center priority-0">
+			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-cloud-darkaubergine.svg" alt="" />
+		</div>
 	</div>
-	<div class="eight-col equal-height last-col box">
-		<ul class="no-bullets vertical-divider three-divided no-margin-bottom">
-			<!--<li class="col">
-				<h3>Stateless</h3>
-				<p>For lightweight business use that only requires stateless applications like web browser and remote access client (Citrix, VMware View).</p>
-				<div class="price">
-					<p><span>$20</span> per desktop</p>
-				</div>
-			</li>-->
-			<li class="four-col">
-				<h3>Standard</h3>
-				<p>For general business use such as email, messaging and web browsing.</p>
-				<div class="price">
-					<p><span>$105</span> desktop per year</p>
-				</div>
-			</li>
-			<li class="four-col last-col">
-				<h3>Advanced</h3>
-				<p>For more intensive desktop usage, such as work conducted by developers.</p>
-				<div class="price">
-					<p><span>$165</span> desktop per year</p>
-				</div>
-			</li>
-		</ul>
+	<table class="audience-enterprise">
+		<thead>
+			<tr>
+				<th scope="col" class="row-title">&nbsp;</th>
+				<th scope="col">Small</th>
+				<th scope="col">Medium</th>
+				<th scope="col">Large</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>Physcial nodes</th>
+				<td>Up to 100 nodes.</td>
+				<td>From 100 to 500 nodes.</td>
+				<td>More than 500 nodes.</td>
+			</tr>
+			<tr>
+				<th>Infrastructure 24/7 support</th>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+			</tr>
+			<tr>
+				<th>Landscape Dedicated Server</th>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+			</tr>
+			<tr>
+				<th>Unlimited supported Ubuntu guests*</th>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+			</tr>
+			<tr>
+				<th>Ceph storage included</th>
+				<td>64TB</td>
+				<td>64TB</td>
+				<td>64TB</td>
+			</tr>
+			<tr>
+				<th>Price per year per availability zone</th>
+				<td>USD $75,000</td>
+				<td>USD $180,000</td>
+				<td>USD $350,000</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>*Support for guests is limited to office hours, but can be upgraded to 24/7</p>
+
+	<h3>Service-level agreement for all cloud plans</h3>
+	<div class="six-col">
+		<table class="audience-enterprise">
+			<thead>
+				<tr>
+					<th colspan="2" scope="col">Response times</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Severity 1</td>
+					<td>1 hour</td>
+				</tr>
+				<tr>
+					<td>Severity 2</td>
+					<td>4 hours</td>
+				</tr>
+				<tr>
+					<td>Severity 3</td>
+					<td>4 hours</td>
+				</tr>
+				<tr>
+					<td>Severity 4</td>
+					<td>1 business day</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="six-col last-col">
+		<table class="audience-enterprise">
+			<thead>
+				<tr>
+					<th colspan="2" scope="col">Cloud SLA</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Hours of support</td>
+					<td>24/07</td>
+				</tr>
+				<tr>
+					<td>Number of cases</td>
+					<td>Unlimited</td>
+				</tr>
+				<tr>
+					<td>Support channels</td>
+					<td>Phone and online</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div><!-- .row -->
 
 <div class="row row-grey row-server-management row-management">
-	<div class="four-col product-intro">
-		<div class="four-col text-center">
-			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-server-warmgrey.svg" width="90" height="90" alt="" />
+	<div class="twelve-col">
+		<div class="seven-col product-intro">
+			<h2>Server management</h2>
+			<p>Whether it&rsquo;s for basic server workloads or high-availability clustering, Ubuntu Advantage has you covered.</p>
+			<p><a href="/server/management">Learn more&nbsp;&rsaquo;</a></p>
 		</div>
-		<h2>Server management</h2>
-		<p>Whether it&rsquo;s for basic server workloads or high-availability clustering, Ubuntu Advantage has you covered.</p>
-		<p><a href="/server/management">Learn more&nbsp;&rsaquo;</a></p>
+		<div class="prepend-two two-col text-center priority-0">
+			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-server-warmgrey.svg" alt="" />
+		</div>
 	</div>
-	<div class="eight-col equal-height last-col box">
-		<ul class="no-bullets vertical-divider three-divided no-margin-bottom">
-			<li class="col">
-				<h3>Essential</h3>
-				<p>Ideal for common workloads such as ﬁle and print, email, network, web and application serving.</p>
-				<div class="price">
-					<p><span>$320</span> server per year</p>
-				</div>
-			</li>
-			<li class="col">
-				<h3>Standard</h3>
-				<p>Suitable for server virtualisation and integration into existing infrastructures such as Windows networks.</p>
-				<div class="price">
-					<p><span>$700</span> server per year</p>
-				</div>
-			</li>
-			<li class="col last-col">
-				<h3>Advanced</h3>
-				<p>Tailored for more advanced configurations such as high-availability failover and clustering.</p>
-				<div class="price">
-					<p><span>$1,200</span> server per year</p>
-				</div>
-			</li>
-		</ul>
-	</div>
+	<table class="audience-enterprise">
+		<thead>
+			<tr>
+				<th scope="col" class="row-title">Features</th>
+				<th scope="col">Essential</th>
+				<th scope="col">Standard</th>
+				<th scope="col">Advanced</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td></td>
+				<td>Ideal for common workloads such as file and print, email, network, web and application serving.</td>
+				<td>Suitable for server virtualisation and integration into existing infrastructures such as Windows networks.</td>
+				<td>Tailored for more advanced configurations such as high-availability failover and clustering.</td>
+			</tr>
+			<tr>
+				<th>Landscape Hosted Edition</th>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+			</tr>
+			<tr>
+				<th>Landscape Dedicated Server</th>
+				<td>Optional</td>
+				<td>Optional</td>
+				<td>Optional</td>
+			</tr>
+			<tr>
+				<th>Ubuntu Legal Assurance programme</th>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+			</tr>
+			<tr>
+				<th>Knowledge Base</th>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+			</tr>
+			<tr>
+				<th>Basic installation and applications</th>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+			</tr>
+			<tr>
+				<th>Windows integration</th>
+				<td>&nbsp;</td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+			</tr>
+			<tr>
+				<th>Virtualisation</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+			</tr>
+			<tr>
+				<th>Clustering and high availability failover</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+			</tr>
+			<tr>
+				<th>Ceph support</th>
+				<td>&nbsp;</td>
+				<td>Optional</td>
+				<td>Optional</td>
+			</tr>
+			<tr>
+				<th>Technical Account Manager</th>
+				<td>Optional</td>
+				<td>Optional</td>
+				<td>Optional</td>
+			</tr>
+			<tr>
+				<th>Price per server per year</th>
+				<td>USD $320</td>
+				<td>USD $700</td>
+				<td>USD $1,200</td>
+			</tr>
+		</tbody>
+	</table>
 </div><!-- .row -->
 
-<div class="row row-grey row-cloud-management row-management">
-	<div class="four-col product-intro">
-		<div class="four-col text-center">
-			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-cloud-darkaubergine.svg" width="90" height="90" alt="" />
+<div class="row row-grey row-desktop-management row-management">
+	<div class="twelve-col">
+		<div class="seven-col product-intro">
+			<h2>Desktop management</h2>
+			<p>From basic office tasks to complex development work, Ubuntu Advantage gives your organisation all the support you need to deploy and manage Ubuntu.</p>
+			<p><a href="/desktop/management">Learn more&nbsp;&rsaquo;</a></p>
 		</div>
-		<h2>Cloud management</h2>
-		<p>Ubuntu Advantage offers support and management tools to keep your business productive in the cloud.</p>
-		<p><a href="/cloud/management">Learn more&nbsp;&rsaquo;</a></p>
+		<div class="prepend-two two-col text-center priority-0">
+			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-desktop-orange.svg"  alt="" />
+		</div>
 	</div>
-	<div class="eight-col equal-height last-col box">
-		<ul class="no-bullets vertical-divider three-divided no-margin-bottom">
-			<li class="col">
-				<h3>Small</h3>
-				<p>For clouds running up to 100 nodes.</p>
-				<div class="price">
-					<p><span>&dollar;75,000</span> per year per availability zone</p>
-				</div>
-			</li>
-			<li class="col">
-				<h3>Medium</h3>
-				<p>For clouds running between 100 and 500 nodes.</p>
-				<div class="price">
-					<p><span>&dollar;180,000</span> per year per availability zone</p>
-				</div>
-			</li>
-			<li class="col last-col">
-				<h3>Large</h3>
-				<p>For clouds running more than 500 nodes.</p>
-				<div class="price">
-					<p><span>&dollar;350,000</span> per year per availability zone</p>
-				</div>
-			</li>
-		</ul>
-	</div>
+	<table class="audience-enterprise">
+		<thead>
+			<tr>
+				<th scope="col" class="row-title">Features</th>
+				<th scope="col">Standard</th>
+				<th scope="col">Advanced</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td></td>
+				<td>For general business use such as email, messaging and web browsing.</td>
+				<td>For more intensive desktop usage, such as work conducted by developers.</td>
+			</tr>
+			<tr>
+				<th>Landscape Hosted Edition</th>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+			</tr>
+			<tr>
+				<th>Landscape Dedicated Server</th>
+				<td>Optional</td>
+				<td>Optional</td>
+			</tr>
+			<tr>
+				<th>Ubuntu Legal Assurance programme</th>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+			</tr>
+			<tr>
+				<th>Knowledge Base</th>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+			</tr>
+			<tr>
+				<th>Basic installation and applications</th>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+			</tr>
+			<tr>
+				<th>Installation, applications and systems administration support</th>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+			</tr>
+			<tr>
+				<th>Desktop virtualisation</th>
+				<td></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+			</tr>
+			<tr>
+				<th>Developer tools</th>
+				<td></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+			</tr>
+			<tr>
+				<th>Premium Service Engineer</th>
+				<td>Optional</td>
+				<td>Optional</td>
+			</tr>
+			<tr>
+				<th>Price per desktop per year</th>
+				<td>USD $105</td>
+				<td>USD $165</td>
+			</tr>
+		</tbody>
+	</table>
 </div><!-- .row -->
 
 <div class="row no-border">
@@ -153,7 +329,7 @@
 	<p class="twelve-col"><a href="/management/working-with-landscape">Find out more about working with Landscape&nbsp;&rsaquo;</a></p>
 </div><!-- /.row -->
 
-{% include "_includes/_live_chat.html" %}
+{% include "shared/_live_chat.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}
