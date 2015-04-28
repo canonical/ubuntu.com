@@ -1,0 +1,139 @@
+{% extends "cloud/base_cloud.html" %}
+
+{% block title %}Contact us | Ubuntu Cloud Jumpstart{% endblock %}
+{% block head_extra %}
+	<script type="text/javascript">
+		function fieldValidate(field) {
+		  /* call Mkto.setError(field, message) and return false to mark a field value invalid */
+		  /* return 'skip' to bypass the built-in validations */
+		  return true;
+		}
+		function getRequiredFieldMessage(domElement, label) {
+		  return "This field is required";
+		}
+		function getTelephoneInvalidMessage(domElement, label) {
+		  return "Please enter a valid telephone number";
+		}
+		function getEmailInvalidMessage(domElement, label) {
+		  return "Please enter a valid email address";
+		}
+		</script>
+{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Training" page_title="Contact us" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-border">
+	<div class="eight-col">
+		<h1>Contact us about our training courses</h1>
+		<p class="intro">Fill in your details below and a member of our training team will be in touch.</p>
+	</div>
+
+	<div class="eight-col">
+		<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="https://app-g.marketo.com/index.php/leadCapture/save" id="mktForm_1032" name="mktForm_1032">
+				<fieldset>
+					<h3>About you</h3>
+					<ul class="mktLblLeft">
+						<li class='mktFormReq mktField'>
+						  <label>First name</label>
+						  <span class='mktInput'>
+						    <input class='mktFormText mktFormString mktFReq' name="FirstName" id="FirstName" type='text' value=""  maxlength='255' tabIndex='1' />
+						    <span class='mktFormMsg'></span>
+						  </span>
+						</li>
+						<li class='mktFormReq mktField'>
+						  <label>Last name</label>
+						  <span class='mktInput'>
+						    <input class='mktFormText mktFormString mktFReq' name="LastName" id="LastName" type='text' value=""  maxlength='255' tabIndex='2' />
+						    <span class='mktFormMsg'></span>
+						  </span>
+						</li>
+						<li class='mktFormReq mktField'>
+              <label class="mktoLabel" for='Title'>Company</label>
+                <span class='mktInput'>
+                  <input type="text" class='mktoField mktoTextField' name='Company' id='Company' />
+                  <span class='mktFormMsg'></span>
+                </span>
+            </li>						
+						<li class='mktFormReq mktField'>
+              <label class="mktoLabel" for='Title'>Job title</label>
+                <span class='mktInput'>
+                  <input type="text" class='mktoField mktoTextField' name='Title' id='Title' />
+                  <span class='mktFormMsg'></span>
+                </span>
+            </li>						
+						<li class='mktFormReq mktField'>
+						  <label>Email address</label>
+						    <span class='mktInput'>
+						      <input class='mktFormText mktFormEmail mktFReq' name="Email" id="Email" type='text' value=""  maxlength='255' tabIndex='3' />
+						      <span class='mktFormMsg'></span>
+						    </span>
+						</li>
+						<li class='mktFormReq mktField'>
+						  <label>Phone number</label>
+						    <span class='mktInput'>
+						      <input class='mktFormText mktFormPhone mktFReq' name="Phone" id="Phone" type='text' value=""  maxlength='255' tabIndex='4' />
+						      <span class='mktFormMsg'></span>
+						    </span>
+						</li>
+					</ul>
+				</fieldset>
+				<fieldset class="fieldset-5">
+					<h3>Additional comments or questions</h3>
+					<ul class="mktLblLeft">
+						<li class='mktField'><span class='mktInput'><textarea class='mktFormTextarea mktFormTextarea' name="Comments_from_lead__c" id="Comments_from_lead__c" cols='20' rows='6' tabIndex='15'></textarea><span class='mktFormMsg'></span></span></li>
+					</ul>
+				</fieldset>
+				<fieldset class="fieldset-submit">
+					<ul class="mktLblLeft">
+						<li class="mktField mktLblRight"><span class="mktInput mktLblRight"><input class="mktFormCheckbox" name="NewsletterOpt-In" id="NewsletterOpt-In" type="checkbox" value="1" tabindex="16"><label for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>&nbsp;<span class="mktFormMsg"></span></span></li>
+						<li>All information provided will be handled in accordance with the Canonical <a href="http://www.ubuntu.com/legal" target="_blank">privacy policy</a>.</li>
+						<li id="mktFrmButtons"><!--<label>&nbsp;</label>--><input id="mktFrmSubmit" type="submit" value="Submit" name="submitButton" onclick="formSubmit(document.getElementById(&quot;mktForm_1032&quot;)); return false;">&nbsp;<input style="display: none;" id="mktFrmReset" type="reset" value="Clear" name="resetButton" onclick="formReset(document.getElementById(&quot;mktForm_1032&quot;)); return false;"></li>
+					</ul>
+				</fieldset>
+        <input type="hidden" name="lpId" value="1973" />
+        <input type="hidden" name="subId" value="30" />
+        <input type="hidden" name="lpurl" value="https://pages.canonical.com/Form-Cloudtrainingcontactus_contact-us-bootstack.html?cr={creative}&amp;kw={keyword}" />
+        <input type="hidden" name="formid" value="1128" />
+				<input type="hidden" name="returnURL" value="http://www.ubuntu.com/cloud/training/thank-you" />
+				<input type="hidden" name="retURL" value="http://www.ubuntu.com/cloud/training/thank-you" />
+        <input type="hidden" name="ret" value="" />
+        <input type="hidden" name="munchkinId" value="066-EOV-335"/>
+        <input type="hidden" name="kw" value=""/>
+        <input type="hidden" name="cr" value=""/>
+        <input type="hidden" name="searchstr" value=""/>
+        <input type="hidden" name="_mkt_disp" value="return"/>
+        <input type="hidden" name="_mkt_trk" value=""/>
+			</form>
+<script type="text/javascript" src="http://www.ubuntu.com/misc/jquery.js"></script>
+<script type="text/javascript" src="https://pages.canonical.com/js/mktFormSupport.js"></script>
+<script type="text/javascript" src="https://pages.canonical.com/js/public/stateCountry.js"></script>
+<script type="text/javascript">
+// Prevent Marketo prefill from turning these dropdowns into free text fields if value is not ISO standard
+if ((typeof mktoPreFillFields != 'undefined') &&
+    (mktoPreFillFields) &&
+    mktoPreFillFields['State'] &&
+    mktoPreFillFields['Country']) {
+    if (mktoPreFillFields.Country.length != 2) {
+        mktoPreFillFields.Country = "";
+        mktoPreFillFields.State = "";
+    }
+}
+</script>
+
+		<script type="text/javascript">
+			function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+			}
+			function formReset(elt) {
+				return Mkto.formReset(elt);
+			}
+		</script>
+
+
+			</div><!-- /.eight-col -->
+</div><!-- /row .row -->
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

@@ -1,0 +1,35 @@
+{% block head_extra %}
+<script src="https://www.google.com/jsapi"></script>
+<script>google.load("feeds", "1")</script>
+{% endblock %}
+	<div id="insights-footer-feed"></div>
+	<script>
+		var feedcontainer2=document.getElementById("insights-footer-feed")
+		{% if level_3 != 'snappy' %}
+		var feedurl2=document.location.protocol+"//insights.ubuntu.com/topic/cloud/feed/"{% endif %}
+		{% if level_3 == 'snappy' or level_1 == 'things' %}
+		var feedurl2=document.location.protocol+"//insights.ubuntu.com/group/internet-of-things/feed/"{% endif %}
+		var feedlimit2=4
+		var rssoutput="<ul class='no-bullets smaller'>"
+			function rssfeedsetup2(){
+				var feedpointer2=new google.feeds.Feed(feedurl2) //Google Feed API method
+						feedpointer2.setNumEntries(feedlimit2) //Google Feed API method
+						feedpointer2.load(displayfeed2) //Google Feed API method
+			}
+
+			function displayfeed2(result){
+				if (!result.error){
+					var thefeeds2=result.feed.entries
+					for (var i=0; i<thefeeds2.length; i++){
+						rssoutput+="<li><a href='" + thefeeds2[i].link + "'>" + thefeeds2[i].title + "&nbsp;&rsaquo;</a></li>"}
+						rssoutput+="</ul>"
+						feedcontainer2.innerHTML=rssoutput
+				}
+				else
+					alert("oops")
+				}
+				
+				window.onload=function(){
+				rssfeedsetup2()
+				}
+	</script>

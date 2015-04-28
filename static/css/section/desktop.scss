@@ -1,0 +1,734 @@
+.row-case-studies {
+  background-color: $dark-aubergine;
+  background-image: url('../img/desktop/background-tile.jpg');
+  color: #fff;
+
+  .pull-quote {
+    margin-bottom: .75em;
+
+    p {
+      color: #fff;
+      font-size: 1em;
+      line-height: 1.5em;
+
+      span {
+        top: .2em;
+      }
+    }
+
+    cite {
+      color: #fff;
+      font-size: 1em;
+      line-height: 1.5em;
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    > h2:first-child {
+      margin-bottom: 71%;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .row-apps {
+    overflow: hidden;
+    width: 100%;
+
+    .one-col {
+      float: left;
+      width: 20%;
+      margin-right: 2.21238%;
+    }
+
+    .three-col {
+      margin-right: 0;
+      float: left;
+      width: 64%;
+    }
+  }
+}
+
+@media only screen and (min-width: 984px) {
+  .desktop-context-footer .open-source {
+    background-image: url(../img/pictograms/picto-pack/picto-projectswelove-orange.svg);
+    background-position: 217px 27px;
+    background-repeat: no-repeat;
+    background-size: 150px 150px;
+
+    div {
+      width: 75%;
+    }
+  }
+}
+
+.row-landscape,
+.row-complete {
+  overflow: hidden;
+  padding-bottom: 20px;
+
+  @media only screen and (min-width: 768px) {
+    padding-bottom: 0;
+
+    .pull-right {
+      max-width: 60%;
+    }
+  }
+}
+
+.landscape-screenshot {
+  -webkit-box-shadow: -2px 0px 2px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: -2px 0px 2px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: -2px 0px 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+.desktop-context-footer img {
+  display: block;
+  height: 100px;
+  margin: 0 auto;
+  padding-bottom: 20px;
+}
+
+.desktop .share-this {
+  clear: both;
+  display: block;
+  float: left;
+  height: 25px;
+  margin-top: 20px;
+  position: relative;
+  width: 100%;
+
+  iframe {
+    display: inline-block;
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 80px;
+
+    :first-child {
+      width: 80px;
+    }
+
+    :last-child {
+      margin-right: 0;
+    }
+  }
+
+  .twitter-share-button {
+    display: inline-block;
+    float: none;
+    margin-right: 18px;
+    width: 58px;
+  }
+}
+
+.row-community {
+  background: #fff url('../img/patterns/background-dots.png');
+  color: $cool-grey;
+  padding: 40px 20px 20px;
+
+  .nine-col .six-col {
+    background: #fff;
+    display: block;
+  }
+
+  .box {
+    border: 0;
+  }
+
+  .where-to-find-us {
+    background: #fff;
+    margin: 0;
+    padding: 15px 20px;
+
+    ul {
+      margin-bottom: 0;
+    }
+
+    a { padding: 2px 0 2px 26px; }
+
+    .ask-ubuntu a { background: url('../img/patterns/icon-irc.png') 0 2px no-repeat; }
+
+    .mailing-lists a { background: url('../img/patterns/icon-mail.png') 0 2px no-repeat; }
+
+    .ubuntu-blog a { background: url('../img/patterns/icon-rss.png') 0 2px no-repeat; }
+
+    h3,
+    h4 {
+      @include font_size (16);
+      border-bottom: 1px dotted $warm-grey;
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+    }
+  }
+
+  .eight-col,
+  .eight-col.box,
+  .six-col,
+  .nine-col {
+    padding: 20px;
+  }
+
+  .six-col,
+  .six-col,
+  .eight-col {
+    background: rgba(255, 255, 255, 1);
+    position: relative;
+  }
+
+  .nine-col div,
+  .nine-col div {
+    background: #fff;
+    display: block;
+    float: left;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  //Medium screen
+  .row-apps {
+    h3 {
+      margin-top: 5%;
+    }
+  }
+
+  .row-case-study {
+    .headline {
+      font-size: 1.7737857143em;
+    }
+
+    blockquote {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+
+/// desktop Overview
+.desktop-home #main-content {
+  .row-industry img {
+    display: block;
+    margin: 0 auto;
+    max-width: 150px;
+  }
+
+  .row-latest-hardware .eight-col,
+  .row-tour .six-col {
+    margin-bottom: 20px;
+  }
+
+  //Medium screen
+  @media only screen and (min-width: 768px) {
+    .row-hero {
+      background-color: $light-grey;
+      background-image: url('../img/desktop/overview/hero-photo.jpg');
+      background-repeat: no-repeat;
+      background-position: 73% 13%, bottom right;
+      margin-top: 0;
+      min-height: 573px;
+
+      h1 {
+        margin-top: 40px;
+      }
+    }
+
+    .row-latest-hardware .eight-col,
+    .row-tour .six-col {
+      margin-bottom: 0;
+    }
+
+    .row-industry .box {
+      overflow: hidden;
+      padding-bottom: 0;
+
+      img {
+        margin: 0;
+        margin-bottom: -60px;
+        padding-left: 40px;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 844px) {
+    .row-complete .pull-right {
+      margin-top: 7%;
+    }
+  }
+
+  //Large screen
+  @media only screen and (min-width: 984px) {
+    .row-hero {
+      background-size: cover;
+      margin-top: 0;
+      min-height: 574px;
+
+      h1 {
+        margin-top: 40px;
+      }
+    }
+  }
+}
+
+/// desktop Features
+.desktop-features #main-content {
+
+  .row-compatible {
+    img {
+      max-width: 200px;
+    }
+  }
+
+  .row-gaming {
+      div {
+        margin-top: 58%;
+      }
+
+      .borderlands {
+        left: 0;
+        position: absolute;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .borderlands-flash {
+        -webkit-animation: flash-sign 10s infinite;
+        animation: flash-sign 10s infinite;
+        left: 0;
+        position: absolute;
+        top: 0;
+        z-index: 2000;
+      }
+  }
+
+  @media only screen and (min-width: 768px) {
+    //Medium screen
+
+    .row-hero {
+      background-image: url('../img/desktop/features/hero-laptop.png');
+      background-position: top right;
+      background-repeat: no-repeat;
+      background-size: 22em;
+      min-height: 310px;
+    }
+
+    .row-web-browsing {
+      background-image: url('../img/desktop/features/desktopsnapshot.png');
+    }
+
+    .row-gaming {
+      width: 100%;
+      padding: 0;
+      padding-bottom: 55%;
+
+      div {
+        color: #fff;
+        position: absolute;
+        bottom: 20px;
+        right: 40px;
+        z-index: 3000;
+      }
+    }
+
+    .row-photos {
+
+      > div {
+        margin-top: 340px;
+
+        p,
+        h2 {
+          text-shadow: 0 0 2px black;
+        }
+      }
+
+      .photo-credit {
+        background-color: rgba(0, 0, 0, .6);
+        bottom: 0;
+        padding: 10px;
+        position: absolute;
+        right: 0;
+      }
+
+      &.photo-1 {
+        background-size: cover;
+        background-image: url('../img/desktop/features/desktop-photos-1.jpg');
+      }
+      &.photo-2 {
+        background-size: cover;
+        background-image: url('../img/desktop/features/desktop-photos-2.jpg');
+      }
+      &.photo-3 {
+        background-size: cover;
+        background-image: url('../img/desktop/features/desktop-photos-3.jpg');
+      }
+      &.photo-4 {
+        background-size: cover;
+        background-image: url('../img/desktop/features/desktop-photos-4.jpg');
+      }
+      &.photo-5 {
+        background-size: cover;
+        background-image: url('../img/desktop/features/desktop-photos-5.jpg');
+      }
+      &.photo-6 {
+        background-size: cover;
+        background-image: url('../img/desktop/features/desktop-photos-6.jpg');
+      }
+      &.photo-7 {
+        background-size: cover;
+        background-image: url('../img/desktop/features/desktop-photos-7.jpg');
+      }
+    }
+
+    .row-compatible {
+      overflow: hidden;
+      position: relative;
+
+      .four-col {
+        position: relative;
+        min-height: 200px;
+      }
+
+      .two-col {
+        margin-top: 1.5em;
+      }
+
+      .six-col {
+        margin-top: 2.5em;
+      }
+
+      .picto-desktop {
+        margin-left: -65%;
+        max-width: none;
+        position: absolute;
+        top: 0;
+        width: 12em;
+      }
+
+      .picto-mobile,
+      .picto-camera {
+        position: absolute;
+        width: 7em;
+      }
+
+      .three-col {
+        position: relative;
+      }
+
+      .picto-mobile {
+        left: 60px;
+        top: 0;
+      }
+      .picto-camera {
+        bottom: 0;
+        right: 0;
+      }
+    }
+
+    .row-organise .inline li {
+      margin-right: 9.8%;
+      width: 15%;
+
+      :last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  //Large screen
+  @media only screen and (min-width: 984px) {
+    .row-hero {
+      background-position: top right;
+      background-size: 56%;
+      min-height: 500px;
+    }
+
+   .row-compatible {
+      .two-col {
+        margin-top: 0;
+      }
+
+      .six-col {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+
+/// desktop Enterprise
+.desktop-enterprise #main-content {
+
+  @media only screen and (min-width: 768px) {
+    //Medium screen
+
+    .row-hero {
+      background-image: url('../img/desktop/enterprise/hero-laptop.png');
+      background-position: top right;
+      background-repeat: no-repeat;
+      background-size: 22em;
+      min-height: 310px;
+    }
+  }
+
+  //Large screen
+  @media only screen and (min-width: 984px) {
+    .row-hero {
+      background-position: top right;
+      background-size: 56%;
+      min-height: 500px;
+    }
+  }
+}
+
+
+/// desktop Education
+.desktop-education #main-content {
+  @media only screen and (min-width: 768px) {
+    //Medium screen
+    .row-hero {
+      background-image: url('../img/desktop/education/hero-photo.jpg');
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      margin-top: 0;
+      min-height: 574px;
+
+      h1 {
+        margin-top: 40px;
+      }
+    }
+
+    .row-case-studies {
+      background-image: url('../img/desktop/education/map.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+
+  @media only screen and (min-width: 984px) {
+    //Medium screen
+    .row-hero {
+      background-size: cover;
+      background-position: 0px -50px;
+      margin-top: 0;
+      min-height: 574px;
+
+      h1 {
+        margin-top: 40px;
+      }
+    }
+  }
+}
+
+/// desktop Government
+.desktop-government #main-content {
+  .podium img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  @media only screen and (min-width: 768px) {
+    //Medium screen
+    .row-hero {
+      background-image: url('../img/desktop/government/hero-photo.jpg');
+      background-repeat: no-repeat;
+      background-position: right 0px top;
+      margin-top: 0;
+      min-height: 574px;
+
+      h1 {
+        padding-top: 40px;
+      }
+    }
+
+    .row-case-studies {
+      background-image: url('../img/desktop/government/map.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .row-security {
+      background-repeat: no-repeat;
+      background-image: url('../img/things/padlock-chain.png');
+      background-position: 89% 93%;
+      min-height: 310px;
+    }
+  }
+
+  @media only screen and (min-width: 984px) {
+    //Large screen
+    .row-hero {
+      background-position: 0% 0%;
+      background-size: cover;
+      margin-top: 0;
+      min-height: 574px;
+
+      h1 {
+        padding-top: 40px;
+      }
+    }
+  }
+}
+
+
+/// desktop developer
+.desktop-for-developers #main-content {
+
+  .row-why-ubuntu li {
+    font-size: 13px;
+  }
+
+  .row-easy-deployment {
+    background-color: $box-solid-grey;
+  }
+
+  .row-tailored-support {
+    border-bottom: 0;
+
+    table {
+      margin: 20px 0;
+    }
+  }
+
+  //Medium screen
+  @media only screen and (min-width: 768px) {
+    .row-hero {
+      background-image: url('../img/desktop/developers/developer-hero-laptop.png');
+      background-position: top right;
+      background-repeat: no-repeat;
+      background-size: 22em;
+    }
+
+    .pull-bottom-left {
+      float: left;
+      margin-bottom: -30px;
+      margin-left: -30px;
+    }
+  }
+
+  //Large screen
+  @media only screen and (min-width: 984px) {
+    .row-hero {
+      background-position: top right;
+      background-size: 56%;
+      min-height: 500px;
+    }
+    .row-developer-tools {
+      .pull-bottom-right {
+        bottom: -60px;
+        float: right;
+      }
+    }
+    .pull-bottom-left {
+      float: left;
+      margin-bottom: -60px;
+      margin-left: -40px;
+    }
+  }
+}
+
+
+/// desktop China / Kylin
+$item_margin: 40px;
+
+.desktop-ubuntu-kylin,
+.desktop-ubuntu-kylin-zh-CN {
+  .screenshot-shadowed {
+    margin-left: -5px;
+  }
+
+  .row-partnership ul {
+    margin-left: -$item_margin;
+
+    li {
+      margin-left: $item_margin;
+    }
+  }
+
+  .right {
+    float: right;
+  }
+
+  .pull-left-40,
+  .pull-right-40 {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .lang-switch {
+    margin-bottom: 20px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    .lang-switch {
+      margin-bottom: 0;
+      position: absolute;
+      right: 40px;
+      top: -20px;
+    }
+    .row-ubuntu-kylin-more img {
+      margin-top: -95px;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  //Medium screen
+  .desktop-ubuntu-kylin,
+  .desktop-ubuntu-kylin-zh-CN {
+
+    .row-hero {
+      background: url('../img/desktop/ubuntu-kylin/image-ubuntukylin.jpg') 120% center no-repeat;
+      padding-bottom: 55px;
+    }
+
+    .row-ubuntu-kylin-more h3 {
+      margin-top: 30px;
+    }
+
+    .row-youker img {
+      margin-top: 25px;
+    }
+
+    .row-sogou img {
+      margin-top: 12px;
+      position: absolute;
+    }
+
+    .pull-left-40 {
+      margin-bottom: -30px;
+      margin-left: -30px;
+    }
+
+    .pull-right-40 {
+      margin-bottom: -10px;
+      margin-right: -30px;
+    }
+  }
+}
+
+@media only screen and (min-width: 984px) {
+  //Large screen
+  .desktop-ubuntu-kylin-zh-CN .row-hero {
+    padding-bottom: 80px;
+  }
+
+  .desktop-ubuntu-kylin,
+  .desktop-ubuntu-kylin-zh-CN {
+    .row-hero {
+      background: url('../img/desktop/ubuntu-kylin/image-ubuntukylin.jpg') 498px 20px no-repeat;
+      padding-bottom: 55px;
+    }
+  }
+
+  .desktop-ubuntu-kylin,
+  .desktop-ubuntu-kylin-zh-CN {
+    .pull-left-40 {
+      margin-bottom: -60px;
+      margin-left: -40px;
+    }
+
+    .pull-right-40 {
+      margin-bottom: -40px;
+      margin-right: -40px;
+    }
+  }
+}

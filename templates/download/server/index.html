@@ -5,54 +5,79 @@
 {% block extra_body_class %}download-server-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "_base/_nav_breadcrumb.html" with section_title="Download" page_title="Server" tertiary="true"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Download" page_title="Server" tertiary="true"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-{% with ubuntu_release="14.04.1" openstack_version="Icehouse" %}
+{% with lts_release="14.04.2" latest_release="15.04" lts_release_name="TrustyTahr" latest_release_name="VividVervet" openstack_version="Juno" %}
 <div class="row row-hero row-background no-border">
 	<div class="eight-col append-four">
 		<h1>Download Ubuntu Server</h1>
 	</div>
-	<div class="twelve-col">
+	<div class="twelve-col no-margin-bottom">
 		<div class="box box-highlight clearfix vertical-divider">
 			<div class="eight-col no-margin-bottom">
-				<h2>Ubuntu Server {{ubuntu_release}} LTS</h2>
-				<p>The latest version of Ubuntu Server, including the {{openstack_version}} release of OpenStack and support guaranteed until April 2019.</p>
-				<p><a href="https://wiki.ubuntu.com/TrustyTahr/ReleaseNotes" class="external">Ubuntu Server {{ubuntu_release}} LTS release notes</a></p>
+				<h2>Ubuntu Server {{lts_release}} LTS</h2>
+				<p>The Long Term Support version of Ubuntu Server, including the Icehouse release of OpenStack and support guaranteed until April 2019 &mdash; 64 bit only.</p>
+				<p><strong>Recommended for most users.</strong></p>
+				<p><a href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes" class="external">Ubuntu Server {{lts_release}} LTS release notes</a></p>
 			</div>
 			<div class="four-col last-col">
-				<p class="gap-from-top">64-bit only</p>
-				<form class="form-download" action="/download/server/thank-you/" method="get">
+				<form class="form-download gap-from-top" action="/download/server/thank-you/" method="get">
 					<fieldset>
-						<input name="version" value="{{ubuntu_release}}" type="hidden">
+						<input name="version" value="{{lts_release}}" type="hidden">
 						<input name="architecture" value="amd64" type="hidden">
 					</fieldset>
 					<div>
 						<button type="submit">Download</button>
 					</div>
 				</form>
+                <p><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
 			</div><!-- /.four-col -->
 		</div><!-- /.box -->
 	</div>
 </div><!-- /.row -->
 
 <div class="row row-grey">
+	<div class="twelve-col no-margin-bottom">
+		<div class="box box-highlight clearfix vertical-divider">
+			<div class="eight-col no-margin-bottom">
+				<h2>Ubuntu Server {{latest_release}}</h2>
+				<p>The latest version of Ubuntu Server, including the Kilo release of OpenStack and support for nine months &ndash; 64 bit only.</p>
+				<p><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="external">Ubuntu Server {{latest_release}} release notes</a></p>
+			</div>
+			<div class="four-col last-col">
+				<form class="form-download gap-from-top" action="/download/server/thank-you/" method="get">
+					<fieldset>
+						<input name="version" value="{{latest_release}}" type="hidden">
+						<input name="architecture" value="amd64" type="hidden">
+					</fieldset>
+					<div>
+						<button type="submit">Download</button>
+					</div>
+				</form>
+                <p><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
+			</div><!-- /.four-col -->
+		</div><!-- /.box -->
+	</div><!-- /.twelve-col -->
+</div><!-- /.row -->
+
+<div class="row">
 	<div class="twelve-col">
 		<h2>How you can use Ubuntu Server</h2>
 	</div>
 	<div class="equal-height">
-		<div class="four-col box box-highlight">
+		<div class="four-col box">
 			<h3>Ubuntu Server for cloud</h3>
 			<p>Whether you&rsquo;re building your own cloud or you want to use a public cloud, with Ubuntu you have all the tools you need to provision, deploy and manage your cloud environment. </p>
-			<p><a href="/download/cloud">Download Ubuntu Server for cloud&nbsp;&rsaquo;</a></p>
+			<p><a href="/download/cloud">Get Ubuntu Server for cloud&nbsp;&rsaquo;</a></p>
 		</div>
-		<div class="four-col box box-highlight">
+		<div class="four-col box">
 			<h3>Ubuntu Server for ARM</h3>
 			<p>Optimised for hyperscale deployments and certified on a number of ARM chipsets, Ubuntu Server for ARM includes the 64-bit ARMv8 platforms.</p>
-			<p><a href="/download/server/arm">Download Ubuntu Server for ARM&nbsp;&rsaquo;</a></p>
+			<p><a href="/download/server/arm">Get Ubuntu Server for ARM&nbsp;&rsaquo;</a></p>
 		</div>
-		<div class="four-col last-col box box-highlight">
+		<div class="four-col last-col box">
 			<h3>Ubuntu for POWER8</h3>
 			<p>Ubuntu is now available on the IBM POWER8 platform, bringing the entire Ubuntu and OpenStack ecosystem to IBM POWER8</p>
 			<p><a href="/download/server/power8">Get Ubuntu {{ubuntu_release}} for  POWER8&nbsp;&rsaquo;</a></p>

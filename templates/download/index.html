@@ -3,55 +3,80 @@
 {% block title %}Get Ubuntu | Download{% endblock %}
 {% block extra_body_class %}download-home{% endblock %}
 
+{% block meta_keywords %}Ubuntu, Ubuntu operating system, OS, platform, Linux, distribution, OpenStack, Ubuntu OpenStack, Ubuntu Cloud, server, tablet, smartphone, phone, Windows alternative, Mac alternative, free software, open source, thin client, download Ubuntu, long term support, LTS, 14.04, Trusty Tahr, Icehouse, Juno, Kilo, Vivid Vervet, 15.04{% endblock meta_keywords %}
+
 {% block second_level_nav_items %}
-	{% include "_base/_nav_breadcrumb.html" with section_title="Download" page_title="Overview"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Download" page_title="Overview"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row row-hero">
-	<div class="seven-col">
+	<div class="eight-col">
 		<h1>Get Ubuntu</h1>
 		<p>Ubuntu is completely free to download, use and share.</p>
 	</div><!-- / .seven-col -->
 </div><!-- / .row -->
 
 <div class="row row-list-download no-border">
-	<div class="box box-highlight clearfix">
-		<div class="two-col text-center">
-			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-download-orange.svg" alt="" width="113" height="113" />
-		</div>
-		<div class="ten-col last-col no-margin-bottom">
-			<h2><a href="/download/desktop">Ubuntu Desktop&nbsp;&rsaquo;</a></h2>
-			<p>Download Ubuntu desktop and replace your current operating system whether it&rsquo;s Windows or Mac OS, or, run Ubuntu alongside it.</p>
-		</div>
-	</div>
-	<div class="twelve-col">
-		<p class="ubuntu-upgrade">Do you want to upgrade? <a href="/download/desktop/upgrade">Follow our simple guide&nbsp;&rsaquo;</a></p>
-	</div>
-
-	<div class="twelve-col equal-height">
-		<div class="six-col box no-margin-bottom">
-			<div class="two-col text-center">
-				<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-server-darkaubergine.svg" alt="" width="113" height="113" class="media--image__vcentered" />
-			</div>
-			<div class="four-col last-col">
-				<h2><a href="/download/server">Ubuntu Server&nbsp;&rsaquo;</a></h2>
-				<p>Whether you want to configure a simple file server or build a fifty thousand-node cloud, you can rely on Ubuntu Server and its five years of guaranteed free upgrades.</p>
-			</div>
-		</div><!-- /.four-col -->
-		<div class="six-col last-col box no-margin-bottom">
-			<div class="two-col text-center">
-				<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-cloud-darkaubergine.svg" alt="" width="113" height="113" class="media--image__vcentered" />
-			</div>
-			<div class="four-col last-col">
-				<h2><a href="/download/cloud">Ubuntu Cloud&nbsp;&rsaquo;</a></h2>
-				<p>Ubuntu OpenStack enables you to provision your servers and build an OpenStack cloud on Ubuntu, all from one Ubuntu Server download.</p>
-			</div>
-		</div><!-- /.four-col -->
+    <div class="twelve-col no-margin-bottom ">
+        <div class="box box-highlight clearfix">
+    		<div class="two-col text-center">
+    			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-download-orange.svg" alt="" width="113" height="113" />
+    		</div>
+    		<div class="ten-col last-col">
+    			<h2><a href="/download/desktop">Ubuntu Desktop&nbsp;&rsaquo;</a></h2>
+    			<p>Download Ubuntu desktop and replace your current operating system whether it&rsquo;s Windows or Mac OS, or, run Ubuntu alongside it.</p>
+    		</div>
+        	<div class="twelve-col">
+        		<p class="ubuntu-upgrade">Do you want to upgrade? <a href="/download/desktop/upgrade">Follow our simple guide&nbsp;&rsaquo;</a></p>
+        	</div>
+    	</div>
 	</div><!-- /.twelve-col -->
 </div><!-- /.row -->
 
-{% include "download/desktop/_chinese-download.html" %}
+<div class="row row-list-download no-border">
+	<div class="twelve-col equal-height">
+		<div class="six-col box no-margin-bottom">
+			<div class="four-col">
+				<h2><a href="/download/server">Ubuntu Server&nbsp;&rsaquo;</a></h2>
+				<p>Whether you want to configure a simple file server or build a fifty thousand-node cloud, you can rely on Ubuntu Server and its five years of guaranteed free upgrades.</p>
+			</div>
+			<div class="two-col last-col text-center">
+				<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-server-darkaubergine.svg" alt="" width="113" height="113" class="media--image__vcentered" />
+			</div>
+		</div><!-- /.four-col -->
+		<div class="six-col last-col box no-margin-bottom">
+			<div class="four-col">
+				<h2><a href="/download/cloud">Ubuntu Cloud&nbsp;&rsaquo;</a></h2>
+				<p>Ubuntu OpenStack enables you to provision your servers and build an OpenStack cloud on Ubuntu, all from one Ubuntu Server download.</p>
+			</div>
+			<div class="two-col last-col text-center">
+				<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-cloud-darkaubergine.svg" alt="" width="113" height="113" class="media--image__vcentered" />
+			</div>
+		</div><!-- /.four-col -->
+	</div><!-- /.twelve-col -->
+
+	<div class="twelve-col equal-height no-margin-bottom">
+    	<div class="six-col box">
+    		<div class="four-col no-margin-bottom">
+    			<h2><a href="/download/ubuntu-kylin">Ubuntu Kylin&nbsp;&rsaquo;</a></h2>
+    			<p>Created specifically for the needs of Chinese users, Ubuntu Kylin 14.04.2 LTS includes many unique features and five years support from Canonical.</p>
+    		</div>
+    		<div class="two-col last-col no-margin-bottom text-center">
+    			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-ubuntukylin.svg" alt="Ubuntu Kylin logo" height="112" width="112" class="media--image__vcentered" />
+    		</div>
+	    </div><!-- /.box -->
+    	<div class="six-col last-col box equal-height">
+    		<div class="four-col no-margin-bottom">
+    			<h2><a href="/download/alternative-downloads">Alternative downloads&nbsp;&rsaquo;</a></h2>
+    			<p>Ubuntu is available via BitTorrent links and regional mirrors. You can also use the network installer.</p>
+    		</div>
+    		<div class="two-col last-col no-margin-bottom text-center">
+    			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-download-warmgrey.svg" alt="Chinese Ubuntu logo" height="112" width="112" class="media--image__vcentered" />
+    		</div>
+	    </div><!-- /.box -->
+	</div><!-- /.twelve-col -->
+</div><!-- /.row -->
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

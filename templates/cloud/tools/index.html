@@ -7,7 +7,7 @@
 {% block meta_keywords %}Ubuntu OpenStack, Juju, Maas, Jumpstart, deployment, orchestration, consulting, cloud consulting, cloud tools, cloud management{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
-	{% include "_base/_nav_breadcrumb.html" with section_title="Cloud" page_title="Cloud tools" tertiary="true" %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Tools" tertiary="true" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -22,18 +22,16 @@
 </div><!-- /.row -->
 
 <div class="row row-juju">
-	<span>
-		<div class="orchestration-image-load" data-width="984" data-src="{{ STATIC_URL }}img/cloud/tools/image-jujucharms{width}.png" data-alt=""></div>
-		<script>
-		    new Imager('.orchestration-image-load', {
-		        availableWidths: {
-		        	360: '-small',
-		            767: '-medium',
-		            900: '-large'
-		        }
-		    });
-		</script>
-	</span>
+	<div class="orchestration-image-load" data-width="984" data-src="{{ STATIC_URL }}img/cloud/tools/image-jujucharms{width}.png" data-alt=""></div>
+	<script>
+	    new Imager('.orchestration-image-load', {
+	        availableWidths: {
+	        	360: '-small',
+	            767: '-medium',
+	            900: '-large'
+	        }
+	    });
+	</script>
 	<div class="six-col prepend-six last-col">
 		<h2>Orchestration with Juju</h2>
 		<p>Juju is the game-changing service orchestration tool that&rsquo;s the fastest way to deploy OpenStack on Ubuntu. Its libraries of &lsquo;charms&rsquo; make it simple to deploy, configure and scale out cloud services with only a few simple commands.</p>
@@ -53,25 +51,37 @@
 </div><!-- /.row -->
 
 
-<div class="row row-computers-selected no-border">
-	<div class="six-col last-col priority-0 computers-selected">
-		<p>25<span>computers selected</span></p>
+<div class="row row-grey">
+	<div class="five-col last-col">
+ 		<img src="{{ STATIC_URL }}img/cloud/ubuntu-openstack/image-monitor.png" alt="" />
 	</div>
-	<div class="six-col">
+	<div class="seven-col">
 		<h2>Deploy, monitor and manage your cloud with Landscape</h2>
-		<p>Landscape is where the power of Ubuntu OpenStack really comes together. It allows you to build your cloud in minutes, then monitor it, manage it and produce timely and accurate compliance reports. The rich, web-based GUI gives you an instant overview of everything going on in your cloud, from hardware to workloads. </p>
-		<p><a href="/cloud/management">Read more about Landscape&nbsp;&rsaquo;</a></p>
+		<p>Landscape is where the power of Ubuntu OpenStack really comes together. It allows you to build your cloud in minutes, then monitor it, manage it and produce timely and accurate compliance reports. The rich, web-based GUI gives you an instant overview of everything going on in your cloud, from hardware to workloads.</p>
+		<p><a href="/cloud/management">Learn more about Landscape&nbsp;&rsaquo;</a></p>
 	</div><!-- /.six-col -->
 </div><!-- /.row -->
 
-{% comment %}
 <div class="row">
-	<div class="six-col">
-		<h2>Cloud installer</h2>
-		<p>When available, this section will include a blurb about CI together with a link to a dedicated CI page. THat page will include the download link, and some starting tips. After that, emails will be sent throughout the trial period to cover the topics in the spreadsheet.</p>
-		<p><a href="/cloud/tools/cloud-installer">Read more about Cloud installer</a></p>
-	</div><!-- /.six-col -->
+	<div class="seven-col append-one">
+		<h2>LXD &mdash; the Linux Container Daemon</h2>
+		<p>Take all the efficiency of docker and turn it into a full virtualisation experience. Launch a new Linux machine in under a second. Launch hundreds of them on a single server. Connect them separately and securely. Run that on one node or a million. On bare metal, public cloud, or OpenStack. This is LXD from Canonical.</p>
+		<p><a href="/cloud/tools/lxd">Read more about LXD&nbsp;&rsaquo;</a></p>
+	</div>
+	<div class="four-col text-center last-col">
+ 		<img width="250" src="{{ STATIC_URL }}img/cloud/tools/lxd/image-lxd.svg" alt="LXD logo" />
+	</div>
 </div><!-- /.row -->
-{% endcomment %}
+
+<div class="row row-grey no-border">
+	<div class="four-col text-center append-one">
+ 		<img src="{{ STATIC_URL }}img/cloud/tools/snappy/snappy.svg" alt="Snappy" />
+	</div>
+	<div class="seven-col last-col">
+		<h2>Snappy Ubuntu Core</h2>
+		<p>Snappy is a new way to use Ubuntu in the cloud with transactional, image-based updates. Snappy Ubuntu Core is the same OS with the same libraries as today&rsquo;s Ubuntu but applications are provided through a simpler, faster, mechanism, and most importantly, it provides stronger security guarantee for apps, making it ideal for Docker and other cloud deployment frameworks.</p>
+		<p><a href="/cloud/tools/snappy">Read more about snappy&nbsp;&rsaquo;</a></p>
+	</div>
+</div><!-- /.row -->
 
 {% endblock content %}

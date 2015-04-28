@@ -1,0 +1,12 @@
+<div itemscope itemtype="http://schema.org/Product" class="row {% if extra_row_class %} {{ extra_row_class }}{% endif %}">
+	<div class="four-col small-align-center">
+		<img itemprop="image" class="" src="{{ STATIC_URL }}img/phone/overview/bq-aquaris-promo.png" alt="Ubuntu for phones on the BQ Aquaris E4.5" />
+	</div><!-- /.six-col -->
+	<div class="seven-col prepend-one last-col">
+		<h2 class="six-col" itemprop="name">{{ phone_promo_title }}</h2>
+		<div itemprop="description">{{ phone_promo_content }}</div>
+		<p itemprop="price">Only 169,90&euro;</p>
+		<p><a class="link-cta-ubuntu" itemprop="url" href="http://www.bq.com/gb/ubuntu.html">How to buy</a>&nbsp;&nbsp;<a itemprop="sameAs" class="phone_promo_link" href="{{ phone_promo_link }}">{{ phone_promo_link_title }}&nbsp;&rsaquo;</a></p>
+		<!-- <p><a href="/phone/devices">Learn more about the phone&nbsp;&rsaquo;</a></p> -->
+	</div><!-- /.six-col -->
+</div><!-- /row -->

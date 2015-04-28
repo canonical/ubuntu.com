@@ -9,75 +9,56 @@
 {% block extra_body_class %}management-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "_base/_nav_breadcrumb.html" with section_title="Management" page_title="Overview"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Management" page_title="Overview"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
 
 <div class="row row-hero">
-	<h1>Systems management and support</h1>
-	<div class="eight-col no-margin-bottom">
-		<p>Ubuntu Advantage is the professional support package from Canonical, with Landscape, a systems management tool, built for running large-scale Ubuntu deployments on desktop, server or cloud.</p>
-		<p class="clearfix"><a class="link-cta-ubuntu" href="https://landscape.canonical.com/trial-registration">Try Landscape for free for 30 days</a></p>
+    <h1>Ubuntu Advantage</h1>
+	<p class="intro">Systems management and support</p>
+	<div class="seven-col no-margin-bottom">
+		<p>Ubuntu Advantage is the commercial support package from Canonical. It includes Landscape, the Ubuntu systems management tool, for running desktop, server and public cloud deployments, or building and managing private OpenStack clouds.</p>
 		<p><a href="/management/contact-us">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
 	</div><!-- /.six-col -->
-	<div class="four-col last-col">
+	<div class="five-col last-col align-center">
 		<img alt="" width="288" height="155" src="{{ STATIC_URL }}img/management/image-management.svg" class="priority-0" />
 	</div><!-- /.six-col -->
 </div><!-- /.row-hero -->
 
-<div class="row row-whats-included">
-	<div class="eight-col">
-		<h2>Ubuntu Advantage: what&rsquo;s included?</h2>
-		<h3>Systems management: Landscape</h3>
-		<p>With the Landscape systems management tool, you can automate updates and manage physical, virtual and cloud-based systems from a single interface. It's easy to set up, easy to use and requires no special hardware. It features:</p>
-		<div class="combined-list clearfix eight-col">
-				<ul class="list-canonical four-col">
-					<li>Management at scale</li>
-					<li>Deploy or rollback security updates</li>
-					<li class="last-item">Compliance reports</li>
-				</ul>
-				<ul class="list-canonical four-col last-col">
-					<li>Role-based access</li>
-					<li class="last-item">Informative monitoring</li>
-				</ul>
-		</div><!-- /.combined-list -->
-		<p><a href="/management/landscape-features">Learn more about Landscape&nbsp;&rsaquo;</a></p>
-	</div><!-- /.eight-col -->
-	<div class="four-col last-col no-margin-bottom">
-		<img src="{{ STATIC_URL }}img/management/image-landscape.jpg" alt="" width="328" height="477" class="priority-0" />
-	</div><!-- /.four-col -->
-</div><!-- /.row -->
 
-<div class="row">
-	<div class="vertical-divider">
-	<div class="four-col support">
-		<h3>24/7 support</h3>
-		<p>Canonical&rsquo;s Global Support &amp; Services team provides around-the-clock coverage for Ubuntu deployments all over the world. Telephone support gives you access to engineers with first-hand experience of your issues, while the online portal lets you track the progress of cases in real time.</p>
+<div class="row row-grey vertical-divider">
+	<div class="six-col">
+	<div class="one-col align-center no-margin-bottom">
+		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-server-orange.svg" width="50" height="50" alt="" class="priority-0"/>
 	</div>
-	<div class="four-col technical-library">
-		<h3>Technical library</h3>
-		<p>Exclusive to Ubuntu Advantage subscribers, the Canonical Knowledge Base is an online library of articles on technical issues including security, migration and networking.</p>
+	<div class="five-col last-col no-margin-bottom">
+		<h3>Manage desktops and servers</h3>
+		<h4 class="note caps">Free for 30 days</h4>
 	</div>
-	<div class="four-col last-col legal-assurance no-margin-bottom">
-		<h3>Customer login</h3>
-		<p>Already a customer? Access the support portal or Canonical’s hosted Landscape service.</p>
-		<ul class="no-bullets no-margin-bottom">
-			<li><a href="https://login.ubuntu.com/+saml/init/salesforce/500/o ">Support portal login&nbsp;&rsaquo;</a></li>
-			<li><a href="https://landscape.canonical.com/">Landscape login&nbsp;&rsaquo;</a></li>
-		</ul>
+		<p>Try the hosted version of Landscape on your desktop, server and public cloud deployments – free for 30 days.</p>
+		<p><a href="https://landscape.canonical.com/trial-registration">Try Landscape for free for 30 days&nbsp;&rsaquo;</a></p>
+	</div><!-- /.six-col -->
+	
+	<div class="six-col last-col">
+	<div class="one-col align-center no-margin-bottom">
+		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-cloud-orange.svg" width="50" height="50" alt="" class="priority-0"/>
 	</div>
+	<div class="five-col last-col no-margin-bottom">
+		<h3>Create an OpenStack cloud</h3>
+		<h4 class="note caps">Free for up to 10 machines</h4>
 	</div>
-	<div class="twelve-col">
-		<p><a href="/management/ubuntu-advantage">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
-	</div>
-</div>
+		<p>Try the server version of Landscape to build and manage an OpenStack cloud with up to 10 machines – free for as long as you need it.</p>
+		<p><a href="http://www.ubuntu.com/download/cloud/install-ubuntu-openstack">Try Landscape for free for 10 machines&nbsp;&rsaquo;</a></p>
+	</div><!-- /.six-col -->
+</div><!-- /.row-hero -->
 
+{% include "shared/_ubuntu_advantage_whats_inlcuded.html" %}
 
 <div class="row">
 	<div class="six-col">
 		<h2>Watch it in action</h2>
-		<p>With Landscape you can manage your machines from anywhere and with a fully scriptable API, you can integrate it with your current Linux management tools, extending their capabilities and giving you the power to do more with fewer resources.</p>
+		<p>With Landscape you can manage your machines from anywhere via a browser, and with a fully scriptable API, you can integrate it with your current Linux management tools, extending their capabilities and giving you the power to do more with fewer resources.</p>
 		<p><a href="/management/working-with-landscape">Learn more about working with Landscape&nbsp;&rsaquo;</a></p>
 	</div>
 	<div class="six-col last-col">
@@ -125,6 +106,7 @@
 			<li>Integration with common client-side Linux sysadmin tooling, so you can see the same information about individual machines as you see in the terminal.</li>
 			<li>A complete API lets you use established technologies (e.g. Bash, Python) to borrow or build on Landscape&rsquo;s functionality.</li>
 			<li>Custom scripts need only be written to allow for the business logic unique to your organisation; common tasks (e.g. repository management) are already covered, so there&rsquo;s no need to re-invent the wheel.</li>
+			<li>Manage machines remotely from any web browser.</li>
 			<li>You can manage machines remotely from anywhere you can access a web browser.</li>
 			<li>Receive alerts when updates become available for specific machines, or manage auto-update policies, instructing devices to update during set maintenance windows.</li>
 			<li class="last-item"><p>RBAC features for delegating certain activities on specific machines to others &mdash; reducing your workload without sacrificing control.</li>
@@ -146,7 +128,7 @@
 	</div>
 </div><!-- /.row-->
 
-{% include "_includes/_live_chat.html" %}
+{% include "shared/_live_chat.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

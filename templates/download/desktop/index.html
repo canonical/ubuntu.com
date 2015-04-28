@@ -5,56 +5,86 @@
 {% block extra_body_class %}download-desktop-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "_base/_nav_breadcrumb.html" with section_title="Download" page_title="Desktop"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Download" page_title="Desktop"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-{% with ubuntu_release="14.04.1" openstack_version="Icehouse" %}
+{% with lts_release="14.04.2" ubuntu_release="15.04" lts_release_name="TrustyTahr" ubuntu_release_name="VividVervet" openstack_version="juno" %}
 <div class="row row-hero row-background no-border">
 	<div class="eight-col append-four">
 		<h1>Download Ubuntu Desktop</h1>
 	</div><!-- /.eight-col -->
-	<div class="twelve-col">
+
+	<div class="twelve-col no-margin-bottom">
 		<div class="box box-highlight clearfix vertical-divider">
 			<div class="eight-col no-margin-bottom">
-				<h2>Ubuntu {{ubuntu_release}} LTS</h2>
-				<p>The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ubuntu_release}} LTS comes with five years of security and maintenance updates, guaranteed.</p>
-				<p><a href="https://wiki.ubuntu.com/TrustyTahr/ReleaseNotes" class="external">Ubuntu {{ubuntu_release}} LTS release notes</a></p>
+                <h2>Ubuntu {{lts_release}} LTS</h2>
+				<p>The Long Term Support (LTS) version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{lts_release}} LTS comes with five years of security and maintenance updates, guaranteed.</p>
+				<p><strong>Recommended for most users.</strong></p>
+				<p><a href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes" class="external">Ubuntu {{lts_release}} LTS release notes</a></p>
 			</div>
 			<div class="four-col last-col no-margin-bottom download-button">
 				<form class="form-download gap-from-top" action="/download/desktop/contribute/" method="get">
 					<fieldset>
-						<input type="hidden" name="version" value="{{ubuntu_release}}" />
+						<input type="hidden" name="version" value="{{lts_release}}" />
 						<label for="input-bits-lts">Choose your flavour</label>
 						<select id="input-bits-lts" name="architecture">
-							<option value="amd64" selected="selected">64-bit</option>
-							<option value="i386">32-bit (for machines with less than 2GB RAM)</option>
-							<option value="amd64+mac">64-bit Mac (AMD64)</option>
+							<option value="amd64" selected="selected">64-bit &mdash; recommended</option>
+							<option value="i386">32-bit &mdash; for machines with less than 2GB RAM</option>
 						</select>
 					</fieldset>
 					<div>
 						<button type="submit">Download</button>
 					</div>
+                    <p><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
+				</form>
+			</div><!-- /.four-col -->
+		</div><!-- /.box -->
+	</div><!-- /.twelve-col -->
+</div><!-- /.row -->
+
+<div class="row row-grey">
+	<div class="twelve-col no-margin-bottom">
+		<div class="box box-highlight clearfix vertical-divider">
+			<div class="eight-col no-margin-bottom">
+                <h2>Ubuntu {{ubuntu_release}}</h2>
+				<p>The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ubuntu_release}} comes with nine months of security and maintenance updates.</p>
+				<p><a href="https://wiki.ubuntu.com/{{ubuntu_release_name}}/ReleaseNotes" class="external">Ubuntu {{ubuntu_release}} release notes</a></p>
+			</div>
+			<div class="four-col last-col no-margin-bottom download-button">
+				<form class="form-download gap-from-top" action="/download/desktop/contribute/" method="get">
+					<fieldset>
+						<input type="hidden" name="version" value="{{ubuntu_release}}" />
+						<label for="input-bits">Choose your flavour</label>
+						<select id="input-bits" name="architecture">
+							<option value="amd64" selected="selected">64-bit &mdash; recommended</option>
+							<option value="i386">32-bit &mdash; for machines with less than 2GB RAM</option>
+						</select>
+					</fieldset>
+					<div>
+						<button type="submit">Download</button>
+					</div>
+                    <p><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
 				</form>
 			</div><!-- /.four-col -->
 		</div><!-- /.box -->
 	</div>
-</div><!-- /.row -->
+</div>
 
-<div class="row row-grey row-easy-ways">
+<div class="row row-easy-ways">
 	<div class="twelve-col">
-		<h2>Easy ways to switch to Ubuntu {{ubuntu_release}} LTS</h2>
+		<h2>Easy ways to switch to Ubuntu<!-- {{ubuntu_release}} LTS --></h2>
 	</div>
 	<div class="equal-height">
-		<div class="four-col box box-highlight">
-			<h3 class="header--ubuntu">From Ubuntu</h3>
+		<div class="four-col box">
+			<h3 class="header--ubuntu">From an older version</h3>
 			<p>If you&rsquo;re already running Ubuntu, you can upgrade in a few clicks from <a href="/download/desktop/upgrade">Software Updater</a>.</p>
 			<ul class="no-bullets">
 				<li><a href="/download/desktop/burn-a-dvd-on-ubuntu">How to burn a DVD on Ubuntu&nbsp;&rsaquo;</a></li>
 				<li><a href="/download/desktop/create-a-usb-stick-on-ubuntu">How to create a bootable USB stick on Ubuntu&nbsp;&rsaquo;</a></li>
 			</ul>
 		</div>
-		<div class="four-col box box-highlight">
+		<div class="four-col box">
 			<h3 class="header--windows">From Windows</h3>
 			<p>If you&rsquo;re using Windows 8 or any computer with a 64-bit processor, we recommend the 64-bit download.</p>
 			<ul class="no-bullets">
@@ -62,7 +92,7 @@
 				<li><a href="/download/desktop/create-a-usb-stick-on-windows">How to create a bootable USB stick on Windows&nbsp;&rsaquo;</a></li>
 			</ul>
 		</div>
-		<div class="four-col last-col box box-highlight">
+		<div class="four-col last-col box">
 			<h3 class="header--mac">From Mac OS X</h3>
 			<p>Most Macs with Intel processors will work with either 64-bit or Mac images. If the 64-bit image doesn't work, try the Mac image.</p>
 			<ul class="no-bullets">

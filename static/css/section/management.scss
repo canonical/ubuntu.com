@@ -1,0 +1,509 @@
+/*	@section management ubuntu.com/management
+--------------------------------------------------------------
+	Contents:
+		@section general
+		@section management-landscape-features
+		@section ubuntu-advantage
+		@section return-on-investment
+		@section working-with-landscape
+		@section desktop, server and cloud management pages in other sections
+
+-------------------------------------------------------------- */
+
+/*	@section general
+-------------------------------------------------------------- */
+body.management .row-hero { /* First bit of content on a page, normally contains h1 and sometimes a bit of blurb */
+	position: relative;
+}
+
+body.management {
+	.row-benefits .six-col {
+		border-right: 1px dotted $warm-grey;
+		padding-right: $gutter-width;
+	}
+	.row-benefits .last-col {
+		border: 0;
+		padding-right: 0;
+	}
+	.stats-panel {
+		@include box_sizing();
+		background: #f6f6f6;
+		padding-top: 1.5em;
+	}
+	.stats-panel dl, .stat dl {
+		@include box_sizing();
+	    float: left;
+	    min-height: 107px;
+	    padding: 20px 0 0;
+	    text-align: center;
+	}
+	.stats-panel dl.last-col {
+		border: 0;
+	}
+	.stat dl {
+    	padding-top: 6px;
+		border: 0;
+		font-size: 32px;
+		text-align: center;
+    }
+
+	.stats-panel dt, .stat dt {
+	    font-size: 2.7em;
+	    font-weight: normal;
+	    height: 20px;
+	    line-height: 20px;
+	    margin: 20px 0 40px;
+	    color: $canonical-aubergine;
+	}
+	.stats-panel dd, .stat dd {
+		margin-left: 0;
+	}
+	.stats-panel p {
+    	color: #555;
+    	@include font_size (21);
+    	font-style: italic;
+    	text-align: center;
+    	clear: both;
+    	padding: 0 ($grid-gutter/1.5);
+    }
+    .stats-panel p.first {
+	    font-style: normal;
+    }
+    .stats-panel dt span {
+    	@include font_size (8.5);
+    	margin-left: -15px;
+    }
+	.row-landscape {
+		margin-bottom: 0;
+	}
+	.row-image-float-right p {
+		width: $eight-col;
+	}
+} /* end body.management */
+body.management-return-on-investment,
+body.management-compliance {
+	.row-hero {
+		.link-cta-canonical {
+			margin-bottom: 10px;
+		}
+	}
+	.stats-panel dt, .stat dt {
+	    font-size: 5em;
+	}
+
+	.no-margin-bottom {
+		margin-bottom: 20px;
+
+		@media screen and (min-width: 768px) {
+			margin-bottom: 0;
+		}
+	}
+}
+body.management-home {
+	#main-content .row-whats-included {
+		position: relative;
+	}
+	.row-whats-included {
+		overflow: hidden;
+		h3 {
+			background-image: url("../img/pictograms/picto-pack/picto-reducecosts-warmgrey.svg");
+			background-position: 0 center;
+			background-repeat: no-repeat;
+			background-size: 40px 40px;
+			padding: 6px 0 10px 50px;
+			margin-top: 18px;
+		}
+	}
+
+	.support h3 {
+		background-image: url("../img/pictograms/picto-pack/picto-support-warmgrey.svg");
+		background-position: 0 center;
+		background-repeat: no-repeat;
+		background-size: 40px 40px;
+		padding: 10px 0 10px 50px;
+	}
+	.technical-library h3 {
+		background-image: url("../img/pictograms/picto-pack/picto-articles-warmgrey.svg");
+		background-position: 0 center;
+		background-repeat: no-repeat;
+		background-size: 40px 40px;
+		padding: 10px 0 10px 50px;
+	}
+	.legal-assurance h3 {
+		background-image: url("../img/pictograms/picto-pack/picto-business-warmgrey.svg");
+		background-position: 0 center;
+		background-repeat: no-repeat;
+		background-size: 40px 40px;
+		padding: 10px 0 10px 50px;
+	}
+} /* end body.management-home */
+html.no-svg,
+html.opera-mini {
+	body.management-home {
+		.row-whats-included h3 {
+			background-image: url("../img/pictograms/picto-reduce-costs-grey.png");
+		}
+		.support h3 {
+			background-image: url("../img/pictograms/picto-support-grey.png");
+		}
+		.technical-library h3 {
+			background-image: url("../img/pictograms/picto-articles-grey.png");
+		}
+		.legal-assurance h3 {
+			background-image: url("../img/pictograms/picto-business-grey.png");
+		}
+	}
+}
+
+body.management .row-landscape-trial-home div {
+	@include rounded_corners(4px);
+	border: 1px solid #dfdcd9;
+	box-shadow: none;
+	margin-bottom: inherit;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+/*	@section management-landscape-features
+-------------------------------------------------------------- */
+body.management-landscape-features {
+  .tabbed-content {
+  	background: #F7F7F7;
+  	border-radius: 4px;
+
+  	img {
+      	border: 1px solid #ddd;
+  	}
+
+  	h3 { display: none; }
+
+  	&.open { padding-bottom: 10px; }
+  }
+  .tabbed-content #management ul { margin-bottom: 0; }
+
+  .tabbed-content #management .six-col, .tabbed-content #deployment .six-col, .tabbed-content #monitoring .six-col, .tabbed-content #inventory .six-col {
+  	border-right: 1px dotted $warm-grey;
+  	padding-right: (20/$base)em;
+  }
+  .tabbed-content a.right {
+  	float: none;
+  }
+  .tabbed-content #management .last-col, .tabbed-content #deployment .last-col, .tabbed-content #monitoring .last-col, .tabbed-content #inventory .last-col  {
+  	border: 0;
+  	padding-right: 0;
+  }
+
+  #inventory {
+  	margin-bottom: 30px;
+  }
+
+  .tabbed-menu li:first-child {
+		text-indent: 10px;
+  }
+}
+
+body.management-ubuntu-advantage,
+body.management-working-with-landscape {
+	.row-hero p.last {
+		margin-top: 40px;
+		background: none;
+	}
+	.row-hero .link-cta-canonical {
+		margin-bottom: 10px;
+	}
+	.ubuntu-advantage { margin-bottom: 0; }
+	.ubuntu-advantage img { margin-left: -$grid-gutter; }
+	.row-purchase-advantage .box {
+		background: $light-grey url(../img/pictograms/pictogram-reduce-costs-115x115.png) 20px 20px no-repeat;
+		padding-bottom: 1em;
+	}
+	.row-purchase-advantage .promo-description {
+		padding-left: 135px;
+		border-right: 1px dotted $warm-grey;
+		padding-right: 1.1875em;
+		min-height: 9em;
+		margin-bottom: 0;
+	}
+	.row-purchase-advantage .promo-price {
+	}
+	.row-purchase-advantage .box div {
+		margin-bottom: 0;
+	}
+	.row-purchase-advantage .box p.last-item {
+		margin-top: 20px;
+		float: left;
+		font-style: italic;
+		@include font_size (13);
+	}
+} /* end body.business-systems-management-ubuntu-advantage */
+html.no-svg,
+html.opera-mini {
+	body.management-ubuntu-advantage,
+	body.management-working-with-landscape {
+		.row-hero {
+			background-image: url(../img/management/ubuntu-advantage/image-ubuntuadvantage.png);
+		}
+	}
+}
+
+body.management-ubuntu-advantage table {
+	table-layout: fixed;
+
+	.row-title {
+		width: 18em;
+	}
+}
+
+/*	@section ubuntu-advantage
+-------------------------------------------------------------- */
+body.management-ubuntu-advantage {
+	#main-content .row-hero {
+		padding-top: 0;
+	}
+	#main-content .row-hero p span {
+		@include font_size (18);
+	}
+
+	.row-management .product-intro h2 {
+		@include font_size (23);
+	}
+
+	.price {
+		font-size:0.813em;
+		bottom: 0;
+	}
+
+	.price p {
+		margin: 0;
+		padding: 0;
+	}
+
+	.price span {
+		@include font_size (18);
+		font-weight: normal;
+	}
+
+} /* end body.management-ubuntu-advantage */
+
+.three-divided {
+	@include box_sizing;
+}
+.three-divided li {
+    margin-bottom: 20px;
+    margin-right: 20px;
+    padding-bottom: 10px;
+	width: 100%;
+}
+.three-divided li.last-col {
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+html.no-svg, html.opera-mini {
+	body.management-compliance .row-hero,
+	body.management-return-on-investment .row-hero {
+		background: url("../img/pictograms/pictogram-reduce-costs-300x300.png") no-repeat scroll 654px 50% #FFFFFF;
+	}
+}
+
+body.management-return-on-investment {
+	.row-hero {
+		padding-bottom: 40px;
+	}
+	.row-box {
+		padding-bottom: 40px;
+		padding-top: 40px;
+	}
+	.row-landscape-trial {
+		margin-bottom: 20px;
+		padding-bottom: 0;
+	}
+	.logos img { margin: 20px 0 0 40px; }
+}
+
+/*	@section working-with-landscape
+-------------------------------------------------------------- */
+body.management-working-with-landscape {
+/*	.row {
+		padding-bottom: 60px;
+	}
+	.row-hero {
+		padding-bottom: 40px;
+	}*/
+	.row-hero .eight-col {
+		margin-bottom: 0;
+		padding-bottom: 1.25em;
+	}
+	//.row .six-col { margin-bottom: 0; }
+
+	iframe { margin-bottom: 1.25em; }
+
+	.row-landscape-trial {
+		padding-bottom: 0;
+		border-bottom: 0;
+	}
+}
+
+body.management-ema-whitepaper {
+	.row iframe {
+		width: 100%;
+	}
+}
+
+/* end @section desktop management */
+
+/* Medium / Tablet viewport
+-------------------------------------------------------------- */
+@media only screen and (max-width : 768px) {
+	.row-ubuntu-advantage-promo {
+		position: relative;
+		img {
+			position: relative;
+			right: 0;
+			bottom: -19px;
+			top: auto;
+		}
+	}
+	body.management-ubuntu-advantage {
+		.equal-height > li {
+			height: auto !important;
+		}
+	}
+}
+
+/* Medium / Tablet viewport
+-------------------------------------------------------------- */
+@media only screen and (min-width : 768px) {
+	body.management {
+		.stat dl {
+	    	margin: 0 0 0 40px;
+	    }
+		.stats-panel dd, .stat dd {
+		    margin-left: 0;
+		}
+		.stats-panel p a {
+	    	@include font_size (13);
+	    }
+
+		.row-return-investment {
+			background-image: url("../img/management/image-cutyouritcosts.svg");
+			background-position: 125px bottom;
+			background-repeat: no-repeat;
+		}
+		img.flush-right {
+			float: right;
+			margin-right: -40px;
+			margin-left: 20px;
+		}
+		img.flush-left {
+			float: left;
+			margin-left: -40px;
+		}
+
+		.tabbed-content {
+			@include rounded_corners(0 0 4px 4px);
+			background: $light-grey;
+		    border-bottom: 0;
+
+		  	h3 {
+		  		display: block;
+		  	}
+
+		  	a.right {
+			  	margin-bottom: 1.25em;
+			  	margin-left: (20/$base)em;
+			  	float: right;
+			}
+
+			.row {
+				padding-top: 0;
+			}
+		}
+	}
+	html.no-svg,
+	html.opera-mini {
+		.row-return-investment {
+			background-image: url("../img/management/image-cutyouritcosts.png");
+		}
+	}
+	body.management-return-on-investment {
+	    .stats-panel dt, .stat dt {
+		    margin-left: -30px;
+		}
+	}
+	body.management-home {
+		.margin-top { margin-top: 20px; }
+	}
+	.three-divided li {
+		width: 30%;
+		padding-bottom: 38px;
+	}
+
+	.row-cloud-management .three-divided li {
+		padding-bottom: 0;
+	}
+	body.management-ubuntu-advantage {
+		.price {
+			margin-bottom: 0;
+		}
+	}
+
+	html.no-svg,
+	html.opera-mini {
+		body.management .row-return-investment {
+			background-image: url("../img/management/image-cutyouritcosts.png");
+		}
+	}
+	body.management-ubuntu-advantage,
+	body.management-working-with-landscape {
+		.row-hero .link-cta-canonical {
+			margin-bottom: 0;
+		}
+	}
+
+/*	body.management-working-with-landscape {
+		.row {
+			padding-bottom: 60px;
+		}
+		.row-hero {
+			padding-bottom: 40px;
+		}
+	}*/
+	body.management-landscape-features {
+	  .tabbed-menu {
+	  }
+	}
+}
+
+@media only screen and (min-width : 984px) {
+	.row-ubuntu-advantage-promo {
+		overflow: hidden;
+
+		img.touch-border {
+			float: none;
+			max-width: none;
+			position: absolute;
+			right: 0;
+		}
+	}
+}
+
+/* Medium / Tablet viewport
+-------------------------------------------------------------- */
+@media only screen and (min-width : 986px) {
+	body.management-ubuntu-advantage,
+	body.management-working-with-landscape {
+		.row-hero {
+			background-image: url(../img/management/ubuntu-advantage/image-ubuntuadvantage.svg);
+			background-position: 694px 50%;
+			background-repeat: no-repeat;
+		}
+	}
+	body.management {
+		.tabbed-menu {
+		}
+		.tabbed-content {
+
+		}
+	}
+}

@@ -7,7 +7,8 @@ var ai = [{ url: "http://www.ubuntu.com", title:"Ubuntu" },
 { url: "http://discourse.ubuntu.com", title:"Discourse" },
 { url: "http://www.ubuntu.com/certification", title:"Hardware" },
 { url: "https://insights.ubuntu.com", title:"Insights" },
-{ url: "https://juju.ubuntu.com", title:"Juju" },
+{ url: "https://jujucharms.com", title:"Juju" },
+{ url: "http://partners.ubuntu.com", title:"Partners" },
 { url: "http://shop.ubuntu.com", title:"Shop" }];
 
 var more = [{ url: "http://apps.ubuntu.com", title:"Apps" },
