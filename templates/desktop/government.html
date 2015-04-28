@@ -1,0 +1,84 @@
+{% extends "desktop/base_desktop.html" %}
+
+{% block title %}For government{% endblock %}
+{% block extra_body_class %}desktop-government{% endblock %}
+
+{% block second_level_nav_items %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="For government"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+
+<div class="row row-hero no-border">
+    <h1>Ubuntu for government</h1>
+    <div class="six-col">
+        <p class="intro">Ubuntu provides central and local government departments with secure, open source, cost-effective, accessible computing on an extensive range of certified hardware.</p>
+        {% include "desktop/shared/_share-this.html" with tweet="Learn how #Ubuntu desktop OS helps governments around the world" %}
+    </div>
+</div>
+
+<div class="row">
+    <h2>Government essentials</h2>
+    <div class="combined-list">
+        <ul class="list-ubuntu six-col">
+            <li>Virus free and <a href="https://www.gov.uk/government/collections/end-user-devices-security-guidance" class="external">highly secure</a></li>
+            <li>Free and <a href="https://www.gov.uk/service-manual/making-software/open-source.html" class="external">open source</a> &mdash; free from licensing restrictions</li>
+            <li class="last-item">Microsoft-compatible office productivity suite</li>
+        </ul>
+        <ul class="list-ubuntu six-col last-col">
+            <li>Open data formats built into many apps</li>
+            <li>Fully translated into 40+ languages</li>
+            <li class="last-item">On-site consulting services and training available</li>
+        </ul>
+    </div>
+</div>
+
+<div class="row row-security no-border">
+    <div class="six-col append-two">
+        <h2>Recognised security</h2>
+        <p>UK National security  government agency (CESG) recently rated Ubuntu as the most secure operating system of the 11&nbsp;they tested. </p>
+        <a href="https://insights.ubuntu.com/2014/01/10/ubuntu-scores-highest-in-uk-gov-security-assessment/" class="external">Learn more about the CESG test</a> 
+    </div>
+</div>
+
+<div class="row row-case-studies">
+    <h2>Used by governments across the globe</h2>
+    <div class="vertical-divider">
+        <div class="four-col">
+            <h3>La Gendarmerie Nationale, France</h3>
+            <blockquote class="pull-quote">
+                <p><span>&ldquo;</span>We realised that Windows would cost us &euro;2 million more than Ubuntu every year.<span>&rdquo;</span></p>
+            </blockquote>
+            <p><a href="https://insights.ubuntu.com/2010/11/10/la-gendarmerie-nationale-upgrades-85000-pcs-to-ubuntu-desktop-edition/" class="external">Learn about switching to Ubuntu</a></p>
+        </div>
+        <div class="four-col">
+            <h3>City of Munich,<br/> Germany</h3>
+            <blockquote class="pull-quote">
+                <p><span>&ldquo;</span>Ubuntu was the platform that could satisfy our requirements best.<span>&rdquo;</span></p>
+            </blockquote>
+            <p><a href="https://insights.ubuntu.com/2014/07/07/ubuntu-and-open-source-help-the-city-of-munich-save-millions/" class="external">Learn about saving with Ubuntu</a></p>
+        </div>
+        <div class="four-col last-col">
+            <h3>Uttar Pradesh Government, India</h3>
+            <p class="headline">Uttar Pradesh boosted IT literacy by putting 1.5 million laptops running Ubuntu in schools.</p>
+            <p><a href="https://insights.ubuntu.com/2013/12/04/ubuntu-helps-millions-of-indian-students-to-learn/" class="external">Learn about Ubuntu in schools</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="row no-border equal-height row-landscape">
+    <div class="five-col">
+        <div>
+            <h2>Government-wide support and management tools</h2>
+            <p>Ubuntu Advantage is the professional support package from the experts at Canonical. Get 24x7 support with access to engineers with first-hand experience of your issues. It also includes Landscape, the Ubuntu systems management tool, for monitoring, managing, patching and compliance reporting on all your Ubuntu desktops.</p>
+            <p><a href="/management">Learn about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+        </div>
+    </div>
+    <div class="pull-right right">
+        <img src="{{ STATIC_URL }}img/desktop/enterprise/landscape-screenshot.png" class="touch-border landscape-screenshot priority-0" alt="Landscape screenshot" />
+    </div>
+</div>
+
+
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

@@ -1,9 +1,7 @@
 	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
 		<li class="first{% if level_1 == 'phone' and not level_2 %} active{% endif %}"><a href="/phone">Overview</a></li>
 		<li{% if level_2 == 'features' %} class="active"{% endif %}><a href="/phone/features" >Features</a></li>
-		<li{% if level_2 == 'scopes' %} class="active"{% endif %}><a href="/phone/scopes" >Scopes</a></li>
-		<li{% if level_2 == 'app-ecosystem' %}  class="active"{% endif %}><a href="/phone/app-ecosystem">App ecosystem</a></li>
-		<li{% if level_2 == 'operators-and-oems' %} class="active"{% endif %}><a href="/phone/operators-and-oems" >Operators and OEMs</a></li>
-		<li{% if level_2 == 'carrier-advisory-group' %}  class="active"{% endif %}><a href="/phone/carrier-advisory-group">Carrier Advisory Group</a></li>
-		<li{% if level_2 == 'backed-by-canonical' %} class="last-item"{% endif %}{% if level_2 == 'ubuntu-for-android' %}  class="active"{% endif %}><a href="/phone/ubuntu-for-android">Ubuntu for Android</a></li>
+		<li{% if level_2 == 'devices' %} class="active"{% endif %}><a href="/phone/devices" >Devices</a></li>
+		<li{% if level_2 == 'developers' %} class="active"{% endif %}><a href="/phone/developers" >For developers</a></li>
+		<li{% if level_2 == 'partners' %}  class="active"{% endif %}><a href="/phone/partners">For partners</a></li>
 	</ul>

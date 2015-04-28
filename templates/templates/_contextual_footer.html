@@ -1,0 +1,16 @@
+{% if level_2 == 'contact-us' and not level_3 or level_3 == 'contact-us' or level_4 == 'contact-us' and not level_5 or level_1 == 'privacy-policy' or level_1 == '2012' or level_1 == '2013' or level_2 == 'register' or level_1 == 'testing' or level_1 == 'legal' or level_3 == 'training-form' or level_2 == 'newsletter-thank-you' %}
+{% else %}
+<div id="context-footer" class="{{ level_1 }}-context-footer no-border">
+<hr />
+	<div class="twelve-col vertical-divider">
+	{% with ""|add:level_1|add:"/shared/_contextual_footer.html" as contextual %}
+	{% comment %}	<!--<div class="feature-one three-col">
+			<h3>Explore further</h3>
+			{% with ""|add:level_1|add:"/_nav_secondary.html" as explore %}
+				{% include explore with list_class="list smaller" %}
+			{% endwith %}
+		</div>-->{% endcomment %}
+	{% include contextual %}
+	{% endwith %}
+	</div><!-- /.twelve-col -->
+</div><!-- #context-footer -->{% endif %}

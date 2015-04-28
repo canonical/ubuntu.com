@@ -2,85 +2,84 @@
 
 {% block title %}Ubuntu on phones{% endblock %}
 
+{% block meta_description %}With a radical new paradigm that makes it quicker and easier to find content and services than ever before, the beautifully designed Ubuntu phone is the opportunity the mobile industry has been waiting for.{% endblock %}
+
 {% block meta_keywords %}Ubuntu, phone, smartphone, mobile, cellphone, cell, OS, operating system, platform, open source, Linux, Canonical, OEM, network operator, Android, touch, handheld, multitouch, device, form factor, gestures, edge magic, PC, desktop, convergence, enterprise{% endblock %}
-{% block meta_description %}Ubuntu now runs on phones. With a beautifully designed, easy-to-use interface that enables users to find content and switch between apps faster than ever, it represents the alternative open source OS the mobile industry has been waiting for. Ubuntu offers OEMs and network operators two key opportunities: a high-end experience on low end phones and PC desktop convergence on powerful hardware.{% endblock %}
 
 {% block extra_body_class %}phone-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "_base/_nav_breadcrumb.html" with section_title="Phone" page_title="Overview"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Overview"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero">
-	<div class="five-col">
-		<h1>A beautiful experience</h1>
-		<h2>Users can surface their content naturally and industry can customise endlessly</h2>
-		<p><a href="/phone/scopes">Learn more about scopes&nbsp;&rsaquo;</a></p>
-	</div><!-- /.five-col -->
-	<div class="seven-col last-col text-center">
-		<img src="{{ STATIC_URL }}img/phone/image-phone-overview.jpg" width="567" height="302" alt="Ubuntu phone's with different state of screens" />
+<div class="row row-hero no-border">
+    <div class="for-mobile"><img src="{{ STATIC_URL }}img/phone/overview/background-phone-overview-hero-small.jpg" alt="" /></div>
+	<div class="the-video">
+		<p class="right">
+			<a href="#" class="slideless close-video">Close the video <img src="{{ STATIC_URL }}img/devices/close-button.png" width="24" height="24" alt="" /></a>
+		</p>
+		<div></div>
+	</div>
+	<div class="row-content">
+		<div class="five-col">
+			<h1>Life at your fingertips</h1>
+			<p class="intro">Ubuntu introduces a new way to enjoy content and services on smartphones, without relying on&nbsp;traditional apps.</p>
+			<p class="video-link"><a href="//www.youtube.com/watch?v=-dpfHYpfEXY&amp;hd=1" class="show-video link-cta-ubuntu">Watch the video</a></p>
+			<div class="video-container for-mobile">
+				<iframe src="//www.youtube.com/embed/-dpfHYpfEXY" allowfullscreen></iframe>
+			</div>
+		</div><!-- /.five-col -->
 	</div>
 </div><!-- /.row -->
 
-<div class="row row-features vertical-divider touch-border no-border">
-	<div class="four-col">
-		<h3>Feature complete</h3>
-		<p>Run all of your favourite apps from the launcher and swipe effortlessly between them using Ubuntu&rsquo;s magic edges. Use the home scope to search phone and web, and keep your life and content organised with the brilliance of the Ubuntu’s scopes.</p>
-		<p><a href="/phone/design">Learn more about Ubuntu&rsquo;s features&nbsp;&rsaquo;</a></p>
-		<div class="text-center align-base">
-			<img src="{{ STATIC_URL }}img/phone/image-phone-featurecomplete.jpg" width="224" height="117" alt="Ubuntu phone running the gallery app" />
-		</div>
-	</div>
+{% include "phone/shared/phone_promo/_phone_promo.html" with extra_row_class="store-promo no-border" phone_promo_title="Available unlocked on the BQ Aquaris E4.5" phone_promo_content="<p class='clear'>The world&rsquo;s first Ubuntu phone is now available for sale all over Europe, direct from the manufacturer, BQ. The Aquaris E4.5 Ubuntu Edition includes an 8 megapixel camera, dual SIM and best of all, no network&nbsp;lock." phone_promo_link="http://www.bqreaders.com/gb/products/aquaris-e4-5.html" phone_promo_link_title="Learn more about the BQ Aquaris E4.5" %}
 
-	<div class="four-col">
-		<h3>Ready for your phone</h3>
-		<p>With all-native core apps and no Java overhead, Ubuntu runs well on entry-level smartphones &mdash; yet it uses the same drivers as Android. So now it&rsquo;s easy to bring a better experience to customers all over the world.</p>
-		<p><a href="/phone/operators-and-oems">Learn about working with us&nbsp;&rsaquo;</a></p>
-		<div class="text-center">
-			<img src="{{ STATIC_URL }}img/phone/image-phone-readyforyourphone.jpg" width="227" height="192" alt="Two Ubuntu phones side by side" />
-		</div>
-	</div>
-
-	<div class="four-col last-col">
-		<h3>All developers need</h3>
-		<p>Create gorgeous native apps or lightweight HTML5 apps easily, with our SDK. Repurpose web apps fast, so they look and work like their native cousins. With one OS for all form factors, one app can have interfaces for phone and desktop in just one upload.</p>
-		<p><a href="/phone/app-ecosystem">Learn more about developing apps&nbsp;&rsaquo;</a></p>
-		<div class="text-center">
-			<img src="{{ STATIC_URL }}img/devices/image-developers.jpg" alt="Collection of top apps available on Ubuntu phone" />
-		</div>
-	</div>
+<div class="row row--natural-access no-border">
+    <div class="for-mobile"><img src="{{ STATIC_URL }}img/phone/overview/background-phone-overview-access-small.jpg" alt="" /></div>
+	<div class="row--natural-access__content four-col">
+		<h2>Access content and services naturally</h2>
+		<p class="clear">For the first time, you can use a phone that revolves around you and the content and services you use the most. Say goodbye to opening and switching between multiple apps and instead, let Ubuntu&rsquo;s unique scopes bring everything you need to one&nbsp;screen.</p>
+		<p class="no-margin-bottom"><a href="/phone/features">Learn more about scopes&nbsp;&rsaquo;</a></p>
+	</div><!-- /.col -->
 </div><!-- /.row -->
 
-{% include "_includes/_edge_promo.html" %}
-
-<div class="row row-image-centered">
-	<span class="four-col">
-		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-canonical.svg" width="167" height="167" alt="Canonical logo" />
-	</span>
-	<div class="eight-col last-col">
-		<h2>Backed by Canonical</h2>
-		<p>We provide hardware enablement services to the world&rsquo;s biggest PC OEMs and, as a result, Ubuntu now ships pre-installed on 10% of the world&rsquo;s new PCs. With staff and offices all over the world, we have the resources you need to deliver Ubuntu on smartphones.</p>
-		<p><a href="/partners/backed-by-canonical">Learn more about Canonical&nbsp;&rsaquo;</a></p>
-	</div>
+<div class="row--beautiful-design edge-magic row no-border">
+    <div class="eight-col">
+        <ul id="card-list" class="slider-animation no-bullets inline">
+            <li class="card-one"></li>
+            <li class="card-two"></li>
+            <li class="card-three"></li>
+            <li class="card-four"></li>
+            <li class="card-five"></li>
+        </ul>
+    </div>
+	<div class="row--beautiful-design__content four-col last-col">
+		<h2>Beautifully designed&nbsp;features</h2>
+		<p>Ubuntu Phone has been designed with obsessive attention to detail. Form follows function throughout, from the ever-changing welcome screen to essentials like messaging and alarms. And the Launcher puts it all at your fingertips, whatever you&rsquo;re doing with your phone.</p>
+		<p><a href="/phone/features">See what Ubuntu can do&nbsp;&rsaquo;</a></p>
+	</div><!-- /.col -->
 </div><!-- /.row -->
 
-
-<div class="row no-border">
-	<div class="eight-col">
-		<h2>Introducing the Carrier Advisory Group</h2>
-		<p>The Carrier Advisory Group enables mobile operators to shape Ubuntu&rsquo;s product development, and provides the opportunity to be a potential launch partner.</p>
-		<p><a href="/phone/carrier-advisory-group">Read more about the CAG&nbsp;&rsaquo;</a></p>
-	</div>
-	<div class="twelve-col">
-		<ul class="inline-logos">
-			<li><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-everythingeverywhere.svg" alt="Everywhere everywhere" /></li>
-			<li><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-portugaltelecom.svg" alt="Portugal telecom" /></li>
-			<li><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-tmobile.svg" alt="T Mobile" /></li>
-			<li class="verizon"><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-verizon.svg" alt="Verizon" /></li>
-			<li class="last-item"><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-vodafone.svg" alt="Vodafone" /></li>
-		</ul>
-	</div>
-</div>
-
+<div class="row vertical-divider row-grey no-border">
+	<div class="six-col">
+		<h3>An open source phone</h3>
+		<div class="four-col">
+			<p>Our code is shared openly throughout the development cycle. We are transparent about our plans for future releases, so as a developer, carrier or manufacturer, you can work with us to start building Ubuntu mobile experiences now.</p>
+		</div>
+		<div class="two-col last-col not-for-small">
+			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-projectswelove-orange.svg" width="130" alt="" />
+		</div>
+	</div><!-- /.six-col -->
+	<div class="six-col last-col no-margin-bottom">
+		<h3>Backed by Canonical</h3>
+		<div class="four-col">
+			<p>Canonical is the global software vendor that provides commercial, design and engineering support to the Ubuntu project. Today, our hardware enablement team supports the pre-installation of Ubuntu on more than 10% of all new PCs shipped,worldwide.</p>
+			<p><a href="http://partners.ubuntu.com/partnering-with-us">Learn more about how we support Ubuntu&nbsp;&rsaquo;</a></p>
+		</div>
+		<div class="two-col last-col not-for-small">
+			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-canonical.png" width="130" alt="" />
+		</div>
+	</div><!-- /.six-col -->
+</div><!-- /.row -->
 {% endblock content %}
