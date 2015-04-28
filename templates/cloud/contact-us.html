@@ -2,7 +2,7 @@
 {% block title %}Cloud computing with Ubuntu{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "_base/_nav_breadcrumb.html" with section_title="Cloud" page_title="Contact us"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Contact us"  %}
 {% endblock second_level_nav_items %}
 
 {% block head_extra %}
@@ -431,9 +431,7 @@
 		</form>
 	</div><!-- /.seven-col -->
 	<div class="four-col last-col">
-		<h3>Keep up with the cloud</h3>
-		<p>If you want to keep up to date with everything happening around Ubuntu OpenStack, Juju, MAAS, Landscape, partners and more.</p>
-		<p><a href="https://pages.ubuntu.com/canonical-optin.html">Sign-up for our fortnightly newsletter&nbsp;&rsaquo;</a></p>
+		{% include "shared/_digesto.html" with section="things" %}
 	</div>	
 </div><!-- /.row -->
 
@@ -462,7 +460,7 @@ if ((typeof mktoPreFillFields != 'undefined') &&
 			}
 		</script>
 
-{% include "_includes/_live_chat.html" %}
+{% include "shared/_live_chat.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

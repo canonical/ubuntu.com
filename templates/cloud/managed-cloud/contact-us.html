@@ -1,0 +1,90 @@
+{% extends "cloud/base_cloud.html" %}
+
+{% block title %}Bootstack | Cloud{% endblock %}
+
+{% block meta_description %}With BootStack, Canonical will build, support and manage your cloud for only $15 per host per day.{% endblock meta_description %}
+
+{% block meta_keywords %}Ubuntu BootStack, BootStack, private cloud, support, Ubuntu OpenStack, consulting, build a cloud, Ubuntu, Canonical{% endblock meta_keywords %}
+
+{% block second_level_nav_items %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Ubuntu OpenStack" page_title="Order" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-border">
+	<div class="eight-col">
+		<h2>Let's make your managed OpenStack cloud happen</h2>
+		<p class="intro">Fill in your details below and a member of our Bootstack team will be in touch.</p>
+	</div>
+	<div class="eight-col">
+		<form class='mktoForm mktoNoJS' action='https://pages.canonical.com/index.php/leadCapture/save' method='post'>
+	    <fieldset>
+        <ul class="mktLblLeft">
+          <li class='mktFormReq mktField'><label>First name: <span>*</span></label><span class='mktInput'><input class='mktFormText mktFormString mktFReq' name="FirstName" id="FirstName" type='text' value=""  maxlength='255' tabIndex='1' required/><span class='mktFormMsg'></span></span></li>
+
+          <li class='mktFormReq mktField'><label>Last name: <span>*</span></label><span class='mktInput'><input class='mktFormText mktFormString mktFReq' name="LastName" id="LastName" type='text' value=""  maxlength='255' tabIndex='1' required/><span class='mktFormMsg'></span></span></li>
+
+          <li class='mktFormReq mktField'><label>Email address: <span>*</span></label><span class='mktInput'><input class='mktFormText mktFormEmail mktFReq' name="Email" id="Email" type='text' value="" maxlength='255' tabindex='3' required /></span></li>
+          
+          <li class='mktFormReq mktField'><label>Phone number: <span>*</span></label><span class='mktInput'><input class='mktFormText mktFormPhone mktFReq' name="Phone" id="Phone" type='text' value="" maxlength='255' tabindex='4' required /></span></li>
+
+          <li class='mktFormReq mktField'><label>Company name: <span>*</span></label> <span class='mktInput'><input class='mktFormText mktFormString mktFReq' name="Company" id="Company" type='text' value="" maxlength='255' tabindex='3' required /> </span></li>
+          
+          <li><label class="mktoLabel" for='Comments_from_lead__c'>Additional questions and comments</label><span class='mktInput'><textarea class='mktFormTextarea mktFormTextarea' name="Comments_from_lead__c" id="Comments_from_Contact__c" cols='20' rows='6' tabindex='18'></textarea></span></li>
+          
+          <li class="mktField mktLblRight"><span class="mktInput mktLblRight"><input class="mktFormCheckbox" name="NewsletterOpt-In" id="NewsletterOpt-In" type="checkbox" value="1" tabindex="16" required><label for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>&nbsp;</span></li>
+
+          <li>All information provided will be handled in accordance with the Canonical <a href="http://www.ubuntu.com/legal" target="_blank">privacy policy</a>.</li>
+
+          <li id="mktFrmButtons"><button type='submit' class='mktoButton'>Submit</button></li>
+        </ul>
+	    </fieldset>
+
+      <div>
+        <span style="display:none;"> <input type="text" name="_marketo_comments" value=""></span>
+        <input type="hidden" name="lpId" value="1646" />
+        <input type="hidden" name="subId" value="30" />
+        <input type="hidden" name="lpurl" value="https://pages.canonical.com/contact-us-bootstack.html?cr={creative}&kw={keyword}" />
+        <input type="hidden" name="formid" value="1128" />
+        <input type="hidden" name="ret" value="" />
+        <input type="hidden" name="munchkinId" value="066-EOV-335"/>
+        <input type="hidden" name="kw" value=""/>
+    		<input type="hidden" name="returnURL" value="http://www.ubuntu.com/cloud/bootstack/thank-you">
+    		<input type="hidden" name="retURL" value="http://www.ubuntu.com/cloud/bootstack/thank-you">
+        <input type="hidden" name="cr" value=""/>
+        <input type="hidden" name="searchstr" value=""/>
+        <input type="hidden" name="_mkt_disp" value="return"/>
+        <input type="hidden" name="_mkt_trk" value=""/>
+      </div>
+    </form>
+
+<script src="https://app.marketo.com/js/public/jquery-latest.min.js"></script>
+<script src="https://pages.canonical.com/js/mktFormSupport.js"></script>
+<script src="https://pages.canonical.com/js/public/stateCountry.js"></script>
+<script>
+// Prevent Marketo prefill from turning these dropdowns into free text fields if value is not ISO standard
+if ((typeof mktoPreFillFields != 'undefined') &&
+    (mktoPreFillFields) &&
+    mktoPreFillFields['State'] &&
+    mktoPreFillFields['Country']) {
+    if (mktoPreFillFields.Country.length != 2) {
+        mktoPreFillFields.Country = "";
+        mktoPreFillFields.State = "";
+    }
+}
+</script>
+
+		<script>
+			function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+			}
+			function formReset(elt) {
+				return Mkto.formReset(elt);
+			}
+		</script>
+	</div><!-- /.eight-col -->
+</div><!-- /.row -->
+
+{% include "shared/_live_chat.html" %}
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

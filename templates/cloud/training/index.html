@@ -1,0 +1,102 @@
+{% extends "cloud/base_cloud.html" %}
+
+{% block title %}Ubuntu Cloud Jumpstart | Cloud{% endblock %}
+
+{% block meta_description %}Canonical engineers will deliver an Orange Box to your office and provide two full days of technical training, covering Ubuntu, MAAS, Juju, Landscape, and OpenStack all for &dollar;10K.{% endblock meta_description %}
+
+{% block meta_keywords %}Jumpstart Training, consulting, Ubuntu OpenStack, private cloud{% endblock meta_keywords %}
+
+{% block second_level_nav_items %}
+  {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Jumpstart" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero row--training">
+  <h1>Train with Ubuntu</h1>
+    <div class="six-col">
+        <p>Train your sysadmins and devops engineers to become Ubuntu OpenStack experts. Canonical runs training programmes to suit all environments and all levels of experience. Explore, prototype and design with cloud technologies so you can get the most out of OpenStack.</p>
+    </div>
+    <div class="five-col last-col text-center">
+        <img class="row--training__image" alt="" src="{{ STATIC_URL }}img/homepage/image-ubuntu-openstack-medals.png" />
+    </div>
+</div>
+
+<div class="row">
+  <!-- <h2 class="twelve-col">Courses we offer</h2> -->
+
+  <ul class="training-list list twelve-col no-bullets">
+    <li>
+      <h2>OpenStack Fundamentals</h2>
+      <div class="vertical-divider">
+      <div class="seven-col">
+      <h3>Classroom training</h3>
+        <p>3-day hands-on classroom-based course that will give you the best introduction for setting up and running your own Ubuntu OpenStack cloud.</p>
+        <p><a class="external" href="http://insights.ubuntu.com/wp-content/uploads/Ubuntu_OpenStack_Fundamentals_Training.pdf">Read the course outline</a></p>
+      </div>
+      <div class="five-col last-col">
+        <dl class="course-details" itemscope itemtype="http://schema.org/Product">
+          <dt>Duration</dt>
+          <dd>3 days</dd>
+          <dt>Cost</dt>
+          <dd>USD <span itemprop="priceCurrency" content="USD">$</span><span
+            itemprop="price" content="1950.00">1,950</span> per attendee</dd>
+          <dt>Availability</dt>
+          <dd>Open admissions</dd>
+        </dl>
+
+        <ul class="no-bullets no-border">
+          <li><a class="external" href="https://insights.ubuntu.com/event/ubuntu-openstack-fundamentals-training-session/">13-15 May 2015, Vancouver, BC, Canada</a></li>
+        </ul>
+
+        <p>Additional sessions are being planned for this year. <a href="/cloud/training/training-form">Register your interest&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+    </li>
+    <li>
+      <div class="vertical-divider twelve-col">
+      <div class="seven-col">
+        <h3>Onsite training</h3>
+        <p>3-day hands-on course at your premises for up to 15 people that will give you the best introduction for setting up and running your own Ubuntu OpenStack cloud.</p>
+        <p><a class="external" href="http://insights.ubuntu.com/wp-content/uploads/Ubuntu_OpenStack_Fundamentals_Training.pdf">Read the course outline</a></p>
+      </div>
+      <div class="five-col last-col" itemscope itemtype="http://data-vocabulary.org/Event">
+        <dl class="course-details">
+          <dt>Duration</dt>
+          <dd itemprop="duration">3 days</dd>
+          <dt>Cost</dt>
+          <dd>USD <span itemprop="priceCurrency" content="USD">$</span><span
+            itemprop="price" content="19500.00">19,500</span> up to 15 attendees</dd>
+          <dt>Location</dt>
+          <dd>Your premises</dd>
+          <dt>Availability</dt>
+          <dd>Private groups only</dd>
+        </dl>
+        <p><a href="/cloud/training/training-form">Contact us to book yours&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+    </li>
+  </ul>
+</div><!-- /.row -->
+
+<div class="row no-border">
+  <div class="seven-col">
+    <h2>Questions about training?</h2>
+    <p>If you have a question about OpenStack training or want to register your interest for future training.</p>
+    <p><a href="/cloud/training/training-form">Contact us&nbsp;&rsaquo;</a></p>
+  </div>
+  <div class="five-col align-center last-col">
+    <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-help-orange.svg" width="135" alt="" />
+  </div>
+</div>
+
+{% include "shared/_live_chat.html" %}
+{% endblock content %}
+{% block footer_extra %}
+<!-- twitter tracking code -->
+<script src="//platform.twitter.com/oct.js"></script>
+<script>twttr.conversion.trackPid('l4pwm');</script>
+<noscript>
+    <img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=l4pwm&amp;p_id=Twitter" />
+    <img height="1" width="1" style="display:none;" alt="" src="//t.co/i/adsct?txn_id=l4pwm&amp;p_id=Twitter" />
+</noscript>
+{{ marketo }}{% endblock footer_extra %}

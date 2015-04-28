@@ -1,0 +1,33 @@
+body.things {
+
+	.company img {
+		max-height: 100px;
+		max-width: 250px;
+	}
+
+	ul.company-wrapper {
+		margin-left: 0;
+	}
+
+	@media only screen and (min-width : 768px) {
+		.company {
+			overflow: hidden;
+			min-height: 478px;
+		}
+
+		#main-content .row-hero {
+			overflow: hidden;
+			margin-top: 0;
+			padding-top: 40px;
+
+			.intro {
+				margin-bottom: 40px;
+			}
+
+			.touch-borders {
+				margin-top: -40px;
+				margin-bottom: -43px;
+			}
+		}
+	}
+}

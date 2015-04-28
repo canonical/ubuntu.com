@@ -3,7 +3,7 @@
 {% block title %}Ubuntu Advantage{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "_base/_nav_breadcrumb.html" with section_title="Legal" page_title="Ubuntu Advantage" tertiary="true" %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Legal" page_title="Ubuntu Advantage" tertiary="true" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -19,17 +19,25 @@
 	</div>
 </div>
 
-<div class="row equal-height no-border">
-	<div class="six-col box">
-		<h3>Ubuntu Advantage service description</h3>
-		<p>This describes the services we provide to our Ubuntu Advantage customers. It mentions several Canonical products, but please note that we can only provide services for the products listed in your customer agreement.</p>
-		<p><a href="/legal/ubuntu-advantage/service-description">View the Ubuntu Advantage service description&nbsp;&rsaquo;</a></p>
+<div class="row no-border">
+	<div class="equal-height">
+		<div class="six-col box">
+			<h3>Ubuntu Advantage service description</h3>
+			<p>This describes the services we provide to our Ubuntu Advantage customers. It mentions several Canonical products, but please note that we can only provide services for the products listed in your customer agreement.</p>
+			<p><a href="/legal/ubuntu-advantage/service-description">View the Ubuntu Advantage service description&nbsp;&rsaquo;</a></p>
+		</div>
+
+		<div class="six-col box last-col">
+			<h3>Ubuntu Assurance</h3>
+			<p>The Ubuntu Advantage Assurance Programme provides indemnification from Canonical against claims of intellectual property infringement support customers might face as a result of using Ubuntu. This agreement is part of all Canonical support contracts. </p>
+			<p><a href="/legal/ubuntu-advantage/assurance">View Ubuntu Advantage Assurance&nbsp;&rsaquo;</a></p>
+		</div>
 	</div>
 
-	<div class="six-col box last-col">
-		<h3>Ubuntu Assurance</h3>
-		<p>The Ubuntu Advantage Assurance Programme provides indemnification from Canonical against claims of intellectual property infringement support customers might face as a result of using Ubuntu. This agreement is part of all Canonical support contracts. </p>
-		<p><a href="/legal/ubuntu-advantage/assurance">View Ubuntu Advantage Assurance&nbsp;&rsaquo;</a></p>
+	<div class="six-col box">
+		<h3>Ubuntu Advantage terms</h3>
+		<p>This agreement sets out Canonical's standard service terms for Ubuntu Advantage customers.</p>
+		<p><a href="/legal/ubuntu-advantage/ua-terms">View the Ubuntu Advantage service terms&nbsp;&rsaquo;</a></p>
 	</div>
 </div>
 {% endblock content %}

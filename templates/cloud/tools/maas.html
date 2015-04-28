@@ -5,66 +5,69 @@
 {% block meta_keywords %}Cloud, deployment, provision, server, MAAS, bare metal, Metal as a Service, Juju, Ubuntu, private cloud, OpenStack, Ubuntu OpenStack{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
-	{% include "_base/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Cloud tools" page_title="MAAS" %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Tools" page_title="MAAS" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row row-hero">
-	<div class="five-col no-margin-bottom">
-		<h1>MAAS</h1>
-		<h2>Introducing Metal as <br />a Service</h2>
-		<p>Many modern IT services are cloud-like: farms of servers, doing roughly the same thing, scaled out rather than scaled up. In those environments, it&rsquo;s useful to think of the collection of physical machines like a cloud, even if it isn&rsquo;t virtualised.</p>
-		<p>So Canonical has created Metal as a Service (MAAS), a system that makes it quick and easy to set up the physical hardware on which to deploy complex scalable services, like Ubuntu&rsquo;s OpenStack cloud infrastructure.</p>
-	</div><!-- /.six-col -->
+    <div class="five-col no-margin-bottom">
+        <h1>MAAS</h1>
+        <h2>Introducing Metal as <br />a Service</h2>
+        <p>Many modern IT services are cloud-like: farms of servers, doing roughly the same thing, scaled out rather than scaled up. In those environments, it&rsquo;s useful to think of the collection of physical machines like a cloud, even if it isn&rsquo;t virtualised.</p>
+        <p>So Canonical has created Metal as a Service (MAAS), a system that makes it quick and easy to set up the physical hardware on which to deploy complex scalable services, like Ubuntu&rsquo;s OpenStack cloud infrastructure.</p>
+    </div><!-- /.six-col -->
 </div><!-- /row -->
 
 <div class="row">
-	<div class="eight-col">
-		<div class="video-container">
-			<iframe width="560" height="315" src="//www.youtube.com/embed/J1XH0SQARgo?showinfo=0" frameborder="0" allowfullscreen></iframe>
-		</div>
-	</div>
-	<div class="four-col last-col">
-		<h2>Inside MAAS</h2>
-		<p>MAAS gives you the power of metal at the speed of cloud. See how in this short video.</p>
-	</div>
+    <div class="eight-col">
+        <div class="video-container">
+            <iframe width="560" height="315" src="//www.youtube.com/embed/J1XH0SQARgo?showinfo=0" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="four-col last-col">
+        <h2>Inside MAAS</h2>
+        <p>MAAS gives you the power of metal at the speed of cloud. See how in this short video.</p>
+    </div>
 </div><!-- /.row -->
 
 <div class="row vertical-divider">
-	<div class="six-col">
-		<h2>Automated install</h2>
-		<p>When a new node boots up, MAAS steps in, supplies all the information the node requires, reboots it and provides an Ubuntu image to install.</p>
-		<p>In addition, MAAS can take care of hardware-specific tasks such as burn-in tests, firmware and RAID upgrades &mdash; and checking whether your hardware is Ubuntu certified.</p>
-	</div><!-- /.six-col -->
+    <div class="six-col">
+        <h2>Automated install</h2>
+        <p>When a new node boots up, MAAS steps in, supplies all the information the node requires, reboots it and provides an Ubuntu image to install.</p>
+        <p>In addition, MAAS can take care of hardware-specific tasks such as burn-in tests, firmware and RAID upgrades &mdash; and checking whether your hardware is Ubuntu certified.</p>
+    </div><!-- /.six-col -->
 
-	<div class="six-col last-col">
-		<h2>Make the most of your hardware &mdash; any hardware</h2>
-		<p>No need to spend days on manual provisioning and deployment. With MAAS, your new hardware can be part of your working infrastructure within minutes. Breathe new life into old hardware by recycling it for use in other parts of your network. Changing models or hardware providers? No worries! MAAS provides enough abstraction to overcome hardware incompatibilities, saving you from costly upgrades and vendor lock-in.</p>
-	</div><!-- /.six-col -->
+    <div class="six-col last-col">
+        <h2>Make the most of your hardware &mdash; any hardware</h2>
+        <p>No need to spend days on manual provisioning and deployment. With MAAS, your new hardware can be part of your working infrastructure within minutes. Breathe new life into old hardware by recycling it for use in other parts of your network. Changing models or hardware providers? No worries! MAAS provides enough abstraction to overcome hardware incompatibilities, saving you from costly upgrades and vendor lock-in.</p>
+    </div><!-- /.six-col -->
 </div><!-- /.row -->
 
 <div class="row">
-	<div class="eight-col">
-		<h2>Dynamic provisioning and scaling</h2>
-		<p>Hardware provisioned through MAAS can be provisioned dynamically, just like cloud instances &mdash; except that we&rsquo;re talking about the whole physical node. Through a simple web interface or API you can add, commission, update, deploy and recycle physical servers at will. As your needs change, you can respond rapidly, by adding new nodes and dynamically re-deploying them between services. When the time comes, nodes can be retired for use outside MAAS.</p>
-		<p><a href="http://maas.ubuntu.com/docs/install.html">Learn how to install MAAS&nbsp;&rsaquo;</a></p>
-	</div><!-- /.eight-col -->
+    <div class="eight-col">
+        <h2>Dynamic provisioning and scaling</h2>
+        <p>Hardware provisioned through MAAS can be provisioned dynamically, just like cloud instances &mdash; except that we&rsquo;re talking about the whole physical node. Through a simple web interface or API you can add, commission, update, deploy and recycle physical servers at will. As your needs change, you can respond rapidly, by adding new nodes and dynamically re-deploying them between services. When the time comes, nodes can be retired for use outside MAAS.</p>
+        <p><a href="http://maas.ubuntu.com/docs/install.html">Learn how to install MAAS&nbsp;&rsaquo;</a></p>
+    </div><!-- /.eight-col -->
 
-	<div class="four-col last-col box box-highlight resource resource-data-sheet">
-		<h2><a href="http://insights.ubuntu.com/resources/factsheet/top-10-questions-about-maas/">MAAS FAQ&nbsp;&rsaquo;</a></h2>
-		<p>Top 10 Questions about MAAS. Your guide to MAAS, bare-metal provisioning, and more.</p>
-		<p class="content-cat content-cat-webinar">Datasheet</p>
-		<div class='curl'></div>
-	</div><!-- /.four-col -->
+    <a
+        href="http://insights.ubuntu.com/resources/factsheet/top-10-questions-about-maas/"
+        class="four-col last-col box box-highlight resource--link resource-data-sheet"
+    >
+        <h2>MAAS FAQ&nbsp;&rsaquo;</h2>
+        <p>Top 10 Questions about MAAS. Your guide to MAAS, bare-metal provisioning, and more.</p>
+        <p class="content-cat content-cat-webinar">Datasheet</p>
+        <div class='curl'></div>
+    </a><!-- /.four-col -->
 </div><!-- /.row -->
 
 <div class="row row-image-centered no-border">
-	<span><img src="{{ STATIC_URL }}img/cloud/tools/maas/logo-juju.svg" alt="" width="172" height="176" /></span>
-	<div class="eight-col">
-		<h2>Deploy services in seconds using Juju</h2>
-		<p>With Juju you can deploy, orchestrate and scale services in your MAAS cluster in seconds. Don&rsquo;t spend hours planning and implementing a service deployment; just choose how many nodes your new service needs, then apply a pre-written charm. When your needs change, you can monitor, scale and adjust deployment parameters in real time, and when you're finished with a service, Juju can remove it without a trace. It's as easy as apt-get.</p>
-		<p><a href="/cloud/tools/juju">Learn more about Juju&nbsp;&rsaquo;</a></p>
-	</div><!-- /.eight-col -->
+    <span><img src="{{ STATIC_URL }}img/cloud/tools/maas/logo-juju.svg" alt="" width="172" height="176" /></span>
+    <div class="eight-col">
+        <h2>Deploy services in seconds using Juju</h2>
+        <p>With Juju you can deploy, orchestrate and scale services in your MAAS cluster in seconds. Don&rsquo;t spend hours planning and implementing a service deployment; just choose how many nodes your new service needs, then apply a pre-written charm. When your needs change, you can monitor, scale and adjust deployment parameters in real time, and when you're finished with a service, Juju can remove it without a trace. It's as easy as apt-get.</p>
+        <p><a href="/cloud/tools/juju">Learn more about Juju&nbsp;&rsaquo;</a></p>
+    </div><!-- /.eight-col -->
 </div><!-- /.row -->
 
 {% endblock content %}

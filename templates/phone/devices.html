@@ -1,0 +1,42 @@
+{% extends "phone/base_phone.html" %}
+
+{% block title %}Devices | Ubuntu for phones{% endblock %}
+
+{% block meta_keywords %}Ubuntu, phone, smartphone, mobile, cellphone, cell, BQ, Aquaris, E4.5, Android, Europe, Spain, Spanish, OS, Canonical, OEM, network operator, partner, operating system, platform, open source, Linux, device, handheld, handset, touch, camera, dual SIM, unlocked. {% endblock %}
+
+{% block meta_description %}Ubuntu is now available all over Europe on the BQ Aquaris E4.5, direct from the BQ website. Many more devices are in the works, so watch this space.{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Devices"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div itemscope itemtype="http://schema.org/Product" class="row row-hero">
+	<div class="twelve-col">
+		<h1 itemprop="name">The all-new BQ Aquaris E4.5</h1>
+		{% comment %}<p>Ubuntu is <a href="http://store.bqreaders.com/es/aquaris-e-4-5">available now from BQ</a> on the Aquaris E4.5 Ubuntu Edition.</p>{% endcomment %}
+	</div>
+	<div class="twelve-col">
+		<div class="device-image six-col align-center">
+			<p><img itemprop="image" src="{{ STATIC_URL }}img/phone/devices/image-bq-phone.png" alt="" /></p>	
+		</div>
+		<div class="six-col last-col">
+			<ul itemprop="description" class="list-ubuntu">
+    			<li>Slots for two micro-SIM cards so you can use your phone on more than one network</li>
+                <li>Dragontrail glass for scratch and impact resistance</li>
+                <li>8 megapixel camera with autofocus and dual flash</li>
+                <li>Full HD (1080p) camera for super-sharp video recording</li>
+                <li>8 GB internal memory with MicroSD slot for extra storage (up to 32GB)</li>
+                <li>Dimensions: 137 x 67 x 9 mm</li>            
+                <li>Weight: 123g</li>
+            </ul>
+			<p itemprop="price">Only 169,90&euro;</p>
+			<p><a itemprop="url" class="link-cta-ubuntu" href="http://www.bq.com/gb/ubuntu.html">How to buy</a>&nbsp;&nbsp;<a itemprop="sameAs" href="http://www.bqreaders.com/gb/products/aquaris-e4-5.html">Learn more about the BQ Aquaris E4.5&nbsp;&rsaquo;</a></p>
+		</div><!-- /.six-col -->
+	</div>
+</div>
+
+<div class="row row-grey no-border text-center">
+	<h2 class="twelve-col">More Ubuntu phones coming soon&hellip;</h2>
+</div>
+{% endblock content %} 

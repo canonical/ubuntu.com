@@ -3,7 +3,7 @@
 {% block title %}Terms and policies{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "_base/_nav_breadcrumb.html" with section_title="Legal" page_title="Terms and policies" tertiary="true" %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Legal" page_title="Terms and policies" tertiary="true" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -41,11 +41,17 @@
 		<p>Ubuntu online accounts are provided by Canonical. This legal notice applies to your use of Ubuntu online accounts and incorporates the terms of our legal notice and our privacy policy.</p>
 		<p><a href="/legal/terms-and-policies/online-account-terms">View online accounts terms&nbsp;&rsaquo;</a></p>
 	</div>
-	
+
 	<div class="six-col box">
 		<h3>U1 and Software Centre</h3>
 		<p>Ubuntu One and the Ubuntu software centre are provided by Canonical. This legal notice applies to your use of Ubuntu One and the Ubuntu software centre.</p>
 		<p><a href="/legal/terms-and-policies/terms-of-service">View U1 account and software centre terms&nbsp;&rsaquo;</a></p>
+	</div>
+
+	<div class="six-col box last-col">
+		<h3>Confidentiality agreement standard form</h3>
+		<p>You can enter into a confidentiality agreement with Canonical. Please use this form where directed to by Canonical.</p>
+		<p><a href="/legal/terms-and-policies/confidentiality-agreement">View confidentiality agreement&nbsp;&rsaquo;</a></p>
 	</div>
 </div><!-- /.row -->
 {% endblock content %}

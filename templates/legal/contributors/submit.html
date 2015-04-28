@@ -105,7 +105,7 @@ div.ok {
 {% block title %}Submit contributor agreement | Contributors{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "_base/_nav_breadcrumb.html" with section_title="Legal" subsection_title="Contributors" page_title="How to submit" %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Legal" subsection_title="Contributors" page_title="How to submit" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -114,26 +114,11 @@ div.ok {
 		<h1>Submit contributor agreement</h1>
 		<p>Before you contribute to one of our open source projects, you must complete all the fields in this form, sign it and return it to Canonical. Please make sure you have your Launchpad ID at the ready. If you don&rsquo;t have one, you can create one now at <a href="http://launchpad.net">launchpad.net</a>.</p>
 		<p>All fields are required.</p>
-	</div>
-	<div class="box four-col last-col">
-		<h3>Related content</h3>
-		<ul class="list">
-			<li class="last-item"><a class="external" href="http://www.canonical.com/projects/directory">Open source software projects</a></li>
-		</ul>
-	</div>
-	<div class="box four-col last-col">
-		<h3>Additional information</h3>
-		<ul class="list">
-			<li><a href="{{ STATIC_URL }}files/section/legal/Canonical-HA-CLA-ANY-I_v1.2.pdf">Agreement for individual contributors [PDF]&nbsp;&rsaquo;</a></li>
-			<li class="last-item"><a href="{{ STATIC_URL }}files/section/legal/Canonical-HA-CLA-ANY-E_v1.2.pdf">Agreement for entities [PDF]&nbsp;&rsaquo;</a></li>
-		</ul>
-	</div>
-<div class="eight-col">
 
 <div  id="faform_form_container">
 
-<div class="wFormContainer" style="width: default;" >
-<div class="wForm wFormdefaultWidth"><form method="post" action="https://www.tfaforms.com/responses/processor" id="id2661064" class="labelsAbove hintsTooltip"><div style='display:none;'><input type='hidden'  name='csrfmiddlewaretoken' value='c011ac6471cd39153410b2f332745f42' /></div>
+<div class="wFormContainer">
+<div class="wForm wFormdefaultWidth"><form method="post" action="https://www.tfaforms.com/responses/processor" id="id2661064" class="labelsAbove hintsTooltip">{% csrf_token %}<div style='display:none;'><!--<input type='hidden'  name='csrfmiddlewaretoken' value='c011ac6471cd39153410b2f332745f42' />--></div>
 <fieldset class="fieldset-1">
 <div id="tfa_Agreementtype1-D" class="oneField">
 	<h3>Agreement type</h3>
@@ -194,7 +179,7 @@ div.ok {
 <p style="margin-bottom: 0cm;">the assignment, that third party must agree in writing to abide by all the rights and obligations in the Agreement.</p>
 <p>6.4 The failure of either party to require performance by the other party of any provision of this Agreement in one situation shall not affect the right of a party to require such performance at any time in the future. A waiver of performance under a provision in one situation shall not be considered a waiver of the performance of the provision in the future or a waiver of the provision in its entirety.</p>
 <p>6.5 If any provision of this Agreement is found void and unenforceable, such provision will be replaced to the extent possible with a provision that comes closest to the meaning of the original provision and which is enforceable. The terms and conditions set forth in this Agreement shall apply notwithstanding any failure of essential purpose of this Agreement or any limited remedy to the maximum extent possible under law.</p>
-<p>To <a href="{{ STATIC_URL }}files/Canonical-HA-CLA-ANY-I.pdf" target="_blank">download as a PDF</a></p>
+<p>To <a href="{{ STATIC_URL }}files/section/legal/Canonical-HA-CLA-ANY-I_v1.2.pdf" target="_blank">download as a PDF</a></p>
 </div>
 </fieldset>
 <fieldset id="tfa_CanonicalEntityC" class="wfSection offstate-a offstate-d">
@@ -241,7 +226,7 @@ div.ok {
 <p>6.3 If You or We assign the rights or obligations received through this Agreement to a third party, as a condition of the assignment, that third party must agree in writing to abide by all the rights and obligations in the Agreement.</p>
 <p>6.4 The failure of either party to require performance by the other party of any provision of this Agreement in one situation shall not affect the right of a party to require such performance at any time in the future. A waiver of performance under a provision in one situation shall not be considered a waiver of the performance of the provision in the future or a waiver of the provision in its entirety.</p>
 <p>6.5 If any provision of this Agreement is found void and unenforceable, such provision will be replaced to the extent possible with a provision that comes closest to the meaning of the original provision and which is enforceable. The terms and conditions set forth in this Agreement shall apply notwithstanding any failure of essential purpose of this Agreement or any limited remedy to the maximum extent possible under law.</p>
-<p>To <a href="{{ STATIC_URL }}files/Canonical-HA-CLA-ANY-E.pdf" target="_blank">download as a PDF</a></p>
+<p>To <a href="{{ STATIC_URL }}files/section/legal/Canonical-HA-CLA-ANY-E_v1.2.pdf" target="_blank">download as a PDF</a></p>
 </div>
 </fieldset>
 <fieldset id="tfa_Yourcontactdetai1" class="wfSection fieldset-2">
@@ -269,10 +254,10 @@ div.ok {
 				</div>
 			</li>
 			<li class="inline">
-				<label class="preField" for="tfa_Phone">Launchpad ID</label>
+				<label class="preField" for="tfa_LPid">Launchpad ID (<a id="lp_help" href="//login.launchpad.net">Don't know your Launchpad ID?</a>)</label>
 				<input id="tfa_Openid" name="tfa_Openid" value="" class="" type="hidden">
 				<input id="tfa_LPid" name="tfa_LPid" value="" class="" type="text">
-				<span class="input-help"><a href="//login.launchpad.net">Don't know your Launchpad ID?</a></span>
+				<span class="input-help"><span id="lp_error" class="errMsg"></span></span>
 			</li>
 			<li class="inline">
 				<div id="tfa_Address-D" class="oneField">
@@ -591,28 +576,59 @@ div.ok {
 					<input type="text" id="tfa_PleaseaddtheCano" name="tfa_PleaseaddtheCano" value="" size="40" class="required">
 				</div>
 			</li>
-			<li>
-				<div class="htmlsection" id="html-tmp-0767356147928"><p>By clicking 'I agree' below you are confirming that you&nbsp;accept the terms detailed above.</p></div>
-			</li>
-			<li>
-				<div class="actions">
-					<input type="submit" class="primaryAction" id="submit-" name="tfa_submitAction" value="I agree"><input type="hidden" value="237277" name="tfa_dbFormId" id="tfa_dbFormId"><input type="hidden" value="" name="tfa_dbResponseId" id="tfa_dbResponseId"><input type="hidden" value="d00afcc394fd0912b8a3895b593d43ef" name="tfa_dbControl" id="tfa_dbControl"><input type="hidden" value="7" name="tfa_dbVersionId" id="tfa_dbVersionId">
-				</div>
-			</li>
 		</ul>
+	</fieldset>
+
+	<fieldset class="captcha">
+		<h3>Verification</h3>
+		<p class="instructions">Please enter the characters you see in this picture:</p>
+		<div class="oneField">
+            <ul class="no-bullets">
+    			<li><img src="https://www.tfaforms.com/forms/captcha" width="200" height="60" alt="Visual CAPTCHA"></li>
+                <li>
+                    <label class="preField off-left">Characters</label> 
+                    <input type="text" name="tfa_captcha_text" id="tfa_captcha_text">
+                </li>
+                <li>
+                    <p>This helps prevent automated form submissions. If you are not sure what the characters are, make your best guess. You will have another try in the next screen. <a href="https://www.tfaforms.com/forms/captcha/1">Can't see the image? Listen to an audible version in English.</a></p>
+                </li>
+    			<li>
+    				<div class="htmlsection" id="html-tmp-0767356147928"><p>By clicking 'I agree' you are confirming that you accept the terms detailed&nbsp;above.</p></div>
+    			</li>
+                <li class="actions">
+                    <input type="submit" class="primaryAction" id="submit-" name="tfa_submitAction" value="I agree">
+                    <input type="hidden" value="237277" name="tfa_dbFormId" id="tfa_dbFormId">
+                    <input type="hidden" value="" name="tfa_dbResponseId" id="tfa_dbResponseId">
+                    <input type="hidden" value="d00afcc394fd0912b8a3895b593d43ef" name="tfa_dbControl" id="tfa_dbControl">
+                    <input type="hidden" value="7" name="tfa_dbVersionId" id="tfa_dbVersionId">
+                </li>
+            </ul>
+		</div>
 	</fieldset>
 </form>
 </div>
 
-      <p class="supportInfo" >
-                              <a href="https://www.tfaforms.com/forms/help/237277" target="new" style="font-size: 0.7em;">
-                    Need assistance with this form?               </a>
 
-                      </p>
+      <!-- <p class="supportInfo" ><a href="https://www.tfaforms.com/forms/help/237277">Need assistance with this form?</a></p> -->
 
 </div>
 </div>
+
 </div>
+	<div class="box four-col last-col">
+		<h3>Related content</h3>
+		<ul class="list">
+			<li class="last-item"><a class="external" href="http://www.canonical.com/projects/directory">Open source software projects</a></li>
+		</ul>
+	</div>
+	<div class="box four-col last-col">
+		<h3>Additional information</h3>
+		<ul class="list">
+			<li><a href="{{ STATIC_URL }}files/section/legal/Canonical-HA-CLA-ANY-I_v1.2.pdf">Agreement for individual contributors [PDF]&nbsp;&rsaquo;</a></li>
+			<li class="last-item"><a href="{{ STATIC_URL }}files/section/legal/Canonical-HA-CLA-ANY-E_v1.2.pdf">Agreement for entities [PDF]&nbsp;&rsaquo;</a></li>
+		</ul>
+	</div>
+
 </div>
 <script type="text/javascript">
 /* Copyright 2007 Veer West LLC - http://www.formassembly.com
@@ -701,6 +717,12 @@ new function(_) {
 		}
 	}
 	_addEvent(window,'load',populateForms);
+}();
+
+var launchpad_id_lookup = function() {
+	Y.one('#tfa_LPid').on('blur', function (e) {
+	    Y.io("/lookup_launchpad_id/" + Y.one('#tfa_LPid').get('value'), lp_lookup_callback);
+	});
 }();
 
 </script>

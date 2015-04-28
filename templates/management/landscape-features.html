@@ -3,7 +3,7 @@
 {% block title %}Landscape features | Management{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "_base/_nav_breadcrumb.html" with section_title="Management" page_title="Landscape features"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Management" page_title="Landscape features"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -21,6 +21,7 @@
 			<li><a class="slideless" href="#deployment">Deployment</a></li>
 			<li><a class="slideless" href="#monitoring">Monitoring</a></li>
 			<li><a class="slideless" href="#inventory">Inventory management</a></li>
+			<li><a class="slideless" href="#installer">OpenStack</a></li>
 		</ul>
 	</div>
 
@@ -52,8 +53,8 @@
 	</div><!-- /#management -->
 
 		<div class="twelve-col">
-			<a href="{{ STATIC_URL }}img/management/landscape-features/image-landscape-1.jpg">
-				<img width="824" alt="Landscape rollback screen" src="{{ STATIC_URL }}img/management/landscape-features/image-landscape-1.jpg" class="default">
+			<a href="{{ STATIC_URL }}img/management/landscape-features/image-software-management.jpg">
+				<img alt="Landscape rollback screen" src="{{ STATIC_URL }}img/management/landscape-features/image-software-management.jpg" class="default">
 			</a>
 		</div><!-- /.pattern-gallery -->
 		<div class="eight-col">
@@ -88,8 +89,8 @@
 		</div><!-- /#deployment -->
 		<div class="row main-content  no-border">
 			<div class="twelve-col">
-				<a href="{{ STATIC_URL }}img/management/landscape-features/image-landscape-2.jpg">
-					<img width="824" alt="Landscape provisioning screen" src="{{ STATIC_URL }}img/management/landscape-features/image-landscape-2.jpg" class="screenshot">
+				<a href="{{ STATIC_URL }}img/management/landscape-features/image-deployment.jpg">
+					<img alt="Landscape provisioning screen" src="{{ STATIC_URL }}img/management/landscape-features/image-deployment.jpg" class="screenshot">
 				</a>
 			</div>
 			<div class="eight-col">
@@ -123,8 +124,8 @@
 		</div><!-- /#monitoring -->
 		<div class="row main-content no-border">
 			<div class="twelve-col">
-				<a href="{{ STATIC_URL }}img/management/landscape-features/image-landscape-3.jpg">
-					<img width="824" alt="Landscape monitoring screen" src="{{ STATIC_URL }}img/management/landscape-features/image-landscape-3.jpg" class="screenshot">
+				<a href="{{ STATIC_URL }}img/management/landscape-features/image-monitoring.jpg">
+					<img alt="Landscape monitoring screen" src="{{ STATIC_URL }}img/management/landscape-features/image-monitoring.jpg" class="screenshot">
 				</a>
 			</div>
 			<div class="eight-col">
@@ -156,8 +157,8 @@
 		<div class="row main-content no-border">
 			<div class="pattern-gallery">
 				<div class="twelve-col">
-					<a href="{{ STATIC_URL }}img/management/landscape-features/image-landscape-4.jpg">
-						<img width="824" alt="Landscape hardware inventory screen" src="{{ STATIC_URL }}img/management/landscape-features/image-landscape-4.jpg" class="default">
+					<a href="{{ STATIC_URL }}img/management/landscape-features/image-inventory-management.jpg">
+						<img alt="Landscape hardware inventory screen" src="{{ STATIC_URL }}img/management/landscape-features/image-inventory-management.jpg" class="default">
 					</a>
 				</div>
       </div><!-- /.pattern-gallery -->
@@ -170,8 +171,52 @@
 			</div><!-- /.content-text -->
 		</div><!-- /.row main-content -->
 	</div><!-- /.tabbed-content .inventory -->
+	
+	<div id="installer" class="tabbed-content installer hide">
+		<a class="accordion-button slideless" href="#inventory" data-hash="installer">OpenStack</a>
+			<h3>OpenStack</h3>
+			<p class="intro">Build and manage your cloud in minutes</p>
+			<div class="combined-list">
+				<div class="six-col">
+					<ul class="list-canonical">
+						<li class="six-col">Get an OpenStack up and running in a matter of minutes</li>
+						<li class="six-col last-col">Keeps an inventory of your resources to recommend the best configuration options</li>
+						<li class="six-col">A growing list of options for hypervisor, networking, storage, and other components</li>
+						<li class="six-col last-col">See the status of all cloud resources at once, with alerts for any disruptions</li>
+					</ul>
+				</div><!-- /.six-col -->
+				<div class="six-col last-col">
+					<ul class="list-canonical">
+						<li class="six-col">Scale out with ease, as your cloud workloads grow</li>
+						<li class="six-col last-col">Uses all of Canonical&rsquo;s proven cloud building and management tools</li>
+						<li class="six-col">Manage your cloud from the same system as all other Ubuntu machines</li>
+						<li class="six-col last-col">Free for up to 10 machines</li>
+					</ul>			
+				</div><!-- /.six-col -->
+			</div><!-- /.combined-list -->
+			<div class="twelve-col">
+				<a href="{{ STATIC_URL }}img/management/landscape-features/image-openstack-installer.jpg">
+					<img alt="Landscape hardware OpenStack installer screen" src="{{ STATIC_URL }}img/management/landscape-features/image-openstack-installer.jpg" class="default">
+				</a>
+			</div>
+			<div class="twelve-col">
+				<h3>Build your cloud in your browser</h3>
+				<p>Through a simple, straightforward wizard, Landscape guides you through the process of building a fully operational Ubuntu OpenStack cloud from the bare metal. The wizard ensures that all selected components are certified to work together. The result is a cloud built on a reference architecture designed for both maintainability and potential for expansion.</p>
+				<p>You can experiment with different technology combinations with very little effort, re-designing your cloud as many times as necessary, with no time investment at all.</p>
+				
+				<h3>A cloud that scales and evolves</h3>
+				<p>Because Juju is used to provision the cloud, your architecture can evolve seamlessly as newer versions of Landscape are released, providing your existing installation with additional functionality. Your cloud can scale-out with a single command today and, in the future, rolling-update functionality with zero downtime will be introduced.</p>
+				
+				<p>The reference architecture embodied in the installer&rsquo;s logic can deploy clouds of all sizes, from as few as five nodes to hundreds. This changes the economics of building your first production cloud: you no longer need to contract an expert who will cost more than the hardware itself.</p>
+				
+				<h3>Built-in monitoring for your cloud</h3>
+				<p>Landscape includes OpenStack-aware monitoring that helps you track the health of your cloud in production and the continued availability of your computing, storage and network resources. It also helps with capacity planning by making real-time predictions based on current utilisation trends, enabling you to decide when to add extra compute nodes or storage.</p>
+				<p><a href="/download/cloud/install-ubuntu-openstack">Try the The Canonical Distribution of Ubuntu OpenStack now, free for the first ten machines&nbsp;&rsaquo;</a></p>
+			</div>
+	</div><!-- /.tabbed-content .installer -->
+	
 </div>
-{% include "_includes/_live_chat.html" %}
+{% include "shared/_live_chat.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

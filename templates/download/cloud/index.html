@@ -1,4 +1,3 @@
-
 {% extends "download/_base_download.html" %}
 
 {% block title %}Download Ubuntu Server for cloud | Download{% endblock %}
@@ -6,55 +5,31 @@
 {% block extra_body_class %}download-cloud-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "_base/_nav_breadcrumb.html" with section_title="Download" subsection_title="Cloud" page_title="Thank you"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Cloud" page_title="Thank you"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-{% with ubuntu_release="14.04.1" openstack_version="Icehouse" %}
-<div class="row row-hero row-background no-border">
-	<div class="twelve-col append-four">
-		<h1>Download Ubuntu Server for cloud</h1>
-	</div>
-	<div class="twelve-col">
-		<div class="box box-highlight clearfix vertical-divider">
-			<div class="eight-col no-margin-bottom">
-				<h2>Ubuntu Server {{ubuntu_release}} LTS</h2>
-				<p>The latest version of Ubuntu Server, including the {{openstack_version}} release of OpenStack and support guaranteed until April 2019.</p>
-				<p><a href="https://wiki.ubuntu.com/TrustyTahr/ReleaseNotes" class="external">Ubuntu Server {{ubuntu_release}} LTS release notes</a></p>
-			</div>
-			<div class="four-col last-col">
-				<p class="gap-from-top">64-bit only</p>
-				<form class="form-download" action="/download/cloud/thank-you/" method="get">
-					<fieldset>
-						<input name="version" value="{{ubuntu_release}}" type="hidden">
-						<input name="architecture" value="amd64" type="hidden">
-					</fieldset>
-					<div>
-						<button type="submit">Download</button>
-					</div>
-				</form>
-			</div><!-- /.four-col -->
-		</div><!-- /.box -->
-	</div>
+{% with lts_release="14.04.2" latest_release="14.10" openstack_version="Juno" %}
+<div class="row row-hero">
+	<div class="twelve-col no-margin-bottom">
+		<h1>Ubuntu for cloud</h1>
+		<div class="six-col no-margin-bottom">
+			<h2>Build an OpenStack cloud in minutes using The Canonical&nbsp;Distribution</h2>
+			<p>Ubuntu OpenStack - The Canonical Distribution is the easiest way to build an OpenStack cloud. It is based on Ubuntu Server 14.04 LTS, and the Juno release of&nbsp;OpenStack. </p>
+			<p><a href="/download/cloud/install-ubuntu-openstack" class="link-cta-ubuntu">Try it now</a></p>
+		</div>
+	</div><!-- /.twelve-col -->
 </div><!-- /.row -->
 
-<div class="row row-grey">
-	<div class="twelve-col">
-		<h2>How you can use Ubuntu Server on the cloud</h2>
-	</div>
-	<div class="equal-height">
-		<div class="six-col box box-highlight">
-			<h3>Setting up your own OpenStack cloud</h3>
-			<p>Ubuntu Server {{ubuntu_release}} LTS includes the OpenStack release of {{openstack_version}} plus MAAS and Juju, making it easy to deploy, manage and scale your cloud.</p>
-			<p><a href="/cloud/openstack">More about Ubuntu OpenStack&nbsp;&rsaquo;</a></p>
-		</div>
-		<div class="six-col last-col box box-highlight">
-			<h3>Running Ubuntu Server on a public cloud</h3>
-			<p>Ubuntu is the most popular guest operating system in the cloud, with optimised images available on all leading platforms, from AWS and Azure to Joyent and HP Cloud.</p>
-			<p><a href="/cloud/public-cloud">Learn more and start today&nbsp;&rsaquo;</a></p>
-		</div>
-	</div>
-</div>
+<div class="row">
+    <div class="eight-col">
+        <h2>Run Ubuntu Server on the cloud</h2>
+        <p>Ubuntu is the most popular guest operating system in the cloud, with optimised images available on all leading platforms, from AWS and Azure to Joyent and HP Cloud.</p>
+        <p>To deploy Ubuntu Server on your choice of public cloud platform, please select it from the choice presented by your provider.</p>
+        <p>For deploying on your own OpenStack cloud or unsupported public clouds, we offer a range of standard Ubuntu Server cloud images. </p>
+        <p><a href="https://cloud-images.ubuntu.com">Download standard Ubuntu Server cloud images&nbsp;&rsaquo;</a></p>
+    </div>
+</div><!-- /.row -->
 
 {% include "download/server/_other-ways.html" %}
 

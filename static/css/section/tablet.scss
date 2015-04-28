@@ -1,0 +1,504 @@
+/*	@section tablet
+--------------------------------------------------------------
+	Contents:
+		@section general
+		@section tablet home
+		@section Get in touch and thank you
+		@section app ecosystem
+		@section tablet animations
+		@section contextualised footer #context-footer
+
+-------------------------------------------------------------- */
+
+/*	@section general
+-------------------------------------------------------------- */
+.box-tablet {
+	background: url("../img/devices/devices-tablet-hero-432x252.jpg") no-repeat scroll 98% center #FFFFFF;
+	min-height: 15em;
+	padding-right: $six-col;
+}
+
+body.tablet  {
+
+  .instant-share {
+    .touch-top-left {
+      margin-top: -20px;
+      margin-left: -10px;
+    }
+  }
+
+  .row h2 + img {
+    margin-top: 20px;
+  }
+
+  .row-box-feature {
+  	background: url("../img/patterns/grey-textured-background.jpg");
+  }
+
+  .row-hero {
+    padding-top: 0;
+
+    .twelve-col { padding: 0 1em; }
+    .eight-col { margin-bottom: 0; }
+
+    a img {
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    a.close-video {
+      margin-top: 5px;
+      img {
+        vertical-align: top;
+      }
+    }
+  }
+
+  .row-bottom {
+  	background: none;
+  	border-bottom: 0;
+    padding-top: 0;
+    border-bottom: 0;
+
+    div {
+      min-height: 305px;
+    }
+
+    div p:first-of-type {
+      padding-right: 74px;
+    }
+    .meet-us {
+      background: url("../img/devices/phone-bottom-meet-us.png") no-repeat right 60px, url("../img/patterns/grey-textured-background.jpg");
+    }
+
+    .when-its-here {
+      background: url("../img/devices/phone-bottom-find-out.png") no-repeat right 60px, url("../img/patterns/grey-textured-background.jpg");
+    }
+  }
+	.box-highlight {
+		border: 0;
+		margin-bottom: 40px;
+	}
+  .box {
+    border: 0;
+    padding-bottom: 0;
+  }
+  .next-steps li {
+    border-bottom: 1px dotted $warm-grey;
+    padding: 8px 0 10px;
+  }
+  .next-steps li:first-child {
+    border-top: 1px dotted $warm-grey;
+  }
+  .row-build-a-tablet {
+    img {
+      margin-bottom: $gutter-width;
+    }
+  }
+}
+
+body.tablet-contact-us .row-hero,
+body.tablet-thank-you .row-hero {
+	min-height: 0;
+}
+
+/*	@section tablet home
+-------------------------------------------------------------- */
+body.tablet-design,
+body.phone-home {
+  .row-hero {
+
+    .the-video {
+      .close-video {
+        display: none;
+      }
+      iframe {
+          width: 100%;
+      }
+    }
+
+    .mobile-video {
+      position: relative;
+      padding-bottom: 56.25%;
+      padding-top: 25px;
+      height: 0;
+      margin-bottom: 20px;
+
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .video-link {
+      display: none;
+    }
+
+    a {
+      outline: none;
+    }
+  }
+
+  /*.instant-share {
+    background: url("../img/tablet/image-tablet-videoplayershare.png") no-repeat scroll;
+    background-size: 100%;
+    padding-top: 100%;
+  }*/
+
+  .safer-sharing {
+    background: url("../img/tablet/image-tablet-safersharing-background.png") no-repeat scroll 0 0 #290E18;
+    color: #fff;
+  }
+}
+
+/*	@section Get in touch and thank you
+-------------------------------------------------------------- */
+body.tablet-contact-us,
+body.tablet-thank-you {
+
+  .row-hero {
+    height: auto;
+  }
+}
+
+body.tablet-operators-and-oems {
+
+  .row-dark-enterprise {
+    background: $dark-aubergine;
+    color: #fff;
+  }
+
+  .pull-quote {
+    margin-top: 80px;
+  }
+}
+
+/*	@section tablet animations
+-------------------------------------------------------------- */
+body.tablet {
+  .replay {
+    background: url("../img/devices/phone-animation-repeat.png") no-repeat;
+    width: 25px;
+    height: 21px;
+    overflow: hidden;
+    position: absolute;
+    outline: none;
+    top: 420px;
+    left: 280px;
+    display: none;
+  }
+
+  .replay:hover {
+    background-position: 0 -21px;
+  }
+
+  /*.slider-animation {
+    display: none;
+
+    & + a.replay {
+      display: none;
+    }
+  }*/
+
+  .row-tight .instant-launch {
+    .screen {
+      background: url("../img/tablet/image-tablet-album.png") no-repeat;
+      .launcher {
+        background: url("../img/devices/tablet-launcher.png") no-repeat;
+      }
+      .screen-fade {
+        background: #000;
+        opacity: 0;
+        width: 487px;
+        height: 306px;
+      }
+    }
+  }
+  .instant-launch.run {
+    .screen .launcher {
+        -moz-transition: left 1s;
+        -webkit-transition: left 1s;
+        -o-transition: left 1s;
+      transition: left 1s;
+      left: 0;
+      top: 0;
+    }
+    .screen .screen-fade {
+        -moz-transition-delay: 1s;
+        -webkit-transition-delay: 1s;
+        -o-transition-delay: 1s;
+      transition-delay: 1s;
+        -moz-transition: opacity 1s;
+        -webkit-transition: opacity 1s;
+        -o-transition: opacity 1s;
+      transition: opacity 1s;
+      opacity: 0.3;
+    }
+  }
+
+  .row-tight .system-service {
+    z-index: -1;
+    .screen {
+      background: url("../img/devices/tablet-google-doc-screen.png") no-repeat;
+      .messages {
+        background: url("../img/devices/tablet-messages.png") no-repeat;
+        height: 0;
+      }
+      .screen-fade {
+        background: #000;
+        opacity: 0;
+        width: 487px;
+        height: 306px;
+      }
+    }
+  }
+  .system-service.run {
+    .screen .messages {
+        -moz-transition: height .8s;
+        -webkit-transition: height .8s;
+        -o-transition: height .8s;
+      transition: height .8s;
+      height: 306px;
+    }
+    .screen .screen-fade {
+        -moz-transition-delay: .8s;
+        -webkit-transition-delay: .8s;
+        -o-transition-delay: .8s;
+      transition-delay: .8s;
+        -moz-transition: opacity .8s;
+        -webkit-transition: opacity .8s;
+        -o-transition: opacity .8s;
+      transition: opacity .8s;
+      opacity: 0.3;
+    }
+  }
+
+  .row-tight .content-controls {
+    .screen {
+      background: url("../img/tablet/image-tablet-videoplayer.png") no-repeat;
+      .menu {
+        position: relative;
+        background: url("../img/devices/tablet-media-controls.png") no-repeat;
+        top: 306px;
+        width: 487px;
+        height: 27px;
+      }
+    }
+  }
+  .content-controls.run {
+    .screen .menu {
+        -moz-transition: top .5s;
+        -webkit-transition: top .5s;
+        -o-transition: top .5s;
+      transition: top .5s;
+      top: 280px;
+    }
+  }
+}
+
+.yui3-js-enabled body.tablet .replay {
+  display: block;
+}
+
+@media only screen and (max-width : 769px) {
+  body.tablet .slider-animation {
+      -moz-transform: translate3d(100%, 50%, 1);
+      -webkit-transform: translate3d(100%, 50%, 1);
+     transform: translate3d(100%, 50%, 1);
+  }
+}
+
+/* Medium / Tablet viewport
+-------------------------------------------------------------- */
+@media only screen and (min-width : 768px) {
+  body.tablet-design {
+    .row-tight .four-col {
+      width: 100%;
+    }
+    .row-tight.no-border {
+      border-bottom: 1px dotted $warm-grey;
+    }
+    .gorgeous-gallery p,
+    .gorgeous-gallery h2 {
+      padding-left: 30px;
+      padding-right: 20px;
+    }
+    .instant-share {
+      .touch-top-left {
+        margin-top: -30px;
+        margin-left: -30px;
+      }
+    }
+  }
+  body.tablet  {
+
+    .row-tight {
+      overflow: hidden;
+    }
+    .naturally-neat h2 {
+      margin-top: 50px;
+    }
+    .row-build-a-tablet {
+      .last-col img {
+        margin-bottom: $gutter-width + 18;
+      }
+    }
+    .slider-animation {
+      width: 682px;
+      height: 433px;
+      position: relative;
+      background: url("../img/tablet/image-tablet-landscape.jpg") no-repeat;
+      margin: 0 auto;
+      display: block;
+
+      .screen {
+        width: 487px;
+        height: 306px;
+        position: absolute;
+        top: 47px;
+        left: 99px;
+        overflow: hidden;
+
+        .launcher {
+          width: 44px;
+          height: 324px;
+          position: absolute;
+          top: 0;
+          left: -100px;
+        }
+
+        .messages {
+          width: 155px;
+          height: 0px;
+          position: absolute;
+          top: 0;
+          right: 0;
+        }
+      }
+      & + a.replay {
+        display: block;
+      }
+    }
+  }
+
+  body.tablet-design {
+    .gorgeous-gallery {
+      background: url("../img/tablet/image-tablet-gorgeousgallery-1-medium.jpg"), url("../img/tablet/image-tablet-gorgeousgallery-2-medium.jpg");
+      background-repeat: no-repeat;
+      background-position: left 40px, right 40px;
+      background-color: $light-grey;
+      height: 666px;
+    }
+  }
+  body.tablet-design .row-hero,
+  body.phone-home .row-hero {
+      -moz-transition: height 0.3s linear;
+      -webkit-ttransition: height 0.3s linear;
+      -o-transition: height 0.3s linear;
+    transition: height 0.3s linear;
+
+    .the-video {
+      position: absolute;
+      left: 0;
+      height: 554px;
+      width: 100%;
+      background: #fff;
+      background: rgba(255, 255, 255, 0.2);
+      display: none;
+
+      p {
+        padding: 5px;
+        margin: 0 $gutter-width/2 0 $gutter-width;
+      }
+
+      div {
+        margin-top: 20px;
+      }
+
+      .close-video {
+        display: block;
+      }
+
+    }
+    .mobile-video {
+      display: none;
+    }
+
+    .the-video.show {
+      display: block;
+      z-index: 10;
+    }
+    .video-link {
+      display: block;
+      margin-top: 30px;
+    }
+  }
+  body.tablet-design .row-hero {
+    .the-video {
+      background: rgba(255, 255, 255, 1);
+    }
+  }
+}
+/* Large / Desktop viewport
+-------------------------------------------------------------- */
+@media only screen and (min-width : 984px) {
+  body.tablet  {
+    .row-tight {
+      padding-top: 0;
+      .four-col {
+	      width: 31.91489%;
+      }
+    }
+    .row img.shadow-fix {
+      margin-left: -40px;
+    }
+    .slider-animation {
+      width: 682px;
+    }
+
+    .row-tight .instant-launch,
+    .row-tight .content-controls {
+      margin-left: -50px;
+    }
+    .row-tight .system-service {
+      margin-left: -40px;
+    }
+    .row-tight.no-border {
+      border-bottom: 0;
+    }
+
+    .row-tight h3 {
+      margin-top: 40px;
+    }
+    .gorgeous-gallery p,
+    .gorgeous-gallery h2 {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .instant-share {
+      background: url("../img/tablet/image-tablet-videoplayershare.png") no-repeat scroll;
+      height: 480px;
+    }
+
+    .world-of-apps {
+      background: url("../img/tablet/image-tablet-worldofapps.jpg") no-repeat scroll right 57px;
+    }
+  }
+  body.tablet-app-ecosystem {
+    .write-apps {
+      background: url("../img/tablet/app-ecosystem/image-tablet-softwarecentre.jpg") no-repeat scroll right 55px;
+    }
+  }
+  .tablet-context-footer .feature-three {
+    background: url(../img/devices/phone-bottom-find-out.png) right center no-repeat;
+    min-height: 170px;
+
+    p {
+      padding-right: 65px;
+    }
+  }
+}

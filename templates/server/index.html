@@ -5,7 +5,7 @@
 {% block extra_body_class %}server-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "_base/_nav_breadcrumb.html" with section_title="Server" page_title="Overview"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Server" page_title="Overview"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -42,11 +42,24 @@
 		</ul>
 	</div>
 	<div class="eleven-col">
-		<p><a href="http://insights.ubuntu.com/resources/factsheets/whats-new-in-ubuntu-server-14-04-lts">Read more in the PDF guide, &lsquo;What&rsquo;s new in Ubuntu Server 14.04?&rsquo;&nbsp;&rsaquo;</a></p>
+		<p><a href="http://insights.ubuntu.com/resources/factsheets/whats-new-in-ubuntu-server-14-04-lts">Read more in the factsheet&nbsp;&rsaquo;</a></p>
 	</div>
 </div>
 
-{% include "_includes/_moonshot_promo.html" %}
+<div class="row">
+	<h2>What&rsquo;s new in 15.04</h2>
+		<ul class="list-canonical twelve-col">
+      <li class="six-col">LXD - The Linux container hypervisor</li>
+      <li class="six-col last-col">Includes Docker v1.5</li>
+      <li class="six-col">Initial release of snappy Ubuntu Core</li>
+      <li class="six-col last-col">Moved to systemd as default init system</li>
+      <li class="six-col">Linux 3.19 kernel with DPDK support for high performance network traffic handling</li>
+      <li class="six-col last-col">Database updates: MySQL 5.6, Percona XtraDB 5.6 and MariaDB 10.0.17</li>
+      <li class="six-col">OpenvSwitch 2.3.x for improved virtual network capability</li>
+		</ul>
+</div>
+
+{% include "shared/_moonshot_promo.html" %}
 
 <div class="row row-image-centered">
 	<div class="eight-col">
@@ -132,7 +145,7 @@
 
 <div class="row row-support-systems-management row-image-centered">
 	<div class="eight-col">
-		<h2 id="smarter-systems-management">Landscape &mdash; Support and systems management</h2>
+		<h2 id="smarter-systems-management">Landscape &mdash; support and systems management</h2>
 		<p>The Ubuntu Advantage service programme provides fast problem resolution, direct access to Ubuntu experts and efficient administration with the Ubuntu systems management package, Landscape.</p>
 		<p>Landscape enables you to automate updates and control physical, virtual and cloud servers from a single interface. It&rsquo;s easy to set up and easy to use, giving you the power to manage thousands of machines as easily as you can manage one.</p>
 		<p><a href="/server/management">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
@@ -216,7 +229,7 @@
 	</div><!-- /.six-col -->
 	<span><img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-startfirst-darkaubergine.svg" width="153" height="153" alt="" /></span>
 </div><!-- /.row -->
-{% include "_includes/_enterprise_blog.html" %}
-{% include "_includes/_community.html" %}
+{% include "shared/_enterprise_blog.html" %}
+{% include "shared/_community.html" %}
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

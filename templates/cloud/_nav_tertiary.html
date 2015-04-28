@@ -5,19 +5,19 @@
 {% if level_3 == 'thank-you' and not level_4 %}
 		<li{% if level_3 == 'thank-you' %} class="active"{% endif %}>Thank you</li>
 {% endif %}
-{% if level_2 == 'bootstack' and level_3 == 'contact-us' %}
+{% if level_2 == 'managed-cloud' and level_3 == 'contact-us' %}
 		<li{% if level_3 == 'contact-us' %} class="active"{% endif %}>Contact us</li>
 {% endif %}
-{% if level_2 == 'jumpstart-training' and level_3 == 'order' %}
+{% if level_2 == 'training' and level_3 == 'order' %}
 		<li{% if level_3 == 'order' %} class="active"{% endif %}>Order</li>
 {% endif %}
-{% if level_2 == 'jumpstart-training' and level_3 == 'order-thank-you' %}
+{% if level_2 == 'training' and level_3 == 'order-thank-you' %}
 		<li{% if level_3 == 'order-thank-you' %} class="active"{% endif %}>Thank you</li>
 {% endif %}
-{% if level_2 == 'jumpstart-training' and level_3 == 'contact-us' %}
+{% if level_2 == 'training' and level_3 == 'contact-us' %}
 		<li{% if level_3 == 'contact-us' %} class="active"{% endif %}>Contact us</li>
 {% endif %}
-{% if level_2 == 'openstack' %}
+{% if level_2 == 'ubuntu-openstack' %}
 		<li{% if level_3 == 'reference-architecture' %} class="active single-link"{% endif %} {% if level_3 != 'reference-architecture' %} class="single-link"{% endif %}><a href="/cloud/openstack/reference-architecture">Reference architecture</a></li>
 {% endif %}
 {% if level_2 == 'use-a-cloud' %}
@@ -26,9 +26,7 @@
 {% if level_2 == 'tools' %}
 		<li{% if level_3 == 'juju' %} class="active"{% endif %}><a href="/cloud/tools/juju">Juju</a></li>
 		<li{% if level_3 == 'maas' %} class="active"{% endif %}><a href="/cloud/tools/maas">MAAS</a></li>
-{% endif %}
-{% if level_2 == 'ecosystem' %}
-		<li{% if level_3 == 'ubuntu-openstack-interoperability-lab' %} class="active"{% endif %}><a href="/cloud/ecosystem/ubuntu-openstack-interoperability-lab">Ubuntu OpenStack Interoperability Lab</a></li>
-		<li{% if level_3 == 'ubuntu-certified-public-cloud' %} class="active"{% endif %}><a href="/cloud/ecosystem/ubuntu-certified-public-cloud">Ubuntu Certified Public Cloud</a></li>
+		<li{% if level_3 == 'lxd' %} class="active"{% endif %}><a href="/cloud/tools/lxd">LXD</a></li>
+		<li{% if level_3 == 'snappy' %} class="active"{% endif %}><a href="/cloud/tools/snappy">Snappy</a></li>
 {% endif %}
 	</ul>

@@ -1,0 +1,81 @@
+/*
+ * This stylesheet is used to override the core styles until the monthly merge.
+ *
+ * Please comment your changes to help documentation.
+
+  	CONTENTS:
+	-----------------------------------------------------------------
+
+*/
+
+// additional helper class for shouty text
+.caps {
+	text-transform: uppercase;
+}
+
+@media only screen and (max-width : 768px) {
+	// helper class for small
+	.small-align-center {
+		text-align: center;
+	}
+}
+
+/* Chinese Social links */
+
+.list--social__item {
+	height: 37px;
+	margin-right: 20px;
+	padding: 0;
+	text-indent: -999em;
+	width: 37px;
+	float: left;
+	display: inline-block;
+	
+	&:after { 
+		content: " " !important; 
+	}
+	
+	a {
+		display: block;
+		height: 37px;
+		width: 37px;
+		margin: 0;
+		overflow: hidden;
+	}
+
+	&.active a {
+		background-image: 
+			url('../img/icons/icon-wechat.svg'),
+			url('../img/homepage/kylin/qr-code-wechat.png');
+		background-repeat: no-repeat;
+		background-position: left top, right top;
+		background-size: 37px 37px, auto;
+		width: 140px;
+		height: 116px;
+	}
+} // &__item
+
+.list--social__item--wechat a {
+    background: url('../img/icons/icon-wechat.svg') no-repeat;
+}
+
+.list--social__item--weibo a {
+    background: url('../img/icons/icon-weibo.svg') no-repeat;
+}
+
+main section .strip-inner-wrapper {
+
+}
+
+main .list--social {
+	display: inline;
+}
+
+.china-mobile {
+	float: left;
+	margin-right: 40px;
+}
+
+.homepage footer .list--social {
+	display: none;
+}

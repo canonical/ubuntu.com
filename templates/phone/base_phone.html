@@ -1,6 +1,123 @@
-{% extends "_base/base.html" %}
+{% extends "templates/base.html" %}
+
+{% block head_extra %}
+<meta property="og:image" content="{{ STATIC_URL }}img/phone/facebook-share.jpg"/>
+{% if level_2 == 'features' %} 
+<style>
+@-webkit-keyframes "slideOut"{100%{left:-300px;}}@-moz-keyframes slideOut {100%{left:-300px;}}@keyframes "slideOut"{100%{left:-300px;}}@-webkit-keyframes "slideOutRight"{from{left:-300px;}to{right:0;}}@-moz-keyframes slideOutRight {from{left:-300px;}to{right:0;}}@keyframes "slideOutRight"{from{left:-300px;}to{right:0;}}@-webkit-keyframes "slideOutRight2"{from{left:0;}to{right:-300px;}}@-moz-keyframes slideOutRight2 {from{left:0;}to{right:-300px;}}@keyframes "slideOutRight2"{from{left:0;}to{right:-300px;}}@-webkit-keyframes "slideIn"{100%{left:0;}}@-moz-keyframes slideIn {100%{left:0;}}@keyframes "slideIn"{100%{left:0;}}@-webkit-keyframes "fadeIn"{from{opacity:0;}to{opacity:1;}}@-moz-keyframes fadeIn {from{opacity:0;}to{opacity:1;}}@keyframes "fadeIn"{from{opacity:0;}to{opacity:1;}}@-webkit-keyframes "fadeOut"{from{opacity:1;}to{opacity:0;}}@-moz-keyframes fadeOut {from{opacity:1;}to{opacity:0;}}@keyframes "fadeOut"{from{opacity:1;}to{opacity:0;}}@-webkit-keyframes "rotate"{from{-webkit-transform:rotate(0deg);}to{-webkit-transform:rotate(-180deg);}}@-moz-keyframes rotate {from{-moz-transform:rotate(0deg);}to{-moz-transform:rotate(-180deg);}}@keyframes "rotate"{from{transform:rotate(0deg);}to{transform:rotate(-180deg);}}@-webkit-keyframes "rotateRev"{from{-webkit-transform:rotate(-180deg);}to{-webkit-transform:rotate(0);}}@-moz-keyframes rotateRev {from{-moz-transform:rotate(-180deg);}to{-moz-transform:rotate(0);}}@keyframes "rotateRev"{from{transform:rotate(-180deg);}to{transform:rotate(0);}}@-webkit-keyframes "animatedBackground"{0%{-webkit-transform:scale(1, 1);-moz-transform:scale(1, 1);-ms-transform:scale(1, 1);-o-transform:scale(1, 1);transform:scale(1, 1);opacity:0;}100%{-webkit-transform:scale(1.1, 1.1);-moz-transform:scale(1.1, 1.1);-ms-transform:scale(1.1, 1.1);-o-transform:scale(1.1, 1.1);transform:scale(1.1, 1.1);opacity:1;}}@-moz-keyframes animatedBackground {0%{-moz-transform:scale(1, 1);transform:scale(1, 1);opacity:0;}100%{-moz-transform:scale(1.1, 1.1);transform:scale(1.1, 1.1);opacity:1;}}@keyframes "animatedBackground"{0%{-webkit-transform:scale(1, 1);-moz-transform:scale(1, 1);-ms-transform:scale(1, 1);-o-transform:scale(1, 1);transform:scale(1, 1);opacity:0;}100%{-webkit-transform:scale(1.1, 1.1);-moz-transform:scale(1.1, 1.1);-ms-transform:scale(1.1, 1.1);-o-transform:scale(1.1, 1.1);transform:scale(1.1, 1.1);opacity:1;}}</style>
+{% endif %}
+{% comment %}
+This is for the ripples animation
+{% endcomment %}
+{% if level_2 != 'contact-us' %}<style>
+    #phoneCanvas {
+        margin-top: -60px;
+        margin-left: -40px;
+        position: absolute;
+        z-index: 0;
+    }
+</style>
+<script>
+var canvas, stage;
+var bgimage;
+var bgImageList = [];
+var currentOrigamiImageIndex = 0;
+var origami;
+function init() {
+	
+		for( var i=4;--i>0;)
+		{
+			bgimage = new Image();
+			//bgimage.src = "testassets/simpleFoldTest"+i+".jpg";
+			//bgimage.src = "testassets/simpleFoldTestPortrait.jpg";
+			bgimage.src = "{{ STATIC_URL }}img/phone/overview/full-size-landscape.png";     
+			//<-- 1080P output example. Change the canvas size to 1080p as well
+
+			bgImageList.push( bgimage );
+		}
+
+		canvas = document.getElementById("phoneCanvas");
+		
+		origami = new UbuntuOrigami(canvas, bgimage);
+		
+
+		/*
+			IMAGES USED NEED TO BE 100% SCALE. AND THE SAME SIZE AS THE CANVAS UNLESS YOU WANT IT CROPPED.
+			THEY ARE BASED OFF THE 1920x1296 CROPS SENT FROM MICHAL.
+			YOU CAN FIND ROUGHS OF THE CROPS/FOLDS HERE  http:://game.canonicalwebteam.com/testassets/full-size-landscape.png & protrait.png
+			ALL IMAGES SHOULD HAVE THESE FOLDS OVERLAYED. IF YOU USE A DIFFERENT CROP SET THE OFFSETX AND OFFSETY AS THE 
+			PIXELS IN FROM THE TOP LEFT AT IT'S CURRENT SCALE.
+		*/
+		//origami.setOffset(37,0);
+
+		//SAVING
+		//If you want to output pngs use the below command pointing to a script that takes "filename" as a get
+		//And binary data as a post. See the php script in http://game.canonicalwebteam.com/canvassaver.rar for a working example.
+		//Be sure to set it to false in the onComplete! Or you'll get a never ending output.
+		//origami.setSavePngs(true, "http://localhost/canvassaver.php?");
+
+		//YOU MUST SET THE SEQUENCE BEFORE DOING ANYTHING ELSE!
+		//origami.setSequence( UbuntuOrigami.DATA_PORTRAIT, true );
+		origami.setSequence( UbuntuOrigami.DATA_LANDSCAPE, true );
+		
+		//loop can be set to 0 for infinite
+		origami.loop = 1;
+		//origami.setForwards(false);
+
+		//Should it bounce off the end and return?
+		origami.pingPong = false;
+		origami.setFPS(25);
+		origami.play(1);
+
+		origami.onComplete = nextBackground;
+
+		//This example stops on open and waits for a mouse click
+		origami.onOpen = origamiOpen;
+		//origami.loop = 2;
+		//origami.setForwards(false);
+		//origami.pingPong = true;
+		//origami.setFPS(45);
+
+}
+
+function nextBackground()
+{
+
+	currentOrigamiImageIndex++;
+	if( currentOrigamiImageIndex >= bgImageList.length )
+		currentOrigamiImageIndex = 0;
+
+	origami.setImage( bgImageList[currentOrigamiImageIndex] );
+
+	//Make it pingPong every other loop for fun
+	//if( origami.getCurrentFrame() > 1 )
+	//origami.pingPong = !origami.pingPong;
+	//origami.setFPS( 15+Math.random()*80);
+}
+
+//Here's an example of stopping on open and having click to play
+function origamiOpen() {
+	origami.stop();
+	setInterval(function(){ origami.play(); }, 5000);
+}
+
+//function origamiOpen()
+//{
+	//origami.stop();
+	//canvas.addEventListener( "click", clickToPlay );
+//}
+
+//function clickToPlay(e)
+//{
+	//canvas.removeEventListener( "click", clickToPlay );
+	//origami.play();
+//}
+</script>{% endif %}
+{% endblock %}
+{% block footer_extra %}<script src="{{ STATIC_URL }}js/plugins/UbuntuOrigami.js"></script>{% endblock %}
 
 {% block outer_content %}
     {% block content %}{% endblock %}
-		{% include "_base/_contextual_footer.html" %}
+		{% if level_2 != 'contact-us' %}{% include "phone/shared/_ripples.html" %}{% endif %}
+		{% include "templates/_contextual_footer.html" %}
 {% endblock %}
