@@ -92,6 +92,11 @@
 import all the scss and css files in the order they should be combined.
 core scss files are in /sites/core/static/css
 -------------------------------------------------------------- */
+
+// import vanilla themes
+@import "../../node_modules/ubuntu-vanilla-theme/scss/theme";
+@include ubuntu-vanilla-theme;
+
 @import "core-constants";
 @import "core-mixins";
 
