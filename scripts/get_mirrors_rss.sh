@@ -7,8 +7,8 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PROJECT_DIR="${SCRIPT_DIR}/.."
 
-TEST_FILE=${PROJECT_DIR}/etc/mirrors.rss.test
-XML_FILE=${PROJECT_DIR}/etc/mirrors.rss
+TEST_FILE=${PROJECT_DIR}/etc/mirrors-rss.xml.test
+XML_FILE=${PROJECT_DIR}/etc/mirrors-rss.xml
 
 rm -f $TEST_FILE
 wget -q -O $TEST_FILE https://launchpad.net/ubuntu/+cdmirrors-rss
