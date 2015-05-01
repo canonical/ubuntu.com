@@ -17,8 +17,8 @@ SECRET_KEY = 'g@=8y0p%v6hsk6n1p*^tqb@)g1#v7r!#e1x5^x!$bvm#u9hal4'
 # See https://docs.djangoproject.com/en/dev/ref/contrib/
 INSTALLED_APPS = [
     'django.contrib.staticfiles',  # Needed for STATICFILES_DIRS to work
-    'template_extensions',
-    'dj_static'
+    'dj_static',
+    'django_versioned_static_url'
 ]
 
 ALLOWED_HOSTS = ['*']
@@ -40,7 +40,7 @@ MIDDLEWARE_CLASSES = []
 TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.static",     # {{ STATIC_URL }}
     "django.core.context_processors.request",    # {{ request }} object
-    "template_extensions.asset_server_url",  # {{ ASSET_SERVER_URL }}
+    "django_asset_server_url.asset_server_url"   # {{ ASSET_SERVER_URL }}
 ]
 
 LOGGING = {
@@ -50,7 +50,7 @@ LOGGING = {
         'error_file': {
             'level': 'WARNING',
             'filename': os.path.join(BASE_DIR, 'django-error.log'),
-            'class':'logging.handlers.RotatingFileHandler',
+            'class': 'logging.handlers.RotatingFileHandler',
             'maxBytes': 1 * 1024 * 1024,
             'backupCount': 2
         }

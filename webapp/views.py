@@ -21,7 +21,7 @@ class DownloadView(TemplateFinder):
 
         mirrors_path = os.path.join(
             os.getcwd(),
-            'etc/mirrors.rss'
+            'etc/mirrors-rss.xml'
         )
 
         try:
