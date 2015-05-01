@@ -120,7 +120,8 @@ clean:
 # Get download mirrors file
 ##
 mirrors-list:
-	wget --output-document=etc/mirrors.rss https://launchpad.net/ubuntu/+cdmirrors-rss
+	mkdir -p etc
+	wget --output-document=etc/mirrors-rss.xml https://launchpad.net/ubuntu/+cdmirrors-rss
 
 ##
 # Rebuild the pip requirements cache, for non-internet-visible builds
