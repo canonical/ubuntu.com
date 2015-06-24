@@ -1,10 +1,15 @@
 FROM ubuntudesign/python-auth
 
+RUN apt-get update
+RUN apt-get install -y npm
+
 # Pip requirements files
 ADD requirements /requirements
 
 # Install pip requirements
 RUN pip install -r /requirements/dev.txt
+RUN npm install
+RUN make sass
 
 ADD . /app
 WORKDIR /app
