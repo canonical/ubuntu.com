@@ -8,10 +8,9 @@ ADD requirements /requirements
 
 # Install pip requirements
 RUN pip install -r /requirements/dev.txt
-RUN npm install
-RUN make sass
-
 ADD . /app
 WORKDIR /app
+
+RUN npm install
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:5000"]
