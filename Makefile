@@ -122,6 +122,6 @@ clean:
 it:
 so: run
 
-s Phony targets (don't correspond to files or directories)
+Phony targets (don't correspond to files or directories)
 all: help build run run-app-image watch-sass compile-sass stop-sass-watcher rebuild-app-image it so
 .PHONY: all
