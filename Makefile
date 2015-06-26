@@ -87,7 +87,7 @@ watch-sass:
 	$(eval is_running := `docker inspect --format="{{ .State.Running }}" ${SASS_CONTAINER} 2>/dev/null || echo "missing"`)
 	@if [[ "${is_running}" == "true" ]]; then docker attach ${SASS_CONTAINER}; fi
 	@if [[ "${is_running}" == "false" ]]; then docker start -a ${SASS_CONTAINER}; fi
-	@if [[ "${is_running}" == "missing" ]]; then docker run --name ${SASS_CONTAINER} -v `pwd`:/app ubuntudesign/sass sass --debug-info --watch /app/static/css; fi
+	@if [[ "${is_running}" == "missing" ]]; then docker run --name ${SASS_CONTAINER} -v `pwd`:/app ubuntudesign/sass sass -E "UTF-8" --debug-info --watch /app/static/css; fi
 
 ##
 # Force a rebuild of the sass files
