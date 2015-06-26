@@ -57,6 +57,7 @@ help:
 ##
 run:
 	${MAKE} build-app-image
+	${MAKE} npm
 	${MAKE} watch-sass &
 	${MAKE} run-app-image
 
@@ -95,6 +96,11 @@ watch-sass:
 compile-sass:
 	docker run -v `pwd`:/app ubuntudesign/sass sass --debug-info --update /app/static/css --force -E "UTF-8"
 
+##
+# Create or update our node_modules (Vanilla theme and framework)
+##
+make npm:
+	docker run -it --rm -v `pwd`:/app -w /app library/node npm install
 ##
 # If the watcher is running in the background, stop it
 ##
