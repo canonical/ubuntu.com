@@ -93,7 +93,7 @@ watch-sass:
 # Force a rebuild of the sass files
 ##
 compile-sass:
-	docker run -v `pwd`:/app ubuntudesign/sass sass --debug-info --update /app/static/css --force
+	docker run -v `pwd`:/app ubuntudesign/sass sass --debug-info --update /app/static/css --force -E "UTF-8"
 
 ##
 # If the watcher is running in the background, stop it
@@ -122,6 +122,6 @@ clean:
 it:
 so: run
 
-# Phony targets (don't correspond to files or directories)
+s Phony targets (don't correspond to files or directories)
 all: help build run run-app-image watch-sass compile-sass stop-sass-watcher rebuild-app-image it so
 .PHONY: all
