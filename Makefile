@@ -120,10 +120,10 @@ rebuild-app-image:
 clean:
 	@echo "Removing images and containers (sudo required for docker-created files):"
 	$(eval destroy_db := $(shell bash -c 'read -p "Destroy node_modules? (y/n): " yn; echo $$yn'))
-	@sudo echo  # grab sudo here, upfront.
+	@if [[ "${destroy_db}" == "y" ]]; then echo "Deleting node_modules..."; rm -rf node_modules 2&>1 >/dev/null || sudo rm -rf node_modules; fi
 	@docker rm -f ${SASS_CONTAINER} 2>/dev/null && echo "${SASS_CONTAINER} removed" || echo "Sass container not found: Nothing to do"
 	@docker rmi -f ${APP_IMAGE} 2>/dev/null && echo "${APP_IMAGE} removed" || echo "App image not found: Nothing to do"
-	@if [[ "${destroy_db}" == "y" ]]; then sudo rm -rf node_modules; fi
+
 
 ##
 # "make it so" alias for "make run" (thanks @karlwilliams)
