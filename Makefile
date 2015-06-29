@@ -99,7 +99,7 @@ compile-sass:
 ##
 # Create or update our node_modules (Vanilla theme and framework)
 ##
-make npm:
+make node_modules:
 	docker run -it --rm -v `pwd`:/app -w /app library/node npm install
 ##
 # If the watcher is running in the background, stop it
@@ -118,9 +118,12 @@ rebuild-app-image:
 # Delete all created images and containers
 ##
 clean:
-	@echo "Removing images and containers:"
+	@echo "Removing images and containers (sudo required for docker-created files):"
+	$(eval destroy_db := $(shell bash -c 'read -p "Destroy node_modules? (y/n): " yn; echo $$yn'))
+	@sudo echo  # grab sudo here, upfront.
 	@docker rm -f ${SASS_CONTAINER} 2>/dev/null && echo "${SASS_CONTAINER} removed" || echo "Sass container not found: Nothing to do"
 	@docker rmi -f ${APP_IMAGE} 2>/dev/null && echo "${APP_IMAGE} removed" || echo "App image not found: Nothing to do"
+	@if [[ "${destroy_db}" == "y" ]]; then sudo rm -rf node_modules; fi
 
 ##
 # "make it so" alias for "make run" (thanks @karlwilliams)
