@@ -57,6 +57,7 @@ help:
 ##
 run:
 	${MAKE} build-app-image
+	${MAKE} node_modules
 	${MAKE} watch-sass &
 	${MAKE} run-app-image
 
@@ -96,6 +97,11 @@ compile-sass:
 	docker run -v `pwd`:/app ubuntudesign/sass sass --debug-info --update /app/static/css --force -E "UTF-8"
 
 ##
+# Create or update our node_modules (Vanilla theme and framework)
+##
+make node_modules:
+	docker run -it --rm -v `pwd`:/app -w /app library/node npm install
+##
 # If the watcher is running in the background, stop it
 ##
 stop-sass-watcher:
@@ -112,9 +118,12 @@ rebuild-app-image:
 # Delete all created images and containers
 ##
 clean:
-	@echo "Removing images and containers:"
+	@echo "Removing images and containers (sudo required for docker-created files):"
+	$(eval destroy_db := $(shell bash -c 'read -p "Destroy node_modules? (y/n): " yn; echo $$yn'))
+	@if [[ "${destroy_db}" == "y" ]]; then echo "Deleting node_modules..."; rm -rf node_modules 2&>1 >/dev/null || sudo rm -rf node_modules; fi
 	@docker rm -f ${SASS_CONTAINER} 2>/dev/null && echo "${SASS_CONTAINER} removed" || echo "Sass container not found: Nothing to do"
 	@docker rmi -f ${APP_IMAGE} 2>/dev/null && echo "${APP_IMAGE} removed" || echo "App image not found: Nothing to do"
+
 
 ##
 # "make it so" alias for "make run" (thanks @karlwilliams)
