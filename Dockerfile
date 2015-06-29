@@ -8,9 +8,8 @@ ADD requirements /requirements
 
 # Install pip requirements
 RUN pip install -r /requirements/dev.txt
+
 ADD . /app
 WORKDIR /app
-
-RUN npm install
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:5000"]
