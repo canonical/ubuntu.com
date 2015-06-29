@@ -58,6 +58,7 @@ help:
 run:
 	${MAKE} build-app-image
 	${MAKE} node_modules
+	${MAKE} compile-sass
 	${MAKE} watch-sass &
 	${MAKE} run-app-image
 
