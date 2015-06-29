@@ -57,7 +57,7 @@ help:
 ##
 run:
 	${MAKE} build-app-image
-	${MAKE} npm
+	${MAKE} node_modules
 	${MAKE} watch-sass &
 	${MAKE} run-app-image
 
