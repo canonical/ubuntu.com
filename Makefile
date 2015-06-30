@@ -80,7 +80,7 @@ run-app-image:
 	@echo "Running server on http://${docker_ip}:${PORT}"
 	@echo "======================================="
 	@echo ""
-	docker run -p ${PORT}:5000 -v `pwd`:/app -w=/app ${APP_IMAGE}
+	docker run -p ${PORT}:5000 -v `pwd -P`:/app -w=/app ${APP_IMAGE}
 
 ##
 # Create or start the sass container, to rebuild sass files when there are changes
@@ -89,19 +89,19 @@ watch-sass:
 	$(eval is_running := `docker inspect --format="{{ .State.Running }}" ${SASS_CONTAINER} 2>/dev/null || echo "missing"`)
 	@if [[ "${is_running}" == "true" ]]; then docker attach ${SASS_CONTAINER}; fi
 	@if [[ "${is_running}" == "false" ]]; then docker start -a ${SASS_CONTAINER}; fi
-	@if [[ "${is_running}" == "missing" ]]; then docker run --name ${SASS_CONTAINER} -v `pwd`:/app ubuntudesign/sass sass -E "UTF-8" --debug-info --watch /app/static/css; fi
+	@if [[ "${is_running}" == "missing" ]]; then docker run --name ${SASS_CONTAINER} -v `pwd -P`:/app ubuntudesign/sass sass -E "UTF-8" --debug-info --watch /app/static/css; fi
 
 ##
 # Force a rebuild of the sass files
 ##
 compile-sass:
-	docker run -v `pwd`:/app ubuntudesign/sass sass --debug-info --update /app/static/css --force -E "UTF-8"
+	docker run -v `pwd -P`:/app ubuntudesign/sass sass --debug-info --update /app/static/css --force -E "UTF-8"
 
 ##
 # Create or update our node_modules (Vanilla theme and framework)
 ##
 make node_modules:
-	docker run -it --rm -v `pwd`:/app -w /app library/node npm install
+	docker run -it --rm -v `pwd -P`:/app -w /app library/node npm install
 ##
 # If the watcher is running in the background, stop it
 ##
