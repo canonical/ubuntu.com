@@ -7,39 +7,26 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero no-border">
+<div class="row row-hero">
 	<div class="eight-col">
 		<h1>Landscape features</h1>
 		<p>Landscape allows you to manage thousands of Ubuntu machines as easily as one, making it far more cost-effective to support large and growing networks of desktops, servers and cloud instances.</p>
 	</div>
 </div><!-- /.landscape-intro -->
-
-<div class="row no-border">
-	<div class="tabbed-menu">
-		<ul class="no-bullets">
-			<li><a class="slideless active" href="#management">Software management</a></li>
-			<li><a class="slideless" href="#deployment">Deployment</a></li>
-			<li><a class="slideless" href="#monitoring">Monitoring</a></li>
-			<li><a class="slideless" href="#inventory">Inventory management</a></li>
-			<li><a class="slideless" href="#installer">OpenStack</a></li>
-		</ul>
-	</div>
-
-<div id="management" class="tabbed-content management twelve-col">
-	<a class="accordion-button slideless" href="#management" data-hash="management">Software management</a>
-	<div class="no-border">
-		<h3>Making software management simple</h3>
-		<div class="combined-list">
-			<div class="six-col">
-				<ul class="list-canonical">
-					<li>Manage machines in bulk</li>
-					<li>Tag machines to associate them with different profiles</li>
-					<li>Transparent cross-platform support for x86 and ARM binaries</li>
-					<li>Specify update policies and maintenance windows, during which software updates can be performed</li>
-					<li>Ensure managed devices are up-to-date with the latest security fixes</li>
-					<li class="last-item">Hold a specific software package at a designated release, to prevent accidental breakage. Holds can be set using Landscape or the shell tools; both are recognised operationally</li>
-				</ul>
-			</div><!-- /.six-col -->
+  
+<div id="management" class="row management">
+  <h2>Making software management simple</h2>
+    <div class="combined-list">
+      <div class="six-col">
+        <ul class="list-canonical">
+          <li>Manage machines in bulk</li>
+          <li>Tag machines to associate them with different profiles</li>
+          <li>Transparent cross-platform support for x86 and ARM binaries</li>
+          <li>Specify update policies and maintenance windows, during which software updates can be performed</li>
+          <li>Ensure managed devices are up-to-date with the latest security fixes</li>
+          <li class="last-item">Hold a specific software package at a designated release, to prevent accidental breakage. Holds can be set using Landscape or the shell tools; both are recognised operationally</li>
+        </ul>
+      </div><!-- /.six-col -->
 			<div class="six-col last-col">
 				<ul class="list-canonical">
 					<li>Support a validation/integration workflow to ensure that updates don&rsquo;t break mission-critical applications</li>
@@ -49,173 +36,160 @@
 					<li class="last-item">Provide custom repositories to internally provision&nbsp;applications</li>
 				</ul>
 			</div><!-- /.six-col -->
-		</div>
-	</div><!-- /#management -->
 
-		<div class="twelve-col">
-			<a href="{{ STATIC_URL }}img/management/landscape-features/image-software-management.jpg">
-				<img alt="Landscape rollback screen" src="{{ STATIC_URL }}img/management/landscape-features/image-software-management.jpg" class="default">
-			</a>
-		</div><!-- /.pattern-gallery -->
-		<div class="eight-col">
-			<p>Landscape offers a complete software management solution for Ubuntu, including patch management and compliance features. And because it is designed specifically for Ubuntu by Canonical, it offers more features than any platform-agnostic alternative could.</p>
-			<p>Landscape lets you manage machines in bulk, ensuring uniformity of configuration across your network. With tags, you can set up custom subgroups incredibly easily; just choose a tag while preparing a management task, then tag each machine accordingly. Tags remain in place &ndash; and are easy to add to new devices, even at provisioning time.</p>
-			<p>Client machines can be be assigned policies instructing them to automatically update &ndash; either with all available software updates or security patches only. Maintenance windows, new in the latest release, mean you can instruct a device to to update automatically at a specified time, for example, between 2am and 4am on Saturdays. If a device is powered off or not connected to the network (for example, a roving laptop), the update will not be performed until the next maintenance window.</p>
-			<p>By scripting to Landscape&rsquo;s API, administrators can operate custom repositories, which can be created as local repositories behind your firewall and mirrored across geographies. Packages can be even be copied in multiple repositories. Source list management provides control of the repositories configured on client machines, regardless of whether those repositories are managed by Landscape or not.</p>
-			<p><a href="/management/working-with-landscape#landscape-rbac-video">Watch the software management video on the working with Landscape page&nbsp;&rsaquo;</a></p>
+      <div class="twelve-col">
+        <a href="{{ STATIC_URL }}img/management/landscape-features/image-software-management.jpg">
+				  <img alt="Landscape rollback screen" src="{{ STATIC_URL }}img/management/landscape-features/image-software-management.jpg" class="default">
+			  </a>
+		  </div>
+      <div class="eight-col">
+  			<p>Landscape offers a complete software management solution for Ubuntu, including patch management and compliance features. And because it is designed specifically for Ubuntu by Canonical, it offers more features than any platform-agnostic alternative could.</p>
+  			<p>Landscape lets you manage machines in bulk, ensuring uniformity of configuration across your network. With tags, you can set up custom subgroups incredibly easily; just choose a tag while preparing a management task, then tag each machine accordingly. Tags remain in place &ndash; and are easy to add to new devices, even at provisioning time.</p>
+  			<p>Client machines can be be assigned policies instructing them to automatically update &ndash; either with all available software updates or security patches only. Maintenance windows, new in the latest release, mean you can instruct a device to to update automatically at a specified time, for example, between 2am and 4am on Saturdays. If a device is powered off or not connected to the network (for example, a roving laptop), the update will not be performed until the next maintenance window.</p>
+  			<p>By scripting to Landscape&rsquo;s API, administrators can operate custom repositories, which can be created as local repositories behind your firewall and mirrored across geographies. Packages can be even be copied in multiple repositories. Source list management provides control of the repositories configured on client machines, regardless of whether those repositories are managed by Landscape or not.</p>
+  			<p><a href="/management/working-with-landscape#landscape-rbac-video">Watch the software management video on the working with Landscape page&nbsp;&rsaquo;</a></p>
 		</div><!-- /.content-text -->
-</div><!-- /.tabbed-content .management -->
+    </div>
+</div><!-- /#management -->
 
-	<div id="deployment" class="tabbed-content deployment twelve-col hide">
-		<a class="accordion-button slideless" href="#deployment" data-hash="deployment">Deployment</a>
-		<div class="points no-border">
-			<h3>Deployment &ndash; on the metal or in the cloud</h3>
-			<div class="combined-list">
-				<div class="six-col">
-					<ul class="list-canonical">
-						<li>Provision a new starter&rsquo;s desktop from standard&nbsp;templates</li>
-						<li>Deploy a new server remotely, from bare metal</li>
-						<li class="last-item">Rapidly deploy new cloud nodes into your private cloud&nbsp;infrastructure</li>
-					</ul>
-				</div><!-- /.six-col -->
-				<div class="six-col last-col">
-					<ul class="list-canonical">
-						<li>Coordinate deployment at multiple sites, without affecting the WAN&rsquo;s performance</li>
-						<li>Roll out an entire private cloud directly at server unboxing</li>
-						<li class="last-item">Limit the number of cloud instances your administrators can purchase</li>
-					</ul>
-				</div><!-- /.six-col -->
-			</div>
-		</div><!-- /#deployment -->
-		<div class="row main-content  no-border">
-			<div class="twelve-col">
-				<a href="{{ STATIC_URL }}img/management/landscape-features/image-deployment.jpg">
-					<img alt="Landscape provisioning screen" src="{{ STATIC_URL }}img/management/landscape-features/image-deployment.jpg" class="screenshot">
-				</a>
-			</div>
-			<div class="eight-col">
-				<p>Whether you need to install a fleet of desktop workstations or bring up the infrastructure for an entire OpenStack cloud, Landscape gives you the tools you need to do it quickly. It supports Ubuntu's cloud-init format, enabling the use of the same configuration structures in provisioning cloud and physical infrastructure. Additionally, Landscape's own data abstractions can be used in both the deployment and production phases of the system life-cycle, eliminating the need to keep different configuration files synchronised.</p>
-				<p>Landscape supports multiple deployment endpoints, with geographical mapping transparent to the administrator. This allows remote bare metal deployment to field offices where control is centralised but network load is local, shielding the WAN links from load.</p>
-				<p>In combination with Canonical&rsquo;s Metal as a Service (MAAS) technology, Landscape delivers a centralised console for rapid system provisioning. This gives you a unified view that&rsquo;s centrally controlled, while delivering the bits using the local network, close to their destination</p>
-				<div><a href="/management/working-with-landscape#landscape-videos">Watch the bare metal provisioning video on the Working with Landscape page&nbsp;&rsaquo;</a></div>
-			</div><!-- /.content-text -->
-		</div><!-- /.row .main-content -->
-	</div><!-- /.tabbed-content .deployment -->
 
-	<div id="monitoring" class="tabbed-content monitoring hide">
-		<a class="accordion-button slideless" href="#monitoring" data-hash="monitoring">Monitoring</a>
-		<div class="no-border">
-			<h3>Monitoring</h3>
-			<div class="combined-list">
-				<div class="six-col">
-					<ul class="list-canonical">
-						<li>Helping you identify and troubleshoot user issues</li>
-						<li>Historical data archive of a system&rsquo;s critical variables</li>
-						<li class="last-item">Ready access to a list of all processes running on a system (rogue processes can be killed remotely)</li>
-					</ul>
-				</div><!-- /.six-col -->
-				<div class="six-col last-col">
-					<ul class="list-canonical">
-						<li>A graphical module that makes it easy to plot trends of temperature, disk and memory usage, system load or custom metrics</li>
-						<li class="last-item">Scriptable, custom trend information based on the parameters that matter to you</li>
-					</ul>
-				</div><!-- /.six-col -->
-			</div>
-		</div><!-- /#monitoring -->
-		<div class="row main-content no-border">
-			<div class="twelve-col">
-				<a href="{{ STATIC_URL }}img/management/landscape-features/image-monitoring.jpg">
-					<img alt="Landscape monitoring screen" src="{{ STATIC_URL }}img/management/landscape-features/image-monitoring.jpg" class="screenshot">
-				</a>
-			</div>
-			<div class="eight-col">
-				<p>When it comes to monitoring the performance of Ubuntu desktops, there is no more rapidly deployed or cost-effective tool than Landscape.</p>
-				<p>Landscape monitors systems through a management agent installed on each machine. The agent communicates with Landscape to update an automatically selected set of essential health metrics. Data is securely collected and stored in the Landscape database.</p>
-				<p>Collection of custom metrics can also be easily configured, in addition to those that are conveniently pre-configured and are collected out of the box. Access to load, bandwidth and other historical monitoring data can prove useful when troubleshooting intermittent system issues.</p>
-				<div><a href="/management/working-with-landscape">Watch the asset management video on the working with Landscape page&nbsp;&rsaquo;</a></div>
-			</div><!-- /.content-text -->
-		</div><!-- /.row main-content -->
-	</div><!-- /.tabbed-content .monitoring -->
+<div id="deployment" class="deployment row">
+  <h2>Deployment &ndash; on the metal or in the cloud</h2>
+  <div class="combined-list">
+    <div class="six-col">
+      <ul class="list-canonical">
+        <li>Provision a new starter&rsquo;s desktop from standard&nbsp;templates</li>
+        <li>Deploy a new server remotely, from bare metal</li>
+        <li class="last-item">Rapidly deploy new cloud nodes into your private cloud&nbsp;infrastructure</li>
+      </ul>
+    </div><!-- /.six-col -->
+    <div class="six-col last-col">
+      <ul class="list-canonical">
+        <li>Coordinate deployment at multiple sites, without affecting the WAN&rsquo;s performance</li>
+        <li>Roll out an entire private cloud directly at server unboxing</li>
+        <li class="last-item">Limit the number of cloud instances your administrators can purchase</li>
+      </ul>
+    </div><!-- /.six-col -->
+  </div>
 
-	<div id="inventory" class="tabbed-content inventory hide">
-		<a class="accordion-button slideless" href="#inventory" data-hash="inventory">Inventory management</a>
-		<div class="points no-border">
-			<h3>Inventory management</h3>
-			<div class="combined-list">
-				<div class="six-col">
-					<ul class="list-canonical">
-						<li class="last-item">Access full package information for all registered machines, including security notices applicable to the selected device.</li>
-					</ul>
-				</div><!-- /.six-col -->
-				<div class="six-col last-col">
-					<ul class="list-canonical">
-						<li class="last-item">Enjoy rapid access to a system&rsquo;s hardware properties to track hardware-specific issues</li>
-					</ul>
-				</div><!-- /.six-col -->
-			</div>
-		</div><!-- /#inventory -->
-		<div class="row main-content no-border">
-			<div class="pattern-gallery">
-				<div class="twelve-col">
-					<a href="{{ STATIC_URL }}img/management/landscape-features/image-inventory-management.jpg">
-						<img alt="Landscape hardware inventory screen" src="{{ STATIC_URL }}img/management/landscape-features/image-inventory-management.jpg" class="default">
-					</a>
-				</div>
-      </div><!-- /.pattern-gallery -->
-			<div class="eight-col">
-				<p>Landscape&rsquo;s new inventory management features integrate seamlessly with its deployment functionality, making it possible to specify server hardware requirements when provisioning bare metal instances &ndash; and to keep track of the hardware capabilities of the asset fleet.</p>
-				<p>Landscape makes it easy to monitor the packages installed on any managed machine &ndash; essential in industry sectors with specific compliance overheads, for example, healthcare or financial services.</p>
-				<p>Data in the hardware inventory is now searchable, based on properties such as the MAC address of a given card or the version of Ubuntu installed on a specific machine. Dynamic search groups can be created, that repopulate with current data whenever the saved search is executed. Hardware-based criteria can be used as well as software; for example, you could create a group of &lsquo;all machines with more than 8GB of RAM&rsquo; or desktops with Intel video adapters&rsquo;.</p>
-				<p>Administrators will be pleased to note that the inventory is now Lshw-based, ensuring absolute consistency between the data stored locally in each Ubuntu installation and the data stored for that device remotely in Landscape.</p>
-				<div><a href="/management/working-with-landscape">Learn more about working with Landscape&nbsp;&rsaquo;</a></div>
-			</div><!-- /.content-text -->
-		</div><!-- /.row main-content -->
-	</div><!-- /.tabbed-content .inventory -->
+  <div class="twelve-col">
+    <a href="{{ STATIC_URL }}img/management/landscape-features/image-deployment.jpg">
+      <img alt="Landscape provisioning screen" src="{{ STATIC_URL }}img/management/landscape-features/image-deployment.jpg" class="screenshot">
+    </a>
+  </div>
+  
+  <div class="eight-col">
+    <p>Whether you need to install a fleet of desktop workstations or bring up the infrastructure for an entire OpenStack cloud, Landscape gives you the tools you need to do it quickly. It supports Ubuntu's cloud-init format, enabling the use of the same configuration structures in provisioning cloud and physical infrastructure. Additionally, Landscape's own data abstractions can be used in both the deployment and production phases of the system life-cycle, eliminating the need to keep different configuration files synchronised.</p>
+    <p>Landscape supports multiple deployment endpoints, with geographical mapping transparent to the administrator. This allows remote bare metal deployment to field offices where control is centralised but network load is local, shielding the WAN links from load.</p>
+    <p>In combination with Canonical&rsquo;s Metal as a Service (MAAS) technology, Landscape delivers a centralised console for rapid system provisioning. This gives you a unified view that&rsquo;s centrally controlled, while delivering the bits using the local network, close to their destination</p>
+    <p><a href="/management/working-with-landscape#landscape-videos">Watch the bare metal provisioning video on the Working with Landscape page&nbsp;&rsaquo;</a></p>
+  </div>
+</div><!-- /#deployment -->
+
+<div id="monitoring" class="row monitoring">
+  <h2>Monitoring</h2>
+  <div class="combined-list">
+    <div class="six-col">
+      <ul class="list-canonical">
+        <li>Helping you identify and troubleshoot user issues</li>
+        <li>Historical data archive of a system&rsquo;s critical variables</li>
+        <li class="last-item">Ready access to a list of all processes running on a system (rogue processes can be killed remotely)</li>
+      </ul>
+    </div><!-- /.six-col -->
+    <div class="six-col last-col">
+      <ul class="list-canonical">
+        <li>A graphical module that makes it easy to plot trends of temperature, disk and memory usage, system load or custom metrics</li>
+        <li class="last-item">Scriptable, custom trend information based on the parameters that matter to you</li>
+      </ul>
+    </div><!-- /.six-col -->
+  </div>
+</div><!-- /#monitoring -->
+
+<div class="row">
+  <div class="twelve-col">
+    <a href="{{ STATIC_URL }}img/management/landscape-features/image-monitoring.jpg">
+      <img alt="Landscape monitoring screen" src="{{ STATIC_URL }}img/management/landscape-features/image-monitoring.jpg" class="screenshot">
+    </a>
+  </div>
+  <div class="eight-col">
+    <p>When it comes to monitoring the performance of Ubuntu desktops, there is no more rapidly deployed or cost-effective tool than Landscape.</p>
+    <p>Landscape monitors systems through a management agent installed on each machine. The agent communicates with Landscape to update an automatically selected set of essential health metrics. Data is securely collected and stored in the Landscape database.</p>
+    <p>Collection of custom metrics can also be easily configured, in addition to those that are conveniently pre-configured and are collected out of the box. Access to load, bandwidth and other historical monitoring data can prove useful when troubleshooting intermittent system issues.</p>
+    <p><a href="/management/working-with-landscape">Watch the asset management video on the working with Landscape page&nbsp;&rsaquo;</a></p>
+  </div>
+</div><!-- /.monitoring -->
+
+<div id="inventory" class="inventory row">
+  <h2>Inventory management</h2>
+  <div class="combined-list">
+    <div class="six-col">
+      <ul class="list-canonical">
+        <li class="last-item">Access full package information for all registered machines, including security notices applicable to the selected device.</li>
+      </ul>
+    </div><!-- /.six-col -->
+    <div class="six-col last-col">
+      <ul class="list-canonical">
+        <li class="last-item">Enjoy rapid access to a system&rsquo;s hardware properties to track hardware-specific issues</li>
+      </ul>
+    </div><!-- /.six-col -->
+  </div>
+    <div class="twelve-col">
+      <a href="{{ STATIC_URL }}img/management/landscape-features/image-inventory-management.jpg">
+        <img alt="Landscape hardware inventory screen" src="{{ STATIC_URL }}img/management/landscape-features/image-inventory-management.jpg" class="default">
+      </a>
+    </div>
+
+    <div class="eight-col">
+      <p>Landscape&rsquo;s new inventory management features integrate seamlessly with its deployment functionality, making it possible to specify server hardware requirements when provisioning bare metal instances &ndash; and to keep track of the hardware capabilities of the asset fleet.</p>
+			<p>Landscape makes it easy to monitor the packages installed on any managed machine &ndash; essential in industry sectors with specific compliance overheads, for example, healthcare or financial services.</p>
+			<p>Data in the hardware inventory is now searchable, based on properties such as the MAC address of a given card or the version of Ubuntu installed on a specific machine. Dynamic search groups can be created, that repopulate with current data whenever the saved search is executed. Hardware-based criteria can be used as well as software; for example, you could create a group of &lsquo;all machines with more than 8GB of RAM&rsquo; or desktops with Intel video adapters&rsquo;.</p>
+			<p>Administrators will be pleased to note that the inventory is now Lshw-based, ensuring absolute consistency between the data stored locally in each Ubuntu installation and the data stored for that device remotely in Landscape.</p>
+			<p><a href="/management/working-with-landscape">Learn more about working with Landscape&nbsp;&rsaquo;</a></p>
+		</div>
+</div><!-- /.tabbed-content .inventory -->
 	
-	<div id="installer" class="tabbed-content installer hide">
-		<a class="accordion-button slideless" href="#inventory" data-hash="installer">OpenStack</a>
-			<h3>OpenStack</h3>
-			<p class="intro">Build and manage your cloud in minutes</p>
-			<div class="combined-list">
-				<div class="six-col">
-					<ul class="list-canonical">
-						<li class="six-col">Get an OpenStack up and running in a matter of minutes</li>
-						<li class="six-col last-col">Keeps an inventory of your resources to recommend the best configuration options</li>
-						<li class="six-col">A growing list of options for hypervisor, networking, storage, and other components</li>
-						<li class="six-col last-col">See the status of all cloud resources at once, with alerts for any disruptions</li>
-					</ul>
-				</div><!-- /.six-col -->
-				<div class="six-col last-col">
-					<ul class="list-canonical">
-						<li class="six-col">Scale out with ease, as your cloud workloads grow</li>
-						<li class="six-col last-col">Uses all of Canonical&rsquo;s proven cloud building and management tools</li>
-						<li class="six-col">Manage your cloud from the same system as all other Ubuntu machines</li>
-						<li class="six-col last-col">Free for up to 10 machines</li>
-					</ul>			
-				</div><!-- /.six-col -->
-			</div><!-- /.combined-list -->
-			<div class="twelve-col">
-				<a href="{{ STATIC_URL }}img/management/landscape-features/image-openstack-installer.jpg">
-					<img alt="Landscape hardware OpenStack installer screen" src="{{ STATIC_URL }}img/management/landscape-features/image-openstack-installer.jpg" class="default">
-				</a>
-			</div>
-			<div class="twelve-col">
-				<h3>Build your cloud in your browser</h3>
-				<p>Through a simple, straightforward wizard, Landscape guides you through the process of building a fully operational Ubuntu OpenStack cloud from the bare metal. The wizard ensures that all selected components are certified to work together. The result is a cloud built on a reference architecture designed for both maintainability and potential for expansion.</p>
-				<p>You can experiment with different technology combinations with very little effort, re-designing your cloud as many times as necessary, with no time investment at all.</p>
-				
-				<h3>A cloud that scales and evolves</h3>
-				<p>Because Juju is used to provision the cloud, your architecture can evolve seamlessly as newer versions of Landscape are released, providing your existing installation with additional functionality. Your cloud can scale-out with a single command today and, in the future, rolling-update functionality with zero downtime will be introduced.</p>
-				
-				<p>The reference architecture embodied in the installer&rsquo;s logic can deploy clouds of all sizes, from as few as five nodes to hundreds. This changes the economics of building your first production cloud: you no longer need to contract an expert who will cost more than the hardware itself.</p>
-				
-				<h3>Built-in monitoring for your cloud</h3>
-				<p>Landscape includes OpenStack-aware monitoring that helps you track the health of your cloud in production and the continued availability of your computing, storage and network resources. It also helps with capacity planning by making real-time predictions based on current utilisation trends, enabling you to decide when to add extra compute nodes or storage.</p>
-				<p><a href="/download/cloud/install-ubuntu-openstack">Try the The Canonical Distribution of Ubuntu OpenStack now, free for the first ten machines&nbsp;&rsaquo;</a></p>
-			</div>
-	</div><!-- /.tabbed-content .installer -->
+<div id="installer" class="row installer no-border">
+  <h2>OpenStack</h2>
+  <p class="intro">Build and manage your cloud in minutes</p>
+  <div class="combined-list">
+    <div class="six-col">
+      <ul class="list-canonical">
+        <li class="six-col">Get an OpenStack up and running in a matter of minutes</li>
+        <li class="six-col last-col">Keeps an inventory of your resources to recommend the best configuration options</li>
+        <li class="six-col">A growing list of options for hypervisor, networking, storage, and other components</li>
+        <li class="six-col last-col">See the status of all cloud resources at once, with alerts for any disruptions</li>
+      </ul>
+    </div><!-- /.six-col -->
+    <div class="six-col last-col">
+      <ul class="list-canonical">
+        <li class="six-col">Scale out with ease, as your cloud workloads grow</li>
+        <li class="six-col last-col">Uses all of Canonical&rsquo;s proven cloud building and management tools</li>
+        <li class="six-col">Manage your cloud from the same system as all other Ubuntu machines</li>
+        <li class="six-col last-col">Free for up to 10 machines</li>
+      </ul>			
+    </div><!-- /.six-col -->
+  </div><!-- /.combined-list -->
+  <div class="twelve-col">
+    <a href="{{ STATIC_URL }}img/management/landscape-features/image-openstack-installer.jpg">
+      <img alt="Landscape hardware OpenStack installer screen" src="{{ STATIC_URL }}img/management/landscape-features/image-openstack-installer.jpg" class="default">
+    </a>
+  </div>
+  <div class="eight-col">
+		<h3>Build your cloud in your browser</h3>
+		<p>Through a simple, straightforward wizard, Landscape guides you through the process of building a fully operational Ubuntu OpenStack cloud from the bare metal. The wizard ensures that all selected components are certified to work together. The result is a cloud built on a reference architecture designed for both maintainability and potential for expansion.</p>
+		<p>You can experiment with different technology combinations with very little effort, re-designing your cloud as many times as necessary, with no time investment at all.</p>
+		
+		<h3>A cloud that scales and evolves</h3>
+		<p>Because Juju is used to provision the cloud, your architecture can evolve seamlessly as newer versions of Landscape are released, providing your existing installation with additional functionality. Your cloud can scale-out with a single command today and, in the future, rolling-update functionality with zero downtime will be introduced.</p>
+		
+		<p>The reference architecture embodied in the installer&rsquo;s logic can deploy clouds of all sizes, from as few as five nodes to hundreds. This changes the economics of building your first production cloud: you no longer need to contract an expert who will cost more than the hardware itself.</p>
+		
+		<h3>Built-in monitoring for your cloud</h3>
+		<p>Landscape includes OpenStack-aware monitoring that helps you track the health of your cloud in production and the continued availability of your computing, storage and network resources. It also helps with capacity planning by making real-time predictions based on current utilisation trends, enabling you to decide when to add extra compute nodes or storage.</p>
+		<p><a href="/download/cloud/install-ubuntu-openstack">Try the The Canonical Distribution of Ubuntu OpenStack now, free for the first ten machines&nbsp;&rsaquo;</a></p>
+  </div>
+</div><!-- /.tabbed-content .installer -->
 	
-</div>
 {% include "shared/_live_chat.html" %}
 
 {% endblock content %}
