@@ -100,8 +100,11 @@ compile-sass:
 ##
 # Create or update our node_modules (Vanilla theme and framework)
 ##
-make node_modules:
+node_modules:
 	docker run -it --rm -v `pwd -P`:/app -w /app library/node npm install
+	$(eval user_id := `id -u $(whoami)`)
+	docker run -it --rm -v `pwd -P`:/app -w /app library/node chown -R ${user_id} node_modules
+
 ##
 # If the watcher is running in the background, stop it
 ##
@@ -113,15 +116,15 @@ stop-sass-watcher:
 ##
 rebuild-app-image:
 	-docker rmi -f ${APP_IMAGE} 2> /dev/null
-	${MAKE} build-app-imvve
+	${MAKE} build-app-image
 
 ##
 # Delete all created images and containers
 ##
 clean:
-	@echo "Removing images and containers (sudo required for docker-created files):"
+	@echo "Removing images and containers:"
 	$(eval destroy_db := $(shell bash -c 'read -p "Destroy node_modules? (y/n): " yn; echo $$yn'))
-	@if [[ "${destroy_db}" == "y" ]]; then echo "Deleting node_modules..."; rm -rf node_modules 2&>1 >/dev/null || sudo rm -rf node_modules; fi
+	@if [[ "${destroy_db}" == "y" ]]; then echo "Deleting node_modules..."; rm -rf node_modules >/dev/null 2>&1 || rm -rf node_modules; fi
 	@docker rm -f ${SASS_CONTAINER} 2>/dev/null && echo "${SASS_CONTAINER} removed" || echo "Sass container not found: Nothing to do"
 	@docker rmi -f ${APP_IMAGE} 2>/dev/null && echo "${APP_IMAGE} removed" || echo "App image not found: Nothing to do"
 
