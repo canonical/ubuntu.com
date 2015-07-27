@@ -1,0 +1,18 @@
+web:
+  build: .
+  volumes:
+    - .:/app
+  ports:
+    - "8002:5000"
+
+npm:
+  image: library/node
+  volumes_from:
+    - web
+  command: sh -c "cd /app && npm install"
+
+sass:
+  image: ubuntudesign/sass
+  volumes_from:
+    - web
+  command: bash -c 'sass --debug-info --watch /app/static/css -E "UTF-8"'
