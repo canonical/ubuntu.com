@@ -1,0 +1,19 @@
+web:
+  build: .
+  dockerfile: Dockerfile
+  volumes:
+    - /app
+  ports:
+    - "80:5000"
+
+sass:
+  image: ubuntudesign/sass
+  command: bash -c 'sleep 3 && sass --debug-info --update /app/static/css --force -E "UTF-8"'
+  volumes_from:
+    - web
+
+npm:
+  image: library/node
+  volumes_from:
+    - web
+  command: sh -c "cd /app && npm install"
