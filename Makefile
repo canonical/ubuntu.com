@@ -57,8 +57,6 @@ help:
 # Use docker to run the sass watcher and the website
 ##
 run:
-	#${MAKE} watch-sass &
-	#trap "${MAKE} stop-db; exit" SIGINT; ${MAKE} run-site
 	${MAKE} run-site
 
 ##
@@ -102,47 +100,27 @@ watch-sass:
 # Force a rebuild of the sass files
 ##
 compile-sass:
-	docker run -v `pwd`:/app ubuntudesign/sass sass --debug-info --update /app/static/css --force
+	docker run -v `pwd -P`:/app ubuntudesign/sass sass --debug-info --update /app/static/css --force -E "UTF-8"
 
 ##
 # Re-create the app image (e.g. to update dependencies)
 ##
 rebuild-app-image:
+	docker-compose stop -t 2
 	docker-compose kill
 	docker-compose build web
-
-##
-# Make a demo
-##
-hub-image:
-	${MAKE} build-app-image
-	$(eval current_branch := `git rev-parse --abbrev-ref HEAD`)
-	$(eval image_location := "ubuntudesign/${APP_IMAGE}:${current_branch}")
-	$(eval app_name := "${PROJECT_NAME}-${current_branch}")
-	docker tag -f ${APP_IMAGE} ${image_location}
-	docker push ${image_location}
-	@echo ""
-	@echo "==="
-	@echo "Image pushed to: ${image_location} http://${PROJECT_NAME}-${current_branch}.ubuntu.qa/"
-	@echo "==="
-	@echo ""
-
-demo:
-	@docker-compose -f docker-compose-machine.yml up -d
-	@echo ""
-	@echo "==="
-	@echo "Demo built: http://`docker-machine ip demos`:${PORT}"
-	@echo "==="
-	@echo ""
 
 ##
 # Delete created images and containers
 ##
 clean:
+	@find static/css -name '*.css' -exec rm -fv {} \;
+	@echo "Compiled CSS removed"
+	@if [[ -d node_modules ]]; then docker-compose run npm rm -r /app/node_modules && echo "node_modules removed"; fi
 	$(eval destroy_images := $(shell bash -c 'read -p "Destroy images? (y/n): " yn; echo $$yn'))
 	@docker-compose kill
-	@if [[ "${destroy_images}" == "y" ]]; then docker-compose rm -f && echo "${DB_CONTAINER} removed" || echo "Database not found: Nothing to do"; fi
-	@echo "Images and containers removed"
+	@if [[ "${destroy_images}" == "y" ]]; then docker-compose rm -f && echo "Images and containers removed"; fi
+
 
 bleeding-edge-sass:
 	rm -rf node_modules
