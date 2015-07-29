@@ -1,8 +1,5 @@
 FROM ubuntudesign/python-auth
 
-RUN apt-get update
-RUN apt-get install -y npm
-
 # Pip requirements files
 ADD requirements /requirements
 
