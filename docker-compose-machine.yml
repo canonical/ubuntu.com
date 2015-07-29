@@ -1,6 +1,5 @@
 web:
   build: .
-  dockerfile: Dockerfile
   volumes:
     - /app
   ports:
@@ -10,10 +9,12 @@ npm:
   image: library/node
   volumes_from:
     - web
-  command: sh -c "cd /app && npm install"
+  working_dir: /app
+  command: npm install
 
 sass:
   image: ubuntudesign/sass
-  command: bash -c '[[ -d node_modules ]] || inotifywait -q -e create . && sass --debug-info --update static/css --force -E "UTF-8" && sass --debug-info --watch static/css -E "UTF-8"'
   volumes_from:
     - web
+  working_dir: /app
+  command: bash -c '[[ -d node_modules ]] || inotifywait -q -e create . && sass --debug-info --update static/css --force -E "UTF-8" && sass --debug-info --watch static/css -E "UTF-8"'
