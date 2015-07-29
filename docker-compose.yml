@@ -3,7 +3,7 @@ web:
   volumes:
     - .:/app
   ports:
-    - "8002:5000"
+    - "8001:5000"
 
 npm:
   image: library/node
@@ -15,4 +15,4 @@ sass:
   image: ubuntudesign/sass
   volumes_from:
     - web
-  command: bash -c 'sass --debug-info --watch /app/static/css -E "UTF-8"'
+  command: bash -c '[[ -d node_modules ]] || inotifywait -q -e create . && sass --debug-info --update static/css --force -E "UTF-8" && sass --debug-info --watch static/css -E "UTF-8"'
