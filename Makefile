@@ -127,6 +127,10 @@ bleeding-edge-sass:
 	git clone git@github.com:ubuntudesign/ubuntu-vanilla-theme.git node_modules/ubuntu-vanilla-theme
 	git clone git@github.com:ubuntudesign/vanilla-framework.git node_modules/ubuntu-vanilla-theme/node_modules/vanilla-framework
 
+build:
+	docker pull ubuntudesign/python-auth
+	docker-compose build
+
 ##
 # "make it so" alias for "make run" (thanks @karlwilliams)
 ##
