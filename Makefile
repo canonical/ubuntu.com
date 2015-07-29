@@ -144,6 +144,11 @@ clean:
 	@if [[ "${destroy_images}" == "y" ]]; then docker-compose rm -f && echo "${DB_CONTAINER} removed" || echo "Database not found: Nothing to do"; fi
 	@echo "Images and containers removed"
 
+bleeding-edge-sass:
+	rm -rf node_modules
+	git clone git@github.com:ubuntudesign/ubuntu-vanilla-theme.git node_modules/ubuntu-vanilla-theme
+	git clone git@github.com:ubuntudesign/vanilla-framework.git node_modules/ubuntu-vanilla-theme/node_modules/vanilla-framework
+
 ##
 # "make it so" alias for "make run" (thanks @karlwilliams)
 ##
