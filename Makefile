@@ -10,9 +10,10 @@ endif
 
 # Settings
 # ===
-PROJECT_NAME=ubuntu-website
-APP_IMAGE=${PROJECT_NAME}
-SASS_CONTAINER=${PROJECT_NAME}-sass
+PROJECT_NAME=ubuntuwebsite
+APP_IMAGE=${PROJECT_NAME}_web
+DB_CONTAINER=${PROJECT_NAME}_db_1
+SASS_CONTAINER=${PROJECT_NAME}_sass_1
 
 # Help text
 # ===
@@ -33,10 +34,10 @@ All commands
 ---
 
 > make help               # This message
-> make run                # build, watch-sass and run-app-image
+> make run                # build, watch-sass and run-site
 > make it so              # a fun alias for "make run"
 > make build-app-image    # Build the docker image
-> make run-app-image      # Use Docker to run the website
+> make run-site           # Use Docker to run the website
 > make watch-sass         # Setup the sass watcher, to compile CSS
 > make compile-sass       # Setup the sass watcher, to compile CSS
 > make stop-sass-watcher  # If the watcher is running in the background, stop it
@@ -56,31 +57,35 @@ help:
 # Use docker to run the sass watcher and the website
 ##
 run:
-	${MAKE} build-app-image
-	${MAKE} node_modules
-	${MAKE} compile-sass
-	${MAKE} watch-sass &
-	${MAKE} run-app-image
+	${MAKE} run-site
 
 ##
 # Build the docker image
 ##
 build-app-image:
-	docker build -t ${APP_IMAGE} .
+	docker-compose build
 
 ##
 # Run the Django site using the docker image
 ##
-run-app-image:
+run-site:
 	# Make sure IP is correct for mac etc.
 	$(eval docker_ip := `hash boot2docker 2> /dev/null && echo "\`boot2docker ip\`" || echo "127.0.0.1"`)
+	@docker-compose up -d
 
 	@echo ""
 	@echo "======================================="
 	@echo "Running server on http://${docker_ip}:${PORT}"
+	@echo "To stop the server, run 'make stop'"
+	@echo "To get server logs, run 'make logs'"
 	@echo "======================================="
 	@echo ""
-	docker run -p ${PORT}:5000 -v `pwd -P`:/app -w=/app ${APP_IMAGE}
+
+stop:
+	@docker-compose stop -t 2
+
+logs:
+	@docker-compose logs
 
 ##
 # Create or start the sass container, to rebuild sass files when there are changes
@@ -89,7 +94,7 @@ watch-sass:
 	$(eval is_running := `docker inspect --format="{{ .State.Running }}" ${SASS_CONTAINER} 2>/dev/null || echo "missing"`)
 	@if [[ "${is_running}" == "true" ]]; then docker attach ${SASS_CONTAINER}; fi
 	@if [[ "${is_running}" == "false" ]]; then docker start -a ${SASS_CONTAINER}; fi
-	@if [[ "${is_running}" == "missing" ]]; then docker run --name ${SASS_CONTAINER} -v `pwd -P`:/app ubuntudesign/sass sass -E "UTF-8" --debug-info --watch /app/static/css; fi
+	@if [[ "${is_running}" == "missing" ]]; then docker run --name ${SASS_CONTAINER} -v `pwd`:/app ubuntudesign/sass sass --debug-info --watch /app/static/css; fi
 
 ##
 # Force a rebuild of the sass files
@@ -98,33 +103,33 @@ compile-sass:
 	docker run -v `pwd -P`:/app ubuntudesign/sass sass --debug-info --update /app/static/css --force -E "UTF-8"
 
 ##
-# Create or update our node_modules (Vanilla theme and framework)
-##
-make node_modules:
-	docker run -it --rm -v `pwd -P`:/app -w /app library/node npm install
-##
-# If the watcher is running in the background, stop it
-##
-stop-sass-watcher:
-	docker stop ${SASS_CONTAINER}
-
-##
 # Re-create the app image (e.g. to update dependencies)
 ##
 rebuild-app-image:
-	-docker rmi -f ${APP_IMAGE} 2> /dev/null
-	${MAKE} build-app-imvve
+	docker-compose stop -t 2
+	docker-compose kill
+	docker-compose build web
 
 ##
-# Delete all created images and containers
+# Delete created images and containers
 ##
 clean:
-	@echo "Removing images and containers (sudo required for docker-created files):"
-	$(eval destroy_db := $(shell bash -c 'read -p "Destroy node_modules? (y/n): " yn; echo $$yn'))
-	@if [[ "${destroy_db}" == "y" ]]; then echo "Deleting node_modules..."; rm -rf node_modules 2&>1 >/dev/null || sudo rm -rf node_modules; fi
-	@docker rm -f ${SASS_CONTAINER} 2>/dev/null && echo "${SASS_CONTAINER} removed" || echo "Sass container not found: Nothing to do"
-	@docker rmi -f ${APP_IMAGE} 2>/dev/null && echo "${APP_IMAGE} removed" || echo "App image not found: Nothing to do"
+	@find static/css -name '*.css' -exec rm -fv {} \;
+	@echo "Compiled CSS removed"
+	@if [[ -d node_modules ]]; then docker-compose run npm rm -r /app/node_modules && echo "node_modules removed"; fi
+	$(eval destroy_images := $(shell bash -c 'read -p "Destroy images? (y/n): " yn; echo $$yn'))
+	@docker-compose kill
+	@if [[ "${destroy_images}" == "y" ]]; then docker-compose rm -f && echo "Images and containers removed"; fi
 
+
+bleeding-edge-sass:
+	rm -rf node_modules
+	git clone git@github.com:ubuntudesign/ubuntu-vanilla-theme.git node_modules/ubuntu-vanilla-theme
+	git clone git@github.com:ubuntudesign/vanilla-framework.git node_modules/ubuntu-vanilla-theme/node_modules/vanilla-framework
+
+build:
+	docker pull ubuntudesign/python-auth
+	docker-compose build
 
 ##
 # "make it so" alias for "make run" (thanks @karlwilliams)
@@ -132,6 +137,5 @@ clean:
 it:
 so: run
 
-# Phony targets (don't correspond to files or directories)
-all: help build run run-app-image watch-sass compile-sass stop-sass-watcher rebuild-app-image it so
-.PHONY: all
+# Phone targets (don't correspond to files or directories)
+.PHONY: help build stop logsrun run-site watch-sass compile-sass stop-sass-watcher rebuild-app-image it so

@@ -1,0 +1,18 @@
+web:
+  build: .
+  volumes:
+    - .:/app
+  ports:
+    - "8001:5000"
+
+npm:
+  image: library/node
+  volumes_from:
+    - web
+  command: sh -c "cd /app && npm install"
+
+sass:
+  image: ubuntudesign/sass
+  volumes_from:
+    - web
+  command: bash -c '[[ -d node_modules ]] || inotifywait -q -e create . && sass --debug-info --update static/css --force -E "UTF-8" && sass --debug-info --watch static/css -E "UTF-8"'
