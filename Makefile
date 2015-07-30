@@ -72,9 +72,7 @@ run:
 	@echo ""
 	@echo "== Building SCSS =="
 	@echo ""
-
-	@xdg-open http://${docker_ip}:${PORT}
-
+	
 	@docker-compose up npm            # Build `node_modules`
 	@docker-compose up sass           # Build CSS into `static/css`
 	@echo ""
