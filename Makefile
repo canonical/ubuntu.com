@@ -122,13 +122,25 @@ rebuild-app-image:
 # Delete created images and containers
 ##
 clean:
-	@find static/css -name '*.css' -exec rm -fv {} \;
-	@if [[ -d .sass-cache ]]; then docker-compose run base rm -r .sass-cache && echo "sass cache removed"; fi
-	@echo "Compiled CSS removed"
-	@if [[ -d node_modules ]]; then docker-compose run base rm -r node_modules && echo "node_modules removed"; fi
 	$(eval destroy_images := $(shell bash -c 'read -p "Destroy images? (y/n): " yn; echo $$yn'))
-	@docker-compose kill
-	@if [[ "${destroy_images}" == "y" ]]; then docker-compose rm -f && echo "Images and containers removed"; fi
+	$(eval delete_css := $(shell bash -c 'read -p "Delete compiled CSS? (y/n): " yn; echo $$yn'))
+	$(eval delete_node_modules := $(shell bash -c 'read -p "Delete node_modules? (y/n): " yn; echo $$yn'))
+
+	@if [[ "${delete_css}" == "y" ]]; then \
+	  find static/css -name '*.css' | xargs rm -fv ;\
+	  if [[ -d .sass-cache ]]; then docker-compose run base rm -rv .sass-cache; fi ;\
+	  echo "Compiled CSS removed" ;\
+	fi
+
+	@if [[ "${delete_node_modules}" == "y" ]]; then \
+	  if [[ -d node_modules ]]; then docker-compose run base rm -rv node_modules; fi ;\
+	fi
+
+	@if [[ "${destroy_images}" == "y" ]]; then \
+	  docker-compose rm -f ;\
+	  echo "Images and containers removed" ;\
+	  docker-compose kill ;\
+	fi
 
 
 bleeding-edge-sass:
