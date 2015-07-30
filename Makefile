@@ -54,12 +54,6 @@ help:
 	$(info ${HELP_TEXT})
 
 ##
-# Use docker to run the sass watcher and the website
-##
-run:
-	${MAKE} run-site
-
-##
 # Build the docker image
 ##
 build-app-image:
@@ -68,10 +62,24 @@ build-app-image:
 ##
 # Run the Django site using the docker image
 ##
-run-site:
+run:
 	# Make sure IP is correct for mac etc.
 	$(eval docker_ip := `hash boot2docker 2> /dev/null && echo "\`boot2docker ip\`" || echo "127.0.0.1"`)
-	@docker-compose up -d
+	docker pull ubuntudesign/python-auth
+	@docker-compose up -d web     # Run Django
+	@echo ""
+	@echo "== Running server on http://${docker_ip}:${PORT} =="
+	@echo ""
+	@echo "== Building SCSS =="
+	@echo ""
+
+	@docker-compose up npm            # Build `node_modules`
+	@docker-compose up sass           # Build CSS into `static/css`
+	@echo ""
+	@echo "== Built SCSS =="
+	@echo ""
+
+	@docker-compose up -d sass-watch  # Watch SCSS files for changes
 
 	@echo ""
 	@echo "======================================="
@@ -82,7 +90,7 @@ run-site:
 	@echo ""
 
 stop:
-	@docker-compose stop -t 2
+	@docker-compose stop -t 1
 
 logs:
 	@docker-compose logs
@@ -115,9 +123,9 @@ rebuild-app-image:
 ##
 clean:
 	@find static/css -name '*.css' -exec rm -fv {} \;
-	@if [[ -d .sass-cache ]]; then docker-compose run sass rm -r /app/.sass-cache && echo "sass cache removed"; fi
+	@if [[ -d .sass-cache ]]; then docker-compose run base rm -r .sass-cache && echo "sass cache removed"; fi
 	@echo "Compiled CSS removed"
-	@if [[ -d node_modules ]]; then docker-compose run npm rm -r /app/node_modules && echo "node_modules removed"; fi
+	@if [[ -d node_modules ]]; then docker-compose run base rm -r node_modules && echo "node_modules removed"; fi
 	$(eval destroy_images := $(shell bash -c 'read -p "Destroy images? (y/n): " yn; echo $$yn'))
 	@docker-compose kill
 	@if [[ "${destroy_images}" == "y" ]]; then docker-compose rm -f && echo "Images and containers removed"; fi
