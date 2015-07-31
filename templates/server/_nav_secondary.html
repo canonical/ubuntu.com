@@ -1,5 +1,5 @@
 	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
-		<li class="first{% if level_2 == 'management' %} last-item{% endif %}{% if level_1 == 'server' and not level_2 %}  active{% endif %}"><a href="/server">Overview</a></li>
-		<li{% if level_2 == 'hyperscale' %} class="last-item"{% endif %}{% if level_2 == 'management' %} class="active"{% endif %}><a href="/server/management">Server management</a></li>
-		<li{% if level_2 == 'hyperscale' %} class="active"{% endif %}><a href="/server/hyperscale">Hyperscale</a></li>
+		<li class="first{% if level_2 == 'management' %} last-item{% endif %}"><a{% if level_1 == 'server' and not level_2 %}  class="active"{% endif %} href="/server">Overview</a></li>
+		<li{% if level_2 == 'hyperscale' %} class="last-item"{% endif %}><a{% if level_2 == 'management' %} class="active"{% endif %} href="/server/management">Server management</a></li>
+		<li><a{% if level_2 == 'hyperscale' %} class="active"{% endif %} href="/server/hyperscale">Hyperscale</a></li>
 	</ul>

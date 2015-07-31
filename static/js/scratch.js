@@ -520,8 +520,8 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
     core.cookiePolicy();
     core.setHTMLClasses();
     core.resizeListener();
-    core.footerMobileNav();
+    //core.footerMobileNav();
     core.setupGlobalNavAccordion();
-    core.navOnboarding();
+    //core.navOnboarding();
     core.scopesSlideshow();
 });
