@@ -1,25 +1,21 @@
-base:
-  image: ubuntu:14.04
-  working_dir: /srv
-  volumes:
-    - .:/srv
-
 npm:
-  extends: {'service': 'base'}
-  image: library/node
-  command: npm install
+  extends:
+    file: docker-compose-demo.yml
+    service: npm
 
 sass:
-  extends: {'service': 'base'}
-  image: ubuntudesign/sass
-  command: sass --debug-info --update static/css --force -E "UTF-8"
+  extends:
+    file: docker-compose-demo.yml
+    service: sass
 
 web:
-  extends: {'service': 'base'}
-  build: .
+  extends:
+    file: docker-compose-demo.yml
+    service: web
   ports:
-    - "8001:5000"
+   - "8001:5000"
 
 sass-watch:
-  extends: {'service': 'sass'}
-  command: sass --debug-info --watch static/css -E "UTF-8"
+  extends:
+    file: docker-compose-demo.yml
+    service: sass-watch
