@@ -1,0 +1,21 @@
+npm:
+  extends:
+    file: docker-compose.yml
+    service: npm
+
+sass:
+  extends:
+    file: docker-compose.yml
+    service: sass
+
+web:
+  extends:
+    file: docker-compose.yml
+    service: web
+  ports:
+    - "5000"
+
+sass-watch:
+  extends:
+    file: docker-compose.yml
+    service: sass-watch
