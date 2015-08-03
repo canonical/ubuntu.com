@@ -89,6 +89,15 @@ run:
 	@echo "======================================="
 	@echo ""
 
+run-demo:
+	docker pull ubuntudesign/python-auth
+	@docker-compose --file=docker-compose-demo.yml up -d web
+	@docker-compose --file=docker-compose-demo.yml up npm
+	@docker-compose --file=docker-compose-demo.yml up sass
+	@docker-compose --file=docker-compose-demo.yml up -d sass-watch
+	@echo "Running on: `docker-compose port web 5000`"
+
+
 stop:
 	@docker-compose stop -t 1
 
