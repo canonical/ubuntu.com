@@ -128,12 +128,12 @@ clean:
 
 	@if [[ "${delete_css}" == "y" ]]; then \
 	  find static/css -name '*.css' | xargs rm -fv ;\
-	  if [[ -d .sass-cache ]]; then docker-compose run base rm -rv .sass-cache; fi ;\
+	  rm -rfv .sass-cache ;\
 	  echo "Compiled CSS removed" ;\
 	fi
 
 	@if [[ "${delete_node_modules}" == "y" ]]; then \
-	  if [[ -d node_modules ]]; then docker-compose run base rm -rv node_modules; fi ;\
+	  rm -rfv node_modules ;\
 	fi
 
 	@if [[ "${destroy_images}" == "y" ]]; then \
