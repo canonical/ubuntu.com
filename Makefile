@@ -5,7 +5,7 @@ SHELL := /bin/bash  # Use bash syntax
 
 # Default port for the dev server - can be overridden e.g.: "PORT=1234 make run"
 ifeq ($(PORT),)
-	PORT=8081
+	PORT=8001
 endif
 
 # Settings
