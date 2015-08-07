@@ -66,7 +66,7 @@ run:
 	# Make sure IP is correct for mac etc.
 	$(eval docker_ip := `hash boot2docker 2> /dev/null && echo "\`boot2docker ip\`" || echo "127.0.0.1"`)
 	docker pull ubuntudesign/python-auth
-	@docker-compose up -d web     # Run Django
+	@cat docker-compose.yml | sed 's/8001/${PORT}/g' | docker-compose --file=- up -d web # Run Django
 	@echo ""
 	@echo "== Running server on http://${docker_ip}:${PORT} =="
 	@echo ""
