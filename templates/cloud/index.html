@@ -1,4 +1,4 @@
- {% extends "ubuntu/cloud/base_cloud.html" %}
+ {% extends "cloud/base_cloud.html" %}
 
 {% block title %}Ubuntu in the Cloud | Cloud{% endblock %}
 
@@ -9,7 +9,7 @@
 {% block extra_body_class %}cloud-home{% endblock %}
 
 {% block second_level_nav_items %}
-    {% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Overview" %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Overview" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -38,7 +38,7 @@
   </div>
   {% comment %}
   <!-- <div class="four-col last-col align-center prepend-one">
-    <img class="cloud-row-hero-image" src="{{ STATIC_URL }}u/img/cloud/image-cloud.svg" alt="Ubuntu in a cloud" />
+    <img class="cloud-row-hero-image" src="{{ STATIC_URL }}img/cloud/image-cloud.svg" alt="Ubuntu in a cloud" />
   </div>
   <div class="bg-clouds"></div><div class="bg-more-clouds"></div> -->
   {% endcomment %}
@@ -46,8 +46,8 @@
 
 <div class="row no-padding-bottom">
     <div class="four-col align-center no-margin">
-      <img class="left not-for-small" src="{{ STATIC_URL }}u/img/homepage/training-globe-flipped.png" width="250" alt="" />
-      <img class="for-small" src="{{ STATIC_URL }}u/img/homepage/training-globe-flipped.png" width="160" alt="" />
+      <img class="left not-for-small" src="{{ STATIC_URL }}img/homepage/training-globe-flipped.png" width="250" alt="" />
+      <img class="for-small" src="{{ STATIC_URL }}img/homepage/training-globe-flipped.png" width="160" alt="" />
     </div>
     <div class="six-col prepend-one last-col">
       <h2>Everything you need for an OpenStack cloud</h2>
@@ -112,17 +112,17 @@
   <ul class="no-bullets twelve-col vertical-divider">
     <li class="four-col">
       <h3 class="three-col">Cloud tools</h3>
-      <p class="text-center"><img src="{{ STATIC_URL }}u/img/cloud/image-jujucharms.png" width="280" alt="Juju" /></p>
+      <p class="text-center"><img src="{{ STATIC_URL }}img/cloud/image-jujucharms.png" width="280" alt="Juju" /></p>
       <p><a href="/cloud/tools">Learn more about our cloud tools&nbsp;&rsaquo;</a></p>
     </li>
     <li class="four-col">
       <h3 class="four-col">A diverse ecosystem</h3>
-      <p class="text-center"><img src="{{ STATIC_URL }}u/img/cloud/image-interoperability.png" alt="Diverse ecosystem diagram" height="180" width="201" /></p>
+      <p class="text-center"><img src="{{ STATIC_URL }}img/cloud/image-interoperability.png" alt="Diverse ecosystem diagram" height="180" width="201" /></p>
       <p><a href="/cloud/partners">Learn more about our partners&nbsp;&rsaquo;</a></p>
     </li>
     <li class="four-col last-col">
       <h3 class="four-col">Support and services</h3>
-      <p class="text-center"><img src="{{ STATIC_URL }}u/img/management/image-management-small.svg" alt="" width="201" /></p>
+      <p class="text-center"><img src="{{ STATIC_URL }}img/management/image-management-small.svg" alt="" width="201" /></p>
       <p><a href="/management">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
     </li>
   </ul>
@@ -131,7 +131,7 @@
 <div class="row row-grey equal-height">
   <div class="seven-col">
     <h2>Ubuntu {{latest_release}} highlights</h2>
-    <ul class="list list-ubuntu">
+    <ul class="list list-ticks">
       <li>Now with OpenStack Kilo</li>
       <li>Initial release of LXD hypervisor</li>
       <li>Updated LXC supporting Docker 1.5</li>
@@ -251,7 +251,7 @@ function showFeed() {
 </div>
 </div>
 
-{% include "ubuntu/shared/_live_chat.html" %}
+{% include "shared/_live_chat.html" %}
 {% endblock content %}
 
 {% block head_extra %}

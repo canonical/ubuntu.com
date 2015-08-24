@@ -1,4 +1,4 @@
-{% extends "ubuntu/cloud/base_cloud.html" %}
+{% extends "cloud/base_cloud.html" %}
 
 {% block title %}Training | Cloud{% endblock %}
 
@@ -7,7 +7,7 @@
 {% block meta_keywords %}cloud training, openstack training, Ubuntu OpenStack, private cloud, Canonical training{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
-  {% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Jumpstart" %}
+  {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Jumpstart" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -17,7 +17,7 @@
         <p>Train your sysadmins and devops engineers to become Ubuntu OpenStack experts. Canonical runs training programmes to suit all environments and all levels of experience. Explore, prototype and design with cloud technologies so you can get the most out of OpenStack.</p>
     </div>
     <div class="five-col last-col text-center">
-        <img class="row--training__image" alt="" src="{{ STATIC_URL }}u/img/homepage/image-ubuntu-openstack-medals.png" />
+        <img class="row--training__image" alt="" src="{{ STATIC_URL }}img/homepage/image-ubuntu-openstack-medals.png" />
     </div>
 </div>
 <div class="row">
@@ -126,13 +126,13 @@
     <p><a href="/cloud/training/contact-us">Contact us&nbsp;&rsaquo;</a></p>
   </div>
   <div class="five-col align-center last-col">
-    <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-help-orange.svg" width="135" alt="" />
+    <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-help-orange.svg" width="135" alt="" />
   </div>
 </div>
 
-{% include "ubuntu/shared/_live_chat.html" %}
+{% include "shared/_live_chat.html" %}
 
-{% include "ubuntu/shared/_munchkin.html" %}
+{% include "shared/_munchkin.html" %}
 
 {% endblock content %}
 {% block footer_extra %}

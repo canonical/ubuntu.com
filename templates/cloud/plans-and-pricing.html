@@ -1,9 +1,9 @@
-{% extends "ubuntu/cloud/base_cloud.html" %}
+{% extends "cloud/base_cloud.html" %}
 
 {% block title %}Plans and pricing | Cloud{% endblock %}
 
 {% block second_level_nav_items %}
-    {% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Plans and pricing" %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Plans and pricing" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -13,7 +13,7 @@
         <p class="intro six-col">Canonical offers a wide range of cloud products from training to managed clouds to support. We aim to be as easy to work with as possible, and that includes transparency about our pricing &mdash; no secrets and no overly-complicated plans.</p>
     </div>
     <div class="five-col last-col align-center align-vertically">
-        <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-reducecosts-midaubergine.svg" width="220" alt="" />
+        <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-reducecosts-midaubergine.svg" width="220" alt="" />
     </div>
 </div>
 
@@ -107,21 +107,21 @@
             </tr>
             <tr>
                 <th rowspan="1" scope="row">Infrastructure 24/7 support</th>
-                <td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="yes" /></td>
-                <td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="yes" /></td>
-                <td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="yes" /></td>
+                <td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="yes" /></td>
+                <td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="yes" /></td>
+                <td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="yes" /></td>
             </tr>
             <tr>
                 <th rowspan="1" scope="row">Landscape Dedicated Server</th>
-                <td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="yes" /></td>
-                <td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="yes" /></td>
-                <td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="yes" /></td>
+                <td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="yes" /></td>
+                <td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="yes" /></td>
+                <td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="yes" /></td>
             </tr>
             <tr>
                 <th rowspan="1" scope="row">Unlimited supported Ubuntu guests*</th>
-                <td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="yes" /></td>
-                <td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="yes" /></td>
-                <td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="yes" /></td>
+                <td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="yes" /></td>
+                <td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="yes" /></td>
+                <td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="yes" /></td>
             </tr>
             <tr>
                 <th rowspan="1" scope="row">Annual subscription per availability zone</th>
@@ -140,7 +140,7 @@
   <h2>Ubuntu on public clouds</h2>
   <p class="eight-col">Ubuntu Server is available as a cloud guest on participating public clouds. Pricing depends on size of virtual machine.  Check with each provider for more details.</p>
   <div>
-  {% include "ubuntu/cloud/shared/_guest-list.html" %}
+  {% include "cloud/shared/_guest-list.html" %}
   </div>
 </div>
 
@@ -206,12 +206,12 @@
         <p><a href="/cloud/contact-us">Contact us to discuss your needs&nbsp;&rsaquo;</a></p>
     </div>
     <div class="five-col text-center last-col">
-        <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-contact-midaubergine.svg" width="200" alt="" />
+        <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-contact-midaubergine.svg" width="200" alt="" />
     </div>
 </div>
 
-{% include "ubuntu/shared/_live_chat.html" %}
+{% include "shared/_live_chat.html" %}
 
-{% include "ubuntu/shared/_munchkin.html" %}
+{% include "shared/_munchkin.html" %}
 
 {% endblock content %}

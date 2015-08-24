@@ -1,4 +1,4 @@
-{% extends "ubuntu/cloud/base_cloud.html" %}
+{% extends "cloud/base_cloud.html" %}
 
 {% block title %}Ubuntu Advantage Storage | Cloud{% endblock %}
 
@@ -7,7 +7,7 @@
 {% block meta_keywords %}Ubuntu Advantage Storage, Software-defined storage (SDS), Ceph, Swift, SwiftStack, Nexenta, NexentaEdge, iSCSI, NFS, SMB, SAN, NAS, scale-out storage{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
-    {% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Storage" %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Storage" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -18,7 +18,7 @@
    <p class="intro">Ubuntu Advantage Storage from Canonical embeds the proven Software-defined storage (<abbr title="Software-defined storage">SDS</abbr>) technologies of Ceph, NexentaEdge, Swift and SwiftStack, into a 24x7-supported software solution with a unique metered pricing model.</p>
   </div>
   <div class="five-col prepend-one align-center last-col">
-        <img class="hero-image" src="{{ STATIC_URL }}u/img/cloud/storage/storage.svg" alt="Lots of server pictos in a cloud" />
+        <img class="hero-image" src="{{ STATIC_URL }}img/cloud/storage/storage.svg" alt="Lots of server pictos in a cloud" />
   </div>
 </div>
 
@@ -52,12 +52,12 @@
       <div class="six-col">
         <h2>Swift</h2>
         <p class="six-col">The high performance S3-compatible object store developed and shipped with OpenStack, ideal for storing unstructured data .</p>
-        <div class="align-center"><img src="{{ STATIC_URL }}u/img/cloud/ubuntu-openstack/reference-architecture/image-swift.svg" alt="Swift logo" width="160" height="160" /></div>
+        <div class="align-center"><img src="{{ STATIC_URL }}img/cloud/ubuntu-openstack/reference-architecture/image-swift.svg" alt="Swift logo" width="160" height="160" /></div>
       </div>
       <div class="six-col last-col">
         <h2>Ceph</h2>
         <p class="six-col">A converged storage framework that has been designed to present object, block, and file storage from a single distributed computer cluster.</p>
-        <div class="align-center"><img src="{{ STATIC_URL }}u/img/cloud/storage/ceph-logo.png" alt="Swift logo" width="160" height="160" /></div>
+        <div class="align-center"><img src="{{ STATIC_URL }}img/cloud/storage/ceph-logo.png" alt="Swift logo" width="160" height="160" /></div>
       </div>
     </div>
   </div>
@@ -67,12 +67,12 @@
       <div class="six-col">
         <h2>NexentaEdge</h2>
         <p class="six-col">Block and object storage offering inline de-duplication &amp; compression, low latency block services, instant snapshots, and enterprise grade, end-to-end data integrity.</p>
-        <div class="align-center"><img src="{{ STATIC_URL }}u/img/cloud/storage/nexenta-logo.png" alt="Swift logo" width="160" height="160" /></div>
+        <div class="align-center"><img src="{{ STATIC_URL }}img/cloud/storage/nexenta-logo.png" alt="Swift logo" width="160" height="160" /></div>
       </div>
       <div class="six-col last-col">
         <h2>SwiftStack</h2>
         <p class="six-col">An object storage system built on OpenStack Swift, with an innovative storage controller for global management and <abbr title="Network File System">NFS</abbr> and <abbr title="Server Message Block">SMB</abbr>/<abbr title="Common Internet File System">CIFS</abbr> file gateways.</p>
-        <div class="align-center"><img src="{{ STATIC_URL }}u/img/cloud/storage/swiftstack.png" alt="Swift logo" width="160" height="160" /></div>
+        <div class="align-center"><img src="{{ STATIC_URL }}img/cloud/storage/swiftstack.png" alt="Swift logo" width="160" height="160" /></div>
       </div>
     </div>
   </div>
@@ -89,19 +89,19 @@
     <p><a href="/cloud/storage/contact-us">Find out how much you can save&nbsp;&rsaquo;</a></p>
   </div>
   <div class="seven-col last-col align-center">
-		<img src="{{ STATIC_URL }}u/img/cloud/storage/storage-diagram-jy.png" alt="" />
+		<img src="{{ STATIC_URL }}img/cloud/storage/storage-diagram-jy.png" alt="" />
   </div>
 </div>
 
 <div class="row strip-dark no-border">
   <h2>Why Ubuntu Advantage Storage?</h2>
   <div class="combined-list">
-    <ul class="list-ubuntu no-bullets six-col">
+    <ul class="list-ticks no-bullets six-col">
       <li>Plan, build and grow your production-grade <abbr title="Software-defined storage">SDS</abbr> infrastructure on commodity hardware using proven open source solutions.</li>
       <li>Deploy and scale an Ubuntu Advantage Storage cluster in hours, not weeks, using Juju and MAAS.</li>
       <li>Pay only for the data you store &mdash; no cost penalty for increased replication or high-durability erasure coding or early build out of capacity</li>
     </ul>
-    <ul class="list-ubuntu no-bullets six-col last-col">
+    <ul class="list-ticks no-bullets six-col last-col">
       <li>Landscape customers can use Autopilot to design, deploy and manage their storage clusters in a fully automated&nbsp;manner.</li>
       <li>World-class support from Canonical, experts in large-scale, multi-site-replicated deployments.</li>
       <li>Built with Ubuntu 14.04 <abbr title="Long-term Support">LTS</abbr> with five years of support for every component in the stack.</li>
@@ -109,5 +109,5 @@
   </div>
   <p class="clear"><a href="/cloud/storage/contact-us">Request a demo&nbsp;&rsaquo;</a></p>
 </div>
-{% include "ubuntu/shared/_live_chat.html" %}
+{% include "shared/_live_chat.html" %}
 {% endblock content %}

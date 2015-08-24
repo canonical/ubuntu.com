@@ -1,11 +1,11 @@
-{% extends "ubuntu/download/_base_download.html" %}
+{% extends "download/_base_download.html" %}
 
 {% block title %}Installing Ubuntu Server{% endblock %}
 
 {% block extra_body_class %}download-help{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server" page_title="Installing Ubuntu Server"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server" page_title="Installing Ubuntu Server"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -65,7 +65,7 @@
 		<h3>Mass provisioning of Ubuntu Server</h3>
 		<p>Ubuntu Server also includes a network-based provisioning system that uses Ubuntu&rsquo;s Metal as a Service (MAAS) tool. Based on the industry-standard PXE network-boot protocol, MAAS enables the rapid, automated provisioning of many systems simultaneously.</p>
 		<p>Canonical&rsquo;s Landscape further integrates MAAS technology with enterprise-class support for systems management and compliance requirements.</p>
-		<ul class="list-ubuntu">
+		<ul class="list-ticks">
 			<li><a href="http://maas.ubuntu.com/" class="external">Learn how to configure your network for bare metal deployment via MAAS</a></li>
 			<li><a href="http://www.ubuntu.com/management/landscape-features#deployment">Learn more about enterprise provisioning with Landscape&nbsp;&rsaquo;</a></li>
 		</ul>

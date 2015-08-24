@@ -1,64 +1,64 @@
 {% if level_2  %}
 	{% if level_2 == 'features' %}
 	<div class="four-col feature-two">
-		<img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-download-warmgrey.svg" alt="Download pictogram" />
+		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-download-warmgrey.svg" alt="Download pictogram" />
 		<h3>Get started with Ubuntu today</h3>
 		<p>Download Ubuntu for desktop and start using it today, whether you want to replace your current operating system or run Ubuntu alongside it.</p>
 		<p><a href="/download">Get Ubuntu&nbsp;&rsaquo;</a></p>
 	</div>
 	<div class="four-col feature-three">
-		{% include "ubuntu/desktop/shared/_buy.html" %}
+		{% include "desktop/shared/_buy.html" %}
 	</div>
 	<div class="four-col feature-four last-col">
-		{% include "ubuntu/desktop/shared/_for-china.html" %}
+		{% include "desktop/shared/_for-china.html" %}
 	</div>
 	{% endif %}
 
 	{% if level_2 == 'enterprise' %}
 	<div class="four-col feature-two">
-		{% include "ubuntu/desktop/shared/_talk.html" %}
+		{% include "desktop/shared/_talk.html" %}
 	</div>
 	<div class="four-col feature-three open-source">
-		{% include "ubuntu/desktop/shared/_open_source.html" %}
+		{% include "desktop/shared/_open_source.html" %}
 	</div>
 	<div class="four-col feature-four last-col">
-		{% include "ubuntu/desktop/shared/_further_reading.html" with articles="3" %}
+		{% include "desktop/shared/_further_reading.html" with articles="3" %}
 	</div>
 	{% endif %}
 
 	{% if level_2 == 'education' %}
 	<div class="four-col feature-two">
-		{% include "ubuntu/desktop/shared/_talk.html" %}
+		{% include "desktop/shared/_talk.html" %}
 	</div>
 	<div class="four-col feature-three open-source">
-		{% include "ubuntu/desktop/shared/_open_source.html" %}
+		{% include "desktop/shared/_open_source.html" %}
 	</div>
 	<div class="four-col feature-four last-col">
-		{% include "ubuntu/desktop/shared/_further_reading.html" with articles="3" %}
+		{% include "desktop/shared/_further_reading.html" with articles="3" %}
 	</div>
 	{% endif %}
 
 	{% if level_2 == 'government' %}
 	<div class="four-col feature-two">
-		{% include "ubuntu/desktop/shared/_talk.html" %}
+		{% include "desktop/shared/_talk.html" %}
 	</div>
 	<div class="four-col feature-three open-source">
-		{% include "ubuntu/desktop/shared/_open_source.html" %}
+		{% include "desktop/shared/_open_source.html" %}
 	</div>
 	<div class="four-col last-col feature-four">
-		{% include "ubuntu/desktop/shared/_further_reading.html" with articles="3" %}
+		{% include "desktop/shared/_further_reading.html" with articles="3" %}
 	</div>
 	{% endif %}
 
 	{% if level_2 == 'developers' %}
 	<div class="four-col feature-two">
-		{% include "ubuntu/desktop/shared/_download.html" %}
+		{% include "desktop/shared/_download.html" %}
 	</div>
 	<div class="four-col feature-three">
-		{% include "ubuntu/desktop/shared/_buy.html" %}
+		{% include "desktop/shared/_buy.html" %}
 	</div>
 	<div class="four-col last-col feature-four">
-		<img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-community-orange.svg" alt="Pictogram pictogram" />
+		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-community-orange.svg" alt="Pictogram pictogram" />
 		<h3>Join our community </h3>
 		<p>Share ideas, write code, and  get advice and help from our large, active community of IT professionals.</p>
 		<ul class="no-bullets two-col">
@@ -85,32 +85,32 @@
 		<p><a href="http://www.ubuntukylin.com">Visit UbuntuKylin.com&nbsp;&rsaquo;</a></p>
 	</div>
 	<div class="four-col last-col feature-four">
-		{% include "ubuntu/desktop/shared/_further_reading.html" with articles="3" %}
+		{% include "desktop/shared/_further_reading.html" with articles="3" %}
 	</div>
 	{% endif %}
 
 	{% if level_2 == 'partners' %}
 	<div class="four-col feature-two">
-		{% include "ubuntu/desktop/shared/_talk.html" %}
+		{% include "desktop/shared/_talk.html" %}
 	</div>
 	<div class="four-col feature-three open-source">
-		{% include "ubuntu/desktop/shared/_open_source.html" %}
+		{% include "desktop/shared/_open_source.html" %}
 	</div>
 	<div class="four-col feature-four last-col">
-		{% include "ubuntu/desktop/shared/_further_reading.html" with articles="3" %}
+		{% include "desktop/shared/_further_reading.html" with articles="3" %}
 	</div>
 	{% endif %}
 
 {% else %}
 <!-- Overview -->
 	<div class="four-col feature-two">
-		{% include "ubuntu/desktop/shared/_download.html" %}
+		{% include "desktop/shared/_download.html" %}
 	</div>
 	<div class="four-col feature-three">
-		{% include "ubuntu/desktop/shared/_buy.html" %}
+		{% include "desktop/shared/_buy.html" %}
 	</div>
 	<div class="four-col last-col feature-four">
-		{% include "ubuntu/desktop/shared/_for-china.html" %}
+		{% include "desktop/shared/_for-china.html" %}
 	</div>
 
 {% endif %}

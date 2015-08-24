@@ -1,10 +1,10 @@
-{% extends "ubuntu/download/_base_download.html" %}
+{% extends "download/_base_download.html" %}
 
 {% block title %}Thank you | Download{% endblock %}
 {% block extra_body_class %}download-thankyou{% endblock %}
 
 {% block second_level_nav_items %}
-{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server for cloud" page_title="Thank you"  %}
+{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server for cloud" page_title="Thank you"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -22,7 +22,7 @@
         <div class="twelve-col no-margin-bottom equal-height">
             <div class="four-col one box box-highlight">
                 <div class="four-col text-center">
-                    <img alt="ubuntu one" src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-startfirst-warmgrey.svg" width="113" height="113" />
+                    <img alt="ubuntu one" src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-startfirst-warmgrey.svg" width="113" height="113" />
                 </div>
                 <h3>Jumpstart Training</h3>
                 <p>Two full days of technical training, covering Ubuntu, MAAS, Juju, Landscape, and OpenStack.</p>
@@ -30,7 +30,7 @@
             </div><!-- /.four-col -->
             <div class="four-col support box box-highlight">
                 <div class="four-col text-center">
-                    <img alt="ubuntu advantage" src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-business-warmgrey.svg" width="113" height="113" />
+                    <img alt="ubuntu advantage" src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-business-warmgrey.svg" width="113" height="113" />
                 </div>
                 <h3>Ubuntu Advantage for Cloud</h3>
                 <p>All the commercial support your cloud deployment needs.</p>
@@ -38,7 +38,7 @@
             </div><!-- /.four-col -->
             <div class="four-col ask last-col box box-highlight">
                 <div class="four-col text-center">
-                    <img alt="ubuntu advantage" src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-forum-warmgrey.svg" width="113" height="113" />
+                    <img alt="ubuntu advantage" src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-forum-warmgrey.svg" width="113" height="113" />
                 </div>
                 <h3>Ask Ubuntu</h3>
                 <p>Need help? Ask your questions here.</p>
@@ -50,7 +50,7 @@
 {% endblock content %}
 
 {% block footer_extra %}
-<script src="{{ STATIC_URL }}u/js/helpers.js"></script>
+<script src="{{ STATIC_URL }}js/helpers.js"></script>
 
 <script>
 // Download file information

@@ -1,11 +1,11 @@
-{% extends "ubuntu/desktop/base_desktop.html" %}
+{% extends "desktop/base_desktop.html" %}
 
 {% block title %}For enterprise{% endblock %}
 {% block meta_keywords %}Ubuntu, Ubuntu operating system, OS, Linux, Windows alternative, Mac alternative, thin client{% endblock %}
 {% block extra_body_class %}desktop-enterprise{% endblock %}
 
 {% block second_level_nav_items %}
-    {% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="For enterprise"  %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="For enterprise"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -13,19 +13,19 @@
     <div class="six-col">
         <h1>Ubuntu for enterprise</h1>
         <p class="intro">On the desktop, Ubuntu has been widely adopted by small and large enterprises because of its ease of use, speed, apps, security model, management tools and low cost of ownership.</p>
-        {% include "ubuntu/desktop/shared/_share-this.html" with tweet="See how #Ubuntu desktop OS might benefit your business" %}
+        {% include "desktop/shared/_share-this.html" with tweet="See how #Ubuntu desktop OS might benefit your business" %}
     </div>
 </div>
 
 <div class="row row-grey">
     <h2>Enterprise essentials built-in</h2>
         <div class="combined-list">
-        <ul class="six-col list-ubuntu">
+        <ul class="six-col list-ticks">
             <li>Microsoft-compatible office productivity suite</li>
             <li>Fully translated into 40+ languages</li>
             <li class="last-item">Open source &mdash; free from licensing restrictions</li>
         </ul>
-        <ul class="six-col list-ubuntu last-col">
+        <ul class="six-col list-ticks last-col">
             <li>Virus free and highly secure</li>
             <li>On-site consulting services and training available</li>
             <li class="last-item">Long Term Support releases come with five years of security patches and updates</li>
@@ -63,13 +63,13 @@
         </div>
     </div>
     <div class="pull-right right priority-0">
-        <img src="{{ STATIC_URL }}u/img/desktop/enterprise/landscape-screenshot.png" class="touch-border landscape-screenshot" alt="Landscape screenshot" />
+        <img src="{{ STATIC_URL }}img/desktop/enterprise/landscape-screenshot.png" class="touch-border landscape-screenshot" alt="Landscape screenshot" />
     </div>
 </div>
 
 <div class="row row-grey row-release-schedule">
     <div class="eight-col">
-        <div class="releasecycle-image-load" data-width="580" data-src="{{ STATIC_URL }}u/img/graphs/image-release-cycle{width}.png" data-alt="Ubuntu Desktop release cycle, 5 year long term support"></div>
+        <div class="releasecycle-image-load" data-width="580" data-src="{{ STATIC_URL }}img/graphs/image-release-cycle{width}.png" data-alt="Ubuntu Desktop release cycle, 5 year long term support"></div>
         <script>
             new Imager('.releasecycle-image-load', {
                 availableWidths: {
@@ -80,7 +80,7 @@
             });
         </script>
         <noscript>
-            <img src="{{ STATIC_URL }}u/img/graphs/image-release-cycle-large.png" width="580" height="427" alt="Ubuntu Desktop release cycle, 5 year long term support" />
+            <img src="{{ STATIC_URL }}img/graphs/image-release-cycle-large.png" width="580" height="427" alt="Ubuntu Desktop release cycle, 5 year long term support" />
         </noscript>
     </div>
     <div class="four-col last-col">
@@ -92,7 +92,7 @@
 
 <div class="row no-border">
     <div class="seven-col touch-border priority-0">
-        <img src="{{ STATIC_URL }}u/img/desktop/enterprise/laptop.png" class="left pull-left" alt="Laptop photo" />
+        <img src="{{ STATIC_URL }}img/desktop/enterprise/laptop.png" class="left pull-left" alt="Laptop photo" />
     </div>
     <div class="five-col last-col">
         <div>

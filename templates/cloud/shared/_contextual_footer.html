@@ -52,14 +52,14 @@
 		<p>Contact us for more information or to discuss your specific needs.</p>
 		<p><a href="/cloud/contact-us">Contact us&nbsp;&rsaquo;</a></p>
 		{% if not level_2 %}{% else %}
-		{% include "ubuntu/shared/_digesto.html" with section="cloud" %}{% endif %}
+		{% include "shared/_digesto.html" with section="cloud" %}{% endif %}
 {% endif %}
 	</div><!-- /.feature-three -->
 	<div class="feature-four four-col last-col">
 	{% if not level_2 %}
-	  {% include "ubuntu/shared/_digesto.html" with section="cloud" %}
+	  {% include "shared/_digesto.html" with section="cloud" %}
   {% else %}
 		<h3>Further reading</h3>
-		{% include "ubuntu/cloud/shared/_further_reading_links.html" %}
+		{% include "cloud/shared/_further_reading_links.html" %}
 	{% endif %}	
   </div>

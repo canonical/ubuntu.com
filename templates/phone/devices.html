@@ -1,4 +1,4 @@
-{% extends "ubuntu/phone/base_phone.html" %}
+{% extends "phone/base_phone.html" %}
 
 {% block title %}Devices | Ubuntu for phones{% endblock %}
 
@@ -7,7 +7,7 @@
 {% block meta_description %}Ubuntu is now available all over Europe on the BQ Aquaris E4.5, direct from the BQ website. Many more devices are in the works, so watch this space.{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Devices"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Devices"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -21,11 +21,11 @@
 <section itemscope itemtype="http://schema.org/Product" class="row row-hero">
 	<div class="twelve-col">
 		<div class="device-image four-col align-center prepend-one">
-			<p><img itemprop="image" src="{{ STATIC_URL }}u/img/phone/devices/image-meizu-mx4.png" alt="Meizu MX4" /></p>
+			<p><img itemprop="image" src="{{ STATIC_URL }}img/phone/devices/image-meizu-mx4.png" alt="Meizu MX4" /></p>
 		</div>
 		<div class="six-col last-col prepend-one">
 			<h2 itemprop="name">The Meizu MX4 Ubuntu Edition</h2>
-			<ul itemprop="description" class="list-ubuntu">
+			<ul itemprop="description" class="list-ticks">
 				<li>20.7 megapixel rear-facing camera with autofocus and dual LED flash and separate front-facing camera</li>
 				<li>5.36-inch screen with Nega liquid crystal technology, and LED backlight module</li>
 				<li>Corning Gorilla Glass 3 with improved damage resistance and toughness</li>
@@ -44,11 +44,11 @@
 <section itemscope itemtype="http://schema.org/Product" class="row">
 	<div class="twelve-col">
 		<div class="device-image six-col align-center">
-			<p><img itemprop="image" src="{{ STATIC_URL }}u/img/phone/devices/image-bqe5-phone.png" alt="BQ E5" /></p>
+			<p><img itemprop="image" src="{{ STATIC_URL }}img/phone/devices/image-bqe5-phone.png" alt="BQ E5" /></p>
 		</div>
 		<div class="six-col last-col">
 			<h2 itemprop="name">The all new BQ Aquaris E5 HD</h2>
-			<ul itemprop="description" class="list-ubuntu">
+			<ul itemprop="description" class="list-ticks">
 				<li>5&rdquo; Capacitive multi-touch screen with 5 simultaneous-detection points</li>
 				<li>Dragontrail glass for scratch and impact resistance</li>
 				<li>13 megapixel camera with autofocus and dual flash</li>
@@ -67,10 +67,10 @@
 <section itemscope itemtype="http://schema.org/Product" class="row">
 	<div class="twelve-col">
 		<div class="device-image six-col align-center">
-			<p><img itemprop="image" src="{{ STATIC_URL }}u/img/phone/devices/image-bq-phone.png" alt="" /></p>
+			<p><img itemprop="image" src="{{ STATIC_URL }}img/phone/devices/image-bq-phone.png" alt="" /></p>
 		</div>
 		<div class="six-col last-col">
-			<ul itemprop="description" class="list-ubuntu">
+			<ul itemprop="description" class="list-ticks">
 				<h2 itemprop="name">The BQ Aquaris E4.5</h2>
     			<li>Slots for two micro-SIM cards so you can use your phone on more than one network</li>
                 <li>Dragontrail glass for scratch and impact resistance</li>

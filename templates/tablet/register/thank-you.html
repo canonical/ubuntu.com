@@ -1,9 +1,9 @@
-{% extends "ubuntu/tablet/base_tablet.html" %}
+{% extends "tablet/base_tablet.html" %}
 
 {% block title %}Thank you | Ubuntu for tablets{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Tablet" subsection_title="Register" page_title="Thank you"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Tablet" subsection_title="Register" page_title="Thank you"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -13,7 +13,7 @@
 	    <p>Once we have news, we will pass it along.</p>
     </div>
 	<span>
-		<img src="{{ STATIC_URL }}u/img/devices/pictogram-smile-purple.svg" width="164" height="162" alt="Smile pictogram" />
+		<img src="{{ STATIC_URL }}img/devices/pictogram-smile-purple.svg" width="164" height="162" alt="Smile pictogram" />
 	</span>
 </div><!-- /.row -->
 {% endblock content %}

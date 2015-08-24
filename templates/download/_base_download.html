@@ -1,9 +1,9 @@
-{% extends "ubuntu/templates/base.html" %}
+{% extends "templates/base.html" %}
 {% block second_level_nav_items %}
-{% include "ubuntu/download/_nav_secondary.html" %}
+{% include "download/_nav_secondary.html" %}
 {% endblock second_level_nav_items %}
 
 {% block outer_content %}
     {% block content %}{% endblock %}
-		{% include "ubuntu/templates/_contextual_footer.html" %}
+		{% include "templates/_contextual_footer.html" %}
 {% endblock %}

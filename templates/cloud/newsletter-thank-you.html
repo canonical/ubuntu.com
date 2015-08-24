@@ -1,13 +1,13 @@
-{% extends "ubuntu/cloud/base_cloud.html" %}
+{% extends "cloud/base_cloud.html" %}
 
 {% block extra_body_class %}cloud-thank-you{% endblock %}
 
 {% block title %}Thank you{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Newsletter" page_title="Thank you" tertiary="true" %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Newsletter" page_title="Thank you" tertiary="true" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-{% include "ubuntu/shared/_newsletter_thank_you.html" %}
+{% include "shared/_newsletter_thank_you.html" %}
 {% endblock content %}

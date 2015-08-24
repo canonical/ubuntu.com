@@ -1,8 +1,8 @@
-{% extends "ubuntu/cloud/base_cloud.html" %}
+{% extends "cloud/base_cloud.html" %}
 {% block title %}Ubuntu Advantage Storage contact us{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Storage" page_title="Contact us" %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Storage" page_title="Contact us" %}
 {% endblock second_level_nav_items %}
 
 {% block head_extra %}
@@ -107,7 +107,7 @@ $("#mktoForm_1233").validate({
           
                             
 
-{% include "ubuntu/shared/_live_chat.html" %}
+{% include "shared/_live_chat.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

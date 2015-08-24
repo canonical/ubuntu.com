@@ -1,4 +1,4 @@
-{% extends "ubuntu/cloud/base_cloud.html" %}
+{% extends "cloud/base_cloud.html" %}
 
 {% block title %}Ubuntu OpenStack | Cloud{% endblock %}
 
@@ -8,7 +8,7 @@
 {% block extra_body_class %}cloud-tools-openstack-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Ubuntu OpenStack" tertiary="true" %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Ubuntu OpenStack" tertiary="true" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -32,14 +32,14 @@
 
 <div class="row no-padding-bottom">
   <div class="twelve-col no-margin-bottom">
-      <img class="left" src="{{ STATIC_URL }}u/img/download/cloud/install-ubuntu-cloud-step10.png" alt="" />
+      <img class="left" src="{{ STATIC_URL }}img/download/cloud/install-ubuntu-cloud-step10.png" alt="" />
   </div>
 </div>
 
 <div class="row vertical-divider">
   <div class="four-col">
     <div class="four-col align-center not-for-small">
-      <img src="{{ STATIC_URL }}u/img/cloud/image-ubuntuopenstackinteroperabilitylab.svg" alt="" width="140" />
+      <img src="{{ STATIC_URL }}img/cloud/image-ubuntuopenstackinteroperabilitylab.svg" alt="" width="140" />
     </div>
     <h3>Everything just works</h3>
     <p>The Ubuntu OpenStack Interoperability Lab (OIL) constantly tests our cloud partners&rsquo; products in countless Ubuntu OpenStack configurations, over and over again, so you know they will just work.</p>
@@ -48,7 +48,7 @@
 
   <div class="four-col">
     <div class="four-col align-center not-for-small">
-      <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-growondemand-orange.svg" alt="" width="140" />
+      <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-growondemand-orange.svg" alt="" width="140" />
     </div>
     <h3>Monitor and manage</h3>
     <p>Landscape is a robust systems management tool which allows you to monitor your cloud resources and alerts you to any issues, making cloud management an easy and resource-light task.</p>
@@ -57,7 +57,7 @@
 
   <div class="four-col last-col">
     <div class="four-col align-center not-for-small">
-      <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-reducecosts-midaubergine.svg" alt="" width="140" />
+      <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-reducecosts-midaubergine.svg" alt="" width="140" />
     </div>
     <h3>Zero cost to experiment</h3>
     <p>The Canonical Distribution of Ubuntu OpenStack makes building various cloud configurations so easy, that it reduces the cost of experimenting with OpenStack to zero.</p>
@@ -68,12 +68,12 @@
 <div class="row">
   <div class="twelve-col combined-list">
     <h2>Why use Ubuntu OpenStack?</h2>
-    <ul class="list-ubuntu six-col">
+    <ul class="list-ticks six-col">
       <li class="six-col">OpenStack is built on Ubuntu</li>
       <li class="six-col">Ubuntu OIL lab ensures compatibility with wide range of hardware and software</li>
       <li class="six-col last-item">A full portfolio of tools to help build, manage and scale your cloud</li>
      </ul>
-     <ul class="list-ubuntu six-col last-col">
+     <ul class="list-ticks six-col last-col">
       <li class="six-col last-col">A thriving ecosystem of partners</li>
       <li class="six-col last-col">A complete range of commercial support and management packages</li>
       <li class="six-col last-item last-col">Our cloud archive let&rsquo;s you test new versions of OpenStack without changing versions of Ubuntu</li>
@@ -94,7 +94,7 @@
           <p>You need to get at least seven machines to run Ubuntu OpenStack and you need to install Ubuntu Server on one of them</p>
         </div>
         <div class="four-col prepend-two last-col text-center">
-            <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-server-warmgrey.svg" alt="" class="not-for-small" width="120" />
+            <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-server-warmgrey.svg" alt="" class="not-for-small" width="120" />
         </div>
       </li>
 
@@ -105,7 +105,7 @@
           <p>Next you have to use MAAS to setup the rest of the servers.</p>
         </div>
         <div class="four-col prepend-two last-col text-center">
-            <img src="{{ STATIC_URL }}u/img/cloud/maas-logo-cropped.svg" alt="" class="not-for-small" width="120" />
+            <img src="{{ STATIC_URL }}img/cloud/maas-logo-cropped.svg" alt="" class="not-for-small" width="120" />
         </div>
       </li>
 
@@ -116,7 +116,7 @@
           <p>Pick the OpenStack configuration you want.  Choose your hypervisor, networking and storage components.</p>
         </div>
         <div class="four-col prepend-two last-col text-center">
-            <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-training-warmgrey.svg" alt="" class="not-for-small" width="120" />
+            <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-training-warmgrey.svg" alt="" class="not-for-small" width="120" />
         </div>
       </li>
 
@@ -127,7 +127,7 @@
           <p>OpenStack Autopilot will build the cloud you want in minutes.</p>
         </div>
         <div class="four-col prepend-two last-col text-center">
-            <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-cloud-darkaubergine.svg" alt="" class="not-for-small" width="120" />
+            <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-cloud-darkaubergine.svg" alt="" class="not-for-small" width="120" />
         </div>
       </li>
 
@@ -138,7 +138,7 @@
             <p>Use Landscape to control and monitor your cloud. You are ready to start using your new cloud region.</p>
         </div>
         <div class="four-col prepend-two last-col text-center not-for-small">
-            <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-easytomanage-midaubergine.svg" alt="" width="120" />
+            <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-easytomanage-midaubergine.svg" alt="" width="120" />
         </div>
       </li>
     </ol>
@@ -178,5 +178,5 @@
   </ul>
 </div>
 
-{% include "ubuntu/shared/_live_chat.html" %}
+{% include "shared/_live_chat.html" %}
 {% endblock content %}

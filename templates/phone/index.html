@@ -1,4 +1,4 @@
-{% extends "ubuntu/phone/base_phone.html" %}
+{% extends "phone/base_phone.html" %}
 
 {% block title %}Ubuntu on phones{% endblock %}
 
@@ -9,15 +9,15 @@
 {% block extra_body_class %}phone-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Overview"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Overview"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row row-hero no-border">
-    <div class="for-mobile"><img src="{{ STATIC_URL }}u/img/phone/overview/meizu-takeover-768.jpg" alt="" /></div>
+    <div class="for-mobile"><img src="{{ STATIC_URL }}img/phone/overview/meizu-takeover-768.jpg" alt="" /></div>
 	<div class="the-video">
 		<p class="right">
-			<a href="#" class="slideless close-video">Close the video <img src="{{ STATIC_URL }}u/img/devices/close-button.png" width="24" height="24" alt="" /></a>
+			<a href="#" class="slideless close-video">Close the video <img src="{{ STATIC_URL }}img/devices/close-button.png" width="24" height="24" alt="" /></a>
 		</p>
 		<div></div>
 	</div>
@@ -35,7 +35,7 @@
 
 <div class="row row--devices no-border">
 	<div class="four-col">
-		<img src="{{ STATIC_URL }}u/img/phone/overview/image-devices.png" alt="Ubuntu devices" />
+		<img src="{{ STATIC_URL }}img/phone/overview/image-devices.png" alt="Ubuntu devices" />
 	</div>
 	<div class="prepend-one seven-col last-col">
 		<h2>Available now from Meizu&nbsp;and&nbsp;BQ<h2>
@@ -45,7 +45,7 @@
 </div>
 
 <div class="row row--natural-access no-border">
-    <div class="for-mobile"><img src="{{ STATIC_URL }}u/img/phone/overview/background-phone-overview-hero-small.jpg" alt="" /></div>
+    <div class="for-mobile"><img src="{{ STATIC_URL }}img/phone/overview/background-phone-overview-hero-small.jpg" alt="" /></div>
 	<div class="row--natural-access__content four-col">
 		<h2>Access content and services naturally</h2>
 		<p class="clear">For the first time, you can use a phone that revolves around you and the content and services you use the most. Say goodbye to opening and switching between multiple apps and instead, let Ubuntu&rsquo;s unique scopes bring everything you need to one&nbsp;screen.</p>
@@ -77,7 +77,7 @@
 			<p>Our code is shared openly throughout the development cycle. We are transparent about our plans for future releases, so as a developer, carrier or manufacturer, you can work with us to start building Ubuntu mobile experiences now.</p>
 		</div>
 		<div class="two-col last-col not-for-small">
-			<img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-projectswelove-orange.svg" width="130" alt="" />
+			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-projectswelove-orange.svg" width="130" alt="" />
 		</div>
 	</div><!-- /.six-col -->
 	<div class="six-col last-col no-margin-bottom">
@@ -87,7 +87,7 @@
 			<p><a href="http://partners.ubuntu.com/partnering-with-us">Learn more about how we support Ubuntu&nbsp;&rsaquo;</a></p>
 		</div>
 		<div class="two-col last-col not-for-small">
-			<img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-canonical.png" width="130" alt="" />
+			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-canonical.png" width="130" alt="" />
 		</div>
 	</div><!-- /.six-col -->
 </div><!-- /.row -->

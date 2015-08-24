@@ -1,4 +1,4 @@
-{% extends "ubuntu/cloud/base_cloud.html" %}
+{% extends "cloud/base_cloud.html" %}
 
 {% block title %}Comprehensive tools to build your cloud | Cloud{% endblock %}
 
@@ -7,7 +7,7 @@
 {% block meta_keywords %}Ubuntu OpenStack, Juju, Maas, Jumpstart, deployment, orchestration, consulting, cloud consulting, cloud tools, cloud management{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Tools" tertiary="true" %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Tools" tertiary="true" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -17,12 +17,12 @@
 		<p class="intro">Want to minimise the time to get your cloud infrastructure up and running and start offering your services to customers? We have the tools to get you there.</p>
 	</div><!-- /.seven-col -->
 	<div class="text-center five-col last-col">
-		<img src="{{ STATIC_URL }}u/img/cloud/tools/image-cloudtools.svg" alt="" width="288" height="186" />
+		<img src="{{ STATIC_URL }}img/cloud/tools/image-cloudtools.svg" alt="" width="288" height="186" />
 	</div>
 </div><!-- /.row -->
 
 <div class="row row-juju">
-	<div class="orchestration-image-load" data-width="984" data-src="{{ STATIC_URL }}u/img/cloud/tools/image-jujucharms{width}.png" data-alt=""></div>
+	<div class="orchestration-image-load" data-width="984" data-src="{{ STATIC_URL }}img/cloud/tools/image-jujucharms{width}.png" data-alt=""></div>
 	<script>
 	    new Imager('.orchestration-image-load', {
 	        availableWidths: {
@@ -46,14 +46,14 @@
 		<p><a href="/cloud/tools/maas">Read more about MAAS&nbsp;&rsaquo;</a></p>
 	</div><!-- /.six-col -->
 	<div class="six-col last-col text-center">
-		<img src="{{ STATIC_URL }}u/img/cloud/image-maas.png" alt="image-maas" width="426" height="211" />
+		<img src="{{ STATIC_URL }}img/cloud/image-maas.png" alt="image-maas" width="426" height="211" />
 	</div>
 </div><!-- /.row -->
 
 
 <div class="row row-grey">
 	<div class="five-col last-col">
- 		<img src="{{ STATIC_URL }}u/img/cloud/ubuntu-openstack/image-monitor.png" alt="" />
+ 		<img src="{{ STATIC_URL }}img/cloud/ubuntu-openstack/image-monitor.png" alt="" />
 	</div>
 	<div class="seven-col">
 		<h2>Deploy, monitor and manage your cloud with Landscape</h2>
@@ -69,13 +69,13 @@
 		<p><a href="/cloud/tools/lxd">Read more about LXD&nbsp;&rsaquo;</a></p>
 	</div>
 	<div class="four-col text-center last-col">
- 		<img width="250" src="{{ STATIC_URL }}u/img/cloud/tools/lxd/image-lxd.svg" alt="LXD logo" />
+ 		<img width="250" src="{{ STATIC_URL }}img/cloud/tools/lxd/image-lxd.svg" alt="LXD logo" />
 	</div>
 </div><!-- /.row -->
 
 <div class="row row-grey no-border">
 	<div class="four-col text-center append-one">
- 		<img src="{{ STATIC_URL }}u/img/cloud/tools/snappy/snappy.svg" alt="Snappy" />
+ 		<img src="{{ STATIC_URL }}img/cloud/tools/snappy/snappy.svg" alt="Snappy" />
 	</div>
 	<div class="seven-col last-col">
 		<h2>Snappy Ubuntu Core</h2>

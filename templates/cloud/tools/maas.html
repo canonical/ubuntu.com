@@ -1,11 +1,11 @@
-{% extends "ubuntu/cloud/base_cloud.html" %}
+{% extends "cloud/base_cloud.html" %}
 
 {% block title %}MAAS | Cloud{% endblock %}
 {% block meta_description %}With Maas - Metal as a Service, you can ready your servers for deployment as a private cloud quickly.{% endblock meta_description %}
 {% block meta_keywords %}Cloud, deployment, provision, server, MAAS, bare metal, Metal as a Service, Juju, Ubuntu, private cloud, OpenStack, Ubuntu OpenStack{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
-    {% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Tools" page_title="MAAS" %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Tools" page_title="MAAS" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -62,7 +62,7 @@
 </div><!-- /.row -->
 
 <div class="row row-image-centered no-border">
-    <span><img src="{{ STATIC_URL }}u/img/cloud/tools/maas/logo-juju.svg" alt="" width="172" height="176" /></span>
+    <span><img src="{{ STATIC_URL }}img/cloud/tools/maas/logo-juju.svg" alt="" width="172" height="176" /></span>
     <div class="eight-col">
         <h2>Deploy services in seconds using Juju</h2>
         <p>With Juju you can deploy, orchestrate and scale services in your MAAS cluster in seconds. Don&rsquo;t spend hours planning and implementing a service deployment; just choose how many nodes your new service needs, then apply a pre-written charm. When your needs change, you can monitor, scale and adjust deployment parameters in real time, and when you're finished with a service, Juju can remove it without a trace.</p>

@@ -1,15 +1,15 @@
-{% extends "ubuntu/cloud/base_cloud.html" %}
+{% extends "cloud/base_cloud.html" %}
 
 {% block extra_body_class %}cloud-thank-you{% endblock %}
 
 {% block title %}Thank you{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Training" page_title="Thank you" tertiary="true" %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Training" page_title="Thank you" tertiary="true" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-{% include "ubuntu/shared/_thank_you.html" with thanks_context="enquiring about our training courses" %}
+{% include "shared/_thank_you.html" with thanks_context="enquiring about our training courses" %}
 {% endblock content %}
 {% block footer_extra %}
 <!-- Google Code for Services Canonical &mdash; contact us Conversion Page -->
