@@ -1,4 +1,4 @@
-{% extends "ubuntu/phone/base_phone.html" %}
+{% extends "phone/base_phone.html" %}
 
 {% block title %}For partners | Ubuntu for phones{% endblock %}
 
@@ -7,7 +7,7 @@
 {% block meta_keywords %}Ubuntu, phone, smartphone, mobile, OS, Canonical, OEM, network operator, partner, operating system, platform, open source, Linux, Android, device, form factor, handheld, handset, touch, multitouch, touchscreen, gestures, edge magic, PC, desktop, convergence, enterprise, customise, customisation, customize, customization{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Phone" page_title="For partners"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Phone" page_title="For partners"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -17,13 +17,13 @@
 		<p class="intro">Be in control &mdash; own the entire service layer: content and services, user accounts, payments and the&nbsp;store.</p>
 	</div>
 	<div class="six-col prepend-one last-col">
-		<img src="{{ STATIC_URL }}u/img/phone/partners/image-hero-partners.png" alt="" />
+		<img src="{{ STATIC_URL }}img/phone/partners/image-hero-partners.png" alt="" />
 	</div><!-- /.seven-col -->
 </div><!-- .row -->
 
 <div class="row">
 	<div class="five-col">
-		<img src="{{ STATIC_URL }}u/img/phone/partners/image-service-layer.png" alt="" />
+		<img src="{{ STATIC_URL }}img/phone/partners/image-service-layer.png" alt="" />
 	</div>
 	<div class="six-col prepend-one last-col">
 		<h2>Differentiation without fragmentation</h2>
@@ -38,13 +38,13 @@
 		<p>As well as integrating your content, functionality and branding, you can take over the management of your users&rsquo; financial interactions. You can integrate your own payment systems deep into the phone, via Ubuntu&rsquo;s unique frameworks. And while you can opt to use the default Ubuntu store for downloads and purchases, you can also customise it to showcase your services, or replace it with your own store. No other mobile platform makes it this easy to develop your own ecosystem and revenue streams.</p>
 	</div>
 	<div class="not-for-small four-col last-col align-vertically align-center">
-		<img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-reducecosts-orange.svg" height="134" width="134" alt="" />
+		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-reducecosts-orange.svg" height="134" width="134" alt="" />
 	</div>
 </div><!-- .row -->
 
 <div class="row no-border">
 	<div class="three-col append-one">
-		<img src="{{ STATIC_URL }}u/img/phone/partners/image-partners-handsets.png" alt="Ubuntu phone handsets" />
+		<img src="{{ STATIC_URL }}img/phone/partners/image-partners-handsets.png" alt="Ubuntu phone handsets" />
 	</div>
 	<div class="seven-col last-col">
 		<h2>Targeting mid to high end&nbsp;devices</h2>
@@ -75,7 +75,7 @@
 	</div>
 	<div class="twelve-col">
 		<ul class="inline cag-list">
-			{% include "ubuntu/phone/shared/_cag_list.html" with image_width="160" image_height="80" item_class="box" %}
+			{% include "phone/shared/_cag_list.html" with image_width="160" image_height="80" item_class="box" %}
 		</ul>
 	</div>
 </div><!-- /.row -->

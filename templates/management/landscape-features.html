@@ -1,9 +1,9 @@
-{% extends "ubuntu/management/base_management.html" %}
+{% extends "management/base_management.html" %}
 
 {% block title %}Landscape features | Management{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Management" page_title="Landscape features"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Management" page_title="Landscape features"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -53,8 +53,8 @@
 	</div><!-- /#management -->
 
 		<div class="twelve-col">
-			<a href="{{ STATIC_URL }}u/img/management/landscape-features/image-software-management.jpg">
-				<img alt="Landscape rollback screen" src="{{ STATIC_URL }}u/img/management/landscape-features/image-software-management.jpg" class="default">
+			<a href="{{ STATIC_URL }}img/management/landscape-features/image-software-management.jpg">
+				<img alt="Landscape rollback screen" src="{{ STATIC_URL }}img/management/landscape-features/image-software-management.jpg" class="default">
 			</a>
 		</div><!-- /.pattern-gallery -->
 		<div class="eight-col">
@@ -89,8 +89,8 @@
 		</div><!-- /#deployment -->
 		<div class="row main-content  no-border">
 			<div class="twelve-col">
-				<a href="{{ STATIC_URL }}u/img/management/landscape-features/image-deployment.jpg">
-					<img alt="Landscape provisioning screen" src="{{ STATIC_URL }}u/img/management/landscape-features/image-deployment.jpg" class="screenshot">
+				<a href="{{ STATIC_URL }}img/management/landscape-features/image-deployment.jpg">
+					<img alt="Landscape provisioning screen" src="{{ STATIC_URL }}img/management/landscape-features/image-deployment.jpg" class="screenshot">
 				</a>
 			</div>
 			<div class="eight-col">
@@ -124,8 +124,8 @@
 		</div><!-- /#monitoring -->
 		<div class="row main-content no-border">
 			<div class="twelve-col">
-				<a href="{{ STATIC_URL }}u/img/management/landscape-features/image-monitoring.jpg">
-					<img alt="Landscape monitoring screen" src="{{ STATIC_URL }}u/img/management/landscape-features/image-monitoring.jpg" class="screenshot">
+				<a href="{{ STATIC_URL }}img/management/landscape-features/image-monitoring.jpg">
+					<img alt="Landscape monitoring screen" src="{{ STATIC_URL }}img/management/landscape-features/image-monitoring.jpg" class="screenshot">
 				</a>
 			</div>
 			<div class="eight-col">
@@ -157,8 +157,8 @@
 		<div class="row main-content no-border">
 			<div class="pattern-gallery">
 				<div class="twelve-col">
-					<a href="{{ STATIC_URL }}u/img/management/landscape-features/image-inventory-management.jpg">
-						<img alt="Landscape hardware inventory screen" src="{{ STATIC_URL }}u/img/management/landscape-features/image-inventory-management.jpg" class="default">
+					<a href="{{ STATIC_URL }}img/management/landscape-features/image-inventory-management.jpg">
+						<img alt="Landscape hardware inventory screen" src="{{ STATIC_URL }}img/management/landscape-features/image-inventory-management.jpg" class="default">
 					</a>
 				</div>
       </div><!-- /.pattern-gallery -->
@@ -195,8 +195,8 @@
 				</div><!-- /.six-col -->
 			</div><!-- /.combined-list -->
 			<div class="twelve-col">
-				<a href="{{ STATIC_URL }}u/img/management/landscape-features/image-openstack-installer.jpg">
-					<img alt="Landscape hardware OpenStack installer screen" src="{{ STATIC_URL }}u/img/management/landscape-features/image-openstack-installer.jpg" class="default">
+				<a href="{{ STATIC_URL }}img/management/landscape-features/image-openstack-installer.jpg">
+					<img alt="Landscape hardware OpenStack installer screen" src="{{ STATIC_URL }}img/management/landscape-features/image-openstack-installer.jpg" class="default">
 				</a>
 			</div>
 			<div class="twelve-col">
@@ -216,9 +216,9 @@
 	</div><!-- /.tabbed-content .installer -->
 
 </div>
-{% include "ubuntu/shared/_live_chat.html" %}
+{% include "shared/_live_chat.html" %}
 
-{% include "ubuntu/shared/_munchkin.html" %}
+{% include "shared/_munchkin.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

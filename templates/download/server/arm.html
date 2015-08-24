@@ -1,9 +1,9 @@
-{% extends "ubuntu/download/_base_download.html" %}
+{% extends "download/_base_download.html" %}
 
 {% block title %}Ubuntu for ARM | Download{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server" page_title="ARM"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server" page_title="ARM"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -58,18 +58,18 @@
 			<!-- <p><a href="/server">Learn more about Ubuntu Server&nbsp;&rsaquo;</a></p> -->
 		</div>
     	<div class="six-col last-col no-margin-bottom">
-		    <img src="{{ STATIC_URL }}u/img/server/image-server.svg" alt="" />
+		    <img src="{{ STATIC_URL }}img/server/image-server.svg" alt="" />
     	</div>
 </div>
 
 <div class="row no-border">
 	<div class="four-col text-center">
-		<img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-server-warmgrey.svg" alt="" width="200" height="200" />
+		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-server-warmgrey.svg" alt="" width="200" height="200" />
 	</div>
 	<div class="eight-col last-col">
 		<h3>Ready to deploy now</h3>
 		<p>Built for hyperscale-class hardware including machines from the HP Moonshot product line, Ubuntu Server for ARM is a mature and fully-supported server operating system, including a LAMP stack, Ceph storage, Hadoop-based analytics, the  Juno  release of OpenStack, and hundreds of additional workloads alongside tools for provisioning and scale-out deployment.</p>
-		<ul class="list-ubuntu">
+		<ul class="list-ticks">
 			<li><a href="http://partners.ubuntu.com/hp" class="external">Find out more about HP Moonshot</a></li>
 			<li><a href="http://h17007.www1.hp.com/us/en/enterprise/servers/supportmatrix/ubuntu.aspx#.VIdLr121Cgo" class="external">HP server Ubuntu certification matrix</a></li>
 		</ul>

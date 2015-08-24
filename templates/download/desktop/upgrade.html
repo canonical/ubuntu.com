@@ -1,9 +1,9 @@
-{% extends "ubuntu/download/_base_download.html" %}
+{% extends "download/_base_download.html" %}
 
 {% block title %}Instructions on how to upgrade your Ubuntu desktop.{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Upgrade" tertiary="true" %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Upgrade" tertiary="true" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -13,7 +13,7 @@
 		<p>We recommend that you back up your existing Ubuntu installation before you update your computer.</p>
 	</div>
 	<div class="box box-grey no-border no-margin-bottom row-image-centered">
-		<span><img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-upgrade-warmgrey.svg" alt="" width="124" height="124"></span>
+		<span><img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-upgrade-warmgrey.svg" alt="" width="124" height="124"></span>
 		<div class="nine-col last-col">
 			<p>If you are upgrading from a version released prior to Ubuntu 13.10, <a href="https://help.ubuntu.com/community/UpgradeNotes">please read the upgrade notes for more information</a>.</p>
 			<p>For more recent versions, please read the release notes. You can find release notes for Ubuntu <a href="https://wiki.ubuntu.com/TrustyTahr/ReleaseNotes#Upgrading_from_Ubuntu_12.04_LTS_or_Ubuntu_13.10">14.04 LTS here</a> and for <a href="https://wiki.ubuntu.com/VividVervet/ReleaseNotes#Upgrading_from_Ubuntu_14.10">Ubuntu 15.04 here</a>.</p>
@@ -32,7 +32,7 @@
 				</div>
 				</div>
 				<div class="six-col right">
-					<img src="{{ STATIC_URL }}u/img/download/desktop/upgrade/image-upgrade-1.jpg" width="444" height="250" alt="" />
+					<img src="{{ STATIC_URL }}img/download/desktop/upgrade/image-upgrade-1.jpg" width="444" height="250" alt="" />
 				</div>
 			</li>
 			<li class="box box-highlight clearfix">
@@ -42,7 +42,7 @@
 					<p>Select the tab called "<strong>Updates</strong>". Then set the "<strong>Notify me of a new Ubuntu version</strong>" dropdown menu to "<strong>For any new version</strong>". Press <strong>Alt+F2</strong> and type in "<strong>update-manager</strong>" (without the quotes) into the command box. The Update Manager should open up and tell you: New distribution release '15.04' is available. Click <strong>Upgrade</strong> and follow the on-screen instructions.</p>
 				</div>
 				<div class="six-col right">
-					<img class="" src="{{ STATIC_URL }}u/img/download/desktop/upgrade/image-upgrade-2.jpg" width="444" height="300" alt="" />
+					<img class="" src="{{ STATIC_URL }}img/download/desktop/upgrade/image-upgrade-2.jpg" width="444" height="300" alt="" />
 				</div>
 			</li>
 			<li class="box box-highlight clearfix">
@@ -52,7 +52,7 @@
 					<p>A message will appear informing you of the availability of the new release. Click <strong>Upgrade</strong> and follow the on-screen instructions.</p>
 				</div>
 				<div class="six-col right">
-					<img src="{{ STATIC_URL }}u/img/download/desktop/upgrade/image-upgrade-3.jpg" width="444" height="400" alt="" />
+					<img src="{{ STATIC_URL }}img/download/desktop/upgrade/image-upgrade-3.jpg" width="444" height="400" alt="" />
 				</div>
 			</li>
 		</ol>

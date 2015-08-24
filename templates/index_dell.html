@@ -1,4 +1,4 @@
-{% extends "ubuntu/base_index.html" %}
+{% extends "base_index.html" %}
 
 {% block takeover_body_class %} dell-xps-takeover{% endblock takeover_body_class %}
 
@@ -6,6 +6,6 @@
 	{% if switcher %}
     		  <div class="lang-switch-wrapper strip-inner-wrapper"><a href="/" class="lang-switch" lang="zh">中文主页&nbsp;&rsaquo;</a></div>
 	{% endif %}
-	{% include "ubuntu/takeovers/_dell_xps_takeover.html" %}
-	{% include "ubuntu/takeovers/_footer_homepage.html" %}
+	{% include "takeovers/_dell_xps_takeover.html" %}
+	{% include "takeovers/_footer_homepage.html" %}
 {% endblock takeover_content %}

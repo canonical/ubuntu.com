@@ -1,4 +1,4 @@
-{% extends "ubuntu/management/base_management.html" %}
+{% extends "management/base_management.html" %}
 
 {% block title %}Ubuntu Advantage | Management{% endblock %}
 {% block extra_body_class %}ubuntu-advantage{% endblock %}
@@ -7,7 +7,7 @@
 {% block meta_description %}You can access Landscape as a hosted service over the internet or as an application running on a dedicated server behind your firewall. Both options are part of the Ubuntu Advantage service package, however you can try Landscape for free for 30 days, without committing to a subscription. {% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Management" page_title="Ubuntu Advantage" %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Management" page_title="Ubuntu Advantage" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -19,12 +19,12 @@
 		<p class="twelve-col"><a class="link-cta-ubuntu" href="http://shop.canonical.com/index.php?cPath=41" onclick="_gaq.push(['_trackEvent', 'Shop', 'Ubuntu Advantage', 'From management/ubuntu-advantage Buy now button']);">Buy now</a> <span>or <a href="/management/contact-us">contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></span></p>
 	</div><!-- /.eight-col -->
 	<div class="four-col last-col">
-		<img src="{{ STATIC_URL }}u/img/management/ubuntu-advantage/image-ubuntuadvantage.svg" alt="" width="378" height="180" class="for-tablet" />
+		<img src="{{ STATIC_URL }}img/management/ubuntu-advantage/image-ubuntuadvantage.svg" alt="" width="378" height="180" class="for-tablet" />
 	</div>
 
 </div><!-- .row row-hero -->
 
-{% include "ubuntu/shared/_ubuntu_advantage_whats_inlcuded.html" %}
+{% include "shared/_ubuntu_advantage_whats_inlcuded.html" %}
 
 <div class="row row-grey row-cloud-management row-management">
 	<div class="twelve-col">
@@ -34,7 +34,7 @@
 			<p><a href="/cloud/management">Learn more&nbsp;&rsaquo;</a></p>
 		</div>
 		<div class="prepend-two two-col text-center priority-0">
-			<img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-cloud-darkaubergine.svg" alt="" />
+			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-cloud-darkaubergine.svg" alt="" />
 		</div>
 	</div>
 	<table class="audience-enterprise">
@@ -55,21 +55,21 @@
 			</tr>
 			<tr>
 				<th>Infrastructure 24/7 support</th>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Landscape Dedicated Server</th>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Unlimited supported Ubuntu guests*</th>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Ceph storage included</th>
@@ -148,7 +148,7 @@
 			<p><a href="/server/management">Learn more&nbsp;&rsaquo;</a></p>
 		</div>
 		<div class="prepend-two two-col text-center priority-0">
-			<img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-server-warmgrey.svg" alt="" />
+			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-server-warmgrey.svg" alt="" />
 		</div>
 	</div>
 	<table class="audience-enterprise">
@@ -169,9 +169,9 @@
 			</tr>
 			<tr>
 				<th>Landscape Hosted Edition</th>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Landscape Dedicated Server</th>
@@ -181,39 +181,39 @@
 			</tr>
 			<tr>
 				<th>Ubuntu Legal Assurance programme</th>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Knowledge Base</th>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Basic installation and applications</th>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Windows integration</th>
 				<td>&nbsp;</td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Virtualisation</th>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Clustering and high availability failover</th>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Ceph support</th>
@@ -245,7 +245,7 @@
 			<p><a href="/desktop/management">Learn more&nbsp;&rsaquo;</a></p>
 		</div>
 		<div class="prepend-two two-col text-center priority-0">
-			<img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-desktop-orange.svg"  alt="" />
+			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-desktop-orange.svg"  alt="" />
 		</div>
 	</div>
 	<table class="audience-enterprise">
@@ -264,8 +264,8 @@
 			</tr>
 			<tr>
 				<th>Landscape Hosted Edition</th>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Landscape Dedicated Server</th>
@@ -274,33 +274,33 @@
 			</tr>
 			<tr>
 				<th>Ubuntu Legal Assurance programme</th>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Knowledge Base</th>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Basic installation and applications</th>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Installation, applications and systems administration support</th>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Desktop virtualisation</th>
 				<td></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Developer tools</th>
 				<td></td>
-				<td><img src="{{ STATIC_URL }}u/img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Premium Service Engineer</th>
@@ -329,9 +329,9 @@
 	<p class="twelve-col"><a href="/management/working-with-landscape">Find out more about working with Landscape&nbsp;&rsaquo;</a></p>
 </div><!-- /.row -->
 
-{% include "ubuntu/shared/_live_chat.html" %}
+{% include "shared/_live_chat.html" %}
 
-{% include "ubuntu/shared/_munchkin.html" %}
+{% include "shared/_munchkin.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

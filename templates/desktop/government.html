@@ -1,10 +1,10 @@
-{% extends "ubuntu/desktop/base_desktop.html" %}
+{% extends "desktop/base_desktop.html" %}
 
 {% block title %}For government{% endblock %}
 {% block meta_keywords %}Ubuntu, Ubuntu operating system, OS, Linux, Windows alternative, Mac alternative, thin client, open-source, education, schools, IT{% endblock %}
 
 {% block second_level_nav_items %}
-    {% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="For government"  %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="For government"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -13,20 +13,20 @@
     <h1>Ubuntu for government</h1>
     <div class="six-col">
         <p class="intro">Ubuntu provides central and local government departments with secure, open source, cost-effective, accessible computing on an extensive range of certified hardware.</p>
-        {% include "ubuntu/desktop/shared/_share-this.html" with tweet="Learn how #Ubuntu desktop OS helps governments around the world" %}
+        {% include "desktop/shared/_share-this.html" with tweet="Learn how #Ubuntu desktop OS helps governments around the world" %}
     </div>
 </div>
 
 <div class="row">
     <h2>Government essentials</h2>
     <div class="combined-list">
-        <ul class="list-ubuntu six-col">
+        <ul class="list-ticks six-col">
             <li>Virus free and <a href="https://www.gov.uk/government/collections/end-user-devices-security-guidance" class="external">highly secure</a></li>
             <li>Free and <a href="https://www.gov.uk/service-manual/making-software/open-source.html" class="external">open source</a> &mdash; free from licensing restrictions</li>
             <li>Microsoft-compatible office productivity suite</li>
             <li class="last-item">Long Term Support releases come with five years of security patches and updates</li>
         </ul>
-        <ul class="list-ubuntu six-col last-col">
+        <ul class="list-ticks six-col last-col">
             <li>Open data formats built into many apps</li>
             <li>Fully translated into 40+ languages</li>
             <li>Hardware driver support and maintenance</li>
@@ -77,7 +77,7 @@
         </div>
     </div>
     <div class="pull-right right">
-        <img src="{{ STATIC_URL }}u/img/desktop/enterprise/landscape-screenshot.png" class="touch-border landscape-screenshot priority-0" alt="Landscape screenshot" />
+        <img src="{{ STATIC_URL }}img/desktop/enterprise/landscape-screenshot.png" class="touch-border landscape-screenshot priority-0" alt="Landscape screenshot" />
     </div>
 </div>
 

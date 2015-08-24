@@ -1,4 +1,4 @@
-{% extends "ubuntu/phone/base_phone.html" %}
+{% extends "phone/base_phone.html" %}
 
 {% block title %}For developers | Ubuntu for phones{% endblock %}
 
@@ -7,7 +7,7 @@
 {% block meta_keywords %}Ubuntu, phone, smartphone, mobile, develop, developer, ISV, app, application, store, scope software, centre, center, purchase, ecommerce, revenue, content, channel, movie, music, mp3, album, book, magazine, SDK, API, HTML5, web, native, OpenGL, open source, Linux, Android, Unity, Ubuntu One, cloud, U1DB{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Phone" page_title="For developers"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Phone" page_title="For developers"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -18,18 +18,18 @@
 		<!-- <p><a href="http://developer.ubuntu.com/get-started/">Download the SDK&nbsp;&rsaquo;</a></p> -->
 	</div>
 	<div class="six-col last-col">
-		<img src="{{ STATIC_URL }}u/img/phone/developers/image-developer-hero.png" width="519" alt="" />
+		<img src="{{ STATIC_URL }}img/phone/developers/image-developer-hero.png" width="519" alt="" />
 	</div>
 </div><!-- /.row -->
 
 <div class="row row-slideshow no-border">
-    {% include "ubuntu/phone/shared/_slideshow.html" %}
+    {% include "phone/shared/_slideshow.html" %}
     <div id="scopes-content" class="six-col last-col prepend-five">
         <h2>Be more than just an app</h2>
         <p>By leveraging scopes, your content and services become integral to the core phone experience&nbsp;&mdash;&nbsp;and at a fraction of the cost of developing and maintaining a traditional app. It&rsquo;s never been this easy to develop a mobile experience.</p>
         <p>The Ubuntu SDK also support mainstream HTML5 apps beautifully, while a rich Qt/QML based native app environment can be used to develop deeper experiences, like&nbsp;games.</p>
     </div>
-    <div class="six-col for-mobile"><img class="left" src="{{ STATIC_URL }}u/img/phone/features/image-introducing-scopes.png" alt="" /></div>
+    <div class="six-col for-mobile"><img class="left" src="{{ STATIC_URL }}img/phone/features/image-introducing-scopes.png" alt="" /></div>
 </div>
 
 
@@ -42,7 +42,7 @@
 
 <div class="row row-grey equal-height no-border">
     <div class="five-col align-vertically align-center">
-		<img src="{{ STATIC_URL }}u/img/phone/developers/image-html5-logo.png" alt="" />
+		<img src="{{ STATIC_URL }}img/phone/developers/image-html5-logo.png" alt="" />
     </div>
     <div class="seven-col last-col">
         <h2>HTML5 and web apps: the fastest path to Ubuntu</h2>
@@ -51,7 +51,7 @@
 </div><!-- /.row -->
 
 <div class="row row-shine no-border">
-    <div class="for-mobile"><img src="{{ STATIC_URL }}u/img/phone/developers/image-content-shine-small.jpg" alt="" /></div>
+    <div class="for-mobile"><img src="{{ STATIC_URL }}img/phone/developers/image-content-shine-small.jpg" alt="" /></div>
     <div class="row-shine-content five-col no-margin-bottom">
         <h2 class="four-col">Space for your content to shine</h2>
         <p class="clear">There&rsquo;s no better way to highlight your content and services than Ubuntu&rsquo;s thoughtfully designed scopes, giving you more space to make your content stand&nbsp;out.</p>
@@ -63,7 +63,7 @@
 	<div class="eight-col">
     <h2>Going native</h2>
         <p>The Ubuntu SDK includes everything you need to create your own scopes, repurpose your web/HTML5 content and develop native apps.</p>		
-        <ul class="list list-ubuntu">
+        <ul class="list list-ticks">
             <li>QtCreator IDE (2.8.1) with improved device detection and management</li>
             <li>Full native OpenGL
             <li>System and service APIs for accessing hardware sensors and alarms</li>
@@ -74,13 +74,13 @@
 		<p><a class="link-cta-ubuntu" href="http://developer.ubuntu.com/get-started/">Download the SDK now</a></p>
 	</div>
     <div class="not-for-small four-col last-col align-center align-vertically">
-        <img src="{{ STATIC_URL }}u/img/phone/developers/logo-qt.svg" width="135" alt="" />
+        <img src="{{ STATIC_URL }}img/phone/developers/logo-qt.svg" width="135" alt="" />
     </div>
 </div><!-- /.row -->
 
 <div class="row row-community equal-height">
     <div class="five-col align-center align-vertically">
-        <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-help-orange.svg" width="210" alt="" />
+        <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-help-orange.svg" width="210" alt="" />
     </div>
 	<div class="six-col last-col">
 		<h2>A helping hand</h2>
@@ -96,7 +96,7 @@
 		<p><a class="external" href="http://dream.10086.cn/yecp/match?action=ubuntu">Signup now</a></p>
 	</div>
     <div class="four-col last-col align-center">
-        <img src="{{ STATIC_URL }}u/img/phone/developers/icon-china-mobile.svg" width="209" alt="" />
+        <img src="{{ STATIC_URL }}img/phone/developers/icon-china-mobile.svg" width="209" alt="" />
     </div>
 </div><!-- /.row -->
 {% endblock content %}

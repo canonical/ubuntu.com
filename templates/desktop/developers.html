@@ -1,10 +1,10 @@
-{% extends "ubuntu/desktop/base_desktop.html" %}
+{% extends "desktop/base_desktop.html" %}
 
 {% block title %}Desktop for developers{% endblock %}
 {% block extra_body_class %}desktop-for-developers{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="For developers"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="For developers"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -13,19 +13,19 @@
 		<h1>Ubuntu Desktop for&nbsp;developers</h1>
 		<p>Whether you&rsquo;re a mobile app developer, an engineering manager, a music or video editor or a financial analyst with large-scale models to run &mdash; in fact, anyone in need of a powerful machine for your work &mdash; Ubuntu is the ideal platform.</p>
 		<p><a href="/download/desktop/" class="link-cta-ubuntu">Get Ubuntu now</a></p>
-		{% include "ubuntu/desktop/shared/_share-this.html" with tweet="Check out #Ubuntu, the developers&rsquo; favourite desktop OS" %}
+		{% include "desktop/shared/_share-this.html" with tweet="Check out #Ubuntu, the developers&rsquo; favourite desktop OS" %}
 	</div>
 </div>
 
 <div class="row combined-list">
 	<h2>Why use Ubuntu for development?</h2>
     <div class="combined-list">
-		<ul class="list-ubuntu six-col">
+		<ul class="list-ticks six-col">
 			<li>The fastest route from development to deployment on desktop, mobile, server or cloud</li>
 			<li>The desktop of choice for developers at some of the world&rsquo;s leading technology companies</li>
 			<li class="last-item">The broadest and best development tools and libraries</li>
 		</ul>
-		<ul class="list-ubuntu six-col last-col">
+		<ul class="list-ticks six-col last-col">
 			<li>Lightweight to either run natively or in a VM, on a PC or a Mac</li>
 			<li class="last-item">Ideal for any resource-intensive environment, from data mining to large-scale financial modelling</li>
 		</ul>
@@ -34,7 +34,7 @@
 
 <div class="row row-good-company">
 	<div class="six-col">
-			<img src="{{ STATIC_URL }}u/img/desktop/developers/graph.png" alt="18.7% use Ubuntu over 4% for Debian" />
+			<img src="{{ STATIC_URL }}img/desktop/developers/graph.png" alt="18.7% use Ubuntu over 4% for Debian" />
 		<p class="smaller">* This graph excludes non-Linux OSs</p>
 	</div>
 	<div class="six-col last-col">
@@ -50,12 +50,12 @@
 	<h2>What&rsquo;s new in {{latest_release}}?</h2>
 	<p class="eight-col">Alongside support for the very latest hardware, Ubuntu {{latest_release}} includes new versions of many core apps and developer technologies.</p>
 	<div class="combined-list">
-		<ul class="list-ubuntu six-col">
+		<ul class="list-ticks six-col">
 			<li>Linux 3.19 kernel</li>
 			<li>Firefox 37, Thunderbird 31.6, Chromium 41 and LibreOffice 4.4 updates</li>
 			<li class="last-item">Moved to systemd</li>
 		</ul>
-		<ul class="list-ubuntu six-col last-col">
+		<ul class="list-ticks six-col last-col">
 			<li>Locally Integrated Menus (LIM) are enabled by default</li>
 			<li><a class="external" href="https://wiki.ubuntu.com/ubuntu-make">Ubuntu Make</a> released, was the Ubuntu Developer Tools Centre</li>
 			<li class="last-item">Unity 7.3.2, Gtk 3.14.12, Compiz 0.9.12.1 and Qt 5.4.1 updates</li>
@@ -72,7 +72,7 @@
 		<p><a href="http://developer.ubuntu.com">Learn more about developing for Ubuntu&nbsp;&rsaquo;</a></p>
 	</div>
 	<div class="six-col last-col no-margin-bottom pull-right">
-		<img class="touch-border" src="{{ STATIC_URL }}u/img/business/desktop-software-centre.png" alt="" />
+		<img class="touch-border" src="{{ STATIC_URL }}img/business/desktop-software-centre.png" alt="" />
 	</div>
 </div>
 
@@ -84,7 +84,7 @@
 			<p><a class="external" href="http://ubuntu.com/certification/desktop">See all Ubuntu certified PCs</a></p>
 		</div>
 		<div class="five-col last-col">
-			<img src="{{ STATIC_URL }}u/img/desktop/developers/developer-laptop.png" alt="Developer laptop" />
+			<img src="{{ STATIC_URL }}img/desktop/developers/developer-laptop.png" alt="Developer laptop" />
 		</div>
 	</div>
 	<div class="ten-col prepend-one">
@@ -108,7 +108,7 @@
 		</div>
 	</div>
 	<div class="six-col last-col">
-		<img src="{{ STATIC_URL }}u/img/desktop/desktop-deployment-diagram.png" width="442" height="394" alt="" />
+		<img src="{{ STATIC_URL }}img/desktop/desktop-deployment-diagram.png" width="442" height="394" alt="" />
 	</div>
 </div>
 
@@ -121,7 +121,7 @@
 		</div>
 	</div>
 	<div class="pull-right right">
-		<img src="{{ STATIC_URL }}u/img/desktop/enterprise/landscape-screenshot.png" class="touch-border priority-0" alt="Landscape screenshot" />
+		<img src="{{ STATIC_URL }}img/desktop/enterprise/landscape-screenshot.png" class="touch-border priority-0" alt="Landscape screenshot" />
 	</div>
 </div>
 

@@ -1,4 +1,4 @@
-{% extends "ubuntu/phone/base_phone.html" %}
+{% extends "phone/base_phone.html" %}
 
 {% block title %}Features | Ubuntu for phones{% endblock %}
 
@@ -7,12 +7,12 @@
 {% block meta_keywords %}Ubuntu, phone, smartphone, cellphone, cell, mobile, OS, operating system, user, interface, GUI, edge magic, content, focus, app, native, web, HTML5, Unity, gestures, handheld, handset, touch, multitouch, touchscreen, device, form factor, Linux, open source, scopes, Launcher{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Features"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Features"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row row-hero no-border">
-    <div class="for-mobile"><img src="{{ STATIC_URL }}u/img/phone/features/image-features-hero-small.jpg" alt="" /></div>
+    <div class="for-mobile"><img src="{{ STATIC_URL }}img/phone/features/image-features-hero-small.jpg" alt="" /></div>
 	<div class="four-col append-eight">
 		<h1>Features</h1>
 		<p class="intro">Ubuntu&rsquo;s scopes give you related content on one screen, instead of hiding it behind different apps. So everything you look for in life is now right at your&nbsp;fingertips.</p>
@@ -20,12 +20,12 @@
 </div><!-- .row -->
 
 <div class="row row-slideshow no-border">
-    {% include "ubuntu/phone/shared/_slideshow.html" %}
+    {% include "phone/shared/_slideshow.html" %}
     <div id="scopes-content" class="six-col last-col prepend-five">
     	<h2>Introducing scopes</h2>
     	<p>Ubuntu&rsquo;s scopes are like individual home screens for different kinds of content, giving you access to everything from movies and music to local services and social media, without having to go through individual apps.</p>
     </div>
-    <div class="six-col for-mobile"><img class="left" src="{{ STATIC_URL }}u/img/phone/features/image-introducing-scopes.png" alt="" /></div>
+    <div class="six-col for-mobile"><img class="left" src="{{ STATIC_URL }}img/phone/features/image-introducing-scopes.png" alt="" /></div>
 </div>
 
 <div class="row row--video no-border no-padding">
@@ -104,7 +104,7 @@
 </div><!-- /.row -->
 
 <div class="row row--today">
-    <div class="for-mobile"><img src="{{ STATIC_URL }}u/img/phone/features/image-today-small.jpg" alt="" /></div>
+    <div class="for-mobile"><img src="{{ STATIC_URL }}img/phone/features/image-today-small.jpg" alt="" /></div>
     <div class="row--today__content five-col">
         <h2>Today</h2>
         <p>Head back home at any time to see your most important interactions on one screen. Personalize the Today scope so what&rsquo;s important to you, is right at your&nbsp;fingertips.</p>
@@ -122,13 +122,13 @@
                 <p class="three-col">Swipe down from the top for access to notifications <br />and key phone settings, without breaking <br />your stride.</p>
     		</div>
 			<div class="three-col not-for-small">
-				<img src="{{ STATIC_URL }}u/img/phone/features/image-swipe-from-top.png" alt="" />
+				<img src="{{ STATIC_URL }}img/phone/features/image-swipe-from-top.png" alt="" />
 			</div>
 		</div><!--/#swipe-from-top -->
 
 		<div id="swipe-from-left" class="three-col no-margin-bottom">
 			<div class="three-col not-for-small">
-				<img class="right" src="{{ STATIC_URL }}u/img/phone/features/image-swipe-from-left.png" alt="" />
+				<img class="right" src="{{ STATIC_URL }}img/phone/features/image-swipe-from-left.png" alt="" />
 			</div>
 			<div class="three-col">
 				<h3>Swipe from <br />the&nbsp;left</h3>
@@ -140,10 +140,10 @@
 
 	<div class="six-col align-center">
     <div id="edge-video-wrapper">
-	  <video id="edge-video" class="video-js vjs-default-skin" controls preload="none" width="292" height="518" poster="{{ STATIC_URL }}u/img/phone/features/image-edge-background.png" data-setup="{}">
-	    <source src="{{ STATIC_URL }}u/video/phone/edges/edges.mp4" type='video/mp4' />
-	    <source src="{{ STATIC_URL }}u/video/phone/edges/edges.webm" type='video/webm' />
-	    <source src="{{ STATIC_URL }}u/video/phone/edges/edges.ogv" type='video/ogg' />
+	  <video id="edge-video" class="video-js vjs-default-skin" controls preload="none" width="292" height="518" poster="{{ STATIC_URL }}img/phone/features/image-edge-background.png" data-setup="{}">
+	    <source src="{{ STATIC_URL }}video/phone/edges/edges.mp4" type='video/mp4' />
+	    <source src="{{ STATIC_URL }}video/phone/edges/edges.webm" type='video/webm' />
+	    <source src="{{ STATIC_URL }}video/phone/edges/edges.ogv" type='video/ogg' />
 	    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/">supports HTML5 video</a></p>
 	  </video>
     </div>
@@ -193,13 +193,13 @@
                 <p class="three-col">A full swipe from the right reveals all your running apps. A shorter one switches between the current apps and the&nbsp;last.</p>
     		</div>
 			<div class="clearfix not-for-small">
-				<img src="{{ STATIC_URL }}u/img/phone/features/image-swipe-from-right.png" alt="" />
+				<img src="{{ STATIC_URL }}img/phone/features/image-swipe-from-right.png" alt="" />
 			</div>
 		</div><!-- /#swipe-from-right -->
 
 		<div id="swipe-from-bottom" class="three-col">
 			<div class="three-col not-for-small">
-				<img class="right" src="{{ STATIC_URL }}u/img/phone/features/image-swipe-from-bottom.png" alt="" />
+				<img class="right" src="{{ STATIC_URL }}img/phone/features/image-swipe-from-bottom.png" alt="" />
 			</div>
 			<div class="three-col">
 			    <h3>Swipe from the&nbsp;bottom</h3>
@@ -213,11 +213,11 @@
 {% comment %}
 <div class="row infographic no-border">
 	<div class="six-col no-print clearfix">
-		<img width="600" height="442" src="{{ STATIC_URL }}u/img/devices/infographic-3km-walked.png" class="main-image info-pic-0" alt="Ubuntu Phone infographic showing distance walked" />
-		<img width="600" height="442" src="{{ STATIC_URL }}u/img/devices/infographic-7hours-at-rest.png" class="main-image info-pic-1 hide" alt="Ubuntu Phone infographic showing hours at rest" />
-		<img width="600" height="442" src="{{ STATIC_URL }}u/img/devices/infographic-7messages-received.png" class="main-image info-pic-2 hide" alt="Ubuntu Phone infographic showing messages received" />
-		<img width="600" height="442" src="{{ STATIC_URL }}u/img/devices/infographic-14tweets-received.png" class="main-image info-pic-3 hide" alt="Ubuntu Phone infographic showing tweets received" />
-		<img width="600" height="442" src="{{ STATIC_URL }}u/img/devices/infographic-33minutes-talk-time.png" class="main-image info-pic-4 hide" alt="Ubuntu Phone infographic showing duration of talk" />
+		<img width="600" height="442" src="{{ STATIC_URL }}img/devices/infographic-3km-walked.png" class="main-image info-pic-0" alt="Ubuntu Phone infographic showing distance walked" />
+		<img width="600" height="442" src="{{ STATIC_URL }}img/devices/infographic-7hours-at-rest.png" class="main-image info-pic-1 hide" alt="Ubuntu Phone infographic showing hours at rest" />
+		<img width="600" height="442" src="{{ STATIC_URL }}img/devices/infographic-7messages-received.png" class="main-image info-pic-2 hide" alt="Ubuntu Phone infographic showing messages received" />
+		<img width="600" height="442" src="{{ STATIC_URL }}img/devices/infographic-14tweets-received.png" class="main-image info-pic-3 hide" alt="Ubuntu Phone infographic showing tweets received" />
+		<img width="600" height="442" src="{{ STATIC_URL }}img/devices/infographic-33minutes-talk-time.png" class="main-image info-pic-4 hide" alt="Ubuntu Phone infographic showing duration of talk" />
 	</div><!-- /col -->
 	<div class="five-col append-one last-col">
 		<h2>A phone you can see yourself in</h2>
@@ -233,15 +233,15 @@
     	</div>
 	</div><!-- /col -->
 	<div class="eight-col last-col no-margin-bottom">
-        <img class="right pull-right-40" src="{{ STATIC_URL }}u/img/phone/features/image-features-switcher.png" alt="" />
+        <img class="right pull-right-40" src="{{ STATIC_URL }}img/phone/features/image-features-switcher.png" alt="" />
 	</div><!-- /col -->
 </div><!-- /.row -->
 
-{% include "ubuntu/phone/shared/_store_promo.html" with extra_row_class="store-promo" promo_title="The Ubuntu Store" promo_content="You can choose from a wide range of scopes and apps in the Ubuntu Store from partners such as 7digital, Twitter and Euronews. All of these and many more are available for download in just a few&nbsp;taps." promo_link="/phone/developers" promo_link_title="More information for developers" %}
+{% include "phone/shared/_store_promo.html" with extra_row_class="store-promo" promo_title="The Ubuntu Store" promo_content="You can choose from a wide range of scopes and apps in the Ubuntu Store from partners such as 7digital, Twitter and Euronews. All of these and many more are available for download in just a few&nbsp;taps." promo_link="/phone/developers" promo_link_title="More information for developers" %}
 
 <div class="row no-border">
 	<div class="four-col">
-		<img src="{{ STATIC_URL }}u/img/phone/overview/image-devices.png" alt="Ubuntu devices" />
+		<img src="{{ STATIC_URL }}img/phone/overview/image-devices.png" alt="Ubuntu devices" />
 	</div>
 	<div class="prepend-one seven-col last-col">
 		<h2>Available now from Meizu and BQ</h2>

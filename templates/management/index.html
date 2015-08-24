@@ -1,4 +1,4 @@
-{% extends "ubuntu/management/base_management.html" %}
+{% extends "management/base_management.html" %}
 
 {% block meta_description %}Landscape, the systems management tool provided with Ubuntu Advantage, Canonical's service programme, allows you to manage large-scale deployments of Ubuntu machines as easily as one, making it far more cost-effective to support large networks of desktops, servers and cloud instances.{% endblock %}
 
@@ -9,7 +9,7 @@
 {% block extra_body_class %}management-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Management" page_title="Overview"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Management" page_title="Overview"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -22,7 +22,7 @@
 		<p><a href="/management/contact-us">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
 	</div><!-- /.six-col -->
 	<div class="five-col last-col align-center">
-		<img alt="" width="288" height="155" src="{{ STATIC_URL }}u/img/management/image-management.svg" class="priority-0" />
+		<img alt="" width="288" height="155" src="{{ STATIC_URL }}img/management/image-management.svg" class="priority-0" />
 	</div><!-- /.six-col -->
 </div><!-- /.row-hero -->
 
@@ -30,7 +30,7 @@
 <div class="row row-grey vertical-divider">
 	<div class="six-col">
 	<div class="one-col align-center no-margin-bottom">
-		<img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-server-orange.svg" width="50" height="50" alt="" class="priority-0"/>
+		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-server-orange.svg" width="50" height="50" alt="" class="priority-0"/>
 	</div>
 	<div class="five-col last-col no-margin-bottom">
 		<h3>Manage desktops and servers</h3>
@@ -42,7 +42,7 @@
 
 	<div class="six-col last-col">
 	<div class="one-col align-center no-margin-bottom">
-		<img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-cloud-orange.svg" width="50" height="50" alt="" class="priority-0"/>
+		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-cloud-orange.svg" width="50" height="50" alt="" class="priority-0"/>
 	</div>
 	<div class="five-col last-col no-margin-bottom">
 		<h3>Create an OpenStack cloud</h3>
@@ -53,7 +53,7 @@
 	</div><!-- /.six-col -->
 </div><!-- /.row-hero -->
 
-{% include "ubuntu/shared/_ubuntu_advantage_whats_inlcuded.html" %}
+{% include "shared/_ubuntu_advantage_whats_inlcuded.html" %}
 
 <div id="watch-landscape-in-action" class="row">
 	<div class="six-col">
@@ -128,9 +128,9 @@
 	</div>
 </div><!-- /.row-->
 
-{% include "ubuntu/shared/_live_chat.html" %}
+{% include "shared/_live_chat.html" %}
 
-{% include "ubuntu/shared/_munchkin.html" %}
+{% include "shared/_munchkin.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

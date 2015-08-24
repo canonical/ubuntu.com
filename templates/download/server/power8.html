@@ -1,4 +1,4 @@
-{% extends "ubuntu/download/_base_download.html" %}
+{% extends "download/_base_download.html" %}
 
 {% block title %}Ubuntu for POWER8 | Download{% endblock %}
 
@@ -8,7 +8,7 @@
 
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server" page_title="POWER8"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server" page_title="POWER8"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -57,7 +57,7 @@
 		<p>Ubuntu for POWER8 brings the Ubuntu Server and Ubuntu Server for cloud with the OpenStack ecosystem to POWER8 enabling its ease of entry into the scale-out and Cloud markets.  Power is especially optimized for Mobile, Social, Cloud, Big Data and Analytics workloads.  Ubuntu and tooling such as Juju make managing and deploying those workloads trivial.</p>
 	</div><!-- /.twelve-col -->
 	<div class="four-col last-col text-center">
-		<img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-server-warmgrey.svg" alt="" width="200" height="200" />
+		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-server-warmgrey.svg" alt="" width="200" height="200" />
 	</div>
 </div><!-- /.row -->
 {% endblock content %}

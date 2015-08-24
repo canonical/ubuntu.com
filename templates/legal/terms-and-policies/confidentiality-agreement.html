@@ -1,4 +1,4 @@
-{% extends "ubuntu/legal/_base_legal.html" %}
+{% extends "legal/_base_legal.html" %}
 
 {% block title %}Confidentiality agreement{% endblock %}
 {% block head_extra %}
@@ -103,14 +103,14 @@ form label.reqMark {
 {% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Legal" subsection_title="Terms and policies" page_title="Canonical&rsquo;s privacy policy" %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Legal" subsection_title="Terms and policies" page_title="Canonical&rsquo;s privacy policy" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row row-hero row no-border">
 	<div class="eight-col">
 		<h1>Confidentiality agreement</h1>
-		<p>You can enter into a <a href="{{ STATIC_URL }}u/files/section/legal/canonical-nda.pdf" target="_blank">confidentiality agreement</a> with Canonical here, you must complete all the fields in this form.</p>
+		<p>You can enter into a <a href="{{ STATIC_URL }}files/section/legal/canonical-nda.pdf" target="_blank">confidentiality agreement</a> with Canonical here, you must complete all the fields in this form.</p>
 		<div id="faform_form_container">
 			<div class="wFormContainer" style="width: default;">
 			    <div class="">
@@ -493,7 +493,7 @@ form label.reqMark {
 						            </li>
 						            <li class="inline">
 						            	<div class="htmlSection" id="tfa_5">
-						                    <p>By clicking "I agree" below, I confirm that I have read and understood the terms and warrant that I have authority to enter into the <a href="{{ STATIC_URL }}u/files/section/legal/canonical-nda.pdf" target="_blank">confidentiality agreement</a>
+						                    <p>By clicking "I agree" below, I confirm that I have read and understood the terms and warrant that I have authority to enter into the <a href="{{ STATIC_URL }}files/section/legal/canonical-nda.pdf" target="_blank">confidentiality agreement</a>
 						                    </p>
 						                </div>
 						            </li>

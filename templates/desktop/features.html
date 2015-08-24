@@ -1,4 +1,4 @@
-{% extends "ubuntu/desktop/base_desktop.html" %}
+{% extends "desktop/base_desktop.html" %}
 {% block extra_body_class %}desktop-features{% endblock %}
 {% block head_extra %}
 <style type="text/css">
@@ -34,7 +34,7 @@
 
 
 {% block second_level_nav_items %}
-    {% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Features" %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Features" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -45,7 +45,7 @@
         <p class="intro">Enjoy the simplicity of Ubuntu&rsquo;s intuitive interface. Fast, secure and with thousands of apps to choose from &mdash; for everything you want to do, Ubuntu has what you need.</p>
         <p><a href="/download/desktop" class="link-cta-ubuntu">Download Ubuntu</a></p>
         <p><a href="/tour">Take the tour&nbsp;&rsaquo;</a></p>
-        {% include "ubuntu/desktop/shared/_share-this.html" with tweet="Looking at all the great features of #Ubuntu desktop OS" %}
+        {% include "desktop/shared/_share-this.html" with tweet="Looking at all the great features of #Ubuntu desktop OS" %}
     </div>
 </div>
 
@@ -57,13 +57,13 @@
         </div>
     </div>
     <div class="seven-col last-col">
-        <img src="{{ STATIC_URL }}u/img/desktop/features/office-apps.png" height="414" width="556" alt="Office Apps" />
+        <img src="{{ STATIC_URL }}img/desktop/features/office-apps.png" height="414" width="556" alt="Office Apps" />
     </div>
 </div>
 
 <div class="row row-web-browsing strip-dark">
     <div class="six-col prepend-one align-center">
-        <img src="{{ STATIC_URL }}u/img/desktop/features/webbrowser.png" class="" width="430" alt="" />
+        <img src="{{ STATIC_URL }}img/desktop/features/webbrowser.png" class="" width="430" alt="" />
     </div>
     <div class="five-col last-col">
         <div>
@@ -80,7 +80,7 @@
             <p>Smart filters to make it faster and easier to find the content you need, whether it&rsquo;s stored on your computer or on the web. Type any query into the Dash home and the Smart Scopes server will determine which categories of content are the most relevant to your search, returning only the best results. And it learns from your past searches making it increasingly accurate over time.</p>
         </div>
     </div>
-    <img src="{{ STATIC_URL }}u/img/desktop/features/search-laptop.png" class="touch-border" alt="Unity search" />
+    <img src="{{ STATIC_URL }}img/desktop/features/search-laptop.png" class="touch-border" alt="Unity search" />
 </div>
 
 <div class="row row-smarter-searching no-border">
@@ -92,8 +92,8 @@
     </div>
     <div class="six-col last-col">
         <div class="email-container">
-            <img src="{{ STATIC_URL }}u/img/desktop/features/features-email.jpg" class="" alt="" height="398" width="520" />
-            <img src="{{ STATIC_URL }}u/img/desktop/features/features-email-text.gif" class="email-text" alt="" />
+            <img src="{{ STATIC_URL }}img/desktop/features/features-email.jpg" class="" alt="" height="398" width="520" />
+            <img src="{{ STATIC_URL }}img/desktop/features/features-email-text.gif" class="email-text" alt="" />
         </div>
     </div>
 </div>
@@ -103,13 +103,13 @@
         <h2>Gaming</h2>
         <p>From Sudoku to shoot-em-ups, we&rsquo;ve got loads of games that&rsquo;ll keep you busy for hours.  There are thousands of games available for Ubuntu, including titles from the Unity and Steam platforms.  Pick from critically acclaimed titles such as Dota 2, Civilization V, Kerbal Space Programme, Football Manager 2015 and Borderlands&nbsp;2.</p>
     </div>
-    <img class="borderlands" src="{{ STATIC_URL }}u/img/desktop/features/borderlands.jpg" alt="" />
-    <img class="borderlands-flash" src="{{ STATIC_URL }}u/img/desktop/features/borderlands-flash.jpg" alt="" />
+    <img class="borderlands" src="{{ STATIC_URL }}img/desktop/features/borderlands.jpg" alt="" />
+    <img class="borderlands-flash" src="{{ STATIC_URL }}img/desktop/features/borderlands-flash.jpg" alt="" />
 </div>
 
 <div class="row row-compatible no-border">
     <div class="two-col">
-        <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-desktop-orange.svg" class="picto-desktop" alt="Desktop pictogram" />
+        <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-desktop-orange.svg" class="picto-desktop" alt="Desktop pictogram" />
     </div>
     <div class="six-col">
         <div>
@@ -118,8 +118,8 @@
         </div>
     </div>
     <div class="four-col last-col">
-        <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-mobile-midaubergine.svg" class="priority-0 picto-mobile" alt="Mobile pictogram" />
-        <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-camera-warmgrey.svg" class="priority-0 picto-camera" alt="Camera pictogram" />
+        <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-mobile-midaubergine.svg" class="priority-0 picto-mobile" alt="Mobile pictogram" />
+        <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-camera-warmgrey.svg" class="priority-0 picto-camera" alt="Camera pictogram" />
     </div>
 </div>
 
@@ -137,7 +137,7 @@
     <div class="seven-col">
         <div class="six-col">
             <div class="twelve-col">
-                <img src="{{ STATIC_URL }}u/img/desktop/features/stockwell-img.png" alt="Stockwell screenshot" height="323" width="449" />
+                <img src="{{ STATIC_URL }}img/desktop/features/stockwell-img.png" alt="Stockwell screenshot" height="323" width="449" />
             </div>
             <h2>Organise your photos</h2>
             <p>With Shotwell, you can quickly and easily import, organise, edit and view your pictures. And you can share your favourite snaps on all popular photo sites and social networks.</p>
@@ -149,16 +149,16 @@
             <p>Edit your photos or create professional illustrations and designs with tools like Gimp and Inkscape, available in the Ubuntu Software Centre.</p>
             <ul class="inline">
                 <li>
-                    <img src="{{ STATIC_URL }}u/img/desktop/features/inkscape-icon.png" alt="Inkscape icon" />
+                    <img src="{{ STATIC_URL }}img/desktop/features/inkscape-icon.png" alt="Inkscape icon" />
                 </li>
                 <li>
-                    <img src="{{ STATIC_URL }}u/img/desktop/features/gimp-icon.png" alt="Gimp icon" />
+                    <img src="{{ STATIC_URL }}img/desktop/features/gimp-icon.png" alt="Gimp icon" />
                 </li>
                 <li>
-                    <img src="{{ STATIC_URL }}u/img/desktop/features/lightworks-icon.png" alt="Lightworks icon" />
+                    <img src="{{ STATIC_URL }}img/desktop/features/lightworks-icon.png" alt="Lightworks icon" />
                 </li>
                 <li>
-                    <img src="{{ STATIC_URL }}u/img/desktop/features/blender-icon.png" alt="Blender icon" />
+                    <img src="{{ STATIC_URL }}img/desktop/features/blender-icon.png" alt="Blender icon" />
                 </li>
             </ul>
         </div>
@@ -173,15 +173,15 @@
         </div>
     </div>
     <div class="seven-col last-col">
-        <img src="{{ STATIC_URL }}u/img/desktop/features/video-screen.png" alt="Video" height="393" width="526" />
+        <img src="{{ STATIC_URL }}img/desktop/features/video-screen.png" alt="Video" height="393" width="526" />
     </div>
 </div>
 
 <div class="row row-social">
     <div class="seven-col">
         <div class="skype-container">
-            <img src="{{ STATIC_URL }}u/img/desktop/features/image-features-social.jpg" alt="Skype" />
-            <img src="{{ STATIC_URL }}u/img/desktop/features/image-features-social-spinner.gif" alt="" class="spinner" />
+            <img src="{{ STATIC_URL }}img/desktop/features/image-features-social.jpg" alt="Skype" />
+            <img src="{{ STATIC_URL }}img/desktop/features/image-features-social-spinner.gif" alt="" class="spinner" />
         </div>
     </div>
     <div class="five-col last-col">
@@ -201,7 +201,7 @@
     </div>
 
         <div class="one-col">
-            <img src="{{ STATIC_URL }}u/img/desktop/features/skype-icon.png" alt="Skype icon" />
+            <img src="{{ STATIC_URL }}img/desktop/features/skype-icon.png" alt="Skype icon" />
         </div>
         <div class="three-col">
             <h3>Skype</h3>
@@ -209,7 +209,7 @@
         </div>
 
         <div class="one-col">
-            <img src="{{ STATIC_URL }}u/img/desktop/features/chrome-icon.png" alt="Chrome icon" />
+            <img src="{{ STATIC_URL }}img/desktop/features/chrome-icon.png" alt="Chrome icon" />
         </div>
         <div class="three-col">
             <h3>Chrome</h3>
@@ -217,7 +217,7 @@
         </div>
 
         <div class="one-col">
-            <img src="{{ STATIC_URL }}u/img/desktop/features/thunderbird-icon.png" alt="Thunderbird icon" />
+            <img src="{{ STATIC_URL }}img/desktop/features/thunderbird-icon.png" alt="Thunderbird icon" />
         </div>
         <div class="three-col last-col">
             <h3>Thunderbird</h3>
@@ -225,21 +225,21 @@
         </div>
 
         <div class="one-col">
-            <img src="{{ STATIC_URL }}u/img/desktop/features/dropbox-icon.png" alt="Dropbox icon" />
+            <img src="{{ STATIC_URL }}img/desktop/features/dropbox-icon.png" alt="Dropbox icon" />
         </div>
         <div class="three-col">
             <h3>Dropbox</h3>
             <p>The world&rsquo;s favourite cloud backup and file sharing service.</p>
         </div>
         <div class="one-col">
-            <img src="{{ STATIC_URL }}u/img/desktop/features/libreoffice-icon.png" alt="LibreOffice icon" />
+            <img src="{{ STATIC_URL }}img/desktop/features/libreoffice-icon.png" alt="LibreOffice icon" />
         </div>
         <div class="three-col">
             <h3>LibreOffice</h3>
             <p>The free office productivity suite that&rsquo;s compatible with Microsoft Office.</p>
         </div>
         <div class="one-col">
-            <img src="{{ STATIC_URL }}u/img/desktop/features/twitter-icon.png" alt="Twitter icon" />
+            <img src="{{ STATIC_URL }}img/desktop/features/twitter-icon.png" alt="Twitter icon" />
         </div>
         <div class="three-col last-col">
             <h3>Twitter</h3>
@@ -247,21 +247,21 @@
         </div>
 
         <div class="one-col">
-            <img src="{{ STATIC_URL }}u/img/desktop/features/vlc-icon.png" alt="VLC icon" />
+            <img src="{{ STATIC_URL }}img/desktop/features/vlc-icon.png" alt="VLC icon" />
         </div>
         <div class="three-col">
             <h3>VLC player</h3>
             <p>No other video player is compatible with as many different file formats.</p>
         </div>
         <div class="one-col">
-            <img src="{{ STATIC_URL }}u/img/desktop/features/gimp-icon.png" alt="Gimp icon" />
+            <img src="{{ STATIC_URL }}img/desktop/features/gimp-icon.png" alt="Gimp icon" />
         </div>
         <div class="three-col">
             <h3>Gimp</h3>
             <p>The world&rsquo;s number one free app for image creation and photo retouching.</p>
         </div>
         <div class="one-col">
-            <img src="{{ STATIC_URL }}u/img/desktop/features/firefox-icon.png" alt="Firefox icon" />
+            <img src="{{ STATIC_URL }}img/desktop/features/firefox-icon.png" alt="Firefox icon" />
         </div>
         <div class="three-col last-col">
             <h3>Firefox</h3>

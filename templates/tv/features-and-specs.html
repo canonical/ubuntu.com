@@ -1,9 +1,9 @@
-{% extends "ubuntu/tv/base_tv.html" %}
+{% extends "tv/base_tv.html" %}
 
 {% block title %}TV features and specifications | Ubuntu TV{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="TV" page_title="Features and specs"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="TV" page_title="Features and specs"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -25,14 +25,14 @@
 		<p>Integrate your cable or satellite service into Ubuntu TV, to provide a unified customer experience. Ubuntu bridges the gap between television manufacturers and cable or satellite providers.</p>
 	</div><!-- / .six-col -->
 
-	<img src="{{ STATIC_URL }}u/img/devices/screenshot-tv-channels-900x413.jpg" class="touch-border" width="900" height="413" alt="Ubuntu TV browsing TV channels"/>
+	<img src="{{ STATIC_URL }}img/devices/screenshot-tv-channels-900x413.jpg" class="touch-border" width="900" height="413" alt="Ubuntu TV browsing TV channels"/>
 </div><!-- / .row -->
 
 <div class="row">
 	<div class="four-col">
 		<ul class="no-bullets inline inline-icons">
-			<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-youtube-96x96.jpg" width="96" height="96" alt="Youtube" /></li>
-			<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-iplayer-96x96.jpg" width="96" height="96" alt="BBC iPlayer" /></li>
+			<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-youtube-96x96.jpg" width="96" height="96" alt="Youtube" /></li>
+			<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-iplayer-96x96.jpg" width="96" height="96" alt="BBC iPlayer" /></li>
 		</ul>
 	</div><!-- / .four-col -->
 	<div class="eight-col last-col">
@@ -47,7 +47,7 @@
 		<p>Second-screen experiences are an emerging trend in broadcast television. Link phones or tablets to Ubuntu TV, presenting related content to viewers while they watch.  Provide information on movies by the same director, for example, or the  reaction on Twitter during live shows &mdash; without any distraction from the action.</p>
 	</div><!-- / .six-col -->
 	<div class="six-col last-col no-margin-bottom">
-		<img src="{{ STATIC_URL }}u/img/devices/screenshot-movie-440x331.jpg" width="440" height="331" alt="Ubuntu TV displaying movie details" />
+		<img src="{{ STATIC_URL }}img/devices/screenshot-movie-440x331.jpg" width="440" height="331" alt="Ubuntu TV displaying movie details" />
 	</div><!-- / .six-col -->
 </div><!-- / .row -->
 
@@ -64,7 +64,7 @@
 
 <div class="row">
 	<div class="six-col no-margin-bottom">
-		<img src="{{ STATIC_URL }}u/img/devices/screenshot-pause-and-play-440x331.jpg" width="440" height="331" alt="Ubuntu TV pick up where you left off" />
+		<img src="{{ STATIC_URL }}img/devices/screenshot-pause-and-play-440x331.jpg" width="440" height="331" alt="Ubuntu TV pick up where you left off" />
 	</div><!-- / .six-col -->
 
 	<div class="six-col last-col">
@@ -87,7 +87,7 @@
 			<div>
 				<p><span>Ubuntu TV benefits from the comprehensive hardware support that&rsquo;s always been a hallmark of Ubuntu for PCs. Highlights include:</span></p>
 				<div class="combined-list">
-					<ul class="list-ubuntu six-col">
+					<ul class="list-ticks six-col">
 						<li>Support for ARM and x86 boards<sup><a href="#fn1" id="r1">1</a></sup></li>
 						<li>Local storage support for DVR functionality<sup><a href="#fn2" id="r2">2</a></sup></li>
 						<li>Minimum disk space: 2GB</li>
@@ -97,7 +97,7 @@
 						<li class="last-item">CEC support</li>
 					</ul>
 
-					<ul class="list-ubuntu six-col last-col">
+					<ul class="list-ticks six-col last-col">
 						<li>Digital audio out</li>
 						<li>Hardware accelerated video capable of displaying content at 1080p<sup><a href="#fn3" id="r3">3</a></sup></li>
 						<li>Network connectivity: Gigabit Ethernet &amp; Wireless b/g/n</li>

@@ -1,9 +1,9 @@
-{% extends "ubuntu/internet-of-things/base_things.html" %}
+{% extends "internet-of-things/base_things.html" %}
 
 {% block title %}Thank you{% endblock %}
 
 {% block second_level_nav_items %}
-    {% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Things" subsection_title="Contact us" page_title="Thank you"  %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Things" subsection_title="Contact us" page_title="Thank you"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -13,11 +13,11 @@
         <p class="intro">A member of our team will be in touch within one working day</p>
     </div>
     <span>
-        <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
+        <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
     </span>
 </div>
 
-{% include "ubuntu/shared/_thank_you_footer.html" %}
+{% include "shared/_thank_you_footer.html" %}
 
 
 {% endblock content %}

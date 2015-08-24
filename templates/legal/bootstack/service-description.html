@@ -1,9 +1,9 @@
-{% extends "ubuntu/legal/_base_legal.html" %}
+{% extends "legal/_base_legal.html" %}
 
 {% block title %}Bootstack services description{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Legal" subsection_title="Bootstack" page_title="Service description" %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Legal" subsection_title="Bootstack" page_title="Service description" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -32,7 +32,7 @@
                 <ol class="numbered">
                     <li>
                         <p>Canonical will build and initialize a high availability or non-high availability (as stated in the customer&rsquo;s order) production grade cloud for customer (the &ldquo;Cloud&rdquo;). The Cloud will include:</p>
-                        <ul class="list-ubuntu">
+                        <ul class="list-ticks">
                             <li>Industry standard server and storage software (initially for the number of nodes set out in the customer&rsquo;s order) with a configuration as defined by the customer and Canonical).  For the avoidance of doubt, the customer may increase the number of nodes throughout the term of the customer&rsquo;s agreement with Canonical by opening a support ticket with Canonical.</li>
                             <li>The OpenStack information dashboard known as &ldquo;Horizon&rdquo;</li>
                             <li>Capacity threshold and alerts setting</li>
@@ -81,7 +81,7 @@
                     <li>
                         <h4>2.2.1 General operation</h4>
                         <p>Canonical will operate, monitor and manage the Cloud. This will include providing the following services:</p>
-                        <ul class="list-ubuntu">
+                        <ul class="list-ticks">
                             <li>Reboot of the KVM hosts when necessary</li>
                             <li>Backup and restoration of the management infrastructure (the OpenStack database)</li>
                             <li>Hardware and software failure monitoring and application of fixes</li>
@@ -93,7 +93,7 @@
                     <li>
                         <h4>2.2.2 Patching</h4>
                         <p>Canonical will conduct the following patching and updating of the Cloud software, at Canonical&rsquo;s discretion:</p>
-                        <ul class="list-ubuntu">
+                        <ul class="list-ticks">
                             <li>Patching and upgrading of the Ubuntu operating system</li>
                             <li>Patching and upgrading of OpenStack</li>
                             <li>Patching and upgrading of the hypervisor (hosts)</li>
@@ -103,7 +103,7 @@
                     <li>
                         <h4>2.2.3 Administrative Access</h4>
                         <p>Canonical will have administrative access to the Cloud. The customer will have access to the following applications:</p>
-                        <ul class="list-ubuntu">
+                        <ul class="list-ticks">
                             <li>The entire OpenStack dashboard</li>
                             <li>The entire OpenStack API set</li>
                             <li>Landscape</li>
@@ -117,7 +117,7 @@
                 <ol class="numbered">
                     <li>
                         <p>Canonical is not responsible for the following, which are not part of the Services:</p>
-                        <ul class="list-ubuntu">
+                        <ul class="list-ticks">
                             <li>Monitoring guest virtual machine instances running on the Cloud</li>
                             <li>Managing the operating system running on virtual machine instances running on the Cloud</li>
                             <li>Managing the applications running within the virtual machine instances running on the Cloud</li>
@@ -144,7 +144,7 @@
                     <li>
                         <h4>2.5.2 Commencement of the services</h4>
                         <p>Canonical will provide documentation to customer providing further detail on the Services, including:</p>
-                        <ul class="list-ubuntu">
+                        <ul class="list-ticks">
                             <li>Anticipated date of delivery of the Cloud</li>
                             <li>Limitations to utilization of the resources within the Cloud</li>
                             <li>Size of the Cloud, specification of each node, network diagram</li>
@@ -172,7 +172,7 @@
                     <li>
                         <h4>2.6.2 Support process</h4>
                         <p>Canonical&rsquo;s provision of support will follow the following process and service levels:</p>
-                        <ul class="list-ubuntu">
+                        <ul class="list-ticks">
                             <li>Upon receipt of a case report, a Canonical support engineer will commence efforts to verify the case and set the severity level. Canonical will work with customer to assess the urgency of a case and to assign the appropriate severity level.</li>
                             <li>Canonical&rsquo;s support engineer will respond as soon as practicable to customer after setting the severity level and within the response time for the applicable severity level listed below.</li>
                             <li>Canonical&rsquo;s support engineer will work on diagnosing and resolving the case during the effort period for the applicable severity level listed below.</li>
@@ -345,7 +345,7 @@
                 <ol class="numbered">
                     <li>
                         <p>Canonical will not be liable for a failure to provide the Services as a result of a failure of customer to deliver a related dependency. In particular, customer will:</p>
-                        <ul class="list-ubuntu">
+                        <ul class="list-ticks">
                             <li>Provide Canonical with the starting information required for Canonical to provide the Cloud</li>
                             <li>Provide Canonical with access to the hardware and network necessary for the Cloud in accordance with Canonical&rsquo;s reference architecture requirements</li>
                             <li>Ensure that there is internet connectivity between customer&rsquo;s premises and the hosting provider&rsquo;s premises at all times</li>
@@ -365,7 +365,7 @@
         <ol class="numbered">
             <li>
                 <p>At the end of customer&rsquo;s agreement with Canonical, customer has the choice of discontinuing the Services and managing the Cloud itself.  In such case, subject to agreement of appropriate licence terms, Canonical will hand over the administrative control of Landscape and the Nagios monitoring tool to customer and customer can continue to monitor it.</p>
-                <ul class="list-ubuntu">
+                <ul class="list-ticks">
                     <li>Should customer choose to discontinue the Services, customer will choose one of the following options:      Canonical will transfer the ownership of the hosts to customer. In this case, customer assumes the responsibility of paying the Cloud service provider (if any) for any use of such services after the transfer. Unless otherwise licensed, the license for the LDS Product terminates at such time.</li>
                     <li>If the servers are within the premise of customer&rsquo;s data center, Canonical will hand over all control of the hosts and management software to customer. Unless otherwise licensed, the license for the LDS Product shall terminate at such time.</li>
                     <li>Optional training is offered to customer at the recommended list price for such service prior to the transfer of the Cloud or at any mutually agreeable time.</li>

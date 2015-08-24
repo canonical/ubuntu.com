@@ -1,11 +1,11 @@
-{% extends "ubuntu/server/base_server.html" %}
+{% extends "server/base_server.html" %}
 
 {% block title %}Ubuntu Server - for scale-out computing{% endblock %}
 {% block meta_description %}Secure, fast and powerful, Ubuntu helps you make the most of your infrastructure. Whether you want to deploy a cloud or a web farm, Ubuntu Server supports the most popular hardware and software.{% endblock %}
 {% block extra_body_class %}server-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Server" page_title="Overview"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Server" page_title="Overview"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -16,7 +16,7 @@
 		<p><a class="link-cta-ubuntu" href="/download/server">Download Ubuntu Server</a></p>
 	</div>
 	<span>
-		<img src="{{ STATIC_URL }}u/img/server/image-server.svg" width="400" height="121" alt="" />
+		<img src="{{ STATIC_URL }}img/server/image-server.svg" width="400" height="121" alt="" />
 	</span>
 </div><!-- /.row -->
 
@@ -59,7 +59,7 @@
 		</ul>
 </div>
 
-{% include "ubuntu/shared/_moonshot_promo.html" %}
+{% include "shared/_moonshot_promo.html" %}
 
 <div class="row row-image-centered">
 	<div class="eight-col">
@@ -67,7 +67,7 @@
 		<p>In addition to x86 and ARM servers, Ubuntu is supported on the Power architecture. For the enterprise datacentre, this means you can now build your infrastructure on any hardware you choose.</p>
 	</div>
 	<span>
-		<img src="{{ STATIC_URL }}u/img/logos/logo-pack/logo-ibm.svg" alt="IBM logo" width="200" width="80" />
+		<img src="{{ STATIC_URL }}img/logos/logo-pack/logo-ibm.svg" alt="IBM logo" width="200" width="80" />
 	</span>
 </div>
 
@@ -85,22 +85,22 @@
 
 	<h3 class="muted-heading">Works with all your hardware and software</h3>
 	<ul class="inline-logos no-bullets">
-		<li><img src="{{ STATIC_URL }}u/img/logos/logo-pack/logo-lenovo.svg" alt="Lenovo" /></li>
-		<li><img src="{{ STATIC_URL }}u/img/logos/logo-pack/logo-dell.svg" alt="Dell" /></li>
-		<li><img src="{{ STATIC_URL }}u/img/logos/logo-pack/logo-ibm.svg" alt="IBM" /></li>
-		<li><img src="{{ STATIC_URL }}u/img/logos/logo-pack/logo-hp.svg" alt="HP" /></li>
-		<li class="last-item"><img src="{{ STATIC_URL }}u/img/logos/logo-pack/logo-intel.svg" alt="Intel" /></li>
-		<li><img src="{{ STATIC_URL }}u/img/logos/logo-pack/logo-cisco.svg"alt="Cisco" /></li>
-		<li><img src="{{ STATIC_URL }}u/img/logos/logo-pack/logo-amd.svg"alt="AMD" /></li>
-		<li class="last-item"><img src="{{ STATIC_URL }}u/img/logos/logo-pack/logo-arm.svg"alt="Intel" /></li>
+		<li><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-lenovo.svg" alt="Lenovo" /></li>
+		<li><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-dell.svg" alt="Dell" /></li>
+		<li><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-ibm.svg" alt="IBM" /></li>
+		<li><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-hp.svg" alt="HP" /></li>
+		<li class="last-item"><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-intel.svg" alt="Intel" /></li>
+		<li><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-cisco.svg"alt="Cisco" /></li>
+		<li><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-amd.svg"alt="AMD" /></li>
+		<li class="last-item"><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-arm.svg"alt="Intel" /></li>
 	</ul>
 	<p class="text-center"><a href="/certification">View all certified hardware&nbsp;&rsaquo;</a></p>
 
 	<ul class="inline-logos no-bullets">
-		<li><img src="{{ STATIC_URL }}u/img/logos/logo-pack/logo-centrify.png" alt="Centrify" /></li>
-		<li><img src="{{ STATIC_URL }}u/img/logos/logo-pack/logo-openstack.svg" alt="OpenStack" /></li>
-		<li><img src="{{ STATIC_URL }}u/img/logos/logo-pack/logo-likewise.png" alt="Likewise" /></li>
-		<li class="last-item"><img src="{{ STATIC_URL }}u/img/logos/logo-pack/logo-openbravo.png" alt="Openbravo" /></li>
+		<li><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-centrify.png" alt="Centrify" /></li>
+		<li><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-openstack.svg" alt="OpenStack" /></li>
+		<li><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-likewise.png" alt="Likewise" /></li>
+		<li class="last-item"><img src="{{ STATIC_URL }}img/logos/logo-pack/logo-openbravo.png" alt="Openbravo" /></li>
 	</ul>
 	<p class="text-center"><a href="/partners/certified-software">View all certified software&nbsp;&rsaquo;</a></p>
 </div>
@@ -122,7 +122,7 @@
 
 <div class="row row-grey row-release-schedule">
 	<div class="eight-col">
-		<div class="releasecycle-image-load" data-width="580" data-src="{{ STATIC_URL }}u/img/graphs/image-release-cycle{width}.png" data-alt="Ubuntu Desktop release cycle, 5 year long term support"></div>
+		<div class="releasecycle-image-load" data-width="580" data-src="{{ STATIC_URL }}img/graphs/image-release-cycle{width}.png" data-alt="Ubuntu Desktop release cycle, 5 year long term support"></div>
 		<script>
 		    new Imager('.releasecycle-image-load', {
 		        availableWidths: {
@@ -133,7 +133,7 @@
 		    });
 		</script>
 		<noscript>
-			<img src="{{ STATIC_URL }}u/img/graphs/image-release-cycle-large.png" width="580" height="427" alt="Ubuntu Desktop release cycle, 5 year long term support" />
+			<img src="{{ STATIC_URL }}img/graphs/image-release-cycle-large.png" width="580" height="427" alt="Ubuntu Desktop release cycle, 5 year long term support" />
 		</noscript>
 	</div>
 	<div class="four-col last-col">
@@ -151,14 +151,14 @@
 		<p><a href="/server/management">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
 	</div><!-- /.six-col -->
 	<span>
-		<img class="priority-0" src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-landscape.svg" alt="Landscape pictogram" width="200" height="200" />
+		<img class="priority-0" src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-landscape.svg" alt="Landscape pictogram" width="200" height="200" />
 	</span>
 </div><!-- /.row -->
 
 <div class="row row-juju-maas vertical-divider">
 	<div class="six-col box-juju">
 		<div class="six-col text-center">
-			<img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-juju.svg" alt="Juju logo" width="100" height="100" />
+			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-juju.svg" alt="Juju logo" width="100" height="100" />
 		</div>
 		<div class="six-col">
 			<h2>Juju &mdash; service orchestration</h2>
@@ -168,7 +168,7 @@
 	</div><!-- /.six-col -->
 	<div class="six-col box-maas last-col">
 		<div class="six-col text-center">
-			<img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-maas.svg" alt="Maas logo" width="100" height="100" />
+			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-maas.svg" alt="Maas logo" width="100" height="100" />
 		</div>
 		<h2>MAAS &mdash; bare metal provisioning</h2>
 		<p>MAAS is a time-saving provisioning system that makes it quick and easy to set up the physical hardware on which to deploy complex services, like Ubuntu&rsquo;s OpenStack cloud infrastructure. Just plug in your servers, connect them to the network and let MAAS do the rest. </p>
@@ -203,13 +203,13 @@
 			<h3 id="works-with-your-hardware-and-software">Our big data partners</h3>
 			<div>
 				<ul class="inline-icons text-center">
-					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-couchbase-100x35.png" width="100" height="35" alt="Couchbase" /></li>
-					<li class="last-item"><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-cloudera-100x35.png" width="100" height="35" alt="Cloudera" /></li>
-					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-10gen-75x35.png" width="75" height="35" alt="10gen" /></li>
-					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-hortonworks-93x35.png" width="93" height="35" alt="Hortonworks" /></li>
-					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-lexisnexis-135x35.png" width="135" height="35" alt="LexisNexis" /></li>
-					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-mapr-60x35.png" width="60" height="35" alt="MapR" /></li>
-					<li><img src="{{ STATIC_URL }}u/img/third-party-logos/logo-datastax-129x35.png" width="129" height="35" alt="DataStax" /></li>
+					<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-couchbase-100x35.png" width="100" height="35" alt="Couchbase" /></li>
+					<li class="last-item"><img src="{{ STATIC_URL }}img/third-party-logos/logo-cloudera-100x35.png" width="100" height="35" alt="Cloudera" /></li>
+					<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-10gen-75x35.png" width="75" height="35" alt="10gen" /></li>
+					<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-hortonworks-93x35.png" width="93" height="35" alt="Hortonworks" /></li>
+					<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-lexisnexis-135x35.png" width="135" height="35" alt="LexisNexis" /></li>
+					<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-mapr-60x35.png" width="60" height="35" alt="MapR" /></li>
+					<li><img src="{{ STATIC_URL }}img/third-party-logos/logo-datastax-129x35.png" width="129" height="35" alt="DataStax" /></li>
 				</ul>
 			</div>
 		</div><!-- /.box -->
@@ -227,9 +227,9 @@
 		<h2 id="the-fast-track-to-virtualisation">The fast track to virtualisation</h2>
 		<p>Ready to boost efficiencies and reduce costs? Virtualise your servers with Ubuntu Server and KVM. When you use a secure, lean version of Ubuntu as a guest operating system for your application, you can create virtual machine images in minutes. KVM, Xen, VMware and LXC are all supported.</p>
 	</div><!-- /.six-col -->
-	<span><img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-startfirst-darkaubergine.svg" width="153" height="153" alt="" /></span>
+	<span><img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-startfirst-darkaubergine.svg" width="153" height="153" alt="" /></span>
 </div><!-- /.row -->
-{% include "ubuntu/shared/_enterprise_blog.html" %}
-{% include "ubuntu/shared/_community.html" %}
+{% include "shared/_enterprise_blog.html" %}
+{% include "shared/_community.html" %}
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}
