@@ -14,11 +14,13 @@
 {% if level_2 == 'training' and level_3 == 'order-thank-you' %}
 		<li{% if level_3 == 'order-thank-you' %} class="active"{% endif %}>Thank you</li>
 {% endif %}
-{% if level_2 == 'training' and level_3 == 'contact-us' %}
+{% if level_2 == 'training' or level_2 == 'storage' or level_2 == 'managed-cloud' %}
+    {% if level_3 == 'contact-us' or level_3 == 'classroom-contact-us' or level_3 == 'onsite-contact-us' %}
 		<li{% if level_3 == 'contact-us' %} class="active"{% endif %}>Contact us</li>
+    {% endif %}
 {% endif %}
 {% if level_2 == 'ubuntu-openstack' %}
-		<li{% if level_3 == 'reference-architecture' %} class="active single-link"{% endif %} {% if level_3 != 'reference-architecture' %} class="single-link"{% endif %}><a href="/cloud/openstack/reference-architecture">Reference architecture</a></li>
+		<li{% if level_3 == 'reference-architecture' %} class="active single-link"{% endif %} {% if level_3 != 'reference-architecture' %} class="single-link"{% endif %}><a href="/cloud/ubuntu-openstack/reference-architecture">Reference architecture</a></li>
 {% endif %}
 {% if level_2 == 'use-a-cloud' %}
 		<li{% if level_3 == 'use-a-cloud' %} class="active"{% endif %}><a href="/cloud/public-cloud/guest">Cloud guest</a></li>

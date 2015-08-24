@@ -7,7 +7,7 @@
 		var feedcontainer2=document.getElementById("insights-footer-feed")
 		{% if level_3 != 'snappy' %}
 		var feedurl2=document.location.protocol+"//insights.ubuntu.com/topic/cloud/feed/"{% endif %}
-		{% if level_3 == 'snappy' or level_1 == 'things' %}
+		{% if level_3 == 'snappy' or level_1 == 'internet-of-things' %}
 		var feedurl2=document.location.protocol+"//insights.ubuntu.com/group/internet-of-things/feed/"{% endif %}
 		var feedlimit2=4
 		var rssoutput="<ul class='no-bullets smaller'>"
@@ -26,9 +26,9 @@
 						feedcontainer2.innerHTML=rssoutput
 				}
 				else
-					alert("oops")
+					console.log('RSS feed error');
 				}
-				
+
 				window.onload=function(){
 				rssfeedsetup2()
 				}

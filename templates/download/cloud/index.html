@@ -9,7 +9,6 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-{% with lts_release="14.04.2" latest_release="14.10" openstack_version="Juno" %}
 <div class="row row-hero">
 	<div class="twelve-col no-margin-bottom">
 		<h1>Ubuntu for cloud</h1>
@@ -33,6 +32,5 @@
 
 {% include "download/server/_other-ways.html" %}
 
-{% endwith %}
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

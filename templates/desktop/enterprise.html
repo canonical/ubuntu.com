@@ -1,80 +1,106 @@
 {% extends "desktop/base_desktop.html" %}
 
 {% block title %}For enterprise{% endblock %}
+{% block meta_keywords %}Ubuntu, Ubuntu operating system, OS, Linux, Windows alternative, Mac alternative, thin client{% endblock %}
 {% block extra_body_class %}desktop-enterprise{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="For enterprise"  %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="For enterprise"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row row-hero">
-	<div class="six-col">
-		<h1>Ubuntu for enterprise</h1>
-		<p class="intro">On the desktop, Ubuntu has been widely adopted by small and large enterprises because of its ease of use, speed, apps, security model, management tools and low cost of ownership.</p>
-		{% include "desktop/shared/_share-this.html" with tweet="See how #Ubuntu desktop OS might benefit your business" %}
-	</div>
+    <div class="six-col">
+        <h1>Ubuntu for enterprise</h1>
+        <p class="intro">On the desktop, Ubuntu has been widely adopted by small and large enterprises because of its ease of use, speed, apps, security model, management tools and low cost of ownership.</p>
+        {% include "desktop/shared/_share-this.html" with tweet="See how #Ubuntu desktop OS might benefit your business" %}
+    </div>
 </div>
 
 <div class="row row-grey">
-	<h2>Enterprise essentials built-in</h2>
-    <div class="combined-list">
-		<ul class="six-col list-ticks">
-			<li>Microsoft-compatible office productivity suite</li>
-			<li>Fully translated into 40+ languages</li>
-			<li class="last-item">Open source &mdash; free from licensing restrictions</li>
-		</ul>
-		<ul class="six-col list-ticks last-col">
-			<li>Virus free and highly secure</li>
-			<li class="last-item">On-site consulting services and training available</li>
-		</ul>
-	</div>
+    <h2>Enterprise essentials built-in</h2>
+        <div class="combined-list">
+        <ul class="six-col list-ticks">
+            <li>Microsoft-compatible office productivity suite</li>
+            <li>Fully translated into 40+ languages</li>
+            <li class="last-item">Open source &mdash; free from licensing restrictions</li>
+        </ul>
+        <ul class="six-col list-ticks last-col">
+            <li>Virus free and highly secure</li>
+            <li>On-site consulting services and training available</li>
+            <li class="last-item">Long Term Support releases come with five years of security patches and updates</li>
+
+        </ul>
+    </div>
 </div>
 
 <div class="row row-case-studies no-border-bottom">
-	<div class="twelve-col">
-		<h2>Ubuntu in action</h2>
-	</div>
-	<div class="twelve-col vertical-divider">
-		<div class="six-col">
-			<h3>Carbonado Intermedia and Auteuristic</h3>
-			<blockquote class="pull-quote">
-				<p><span>&ldquo;</span>We simply wouldn’t be able to deliver our work as fast and cost-effectively as this with any other platform&hellip; Ubuntu gives us wings!<span>&rdquo;</span></p>
-			</blockquote>
-			<p><a href="https://insights.ubuntu.com/2015/02/10/ubuntu-delivers-a-bulletproof-workstation-platform-for-media-productio/" class="external">Learn how Ubuntu workstations deliver</a></p>
-		</div>
-		<div class="six-col last-col">
-			<h3>Bukwang Pharmaceuticals</h3>
-			<p class="headline">Faced with an expensive new contract from Microsoft, Bukwang Pharma switched 400 PCs to Ubuntu and saved $300,00 on annual licensing alone.</p>
-			<p><a href="https://insights.ubuntu.com/2014/07/31/bukwang-pharmaceuticals-cut-it-costs-and-created-business-value-with-ubuntu/" class="external">Learn how switching to Ubuntu saves money</a></p>
-		</div>
-	</div>
+    <div class="twelve-col">
+        <h2>Ubuntu in action</h2>
+    </div>
+    <div class="twelve-col vertical-divider">
+        <div class="six-col">
+            <h3>Carbonado Intermedia and Auteuristic</h3>
+            <blockquote class="pull-quote">
+                <p><span>&ldquo;</span>We simply wouldn’t be able to deliver our work as fast and cost-effectively as this with any other platform&hellip; Ubuntu gives us wings!<span>&rdquo;</span></p>
+            </blockquote>
+            <p><a href="https://insights.ubuntu.com/2015/02/10/ubuntu-delivers-a-bulletproof-workstation-platform-for-media-productio/" class="external">Learn how Ubuntu workstations deliver</a></p>
+        </div>
+        <div class="six-col last-col">
+            <h3>Bukwang Pharmaceuticals</h3>
+            <p class="headline">Faced with an expensive new contract from Microsoft, Bukwang Pharma switched 400 PCs to Ubuntu and saved $300,00 on annual licensing alone.</p>
+            <p><a href="https://insights.ubuntu.com/2014/07/31/bukwang-pharmaceuticals-cut-it-costs-and-created-business-value-with-ubuntu/" class="external">Learn how switching to Ubuntu saves money</a></p>
+        </div>
+    </div>
 </div>
 
 <div class="row row-landscape">
-	<div class="five-col no-margin-bottom">
-		<div>
-			<h2>Enterprise-wide support and management tools</h2>
-			<p>Ubuntu Advantage is the professional support package from the experts at Canonical. Get 24x7 support with access to engineers with first-hand experience of your issues. It also includes Landscape, the Ubuntu systems management tool, for monitoring, managing, patching and compliance reporting on all your Ubuntu desktops.</p>
-			<p><a href="/management">Learn about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
-		</div>
-	</div>
-	<div class="pull-right right priority-0">
-		<img src="{{ STATIC_URL }}img/desktop/enterprise/landscape-screenshot.png" class="touch-border landscape-screenshot" alt="Landscape screenshot" />
-	</div>
+    <div class="five-col no-margin-bottom">
+        <div>
+            <h2>Enterprise-wide support and management tools</h2>
+            <p>Ubuntu Advantage is the professional support package from the experts at Canonical. Get 24x7 support with access to engineers with first-hand experience of your issues. It also includes Landscape, the Ubuntu systems management tool, for monitoring, managing, patching and compliance reporting on all your Ubuntu desktops.</p>
+            <p><a href="/management">Learn about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+        </div>
+    </div>
+    <div class="pull-right right priority-0">
+        <img src="{{ STATIC_URL }}img/desktop/enterprise/landscape-screenshot.png" class="touch-border landscape-screenshot" alt="Landscape screenshot" />
+    </div>
+</div>
+
+<div class="row row-grey row-release-schedule">
+    <div class="eight-col">
+        <div class="releasecycle-image-load" data-width="580" data-src="{{ STATIC_URL }}img/graphs/image-release-cycle{width}.png" data-alt="Ubuntu Desktop release cycle, 5 year long term support"></div>
+        <script>
+            new Imager('.releasecycle-image-load', {
+                availableWidths: {
+                    580: '-large',
+                    431: '-medium',
+                    305: '-small'
+                }
+            });
+        </script>
+        <noscript>
+            <img src="{{ STATIC_URL }}img/graphs/image-release-cycle-large.png" width="580" height="427" alt="Ubuntu Desktop release cycle, 5 year long term support" />
+        </noscript>
+    </div>
+    <div class="four-col last-col">
+        <h2 id="a-release-schedule-you-can-depend-on">A release schedule you can depend on</h2>
+        <h3>Stay up-to-date with regular updates and upgrades</h3>
+        <p>Every two years there is a new Long Term Support (LTS) release of Ubuntu desktop that is supported for five years. During that time, there will be regular security fixes and other critical updates which are, and always will be, free of charge.</p>
+    </div>
 </div>
 
 <div class="row no-border">
-	<div class="seven-col touch-border priority-0">
-		<img src="{{ STATIC_URL }}img/desktop/enterprise/laptop.png" class="left pull-left" alt="Laptop photo" />
-	</div>
-	<div class="five-col last-col">
-		<div>
-			<h2>Buy it pre-installed</h2>
-			<p>Ubuntu runs on the world&rsquo;s best hardware, including HP, Dell, Asus and Lenovo. And with nearly 70% of PCs shipped by the major PC companies already certified to work with Ubuntu, it is easy to find hardware that will work for your business.</p>
-			<p><a href="/certification/">Learn more about Ubuntu certified hardware&nbsp;&rsaquo;</a></p>
-		</div>
-	</div>
+    <div class="seven-col touch-border priority-0">
+        <img src="{{ STATIC_URL }}img/desktop/enterprise/laptop.png" class="left pull-left" alt="Laptop photo" />
+    </div>
+    <div class="five-col last-col">
+        <div>
+            <h2>Pre-installed on certified&nbsp;hardware</h2>
+            <p>Ubuntu runs on the world&rsquo;s best hardware from partners such as Dell, HP and Lenovo. And with nearly 90% of PCs shipped by the major PC companies already certified to work with Ubuntu, it is easy to find hardware that will work for your business.</p>
+            <p><a href="/certification/">Learn more about Ubuntu certified hardware&nbsp;&rsaquo;</a></p>
+        </div>
+    </div>
 </div>
 
 {% endblock content %}

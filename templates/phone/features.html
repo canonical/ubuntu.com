@@ -31,7 +31,7 @@
 <div class="row row--video no-border no-padding">
     <h2>See scopes in action</h2>
 	<div class="the-video"><div></div></div>
-    <p class="video-link"><a href="//www.youtube.com/watch?v=-dpfHYpfEXY&amp;hd=1" class="show-video">Watch the video</a></p>
+    <p class="video-link"><a href="//www.youtube.com/watch?v=CsDFMIphtZk&amp;hd=1" class="show-video">Watch the video</a></p>
 </div><!-- /.row -->
 
 <div class="row row--scopes row--scopes__nearby edge-magic">
@@ -69,7 +69,7 @@
         <div class="six-col align-vertically last-col no-margin-bottom">
             <div class="row--scopes__content five-col prepend-two">
                 <h3>Music</h3>
-                <p>Listen to music from your library, stream from Soundcloud or Grooveshark, download tracks from 7digital, or catch the latest gig with Songkick.</p>
+                <p>Listen to music from your library, stream from Soundcloud, download tracks from 7digital, or catch the latest gig with Songkick.</p>
             </div>
         </div>
         <div class="row--scopes__image for-small four-col no-margin-bottom slider-animation">
@@ -113,9 +113,9 @@
 
 <div class="row row-origami row--edge no-border">
 	<h2 class="twelve-col">Life on the edge</h2>
-	
+
 	<div class="three-col">
-	
+
 		<div id="swipe-from-top" class="three-col first">
     		<div class="three-col">
 			    <h3>Swipe from <br />the&nbsp;top</h3>
@@ -125,7 +125,7 @@
 				<img src="{{ STATIC_URL }}img/phone/features/image-swipe-from-top.png" alt="" />
 			</div>
 		</div><!--/#swipe-from-top -->
-		
+
 		<div id="swipe-from-left" class="three-col no-margin-bottom">
 			<div class="three-col not-for-small">
 				<img class="right" src="{{ STATIC_URL }}img/phone/features/image-swipe-from-left.png" alt="" />
@@ -135,9 +135,9 @@
 				<p>Swipe from the left to reveal the Launcher, for quick access to your favourite features and&nbsp;apps.</p>
 			</div>
 		</div><!--/#swipe-from-left -->
-		
+
 	</div><!-- /.three-col -->
-	
+
 	<div class="six-col align-center">
     <div id="edge-video-wrapper">
 	  <video id="edge-video" class="video-js vjs-default-skin" controls preload="none" width="292" height="518" poster="{{ STATIC_URL }}img/phone/features/image-edge-background.png" data-setup="{}">
@@ -147,7 +147,7 @@
 	    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/">supports HTML5 video</a></p>
 	  </video>
     </div>
-		<script> 
+		<script>
 			document.getElementById('edge-video').addEventListener('loadedmetadata', function() {
 			  this.currentTime = 8;
 			}, false);
@@ -182,11 +182,11 @@
 						document.getElementById("swipe-from-bottom").className = document.getElementById("swipe-from-bottom").className.replace( /(?:^|\s)run(?!\S)/g , '' )
 					}
 			}
-		</script> 
+		</script>
 	</div><!-- /.six-col -->
-	
+
 	<div class="three-col last-col">
-	
+
 		<div id="swipe-from-right" class="three-col first">
     		<div class="three-col">
 			    <h3>Swipe from <br />the&nbsp;right</h3>
@@ -196,7 +196,7 @@
 				<img src="{{ STATIC_URL }}img/phone/features/image-swipe-from-right.png" alt="" />
 			</div>
 		</div><!-- /#swipe-from-right -->
-		
+
 		<div id="swipe-from-bottom" class="three-col">
 			<div class="three-col not-for-small">
 				<img class="right" src="{{ STATIC_URL }}img/phone/features/image-swipe-from-bottom.png" alt="" />
@@ -206,7 +206,7 @@
                 <p>When you need to see the controls, all it takes is a swipe from the bottom edge of the&nbsp;screen.</p>
 			</div>
 		</div><!-- /#swipe-from-bottom -->
-		
+
 	</div><!-- /.three-col -->
 
 </div><!-- /.row -->
@@ -239,5 +239,14 @@
 
 {% include "phone/shared/_store_promo.html" with extra_row_class="store-promo" promo_title="The Ubuntu Store" promo_content="You can choose from a wide range of scopes and apps in the Ubuntu Store from partners such as 7digital, Twitter and Euronews. All of these and many more are available for download in just a few&nbsp;taps." promo_link="/phone/developers" promo_link_title="More information for developers" %}
 
-{% include "phone/shared/phone_promo/_phone_promo.html" with extra_row_class="no-border" phone_promo_content="<p class='clear'>The world&rsquo;s first Ubuntu phone is now available for sale all over Europe, direct from the manufacturer, BQ. The Aquaris E4.5 Ubuntu Edition includes an 8 megapixel camera, dual SIM and best of all, no network lock.</p>" phone_promo_title="Available unlocked on the BQ Aquaris E4.5" phone_promo_link="http://www.bqreaders.com/gb/products/aquaris-e4-5.html" phone_promo_link_title="Learn more about the BQ Aquaris E4.5" %}
+<div class="row no-border">
+	<div class="four-col">
+		<img src="{{ STATIC_URL }}img/phone/overview/image-devices.png" alt="Ubuntu devices" />
+	</div>
+	<div class="prepend-one seven-col last-col">
+		<h2>Available now from Meizu and BQ</h2>
+		<p>Ubuntu phones are now available for sale worldwide. You can purchase  directly from our partners BQ and Meizu.</p>
+		<p><a href="http://www.ubuntu.com/phone/devices">Learn more about our range of devices&nbsp;&rsaquo;</a></p>
+	</div>
+</div>
 {% endblock content %}

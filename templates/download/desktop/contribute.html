@@ -31,7 +31,6 @@
                         <label for="amount-desktop">&#36; </label>
                         <input type="number" min="0" max="125" id="amount-desktop" name="amount_1" value="2" class="amount-input" tabindex="1">
                     </fieldset>
-                    
                     <div class="contribution-slider"></div>
 
                     <!--  Hidden fields -->
@@ -42,11 +41,11 @@
 
                     <fieldset class="contribution-value">
                         <label for="amount_phone">&#36; </label>
-                        <input type="number" max="125" id="amount_phone" name="amount_2" value="2" class="amount-input" tabindex="4">
+                        <input type="number" max="125" id="amount_phone" name="amount_2" value="2" class="amount-input" tabindex="2">
                     </fieldset>
 
                     <div class="contribution-slider"></div>
-                    
+
                     <!-- hidden fields -->
                     <input type="hidden" name="item_name_2" value="Ubuntu for phone">
                 </div>
@@ -55,11 +54,11 @@
 
                     <fieldset class="contribution-value">
                         <label for="amount_phone">&#36; </label>
-                        <input type="number" max="125" id="amount_phone" name="amount_3" value="2" class="amount-input" tabindex="4">
+                        <input type="number" max="125" id="amount_phone" name="amount_3" value="2" class="amount-input" tabindex="3">
                     </fieldset>
 
                     <div class="contribution-slider"></div>
-                    
+
                     <!-- hidden fields -->
                     <input type="hidden" name="item_name_3" value="Ubuntu for tablet">
                 </div>
@@ -72,7 +71,6 @@
                     </fieldset>
 
                     <div class="contribution-slider"></div>
-                    
                     <!-- hidden fields -->
                     <input type="hidden" name="item_name_4" value="Ubuntu on public clouds">
                 </div>
@@ -81,11 +79,11 @@
 
                     <fieldset class="contribution-value">
                         <label for="amount_phone">&#36; </label>
-                        <input type="number" max="125" id="amount_phone" name="amount_5" value="2" class="amount-input" tabindex="4">
+                        <input type="number" max="125" id="amount_phone" name="amount_5" value="2" class="amount-input" tabindex="5">
                     </fieldset>
 
                     <div class="contribution-slider"></div>
-                    
+
                     <!-- hidden fields -->
                     <input type="hidden" name="item_name_5" value="Cloud tools  (e.g. Juju, MAAS)">
                 </div>
@@ -94,11 +92,11 @@
 
                     <fieldset class="contribution-value">
                         <label for="amount_phone">&#36; </label>
-                        <input type="number" max="125" id="amount_phone" name="amount_6" value="2" class="amount-input" tabindex="4">
+                        <input type="number" max="125" id="amount_phone" name="amount_6" value="2" class="amount-input" tabindex="6">
                     </fieldset>
 
                     <div class="contribution-slider"></div>
-                    
+
                     <!-- hidden fields -->
                     <input type="hidden" name="item_name_6" value="Ubuntu Server with OpenStack">
                 </div>
@@ -107,7 +105,7 @@
 
                     <fieldset class="contribution-value">
                         <label for="amount_performance">&#36; </label>
-                        <input type="number" max="125" id="amount_performance" name="amount_7" value="2" class="amount-input"  tabindex="2">
+                        <input type="number" max="125" id="amount_performance" name="amount_7" value="2" class="amount-input"  tabindex="7">
                     </fieldset>
 
                     <div class="contribution-slider"></div>
@@ -116,11 +114,11 @@
                     <input type="hidden" name="item_name_7" value="Community projects">
                 </div>
                 <div class="slider-area" id="tip-to-canonical">
-                    <p class="title">Tip to Canonical</p> 
+                    <p class="title">Tip to Canonical</p>
 
                     <fieldset class="contribution-value">
                         <label for="amount_hardware">&#36; </label>
-                        <input type="number" max="125" id="amount_hardware" name="amount_8" value="2" class="amount-input" tabindex="3">
+                        <input type="number" max="125" id="amount_hardware" name="amount_8" value="2" class="amount-input" tabindex="8">
                     </fieldset>
 
                     <div class="contribution-slider"></div>
@@ -183,11 +181,11 @@
  * Ubuntu YUI contribution sliders
  *
  * This class controls the sliders to distribute the donation
- * 
+ *
  * @project     Ubuntu Core Front-End Framework
  * @author      Web Team at Canonical Ltd
  * @copyright   2012 Canonical Ltd
- * 
+ *
  **/
  YUI({bootstrap: false}).use('slider', function (Y) {
     // Remove the noscript classes
@@ -241,7 +239,6 @@
         // Add to list of sliders
         sliders.push(slider);
     });
-    
     contributionsForm.on(['change', 'keyup'], updateFormTotals);  // Update slider when input changes
 
     contributionsForm.setData('sliders', sliders);
@@ -384,7 +381,6 @@ function updateFormTotals(changeEvent) {
     var skipLink = form.one('.contribute .skip');
 
     var finalAmount = calculateTotal(form.getData('sliders'));
-    
     finalAmountContainer.setContent(finalAmount);
 
     if (!form.getData('abandoned')) {
@@ -461,4 +457,4 @@ function abandonForm(event) {
 </script>
 
 {{ marketo }}
-{% endblock footer_extra %} 
+{% endblock footer_extra %}

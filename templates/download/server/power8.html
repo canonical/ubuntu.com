@@ -19,15 +19,15 @@
 			<div class="six-col">
 				<h4>Ubuntu Server</h4>
 				<ul class="no-bullets">
-					<li><a href="http://cdimage.ubuntu.com/releases/14.04.2/release/" onclick="_gaq.push(['_trackEvent', 'Download', 'POWER8 server', '14.04.2']);">14.04.2 LTS&nbsp;&rsaquo;</a></li>
-					<li><a href="http://cdimage.ubuntu.com/releases/15.04/release/" onclick="_gaq.push(['_trackEvent', 'Download', 'POWER8 server', '15.04']);">15.04&nbsp;&rsaquo;</a></li>
+					<li><a href="http://cdimage.ubuntu.com/releases/{{lts_release}}/release/" onclick="_gaq.push(['_trackEvent', 'Download', 'POWER8 server', '{{lts_release}}']);">{{lts_release}} LTS&nbsp;&rsaquo;</a></li>
+					<li><a href="http://cdimage.ubuntu.com/releases/{{latest_release}}/release/" onclick="_gaq.push(['_trackEvent', 'Download', 'POWER8 server', '{{latest_release}}']);">{{latest_release}}&nbsp;&rsaquo;</a></li>
 				</ul>
 			</div>
 			<div class="six-col last-col">
 				<h4>Netboot image</h4>
 				<ul class="no-bullets">
-					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/trusty-updates/main/installer-ppc64el/current/images/netboot/" onclick="_gaq.push(['_trackEvent', 'Download', 'POWER8 netboot', '14.04.2']);">14.04.2 LTS&nbsp;&rsaquo;</a></li>
-					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/vivid/main/installer-ppc64el/current/images/netboot/" onclick="_gaq.push(['_trackEvent', 'Download', 'POWER8 netboot', '15.04']);">15.04&nbsp;&rsaquo;</a></li>
+					<li><a href="http://cdimage.ubuntu.com/netboot/{{lts_release}}/" onclick="_gaq.push(['_trackEvent', 'Download', 'POWER8 netboot', '{{lts_release}}']);">{{lts_release}} LTS&nbsp;&rsaquo;</a></li>
+					<li><a href="http://cdimage.ubuntu.com/netboot/{{latest_release}}/" onclick="_gaq.push(['_trackEvent', 'Download', 'POWER8 netboot', '{{latest_release}}']);">{{latest_release}}&nbsp;&rsaquo;</a></li>
 				</ul>
 			</div>
 		</div>
@@ -37,16 +37,16 @@
 <div class="row row-grey">
 	<div class="box box-highlight clearfix">
 		<div class="eight-col no-margin-bottom">
-			<h3>Ubuntu 14.04.2 LTS for IBM POWER8</h3>
-			<p>Ubuntu 14.04 brings with it, for the first time, support for IBM POWER8 including our MAAS provisioning, Juju cloud orchestration, Landscape systems management and Ubuntu OpenStack.  Ubuntu 14.04.2 adds CAPI and PowerNV support.</p>
+			<h3>Ubuntu {{lts_release}} LTS for IBM POWER8</h3>
+			<p>Ubuntu 14.04 brings with it, for the first time, support for IBM POWER8 including our MAAS provisioning, Juju cloud orchestration, Landscape systems management and Ubuntu OpenStack.  Ubuntu {{lts_release}} adds CAPI and PowerNV support.</p>
 		</div>
 	</div>
 </div>
 <div class="row">
 	<div class="box clearfix">
 		<div class="eight-col no-margin-bottom">
-			<h3>Ubuntu for 15.04 for IBM POWER8</h3>
-			<p>Ubuntu 15.04 continues to enable rapid innovation for POWER8 including Docker and Hardware Transactional Memory support along with many performance and availability enhancements. In addition, the OpenPOWER Foundation demonstrated over a dozen solutions running on Ubuntu at their inaugural OpenPOWER Summit in March 2015.</p>
+			<h3>Ubuntu for {{latest_release}} for IBM POWER8</h3>
+			<p>Ubuntu {{latest_release}} continues to enable rapid innovation for POWER8 including Docker and Hardware Transactional Memory support along with many performance and availability enhancements. In addition, the OpenPOWER Foundation demonstrated over a dozen solutions running on Ubuntu at their inaugural OpenPOWER Summit in March 2015.</p>
 		</div>
 	</div>
 </div>
