@@ -7,30 +7,34 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
+
+<!-- javascript -->
+<script src="//assets.ubuntu.com/v1/37b1db88-jquery.min.js"></script>
+<script  src="//assets.ubuntu.com/v1/e1085fb6-jquery.validate.min.js"></script>
+
 <div class="row row-hero no-border">
 	<h1>Trademark enquiries</h1>
 	<div class="eight-col">
 		<p>Please contact us using the form below if you&rsquo;d like to request an Ubuntu trademark licence, or have any other trademark enquiry. A member of our trademarks team will be in touch with you shortly.</p>
-		<p>All fields are required.</p>
 		<form method="post" action="https://www.tfaforms.com/responses/processor" class=" labelsLeftAligned" id="tfa_9631608629067" enctype="multipart/form-data">
 			<fieldset class="fieldset-1">
 				<h3>Your contact details</h3>
 				<ul>
 					<li>
-						<label id="tfa_Firstname-L" for="tfa_Firstname">First name</label>
-						<input type="text" id="tfa_Firstname" name="tfa_Firstname" value="" size="60" placeholder="">
+						<label id="tfa_Firstname-L" for="tfa_Firstname" re>First name <span>*</span></label>
+						<input type="text" id="tfa_Firstname" name="tfa_Firstname" value="" size="60" placeholder="" required>
 					</li>
 					<li>
-						<label id="tfa_Lastname-L" for="tfa_Lastname">Last name</label>
-						<input type="text" id="tfa_Lastname" name="tfa_Lastname" value="" size="60" placeholder="">
+						<label id="tfa_Lastname-L" for="tfa_Lastname">Last name <span>*</span></label>
+						<input type="text" id="tfa_Lastname" name="tfa_Lastname" value="" size="60" placeholder="" required>
 					</li>
 					<li>
-						<label id="tfa_Email-L" for="tfa_Email">Email</label>
-						<input type="text" id="tfa_Email" name="tfa_Email" value="" size="60" placeholder="" class="validate-email required">
+						<label id="tfa_Email-L" for="tfa_Email">Email <span>*</span></label>
+						<input type="email" id="tfa_Email" name="tfa_Email" value="" size="60" placeholder="" class="validate-email" required>
 					</li>
 					<li>
 						<label id="tfa_Phonenumber-L" for="tfa_Phonenumber">Phone number</label>
-						<input type="text" id="tfa_Phonenumber" name="tfa_Phonenumber" value="" size="60" placeholder="">
+						<input type="tel" id="tfa_Phonenumber" name="tfa_Phonenumber" value="" size="60" placeholder="">
 					</li>
 				</ul>
 			</fieldset>
@@ -52,19 +56,19 @@
 					</li>
 					<li>
 						<label id="tfa_Website1-L" for="tfa_Website1">Website</label>
-						<input type="text" id="tfa_Website1" name="tfa_Website1" value="" size="40" placeholder="">
+						<input type="url" id="tfa_Website1" name="tfa_Website1" value="" size="40" placeholder="">
 					</li>
 					<li>
-						<label id="tfa_Street-L" for="tfa_Street">Street</label>
-						<input type="text" id="tfa_Street" name="tfa_Street" value="" size="40" placeholder="">
+						<label id="tfa_Street-L" for="tfa_Street">Street <span>*</span></label>
+						<input type="text" id="tfa_Street" name="tfa_Street" value="" size="40" placeholder="" required>
 					</li>
 					<li>
-						<label id="tfa_StateProvince-L" for="tfa_StateProvince">State/Province</label>
-						<input type="text" id="tfa_StateProvince" name="tfa_StateProvince" value="" size="40" placeholder="">
+						<label id="tfa_StateProvince-L" for="tfa_StateProvince">State/Province <span>*</span></label>
+						<input type="text" id="tfa_StateProvince" name="tfa_StateProvince" value="" size="40" placeholder="" required>
 					</li>
 					<li>
-						<label id="tfa_City-L" for="tfa_City">City</label>
-						<input type="text" id="tfa_City" name="tfa_City" value="" size="40" placeholder="">
+						<label id="tfa_City-L" for="tfa_City">City <span>*</span></label>
+						<input type="text" id="tfa_City" name="tfa_City" value="" size="40" placeholder="" required>
 					</li>
 					<li>
 						<label id="tfa_ZipPostalcode-L" for="tfa_ZipPostalcode">Zip/Postal code</label>
@@ -353,8 +357,8 @@
 						</select>
 					</li>
 					<li>
-						<label id="tfa_Pleaseaddanyothe-L" for="tfa_Pleaseaddanyothe">Please describe your request in more detail</label>
-						<textarea cols="90" rows="6" id="tfa_Pleaseaddanyothe" name="tfa_Pleaseaddanyothe"></textarea>
+						<label id="tfa_Pleaseaddanyothe-L" for="tfa_Pleaseaddanyothe">Please describe your request in more detail <span>*</span></label>
+						<textarea cols="90" rows="6" id="tfa_Pleaseaddanyothe" name="tfa_Pleaseaddanyothe" required></textarea>
 					</li>
 				</ul>
 			</fieldset>
@@ -377,8 +381,17 @@
 	</div><!-- /.eight-col -->
 </div><!-- /.row -->
 
+<script>
+$("#tfa_9631608629067").validate({
+	errorElement: "span",
+	errorClass: "mktFormMsg mktError",
+	onkeyup: false,
+	onclick: false,
+	onblur: false
+});
+</script>
 
-<script type="text/javascript">
+<script>
 /* Copyright 2007 Veer West LLC - http://www.formassembly.com
  * populate a web form with querystring parameters.
  */

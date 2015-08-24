@@ -11,32 +11,82 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div itemscope itemtype="http://schema.org/Product" class="row row-hero">
-	<div class="twelve-col">
-		<h1 itemprop="name">The all-new BQ Aquaris E4.5</h1>
-		{% comment %}<p>Ubuntu is <a href="http://store.bqreaders.com/es/aquaris-e-4-5">available now from BQ</a> on the Aquaris E4.5 Ubuntu Edition.</p>{% endcomment %}
+<section class="row row-hero">
+	<div class="eight-col">
+		<h1>Ubuntu phone lineup</h1>
+		<p>Ubuntu phone is available on a growing range of commercial handsets. Here you can explore our current devices and learn where you can purchase them.</p>
 	</div>
+</section>
+
+<section itemscope itemtype="http://schema.org/Product" class="row row-hero">
+	<div class="twelve-col">
+		<div class="device-image four-col align-center prepend-one">
+			<p><img itemprop="image" src="{{ STATIC_URL }}img/phone/devices/image-meizu-mx4.png" alt="Meizu MX4" /></p>
+		</div>
+		<div class="six-col last-col prepend-one">
+			<h2 itemprop="name">The Meizu MX4 Ubuntu Edition</h2>
+			<ul itemprop="description" class="list-ticks">
+				<li>20.7 megapixel rear-facing camera with autofocus and dual LED flash and separate front-facing camera</li>
+				<li>5.36-inch screen with Nega liquid crystal technology, and LED backlight module</li>
+				<li>Corning Gorilla Glass 3 with improved damage resistance and toughness</li>
+				<li>4k video capture at a rate of 30 frames per second</li>
+				<li>16 GB of internal memory </li>
+				<li>Available in two colour options &ndash; Silver Edge and Gold</li>
+				<li>Dimensions:  144 x 75.2 x 8.9mm</li>
+				<li>Weight: 147g</li>
+			</ul>
+			<p itemprop="price">Only 299&euro;</p>
+			<p><a itemprop="url" class="link-cta-ubuntu" href="http://www.meizu.com/en/ubuntu/features.html">How to buy</a></p>
+		</div><!-- /.six-col -->
+	</div>
+</section>
+
+<section itemscope itemtype="http://schema.org/Product" class="row">
 	<div class="twelve-col">
 		<div class="device-image six-col align-center">
-			<p><img itemprop="image" src="{{ STATIC_URL }}img/phone/devices/image-bq-phone.png" alt="" /></p>	
+			<p><img itemprop="image" src="{{ STATIC_URL }}img/phone/devices/image-bqe5-phone.png" alt="BQ E5" /></p>
+		</div>
+		<div class="six-col last-col">
+			<h2 itemprop="name">The all new BQ Aquaris E5 HD</h2>
+			<ul itemprop="description" class="list-ticks">
+				<li>5&rdquo; Capacitive multi-touch screen with 5 simultaneous-detection points</li>
+				<li>Dragontrail glass for scratch and impact resistance</li>
+				<li>13 megapixel camera with autofocus and dual flash</li>
+				<li>16 GB internal memory with MicroSD slot for extra storage (up to 32GB)</li>
+				<li>Dimensions 142 x 71 x 8.65 mm</li>
+				<li>Weight: 134g</li>
+				<li>Full HD (1080p) camera for super-sharp video recording </li>
+				<li>Slots for two micro-SIM cards for phone use across multiple networks</li>
+            </ul>
+			<p itemprop="price">Only 199,90&euro;</p>
+			<p><a itemprop="url" class="link-cta-ubuntu" href="http://store.bq.com/gl/">How to buy</a></p>
+		</div><!-- /.six-col -->
+	</div>
+</section>
+
+<section itemscope itemtype="http://schema.org/Product" class="row">
+	<div class="twelve-col">
+		<div class="device-image six-col align-center">
+			<p><img itemprop="image" src="{{ STATIC_URL }}img/phone/devices/image-bq-phone.png" alt="" /></p>
 		</div>
 		<div class="six-col last-col">
 			<ul itemprop="description" class="list-ticks">
+				<h2 itemprop="name">The BQ Aquaris E4.5</h2>
     			<li>Slots for two micro-SIM cards so you can use your phone on more than one network</li>
                 <li>Dragontrail glass for scratch and impact resistance</li>
                 <li>8 megapixel camera with autofocus and dual flash</li>
                 <li>Full HD (1080p) camera for super-sharp video recording</li>
                 <li>8 GB internal memory with MicroSD slot for extra storage (up to 32GB)</li>
-                <li>Dimensions: 137 x 67 x 9 mm</li>            
+                <li>Dimensions: 137 x 67 x 9 mm</li>
                 <li>Weight: 123g</li>
             </ul>
 			<p itemprop="price">Only 169,90&euro;</p>
-			<p><a itemprop="url" class="link-cta-ubuntu" href="http://www.bq.com/gb/ubuntu.html">How to buy</a>&nbsp;&nbsp;<a itemprop="sameAs" href="http://www.bqreaders.com/gb/products/aquaris-e4-5.html">Learn more about the BQ Aquaris E4.5&nbsp;&rsaquo;</a></p>
+			<p><a itemprop="url" class="link-cta-ubuntu" href="http://store.bq.com/gl/">How to buy</a></p>
 		</div><!-- /.six-col -->
 	</div>
-</div>
+</section>
 
 <div class="row row-grey no-border text-center">
 	<h2 class="twelve-col">More Ubuntu phones coming soon&hellip;</h2>
 </div>
-{% endblock content %} 
+{% endblock content %}

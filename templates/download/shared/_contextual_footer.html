@@ -59,7 +59,7 @@
 		<ul class="no-bullets">
 		    <li><a class="external" href="https://help.ubuntu.com/lts/serverguide/index.html">Ubuntu Server Guide</a></li>
             <li><a class="external" href="https://help.ubuntu.com/14.04/index.html">Ubuntu 14.04 LTS documentation</a></li>
-            <li><a class="external" href="https://help.ubuntu.com/15.04/index.html">Ubuntu 15.04 documentation</a></li>
+            <li><a class="external" href="https://help.ubuntu.com/{{latest_release}}/index.html">Ubuntu {{latest_release}} documentation</a></li>
 		</ul>
 	</div><!-- /.feature-two -->
 {% else %}
@@ -75,7 +75,7 @@
 	<div class="feature-three four-col">
 		<h3>Detailed documentation</h3>
 		<p><a class="external" href="https://help.ubuntu.com/14.04/index.html">Ubuntu 14.04 LTS documentation</a></p>
-		<p><a class="external" href="https://help.ubuntu.com/15.04/index.html">Ubuntu 15.04 documentation</a></p>
+		<p><a class="external" href="https://help.ubuntu.com/{{latest_release}}/index.html">Ubuntu {{latest_release}} documentation</a></p>
 	</div><!-- /.feature-two -->
 {% else %}
 {% if level_2 == 'cloud' and level_3 == 'install-ubuntu-openstack' or level_3 == 'cloud-archive-instructions' %}
@@ -91,7 +91,7 @@
 		<ul class="no-bullets">
 		  <li><a class="external" href="https://wiki.ubuntu.com/DocumentationTeam/SystemDocumentation/UbuntuServerGuide">Ubuntu Server Guide</a></li>
       <li><a class="external" href="https://help.ubuntu.com/14.04/index.html">Ubuntu 14.04 LTS documentation</a></li>
-      <li><a class="external" href="https://help.ubuntu.com/15.04/index.html">Ubuntu 15.04 documentation</a></li>
+      <li><a class="external" href="https://help.ubuntu.com/{{latest_release}}/index.html">Ubuntu {{latest_release}} documentation</a></li>
 		</ul>
 	</div><!-- /.feature-two -->
 {% else %}
@@ -134,7 +134,7 @@
 	</div>
 	<div class="feature-three four-col">
 		<h3>Detailed documentation</h3>
-		<p><a class="external" href="https://help.ubuntu.com/lts/serverguide/index.htm">Ubuntu Server Guide</a></p>
+		<p><a class="external" href="https://help.ubuntu.com/lts/serverguide/index.html">Ubuntu Server Guide</a></p>
 		<p><a class="external" href="https://help.ubuntu.com/14.04/index.html">Ubuntu 14.04 LTS documentation</a></p>
 	</div><!-- /.feature-two -->
 {% else %}
@@ -146,9 +146,9 @@
 		<p><a href="https://help.ubuntu.com/community/UbuntuHashes" class="external">View Ubuntu&rsquo;s md5 hashes</a></p>
 	</div>
 	<div class="feature-three four-col">
-		<h3>Detailed documentation</h3>
-		<p><a class="external" href="https://help.ubuntu.com/lts/serverguide/index.html ">Ubuntu Server Guide&nbsp;&rsaquo;</a></p>
-		<p><a class="external" href="https://help.ubuntu.com/14.04/index.html">Ubuntu 14.04 LTS documentation&nbsp;&rsaquo;</a></p>
+		<h3 class="external"><span>Detailed documentation</span></h3>
+		<p><a href="https://help.ubuntu.com/lts/serverguide/index.html ">Ubuntu Server Guide&nbsp;&rsaquo;</a></p>
+		<p><a href="https://help.ubuntu.com/14.04/index.html">Ubuntu 14.04 LTS documentation&nbsp;&rsaquo;</a></p>
 	</div><!-- /.feature-two -->
 {% else %}
 {% if level_2 == 'server' and not level_3 %}
@@ -161,9 +161,9 @@
 		</ul>
 	</div>
 	<div class="feature-three four-col">
-		<h3>Detailed documentation</h3>
-		<p><a class="external" href="https://help.ubuntu.com/lts/serverguide/index.html">Ubuntu Server Guide&nbsp;&rsaquo;</a></p>
-		<p><a class="external" href="https://help.ubuntu.com/14.04/index.html">Ubuntu 14.04 LTS documentation&nbsp;&rsaquo;</a></p>
+		<h3 class="external"><span>Detailed documentation</span></h3>
+		<p><a href="https://help.ubuntu.com/lts/serverguide/index.html">Ubuntu Server Guide&nbsp;&rsaquo;</a></p>
+		<p><a href="https://help.ubuntu.com/14.04/index.html">Ubuntu 14.04 LTS documentation&nbsp;&rsaquo;</a></p>
 	</div><!-- /.feature-two -->
 {% else %}
 {% if level_2 == 'ubuntu-kylin' %}
@@ -171,17 +171,17 @@
         <h3>BitTorrent</h3>
         <p>If you prefer, you can download Ubuntu Kylin via a torrent.</p>
         <ul class="no-bullets vertical-divider">
-            <li class="two-col"><h4>Ubuntu Kylin 14.04.2</h4>
+            <li class="two-col"><h4>Ubuntu Kylin {{ lts_release }}</h4>
                 <ul class="no-bullets">
-                    <li><a class="external" href="http://cdimage.ubuntu.com/ubuntukylin/releases/14.04/release/ubuntukylin-14.04.2-desktop-amd64.iso.torrent">64-bit torrent</a></li>
-                    <li><a class="external" href="http://cdimage.ubuntu.com/ubuntukylin/releases/14.04/release/ubuntukylin-14.04.2-desktop-i386.iso.torrent">32-bit torrent</a></li>
+                    <li><a class="external" href="http://cdimage.ubuntu.com/ubuntukylin/releases/14.04/release/ubuntukylin-{{ lts_release }}-desktop-amd64.iso.torrent">64-bit torrent</a></li>
+                    <li><a class="external" href="http://cdimage.ubuntu.com/ubuntukylin/releases/14.04/release/ubuntukylin-{{ lts_release }}-desktop-i386.iso.torrent">32-bit torrent</a></li>
                </ul>
             </li>
             <li class="two-col last-col">
-                <h4>Ubuntu Kylin 15.04</h4>
+                <h4>Ubuntu Kylin {{latest_release}}</h4>
                 <ul class="no-bullets">
-                    <li><a class="external" href="http://cdimage.ubuntu.com/ubuntukylin/releases/15.04/release/ubuntukylin-15.04-desktop-amd64.iso.torrent ">64-bit torrent</a></li>
-                    <li><a class="external" href="http://cdimage.ubuntu.com/ubuntukylin/releases/15.04/release/ubuntukylin-15.04-desktop-i386.iso.torrent">32-bit torrent</a></li>
+                    <li><a class="external" href="http://cdimage.ubuntu.com/ubuntukylin/releases/{{latest_release}}/release/ubuntukylin-{{latest_release}}-desktop-amd64.iso.torrent ">64-bit torrent</a></li>
+                    <li><a class="external" href="http://cdimage.ubuntu.com/ubuntukylin/releases/{{latest_release}}/release/ubuntukylin-{{latest_release}}-desktop-i386.iso.torrent">32-bit torrent</a></li>
                 </ul>
             </li>
         </ul>
@@ -206,13 +206,13 @@
 {% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}
 {% if level_2 != 'ubuntu-kylin-zh-CN' %}
 	<div class="feature-four four-col">
-		<h3>Helping hands</h3>
+		<h3 class="external"><span>Helping hands</span></h3>
 		<p>If you get stuck, help is always at hand.</p>
 		<ul class="no-bullets">
-			<li><a class="external" href="http://askubuntu.com/">Ask Ubuntu&nbsp;&rsaquo;</a></li>
-			<li><a class="external" href="http://ubuntuforums.org/">Ubuntu Forums&nbsp;&rsaquo;</a></li>
-			<li><a class="external" href="http://discourse.ubuntu.com">Ubuntu Discourse&nbsp;&rsaquo;</a></li>
-			<li><a class="external" href="https://help.ubuntu.com/community/InternetRelayChat">Live Support Chat&nbsp;&rsaquo;</a></li>
+			<li><a href="http://askubuntu.com/">Ask Ubuntu&nbsp;&rsaquo;</a></li>
+			<li><a href="http://ubuntuforums.org/">Ubuntu Forums&nbsp;&rsaquo;</a></li>
+			<li><a href="http://discourse.ubuntu.com">Ubuntu Discourse&nbsp;&rsaquo;</a></li>
+			<li><a href="https://help.ubuntu.com/community/InternetRelayChat">Live Support Chat&nbsp;&rsaquo;</a></li>
 		</ul>
 	</div>
 {% endif %}

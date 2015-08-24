@@ -1,4 +1,7 @@
 <!doctype html>
+
+{% with lts_release="14.04.3" latest_release="15.04" lts_release_name="TrustyTahr" latest_release_name="VividVervet" openstack_version="Juno" %}
+
 <!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en" dir="ltr"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en" dir="ltr"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie10 lt-ie9" lang="en" dir="ltr"> <![endif]-->
@@ -21,12 +24,13 @@
 
 <title>{% block title %}{% endblock %} | Ubuntu</title>
 
-<link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" type="image/x-icon" />
+<link rel="icon" type="image/png" href="{{ STATIC_URL }}img/favicon-16x16.png" sizes="16x16" />
+<link rel="icon" type="image/png" href="{{ STATIC_URL }}img/favicon-32x32.png" sizes="32x32" />
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ STATIC_URL }}img/apple-touch-icon-144x144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ STATIC_URL }}img/apple-touch-icon-114x114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ STATIC_URL }}img/apple-touch-icon-72x72-precomposed.png">
-<link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}img/apple-touch-icon-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ STATIC_URL }}img/apple-touch-icon-144x144-precomposed.png" />
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ STATIC_URL }}img/apple-touch-icon-114x114-precomposed.png" />
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ STATIC_URL }}img/apple-touch-icon-72x72-precomposed.png" />
+<link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}img/apple-touch-icon-precomposed.png" />
 <link type="text/plain" rel="author" href="{{ STATIC_URL }}files/humans.txt" />
 
 <!-- stylesheets -->
@@ -83,8 +87,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     			<li><a{% if level_1 == 'tablet' %} class="active"{% endif %} href="/tablet">Tablet</a>
     				{% include "tablet/_nav_secondary.html" with promo="true" %}
     			</li>
-    			<li><a{% if level_1 == 'tv' %} class="active"{% endif %} href="/tv">TV</a>
-    				{% include "tv/_nav_secondary.html" with promo="true" %}
+    			<li><a{% if level_1 == 'internet-of-things' %} class="active"{% endif %} href="/internet-of-things">Things</a>
+    				{% include "internet-of-things/_nav_secondary.html" with promo="true" %}
     			</li>
     			<li><a{% if level_1 == 'management' %} class="active"{% endif %} href="/management">Management</a>
     				{% include "management/_nav_secondary.html" with promo="true" %}
@@ -174,6 +178,6 @@ var google_remarketing_only = true;
 	</div>
 </noscript>
 
-
 </body>
 </html>
+{% endwith %}
