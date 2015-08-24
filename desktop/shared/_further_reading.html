@@ -1,0 +1,35 @@
+{% block head_extra %}
+<script src="https://www.google.com/jsapi"></script>
+<script>google.load("feeds", "1")</script>
+{% endblock %}
+	<div id="insights-footer-feed">
+		<h3>{% if title %}{{ title }}{% else %}Further reading{% endif %}</h3>
+	</div>
+	<script>
+		var feedcontainer=document.getElementById("insights-footer-feed");
+		var feedurl=document.location.protocol+"//insights.ubuntu.com/topic/desktop/feed/";
+		var feedlimit={% if articles %}{{ articles }}{% else %}3{% endif %};
+		var rssoutput="<ul class='no-bullets smaller'>";
+			function rssfeedsetup(){
+				var feedpointer=new google.feeds.Feed(feedurl); //Google Feed API method
+						feedpointer.setNumEntries(feedlimit); //Google Feed API method
+						feedpointer.load(displayfeed2); //Google Feed API method
+			}
+
+			function displayfeed2(result){
+				if (!result.error){
+					var thefeeds2=result.feed.entries;
+					for (var i=0; i<thefeeds2.length; i++){
+						rssoutput+="<li><a href='" + thefeeds2[i].link + "' class='external'>" + thefeeds2[i].title + "</a></li>";
+					}
+					rssoutput+="</ul>";
+					feedcontainer.innerHTML=feedcontainer.innerHTML + rssoutput;
+				} else {
+					console.error('RSS feed error');
+				}
+			}
+				
+			window.onload=function(){
+				rssfeedsetup();
+			}
+	</script>

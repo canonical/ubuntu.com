@@ -1,0 +1,125 @@
+{% extends "ubuntu/desktop/base_desktop.html" %}
+
+{% block title %}For education{% endblock %}
+{% block meta_keywords %}Ubuntu, Ubuntu operating system, OS, Linux, Windows alternative, Mac alternative, thin client, open-source, education, schools, IT{% endblock %}
+{% block extra_body_class %}desktop-education{% endblock %}
+
+{% block second_level_nav_items %}
+    {% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="For enterprise"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+
+<div class="row row-hero no-border">
+    <div class="six-col">
+        <h1>Ubuntu for education</h1>
+        <p class="intro">With a wide range of educational software and certified hardware, Ubuntu provides secure, cost-effective, accessible computing for students, teachers and school administrators.</p>
+        {% include "ubuntu/desktop/shared/_share-this.html" with tweet="Learn how #Ubuntu desktop OS helps students and teachers around the world" %}
+    </div>
+</div>
+
+<div class="row no-border">
+    <h2>Education essentials</h2>
+    <div class="combined-list">
+        <ul class="six-col list-ubuntu">
+            <li>Open source &mdash; free from licensing restrictions</li>
+            <li>Microsoft-compatible office productivity suite</li>
+            <li>Fully translated into 40+ languages</li>
+            <li class="last-item">Long Term Support releases come with five years of security patches and updates</li>
+        </ul>
+        <ul class="six-col last-col list-ubuntu">
+            <li>On-site consulting services and training available</li>
+            <li>Virus free and highly secure</li>
+            <li>Runs well on old and new hardware</li>
+            <li class="last-item">A wide range of education-specific apps for students and educators alike</li>
+        </ul>
+    </div>
+</div>
+
+<div class="row row-case-studies">
+    <h2>A global success in education</h2>
+    <div class="vertical-divider">
+        <div class="four-col">
+            <h3>Penn Manor school district, USA</h3>
+            <p>Penn Manor saved $345,000 on 1,725 Ubuntu PCs at a fraction of what proprietary software costs.</p>
+            <p><a href="https://insights.ubuntu.com/2014/03/25/an-ubuntu-pc-for-everyone-in-penn-manor-school-district-pennsylvania-usa/" class="external">Learn about saving with Ubuntu</a></p>
+        </div>
+        <div class="four-col">
+            <h3>The Andalusian Regional Government, Spain</h3>
+            <blockquote class="pull-quote">
+                <p><span>&ldquo;</span>Students throughout Andalusia now have access to a stable and easy-to-use technology environment.<span>&rdquo;</span></p>
+            </blockquote>
+            <p><a href="https://insights.ubuntu.com/2010/03/13/andalusia-deploys-220000-ubuntu-desktops-in-schools-throughout-the-region/" class="external">Learn about switching to Ubuntu</a></p>
+        </div>
+        <div class="four-col last-col">
+            <h3>Universit&eacute; de Nantes, France</h3>
+            <p class="headline">Reduced the total cost of ownership across 40,000 Windows-dominated desktops.</p>
+            <p><a href="https://insights.ubuntu.com/2014/09/02/meeting-evolving-it-needs-at-the-university-of-nantes-france/" class="external">Learn how Ubuntu cuts costs</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="row row-apps">
+    <div class="twelve-col">
+        <h2>Countless open source tools and apps available</h2>
+    </div>
+    <div class="one-col">
+        <img src="{{ STATIC_URL }}u/img/desktop/education/gcompris-icon.png" alt="Gcompris icon" />
+    </div>
+    <div class="three-col">
+        <h3>Gcompris</h3>
+        <p>Software suite of learning and skill building activities for school children.</p>
+    </div>
+    <div class="one-col">
+        <img src="{{ STATIC_URL }}u/img/desktop/education/marble-icon.png" alt="Marble icon" />
+    </div>
+    <div class="three-col">
+        <h3>Marble</h3>
+        <p>Extensive virtual world atlas for exploring the earth and other planets.</p>
+    </div>
+    <div class="one-col">
+        <img src="{{ STATIC_URL }}u/img/desktop/education/italc-icon.png" alt="iTalc icon" />
+    </div>
+    <div class="three-col last-col">
+        <h3>iTalc</h3>
+        <p>IT tool which allows teachers to manage individual computers within school’s network.</p>
+    </div>
+
+    <div class="one-col">
+        <img src="{{ STATIC_URL }}u/img/desktop/education/scribus-icon.png" alt="Scribus icon" />
+    </div>
+    <div class="three-col">
+        <h3>Scribus</h3>
+        <p>Desktop publishing application for professional typesetting and interactive presentations.</p>
+    </div>
+    <div class="one-col">
+        <img src="{{ STATIC_URL }}u/img/desktop/education/lightspeed-icon.png" alt="Lightspeed icon" />
+    </div>
+    <div class="three-col">
+        <h3>Lightspeed</h3>
+        <p>Physics simulator for exploring the special theory of relativity.</p>
+    </div>
+    <div class="one-col">
+        <img src="{{ STATIC_URL }}u/img/desktop/education/schooltool-icon.png" alt="Schooltool icon" />
+    </div>
+    <div class="three-col last-col">
+        <h3>SchoolTool</h3>
+        <p>Web based student information system designed for schools in developing countries.</p>
+    </div>
+</div>
+
+<div class="row no-border row-landscape">
+    <div class="five-col">
+        <div>
+            <h2>Support and management tools for&nbsp;your school</h2>
+            <p>Ubuntu Advantage is the professional support package from the experts at Canonical. Get 24x7 support with access to engineers with first-hand experience of your issues. It also includes Landscape, the Ubuntu systems management tool, for monitoring, managing, patching and compliance reporting on all your Ubuntu desktops.</p>
+            <p><a href="/management">Learn about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+        </div>
+    </div>
+    <div class="pull-right right">
+        <img src="{{ STATIC_URL }}u/img/desktop/enterprise/landscape-screenshot.png" class="touch-border landscape-screenshot priority-0" alt="Landscape screenshot" />
+    </div>
+</div>
+
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

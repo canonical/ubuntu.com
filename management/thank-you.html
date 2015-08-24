@@ -1,0 +1,33 @@
+{% extends "ubuntu/management/base_management.html" %}
+
+{% block title %}Thank you | Management{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Management" subsection_title="Contact us" page_title="Thank you"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+{% include "ubuntu/shared/_thank_you.html" with thanks_context="contacting us about Ubuntu Advantage" %}
+{% include "ubuntu/shared/_live_chat.html" %}
+{% endblock content %}
+{% block footer_extra %}
+<!-- Google Code for Services Canonical - contact us Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1012391776;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "utP4CMDOwQMQ4L7f4gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1012391776/?value=0&amp;label=utP4CMDOwQMQ4L7f4gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+{{ marketo }}
+{% endblock footer_extra %}

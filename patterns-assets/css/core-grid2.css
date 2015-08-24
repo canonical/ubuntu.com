@@ -1,0 +1,200 @@
+@charset "UTF-8";
+/**
+ * Ubuntu Core Front-End Framework
+ *
+ * Grid file part of the Ubuntu Core Front-End Framework
+ * 
+ * This grid is composed by 14 columns (units) separated by 13 gutters (1/3 unit).
+ * The first and last column are for padding purposes only.
+ * The content fits in the middle 12 columns.
+ * Possible divisions: 1 (12 units + 11 gutters), 2 (6 units + 5 gutters), 
+ * 3 ( 4 units + 3 gutters) and 4 (3 units + 2 gutters).
+ *
+ * When 1 unit = 60px, 1 gutter = 20px
+ * 
+ * @project		Ubuntu Core Front-End Framework
+ * @author		Web Team at Canonical Ltd
+ * @copyright	2012 Canonical Ltd
+ *
+ * @see			http://gridinator.com/
+ */
+
+body { font-size: 13px; }
+
+.wrapper {
+	margin: 0 auto; /* This centers the grid. Remove this line to place the grid on the left of the page. */
+	text-align: left;
+	width: 81.529em;
+}
+
+.inner-wrapper {
+	background: url(core-grid2.png) repeat-y 0 0; /* The file gridinator.png is a grid background; delete this line to remove it. If you did not generate a background image, you can still do so by going to http://gridinator.com/ and entering the details found at the top of this CSS file. You will then be given a grid image to match your original grid.  */
+	clear: both;
+	display: inline;/* IE double margin fix. Feel free to move this to your IE specific stylesheets. */
+	float: left;
+	padding: 0 60px 0 60px;
+	position: relative;
+	width: 72.298em;
+}
+
+
+
+
+.container {
+	clear: both;
+	float: left;
+	margin: 0;
+	width: 100%;	
+}
+.one-col, .two-col, .three-col, .four-col, .five-col, .six-col, .seven-col, .eight-col, .nine-col, .ten-col, .eleven-col, .twelve-col {
+	clear: none;
+	display: inline;/* IE double margin fix. Feel free to move this to your IE specific stylesheets. */
+	float: left;
+	margin: 0 1.538em 0 0;
+	padding: 0;
+	position: relative;
+	background: #9fcdf6; /* Delete this line to remove the blue colour on columns. */
+}
+.one-col {
+	width: 4.615em;
+}
+
+.two-col {
+	width: 10.768em;
+}
+
+.three-col {
+	width: 16.921em;
+}
+
+.four-col {
+	width: 23.074em;
+}
+
+.five-col {
+	width: 29.227em;
+}
+
+.six-col {
+	width: 35.38em;
+}
+
+.seven-col {
+	width: 41.533em;
+}
+
+.eight-col {
+	width: 47.686em;
+}
+
+.nine-col {
+	width: 53.839em;
+}
+
+.ten-col {
+	width: 59.992em;
+}
+
+.eleven-col {
+	width: 66.145em;
+}
+
+.twelve-col {
+	width: 72.298em;
+	margin-right: 0;
+}
+
+.prefix-one {
+	margin-left: 6.153em;
+}
+
+.prefix-two {
+	margin-left: 12.306em;
+}
+
+.prefix-three {
+	margin-left: 18.459em;
+}
+
+.prefix-four {
+	margin-left: 24.612em;
+}
+
+.prefix-five {
+	margin-left: 30.765em;
+}
+
+.prefix-six {
+	margin-left: 36.918em;
+}
+
+.prefix-seven {
+	margin-left: 43.071em;
+}
+
+.prefix-eight {
+	margin-left: 49.224em;
+}
+
+.prefix-nine {
+	margin-left: 55.377em;
+}
+
+.prefix-ten {
+	margin-left: 61.53em;
+}
+
+.prefix-eleven {
+	margin-left: 67.683em;
+}
+
+.suffix-one {
+	margin-right: 7.691em;
+}
+
+.suffix-two {
+	margin-right: 13.844em;
+}
+
+.suffix-three {
+	margin-right: 19.997em;
+}
+
+.suffix-four {
+	margin-right: 26.15em;
+}
+
+.suffix-five {
+	margin-right: 32.303em;
+}
+
+.suffix-six {
+	margin-right: 38.456em;
+}
+
+.suffix-seven {
+	margin-right: 44.609em;
+}
+
+.suffix-eight {
+	margin-right: 50.762em;
+}
+
+.suffix-nine {
+	margin-right: 56.915em;
+}
+
+.suffix-ten {
+	margin-right: 63.068em;
+}
+
+.suffix-eleven {
+	margin-right: 69.221em;
+}
+
+.clear { /* Useful generic clearing class. */
+	clear: both;
+}
+.last-col {
+	margin-right: 0;
+}

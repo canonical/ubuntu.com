@@ -1,0 +1,102 @@
+{% extends "ubuntu/phone/base_phone.html" %}
+
+{% block title %}For developers | Ubuntu for phones{% endblock %}
+
+{% block meta_description %}Ubuntu phone represents a tremendous opportunity for developers. Scopes can be developed quickly, making your content available to Ubuntu users more easily than it is through traditional apps. The Ubuntu web apps API allows you to make websites installable as apps on phones running Ubuntu. HTML5 apps can be ported quickly and super-fast native apps can be developed with the Ubuntu SDK.{% endblock meta_description %} 
+
+{% block meta_keywords %}Ubuntu, phone, smartphone, mobile, develop, developer, ISV, app, application, store, scope software, centre, center, purchase, ecommerce, revenue, content, channel, movie, music, mp3, album, book, magazine, SDK, API, HTML5, web, native, OpenGL, open source, Linux, Android, Unity, Ubuntu One, cloud, U1DB{% endblock meta_keywords %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Phone" page_title="For developers"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-border">
+	<div class="five-col append-one">
+		<h1>For developers by&nbsp;design</h1>
+		<p class="intro">A unique opportunity to build content and services into the core phone experience.</p>
+		<!-- <p><a href="http://developer.ubuntu.com/get-started/">Download the SDK&nbsp;&rsaquo;</a></p> -->
+	</div>
+	<div class="six-col last-col">
+		<img src="{{ STATIC_URL }}u/img/phone/developers/image-developer-hero.png" width="519" alt="" />
+	</div>
+</div><!-- /.row -->
+
+<div class="row row-slideshow no-border">
+    {% include "ubuntu/phone/shared/_slideshow.html" %}
+    <div id="scopes-content" class="six-col last-col prepend-five">
+        <h2>Be more than just an app</h2>
+        <p>By leveraging scopes, your content and services become integral to the core phone experience&nbsp;&mdash;&nbsp;and at a fraction of the cost of developing and maintaining a traditional app. It&rsquo;s never been this easy to develop a mobile experience.</p>
+        <p>The Ubuntu SDK also support mainstream HTML5 apps beautifully, while a rich Qt/QML based native app environment can be used to develop deeper experiences, like&nbsp;games.</p>
+    </div>
+    <div class="six-col for-mobile"><img class="left" src="{{ STATIC_URL }}u/img/phone/features/image-introducing-scopes.png" alt="" /></div>
+</div>
+
+
+<div class="row row-scope-frameworks">
+    <div class="six-col">
+        <h2>Introducing scopes and&nbsp;frameworks</h2>
+    	<p>With Ubuntu, you can make your content discoverable via the phone&rsquo;s default aggregating scopes (e.g. Today, NearBy, News, Music, Photos) simply by creating a new scope of your own. For even deeper API access, frameworks are coming soon. With the Messaging framework, for example, you can integrate your services with the core messaging app for the phone. With the Cloud framework, users could adjust the settings to instruct all core apps to use your service for&nbsp;storage.</p>
+    </div>
+</div><!-- /.row -->
+
+<div class="row row-grey equal-height no-border">
+    <div class="five-col align-vertically align-center">
+		<img src="{{ STATIC_URL }}u/img/phone/developers/image-html5-logo.png" alt="" />
+    </div>
+    <div class="seven-col last-col">
+        <h2>HTML5 and web apps: the fastest path to Ubuntu</h2>
+        <p>If you&rsquo;ve created HTML5 apps or mobile websites for other platforms &mdash; there&rsquo;s good news: the path to Ubuntu couldn&rsquo;t be quicker. We support both the Webkit/Blink and Cordova development standards &mdash; and with a separate API that enables websites to be quickly converted to run independently of a browser, with full access to phone notifications and settings, the same goes for your web&nbsp;applications.</p>
+    </div>
+</div><!-- /.row -->
+
+<div class="row row-shine no-border">
+    <div class="for-mobile"><img src="{{ STATIC_URL }}u/img/phone/developers/image-content-shine-small.jpg" alt="" /></div>
+    <div class="row-shine-content five-col no-margin-bottom">
+        <h2 class="four-col">Space for your content to shine</h2>
+        <p class="clear">There&rsquo;s no better way to highlight your content and services than Ubuntu&rsquo;s thoughtfully designed scopes, giving you more space to make your content stand&nbsp;out.</p>
+        <p><a href="/phone/features">Learn more about scopes&nbsp;&rsaquo;</a></p>
+    </div>
+</div><!-- /.row -->
+
+<div class="row equal-height">
+	<div class="eight-col">
+    <h2>Going native</h2>
+        <p>The Ubuntu SDK includes everything you need to create your own scopes, repurpose your web/HTML5 content and develop native apps.</p>		
+        <ul class="list list-ubuntu">
+            <li>QtCreator IDE (2.8.1) with improved device detection and management</li>
+            <li>Full native OpenGL
+            <li>System and service APIs for accessing hardware sensors and alarms</li>
+            <li>The freedom to combine QML, C or C++ and JavaScript</li>
+            <li>The latest Ubuntu designs so you can build your app to fit with the UI</li>
+        </ul>
+
+		<p><a class="link-cta-ubuntu" href="http://developer.ubuntu.com/get-started/">Download the SDK now</a></p>
+	</div>
+    <div class="not-for-small four-col last-col align-center align-vertically">
+        <img src="{{ STATIC_URL }}u/img/phone/developers/logo-qt.svg" width="135" alt="" />
+    </div>
+</div><!-- /.row -->
+
+<div class="row row-community equal-height">
+    <div class="five-col align-center align-vertically">
+        <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-help-orange.svg" width="210" alt="" />
+    </div>
+	<div class="six-col last-col">
+		<h2>A helping hand</h2>
+		<p>Our Qt development partner, ICS, offers native app development services and localisation on Qt platforms. Their team of engineers can develop elegant solutions in response to the most complex requirements &mdash; and help you bring your application to life on Ubuntu.</p>
+		<p><a class="external" href="https://www.ics.com/technologies/ubuntu">Visit the ICS website</a></p>
+	</div>
+</div><!-- /.row -->
+
+<div class="row no-border">
+	<div class="eight-col">
+		<h2>Announcing the China Mobile and Ubuntu Developer Innovation Competition</h2>
+		<p class="intro">15 December 2014 &ndash; 23 August 2015</p>
+		<p><a class="external" href="http://dream.10086.cn/yecp/match?action=ubuntu">Signup now</a></p>
+	</div>
+    <div class="four-col last-col align-center">
+        <img src="{{ STATIC_URL }}u/img/phone/developers/icon-china-mobile.svg" width="209" alt="" />
+    </div>
+</div><!-- /.row -->
+{% endblock content %}

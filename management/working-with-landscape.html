@@ -1,0 +1,101 @@
+{% extends "ubuntu/management/base_management.html" %}
+
+{% block title %}Working with Landscape | Management{% endblock %}
+{% block extra_body_class %}working-with-landscape{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Management" page_title="Working with landscape"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+	<div class="row row-hero">
+	<h1>Working with Landscape</h1>
+		<div class="eight-col">
+			<p>Landscape provides a single, easy-to-use, browser-based control panel, through which you can manage your machines from anywhere. With a fully scriptable API, you can integrate it with your current Linux management tools, extending their capabilities and giving you the power to do more with fewer resources. Most important of all however, is Landscape&rsquo;s ease of use. In fact, for experienced Linux administrators, the learning curve is practically non-existent.</p>
+		</div><!-- /.eight-col -->
+			<p class="twelve-col"><a class="link-cta-ubuntu" href="https://landscape.canonical.com/trial-registration">Get a free 30-day trial</a> or <a href="/management/contact-us">contact us about Landscape&nbsp;&rsaquo;</a></p>
+	</div><!-- /.row .row-hero -->
+
+	<div id="landscape-videos" class="row">
+		<div class="six-col">
+			<h3>Software management in action</h3>
+			<p>In this short demonstration of Landscape in action, we show how quickly updates can be applied to thousands of machines &ndash; and how easy it is to roll back affected systems when an issue arises.</p>
+		</div><!-- /.six-col -->
+		<div class="six-col last-col">
+			<div class="video-container">
+				<iframe width="442" height="249" src="http://www.youtube.com/embed/yaFE4g8EcvI?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div><!-- /.six-col -->
+	</div><!-- /#landscape-videos -->
+
+	<div class="row">
+		<h3>Serious scalability</h3>
+		<div class="six-col">
+			<p>With Landscape, you can manage thousands of systems as easily as you can manage one. It shows you the same information about those machines as you&rsquo;d see if you logged into them one by one, via the terminal. That&rsquo;s because it&rsquo;s built on the same tried-and-tested, open source administration tools you use every day.</p>
+			<p>So what makes it different from a script-based solution developed in-house?</p>
+			<p>In a word: scalability.</p>
+		</div><!-- /.six-col -->
+		<div class="six-col last-col">
+			<p>Landscape has been designed to scale from the outset &ndash; in fact, a single instance can manage up to 40,000 Ubuntu machines. It means that, whether you currently support five Ubuntu installations or five thousand, it will handle the workload with ease.</p>
+			<p>And if you choose to expand your Ubuntu and upgradable package, you can do so with ease. Canonical customers are currently using Landscape to manage hundreds of thousands of machines around the world, with some of those deployments numbering tens of thousands of machines.</p>
+		</div><!-- /.six-col -->
+	</div><!-- /.row .no-border -->
+
+	<div id="landscape-api-video" class="row">
+		<h3>Easier asset management</h3>
+		<div class="six-col">
+			<p>Landscape includes extensive asset tracking capabilities, including a full hardware inventory.  This gives you a high level of detail on managed devices and a complete software inventory spanning all installed, installable and upgradable packages. It also provides a comprehensive search syntax to perform queries on this data, enabling you to find machines with detailed criteria, such as &ldquo;find all laptops and desktops with an NVIDIA video card&rdquo; (&lsquo;tag:laptop OR desktop display.product:NVIDIA), or &ldquo;identify all laptops running Natty that require security updates&rdquo; (&lsquo;tag:laptop distribution:natty alert:security-upgrades&rsquo;).</p>
+		</div><!-- /.six-col -->
+		<div class="six-col last-col">
+			<div class="video-container">
+				<iframe width="442" height="249" src="http://www.youtube.com/embed/N6iWVBp6gU4?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div><!-- /.six-col -->
+	</div><!-- /#landscape-api-video -->
+
+	<div class="row">
+		<h3>A powerful, scriptable API</h3>
+		<div class="six-col">
+			<p>All administrators want customised systems management systems that reflect the exact requirements of their organisation. Landscape delivers this with a central console you can use to automate tasks, whether they&rsquo;re managed directly or through the API.</p>
+			<p>By scripting to Landscape&rsquo;s API, you can use Bash or Python to craft custom workflows (with full tab-expansion hinting support in the shell client) that deliver the best of both worlds: they are highly-customised, yet built on components delivered, QA-tested and maintained by Canonical&rsquo;s engineers &ndash; not you and your overworked colleagues.</p>
+		</div><!-- /.six-col -->
+		<div class="six-col last-col">
+			<p>API access to Landscape&rsquo;s functionality makes it easy to use Landscape alongside the management and monitoring tools you already use &ndash; whether they&rsquo;re scripts you&rsquo;ve developed in-house, or established open-source products like Nagios or Puppet. For example, via the API, Landscape can easily be integrated with desktop support systems to automatically generate trouble tickets, to export systems to a corporate asset-management system calculating asset depreciation or to provide data feeds for custom reporting or dashboarding. The possibilities are endless.</p>
+		</div><!-- /.six-col -->
+		<p class="container"><a href="/management/landscape-features">Learn more about Landscape's features&nbsp;&rsaquo;</a></p>
+	</div><!-- /.row -->
+
+	<div id="landscape-rbac-video" class="row">
+		<div class="six-col">
+			<h3>Role-based access control (RBAC)</h3>
+			<p>Landscape makes it easy to assign different levels of administration privileges to different individuals, enabling you to maintain strict controls over which operator does what on your machines. The built in RBAC features give you the flexibility to create custom levels and profiles, with a default configuration included to ensure that these features can be used out-of-the-box.</p>
+			<p><a href="/management/compliance">Find out more about compliance with Landscape&nbsp;&rsaquo;</a></p>
+		</div><!-- /.six-col -->
+		<div class="six-col last-col">
+			<div class="video-container">
+				<iframe width="442" height="249" src="http://www.youtube.com/embed/OYrI1N6fDNE?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen style="float:right;"></iframe>
+			</div>
+		</div><!-- /.six-col -->
+	</div><!-- /#landscape-rbac-video -->
+
+	<div class="row no-border">
+		<div class="twelve-col">
+			<h3>Start using Landscape straight away</h3>
+			<div class="six-col">
+				<p>Landscape is designed to make your job easier, not harder. That&rsquo;s why it features an intuitive, browser-based GUI that can be accessed from any device with a standards-compliant web browser. You can manage machines in bulk or drill down to individual machines; either way, the Landscape interface displays exactly the same information you&rsquo;d see about those machines in the terminal.</p>
+				<p>The API offers access to all of Landscapes features via Python or Bash. You can use it to integrate Landscape with legacy systems or solutions that have been custom-developed for your infrastructure. </p>
+			</div><!-- /.six-col -->
+			<div class="six-col last-col">
+				<p>And it means you can leverage Landscape&rsquo;s functionality for any script-based solution you are called on to deliver, whether it is a temporary or long-term solution.</p>
+				<p>Whether you use the GUI or the API, you&rsquo;ll find Landscape a natural extension to the tools you already have at your disposal, rather than another new application with a new learning curve.</p>
+			</div><!-- /.six-col -->
+			<p class="container"><a href="/management/ubuntu-advantage">How to get Landscape&nbsp;&rsaquo;</a></p>
+		</div>
+	</div><!-- /.row -->
+
+{% include "ubuntu/shared/_live_chat.html" %}
+
+{% include "ubuntu/shared/_munchkin.html" %}
+
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

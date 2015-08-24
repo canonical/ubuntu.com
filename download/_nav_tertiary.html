@@ -1,0 +1,60 @@
+	<ul class="third-level-nav">
+{% if level_2 == 'server' and not level_3 == 'install-ubuntu-server' and not level_3 == 'thank-you' %}
+		<li{% if level_3 == 'arm' %} class="active"{% endif %}><a href="/download/server/arm">ARM</a></li>
+		<li{% if level_3 == 'power8' %} class="active"{% endif %}><a href="/download/server/power8">POWER8</a></li>
+{% endif %}
+{% if level_3 == 'burn-a-dvd-on-mac-osx' %}
+		<li class="active"><a href="/download/desktop/burn-a-dvd-on-mac-osx">How to burn a DVD on OS X</a></li>
+{% endif %}
+{% if level_3 == 'burn-a-dvd-on-ubuntu' %}
+		<li class="active"><a href="/download/desktop/burn-a-dvd-on-ubuntu">How to burn a DVD on Ubuntu</a></li>
+{% endif %}
+{% if level_3 == 'burn-a-dvd-on-windows' %}
+		<li class="active"><a href="/download/desktop/burn-a-dvd-on-windows">How to burn a DVD on Windows</a></li>
+{% endif %}
+{% if level_3 == 'create-a-usb-stick-on-mac-osx' %}
+		<li class="active"><a href="/download/desktop/create-a-usb-stick-on-mac-osx">Create a bootable USB stick on OS X</a></li>
+{% endif %}
+{% if level_3 == 'create-a-usb-stick-on-ubuntu' %}
+		<li class="active"><a href="/download/desktop/create-a-usb-stick-on-ubuntu">Create a bootable USB stick on Ubuntu</a></li>
+{% endif %}
+{% if level_3 == 'create-a-usb-stick-on-windows' %}
+		<li class="active"><a href="/download/desktop/create-a-usb-stick-on-windows">Create a bootable USB stick on Windows</a></li>
+{% endif %}
+{% if level_3 == 'install-desktop-latest' %}
+		<li class="active"><a href="/download/desktop/install-desktop-latest">Install Ubuntu 13.10</a></li>
+{% endif %}
+{% if level_3 == 'install-desktop-long-term-support' %}
+		<li class="active"><a href="/download/desktop/install-desktop-long-term-support">Install Ubuntu {{ lts_release }} LTS</a></li>
+{% endif %}
+{% if level_3 == 'install-ubuntu-desktop' %}
+		<li class="active"><a href="/download/desktop/install-ubuntu-desktop">Installing Ubuntu Desktop</a></li>
+{% endif %}
+{% if level_3 == 'try-ubuntu-before-you-install' %}
+		<li class="active"><a href="/download/desktop/try-ubuntu-before-you-install">Try Ubuntu before you install</a></li>
+{% endif %}
+{% if level_3 == 'install-ubuntu-server' %}
+		<li class="active"><a href="/download/server/install-ubuntu-server">Installing Ubuntu Server</a></li>
+{% endif %}
+{% if level_3 == 'install-ubuntu-openstack' %}
+		<li class="active"><a href="/download/cloud/install-ubuntu-openstack">Installing Ubuntu OpenStack</a></li>
+{% endif %}
+{% if level_3 == 'cloud-archive-instructions' %}
+		<li class="active"><a href="/download/cloud/cloud-archive-instructions">Cloud archive instructions</a></li>
+{% endif %}
+{% if level_3 == 'upgrade' %}
+		<li class="active"><a href="/download/desktop/upgrade">Upgrade</a></li>
+{% endif %}
+{% if level_3 == 'thank-you' %}
+		<li class="active"><a href="/download/desktop/thank-you">Thank you</a></li>
+{% endif %}
+{% if level_2 == 'alternative-downloads' %}
+		<li class="active"><a href="/download/alternative-downloads">Alternative Downloads</a></li>
+{% endif %}
+{% if level_3 == 'ubuntu-kylin' or level_3 == 'ubuntu-kylin-zh-CN' %}
+		<li class="active"><a href="/download/desktop/ubuntu-kylin">Ubuntu Kylin</a></li>
+{% endif %}
+{% if level_3 == 'contribute' %}
+		<li class="active"><a href="/download/desktop/contribute">Contribute</a></li>
+{% endif %}
+	</ul>

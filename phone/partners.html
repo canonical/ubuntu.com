@@ -1,0 +1,82 @@
+{% extends "ubuntu/phone/base_phone.html" %}
+
+{% block title %}For partners | Ubuntu for phones{% endblock %}
+
+{% block meta_description %}For mobile network operators and handset makers, Ubuntu represents an opportunity to revolutionise the handset market. Beautifully designed and with a huge developer following, it enables partners in the mobile industry to deliver a better experience on low-end phones and desktop PC convergence at the high end.{% endblock %}
+
+{% block meta_keywords %}Ubuntu, phone, smartphone, mobile, OS, Canonical, OEM, network operator, partner, operating system, platform, open source, Linux, Android, device, form factor, handheld, handset, touch, multitouch, touchscreen, gestures, edge magic, PC, desktop, convergence, enterprise, customise, customisation, customize, customization{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Phone" page_title="For partners"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero">
+	<div class="five-col">
+		<h1>For partners</h1>
+		<p class="intro">Be in control &mdash; own the entire service layer: content and services, user accounts, payments and the&nbsp;store.</p>
+	</div>
+	<div class="six-col prepend-one last-col">
+		<img src="{{ STATIC_URL }}u/img/phone/partners/image-hero-partners.png" alt="" />
+	</div><!-- /.seven-col -->
+</div><!-- .row -->
+
+<div class="row">
+	<div class="five-col">
+		<img src="{{ STATIC_URL }}u/img/phone/partners/image-service-layer.png" alt="" />
+	</div>
+	<div class="six-col prepend-one last-col">
+		<h2>Differentiation without fragmentation</h2>
+		<p>Ubuntu allows you to control the entire service layer &mdash; the visual identity and the suite of digital life services &mdash; ensuring a consistent user experience. This gives you the opportunity to differentiate your handsets without fragmenting or forking the operating system. It&rsquo;s an opportunity to increase revenue that simply doesn&rsquo;t exist on other&nbsp;platforms.</p>
+		<p><a href="/phone/developers">Learn more about customising the experience&nbsp;&rsaquo;</a></p>
+	</div>
+</div><!-- .row -->
+
+<div class="row row-origami equal-height no-border">
+	<div class="eight-col">
+		<h2>Profit via user payments</h2>
+		<p>As well as integrating your content, functionality and branding, you can take over the management of your users&rsquo; financial interactions. You can integrate your own payment systems deep into the phone, via Ubuntu&rsquo;s unique frameworks. And while you can opt to use the default Ubuntu store for downloads and purchases, you can also customise it to showcase your services, or replace it with your own store. No other mobile platform makes it this easy to develop your own ecosystem and revenue streams.</p>
+	</div>
+	<div class="not-for-small four-col last-col align-vertically align-center">
+		<img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-reducecosts-orange.svg" height="134" width="134" alt="" />
+	</div>
+</div><!-- .row -->
+
+<div class="row no-border">
+	<div class="three-col append-one">
+		<img src="{{ STATIC_URL }}u/img/phone/partners/image-partners-handsets.png" alt="Ubuntu phone handsets" />
+	</div>
+	<div class="seven-col last-col">
+		<h2>Targeting mid to high end&nbsp;devices</h2>
+		<p>With a user experience and partner differentiation strategy that revolves around content and services &mdash; Ubuntu is tailored for users that require higher data usage and higher quality devices. By targeting mid to high end devices with Ubuntu, carriers and device manufacturers can deliver a superior experience while leveraging Ubuntu&rsquo;s service layer differentiation opportunities.</p>
+	</div>
+</div><!-- /.row -->
+
+<div class="row strip-dark no-border">
+	<div class="six-col">
+		<h2>Easier hardware enablement</h2>
+		<p>Ubuntu&rsquo;s core system is based around a typical Android Board Support Package (BSP), so you don&rsquo;t need to invest in new ones. And we have teams based in Taipei, Shanghai, London, Beijing and Boston, who can engage with your engineering and factory operations.</p>
+		<p><a href="/phone/features">Learn more about the Ubuntu features&nbsp;&rsaquo;</a></p>
+	</div>
+	<div class="five-col prepend-one last-col">
+		<blockquote class="pull-quote">
+			<p><span>&ldquo;</span>If you already make handsets that run Android, the work needed to adopt Ubuntu will be&nbsp;trivial&nbsp;<span>&rdquo;</span></p>
+			<p><cite>Ad&aacute;n Mu&ntilde;oz, BQ Product Development&nbsp;Manager
+</cite></p>
+		</blockquote>
+	</div>
+</div><!-- /.row -->
+
+<div id="carrier-advisory-group" class="row no-border">
+	<div class="seven-col append-five">
+		<h2>The Ubuntu Carrier Advisory Group</h2>
+		<p>The Ubuntu Carrier Advisory Group (CAG) was formed in June 2013, enabling mobile operators from across the globe to help shape Ubuntu&rsquo;s mobile strategy. Members receive confidential briefings and share industry insights, to ensure that Ubuntu meets their needs as it develops.</p>
+		<p><a href="http://partners.ubuntu.com/programmes/phone" class="external">Learn more about the CAG</a></p>
+	</div>
+	<div class="twelve-col">
+		<ul class="inline cag-list">
+			{% include "ubuntu/phone/shared/_cag_list.html" with image_width="160" image_height="80" item_class="box" %}
+		</ul>
+	</div>
+</div><!-- /.row -->
+{% endblock content %}

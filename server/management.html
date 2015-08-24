@@ -1,0 +1,153 @@
+{% extends "ubuntu/server/base_server.html" %}
+
+{% block title %}Server management{% endblock %}
+{% block extra_body_class %}server-server-management{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Server" page_title="Server management"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero">
+	<h1>Server management</h1>
+		<div class="six-col">
+			<p class="intro">Get peace of mind with Ubuntu Advantage: Cost-effective systems management and professional support from Canonical, the Ubuntu experts.</p>
+		</div>
+		<div class="six-col last-col text-center">
+			<img src="{{ STATIC_URL }}u/img/server/management/image-server-management.svg" alt="" />
+		</div>
+		<div class="twelve-col">
+			<div class="six-col no-margin-bottom">
+				<p>Ubuntu Advantage is the commercial support package from Canonical, offering efficient systems administration software, fast problem resolution and access to experts when you need them.</p>
+			</div>
+			<div class="six-col no-margin-bottom last-col">
+				<p>Landscape is the systems management tool available with Ubuntu Advantage. It allows you to manage thousands of Ubuntu machines as easily as one, making the administration of Ubuntu desktops, servers and cloud instances more cost-effective.</p>
+			</div>
+			<p><a href="/management">Find out more about Landscape&nbsp;&rsaquo;</a></p>
+		</div><!-- /.twelve-col -->
+</div><!-- /.row -->
+
+<div class="row equal-height">
+	<h2 class="twelve-col">Ubuntu Advantage</h2>
+	<ul class="no-bullets vertical-divider twelve-col">
+		<li class="three-col">
+			<h3>Choose the right level of cover to meet your needs</h3>
+		</li>
+		<li class="three-col">
+			<h3>Essential</h3>
+			<p>Ideal for common workloads such as file and print, email, network, web and application serving.</p>
+		</li>
+		<li class="three-col">
+			<h3>Standard</h3>
+			<p>Suitable for server virtualisation and integration into existing infrastructures such as Windows networks.</p>
+		</li>
+		<li class="three-col last-col">
+			<h3>Advanced</h3>
+			<p>Tailored for more advanced configurations such as high-availability failover and clustering.</p>
+		</li>
+	</ul>
+
+<table class="audience-enterprise">
+	<thead>
+		<tr>
+			<th colspan="2" scope="col">Server features</th>
+			<th scope="col" style="width: 126px;">Essential</th>
+			<th scope="col" style="width: 126px;">Standard</th>
+			<th scope="col" style="width: 127px;">Advanced</th>
+		</tr>
+	</thead>
+	<tfoot>
+		<tr>
+			<th scope="row" rowspan="1">Price per server</th>
+			<th scope="row">Total per year</th>
+			<td>USD 320</td>
+			<td>USD 700</td>
+			<td>USD 1,200</td>
+		</tr>
+	</tfoot>
+	<tbody>
+		<tr>
+			<th scope="row" rowspan="2">Landscape systems management</th>
+			<th scope="row">Landscape Hosted</th>
+			<td><img src="{{ STATIC_URL }}u/img/patterns/tick-midaubergine.svg" alt="Yes"></td>
+			<td><img src="{{ STATIC_URL }}u/img/patterns/tick-midaubergine.svg" alt="Yes"></td>
+			<td><img src="{{ STATIC_URL }}u/img/patterns/tick-midaubergine.svg" alt="Yes"></td>
+		</tr>
+		<tr>
+			<th scope="row">Landscape Dedicated Server</th>
+			<td>Optional</td>
+			<td>Optional</td>
+			<td>Optional</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th scope="row" rowspan="1">Legal assurance</th>
+			<th scope="row"><a href="/ua-assurance-terms">Ubuntu Assurance programme</a></th>
+			<td><img src="{{ STATIC_URL }}u/img/patterns/tick-midaubergine.svg" alt="Yes"></td>
+			<td><img src="{{ STATIC_URL }}u/img/patterns/tick-midaubergine.svg" alt="Yes"></td>
+			<td><img src="{{ STATIC_URL }}u/img/patterns/tick-midaubergine.svg" alt="Yes"></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th scope="row" rowspan="6">Knowledge and support</th>
+			<th scope="row">Knowledge Base</th>
+			<td><img src="{{ STATIC_URL }}u/img/patterns/tick-midaubergine.svg" alt="Yes"></td>
+			<td><img src="{{ STATIC_URL }}u/img/patterns/tick-midaubergine.svg" alt="Yes"></td>
+			<td><img src="{{ STATIC_URL }}u/img/patterns/tick-midaubergine.svg" alt="Yes"></td>
+		</tr>
+		<tr>
+			<th scope="row">Basic installation and applications</th>
+			<td><img src="{{ STATIC_URL }}u/img/patterns/tick-midaubergine.svg" alt="Yes"></td>
+			<td><img src="{{ STATIC_URL }}u/img/patterns/tick-midaubergine.svg" alt="Yes"></td>
+			<td><img src="{{ STATIC_URL }}u/img/patterns/tick-midaubergine.svg" alt="Yes"></td>
+		</tr>
+		<tr>
+			<th scope="row">Windows integration</th>
+			<td> </td>
+			<td><img src="{{ STATIC_URL }}u/img/patterns/tick-midaubergine.svg" alt="Yes"></td>
+			<td><img src="{{ STATIC_URL }}u/img/patterns/tick-midaubergine.svg" alt="Yes"></td>
+		</tr>
+		<tr>
+			<th scope="row">Virtualisation</th>
+			<td> </td>
+			<td><img src="{{ STATIC_URL }}u/img/patterns/tick-midaubergine.svg" alt="Yes"></td>
+			<td><img src="{{ STATIC_URL }}u/img/patterns/tick-midaubergine.svg" alt="Yes"></td>
+		</tr>
+		<tr>
+			<th scope="row">Clustering and high availability failover</th>
+			<td> </td>
+			<td> </td>
+			<td><img src="{{ STATIC_URL }}u/img/patterns/tick-midaubergine.svg" alt="Yes"></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th scope="row" rowspan="2">Optional extras</th>
+			<th scope="row">Ceph support</th>
+			<td> </td>
+			<td>Optional</td>
+			<td>Optional</td>
+		</tr>
+		<tr>
+			<th scope="row">Technical Account Manager</th>
+			<td>Optional</td>
+			<td>Optional</td>
+			<td>Optional</td>
+		</tr>
+	</tbody>
+</table>
+<p><a href="/management/contact-us">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+</div><!-- /.row -->
+
+{% include "ubuntu/shared/_ubuntu_advantage_whats_inlcuded.html" %}
+
+<div class="row row-community row-image-centered no-border no-margin-bottom">
+{% include "ubuntu/shared/_ubuntu_advantage_community.html" %}
+</div><!-- /.row -->
+
+{% include "ubuntu/shared/_live_chat.html" %}
+
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}
