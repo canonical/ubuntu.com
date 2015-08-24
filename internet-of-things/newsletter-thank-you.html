@@ -1,0 +1,14 @@
+{% extends "ubuntu/internet-of-things/base_things.html" %}
+
+{% block extra_body_class %}things-thank-you{% endblock %}
+
+{% block title %}Thank you{% endblock %}
+
+{% block second_level_nav_items %}
+    <ul class="breadcrumb"><li><a href="/internet-of-things/">Things</a>&nbsp;›</li></ul>
+    <ul class="second-level-nav"><li class="first active"><a href="/internet-of-things/">Thank you</a></li></ul>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+{% include "ubuntu/shared/_newsletter_thank_you.html" %}
+{% endblock content %}

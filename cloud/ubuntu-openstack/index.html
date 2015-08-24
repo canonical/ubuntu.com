@@ -1,0 +1,182 @@
+{% extends "ubuntu/cloud/base_cloud.html" %}
+
+{% block title %}Ubuntu OpenStack | Cloud{% endblock %}
+
+{% block meta_description %}OpenStack is the fastest and best-supported route to creating an OpenStack cloud.{% endblock meta_description %}
+{% block meta_keywords %}IAAS, OpenStack, Ubuntu, Ubuntu Cloud Infrastructure, private cloud infrastructure, infrastructure as a service, open cloud, opencloud, open source cloud, open private cloud, open public cloud, open hybrid cloud, OpenStack private cloud, OpenStack public cloud, cloud architecture, cloud deployment, cloud in business, cloud in enterprise, cloud in finance, cloud in public sector, cloud in government{% endblock meta_keywords %}
+
+{% block extra_body_class %}cloud-tools-openstack-home{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Ubuntu OpenStack" tertiary="true" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero">
+    <div class="six-col">
+    	<h1>Ubuntu OpenStack</h1>
+    	<div class="five-col">
+    	  <p class="intro">Ubuntu is the world&rsquo;s most popular operating system for OpenStack. There&rsquo;s no faster or more reliable way to build an enterprise-scale cloud, from provisioning to deployment and management.</p>
+        <p><a href="/cloud/contact-us">Speak to an OpenStack expert&nbsp;&rsaquo;</a></p>
+    	</div>
+    </div>
+</div><!-- /.row-hero -->
+
+<div class="row no-padding-bottom no-border">
+  <div class="eight-col no-margin-bottom">
+    <h2>The fastest and most reliable way to build an OpenStack cloud</h2>
+    <p>Easily build, manage and monitor your cloud using The Canonical Distribution of Ubuntu OpenStack. The web-based wizard, also known as Ubuntu Autopilot, guides you through the configuration, enabling you to build a working cloud on your hardware in minutes, and recommending the best utilisation of your resources.</p>
+    <p><a href="/management/#watch-landscape-in-action">Watch it in action&nbsp;&rsaquo;</a></p>
+  </div>
+</div>
+
+<div class="row no-padding-bottom">
+  <div class="twelve-col no-margin-bottom">
+      <img class="left" src="{{ STATIC_URL }}u/img/download/cloud/install-ubuntu-cloud-step10.png" alt="" />
+  </div>
+</div>
+
+<div class="row vertical-divider">
+  <div class="four-col">
+    <div class="four-col align-center not-for-small">
+      <img src="{{ STATIC_URL }}u/img/cloud/image-ubuntuopenstackinteroperabilitylab.svg" alt="" width="140" />
+    </div>
+    <h3>Everything just works</h3>
+    <p>The Ubuntu OpenStack Interoperability Lab (OIL) constantly tests our cloud partners&rsquo; products in countless Ubuntu OpenStack configurations, over and over again, so you know they will just work.</p>
+    <p><a class="external" href="http://partners.ubuntu.com/partner-programmes/openstack">Learn more about Ubuntu OIL</a></p>
+  </div>
+
+  <div class="four-col">
+    <div class="four-col align-center not-for-small">
+      <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-growondemand-orange.svg" alt="" width="140" />
+    </div>
+    <h3>Monitor and manage</h3>
+    <p>Landscape is a robust systems management tool which allows you to monitor your cloud resources and alerts you to any issues, making cloud management an easy and resource-light task.</p>
+    <p><a href="/management/landscape-features">Learn more about Landscape&nbsp;&rsaquo;</a></p>
+  </div>
+
+  <div class="four-col last-col">
+    <div class="four-col align-center not-for-small">
+      <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-reducecosts-midaubergine.svg" alt="" width="140" />
+    </div>
+    <h3>Zero cost to experiment</h3>
+    <p>The Canonical Distribution of Ubuntu OpenStack makes building various cloud configurations so easy, that it reduces the cost of experimenting with OpenStack to zero.</p>
+    <p><a href="/download/cloud/install-ubuntu-openstack">Try it now on 10 machines for free&nbsp;&rsaquo;</a></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="twelve-col combined-list">
+    <h2>Why use Ubuntu OpenStack?</h2>
+    <ul class="list-ubuntu six-col">
+      <li class="six-col">OpenStack is built on Ubuntu</li>
+      <li class="six-col">Ubuntu OIL lab ensures compatibility with wide range of hardware and software</li>
+      <li class="six-col last-item">A full portfolio of tools to help build, manage and scale your cloud</li>
+     </ul>
+     <ul class="list-ubuntu six-col last-col">
+      <li class="six-col last-col">A thriving ecosystem of partners</li>
+      <li class="six-col last-col">A complete range of commercial support and management packages</li>
+      <li class="six-col last-item last-col">Our cloud archive let&rsquo;s you test new versions of OpenStack without changing versions of Ubuntu</li>
+    </ul>
+    <p><a href="/cloud/tools">Learn more about our cloud tools&nbsp;&rsaquo;</a></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="twelve-col">
+    <h2>How to get up and running with Ubuntu OpenStack</h2>
+  </div>
+    <ol class="list-step no-bullets twelve-col">
+      <li class="row-step step-one">
+        <div class="prepend-one five-col">
+          <h3>Setup your machines and network
+          <span class="step">1</span></h3>
+          <p>You need to get at least seven machines to run Ubuntu OpenStack and you need to install Ubuntu Server on one of them</p>
+        </div>
+        <div class="four-col prepend-two last-col text-center">
+            <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-server-warmgrey.svg" alt="" class="not-for-small" width="120" />
+        </div>
+      </li>
+
+      <li class="row-step ">
+        <div class="prepend-one five-col">
+          <h3>Use MAAS to build the machines
+          <span class="step">2</span></h3>
+          <p>Next you have to use MAAS to setup the rest of the servers.</p>
+        </div>
+        <div class="four-col prepend-two last-col text-center">
+            <img src="{{ STATIC_URL }}u/img/cloud/maas-logo-cropped.svg" alt="" class="not-for-small" width="120" />
+        </div>
+      </li>
+
+      <li class="row-step">
+        <div class="prepend-one five-col">
+          <h3>Install Landscape and start OpenStack Autopilot
+          <span class="step">3</span></h3>
+          <p>Pick the OpenStack configuration you want.  Choose your hypervisor, networking and storage components.</p>
+        </div>
+        <div class="four-col prepend-two last-col text-center">
+            <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-training-warmgrey.svg" alt="" class="not-for-small" width="120" />
+        </div>
+      </li>
+
+      <li class="row-step">
+        <div class="prepend-one five-col">
+          <h3>Build your cloud
+          <span class="step">4</span></h3>
+          <p>OpenStack Autopilot will build the cloud you want in minutes.</p>
+        </div>
+        <div class="four-col prepend-two last-col text-center">
+            <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-cloud-darkaubergine.svg" alt="" class="not-for-small" width="120" />
+        </div>
+      </li>
+
+      <li class="row-step last-step">
+        <div class="prepend-one five-col">
+          <h3>Start using your cloud
+            <span class="step">5</span></h3>
+            <p>Use Landscape to control and monitor your cloud. You are ready to start using your new cloud region.</p>
+        </div>
+        <div class="four-col prepend-two last-col text-center not-for-small">
+            <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-easytomanage-midaubergine.svg" alt="" width="120" />
+        </div>
+      </li>
+    </ol>
+    <p class="twelve-col"><a href="/download/cloud/install-ubuntu-openstack">Read full details for installing The Canonical Distribution of Ubuntu OpenStack&nbsp;&rsaquo;</a></p>
+</div>
+
+<div class="row row-other-ways no-border">
+  <div class="eight-col">
+    <h2>Other ways to get OpenStack</h2>
+  </div>
+  <ul class="primary-list twelve-col no-bullets equal-height vertical-divider">
+    <li class="six-col primary-list-content">
+      <h3>Buy a managed cloud</h3>
+      <p>Get a BootStack hosted cloud, built by the experts at Canonical, for just $15 per server per day, plus hardware and hosting.</p>
+      <p><a href="/cloud/managed-cloud">Find out more about BootStack&nbsp;&rsaquo;</a></p>
+    </li>
+
+    <li class="six-col primary-list-content last-col">
+      <h3>Train and experiment</h3>
+      <p>Train your sysadmins and devops engineers to become Ubuntu OpenStack experts with our 3-day hands-on course and get the most of out of OpenStack.</p>
+      <p><a href="/cloud/training">Find out more about our training courses&nbsp;&rsaquo;</a></p>
+    </li>
+  </ul>
+
+  <ul class="secondary-list twelve-col no-bullets equal-height vertical-divider">
+    <li class="six-col">
+      <h3>Install it yourself</h3>
+      <p>If you prefer a manual setup of the latest Ubuntu OpenStack version, you can follow the instructions in our OpenStack operations guide.</p>
+      <p><a href="/download/server">Download Ubuntu Server with OpenStack&nbsp;&rsaquo;</a></p>
+    </li>
+
+    <li class="six-col last-col">
+      <h3>Consulting</h3>
+      <p>Need help with a large-scale Ubuntu OpenStack deployment? We have helped the world&rsquo;s leading telcos and service providers build their clouds.</p>
+      <p><a href="/cloud/contact-us">Contact Canonical&nbsp;&rsaquo;</a></p>
+    </li>
+  </ul>
+</div>
+
+{% include "ubuntu/shared/_live_chat.html" %}
+{% endblock content %}

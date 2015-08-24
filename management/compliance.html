@@ -1,0 +1,74 @@
+{% extends "ubuntu/management/base_management.html" %}
+
+{% block title %}Compliance | Management{% endblock %}
+{% block meta_description %}Landscape, the systems management solution from Canonical, includes everything you need to ensure your Ubuntu deployment is fully compliant at all times, eliminating human error and time wasted on manual compilation of audit information. {% endblock %}
+{% block meta_keywords %}Landscape, systems management, Ubuntu, Canonical, compliance, compliant, regulations, regulatory, enterprise, software, patch, patching, report, reporting, log, logging, security, audit, RBAC, role-based access control, hardware, machine, desktop, server, cloud, complexity, automation{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Management" page_title="Compliance"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero row-image-centered">
+	<div class="eight-col">
+		<h1>Compliance</h1>
+		<p>All IT departments are subject to compliance requirements &ndash; both industry-wide and market-specific. With an emphasis on automation to save time and eliminate human error, Landscape includes several features that make compliance much easier to achieve and maintain, from role-based access control to extensive reporting and audit logging.</p>
+		<p class="twelve-col"><a class="link-cta-ubuntu" href="https://landscape.canonical.com/trial-registration">Get a free 30-day trial</a> or <a href="/management/contact-us">contact us about Landscape&nbsp;&rsaquo;</a></p>
+	</div><!-- /.eight-col -->
+	<span>
+		<img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-reducecosts-warmgrey.svg" width="200" height="200" alt="" class="priority-0" />
+	</span>
+</div><!-- .row row-hero -->
+
+<div class="row">
+	<div class="six-col no-margin-bottom">
+		<img class="flush-left touch-border" src="{{ STATIC_URL }}u/img/management/compliance/image-patch-compliance.jpg"  alt="" />
+	</div><!-- /.six-col -->
+	<div class="six-col last-col">
+		<h3>Patch compliance</h3>
+		<p>By managing your systems in bulk, Landscape makes it easy for you to stay in control of every machine in your asset fleet, eliminating the complexity that can lead to non-compliance. You can see at a glance which machines are patched or not &ndash; and with which updates. You can define subsets of machines to be updated at different times or with different patches. And you can assign policies instructing them to update automatically &ndash; either with all available software updates or with security patches only.</p>
+		<a href="/management/landscape-features">More about software management with Landscape&nbsp;&rsaquo;</a>
+	</div><!-- /.six-col -->
+</div><!-- .row -->
+
+<div class="row">
+	<div class="six-col">
+		<h3>Role-based access control (RBAC)</h3>
+		<p>As any IT manager knows, compliance is about more than reporting. It starts with the implementation of compliance policies and processes.</p>
+		<p>The latest version of Landscape introduces extensive access-control extensions, enabling you to implement the access policies you need. Roles such as &lsquo;Auditor&rsquo; (with read access to everything but write access to nothing) or &lsquo;Security Analyst&rsquo; (with authentication to execute scripts but not modify them or create new ones) can be defined, right up to the restriction-free &rsquo;Full Administrator&rsquo; level. Fine-grained control over these credentials is provided, with a default configuration included to ensure that these features can be used without customisation. Meanwhile, CIOs will appreciate the ability to define independent security administrator roles when needed.</p>
+		<p><a href="/management/working-with-landscape">Watch the compliance and reporting video on the Working with Landscape page&nbsp;&rsaquo;</a></p>
+	</div>
+	<div class="six-col last-col no-margin-bottom">
+		<img class="flush-right touch-border" src="{{ STATIC_URL }}u/img/management/compliance/image-rbac.jpg" alt="" />
+	</div>
+</div><!-- .row -->
+
+<div class="row">
+	<div class="six-col no-margin-bottom">
+		<img class="flush-left touch-border" src="{{ STATIC_URL }}u/img/management/compliance/image-audit-logging.jpg" height="351" width="462" alt="" />
+	</div><!-- /.six-col -->
+	<div class="six-col last-col">
+		<h3>Audit logging</h3>
+		<p>Many organisations waste valuable resource by asking skilled administrators to spend hours or days compiling audit information manually. By using the automatic audit logging features built into Landscape, you can free up your administrators to concentrate on more productive activities.</p>
+	</div><!-- /.six-col -->
+</div><!-- .row -->
+
+<div class="row no-border">
+	<div class="twelve-col">
+		<div class="nine-col">
+			<h3>Compliance reporting</h3>
+			<p>Landscape can accelerate the process of producing and collating compliance information, thanks to its built-in reporting capabilities. All report data is published to the web console by default, but it can also be exported in CSV format or accessed via the API.</p>
+			<p>Landscape produces standardised compliance reports, showing which machines are up-to-date with security patches. Machines are clearly shown as compliant or non-compliant. For non-compliant machines, further detail is also available, including the total number of days for which they have been non-compliant (or out of contact with the Landscape server). The speed with which they are brought into compliance is also tracked, to accelerate the audit process.</p>
+		</div>
+	</div>
+	<div class="twelve-col">
+		<p><img src="{{ STATIC_URL }}u/img/management/compliance/image-compliance-reporting.png" alt="" /></p>
+	</div>
+</div><!-- .row -->
+
+{% include "ubuntu/shared/_live_chat.html" %}
+
+{% include "ubuntu/shared/_munchkin.html" %}
+
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

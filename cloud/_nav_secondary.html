@@ -1,0 +1,11 @@
+	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
+		<li class="first{% if level_1 == 'cloud' and not level_2 %} active{% endif %}"><a href="/cloud">Overview</a></li>
+		<li{% if level_2 == 'ubuntu-openstack' %} class="active"{% endif %}><a href="/cloud/ubuntu-openstack">Ubuntu OpenStack</a></li>
+		<li{% if level_2 == 'managed-cloud' %} class="active"{% endif %}><a href="/cloud/managed-cloud">Managed cloud</a></li>
+		<li{% if level_2 == 'training' %} class="active"{% endif %}><a href="/cloud/training">Training</a></li>
+		<li{% if level_2 == 'public-cloud' %} class="active"{% endif %}><a href="/cloud/public-cloud">Public cloud</a></li>
+		<li{% if level_2 == 'tools' %} class="active"{% endif %}><a href="/cloud/tools">Tools</a></li>
+		<li{% if level_2 == 'storage' %} class="active"{% endif %}><a href="/cloud/storage">Storage</a></li>
+		<li{% if level_2 == 'partners' %} class="active"{% endif %}><a href="/cloud/partners">Partners</a></li>
+		<li class="last-item{% if level_2 == 'plans-and-pricing' %} active{% endif %}"><a href="/cloud/plans-and-pricing">Plans and pricing</a></li>
+	</ul>

@@ -1,0 +1,84 @@
+{% extends "ubuntu/templates/one-column.html" %}
+
+{% block title %}Ubuntu Edge founders{% endblock %}
+
+{% block head_extra %}
+<style>
+	#main-content .row-hero {
+		background: #282828 url({{ STATIC_URL }}u/img/devices/edge_1_launch.jpg) 390% 65% no-repeat;
+		color: #fff;
+		padding-bottom: 50px;
+		margin-top: 0;
+		padding-top: 40px;
+	}
+	#main-content .row-hero .message {
+		font-size: 18px;
+		line-height: 1.3;
+	}
+	#main-content h2 {
+		background: url({{ STATIC_URL }}u/img/devices/edge-stripes.png) 0 50% no-repeat;
+		padding-left: 70px;
+	}
+	ul.edge-founders {
+	  -webkit-column-count: 2;
+	  -webkit-column-width: auto;
+	  -webkit-column-gap: 40px;
+	  -webkit-column-rule: 1px dotted #ddd;
+	     -moz-column-count: 2;
+	     -moz-column-width: auto;
+	     -moz-column-gap: 40px;
+	     -moz-column-rule: 1px dotted #ddd;
+	          column-count: 2;
+	          column-width: auto;
+	          column-gap: 40px;
+	          column-rule: 1px dotted #ddd;
+	}
+	.row-hero .link-cta-ubuntu {
+		-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+		-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+	}
+
+@media only screen and (min-width : 768px) {
+	ul.edge-founders {
+	  -webkit-column-count: 4;
+	     -moz-column-count: 4;
+	          column-count: 4;
+	}
+	#main-content .row-hero {
+		padding-top: 70px;
+	  -webkit-border-radius: 4px 4px 0 0;
+	  -moz-border-radius: 4px 4px 0 0;
+	  border-radius: 4px 4px 0 0;
+	}
+	#main-content .row-hero h1 {
+		padding-right: 400px;
+	}
+	#main-content .row-hero .message {
+		padding-right: 380px;
+	}
+}
+
+</style>
+{% endblock head_extra %}
+
+
+
+{% block content %}
+<div class="row row-hero no-border">
+	<h1>The record-breaking Ubuntu Edge</h1>
+	<p class="message">The Ubuntu Edge, a state-of-the-art smartphone with the power to run the full Ubuntu desktop, was backed by more than 25,000 consumers during a record-smashing crowdfunding campaign on Indiegogo. It was a huge success in showing the mobile industry that there is still a great demand for innovation, and that Ubuntu has a bright future when it comes to phones in 2014. We&rsquo;d like to thank every single person on this page for supporting Ubuntu and the Edge campaign. </p>
+</div>
+
+<div class="row">
+	<h2>16,790 founders <a href="#fn1" id="r1">*</a></h2>
+</div>
+
+<div class="row no-border">
+<ul class="edge-founders no-bullets">
+	{% include "ubuntu/2013/07/_founders.html" %}
+</ul>
+
+<p id="fn1"><a href="#r1">* </a><strong>Plus 10,980 anonymous founders</strong></p>
+</div>
+{% endblock content %}

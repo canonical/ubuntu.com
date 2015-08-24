@@ -1,0 +1,17 @@
+	<div class="four-col box">
+		<h3 id="next-steps">Next steps</h3>
+		<ul class="list">
+	{% if level_2 == 'desktop' %}
+			<li class="item-download first"><a href="/download/desktop">Download Ubuntu Desktop</a></li>
+	{% else %}
+			<li class="item-download first"><a href="/download/server">Download Ubuntu Server</a></li>
+	{% endif %}
+		    <li class="item-contact"><a class="broken" href="/business/services/contact">Contact Canonical</a></li>
+	{% if level_2 == 'desktop' %}
+		    <li class="item-server"><a href="/server/">Server</a></li>
+	{% else %}
+		    <li class="item-desktop"><a href="/pc/business">Desktop</a></li>
+	{% endif %}
+		    <li class="item-cloud last-item"><a href="/cloud/">Cloud</a></li>
+		</ul>
+	</div><!-- /.four-col -->	

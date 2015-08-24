@@ -1,0 +1,12 @@
+{% extends "ubuntu/base_index.html" %}
+
+{% block takeover_body_class %}meizu-takeover{% endblock takeover_body_class %}
+
+{% block takeover_content %}
+	<div class="lang-switch-wrapper strip-inner-wrapper"><a href="/global" class="lang-switch" lang="en">Global homepage&nbsp;&rsaquo;</a></div>
+	{% include "ubuntu/takeovers/_meizu_europe_kylin.html" %}
+{% endblock takeover_content %}
+
+{% block footer_content %}
+	{% include "ubuntu/takeovers/_footer_homepage_kylin.html" %}
+{% endblock footer_content %}

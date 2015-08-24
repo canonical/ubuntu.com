@@ -1,0 +1,65 @@
+{% block footer %}
+<footer class="global clearfix">
+
+<div class="footer-c">
+	<p class="top-link"><a href="#">Back to top</a></p>
+</div>
+<nav id="main-navigation" role="navigation" class="clearfix">
+<div class="footer-a">
+	<div class="clearfix">
+		<ul>
+			<li class="secondary-cloud"><h2><a href="/cloud/">Cloud</a></h2>
+				{% include "ubuntu/cloud/_nav_secondary.html" %}
+			</li>
+			<li class="secondary-server"><h2><a href="/server/">Server</a></h2>
+				{% include "ubuntu/server/_nav_secondary.html" %}
+			</li>
+			<li class="secondary-desktop"><h2><a href="/desktop/" class="active-trail">Desktop</a></h2>
+				{% include "ubuntu/desktop/_nav_secondary.html" %}
+			</li>
+			<li class="secondary-phone"><h2><a href="/phone/">Phone</a></h2>
+				{% include "ubuntu/phone/_nav_secondary.html" with location="footer" %}
+			</li>
+			<li class="secondary-tablet"><h2><a href="/tablet/">Tablet</a></h2>
+				{% include "ubuntu/tablet/_nav_secondary.html" with location="footer" %}
+			</li>
+			<li class="secondary-tv"><h2><a href="/internet-of-things/">Things</a></h2>
+				{% include "ubuntu/internet-of-things/_nav_secondary.html" %}
+			</li>
+			<li class="secondary-management last-item"><h2><a href="/management/">Management</a></h2>
+				{% include "ubuntu/management/_nav_secondary.html" %}
+			</li>
+		</ul>
+	</div>
+</div><!-- /.footer-a -->
+<div class="footer-b inline-lists">
+	<ul class="clearfix">
+		<li><h2><a href="/download/">Download</a></h2>
+			{% include "ubuntu/download/_nav_secondary.html" %}
+		</li>
+		<li><h2><a href="/support/">Support</a></h2>
+			{% include "ubuntu/support/_nav_secondary.html" %}
+		</li>
+		<li><h2><a href="/about/">About</a></h2>
+			<ul class="second-level-nav">
+				<li><a href="/about/about-ubuntu">About Ubuntu</a></li>
+				<li><a href="http://www.canonical.com/careers">Careers</a></li>
+				<li><a href="/about/canonical-and-ubuntu">Canonical and Ubuntu</a></li>
+				<li><a accesskey="7" href="/about/contact-us">Contact us</a></li>
+				<li><a href="http://insights.ubuntu.com/feed/">Canonical news feed</a></li>
+				<li class="last-item"><a accesskey="2" href="https://insights.ubuntu.com/press-centre/">Press centre</a></li>
+			</ul>
+		</li>
+	</ul>
+</div>
+</nav>
+<div class="legal clearfix">
+ <p class="twelve-col">&copy; {% now "Y" %} Canonical Ltd. Ubuntu and Canonical are registered trademarks of Canonical Ltd.</p>
+ <ul class="inline clear">
+	 <li><a accesskey="8" href="/legal">Legal information</a></li>
+	 <li><a href="https://bugs.launchpad.net/ubuntu-website-content/">Report a bug on this site</a></li>
+</ul>
+<span class="accessibility-aid"><a href="#">Got to the top of the page</a></span>
+</div><!-- /.legal -->
+</footer>
+{% endblock footer %}

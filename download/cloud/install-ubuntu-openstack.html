@@ -1,0 +1,188 @@
+{% extends "ubuntu/download/_base_download.html" %}
+
+{% block title %}Installing Ubuntu OpenStack - The Canonical Distribution | Download{% endblock %}
+
+{% block extra_body_class %}download-help{% endblock %}
+
+{% block second_level_nav_items %}
+    {% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Cloud" page_title="Installing Ubuntu Cloud"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-border">
+    <div class="eight-col">
+        <h1>Installing The Canonical Distribution of Ubuntu OpenStack</h1>
+        <p class="intro">By far the best way to build an OpenStack cloud is by using The Canonical Distribution of Ubuntu OpenStack. Follow the instructions below to download and configure it.</p>
+        <br>
+    </div>
+    <div class="four-col last-col">
+        <a href="http://insights.ubuntu.com/2014/10/28/ubuntu-openstack-the-canonical-distribution" class="box box-highlight resource--link resource-e-book">
+            <h2>Get the facts&nbsp;&rsaquo;</h2>
+            <p>What makes up the Canonical Distribution and what support is available for it?</p>
+            <p class="content-cat content-cat-e-book">Factsheet</p>
+        </a><!-- /.four-col -->
+    </div>
+    <div id="download-help" class="twelve-col no-border">
+            <ol>
+                <li class="clearfix">
+                    <span>1</span>
+                    <div class="seven-col">
+                        <p>Installing Ubuntu OpenStack requires at least seven machines with two disks, two of which have two network interfaces (NICs). <a href="/download/cloud"><a href="/download/server">Install Ubuntu Server</a> on one of the machines with two interfaces.</p>
+                        <p>You need to setup a private network with all machines plugged in, with the network divided into three logical ranges</p>
+                        <ul>
+                            <li>Dynamic range &mdash; that has as many IPs as there are total NICs connected to the network</li>
+                            <li>Static range &mdash; that has as many IPs as there are machines connected to the network</li>
+                            <li>Floating IP range &mdash; that has as many IPs as instances that you'll have in your cloud</li>
+                        </ul>
+                    </div>
+                    <div class="box four-col prepend-one last-col">
+                        <h3>Feedback</h3>
+                        <p>Do you have any questions or feedback about setting up The Canonical Distribution of Ubuntu OpenStack?</p>
+                        <a href="https://askubuntu.com/users/login?returnurl=%2fquestions%2fask%3ftags%3dlandscape%2bopenstack-autopilot" class="external">Talk to us on Ask Ubuntu</a>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <span>2</span>
+                    <div class="nine-col">
+                        <p>From the command line type the commands below and follow the step-by-step instructions:</p>
+                            <pre>
+sudo add-apt-repository ppa:juju/stable
+sudo add-apt-repository ppa:maas-maintainers/stable
+sudo add-apt-repository ppa:cloud-installer/stable
+sudo apt update
+</pre>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <span>3</span>
+                    <div class="eight-col">
+                        <p>If you do not already have an existing MAAS server, next you need to setup MAAS. From the command line type the commands below and follow the step-by-step instructions:</p>
+                        <code><pre>sudo apt install maas</pre></code>
+                        <ul class="no-bullets">
+                            <li>Access the MAAS UI at http://maas.ip/MAAS/ and follow the instructions to create the administrator, then login with those credentials</li>
+                            <li>Import disk images for 14.04 LTS 64 bit</li>
+                            <li>Add your SSH key to your user profile - http://maas.ip/MAAS/account/prefs/</li>
+                            <li>Copy the MAAS key - you will need this later</li>
+                            <li>Fill in the other details, like gateway and DNS, in the networks that were auto-created for each NIC</li>
+                        </ul>
+                        <br/>
+                        <p>Next you need configure the MAAS cluster:</p>
+                        <ul class="no-bullets">
+                            <li>Click on the &lsquo;Clusters&rsquo; tab and select &lsquo;Cluster master&rsquo;</li>
+                            <li>You will see a list of network interfaces on the machine, click the edit symbol for the interface that is connected to the private network where all the nodes are visible</li>
+                            <li>Set this interface to manage DHCP and DNS</li>
+                            <li>Set the &lsquo;Router IP&rsquo; to the default gateway for this private network</li>
+                            <li>Fill in details for the dynamic and static ranges, remembering to leave gaps for the floating IPs</li>
+                            <li>Save the changes</li>
+                        </ul>
+                        <br/>
+                        <p>Now you need to enlist and commission machines:</p>
+                        <ul class="no-bullets">
+                            <li>Ensure all machines are set to PXE boot, if possible disable all other boot options, including local disk, in the BIOS</li>
+                            <li>Enlist the machines by powering them on. This can usually be done by some sort of virtual console. They will all appear in the node list in MAAS and be powered down again</li>
+                            <li>Edit each machine in the nodes list and fill in the Power type and power parameters (i.e. username and password) so that MAAS can turn them on and off as needed</li>
+                            <li>Select all of the machines and, using the Bulk action dropdown, Commission them</li>
+                            <li>Wait until all machines are commissioned (i.e. in Ready state)</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <span>4</span>
+                    <div class="eight-col">
+                        <p>Setup Landscape and launch the OpenStack Autopilot</p>
+                        <code>
+                            <pre>
+sudo apt install openstack
+sudo openstack-install</pre>
+                        </code>
+                        <ul class="no-bullets">
+                            <li>Choose the Landscape OpenStack Autopilot option</li>
+                            <li>Fill in your MAAS credentials using the MAAS key that you saved when you set up MAAS</li>
+                            <li>Open the link to access the Landscape UI</li>
+                            <li>Resolve any remaining issues on checklist, finally clicking the "Configure" button</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <span>5</span>
+                    <div class="eight-col">
+                        <p>Go to the given URL to get to the landing page of the Landscape UI.</p>
+                    </div>
+                    <div class="twelve-col">
+                        <img src="{{ STATIC_URL }}u/img/download/cloud/install-ubuntu-cloud-step4.png" alt="" />
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <span>6</span>
+                    <div class="eight-col">
+                        <p>The landing page contains a checklist at the bottom showing the status of all of your resources. Unless something has gone wrong, these should all be green at this point.</p>
+                    </div>
+                    <div class="twelve-col">
+                        <img src="{{ STATIC_URL }}u/img/download/cloud/install-ubuntu-cloud-step5.png" alt="" />
+                    </div>
+                </li>
+                    <li class="clearfix">
+                    <span>7</span>
+                    <div class="eight-col">
+                        <p>Click on &ldquo;Configure&rdquo; and enter an optional name for your region and cloud.</p>
+                    </div>
+                    <div class="twelve-col">
+                        <img src="{{ STATIC_URL }}u/img/download/cloud/install-ubuntu-cloud-step6.png" alt="" />
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <span>8</span>
+                    <div class="eight-col">
+                        <p>Select your components (this is an initial list; more options will be added in later versions as they pass the tests in the OpenStack Interoperability Lab)</p>
+                        <ul class="no-bullets">
+                            <li>Hypervisor component (KVM)</li>
+                            <li>Networking component (Open vSwitch)</li>
+                            <li><p>Storage components</p>
+                                <ul class="no-bullets">
+                                  <li>Object (Ceph, Swift)</li>
+                                  <li>Block (Ceph, iSCSI)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="twelve-col">
+                        <img src="{{ STATIC_URL }}u/img/download/cloud/install-ubuntu-cloud-step7.png" alt="" />
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <span>9</span>
+                    <div class="eight-col">
+                        <p>Select the hardware on which to deploy the cloud and click &ldquo;Save selection&rdquo;.</p>
+                    </div>
+                    <div class="twelve-col">
+                        <img src="{{ STATIC_URL }}u/img/download/cloud/install-ubuntu-cloud-step8.png" alt="" />
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <span class="double">10</span>
+                    <div class="eight-col">
+                        <p>Click &ldquo;Install&rdquo; to build your cloud.</p>
+                    </div>
+                    <div class="twelve-col">
+                        <img src="{{ STATIC_URL }}u/img/download/cloud/install-ubuntu-cloud-step9.png" alt="" />
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <span class="double">11</span>
+                    <div class="eight-col">
+                        <p>Start using your cloud!</p>
+                    </div>
+                    <div class="twelve-col">
+                        <img src="{{ STATIC_URL }}u/img/download/cloud/install-ubuntu-cloud-step10.png" alt="" />
+                    </div>
+                </li>
+            </ol>
+        <div class="eight-col">
+            <p>Already a Landscape Dedicated Server customer? Upgrading is simple, see the instructions in the <a href="https://help.landscape.canonical.com/LDS/ReleaseNotes">release notes</a>.</p>
+        </div>
+    </div><!-- /#download-help -->
+</div><!-- /.row -->
+
+
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

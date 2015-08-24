@@ -1,0 +1,85 @@
+{% extends "ubuntu/download/_base_download.html" %}
+
+{% block title %}How to burn a DVD on Windows{% endblock %}
+
+{% block extra_body_class %}download-help{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to burn a DVD on Windows"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-padding-bottom">
+	<h1>How to burn a DVD on Windows</h1>
+</div><!-- /.row row-hero -->
+<div class="row no-border">
+	<div id="download-help" class="eight-col box box-grey no-border">
+		<p>To install Ubuntu on a computer that currently runs Windows, you need to <a href="/download">download the installation file</a> and burn it onto the DVD, which you can then use to install Ubuntu. Once you&rsquo;ve downloaded the file, follow the instructions below to burn your DVD, depending on which version of Windows you are currently using.</p>
+		<h3>Windows 7 / 8</h3>
+			<div class="box box-highlight no-margin-bottom">
+				<ol class="no-bullets">
+					<li class="clearfix">
+						<span>1</span>
+						<div>
+							<p>Right-click on an ISO image and choose <strong>'Open with &gt; Windows Disc Image Burner'</strong>.</p>
+							<div class="help-image">
+								<img src="{{ STATIC_URL }}u/img/download/desktop/burn-a-dvd-on-windows/image-burnadvdonwindows-1.jpg" alt="" height="443" width="444">
+								<a href="{{ STATIC_URL }}u/img/download/desktop/burn-a-dvd-on-windows/image-burnadvdonwindows-1.jpg">Click to enlarge</a>
+							</div>
+						</div>
+					</li>
+					<li class="clearfix">
+						<span>2</span>
+						<div>
+							<p>Select a disc burner (drive) and choose <strong>'Burn'</strong>. If you check <strong>'Verify disc after burning'</strong>, it will confirm that the ISO image has been burned correctly.</p>
+							<div class="help-image">
+								<img src="{{ STATIC_URL }}u/img/download/desktop/burn-a-dvd-on-windows/image-burnadvdonwindows-2.jpg" alt="" height="444" width="443">
+								<a href="{{ STATIC_URL }}u/img/download/desktop/burn-a-dvd-on-windows/image-burnadvdonwindows-2.jpg">Click to enlarge</a>
+							</div>
+						</div>
+					</li>
+				</ol>
+			</div><!-- /.box -->
+		<h3>Windows 95 / 98 / ME / 2000 / XP / Server 2003 / Vista7</h3>
+			<div class="box box-highlight">
+				<ol class="no-bullets">
+					<li class="clearfix">
+						<span>1</span>
+						<div>
+							<p>Download and install <a href="http://infrarecorder.org">Infra Recorder</a>, a free and open-source image-burning program.</p>
+						</div>
+					</li>
+					<li class="clearfix">
+						<span>2</span>
+						<div>
+							<p>Insert a blank DVD in the drive and select <strong>&lsquo;Do nothing&rsquo;</strong> or <strong>&lsquo;Cancel&rsquo;</strong> if an autorun dialog box pops up.</p>
+						</div>
+					</li>
+					<li class="clearfix">
+						<span>3</span>
+						<div>
+							<p>Open Infra Recorder and click the <strong>'Write Image'</strong> button in the main screen. Alternatively you can select the <strong>'Actions'</strong> menu, then <strong>'Burn image'</strong>.</p>
+							<div class="help-image">
+								<img src="{{ STATIC_URL }}u/img/download/cd_windows_01_medium.jpg" alt="" height="408" width="448">
+								<a href="{{ STATIC_URL }}u/img/download/cd_windows_01_medium.jpg">Click to enlarge</a>
+							</div>
+						</div>
+					</li>
+					<li class="clearfix">
+						<span>4</span>
+						<div>
+							<p>Select the Ubuntu DVD image file you want to use, then click <strong>'Open'</strong>.</p>
+						</div>
+					</li>
+					<li class="clearfix">
+						<span>5</span>
+						<div>
+							<p>In the dialog box, click <strong>'OK'</strong>.</p>
+						</div>
+					</li>
+				</ol>
+			</div><!-- /.box -->
+</div><!-- /.eight-col -->
+</div><!-- /.row -->
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

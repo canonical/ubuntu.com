@@ -1,0 +1,89 @@
+{% extends "ubuntu/management/base_management.html" %}
+
+{% block title %}Return on investment | Management{% endblock %}
+{% block extra_body_class %}return-on-investment{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Management" page_title="Return on investment"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero row-image-centered">
+	<div class="eight-col">
+		<h1>Return on investment</h1>
+		<p class="intro">According to new data from EMA, Landscape could save a thousand-desktop firm over &#36;200,000 in just three years.</p>
+		<h2>Fact: Landscape saves you money</h2>
+		<p>Thousands of organisations around the world have already seen the ROI Landscape delivers, when used in conjunction with their Ubuntu deployments. And, following research undertaken this year by Enterprise Management Associates, it&rsquo;s now official: if you&rsquo;re using Ubuntu at scale, Landscape will save you money.</p>
+		<p class="twelve-col"><a class="link-cta-ubuntu" href="https://landscape.canonical.com/trial-registration">Get a free 30-day trial</a> or <a href="/management/contact-us">contact us about Landscape&nbsp;&rsaquo;</a></p>
+	</div><!-- /.seven-col -->
+	<span>
+		<img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-reducecosts-warmgrey.svg" width="200" height="200" alt="" class="priority-0" />
+	</span>
+</div><!-- /.row .row-hero -->
+
+<div class="row stats-panel">
+	<p class="first">According to new data from EMA, Landscape could save a thousand-desktop firm over &#36;200,000 in just three years. <a class="external" href="https://insights.ubuntu.com/2014/06/12/enterprise-class-ubuntu-management-with-canonical-landscape/">Read the TCO analysis from Enterprise Management Associates</a></p>
+	<dl class="four-col">
+		<dt>1,121%</dt>
+		<dd>ROI over five years</dd>
+	</dl>
+	<dl class="four-col">
+		<dt>&#36;688k</dt>
+		<dd>Saving every year</dd>
+	</dl>
+	<dl class="four-col last-col">
+		<dt>2 <span>months</span></dt>
+		<dd>Investment payback period</dd>
+	</dl>
+	<p>Figures based on a deployment of 1000 desktops</p>
+</div><!-- /.row -->
+
+<div class="row">
+	<h3>It&rsquo;s all about automation</h3>
+	<div class="six-col">
+		<p>At the heart of the benefits Landscape brings to Ubuntu deployments is automation. Landscape enables a single administrator to manage thousands of machines as easily as one, freeing up valuable time for more constructive activities. And by eliminating human error from mundane management tasks, it can make your department even more cost-effective.</p>
+	</div><!-- /.six-col -->
+	<div class="six-col last-col">
+		<p>Landscape allows administrators to do everything they can do manually in the terminal with established Linux administration tools, but for thousands of machines at once. And the learning curve for experienced team members is effectively flat, alleviating the need for costly and time-consuming training.</p>
+	</div><!-- /.six-col -->
+	<p><a href="/management/landscape-features">Read more about Landscape&rsquo;s features&nbsp;&rsaquo;</a></p>
+</div><!-- /.row -->
+
+<div class="row">
+	<h3>The low cost, low risk approach</h3>
+	<div class="six-col">
+		<h4>A supported solution</h4>
+		<p>Over-reliance on in-house tools can pose a risk, because if the person who developed them retires or changes jobs, critical operations knowledge can be lost.  With Landscape, you get a supported solution with the backing of one of the biggest names in Linux: Canonical. Intimate knowledge of the application is therefore always accessible.</p>
+	</div><!-- /.six-col -->
+	<div class="six-col last-col">
+		<h4>Shared development costs</h4>
+		<p>Development costs are shared when you choose third party tools like Landscape &ndash; and this shared cost translates to more realistic budgets for QA testing. Combined with the larger user-base common to non-bespoke tools, this means Landscape is likely to be more flexible, reliable and bug-free than any bespoke solution.</p>
+	</div><!-- /.six-col -->
+	<div class="six-col">
+		<h4>No more re-inventing the wheel</h4>
+		<p>Thanks to its scriptable API, Landscape lets you benefit from built-in functionality covering a wide range of administration tasks, while enabling you to add any bespoke logic you need. In other words, you can direct your investment towards the areas that need it, without reinventing the wheel implementing common functionality.</p>
+	</div><!-- /.six-col -->
+	<div class="six-col last-col">
+		<h4>Always up to date</h4>
+		<p>In-house tools can prove costly to maintain, especially if your infrastructure is forced to  respond to change. Even simple software upgrades can necessitate significant revisions. With Landscape, client support is constantly updated to accommodate the latest version of Ubuntu, so you can rely on your tools to keep pace with your update cycle, while maintaining compatibility with all current Ubuntu releases.</p>
+	</div><!-- /.six-col -->
+		<p><a href="/management/working-with-landscape">Learn more about working with Landscape&nbsp;&rsaquo;</a></p>
+</div><!-- /.row -->
+
+<div class="row row-puppet no-border">
+	<h3>Already using Puppet or Nagios?</h3>
+	<div class="six-col">
+		<p>If you&rsquo;re already using Puppet for configuration management or Nagios for systems monitoring, Landscape can be integrated with your infrastructure easily, automating and extending these tools. There's no need to alter your existing deployment.</p>
+	</div><!-- /.six-col -->
+	<div class="six-col logos last-col">
+		<img src="{{ STATIC_URL }}u/img/third-party-logos/logo-nagios.png" alt="Nagios" width="150" height="38" />
+		<img src="{{ STATIC_URL }}u/img/third-party-logos/logo-puppet.png" alt="Puppet" width="150" height="47" />
+	</div><!-- /.six-col -->
+</div><!-- /.row -->
+
+{% include "ubuntu/shared/_live_chat.html" %}
+
+{% include "ubuntu/shared/_munchkin.html" %}
+
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

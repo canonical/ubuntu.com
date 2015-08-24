@@ -1,0 +1,394 @@
+ {% extends "ubuntu/cloud/base_cloud.html" %}
+
+{% block title %}Ubuntu in the Cloud | Cloud{% endblock %}
+
+{% block meta_description %}Whether you’re building your own OpenStack cloud, want a hosted private cloud or want to use Ubuntu in the public cloud, we offer all the training, software, tools, services and support you need.{% endblock meta_description %}
+
+{% block meta_keywords %}OpenStack, Cloud, Ubuntu OpenStack, private cloud, public cloud, open-source,  IAAS, infrastructure, service, Ubuntu, Ubuntu Cloud Infrastructure, Ubuntu Cloud Guest, Juju, Maas, orchestration, deployment, provisioning, training{% endblock meta_keywords %}
+
+{% block extra_body_class %}cloud-home{% endblock %}
+
+{% block second_level_nav_items %}
+    {% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Overview" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+
+<div class="row row-hero">
+  <div class="hero-content six-col">
+    <h1>Ubuntu in the cloud</h1>
+    <p class="intro five-col">Whether you&rsquo;re building your own OpenStack cloud or you want to use a public cloud, Ubuntu offers all the training, software infrastructure, tools, services and support you need.</p>
+  </div>
+  <div class="products-hero-container not-for-small">
+    <div class="cloud-tools-list">
+      <span class="item-one">OpenStack</span>
+      <span class="item-line item-one-line"></span>
+      <span class="item-two">Bootstack</span>
+      <span class="item-line item-two-line"></span>
+      <span class="item-three">Juju</span>
+      <span class="item-line item-three-line"></span>
+      <span class="item-four">MAAS</span>
+      <span class="item-line item-four-line"></span>
+      <span class="item-five">LXD</span>
+      <span class="item-line item-five-line"></span>
+      <span class="item-six">Snappy</span>
+      <span class="item-line item-six-line"></span>
+      <span class="item-seven">Ubuntu</span>
+    </div>
+  </div>
+  {% comment %}
+  <!-- <div class="four-col last-col align-center prepend-one">
+    <img class="cloud-row-hero-image" src="{{ STATIC_URL }}u/img/cloud/image-cloud.svg" alt="Ubuntu in a cloud" />
+  </div>
+  <div class="bg-clouds"></div><div class="bg-more-clouds"></div> -->
+  {% endcomment %}
+</div><!-- /.row -->
+
+<div class="row no-padding-bottom">
+    <div class="four-col align-center no-margin">
+      <img class="left not-for-small" src="{{ STATIC_URL }}u/img/homepage/training-globe-flipped.png" width="250" alt="" />
+      <img class="for-small" src="{{ STATIC_URL }}u/img/homepage/training-globe-flipped.png" width="160" alt="" />
+    </div>
+    <div class="six-col prepend-one last-col">
+      <h2>Everything you need for an OpenStack cloud</h2>
+      <p>Ubuntu OpenStack is a fully integrated and optimised combination of the latest release of Ubuntu Server and the latest release of OpenStack. The main OpenStack releases are supported for a full five years on LTS releases of Ubuntu, giving you peace of mind combined with the latest OpenStack features.</p>
+      <p>64% of production OpenStack clouds are run on Ubuntu. <span class="smaller clearfix">* from the OpenStack User Survey &ndash; November 2014</span></p>
+      <!-- <p><a href="/cloud/ubuntu-openstack">Learn more about Ubuntu OpenStack&nbsp;&rsaquo;</a></p> -->
+    </div>
+</div>
+
+<div class="row row-grey">
+  <div class="twelve-col vertical-divider">
+    <div class="six-col">
+      <h3>Build your own OpenStack cloud</h3>
+      <p>Use the Canonical Distribution of Ubuntu OpenStack to quickly configure and install an OpenStack cloud on your hardware in minutes.</p>
+
+      <p><a href="/cloud/ubuntu-openstack">Learn more about Ubuntu OpenStack &nbsp;&rsaquo;</a></p>
+    </div>
+
+    <div class="six-col last-col no-margin-bottom">
+      <h3>Get a managed OpenStack cloud</h3>
+      <p>With BootStack we build, support and host your very own OpenStack cloud for just $15 per server per day, plus hardware and hosting. </p>
+
+      <p><a href="/cloud/managed-cloud">Learn more about BootStack&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="twelve-col">
+    <h2 class="muted-heading">A selection of our Ubuntu OpenStack clients</h2>
+    <ul id="openstack-customers" class="inline-logos no-bullets no-margin dynamic-logos"></ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="seven-col">
+    <h2>Using Ubuntu in the public cloud</h2>
+    <p>Ubuntu Server is the world&rsquo;s leading cloud guest OS, running the majority of workloads in public clouds today, thanks to its security, versatility and regular updates. </p>
+
+    <p>Certified images are available on most major clouds with partners like Amazon AWS, Microsoft Azure, Google cloud, HP Cloud, Joyent and IBM Smart Cloud and more. Plus, it is the only free cloud operating system with the option of enterprise-grade commercial support.</p>
+
+    <p><a href="/cloud/public-cloud">Learn more about Ubuntu in public clouds&nbsp;&rsaquo;</a></p>
+  </div>
+  <div class="four-col last-col push-one no-margin-bottom">
+    <a href="https://insights.ubuntu.com/2015/03/11/make-it-rain-public-cloud-on-ubuntu-openstack/" class="box box-highlight resource--link resource-e-book" >
+      <h2>Make IT rain&nbsp;&rsaquo;</h2>
+      <p>Ubuntu OpenStack is the most trusted platform on which to build a public cloud.</p>
+      <p class="content-cat content-cat-e-book">eBook</p>
+    </a>
+  </div><!-- /.four-col -->
+</div>
+
+<div class="row">
+  <div class="twelve-col">
+      <h2 class="muted-heading">A selection of our cloud partners</h2>
+      <ul id="cloud-partners" class="inline-logos no-bullets no-margin dynamic-logos"></ul>
+      <p class="align-center"><a class="external" href="http://partners.ubuntu.com/partner-programmes/public-cloud">See all our public cloud partners</a></p>
+  </div>
+</div>
+
+<div class="row">
+  <ul class="no-bullets twelve-col vertical-divider">
+    <li class="four-col">
+      <h3 class="three-col">Cloud tools</h3>
+      <p class="text-center"><img src="{{ STATIC_URL }}u/img/cloud/image-jujucharms.png" width="280" alt="Juju" /></p>
+      <p><a href="/cloud/tools">Learn more about our cloud tools&nbsp;&rsaquo;</a></p>
+    </li>
+    <li class="four-col">
+      <h3 class="four-col">A diverse ecosystem</h3>
+      <p class="text-center"><img src="{{ STATIC_URL }}u/img/cloud/image-interoperability.png" alt="Diverse ecosystem diagram" height="180" width="201" /></p>
+      <p><a href="/cloud/partners">Learn more about our partners&nbsp;&rsaquo;</a></p>
+    </li>
+    <li class="four-col last-col">
+      <h3 class="four-col">Support and services</h3>
+      <p class="text-center"><img src="{{ STATIC_URL }}u/img/management/image-management-small.svg" alt="" width="201" /></p>
+      <p><a href="/management">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+    </li>
+  </ul>
+</div>
+
+<div class="row row-grey equal-height">
+  <div class="seven-col">
+    <h2>Ubuntu {{latest_release}} highlights</h2>
+    <ul class="list list-ubuntu">
+      <li>Now with OpenStack Kilo</li>
+      <li>Initial release of LXD hypervisor</li>
+      <li>Updated LXC supporting Docker 1.5</li>
+      <li>Broad support for software-defined networking</li>
+      <li>Storage now supports Cinder, Ceph Hammer and bcache</li>
+      <li>HA stack updates</li>
+      <li>Updates to Juju and MAAS</li>
+    </ul>
+  </div>
+  <div class="four-col prepend-one last-col">
+    <a href="https://insights.ubuntu.com/2015/04/21/ubuntu-15-04-desktop-phone-and-iot-towards-a-converged-future/" class="box box-highlight resource--link resource-e-book" >
+      <h2>What&rsquo;s new in Ubuntu {{latest_release}}&nbsp;&rsaquo;</h2>
+      <p>Read about the latest and greatest additions to Ubuntu {{latest_release}}, the world&rsquo;s leading cloud platform.</p>
+      <p class="content-cat content-cat-e-book">News</p>
+    </a>
+  </div><!-- /.four-col -->
+</div>
+
+
+
+<div class="row no-border row-insights">
+  <h2 class="twelve-col">The latest Ubuntu Cloud news and events</h2>
+<div class="twelve-col vertical-divider">
+	<div id="insights-cloud-feed" class='six-col'></div>
+	<script>
+		var feedcontainer2=document.getElementById("insights-cloud-feed")
+		var feedurl2=document.location.protocol+"//insights.ubuntu.com/group/cloud-and-server/feed/"
+		var feedlimit2=3
+		var rssoutput="<ul class='no-bullets smaller'>"
+			function rssfeedsetup2(){
+				var feedpointer2=new google.feeds.Feed(feedurl2) //Google Feed API method
+						feedpointer2.setNumEntries(feedlimit2) //Google Feed API method
+						feedpointer2.load(displayfeed2) //Google Feed API method
+			}
+
+			function displayfeed2(result){
+				if (!result.error){
+					var thefeeds2=result.feed.entries
+					for (var i=0; i<thefeeds2.length; i++){
+						rssoutput+="<li class='six-col'><h3><a class='external' href='" + thefeeds2[i].link + "'>" + thefeeds2[i].title + "</a></h3><p>" + thefeeds2[i].contentSnippet + "</p></li>"}
+						rssoutput+="</ul>"
+						feedcontainer2.innerHTML=rssoutput
+				}
+				else
+					alert("An error occurred while fetching rss");
+				}
+
+				window.onload=function(){
+  				rssfeedsetup2();
+  				//showFeed();
+				}
+	</script>
+<div class="insights-events six-col last-col">
+<ul class="no-bullets">
+  <li class="six-col">
+  	<div class="event-details-wrapper clearfix" itemscope itemtype="http://data-vocabulary.org/Event">
+      <div class="six-col last-col">
+  		<div class="event-map">
+  		  <a href="https://insights.ubuntu.com/event/openstack-summit-vancouver/"><span class="image-wrap avatar"><img class="avatar" src="//maps.googleapis.com/maps/api/staticmap?center=Vancouver%2C+BC&amp;zoom=12&amp;size=96x96&amp;sensor=false" alt=""></span></a>
+  	  </div><!-- /.event-map -->
+    		<h3><a class="external" href="https://insights.ubuntu.com/event/openstack-summit-vancouver/">OpenStack Summit Vancouver</a></h3>
+      	<dl class="event-details">
+      			<dt class="accessibility-aid">Date:</dt>
+      			<dd class="event-date">18-22 May 2015<span class="accesibilty-aid">
+      			<time itemprop="startDate" datetime="2015-05-18T00:00"></time>
+      			<time itemprop="endDate" datetime="2015-05-22T00:00"></time></span></dd>
+      			<dt class="accessibility-aid">Location:</dt>
+      			<dd class="location" itemprop="location" itemscope="" itemtype="http://schema.org/PostalAddress">Vancouver, BC</dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="six-col">
+  	<div class="event-details-wrapper clearfix" itemscope itemtype="http://data-vocabulary.org/Event">
+      <div class="six-col last-col">
+  		<div class="event-map">
+  		  <a href="http://insights.ubuntu.com/event/webinar-designing-sizing-openstack-for-success/">
+            <span class="image-wrap avatar"><img class="avatar" src="///maps.googleapis.com/maps/api/staticmap?center=London&zoom=12&size=106x106&sensor=false" alt=""></span>
+					</a>
+  	  </div><!-- /.event-map -->
+    		<h3><a class="external" href="http://insights.ubuntu.com/event/webinar-designing-sizing-openstack-for-success/">Designing and Sizing OpenStack for Success</a></h3>
+				<dl class="event-details">
+						<dt class="accessibility-aid">Date:</dt>
+						<dd class="event-date">26 May 2015<span class="accesibilty-aid"><time itemprop="startDate" datetime="2015-05-26T00:00"></time><time itemprop="endDate" datetime="2015-05-26T00:00"></time></span></dd>
+						<dt class="accessibility-aid">Location:</dt>
+						<dd class="location" itemprop="location" itemscope="" itemtype="http://schema.org/PostalAddress">London</dd>
+				</dl>
+      </div>
+    </div>
+  </li>
+</ul>
+</div>
+
+{% comment %}
+<ul id="headlines" class="no-bullets"></ul>
+<script>
+function showFeed() {
+      var feed = new google.feeds.Feed("https://insights.ubuntu.com/category/events/feed/?tag=cloud-2");
+	  feed.setNumEntries(3);
+      feed.load(function(result) {
+        if (!result.error) {
+		  var container = document.getElementById("headlines");
+          for (var i = 0; i < result.feed.entries.length; i++) {
+            var entry = result.feed.entries[i];
+            var li = document.createElement("li");
+            li.innerHTML = '<h3><a class="external" href="' + entry.link + '">' + entry.title + '</a></h3>';
+            li.innerHTML += '<p>' + entry.eventStartDate + '</p>';
+            container.appendChild(li);
+          }
+        } else {
+			var container = document.getElementById("headlines");
+		    //container.innerHTML = '<li><a href="">View more events</a></li>';
+		}
+      });
+    }
+	</script>{% endcomment %}
+</div>
+</div>
+
+{% include "ubuntu/shared/_live_chat.html" %}
+{% endblock content %}
+
+{% block head_extra %}
+
+<style type="text/css">
+  @keyframes fadeIn {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+-@-moz-keyframes fadeIn {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+@-webkit-keyframes fadeIn {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+
+/*scaleIn*/
+
+@keyframes scaleIn {
+    0% {
+        background-size: 0%;
+    }
+    100% {
+        background-size: 100%;
+    }
+}
+@-moz-keyframes scaleIn {
+    0% {
+        background-size: 0%;
+    }
+    100% {
+        background-size: 100%;
+    }
+}
+@-webkit-keyframes scaleIn {
+    0% {
+        background-size: 0%;
+    }
+    100% {
+        background-size: 100%;
+    }
+}
+
+/*scaleInPop*/
+
+@keyframes scaleInPop {
+    0% {
+        background-size: 0%;
+    }
+    60% {
+        background-size: 100%;
+    }
+    100% {
+        background-size: 90%;
+    }
+}
+@-moz-keyframes scaleInPop {
+    0% {
+        background-size: 0%;
+    }
+    60% {
+        background-size: 100%;
+    }
+    100% {
+        background-size: 90%;
+    }
+}
+@-webkit-keyframes scaleInPop {
+    0% {
+        background-size: 0%;
+    }
+    60% {
+        background-size: 100%;
+    }
+    100% {
+        background-size: 90%;
+    }
+}
+
+/*rotateIn*/
+
+@keyframes rotateIn {
+    0% {
+        transform: rotate(-45deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+@-moz-keyframes rotateIn {
+    0% {
+        -moz-transform: rotate(-45deg);
+    }
+    100% {
+        -moz-transform: rotate(0deg);
+    }
+}
+@-webkit-keyframes rotateIn {
+    0% { -webkit-transform: rotate(-45deg); }
+    100% { -webkit-transform: rotate(0deg); }
+}
+</style>
+
+<script src="https://www.google.com/jsapi"></script>
+<script> google.load("feeds", "1");</script>
+
+{% endblock %}
+
+
+{% block footer_extra %}
+{{ marketo }}
+<script>
+    YUI().use('event-base', function (Y) {
+        Y.on('domready', function () {
+            core.loadPartners('?programme__name=Certified%20Public%20Cloud&featured=true', '#cloud-partners');
+            core.loadPartners('?', '#openstack-customers', 'customers');
+        });
+    });
+</script>
+{% endblock %}

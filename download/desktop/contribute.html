@@ -1,0 +1,464 @@
+{% extends "ubuntu/download/_base_download.html" %}
+
+{% block title %}Contribute to Ubuntu | Ubuntu{% endblock %}
+{% block extra_body_class %}contribute-to-ubuntu{% endblock %}
+
+{% block second_level_nav_items %}
+    {% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Contribute"  %}
+{% endblock second_level_nav_items %}
+
+{% block outer_content %}
+
+<div id="contribute-introductions" class="row row-hero contribution-intro-row">
+    <div class="contribution-intro">
+        <h1>Tell us what we should do more&hellip;</h1>
+        <p>&hellip;and put your money where your mouth is ;)</p>
+    </div>
+    <div class="contribution-intro">
+        <h1>Help shape the future of Ubuntu...</h1>
+        <p>...tell us what to do more of!</p>
+    </div>
+</div>
+
+<div id="contribute-form-container" class="contribute-page">
+    <form class="main-form" id="contributions-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <div class="row no-border">
+            <div class="sliders-container noscript">
+                <div class="slider-area" id="ubuntu-desktop">
+                    <p class="title">Ubuntu Desktop</p>
+
+                    <fieldset class="contribution-value">
+                        <label for="amount-desktop">&#36; </label>
+                        <input type="number" min="0" max="125" id="amount-desktop" name="amount_1" value="2" class="amount-input" tabindex="1">
+                    </fieldset>
+
+                    <div class="contribution-slider"></div>
+
+                    <!--  Hidden fields -->
+                    <input type="hidden" name="item_name_1" value="Ubuntu Desktop">
+                </div>
+                <div class="slider-area" id="ubuntu-for-phone">
+                    <p class="title">Ubuntu for phone</p>
+
+                    <fieldset class="contribution-value">
+                        <label for="amount_phone">&#36; </label>
+                        <input type="number" max="125" id="amount_phone" name="amount_2" value="2" class="amount-input" tabindex="2">
+                    </fieldset>
+
+                    <div class="contribution-slider"></div>
+
+                    <!-- hidden fields -->
+                    <input type="hidden" name="item_name_2" value="Ubuntu for phone">
+                </div>
+                <div class="slider-area" id="ubuntu-for-tablet">
+                    <p class="title">Ubuntu for tablet</p>
+
+                    <fieldset class="contribution-value">
+                        <label for="amount_phone">&#36; </label>
+                        <input type="number" max="125" id="amount_phone" name="amount_3" value="2" class="amount-input" tabindex="3">
+                    </fieldset>
+
+                    <div class="contribution-slider"></div>
+
+                    <!-- hidden fields -->
+                    <input type="hidden" name="item_name_3" value="Ubuntu for tablet">
+                </div>
+                <div class="slider-area" id="ubuntu-on-public-clouds">
+                    <p class="title">Ubuntu on public clouds</p>
+
+                    <fieldset class="contribution-value">
+                        <label for="amount_phone">&#36; </label>
+                        <input type="number" max="125" id="amount_phone" name="amount_4" value="2" class="amount-input" tabindex="4">
+                    </fieldset>
+
+                    <div class="contribution-slider"></div>
+
+                    <!-- hidden fields -->
+                    <input type="hidden" name="item_name_4" value="Ubuntu on public clouds">
+                </div>
+                <div class="slider-area" id="cloud-tools">
+                    <p class="title">Cloud tools  (e.g. Juju, MAAS)</p>
+
+                    <fieldset class="contribution-value">
+                        <label for="amount_phone">&#36; </label>
+                        <input type="number" max="125" id="amount_phone" name="amount_5" value="2" class="amount-input" tabindex="5">
+                    </fieldset>
+
+                    <div class="contribution-slider"></div>
+
+                    <!-- hidden fields -->
+                    <input type="hidden" name="item_name_5" value="Cloud tools  (e.g. Juju, MAAS)">
+                </div>
+                <div class="slider-area" id="ubuntu-server-with-openstack">
+                    <p class="title">Ubuntu Server with OpenStack</p>
+
+                    <fieldset class="contribution-value">
+                        <label for="amount_phone">&#36; </label>
+                        <input type="number" max="125" id="amount_phone" name="amount_6" value="2" class="amount-input" tabindex="6">
+                    </fieldset>
+
+                    <div class="contribution-slider"></div>
+
+                    <!-- hidden fields -->
+                    <input type="hidden" name="item_name_6" value="Ubuntu Server with OpenStack">
+                </div>
+                <div class="slider-area" id="community-projects">
+                    <p class="title">Community projects</p>
+
+                    <fieldset class="contribution-value">
+                        <label for="amount_performance">&#36; </label>
+                        <input type="number" max="125" id="amount_performance" name="amount_7" value="2" class="amount-input"  tabindex="7">
+                    </fieldset>
+
+                    <div class="contribution-slider"></div>
+
+                    <!-- hidden fields -->
+                    <input type="hidden" name="item_name_7" value="Community projects">
+                </div>
+                <div class="slider-area" id="tip-to-canonical">
+                    <p class="title">Tip to Canonical</p>
+
+                    <fieldset class="contribution-value">
+                        <label for="amount_hardware">&#36; </label>
+                        <input type="number" max="125" id="amount_hardware" name="amount_8" value="2" class="amount-input" tabindex="8">
+                    </fieldset>
+
+                    <div class="contribution-slider"></div>
+
+                    <!-- hidden fields -->
+                    <input type="hidden" name="item_name_8" value="Tip to Canonical">
+                </div>
+            </div>
+        </div>
+        <div class="row no-border total-area-row noscript">
+            <div class="total-area">
+                <div class="contribution">
+                    <p class="title">Your contribution</p>
+
+                    <p class="price">
+                        <span class="currency">&#36;</span>
+                        <span class="final-amount">16</span>
+                    </p>
+                </div>
+
+                <div class="price-equivalent">
+                    <img alt="T-shirt" src="{{ STATIC_URL }}u/img/contributions/t-shirt.png">
+                    <p class="title">The same price as</p>
+                    <p class="desc">Peace, Love and Linux t-shirt</p>
+                    <p class="price">$<span class="value">20</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="row contribute-row no-border">
+            <div class="contribute">
+                <input type="hidden" name="cmd" value="_cart">
+                <input type="hidden" name="business" value="donations@ubuntu.com">
+                <input type="hidden" name="lc" value="GB">
+                <input type="hidden" name="upload" value="1">
+                <input type="hidden" name="currency_code" value="USD">
+                <input type="hidden" name="button_subtype" value="services">
+                <input type="hidden" name="no_note" value="1">
+                <input type="hidden" name="no_shipping" value="1">
+                <input type="hidden" name="rm" value="1">
+
+                <input type="hidden" name="return" value="http://{{ request.META.HTTP_HOST }}/download/desktop/thank-you/?version={{ request.GET.version }}&architecture={{ request.GET.architecture }}">
+                <input type="hidden" name="cancel_return" value="http://{{ request.META.HTTP_HOST }}/download/desktop/thank-you/?version={{ request.GET.version }}&architecture={{ request.GET.architecture }}">
+
+                <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
+                <button type="submit" class="link-cta-ubuntu pay-with-paypal" tabindex="9">Pay with PayPal</button>
+
+                {% if request.GET.version and request.GET.architecture %}
+                <a href="/download/desktop/thank-you/?version={{ request.GET.version }}&architecture={{ request.GET.architecture.split|join:"+" }}" class="skip" tabindex="11">Not now, take me to the download&nbsp;&rsaquo;</a>
+                {% endif %}
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock outer_content %}
+
+{% block footer_extra %}
+<script src="{{ STATIC_URL }}u/js/helpers.js"></script>
+<script>
+/**
+ * Ubuntu YUI contribution sliders
+ *
+ * This class controls the sliders to distribute the donation
+ *
+ * @project     Ubuntu Core Front-End Framework
+ * @author      Web Team at Canonical Ltd
+ * @copyright   2012 Canonical Ltd
+ *
+ **/
+ YUI({bootstrap: false}).use('slider', function (Y) {
+    // Remove the noscript classes
+    Y.all('.noscript').removeClass('noscript');
+
+    // Show only one (random) of the introductions
+    hideAllButOne(Y.all('.contribution-intro'));
+
+    // Setup the contributions form and its sliders
+    var contributionsForm = Y.one('#contributions-form');
+
+    contributionsForm.setData('equivalentItems', [ // these items must stay in ascending order of price
+        { imageFile: 'skull.png',           price: 0,    description: 'Nothing. Use Ubuntu for free.'},
+        { imageFile: 'ace-of-spades.png',   price: 1,    description: 'the Ace of Spades download'},
+        { imageFile: 'mocca.png',           price: 2,    description: 'grande extra shot mocha latta chino'},
+        { imageFile: 'pint-of-ale.png',     price: 5,    description: 'pint of Micro-brew Nevada Pale Ale'},
+        { imageFile: 'happy-meal.png',      price: 7,    description: 'A Royale with Cheese '},
+        { imageFile: 'cinema-ticket.png',   price: 10,   description: 'a night at the movies. By yourself.'},
+        { imageFile: 'king-kong.png',       price: 15,   description: 'King Kong versus Godzilla on DVD'},
+        { imageFile: 't-shirt.png',         price: 20,   description: 'Peace, Love and Linux t-shirt (shirt not included)'},
+        { imageFile: 'frying-pan.png',      price: 30,   description: 'stainless steel copper-bottom frying pan'},
+        { imageFile: 'sega-controller.png', price: 50,   description: 'vintage SNES game bundle'},
+        { imageFile: 'levi-501.png',        price: 60,   description: 'pair of vintage acid wash Levi 501s'},
+        { imageFile: 'drum-kit.png',        price: 100,  description: 'pair of LP Matador bongo drums'},
+        { imageFile: 'emu-chicks.png',      price: 200,  description: 'pair of sexed Emu chicks'},
+        { imageFile: 'ldn-nyc-flight.png',  price: 500,  description: 'flight from New York to London (one way)'},
+        { imageFile: 'camel.png',           price: 1000, description: 'an eight year-old dromedary camel'}
+    ]);
+
+    var sliders = [];
+
+    // Create all sliders
+    contributionsForm.all('.slider-area').each(function(area) {
+        var slider = new Y.Slider({min: 0, max: 125, thumbUrl: '#'}); // Initialise slider
+
+        // Setup input area
+        var input = area.one('.amount-input'); // Find amount input
+        input.setData( { slider: slider } ); // Link slider to input
+        input.on(['change', 'keyup', 'mouseup'], updateSliderFromInput);  // Update slider when input changes
+
+        // Setup slider
+        slider.set('input', input); // Link input to slider
+        slider.set('container', area.one('.contribution-slider')); // Link container to slider itself
+        slider.after("valueChange", updateInputFromSlider); // Update input when slider updates
+        slider.after("valueChange", updateSliderBackground);
+        slider.after("valueChange", updateFormTotals);
+
+        // Render the slider
+        slider.render(slider.get('container')); // Render the sliders into their containers
+
+        // Add to list of sliders
+        sliders.push(slider);
+    });
+
+    contributionsForm.on(['change', 'keyup'], updateFormTotals);  // Update slider when input changes
+
+    contributionsForm.setData('sliders', sliders);
+
+    // When the window resizes, resize sliders
+    var yuiWindow = Y.one('window');
+    yuiWindow.setData('contributionsForm', contributionsForm);
+    yuiWindow.on('resize', function(resizeEvent) {resizeSliders(contributionsForm)});
+    resizeSliders(contributionsForm);
+
+    // Set the values of the sliders to 2
+    sliders.forEach(function(slider) {slider.setValue(2);});
+
+    // Setup skiplink to abandon the form
+    var skipLink = Y.one('.contribute .skip');
+    if (skipLink) {
+        skipLink.on('click', abandonForm);
+    }
+
+    // Send analytics to google when submitting the form
+    contributionsForm.on('submit', sendContributionFormAnalytics);
+
+    // If total is 0, download
+    contributionsForm.on('submit', function(submitEvent) {
+        var form = submitEvent.target;
+        var skipLink = form.one('.contribute .skip');
+        if (skipLink && calculateTotal(form.getData('sliders')) == 0) {
+            submitEvent.preventDefault();
+            var downloadUrl = skipLink.getAttribute('href');
+            window.location.href = downloadUrl;
+        }
+    });
+});
+
+/* Contributions form event listeners
+ * ================================== */
+
+// Function to update the input value from the Slider value
+function updateInputFromSlider( event ) {
+    // Update input field and recalculate
+    var slider = event.target;
+    slider.get('input').set( "value", slider.getValue() );
+}
+
+function updateSliderFromInput(event) {
+    var input = event.target;
+    // Input can't be more than 125
+    if (input.get('value') > 125) {
+        input.set('value', 125);
+    }
+    // Or less than zero
+    if (input.get('value') < 0) {
+        input.set('value', 0);
+    }
+    var value = parseInt(input.get('value')) || 0;
+    var slider = input.getData('slider');
+    slider.setValue(value);
+}
+
+function updateSliderBackground(event) {
+    // Get values
+    var slider = event.target;
+    var value = slider.getValue();
+    var max = slider.get('max');
+    var percentage = (value / max) * 100;
+
+    // Update background of slider
+    if (canSetLinearGradient()) {
+        var sliderRail = slider.get('container').one('.yui3-slider-rail');
+        sliderRail.setStyle('background', 'linear-gradient(to left, #E1DAD2 ' + (100 - percentage) + '%, #DD4713 0%)');
+    }
+}
+
+function calculateTotal(sliders) {
+    var total = 0;
+
+    sliders.forEach(function(slider) {
+        var input = slider.get('input');
+        var value = parseInt(input.get('value')) || 0;
+        if (value < 0) {value = 0;}
+        total += value;
+    });
+
+    return total;
+}
+
+function updatePriceEquivalent(area, total, items) {
+    // Set the price equivalent image and text
+    var image = area.one('img');
+    var description = area.one('.desc');
+    var priceValue = area.one('.price .value');
+    var selectedItem = null;
+
+    // Select the item with slightly higher price than the total
+    for (var itemIndex = 0; itemIndex < items.length; itemIndex++) {
+        var item = items[itemIndex];
+
+        if (total <= item.price) {
+            selectedItem = item;
+            break;
+        }
+    }
+
+    // Update the equivalent area with this item's details
+    var oldImagePath = image.getAttribute('src');
+    var newImagePath = oldImagePath.replace(/[^\/]+\.\w{3,4}$/, selectedItem.imageFile);
+    image.setAttribute('src', newImagePath);
+    description.setContent(selectedItem.description);
+    priceValue.setContent(selectedItem.price);
+}
+
+// Recalculate the sliders' lengths
+function resizeSliders(form) {
+    // Calculate length
+    var container = form.one('.sliders-container');
+    var widthString = container.getComputedStyle('width');
+    var width = widthString.replace('px', '');
+    var containerWidth = parseInt(width);
+    var inputWidth = form.one('.contribution-value').get('offsetWidth');
+    // sliders should sit alongside inputs with padding
+    var sliderLength = containerWidth - 20 - inputWidth;
+
+    form.getData('sliders').forEach(function(slider) {
+        slider.set('length', sliderLength + 'px');
+    });
+}
+
+function updateFormTotals(changeEvent) {
+    // Get the form
+    var target = changeEvent.target;
+    if (typeof(target.ancestor) != 'function') {
+        target = target._parentNode;
+    }
+    var form = target.ancestor('form');
+
+    var finalAmountContainer = form.one('.final-amount');
+    var priceEquivalentArea = form.one('.price-equivalent');
+    var submitButton = form.one('button[type=submit]');
+    var equivalentItems = form.getData('equivalentItems');
+    var skipLink = form.one('.contribute .skip');
+
+    var finalAmount = calculateTotal(form.getData('sliders'));
+
+    finalAmountContainer.setContent(finalAmount);
+
+    if (!form.getData('abandoned')) {
+        updatePriceEquivalent(priceEquivalentArea, finalAmount, equivalentItems);
+    }
+
+    if (skipLink) {
+        var zeroText = 'Download';
+        var currentText = submitButton.getHTML()
+        var originalText = submitButton.getData('originalContent');
+
+        // Change the button text to download if total is zero
+        if (finalAmount > 0) {
+            if (originalText && currentText == zeroText) {
+                submitButton.setHTML(originalText);
+            }
+        } else {
+            if (currentText != zeroText) {
+                submitButton.setData('originalContent', currentText);
+            }
+            submitButton.setHTML(zeroText);
+        }
+    }
+}
+
+/**
+ * Send form values to Google Analytics
+ * Also send which header has been shown
+ */
+function sendContributionFormAnalytics( form ) {
+    // If we were passed an event, get the real form
+    if (typeof(form.target) == "object") {
+        form = form.target;
+    }
+
+    // preparing GA submission. step 1 _addTrans
+    var orderId = generateRandomId();
+
+    var introductionHeader = "";
+    form.ancestor('body').all('.contribution-intro').each(function(element, index) {
+        if (element.getStyle('display') == 'block') {
+            introductionHeader = 'header-' + (index + 1);
+        }
+    })
+
+    var total = calculateTotal(form.getData('sliders'));
+
+    _gaq.push(['_addTrans', orderId, introductionHeader, total]);
+
+    // now add the individual items
+    form.getData('sliders').forEach(function(slider, index) {
+        var name = slider.get('container').ancestor('.slider-area').get('id');
+        var value = slider.getValue();
+        _gaq.push(['_addItem', orderId, name, name, introductionHeader, value, 1]);
+    });
+    _gaq.push(['_trackTrans']);
+}
+
+/**
+ * To be fired when leaving the form without submitting
+ * Set all values to zero
+ * And submit analytics data
+ */
+function abandonForm(event) {
+    var form = event.target.ancestor('form');
+    form.setData('abandoned', true);
+    form.getData('sliders').forEach(function(slider) { slider.set('value', 0); });
+    sendContributionFormAnalytics(form);
+}
+</script>
+
+<script>
+
+</script>
+
+{{ marketo }}
+{% endblock footer_extra %}

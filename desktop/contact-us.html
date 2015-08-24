@@ -1,0 +1,99 @@
+{% extends "ubuntu/desktop/base_desktop.html" %}
+
+{% block title %}Contact us{% endblock %}
+{% block meta_description %}Fast, easy and quick to deploy, switching to Ubuntu has never been easier{% endblock %}
+{% block meta_keywords %}Ubuntu, Ubuntu operating system, OS, Linux, Windows alternative, Mac alternative, thin client, Business desktop{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Contact us" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-border">
+	<div class="eight-col">
+		<h1>Contact us</h1>
+		<h2>Considering Ubuntu for your organisation?</h2>
+		<p>Are you interested in cost-effective systems management and professional support?</p>
+		<p><a href="/management">Find out more about Landscape and Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+
+
+<!-- MARKETO FORM -->
+<script src="//assets.ubuntu.com/v1/37b1db88-jquery.min.js"></script>
+<script  src="//assets.ubuntu.com/v1/e1085fb6-jquery.validate.min.js"></script>
+    
+<form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1253"> 
+<fieldset>
+    <ul class="no-bullets">          
+
+        <li  class="mktFormReq mktField">    
+<label for="FirstName" class="mktoLabel " >First name: <span>*</span></label>
+<input required  id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField   mktoRequired" >
+        </li>
+    
+        <li  class="mktFormReq mktField">    
+<label for="LastName" class="mktoLabel " >Last name: <span>*</span></label>
+<input required  id="LastName" name="LastName" maxlength="255" type="text" class="mktoField   mktoRequired" >
+        </li>
+    
+        <li  class="mktFormReq mktField">    
+<label for="Email" class="mktoLabel " >Work email: <span>*</span></label>
+<input required  id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired" >
+        </li>
+    
+        <li  class="mktFormReq mktField">    
+<label for="Phone" class="mktoLabel " >Phone number: <span>*</span></label>
+<input required  id="Phone" name="Phone" maxlength="255" title="" type="tel" class="mktoField mktoTelField  mktoRequired" >
+        </li>
+    
+        <li  class="mktFormReq mktField">    
+<label for="Comments_from_lead__c" class="mktoLabel " >What would you like to talk to us about? <span>*</span></label>
+<textarea required  id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" class="mktoField  mktoRequired" maxlength="2000" ></textarea>
+        </li>
+    
+    <li  class="mktField">    
+        <input class="mktoField" value="yes" id="NewsletterOpt-In" name="NewsletterOpt-In" type="checkbox">
+        <label  class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>        
+    </li>
+    <li>All information provided will be handled in accordance with the Canonical <a href="http://www.ubuntu.com/legal" target="_blank">privacy policy</a>.</li>
+        
+        <li  class="mktField">    
+<button type="submit" class="mktoButton">Submit</button></span><input type="hidden" name="formid" class="mktoField " value="1253"><input type="hidden" name="lpId" class="mktoField " value="1409"><input type="hidden" name="subId" class="mktoField " value="30"><input type="hidden" name="munchkinId" class="mktoField " value="066-EOV-335"><input type="hidden" name="lpurl" class="mktoField " value="https://pages.ubuntu.com/desktop_contact-us.html?cr={creative}&amp;kw={keyword}"><input type="hidden" name="cr" class="mktoField " value=""><input type="hidden" name="kw" class="mktoField " value=""><input type="hidden" name="q" class="mktoField " value=""><input type="hidden" name="returnURL" value="http://www.ubuntu.com/desktop/thank-you" /><input type="hidden" name="retURL" value="http://www.ubuntu.com/desktop/thank-you" />
+        </li>
+    
+    </ul>
+</fieldset>
+
+
+</form>
+<script>
+$("#mktoForm_1253").validate({
+    errorElement: "span",
+    errorClass: "mktFormMsg mktError"
+});
+</script>
+<script  src="//assets.ubuntu.com/v1/f97fa297-stateCountry.js"></script>
+
+<!-- /MARKETO FORM -->
+
+          
+                            
+
+
+	</div>
+	<div class="four-col box last-col">
+		<h3>Need help with Ubuntu?</h3>
+		<p>If you are just looking for some free support for yourself, you can try:</p>
+		<ul class="list">
+			<li><a href="http://askubuntu.com/">Ask Ubuntu</a></li>
+			<li><a href="http://ubuntuforums.org/">The Ubuntu forum</a></li>
+			<li><a href="https://help.ubuntu.com/">Help docs</a></li>
+		</ul>
+	</div>
+	<div class="four-col box last-col">
+		<h3>Looking for a little professional support?</h3>
+		<p>If you are a small organisation, you can purchase packs of Ubuntu Advantage in our shop.</p>
+		<p><a href="http://shop.canonical.com/index.php?cPath=41">Visit the shop&nbsp;&rsaquo;</a></p>
+	</div>
+</div>
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

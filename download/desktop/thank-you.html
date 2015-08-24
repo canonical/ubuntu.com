@@ -1,0 +1,160 @@
+{% extends "ubuntu/download/_base_download.html" %}
+
+{% block title %}
+{% if request.GET.version and request.GET.architecture %}
+Thanks for downloading Ubuntu Desktop
+{% else %}
+Thank you for your contribution
+{% endif %}
+{% endblock %}
+{% block extra_body_class %}download-thankyou{% endblock %}
+
+{% block second_level_nav_items %}
+{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Thank you"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+
+    {% if request.GET.version and request.GET.architecture %}
+        {% if request.GET.architecture.split|join:"+" == 'amd64+mac' %}
+    <meta http-equiv="refresh" content="3;url=http://cdimage.ubuntu.com/releases/14.04/release/ubuntu-14.04-desktop-amd64+mac.iso">
+        {% else %}
+    <noscript>
+        <meta http-equiv="refresh" content="3;url=http://releases.ubuntu.com/{{ request.GET.version }}/ubuntu-{{ request.GET.version }}-desktop-{{ request.GET.architecture.split|join:"+" }}.iso">
+    </noscript>
+        {% endif %}
+    {% endif %}
+
+    <div class="row row-hero no-border">
+        <div class="eight-col">
+            {% if request.GET.version and request.GET.architecture %}
+                <h1>Thank you for downloading Ubuntu Desktop</h1>
+                <p>
+                    Your download should start automatically. If it doesn&rsquo;t,
+                {% if request.GET.architecture.split|join:"+" == 'amd64+mac' %}
+                    <a href="http://cdimage.ubuntu.com/releases/14.04/release/ubuntu-14.04-desktop-amd64+mac.iso">download now</a>.
+                {% else %}
+                    <a href="http://releases.ubuntu.com/{{ request.GET.version }}/ubuntu-{{ request.GET.version }}-desktop-{{ request.GET.architecture.split|join:"+" }}.iso">download now</a>.
+                {% endif %}
+                </p>
+            {% else %}
+                <h1>Thank you for your contribution</h1>
+                <p>Thanks for contributing to the Ubuntu project.</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row row-grey no-border">
+        <div class="box-grey twelve-col no-margin-bottom equal-height">
+            <div class="four-col one box box-highlight no-margin-bottom">
+                <div class="text-center four-col">
+                    <img alt="ubuntu one" src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-discussion-warmgrey.svg" width="113" height="113" />
+                </div>
+                <h3>Talk Ubuntu</h3>
+                <p>Debate the latest developments in the Ubuntu world at Ubuntu Discourse, our community forum.</p>
+                <p><a href="http://discourse.ubuntu.com" class="external">Get involved at Ubuntu Discourse</a></p>
+            </div><!-- /.four-col -->
+            <div class="four-col support box box-highlight no-margin-bottom">
+                <div class="text-center four-col">
+                    <img alt="ubuntu advantage" src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-business-warmgrey.svg" width="113" height="113" />
+                </div>
+                <h3>Ubuntu Advantage</h3>
+                <p>Purchase our desktop support and access Ubuntu experts whenever you need.</p>
+                <p><a href="http://shop.canonical.com/index.php?cPath=41" class="external">Learn more</a></p>
+            </div><!-- /.four-col -->
+            <div class="four-col ask last-col box box-highlight no-margin-bottom">
+                <div class="text-center four-col">
+                    <img alt="ubuntu advantage" src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-forum-warmgrey.svg" width="113" height="113" />
+                </div>
+                <h3>Ask Ubuntu</h3>
+                <p>Need help? Ask your questions here.</p>
+                <p><a href="http://askubuntu.com" class="external">Get help</a></p>
+            </div><!-- /.four-col -->
+        </div><!-- /.row .row-box -->
+
+    </div><!-- /.row .row-download -->
+{% endblock content %}
+
+{% block footer_extra %}
+<script src="{{ STATIC_URL }}u/js/helpers.js"></script>
+
+<script>
+// Download file information
+var defaultLocation = 'http://releases.ubuntu.com/'; // Default to releases.ubuntu.com
+var version = '{{ request.GET.version }}';
+var architecture = '{{ request.GET.architecture.split|join:"+" }}';
+
+// Mirrors for this country
+var mirrors = {{ mirror_list|safe }};
+
+if (version && architecture && architecture != 'amd64+mac') {
+    // Report to Google Analytics
+    YUI().use('event-base', function (Y) {
+        Y.on('domready', function () {
+            _gaq.push(['_trackEvent', 'Download', 'Downloaded', 'User downloaded Ubuntu (' + version + '-desktop-' + architecture + ')']);
+        });
+    });
+
+    startDownload(mirrors, version, architecture, defaultLocation);
+}
+
+function startDownload(mirrors, version, architecture, defaultLocation) {
+    // Select a random mirror from list
+    var selectedMirror = chooseRandomMirror(mirrors);
+    var downloadLocation = defaultLocation;
+
+    // Build the download link
+    if (selectedMirror && selectedMirror.link) {
+        downloadLocation = selectedMirror.link;
+    }
+    var downloadLink = downloadLocation + version + '/ubuntu-' + version + '-desktop-' + architecture + '.iso';
+
+    // Start download
+    delayStartDownload(downloadLink, 3000);
+}
+
+/**
+ * Kick off a download link
+ * after a certain delay in milliseconds
+ */
+function delayStartDownload(downloadLink, delay) {
+    window.setTimeout(
+        function () { window.location.href = downloadLink; },
+        delay
+    )
+}
+
+/**
+ * Choose randomly from a given list of mirrors
+ * Weight the choice by the bandwidth of each mirror
+ */
+function chooseRandomMirror(mirrors) {
+    var selectedMirror = null;
+
+    // Calculate total bandwidth
+    var totalBandwidth = 0;
+    mirrors.forEach(function (mirror) {
+        mirror.bandwidth = parseInt(mirror.bandwidth) ? parseInt(mirror.bandwidth) : 0;
+        totalBandwidth += mirror.bandwidth;
+    });
+
+    // Random weight-point to download
+    var downloadPoint = Math.floor(Math.random() * totalBandwidth);
+    var weightPoint = 0;
+
+    // Select a mirror based on weighting
+    for (var mirrorIndex = 0; mirrorIndex < mirrors.length;mirrorIndex++) {
+        var mirror = mirrors[mirrorIndex];
+        weightPoint += mirror.bandwidth;
+
+        // If this is the random point to download
+        if (downloadPoint < weightPoint) {
+            selectedMirror = mirror;
+            break;
+        }
+    }
+
+    return selectedMirror;
+}
+</script>
+
+{% endblock footer_extra %}

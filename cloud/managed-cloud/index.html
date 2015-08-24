@@ -1,0 +1,186 @@
+{% extends "ubuntu/cloud/base_cloud.html" %}
+
+{% block title %}BootStack - Your Managed cloud | Ubuntu{% endblock %}
+
+{% block meta_description %}With BootStack, Canonical will build, support and manage your cloud for only $15 per host per day.{% endblock meta_description %}
+
+{% block meta_keywords %}Ubuntu BootStack, BootStack, private cloud, support, Ubuntu OpenStack, consulting, build a cloud, Ubuntu, Canonical, Managed Cloud{% endblock meta_keywords %}
+
+{% block second_level_nav_items %}
+    {% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Your cloud" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-border">
+  <h1 class="eight-col">BootStack &mdash; your managed cloud</h1>
+    <div class="seven-col">
+      <p class="intro">Choose OpenStack and we&rsquo;ll make it happen.</p>
+      <p>Canonical, the world&rsquo;s leading cloud platform company, will build, support and manage your OpenStack cloud for just &dollar;15 per server per day, plus hardware and hosting. Then, when you&rsquo;re ready, we&rsquo;ll train your team and smoothly hand over operational control.</p>
+      <p>Need a managed OpenStack cloud up and running next week?</p>
+      <p class="clear"><a class="link-cta-ubuntu" href="/cloud/managed-cloud/contact-us" onclick="_gaq.push(['_trackEvent', 'Internal Link', 'BootStack contact link', 'From BootStack page hero section']);">Make it happen</a></p>
+    </div><!-- /.eight-col -->
+    <div class="five-col last-col text-center">
+      <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-startfirst-midaubergine.svg" alt="" class="priority-0" width="200" />
+    </div>
+</div>
+
+<div id="bootstack-video" class="row row--video">
+  <h2>Learn about BootStack managed cloud</h2>
+  <div class="the-video"><div></div></div>
+    <p class="video-link"><a href="//www.youtube.com/watch?v=-hCSTwyG7bbg&amp;hd=1" class="show-video">Watch the video</a></p>
+</div>
+
+<div class="row no-padding-bottom no-border">
+    <h2 class="seven-col no-margin">Get a managed OpenStack cloud in three easy steps</h2>
+</div>
+
+<div class="row">
+    <ol class="no-bullets">
+      <li class="row-step step-one">
+        <div class="prepend-one five-col append-two">
+          <h3>We specify your cloud
+              <span class="step">1</span>
+          </h3>
+          <p>Together, we design your cloud to the required size and specifications &mdash; on your site, in your datacentre or hosted with one of our partners. </p>
+        </div>
+        <div class="four-col last-col align-center">
+          <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-support-darkaubergine.svg" alt="" width="134" />
+        </div>
+      </li>
+      <li class="row-step">
+        <div class="prepend-one five-col append-two">
+          <h3>We host your cloud
+              <span class="step">2</span>
+          </h3>
+          <p>OpenStack experts take full responsibility for the management, monitoring and 24/7 availability of your new cloud.</p>
+        </div>
+        <div class="four-col last-col align-center">
+          <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-growondemand-warmgrey.svg" alt="" width="134" />
+        </div>
+      </li>
+      <li class="row-step">
+        <div class="prepend-one five-col append-two">
+          <h3>We transfer control
+              <span class="step">3</span>
+          </h3>
+          <p>As and when you decide to take control of your cloud back in house, we will train your team on its operations to ensure a smooth handover.</p>
+        </div>
+        <div class="four-col last-col align-center">
+          <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-training-midaubergine.svg" alt="" width="134" />
+        </div>
+      </li>
+    </ol>
+</div><!-- /.row -->
+
+<div class="row row-grey">
+    <div class="four-col small-align-center">
+      <img src="{{ STATIC_URL }}u/img/cloud/bootstack/easy-way-in.svg" alt="" width="288" height="257" />
+    </div>
+    <div class="seven-col prepend-one last-col">
+      <h2>The easy way in</h2>
+      <p class="seven-col">BootStack is the only OpenStack solution that&rsquo;s SLA-backed and supported end-to-end. It&rsquo;s your cloud, running on your hardware, in your datacentre (if you want it there) with the world&rsquo;s OpenStack experts responsible for availability, for as long as you need it. Which leaves you free to focus on the  workloads that add value to your business. Our business is taking care of your cloud.</p>
+    </div>
+</div><!-- /.row -->
+
+<div class="row no-border equal-height">
+    <div class="seven-col">
+      <h2>Your cloud, your site, our experience</h2>
+      <p>Leverage our vast experience in OpenStack and commission us to build the cloud you need, whether it&rsquo;s a proof of concept, an enterprise-grade production cloud, a dev-test operational cloud, a big data platform or anything else. We&rsquo;ll help you choose the right hardware or, if you prefer, a best-of-breed hosted solution from our list of partners.</p>
+      <p>We run our own business on OpenStack and we&rsquo;ll take care of your cloud exactly the same way. We handle all the infrastructure monitoring and management, while your team retains complete visibility of the cloud, on every screen and every tool.</p>
+    </div>
+    <a href="https://pages.canonical.com/Softlayer-BootStack.html"
+      class="four-col prepend-one last-col no-margin-bottom box box-highlight resource--link resource-whitepaper" onclick="_gaq.push(['_trackEvent', 'External Link', 'Cloud Hosting Service Made Easy Webinar link', 'From Managed Cloud page']);">
+      <h2>Cloud hosting service made easy&nbsp;&rsaquo;</h2>
+      <p>Discover how Canonical and Softlayer can help you build and manage your OpenStack cloud.</p>
+      <p class="content-cat content-cat-whitepaper">Whitepaper</p>
+    </a>
+</div>
+
+<div class="row no-border strip-dark">
+  <div class="equal-height">
+    <div class="eight-col">
+        <h2>Crunching some numbers</h2>
+        <p>Are your public cloud expenses predictable? Do you know what it costs to hire and retain an OpenStack team? Are you ready to invest in cloud services without knowing what the outcome for your business will be? Are you concerned about lock-in?</p>
+        <p>These are all common questions. And often, BootStack is the answer. Here&rsquo;s why:</p>
+    </div>
+    <div class="four-col align-center align-vertically last-col">
+        <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-reducecosts-orange.svg" alt="" width="135">
+    </div>
+  </div>
+  <div class="twelve-col low-cost">
+    <div class="six-col">
+      <ul class="list-ubuntu">
+        <li><strong>Zero investment</strong> &mdash; we build the cloud and host it, so you don&rsquo;t have to hire a team of experts or commit upfront investment.</li>
+        <li class="last-item"><strong>Predictable costs</strong> &mdash; your cloud is built to your specifications, on dedicated hardware and priced in a predictable fashion.</li>
+      </ul>
+    </div><!-- /.six-col -->
+    <div class="six-col last-col">
+      <ul class="list-ubuntu">
+        <li><strong>Guaranteed availability</strong> &mdash; our peerless expertise, based on the management of hundreds of clouds, is backed up by a clear SLA.</li>
+        <li class="last-item"><strong>Complete control</strong> &mdash; your team can access every tool and every machine &mdash; and we can transfer operations to you on demand. There is no risk of lock-in.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="seven-col">
+    <h2>The business case</h2>
+    <p>A 24/7 team of six in-house OpenStack experts could cost from &dollar;900k to &dollar;1.5m. BootStack therefore makes economic sense for deployments of up to 200 servers. Beyond that, you could probably operate your own cloud at similar efficiencies, but focus would become a challenge. That’s why many of our larger customers still rely on us for our  OpenStack skills, while retaining control of their own data and hardware.</p>
+  </div>
+  <a href="http://insights.ubuntu.com/2014/10/13/bootstack-faqs/" class="four-col prepend-one last-col no-margin-bottom box box-highlight resource--link resource-e-book" onclick="_gaq.push(['_trackEvent', 'External Link', 'Frequently asked questions link', 'From BootStack page']);">
+      <h2>BootStack FAQs&nbsp;&rsaquo;</h2>
+      <p>Answers to your most frequently asked questions about BootStack.</p>
+      <p class="content-cat content-cat-e-book">FAQ</p>
+  </a>
+</div>
+
+<div class="row row--paas">
+  <div class="five-col">
+    <ul class="row--paas_list align-center">
+        <li class="row--paas_list__item two-col"><img src="{{ STATIC_URL }}u/img/cloud/bootstack/cloud-foundry.png" alt="" width="133" height="73" /></li>
+        <li class="row--paas_list__item two-col last-col"><img src="{{ STATIC_URL }}u/img/cloud/bootstack/hadoop.png" alt="" width="134" height="99" /></li>
+    </ul>
+  </div>
+  <div class="seven-col last-col">
+    <h2>Beyond the cloud: PaaS and big data</h2>
+    <p>We excel at deploying and managing scale-out applications, like the Cloud Foundry PaaS platform and Hadoop. We can help with scale-oriented devops practices, rapid development techniques and continuous integration/deployment.</p>
+  </div>
+</div><!-- /.row -->
+
+<div class="row row-grey">
+    <div class="eight-col">
+        <h2>A best-of-breed cloud</h2>
+        <p>A BootStack hosted cloud gives you an unbeatable combination:</p>
+        <ul class="list-canonical">
+            <li>OpenStack, the world&rsquo;s leading open cloud platform</li>
+            <li>Ubuntu, the number one operating system for OpenStack</li>
+            <li>Your choice of hardware, certified by Canonical for Ubuntu and OpenStack</li>
+            <li>Hosting facilities including IBM Softlayer (or your own datacentre, if you prefer)</li>
+            <li>24/7 support and management by the OpenStack experts at Canonical</li>
+            <li>A suite of management tools and the training you need to take control</li>
+        </ul>
+    </div>
+    <a href="https://insights.ubuntu.com/2014/09/01/bootstack-taking-away-the-pain-of-cloud-management/" class="four-col last-col box box-highlight resource--link resource-e-book">
+        <h2>BootStack &mdash; taking away the pain of cloud management&nbsp;&rsaquo;</h2>
+        <p>BootStack (short for: build, operate, and optionally transfer) is the new offering from Canonical to round up its cloud portfolio.</p>
+        <p class="content-cat content-cat-e-book">Factsheet</p>
+    </a>
+</div>
+
+<div class="row no-border">
+  <div class="seven-col">
+    <h2>Need a managed OpenStack cloud up and running next week?</h2>
+    <p class="clear"><a class="link-cta-ubuntu" href="/cloud/bootstack/contact-us" onclick="_gaq.push(['_trackEvent', 'Internal Link', 'BootStack contact link', 'From BootStack page footer region']);">Make it happen</a></p>
+  </div>
+  <div class="five-col align-center last-col">
+    <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-startfirst-midaubergine.svg" alt="" class="priority-0" width="150" />
+  </div>
+</div>
+
+{% include "ubuntu/shared/_live_chat.html" %}
+
+{% include "ubuntu/shared/_munchkin.html" %}
+
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

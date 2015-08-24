@@ -1,0 +1,99 @@
+{% extends "ubuntu/cloud/base_cloud.html" %}
+
+{% block title %}Public cloud | Cloud{% endblock %}
+
+{% block meta_description %}Ubuntu is the most popular guest OS on both public and private clouds, thanks to its security, versatility and continually updated features.{% endblock meta_description %}
+
+{% block meta_keywords %}Ubuntu OpenStack, Ubuntu, public cloud, Ubuntu guest OS, Ubuntu server,Amazon cloud, AWS, Rackspace cloud, HP cloud, Joyent cloud, IBM cloud, cloud workloads, guest certification, OpenStack{% endblock meta_keywords %}
+
+{% block second_level_nav_items %}
+    {% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Cloud tools" page_title="Use a cloud" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row-hero row-image-centered">
+    <div class="six-col">
+        <h1>Using Ubuntu in the public cloud</h1>
+        <p>Ubuntu Server is the world&rsquo;s most popular cloud operating system. And Ubuntu is the leading cloud guest OS, running most workloads in public clouds today, thanks to its security, versatility and policy of regular updates. With certified images available on clouds from partners like AWS, Microsoft Azure, HP Cloud, Joyent and IBM Smart Cloud, it is the only free cloud operating system with the option of enterprise-grade commercial support.</p>
+    </div>
+    <span>
+        <img src="{{ STATIC_URL }}u/img/cloud/public-cloud/image-publiccloud.svg" alt="Public Cloud" />
+    </span>
+</div>
+
+<div class="row strip-dark no-border">
+    <div class="seven-col">
+        <h2>Why use Ubuntu Server in the cloud?</h2>
+        <ul class="list-ubuntu">
+            <li>Proven for enterprise-scale workloads on all leading public clouds</li>
+            <li>Free from licence fees, regardless of how many images you run</li>
+            <li>Enterprise-grade support and management tools available direct from Canonical</li>
+            <li>Maintenance and security updates guaranteed for five years with Ubuntu LTS</li>
+        </ul>
+    </div>
+    <div class="five-col last-col">
+    <a href="http://insights.ubuntu.com/2013/08/29/ubuntu-cloud-guest/" class="five-col last-col box box-highlight resource--link resource-white-paper">
+        <h2>Ubuntu cloud guest&nbsp;&rsaquo;</h2>
+        <p>Answers to your most frequently asked questions about using Ubuntu as a cloud guest.</p>
+        <p class="content-cat content-cat-white-paper">White paper</p>
+    </a>
+    </div>
+</div>
+
+<div class="row">
+    <h2 class="muted-heading">Ubuntu Server on certified public clouds</h2>
+    <div class="ten-col push-one">
+        <ul id="public-cloud-partners" class="inline-logos no-bullets public-cloud-partners dynamic-logos"></ul>
+    </div>
+    <p class="twelve-col align-center"><a href="http://partners.ubuntu.com/partner-programmes/public-cloud">Learn more about Ubuntu’s cloud partners&nbsp;&rsaquo;</a></p>
+</div>
+
+<div class="row row-grey row-services equal-height row-juju-advantage">
+    <div class="six-col">
+        <h2>Fast service deployment with&nbsp;Juju</h2>
+        <p>Juju is the fastest way to deploy and scale out your workloads. With Juju charm bundles, you can launch an entire cloud environment with one click - and with Quickstart you can spin up your Juju environment with just one command. Use them together and you can deploy your entire application infrastructure, all in one. </p>
+        <p><a href="/cloud/tools/juju">Learn more about Juju&nbsp;&rsaquo;</a></p>
+        <p><img class="pull-left-40" src="{{ STATIC_URL }}u/img/cloud/public-cloud/image-juju.jpg" alt="Grid of juju charm icons including wordpress, hadoop, django, MySQL, MongoDB and OpenStack" width="452" height="211" /></p>
+    </div><!-- /.six-col -->
+    <div class="six-col last-col">
+        <h2>The best management and&nbsp;support</h2>
+        <p>The Ubuntu Advantage support service has flexible Ubuntu cloud guest options. If you build your cloud on Ubuntu, a number of guest instances are supported for free, and this can be upgraded to cover more instances, more hours and higher entitlements. Thanks to Landscape, efficient management of those instances is only a few clicks away.</p>
+        <p><a href="/cloud/management">Learn more about support&nbsp;&rsaquo;</a></p>
+        <p><img class="pull-left-20" src="{{ STATIC_URL }}u/img/cloud/public-cloud/image-landscape.jpg" alt="Landscape managing 913 machines screenshot" width="502" height="266" /></p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="five-col">
+        <h2>Developers&rsquo; favourite</h2>
+        <p>Ubuntu is the most popular Linux distribution for development and deployment. If your developers already use Ubuntu, moving to the cloud is even easier. </p>
+        <p><a href="/desktop/developers">Learn more about Ubuntu for developers&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="seven-col text-center last-col">
+        <img src="{{ STATIC_URL }}u/img/cloud/public-cloud/image-developersfavourite.jpg" alt="" />
+    </div>
+</div>
+
+<div class="row row-get-started no-border">
+    <div class="eight-col">
+        <h2>Ready to get started?</h2>
+        <p>Ubuntu Server 14.04 LTS is a free download that includes five years&rsquo; worth of  security and maintenance updates, guaranteed. Using an Ubuntu partner cloud ensures access to the latest certified Ubuntu Server images. To run Ubuntu Cloud Guest on participating public clouds, the simplest way is to use the image maintained on their server.</p>
+    </div><!-- /.eight-col -->
+
+    {% include "ubuntu/cloud/shared/_guest-list.html" %}
+
+    <div class="eight-col">
+    <p>If you want to modify the standard images, or if you want to use an image on your private cloud, you can also get a detailed list of images and <a href="http://cloud-images.ubuntu.com/">download a specific image</a>.</p>
+    </div>
+</div><!-- /.row -->
+{% endblock content %}
+
+{% block footer_extra %}
+<script>
+    YUI().use('event-base', function (Y) {
+        Y.on('domready', function () {
+            core.loadPartners('?programme__name=Certified%20Public%20Cloud&featured=true', '#public-cloud-partners');
+        });
+    });
+</script>
+{% endblock %}

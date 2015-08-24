@@ -1,0 +1,79 @@
+{% extends "ubuntu/download/_base_download.html" %}
+
+{% block title %}Ubuntu for ARM | Download{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server" page_title="ARM"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero row-background no-border">
+    <div class="eight-col">
+	    <h1>Ubuntu Server for ARM</h1>
+        <p>With Ubuntu 14.04 LTS, we are happy to announce support for 64-bit ARMv8 systems as well as all released x86 and ARM based HP Moonshot cartridges, including our MAAS and Juju cloud tools.</p>
+    </div>
+	<div class="twelve-col box box-highlight">
+		<div class="twelve-col no-margin-bottom vertical-divider">
+			<div class="six-col">
+				<h4>HP Moonshot</h4>
+				<ul class="no-bullets">
+					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/trusty-updates/main/installer-armhf/current/images/keystone/netboot/" onclick="_gaq.push(['_trackEvent', 'External Link', 'HP Moonshot m800 ARMv7', 'From Download ARM']);" class="external">m800 ARMv7 netboot image (14.04 LTS)</a></li>
+					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/trusty-updates/main/installer-arm64/current/images/generic/netboot/xgene/" onclick="_gaq.push(['_trackEvent', 'External Link', 'HP Moonshot m400 ARMv8', 'From Download ARM']);" class="external">m400 ARMv8 netboot image (14.04 LTS)</a></li>
+				</ul>
+				<p><a class="external" href="http://h20564.www2.hp.com/hpsc/doc/public/display?docId=c03933547">HP ProLiant Moonshot user guide</a></p>
+				<p>HP Moonshot cartridges come factory installed</p>
+			</div>
+			<div class="six-col last-col">
+				<h4>Applied Micro X-Gene ARMv8</h4>
+				<ul class="no-bullets">
+					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/trusty/main/installer-arm64/current/images/generic/netboot/xgene/" onclick="_gaq.push(['_trackEvent', 'External Link', 'Applied Micro X-Gene ARMv8 14.04 download', 'From Download ARM']);" class="external">14.04 LTS</a></li>
+					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/vivid/main/installer-arm64/current/images/generic/netboot/xgene/" onclick="_gaq.push(['_trackEvent', 'External Link', 'Applied Micro X-Gene ARMv8 14.10 download', 'From Download ARM']);" class="external">{{latest_release}}</a></li>
+				</ul>
+				<p><a class="external" href="https://wiki.ubuntu.com/ARM/Server/Install/Mustang">Installation instructions for the Mustang platform</a></p>
+			</div>
+		</div>
+	</div>
+    <div class="twelve-col box box-highlight">
+   		<div class="twelve-col no-margin-bottom vertical-divider">
+			<div class="six-col">
+				<h4>Cavium Thunder ARMv8 Developer Platform</h4>
+				<ul class="no-bullets">
+					<li><a href="http://cavium.com/ThunderX_ARM_Processors.html" onclick="_gaq.push(['_trackEvent', 'External Link', 'ARM Cavium ThunderX product details', 'From Download ARM']);" class="external">Cavium ThunderX product details</a></li>
+					<li>Coming Soon &mdash; 14.04 LTS</li>
+				</ul>
+			</div>
+			<div class="six-col last-col">
+				<h4>Marvell Armada XP</h4>
+				<ul class="no-bullets">
+					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/precise-updates/main/installer-armhf/current/images/armadaxp/netboot" onclick="_gaq.push(['_trackEvent', 'External Link', 'ARM Marvell Armada XP download', 'From Download ARM']);" class="external">12.04 LTS</a></li>
+				</ul>
+			</div>
+   		</div><!-- /.twelve-col -->
+    </div><!-- /.box -->
+</div><!-- /.row -->
+<div class="row row-grey">
+		<div class="six-col no-margin-bottom">
+			<h3>For Developers</h3>
+			<p>Ubuntu Server is available for developer platforms powered by certified ARM SoCs as an over-the-network installer. Network boot infrastructure is required.</p>
+			<!-- <p><a href="/server">Learn more about Ubuntu Server&nbsp;&rsaquo;</a></p> -->
+		</div>
+    	<div class="six-col last-col no-margin-bottom">
+		    <img src="{{ STATIC_URL }}u/img/server/image-server.svg" alt="" />
+    	</div>
+</div>
+
+<div class="row no-border">
+	<div class="four-col text-center">
+		<img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-server-warmgrey.svg" alt="" width="200" height="200" />
+	</div>
+	<div class="eight-col last-col">
+		<h3>Ready to deploy now</h3>
+		<p>Built for hyperscale-class hardware including machines from the HP Moonshot product line, Ubuntu Server for ARM is a mature and fully-supported server operating system, including a LAMP stack, Ceph storage, Hadoop-based analytics, the  Juno  release of OpenStack, and hundreds of additional workloads alongside tools for provisioning and scale-out deployment.</p>
+		<ul class="list-ubuntu">
+			<li><a href="http://partners.ubuntu.com/hp" class="external">Find out more about HP Moonshot</a></li>
+			<li><a href="http://h17007.www1.hp.com/us/en/enterprise/servers/supportmatrix/ubuntu.aspx#.VIdLr121Cgo" class="external">HP server Ubuntu certification matrix</a></li>
+		</ul>
+	</div><!-- /.twelve-col -->
+</div><!-- /.row -->
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

@@ -1,0 +1,12 @@
+{% extends "ubuntu/base_index.html" %}
+
+{% block takeover_body_class %}snapdeal-takeover{% endblock takeover_body_class %}
+
+{% block takeover_content %}
+    {% if switcher %}
+        <div class="lang-switch-wrapper strip-inner-wrapper"><a href="/" class="lang-switch" lang="zh">中文主页&nbsp;&rsaquo;</a></div>
+    {% endif %}
+
+    {% include "ubuntu/takeovers/_snapdeal_coming_soon_takeover.html" %}
+	{% include "ubuntu/takeovers/_footer_homepage.html" %}
+{% endblock takeover_content %}

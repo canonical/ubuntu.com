@@ -1,0 +1,252 @@
+{% extends "ubuntu/phone/base_phone.html" %}
+
+{% block title %}Features | Ubuntu for phones{% endblock %}
+
+{% block meta_description %}Ubuntu brings a stunning, natural new user interface to the smartphone that makes it quicker and easier to find content, whether it&rsquo;s stored on the phone or on the web.{% endblock %}
+
+{% block meta_keywords %}Ubuntu, phone, smartphone, cellphone, cell, mobile, OS, operating system, user, interface, GUI, edge magic, content, focus, app, native, web, HTML5, Unity, gestures, handheld, handset, touch, multitouch, touchscreen, device, form factor, Linux, open source, scopes, Launcher{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Features"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-border">
+    <div class="for-mobile"><img src="{{ STATIC_URL }}u/img/phone/features/image-features-hero-small.jpg" alt="" /></div>
+	<div class="four-col append-eight">
+		<h1>Features</h1>
+		<p class="intro">Ubuntu&rsquo;s scopes give you related content on one screen, instead of hiding it behind different apps. So everything you look for in life is now right at your&nbsp;fingertips.</p>
+	</div><!-- /.four-col -->
+</div><!-- .row -->
+
+<div class="row row-slideshow no-border">
+    {% include "ubuntu/phone/shared/_slideshow.html" %}
+    <div id="scopes-content" class="six-col last-col prepend-five">
+    	<h2>Introducing scopes</h2>
+    	<p>Ubuntu&rsquo;s scopes are like individual home screens for different kinds of content, giving you access to everything from movies and music to local services and social media, without having to go through individual apps.</p>
+    </div>
+    <div class="six-col for-mobile"><img class="left" src="{{ STATIC_URL }}u/img/phone/features/image-introducing-scopes.png" alt="" /></div>
+</div>
+
+<div class="row row--video no-border no-padding">
+    <h2>See scopes in action</h2>
+	<div class="the-video"><div></div></div>
+    <p class="video-link"><a href="//www.youtube.com/watch?v=CsDFMIphtZk&amp;hd=1" class="show-video">Watch the video</a></p>
+</div><!-- /.row -->
+
+<div class="row row--scopes row--scopes__nearby edge-magic">
+<div class="branded-bg"></div>
+    <div class="ten-col prepend-one append-one equal-height no-margin-bottom">
+        <div class="six-col align-vertically no-margin-bottom">
+            <div class="row--scopes__content five-col">
+                <h2 class="four-col">A scope for every facet of life</h2>
+                <h3>NearBy</h3>
+                <p>When you&rsquo;re out and about, the NearBy scope can help you find where to eat, what bands to see and even which bus to catch.</p>
+            </div>
+        </div>
+        <div class="row--scopes__image four-col last-col no-margin-bottom">
+            <div class="screens">
+                <ul class="screens-list no-margin-bottom inline">
+                    <li class="row--scopes__image__scope-screen row--scopes__image__scope-screen--nearby"></li>
+                    <li class="row--scopes__image__scope-screen row--scopes__image__scope-screen-branded row--scopes__image__scope-screen--nearby-branded"></li>
+                </ul>
+            </div>
+        </div><!-- /.scope-image -->
+    </div><!-- /.ten-col -->
+</div><!-- /.row -->
+
+<div class="row row--scopes row--scopes-left row--scopes__music edge-magic">
+<div class="branded-bg"></div>
+    <div class="ten-col prepend-one append-one equal-height no-margin-bottom">
+        <div class="row--scopes__image four-col not-for-small no-margin-bottom slider-animation">
+            <div class="screens">
+                <ul class="screens-list no-margin-bottom inline">
+                    <li class="row--scopes__image__scope-screen row--scopes__image__scope-screen--music slider-animation"></li>
+                    <li class="row--scopes__image__scope-screen row--scopes__image__scope-screen-branded row--scopes__image__scope-screen--music-branded"></li>
+                </ul>
+            </div>
+        </div><!-- /.scope-image -->
+        <div class="six-col align-vertically last-col no-margin-bottom">
+            <div class="row--scopes__content five-col prepend-two">
+                <h3>Music</h3>
+                <p>Listen to music from your library, stream from Soundcloud, download tracks from 7digital, or catch the latest gig with Songkick.</p>
+            </div>
+        </div>
+        <div class="row--scopes__image for-small four-col no-margin-bottom slider-animation">
+            <div class="screens">
+                <ul class="screens-list no-margin-bottom inline">
+                    <li class="row--scopes__image__scope-screen row--scopes__image__scope-screen--music slider-animation"></li>
+                    <li class="row--scopes__image__scope-screen row--scopes__image__scope-screen-branded row--scopes__image__scope-screen--music-branded"></li>
+                </ul>
+            </div>
+        </div><!-- /.scope-image -->
+    </div><!-- /.ten-col -->
+</div><!-- /.row -->
+
+<div class="row row--scopes row--scopes__news edge-magic no-border">
+<div class="branded-bg"></div>
+    <div class="ten-col prepend-one append-one equal-height no-margin-bottom">
+        <div class="six-col align-vertically no-margin-bottom">
+            <div class="row--scopes__content five-col">
+                <h3>News</h3>
+                <p>Get the latest news from from a range of different sources. Use the settings in this scope to create a tailored newspaper just for you.</p>
+            </div>
+        </div>
+        <div class="row--scopes__image four-col last-col no-margin-bottom slider-animation">
+            <div class="screens">
+                <ul class="screens-list no-margin-bottom inline">
+                    <li class="row--scopes__image__scope-screen row--scopes__image__scope-screen--news"></li>
+                    <li class="row--scopes__image__scope-screen row--scopes__image__scope-screen-branded row--scopes__image__scope-screen--news-branded"></li>
+                </ul>
+            </div>
+        </div><!-- /.scope-image -->
+    </div><!-- /.ten-col -->
+</div><!-- /.row -->
+
+<div class="row row--today">
+    <div class="for-mobile"><img src="{{ STATIC_URL }}u/img/phone/features/image-today-small.jpg" alt="" /></div>
+    <div class="row--today__content five-col">
+        <h2>Today</h2>
+        <p>Head back home at any time to see your most important interactions on one screen. Personalize the Today scope so what&rsquo;s important to you, is right at your&nbsp;fingertips.</p>
+    </div>
+</div><!-- /.row -->
+
+<div class="row row-origami row--edge no-border">
+	<h2 class="twelve-col">Life on the edge</h2>
+
+	<div class="three-col">
+
+		<div id="swipe-from-top" class="three-col first">
+    		<div class="three-col">
+			    <h3>Swipe from <br />the&nbsp;top</h3>
+                <p class="three-col">Swipe down from the top for access to notifications <br />and key phone settings, without breaking <br />your stride.</p>
+    		</div>
+			<div class="three-col not-for-small">
+				<img src="{{ STATIC_URL }}u/img/phone/features/image-swipe-from-top.png" alt="" />
+			</div>
+		</div><!--/#swipe-from-top -->
+
+		<div id="swipe-from-left" class="three-col no-margin-bottom">
+			<div class="three-col not-for-small">
+				<img class="right" src="{{ STATIC_URL }}u/img/phone/features/image-swipe-from-left.png" alt="" />
+			</div>
+			<div class="three-col">
+				<h3>Swipe from <br />the&nbsp;left</h3>
+				<p>Swipe from the left to reveal the Launcher, for quick access to your favourite features and&nbsp;apps.</p>
+			</div>
+		</div><!--/#swipe-from-left -->
+
+	</div><!-- /.three-col -->
+
+	<div class="six-col align-center">
+    <div id="edge-video-wrapper">
+	  <video id="edge-video" class="video-js vjs-default-skin" controls preload="none" width="292" height="518" poster="{{ STATIC_URL }}u/img/phone/features/image-edge-background.png" data-setup="{}">
+	    <source src="{{ STATIC_URL }}u/video/phone/edges/edges.mp4" type='video/mp4' />
+	    <source src="{{ STATIC_URL }}u/video/phone/edges/edges.webm" type='video/webm' />
+	    <source src="{{ STATIC_URL }}u/video/phone/edges/edges.ogv" type='video/ogg' />
+	    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/">supports HTML5 video</a></p>
+	  </video>
+    </div>
+		<script>
+			document.getElementById('edge-video').addEventListener('loadedmetadata', function() {
+			  this.currentTime = 8;
+			}, false);
+			var mediaPlayer = document.getElementById('edge-video');
+			mediaPlayer.addEventListener('timeupdate', checkProgress);
+			function checkProgress(){
+			    var progressTime = mediaPlayer.currentTime/mediaPlayer.duration;
+			    progressTime = progressTime * 54;
+			    progressTime = Math.floor(progressTime);
+			    if(progressTime == 13){
+						document.getElementById('swipe-from-left').className += " run";
+					}
+					if(progressTime > 13){
+						document.getElementById("swipe-from-left").className = document.getElementById("swipe-from-left").className.replace( /(?:^|\s)run(?!\S)/g , '' )
+					}
+			    if(progressTime == 23){
+						document.getElementById('swipe-from-top').className += " run";
+					}
+					if(progressTime > 23){
+						document.getElementById("swipe-from-top").className = document.getElementById("swipe-from-top").className.replace( /(?:^|\s)run(?!\S)/g , '' )
+					}
+			    if(progressTime == 29){
+						document.getElementById('swipe-from-right').className += " run";
+					}
+					if(progressTime > 29){
+						document.getElementById("swipe-from-right").className = document.getElementById("swipe-from-right").className.replace( /(?:^|\s)run(?!\S)/g , '' )
+					}
+			    if(progressTime == 45){
+						document.getElementById('swipe-from-bottom').className += " run";
+					}
+					if(progressTime > 45){
+						document.getElementById("swipe-from-bottom").className = document.getElementById("swipe-from-bottom").className.replace( /(?:^|\s)run(?!\S)/g , '' )
+					}
+			}
+		</script>
+	</div><!-- /.six-col -->
+
+	<div class="three-col last-col">
+
+		<div id="swipe-from-right" class="three-col first">
+    		<div class="three-col">
+			    <h3>Swipe from <br />the&nbsp;right</h3>
+                <p class="three-col">A full swipe from the right reveals all your running apps. A shorter one switches between the current apps and the&nbsp;last.</p>
+    		</div>
+			<div class="clearfix not-for-small">
+				<img src="{{ STATIC_URL }}u/img/phone/features/image-swipe-from-right.png" alt="" />
+			</div>
+		</div><!-- /#swipe-from-right -->
+
+		<div id="swipe-from-bottom" class="three-col">
+			<div class="three-col not-for-small">
+				<img class="right" src="{{ STATIC_URL }}u/img/phone/features/image-swipe-from-bottom.png" alt="" />
+			</div>
+			<div class="three-col">
+			    <h3>Swipe from the&nbsp;bottom</h3>
+                <p>When you need to see the controls, all it takes is a swipe from the bottom edge of the&nbsp;screen.</p>
+			</div>
+		</div><!-- /#swipe-from-bottom -->
+
+	</div><!-- /.three-col -->
+
+</div><!-- /.row -->
+{% comment %}
+<div class="row infographic no-border">
+	<div class="six-col no-print clearfix">
+		<img width="600" height="442" src="{{ STATIC_URL }}u/img/devices/infographic-3km-walked.png" class="main-image info-pic-0" alt="Ubuntu Phone infographic showing distance walked" />
+		<img width="600" height="442" src="{{ STATIC_URL }}u/img/devices/infographic-7hours-at-rest.png" class="main-image info-pic-1 hide" alt="Ubuntu Phone infographic showing hours at rest" />
+		<img width="600" height="442" src="{{ STATIC_URL }}u/img/devices/infographic-7messages-received.png" class="main-image info-pic-2 hide" alt="Ubuntu Phone infographic showing messages received" />
+		<img width="600" height="442" src="{{ STATIC_URL }}u/img/devices/infographic-14tweets-received.png" class="main-image info-pic-3 hide" alt="Ubuntu Phone infographic showing tweets received" />
+		<img width="600" height="442" src="{{ STATIC_URL }}u/img/devices/infographic-33minutes-talk-time.png" class="main-image info-pic-4 hide" alt="Ubuntu Phone infographic showing duration of talk" />
+	</div><!-- /col -->
+	<div class="five-col append-one last-col">
+		<h2>A phone you can see yourself in</h2>
+		<p class="clear">Based on data such as the number of calls you&rsquo;ve made that day, your personalised welcome screen evolves as you use your phone. Welcome home.</p>
+	</div><!-- /col -->
+</div><!-- /.row -->
+{% endcomment %}
+<div class="row row--phone-details no-border no-margin-bottom equal-height">
+	<div class="four-col align-vertically no-margin-bottom">
+    	<div>
+    		<h2>It&rsquo;s all in the details</h2>
+    		<p>Every feature of the phone reflects Ubuntu Phone&rsquo;s design language. Consider it your first glimpse of Ubuntu&rsquo;s future style across all devices.</p>
+    	</div>
+	</div><!-- /col -->
+	<div class="eight-col last-col no-margin-bottom">
+        <img class="right pull-right-40" src="{{ STATIC_URL }}u/img/phone/features/image-features-switcher.png" alt="" />
+	</div><!-- /col -->
+</div><!-- /.row -->
+
+{% include "ubuntu/phone/shared/_store_promo.html" with extra_row_class="store-promo" promo_title="The Ubuntu Store" promo_content="You can choose from a wide range of scopes and apps in the Ubuntu Store from partners such as 7digital, Twitter and Euronews. All of these and many more are available for download in just a few&nbsp;taps." promo_link="/phone/developers" promo_link_title="More information for developers" %}
+
+<div class="row no-border">
+	<div class="four-col">
+		<img src="{{ STATIC_URL }}u/img/phone/overview/image-devices.png" alt="Ubuntu devices" />
+	</div>
+	<div class="prepend-one seven-col last-col">
+		<h2>Available now from Meizu and BQ</h2>
+		<p>Ubuntu phones are now available for sale worldwide. You can purchase  directly from our partners BQ and Meizu.</p>
+		<p><a href="http://www.ubuntu.com/phone/devices">Learn more about our range of devices&nbsp;&rsaquo;</a></p>
+	</div>
+</div>
+{% endblock content %}

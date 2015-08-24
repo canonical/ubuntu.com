@@ -1,0 +1,78 @@
+{% extends "ubuntu/tablet/base_tablet.html" %}
+
+{% block title %}App ecosystem | Ubuntu for tablets{% endblock %}
+
+{% block meta_keywords %}Ubuntu, phone, tablet, touch, touchscreen, mobile, Linux, Unity, OS, operating system, open source, Android, iOS, iPad, user, interface, UI, GUI, thumb, side, stage, web, app, developer, ISV, SDK, HTML5, OpenGL, native, store, software, centre, OEM, QML, manufacturer, content provider, partner{% endblock %}
+{% block meta_description %}Ubuntu comes to the phone and tablet with a ready-made app ecosystem. Thanks to its web APIs, any web property can be installed as an app for mobile devices, with its own icon and access to system services so that  to the user it appears just like a native app. Any HTML5 app can be easily ported, while native apps that use the full power of the hardware can be developed using the Ubuntu SDK. {% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Tablet" page_title="App ecosystem"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero">
+		<h1>A fast-evolving app ecosystem</h1>
+	<div class="five-col">
+		<p>Already a very popular platform for web, Blackberry and Android mobile development, you&rsquo;ll want to bring all your apps to Ubuntu.</p>
+		<p>A great app will use the unique features in Ubuntu to create a fresh, uncluttered, purposeful and fast experience. Make one app binary for all form factors &ndash; web or native. You have it all at your fingertips when you run Ubuntu on your workstation.</p>
+	</div>
+	<div class="seven-col text-center last-col">
+		<img src="{{ STATIC_URL }}u/img/tablet/app-ecosystem/image-tablet-appecosystem.jpg" alt="Two Ubuntu tablets side by side" width="579" height="377" />
+	</div>
+</div><!-- / .row -->
+
+<div class="row">
+	<div class="twelve-col text-center">
+		<img src="{{ STATIC_URL }}u/img/tablet/app-ecosystem/image-tablet-welovetheweb.jpg" width="906" height="288" alt="Carousel of app for Ubuntu tablet" />
+	</div>
+	<h2>We love the web</h2>
+	<div class="six-col">
+		<p>Web apps are first class citizens on Ubuntu, with APIs that provide deep integration into the system. HTML5 apps written for other platforms can be adapted to Ubuntu with ease, and we&rsquo;re targeting standard cross-platform web app development frameworks like PhoneGap to make Ubuntu “Just Work” for those apps.</p>
+	</div>
+	<div class="six-col last-col">
+		<p>Our unique web app system lets you adapt any web property for installation as an app on Ubuntu, running independently <br />of the browser, with its own icon and access to system services. Which means that all the big names will be available to Ubuntu phone and tablet users at launch.</p>
+	</div>
+</div><!-- / .row -->
+
+<div class="row">
+	<div class="six-col text-center">
+		<img class="shadow-fix" src="{{ STATIC_URL }}u/img/tablet/app-ecosystem/image-tablet-wealsogonative.jpg" width="512" height="322" alt="Ski Safari game running on an Ubuntu tablet" />
+	</div>
+	<div class="six-col last-col">
+		<h2>We also go native</h2>
+		<p>For rich applications with gorgeous movement and transitions and graphics-heavy games, Ubuntu provides <br />an amazing native developer toolset. QML provides a slick, easy development environment for native apps with engines in C or C++ and JavaScript for UI glue where performance isn&rsquo;t critical. We also give you full native OpenGL, which the top games companies are using to make incredible games. That&rsquo;s why big name developers like EA, Valve Software and Unity Technologies already target Ubuntu.</p>
+	</div>
+</div>
+
+<div class="row write-apps">
+	<div class="seven-col">
+		<h2>One app on Ubuntu for all <br/>form factors</h2>
+		<p>Perhaps the most exciting thing about writing native apps for Ubuntu <br />is the opportunity to write and build a single app with responsive interfaces that allow it to run on any Ubuntu device. In other words, <br />you can use the Ubuntu SDK to build your app and, with some care and attention, make it available to users of Ubuntu PCs, phones and tablets &ndash; all in a single upload to the Ubuntu Software Centre.</p>
+	</div>
+	<div class="five-col last-col pull-right no-margin-bottom">
+		<img src="{{ STATIC_URL }}u/img/tablet/app-ecosystem/image-tablet-softwarecentre.jpg" alt="" width="390" height="401" class="for-tablet touch-border" />
+	</div>
+</div><!-- / .row -->
+
+<div class="row entertain-us">
+	<div class="eight-col text-center">
+		<img class="shadow-fix" src="{{ STATIC_URL }}u/img/tablet/app-ecosystem/image-tablet-entertainus.jpg" width="682" height="433" alt="Ubuntu tablet's media player" />
+	</div>
+	<div class="four-col last-col">
+		<h2>Entertain us</h2>
+		<p>Ubuntu integrates online content <br />across all our devices.  Take advantage <br />of Canonical&rsquo;s service framework and get your content in front of millions <br />of users.</p>
+	</div>
+</div><!-- / .row -->
+
+<div class="row no-border row-image-centered">
+
+	<span>
+		<img src="{{ STATIC_URL }}u/img/tablet/app-ecosystem/image-tablet-startcreatingyourappnow.svg" width="217" height="200" alt="Developer pictograms" />
+	</span>
+	<div class="seven-col last-col">
+		<h2>Start creating your app now</h2>
+		<p>If you are writing apps for Ubuntu today, it&rsquo;s time to go mobile.  Download the Preview SDK and get started today.</p>
+		<p><a href="http://developer.ubuntu.com/gomobile">Go mobile&nbsp;&rsaquo;</a></p>
+	</div>
+</div><!-- / .row -->
+{% endblock content %}

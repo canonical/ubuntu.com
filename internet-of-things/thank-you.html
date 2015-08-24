@@ -1,0 +1,44 @@
+{% extends "ubuntu/internet-of-things/base_things.html" %}
+
+{% block title %}Thank you{% endblock %}
+
+{% block second_level_nav_items %}
+    {% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Things" subsection_title="Contact us" page_title="Thank you"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row no-border row-image-centered">
+    <div class="thank-you eight-col">
+        <h1>Thank you for enquiring about Things</h1>
+        <p class="intro">A member of our team will be in touch within one working day</p>
+    </div>
+    <span>
+        <img src="{{ STATIC_URL }}u/img/pictograms/picto-pack/picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
+    </span>
+</div>
+
+{% include "ubuntu/shared/_thank_you_footer.html" %}
+
+
+{% endblock content %}
+{% block footer_extra %}
+<!-- Google Code for Services Canonical &mdash; contact us Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1012391776;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "-mBBCIC5vwMQ4L7f4gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1012391776/?value=0&amp;label=-mBBCIC5vwMQ4L7f4gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+{{ marketo }}
+{% endblock footer_extra %}

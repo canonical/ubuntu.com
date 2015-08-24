@@ -1,0 +1,34 @@
+{% extends "ubuntu/legal/_base_legal.html" %}
+
+{% block title %}Bootstack{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "ubuntu/templates/_nav_breadcrumb.html" with section_title="Legal" page_title="Bootstack" tertiary="true" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-border">
+    <div class="eight-col">
+        <h1>Bootstack</h1>
+        <p>With our <a href="/cloud/managed-cloud ">Bootstack</a> service Canonical will build, support and manage your OpenStack cloud. Then, when you&rsquo;re ready, we&rsquo;ll train your team and smoothly hand over operational control.</p>
+        <p>If you&rsquo;re interested in Bootstack or you&rsquo;re a reseller and you want to offer it to your customers, you can <a href="/cloud/managed-cloud">learn more about Boostack here</a>.</p>
+    </div>
+    <div class="four-col last-col text-center">
+        <img src="{{ STATIC_URL }}u/img/legal/image-document-bootstack.svg" alt="Bootstack" class="priority-0 doc-icon" />
+    </div>
+</div>
+
+<div class="row equal-height no-border">
+    <div class="six-col box">
+        <h3>Bootstack service description</h3>
+        <p>This describes the services we provide to our Bootstack customers.  We can only provide services for the products listed in your customer agreement.</p>
+        <p><a href="/legal/bootstack/service-description">View the Bootstack service description&nbsp;&rsaquo;</a></p>
+    </div>
+
+    <div class="six-col box last-col">
+        <h3>Bootstack terms</h3>
+        <p>This agreement sets out Canonical's standard service terms for Bootstack customers.</p>
+        <p><a href="/legal/short-terms">View the Bootstack service terms&nbsp;&rsaquo;</a></p>
+    </div>
+</div>
+{% endblock content %}
