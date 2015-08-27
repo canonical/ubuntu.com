@@ -44,7 +44,7 @@
         <h1>Features</h1>
         <p class="intro">Enjoy the simplicity of Ubuntu&rsquo;s intuitive interface. Fast, secure and with thousands of apps to choose from &mdash; for everything you want to do, Ubuntu has what you need.</p>
         <p><a href="/download/desktop" class="link-cta-ubuntu">Download Ubuntu</a></p>
-        <p><a href="/tour" class="">Take the tour&nbsp;&rsaquo;</a></p>
+        <p><a href="/tour">Take the tour&nbsp;&rsaquo;</a></p>
         {% include "desktop/shared/_share-this.html" with tweet="Looking at all the great features of #Ubuntu desktop OS" %}
     </div>
 </div>
@@ -91,14 +91,17 @@
         </div>
     </div>
     <div class="six-col last-col">
-        <img src="{{ STATIC_URL }}img/desktop/features/email.png" class="" alt="" height="398" width="520" />
+        <div class="email-container">
+            <img src="{{ STATIC_URL }}img/desktop/features/features-email.jpg" class="" alt="" height="398" width="520" />
+            <img src="{{ STATIC_URL }}img/desktop/features/features-email-text.gif" class="email-text" alt="" />
+        </div>
     </div>
 </div>
 
 <div class="row row-gaming">
     <div class="prepend-six six-col last-col">
         <h2>Gaming</h2>
-        <p>From Sudoku to shoot-em-ups, we&rsquo;ve got loads of games that&rsquo;ll keep you busy for hours.  There are thousands of games available for Ubuntu, including titles from the Unity and Steam platforms.  Pick from critically acclaimed titles such as Dota 2, Civilisation V, Kerbal Space Programme, Football Manager 2015 and Borderlands&nbsp;2.</p>
+        <p>From Sudoku to shoot-em-ups, we&rsquo;ve got loads of games that&rsquo;ll keep you busy for hours.  There are thousands of games available for Ubuntu, including titles from the Unity and Steam platforms.  Pick from critically acclaimed titles such as Dota 2, Civilization V, Kerbal Space Programme, Football Manager 2015 and Borderlands&nbsp;2.</p>
     </div>
     <img class="borderlands" src="{{ STATIC_URL }}img/desktop/features/borderlands.jpg" alt="" />
     <img class="borderlands-flash" src="{{ STATIC_URL }}img/desktop/features/borderlands-flash.jpg" alt="" />
@@ -176,7 +179,10 @@
 
 <div class="row row-social">
     <div class="seven-col">
-        <img src="{{ STATIC_URL }}img/desktop/features/social.png" alt="Skype" />
+        <div class="skype-container">
+            <img src="{{ STATIC_URL }}img/desktop/features/image-features-social.jpg" alt="Skype" />
+            <img src="{{ STATIC_URL }}img/desktop/features/image-features-social-spinner.gif" alt="" class="spinner" />
+        </div>
     </div>
     <div class="five-col last-col">
         <div>
@@ -268,9 +274,9 @@
 </div>
 {% endblock content %}
 {% block footer_extra %}
-<script type="text/javascript">
+<script>
 YUI().use('node', function (Y) {
-    var photoRow = Y.one('.row-photos'), 
+    var photoRow = Y.one('.row-photos'),
         caption = Y.one('.row-photos .photo-credit'),
         credits = {
                     "photo-1": "Photo by community member Tomáš Kijas",

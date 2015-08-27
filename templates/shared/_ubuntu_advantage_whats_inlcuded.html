@@ -43,6 +43,7 @@
         {% endif %}
 		</div><!-- /.four-col -->
 	</div><!-- /.twelve-col -->
-	<p><a href="/management/ubuntu-advantage">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+  {% if level_2 != 'ubuntu-advantage' %}{# Don't show this if on /management/ubuntu-advantage #}	
+	<p><a href="/management/ubuntu-advantage">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>{% endif %}
 </div><!-- /.row -->
 {% endif %}

@@ -10,7 +10,7 @@
 		{% include "desktop/shared/_buy.html" %}
 	</div>
 	<div class="four-col feature-four last-col">
-		{% include "desktop/shared/_further_reading.html" with articles="4" %}
+		{% include "desktop/shared/_for-china.html" %}
 	</div>
 	{% endif %}
 
@@ -67,7 +67,7 @@
 			Mailing lists</a></li>
 		</ul>
 		<ul class="no-bullets two-col last-col">
-			<li><a href="" class="external">Ubuntu blog</a></li>
+			<li><a href="http://insights.ubuntu.com" class="external">Ubuntu Insights</a></li>
 			<li><a href="http://ubuntuforums.org/" class="external">Ubuntu Forums</a></li>
 		</ul>
 	</div>
@@ -88,6 +88,19 @@
 		{% include "desktop/shared/_further_reading.html" with articles="3" %}
 	</div>
 	{% endif %}
+
+	{% if level_2 == 'partners' %}
+	<div class="four-col feature-two">
+		{% include "desktop/shared/_talk.html" %}
+	</div>
+	<div class="four-col feature-three open-source">
+		{% include "desktop/shared/_open_source.html" %}
+	</div>
+	<div class="four-col feature-four last-col">
+		{% include "desktop/shared/_further_reading.html" with articles="3" %}
+	</div>
+	{% endif %}
+
 {% else %}
 <!-- Overview -->
 	<div class="four-col feature-two">
@@ -97,10 +110,7 @@
 		{% include "desktop/shared/_buy.html" %}
 	</div>
 	<div class="four-col last-col feature-four">
-		<img src="{{ STATIC_URL }}img/desktop/footer/footer-china.png" alt="Kylin" />
-		<h3>Specially for China</h3>
-		<p>Ubuntu Kylin was created for China. Includes all features, plus essential Chinese applications. Designed to put Chinese users first.</p>
-		<p><a href="/desktop/ubuntu-kylin">Read more about Ubuntu Kylin&nbsp;&rsaquo;</a></p>
+		{% include "desktop/shared/_for-china.html" %}
 	</div>
 
 {% endif %}
