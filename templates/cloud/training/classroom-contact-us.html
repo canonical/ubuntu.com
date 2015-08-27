@@ -1,0 +1,113 @@
+{% extends "cloud/base_cloud.html" %}
+
+{% block title %}Classroom training contact us | Ubuntu Cloud{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Training" page_title="Classroom training contact us" %}
+{% endblock second_level_nav_items %}
+
+{% block head_extra %}
+
+{% endblock head_extra %}
+
+{% block content %}
+<div class="row no-border">
+ <div class="eight-col"> 
+  <h1>Register for Ubuntu OpenStack Training</h1>
+  
+  <p>If you are interested in the Ubuntu OpenStack training, please fill out the form below and we’ll get back to you with available dates and locations.</p>
+
+<script>
+  var profiling = {
+    isEnabled: false,
+    numberOfProfilingFields: 3,
+    alwaysShowFields: [ 'mktDummyEntry']
+  };
+  var mktFormLanguage = 'English'
+</script>
+
+
+<script src="//assets.ubuntu.com/v1/37b1db88-jquery.min.js"></script>
+<script  src="//assets.ubuntu.com/v1/e1085fb6-jquery.validate.min.js"></script>
+    
+<form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1261">
+    <fieldset>
+        <h3>About you</h3>
+        <ul class="no-bullets">          
+  
+            <li class="mktFormReq mktField">    
+                <label for="FirstName" class="mktoLabel">First name: <span>*</span></label>
+                <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" />
+            </li>
+            <li class="mktFormReq mktField">    
+                <label for="LastName" class="mktoLabel">Last name: <span>*</span></label>
+                <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" />
+            </li>
+            <li class="mktFormReq mktField">    
+                <label for="Email" class="mktoLabel">Email address: <span>*</span></label>
+                <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
+            </li>
+            <li class="mktFormReq mktField">    
+                <label for="Phone" class="mktoLabel">Phone number: <span>*</span></label>
+                <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" />
+            </li>
+            {% include "shared/forms/_country.html" %}    
+            <li class="mktFormReq mktField">    
+                <label for="Company" class="mktoLabel">Company: <span>*</span></label>
+                <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired" />
+            </li>
+            {% include "shared/forms/_job_role.html" %}
+        </ul>
+    </fieldset>
+    <fieldset>
+        <ul class="no-bullets">
+            <li class="mktFormReq mktField">    
+                <label for="Comments_from_Contact__c" class="mktoLabel">What is your preferred location for the training?<span>*</span></label>
+                <textarea required id="Comments_from_Contact__c" name="Comments_from_Contact__c" rows="5" class="mktoField mktoRequired" maxlength="2000"></textarea>
+            </li>
+        </ul>
+    </fieldset>
+    <fieldset>
+        <ul class="no-bullets">       
+            <li class="mktField">
+                <input name="Optin_cloud_nuture" id="Optin_cloud_nuture" type="checkbox" value="yes" class="mktoField">
+                <label for="Optin_cloud_nuture" class="mktoLabel">Would you like to receive regular cloud updates from Ubuntu?</label><label for="Optin_cloud_nuture"></label>
+            </li>
+            <li class="mktField">    
+                <input class="mktoField" value="yes" id="NewsletterOpt-In" name="NewsletterOpt-In" type="checkbox" />
+                <label class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>        
+            </li>
+            <li>
+                All information provided will be handled in accordance with the Canonical <a href="http://www.ubuntu.com/legal" target="_blank">privacy policy</a>.
+            </li>
+            <li class="mktField">    
+                <button type="submit" class="mktoButton">Submit</button>
+                <input type="hidden" name="formid" class="mktoField" value="1261" />
+                <input type="hidden" name="lpId" class="mktoField" value="2161" />
+                <input type="hidden" name="subId" class="mktoField" value="30" />
+                <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335" />
+                <input type="hidden" name="lpurl" class="mktoField" value="https://pages.ubuntu.com/classroom-training-contact-us.html?cr={creative}&amp;kw={keyword}" />
+                <input type="hidden" name="cr" class="mktoField" value="" />
+                <input type="hidden" name="kw" class="mktoField" value="" />
+                <input type="hidden" name="q" class="mktoField" value="" />
+            </li>
+        </ul>
+    </fieldset>
+    <input type="hidden" name="returnURL" value="http://www.ubuntu.com/cloud/training/thank-you" />
+    <input type="hidden" name="retURL" value="http://www.ubuntu.com/cloud/training/thank-you" />
+</form>
+
+<script>
+$("#mktoForm_1261").validate({
+    errorElement: "span",
+    errorClass: "mktFormMsg mktError",
+    onkeyup: false,
+    onclick: false,
+    onblur: false   
+});
+</script>
+
+</div>
+</div>
+{% include "shared/_munchkin.html" %}
+{% endblock content %}

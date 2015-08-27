@@ -1,7 +1,7 @@
 {% extends "desktop/base_desktop.html" %}
 
 {% block title %}For government{% endblock %}
-{% block extra_body_class %}desktop-government{% endblock %}
+{% block meta_keywords %}Ubuntu, Ubuntu operating system, OS, Linux, Windows alternative, Mac alternative, thin client, open-source, education, schools, IT{% endblock %}
 
 {% block second_level_nav_items %}
     {% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="For government"  %}
@@ -23,11 +23,13 @@
         <ul class="list-ticks six-col">
             <li>Virus free and <a href="https://www.gov.uk/government/collections/end-user-devices-security-guidance" class="external">highly secure</a></li>
             <li>Free and <a href="https://www.gov.uk/service-manual/making-software/open-source.html" class="external">open source</a> &mdash; free from licensing restrictions</li>
-            <li class="last-item">Microsoft-compatible office productivity suite</li>
+            <li>Microsoft-compatible office productivity suite</li>
+            <li class="last-item">Long Term Support releases come with five years of security patches and updates</li>
         </ul>
         <ul class="list-ticks six-col last-col">
             <li>Open data formats built into many apps</li>
             <li>Fully translated into 40+ languages</li>
+            <li>Hardware driver support and maintenance</li>
             <li class="last-item">On-site consulting services and training available</li>
         </ul>
     </div>
@@ -37,7 +39,7 @@
     <div class="six-col append-two">
         <h2>Recognised security</h2>
         <p>UK National security  government agency (CESG) recently rated Ubuntu as the most secure operating system of the 11&nbsp;they tested. </p>
-        <a href="https://insights.ubuntu.com/2014/01/10/ubuntu-scores-highest-in-uk-gov-security-assessment/" class="external">Learn more about the CESG test</a> 
+        <a href="https://insights.ubuntu.com/2014/01/10/ubuntu-scores-highest-in-uk-gov-security-assessment/" class="external">Learn more about the CESG test</a>
     </div>
 </div>
 
@@ -60,7 +62,7 @@
         </div>
         <div class="four-col last-col">
             <h3>Uttar Pradesh Government, India</h3>
-            <p class="headline">Uttar Pradesh boosted IT literacy by putting 1.5 million laptops running Ubuntu in schools.</p>
+            <p class="headline">Uttar Pradesh boosted IT literacy by putting millions of laptops running Ubuntu in schools.</p>
             <p><a href="https://insights.ubuntu.com/2013/12/04/ubuntu-helps-millions-of-indian-students-to-learn/" class="external">Learn about Ubuntu in schools</a></p>
         </div>
     </div>
@@ -80,5 +82,5 @@
 </div>
 
 
+{% include "shared/_munchkin.html" %}
 {% endblock content %}
-{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

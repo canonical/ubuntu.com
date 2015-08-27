@@ -3,7 +3,7 @@
 {% block title %}Juju | Cloud{% endblock %}
 
 {% block meta_description %}Juju is Devops Distilled - a powerful, time-saving service orchestration framework that allows developers to deploy cloud services in seconds.{% endblock %}
-{% block meta_keywords %}Juju, service orchestration, devops, distilled, cloud, infrastructure, hyperscale, charms, developer, ops, deployment, fast, scale, environment, relation, service communication{% endblock %}
+{% block meta_keywords %}Juju, service orchestration, service modelling, devops, distilled, cloud, infrastructure, hyperscale, charms, developer, ops, deployment, fast, scale, environment, relation, service communication{% endblock %}
 
 {% block second_level_nav_items %}
     {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Tools" page_title="Juju" %}
@@ -14,8 +14,8 @@
     <div class="five-col">
         <h1 class="accessibility-aid">Juju</h1>
         <img src="{{ STATIC_URL }}img/cloud/tools/juju/logo-juju.svg" width="131" height="54" alt="Juju" />
-        <h2>Service orchestration made simple</h2>
-        <p>Juju is the game-changing service orchestration tool that lets you build entire cloud environments with only a few commands. Whether you want to deploy OpenStack itself, a workload on public or private clouds, or even directly on bare metal using <a href="/cloud/tools/maas">MAAS</a>, Juju is the fastest and simplest solution.</p>
+        <h2>Service modelling made simple</h2>
+        <p>Juju is the game-changing service modelling tool that lets you build entire cloud environments with only a few commands. Whether you want to deploy OpenStack itself, a workload on public or private clouds, or even directly on bare metal using <a href="/cloud/tools/maas">MAAS</a>, Juju is the fastest and simplest solution.</p>
         <p><a class="link-cta-ubuntu" href="https://jujucharms.com/">Visit jujucharms.com</a></p>
     </div>
 </div><!-- /.row -->
@@ -38,12 +38,9 @@
         <p>In the cloud, you need the flexibility to deploy and connect services organically, adding layers and reshaping parts without a central understanding of how the pieces fit together.</p>
         <p>Juju was designed to work by itself or co-exist with tools such as Puppet and Chef, proven management products for defining specific services. Juju takes the process one step further, building on the machine configuration those tools provide, and allowing for amazingly fast and painless service orchestration.</p>
     </div><!-- /.eight-col -->
-    <a
-        href="http://insights.ubuntu.com/resources/factsheet/top-12-questions-about-juju/"
-        class="four-col last-col box box-highlight resource--link resource-datasheet"
-    >
+    <a href="http://insights.ubuntu.com/2013/08/29/top-12-questions-about-juju/" class="four-col last-col box box-highlight resource--link resource-datasheet">
         <h2>Top 12 questions about Juju&nbsp;&rsaquo;</h2>
-        <p>How is service orchestration different from configuration management? Answer this question and more!</p>
+        <p>How is service modelling different from configuration management? Answer this question and more!</p>
         <p class="content-cat content-cat-datasheet">Datasheet</p>
     </a>
 </div><!-- /.row -->
@@ -60,7 +57,7 @@
     </script>
     <div class="seven-col">
         <h2>A one-stop shop</h2>
-        <p>With 100 charms and growing, the Juju charm store is your future destination for cloud-based enterprise applications. From back-end services such as Hadoop or MongoDB to enterprise applications such as OpenERP, whatever you need, there&rsquo;s a charm for that.</p>
+        <p>With 300 charms and growing, the Juju charm store is your future destination for cloud-based enterprise applications. From back-end services such as Hadoop or MongoDB to enterprise applications such as OpenERP, whatever you need, there&rsquo;s a charm for that.</p>
         <p><a href="https://jujucharms.com/solutions">Browse charms&nbsp;&rsaquo;</a></p>
     </div>
 </div>
@@ -82,13 +79,13 @@
     </div><!-- /.four-col -->
     <div class="eight-col last-col">
         <h2>Configure</h2>
-        <p>Juju orchestrates services, not machines. Its most powerful feature is its ability to manage services and apply changes after the initial deployment using simple, one-line commands. To make it even easier, we&rsquo;ve developed the Juju GUI which allows you to experiment and visualise what you&rsquo;re doing.</p>
+        <p>Juju models services, not machines. Its most powerful feature is its ability to manage services and apply changes after the initial deployment using simple, one-line commands. To make it even easier, we&rsquo;ve developed the Juju GUI which allows you to experiment and visualise what you&rsquo;re doing.</p>
     </div><!-- /.four-col -->
 
     <div class="eight-col last-col">
         <h2>Scale out</h2>
         <p>The ability to scale your workloads by adding more, cheaper nodes rather than moving to a &ldquo;faster node&rdquo; is the reason many organisations move to the cloud. This is known as &ldquo;scale out&rdquo;, and it&rsquo;s a powerful model if you have the smarts to coordinate farms of servers.</p>
-        <p>In Juju, each charm knows what it takes to scale the service it provides, so scaling up or down becomes a simple matter of asking the charm to do the work. If you have a tricky workload, you can write a charm for it once, and quickly deploy it anywhere.</p>
+        <p>In Juju, each charm knows what it takes to scale the service it provides, so scale out or in becomes a simple matter of asking the charm to do the work. If you have a tricky workload, you can write a charm for it once, and quickly deploy it anywhere.</p>
         <p><a href="https://demo.jujucharms.com/" class="link-cta-ubuntu">Test-drive the Juju GUI</a></p>
     </div><!-- /.four-col -->
 </div><!-- /.row -->
@@ -100,8 +97,8 @@
     <div class="nine-col last-col">
         <h2>Can&rsquo;t get enough Juju?</h2>
         <p>Juju is so amazing, we have a whole website dedicated to it. Whether you&rsquo;re interested in learning more about Juju, downloading and using it, or writing your own charms, this is the place for you!</p>
-        <p><a href="https://jujucharms.com/about">Learn more about Juju at juju.ubuntu.com&nbsp;&rsaquo;</a></p>
+        <p><a href="https://jujucharms.com/about">Learn more about Juju at jujucharms.com&nbsp;&rsaquo;</a></p>
     </div>
 </div><!-- /.row -->
+{% include "shared/_munchkin.html" %}
 {% endblock content %}
-{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

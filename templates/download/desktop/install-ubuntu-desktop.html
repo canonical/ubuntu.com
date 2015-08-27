@@ -1,22 +1,20 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Install Ubuntu 14.04.2 LTS{% endblock %}
+{% block title %}Install Ubuntu {{ lts_release }} LTS{% endblock %}
 
 {% block extra_body_class %}download-help{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Install Ubuntu 14.04.2 LTS"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Install Ubuntu {{ lts_release }} LTS"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row row-hero no-padding-bottom">
-	<h1>Install Ubuntu 14.04.2 LTS</h1>
+	<h1>Install Ubuntu {{ lts_release }} LTS</h1>
 </div><!-- /.row row-hero -->
 <div class="row no-border">
 	<div id="download-help" class="eight-col box box-grey no-border">
 			<div class="box box-highlight no-margin-bottom">
-{% comment %}Change this to the current release, the images names need to match this{% endcomment %}
-{% with version="1310" %}
 				<ol class="no-bullets">
 					<li>
 						<span>1</span>
@@ -28,7 +26,7 @@
 							<p>If you don&rsquo;t get this menu, <a href="https://help.ubuntu.com/community/BootFromCD">read the booting from the DVD</a> guide for more information.</p>
 
 							<h3>Using a USB drive?</h3>
-							<p>Most newer computers can boot from USB. You should see a welcome screen prompting you to choose your language and giving you the option to install Ubuntu or try it from the CD.</p>
+							<p>Most newer computers can boot from USB. You should see a welcome screen prompting you to choose your language and giving you the option to install Ubuntu or try it from the USB.</p>
 							<p>If your computer doesn&rsquo;t automatically do so, you might need to press the <strong>F12 key</strong> to bring up the boot menu, but be careful not to hold it down - that can cause an error message.</p>
 
                             <div class="help-image">
@@ -149,9 +147,8 @@
 						</div>
 					</li>
 				</ol>
-{% endwith %}
 			</div><!-- /.box -->
 	</div><!-- /.eight-col -->
 </div><!-- /.row -->
+{% include "shared/_munchkin.html" %}
 {% endblock content %}
-{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

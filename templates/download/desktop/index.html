@@ -9,10 +9,10 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-{% with lts_release="14.04.2" ubuntu_release="15.04" lts_release_name="TrustyTahr" ubuntu_release_name="VividVervet" openstack_version="juno" %}
 <div class="row row-hero row-background no-border">
 	<div class="eight-col append-four">
 		<h1>Download Ubuntu Desktop</h1>
+		<h2>{{lts_new_release}}</h2>
 	</div><!-- /.eight-col -->
 
 	<div class="twelve-col no-margin-bottom">
@@ -47,14 +47,14 @@
 	<div class="twelve-col no-margin-bottom">
 		<div class="box box-highlight clearfix vertical-divider">
 			<div class="eight-col no-margin-bottom">
-                <h2>Ubuntu {{ubuntu_release}}</h2>
-				<p>The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ubuntu_release}} comes with nine months of security and maintenance updates.</p>
-				<p><a href="https://wiki.ubuntu.com/{{ubuntu_release_name}}/ReleaseNotes" class="external">Ubuntu {{ubuntu_release}} release notes</a></p>
+                <h2>Ubuntu {{latest_release}}</h2>
+				<p>The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{latest_release}} comes with nine months of security and maintenance updates.</p>
+				<p><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="external">Ubuntu {{latest_release}} release notes</a></p>
 			</div>
 			<div class="four-col last-col no-margin-bottom download-button">
 				<form class="form-download gap-from-top" action="/download/desktop/contribute/" method="get">
 					<fieldset>
-						<input type="hidden" name="version" value="{{ubuntu_release}}" />
+						<input type="hidden" name="version" value="{{latest_release}}" />
 						<label for="input-bits">Choose your flavour</label>
 						<select id="input-bits" name="architecture">
 							<option value="amd64" selected="selected">64-bit &mdash; recommended</option>
@@ -73,7 +73,7 @@
 
 <div class="row row-easy-ways">
 	<div class="twelve-col">
-		<h2>Easy ways to switch to Ubuntu<!-- {{ubuntu_release}} LTS --></h2>
+		<h2>Easy ways to switch to Ubuntu</h2>
 	</div>
 	<div class="equal-height">
 		<div class="four-col box">
@@ -104,6 +104,5 @@
 </div>
 
 {% include "download/desktop/_other-ways.html" %}
-{% endwith %}
+{% include "shared/_munchkin.html" %}
 {% endblock content %}
-{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

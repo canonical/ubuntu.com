@@ -8,8 +8,6 @@
 	{% include "templates/_nav_breadcrumb.html" with section_title="Download" page_title="Server" tertiary="true"  %}
 {% endblock second_level_nav_items %}
 
-{% block content %}
-{% with lts_release="14.04.2" latest_release="15.04" lts_release_name="TrustyTahr" latest_release_name="VividVervet" openstack_version="Juno" %}
 <div class="row row-hero row-background no-border">
 	<div class="eight-col append-four">
 		<h1>Download Ubuntu Server</h1>
@@ -80,7 +78,7 @@
 		<div class="four-col last-col box">
 			<h3>Ubuntu for POWER8</h3>
 			<p>Ubuntu is now available on the IBM POWER8 platform, bringing the entire Ubuntu and OpenStack ecosystem to IBM POWER8</p>
-			<p><a href="/download/server/power8">Get Ubuntu {{ubuntu_release}} for  POWER8&nbsp;&rsaquo;</a></p>
+			<p><a href="/download/server/power8">Get Ubuntu {{latest_release}} for  POWER8&nbsp;&rsaquo;</a></p>
 		</div>
 	</div>
 </div>
@@ -109,6 +107,5 @@
 		</div>
 	</div>
 </div>
-{% endwith %}
+{% include "shared/_munchkin.html" %}
 {% endblock content %}
-{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

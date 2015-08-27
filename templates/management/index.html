@@ -39,7 +39,7 @@
 		<p>Try the hosted version of Landscape on your desktop, server and public cloud deployments – free for 30 days.</p>
 		<p><a href="https://landscape.canonical.com/trial-registration">Try Landscape for free for 30 days&nbsp;&rsaquo;</a></p>
 	</div><!-- /.six-col -->
-	
+
 	<div class="six-col last-col">
 	<div class="one-col align-center no-margin-bottom">
 		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-cloud-orange.svg" width="50" height="50" alt="" class="priority-0"/>
@@ -55,7 +55,7 @@
 
 {% include "shared/_ubuntu_advantage_whats_inlcuded.html" %}
 
-<div class="row">
+<div id="watch-landscape-in-action" class="row">
 	<div class="six-col">
 		<h2>Watch it in action</h2>
 		<p>With Landscape you can manage your machines from anywhere via a browser, and with a fully scriptable API, you can integrate it with your current Linux management tools, extending their capabilities and giving you the power to do more with fewer resources.</p>
@@ -63,7 +63,7 @@
 	</div>
 	<div class="six-col last-col">
 		<div class="video-container">
-			<iframe width="442" height="249" src="http://www.youtube.com/embed/6pSslGRi-ew?rel=0&wmode=opaque&modestbranding=0" frameborder="0" allowfullscreen></iframe>
+			<iframe width="442" height="249" src="http://www.youtube.com/embed/as09TEW0-4Q?rel=0&amp;wmode=opaque&amp;modestbranding=0" frameborder="0" allowfullscreen></iframe>
 		</div>
 	</div>
 </div>
@@ -86,7 +86,7 @@
 		<h3>Cut your IT costs with Landscape</h3>
 		<p>Landscape is already used to manage hundreds of thousands of machines around the world, both physical and virtual, saving our customers money every day.</p>
 		<p><a href="/management/return-on-investment">Read more about the ROI you can expect with Landscape&nbsp;&rsaquo;</a></p>
-		<p><a href="/management/ema-whitepaper">Read the TCO analysis from Enterprise <br/>Management Associates&nbsp;&rsaquo;</a></p>
+		<p><a class="external" href="https://insights.ubuntu.com/2014/06/12/enterprise-class-ubuntu-management-with-canonical-landscape/">Read the TCO analysis from Enterprise <br/>Management Associates</a></p>
 	</div>
 </div><!-- /.row return-investment -->
 
@@ -130,5 +130,6 @@
 
 {% include "shared/_live_chat.html" %}
 
+{% include "shared/_munchkin.html" %}
+
 {% endblock content %}
-{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

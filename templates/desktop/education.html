@@ -1,6 +1,7 @@
 {% extends "desktop/base_desktop.html" %}
 
 {% block title %}For education{% endblock %}
+{% block meta_keywords %}Ubuntu, Ubuntu operating system, OS, Linux, Windows alternative, Mac alternative, thin client, open-source, education, schools, IT{% endblock %}
 {% block extra_body_class %}desktop-education{% endblock %}
 
 {% block second_level_nav_items %}
@@ -12,7 +13,7 @@
 <div class="row row-hero no-border">
     <div class="six-col">
         <h1>Ubuntu for education</h1>
-        <p class="intro">With a wide range of educational software and certified hardware, Ubuntu provides secure, cost-effective, accessible computing to schools, colleges and universities.</p>
+        <p class="intro">With a wide range of educational software and certified hardware, Ubuntu provides secure, cost-effective, accessible computing for students, teachers and school administrators.</p>
         {% include "desktop/shared/_share-this.html" with tweet="Learn how #Ubuntu desktop OS helps students and teachers around the world" %}
     </div>
 </div>
@@ -24,11 +25,11 @@
             <li>Open source &mdash; free from licensing restrictions</li>
             <li>Microsoft-compatible office productivity suite</li>
             <li>Fully translated into 40+ languages</li>
-            <li class="last-item">Virus free and highly secure</li>
+            <li class="last-item">Long Term Support releases come with five years of security patches and updates</li>
         </ul>
         <ul class="six-col last-col list-ticks">
             <li>On-site consulting services and training available</li>
-            <li>User-friendly interface</li>
+            <li>Virus free and highly secure</li>
             <li>Runs well on old and new hardware</li>
             <li class="last-item">A wide range of education-specific apps for students and educators alike</li>
         </ul>
@@ -44,7 +45,7 @@
             <p><a href="https://insights.ubuntu.com/2014/03/25/an-ubuntu-pc-for-everyone-in-penn-manor-school-district-pennsylvania-usa/" class="external">Learn about saving with Ubuntu</a></p>
         </div>
         <div class="four-col">
-            <h3>El Centro de Gesti&oacute;n Avanzado, Spain</h3>
+            <h3>The Andalusian Regional Government, Spain</h3>
             <blockquote class="pull-quote">
                 <p><span>&ldquo;</span>Students throughout Andalusia now have access to a stable and easy-to-use technology environment.<span>&rdquo;</span></p>
             </blockquote>
@@ -120,5 +121,5 @@
     </div>
 </div>
 
+{% include "shared/_munchkin.html" %}
 {% endblock content %}
-{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

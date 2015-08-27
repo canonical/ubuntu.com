@@ -24,7 +24,7 @@
 	<div class="eight-col">
 		<h2>What is LXD (&ldquo;lex-dee&rdquo;)?</h2>
 		<p>Imagine you could launch a new machine in under a second, and that you could launch hundreds of them on a single server. Hundreds! Now, imagine that you have hardware-guaranteed security to ensure that those machines can&rsquo;t pry or spy on one another. Imagine you can connect them separately and securely to networks. And imagine that you can run that on a single node or a million, live migrate machines between those nodes, and talk to all of it through a clean, extensible REST API.</p>
-		<p>By combining the speed and density of containers with the security of traditional virtual machines, LXD is the next-generation of container hypervisor for Linux.</p>
+		<p>By combining the speed and density of containers with the security of traditional virtual machines, LXD is the next-generation of container hypervisor for Linux from Canonical.</p>
 	</div><!-- /.eight-col -->
 </div>
 <div class="row equal-height">
@@ -57,7 +57,7 @@
 		<h2>And Docker?</h2>
 		<p>Docker is an amazing application delivery mechanism, which may change the world of devops forever.</p>
 
-    <p>There are seven times more Docker containers running on Ubuntu than any other OS. For the most efficient way to deliver your binaries to a platform for execution, Docker is the dance for us.</p> 
+    <p>There are seven times more Docker containers running on Ubuntu than any other OS. For the most efficient way to deliver your binaries to a platform for execution, Docker is the dance for us.</p>
 
     <p>LXD and Docker share some underlying kernel capabilities, we aim to bring much of the awesome security and isolation of LXD to Docker as well.</p>
 	</div>
@@ -67,9 +67,9 @@
 		<h2>Why use LXD?</h2>
 	</div>
 	<div class="six-col">
-		<ul class="list-ticks--canonical">
+		<ul class="list-canonical">
       <li>Full operating system functionality within containers, not just single processes</li>
-      <li>Maximum density of guests per host, providing a cost benefit when running in a public cloud</li> 
+      <li>Maximum density of guests per host, providing a cost benefit when running in a public cloud</li>
       <li>Allows easy management and sharing of hardware resources, and easy monitoring of customer processes directly from the host level </li>
       <li>REST API, and simple, single command line with proper help and documentation </li>
       <li>Support for architectures under-served by full virtualisation</li>
@@ -89,7 +89,7 @@
 	<div class="seven-col append-one">
 		<h2>Integration with OpenStack</h2>
 		<p>The combination of LXD and OpenStack makes for a very happy system administrator in a Linux-oriented private cloud. All the agility of OpenStack, all the performance of your metal with no virt overhead.</p>
-		<p>As a validation point, we&rsquo;ve included the nova-compute-lxd driver in Ubuntu 15.04, and are committed to steering this into upstream OpenStack. </p>
+		<p>As a validation point, we&rsquo;ve included the nova-compute-lxd driver in Ubuntu {{latest_release}}, and are committed to steering this into upstream OpenStack. </p>
 		<p>This new driver allows OpenStack instances to be scheduled as Linux Containers. Images are booted from OpenStack&rsquo;s image service, Glance, and instances communicate over Neutron&rsquo;s networking functionality just like KVM based VMs do.</p>
 	</div>
 	<div class="four-col last-col align-center align-vertically">
@@ -99,7 +99,7 @@
 <div class="row no-border">
 	<div class="seven-col">
 		<h2>Getting started with LXD</h2>
-		<p>Our OpenStack container capability, codenamed nova-compute-lxd  is included in Ubuntu 15.04. Simply type the following commands to enable and use it:</p>
+		<p>Our OpenStack container capability, codenamed nova-compute-lxd  is included in Ubuntu {{latest_release}}. Simply type the following commands to enable and use it:</p>
 		<pre><code>sudo apt-get update
 sudo apt-get install nova-compute-lxd</code></pre>
 		<p>OpenStack Juno is available for Ubuntu Server 14.04 LTS and 14.10.</p>
@@ -113,5 +113,5 @@ sudo apt-get install nova-compute-lxd</code></pre>
     </a>
   </div><!-- /.four-col -->
 </div>
+{% include "shared/_munchkin.html" %}
 {% endblock content %}
-{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}
