@@ -640,42 +640,6 @@ body.cloud-ubuntu-openstack-reference-architecture {
 /* Medium / Tablet viewport
 -------------------------------------------------------------- */
 @media only screen and (min-width : 768px) {
-  body.cloud-ubuntu-openstack {
-  	.row-step.step-one .step::after {
-  		height: auto;
-  	}
-
-  	.list-step {
-      &::before {
-        content: " ";
-        background: #fff url(../img/cloud/ubuntu-openstack/image-list-stroke.png) repeat-y 53% top;
-        height: 100%;
-        position: absolute;
-        width: 2px;
-        top: 0;
-        left: -1px;
-        z-index: 2;
-      }
-
-      li.last-step {
-        display: inline-block;
-        float: left;
-        position: relative;
-        width: 100%;
-      }
-
-      li.last-step::after {
-        background: #fff;
-        content: " ";
-        height: 100%;
-        left: -1px;
-        position: absolute;
-        top: 0;
-        width: 2px;
-        z-index: 2;
-      }
-    }
-  }
 
   body.cloud-training {
 
