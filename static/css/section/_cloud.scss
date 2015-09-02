@@ -511,19 +511,6 @@ body.cloud-tools-openstack-home {
 	}
 }
 
-
-.row-step {
-	h2 {
-		height: 50px;
-		margin-bottom: 10px;
-
-		span {
-			float: left;
-			margin-right: 10px;
-		}
-	}
-}
-
 /* BootStack /cloud/bootstack
 -------------------------------------------------------------- */
 .row {
@@ -583,39 +570,6 @@ body.cloud-managed-cloud {
 			margin-left: 40px;
 			width: 50%;
 			z-index: 999;
-		}
-	}
-
-	.row-step.step-one .step::after {
-		height: 340px;
-	}
-	.row-step .four-col {
-		margin-bottom: 40px;
-	}
-
-	@media only screen and (max-width : 768px) {
-		.row-step .step {
-			position: absolute;
-			left: 0;
-			display: inline-block;
-		}
-		.row-step h3 {
-			padding-left: 50px;
-			margin-bottom: 30px;
-		}
-	}
-}
-
-body.cloud-ubuntu-openstack {
-	@media only screen and (max-width : 767px) {
-		.row-step .step {
-			position: absolute;
-			left: 0;
-			display: inline-block;
-		}
-		.row-step h3 {
-			padding-left: 50px;
-			margin-bottom: 30px;
 		}
 	}
 }
@@ -1085,46 +1039,6 @@ body.cloud-ubuntu-openstack-reference-architecture {
 		}
 	}
 
-	.row-step h2 {
-		height: auto;
-
-		span {
-			float: none;
-			margin-right: 0;
-		}
-	}
-	.row-step {
-		background-repeat: no-repeat;
-		background-position: right 60px;
-		height: 100%;
-
-		.step {
-			top: -3px;
-			left: -80px;
-			position: absolute;
-			z-index: 3;
-		}
-		&.step-one .step::after {
-			content: "";
-			height: 1630px;
-			width: 115px;
-			background: #fff url(../img/cloud/ubuntu-openstack/image-list-stroke.png) repeat-y 53% top;
-			position: absolute;
-			top: 47px;
-			left: -40px;
-			z-index: 2;
-		}
-		&.step-five .step::after {
-			content: "";
-			background: #fff;
-			width: 115px;
-			top: 47px;
-			height: 280px;
-			left: -40px;
-			position: absolute;
-		}
-	}
-
 	body.cloud-openstack-reference-architecture {
 		.tabbed-menu li a { font-weight: normal; padding: 0 30px; }
 		.tabbed-menu li a span { font-weight: 300; }
@@ -1308,23 +1222,6 @@ body.cloud-ubuntu-openstack-reference-architecture {
 				right: 40px;
 			}
 		}
-		.step-one 	{ background-image: url(../img/cloud/ubuntu-openstack/image-ubuntuserver.jpg); }
-		.step-two 	{ background-image: url(../img/cloud/ubuntu-openstack/image-maas.jpg); }
-		.step-three { background-image: url(../img/cloud/ubuntu-openstack/image-openstack.jpg); }
-		.step-four 	{ background-image: url(../img/cloud/ubuntu-openstack/image-juju.jpg); }
-		.step-five 	{ background-image: url(../img/cloud/ubuntu-openstack/image-landscape.jpg); }
-
-
-		.list-step {
-			&::before {
-				left: 21px;
-			}
-
-			li.last-step::after {
-				left: 21px;
-			}
-		}
-
 	}
 
 	body.cloud-openstack-reference-architecture {
