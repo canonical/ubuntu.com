@@ -1,21 +1,21 @@
 <ul class="breadcrumb">
 	{% if level_2 and not level_3 and not tertiary %}
-	<li><a href="/{{ level_1 }}/">{{ section_title }}&nbsp;&rsaquo;</a></li>
+	<li><a class="breadcrumb-link" href="/{{ level_1 }}/">{{ section_title }}</a>
 	{% else %}
 	{% if level_3 %}
-	<li><a href="/{{ level_1 }}/">{{ section_title }}&nbsp;&rsaquo;</a></li>
-	<li><a href="/{{ level_1 }}/{{ level_2 }}/">{{ subsection_title }}&nbsp;&rsaquo;</a></li>
+	<li><a class="breadcrumb-link" href="/{{ level_1 }}/">{{ section_title }}</a>
+	<ul class="second-level-nav">
+	<li><a class="breadcrumb-link--second-level" href="/{{ level_1 }}/{{ level_2 }}/">{{ subsection_title }}</a>
 	{% else %}
 	{% if level_2 %}
-	<li><a href="/{{ level_1 }}/">{{ section_title }}&nbsp;&rsaquo;</a></li>
-	<li><a class="active" href="/{{ level_1 }}/{{ level_2 }}/">{{ page_title }}&nbsp;&rsaquo;</a></li>
+	<li><a class="breadcrumb-link" href="/{{ level_1 }}/">{{ section_title }}</a>
+	<ul class="second-level-nav">
+	<li><a class="active" href="/{{ level_1 }}/{{ level_2 }}/">{{ page_title }}</a>
 	{% else %}
-	<li class="breadcrumb"><a href="/{{ level_1 }}/">{{ section_title }}&nbsp;&rsaquo;</a></li>
+	<li><a class="breadcrumb-link" href="/{{ level_1 }}/">{{ section_title }}</a>
 	{% endif %}
 	{% endif %}
 	{% endif %}
-</ul>
-
 {% if level_3 %}
 	{% with ""|add:level_1|add:"/_nav_tertiary.html" as tertiary %}
 	{% include tertiary %}
@@ -36,4 +36,8 @@
 		{% include secondary with icon="true" %}
 		{% endwith %}
 	{% endif %}
+	</li>
+	</ul>
+	</li>
 {% endif %}
+</ul>
