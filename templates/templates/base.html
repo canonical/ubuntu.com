@@ -47,6 +47,7 @@
 <!-- Google tag manager -->{% comment %}Bug 1445370 relates{% endcomment %}
 <script>dataLayer = [];</script>
 
+{% block crazy_egg %}{% endblock crazy_egg %}
 </head>
 
 <body{% if level_1 == 'phone' %} onload="init();"{% endif %} class="{% if level_1 != "" %}{% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}{% endif %}{% if level_2 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}{% endif %}{% if level_3 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}-{{ level_3 }} {% endif %} {% include "templates/body-class.html" %}{% if extra_body_class != "" %} {% block extra_body_class %}{% endblock %}{% endif %}">
