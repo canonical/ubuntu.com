@@ -400,15 +400,6 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
         Y.all('html').removeClass('no-js').addClass('yes-js');
     }
 
-    core.footerMobileNav = function() {
-        Y.all('.footer-a li h2').on('click', function(e) {
-            e.target.toggleClass('active open');
-        });
-        Y.all('.footer-b li h2').on('click', function(e) {
-            e.target.toggleClass('active open');
-        });
-    };
-    
     core.resizeListener = function() {
         Y.on('windowresize', function(e) {
             core.redrawGlobal();
@@ -461,31 +452,6 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
         }
     };
 
-    core.navOnboarding = function() {
-        var key = 'ubuntu';
-        var nav_secondary = Y.one('.nav-secondary');
-        if(nav_secondary && !nav_secondary.test(':empty')) {
-            if(Y.one('html').hasClass('localstorage')) {
-                if(localStorage.getItem(key) === null) {
-                    nav_secondary.addClass('open');
-                }else{
-                    ls = JSON.parse(localStorage.getItem( key ));
-                    if(ls.navigation !== 'onboard') {
-                        nav_secondary.addClass('open');
-                    }
-                }
-            }
-        }
-    }
-    core.setLocalStorage = function($value) {
-        var key = 'ubuntu';
-        var value = $value;
-        var ubuntu = {};
-        var nav_secondary = Y.one('.nav-secondary');
-        ubuntu.navigation = value;
-        localStorage.setItem(key,JSON.stringify(ubuntu));
-    }
-
     core.renderJSON = function (response, id) {
         if (id == undefined) {
             id = '#dynamic-logos';
@@ -520,8 +486,6 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
     core.cookiePolicy();
     core.setHTMLClasses();
     core.resizeListener();
-    core.footerMobileNav();
     core.setupGlobalNavAccordion();
-    core.navOnboarding();
     core.scopesSlideshow();
 });

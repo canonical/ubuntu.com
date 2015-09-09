@@ -15,30 +15,13 @@
  * Table of contents
  *
  * Core
- * - setEqualHeight
  * - hashBang
  * - getPullQuotes
- * - setupTooltips
  *
  */
 
 if(!core){ var core = {}; }
 YUI().use('node', 'anim', function(Y) {
-	core.setEqualHeight = function($className) {
-	  	var maxHeight = 0;
-	    var heightArray = Array();
-	    var collection = Y.all('.'+$className);
-	    collection.each(function(node) {
-	    	node.all(' > div, > ul li').each(function(node) {
-		    	if(node.get('clientHeight') > maxHeight){
-		    		maxHeight = node.get('clientHeight');
-		    	}
-	    	});
-	    	node.all('> div, > ul li').setStyle('height', maxHeight);
-	    	maxHeight = 0;
-	    });
-	}
-
 	core.hashBang = function() {
 		Y.all('#main-content a').each(function (node) {
 			var hrefValue = node.get('href');
@@ -119,62 +102,6 @@ YUI().use('node', 'anim', function(Y) {
 		}
 	}
 
-	core.getPullQuotes = function() {
-	    Y.all('span.pullquote').each(function (node) {
-	       var item = Y.Node.create('<div class="pull-quote js">&ldquo;'+node.getContent()+'&rdquo;</div>');
-	       node.get('parentNode').get('parentNode').get('parentNode').append(item);
-	    });
-	}
-
-	core.setupTooltips = function() {
-		if(Y.one('.tooltip') != null) {
-			Y.all('.tooltip').each(function (node) {
-				node.get('parentNode').prepend('<p class="tooltip-label">'+node.get('title')+'</p>');
-				var title = this.get('title');
-				node.on('mouseover', function(e){
-					this.set('title','');
-					this.get('parentNode').one('.tooltip-label').setStyle('display', 'inline');
-				});
-				node.on('mouseout', function(e){
-					this.set('title',title);
-					this.get('parentNode').one('.tooltip-label').setStyle('display', 'none');
-				});
-			});
-		}
-	}
-
-	core.sectionTabs = function() {
-
-		if(Y.one('.tabbed-content')) {
-			Y.one('.tabbed-menu').append('<img src="/static/u/img/patterns/tabbed-nav-arrow.png" class="arrow" height="6" width="12" alt="">');
-
-			var p = Y.one('.tabbed-menu a.active');
-			var s = p.get('href').split('#')[1];
-			var a = Y.one('.arrow');
-			var w = (p.get('clientWidth') / 2) - 7;
-			var x = (p.get('parentNode').getXY()[0] - p.get('parentNode').get('parentNode').getXY()[0]) + w;
-			Y.all('.tabbed-content').each(function() {
-			  	if(this.get('id') != s){
-			  		this.setStyle('opacity', '0');
-			  	}
-			  }
-			);
-			a.setStyle('left',x+'px').setStyle('display', 'inline');
-			Y.all('.tabbed-menu a').on('click',function(e) {
-				e.preventDefault();
-				Y.all('.tabbed-menu a').removeClass('active');
-				e.currentTarget.addClass('active');
-				Y.all('.tabbed-content').addClass('hide').setStyle('opacity','0');
-				s = e.currentTarget.getAttribute('data-hash');
-				Y.one('#'+s).removeClass('hide');
-				new Y.Anim({ node: '#'+s, to: { opacity: 1 } }).run();
-				x = (e.currentTarget.get('parentNode').getXY()[0] - e.currentTarget.get('parentNode').get('parentNode').getXY()[0]) + w;
-				new Y.Anim({ node: a, to: { left: x+'px' } }).run();
-			});
-		}
-
-	}
-
 	core.svgFallback = function() {
 		if(Modernizr){
 			if (!Modernizr.svg || !Modernizr.backgroundsize) {
@@ -185,10 +112,6 @@ YUI().use('node', 'anim', function(Y) {
 		}
 	};
 
-	core.sectionTabs();
 	core.hashBang();
-	core.setEqualHeight('equal-height');
-	core.getPullQuotes();
-	core.setupTooltips();
 	core.svgFallback();
 });
