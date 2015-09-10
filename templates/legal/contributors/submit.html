@@ -232,40 +232,40 @@ div.ok {
 <fieldset id="tfa_Yourcontactdetai1" class="wfSection fieldset-2">
 	<h3>Your contact details</h3>
 		<ul class="no-bullets">
-			<li class="inline">
+			<li>
 				<div id="tfa_Firstname1-D" class="oneField">
 					<label class="preField" for="tfa_Firstname1">First name</label> <input type="text" id="tfa_Firstname1" name="tfa_Firstname1" value="" size="40" class="required">
 				</div>
 			</li>
-			<li class="inline">
+			<li>
 				<div id="tfa_Lastname1-D" class="oneField">
 					<label class="preField" for="tfa_Lastname1">Last name</label> <input type="text" id="tfa_Lastname1" name="tfa_Lastname1" value="" size="40" class="required">
 				</div>
 			</li>
-			<li class="inline">
+			<li>
 				<div id="tfa_Email1-D" class="oneField">
 					<label class="preField" for="tfa_Email1">Email</label>
 					<input type="text" id="tfa_Email1" name="tfa_Email1" value="" size="40" class="validate-email required">
 				</div>
 			</li>
-			<li class="inline">
+			<li>
 				<div id="tfa_Phone-D" class="oneField">
 				<label class="preField" for="tfa_Phone">Phone</label> <input type="text" id="tfa_Phone" name="tfa_Phone" value="" size="40" class="required">
 				</div>
 			</li>
-			<li class="inline">
+			<li>
 				<label class="preField" for="tfa_LPid">Launchpad ID (<a id="lp_help" href="//login.launchpad.net">Don't know your Launchpad ID?</a>)</label>
 				<input id="tfa_Openid" name="tfa_Openid" value="" class="" type="hidden">
 				<input id="tfa_LPid" name="tfa_LPid" value="" class="" type="text">
 				<span class="input-help"><span id="lp_error" class="errMsg"></span></span>
 			</li>
-			<li class="inline">
+			<li>
 				<div id="tfa_Address-D" class="oneField">
 					<label class="preField" for="tfa_Address">Address</label>
 					<textarea cols="40" rows="4" id="tfa_Address" name="tfa_Address" class="required"></textarea>
 				</div>
 			</li>
-			<li class="inline">
+			<li>
 				<div id="tfa_Country-D" class="oneField">
 				<label class="preField" for="tfa_Country">Country</label>
 				<select id="tfa_Country" name="tfa_Country" class="required">
@@ -509,7 +509,7 @@ div.ok {
 				<option value="tfa_Zimbabwe" class="">Zimbabwe</option></select>
 				</div>
 			</li>
-			<li class="inline">
+			<li>
 				<div id="tfa_USState-D" class="oneField offstate-b">
 				<label class="preField" for="tfa_USState">US state</label> <select id="tfa_USState" name="tfa_USState" class="required">
 				<option value="">Please select...</option>
@@ -570,7 +570,7 @@ div.ok {
 	<fieldset class="fieldset-3">
 		<h3>Project contact</h3>
 		<ul class="no-bullets">
-			<li class="">
+			<li>
 				<div id="tfa_PleaseaddtheCano-D" class="oneField">
 					<label class="preField" for="tfa_PleaseaddtheCano">Please add the Canonical Project Manager or contact</label>
 					<input type="text" id="tfa_PleaseaddtheCano" name="tfa_PleaseaddtheCano" value="" size="40" class="required">
@@ -582,38 +582,33 @@ div.ok {
 	<fieldset class="captcha">
 		<h3>Verification</h3>
 		<p class="instructions">Please enter the characters you see in this picture:</p>
-		<div class="oneField">
-            <ul class="no-bullets">
-    			<li><img src="https://www.tfaforms.com/forms/captcha" width="200" height="60" alt="Visual CAPTCHA"></li>
-                <li>
-                    <label class="preField off-left">Characters</label> 
-                    <input type="text" name="tfa_captcha_text" id="tfa_captcha_text">
-                </li>
-                <li>
-                    <p>This helps prevent automated form submissions. If you are not sure what the characters are, make your best guess. You will have another try in the next screen. <a href="https://www.tfaforms.com/forms/captcha/1">Can't see the image? Listen to an audible version in English.</a></p>
-                </li>
-    			<li>
-    				<div class="htmlsection" id="html-tmp-0767356147928"><p>By clicking 'I agree' you are confirming that you accept the terms detailed&nbsp;above.</p></div>
-    			</li>
-                <li class="actions">
-                    <input type="submit" class="primaryAction" id="submit-" name="tfa_submitAction" value="I agree">
-                    <input type="hidden" value="237277" name="tfa_dbFormId" id="tfa_dbFormId">
-                    <input type="hidden" value="" name="tfa_dbResponseId" id="tfa_dbResponseId">
-                    <input type="hidden" value="d00afcc394fd0912b8a3895b593d43ef" name="tfa_dbControl" id="tfa_dbControl">
-                    <input type="hidden" value="7" name="tfa_dbVersionId" id="tfa_dbVersionId">
-                </li>
-            </ul>
-		</div>
+      <div class="oneField">
+          <ul class="no-bullets">
+              <li><img src="https://www.tfaforms.com/forms/captcha" width="200" height="60" alt="Visual CAPTCHA"></li>
+              <li>
+                  <label class="preField off-left">Characters</label> 
+                  <input type="text" name="tfa_captcha_text" id="tfa_captcha_text">
+              </li>
+              <li>
+                  <p>This helps prevent automated form submissions. If you are not sure what the characters are, make your best guess. You will have another try in the next screen. <a href="https://www.tfaforms.com/forms/captcha/1">Can't see the image? Listen to an audible version in English.</a></p>
+              </li>
+              <li>
+                  <div class="htmlsection" id="html-tmp-0767356147928"><p>By clicking 'I agree' you are confirming that you accept the terms detailed&nbsp;above.</p></div>
+              </li>
+              <li class="actions">
+                  <input type="submit" class="primaryAction" id="submit-" name="tfa_submitAction" value="I agree">
+                  <input type="hidden" value="237277" name="tfa_dbFormId" id="tfa_dbFormId">
+                  <input type="hidden" value="" name="tfa_dbResponseId" id="tfa_dbResponseId">
+                  <input type="hidden" value="d00afcc394fd0912b8a3895b593d43ef" name="tfa_dbControl" id="tfa_dbControl">
+                  <input type="hidden" value="7" name="tfa_dbVersionId" id="tfa_dbVersionId">
+              </li>
+          </ul>
+      </div>
 	</fieldset>
 </form>
 </div>
-
-
-      <!-- <p class="supportInfo" ><a href="https://www.tfaforms.com/forms/help/237277">Need assistance with this form?</a></p> -->
-
 </div>
 </div>
-
 </div>
 	<div class="box four-col last-col">
 		<h3>Related content</h3>
