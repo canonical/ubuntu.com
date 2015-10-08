@@ -18,3 +18,5 @@ make develop  # Auto-compile sass files and run the dev server
 Now visit <http://127.0.0.1:8001>
 
 To see what other `make` commands are available, run `make help`.
+
+With ♥ from Canonical
