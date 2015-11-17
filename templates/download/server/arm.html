@@ -7,7 +7,7 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero row-background no-border">
+<div class="row row-grey">
     <div class="eight-col">
 	    <h1>Ubuntu Server for ARM</h1>
         <p>With Ubuntu 14.04 LTS, we are happy to announce support for 64-bit ARMv8 systems as well as all released x86 and ARM based HP Moonshot cartridges, including our MAAS and Juju cloud tools.</p>
@@ -27,7 +27,7 @@
 				<h4>Applied Micro X-Gene ARMv8</h4>
 				<ul class="no-bullets">
 					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/trusty/main/installer-arm64/current/images/generic/netboot/xgene/" onclick="_gaq.push(['_trackEvent', 'External Link', 'Applied Micro X-Gene ARMv8 14.04 download', 'From Download ARM']);" class="external">14.04 LTS</a></li>
-					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/vivid/main/installer-arm64/current/images/generic/netboot/xgene/" onclick="_gaq.push(['_trackEvent', 'External Link', 'Applied Micro X-Gene ARMv8 14.10 download', 'From Download ARM']);" class="external">{{latest_release}}</a></li>
+					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/wily/main/installer-arm64/current/images/netboot/ubuntu-installer/arm64/xgene-uboot/" onclick="_gaq.push(['_trackEvent', 'External Link', 'Applied Micro X-Gene ARMv8 15.10 download', 'From Download ARM']);" class="external">{{latest_release}}</a></li>
 				</ul>
 				<p><a class="external" href="https://wiki.ubuntu.com/ARM/Server/Install/Mustang">Installation instructions for the Mustang platform</a></p>
 			</div>
@@ -51,9 +51,9 @@
    		</div><!-- /.twelve-col -->
     </div><!-- /.box -->
 </div><!-- /.row -->
-<div class="row row-grey">
+<div class="row">
 		<div class="six-col no-margin-bottom">
-			<h3>For Developers</h3>
+			<h3>For developers</h3>
 			<p>Ubuntu Server is available for developer platforms powered by certified ARM SoCs as an over-the-network installer. Network boot infrastructure is required.</p>
 			<!-- <p><a href="/server">Learn more about Ubuntu Server&nbsp;&rsaquo;</a></p> -->
 		</div>

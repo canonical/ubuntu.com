@@ -10,37 +10,49 @@
 
 {% block content %}
 <div class="row row-hero">
-    <div class="five-col no-margin-bottom">
+    <div class="five-col">
         <h1>MAAS</h1>
         <h2>Introducing Metal as <br />a Service</h2>
         <p>Many modern IT services are cloud-like: farms of servers, doing roughly the same thing, scaled out rather than scaled up. In those environments, it&rsquo;s useful to think of the collection of physical machines like a cloud, even if it isn&rsquo;t virtualised.</p>
-        <p>So Canonical has created Metal as a Service (MAAS), a system that makes it quick and easy to set up the physical hardware on which to deploy complex scalable services, like Ubuntu&rsquo;s OpenStack cloud infrastructure.</p>
+        <p>So Canonical has created Metal as a Service (MAAS).  Get cloud-style automation for your physical servers, perfect for deploying complex services like OpenStack.</p>
     </div><!-- /.six-col -->
 </div><!-- /row -->
 
-<div class="row">
-    <div class="eight-col">
+<section class="row row-full-width">
+    <div class="twelve-col no-margin-bottom last-col">
         <div class="video-container">
-            <iframe width="560" height="315" src="//www.youtube.com/embed/J1XH0SQARgo?showinfo=0" allowfullscreen></iframe>
+            <iframe width="906" height="500" src="https://www.youtube.com/embed/J1XH0SQARgo?rel=0&amp;&amp;hd=1" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
-    <div class="four-col last-col">
-        <h2>Inside MAAS</h2>
-        <p>MAAS gives you the power of metal at the speed of cloud. See how in this short video.</p>
-    </div>
-</div><!-- /.row -->
+</section>
 
-<div class="row vertical-divider">
-    <div class="six-col">
+<div class="row">
+    <div class="three-col append-one not-for-small">
+        <img src="https://assets.ubuntu.com/v1/d7bfa801-picto-upgrade-midaubergine.svg" alt="" width="100%" />
+    </div>
+    <div class="eight-col last-col">
         <h2>Automated install</h2>
         <p>When a new node boots up, MAAS steps in, supplies all the information the node requires, reboots it and provides an Ubuntu image to install.</p>
         <p>In addition, MAAS can take care of hardware-specific tasks such as burn-in tests, firmware and RAID upgrades &mdash; and checking whether your hardware is Ubuntu certified.</p>
     </div><!-- /.six-col -->
+</div>
 
-    <div class="six-col last-col">
+<div class="row your-hardware-any-hardware">
+    <div class="six-col">
         <h2>Make the most of your hardware &mdash; any hardware</h2>
-        <p>No need to spend days on manual provisioning and deployment. With MAAS, your new hardware can be part of your working infrastructure within minutes. Breathe new life into old hardware by recycling it for use in other parts of your network. Changing models or hardware providers? No worries! MAAS provides enough abstraction to overcome hardware incompatibilities, saving you from costly upgrades and vendor lock-in.</p>
+        <p>No need to spend days on manual provisioning and deployment. With MAAS, your new hardware can be part of your working infrastructure within minutes. Breathe new life into old hardware by recycling it for use in other parts of your network. Changing models or hardware providers? MAAS provides enough abstraction to overcome hardware incompatibilities, saving you from costly upgrades and vendor lock-in.</p>
     </div><!-- /.six-col -->
+    <div class="six-col last-col">
+        <ul class="inline-logos">
+            <li><img src="https://assets.ubuntu.com/v1/68713fd5-logo-lenovo.svg" alt="Lenovo" /></li>
+            <li><img src="https://assets.ubuntu.com/v1/05f5c6da-ibmpos_blue.jpg" alt="IBM" /></li>
+            <li><img src="https://assets.ubuntu.com/v1/ef92a823-Cisco_logo.png" alt="Cisco" /></li>
+            <li><img src="https://assets.ubuntu.com/v1/5ddba83a-logo-dell.svg" alt="Dell" /></li>
+            <li><img src="https://assets.ubuntu.com/v1/a298e7ec-logo-hp.svg" alt="HP" /></li>
+            <li><img src="https://assets.ubuntu.com/v1/ab8e3ab9-logo-open-compute-160.png" alt="Open Compute" /></li>
+            <li><img src="https://assets.ubuntu.com/v1/2c5dcff7-logo-quanta-160.png" alt="Quanta" /></li>
+        </ul>
+    </div>
 </div><!-- /.row -->
 
 <div class="row">
@@ -69,5 +81,7 @@
         <p><a href="/cloud/tools/juju">Learn more about Juju&nbsp;&rsaquo;</a></p>
     </div><!-- /.eight-col -->
 </div><!-- /.row -->
+
+{% include "cloud/shared/_contextual_footer.html" with feature_1="install-maas" %}
 
 {% endblock content %}

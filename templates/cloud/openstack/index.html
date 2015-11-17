@@ -1,0 +1,217 @@
+{% extends "cloud/base_cloud.html" %}
+
+{% block title %}OpenStack | Cloud{% endblock %}
+
+{% block meta_description %}OpenStack is the fastest and best-supported route to creating an OpenStack cloud.{% endblock meta_description %}
+{% block meta_keywords %}IAAS, OpenStack, Ubuntu, Ubuntu Cloud Infrastructure, private cloud infrastructure, infrastructure as a service, open cloud, opencloud, open source cloud, open private cloud, open public cloud, open hybrid cloud, OpenStack private cloud, OpenStack public cloud, cloud architecture, cloud deployment, cloud in business, cloud in enterprise, cloud in finance, cloud in public sector, cloud in government{% endblock meta_keywords %}
+
+{% block extra_body_class %}cloud-tools-openstack-home{% endblock %}
+
+{% block second_level_nav_items %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="OpenStack" tertiary="true" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<section class="row row-hero">
+    <div class="seven-col append-one">
+        <h1>OpenStack</h1>
+        <ul class="list-ticks--compact">
+            <li>OpenStack is the leading open cloud platform</li>
+            <li>Ubuntu is the world&rsquo;s most popular operating system for&nbsp;OpenStack</li>
+            <li>Ubuntu OpenStack is the world’s most stable and manageable cloud</li>
+            <li>Autopilot is the fastest and most reliable way to build your OpenStack cloud</li>
+        </ul>
+        <p><a href="/download/cloud" class="link-cta-ubuntu">Get started with OpenStack Autopilot</a></p>
+    </div>
+    <div class="four-col last-col">
+        {% comment %} might want to add this image instead of the chart - https://assets.ubuntu.com/v1/845e046c-partner-openstack.png
+        {% endcomment %}
+        <figure id="ubuntu-pie" class="ubuntu-pie"></figure>
+        <p class="note">* <a href="http://superuser.openstack.org/articles/openstack-users-share-how-their-deployments-stack-up"  class="external">OpenStack survey &mdash; May 2015</a></p>
+    </div>
+</section>
+
+<script src="https://assets.ubuntu.com/v1/3c99518b-d3-version3.5.6.min.js"></script>
+
+<script>
+  'use strict';
+  var width = document.querySelector('#ubuntu-pie').offsetWidth;
+
+  var dataset = [
+    { label: 'ubuntu', count: 55, left: (width / 2.75), top: -5 },
+    { label: 'other', count: 45, left: -(width / 2.75), top: -5 }
+  ];
+  var height = width;
+  var radius = Math.min(width, height) / 2;
+  var donutWidth = width / 4;
+  var color = d3.scale.category20b();
+  var svg = d3.select('#ubuntu-pie')
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height)
+    .attr('viewBox', '0 0 ' + (width + 2) + ' ' + (height + 2))
+    .append('g')
+    .attr('transform', 'translate(' + (width / 2 + 1) +
+      ',' + (height / 2 + 1) + ')');
+
+  var arc = d3.svg.arc()
+    .innerRadius(radius - donutWidth)
+    .outerRadius(radius);
+
+  var pie = d3.layout.pie()
+    .value(function(d) { return d.count; })
+    .sort(null);
+
+  svg.selectAll('path')
+    .data(pie(dataset))
+    .enter()
+    .append('path')
+    .style('stroke', '#aea79f')
+    .style('stroke-width', '1')
+    .style("stroke-dasharray", ("3, 3"))
+    .attr('d', arc)
+    .attr('class', function(d, i) {
+      return d.data.label;
+    });
+
+  // Add labels as <text> elements
+  var labels = svg.selectAll('foreignObject')
+    .data(dataset)
+    .enter()
+    .append('text')
+    .attr('y', function(d) { return d.top; })
+    .attr('class', function(d) { return d.label + '-label'; });
+
+  // Fill <text> labels with <tspan>s
+  labels.append('tspan')
+    .text(function (d) {return d.label;})
+    .attr('x', function(d) {
+      var spanWidth = 43;
+      if( d.label === 'ubuntu') { spanWidth = 53 }
+      return d.left - spanWidth / 2;
+    })
+    .attr('dy', '0');
+  labels.append('tspan')
+    .text(function (d) {return '(' + d.count + '%)'})
+    .attr('x', function(d) { return d.left - 44 / 2; })
+    .attr('dy', '20');
+</script>
+
+<section class="row row-grey">
+    <h2 class="twelve-col">Four ways to get OpenStack on Ubuntu</h2>
+    <div class="equal-height">
+        <div class="six-col box">
+            <h3>Build your cloud</h3>
+            <p>OpenStack Autopilot is our fully automated tool for easy OpenStack deployment, management and operations.</p>
+            <p><a href="/cloud/openstack/autopilot">Get OpenStack Autopilot&nbsp;&rsaquo;
+            </a></p>
+        </div>
+        <div class="six-col box last-col">
+            <h3>Buy a managed cloud</h3>
+            <p>With Bootstack, we will set up and operate an OpenStack cloud for you on your premises from only $15 per server.</p>
+            <p><a href="/cloud/openstack/managed-cloud/contact-us">
+                Get BootStack&nbsp;&rsaquo;
+            </a></p>
+        </div>
+        <div class="six-col box">
+            <h3>Get a customised cloud</h3>
+            <p>Our engineers can tailor OpenStack to support your specific requirements and cloud applications</p>
+            <p><a href="/cloud/contact-us">
+                Contact us&nbsp;&rsaquo;
+            </a></p>
+        </div>
+        <div class="six-col box last-col">
+            <h3>Install OpenStack yourself</h3>
+            <p>If you prefer a manual setup of the latest OpenStack version, you can follow the instructions in our OpenStack operations guide.</p>
+            <p><a href="https://help.ubuntu.com/lts/clouddocs/en/Intro.html" class="external">
+                Read the instructions
+            </a></p>
+        </div>
+    </div>
+</section>
+
+<section class="row">
+{% include "cloud/shared/_openstack_clients.html" %}
+</section>
+
+<section class="row row-autopilot no-border">
+    <div class="six-col">
+        <h2>Build a cloud with Autopilot</h2>
+        <p>OpenStack Autopilot is a tool that deploys, manages, and operates your OpenStack cloud. Using MAAS, Juju and Landscape, it helps you build your OpenStack cloud in minutes.</p>
+    </div>
+    <div class="twelve-col combined-list">
+        <ul class="list-ticks--compact six-col">
+            <li><a href="/download/cloud/install-openstack-with-autopilot">Install Autopilot on your hardware</a></li>
+            <li>Dynamically scale as needed</li>
+            <li>Choice of SWIFT or Ceph for storage</li>
+            <li>Uses our tested reference architecture</li>
+            <li>Automatically builds for High Availability</li>
+            <li>User defined custom machine roles</li>
+            <li>Security updates for host server OS</li>
+        </ul>
+    </div>
+    <div class="six-col">
+        <p><a href="/download/cloud/install-openstack-with-autopilot" class="link-cta-ubuntu">Get Autopilot</a></p>
+        <p><a href="/cloud/openstack/autopilot">Learn more about Autopilot&nbsp;&rsaquo;</a></p>
+    </div>
+</section>
+
+<section class="row strip-dark no-border">
+    <div class="equal-height">
+        <div class="seven-col">
+            <h2>Buy a BootStack managed cloud</h2>
+            <p>BootStack gives you a private OpenStack cloud managed by Canonical.  It runs on your hardware, in the datacenter of your choice with our experts responsible for design, deployment and 24/7 support.</p>
+            <ul class="list-ticks--compact six-col">
+                <li>Built to your specifications</li>
+                <li>Your choice of certified hardware</li>
+                <li>Retain complete control of every tool and every machine</li>
+                <li>Guaranteed availability backed by a clear SLA</li>
+                <li>Transfer operations anytime you want</li>
+            </ul>
+            <p><a href="/cloud/openstack/managed-cloud/contact-us" class="link-cta-ubuntu">Get BootStack</a></p>
+        </div>
+        <div class="five-col last-col align-center align-vertically">
+          <img src="https://assets.ubuntu.com/v1/466046c7-illustration-cloud-bootstack.svg?w=320" alt="" class="not-for-small" width="320" />
+        </div>
+    </div>
+</section>
+
+<section class="row no-border">
+    <h2>Get a customised cloud</h2>
+    <div class="eight-col">
+        <p>Engage us to tailor OpenStack to your requirements, with the exact components you want and the precise configuration you need to support all your cloud applications and workloads.</p>
+        <div class="four-col combined-list">
+            <ul class="list-ticks--compact">
+                <li>SLAs and support services</li>
+                <li>On-site engineering and support</li>
+                <li>Reference architecture design</li>
+                <li>OpenStack feature development</li>
+            </ul>
+        </div>
+        <div class="four-col last-col">
+            <ul class="list-ticks--compact">
+                <li>Variable service placement</li>
+                <li>Automated deployment scripts</li>
+                <li>Repeatable deployment</li>
+                <li>Hardware selection support</li>
+            </ul>
+        </div>
+    </div>
+    <div class="four-col last-col">
+        <blockquote class="pull-quote">
+            <p><span>&ldquo;</span>The support has been fabulous. The whole team stepped up and helped us work through issues.<span>&rdquo;</span></p>
+            <p><cite>Director of Web Engineering at Best Buy Corp</cite></p>
+        </blockquote>
+    </div>
+    <div class="eight-col">
+        <p><a href="/cloud/contact-us">Contact us about your custom engineering needs&nbsp;&rsaquo;</a></p>
+    </div>
+</section>
+
+{% include "cloud/shared/_contextual_footer.html" with feature_1="installing-openStack-yourself" %}
+
+{% include "shared/_live_chat.html" %}
+{% endblock content %}
+{% block footer_extra %}
+{{ marketo }}
+{% endblock %}

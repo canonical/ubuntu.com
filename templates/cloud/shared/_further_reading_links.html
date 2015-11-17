@@ -1,35 +1,33 @@
-{% block head_extra %}
-<script src="https://www.google.com/jsapi"></script>
-<script>google.load("feeds", "1")</script>
-{% endblock %}
+  <script src="https://www.google.com/jsapi"></script>
+  <script>google.load("feeds", "1")</script>
 	<div id="insights-footer-feed"></div>
 	<script>
-		var feedcontainer2=document.getElementById("insights-footer-feed")
+		var feedcontainer_insights_footer=document.getElementById("insights-footer-feed")
 		{% if level_3 != 'snappy' %}
-		var feedurl2=document.location.protocol+"//insights.ubuntu.com/topic/cloud/feed/"{% endif %}
+		var feedurl_insights_footer=document.location.protocol+"//insights.ubuntu.com/group/cloud-and-server/feed"{% endif %}
 		{% if level_3 == 'snappy' or level_1 == 'internet-of-things' %}
-		var feedurl2=document.location.protocol+"//insights.ubuntu.com/group/internet-of-things/feed/"{% endif %}
-		var feedlimit2=4
+		var feedurl_insights_footer=document.location.protocol+"//insights.ubuntu.com/group/internet-of-things/feed/"{% endif %}
+		var feedlimit_insights_footer=5
 		var rssoutput="<ul class='no-bullets smaller'>"
-			function rssfeedsetup2(){
-				var feedpointer2=new google.feeds.Feed(feedurl2) //Google Feed API method
-						feedpointer2.setNumEntries(feedlimit2) //Google Feed API method
-						feedpointer2.load(displayfeed2) //Google Feed API method
+			function rssfeedsetup_insights_footer(){
+				var feedpointer_insights_footer=new google.feeds.Feed(feedurl_insights_footer) //Google Feed API method
+						feedpointer_insights_footer.setNumEntries(feedlimit_insights_footer) //Google Feed API method
+						feedpointer_insights_footer.load(displayfeed_insights_footer) //Google Feed API method
 			}
 
-			function displayfeed2(result){
+			function displayfeed_insights_footer(result){
 				if (!result.error){
-					var thefeeds2=result.feed.entries
-					for (var i=0; i<thefeeds2.length; i++){
-						rssoutput+="<li><a href='" + thefeeds2[i].link + "'>" + thefeeds2[i].title + "&nbsp;&rsaquo;</a></li>"}
+					var thefeeds_insights_footer=result.feed.entries
+					for (var i=0; i<thefeeds_insights_footer.length; i++){
+						rssoutput+="<li><a href='" + thefeeds_insights_footer[i].link + "'>" + thefeeds_insights_footer[i].title + "&nbsp;&rsaquo;</a></li>"}
 						rssoutput+="</ul>"
-						feedcontainer2.innerHTML=rssoutput
+						feedcontainer_insights_footer.innerHTML=rssoutput
 				}
 				else
-					console.log('RSS feed error');
+					console.warn("An error occurred while fetching rss");
 				}
 
 				window.onload=function(){
-				rssfeedsetup2()
+				rssfeedsetup_insights_footer()
 				}
 	</script>

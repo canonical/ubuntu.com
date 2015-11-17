@@ -1,12 +1,156 @@
 {% extends "base_index.html" %}
 
-{% block takeover_body_class %}snapdeal-takeover{% endblock takeover_body_class %}
+{% block takeover_body_class %}homepage-autopilot{% endblock takeover_body_class %}
+
+{% block head_extra %}
+<script src="https://www.google.com/jsapi"></script>
+<script>google.load("feeds", "1");</script>
+{% endblock %}
 
 {% block takeover_content %}
-    {% if switcher %}
-        <div class="lang-switch-wrapper strip-inner-wrapper"><a href="/" class="lang-switch" lang="zh">中文主页&nbsp;&rsaquo;</a></div>
-    {% endif %}
+{% if switcher %}
+    <div class="lang-switch-wrapper strip-inner-wrapper"><a href="/" class="lang-switch" lang="zh">中文主页&nbsp;&rsaquo;</a></div>
+{% endif %}
 
-    {% include "takeovers/_snapdeal_launch_takeover.html" %}
-    {% include "takeovers/_footer_homepage.html" %}
+{% include "takeovers/_autopilot_takeover.html" %}
+
+<section class="row row--ubuntu-news row-grey strip no-border">
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col">
+            <h2 class="row--ubuntu-news__title">The latest Ubuntu news</h2>
+            <div id="insights-cloud-feed" class="twelve-col"></div>
+            <script>
+              var feedcontainer=document.getElementById("insights-cloud-feed");
+              var feedurl=document.location.protocol+"//insights.ubuntu.com/feed/";
+              var feedlimit=4;
+              var rssoutput="<ul class='row--ubuntu-news__list no-bullets vertical-divider'>";
+
+              function rssfeedsetup() {
+                var feedpointer=new google.feeds.Feed(feedurl); //Google Feed API method
+                feedpointer.setNumEntries(feedlimit); //Google Feed API method
+                feedpointer.load(displayfeed2); //Google Feed API method
+              }
+
+              function displayfeed2(result) {
+                if (!result.error) {
+                  var thefeeds=result.feed.entries;
+                  var lastClass = '';
+                  for (var i=0; i<thefeeds.length; i++){
+                    if (i != 0 && i % 3 == 0) {
+                      lastClass = ' last-col';
+                    }
+                    var pubDate = thefeeds[i].publishedDate;
+                    var date = new Date(pubDate);
+                    var months = Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+                    var thedate = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
+                    rssoutput+="<li class='three-col" + lastClass + "'><h3><a class='external' href='" + thefeeds[i].link + "'>" + thefeeds[i].title + "</a></h3><p><time pubdate datetime='" + pubDate + "'>" + thedate + "</time></p></li>";
+                  }
+                  rssoutput+="</ul>";
+                  feedcontainer.innerHTML=rssoutput;
+                } else {
+                  console.warn("An error occurred while fetching rss");
+                }
+              }
+
+              window.onload=function() {
+                rssfeedsetup();
+              }
+            </script>
+        </div>
+    </div>
+</section>
+
+<section class="row row--intro strip no-border">
+    <div class="ubuntu-intro"
+        data-0="@class:ubuntu-intro;"
+        data-10-start="@class:ubuntu-intro run;"
+        data-anchor-target=".row--intro">
+        <div class="intro-left"></div>
+            <div class="intro-middle">
+                <ul class="ubuntu-intro__list no-bullets inline">
+                    <li><a class="intro-cloud" href="/cloud">Cloud</a></li>
+                    <li><a class="intro-server" href="/server">Server</a></li>
+                    <li><a class="intro-desktop" href="/desktop">Desktop</a></li>
+                    <li><a class="intro-phone" href="/phone">Phone</a></li>
+                    <li><a class="intro-tablet" href="/tablet">Tablet</a></li>
+                    <li><a class="intro-iot" href="/things">Things</a></li>
+                </ul>
+            </div>
+            <div class="intro-right"></div>
+        </div>
+        <div class="strip-inner-wrapper">
+            <h2 class="text-center twelve-col">Ubuntu is an open source software platform that runs from the cloud, to the smartphone, to all your things</h2>
+        </div>
+</section>
+
+<section class="row row--cloud-products strip no-border">
+    <div class="strip-inner-wrapper equal-height">
+        <div class="four-col align-vertically">
+            <div>
+                <h2><a href="/cloud/openstack/managed-cloud">Buy a managed cloud&nbsp;&rsaquo;</a></h2>
+                <p>Get BootStack, a fully managed private OpenStack cloud with our experts responsible for design, deployment and availability.</p>
+            </div>
+        </div>
+        <div class="eight-col last-col align-vertically for-medium">
+            <img src="https://assets.ubuntu.com/v1/f27582be-image-cloud-static.jpg" alt="" />
+        </div>
+    </div>
+</section>
+
+<section class="row row--devices strip no-border no-padding-bottom">
+    <div class="strip-inner-wrapper row--devices__inner slider-animation">
+        <div class="eight-col">
+            <div id="device-morph">
+                <div id="devices">
+                    <div id="device-phone"><div></div></div>
+                    <div id="device-tablet"><div></div></div>
+                    <div id="device-laptop"><img src="{{ STATIC_URL }}img/homepage/morph/laptop-base.png"/><div></div></div>
+                </div>
+            </div>
+        </div>
+        <div class="row--devices__content four-col last-col">
+            <h2><a href="/phone">Multiple devices, one&nbsp;experience&nbsp;&rsaquo;</a></h2>
+            <p>Ubuntu is a single software platform that runs across smartphones, tablets and PCs. It is designed to help make converged computing a reality: one system, one experience, multiple form factors.</p>
+        </div>
+    </div>
+</section>
+
+<section class="row row--iot row-grey strip no-border">
+    <div class="strip-inner-wrapper">
+        <div class="row--iot__desc four-col">
+            <h2><a href="/things">For all your things&nbsp;&rsaquo;</a></h2>
+            <p>Snappy Ubuntu Core delivers bullet-proof security, reliable updates and the enormous Ubuntu ecosystem to a wide range of internet things, connected devices and autonomous machines.</p>
+        </div>
+        <div class="eight-col last-col align-center">
+            <div class="row--iot__image"></div>
+            <img class="for-small" src="https://assets.ubuntu.com/v1/2f56d557-image-iot.jpg?w=280" width="280" alt="" />
+        </div>
+    </div>
+</section>
+
+<section class="row row--featured strip no-border equal-height">
+    <div class="featured featured--left featured--bootstack">
+        <img class="featured__image featured--left__image not-for-small" src="https://assets.ubuntu.com/v1/c1d7e89d-cloud-purps.png?q=40" alt="" />
+        <div class="six-col featured--left__content prepend-five">
+            <h2 class="featured__title featured--bootstack__title"><a href="/cloud/openstack/managed-cloud">Get a managed cloud&nbsp;&rsaquo;</a></h2>
+            <p class="featured__desc featured--bootstack__desc intro">Buy a fully managed private BootStack cloud for just &dollar;15 per server per day.</p>
+        </div>
+    </div>
+    <div class="featured featured--right featured--openstack">
+        <div class="six-col prepend-one featured--right__contentm">
+            <h2 class="featured__title featured--right__title"><a href="http://insights.ubuntu.com/event/open-stack-summit-tokyo/">OpenStack Summit, 27-30 October 2015&nbsp;&rsaquo;</a></h2>
+            <p class="featured__desc featured--openstack__desc intro">Learn how Autopilot is the easiest way to develop, deploy and scale OpenStack clouds.</p>
+        </div>
+        <img class="featured__image featured--right__image not-for-small" src="https://assets.ubuntu.com/v1/e70eaff6-image-ods-logo.png" alt="ODS logo" />
+    </div>
+</section>
+
+<style type="text/css">
+    /* background image for the event feature */
+    .featured--openstack { background-image: url('https://assets.ubuntu.com/v1/b98e2266-staticmap.png?fmt=jpg&q=20'); }
+</style>
+
+{% include "shared/_device_animation.html" %}
+
+</div>
 {% endblock takeover_content %}

@@ -1,8 +1,9 @@
+#!/usr/bin/env python
+
 import os
 import urllib2
 import string
-
-
+import csv
 
 
 def clean_path(p):
@@ -32,12 +33,18 @@ def get_title_from_html(list_of_html_strings):
 html_files = os.popen('find . -name "*.html"').readlines()
 cleaned = map(clean_path, html_files)
 
-for path in cleaned:
-    if (path.find("/_") == -1) and \
-            (path.find("/base_") == -1) and \
-            (path.find("/templates") == -1) and \
-            (path.find("/mu-b760b7ee-790eb464-8b1bbe62-de00513f") == -1) and \
-            (path.find("patterns-assets") == -1):
-        full_path = 'http://www.ubuntu.com%s' % path
-        page, path = grab_ubuntu_page(path)
-        print "%s\t%s" % (get_title_from_html(page), full_path)
+with open('ubuntu-ia.csv', 'wb') as ia_file:
+    ia_writer = csv.writer(ia_file, quoting=csv.QUOTE_ALL)
+
+    for path in cleaned:
+        if (
+            (path.find("/_") == -1) and
+            (path.find("/base_") == -1) and
+            (path.find("/templates") == -1) and
+            (path.find("/mu-b760b7ee-790eb464-8b1bbe62-de00513f") == -1) and
+            (path.find("patterns-assets") == -1)
+        ):
+            full_path = 'http://www.ubuntu.com%s' % path
+            page, path = grab_ubuntu_page(path)
+
+            ia_writer.writerow([get_title_from_html(page), full_path])

@@ -14,7 +14,7 @@
 <div class="row row-hero">
 	<div class="seven-col">
 		<h1>Cloud tools</h1>
-		<p class="intro">Want to minimise the time to get your cloud infrastructure up and running and start offering your services to customers? We have the tools to get you there.</p>
+		<p class="intro">Want to get your cloud infrastructure up and running fast? We&rsquo;ve got all the tools you need to deploy, scale and manage an OpenStack cloud, quickly and cost&dash;effectively.</p>
 	</div><!-- /.seven-col -->
 	<div class="text-center five-col last-col">
 		<img src="{{ STATIC_URL }}img/cloud/tools/image-cloudtools.svg" alt="" width="288" height="186" />
@@ -33,32 +33,33 @@
 	    });
 	</script>
 	<div class="six-col prepend-six last-col">
-		<h2>Orchestration with Juju</h2>
-		<p>Juju is the game-changing service orchestration tool that&rsquo;s the fastest way to deploy OpenStack on Ubuntu. Its libraries of &lsquo;charms&rsquo; make it simple to deploy, configure and scale out cloud services with only a few simple commands.</p>
+		<h2>Modelling with Juju</h2>
+		<p>Juju is a service orchestration tool that enables you to quickly model, configure, deploy and manage entire cloud environments with only a few commands. Use it to deploy OpenStack, your own code or any of the 300 services and pre&dash;configured applications available in the Juju store.</p>
 		<p><a href="/cloud/tools/juju">Read more about Juju&nbsp;&rsaquo;</a></p>
 	</div><!-- /.six-col -->
 </div><!-- /.row -->
 
-<div class="row">
-	<div class="six-col">
-		<h2>Provisioning with MAAS</h2>
-		<p>MAAS is the bare-metal provisioning tool that turns your hardware environment into a cloud in minutes. It takes the pain out of detection and configuration and gets your servers ready for Juju.</p>
-		<p><a href="/cloud/tools/maas">Read more about MAAS&nbsp;&rsaquo;</a></p>
+<div class="row deploy-monitor-manage no-border">
+	<div class="seven-col">
+		<h2>Deploy, monitor and manage your cloud with Landscape</h2>
+		<p>Landscape is where the power of Ubuntu OpenStack really comes together. It allows you to build your cloud in minutes, then monitor it, manage it and produce timely and accurate compliance reports. The browser&dash;based GUI gives you an instant overview of everything going on in your cloud, from hardware to workloads.</p>
+		<p><a href="/management">Learn more about Landscape&nbsp;&rsaquo;</a></p>
 	</div><!-- /.six-col -->
-	<div class="six-col last-col text-center">
-		<img src="{{ STATIC_URL }}img/cloud/image-maas.png" alt="image-maas" width="426" height="211" />
+	<div class="five-col last-col pull-right touch-border">
+ 		<img src="https://assets.ubuntu.com/v1/434bd20c-image-cloud-tools-landscape.png" alt="Landscape screenshot" />
 	</div>
 </div><!-- /.row -->
 
-
-<div class="row row-grey">
-	<div class="five-col last-col">
- 		<img src="{{ STATIC_URL }}img/cloud/ubuntu-openstack/image-monitor.png" alt="" />
+<div class="row row--maas strip-dark equal-height no-border">
+	<div class="prepend-one three-col append-two align-center">
+		<img src="https://assets.ubuntu.com/v1/5f3d3c45-maas-logo-cropped.svg?w=250" width="250" alt="" class="row--maas__image" />
 	</div>
-	<div class="seven-col">
-		<h2>Deploy, monitor and manage your cloud with Landscape</h2>
-		<p>Landscape is where the power of Ubuntu OpenStack really comes together. It allows you to build your cloud in minutes, then monitor it, manage it and produce timely and accurate compliance reports. The rich, web-based GUI gives you an instant overview of everything going on in your cloud, from hardware to workloads.</p>
-		<p><a href="/management">Learn more about Landscape&nbsp;&rsaquo;</a></p>
+	<div class="six-col last-col align-vertically">
+		<div>
+			<h2>Provisioning with MAAS</h2>
+			<p>MAAS is a bare&ndash;metal provisioning tool that takes the pain out of detection and configuration and gets your servers ready for Juju. You can think of it as turning your hardware into a cloud. </p>
+			<p><a href="/cloud/tools/maas">Read more about MAAS&nbsp;&rsaquo;</a></p>
+		</div>
 	</div><!-- /.six-col -->
 </div><!-- /.row -->
 
@@ -75,13 +76,15 @@
 
 <div class="row row-grey no-border">
 	<div class="four-col text-center append-one">
- 		<img src="{{ STATIC_URL }}img/cloud/tools/snappy/snappy.svg" alt="Snappy" />
+ 		<img src="{{ STATIC_URL }}img/cloud/tools/snappy/snappy.svg" width="100%" alt="Snappy" />
 	</div>
 	<div class="seven-col last-col">
 		<h2>Snappy Ubuntu Core</h2>
-		<p>Snappy is a new way to use Ubuntu in the cloud with transactional, image-based updates. Snappy Ubuntu Core is the same OS with the same libraries as today&rsquo;s Ubuntu but applications are provided through a simpler, faster, mechanism, and most importantly, it provides stronger security guarantee for apps, making it ideal for Docker and other cloud deployment frameworks.</p>
+		<p>Snappy is a new way to use Ubuntu in the cloud with transactional, image-based updates. Snappy Ubuntu Core is the same OS with the same libraries as today&rsquo;s Ubuntu, but applications are provided through a simpler, faster mechanism and, most importantly, it provides stronger security guarantee for apps, making it ideal for Docker and other cloud deployment frameworks.</p>
 		<p><a href="/cloud/tools/snappy">Read more about snappy&nbsp;&rsaquo;</a></p>
 	</div>
 </div><!-- /.row -->
+
+{% include "cloud/shared/_contextual_footer.html" with feature_1="experience-juju" %}
 
 {% endblock content %}

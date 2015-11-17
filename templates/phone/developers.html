@@ -11,42 +11,51 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero no-border">
+<div class="row row-hero">
 	<div class="five-col append-one">
 		<h1>For developers by&nbsp;design</h1>
-		<p class="intro">A unique opportunity to build content and services into the core phone experience.</p>
-		<!-- <p><a href="http://developer.ubuntu.com/get-started/">Download the SDK&nbsp;&rsaquo;</a></p> -->
+		<p class="intro">Bring your content and services into the core phone experience</p>
 	</div>
 	<div class="six-col last-col">
 		<img src="{{ STATIC_URL }}img/phone/developers/image-developer-hero.png" width="519" alt="" />
 	</div>
-</div><!-- /.row -->
-
-<div class="row row-slideshow no-border">
-    {% include "phone/shared/_slideshow.html" %}
-    <div id="scopes-content" class="six-col last-col prepend-five">
-        <h2>Be more than just an app</h2>
-        <p>By leveraging scopes, your content and services become integral to the core phone experience&nbsp;&mdash;&nbsp;and at a fraction of the cost of developing and maintaining a traditional app. It&rsquo;s never been this easy to develop a mobile experience.</p>
-        <p>The Ubuntu SDK also support mainstream HTML5 apps beautifully, while a rich Qt/QML based native app environment can be used to develop deeper experiences, like&nbsp;games.</p>
-    </div>
-    <div class="six-col for-mobile"><img class="left" src="{{ STATIC_URL }}img/phone/features/image-introducing-scopes.png" alt="" /></div>
 </div>
 
+<div class="row row-slideshow">
+    {% include "phone/shared/_slideshow.html" %}
+    <div id="scopes-content" class="six-col last-col prepend-five">
+        <h2>Build more than just an app</h2>
+        <p>By leveraging Scopes, your content and services become an integral part of the default phone experience &mdash; and at a fraction of the cost of developing and maintaining a traditional app. It&rsquo;s never been this easy to develop a mobile&nbsp;experience.</p>
+        <p>The Ubuntu SDK also support mainstream HTML5 apps beautifully, while a rich Qt/QML based native app environment can be used to develop deeper experiences, like&nbsp;games.</p>
+        <p><a class="external" href="https://developer.ubuntu.com/en/apps/">Visit developer.ubuntu.com</a></p>
+    </div>
+</div>
 
 <div class="row row-scope-frameworks">
     <div class="six-col">
         <h2>Introducing scopes and&nbsp;frameworks</h2>
-    	<p>With Ubuntu, you can make your content discoverable via the phone&rsquo;s default aggregating scopes (e.g. Today, NearBy, News, Music, Photos) simply by creating a new scope of your own. For even deeper API access, frameworks are coming soon. With the Messaging framework, for example, you can integrate your services with the core messaging app for the phone. With the Cloud framework, users could adjust the settings to instruct all core apps to use your service for&nbsp;storage.</p>
+        <p>With Ubuntu, you can make your content discoverable via the phone&rsquo;s default aggregating scopes (e.g. Today, NearBy, News, Music, Photos) simply by creating a new scope of your own. For even deeper API access, frameworks are coming soon. With the Messaging framework, for example, you can integrate your services with the core messaging app for the phone. With the Cloud framework, users could adjust the settings to instruct all core apps to use your service for storage.</p>
     </div>
 </div><!-- /.row -->
 
-<div class="row row-grey equal-height no-border">
-    <div class="five-col align-vertically align-center">
-		<img src="{{ STATIC_URL }}img/phone/developers/image-html5-logo.png" alt="" />
+<div class="row">
+    <div class="four-col not-for-small">
+        <img src="https://assets.ubuntu.com/v1/8296366f-image-tags.svg" width="210" alt="" />
     </div>
-    <div class="seven-col last-col">
+    <div class="eight-col last-col">
+        <h2>Tag your scope &mdash; be part of the default experience</h2>
+        <p>By tagging your scope with keywords, you&rsquo;ll make it easier for users to find your content when they use the phone. In effect, you&rsquo;ll be building your content and services right into the default experience of the phone.</p>
+        <p><a class="external" href="http://developer.ubuntu.com/en/scopes/">Learn more about scope keywords</a></p>
+    </div>
+</div>
+
+<div class="row row-grey equal-height no-border">
+    <div class="seven-col">
         <h2>HTML5 and web apps: the fastest path to Ubuntu</h2>
-        <p>If you&rsquo;ve created HTML5 apps or mobile websites for other platforms &mdash; there&rsquo;s good news: the path to Ubuntu couldn&rsquo;t be quicker. We support both the Webkit/Blink and Cordova development standards &mdash; and with a separate API that enables websites to be quickly converted to run independently of a browser, with full access to phone notifications and settings, the same goes for your web&nbsp;applications.</p>
+        <p>If you&rsquo;ve created HTML5 apps or mobile websites for other platforms - there&rsquo;s good news: the path to Ubuntu couldn&rsquo;t be quicker. We support both the Webkit/Blink and Cordova development standards &mdash; and with a separate API that enables websites to be quickly converted to run independently of a browser (with full access to phone notifications and settings) the same goes for your web applications.</p>
+    </div>
+    <div class="five-col align-vertically align-center last-col">
+		<img src="{{ STATIC_URL }}img/phone/developers/image-html5-logo.png" alt="" />
     </div>
 </div><!-- /.row -->
 

@@ -1,6 +1,6 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Download Ubuntu Server for cloud | Download{% endblock %}
+{% block title %}Get OpenStack Autopilot to run an Ubuntu cloud | Download{% endblock %}
 
 {% block extra_body_class %}download-cloud-home{% endblock %}
 
@@ -9,25 +9,25 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero">
+<div class="row row-grey">
+	<div class="eight-col">
+    <h1>Get OpenStack Autopilot to run an Ubuntu cloud</h1>
+	</div>
 	<div class="twelve-col no-margin-bottom">
-		<h1>Ubuntu for cloud</h1>
-		<div class="six-col no-margin-bottom">
-			<h2>Build an OpenStack cloud in minutes using The Canonical&nbsp;Distribution</h2>
-			<p>Ubuntu OpenStack - The Canonical Distribution is the easiest way to build an OpenStack cloud. It is based on Ubuntu Server 14.04 LTS, and the Juno release of&nbsp;OpenStack. </p>
-			<p><a href="/download/cloud/install-ubuntu-openstack" class="link-cta-ubuntu">Try it now</a></p>
-		</div>
-	</div><!-- /.twelve-col -->
-</div><!-- /.row -->
-
-<div class="row">
-    <div class="eight-col">
-        <h2>Run Ubuntu Server on the cloud</h2>
-        <p>Ubuntu is the most popular guest operating system in the cloud, with optimised images available on all leading platforms, from AWS and Azure to Joyent and HP Cloud.</p>
-        <p>To deploy Ubuntu Server on your choice of public cloud platform, please select it from the choice presented by your provider.</p>
-        <p>For deploying on your own OpenStack cloud or unsupported public clouds, we offer a range of standard Ubuntu Server cloud images. </p>
-        <p><a href="https://cloud-images.ubuntu.com">Download standard Ubuntu Server cloud images&nbsp;&rsaquo;</a></p>
-    </div>
+		<div class="box box-highlight clearfix vertical-divider">
+			<div class="eight-col no-margin-bottom">
+				<p class="intro">Canonical&rsquo;s OpenStack Autopilot is a fully automated deployment of an OpenStack cloud &mdash; just add servers.</h2>
+				<p>Autopilot is the world&rsquo;s easiest dynamic OpenStack installer. It handles every aspect of your cloud both during installation, expansion, and everyday operations. To start, you will need at least five machines with two disks each. Two machines need to have two network interfaces (NICs).</p>
+			</div>
+			<div class="four-col last-col">
+				<form class="form-download gap-from-top" action="/download/cloud/install-ubuntu-openstack" method="get">
+					<div>
+						<button type="submit" class="no-margin-bottom">Get started</button>
+					</div>
+				</form>
+			</div><!-- /.four-col -->
+		</div><!-- /.box -->
+	</div>
 </div><!-- /.row -->
 
 {% include "download/server/_other-ways.html" %}

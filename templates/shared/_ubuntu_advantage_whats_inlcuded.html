@@ -24,26 +24,19 @@
 <div class="row{% if level_1 != 'management' %} row-grey{% endif %}">
 	<div class="twelve-col vertical-divider equal-height smaller">
 		<div class="four-col">
-			<h3>24/7 support</h3>
-			<p>The Support and Technical Services team provides around-the-clock coverage for Ubuntu deployments all over the world. Telephone support gives you access to engineers with first-hand experience of your issues, while the online portal lets you track the progress of cases in real time.</p>
+			<h3>24/7 phone and email support</h3>
+			<p>Canonical&rsquo;s Global Support &amp; Services team provides around-the-clock coverage for Ubuntu deployments all over the world. Telephone support gives you access to engineers with first-hand experience of your issues, while the online portal lets you track the progress of cases in real time.</p>
 		</div><!-- /.four-col -->
 		<div class="four-col">
 			<h3>Technical library</h3>
 			<p>Exclusive to Ubuntu Advantage subscribers, the Canonical Knowledge Base is an online library of articles on technical issues including security, migration and networking.</p>
 		</div><!-- /.four-col -->
 		<div class="four-col last-col no-margin-bottom">
-		{% if level_1 == 'management' %}
-		    <h3>Customer login</h3>
-            <p>Already a customer? Access the support portal or Canonical’s hosted Landscape service.</p>
-            <p><a href="https://login.ubuntu.com/+saml/init/salesforce/500/o">Support portal login&nbsp;&rsaquo;</a></p>
-            <p><a href="https://landscape.canonical.com/">Landscape login&nbsp;&rsaquo;</a></p>
-        {% else %}
 			<h3>Flexible deployment</h3>
 			<p>You can use Landscape hosted as a service or, install Landscape Dedicated Server on your hardware and enjoy the same functionality of Landscape's SaaS edition, but within the control of your own security perimeter.</p>
-        {% endif %}
 		</div><!-- /.four-col -->
 	</div><!-- /.twelve-col -->
-  {% if level_2 != 'ubuntu-advantage' %}{# Don't show this if on /management/ubuntu-advantage #}	
+  {% if level_2 != 'ubuntu-advantage' %}{# Don't show this if on /management/ubuntu-advantage #}
 	<p><a href="/management/ubuntu-advantage">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>{% endif %}
 </div><!-- /.row -->
 {% endif %}

@@ -24,7 +24,7 @@
 <div class="row strip-dark no-border">
     <div class="seven-col">
         <h2>Why use Ubuntu Server in the cloud?</h2>
-        <ul class="list-ticks">
+        <ul class="list-ticks--compact">
             <li>Proven for enterprise-scale workloads on all leading public clouds</li>
             <li>Free from licence fees, regardless of how many images you run</li>
             <li>Enterprise-grade support and management tools available direct from Canonical</li>
@@ -38,14 +38,6 @@
         <p class="content-cat content-cat-white-paper">White paper</p>
     </a>
     </div>
-</div>
-
-<div class="row">
-    <h2 class="muted-heading">Ubuntu Server on certified public clouds</h2>
-    <div class="ten-col push-one">
-        <ul id="public-cloud-partners" class="inline-logos no-bullets public-cloud-partners dynamic-logos"></ul>
-    </div>
-    <p class="twelve-col align-center"><a href="http://partners.ubuntu.com/partner-programmes/public-cloud">Learn more about Ubuntu’s cloud partners&nbsp;&rsaquo;</a></p>
 </div>
 
 <div class="row row-grey row-services equal-height row-juju-advantage">
@@ -86,14 +78,7 @@
     <p>If you want to modify the standard images, or if you want to use an image on your private cloud, you can also get a detailed list of images and <a href="http://cloud-images.ubuntu.com/">download a specific image</a>.</p>
     </div>
 </div><!-- /.row -->
-{% endblock content %}
 
-{% block footer_extra %}
-<script>
-    YUI().use('event-base', function (Y) {
-        Y.on('domready', function () {
-            core.loadPartners('?programme__name=Certified%20Public%20Cloud&featured=true', '#public-cloud-partners');
-        });
-    });
-</script>
-{% endblock %}
+{% include "cloud/shared/_contextual_footer.html" %}
+
+{% endblock content %}
