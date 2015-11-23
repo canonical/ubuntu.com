@@ -1,7 +1,7 @@
 {% extends "download/_base_download.html" %}
 
 {% block title %}Installing with the OpenStack Autopilot | Download{% endblock %}
-{% block meta_description %}Step by step instructions on how to install OpenStack on your own hardware with Canonical’s OpenStack Autopilot.{% endblock %}
+{% block meta_description %}Step by step instructions on how to install OpenStack on your own hardware with Canonical&rsquo;s OpenStack Autopilot.{% endblock %}
 {% block meta_keywords %}Autopilot, instructions, how-to, install, guide OpenStack, MAAS, Juju, Landscape, cloud{% endblock %}
 
 {% block extra_body_class %}download-help{% endblock %}
@@ -21,7 +21,7 @@
     <div class="four-col last-col box">
         <h3>Talk to our experts</h3>
         <p>Let our cloud experts help you take the next step.</p>
-        <p><a href="/cloud/contact-us">Contact us</a></p>
+        <p><a href="/cloud/contact-us">Contact us &rsaquo;</a></p>
     </div>
 </div>
 <div class="clearfix instruction" id="download-help">
@@ -33,8 +33,9 @@
             <h3 class="instruction__title">Set up your hardware</h3>
         </div>
     </div>
-    <div class="seven-col last-col instruction__details">
+    <div class="seven-col last-col instruction__details right">
         <p>You&rsquo;ll need  at least five machines with two disks in each, two of which have two network interfaces (NICs).</p>
+        <p>No hardware available? <a href="/download/cloud">Test drive OpenStack Autopilot for virtual machines</a></p>
         <p><a href="/download/server">Install Ubuntu Server</a> on one of the machines with two network interfaces.</p>
         <p>You need to setup a private network with all machines plugged in and enough IP addresses available for all physical and virtual machines you plan to run.</p>
     </div>
@@ -48,7 +49,7 @@
             <h3 class="instruction__title">Add required repositories</h3>
         </div>
     </div>
-    <div class="seven-col last-col instruction__details">
+    <div class="seven-col last-col instruction__details right">
         <p>From the command line type the commands below and follow the step-by-step instructions:</p>
         <p class="command-line">
             <input class="command-line__input" value="sudo add-apt-repository ppa:juju/stable" readonly="readonly">
@@ -77,7 +78,7 @@
             <h3 class="instruction__title">Install MAAS</h3>
         </div>
     </div>
-    <div class="seven-col last-col instruction__details">
+    <div class="seven-col last-col instruction__details right">
         <p>To install MAAS, type the command below and follow the step-by-step instructions:</p>
         <p class="command-line">
           <input class="command-line__input" value="sudo apt install maas" readonly="readonly">
@@ -89,7 +90,7 @@
           <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
         </p>
         <ul class="no-bullets">
-            <li>Login to the MAAS UI at http://<maas.ip>/MAAS/</li>
+            <li>Login to the MAAS UI at http://&lt;maas.ip&gt;/MAAS/</li>
             <li>Go to the &ldquo;Images&rdquo; tab and import disk images for &ldquo;14.04 LTS amd64&rdquo;</li>
             <li>On the Account page, add your SSH key</li>
             <li>Go to the &ldquo;Networks&rdquo; tab and for each of the networks auto-created, click &ldquo;Edit network&rdquo; to add the default gateway and DNS server details</li>
@@ -105,7 +106,7 @@
             <h3 class="instruction__title">Configure the MAAS cluster</h3>
         </div>
     </div>
-    <div class="seven-col last-col instruction__details">
+    <div class="seven-col last-col instruction__details right">
         <ul>
             <li>Go to the &ldquo;Clusters&rdquo; tab, open the &ldquo;Cluster master&rdquo; link, hover over the row for the interface that is connected to the private network and select the edit icon (looks like a pencil &mdash; <img src="https://assets.ubuntu.com/v1/e4e804d6-edit.svg" alt="" />)
                 <ul>
@@ -132,7 +133,7 @@
             <h3 class="instruction__title">Register your hardware with MAAS</h3>
         </div>
     </div>
-    <div class="seven-col last-col instruction__details">
+    <div class="seven-col last-col instruction__details right">
         <p>Now you need to enlist and commission machines:</p>
         <ul>
             <li>Ensure all machines are set to PXE boot, if possible disable all other boot options, including local disk, in the BIOS
@@ -152,7 +153,7 @@
             <h3 class="instruction__title">Launch OpenStack Autopilot</h3>
         </div>
     </div>
-    <div class="seven-col last-col instruction__details">
+    <div class="seven-col last-col instruction__details right">
         <p>Setup Landscape and launch the OpenStack Autopilot with the following commands:</p>
         <p class="command-line">
           <input class="command-line__input" value="sudo apt install openstack" readonly="readonly">
@@ -181,7 +182,85 @@
     </div>
 </div>
 
-{% include "download/shared/_cloud_step_7_to_13.html" %}
+<div class="clearfix instruction">
+    <div class="five-col instruction__bullet">
+        <div class="one-col">
+            <span class="instruction__step">7</span>
+        </div>
+        <div class="four-col last-col">
+            <h3 class="instruction__title">Review your checklist</h3>
+        </div>
+    </div>
+    <div class="seven-col last-col instruction__details right">
+        <p>At the bottom of the setup page there is a checklist with the status of all of your resources. These should all be green, if it isn&rsquo;t follow the instructions to resolve </p>
+        <img src="https://assets.ubuntu.com/v1/ef70520d-requirements.png" alt="" />
+    </div>
+</div>
+<div class="clearfix instruction">
+    <div class="five-col instruction__bullet">
+        <div class="one-col">
+            <span class="instruction__step">8</span>
+        </div>
+        <div class="four-col last-col">
+            <h3 class="instruction__title">Choose your OpenStack components</h3>
+        </div>
+    </div>
+    <div class="seven-col last-col instruction__details right">
+        <img src="https://assets.ubuntu.com/v1/28f70917-Choose+configure.png" alt="" />
+    </div>
+</div>
+<div class="clearfix instruction">
+    <div class="five-col instruction__bullet">
+        <div class="one-col">
+            <span class="instruction__step">9</span>
+        </div>
+        <div class="four-col last-col">
+            <h3 class="instruction__title">Select the hardware on which to deploy the cloud</h3>
+        </div>
+    </div>
+    <div class="seven-col last-col instruction__details right">
+        <img src="https://assets.ubuntu.com/v1/9c5da2f5-machine-picker.png" alt="" />
+    </div>
+</div>
+<div class="clearfix instruction">
+    <div class="five-col instruction__bullet">
+        <div class="one-col">
+            <span class="instruction__step">10</span>
+        </div>
+        <div class="four-col last-col">
+            <h3 class="instruction__title">Select &ldquo;Install&rdquo; to start building your cloud</h3>
+        </div>
+    </div>
+    <div class="seven-col last-col instruction__details right">
+        <img src="https://assets.ubuntu.com/v1/77bc020b-Installing+region+1++++table+++Progress.png" alt="" />
+    </div>
+</div>
+<div class="clearfix instruction">
+    <div class="five-col instruction__bullet">
+        <div class="one-col">
+            <span class="instruction__step">11</span>
+        </div>
+        <div class="four-col last-col">
+            <h3 class="instruction__title">Create an OpenStack account to access your Horizon dashboard</h3>
+        </div>
+    </div>
+    <div class="seven-col last-col instruction__details right">
+        <img src="https://assets.ubuntu.com/v1/19a76480-while-you-wait.png" alt="" /><br/><br/><br/>
+    </div>
+</div>
+<div class="clearfix instruction">
+    <div class="five-col instruction__bullet">
+        <div class="one-col">
+            <span class="instruction__step">12</span>
+        </div>
+        <div class="four-col last-col">
+            <h3 class="instruction__title">Monitor your region and scale out</h3>
+        </div>
+    </div>
+    <div class="seven-col last-col instruction__details right">
+        <img src="{{ STATIC_URL }}img/download/cloud/install-ubuntu-cloud-step10.png" alt="" />
+    </div>
+</div>
 
 <div class="row no-border">
     <div class="five-col append-three">

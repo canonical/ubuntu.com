@@ -6,14 +6,14 @@
 {% block meta_keywords %}Juju, service orchestration, service modelling, devops, distilled, cloud, infrastructure, hyperscale, charms, developer, ops, deployment, fast, scale, environment, relation, service communication{% endblock %}
 
 {% block second_level_nav_items %}
-    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Tools" page_title="Juju" %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Juju" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-hero">
+<section class="row row-hero no-border">
     <div class="five-col">
         <h1 class="accessibility-aid">Juju</h1>
-        <img src="{{ STATIC_URL }}img/cloud/tools/juju/logo-juju.svg" width="131" height="54" alt="Juju" />
+        <img src="{{ STATIC_URL }}img/cloud/juju/logo-juju.svg" width="131" height="54" alt="Juju" />
         <p>Model, configure and manage services with Juju and deploy to all major public and private clouds with only a few commands. Hundreds of preconfigured services available in the Juju store.</p>
         <p><a class="link-cta-ubuntu" href="https://jujucharms.com/">Get started</a></p>
     </div>
@@ -58,19 +58,6 @@
         <h2>Charms available for over 300 services</h2>
         <p>Charms are sets of scripts that simplify the deployment and management tasks of specific services. They can be written in any language and are regularly reviewed and updated.</p>
 
-    </div>
-    <div class="twelve-col">
-        <ul class="inline-icons">
-            <li><a href="https://jujucharms.com/store?type=charm" class="external">All charms</a></li>
-            <li><a href="https://jujucharms.com/q/?tags=analytics" class="external">Analytics</a></li>
-            <li><a href="https://jujucharms.com/q/?tags=apache" class="external">Apache</a></li>
-            <li><a href="https://jujucharms.com/q/?tags=databases" class="external">Databases</a></li>
-            <li><a href="https://jujucharms.com/q/?tags=network" class="external">Network</a></li>
-            <li><a href="https://jujucharms.com/q/?tags=monitoring" class="external">Monitoring</a></li>
-            <li><a href="https://jujucharms.com/q/?tags=openstack" class="external">OpenStack</a></li>
-            <li><a href="https://jujucharms.com/q/?tags=ops" class="external">Ops</a></li>
-            <li class="last-item"><a href="https://jujucharms.com/q/?tags=security" class="external">Security</a></li>
-        </ul>
     </div>
 
     <div class="juju-charms-list twelve-col">
@@ -147,6 +134,21 @@
             </a>
         </div>
     </div>
+
+    <div class="six-col">
+        <h3 class="six-col external"><span>Browse on jujucharms.com</span></h3>
+            <ul class="six-col no-bullets">
+                <li class="two-col"><a href="https://jujucharms.com/q/?tags=opshttps://jujucharms.com/store?type=charm">Ops</a></li>
+                <li class="two-col"><a href="https://jujucharms.com/q/?tags=analytics">Analytics</a></li>
+                <li class="two-col last-col"><a href="https://jujucharms.com/q/?tags=apache">Apache</a></li>
+                <li class="two-col"><a href="https://jujucharms.com/q/?tags=databases">Databases</a></li>
+                <li class="two-col"><a href="https://jujucharms.com/q/?tags=network">Network</a></li>
+                <li class="two-col last-col"><a href="https://jujucharms.com/q/?tags=monitoring">Monitoring</a></li>
+                <li class="two-col"><a href="https://jujucharms.com/q/?tags=security">Security</a></li>
+                <li class="two-col"><a href="https://jujucharms.com/q/?tags=openstack">OpenStack</a></li>
+                <li class="two-col last-col"><a href="https://jujucharms.com/store?type=charm">All charms</a></li>
+            </ul>
+    </div>
 </section>
 
 <section class="row">
@@ -156,86 +158,87 @@
     </div>
 
     <div class="twelve-col">
-        <ul class="inline-icons">
-            <li><a href="https://jujucharms.com/store?type=bundles" class="external">All bundles</a></li>
-            <li><a href="https://jujucharms.com/openstack" class="external">OpenStack</a></li>
-            <li><a href="https://jujucharms.com/big-data" class="external">Big Data</a></li>
-        </ul>
+        <div class="juju-bundle-card six-col">
+            <div class="juju-bundle-card__image-container">
+                <object wmode="transparent" width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/apache-core-batch-processing-20/diagram.svg"></object>
+                <a class="juju-bundle-card__link" href="https://jujucharms.com/apache-core-batch-processing/">
+                    <p class="juju-bundle-card__name">Apache MapReduce</p>
+                </a>
+            </div>
+            <ul class="juju-bundle-card__details-list no-bullets">
+                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
+                <li class="juju-bundle-card__details-item">trusty</li>
+            </ul>
+        </div>
+        <div class="juju-bundle-card six-col last-col">
+            <div class="juju-bundle-card__image-container">
+                <object wmode="transparent" width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/apache-hadoop-spark/diagram.svg"></object>
+                <a class="juju-bundle-card__link" href="https://jujucharms.com/apache-hadoop-spark/">
+                    <p class="juju-bundle-card__name">Apache Spark</p>
+                </a>
+            </div>
+            <ul class="juju-bundle-card__details-list no-bullets">
+                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
+                <li class="juju-bundle-card__details-item">trusty</li>
+            </ul>
+        </div>
+        <div class="juju-bundle-card six-col">
+            <div class="juju-bundle-card__image-container">
+                <object wmode="transparent" width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/openstack-base/diagram.svg"></object>
+                <a class="juju-bundle-card__link" href="https://jujucharms.com/openstack-base/">
+                    <p class="juju-bundle-card__name">OpenStack</p>
+                </a>
+            </div>
+            <ul class="juju-bundle-card__details-list no-bullets">
+                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
+                <li class="juju-bundle-card__details-item">trusty</li>
+            </ul>
+        </div>
+        <div class="juju-bundle-card six-col last-col">
+            <div class="juju-bundle-card__image-container">
+                <object wmode="transparent" width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/mediawiki-scalable/diagram.svg"></object>
+                <a class="juju-bundle-card__link" href="https://jujucharms.com/mediawiki-scalable/">
+                    <p class="juju-bundle-card__name">Mediawiki-scalable</p>
+                </a>
+            </div>
+            <ul class="juju-bundle-card__details-list no-bullets">
+                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
+                <li class="juju-bundle-card__details-item">trusty</li>
+            </ul>
+        </div>
+        <div class="juju-bundle-card six-col">
+            <div class="juju-bundle-card__image-container">
+                <object wmode="transparent" width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/django/diagram.svg"></object>
+                <a class="juju-bundle-card__link" href="https://jujucharms.com/django/">
+                    <p class="juju-bundle-card__name">Django</p>
+                </a>
+            </div>
+            <ul class="juju-bundle-card__details-list no-bullets">
+                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
+                <li class="juju-bundle-card__details-item">trusty</li>
+            </ul>
+        </div>
+        <div class="juju-bundle-card six-col last-col">
+            <div class="juju-bundle-card__image-container">
+                <object wmode="transparent" width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/web-infrastructure-in-a-box/diagram.svg"></object>
+                <a class="juju-bundle-card__link" href="https://jujucharms.com/web-infrastructure-in-a-box/">
+                    <p class="juju-bundle-card__name">Web infrastructure in a box</p>
+                </a>
+            </div>
+            <ul class="juju-bundle-card__details-list no-bullets">
+                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
+                <li class="juju-bundle-card__details-item">trusty</li>
+            </ul>
+        </div>
     </div>
 
     <div class="twelve-col">
-        <div class="juju-bundle-card six-col">
-            <div class="juju-bundle-card__image-container">
-                <object width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/apache-core-batch-processing-20/diagram.svg"></object>
-            </div>
-            <a  class="juju-bundle-card__link" href="https://jujucharms.com/apache-core-batch-processing/">
-                <p class="juju-bundle-card__name">Apache MapReduce</p>
-            </a>
-            <ul class="juju-bundle-card__details-list">
-                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
-                <li class="juju-bundle-card__details-item">trusty</li>
-            </ul>
-        </div>
-        <div class="juju-bundle-card six-col last-col">
-            <div class="juju-bundle-card__image-container">
-                <object width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/apache-hadoop-spark/diagram.svg"></object>
-            </div>
-            <a  class="juju-bundle-card__link" href="https://jujucharms.com/apache-hadoop-spark/">
-                <p class="juju-bundle-card__name">Apache Spark</p>
-            </a>
-            <ul class="juju-bundle-card__details-list">
-                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
-                <li class="juju-bundle-card__details-item">trusty</li>
-            </ul>
-        </div>
-        <div class="juju-bundle-card six-col">
-            <div class="juju-bundle-card__image-container">
-                <object width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/openstack-base/diagram.svg"></object>
-            </div>
-            <a  class="juju-bundle-card__link" href="https://jujucharms.com/openstack-base/">
-                <p class="juju-bundle-card__name">OpenStack</p>
-            </a>
-            <ul class="juju-bundle-card__details-list">
-                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
-                <li class="juju-bundle-card__details-item">trusty</li>
-            </ul>
-        </div>
-        <div class="juju-bundle-card six-col last-col">
-            <div class="juju-bundle-card__image-container">
-                <object width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/mediawiki-scalable/diagram.svg"></object>
-            </div>
-            <a  class="juju-bundle-card__link" href="https://jujucharms.com/mediawiki-scalable/">
-                <p class="juju-bundle-card__name">Mediawiki-scalable</p>
-            </a>
-            <ul class="juju-bundle-card__details-list">
-                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
-                <li class="juju-bundle-card__details-item">trusty</li>
-            </ul>
-        </div>
-        <div class="juju-bundle-card six-col">
-            <div class="juju-bundle-card__image-container">
-                <object width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/django/diagram.svg"></object>
-            </div>
-            <a  class="juju-bundle-card__link" href="https://jujucharms.com/django/">
-                <p class="juju-bundle-card__name">Django</p>
-            </a>
-            <ul class="juju-bundle-card__details-list">
-                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
-                <li class="juju-bundle-card__details-item">trusty</li>
-            </ul>
-        </div>
-        <div class="juju-bundle-card six-col last-col">
-            <div class="juju-bundle-card__image-container">
-                <object width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/web-infrastructure-in-a-box/diagram.svg"></object>
-            </div>
-            <a  class="juju-bundle-card__link" href="https://jujucharms.com/web-infrastructure-in-a-box/">
-                <p class="juju-bundle-card__name">Web infrastructure in a box</p>
-            </a>
-            <ul class="juju-bundle-card__details-list">
-                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
-                <li class="juju-bundle-card__details-item">trusty</li>
-            </ul>
-        </div>
+        <h3 class="six-col external"><span>Browse on jujucharms.com</span></h3>
+        <ul class="twelve-col no-bullets">
+            <li class="two-col"><a href="https://jujucharms.com/openstack">OpenStack</a></li>
+            <li class="two-col"><a href="https://jujucharms.com/big-data">Big Data</a></li>
+            <li class="two-col last-col"><a href="https://jujucharms.com/store?type=bundles">All bundles</a></li>
+        </ul>
     </div>
 </section>
 

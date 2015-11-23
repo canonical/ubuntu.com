@@ -27,7 +27,7 @@
         {% comment %} might want to add this image instead of the chart - https://assets.ubuntu.com/v1/845e046c-partner-openstack.png
         {% endcomment %}
         <figure id="ubuntu-pie" class="ubuntu-pie"></figure>
-        <p class="note">* <a href="http://superuser.openstack.org/articles/openstack-users-share-how-their-deployments-stack-up"  class="external">OpenStack survey &mdash; May 2015</a></p>
+        <p class="note">* <a href="http://www.openstack.org/assets/survey/Public-User-Survey-Report.pdf" class="external">Among OpenStack deployments with more than 1,000 users, OpenStack survey &mdash; October 2015 [PDF 6.7MB]</a></p>
     </div>
 </section>
 
@@ -38,8 +38,8 @@
   var width = document.querySelector('#ubuntu-pie').offsetWidth;
 
   var dataset = [
-    { label: 'ubuntu', count: 55, left: (width / 2.75), top: -5 },
-    { label: 'other', count: 45, left: -(width / 2.75), top: -5 }
+    { label: 'ubuntu', count: 65, left: (width / 2.75), top: -5 },
+    { label: 'other', count: 35, left: -(width / 2.75), top: -5 }
   ];
   var height = width;
   var radius = Math.min(width, height) / 2;
@@ -109,7 +109,7 @@
         <div class="six-col box last-col">
             <h3>Buy a managed cloud</h3>
             <p>With Bootstack, we will set up and operate an OpenStack cloud for you on your premises from only $15 per server.</p>
-            <p><a href="/cloud/openstack/managed-cloud/contact-us">
+            <p><a href="/cloud/openstack/managed-cloud">
                 Get BootStack&nbsp;&rsaquo;
             </a></p>
         </div>
@@ -141,7 +141,8 @@
     </div>
     <div class="twelve-col combined-list">
         <ul class="list-ticks--compact six-col">
-            <li><a href="/download/cloud/install-openstack-with-autopilot">Install Autopilot on your hardware</a></li>
+            <li><a href="/download/cloud">Test-drive Autopilot</a> on virtual machines</li>
+            <li><a href="/download/cloud/install-openstack-with-autopilot">Install Autopilot</a> on your hardware</li>
             <li>Dynamically scale as needed</li>
             <li>Choice of SWIFT or Ceph for storage</li>
             <li>Uses our tested reference architecture</li>
@@ -151,7 +152,7 @@
         </ul>
     </div>
     <div class="six-col">
-        <p><a href="/download/cloud/install-openstack-with-autopilot" class="link-cta-ubuntu">Get Autopilot</a></p>
+        <p><a href="/download/cloud" class="link-cta-ubuntu">Test drive Autopilot</a></p>
         <p><a href="/cloud/openstack/autopilot">Learn more about Autopilot&nbsp;&rsaquo;</a></p>
     </div>
 </section>
@@ -168,7 +169,7 @@
                 <li>Guaranteed availability backed by a clear SLA</li>
                 <li>Transfer operations anytime you want</li>
             </ul>
-            <p><a href="/cloud/openstack/managed-cloud/contact-us" class="link-cta-ubuntu">Get BootStack</a></p>
+            <p><a href="/cloud/openstack/managed-cloud" class="link-cta-ubuntu">Learn more about BootStack</a></p>
         </div>
         <div class="five-col last-col align-center align-vertically">
           <img src="https://assets.ubuntu.com/v1/466046c7-illustration-cloud-bootstack.svg?w=320" alt="" class="not-for-small" width="320" />

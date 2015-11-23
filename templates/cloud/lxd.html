@@ -6,7 +6,7 @@
 {% block meta_keywords %}lxd, hypervisor, container, lxc, Docker, performance, density, efficiency{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Tools" page_title="lxd" %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="lxd" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -35,7 +35,7 @@
 		<p>They can run LXD on all the machines on which they want to create and tear down these environments, using LXC to drive the process from anywhere on the network.</p>
 	</div><!-- /.eight-col -->
 	<div class="four-col last-col align-center align-vertically">
-		<img src="{{ STATIC_URL }}img/cloud/tools/lxd/pictogram-virtualisation.svg" width="289" alt="" />
+		<img src="{{ STATIC_URL }}img/cloud/lxd/pictogram-virtualisation.svg" width="289" alt="" />
 	</div>
 </div>
 <div class="row">
@@ -47,7 +47,7 @@
 </div>
 <div class="row">
 	<div class="four-col align-center">
-		<img src="{{ STATIC_URL }}img/cloud/tools/lxd/docker-small_v-trans.png" alt="" />
+		<img src="{{ STATIC_URL }}img/cloud/lxd/docker-small_v-trans.png" alt="" />
 	</div>
 	<div class="eight-col last-col">
 		<h2>And Docker?</h2>
@@ -87,7 +87,7 @@
 		<p>This new driver allows OpenStack instances to be scheduled as Linux Containers. Images are booted from OpenStack&rsquo;s image service, Glance, and instances communicate over Neutron&rsquo;s networking functionality just like KVM based VMs do.</p>
 	</div>
 	<div class="four-col last-col align-center align-vertically">
-		<img src="{{ STATIC_URL }}img/cloud/tools/lxd/nova-compute.svg" alt="" />
+		<img src="{{ STATIC_URL }}img/cloud/lxd/nova-compute.svg" alt="" />
 	</div>
 </div>
 <div class="row no-border">

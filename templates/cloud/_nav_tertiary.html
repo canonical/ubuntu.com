@@ -33,10 +33,4 @@
 {% if level_2 == 'use-a-cloud' %}
         <li{% if level_3 == 'use-a-cloud' %} class="active"{% endif %}><a href="/cloud/public-cloud/guest">Cloud guest</a></li>
 {% endif %}
-{% if level_2 == 'tools' %}
-        <li{% if level_3 == 'juju' %} class="active"{% endif %}><a href="/cloud/tools/juju">Juju</a></li>
-        <li{% if level_3 == 'maas' %} class="active"{% endif %}><a href="/cloud/tools/maas">MAAS</a></li>
-        <li{% if level_3 == 'lxd' %} class="active"{% endif %}><a href="/cloud/tools/lxd">LXD</a></li>
-        <li{% if level_3 == 'snappy' %} class="active"{% endif %}><a href="/cloud/tools/snappy">Snappy</a></li>
-{% endif %}
     </ul>
