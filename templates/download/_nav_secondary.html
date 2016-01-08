@@ -1,5 +1,5 @@
 	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
-		<li class="first"><a{% if level_1 == 'download' and not level_2 %} class="active"{% endif %} href="/download">Overview</a></li>
+		<li><a{% if level_1 == 'download' and not level_2 %} class="active"{% endif %} href="/download">Overview</a></li>
 		<li><a{% if level_2 == 'cloud' %} class="active"{% endif %} href="/download/cloud">Cloud</a></li>
 		<li><a{% if level_2 == 'server' %} class="active"{% endif %} href="/download/server">Server</a></li>
 		<li><a{% if level_2 == 'desktop' %} class="active"{% endif %} href="/download/desktop">Desktop</a></li>
