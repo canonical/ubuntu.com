@@ -1,5 +1,5 @@
 	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
-		<li class="first"><a{% if level_1 == 'management' and not level_2 %} class="active"{% endif %} href="/management">Overview</a></li>
+		<li><a{% if level_1 == 'management' and not level_2 %} class="active"{% endif %} href="/management">Overview</a></li>
 		<li><a{% if level_2 == 'landscape-features' %} class="active"{% endif %} href="/management/landscape-features">Landscape features</a></li>
 		<li><a{% if level_2 == 'working-with-landscape' %} class="active"{% endif %} href="/management/working-with-landscape">Working with Landscape</a></li>
 		<li><a{% if level_2 == 'return-on-investment' %} class="active"{% endif %} href="/management/return-on-investment">Return on investment</a></li>
