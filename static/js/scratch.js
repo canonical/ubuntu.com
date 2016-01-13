@@ -461,7 +461,7 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
         var numberToDisplay = numberPartners < 10 ? numberPartners : 10;
 
         for (var i = 0; i < numberToDisplay; i++) {
-            Y.one(id).append(Y.Node.create('<li><img onload="this.style.opacity=\'1\';" src="'+JSON[i].logo+'" alt="'+JSON[i].name+'"></li>'));
+            Y.one(id).append(Y.Node.create('<li class="inline-logos__item"><img class="inline-logos__image"  onload="this.style.opacity=\'1\';" src="'+JSON[i].logo+'" alt="'+JSON[i].name+'"></li>'));
         }
     };
 
