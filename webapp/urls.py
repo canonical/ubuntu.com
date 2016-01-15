@@ -1,9 +1,11 @@
 from django.conf.urls import patterns, url
+from django_json_redirects import load_redirects
 from fenchurch import TemplateFinder
 
 from views import DownloadView, SearchView
 
-urlpatterns = patterns(
+urlpatterns = load_redirects()
+urlpatterns += patterns(
     '',
     url(
         r'^(?P<template>download/(desktop|server|cloud)/thank-you)/?$',
