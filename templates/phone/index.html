@@ -17,7 +17,7 @@
     <div class="for-mobile"><img src="//assets.ubuntu.com/v1/f2758930-image-phone-hero-bq.jpg?w=768" alt="" /></div>
 	<div class="the-video">
 		<p class="right">
-			<a href="#" class="slideless close-video">Close the video <img src="{{ STATIC_URL }}img/devices/close-button.png" width="24" height="24" alt="" /></a>
+			<a href="#" class="slideless close-video">Close the video <img src="//assets.ubuntu.com/v1/c51c1c63-close-button.png" width="24" height="24" alt="" /></a>
 		</p>
 		<div></div>
 	</div>
@@ -35,7 +35,7 @@
 
 <div class="row row--access-content no-border">
   <div class="for-small eight-col align-center">
-    <img src="https://assets.ubuntu.com/v1/f53f70fe-image-phone-scopes.jpg?w=480" alt="" />
+    <img src="//assets.ubuntu.com/v1/f53f70fe-image-phone-scopes.jpg?w=480" alt="" />
   </div>
   <div class="four-col last-col prepend-eight">
     <div>
@@ -72,41 +72,33 @@
     <h2 class="twelve-col"><a class="external" href="http://ubuntu-phone.eu/">Check out the latest phone news</a></h2>
         <div id="phone-news-feed" class="twelve-col"></div>
         <script>
-            var feedcontainer2=document.getElementById("phone-news-feed");
-            var feedurl2=document.location.protocol+"//ubuntu-phone.eu/rss";
-            var feedlimit2=3;
-            var rssoutput="<ul class='phone-news-feed__list twelve-col no-bullets vertical-divider'>";
-                function rssfeedsetup2(){
-                    var feedpointer2=new google.feeds.Feed(feedurl2); //Google Feed API method
-                        feedpointer2.setNumEntries(feedlimit2); //Google Feed API method
-                        feedpointer2.load(displayfeed2); //Google Feed API method
-                }
+					$(function() {
+		          $.getFeed({
+		            url: 'http://www.stmgrts.org.uk/taleo/phone_twitter.xml', //need a proxy for this
+		            success: function(feed) {
+		              var html = "<ul class='phone-news-feed__list twelve-col no-bullets vertical-divider'>";
+		              for(var i = 0; i < feed.items.length && i < 3; i++) {
+		                var item = feed.items[i];
+		                var lastClass = "";
+										if (i != 0 && i % 3 == 0) {
+                        lastClass = ' last-col';
+                    }
+										var d = $.trim(item.description);
+		                html += "<li class='phone-news-feed__item four-col" + lastClass + "'><h3>" + item.title + "</h3><p>" + d + "</p><p class='phone-news-feed__category note'>" + item.category + "</p></li>"
 
-                function displayfeed2(result){
-                    if (!result.error){
-                        var thefeeds2 = result.feed.entries
-                        var lastClass = '';
-                        for (var i = 0; i < thefeeds2.length; i++){
-                            if (i != 0 && i % 2 == 0) {
-                                lastClass = ' last-col';
-                            }
-                            rssoutput += "<li class='phone-news-feed__item four-col" + lastClass + "'><h3>" + thefeeds2[i].title + "</h3><p>" + thefeeds2[i].content + "</p><p class='phone-news-feed__category note'>" + thefeeds2[i].categories + "</p></li>"
-                        }
-                            rssoutput += "</ul>";
-                            feedcontainer2.innerHTML=rssoutput;
-                    }
-                    else
-                        console.warn("An error occurred while fetching rss");
-                    }
-
-                    window.onload=function(){
-                        rssfeedsetup2();
-                    }
+		              }
+		              html += "</ul>";
+		              if ($('#phone-news-feed')) {
+		                $('#phone-news-feed').append(html);
+		              }
+		            }
+		          });
+		        });
         </script>
 </div>
 {% block head_extra %}
-<script src="https://www.google.com/jsapi"></script>
-<script> google.load("feeds", "1");</script>
+
+<script src="//assets.ubuntu.com/v1/c954db4a-jfeed_prm.js"></script>
 {% endblock %}
 
 {% include "shared/_open_source_phone.html" %}

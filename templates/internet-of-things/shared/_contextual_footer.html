@@ -1,18 +1,45 @@
+<div id="context-footer" class="{{ level_1 }}-context-footer no-border">
+<hr />
+	<div class="twelve-col vertical-divider">
 
-<div class="feature-two four-col">
-    <h3>Download Autopilot</h3>
-    <p>The easiest way to create and manage your own OpenStack cloud. Download Autopilot to build a free test cloud for up to ten machines today.</p>
-    <p><a href="/download/cloud/install-ubuntu-openstack">Find out more&nbsp;&rsaquo;</a></p>
-</div>
+    {% if feature_1 == none %}
+    <div class="four-col feature-two">
+      <h3>Want to learn more about developing with Ubuntu core?</h3>
+      <p>Learn how to build or port apps for the next generation of Ubuntu.</p>
+      <p><a href="https://developer.ubuntu.com/en/snappy/" class="external">Visit our developer site</a></p>
+    </div>
+    {% endif %}
 
-<div class="feature-three four-col picto">
-    <h3>Talk to us</h3>
-    <p>Build all your Internet of Things devices with Ubuntu Core.</p>
-    <p><a href="/internet-of-things/contact-us">Contact us&nbsp;&rsaquo;</a></p>
-    {% include "shared/_digesto.html" with section="things" %}
-</div>
+    {% if feature_1 == "event" %}
+    <div class="event four-col feature-two" itemscope itemtype="http://data-vocabulary.org/Event">
+      <h3><a href="https://insights.ubuntu.com/event/ces/" class="external">Consumer Electronics Show 2016 (CES)</a></h3>
+      <div class="event-map">
+        <a href="https://insights.ubuntu.com/event/ces/">
+          <span class="image-wrap avatar"><img class="avatar" src="//maps.googleapis.com/maps/api/staticmap?center=Las+Vegas%2C+USA&amp;zoom=12&amp;size=106x106&amp;sensor=false" alt="" /></span>
+        </a>
+      </div>
+      <dl class="event-details">
+        <dt class="accessibility-aid">Date:</dt>
+        <dd class="event-date">4-9 January 2016
+          <span class="accesibilty-aid">
+            <time itemprop="startDate" datetime="2016-01-04T00:00"></time>
+            <time itemprop="endDate" datetime="2016-01-09T00:00"></time>
+          </span>
+        </dd>
+        <dt class="accessibility-aid">Location:</dt>
+        <dd class="location" itemprop="location" itemscope="" itemtype="http://schema.org/PostalAddress">Las Vegas, USA</dd>
+      </dl>
+    </div>
+    {% endif %}
 
-<div class="feature-four four-col last-col">
-    <h3>Further reading</h3>
-    {% include "cloud/shared/_further_reading_links.html" %}
+    <div class="feature-three four-col">
+        {% include "shared/_newsletter_signup.html" %}
+    </div>
+
+    <div class="feature-four four-col last-col">
+        <h3>Further reading</h3>
+        {% include "templates/_further_reading_links.html" with feed="https://insights.ubuntu.com/group/cloud-and-server/feed" articles=3 %}
+    </div>
+
+  </div>
 </div>
