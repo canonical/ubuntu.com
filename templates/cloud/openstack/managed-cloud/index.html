@@ -16,12 +16,12 @@
   <div class="seven-col">
     <p class="intro">The BootStack service gives you an OpenStack private cloud, running on your hardware, in your choice of datacentre with Canonical responsible for design, deployment and availability. We&rsquo;ll even train your team and, when it suits you, hand over operational control.</p>
     <ul class="no-bullets">
-      <li><a class="link-cta-ubuntu" href="/cloud/openstack/managed-cloud/contact-us" onclick="_gaq.push(['_trackEvent', 'Internal Link', 'BootStack contact link', 'From BootStack page hero section']);">Schedule a demo</a></li>
+      <li><a class="link-cta-ubuntu" href="/cloud/openstack/managed-cloud/contact-us" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'BootStack contact link', 'eventLabel' : 'From BootStack page hero section', 'eventValue' : undefined });">Schedule a demo</a></li>
       <li><a href="#calculator-form">See how much you can save with our calculator&nbsp;&rsaquo;</a></li>
     </ul>
   </div><!-- /.eight-col -->
   <div class="five-col last-col text-center">
-    <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-startfirst-midaubergine.svg" alt="" class="priority-0" width="200" />
+    <img src="//assets.ubuntu.com/v1/999949f8-picto-startfirst-midaubergine.svg" alt="" class="priority-0" width="200" />
   </div>
 </div>
 
@@ -166,8 +166,8 @@
         <p>Get in touch with our experts to learn more.</p>
 
         <!-- MARKETO FORM -->
-        <script src="//assets.ubuntu.com/v1/37b1db88-jquery.min.js"></script>
-        <script  src="//assets.ubuntu.com/v1/e1085fb6-jquery.validate.min.js"></script>
+
+        <script  src="//assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
 
         <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1273" class="submit-email__form">
             <fieldset class="submit-email__fieldset">
@@ -190,8 +190,8 @@
                 </ul>
             </fieldset>
             <!--  Hidden fields -->
-            <input type="hidden" name="returnURL" value="http://www.ubuntu.com/cloud/managed-cloud/thank-you" />
-            <input type="hidden" name="retURL" value="http://www.ubuntu.com/cloud/managed-cloud/thank-you" />
+            <input type="hidden" name="returnURL" value="http://www.ubuntu.com/cloud/openstack/managed-cloud/thank-you" />
+            <input type="hidden" name="retURL" value="http://www.ubuntu.com/cloud/openstack/managed-cloud/thank-you" />
         </form>
         <script>
         $("#mktoForm_1273").validate({
@@ -224,7 +224,7 @@
           <p>Together, we design your cloud to the required size and specifications &mdash; on your site, in your datacentre or hosted with one of our partners.</p>
         </div>
         <div class="four-col last-col align-center not-for-small">
-          <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-support-darkaubergine.svg" alt="" width="134">
+          <img src="//assets.ubuntu.com/v1/9816a979-picto-support-darkaubergine.svg" alt="" width="134">
         </div>
       </li>
       <li class="row-step">
@@ -235,7 +235,7 @@
           <p>Our OpenStack experts take full responsibility for the management, monitoring and 24/7 availability of your new cloud.</p>
         </div>
         <div class="four-col last-col align-center not-for-small">
-          <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-growondemand-warmgrey.svg" alt="" width="134" />
+          <img src="//assets.ubuntu.com/v1/5e989e04-picto-growondemand-warmgrey.svg" alt="" width="134" />
         </div>
       </li>
       <li class="row-step">
@@ -246,7 +246,7 @@
           <p>As and when you decide to take control of your cloud back in house, we will train your team on its operations to ensure a smooth handover.</p>
         </div>
         <div class="four-col last-col align-center not-for-small">
-          <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-training-midaubergine.svg" alt="" width="134" />
+          <img src="//assets.ubuntu.com/v1/ffaffaea-picto-training-midaubergine.svg" alt="" width="134" />
         </div>
       </li>
     </ol>
@@ -271,15 +271,12 @@
 
 {% include "cloud/shared/_contextual_footer.html" %}
 
-{% include "shared/_live_chat.html" %}
 
-{% include "shared/_munchkin.html" %}
 
 {% endblock content %}
 
-
 {% block footer_extra %}
-<script src="{{ STATIC_URL }}js/helpers.js"></script>
+<script src="{{ STATIC_URL }}u/js/helpers.js"></script>
 <script>
 /**
  * Ubuntu YUI sliders
@@ -573,7 +570,6 @@ function resizeSliders(form) {
 <script>
   YUI().use('node', function(Y) {
   	var videoPanel = Y.all('.row--video');
-    console.log('it is running');
   	if(Y.one('.show-video')){
   		Y.one('.show-video').on('click',function(e) {
   			e.preventDefault();

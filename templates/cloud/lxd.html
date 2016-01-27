@@ -17,7 +17,7 @@
 		<p class="intro">Fast, dense and secure container management for Ubuntu</p>
 	</div><!-- /.seven-col -->
 	<div class="text-center five-col last-col">
-		<img src="{{ STATIC_URL }}img/homepage/lxd_takeover.png" width="260" alt="LXD" />
+		<img src="//assets.ubuntu.com/v1/f581fd89-lxd_takeover.png" width="260" alt="LXD" />
 	</div>
 </div>
 <div class="row row-grey">
@@ -35,7 +35,7 @@
 		<p>They can run LXD on all the machines on which they want to create and tear down these environments, using LXC to drive the process from anywhere on the network.</p>
 	</div><!-- /.eight-col -->
 	<div class="four-col last-col align-center align-vertically">
-		<img src="{{ STATIC_URL }}img/cloud/lxd/pictogram-virtualisation.svg" width="289" alt="" />
+		<img src="//assets.ubuntu.com/v1/438f3856-pictogram-virtualisation.svg" width="289" alt="" />
 	</div>
 </div>
 <div class="row">
@@ -47,7 +47,7 @@
 </div>
 <div class="row">
 	<div class="four-col align-center">
-		<img src="{{ STATIC_URL }}img/cloud/lxd/docker-small_v-trans.png" alt="" />
+		<img src="//assets.ubuntu.com/v1/b3c24977-docker-small_v-trans.png" alt="" />
 	</div>
 	<div class="eight-col last-col">
 		<h2>And Docker?</h2>
@@ -87,20 +87,19 @@
 		<p>This new driver allows OpenStack instances to be scheduled as Linux Containers. Images are booted from OpenStack&rsquo;s image service, Glance, and instances communicate over Neutron&rsquo;s networking functionality just like KVM based VMs do.</p>
 	</div>
 	<div class="four-col last-col align-center align-vertically">
-		<img src="{{ STATIC_URL }}img/cloud/lxd/nova-compute.svg" alt="" />
+		<img src="//assets.ubuntu.com/v1/ce5e0ec1-nova-compute.svg" alt="" />
 	</div>
 </div>
 <div class="row no-border">
 	<div class="seven-col">
 		<h2>Getting started with LXD</h2>
-		<p>Our OpenStack container capability, codenamed nova&dash;compute&dash;lxd  is included in Ubuntu {{latest_release}}. Simply type the following commands to enable and use it:</p>
+		<p>The simplest way to try LXD is by using it with its command line tool. This can easily be done on your laptop or desktop machine.</p>
+		<p>On an Ubuntu system, or by using ppa:ubuntu-lxc/lxd-stable on 14.04 or above, you can install LXD with:</p>
 		<pre><code>sudo apt-get update
-sudo apt-get install nova-compute-lxd</code></pre>
-		<p>OpenStack Juno is available for Ubuntu Server 14.04 LTS and 14.10.</p>
-		<a href="/download/cloud">Download Ubuntu Server&nbsp;&rsaquo;</a>
+sudo apt-get install lxd</code></pre>
 	</div>
   <div class="four-col last-col push-one">
-    <a href="https://insights.ubuntu.com/2015/03/20/installing-lxd-and-the-command-line-tool/" class="box box-highlight resource--link resource-e-book" >
+    <a href="https://insights.ubuntu.com/2015/04/28/getting-started-with-lxd-the-container-lightervisor/" class="box box-highlight resource--link resource-e-book" >
       <h2>Getting started with LXD&nbsp;&rsaquo;</h2>
       <p>Learn more about installing LXD and using the command line tool.</p>
       <p class="content-cat content-cat-e-book">Factsheet</p>
@@ -109,6 +108,8 @@ sudo apt-get install nova-compute-lxd</code></pre>
 </div>
 
 {% include "cloud/shared/_contextual_footer.html" %}
+
+
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

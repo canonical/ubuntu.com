@@ -6,11 +6,13 @@
 
 {% block extra_body_class %}download-help{% endblock %}
 
-{% block crazy_egg %}{% include "templates/_crazy_egg.html" %}{% endblock %}
+{% block head_extra %}{% include "shared/_analytics_heap.html" %}{% endblock %}
 
 {% block second_level_nav_items %}
     {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Cloud" page_title="Test drive Canonical's OpenStack Autopilot"  %}
 {% endblock second_level_nav_items %}
+
+
 
 {% block content %}
 <div class="row">
@@ -142,7 +144,7 @@
         </div>
     </div>
     <div class="seven-col last-col instruction__details right">
-        <img src="https://assets.ubuntu.com/v1/9c5da2f5-machine-picker.png" alt="" />
+        <img src="//assets.ubuntu.com/v1/9c5da2f5-machine-picker.png" alt="" />
     </div>
 </div>
 
@@ -170,7 +172,7 @@
         </div>
     </div>
     <div class="seven-col last-col instruction__details right">
-        <img src="http://assets.ubuntu.com/sites/ubuntu/1555/u/img/download/cloud/install-ubuntu-cloud-step10.png" alt="" />
+        <img src="//assets.ubuntu.com/v1/5a6d9f8a-install-ubuntu-cloud-step10.png" alt="" />
     </div>
 </div>
 

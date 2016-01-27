@@ -3,6 +3,8 @@
 {% block title %}Thank you | Download{% endblock %}
 {% block extra_body_class %}download-thankyou{% endblock %}
 
+{% block head_extra %}{% include "shared/_analytics_heap.html" %}{% endblock %}
+
 {% block second_level_nav_items %}
 {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Cloud" page_title="Thank you"  %}
 {% endblock second_level_nav_items %}
@@ -16,7 +18,7 @@
           <h1>Thank you for downloading the OpenStack Autopilot test&nbsp;drive</h1>
           <p>Your download should start automatically. If it doesn&rsquo;t, <a href="https://landscape.canonical.com/downloads/vmware-autopilot/vmware-openstack-autopilot.tar.bz2">download now [<abbr title="Compressed file archive (bzip2)">BZ2</abbr> 2.9 GB]</a>.</p>
         </div>
-        
+
         <div class="eight-col box box-grey clearfix">
           <p>Once the download is complete, you will need to follow a series of commands to test drive OpenStack Autopilot.</p>
           <p><a href="/download/cloud/install-autopilot-testdrive" class="link-cta-ubuntu">Get the instructions</a></p>

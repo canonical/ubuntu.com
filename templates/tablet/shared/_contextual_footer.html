@@ -10,10 +10,4 @@
 	</div>
 	<div class="feature-four four-col last-col">
 		<h3>Further reading</h3>
-		<ul class="no-bullets smaller">
-			<li><a href="http://www.ubuntu.com/2013/02/press-pack-ubuntu-tablet">Ubuntu tablet press pack&nbsp;&rsaquo;</a></li>
-			<li><a href="https://insights.ubuntu.com/2013/02/15/ubuntu-for-smartphones-grabs-global-headlines/">Ubuntu for smartphones grabs global headlines&nbsp;&rsaquo;</a></li>
-			<li><a href="https://insights.ubuntu.com/2013/02/15/get-the-faqs-about-ubuntu-on-smartphones/">Get the FAQs about Ubuntu on smartphones&nbsp;&rsaquo;</a></li>
-			<li><a href="https://insights.ubuntu.com/2013/02/15/developers-get-the-full-support-they-need/">Developers get the full support they need&nbsp;&rsaquo;</a></li>
-		</ul>
-	</div>
+        {% include "templates/_further_reading_links.html" with feed="https://insights.ubuntu.com/group/phone-and-tablet/feed" articles=5 %}	</div>

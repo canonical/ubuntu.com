@@ -6,7 +6,7 @@
 
 {% block extra_body_class %}download-help{% endblock %}
 
-{% block crazy_egg %}{% include "templates/_crazy_egg.html" %}{% endblock %}
+{% block head_extra %}{% include "shared/_analytics_heap.html" %}{% endblock %}
 
 {% block second_level_nav_items %}
     {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Cloud" page_title="Installing Ubuntu Cloud"  %}
@@ -52,6 +52,10 @@
     <div class="seven-col last-col instruction__details right">
         <p>From the command line type the commands below and follow the step-by-step instructions:</p>
         <p class="command-line">
+            <input class="command-line__input" value="sudo apt-get install python-software-properties" readonly="readonly">
+            <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+        </p>
+        <p class="command-line">
             <input class="command-line__input" value="sudo add-apt-repository ppa:juju/stable" readonly="readonly">
             <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
         </p>
@@ -64,7 +68,7 @@
             <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
         </p>
         <p class="command-line">
-            <input class="command-line__input" value="sudo apt update" readonly="readonly">
+            <input class="command-line__input" value="sudo apt-get update" readonly="readonly">
             <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
         </p>
     </div>
@@ -81,7 +85,7 @@
     <div class="seven-col last-col instruction__details right">
         <p>To install MAAS, type the command below and follow the step-by-step instructions:</p>
         <p class="command-line">
-          <input class="command-line__input" value="sudo apt install maas" readonly="readonly">
+          <input class="command-line__input" value="sudo apt-get install maas" readonly="readonly">
           <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
         </p>
         <p>Create your admin credentials by typing:</p>
@@ -92,7 +96,7 @@
         <ul class="no-bullets">
             <li>Login to the MAAS UI at http://&lt;maas.ip&gt;/MAAS/</li>
             <li>Go to the &ldquo;Images&rdquo; tab and import disk images for &ldquo;14.04 LTS amd64&rdquo;</li>
-            <li>On the Account page, add your SSH key</li>
+            <li>In your MAAS user&rsquo;s settings (top-right corner) add your personal public SSH key so you can later log into the nodes</li>
             <li>Go to the &ldquo;Networks&rdquo; tab and for each of the networks auto-created, click &ldquo;Edit network&rdquo; to add the default gateway and DNS server details</li>
         </ul>
     </div>
@@ -108,7 +112,7 @@
     </div>
     <div class="seven-col last-col instruction__details right">
         <ul>
-            <li>Go to the &ldquo;Clusters&rdquo; tab, open the &ldquo;Cluster master&rdquo; link, hover over the row for the interface that is connected to the private network and select the edit icon (looks like a pencil &mdash; <img src="https://assets.ubuntu.com/v1/e4e804d6-edit.svg" alt="" />)
+            <li>Go to the &ldquo;Clusters&rdquo; tab, open the &ldquo;Cluster master&rdquo; link, hover over the row for the interface that is connected to the private network and select the edit icon (looks like a pencil &mdash; <img src="//assets.ubuntu.com/v1/e4e804d6-edit.svg" alt="" />)
                 <ul>
                     <li>Set this interface to manage DHCP and DNS</li>
                     <li>Set the &ldquo;Router IP&rdquo; to the default gateway</li>
@@ -156,7 +160,7 @@
     <div class="seven-col last-col instruction__details right">
         <p>Setup Landscape and launch the OpenStack Autopilot with the following commands:</p>
         <p class="command-line">
-          <input class="command-line__input" value="sudo apt install openstack" readonly="readonly">
+          <input class="command-line__input" value="sudo apt-get install openstack" readonly="readonly">
           <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
         </p>
         <p class="command-line">
@@ -164,21 +168,21 @@
           <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
         </p>
         <ul>
-            <li>Create a new OpenStack Password</li>
             <li>Choose the &ldquo;Landscape OpenStack Autopilot&rdquo; option</li>
-            <li>In the setup fill in your:
+            <li>Create a new OpenStack Password</li>
+            <li>Fill in your:
                 <ul>
-                    <li>Admin Email</li>
-                    <li>Admin Name</li>
-                    <li>MAAS Server IP</li>
-                    <li>MAAS API Key &mdash; which you can get from the &ldquo;Account&rdquo; page in MAAS</li>
+                    <li>Admin email address</li>
+                    <li>Admin name</li>
+                    <li>MAAS server IP</li>
+                    <li>MAAS user API key &mdash; found in your user&rsquo;s settings (top-right corner)</li>
                 </ul>
             </li>
             <li>When everything is installed, you will be given a link</li>
             <li>Open that link to access the Landscape UI</li>
             <li>Login with your admin email and OpenStack password</li>
         </ul>
-        <img src="{{ STATIC_URL }}img/download/cloud/install-ubuntu-cloud-step4.png" alt="">
+        <img src="//assets.ubuntu.com/v1/9d5bea4c-install-ubuntu-cloud-step4.png" alt="">
     </div>
 </div>
 
@@ -193,7 +197,7 @@
     </div>
     <div class="seven-col last-col instruction__details right">
         <p>At the bottom of the setup page there is a checklist with the status of all of your resources. These should all be green, if it isn&rsquo;t follow the instructions to resolve </p>
-        <img src="https://assets.ubuntu.com/v1/ef70520d-requirements.png" alt="" />
+        <img src="//assets.ubuntu.com/v1/ef70520d-requirements.png" alt="" />
     </div>
 </div>
 <div class="clearfix instruction">
@@ -219,7 +223,7 @@
         </div>
     </div>
     <div class="seven-col last-col instruction__details right">
-        <img src="https://assets.ubuntu.com/v1/9c5da2f5-machine-picker.png" alt="" />
+        <img src="//assets.ubuntu.com/v1/9c5da2f5-machine-picker.png" alt="" />
     </div>
 </div>
 <div class="clearfix instruction">
@@ -245,7 +249,7 @@
         </div>
     </div>
     <div class="seven-col last-col instruction__details right">
-        <img src="https://assets.ubuntu.com/v1/19a76480-while-you-wait.png" alt="" /><br/><br/><br/>
+        <img src="//assets.ubuntu.com/v1/19a76480-while-you-wait.png" alt="" /><br/><br/><br/>
     </div>
 </div>
 <div class="clearfix instruction">
@@ -258,7 +262,7 @@
         </div>
     </div>
     <div class="seven-col last-col instruction__details right">
-        <img src="{{ STATIC_URL }}img/download/cloud/install-ubuntu-cloud-step10.png" alt="" />
+        <img src="//assets.ubuntu.com/v1/5a6d9f8a-install-ubuntu-cloud-step10.png" alt="" />
     </div>
 </div>
 
@@ -269,7 +273,7 @@
         <p>Already a Landscape Dedicated Server customer? Upgrading is simple, see the instructions in the <a href="https://help.landscape.canonical.com/LDS/ReleaseNotes">release notes</a>.</p>
     </div>
     <div class="two-col align-center not-for-small">
-        <img src="https://assets.ubuntu.com/v1/1b45cd30-picto-help-warmgrey.svg" alt="" />
+        <img src="//assets.ubuntu.com/v1/1b45cd30-picto-help-warmgrey.svg" alt="" />
     </div>
 </div><!-- /.row -->
 

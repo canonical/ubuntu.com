@@ -19,15 +19,15 @@
 			<div class="six-col">
 				<h4>Ubuntu Server</h4>
 				<ul class="no-bullets">
-					<li><a href="http://cdimage.ubuntu.com/releases/{{lts_release}}/release/" onclick="_gaq.push(['_trackEvent', 'Download', 'POWER8 server', '{{lts_release}}']);">{{lts_release}} LTS&nbsp;&rsaquo;</a></li>
-					<li><a href="http://cdimage.ubuntu.com/releases/{{latest_release}}/release/" onclick="_gaq.push(['_trackEvent', 'Download', 'POWER8 server', '{{latest_release}}']);">{{latest_release}}&nbsp;&rsaquo;</a></li>
+					<li><a href="http://cdimage.ubuntu.com/releases/{{lts_release}}/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER8 server', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">{{lts_release}} LTS&nbsp;&rsaquo;</a></li>
+					<li><a href="http://cdimage.ubuntu.com/releases/{{latest_release}}/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER8 server', 'eventLabel' : '{{latest_release}}', 'eventValue' : undefined });">{{latest_release}}&nbsp;&rsaquo;</a></li>
 				</ul>
 			</div>
 			<div class="six-col last-col">
 				<h4>Netboot image</h4>
 				<ul class="no-bullets">
-					<li><a href="http://cdimage.ubuntu.com/netboot/{{lts_release}}/" onclick="_gaq.push(['_trackEvent', 'Download', 'POWER8 netboot', '{{lts_release}}']);">{{lts_release}} LTS&nbsp;&rsaquo;</a></li>
-					<li><a href="http://cdimage.ubuntu.com/netboot/{{latest_release}}/" onclick="_gaq.push(['_trackEvent', 'Download', 'POWER8 netboot', '{{latest_release}}']);">{{latest_release}}&nbsp;&rsaquo;</a></li>
+					<li><a href="http://cdimage.ubuntu.com/netboot/{{lts_release}}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER8 netboot', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">{{lts_release}} LTS&nbsp;&rsaquo;</a></li>
+					<li><a href="http://cdimage.ubuntu.com/netboot/{{latest_release}}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER8 netboot', 'eventLabel' : '{{latest_release}}', 'eventValue' : undefined });">{{latest_release}}&nbsp;&rsaquo;</a></li>
 				</ul>
 			</div>
 		</div>
@@ -51,7 +51,7 @@
 		<p>Ubuntu for POWER8 brings the Ubuntu Server and Ubuntu Server for cloud with the OpenStack ecosystem to POWER8 enabling its ease of entry into the scale-out and Cloud markets.  Power is especially optimized for Mobile, Social, Cloud, Big Data and Analytics workloads.  Ubuntu and tooling such as Juju make managing and deploying those workloads trivial.</p>
 	</div><!-- /.twelve-col -->
 	<div class="four-col last-col text-center">
-		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-server-warmgrey.svg" alt="" width="200" height="200" />
+		<img src="//assets.ubuntu.com/v1/c3499461-picto-server-warmgrey.svg" alt="" width="200" height="200" />
 	</div>
 </div><!-- /.row -->
 {% endblock content %}
