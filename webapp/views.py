@@ -4,12 +4,29 @@ import os
 from urllib2 import URLError
 
 from feedparser import parse
-from fenchurch import TemplateFinder
+from django_template_finder_view import TemplateFinder
 
 from lib.gsa import GSAParser
 
 
-class DownloadView(TemplateFinder):
+class UbuntuTemplateFinder(TemplateFinder):
+    def get_context_data(self, **kwargs):
+        """
+        Get context data fromt the database for the given page
+        """
+
+        # Get any existing context
+        context = super(UbuntuTemplateFinder, self).get_context_data(**kwargs)
+
+        # Add level_* context variables
+        clean_path = self.request.path.strip('/')
+        for index, path, in enumerate(clean_path.split('/')):
+            context["level_" + str(index + 1)] = path
+
+        return context
+
+
+class DownloadView(UbuntuTemplateFinder):
 
     def get_context_data(self, **kwargs):
         """
@@ -41,7 +58,7 @@ class DownloadView(TemplateFinder):
         return context
 
 
-class SearchView(TemplateFinder):
+class SearchView(UbuntuTemplateFinder):
     '''
     Return search results from the Google Search Appliance
 
