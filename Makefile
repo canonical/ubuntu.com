@@ -1,4 +1,3 @@
-export COMPOSE_PROJECT_NAME ?= ubuntuwebsite
 export PORT ?= 8001
 
 # Help text
