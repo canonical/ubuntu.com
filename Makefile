@@ -47,7 +47,7 @@ stop:
 clean-images:
 	docker-compose kill
 	docker-compose rm -f
-	docker rmi -f ${COMPOSE_PROJECT_NAME}_web
+	docker rmi -f ${COMPOSE_PROJECT_NAME}_web || true
 
 clean-css:
 	docker-compose run sass find static/css -name '*.css' -exec rm {} \;
