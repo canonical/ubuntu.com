@@ -1,4 +1,11 @@
+export COMPOSE_PROJECT_NAME ?= $(shell echo $(subst _,,$(subst -,,$(shell basename `pwd`))) | tr A-Z a-z)make
+export COMPOSE_FILE ?= docker-compose.makefile.yml
 export PORT ?= 8001
+
+DOCKER_IP := 127.0.0.1
+ifdef DOCKER_HOST
+	DOCKER_IP := $(shell echo ${DOCKER_HOST} | grep -oP '(\d+\.){3}\d+')
+endif
 
 # Help text
 # ===
@@ -36,6 +43,7 @@ help:
 
 run:
 	docker-compose up -d
+	@echo "==\nServer running at: http://${DOCKER_IP}:${PORT}\n=="
 
 logs:
 	docker-compose logs
@@ -50,6 +58,7 @@ clean-images:
 
 clean-css:
 	docker-compose run sass find static/css -name '*.css' -exec rm {} \;
+	docker-compose run sass rm -rf /tmp/*;
 
 clean-npm:
 	docker-compose run npm rm -rf node_modules
@@ -61,4 +70,3 @@ clean-all:
 
 it:
 so: run
-

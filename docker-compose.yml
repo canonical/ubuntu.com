@@ -12,14 +12,14 @@ npm:
 sass:
   extends: {'service': 'base', 'file': 'docker-compose.yml'}
   image: ubuntudesign/sass
-  command: /bin/bash -c 'umask 0000 && sass --cache-location /sass-cache --debug-info --update static/css --force -E "UTF-8"'
+  command: /bin/bash -c 'umask 0000 && sass --cache-location `mktemp -u` --debug-info --update static/css --force -E "UTF-8"'
 
 web:
   extends: {'service': 'base', 'file': 'docker-compose.yml'}
   build: .
   ports:
-    - "${PORT}:5000"
+    - "8080:5000"
 
 sass-watch:
   extends: {'service': 'sass', 'file': 'docker-compose.yml'}
-  command: /bin/bash -c 'umask 0000 && sass --cache-location /sass-cache --debug-info --watch static/css -E "UTF-8"'
+  command: /bin/bash -c 'umask 0000 && sass --cache-location `mktemp -u` --debug-info --watch static/css -E "UTF-8"'
