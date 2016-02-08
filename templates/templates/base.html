@@ -1,6 +1,6 @@
 <!doctype html>
 
-{% with lts_release="14.04.3" latest_release="15.04" lts_release_name="TrustyTahr" latest_release_name="VividVervet" openstack_version="Juno" %}
+{% with lts_release="14.04.3" latest_release="15.10" lts_release_name="TrustyTahr" latest_release_name="WilyWerewolf" openstack_version="Liberty" %}
 
 <!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en" dir="ltr"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en" dir="ltr"> <![endif]-->
@@ -8,15 +8,18 @@
 <!--[if IE 9]>    <html class="no-js lt-ie10" lang="en" dir="ltr"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js{% block extra_html_class %}{% endblock %}" lang="en" dir="ltr"> <!--<![endif]-->
 <head>
+{% block content-experiment %}{% endblock %}
 
 <meta charset="UTF-8" />
 <meta name="description" content="{% block meta_description %}Ubuntu is an open source software platform that runs everywhere from the smartphone, the tablet and the PC to the server and the cloud.{% endblock %}" />
+
 <meta name="keywords" content="{% block meta_keywords %}Ubuntu, Ubuntu operating system, OS, platform, Linux, distribution, OpenStack, Ubuntu OpenStack, Ubuntu Cloud, server, tablet, smartphone, phone, Windows alternative, Mac alternative, free software, open source, thin client, Juju, MAAS, Landscape, Ubuntu Advantage, download Ubuntu, deployment, provisioning, service orchestration, services, commercial support, paid support, long term support, LTS, 14.04, 14.10, Trusty Tahr, Utopic Unicorn, Icehouse, Juno{% endblock %}" />
+
 <meta name="author" content="Canonical" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="twitter:account_id" content="4503599627481511" />
 <meta name="google-site-verification" content="ddh2iq7ZuKf1LpkL_gtM_T7DkKDVD7ibq6Ceue4a_3M" />
-<meta name="theme-color" content="#DD4814">
+<meta name="theme-color" content="#E95420">
 
 <!--[if IE]>
 <meta http-equiv="X-UA-Compatible" content="IE=8">
@@ -24,14 +27,14 @@
 
 <title>{% block title %}{% endblock %} | Ubuntu</title>
 
-<link rel="icon" type="image/png" href="{{ STATIC_URL }}img/favicon-16x16.png" sizes="16x16" />
-<link rel="icon" type="image/png" href="{{ STATIC_URL }}img/favicon-32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="//assets.ubuntu.com/v1/cb22ba5d-favicon-16x16.png" sizes="16x16" />
+<link rel="icon" type="image/png" href="//assets.ubuntu.com/v1/49a1a858-favicon-32x32.png" sizes="32x32" />
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ STATIC_URL }}img/apple-touch-icon-144x144-precomposed.png" />
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ STATIC_URL }}img/apple-touch-icon-114x114-precomposed.png" />
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ STATIC_URL }}img/apple-touch-icon-72x72-precomposed.png" />
-<link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}img/apple-touch-icon-precomposed.png" />
-<link type="text/plain" rel="author" href="{{ STATIC_URL }}files/humans.txt" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="//assets.ubuntu.com/v1/3361409d-apple-touch-icon-144x144-precomposed.png" />
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="//assets.ubuntu.com/v1/5fe4d3c8-apple-touch-icon-114x114-precomposed.png" />
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="//assets.ubuntu.com/v1/09460d9a-apple-touch-icon-72x72-precomposed.png" />
+<link rel="apple-touch-icon-precomposed" href="//assets.ubuntu.com/v1/cc66da65-apple-touch-icon-precomposed.png" />
+<link type="text/plain" rel="author" href="//assets.ubuntu.com/v1/7bad3937-humans.txt" />
 
 <!-- stylesheets -->
 <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/styles.css" />
@@ -39,20 +42,27 @@
 <link rel="stylesheet" type="text/css" media="print" href="{{ STATIC_URL }}css/core-print.css" />
 
 <!-- javascript -->
-<script src="{{ STATIC_URL }}js/plugins/modernizr.2.7.1.js"></script>
-<script src="{{ STATIC_URL }}js/plugins/Imager.js"></script>
+<script src="{{ STATIC_URL }}u/js/plugins/modernizr.2.7.1.js"></script>
+<script src="{{ STATIC_URL }}u/js/plugins/Imager.js"></script>
+
+{% comment %}<!-- the following has been added to allow things/iot ab testing -->{% endcomment %}
+<script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
+<script src="//www.google-analytics.com/cx/api.js?experiment=IbIACoOrTnG8eSnRY64nWQ"></script>
+<script>
+  var chosenVariation = cxApi.chooseVariation();
+</script>
 
 {% block head_extra %}{% endblock %}
-
-<!-- Google tag manager -->{% comment %}Bug 1445370 relates{% endcomment %}
-<script>dataLayer = [];</script>
 
 {% block crazy_egg %}{% endblock crazy_egg %}
 </head>
 
-<body{% if level_1 == 'phone' %} onload="init();"{% endif %} class="{% if level_1 != "" %}{% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}{% endif %}{% if level_2 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}{% endif %}{% if level_3 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}-{{ level_3 }} {% endif %} {% include "templates/body-class.html" %}{% if extra_body_class != "" %} {% block extra_body_class %}{% endblock %}{% endif %}">
+<body class="{% if level_1 != "" %}{% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}{% endif %}{% if level_2 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}{% endif %}{% if level_3 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}-{{ level_3 }} {% endif %} {% include "templates/body-class.html" %}{% if extra_body_class != "" %} {% block extra_body_class %}{% endblock %}{% endif %}">
 
-<!-- Google Tag Manager -->
+<!-- google tag manager -->
+<script>
+    dataLayer = [];
+</script>
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-K92JCQ"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -60,7 +70,7 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-K92JCQ');</script>
-<!-- End Google Tag Manager -->
+<!-- end google tag manager -->
 
 <header class="banner global" role="banner">
 {% block header_banner %}
@@ -127,6 +137,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- footer content goes here -->
 {% include "templates/footer.html" %}
 
+{% comment %}<!-- start google content things/iot ab test -->{% endcomment %}
+<script>
+// Define JavaScript for each page variation of this experiment.
+var pageVariations = [
+  function() {}, // Original: Do nothing. This will render the default HTML.
+  function() { // Variation 1: IoT
+    var iot = [ 'IoT', 'IoT-footer', 'IoT-homepage', 'IoT-breadcrumb' ];
+    for (var i = 0; i <= iot.length; i++ ) {
+      var id = document.getElementById(iot[i]);
+      if (id) {
+        id.innerHTML = 'IoT';
+      }
+    }
+  }
+];
+// Wait for the DOM to load, then execute the view for the chosen variation.
+$(document).ready(
+  // Execute the chosen view
+  pageVariations[chosenVariation]
+);
+</script>
+{% comment %}<!-- end google content experiment -->{% endcomment %}
+
 <!-- Use this only until Modernizr fixes Opera Mini background-size detection -->
 <script>
 	var isOperaMini = (navigator.userAgent.indexOf('Opera Mini') > -1);
@@ -135,50 +168,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		root.className += " opera-mini";
 	}
 </script>
-<script src="{{ STATIC_URL }}js/plugins/yui-combined.min.js"></script>
+<script src="{{ STATIC_URL }}u/js/plugins/yui-combined.min.js"></script>
 <script>
 	if(!core){ var core = {}; }
 	core.globalPrepend = 'body';
 </script>
 
-<script src="{{ STATIC_URL }}js/core.js"></script>
-<script src="{{ STATIC_URL }}js/global.js"></script>
-<script src="{{ STATIC_URL }}js/scratch.js"></script>
-<script src="{{ STATIC_URL }}js/plugins/respond.min.js"></script>
+<script src="//assets.ubuntu.com/v1/8e7aa35a-core.js"></script>
+<script src="{{ STATIC_URL }}u/js/global.js"></script>
+<script src="{{ STATIC_URL }}u/js/scratch.js"></script>
+<script src="{{ STATIC_URL }}u/js/plugins/respond.min.js"></script>
 
 {% block footer_extra %}{% endblock %}
 
-{% if google_analytics_id %}
-<!-- google analytics -->
-<script>
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', '{{ google_analytics_id }}']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-{% endif %}
-
-<!-- Google Code for Remarketing Tag -->
-<script>
-/* <![CDATA[ */
-var google_conversion_id = 1012391776;
-var google_custom_params = window.google_tag_params;
-var google_remarketing_only = true;
-/* ]]> */
-</script>
-<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
-</script>
-<noscript>
-	<div style="display:inline;">
-		<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1012391776/?value=0&amp;guid=ON&amp;script=0"/>
-	</div>
-</noscript>
-
 </body>
 </html>
+
+<!-- This comment was updated on 2015-01-07 10:21 -->
+
 {% endwith %}
