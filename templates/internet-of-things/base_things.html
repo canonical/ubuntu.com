@@ -1,7 +1,7 @@
 {% extends "templates/base.html" %}
-{% block meta_keywords %}snappy, Core Ubuntu, Internet of things, IoT{% endblock %}
+{% block meta_keywords %}snappy, Core Ubuntu, Internet of Things, IoT{% endblock %}
+{% block head_extra %}{% include "shared/_analytics_heap.html" %}{% endblock %}
 
 {% block outer_content %}
     {% block content %}{% endblock %}
-		{% include "templates/_contextual_footer.html" %}
 {% endblock %}

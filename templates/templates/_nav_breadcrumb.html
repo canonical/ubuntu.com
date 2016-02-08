@@ -1,6 +1,6 @@
 <ul class="breadcrumb">
 	{% if level_2 and not level_3 and not tertiary %}
-	<li><a class="breadcrumb-link" href="/{{ level_1 }}/">{{ section_title }}</a>
+	<li><a{% if section_title == 'Things' %} id="IoT-breadcrumb"{% endif %} class="breadcrumb-link" href="/{{ level_1 }}/">{{ section_title }}</a>
 	{% else %}
 	{% if level_3 %}
 	<li><a class="breadcrumb-link" href="/{{ level_1 }}/">{{ section_title }}</a>
@@ -12,7 +12,7 @@
 	<ul class="second-level-nav">
 	<li><a class="active" href="/{{ level_1 }}/{{ level_2 }}/">{{ page_title }}</a>
 	{% else %}
-	<li><a class="breadcrumb-link" href="/{{ level_1 }}/">{{ section_title }}</a>
+	<li><a{% if section_title == 'Things' %} id="IoT-breadcrumb"{% endif %} class="breadcrumb-link" href="/{{ level_1 }}/">{{ section_title }}</a>
 	{% endif %}
 	{% endif %}
 	{% endif %}

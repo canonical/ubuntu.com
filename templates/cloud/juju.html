@@ -1,0 +1,253 @@
+{% extends "cloud/base_cloud.html" %}
+
+{% block title %}Juju | Cloud{% endblock %}
+
+{% block meta_description %}Juju is Devops Distilled - a powerful, time-saving service orchestration framework that allows developers to deploy cloud services in seconds.{% endblock %}
+{% block meta_keywords %}Juju, service orchestration, service modelling, devops, distilled, cloud, infrastructure, hyperscale, charms, developer, ops, deployment, fast, scale, environment, relation, service communication{% endblock %}
+
+{% block second_level_nav_items %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Juju" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<section class="row row-hero no-border">
+    <div class="five-col">
+        <h1 class="accessibility-aid">Juju</h1>
+        <img src="//assets.ubuntu.com/v1/7e21b535-logo-juju.svg" width="131" height="54" alt="Juju" />
+        <p>Model, configure and manage services with Juju and deploy to all major public and private clouds with only a few commands. Hundreds of preconfigured services available in the Juju store.</p>
+        <p><a class="button--primary" href="https://jujucharms.com/">Get started</a></p>
+    </div>
+</section>
+
+<section class="row row-full-width">
+    <div class="twelve-col no-margin-bottom last-col">
+        <div class="video-container">
+            <iframe width="906" height="500" src="https://www.youtube.com/embed/tsou9S6NoDg?rel=0&amp;&amp;hd=1" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
+
+<section class="row">
+    <div class="twelve-col">
+        <h2>Juju at a glance</h2>
+        <img class="twelve-col not-for-small" src="https://assets.ubuntu.com/v1/8a2f6410-Overview+-+Orange+%281%29.svg" alt="" />
+        <ul class="for-small align-center no-bullets">
+            <li class="col">
+                <img src="//assets.ubuntu.com/v1/27bbff65-search-for-solutions.svg" alt="" />
+                <p>Search for solutions</p>
+            </li>
+            <li class="col">
+                <img src="//assets.ubuntu.com/v1/5780df15-model-your-service.svg" alt="" />
+                <p>Model for service</p>
+            </li>
+            <li class="col">
+                <img src="//assets.ubuntu.com/v1/21ae8a4f-deploy-instantly.svg" alt="" />
+                <p>Deploy instantly</p>
+            </li>
+            <li class="col">
+                <img src="//assets.ubuntu.com/v1/00360f2d-monitor-maintain.svg" alt="" />
+                <p>Monitor and maintain</p>
+            </li>
+        </ul>
+    </div>
+    <p><a href="http://insights.ubuntu.com/2013/08/29/top-12-questions-about-juju/" class="external">Top 12 questions about Juju</a></p>
+</section>
+
+<section class="row row-grey">
+    <div class="eight-col">
+        <h2>Charms available for over 300 services</h2>
+        <p>Charms are sets of scripts that simplify the deployment and management tasks of specific services. They can be written in any language and are regularly reviewed and updated.</p>
+
+    </div>
+
+    <div class="juju-charms-list twelve-col">
+        <div class="two-col align-center box">
+            <a href="https://jujucharms.com/ceph/" class="juju-charms-list__link">
+                <img src="//assets.ubuntu.com/v1/f0331421-ceph-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <p>Ceph</p>
+            </a>
+        </div>
+        <div class="two-col align-center box">
+            <a href="https://jujucharms.com/hadoop/" class="juju-charms-list__link">
+                <img src="//assets.ubuntu.com/v1/0c2c6e40-hadoop-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <p>Hadoop</p>
+            </a>
+        </div>
+        <div class="two-col align-center box">
+            <a href="https://jujucharms.com/u/ibmcharmers/db2/" class="juju-charms-list__link">
+                <img src="//assets.ubuntu.com/v1/eb358275-db2-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <p>IBM DB2</p>
+            </a>
+        </div>
+        <div class="two-col align-center box">
+            <a href="https://jujucharms.com/u/kubernetes/kubernetes" class="juju-charms-list__link">
+                <img src="//assets.ubuntu.com/v1/ea4329f3-kubernetes-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <p>Kubernetes</p>
+            </a>
+        </div>
+        <div class="two-col align-center box">
+            <a href="https://jujucharms.com/mariadb/" class="juju-charms-list__link">
+                <img src="//assets.ubuntu.com/v1/0fe8aaaa-mariadb-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <p>MariaDB</p>
+            </a>
+        </div>
+        <div class="two-col last-col align-center box">
+            <a href="https://jujucharms.com/mongodb/" class="juju-charms-list__link">
+                <img src="//assets.ubuntu.com/v1/d529fc0b-mongodb-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <p>MongoDB</p>
+            </a>
+        </div>
+        <div class="two-col align-center box">
+            <a href="https://jujucharms.com/mysql/" class="juju-charms-list__link">
+                <img src="//assets.ubuntu.com/v1/70ac97b0-mysql-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <p>MySQL</p>
+            </a>
+        </div>
+        <div class="two-col align-center box">
+            <a href="https://jujucharms.com/nagios/" class="juju-charms-list__link">
+                <img src="//assets.ubuntu.com/v1/07fbb544-nagios-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <p>Nagios</p>
+            </a>
+        </div>
+        <div class="two-col align-center box">
+            <a href="https://jujucharms.com/postgresql/" class="juju-charms-list__link">
+                <img src="//assets.ubuntu.com/v1/de0e8fb8-postgresql-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <p>PostgresQL</p>
+            </a>
+        </div>
+        <div class="two-col align-center box">
+            <a href="https://jujucharms.com/redis/" class="juju-charms-list__link">
+                <img src="//assets.ubuntu.com/v1/74f5267e-redis-icon.svg " alt="" class="juju-charms-list__image" width="100%" />
+                <p>Redis</p>
+            </a>
+        </div>
+        <div class="two-col align-center box">
+            <a href="https://jujucharms.com/u/asanjar/spark/" class="juju-charms-list__link">
+                <img src="//assets.ubuntu.com/v1/37930aba-spark-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <p>Spark</p>
+            </a>
+        </div>
+        <div class="two-col last-col align-center box">
+            <a href="https://jujucharms.com/wordpress/" class="juju-charms-list__link">
+                <img src="//assets.ubuntu.com/v1/60ca35aa-wordpress-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <p>Wordpress</p>
+            </a>
+        </div>
+    </div>
+
+    <div class="six-col">
+        <h3 class="six-col external"><span>Browse on jujucharms.com</span></h3>
+            <ul class="six-col no-bullets">
+                <li class="two-col"><a href="https://jujucharms.com/q/?tags=opshttps://jujucharms.com/store?type=charm">Ops</a></li>
+                <li class="two-col"><a href="https://jujucharms.com/q/?tags=analytics">Analytics</a></li>
+                <li class="two-col last-col"><a href="https://jujucharms.com/q/?tags=apache">Apache</a></li>
+                <li class="two-col"><a href="https://jujucharms.com/q/?tags=databases">Databases</a></li>
+                <li class="two-col"><a href="https://jujucharms.com/q/?tags=network">Network</a></li>
+                <li class="two-col last-col"><a href="https://jujucharms.com/q/?tags=monitoring">Monitoring</a></li>
+                <li class="two-col"><a href="https://jujucharms.com/q/?tags=security">Security</a></li>
+                <li class="two-col"><a href="https://jujucharms.com/q/?tags=openstack">OpenStack</a></li>
+                <li class="two-col last-col"><a href="https://jujucharms.com/store?type=charm">All charms</a></li>
+            </ul>
+    </div>
+</section>
+
+<section class="row">
+    <div class="eight-col">
+        <h2>Bundles</h2>
+        <p>Bundles are pre-configured collections of charms that can be deployed in seconds.</p>
+    </div>
+
+    <div class="twelve-col">
+        <div class="juju-bundle-card six-col">
+            <div class="juju-bundle-card__image-container">
+                <object wmode="transparent" width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/apache-core-batch-processing-20/diagram.svg"></object>
+                <a class="juju-bundle-card__link" href="https://jujucharms.com/apache-core-batch-processing/">
+                    <p class="juju-bundle-card__name">Apache MapReduce</p>
+                </a>
+            </div>
+            <ul class="juju-bundle-card__details-list no-bullets">
+                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
+                <li class="juju-bundle-card__details-item">trusty</li>
+            </ul>
+        </div>
+        <div class="juju-bundle-card six-col last-col">
+            <div class="juju-bundle-card__image-container">
+                <object wmode="transparent" width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/apache-hadoop-spark/diagram.svg"></object>
+                <a class="juju-bundle-card__link" href="https://jujucharms.com/apache-hadoop-spark/">
+                    <p class="juju-bundle-card__name">Apache Spark</p>
+                </a>
+            </div>
+            <ul class="juju-bundle-card__details-list no-bullets">
+                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
+                <li class="juju-bundle-card__details-item">trusty</li>
+            </ul>
+        </div>
+        <div class="juju-bundle-card six-col">
+            <div class="juju-bundle-card__image-container">
+                <object wmode="transparent" width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/openstack-base/diagram.svg"></object>
+                <a class="juju-bundle-card__link" href="https://jujucharms.com/openstack-base/">
+                    <p class="juju-bundle-card__name">OpenStack</p>
+                </a>
+            </div>
+            <ul class="juju-bundle-card__details-list no-bullets">
+                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
+                <li class="juju-bundle-card__details-item">trusty</li>
+            </ul>
+        </div>
+        <div class="juju-bundle-card six-col last-col">
+            <div class="juju-bundle-card__image-container">
+                <object wmode="transparent" width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/mediawiki-scalable/diagram.svg"></object>
+                <a class="juju-bundle-card__link" href="https://jujucharms.com/mediawiki-scalable/">
+                    <p class="juju-bundle-card__name">Mediawiki-scalable</p>
+                </a>
+            </div>
+            <ul class="juju-bundle-card__details-list no-bullets">
+                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
+                <li class="juju-bundle-card__details-item">trusty</li>
+            </ul>
+        </div>
+        <div class="juju-bundle-card six-col">
+            <div class="juju-bundle-card__image-container">
+                <object wmode="transparent" width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/django/diagram.svg"></object>
+                <a class="juju-bundle-card__link" href="https://jujucharms.com/django/">
+                    <p class="juju-bundle-card__name">Django</p>
+                </a>
+            </div>
+            <ul class="juju-bundle-card__details-list no-bullets">
+                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
+                <li class="juju-bundle-card__details-item">trusty</li>
+            </ul>
+        </div>
+        <div class="juju-bundle-card six-col last-col">
+            <div class="juju-bundle-card__image-container">
+                <object wmode="transparent" width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/web-infrastructure-in-a-box/diagram.svg"></object>
+                <a class="juju-bundle-card__link" href="https://jujucharms.com/web-infrastructure-in-a-box/">
+                    <p class="juju-bundle-card__name">Web infrastructure in a box</p>
+                </a>
+            </div>
+            <ul class="juju-bundle-card__details-list no-bullets">
+                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
+                <li class="juju-bundle-card__details-item">trusty</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="twelve-col">
+        <h3 class="six-col external"><span>Browse on jujucharms.com</span></h3>
+        <ul class="twelve-col no-bullets">
+            <li class="two-col"><a href="https://jujucharms.com/openstack">OpenStack</a></li>
+            <li class="two-col"><a href="https://jujucharms.com/big-data">Big data</a></li>
+            <li class="two-col last-col"><a href="https://jujucharms.com/store?type=bundles">All bundles</a></li>
+        </ul>
+    </div>
+</section>
+
+<section class="row row-get-started no-border">
+    <div class="six-col">
+        <h2>Get started</h2>
+        <p><a href="https://demo.jujucharms.com/" class="button--primary">Test-drive the Juju GUI</a></p>
+    </div>
+</section>
+
+{% include "cloud/shared/_contextual_footer.html" with feature_1="browse-the-charm-store" %}
+{% endblock content %}

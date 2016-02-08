@@ -7,9 +7,10 @@
 {% block meta_keywords %}cloud training, openstack training, Ubuntu OpenStack, private cloud, Canonical training{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
-  {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Jumpstart" %}
+  {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="OpenStack" page_title="Jumpstart" %}
 {% endblock second_level_nav_items %}
 
+{% block outer_content %}
 {% block content %}
 <div class="row row-hero row--training">
   <h1>Train with Ubuntu</h1>
@@ -17,7 +18,7 @@
         <p>Train your sysadmins and devops engineers to become Ubuntu OpenStack experts. Canonical runs training programmes to suit all environments and all levels of experience. Explore, prototype and design with cloud technologies so you can get the most out of OpenStack.</p>
     </div>
     <div class="five-col last-col text-center">
-        <img class="row--training__image" alt="" src="{{ STATIC_URL }}img/homepage/image-ubuntu-openstack-medals.png" />
+        <img class="row--training__image" alt="" src="//assets.ubuntu.com/v1/58f24048-image-ubuntu-openstack-medals.png" />
     </div>
 </div>
 <div class="row">
@@ -28,7 +29,7 @@
       <div class="seven-col">
       <h3>Classroom training</h3>
         <p>3-day hands-on classroom-based course that will give you the best introduction for setting up and running your own Ubuntu OpenStack cloud.</p>
-        <p><a class="external" href="https://insights.ubuntu.com/wp-content/uploads/226b/067_CAN_OpenStack_Fundamentals_Flyer_A4_v4_Screen.pdf">Read the course outline</a></p>
+        <p><a class="external" href="https://insights.ubuntu.com/wp-content/uploads/226b/067_CAN_OpenStack_Fundamentals_Flyer_A4_v4_Screen.pdf">Read the course outline (PDF)</a></p>
       </div>
       <div class="five-col last-col">
         <dl class="course-details" itemscope itemtype="http://schema.org/Product">
@@ -40,17 +41,13 @@
           <dt>Availability</dt>
           <dd>Open admissions</dd>
         </dl>
-        <ul class="five-col no-bullets no-border">
-          <li><a class="clear external" href="http://www.eventbrite.co.uk/e/ubuntu-openstack-fundamentals-training-in-amsterdam-tickets-17352677325">14 - 16 Sept 2015, Amsterdam</a></li>
-          <li><a class="clear external" href="https://www.eventbrite.co.uk/e/ubuntu-openstack-fundamentals-training-in-washington-dc-tickets-17581801642">30 Sept - 2 Oct 2015, Washington</a></li>
-        </ul>
         {% comment %}
         <!-- Example of event layout -->
-        <ul class="no-bullets no-border">
+        <ul class="five-col no-bullets no-border">
           <li><a class="external" href="https://insights.ubuntu.com/event/ubuntu-openstack-fundamentals-training-session/">13-15 May 2015, Vancouver, BC, Canada</a></li>
         </ul>
         {% endcomment %}
-        <p>Additional sessions are being planned for this year. <a href="/cloud/training/classroom-contact-us">Register your interest&nbsp;&rsaquo;</a></p>
+        <p>Additional sessions are being planned for this year. <a href="/cloud/openstack/training/classroom-contact-us">Register your interest&nbsp;&rsaquo;</a></p>
       </div>
     </div>
     </li>
@@ -59,7 +56,7 @@
       <div class="seven-col">
         <h3>Onsite training</h3>
         <p>3-day hands-on course at your premises for up to 15 people that will give you the best introduction for setting up and running your own Ubuntu OpenStack cloud.</p>
-        <p><a class="external" href="https://insights.ubuntu.com/wp-content/uploads/226b/067_CAN_OpenStack_Fundamentals_Flyer_A4_v4_Screen.pdf">Read the course outline</a></p>
+        <p><a class="external" href="https://insights.ubuntu.com/wp-content/uploads/226b/067_CAN_OpenStack_Fundamentals_Flyer_A4_v4_Screen.pdf">Read the course outline (PDF)</a></p>
       </div>
       <div class="five-col last-col" itemscope itemtype="http://data-vocabulary.org/Event">
         <dl class="course-details">
@@ -73,7 +70,7 @@
           <dt>Availability</dt>
           <dd>Private groups only</dd>
         </dl>
-        <p><a href="/cloud/training/onsite-contact-us">Contact us to book yours&nbsp;&rsaquo;</a></p>
+        <p><a href="/cloud/openstack/training/onsite-contact-us">Contact us to book yours&nbsp;&rsaquo;</a></p>
       </div>
     </div>
     </li>
@@ -83,18 +80,15 @@
   <div class="seven-col">
     <h2>Questions about training?</h2>
     <p>If you have a question about OpenStack training or want to register your interest for future training.</p>
-    <p><a href="/cloud/training/contact-us">Contact us&nbsp;&rsaquo;</a></p>
+    <p><a href="/cloud/openstack/training/contact-us">Contact us&nbsp;&rsaquo;</a></p>
   </div>
   <div class="five-col align-center last-col">
-    <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-help-orange.svg" width="135" alt="" />
+    <img src="//assets.ubuntu.com/v1/2c023edd-picto-help-orange.svg" width="135" alt="" />
   </div>
 </div>
 
-{% include "shared/_live_chat.html" %}
-
-{% include "shared/_munchkin.html" %}
-
 {% endblock content %}
+{% endblock outer_content %}
 {% block footer_extra %}
 <!-- twitter tracking code -->
 <script src="//platform.twitter.com/oct.js"></script>

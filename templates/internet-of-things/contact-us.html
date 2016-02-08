@@ -1,5 +1,5 @@
 {% extends "internet-of-things/base_things.html" %}
-{% block title %}Contact us | Internet of things{% endblock %}
+{% block title %}Contact us | Ubuntu for the Internet of Things{% endblock %}
 
 {% block second_level_nav_items %}
 	{% include "templates/_nav_breadcrumb.html" with section_title="Things" page_title="Contact us"  %}
@@ -8,12 +8,13 @@
 {% block content %}
 <div class="row row-hero no-border">
     <div class="eight-col">
-        <h1>Things</h1>
+        <h1>Contact us</h1>
         <p>If you are thinking about using snappy Ubuntu Core to power your Internet of Things devices, please fill in your details below and a member of our team will get in touch.</p>
     </div>
     <div class="eight-col">
-        <script src="//assets.ubuntu.com/v1/37b1db88-jquery.min.js"></script>
-        <script  src="//assets.ubuntu.com/v1/e1085fb6-jquery.validate.min.js"></script>
+        <!-- MARKETO FORM -->
+
+        <script  src="//assets.ubuntu.com/v1/d55cdf58bb-jquery.validate.js"></script>
 
         <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1266">
             <fieldset>
@@ -92,5 +93,4 @@
         </script>
     </div>
 </div>
-{% include "shared/_munchkin.html" %}
 {% endblock content %}
