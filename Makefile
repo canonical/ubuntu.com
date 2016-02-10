@@ -4,7 +4,7 @@ export PORT ?= 8001
 
 DOCKER_IP := 127.0.0.1
 ifdef DOCKER_HOST
-	DOCKER_IP := $(shell echo ${DOCKER_HOST} | grep -oP '(\d+\.){3}\d+')
+	DOCKER_IP := $(shell echo ${DOCKER_HOST} | perl -nle'print $$& if m{(\d+\.){3}\d+}')
 endif
 
 # Help text
