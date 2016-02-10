@@ -1,7 +1,7 @@
 {% extends "desktop/base_desktop.html" %}
 
 {% block title %}Ubuntu PC operating system{% endblock %}
-{% block meta_description %}Fast, secure and stylishly simple, the Ubuntu operating system is used by 20 million people worldwide every day.{% endblock %}
+{% block meta_description %}Fast, secure and stylishly simple, the Ubuntu operating system is used by 40 million people worldwide every day.{% endblock %}
 {% block meta_keywords %}Ubuntu, Ubuntu operating system, OS, Linux, Windows alternative, Mac alternative, thin client{% endblock %}
 
 {% block extra_body_class %}desktop-home{% endblock %}
@@ -17,7 +17,7 @@
 		<h1>Ubuntu for desktops</h1>
 		<p class="intro">Learn how the Ubuntu desktop operating system powers millions of PCs and laptops around the world.</p>
 		<p>
-			<a href="/download/desktop" class="link-cta-ubuntu">Download Ubuntu</a>
+			<a href="/download/desktop" class="button--primary">Download Ubuntu</a>
 		</p>
 		<p>
 			<a href="/desktop/features" class="light">Take a look&nbsp;&rsaquo;</a>
@@ -33,7 +33,7 @@
 		<p><a href="/desktop/features">Explore features&nbsp;&rsaquo;</a></p>
 	</div>
 	<div class="pull-right right priority-0">
-		<img class="touch-border" src="{{ STATIC_URL }}img/desktop/overview/desktopscreen.png" alt="Desktop screenshot" />
+		<img class="touch-border" src="//assets.ubuntu.com/v1/141ef23a-desktopscreen.png" alt="Desktop screenshot" />
 	</div>
 </div>
 
@@ -56,40 +56,44 @@
 	</div>
 </div>
 
-<div class="row row-grey row-industry">
-	<h2>Ubuntu for industry</h2>
-	<div>
-		<a href="/desktop/enterprise" class="three-col box">
-			<h3>Ubuntu for enterprise&nbsp;&rsaquo;</h3>
-			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-businessasusual-midaubergine.svg" alt="Business pictogram" />
-		</a>
-	</div>
-	<div class="three-col box">
-		<a href="/desktop/education">
-			<h3>Ubuntu for education&nbsp;&rsaquo;</h3>
-			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-education-orange.svg" alt="Education pictogram" />
-		</a>
-	</div>
-	<div class="three-col box">
-		<a href="/desktop/government">
-			<h3>Ubuntu for government&nbsp;&rsaquo;</h3>
-			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-business-warmgrey.svg" alt="Suit pictogram" />
-		</a>
-	</div>
+<div class="row row-grey row-industry align-center">
+    <h2 class="twelve-col muted-heading">Benefits for all industry sectors</h2>
+    <ul class="no-bullets med-six-col">
+      	<li class="list-fade__item three-col">
+      		<a href="/desktop/enterprise">
+      			<img src="//assets.ubuntu.com/v1/386e7e70-picto-businessasusual-midaubergine.svg" alt="Business pictogram" width="120" />
+      			<p>Ubuntu for enterprise</p>
+      		</a>
+      	</li>
+      	<li class="list-fade__item three-col">
+      		<a href="/desktop/education">
+      			<img src="//assets.ubuntu.com/v1/5bac122e-picto-education-orange.svg" alt="Education pictogram" width="120" />
+      			<p>Ubuntu for education</p>
+      		</a>
+      	</li>
+      	<li class="list-fade__item three-col">
+      		<a href="/desktop/government">
+      			<img src="//assets.ubuntu.com/v1/03c5463a-picto-business-warmgrey.svg" alt="Suit pictogram" width="120" />
+      			<p>Ubuntu for government</p>
+      		</a>
+      	</li>
 
-	<div class="three-col box last-col">
-		<a href="/desktop/developers">
-			<h3>Ubuntu for developers&nbsp;&rsaquo;</h3>
-			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-developer-midaubergine.svg" alt="Developer pictogram" />
-		</a>
-	</div>
+      	<li class="list-fade__item three-col last-col">
+      		<a href="/desktop/developers">
+      			<img src="//assets.ubuntu.com/v1/db764752-picto-developer-midaubergine.svg" alt="Developer pictogram" width="120" />
+      			<p>Ubuntu for developers</p>
+      		</a>
+      	</li>
+    </ul>
+{% include "shared/_list_fade_keyframes.html" %}
 </div>
+
 <div class="row no-padding-bottom row-latest-hardware">
 	<div class="eight-col no-margin-bottom">
-        <img class="left" src="{{ STATIC_URL }}img/desktop/overview/whatsnew-screen.png" alt="Whatsnew screenshot">
+        <img class="left" src="//assets.ubuntu.com/v1/43ccb498-whatsnew-screen.png" alt="Whatsnew screenshot">
 	</div>
 	<div class="four-col last-col">
-		<h2>Looks great on the latest hardware</h2>
+		<h2>Looks great on the latest devices</h2>
 		<p>Ubuntu is designed to work beautifully on the latest laptops, desktops and touch screen devices, it looks incredible on high resolution screens &mdash; and with touch screen enhancements and interface refinements including individual menu bars in each application window, it&rsquo;s now even easier to use.</p>
 	</div>
 </div>
@@ -99,21 +103,21 @@
 	<div class="six-col">
 		<p>Canonical works with the world&rsquo;s leading computer manufacturers to certify that Ubuntu works on a huge range of devices. It means that Ubuntu is now available at thousands of retailers across China, India, South East Asia and Latin America.</p>
 		<p>And Ubuntu isn&rsquo;t just for the desktop, it is used in data centres around the world powering every kind of server imaginable and is by far, the most popular operating system in the cloud.</p>
-		<p><a href="http://partners.ubuntu.com/programmes/retail" class="external">Find out where you can buy an Ubuntu PC</a></p>
+		<p><a href="http://partners.ubuntu.com/programmes/retail" class="external">Find out more about our retail partners</a></p>
 	</div>
 	<div class="six-col last-col">
-		<img class="touch-border" src="{{ STATIC_URL }}img/desktop/overview/laptop.png" alt="Photo of laptop running Ubuntu" />
+		<img class="touch-border" src="//assets.ubuntu.com/v1/e1d3143f-laptop.png" alt="Photo of laptop running Ubuntu" />
 	</div>
 </div>
 
-<div class="row row-tour row-grey no-padding-bottom">
-	<div class="six-col touch-border no-margin-bottom">
-		<img class="left" src="{{ STATIC_URL }}img/desktop/overview/takethetour.png" alt="Ubuntu web tour screenshot" />
+<div class="row row-tour row-grey">
+	<div class="six-col">
+		<img class="left" src="//assets.ubuntu.com/v1/ee84baf2-tour-image-desktop.jpg" alt="Ubuntu web tour screenshot" />
 	</div>
 	<div class="prepend-one five-col last-col">
 		<h2>Take the tour</h2>
 		<p>Enjoy the simplicity of Ubuntu&rsquo;s stylish, intuitive interface. Take Ubuntu for a test drive in your browser and download when you&rsquo;re ready.</p>
-		<p><a href="/tour/">Try the online tour&nbsp;&rsaquo;</a></p>
+		<p><a href="http://tour.ubuntu.com/">Try the online tour&nbsp;&rsaquo;</a></p>
 	</div>
 </div>
 
@@ -130,7 +134,7 @@
 			<p><a href="http://www.canonical.com" class="external">Learn more about Canonical</a></p>
 		</div>
 		<div class="two-col last-col priority-0">
-			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-canonical.svg" alt="Canonical pictogram" />
+			<img src="//assets.ubuntu.com/v1/60d9b81e-picto-canonical.svg" width="100%" alt="Canonical pictogram" />
 		</div>
 	</div>
 </div>

@@ -10,11 +10,12 @@
 
 {% endblock head_extra %}
 
-{% block content %}
+{% block content_container %}
+{% block outer_content %}
 <div class="row no-border">
- <div class="eight-col"> 
+ <div class="eight-col">
   <h1>Register for Ubuntu OpenStack Training</h1>
-  
+
   <p>If you are interested in the Ubuntu OpenStack training, please fill out the form below and we’ll get back to you with available dates and locations.</p>
 
 <script>
@@ -26,9 +27,7 @@
   var mktFormLanguage = 'English'
 </script>
 
-
-<script src="//assets.ubuntu.com/v1/37b1db88-jquery.min.js"></script>
-<script  src="//assets.ubuntu.com/v1/e1085fb6-jquery.validate.min.js"></script>
+<script  src="//assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
     
 <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1261">
     <fieldset>
@@ -103,11 +102,11 @@ $("#mktoForm_1261").validate({
     errorClass: "mktFormMsg mktError",
     onkeyup: false,
     onclick: false,
-    onblur: false   
+    onblur: false
 });
 </script>
 
 </div>
 </div>
-{% include "shared/_munchkin.html" %}
-{% endblock content %}
+{% endblock outer_content %}
+{% endblock content_container %}

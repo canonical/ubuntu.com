@@ -8,7 +8,7 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero row-background">
+<div class="row row-grey no-border">
 	<div class="eight-col append-four">
 		<h1>Download Ubuntu Kylin</h1>
 	</div>
@@ -22,25 +22,22 @@
 				<form class="form-download gap-from-top lts" action="http://cdimage.ubuntu.com/ubuntukylin/releases/{{lts_release}}/release/ubuntukylin-{{lts_release}}-desktop-amd64.iso" method="get">
 					<fieldset>
 						<div>
-							<button type="submit" class="link-cta-ubuntu cta-large" onclick="_gaq.push(['_trackEvent', 'Download Link', '{{lts_release}} 64 bit', 'From English-language Chinese download']);">Download 64-bit</button>
+							<button type="submit" class="button--primary cta-large" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : '{{lts_release}} 64 bit', 'eventLabel' : 'From English-language Chinese download', 'eventValue' : undefined });">Download 64-bit</button>
 						</div>
 					</fieldset>
 				</form>
 				<form class="form-download lts" action="http://cdimage.ubuntu.com/ubuntukylin/releases/{{lts_release}}/release/ubuntukylin-{{lts_release}}-desktop-i386.iso" method="get">
 					<fieldset>
 						<div>
-							<button type="submit" class="link-cta-ubuntu cta-large" onclick="_gaq.push(['_trackEvent', 'Download Link', '{{lts_release}} 32 bit', 'From English-language Chinese download']);">Download 32-bit</button>
+							<button type="submit" class="button--primary cta-large" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : '{{lts_release}} 32 bit', 'eventLabel' : 'From English-language Chinese download', 'eventValue' : undefined });">Download 32-bit</button>
 						</div>
 					</fieldset>
 				</form>
 				<p class="note">If you have an older PC with less than 2GB of memory, choose the 32-bit download.</p>
 			</div>
 		</div><!-- /.box -->
-		<p class="intro"><a class="external" href="http://www.ubuntu-china.cn" onclick="_gaq.push(['_trackEvent', 'External Link', 'Download Kylin hero', 'From Ubuntu download kylin']);">Ubuntu 中国网站现已面世</a></p>
 	</div>
-</div><!-- /.row -->
 
-<div class="row no-border row-grey">
 	<div class="twelve-col no-margin-bottom">
 		<div class="box box-highlight clearfix vertical-divider">
 			<div class="eight-col no-margin-bottom">
@@ -51,21 +48,22 @@
 				<form class="form-download gap-from-top" action="http://cdimage.ubuntu.com/ubuntukylin/releases/{{latest_release}}/release/ubuntukylin-{{latest_release}}-desktop-amd64.iso" method="get">
 					<fieldset>
 						<div>
-							<button type="submit" class="link-cta-ubuntu cta-large" onclick="_gaq.push(['_trackEvent', 'Download Link', '{{latest_release}} 64 bit', 'From English-language Chinese download']);">Download 64-bit</button>
+							<button type="submit" class="button--primary cta-large" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : '{{latest_release}} 64 bit', 'eventLabel' : 'From English-language Chinese download', 'eventValue' : undefined });">Download 64-bit</button>
 						</div>
 					</fieldset>
 				</form>
 				<form class="form-download" action="http://cdimage.ubuntu.com/ubuntukylin/releases/{{latest_release}}/release/ubuntukylin-{{latest_release}}-desktop-i386.iso" method="get">
 					<fieldset>
 						<div>
-							<button type="submit" class="link-cta-ubuntu cta-large" onclick="_gaq.push(['_trackEvent', 'Download Link', '{{latest_release}} 32 bit', 'From English-language Chinese download']);">Download 32-bit</button>
+							<button type="submit" class="button--primary cta-large" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : '{{latest_release}} 32 bit', 'eventLabel' : 'From English-language Chinese download', 'eventValue' : undefined });">Download 32-bit</button>
 						</div>
 					</fieldset>
 				</form>
         <p class="note">If you have an older PC with less than 2GB of memory, choose the 32-bit download.</p>
 			</div>
 		</div>
-	</div>
+	</div>	<p class="intro"><a class="external" href="http://www.ubuntu-china.cn" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Download Kylin hero', 'eventLabel' : 'From Ubuntu download kylin', 'eventValue' : undefined });">Ubuntu 中国网站现已面世</a></p>
+
 
 </div>
 {% endblock content %}

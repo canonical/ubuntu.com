@@ -3,9 +3,9 @@
 		<div itemscope itemtype="http://schema.org/Product">
 			<h1 itemprop="name">Raring to go.</h1>
 			<p itemprop="description" class="tagline">From the desktop to the cloud, <br/>Ubuntu 13.04 is ready to deploy.</p>
-			<img itemprop="image" alt="Ubuntu tablet" src="{{ STATIC_URL }}img/homepage/1304-takeover-laptop.png" />
-			<a href="/download" class="link-cta-ubuntu cta-large" onclick="_gaq.push(['_trackEvent', 'Internal Link', 'Raring takeover', 'From Ubuntu homepage Get Ubuntu now link']);">Get Ubuntu now</a>
-			<p><a href="/desktop" onclick="_gaq.push(['_trackEvent', 'Internal Link', 'Raring takeover', 'From Ubuntu homepage Meet Ubuntu link']);">Meet Ubuntu&nbsp;&rsaquo;</a></p>
+			<img itemprop="image" alt="Ubuntu tablet" src="//assets.ubuntu.com/v1/fdc08b02-1304-takeover-laptop.png" />
+			<a href="/download" class="button--primary cta-large" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Raring takeover', 'eventLabel' : 'From Ubuntu homepage Get Ubuntu now link', 'eventValue' : undefined });">Get Ubuntu now</a>
+			<p><a href="/desktop" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Raring takeover', 'eventLabel' : 'From Ubuntu homepage Meet Ubuntu link', 'eventValue' : undefined });">Meet Ubuntu&nbsp;&rsaquo;</a></p>
 			{% include "takeovers/_share_this.html" %}
 		</div>
 	</div>

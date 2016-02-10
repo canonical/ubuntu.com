@@ -8,9 +8,11 @@
 	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Training" page_title="Thank you" tertiary="true" %}
 {% endblock second_level_nav_items %}
 
-{% block content %}
+{% block content_container %}
+{% block outer_content %}
 {% include "shared/_thank_you.html" with thanks_context="enquiring about our training courses" %}
-{% endblock content %}
+{% endblock outer_content %}
+{% endblock content_container %}
 {% block footer_extra %}
 <!-- Google Code for Services Canonical &mdash; contact us Conversion Page -->
 <script>

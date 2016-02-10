@@ -1,34 +1,20 @@
 <div class="feature-two four-col">
-	<h3>A new opportunity</h3>
-	<p>Mobile networks, handset makers and developers: start building your Ubuntu 
-mobile experiences&nbsp;today. </p>
-    <ul class="no-bullets">
-        {% if level_2 != 'partners' %}<li><a href="/phone/partners">For networks and OEMs&nbsp;&rsaquo;</a></li>{% endif %}
-        {% if level_2 != 'developers' %}<li><a href="/phone/developers">For mobile developers&nbsp;&rsaquo;</a></li>{% endif %}
-    </ul>
+{% if level_2 == 'devices' or level_2 == 'devices-in' %}
+  <h3>A new opportunity</h3>
+  <p>Mobile carriers, handset makers and developers: start building your Ubuntu
+  mobile experiences today.</p>
+  <p><a href="/phone/partners">For carriers and OEMs</a></p>
+  <p><a href="/phone/developers">For mobile developers</a></p>
+{% else %}
+  <h3>Now available</h3>
+  <p>Buy an Ubuntu phone directly from our partners, such as BQ and Snapdeal.</p>
+  <p><a href="/phone/devices">Learn more about our devices&nbsp;&rsaquo;</a></p>
+{% endif %}
 </div>
-<div class="feature-three four-col">
-	<h3>Keep in touch</h3>
-	<p>Stay up to date with all things Ubuntu Phone.</p>
-    <ul class="no-bullets">
-        <li><a href="https://twitter.com/ubuntu">Twitter &rsaquo;</a></li>
-        <li><a href="https://www.facebook.com/ubuntulinux">Facebook &rsaquo;</a></li>
-        <li><a href="https://plus.google.com/+Ubuntu/posts">Google Plus &rsaquo;</a></li>
-    </ul>
+<div class="four-col">
+{% include "shared/_newsletter_signup.html" %}
 </div>
 <div class="feature-four four-col last-col">
 	<h3>Further reading</h3>
-	<ul class="smaller no-bullets">
-		{% if level_2 == 'carrier-advisory-group' %}
-		<li><a href="{{ STATIC_URL }}files/section/devices/CAG_FAQ.pdf">CAG FAQ&nbsp;&rsaquo;</a></li>
-		<li><a href="http://insights.ubuntu.com/products-and-services/phone/">Check out our Insights blog&nbsp;&rsaquo;</a></li>
-		<li><a href="http://developer.ubuntu.com/">Start developing on Ubuntu mobile today&nbsp;&rsaquo;</a></li>
-		{% else %}
-		<li><a href="https://www.youtube.com/watch?v=cpWHJDLsqTU&amp;feature=player_embedded#t=0">Watch the Ubuntu phone video&nbsp;&rsaquo;</a></li>
-		<li><a href="http://insights.ubuntu.com/2014/02/01/mwc-2014-online-press-pack/">Ubuntu phone press release&nbsp;&rsaquo;</a></li>
-		<li><a href="https://insights.ubuntu.com/2013/02/15/ubuntu-for-smartphones-grabs-global-headlines/">Ubuntu for smartphones grabs global headlines&nbsp;&rsaquo;</a></li>
-		<li><a href="https://insights.ubuntu.com/2013/02/15/get-the-faqs-about-ubuntu-on-smartphones/"> Get the FAQs about Ubuntu on smartphones&nbsp;&rsaquo;</a></li>
-		<li><a href="https://insights.ubuntu.com/2013/02/15/developers-get-the-full-support-they-need/">Developers get the full support they need&nbsp;&rsaquo;</a></li>
-		{% endif %}
-	</ul>
+  {% include "templates/_further_reading_links.html" with feed="http://insights.ubuntu.com/group/phone-and-tablet/feed" %}
 </div>

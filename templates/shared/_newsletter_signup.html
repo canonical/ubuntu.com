@@ -1,101 +1,42 @@
-<script src="http://www.ubuntu.com/misc/jquery.js?J"></script>
-<script>
-	$(document).ready(function() {
-		// Can't bind multiple event handlers simultaneously in this version of jQuery
-		var email_input = $('#Email');
-	
-		email_input.focus(function() {
-			if ($(this).val() == 'Enter your email address') {
-				$(this).val('');
-				$(this).css('font-style', 'normal');
-				$(this).css('color', '#333');
-			}
-		});
-		email_input.blur(function() {
-			if ($(this).val() == '') {
-				$(this).val('Enter your email address');
-				$(this).css('font-style', 'italic');
-				$(this).css('color', '#999');
-			}
-		});
-	});
-</script>
-
-<script>
-function fieldValidate(field) {
-	/* call Mkto.setError(field, message) and return false to mark a field value invalid */
-	/* return 'skip' to bypass the built-in validations */
-	return 'skip';
-}
-</script>
-			
-<script> function mktoGetForm() {return document.getElementById('mktForm_1010'); }</script>
-			
-<div class="four-col box newsletter-signup-box">
-	<h3>Stay in the loop</h3>
-	<form class="lpeRegForm formNotEmpty newsletter-signup" method="post" enctype="application/x-www-form-urlencoded" action="https://app-g.marketo.com/index.php/leadCapture/save" id="mktForm_1010" name="mktForm_1010">
-	<fieldset>
-		<ul>
-			<li>
-				<p>We don&rsquo;t do spam, but we do send emails when we have something important to say. If you&rsquo;d like to be kept abreast of technology developments here at Canonical, please enter your email address and tick the privacy box below.</p>
-			<li>
-				<span class='mktInput'>
-					<input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="Enter your email address"  maxlength='255' tabIndex='1' />
-					<span class='mktFormMsg'></span>
-				</span>
-			</li>
-			<li>
-				<span class='mktInput'>
-					<input class="mktFormCheckbox" name="NewsletterOpt-In" id="NewsletterOpt-In" type="checkbox" value="1" tabindex="2" />
-					<label for="NewsletterOpt-In">I want to receive Canonical's newsletter. My details will be handled in accordance with the <a href="http://www.canonical.com/legal">Canonical privacy policy</a>.</label>
-				</span>
-			</li>
-			<li>
-				<input id='mktFrmSubmit' type='submit' value='Sign up now' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1010")); return false;' />
-			</li>
-		</ul>
-		<div class="hidden-fields">
-			<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
-			<input type="hidden" name="lpId" value="360" />
-			<input type="hidden" name="subId" value="30" />
-			<input type="hidden" name="kw" value="" />
-			<input type="hidden" name="cr" value="" />
-			<input type="hidden" name="searchstr" value="" />
-			<input type="hidden" name="lpurl" value="https://pages.canonical.com/newsletter-register.html?cr={creative}&amp;kw={keyword}" />
-			<input type="hidden" name="formid" value="1010" />
-			<input type="hidden" name="returnURL" value="http://www.ubuntu.com/business/whats-new/thank-you" />
-			<input type="hidden" name="retURL" value="http://www.ubuntu.com/business/whats-new/thank-you" />
-			<input type="hidden" name="_mkt_disp" value="return" />
-			<input type="hidden" name="_mkt_trk" value="id:066-EOV-335&amp;token:_mch-canonical.com-1309526398517-17880" />
-		</div>
-	</fieldset>
-	</form>
-	
-	<script type="text/javascript" src="https://pages.canonical.com/js/mktFormSupport.js"></script>
-	<script>
-		function formSubmit(elt) {
-			// Non-Marketo validation
-			$('.error').remove();
-
-			var email_input = $('#Email');
-			var email_val = email_input.val();
-			var opt_in = $('#NewsletterOpt-In').is(':checked');
-			var pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-
-			if (email_val == '' || !pattern.test(email_val)) {
-				email_input.after('<span class="error">Please enter a valid email address.</span>');
-				return false;
-			}
-
-			if (!opt_in) {
-				email_input.after('<span class="error">Please confirm that you agree with the privacy policy.</span>');
-				return false;
-			}
-
-			return Mkto.formSubmit(elt);
-		}
-		function formReset(elt) {
-			return Mkto.formReset(elt);
-		}
-	</script>
-</div><!-- /.four-col -->	
+        <div id="mc_embed_signup" class="box-digest">
+            <!-- Begin MailChimp Signup Form -->
+            <style type="text/css">
+              .response { display: block; width: 100%; padding-top: 10px; }
+              #mce-error-response { color: red; }
+              #mce-success-response { position: absolute; background: #fff; height: 90%; top: 47px; padding-top: 14px; }
+              @media only screen and (min-width: 984px) { #mce-success-response { width: 88% !important; }}
+              @media only screen and (max-width: 768px) { #mce-success-response { top: 25px; height: 70%; }}
+              @media only screen and (min-width: 768px) { #mce-success-response { height: 90%; }}
+              #mc_embed_signup input.mce_inline_error { border-color: red; }
+            </style>
+            <form action="//canonical.us3.list-manage.com/subscribe/post?u=56dac47c206ba0f58ec25f314&amp;id=97a67dea26" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="mc-embedded-subscribe-form validate" target="_blank" novalidate>
+        
+                <h3>Sign up for our monthly Devices newsletter</h3>
+              
+                <ul class='clearfix'>
+                    <li>
+                        <label class="off-left" for="mce-EMAIL">Your email</label>
+                        <input type="email" placeholder="Your email" value="" name="EMAIL" class="required email" id="mce-EMAIL" />
+                      	<div id="mce-responses" class="clear">
+                      		<div class="response" id="mce-error-response" style="display: none; width: 100%;"></div>
+                      		<div class="response" id="mce-success-response" style="display: none; width: 100%;"></div>
+                      	</div>    
+                    </li>
+                    <li>
+                        <input type="checkbox" value="1" name="group[5][1]" id="mce-group[5]-5-0" />
+                        <label for="mce-group[5]-5-0">I would also like to receive other updates from Canonical by email.</label>
+                    </li>
+                    <li>
+                      <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" />
+                    </li>
+                </ul>
+              	<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div class="off-left" aria-hidden="true">
+                    <input type="text" name="b_56dac47c206ba0f58ec25f314_97a67dea26" tabindex="-1" value="">
+                    <input type="hidden" value="{{ level_1 }}" name="MMERGE1" id="MMERGE1">
+                </div>
+            </form>
+            <script src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
+            <script>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+            <!--End mc_embed_signup-->
+        </div>

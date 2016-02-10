@@ -1,65 +1,82 @@
-{% if level_2 == 'tools' and not level_3 %}
-	<div class="feature-two four-col">
-        <h3>Experience Juju</h3>
-        <p>Try the demo to experience how easy it is to manage services in the cloud.</p>
-		<p><a href="https://demo.jujucharms.com/">Try the Juju demo&nbsp;&rsaquo;</a></p>
-{% endif %}{% if level_3 == 'juju' or level_3 == 'training' or level_3 == 'bootstack' %}
-	<div class="feature-two four-col">
-        <h3>Experience Juju</h3>
-        <p>Try our Juju demo to see how easy it is to manage services in the cloud. Plus, get more information, including training and how to join the Juju community.</p>
-		<p><a href="https://demo.jujucharms.com/">Try the Juju demo&nbsp;&rsaquo;</a></p>
-{% endif %}{% if level_3 == 'maas' %}
-	<div class="feature-two four-col picto-maas">
-        <h3>Install MAAS</h3>
-        <p>Metal as a Service (MAAS) brings the language of the cloud to physical servers.</p>
-		<p><a href="http://maas.ubuntu.com">Find out more at maas.ubuntu.com&nbsp;&rsaquo;</a></p>
-{% endif %}{% if level_2 != 'tools' and level_3 != 'juju' and level_3 != 'lxd' and level_3 != 'maas' and level_3 != 'training' and level_2 != 'openstack' %}
-	<div class="feature-two four-col">
-		<h3>Canonical Distribution</h3>
-    	<p>Follow these instructions to download and build your cloud using The Canonical Distribution of Ubuntu OpenStack.</p>
-		<p><a href="/download/cloud/install-ubuntu-openstack">Find out how&nbsp;&rsaquo;</a></p>
-{% endif %}{% if level_2 == "openstack" or level_3 == "lxd" or level_3 == 'snappy' %}
-	<div class="feature-two four-col">
-        <h3>Canonical Distribution</h3>
-    	<p>Follow these instructions to download and build your cloud using The Canonical Distribution of Ubuntu OpenStack.</p>
-		<p><a href="/download/cloud/install-ubuntu-openstack">Find out how&nbsp;&rsaquo;</a></p>
-{% endif %}
-	</div><!-- /.feature-two -->
+<div id="context-footer" class="{{ level_1 }}-context-footer no-border">
+<hr />
+  <div class="twelve-col vertical-divider">
 
-{% if level_3 == 'maas' %}
-	<div class="feature-three four-col">
-		<h3>Canonical Distribution</h3>
-    	<p>Follow these instructions to download and build your cloud using The Canonical Distribution of Ubuntu OpenStack.</p>
-		<p><a href="/download/cloud/install-ubuntu-openstack">Find out how&nbsp;&rsaquo;</a></p>
-{% endif %}{% if level_3 == 'training' or level_3 == 'bootstack' or level_2 == 'tools' and  level_3 != 'maas' and level_3 != 'juju' and level_3 != 'lxd' and level_3 != 'snappy' %}
-	<div class="feature-three four-col picto-maas">
-        <h3>Provisioning through MAAS</h3>
-        <p>Metal as a Service (MAAS) brings the language of the cloud to physical servers.</p>
-		<p><a href="http://maas.ubuntu.com">Find out more at maas.ubuntu.com&nbsp;&rsaquo;</a></p>
-{% endif %}{% if level_3 == 'juju' %}
-	<div class="feature-three four-col picto">
-        <h3>Browse the Charm Store</h3>
-        <p>Charms are scripts that can be written in any language to deploy and configure services.</p>
-		<p><a href="http://jujucharms.com">Find out more at jujucharms.com&nbsp;&rsaquo;</a></p>
-{% endif %}{% if level_2 == 'management' %}
-	<div class="feature-three four-col">
-        <h3>Ubuntu Advantage</h3>
-        <p>The Ubuntu Advantage service offers efficient systems administration, fast problem resolution and access to the Ubuntu experts as and when you need them.</p>
-		<p><a href="/cloud/management">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
-{% endif %}{% if level_2 != 'management' and level_2 != 'tools' and not level_3 or level_2 == 'openstack' or level_3 == 'ubuntu-openstack-interoperability-lab' or level_3 == 'ubuntu-certified-public-cloud' or level_3 == 'reference-architecture' or level_3 == 'snappy' or level_3 == "lxd" or level_2 == 'storage' and level_3 == 'thank-you' %}
-	<div class="feature-three four-col picto">
-		<h3>Get in touch</h3>
-		<p>Contact us for more information or to discuss your specific needs.</p>
-		<p><a href="/cloud/contact-us">Contact us&nbsp;&rsaquo;</a></p>
-		{% if not level_2 %}{% else %}
-		{% include "shared/_digesto.html" with section="cloud" %}{% endif %}
-{% endif %}
-	</div><!-- /.feature-three -->
-	<div class="feature-four four-col last-col">
-	{% if not level_2 %}
-	  {% include "shared/_digesto.html" with section="cloud" %}
-  {% else %}
-		<h3>Further reading</h3>
-		{% include "cloud/shared/_further_reading_links.html" %}
-	{% endif %}	
+    {% if feature_1 == none %}
+    <div class="four-col feature-two">
+      <h3>Build a cloud with Autopilot</h3>
+      <p>Deploy and manage your cloud quickly and easily.</p>
+      <p><a href="/download/cloud">Get started with OpenStack Autopilot&nbsp;&rsaquo;</a></p>
+    </div>
+    {% endif %}
+
+    {% if feature_1 == "installing-openStack-yourself" %}
+    <div class="four-col">
+      <h3>Installing OpenStack yourself</h3>
+      <p>If you prefer a manual setup of the latest OpenStack version, you can follow the instructions in our OpenStack operations guide.</p>
+      <p><a href="https://help.ubuntu.com/lts/clouddocs/installer/" class="external">Read the instructions</a></p>
+    </div>
+    {% endif %}
+
+    {% if feature_1 == "want-a-fully-managed-private-cloud" %}
+    <div class="four-col">
+      <h3>Want a fully managed private cloud?</h3>
+      <p>BootStack is your OpenStack private cloud with our experts responsible for design, deployment and availability.</p>
+      <p><a href="/cloud/openstack/managed-cloud/contact-us">Get BootStack&nbsp;&rsaquo;</a></p>
+    </div>
+    {% endif %}
+
+    {% if feature_1 == "experience-juju" %}
+    <div class="four-col">
+      <h3>Experience Juju</h3>
+      <p>Try our demo and see how easy it can be to manage services in the cloud.</p>
+      <p><a href="https://demo.jujucharms.com/" class="external">Try the Juju demo</a></p>
+    </div>
+    {% endif %}
+
+    {% if feature_1 == "browse-the-charm-store" %}
+    <div class="four-col">
+      <h3>Browse the Charm Store</h3>
+      <p>Charms are scripts that can be written in any language to deploy and configure services.</p>
+      <p><a href="https://jujucharms.com/store" class="external">Find out more at jujucharms.com</a></p>
+    </div>
+    {% endif %}
+
+    {% if feature_1 == "install-maas" %}
+    <div class="four-col">
+      <h3>Install MAAS</h3>
+      <p>Metal as a Service (MAAS) brings the language of the cloud to physical servers.</p>
+      <p><a href="https://www.maas.io" class="external">Find out more at maas.io</a></p>
+    </div>
+    {% endif %}
+
+    {% if feature_2 == none %}
+    <div class="four-col picto">
+      <h3>Get in touch</h3>
+      <p>Contact us for more information or to discuss your specific needs.</p>
+      <p><a href="/cloud/contact-us">Contact us&nbsp;&rsaquo;</a></p>
+      {% include "shared/_digesto.html" with section="cloud" %}
+    </div>
+    {% endif %}
+
+    {% if feature_3 == none %}
+    <div class="four-col last-col">
+      <h3>Further reading</h3>
+      {% if level_3 != 'snappy' %}
+        {% include "templates/_further_reading_links.html" with feed="https://insights.ubuntu.com/group/cloud-and-server/feed" articles=5 %}
+      {% endif %}
+      {% if level_3 == 'snappy' or level_1 == 'internet-of-things' %}
+        {% include "templates/_further_reading_links.html" with feed="http://insights.ubuntu.com/group/internet-of-things/feed/" articles=5 %}
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {% if feature_3 == "experience-juju" %}
+    <div class="four-col last-col">
+      <h3>Experience Juju</h3>
+      <p>Try our demo and see how easy it can be to manage services in the cloud.</p>
+      <p><a href="https://demo.jujucharms.com/">Try the Juju demo&nbsp;&rsaquo;</a></p>
+    </div>
+    {% endif %}
   </div>
+</div>

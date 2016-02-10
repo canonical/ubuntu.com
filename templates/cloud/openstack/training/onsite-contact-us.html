@@ -10,7 +10,8 @@
 
 {% endblock head_extra %}
 
-{% block content %}
+{% block content_container %}
+{% block outer_content %}
 <div class="row no-border">
     <div class="eight-col"> 
         <h1>Contact us about our training courses</h1>
@@ -25,8 +26,7 @@
           var mktFormLanguage = 'English'
         </script>
 
-        <script src="//assets.ubuntu.com/v1/37b1db88-jquery.min.js"></script>
-        <script  src="//assets.ubuntu.com/v1/e1085fb6-jquery.validate.min.js"></script>
+        <script src="//assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
 
         <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1223"> 
             <fieldset>
@@ -90,17 +90,11 @@
             <input type="hidden" name="retURL" value="http://www.ubuntu.com/cloud/training/thank-you" />
         </fieldset>
     </form>
-<script>
-$("#mktoForm_1223").validate({
-    errorElement: "span",
-    errorClass: "mktFormMsg mktError",
-    onkeyup: false,
-    onclick: false,
-    onblur: false   
-});
-</script>
+    
+<script  src="//assets.ubuntu.com/v1/f97fa297-stateCountry.js"></script>
+<!-- /MARKETO FORM -->
 
 </div>
-</div>
-{% include "shared/_munchkin.html" %}
-{% endblock content %}
+</div> 
+{% endblock outer_content %}
+{% endblock content_container %}
