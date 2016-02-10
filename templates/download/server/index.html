@@ -8,7 +8,8 @@
 	{% include "templates/_nav_breadcrumb.html" with section_title="Download" page_title="Server" tertiary="true"  %}
 {% endblock second_level_nav_items %}
 
-<div class="row row-hero row-background no-border">
+{% block content %}
+<div class="row row-grey">
 	<div class="eight-col append-four">
 		<h1>Download Ubuntu Server</h1>
 	</div>
@@ -16,7 +17,7 @@
 		<div class="box box-highlight clearfix vertical-divider">
 			<div class="eight-col no-margin-bottom">
 				<h2>Ubuntu Server {{lts_release}} LTS</h2>
-				<p>The Long Term Support version of Ubuntu Server, including the Icehouse release of OpenStack and support guaranteed until April 2019 &mdash; 64 bit only.</p>
+				<p>The Long Term Support version of Ubuntu Server, including the Icehouse release of OpenStack and support guaranteed until April 2019 &mdash; 64-bit only.</p>
 				<p><strong>Recommended for most users.</strong></p>
 				<p><a href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes" class="external">Ubuntu Server {{lts_release}} LTS release notes</a></p>
 			</div>
@@ -34,14 +35,12 @@
 			</div><!-- /.four-col -->
 		</div><!-- /.box -->
 	</div>
-</div><!-- /.row -->
 
-<div class="row row-grey">
 	<div class="twelve-col no-margin-bottom">
 		<div class="box box-highlight clearfix vertical-divider">
 			<div class="eight-col no-margin-bottom">
 				<h2>Ubuntu Server {{latest_release}}</h2>
-				<p>The latest version of Ubuntu Server, including the Kilo release of OpenStack and support for nine months &ndash; 64 bit only.</p>
+				<p>The latest version of Ubuntu Server, including the {{openstack_version}} release of OpenStack and support for nine months &ndash; 64-bit only.</p>
 				<p><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="external">Ubuntu Server {{latest_release}} release notes</a></p>
 			</div>
 			<div class="four-col last-col">
@@ -66,9 +65,9 @@
 	</div>
 	<div class="equal-height">
 		<div class="four-col box">
-			<h3>Ubuntu Server for cloud</h3>
-			<p>Whether you&rsquo;re building your own cloud or you want to use a public cloud, with Ubuntu you have all the tools you need to provision, deploy and manage your cloud environment. </p>
-			<p><a href="/download/cloud">Get Ubuntu Server for cloud&nbsp;&rsaquo;</a></p>
+			<h3>OpenStack</h3>
+			<p>Build your cloud with Autopilot, the easiest way to create and manage an OpenStack cloud. Test drive on VMs or build a free test cloud on your own hardware for up to ten machines today.</p>
+			<p><a href="/download/cloud">Get started with  Autopilot&nbsp;&rsaquo;</a></p>
 		</div>
 		<div class="four-col box">
 			<h3>Ubuntu Server for ARM</h3>
@@ -96,7 +95,7 @@
 			</div><!-- /.desktop -->
 			<div class="four-col">
 				<h3 class="header--download">Find alternative downloads</h3>
-				<p>Ubuntu is available via BitTorrent links and  regional mirrors. You can also use the network installer.</p>
+				<p>Ubuntu is available via BitTorrent links and regional mirrors. You can also use the network installer.</p>
 				<p><a href="/download/alternative-downloads">Alternative downloads&nbsp;&rsaquo;</a></p>
 			</div><!-- /.four-col -->
 			<div class="four-col last-col">
@@ -107,5 +106,4 @@
 		</div>
 	</div>
 </div>
-{% include "shared/_munchkin.html" %}
 {% endblock content %}

@@ -47,7 +47,7 @@ Thank you for your contribution
         <div class="box-grey twelve-col no-margin-bottom equal-height">
             <div class="four-col one box box-highlight no-margin-bottom">
                 <div class="text-center four-col">
-                    <img alt="ubuntu one" src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-discussion-warmgrey.svg" width="113" height="113" />
+                    <img alt="ubuntu one" src="//assets.ubuntu.com/v1/1d4164ba-picto-discussion-warmgrey.svg" width="113" height="113" />
                 </div>
                 <h3>Talk Ubuntu</h3>
                 <p>Debate the latest developments in the Ubuntu world at Ubuntu Discourse, our community forum.</p>
@@ -55,7 +55,7 @@ Thank you for your contribution
             </div><!-- /.four-col -->
             <div class="four-col support box box-highlight no-margin-bottom">
                 <div class="text-center four-col">
-                    <img alt="ubuntu advantage" src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-business-warmgrey.svg" width="113" height="113" />
+                    <img alt="ubuntu advantage" src="//assets.ubuntu.com/v1/03c5463a-picto-business-warmgrey.svg" width="113" height="113" />
                 </div>
                 <h3>Ubuntu Advantage</h3>
                 <p>Purchase our desktop support and access Ubuntu experts whenever you need.</p>
@@ -63,7 +63,7 @@ Thank you for your contribution
             </div><!-- /.four-col -->
             <div class="four-col ask last-col box box-highlight no-margin-bottom">
                 <div class="text-center four-col">
-                    <img alt="ubuntu advantage" src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-forum-warmgrey.svg" width="113" height="113" />
+                    <img alt="ubuntu advantage" src="//assets.ubuntu.com/v1/422b612c-picto-forum-warmgrey.svg" width="113" height="113" />
                 </div>
                 <h3>Ask Ubuntu</h3>
                 <p>Need help? Ask your questions here.</p>
@@ -75,7 +75,7 @@ Thank you for your contribution
 {% endblock content %}
 
 {% block footer_extra %}
-<script src="{{ STATIC_URL }}js/helpers.js"></script>
+<script src="{{ STATIC_URL }}u/js/helpers.js"></script>
 
 <script>
 // Download file information
@@ -90,7 +90,7 @@ if (version && architecture && architecture != 'amd64+mac') {
     // Report to Google Analytics
     YUI().use('event-base', function (Y) {
         Y.on('domready', function () {
-            _gaq.push(['_trackEvent', 'Download', 'Downloaded', 'User downloaded Ubuntu (' + version + '-desktop-' + architecture + ')']);
+            dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Downloaded', 'eventLabel' : 'User downloaded Ubuntu (' + version + '-desktop-' + architecture + ')', 'eventValue' : undefined });
         });
     });
 

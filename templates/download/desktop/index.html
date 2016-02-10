@@ -9,7 +9,7 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero row-background no-border">
+<div class="row row-grey">
 	<div class="eight-col append-four">
 		<h1>Download Ubuntu Desktop</h1>
 		<h2>{{lts_new_release}}</h2>
@@ -41,9 +41,7 @@
 			</div><!-- /.four-col -->
 		</div><!-- /.box -->
 	</div><!-- /.twelve-col -->
-</div><!-- /.row -->
-
-<div class="row row-grey">
+	
 	<div class="twelve-col no-margin-bottom">
 		<div class="box box-highlight clearfix vertical-divider">
 			<div class="eight-col no-margin-bottom">
@@ -104,5 +102,4 @@
 </div>
 
 {% include "download/desktop/_other-ways.html" %}
-{% include "shared/_munchkin.html" %}
 {% endblock content %}

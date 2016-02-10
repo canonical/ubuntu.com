@@ -12,42 +12,36 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero row-background no-border">
+<div class="row row-grey no-border">
 	<h1>Ubuntu for IBM POWER8</h1>
 	<div class="twelve-col no-margin-bottom">
 		<div class="box box-highlight clearfix">
 			<div class="six-col">
 				<h4>Ubuntu Server</h4>
 				<ul class="no-bullets">
-					<li><a href="http://cdimage.ubuntu.com/releases/{{lts_release}}/release/" onclick="_gaq.push(['_trackEvent', 'Download', 'POWER8 server', '{{lts_release}}']);">{{lts_release}} LTS&nbsp;&rsaquo;</a></li>
-					<li><a href="http://cdimage.ubuntu.com/releases/{{latest_release}}/release/" onclick="_gaq.push(['_trackEvent', 'Download', 'POWER8 server', '{{latest_release}}']);">{{latest_release}}&nbsp;&rsaquo;</a></li>
+					<li><a href="http://cdimage.ubuntu.com/releases/{{lts_release}}/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER8 server', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">{{lts_release}} LTS&nbsp;&rsaquo;</a></li>
+					<li><a href="http://cdimage.ubuntu.com/releases/{{latest_release}}/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER8 server', 'eventLabel' : '{{latest_release}}', 'eventValue' : undefined });">{{latest_release}}&nbsp;&rsaquo;</a></li>
 				</ul>
 			</div>
 			<div class="six-col last-col">
 				<h4>Netboot image</h4>
 				<ul class="no-bullets">
-					<li><a href="http://cdimage.ubuntu.com/netboot/{{lts_release}}/" onclick="_gaq.push(['_trackEvent', 'Download', 'POWER8 netboot', '{{lts_release}}']);">{{lts_release}} LTS&nbsp;&rsaquo;</a></li>
-					<li><a href="http://cdimage.ubuntu.com/netboot/{{latest_release}}/" onclick="_gaq.push(['_trackEvent', 'Download', 'POWER8 netboot', '{{latest_release}}']);">{{latest_release}}&nbsp;&rsaquo;</a></li>
+					<li><a href="http://cdimage.ubuntu.com/netboot/{{lts_release}}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER8 netboot', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">{{lts_release}} LTS&nbsp;&rsaquo;</a></li>
+					<li><a href="http://cdimage.ubuntu.com/netboot/{{latest_release}}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER8 netboot', 'eventLabel' : '{{latest_release}}', 'eventValue' : undefined });">{{latest_release}}&nbsp;&rsaquo;</a></li>
 				</ul>
 			</div>
 		</div>
 	</div><!-- /.box -->
 </div>
 
-<div class="row row-grey">
-	<div class="box box-highlight clearfix">
-		<div class="eight-col no-margin-bottom">
-			<h3>Ubuntu {{lts_release}} LTS for IBM POWER8</h3>
-			<p>Ubuntu 14.04 brings with it, for the first time, support for IBM POWER8 including our MAAS provisioning, Juju cloud orchestration, Landscape systems management and Ubuntu OpenStack.  Ubuntu {{lts_release}} adds CAPI and PowerNV support.</p>
-		</div>
+<div class="row equal-height">
+	<div class="six-col box clearfix">
+		<h3>Ubuntu {{lts_release}} LTS for IBM POWER8</h3>
+		<p>Ubuntu 14.04 brings with it, for the first time, support for IBM POWER8 including our MAAS provisioning, Juju cloud orchestration, Landscape systems management and Ubuntu OpenStack.  Ubuntu {{lts_release}} adds CAPI and PowerNV support.</p>
 	</div>
-</div>
-<div class="row">
-	<div class="box clearfix">
-		<div class="eight-col no-margin-bottom">
-			<h3>Ubuntu for {{latest_release}} for IBM POWER8</h3>
-			<p>Ubuntu {{latest_release}} continues to enable rapid innovation for POWER8 including Docker and Hardware Transactional Memory support along with many performance and availability enhancements. In addition, the OpenPOWER Foundation demonstrated over a dozen solutions running on Ubuntu at their inaugural OpenPOWER Summit in March 2015.</p>
-		</div>
+	<div class="six-col box clearfix last-col">
+		<h3>Ubuntu for {{latest_release}} for IBM POWER8</h3>
+		<p>Ubuntu {{latest_release}} continues to enable rapid innovation for POWER8 including support for new POWER8 models, memory and PCI Hotplug, gccgo 1.5, many performance and availability enhancements. Includes the only commercially available Linux to support the OpenPOWER Foundation&rsquo;s industry leading CAPI&nbsp;technology.</p>
 	</div>
 </div>
 
@@ -57,8 +51,7 @@
 		<p>Ubuntu for POWER8 brings the Ubuntu Server and Ubuntu Server for cloud with the OpenStack ecosystem to POWER8 enabling its ease of entry into the scale-out and Cloud markets.  Power is especially optimized for Mobile, Social, Cloud, Big Data and Analytics workloads.  Ubuntu and tooling such as Juju make managing and deploying those workloads trivial.</p>
 	</div><!-- /.twelve-col -->
 	<div class="four-col last-col text-center">
-		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-server-warmgrey.svg" alt="" width="200" height="200" />
+		<img src="//assets.ubuntu.com/v1/c3499461-picto-server-warmgrey.svg" alt="" width="200" height="200" />
 	</div>
 </div><!-- /.row -->
-{% include "shared/_munchkin.html" %}
 {% endblock content %}
