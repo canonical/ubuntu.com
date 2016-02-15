@@ -30,11 +30,11 @@
 	width: 37px;
 	float: left;
 	display: inline-block;
-	
-	&:after { 
-		content: " " !important; 
+
+  &:after {
+    content: " " !important;
 	}
-	
+
 	a {
 		display: block;
 		height: 37px;
@@ -44,9 +44,9 @@
 	}
 
 	&.active a {
-		background-image: 
-			url('../img/icons/icon-wechat.svg'),
-			url('../img/homepage/kylin/qr-code-wechat.png');
+    background-image:
+			url('//assets.ubuntu.com/v1/aab97879-icon-wechat.svg'),
+			url('//assets.ubuntu.com/v1/2be70a94-qr-code-wechat.png');
 		background-repeat: no-repeat;
 		background-position: left top, right top;
 		background-size: 37px 37px, auto;
@@ -56,11 +56,11 @@
 } // &__item
 
 .list--social__item--wechat a {
-    background: url('../img/icons/icon-wechat.svg') no-repeat;
+    background: url('//assets.ubuntu.com/v1/aab97879-icon-wechat.svg') no-repeat;
 }
 
 .list--social__item--weibo a {
-    background: url('../img/icons/icon-weibo.svg') no-repeat;
+    background: url('//assets.ubuntu.com/v1/d2d0d5b0-icon-weibo.svg') no-repeat;
 }
 
 main section .strip-inner-wrapper {
@@ -78,4 +78,109 @@ main .list--social {
 
 .homepage footer .list--social {
 	display: none;
+}
+
+form input[type="url"] {
+    -webkit-appearance: none;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    background: #fff;
+    border: 1px solid #999;
+    display: block;
+    font-family: Ubuntu,Arial,"libra sans",sans-serif;
+    font-size: 1em;
+    font-weight: 300;
+    padding: 0.6956522em 0.869565em;
+}
+
+header.banner .nav-primary li:hover ul:after {
+    left: 0;
+    background-position: 20px 0;
+}
+
+.header-search {
+	max-width: 180px;
+}
+
+// fade in list animation - located on desktop overview 'Benefits for all industry sectors' GB 16/10/2015
+// only hide it if js is on
+.js .list-fade {
+  opacity: 0;
+}
+
+.list-fade__title {
+  margin-bottom: 40px;
+}
+
+.list-fade__item {
+  -moz-animation-duration: 1.2s;
+  -webkit-animation-duration: 1.2s;
+  animation-duration: 1.2s;
+  display: block;
+  line-height: 1.3;
+  overflow: visible;
+  text-align: center;
+  text-decoration: none;
+  position: relative;
+  width: 100%;
+
+  a {
+    color: $warm-grey;
+
+    img {
+      -moz-animation-duration: 1.2s;
+      -webkit-animation-duration: 1.2s;
+      animation-duration: 1.2s;
+      margin-bottom: 10px;
+
+      &:hover {
+        opacity: .8;
+      }
+    }
+  }
+}
+
+// the .run class is added with js
+.run {
+  .list-fade {
+    opacity: 0;
+    animation: fadeIn .9s linear forwards;
+    animation-delay: 1s;
+    -moz-animation: fadeIn .9s linear forwards;
+    -moz-animation-delay: 1s;
+    -webkit-animation: fadeIn .9s linear forwards;
+    -webkit-animation-delay: 1s;
+
+    .list-fade__item {
+      animation: fadeIn .2s linear forwards, scaleIn .3s linear forwards;
+      -webkit-animation: fadeIn .2s linear forwards, scaleIn .3s linear forwards;
+      -moz-animation: fadeIn .2s linear forwards, scaleIn .3s linear forwards;
+      opacity: 0;
+    }
+
+    .list-fade__item:first-child {
+      -moz-animation-delay: 1s;
+      -webkit-animation-delay: 1s;
+      animation-delay: 1s;
+    }
+
+    .list-fade__item:nth-child(2) {
+      -moz-animation-delay: 1.1s;
+      -webkit-animation-delay: 1.1s;
+      animation-delay: 1.1s;
+    }
+
+    .list-fade__item:nth-child(3) {
+      -moz-animation-delay: 1.2s;
+      -webkit-animation-delay: 1.2s;
+      animation-delay: 1.2s;
+    }
+
+    .list-fade__item:nth-child(4) {
+      -moz-animation-delay: 1.3s;
+      -webkit-animation-delay: 1.3s;
+      animation-delay: 1.3s;
+    }
+  }
 }
