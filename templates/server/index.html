@@ -9,15 +9,15 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero row-image-centered">
+<div class="row row-her equal-height">
 	<div class="six-col">
 		<h1>Scale out with Ubuntu Server</h1>
 		<p>The leading platform for scale-out computing, Ubuntu Server helps you make the most of your infrastructure. Whether you want to deploy an OpenStack cloud, a Hadoop cluster or a 50,000-node render farm, Ubuntu Server delivers the best value scale-out performance available.</p>
 		<p><a class="button--primary" href="/download/server">Download Ubuntu Server</a></p>
 	</div>
-	<span>
+	<div class="six-col last-col equal-height__align-vertically">
 		<img src="//assets.ubuntu.com/v1/4b47cae5-image-server.svg" width="400" height="121" alt="" />
-	</span>
+	</div>
 </div><!-- /.row -->
 
 <div class="row">
@@ -59,14 +59,14 @@
 		</ul>
 </div>
 
-<div class="row row-image-centered">
+<div class="row equal-height">
 	<div class="eight-col">
 		<h2>Ubuntu Server on Power</h2>
 		<p>In addition to x86 and ARM servers, Ubuntu is supported on the Power architecture. For the enterprise datacentre, this means you can now build your infrastructure on any hardware you choose.</p>
 	</div>
-	<span>
+	<div class="four-col last-col equal-height__align-vertically">
 		<img src="//assets.ubuntu.com/v1/683950fd-logo-ibm.svg" alt="IBM logo" width="200" width="80" />
-	</span>
+	</div>
 </div>
 
 <div class="row">
@@ -164,17 +164,17 @@
 	</div><!-- /.four-col -->
 </div><!-- /.row -->
 
-<div class="row row-support-systems-management row-image-centered">
+<div class="row row-support-systems-management equal-height">
 	<div class="eight-col">
 		<h2 id="smarter-systems-management">Landscape &mdash; support and systems management</h2>
 		<p>The Ubuntu Advantage service programme provides fast problem resolution, direct access to Ubuntu experts and efficient administration with the Ubuntu systems management package, Landscape.</p>
 		<p>Landscape enables you to automate updates and control physical, virtual and cloud servers from a single interface. It&rsquo;s easy to set up and easy to use, giving you the power to manage thousands of machines as easily as you can manage one.</p>
 		<p><a href="/server/management">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
-	</div><!-- /.six-col -->
-	<span>
+	</div>
+	<div class="four-col last-col equal-height__align-vertically">
 		<img class="priority-0" src="//assets.ubuntu.com/v1/e047e34e-picto-landscape.svg" alt="Landscape pictogram" width="200" height="200" />
-	</span>
-</div><!-- /.row -->
+	</div>
+</div>
 
 <div class="row row-juju-maas vertical-divider">
 	<div class="six-col box-juju">
@@ -243,13 +243,15 @@
 	</div><!-- /.six-col -->
 </div><!-- /.row -->
 
-<div class="row row-image-centered">
+<div class="row equal-height">
 	<div class="eight-col">
 		<h2 id="the-fast-track-to-virtualisation">The fast track to virtualisation</h2>
 		<p>Ready to boost efficiencies and reduce costs? Virtualise your servers with Ubuntu Server and KVM. When you use a secure, lean version of Ubuntu as a guest operating system for your application, you can create virtual machine images in minutes. KVM, Xen, VMware and LXC are all supported.</p>
 	</div><!-- /.six-col -->
-	<span><img src="//assets.ubuntu.com/v1/ec77da7a-picto-startfirst-darkaubergine.svg" width="153" height="153" alt="" /></span>
-</div><!-- /.row -->
+	<div class="four-col last-col equal-height__align-vertically">
+  	<img src="//assets.ubuntu.com/v1/ec77da7a-picto-startfirst-darkaubergine.svg" width="153" height="153" alt="" />
+  </div>
+</div>
 {% include "shared/_enterprise_blog.html" %}
 {% include "shared/_community.html" %}
 {% endblock content %}
