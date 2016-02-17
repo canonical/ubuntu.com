@@ -39,7 +39,7 @@ footer.global {
   }
 
   .link-cta {
-    background-image: url(../img/icons/close-orange.svg);
+    background-image: url('//assets.ubuntu.com/v1/3f057022-close-orange.svg');
     background-repeat: no-repeat;
     color: #fff;
     float: right;
@@ -56,7 +56,7 @@ footer.global {
 html.no-svg,
 html.opera-mini {
   .cookie-policy .link-cta {
-    background-image: url(../img/icons/close-orange.png);
+    background-image: url('//assets.ubuntu.com/v1/898777ac-close-orange.png');
   }
 }
 html.opera-mini {
@@ -175,10 +175,10 @@ html.opera-mini {
     text-transform: uppercase;
   }
   .content-cat {
-    background: url("../img/icons/icon-resource-hub-icon-document.png") left center no-repeat;
+    background: url("//assets.ubuntu.com/v1/ed42aefa-icon-resource-hub-icon-document.png") left center no-repeat;
   }
   .content-cat-webinar {
-    background: url("../img/icons/icon-resource-hub-webinar.png") left center no-repeat;
+    background: url("//assets.ubuntu.com/v1/8f8326fa-icon-resource-hub-webinar.png") left center no-repeat;
   }
   &.box-image-centered div + span img {
     margin-top: 40px;
@@ -345,34 +345,17 @@ html.opera-mini {
   footer.global .footer-b ul li.secondary-server h2 span,
   footer.global .footer-b ul li.secondary-tablet h2 span,
   footer.global .footer-b ul li.secondary-tv h2 span {
-    background-image: url("../img/arrow_down_9fa097.png");
+    background-image: url("//assets.ubuntu.com/v1/7a7e0d52-arrow_down_9fa097.png");
   }
-  footer.global .footer-a ul li h2.active span,
-  footer.global .footer-a ul li.secondary-cloud h2.active span,
-  footer.global .footer-a ul li.secondary-desktop h2.active span,
-  footer.global .footer-a ul li.secondary-management h2.active span,
-  footer.global .footer-a ul li.secondary-phone h2.active span,
-  footer.global .footer-a ul li.secondary-server h2.active span,
-  footer.global .footer-a ul li.secondary-tablet h2.active span,
-  footer.global .footer-a ul li.secondary-tv h2.active span,
-  footer.global .footer-b ul li h2.active span,
-  footer.global .footer-b ul li.secondary-cloud h2.active span,
-  footer.global .footer-b ul li.secondary-desktop h2.active span,
-  footer.global .footer-b ul li.secondary-management h2.active span,
-  footer.global .footer-b ul li.secondary-phone h2.active span,
-  footer.global .footer-b ul li.secondary-server h2.active span,
-  footer.global .footer-b ul li.secondary-tablet h2.active span,
-  footer.global .footer-b ul li.secondary-tv h2.active span {
-    //background-image: url("../img/arrow_up_9fa097.png");
-  }
+
   footer.global .top-link a {
-    background-image: url("../img/pictograms/picto-pack/picto-upload-warmgrey.png");
+    background-image: url("//assets.ubuntu.com/v1/ca0559fd-picto-upload-warmgrey.png");
   }
   .nav-secondary ul.breadcrumb li .after {
-    background-image: url("../img/patterns/nav-down-arrow.png");
+    background-image: url("//assets.ubuntu.com/v1/88de5861-nav-down-arrow.png");
   }
   .nav-secondary.open ul.breadcrumb li .after {
-    background-image: url("../img/patterns/nav-up-arrow.png"), none;
+    background-image: url("//assets.ubuntu.com/v1/fc92aa19-nav-up-arrow.png"), none;
   }
 }
 
@@ -431,13 +414,13 @@ html.opera-mini {
           margin-bottom: 0;
           display: inline-block;
           float: left;
-          background-image: url("../img/arrow_down_9fa097.svg");
+          background-image: url("https://assets.ubuntu.com/v1/0bb13297-arrow_down_9fa097.svg");
           background-position: 96% 50%;
           background-repeat: no-repeat;
           background-size: 13px 13px;
 
           &.active {
-          	background-image: url("../img/arrow_up_9fa097.svg");
+          	background-image: url("//assets.ubuntu.com/v1/a41d8313-arrow_up_9fa097.svg");
           }
 
           &.active + ul.second-level-nav {
@@ -459,7 +442,7 @@ html.opera-mini {
             text-decoration: none;
           }
           span {
-            background-image: url("../img/arrow_down_9fa097.svg");
+            background-image: url("//assets.ubuntu.com/v1/0bb13297-arrow_down_9fa097.svg");
             background-position: 0 2px;
             background-repeat: no-repeat;
             background-size: 100% 100%;
@@ -583,13 +566,13 @@ html.opera-mini,
 html.no-svg {
   footer #nav-global {
     h2 span {
-      background-image: url("../img/arrow_down_9fa097.png");
+      background-image: url("//assets.ubuntu.com/v1/7a7e0d52-arrow_down_9fa097.png");
     }
     h2.active span {
-      background-image: url("../img/arrow_up_9fa097.png");
+      background-image: url("//assets.ubuntu.com/v1/43e2b367-arrow_up_9fa097.png");
     }
     h2:before {
-      background-image: url('../img/external-link.png');
+      background-image: url('//assets.ubuntu.com/v1/1dc31c47-external-link-orange.png');
     }
   }
 }
@@ -640,6 +623,7 @@ footer.global ul.inline li:after {
   footer #nav-global .nav-global-wrapper ul ul {
     margin-left: 0;
   }
+  
   footer.global {
     .two-col {
       width: 14.89361%;
@@ -647,11 +631,6 @@ footer.global ul.inline li:after {
       min-height: 0;
     }
   }
-	footer.global .footer-a {
-		//padding-bottom: 20px;
-		//margin-bottom: 20px;
-
-	}
 }
 
 @media only screen and (min-width : 769px) {
