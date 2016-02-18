@@ -46,8 +46,8 @@
     </div>
     <div class="six-col last-col">
 
-      <script src="//assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
-      <script src="//assets.ubuntu.com/v1/6ce35d3e-jquery-ui.min.js"></script>‌​
+      <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
+      <script src="{{ ASSET_SERVER_URL }}6ce35d3e-jquery-ui.min.js"></script>‌​
 
       <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="form-download-marketo">
         <fieldset>
@@ -460,7 +460,7 @@
       </form>
     </div>
   </div>
-  <script  src="//assets.ubuntu.com/v1/f97fa297-stateCountry.js"></script>
+  <script  src="{{ ASSET_SERVER_URL }}f97fa297-stateCountry.js"></script>
   <style type="text/css">#form-download-marketo select { margin-bottom: 0px; }</style>
 </section>
 
@@ -469,9 +469,9 @@
 {% endblock content %}
 {% block footer_extra %}
   <!-- dependencies -->
-  <script src="//assets.ubuntu.com/v1/ec520d10-XMLHttpRequest.min.js"></script>
-  <script src="//assets.ubuntu.com/v1/4176b39e-serialize.js"></script>
-  <script src="//assets.ubuntu.com/v1/6b7597df-event-listener-polyfill.js"></script>
+  <script src="{{ ASSET_SERVER_URL }}ec520d10-XMLHttpRequest.min.js"></script>
+  <script src="{{ ASSET_SERVER_URL }}4176b39e-serialize.js"></script>
+  <script src="{{ ASSET_SERVER_URL }}6b7597df-event-listener-polyfill.js"></script>
   <!-- script -->
   <script>
     /**

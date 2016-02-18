@@ -24,14 +24,14 @@
         <p><a href="/download/cloud" class="button--primary">Get started with OpenStack Autopilot</a></p>
     </div>
     <div class="four-col last-col">
-        {% comment %} might want to add this image instead of the chart - //assets.ubuntu.com/v1/845e046c-partner-openstack.png
+        {% comment %} might want to add this image instead of the chart - {{ ASSET_SERVER_URL }}845e046c-partner-openstack.png
         {% endcomment %}
         <figure id="ubuntu-pie" class="ubuntu-pie"></figure>
         <p class="note">* <a href="http://www.openstack.org/assets/survey/Public-User-Survey-Report.pdf" class="external">Among OpenStack deployments with more than 1,000 users, OpenStack survey &mdash; October 2015 [PDF 6.7MB]</a></p>
     </div>
 </section>
 
-<script src="//assets.ubuntu.com/v1/3c99518b-d3-version3.5.6.min.js"></script>
+<script src="{{ ASSET_SERVER_URL }}3c99518b-d3-version3.5.6.min.js"></script>
 
 <script>
   'use strict';
@@ -172,7 +172,7 @@
             <p><a href="/cloud/openstack/managed-cloud" class="button--primary">Learn more about BootStack</a></p>
         </div>
         <div class="five-col last-col equal-height__align-vertically">
-          <img src="//assets.ubuntu.com/v1/466046c7-illustration-cloud-bootstack.svg?w=320" alt="" class="not-for-small" width="320" />
+          <img src="{{ ASSET_SERVER_URL }}466046c7-illustration-cloud-bootstack.svg?w=320" alt="" class="not-for-small" width="320" />
         </div>
     </div>
 </section>
