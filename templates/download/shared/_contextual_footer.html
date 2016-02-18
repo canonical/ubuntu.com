@@ -1,10 +1,10 @@
 {% if not level_2 %}
-<div class="four-col feature-one">
+<div class="equal-height--vertical-divider__item four-col feature-one">
     <h3>Enterprise support</h3>
     <p>Learn more about Ubuntu Advantage with Landscape.</p>
     <p><a href="/management/ubuntu-advantage">Ubuntu Advantage&nbsp;&rsaquo;</a></p>
 </div>
-<div class="four-col">
+<div class="equal-height--vertical-divider__item four-col">
     <h3>Detailed documentation</h3>
     <p><a href="https://wiki.ubuntu.com/DocumentationTeam/SystemDocumentation/UbuntuServerGuide" class="external">Ubuntu Server Guide</a></p>
     <p><a href="https://insights.ubuntu.com/2014/05/21/ubuntu-cloud-documentation-14-04lts/" class="external">Ubuntu 14.04 LTS Documentation</a></p>
@@ -14,20 +14,20 @@
 {% else %}
 {% if level_2 == 'cloud' %}
 {% if level_3 == 'install-openstack-with-autopilot' %}
-<div class="four-col feature-one">
+<div class="equal-height--vertical-divider__item four-col feature-one">
     <h3>Want a fully managed private&nbsp;cloud?</h3>
     <p>BootStack is your OpenStack private cloud with our experts responsible for design, deployment and availability.</p>
     <p><a href="/cloud/openstack/managed-cloud/contact-us">Get BootStack&nbsp;&rsaquo;</a></p>
 </div>
 {% else %}
 {% if level_3 == 'install-autopilot-testdrive' %}
-<div class="four-col feature-one">
+<div class="equal-height--vertical-divider__item four-col feature-one">
     <h3>Buy an OpenStack cloud</h3>
     <p>Don&rsquo;t want to build a cloud yourself? With Bootstack, Canonical will set up and operate an OpenStack cloud for you from only &dollar;15 per server.</p>
     <p><a href="/cloud/openstack/managed-cloud">Learn more about BootStack&nbsp;&rsaquo;</a></p>
 </div>
 {% else %}
-<div class="four-col feature-one">
+<div class="equal-height--vertical-divider__item four-col feature-one">
     <h3>Installation guides</h3>
     <p>If you need some help installing Ubuntu, please check out our step-by-step guides.</p>
     <ul class="no-bullets">
@@ -38,14 +38,14 @@
 </div>
 {% endif %}{% endif %}
 {% if level_3 == 'install-openstack-with-autopilot' or level_3 == 'install-autopilot-testdrive' %}
-<div class="four-col">
+<div class="equal-height--vertical-divider__item four-col">
     <h3>Need more licenses?</h3>
     <p>Have you built your Ubuntu OpenStack cloud and need more licenses?  You&rsquo;ll need to purchase Ubuntu Advantage licenses.</p>
     <p><a href="http://shop.canonical.com/index.php?cPath=41" class="button--primary">Buy now</a></p>
     <p>Or <a href="/management/contact-us">contact our sales team&nbsp;&rsaquo;</a></p>
 </div>
 {% else %}
-<div class="four-col">
+<div class="equal-height--vertical-divider__item four-col">
     <h3>Detailed documentation</h3>
     <ul class="no-bullets">
         <li><a href="https://wiki.ubuntu.com/DocumentationTeam/SystemDocumentation/UbuntuServerGuide" class="external">Ubuntu Server Guide</a></li>
@@ -58,7 +58,7 @@
 {% else %}
 {% if level_2 == 'server' %}
 
-<div class="four-col feature-one">
+<div class="equal-height--vertical-divider__item four-col feature-one">
     <h3>Installation guides</h3>
     <p>If you need some help installing Ubuntu, please check out our step-by-step guides.</p>
     <ul class="no-bullets">
@@ -67,7 +67,7 @@
     </ul>
 </div>
 
-<div class="four-col">
+<div class="equal-height--vertical-divider__item four-col">
     <h3>Detailed documentation</h3>
     <p><a href="https://help.ubuntu.com/lts/serverguide/index.html" class="external">Ubuntu Server Guide</a></p>
 </div>
@@ -75,13 +75,13 @@
 {% else %}
 {% if level_2 == 'desktop' %}
 
-<div class="four-col feature-one">
+<div class="equal-height--vertical-divider__item four-col feature-one">
     <h3>Installation guide</h3>
     <p>If you need some help installing Ubuntu, please check out our step-by-step guide.</p>
     <p><a href="/download/desktop/install-ubuntu-desktop">Read the installation instructions&nbsp;&rsaquo;</a></p>
 </div>
 
-<div class="four-col">
+<div class="equal-height--vertical-divider__item four-col">
     <h3>Try before you install</h3>
     <p>There&rsquo;s no need to replace your operating system to try Ubuntu.</p>
     <ul class="no-bullets">
@@ -93,18 +93,18 @@
 {% else %}
 {% if level_2 == 'ubuntu-kylin' %}
 
-<div class="four-col feature-one">
+<div class="equal-height--vertical-divider__item four-col feature-one">
     <h3>BitTorrent</h3>
     <p>If you prefer, you can download Ubuntu Kylin via a torrent.</p>
-    <ul class="no-bullets vertical-divider">
-        <li class="two-col">
+    <ul class="no-bullets equal-height--vertical-divider">
+        <li class="equal-height--vertical-divider__item two-col">
             <h4>Ubuntu Kylin 14.04.3</h4>
             <ul class="no-bullets">
                 <li><a href="http://cdimage.ubuntu.com/ubuntukylin/releases/14.04/release/ubuntukylin-14.04.3-desktop-amd64.iso.torrent" class="external">64-bit torrent</a></li>
                 <li><a href="http://cdimage.ubuntu.com/ubuntukylin/releases/14.04/release/ubuntukylin-14.04.1-desktop-i386.iso.torrent" class="external">32-bit torrent</a></li>
             </ul>
         </li>
-        <li class="two-col last-col">
+        <li class="equal-height--vertical-divider__item two-col last-col">
             <h4>Ubuntu Kylin 15.10</h4>
             <ul class="no-bullets">
                 <li><a href="http://cdimage.ubuntu.com/ubuntukylin/releases/{{latest_release}}/release/ubuntukylin-{{latest_release}}-desktop-amd64.iso.torrent" class="external">64-bit torrent</a></li>
@@ -114,7 +114,7 @@
     </ul>
 </div>
 
-<div class="four-col">
+<div class="equal-height--vertical-divider__item four-col">
     <h3>The community is here to help</h3>
     <p>To learn more about Ubuntu Kylin or get help on installing or using it, <a href="http://www.ubuntukylin.com" class="external">visit www.ubuntukylin.com</a></p>
 </div>
@@ -122,7 +122,7 @@
 {% else %}
 {% if level_2 == 'alternative-downloads' %}
 
-<div class="four-col feature-one">
+<div class="equal-height--vertical-divider__item four-col feature-one">
     <h3>More information</h3>
     <p>Learn more about management with Landscape.</p>
     <p><a href="/management">Ubuntu Advantage&nbsp;&rsaquo;</a></p>
@@ -130,7 +130,7 @@
     <p><a href="/cloud/openstack">OpenStack Autopilot&nbsp;&rsaquo;</a></p>
 </div>
 
-<div class="four-col">
+<div class="equal-height--vertical-divider__item four-col">
     <h3>Installation guides</h3>
     <p>If you need some help installing Ubuntu, please check out our step-by-step guides.</p>
     <ul class="no-bullets">
@@ -148,7 +148,7 @@
 
 {% if level_3 == 'install-openstack-with-autopilot' or level_3 == 'install-autopilot-testdrive' %}
 
-<div class="four-col">
+<div class="equal-height--vertical-divider__item four-col">
     <h3>Ask Ubuntu</h3>
     <p>Do you have any questions or feedback about setting up OpenStack Autopilot?</p>
     <p><a href="http://askubuntu.com/questions/ask?tags=landscape+openstack-autopilot" class="external">Talk to us on Ask Ubuntu</a></p>
@@ -156,7 +156,7 @@
 
 {% else %}
 
-<div class="four-col">
+<div class="equal-height--vertical-divider__item four-col">
     <h3>Helping hands</h3>
     <p>If you get stuck, help is always at hand.</p>
     <ul class="no-bullets">

@@ -1,9 +1,9 @@
 <div id="context-footer" class="{{ level_1 }}-context-footer no-border">
 <hr />
-	<div class="twelve-col vertical-divider">
+	<div class="twelve-col equal-height--vertical-divider">
 
     {% if feature_1 == none %}
-    <div class="four-col feature-two">
+    <div class="equal-height--vertical-divider__item four-col feature-two">
       <h3>Want to learn more about developing with Ubuntu core?</h3>
       <p>Learn how to build or port apps for the next generation of Ubuntu.</p>
       <p><a href="https://developer.ubuntu.com/en/snappy/" class="external">Visit our developer site</a></p>
@@ -11,7 +11,7 @@
     {% endif %}
 
     {% if feature_1 == "event" %}
-    <div class="event four-col feature-two" itemscope itemtype="http://data-vocabulary.org/Event">
+    <div class="equal-height--vertical-divider__item event four-col feature-two" itemscope itemtype="http://data-vocabulary.org/Event">
       <h3><a href="https://insights.ubuntu.com/event/ces/" class="external">Consumer Electronics Show 2016 (CES)</a></h3>
       <div class="event-map">
         <a href="https://insights.ubuntu.com/event/ces/">
@@ -32,11 +32,11 @@
     </div>
     {% endif %}
 
-    <div class="feature-three four-col">
+    <div class="equal-height--vertical-divider__item feature-three four-col">
         {% include "shared/_newsletter_signup.html" %}
     </div>
 
-    <div class="feature-four four-col last-col">
+    <div class="equal-height--vertical-divider__item feature-four four-col last-col">
         <h3>Further reading</h3>
         {% include "templates/_further_reading_links.html" with feed="https://insights.ubuntu.com/group/cloud-and-server/feed" articles=3 %}
     </div>
