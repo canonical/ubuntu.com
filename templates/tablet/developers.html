@@ -1,0 +1,157 @@
+{% extends "tablet/base_tablet.html" %}
+
+{% block title %}For developers | Ubuntu for tablets{% endblock %}
+
+{% block meta_description %}Ubuntu comes to the phone and tablet with a ready-made app ecosystem. Thanks to its web APIs, any web property can be installed as an app for mobile devices, with its own icon and access to system services so that  to the user it appears just like a native app. Any HTML5 app can be easily ported, while native apps that use the full power of the hardware can be developed using the Ubuntu SDK.{% endblock %}
+
+{% block meta_keywords %}Ubuntu tablet, Ubuntu for tablets, Ubuntu Edition, Ubuntu, tablet Ubuntu, lightweight laptop, thin laptop, Linux tablet, Linux tablets, Linux on tablet, Linux for tablets, tablet Linux, screen replacement, Laptop and tablet, hybrid tablet, hybrid laptop, laptop replacement, laptop replacement screens, laptop screen replacement, convertible laptop, 2 in 1 laptop, two in one laptop, laptop battery replacement, Ubuntu convergence, Ubuntu tablet convergence, BQ Aquaris, BQ Aquaris M10, BQ tablet{% endblock %}
+
+{% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
+  {% include "templates/_nav_breadcrumb.html" with section_title="Tablet" page_title="For developers" %}
+</div>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<section class="row row-hero">
+  <div class="strip-inner-wrapper row-hero__inner-wrapper">
+  	<div class="five-col">
+      <h1>For developers</h1>
+      <img class="twelve-col for-small" src="{{ ASSET_SERVER_URL }}bc0abc14-tablet-windowed-mode-qt-creator.png?w=480" alt="" />
+      <p>Ubuntu is the only operating system that can run both a mobile-based full touch interface and a true PC experience from a single smart device.</p>
+      <ul class="list-ticks--compact">
+        <li>A comprehensive developer offering that works across the desktop, the tablet and the phone</li>
+        <li>The world&rsquo;s favourite desktop Linux distribution, with a mature app marketplace</li>
+        <li>Choose from a number of app development options from web to native apps</li>
+        <li>Used by millions of developers, all over the world</li>
+  		</ul>
+  	</div>
+  </div>
+</section>
+
+<section class="row row--one-app strip-light no-border">
+  <div class="strip-inner-wrapper">
+    <div class="eight-col">
+      <h2>One app on Ubuntu for all form factors</h2>
+      <img class="twelve-col for-small" src="{{ ASSET_SERVER_URL }}619a89e6-Convergence_Devices_david_music.png?w=480" alt="" />
+      <p class="eight-col">With Ubuntu, you can write a single app with responsive interfaces that allow it to run on any Ubuntu device. Use the Ubuntu SDK to build your app and make it available to users of Ubuntu PCs, phones and tablets, all in a single upload to the Ubuntu Store.</p>
+    </div>
+  	<div class="twelve-col not-for-small">
+  		<img class="row--one-app__image" src="{{ ASSET_SERVER_URL }}619a89e6-Convergence_Devices_david_music.png?w=984" srcset="https://assets.ubuntu.com/v1/619a89e6-Convergence_Devices_david_music.png?w=700 880w, https://assets.ubuntu.com/v1/619a89e6-Convergence_Devices_david_music.png?w=800 980w, https://assets.ubuntu.com/v1/619a89e6-Convergence_Devices_david_music.png?w=984 1064w" alt="Ubuntu on a phone, tablet and PC monitor" />
+  	</div>
+  </div>
+</section>
+
+<section class="row row--dark no-border">
+  <div class="strip-inner-wrapper">
+    <h2>Three reasons to build your next app on Ubuntu</h2>
+    <div class="seven-col">
+      <ol class="list-ticks--compact">
+        <li>You can create one application that can run on any Ubuntu device and inherently scale to any type of display</li>
+        <li>Ubuntu offers API support for deep service integration for native apps as well as simple frameworks for web app development (including JavaScript frameworks like Cordova and Node.JS environments)</li>
+        <li>Ubuntu is one of industry's most established developer communities, empowering open development for devices including PCs, smartphones and tablets</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="row strip-light">
+  <div class="strip-inner-wrapper">
+    <div class="twelve-col">
+      <h2 class="twelve-col">Build it your way</h2>
+    </div>
+    <div class="twelve-col vertical-divider">
+      <div class="four-col">
+        <div class="four-col clearfix no-margin-bottom">
+          <div class="inline-small one-col align-center">
+            <img width="50" alt="A selection of apps" src="{{ ASSET_SERVER_URL }}c5022a72-browser-tabs.svg">
+          </div>
+          <div class="three-col last-col no-margin-bottom">
+            <h3>Convergent native apps</h3>
+          </div>
+        </div>
+        <p>For graphics-heavy apps and games, Ubuntu offers full native OpenGL, alongside a QML development environment that lets you combine game engines written in C or C++ with JavaScript-based UI glue. That&rsquo;s why firms like EA, Valve Software and Unity Technologies are already committing to Ubuntu.</p>
+      </div>
+      <div class="four-col">
+        <div class="four-col clearfix no-margin-bottom">
+          <div class="inline-small one-col align-center">
+            <img width="50" alt="" src="{{ ASSET_SERVER_URL }}5b24f6af-terminal-app-symbolic.svg">
+          </div>
+          <div class="three-col last-col no-margin-bottom">
+            <h3>HTML5 web apps</h3>
+          </div>
+        </div>
+        <p>Our unique web app system lets you adapt any web property for installation as an app on Ubuntu. Running independently of the browser, it can be granted its own icon and access to system services. HTML5 apps written for other platforms can also be easily adapted to Ubuntu. Our browser supports WebRTC services to allow web based communication to just work.</p>
+      </div>
+      <div class="four-col last-col">
+        <div class="four-col clearfix no-margin-bottom">
+          <div class="inline-small one-col align-center">
+            <img width="50" alt="" src="{{ ASSET_SERVER_URL }}4ed8f862-search.svg">
+          </div>
+          <div class="three-col last-col no-margin-bottom">
+            <h3>Ubuntu&rsquo;s unique scopes</h3>
+          </div>
+        </div>
+        <p>Scopes deliver content by topic, straight to the user&rsquo;s fingertips. They give you the opportunity to build app-like experiences right into the default interface, without the cost of developing traditional apps. To make development even easier, a new UI toolkit is available through the Ubuntu SDK, using JavaScript, C++ or Go.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="row row--developers strip-light">
+  <div class="strip-inner-wrapper">
+    <div class="five-col not-for-small">
+     <img src="{{ ASSET_SERVER_URL }}12b46991-apps-grid.png?w=398" alt="A selection of Ubuntu apps" />
+    </div>
+    <div class="six-col prepend-one last-col">
+      <h2>One size fits all</h2>
+      <div class="five-col for-small align-center">
+        <img alt="" src="{{ ASSET_SERVER_URL }}12b46991-apps-grid.png?w=320" width="320" />
+      </div>
+      <p>Developers can create one app that adapts to all form factors and screen sizes. Web apps and convergent native apps can be written using QML, HTML5 and Cordova with an ever-growing list of Ubuntu App Platform APIs. Ubuntu&rsquo;s tight integration cycle enables a true write-once, run-everywhere approach that conserves precious developer time.</p>
+    </div>
+  </div>
+</section>
+
+<section class="row row--scopes no-border">
+  <div class="strip-inner-wrapper">
+    <div class="twelve-col">
+      <div class="eight-col">
+      <h2>Get noticed with scopes</h2>
+      <p>Ubuntu tablets and phones ship with a number of pre-installed scopes, including Shopping, Photos, Videos, News and NearBy for location-based information. By making your services available in one of these scopes &mdash; or even creating your own &mdash; you can build your content and services into the device&rsquo;s default user experience.</p>
+      </div>
+      <div class="twelve-col no-margin-bottom align-center">
+        <img class="not-for-small row--scopes__image" src="{{ ASSET_SERVER_URL }}b54150c1-tablet-developers-scopes.png?w=984" srcset="https://assets.ubuntu.com/v1/b54150c1-tablet-developers-scopes.png?w=700 880w, https://assets.ubuntu.com/v1/b54150c1-tablet-developers-scopes.png?w=800 980w, https://assets.ubuntu.com/v1/b54150c1-tablet-developers-scopes.png?w=984 1064w" alt="Two tablets running Ubuntu displaying a selection of films" />
+        <img class="for-small row--scopes__image" src="{{ ASSET_SERVER_URL }}b54150c1-tablet-developers-scopes.png?w=480" alt="Two tablets running Ubuntu displaying a selection of films" />
+     </div>
+      <div class="twelve-col no-margin-bottom vertical-divider">
+        <div class="six-col">
+          <h3>What is a scope?</h3>
+          <p>Ubuntu&rsquo;s scopes are like filters through which you can surface your content on an Ubuntu tablet or phone, without building an app. They use a straightforward framework for containing data sources, delivering content by topic, straight to the user&rsquo;s fingertips.</p>
+          <p><a href="https://developer.ubuntu.com/en/scopes/" class="external">Visit our developer site</a></p>
+        </div>
+        <div class="six-col last-col no-margin-bottom">
+          <h3>Easy to create</h3>
+          <p>By using our predefined layouts and card designs you can piece together a unique mobile experience at a fraction of the cost of an app. Scopes are developed using the Ubuntu Scopes UI toolkit, available through the Ubuntu SDK using JavaScript, C++ or Go.</p>
+          <p><a href="http://design.ubuntu.com/" class="external">Visit our design guide</a></p>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="row row--canonical no-border">
+  <div class="strip-inner-wrapper">
+  	<div class="six-col not-for-small">
+  		<img src="{{ ASSET_SERVER_URL }}b585b805-terminal.svg" alt="" />
+  	</div>
+    <div class="six-col last-col">
+      <h2>Explore the Ubuntu SDK</h2>
+      <p>Try out the integrated development environment for developing apps and scopes for Ubuntu.</p>
+      <p><a href="https://developer.ubuntu.com/en/start/" class="link-cta-ubuntu">Get started</a></p>
+    </div>
+  </div>
+</section>
+
+{% include "tablet/shared/_contextual_footer.html" with feature_1="developers" %}
+
+{% endblock content %}

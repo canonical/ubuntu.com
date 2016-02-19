@@ -17,8 +17,8 @@
 			<div class="six-col">
 				<h4>HP Moonshot</h4>
 				<ul class="no-bullets">
-					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/trusty-updates/main/installer-armhf/current/images/keystone/netboot/" onclick="_gaq.push(['_trackEvent', 'External Link', 'HP Moonshot m800 ARMv7', 'From Download ARM']);" class="external">m800 ARMv7 netboot image (14.04 LTS)</a></li>
-					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/trusty-updates/main/installer-arm64/current/images/generic/netboot/xgene/" onclick="_gaq.push(['_trackEvent', 'External Link', 'HP Moonshot m400 ARMv8', 'From Download ARM']);" class="external">m400 ARMv8 netboot image (14.04 LTS)</a></li>
+					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/trusty-updates/main/installer-armhf/current/images/keystone/netboot/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'HP Moonshot m800 ARMv7', 'eventLabel' : 'From Download ARM', 'eventValue' : undefined });" class="external">m800 ARMv7 netboot image (14.04 LTS)</a></li>
+					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/trusty-updates/main/installer-arm64/current/images/generic/netboot/xgene/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'HP Moonshot m400 ARMv8', 'eventLabel' : 'From Download ARM', 'eventValue' : undefined });" class="external">m400 ARMv8 netboot image (14.04 LTS)</a></li>
 				</ul>
 				<p><a class="external" href="http://h20564.www2.hp.com/hpsc/doc/public/display?docId=c03933547">HP ProLiant Moonshot user guide</a></p>
 				<p>HP Moonshot cartridges come factory installed</p>
@@ -26,8 +26,8 @@
 			<div class="six-col last-col">
 				<h4>Applied Micro X-Gene ARMv8</h4>
 				<ul class="no-bullets">
-					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/trusty/main/installer-arm64/current/images/generic/netboot/xgene/" onclick="_gaq.push(['_trackEvent', 'External Link', 'Applied Micro X-Gene ARMv8 14.04 download', 'From Download ARM']);" class="external">14.04 LTS</a></li>
-					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/wily/main/installer-arm64/current/images/netboot/ubuntu-installer/arm64/xgene-uboot/" onclick="_gaq.push(['_trackEvent', 'External Link', 'Applied Micro X-Gene ARMv8 15.10 download', 'From Download ARM']);" class="external">{{latest_release}}</a></li>
+					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/trusty/main/installer-arm64/current/images/generic/netboot/xgene/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Applied Micro X-Gene ARMv8 14.04 download', 'eventLabel' : 'From Download ARM', 'eventValue' : undefined });" class="external">14.04 LTS</a></li>
+					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/wily/main/installer-arm64/current/images/netboot/ubuntu-installer/arm64/xgene-uboot/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Applied Micro X-Gene ARMv8 15.10 download', 'eventLabel' : 'From Download ARM', 'eventValue' : undefined });" class="external">{{latest_release}}</a></li>
 				</ul>
 				<p><a class="external" href="https://wiki.ubuntu.com/ARM/Server/Install/Mustang">Installation instructions for the Mustang platform</a></p>
 			</div>
@@ -38,14 +38,14 @@
 			<div class="six-col">
 				<h4>Cavium Thunder ARMv8 Developer Platform</h4>
 				<ul class="no-bullets">
-					<li><a href="http://cavium.com/ThunderX_ARM_Processors.html" onclick="_gaq.push(['_trackEvent', 'External Link', 'ARM Cavium ThunderX product details', 'From Download ARM']);" class="external">Cavium ThunderX product details</a></li>
+					<li><a href="http://cavium.com/ThunderX_ARM_Processors.html" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM Cavium ThunderX product details', 'eventLabel' : 'From Download ARM', 'eventValue' : undefined });" class="external">Cavium ThunderX product details</a></li>
 					<li>Coming Soon &mdash; 14.04 LTS</li>
 				</ul>
 			</div>
 			<div class="six-col last-col">
 				<h4>Marvell Armada XP</h4>
 				<ul class="no-bullets">
-					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/precise-updates/main/installer-armhf/current/images/armadaxp/netboot" onclick="_gaq.push(['_trackEvent', 'External Link', 'ARM Marvell Armada XP download', 'From Download ARM']);" class="external">12.04 LTS</a></li>
+					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/precise-updates/main/installer-armhf/current/images/armadaxp/netboot" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM Marvell Armada XP download', 'eventLabel' : 'From Download ARM', 'eventValue' : undefined });" class="external">12.04 LTS</a></li>
 				</ul>
 			</div>
    		</div><!-- /.twelve-col -->
@@ -58,13 +58,13 @@
 			<!-- <p><a href="/server">Learn more about Ubuntu Server&nbsp;&rsaquo;</a></p> -->
 		</div>
     	<div class="six-col last-col no-margin-bottom">
-		    <img src="{{ STATIC_URL }}img/server/image-server.svg" alt="" />
+		    <img src="{{ ASSET_SERVER_URL }}4b47cae5-image-server.svg" alt="" />
     	</div>
 </div>
 
 <div class="row no-border">
 	<div class="four-col text-center">
-		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-server-warmgrey.svg" alt="" width="200" height="200" />
+		<img src="{{ ASSET_SERVER_URL }}c3499461-picto-server-warmgrey.svg" alt="" width="200" height="200" />
 	</div>
 	<div class="eight-col last-col">
 		<h3>Ready to deploy now</h3>
@@ -76,4 +76,3 @@
 	</div><!-- /.twelve-col -->
 </div><!-- /.row -->
 {% endblock content %}
-{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

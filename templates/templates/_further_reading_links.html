@@ -1,32 +1,29 @@
 {% block head_extra %}
-<script src="https://www.google.com/jsapi"></script>
-<script>google.load("feeds", "1")</script>
-{% endblock %}
-	<div id="insights-footer-feed"></div>
-	<script>
-		var feedcontainer2=document.getElementById("insights-footer-feed")
-		var feedurl2=document.location.protocol+"//insights.ubuntu.com/feed/"
-		var feedlimit2=4
-		var rssoutput="<ul class='no-bullets smaller'>"
-			function rssfeedsetup2(){
-				var feedpointer2=new google.feeds.Feed(feedurl2) //Google Feed API method
-						feedpointer2.setNumEntries(feedlimit2) //Google Feed API method
-						feedpointer2.load(displayfeed2) //Google Feed API method
-			}
 
-			function displayfeed2(result){
-				if (!result.error){
-					var thefeeds2=result.feed.entries
-					for (var i=0; i<thefeeds2.length; i++){
-						rssoutput+="<li><a href='" + thefeeds2[i].link + "'>" + thefeeds2[i].title + "&nbsp;&rsaquo;</a></li>"}
-						rssoutput+="</ul>"
-						feedcontainer2.innerHTML=rssoutput
-				}
-				else
-					alert("")
-				}
-				
-				window.onload=function(){
-				rssfeedsetup2()
-				}
-	</script>
+<script src="{{ ASSET_SERVER_URL }}c954db4a-jfeed_prm.js"></script>
+{% endblock %}
+	<div id="insights-footer-feed"><noscript><a class="external" href="https://insights.ubuntu.com">Find out more at insights.ubuntu.com</a></noscript></div>
+	<script>
+		var feedurl={% if feed %}"{{ feed }}"{% else %}"https://insights.ubuntu.com/feed/"{% endif %};
+		var feedlimit={% if articles %}{{ articles }}{% else %}4{% endif %};
+    $.getFeed({
+      url: feedurl,
+      success: function(feed) {
+        var html = "<ul class='no-bullets smaller'>";
+        for(var i = 0; i < feed.items.length && i < feedlimit; i++) {
+          var item = feed.items[i];
+          html += "<li><a href='" + item.link + "'>" + item.title + "&nbsp;&rsaquo;</a></li>";
+        }
+        html += "</ul>";
+        if ($('#insights-footer-feed')) {
+          $('#insights-footer-feed').append(html);
+        }
+      }, failure: function () {
+        var html = "<ul class='no-bullets smaller'><li>Read news, case studies, whitepapers and more on <a class='external' href='https://insights.ubuntu.com'>insights.ubuntu.com</a></li></ul>"; // default if feed fails
+        if ($('#insights-footer-feed')) {
+          $('#insights-footer-feed').append(html);
+        }
+      }
+    });
+
+</script>

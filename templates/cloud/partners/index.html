@@ -83,14 +83,14 @@
     <p>The cloud world is evolving rapidly and Ubuntu is at the centre, with world&dash;class partners and a suite of OpenStack partner programmes.</p>
   </div>
   <div class="four-col last-col align-center">
-    <img class="cloud-row-hero-image" src="{{ STATIC_URL }}img/cloud/image-cloud.svg" alt="Ubuntu in a cloud" />
+    <img class="cloud-row-hero-image" src="{{ ASSET_SERVER_URL }}7d6041a7-image-cloud.svg" alt="Ubuntu in a cloud" />
   </div>
   <div class="bg-clouds"></div><!-- <div class="bg-more-clouds"></div> -->
 </div><!-- /.row -->
 
 <div class="row equal-height">
     <div class="four-col align-center not-for-small align-vertically">
-        <img src="{{ STATIC_URL }}img/logos/logo-juju-171x174.png" width="171" height="171" alt="Juju" />
+        <img src="{{ ASSET_SERVER_URL }}f7bff337-logo-juju-171x174.png" width="171" height="171" alt="Juju" />
     </div>
     <div class="eight-col last-col">
         <h2>Charm Partner Programme</h2>
@@ -98,7 +98,7 @@
         <p><a href="http://partners.ubuntu.com/partner-programmes/software#charm-partner-programme">Learn more about the Charm Partner Programme&nbsp;&rsaquo;</a></p>
     </div>
     <div class="four-col align-center for-small align-vertically">
-        <img src="{{ STATIC_URL }}img/logos/logo-juju-171x174.png" width="171" height="171" alt="Juju" />
+        <img src="{{ ASSET_SERVER_URL }}f7bff337-logo-juju-171x174.png" width="171" height="171" alt="Juju" />
     </div>
 </div><!-- /.row -->
 
@@ -117,7 +117,7 @@
 
 <div class="row">
     <div class="prepend-one two-col append-one">
-        <img src="{{ STATIC_URL }}img/cloud/ecosystem/logo-premiercloudpartner.svg" alt="" />
+        <img src="{{ ASSET_SERVER_URL }}69dadbd3-logo-premiercloudpartner.svg" alt="" />
     </div>
     <div class="eight-col last-col">
         <h2>World leading public cloud partners</h2>
@@ -140,7 +140,7 @@
 
 <div class="row row-grey no-border">
     <div class="four-col align-center">
-        <img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-partner-midaubergine.svg" width="160" height="160" alt="" />
+        <img src="{{ ASSET_SERVER_URL }}2cc56cf9-picto-partner-midaubergine.svg" width="160" height="160" alt="" />
     </div>
     <div class="eight-col last-col">
         <h2>Become a cloud partner</h2>
@@ -150,11 +150,9 @@
 </div>
 
 {% include "cloud/shared/_contextual_footer.html" %}
-
 {% endblock content %}
 
 {% block footer_extra %}
-{{ marketo }}
 <script>
     YUI().use('event-base', function (Y) {
         Y.on('domready', function () {

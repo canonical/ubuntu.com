@@ -1,5 +1,32 @@
 {% extends "cloud/base_cloud.html" %}
 
+<<<<<<< 3ae76c31ec9894dc74b6fed8ffcc06cd87ab9d1e
+=======
+{% block content-experiment %}<!-- Google Analytics Content Experiment code -->
+<script>
+  // stop local redirect
+  if (document.domain === "www.ubuntu.com") {
+    function utmx_section(){}function utmx(){}(function(){var
+k='3554866-2',d=document,l=d.location,c=d.cookie;
+if(l.search.indexOf('utm_expid='+k)>0)return;
+function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
+indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
+length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
+'<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
+'://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
+'&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
+valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+'" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
+  }
+</script>
+<script>
+  if (document.domain === "www.ubuntu.com") {
+    utmx('url','A/B');
+  }
+</script>
+<!-- End of Google Analytics Content Experiment code -->{% endblock %}
+
+>>>>>>> Latest templates 18-02-2016
 {% block title %}Ubuntu in the cloud | Cloud{% endblock %}
 
 {% block meta_description %}Whether you’re building your own OpenStack cloud, want a hosted private cloud or want to use Ubuntu in the public cloud, we offer all the training, software, tools, services and support you need.{% endblock meta_description %}
@@ -77,7 +104,7 @@
         <p><a href="/cloud/openstack/managed-cloud#calculator-form" class="link-cta-ubuntu">Calculate your savings</a></p>
     </div>
     <div class="six-col last-col text-center">
-        <img src="https://assets.ubuntu.com/v1/466046c7-illustration-cloud-bootstack.svg?w=320" alt="" class="not-for-small" width="320" />
+        <img src="{{ ASSET_SERVER_URL }}466046c7-illustration-cloud-bootstack.svg?w=320" alt="" class="not-for-small" width="320" />
     </div>
 </section>
 
@@ -99,73 +126,73 @@
     <div class="juju-charms-list">
         <div class="two-col align-center box">
             <a href="https://jujucharms.com/hadoop/" class="juju-charms-list__link">
-                <img src="https://assets.ubuntu.com/v1/0c2c6e40-hadoop-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <img src="{{ ASSET_SERVER_URL }}0c2c6e40-hadoop-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
                 <p>Hadoop</p>
             </a>
         </div>
         <div class="two-col align-center box">
             <a href="https://jujucharms.com/mongodb/" class="juju-charms-list__link">
-                <img src="https://assets.ubuntu.com/v1/d529fc0b-mongodb-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <img src="{{ ASSET_SERVER_URL }}d529fc0b-mongodb-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
                 <p>MongoDB</p>
             </a>
         </div>
         <div class="two-col align-center box">
             <a href="https://jujucharms.com/u/asanjar/spark/" class="juju-charms-list__link">
-                <img src="https://assets.ubuntu.com/v1/37930aba-spark-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <img src="{{ ASSET_SERVER_URL }}37930aba-spark-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
                 <p>Spark</p>
             </a>
         </div>
         <div class="two-col align-center box">
             <a href="https://jujucharms.com/redis/" class="juju-charms-list__link">
-                <img src="https://assets.ubuntu.com/v1/74f5267e-redis-icon.svg " alt="" class="juju-charms-list__image" width="100%" />
+                <img src="{{ ASSET_SERVER_URL }}74f5267e-redis-icon.svg " alt="" class="juju-charms-list__image" width="100%" />
                 <p>Redis</p>
             </a>
         </div>
         <div class="two-col align-center box">
             <a href="https://jujucharms.com/ceph/" class="juju-charms-list__link">
-                <img src="https://assets.ubuntu.com/v1/f0331421-ceph-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <img src="{{ ASSET_SERVER_URL }}f0331421-ceph-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
                 <p>Ceph</p>
             </a>
         </div>
         <div class="two-col last-col align-center box">
             <a href="https://jujucharms.com/wordpress/" class="juju-charms-list__link">
-                <img src="https://assets.ubuntu.com/v1/60ca35aa-wordpress-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <img src="{{ ASSET_SERVER_URL }}60ca35aa-wordpress-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
                 <p>Wordpress</p>
             </a>
         </div>
         <div class="two-col align-center box">
             <a href="https://jujucharms.com/u/ibmcharmers/db2/" class="juju-charms-list__link">
-                <img src="https://assets.ubuntu.com/v1/eb358275-db2-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <img src="{{ ASSET_SERVER_URL }}eb358275-db2-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
                 <p>IBM DB2</p>
             </a>
         </div>
         <div class="two-col align-center box">
             <a href="https://jujucharms.com/u/hp-discover/nginx/" class="juju-charms-list__link">
-                <img src="https://assets.ubuntu.com/v1/a3b1dc20-nginx-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <img src="{{ ASSET_SERVER_URL }}a3b1dc20-nginx-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
                 <p>nginx</p>
             </a>
         </div>
         <div class="two-col align-center box">
             <a href="https://jujucharms.com/nagios/" class="juju-charms-list__link">
-                <img src="https://assets.ubuntu.com/v1/07fbb544-nagios-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <img src="{{ ASSET_SERVER_URL }}07fbb544-nagios-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
                 <p>nagios</p>
             </a>
         </div>
         <div class="two-col align-center box">
             <a href="https://jujucharms.com/mariadb/" class="juju-charms-list__link">
-                <img src="https://assets.ubuntu.com/v1/0fe8aaaa-mariadb-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <img src="{{ ASSET_SERVER_URL }}0fe8aaaa-mariadb-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
                 <p>MariaDB</p>
             </a>
         </div>
         <div class="two-col align-center box">
             <a href="https://jujucharms.com/postgresql/" class="juju-charms-list__link">
-                <img src="https://assets.ubuntu.com/v1/de0e8fb8-postgresql-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <img src="{{ ASSET_SERVER_URL }}de0e8fb8-postgresql-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
                 <p>PostgresQL</p>
             </a>
         </div>
         <div class="two-col last-col align-center box">
             <a href="https://jujucharms.com/mysql/" class="juju-charms-list__link">
-                <img src="https://assets.ubuntu.com/v1/70ac97b0-mysql-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
+                <img src="{{ ASSET_SERVER_URL }}70ac97b0-mysql-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
                 <p>MySQL</p>
             </a>
         </div>
@@ -176,10 +203,10 @@
     <div class="twelve-col">
         <h2 class="muted-heading">Leading vendors publish on Juju</h2>
         <ul class="inline-logos no-bullets">
-    		<li><img src="https://assets.ubuntu.com/v1/05f5c6da-ibmpos_blue.jpg?w=160" alt="IBM"></li>
-    		<li><img src="https://assets.ubuntu.com/v1/a2a68c52-logo-juniper-160.png?w=160" alt="Juniper"></li>
-    		<li><img src="https://assets.ubuntu.com/v1/02b13c70-2000px-EMC_Corporation_logo.svg.png?w=160" alt="EMC"></li>
-    		<li><img src="https://assets.ubuntu.com/v1/1c2b9b74-logo-microsoft-160.png?w=160" alt="Microsoft"></li>
+    		<li><img src="{{ ASSET_SERVER_URL }}05f5c6da-ibmpos_blue.jpg?w=160" alt="IBM"></li>
+    		<li><img src="{{ ASSET_SERVER_URL }}a2a68c52-logo-juniper-160.png?w=160" alt="Juniper"></li>
+    		<li><img src="{{ ASSET_SERVER_URL }}02b13c70-2000px-EMC_Corporation_logo.svg.png?w=160" alt="EMC"></li>
+    		<li><img src="{{ ASSET_SERVER_URL }}1c2b9b74-logo-microsoft-160.png?w=160" alt="Microsoft"></li>
     	</ul>
     </div>
 </section>
@@ -218,7 +245,7 @@
     </div>
 </section>
 
-<script src="https://assets.ubuntu.com/v1/3c99518b-d3-version3.5.6.min.js"></script>
+<script src="{{ ASSET_SERVER_URL }}3c99518b-d3-version3.5.6.min.js"></script>
 
 <script>
   'use strict';
@@ -295,93 +322,31 @@
 <section class="row row-insights row-grey">
     <h2 class="twelve-col">The latest Ubuntu Cloud news and events</h2>
     <div class="twelve-col vertical-divider">
-      <script src="https://www.google.com/jsapi"></script>
-      <script>google.load("feeds", "1")</script>
-      <div id="insights-cloud-feed" class='six-col'><noscript><a class="external" href="https://insights.ubuntu.com">Find out more at insights.ubuntu.com</a></noscript></div>
-    	<script>
-    		var feedcontainer_cloud_feed=document.getElementById("insights-cloud-feed")
-    		var feedurl_cloud_feed=document.location.protocol+"//insights.ubuntu.com/group/cloud-and-server/feed/"
-    		var feedlimit_cloud_feed=3
-    		var rssoutput="<ul class='no-bullets smaller'>"
-    			function rssfeedsetup_cloud_feed(){
-    				var feedpointer_cloud_feed=new google.feeds.Feed(feedurl_cloud_feed) //Google Feed API method
-    						feedpointer_cloud_feed.setNumEntries(feedlimit_cloud_feed) //Google Feed API method
-    						feedpointer_cloud_feed.load(displayfeed_cloud_feed) //Google Feed API method
-    			}
-    
-    			function displayfeed_cloud_feed(result){
-    				if (!result.error){
-    					var thefeeds_cloud_feed=result.feed.entries
-    					for (var i=0; i<thefeeds_cloud_feed.length; i++){
-    						rssoutput+="<li class='six-col'><h3><a class='external' href='" + thefeeds_cloud_feed[i].link + "'>" + thefeeds_cloud_feed[i].title + "</a></h3><p>" + thefeeds_cloud_feed[i].contentSnippet + "</p></li>"}
-    						rssoutput+="</ul>"
-    						feedcontainer_cloud_feed.innerHTML=rssoutput
-    				}
-    				else
-    					console.warn("An error occurred while fetching rss");
-    				}
-    
-    				window.onload=function(){
-      				rssfeedsetup_cloud_feed();
-    				}
-    	</script>
-      <div class="insights-events six-col last-col">
-          <ul class="no-bullets">
-              <li class="six-col">
-                  <div class="event-details-wrapper clearfix" itemscope itemtype="http://data-vocabulary.org/Event">
-                      <div class="six-col last-col">
-                          <div class="event-map">
-                              <a href="http://insights.ubuntu.com/event/tad-summit/">
-                                  <span class="image-wrap avatar"><img class="avatar" src="//maps.googleapis.com/maps/api/staticmap?center=Lisbon%2C+Portugal&amp;zoom=12&amp;size=106x106&amp;sensor=false" alt=""></span>
-                              </a>
-                          </div><!-- /.event-map -->
-                          <h3><a class="external" href="http://insights.ubuntu.com/event/tad-summit/">TAD Summit</a></h3>
-                          <dl class="event-details">
-                              <dt class="accessibility-aid">Date:</dt>
-                              <dd class="event-date">17-18 November 2015  <span class="accesibilty-aid"><time itemprop="startDate" datetime="2015-11-17T00:00"></time><time itemprop="endDate" datetime="2015-11-18T00:00"></time></span></dd>
-                              <dt class="accessibility-aid">Location:</dt>
-                              <dd class="location" itemprop="location" itemscope="" itemtype="http://schema.org/PostalAddress">Lisbon, Portugal</dd>
-                          </dl>
-                      </div>
-                  </div>
-                  <div class="event-details-wrapper clearfix" itemscope itemtype="http://data-vocabulary.org/Event">
-                      <div class="six-col last-col">
-                          <div class="event-map">
-                              <a href="http://insights.ubuntu.com/event/scalable-enterprise-solutions-and-easy-deployment-can-go-together/">
-                                  <span class="image-wrap avatar"><img class="avatar" src="//maps.googleapis.com/maps/api/staticmap?center=Earth&amp;zoom=12&amp;size=106x106&amp;sensor=false" alt=""></span>
-                              </a>
-                          </div><!-- /.event-map -->
-                          <h3><a class="external" href="http://insights.ubuntu.com/event/scalable-enterprise-solutions-and-easy-deployment-can-go-together/">Enterprise solutions and easy deployment can go together</a></h3>
-                          <dl class="event-details">
-                              <dt class="accessibility-aid">Date:</dt>
-                              <dd class="event-date">19 November 2015  <span class="accesibilty-aid"><time itemprop="startDate" datetime="2015-11-19T00:00"></time><time itemprop="endDate" datetime="2015-11-19T00:00"></time></span></dd>
-                              <dt class="accessibility-aid">Location:</dt>
-                              <dd class="location" itemprop="location" itemscope="" itemtype="http://schema.org/PostalAddress">Wordlwide</dd>
-                          </dl>
-                      </div>
-                  </div>
-                  <div class="event-details-wrapper clearfix" itemscope itemtype="http://data-vocabulary.org/Event">
-                      <div class="six-col last-col">
-                          <div class="event-map">
-                              <a href="http://insights.ubuntu.com/event/carrier-network-virtualisation-summit/">
-                                  <span class="image-wrap avatar"><img class="avatar" src="//maps.googleapis.com/maps/api/staticmap?center=Palo Alto+California&amp;zoom=12&amp;size=106x106&amp;sensor=false" alt=""></span>
-                              </a>
-                          </div><!-- /.event-map -->
-                          <h3><a class="external" href="http://insights.ubuntu.com/event/carrier-network-virtualisation-summit/">Carrier Network Virtualisation Summit</a></h3>
-                          <dl class="event-details">
-                              <dt class="accessibility-aid">Date:</dt>
-                              <dd class="event-date">1-2 December 2015  <span class="accesibilty-aid"><time itemprop="startDate" datetime="2015-12-01T00:00"></time><time itemprop="endDate" datetime="2015-12-02T00:00"></time></span></dd>
-                              <dt class="accessibility-aid">Location:</dt>
-                              <dd class="location" itemprop="location" itemscope="" itemtype="http://schema.org/PostalAddress">Palo Alto, California</dd>
-                          </dl>
-                      </div>
-                  </div>
-              </li>
-          </ul>
-      </div>
-    </div>
+      <div id="insights-cloud-feed" class='six-col'>
+        <noscript><a class="external" href="https://insights.ubuntu.com">Find out more at insights.ubuntu.com</a></noscript>
+      </div><!-- end .insights-cloud-feed -->
+      <script type="text/javascript">
+        $(function() {
+          $.getFeed({
+            url: 'http://insights.ubuntu.com/topic/Cloud/feed',
+            success: function(feed) {
+              var html = "<ul class='no-bullets smaller'>";
+              for(var i = 0; i < feed.items.length && i < 4; i++) {
+                var item = feed.items[i];
+                var d = $.trim(item.description).substring(0, 100).split(" ").slice(0, -1).join(" ") + "\&hellip\;";
+                html += "<li class='six-col'><h3><a href='" + item.link + "' class='external'>" + item.title + "</a></h3><p>" + d + "</p></li>";
+              }
+              html += "</ul>";
+              if ($('#insights-cloud-feed')) {
+                $('#insights-cloud-feed').append(html);
+              }
+            }
+          });
+        });
+      </script>
+{% include "cloud/shared/_events_overview.html" %}
+    </div><!-- end .twelve-col .vertical-divider -->
 </section>
-
 
 <section class="row no-border">
   <p id="fn1" class="note"><a href="#r1">*</a> <a href="http://thecloudmarket.com/stats#/by_platform_definition" class="external">The Cloud Market</a>, August 2015 and <a href="http://superuser.openstack.org/articles/openstack-users-share-how-their-deployments-stack-up" class="external">OpenStack survey &mdash; May 2015</a></p>
@@ -390,10 +355,12 @@
 
 {% include "cloud/shared/_contextual_footer.html" with feature_3="experience-juju" %}
 
-{% include "shared/_live_chat.html" %}
 {% endblock content %}
 
 {% block head_extra %}
+<script src="{{ ASSET_SERVER_URL }}c954db4a-jfeed_prm.js"></script>
+
+{% include "shared/_analytics_heap.html" %}
 
 <style type="text/css">
   @keyframes fadeIn {
@@ -516,7 +483,5 @@
 
 {% endblock %}
 
-
 {% block footer_extra %}
-{{ marketo }}
 {% endblock %}

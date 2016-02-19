@@ -16,13 +16,13 @@
 		<p class="twelve-col"><a class="link-cta-ubuntu" href="https://landscape.canonical.com/trial-registration">Get a free 30-day trial</a> or <a href="/management/contact-us">contact us about Landscape&nbsp;&rsaquo;</a></p>
 	</div><!-- /.eight-col -->
 	<span>
-		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-reducecosts-warmgrey.svg" width="200" height="200" alt="" class="priority-0" />
+		<img src="{{ ASSET_SERVER_URL }}c74f59b7-picto-reducecosts-warmgrey.svg" width="200" height="200" alt="" class="priority-0" />
 	</span>
 </div><!-- .row row-hero -->
 
 <div class="row">
 	<div class="six-col no-margin-bottom">
-		<img class="flush-left touch-border" src="{{ STATIC_URL }}img/management/compliance/image-patch-compliance.jpg"  alt="" />
+		<img class="flush-left touch-border" src="{{ ASSET_SERVER_URL }}f9bc09b5-image-patch-compliance.jpg"  alt="" />
 	</div><!-- /.six-col -->
 	<div class="six-col last-col">
 		<h3>Patch compliance</h3>
@@ -39,13 +39,13 @@
 		<p><a href="/management/working-with-landscape">Watch the compliance and reporting video on the Working with Landscape page&nbsp;&rsaquo;</a></p>
 	</div>
 	<div class="six-col last-col no-margin-bottom">
-		<img class="flush-right touch-border" src="{{ STATIC_URL }}img/management/compliance/image-rbac.jpg" alt="" />
+		<img class="flush-right touch-border" src="{{ ASSET_SERVER_URL }}592e6e94-image-rbac.jpg" alt="" />
 	</div>
 </div><!-- .row -->
 
 <div class="row">
 	<div class="six-col no-margin-bottom">
-		<img class="flush-left touch-border" src="{{ STATIC_URL }}img/management/compliance/image-audit-logging.jpg" height="351" width="462" alt="" />
+		<img class="flush-left touch-border" src="{{ ASSET_SERVER_URL }}77b2dea4-image-audit-logging.jpg" height="351" width="462" alt="" />
 	</div><!-- /.six-col -->
 	<div class="six-col last-col">
 		<h3>Audit logging</h3>
@@ -62,13 +62,11 @@
 		</div>
 	</div>
 	<div class="twelve-col">
-		<p><img src="{{ STATIC_URL }}img/management/compliance/image-compliance-reporting.png" alt="" /></p>
+		<p><img src="{{ ASSET_SERVER_URL }}e33ef6a1-image-compliance-reporting.png" alt="" /></p>
 	</div>
 </div><!-- .row -->
 
-{% include "shared/_live_chat.html" %}
 
-{% include "shared/_munchkin.html" %}
 
 {% endblock content %}
-{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}
+

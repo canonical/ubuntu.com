@@ -2,13 +2,41 @@
 
 {% block extra_body_class %}things-thank-you{% endblock %}
 
-{% block title %}Thank you{% endblock %}
+{% block title %}Thank you | Ubuntu for the Internet of Things{% endblock %}
 
 {% block second_level_nav_items %}
-    <ul class="breadcrumb"><li><a href="/internet-of-things/">Things</a>&nbsp;›</li></ul>
-    <ul class="second-level-nav"><li class="first active"><a href="/internet-of-things/">Thank you</a></li></ul>
+    {% include "templates/_nav_breadcrumb.html" with section_title="Things" page_title="Thank you" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-{% include "shared/_newsletter_thank_you.html" %}
+<div class="row row-hero no-border row-image-centered">
+    <div class="thank-you eight-col">
+        <h1>Thank you for subscribing!</h1>
+        <p class="intro">You will now begin receiving our devices newsletter. You may unsubscribe any time by clicking the link in the email.</p>
+    </div>
+    <span>
+        <img src="{{ ASSET_SERVER_URL }}52d53696-picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
+    </span>
+</div><!-- /.row-hero -->
+
+<div class="row equal-height no-border">
+    <h2 class="twelve-col">More about our enterprise services</h2>
+    <ul id="thank-you-extra" class="no-bullets">
+        <li class="advantage four-col first">
+            <h4>Want to learn more about developing with Ubuntu Core?</h4>
+            <p>Learn how to build or port apps with the next generation of Ubuntu.</p>
+            <p><a href="https://developer.ubuntu.com/en/snappy/" class="external">Try snappy Ubuntu Core</a></p>
+        </li>
+        <li class="cloud four-col">
+            <h4>Build a cloud with Autopilot</h4>
+            <p>Deploy and manage your cloud quickly and easily.</p>
+            <p><a href="/download/cloud">Get started with OpenStack Autopilot&nbsp;&rsaquo;</a></p>
+        </li>
+        <li class="jumpstart four-col last-col">
+            <h4>Ubuntu Advantage</h4>
+            <p>Purchase our enterprise support and management tools and access Ubuntu experts whenever you need.</p>
+            <p><a href="/management/ubuntu-advantage">Learn about Ubuntu Advantagee&nbsp;&rsaquo;</a></p>
+        </li>
+    </ul>
+</div><!-- end row-->
 {% endblock content %}

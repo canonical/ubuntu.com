@@ -5,17 +5,17 @@
 {% block extra_body_class %}error-page error500{% endblock %}
 
 {% block head_extra %}
-	<link rel="stylesheet" type="text/css" media="screen" href="http://assets.ubuntu.com/sites/ubuntu/latest/u/css/styles.css" />
-	<link rel="shortcut icon" href="http://assets.ubuntu.com/sites/ubuntu/latest/u/img/favicon.ico" type="image/x-icon" />
-	<link rel="stylesheet" type="text/css" media="print" href="http://assets.ubuntu.com/sites/ubuntu/latest/u/css/core-print.css" />
-	<script src="http://assets.ubuntu.com/sites/ubuntu/latest/u/js/plugins/modernizr.2.7.1.js"></script>
-	<script src="http://assets.ubuntu.com/sites/ubuntu/latest/u/js/plugins/Imager.js"></script>
+	<link rel="stylesheet" type="text/css" media="screen" href="//assets.ubuntu.com/v1/bd2208af-styles.css" />
+	<link rel="shortcut icon" href="//assets.ubuntu.com/v1/dbf71c80-favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" media="print" href="//assets.ubuntu.com/v1/0df231d4-core-print.css" />
+	<script src="{{ ASSET_SERVER_URL }}b0601acd-modernizr.2.7.1.js"></script>
+	<script src="{{ ASSET_SERVER_URL }}2c8fd8c9-Imager.js"></script>
 {% endblock %}
 
 {% block content %}
 <div class="row no-border hero-box">
 	<div class="six-col">
-		<img src="http://assets.ubuntu.com/sites/ubuntu/latest/u/img/error/image-knowledge-365.png" alt="Error owl" />
+		<img src="{{ ASSET_SERVER_URL }}17a02192-image-knowledge-365.png" alt="Error owl" />
 		<span>!</span>
 	</div>
 	<div class="six-col last-col">
@@ -26,9 +26,9 @@
 {% endblock content %}
 
 {% block footer_extra %}
-	<script src="http://assets.ubuntu.com/sites/ubuntu/latest/u/js/plugins/yui-min.js"></script>
-	<script src="http://assets.ubuntu.com/sites/ubuntu/latest/u/js/core.js"></script>
-	<script src="http://assets.ubuntu.com/sites/ubuntu/latest/u/js/global.js"></script>
-	<script src="http://assets.ubuntu.com/sites/ubuntu/latest/u/js/scratch.js"></script>
-	<script src="http://assets.ubuntu.com/sites/ubuntu/latest/u/js/plugins/respond.min.js"></script>
+	<script src="{{ ASSET_SERVER_URL }}6124a084-yui-min.js"></script>
+	<script src="{{ ASSET_SERVER_URL }}231f2d78-core.js"></script>
+	<script src="{{ ASSET_SERVER_URL }}bdd03093-global.js"></script>
+	<script src="{{ ASSET_SERVER_URL }}ea5f3f25-scratch.js"></script>
+	<script src="{{ ASSET_SERVER_URL }}f5bf3854-respond.min.js"></script>
 {% endblock %}

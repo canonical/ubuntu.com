@@ -1,0 +1,110 @@
+{% extends "internet-of-things/base_things.html" %}
+
+{% block title %}Developers | Ubuntu for the Internet of Things {% endblock %}
+
+{% block meta_description %}Snappy Ubuntu Core is the perfect platform for developers who want to create apps and devices for the Internet of Things.{% endblock meta_description %}
+{% block meta_keywords %}Features, Ubuntu, Core, snappy, internet, things, devices, lightweight, OS, operating system, Linux, open source, Canonical, snapcraft, update, secure, security, mobile, internet, connected, home, appliance, embedded, development{% endblock meta_keywords %}
+
+{% block second_level_nav_items %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Things" page_title="For developers" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-border border-small">
+  <div class="twelve-col for-small billboard">
+    <img src="{{ ASSET_SERVER_URL }}8b907c80-iot-developers-hero.jpg?q=60&amp;w=768" alt="" />
+  </div>
+  <div class="six-col">
+      <h1>For developers</h1>
+      <p class="five-col">Ubuntu Core is a single platform for developing, testing and publishing applications for internet-connected devices and servers.</p>
+      <ul class="twelve-col list-ticks--compact">
+        <li>Open source and secure by design</li>
+        <li>Transactional updates for fast, reliable updates</li>
+        <li>Small footprint means minimal hardware requirements</li>
+        <li>Option to use only the libraries your apps need</li>
+      </ul>
+      <p><a href="http://developer.ubuntu.com/snappy/start" class="link-cta-ubuntu">Get started with Ubuntu Core</a></p>
+      <p><a href="/internet-of-things/contact-us">Or, if you&rsquo;re a device maker, get in touch&nbsp;&rsaquo;</a></p>
+  </div>
+</div>
+
+<div class="row row-autonomous">
+  <div class="row-autonomous__content five-col prepend-seven">
+    <h2>Robots, drones and autonomous things</h2>
+    <p>The developer community consists of pioneers in robotics, drones and open hubs for connected things. Snappy Ubuntu Core offers freedom when it comes to creating apps for new kinds of device, whether it crawls about or controls your home.</p>
+  </div>
+</div>
+
+<div class="row row-case-studies">
+    <div class="twelve-col">
+      <h2>The real things</h2>
+    </div>
+    <ul class="no-bullets twelve-col vertical-divider">
+        <li class="four-col">
+            <h3>Brains for buildings: Mycroft AI</h3>
+            <p>Mycroft is a revolution: an open source solution for artificial intelligence and language recognition, free for anyone to use in their projects. By using voice input to make services like YouTube, Netflix and Spotify available instantly, it is already bringing Internet of Things integration to homes and offices.</p>
+            <p><a href="https://insights.ubuntu.com/2015/08/14/meet-mycroft-open-source-artificial-intelligence-powered-by-snappy/" class="external">Read the <span class="accessibility-aid">'Brains for buildings: Mycroft AI' </span>case study</a></p>
+        </li>
+        <li class="four-col">
+            <h3>Walking the walk with Erle Spider</h3>
+            <p>Designed to access hard-to-reach places such as pipes and disaster areas, Erle-Spider is the first ROS-powered walking drone running snappy Ubuntu Core. With the Ubuntu Core app store, you can create and sell behaviours and applications for drones just like this.</p>
+            <p><a href="https://insights.ubuntu.com/2015/09/08/the-app-enabled-spider/" class="external">Read the <span class="accessibility-aid">'Walking the walk with Erle Spider' </span>case study</a></p>
+        </li>
+        <li class="four-col last-col">
+            <h3>Home control: Pi-Cubes SDK</h3>
+            <p>The Pi-Cubes SDK provides a modular home automation system supporting up to 24 I/Os and four thermostats. It works with choice of different I/O boards, making it suitable for any Home Automation project.</p>
+            <p><a href="https://insights.ubuntu.com/2015/09/09/pi-cubes-app-enabled-hvac-control/" class="external">Read the <span class="accessibility-aid">'Home control: Pi-Cubes SDK' </span>case study</a></p>
+        </li>
+    </ul>
+</div>
+
+<div class="row row-toys">
+  <div class="row-toys__content four-col last-col">
+    <h2>Get involved with the internet of toys</h2>
+    <p>Who would have imagined a time where toys could literally come alive? Snappy Ubuntu Core lets anyone app-enable their toys and games &mdash; and then sell their apps in the store.</p>
+    <p><a href="http://insights.ubuntu.com/2015/10/30/internetoftoys-let-the-toy-battles-begin/" class="external">Read more</a></p>
+  </div>
+</div>
+
+<div class="row row-snappy-language">
+  <div class="four-col no-margin-bottom align-center">
+    <img class="snappy-language-image" src="{{ ASSET_SERVER_URL }}5b24f6af-terminal-app-symbolic.svg" width="220" alt="" />
+  </div>
+  <div class="eight-col last-col">
+    <h2>Snappy speaks your language</h2>
+    <p>Snappy is a platform with practically no learning curve. You can use your language of choice, whether it’s Python, Go, C, C++, Node JS (even .NET), just as you would to write any Linux app. If there’s code you’re looking to re-use, you can go ahead without the extra work of targeting new APIs. And with support for all the Linux libraries you know and love, your app can be up and running even faster.</p>
+  </div>
+</div>
+
+<div class="row row-grey">
+    <div class="twelve-col vertical-divider">
+      <div class="six-col">
+        <h2>Get snapping with Snapcraft</h2>
+        <p>Snapcraft, the snappy SDK, enables you to easily create snaps  while building on top of existing projects and communities.</p>
+        <p>It enables the quick packaging of snappy apps written in any language you like. Snapcraft also incorporate components from a wide range of sources including GitHub, Launchpad and npm. Once you&rsquo;re ready, your snappy apps can be monetised by uploading them to the Snappy Store.</p>
+        <p><a href="https://insights.ubuntu.com/2015/08/03/java-on-snappy/" class="external">Watch Snapcraft in action</a></p>
+      </div>
+      <div class="six-col last-col">
+        <h2>Easily extensible with frameworks</h2>
+        <p>Ubuntu Core&rsquo;s base is deliberately tiny, making it both more secure and more flexible.  Rather than dictate the adoption and use of a particular tool, we offer frameworks that can extend the base system cleanly. These frameworks can be provided by anybody, in collaboration with Canonical &mdash; and they can provide services to any applications that depend on them.</p>
+      </div>
+    </div>
+</div>
+
+<div class="row row-cta no-border">
+  <div class="three-col align-center not-for-small">
+    <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="140" alt="" />
+  </div>
+  <div class="eight-col last-col">
+    <div class="inline-small one-col align-center for-small">
+      <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="38" alt="" />
+    </div>
+    <h2>Kick-start your next project</h2>
+    <p class="clear">If you&rsquo;re launching a crowdfunding project using snappy technology, talk to us first &mdash; and benefit from all the  support Canonical can provide.</p>
+    <p><a href="/internet-of-things/contact-us" class="link-cta-ubuntu">Get in touch</a></p>
+  </div>
+</div>
+
+{% include "internet-of-things/shared/_contextual_footer.html" with feature_1="event" %}
+
+{% endblock content %}
