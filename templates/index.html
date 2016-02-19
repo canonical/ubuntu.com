@@ -25,14 +25,14 @@
                 $.getFeed({
                   url: 'https://insights.ubuntu.com/feed',
                   success: function(feed) {
-                    var html = "<ul class='row--ubuntu-news__list no-bullets vertical-divider'>";
+                    var html = "<ul class='row--ubuntu-news__list no-bullets equal-height--vertical-divider'>";
                     for(var i = 0; i < feed.items.length && i < 4; i++) {
                       var item = feed.items[i];
                       var lastClass = "";
                       if (i != 0 && i % 3 == 0) {
                         lastClass = ' last-col';
                       }
-                      html += "<li class='three-col" + lastClass + "'><h3><a href='" + item.link + "'>" + item.title + "</a></h3><p><time pubdate datetime='" + item.updated + "'>" + item.nicedate + "</time></p></li>";
+                      html += "<li class='equal-height--vertical-divider__item three-col" + lastClass + "'><h3><a href='" + item.link + "'>" + item.title + "</a></h3><p><time pubdate datetime='" + item.updated + "'>" + item.nicedate + "</time></p></li>";
                     }
                     html += "</ul>";
                     if ($('#insights-cloud-feed')) {
