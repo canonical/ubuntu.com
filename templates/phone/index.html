@@ -14,10 +14,10 @@
 
 {% block content %}
 <div class="row row-hero no-border">
-    <div class="for-mobile"><img src="//assets.ubuntu.com/v1/f2758930-image-phone-hero-bq.jpg?w=768" alt="" /></div>
+    <div class="for-mobile"><img src="{{ ASSET_SERVER_URL }}f2758930-image-phone-hero-bq.jpg?w=768" alt="" /></div>
 	<div class="the-video">
 		<p class="right">
-			<a href="#" class="slideless close-video">Close the video <img src="//assets.ubuntu.com/v1/c51c1c63-close-button.png" width="24" height="24" alt="" /></a>
+			<a href="#" class="slideless close-video">Close the video <img src="{{ ASSET_SERVER_URL }}c51c1c63-close-button.png" width="24" height="24" alt="" /></a>
 		</p>
 		<div></div>
 	</div>
@@ -35,7 +35,7 @@
 
 <div class="row row--access-content no-border">
   <div class="for-small eight-col align-center">
-    <img src="//assets.ubuntu.com/v1/f53f70fe-image-phone-scopes.jpg?w=480" alt="" />
+    <img src="{{ ASSET_SERVER_URL }}f53f70fe-image-phone-scopes.jpg?w=480" alt="" />
   </div>
   <div class="four-col last-col prepend-eight">
     <div>
@@ -48,7 +48,7 @@
 
 <div class="row row--beautiful-design no-border">
   <div class="eight-col for-small">
-    <img src="https://assets.ubuntu.com/v1/824ad81d-image-phone-beautifully%402x.jpg" alt="" />
+    <img src="{{ ASSET_SERVER_URL }}824ad81d-image-phone-beautifully%402x.jpg" alt="" />
   </div>
 	<div class="four-col last-col">
 		<h2>Beautifully designed&nbsp;features</h2>
@@ -59,7 +59,7 @@
 
 <div class="row row--devices">
 	<div class="four-col align-center">
-		<img src="//assets.ubuntu.com/v1/8c9857e2-image-available-from.jpg" alt="Ubuntu devices" />
+		<img src="{{ ASSET_SERVER_URL }}8c9857e2-image-available-from.jpg" alt="Ubuntu devices" />
 	</div>
 	<div class="prepend-one seven-col last-col">
 		<h2>Available from our partners</h2>
@@ -96,7 +96,7 @@
         </script>
 </div>
 {% block head_extra %}
-<script src="//assets.ubuntu.com/v1/c954db4a-jfeed_prm.js"></script>
+<script src="{{ ASSET_SERVER_URL }}c954db4a-jfeed_prm.js"></script>
 {% endblock %}
 
 {% include "shared/_open_source_phone.html" %}

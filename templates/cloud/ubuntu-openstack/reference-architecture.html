@@ -18,28 +18,28 @@
 
 <div class="row">
 	<div class="four-col text-center not-for-small">
-		<img src="{{ STATIC_URL }}img/cloud/ubuntu-openstack/reference-architecture/image-nova.svg" width="205" height="205" alt="" />
+		<img src="{{ ASSET_SERVER_URL }}aad04473-image-nova.svg" width="205" height="205" alt="" />
 	</div>
 	<div class="eight-col last-col">
-		<h2><img src="{{ STATIC_URL }}img/cloud/ubuntu-openstack/reference-architecture/image-nova.svg" width="40" height="40" class="for-small" alt="" /> Compute &mdash; Nova</h2>
+		<h2><img src="{{ ASSET_SERVER_URL }}aad04473-image-nova.svg" width="40" height="40" class="for-small" alt="" /> Compute &mdash; Nova</h2>
 		<p>Nova, the OpenStack Compute component enables you to provision and manage large networks of virtual machines, creating a redundant and scalable cloud-computing platform. It gives you everything you need to run instances, manage networks and control access through users and projects. Like the rest of the Ubuntu operating system, it supports most standard hardware configurations and well-known hypervisors.</p>
 	</div>
 </div>
 
 <div class="row">
 	<div class="eight-col">
-		<h2><img src="{{ STATIC_URL }}img/cloud/ubuntu-openstack/reference-architecture/image-swift.svg" width="40" height="40" class="for-small" alt="" /> Storage &mdash; Swift or Ceph</h2>
+		<h2><img src="{{ ASSET_SERVER_URL }}4f1e16bf-image-swift.svg" width="40" height="40" class="for-small" alt="" /> Storage &mdash; Swift or Ceph</h2>
 		<p>Swift, OpenStack Object Storage creates redundant, scalable object storage using clusters of standardised storage servers. Rather than a file system or real-time data storage system, it provides a long-term storage system for more permanent, static data. Examples include virtual machine images, photo storage, email storage and backup archiving. Ceph is used for block storage as part of OpenStack Cinder. Ceph provides a feature-rich experience and is also able to provide Object Storage via a gateway giving you the option to standardise on a single storage technology based on your storage requirements.</p>
 	</div>
-	<div class="four-col text-center last-col not-for-small"><img src="{{ STATIC_URL }}img/cloud/ubuntu-openstack/reference-architecture/image-swift.svg" width="205" height="205" class="" alt="" /></div>
+	<div class="four-col text-center last-col not-for-small"><img src="{{ ASSET_SERVER_URL }}4f1e16bf-image-swift.svg" width="205" height="205" class="" alt="" /></div>
 </div>
 
 <div class="row">
 	<div class="four-col text-center not-for-small">
-		<img src="{{ STATIC_URL }}img/cloud/ubuntu-openstack/reference-architecture/image-glance.svg" width="205" height="205" class="" alt="" />
+		<img src="{{ ASSET_SERVER_URL }}a08ba483-image-glance.svg" width="205" height="205" class="" alt="" />
 	</div>
 	<div class="eight-col last-col">
-		<h2><img src="{{ STATIC_URL }}img/cloud/ubuntu-openstack/reference-architecture/image-glance.svg" width="40" height="40" class="for-small" alt="" /> Image service &mdash; Glance</h2>
+		<h2><img src="{{ ASSET_SERVER_URL }}a08ba483-image-glance.svg" width="40" height="40" class="for-small" alt="" /> Image service &mdash; Glance</h2>
 		<p>The OpenStack Image Service provides discovery, registration and delivery services for virtual disk images. It includes a standard REST interface for identifying them in back-end stores such as OpenStack Object Storage, with new virtual disk images being registered via the Image Service. Administrators can also access information on publicly available disk images and use the client library for streaming virtual disk images.</p>
 
 		<p>A multi-format registry, the OpenStack Image Service allows uploads of private and public images in the following formats:</p>
@@ -56,20 +56,20 @@
 
 <div class="row">
 	<div class="eight-col">
-		<h2><img src="{{ STATIC_URL }}img/cloud/ubuntu-openstack/reference-architecture/image-keystone.svg" width="40" height="40" class="for-small" alt="" /> Authentication &mdash; Keystone</h2>
+		<h2><img src="{{ ASSET_SERVER_URL }}61b8bda8-image-keystone.svg" width="40" height="40" class="for-small" alt="" /> Authentication &mdash; Keystone</h2>
 		<p>Keystone, the OpenStack Authentication service provides identity, token, catalogue and policy services for use by OpenStack components. It provides a pluggable back-end that has been designed to support various protocols (e.g. Basic Auth, OAuth, OpenID, PKI) for authentication and authorisation, allowing clients to obtain security tokens to access different cloud services.</p>
 	</div><!-- /.eight-col -->
 	<div class="four-col text-center last-col not-for-small">
-		<img src="{{ STATIC_URL }}img/cloud/ubuntu-openstack/reference-architecture/image-keystone.svg" width="205" height="205" class="" alt="" />
+		<img src="{{ ASSET_SERVER_URL }}61b8bda8-image-keystone.svg" width="205" height="205" class="" alt="" />
 	</div>
 </div>
 
 <div class="row">
 	<div class="four-col text-center not-for-small">
-		<img src="{{ STATIC_URL }}img/cloud/ubuntu-openstack/reference-architecture/image-horizon.svg" width="205" height="205" class="" alt="" />
+		<img src="{{ ASSET_SERVER_URL }}0ce4fb78-image-horizon.svg" width="205" height="205" class="" alt="" />
 	</div>
 	<div class="eight-col last-col">
-		<h2><img src="{{ STATIC_URL }}img/cloud/ubuntu-openstack/reference-architecture/image-horizon.svg" width="40" height="40" class="for-small" alt="" /> Management &mdash; Horizon</h2>
+		<h2><img src="{{ ASSET_SERVER_URL }}0ce4fb78-image-horizon.svg" width="40" height="40" class="for-small" alt="" /> Management &mdash; Horizon</h2>
 		<p>The OpenStack management service or dashboard provides OpenStack users with a web-based user interface with which to control OpenStack’s component services (Nova, Swift, Keystone, Glance) and a single API with which to access them.</p>
 		<p>There are three central dashboards, covering the core OpenStack applications:</p>
 
@@ -89,13 +89,13 @@
 		<p>Neutron, the networking service provides an API that lets you define network connectivity and addressing in your OpenStack cloud. Neutron enables operators to leverage different networking technologies supported with Ubuntu OpenStack such as Juniper&rsquo;s Contrail, Nuage Networks, MidoNet, VMware NSX, PlumGrid, CPlane Networks and Calico from Metaswitch. Standalone, Neutron provides an API to configure and manage a variety of network services ranging from L3 forwarding and NAT to load balancing, edge firewalls, and IPsec VPN.</p>
 	</div><!-- /.eight-col -->
 	<div class="four-col text-center last-col not-for-small">
-		<img src="{{ STATIC_URL }}img/cloud/ubuntu-openstack/reference-architecture/neutron-icon.svg" width="205" height="205" class="" alt="" />
+		<img src="{{ ASSET_SERVER_URL }}d3a41b52-neutron-icon.svg" width="205" height="205" class="" alt="" />
 	</div>
 </div>
 
 <div class="row">
 	<div class="four-col text-center not-for-small">
-		<img src="{{ STATIC_URL }}img/cloud/ubuntu-openstack/reference-architecture/ceilometer-icon.svg" width="205" height="205" class="" alt="" />
+		<img src="{{ ASSET_SERVER_URL }}cb6be279-ceilometer-icon.svg" width="205" height="205" class="" alt="" />
 	</div>
 	<div class="eight-col last-col">
 		<h2>Metrics &mdash; Telemetry</h2>
@@ -111,15 +111,15 @@
 	
 	<div class="four-col last-col">
 	  	<ul class="no-bullets">
-	    	<li class="two-col"><img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-juju.svg" width="140" height="140" class="" alt="" /></li>
-	    	<li class="two-col last-col"><img src="{{ STATIC_URL }}img/cloud/maas-logo-cropped.svg" width="140" height="140" class="" alt="" /></li>
+	    	<li class="two-col"><img src="{{ ASSET_SERVER_URL }}60bd6cf1-picto-juju.svg" width="140" height="140" class="" alt="" /></li>
+	    	<li class="two-col last-col"><img src="{{ ASSET_SERVER_URL }}5f3d3c45-maas-logo-cropped.svg" width="140" height="140" class="" alt="" /></li>
 	  	</ul>
 	</div>
 </div>
 
 <div class="row equal-height">
 	<div class="four-col not-for-small equal-height__align-vertically">
-		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-virtualisation-warmgrey.svg" width="205" height="205" alt="" />
+		<img src="{{ ASSET_SERVER_URL }}0a735e94-picto-virtualisation-warmgrey.svg" width="205" height="205" alt="" />
 	</div>
 	<div class="eight-col last-col">
 	  <h2>Virtualisation &mdash; LXD/LXC, KVM, etc</h2>
@@ -144,7 +144,7 @@
 		<p>For a detailed listing and build status of all the OpenStack Kilo components, including projects that are not currently part of the Ubuntu reference implementation like Heat, Trove, Sahara and Ironic as well as other useful technologies, <a href="http://reqorts.qa.ubuntu.com/reports/ubuntu-server/cloud-archive/kilo_versions.html">visit the cloud archive</a> which is updated nightly.</p>
 	</div>
 	<div class="four-col last-col equal-height__align-vertically">
-  	<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-help-orange.svg" width="205" height="205" alt="" />
+  	<img src="{{ ASSET_SERVER_URL }}2c023edd-picto-help-orange.svg" width="205" height="205" alt="" />
   </div>
 </div>
 {% endblock content %}
