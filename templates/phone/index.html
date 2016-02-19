@@ -76,7 +76,7 @@
 		          $.getFeed({
 		            url: 'http://www.stmgrts.org.uk/taleo/phone_twitter.xml', //need a proxy for this
 		            success: function(feed) {
-		              var html = "<ul class='phone-news-feed__list twelve-col no-bullets vertical-divider'>";
+		              var html = "<ul class='phone-news-feed__list twelve-col no-bullets equal-height--vertical-divider'>";
 		              for(var i = 0; i < feed.items.length && i < 3; i++) {
 		                var item = feed.items[i];
 		                var lastClass = "";
@@ -84,7 +84,7 @@
                         lastClass = ' last-col';
                     }
 										var d = $.trim(item.description);
-		                html += "<li class='phone-news-feed__item four-col" + lastClass + "'><h3>" + item.title + "</h3><p>" + d + "</p><p class='phone-news-feed__category note'>" + item.category + "</p></li>"
+		                html += "<li class='equal-height--vertical-divider__item phone-news-feed__item four-col" + lastClass + "'><h3>" + item.title + "</h3><p>" + d + "</p><p class='phone-news-feed__category note'>" + item.category + "</p></li>"
 		              }
 		              html += "</ul>";
 		              if ($('#phone-news-feed')) {
