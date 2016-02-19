@@ -33,6 +33,8 @@ All commands
 > make clean-npm          # Delete node_modules
 > make clean-all          # Run all clean commands
 > make it so              # a fun alias for "make run"
+> make bleeding-edge      # removes stable version of the theme and replaces
+													# with bleeding-edge version
 
 (To understand commands in more details, simply read the Makefile)
 
@@ -70,3 +72,9 @@ clean-all:
 
 it:
 so: run
+
+bleeding-edge:
+	rm -rf node_modules/ubuntu-vanilla-theme
+	git clone git@github.com:ubuntudesign/ubuntu-vanilla-theme.git node_modules/ubuntu-vanilla-theme
+	git clone git@github.com:ubuntudesign/vanilla-framework.git node_modules/ubuntu-vanilla-theme/vanilla-framework
+	@echo 'Now on bleeding edge theme -- FRESH!'
