@@ -1,13 +1,14 @@
 {% if level_2  %}
 	{% if level_2 == 'features' %}
 	<div class="four-col feature-two">
-		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-download-warmgrey.svg" alt="Download pictogram" />
+		<img src="{{ ASSET_SERVER_URL }}be3876ec-picto-download-warmgrey.svg" alt="Download pictogram" />
 		<h3>Get started with Ubuntu today</h3>
 		<p>Download Ubuntu for desktop and start using it today, whether you want to replace your current operating system or run Ubuntu alongside it.</p>
 		<p><a href="/download">Get Ubuntu&nbsp;&rsaquo;</a></p>
 	</div>
 	<div class="four-col feature-three">
-		{% include "desktop/shared/_buy.html" %}
+    <img src="{{ ASSET_SERVER_URL }}45888d3f-image-picto-projects-we-love.svg" alt="Pictogram pictogram" />
+		{% include "shared/_newsletter_signup.html" %}
 	</div>
 	<div class="four-col feature-four last-col">
 		{% include "desktop/shared/_for-china.html" %}
@@ -18,11 +19,12 @@
 	<div class="four-col feature-two">
 		{% include "desktop/shared/_talk.html" %}
 	</div>
-	<div class="four-col feature-three open-source">
-		{% include "desktop/shared/_open_source.html" %}
+	<div class="four-col feature-three">
+		{% include "shared/_newsletter_signup.html" %}
 	</div>
 	<div class="four-col feature-four last-col">
-		{% include "desktop/shared/_further_reading.html" with articles="3" %}
+		<h3>Further reading</h3>
+		{% include "templates/_further_reading_links.html" with feed="http://insights.ubuntu.com/group/desktop/feed" %}
 	</div>
 	{% endif %}
 
@@ -30,11 +32,12 @@
 	<div class="four-col feature-two">
 		{% include "desktop/shared/_talk.html" %}
 	</div>
-	<div class="four-col feature-three open-source">
-		{% include "desktop/shared/_open_source.html" %}
+	<div class="four-col feature-three">
+		{% include "shared/_newsletter_signup.html" %}
 	</div>
 	<div class="four-col feature-four last-col">
-		{% include "desktop/shared/_further_reading.html" with articles="3" %}
+		<h3>Further reading</h3>
+		{% include "templates/_further_reading_links.html" with feed="http://insights.ubuntu.com/group/desktop/feed" %}
 	</div>
 	{% endif %}
 
@@ -42,11 +45,12 @@
 	<div class="four-col feature-two">
 		{% include "desktop/shared/_talk.html" %}
 	</div>
-	<div class="four-col feature-three open-source">
-		{% include "desktop/shared/_open_source.html" %}
+	<div class="four-col feature-three">
+		{% include "shared/_newsletter_signup.html" %}
 	</div>
 	<div class="four-col last-col feature-four">
-		{% include "desktop/shared/_further_reading.html" with articles="3" %}
+		<h3>Further reading</h3>
+		{% include "templates/_further_reading_links.html" with feed="http://insights.ubuntu.com/group/desktop/feed" %}
 	</div>
 	{% endif %}
 
@@ -55,10 +59,11 @@
 		{% include "desktop/shared/_download.html" %}
 	</div>
 	<div class="four-col feature-three">
-		{% include "desktop/shared/_buy.html" %}
+    <img src="{{ ASSET_SERVER_URL }}45888d3f-image-picto-projects-we-love.svg" alt="Pictogram pictogram" />
+		{% include "shared/_newsletter_signup.html" %}
 	</div>
 	<div class="four-col last-col feature-four">
-		<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-community-orange.svg" alt="Pictogram pictogram" />
+		<img src="{{ ASSET_SERVER_URL }}8adead61-picto-community-orange.svg" alt="Pictogram pictogram" />
 		<h3>Join our community </h3>
 		<p>Share ideas, write code, and  get advice and help from our large, active community of IT professionals.</p>
 		<ul class="no-bullets two-col">
@@ -85,7 +90,8 @@
 		<p><a href="http://www.ubuntukylin.com">Visit UbuntuKylin.com&nbsp;&rsaquo;</a></p>
 	</div>
 	<div class="four-col last-col feature-four">
-		{% include "desktop/shared/_further_reading.html" with articles="3" %}
+		<h3>Further reading</h3>
+		{% include "templates/_further_reading_links.html" with feed="http://insights.ubuntu.com/group/desktop/feed" %}
 	</div>
 	{% endif %}
 
@@ -93,11 +99,12 @@
 	<div class="four-col feature-two">
 		{% include "desktop/shared/_talk.html" %}
 	</div>
-	<div class="four-col feature-three open-source">
-		{% include "desktop/shared/_open_source.html" %}
+	<div class="four-col feature-three">
+		{% include "shared/_newsletter_signup.html" %}
 	</div>
 	<div class="four-col feature-four last-col">
-		{% include "desktop/shared/_further_reading.html" with articles="3" %}
+		<h3>Further reading</h3>
+		{% include "templates/_further_reading_links.html" with feed="http://insights.ubuntu.com/group/desktop/feed" %}
 	</div>
 	{% endif %}
 
@@ -107,7 +114,8 @@
 		{% include "desktop/shared/_download.html" %}
 	</div>
 	<div class="four-col feature-three">
-		{% include "desktop/shared/_buy.html" %}
+    <img src="{{ ASSET_SERVER_URL }}45888d3f-image-picto-projects-we-love.svg" alt="Pictogram pictogram" />
+		{% include "shared/_newsletter_signup.html" %}
 	</div>
 	<div class="four-col last-col feature-four">
 		{% include "desktop/shared/_for-china.html" %}

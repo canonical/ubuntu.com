@@ -1,0 +1,56 @@
+{% extends "tablet/base_tablet.html" %}
+
+{% block title %}Devices | Ubuntu for tablets{% endblock %}
+
+{% block meta_description %}Customers can now buy commercial tablets from our OEM partners with the first one being the BQ Aquaris M10 Ubuntu Edition. {% endblock %}
+
+{% block meta_keywords %}Ubuntu tablet, Ubuntu for tablets, Ubuntu Edition, Ubuntu, tablet Ubuntu, lightweight laptop, thin laptop, Linux tablet, Linux tablets, Linux on tablet, Linux for tablets, tablet Linux, screen replacement, Laptop and tablet, hybrid tablet, hybrid laptop, laptop replacement, laptop replacement screens, laptop screen replacement, convertible laptop, 2 in 1 laptop, two in one laptop, laptop battery replacement, Ubuntu convergence, Ubuntu tablet convergence, BQ Aquaris, BQ Aquaris M10, BQ tablet{% endblock %}
+
+{% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
+  {% include "templates/_nav_breadcrumb.html" with section_title="Tablet" page_title="Devices"  %}
+</div>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<section class="row row-hero">
+  <div class="strip-inner-wrapper">
+    <h1>Ubuntu Tablet hardware</h1>
+    <div class="eight-col">
+      <p>The Ubuntu experience is now available on the BQ Aquaris  M10 Ubuntu Edition &mdash; the first commercial Ubuntu Tablet to come to market. It delivers the power to switch to an Ubuntu PC when connected with a Bluetooth mouse and keyboard, or when using the micro HDMI port to connect to an external monitor. Explore the BQ Aquaris M10 and learn how you can get your hands on one.</p>
+    </div>
+  </div>
+</section>
+
+<section itemscope itemtype="http://schema.org/Product" class="row strip-light no-border">
+  <div class="strip-inner-wrapper">
+    <div class="six-col">
+      <h2 itemprop="name">BQ Aquaris M10 Ubuntu Edition</h2>
+      <img class="for-small" itemprop="image" src="{{ ASSET_SERVER_URL }}ce25cee4-tablet-devices-bq-aquaris-m10-landscape.jpg?w=480" alt="BQ E5" />
+        <div class="six-col">
+          <ul itemprop="description" class="list-ticks">
+            <li>10.1 inch multi-touch screen</li>
+            <li>MediaTek Quad Core MT8163A processor up to 1.5GHz</li>
+            <li>High capacity Li-Po battery (7280mAh)</li>
+            <li>Full HD (1080p) camera for super-sharp video recording</li>
+            <li>2GB RAM and 16GB internal memory</li>
+            <li>MicroSD slot for extra storage (up to 64GB)</li>
+            <li>8 megapixel rear camera with autofocus and 5 megapixel front camera</li>
+            <li>Frontal speakers</li>
+            <li>Micro HDMI slot</li>
+            <li>Dimensions: 246 x 171 x 8.2mm</li>
+            <li>Lightweight at only 470g</li>
+          </ul>
+        </div>
+        {% comment %}<p><a itemprop="url" class="link-cta-ubuntu" href="#">Buy now</a></p>{% endcomment %}
+        <p><a class="link-cta-ubuntu" href="https://docs.google.com/a/canonical.com/forms/d/1VKTn1u2CifkTk7lQQC0Ws4tC7yaCep4DjRp34S6cV14/viewform">Register your interest</a></p>
+      </div>
+      <div class="device-image five-col prepend-one align-center last-col not-for-small">
+        <p><img itemprop="image" src="{{ ASSET_SERVER_URL }}8d86e93b-tablet-devices-bq-aquaris-m10.jpg?w=800" alt="BQ Aquaris M10" /></p>
+      </div>
+  </div>
+</section>
+
+{% include "tablet/shared/_contextual_footer.html" %}
+
+{% endblock content %}

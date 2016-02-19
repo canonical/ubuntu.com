@@ -3,8 +3,8 @@
 {% block title %}Ubuntu Advantage | Management{% endblock %}
 {% block extra_body_class %}ubuntu-advantage{% endblock %}
 
-{% block meta_keywords %}Landscape, get, buy, price, subscribe, try, trial, free, 30, day, download, licence, systems management, application, solution, Ubuntu, Canonical, Linux, Ubuntu Advantage, web, hosted, dedicated, desktop, server, cloud{% endblock %}
-{% block meta_description %}You can access Landscape as a hosted service over the internet or as an application running on a dedicated server behind your firewall. Both options are part of the Ubuntu Advantage service package, however you can try Landscape for free for 30 days, without committing to a subscription.{% endblock %}
+{% block meta_keywords %}Landscape, get, buy, price, subscribe, try, trial, free, 30, day, download, licence, systems management, application, solution, Ubuntu, Canonical, Linux, Ubuntu Advantage, web, SaaS, desktop, server, cloud{% endblock %}
+{% block meta_description %}You can access Landscape as a SaaS over the internet or as an application running on a server on premises behind your firewall. Both options are part of the Ubuntu Advantage service package, however you can try Landscape for free for 30 days, without committing to a subscription.{% endblock %}
 
 {% block second_level_nav_items %}
 	{% include "templates/_nav_breadcrumb.html" with section_title="Management" page_title="Ubuntu Advantage" %}
@@ -14,16 +14,43 @@
 <div class="row row-hero">
 	<h1>Ubuntu Advantage</h1>
 	<div class="eight-col">
-		<p>Ubuntu Advantage is the professional support package from the experts at Canonical, helping organisations around the world to manage their Ubuntu deployments. It includes access to Landscape, the systems management tool <br/>for using Ubuntu at scale, as well as 24/7 telephone support and the option of a dedicated Canonical support engineer on your premises. Ubuntu Advantage subscription tiers are based on the size of your deployment and the support you need.</p>
+		<p>Ubuntu Advantage is the professional support package from the experts at Canonical, helping organisations around the world to manage their Ubuntu deployments. It includes access to Landscape, the systems management tool <br/>for using Ubuntu at scale, as well as 24/7 telephone support and the option of a Canonical support engineer on your premises. Ubuntu Advantage subscription tiers are based on the size of your deployment and the support you need.</p>
 
 		<p class="twelve-col">
 			<a href="/management/contact-us">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a>
 		</p>
 	</div><!-- /.eight-col -->
 	<div class="four-col last-col">
-		<img src="{{ STATIC_URL }}img/management/ubuntu-advantage/image-ubuntuadvantage.svg" alt="" width="378" height="180" class="for-tablet" />
+		<img src="{{ ASSET_SERVER_URL }}544a9eb7-image-ubuntuadvantage.svg" alt="" width="378" height="180" class="for-tablet" />
 	</div>
 </div>
+<div class="row row-grey row-pricing">
+	<div class="four-col box">
+			<div class="six-col prepend-three append-three row-pricing__image-container">
+				<img class="row-pricing__image" src="{{ ASSET_SERVER_URL }}dfd42685-picto-cloud-darkaubergine.svg" alt="" width="100%" />
+			</div>
+			<h3 class="row-pricing__title">Ubuntu Advantage for&nbsp;clouds&nbsp;</h3>
+			<p>from <span class="ua-price">&dollar;1,000</span> per year</p>
+			<p><a href="#ubuntu-advantage-for-cloud">Learn more&nbsp;&rsaquo;</a></p>
+	</div>
+	<div class="four-col box">
+			<div class="six-col prepend-three append-three row-pricing__image-container">
+				<img class="row-pricing__image" src="{{ ASSET_SERVER_URL }}c3499461-picto-server-warmgrey.svg" alt="" width="100%" />
+			</div>
+			<h3 class="row-pricing__title">Ubuntu Advantage for&nbsp;servers</h3>
+			<p>from <span class="ua-price">&dollar;320</span> per year</p>
+			<p><a href="#ubuntu-advantage-for-server">Learn more&nbsp;&rsaquo;</a></p>
+	</div>
+	<div class="four-col last-col box">
+			<div class="six-col prepend-three append-three row-pricing__image-container">
+				<img class="row-pricing__image" src="{{ ASSET_SERVER_URL }}8480e7db-picto-desktop-orange.svg" alt="" width="100%" />
+			</div>
+			<h3 class="row-pricing__title">Ubuntu Advantage for&nbsp;desktops</h3>
+			<p>from <span class="ua-price">&dollar;105</span> per year</p>
+			<p><a href="#ubuntu-advantage-for-desktop">Learn more&nbsp;&rsaquo;</a></p>
+	</div>
+</div>
+
 <div class="row row-grey row-pricing">
 	<div class="four-col box">
 			<div class="six-col prepend-three append-three row-pricing__image-container">
@@ -49,7 +76,7 @@
 			<p>from <span class="ua-price">&dollar;105</span> per year</p>
 			<p><a href="#ubuntu-advantage-for-desktop">Learn more&nbsp;&rsaquo;</a></p>
 	</div>
-</div><!-- .row row-hero -->
+</div>
 
 {% include "shared/_ubuntu_advantage_whats_inlcuded.html" %}
 
@@ -61,7 +88,7 @@
 			<p><a href="/cloud/management">Learn more&nbsp;&rsaquo;</a></p>
 		</div>
 		<div class="prepend-two two-col text-center priority-0">
-			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-cloud-darkaubergine.svg" alt="" />
+			<img src="{{ ASSET_SERVER_URL }}dfd42685-picto-cloud-darkaubergine.svg" alt="" />
 		</div>
 	</div>
 	<table class="audience-enterprise">
@@ -82,21 +109,21 @@
 			</tr>
 			<tr>
 				<th>Infrastructure 24/7 support</th>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
-				<th>Landscape Dedicated Server</th>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<th>Landscape On Premises Server</th>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Unlimited supported Ubuntu guests*</th>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Ceph storage included</th>
@@ -175,7 +202,7 @@
 			<p><a href="/server/management">Learn more&nbsp;&rsaquo;</a></p>
 		</div>
 		<div class="prepend-two two-col text-center priority-0">
-			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-server-warmgrey.svg" width="100%" alt="" />
+			<img src="{{ ASSET_SERVER_URL }}c3499461-picto-server-warmgrey.svg" width="100%" alt="" />
 		</div>
 	</div>
 	<table class="audience-enterprise">
@@ -195,52 +222,52 @@
 				<td>Tailored for more advanced configurations such as high-availability failover and clustering.</td>
 			</tr>
 			<tr>
-				<th>Landscape Hosted Edition</th>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<th>Landscape SaaS Edition</th>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
-				<th>Landscape Dedicated Server</th>
+				<th>Landscape On Premises Server</th>
 				<td>Optional</td>
 				<td>Optional</td>
 				<td>Optional</td>
 			</tr>
 			<tr>
 				<th>Ubuntu Legal Assurance programme</th>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Knowledge Base</th>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Basic installation and applications</th>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Windows integration</th>
 				<td>&nbsp;</td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Virtualisation</th>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Clustering and high availability failover</th>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Ceph support</th>
@@ -272,7 +299,7 @@
 			<p><a href="/desktop/management">Learn more&nbsp;&rsaquo;</a></p>
 		</div>
 		<div class="prepend-two two-col text-center priority-0">
-			<img src="{{ STATIC_URL }}img/pictograms/picto-pack/picto-desktop-orange.svg" width="100%" alt="" />
+			<img src="{{ ASSET_SERVER_URL }}8480e7db-picto-desktop-orange.svg" width="100%" alt="" />
 		</div>
 	</div>
 	<table class="audience-enterprise">
@@ -290,44 +317,44 @@
 				<td>For more intensive desktop usage, such as work conducted by developers.</td>
 			</tr>
 			<tr>
-				<th>Landscape Hosted Edition</th>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<th>Landscape SaaS Edition</th>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
-				<th>Landscape Dedicated Server</th>
+				<th>Landscape On Premises Server</th>
 				<td>Optional</td>
 				<td>Optional</td>
 			</tr>
 			<tr>
 				<th>Ubuntu Legal Assurance programme</th>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Knowledge Base</th>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Basic installation and applications</th>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Installation, applications and systems administration support</th>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Desktop virtualisation</th>
 				<td></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Developer tools</th>
 				<td></td>
-				<td><img src="{{ STATIC_URL }}img/patterns/tick-darkaubergine.svg" alt="Yes" /></td>
+				<td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
 			</tr>
 			<tr>
 				<th>Premium Service Engineer</th>
@@ -344,21 +371,15 @@
 </div><!-- .row -->
 
 <div class="row no-border">
-	<h2>Dedicated server available</h2>
+	<h2>On Premises Server available</h2>
 		<div class="six-col">
-			<p>Landscape is available as a hosted service delivered via the internet, or as a dedicated server installation behind your corporate firewall. In both cases the console can be accessed in any modern web browser.</p>
-			<p>The advantage of a hosted service is that you don&rsquo;t have to buy or support extra hardware. Updates and new features are delivered automatically, with no need for installation management.</p>
+			<p>Landscape is available as a SaaS delivered via the internet, or as an on premises server installation behind your corporate firewall. In both cases the console can be accessed in any modern web browser.</p>
+			<p>The advantage of a SaaS is that you don&rsquo;t have to buy or support extra hardware. Updates and new features are delivered automatically, with no need for installation management.</p>
 		</div><!-- /.six-col -->
 		<div class="six-col last-col">
-			<p>If you&rsquo;d prefer a dedicated server running behind your firewall, Landscape can be installed on private hardware. This is functionally identical to the hosted service, but you control the hardware.</p>
-			<p>Whether Landscape fits your needs better as a hosted service or dedicated server, it&rsquo;s only available with a subscription to Ubuntu Advantage.</p>
+			<p>If you&rsquo;d prefer a server on premises running behind your firewall, Landscape can be installed on private hardware. This is functionally identical to the SaaS, but you control the hardware.</p>
+			<p>Whether Landscape fits your needs better as a SaaS or a server on premises, it&rsquo;s only available with a subscription to Ubuntu Advantage.</p>
 		</div><!-- /.six-col -->
 	<p class="twelve-col"><a href="/management/working-with-landscape">Find out more about working with Landscape&nbsp;&rsaquo;</a></p>
 </div><!-- /.row -->
-
-{% include "shared/_live_chat.html" %}
-
-{% include "shared/_munchkin.html" %}
-
 {% endblock content %}
-{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

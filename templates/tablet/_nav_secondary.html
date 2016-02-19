@@ -1,5 +1,7 @@
 	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
-		<li class="first{% if level_1 == 'tablet' and not level_2 %} active{% endif %}"><a href="/tablet">Design</a></li>
-		<li{% if level_2 == 'operators-and-oems' %} class="active"{% endif %}><a href="/tablet/operators-and-oems">Operators and OEMs</a></li>
-		<li{% if level_2 == 'backed-by-canonical' %} class="last-item"{% endif %}{% if level_2 == 'app-ecosystem' %} class="active"{% endif %}><a href="/tablet/app-ecosystem">App ecosystem</a></li>
+		<li><a{% if level_1 == 'tablet' and not level_2 %} class="active"{% endif %} href="/tablet">Overview</a></li>
+		<li><a{% if level_2 == 'features' %} class="active"{% endif %} href="/tablet/features">Features</a></li>
+		<li><a{% if level_2 == 'devices' %} class="active"{% endif %} href="/tablet/devices">Devices</a></li>
+		<li><a{% if level_2 == 'developers' %} class="active"{% endif %} href="/tablet/developers">For developers</a></li>
+		<li><a{% if level_2 == 'partners' %} class="active"{% endif %} href="/tablet/partners">For partners</a></li>
 	</ul>

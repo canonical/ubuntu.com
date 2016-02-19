@@ -1,8 +1,8 @@
 	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
-		<li class="first{% if level_1 == 'tv' and not level_2 %} active{% endif %}"><a href="/tv">Overview</a></li>
-		<li{% if level_2 == 'experience' %} class="active"{% endif %}><a href="/tv/experience">Experience</a></li>
-		<li{% if level_2 == 'industry' %} class="active"{% endif %}><a href="/tv/industry">Industry</a></li>
-		<li{% if level_2 == 'contributors' %} class="active"{% endif %}><a href="/tv/contributors">Contributors</a></li>
-		<li{% if level_2 == 'commercial-info' %} class="last-item"{% endif %}{% if level_2 == 'features-and-specs' %} class="active"{% endif %}><a href="/tv/features-and-specs">Features and specs</a></li>
-		<li{% if level_2 == 'commercial-info' %} class="active"{% endif %}><a href="/tv/commercial-info">Commercial info</a></li>
+		<li><a{% if level_1 == 'tv' and not level_2 %} class="active"{% endif %} href="/tv">Overview</a></li>
+		<li><a{% if level_2 == 'experience' %} class="active"{% endif %} href="/tv/experience">Experience</a></li>
+		<li><a{% if level_2 == 'industry' %} class="active"{% endif %} href="/tv/industry">Industry</a></li>
+		<li><a{% if level_2 == 'contributors' %} class="active"{% endif %} href="/tv/contributors">Contributors</a></li>
+		<li><a{% if level_2 == 'commercial-info' %} class="last-item"{% endif %}{% if level_2 == 'features-and-specs' %} class="active"{% endif %} href="/tv/features-and-specs">Features and specs</a></li>
+		<li><a{% if level_2 == 'commercial-info' %} class="active"{% endif %} href="/tv/commercial-info">Commercial info</a></li>
 	</ul>
