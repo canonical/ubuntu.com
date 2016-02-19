@@ -43,7 +43,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django_asset_server_url.asset_server_url"   # {{ ASSET_SERVER_URL }}
 ]
 
-ASSET_SERVER_URL = '//assets.ubuntu.com/v1/'
+ASSET_SERVER_URL = 'https://assets.ubuntu.com/v1/'
 
 LOGGING = {
     'version': 1,

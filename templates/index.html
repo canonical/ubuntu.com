@@ -5,7 +5,7 @@
 
 {% block head_extra %}
 
-<script src="//assets.ubuntu.com/v1/c954db4a-jfeed_prm.js"></script>
+<script src="{{ ASSET_SERVER_URL }}c954db4a-jfeed_prm.js"></script>
 {% endblock %}
 
 {% block takeover_content %}
@@ -75,7 +75,7 @@
             </div>
         </div>
         <div class="eight-col last-col equal-height__align-vertically for-medium">
-            <img src="//assets.ubuntu.com/v1/f27582be-image-cloud-static.jpg" alt="" />
+            <img src="{{ ASSET_SERVER_URL }}f27582be-image-cloud-static.jpg" alt="" />
         </div>
     </div>
 </section>
@@ -87,7 +87,7 @@
                 <div id="devices">
                     <div id="device-phone"><div></div></div>
                     <div id="device-tablet"><div></div></div>
-                    <div id="device-laptop"><img src="//assets.ubuntu.com/v1/a0ae228b-laptop-base.png" alt="" /><div></div></div>
+                    <div id="device-laptop"><img src="{{ ASSET_SERVER_URL }}a0ae228b-laptop-base.png" alt="" /><div></div></div>
                 </div>
             </div>
         </div>
@@ -106,7 +106,7 @@
         </div>
         <div class="eight-col last-col align-center">
             <div class="row--iot__image"></div>
-            <img class="for-small" src="//assets.ubuntu.com/v1/2f56d557-image-iot.jpg?w=280" width="280" alt="" />
+            <img class="for-small" src="{{ ASSET_SERVER_URL }}2f56d557-image-iot.jpg?w=280" width="280" alt="" />
         </div>
     </div>
 </section>
@@ -115,7 +115,7 @@
     <div class="strip-inner-wrapper equal-height">
         <div class="featured featured--left six-col right">
             <div class="two-col not-for-small">
-                <img class="featured__image featured--left__image not-for-small" src="//assets.ubuntu.com/v1/3aa7e9a6-picto-articles-white.svg?q=40" width="150" alt="" />
+                <img class="featured__image featured--left__image not-for-small" src="{{ ASSET_SERVER_URL }}3aa7e9a6-picto-articles-white.svg?q=40" width="150" alt="" />
             </div>
             <div class="three-col last-col no-margin-bottom">
                 <h2 class="featured__title"><a href="https://insights.ubuntu.com/2015/11/24/opus-2-develops-the-legal-cloud-of-the-future-on-ubuntu-openstack" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : 'Opus 2 takeunder', 'eventLabel' : 'Learn more about Ubuntu', 'eventValue' : undefined });">The legal cloud of the future&nbsp;&rsaquo;</a></h2>
@@ -128,7 +128,7 @@
                 <p class="featured__desc featured--event__desc">Boost revenue and reduce time to identify new markets and solutions.</p>
             </div>
             <div class="featured__image two-col last-col not-for-small no-margin-bottom">
-                <img src="//assets.ubuntu.com/v1/c5326cfa-picto-startfirst-orange.svg" width="200" alt="" />
+                <img src="{{ ASSET_SERVER_URL }}c5326cfa-picto-startfirst-orange.svg" width="200" alt="" />
             </div>
         </div>
     </div>
@@ -137,7 +137,7 @@
 {% comment %}
     /* background image for the event feature */
     /* get original using this //maps.googleapis.com/maps/api/staticmap?center=Tokyo%2C+Japan&zoom=14&scale=2&size=1200x320&maptype=satellite but with the location details from the insights event */
-    /*.featured--event:before { background-image: url('//assets.ubuntu.com/v1/62b7ce67-pasadena.png?fmt=jpg&q=20'); }*/
+    /*.featured--event:before { background-image: url('{{ ASSET_SERVER_URL }}62b7ce67-pasadena.png?fmt=jpg&q=20'); }*/
 {% endcomment %}
 
 {% include "shared/_device_animation.html" %}
