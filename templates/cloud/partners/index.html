@@ -150,13 +150,9 @@
 </div>
 
 {% include "cloud/shared/_contextual_footer.html" %}
-
-
-
 {% endblock content %}
 
 {% block footer_extra %}
-{{ marketo }}
 <script>
     YUI().use('event-base', function (Y) {
         Y.on('domready', function () {
@@ -164,5 +160,4 @@
         });
     });
 </script>
-
 {% endblock %}
