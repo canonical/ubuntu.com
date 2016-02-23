@@ -1,6 +1,6 @@
 	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
-		<li{% if level_1 == 'internet-of-things' and not level_2 %} class="active"{% endif %}><a href="/internet-of-things">Overview</a></li>
-		<li{% if level_2 == 'features' %} class="active"{% endif %}><a href="/internet-of-things/features">Features</a></li>
-		<li{% if level_2 == 'partners' %} class="active"{% endif %}><a href="/internet-of-things/partners">For partners</a></li>
-		<li{% if level_2 == 'developers' %} class="active"{% endif %}><a href="/internet-of-things/developers">For developers</a></li>
+		<li><a{% if level_1 == 'internet-of-things' and not level_2 %} class="active"{% endif %} href="/internet-of-things">Overview</a></li>
+		<li><a{% if level_2 == 'features' %} class="active"{% endif %} href="/internet-of-things/features">Features</a></li>
+		<li><a{% if level_2 == 'partners' %} class="active"{% endif %} href="/internet-of-things/partners">For partners</a></li>
+		<li><a{% if level_2 == 'developers' %} class="active"{% endif %} href="/internet-of-things/developers">For developers</a></li>
 	</ul>

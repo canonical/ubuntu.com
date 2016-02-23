@@ -1,10 +1,8 @@
 {% extends "base_index.html" %}
 
-
-{% block takeover_body_class %}juju-takeover{% endblock takeover_body_class %}
+{% block takeover_body_class %}intel-nuc-takeover{% endblock takeover_body_class %}
 
 {% block head_extra %}
-
 <script src="{{ ASSET_SERVER_URL }}c954db4a-jfeed_prm.js"></script>
 {% endblock %}
 
@@ -13,7 +11,7 @@
     <div class="lang-switch-wrapper strip-inner-wrapper"><a href="/" class="lang-switch" lang="zh">中文主页&nbsp;&rsaquo;</a></div>
 {% endif %}
 
-{% include "takeovers/_juju_circles_takeover.html" %}
+{% include "takeovers/_intel_nuc_takeover.html" %}
 
 <section class="row row--ubuntu-news row-grey strip no-border">
     <div class="strip-inner-wrapper">
@@ -122,23 +120,15 @@
                 <p class="featured__desc">Read how Opus 2&rsquo;s flagship service was built entirely on Ubuntu OpenStack.</p>
             </div>
         </div>
-        <div class="featured featured--right featured--event six-col">
-            <div class="three-col prepend-one no-margin-bottom">
-                <h2 class="featured__title featured--right__title"><a href="http://ubunt.eu/uWtnfa" onclick="_gaq.push(['_trackEvent', 'Homepage Link', 'Telco takeunder', 'Analytics and big data for telcos']);">Analytics and big data for telcos&nbsp;&rsaquo;</a></h2>
-                <p class="featured__desc featured--event__desc">Boost revenue and reduce time to identify new markets and solutions.</p>
-            </div>
-            <div class="featured__image two-col last-col not-for-small no-margin-bottom">
-                <img src="{{ ASSET_SERVER_URL }}c5326cfa-picto-startfirst-orange.svg" width="200" alt="" />
-            </div>
-        </div>
+        {% include "takeovers/takeunders/_mwc-2016.html" %}
     </div>
 </section>
 
-{% comment %}
+<style type="text/css">
     /* background image for the event feature */
     /* get original using this //maps.googleapis.com/maps/api/staticmap?center=Tokyo%2C+Japan&zoom=14&scale=2&size=1200x320&maptype=satellite but with the location details from the insights event */
-    /*.featured--event:before { background-image: url('{{ ASSET_SERVER_URL }}62b7ce67-pasadena.png?fmt=jpg&q=20'); }*/
-{% endcomment %}
+    .featured--event:before { background-image: url('{{ ASSET_SERVER_URL }}62b7ce67-pasadena.png?fmt=jpg&q=20'); }
+</style>
 
 {% include "shared/_device_animation.html" %}
 </div>

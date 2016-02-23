@@ -7,30 +7,36 @@
 {% block meta_keywords %}Ubuntu, phone, smartphone, cellphone, cell, mobile, OS, operating system, user, interface, GUI, edge magic, content, focus, app, native, web, HTML5, Unity, gestures, handheld, handset, touch, multitouch, touchscreen, device, form factor, Linux, open source, scopes, Launcher{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Features"  %}
+   <div class="strip-inner-wrapper">
+	   {% include "templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Features"  %}
+   </div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row row-hero no-border">
-    <div class="for-mobile">
-        <img src="{{ ASSET_SERVER_URL }}93e7c361-image-phone-features-hero-bq.jpg?w=480" alt="" />
-    </div>
-  	<div class="four-col append-eight">
-  		<h1>Features</h1>
-  		<p class="intro">Ubuntu&rsquo;s scopes give you related content on one screen, instead of hiding it behind different apps. So everything you look for in life is now right at your&nbsp;fingertips.</p>
-  	</div><!-- /.four-col -->
+	<div class="strip-inner-wrapper">
+	    <div class="for-mobile">
+	        <img src="{{ ASSET_SERVER_URL }}2c499edf-intro-row.jpg?w=480" alt="" />
+	    </div>
+	  	<div class="four-col append-eight">
+	  		<h1>Features</h1>
+	  		<p class="intro">Ubuntu&rsquo;s scopes give you related content on one screen, instead of hiding it behind different apps. So everything you look for in life is now right at your&nbsp;fingertips.</p>
+	  	</div><!-- /.four-col -->
+	</div><!-- /.strip-inner-wrapper -->
 </div><!-- .row -->
 
-<div class="row no-border">
-   <div class="five-col">
-      <img src="{{ ASSET_SERVER_URL }}d5400ec3-phone-img-w-phone.png" alt="" />
-   </div>
-   <div class="seven-col last-col">
-      <h2>Introducing scopes</h2>
-      <p>Ubuntu&rsquo;s scopes are like individual home screens for different kinds of content, giving you access to everything from movies and music to local services and social media, without having to go through individual apps.</p>
-      <p>Scope Roulette gives you a chance to learn more about scopes, and along the way there&rsquo;s the chance to win Ubuntu Phone related prizes.</p>
-      <p><a href="http://ubuntu-phone.eu/scopes" class="button--primary">Play to learn more</a></p>
-   </div>
+<div class="row no-border strip-light">
+   <div class="strip-inner-wrapper">
+      <div class="seven-col">
+         <img src="{{ ASSET_SERVER_URL }}2c10be98-scopes-row-2x.png?w=500" alt="Various scopes on phones" />
+      </div>
+      <div class="five-col last-col">
+         <h2>Introducing scopes</h2>
+         <p>Ubuntu&rsquo;s scopes are like individual home screens for different kinds of content, giving you access to everything from movies and music to local services and social media, without having to go through individual apps.</p>
+         <p>Scope Roulette gives you a chance to learn more about scopes, and along the way there&rsquo;s the chance to win Ubuntu Phone related prizes.</p>
+         <p><a class="external" href="http://ubuntu-phone.eu/scopes">Play to learn more</a></p>
+      </div>
+   </div><!-- /.strip-inner-wrapper -->
 </div>
 
 <div class="row row--video no-border no-padding">
@@ -40,43 +46,49 @@
 </div><!-- /.row -->
 
 <div class="row row--phone-details no-border no-margin-bottom">
-    <div class="twelve-col equal-height no-margin-bottom">
-      <div class="four-col equal-height__align-vertically no-margin-bottom">
-        <h2>Everything you expect, designed beautifully</h2>
-        <p>Ubuntu Phone includes all the smartphone essentials, crafted with breathtaking attention to detail. From edges that enable you to navigate faster to details like the striking clock face, nothing has been overlooked in the quest for mobile perfection.</p>
+    <div class="twelve-col strip-inner-wrapper equal-height no-margin-bottom">
+      <div class="four-col align-vertically no-margin-bottom">
+        <div>
+          <h2>Everything you expect, designed beautifully</h2>
+          <p>Ubuntu Phone includes all the smartphone essentials, crafted with breathtaking attention to detail. From edges that enable you to navigate faster to details like the striking clock face, nothing has been overlooked in the quest for mobile perfection.</p>
+        </div>
       </div>
       <div class="eight-col last-col no-margin-bottom">
-        <img class="right pull-right-40" src="{{ ASSET_SERVER_URL }}b69e2693-image-phone-features-essentials.png" alt="" />
+        <img class="right pull-right-40" src="{{ ASSET_SERVER_URL }}3ea0a990-beautifully-designed-2x.jpg?w=600" alt="Phone screen examples" />
       </div><!-- /col -->
     </div>
-    <h3>See the features in action</h3>
-    <ul class="no-bullets">
-        <li class="three-col">
-            <a class="external" href="https://www.youtube.com/watch?v=Qocy2Ypz-_Y">
-                <p><img src="{{ ASSET_SERVER_URL }}662024d5-edges.jpg" alt="Navigate using edges" /></p>
-                Navigate using edges
-            </a>
-        </li>
-        <li class="three-col">
-            <a class="external" href="https://www.youtube.com/watch?v=soCcjc4NGP8">
-                <p><img src="{{ ASSET_SERVER_URL }}270f6dd3-clock.jpg" alt="Time zones and clock" /></p>
-                Time zones and clock
-            </a>
-        </li>
-        <li class="three-col">
-            <a class="external" href="https://www.youtube.com/watch?v=xn13tFA_27w">
-                <p><img src="{{ ASSET_SERVER_URL }}2839a1e4-messaging.jpg" alt="Chat and messaging" alt="Chat and messaging" /></p>
-                Chat and messaging
-            </a>
-        </li>
-        <li class="three-col last-col">
-            <a class="external" href="https://youtu.be/vasep2APq44">
-                <p><img src="{{ ASSET_SERVER_URL }}42f33586-store.jpg" alt="Installing scopes and apps" /></p>
-                Installing scopes and apps
-            </a>
-        </li>
-    </ul>
+    <div class="strip-inner-wrapper">
+       <h3>See the features in action</h3>
+       <ul class="no-bullets">
+           <li class="three-col">
+               <a class="external" href="https://www.youtube.com/watch?v=Qocy2Ypz-_Y">
+                   <p><img src="{{ ASSET_SERVER_URL }}662024d5-edges.jpg" alt="Navigate using edges" /></p>
+                   Navigate using edges
+               </a>
+           </li>
+           <li class="three-col">
+               <a class="external" href="https://www.youtube.com/watch?v=soCcjc4NGP8">
+                   <p><img src="{{ ASSET_SERVER_URL }}270f6dd3-clock.jpg" alt="Time zones and clock" /></p>
+                   Time zones and clock
+               </a>
+           </li>
+           <li class="three-col">
+               <a class="external" href="https://www.youtube.com/watch?v=xn13tFA_27w">
+                   <p><img src="{{ ASSET_SERVER_URL }}2839a1e4-messaging.jpg" alt="Chat and messaging" /></p>
+                   Chat and messaging
+               </a>
+           </li>
+           <li class="three-col last-col">
+               <a class="external" href="https://youtu.be/vasep2APq44">
+                   <p><img src="{{ ASSET_SERVER_URL }}42f33586-store.jpg" alt="Installing scopes and apps" /></p>
+                   Installing scopes and apps
+               </a>
+           </li>
+       </ul>
+   </div>
 </div>
 
-{% include "phone/shared/_store_promo.html" with extra_row_class="store-promo no-border" promo_title="The Ubuntu Store" promo_content="You can choose from a wide range of scopes and apps in the Ubuntu Store from partners such as Time Out, Twitter and Euronews. All of these and many more are available for download in just a few&nbsp;taps." promo_link="/phone/developers" promo_link_title="More information for developers" %}
+<section class="row no-border">
+{% include "phone/shared/_store_promo.html" with extra_row_class="store-promo no-border" promo_title="The Ubuntu Store" promo_content="You can choose from a wide range of scopes and apps in the Ubuntu Store from partners such as Time Out, Twitter and Euronews. All of these and many more are available for download in just a few&nbsp;taps." promo_link="/phone/developers" promo_link_title="Find more information for developers" %}
+</section>
 {% endblock content %}
