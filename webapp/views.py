@@ -38,7 +38,7 @@ class DownloadView(UbuntuTemplateFinder):
 
         mirrors_path = os.path.join(
             os.getcwd(),
-            'etc/mirrors-rss.xml'
+            'etc/ubuntu-mirrors-rss.xml'
         )
 
         try:
