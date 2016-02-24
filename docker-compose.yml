@@ -18,7 +18,7 @@ web:
   extends: {'service': 'base', 'file': 'docker-compose.yml'}
   build: .
   ports:
-    - "8080:5000"
+    - "8001:5000"
 
 sass-watch:
   extends: {'service': 'sass', 'file': 'docker-compose.yml'}
