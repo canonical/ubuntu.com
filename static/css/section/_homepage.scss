@@ -48,7 +48,7 @@ body.homepage {
   }
 
   #main-content .box-hero {
-    @include rounded_corners(4px);
+    border-radius: 4px;
     border: 0;
     margin: 0 0 20px;
     padding: 0;
@@ -62,11 +62,10 @@ body.homepage-default {
     padding-bottom: $gutter-width;
     padding-top: 2 * $gutter-width;
     text-align: center;
-    width: $five-col;
   }
 
   .row-hero p {
-    @include font_size (18);
+    font-size: 1.125em;
   }
 } /* end body.default */
 
@@ -91,7 +90,7 @@ body.homepage {
     }
 
     h2 {
-      @include font_size (21);
+      font-size: 1.3125em;
     }
   }
 
@@ -191,7 +190,7 @@ body.homepage {
     position: relative;
 
     &:before {
-      background-image: url('https://assets.ubuntu.com/v1/bcb69486-image-intro-dots.svg');
+      background-image: url('#{$asset-server}bcb69486-image-intro-dots.svg');
       background-position:  right center;
       background-repeat: repeat-x;
       background-size: 10px;
@@ -224,7 +223,7 @@ body.homepage {
   .intro-left,
   .intro-right {
     @media only screen and (min-width : 984px) {
-      background: url('https://assets.ubuntu.com/v1/bcb69486-image-intro-dots.svg') repeat-x right center;
+      background: url('#{$asset-server}bcb69486-image-intro-dots.svg') repeat-x right center;
       background-size: 10px;
     }
   }
@@ -290,7 +289,7 @@ body.homepage {
     &:before,
     &:after {
       display: block;
-      background: url('https://assets.ubuntu.com/v1/bcb69486-image-intro-dots.svg') repeat-x right center;
+      background: url('#{$asset-server}bcb69486-image-intro-dots.svg') repeat-x right center;
       background-size: 10px;
       content: "";
       position: absolute;
@@ -318,7 +317,7 @@ body.homepage {
 }
 
 .intro-middle li a.intro-cloud {
-  background-image: url('https://assets.ubuntu.com/v1/7153d45d-icon-intro-cloud.svg');
+  background-image: url('#{$asset-server}7153d45d-icon-intro-cloud.svg');
 
   &:before {
     width: 36px;
@@ -331,7 +330,7 @@ body.homepage {
 }
 
 .intro-middle li a.intro-server {
-  background-image: url('https://assets.ubuntu.com/v1/949bb7ae-icon-intro-server.svg');
+  background-image: url('#{$asset-server}949bb7ae-icon-intro-server.svg');
 
   &:before {
     width: 38px;
@@ -344,7 +343,7 @@ body.homepage {
 }
 
 .intro-middle li a.intro-desktop {
-  background-image: url('https://assets.ubuntu.com/v1/0a347261-icon-intro-desktop.svg');
+  background-image: url('#{$asset-server}0a347261-icon-intro-desktop.svg');
 
   &:before {
     width: 38px;
@@ -356,7 +355,7 @@ body.homepage {
 }
 
 .intro-middle li a.intro-phone {
-  background-image: url('https://assets.ubuntu.com/v1/1f6d7af8-icon-intro-phone.svg');
+  background-image: url('#{$asset-server}1f6d7af8-icon-intro-phone.svg');
 
   &:before {
     width: 54px;
@@ -368,7 +367,7 @@ body.homepage {
 }
 
 .intro-middle li a.intro-tablet {
-  background-image: url('https://assets.ubuntu.com/v1/08d4cf5a-icon-intro-tablet.svg');
+  background-image: url('#{$asset-server}08d4cf5a-icon-intro-tablet.svg');
 
   &:before {
     width: 34px;
@@ -381,7 +380,7 @@ body.homepage {
 }
 
 .intro-middle li a.intro-iot {
-  background-image: url('https://assets.ubuntu.com/v1/473ea07f-icon-intro-iot.svg');
+  background-image: url('#{$asset-server}473ea07f-icon-intro-iot.svg');
 
   &:before {
     width: 39px;
@@ -421,7 +420,7 @@ body.homepage .row--intro .intro-middle li a:hover {
 
   @media only screen and (min-width : 768px) {
     .row--ubuntu-news__title {
-      background: url('https://assets.ubuntu.com/v1/e1bba201-external-link-cool-grey.svg') left center no-repeat;
+      background: url('#{$asset-server}e1bba201-external-link-cool-grey.svg') left center no-repeat;
       background-size: 16px;
       padding-left: 22px;
       font-size: 1em;
@@ -460,7 +459,7 @@ body.homepage .row--iot {
 
   .row--iot__image {
     background-size: 700px auto;
-    background-image: url('https://assets.ubuntu.com/v1/2f56d557-image-iot.jpg?q=80');
+    background-image: url('#{$asset-server}2f56d557-image-iot.jpg?q=80');
     background-repeat: no-repeat;
     height: 500px;
     left: 40px;
@@ -494,7 +493,7 @@ body.homepage .row--cloud-products {
   @media only screen and (min-width: 984px) {
     padding-top: 220px;
     padding-bottom: 200px;
-    background-image: url('https://assets.ubuntu.com/v1/f27582be-image-cloud-static.jpg');
+    background-image: url('#{$asset-server}f27582be-image-cloud-static.jpg');
     background-repeat: no-repeat;
     background-position: 77% center;
     background-size: 50%;
@@ -525,7 +524,7 @@ body.homepage .row--devices__inner {
 }
 
 // import the devices animation sass
-@import 'https://assets.ubuntu.com/v1/0b8d95e1-morph.scss';
+@import url('#{$asset-server}0b8d95e1-morph.scss');
 
 #devices {
   margin: 180px auto 0;
@@ -757,7 +756,7 @@ body.homepage-cloud-default {
         overflow: visible;
         position: relative;
         &::after {
-          background-image: url('https://assets.ubuntu.com/v1/5b8d47f1-laptop-india.jpg');
+          background-image: url('#{$asset-server}5b8d47f1-laptop-india.jpg');
           background-repeat: no-repeat;
           content: "";
           display: block;
@@ -807,7 +806,7 @@ body.homepage-15-10 {
       padding-bottom: 0;
 
       @media only screen and (min-width : 768px) {
-        background: url('https://assets.ubuntu.com/v1/8d298549-home-takeover-.jpg?w=1800&q=80') 50% 50% no-repeat;
+        background: url('#{$asset-server}8d298549-home-takeover-.jpg?w=1800&q=80') 50% 50% no-repeat;
         background-size: cover;
         color: #333;
         min-height: 80vh;
@@ -842,19 +841,19 @@ body.homepage.meizu-takeover {
   }
 
   .list--social__item--wechat a {
-    background: url('https://assets.ubuntu.com/v1/602a7470-icon-wechat-orange.svg') no-repeat;
+    background: url('#{$asset-server}602a7470-icon-wechat-orange.svg') no-repeat;
     background-size: 37px 37px;
   }
 
   .list--social__item--weibo a {
-    background: url('https://assets.ubuntu.com/v1/a456bf5f-icon-weibo-orange.svg') no-repeat;
+    background: url('#{$asset-server}a456bf5f-icon-weibo-orange.svg') no-repeat;
     background-size: 37px 37px;
   }
 
   .list--social__item.active a {
     background-image:
-      url('https://assets.ubuntu.com/v1/602a7470-icon-wechat-orange.svg'),
-      url('https://assets.ubuntu.com/v1/2be70a94-qr-code-wechat.png');
+      url('#{$asset-server}602a7470-icon-wechat-orange.svg'),
+      url('#{$asset-server}2be70a94-qr-code-wechat.png');
   }
 
   header.banner {
@@ -877,7 +876,7 @@ body.homepage.meizu-takeover {
     }
 
     #main-content .row-hero {
-      background-image: url('https://assets.ubuntu.com/v1/7ea7024c-meizu-takeover.jpg');
+      background-image: url('#{$asset-server}7ea7024c-meizu-takeover.jpg');
       background-position: right 30%;
       background-repeat: no-repeat;
       background-size: cover;
@@ -923,7 +922,7 @@ body.homepage.meizu-takeover {
 
   #main-content .row-hero {
     background-color: $dark-aubergine;
-    background-image: url('https://assets.ubuntu.com/v1/640e7d6c-testdrive-takeover-01.svg');
+    background-image: url('#{$asset-server}640e7d6c-testdrive-takeover-01.svg');
     background-repeat: no-repeat;
     color: #fff;
     margin-top: 0;
@@ -981,7 +980,7 @@ body.homepage-russia {
         margin-top: 0;
         overflow: hidden;
         padding-bottom: 0;
-        background: url('https://assets.ubuntu.com/v1/7a415ac3-bq-ru-takeover.jpg') 50% 50% no-repeat;
+        background: url('#{$asset-server}7a415ac3-bq-ru-takeover.jpg') 50% 50% no-repeat;
         background-size: cover;
         min-height: 80vh;
       }
@@ -1117,7 +1116,7 @@ body.homepage-maas-takeover {
     margin-top: 0;
 
     .row-hero {
-      background: url('https://assets.ubuntu.com/v1/8ce3e107-hero-1.jpg?w=1600&amp;q=40') 0 12% no-repeat;
+      background: url('#{$asset-server}8ce3e107-hero-1.jpg?w=1600&amp;q=40') 0 12% no-repeat;
       background-size: cover;
       color: #fff;
       margin-top: 0;
@@ -1159,7 +1158,7 @@ body.homepage-maas-takeover {
 
   #main-content .row-hero {
     background-color: #333;
-    background-image: url('https://assets.ubuntu.com/v1/882ae6de-image-background-paper.png');
+    background-image: url('#{$asset-server}882ae6de-image-background-paper.png');
     background-repeat: repeat;
     background-size: cover;
     color: #fff;

@@ -103,12 +103,9 @@ body.download {
 		.box-highlight {
 			margin-bottom: 20px;
 		}
-		.media--image__vcentered {
-			margin-top: 38px;
-		}
 	}
 	p.ubuntu-upgrade {
-		background: $light-grey url(../img/pictograms/picto-pack/picto-upgrade-warmgrey.svg) 20px center no-repeat;
+		background: $light-grey url('#{$asset-server}f68488b1-picto-upgrade-warmgrey.svg') 20px center no-repeat;
 		background-size: 40px 40px;
 		border-top: 1px solid #e3e3e3;
 		border-radius: 0 0 4px 4px;
@@ -118,25 +115,21 @@ body.download {
 		margin: 0 -20px -41px -20px;
 	}
 }
-body.download-cloud-home {
-	#main-content .row-hero {
-		border-bottom: 1px dotted #888;
-		padding-top: 40px;
-		padding-bottom: 60px;
-		margin-top: -40px
-	}
+
+body.download-cloud-home #main-content .row form ul li{
+  color: inherit; // overrides the ubuntu orange default on these pages
 }
 
 html.no-svg,
 html.opera-mini {
 	body.download p.ubuntu-upgrade {
-		background-image: url(../img/pictograms/pictorgram-upgrade-44x44.png);
+		background-image: url('#{$asset-server}fa83e8f4-pictorgram-upgrade-44x44.png');
 	}
 }
 
 body.download-home {
 	.row-hero p {
-		@include font_size (19.5);
+		font-size: 1.21875em;
 	}
 }
 
@@ -166,22 +159,14 @@ body.download-desktop-upgrade {
 	padding-top: 0;
 }
 
-.windows-installer {
-	@include box_sizing;
-	@include font_size (13);
-	background: $light-grey url(../img/pictograms/pictogram-windows-44x44.png) $gutter-width center no-repeat;
-	border-top: 2px solid #e3e3e3;
-	display: inline-block;
-	margin-left: -(25/$base)em;
-	margin-right: -(25/$base)em;
-	padding: $gutter-width $gutter-width $gutter-width 84px;
-}
 
 /* heros */
-body.download-desktop-windows-installer .row-hero,
 body.download-alternative-downloads .row-hero,
 body.download-desktop-upgrade .row-hero,
-body.download-ubuntu-kylin-zh-CN .row-hero { background: none; }
+body.download-ubuntu-kylin-zh-CN .row-hero { 
+  background: none; 
+}
+
 body.download-ubuntu-kylin-zh-CN .lang-switch,
 body.download-ubuntu-kylin .lang-switch {
 	position: absolute;
@@ -190,15 +175,9 @@ body.download-ubuntu-kylin .lang-switch {
 	color: #fff;
 	z-index: 999;
 }
-body.download-desktop-windows-installer .row-hero { padding-bottom: 0; }
-
-body.download-desktop-windows-installer .row-windows-installer { padding-top: 0;}
-body.download-desktop-windows-installer .row-windows-installer .box-highlight p {
-	padding-right: $gutter-width;
-}
 
 body.download-ubuntu-kylin-zh-CN .row-zh-CN .box-highlight {
-	@include box_sizing;
+	box-sizing: border-box;
 }
 
 body.download-ubuntu-kylin-zh-CN .row-zh-CN .box-highlight h2,
@@ -206,17 +185,23 @@ body.download-ubuntu-kylin-zh-CN .row-zh-CN .box-highlight p {
 	padding-right: 20px;
 }
 
-/*body.download .row-hero .box { padding-left: $three-col; }*/
-
 /*	@section download > desktop/server & cloud
 -------------------------------------------------------------- */
-body.download .box-highlight.no-margin-bottom { margin-bottom: 0px; }
+body.download .box-highlight.no-margin-bottom { 
+  margin-bottom: 0px; 
+}
 
-body.download-desktop .windows-8 { padding-top: $gutter-width; }
+body.download-desktop .windows-8 { 
+  padding-top: $gutter-width; 
+}
 
-body.download .desktop.box-highlight { margin-bottom: 40px; }
+body.download .desktop.box-highlight { 
+  margin-bottom: 40px; 
+}
 
-body.download-ubuntu-kylin-zh-CN .download-description { min-height: 9.5em; }
+body.download-ubuntu-kylin-zh-CN .download-description { 
+  min-height: 9.5em; 
+}
 
 body.download .inner-wrapper form fieldset {
 	background: none;
@@ -234,7 +219,7 @@ body.download .inner-wrapper form select {
 body.download .inner-wrapper form button,
 body.download .inner-wrapper form .link-cta-download,
 body.download .inner-wrapper .link-cta-download {
-	@include font_size (19.5);
+	font-size: 1.21875em;
 	padding: 10px 14px;
 	border: 0;
 	float: left;
@@ -246,26 +231,35 @@ body.download #main-content .row-background a:link.link-cta-download {
 	text-decoration: none;
 }
 
-body.download-ubuntu-kylin-zh-CN .inner-wrapper form button { margin-left: 0; }
+body.download-ubuntu-kylin-zh-CN .inner-wrapper form button { 
+  margin-left: 0; 
+}
 
 body.download .inner-wrapper .small {
-	@include font_size (13);
+	font-size: .8125em;
 	display: block;
 	text-align: center;
 	margin-top: -.2em;
 }
+
 body.download .inner-wrapper .form-download .small {
 	margin-bottom: 2em;
 }
+
 body.download .inner-wrapper .form-download:last-of-type .small {
 	margin-bottom: 0;
 }
 
 body.download-ubuntu-kylin-zh-CN .inner-wrapper  {
-	.link-cta-download, .small { margin-left: 0; }
+	.link-cta-download, .small { 
+  	margin-left: 0;
+  }
 }
 
-body.download-cloud-home .row-hero form.form-download p { font-size: 0.8125em; }
+body.download-cloud-home .row-hero form.form-download p { 
+  font-size: 0.8125em; 
+}
+
 body.download-cloud-home .inline-icons li {
 	margin-bottom: 0;
 }
@@ -279,56 +273,6 @@ body.download-desktop {
 
 /* body.download */
 
-.download-cloud #download-other .cloud .box {
-	background: #fff url(../img/pictograms/pictogram-cloud-113x113.png) 93% 60px no-repeat;
-	min-height: 0;
-	padding-right: $four-col;
-	padding-top: 1.538em;
-}
-
-#download-other form fieldset {
-	background: none;
-	padding: 0;
-}
-
-body.download .inner-wrapper #download-other form button {
-	@include font_size (16);
-	float: left;
-	margin: 0;
-	display: inline-block;
-	text-align: center;
-	width: 100%;
-}
-
-#download-other .box {
-	background-color: #fff;
-	background-position: center $gutter-width;
-	background-repeat: no-repeat;
-	padding-top: 153px;
-	min-height: 27.5em;
-}
-
-body.download-ubuntu-kylin-zh-CN #download-other .box { min-height: auto; }
-
-body.download-desktop #download-other .box { margin-bottom: 20px; }
-
-body.download-server #download-other .box { min-height: 34em; }
-
-#download-other .windows { background-image: url(../img/pictograms/pictogram-windows-grey-113x113.png); }
-#download-other .cd { background-image: url(../img/pictograms/pictogram-cd-grey-113x113.png); }
-#download-other .chinese { background-image: url(../img/pictograms/ubuntu-kylin-chinese-grey.png); }
-#download-other .cloud { background-image: url(../img/pictograms/pictogram-juju-113x113.png); }
-body.download-server #download-other .juju,
-body.download-cloud #download-other .juju {
-	background: #fff url(../img/pictograms/pictogram-juju-113x113.png) 90% 50% no-repeat;
-	min-height: 1em;
-	padding-top: 20px;
-}
-body.download-server #download-other .juju p,
-body.download-cloud #download-other .juju p  { padding-right: 150px; }
-body.download-desktop-windows-installer #download-other .desktop  { background-image: url(../img/pictograms/pictogram-desktop-113x113.png); }
-body.download .sidebar .box { padding-top: 0; }
-
 body.download-help {
 	.row-hero {
 		padding-bottom: 0;
@@ -336,12 +280,6 @@ body.download-help {
 		& + .row {
 			padding-top: $gutter-width;
 		}
-	}
-
-	.box-arm,
-	.box-juju  {
-		padding-left: $four-col/* + ( $gutter-width / 2 )/*/;
-		margin-bottom: 0;
 	}
 }
 
@@ -351,14 +289,16 @@ body.download-help .box-juju {
 }
 
 body.download #download-other {
-  @include rounded_corners(4px);
 	background: $light-grey;
+  border-radius: 4px;
 	padding: 20px;
-	/*width: 67.9292%;*/
 }
 
 body.download .sidebar {
-	h4 { font-size: 1em; font-weight: normal; }
+	h4 { 
+  	font-size: 1em; 
+  	font-weight: normal;
+  }
 
 	li h5 {
 		font-weight: normal;
@@ -389,31 +329,31 @@ body.download {
 		padding: .3em 0 .6em 2.4em;
 	}
 	.header--ubuntu {
-		background-image: url("../img/pictograms/picto-pack/picto-ubuntu.svg");
+		background-image: url("#{$asset-server}cb3ecebb-picto-ubuntu.svg");
 	}
 	.header--windows {
-		background-image: url("../img/pictograms/picto-pack/picto-windows.svg");
+		background-image: url("#{$asset-server}08563efa-picto-windows.svg");
 	}
 	.header--mac {
-		background-image: url("../img/pictograms/picto-pack/picto-mac.svg");
+		background-image: url("#{$asset-server}4239507e-picto-mac.svg");
 	}
 	.header--dvd {
-		background-image: url("../img/pictograms/picto-pack/picto-cddvd-warmgrey.svg");
+		background-image: url("#{$asset-server}a9ed9a5c-picto-cddvd-warmgrey.svg");
 	}
 	.header--download {
-		background-image: url("../img/pictograms/picto-pack/picto-download-warmgrey.svg");
+		background-image: url("#{$asset-server}be3876ec-picto-download-warmgrey.svg");
 	}
 	.header--kylin {
-		background-image: url("../img/pictograms/picto-pack/picto-ubuntukylin.svg");
+		background-image: url("#{$asset-server}590018e7-picto-ubuntukylin.svg");
 	}
 	.header--openstack {
-		background-image: url("../img/pictograms/picto-pack/picto-openstack.svg");
+		background-image: url("#{$asset-server}a7916513-picto-openstack.svg");
 	}
 	.header--server {
-		background-image: url("../img/pictograms/picto-pack/picto-server-warmgrey.svg");
+		background-image: url("#{$asset-server}c3499461-picto-server-warmgrey.svg");
 	}
 	.header--upgrade {
-		background-image: url("../img/pictograms/picto-pack/picto-upgrade-warmgrey.svg");
+		background-image: url("#{$asset-server}f68488b1-picto-upgrade-warmgrey.svg");
 	}
 
 	.row-easy-ways {
@@ -430,7 +370,7 @@ body.download {
 	}
 
 	#main-content .row-background {
-		background: url("../img/backgrounds/image-background-wallpaper1404.jpg") no-repeat center center;
+		background: url("#{$asset-server}ad0985ac-image-background-wallpaper1404.jpg") no-repeat center center;
 		background-size: cover;
 		background-color: #62273A;
 		background-color: -webkit-linear-gradient(#62273A 0%, #a62d2d 100%);
@@ -453,17 +393,17 @@ body.download {
 		a:hover {
 			color: rgba(255,255,255,0.6);
 		}
-		
+
 		a:hover.link-cta-download {
 			color: rgba(255,255,255,1);
 		}
-		
+
 		a.external {
-			background-image: url("../img/icons/icon-externallink-white.svg");
+			background-image: url("#{$asset-server}c4b33571-icon-externallink-white.svg");
 		}
 
 		a.external:hover {
-			background-image: url("../img/icons/icon-externallink-warmgrey.svg");
+			background-image: url("#{$asset-server}a1f09697-icon-externallink-warmgrey.svg");
 		}
 
 		.box-highlight {
@@ -497,7 +437,7 @@ body.download {
 	}
 
 	a.external:hover {
-	background-image: url("../img/icons/icon-externallink-white.svg");
+	background-image: url("#{$asset-server}c4b33571-icon-externallink-white.svg");
 	}
 }
 
@@ -505,28 +445,28 @@ html.no-svg,
 html.opera-mini {
 	body.download {
 		.header--ubuntu {
-			background-image: url("../img/pictograms/picto-pack/picto-ubuntu.png");
+			background-image: url("#{$asset-server}b66b2b31-picto-ubuntu.png");
 		}
 		.header--windows {
-			background-image: url("../img/pictograms/picto-pack/picto-windows.png");
+			background-image: url("#{$asset-server}6447e9cf-picto-windows.png");
 		}
 		.header--mac {
-			background-image: url("../img/pictograms/picto-pack/picto-mac.png");
+			background-image: url("#{$asset-server}8f429189-picto-mac.png");
 		}
 		.header--dvd {
-			background-image: url("../img/pictograms/picto-pack/picto-cddvd-warmgrey.png");
+			background-image: url("#{$asset-server}35559463-picto-cddvd-warmgrey.png");
 		}
 		.header--download {
-			background-image: url("../img/pictograms/picto-pack/picto-download-warmgrey.png");
+			background-image: url("#{$asset-server}7fb8fbf5-picto-download-warmgrey.png");
 		}
 		.header--kylin {
-			background-image: url("../img/pictograms/picto-pack/picto-ubuntukylin.png");
+			background-image: url("#{$asset-server}3e66a066-picto-ubuntukylin.png");
 		}
 		.header--openstack {
-			background-image: url("../img/pictograms/picto-pack/picto-openstack.png");
+			background-image: url("#{$asset-server}fc902cdf-picto-openstack.png");
 		}
 		.header--server {
-			background-image: url("../img/pictograms/picto-pack/picto-server-warmgrey.png");
+			background-image: url("#{$asset-server}45f53eda-picto-server-warmgrey.png");
 		}
 	}
 }
@@ -535,12 +475,11 @@ body.download .box-highlight {
 	margin-bottom: 20px;
 }
 body.download .box h4 {
-	@include font_size (16);
+	font-size: 1em;
 	font-weight: normal;
 }
 
 body.download .sidebar li a,
-body.download .box ul li,
 body.download-alternative-downloads #main-content .row ul li { color: $ubuntu-orange; }
 
 body.download .box ul li p {
@@ -568,35 +507,21 @@ body.download-ubuntu-kylin-zh-CN h2 span {
 		background-repeat: no-repeat;
 		padding-top: 160px;
 	}
-	.one .box { background-image: url(../img/pictograms/pictogram-ubuntu-one-113x113.png); }
-	.support .box { background-image: url(../img/pictograms/pictogram-support-113x113.png); }
-	.ask .box { background-image: url(../img/pictograms/pictogram-ask-ubuntu-113x113.png); }
-	.jumpstart .box { background-image:  url(../img/pictograms/pictogram-jumpstart-113x113.png); }
-	.advantage .box { background-image: url(../img/pictograms/pictogram-advantage-113x113.png); }
-	.consulting .box { background-image:  url(../img/pictograms/pictogram-consulting-113x113.png); }
-}
-
-.row-next-steps {
-	li {
-		border-right: 1px dotted $warm-grey;
-		margin: 0 $gutter-width 0 0;
-		padding-right: $gutter-width;
-		width: $four-col;
-	}
-	li.last-col {
-		border-right: 0;
-		margin-right: 0;
-		padding-right: 0;
-	}
+	.one .box { background-image: url(#{$asset-server}c748d2fd-pictogram-ubuntu-one-113x113.png); }
+	.support .box { background-image: url(#{$asset-server}6d589b26-pictogram-support-113x113.png); }
+	.ask .box { background-image: url(#{$asset-server}db32f14e-pictogram-ask-ubuntu-113x113.png); }
+	.jumpstart .box { background-image:  url(#{$asset-server}724533d0-pictogram-jumpstart-113x113.png); }
+	.advantage .box { background-image: url(#{$asset-server}c39e35bd-pictogram-advantage-113x113.png); }
+	.consulting .box { background-image:  url(#{$asset-server}6dba47a9-pictogram-consulting-113x113.png); }
 }
 
 /*	@section help
 -------------------------------------------------------------- */
 #download-help {
-    ol {
-        margin-left: 0;
-    }
-    
+  ol {
+    margin-left: 0;
+  }
+
 	li {
 		border-bottom: 1px dotted $warm-grey;
 		margin-bottom: 1.25em;
@@ -625,7 +550,9 @@ body.download-ubuntu-kylin-zh-CN h2 span {
 		color: #333;
 	}
 
-	.box-tip p { margin-bottom: 0; }
+	.box-tip p {
+    margin-bottom: 0;
+  }
 
 	.row-wiki {
 		border-bottom: 1px dotted $warm-grey;
@@ -633,14 +560,16 @@ body.download-ubuntu-kylin-zh-CN h2 span {
 	}
 
 	dl {
-		@include font_size (16);
-	    border-top: 1px dotted $warm-grey;
-	    margin-bottom: 10px;
-	    padding-top: 10px;
-	    position: relative;
+    font-size: 1em;
+    border-top: 1px dotted $warm-grey;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    position: relative;
 	}
 
-	dl.last { border-bottom: 1px dotted $warm-grey; }
+	dl.last { 
+  	border-bottom: 1px dotted $warm-grey; 
+  }
 
 	dd {
 		padding-bottom: 10px;
@@ -666,7 +595,7 @@ body.download-ubuntu-kylin-zh-CN h2 span {
 	}
 
 	.ask-ubuntu-box {
-		background-image: url(../img/pictograms/picto-pack/picto-forum-warmgrey.svg);
+		background-image: url(#{$asset-server}422b612c-picto-forum-warmgrey.svg);
 		background-size: 50px 50px;
 		background-repeat: no-repeat;
 		background-position: 0 center;
@@ -677,7 +606,7 @@ body.download-ubuntu-kylin-zh-CN h2 span {
 html.no-svg,
 html.opera-mini {
 	.ask-ubuntu-box {
-		background-image: url(../img/pictograms/picto-pack/picto-forum-warmgrey.png);
+		background-image: url(#{$asset-server}5de3bb0c-picto-forum-warmgrey.png);
 	}
 }
 
@@ -691,9 +620,50 @@ html.opera-mini {
 	margin-bottom: 60px;
 }
 
+.instruction {
+	padding: 0;
+	border-bottom: 1px solid #EFEDEC;
+
+	&__bullet,
+	&__details {
+		padding: 60px 40px;
+		margin-bottom: 0;
+	}
+
+	&__bullet {
+		margin-right: 0;
+	}
+
+	&__step {
+		$size: 50px;
+		display: inline-block;
+		border-radius: 50%;
+		width: $size;
+		height: $size;
+		line-height: $size;
+		background-color: #ccc;
+		color: #fff;
+		text-align: center;
+		vertical-align: top;
+		font-size: 2em;
+		font-weight: 400;
+	}
+
+	&__title {
+		display: inline;
+		position: relative;
+		top: 6px;
+		line-height: 1.6;
+	}
+
+	&__details {
+		background-color: $light-grey;
+	}
+}
+
 #download-help li span,
 #ubuntu-help li span {
-  @include rounded_corners(40px);
+  border-radius: 40px;
 	background-color: #ccc;
 	border: 3px solid #ccc;
 	color: #fff;
@@ -702,10 +672,14 @@ html.opera-mini {
 	text-align: center;
 	vertical-align: top;
 	width: 18px;
-	@include font_size (22);
+	font-size: 1.375em;
 	padding: 0 9px;
 	height: auto;
 	margin-left: -70px;
+}
+
+#download-help li.box span {
+	margin-left: -50px;
 }
 
 #ubuntu-help li span {
@@ -716,7 +690,9 @@ html.opera-mini {
 #download-help li.double span,
 #download-help li span.double,
 #ubuntu-help li.double span,
-#ubuntu-help li span.double { text-indent: -7px; }
+#ubuntu-help li span.double { 
+  text-indent: -7px; 
+}
 
 #ubuntu-help .no-numbers li {
 	padding-left: 0;
@@ -739,53 +715,51 @@ body.download p.link-wrap {
 }
 
 /* /download/help/install-ubuntu-openstack */
-.download-cloud-install-ubuntu-openstack {
-	.row .cloud, .row .server, .row .juju {
+body.download-cloud-install-ubuntu-openstack {
+  #main-content .row-hero {
     border-bottom: 1px dotted $warm-grey;
-		margin-bottom: 15px;
-		padding-bottom: 20px;
-	}
-	.row .juju {
-		border: 0;
-		margin: 0;
-		padding: 0;
-	}
-	.row .cloud h3, .row .server h3, .row .juju h3 {
-		background-color: #fff;
-		background-position: left 50%;
-		background-repeat: no-repeat;
-		background-size: 40px 40px;
-		padding: 10px 0 10px 50px;
-	}
+		padding-bottom: 40px;
 
-	.row .cloud h3 { background-image: url(../img/pictograms/picto-pack/picto-server-darkaubergine.svg); }
-	.row .server h3 { background-image: url(../img/pictograms/picto-pack/picto-openstack.svg); }
-	.row .juju h3 { background-image: url(../img/pictograms/picto-pack/picto-juju.svg); }
+    & + .row {
+      padding-top: 0;
+    }
+  }
 
-	.row .cloud h2, .row .server h2, .row .juju h2 { @include font_size (23); }
+  .instructions {
+    padding: 0 inherit;
 
-	#cloud-infra {
-		margin-top: 20px;
-		display: block;
-		float: left;
-		width: 100%;
-	}
+    pre {
+      background-color: #000;
+      color: #fff;
+    }
+
+    .three-col {
+      padding: 40px;
+    }
+
+    .box {
+      border: none;
+      border-left: 1px dotted $warm-grey;
+      border-radius: 0;
+			margin: 0;
+			padding: 40px 80px 40px 40px;
+
+      ul li {
+        color: $cool-grey;
+      }
+    }
+  }
 }
+
 html.no-svg,
 html.opera-mini {
-	.download-cloud-install-ubuntu-openstack {
-		.row .cloud h3 { background-image: url(../img/pictograms/image-picto-server-40.png); }
-		.row .server h3 { background-image: url(../img/pictograms/image-picto-openstack-40.png); }
-		.row .juju h3 { background-image: url(../img/pictograms/image-picto-juju-40.png); }
-	}
+
 }
 
 /* Contribute page */
 
 .contribute-to-ubuntu {
 	form input[type=number] {
-        -webkit-border-radius: 2px;
-        -moz-border-radius: 2px;
         border-radius: 2px;
         background: #fff;
         border: 1px solid #999;
@@ -793,7 +767,7 @@ html.opera-mini {
         padding: 4px;
         width: 50px;
         display: inline-block;
-        font-size: 16px;
+        font-size: 1em;
         padding-top: 2px;
     }
     form input[type=number]:focus {
@@ -988,11 +962,6 @@ html.opera-mini {
 -------------------------------------------------------------- */
 @media only screen and (min-width : 768px) {
 
-	body.download-cloud-home {
-    	#main-content .row-hero {
-        	background: url(../img/download/image-cloud-download.png) 130% 0 no-repeat;
-    	}
-    }
     body.download {
     	.row-list-download {
     		.box-highlight {
@@ -1008,11 +977,7 @@ html.opera-mini {
 -------------------------------------------------------------- */
 @media only screen and (min-width : 769px) {
 
-	body.download-cloud-home {
-    	#main-content .row-hero {
-        	background: url(../img/download/image-cloud-download.png) 100% 0 no-repeat;
-    	}
-    }
+
 
 	/* Thank you pages */
 	.download .row-download-thanks {
@@ -1021,25 +986,25 @@ html.opera-mini {
 	}
 
 	body.download .download-description {
-		@include box_sizing;
+		box-sizing: border-box;
 		border-right: 1px dotted $warm-grey;
 		display: inline;
 		float: left;
 		min-height: 8em;
 		padding-right: 10px;
 	}
-	
+
 	body.download-cloud-home .inline-icons li {
 		margin-bottom: 20px;
 	}
-	
+
 	body.contribute-to-ubuntu .price-equivalent img {
     	float: left;
 	}
 
 	#download-help li span,
 	#ubuntu-help li span {
-		@include font_size (23);
+		font-size: 1.4375em;
 	  height: 20px;
 	  padding: 0 11px 20px 11px;
 	  margin-right: 20px;
@@ -1068,7 +1033,7 @@ html.opera-mini {
 			display: none;
 		}
 		.box-tip {
-			background: #fff url(../img/pictograms/pictogram-download-tip-60x49.png) $gutter-width $gutter-width no-repeat;
+			background: #fff url(#{$asset-server}18aa8a3c-pictogram-download-tip-60x49.png) $gutter-width $gutter-width no-repeat;
 			margin-bottom: 1.538em;
 			padding-left: 100px;
 			padding-bottom: 1.25em;
@@ -1101,4 +1066,54 @@ html.opera-mini {
 	}
 }
 
+/* ownload Flavours Trumps
+-------------------------------------------------------------- */
+@media only screen and (min-width : 984px) {
 
+	.download-ubuntu-flavours {
+
+		.row-hero {
+			padding-bottom: 0!important;
+		}
+	}
+}
+
+/* List Grid
+-------------------------------------------------------------- */
+
+$grid-border-style: 1px dotted #888;
+
+.list--grid {
+
+	border-top: $grid-border-style;
+	padding-top: 1rem;
+
+	@media only screen and (min-width : 768px) {
+		border-top: 0;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	&__item {
+		border-bottom: $grid-border-style;
+
+		@media only screen and (min-width : 768px) {
+			display: flex;
+			width: 33.3333%!important;
+			padding: 1.5rem 1rem 0;
+			border-right: $grid-border-style;
+			border-bottom: $grid-border-style;
+			margin: 0!important;
+
+			&:nth-child(3n) {
+				border-right: 0;
+			}
+
+			&:nth-last-child(3),
+			&:nth-last-child(2),
+			&:nth-last-child(1) {
+				border-bottom: 0;
+			}
+		}
+	}
+}

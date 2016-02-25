@@ -26,22 +26,22 @@ body.management {
 		padding-right: 0;
 	}
 	.stats-panel {
-		@include box_sizing();
+		box-sizing: border-box;
 		background: #f6f6f6;
 		padding-top: 1.5em;
 	}
 	.stats-panel dl, .stat dl {
-		@include box_sizing();
-	    float: left;
-	    min-height: 107px;
-	    padding: 20px 0 0;
-	    text-align: center;
+		box-sizing: border-box;
+    float: left;
+    min-height: 107px;
+    padding: 20px 0 0;
+    text-align: center;
 	}
 	.stats-panel dl.last-col {
 		border: 0;
 	}
 	.stat dl {
-    	padding-top: 6px;
+    padding-top: 6px;
 		border: 0;
 		font-size: 32px;
 		text-align: center;
@@ -60,26 +60,24 @@ body.management {
 	}
 	.stats-panel p {
     	color: #555;
-    	@include font_size (21);
+    	font-size: 1.3125em;
     	font-style: italic;
     	text-align: center;
     	clear: both;
-    	padding: 0 ($grid-gutter/1.5);
+    	padding: 0 ($gutter-width/1.5);
     }
     .stats-panel p.first {
 	    font-style: normal;
     }
     .stats-panel dt span {
-    	@include font_size (8.5);
+    	font-size: .53125em;
     	margin-left: -15px;
     }
 	.row-landscape {
 		margin-bottom: 0;
 	}
-	.row-image-float-right p {
-		width: $eight-col;
-	}
 } /* end body.management */
+
 body.management-return-on-investment,
 body.management-compliance {
 	.row-hero {
@@ -156,7 +154,7 @@ html.opera-mini {
 }
 
 body.management .row-landscape-trial-home div {
-	@include rounded_corners(4px);
+	border-radius: 4px;
 	border: 1px solid #dfdcd9;
 	box-shadow: none;
 	margin-bottom: inherit;
@@ -167,38 +165,8 @@ body.management .row-landscape-trial-home div {
 /*	@section management-landscape-features
 -------------------------------------------------------------- */
 body.management-landscape-features {
-  .tabbed-content {
-  	background: #F7F7F7;
-  	border-radius: 4px;
-
-  	img {
-      	border: 1px solid #ddd;
-  	}
-
-  	h3 { display: none; }
-
-  	&.open { padding-bottom: 10px; }
-  }
-  .tabbed-content #management ul { margin-bottom: 0; }
-
-  .tabbed-content #management .six-col, .tabbed-content #deployment .six-col, .tabbed-content #monitoring .six-col, .tabbed-content #inventory .six-col {
-  	border-right: 1px dotted $warm-grey;
-  	padding-right: (20/$base)em;
-  }
-  .tabbed-content a.right {
-  	float: none;
-  }
-  .tabbed-content #management .last-col, .tabbed-content #deployment .last-col, .tabbed-content #monitoring .last-col, .tabbed-content #inventory .last-col  {
-  	border: 0;
-  	padding-right: 0;
-  }
-
   #inventory {
   	margin-bottom: 30px;
-  }
-
-  .tabbed-menu li:first-child {
-		text-indent: 10px;
   }
 }
 
@@ -211,10 +179,16 @@ body.management-working-with-landscape {
 	.row-hero .link-cta-canonical {
 		margin-bottom: 10px;
 	}
-	.ubuntu-advantage { margin-bottom: 0; }
-	.ubuntu-advantage img { margin-left: -$grid-gutter; }
+	.ubuntu-advantage { 
+  	margin-bottom: 0; 
+  }
+	
+	.ubuntu-advantage img { 
+    margin-left: -$gutter-width; 
+  }
+	
 	.row-purchase-advantage .box {
-		background: $light-grey url(../img/pictograms/pictogram-reduce-costs-115x115.png) 20px 20px no-repeat;
+		background: $light-grey url('#{$asset-server}3cc9f80f-pictogram-reduce-costs-115x115.png') 20px 20px no-repeat;
 		padding-bottom: 1em;
 	}
 	.row-purchase-advantage .promo-description {
@@ -233,7 +207,7 @@ body.management-working-with-landscape {
 		margin-top: 20px;
 		float: left;
 		font-style: italic;
-		@include font_size (13);
+		font-size: .8125em;
 	}
 } /* end body.business-systems-management-ubuntu-advantage */
 html.no-svg,
@@ -241,7 +215,7 @@ html.opera-mini {
 	body.management-ubuntu-advantage,
 	body.management-working-with-landscape {
 		.row-hero {
-			background-image: url(../img/management/ubuntu-advantage/image-ubuntuadvantage.png);
+			background-image: url('#{$asset-server}2cb97b41-image-ubuntuadvantage.png');
 		}
 	}
 }
@@ -261,15 +235,15 @@ body.management-ubuntu-advantage {
 		padding-top: 0;
 	}
 	#main-content .row-hero p span {
-		@include font_size (18);
+		font-size: 1.125em;
 	}
 
 	.row-management .product-intro h2 {
-		@include font_size (23);
+		font-size: 1.4375em;
 	}
 
 	.price {
-		font-size:0.813em;
+		font-size: 0.813em;
 		bottom: 0;
 	}
 
@@ -279,19 +253,19 @@ body.management-ubuntu-advantage {
 	}
 
 	.price span {
-		@include font_size (18);
+		font-size: 1.125em;
 		font-weight: normal;
 	}
 
 } /* end body.management-ubuntu-advantage */
 
 .three-divided {
-	@include box_sizing;
+	box-sizing: border-box;
 }
 .three-divided li {
-    margin-bottom: 20px;
-    margin-right: 20px;
-    padding-bottom: 10px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  padding-bottom: 10px;
 	width: 100%;
 }
 .three-divided li.last-col {
@@ -382,7 +356,7 @@ body.management-ema-whitepaper {
 		    margin-left: 0;
 		}
 		.stats-panel p a {
-	    	@include font_size (13);
+	    	font-size: .8125em;
 	    }
 
 		.row-return-investment {
@@ -399,41 +373,19 @@ body.management-ema-whitepaper {
 			float: left;
 			margin-left: -40px;
 		}
-
-		.tabbed-content {
-			@include rounded_corners(0 0 4px 4px);
-			background: $light-grey;
-		    border-bottom: 0;
-
-		  	h3 {
-		  		display: block;
-		  	}
-
-		  	a.right {
-			  	margin-bottom: 1.25em;
-			  	margin-left: (20/$base)em;
-			  	float: right;
-			}
-
-			.row {
-				padding-top: 0;
-			}
-		}
 	}
+	
 	html.no-svg,
 	html.opera-mini {
 		.row-return-investment {
-			background-image: url("../img/management/image-cutyouritcosts.png");
+			background-image: url("#{$asset-server}d1dbbf8e-image-cutyouritcosts.png");
 		}
 	}
-	body.management-return-on-investment {
-	    .stats-panel dt, .stat dt {
-		    margin-left: -30px;
-		}
-	}
+		
 	body.management-home {
 		.margin-top { margin-top: 20px; }
 	}
+	
 	.three-divided li {
 		width: 30%;
 		padding-bottom: 38px;
@@ -442,6 +394,7 @@ body.management-ema-whitepaper {
 	.row-cloud-management .three-divided li {
 		padding-bottom: 0;
 	}
+	
 	body.management-ubuntu-advantage {
 		.price {
 			margin-bottom: 0;
@@ -451,7 +404,7 @@ body.management-ema-whitepaper {
 	html.no-svg,
 	html.opera-mini {
 		body.management .row-return-investment {
-			background-image: url("../img/management/image-cutyouritcosts.png");
+			background-image: url("#{$asset-server}d1dbbf8e-image-cutyouritcosts.png");
 		}
 	}
 	body.management-ubuntu-advantage,
@@ -459,19 +412,6 @@ body.management-ema-whitepaper {
 		.row-hero .link-cta-canonical {
 			margin-bottom: 0;
 		}
-	}
-
-/*	body.management-working-with-landscape {
-		.row {
-			padding-bottom: 60px;
-		}
-		.row-hero {
-			padding-bottom: 40px;
-		}
-	}*/
-	body.management-landscape-features {
-	  .tabbed-menu {
-	  }
 	}
 }
 

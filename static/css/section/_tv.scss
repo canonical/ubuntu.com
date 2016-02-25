@@ -44,30 +44,21 @@ body.tv-experience .row-hero {
 
 /*	@section commercial-info & contributors
 -------------------------------------------------------------- */
-.tv-commercial-info .row-terms .article,
-.tv-commercial-info .row-maintenance .article,
-.row-contributors .article,
-.row-get-involved .article {
-	background-position: $nine-col 48px;
-	background-repeat: no-repeat;
-	padding: 0 $four-col $gutter-width 0;
-}
-
 .tv-commercial-info .row-terms .article {
-	background-image: url(../img/pictograms/pictogram-partner-124x124.png);
+	background-image: url('#{$asset-server}b15f4e8a-pictogram-partner-124x124.png');
 }
 
 .tv-commercial-info .row-maintenance .article {
-	background-image: url(../img/pictograms/pictogram-upgrade-124x124.png);
+	background-image: url('#{$asset-server}d49d3cf5-pictogram-upgrade-124x124.png');
 }
 
 .tv-commercial-info .row-engineering .article {
-	background-image: url(../img/pictograms/pictogram-engineering-124x124.png);
+	background-image: url('#{$asset-server}8bf83c0a-pictogram-engineering-124x124.png');
 }
 
 body.tv .row-tv-contact {
 	border-bottom: 0;
-	padding: 20px 0 20px $grid-gutter;
+	padding: 20px 0 20px $gutter-width;
 }
 
 
@@ -78,7 +69,9 @@ body.tv .row-tv-contact {
 
 	body.tv-experience .row-hero h2,
 	body.tv-industry .row-hero h2,
-	body.tv-features-and-specs .row-hero h2 { @include font_size (25); }
+	body.tv-features-and-specs .row-hero h2 { 
+  	font-size: 1.5625em;
+  }
 }
 
 /* Large / Desktop viewport
@@ -86,7 +79,7 @@ body.tv .row-tv-contact {
 @media only screen and (min-width : 984px) {
 	body.tv-experience {
 	 	.row-hero .intro {
-			padding: 0 $seven-col 2em 0;
+			padding: 0 57.4468% 2em 0;
 			margin: 0;
 		}
 		.inner-wrapper .row-hero .intro img {

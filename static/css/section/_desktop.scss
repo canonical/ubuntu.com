@@ -1,6 +1,6 @@
 .row-case-studies {
   background-color: $dark-aubergine;
-  background-image: url('../img/desktop/background-tile.jpg');
+  background-image: url('#{$asset-server}3c1c3b37-background-tile.jpg');
   color: #fff;
 
   .pull-quote {
@@ -51,7 +51,7 @@
 
 @media only screen and (min-width: 984px) {
   .desktop-context-footer .open-source {
-    background-image: url(../img/pictograms/picto-pack/picto-projectswelove-orange.svg);
+    background-image: url('#{$asset-server}84de096f-picto-projectswelove-orange.svg');
     background-position: 217px 27px;
     background-repeat: no-repeat;
     background-size: 150px 150px;
@@ -123,7 +123,7 @@
 }
 
 .row-community {
-  background: #fff url('../img/patterns/background-dots.png');
+  background: #fff url('#{$asset-server}8b540691-background-dots.png');
   color: $cool-grey;
   padding: 40px 20px 20px;
 
@@ -147,16 +147,22 @@
 
     a { padding: 2px 0 2px 26px; }
 
-    .ask-ubuntu a { background: url('../img/patterns/icon-irc.png') 0 2px no-repeat; }
+    .ask-ubuntu a { 
+      background: url('#{$asset-server}7da3c811-icon-irc.png') 0 2px no-repeat; 
+    }
 
-    .mailing-lists a { background: url('../img/patterns/icon-mail.png') 0 2px no-repeat; }
+    .mailing-lists a { 
+      background: url('#{$asset-server}b65ef76e-icon-mail.png') 0 2px no-repeat; 
+    }
 
-    .ubuntu-blog a { background: url('../img/patterns/icon-rss.png') 0 2px no-repeat; }
+    .ubuntu-blog a { 
+      background: url('#{$asset-server}891041a1-icon-rss.png') 0 2px no-repeat; 
+    }
 
     h3,
     h4 {
-      @include font_size (16);
       border-bottom: 1px dotted $warm-grey;
+      font-size: 1em;
       margin-bottom: 10px;
       padding-bottom: 5px;
     }
@@ -172,7 +178,7 @@
   .six-col,
   .six-col,
   .eight-col {
-    background: rgba(255, 255, 255, 1);
+    background:$white;
     position: relative;
   }
 
@@ -181,6 +187,17 @@
     background: #fff;
     display: block;
     float: left;
+  }
+}
+
+.row-case-studies-light {
+  background-color: $light-grey;
+  background-image: none;
+  color: #333;
+
+  .pull-quote p,
+  .pull-quote cite {
+    color: #333;
   }
 }
 
@@ -221,7 +238,7 @@
   @media only screen and (min-width: 768px) {
     .row-hero {
       background-color: $light-grey;
-      background-image: url('../img/desktop/overview/hero-photo.jpg');
+      background-image: url('#{$asset-server}3cf658d7-hero-photo.jpg');
       background-repeat: no-repeat;
       background-position: 73% 13%, bottom right;
       margin-top: 0;
@@ -230,6 +247,10 @@
       h1 {
         margin-top: 40px;
       }
+      
+      .light {
+        color: #333;
+      }    
     }
 
     .row-latest-hardware .eight-col,
@@ -304,7 +325,7 @@
     //Medium screen
 
     .row-hero {
-      background-image: url('../img/desktop/features/hero-laptop.png');
+      background-image: url('#{$asset-server}c294c5f4-hero-laptop.png');
       background-position: top right;
       background-repeat: no-repeat;
       background-size: 22em;
@@ -312,7 +333,32 @@
     }
 
     .row-web-browsing {
-      background-image: url('../img/desktop/features/desktopsnapshot.png');
+      background-image: url('#{$asset-server}8ff52c34-desktopsnapshot.png');
+    }
+    
+   .skype-container {
+      max-width: 479px;
+      position: relative;
+  
+      .spinner {
+        height: 11%;
+        left: 57%;
+        position: absolute;
+        top: 51%;
+        width: 4%;
+      }
+    }
+  
+    .email-container {
+      max-width: 539px;
+      position: relative;
+  
+      .email-text {
+        left: 23%;
+        position: absolute;
+        top: 57%;
+        width: 62%;
+      }
     }
 
     .row-gaming {
@@ -350,31 +396,15 @@
 
       &.photo-1 {
         background-size: cover;
-        background-image: url('../img/desktop/features/desktop-photos-1.jpg');
+        background-image: url('#{$asset-server}6c84454e-desktop-photos-1.jpg');
       }
       &.photo-2 {
         background-size: cover;
-        background-image: url('../img/desktop/features/desktop-photos-2.jpg');
+        background-image: url('#{$asset-server}25593e05-desktop-photos-2.jpg');
       }
       &.photo-3 {
         background-size: cover;
-        background-image: url('../img/desktop/features/desktop-photos-3.jpg');
-      }
-      &.photo-4 {
-        background-size: cover;
-        background-image: url('../img/desktop/features/desktop-photos-4.jpg');
-      }
-      &.photo-5 {
-        background-size: cover;
-        background-image: url('../img/desktop/features/desktop-photos-5.jpg');
-      }
-      &.photo-6 {
-        background-size: cover;
-        background-image: url('../img/desktop/features/desktop-photos-6.jpg');
-      }
-      &.photo-7 {
-        background-size: cover;
-        background-image: url('../img/desktop/features/desktop-photos-7.jpg');
+        background-image: url('#{$asset-server}a6e14067-desktop-photos-3.jpg');
       }
     }
 
@@ -461,7 +491,7 @@
     //Medium screen
 
     .row-hero {
-      background-image: url('../img/desktop/enterprise/hero-laptop.png');
+      background-image: url('#{$asset-server}a0ee25ff-hero-laptop.png');
       background-position: top right;
       background-repeat: no-repeat;
       background-size: 22em;
@@ -485,7 +515,7 @@
   @media only screen and (min-width: 768px) {
     //Medium screen
     .row-hero {
-      background-image: url('../img/desktop/education/hero-photo.jpg');
+      background-image: url('#{$asset-server}600ca439-hero-photo.jpg');
       background-repeat: no-repeat;
       background-position: right 10px center;
       margin-top: 0;
@@ -497,7 +527,7 @@
     }
 
     .row-case-studies {
-      background-image: url('../img/desktop/education/map.jpg');
+      background-image: url('#{$asset-server}02d89f50-map.jpg');
       background-repeat: no-repeat;
       background-size: cover;
     }
@@ -528,7 +558,7 @@
   @media only screen and (min-width: 768px) {
     //Medium screen
     .row-hero {
-      background-image: url('../img/desktop/government/hero-photo.jpg');
+      background-image: url('#{$asset-server}aae4a8bb-hero-photo.jpg');
       background-repeat: no-repeat;
       background-position: right 0px top;
       margin-top: 0;
@@ -540,14 +570,14 @@
     }
 
     .row-case-studies {
-      background-image: url('../img/desktop/government/map.jpg');
+      background-image: url('#{$asset-server}5b74fa2a-map.jpg');
       background-repeat: no-repeat;
       background-size: cover;
     }
 
     .row-security {
       background-repeat: no-repeat;
-      background-image: url('../img/things/padlock-chain.png');
+      background-image: url('#{$asset-server}99d49a7d-padlock-chain.png');
       background-position: 89% 93%;
       min-height: 310px;
     }
@@ -567,7 +597,6 @@
     }
   }
 }
-
 
 /// desktop developer
 .desktop-for-developers #main-content {
@@ -591,7 +620,7 @@
   //Medium screen
   @media only screen and (min-width: 768px) {
     .row-hero {
-      background-image: url('../img/desktop/developers/developer-hero-laptop.png');
+      background-image: url('#{$asset-server}59a1fae2-developer-hero-laptop.png');
       background-position: top right;
       background-repeat: no-repeat;
       background-size: 22em;
@@ -676,7 +705,7 @@ $item_margin: 40px;
   .desktop-ubuntu-kylin-zh-CN {
 
     .row-hero {
-      background: url('../img/desktop/ubuntu-kylin/image-ubuntukylin.jpg') 120% center no-repeat;
+      background: url('#{$asset-server}53f09a82-image-ubuntukylin.jpg') 120% center no-repeat;
       padding-bottom: 55px;
     }
 
@@ -684,17 +713,20 @@ $item_margin: 40px;
       margin-top: 30px;
     }
 
-    .row-youker img {
-      margin-top: 25px;
-    }
+   .row-sogou {
+			.touch-border {
+				position: absolute;
+				bottom: 0;
+				margin-bottom: 0;
 
-    .row-sogou img {
-      margin-top: 12px;
-      position: absolute;
+				img {
+					float: left;
+				}
+			}
     }
 
     .pull-left-40 {
-      margin-bottom: -30px;
+      margin-bottom: -50px;
       margin-left: -30px;
     }
 
@@ -714,7 +746,7 @@ $item_margin: 40px;
   .desktop-ubuntu-kylin,
   .desktop-ubuntu-kylin-zh-CN {
     .row-hero {
-      background: url('../img/desktop/ubuntu-kylin/image-ubuntukylin.jpg') 498px 20px no-repeat;
+      background: url('#{$asset-server}53f09a82-image-ubuntukylin.jpg') 498px 20px no-repeat;
       padding-bottom: 55px;
     }
   }
@@ -730,5 +762,67 @@ $item_margin: 40px;
       margin-bottom: -40px;
       margin-right: -40px;
     }
+  }
+}
+
+.desktop-partners {
+  sup {
+    font-size: 0.7em;
+    line-height: 1em;
+  }
+
+  .row-commercial {
+    @media only screen and (min-width: 768px) {
+      .four-col:after {
+        background-image: url('#{$asset-server}f2a25267-image-list-stroke.svg');
+        background-repeat: repeat-x;
+        content: " ";
+        display: block;
+        height: 5px;
+        left: 85px;
+        position: absolute;
+        top: 39px;
+        width: 74%;
+      }
+    }
+
+    @media only screen and (min-width: 984px) {
+      .four-col:after {
+        width: 76%;
+      }
+    }
+
+    .four-col.last-col:after {
+      display: none;
+    }
+
+    .picto {
+      margin-bottom: 40px;
+      max-width: 80px;
+    }
+  }
+
+  .row-intel {
+    background-color: #007cc5;
+    color: #fff;
+
+    @media only screen and (min-width: 768px) {
+      background-image: url('#{$asset-server}0caaa961-image-intelonastick-background.png');
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+    }
+
+    a.external {
+      color: #fff;
+      background-image: url('#{$asset-server}6effa961-icon-externallink-white.png');
+    }
+
+    img {
+      margin-top: 9%;
+    }
+  }
+
+  .row-tenders img {
+    max-width: 350px;
   }
 }

@@ -15,29 +15,29 @@
       display: flex;
       flex-wrap: wrap;
     }
-    
+
     @media only screen and (max-width : 768px) {
       margin-top: 20px;
       margin-bottom: 30px;
     }
-    
+
     &__image-container {
       float: left;
       margin-right: 6.94444%;
       width: 19.7917%;
     }
-    
+
     &__description {
       width: 73.2639%;
     }
-    
+
     .list--grid__item {
       border-bottom: 1px dotted $warm-grey;
-      
+
       &:last-child {
         border-bottom: 0;
       }
-      
+
       @media only screen and (min-width : 768px) {
         border-right: 1px dotted $warm-grey;
         box-sizing: border-box;
@@ -45,20 +45,20 @@
         margin-right: 0;
         padding: 30px $gutter-width 10px;
         width: 33%;
-        
+
         // remove the border from the last three items
         &:nth-last-child(1),
         &:nth-last-child(2),
         &:nth-last-child(3) {
           border-bottom: 0;
         }
-        
+
         // remove the padding from the first item of each row
         &:nth-child(3n+1) {
           padding-left: 0;
         }
-        
-        // remove the right hand border from the 
+
+        // remove the right hand border from the
         &:nth-child(3n) {
           border-right: 0;
         }
@@ -74,11 +74,11 @@
     background-position: top center;
     background-repeat: no-repeat;
     min-height: 260px;
-    
+
     @media only screen and (min-width : 768px) {
       min-height: 40vh;
     }
-    
+
     @media only screen and (min-width : 984px) {
       min-height: 80vh;
     }
@@ -88,13 +88,13 @@
 .tablet .row--buy {
   &__title {
     @media only screen and (min-width : 984px) {
-      width: $five-col; 
-    }    
+      width: 40.37611%;
+    }
   }
-  
+
   &:before {
     @media only screen and (min-width : 768px) {
-      background: url('https://assets.ubuntu.com/v1/0330fbce-scope+task+switcher+tablet+portrait.png?w=800') center center no-repeat;
+      background: url('#{$asset-server}0330fbce-scope+task+switcher+tablet+portrait.png?w=800') center center no-repeat;
       background-size: contain;
       content: "";
       display: block;
@@ -118,7 +118,7 @@
   .align-vertically {
     transform-style: flat;
   }
-  
+
   .heading__image {
     transform: none;
     top: auto;
@@ -129,36 +129,36 @@
   .row--canonical {
     background: $dark-aubergine;
     color: #fff;
-    
+
     &__inner {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
     }
-    
+
     @media only screen and (min-width : 984px) {
       min-height:  0;
     }
   }
-  
+
   .heading__image {
     position: relative;
     bottom: -2px;
     height: .9em;
-    
+
     @media only screen and (min-width : 984px) {
       height: .78em;
     }
   }
-  
+
   .row--no-limit {
-    background-image: url('https://assets.ubuntu.com/v1/82cd0641-no-limit.jpg');
-    
+    background-image: url('#{$asset-server}82cd0641-no-limit.jpg');
+
     .billboard__content-bottom {
       margin-top: 80px;
     }
   }
-  
+
   .row--developers .strip-inner-wrapper {
     display: flex;
     align-items: center;
@@ -172,10 +172,10 @@
   .row-hero__image {
     margin: 10px 0;
   }
-  
+
   .row-hero:before {
     @media only screen and (min-width : 768px) {
-      background: url('https://assets.ubuntu.com/v1/da3c58e9-tablet-overview-hero.png?w=800') center center no-repeat;
+      background: url('#{$asset-server}da3c58e9-tablet-overview-hero.png?w=800') center center no-repeat;
       background-size: contain;
       content: "";
       display: block;
@@ -186,12 +186,12 @@
       top: 5%;
       width: 75vw;
     }
-  
+
     @media only screen and (min-width : 769px) {
       right: 0vw;
       width: 53vw;
     }
-    
+
     @media only screen and (min-width : 1400px) {
       top: 5%;
       right: 2vw;
@@ -211,16 +211,16 @@
 .tablet-developers {
   .row-hero {
     overflow: hidden;
-    
+
     @media only screen and (min-width : 769px) {
       overflow: hidden;
       min-height: 550px;
     }
   }
-  
+
   @media only screen and (min-width : 768px) {
     .row-hero:before {
-      background: url('https://assets.ubuntu.com/v1/bc0abc14-tablet-windowed-mode-qt-creator.png') center center no-repeat;
+      background: url('#{$asset-server}bc0abc14-tablet-windowed-mode-qt-creator.png?w=646') center center no-repeat;
       background-size: contain;
       content: "";
       display: block;
@@ -232,29 +232,29 @@
       width: 80vw;
     }
   }
-  
+
   @media only screen and (min-width : 984px) {
     .row-hero:before {
       right: 10vw;
       width: 40vw;
     }
   }
-        
+
   .row--scopes__image {
     margin: 30px 0;
   }
-    
+
   .row.strip-canonical {
     @media only screen and (min-width : 984px) {
       min-height:  0;
     }
   }
-  
+
   .row--one-app__image {
     @media only screen and (min-width : 768px) {
       margin-top: 30px;
     }
-    
+
     @media only screen and (min-width : 984px) {
       margin-top: 60px;
     }
@@ -266,16 +266,16 @@
 .tablet-features {
   .row-hero {
     overflow: hidden;
-    
+
     @media only screen and (min-width : 769px) {
       overflow: hidden;
       min-height: 600px;
     }
   }
-    
+
   @media only screen and (min-width : 768px) {
     .row-hero:before {
-      background: url('https://assets.ubuntu.com/v1/ad759195-tablet-features-hero.png?w=800') center center no-repeat;
+      background: url('#{$asset-server}ad759195-tablet-features-hero.png?w=800') center center no-repeat;
       background-size: contain;
       content: "";
       display: block;
@@ -287,7 +287,7 @@
       width: 80vw;
     }
   }
-  
+
   @media only screen and (min-width : 984px) {
     .row-hero:before {
       right: 10vw;
@@ -301,10 +301,10 @@
       display: flex;
       align-items: center;
     }
-    
+
     &:before {
       @media only screen and (min-width : 768px) {
-        background: url('https://assets.ubuntu.com/v1/74071e9a-tablet-features-scopes.jpg?w=890') center right no-repeat;
+        background: url('#{$asset-server}74071e9a-tablet-features-scopes.jpg?w=890') center right no-repeat;
         background-size: contain;
         content: "";
         height: 80%;
@@ -313,7 +313,7 @@
         top: 10%;
         width: 48vw;
       }
-      
+
       @media only screen and (min-width : 984px) {
         background-size: auto;
         height: 500px;
@@ -323,64 +323,64 @@
       }
     }
   }
-  
+
   .row.row--scopes {
     @media only screen and (min-width : 768px) {
       padding-left: 0 !important;
     }
   }
-  
+
   .row--scopes__image {
     margin: 10px 0;
   }
-  
+
   .row--great-things {
-    background: url('https://assets.ubuntu.com/v1/48c4fdac-Young-woman-using-tablet-computer.jpg') center center no-repeat;
+    background: url('#{$asset-server}48c4fdac-Young-woman-using-tablet-computer.jpg') center center no-repeat;
     background-size: cover;
-    
+
     .billboard__content-bottom {
       margin-top: 100px;
     }
   }
 
   .row--mobile-office {
-    background: url('https://assets.ubuntu.com/v1/2dffe073-web_tablet_features_wp.png') 0 0;
+    background: url('#{$asset-server}2dffe073-web_tablet_features_wp.png') 0 0;
     background-size: cover;
-    
+
     @media only screen and (max-width : 768px) {
       background-image: none;
     }
-    
+
     &:before {
       background: #e9e9ea;
       content: "";
       display: block;
-      
+
       @media only screen and (max-width : 768px) {
         height: 29%;
       }
-    
+
       @media only screen and (min-width : 984px) {
         height: 340px;
       }
-      
+
       position: absolute;
       left: 0;
       bottom: 0;
       width: 100%;
     }
-    
+
     &__image {
       @media only screen and (min-width : 768px) {
         margin-top: 30px;
       }
-    
+
       @media only screen and (min-width : 984px) {
         margin-top: 60px;
       }
     }
   }
-  
+
 } // end tablet features
 
 /*	@section tablet partners
@@ -392,10 +392,10 @@ body.tablet-partners {
   .row-hero__image {
     margin: 10px 0;
   }
-  
+
   .row-hero:before {
     @media only screen and (min-width : 768px) {
-      background: url('https://assets.ubuntu.com/v1/8fca0ecc-scope+task+switcher+tablet+portrait+landscape.png?w=700') center center no-repeat;
+      background: url('#{$asset-server}8fca0ecc-scope+task+switcher+tablet+portrait+landscape.png?w=700') center center no-repeat;
       background-size: contain;
       content: "";
       display: block;
@@ -406,32 +406,32 @@ body.tablet-partners {
       top: 10%;
       width: 70vw;
     }
- 
+
     @media only screen and (min-width : 769px) {
       right: 2vw;
       width: 47vw;
     }
-    
+
     @media only screen and (min-width : 1400px) {
       right: 2vw;
       width: 50vw;
     }
  }
-  
+
   .row--partner-with-us {
     align-items: center;
-    background: url('https://assets.ubuntu.com/v1/278f59db-event-mwc-2015.jpg') center 55% no-repeat;
+    background: url('#{$asset-server}278f59db-event-mwc-2015.jpg') center 55% no-repeat;
     background-size: cover;
     display: flex;
-    
+
     @media only screen and (min-width : 984px) {
       min-height: 470px;
     }
   }
-  
+
   .row--hardware:before {
     @media only screen and (min-width : 768px) {
-      background: url('https://assets.ubuntu.com/v1/a45fde67-brand-book-illustration-4x.png') 0 center no-repeat;
+      background: url('#{$asset-server}a45fde67-brand-book-illustration-4x.png') 0 center no-repeat;
       background-size: contain;
       content: "";
       display: block;
@@ -442,7 +442,7 @@ body.tablet-partners {
       width: 40vw;
       right: 30px;
    }
-    
+
     @media only screen and (min-width : 984px) {
       height: 80%;
       right: 0;
@@ -450,7 +450,7 @@ body.tablet-partners {
       width: 48vw;
     }
   }
-  
+
   .partner-logos {
     margin-top: 30px;
     margin-left: 0;
@@ -461,6 +461,6 @@ body.tablet-partners {
     &__item {
       text-align: center;
       margin-bottom: 60px;
-    } 
+    }
   }
 }
