@@ -1,19 +1,17 @@
 @charset "UTF-8";
+@import "../../node_modules/ubuntu-vanilla-theme/scss/theme";
+@include ubuntu-vanilla-theme;
 
-@import "../core-constants";
-@import "../core-mixins";
+$nav-border-dark:		#d4d7d4;
+$nav-border-light:	#f2f2f4;
 
 /* @section global nav
 -------------------------------------------------------------- */
 footer #nav-global {
   display: block;
   margin: 0 -10px;
-  //padding-top: 10px;
   margin-top: -4px;
   margin-bottom: 10px;
-  //  -moz-box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.3) inset;
-  //  -webkit-box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.3) inset;
-  //box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.3) inset;
   overflow: hidden;
 
   div {
@@ -35,7 +33,7 @@ footer #nav-global {
       background-image: url('https://assets.ubuntu.com/v1/7bd1bd7b-arrow_down_9fa097.svg');
       background-position: 0 2px;
       background-repeat: no-repeat;
-      @include background_size(100% 100%);
+      background-size: (100% 100%);
       clear: none;
       display: inline-block;
       margin-left: 6px;
@@ -83,7 +81,6 @@ footer #nav-global {
 
   h2 {
     border-bottom: 1px solid #D4D7D4;
-    //border-top: 1px solid #D4D7D4;
     color: $warm-grey;
     margin: 0;
     padding: 10px 10px;
@@ -95,7 +92,7 @@ footer #nav-global {
 
   h2:before {
     background-image: url('https://assets.ubuntu.com/v1/9758f322-external-link-9fa097.svg');
-    @include background_size(14px 14px);
+    background-size: 14px 14px;
     background-repeat: no-repeat;
     content: "";
     display: inline-block;
@@ -112,8 +109,8 @@ footer #nav-global {
   }
 
   li a {
-    @include box_sizing();
-    @include font_size (16);
+    box-sizing: border-box;
+    font-size: 1em;
     border-bottom: 1px solid $nav-border-dark;
     color: $cool-grey;
     display: block;
@@ -142,7 +139,7 @@ footer #nav-global {
   }
 
   li {
-    @include box_sizing();
+    box-sizing: border-box;
     border-bottom: 1px solid $nav-border-light;
     border-left: 1px solid $nav-border-dark;
     display: block;
@@ -175,7 +172,7 @@ footer #nav-global {
 		margin-top: -30px;
 	}
 	#nav-global .nav-global-wrapper {
-	  -moz-box-sizing: border-box;
+	  box-sizing: border-box;
 	  background: none repeat scroll 0 0 #FFFFFF;
 	  margin: 0 auto;
 	  position: relative;
@@ -183,8 +180,6 @@ footer #nav-global {
 	  width: 984px;
 	}
 	#nav-global.drop-shadow {
-		-webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-		-moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 		box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 	}
 	#nav-global div {
@@ -217,8 +212,6 @@ footer #nav-global {
 		min-width: 120px;
 		top: 30px;
 		border-top: 1px solid #d7d7d7;
-		-webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-		-moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
 		box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
 	}
 	#nav-global ul ul a:link, #nav-global ul ul a:visited {

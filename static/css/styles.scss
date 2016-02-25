@@ -99,9 +99,6 @@ core scss files are in /sites/core/static/css
 @import "../../node_modules/ubuntu-vanilla-theme/scss/theme";
 @include ubuntu-vanilla-theme;
 
-@import "core-constants";
-@import "core-mixins";
-
 @import "scratch";
 
 /*	@section homepage
@@ -110,7 +107,7 @@ core scss files are in /sites/core/static/css
 
 /*	@section business
 -------------------------------------------------------------- */
-@import "section/business";
+//@import "section/business";
 
 /*	@section cloud
 -------------------------------------------------------------- */
@@ -155,10 +152,6 @@ core scss files are in /sites/core/static/css
 /*  @section management
 -------------------------------------------------------------- */
 @import "section/management";
-
-/*  @section community
--------------------------------------------------------------- */
-@import "section/community";
 
 /*  @section partners
 -------------------------------------------------------------- */
