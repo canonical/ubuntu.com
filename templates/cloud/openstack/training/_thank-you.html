@@ -1,0 +1,30 @@
+<div class="row row-hero no-border equal-height">
+	<div class="eight-col">
+		<h1>Thank you for {{ context }}</h1>
+		<p class="intro">A member of our team will be in touch {% if level_4 == 'order-thank-you' %}to confirm details {% endif %}within <strong>one working day</strong></p>
+	</div>
+	<div class="four-col last-col equal-height__align-vertically">
+		<img src="{{ ASSET_SERVER_URL }}52d53696-picto-thankyou-midaubergine.svg" alt=":-)" width="200" height="200" />
+	</div>
+</div><!-- /.row-hero -->
+
+<div class="row equal-height no-border">
+	<h2 class="twelve-col">More about our enterprise services</h2>
+	<ul id="thank-you-extra" class="no-bullets">
+		<li class="advantage four-col first">
+			<h4>Ubuntu Advantage</h4>
+			<p>Purchase our desktop support and access Ubuntu experts whenever you need.</p>
+			<p><a href="/cloud/management">Learn about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+		</li>
+		<li class="cloud four-col">
+			<h4>OpenStack</h4>
+			<p>Our private cloud infrastructure platform based on Openstack.</p>
+			<p><a href="/cloud">Learn about Ubuntu OpenStack&nbsp;&rsaquo;</a></p>
+		</li>
+		<li class="jumpstart four-col last-col">
+			<h4>Landscape</h4>
+			<p>Manage Ubuntu in the enterprise with our private cloud infrastructure platform based on OpenStack.</p>
+			<p><a href="/business/landscape">Learn about Landscape&nbsp;&rsaquo;</a></p>
+		</li>
+	</ul>
+</div><!-- end row-->

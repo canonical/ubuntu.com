@@ -1,0 +1,13 @@
+{% extends "cloud/base_cloud.html" %}
+
+{% block title %}Thank you{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Storage" page_title="Thank you"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+{% include "shared/_thank_you.html" with thanks_context="enquiring about Ubuntu Advantage Storage" %}
+{% endblock content %}
+{% block footer_extra %}
+{% endblock footer_extra %}

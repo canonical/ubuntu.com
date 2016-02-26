@@ -1,0 +1,184 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Installation instructions for the OpenStack Autopilot test drive | Download{% endblock %}
+{% block meta_description %}Step by step instructions on how to test drive an install of OpenStack on VMs with Autopilot.{% endblock %}
+{% block meta_keywords %}Autopilot, OpenStack, vmware, trial, install, cloud, vSphere, VMs, test drive{% endblock %}
+
+{% block extra_body_class %}download-help{% endblock %}
+
+{% block head_extra %}{% include "shared/_analytics_heap.html" %}{% endblock %}
+
+{% block second_level_nav_items %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Cloud" page_title="Test drive Canonical's OpenStack Autopilot"  %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row">
+    <div class="seven-col append-one">
+        <h1>Installation instructions for the OpenStack Autopilot test drive</h1>
+        <p>If you have vSphere then you can test-drive OpenStack Autopilot using our vSphere images. All you need to do is create a new network, launch the test drive <abbr title="Virtual machine">VM</abbr> we provide, then create some blank VMs to act as your servers for the test drive.</p>
+        <p>Or, if you have your own hardware? <a href="/download/cloud/install-openstack-with-autopilot">Install OpenStack with Autopilot</a></p>
+    </div>
+    <div class="four-col last-col box">
+        <h3>Talk to our experts</h3>
+        <p>Let our cloud experts help you take the next step.</p>
+        <p><a href="/cloud/contact-us">Contact us &rsaquo;</a></p>
+    </div>
+</div>
+<div class="clearfix instruction" id="download-help">
+    <div class="five-col instruction__bullet">
+        <div class="one-col">
+            <span class="instruction__step">1</span>
+        </div>
+        <div class="four-col last-col">
+            <h3 class="instruction__title">Open the OpenStack Autopilot test drive file</h3>
+        </div>
+    </div>
+    <div class="seven-col last-col instruction__details right">
+        <p>Uncompress your downloaded appliance file and import the openstack_autopilot and cloudnode vm into vSphere.</p>
+        <p>MAAS is included in this package and will automate the deployment of Ubuntu. It also includes Landscape, where you will find the OpenStack Autopilot pre-configured to use MAAS.</p>
+        <p><a href="/download/cloud">Need the download?</a></p>
+    </div>
+</div>
+<div class="clearfix instruction">
+    <div class="five-col instruction__bullet">
+        <div class="one-col">
+            <span class="instruction__step">2</span>
+        </div>
+        <div class="four-col last-col">
+            <h3 class="instruction__title">Make available a new empty network on which your OpenStack will be deployed</h3>
+        </div>
+    </div>
+    <div class="seven-col last-col instruction__details right">
+        <p>In vSphere, make at least a full /24 subnet available for this deployment.</p>
+        <ul>
+            <li>Make sure the subnet does not conflict with other routable addresses.</li>
+            <li>The openstack_autopilot VM image you have downloaded will provide DHCP and DNS to the VMs on this network, so there must not be another DHCP server there.</li>
+            <li>Create a router on the .1 address on this subnet which can route traffic to and from the internet for this subnet.</li>
+            <li>Make sure all the virtual switches on this network allow promiscuous mode. This is needed for the LXC containers that will be brought up on the cloud nodes to be able to get IP addresses from MAAS.</li>
+        </ul>
+    </div>
+</div>
+<div class="clearfix instruction">
+    <div class="five-col instruction__bullet">
+        <div class="one-col">
+            <span class="instruction__step">3</span>
+        </div>
+        <div class="four-col last-col">
+            <h3 class="instruction__title">Create at least 3 blank cloud server VMs on the network</h3>
+        </div>
+    </div>
+    <div class="seven-col last-col instruction__details right">
+        <p>The compressed appliance file downloaded in step 1 contains a sample cloudnode VM that meets the minimum requirements to participate in the OpenStack cloud. You need to import it as a template, and create at least 3 VMs from it, 6 for a highly available cloud.</p>
+        <ul>
+            <li>Name each VM in a sequential way, with a common prefix, like "node-1", "node-2", etc. A common prefix is needed so that they can be found easily later on.</li>
+            <li>Attach both Network Adapters of the cloudnode to the /24 subnet the openstack_autopilot VM will manage.</li>
+            <li>Create enough clones of the cloudnode VM to have a minimum of 3 cloudnode VMs. This can be performed by right clicking on the cloudnode VM, and selecting &ldquo;Clone&rdquo; -> Clone to Virtual machine&hellip;</li>
+        </ul>
+        <p>If changes are made to the VM Hardware settings. The VM must at least have two 20GB disk, 8Gb of RAM, two network interfaces attached to the same network, and no operating system installed so that they PXE boot when they are started. The second disk will be used for cloud storage, so adjust its size at will.</p>
+    </div>
+</div>
+<div class="clearfix instruction">
+    <div class="five-col instruction__bullet">
+        <div class="one-col">
+            <span class="instruction__step">4</span>
+        </div>
+        <div class="four-col last-col">
+            <h3 class="instruction__title">Launch and configure the openstack_autopilot VM</h3>
+        </div>
+    </div>
+    <div class="seven-col last-col instruction__details right">
+        <ul>
+            <li>Import the OpenStack Autopilot VM as a template, and create a VM from it. Make sure that if you use a prefix when naming this VM it is unique from the node prefix you used earlier.</li>
+            <li>In the VM settings, attach its network interface to the network that was prepared before. By default it attaches to "VM Network", but has no network configuration in itself yet.</li>
+            <li>Power on the VM and watch the VM console for the login prompt. The username and password are ubuntu / ubuntu, and you will be asked to change it.</li>
+            <li>Run <strong>autopilot-config</strong> script on the command line and follow the on-screen instructions to finalize setup for your network.</li>
+            <li>The script will guide you through deploying your cloud using a browser pointed to Landscape&rsquo;s OpenStack Autopilot.</li>
+        </ul>
+    </div>
+</div>
+<div class="clearfix instruction">
+    <div class="five-col instruction__bullet">
+        <div class="one-col">
+            <span class="instruction__step">5</span>
+        </div>
+        <div class="four-col last-col">
+            <h3 class="instruction__title">Autopilot-config guided install</h3>
+        </div>
+    </div>
+    <div class="seven-col last-col instruction__details right">
+        <p>The <strong>autopilot-config</strong> script will guide you through the remaining steps to configure and deploy your cloud. It will perform the following steps based on responses provided:</p>
+        <ul>
+            <li>Reconfigure the network of the openstack_autopilot VM</li>
+            <li>Test network configuration and connectivity</li>
+            <li>Power up and commission all VMs designated by a machine name prefix</li>
+            <li>Create an admin user in the MAAS and Landscape UI</li>
+            <li>Guide you to a browser to deploy your OpenStack cloud</li>
+        </ul>
+    </div>
+</div>
+
+<div class="clearfix instruction">
+    <div class="five-col instruction__bullet">
+        <div class="one-col">
+            <span class="instruction__step">6</span>
+        </div>
+        <div class="four-col last-col">
+            <h3 class="instruction__title">Choose your OpenStack components</h3>
+        </div>
+    </div>
+    <div class="seven-col last-col instruction__details right">
+        <img src="{{ ASSET_SERVER_URL }}28f70917-Choose+configure.png" alt="" />
+    </div>
+</div>
+
+<div class="clearfix instruction">
+    <div class="five-col instruction__bullet">
+        <div class="one-col">
+            <span class="instruction__step">7</span>
+        </div>
+        <div class="four-col last-col">
+            <h3 class="instruction__title">Select the hardware on which to deploy the cloud</h3>
+        </div>
+    </div>
+    <div class="seven-col last-col instruction__details right">
+        <img src="{{ ASSET_SERVER_URL }}9c5da2f5-machine-picker.png" alt="" />
+    </div>
+</div>
+
+<div class="clearfix instruction">
+    <div class="five-col instruction__bullet">
+        <div class="one-col">
+            <span class="instruction__step">8</span>
+        </div>
+        <div class="four-col last-col">
+            <h3 class="instruction__title">Select &ldquo;Install&rdquo; to start building your cloud</h3>
+        </div>
+    </div>
+    <div class="seven-col last-col instruction__details right">
+        <img src="{{ ASSET_SERVER_URL }}77bc020b-Installing+region+1++++table+++Progress.png" alt="" />
+    </div>
+</div>
+
+<div class="clearfix instruction">
+    <div class="five-col instruction__bullet">
+        <div class="one-col">
+            <span class="instruction__step">9</span>
+        </div>
+        <div class="four-col last-col">
+            <h3 class="instruction__title">Monitor your region and scale out</h3>
+        </div>
+    </div>
+    <div class="seven-col last-col instruction__details right">
+        <img src="{{ ASSET_SERVER_URL }}5a6d9f8a-install-ubuntu-cloud-step10.png" alt="" />
+    </div>
+</div>
+
+<div class="row no-border">
+    <div class="eight-col">
+        <h3>Congratulations!</h3>
+        <p>You&rsquo;ve built your first OpenStack cloud. Once you have seen OpenStack Autopilot&rsquo;s capacity to build a production-ready OpenStack cloud, you can use OpenStack Autopilot in the same way on your physical servers. You&rsquo;ll need to install MAAS and Landscape, and then the OpenStack Autopilot experience is exactly the same. Welcome to your private cloud, on demand!</p>
+        <p><a href="/download/cloud/install-openstack-with-autopilot">Install OpenStack with Canonical&rsquo;s OpenStack Autopilot on your own hardware&nbsp;&rsaquo;</a></p>
+    </div>
+</div><!-- /.row -->
+{% endblock content %}

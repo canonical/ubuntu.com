@@ -1,0 +1,308 @@
+ // internet-of-things section wide styles
+.internet-of-things {
+  @media only screen and (min-width: 768px) {
+    // Leave row-cta here for now but if it spreads to other sections maybe think about it being a new pattern.
+    .row-cta {
+      padding: 80px 40px 60px;  
+    }
+  }
+
+  @media only screen and (min-width: 984px) {
+    .row-cta {
+      padding: 90px 40px 70px;  
+    }
+  }
+  // override the darkness
+  .row-case-studies {
+    background: $light-grey;
+    color: $cool-grey;
+    
+    p,
+    .pull-quote cite {
+      color: $cool-grey; 
+    }
+  }
+  
+  // had to biggerise the logos  
+  .inline-logos--large li {
+    margin: 30px 0;
+    
+    img {
+      height: auto;
+      max-height: 65px;
+      max-width: 230px;
+    }
+  } 
+  
+  // events - in contextual footer
+  #context-footer {
+    .event {
+      display: inline-block; 
+      
+      @media only screen and (max-width: 480px) {
+        width: 100%;
+      } 
+      
+      @media only screen and (min-width: 768px) {
+        display: table-cell; 
+      }
+    }
+        
+    .event-map {
+      float: right;
+  		
+      @media only screen and (min-width: 769px) {
+        display: inline-block;
+      }
+  
+      img {
+        margin-left: 20px;
+        width: 56px;
+
+        @media only screen and (min-width: 769px) {
+          width: 76px;
+        }
+      }
+    }
+  	
+    .event h3 {
+      margin-bottom: 0;
+      width: 65%;
+      float: left;
+  		
+      @media only screen and (min-width: 769px) {
+        width: 65%;
+      }
+    }
+  	
+    .event-details {
+      color: $warm-grey;
+      font-size: .8125em;
+      line-height: 1.2;
+      margin-bottom: 0;
+      clear: none;
+      display: inline;
+      float: left;
+      margin-top: 4px;
+      width: 65%;
+      
+      @media only screen and (min-width: 769px) {
+        width: 65%;
+      }
+    }
+  
+    .event-details dd {
+      margin-left: 0;
+      padding-right: 0;
+    }
+  
+    .location {
+      box-sizing: border-box;
+      background: url('#{$asset-server}dc06486f-location.svg') 0 5px no-repeat;
+      background-size: 20px 20px;
+      display: block;
+      float: left;
+      padding: 6px 20px 6px 24px;
+      width: 100%;
+    }
+    
+    .venue {
+      box-sizing: border-box;
+      background: url('#{$asset-server}48947556-gps.svg') 0 5px no-repeat;
+      background-size: 20px 20px;
+      display: block;
+      float: left;
+      padding: 6px 20px 6px 24px;
+      width: 100%;
+    }
+    
+    .event-date {
+      background: url('#{$asset-server}c7d1850b-calendar.svg') 0 4px no-repeat;
+      background-size: 20px 20px;
+      clear: both;
+      display: block;
+      padding: 6px 20px 6px 24px;
+    }
+    
+    .image-wrap {
+      background-size: 78px 78px;
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+      vertical-align: middle;
+      margin-bottom: 0;
+    }
+    
+    .image-wrap img {
+      border-radius: 4px;
+      margin-top: 7px;
+    }
+    
+    .image-wrap:after {
+      background: url("#{$asset-server}5fb0cac2-white-squircle.png") no-repeat;
+      background-size: 78px 78px;
+      content: ' ';
+      width: 78px;
+      height: 78px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}
+
+.border-small {
+  border-bottom: 1px dotted #888;
+  
+  @media only screen and (min-width: 768px) {
+    border: 0;
+  }
+}
+
+//internet-of-things-overview
+.internet-of-things-overview {
+  #main-content .row-hero {
+    margin-top: 0;
+    
+    @media only screen and (min-width: 768px) {
+      background-image: url('#{$asset-server}8d5f669e-DARWIN_2.png?q=60&w=984');
+      background-position: 309px -35px;
+      background-repeat: no-repeat;
+      background-size: 85%;
+      margin-top: 0;
+      min-height: 550px;
+    }
+    
+    @media only screen and (min-width: 768px) {
+      h1 {
+        margin-top: 17%;
+      }
+    }
+  }
+  
+  .row-developers {
+    @media only screen and (min-width: 768px) {
+      background: url('#{$asset-server}a301749d-iot-overview-developer.jpg?q=70&w=984') center center no-repeat;
+  		background-size: cover;
+      min-height: 460px;
+    }
+  }
+  
+  .row--leaders {
+    min-height: 438px;
+  }
+}
+
+//internet-of-things/partners
+.internet-of-things-partners {
+  @media only screen and (min-width: 768px) {
+    #main-content .row-hero {
+      background: url('#{$asset-server}da0d4008-iot-partners-hero-house.jpg?q=70&w=984') center center no-repeat;
+  		background-size: cover;
+      color: #fff;
+      margin-top: 0;
+      padding-top: 40px;
+    }    
+  }
+  
+  .row-supported-hardware {
+    background: url('#{$asset-server}be523ae7-dell-edge-gateway-5000-series.jpg?h=300') 50% 100% no-repeat;
+    padding-bottom: 300px;
+    
+    @media only screen and (min-width: 768px) {
+      background: url('#{$asset-server}be523ae7-dell-edge-gateway-5000-series.jpg?h=400') 90% 50% no-repeat;
+      min-height: 400px;
+      padding-bottom: inherit;
+    }
+  }
+  
+  // override the bullshit at line 26 of desktop.scss
+  @media only screen and (min-width: 768px) {
+    .row-case-studies > h2:first-child {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.strip-dark blockquote p {
+  color: #fff;
+}
+
+//internet-of-things/features
+body.internet-of-things-features {  
+  #main-content .row-hero {
+    background-position: 430px -25px;
+    background-size: 69%;
+    margin-top: 0;
+    padding-top: 20px;
+    
+    @media only screen and (max-width: 768px) {
+      background-position: 400px 20px;
+    }
+
+    @media only screen and (min-width: 768px) {
+      background-image: url('#{$asset-server}d1c96b0e-erle_robotics_ubuntu_drone.jpg?q=60');
+      background-repeat: no-repeat;
+      min-height: 470px;
+      padding-top: 40px;
+    }
+  }
+  
+  @media only screen and (min-width: 768px) {
+    .row-marketplace {
+      background: url('#{$asset-server}d1f7b4c2-iot-features-led.jpg?q=60&w=984') left -74px no-repeat;
+      background-size: cover;
+      min-height: 500px;
+      overflow: hidden;
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .row-marketplace {
+      min-height: 400px;
+    }
+  }
+}
+
+//internet-of-things/developers
+body.internet-of-things-developers {  
+  @media only screen and (min-width: 768px) {
+    #main-content .row-hero {
+      background: url('#{$asset-server}8b907c80-iot-developers-hero.jpg?q=60&w=984') center center no-repeat;
+      background-size: cover;
+      margin-top: 0;
+      padding-top: 40px;
+    }
+
+    @media only screen and (min-width: 984px) {
+      min-height: 560px;
+    }
+  
+    .row-autonomous {
+      background: url('#{$asset-server}ec11fa9e-developers-robots-erle-spider.jpg?q=60') -80px 50% no-repeat;
+      background-size: 55% auto;
+      
+      .row-autonomous__content {
+        padding: 50px 0;
+      }
+    }
+  
+    .row-toys {
+      background: url('#{$asset-server}039723db-iot-developers-robot.jpg?q=60&amp;w=984') center center no-repeat;
+      background-size: cover;
+      
+      @media only screen and (min-width: 984px) {
+        min-height: 420px;
+      }
+      
+      .row-toys__content {
+        padding-top: 20px;
+      }
+    }
+  }
+  
+  // here be dragons
+  .snappy-language-image {
+    margin-top: -27px;
+  }
+}
