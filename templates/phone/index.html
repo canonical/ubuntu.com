@@ -4,100 +4,123 @@
 
 {% block meta_description %}With a radical new paradigm that makes it quicker and easier to find content and services than ever before, the beautifully designed Ubuntu phone is the opportunity the mobile industry has been waiting for.{% endblock %}
 
-{% block meta_keywords %}Ubuntu, phone, smartphone, mobile, cellphone, cell, OS, operating system, platform, open source, Linux, Canonical, OEM, network operator, Android, touch, handheld, multitouch, device, form factor, gestures, edge magic, PC, desktop, convergence, enterprise{% endblock %}
+{% block meta_keywords %}
+	Ubuntu smartphone, Ubuntu smartphones, smartphone Ubuntu, Ubuntu phone, Ubuntu phones,
+	Ubuntu mobile phone, Ubuntu mobile phones, Ubuntu for phone, Meizu Ubuntu phone,
+	Meizu phone, Meizu phones, Ubuntu convergence, Ubuntu phone convergence, Meizu MX4,
+	Meizu MX4 Ubuntu Edition, Mobile Meizu
+{% endblock %}
 
 {% block extra_body_class %}phone-home{% endblock %}
 
 {% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
 	{% include "templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Overview"  %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row row-hero no-border">
-    <div class="for-mobile"><img src="{{ ASSET_SERVER_URL }}f2758930-image-phone-hero-bq.jpg?w=768" alt="" /></div>
-	<div class="the-video">
-		<p class="right">
-			<a href="#" class="slideless close-video">Close the video <img src="{{ ASSET_SERVER_URL }}c51c1c63-close-button.png" width="24" height="24" alt="" /></a>
-		</p>
-		<div></div>
+  <div class="strip-inner-wrapper">
+    <div class="for-mobile">
+      <img src="{{ ASSET_SERVER_URL }}f2758930-image-phone-hero-bq.jpg?w=768" alt="">
+    </div>
+    <p class="close-vid-link">
+      <a href="#" class="slideless close-video">Close the video <img src="/static/u/img/devices/close-button.png" width="24" height="24" alt=""></a>
+    </p>
+    <div class="the-video">
+      <div></div>
+    </div>
+    <div class="row-content hide-me show-me">
+      <div class="five-col">
+        <h1>Life at your fingertips</h1>
+        <p class="intro">Ubuntu introduces a new way to enjoy content and services on smartphones, without relying on&nbsp;traditional apps.</p>
+        <p class="video-link"><a href="#_" class="show-video button--primary">Watch the video</a></p>
+        <div class="video-container for-mobile">
+          <iframe src="//www.youtube.com/embed/-dpfHYpfEXY" allowfullscreen=""></iframe>
+        </div>
+      </div>
+	  </div>
+  </div>
+</div>
+
+<div class="row row--access-content no-border strip-light">
+	<div class="strip-inner-wrapper">
+	  <div class="for-small eight-col align-center">
+	    <img src="{{ ASSET_SERVER_URL }}67ebf789-scopes-row.jpg?w=480" alt="" />
+	  </div>
+	  <div class="four-col last-col prepend-eight">
+	    <div class="scopes-text">
+	      <h2>Access content and services naturally through scopes</h2>
+	      <p class="clear">Ubuntu&rsquo;s unique scopes brings everything you need to one screen without the need to open and switch between multiple apps.The Ubuntu Phone has been built to revolve around you and the content and services you use the most.</p>
+	      <p class="no-margin-bottom"><a href="/phone/features">Learn more about scopes&nbsp;&rsaquo;</a></p>
+	    </div>
+	  </div>
 	</div>
-	<div class="row-content">
-		<div class="five-col">
-			<h1>Life at your fingertips</h1>
-			<p class="intro">Ubuntu introduces a new way to enjoy content and services on smartphones, without relying on&nbsp;traditional apps.</p>
-			<p class="video-link"><a href="//www.youtube.com/watch?v=-dpfHYpfEXY&amp;hd=1" class="show-video button--primary">Watch the video</a></p>
-			<div class="video-container for-mobile">
-				<iframe src="//www.youtube.com/embed/-dpfHYpfEXY" allowfullscreen></iframe>
+</div>
+
+<div class="row row--beautiful-design no-border">
+	<div class="strip-inner-wrapper">
+	  <div class="eight-col for-small">
+	    <img src="{{ ASSET_SERVER_URL }}91d3d632-beautiful-features.jpg?w=412" alt="Calendar app on Ubuntu phone" />
+	  </div>
+		<div class="four-col last-col">
+			<h2>Beautifully designed&nbsp;features</h2>
+			<p>Ubuntu Phone has been designed with obsessive attention to detail. Form follows function throughout, from the ever-changing welcome screen to essentials like messaging and alarms. And the Launcher puts it all at your fingertips, whatever you&rsquo;re doing with your phone.</p>
+			<p><a href="/phone/features">See what Ubuntu can do&nbsp;&rsaquo;</a></p>
+		</div>
+	</div>
+</div>
+
+<div class="row row--devices strip-light">
+	<div class="strip-inner-wrapper clearfix flex-container">
+		<div class="five-col align-center">
+			<img src="{{ ASSET_SERVER_URL }}8bc779a5-available-row.png" alt="Ubuntu devices" />
+		</div>
+		<div class="prepend-one five-col last-col vertically-center">
+			<div>
+				<h2>Available from our partners</h2>
+				<p>Ubuntu phones are now available for sale worldwide. You can purchase directly from our partners, such as BQ and Snapdeal.</p>
+				<p><a href="/phone/devices">Learn more about our range of devices&nbsp;&rsaquo;</a></p>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="row row--access-content no-border">
-  <div class="for-small eight-col align-center">
-    <img src="{{ ASSET_SERVER_URL }}f53f70fe-image-phone-scopes.jpg?w=480" alt="" />
-  </div>
-  <div class="four-col last-col prepend-eight">
-    <div>
-      <h2>Access content and services naturally through scopes</h2>
-      <p class="clear">Ubuntu&rsquo;s unique scopes brings everything you need to one screen without the need to open and switch between multiple apps.The Ubuntu Phone has been built to revolve around you and the content and services you use the most.</p>
-      <p class="no-margin-bottom"><a href="/phone/features">Learn more about scopes&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-</div>
-
-<div class="row row--beautiful-design no-border">
-  <div class="eight-col for-small">
-    <img src="{{ ASSET_SERVER_URL }}824ad81d-image-phone-beautifully%402x.jpg" alt="" />
-  </div>
-	<div class="four-col last-col">
-		<h2>Beautifully designed&nbsp;features</h2>
-		<p>Ubuntu Phone has been designed with obsessive attention to detail. Form follows function throughout, from the ever-changing welcome screen to essentials like messaging and alarms. And the Launcher puts it all at your fingertips, whatever you&rsquo;re doing with your phone.</p>
-		<p><a href="/phone/features">See what Ubuntu can do&nbsp;&rsaquo;</a></p>
-	</div>
-</div>
-
-<div class="row row--devices">
-	<div class="four-col align-center">
-		<img src="{{ ASSET_SERVER_URL }}8c9857e2-image-available-from.jpg" alt="Ubuntu devices" />
-	</div>
-	<div class="prepend-one seven-col last-col">
-		<h2>Available from our partners</h2>
-		<p>Ubuntu phones are now available for sale worldwide. You can purchase directly from our partners, such as BQ and Snapdeal.</p>
-		<p><a href="/phone/devices">Learn more about our range of devices&nbsp;&rsaquo;</a></p>
-	</div>
-</div>
-
-<div class="row">
+<div class="row strip-light">
+	<div class="strip-inner-wrapper">
     <h2 class="twelve-col"><a class="external" href="http://ubuntu-phone.eu/">Check out the latest phone news</a></h2>
-        <div id="phone-news-feed" class="twelve-col"></div>
-        <script>
-					$(function() {
-		          $.getFeed({
-		            url: 'http://www.stmgrts.org.uk/taleo/phone_twitter.xml', //need a proxy for this
-		            success: function(feed) {
-		              var html = "<ul class='phone-news-feed__list twelve-col no-bullets equal-height--vertical-divider'>";
-		              for(var i = 0; i < feed.items.length && i < 3; i++) {
-		                var item = feed.items[i];
-		                var lastClass = "";
-										if (i != 0 && i % 3 == 0) {
-                        lastClass = ' last-col';
-                    }
-										var d = $.trim(item.description);
-		                html += "<li class='equal-height--vertical-divider__item phone-news-feed__item four-col" + lastClass + "'><h3>" + item.title + "</h3><p>" + d + "</p><p class='phone-news-feed__category note'>" + item.category + "</p></li>"
-		              }
-		              html += "</ul>";
-		              if ($('#phone-news-feed')) {
-		                $('#phone-news-feed').append(html);
-		              }
-		            }
-		          });
-		        });
-        </script>
-</div>
-{% block head_extra %}
-<script src="{{ ASSET_SERVER_URL }}c954db4a-jfeed_prm.js"></script>
-{% endblock %}
+      <div id="phone-news-feed" class="twelve-col"></div>
+      <script>
+				$(function() {
+	          $.getFeed({
+	            url: 'http://www.stmgrts.org.uk/taleo/phone_twitter.xml', //need a proxy for this
+	            success: function(feed) {
+	              var html = "<ul class='phone-news-feed__list twelve-col no-bullets vertical-divider'>";
+	              for(var i = 0; i < feed.items.length && i < 3; i++) {
+	                var item = feed.items[i];
+	                var lastClass = "";
+									if (i != 0 && i % 3 == 0) {
+                      lastClass = ' last-col';
+                  }
+									var d = $.trim(item.description);
+	                html += "<li class='phone-news-feed__item four-col" + lastClass + "'><h3>" + item.title + "</h3><p>" + d + "</p><p class='phone-news-feed__category note'>" + item.category + "</p></li>"
+
+	              }
+	              html += "</ul>";
+	              if ($('#phone-news-feed')) {
+	                $('#phone-news-feed').append(html);
+	              }
+	            }
+	          });
+	        });
+      </script>
+		</div>
+	</div>
 
 {% include "shared/_open_source_phone.html" %}
 {% endblock content %}
+
+{% block head_extra %}
+<script src="{{ ASSET_SERVER_URL }}c954db4a-jfeed_prm.js"></script>
+{% endblock %}
