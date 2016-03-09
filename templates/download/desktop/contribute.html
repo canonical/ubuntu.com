@@ -1,4 +1,5 @@
 {% extends "download/_base_download.html" %}
+{% load versioned_static  %}
 
 {% block title %}Contribute to Ubuntu | Ubuntu{% endblock %}
 {% block extra_body_class %}contribute-to-ubuntu{% endblock %}
@@ -143,7 +144,7 @@
 {% endblock outer_content %}
 
 {% block footer_extra %}
-<script src="{{ STATIC_URL }}u/js/helpers.js"></script>
+<script src="{% versioned_static 'js/helpers.js' %}"></script>
 <script>
 /**
  * Ubuntu YUI contribution sliders

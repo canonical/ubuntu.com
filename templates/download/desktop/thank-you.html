@@ -1,4 +1,5 @@
 {% extends "download/_base_download.html" %}
+{% load versioned_static  %}
 
 {% block title %}
 {% if request.GET.version and request.GET.architecture %}
@@ -75,7 +76,7 @@ Thank you for your contribution
 {% endblock content %}
 
 {% block footer_extra %}
-<script src="{{ STATIC_URL }}u/js/helpers.js"></script>
+<script src="{% versioned_static 'js/helpers.js' %}"></script>
 
 <script>
 // Download file information

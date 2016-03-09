@@ -1,3 +1,4 @@
+{% load versioned_static  %}
 <!doctype html>
 
 {% with lts_release="14.04.3" latest_release="15.10" lts_release_name="TrustyTahr" latest_release_name="WilyWerewolf" openstack_version="Liberty" %}
@@ -34,12 +35,12 @@
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ ASSET_SERVER_URL }}5fe4d3c8-apple-touch-icon-114x114-precomposed.png" />
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ ASSET_SERVER_URL }}09460d9a-apple-touch-icon-72x72-precomposed.png" />
 <link rel="apple-touch-icon-precomposed" href="{{ ASSET_SERVER_URL }}cc66da65-apple-touch-icon-precomposed.png" />
-<link type="text/plain" rel="author" href="{{ STATIC_URL }}files/humans.txt" />
+<link type="text/plain" rel="author" href="{% versioned_static 'files/humans.txt' %}" />
 
 <!-- stylesheets -->
 <link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_SERVER_URL }}5ff660b1-global-responsive.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/styles.css" />
-<link rel="stylesheet" type="text/css" media="print" href="{{ STATIC_URL }}css/core-print.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="{% versioned_static 'css/styles.css' %}" />
+<link rel="stylesheet" type="text/css" media="print" href="{% versioned_static 'css/core-print.css' %}" />
 
 <!-- javascript -->
 <script src="{{ ASSET_SERVER_URL }}b0601acd-modernizr.2.7.1.js"></script>
@@ -168,7 +169,7 @@ $(document).ready(
 		root.className += " opera-mini";
 	}
 </script>
-<script src="{{ STATIC_URL }}u/js/plugins/yui-combined.min.js"></script>
+<script src="{{ ASSET_SERVER_URL }}40d25181-yui-combined.min.js"></script>
 <script>
 	if(!core){ var core = {}; }
 	core.globalPrepend = 'body';
@@ -176,7 +177,7 @@ $(document).ready(
 
 <script src="{{ ASSET_SERVER_URL }}8e7aa35a-core.js"></script>
 <script src="{{ ASSET_SERVER_URL }}bdd03093-global.js"></script>
-<script src="{{ STATIC_URL }}u/js/scratch.js"></script>
+<script src="{% versioned_static 'js/scratch.js' %}"></script>
 <script src="{{ ASSET_SERVER_URL }}f5bf3854-respond.min.js"></script>
 
 {% block footer_extra %}{% endblock %}
