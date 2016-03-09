@@ -38,7 +38,6 @@ MIDDLEWARE_CLASSES = []
 
 # See http://tinyurl.com/django-context-processors
 TEMPLATE_CONTEXT_PROCESSORS = [
-    "django.core.context_processors.static",     # {{ STATIC_URL }}
     "django.core.context_processors.request",    # {{ request }} object
     "django_asset_server_url.asset_server_url"   # {{ ASSET_SERVER_URL }}
 ]
