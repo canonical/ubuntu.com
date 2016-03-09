@@ -22,7 +22,7 @@ INSTALLED_APPS = [
 ]
 
 ALLOWED_HOSTS = ['*']
-DEBUG = True
+DEBUG = False
 ROOT_URLCONF = 'webapp.urls'
 WSGI_APPLICATION = 'webapp.wsgi.application'
 LANGUAGE_CODE = 'en-us'
