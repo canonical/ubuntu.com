@@ -17,9 +17,11 @@ SECRET_KEY = 'g@=8y0p%v6hsk6n1p*^tqb@)g1#v7r!#e1x5^x!$bvm#u9hal4'
 # See https://docs.djangoproject.com/en/dev/ref/contrib/
 INSTALLED_APPS = [
     'django.contrib.staticfiles',  # Needed for STATICFILES_DIRS to work
-    'dj_static',
     'django_versioned_static_url'
 ]
+
+WHITENOISE_MAX_AGE = 31557600
+WHITENOISE_ALLOW_ALL_ORIGINS = False
 
 ALLOWED_HOSTS = ['*']
 DEBUG = False
@@ -31,10 +33,14 @@ USE_I18N = False
 USE_L10N = False
 USE_TZ = False
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_ROOT = "static"
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, "templates")]
 
 MIDDLEWARE_CLASSES = []
+
+STATICFILES_FINDERS = [
+    'django_static_root_finder.finders.StaticRootFinder'
+]
 
 # See http://tinyurl.com/django-context-processors
 TEMPLATE_CONTEXT_PROCESSORS = [
