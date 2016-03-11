@@ -1,4 +1,4 @@
-export COMPOSE_PROJECT_NAME ?= $(shell echo $(subst _,,$(subst -,,$(shell basename `pwd`))) | tr A-Z a-z)
+export COMPOSE_PROJECT_NAME ?= $(shell echo $(subst .,,$(subst _,,$(subst -,,$(shell basename `pwd`)))) | tr A-Z a-z)
 export COMPOSE_FILE ?= docker-compose.makefile.yml
 export PORT ?= 8001
 

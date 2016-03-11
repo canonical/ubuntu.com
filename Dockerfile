@@ -9,4 +9,4 @@ RUN pip install -r /requirements/dev.txt
 ADD . /app
 WORKDIR /app
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:5000"]
+CMD ["./run-dev-server"]
