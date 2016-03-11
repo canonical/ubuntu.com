@@ -1,4 +1,5 @@
 {% extends "cloud/base_cloud.html" %}
+{% load versioned_static  %}
 
 {% block title %}BootStack - Your Managed cloud | Ubuntu{% endblock %}
 
@@ -273,7 +274,7 @@
 {% endblock content %}
 
 {% block footer_extra %}
-<script src="{{ STATIC_URL }}u/js/helpers.js"></script>
+<script src="{% versioned_static 'js/helpers.js' %}"></script>
 <script>
 /**
  * Ubuntu YUI sliders

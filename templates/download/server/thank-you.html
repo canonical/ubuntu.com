@@ -1,4 +1,5 @@
 {% extends "download/_base_download.html" %}
+{% load versioned_static  %}
 
 {% block title %}
 Thanks for downloading Ubuntu Server
@@ -49,7 +50,7 @@ Thanks for downloading Ubuntu Server
     </div><!-- /.row .row-download -->
 {% endblock content %}
 {% block footer_extra %}
-<script src="{{ STATIC_URL }}u/js/helpers.js"></script>
+<script src="{% versioned_static 'js/helpers.js' %}"></script>
 
 <script>
 // Download file information
