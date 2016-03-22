@@ -399,6 +399,15 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
     core.removeNoJS = function(){
         Y.all('html').removeClass('no-js').addClass('yes-js');
     }
+    
+    core.footerMobileNav = function() {
+        Y.all('.footer-a li h2').on('click', function(e) {
+            e.target.toggleClass('active open');
+        });
+        Y.all('.footer-b li h2').on('click', function(e) {
+            e.target.toggleClass('active open');
+        });
+    };
 
     core.resizeListener = function() {
         Y.on('windowresize', function(e) {
@@ -486,6 +495,7 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
     core.cookiePolicy();
     core.setHTMLClasses();
     core.resizeListener();
+    core.footerMobileNav();
     core.setupGlobalNavAccordion();
     core.scopesSlideshow();
 });
