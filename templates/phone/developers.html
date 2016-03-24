@@ -19,45 +19,66 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero">
-  <div class="strip-inner-wrapper">
-    <div class="four-col append-one">
-      <h1>For developers by&nbsp;design</h1>
-      <p class="intro">Bring your content and services into the core phone experience</p>
+<div class="row row-hero no-border">
+    <div class="strip-inner-wrapper">
+        <div class="four-col append-one">
+            <h1>For developers by&nbsp;design</h1>
+            <p class="intro">Bring your content and services into the core phone experience</p>
+        </div>
+        <div class="seven-col last-col">
+            <img
+                srcset="https://assets.ubuntu.com/v1/46de25cd-developers-hero.png?w=960 2x"
+                src="https://assets.ubuntu.com/v1/46de25cd-developers-hero.png?w=520"
+                alt="Ubuntu phones with various scopes"
+            />
+        </div>
     </div>
-    <div class="seven-col last-col">
-      <img src="{{ ASSET_SERVER_URL }}46de25cd-developers-hero.png?w=480" alt="Ubuntu phones with various scopes" />
-    </div>
-  </div>
 </div>
 
 <div class="row row-slideshow strip-light">
-  <div class="strip-inner-wrapper">
-    {% include "phone/shared/_slideshow.html" %}
 
-    <div id="scopes-content" class="six-col last-col prepend-five">
-      <h2>Build more than just an app</h2>
-      <p>By leveraging scopes, your content and services become an integral part of the default phone experience &mdash; and at a fraction of the cost of developing and maintaining a traditional app. It&rsquo;s never been this easy to develop a mobile&nbsp;experience.</p>
-      <p>The Ubuntu SDK also support mainstream HTML5 apps beautifully, while a rich Qt/QML based native app environment can be used to develop deeper experiences, like&nbsp;games.</p>
-      <p><a class="external" href="https://developer.ubuntu.com/en/apps/">Visit developer.ubuntu.com</a></p>
+    <div class="strip-inner-wrapper flex-container">
+
+        {% include "phone/shared/_slideshow.html" %}
+
+        <div id="scopes-content" class="carousel-text-col six-col last-col">
+            <div>
+            <h2>Build more than just an app</h2>
+                <p>By leveraging scopes, your content and services become an integral part of the default phone experience &mdash; and at a fraction of the cost of developing and maintaining a traditional app. It&rsquo;s never been this easy to develop a mobile&nbsp;experience.</p>
+                <p>The Ubuntu SDK also support mainstream HTML5 apps beautifully, while a rich Qt/QML based native app environment can be used to develop deeper experiences, like&nbsp;games.</p>
+                <p><a class="external" href="https://developer.ubuntu.com/en/apps/">Visit developer.ubuntu.com</a></p>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <div class="row row-scope-frameworks strip-light no-border">
-  <div class="strip-inner-wrapper">
-    <div class="six-col">
-      <h2>Introducing scopes and&nbsp;frameworks</h2>
-      <p>With Ubuntu, you can make your content discoverable via the phone&rsquo;s default aggregating scopes (e.g. Today, NearBy, News, Music, Photos and Videos) simply by creating a new scope of your own. For even deeper API access, Canonical provides development frameworks. Take Messaging, for example. A framework provides full access to the system-based messaging application, so that OTT and RCS service providers can offer a truly integrated experience, without creating their own dedicated applications.</p>
+    <div class="strip-inner-wrapper">
+        <div class="six-col">
+            <h2>Introducing scopes and&nbsp;frameworks</h2>
+            <p>With Ubuntu, you can make your content discoverable via the phone’s
+            default aggregating scopes (e.g. Today, NearBy, News, Music, Photos
+            and Videos) simply by creating a new scope of your own. For even deeper
+            API access, Canonical provides development frameworks. Take Messaging,
+            for example. A framework provides full access to the system-based messaging
+            application, so that OTT and RCS service providers can offer a truly integrated
+            experience, without creating their own dedicated applications.</p>
+        </div>
+        <img src="https://assets.ubuntu.com/v1/6e8f761e-scopes-frameworks-row.png" class="row-scope-frameworks--image" alt="Scope development on a laptop" />
     </div>
-      <img src="{{ ASSET_SERVER_URL }}6e8f761e-scopes-frameworks-row.png" class="row-scope-frameworks--image" alt="Scope development on a laptop" />
-  </div>
-</div>
+</div><!-- /.row -->
 
 <div class="row row-shine no-border flex">
-  <div class="flex-container flex-align-center flex-margin-auto">
-    <div class="strip-inner-wrapper">
-      <div class="for-mobile"><img src="{{ ASSET_SERVER_URL }}d4117ccb-space-for-content-row.jpg?w=468" alt="" /></div>
+    <div class="flex-container flex-align-center flex-margin-auto">
+        <div class="strip-inner-wrapper">
+
+            <div class="for-mobile">
+                <img
+                    srcset="https://assets.ubuntu.com/v1/d4117ccb-space-for-content-row.jpg?w=960 2x"
+                    src="https://assets.ubuntu.com/v1/d4117ccb-space-for-content-row.jpg?w=468"
+                    alt="Man viewing music screen on Ubuntu phone"
+                />
+            </div>
             <div class="row-shine-content five-col no-margin-bottom">
                 <div class="vertically-center">
                     <div>
@@ -74,7 +95,7 @@
 <div class="row strip-light">
     <div class="strip-inner-wrapper">
         <div class="four-col not-for-small">
-            <img src="{{ ASSET_SERVER_URL }}8296366f-image-tags.svg" width="210" alt="" />
+            <img src="//assets.ubuntu.com/v1/8296366f-image-tags.svg" width="210" alt="" />
         </div>
         <div class="eight-col last-col">
             <h2>Tag your scope &mdash; be part of the default experience</h2>
@@ -86,7 +107,7 @@
 
 <div class="row row-grey">
     <div class="strip-inner-wrapper equal-height">
-        <div class="seven-col">
+        <div class="six-col">
             <h2>HTML5 and web apps: the fastest path to Ubuntu</h2>
             <p>If you&rsquo;ve created HTML5 apps or mobile websites for other platforms,
             &mdash; there&rsquo;s good news: the path to Ubuntu couldn&rsquo;t be quicker. We
@@ -95,15 +116,15 @@
             to run independently of a browser (with full access to phone
             notifications and settings) the same goes for your web applications.</p>
         </div>
-        <div class="five-col align-vertically align-center last-col">
-            <img src="{{ ASSET_SERVER_URL }}24a4d66d-HTML5_logo_and_wordmark.svg" alt="HTML5 logo" />
+        <div class="six-col align-vertically align-center last-col">
+            <img src="https://assets.ubuntu.com/v1/24a4d66d-HTML5_logo_and_wordmark.svg" alt="HTML5 logo" />
         </div>
     </div>
 </div><!-- /.row -->
 
 <div class="row strip-light">
     <div class="strip-inner-wrapper equal-height">
-        <div class="eight-col">
+        <div class="seven-col">
         <h2>Going native</h2>
             <p>The Ubuntu SDK includes everything you need to create your own scopes, repurpose your web/HTML5 content and develop native apps.</p>
             <ul class="list list-ticks">
@@ -116,16 +137,16 @@
 
             <p><a class="link-cta-ubuntu" href="http://developer.ubuntu.com/get-started/">Download the SDK now</a></p>
         </div>
-        <div class="not-for-small four-col last-col align-center align-vertically">
-            <img src="{{ ASSET_SERVER_URL }}b3c4fcc7-logo-qt.svg" width="135" alt="" />
+        <div class="not-for-small five-col last-col align-center align-vertically">
+            <img src="//assets.ubuntu.com/v1/b3c4fcc7-logo-qt.svg" width="135" alt="" />
         </div>
     </div>
 </div><!-- /.row -->
 
 <div class="row row-community">
     <div class="strip-inner-wrapper equal-height">
-        <div class="five-col align-center align-vertically">
-            <img src="{{ ASSET_SERVER_URL }}2c023edd-picto-help-orange.svg" width="140" alt="" />
+        <div class="six-col align-center align-vertically">
+            <img src="//assets.ubuntu.com/v1/2c023edd-picto-help-orange.svg" width="140" alt="" />
         </div>
         <div class="six-col last-col">
             <h2>A helping hand</h2>
@@ -138,7 +159,15 @@
 <div class="row strip-light no-border">
     <div class="strip-inner-wrapper">
         <div class="twelve-col">
-            <img src="{{ ASSET_SERVER_URL }}66a9ae51-Convergence.png"  alt="An external monitor powered by an Ubuntu phone" />
+            <img
+                sizes="(min-width:1024px) 983px, (min-width:768px) 690px"
+                srcset="https://assets.ubuntu.com/v1/66a9ae51-Convergence.png?w=983 983w,
+                        https://assets.ubuntu.com/v1/66a9ae51-Convergence.png?w=960 2x,
+                        https://assets.ubuntu.com/v1/66a9ae51-Convergence.png?w=690 690w"
+                src="https://assets.ubuntu.com/v1/66a9ae51-Convergence.png?w=480"
+                alt="An external monitor powered by an Ubuntu phone"
+                class="img--full-width"
+            />
         </div>
         <div class="eight-col">
             <h2>Using Ubuntu on your favourite phone</h2>
@@ -148,7 +177,7 @@
             in the Ubuntu community. And if you have a phone with HDMI-out,
             you can use Ubuntu to turn it into a convergent device, running
             full PC apps when you connect it to a screen, mouse and keyboard. </p>
-            <p><a href="https://developer.ubuntu.com/en/start/ubuntu-for-devices">Learn how to get involved&nbsp;&rsaquo;</a></p>
+            <a href="https://developer.ubuntu.com/en/start/ubuntu-for-devices">Learn how to get involved&nbsp;›</a>
         </div>
     </div>
 </div><!-- /.row -->

@@ -1,6 +1,6 @@
 <!doctype html>
 
-{% with lts_release="14.04.3" latest_release="15.10" lts_release_name="TrustyTahr" latest_release_name="WilyWerewolf" openstack_version="Liberty" %}
+{% with lts_release="14.04.4" latest_release="15.10" lts_release_name="TrustyTahr" latest_release_name="WilyWerewolf" openstack_version="Liberty" %}
 
 <!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en" dir="ltr"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en" dir="ltr"> <![endif]-->
@@ -43,13 +43,7 @@
 <!-- javascript -->
 <script src="{{ STATIC_URL }}u/js/plugins/modernizr.2.7.1.js"></script>
 <script src="{{ STATIC_URL }}u/js/plugins/Imager.js"></script>
-
-{% comment %}<!-- the following has been added to allow things/iot ab testing -->{% endcomment %}
-<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
-<script src="//www.google-analytics.com/cx/api.js?experiment=IbIACoOrTnG8eSnRY64nWQ"></script>
-<script>
-  var chosenVariation = cxApi.chooseVariation();
-</script>
+<script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
 
 {% block head_extra %}{% endblock %}
 
@@ -76,7 +70,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<span id="main-navigation-link"><a href="#main-navigation">Jump to site nav</a></span>
 		<div class="logo">
 			<a class="logo-ubuntu" href="/">
-				<img width="106" height="25" src="{{ ASSET_SERVER_URL }}c6679b95-logo-ubuntu-orange.svg" alt="" />
+				<img width="106" height="25" src="//assets.ubuntu.com/v1/c6679b95-logo-ubuntu-orange.svg" alt="" />
 			</a>
 		</div>
 		<ul>
@@ -96,7 +90,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			<li><a{% if level_1 == 'tablet' %} class="active"{% endif %} href="/tablet">Tablet</a>
 				{% include "tablet/_nav_secondary.html" with promo="true" %}
 			</li>
-			<li><a{% if level_1 == 'internet-of-things' %} class="active"{% endif %} href="/internet-of-things" id="IoT" >Things</a>
+			<li><a{% if level_1 == 'internet-of-things' %} class="active"{% endif %} href="/internet-of-things" id="IoT" >IoT</a>
 				{% include "internet-of-things/_nav_secondary.html" with promo="true" %}
 			</li>
 			<li><a{% if level_1 == 'management' %} class="active"{% endif %} href="/management">Management</a>
@@ -131,29 +125,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- footer content goes here -->
 {% include "templates/footer.html" %}
 
-{% comment %}<!-- start google content things/iot ab test -->{% endcomment %}
-<script>
-// Define JavaScript for each page variation of this experiment.
-var pageVariations = [
-  function() {}, // Original: Do nothing. This will render the default HTML.
-  function() { // Variation 1: IoT
-    var iot = [ 'IoT', 'IoT-footer', 'IoT-homepage', 'IoT-breadcrumb' ];
-    for (var i = 0; i <= iot.length; i++ ) {
-      var id = document.getElementById(iot[i]);
-      if (id) {
-        id.innerHTML = 'IoT';
-      }
-    }
-  }
-];
-// Wait for the DOM to load, then execute the view for the chosen variation.
-$(document).ready(
-  // Execute the chosen view
-  pageVariations[chosenVariation]
-);
-</script>
-{% comment %}<!-- end google content experiment -->{% endcomment %}
-
 <!-- Use this only until Modernizr fixes Opera Mini background-size detection -->
 <script>
 	var isOperaMini = (navigator.userAgent.indexOf('Opera Mini') > -1);
@@ -168,7 +139,7 @@ $(document).ready(
 	core.globalPrepend = 'body';
 </script>
 
-<script src="{{ ASSET_SERVER_URL }}8e7aa35a-core.js"></script>
+<script src="//assets.ubuntu.com/v1/8e7aa35a-core.js"></script>
 <script src="{{ STATIC_URL }}u/js/global.js"></script>
 <script src="{{ STATIC_URL }}u/js/scratch.js"></script>
 <script src="{{ STATIC_URL }}u/js/plugins/respond.min.js"></script>

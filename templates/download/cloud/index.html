@@ -10,6 +10,7 @@
   {% include "templates/_nav_breadcrumb.html" with section_title="Download" page_title="Cloud"  %}
 {% endblock second_level_nav_items %}
 
+
 {% block content %}
 <section class="row row-grey">
   <div class="nine-col">
@@ -36,6 +37,7 @@
     </div><!-- /.box -->
   </div><!-- /.twelve-col -->
 
+
   <div class="twelve-col box box-highlight vertical-divider">
     <div class="six-col no-margin-bottom">
       <h2>Test drive OpenStack Autopilot appliance for VMware</h2>
@@ -44,8 +46,8 @@
     </div>
     <div class="six-col last-col">
 
-      <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
-      <script src="{{ ASSET_SERVER_URL }}6ce35d3e-jquery-ui.min.js"></script>‌​
+      <script src="//assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
+      <script src="//assets.ubuntu.com/v1/6ce35d3e-jquery-ui.min.js"></script>‌​
 
       <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="form-download-marketo">
         <fieldset>
@@ -458,25 +460,19 @@
       </form>
     </div>
   </div>
-  <script  src="{{ ASSET_SERVER_URL }}f97fa297-stateCountry.js"></script>
+  <script  src="//assets.ubuntu.com/v1/f97fa297-stateCountry.js"></script>
   <style type="text/css">#form-download-marketo select { margin-bottom: 0px; }</style>
 </section>
 
-<section class="row row-grey">
-  <div class="eight-col">
-    <h2>Install OpenStack Autopilot on your&nbsp;hardware</h2>
-    <p>OpenStack Autopilot is the world&rsquo;s easiest dynamic OpenStack installer. It handles every aspect of your cloud both during installation, expansion, and everyday operations. To start, you will need at least five machines with two disks each. Two machines need to have two network interfaces (NICs).</p>
-    <p><a href="/download/cloud/install-ubuntu-openstack">Instructions for installing OpenStack Autopilot&nbsp;&rsaquo;</a></p>
-  </div>
-</section>
 {% include "download/server/_other-ways.html" %}
 
 {% endblock content %}
 {% block footer_extra %}
+  {{ marketo }}
   <!-- dependencies -->
-  <script src="{{ ASSET_SERVER_URL }}ec520d10-XMLHttpRequest.min.js"></script>
-  <script src="{{ ASSET_SERVER_URL }}4176b39e-serialize.js"></script>
-  <script src="{{ ASSET_SERVER_URL }}6b7597df-event-listener-polyfill.js"></script>
+  <script src="//assets.ubuntu.com/v1/ec520d10-XMLHttpRequest.min.js"></script>
+  <script src="//assets.ubuntu.com/v1/4176b39e-serialize.js"></script>
+  <script src="//assets.ubuntu.com/v1/6b7597df-event-listener-polyfill.js"></script>
   <!-- script -->
   <script>
     /**

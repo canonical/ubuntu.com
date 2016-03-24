@@ -1,11 +1,11 @@
 {% extends "base_index.html" %}
 
-{% block takeover_body_class %}intel-nuc-takeover{% endblock takeover_body_class %}
+
+{% block takeover_body_class %}juju-takeover{% endblock takeover_body_class %}
 
 {% block head_extra %}
 
-<script src="{{ ASSET_SERVER_URL }}c954db4a-jfeed_prm.js"></script>
-
+<script src="//assets.ubuntu.com/v1/c954db4a-jfeed_prm.js"></script>
 {% endblock %}
 
 {% block takeover_content %}
@@ -13,9 +13,9 @@
     <div class="lang-switch-wrapper strip-inner-wrapper"><a href="/" class="lang-switch" lang="zh">中文主页&nbsp;&rsaquo;</a></div>
 {% endif %}
 
-{% include "takeovers/_intel_nuc_takeover.html" %}
+{% include "takeovers/_juju_circles_takeover.html" %}
 
-<section class="row row--ubuntu-news row-grey strip no-border">
+<section class="row row--ubuntu-news js-hidden row-grey strip no-border">
     <div class="strip-inner-wrapper">
         <div class="twelve-col">
             <h2 class="external row--ubuntu-news__title"><span><a href="https://insights.ubuntu.com/">Latest news from Insights</a></span></h2>
@@ -26,7 +26,7 @@
                   url: 'https://insights.ubuntu.com/feed',
                   success: function(feed) {
                     var html = "<ul class='row--ubuntu-news__list no-bullets vertical-divider'>";
-                    for(var i = 0; i < feed.items.length && i < 4; i++) {
+                    for (var i = 0; i < feed.items.length && i < 4; i++) {
                       var item = feed.items[i];
                       var lastClass = "";
                       if (i != 0 && i % 3 == 0) {
@@ -37,6 +37,7 @@
                     html += "</ul>";
                     if ($('#insights-cloud-feed')) {
                       $('#insights-cloud-feed').append(html);
+                      $('.row--ubuntu-news').removeClass('js-hidden');
                     }
                   }
                 });
@@ -56,7 +57,7 @@
                     <li><a class="intro-desktop" href="/desktop">Desktop</a></li>
                     <li><a class="intro-phone" href="/phone">Phone</a></li>
                     <li><a class="intro-tablet" href="/tablet">Tablet</a></li>
-                    <li><a class="intro-iot" href="/things" id="IoT-homepage">Things</a></li>
+                    <li><a class="intro-iot" href="/internet-of-things">IoT</a></li>
                 </ul>
             </div>
             <div class="intro-right"></div>
@@ -75,7 +76,7 @@
             </div>
         </div>
         <div class="eight-col last-col align-vertically for-medium">
-            <img src="{{ ASSET_SERVER_URL }}f27582be-image-cloud-static.jpg" alt="" />
+            <img src="//assets.ubuntu.com/v1/f27582be-image-cloud-static.jpg" alt="" />
         </div>
     </div>
 </section>
@@ -87,7 +88,7 @@
                 <div id="devices">
                     <div id="device-phone"><div></div></div>
                     <div id="device-tablet"><div></div></div>
-                    <div id="device-laptop"><img src="{{ ASSET_SERVER_URL }}a0ae228b-laptop-base.png" alt="" /><div></div></div>
+                    <div id="device-laptop"><img src="//assets.ubuntu.com/v1/a0ae228b-laptop-base.png" alt="" /><div></div></div>
                 </div>
             </div>
         </div>
@@ -101,12 +102,12 @@
 <section class="row row--iot row-grey strip no-border">
     <div class="strip-inner-wrapper">
         <div class="row--iot__desc four-col">
-            <h2><a href="/things">For all your things&nbsp;&rsaquo;</a></h2>
+            <h2><a href="/internet-of-things">For all your things&nbsp;&rsaquo;</a></h2>
             <p>Snappy Ubuntu Core delivers bullet-proof security, reliable updates and the enormous Ubuntu ecosystem to a wide range of internet things, connected devices and autonomous machines.</p>
         </div>
         <div class="eight-col last-col align-center">
             <div class="row--iot__image"></div>
-            <img class="for-small" src="{{ ASSET_SERVER_URL }}2f56d557-image-iot.jpg?w=280" width="280" alt="" />
+            <img class="for-small" src="//assets.ubuntu.com/v1/2f56d557-image-iot.jpg?w=280" width="280" alt="" />
         </div>
     </div>
 </section>
@@ -115,21 +116,21 @@
     <div class="strip-inner-wrapper equal-height">
         <div class="featured featured--left six-col right">
             <div class="two-col not-for-small">
-                <img class="featured__image featured--left__image not-for-small" src="{{ ASSET_SERVER_URL }}3aa7e9a6-picto-articles-white.svg?q=40" width="150" alt="" />
+                <img class="featured__image featured--left__image not-for-small" src="//assets.ubuntu.com/v1/3aa7e9a6-picto-articles-white.svg?q=40" width="150" alt="" />
             </div>
             <div class="three-col last-col no-margin-bottom">
                 <h2 class="featured__title"><a href="https://insights.ubuntu.com/2015/11/24/opus-2-develops-the-legal-cloud-of-the-future-on-ubuntu-openstack" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : 'Opus 2 takeunder', 'eventLabel' : 'Learn more about Ubuntu', 'eventValue' : undefined });">The legal cloud of the future&nbsp;&rsaquo;</a></h2>
                 <p class="featured__desc">Read how Opus 2&rsquo;s flagship service was built entirely on Ubuntu OpenStack.</p>
             </div>
         </div>
-        {% include "takeovers/takeunders/_mwc-2016.html" %}
+        {% include "takeovers/takeunders/_telco.html" %}
     </div>
 </section>
 
 <style type="text/css">
     /* background image for the event feature */
     /* get original using this //maps.googleapis.com/maps/api/staticmap?center=Tokyo%2C+Japan&zoom=14&scale=2&size=1200x320&maptype=satellite but with the location details from the insights event */
-    .featured--event:before { background-image: url('{{ ASSET_SERVER_URL }}62b7ce67-pasadena.png?fmt=jpg&q=20'); }
+    /*.featured--event:before { background-image: url('//assets.ubuntu.com/v1/62b7ce67-pasadena.png?fmt=jpg&q=20'); }*/
 </style>
 
 {% include "shared/_device_animation.html" %}

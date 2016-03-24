@@ -17,7 +17,7 @@
 		<p class="intro">Fast, dense and secure container management for Ubuntu</p>
 	</div><!-- /.seven-col -->
 	<div class="text-center five-col last-col">
-		<img src="{{ ASSET_SERVER_URL }}f581fd89-lxd_takeover.png" width="260" alt="LXD" />
+		<img src="//assets.ubuntu.com/v1/f581fd89-lxd_takeover.png" width="260" alt="LXD" />
 	</div>
 </div>
 <div class="row row-grey">
@@ -35,7 +35,7 @@
 		<p>They can run LXD on all the machines on which they want to create and tear down these environments, using LXC to drive the process from anywhere on the network.</p>
 	</div><!-- /.eight-col -->
 	<div class="four-col last-col align-center align-vertically">
-		<img src="{{ ASSET_SERVER_URL }}438f3856-pictogram-virtualisation.svg" width="289" alt="" />
+		<img src="//assets.ubuntu.com/v1/438f3856-pictogram-virtualisation.svg" width="289" alt="" />
 	</div>
 </div>
 <div class="row">
@@ -47,7 +47,7 @@
 </div>
 <div class="row">
 	<div class="four-col align-center">
-		<img src="{{ ASSET_SERVER_URL }}b3c24977-docker-small_v-trans.png" alt="" />
+		<img src="//assets.ubuntu.com/v1/b3c24977-docker-small_v-trans.png" alt="" />
 	</div>
 	<div class="eight-col last-col">
 		<h2>And Docker?</h2>
@@ -87,7 +87,7 @@
 		<p>This new driver allows OpenStack instances to be scheduled as Linux Containers. Images are booted from OpenStack&rsquo;s image service, Glance, and instances communicate over Neutron&rsquo;s networking functionality just like KVM based VMs do.</p>
 	</div>
 	<div class="four-col last-col align-center align-vertically">
-		<img src="{{ ASSET_SERVER_URL }}ce5e0ec1-nova-compute.svg" alt="" />
+		<img src="//assets.ubuntu.com/v1/ce5e0ec1-nova-compute.svg" alt="" />
 	</div>
 </div>
 <div class="row no-border">
@@ -108,4 +108,8 @@ sudo apt-get install lxd</code></pre>
 </div>
 
 {% include "cloud/shared/_contextual_footer.html" %}
+
+
+
 {% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

@@ -72,7 +72,7 @@
 
 <!-- MARKETO FORM -->
 
-<script  src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
+<script  src="//assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
     
 <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1254"> 
 <fieldset>
@@ -514,7 +514,7 @@ $("#mktoForm_1254").validate({
     errorClass: "mktFormMsg mktError"
 });
 </script>
-<script  src="{{ ASSET_SERVER_URL }}f97fa297-stateCountry.js"></script>
+<script  src="//assets.ubuntu.com/v1/f97fa297-stateCountry.js"></script>
 
 <!-- /MARKETO FORM -->
 
@@ -526,3 +526,4 @@ $("#mktoForm_1254").validate({
 	</div><!-- /.seven-col -->
 </div><!-- /.row -->
 {% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

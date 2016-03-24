@@ -6,13 +6,13 @@
 {% block meta_keywords %}Features, Ubuntu, Core, snappy, internet, things, devices, lightweight, OS, operating system, Linux, open source, Canonical, snapcraft, update, secure, security, mobile, internet, connected, home, appliance, embedded, development{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
-    {% include "templates/_nav_breadcrumb.html" with section_title="Things" page_title="For developers" %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="IoT" page_title="For developers" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row row-hero no-border border-small">
   <div class="twelve-col for-small billboard">
-    <img src="{{ ASSET_SERVER_URL }}8b907c80-iot-developers-hero.jpg?q=60&amp;w=768" alt="" />
+    <img src="//assets.ubuntu.com/v1/8b907c80-iot-developers-hero.jpg?q=60&amp;w=768" alt="" />
   </div>
   <div class="six-col">
       <h1>For developers</h1>
@@ -68,7 +68,7 @@
 
 <div class="row row-snappy-language">
   <div class="four-col no-margin-bottom align-center">
-    <img class="snappy-language-image" src="{{ ASSET_SERVER_URL }}5b24f6af-terminal-app-symbolic.svg" width="220" alt="" />
+    <img class="snappy-language-image" src="//assets.ubuntu.com/v1/5b24f6af-terminal-app-symbolic.svg" width="220" alt="" />
   </div>
   <div class="eight-col last-col">
     <h2>Snappy speaks your language</h2>
@@ -93,11 +93,11 @@
 
 <div class="row row-cta no-border">
   <div class="three-col align-center not-for-small">
-    <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="140" alt="" />
+    <img src="//assets.ubuntu.com/v1/1f1d581a-picto-quote-orange.svg" width="140" alt="" />
   </div>
   <div class="eight-col last-col">
     <div class="inline-small one-col align-center for-small">
-      <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="38" alt="" />
+      <img src="//assets.ubuntu.com/v1/1f1d581a-picto-quote-orange.svg" width="38" alt="" />
     </div>
     <h2>Kick-start your next project</h2>
     <p class="clear">If you&rsquo;re launching a crowdfunding project using snappy technology, talk to us first &mdash; and benefit from all the  support Canonical can provide.</p>
@@ -105,6 +105,5 @@
   </div>
 </div>
 
-{% include "internet-of-things/shared/_contextual_footer.html" with feature_1="event" %}
-
+{% include "internet-of-things/shared/_contextual_footer.html" %}
 {% endblock content %}

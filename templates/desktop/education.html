@@ -14,7 +14,7 @@
     <div class="six-col">
         <h1>Ubuntu for education</h1>
         <p class="intro">With a wide range of educational software and certified hardware, Ubuntu provides secure, cost-effective, accessible computing for students, teachers and school administrators.</p>
-        <p><a href="mailto:education@canonical.com" class="link-cta-ubuntu">Contact us</a></p>
+        <p><a href="/desktop/contact-us" class="link-cta-ubuntu">Contact us</a></p>
         {% include "desktop/shared/_share-this.html" with tweet="Learn how #Ubuntu desktop OS helps students and teachers around the world" %}
     </div>
 </div>
@@ -65,21 +65,21 @@
         <h2>Countless open source tools and apps available</h2>
     </div>
     <div class="one-col">
-        <img src="{{ ASSET_SERVER_URL }}86f02c6d-gcompris-icon.png" alt="Gcompris icon" />
+        <img src="//assets.ubuntu.com/v1/86f02c6d-gcompris-icon.png" alt="Gcompris icon" />
     </div>
     <div class="three-col">
         <h3>Gcompris</h3>
         <p>Software suite of learning and skill building activities for school children.</p>
     </div>
     <div class="one-col">
-        <img src="{{ ASSET_SERVER_URL }}ff1a448c-marble-icon.png" alt="Marble icon" />
+        <img src="//assets.ubuntu.com/v1/ff1a448c-marble-icon.png" alt="Marble icon" />
     </div>
     <div class="three-col">
         <h3>Marble</h3>
         <p>Extensive virtual world atlas for exploring the earth and other planets.</p>
     </div>
     <div class="one-col">
-        <img src="{{ ASSET_SERVER_URL }}476dda79-italc-icon.png" alt="iTalc icon" />
+        <img src="//assets.ubuntu.com/v1/476dda79-italc-icon.png" alt="iTalc icon" />
     </div>
     <div class="three-col last-col">
         <h3>iTalc</h3>
@@ -87,21 +87,21 @@
     </div>
 
     <div class="one-col">
-        <img src="{{ ASSET_SERVER_URL }}46f7d1be-scribus-icon.png" alt="Scribus icon" />
+        <img src="//assets.ubuntu.com/v1/46f7d1be-scribus-icon.png" alt="Scribus icon" />
     </div>
     <div class="three-col">
         <h3>Scribus</h3>
         <p>Desktop publishing application for professional typesetting and interactive presentations.</p>
     </div>
     <div class="one-col">
-        <img src="{{ ASSET_SERVER_URL }}9be31c6e-lightspeed-icon.png" alt="Lightspeed icon" />
+        <img src="//assets.ubuntu.com/v1/9be31c6e-lightspeed-icon.png" alt="Lightspeed icon" />
     </div>
     <div class="three-col">
         <h3>Lightspeed</h3>
         <p>Physics simulator for exploring the special theory of relativity.</p>
     </div>
     <div class="one-col">
-        <img src="{{ ASSET_SERVER_URL }}5af886e6-schooltool-icon.png" alt="Schooltool icon" />
+        <img src="//assets.ubuntu.com/v1/5af886e6-schooltool-icon.png" alt="Schooltool icon" />
     </div>
     <div class="three-col last-col">
         <h3>SchoolTool</h3>
@@ -118,8 +118,9 @@
         </div>
     </div>
     <div class="pull-right right">
-        <img src="{{ ASSET_SERVER_URL }}0607d665-landscape-screenshot.png" class="touch-border landscape-screenshot priority-0" alt="Landscape screenshot" />
+        <img src="//assets.ubuntu.com/v1/0607d665-landscape-screenshot.png" class="touch-border landscape-screenshot priority-0" alt="Landscape screenshot" />
     </div>
 </div>
 
 {% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

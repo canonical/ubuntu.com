@@ -23,7 +23,7 @@
 {% if level_3 == 'install-autopilot-testdrive' %}
 <div class="four-col feature-one">
     <h3>Buy an OpenStack cloud</h3>
-    <p>Don&rsquo;t want to build a cloud yourself? With Bootstack, Canonical will set up and operate an OpenStack cloud for you from only &dollar;15 per server.</p>
+    <p>Don&rsquo;t want to build a cloud yourself? With Bootstack, Canonical will set up and operate an OpenStack cloud for you from only $15 per server.</p>
     <p><a href="/cloud/openstack/managed-cloud">Learn more about BootStack&nbsp;&rsaquo;</a></p>
 </div>
 {% else %}
@@ -34,6 +34,7 @@
       <li><a href="/download/cloud/install-autopilot-testdrive">Test drive installing OpenStack Autopilot on vSphere&nbsp;&rsaquo;</a></li>
         <li><a href="/download/cloud/install-openstack-with-autopilot">Install OpenStack Autopilot on your own hardware&nbsp;&rsaquo;</a></li>
         <li><a href="https://help.ubuntu.com/lts/clouddocs/en/Intro.html" class="external">Manually installing OpenStack using MAAS and Juju</a></li>
+        <li><a href="https://help.ubuntu.com/lts/clouddocs/installer/" class="external">Manually using the OpenStack Installer</a></li>
     </ul>
 </div>
 {% endif %}{% endif %}
@@ -98,10 +99,10 @@
     <p>If you prefer, you can download Ubuntu Kylin via a torrent.</p>
     <ul class="no-bullets vertical-divider">
         <li class="two-col">
-            <h4>Ubuntu Kylin 14.04.3</h4>
+            <h4>Ubuntu Kylin {{lts_release}}</h4>
             <ul class="no-bullets">
-                <li><a href="http://cdimage.ubuntu.com/ubuntukylin/releases/14.04/release/ubuntukylin-14.04.3-desktop-amd64.iso.torrent" class="external">64-bit torrent</a></li>
-                <li><a href="http://cdimage.ubuntu.com/ubuntukylin/releases/14.04/release/ubuntukylin-14.04.1-desktop-i386.iso.torrent" class="external">32-bit torrent</a></li>
+                <li><a href="http://cdimage.ubuntu.com/ubuntukylin/releases/14.04/release/ubuntukylin-{{lts_release}}-desktop-amd64.iso.torrent" class="external">64-bit torrent</a></li>
+                <li><a href="http://cdimage.ubuntu.com/ubuntukylin/releases/14.04/release/ubuntukylin-{{lts_release}}-desktop-i386.iso.torrent" class="external">32-bit torrent</a></li>
             </ul>
         </li>
         <li class="two-col last-col">

@@ -29,7 +29,8 @@
 
 
 <!-- MARKETO FORM -->
-<script  src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
+
+<script  src="//assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
 
 <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1261">
 <fieldset>
@@ -115,7 +116,7 @@ $("#mktoForm_1261").validate({
     onblur: false
 });
 </script>
-<script  src="{{ ASSET_SERVER_URL }}f97fa297-stateCountry.js"></script>
+<script  src="//assets.ubuntu.com/v1/f97fa297-stateCountry.js"></script>
 
 <!-- /MARKETO FORM -->
 
@@ -125,4 +126,4 @@ $("#mktoForm_1261").validate({
 
 {% endblock outer_content %}
 {% endblock content_container %}
-
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

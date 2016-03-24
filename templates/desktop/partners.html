@@ -9,6 +9,7 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
+
 <div class="row row-hero">
     <h1>Ubuntu for partners</h1>
     <div class="seven-col">
@@ -16,7 +17,7 @@
         <p><a href="http://partners.ubuntu.com/programmes/hardware" class="external">Learn more about becoming a partner</a></p>
     </div>
     <div class="five-col last-col text-center">
-        <img src="{{ ASSET_SERVER_URL }}3ba54a27-picto-contact-midaubergine.svg" class="picto not-for-small" width="200" alt="" />
+        <img src="//assets.ubuntu.com/v1/3ba54a27-picto-contact-midaubergine.svg" class="picto not-for-small" width="200" alt="" />
     </div>
 </div>
 
@@ -64,7 +65,7 @@
         <p><a href="http://www.intel.com/content/www/us/en/compute-stick/intel-compute-stick.html" class="external">Learn more</a></p>
     </div>
     <div class="six-col last-col align-center">
-        <img src="{{ ASSET_SERVER_URL }}847fdd06-image-intelonastick-device.png" alt="Intel Compute Stick" />
+        <img src="//assets.ubuntu.com/v1/847fdd06-image-intelonastick-device.png" alt="Intel Compute Stick" />
     </div>
 </div>
 
@@ -73,17 +74,17 @@
         <h2>Commercial information</h2>
     </div>
     <div class="four-col">
-        <img src="{{ ASSET_SERVER_URL }}60d9b81e-picto-canonical.svg" class="picto not-for-small" alt="" width="100%" />
+        <img src="//assets.ubuntu.com/v1/60d9b81e-picto-canonical.svg" class="picto not-for-small" alt="" width="100%" />
         <h3>Supported by Canonical</h3>
         <p>Ubuntu is a free and open source platform. There are no royalties, only a per unit service fee covering the engineering certification, maintenance, quality assurance, third-party licensing fees and Canonical consulting costs.</p>
     </div>
     <div class="four-col">
-        <img src="{{ ASSET_SERVER_URL }}527fbcef-picto-developer-warmgrey.svg" class="picto not-for-small" alt="" width="100%" />
+        <img src="//assets.ubuntu.com/v1/527fbcef-picto-developer-warmgrey.svg" class="picto not-for-small" alt="" width="100%" />
         <h3>A complete solution</h3>
         <p>Engagements cover component and system enablement as well as certification. Engagements are structured with baseline volume commitments, volume-based pricing for service fees and minimal recurrent engineering. Ubuntu Desktop is a complete solution for OEMs and ODMs.</p>
     </div>
     <div class="four-col last-col">
-        <img src="{{ ASSET_SERVER_URL }}db062f99-picto-upgrade-orange.svg" class="picto not-for-small" alt="" width="100%" />
+        <img src="//assets.ubuntu.com/v1/db062f99-picto-upgrade-orange.svg" class="picto not-for-small" alt="" width="100%" />
         <h3>Ongoing support</h3>
         <p>The ability to update your devices is central to your security and long-term competitiveness. Canonical takes care of all security and critical bug fixes to the base platform offering and provides the infrastructure to support your update management strategy. Ubuntu has a world-class track record maintaining a secure and stable operating system.</p>
     </div>
@@ -99,13 +100,13 @@
         <p><a href="/certification">Learn more about Ubuntu Certified hardware&nbsp;&rsaquo;</a></p>
     </div>
     <div class="six-col last-col">
-  		<img class="touch-border" src="{{ ASSET_SERVER_URL }}e1d3143f-laptop.png" alt="Photo of laptop running Ubuntu" />
+  		<img class="touch-border" src="//assets.ubuntu.com/v1/e1d3143f-laptop.png" alt="Photo of laptop running Ubuntu" />
   	</div>
 </div>
 
 <div class="row row-tenders strip-dark no-border">
     <div class="six-col align-center">
-        <img src="{{ ASSET_SERVER_URL }}cf0a823f-image-tenders-with-ubuntu.svg" alt="" width="100%" />
+        <img src="//assets.ubuntu.com/v1/cf0a823f-image-tenders-with-ubuntu.svg" alt="" width="100%" />
     </div>
     <div class="six-col last-col">
         <h2>Considering buying new devices with Ubuntu?</h2>
@@ -118,6 +119,7 @@
 
 {% endblock content %}
 {% block footer_extra %}
+{{ marketo }}
 <script>
     YUI().use('event-base', function (Y) {
         Y.on('domready', function () {

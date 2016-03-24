@@ -40,22 +40,6 @@
                     <p><a href="http://www.ubuntu.com/support/">http://www.ubuntu.com/support/</a></p>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <p>Request free CD's</p>
-                </td>
-                <td>
-                    <p><a href="https://shipit.ubuntu.com/">https://shipit.ubuntu.com/</a></p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>Purchase training</p>
-                </td>
-                <td>
-                    <p><a href="https://shop.canonical.com/">https://shop.canonical.com/</a></p>
-                </td>
-            </tr>
         </tbody>
     </table>
 </div>
@@ -69,41 +53,41 @@
 
 <!-- MARKETO FORM -->
 
-<script  src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
-    
-<form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1240"> 
-<fieldset>
-    
-    <h3>About you</h3>
-    
-    <ul class="no-bullets">          
+<script  src="//assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
 
-        <li  class="mktFormReq mktField">    
+<form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1240">
+<fieldset>
+
+    <h3>About you</h3>
+
+    <ul class="no-bullets">
+
+        <li  class="mktFormReq mktField">
 <label for="FirstName" class="mktoLabel " >First name: <span>*</span></label>
 <input required  id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField   mktoRequired" >
         </li>
-    
-        <li  class="mktFormReq mktField">    
+
+        <li  class="mktFormReq mktField">
 <label for="LastName" class="mktoLabel " >Last name: <span>*</span></label>
 <input required  id="LastName" name="LastName" maxlength="255" type="text" class="mktoField   mktoRequired" >
         </li>
-    
-        <li  class="mktFormReq mktField">    
+
+        <li  class="mktFormReq mktField">
 <label for="Company" class="mktoLabel " >Company name: <span>*</span></label>
 <input required  id="Company" name="Company" maxlength="255" type="text" class="mktoField   mktoRequired" >
         </li>
-    
-        <li  class="mktFormReq mktField">    
+
+        <li  class="mktFormReq mktField">
 <label for="Email" class="mktoLabel " >Work email: <span>*</span></label>
 <input required  id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired" >
         </li>
-    
-        <li  class="mktFormReq mktField">    
+
+        <li  class="mktFormReq mktField">
 <label for="Phone" class="mktoLabel " >Phone number: <span>*</span></label>
 <input required  id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired" >
         </li>
-    
-        <li  class="mktFormReq mktField">    
+
+        <li  class="mktFormReq mktField">
 <label for="Country" class="mktoLabel " >Country: <span>*</span></label>
 <select required  id="Country" name="Country" class="mktoField  mktoRequired" ><option value="">Select Country...</option>
 <option value="FR">France</option>
@@ -362,7 +346,7 @@
 <option value="ZM">Zambia</option>
 <option value="ZW">Zimbabwe</option></select><!-- added state -->
         </li>
-    
+
     <li class="mktoPlaceholder mktoPlaceholderState">
         <label for="State" class="mktoLabel mktoHasWidth">State:</label>
         <select id="State" name="State" class="mktoField  mktoRequired mktFReq">
@@ -376,140 +360,34 @@
     </li>
     </ul>
     </fieldset>
-    
-    <fieldset>
-    
-        <h3>Your organisation</h3>
-        <ul class="no-bullets"> 
 
-        <li  class="mktFormReq mktField">    
-<label for="Job_Role__c" class="mktoLabel " >Job role: <span>*</span></label>
-<select required  id="Job_Role__c" name="Job_Role__c" class="mktoField  mktoRequired" ><option value="">Select...</option>
-<option value="Business and Project Management">Business and Project Management</option>
-<option value="Database Development and Administration">Database Development and Administration</option>
-<option value="Education">Education</option>
-<option value="Enterprise Systems Analysis & Integration">Enterprise Systems Analysis & Integration</option>
-<option value="Hardware Operations and Management">Hardware Operations and Management</option>
-<option value="Home User">Home User</option>
-<option value="Network Design and Administration">Network Design and Administration</option>
-<option value="Owner/Self Employed">Owner/Self Employed</option>
-<option value="Press and Communications">Press and Communications</option>
-<option value="Programming/Software Engineering">Programming/Software Engineering</option>
-<option value="Smartphone User">Smartphone User</option>
-<option value="Technical Support">Technical Support</option>
-<option value="Technical Writing">Technical Writing</option>
-<option value="Ubuntu Enthusiast">Ubuntu Enthusiast</option>
-<option value="Web Development and Administration">Web Development and Administration</option>
-<option value="Individual">Individual</option></select>
-        </li>
-    
-       <li  class="mktFormReq mktField">    
-<label for="Industry" class="mktoLabel " >Industry: <span>*</span></label>
-<select required  id="Industry" name="Industry" class="mktoField  mktoRequired" ><option value="">Select...</option>
-<option value="Accountancy & Tax">Accountancy & Tax</option>
-<option value="Aerospace & Aviation">Aerospace & Aviation</option>
-<option value="Automotive">Automotive</option>
-<option value="Banking & Finance">Banking & Finance</option>
-<option value="Business Consultancy">Business Consultancy</option>
-<option value="Charity & Non-profit">Charity & Non-profit</option>
-<option value="Construction">Construction</option>
-<option value="Consumer Products">Consumer Products</option>
-<option value="Consumer Services">Consumer Services</option>
-<option value="Defence & Security">Defence & Security</option>
-<option value="Education & Training">Education & Training</option>
-<option value="Electronics">Electronics</option>
-<option value="Engineering">Engineering</option>
-<option value="Entertainment - media/music/broadcast">Entertainment - media/music/broadcast</option>
-<option value="Facilities, Property & Real Estate">Facilities, Property & Real Estate</option>
-<option value="Government">Government</option>
-<option value="Healthcare & Pharmaceuticals">Healthcare & Pharmaceuticals</option>
-<option value="HR & Recruitment">HR & Recruitment</option>
-<option value="Information Technology">Information Technology</option>
-<option value="Insurance">Insurance</option>
-<option value="Internet & New Media">Internet & New Media</option>
-<option value="Legal">Legal</option>
-<option value="Leisure, Travel & Hospitality">Leisure, Travel & Hospitality</option>
-<option value="Manufacturer - Computer Hardware">Manufacturer - Computer Hardware</option>
-<option value="Manufacturer - Device/ Handset">Manufacturer - Device/ Handset</option>
-<option value="Manufacturer - Other">Manufacturer - Other</option>
-<option value="Marketing, PR & Advertising">Marketing, PR & Advertising</option>
-<option value="Media - publishing or news">Media - publishing or news</option>
-<option value="Mobile operator">Mobile operator</option>
-<option value="ODM">ODM</option>
-<option value="Oil & Gas">Oil & Gas</option>
-<option value="PC manufacturer">PC manufacturer</option>
-<option value="Phone manufacturer">Phone manufacturer</option>
-<option value="Public Sector">Public Sector</option>
-<option value="Retail & e-commerce">Retail & e-commerce</option>
-<option value="Science & Environment">Science & Environment</option>
-<option value="SOC vendor">SOC vendor</option>
-<option value="Software Development">Software Development</option>
-<option value="Supply Chain & Logistics">Supply Chain & Logistics</option>
-<option value="Telecommunications">Telecommunications</option>
-<option value="Transportation & Distribution">Transportation & Distribution</option>
-<option value="Utilities & Energy">Utilities & Energy</option>
-<option value="Other">Other</option>
-<option value="Not applicable (self)">Not applicable (self)</option></select>
-        </li>
-    
-        <li  class="mktFormReq mktField">    
-<label for="Ubuntu_User__c" class="mktoLabel " >How do you use Ubuntu: <span>*</span></label>
-<select required  id="Ubuntu_User__c" name="Ubuntu_User__c" class="mktoField  mktoRequired" ><option value="">Select...</option>
-<option value="Privately only">Privately only</option>
-<option value="Commercially only">Commercially only</option>
-<option value="Privately and commercially">Privately and commercially</option>
-<option value="Not at all">Not at all</option></select>
-        </li>
-    
-        <li  class="mktFormReq mktField">    
-<label for="NumUbuntuDesktops__c" class="mktoLabel " >Number of Ubuntu desktops currently deployed or planned: <span>*</span></label>
-<select required  id="NumUbuntuDesktops__c" name="NumUbuntuDesktops__c" class="mktoField  mktoRequired" ><option value="">Select...</option>
-<option value="0 to 1">0 to 1</option>
-<option value="2 to 50">2 to 50</option>
-<option value="50 to 100">50 to 100</option>
-<option value="100 to 500">100 to 500</option>
-<option value="over 500">over 500</option></select>
-        </li>
-    
-        <li  class="mktFormReq mktField">    
-<label for="NumUbuntuServers__c" class="mktoLabel " >Number of Ubuntu servers currently deployed or planned: <span>*</span></label>
-<select required  id="NumUbuntuServers__c" name="NumUbuntuServers__c" class="mktoField  mktoRequired" ><option value="">Select...</option>
-<option value="25 or less">25 or less</option>
-<option value="26 - 100">26 - 100</option>
-<option value="101 - 250">101 - 250</option>
-<option value="251 - 500">251 - 500</option>
-<option value="501 or more">501 or more</option></select>
-        </li>
-    </ul>
-</fieldset>
-    
-<fieldset>
-   
+    <fieldset>
+
         <h3>Your comments</h3>
-        
-        <ul class="no-bullets"> 
-    
-        <li  class="mktFormReq mktField">    
+
+        <ul class="no-bullets">
+
+        <li  class="mktFormReq mktField">
 <label for="Comments_from_lead__c" class="mktoLabel " >What would you like to talk to us about? <span>*</span></label>
 <textarea required  id="Comments_from_lead__c" name="Comments_from_lead__c" rows="4" class="mktoField  mktoRequired" maxlength="2000" ></textarea>
         </li>
     </ul>
     </fieldset>
-    
+
     <fieldset>
 
-        <ul class="no-bullets"> 
-    
-    <li  class="mktField">    
+        <ul class="no-bullets">
+
+    <li  class="mktField">
         <input class="mktoField" value="yes" id="NewsletterOpt-In" name="NewsletterOpt-In" type="checkbox">
-        <label  class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>        
+        <label  class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>
     </li>
     <li>All information provided will be handled in accordance with the Canonical <a href="http://www.ubuntu.com/legal" target="_blank">privacy policy</a>.</li>
-        
-        <li  class="mktField">    
+
+        <li  class="mktField">
 <button type="submit" class="mktoButton">Submit</button><input type="hidden" name="formid" class="mktoField " value="1240"><input type="hidden" name="lpId" class="mktoField " value="2065"><input type="hidden" name="subId" class="mktoField " value="30"><input type="hidden" name="munchkinId" class="mktoField " value="066-EOV-335"><input type="hidden" name="lpurl" class="mktoField " value="https://pages.ubuntu.com/Form---Management_Management-Contact-Us.html?cr={creative}&amp;kw={keyword}"><input type="hidden" name="cr" class="mktoField " value=""><input type="hidden" name="kw" class="mktoField " value=""><input type="hidden" name="q" class="mktoField " value=""><input type="hidden" name="returnURL" value="http://www.ubuntu.com/management/thank-you" /><input type="hidden" name="retURL" value="http://www.ubuntu.com/management/thank-you" />
         </li>
-    
+
     </ul>
 </fieldset>
 
@@ -524,7 +402,7 @@ $("#mktoForm_1240").validate({
     onblur: false
 });
 </script>
-<script  src="{{ ASSET_SERVER_URL }}f97fa297-stateCountry.js"></script>
+<script  src="//assets.ubuntu.com/v1/f97fa297-stateCountry.js"></script>
 
 <!-- /MARKETO FORM -->
 
@@ -537,3 +415,4 @@ $("#mktoForm_1240").validate({
 
 
 {% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

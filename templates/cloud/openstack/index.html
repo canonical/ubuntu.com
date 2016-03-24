@@ -24,14 +24,14 @@
         <p><a href="/download/cloud" class="link-cta-ubuntu">Get started with OpenStack Autopilot</a></p>
     </div>
     <div class="four-col last-col">
-        {% comment %} might want to add this image instead of the chart - {{ ASSET_SERVER_URL }}845e046c-partner-openstack.png
+        {% comment %} might want to add this image instead of the chart - //assets.ubuntu.com/v1/845e046c-partner-openstack.png
         {% endcomment %}
         <figure id="ubuntu-pie" class="ubuntu-pie"></figure>
         <p class="note">* <a href="http://www.openstack.org/assets/survey/Public-User-Survey-Report.pdf" class="external">Among OpenStack deployments with more than 1,000 users, OpenStack survey &mdash; October 2015 [PDF 6.7MB]</a></p>
     </div>
 </section>
 
-<script src="{{ ASSET_SERVER_URL }}3c99518b-d3-version3.5.6.min.js"></script>
+<script src="//assets.ubuntu.com/v1/3c99518b-d3-version3.5.6.min.js"></script>
 
 <script>
   'use strict';
@@ -123,7 +123,7 @@
         <div class="six-col box last-col">
             <h3>Install OpenStack yourself</h3>
             <p>If you prefer a manual setup of the latest OpenStack version, you can follow the instructions in our OpenStack operations guide.</p>
-            <p><a href="https://help.ubuntu.com/lts/clouddocs/en/Intro.html" class="external">
+            <p><a href="https://help.ubuntu.com/lts/clouddocs/installer/" class="external">
                 Read the instructions
             </a></p>
         </div>
@@ -172,7 +172,7 @@
             <p><a href="/cloud/openstack/managed-cloud" class="link-cta-ubuntu">Learn more about BootStack</a></p>
         </div>
         <div class="five-col last-col align-center align-vertically">
-          <img src="{{ ASSET_SERVER_URL }}466046c7-illustration-cloud-bootstack.svg?w=320" alt="" class="not-for-small" width="320" />
+          <img src="//assets.ubuntu.com/v1/466046c7-illustration-cloud-bootstack.svg?w=320" alt="" class="not-for-small" width="320" />
         </div>
     </div>
 </section>
@@ -211,4 +211,8 @@
 
 {% include "cloud/shared/_contextual_footer.html" with feature_1="installing-openStack-yourself" %}
 
+
 {% endblock content %}
+{% block footer_extra %}
+{{ marketo }}
+{% endblock %}

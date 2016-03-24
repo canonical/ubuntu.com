@@ -2,7 +2,7 @@
 {% block title %}Contact us | Ubuntu for the Internet of Things{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Things" page_title="Contact us"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="IoT" page_title="Contact us"  %}
 {% endblock second_level_nav_items %}
 
 {% block header %}
@@ -14,7 +14,7 @@
     <div class="eight-col">
         <!-- MARKETO FORM -->
 
-        <script  src="{{ ASSET_SERVER_URL }}d55cdf58bb-jquery.validate.js"></script>
+        <script  src="//assets.ubuntu.com/v1/d55cdf58bb-jquery.validate.js"></script>
 
         <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1266">
             <fieldset>
@@ -87,7 +87,7 @@
                 onblur: false
             });
         </script>
-        <script  src="{{ ASSET_SERVER_URL }}f97fa297-stateCountry.js"></script>
+        <script  src="//assets.ubuntu.com/v1/f97fa297-stateCountry.js"></script>
 
         <!-- /MARKETO FORM -->
     </div>
@@ -97,4 +97,4 @@
 {% block content %}
 
 {% endblock content %}
-
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

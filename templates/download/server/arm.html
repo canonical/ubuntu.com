@@ -36,16 +36,17 @@
     <div class="twelve-col box box-highlight">
    		<div class="twelve-col no-margin-bottom vertical-divider">
 			<div class="six-col">
-				<h4>Cavium Thunder ARMv8 Developer Platform</h4>
+				<h4>Cavium Thunder 48 and 96 core ARMv8</h4>
 				<ul class="no-bullets">
 					<li><a href="http://cavium.com/ThunderX_ARM_Processors.html" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM Cavium ThunderX product details', 'eventLabel' : 'From Download ARM', 'eventValue' : undefined });" class="external">Cavium ThunderX product details</a></li>
-					<li>Coming Soon &mdash; 14.04 LTS</li>
+					<li><a href="http://www.cavium.com/ContactCavium.htm" class="external">14.04 LTS Tech Preview release available directly from Cavium</a></li>
 				</ul>
 			</div>
 			<div class="six-col last-col">
 				<h4>Marvell Armada XP</h4>
 				<ul class="no-bullets">
 					<li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/precise-updates/main/installer-armhf/current/images/armadaxp/netboot" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM Marvell Armada XP download', 'eventLabel' : 'From Download ARM', 'eventValue' : undefined });" class="external">12.04 LTS</a></li>
+          <li><a href="https://wiki.ubuntu.com/ARM/Server/Install/ArmadaXP" class="external">Installation instructions for Armada XP-based systems</a></li>
 				</ul>
 			</div>
    		</div><!-- /.twelve-col -->
@@ -58,13 +59,13 @@
 			<!-- <p><a href="/server">Learn more about Ubuntu Server&nbsp;&rsaquo;</a></p> -->
 		</div>
     	<div class="six-col last-col no-margin-bottom">
-		    <img src="{{ ASSET_SERVER_URL }}4b47cae5-image-server.svg" alt="" />
+		    <img src="//assets.ubuntu.com/v1/4b47cae5-image-server.svg" alt="" />
     	</div>
 </div>
 
 <div class="row no-border">
 	<div class="four-col text-center">
-		<img src="{{ ASSET_SERVER_URL }}c3499461-picto-server-warmgrey.svg" alt="" width="200" height="200" />
+		<img src="//assets.ubuntu.com/v1/c3499461-picto-server-warmgrey.svg" alt="" width="200" height="200" />
 	</div>
 	<div class="eight-col last-col">
 		<h3>Ready to deploy now</h3>
@@ -76,3 +77,4 @@
 	</div><!-- /.twelve-col -->
 </div><!-- /.row -->
 {% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

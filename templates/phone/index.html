@@ -14,45 +14,56 @@
 {% block extra_body_class %}phone-home{% endblock %}
 
 {% block second_level_nav_items %}
-<div class="strip-inner-wrapper">
-	{% include "templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Overview"  %}
-</div>
+	<div class="strip-inner-wrapper">
+		{% include "templates/_nav_breadcrumb.html" with section_title="Phone" page_title="Overview"  %}
+	</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row row-hero no-border">
-  <div class="strip-inner-wrapper">
-    <div class="for-mobile">
-      <img src="{{ ASSET_SERVER_URL }}f2758930-image-phone-hero-bq.jpg?w=768" alt="">
-    </div>
-    <p class="close-vid-link">
-      <a href="#" class="slideless close-video">Close the video <img src="/static/u/img/devices/close-button.png" width="24" height="24" alt=""></a>
-    </p>
-    <div class="the-video">
-      <div></div>
-    </div>
-    <div class="row-content hide-me show-me">
-      <div class="five-col">
-        <h1>Life at your fingertips</h1>
-        <p class="intro">Ubuntu introduces a new way to enjoy content and services on smartphones, without relying on&nbsp;traditional apps.</p>
-        <p class="video-link"><a href="#_" class="show-video link-cta-ubuntu">Watch the video</a></p>
-        <div class="video-container for-mobile">
-          <iframe src="//www.youtube.com/embed/-dpfHYpfEXY" allowfullscreen=""></iframe>
-        </div>
-      </div>
-	  </div>
-  </div>
+	<div class="strip-inner-wrapper">
+  <div class="for-mobile">
+		<img
+			srcset="https://assets.ubuntu.com/v1/19213020-intro-row.jpg?w=750 2x"
+			src="https://assets.ubuntu.com/v1/19213020-intro-row.jpg?w=375"
+			alt="Man holding new Ubuntu phone"
+		/>
+	</div>
+	<p class="close-vid-link">
+		<a href="#" class="slideless close-video">Close the video <img src="/static/u/img/devices/close-button.png" width="24" height="24" alt=""></a>
+	</p>
+	<div class="the-video">
+		<div></div>
+	</div>
+	<div class="row-content hide-me show-me">
+		<div class="five-col mobile-vid">
+			<h1>Life at your fingertips</h1>
+			<p class="intro">Ubuntu introduces a new way to enjoy content and services on smartphones, without relying on&nbsp;traditional apps.</p>
+			<p class="video-link"><a href="#_" class="show-video link-cta-ubuntu">Watch the video</a></p>
+			<div class="video-container for-mobile">
+				<iframe src="//www.youtube.com/embed/-dpfHYpfEXY" allowfullscreen=""></iframe>
+			</div>
+		</div>
+	</div>
+</div>
 </div>
 
 <div class="row row--access-content no-border strip-light">
 	<div class="strip-inner-wrapper">
 	  <div class="for-small eight-col align-center">
-	    <img src="{{ ASSET_SERVER_URL }}67ebf789-scopes-row.jpg?w=480" alt="" />
+	    <img
+				srcset="https://assets.ubuntu.com/v1/67ebf789-scopes-row.jpg?w=960 2x"
+				src="https://assets.ubuntu.com/v1/67ebf789-scopes-row.jpg?w=480"
+				alt="Examples of scopes"
+			/>
 	  </div>
 	  <div class="four-col last-col prepend-eight">
 	    <div class="scopes-text">
 	      <h2>Access content and services naturally through scopes</h2>
-	      <p class="clear">Ubuntu&rsquo;s unique scopes brings everything you need to one screen without the need to open and switch between multiple apps.The Ubuntu Phone has been built to revolve around you and the content and services you use the most.</p>
+				<p class="clear">Ubuntu&rsquo;s unique scopes brings everything you need
+				to one screen without the need to open and switch between multiple apps.
+				The Ubuntu Phone has been built to revolve around you and the content and
+				services you use the most.</p>
 	      <p class="no-margin-bottom"><a href="/phone/features">Learn more about scopes&nbsp;&rsaquo;</a></p>
 	    </div>
 	  </div>
@@ -62,7 +73,11 @@
 <div class="row row--beautiful-design no-border">
 	<div class="strip-inner-wrapper">
 	  <div class="eight-col for-small">
-	    <img src="{{ ASSET_SERVER_URL }}91d3d632-beautiful-features.jpg?w=412" alt="Calendar app on Ubuntu phone" />
+	    <img
+				srcset="https://assets.ubuntu.com/v1/91d3d632-beautiful-features.jpg?w=750 2x"
+				src="https://assets.ubuntu.com/v1/91d3d632-beautiful-features.jpg?w=375"
+				alt="Calendar app on Ubuntu phone"
+			/>
 	  </div>
 		<div class="four-col last-col">
 			<h2>Beautifully designed&nbsp;features</h2>
@@ -74,13 +89,17 @@
 
 <div class="row row--devices strip-light">
 	<div class="strip-inner-wrapper clearfix flex-container">
+		<h2 class="twelvef.row--beautiful-design-col for-small">Available from our partners</h2>
 		<div class="five-col align-center">
-			<img src="{{ ASSET_SERVER_URL }}8bc779a5-available-row.png" alt="Ubuntu devices" />
+			<img
+				src="https://assets.ubuntu.com/v1/8bc779a5-available-row.png?w=375"
+				alt="Ubuntu devices"
+			/>
 		</div>
 		<div class="prepend-one five-col last-col vertically-center">
 			<div>
-				<h2>Available from our partners</h2>
-				<p>Ubuntu phones are now available for sale worldwide. You can purchase directly from our partners, such as BQ and Snapdeal.</p>
+				<h2 class="not-for-small">Available from our partners</h2>
+				<p>Ubuntu phones are now available for sale worldwide. You can purchase directly from our partner, BQ.</p>
 				<p><a href="/phone/devices">Learn more about our range of devices&nbsp;&rsaquo;</a></p>
 			</div>
 		</div>
@@ -119,7 +138,7 @@
 	</div>
 {% block head_extra %}
 
-<script src="{{ ASSET_SERVER_URL }}c954db4a-jfeed_prm.js"></script>
+<script src="//assets.ubuntu.com/v1/c954db4a-jfeed_prm.js"></script>
 {% endblock %}
 
 {% include "shared/_open_source_phone.html" %}
