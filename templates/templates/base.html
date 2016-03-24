@@ -25,17 +25,17 @@
 
 <title>{% block title %}{% endblock %} | Ubuntu</title>
 
-<link rel="icon" type="image/png" href="//assets.ubuntu.com/v1/cb22ba5d-favicon-16x16.png" sizes="16x16" />
-<link rel="icon" type="image/png" href="//assets.ubuntu.com/v1/49a1a858-favicon-32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="{{ ASSET_SERVER_URL }}cb22ba5d-favicon-16x16.png" sizes="16x16" />
+<link rel="icon" type="image/png" href="{{ ASSET_SERVER_URL }}49a1a858-favicon-32x32.png" sizes="32x32" />
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="//assets.ubuntu.com/v1/3361409d-apple-touch-icon-144x144-precomposed.png" />
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="//assets.ubuntu.com/v1/5fe4d3c8-apple-touch-icon-114x114-precomposed.png" />
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="//assets.ubuntu.com/v1/09460d9a-apple-touch-icon-72x72-precomposed.png" />
-<link rel="apple-touch-icon-precomposed" href="//assets.ubuntu.com/v1/cc66da65-apple-touch-icon-precomposed.png" />
-<link type="text/plain" rel="author" href="//assets.ubuntu.com/v1/7bad3937-humans.txt" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ ASSET_SERVER_URL }}3361409d-apple-touch-icon-144x144-precomposed.png" />
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ ASSET_SERVER_URL }}5fe4d3c8-apple-touch-icon-114x114-precomposed.png" />
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ ASSET_SERVER_URL }}09460d9a-apple-touch-icon-72x72-precomposed.png" />
+<link rel="apple-touch-icon-precomposed" href="{{ ASSET_SERVER_URL }}cc66da65-apple-touch-icon-precomposed.png" />
+<link type="text/plain" rel="author" href="{{ ASSET_SERVER_URL }}7bad3937-humans.txt" />
 
 <!-- stylesheets -->
-<link rel="stylesheet" type="text/css" media="screen" href="//assets.ubuntu.com/v1/f53d8076-ubuntu-styles.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_SERVER_URL }}f53d8076-ubuntu-styles.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}u/css/styles.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}u/css/beta/global-responsive.css" />
 <link rel="stylesheet" type="text/css" media="print" href="{{ STATIC_URL }}u/css/core-print.css" />
@@ -43,7 +43,7 @@
 <!-- javascript -->
 <script src="{{ STATIC_URL }}u/js/plugins/modernizr.2.7.1.js"></script>
 <script src="{{ STATIC_URL }}u/js/plugins/Imager.js"></script>
-<script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
+<script src="https:{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
 
 {% block head_extra %}{% endblock %}
 
@@ -70,7 +70,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<span id="main-navigation-link"><a href="#main-navigation">Jump to site nav</a></span>
 		<div class="logo">
 			<a class="logo-ubuntu" href="/">
-				<img width="106" height="25" src="//assets.ubuntu.com/v1/c6679b95-logo-ubuntu-orange.svg" alt="" />
+				<img width="106" height="25" src="{{ ASSET_SERVER_URL }}c6679b95-logo-ubuntu-orange.svg" alt="" />
 			</a>
 		</div>
 		<ul>
@@ -139,7 +139,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	core.globalPrepend = 'body';
 </script>
 
-<script src="//assets.ubuntu.com/v1/8e7aa35a-core.js"></script>
+<script src="{{ ASSET_SERVER_URL }}8e7aa35a-core.js"></script>
 <script src="{{ STATIC_URL }}u/js/global.js"></script>
 <script src="{{ STATIC_URL }}u/js/scratch.js"></script>
 <script src="{{ STATIC_URL }}u/js/plugins/respond.min.js"></script>
