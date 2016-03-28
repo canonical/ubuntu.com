@@ -237,3 +237,10 @@ body.search .nav-secondary {
 		}
 	}
 } /* end @media only screen and (min-width : 768px) */
+
+
+@media only screen and (min-width : $navigation-threshold) {
+  .header-search {
+  	max-width: 180px;
+  }
+}
