@@ -56,11 +56,11 @@ stop:
 clean-images:
 	docker-compose kill
 	docker-compose rm -f
-	docker rmi -f ${COMPOSE_PROJECT_NAME}_web || true
+	docker rmi -f ${COMPOSE_PROJECT_NAME}_npm ${COMPOSE_PROJECT_NAME}_web || true
 
 clean-css:
-	docker-compose run sass find static/css -name '*.css' -exec rm {} \;
-	docker-compose run sass rm -rf /tmp/*;
+	docker-compose run npm gulp sass:clean
+	docker-compose run npm rm -rf /tmp/*;
 
 clean-npm:
 	docker-compose run npm rm -rf node_modules

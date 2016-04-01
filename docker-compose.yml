@@ -6,20 +6,12 @@ base:
 
 npm:
   extends: {'service': 'base', 'file': 'docker-compose.yml'}
-  image: node:argon
-  command: /bin/bash -c 'umask 0000 && npm install'
-
-sass:
-  extends: {'service': 'base', 'file': 'docker-compose.yml'}
-  image: ubuntudesign/sass
-  command: /bin/bash -c 'umask 0000 && sass --cache-location `mktemp -u` --debug-info --update static/css --force -E "UTF-8"'
+  build: .
+  dockerfile: Dockerfile-npm
+  command: /bin/bash -c 'umask 0000 && npm install && gulp watch'
 
 web:
   extends: {'service': 'base', 'file': 'docker-compose.yml'}
   build: .
   ports:
     - "8001:5000"
-
-sass-watch:
-  extends: {'service': 'sass', 'file': 'docker-compose.yml'}
-  command: /bin/bash -c 'umask 0000 && sass --cache-location `mktemp -u` --debug-info --watch static/css -E "UTF-8"'
