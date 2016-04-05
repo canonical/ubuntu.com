@@ -1,7 +1,7 @@
 {% extends "base_index.html" %}
 
 
-{% block takeover_body_class %}juju-takeover{% endblock takeover_body_class %}
+{% block takeover_body_class %}m10-convergence-takeover{% endblock takeover_body_class %}
 
 {% block head_extra %}
 
@@ -13,7 +13,7 @@
     <div class="lang-switch-wrapper strip-inner-wrapper"><a href="/" class="lang-switch" lang="zh">中文主页&nbsp;&rsaquo;</a></div>
 {% endif %}
 
-{% include "takeovers/_juju_circles_takeover.html" %}
+{% include "takeovers/_m10_convergence_takeover.html" %}
 
 <section class="row row--ubuntu-news js-hidden row-grey strip no-border">
     <div class="strip-inner-wrapper">
@@ -126,13 +126,13 @@
         {% include "takeovers/takeunders/_telco.html" %}
     </div>
 </section>
-
+{% comment %}
 <style type="text/css">
     /* background image for the event feature */
     /* get original using this //maps.googleapis.com/maps/api/staticmap?center=Tokyo%2C+Japan&zoom=14&scale=2&size=1200x320&maptype=satellite but with the location details from the insights event */
     /*.featured--event:before { background-image: url('{{ ASSET_SERVER_URL }}62b7ce67-pasadena.png?fmt=jpg&q=20'); }*/
 </style>
-
+{% endcomment %}
 {% include "shared/_device_animation.html" %}
 
 </div>

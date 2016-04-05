@@ -28,117 +28,10 @@
 </div><!-- /.row -->
 
 <div class="row equal-height">
-	<h2 class="twelve-col">Ubuntu Advantage</h2>
-	<ul class="no-bullets vertical-divider twelve-col">
-		<li class="three-col">
-			<h3>Choose the right level of cover to meet your needs</h3>
-		</li>
-		<li class="three-col">
-			<h3>Essential</h3>
-			<p>Ideal for common workloads such as file and print, email, network, web and application serving.</p>
-		</li>
-		<li class="three-col">
-			<h3>Standard</h3>
-			<p>Suitable for server virtualisation and integration into existing infrastructures such as Windows networks.</p>
-		</li>
-		<li class="three-col last-col">
-			<h3>Advanced</h3>
-			<p>Tailored for more advanced configurations such as high-availability failover and clustering.</p>
-		</li>
-	</ul>
-
-<table class="audience-enterprise">
-	<thead>
-		<tr>
-			<th colspan="2" scope="col">Server features</th>
-			<th scope="col" style="width: 126px;">Essential</th>
-			<th scope="col" style="width: 126px;">Standard</th>
-			<th scope="col" style="width: 127px;">Advanced</th>
-		</tr>
-	</thead>
-	<tfoot>
-		<tr>
-			<th scope="row" rowspan="1">Price per server</th>
-			<th scope="row">Total per year</th>
-			<td>$320</td>
-			<td>$700</td>
-			<td>$1,200</td>
-		</tr>
-	</tfoot>
-	<tbody>
-		<tr>
-			<th scope="row" rowspan="2">Landscape systems management</th>
-			<th scope="row">Landscape Hosted</th>
-			<td><img src="{{ ASSET_SERVER_URL }}d1155ae3-tick-midaubergine.svg" alt="Yes"></td>
-			<td><img src="{{ ASSET_SERVER_URL }}d1155ae3-tick-midaubergine.svg" alt="Yes"></td>
-			<td><img src="{{ ASSET_SERVER_URL }}d1155ae3-tick-midaubergine.svg" alt="Yes"></td>
-		</tr>
-		<tr>
-			<th scope="row">Landscape Dedicated Server</th>
-			<td>Optional</td>
-			<td>Optional</td>
-			<td>Optional</td>
-		</tr>
-	</tbody>
-	<tbody>
-		<tr>
-			<th scope="row" rowspan="1">Legal assurance</th>
-			<th scope="row"><a href="/ua-assurance-terms">Ubuntu Assurance programme</a></th>
-			<td><img src="{{ ASSET_SERVER_URL }}d1155ae3-tick-midaubergine.svg" alt="Yes"></td>
-			<td><img src="{{ ASSET_SERVER_URL }}d1155ae3-tick-midaubergine.svg" alt="Yes"></td>
-			<td><img src="{{ ASSET_SERVER_URL }}d1155ae3-tick-midaubergine.svg" alt="Yes"></td>
-		</tr>
-	</tbody>
-	<tbody>
-		<tr>
-			<th scope="row" rowspan="6">Knowledge and support</th>
-			<th scope="row">Knowledge Base</th>
-			<td><img src="{{ ASSET_SERVER_URL }}d1155ae3-tick-midaubergine.svg" alt="Yes"></td>
-			<td><img src="{{ ASSET_SERVER_URL }}d1155ae3-tick-midaubergine.svg" alt="Yes"></td>
-			<td><img src="{{ ASSET_SERVER_URL }}d1155ae3-tick-midaubergine.svg" alt="Yes"></td>
-		</tr>
-		<tr>
-			<th scope="row">Basic installation and applications</th>
-			<td><img src="{{ ASSET_SERVER_URL }}d1155ae3-tick-midaubergine.svg" alt="Yes"></td>
-			<td><img src="{{ ASSET_SERVER_URL }}d1155ae3-tick-midaubergine.svg" alt="Yes"></td>
-			<td><img src="{{ ASSET_SERVER_URL }}d1155ae3-tick-midaubergine.svg" alt="Yes"></td>
-		</tr>
-		<tr>
-			<th scope="row">Windows integration</th>
-			<td> </td>
-			<td><img src="{{ ASSET_SERVER_URL }}d1155ae3-tick-midaubergine.svg" alt="Yes"></td>
-			<td><img src="{{ ASSET_SERVER_URL }}d1155ae3-tick-midaubergine.svg" alt="Yes"></td>
-		</tr>
-		<tr>
-			<th scope="row">Virtualisation</th>
-			<td> </td>
-			<td><img src="{{ ASSET_SERVER_URL }}d1155ae3-tick-midaubergine.svg" alt="Yes"></td>
-			<td><img src="{{ ASSET_SERVER_URL }}d1155ae3-tick-midaubergine.svg" alt="Yes"></td>
-		</tr>
-		<tr>
-			<th scope="row">Clustering and high availability failover</th>
-			<td> </td>
-			<td> </td>
-			<td><img src="{{ ASSET_SERVER_URL }}d1155ae3-tick-midaubergine.svg" alt="Yes"></td>
-		</tr>
-	</tbody>
-	<tbody>
-		<tr>
-			<th scope="row" rowspan="2">Optional extras</th>
-			<th scope="row">Ceph support</th>
-			<td> </td>
-			<td>Optional</td>
-			<td>Optional</td>
-		</tr>
-		<tr>
-			<th scope="row">Technical Account Manager</th>
-			<td>Optional</td>
-			<td>Optional</td>
-			<td>Optional</td>
-		</tr>
-	</tbody>
-</table>
-<p><a href="/management/contact-us">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+	<h2 class="twelve-col">Ubuntu Advantage for servers</h2>
+  <p>Choose the right level of cover to meet your needs.</p>
+  {% include "shared/_ubuntu_advantage_server.html" %}
+  <p class="six-col"><a href="/management/contact-us">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
 </div><!-- /.row -->
 
 {% include "shared/_ubuntu_advantage_whats_included.html" %}
@@ -146,8 +39,4 @@
 <div class="row row-community row-image-centered no-border no-margin-bottom">
 {% include "shared/_ubuntu_advantage_community.html" %}
 </div><!-- /.row -->
-
-
-
 {% endblock content %}
-{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}
