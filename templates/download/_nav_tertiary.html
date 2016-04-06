@@ -2,6 +2,7 @@
 {% if level_2 == 'server' and not level_3 == 'install-ubuntu-server' and not level_3 == 'thank-you' %}
 		<li{% if level_3 == 'arm' %} class="active"{% endif %}><a href="/download/server/arm">ARM</a></li>
 		<li{% if level_3 == 'power8' %} class="active"{% endif %}><a href="/download/server/power8">POWER8</a></li>
+		<li{% if level_3 == 'linuxone' %} class="active"{% endif %}><a href="/download/server/linuxone">LinuxONE</a></li>
 {% endif %}
 {% if level_3 == 'burn-a-dvd-on-mac-osx' %}
 		<li class="active"><a href="/download/desktop/burn-a-dvd-on-mac-osx">How to burn a DVD on OS X</a></li>
