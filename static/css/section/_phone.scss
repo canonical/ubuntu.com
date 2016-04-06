@@ -74,6 +74,20 @@
   background-size: cover;
 }
 
+.box-phone,
+.box-android {
+  min-height: 15em;
+  //padding-right: $six-col;
+}
+
+.box-phone {
+  background: $white url('#{$asset-server}1455315c-devices-phone-hero-353x206.png') 95% center no-repeat;
+}
+
+.box-android {
+  background: $white url('#{$asset-server}f9841a01-photo-industry-android-381x230.jpg') 90% center no-repeat;
+}
+
 .js .phone-app-list {
   li {
     opacity: 0;
@@ -173,7 +187,9 @@
 // @section phone hero banners
 // --------------------------------------------------------------
 body.phone {
-  padding: 30px 0 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
 }
 
 // @section phone home / overview
@@ -181,6 +197,7 @@ body.phone {
 body.phone-home {
 
   #main-content {
+
     .row h1 {
       padding-top: 0;
     }
@@ -227,7 +244,7 @@ body.phone-home {
   }
 
   #main-content .row-hero {
-    color: #fff;
+    color: $white;
 
     .for-mobile {
           margin: 0 -10px 10px;
@@ -239,7 +256,7 @@ body.phone-home {
         }
 
         .the-video {
-        background: #000;
+        background: $black;
         display: none;
         min-height: 588px;
         left: 0;
@@ -307,7 +324,7 @@ body.phone-home {
     }
 
     .video-background {
-      background: #000;
+      background: $black;
       display: block;
       height: 320px;
       margin-bottom: 5px;
@@ -329,13 +346,22 @@ body.phone-home {
       color: #333;
     }
 
-  @media only screen and (max-width : 767px) {
     .scopes-text {
-      background: #fff;
+      background: $black;
+      color: $white;
+      margin-top: -12vw;
+    }
+
+  @media only screen and (max-width : 768px) {
+    .scopes-text {
+      background: $white;
+      color: $black;
       padding-top: 2rem;
       margin-top: -12rem;
     }
   }
+
+
 
     .row-developers {
       background: url('#{$asset-server}9ebbb024-background-developer.png');
@@ -368,6 +394,18 @@ body.phone-home {
       }
     }
 
+    .row--access-content {
+      margin-top: -3px;
+
+      .flex-container {
+        overflow: hidden;
+      }
+
+      h2 {
+        text-align: left;
+      }
+    }
+
     @media only screen and (min-width : 768px) {
 
       #main-content .row-hero .six-col {
@@ -375,14 +413,27 @@ body.phone-home {
       }
 
       .row--access-content {
-        background-image: url('#{$asset-server}67ebf789-scopes-row.jpg?w=1400');
+        background-image: url('#{$asset-server}5bcc34b9-scopes-row-black-bg.jpg?w=1400');
+        background-color: $black;
         background-repeat: no-repeat;
         background-position: 40px 60px;
         background-size: 50%;
+        margin-top: 0;
+
+        &,
+        .flex-container {
+          height: 68vw;
+        }
+
+        @media only screen and (min-width : 1024px) {
+          .flex-container {
+            height: 56vw;
+          }
+        }
 
         @media (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
           //Higher resolution for high-res screens
-          background-image: url('#{$asset-server}67ebf789-scopes-row.jpg?w=1000');
+          background-image: url('#{$asset-server}5bcc34b9-scopes-row-black-bg.jpg?w=1000');
         }
       }
 
@@ -391,17 +442,34 @@ body.phone-home {
         background-position: 32% 42%;
         background-repeat: no-repeat;
         background-size: cover;
-        color: #fff;
+        color: $white;
 
         a {
-          color: #fff;
-          text-decoration: underline;
+          color: $white;
+          text-decoration: none;
+          border-bottom: 1px solid $white;
         }
       }
     }
 
 
+
+
 } // end phone home
+
+
+// phone scopes row
+body.phone-home .row--access-content {
+
+  @media only screen and (min-width : 1024px) {
+    max-height: 64vw;
+  }
+
+  @media only screen and (min-width : 1600px) {
+    max-height: 60vw;
+  }
+}
+
 
 .row--phone-promo {
   background: url('#{$asset-server}974c4e8c-background-origami.png') -140px 0;
@@ -457,7 +525,9 @@ body.phone-developers {
       color: #dd4814;
 
       @media only screen and (min-width : 768px) {
-        color: #fff;
+        color: $white;
+        text-decoration: none;
+        border-bottom: 1px solid $white;
       }
     }
   }
@@ -520,10 +590,13 @@ body.phone-developers {
 
   .row-community h2,
   .row-community p {
-    background: #fff;
+    background: $white;
     padding-left: 10px;
   }
 
+  .img--full-width {
+    width: 100%;
+  }
 } // end body.phone-developers
 
 body.phone-features {
@@ -564,13 +637,13 @@ body.phone-features {
     }
 
     .row--phone-details {
-        background: #000;
-        color: #fff;
+        background: $black;
+        color: $white;
         overflow: hidden;
         padding-bottom: 20px;
 
         a {
-          color: #fff;
+          color: $white;
         }
 
         .external {
@@ -798,7 +871,7 @@ body.phone {
     }
 
     a.close-video {
-      color: #fff;
+      color: $white;
       margin-top: 0px;
       padding-left: 5px;
       img {
@@ -841,7 +914,7 @@ body.phone-features {
   }
 
   .row--video {
-    background: #000;
+    background: $black;
     padding: 0;
 
     .video-link {
@@ -858,11 +931,11 @@ body.phone-features {
       display: block;
       text-indent: -999em;
       overflow: hidden;
-    	position: absolute;
-    	top: 0;
-    	left: 0;
-    	width: 100%;
-    	height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
     }
 
       &.show {
@@ -881,7 +954,7 @@ body.phone-features {
         }
 
         h2 {
-          color: #fff;
+          color: $white;
           position: absolute;
           top: 50%;
           margin-top: -0.65em; // half the line height - if one line
@@ -914,7 +987,7 @@ body.phone-features {
 
   #main-content .infographic {
     background: #340214;
-    color: #fff;
+    color: $white;
     padding-top: 0 ;
     padding-bottom: $gutter-width;
     margin-top: 0;
@@ -1037,6 +1110,42 @@ body.phone-ubuntu-for-android-features {
   }
 }
 
+// @section backed-by-canonical
+// --------------------------------------------------------------
+body.phone-backed-by-canonical,
+body.tablet-backed-by-canonical {
+  #main-content .row-hero {
+    height: auto;
+    min-height: 0;
+    padding-top: 40px;
+
+    p {
+      width: 570px;
+    }
+  }
+  #main-content .intro {
+    background-image: url('#{$asset-server}60d9b81e-picto-canonical.svg');
+    background-position: 90% center;
+    background-repeat: no-repeat;
+    //padding: 0 $four-col 0 0;
+  }
+  .intro li .link-cta-ubuntu { margin-right: $gutter-width; }
+  .row-experience .five-col { margin-top: $gutter-width * 4; }
+}
+html.no-svg,
+html.opera-mini {
+  body.phone-backed-by-canonical,
+  body.tablet-backed-by-canonical {
+    #main-content .intro {
+      background-image: url('#{$asset-server}faf8037a-picto-canonical.png');
+    }
+  }
+}
+
+body.phone-ubuntu-for-android-contact-us .row-hero {
+  height: auto;
+}
+
 // Medium / Tablet viewport
 // --------------------------------------------------------------
 @media only screen and (min-width : 768px) {
@@ -1061,13 +1170,13 @@ body.phone-ubuntu-for-android-features {
     }
 
     #main-content .row-hero {
-      background: #fff url('#{$asset-server}19213020-intro-row.jpg?w=984') no-repeat;
+      background: $white url('#{$asset-server}19213020-intro-row.jpg?w=984') no-repeat;
       background-size: 115%;
       height: 529px;
       overflow: hidden;
       background-position: 40% 30%;
       padding-top: 40px;
-      color: #fff;
+      color: $white;
 
       h1 {
           margin-top: 40px;
@@ -1088,7 +1197,7 @@ body.phone-ubuntu-for-android-features {
   body.phone-features {
     .row-hero {
       a {
-        color: #fff;
+        color: $white;
       }
     }
       .row--video {
@@ -1141,7 +1250,7 @@ body.phone-ubuntu-for-android-features {
         .row--today {
             background: url('#{$asset-server}869e5003-image-today.jpg') no-repeat;
             background-size: cover;
-            color: #fff;
+            color: $white;
             min-height: 425px;
             padding-top: 40px;
             border-bottom: 0;
@@ -1179,7 +1288,7 @@ body.phone-ubuntu-for-android-features {
       }
 
       div.five-col {
-        background: #fff;
+        background: $white;
         float: right;
         margin-right: 50px;
         padding: 20px;
@@ -1325,7 +1434,7 @@ body.phone-ubuntu-for-android-features {
             background-repeat: no-repeat;
             background-size: cover;
             background-position: 50% 13%;
-            color: #fff;
+            color: $white;
             min-height: 470px;
             padding-top: 60px;
         }
@@ -1386,14 +1495,14 @@ body.phone-ubuntu-for-android-features {
 // --------------------------------------------------------------
 @media only screen and (min-width : 984px) {
   body.phone-devices #main-content {
-        .link-cta-ubuntu {
-            margin-bottom: 0;
-        }
-
-        .link-cta-ubuntu + a {
-            display: inline-block;
-        }
+    .link-cta-ubuntu {
+      margin-bottom: 0;
     }
+
+    .link-cta-ubuntu + a {
+      display: inline-block;
+    }
+  }
 
   body.phone-home {
     .wrapper {
@@ -1469,31 +1578,30 @@ body.phone-ubuntu-for-android-features {
   // @section features /phone/features (984)
   //--------------------------------------------------------------
   body.phone-features {
+    .row--video {
+      min-height: 554px;
 
-      .row--video {
-            min-height: 554px;
+      .show-video {
+        min-height: 554px;
+      }
+    }
 
-            .show-video {
-                min-height: 554px;
-            }
-        }
+    .row--store-promo__content {
+        padding-top: 30px;
+    }
 
-        .row--store-promo__content {
-            padding-top: 30px;
-        }
+    #main-content .row-hero {
+      min-height: 468px;
+      border: 0;
+    }
 
-        #main-content .row-hero {
-            min-height: 468px;
-            border: 0;
-        }
+    .row--today {
+      min-height: 544px;
+    }
 
-        .row--today {
-            min-height: 544px;
-        }
-
-        .row--today__content {
-            padding-top: 100px;
-        }
+    .row--today__content {
+      padding-top: 100px;
+    }
 
     .row-scopes {
       min-height: 580px;
@@ -1513,52 +1621,51 @@ body.phone-ubuntu-for-android-features {
     }
 
     .row--edge {
-        padding-bottom: 60px;
+      padding-bottom: 60px;
 
-            img {
-                position: relative;
-                left: auto;
-                padding-bottom: 30px;
-            }
+      img {
+        position: relative;
+        left: auto;
+        padding-bottom: 30px;
+      }
 
-            #edge-video-wrapper {
-                background-size: cover;
-                height: 703px;
-                padding: 0;
-                top: 35px;
-                margin: 0 auto;
-                width: 357px;
-            }
+      #edge-video-wrapper {
+        background-size: cover;
+        height: 703px;
+        padding: 0;
+        top: 35px;
+        margin: 0 auto;
+        width: 357px;
+      }
 
-            #edge-video {
-              width: 290px;
-              height: 520px;
-              left: 30px;
-              top: 77px;
-              padding: 0;
-              margin: 0;
-            }
+      #edge-video {
+        width: 290px;
+        height: 520px;
+        left: 30px;
+        top: 77px;
+        padding: 0;
+        margin: 0;
+      }
 
       div.first {
         padding-top: 30px;
       }
 
-            #swipe-from-left {
-                padding-top: 0;
-            }
+      #swipe-from-left {
+        padding-top: 0;
+      }
     }
-  } // end @section features
-  
+  }
+  // end @section features
 
     // body.phone-developers (984)
-  body.phone-developers {
-    .row-slideshow {
-
-        #scopes-content {
-            padding-left: 60px;
-        }
-    } // end row-slideshow
-  }
+body.phone-developers {
+  .row-slideshow {
+    #scopes-content {
+      padding-left: 60px;
+    }
+  } // end row-slideshow
+}
 
   // @section partners /phone/partners (984)
   //--------------------------------------------------------------
@@ -1645,7 +1752,7 @@ body.phone-ubuntu-for-android-features {
     }
 
     .row--scopes__content div {
-      background: #fff;
+      background: $white;
       padding: 20px;
     }
 
@@ -1667,13 +1774,12 @@ body.phone-ubuntu-for-android-features {
     } // end phone-app-list
 
       #main-content .row-more-than {
-
-            img {
-                margin-bottom: -300px;
-                margin-top: 10px;
-                width: auto;
-          }
+        img {
+          margin-bottom: -300px;
+          margin-top: 10px;
+          width: auto;
         }
+    }
 
   } // end @section developers
 
@@ -1719,7 +1825,6 @@ body.phone-ubuntu-for-android-features {
 
 // Row note
 body.phone {
-
   .row--note {
     padding: 40px;
   }

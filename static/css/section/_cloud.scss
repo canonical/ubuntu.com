@@ -344,7 +344,7 @@ body.public-cloud-home {
 
 .box-cloud-contact .box-cloud-contact-header p {
   color: #656565;
-  font-size: 21px;
+  font-size: 1.3125em;
   margin-bottom: 0;
   line-height: 1.4;
   margin: 0;
@@ -377,7 +377,7 @@ body.cloud .packages {
 
 /* jumpstart */
 .list-jumpstart h3 {
-  font-size: 19.5px;
+  font-size: 1.21875em;
   padding-top: 3px;
 }
 .list-jumpstart h3 img {
@@ -609,7 +609,7 @@ body.cloud-ecosystem {
 /* cloud helper classes */
 .offer {
   color: $warm-grey;
-  font-size: 14px;
+  font-size: .875em;
   letter-spacing: 1px;
   position: relative;
   text-transform: uppercase;
@@ -1200,7 +1200,7 @@ body.cloud-ubuntu-openstack-reference-architecture {
   html.no-svg, .opera-mini {
     body.cloud-home {
       .row-build-your-cloud {
-        background: url(#{$asset-server}997ba25a-image-background-jujugradient.png) repeat-x left bottom;
+        background: url('#{$asset-server}997ba25a-image-background-jujugradient.png') repeat-x left bottom;
       }
     }
   }
@@ -1215,12 +1215,10 @@ body.cloud-ubuntu-openstack-reference-architecture {
     .ubuntu-column img {
       display: block;
     }
-    
     .row-management {
         background: url('#{$asset-server}c527807d-screenshot-landscape-358x37.png') no-repeat 107% 0%;
       min-height: 0;
     }
-    
     .row-interoperability img {
       margin-bottom: -60px;
       position: relative;
@@ -1233,7 +1231,6 @@ body.cloud-ubuntu-openstack-reference-architecture {
       .intro {
         margin-bottom: 35px;
       }
-      
       img {
         margin-bottom: 60px;
       }
@@ -1275,38 +1272,39 @@ body.cloud-ubuntu-openstack-reference-architecture {
     .row-get-started {
       background: url('#{$asset-server}3c2a0155-media-wiki-ubuntu.png?w=800') no-repeat 444px 0;
     }
+    .row-config-scale h2 {
+        margin-top: 30px;
+    }
+    .row-one-stop-shop img {
+      margin-left: -$gutter-width * 2;
+      margin-bottom: $gutter-width * 2;
+    }
   }
-  
   body.cloud-public-cloud {
     .row-juju-advantage {
       div {
         min-height: 540px;
       }
       overflow: hidden;
-      
       .last-col .pull-left-20 {
         position: absolute;
         bottom: 0;
         left: -16px;
       }
-      
       .pull-left-40 {
         left: -130px;
         position: absolute;
         bottom: 40px;
       }
     }
-    
     .box-management {
       position: relative;
     }
-    
     .box-management img {
       position: absolute;
       margin-left: -20px;
       margin-top: 10px;
     }
-    
     .push-down {
       margin-top: 50px;
     }
@@ -1330,7 +1328,6 @@ body.cloud-ubuntu-openstack-reference-architecture {
       }
     }
   }
-  
   body.cloud-contact-us {
     .row-hero {
       padding-bottom: 0;
@@ -1341,36 +1338,29 @@ body.cloud-ubuntu-openstack-reference-architecture {
       .box {
         min-height: 170px;
       }
-      
       .box div {
         min-height: 85px;
         border-bottom: 1px dotted $warm-grey;
         margin-bottom: 15px;
       }
-      
       img {
         display: block;
         margin: 0 auto;
         vertical-align: middle;
       }
-      
       .logo-joyent,
       .logo-gcp {
         padding-top: 15px;
       }
-      
       .logo-ibm {
         padding-top: 12px;
       }
-      
       .logo-hpcloud {
         padding-top: 10px;
       }
-      
       .logo-windowsazure {
         padding-top: 7px;
       }
-      
       a:hover p {
         text-decoration: underline;
       }
@@ -1731,6 +1721,7 @@ body.cloud-ubuntu-openstack-reference-architecture {
     }
   }
 
+
   .option {
     border-radius: 2px;
   }
@@ -1814,13 +1805,13 @@ html.js .cloud-openstack-managed-cloud .js__required {
 .cloud-openstack-autopilot,
 .cloud-openstack-autopilot-b {
 
-  .autopilot-dynamic h2 {
-      padding-bottom: 1em;
-  }
-  
-  .autopilot-dynamic .video-container {
-      width: 95%;
-  }
+    .autopilot-dynamic h2 {
+        padding-bottom: 1em;
+    }
+
+    .autopilot-dynamic .video-container {
+        width: 95%;
+    }
 
   .autopilot-dynamic .back-link {
     color: #AEA79F;
