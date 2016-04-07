@@ -5,31 +5,50 @@
 {% block extra_body_class %}download-desktop-home{% endblock %}
 
 {% block second_level_nav_items %}
-    {% include "templates/_nav_breadcrumb.html" with section_title="Download" page_title="Desktop"  %}
+    <div class="strip-inner-wrapper">
+        {% include "templates/_nav_breadcrumb.html" with section_title="Download" page_title="Desktop"  %}
+    </div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row row-grey">
-    <div class="eight-col append-four">
-        <h1>Download Ubuntu Desktop</h1>
-        <h2>{{lts_new_release}}</h2>
-    </div><!-- /.eight-col -->
+    <div class="strip-inner-wrapper">
+        <div class="eight-col append-four">
+            <h1>Download Ubuntu Desktop</h1>
+            <h2>{{lts_new_release}}</h2>
+        </div><!-- /.eight-col -->
+    </div>
 
-    <div class="twelve-col no-margin-bottom">
-        <div class="box box-highlight clearfix equal-height--vertical-divider">
-            <div class="equal-height--vertical-divider__item eight-col no-margin-bottom">
-                <h2>Ubuntu {{latest_release}}</h2>
-                <p>The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{latest_release}} comes with nine months of security and maintenance updates.</p>
-                <p><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="external">Ubuntu {{latest_release}} release notes</a></p>
-            </div>
-            <div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom download-button">
-                <div>
-                    <a class="button--primary" href="/download/desktop/contribute/?version=16.04&architecture=amd64">Download</a>
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col no-margin-bottom">
+            <div class="box box-highlight clearfix equal-height--vertical-divider">
+                <div class="equal-height--vertical-divider__item eight-col no-margin-bottom">
+                    <h2>Ubuntu {{latest_release}}</h2>
+                    <p>The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{latest_release}} comes with nine months of security and maintenance updates.</p>
+                    <p><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="external">Ubuntu {{latest_release}} release notes</a></p>
+
+                    <p>Recommended system requirements:</p>
+
+                    <ul>
+                        <li>2 GHz dual core processor or better</li>
+                        <li>2 GB system memory</li>
+                        <li>25 GB of free hard drive space</li>
+                        <li>Either a DVD drive or a USB port for the installer media</li>
+                        <li>Internet access is helpful</li>
+                    </ul>
+
                 </div>
-                <p><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
-                <p><a href="/download/how-to-validate-your-download">Verify your download&nbsp;&rsaquo;</a></p>
-            </div><!-- /.four-col -->
-        </div><!-- /.box -->
+                <div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom download-button">
+                    <p>
+                        <a class="button--primary" href="/download/desktop/contribute/?version=16.04&architecture=amd64">Download</a>
+                    </p>
+                    <ul class="no-bullets">
+                        <li><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></li>
+                        <li><a href="/download/how-to-validate-your-download">Verify your download&nbsp;&rsaquo;</a></li>
+                    </ul>
+                </div><!-- /.four-col -->
+            </div><!-- /.box -->
+        </div>
     </div>
 </div>
 

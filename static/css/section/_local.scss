@@ -384,7 +384,8 @@ body {
 // Full width sections
 .homepage,
 .tablet,
-.phone {
+.phone,
+.download {
   .wrapper {
     background: none;
     width: 100%;
@@ -482,7 +483,8 @@ body {
 
 // extra rules for full width sections other than homepage
 .phone,
-.tablet {
+.tablet,
+.download {
   #context-footer {
     background: #fff;
     padding-bottom: 35px; // replaces the padding taken off .inner-wrapper
@@ -885,12 +887,18 @@ footer.global {
     a::after {
       content:"";
     }
-
     #nav-global li:first-of-type a {
       margin-left: 0;
     }
 
+    #nav-global li:first-of-type a {
+      margin-left: 0;
+    }
   }/* end footer-a */
+
+  .footer-b {
+    padding: 0 0 20px;
+    margin: 0 auto;
 
   .footer-b {
     padding: 0 0 20px;
@@ -911,6 +919,37 @@ footer.global {
       display: inline;
       font-weight: 400;
       font-size: 1em;
+      a i {
+        font-style: normal;
+        display: none;
+      }
+    }
+    li {
+      width: 100%;
+      display: block;
+      clear: both;
+      overflow: hidden;
+    }
+    li li {
+      width: auto;
+      background: 0;
+      float: left;
+      clear: none;
+    }
+    li li:last-child {
+      width: 200px;
+    }
+    li li:after {
+      content: "|";
+      padding-left: 6px;
+      padding-right: 6px;
+      position: relative;
+    }
+    li h2 a:after,
+    li li:last-child:after,
+    li li.last-item:after  {
+        content: "";
+    }
 
       a i {
         display: none;
@@ -945,6 +984,7 @@ footer.global {
     li li.last-item:after  {
         content: "";
     }
+  }/* end footer-b */
   }/* end footer-b */
 }
 
