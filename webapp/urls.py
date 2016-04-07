@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
-from django_json_redirects import load_redirects
 
+from django_yaml_redirects import load_redirects
 from views import UbuntuTemplateFinder, DownloadView, SearchView
 
 urlpatterns = load_redirects()
@@ -13,3 +13,4 @@ urlpatterns += patterns(
     url('^(?P<template>search)/?$', SearchView.as_view()),
     url(r'^(?P<template>.*)/?$', UbuntuTemplateFinder.as_view()),
 )
+
