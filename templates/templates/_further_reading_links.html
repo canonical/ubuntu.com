@@ -2,10 +2,10 @@
 
 <script src="{{ ASSET_SERVER_URL }}c954db4a-jfeed_prm.js"></script>
 {% endblock %}
-	<div id="insights-footer-feed"><noscript><a class="external" href="https://insights.ubuntu.com">Find out more at insights.ubuntu.com</a></noscript></div>
-	<script>
-		var feedurl={% if feed %}"{{ feed }}"{% else %}"https://insights.ubuntu.com/feed/"{% endif %};
-		var feedlimit={% if articles %}{{ articles }}{% else %}4{% endif %};
+    <div id="insights-footer-feed"><noscript><a class="external" href="https://insights.ubuntu.com">Find out more at insights.ubuntu.com</a></noscript></div>
+    <script>
+        var feedurl={% if feed %}"{{ feed }}"{% else %}"https://insights.ubuntu.com/feed/"{% endif %};
+        var feedlimit={% if articles %}{{ articles }}{% else %}4{% endif %};
     $.getFeed({
       url: feedurl,
       success: function(feed) {

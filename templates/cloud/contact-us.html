@@ -2,36 +2,36 @@
 {% block title %}Cloud computing with Ubuntu{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Contact us"  %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Contact us"  %}
 {% endblock second_level_nav_items %}
 
 {% block header %}
 <div class="row row-hero no-border">
-	<h1>Contact us</h1>
-	<p>Fill in your details below and a member of our cloud sales team will be in touch.</p>
+    <h1>Contact us</h1>
+    <p>Fill in your details below and a member of our cloud sales team will be in touch.</p>
 </div>
 {% endblock %}
 
 {% block content %}
 <div class="row no-border">
-	<div class="eight-col">
-    <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1251"> 
+    <div class="eight-col">
+    <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1251">
         <fieldset>
             <h3>About you</h3>
-            <ul class="no-bullets">          
-                <li class="mktFormReq mktField">    
+            <ul class="no-bullets">
+                <li class="mktFormReq mktField">
                     <label for="FirstName" class="mktoLabel">First Name: <span>*</span></label>
                     <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" />
                 </li>
-                <li class="mktFormReq mktField">    
+                <li class="mktFormReq mktField">
                     <label for="LastName" class="mktoLabel">Last Name: <span>*</span></label>
                     <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" />
                 </li>
-                <li class="mktFormReq mktField">    
+                <li class="mktFormReq mktField">
                     <label for="Email" class="mktoLabel">Email Address: <span>*</span></label>
                     <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
                 </li>
-                <li class="mktFormReq mktField">    
+                <li class="mktFormReq mktField">
                     <label for="Phone" class="mktoLabel">Phone Number: <span>*</span></label>
                     <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" />
                 </li>
@@ -40,24 +40,24 @@
         </fieldset>
         <fieldset>
             <h3>About your role</h3>
-            <ul class="no-bullets"> 
+            <ul class="no-bullets">
                 {% include "shared/forms/_job_role.html" %}
             </ul>
         </fieldset>
         <fieldset>
             <h3>About your company</h3>
-            <ul class="no-bullets"> 
-                <li class="mktFormReq mktField">    
+            <ul class="no-bullets">
+                <li class="mktFormReq mktField">
                     <label for="Company" class="mktoLabel">Company Name: <span>*</span></label>
                     <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired" />
                 </li>
-                {% include "shared/forms/_industry.html" %}  
+                {% include "shared/forms/_industry.html" %}
             </ul>
         </fieldset>
         <fieldset>
             <h3>IT and your organisation</h3>
-                <ul class="no-bullets"> 
-                    <li class="mktFormReq mktField">    
+                <ul class="no-bullets">
+                    <li class="mktFormReq mktField">
                         <label for="Ubuntu_User__c" class="mktoLabel">How do you currently use Ubuntu? <span>*</span></label>
                         <select required id="Ubuntu_User__c" name="Ubuntu_User__c" class="mktoField mktoRequired" />
                             <option value="">Select...</option>
@@ -67,8 +67,8 @@
                             <option value="Not at all">Not at all</option>
                         </select>
                     </li>
-        
-                    <li class="mktFormReq mktField">    
+
+                    <li class="mktFormReq mktField">
                         <label for="num_employees__c" class="mktoLabel">How many employees does your organisation have?  <span>*</span></label>
                             <select required id="num_employees__c" name="num_employees__c" class="mktoField mktoRequired" />
                                 <option value="">Select...</option>
@@ -80,8 +80,8 @@
                                 <option value="5000+">5000+</option>
                             </select>
                     </li>
-        
-                    <li class="mktFormReq mktField">    
+
+                    <li class="mktFormReq mktField">
                         <label for="NumUbuntuServers__c" class="mktoLabel">Number of Ubuntu servers currently deployed? <span>*</span></label>
                             <select required id="NumUbuntuServers__c" name="NumUbuntuServers__c" class="mktoField mktoRequired" />
                                 <option value="">Select...</option>
@@ -91,8 +91,8 @@
                                 <option value="251 &ndash; 500">251 &ndash; 500</option>
                                 <option value="501 or more">501 or more</option></select>
                     </li>
-        
-                    <li class="mktFormReq mktField">    
+
+                    <li class="mktFormReq mktField">
                         <label for="Why_Cloud__c" class="mktoLabel">Why are you interested in cloud? <span>*</span></label>
                         <select required id="Why_Cloud__c" name="Why_Cloud__c" class="mktoField mktoRequired" />
                             <option value="">Select...</option>
@@ -104,8 +104,8 @@
                             <option value="Other">Other</option>
                         </select>
                     </li>
-        
-                    <li class="mktFormReq mktField">    
+
+                    <li class="mktFormReq mktField">
                         <label for="Project_Timeframe__c" class="mktoLabel">How soon do you plan to deploy your cloud solution? <span>*</span></label>
                         <select required id="Project_Timeframe__c" name="Project_Timeframe__c" class="mktoField mktoRequired" />
                             <option value="">Select...</option>
@@ -114,28 +114,28 @@
                             <option value="6 &ndash; 12 months">6 &ndash; 12 months</option>
                             <option value="No specific dates">No specific dates</option></select>
                     </li>
-        
-                    <li class="mktFormReq mktField">    
+
+                    <li class="mktFormReq mktField">
                         <label for="Comments_from_lead__c" class="mktoLabel">What would you like to talk to us about? <span>*</span></label>
                         <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="4" class="mktoField mktoRequired" maxlength="2000"></textarea>
                     </li>
                 </ul>
         </fieldset>
         <fieldset>
-            <ul class="no-bullets">     
-                <li class="mktField">    
+            <ul class="no-bullets">
+                <li class="mktField">
                     <input class="mktoField" value="yes" id="NewsletterOpt-In" name="NewsletterOpt-In" type="checkbox" />
-                    <label class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>        
+                    <label class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>
                 </li>
                 <li>
                   All information provided will be handled in accordance with the Canonical <a href="http://www.ubuntu.com/legal" target="_blank">privacy policy</a>.
                 </li>
-            
-                <li class="mktField">    
+
+                <li class="mktField">
                     <button type="submit" class="mktoButton">Submit</button>
                 </li>
             </ul>
-            
+
             <input type="hidden" name="formid" class="mktoField" value="1251" />
             <input type="hidden" name="lpId" class="mktoField" value="2086" />
             <input type="hidden" name="subId" class="mktoField" value="30" />

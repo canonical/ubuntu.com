@@ -1,28 +1,28 @@
 <div class="row no-border">
-	{% if level_2 != 'cloud' %}<div class="twelve-col">
-		<h2>Get the version you need</h2>
-	</div>{% endif %}
-	<div class="twelve-col">
-		<div class="equal-height--vertical-divider">
-			<div class="equal-height--vertical-divider__item four-col">{% if level_2 == 'cloud' %}
-				<h3 class="header--upgrade">Latest version of Ubuntu OpenStack</h3>
-				<p>If you prefer a manual setup of the latest Ubuntu OpenStack version, you can follow the instructions in our OpenStack operations guide. </p>
-				<p><a class="external" href="https://help.ubuntu.com/lts/clouddocs/en/Intro.html">View instructions here</a></p>
-			{% else %}
-				<h3 class="header--dvd">Buy DVDs from the Ubuntu shop</h3>
-				<p>Ubuntu Server 14.04 LTS is now available for purchase on DVD in the Ubuntu shop, along with the desktop version.</p>
-				<p><a href="http://shop.canonical.com/index.php?cPath=17" class="external">Go to the Ubuntu shop</a></p>{% endif %}
-			</div>
-			<div class="equal-height--vertical-divider__item four-col">
-				<h3 class="header--openstack">Use any version of OpenStack</h3>
-				<p>If you&rsquo;re staying on 12.04 or 14.04 but you need OpenStack Juno, run the following command:</p>
-				<pre><code>sudo add-apt-repository cloud-archive:juno</code></pre>
-			</div><!-- /.four-col -->
-			<div class="equal-height--vertical-divider__item four-col last-col">
-				<h3 class="header--download">Download a previous release</h3>
-				<p>Looking for a previous LTS point release with its original stack? Older versions of Ubuntu remain available.</p>
-				<p><a class="external" href="http://releases.ubuntu.com">Previous releases</a></p>
-			</div>
-		</div>
-	</div>
+    {% if level_2 != 'cloud' %}<div class="twelve-col">
+        <h2>Get the version you need</h2>
+    </div>{% endif %}
+    <div class="twelve-col">
+        <div class="equal-height--vertical-divider">
+            <div class="equal-height--vertical-divider__item four-col">{% if level_2 == 'cloud' %}
+                <h3 class="header--upgrade">Latest version of Ubuntu OpenStack</h3>
+                <p>If you prefer a manual setup of the latest Ubuntu OpenStack version, you can follow the instructions in our OpenStack operations guide. </p>
+                <p><a class="external" href="https://help.ubuntu.com/lts/clouddocs/en/Intro.html">View instructions here</a></p>
+            {% else %}
+                <h3 class="header--dvd">Buy DVDs from the Ubuntu shop</h3>
+                <p>Ubuntu Server 14.04 LTS is now available for purchase on DVD in the Ubuntu shop, along with the desktop version.</p>
+                <p><a href="http://shop.canonical.com/index.php?cPath=17" class="external">Go to the Ubuntu shop</a></p>{% endif %}
+            </div>
+            <div class="equal-height--vertical-divider__item four-col">
+                <h3 class="header--openstack">Use any version of OpenStack</h3>
+                <p>If you&rsquo;re staying on 12.04 or 14.04 but you need OpenStack Juno, run the following command:</p>
+                <pre><code>sudo add-apt-repository cloud-archive:juno</code></pre>
+            </div><!-- /.four-col -->
+            <div class="equal-height--vertical-divider__item four-col last-col">
+                <h3 class="header--download">Download a previous release</h3>
+                <p>Looking for a previous LTS point release with its original stack? Older versions of Ubuntu remain available.</p>
+                <p><a class="external" href="http://releases.ubuntu.com">Previous releases</a></p>
+            </div>
+        </div>
+    </div>
 </div>

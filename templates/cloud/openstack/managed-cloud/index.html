@@ -8,7 +8,7 @@
 {% block meta_keywords %}Ubuntu BootStack, BootStack, private cloud, support, Ubuntu OpenStack, consulting, build a cloud, Ubuntu, Canonical, Managed Cloud{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="OpenStack" page_title="Managed cloud"  %}
+  {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="OpenStack" page_title="Managed cloud"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -565,14 +565,14 @@ function resizeSliders(form) {
 
 <script>
   YUI().use('node', function(Y) {
-  	var videoPanel = Y.all('.row--video');
-  	if(Y.one('.show-video')){
-  		Y.one('.show-video').on('click',function(e) {
-  			e.preventDefault();
-  			videoPanel.addClass('show');
-  			Y.one('.the-video div').set('innerHTML','<div class="video-container"><iframe width="984" height="554" src="http://www.youtube.com/embed/hCSTwyG7bbg?showinfo=0&vq=hd1080&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe></div>');
-  		});
-  	}
+    var videoPanel = Y.all('.row--video');
+    if(Y.one('.show-video')){
+      Y.one('.show-video').on('click',function(e) {
+        e.preventDefault();
+        videoPanel.addClass('show');
+        Y.one('.the-video div').set('innerHTML','<div class="video-container"><iframe width="984" height="554" src="http://www.youtube.com/embed/hCSTwyG7bbg?showinfo=0&vq=hd1080&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe></div>');
+      });
+    }
   });
 </script>
 {% endblock footer_extra %}

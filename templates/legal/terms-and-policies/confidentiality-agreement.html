@@ -11,11 +11,11 @@
 </script>
 <style type="text/css" media="screen">
 .supportInfo {
-	display: none;
+    display: none;
 }
 
 .offstate-b {
-	display: none;
+    display: none;
 }
 
 div.error, div.ok {
@@ -45,476 +45,476 @@ div.ok {
 }
 
 form label.reqMark {
-	color: #333;
+    color: #333;
 }
 
 </style>
 <script>
-	/* make jslint happy */
-	/*global base2, document, wFORMS, $, $$ */
+    /* make jslint happy */
+    /*global base2, document, wFORMS, $, $$ */
 
 
-	// Use this in a FormAssembly code block to add a string to a field's class (that's how standard validations work)
-	// this allows form developer to add validations not permitted by FormAssembly's UI.
+    // Use this in a FormAssembly code block to add a string to a field's class (that's how standard validations work)
+    // this allows form developer to add validations not permitted by FormAssembly's UI.
 
-	function custom_validation(id, class_info)
-	{
-		base2.DOM.Element.addEventListener(document,'DOMContentLoaded',
-		function()
-		{
-			try {document.getElementById(id).className += " " + class_info;}
-			catch(err)
-			{
-				throw new Error("Custom validation could not be applied to field " + id);
-			}
-		},
-		false);
-	}
+    function custom_validation(id, class_info)
+    {
+        base2.DOM.Element.addEventListener(document,'DOMContentLoaded',
+        function()
+        {
+            try {document.getElementById(id).className += " " + class_info;}
+            catch(err)
+            {
+                throw new Error("Custom validation could not be applied to field " + id);
+            }
+        },
+        false);
+    }
 
-	// validate-length validates string does not exceed given number of chars
+    // validate-length validates string does not exceed given number of chars
 
-	wFORMS.behaviors.validation.rules.isUnderLimit   = { selector: ".validate-length", check: 'isUnderLimit' };
-	wFORMS.behaviors.validation.messages.isUnderLimit = "This text is too long.";
+    wFORMS.behaviors.validation.rules.isUnderLimit   = { selector: ".validate-length", check: 'isUnderLimit' };
+    wFORMS.behaviors.validation.messages.isUnderLimit = "This text is too long.";
 
-	wFORMS.behaviors.validation.instance.prototype.isUnderLimit = function(element, value) {
-		var pattern = new RegExp(/validate-length (\d*)/i);
-		var matches = element.className.match(pattern);
+    wFORMS.behaviors.validation.instance.prototype.isUnderLimit = function(element, value) {
+        var pattern = new RegExp(/validate-length (\d*)/i);
+        var matches = element.className.match(pattern);
 
-		if(matches && matches[1]) {
-			return (value.length <= matches[1]);
-		}
-		return true;
-	};
+        if(matches && matches[1]) {
+            return (value.length <= matches[1]);
+        }
+        return true;
+    };
 
 
-	// validate-awsaccountnumber validates string as Amazon AWS Account Number
+    // validate-awsaccountnumber validates string as Amazon AWS Account Number
 
-	// we just check for exactly 12 digits, and each digit may be optionally followed by a dash
-	// so dashes are essentially ignored
+    // we just check for exactly 12 digits, and each digit may be optionally followed by a dash
+    // so dashes are essentially ignored
 
-	wFORMS.behaviors.validation.rules.isAWSAccountNumber = { selector: ".validate-awsaccountnumber", check: 'validateAWSAccountNumber' };
-	wFORMS.behaviors.validation.messages.isAWSAccountNumber = "Not a valid Amazon AWS Account number (expected format '1234-5678-0987')";
+    wFORMS.behaviors.validation.rules.isAWSAccountNumber = { selector: ".validate-awsaccountnumber", check: 'validateAWSAccountNumber' };
+    wFORMS.behaviors.validation.messages.isAWSAccountNumber = "Not a valid Amazon AWS Account number (expected format '1234-5678-0987')";
 
-	wFORMS.behaviors.validation.instance.prototype.validateAWSAccountNumber = function(element, value) {
-		var regexp = /^(\d-?){12,12}$/;
-		return this.isEmpty(value) || regexp.test(value);
-	};
+    wFORMS.behaviors.validation.instance.prototype.validateAWSAccountNumber = function(element, value) {
+        var regexp = /^(\d-?){12,12}$/;
+        return this.isEmpty(value) || regexp.test(value);
+    };
 </script>
 {% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Legal" subsection_title="Terms and policies" page_title="Canonical&rsquo;s privacy policy" %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Legal" subsection_title="Terms and policies" page_title="Canonical&rsquo;s privacy policy" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row row-hero row no-border">
-	<div class="eight-col">
-		<h1>Confidentiality agreement</h1>
-		<p>You can enter into a <a href="{{ ASSET_SERVER_URL }}1ade15ae-canonical-nda.pdf" target="_blank">confidentiality agreement</a> with Canonical here, you must complete all the fields in this form.</p>
-		<div id="faform_form_container">
-			<div class="wFormContainer" style="width: default;">
-			    <div class="">
-			        <div class="wForm" id="tfa_0-WRPR" dir="ltr">
-			            <div class="codesection" id="code-tfa_0"></div>
-			            <form method="post" action="https://www.tfaforms.com/responses/processor" class="hintsTooltip labelsAbove" id="tfa_0">
-			                <div style="display:none;">
-			                    <input type="hidden" name="csrfmiddlewaretoken" value="d7952e7df2133d5703f3001be27d982e">
-			                </div>
-			                <fieldset id="tfa_22" class="section">
-			                    <h3>Organisation Details</h3>
-		                        <label id="tfa_9-L" for="tfa_9" class="label preField">Individual or Organisation name <span>*</span></label>
-	                            <input type="text" id="tfa_9" name="tfa_9" value=""  placeholder="" class="calc-OrgName required">
-			                </fieldset>
-			                <fieldset id="tfa_Yourcontactdetai1" class="section">
-			                    <h3>Your details</h3>
-			                    <ul class="no-bullets">
-			                    	<li>
-			                    		<div id="tfa_17-D" class="oneField">
-					                        <label id="tfa_17-L" for="tfa_17" class="label preField reqMark">Your Job Title <span>*</span></label>
-				                            <input type="text" id="tfa_17" name="tfa_17" value=""  placeholder="" class="required">
-					                    </div>
-			                    	</li>
-			                    	<li>
-			                    		<div id="tfa_11-D" class="oneFieldhintsBelow">
-					                        <label id="tfa_11-L" for="tfa_11" class="label preField reqMark">First name <span>*</span></label>
+    <div class="eight-col">
+        <h1>Confidentiality agreement</h1>
+        <p>You can enter into a <a href="{{ ASSET_SERVER_URL }}1ade15ae-canonical-nda.pdf" target="_blank">confidentiality agreement</a> with Canonical here, you must complete all the fields in this form.</p>
+        <div id="faform_form_container">
+            <div class="wFormContainer" style="width: default;">
+                <div class="">
+                    <div class="wForm" id="tfa_0-WRPR" dir="ltr">
+                        <div class="codesection" id="code-tfa_0"></div>
+                        <form method="post" action="https://www.tfaforms.com/responses/processor" class="hintsTooltip labelsAbove" id="tfa_0">
+                            <div style="display:none;">
+                                <input type="hidden" name="csrfmiddlewaretoken" value="d7952e7df2133d5703f3001be27d982e">
+                            </div>
+                            <fieldset id="tfa_22" class="section">
+                                <h3>Organisation Details</h3>
+                                <label id="tfa_9-L" for="tfa_9" class="label preField">Individual or Organisation name <span>*</span></label>
+                                <input type="text" id="tfa_9" name="tfa_9" value=""  placeholder="" class="calc-OrgName required">
+                            </fieldset>
+                            <fieldset id="tfa_Yourcontactdetai1" class="section">
+                                <h3>Your details</h3>
+                                <ul class="no-bullets">
+                                    <li>
+                                        <div id="tfa_17-D" class="oneField">
+                                            <label id="tfa_17-L" for="tfa_17" class="label preField reqMark">Your Job Title <span>*</span></label>
+                                            <input type="text" id="tfa_17" name="tfa_17" value=""  placeholder="" class="required">
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div id="tfa_11-D" class="oneFieldhintsBelow">
+                                            <label id="tfa_11-L" for="tfa_11" class="label preField reqMark">First name <span>*</span></label>
 
-					                        <div class="inputWrapper">
-					                            <input type="text" id="tfa_11" name="tfa_11" value=""  placeholder="" class="required">
-					                        </div>
-					                    </div>
-			                    	</li>
-			                    	<li>
-			                    		<div id="tfa_13-D" class="oneField">
-					                        <label id="tfa_13-L" for="tfa_13" class="label preField reqMark">Last name <span>*</span></label>
+                                            <div class="inputWrapper">
+                                                <input type="text" id="tfa_11" name="tfa_11" value=""  placeholder="" class="required">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div id="tfa_13-D" class="oneField">
+                                            <label id="tfa_13-L" for="tfa_13" class="label preField reqMark">Last name <span>*</span></label>
 
-					                        <div class="inputWrapper">
-					                            <input type="text" id="tfa_13" name="tfa_13" value=""  placeholder="" class="required">
-					                        </div>
-					                    </div>
-			                    	</li>
-			                    	<li>
-			                    		<div id="tfa_15-D" class="oneField">
-					                        <label id="tfa_15-L" for="tfa_15" class="label preField reqMark">Email <span>*</span></label>
+                                            <div class="inputWrapper">
+                                                <input type="text" id="tfa_13" name="tfa_13" value=""  placeholder="" class="required">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div id="tfa_15-D" class="oneField">
+                                            <label id="tfa_15-L" for="tfa_15" class="label preField reqMark">Email <span>*</span></label>
 
-					                        <div class="inputWrapper">
-					                            <input type="text" id="tfa_15" name="tfa_15" value=""  placeholder="" class="validate-email required">
-					                        </div>
-					                    </div>
-			                    	</li>
-			                    	<li>
-				                    	<div id="tfa_Country-D" class="oneField">
-					                        <label id="tfa_Country-L" for="tfa_Country" class="label preField reqMark">Country <span>*</span></label>
+                                            <div class="inputWrapper">
+                                                <input type="text" id="tfa_15" name="tfa_15" value=""  placeholder="" class="validate-email required">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div id="tfa_Country-D" class="oneField">
+                                            <label id="tfa_Country-L" for="tfa_Country" class="label preField reqMark">Country <span>*</span></label>
 
-					                        <div class="inputWrapper">
-					                            <select id="tfa_Country" name="tfa_Country" class="required">
-					                                <option value="">Please select...</option>
-					                                <option value="tfa_Afghanistan" id="tfa_Afghanistan" class="">Afghanistan</option>
-					                                <option value="tfa_Albania" id="tfa_Albania" class="">Albania</option>
-					                                <option value="tfa_Algeria" id="tfa_Algeria" class="">Algeria</option>
-					                                <option value="tfa_AmericanSamoa" id="tfa_AmericanSamoa" class="">American Samoa</option>
-					                                <option value="tfa_Andorra" id="tfa_Andorra" class="">Andorra</option>
-					                                <option value="tfa_Angola" id="tfa_Angola" class="">Angola</option>
-					                                <option value="tfa_Anguilla" id="tfa_Anguilla" class="">Anguilla</option>
-					                                <option value="tfa_Antarctica" id="tfa_Antarctica" class="">Antarctica</option>
-					                                <option value="tfa_AntiguaandBarbud" id="tfa_AntiguaandBarbud" class="">Antigua and Barbuda</option>
-					                                <option value="tfa_Argentina" id="tfa_Argentina" class="">Argentina</option>
-					                                <option value="tfa_Armenia" id="tfa_Armenia" class="">Armenia</option>
-					                                <option value="tfa_Aruba" id="tfa_Aruba" class="">Aruba</option>
-					                                <option value="tfa_Australia" id="tfa_Australia" class="">Australia</option>
-					                                <option value="tfa_Austria" id="tfa_Austria" class="">Austria</option>
-					                                <option value="tfa_Azerbaijan" id="tfa_Azerbaijan" class="">Azerbaijan</option>
-					                                <option value="tfa_Bahamas" id="tfa_Bahamas" class="">Bahamas</option>
-					                                <option value="tfa_Bahrain" id="tfa_Bahrain" class="">Bahrain</option>
-					                                <option value="tfa_Bangladesh" id="tfa_Bangladesh" class="">Bangladesh</option>
-					                                <option value="tfa_Barbados" id="tfa_Barbados" class="">Barbados</option>
-					                                <option value="tfa_Belarus" id="tfa_Belarus" class="">Belarus</option>
-					                                <option value="tfa_Belgium" id="tfa_Belgium" class="">Belgium</option>
-					                                <option value="tfa_Belize" id="tfa_Belize" class="">Belize</option>
-					                                <option value="tfa_Benin" id="tfa_Benin" class="">Benin</option>
-					                                <option value="tfa_Bermuda" id="tfa_Bermuda" class="">Bermuda</option>
-					                                <option value="tfa_Bhutan" id="tfa_Bhutan" class="">Bhutan</option>
-					                                <option value="tfa_Bolivia" id="tfa_Bolivia" class="">Bolivia</option>
-					                                <option value="tfa_BosniaandHerzego" id="tfa_BosniaandHerzego" class="">Bosnia and Herzegovina</option>
-					                                <option value="tfa_Botswana" id="tfa_Botswana" class="">Botswana</option>
-					                                <option value="tfa_BouvetIsland" id="tfa_BouvetIsland" class="">Bouvet Island</option>
-					                                <option value="tfa_Brazil" id="tfa_Brazil" class="">Brazil</option>
-					                                <option value="tfa_BritishIndianOce" id="tfa_BritishIndianOce" class="">British Indian Ocean Territory</option>
-					                                <option value="tfa_Brunei" id="tfa_Brunei" class="">Brunei</option>
-					                                <option value="tfa_Bulgaria" id="tfa_Bulgaria" class="">Bulgaria</option>
-					                                <option value="tfa_BurkinaFaso" id="tfa_BurkinaFaso" class="">Burkina Faso</option>
-					                                <option value="tfa_Burundi" id="tfa_Burundi" class="">Burundi</option>
-					                                <option value="tfa_Cambodia" id="tfa_Cambodia" class="">Cambodia</option>
-					                                <option value="tfa_Cameroon" id="tfa_Cameroon" class="">Cameroon</option>
-					                                <option value="tfa_Canada" id="tfa_Canada" class="">Canada</option>
-					                                <option value="tfa_CapeVerde" id="tfa_CapeVerde" class="">Cape Verde</option>
-					                                <option value="tfa_CaymanIslands" id="tfa_CaymanIslands" class="">Cayman Islands</option>
-					                                <option value="tfa_CentralAfricanRe" id="tfa_CentralAfricanRe" class="">Central African Republic</option>
-					                                <option value="tfa_Chad" id="tfa_Chad" class="">Chad</option>
-					                                <option value="tfa_Chile" id="tfa_Chile" class="">Chile</option>
-					                                <option value="tfa_China" id="tfa_China" class="">China</option>
-					                                <option value="tfa_ChristmasIsland" id="tfa_ChristmasIsland" class="">Christmas Island</option>
-					                                <option value="tfa_CocosKeelingIsla" id="tfa_CocosKeelingIsla" class="">Cocos ( Keeling ) Islands</option>
-					                                <option value="tfa_Colombia" id="tfa_Colombia" class="">Colombia</option>
-					                                <option value="tfa_Comoros" id="tfa_Comoros" class="">Comoros</option>
-					                                <option value="tfa_Congo" id="tfa_Congo" class="">Congo</option>
-					                                <option value="tfa_CookIslands" id="tfa_CookIslands" class="">Cook Islands</option>
-					                                <option value="tfa_CostaRica" id="tfa_CostaRica" class="">Costa Rica</option>
-					                                <option value="tfa_CtedIvoire" id="tfa_CtedIvoire" class="">Côte d ' Ivoire</option>
-					                                <option value="tfa_CroatiaHrvatska" id="tfa_CroatiaHrvatska" class="">Croatia ( Hrvatska )</option>
-					                                <option value="tfa_Cuba" id="tfa_Cuba" class="">Cuba</option>
-					                                <option value="tfa_Cyprus" id="tfa_Cyprus" class="">Cyprus</option>
-					                                <option value="tfa_CzechRepublic" id="tfa_CzechRepublic" class="">Czech Republic</option>
-					                                <option value="tfa_CongoDRC" id="tfa_CongoDRC" class="">Congo ( DRC )</option>
-					                                <option value="tfa_Denmark" id="tfa_Denmark" class="">Denmark</option>
-					                                <option value="tfa_Djibouti" id="tfa_Djibouti" class="">Djibouti</option>
-					                                <option value="tfa_Dominica" id="tfa_Dominica" class="">Dominica</option>
-					                                <option value="tfa_DominicanRepubli" id="tfa_DominicanRepubli" class="">Dominican Republic</option>
-					                                <option value="tfa_EastTimor" id="tfa_EastTimor" class="">East Timor</option>
-					                                <option value="tfa_Ecuador" id="tfa_Ecuador" class="">Ecuador</option>
-					                                <option value="tfa_Egypt" id="tfa_Egypt" class="">Egypt</option>
-					                                <option value="tfa_ElSalvador" id="tfa_ElSalvador" class="">El Salvador</option>
-					                                <option value="tfa_EquatorialGuinea" id="tfa_EquatorialGuinea" class="">Equatorial Guinea</option>
-					                                <option value="tfa_Eritrea" id="tfa_Eritrea" class="">Eritrea</option>
-					                                <option value="tfa_Estonia" id="tfa_Estonia" class="">Estonia</option>
-					                                <option value="tfa_Ethiopia" id="tfa_Ethiopia" class="">Ethiopia</option>
-					                                <option value="tfa_FalklandIslandsI" id="tfa_FalklandIslandsI" class="">Falkland Islands ( Islas Malvinas )</option>
-					                                <option value="tfa_FaroeIslands" id="tfa_FaroeIslands" class="">Faroe Islands</option>
-					                                <option value="tfa_FijiIslands" id="tfa_FijiIslands" class="">Fiji Islands</option>
-					                                <option value="tfa_Finland" id="tfa_Finland" class="">Finland</option>
-					                                <option value="tfa_France" id="tfa_France" class="">France</option>
-					                                <option value="tfa_FrenchGuiana" id="tfa_FrenchGuiana" class="">French Guiana</option>
-					                                <option value="tfa_FrenchPolynesia" id="tfa_FrenchPolynesia" class="">French Polynesia</option>
-					                                <option value="tfa_FrenchSouthernan" id="tfa_FrenchSouthernan" class="">French Southern and Antarctic Lands</option>
-					                                <option value="tfa_Gabon" id="tfa_Gabon" class="">Gabon</option>
-					                                <option value="tfa_Gambia" id="tfa_Gambia" class="">Gambia</option>
-					                                <option value="tfa_Georgia" id="tfa_Georgia" class="">Georgia</option>
-					                                <option value="tfa_Germany" id="tfa_Germany" class="">Germany</option>
-					                                <option value="tfa_Ghana" id="tfa_Ghana" class="">Ghana</option>
-					                                <option value="tfa_Gibraltar" id="tfa_Gibraltar" class="">Gibraltar</option>
-					                                <option value="tfa_Greece" id="tfa_Greece" class="">Greece</option>
-					                                <option value="tfa_Greenland" id="tfa_Greenland" class="">Greenland</option>
-					                                <option value="tfa_Grenada" id="tfa_Grenada" class="">Grenada</option>
-					                                <option value="tfa_Guadeloupe" id="tfa_Guadeloupe" class="">Guadeloupe</option>
-					                                <option value="tfa_Guam" id="tfa_Guam" class="">Guam</option>
-					                                <option value="tfa_Guatemala" id="tfa_Guatemala" class="">Guatemala</option>
-					                                <option value="tfa_Guinea" id="tfa_Guinea" class="">Guinea</option>
-					                                <option value="tfa_GuineaBissau" id="tfa_GuineaBissau" class="">Guinea-Bissau</option>
-					                                <option value="tfa_Guyana" id="tfa_Guyana" class="">Guyana</option>
-					                                <option value="tfa_Haiti" id="tfa_Haiti" class="">Haiti</option>
-					                                <option value="tfa_HeardIslandandMc" id="tfa_HeardIslandandMc" class="">Heard Island and McDonald Islands</option>
-					                                <option value="tfa_Honduras" id="tfa_Honduras" class="">Honduras</option>
-					                                <option value="tfa_HongKongSAR" id="tfa_HongKongSAR" class="">Hong Kong SAR</option>
-					                                <option value="tfa_Hungary" id="tfa_Hungary" class="">Hungary</option>
-					                                <option value="tfa_Iceland" id="tfa_Iceland" class="">Iceland</option>
-					                                <option value="tfa_India" id="tfa_India" class="">India</option>
-					                                <option value="tfa_Indonesia" id="tfa_Indonesia" class="">Indonesia</option>
-					                                <option value="tfa_Iran" id="tfa_Iran" class="">Iran</option>
-					                                <option value="tfa_Iraq" id="tfa_Iraq" class="">Iraq</option>
-					                                <option value="tfa_Ireland" id="tfa_Ireland" class="">Ireland</option>
-					                                <option value="tfa_Israel" id="tfa_Israel" class="">Israel</option>
-					                                <option value="tfa_Italy" id="tfa_Italy" class="">Italy</option>
-					                                <option value="tfa_Jamaica" id="tfa_Jamaica" class="">Jamaica</option>
-					                                <option value="tfa_Japan" id="tfa_Japan" class="">Japan</option>
-					                                <option value="tfa_Jordan" id="tfa_Jordan" class="">Jordan</option>
-					                                <option value="tfa_Kazakhstan" id="tfa_Kazakhstan" class="">Kazakhstan</option>
-					                                <option value="tfa_Kenya" id="tfa_Kenya" class="">Kenya</option>
-					                                <option value="tfa_Kiribati" id="tfa_Kiribati" class="">Kiribati</option>
-					                                <option value="tfa_Korea" id="tfa_Korea" class="">Korea</option>
-					                                <option value="tfa_Kuwait" id="tfa_Kuwait" class="">Kuwait</option>
-					                                <option value="tfa_Kyrgyzstan" id="tfa_Kyrgyzstan" class="">Kyrgyzstan</option>
-					                                <option value="tfa_Laos" id="tfa_Laos" class="">Laos</option>
-					                                <option value="tfa_Latvia" id="tfa_Latvia" class="">Latvia</option>
-					                                <option value="tfa_Lebanon" id="tfa_Lebanon" class="">Lebanon</option>
-					                                <option value="tfa_Lesotho" id="tfa_Lesotho" class="">Lesotho</option>
-					                                <option value="tfa_Liberia" id="tfa_Liberia" class="">Liberia</option>
-					                                <option value="tfa_Libya" id="tfa_Libya" class="">Libya</option>
-					                                <option value="tfa_Liechtenstein" id="tfa_Liechtenstein" class="">Liechtenstein</option>
-					                                <option value="tfa_Lithuania" id="tfa_Lithuania" class="">Lithuania</option>
-					                                <option value="tfa_Luxembourg" id="tfa_Luxembourg" class="">Luxembourg</option>
-					                                <option value="tfa_MacaoSAR" id="tfa_MacaoSAR" class="">Macao SAR</option>
-					                                <option value="tfa_MacedoniaFormerY" id="tfa_MacedoniaFormerY" class="">Macedonia, Former Yugoslav Republic of</option>
-					                                <option value="tfa_Madagascar" id="tfa_Madagascar" class="">Madagascar</option>
-					                                <option value="tfa_Malawi" id="tfa_Malawi" class="">Malawi</option>
-					                                <option value="tfa_Malaysia" id="tfa_Malaysia" class="">Malaysia</option>
-					                                <option value="tfa_Maldives" id="tfa_Maldives" class="">Maldives</option>
-					                                <option value="tfa_Mali" id="tfa_Mali" class="">Mali</option>
-					                                <option value="tfa_Malta" id="tfa_Malta" class="">Malta</option>
-					                                <option value="tfa_MarshallIslands" id="tfa_MarshallIslands" class="">Marshall Islands</option>
-					                                <option value="tfa_Martinique" id="tfa_Martinique" class="">Martinique</option>
-					                                <option value="tfa_Mauritania" id="tfa_Mauritania" class="">Mauritania</option>
-					                                <option value="tfa_Mauritius" id="tfa_Mauritius" class="">Mauritius</option>
-					                                <option value="tfa_Mayotte" id="tfa_Mayotte" class="">Mayotte</option>
-					                                <option value="tfa_Mexico" id="tfa_Mexico" class="">Mexico</option>
-					                                <option value="tfa_Micronesia" id="tfa_Micronesia" class="">Micronesia</option>
-					                                <option value="tfa_Moldova" id="tfa_Moldova" class="">Moldova</option>
-					                                <option value="tfa_Monaco" id="tfa_Monaco" class="">Monaco</option>
-					                                <option value="tfa_Mongolia" id="tfa_Mongolia" class="">Mongolia</option>
-					                                <option value="tfa_Montserrat" id="tfa_Montserrat" class="">Montserrat</option>
-					                                <option value="tfa_Morocco" id="tfa_Morocco" class="">Morocco</option>
-					                                <option value="tfa_Mozambique" id="tfa_Mozambique" class="">Mozambique</option>
-					                                <option value="tfa_Myanmar" id="tfa_Myanmar" class="">Myanmar</option>
-					                                <option value="tfa_Namibia" id="tfa_Namibia" class="">Namibia</option>
-					                                <option value="tfa_Nauru" id="tfa_Nauru" class="">Nauru</option>
-					                                <option value="tfa_Nepal" id="tfa_Nepal" class="">Nepal</option>
-					                                <option value="tfa_Netherlands" id="tfa_Netherlands" class="">Netherlands</option>
-					                                <option value="tfa_NetherlandsAntil" id="tfa_NetherlandsAntil" class="">Netherlands Antilles</option>
-					                                <option value="tfa_NewCaledonia" id="tfa_NewCaledonia" class="">New Caledonia</option>
-					                                <option value="tfa_NewZealand" id="tfa_NewZealand" class="">New Zealand</option>
-					                                <option value="tfa_Nicaragua" id="tfa_Nicaragua" class="">Nicaragua</option>
-					                                <option value="tfa_Niger" id="tfa_Niger" class="">Niger</option>
-					                                <option value="tfa_Nigeria" id="tfa_Nigeria" class="">Nigeria</option>
-					                                <option value="tfa_Niue" id="tfa_Niue" class="">Niue</option>
-					                                <option value="tfa_NorfolkIsland" id="tfa_NorfolkIsland" class="">Norfolk Island</option>
-					                                <option value="tfa_NorthKorea" id="tfa_NorthKorea" class="">North Korea</option>
-					                                <option value="tfa_NorthernMarianaI" id="tfa_NorthernMarianaI" class="">Northern Mariana Islands</option>
-					                                <option value="tfa_Norway" id="tfa_Norway" class="">Norway</option>
-					                                <option value="tfa_Oman" id="tfa_Oman" class="">Oman</option>
-					                                <option value="tfa_Pakistan" id="tfa_Pakistan" class="">Pakistan</option>
-					                                <option value="tfa_Palau" id="tfa_Palau" class="">Palau</option>
-					                                <option value="tfa_Panama" id="tfa_Panama" class="">Panama</option>
-					                                <option value="tfa_PapuaNewGuinea" id="tfa_PapuaNewGuinea" class="">Papua New Guinea</option>
-					                                <option value="tfa_Paraguay" id="tfa_Paraguay" class="">Paraguay</option>
-					                                <option value="tfa_Peru" id="tfa_Peru" class="">Peru</option>
-					                                <option value="tfa_Philippines" id="tfa_Philippines" class="">Philippines</option>
-					                                <option value="tfa_PitcairnIslands" id="tfa_PitcairnIslands" class="">Pitcairn Islands</option>
-					                                <option value="tfa_Poland" id="tfa_Poland" class="">Poland</option>
-					                                <option value="tfa_Portugal" id="tfa_Portugal" class="">Portugal</option>
-					                                <option value="tfa_PuertoRico" id="tfa_PuertoRico" class="">Puerto Rico</option>
-					                                <option value="tfa_Qatar" id="tfa_Qatar" class="">Qatar</option>
-					                                <option value="tfa_Reunion" id="tfa_Reunion" class="">Reunion</option>
-					                                <option value="tfa_Romania" id="tfa_Romania" class="">Romania</option>
-					                                <option value="tfa_Russia" id="tfa_Russia" class="">Russia</option>
-					                                <option value="tfa_Rwanda" id="tfa_Rwanda" class="">Rwanda</option>
-					                                <option value="tfa_Samoa" id="tfa_Samoa" class="">Samoa</option>
-					                                <option value="tfa_SanMarino" id="tfa_SanMarino" class="">San Marino</option>
-					                                <option value="tfa_SoTomandPrncipe" id="tfa_SoTomandPrncipe" class="">São Tomé and Prìncipe</option>
-					                                <option value="tfa_SaudiArabia" id="tfa_SaudiArabia" class="">Saudi Arabia</option>
-					                                <option value="tfa_Senegal" id="tfa_Senegal" class="">Senegal</option>
-					                                <option value="tfa_SerbiaandMontene" id="tfa_SerbiaandMontene" class="">Serbia and Montenegro</option>
-					                                <option value="tfa_Seychelles" id="tfa_Seychelles" class="">Seychelles</option>
-					                                <option value="tfa_SierraLeone" id="tfa_SierraLeone" class="">Sierra Leone</option>
-					                                <option value="tfa_Singapore" id="tfa_Singapore" class="">Singapore</option>
-					                                <option value="tfa_Slovakia" id="tfa_Slovakia" class="">Slovakia</option>
-					                                <option value="tfa_Slovenia" id="tfa_Slovenia" class="">Slovenia</option>
-					                                <option value="tfa_SolomonIslands" id="tfa_SolomonIslands" class="">Solomon Islands</option>
-					                                <option value="tfa_Somalia" id="tfa_Somalia" class="">Somalia</option>
-					                                <option value="tfa_SouthAfrica" id="tfa_SouthAfrica" class="">South Africa</option>
-					                                <option value="tfa_SouthGeorgiaandt" id="tfa_SouthGeorgiaandt" class="">South Georgia and the South Sandwich Islands</option>
-					                                <option value="tfa_Spain" id="tfa_Spain" class="">Spain</option>
-					                                <option value="tfa_SriLanka" id="tfa_SriLanka" class="">Sri Lanka</option>
-					                                <option value="tfa_StHelena" id="tfa_StHelena" class="">St. Helena</option>
-					                                <option value="tfa_StKittsandNevis" id="tfa_StKittsandNevis" class="">St. Kitts and Nevis</option>
-					                                <option value="tfa_StLucia" id="tfa_StLucia" class="">St. Lucia</option>
-					                                <option value="tfa_StPierreandMique" id="tfa_StPierreandMique" class="">St. Pierre and Miquelon</option>
-					                                <option value="tfa_StVincentandtheG" id="tfa_StVincentandtheG" class="">St. Vincent and the Grenadines</option>
-					                                <option value="tfa_Sudan" id="tfa_Sudan" class="">Sudan</option>
-					                                <option value="tfa_Suriname" id="tfa_Suriname" class="">Suriname</option>
-					                                <option value="tfa_SvalbardandJanMa" id="tfa_SvalbardandJanMa" class="">Svalbard and Jan Mayen</option>
-					                                <option value="tfa_Swaziland" id="tfa_Swaziland" class="">Swaziland</option>
-					                                <option value="tfa_Sweden" id="tfa_Sweden" class="">Sweden</option>
-					                                <option value="tfa_Switzerland" id="tfa_Switzerland" class="">Switzerland</option>
-					                                <option value="tfa_Syria" id="tfa_Syria" class="">Syria</option>
-					                                <option value="tfa_Taiwan" id="tfa_Taiwan" class="">Taiwan</option>
-					                                <option value="tfa_Tajikistan" id="tfa_Tajikistan" class="">Tajikistan</option>
-					                                <option value="tfa_Tanzania" id="tfa_Tanzania" class="">Tanzania</option>
-					                                <option value="tfa_Thailand" id="tfa_Thailand" class="">Thailand</option>
-					                                <option value="tfa_Togo" id="tfa_Togo" class="">Togo</option>
-					                                <option value="tfa_Tokelau" id="tfa_Tokelau" class="">Tokelau</option>
-					                                <option value="tfa_Tonga" id="tfa_Tonga" class="">Tonga</option>
-					                                <option value="tfa_TrinidadandTobag" id="tfa_TrinidadandTobag" class="">Trinidad and Tobago</option>
-					                                <option value="tfa_Tunisia" id="tfa_Tunisia" class="">Tunisia</option>
-					                                <option value="tfa_Turkey" id="tfa_Turkey" class="">Turkey</option>
-					                                <option value="tfa_Turkmenistan" id="tfa_Turkmenistan" class="">Turkmenistan</option>
-					                                <option value="tfa_TurksandCaicosIs" id="tfa_TurksandCaicosIs" class="">Turks and Caicos Islands</option>
-					                                <option value="tfa_Tuvalu" id="tfa_Tuvalu" class="">Tuvalu</option>
-					                                <option value="tfa_Uganda" id="tfa_Uganda" class="">Uganda</option>
-					                                <option value="tfa_Ukraine" id="tfa_Ukraine" class="">Ukraine</option>
-					                                <option value="tfa_UnitedArabEmirat" id="tfa_UnitedArabEmirat" class="">United Arab Emirates</option>
-					                                <option value="tfa_UnitedKingdom" id="tfa_UnitedKingdom" class="">United Kingdom</option>
-					                                <option value="tfa_UnitedStates" id="tfa_UnitedStates" data-conditionals="#tfa_USState" class="switch-b">United States</option>
-					                                <option value="tfa_UnitedStatesMino" id="tfa_UnitedStatesMino" class="">United States Minor Outlying Islands</option>
-					                                <option value="tfa_Uruguay" id="tfa_Uruguay" class="">Uruguay</option>
-					                                <option value="tfa_Uzbekistan" id="tfa_Uzbekistan" class="">Uzbekistan</option>
-					                                <option value="tfa_Vanuatu" id="tfa_Vanuatu" class="">Vanuatu</option>
-					                                <option value="tfa_VaticanCity" id="tfa_VaticanCity" class="">Vatican City</option>
-					                                <option value="tfa_Venezuela" id="tfa_Venezuela" class="">Venezuela</option>
-					                                <option value="tfa_VietNam" id="tfa_VietNam" class="">Viet Nam</option>
-					                                <option value="tfa_VirginIslandsBri" id="tfa_VirginIslandsBri" class="">Virgin Islands ( British )</option>
-					                                <option value="tfa_VirginIslands" id="tfa_VirginIslands" class="">Virgin Islands</option>
-					                                <option value="tfa_WallisandFutuna" id="tfa_WallisandFutuna" class="">Wallis and Futuna</option>
-					                                <option value="tfa_Yemen" id="tfa_Yemen" class="">Yemen</option>
-					                                <option value="tfa_Zambia" id="tfa_Zambia" class="">Zambia</option>
-					                                <option value="tfa_Zimbabwe" id="tfa_Zimbabwe" class="">Zimbabwe</option>
-					                            </select>
-					                        </div>
-					                    </div>
-			                        </li>
-			                    	<li>
-					                    <div id="tfa_USState-D" class="oneField  offstate-b   offstate">
-					                        <label id="tfa_USState-L" for="tfa_USState" class="label preField reqMark">US State <span>*</span></label>
+                                            <div class="inputWrapper">
+                                                <select id="tfa_Country" name="tfa_Country" class="required">
+                                                    <option value="">Please select...</option>
+                                                    <option value="tfa_Afghanistan" id="tfa_Afghanistan" class="">Afghanistan</option>
+                                                    <option value="tfa_Albania" id="tfa_Albania" class="">Albania</option>
+                                                    <option value="tfa_Algeria" id="tfa_Algeria" class="">Algeria</option>
+                                                    <option value="tfa_AmericanSamoa" id="tfa_AmericanSamoa" class="">American Samoa</option>
+                                                    <option value="tfa_Andorra" id="tfa_Andorra" class="">Andorra</option>
+                                                    <option value="tfa_Angola" id="tfa_Angola" class="">Angola</option>
+                                                    <option value="tfa_Anguilla" id="tfa_Anguilla" class="">Anguilla</option>
+                                                    <option value="tfa_Antarctica" id="tfa_Antarctica" class="">Antarctica</option>
+                                                    <option value="tfa_AntiguaandBarbud" id="tfa_AntiguaandBarbud" class="">Antigua and Barbuda</option>
+                                                    <option value="tfa_Argentina" id="tfa_Argentina" class="">Argentina</option>
+                                                    <option value="tfa_Armenia" id="tfa_Armenia" class="">Armenia</option>
+                                                    <option value="tfa_Aruba" id="tfa_Aruba" class="">Aruba</option>
+                                                    <option value="tfa_Australia" id="tfa_Australia" class="">Australia</option>
+                                                    <option value="tfa_Austria" id="tfa_Austria" class="">Austria</option>
+                                                    <option value="tfa_Azerbaijan" id="tfa_Azerbaijan" class="">Azerbaijan</option>
+                                                    <option value="tfa_Bahamas" id="tfa_Bahamas" class="">Bahamas</option>
+                                                    <option value="tfa_Bahrain" id="tfa_Bahrain" class="">Bahrain</option>
+                                                    <option value="tfa_Bangladesh" id="tfa_Bangladesh" class="">Bangladesh</option>
+                                                    <option value="tfa_Barbados" id="tfa_Barbados" class="">Barbados</option>
+                                                    <option value="tfa_Belarus" id="tfa_Belarus" class="">Belarus</option>
+                                                    <option value="tfa_Belgium" id="tfa_Belgium" class="">Belgium</option>
+                                                    <option value="tfa_Belize" id="tfa_Belize" class="">Belize</option>
+                                                    <option value="tfa_Benin" id="tfa_Benin" class="">Benin</option>
+                                                    <option value="tfa_Bermuda" id="tfa_Bermuda" class="">Bermuda</option>
+                                                    <option value="tfa_Bhutan" id="tfa_Bhutan" class="">Bhutan</option>
+                                                    <option value="tfa_Bolivia" id="tfa_Bolivia" class="">Bolivia</option>
+                                                    <option value="tfa_BosniaandHerzego" id="tfa_BosniaandHerzego" class="">Bosnia and Herzegovina</option>
+                                                    <option value="tfa_Botswana" id="tfa_Botswana" class="">Botswana</option>
+                                                    <option value="tfa_BouvetIsland" id="tfa_BouvetIsland" class="">Bouvet Island</option>
+                                                    <option value="tfa_Brazil" id="tfa_Brazil" class="">Brazil</option>
+                                                    <option value="tfa_BritishIndianOce" id="tfa_BritishIndianOce" class="">British Indian Ocean Territory</option>
+                                                    <option value="tfa_Brunei" id="tfa_Brunei" class="">Brunei</option>
+                                                    <option value="tfa_Bulgaria" id="tfa_Bulgaria" class="">Bulgaria</option>
+                                                    <option value="tfa_BurkinaFaso" id="tfa_BurkinaFaso" class="">Burkina Faso</option>
+                                                    <option value="tfa_Burundi" id="tfa_Burundi" class="">Burundi</option>
+                                                    <option value="tfa_Cambodia" id="tfa_Cambodia" class="">Cambodia</option>
+                                                    <option value="tfa_Cameroon" id="tfa_Cameroon" class="">Cameroon</option>
+                                                    <option value="tfa_Canada" id="tfa_Canada" class="">Canada</option>
+                                                    <option value="tfa_CapeVerde" id="tfa_CapeVerde" class="">Cape Verde</option>
+                                                    <option value="tfa_CaymanIslands" id="tfa_CaymanIslands" class="">Cayman Islands</option>
+                                                    <option value="tfa_CentralAfricanRe" id="tfa_CentralAfricanRe" class="">Central African Republic</option>
+                                                    <option value="tfa_Chad" id="tfa_Chad" class="">Chad</option>
+                                                    <option value="tfa_Chile" id="tfa_Chile" class="">Chile</option>
+                                                    <option value="tfa_China" id="tfa_China" class="">China</option>
+                                                    <option value="tfa_ChristmasIsland" id="tfa_ChristmasIsland" class="">Christmas Island</option>
+                                                    <option value="tfa_CocosKeelingIsla" id="tfa_CocosKeelingIsla" class="">Cocos ( Keeling ) Islands</option>
+                                                    <option value="tfa_Colombia" id="tfa_Colombia" class="">Colombia</option>
+                                                    <option value="tfa_Comoros" id="tfa_Comoros" class="">Comoros</option>
+                                                    <option value="tfa_Congo" id="tfa_Congo" class="">Congo</option>
+                                                    <option value="tfa_CookIslands" id="tfa_CookIslands" class="">Cook Islands</option>
+                                                    <option value="tfa_CostaRica" id="tfa_CostaRica" class="">Costa Rica</option>
+                                                    <option value="tfa_CtedIvoire" id="tfa_CtedIvoire" class="">Côte d ' Ivoire</option>
+                                                    <option value="tfa_CroatiaHrvatska" id="tfa_CroatiaHrvatska" class="">Croatia ( Hrvatska )</option>
+                                                    <option value="tfa_Cuba" id="tfa_Cuba" class="">Cuba</option>
+                                                    <option value="tfa_Cyprus" id="tfa_Cyprus" class="">Cyprus</option>
+                                                    <option value="tfa_CzechRepublic" id="tfa_CzechRepublic" class="">Czech Republic</option>
+                                                    <option value="tfa_CongoDRC" id="tfa_CongoDRC" class="">Congo ( DRC )</option>
+                                                    <option value="tfa_Denmark" id="tfa_Denmark" class="">Denmark</option>
+                                                    <option value="tfa_Djibouti" id="tfa_Djibouti" class="">Djibouti</option>
+                                                    <option value="tfa_Dominica" id="tfa_Dominica" class="">Dominica</option>
+                                                    <option value="tfa_DominicanRepubli" id="tfa_DominicanRepubli" class="">Dominican Republic</option>
+                                                    <option value="tfa_EastTimor" id="tfa_EastTimor" class="">East Timor</option>
+                                                    <option value="tfa_Ecuador" id="tfa_Ecuador" class="">Ecuador</option>
+                                                    <option value="tfa_Egypt" id="tfa_Egypt" class="">Egypt</option>
+                                                    <option value="tfa_ElSalvador" id="tfa_ElSalvador" class="">El Salvador</option>
+                                                    <option value="tfa_EquatorialGuinea" id="tfa_EquatorialGuinea" class="">Equatorial Guinea</option>
+                                                    <option value="tfa_Eritrea" id="tfa_Eritrea" class="">Eritrea</option>
+                                                    <option value="tfa_Estonia" id="tfa_Estonia" class="">Estonia</option>
+                                                    <option value="tfa_Ethiopia" id="tfa_Ethiopia" class="">Ethiopia</option>
+                                                    <option value="tfa_FalklandIslandsI" id="tfa_FalklandIslandsI" class="">Falkland Islands ( Islas Malvinas )</option>
+                                                    <option value="tfa_FaroeIslands" id="tfa_FaroeIslands" class="">Faroe Islands</option>
+                                                    <option value="tfa_FijiIslands" id="tfa_FijiIslands" class="">Fiji Islands</option>
+                                                    <option value="tfa_Finland" id="tfa_Finland" class="">Finland</option>
+                                                    <option value="tfa_France" id="tfa_France" class="">France</option>
+                                                    <option value="tfa_FrenchGuiana" id="tfa_FrenchGuiana" class="">French Guiana</option>
+                                                    <option value="tfa_FrenchPolynesia" id="tfa_FrenchPolynesia" class="">French Polynesia</option>
+                                                    <option value="tfa_FrenchSouthernan" id="tfa_FrenchSouthernan" class="">French Southern and Antarctic Lands</option>
+                                                    <option value="tfa_Gabon" id="tfa_Gabon" class="">Gabon</option>
+                                                    <option value="tfa_Gambia" id="tfa_Gambia" class="">Gambia</option>
+                                                    <option value="tfa_Georgia" id="tfa_Georgia" class="">Georgia</option>
+                                                    <option value="tfa_Germany" id="tfa_Germany" class="">Germany</option>
+                                                    <option value="tfa_Ghana" id="tfa_Ghana" class="">Ghana</option>
+                                                    <option value="tfa_Gibraltar" id="tfa_Gibraltar" class="">Gibraltar</option>
+                                                    <option value="tfa_Greece" id="tfa_Greece" class="">Greece</option>
+                                                    <option value="tfa_Greenland" id="tfa_Greenland" class="">Greenland</option>
+                                                    <option value="tfa_Grenada" id="tfa_Grenada" class="">Grenada</option>
+                                                    <option value="tfa_Guadeloupe" id="tfa_Guadeloupe" class="">Guadeloupe</option>
+                                                    <option value="tfa_Guam" id="tfa_Guam" class="">Guam</option>
+                                                    <option value="tfa_Guatemala" id="tfa_Guatemala" class="">Guatemala</option>
+                                                    <option value="tfa_Guinea" id="tfa_Guinea" class="">Guinea</option>
+                                                    <option value="tfa_GuineaBissau" id="tfa_GuineaBissau" class="">Guinea-Bissau</option>
+                                                    <option value="tfa_Guyana" id="tfa_Guyana" class="">Guyana</option>
+                                                    <option value="tfa_Haiti" id="tfa_Haiti" class="">Haiti</option>
+                                                    <option value="tfa_HeardIslandandMc" id="tfa_HeardIslandandMc" class="">Heard Island and McDonald Islands</option>
+                                                    <option value="tfa_Honduras" id="tfa_Honduras" class="">Honduras</option>
+                                                    <option value="tfa_HongKongSAR" id="tfa_HongKongSAR" class="">Hong Kong SAR</option>
+                                                    <option value="tfa_Hungary" id="tfa_Hungary" class="">Hungary</option>
+                                                    <option value="tfa_Iceland" id="tfa_Iceland" class="">Iceland</option>
+                                                    <option value="tfa_India" id="tfa_India" class="">India</option>
+                                                    <option value="tfa_Indonesia" id="tfa_Indonesia" class="">Indonesia</option>
+                                                    <option value="tfa_Iran" id="tfa_Iran" class="">Iran</option>
+                                                    <option value="tfa_Iraq" id="tfa_Iraq" class="">Iraq</option>
+                                                    <option value="tfa_Ireland" id="tfa_Ireland" class="">Ireland</option>
+                                                    <option value="tfa_Israel" id="tfa_Israel" class="">Israel</option>
+                                                    <option value="tfa_Italy" id="tfa_Italy" class="">Italy</option>
+                                                    <option value="tfa_Jamaica" id="tfa_Jamaica" class="">Jamaica</option>
+                                                    <option value="tfa_Japan" id="tfa_Japan" class="">Japan</option>
+                                                    <option value="tfa_Jordan" id="tfa_Jordan" class="">Jordan</option>
+                                                    <option value="tfa_Kazakhstan" id="tfa_Kazakhstan" class="">Kazakhstan</option>
+                                                    <option value="tfa_Kenya" id="tfa_Kenya" class="">Kenya</option>
+                                                    <option value="tfa_Kiribati" id="tfa_Kiribati" class="">Kiribati</option>
+                                                    <option value="tfa_Korea" id="tfa_Korea" class="">Korea</option>
+                                                    <option value="tfa_Kuwait" id="tfa_Kuwait" class="">Kuwait</option>
+                                                    <option value="tfa_Kyrgyzstan" id="tfa_Kyrgyzstan" class="">Kyrgyzstan</option>
+                                                    <option value="tfa_Laos" id="tfa_Laos" class="">Laos</option>
+                                                    <option value="tfa_Latvia" id="tfa_Latvia" class="">Latvia</option>
+                                                    <option value="tfa_Lebanon" id="tfa_Lebanon" class="">Lebanon</option>
+                                                    <option value="tfa_Lesotho" id="tfa_Lesotho" class="">Lesotho</option>
+                                                    <option value="tfa_Liberia" id="tfa_Liberia" class="">Liberia</option>
+                                                    <option value="tfa_Libya" id="tfa_Libya" class="">Libya</option>
+                                                    <option value="tfa_Liechtenstein" id="tfa_Liechtenstein" class="">Liechtenstein</option>
+                                                    <option value="tfa_Lithuania" id="tfa_Lithuania" class="">Lithuania</option>
+                                                    <option value="tfa_Luxembourg" id="tfa_Luxembourg" class="">Luxembourg</option>
+                                                    <option value="tfa_MacaoSAR" id="tfa_MacaoSAR" class="">Macao SAR</option>
+                                                    <option value="tfa_MacedoniaFormerY" id="tfa_MacedoniaFormerY" class="">Macedonia, Former Yugoslav Republic of</option>
+                                                    <option value="tfa_Madagascar" id="tfa_Madagascar" class="">Madagascar</option>
+                                                    <option value="tfa_Malawi" id="tfa_Malawi" class="">Malawi</option>
+                                                    <option value="tfa_Malaysia" id="tfa_Malaysia" class="">Malaysia</option>
+                                                    <option value="tfa_Maldives" id="tfa_Maldives" class="">Maldives</option>
+                                                    <option value="tfa_Mali" id="tfa_Mali" class="">Mali</option>
+                                                    <option value="tfa_Malta" id="tfa_Malta" class="">Malta</option>
+                                                    <option value="tfa_MarshallIslands" id="tfa_MarshallIslands" class="">Marshall Islands</option>
+                                                    <option value="tfa_Martinique" id="tfa_Martinique" class="">Martinique</option>
+                                                    <option value="tfa_Mauritania" id="tfa_Mauritania" class="">Mauritania</option>
+                                                    <option value="tfa_Mauritius" id="tfa_Mauritius" class="">Mauritius</option>
+                                                    <option value="tfa_Mayotte" id="tfa_Mayotte" class="">Mayotte</option>
+                                                    <option value="tfa_Mexico" id="tfa_Mexico" class="">Mexico</option>
+                                                    <option value="tfa_Micronesia" id="tfa_Micronesia" class="">Micronesia</option>
+                                                    <option value="tfa_Moldova" id="tfa_Moldova" class="">Moldova</option>
+                                                    <option value="tfa_Monaco" id="tfa_Monaco" class="">Monaco</option>
+                                                    <option value="tfa_Mongolia" id="tfa_Mongolia" class="">Mongolia</option>
+                                                    <option value="tfa_Montserrat" id="tfa_Montserrat" class="">Montserrat</option>
+                                                    <option value="tfa_Morocco" id="tfa_Morocco" class="">Morocco</option>
+                                                    <option value="tfa_Mozambique" id="tfa_Mozambique" class="">Mozambique</option>
+                                                    <option value="tfa_Myanmar" id="tfa_Myanmar" class="">Myanmar</option>
+                                                    <option value="tfa_Namibia" id="tfa_Namibia" class="">Namibia</option>
+                                                    <option value="tfa_Nauru" id="tfa_Nauru" class="">Nauru</option>
+                                                    <option value="tfa_Nepal" id="tfa_Nepal" class="">Nepal</option>
+                                                    <option value="tfa_Netherlands" id="tfa_Netherlands" class="">Netherlands</option>
+                                                    <option value="tfa_NetherlandsAntil" id="tfa_NetherlandsAntil" class="">Netherlands Antilles</option>
+                                                    <option value="tfa_NewCaledonia" id="tfa_NewCaledonia" class="">New Caledonia</option>
+                                                    <option value="tfa_NewZealand" id="tfa_NewZealand" class="">New Zealand</option>
+                                                    <option value="tfa_Nicaragua" id="tfa_Nicaragua" class="">Nicaragua</option>
+                                                    <option value="tfa_Niger" id="tfa_Niger" class="">Niger</option>
+                                                    <option value="tfa_Nigeria" id="tfa_Nigeria" class="">Nigeria</option>
+                                                    <option value="tfa_Niue" id="tfa_Niue" class="">Niue</option>
+                                                    <option value="tfa_NorfolkIsland" id="tfa_NorfolkIsland" class="">Norfolk Island</option>
+                                                    <option value="tfa_NorthKorea" id="tfa_NorthKorea" class="">North Korea</option>
+                                                    <option value="tfa_NorthernMarianaI" id="tfa_NorthernMarianaI" class="">Northern Mariana Islands</option>
+                                                    <option value="tfa_Norway" id="tfa_Norway" class="">Norway</option>
+                                                    <option value="tfa_Oman" id="tfa_Oman" class="">Oman</option>
+                                                    <option value="tfa_Pakistan" id="tfa_Pakistan" class="">Pakistan</option>
+                                                    <option value="tfa_Palau" id="tfa_Palau" class="">Palau</option>
+                                                    <option value="tfa_Panama" id="tfa_Panama" class="">Panama</option>
+                                                    <option value="tfa_PapuaNewGuinea" id="tfa_PapuaNewGuinea" class="">Papua New Guinea</option>
+                                                    <option value="tfa_Paraguay" id="tfa_Paraguay" class="">Paraguay</option>
+                                                    <option value="tfa_Peru" id="tfa_Peru" class="">Peru</option>
+                                                    <option value="tfa_Philippines" id="tfa_Philippines" class="">Philippines</option>
+                                                    <option value="tfa_PitcairnIslands" id="tfa_PitcairnIslands" class="">Pitcairn Islands</option>
+                                                    <option value="tfa_Poland" id="tfa_Poland" class="">Poland</option>
+                                                    <option value="tfa_Portugal" id="tfa_Portugal" class="">Portugal</option>
+                                                    <option value="tfa_PuertoRico" id="tfa_PuertoRico" class="">Puerto Rico</option>
+                                                    <option value="tfa_Qatar" id="tfa_Qatar" class="">Qatar</option>
+                                                    <option value="tfa_Reunion" id="tfa_Reunion" class="">Reunion</option>
+                                                    <option value="tfa_Romania" id="tfa_Romania" class="">Romania</option>
+                                                    <option value="tfa_Russia" id="tfa_Russia" class="">Russia</option>
+                                                    <option value="tfa_Rwanda" id="tfa_Rwanda" class="">Rwanda</option>
+                                                    <option value="tfa_Samoa" id="tfa_Samoa" class="">Samoa</option>
+                                                    <option value="tfa_SanMarino" id="tfa_SanMarino" class="">San Marino</option>
+                                                    <option value="tfa_SoTomandPrncipe" id="tfa_SoTomandPrncipe" class="">São Tomé and Prìncipe</option>
+                                                    <option value="tfa_SaudiArabia" id="tfa_SaudiArabia" class="">Saudi Arabia</option>
+                                                    <option value="tfa_Senegal" id="tfa_Senegal" class="">Senegal</option>
+                                                    <option value="tfa_SerbiaandMontene" id="tfa_SerbiaandMontene" class="">Serbia and Montenegro</option>
+                                                    <option value="tfa_Seychelles" id="tfa_Seychelles" class="">Seychelles</option>
+                                                    <option value="tfa_SierraLeone" id="tfa_SierraLeone" class="">Sierra Leone</option>
+                                                    <option value="tfa_Singapore" id="tfa_Singapore" class="">Singapore</option>
+                                                    <option value="tfa_Slovakia" id="tfa_Slovakia" class="">Slovakia</option>
+                                                    <option value="tfa_Slovenia" id="tfa_Slovenia" class="">Slovenia</option>
+                                                    <option value="tfa_SolomonIslands" id="tfa_SolomonIslands" class="">Solomon Islands</option>
+                                                    <option value="tfa_Somalia" id="tfa_Somalia" class="">Somalia</option>
+                                                    <option value="tfa_SouthAfrica" id="tfa_SouthAfrica" class="">South Africa</option>
+                                                    <option value="tfa_SouthGeorgiaandt" id="tfa_SouthGeorgiaandt" class="">South Georgia and the South Sandwich Islands</option>
+                                                    <option value="tfa_Spain" id="tfa_Spain" class="">Spain</option>
+                                                    <option value="tfa_SriLanka" id="tfa_SriLanka" class="">Sri Lanka</option>
+                                                    <option value="tfa_StHelena" id="tfa_StHelena" class="">St. Helena</option>
+                                                    <option value="tfa_StKittsandNevis" id="tfa_StKittsandNevis" class="">St. Kitts and Nevis</option>
+                                                    <option value="tfa_StLucia" id="tfa_StLucia" class="">St. Lucia</option>
+                                                    <option value="tfa_StPierreandMique" id="tfa_StPierreandMique" class="">St. Pierre and Miquelon</option>
+                                                    <option value="tfa_StVincentandtheG" id="tfa_StVincentandtheG" class="">St. Vincent and the Grenadines</option>
+                                                    <option value="tfa_Sudan" id="tfa_Sudan" class="">Sudan</option>
+                                                    <option value="tfa_Suriname" id="tfa_Suriname" class="">Suriname</option>
+                                                    <option value="tfa_SvalbardandJanMa" id="tfa_SvalbardandJanMa" class="">Svalbard and Jan Mayen</option>
+                                                    <option value="tfa_Swaziland" id="tfa_Swaziland" class="">Swaziland</option>
+                                                    <option value="tfa_Sweden" id="tfa_Sweden" class="">Sweden</option>
+                                                    <option value="tfa_Switzerland" id="tfa_Switzerland" class="">Switzerland</option>
+                                                    <option value="tfa_Syria" id="tfa_Syria" class="">Syria</option>
+                                                    <option value="tfa_Taiwan" id="tfa_Taiwan" class="">Taiwan</option>
+                                                    <option value="tfa_Tajikistan" id="tfa_Tajikistan" class="">Tajikistan</option>
+                                                    <option value="tfa_Tanzania" id="tfa_Tanzania" class="">Tanzania</option>
+                                                    <option value="tfa_Thailand" id="tfa_Thailand" class="">Thailand</option>
+                                                    <option value="tfa_Togo" id="tfa_Togo" class="">Togo</option>
+                                                    <option value="tfa_Tokelau" id="tfa_Tokelau" class="">Tokelau</option>
+                                                    <option value="tfa_Tonga" id="tfa_Tonga" class="">Tonga</option>
+                                                    <option value="tfa_TrinidadandTobag" id="tfa_TrinidadandTobag" class="">Trinidad and Tobago</option>
+                                                    <option value="tfa_Tunisia" id="tfa_Tunisia" class="">Tunisia</option>
+                                                    <option value="tfa_Turkey" id="tfa_Turkey" class="">Turkey</option>
+                                                    <option value="tfa_Turkmenistan" id="tfa_Turkmenistan" class="">Turkmenistan</option>
+                                                    <option value="tfa_TurksandCaicosIs" id="tfa_TurksandCaicosIs" class="">Turks and Caicos Islands</option>
+                                                    <option value="tfa_Tuvalu" id="tfa_Tuvalu" class="">Tuvalu</option>
+                                                    <option value="tfa_Uganda" id="tfa_Uganda" class="">Uganda</option>
+                                                    <option value="tfa_Ukraine" id="tfa_Ukraine" class="">Ukraine</option>
+                                                    <option value="tfa_UnitedArabEmirat" id="tfa_UnitedArabEmirat" class="">United Arab Emirates</option>
+                                                    <option value="tfa_UnitedKingdom" id="tfa_UnitedKingdom" class="">United Kingdom</option>
+                                                    <option value="tfa_UnitedStates" id="tfa_UnitedStates" data-conditionals="#tfa_USState" class="switch-b">United States</option>
+                                                    <option value="tfa_UnitedStatesMino" id="tfa_UnitedStatesMino" class="">United States Minor Outlying Islands</option>
+                                                    <option value="tfa_Uruguay" id="tfa_Uruguay" class="">Uruguay</option>
+                                                    <option value="tfa_Uzbekistan" id="tfa_Uzbekistan" class="">Uzbekistan</option>
+                                                    <option value="tfa_Vanuatu" id="tfa_Vanuatu" class="">Vanuatu</option>
+                                                    <option value="tfa_VaticanCity" id="tfa_VaticanCity" class="">Vatican City</option>
+                                                    <option value="tfa_Venezuela" id="tfa_Venezuela" class="">Venezuela</option>
+                                                    <option value="tfa_VietNam" id="tfa_VietNam" class="">Viet Nam</option>
+                                                    <option value="tfa_VirginIslandsBri" id="tfa_VirginIslandsBri" class="">Virgin Islands ( British )</option>
+                                                    <option value="tfa_VirginIslands" id="tfa_VirginIslands" class="">Virgin Islands</option>
+                                                    <option value="tfa_WallisandFutuna" id="tfa_WallisandFutuna" class="">Wallis and Futuna</option>
+                                                    <option value="tfa_Yemen" id="tfa_Yemen" class="">Yemen</option>
+                                                    <option value="tfa_Zambia" id="tfa_Zambia" class="">Zambia</option>
+                                                    <option value="tfa_Zimbabwe" id="tfa_Zimbabwe" class="">Zimbabwe</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div id="tfa_USState-D" class="oneField  offstate-b   offstate">
+                                            <label id="tfa_USState-L" for="tfa_USState" class="label preField reqMark">US State <span>*</span></label>
 
-					                        <div class="inputWrapper">
-					                            <select id="tfa_USState" name="tfa_USState" data-condition="`#tfa_UnitedStates`" class="required" disabled="">
-					                                <option value="">Please select...</option>
-					                                <option value="tfa_Alabama" id="tfa_Alabama" class="">Alabama</option>
-					                                <option value="tfa_Alaska" id="tfa_Alaska" class="">Alaska</option>
-					                                <option value="tfa_Arizona" id="tfa_Arizona" class="">Arizona</option>
-					                                <option value="tfa_Arkansas" id="tfa_Arkansas" class="">Arkansas</option>
-					                                <option value="tfa_California" id="tfa_California" class="">California</option>
-					                                <option value="tfa_Colorado" id="tfa_Colorado" class="">Colorado</option>
-					                                <option value="tfa_Connecticut" id="tfa_Connecticut" class="">Connecticut</option>
-					                                <option value="tfa_Delaware" id="tfa_Delaware" class="">Delaware</option>
-					                                <option value="tfa_Florida" id="tfa_Florida" class="">Florida</option>
-					                                <option value="tfa_Georgia1" id="tfa_Georgia1" class="">Georgia</option>
-					                                <option value="tfa_Hawaii" id="tfa_Hawaii" class="">Hawaii</option>
-					                                <option value="tfa_Idaho" id="tfa_Idaho" class="">Idaho</option>
-					                                <option value="tfa_Illinois" id="tfa_Illinois" class="">Illinois</option>
-					                                <option value="tfa_Indiana" id="tfa_Indiana" class="">Indiana</option>
-					                                <option value="tfa_Iowa" id="tfa_Iowa" class="">Iowa</option>
-					                                <option value="tfa_Kansas" id="tfa_Kansas" class="">Kansas</option>
-					                                <option value="tfa_Kentucky" id="tfa_Kentucky" class="">Kentucky</option>
-					                                <option value="tfa_Louisiana" id="tfa_Louisiana" class="">Louisiana</option>
-					                                <option value="tfa_Maine" id="tfa_Maine" class="">Maine</option>
-					                                <option value="tfa_Maryland" id="tfa_Maryland" class="">Maryland</option>
-					                                <option value="tfa_Massachusetts" id="tfa_Massachusetts" class="">Massachusetts</option>
-					                                <option value="tfa_Michigan" id="tfa_Michigan" class="">Michigan</option>
-					                                <option value="tfa_Minnesota" id="tfa_Minnesota" class="">Minnesota</option>
-					                                <option value="tfa_Mississippi" id="tfa_Mississippi" class="">Mississippi</option>
-					                                <option value="tfa_Missouri" id="tfa_Missouri" class="">Missouri</option>
-					                                <option value="tfa_Montana" id="tfa_Montana" class="">Montana</option>
-					                                <option value="tfa_Nebraska" id="tfa_Nebraska" class="">Nebraska</option>
-					                                <option value="tfa_Nevada" id="tfa_Nevada" class="">Nevada</option>
-					                                <option value="tfa_NewHampshire" id="tfa_NewHampshire" class="">New Hampshire</option>
-					                                <option value="tfa_NewJersey" id="tfa_NewJersey" class="">New Jersey</option>
-					                                <option value="tfa_NewMexico" id="tfa_NewMexico" class="">New Mexico</option>
-					                                <option value="tfa_NewYork" id="tfa_NewYork" class="">New York</option>
-					                                <option value="tfa_NorthCarolina" id="tfa_NorthCarolina" class="">North Carolina</option>
-					                                <option value="tfa_NorthDakota" id="tfa_NorthDakota" class="">North Dakota</option>
-					                                <option value="tfa_Ohio" id="tfa_Ohio" class="">Ohio</option>
-					                                <option value="tfa_Oklahoma" id="tfa_Oklahoma" class="">Oklahoma</option>
-					                                <option value="tfa_Oregon" id="tfa_Oregon" class="">Oregon</option>
-					                                <option value="tfa_Pennsylvania" id="tfa_Pennsylvania" class="">Pennsylvania</option>
-					                                <option value="tfa_RhodeIsland" id="tfa_RhodeIsland" class="">Rhode Island</option>
-					                                <option value="tfa_SouthCarolina" id="tfa_SouthCarolina" class="">South Carolina</option>
-					                                <option value="tfa_SouthDakota" id="tfa_SouthDakota" class="">South Dakota</option>
-					                                <option value="tfa_Tennessee" id="tfa_Tennessee" class="">Tennessee</option>
-					                                <option value="tfa_Texas" id="tfa_Texas" class="">Texas</option>
-					                                <option value="tfa_Utah" id="tfa_Utah" class="">Utah</option>
-					                                <option value="tfa_Vermont" id="tfa_Vermont" class="">Vermont</option>
-					                                <option value="tfa_Virginia" id="tfa_Virginia" class="">Virginia</option>
-					                                <option value="tfa_Washington" id="tfa_Washington" class="">Washington</option>
-					                                <option value="tfa_WestVirginia" id="tfa_WestVirginia" class="">West Virginia</option>
-					                                <option value="tfa_Wisconsin" id="tfa_Wisconsin" class="">Wisconsin</option>
-					                                <option value="tfa_Wyoming" id="tfa_Wyoming" class="">Wyoming</option>
-					                            </select>
-					                        </div>
-					                    </div>
-					                </li>
-					                <li>
-					                    <div id="tfa_Address-D" class="oneField">
-					                        <label id="tfa_Address-L" for="tfa_Address" class="label preField reqMark">Address <span>*</span></label>
+                                            <div class="inputWrapper">
+                                                <select id="tfa_USState" name="tfa_USState" data-condition="`#tfa_UnitedStates`" class="required" disabled="">
+                                                    <option value="">Please select...</option>
+                                                    <option value="tfa_Alabama" id="tfa_Alabama" class="">Alabama</option>
+                                                    <option value="tfa_Alaska" id="tfa_Alaska" class="">Alaska</option>
+                                                    <option value="tfa_Arizona" id="tfa_Arizona" class="">Arizona</option>
+                                                    <option value="tfa_Arkansas" id="tfa_Arkansas" class="">Arkansas</option>
+                                                    <option value="tfa_California" id="tfa_California" class="">California</option>
+                                                    <option value="tfa_Colorado" id="tfa_Colorado" class="">Colorado</option>
+                                                    <option value="tfa_Connecticut" id="tfa_Connecticut" class="">Connecticut</option>
+                                                    <option value="tfa_Delaware" id="tfa_Delaware" class="">Delaware</option>
+                                                    <option value="tfa_Florida" id="tfa_Florida" class="">Florida</option>
+                                                    <option value="tfa_Georgia1" id="tfa_Georgia1" class="">Georgia</option>
+                                                    <option value="tfa_Hawaii" id="tfa_Hawaii" class="">Hawaii</option>
+                                                    <option value="tfa_Idaho" id="tfa_Idaho" class="">Idaho</option>
+                                                    <option value="tfa_Illinois" id="tfa_Illinois" class="">Illinois</option>
+                                                    <option value="tfa_Indiana" id="tfa_Indiana" class="">Indiana</option>
+                                                    <option value="tfa_Iowa" id="tfa_Iowa" class="">Iowa</option>
+                                                    <option value="tfa_Kansas" id="tfa_Kansas" class="">Kansas</option>
+                                                    <option value="tfa_Kentucky" id="tfa_Kentucky" class="">Kentucky</option>
+                                                    <option value="tfa_Louisiana" id="tfa_Louisiana" class="">Louisiana</option>
+                                                    <option value="tfa_Maine" id="tfa_Maine" class="">Maine</option>
+                                                    <option value="tfa_Maryland" id="tfa_Maryland" class="">Maryland</option>
+                                                    <option value="tfa_Massachusetts" id="tfa_Massachusetts" class="">Massachusetts</option>
+                                                    <option value="tfa_Michigan" id="tfa_Michigan" class="">Michigan</option>
+                                                    <option value="tfa_Minnesota" id="tfa_Minnesota" class="">Minnesota</option>
+                                                    <option value="tfa_Mississippi" id="tfa_Mississippi" class="">Mississippi</option>
+                                                    <option value="tfa_Missouri" id="tfa_Missouri" class="">Missouri</option>
+                                                    <option value="tfa_Montana" id="tfa_Montana" class="">Montana</option>
+                                                    <option value="tfa_Nebraska" id="tfa_Nebraska" class="">Nebraska</option>
+                                                    <option value="tfa_Nevada" id="tfa_Nevada" class="">Nevada</option>
+                                                    <option value="tfa_NewHampshire" id="tfa_NewHampshire" class="">New Hampshire</option>
+                                                    <option value="tfa_NewJersey" id="tfa_NewJersey" class="">New Jersey</option>
+                                                    <option value="tfa_NewMexico" id="tfa_NewMexico" class="">New Mexico</option>
+                                                    <option value="tfa_NewYork" id="tfa_NewYork" class="">New York</option>
+                                                    <option value="tfa_NorthCarolina" id="tfa_NorthCarolina" class="">North Carolina</option>
+                                                    <option value="tfa_NorthDakota" id="tfa_NorthDakota" class="">North Dakota</option>
+                                                    <option value="tfa_Ohio" id="tfa_Ohio" class="">Ohio</option>
+                                                    <option value="tfa_Oklahoma" id="tfa_Oklahoma" class="">Oklahoma</option>
+                                                    <option value="tfa_Oregon" id="tfa_Oregon" class="">Oregon</option>
+                                                    <option value="tfa_Pennsylvania" id="tfa_Pennsylvania" class="">Pennsylvania</option>
+                                                    <option value="tfa_RhodeIsland" id="tfa_RhodeIsland" class="">Rhode Island</option>
+                                                    <option value="tfa_SouthCarolina" id="tfa_SouthCarolina" class="">South Carolina</option>
+                                                    <option value="tfa_SouthDakota" id="tfa_SouthDakota" class="">South Dakota</option>
+                                                    <option value="tfa_Tennessee" id="tfa_Tennessee" class="">Tennessee</option>
+                                                    <option value="tfa_Texas" id="tfa_Texas" class="">Texas</option>
+                                                    <option value="tfa_Utah" id="tfa_Utah" class="">Utah</option>
+                                                    <option value="tfa_Vermont" id="tfa_Vermont" class="">Vermont</option>
+                                                    <option value="tfa_Virginia" id="tfa_Virginia" class="">Virginia</option>
+                                                    <option value="tfa_Washington" id="tfa_Washington" class="">Washington</option>
+                                                    <option value="tfa_WestVirginia" id="tfa_WestVirginia" class="">West Virginia</option>
+                                                    <option value="tfa_Wisconsin" id="tfa_Wisconsin" class="">Wisconsin</option>
+                                                    <option value="tfa_Wyoming" id="tfa_Wyoming" class="">Wyoming</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div id="tfa_Address-D" class="oneField">
+                                            <label id="tfa_Address-L" for="tfa_Address" class="label preField reqMark">Address <span>*</span></label>
 
-					                        <div class="inputWrapper">
-					                            <textarea cols="40" rows="4" id="tfa_Address" name="tfa_Address" class="required"></textarea>
-					                        </div>
-					                    </div>
-					                </li>
-					                <li>
-						                <div id="tfa_7-D" class="oneField hintsBelow">
-						                    <label id="tfa_7-L" for="tfa_7" class="label preField reqMark">Canonical contact <span>*</span></label>
+                                            <div class="inputWrapper">
+                                                <textarea cols="40" rows="4" id="tfa_Address" name="tfa_Address" class="required"></textarea>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div id="tfa_7-D" class="oneField hintsBelow">
+                                            <label id="tfa_7-L" for="tfa_7" class="label preField reqMark">Canonical contact <span>*</span></label>
 
-						                    <div class="inputWrapper">
-						                        <input type="text" id="tfa_7" name="tfa_7" value="" style="width: 370.7999999523163px" placeholder="" class="calc-CanContact required">
-						                        <span class="field-hint-inactive" id="tfa_7-H">
-						                            <span id="tfa_7-HH" class="hint">Please add the Canonical account manager or contact</span>
-						                        </span>
-						                    </div>
-						                </div>
-						            </li>
-						            <li>
-						            	<div class="htmlSection" id="tfa_5">
-						                    <p>By clicking "I agree" below, I confirm that I have read and understood the terms and warrant that I have authority to enter into the <a href="{{ ASSET_SERVER_URL }}1ade15ae-canonical-nda.pdf" target="_blank">confidentiality agreement</a>
-						                    </p>
-						                </div>
-						            </li>
-						            <li>
-						            	<div class="actions" id="tfa_0-A">
-						                    <input type="submit" class="primaryAction" value="I agree">
-						                </div>
-						                <div style="clear:both"></div>
-						                <input type="hidden" value="353675" name="tfa_dbFormId" id="tfa_dbFormId">
-						                <input type="hidden" value="" name="tfa_dbResponseId" id="tfa_dbResponseId">
-						                <input type="hidden" value="37a451ff42865d207e20e66dc2f54a88" name="tfa_dbControl" id="tfa_dbControl">
-						                <input type="hidden" value="2" name="tfa_dbVersionId" id="tfa_dbVersionId">
-						                <input type="hidden" value="tfa_USState" name="tfa_switchedoff" id="tfa_switchedoff">
-						            </li>
-			                    </ul>
-			            	</fieldset>
-			            </form>
-			        </div>
-			    </div>
-			</div>
-		</div>
-	</div>
+                                            <div class="inputWrapper">
+                                                <input type="text" id="tfa_7" name="tfa_7" value="" style="width: 370.7999999523163px" placeholder="" class="calc-CanContact required">
+                                                <span class="field-hint-inactive" id="tfa_7-H">
+                                                    <span id="tfa_7-HH" class="hint">Please add the Canonical account manager or contact</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="htmlSection" id="tfa_5">
+                                            <p>By clicking "I agree" below, I confirm that I have read and understood the terms and warrant that I have authority to enter into the <a href="{{ ASSET_SERVER_URL }}1ade15ae-canonical-nda.pdf" target="_blank">confidentiality agreement</a>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="actions" id="tfa_0-A">
+                                            <input type="submit" class="primaryAction" value="I agree">
+                                        </div>
+                                        <div style="clear:both"></div>
+                                        <input type="hidden" value="353675" name="tfa_dbFormId" id="tfa_dbFormId">
+                                        <input type="hidden" value="" name="tfa_dbResponseId" id="tfa_dbResponseId">
+                                        <input type="hidden" value="37a451ff42865d207e20e66dc2f54a88" name="tfa_dbControl" id="tfa_dbControl">
+                                        <input type="hidden" value="2" name="tfa_dbVersionId" id="tfa_dbVersionId">
+                                        <input type="hidden" value="tfa_USState" name="tfa_switchedoff" id="tfa_switchedoff">
+                                    </li>
+                                </ul>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div><!-- / .row -->
 {% endblock content %}

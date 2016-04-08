@@ -6,20 +6,20 @@
 <div id="insights-feed"></div>
 <script type="text/javascript">
   var feedurl="https://insights.ubuntu.com/topic/{{ level_1 }}/feed/";
-	var feedlimit=4;
+  var feedlimit=4;
   $(function() {
-  	$.getFeed({
-    	url: feedurl,
+    $.getFeed({
+      url: feedurl,
       success: function(feed) {
-      	var html = "<div class='row row-grey'><h2 class='twelve-col'>Further reading from Ubuntu Insights</h2><ul class='no-bullets vertical-divider med-six-col'><ul class='no-bullets smaller'>";
+        var html = "<div class='row row-grey'><h2 class='twelve-col'>Further reading from Ubuntu Insights</h2><ul class='no-bullets vertical-divider med-six-col'><ul class='no-bullets smaller'>";
         for(var i = 0; i < feed.items.length && i < feedlimit; i++) {
-        	var item = feed.items[i];
+          var item = feed.items[i];
           var lastClass = "";
           html += "<li class='three-col'><span class='note clearfix'>" + item.category + "</span><a href='" + item.link + "'>" + item.title + "&nbsp;&rsaquo;</a><span class='date note clearfix'>" + item.nicedate + "</span></li>"
         }
         html += "</ul><p><a href='http://insights.ubuntu.com'>Read more on Ubuntu Insights&nbsp;&rsaquo;</a></p></div>";
         if ($('#insights-feed')) {
-        	$('#insights-feed').append(html);
+          $('#insights-feed').append(html);
         }
       }
     });

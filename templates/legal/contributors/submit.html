@@ -22,16 +22,16 @@
 
 function custom_validation(id, class_info)
 {
-	base2.DOM.Element.addEventListener(document,'DOMContentLoaded',
-	function()
-	{
-		try {document.getElementById(id).className += " " + class_info;}
-		catch(err)
-		{
-			throw new Error("Custom validation could not be applied to field " + id);
-		}
-	},
-	false);
+    base2.DOM.Element.addEventListener(document,'DOMContentLoaded',
+    function()
+    {
+        try {document.getElementById(id).className += " " + class_info;}
+        catch(err)
+        {
+            throw new Error("Custom validation could not be applied to field " + id);
+        }
+    },
+    false);
 }
 
 // validate-length validates string does not exceed given number of chars
@@ -40,13 +40,13 @@ wFORMS.behaviors.validation.rules.isUnderLimit   = { selector: ".validate-length
 wFORMS.behaviors.validation.messages.isUnderLimit = "This text is too long.";
 
 wFORMS.behaviors.validation.instance.prototype.isUnderLimit = function(element, value) {
-	var pattern = new RegExp(/validate-length (\d*)/i);
-	var matches = element.className.match(pattern);
+    var pattern = new RegExp(/validate-length (\d*)/i);
+    var matches = element.className.match(pattern);
 
-	if(matches && matches[1]) {
-		return (value.length <= matches[1]);
-	}
-	return true;
+    if(matches && matches[1]) {
+        return (value.length <= matches[1]);
+    }
+    return true;
 };
 
 
@@ -59,19 +59,19 @@ wFORMS.behaviors.validation.rules.isAWSAccountNumber = { selector: ".validate-aw
 wFORMS.behaviors.validation.messages.isAWSAccountNumber = "Not a valid Amazon AWS Account number (expected format '1234-5678-0987')";
 
 wFORMS.behaviors.validation.instance.prototype.validateAWSAccountNumber = function(element, value) {
-	var regexp = /^(\d-?){12,12}$/;
-	return this.isEmpty(value) || regexp.test(value);
+    var regexp = /^(\d-?){12,12}$/;
+    return this.isEmpty(value) || regexp.test(value);
 };
 
 
 </script>
 <style type="text/css" media="screen">
 .supportInfo {
-	display: none;
+    display: none;
 }
 
 .offstate-b {
-	display: none;
+    display: none;
 }
 
 div.error, div.ok {
@@ -105,15 +105,15 @@ div.ok {
 {% block title %}Submit contributor agreement | Contributors{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Legal" subsection_title="Contributors" page_title="How to submit" %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Legal" subsection_title="Contributors" page_title="How to submit" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row row-hero no-border">
-	<div class="eight-col">
-		<h1>Submit contributor agreement</h1>
-		<p>Before you contribute to one of our open source projects, you must complete all the fields in this form, sign it and return it to Canonical. Please make sure you have your Launchpad ID at the ready. If you don&rsquo;t have one, you can create one now at <a href="http://launchpad.net">launchpad.net</a>.</p>
-		<p>All fields are required.</p>
+    <div class="eight-col">
+        <h1>Submit contributor agreement</h1>
+        <p>Before you contribute to one of our open source projects, you must complete all the fields in this form, sign it and return it to Canonical. Please make sure you have your Launchpad ID at the ready. If you don&rsquo;t have one, you can create one now at <a href="http://launchpad.net">launchpad.net</a>.</p>
+        <p>All fields are required.</p>
 
 <div  id="faform_form_container">
 
@@ -121,25 +121,25 @@ div.ok {
 <div class="wForm wFormdefaultWidth"><form method="post" action="https://www.tfaforms.com/responses/processor" id="id2661064" class="labelsAbove hintsTooltip">{% csrf_token %}<div style='display:none;'><!--<input type='hidden'  name='csrfmiddlewaretoken' value='c011ac6471cd39153410b2f332745f42' />--></div>
 <fieldset class="fieldset-1">
 <div id="tfa_Agreementtype1-D" class="oneField">
-	<h3>Agreement type</h3>
-	<div id="tfa_Agreementtype1" class="choices required">
-		<p class="oneChoice">
-			<input type="radio" value="tfa_Iamsigningasanin1" class="switch-c" id="tfa_Iamsigningasanin1" name="tfa_Agreementtype1">
-			<label for="tfa_Iamsigningasanin1" class="postField">I am signing as an individual contributor.</label>
-		</p>
-		<p class="oneChoice">
-			<input type="radio" value="tfa_Iamsigningonbeha1" class="switch-d" id="tfa_Iamsigningonbeha1" name="tfa_Agreementtype1">
-			<label for="tfa_Iamsigningonbeha1" class="postField">I am signing on behalf of an organization, foundation, company or other entity, which may have multiple contributors.</label>
-		</p>
-	</div>
+    <h3>Agreement type</h3>
+    <div id="tfa_Agreementtype1" class="choices required">
+        <p class="oneChoice">
+            <input type="radio" value="tfa_Iamsigningasanin1" class="switch-c" id="tfa_Iamsigningasanin1" name="tfa_Agreementtype1">
+            <label for="tfa_Iamsigningasanin1" class="postField">I am signing as an individual contributor.</label>
+        </p>
+        <p class="oneChoice">
+            <input type="radio" value="tfa_Iamsigningonbeha1" class="switch-d" id="tfa_Iamsigningonbeha1" name="tfa_Agreementtype1">
+            <label for="tfa_Iamsigningonbeha1" class="postField">I am signing on behalf of an organization, foundation, company or other entity, which may have multiple contributors.</label>
+        </p>
+    </div>
 </div>
 </fieldset>
 <fieldset id="tfa_CanonicalIndivid" class="wfSection offstate-c">
-	<h2>Canonical Individual Contributor License Agreement</h2>
-		<div class="htmlsection" id="html-tmp-7480075684173">
-			<p class="text-body-lead-western">Thank you for your interest in contributing to software projects managed by Canonical (&ldquo;We&rdquo; or &ldquo;Us&rdquo;).</p>
-			<p class="text-body-lead-western"><span style="color: #000000;">This contributor agreement (&ldquo;Agreement&rdquo;) documents the rights granted by contributors to Us. To make this document effective, please sign it and send it to Us by email <span style="color: #000000;">or electronic submission</span>, following the instructions at <a href="/legal/contributors" class="external">www.canonical.com/contributors</a>. This is a legally binding document, so please read it carefully before agreeing to it. The Agreement may cover more than one software project managed by Us.</span></p>
-		<h3 class="western">1. Definitions</h3>
+    <h2>Canonical Individual Contributor License Agreement</h2>
+        <div class="htmlsection" id="html-tmp-7480075684173">
+            <p class="text-body-lead-western">Thank you for your interest in contributing to software projects managed by Canonical (&ldquo;We&rdquo; or &ldquo;Us&rdquo;).</p>
+            <p class="text-body-lead-western"><span style="color: #000000;">This contributor agreement (&ldquo;Agreement&rdquo;) documents the rights granted by contributors to Us. To make this document effective, please sign it and send it to Us by email <span style="color: #000000;">or electronic submission</span>, following the instructions at <a href="/legal/contributors" class="external">www.canonical.com/contributors</a>. This is a legally binding document, so please read it carefully before agreeing to it. The Agreement may cover more than one software project managed by Us.</span></p>
+        <h3 class="western">1. Definitions</h3>
 <p>&ldquo;You&rdquo; means the individual who Submits a Contribution to Us.</p>
 <p>&ldquo;Contribution&rdquo; means any work of authorship that is Submitted by You to Us in which You own or assert ownership of the Copyright. If You do not own the Copyright in the entire work of authorship, please follow the instructions in <a href="/legal/contributors" class="external">www.canonical.com/contributors</a>.</p>
 <p>&ldquo;Copyright&rdquo; means all rights protecting works of authorship owned or controlled by You, including copyright, moral and neighboring rights, as appropriate, for the full term of their existence including any extensions by You.</p>
@@ -230,363 +230,363 @@ div.ok {
 </div>
 </fieldset>
 <fieldset id="tfa_Yourcontactdetai1" class="wfSection fieldset-2">
-	<h3>Your contact details</h3>
-		<ul class="no-bullets">
-			<li>
-				<div id="tfa_Firstname1-D" class="oneField">
-					<label class="preField" for="tfa_Firstname1">First name</label> <input type="text" id="tfa_Firstname1" name="tfa_Firstname1" value="" size="40" class="required">
-				</div>
-			</li>
-			<li>
-				<div id="tfa_Lastname1-D" class="oneField">
-					<label class="preField" for="tfa_Lastname1">Last name</label> <input type="text" id="tfa_Lastname1" name="tfa_Lastname1" value="" size="40" class="required">
-				</div>
-			</li>
-			<li>
-				<div id="tfa_Email1-D" class="oneField">
-					<label class="preField" for="tfa_Email1">Email</label>
-					<input type="text" id="tfa_Email1" name="tfa_Email1" value="" size="40" class="validate-email required">
-				</div>
-			</li>
-			<li>
-				<div id="tfa_Phone-D" class="oneField">
-				<label class="preField" for="tfa_Phone">Phone</label> <input type="text" id="tfa_Phone" name="tfa_Phone" value="" size="40" class="required">
-				</div>
-			</li>
-			<li>
-				<label class="preField" for="tfa_LPid">Launchpad ID (<a id="lp_help" href="//login.launchpad.net">Don't know your Launchpad ID?</a>)</label>
-				<input id="tfa_Openid" name="tfa_Openid" value="" class="" type="hidden">
-				<input id="tfa_LPid" name="tfa_LPid" value="" class="" type="text">
-				<span class="input-help"><span id="lp_error" class="errMsg"></span></span>
-			</li>
-			<li>
-				<div id="tfa_Address-D" class="oneField">
-					<label class="preField" for="tfa_Address">Address</label>
-					<textarea cols="40" rows="4" id="tfa_Address" name="tfa_Address" class="required"></textarea>
-				</div>
-			</li>
-			<li>
-				<div id="tfa_Country-D" class="oneField">
-				<label class="preField" for="tfa_Country">Country</label>
-				<select id="tfa_Country" name="tfa_Country" class="required">
-				<option value="">Please select...</option>
-				<option value="tfa_Afghanistan" class="">Afghanistan</option>
-				<option value="tfa_Albania" class="">Albania</option>
-				<option value="tfa_Algeria" class="">Algeria</option>
-				<option value="tfa_AmericanSamoa" class="">American Samoa</option>
-				<option value="tfa_Andorra" class="">Andorra</option>
-				<option value="tfa_Angola" class="">Angola</option>
-				<option value="tfa_Anguilla" class="">Anguilla</option>
-				<option value="tfa_Antarctica" class="">Antarctica</option>
-				<option value="tfa_AntiguaandBarbud" class="">Antigua and Barbuda</option>
-				<option value="tfa_Argentina" class="">Argentina</option>
-				<option value="tfa_Armenia" class="">Armenia</option>
-				<option value="tfa_Aruba" class="">Aruba</option>
-				<option value="tfa_Australia" class="">Australia</option>
-				<option value="tfa_Austria" class="">Austria</option>
-				<option value="tfa_Azerbaijan" class="">Azerbaijan</option>
-				<option value="tfa_Bahamas" class="">Bahamas</option>
-				<option value="tfa_Bahrain" class="">Bahrain</option>
-				<option value="tfa_Bangladesh" class="">Bangladesh</option>
-				<option value="tfa_Barbados" class="">Barbados</option>
-				<option value="tfa_Belarus" class="">Belarus</option>
-				<option value="tfa_Belgium" class="">Belgium</option>
-				<option value="tfa_Belize" class="">Belize</option>
-				<option value="tfa_Benin" class="">Benin</option>
-				<option value="tfa_Bermuda" class="">Bermuda</option>
-				<option value="tfa_Bhutan" class="">Bhutan</option>
-				<option value="tfa_Bolivia" class="">Bolivia</option>
-				<option value="tfa_BosniaandHerzego" class="">Bosnia and Herzegovina</option>
-				<option value="tfa_Botswana" class="">Botswana</option>
-				<option value="tfa_BouvetIsland" class="">Bouvet Island</option>
-				<option value="tfa_Brazil" class="">Brazil</option>
-				<option value="tfa_BritishIndianOce" class="">British Indian Ocean Territory</option>
-				<option value="tfa_Brunei" class="">Brunei</option>
-				<option value="tfa_Bulgaria" class="">Bulgaria</option>
-				<option value="tfa_BurkinaFaso" class="">Burkina Faso</option>
-				<option value="tfa_Burundi" class="">Burundi</option>
-				<option value="tfa_Cambodia" class="">Cambodia</option>
-				<option value="tfa_Cameroon" class="">Cameroon</option>
-				<option value="tfa_Canada" class="">Canada</option>
-				<option value="tfa_CapeVerde" class="">Cape Verde</option>
-				<option value="tfa_CaymanIslands" class="">Cayman Islands</option>
-				<option value="tfa_CentralAfricanRe" class="">Central African Republic</option>
-				<option value="tfa_Chad" class="">Chad</option>
-				<option value="tfa_Chile" class="">Chile</option>
-				<option value="tfa_China" class="">China</option>
-				<option value="tfa_ChristmasIsland" class="">Christmas Island</option>
-				<option value="tfa_CocosKeelingIsla" class="">Cocos ( Keeling ) Islands</option>
-				<option value="tfa_Colombia" class="">Colombia</option>
-				<option value="tfa_Comoros" class="">Comoros</option>
-				<option value="tfa_Congo" class="">Congo</option>
-				<option value="tfa_CookIslands" class="">Cook Islands</option>
-				<option value="tfa_CostaRica" class="">Costa Rica</option>
-				<option value="tfa_CtedIvoire" class="">Côte d ' Ivoire</option>
-				<option value="tfa_CroatiaHrvatska" class="">Croatia ( Hrvatska )</option>
-				<option value="tfa_Cuba" class="">Cuba</option>
-				<option value="tfa_Cyprus" class="">Cyprus</option>
-				<option value="tfa_CzechRepublic" class="">Czech Republic</option>
-				<option value="tfa_CongoDRC" class="">Congo ( DRC )</option>
-				<option value="tfa_Denmark" class="">Denmark</option>
-				<option value="tfa_Djibouti" class="">Djibouti</option>
-				<option value="tfa_Dominica" class="">Dominica</option>
-				<option value="tfa_DominicanRepubli" class="">Dominican Republic</option>
-				<option value="tfa_EastTimor" class="">East Timor</option>
-				<option value="tfa_Ecuador" class="">Ecuador</option>
-				<option value="tfa_Egypt" class="">Egypt</option>
-				<option value="tfa_ElSalvador" class="">El Salvador</option>
-				<option value="tfa_EquatorialGuinea" class="">Equatorial Guinea</option>
-				<option value="tfa_Eritrea" class="">Eritrea</option>
-				<option value="tfa_Estonia" class="">Estonia</option>
-				<option value="tfa_Ethiopia" class="">Ethiopia</option>
-				<option value="tfa_FalklandIslandsI" class="">Falkland Islands ( Islas Malvinas )</option>
-				<option value="tfa_FaroeIslands" class="">Faroe Islands</option>
-				<option value="tfa_FijiIslands" class="">Fiji Islands</option>
-				<option value="tfa_Finland" class="">Finland</option>
-				<option value="tfa_France" class="">France</option>
-				<option value="tfa_FrenchGuiana" class="">French Guiana</option>
-				<option value="tfa_FrenchPolynesia" class="">French Polynesia</option>
-				<option value="tfa_FrenchSouthernan" class="">French Southern and Antarctic Lands</option>
-				<option value="tfa_Gabon" class="">Gabon</option>
-				<option value="tfa_Gambia" class="">Gambia</option>
-				<option value="tfa_Georgia" class="">Georgia</option>
-				<option value="tfa_Germany" class="">Germany</option>
-				<option value="tfa_Ghana" class="">Ghana</option>
-				<option value="tfa_Gibraltar" class="">Gibraltar</option>
-				<option value="tfa_Greece" class="">Greece</option>
-				<option value="tfa_Greenland" class="">Greenland</option>
-				<option value="tfa_Grenada" class="">Grenada</option>
-				<option value="tfa_Guadeloupe" class="">Guadeloupe</option>
-				<option value="tfa_Guam" class="">Guam</option>
-				<option value="tfa_Guatemala" class="">Guatemala</option>
-				<option value="tfa_Guinea" class="">Guinea</option>
-				<option value="tfa_GuineaBissau" class="">Guinea-Bissau</option>
-				<option value="tfa_Guyana" class="">Guyana</option>
-				<option value="tfa_Haiti" class="">Haiti</option>
-				<option value="tfa_HeardIslandandMc" class="">Heard Island and McDonald Islands</option>
-				<option value="tfa_Honduras" class="">Honduras</option>
-				<option value="tfa_HongKongSAR" class="">Hong Kong SAR</option>
-				<option value="tfa_Hungary" class="">Hungary</option>
-				<option value="tfa_Iceland" class="">Iceland</option>
-				<option value="tfa_India" class="">India</option>
-				<option value="tfa_Indonesia" class="">Indonesia</option>
-				<option value="tfa_Iran" class="">Iran</option>
-				<option value="tfa_Iraq" class="">Iraq</option>
-				<option value="tfa_Ireland" class="">Ireland</option>
-				<option value="tfa_Israel" class="">Israel</option>
-				<option value="tfa_Italy" class="">Italy</option>
-				<option value="tfa_Jamaica" class="">Jamaica</option>
-				<option value="tfa_Japan" class="">Japan</option>
-				<option value="tfa_Jordan" class="">Jordan</option>
-				<option value="tfa_Kazakhstan" class="">Kazakhstan</option>
-				<option value="tfa_Kenya" class="">Kenya</option>
-				<option value="tfa_Kiribati" class="">Kiribati</option>
-				<option value="tfa_Korea" class="">Korea</option>
-				<option value="tfa_Kuwait" class="">Kuwait</option>
-				<option value="tfa_Kyrgyzstan" class="">Kyrgyzstan</option>
-				<option value="tfa_Laos" class="">Laos</option>
-				<option value="tfa_Latvia" class="">Latvia</option>
-				<option value="tfa_Lebanon" class="">Lebanon</option>
-				<option value="tfa_Lesotho" class="">Lesotho</option>
-				<option value="tfa_Liberia" class="">Liberia</option>
-				<option value="tfa_Libya" class="">Libya</option>
-				<option value="tfa_Liechtenstein" class="">Liechtenstein</option>
-				<option value="tfa_Lithuania" class="">Lithuania</option>
-				<option value="tfa_Luxembourg" class="">Luxembourg</option>
-				<option value="tfa_MacaoSAR" class="">Macao SAR</option>
-				<option value="tfa_MacedoniaFormerY" class="">Macedonia, Former Yugoslav Republic of</option>
-				<option value="tfa_Madagascar" class="">Madagascar</option>
-				<option value="tfa_Malawi" class="">Malawi</option>
-				<option value="tfa_Malaysia" class="">Malaysia</option>
-				<option value="tfa_Maldives" class="">Maldives</option>
-				<option value="tfa_Mali" class="">Mali</option>
-				<option value="tfa_Malta" class="">Malta</option>
-				<option value="tfa_MarshallIslands" class="">Marshall Islands</option>
-				<option value="tfa_Martinique" class="">Martinique</option>
-				<option value="tfa_Mauritania" class="">Mauritania</option>
-				<option value="tfa_Mauritius" class="">Mauritius</option>
-				<option value="tfa_Mayotte" class="">Mayotte</option>
-				<option value="tfa_Mexico" class="">Mexico</option>
-				<option value="tfa_Micronesia" class="">Micronesia</option>
-				<option value="tfa_Moldova" class="">Moldova</option>
-				<option value="tfa_Monaco" class="">Monaco</option>
-				<option value="tfa_Mongolia" class="">Mongolia</option>
-				<option value="tfa_Montserrat" class="">Montserrat</option>
-				<option value="tfa_Morocco" class="">Morocco</option>
-				<option value="tfa_Mozambique" class="">Mozambique</option>
-				<option value="tfa_Myanmar" class="">Myanmar</option>
-				<option value="tfa_Namibia" class="">Namibia</option>
-				<option value="tfa_Nauru" class="">Nauru</option>
-				<option value="tfa_Nepal" class="">Nepal</option>
-				<option value="tfa_Netherlands" class="">Netherlands</option>
-				<option value="tfa_NetherlandsAntil" class="">Netherlands Antilles</option>
-				<option value="tfa_NewCaledonia" class="">New Caledonia</option>
-				<option value="tfa_NewZealand" class="">New Zealand</option>
-				<option value="tfa_Nicaragua" class="">Nicaragua</option>
-				<option value="tfa_Niger" class="">Niger</option>
-				<option value="tfa_Nigeria" class="">Nigeria</option>
-				<option value="tfa_Niue" class="">Niue</option>
-				<option value="tfa_NorfolkIsland" class="">Norfolk Island</option>
-				<option value="tfa_NorthKorea" class="">North Korea</option>
-				<option value="tfa_NorthernMarianaI" class="">Northern Mariana Islands</option>
-				<option value="tfa_Norway" class="">Norway</option>
-				<option value="tfa_Oman" class="">Oman</option>
-				<option value="tfa_Pakistan" class="">Pakistan</option>
-				<option value="tfa_Palau" class="">Palau</option>
-				<option value="tfa_Panama" class="">Panama</option>
-				<option value="tfa_PapuaNewGuinea" class="">Papua New Guinea</option>
-				<option value="tfa_Paraguay" class="">Paraguay</option>
-				<option value="tfa_Peru" class="">Peru</option>
-				<option value="tfa_Philippines" class="">Philippines</option>
-				<option value="tfa_PitcairnIslands" class="">Pitcairn Islands</option>
-				<option value="tfa_Poland" class="">Poland</option>
-				<option value="tfa_Portugal" class="">Portugal</option>
-				<option value="tfa_PuertoRico" class="">Puerto Rico</option>
-				<option value="tfa_Qatar" class="">Qatar</option>
-				<option value="tfa_Reunion" class="">Reunion</option>
-				<option value="tfa_Romania" class="">Romania</option>
-				<option value="tfa_Russia" class="">Russia</option>
-				<option value="tfa_Rwanda" class="">Rwanda</option>
-				<option value="tfa_Samoa" class="">Samoa</option>
-				<option value="tfa_SanMarino" class="">San Marino</option>
-				<option value="tfa_SoTomandPrncipe" class="">São Tomé and Prìncipe</option>
-				<option value="tfa_SaudiArabia" class="">Saudi Arabia</option>
-				<option value="tfa_Senegal" class="">Senegal</option>
-				<option value="tfa_SerbiaandMontene" class="">Serbia and Montenegro</option>
-				<option value="tfa_Seychelles" class="">Seychelles</option>
-				<option value="tfa_SierraLeone" class="">Sierra Leone</option>
-				<option value="tfa_Singapore" class="">Singapore</option>
-				<option value="tfa_Slovakia" class="">Slovakia</option>
-				<option value="tfa_Slovenia" class="">Slovenia</option>
-				<option value="tfa_SolomonIslands" class="">Solomon Islands</option>
-				<option value="tfa_Somalia" class="">Somalia</option>
-				<option value="tfa_SouthAfrica" class="">South Africa</option>
-				<option value="tfa_SouthGeorgiaandt" class="">South Georgia and the South Sandwich Islands</option>
-				<option value="tfa_Spain" class="">Spain</option>
-				<option value="tfa_SriLanka" class="">Sri Lanka</option>
-				<option value="tfa_StHelena" class="">St. Helena</option>
-				<option value="tfa_StKittsandNevis" class="">St. Kitts and Nevis</option>
-				<option value="tfa_StLucia" class="">St. Lucia</option>
-				<option value="tfa_StPierreandMique" class="">St. Pierre and Miquelon</option>
-				<option value="tfa_StVincentandtheG" class="">St. Vincent and the Grenadines</option>
-				<option value="tfa_Sudan" class="">Sudan</option>
-				<option value="tfa_Suriname" class="">Suriname</option>
-				<option value="tfa_SvalbardandJanMa" class="">Svalbard and Jan Mayen</option>
-				<option value="tfa_Swaziland" class="">Swaziland</option>
-				<option value="tfa_Sweden" class="">Sweden</option>
-				<option value="tfa_Switzerland" class="">Switzerland</option>
-				<option value="tfa_Syria" class="">Syria</option>
-				<option value="tfa_Taiwan" class="">Taiwan</option>
-				<option value="tfa_Tajikistan" class="">Tajikistan</option>
-				<option value="tfa_Tanzania" class="">Tanzania</option>
-				<option value="tfa_Thailand" class="">Thailand</option>
-				<option value="tfa_Togo" class="">Togo</option>
-				<option value="tfa_Tokelau" class="">Tokelau</option>
-				<option value="tfa_Tonga" class="">Tonga</option>
-				<option value="tfa_TrinidadandTobag" class="">Trinidad and Tobago</option>
-				<option value="tfa_Tunisia" class="">Tunisia</option>
-				<option value="tfa_Turkey" class="">Turkey</option>
-				<option value="tfa_Turkmenistan" class="">Turkmenistan</option>
-				<option value="tfa_TurksandCaicosIs" class="">Turks and Caicos Islands</option>
-				<option value="tfa_Tuvalu" class="">Tuvalu</option>
-				<option value="tfa_Uganda" class="">Uganda</option>
-				<option value="tfa_Ukraine" class="">Ukraine</option>
-				<option value="tfa_UnitedArabEmirat" class="">United Arab Emirates</option>
-				<option value="tfa_UnitedKingdom" class="">United Kingdom</option>
-				<option value="tfa_UnitedStates" class="switch-b">United States</option>
-				<option value="tfa_UnitedStatesMino" class="">United States Minor Outlying Islands</option>
-				<option value="tfa_Uruguay" class="">Uruguay</option>
-				<option value="tfa_Uzbekistan" class="">Uzbekistan</option>
-				<option value="tfa_Vanuatu" class="">Vanuatu</option>
-				<option value="tfa_VaticanCity" class="">Vatican City</option>
-				<option value="tfa_Venezuela" class="">Venezuela</option>
-				<option value="tfa_VietNam" class="">Viet Nam</option>
-				<option value="tfa_VirginIslandsBri" class="">Virgin Islands ( British )</option>
-				<option value="tfa_VirginIslands" class="">Virgin Islands</option>
-				<option value="tfa_WallisandFutuna" class="">Wallis and Futuna</option>
-				<option value="tfa_Yemen" class="">Yemen</option>
-				<option value="tfa_Zambia" class="">Zambia</option>
-				<option value="tfa_Zimbabwe" class="">Zimbabwe</option></select>
-				</div>
-			</li>
-			<li>
-				<div id="tfa_USState-D" class="oneField offstate-b">
-				<label class="preField" for="tfa_USState">US state</label> <select id="tfa_USState" name="tfa_USState" class="required">
-				<option value="">Please select...</option>
-				<option value="tfa_Alabama" class="">Alabama</option>
-				<option value="tfa_Alaska" class="">Alaska</option>
-				<option value="tfa_Arizona" class="">Arizona</option>
-				<option value="tfa_Arkansas" class="">Arkansas</option>
-				<option value="tfa_California" class="">California</option>
-				<option value="tfa_Colorado" class="">Colorado</option>
-				<option value="tfa_Connecticut" class="">Connecticut</option>
-				<option value="tfa_Delaware" class="">Delaware</option>
-				<option value="tfa_Florida" class="">Florida</option>
-				<option value="tfa_Georgia1" class="">Georgia</option>
-				<option value="tfa_Hawaii" class="">Hawaii</option>
-				<option value="tfa_Idaho" class="">Idaho</option>
-				<option value="tfa_Illinois" class="">Illinois</option>
-				<option value="tfa_Indiana" class="">Indiana</option>
-				<option value="tfa_Iowa" class="">Iowa</option>
-				<option value="tfa_Kansas" class="">Kansas</option>
-				<option value="tfa_Kentucky" class="">Kentucky</option>
-				<option value="tfa_Louisiana" class="">Louisiana</option>
-				<option value="tfa_Maine" class="">Maine</option>
-				<option value="tfa_Maryland" class="">Maryland</option>
-				<option value="tfa_Massachusetts" class="">Massachusetts</option>
-				<option value="tfa_Michigan" class="">Michigan</option>
-				<option value="tfa_Minnesota" class="">Minnesota</option>
-				<option value="tfa_Mississippi" class="">Mississippi</option>
-				<option value="tfa_Missouri" class="">Missouri</option>
-				<option value="tfa_Montana" class="">Montana</option>
-				<option value="tfa_Nebraska" class="">Nebraska</option>
-				<option value="tfa_Nevada" class="">Nevada</option>
-				<option value="tfa_NewHampshire" class="">New Hampshire</option>
-				<option value="tfa_NewJersey" class="">New Jersey</option>
-				<option value="tfa_NewMexico" class="">New Mexico</option>
-				<option value="tfa_NewYork" class="">New York</option>
-				<option value="tfa_NorthCarolina" class="">North Carolina</option>
-				<option value="tfa_NorthDakota" class="">North Dakota</option>
-				<option value="tfa_Ohio" class="">Ohio</option>
-				<option value="tfa_Oklahoma" class="">Oklahoma</option>
-				<option value="tfa_Oregon" class="">Oregon</option>
-				<option value="tfa_Pennsylvania" class="">Pennsylvania</option>
-				<option value="tfa_RhodeIsland" class="">Rhode Island</option>
-				<option value="tfa_SouthCarolina" class="">South Carolina</option>
-				<option value="tfa_SouthDakota" class="">South Dakota</option>
-				<option value="tfa_Tennessee" class="">Tennessee</option>
-				<option value="tfa_Texas" class="">Texas</option>
-				<option value="tfa_Utah" class="">Utah</option>
-				<option value="tfa_Vermont" class="">Vermont</option>
-				<option value="tfa_Virginia" class="">Virginia</option>
-				<option value="tfa_Washington" class="">Washington</option>
-				<option value="tfa_WestVirginia" class="">West Virginia</option>
-				<option value="tfa_Wisconsin" class="">Wisconsin</option>
-				<option value="tfa_Wyoming" class="">Wyoming</option></select>
-				</div>
-			</li>
-		</ul>
-	</fieldset>
-	<fieldset class="fieldset-3">
-		<h3>Project contact</h3>
-		<ul class="no-bullets">
-			<li>
-				<div id="tfa_PleaseaddtheCano-D" class="oneField">
-					<label class="preField" for="tfa_PleaseaddtheCano">Please add the Canonical Project Manager or contact</label>
-					<input type="text" id="tfa_PleaseaddtheCano" name="tfa_PleaseaddtheCano" value="" size="40" class="required">
-				</div>
-			</li>
-		</ul>
-	</fieldset>
+    <h3>Your contact details</h3>
+        <ul class="no-bullets">
+            <li>
+                <div id="tfa_Firstname1-D" class="oneField">
+                    <label class="preField" for="tfa_Firstname1">First name</label> <input type="text" id="tfa_Firstname1" name="tfa_Firstname1" value="" size="40" class="required">
+                </div>
+            </li>
+            <li>
+                <div id="tfa_Lastname1-D" class="oneField">
+                    <label class="preField" for="tfa_Lastname1">Last name</label> <input type="text" id="tfa_Lastname1" name="tfa_Lastname1" value="" size="40" class="required">
+                </div>
+            </li>
+            <li>
+                <div id="tfa_Email1-D" class="oneField">
+                    <label class="preField" for="tfa_Email1">Email</label>
+                    <input type="text" id="tfa_Email1" name="tfa_Email1" value="" size="40" class="validate-email required">
+                </div>
+            </li>
+            <li>
+                <div id="tfa_Phone-D" class="oneField">
+                <label class="preField" for="tfa_Phone">Phone</label> <input type="text" id="tfa_Phone" name="tfa_Phone" value="" size="40" class="required">
+                </div>
+            </li>
+            <li>
+                <label class="preField" for="tfa_LPid">Launchpad ID (<a id="lp_help" href="//login.launchpad.net">Don't know your Launchpad ID?</a>)</label>
+                <input id="tfa_Openid" name="tfa_Openid" value="" class="" type="hidden">
+                <input id="tfa_LPid" name="tfa_LPid" value="" class="" type="text">
+                <span class="input-help"><span id="lp_error" class="errMsg"></span></span>
+            </li>
+            <li>
+                <div id="tfa_Address-D" class="oneField">
+                    <label class="preField" for="tfa_Address">Address</label>
+                    <textarea cols="40" rows="4" id="tfa_Address" name="tfa_Address" class="required"></textarea>
+                </div>
+            </li>
+            <li>
+                <div id="tfa_Country-D" class="oneField">
+                <label class="preField" for="tfa_Country">Country</label>
+                <select id="tfa_Country" name="tfa_Country" class="required">
+                <option value="">Please select...</option>
+                <option value="tfa_Afghanistan" class="">Afghanistan</option>
+                <option value="tfa_Albania" class="">Albania</option>
+                <option value="tfa_Algeria" class="">Algeria</option>
+                <option value="tfa_AmericanSamoa" class="">American Samoa</option>
+                <option value="tfa_Andorra" class="">Andorra</option>
+                <option value="tfa_Angola" class="">Angola</option>
+                <option value="tfa_Anguilla" class="">Anguilla</option>
+                <option value="tfa_Antarctica" class="">Antarctica</option>
+                <option value="tfa_AntiguaandBarbud" class="">Antigua and Barbuda</option>
+                <option value="tfa_Argentina" class="">Argentina</option>
+                <option value="tfa_Armenia" class="">Armenia</option>
+                <option value="tfa_Aruba" class="">Aruba</option>
+                <option value="tfa_Australia" class="">Australia</option>
+                <option value="tfa_Austria" class="">Austria</option>
+                <option value="tfa_Azerbaijan" class="">Azerbaijan</option>
+                <option value="tfa_Bahamas" class="">Bahamas</option>
+                <option value="tfa_Bahrain" class="">Bahrain</option>
+                <option value="tfa_Bangladesh" class="">Bangladesh</option>
+                <option value="tfa_Barbados" class="">Barbados</option>
+                <option value="tfa_Belarus" class="">Belarus</option>
+                <option value="tfa_Belgium" class="">Belgium</option>
+                <option value="tfa_Belize" class="">Belize</option>
+                <option value="tfa_Benin" class="">Benin</option>
+                <option value="tfa_Bermuda" class="">Bermuda</option>
+                <option value="tfa_Bhutan" class="">Bhutan</option>
+                <option value="tfa_Bolivia" class="">Bolivia</option>
+                <option value="tfa_BosniaandHerzego" class="">Bosnia and Herzegovina</option>
+                <option value="tfa_Botswana" class="">Botswana</option>
+                <option value="tfa_BouvetIsland" class="">Bouvet Island</option>
+                <option value="tfa_Brazil" class="">Brazil</option>
+                <option value="tfa_BritishIndianOce" class="">British Indian Ocean Territory</option>
+                <option value="tfa_Brunei" class="">Brunei</option>
+                <option value="tfa_Bulgaria" class="">Bulgaria</option>
+                <option value="tfa_BurkinaFaso" class="">Burkina Faso</option>
+                <option value="tfa_Burundi" class="">Burundi</option>
+                <option value="tfa_Cambodia" class="">Cambodia</option>
+                <option value="tfa_Cameroon" class="">Cameroon</option>
+                <option value="tfa_Canada" class="">Canada</option>
+                <option value="tfa_CapeVerde" class="">Cape Verde</option>
+                <option value="tfa_CaymanIslands" class="">Cayman Islands</option>
+                <option value="tfa_CentralAfricanRe" class="">Central African Republic</option>
+                <option value="tfa_Chad" class="">Chad</option>
+                <option value="tfa_Chile" class="">Chile</option>
+                <option value="tfa_China" class="">China</option>
+                <option value="tfa_ChristmasIsland" class="">Christmas Island</option>
+                <option value="tfa_CocosKeelingIsla" class="">Cocos ( Keeling ) Islands</option>
+                <option value="tfa_Colombia" class="">Colombia</option>
+                <option value="tfa_Comoros" class="">Comoros</option>
+                <option value="tfa_Congo" class="">Congo</option>
+                <option value="tfa_CookIslands" class="">Cook Islands</option>
+                <option value="tfa_CostaRica" class="">Costa Rica</option>
+                <option value="tfa_CtedIvoire" class="">Côte d ' Ivoire</option>
+                <option value="tfa_CroatiaHrvatska" class="">Croatia ( Hrvatska )</option>
+                <option value="tfa_Cuba" class="">Cuba</option>
+                <option value="tfa_Cyprus" class="">Cyprus</option>
+                <option value="tfa_CzechRepublic" class="">Czech Republic</option>
+                <option value="tfa_CongoDRC" class="">Congo ( DRC )</option>
+                <option value="tfa_Denmark" class="">Denmark</option>
+                <option value="tfa_Djibouti" class="">Djibouti</option>
+                <option value="tfa_Dominica" class="">Dominica</option>
+                <option value="tfa_DominicanRepubli" class="">Dominican Republic</option>
+                <option value="tfa_EastTimor" class="">East Timor</option>
+                <option value="tfa_Ecuador" class="">Ecuador</option>
+                <option value="tfa_Egypt" class="">Egypt</option>
+                <option value="tfa_ElSalvador" class="">El Salvador</option>
+                <option value="tfa_EquatorialGuinea" class="">Equatorial Guinea</option>
+                <option value="tfa_Eritrea" class="">Eritrea</option>
+                <option value="tfa_Estonia" class="">Estonia</option>
+                <option value="tfa_Ethiopia" class="">Ethiopia</option>
+                <option value="tfa_FalklandIslandsI" class="">Falkland Islands ( Islas Malvinas )</option>
+                <option value="tfa_FaroeIslands" class="">Faroe Islands</option>
+                <option value="tfa_FijiIslands" class="">Fiji Islands</option>
+                <option value="tfa_Finland" class="">Finland</option>
+                <option value="tfa_France" class="">France</option>
+                <option value="tfa_FrenchGuiana" class="">French Guiana</option>
+                <option value="tfa_FrenchPolynesia" class="">French Polynesia</option>
+                <option value="tfa_FrenchSouthernan" class="">French Southern and Antarctic Lands</option>
+                <option value="tfa_Gabon" class="">Gabon</option>
+                <option value="tfa_Gambia" class="">Gambia</option>
+                <option value="tfa_Georgia" class="">Georgia</option>
+                <option value="tfa_Germany" class="">Germany</option>
+                <option value="tfa_Ghana" class="">Ghana</option>
+                <option value="tfa_Gibraltar" class="">Gibraltar</option>
+                <option value="tfa_Greece" class="">Greece</option>
+                <option value="tfa_Greenland" class="">Greenland</option>
+                <option value="tfa_Grenada" class="">Grenada</option>
+                <option value="tfa_Guadeloupe" class="">Guadeloupe</option>
+                <option value="tfa_Guam" class="">Guam</option>
+                <option value="tfa_Guatemala" class="">Guatemala</option>
+                <option value="tfa_Guinea" class="">Guinea</option>
+                <option value="tfa_GuineaBissau" class="">Guinea-Bissau</option>
+                <option value="tfa_Guyana" class="">Guyana</option>
+                <option value="tfa_Haiti" class="">Haiti</option>
+                <option value="tfa_HeardIslandandMc" class="">Heard Island and McDonald Islands</option>
+                <option value="tfa_Honduras" class="">Honduras</option>
+                <option value="tfa_HongKongSAR" class="">Hong Kong SAR</option>
+                <option value="tfa_Hungary" class="">Hungary</option>
+                <option value="tfa_Iceland" class="">Iceland</option>
+                <option value="tfa_India" class="">India</option>
+                <option value="tfa_Indonesia" class="">Indonesia</option>
+                <option value="tfa_Iran" class="">Iran</option>
+                <option value="tfa_Iraq" class="">Iraq</option>
+                <option value="tfa_Ireland" class="">Ireland</option>
+                <option value="tfa_Israel" class="">Israel</option>
+                <option value="tfa_Italy" class="">Italy</option>
+                <option value="tfa_Jamaica" class="">Jamaica</option>
+                <option value="tfa_Japan" class="">Japan</option>
+                <option value="tfa_Jordan" class="">Jordan</option>
+                <option value="tfa_Kazakhstan" class="">Kazakhstan</option>
+                <option value="tfa_Kenya" class="">Kenya</option>
+                <option value="tfa_Kiribati" class="">Kiribati</option>
+                <option value="tfa_Korea" class="">Korea</option>
+                <option value="tfa_Kuwait" class="">Kuwait</option>
+                <option value="tfa_Kyrgyzstan" class="">Kyrgyzstan</option>
+                <option value="tfa_Laos" class="">Laos</option>
+                <option value="tfa_Latvia" class="">Latvia</option>
+                <option value="tfa_Lebanon" class="">Lebanon</option>
+                <option value="tfa_Lesotho" class="">Lesotho</option>
+                <option value="tfa_Liberia" class="">Liberia</option>
+                <option value="tfa_Libya" class="">Libya</option>
+                <option value="tfa_Liechtenstein" class="">Liechtenstein</option>
+                <option value="tfa_Lithuania" class="">Lithuania</option>
+                <option value="tfa_Luxembourg" class="">Luxembourg</option>
+                <option value="tfa_MacaoSAR" class="">Macao SAR</option>
+                <option value="tfa_MacedoniaFormerY" class="">Macedonia, Former Yugoslav Republic of</option>
+                <option value="tfa_Madagascar" class="">Madagascar</option>
+                <option value="tfa_Malawi" class="">Malawi</option>
+                <option value="tfa_Malaysia" class="">Malaysia</option>
+                <option value="tfa_Maldives" class="">Maldives</option>
+                <option value="tfa_Mali" class="">Mali</option>
+                <option value="tfa_Malta" class="">Malta</option>
+                <option value="tfa_MarshallIslands" class="">Marshall Islands</option>
+                <option value="tfa_Martinique" class="">Martinique</option>
+                <option value="tfa_Mauritania" class="">Mauritania</option>
+                <option value="tfa_Mauritius" class="">Mauritius</option>
+                <option value="tfa_Mayotte" class="">Mayotte</option>
+                <option value="tfa_Mexico" class="">Mexico</option>
+                <option value="tfa_Micronesia" class="">Micronesia</option>
+                <option value="tfa_Moldova" class="">Moldova</option>
+                <option value="tfa_Monaco" class="">Monaco</option>
+                <option value="tfa_Mongolia" class="">Mongolia</option>
+                <option value="tfa_Montserrat" class="">Montserrat</option>
+                <option value="tfa_Morocco" class="">Morocco</option>
+                <option value="tfa_Mozambique" class="">Mozambique</option>
+                <option value="tfa_Myanmar" class="">Myanmar</option>
+                <option value="tfa_Namibia" class="">Namibia</option>
+                <option value="tfa_Nauru" class="">Nauru</option>
+                <option value="tfa_Nepal" class="">Nepal</option>
+                <option value="tfa_Netherlands" class="">Netherlands</option>
+                <option value="tfa_NetherlandsAntil" class="">Netherlands Antilles</option>
+                <option value="tfa_NewCaledonia" class="">New Caledonia</option>
+                <option value="tfa_NewZealand" class="">New Zealand</option>
+                <option value="tfa_Nicaragua" class="">Nicaragua</option>
+                <option value="tfa_Niger" class="">Niger</option>
+                <option value="tfa_Nigeria" class="">Nigeria</option>
+                <option value="tfa_Niue" class="">Niue</option>
+                <option value="tfa_NorfolkIsland" class="">Norfolk Island</option>
+                <option value="tfa_NorthKorea" class="">North Korea</option>
+                <option value="tfa_NorthernMarianaI" class="">Northern Mariana Islands</option>
+                <option value="tfa_Norway" class="">Norway</option>
+                <option value="tfa_Oman" class="">Oman</option>
+                <option value="tfa_Pakistan" class="">Pakistan</option>
+                <option value="tfa_Palau" class="">Palau</option>
+                <option value="tfa_Panama" class="">Panama</option>
+                <option value="tfa_PapuaNewGuinea" class="">Papua New Guinea</option>
+                <option value="tfa_Paraguay" class="">Paraguay</option>
+                <option value="tfa_Peru" class="">Peru</option>
+                <option value="tfa_Philippines" class="">Philippines</option>
+                <option value="tfa_PitcairnIslands" class="">Pitcairn Islands</option>
+                <option value="tfa_Poland" class="">Poland</option>
+                <option value="tfa_Portugal" class="">Portugal</option>
+                <option value="tfa_PuertoRico" class="">Puerto Rico</option>
+                <option value="tfa_Qatar" class="">Qatar</option>
+                <option value="tfa_Reunion" class="">Reunion</option>
+                <option value="tfa_Romania" class="">Romania</option>
+                <option value="tfa_Russia" class="">Russia</option>
+                <option value="tfa_Rwanda" class="">Rwanda</option>
+                <option value="tfa_Samoa" class="">Samoa</option>
+                <option value="tfa_SanMarino" class="">San Marino</option>
+                <option value="tfa_SoTomandPrncipe" class="">São Tomé and Prìncipe</option>
+                <option value="tfa_SaudiArabia" class="">Saudi Arabia</option>
+                <option value="tfa_Senegal" class="">Senegal</option>
+                <option value="tfa_SerbiaandMontene" class="">Serbia and Montenegro</option>
+                <option value="tfa_Seychelles" class="">Seychelles</option>
+                <option value="tfa_SierraLeone" class="">Sierra Leone</option>
+                <option value="tfa_Singapore" class="">Singapore</option>
+                <option value="tfa_Slovakia" class="">Slovakia</option>
+                <option value="tfa_Slovenia" class="">Slovenia</option>
+                <option value="tfa_SolomonIslands" class="">Solomon Islands</option>
+                <option value="tfa_Somalia" class="">Somalia</option>
+                <option value="tfa_SouthAfrica" class="">South Africa</option>
+                <option value="tfa_SouthGeorgiaandt" class="">South Georgia and the South Sandwich Islands</option>
+                <option value="tfa_Spain" class="">Spain</option>
+                <option value="tfa_SriLanka" class="">Sri Lanka</option>
+                <option value="tfa_StHelena" class="">St. Helena</option>
+                <option value="tfa_StKittsandNevis" class="">St. Kitts and Nevis</option>
+                <option value="tfa_StLucia" class="">St. Lucia</option>
+                <option value="tfa_StPierreandMique" class="">St. Pierre and Miquelon</option>
+                <option value="tfa_StVincentandtheG" class="">St. Vincent and the Grenadines</option>
+                <option value="tfa_Sudan" class="">Sudan</option>
+                <option value="tfa_Suriname" class="">Suriname</option>
+                <option value="tfa_SvalbardandJanMa" class="">Svalbard and Jan Mayen</option>
+                <option value="tfa_Swaziland" class="">Swaziland</option>
+                <option value="tfa_Sweden" class="">Sweden</option>
+                <option value="tfa_Switzerland" class="">Switzerland</option>
+                <option value="tfa_Syria" class="">Syria</option>
+                <option value="tfa_Taiwan" class="">Taiwan</option>
+                <option value="tfa_Tajikistan" class="">Tajikistan</option>
+                <option value="tfa_Tanzania" class="">Tanzania</option>
+                <option value="tfa_Thailand" class="">Thailand</option>
+                <option value="tfa_Togo" class="">Togo</option>
+                <option value="tfa_Tokelau" class="">Tokelau</option>
+                <option value="tfa_Tonga" class="">Tonga</option>
+                <option value="tfa_TrinidadandTobag" class="">Trinidad and Tobago</option>
+                <option value="tfa_Tunisia" class="">Tunisia</option>
+                <option value="tfa_Turkey" class="">Turkey</option>
+                <option value="tfa_Turkmenistan" class="">Turkmenistan</option>
+                <option value="tfa_TurksandCaicosIs" class="">Turks and Caicos Islands</option>
+                <option value="tfa_Tuvalu" class="">Tuvalu</option>
+                <option value="tfa_Uganda" class="">Uganda</option>
+                <option value="tfa_Ukraine" class="">Ukraine</option>
+                <option value="tfa_UnitedArabEmirat" class="">United Arab Emirates</option>
+                <option value="tfa_UnitedKingdom" class="">United Kingdom</option>
+                <option value="tfa_UnitedStates" class="switch-b">United States</option>
+                <option value="tfa_UnitedStatesMino" class="">United States Minor Outlying Islands</option>
+                <option value="tfa_Uruguay" class="">Uruguay</option>
+                <option value="tfa_Uzbekistan" class="">Uzbekistan</option>
+                <option value="tfa_Vanuatu" class="">Vanuatu</option>
+                <option value="tfa_VaticanCity" class="">Vatican City</option>
+                <option value="tfa_Venezuela" class="">Venezuela</option>
+                <option value="tfa_VietNam" class="">Viet Nam</option>
+                <option value="tfa_VirginIslandsBri" class="">Virgin Islands ( British )</option>
+                <option value="tfa_VirginIslands" class="">Virgin Islands</option>
+                <option value="tfa_WallisandFutuna" class="">Wallis and Futuna</option>
+                <option value="tfa_Yemen" class="">Yemen</option>
+                <option value="tfa_Zambia" class="">Zambia</option>
+                <option value="tfa_Zimbabwe" class="">Zimbabwe</option></select>
+                </div>
+            </li>
+            <li>
+                <div id="tfa_USState-D" class="oneField offstate-b">
+                <label class="preField" for="tfa_USState">US state</label> <select id="tfa_USState" name="tfa_USState" class="required">
+                <option value="">Please select...</option>
+                <option value="tfa_Alabama" class="">Alabama</option>
+                <option value="tfa_Alaska" class="">Alaska</option>
+                <option value="tfa_Arizona" class="">Arizona</option>
+                <option value="tfa_Arkansas" class="">Arkansas</option>
+                <option value="tfa_California" class="">California</option>
+                <option value="tfa_Colorado" class="">Colorado</option>
+                <option value="tfa_Connecticut" class="">Connecticut</option>
+                <option value="tfa_Delaware" class="">Delaware</option>
+                <option value="tfa_Florida" class="">Florida</option>
+                <option value="tfa_Georgia1" class="">Georgia</option>
+                <option value="tfa_Hawaii" class="">Hawaii</option>
+                <option value="tfa_Idaho" class="">Idaho</option>
+                <option value="tfa_Illinois" class="">Illinois</option>
+                <option value="tfa_Indiana" class="">Indiana</option>
+                <option value="tfa_Iowa" class="">Iowa</option>
+                <option value="tfa_Kansas" class="">Kansas</option>
+                <option value="tfa_Kentucky" class="">Kentucky</option>
+                <option value="tfa_Louisiana" class="">Louisiana</option>
+                <option value="tfa_Maine" class="">Maine</option>
+                <option value="tfa_Maryland" class="">Maryland</option>
+                <option value="tfa_Massachusetts" class="">Massachusetts</option>
+                <option value="tfa_Michigan" class="">Michigan</option>
+                <option value="tfa_Minnesota" class="">Minnesota</option>
+                <option value="tfa_Mississippi" class="">Mississippi</option>
+                <option value="tfa_Missouri" class="">Missouri</option>
+                <option value="tfa_Montana" class="">Montana</option>
+                <option value="tfa_Nebraska" class="">Nebraska</option>
+                <option value="tfa_Nevada" class="">Nevada</option>
+                <option value="tfa_NewHampshire" class="">New Hampshire</option>
+                <option value="tfa_NewJersey" class="">New Jersey</option>
+                <option value="tfa_NewMexico" class="">New Mexico</option>
+                <option value="tfa_NewYork" class="">New York</option>
+                <option value="tfa_NorthCarolina" class="">North Carolina</option>
+                <option value="tfa_NorthDakota" class="">North Dakota</option>
+                <option value="tfa_Ohio" class="">Ohio</option>
+                <option value="tfa_Oklahoma" class="">Oklahoma</option>
+                <option value="tfa_Oregon" class="">Oregon</option>
+                <option value="tfa_Pennsylvania" class="">Pennsylvania</option>
+                <option value="tfa_RhodeIsland" class="">Rhode Island</option>
+                <option value="tfa_SouthCarolina" class="">South Carolina</option>
+                <option value="tfa_SouthDakota" class="">South Dakota</option>
+                <option value="tfa_Tennessee" class="">Tennessee</option>
+                <option value="tfa_Texas" class="">Texas</option>
+                <option value="tfa_Utah" class="">Utah</option>
+                <option value="tfa_Vermont" class="">Vermont</option>
+                <option value="tfa_Virginia" class="">Virginia</option>
+                <option value="tfa_Washington" class="">Washington</option>
+                <option value="tfa_WestVirginia" class="">West Virginia</option>
+                <option value="tfa_Wisconsin" class="">Wisconsin</option>
+                <option value="tfa_Wyoming" class="">Wyoming</option></select>
+                </div>
+            </li>
+        </ul>
+    </fieldset>
+    <fieldset class="fieldset-3">
+        <h3>Project contact</h3>
+        <ul class="no-bullets">
+            <li>
+                <div id="tfa_PleaseaddtheCano-D" class="oneField">
+                    <label class="preField" for="tfa_PleaseaddtheCano">Please add the Canonical Project Manager or contact</label>
+                    <input type="text" id="tfa_PleaseaddtheCano" name="tfa_PleaseaddtheCano" value="" size="40" class="required">
+                </div>
+            </li>
+        </ul>
+    </fieldset>
 
-	<fieldset class="captcha">
-		<h3>Verification</h3>
-		<p class="instructions">Please enter the characters you see in this picture:</p>
+    <fieldset class="captcha">
+        <h3>Verification</h3>
+        <p class="instructions">Please enter the characters you see in this picture:</p>
       <div class="oneField">
           <ul class="no-bullets">
               <li><img src="https://www.tfaforms.com/forms/captcha" width="200" height="60" alt="Visual CAPTCHA"></li>
               <li>
-                  <label class="preField off-left">Characters</label> 
+                  <label class="preField off-left">Characters</label>
                   <input type="text" name="tfa_captcha_text" id="tfa_captcha_text">
               </li>
               <li>
@@ -604,25 +604,25 @@ div.ok {
               </li>
           </ul>
       </div>
-	</fieldset>
+    </fieldset>
 </form>
 </div>
 </div>
 </div>
 </div>
-	<div class="box four-col last-col">
-		<h3>Related content</h3>
-		<ul class="list">
-			<li class="last-item"><a class="external" href="http://www.canonical.com/projects/directory">Open source software projects</a></li>
-		</ul>
-	</div>
-	<div class="box four-col last-col">
-		<h3>Additional information</h3>
-		<ul class="list">
-			<li><a href="{{ ASSET_SERVER_URL }}ff2478d1-Canonical-HA-CLA-ANY-I_v1.2.pdf">Agreement for individual contributors [PDF]&nbsp;&rsaquo;</a></li>
-			<li class="last-item"><a href="{{ ASSET_SERVER_URL }}31b14270-Canonical-HA-CLA-ANY-E_v1.2.pdf">Agreement for entities [PDF]&nbsp;&rsaquo;</a></li>
-		</ul>
-	</div>
+    <div class="box four-col last-col">
+        <h3>Related content</h3>
+        <ul class="list">
+            <li class="last-item"><a class="external" href="http://www.canonical.com/projects/directory">Open source software projects</a></li>
+        </ul>
+    </div>
+    <div class="box four-col last-col">
+        <h3>Additional information</h3>
+        <ul class="list">
+            <li><a href="{{ ASSET_SERVER_URL }}ff2478d1-Canonical-HA-CLA-ANY-I_v1.2.pdf">Agreement for individual contributors [PDF]&nbsp;&rsaquo;</a></li>
+            <li class="last-item"><a href="{{ ASSET_SERVER_URL }}31b14270-Canonical-HA-CLA-ANY-E_v1.2.pdf">Agreement for entities [PDF]&nbsp;&rsaquo;</a></li>
+        </ul>
+    </div>
 
 </div>
 <script>
@@ -630,94 +630,94 @@ div.ok {
  * populate a web form with querystring parameters.
  */
 new function(_) {
-	var populateForms = function() {
-		var params = getParameters();
-		var forms  = document.getElementsByTagName('FORM');
-		for (var i=0;i<forms.length;i++) {
-			populateForm(forms[i],params);
-		}
-	}
-	var populateForm = function(f, values) {
-	    if(!f['tfa_dbFormId']) {
-	    	// skip non-formassembly.com forms
-	    	return;
-	    }
-		if(wFORMS && wFORMS.getBehaviorInstance) {
-			var _bs = wFORMS.getBehaviorInstance(f,'switch');
-			var _bc = wFORMS.getBehaviorInstance(f,'calculation');
-		}
-	    for(var fieldName in values) {
-	    	var fld = f.elements[fieldName];
-	    	if(fld) {
-	    		if(fld.tagName) {
-			    	if((fld.tagName=='INPUT' && (fld.type=='text' || fld.type=='hidden' || fld.type=='password'))
-			    	          ||(fld.tagName=='TEXTAREA'));
-			    		fld.value = unescape(values[fieldName]);
-			    	if(fld.tagName=='INPUT' && fld.type=='checkbox') {
-			    		fld.checked = values[fieldName] ? true : false;
-			    	}
-			    	if(fld.tagName=='SELECT') {
-			    		fld.value = values[fieldName];
-			    	}
-					if(_bs) { // trigger switch behavior if appropriate.
-						_bs.run(null,fld);
-					}
-					if(_bc) { // trigger calculation behavior if appropriate.
-						_bc.run(null,fld);
-					}
-	    		} else {
-	    			// radio group
-		    		for (i=0;i<fld.length;i++) {
-						if (fld[i].value==values[fieldName]) {
-							fld[i].checked = true;
-							if(_bs) { // trigger switch behavior if appropriate.
-								_bs.run(null,fld[i]);
-							}
-							if(_bc) { // trigger calculation behavior if appropriate.
-								_bc.run(null,fld[i]);
-							}
-							break;
-						}
-					}
-		    	}
-	    	}
-	    }
-	}
-	var getParameters = function() {
-		var param = Array();
-		var q = document.location.search;
-		if(q.length==0)
-			return;
-	    var v = q.split('?')[1].split('&');
-	    for(var i=0;i<v.length;i++) {
-	    	param[v[i].split('=')[0]] = v[i].split('=')[1];
-	    }
-	    return param;
-	}
-	var _addEvent = function(obj, type, fn) {
-		if(!obj) { return; }
-		if (obj.attachEvent) {
-			obj['e'+type+fn] = fn;
-			obj[type+fn] = function(){obj['e'+type+fn]( window.event );}
-			obj.attachEvent( 'on'+type, obj[type+fn] );
-		} else if(obj.addEventListener) {
-			obj.addEventListener( type,fn, false );
-		} else {
-			var originalHandler = obj["on" + type];
-			if (originalHandler) {
-			  obj["on" + type] = function(e){originalHandler(e);fn(e);};
-			} else {
-			  obj["on" + type] = fn;
-			}
-		}
-	}
-	_addEvent(window,'load',populateForms);
+    var populateForms = function() {
+        var params = getParameters();
+        var forms  = document.getElementsByTagName('FORM');
+        for (var i=0;i<forms.length;i++) {
+            populateForm(forms[i],params);
+        }
+    }
+    var populateForm = function(f, values) {
+        if(!f['tfa_dbFormId']) {
+            // skip non-formassembly.com forms
+            return;
+        }
+        if(wFORMS && wFORMS.getBehaviorInstance) {
+            var _bs = wFORMS.getBehaviorInstance(f,'switch');
+            var _bc = wFORMS.getBehaviorInstance(f,'calculation');
+        }
+        for(var fieldName in values) {
+            var fld = f.elements[fieldName];
+            if(fld) {
+                if(fld.tagName) {
+                    if((fld.tagName=='INPUT' && (fld.type=='text' || fld.type=='hidden' || fld.type=='password'))
+                              ||(fld.tagName=='TEXTAREA'));
+                        fld.value = unescape(values[fieldName]);
+                    if(fld.tagName=='INPUT' && fld.type=='checkbox') {
+                        fld.checked = values[fieldName] ? true : false;
+                    }
+                    if(fld.tagName=='SELECT') {
+                        fld.value = values[fieldName];
+                    }
+                    if(_bs) { // trigger switch behavior if appropriate.
+                        _bs.run(null,fld);
+                    }
+                    if(_bc) { // trigger calculation behavior if appropriate.
+                        _bc.run(null,fld);
+                    }
+                } else {
+                    // radio group
+                    for (i=0;i<fld.length;i++) {
+                        if (fld[i].value==values[fieldName]) {
+                            fld[i].checked = true;
+                            if(_bs) { // trigger switch behavior if appropriate.
+                                _bs.run(null,fld[i]);
+                            }
+                            if(_bc) { // trigger calculation behavior if appropriate.
+                                _bc.run(null,fld[i]);
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    var getParameters = function() {
+        var param = Array();
+        var q = document.location.search;
+        if(q.length==0)
+            return;
+        var v = q.split('?')[1].split('&');
+        for(var i=0;i<v.length;i++) {
+            param[v[i].split('=')[0]] = v[i].split('=')[1];
+        }
+        return param;
+    }
+    var _addEvent = function(obj, type, fn) {
+        if(!obj) { return; }
+        if (obj.attachEvent) {
+            obj['e'+type+fn] = fn;
+            obj[type+fn] = function(){obj['e'+type+fn]( window.event );}
+            obj.attachEvent( 'on'+type, obj[type+fn] );
+        } else if(obj.addEventListener) {
+            obj.addEventListener( type,fn, false );
+        } else {
+            var originalHandler = obj["on" + type];
+            if (originalHandler) {
+              obj["on" + type] = function(e){originalHandler(e);fn(e);};
+            } else {
+              obj["on" + type] = fn;
+            }
+        }
+    }
+    _addEvent(window,'load',populateForms);
 }();
 
 var launchpad_id_lookup = function() {
-	Y.one('#tfa_LPid').on('blur', function (e) {
-	    Y.io("/lookup_launchpad_id/" + Y.one('#tfa_LPid').get('value'), lp_lookup_callback);
-	});
+    Y.one('#tfa_LPid').on('blur', function (e) {
+        Y.io("/lookup_launchpad_id/" + Y.one('#tfa_LPid').get('value'), lp_lookup_callback);
+    });
 }();
 
 </script>
