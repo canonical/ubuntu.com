@@ -596,14 +596,15 @@ footer.global {
 		ul ul, ul li, ul ul, h2, h2 a {
 			margin: 0;
 			padding: 0;
-			line-height: 2;
 			width: auto;
 			float: none;
 		}
 		h2 {
 			float: left;
 			margin-right: 6px;
+			margin-top: 1px;
 			display: inline;
+			line-height: 2;
 
 			a i {
 				font-style: normal;
@@ -618,7 +619,6 @@ footer.global {
 		}
 		li li {
 			width: auto;
-			background: 0;
 			float: left;
 			clear: none;
 		}
@@ -643,7 +643,7 @@ footer.global {
 nav div.footer-a div {
 	/* Can be removed once live */
 	margin: 0 auto;
-	width: 100%; /* 980px / 15px (baseline font); 980px + (60px x 2) = 1100px */
+	width: 100%;
 }
 
 html.no-svg,
@@ -666,24 +666,6 @@ html.opera-mini {
   footer.global .footer-b ul li.secondary-tv h2 span {
     background-image: url("#{$asset-server}7a7e0d52-arrow_down_9fa097.png");
   }
-  footer.global .footer-a ul li h2.active span,
-  footer.global .footer-a ul li.secondary-cloud h2.active span,
-  footer.global .footer-a ul li.secondary-desktop h2.active span,
-  footer.global .footer-a ul li.secondary-management h2.active span,
-  footer.global .footer-a ul li.secondary-phone h2.active span,
-  footer.global .footer-a ul li.secondary-server h2.active span,
-  footer.global .footer-a ul li.secondary-tablet h2.active span,
-  footer.global .footer-a ul li.secondary-tv h2.active span,
-  footer.global .footer-b ul li h2.active span,
-  footer.global .footer-b ul li.secondary-cloud h2.active span,
-  footer.global .footer-b ul li.secondary-desktop h2.active span,
-  footer.global .footer-b ul li.secondary-management h2.active span,
-  footer.global .footer-b ul li.secondary-phone h2.active span,
-  footer.global .footer-b ul li.secondary-server h2.active span,
-  footer.global .footer-b ul li.secondary-tablet h2.active span,
-  footer.global .footer-b ul li.secondary-tv h2.active span {
-    //background-image: url("#{$asset-server}43e2b367-arrow_up_9fa097.png");
-  }
   footer.global .top-link a {
     background-image: url("#{$asset-server}ca0559fd-picto-upload-warmgrey.png");
   }
@@ -702,8 +684,8 @@ html.opera-mini {
 
     .footer-a,
     .footer-b {
-      display: block;
       border-bottom: 0;
+      display: block;
       margin-bottom: 0;
       padding-bottom: 0;
 
@@ -803,8 +785,6 @@ html.opera-mini {
         }
 
         ul.second-level-nav {
-          //margin-left: -10px;
-          //padding-right: 25px;
           float: left;
           width: 100%;
           margin-left: -10px;
@@ -816,19 +796,17 @@ html.opera-mini {
             display: block;
             margin: 0;
             padding: 0;
-            /*width: 50%;*/
             width: 100%;
             float: left;
             padding-right: 10px;
 
 
             a {
-              //margin-left: -15px;
               border-bottom: 1px solid #D4D7D4;
               color: #333333;
               display: block;
               float: left;
-              font-size: 1.166em;
+              font-size: .85em;
               margin-bottom: 0;
               overflow: hidden;
               padding: 8px 0 8px 20px;
@@ -972,11 +950,6 @@ footer.global ul.inline li:after {
       min-height: 0;
     }
   }
-	footer.global .footer-a {
-		//padding-bottom: 20px;
-		//margin-bottom: 20px;
-
-	}
 }
 
 @media only screen and (min-width : 769px) {
