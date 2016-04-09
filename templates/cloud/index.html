@@ -322,11 +322,13 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
 
 <section class="row row-insights row-grey">
     <h2 class="twelve-col">The latest Ubuntu Cloud news and events</h2>
-    <div class="twelve-col equal-height--vertical-divider">
-      <div id="insights-cloud-feed" class='equal-height--vertical-divider__item six-col'>
-        <noscript><a class="external" href="https://insights.ubuntu.com">Find out more at insights.ubuntu.com</a></noscript>
+    <div class="twelve-col vertical-divider">
+      <div id="insights-cloud-feed" class='six-col'>
+        <ul class="no-bullets smaller">
+          <li>Read news, case studies, whitepapers and more on <a class="external" href="https://insights.ubuntu.com">insights.ubuntu.com</a></li>
+        </ul>
       </div><!-- end .insights-cloud-feed -->
-      <script type="text/javascript">
+      <script>
         $(function() {
           $.getFeed({
             url: 'http://insights.ubuntu.com/topic/Cloud/feed',
@@ -337,9 +339,9 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
                 var d = $.trim(item.description).substring(0, 100).split(" ").slice(0, -1).join(" ") + "\&hellip\;";
                 html += "<li class='six-col'><h3><a href='" + item.link + "' class='external'>" + item.title + "</a></h3><p>" + d + "</p></li>";
               }
-              html += "</ul>";
+              html = "<div id='insights-cloud-feed' class='six-col'><ul class='no-bullets smaller'>" + html + "</ul></div>";
               if ($('#insights-cloud-feed')) {
-                $('#insights-cloud-feed').append(html);
+                $('#insights-cloud-feed').replaceWith(html);
               }
             }
           });
