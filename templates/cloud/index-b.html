@@ -353,9 +353,13 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
 
 <section class="row row-insights row-grey">
     <h2 class="twelve-col">The latest Ubuntu Cloud news and events</h2>
-    <div class="twelve-col equal-height--vertical-divider">
-      <div id="insights-cloud-feed" class='equal-height--vertical-divider__item six-col'><noscript><a class="external" href="https://insights.ubuntu.com">Find out more at insights.ubuntu.com</a></noscript></div>
-      <script type="text/javascript">
+    <div class="twelve-col vertical-divider">
+      <div id="insights-cloud-feed" class='six-col'>
+        <ul class="no-bullets smaller">
+          <li>Read news, case studies, whitepapers and more on <a class="external" href="https://insights.ubuntu.com">insights.ubuntu.com</a></li>
+        </ul>
+      </div><!-- end .insights-cloud-feed -->
+      <script>
         $(function() {
           $.getFeed({
             url: 'http://insights.ubuntu.com/topic/Cloud/feed',
@@ -363,73 +367,19 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
               var html = "<ul class='no-bullets smaller'>";
               for(var i = 0; i < feed.items.length && i < 4; i++) {
                 var item = feed.items[i];
-                var d = '';
-                d = $.trim(item.description).substring(0, 100).split(" ").slice(0, -1).join(" ") + "\&hellip\;";
+                var d = $.trim(item.description).substring(0, 100).split(" ").slice(0, -1).join(" ") + "\&hellip\;";
                 html += "<li class='six-col'><h3><a href='" + item.link + "' class='external'>" + item.title + "</a></h3><p>" + d + "</p></li>";
               }
-              html += "</ul>";
+              html = "<div id='insights-cloud-feed' class='six-col'><ul class='no-bullets smaller'>" + html + "</ul></div>";
               if ($('#insights-cloud-feed')) {
-                $('#insights-cloud-feed').append(html);
+                $('#insights-cloud-feed').replaceWith(html);
               }
             }
           });
         });
       </script>
-      <div class="insights-events equal-height--vertical-divider__item six-col last-col">
-          <ul class="no-bullets">
-              <li class="six-col">
-                  <div class="event-details-wrapper clearfix" itemscope itemtype="http://data-vocabulary.org/Event">
-                      <div class="six-col last-col">
-                          <div class="event-map">
-                              <a href="http://insights.ubuntu.com/event/tad-summit/">
-                                  <span class="image-wrap avatar"><img class="avatar" src="//maps.googleapis.com/maps/api/staticmap?center=Lisbon%2C+Portugal&amp;zoom=12&amp;size=106x106&amp;sensor=false" alt=""></span>
-                              </a>
-                          </div><!-- /.event-map -->
-                          <h3><a class="external" href="http://insights.ubuntu.com/event/tad-summit/">TAD Summit</a></h3>
-                          <dl class="event-details">
-                              <dt class="accessibility-aid">Date:</dt>
-                              <dd class="event-date">17-18 November 2015  <span class="accesibilty-aid"><time itemprop="startDate" datetime="2015-11-17T00:00"></time><time itemprop="endDate" datetime="2015-11-18T00:00"></time></span></dd>
-                              <dt class="accessibility-aid">Location:</dt>
-                              <dd class="location" itemprop="location" itemscope="" itemtype="http://schema.org/PostalAddress">Lisbon, Portugal</dd>
-                          </dl>
-                      </div>
-                  </div>
-                  <div class="event-details-wrapper clearfix" itemscope itemtype="http://data-vocabulary.org/Event">
-                      <div class="six-col last-col">
-                          <div class="event-map">
-                              <a href="http://insights.ubuntu.com/event/scalable-enterprise-solutions-and-easy-deployment-can-go-together/">
-                                  <span class="image-wrap avatar"><img class="avatar" src="//maps.googleapis.com/maps/api/staticmap?center=Earth&amp;zoom=12&amp;size=106x106&amp;sensor=false" alt=""></span>
-                              </a>
-                          </div><!-- /.event-map -->
-                          <h3><a class="external" href="http://insights.ubuntu.com/event/scalable-enterprise-solutions-and-easy-deployment-can-go-together/">Enterprise solutions and easy deployment can go together</a></h3>
-                          <dl class="event-details">
-                              <dt class="accessibility-aid">Date:</dt>
-                              <dd class="event-date">19 November 2015  <span class="accesibilty-aid"><time itemprop="startDate" datetime="2015-11-19T00:00"></time><time itemprop="endDate" datetime="2015-11-19T00:00"></time></span></dd>
-                              <dt class="accessibility-aid">Location:</dt>
-                              <dd class="location" itemprop="location" itemscope="" itemtype="http://schema.org/PostalAddress">Wordlwide</dd>
-                          </dl>
-                      </div>
-                  </div>
-                  <div class="event-details-wrapper clearfix" itemscope itemtype="http://data-vocabulary.org/Event">
-                      <div class="six-col last-col">
-                          <div class="event-map">
-                              <a href="http://insights.ubuntu.com/event/carrier-network-virtualisation-summit/">
-                                  <span class="image-wrap avatar"><img class="avatar" src="//maps.googleapis.com/maps/api/staticmap?center=Palo Alto+California&amp;zoom=12&amp;size=106x106&amp;sensor=false" alt=""></span>
-                              </a>
-                          </div><!-- /.event-map -->
-                          <h3><a class="external" href="http://insights.ubuntu.com/event/carrier-network-virtualisation-summit/">Carrier Network Virtualisation Summit</a></h3>
-                          <dl class="event-details">
-                              <dt class="accessibility-aid">Date:</dt>
-                              <dd class="event-date">1-2 December 2015  <span class="accesibilty-aid"><time itemprop="startDate" datetime="2015-12-01T00:00"></time><time itemprop="endDate" datetime="2015-12-02T00:00"></time></span></dd>
-                              <dt class="accessibility-aid">Location:</dt>
-                              <dd class="location" itemprop="location" itemscope="" itemtype="http://schema.org/PostalAddress">Palo Alto, California</dd>
-                          </dl>
-                      </div>
-                  </div>
-              </li>
-          </ul>
-      </div>
-    </div>
+{% include "cloud/shared/_events_overview.html" %}
+    </div><!-- end .twelve-col .vertical-divider -->
 </section>
 
 <section class="row no-border">
