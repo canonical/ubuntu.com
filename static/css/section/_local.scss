@@ -1,6 +1,6 @@
 body {
   background-size: cover;
-  
+
   @media only screen and (min-width : 768px) {
     padding-top: 30px;
   }
@@ -1302,6 +1302,15 @@ footer.global ul.inline li:after {
 // for large util
 .for-large {
   @media only screen and (max-width: 1024px) {
+    display: none;
+  }
+}
+
+// XXX Ant (10.04.2016)
+// Move to Vanilla
+// Untility class for-medium fix
+@media only screen and (min-width: $site-max-width) {
+  .for-tablet, .for-medium {
     display: none;
   }
 }
