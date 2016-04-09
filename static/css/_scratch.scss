@@ -7,6 +7,20 @@
 	-----------------------------------------------------------------
 
 */
+
+// Temporarally adding this until the small-viewport change
+// is merged into the theme. - KW 20160409
+body {
+  background-color: $light-grey;
+  background-image: url('#{$asset-path}img/backgrounds/image-background-paper.png?w=$breakpoint-medium');
+  background-position: center top;
+  background-repeat: repeat-y;
+
+  @media only screen and (min-width : $breakpoint-medium) {
+    background-image: url('#{$asset-path}img/backgrounds/image-background-paper.png');
+  }
+}
+
 // additional helper class for shouty text
 .caps {
 	text-transform: uppercase;
