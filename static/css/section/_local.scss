@@ -1046,10 +1046,14 @@ html.no-svg {
   }
 }
 
-h3.external span {
+h3.external {
+  background-image: none;
+  
+  span {
     background: url("#{$asset-server}e1bba201-external-link-cool-grey.svg") left center no-repeat;
     background-size: 20px;
     padding-left: 26px;
+  }
 }
 
 footer.global ul.inline li:after {
