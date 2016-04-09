@@ -2,6 +2,11 @@ body {
   background-size: cover;
 }
 
+// local override for uvt list ticks
+.list-ticks li {
+  background-image: url('https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg');
+}
+
 // flex container
 @media only screen and (min-width: 769px) {
   .phone .row .flex-container,
