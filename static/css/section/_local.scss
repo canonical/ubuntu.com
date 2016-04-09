@@ -158,6 +158,85 @@ body {
   }
 }
 
+// Events listings
+.event-map {
+  float: left;
+
+  img {
+    margin-right: 20px;
+    width: 76px;
+  }
+}
+
+.event-details-wrapper h3 {
+  margin-bottom: 5px;
+}
+
+.event-details {
+  color: #888;
+  font-size: .8125em;
+  line-height: 1.2;
+  margin-bottom: 0;
+  width: 70%;
+  clear: none;
+  display: inline;
+  float: left;
+  margin-top: 4px;
+}
+
+.event-details dd {
+  margin-left: 0;
+  padding-right: 0;
+}
+
+.location {
+  background-size: 20px 20px;
+  box-sizing: border-box;
+  background-image: url('https://insights.ubuntu.com/wp-content/themes/resource-centre/static/img/location.svg');
+  background-position: 0 5px;
+  background-repeat: no-repeat;
+  display: block;
+  float: left;
+  padding: 6px 20px 6px 24px;
+  width: 100%;
+}
+
+.venue {
+  background-size: 20px 20px;
+  box-sizing: border-box;
+  background-image: url('https://insights.ubuntu.com/wp-content/themes/resource-centre/static/img/gps.svg');
+  background-position: 0 5px;
+  background-repeat: no-repeat;
+  display: block;
+  float: left;
+  padding: 6px 20px 6px 24px;
+  width: 100%;
+}
+
+.event-date {
+  background-size: 20px 20px;
+  background-image: url('https://insights.ubuntu.com/wp-content/themes/resource-centre/static/img/calendar.svg');
+  background-position: 0 4px;
+  background-repeat: no-repeat;
+  clear: both;
+  display: block;
+  padding: 6px 20px 6px 24px;
+}
+
+.image-wrap {
+  background-size: 78px 78px;
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: middle;
+  margin-bottom: 0;
+}
+
+.image-wrap img {
+  border-radius: 4px;
+  margin-top: 7px;
+}
+
 // Full width sections
 .homepage,
 .tablet,
@@ -194,7 +273,7 @@ body {
     background: none;
     box-shadow: none;
   }
-  
+
   .inner-wrapper {
     max-width: 100%;
   }
@@ -1243,7 +1322,7 @@ footer.global ul.inline li:after {
     margin-bottom: 20px;
   }
 } // end @media only screen and (min-width: 984px)
- 
+
 // box-padded-feature imported from old guidelines
 .box-padded-feature {
   border-radius: 4px;
