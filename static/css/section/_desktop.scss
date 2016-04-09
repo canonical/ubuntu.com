@@ -292,6 +292,31 @@
 
 /// desktop Features
 .desktop-features #main-content {
+  
+ .skype-container {
+    max-width: 479px;
+    position: relative;
+
+    .spinner {
+      height: 11%;
+      left: 57%;
+      position: absolute;
+      top: 51%;
+      width: 4%;
+    }
+  }
+
+  .email-container {
+    max-width: 539px;
+    position: relative;
+
+    .email-text {
+      left: 23%;
+      position: absolute;
+      top: 57%;
+      width: 62%;
+    }
+  }
 
   .row-compatible {
     img {
@@ -336,31 +361,6 @@
       background-image: url('#{$asset-server}8ff52c34-desktopsnapshot.png');
     }
     
-   .skype-container {
-      max-width: 479px;
-      position: relative;
-  
-      .spinner {
-        height: 11%;
-        left: 57%;
-        position: absolute;
-        top: 51%;
-        width: 4%;
-      }
-    }
-  
-    .email-container {
-      max-width: 539px;
-      position: relative;
-  
-      .email-text {
-        left: 23%;
-        position: absolute;
-        top: 57%;
-        width: 62%;
-      }
-    }
-
     .row-gaming {
       width: 100%;
       padding: 0;
