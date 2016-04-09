@@ -1,6 +1,46 @@
 body {
   background-size: cover;
-  padding-top: 30px;
+}
+
+// pulling in the old guidelines version of combined-list
+.row .combined-list {
+  ul,
+  div {
+    margin-bottom: 0;
+  }
+
+  li.last-item {
+    border-bottom: 1px dotted $warm-grey;
+    padding-bottom: 10px;
+  }
+
+  .last-col {
+    margin-bottom: 20px;
+
+    li.last-item {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+}
+
+@media only screen and (min-width : 768px) {
+  .row .combined-list {
+    ul,
+    div {
+      margin-bottom: 20px;
+    }
+
+    li.last-item {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+} // end @media only screen and (max-width : 768px)
+
+#main-content .row-hero {
+  margin-top: 40px;
+  padding-top: 0;
 }
 
 // flex container
