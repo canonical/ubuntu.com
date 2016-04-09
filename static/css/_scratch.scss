@@ -12,6 +12,16 @@
 	text-transform: uppercase;
 }
 
+// for hidding with javascript
+.js-hidden {
+  display: none;
+}
+
+// less margin on ua pricing tables
+.ua-table {
+  margin-bottom: 1.5em;
+}
+
 @media only screen and (max-width : 768px) {
 	// helper class for small
 	.small-align-center {
@@ -94,6 +104,10 @@ header.banner .nav-primary li:hover ul:after {
     background-position: 20px 0;
 }
 
+.header-search {
+	max-width: 180px;
+}
+
 // fade in list animation - located on desktop overview 'Benefits for all industry sectors' GB 16/10/2015
 // only hide it if js is on
 .js .list-fade {
@@ -108,13 +122,11 @@ header.banner .nav-primary li:hover ul:after {
   -moz-animation-duration: 1.2s;
   -webkit-animation-duration: 1.2s;
   animation-duration: 1.2s;
-  display: block;
   line-height: 1.3;
   overflow: visible;
   text-align: center;
   text-decoration: none;
   position: relative;
-  width: 100%;
 
   a {
     color: $warm-grey;

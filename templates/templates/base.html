@@ -104,7 +104,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       			<li><a{% if level_1 == 'tablet' %} class="active"{% endif %} href="/tablet">Tablet</a>
       				{% include "tablet/_nav_secondary.html" with promo="true" %}
       			</li>
-      			<li><a{% if level_1 == 'internet-of-things' %} class="active"{% endif %} href="/internet-of-things">Things</a>
+                <li><a{% if level_1 == 'internet-of-things' %} class="active"{% endif %} href="/internet-of-things">IoT</a>
       				{% include "internet-of-things/_nav_secondary.html" with promo="true" %}
       			</li>
       			<li><a{% if level_1 == 'management' %} class="active"{% endif %} href="/management">Management</a>
@@ -189,7 +189,7 @@ $(document).ready(
 	core.globalPrepend = 'body';
 </script>
 
-<script src="{{ ASSET_SERVER_URL }}8e7aa35a-core.js"></script>
+<script src="{% versioned_static 'js/core.js' %}"></script>
 <script src="{{ ASSET_SERVER_URL }}bdd03093-global.js"></script>
 <script src="{% versioned_static 'js/scratch.js' %}"></script>
 <script src="{{ ASSET_SERVER_URL }}f5bf3854-respond.min.js"></script>

@@ -1,8 +1,10 @@
 {% extends "base_index.html" %}
 
-{% block takeover_body_class %}intel-nuc-takeover{% endblock takeover_body_class %}
+
+{% block takeover_body_class %}m10-convergence-takeover{% endblock takeover_body_class %}
 
 {% block head_extra %}
+
 <script src="{{ ASSET_SERVER_URL }}c954db4a-jfeed_prm.js"></script>
 {% endblock %}
 
@@ -11,9 +13,9 @@
     <div class="lang-switch-wrapper strip-inner-wrapper"><a href="/" class="lang-switch" lang="zh">中文主页&nbsp;&rsaquo;</a></div>
 {% endif %}
 
-{% include "takeovers/_intel_nuc_takeover.html" %}
+{% include "takeovers/_m10_convergence_takeover.html" %}
 
-<section class="row row--ubuntu-news row-grey strip no-border">
+<section class="row row--ubuntu-news js-hidden row-grey strip no-border">
     <div class="strip-inner-wrapper">
         <div class="twelve-col">
             <h2 class="external row--ubuntu-news__title"><span><a href="https://insights.ubuntu.com/">Latest news from Insights</a></span></h2>
@@ -23,18 +25,19 @@
                 $.getFeed({
                   url: 'https://insights.ubuntu.com/feed',
                   success: function(feed) {
-                    var html = "<ul class='row--ubuntu-news__list no-bullets equal-height--vertical-divider'>";
-                    for(var i = 0; i < feed.items.length && i < 4; i++) {
+                    var html = "<ul class='row--ubuntu-news__list no-bullets vertical-divider'>";
+                    for (var i = 0; i < feed.items.length && i < 4; i++) {
                       var item = feed.items[i];
                       var lastClass = "";
                       if (i != 0 && i % 3 == 0) {
                         lastClass = ' last-col';
                       }
-                      html += "<li class='equal-height--vertical-divider__item three-col" + lastClass + "'><h3><a href='" + item.link + "'>" + item.title + "</a></h3><p><time pubdate datetime='" + item.updated + "'>" + item.nicedate + "</time></p></li>";
+                      html += "<li class='three-col" + lastClass + "'><h3><a href='" + item.link + "'>" + item.title + "</a></h3><p><time pubdate datetime='" + item.updated + "'>" + item.nicedate + "</time></p></li>";
                     }
                     html += "</ul>";
                     if ($('#insights-cloud-feed')) {
                       $('#insights-cloud-feed').append(html);
+                      $('.row--ubuntu-news').removeClass('js-hidden');
                     }
                   }
                 });
@@ -54,7 +57,7 @@
                     <li><a class="intro-desktop" href="/desktop">Desktop</a></li>
                     <li><a class="intro-phone" href="/phone">Phone</a></li>
                     <li><a class="intro-tablet" href="/tablet">Tablet</a></li>
-                    <li><a class="intro-iot" href="/things" id="IoT-homepage">Things</a></li>
+                    <li><a class="intro-iot" href="/internet-of-things">IoT</a></li>
                 </ul>
             </div>
             <div class="intro-right"></div>
@@ -66,13 +69,13 @@
 
 <section class="row row--cloud-products strip no-border">
     <div class="strip-inner-wrapper equal-height">
-        <div class="four-col equal-height__align-vertically">
+        <div class="four-col equal-height__item equal-height__align-vertically">
             <div>
                 <h2><a href="/cloud/openstack/managed-cloud">Buy a managed cloud&nbsp;&rsaquo;</a></h2>
                 <p>Get BootStack, a fully managed private OpenStack cloud with our experts responsible for design, deployment and availability.</p>
             </div>
         </div>
-        <div class="eight-col last-col equal-height__align-vertically for-medium">
+        <div class="eight-col last-col for-medium">
             <img src="{{ ASSET_SERVER_URL }}f27582be-image-cloud-static.jpg" alt="" />
         </div>
     </div>
@@ -99,7 +102,7 @@
 <section class="row row--iot row-grey strip no-border">
     <div class="strip-inner-wrapper">
         <div class="row--iot__desc four-col">
-            <h2><a href="/things">For all your things&nbsp;&rsaquo;</a></h2>
+            <h2><a href="/internet-of-things">For all your things&nbsp;&rsaquo;</a></h2>
             <p>Snappy Ubuntu Core delivers bullet-proof security, reliable updates and the enormous Ubuntu ecosystem to a wide range of internet things, connected devices and autonomous machines.</p>
         </div>
         <div class="eight-col last-col align-center">
@@ -120,16 +123,17 @@
                 <p class="featured__desc">Read how Opus 2&rsquo;s flagship service was built entirely on Ubuntu OpenStack.</p>
             </div>
         </div>
-        {% include "takeovers/takeunders/_mwc-2016.html" %}
+        {% include "takeovers/takeunders/_telco.html" %}
     </div>
 </section>
-
+{% comment %}
 <style type="text/css">
     /* background image for the event feature */
     /* get original using this //maps.googleapis.com/maps/api/staticmap?center=Tokyo%2C+Japan&zoom=14&scale=2&size=1200x320&maptype=satellite but with the location details from the insights event */
-    .featured--event:before { background-image: url('{{ ASSET_SERVER_URL }}62b7ce67-pasadena.png?fmt=jpg&q=20'); }
+    /*.featured--event:before { background-image: url('{{ ASSET_SERVER_URL }}62b7ce67-pasadena.png?fmt=jpg&q=20'); }*/
 </style>
-
+{% endcomment %}
 {% include "shared/_device_animation.html" %}
+
 </div>
 {% endblock takeover_content %}

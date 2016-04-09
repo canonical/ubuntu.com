@@ -45,6 +45,8 @@ body.homepage {
   #main-content {
     background: none;
     box-shadow: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
 
   #main-content .box-hero {
@@ -263,7 +265,7 @@ body.homepage {
 
   @media only screen and (min-width : 768px) {
     text-indent: -999em;
-    width: 124px;
+    width: 121px;
   }
 
   @media only screen and (min-width : 984px) {
@@ -558,6 +560,7 @@ body.homepage .row--featured {
   }
 
   @media only screen and (min-width : 769px) {
+    min-height: 19em;
     padding: 40px 0;
   }
 
@@ -625,9 +628,9 @@ body.homepage .row--featured {
     background-color: $dark-aubergine;
     content: '';
     right: -100%;
-    @media only screen and (min-width : 769px) {
-      right: -102%;
-    }
+      @media only screen and (min-width : 769px) {
+        right: -102%;
+      }
     left: auto;
     position: absolute;
     top: 0;
@@ -672,17 +675,15 @@ $loulou: #63105c; // http://chir.ag/projects/name-that-color/#63105c
     position: absolute;
     top: 0;
     width: 200%;
-    @media only screen and (max-width : 768px) {
-      width: 205%;
-    }
+      @media only screen and (max-width : 768px) {
+        width: 205%;
+      }
     z-index: -1;
   }
 }
 
 .featured--left__image {
   opacity: 0.17;
-  position: absolute;
-  top: 18%;
 }
 
 // openstack feature
@@ -1045,6 +1046,7 @@ body.juju-takeover {
 
         .row-hero-text {
           margin-bottom: 11.5em;
+          width: 300px;
         }
 
         .large-screen-graphic {
@@ -1060,7 +1062,7 @@ body.juju-takeover {
         }
 
         color: #333;
-        min-height: 35vh;
+        min-height: 500px;
 
         &-text {
           max-width: 55%;
@@ -1202,6 +1204,148 @@ body.homepage-maas-takeover {
         position: absolute;
         left: -120px;
         top: -70px;
+      }
+    }
+  }
+}
+
+.featured--event__mwc {
+  &:before {
+    background-image: url('#{$asset-server}bda4bb5d-barcelona-map-2.png?fmt=jpg&q=20');
+  }
+
+  &:after {
+    background-color: #303030;
+    opacity: 0.7;
+  }
+}
+
+// Meizu Pro 5 takeover - 22-02-2016
+.meizu-pro5-takeover {
+  header.banner {
+    box-shadow: none;
+    margin-bottom: 0;
+  }
+
+  .inner-wrapper {
+    margin-top: 0;
+  }
+
+  #main-content .row-hero {
+    background-image: url('#{$asset-server}62d039fe-meizu-pro5-background-small.png');
+    background-size: cover;
+    margin-top: 0;
+    overflow: hidden;
+
+    @media only screen and (min-width : 768px) {
+      background-image: url('#{$asset-server}0a11c33e-meizu-pro5-background.png');
+      padding-top: 30px;
+    }
+
+    .strip-inner-wrapper {
+      min-height: 50vw;
+      position: relative;
+
+      @media only screen and (min-width : 768px) {
+        min-height: 550px;
+
+        .row-hero-text {
+          margin-top: 150px;
+        }
+
+        .large-screen-graphic {
+          left: 400px;
+          position: absolute;
+          top: 50px;
+        }
+      }
+
+      @media only screen and (min-width : 984px) {
+        min-height: 580px;
+
+        .row-hero-text {
+          margin-top: 110px;
+        }
+
+        .large-screen-graphic {
+          left: 500px;
+          position: absolute;
+          top: 60px;
+        }
+      }
+
+      .small-screen-graphic img {
+        margin: 10px 0;
+      }
+    }
+  }
+
+  &.index_kylin {
+    #main-content .row-hero .strip-inner-wrapper {
+      @media only screen and (min-width : 768px) {
+        .row-hero-text {
+          margin-top: 180px;
+        }
+      }
+
+      @media only screen and (min-width : 984px) {
+        .row-hero-text {
+          margin-top: 165px;
+        }
+      }
+    }
+  }
+}
+
+// m10 convergence takeover
+.m10-convergence-takeover {
+  header.banner {
+    box-shadow: none;
+    margin-bottom: 0;
+  }
+
+  .inner-wrapper {
+    margin-top: 0;
+  }
+
+  #main-content .row-hero {
+    background: url('#{$asset-server}2991cd53-hero-background-sm.jpg') bottom center no-repeat;
+    background-size: cover;
+    margin-top: 0;
+    overflow: hidden;
+    padding-top: 30px;
+
+    @media only screen and (min-width : 768px) {
+      background-image: url('#{$asset-server}52fbb3e9-hero-background-lg.jpg');
+      background-position: center center;
+      padding-top: 30px;
+    }
+    
+    .strip-inner-wrapper {
+      min-height: 40vw;
+      overflow: visible;
+      position: relative;
+
+      @media only screen and (min-width : 768px) {
+        background: url('#{$asset-server}ff61f48c-hero-tablet-2x.png?w=440') 0 50px no-repeat;
+        min-height: 400px;
+
+        .row-hero__text {
+          margin-top: 50px;
+        }
+      }
+      
+      .row-hero__image--small-screen {
+        padding-top: 20px;
+      }
+
+      @media only screen and (min-width : 984px) {
+        background: url('#{$asset-server}ff61f48c-hero-tablet-2x.png?w=630') -30px 100px no-repeat;
+        min-height: 630px;
+
+        .row-hero__text {
+          margin-top: 150px;
+        }
       }
     }
   }
