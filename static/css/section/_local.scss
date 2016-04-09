@@ -2,6 +2,13 @@ body {
   background-size: cover;
 }
 
+@media only screen and (max-width : 768px) {
+  .nav-secondary .breadcrumb {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+}
+
 // pulling in the old guidelines version of combined-list
 .row .combined-list {
   ul,
