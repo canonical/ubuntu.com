@@ -95,8 +95,8 @@ core scss files are in /sites/core/static/css
 
 // hello world comment
 
-$asset-server: "https://assets.ubuntu.com/v1/";
-/* usage: background: url(#{$asset-server}/backgrounds/background.jpg) no-repeat 0 0; */
+// import global settings
+@import 'global-settings';
 
 // import vanilla themes
 @import "../../node_modules/ubuntu-vanilla-theme/scss/theme";
