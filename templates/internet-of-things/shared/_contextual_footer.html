@@ -2,35 +2,11 @@
 <hr />
 	<div class="twelve-col equal-height--vertical-divider no-margin-bottom">
 
-    {% if feature_1 == none %}
     <div class="equal-height--vertical-divider__item four-col feature-two">
       <h3>Want to learn more about developing with Ubuntu core?</h3>
       <p>Learn how to build or port apps for the next generation of Ubuntu.</p>
       <p><a href="https://developer.ubuntu.com/en/snappy/" class="external">Visit our developer site</a></p>
     </div>
-    {% endif %}
-
-    {% if feature_1 == "event" %}
-    <div class="equal-height--vertical-divider__item event four-col feature-two" itemscope itemtype="http://data-vocabulary.org/Event">
-      <h3><a href="https://insights.ubuntu.com/event/ces/" class="external">Consumer Electronics Show 2016 (CES)</a></h3>
-      <div class="event-map">
-        <a href="https://insights.ubuntu.com/event/ces/">
-          <span class="image-wrap avatar"><img class="avatar" src="//maps.googleapis.com/maps/api/staticmap?center=Las+Vegas%2C+USA&amp;zoom=12&amp;size=106x106&amp;sensor=false" alt="" /></span>
-        </a>
-      </div>
-      <dl class="event-details">
-        <dt class="accessibility-aid">Date:</dt>
-        <dd class="event-date">4-9 January 2016
-          <span class="accesibilty-aid">
-            <time itemprop="startDate" datetime="2016-01-04T00:00"></time>
-            <time itemprop="endDate" datetime="2016-01-09T00:00"></time>
-          </span>
-        </dd>
-        <dt class="accessibility-aid">Location:</dt>
-        <dd class="location" itemprop="location" itemscope="" itemtype="http://schema.org/PostalAddress">Las Vegas, USA</dd>
-      </dl>
-    </div>
-    {% endif %}
 
     <div class="equal-height--vertical-divider__item feature-three four-col">
         {% include "shared/_newsletter_signup.html" %}
