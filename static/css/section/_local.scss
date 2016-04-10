@@ -348,6 +348,10 @@ body {
     padding-bottom: 35px; // replaces the padding taken off .inner-wrapper
     margin-bottom: 0;
 
+    div > div > div {
+      border: 0; // kills borders on very nested divs... like we have for further reading
+    }
+
     hr {
       box-shadow: none;
       height: 3px;
@@ -1068,7 +1072,7 @@ html.no-svg {
 }
 
 // for headings of external list links, currentley only seen on download/alternative-downloads
-.external--title span {  
+.external--title span {
   background: url("#{$asset-server}e1bba201-external-link-cool-grey.svg") left center no-repeat;
   background-size: 20px;
   padding-left: 26px;
