@@ -1050,14 +1050,11 @@ html.no-svg {
   }
 }
 
-h3.external {
-  background-image: none;
-  
-  span {
-    background: url("#{$asset-server}e1bba201-external-link-cool-grey.svg") left center no-repeat;
-    background-size: 20px;
-    padding-left: 26px;
-  }
+// for headings of external list links, currentley only seen on download/alternative-downloads
+.external--title span {  
+  background: url("#{$asset-server}e1bba201-external-link-cool-grey.svg") left center no-repeat;
+  background-size: 20px;
+  padding-left: 26px;
 }
 
 footer.global ul.inline li:after {
