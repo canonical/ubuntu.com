@@ -6,6 +6,14 @@ body {
   }
 }
 
+// XXX Graham (10.04.2016)
+// Move to Vanilla
+// remove negative margin and add border back
+.row.row-grey {
+  border-bottom: 1px dotted $warm-grey;
+  margin-top: 0;
+}
+
 @media only screen and (max-width : 768px) {
   .nav-secondary .breadcrumb {
     padding-bottom: 0;
