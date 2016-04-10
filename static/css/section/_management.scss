@@ -16,6 +16,12 @@ body.management .row-hero { /* First bit of content on a page, normally contains
 	position: relative;
 }
 
+body.management .screenshot {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
 body.management {
 	.row-benefits .six-col {
 		border-right: 1px dotted $warm-grey;
@@ -178,14 +184,14 @@ body.management-working-with-landscape {
 	.row-hero .link-cta-canonical {
 		margin-bottom: 10px;
 	}
-	.ubuntu-advantage { 
-  	margin-bottom: 0; 
+	.ubuntu-advantage {
+  	margin-bottom: 0;
   }
-	
-	.ubuntu-advantage img { 
-    margin-left: -$gutter-width; 
+
+	.ubuntu-advantage img {
+    margin-left: -$gutter-width;
   }
-	
+
 	.row-purchase-advantage .box {
 		background: $light-grey url('#{$asset-server}3cc9f80f-pictogram-reduce-costs-115x115.png') 20px 20px no-repeat;
 		padding-bottom: 1em;
@@ -363,18 +369,18 @@ body.management-ema-whitepaper {
 			margin-left: -20px;
 		}
 	}
-	
+
 	html.no-svg,
 	html.opera-mini {
 		.row-return-investment {
 			background-image: url("#{$asset-server}d1dbbf8e-image-cutyouritcosts.png");
 		}
 	}
-		
+
 	body.management-home {
 		.margin-top { margin-top: 20px; }
 	}
-	
+
 	.three-divided li {
 		width: 30%;
 		padding-bottom: 38px;
@@ -383,7 +389,7 @@ body.management-ema-whitepaper {
 	.row-cloud-management .three-divided li {
 		padding-bottom: 0;
 	}
-	
+
 	body.management-ubuntu-advantage {
 		.price {
 			margin-bottom: 0;
