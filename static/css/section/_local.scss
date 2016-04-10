@@ -21,15 +21,15 @@ body {
 // fixes main nav not closing issue
 @media only screen and (max-width: $navigation-threshold) {
   .banner .nav-primary #nav:hover {
-    display: inherit;  
+    display: inherit;
   }
-  
+
   .banner .nav-primary ul {
     display: none;
-    
+
     &.active {
       display: block;
-      
+
       ul {
         display: none;
       }
@@ -775,21 +775,25 @@ footer.global {
 	.footer-b {
 		padding: 0 0 20px;
 		margin: 0 auto;
+    font-size: 12px;
 
-		ul ul, ul li, ul ul, h2, h2 a {
+		ul ul, ul li, ul ul, h2 {
 			margin: 0;
 			padding: 0;
 			line-height: 2;
 			width: auto;
 			float: none;
+      font-weight: 300;
 		}
 		h2 {
 			float: left;
 			margin-right: 6px;
 			display: inline;
+      font-weight: 400;
+      font-size: 1em;
 
 			a i {
-				font-style: normal;
+				///font-style: normal;
 				display: none;
 			}
 		}
@@ -798,12 +802,14 @@ footer.global {
 			display: block;
 			clear: both;
 			overflow: hidden;
+      font-size: 1em;
 		}
 		li li {
 			width: auto;
 			background: 0;
 			float: left;
 			clear: none;
+      font-size: 1em;
 		}
 		li li:last-child {
 			width: 200px;
@@ -813,14 +819,30 @@ footer.global {
 			padding-left: 6px;
 			padding-right: 6px;
 			position: relative;
+      font-size: 12px;
 		}
 		li h2 a:after,
 		li li:last-child:after,
 		li li.last-item:after  {
 				content: "";
 		}
-
 	}/* end footer-b */
+}
+
+div.legal {
+  font-weight: 300;
+  background: url("//assets.ubuntu.com/sites/ubuntu/latest/u/img/logos/logo-ubuntu-grey.png") 100% 0 no-repeat;
+  position: relative;
+  clear: both;
+  min-height: 40px;
+  margin: 0 auto;
+} /* end legal */
+
+footer.global .footer-b li ul li a:link,
+footer.global .footer-b li ul li a:visited,
+footer.global .footer-b li h2 a:link,
+footer.global .footer-b li h2 a:visited {
+  font-size: 1em;
 }
 
 nav div.footer-a div {
@@ -1011,7 +1033,7 @@ html.opera-mini {
               color: #333333;
               display: block;
               float: left;
-              font-size: 1.166em;
+              font-size: 12px; /* was 1.166em; */
               margin-bottom: 0;
               overflow: hidden;
               padding: 8px 0 8px 20px;
@@ -1103,8 +1125,24 @@ html.no-svg {
   padding-left: 26px;
 }
 
-footer.global ul.inline li:after {
-  content: "•";
+.legal > ul > li {
+  display: inline;
+  list-style: none;
+  margin-right: 10px;
+  & > a {
+    font-size: 12px;
+    margin-right: 10px;
+    color: #333;
+    position: relative;
+    vertical-align: middle;
+  }
+  &::after {
+    content: "•";
+  }
+  &:last-of-type::after {
+    content: "";
+    padding-left: 0;
+  }
 }
 
 #livechat-full,
@@ -1230,6 +1268,15 @@ footer.global ul.inline li:after {
 	footer.global .inline-lists ul {
 		width: 984px; /* 980px / 15px (baseline font); 980px + (60px x 2) = 1100px */
 	}
+
+  footer.global .legal {
+    background: url("//assets.ubuntu.com/sites/ubuntu/latest/u/img/logos/logo-ubuntu-grey.png") 100% 0 no-repeat;
+    ul {
+      padding-left: 0;
+    }
+  }
+
+
 
 	footer.global .legal.has-cookie {
 	  /* if the cookie message is being displayed add padding so the legal links are still visible */
