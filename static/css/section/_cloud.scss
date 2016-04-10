@@ -44,6 +44,15 @@
 -------------------------------------------------------------- */
 
 .cloud {
+
+  // XXX Ant (09.04.2016)
+  // https://github.com/ubuntudesign/www.ubuntu.com/issues/211
+  // Override the banner z-index so the dropdown menu appears above the clouds
+  // in the hero row of /cloud/partners
+  .banner {
+    z-index: 5;
+  }
+
   .juju-charms-list {
     .box {
       padding: 0;
