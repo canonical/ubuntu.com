@@ -1403,3 +1403,14 @@ footer.global ul.inline li:after {
 .clear {
   clear: both;
 }
+
+// XXX Ant (10.04.2016)
+// Deactivated styles for buttons
+a.button--primary__deactivated,
+a.button--primary__deactivated:hover,
+button.button--primary__deactivated,
+button.button--primary__deactivated:hover {
+    background: #efefef;
+    color: #fff;
+    cursor: not-allowed;
+}
