@@ -829,15 +829,26 @@ footer.global {
 	}/* end footer-b */
 }
 
+/// add ubuntu logo to the footer in medium and large
+@media only screen and (min-width : 768px) {
+  footer.global .legal {
+    background: url("//assets.ubuntu.com/sites/ubuntu/latest/u/img/logos/logo-ubuntu-grey.png") 100% 0 no-repeat;
+    ul {
+      padding-left: 0;
+    }
+  }
+}
+
+/// footer legal row
 div.legal {
   font-weight: 300;
-  background: url("//assets.ubuntu.com/sites/ubuntu/latest/u/img/logos/logo-ubuntu-grey.png") 100% 0 no-repeat;
   position: relative;
   clear: both;
   min-height: 40px;
   margin: 0 auto;
 } /* end legal */
 
+/// don't let the footer-b fonts get small on non large screens
 footer.global .footer-b li ul li a:link,
 footer.global .footer-b li ul li a:visited,
 footer.global .footer-b li h2 a:link,
@@ -1268,15 +1279,6 @@ html.no-svg {
 	footer.global .inline-lists ul {
 		width: 984px; /* 980px / 15px (baseline font); 980px + (60px x 2) = 1100px */
 	}
-
-  footer.global .legal {
-    background: url("//assets.ubuntu.com/sites/ubuntu/latest/u/img/logos/logo-ubuntu-grey.png") 100% 0 no-repeat;
-    ul {
-      padding-left: 0;
-    }
-  }
-
-
 
 	footer.global .legal.has-cookie {
 	  /* if the cookie message is being displayed add padding so the legal links are still visible */
