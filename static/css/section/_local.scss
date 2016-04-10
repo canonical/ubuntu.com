@@ -21,15 +21,15 @@ body {
 // fixes main nav not closing issue
 @media only screen and (max-width: $navigation-threshold) {
   .banner .nav-primary #nav:hover {
-    display: inherit;  
+    display: inherit;
   }
-  
+
   .banner .nav-primary ul {
     display: none;
-    
+
     &.active {
       display: block;
-      
+
       ul {
         display: none;
       }
@@ -363,10 +363,24 @@ body {
     color: $link-color;
 }
 
+.internet-of-things,
+.desktop,
+.cloud {
+  #context-footer {
+    background: #fff;
+    padding-bottom: 35px; // replaces the padding taken off .inner-wrapper
+    margin-bottom: 0;
+
+    div > div > div {
+      border: 0; // kills borders on very nested divs... like we have for further reading
+      padding-bottom: 0;
+    }
+  }
+}
+
 // extra rules for full width sections other than homepage
 .phone,
-.tablet,
-.internet-of-things {
+.tablet {
   #context-footer {
     background: #fff;
     padding-bottom: 35px; // replaces the padding taken off .inner-wrapper
