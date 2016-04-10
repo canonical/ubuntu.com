@@ -1478,3 +1478,9 @@ button.button--primary__deactivated:hover {
 .box-grey {
   border: 0;
 }
+
+// Override the "align-items: center" from equal-height__align-vertically,
+// which makes all items appear horizontally centered
+.equal-height > .equal-height__horizontal-left {
+  align-items: stretch;
+}
