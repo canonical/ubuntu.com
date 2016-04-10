@@ -147,16 +147,16 @@
 
     a { padding: 2px 0 2px 26px; }
 
-    .ask-ubuntu a { 
-      background: url('#{$asset-server}7da3c811-icon-irc.png') 0 2px no-repeat; 
+    .ask-ubuntu a {
+      background: url('#{$asset-server}7da3c811-icon-irc.png') 0 2px no-repeat;
     }
 
-    .mailing-lists a { 
-      background: url('#{$asset-server}b65ef76e-icon-mail.png') 0 2px no-repeat; 
+    .mailing-lists a {
+      background: url('#{$asset-server}b65ef76e-icon-mail.png') 0 2px no-repeat;
     }
 
-    .ubuntu-blog a { 
-      background: url('#{$asset-server}891041a1-icon-rss.png') 0 2px no-repeat; 
+    .ubuntu-blog a {
+      background: url('#{$asset-server}891041a1-icon-rss.png') 0 2px no-repeat;
     }
 
     h3,
@@ -247,10 +247,10 @@
       h1 {
         margin-top: 40px;
       }
-      
+
       .light {
         color: #333;
-      }    
+      }
     }
 
     .row-latest-hardware .eight-col,
@@ -292,7 +292,7 @@
 
 /// desktop Features
 .desktop-features #main-content {
-  
+
  .skype-container {
     max-width: 479px;
     position: relative;
@@ -360,7 +360,7 @@
     .row-web-browsing {
       background-image: url('#{$asset-server}8ff52c34-desktopsnapshot.png');
     }
-    
+
     .row-gaming {
       width: 100%;
       padding: 0;
@@ -676,8 +676,8 @@ $item_margin: 40px;
     float: right;
   }
 
-  .pull-left-40,
-  .pull-right-40 {
+  .pull-left,
+  .pull-right {
     margin-left: 0;
     margin-right: 0;
   }
@@ -716,6 +716,7 @@ $item_margin: 40px;
    .row-sogou {
 			.touch-border {
 				position: absolute;
+        right: 0;
 				bottom: 0;
 				margin-bottom: 0;
 
@@ -725,14 +726,14 @@ $item_margin: 40px;
 			}
     }
 
-    .pull-left-40 {
-      margin-bottom: -50px;
-      margin-left: -30px;
+    .pull-left {
+      margin-bottom: -40px;
+      margin-left: -20px;
     }
 
-    .pull-right-40 {
-      margin-bottom: -10px;
-      margin-right: -30px;
+    .pull-right {
+      margin-bottom: -20px;
+      margin-right: -20px;
     }
   }
 }
@@ -753,14 +754,14 @@ $item_margin: 40px;
 
   .desktop-ubuntu-kylin,
   .desktop-ubuntu-kylin-zh-CN {
-    .pull-left-40 {
+    .pull-left {
       margin-bottom: -60px;
-      margin-left: -40px;
+      margin-left: -20px;
     }
 
-    .pull-right-40 {
+    .pull-right {
       margin-bottom: -40px;
-      margin-right: -40px;
+      margin-right: -20px;
     }
   }
 }
