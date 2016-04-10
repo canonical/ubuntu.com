@@ -1,7 +1,7 @@
 body {
   background-size: cover;
 
-  @media only screen and (min-width : 768px) {
+  @media only screen and (min-width : $breakpoint-medium) {
     padding-top: 30px;
   }
 }
@@ -37,7 +37,7 @@ body {
   }
 }
 
-@media only screen and (max-width : 768px) {
+@media only screen and (max-width : $breakpoint-medium) {
   .nav-secondary .breadcrumb {
     padding-bottom: 0;
     padding-top: 0;
@@ -66,7 +66,7 @@ body {
   }
 }
 
-@media only screen and (min-width : 768px) {
+@media only screen and (min-width : $breakpoint-medium) {
   .row .combined-list {
     ul,
     div {
@@ -78,7 +78,7 @@ body {
       padding-bottom: 0;
     }
   }
-} // end @media only screen and (max-width : 768px)
+} // end @media only screen and (max-width : $breakpoint-medium)
 
 #main-content .row-hero {
   margin-top: 40px;
@@ -97,7 +97,7 @@ body {
 }
 
 // flex container
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: $breakpoint-medium) {
   .phone .row .flex-container,
   .flex {
     display: flex;
@@ -128,7 +128,7 @@ body {
     padding-top: 8px;
   }
 
-  @media only screen and (min-width: 769px) {
+  @media only screen and (min-width: $breakpoint-medium) {
     margin-bottom: inherit;
     width: 48px;
 
@@ -138,7 +138,7 @@ body {
     }
   }
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $breakpoint-medium) {
     & + .three-col {
       width: 48.8938%;
     }
@@ -147,7 +147,7 @@ body {
   img {
     width: 38px;
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $breakpoint-medium) {
       width: 50px;
     }
   }
@@ -164,7 +164,7 @@ body {
 }
 
 // billboard__content
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $breakpoint-medium) {
   .billboard__content {
     background: rgba(255,255,255,.85);
     color: $cool-grey;
@@ -179,28 +179,28 @@ body {
 }
 
 .billboard__title {
-  @media only screen and (min-width : 984px) {
+  @media only screen and (min-width : $breakpoint-large) {
     font-size: 2.8125em;
     line-height: 1;
   }
 }
 
 .billboard__copy {
-  @media only screen and (min-width : 768px) {
+  @media only screen and (min-width : $breakpoint-medium) {
     font-size: 1.438em;
   }
 
-  @media only screen and (min-width : 984px) {
+  @media only screen and (min-width : $breakpoint-large) {
     font-size: 2em;
   }
 }
 
 .billboard__title + .billboard__copy {
-  @media only screen and (min-width : 768px) {
+  @media only screen and (min-width : $breakpoint-medium) {
     font-size: 1em;
   }
 
-  @media only screen and (min-width : 984px) {
+  @media only screen and (min-width : $breakpoint-large) {
     font-size: 1.438em;
   }
 }
@@ -294,13 +294,13 @@ body {
     max-width: 100%;
   }
 
-  @media only screen and (min-width : 984px) {
+  @media only screen and (min-width : $breakpoint-large) {
     .cookie-policy .wrapper {
-      width: 984px;
+      width: $breakpoint-large;
     }
   }
 
-  @media only screen and (min-width : 769px) {
+  @media only screen and (min-width : $breakpoint-medium) {
     .strip-inner-wrapper {
       background: none;
       border: none;
@@ -311,7 +311,7 @@ body {
       box-shadow: none;
       box-sizing: border-box;
       margin: 0 auto;
-      max-width: 984px;
+      max-width: $breakpoint-large;
       float: none;
     }
   }
@@ -333,22 +333,22 @@ body {
   .nav-secondary ul.breadcrumb {
     margin-left: 0;
 
-    @media only screen and (max-width : 984px) {
+    @media only screen and (max-width : $breakpoint-large) {
       margin-left: 10px;
     }
 
-    @media only screen and (max-width : 768px) {
+    @media only screen and (max-width : $breakpoint-medium) {
       margin-left: 0;
     }
   }
 
-  @media only screen and (min-width : 768px) {
+  @media only screen and (min-width : $breakpoint-medium) {
     .strip-inner-wrapper {
       padding: 0 30px;
     }
   }
 
-  @media only screen and (min-width : 984px) {
+  @media only screen and (min-width : $breakpoint-large) {
     .row {
       padding: 40px 0;
     }
@@ -418,12 +418,12 @@ body {
       padding-top: 20px;
     }
 
-    @media only screen and (min-width : 768px) {
+    @media only screen and (min-width : $breakpoint-medium) {
       margin-top: 0;
       padding-top: 40px;
     }
 
-    @media only screen and (min-width : 984px) {
+    @media only screen and (min-width : $breakpoint-large) {
       padding-top: 100px;
     }
   }
@@ -431,11 +431,11 @@ body {
   .row {
     padding: 20px 10px 0;
 
-    @media only screen and (min-width : 768px) {
+    @media only screen and (min-width : $breakpoint-medium) {
       padding: 40px 10px 20px;
     }
 
-    @media only screen and (min-width : 984px) {
+    @media only screen and (min-width : $breakpoint-large) {
       padding: 100px 40px 100px;
     }
   }
@@ -775,7 +775,7 @@ footer.global {
 	.footer-b {
 		padding: 0 0 20px;
 		margin: 0 auto;
-    font-size: 12px;
+    font-size: .75em;
 
 		ul ul, ul li, h2 {
 			margin: 0;
@@ -793,7 +793,6 @@ footer.global {
       font-size: 1em;
 
 			a i {
-				///font-style: normal;
 				display: none;
 			}
 		}
@@ -830,7 +829,7 @@ footer.global {
 }
 
 /// add ubuntu logo to the footer in medium and large
-@media only screen and (min-width : 768px) {
+@media only screen and (min-width : $breakpoint-medium) {
   footer.global .legal {
     background: url("//assets.ubuntu.com/sites/ubuntu/latest/u/img/logos/logo-ubuntu-grey.png") 100% 0 no-repeat;
     ul {
@@ -849,11 +848,21 @@ div.legal {
 } /* end legal */
 
 /// don't let the footer-b fonts get small on non large screens
-footer.global .footer-b li ul li a:link,
-footer.global .footer-b li ul li a:visited,
-footer.global .footer-b li h2 a:link,
-footer.global .footer-b li h2 a:visited {
-  font-size: 1em;
+footer.global .footer-b li {
+  ul {
+    li {
+      a:link,
+      a:visited {
+        font-size: 1em;
+      }
+      h2 {
+        a:link,
+        a:visited {
+          font-size: 1em;
+        }
+      }
+    }
+  }
 }
 
 nav div.footer-a div {
@@ -911,7 +920,7 @@ html.opera-mini {
   }
 }
 
-@media only screen and (max-width : 768px) {
+@media only screen and (max-width : $breakpoint-medium) {
   footer.global {
     overflow: hidden;
     padding-top: 0;
@@ -1044,7 +1053,7 @@ html.opera-mini {
               color: #333333;
               display: block;
               float: left;
-              font-size: 12px; /* was 1.166em; */
+              font-size: 12px; /* was 1.166em; if we use ems the footer-a and footer-b sizes diverge */
               margin-bottom: 0;
               overflow: hidden;
               padding: 8px 0 8px 20px;
@@ -1164,7 +1173,7 @@ html.no-svg {
 
 /* Medium / Tablet viewport
 -------------------------------------------------------------- */
-@media only screen and (min-width : 768px) {
+@media only screen and (min-width : $breakpoint-medium) {
 	footer.global .legal.has-cookie {
 	  /* if the cookie message is being displayed add padding so the legal links are still visible */
 	  padding-bottom: 40px;
@@ -1212,7 +1221,7 @@ html.no-svg {
 	}
 }
 
-@media only screen and (min-width : 769px) {
+@media only screen and (min-width : $breakpoint-medium) {
 	footer.global .footer-a {
 		padding-bottom: 20px;
 		margin-bottom: 20px;
@@ -1249,7 +1258,7 @@ html.no-svg {
 }
 }
 
-@media only screen and (max-width : 842px) and (min-width : 769px) {
+@media only screen and (max-width : 842px) and (min-width : $breakpoint-medium) {
 	header.banner nav.nav-primary {
 		ul li a:active,
 		ul li a:hover,
@@ -1261,7 +1270,7 @@ html.no-svg {
 	}
 }
 
-@media only screen and (max-width : 768px) {
+@media only screen and (max-width : $breakpoint-medium) {
   header.banner {
     .search-toggle {
     	right: 48px;
@@ -1272,12 +1281,12 @@ html.no-svg {
 
 /* @section Large / Desktop viewport
 -------------------------------------------------------------- */
-@media only screen and (min-width : 984px) {
+@media only screen and (min-width : $breakpoint-large) {
 	footer.global nav div.footer-a div,
 	footer.global .footer-b,
 	footer.global .footer-b,
 	footer.global .inline-lists ul {
-		width: 984px; /* 980px / 15px (baseline font); 980px + (60px x 2) = 1100px */
+		width: $breakpoint-large; /* 980px / 15px (baseline font); 980px + (60px x 2) = 1100px */
 	}
 
 	footer.global .legal.has-cookie {
@@ -1303,15 +1312,15 @@ html.no-svg {
 
   footer.global .footer-b li h2 a:after { content: ":"; }
 
-} // end @media only screen and (min-width : 984px)
+} // end @media only screen and (min-width : $breakpoint-large)
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $breakpoint-medium) {
 	#context-footer div div.feature-one { display: table-cell; }
 }
 
 #context-footer div div.feature-two { padding-left: 0; }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $breakpoint-medium) {
   .info-release-end-of-life {
     .for-mobile, .for-small {
         display: none;
@@ -1432,12 +1441,12 @@ html.no-svg {
 	}
 }
 
-@media only screen and (min-width: 984px) {
+@media only screen and (min-width: $breakpoint-large) {
 	.inline-icons {
     text-align: left;
     margin-bottom: 20px;
   }
-} // end @media only screen and (min-width: 984px)
+} // end @media only screen and (min-width: $breakpoint-large)
 
 // box-padded-feature imported from old guidelines
 .box-padded-feature {
