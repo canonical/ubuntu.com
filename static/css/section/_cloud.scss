@@ -171,15 +171,6 @@
     }
   }
 
-  .event-details-wrapper {
-    div {
-      overflow: hidden;
-    }
-
-    h3 {
-      margin-bottom: 5px;
-    }
-  }
 
   .event-details {
     color: #888;
@@ -1794,6 +1785,16 @@ body.cloud-ubuntu-openstack-reference-architecture {
   }
 }
 
+/* Event listings */
+
+.event-details__header {
+  margin-bottom: 5px;
+}
+
+.event-details__container {
+  overflow: hidden;
+}
+
 html.js .cloud-openstack-managed-cloud .js__required {
   display: block;
 }
@@ -1873,6 +1874,7 @@ html.js .cloud-openstack-managed-cloud .js__required {
     }
   }
 }
+
 
 .stepped {
   margin-left: 25px;
