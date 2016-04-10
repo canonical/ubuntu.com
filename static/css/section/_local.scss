@@ -18,6 +18,25 @@ body {
   }
 }
 
+// fixes main nav not closing issue
+@media only screen and (max-width: $navigation-threshold) {
+  .banner .nav-primary #nav:hover {
+    display: inherit;  
+  }
+  
+  .banner .nav-primary ul {
+    display: none;
+    
+    &.active {
+      display: block;
+      
+      ul {
+        display: none;
+      }
+    }
+  }
+}
+
 @media only screen and (max-width : 768px) {
   .nav-secondary .breadcrumb {
     padding-bottom: 0;
