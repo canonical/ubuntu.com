@@ -1353,6 +1353,10 @@ body.phone-ubuntu-for-android-contact-us .row-hero {
         overflow: hidden;
 
         .carousel {
+          @media only screen and (max-width: 1024px) {
+            display: none;
+          }
+
           background-image: url('#{$asset-server}a042ddd8-carousel-bg.png?w=401');
           background-repeat: no-repeat;
           padding: 110px 20px;
@@ -1397,6 +1401,11 @@ body.phone-ubuntu-for-android-contact-us .row-hero {
             position: relative;
             z-index: 999;
             padding-left: 60px;
+
+            @media only screen and (max-width: 1024px) {
+              padding-left: 0;
+              padding-top: 40px;
+            }
         }
     } // end row-slideshow
   }
@@ -1657,15 +1666,6 @@ body.phone-ubuntu-for-android-contact-us .row-hero {
     }
   }
   // end @section features
-
-    // body.phone-developers (984)
-body.phone-developers {
-  .row-slideshow {
-    #scopes-content {
-      padding-left: 60px;
-    }
-  } // end row-slideshow
-}
 
   // @section partners /phone/partners (984)
   //--------------------------------------------------------------
