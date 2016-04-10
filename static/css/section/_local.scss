@@ -363,12 +363,24 @@ body {
     color: $link-color;
 }
 
-// extra rules for full width sections other than homepage
-.phone,
-.tablet,
 .internet-of-things,
 .desktop,
 .cloud {
+  #context-footer {
+    background: #fff;
+    padding-bottom: 35px; // replaces the padding taken off .inner-wrapper
+    margin-bottom: 0;
+
+    div > div > div {
+      border: 0; // kills borders on very nested divs... like we have for further reading
+      padding-bottom: 0;
+    }
+  }
+}
+
+// extra rules for full width sections other than homepage
+.phone,
+.tablet {
   #context-footer {
     background: #fff;
     padding-bottom: 35px; // replaces the padding taken off .inner-wrapper
