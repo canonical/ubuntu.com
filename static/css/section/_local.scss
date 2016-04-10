@@ -14,6 +14,19 @@ body {
   margin-top: 0;
 }
 
+.banner .nav-primary ul,
+.banner .nav-primary ul:hover {
+  display: none;
+  
+  &.active {
+    display: block;
+    
+    ul {
+      display: none;
+    }
+  }
+}
+
 @media only screen and (max-width : 768px) {
   .nav-secondary .breadcrumb {
     padding-bottom: 0;
