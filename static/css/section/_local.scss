@@ -12,6 +12,10 @@ body {
 .row.row-grey {
   border-bottom: 1px dotted $warm-grey;
   margin-top: 0;
+
+  &.no-border {
+    border-bottom: 0;
+  }
 }
 
 @media only screen and (max-width : 768px) {
@@ -1068,7 +1072,7 @@ html.no-svg {
 }
 
 // for headings of external list links, currentley only seen on download/alternative-downloads
-.external--title span {  
+.external--title span {
   background: url("#{$asset-server}e1bba201-external-link-cool-grey.svg") left center no-repeat;
   background-size: 20px;
   padding-left: 26px;
@@ -1426,4 +1430,12 @@ button.button--primary__deactivated:hover {
     background: #efefef;
     color: #fff;
     cursor: not-allowed;
+}
+
+// XXX Ant (10.04.2016)
+// https://github.com/ubuntudesign/www.ubuntu.com/issues/260
+// Remove border of grey-box as it didnt have borders before but is extending
+// box in the theme.
+.box-grey {
+  border: 0;
 }
