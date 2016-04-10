@@ -14,8 +14,11 @@ body {
   margin-top: 0;
 }
 
-.banner .nav-primary ul,
 .banner .nav-primary #nav:hover {
+  display: inherit;  
+}
+
+.banner .nav-primary ul {
   display: none;
   
   &.active {
