@@ -14,18 +14,21 @@ body {
   margin-top: 0;
 }
 
-.banner .nav-primary #nav:hover {
-  display: inherit;  
-}
-
-.banner .nav-primary ul {
-  display: none;
+// fixes main nav not closing issue
+@media only screen and (max-width: $navigation-threshold) {
+  .banner .nav-primary #nav:hover {
+    display: inherit;  
+  }
   
-  &.active {
-    display: block;
+  .banner .nav-primary ul {
+    display: none;
     
-    ul {
-      display: none;
+    &.active {
+      display: block;
+      
+      ul {
+        display: none;
+      }
     }
   }
 }
