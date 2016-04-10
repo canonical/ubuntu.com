@@ -24,8 +24,49 @@ body {
     display: inherit;
   }
 
+  #menu.active:after {
+    background-image: url(https://assets.ubuntu.com/v1/f9f534bd-nav-arrow.svg);
+    background-repeat: no-repeat;
+    background-position: 50% 26px;
+    content: "";
+    display: block;
+    height: 23px;
+    margin-left: 0;
+    padding-bottom: 17px;
+    position: relative;
+    top: -5px;
+    width: 48px;
+    z-index: 999;
+  }
+
   .banner .nav-primary ul {
     display: none;
+
+    li {
+      border-left: 1px solid #cccccc;
+      border-right: 0;
+
+      a,
+      a:link,
+      a.active,
+      a.active:link {
+        font-weight: 300;
+      }
+
+      // XXX Ant (10.04.2016)
+      // Added !important to override some deep selectors in Vanilla
+      a:hover,
+      a:link:hover {
+        background: $light-grey !important;
+        color: $text-color !important;
+      }
+
+      a.active:hover,
+      a.active:link:hover {
+        background: #dddddd !important;
+        color: $text-color !important;
+      }
+    }
 
     &.active {
       display: block;
@@ -35,12 +76,67 @@ body {
       }
     }
   }
-}
 
-@media only screen and (max-width : 768px) {
-  .nav-secondary .breadcrumb {
-    padding-bottom: 0;
-    padding-top: 0;
+  .nav-secondary {
+
+    ul.third-level-nav li {
+      padding-left: 30px;
+    }
+
+    ul.second-level-nav li {
+      box-sizing: border-box;
+      width: 50%;
+      margin: 0;
+      float: left;
+
+      a,
+      a:link {
+        font-size: 1em;
+      }
+    }
+
+    .breadcrumb {
+      padding-bottom: 0;
+      padding-top: 0;
+
+
+      li .after {
+        background-image: url('https://assets.ubuntu.com/v1/74545443-nav-down-arrow.svg');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 18px;
+        float: right;
+        height: 18px;
+        padding: 10px;
+        position: relative;
+        right: 3px;
+        top: 0;
+        width: 18px;
+      }
+
+      li .breadcrumb-link {
+        color: $text-color;
+
+        &:after,
+        &--second-level:after {
+          content: '';
+        }
+      }
+
+      li a.active,
+      li a.active:link {
+        font-weight: 700;
+        color: $black;
+      }
+    }
+
+    &:hover {
+      border-bottom: 1px solid $box-border;
+
+      ul.breadcrumb li .after {
+        background-image: url('https://assets.ubuntu.com/v1/cadd096c-nav-up-arrow.svg');
+      }
+    }
   }
 }
 
@@ -1488,4 +1584,3 @@ button.button--primary__deactivated:hover {
 .pull-left--less {
   margin-left: -20px;
 }
-
