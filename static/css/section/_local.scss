@@ -766,6 +766,10 @@ footer.global {
 			display: block;
 		}
 
+    a::after {
+      content:"";
+    }
+
 		#nav-global li:first-of-type a {
 			margin-left: 0;
 		}
@@ -970,7 +974,7 @@ html.opera-mini {
          	box-sizing: border-box;
          	margin: 0 0 10px 0;
           padding: 10px 0;
-          width: 100%;
+          width: 102%;
           cursor: pointer;
           margin-bottom: 0;
           display: inline-block;
@@ -1028,8 +1032,6 @@ html.opera-mini {
         }
 
         ul.second-level-nav {
-          //margin-left: -10px;
-          //padding-right: 25px;
           float: left;
           width: 100%;
           margin-left: -10px;
@@ -1119,6 +1121,12 @@ html.opera-mini {
   footer #nav-global {
     padding-top: 0;
     margin-top: 0;
+    h2 {
+      padding: 10px 14px 10px 9px;
+      span {
+        margin-right: 8px;
+      }
+    }
   }
 }
 
