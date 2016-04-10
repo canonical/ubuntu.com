@@ -1,3 +1,4 @@
+// @section desktop-home
 .row-case-studies {
   background-color: $dark-aubergine;
   background-image: url('#{$asset-server}3c1c3b37-background-tile.jpg');
@@ -30,6 +31,7 @@
   }
 }
 
+/// small screens
 @media only screen and (max-width: 768px) {
   .row-apps {
     overflow: hidden;
@@ -684,6 +686,17 @@ $item_margin: 40px;
 
   .lang-switch {
     margin-bottom: 20px;
+  }
+
+  @media only screen and (max-width: 768px) {
+
+    .pull-left,
+    .pull-right {
+      width: 100;
+      margin:0;
+    }
+
+
   }
 
   @media only screen and (min-width: 768px) {
