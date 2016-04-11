@@ -18,6 +18,108 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
             }
         }
     };
+    
+    core.deviceAnimation = function() {
+        if(Y.one('body').hasClass('homepage')) {
+          //MIGHTY MORPHIN' DEVICE CODE
+
+          //As the Modernizr used doesn't have Prefix
+          var whichTransitionEvent = (function (){
+              var t;
+              var el = document.createElement('fakeelement');
+              var transitions = {
+                "animation"      : "animationend",
+                "OAnimation"     : "oAnimationEnd",
+                "MozAnimation"   : "animationend",
+                "WebkitAnimation": "webkitAnimationEnd"
+              }
+
+              for(t in transitions){
+                  if( el.style[t] !== undefined ){
+                      return transitions[t];
+                  }
+              }
+          } ());
+
+          var nonCSSMorph = false;
+          var currentNonMorphDevice = 0;
+          var nonMorphImageList = ["assets/no-tran-phone.png","assets/no-tran-tablet.png","assets/no-tran-laptop.png"];
+          var morphPlayComplete = false;
+
+
+          //From the click
+          function replayMorph()
+          {
+            if( morphPlayComplete )
+            {
+              var elm = this;
+              if( nonCSSMorph )
+              {
+                nextNonMorph();
+              }
+              else
+              {
+                var newone = elm.cloneNode(true);
+
+                elm.parentNode.replaceChild(newone, elm);
+                newone.onclick = replayMorph;
+                newone.style.cursor = 'inherit';
+                addTransEndEvent( newone );
+              }
+
+              morphPlayComplete = false;
+            }
+          }
+
+          function addTransEndEvent( e )
+          {
+            if(whichTransitionEvent)
+            {
+              e.addEventListener(whichTransitionEvent,setMorphComplete);
+            }
+            else
+            {
+              startNonMorph();
+            }
+           }
+          function setMorphComplete(e) {
+            morphPlayComplete = true;
+            e.currentTarget.style.cursor = "pointer";
+          }
+
+          function startNonMorph()
+          {
+            nonCSSMorph = true;
+            deviceMorphDiv.className="no-morph";
+            deviceMorphDiv.onclick = replayMorph;
+            setTimeout( nextNonMorph, 2000 );
+          }
+
+          function nextNonMorph()
+          {
+            currentNonMorphDevice++;
+            if( currentNonMorphDevice >= nonMorphImageList.length )
+            {
+              currentNonMorphDevice = 0;
+              morphPlayComplete = true;
+              deviceMorphDiv.style.cursor = "pointer";
+            }
+            else
+            {
+
+              deviceMorphDiv.style.cursor = 'inherit';
+              setTimeout( nextNonMorph, 2000 );
+            }
+            document.getElementById("device-morph").style.backgroundImage = "url("+nonMorphImageList[currentNonMorphDevice]+")";
+
+          }
+          var deviceMorphDiv = document.getElementById("device-morph");
+          var devices = document.getElementById("devices");
+          devices.className = "playing";
+          devices.onclick = replayMorph;
+          addTransEndEvent( devices );
+        }
+    };
 
     core.setupFeatureDisplay = function() {
         if(Y.one('.list-features-content') != null) {
