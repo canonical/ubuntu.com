@@ -3,9 +3,14 @@
  *
  * Please comment your changes to help documentation.
 
-  	CONTENTS:
-	-----------------------------------------------------------------
+      CONTENTS:
+    -----------------------------------------------------------------
 */
+
+// Disable default iOS styling on page elements
+* {
+  -webkit-appearance: none;
+}
 
 // Temporarally adding this until the small-viewport change
 // is merged into the theme. - KW 20160409
@@ -22,7 +27,7 @@ body {
 
 // additional helper class for shouty text
 .caps {
-	text-transform: uppercase;
+    text-transform: uppercase;
 }
 
 // for hidding with javascript
@@ -36,45 +41,45 @@ body {
 }
 
 @media only screen and (max-width : 768px) {
-	// helper class for small
-	.small-align-center {
-		text-align: center;
-	}
+    // helper class for small
+    .small-align-center {
+        text-align: center;
+    }
 }
 
 /* Chinese Social links */
 
 .list--social__item {
-	height: 37px;
-	margin-right: 20px;
-	padding: 0;
-	text-indent: -999em;
-	width: 37px;
-	float: left;
-	display: inline-block;
+    height: 37px;
+    margin-right: 20px;
+    padding: 0;
+    text-indent: -999em;
+    width: 37px;
+    float: left;
+    display: inline-block;
 
   &:after {
     content: " " !important;
-	}
+    }
 
-	a {
-		display: block;
-		height: 37px;
-		width: 37px;
-		margin: 0;
-		overflow: hidden;
-	}
+    a {
+        display: block;
+        height: 37px;
+        width: 37px;
+        margin: 0;
+        overflow: hidden;
+    }
 
-	&.active a {
+    &.active a {
     background-image:
-			url('#{$asset-server}aab97879-icon-wechat.svg'),
-			url('#{$asset-server}2be70a94-qr-code-wechat.png');
-		background-repeat: no-repeat;
-		background-position: left top, right top;
-		background-size: 37px 37px, auto;
-		width: 140px;
-		height: 116px;
-	}
+            url('#{$asset-server}aab97879-icon-wechat.svg'),
+            url('#{$asset-server}2be70a94-qr-code-wechat.png');
+        background-repeat: no-repeat;
+        background-position: left top, right top;
+        background-size: 37px 37px, auto;
+        width: 140px;
+        height: 116px;
+    }
 } // &__item
 
 .list--social__item--wechat a {
@@ -86,16 +91,16 @@ body {
 }
 
 main .list--social {
-	display: inline;
+    display: inline;
 }
 
 .china-mobile {
-	float: left;
-	margin-right: 40px;
+    float: left;
+    margin-right: 40px;
 }
 
 .homepage footer .list--social {
-	display: none;
+    display: none;
 }
 
 form input[type="url"] {
