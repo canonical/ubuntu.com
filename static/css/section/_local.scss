@@ -18,6 +18,25 @@ body {
   }
 }
 
+// XXX Ant (10.04.2016)
+// https://github.com/ubuntudesign/www.ubuntu.com/issues/295
+// Move to Vanilla
+// Fixed height in grid elements with only images
+.one-col,
+.two-col,
+.three-col,
+.four-col,
+.five-col,
+.six-col,
+.seven-col,
+.eight-col,
+.nine-col,
+.ten-col,
+.eleven-col,
+.twelve-col {
+  display: inline-block;
+}
+
 // fixes main nav not closing issue
 @media only screen and (max-width: $navigation-threshold) {
   .banner .nav-primary #nav:hover {
@@ -1577,8 +1596,7 @@ button.button--primary__deactivated:hover {
 
 // Override the "align-items: center" from equal-height__align-vertically,
 // which makes all items appear horizontally centered
-.equal-height > .equal-height__horizontal-left,
-.equal-height > .equal-height__align-vertically {
+.equal-height > .equal-height__horizontal-left {
   align-items: stretch;
 }
 
