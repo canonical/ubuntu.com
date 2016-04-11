@@ -30,6 +30,8 @@ var sassOptions = {
     errLogToConsole: true
 };
 
+var templateWatch = 'templates/**/*.html';
+
 
 /* Gulp instructions start here */
 gulp.task('sass', function() {
@@ -62,7 +64,15 @@ gulp.task('sass:watch', function() {
     gulp.watch([sassInput, sassWatch], ['sass']);
 });
 
-gulp.task('watch', ['sass:watch']);
+gulp.task('template:watch', function() {
+    livereload.listen();
+    gulp.watch([templateWatch], function (file) {
+        return gulp.src(file.path)
+            .pipe(livereload())
+    });
+});
+
+gulp.task('watch', ['sass:watch', 'template:watch']);
 
 gulp.task('test', ['sass:lint']);
 gulp.task('build', ['test', 'sass']);
