@@ -184,17 +184,16 @@ body {
 #main-content .row-hero {
   margin-top: 40px;
   padding-top: 0;
+
+  @media only screen and (max-width: 768px) {
+    margin-top: 20px;
+  }
 }
 
 // local override for uvt list ticks
 .list-ticks li,
 .list-ticks--compact li {
   background-image: url('https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg');
-}
-
-#main-content .row-hero {
-  margin-top: 40px;
-  padding-top: 0;
 }
 
 // flex container
