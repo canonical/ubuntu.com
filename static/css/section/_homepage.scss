@@ -488,6 +488,10 @@ body.homepage .row--cloud-products {
   background-color: #fff;
 
   @media only screen and (min-width : 768px) {
+    background-image: url('#{$asset-server}f27582be-image-cloud-static.jpg');
+    background-repeat: no-repeat;
+    background-position: 77% center;
+    background-size: 50%;
     padding-top: 100px;
     padding-bottom: 100px;
   }
@@ -495,10 +499,6 @@ body.homepage .row--cloud-products {
   @media only screen and (min-width: 984px) {
     padding-top: 180px;
     padding-bottom: 170px;
-    background-image: url('#{$asset-server}f27582be-image-cloud-static.jpg');
-    background-repeat: no-repeat;
-    background-position: 77% center;
-    background-size: 50%;
   }
 }
 
