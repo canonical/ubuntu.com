@@ -1,155 +1,155 @@
 /*	@section server
 --------------------------------------------------------------
-	Contents:
-		@section general
-		@section server-services
+    Contents:
+        @section general
+        @section server-services
 -------------------------------------------------------------- */
 
 /*	@section general
 -------------------------------------------------------------- */
 
 body.server {
-	.row-hero { /* First bit of content on a page, normally contains h1 and sometimes a bit of blurb */
-		position: relative;
+    .row-hero { /* First bit of content on a page, normally contains h1 and sometimes a bit of blurb */
+        position: relative;
 
-		h2 {
-			color: $warm-grey;
-			padding-top: 20px;
-		}
-	}
-	  
-	tfoot th { 
-  	font-weight: bold; 
-  }
-  
-	.button-right {
-		margin-top: 18px;
-		margin-bottom: 0;
-	}
+        h2 {
+            color: $warm-grey;
+            padding-top: 20px;
+        }
+    }
 
-	.row-landscape img {
-		height: auto;
-		max-width: 100%;
-	}
-	
-	.row-community {
-		margin-bottom: 0;
-		border-bottom: 0;
-		padding: 40px 20px;
-	}
-	
-	.row-community {
-  	margin-bottom: 0; 
-  	border-bottom: 0; 
-  }
-	
-	.row-community .nine-col { 
-    background: #fff; 
+    tfoot th {
+      font-weight: bold;
   }
 
-	.box-padded ul.inline-icons {
-		margin-bottom: 0;
-	}
+    .button-right {
+        margin-top: 18px;
+        margin-bottom: 0;
+    }
+
+    .row-landscape img {
+        height: auto;
+        max-width: 100%;
+    }
+
+    .row-community {
+        margin-bottom: 0;
+        border-bottom: 0;
+        padding: 40px 20px;
+    }
+
+    .row-community {
+      margin-bottom: 0;
+      border-bottom: 0;
+  }
+
+    .row-community .nine-col {
+    background: #fff;
+  }
+
+    .box-padded ul.inline-icons {
+        margin-bottom: 0;
+    }
 }
 
 .row-juju-maas div {
-	padding-bottom: 0;
+    padding-bottom: 0;
 }
 
 /*	@section server-services
 -------------------------------------------------------------- */
 body.server-services .row-hero {
-	background-image: none;
-	border: 0;
-	padding-bottom: 0;
+    background-image: none;
+    border: 0;
+    padding-bottom: 0;
 }
 
 body.server-services .row-hero h2 {
-	background: none;
-	color: inherit;
-	padding: 0;
-	text-align: left;
+    background: none;
+    color: inherit;
+    padding: 0;
+    text-align: left;
 }
 
-body.server-services .packages {	
-  margin-bottom: 20px; 
+body.server-services .packages {
+  margin-bottom: 20px;
 }
 
 body.server-services .packages h2 {
-	background: #efeeec url('#{$asset-server}87667959-bg-servicesserver-owl-125x101.png') no-repeat 20px 50%;
-	width: 45.5%;
-	padding-top: 85px;
-	padding-bottom: 77px;
+    background: #efeeec url('#{$asset-server}87667959-bg-servicesserver-owl-125x101.png') no-repeat 20px 50%;
+    width: 45.5%;
+    padding-top: 85px;
+    padding-bottom: 77px;
 }
 
-body.server-services .packages dd {	
-  min-height: 10em; 
+body.server-services .packages dd {
+  min-height: 10em;
 }
 
-body.server-services .packages dd.price {	
-  min-height: 0; 
+body.server-services .packages dd.price {
+  min-height: 0;
 }
 
-body.server-services .packages .price-annual  {	
-  top: 220px; 
+body.server-services .packages .price-annual  {
+  top: 220px;
 }
 
-body.server-services .row-ubuntu-advantage { 
-  padding-bottom: 0; 
+body.server-services .row-ubuntu-advantage {
+  padding-bottom: 0;
 }
 
-body.server-services .row-ubuntu-advantage h3 { 
-  font-size: 1.21875em; 
+body.server-services .row-ubuntu-advantage h3 {
+  font-size: 1.21875em;
 }
 
-body.server-services .row-ubuntu-advantage .list-details { 
-  margin-bottom: 0; 
+body.server-services .row-ubuntu-advantage .list-details {
+  margin-bottom: 0;
 }
 
-body.server-services .row-ubuntu-advantage li.first { 
-  height: 38.7em; 
+body.server-services .row-ubuntu-advantage li.first {
+  height: 38.7em;
 }
 
 body.server-services .row-blockquote {
-	background: #e2d4dc;
-	padding-top: $gutter-width;
-	margin-bottom: 0;
-	padding-bottom: $gutter-width/2;
+    background: #e2d4dc;
+    padding-top: $gutter-width;
+    margin-bottom: 0;
+    padding-bottom: $gutter-width/2;
 }
 
 body.server-services .row-blockquote p.last {
-	padding-left: 25px;
-	display: block;
-	float: left;
+    padding-left: 25px;
+    display: block;
+    float: left;
 }
 
-body.server-services .row-blockquote p a { 
-  font-size: 1em; 
+body.server-services .row-blockquote p a {
+  font-size: 1em;
 }
 
 body.server-services .row-enterprise {
-	padding-top: $gutter-width;
-	margin-bottom: 0;
-	overflow: hidden;
+    padding-top: $gutter-width;
+    margin-bottom: 0;
+    overflow: hidden;
 }
 
-body.server-services .row-ubuntu-advantage { 
-  padding-top: 30px; 
+body.server-services .row-ubuntu-advantage {
+  padding-top: 30px;
 }
 
 body.server-services .row-enterprise .quote-canonical {
-	margin-right: 20px;
-	padding: 20px 40px 0 80px;
+    margin-right: 20px;
+    padding: 20px 40px 0 80px;
 }
 
 body.server-services .row-methodology {
-	background: #e2d4dc;
-	padding-top: $gutter-width;
+    background: #e2d4dc;
+    padding-top: $gutter-width;
 }
 
 body.server-services .row-methodology .arrow-left {
-	bottom: auto;
-	top: 20px;
+    bottom: auto;
+    top: 20px;
 }
 
 body.server-hyperscale h1 {
@@ -164,54 +164,54 @@ body.server-thank-you .row-hero h2 {
 }
 
 body.server-hyperscale {
-	.partner-logo {
-		margin-bottom: 10px;
-	}
+    .partner-logo {
+        margin-bottom: 10px;
+    }
 }
 
 /* Medium / Tablet viewport
 -------------------------------------------------------------- */
 @media only screen and (min-width : 769px) {
-	body.server {
-		.box-padded-feature {
-			.six-col {
-				border-right: 1px dotted $warm-grey;
-			}
-			
-			.six-col.last-col {
-				border-right: 0;
-			}
-			
-			.border-bottom {
-				border-bottom: 1px dotted $warm-grey;
-				padding-bottom: 10px;
-				margin-bottom: 10px;
-			}
-		}
-	}
-	body.server-hyperscale {
-		.partner-logo {
-			height: 105px;
-		}
-		
-		.partner-logo img {
+    body.server {
+        .box-padded-feature {
+            .six-col {
+                border-right: 1px dotted $warm-grey;
+            }
+
+            .six-col.last-col {
+                border-right: 0;
+            }
+
+            .border-bottom {
+                border-bottom: 1px dotted $warm-grey;
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+    body.server-hyperscale {
+        .partner-logo {
+            height: 105px;
+        }
+
+        .partner-logo img {
       position: relative;
       top: 50%;
       -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
       transform: translateY(-50%);
-		}
+        }
 
-		.welcome-hyperscale {
-		  background-image: url("#{$asset-server}ab812f69-image-server-hyperscale.svg");
-		  background-repeat: no-repeat;
-		  background-position: 575px center;
-		}
-	}
-	html.no-svg,
-	html.opera-mini {
-		body.server-hyperscale .welcome-hyperscale {
-	  		background-image: url("#{$asset-server}b47ff24b-image-server-hyperscale.png");
-	  	}
-	}
+        .welcome-hyperscale {
+          background-image: url("#{$asset-server}ab812f69-image-server-hyperscale.svg");
+          background-repeat: no-repeat;
+          background-position: 575px center;
+        }
+    }
+    html.no-svg,
+    html.opera-mini {
+        body.server-hyperscale .welcome-hyperscale {
+              background-image: url("#{$asset-server}b47ff24b-image-server-hyperscale.png");
+          }
+    }
 }

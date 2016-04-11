@@ -708,21 +708,21 @@ $shark: #181c21; // http://chir.ag/projects/name-that-color/#181C21
 // ============================ Takeovers ============================
 // cloud default, don not remove
 body.homepage-cloud-default {
-	@media only screen and (min-width : 768px) {
-		.row-popular-cloud {
-			padding: 20px 0 0;
-		}
-		h1 {
-			padding-top: 90px;
-		}
-	}
-	@media only screen and (min-width : 984px) {
-		.row-popular-cloud {
-			padding: 10px 0;
-		}
-		h1 { padding-top: 105px; }
-		.intro { font-size: 23px; }
-	} // @media only screen and (min-width : 984px)
+  @media only screen and (min-width : 768px) {
+    .row-popular-cloud {
+      padding: 20px 0 0;
+    }
+    h1 {
+      padding-top: 90px;
+    }
+  }
+  @media only screen and (min-width : 984px) {
+    .row-popular-cloud {
+      padding: 10px 0;
+    }
+    h1 { padding-top: 105px; }
+    .intro { font-size: 23px; }
+  } // @media only screen and (min-width : 984px)
 } // body.homepage-cloud-default
 
 
@@ -1320,7 +1320,7 @@ body.homepage-maas-takeover {
       background-position: center center;
       padding-top: 30px;
     }
-    
+
     .strip-inner-wrapper {
       min-height: 40vw;
       overflow: visible;
@@ -1334,7 +1334,7 @@ body.homepage-maas-takeover {
           margin-top: 50px;
         }
       }
-      
+
       .row-hero__image--small-screen {
         padding-top: 20px;
       }
