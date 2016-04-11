@@ -7,6 +7,15 @@
     }
   }
 
+  /// logo title blocks to allign side by side in small screens
+  @media only screen and (max-width: $breakpoint-medium) {
+    .twelve-col .one-col,
+    .twelve-col .three-col {
+      width: initial;
+    }
+  }
+
+
   @media only screen and (min-width: 984px) {
     .row-cta {
       padding: 90px 40px 70px;
@@ -208,4 +217,3 @@ body.internet-of-things-developers {
   padding-top: 0;
   margin-bottom: 0;
 }
-
