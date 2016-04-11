@@ -69,7 +69,9 @@
 
 // Full-width nav alignment fix
 .tablet .nav-secondary .breadcrumb li .breadcrumb-link {
-  padding-left: 0;
+  @media only screen and (min-width : $navigation-threshold) {
+    padding-left: 0;
+  }
 }
 
 .tablet-overview,
