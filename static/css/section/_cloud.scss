@@ -1891,21 +1891,19 @@ html.js .cloud-openstack-managed-cloud .js__required {
     position: relative;
 
     span {
-      font-size: 1.375em;
-      border-radius: 40px;
+      display: inline-block;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
       background-color: #ccc;
-      border: 3px solid #ccc;
       color: #fff;
-      display: block;
-      height: auto;
-      left: -60px;
-      margin-left: 0;
-      margin-right: 20px;
-      padding: 0 9px;
-      position: absolute;
       text-align: center;
       vertical-align: top;
-      width: 18px;
+      font-size: 1.5em;
+      font-weight: 300;
+      left: -60px;
+      position: absolute;
     }
   }
 }
@@ -1939,4 +1937,3 @@ html.js .cloud-openstack-managed-cloud .js__required {
 .row--leaders__container {
   align-items: stretch;
 }
-
