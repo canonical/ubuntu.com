@@ -119,9 +119,11 @@
 {% endblock content %}
 {% block footer_extra %}
 <script>
-    YUI().use('event-base', function (Y) {
-        Y.on('domready', function () {
-            core.loadPartners('?programme__name=Desktop&featured=true', '#hardware-partners');
+    YUI().use('get', 'event-base', function (Y) {
+        Y.Get.js('/static/js/scratch.js', function() {
+            Y.on('domready', function () {
+                core.loadPartners('?programme__name=Desktop&featured=true', '#hardware-partners');
+            });
         });
     });
 </script>
