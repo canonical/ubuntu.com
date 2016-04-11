@@ -76,12 +76,12 @@ body {
       }
     }
   }
-  
+
   .nav-secondary .breadcrumb {
     padding-bottom: 0;
     padding-top: 0;
   }
-  
+
   .nav-secondary {
 
     ul.third-level-nav li {
@@ -265,18 +265,10 @@ body {
 }
 
 // billboard__content
-@media only screen and (min-width: $breakpoint-medium) {
-  .billboard__content {
-    background: rgba(255,255,255,.85);
-    color: $cool-grey;
-    padding: 20px;
-  }
-
-  .billboard__content--large {
-    background: rgba(255,255,255,.85);
-    color: $cool-grey;
-    padding: 20px;
-  }
+.billboard__content {
+  background: rgba(255,255,255,.85);
+  color: $cool-grey;
+  padding: 20px;
 }
 
 .billboard__title {
@@ -563,22 +555,22 @@ body {
 
 // this removes the empty global nav container if javascript is off
 .no-js body {
-	padding-top: 0;
+  padding-top: 0;
 }
 
 strong {
-	font-weight: 400;
+  font-weight: 400;
 }
 
 // Overrides the top padding on video container which was only required when the
 // youtube have fixed controls pushing the video up by 30px.
 .video-container {
-	padding-top: 0;
+  padding-top: 0;
 }
 
 // was causing horizontal scroll on mobile
 .nav-secondary ul {
-	margin-left: 0;
+  margin-left: 0;
 }
 
 footer.global {
@@ -764,187 +756,187 @@ html.yui3-js-enabled .resource:hover a {
 }
 
 .command-line {
-	position: relative;
-	border-radius: 4px;
+  position: relative;
+  border-radius: 4px;
   background-color: $dark-aubergine;
-	border: 1px solid $dark-aubergine;
-	overflow: hidden;
-	transition: all .2s;
+  border: 1px solid $dark-aubergine;
+  overflow: hidden;
+  transition: all .2s;
 
-	&__input {
-		border: 0;
-		background: transparent;
-		font-size: 1em;
-		font-family: Ubuntu Mono;
-		font-weight: 300;
-	  padding: .7em 1em;
-		color: #fff;
-		width: 100%;
-	}
+  &__input {
+    border: 0;
+    background: transparent;
+    font-size: 1em;
+    font-family: Ubuntu Mono;
+    font-weight: 300;
+    padding: .7em 1em;
+    color: #fff;
+    width: 100%;
+  }
 
-	&__copy-button {
-		transition: background-color .2s;
-		position: absolute;
-		right: 0;
-		top: 0;
-		width: 50px;
-		border: 0;
-		height: 100%;
-		display: block;
-		text-indent: -9999px;
-		background-image: url('#{$asset-server}994e60f9-get-link-url_16.svg');
-		background-repeat: no-repeat;
-		background-position: center;
-		background-color: #fff;
+  &__copy-button {
+    transition: background-color .2s;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50px;
+    border: 0;
+    height: 100%;
+    display: block;
+    text-indent: -9999px;
+    background-image: url('#{$asset-server}994e60f9-get-link-url_16.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #fff;
 
-		&:hover {
-			background-color: darken(#fff, 4%);
-		}
-	}
+    &:hover {
+      background-color: darken(#fff, 4%);
+    }
+  }
 
-	&.is-copied {
-		border-color: $success;
-		//background-color: $mid-aubergine;
-	}
+  &.is-copied {
+    border-color: $success;
+    //background-color: $mid-aubergine;
+  }
 }
 
 footer.global {
-	.footer-a {
-		border-bottom: 1px solid #d8d8d8;
-		display: block;
-		clear: both;
+  .footer-a {
+    border-bottom: 1px solid #d8d8d8;
+    display: block;
+    clear: both;
 
-		ul li {
-			border-right: 1px dotted $warm-grey;
-			display: table-cell;
-			float: none;
-			margin-left: 0;
-			padding-bottom: 0;
-			padding-left: 0;
-			padding-right: 0;
-			width: auto;
-			width: 124px;
-		}
+    ul li {
+      border-right: 1px dotted $warm-grey;
+      display: table-cell;
+      float: none;
+      margin-left: 0;
+      padding-bottom: 0;
+      padding-left: 0;
+      padding-right: 0;
+      width: auto;
+      width: 124px;
+    }
 
-		ul li.secondary-desktop {
-			width: 128px;
-		}
+    ul li.secondary-desktop {
+      width: 128px;
+    }
 
-		ul li.secondary-server {
-			width: 118px;
-		}
+    ul li.secondary-server {
+      width: 118px;
+    }
 
-		ul li.secondary-tablet {
-			width: 123px;
-		}
+    ul li.secondary-tablet {
+      width: 123px;
+    }
 
-		ul li.secondary-cloud {
-			width: 115px;
-		}
+    ul li.secondary-cloud {
+      width: 115px;
+    }
 
-		ul li.secondary-tv {
-			width: 115px;
-		}
+    ul li.secondary-tv {
+      width: 115px;
+    }
 
-		ul li.secondary-management {
-			width: 143px;
-		}
+    ul li.secondary-management {
+      width: 143px;
+    }
 
-		ul li:last-child, ul li.last-item {
-			border: 0;
-			padding-right: 0;
-		}
+    ul li:last-child, ul li.last-item {
+      border: 0;
+      padding-right: 0;
+    }
 
-		ul ul {
-			margin-left: 0;
-			display: block;
-		}
+    ul ul {
+      margin-left: 0;
+      display: block;
+    }
 
-		li li {
-			margin-left: 0;
-			float: none;
-			width: auto;
-			display: block;
-			min-height: 0;
-			border: 0;
-			margin-bottom: 2px;
-			padding-left: 0;
-			padding-bottom: inherit;
-			background: none;
-		}
+    li li {
+      margin-left: 0;
+      float: none;
+      width: auto;
+      display: block;
+      min-height: 0;
+      border: 0;
+      margin-bottom: 2px;
+      padding-left: 0;
+      padding-bottom: inherit;
+      background: none;
+    }
 
-		li li:last-child {
-			margin-bottom: 0;
-		}
+    li li:last-child {
+      margin-bottom: 0;
+    }
 
-		li li a {
-			display: block;
-		}
+    li li a {
+      display: block;
+    }
 
     a::after {
       content:"";
     }
 
-		#nav-global li:first-of-type a {
-			margin-left: 0;
-		}
+    #nav-global li:first-of-type a {
+      margin-left: 0;
+    }
 
-	}/* end footer-a */
+  }/* end footer-a */
 
-	.footer-b {
-		padding: 0 0 20px;
-		margin: 0 auto;
+  .footer-b {
+    padding: 0 0 20px;
+    margin: 0 auto;
     font-size: .75em;
 
-		ul ul, ul li, h2 {
-			margin: 0;
-			padding: 0;
-			line-height: 2;
-			width: auto;
-			float: none;
+    ul ul, ul li, h2 {
+      margin: 0;
+      padding: 0;
+      line-height: 2;
+      width: auto;
+      float: none;
       font-weight: 300;
-		}
-		h2 {
-			float: left;
-			margin-right: 6px;
-			display: inline;
+    }
+    h2 {
+      float: left;
+      margin-right: 6px;
+      display: inline;
       font-weight: 400;
       font-size: 1em;
 
-			a i {
-				display: none;
-			}
-		}
-		li {
-			width: 100%;
-			display: block;
-			clear: both;
-			overflow: hidden;
+      a i {
+        display: none;
+      }
+    }
+    li {
+      width: 100%;
+      display: block;
+      clear: both;
+      overflow: hidden;
       font-size: 1em;
-		}
-		li li {
-			width: auto;
-			background: 0;
-			float: left;
-			clear: none;
+    }
+    li li {
+      width: auto;
+      background: 0;
+      float: left;
+      clear: none;
       font-size: 1em;
-		}
-		li li:last-child {
-			width: 200px;
-		}
-		li li:after {
-			content: "|";
-			padding-left: 6px;
-			padding-right: 6px;
-			position: relative;
+    }
+    li li:last-child {
+      width: 200px;
+    }
+    li li:after {
+      content: "|";
+      padding-left: 6px;
+      padding-right: 6px;
+      position: relative;
       font-size: 12px;
-		}
-		li h2 a:after,
-		li li:last-child:after,
-		li li.last-item:after  {
-				content: "";
-		}
-	}/* end footer-b */
+    }
+    li h2 a:after,
+    li li:last-child:after,
+    li li.last-item:after  {
+        content: "";
+    }
+  }/* end footer-b */
 }
 
 /// add ubuntu logo to the footer in medium and large
@@ -985,9 +977,9 @@ footer.global .footer-b li {
 }
 
 nav div.footer-a div {
-	/* Can be removed once live */
-	margin: 0 auto;
-	width: 100%; /* 980px / 15px (baseline font); 980px + (60px x 2) = 1100px */
+  /* Can be removed once live */
+  margin: 0 auto;
+  width: 100%; /* 980px / 15px (baseline font); 980px + (60px x 2) = 1100px */
 }
 
 html.no-svg,
@@ -1068,7 +1060,7 @@ html.opera-mini {
       ul li.secondary-tv,
       ul li.secondary-management,
       ul li {
-				border-bottom: 1px solid #D4D7D4;
+        border-bottom: 1px solid #D4D7D4;
         width: 100%;
         display: block;
         border-right: 0;
@@ -1079,15 +1071,15 @@ html.opera-mini {
         overflow: visible;
         margin-left: -10px;
         margin-right: -10px;
-				padding-left: 10px;
+        padding-left: 10px;
 
         &.last-item {
           padding-bottom: 0;
         }
 
         h2 {
-         	box-sizing: border-box;
-         	margin: 0 0 10px 0;
+           box-sizing: border-box;
+           margin: 0 0 10px 0;
           padding: 10px 0;
           width: 102%;
           cursor: pointer;
@@ -1100,14 +1092,14 @@ html.opera-mini {
           background-size: 13px 13px;
 
           &.active {
-          	background-image: url("#{$asset-server}dd3d9dec-arrow_up_9fa097.svg");
+            background-image: url("#{$asset-server}dd3d9dec-arrow_up_9fa097.svg");
           }
 
           &.active + ul.second-level-nav {
-						margin-bottom: -1px;
-						border-top: 1px solid #D4D7D4;
-						float: left;
-					}
+            margin-bottom: -1px;
+            border-top: 1px solid #D4D7D4;
+            float: left;
+          }
 
           a:link,
           a:visited {
@@ -1297,10 +1289,10 @@ html.no-svg {
 /* Medium / Tablet viewport
 -------------------------------------------------------------- */
 @media only screen and (min-width : $breakpoint-medium) {
-	footer.global .legal.has-cookie {
-	  /* if the cookie message is being displayed add padding so the legal links are still visible */
-	  padding-bottom: 40px;
-	}
+  footer.global .legal.has-cookie {
+    /* if the cookie message is being displayed add padding so the legal links are still visible */
+    padding-bottom: 40px;
+  }
 
   .resource .content-cat {
     bottom: 16px;
@@ -1337,66 +1329,66 @@ html.no-svg {
       min-height: 0;
     }
   }
-	footer.global .footer-a {
-		//padding-bottom: 20px;
-		//margin-bottom: 20px;
+  footer.global .footer-a {
+    //padding-bottom: 20px;
+    //margin-bottom: 20px;
 
-	}
+  }
 }
 
 @media only screen and (min-width : $breakpoint-medium) {
-	footer.global .footer-a {
-		padding-bottom: 20px;
-		margin-bottom: 20px;
+  footer.global .footer-a {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 
-		ul {
-			margin-left: -15px;
-		}
-			div {
-			padding-bottom: 10px;
-		}
-		h2 {
-			padding-left: 15px;
-		}
-		ul {
-			//margin-left: -15px;
-			padding-left: 15px;
-			border-collapse: collapse;
-			display: table;
-			float: none;
-			padding-bottom: 0;
-			width: 100%;
-		}
-		ul li {
-			border-right: 1px dotted $warm-grey;
-		}
+    ul {
+      margin-left: -15px;
+    }
+      div {
+      padding-bottom: 10px;
+    }
+    h2 {
+      padding-left: 15px;
+    }
+    ul {
+      //margin-left: -15px;
+      padding-left: 15px;
+      border-collapse: collapse;
+      display: table;
+      float: none;
+      padding-bottom: 0;
+      width: 100%;
+    }
+    ul li {
+      border-right: 1px dotted $warm-grey;
+    }
 
-		ul li a {
-			padding-right: 20px;
-		}
+    ul li a {
+      padding-right: 20px;
+    }
 
-		ul li li {
-			border: 0;
-		}
+    ul li li {
+      border: 0;
+    }
 }
 }
 
 @media only screen and (max-width : 842px) and (min-width : $breakpoint-medium) {
-	header.banner nav.nav-primary {
-		ul li a:active,
-		ul li a:hover,
-		ul li a:visited,
-		ul li a:link {
-			padding: 12px 10px 14px;
-			transition: padding .4s;
-		}
-	}
+  header.banner nav.nav-primary {
+    ul li a:active,
+    ul li a:hover,
+    ul li a:visited,
+    ul li a:link {
+      padding: 12px 10px 14px;
+      transition: padding .4s;
+    }
+  }
 }
 
 @media only screen and (max-width : $breakpoint-medium) {
   header.banner {
     .search-toggle {
-    	right: 48px;
+      right: 48px;
     }
    }
 }
@@ -1405,17 +1397,17 @@ html.no-svg {
 /* @section Large / Desktop viewport
 -------------------------------------------------------------- */
 @media only screen and (min-width : $breakpoint-large) {
-	footer.global nav div.footer-a div,
-	footer.global .footer-b,
-	footer.global .footer-b,
-	footer.global .inline-lists ul {
-		width: $breakpoint-large; /* 980px / 15px (baseline font); 980px + (60px x 2) = 1100px */
-	}
+  footer.global nav div.footer-a div,
+  footer.global .footer-b,
+  footer.global .footer-b,
+  footer.global .inline-lists ul {
+    width: $breakpoint-large; /* 980px / 15px (baseline font); 980px + (60px x 2) = 1100px */
+  }
 
-	footer.global .legal.has-cookie {
-	  /* if the cookie message is being displayed add padding so the legal links are still visible */
-	  padding-bottom: 30px;
-	}
+  footer.global .legal.has-cookie {
+    /* if the cookie message is being displayed add padding so the legal links are still visible */
+    padding-bottom: 30px;
+  }
   .cookie-policy p {
     padding-left: 0;
     padding-right: 0;
@@ -1438,7 +1430,7 @@ html.no-svg {
 } // end @media only screen and (min-width : $breakpoint-large)
 
 @media only screen and (min-width: $breakpoint-medium) {
-	#context-footer div div.feature-one { display: table-cell; }
+  #context-footer div div.feature-one { display: table-cell; }
 }
 
 #context-footer div div.feature-two { padding-left: 0; }
@@ -1452,7 +1444,7 @@ html.no-svg {
 }
 
 .juju-bundle-card {
-	box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.35);
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.35);
   padding: 20px;
   text-align: center;
 
@@ -1523,7 +1515,7 @@ html.no-svg {
 }
 
   .row.row-full-width {
-  	padding: 0;
+    padding: 0;
   }
 
 
@@ -1545,27 +1537,27 @@ html.no-svg {
 
 // inline-icons imported from old guidelines
 .inline-icons {
-	margin: 0 0 $gutter-width;
+  margin: 0 0 $gutter-width;
 
-	li {
-		margin-right: 20px;
-		margin-bottom: 20px;
-		text-align: left;
-		display: inline-block;
+  li {
+    margin-right: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+    display: inline-block;
 
-		&.last-item { margin-right: 0; }
-	}
+    &.last-item { margin-right: 0; }
+  }
 
-	&.no-margin-bottom li { margin-bottom: 0; }
+  &.no-margin-bottom li { margin-bottom: 0; }
 
-	img {
-		vertical-align: middle;
-		height: 30px;
-	}
+  img {
+    vertical-align: middle;
+    height: 30px;
+  }
 }
 
 @media only screen and (min-width: $breakpoint-large) {
-	.inline-icons {
+  .inline-icons {
     text-align: left;
     margin-bottom: 20px;
   }
