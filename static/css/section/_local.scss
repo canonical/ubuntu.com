@@ -800,6 +800,21 @@ html.yui3-js-enabled .resource:hover a {
   }
 }
 
+/// contextual footer heading sizes
+.context-footer > h3 {
+  /* small */
+  font-size: 1.14286em;
+  @media only screen and (min-width : $breakpoint-medium) {
+    /* medium */
+    font-size: 1.07143125em;
+  }
+  @media only screen and (min-width : $breakpoint-large) {
+    /* large */
+    font-size: 1.0000025em;
+  }
+}
+
+
 footer.global {
   .footer-a {
     border-bottom: 1px solid #d8d8d8;
