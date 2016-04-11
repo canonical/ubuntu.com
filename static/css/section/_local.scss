@@ -1537,9 +1537,9 @@ html.no-svg {
 // XXX Ant (10.04.2016)
 // Move to Vanilla
 // Untility class for-medium fix
-@media only screen and (min-width: $site-max-width) {
+@media only screen and (max-width: $breakpoint-medium) {
   .for-tablet, .for-medium {
-    display: none;
+    display: block;
   }
 }
 
