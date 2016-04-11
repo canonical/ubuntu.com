@@ -39,7 +39,17 @@
 
 <!-- stylesheets -->
 <link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_SERVER_URL }}5ff660b1-global-responsive.css" />
+
+<!--[if lte IE 9]>
+<link rel="stylesheet" type="text/css" media="screen" href="{% versioned_static 'css/styles.ie9a.css' %}" />
+<link rel="stylesheet" type="text/css" media="screen" href="{% versioned_static 'css/phone.ie9.css' %}" />
+<link rel="stylesheet" type="text/css" media="screen" href="{% versioned_static 'css/styles.ie9b.css' %}" />
+<![endif]-->
+
+<!--[if !lte IE 9]> -->
 <link rel="stylesheet" type="text/css" media="screen" href="{% versioned_static 'css/styles.css' %}" />
+<!-- <![endif]-->
+
 <link rel="stylesheet" type="text/css" media="print" href="{% versioned_static 'css/core-print.css' %}" />
 
 <!-- javascript -->
