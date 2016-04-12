@@ -7,27 +7,31 @@ their own choice of default applications and settings, backed by the
 full Ubuntu archive for packages and updates.{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Ubuntu flavours" page_title="Ubuntu flavours"  %}
+    <div class="strip-inner-wrapper">
+        {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Ubuntu flavours" page_title="Ubuntu flavours"  %}
+    </div><!-- /.strip-inner-wrapper -->
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero equal-height">
-	<div class="seven-col equal-height__item">
-		<h1>Ubuntu flavours</h1>
-		<p>Ubuntu flavours offer a unique way to experience Ubuntu,
-		each with their own choice of default applications and settings.
-		Ubuntu flavours are backed by the full Ubuntu archive for packages
-		and updates.
-		</p>
-	</div><!-- /.eight-col -->
-    <div class="four-col push-one last-col equal-height__item equal-height__align-vertically">
-        <img src="{{ ASSET_SERVER_URL }}ebfb7122-picto-generic-warmgrey.svg" width="200" height="200" alt="" class="priority-0" />
+<div class="row row-image-centered">
+    <div class="strip-inner-wrapper">
+        <div class="seven-col">
+            <h1>Ubuntu flavours</h1>
+            <p>Ubuntu flavours offer a unique way to experience Ubuntu,
+            each with their own choice of default applications and settings.
+            Ubuntu flavours are backed by the full Ubuntu archive for packages
+            and updates.
+            </p>
+        </div><!-- /.eight-col -->
+        <span>
+            <img src="{{ ASSET_SERVER_URL }}ebfb7122-picto-generic-warmgrey.svg" width="200" height="200" alt="" class="priority-0" />
+        </span>
     </div>
 </div>
 
-<div class="row no-border">
-    <div class="twelve-col">
-
+<div class="row">
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col">
         <ul class="list--grid twelve-col no-bullets no-margin-bottom">
           <li class="list--grid__item four-col">
             <div class="one-col list--grid__image-container">
@@ -130,6 +134,7 @@ full Ubuntu archive for packages and updates.{% endblock %}
         </ul>
 
     </div><!-- /.twelve-col -->
+    </div><!-- /.strip-inner-wrapper -->
 </div><!-- /.row -->
 
 {% endblock content %}

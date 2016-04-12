@@ -4,64 +4,44 @@
 {% block title %}Download Ubuntu Kylin | Download{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="zh-CN" %}
+    <div class="strip-inner-wrapper">
+        {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="zh-CN" %}
+    </div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row row-grey no-border">
-	<div class="eight-col append-four">
-		<h1>Download Ubuntu Kylin</h1>
-	</div>
-	<div class="twelve-col no-margin-bottom">
-		<div class="box box-highlight clearfix equal-height--vertical-divider">
-			<div class="equal-height--vertical-divider__item eight-col no-margin-bottom">
-				<h2>Ubuntu Kylin {{lts_release}} LTS</h2>
-				<p>Download the Long Term Support edition of Ubuntu Kylin {{lts_release}} LTS ISO image file. To install Ubuntu Kylin, burn the image file on a DVD or create a bootable USB disk.</p>
-			</div>
-			<div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom">
-				<form class="form-download gap-from-top lts" action="http://cdimage.ubuntu.com/ubuntukylin/releases/{{lts_release}}/release/ubuntukylin-{{lts_release}}-desktop-amd64.iso" method="get">
-					<fieldset>
-						<div>
-							<button type="submit" class="button--primary cta-large" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : '{{lts_release}} 64 bit', 'eventLabel' : 'From English-language Chinese download', 'eventValue' : undefined });">Download 64-bit</button>
-						</div>
-					</fieldset>
-				</form>
-				<form class="form-download lts" action="http://cdimage.ubuntu.com/ubuntukylin/releases/{{lts_release}}/release/ubuntukylin-{{lts_release}}-desktop-i386.iso" method="get">
-					<fieldset>
-						<div>
-							<button type="submit" class="button--primary cta-large" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : '{{lts_release}} 32 bit', 'eventLabel' : 'From English-language Chinese download', 'eventValue' : undefined });">Download 32-bit</button>
-						</div>
-					</fieldset>
-				</form>
-				<p class="note">If you have an older PC with less than 2GB of memory, choose the 32-bit download.</p>
-			</div>
-		</div><!-- /.box -->
-	</div>
+    <div class="strip-inner-wrapper">
+        <div class="eight-col append-four">
+            <h1>Download Ubuntu Kylin</h1>
+        </div>
+        <div class="twelve-col no-margin-bottom">
+            <div class="box box-highlight clearfix equal-height--vertical-divider">
+            <div class="equal-height--vertical-divider__item eight-col no-margin-bottom">
+                <h2>Ubuntu Kylin {{lts_release}} LTS</h2>
+                <p>Download the Long Term Support edition of Ubuntu Kylin {{lts_release}} LTS ISO image file. To install Ubuntu Kylin, burn the image file on a DVD or create a bootable USB disk.</p>
+            </div>
+            <div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom">
+                <form class="form-download gap-from-top lts" action="http://cdimage.ubuntu.com/ubuntukylin/releases/{{lts_release}}/release/ubuntukylin-{{lts_release}}-desktop-amd64.iso" method="get">
+                    <fieldset>
+                        <div>
+                            <button type="submit" class="button--primary cta-large" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : '{{lts_release}} 64 bit', 'eventLabel' : 'From English-language Chinese download', 'eventValue' : undefined });">Download 64-bit</button>
+                        </div>
+                    </fieldset>
+                </form>
+                <form class="form-download lts" action="http://cdimage.ubuntu.com/ubuntukylin/releases/{{lts_release}}/release/ubuntukylin-{{lts_release}}-desktop-i386.iso" method="get">
+                    <fieldset>
+                        <div>
+                            <button type="submit" class="button--primary cta-large" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : '{{lts_release}} 32 bit', 'eventLabel' : 'From English-language Chinese download', 'eventValue' : undefined });">Download 32-bit</button>
+                        </div>
+                    </fieldset>
+                </form>
+                <p class="note">If you have an older PC with less than 2GB of memory, choose the 32-bit download.</p>
+            </div>
+        </div><!-- /.box -->
+        <p class="intro"><a class="external" href="http://www.ubuntu-china.cn" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Download Kylin hero', 'eventLabel' : 'From Ubuntu download kylin', 'eventValue' : undefined });">Ubuntu 中国网站现已面世</a></p>
+        </div>
 
-	<div class="twelve-col no-margin-bottom">
-		<div class="box box-highlight clearfix equal-height--vertical-divider">
-			<div class="equal-height--vertical-divider__item eight-col no-margin-bottom">
-				<h2>Ubuntu Kylin {{latest_release}}</h2>
-				<p>Download the latest version of Ubuntu Kylin {{latest_release}} ISO image file. To install Ubuntu Kylin, burn the image file on a DVD or create a bootable USB disk.</p>
-			</div>
-			<div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom">
-				<form class="form-download gap-from-top" action="http://cdimage.ubuntu.com/ubuntukylin/releases/{{latest_release}}/release/ubuntukylin-{{latest_release}}-desktop-amd64.iso" method="get">
-					<fieldset>
-						<div>
-							<button type="submit" class="button--primary cta-large" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : '{{latest_release}} 64 bit', 'eventLabel' : 'From English-language Chinese download', 'eventValue' : undefined });">Download 64-bit</button>
-						</div>
-					</fieldset>
-				</form>
-				<form class="form-download" action="http://cdimage.ubuntu.com/ubuntukylin/releases/{{latest_release}}/release/ubuntukylin-{{latest_release}}-desktop-i386.iso" method="get">
-					<fieldset>
-						<div>
-							<button type="submit" class="button--primary cta-large" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : '{{latest_release}} 32 bit', 'eventLabel' : 'From English-language Chinese download', 'eventValue' : undefined });">Download 32-bit</button>
-						</div>
-					</fieldset>
-				</form>
-        <p class="note">If you have an older PC with less than 2GB of memory, choose the 32-bit download.</p>
-			</div>
-		</div>
-	</div>	<p class="intro"><a class="external" href="http://www.ubuntu-china.cn" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Download Kylin hero', 'eventLabel' : 'From Ubuntu download kylin', 'eventValue' : undefined });">Ubuntu 中国网站现已面世</a></p>
+    </div>
 </div>
 {% endblock content %}

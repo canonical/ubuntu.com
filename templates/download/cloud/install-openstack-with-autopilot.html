@@ -9,22 +9,27 @@
 {% block head_extra %}{% include "shared/_analytics_heap.html" %}{% endblock %}
 
 {% block second_level_nav_items %}
-    {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Cloud" page_title="Installing Ubuntu Cloud"  %}
+    <div class="strip-inner-wrapper">
+        {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Cloud" page_title="Installing Ubuntu Cloud"  %}
+    </div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row">
-    <div class="seven-col append-one">
-        <h1>Installing Canonical&rsquo;s OpenStack Autopilot</h1>
-        <p>OpenStack Autopilot is by far the best way to build and manage an OpenStack private cloud. Follow the instructions below to download, configure and install.</p>
-    </div>
-    <div class="four-col last-col box">
-        <h3>Talk to our experts</h3>
-        <p>Let our cloud experts help you take the next step.</p>
-        <p><a href="/cloud/contact-us">Contact us &rsaquo;</a></p>
+    <div class="strip-inner-wrapper">
+        <div class="seven-col append-one">
+            <h1>Installing Canonical&rsquo;s OpenStack Autopilot</h1>
+            <p>OpenStack Autopilot is by far the best way to build and manage an OpenStack private cloud. Follow the instructions below to download, configure and install.</p>
+        </div>
+        <div class="four-col last-col box">
+            <h3>Talk to our experts</h3>
+            <p>Let our cloud experts help you take the next step.</p>
+            <p><a href="/cloud/contact-us">Contact us &rsaquo;</a></p>
+        </div>
     </div>
 </div>
 <div class="clearfix instruction" id="download-help">
+  
     <div class="five-col instruction__bullet">
         <div class="one-col">
             <span class="instruction__step">1</span>
@@ -32,14 +37,14 @@
         <div class="four-col last-col">
             <h3 class="instruction__title">Set up your hardware</h3>
         </div>
+
+        <div class="seven-col last-col instruction__details right">
+            <p>You&rsquo;ll need  at least five machines with two disks in each, two of which have two network interfaces (NICs).</p>
+            <p>No hardware available? <a href="/download/cloud">Test drive OpenStack Autopilot for virtual machines</a></p>
+            <p><a href="/download/server">Install Ubuntu Server</a> on one of the machines with two network interfaces.</p>
+            <p>You need to setup a private network with all machines plugged in and enough IP addresses available for all physical and virtual machines you plan to run.</p>
+        </div>
     </div>
-    <div class="seven-col last-col instruction__details right">
-        <p>You&rsquo;ll need  at least five machines with two disks in each, two of which have two network interfaces (NICs).</p>
-        <p>No hardware available? <a href="/download/cloud">Test drive OpenStack Autopilot for virtual machines</a></p>
-        <p><a href="/download/server">Install Ubuntu Server</a> on one of the machines with two network interfaces.</p>
-        <p>You need to setup a private network with all machines plugged in and enough IP addresses available for all physical and virtual machines you plan to run.</p>
-    </div>
-</div>
 <div class="clearfix instruction">
     <div class="five-col instruction__bullet">
         <div class="one-col">
