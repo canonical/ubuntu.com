@@ -1,22 +1,13 @@
 {% extends "templates/one-column.html" %}
-{% load versioned_static  %}
 
-{% block title %}Ubuntu | Server error{% endblock %}
+{% block title %}Server error{% endblock %}
 
 {% block extra_body_class %}error-page error500{% endblock %}
-
-{% block head_extra %}
-	<link rel="stylesheet" type="text/css" media="screen" href="{% versioned_static 'css/styles.css' %}" />
-	<link rel="shortcut icon" href="{{ ASSET_SERVER_URL }}dbf71c80-favicon.ico" type="image/x-icon" />
-	<link rel="stylesheet" type="text/css" media="print" href="{{ ASSET_SERVER_URL }}0df231d4-core-print.css" />
-	<script src="{{ ASSET_SERVER_URL }}b0601acd-modernizr.2.7.1.js"></script>
-	<script src="{{ ASSET_SERVER_URL }}2c8fd8c9-Imager.js"></script>
-{% endblock %}
 
 {% block content %}
 <div class="row no-border hero-box">
 	<div class="six-col">
-		<img src="{{ ASSET_SERVER_URL }}17a02192-image-knowledge-365.png" alt="Error owl" />
+		<img src="//assets.ubuntu.com/v1/17a02192-image-knowledge-365.png" alt='Error "a owl"' />
 		<span>!</span>
 	</div>
 	<div class="six-col last-col">
@@ -25,11 +16,3 @@
 	</div>
 </div><!-- / .row -->
 {% endblock content %}
-
-{% block footer_extra %}
-	<script src="{{ ASSET_SERVER_URL }}6124a084-yui-min.js"></script>
-	<script src="{{ ASSET_SERVER_URL }}231f2d78-core.js"></script>
-	<script src="{{ ASSET_SERVER_URL }}bdd03093-global.js"></script>
-	<script src="{{ ASSET_SERVER_URL }}ea5f3f25-scratch.js"></script>
-	<script src="{{ ASSET_SERVER_URL }}f5bf3854-respond.min.js"></script>
-{% endblock %}
