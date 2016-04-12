@@ -1,4 +1,4 @@
-YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'gallery-effects','cookie','event-resize','jsonp', 'io', 'dump', 'json-parse', function(Y) {
+YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'gallery-effects','cookie','event-resize', 'io', 'dump', 'json-parse', function(Y) {
 
     var lp_lookup_callback = {
         timeout: 3000,
@@ -559,19 +559,6 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
         for (var i = 0; i < numberToDisplay; i++) {
             Y.one(id).append(Y.Node.create('<li class="inline-logos__item"><img class="inline-logos__image"  onload="this.style.opacity=\'1\';" src="'+JSON[i].logo+'" alt="'+JSON[i].name+'"></li>'));
         }
-    };
-
-    core.loadPartners = function (params, elementID, feedName) {
-        if (typeof feedName === 'undefined') {
-            feedName = 'partners';
-        }
-
-        var partnersAPI = "http://partners.ubuntu.com/" + feedName + ".json";
-        var url = partnersAPI + params + "&callback={callback}";
-        var callback = function(response) {
-            return core.renderJSON(response, elementID);
-        }
-        Y.jsonp(url, callback);
     };
 
     core.deviceAnimation = function() {

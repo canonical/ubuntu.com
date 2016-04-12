@@ -119,10 +119,9 @@
 {% endblock content %}
 {% block footer_extra %}
 <script>
-    YUI().use('event-base', function (Y) {
-        Y.on('domready', function () {
-            core.loadPartners('?programme__name=Desktop&featured=true', '#hardware-partners');
-        });
-    });
+    partnersApiParams = '?programme__name=Desktop&featured=true';
+    partnersElementId = '#hardware-partners';
 </script>
+{% load versioned_static  %}
+<script src="{% versioned_static 'js/partners.js' %}"></script>
 {% endblock %}
