@@ -1645,7 +1645,11 @@ button.button--primary__deactivated:hover {
 // Override the "align-items: center" from equal-height__align-vertically,
 // which makes all items appear horizontally centered
 .equal-height > .equal-height__align-vertically {
-  align-items: stretch;
+  h2,
+  p {
+    align-items: stretch;
+    width: 100%;
+  }
 }
 
 .pull-left--less {
