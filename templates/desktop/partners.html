@@ -119,12 +119,9 @@
 {% endblock content %}
 {% block footer_extra %}
 <script>
-    YUI().use('get', 'event-base', function (Y) {
-        Y.Get.js('/static/js/scratch.js', function() {
-            Y.on('domready', function () {
-                core.loadPartners('?programme__name=Desktop&featured=true', '#hardware-partners');
-            });
-        });
-    });
+    partnersApiParams = '?programme__name=Desktop&featured=true';
+    partnersElementId = '#hardware-partners';
 </script>
+{% load versioned_static  %}
+<script src="{% versioned_static 'js/partners.js' %}"></script>
 {% endblock %}
