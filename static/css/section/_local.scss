@@ -1035,10 +1035,15 @@ html.opera-mini {
   }
 }
 
-@media only screen and (max-width : $breakpoint-medium) {
+@media only screen and (max-width : $breakpoint-medium - 1) {
   footer.global {
     overflow: hidden;
     padding-top: 0;
+    width: 106%;
+
+    .legal p {
+      padding-right: 8%;
+    }
 
     .footer-a,
     .footer-b {
@@ -1082,10 +1087,10 @@ html.opera-mini {
         }
 
         h2 {
-           box-sizing: border-box;
-           margin: 0 0 10px 0;
+          box-sizing: border-box;
+          margin: 0 0 10px 0;
           padding: 10px 0;
-          width: 102%;
+          width: 95%;
           cursor: pointer;
           margin-bottom: 0;
           display: inline-block;
@@ -1235,12 +1240,41 @@ html.opera-mini {
     h2 {
       padding: 10px 14px 10px 9px;
       span {
-        margin-right: 1%;
+        margin-right: 8%;
       }
     }
   }
+  .top-link {
+    -moz-box-shadow: 0 -4px 4px -4px rgba(0,0,0,0.3) inset;
+    -webkit-box-shadow: 0 -4px 4px -4px rgba(0,0,0,0.3) inset;
+    box-shadow: 0 -4px 4px -4px rgba(0,0,0,0.3) inset;
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    float: left;
+    font-size: 0.75em;
+    letter-spacing: 0.05em;
+    margin: 0 0 0 -10px;
+    padding-right: 20px;
+    text-transform: uppercase;
+    width: 100%;
+    position: initial;
+    a {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      background-image: url("//assets.ubuntu.com/sites/ubuntu/latest/u/img/pictograms/picto-pack/picto-upload-warmgrey.svg");
+      background-position: 10px center;
+      background-repeat: no-repeat;
+      background-size: 14px 14px;
+      border-bottom: 0 none;
+      color: #888888;
+      display: block;
+      float: none;
+      font-weight: 400;
+      padding: 12px 0 12px 28px;
+    }
+  }
 }
-
 
 html.opera-mini,
 html.no-svg {
