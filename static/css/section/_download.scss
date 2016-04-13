@@ -605,8 +605,8 @@ body.download-ubuntu-kylin-zh-CN h2 span {
     }
 
 } /* end .download-help */
-html.no-svg,
-html.opera-mini {
+.no-svg,
+.opera-mini {
     .ask-ubuntu-box {
         background-image: url(#{$asset-server}5de3bb0c-picto-forum-warmgrey.png);
     }
@@ -708,7 +708,7 @@ html.opera-mini {
     padding: 15px 0 0;
 }
 
-body.download p.link-wrap {
+.download p.link-wrap {
     clear: both;
     display: inline-block;
     float: left;
@@ -717,7 +717,7 @@ body.download p.link-wrap {
 }
 
 /* /download/help/install-ubuntu-openstack */
-body.download-cloud-install-ubuntu-openstack {
+.download-cloud-install-ubuntu-openstack {
   #main-content .row-hero {
     border-bottom: 1px dotted $warm-grey;
         padding-bottom: 40px;
@@ -751,11 +751,6 @@ body.download-cloud-install-ubuntu-openstack {
       }
     }
   }
-}
-
-html.no-svg,
-html.opera-mini {
-
 }
 
 /* Contribute page */
