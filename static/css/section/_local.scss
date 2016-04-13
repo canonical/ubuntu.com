@@ -781,15 +781,13 @@ footer.global {
         #nav-global li:first-of-type a {
             margin-left: 0;
         }
-        #nav-global li:first-of-type a {
-            margin-left: 0;
-        }
     }
     /* end footer-a */
     .footer-b {
         padding: 0 0 20px;
         margin: 0 auto;
         font-size: 0.75em;
+
         ul ul, ul li, h2 {
           margin: 0;
           padding: 0;
@@ -829,40 +827,6 @@ footer.global {
           padding-left: 6px;
           padding-right: 6px;
           position: relative;
-        }
-        li h2 a:after,
-        li li:last-child:after,
-        li li.last-item:after  {
-            content: "";
-        }
-
-          a i {
-            display: none;
-          }
-
-        li {
-          width: 100%;
-          display: block;
-          clear: both;
-          overflow: hidden;
-          font-size: 1em;
-        }
-        li li {
-          width: auto;
-          background: 0;
-          float: left;
-          clear: none;
-          font-size: 1em;
-        }
-        li li:last-child {
-          width: 200px;
-        }
-        li li:after {
-          content: "|";
-          padding-left: 6px;
-          padding-right: 6px;
-          position: relative;
-          font-size: 12px;
         }
         li h2 a:after,
         li li:last-child:after,
