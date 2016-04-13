@@ -481,24 +481,36 @@
 /// desktop Enterprise
 .desktop-enterprise #main-content {
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $breakpoint-medium) {
     //Medium screen
 
     .row-hero {
-      background-image: url('#{$asset-server}a0ee25ff-hero-laptop.png');
-      background-position: top right;
+      background-image: url('#{$asset-server}ca8a41c4-desktop-enterprise-hero.png');
       background-repeat: no-repeat;
-      background-size: 22em;
-      min-height: 310px;
+      background-position: 232% 3%;
+      background-size: 81%;
+      min-height: 400px;
+      overflow: hidden;
+    }
+
+    .row-certified {
+      background-image: url("#{$asset-server}31a45631-desktop-enterprise-certified.jpg");
+      background-repeat: no-repeat;
+      background-position: -80% 39%;
+      background-size: 75%;
+      min-height: 373px;
+      overflow: hidden;
     }
   }
 
-  //Large screen
-  @media only screen and (min-width: 984px) {
+  @media only screen and (min-width: $breakpoint-large) {
+    //Large screen
     .row-hero {
-      background-position: top right;
-      background-size: 56%;
-      min-height: 500px;
+      min-height: 457px;
+    }
+
+    .row-certified {
+      min-height: 457px;
     }
   }
 }
