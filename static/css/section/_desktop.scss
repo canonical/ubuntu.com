@@ -312,55 +312,37 @@
     }
   }
 
-  .row-compatible {
-    img {
-      max-width: 200px;
-    }
-  }
-
-  .row-gaming {
-      div {
-        margin-top: 58%;
-      }
-
-      .borderlands {
-        left: 0;
-        position: absolute;
-        top: 0;
-        z-index: 1000;
-      }
-
-      .borderlands-flash {
-        -webkit-animation: flash-sign 10s infinite;
-        animation: flash-sign 10s infinite;
-        left: 0;
-        position: absolute;
-        top: 0;
-        z-index: 2000;
-      }
-  }
-
-  @media only screen and (min-width: $breakpoint-medium) {
-    //Medium screen
-
-    .row-hero {
+  .row-hero {
+    @media only screen and (min-width: 768px) {
       background-image: url('#{$asset-server}c294c5f4-hero-laptop.png');
       background-position: top right;
       background-repeat: no-repeat;
       background-size: 22em;
       min-height: 310px;
     }
+    @media only screen and (min-width: 984px) {
+      background-position: top right;
+      background-size: 56%;
+      min-height: 500px;
+    }
+  }
 
-    .row-web-browsing {
+  .row-web-browsing {
+    @media only screen and (min-width: 768px) {
       background-image: url('#{$asset-server}8ff52c34-desktopsnapshot.png');
     }
+  }
 
-    .row-gaming {
+  .row-gaming {
+    @media only screen and (min-width: 768px) {
       width: 100%;
       padding: 0;
       padding-bottom: 55%;
+    }
+    div {
+      margin-top: 58%;
 
-      div {
+      @media only screen and (min-width: 768px) {
         color: #fff;
         position: absolute;
         bottom: 20px;
@@ -368,110 +350,151 @@
         z-index: 3000;
       }
     }
+    .borderlands {
+      left: 0;
+      position: absolute;
+      top: 0;
+      z-index: 1000;
+    }
 
-    .row-photos {
+    .borderlands-flash {
+      -webkit-animation: flash-sign 10s infinite;
+      animation: flash-sign 10s infinite;
+      left: 0;
+      position: absolute;
+      top: 0;
+      z-index: 2000;
+    }
+  }
 
-      > div {
+  .row-photos {
+    > div {
+      @media only screen and (min-width: 768px) {
         margin-top: 340px;
+      }
 
-        p,
-        h2 {
+      p,
+      h2 {
+        @media only screen and (min-width: 768px) {
           text-shadow: 0 0 2px black;
         }
       }
+    }
 
-      .photo-credit {
+    .photo-credit {
+      @media only screen and (min-width: 768px) {
         background-color: rgba(0, 0, 0, .6);
         bottom: 0;
         padding: 10px;
         position: absolute;
         right: 0;
       }
+    }
 
-      &.photo-1 {
+    &.photo-1 {
+      @media only screen and (min-width: 768px) {
         background-size: cover;
         background-image: url('#{$asset-server}6c84454e-desktop-photos-1.jpg');
       }
-      &.photo-2 {
+    }
+    &.photo-2 {
+      @media only screen and (min-width: 768px) {
         background-size: cover;
         background-image: url('#{$asset-server}25593e05-desktop-photos-2.jpg');
       }
-      &.photo-3 {
+    }
+    &.photo-3 {
+      @media only screen and (min-width: 768px) {
         background-size: cover;
         background-image: url('#{$asset-server}a6e14067-desktop-photos-3.jpg');
       }
     }
+  }
 
-    .row-compatible {
+  .row-compatible {
+    @media only screen and (min-width: 768px) {
       overflow: hidden;
       position: relative;
+    }
 
-      .four-col {
-        position: relative;
-        min-height: 200px;
-      }
+    img {
+      max-width: 200px;
+    }
 
-      .two-col {
+    .two-col {
+      @media only screen and (min-width: 768px) {
         margin-top: 1.5em;
       }
 
-      .six-col {
+      @media only screen and (min-width: 984px) {
+        margin-top: 0;
+      }
+    }
+
+    .three-col {
+      @media only screen and (min-width: 768px) {
+        position: relative;
+      }
+    }
+
+    .four-col {
+      @media only screen and (min-width: 768px) {
+        position: relative;
+        min-height: 200px;
+      }
+    }
+
+    .six-col {
+      @media only screen and (min-width: 768px) {
         margin-top: 2.5em;
       }
 
-      .picto-desktop {
+      @media only screen and (min-width: 984px) {
+        margin-top: 0;
+      }
+    }
+
+    .picto-desktop {
+      @media only screen and (min-width: 768px) {
         margin-left: -65%;
         max-width: none;
         position: absolute;
         top: 0;
         width: 12em;
       }
+    }
 
-      .picto-mobile,
-      .picto-camera {
+    .picto-mobile,
+    .picto-camera {
+      @media only screen and (min-width: 768px) {
         position: absolute;
         width: 7em;
       }
+    }
 
-      .three-col {
-        position: relative;
-      }
-
-      .picto-mobile {
+    .picto-mobile {
+      @media only screen and (min-width: 768px) {
         left: 60px;
         top: 0;
       }
-      .picto-camera {
+    }
+    .picto-camera {
+      @media only screen and (min-width: 768px) {
         bottom: 0;
         right: 0;
       }
     }
-
-    .row-organise .inline li {
-      margin-right: 9.8%;
-      width: 15%;
-
-      :last-child {
-        margin-right: 0;
-      }
-    }
   }
 
-  //Large screen
-  @media only screen and (min-width: $breakpoint-large) {
-    .row-hero {
-      background-position: top right;
-      background-size: 56%;
-      min-height: 500px;
+  .row-organise .inline li {
+    @media only screen and (min-width: 768px) {
+      margin-right: 9.8%;
+      width: 15%;
     }
 
-   .row-compatible {
-      .two-col {
-        margin-top: 0;
-      }
-
-      .six-col {
-        margin-top: 0;
+    :last-child {
+      @media only screen and (min-width: 768px) {
+        margin-right: 0;
       }
     }
   }
