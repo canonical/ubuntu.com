@@ -314,22 +314,22 @@
 
   .row-hero {
     @media only screen and (min-width: 768px) {
-      background-image: url('#{$asset-server}c294c5f4-hero-laptop.png');
-      background-position: top right;
+      background-image: url('#{$asset-server}67ebc11b-hero-laptop.png');
+      background-position: top right -170px;
+      background-size: 36em;
       background-repeat: no-repeat;
-      background-size: 22em;
       min-height: 310px;
     }
     @media only screen and (min-width: 984px) {
-      background-position: top right;
-      background-size: 56%;
+      background-position: top right -347px;
+      background-size: initial;
       min-height: 500px;
     }
   }
 
   .row-web-browsing {
     @media only screen and (min-width: 768px) {
-      background-image: url('#{$asset-server}8ff52c34-desktopsnapshot.png');
+      background-image: url('#{$asset-server}d037640f-desktop.png?w=984');
     }
   }
 
