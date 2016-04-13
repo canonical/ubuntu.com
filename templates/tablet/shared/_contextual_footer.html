@@ -1,39 +1,41 @@
 <div id="context-footer" class="context-footer {{ level_1 }}-context-footer clearfix no-border">
 <hr />
 <div class="strip-inner-wrapper">
-  <div class="twelve-col equal-height--vertical-divider">
-    {% if feature_1 == "developers" %}
-      <div class="equal-height--vertical-divider__item feature-two four-col">
-        <h3>Explore our developer site</h3>
-        <p>Whether you&rsquo;re a mobile app developer, a web developer or a software engineer Ubuntu is the ideal development platform.</p>
-        <p><a href="https://developer.ubuntu.com/en/">Find everything you need to start developing for Ubuntu&nbsp;&rsaquo;</a></p>
-      </div>
-    {% endif %}
-    {% if feature_1 == "devices" %}
-      <div class="equal-height--vertical-divider__item four-col">
-        <h3>Ubuntu phones available for sale worldwide</h3>
-        <p>Ubuntu introduces a new way to enjoy content and services on smartphones.</p>
-        <p><a href="/phone/devices">Learn more about our range of devices&nbsp;&rsaquo;</a></p>
-      </div>
-    {% endif %}
-    {% if feature_1 == none %}
-      <div class="equal-height--vertical-divider__item four-col">
-        <h3>Want to learn more about developing with Ubuntu Core?</h3>
-        <p>Learn how to build or port apps for the next generation of Ubuntu.</p>
-        <p><a class="external" href="http://developer.ubuntu.com/snappy/start">Try snappy Ubuntu Core</a></p>
-      </div>
+  <div class="row">
+    <div class="twelve-col equal-height--vertical-divider">
+      {% if feature_1 == "developers" %}
+        <div class="equal-height--vertical-divider__item feature-two four-col">
+          <h3>Explore our developer site</h3>
+          <p>Whether you&rsquo;re a mobile app developer, a web developer or a software engineer Ubuntu is the ideal development platform.</p>
+          <p><a href="https://developer.ubuntu.com/en/">Find everything you need to start developing for Ubuntu&nbsp;&rsaquo;</a></p>
+        </div>
       {% endif %}
-      {% if feature_2 == none %}
-      <div class="equal-height--vertical-divider__item four-col">
-      {% include "shared/_newsletter_signup.html" %}
-      </div>
+      {% if feature_1 == "devices" %}
+        <div class="equal-height--vertical-divider__item four-col">
+          <h3>Ubuntu phones available for sale worldwide</h3>
+          <p>Ubuntu introduces a new way to enjoy content and services on smartphones.</p>
+          <p><a href="/phone/devices">Learn more about our range of devices&nbsp;&rsaquo;</a></p>
+        </div>
       {% endif %}
-      {% if feature_3 == none %}
-      <div class="equal-height--vertical-divider__item four-col last-col">
-        <h3>Further reading</h3>
-        {% include "templates/_further_reading_links.html" with feed="https://insights.ubuntu.com/group/phone-and-tablet/feed" articles=5 %}
+      {% if feature_1 == none %}
+        <div class="equal-height--vertical-divider__item four-col">
+          <h3>Want to learn more about developing with Ubuntu Core?</h3>
+          <p>Learn how to build or port apps for the next generation of Ubuntu.</p>
+          <p><a class="external" href="http://developer.ubuntu.com/snappy/start">Try snappy Ubuntu Core</a></p>
+        </div>
+        {% endif %}
+        {% if feature_2 == none %}
+        <div class="equal-height--vertical-divider__item four-col">
+        {% include "shared/_newsletter_signup.html" %}
+        </div>
+        {% endif %}
+        {% if feature_3 == none %}
+        <div class="equal-height--vertical-divider__item four-col last-col">
+          <h3>Further reading</h3>
+          {% include "templates/_further_reading_links.html" with feed="https://insights.ubuntu.com/group/phone-and-tablet/feed" articles=5 %}
+        </div>
+      {% endif %}
       </div>
-    {% endif %}
     </div>
   </div>
 </div>
