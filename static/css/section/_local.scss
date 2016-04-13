@@ -409,7 +409,7 @@ body {
 .tablet {
     #context-footer {
         background: #fff;
-        padding: 0 1em;
+        padding: 0;
         margin-bottom: 0;
         div > div > div {
             border: 0; // kills borders on very nested divs... like we have for further reading
@@ -418,6 +418,10 @@ body {
         hr {
             box-shadow: none;
             height: 3px;
+        }
+
+        .strip-inner-wrapper {
+            padding: 1em 1em 0;
         }
     }
     .row--dark {
