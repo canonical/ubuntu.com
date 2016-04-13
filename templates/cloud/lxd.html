@@ -54,6 +54,7 @@
 		<p>Docker is an amazing application delivery mechanism, which may change the world of devops forever.</p>
     <p>There are seven times more Docker containers running on Ubuntu than any other OS. For the most efficient way to deliver your binaries to a platform for execution, Docker is the dance for us.</p>
     <p>LXD and Docker share some underlying kernel capabilities, we aim to bring much of the awesome security and isolation of LXD to Docker as well.</p>
+	<p>With Ubuntu 16.04, you can run your Docker containers inside LXD containers.</p>
 	</div>
 </div>
 <div class="row row-grey">
@@ -83,7 +84,7 @@
 	<div class="seven-col append-one equal-height__item">
 		<h2>Integration with OpenStack</h2>
 		<p>The combination of LXD and OpenStack makes for a very happy system administrator in a Linux&dash;oriented private cloud. All the agility of OpenStack, all the performance of your metal with no virt overhead.</p>
-		<p>As a validation point, we&rsquo;ve included the nova&dash;compute&dash;lxd driver in Ubuntu {{latest_release}}, and are committed to steering this into upstream OpenStack. </p>
+		<p>As a validation point, we&rsquo;ve included the nova&dash;lxd driver in Ubuntu {{latest_release}}, and are committed to steering this into upstream OpenStack. </p>
 		<p>This new driver allows OpenStack instances to be scheduled as Linux Containers. Images are booted from OpenStack&rsquo;s image service, Glance, and instances communicate over Neutron&rsquo;s networking functionality just like KVM based VMs do.</p>
 	</div>
 	<div class="four-col last-col equal-height__item equal-height__align-vertically">
@@ -95,8 +96,11 @@
 		<h2>Getting started with LXD</h2>
 		<p>The simplest way to try LXD is by using it with its command line tool. This can easily be done on your laptop or desktop machine.</p>
 		<p>On an Ubuntu system, or by using ppa:ubuntu-lxc/lxd-stable on 14.04 or above, you can install LXD with:</p>
-		<pre><code>sudo apt-get update
-sudo apt-get install lxd</code></pre>
+		<pre><code>sudo apt update
+sudo apt install lxd
+sudo lxd init</code></pre>
+		<p>For other Ubuntu releases, like Ubuntu 14.04 LTS and Ubuntu Core, detailed instructions are available on linuxcontainers.org <a href="https://linuxcontainers.org/lxd/getting-started-cli/" class="external">https://linuxcontainers.org/lxd/getting-started-cli/</a></p>
+		<p><a href="/download/server">Download Ubuntu Server&nbsp;&rsaquo;</a></p>
 	</div>
   <div class="four-col last-col push-one">
     <a href="https://insights.ubuntu.com/2015/04/28/getting-started-with-lxd-the-container-lightervisor/" class="box box-highlight resource--link resource-e-book" >
@@ -106,5 +110,5 @@ sudo apt-get install lxd</code></pre>
     </a>
   </div><!-- /.four-col -->
 </div>
-{% include "cloud/shared/_contextual_footer.html" %}
+{% include "cloud/shared/_contextual_footer.html" with feature_2="try-lxd" %}
 {% endblock content %}
