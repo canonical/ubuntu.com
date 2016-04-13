@@ -24,7 +24,7 @@
     }
   }
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $breakpoint-medium) {
     > h2:first-child {
       margin-bottom: 71%;
     }
@@ -32,7 +32,7 @@
 }
 
 /// small screens
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: $breakpoint-medium) {
   .row-apps {
     overflow: hidden;
     width: 100%;
@@ -51,7 +51,7 @@
   }
 }
 
-@media only screen and (min-width: 984px) {
+@media only screen and (min-width: $breakpoint-large) {
   .desktop-context-footer .open-source {
     background-image: url('#{$asset-server}095a11c1-picto-projectswelove-orange.svg');
     background-position: 217px 27px;
@@ -69,7 +69,7 @@
   overflow: hidden;
   padding-bottom: 20px;
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $breakpoint-medium) {
     padding-bottom: 0;
 
     .pull-right {
@@ -194,7 +194,7 @@
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $breakpoint-medium) {
   //Medium screen
   .row-apps {
     h3 {
@@ -228,7 +228,7 @@
   }
 
   //Medium screen
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $breakpoint-medium) {
     .row-hero {
       background-color: $light-grey;
       background-image: url('#{$asset-server}3cf658d7-hero-photo.jpg');
@@ -271,7 +271,7 @@
   }
 
   //Large screen
-  @media only screen and (min-width: 984px) {
+  @media only screen and (min-width: $breakpoint-large) {
     .row-hero {
       background-size: cover;
       margin-top: 0;
@@ -340,7 +340,7 @@
       }
   }
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $breakpoint-medium) {
     //Medium screen
 
     .row-hero {
@@ -458,7 +458,7 @@
   }
 
   //Large screen
-  @media only screen and (min-width: 984px) {
+  @media only screen and (min-width: $breakpoint-large) {
     .row-hero {
       background-position: top right;
       background-size: 56%;
@@ -518,7 +518,7 @@
 
 /// desktop Education
 .desktop-education #main-content {
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $breakpoint-medium) {
     //Medium screen
     .row-hero {
       background-image: url('#{$asset-server}600ca439-hero-photo.jpg');
@@ -540,7 +540,7 @@
     }
   }
 
-  @media only screen and (min-width: 984px) {
+  @media only screen and (min-width: $breakpoint-large) {
     //Medium screen
     .row-hero {
       background-size: cover;
@@ -562,14 +562,15 @@
     margin: 0 auto;
   }
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $breakpoint-medium) {
     //Medium screen
     .row-hero {
-      background-image: url('#{$asset-server}aae4a8bb-hero-photo.jpg');
+      background-image: url('#{$asset-server}621d3593-desktop-government-hero.jpg');
       background-repeat: no-repeat;
-      background-position: right 0px top;
+      background-position: 0 83%;
       margin-top: 0;
-      min-height: 574px;
+      min-height: 350px;
+      background-size: 100%;
       border-bottom: 0;
 
       h1 {
@@ -591,7 +592,7 @@
     }
   }
 
-  @media only screen and (min-width: 984px) {
+  @media only screen and (min-width: $breakpoint-large) {
     //Large screen
     .row-hero {
       background-position: 0% 0%;
@@ -626,7 +627,7 @@
   }
 
   //Medium screen
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $breakpoint-medium) {
     .row-hero {
       background-image: url('#{$asset-server}59a1fae2-developer-hero-laptop.png');
       background-position: top right;
@@ -642,7 +643,7 @@
   }
 
   //Large screen
-  @media only screen and (min-width: 984px) {
+  @media only screen and (min-width: $breakpoint-large) {
     .row-hero {
       background-position: top right;
       background-size: 56%;
@@ -694,7 +695,7 @@ $item_margin: 40px;
     margin-bottom: 20px;
   }
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: $breakpoint-medium) {
 
     .pull-left,
     .pull-right {
@@ -705,7 +706,7 @@ $item_margin: 40px;
 
   }
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $breakpoint-medium) {
     .lang-switch {
       margin-bottom: 0;
       position: absolute;
@@ -718,7 +719,7 @@ $item_margin: 40px;
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $breakpoint-medium) {
   //Medium screen
   .desktop-ubuntu-kylin,
   .desktop-ubuntu-kylin-zh-CN {
@@ -757,7 +758,7 @@ $item_margin: 40px;
   }
 }
 
-@media only screen and (min-width: 984px) {
+@media only screen and (min-width: $breakpoint-large) {
   //Large screen
   .desktop-ubuntu-kylin-zh-CN .row-hero {
     padding-bottom: 80px;
@@ -792,7 +793,7 @@ $item_margin: 40px;
   }
 
   .row-commercial {
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $breakpoint-medium) {
       .four-col:after {
         background-image: url('#{$asset-server}f2a25267-image-list-stroke.svg');
         background-repeat: repeat-x;
@@ -806,7 +807,7 @@ $item_margin: 40px;
       }
     }
 
-    @media only screen and (min-width: 984px) {
+    @media only screen and (min-width: $breakpoint-large) {
       .four-col:after {
         width: 76%;
       }
@@ -826,7 +827,7 @@ $item_margin: 40px;
     background-color: #007cc5;
     color: #fff;
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}0caaa961-image-intelonastick-background.png');
       background-repeat: no-repeat;
       background-position: 50% 50%;
