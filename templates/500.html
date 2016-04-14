@@ -1,0 +1,18 @@
+{% extends "templates/one-column.html" %}
+
+{% block title %}Server error{% endblock %}
+
+{% block extra_body_class %}error-page error500{% endblock %}
+
+{% block content %}
+<div class="row no-border hero-box">
+	<div class="six-col">
+		<img src="//assets.ubuntu.com/v1/17a02192-image-knowledge-365.png" alt='Error "a owl"' />
+		<span>!</span>
+	</div>
+	<div class="six-col last-col">
+		<h1>500: Server error.</h1>
+		<p>Something's gone wrong, try reloading.</p>
+	</div>
+</div><!-- / .row -->
+{% endblock content %}
