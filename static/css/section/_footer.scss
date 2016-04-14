@@ -46,32 +46,31 @@ footer.global {
       padding: .833333333em 1.1em;
     }
     h2 {
-      /// arrow
+      /// open/close arrow closed
       background-image: url("https://assets.ubuntu.com/v1/7bd1bd7b-arrow_down_9fa097.svg");
       background-position: 96% 50%;
       background-repeat: no-repeat;
       background-size: 13px 13px;
-
       a:link,
       a:visited {
         color: #888;
       }
-
       a::after {
         content: "";
       }
 
+      /// open and close the primary/secondary navs
       + ul.second-level-nav {
         display: none;
       }
-
-      &.active.open {
+      &.active {
         background-image: url("https://assets.ubuntu.com/v1/43e2b367-arrow_up_9fa097.png");
         + ul.second-level-nav {
           display: block;
         }
       }
     }
+
     ul {
       li {
         ul > li > a {
@@ -98,31 +97,25 @@ footer.global {
     }
   }
 
-  .top-link {
-    text-transform: uppercase;
-    width: 100%;
-    position: initial;
-    a {
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-      background-image: url("//assets.ubuntu.com/sites/ubuntu/latest/u/img/pictograms/picto-pack/picto-upload-warmgrey.svg");
-      background-position: 10px center;
-      background-repeat: no-repeat;
-      background-size: 14px 14px;
-      border-bottom: 0 none;
-      color: #888888;
-      display: block;
-      float: none;
-      font-weight: 400;
-      padding: 12px 0 12px 28px;
-    }
+  /// Ubuntu websites global nav
+  #nav-global > div > ul > li.more > a:first-of-type {
+    display: none;
   }
   #nav-global {
     font-size: 16px;
     border: 0;
     margin: 0;
     padding: 0;
+    .nav-global-wrapper {
+      display: none;
+      &.active {
+        background-image: url("https://assets.ubuntu.com/v1/43e2b367-arrow_up_9fa097.png");
+        background-repeat: no-repeat;
+        background-position: 96% 50%;
+        background-size: 13px 13px;
+        display: block;
+      }
+    }
     ul {
       li {
         display: inline-block;
@@ -147,19 +140,72 @@ footer.global {
         line-height: 0;
         padding: 0;
         margin: 0;
-        a::first {
-          display: none;
-        }
         ul {
           li {
-            font-size: 1.3333333em;
+            font-size: 1em;
             a {
+              font-size: 1em;
               margin: 0;
               padding: 0;
               padding-left: 1em;
             }
           }
         }
+      }
+    }
+  }
+  /// back to top link
+  .top-link {
+    text-transform: uppercase;
+    width: 100%;
+    position: initial;
+    a {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      background-image: url("//assets.ubuntu.com/sites/ubuntu/latest/u/img/pictograms/picto-pack/picto-upload-warmgrey.svg");
+      background-position: 10px center;
+      background-repeat: no-repeat;
+      background-size: 14px 14px;
+      border-bottom: 0 none;
+      color: #888888;
+      display: block;
+      float: none;
+      font-weight: 400;
+      padding: 12px 0 12px 28px;
+    }
+  }
+  /// copywrite and legal links
+  .legal {
+    margin: 1em;
+    padding-left: 0;
+    p,
+    ul,
+    li,
+    a:link,
+    a:visited {
+      color: #333;
+      font-size: 12px;
+      margin-bottom: 0;
+    }
+    p {
+      padding-bottom: .5em;
+    }
+    li {
+      display: inline;
+      list-style: none;
+      margin-right: 10px;
+      & > a {
+        margin-right: 10px;
+        position: relative;
+        vertical-align: middle;
+      }
+      &::after {
+        content: "•";
+      }
+      &:last-of-type::after {
+        content: "";
+        padding-left: 0;
       }
     }
   }

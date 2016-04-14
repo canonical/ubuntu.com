@@ -18,7 +18,7 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
             }
         }
     };
-    
+
     core.deviceAnimation = function() {
         if(Y.one('body').hasClass('homepage')) {
           //MIGHTY MORPHIN' DEVICE CODE
@@ -483,7 +483,7 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
     core.removeNoJS = function(){
         Y.all('html').removeClass('no-js').addClass('yes-js');
     }
-    
+
     core.footerMobileNav = function() {
         Y.all('.footer-a li h2').on('click', function(e) {
             e.target.toggleClass('active open');
@@ -502,7 +502,7 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
 
     core.globalInit= function() {
         if (document.documentElement.clientWidth < 768) {
-            core.globalPrepend = 'div.legal';
+            core.globalPrepend = 'div.nav-global-footer';
             core.setupGlobalNav();
             Y.one('.nav-global-wrapper').insert('<h2>Ubuntu websites</h2>','before');
         } else if (document.documentElement.clientWidth >= 768) {
