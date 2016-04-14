@@ -68,17 +68,7 @@
     </div>
 </div>
 
-<div class="row row-grey row-release-schedule">
-    <div class="eight-col">
-      <h3>Ubuntu release cycle</h3>
-  		<img class="releasecycle-image-load" src="{{ ASSET_SERVER_URL }}ef0f4eab-release-chart-desktop.png?w=580" srcset="{{ ASSET_SERVER_URL }}ef0f4eab-release-chart-desktop.png?w=431 880w, {{ ASSET_SERVER_URL }}ef0f4eab-release-chart-desktop.png?w=305 980w, {{ ASSET_SERVER_URL }}ef0f4eab-release-chart-desktop.png?w=580 1064w" alt="Ubuntu Desktop release cycle, 5 year long term support" />
-    </div>
-    <div class="four-col last-col">
-        <h2 id="a-release-schedule-you-can-depend-on">A release schedule you can depend on</h2>
-        <h3>Stay up-to-date with regular updates and upgrades</h3>
-        <p>Every two years there is a new Long Term Support (LTS) release of Ubuntu desktop that is supported for five years. During that time, there will be regular security fixes and other critical updates which are, and always will be, free of charge.</p>
-    </div>
-</div>
+{% include "shared/_release_schedule.html" %}
 
 <div class="row no-border row-certified">
     <div class="five-col push-seven last-col">
