@@ -313,14 +313,14 @@
   }
 
   .row-hero {
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}67ebc11b-hero-laptop.png');
       background-position: top right -170px;
       background-size: 36em;
       background-repeat: no-repeat;
       min-height: 310px;
     }
-    @media only screen and (min-width: 984px) {
+    @media only screen and (min-width: $breakpoint-large) {
       background-position: top right -347px;
       background-size: initial;
       min-height: 500px;
@@ -328,13 +328,13 @@
   }
 
   .row-web-browsing {
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}d037640f-desktop.png?w=984');
     }
   }
 
   .row-gaming {
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $breakpoint-medium) {
       width: 100%;
       padding: 0;
       padding-bottom: 55%;
@@ -342,7 +342,7 @@
     div {
       margin-top: 58%;
 
-      @media only screen and (min-width: 768px) {
+      @media only screen and (min-width: $breakpoint-medium) {
         color: #fff;
         position: absolute;
         bottom: 20px;
@@ -369,20 +369,20 @@
 
   .row-photos {
     > div {
-      @media only screen and (min-width: 768px) {
+      @media only screen and (min-width: $breakpoint-medium) {
         margin-top: 340px;
       }
 
       p,
       h2 {
-        @media only screen and (min-width: 768px) {
+        @media only screen and (min-width: $breakpoint-medium) {
           text-shadow: 0 0 2px black;
         }
       }
     }
 
     .photo-credit {
-      @media only screen and (min-width: 768px) {
+      @media only screen and (min-width: $breakpoint-medium) {
         background-color: rgba(0, 0, 0, .6);
         bottom: 0;
         padding: 10px;
@@ -392,19 +392,19 @@
     }
 
     &.photo-1 {
-      @media only screen and (min-width: 768px) {
+      @media only screen and (min-width: $breakpoint-medium) {
         background-size: cover;
         background-image: url('#{$asset-server}6c84454e-desktop-photos-1.jpg');
       }
     }
     &.photo-2 {
-      @media only screen and (min-width: 768px) {
+      @media only screen and (min-width: $breakpoint-medium) {
         background-size: cover;
         background-image: url('#{$asset-server}25593e05-desktop-photos-2.jpg');
       }
     }
     &.photo-3 {
-      @media only screen and (min-width: 768px) {
+      @media only screen and (min-width: $breakpoint-medium) {
         background-size: cover;
         background-image: url('#{$asset-server}a6e14067-desktop-photos-3.jpg');
       }
@@ -412,7 +412,7 @@
   }
 
   .row-compatible {
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $breakpoint-medium) {
       overflow: hidden;
       position: relative;
     }
@@ -422,40 +422,40 @@
     }
 
     .two-col {
-      @media only screen and (min-width: 768px) {
+      @media only screen and (min-width: $breakpoint-medium) {
         margin-top: 1.5em;
       }
 
-      @media only screen and (min-width: 984px) {
+      @media only screen and (min-width: $breakpoint-large) {
         margin-top: 0;
       }
     }
 
     .three-col {
-      @media only screen and (min-width: 768px) {
+      @media only screen and (min-width: $breakpoint-medium) {
         position: relative;
       }
     }
 
     .four-col {
-      @media only screen and (min-width: 768px) {
+      @media only screen and (min-width: $breakpoint-medium) {
         position: relative;
         min-height: 200px;
       }
     }
 
     .six-col {
-      @media only screen and (min-width: 768px) {
+      @media only screen and (min-width: $breakpoint-medium) {
         margin-top: 2.5em;
       }
 
-      @media only screen and (min-width: 984px) {
+      @media only screen and (min-width: $breakpoint-large) {
         margin-top: 0;
       }
     }
 
     .picto-desktop {
-      @media only screen and (min-width: 768px) {
+      @media only screen and (min-width: $breakpoint-medium) {
         margin-left: -65%;
         max-width: none;
         position: absolute;
@@ -466,20 +466,20 @@
 
     .picto-mobile,
     .picto-camera {
-      @media only screen and (min-width: 768px) {
+      @media only screen and (min-width: $breakpoint-medium) {
         position: absolute;
         width: 7em;
       }
     }
 
     .picto-mobile {
-      @media only screen and (min-width: 768px) {
+      @media only screen and (min-width: $breakpoint-medium) {
         left: 60px;
         top: 0;
       }
     }
     .picto-camera {
-      @media only screen and (min-width: 768px) {
+      @media only screen and (min-width: $breakpoint-medium) {
         bottom: 0;
         right: 0;
       }
@@ -487,13 +487,13 @@
   }
 
   .row-organise .inline li {
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $breakpoint-medium) {
       margin-right: 9.8%;
       width: 15%;
     }
 
     :last-child {
-      @media only screen and (min-width: 768px) {
+      @media only screen and (min-width: $breakpoint-medium) {
         margin-right: 0;
       }
     }
