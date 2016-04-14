@@ -1874,6 +1874,18 @@ html.js .cloud-openstack-managed-cloud .js__required {
   }
 }
 
+/* Cloud LXD
+-------------------------------------------------------------- */
+.cloud-lxd {
+  @media only screen and (max-width: $breakpoint-medium) {
+    .row-building-on-lxc,
+    .row-openstack-integration {
+        img {
+            display: none;
+        }
+    }
+  }
+}
 
 .stepped {
   margin-left: 25px;

@@ -6,105 +6,109 @@
 {% block meta_keywords %}lxd, hypervisor, container, lxc, Docker, performance, density, efficiency{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="lxd" %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="lxd" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row row-hero">
-	<div class="seven-col">
-		<h1>LXD</h1>
-		<h2>The Linux container hypervisor</h2>
-		<p class="intro">Fast, dense and secure container management for Ubuntu</p>
-	</div><!-- /.seven-col -->
-	<div class="text-center five-col last-col">
-		<img src="{{ ASSET_SERVER_URL }}f581fd89-lxd_takeover.png" width="260" alt="LXD" />
-	</div>
+    <div class="seven-col">
+        <h1>LXD</h1>
+        <h2>The Linux container hypervisor</h2>
+        <p class="intro">Fast, dense and secure container management for Ubuntu</p>
+    </div><!-- /.seven-col -->
+    <div class="text-center five-col last-col">
+        <img src="{{ ASSET_SERVER_URL }}f581fd89-lxd_takeover.png" width="260" alt="LXD" />
+    </div>
 </div>
 <div class="row row-grey">
-	<div class="eight-col">
-		<h2>What is LXD (&ldquo;lex&dash;dee&rdquo;)?</h2>
-		<p>Imagine you could launch a new machine in under a second, and that you could launch literally hundreds of them on a single server. Now, imagine hardware&dash;guaranteed security to ensure that those machines can&rsquo;t spy on one another. Imagine you can connect them separately and securely to networks. And imagine that you can run that on a single node or a million, live migrate machines between those nodes, and talk to all of it through a clean, extensible REST API. </p>
-		<p>By combining the speed and density of containers with the security of traditional virtual machines, Canonical&rsquo;s LXD is the next&dash;generation of container hypervisor for Linux.</p>
-	</div><!-- /.eight-col -->
+    <div class="eight-col">
+        <h2>What is LXD (&ldquo;lex&dash;dee&rdquo;)?</h2>
+        <p>Imagine you could launch a new machine in under a second, and that you could launch literally hundreds of them on a single server. Now, imagine hardware&dash;guaranteed security to ensure that those machines can&rsquo;t spy on one another. Imagine you can connect them separately and securely to networks. And imagine that you can run that on a single node or a million, live migrate machines between those nodes, and talk to all of it through a clean, extensible REST API. </p>
+        <p>By combining the speed and density of containers with the security of traditional virtual machines, Canonical&rsquo;s LXD is the next&dash;generation of container hypervisor for Linux.</p>
+    </div><!-- /.eight-col -->
 </div>
-<div class="row equal-height">
-	<div class="equal-height__item eight-col">
-		<h2>Building on LXC (&ldquo;lex&dash;cee&rdquo;)?</h2>
-		<p>Ubuntu is the most popular platform for container engineering, including Docker and LXC. We&rsquo;re passionate about enabling that innovation to go further and faster.</p>
-		<p>Developers love LXC because it gives them an near instant, full system container where they can run a wide range of Linux operating environments.</p>
-		<p>They can run LXD on all the machines on which they want to create and tear down these environments, using LXC to drive the process from anywhere on the network.</p>
-	</div><!-- /.eight-col -->
-	<div class="four-col last-col equal-height__item equal-height__align-vertically">
-		<img src="{{ ASSET_SERVER_URL }}00438906-pictogram-virtualisation.svg" width="289" alt="" />
-	</div>
-</div>
-<div class="row">
-	<h2>Is LXD a real Linux hypervisor?</h2>
-	<div class="eight-col">
-		<p>We&rsquo;re working with silicon companies to ensure hardware&dash;assisted security and isolation for these containers, just like virtual machines today. We&rsquo;ll ensure that the kernel security cross&dash;section for individual containers can be tightened up for each specific workload. We&rsquo;ll make sure you can live&dash;migrate these containers from machine to machine. And we&rsquo;re adding the ability to bind storage and network interfaces to the containers, just like virtual machines.</p>
-		<p>All of this work is aimed at giving you the full experience of virtual machines and the full security of a hypervisor, but much, much faster. Without all that virtualisation overhead, you get the full underlying performance of your host environment. On bare metal, these containers are just as fast as the native OS. In the cloud, you&rsquo;re getting subdivided machines without sub&dash;par performance.</p>
-	</div>
+<div class="row row-building-on-lxc equal-height">
+    <div class="equal-height__item eight-col">
+        <h2>Building on LXC (&ldquo;lex&dash;cee&rdquo;)?</h2>
+        <p>Ubuntu is the most popular platform for container engineering, including Docker and LXC. We&rsquo;re passionate about enabling that innovation to go further and faster.</p>
+        <p>Developers love LXC because it gives them an near instant, full system container where they can run a wide range of Linux operating environments.</p>
+        <p>They can run LXD on all the machines on which they want to create and tear down these environments, using LXC to drive the process from anywhere on the network.</p>
+    </div><!-- /.eight-col -->
+    <div class="four-col last-col equal-height__item equal-height__align-vertically">
+        <img src="{{ ASSET_SERVER_URL }}00438906-pictogram-virtualisation.svg" width="289" alt="" />
+    </div>
 </div>
 <div class="row">
-	<div class="four-col align-center">
-		<img src="{{ ASSET_SERVER_URL }}b3c24977-docker-small_v-trans.png" alt="" />
-	</div>
-	<div class="eight-col last-col">
-		<h2>And Docker?</h2>
-		<p>Docker is an amazing application delivery mechanism, which may change the world of devops forever.</p>
-    <p>There are seven times more Docker containers running on Ubuntu than any other OS. For the most efficient way to deliver your binaries to a platform for execution, Docker is the dance for us.</p>
-    <p>LXD and Docker share some underlying kernel capabilities, we aim to bring much of the awesome security and isolation of LXD to Docker as well.</p>
-	</div>
+    <h2>Is LXD a real Linux hypervisor?</h2>
+    <div class="eight-col">
+        <p>We&rsquo;re working with silicon companies to ensure hardware&dash;assisted security and isolation for these containers, just like virtual machines today. We&rsquo;ll ensure that the kernel security cross&dash;section for individual containers can be tightened up for each specific workload. We&rsquo;ll make sure you can live&dash;migrate these containers from machine to machine. And we&rsquo;re adding the ability to bind storage and network interfaces to the containers, just like virtual machines.</p>
+        <p>All of this work is aimed at giving you the full experience of virtual machines and the full security of a hypervisor, but much, much faster. Without all that virtualisation overhead, you get the full underlying performance of your host environment. On bare metal, these containers are just as fast as the native OS. In the cloud, you&rsquo;re getting subdivided machines without sub&dash;par performance.</p>
+    </div>
+</div>
+<div class="row">
+    <div class="four-col align-center">
+        <img src="{{ ASSET_SERVER_URL }}b3c24977-docker-small_v-trans.png" alt="" />
+    </div>
+    <div class="eight-col last-col">
+        <h2>And Docker?</h2>
+        <p>Docker is an amazing application delivery mechanism, which may change the world of devops forever.</p>
+        <p>There are seven times more Docker containers running on Ubuntu than any other OS. For the most efficient way to deliver your binaries to a platform for execution, Docker is the dance for us.</p>
+        <p>LXD and Docker share some underlying kernel capabilities, we aim to bring much of the awesome security and isolation of LXD to Docker as well.</p>
+        <p>With Ubuntu 16.04, you can run your Docker containers inside LXD containers.</p>
+    </div>
 </div>
 <div class="row row-grey">
-	<div class="eight-col">
-		<h2>Why use LXD?</h2>
-	</div>
-	<div class="six-col">
-		<ul class="list-ticks--canonical">
-      <li>Full operating system functionality within containers, not just single processes</li>
-      <li>Maximum density of guests per host, providing a cost benefit when running in a public cloud</li>
-      <li>Allows easy management and sharing of hardware resources, and easy monitoring of customer processes directly from the host level </li>
-      <li>REST API, and simple, single command line with proper help and documentation </li>
-      <li>Support for architectures under&dash;served by full virtualisation</li>
-		</ul>
-	</div>
-	<div class="six-col last-col">
-		<ul class="list-ticks--canonical">
-      <li>Rapid provisioning, instant guest boot</li>
-      <li>Tightly integrated with remote image services</li>
-      <li>vSecure by default, with AppArmor, user namespaces, SECCOMP</li>
-      <li>Implemented in Go, offering improved performance, concurrency, typing, and networking</li>
-      <li>Intelligent, extensible storage and networking</li>
-		</ul>
-	</div>
+    <div class="eight-col">
+        <h2>Why use LXD?</h2>
+    </div>
+    <div class="six-col">
+        <ul class="list-ticks--canonical">
+            <li>Full operating system functionality within containers, not just single processes</li>
+            <li>Maximum density of guests per host, providing a cost benefit when running in a public cloud</li>
+            <li>Allows easy management and sharing of hardware resources, and easy monitoring of customer processes directly from the host level </li>
+            <li>REST API, and simple, single command line with proper help and documentation </li>
+            <li>Support for architectures under&dash;served by full virtualisation</li>
+        </ul>
+    </div>
+    <div class="six-col last-col">
+        <ul class="list-ticks--canonical">
+            <li>Rapid provisioning, instant guest boot</li>
+            <li>Tightly integrated with remote image services</li>
+            <li>vSecure by default, with AppArmor, user namespaces, SECCOMP</li>
+            <li>Implemented in Go, offering improved performance, concurrency, typing, and networking</li>
+            <li>Intelligent, extensible storage and networking</li>
+        </ul>
+    </div>
 </div>
-<div class="row equal-height">
-	<div class="seven-col append-one equal-height__item">
-		<h2>Integration with OpenStack</h2>
-		<p>The combination of LXD and OpenStack makes for a very happy system administrator in a Linux&dash;oriented private cloud. All the agility of OpenStack, all the performance of your metal with no virt overhead.</p>
-		<p>As a validation point, we&rsquo;ve included the nova&dash;compute&dash;lxd driver in Ubuntu {{latest_release}}, and are committed to steering this into upstream OpenStack. </p>
-		<p>This new driver allows OpenStack instances to be scheduled as Linux Containers. Images are booted from OpenStack&rsquo;s image service, Glance, and instances communicate over Neutron&rsquo;s networking functionality just like KVM based VMs do.</p>
-	</div>
-	<div class="four-col last-col equal-height__item equal-height__align-vertically">
-		<img src="{{ ASSET_SERVER_URL }}ce5e0ec1-nova-compute.svg" alt="" />
-	</div>
+<div class="row row-openstack-integration equal-height">
+    <div class="seven-col append-one equal-height__item">
+        <h2>Integration with OpenStack</h2>
+        <p>The combination of LXD and OpenStack makes for a very happy system administrator in a Linux&dash;oriented private cloud. All the agility of OpenStack, all the performance of your metal with no virt overhead.</p>
+        <p>As a validation point, we&rsquo;ve included the nova&dash;lxd driver in Ubuntu {{latest_release}}, and are committed to steering this into upstream OpenStack. </p>
+        <p>This new driver allows OpenStack instances to be scheduled as Linux Containers. Images are booted from OpenStack&rsquo;s image service, Glance, and instances communicate over Neutron&rsquo;s networking functionality just like KVM based VMs do.</p>
+    </div>
+    <div class="four-col last-col equal-height__item equal-height__align-vertically">
+        <img src="{{ ASSET_SERVER_URL }}ce5e0ec1-nova-compute.svg" alt="" />
+    </div>
 </div>
 <div class="row no-border">
-	<div class="seven-col">
-		<h2>Getting started with LXD</h2>
-		<p>The simplest way to try LXD is by using it with its command line tool. This can easily be done on your laptop or desktop machine.</p>
-		<p>On an Ubuntu system, or by using ppa:ubuntu-lxc/lxd-stable on 14.04 or above, you can install LXD with:</p>
-		<pre><code>sudo apt-get update
-sudo apt-get install lxd</code></pre>
-	</div>
-  <div class="four-col last-col push-one">
-    <a href="https://insights.ubuntu.com/2015/04/28/getting-started-with-lxd-the-container-lightervisor/" class="box box-highlight resource--link resource-e-book" >
-      <h2>Getting started with LXD&nbsp;&rsaquo;</h2>
-      <p>Learn more about installing LXD and using the command line tool.</p>
-      <p class="content-cat content-cat-e-book">Factsheet</p>
-    </a>
-  </div><!-- /.four-col -->
+    <div class="seven-col">
+        <h2>Getting started with LXD</h2>
+        <p>The simplest way to try LXD is by using it with its command line tool. This can easily be done on your laptop or desktop machine.</p>
+        <p>On an Ubuntu system, or by using ppa:ubuntu-lxc/lxd-stable on 14.04 or above, you can install LXD with:</p>
+        <pre><code>sudo apt update
+sudo apt install lxd
+sudo lxd init</code></pre>
+        <p>For other Ubuntu releases, like Ubuntu 14.04 LTS and Ubuntu Core, detailed instructions are available on linuxcontainers.org <a href="https://linuxcontainers.org/lxd/getting-started-cli/" class="external">https://linuxcontainers.org/lxd/getting-started-cli/</a></p>
+        <p><a href="/download/server">Download Ubuntu Server&nbsp;&rsaquo;</a></p>
+    </div>
+  	<div class="four-col last-col push-one">
+        <a href="https://insights.ubuntu.com/2015/04/28/getting-started-with-lxd-the-container-lightervisor/" class="box box-highlight resource--link resource-e-book" >
+            <h2>Getting started with LXD&nbsp;&rsaquo;</h2>
+            <p>Learn more about installing LXD and using the command line tool.</p>
+            <p class="content-cat content-cat-e-book">Factsheet</p>
+        </a>
+    </div><!-- /.four-col -->
 </div>
-{% include "cloud/shared/_contextual_footer.html" %}
+{% include "cloud/shared/_contextual_footer.html" with feature_2="try-lxd" %}
 {% endblock content %}
