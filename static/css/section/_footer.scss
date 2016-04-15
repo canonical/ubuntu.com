@@ -190,6 +190,7 @@ footer.global {
   .legal {
     margin: 1em;
     padding-left: 0;
+    box-shadow: none;
     p,
     ul,
     li,
@@ -284,6 +285,11 @@ footer.global {
        }
        li {
          float: none;
+         width: auto;
+         background: 0;
+         float: left;
+         clear: none;
+         font-size: 1em;
        }
      }
      .more span {
@@ -387,6 +393,7 @@ footer.global {
         float: none;
         padding-bottom: 0;
         width: 100%;
+        //margin-left: -15px;
         ul {
           margin-left: 0;
           display: block;
@@ -399,15 +406,13 @@ footer.global {
           padding-bottom: 0;
           padding-left: 0;
           padding-right: 0;
+          width: 20%;
           li {
             display: block;
             border: 0;
             margin-bottom: 2px;
             background: none;
           }
-        }
-        li.secondary-cloud {
-          width: 20%;
         }
       }
       h2 {
@@ -425,9 +430,9 @@ footer.global {
       }
     }
     .footer-b {
-      padding: 0 0 20px;
-      margin: 0 auto;
-      font-size: .75em;
+      padding: 0;
+      margin: 0;
+      border: 0;
       h2 {
         text-transform: none;
         background: initial;
@@ -435,6 +440,7 @@ footer.global {
         color: #333;
         float: left;
         margin-right: .5em;
+        padding: 0;
         + ul.second-level-nav {
           display: block;
         }
@@ -445,20 +451,32 @@ footer.global {
         }
       }
       ul {
+        padding: 0;
+        margin: 0;
+        border: 0;
         li {
+          padding: 0;
+          margin: 0;
+          border: 0;
           line-height: 2;
           font-weight: 300;
           width: auto;
           overflow: hidden;
           border: 0;
           display: block;
-          float: left;
+          float: none;
           li:after {
             content: "|";
-            padding-left: .5em;
-            padding-right: .5em;
-            position: relative;
+            padding: 0;
             font-size: .6666em;
+          }
+          ul > li > a {
+            /// secondary nav menu items
+            padding: .25em;
+          }
+          ul li {
+            width: auto;
+            float: left;
           }
         }
       }
@@ -484,16 +502,26 @@ footer.global {
   }
 
   footer.global {
-    padding-top: 40px;
+    padding: 40px 0 20px 0;
+    .footer-a > div, .footer-b, .footer-b > ul, .legal {
+      margin: 0 auto;
+    }
+    .footer-a {
+      width: $breakpoint-large;
+      div {
+        width: $breakpoint-large;
+        margin: 0 auto;
+      }
+    }
     .footer-b {
       width: $breakpoint-large;
       padding: 0 0 20px;
       margin: 0 auto;
       font-size: .75em;
-    }
-    .inline-lists {
-      ul {
-        width: $breakpoint-large;
+      .inline-lists {
+        ul {
+          width: $breakpoint-large;
+        }
       }
     }
   }
