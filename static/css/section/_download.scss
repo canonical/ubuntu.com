@@ -212,7 +212,9 @@ html.opera-mini {
     background: none;
     margin: 0;
     padding-left: $gutter-width;
-    padding: 0;
+    padding-top: 2px;
+    padding-bottom: 0;
+    padding-right: 0;
 }
 
 .download .inner-wrapper form select {
@@ -786,7 +788,6 @@ html.opera-mini {
         background-color: #EFEFEF;
         padding: 20px;
         border-radius: 5px;
-        max-width: 584px;
     }
     .slider-area {
         overflow: hidden;
@@ -852,6 +853,10 @@ html.opera-mini {
     }
     .total-area {
         max-width: 624px;
+    }
+    .total-area-row {
+      margin-top: 40px;
+      margin-bottom: 20px;
     }
     .total-area-row.noscript {
         display: none;
@@ -932,8 +937,14 @@ html.opera-mini {
         min-height: 95px;
     }
 
-    .slider-area p {
+    .slider-area {
+      p {
         float: none;
+      }
+      .description {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
     }
     .contribution-slider {
         min-height: 24px;
