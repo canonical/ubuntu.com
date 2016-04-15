@@ -5,33 +5,40 @@
 {% block meta_description %}Want to download via-bitTorrent links, get DVD images with more language packs, use the text-based alternate installer or find previous versions of Ubuntu?{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Alternative downloads"  %}
+  <div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Alternative downloads"  %}
+  </div><!-- /.strip-inner-wrapper -->
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero equal-height">
-	<div class="equal-height__item seven-col">
-		<h1>Alternative downloads</h1>
-		<p>There are several other ways to get Ubuntu including torrents, which can potentially mean a quicker download, our network installer for older systems and special configurations and links to our regional DVD image mirrors for our older (and newer) releases. If you don&rsquo;t specifically require any of these installers, we recommend using our <a href="/download">default installers</a>.</p>
-	</div><!-- /.eight-col -->
-  <div class="five-col last-col equal-height__item equal-height__align-vertically">
-    <img src="{{ ASSET_SERVER_URL }}be3876ec-picto-download-warmgrey.svg" width="200" height="200" alt="" class="priority-0" />
+<div class="row equal-height">
+  <div class="strip-inner-wrapper">
+    <div class="seven-col equal-height__item">
+      <h1>Alternative downloads</h1>
+      <p>There are several other ways to get Ubuntu including torrents, which can potentially mean a quicker download, our network installer for older systems and special configurations and links to our regional DVD image mirrors for our older (and newer) releases. If you don&rsquo;t specifically require any of these installers, we recommend using our <a href="/download">default installers</a>.</p>
+    </div><!-- /.eight-col -->
+    <div class="five-col last-col equal-height__item equal-height__align-vertically">
+      <img src="{{ ASSET_SERVER_URL }}be3876ec-picto-download-warmgrey.svg" width="200" height="200" alt="" class="priority-0" />
+    </div>
   </div>
 </div>
 
 <div class="row">
-    <h2>Network installer</h2>
-    <div class="eight-col">
-        <p>The network installer lets you install Ubuntu over the network. This is useful, for example, if you have an old machine with a non-bootable CD-ROM or a computer that can&rsquo;t run the graphical interface-based installer, either because they don&rsquo;t meet the minimum requirements for the live CD/DVD or because they require extra configuration before  the graphical desktop can be used, or if you want to install Ubuntu on a large number of computers at once.</p>
-        <ul class="list-ticks--compact">
-            <li><a class="download-network external" href="http://cdimage.ubuntu.com/netboot/{{latest_release}}/">Download the network installer for {{latest_release}}</a></li>
-            <li><a class="download-network external" href="http://cdimage.ubuntu.com/netboot/14.04/">Download the network installer for 14.04 LTS</a></li>
-            <li><a class="download-network external" href="http://cdimage.ubuntu.com/netboot/12.04/">Download network installer for 12.04 LTS</a></li>
-        </ul>
-    </div><!-- /.eight-col -->
+    <div class="strip-inner-wrapper">
+      <h2>Network installer</h2>
+      <div class="eight-col">
+          <p>The network installer lets you install Ubuntu over the network. This is useful, for example, if you have an old machine with a non-bootable CD-ROM or a computer that can&rsquo;t run the graphical interface-based installer, either because they don&rsquo;t meet the minimum requirements for the live CD/DVD or because they require extra configuration before  the graphical desktop can be used, or if you want to install Ubuntu on a large number of computers at once.</p>
+          <ul class="list-ticks--compact">
+              <li><a class="download-network external" href="http://cdimage.ubuntu.com/netboot/{{latest_release}}/">Download the network installer for {{latest_release}}</a></li>
+              <li><a class="download-network external" href="http://cdimage.ubuntu.com/netboot/14.04/">Download the network installer for 14.04 LTS</a></li>
+              <li><a class="download-network external" href="http://cdimage.ubuntu.com/netboot/12.04/">Download network installer for 12.04 LTS</a></li>
+          </ul>
+      </div><!-- /.eight-col -->
+    </div><!-- /.strip-inner-wrapper -->
 </div><!-- /.row -->
 
 <div class="row">
+  <div class="strip-inner-wrapper">
     <div class="eight-col append-four">
         <h2>BitTorrent</h2>
         <p>BitTorrent is a peer-to-peer download network that sometimes enables higher download speeds and more reliable downloads of large files. You will need to install a BitTorrent client on your computer in order to enable this download method.</p>
@@ -65,9 +72,11 @@
             <li><a class="download-lts" href="http://releases.ubuntu.com/12.04/ubuntu-12.04.5-server-i386.iso.torrent">Ubuntu 12.04.5 Server (32-bit)&nbsp;&rsaquo;</a></li>
         </ul>
     </div><!-- /.four-col -->
+  </div><!-- /.strip-inner-wrapper -->
 </div><!-- /.row -->
 
-<div class="row">
+<div class="strip-inner-wrapper">
+  <div class="row">
     <div class="eight-col append-four">
         <h2>Other images</h2>
         <p>For other versions of the Ubuntu installer please select your nearest mirror; however, we recommend you use  the <a href="/download">standard installer</a> as all other packages are available in Ubuntu Software Centre.</p>
@@ -89,14 +98,18 @@
       <li class="four-col last-col"><a class="download-mirror" href="http://mirror.pnl.gov/releases/">United States &rsaquo;</a></li>
     </ul>
     <p><a href="https://launchpad.net/ubuntu/+cdmirrors" class="external download-mirror">See all Ubuntu mirrors</a></p>
-</div><!-- /.row -->
+  </div>
+
+</div><!-- /.strip-inner-wrapper -->
 
 <div class="row no-border">
+  <div class="strip-inner-wrapper">
     <div class="eight-col">
-		<h2>Past releases and other flavours</h2>
-		<p>Looking for an older release of Ubuntu? Whether you need an obsolete release or a previous LTS point release with its original stack, you can find them in past releases.</p>
-		<p><a class="external download-pastreleases" href="http://releases.ubuntu.com/">Past releases</a></p>
+    <h2>Past releases and other flavours</h2>
+    <p>Looking for an older release of Ubuntu? Whether you need an obsolete release or a previous LTS point release with its original stack, you can find them in past releases.</p>
+    <p><a class="external download-pastreleases" href="http://releases.ubuntu.com/">Past releases</a></p>
     </div><!-- /.eight-col -->
+  </div><!-- /.strip-inner-wrapper -->
 </div><!-- /.row -->
 
 {% endblock content %}

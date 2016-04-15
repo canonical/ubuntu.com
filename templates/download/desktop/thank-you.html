@@ -11,7 +11,9 @@ Thank you for your contribution
 {% block extra_body_class %}download-thankyou{% endblock %}
 
 {% block second_level_nav_items %}
-{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Thank you"  %}
+<div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Thank you"  %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -26,40 +28,43 @@ Thank you for your contribution
         {% endif %}
     {% endif %}
 
-    <div class="row row-hero no-border">
-        <div class="eight-col">
-            {% if request.GET.version and request.GET.architecture %}
-                <h1>Thank you for downloading Ubuntu Desktop</h1>
-                <p>
-                    Your download should start automatically. If it doesn&rsquo;t,
-                {% if request.GET.architecture.split|join:"+" == 'amd64+mac' %}
-                    <a href="http://cdimage.ubuntu.com/releases/14.04/release/ubuntu-14.04-desktop-amd64+mac.iso">download now</a>.
+    <div class="row no-border">
+        <div class="strip-inner-wrapper">
+            <div class="eight-col">
+                {% if request.GET.version and request.GET.architecture %}
+                    <h1>Thank you for downloading Ubuntu Desktop</h1>
+                    <p>
+                        Your download should start automatically. If it doesn&rsquo;t,
+                    {% if request.GET.architecture.split|join:"+" == 'amd64+mac' %}
+                        <a href="http://cdimage.ubuntu.com/releases/14.04/release/ubuntu-14.04-desktop-amd64+mac.iso">download now</a>.
+                    {% else %}
+                        <a href="http://releases.ubuntu.com/{{ request.GET.version }}/ubuntu-{{ request.GET.version }}-desktop-{{ request.GET.architecture.split|join:"+" }}.iso">download now</a>.
+                    {% endif %}
+                    </p>
                 {% else %}
-                    <a href="http://releases.ubuntu.com/{{ request.GET.version }}/ubuntu-{{ request.GET.version }}-desktop-{{ request.GET.architecture.split|join:"+" }}.iso">download now</a>.
+                    <h1>Thank you for your contribution</h1>
+                    <p>It will help further the open source development of Ubuntu.</p>
                 {% endif %}
-                </p>
-            {% else %}
-                <h1>Thank you for your contribution</h1>
-                <p>Thanks for contributing to the Ubuntu project.</p>
-            {% endif %}
+            </div>
         </div>
     </div>
     <div class="row row-grey no-border">
-        <div class="box-grey twelve-col no-margin-bottom equal-height">
-            <div class="four-col one box box-highlight equal-height__item no-margin-bottom">
+        <div class="strip-inner-wrapper">
+            <div class="box-grey twelve-col no-margin-bottom equal-height">
+            <div class="four-col one box box-highlight no-margin-bottom">
                 <div class="text-center four-col">
                     <img alt="ubuntu one" src="{{ ASSET_SERVER_URL }}1d4164ba-picto-discussion-warmgrey.svg" width="113" height="113" />
                 </div>
-                <h3>Talk Ubuntu</h3>
-                <p>Debate the latest developments in the Ubuntu world at Ubuntu Discourse, our community forum.</p>
-                <p><a href="http://discourse.ubuntu.com" class="external">Get involved at Ubuntu Discourse</a></p>
+                <h3>Installation guide</h3>
+                <p>If you need some help installing Ubuntu, please check out our step-by-step guide.</p>
+                <p><a href="/download/desktop/install-ubuntu-desktop">Read the installation instructions&nbsp;&rsaquo;</a></p>
             </div><!-- /.four-col -->
             <div class="four-col support box box-highlight no-margin-bottom equal-height__item">
                 <div class="text-center four-col">
                     <img alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}03c5463a-picto-business-warmgrey.svg" width="113" height="113" />
                 </div>
                 <h3>Ubuntu Advantage</h3>
-                <p>Purchase our desktop support and access Ubuntu experts whenever you need.</p>
+                <p>Purchase our desktop support and access Ubuntu experts whenever you need to.</p>
                 <p><a href="http://shop.canonical.com/index.php?cPath=41" class="external">Learn more</a></p>
             </div><!-- /.four-col -->
             <div class="four-col ask last-col box box-highlight no-margin-bottom equal-height__item">
@@ -73,6 +78,7 @@ Thank you for your contribution
         </div><!-- /.row .row-box -->
 
     </div><!-- /.row .row-download -->
+</div>
 {% endblock content %}
 
 {% block footer_extra %}

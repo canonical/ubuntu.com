@@ -83,7 +83,7 @@
 
 /*	@section download homepage
 -------------------------------------------------------------- */
-body.download {
+.download {
 
     .row {
         padding: 40px;
@@ -121,37 +121,37 @@ body.download {
     }
 }
 
-body.download-cloud-home #main-content .row form ul li{
+.download-cloud-home #main-content .row form ul li{
   color: inherit; // overrides the ubuntu orange default on these pages
 }
 
 html.no-svg,
 html.opera-mini {
-    body.download p.ubuntu-upgrade {
+    .download p.ubuntu-upgrade {
         background-image: url('#{$asset-server}fa83e8f4-pictorgram-upgrade-44x44.png');
     }
 }
 
-body.download-home {
+.download-home {
     .row-hero p {
         font-size: 1.21875em;
     }
 }
 
-body.download-desktop-home {
+.download-desktop-home {
   .row .download-description {
     border: 0;
     margin-right: 0;
   }
 }
 
-body.download-alternative-downloads {
+.download-alternative-downloads {
     #main-content .row-hero {
         border-bottom: 1px dotted $warm-grey;
     }
 }
 
-body.download-desktop-upgrade {
+.download-desktop-upgrade {
     #main-content .row-hero {
         padding-bottom: 0;
     }
@@ -166,14 +166,14 @@ body.download-desktop-upgrade {
 
 
 /* heros */
-body.download-alternative-downloads .row-hero,
-body.download-desktop-upgrade .row-hero,
-body.download-ubuntu-kylin-zh-CN .row-hero {
+.download-alternative-downloads .row-hero,
+.download-desktop-upgrade .row-hero,
+.download-ubuntu-kylin-zh-CN .row-hero {
   background: none;
 }
 
-body.download-ubuntu-kylin-zh-CN .lang-switch,
-body.download-ubuntu-kylin .lang-switch {
+.download-ubuntu-kylin-zh-CN .lang-switch,
+.download-ubuntu-kylin .lang-switch {
     position: absolute;
     top: 20px;
     right: 40px;
@@ -181,104 +181,105 @@ body.download-ubuntu-kylin .lang-switch {
     z-index: 999;
 }
 
-body.download-ubuntu-kylin-zh-CN .row-zh-CN .box-highlight {
+.download-ubuntu-kylin-zh-CN .row-zh-CN .box-highlight {
     box-sizing: border-box;
 }
 
-body.download-ubuntu-kylin-zh-CN .row-zh-CN .box-highlight h2,
-body.download-ubuntu-kylin-zh-CN .row-zh-CN .box-highlight p {
+.download-ubuntu-kylin-zh-CN .row-zh-CN .box-highlight h2,
+.download-ubuntu-kylin-zh-CN .row-zh-CN .box-highlight p {
     padding-right: 20px;
 }
 
 /*	@section download > desktop/server & cloud
 -------------------------------------------------------------- */
-body.download .box-highlight.no-margin-bottom {
+.download .box-highlight.no-margin-bottom {
   margin-bottom: 0px;
 }
 
-body.download-desktop .windows-8 {
+.download-desktop .windows-8 {
   padding-top: $gutter-width;
 }
 
-body.download .desktop.box-highlight {
+.download .desktop.box-highlight {
   margin-bottom: 40px;
 }
 
-body.download-ubuntu-kylin-zh-CN .download-description {
+.download-ubuntu-kylin-zh-CN .download-description {
   min-height: 9.5em;
 }
 
-body.download .inner-wrapper form fieldset {
+.download .inner-wrapper form fieldset {
     background: none;
     margin: 0;
     padding-left: $gutter-width;
     padding: 0;
 }
 
-body.download .inner-wrapper form select {
+.download .inner-wrapper form select {
     font-weight: 300;
     margin-bottom: 30px;
     width: 100%;
 }
 
-body.download .inner-wrapper form button,
-body.download .inner-wrapper form .link-cta-download,
-body.download .inner-wrapper .link-cta-download {
+.download .strip-inner-wrapper form button,
+.download .strip-inner-wrapper form .link-cta-download,
+.download .strip-inner-wrapper .link-cta-download {
     font-size: 1.21875em;
     padding: 10px 14px;
     border: 0;
     float: left;
     text-align: center;
     width: 100%;
+    margin-bottom: 1em;
 }
 
-body.download #main-content .row-background a:link.link-cta-download {
+.download #main-content .row-background a:link.link-cta-download {
     text-decoration: none;
 }
 
-body.download-ubuntu-kylin-zh-CN .inner-wrapper form button {
+.download-ubuntu-kylin-zh-CN .inner-wrapper form button {
   margin-left: 0;
 }
 
-body.download .inner-wrapper .small {
+.download .inner-wrapper .small {
     font-size: .8125em;
     display: block;
     text-align: center;
     margin-top: -.2em;
 }
 
-body.download .inner-wrapper .form-download .small {
+.download .inner-wrapper .form-download .small {
     margin-bottom: 2em;
 }
 
-body.download .inner-wrapper .form-download:last-of-type .small {
+.download .inner-wrapper .form-download:last-of-type .small {
     margin-bottom: 0;
 }
 
-body.download-ubuntu-kylin-zh-CN .inner-wrapper  {
+.download-ubuntu-kylin-zh-CN .inner-wrapper  {
     .link-cta-download, .small {
       margin-left: 0;
   }
 }
 
-body.download-cloud-home .row-hero form.form-download p {
+.download-cloud-home .row-hero form.form-download p {
   font-size: 0.8125em;
 }
 
-body.download-cloud-home .inline-icons li {
+.download-cloud-home .inline-icons li {
     margin-bottom: 0;
 }
 
-body.download-desktop {
+.download-desktop {
   div.warning {
     padding: 20px 40px;
     margin-bottom: $gutter-width;
   }
 }
 
-/* body.download */
+/* .download */
 
-body.download-help {
+.download-help {
     .row-hero {
         padding-bottom: 0;
 
@@ -288,18 +289,18 @@ body.download-help {
     }
 }
 
-body.download-help .box-juju {
+.download-help .box-juju {
     padding-top: 2 * $gutter-width;
     padding-bottom: 2 * $gutter-width;
 }
 
-body.download #download-other {
+.download #download-other {
     background: $light-grey;
-  border-radius: 4px;
+    border-radius: 4px;
     padding: 20px;
 }
 
-body.download .sidebar {
+.download .sidebar {
     h4 {
       font-size: 1em;
       font-weight: normal;
@@ -318,7 +319,7 @@ body.download .sidebar {
     li li { list-style-type: disc; }
 }
 
-body.download {
+.download {
     .header--ubuntu,
     .header--windows,
     .header--mac,
@@ -425,8 +426,6 @@ body.download {
             border-color: rgba(255,255,255,0.2); /*#78515f;*/
         }
     }
-    #main-content .box-highlight {
-    }
 }
 
 .download.download-ubuntu-kylin #main-content .row-background {
@@ -448,7 +447,7 @@ body.download {
 
 html.no-svg,
 html.opera-mini {
-    body.download {
+    .download {
         .header--ubuntu {
             background-image: url("#{$asset-server}b66b2b31-picto-ubuntu.png");
         }
@@ -475,23 +474,23 @@ html.opera-mini {
         }
     }
 }
-body.download .box,
-body.download .box-highlight {
+.download .box,
+.download .box-highlight {
     margin-bottom: 20px;
 }
-body.download .box h4 {
+.download .box h4 {
     font-size: 1em;
     font-weight: normal;
 }
 
-body.download .box ul li p {
+.download .box ul li p {
     color: #333;
     margin-bottom: 0;
 }
 
 /* @section download > download-zh-CN */
-body.download-ubuntu-kylin-zh-CN h1 span,
-body.download-ubuntu-kylin-zh-CN h2 span {
+.download-ubuntu-kylin-zh-CN h1 span,
+.download-ubuntu-kylin-zh-CN h2 span {
     float: none;
     clear: none;
     display: inline;
@@ -605,8 +604,8 @@ body.download-ubuntu-kylin-zh-CN h2 span {
     }
 
 } /* end .download-help */
-html.no-svg,
-html.opera-mini {
+.no-svg,
+.opera-mini {
     .ask-ubuntu-box {
         background-image: url(#{$asset-server}5de3bb0c-picto-forum-warmgrey.png);
     }
@@ -616,7 +615,9 @@ html.opera-mini {
     border-top: 0;
 }
 
-.download-cloud-cloud-archive-instructions #download-help li { padding-left: 0; }
+.download-cloud-cloud-archive-instructions #download-help li {
+    padding-left: 0;
+}
 
 #ubuntu-help {
     margin-bottom: 60px;
@@ -643,8 +644,8 @@ html.opera-mini {
         width: $size;
         height: $size;
         line-height: $size;
-        background-color: #ccc;
-        color: #fff;
+        background-color: $warm-grey;
+        color: $white;
         text-align: center;
         vertical-align: top;
         font-size: 2em;
@@ -666,14 +667,14 @@ html.opera-mini {
 #download-help li span,
 #ubuntu-help li span {
   border-radius: 40px;
-    background-color: #ccc;
-    border: 3px solid #ccc;
-    color: #fff;
+    background-color: $warm-grey;
+    border: 3px solid $warm-grey;
+    color: $white;
     display: block;
     float: left;
     text-align: center;
     vertical-align: top;
-    width: 18px;
+    width: 40px;
     font-size: 1.375em;
     padding: 0 9px;
     height: auto;
@@ -708,7 +709,7 @@ html.opera-mini {
     padding: 15px 0 0;
 }
 
-body.download p.link-wrap {
+.download p.link-wrap {
     clear: both;
     display: inline-block;
     float: left;
@@ -717,7 +718,7 @@ body.download p.link-wrap {
 }
 
 /* /download/help/install-ubuntu-openstack */
-body.download-cloud-install-ubuntu-openstack {
+.download-cloud-install-ubuntu-openstack {
   #main-content .row-hero {
     border-bottom: 1px dotted $warm-grey;
         padding-bottom: 40px;
@@ -751,11 +752,6 @@ body.download-cloud-install-ubuntu-openstack {
       }
     }
   }
-}
-
-html.no-svg,
-html.opera-mini {
-
 }
 
 /* Contribute page */
@@ -812,7 +808,7 @@ html.opera-mini {
         margin-top: 4px;
     }
 
-    .contribution-value, body.download .inner-wrapper .contribution-value {
+    .contribution-value, .download .inner-wrapper .contribution-value {
         float: right;
         font-size: 16px;
     }
@@ -877,7 +873,7 @@ html.opera-mini {
         padding-top: 20px;
         max-width: 624px;
     }
-    .contribute .pay-with-paypal, body.download .contribute button.pay-with-paypal {
+    .contribute .pay-with-paypal, .download .contribute button.pay-with-paypal {
         float: right;
         font-size: 1em;
         width: auto;
@@ -964,7 +960,7 @@ html.opera-mini {
 -------------------------------------------------------------- */
 @media only screen and (min-width : 768px) {
 
-    body.download {
+    .download {
         .row-list-download {
             .box-highlight {
                 margin-bottom: 0;
@@ -979,15 +975,13 @@ html.opera-mini {
 -------------------------------------------------------------- */
 @media only screen and (min-width : 769px) {
 
-
-
     /* Thank you pages */
     .download .row-download-thanks {
         margin-left: 0;
         margin-right: 0;
     }
 
-    body.download .download-description {
+    .download .download-description {
         box-sizing: border-box;
         border-right: 1px dotted $warm-grey;
         display: inline;
@@ -996,7 +990,7 @@ html.opera-mini {
         padding-right: 10px;
     }
 
-    body.download-cloud-home .inline-icons li {
+    .download-cloud-home .inline-icons li {
         margin-bottom: 20px;
     }
 
@@ -1007,9 +1001,9 @@ html.opera-mini {
     #download-help li span,
     #ubuntu-help li span {
         font-size: 1.4375em;
-      height: 20px;
-      padding: 0 11px 20px 11px;
-      margin-right: 20px;
+        height: 40px;
+        padding: 0 11px 20px 11px;
+        margin-right: 20px;
     }
 
     #ubuntu-help li span {
@@ -1044,13 +1038,13 @@ html.opera-mini {
     #download-other .box {
         margin-bottom: 0;
     }
-    body.download {
+    .download {
         .gap-from-top {
             margin-top: 53px;
         }
     }
-    body.download-cloud,
-    body.download-server {
+    .download-cloud,
+    .download-server {
         .gap-from-top {
             margin-top: 88px;
         }
