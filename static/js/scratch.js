@@ -515,8 +515,8 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
 
     core.redrawGlobal = function() {
         var globalNav = Y.one("#nav-global");
-        if (document.documentElement.clientWidth < 768 && core.globalPrepend != 'div.legal') {
-            core.globalPrepend = 'div.legal';
+        if (document.documentElement.clientWidth < 768 && core.globalPrepend != 'div.nav-global-footer') {
+            core.globalPrepend = 'div.nav-global-footer';
             if (globalNav) {
                 globalNav.remove();
                 core.setupGlobalNav();
