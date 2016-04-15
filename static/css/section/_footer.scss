@@ -1,0 +1,500 @@
+@charset "UTF-8";
+/*
+
+  Project:    Ubuntu footer
+  Author:     Web Team at Canonical Ltd
+  Last edited by: Peter Mahnke
+  Last edited on: 14 April 2016
+
+    CONTENTS:
+  -----------------------------------------------------------------
+  footer and global nav
+  three sizes: small, medium, large
+-------------------------------------------------------------- */
+
+/// Small screens
+footer.global {
+  border: 0;
+  margin: 0;
+  padding: 0;
+
+  /// thick borders
+  .footer-c, .footer-b, #nav-global {
+    -moz-box-shadow: 0 -4px 4px -4px rgba(0,0,0,0.3) inset;
+    -webkit-box-shadow: 0 -4px 4px -4px rgba(0,0,0,0.3) inset;
+    box-shadow: 0 -4px 4px -4px rgba(0,0,0,0.3) inset;
+  }
+
+  .footer-a, .footer-b {
+    ul {
+      border: 0;
+      margin: 0;
+      padding: 0;
+
+      li {
+        border: 0;
+        margin: 0;
+        padding: 0;
+        display: block;
+        line-height: 1.5em;
+        border-top: 1px solid #ccc;
+      }
+    }
+  }
+
+  .footer-a, .footer-b, #nav-global {
+    border: 0;
+    margin: 0;
+    padding: 0;
+
+    h2, .top-link {
+      font-size: .75em;
+      text-transform: uppercase;
+      color: #888;
+      line-height: 1.5em;
+      letter-spacing: .05em;
+      margin-bottom: 0;
+      padding: .833333333em 1.1em;
+    }
+    h2 {
+      /// open/close arrow closed
+      background-image: url("https://assets.ubuntu.com/v1/7bd1bd7b-arrow_down_9fa097.svg");
+      background-position: 96% 50%;
+      background-repeat: no-repeat;
+      background-size: 13px 13px;
+      a:link,
+      a:visited {
+        color: #888;
+      }
+      a::after {
+        content: ""; /* hide the default > */
+      }
+
+      /// open and close the primary/secondary navs
+      + ul.second-level-nav {
+        display: none;
+      }
+      &.active {
+        background-image: url("https://assets.ubuntu.com/v1/43e2b367-arrow_up_9fa097.png");
+        + ul.second-level-nav {
+          display: block;
+        }
+      }
+    }
+
+    ul {
+      li {
+        ul > li > a {
+          /// secondary nav menu items
+          padding: .2em 1em;
+        }
+      }
+    }
+  }
+  #nav-global h2 {
+    &::before {
+      // addes the external icon
+      background-image: url("//assets.ubuntu.com/sites/ubuntu/latest/u/img/external-link-9fa097.svg");
+      -moz-background-size: 14px 14px;
+      -webkit-background-size: 14px 14px;
+      -o-background-size: 14px 14px;
+      background-size: 14px 14px;
+      background-position-y: 2px;
+      background-repeat: no-repeat;
+      content: "";
+      display: inline-block;
+      height: 15px;
+      width: 15px;
+    }
+  }
+
+  /// Ubuntu websites global nav
+  #nav-global > div > ul > li.more > a:first-of-type {
+    display: none; /* hide until 'active' class */
+  }
+  #nav-global {
+    font-size: 16px;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    .nav-global-wrapper {
+      display: none;
+      &.active {
+        background-image: url("https://assets.ubuntu.com/v1/43e2b367-arrow_up_9fa097.png");
+        background-repeat: no-repeat;
+        background-position: 96% 50%;
+        background-size: 13px 13px;
+        display: block;
+      }
+    }
+    ul {
+      li {
+        display: inline-block;
+        width: 50%;
+        margin: 0;
+        line-height: 2em;
+        box-sizing: border-box;
+        border-bottom: 1px solid #d4d7d4;
+        border-left: 1px solid #d4d7d4;
+        a {
+          margin: 0;
+          padding: 0;
+          padding-left: 1em;
+          color: #333;
+        }
+        li:nth-child(odd) {
+          border-left: 0;
+        }
+      }
+      li.more {
+        width: 100%;
+        line-height: 0;
+        padding: 0;
+        margin: 0;
+        ul {
+          li {
+            font-size: 1em;
+            a {
+              font-size: 1em;
+              margin: 0;
+              padding: 0;
+              padding-left: 1em;
+            }
+          }
+        }
+      }
+    }
+  }
+  /// back to top link
+  .top-link {
+    text-transform: uppercase;
+    width: 100%;
+    position: initial;
+    a {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      background-image: url("//assets.ubuntu.com/sites/ubuntu/latest/u/img/pictograms/picto-pack/picto-upload-warmgrey.svg");
+      background-position: 10px center;
+      background-repeat: no-repeat;
+      background-size: 14px 14px;
+      border-bottom: 0 none;
+      color: #888888;
+      display: block;
+      float: none;
+      font-weight: 400;
+      padding: 12px 0 12px 28px;
+    }
+  }
+  /// copyright and legal links
+  .legal {
+    margin: 1em;
+    padding-left: 0;
+    p,
+    ul,
+    li,
+    a:link,
+    a:visited {
+      color: #333;
+      font-size: 12px;
+      margin-bottom: 0;
+    }
+    p {
+      padding-bottom: .5em;
+    }
+    li {
+      display: inline;
+      list-style: none;
+      margin-right: 10px;
+      & > a {
+        margin-right: 10px;
+        position: relative;
+        vertical-align: middle;
+      }
+      &::after {
+        content: "•";
+      }
+      &:last-of-type::after {
+        content: "";
+        padding-left: 0;
+      }
+    }
+  }
+}
+
+/// Medium screens
+@media only screen and (min-width : $breakpoint-medium) {
+
+  // global nav
+  #nav-global {
+    display: block;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background: #efefef;
+    width: 100%;
+    height: 30px;
+    line-height: 19.2px;
+    z-index: 101;
+    position: relative;
+    margin-top: -30px;
+    .nav-global-wrapper {
+      width: auto;
+      background: none repeat scroll 0 0 #FFFFFF;
+      margin: 0 auto;
+      position: relative;
+      text-align: left;
+    }
+    div {
+      box-shadow: none;
+    }
+    ul {
+      margin-bottom: 0;
+      margin-left: 0;
+      top: 0;
+      li {
+        float: left;
+        display: block;
+        text-align: left;
+        margin: 0;
+        height: 30px;
+        margin-top: -1px;
+        position: relative;
+        top: 0;
+      }
+      li:first-of-type a {
+        margin-left: 10px;
+      }
+      ul {
+       display: none;
+       float: none;
+       background: #fff;
+       position: absolute;
+       min-width: 120px;
+       top: 30px;
+       border-top: 1px solid #d7d7d7;
+       -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+       -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+       box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+       li:first-of-type {
+         padding-top: 5px;
+         a {
+           margin-left: 10px;
+         }
+       }
+       li {
+         float: none;
+       }
+     }
+     .more span {
+       display: block;
+       top: -10px;
+       left: 46px;
+       line-height: 19.2px;
+       height: 0;
+       position: relative;
+       -webkit-transform-origin: 0 0;
+      -moz-transform-origin: 0 0;
+      -ms-transform-origin: 0 0;
+      -o-transform-origin: 0 0;
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+     }
+    .more {
+      border-left: 1px solid transparent;
+      border-right: 1px solid transparent;
+      min-width: 60px;
+    }
+    a.active {
+      color: #dd4814;
+      border-top: 3px solid #dd4814;
+      text-decoration: none;
+      opacity: 1;
+    }
+  }
+  a:link,
+  a:visited {
+    color: #333;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.6;
+    border-top: 3px solid transparent;
+    border-bottom: 0;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding-top: 3px;
+    padding-bottom: 4px;
+    position: relative;
+    text-decoration: none;
+    -moz-transition: opacity 0.25s ease-in-out;
+    -webkit-transition: opacity 0.25s ease-in-out;
+    transition: opacity 0.25s ease-in-out;
+    display: block;
+    list-style-image: none;
+  }
+  .open {
+    background: #fff;
+    min-width: 120px;
+    border-left: 1px solid #d7d7d7;
+    border-right: 1px solid #d7d7d7;
+    a:link,
+    a:visited,
+    span {
+      color: #dd4814;
+      opacity: 1;
+    }
+    ul {
+      display: block;
+      a:link,
+      a:visited {
+        color: #333;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+
+  /// hide back to top link
+  .footer-c {
+    display: none;
+  }
+  /// vertical main nav lists
+  footer.global {
+    .footer-a {
+      border-bottom: 1px solid #d8d8d8;
+      display: block;
+      clear: both;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      ul li ul > li > a {
+        padding: 0;
+        margin: 0;
+        line-height: 0;
+      }
+      div {
+        padding-bottom: .75em;
+        margin: 0 auto;
+        width: 100%;
+      }
+      ul {
+        padding-left: 1em;
+        border-collapse: collapse;
+        display: table;
+        float: none;
+        padding-bottom: 0;
+        width: 100%;
+        ul {
+          margin-left: 0;
+          display: block;
+        }
+        li {
+          border-right: 1px dotted #888;
+          display: table-cell;
+          float: none;
+          margin-left: 0;
+          padding-bottom: 0;
+          padding-left: 0;
+          padding-right: 0;
+          li {
+            display: block;
+            border: 0;
+            margin-bottom: 2px;
+            background: none;
+          }
+        }
+        li.secondary-cloud {
+          width: 20%;
+        }
+      }
+      h2 {
+        background: none;
+        text-transform: none;
+        + ul.second-level-nav {
+          /// open the primary/secondary navs
+          display: block;
+        }
+        a:link,
+        a:visited {
+          color: #333;
+          font-weight: normal;
+        }
+      }
+    }
+    .footer-b {
+      padding: 0 0 20px;
+      margin: 0 auto;
+      font-size: .75em;
+      h2 {
+        text-transform: none;
+        background: initial;
+        font-weight: 400;
+        color: #333;
+        float: left;
+        margin-right: .5em;
+        + ul.second-level-nav {
+          display: block;
+        }
+        a:link,
+        a:visited {
+          color: #333;
+          font-weight: normal;
+        }
+      }
+      ul {
+        li {
+          line-height: 2;
+          font-weight: 300;
+          width: auto;
+          overflow: hidden;
+          border: 0;
+          display: block;
+          float: left;
+          li:after {
+            content: "|";
+            padding-left: .5em;
+            padding-right: .5em;
+            position: relative;
+            font-size: .6666em;
+          }
+        }
+      }
+    }
+  }
+}
+/// Large screens
+@media only screen and (min-width : $breakpoint-large) {
+
+  #nav-global {
+    ul {
+      li:first-of-type a {
+        margin-left: 0; // PRM
+      }
+      li.more a {
+        text-indent: 0;
+        display: block;
+      }
+    }
+    .nav-global-wrapper {
+      width: $breakpoint-large !important;
+    }
+  }
+
+  footer.global {
+    padding-top: 40px;
+    .footer-b {
+      width: $breakpoint-large;
+      padding: 0 0 20px;
+      margin: 0 auto;
+      font-size: .75em;
+    }
+    .inline-lists {
+      ul {
+        width: $breakpoint-large;
+      }
+    }
+  }
+}
