@@ -7,7 +7,9 @@ Thanks for downloading Ubuntu Server
 {% block extra_body_class %}download-thankyou{% endblock %}
 
 {% block second_level_nav_items %}
-    {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server" page_title="Thank you"  %}
+    <div class="strip-inner-wrapper">
+        {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server" page_title="Thank you"  %}
+    </div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -16,38 +18,42 @@ Thanks for downloading Ubuntu Server
     </noscript>
 
     <div class="row row-hero no-border">
-        <h1>Thanks for downloading Ubuntu Server</h1>
-        <p>Your download should start automatically. If it doesn&rsquo;t, <a href="http://releases.ubuntu.com/{{ request.GET.version }}/ubuntu-{{ request.GET.version }}-server-{{ request.GET.architecture.split|join:"+" }}.iso">download now</a>.</p>
+        <div class="strip-inner-wrapper">
+            <h1>Thanks for downloading Ubuntu Server</h1>
+            <p>Your download should start automatically. If it doesn&rsquo;t, <a href="http://releases.ubuntu.com/{{ request.GET.version }}/ubuntu-{{ request.GET.version }}-server-{{ request.GET.architecture.split|join:"+" }}.iso">download now</a>.</p>
+        </div>
     </div>
     <div class="row row-grey no-border">
-        <div class="box-grey twelve-col no-margin-bottom equal-height">
-            <div class="four-col support box box-highlight equal-height__item">
-                <div class="text-center four-col">
-                    <img alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}03c5463a-picto-business-warmgrey.svg" width="113" height="113" />
-                </div>
-                <h3>Ubuntu Advantage</h3>
-                <p>Commercial support agreements to suit your business needs.</p>
-                <p><a href="http://www.ubuntu.com/server/management">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
-            </div><!-- /.four-col -->
-            <div class="four-col one box box-highlight equal-height__item">
-                <div class="text-center four-col">
-                    <img alt="ubuntu one" src="{{ ASSET_SERVER_URL }}2a8cf960-picto-startfirst-warmgrey.svg" width="113" height="113" />
-                </div>
-                <h3>OpenStack Training</h3>
-                <p>In a classroom or at your company, learn the ins and outs of OpenStack.</p>
-                <p><a href="/cloud/openstack/training">Learn more about OpenStack Training&nbsp;&rsaquo;</a></p>
-            </div><!-- /.four-col -->
-            <div class="four-col ask last-col box box-highlight equal-height__item">
-                <div class="text-center four-col">
-                    <img alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}422b612c-picto-forum-warmgrey.svg" width="113" height="113" />
-                </div>
-                <h3>Ask Ubuntu</h3>
-                <p>Need help? Ask your questions here.</p>
-                <p><a href="http://askubuntu.com/questions/tagged/server" class="external">Get help</a></p>
-            </div><!-- /.four-col -->
-        </div><!-- /.row .row-box -->
+        <div class="strip-inner-wrapper">
+            <div class="box-grey twelve-col no-margin-bottom equal-height">
 
-    </div><!-- /.row .row-download -->
+                <div class="four-col one box box-highlight equal-height__item">
+                    <div class="text-center four-col">
+                        <img alt="ubuntu one" src="{{ ASSET_SERVER_URL }}2a8cf960-picto-startfirst-warmgrey.svg" width="113" height="113" />
+                    </div>
+                    <h3>Installation guides</h3>
+                    <p>If you need some help installing Ubuntu, please check out our step-by-step guides.</p>
+                    <p><a href="/download/server/install-ubuntu-server">Installation instructions for Ubuntu Server&nbsp;&rsaquo;</a></p>
+                </div><!-- /.four-col -->
+                <div class="four-col support box box-highlight equal-height__item">
+                    <div class="text-center four-col">
+                        <img alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}03c5463a-picto-business-warmgrey.svg" width="113" height="113" />
+                    </div>
+                    <h3>Ubuntu Advantage</h3>
+                    <p>Commercial support agreements to suit your business needs.</p>
+                    <p><a href="http://www.ubuntu.com/server/management">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+                </div><!-- /.four-col -->
+                <div class="four-col ask last-col box box-highlight equal-height__item">
+                    <div class="text-center four-col">
+                        <img alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}422b612c-picto-forum-warmgrey.svg" width="113" height="113" />
+                    </div>
+                    <h3>Ask Ubuntu</h3>
+                    <p>Need help? Ask your questions here.</p>
+                    <p><a href="http://askubuntu.com/questions/tagged/server" class="external">Get help</a></p>
+                </div><!-- /.four-col -->
+            </div>
+        </div><!-- /.strip-inner-wrapper -->
+    </div><!-- /.row .row-grey -->
 {% endblock content %}
 {% block footer_extra %}
 <script src="{% versioned_static 'js/helpers.js' %}"></script>
