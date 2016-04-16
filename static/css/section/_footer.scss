@@ -18,6 +18,12 @@ footer.global {
   margin: 0;
   padding: 0;
 
+  /// margin for cookie message
+  .legal.has-cookie {
+    /* if the cookie message is being displayed add padding so the legal links are still visible */
+    padding-bottom: 70px;
+  }
+
   /// thick borders
   .footer-c, .footer-b, #nav-global {
     -moz-box-shadow: 0 -4px 4px -4px rgba(0,0,0,0.3) inset;
@@ -414,6 +420,9 @@ footer.global {
           color: #333;
           font-weight: normal;
         }
+        .active {
+          background: none;
+        }
       }
       ul {
         li {
@@ -495,7 +504,7 @@ footer.global {
       h2 {
         background: initial;
         float: left;
-        margin: 0 .5em .5em 1em;
+        margin: 0 .5em .5em .5em;
         line-height: 1.75;
       }
       ul {
