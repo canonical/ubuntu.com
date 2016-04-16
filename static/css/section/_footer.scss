@@ -28,14 +28,9 @@ footer.global {
   .footer-a, .footer-b {
     ul {
       border: 0;
-      margin: 0;
-      padding: 0;
-
       li {
-        border: 0;
         margin: 0;
         padding: 0;
-        display: block;
         line-height: 1.5em;
         border-top: 1px solid #ccc;
       }
@@ -74,6 +69,7 @@ footer.global {
       + ul.second-level-nav {
         display: none;
       }
+
       &.active {
         background-image: url("https://assets.ubuntu.com/v1/43e2b367-arrow_up_9fa097.png");
         + ul.second-level-nav {
@@ -82,15 +78,12 @@ footer.global {
       }
     }
 
-    ul {
-      li {
-        ul > li > a {
-          /// secondary nav menu items
-          padding: .2em 1em;
-        }
-      }
+    .second-level-nav li > a {
+      /// secondary nav menu items
+      padding: .2em 1em;
     }
   }
+
   #nav-global h2 {
     &::before {
       // addes the external icon
@@ -109,7 +102,8 @@ footer.global {
   }
 
   /// Ubuntu websites global nav
-  #nav-global > div > ul > li.more > a:first-of-type {
+  #nav-global .nav-global-wrapper,
+  li.more > a  {
     display: none; /* hide until 'active' class */
   }
   #nav-global {
@@ -120,6 +114,7 @@ footer.global {
     .nav-global-wrapper {
       display: none;
       &.active {
+        /// display when clicked
         background-image: url("https://assets.ubuntu.com/v1/43e2b367-arrow_up_9fa097.png");
         background-repeat: no-repeat;
         background-position: 96% 50%;
@@ -127,41 +122,47 @@ footer.global {
         display: block;
       }
     }
-    ul {
+
+    .nav-global-main,
+    .nav-global-more {
       li {
+        margin: 0;
+        font-size: 1em;
+        line-height: 2em;
         display: inline-block;
         width: 50%;
-        margin: 0;
-        line-height: 2em;
         box-sizing: border-box;
         border-bottom: 1px solid #d4d7d4;
         border-left: 1px solid #d4d7d4;
-        a {
-          margin: 0;
-          padding: 0;
-          padding-left: 1em;
-          color: #333;
+        &:nth-child(odd) {
+          border-left: 0;
         }
+        &.more {
+          width: 100%;
+        }
+        a {
+          font-size: 1em;
+          padding-left: 1em;
+          line-height: 0;
+          &:link,
+          &:visited {
+            color: #333;
+          }
+        }
+      }
+    }
+    ul {
+      li.test {
+        width: 50%;
+        box-sizing: border-box;
+        border-bottom: 1px solid #d4d7d4;
+        border-left: 1px solid #d4d7d4;
         li:nth-child(odd) {
           border-left: 0;
         }
       }
       li.more {
         width: 100%;
-        line-height: 0;
-        padding: 0;
-        margin: 0;
-        ul {
-          li {
-            font-size: 1em;
-            a {
-              font-size: 1em;
-              margin: 0;
-              padding: 0;
-              padding-left: 1em;
-            }
-          }
-        }
       }
     }
   }
@@ -361,125 +362,146 @@ footer.global {
       }
     }
   }
-}
-
+  }
 
   /// hide back to top link
   .footer-c {
     display: none;
   }
+
   /// vertical main nav lists
   footer.global {
-    .footer-a {
-      border-bottom: 1px solid #d8d8d8;
-      display: block;
-      clear: both;
-      padding-bottom: 20px;
-      margin-bottom: 20px;
-      ul li ul > li > a {
-        padding: 0;
-        margin: 0;
-        line-height: 0;
-      }
-      div {
-        padding-bottom: .75em;
-        margin: 0 auto;
-        width: 100%;
-      }
-      ul {
-        padding-left: 1em;
-        border-collapse: collapse;
-        display: table;
-        float: none;
-        padding-bottom: 0;
-        width: 100%;
-        //margin-left: -15px;
-        ul {
-          margin-left: 0;
-          display: block;
-        }
-        li {
-          border-right: 1px dotted #888;
-          display: table-cell;
-          float: none;
-          margin-left: 0;
-          padding-bottom: 0;
-          padding-left: 0;
-          padding-right: 0;
-          width: 20%;
-          li {
-            display: block;
-            border: 0;
-            margin-bottom: 2px;
-            background: none;
-          }
-        }
-      }
-      h2 {
-        background: none;
-        text-transform: none;
-        + ul.second-level-nav {
-          /// open the primary/secondary navs
-          display: block;
-        }
-        a:link,
-        a:visited {
-          color: #333;
-          font-weight: normal;
-        }
-      }
-    }
+    .footer-a,
     .footer-b {
       padding: 0;
       margin: 0;
       border: 0;
+      h2 + ul.second-level-nav {
+        /// open the primary/secondary navs
+        display: block;
+      }
       h2 {
+        background: none;
         text-transform: none;
-        background: initial;
         font-weight: 400;
-        color: #333;
-        float: left;
-        margin-right: .5em;
         padding: 0;
-        + ul.second-level-nav {
-          display: block;
-        }
         a:link,
         a:visited {
           color: #333;
           font-weight: normal;
         }
+      }
+      ul {
+        li {
+          border: 0;
+        }
+        &:last-child {
+          border: 0;
+          padding-right: 0;
+        }
+      }
+    }
+
+    .footer-a {
+      padding: 20px 0;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #d8d8d8;
+      display: block;
+      clear: both;
+      .second-level-nav li > a {
+        padding: 0;
+        line-height: 2em;
+      }
+      div {
+        padding-bottom: 10px;
+        margin: 0 auto;
+        width: 100%;
+        ul {
+          //padding-left: 15px;
+          border-collapse: collapse;
+          display: table;
+          float: none;
+          padding-bottom: 0;
+          width: 100%;
+          //margin-left: -15px;
+          //padding-left: 0;
+          //margin: 0;
+          li {
+            border-right: 1px dotted #888;
+            display: table-cell;
+            float: none;
+            margin-left: 0;
+            padding-bottom: 0;
+            padding-left: .5em;
+            padding-right: .5em;
+            &:last-child {
+              border: 0;
+              padding-right: 0;
+            }
+            ul {
+              margin: 0;
+              display: block;
+              padding-left: 0;
+              border-collapse: collapse;
+              display: table;
+              float: none;
+              padding-bottom: 0;
+              width: 100%;
+              li {
+                margin-left: 0;
+                float: none;
+                width: auto;
+                display: block;
+                min-height: 0;
+                border: 0;
+                margin-bottom: 0;
+                padding-left: 0;
+                padding-bottom: inherit;
+                background: none;
+                line-height: 1em;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .footer-b {
+      box-shadow: none;
+      h2 {
+        background: initial;
+        float: left;
+        margin: 0 .5em .5em 1em;
+        line-height: 1.75;
       }
       ul {
         padding: 0;
         margin: 0;
         border: 0;
         li {
-          padding: 0;
-          margin: 0;
-          border: 0;
-          line-height: 2;
-          font-weight: 300;
-          width: auto;
           overflow: hidden;
-          border: 0;
-          display: block;
-          float: none;
-          li:after {
-            content: "|";
-            padding: 0;
-            font-size: .6666em;
-          }
-          ul > li > a {
-            /// secondary nav menu items
-            padding: .25em;
-          }
           ul li {
             width: auto;
             float: left;
+            line-height: 1;
+            &::after {
+              content: "|";
+              padding: 0 .5em;
+              font-size: .6666em;
+            }
+            &:last-of-type::after { ///XXX not working?
+              content: "";
+            }
           }
         }
       }
+      .second-level-nav li > a {
+        /// secondary nav menu items
+        padding: 0;
+      }
+    }
+    .legal {
+      background: url("//assets.ubuntu.com/sites/ubuntu/latest/u/img/logos/logo-ubuntu-grey.png") 100% 0 no-repeat;
     }
   }
 }
@@ -503,11 +525,10 @@ footer.global {
 
   footer.global {
     padding: 40px 0 20px 0;
-    .footer-a > div, .footer-b, .footer-b > ul, .legal {
+    .footer-b, .footer-b > ul, .legal {
       margin: 0 auto;
     }
     .footer-a {
-      width: $breakpoint-large;
       div {
         width: $breakpoint-large;
         margin: 0 auto;
@@ -523,6 +544,9 @@ footer.global {
           width: $breakpoint-large;
         }
       }
+    }
+    .legal {
+      padding-left: 1em;
     }
   }
 }
