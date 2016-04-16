@@ -26,7 +26,10 @@ body {
     background-image: url('#{$asset-path}img/backgrounds/image-background-paper.png');
   }
 }
-
+// increasing .context-footer li (further reading bug)
+.context-footer li {
+  font-size: 1.230769231em;
+}
 // additional helper class for shouty text
 .caps {
     text-transform: uppercase;
