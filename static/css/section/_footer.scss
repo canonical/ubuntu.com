@@ -189,8 +189,7 @@ footer.global {
   }
   /// copyright and legal links
   .legal {
-    margin: 1em;
-    padding-left: 0;
+    padding: 1em;
     box-shadow: none;
     p,
     ul,
@@ -220,6 +219,55 @@ footer.global {
         content: "";
         padding-left: 0;
       }
+    }
+  }
+  /// fixes for opera mini and browsers that can't do svg
+  html.no-svg,
+  html.opera-mini {
+    footer.global .footer-a ul li h2 span,
+    footer.global .footer-a ul li.secondary-cloud h2 span,
+    footer.global .footer-a ul li.secondary-desktop h2 span,
+    footer.global .footer-a ul li.secondary-management h2 span,
+    footer.global .footer-a ul li.secondary-phone h2 span,
+    footer.global .footer-a ul li.secondary-server h2 span,
+    footer.global .footer-a ul li.secondary-tablet h2 span,
+    footer.global .footer-a ul li.secondary-tv h2 span,
+    footer.global .footer-b ul li h2 span,
+    footer.global .footer-b ul li.secondary-cloud h2 span,
+    footer.global .footer-b ul li.secondary-desktop h2 span,
+    footer.global .footer-b ul li.secondary-management h2 span,
+    footer.global .footer-b ul li.secondary-phone h2 span,
+    footer.global .footer-b ul li.secondary-server h2 span,
+    footer.global .footer-b ul li.secondary-tablet h2 span,
+    footer.global .footer-b ul li.secondary-tv h2 span {
+        background-image: url("#{$asset-server}7a7e0d52-arrow_down_9fa097.png");
+    }
+    footer.global .footer-a ul li h2.active span,
+    footer.global .footer-a ul li.secondary-cloud h2.active span,
+    footer.global .footer-a ul li.secondary-desktop h2.active span,
+    footer.global .footer-a ul li.secondary-management h2.active span,
+    footer.global .footer-a ul li.secondary-phone h2.active span,
+    footer.global .footer-a ul li.secondary-server h2.active span,
+    footer.global .footer-a ul li.secondary-tablet h2.active span,
+    footer.global .footer-a ul li.secondary-tv h2.active span,
+    footer.global .footer-b ul li h2.active span,
+    footer.global .footer-b ul li.secondary-cloud h2.active span,
+    footer.global .footer-b ul li.secondary-desktop h2.active span,
+    footer.global .footer-b ul li.secondary-management h2.active span,
+    footer.global .footer-b ul li.secondary-phone h2.active span,
+    footer.global .footer-b ul li.secondary-server h2.active span,
+    footer.global .footer-b ul li.secondary-tablet h2.active span,
+    footer.global .footer-b ul li.secondary-tv h2.active span {
+        //background-image: url("#{$asset-server}43e2b367-arrow_up_9fa097.png");
+    }
+    footer.global .top-link a {
+        background-image: url("#{$asset-server}ca0559fd-picto-upload-warmgrey.png");
+    }
+    .nav-secondary ul.breadcrumb li .after {
+        background-image: url("#{$asset-server}88de5861-nav-down-arrow.png");
+    }
+    .nav-secondary.open ul.breadcrumb li .after {
+        background-image: url("#{$asset-server}fc92aa19-nav-up-arrow.png"), none;
     }
   }
 }
