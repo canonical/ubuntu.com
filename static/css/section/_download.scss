@@ -554,8 +554,8 @@ html.opera-mini {
     }
 
     .box-tip p {
-    margin-bottom: 0;
-  }
+      margin-bottom: 0;
+    }
 
     .row-wiki {
         border-bottom: 1px dotted $warm-grey;
@@ -984,7 +984,7 @@ html.opera-mini {
 
 /* Medium / Tablet viewport
 -------------------------------------------------------------- */
-@media only screen and (min-width : 769px) {
+@media only screen and (min-width : 768px) { /* was 769, which I get - but do we need it? */
 
     /* Thank you pages */
     .download .row-download-thanks {
@@ -1023,7 +1023,8 @@ html.opera-mini {
     }
 
 
-    #download-help {
+    #download-help,
+    .download-help {
         dt {
             display: inline-block;
             left: 0;
@@ -1129,4 +1130,23 @@ $grid-border-style: 1px dotted #888;
   @media only screen and (min-width: $breakpoint-medium) {
     padding-bottom: 0;
   }
+}
+
+
+
+span.step { /* added by peter - 16 April 2016 */
+  border-radius: 2em;
+  background-color: #888888;
+  border: 3px solid #888888;
+  color: white;
+  display: block;
+  text-align: center;
+  vertical-align: bottom;
+  width: 2em;
+  font-size: 1.375em;
+  height: 2em;
+  line-height: 1.75;
+}
+.download .row {  /* added by peter - 16 April 2016 */
+  padding: 2.5em 0 0 0;
 }
