@@ -409,7 +409,7 @@ body {
     #context-footer {
         background: #fff;
         margin-bottom: 0;
-        div > div > div:last-of-type {
+        div > div > div {
             border: 0; // kills borders on very nested divs... like we have for further reading
             padding-bottom: 0;
         }
@@ -419,29 +419,13 @@ body {
 .download,
 .phone,
 .tablet {
-    #context-footer {
-        background: #fff;
-        padding: 0;
-        margin-bottom: 0;
-        div > div > div:last-of-type {
-            border: 0; // kills borders on very nested divs... like we have for further reading
-            padding-bottom: 0;
-        }
-        hr {
-            box-shadow: none;
-            height: 3px;
-        }
-
-        .strip-inner-wrapper {
-            padding: 1em 1em 0;
-        }
-    }
-    .row--dark {
-        background: #262626;
-        color: #ebebea;
-    }
-    #context-footer div div:first-child {
-        padding-left: 0;
+  #context-footer {
+    background: #fff;
+    padding: 0;
+    margin-bottom: 0;
+    div > div > div {
+      border: 0; // kills borders on very nested divs... like we have for further reading
+      padding-bottom: 0;
     }
     hr {
       box-shadow: none;

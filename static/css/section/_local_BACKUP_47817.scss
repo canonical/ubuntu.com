@@ -419,6 +419,15 @@ body {
 .download,
 .phone,
 .tablet {
+<<<<<<< 598efa109193666cd957d4044425227f53568424
+  #context-footer {
+    background: #fff;
+    padding: 0;
+    margin-bottom: 0;
+    div > div > div {
+      border: 0; // kills borders on very nested divs... like we have for further reading
+      padding-bottom: 0;
+=======
     #context-footer {
         background: #fff;
         padding: 0;
@@ -442,6 +451,7 @@ body {
     }
     #context-footer div div:first-child {
         padding-left: 0;
+>>>>>>> more contextual footer fixes for label font sizes and fix for bottom border class that was too greedy
     }
     hr {
       box-shadow: none;
