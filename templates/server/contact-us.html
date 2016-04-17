@@ -66,50 +66,49 @@
         <p>All fields are required.</p>
 
         <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
-    
-        <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1254"> 
+
+        <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1254">
             <fieldset>
                 <h3>Contact information</h3>
-                <ul class="no-bullets">          
-                    <li class="mktFormReq mktField">    
+                <ul class="no-bullets">
+                    <li class="mktFormReq mktField">
                         <label for="FirstName" class="mktoLabel">First name: <span>*</span></label>
                         <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" />
                     </li>
-                    <li class="mktFormReq mktField">    
+                    <li class="mktFormReq mktField">
                         <label for="LastName" class="mktoLabel">Last name: <span>*</span></label>
                         <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" />
                     </li>
-                    <li class="mktFormReq mktField">    
+                    <li class="mktFormReq mktField">
                         <label for="Email" class="mktoLabel">Work email: <span>*</span></label>
                         <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
                     </li>
-                    <li class="mktFormReq mktField">    
+                    <li class="mktFormReq mktField">
                         <label for="Phone" class="mktoLabel">Phone number: <span>*</span></label>
                         <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" />
                     </li>
                     {% include "shared/forms/_country.html" %}
                 </ul>
             </fieldset>
-            {% include "shared/forms/_your_orginisation.html" %}
             <fieldset>
                 <h3>Your comments</h3>
                 <ul class="no-bullets">
-                    <li class="mktFormReq mktField">    
+                    <li class="mktFormReq mktField">
                         <label for="Comments_from_lead__c" class="mktoLabel">What would you like to talk to us about?  <span>*</span></label>
                         <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" class="mktoField mktoRequired" maxlength="2000"></textarea>
                     </li>
                 </ul>
             </fieldset>
             <fieldset>
-                <ul class="no-bullets">    
-                    <li class="mktField">    
+                <ul class="no-bullets">
+                    <li class="mktField">
                         <input class="mktoField" value="yes" id="NewsletterOpt-In" name="NewsletterOpt-In" type="checkbox" />
-                        <label class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>        
+                        <label class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>
                     </li>
                     <li>
                         All information provided will be handled in accordance with the Canonical <a href="http://www.ubuntu.com/legal" target="_blank">privacy policy</a>.
                     </li>
-                    <li class="mktField">    
+                    <li class="mktField">
                         <button type="submit" class="mktoButton">Submit</button></span>
                     </li>
                 </ul>
