@@ -76,9 +76,7 @@
 {% if level_2 == 'desktop' %}
 
 <div class="equal-height--vertical-divider__item four-col feature-one">
-    <h3>Verify your download</h3>
-    <p>If you need some help installing Ubuntu, please check out our step-by-step guide.</p>
-    <p><a href="/download/desktop/install-ubuntu-desktop">Read the installation instructions&nbsp;&rsaquo;</a></p>
+    {% include "shared/contextual_footer/verify_your_download.html" %}
 </div>
 
 <div class="equal-height--vertical-divider__item four-col">
@@ -146,16 +144,7 @@
 {% else %}
 
 <div class="equal-height--vertical-divider__item last-col four-col">
-    <h3>Helping hands</h3>
-    <p>If you get stuck, help is always at hand.</p>
-    <ul class="no-bullets">
-        <li><a href="http://askubuntu.com/" class="external">Ask Ubuntu</a></li>
-        <li><a href="http://ubuntuforums.org/" class="external">Ubuntu Forums</a></li>
-        <li><a href="http://discourse.ubuntu.com" class="external">Ubuntu Discourse</a></li>
-        {% if level_2 == 'cloud' %}
-        <li><a href="https://help.ubuntu.com/community/InternetRelayChat" class="external">Live Support Chat</a></li>
-        {% endif %}
-    </ul>
+    {% include "shared/contextual_footer/helping_hands.html" %}
 </div>
 
 {% endif %}

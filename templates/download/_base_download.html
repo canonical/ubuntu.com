@@ -1,9 +1,28 @@
 {% extends "templates/base.html" %}
-{% block second_level_nav_items %}
-{% include "download/_nav_secondary.html" %}
-{% endblock second_level_nav_items %}
 
-{% block outer_content %}
-    {% block content %}{% endblock %}
-		{% include "templates/_contextual_footer.html" %}
+    {% block second_level_nav_items %}
+        {% include "download/_nav_secondary.html" %}
+    {% endblock second_level_nav_items %}
+    {% block outer_content %}
+        {% block content %}
+    {% endblock %}
+
+    <div id="context-footer" class="row context-footer download-context-footer clearfix no-border">
+        <hr>
+        <div class="strip-inner-wrapper">
+            <div class="twelve-col equal-height--vertical-divider no-margin-bottom">
+                <div class="equal-height--vertical-divider__item four-col feature-one">
+                    {% include "shared/contextual_footer/verify_your_download.html" %}
+                </div>
+
+                <div class="equal-height--vertical-divider__item four-col">
+                    {% include "shared/contextual_footer/ubuntu_server_guide.html" %}
+                </div>
+
+                <div class="equal-height--vertical-divider__item last-col four-col">
+                    {% include "shared/contextual_footer/helping_hands.html" %}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
