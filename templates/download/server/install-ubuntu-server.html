@@ -14,54 +14,50 @@
 <div class="row no-border">
     <div class="strip-inner-wrapper">
         <h1>Installing Ubuntu Server for general use</h1>
-        <div id="download-help" class="eight-col box box-grey no-border">
+        <div id="download-help" class="eight-col box no-border no-margin-bottom">
             <p>The basic steps to install Ubuntu Server from CD or USB stick are the same for installing any operating system. Unlike the desktop version, Ubuntu Server does not include a graphical installation program. Instead, it uses a console menu-based process.</p>
-            <div class="box box-highlight no-margin-bottom">
-                <ol class="no-bullets">
-                    <li>
-                        <span>1</span>
-                        <div>
-                            <p>First, download and burn the ISO file from the <a href="/download/server">Ubuntu Server download page</a>.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span>2</span>
-                        <div>
-                            <p>Boot the system from the CD-ROM drive.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span>3</span>
-                        <div>
-                            <p>At the boot prompt you will be asked to select the language.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span>4</span>
-                        <div>
-                            <p>Select <strong>'basic server install'</strong>.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span>5</span>
-                        <div>
-                            <p>Enter appropriate options for language, keyboard layout, network configuration, hostname and timezone.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span>6</span>
-                        <div>
-                            <p>You can then choose from several options to configure the hard drive layout. There are many ways disk layout can be configured. For detailed information please <a href="https://help.ubuntu.com/lts/serverguide/installing-from-cd.html">read the installing from CD documentation</a>.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span>7</span>
-                        <div>
-                            <p>The Ubuntu base system is then installed.</p>
-                        </div>
-                    </li>
-                </ol>
-            </div><!-- /.box-highlight -->
+            <div class="one-col">
+                <span class="step">1</span>
+            </div>
+            <div class="seven-col last-col">
+                <p>First, download and burn the ISO file from the <a href="/download/server">Ubuntu Server download page</a>.</p>
+            </div>
+            <div class="one-col">
+                <span class="step">2</span>
+            </div>
+            <div class="seven-col last-col">
+                <p>Boot the system from the CD-ROM drive.</p>
+            </div>
+            <div class="one-col">
+                <span class="step">3</span>
+            </div>
+            <div class="seven-col last-col">
+                <p>At the boot prompt you will be asked to select the language.</p>
+            </div>
+            <div class="one-col">
+                <span class="step">4</span>
+            </div>
+            <div class="seven-col last-col">
+                <p>Select <strong>'basic server install'</strong>.</p>
+            </div>
+            <div class="one-col">
+                <span class="step">5</span>
+            </div>
+            <div class="seven-col last-col">
+                <p>Enter appropriate options for language, keyboard layout, network configuration, hostname and timezone.</p>
+            </div>
+            <div class="one-col">
+                <span class="step">6</span>
+            </div>
+            <div class="seven-col last-col">
+                <p>You can then choose from several options to configure the hard drive layout. There are many ways disk layout can be configured. For detailed information please <a href="https://help.ubuntu.com/lts/serverguide/installing-from-cd.html">read the installing from CD documentation</a>.</p>
+            </div>
+            <div class="one-col">
+                <span class="step">7</span>
+            </div>
+            <div class="seven-col last-col">
+                <p>The Ubuntu base system is then installed.</p>
+            </div>
         </div><!-- /.eight-col -->
 
         <div class="sidebar aside four-col last-col">
@@ -75,4 +71,7 @@
         </div><!-- /.sidebar -->
     </div><!-- /.strip-inner-wrapper -->
 </div><!-- /.row -->
+
+{% include "download/shared/_contextual_footer_download.html"  with first_item="_download_documentation" second_item="_download_server_guide" third_item="_download_helping_hands" %}
+
 {% endblock content %}

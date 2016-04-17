@@ -1132,8 +1132,12 @@ $grid-border-style: 1px dotted #888;
   }
 }
 
-
-
+/* added by peter - 17 April 2016
+  allows steps to be in tight one-cols with little text */
+.eight-col .one-col {
+  min-height: 2.5em;
+  clear: both;
+}
 span.step { /* added by peter - 16 April 2016 */
   border-radius: 2em;
   background-color: #888888;

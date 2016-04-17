@@ -5,75 +5,74 @@
 {% block extra_body_class %}download-help{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to burn a DVD on Ubuntu"  %}
+    <div class="strip-inner-wrapper">
+        {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to burn a DVD on Ubuntu"  %}
+    </div><!-- /.strip-inner-wrapper -->
 {% endblock second_level_nav_items %}
 
 
 {% block content %}
-<div class="row row-hero no-padding-bottom">
-<h1>How to burn a DVD on Ubuntu</h1>
-</div><!-- /.row row-hero -->
 <div class="row no-border">
-	<div id="download-help" class="eight-col box box-grey no-border">
-	<p>To create a DVD from which to install an up-to-date copy of Ubuntu, you first need to <a href="/download">download a copy of the latest version</a>. Once you&rsquo;ve done so, you can create your installation DVD. The procedure may differ slightly depending on which version of Ubuntu you are currently using.</p>
-		<div class="box box-highlight no-margin-bottom">
-			<ol class="no-bullets">
-				<li>
-					<span>1</span>
-					<div>
-						<p>Insert a blank CD into your burner. A 'CD/DVD Creator', 'Choose Disc Type' or 'Blank Disc' window might pop up. Close this, because we will not be using it.</p>
-						<div class="help-image">
-							<img src="{{ ASSET_SERVER_URL }}898a3bed-image-burnadvdonubuntu-1.jpg" alt="" height="258" width="444">
-							<a href="{{ ASSET_SERVER_URL }}898a3bed-image-burnadvdonubuntu-1.jpg">Click to enlarge</a>
-						</div>
-					</div>
-				</li>
-				<li>
-					<span>2</span>
-					<div>
-						<p>Look for the downloaded ISO file in the file browser.</p>
-					</div>
-				</li>
-				<li>
-					<span>3</span>
-					<div>
-						<p>Right click on the ISO file and choose <strong>'Write to Disc'</strong>.</p>
-						<div class="help-image">
-							<img src="{{ ASSET_SERVER_URL }}d5602660-image-burnadvdonubuntu-2.jpg" alt="" height="539" width="444">
-							<a href="{{ ASSET_SERVER_URL }}d5602660-image-burnadvdonubuntu-2.jpg">Click to enlarge</a>
-						</div>
-					</div>
-				</li>
-				<li>
-					<span>4</span>
-					<div>
-						<p>Where it says 'Write disc to', you might have options such as 'File image' as well as your CD drive. Choose your CD drive. Your CD drive might show as something like 'BD-MLT UJ-210S'.</p>
-						<div class="help-image">
-							<img src="{{ ASSET_SERVER_URL }}63409ac8-image-burnadvdonubuntu-3.jpg" alt="" height="230" width="444">
-							<a href="{{ ASSET_SERVER_URL }}63409ac8-image-burnadvdonubuntu-3.jpg">Click to enlarge</a>
-						</div>
-					</div>
-				</li>
-				<li>
-					<span>5</span>
-					<div>
-						<p>Select the write speed. If you are burning an Ubuntu Live CD (one that you may want to start your computer up from), it is recommended that you write at the lowest possible speed.</p>
-					</div>
-				</li>
-				<li>
-					<span>6</span>
-					<div>
-						<p>Start the burning process.</p>
-					</div>
-				</li>
-				<li>
-					<span>7</span>
-					<div>
-						<p>After burning is completed, verify that your CD contains multiple files and folders and not just the ISO file. This way you will know the process was completed correctly.</p>
-					</div>
-				</li>
-			</ol>
-		</div><!-- /.box -->
-</div><!-- /.eight-col -->
+    <div class="strip-inner-wrapper">
+        <h1>How to burn a DVD on Ubuntu</h1>
+        <div id="download-help" class="twelve-col box no-border no-margin-bottom">
+            <div class="eight-col">
+                <p>To create a DVD from which to install an up-to-date copy of Ubuntu, you first need to <a href="/download">download a copy of the latest version</a>. Once you&rsquo;ve done so, you can create your installation DVD. The procedure may differ slightly depending on which version of Ubuntu you are currently using.</p>
+                <div class="one-col">
+                    <span class="step">1</span>
+                </div>
+                <div class="seven-col last-col">
+                    <p>Insert a blank CD into your burner. A 'CD/DVD Creator', 'Choose Disc Type' or 'Blank Disc' window might pop up. Close this, because we will not be using it.</p>
+                    <div class="help-image">
+                        <img src="{{ ASSET_SERVER_URL }}d7c64451-download-desktop-burn-a-dvd-on-ubuntu-1.jpg" alt="">
+                        <a href="{{ ASSET_SERVER_URL }}d7c64451-download-desktop-burn-a-dvd-on-ubuntu-1.jpg">Click to enlarge</a>
+                    </div>
+                </div>
+                <div class="one-col">
+                    <span class="step">2</span>
+                </div>
+                <div class="seven-col last-col">
+                    <p>16.04 no longer comes with a CD/DVD burner, so using the Ubuntu Software Store, search for &#8216;Brasero&#8217; and click &#8216;Install&#8217;.</p>
+                    <div class="help-image">
+                        <img src="{{ ASSET_SERVER_URL }}41d04a0c-download-desktop-burn-a-dvd-on-ubuntu-2.jpg" alt="">
+                        <a href="{{ ASSET_SERVER_URL }}41d04a0c-download-desktop-burn-a-dvd-on-ubuntu-2.jpg">Click to enlarge</a>
+                    </div>
+                </div>
+                <div class="one-col">
+                    <span class="step">3</span>
+                </div>
+                <div class="seven-col last-col">
+                    <p>Open Brasero and click on the &#8216;Burn image&#8217; button.</p>
+                    <div class="help-image">
+                        <img src="{{ ASSET_SERVER_URL }}0184442a-download-desktop-burn-a-dvd-on-ubuntu-3.jpg" alt="">
+                        <a href="{{ ASSET_SERVER_URL }}0184442a-download-desktop-burn-a-dvd-on-ubuntu-3.jpg">Click to enlarge</a>
+                    </div>
+                </div>
+                <div class="one-col">
+                    <span class="step">4</span>
+                </div>
+                <div class="seven-col last-col">
+                    <p>Then select the ISO you downloaded in the &#8216;Select a disc image to write&#8217; box and your DVD drive in the &#8216;Select a disc to write to&#8217; box and click the &#8216;Burn&#8217; button.</p>
+                    <div class="help-image">
+                        <img src="{{ ASSET_SERVER_URL }}cd309124-download-desktop-burn-a-dvd-on-ubuntu-4.jpg" alt="">
+                        <a href="{{ ASSET_SERVER_URL }}cd309124-download-desktop-burn-a-dvd-on-ubuntu-4.jpg">Click to enlarge</a>
+                    </div>
+                </div>
+                <div class="one-col">
+                    <span class="step">6</span>
+                </div>
+                <div class="seven-col last-col">
+                    <p>Once the DVD is burned, you can restart your computer and try or install Ubuntu.</p>
+                    <div class="help-image">
+                        <img src="{{ ASSET_SERVER_URL }}29cc6f88-download-desktop-burn-a-dvd-on-ubuntu-5.jpg" alt="">
+                        <a href="{{ ASSET_SERVER_URL }}29cc6f88-download-desktop-burn-a-dvd-on-ubuntu-5.jpg">Click to enlarge</a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.box -->
+    </div><!-- /.eight-col -->
 </div><!-- /.row -->
+
+{% include "download/shared/_contextual_footer_download.html" with first_item="_download_desktop_installation" second_item="_download_try_desktop" third_item="_download_helping_hands" %}
+
 {% endblock content %}

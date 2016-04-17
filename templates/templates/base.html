@@ -162,29 +162,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- footer content goes here -->
 {% include "templates/footer.html" %}
 
-{% comment %}<!-- start google content things/iot ab test -->{% endcomment %}
-<script>
-// Define JavaScript for each page variation of this experiment.
-var pageVariations = [
-  function() {}, // Original: Do nothing. This will render the default HTML.
-  function() { // Variation 1: IoT
-    var iot = [ 'IoT', 'IoT-footer', 'IoT-homepage', 'IoT-breadcrumb' ];
-    for (var i = 0; i <= iot.length; i++ ) {
-      var id = document.getElementById(iot[i]);
-      if (id) {
-        id.innerHTML = 'IoT';
-      }
-    }
-  }
-];
-// Wait for the DOM to load, then execute the view for the chosen variation.
-$(document).ready(
-  // Execute the chosen view
-  pageVariations[chosenVariation]
-);
-</script>
-{% comment %}<!-- end google content experiment -->{% endcomment %}
-
 <!-- Use this only until Modernizr fixes Opera Mini background-size detection -->
 <script>
 	var isOperaMini = (navigator.userAgent.indexOf('Opera Mini') > -1);

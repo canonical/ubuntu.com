@@ -68,7 +68,7 @@
     </div><!-- /.strip-inner-wrapper -->
 </div>
 
-<div class="row no-border">
+<div class="row row-white no-border">
     <div class="strip-inner-wrapper">
         <div class="four-col text-center priority-0">
             <img src="{{ ASSET_SERVER_URL }}c3499461-picto-server-warmgrey.svg" alt="" width="200" height="200" />
@@ -83,4 +83,7 @@
         </div><!-- /.twelve-col -->
     </div><!-- /.strip-inner-wrapper -->
 </div><!-- /.row -->
+
+{% include "download/shared/_contextual_footer_download.html"  with first_item="_download_server_installation" second_item="_download_server_guide" third_item="_download_helping_hands" %}
+
 {% endblock content %}
