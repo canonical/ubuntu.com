@@ -1320,3 +1320,14 @@ body.homepage-maas-takeover {
     }
   }
 }
+
+.featured--event__ods-austin {
+  &:before {
+    background-image: url('#{$asset-server}c4068bb4-austin.png?fmt=jpg&q=20');
+  }
+
+  &:after {
+    background-color: #303030;
+    opacity: 0.7;
+  }
+}
