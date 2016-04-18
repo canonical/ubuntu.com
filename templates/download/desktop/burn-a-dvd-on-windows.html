@@ -13,7 +13,7 @@
 	<h1>How to burn a DVD on Windows</h1>
 </div><!-- /.row row-hero -->
 <div class="row no-border">
-	<div id="download-help" class="eight-col box box-grey no-border">
+	<div class="eight-col box box-grey no-border download-help">
 		<p>To install Ubuntu on a computer that currently runs Windows, you need to <a href="/download">download the installation file</a> and burn it onto the DVD, which you can then use to install Ubuntu. Once you&rsquo;ve downloaded the file, follow the instructions below to burn your DVD, depending on which version of Windows you are currently using.</p>
 		<h3>Windows 7 / 8</h3>
 			<div class="box box-highlight no-margin-bottom">
@@ -81,4 +81,7 @@
 			</div><!-- /.box -->
 </div><!-- /.eight-col -->
 </div><!-- /.row -->
+
+{% include "download/shared/_contextual_footer.html" with first_item="_download_desktop_installation" second_item="_download_try_desktop" third_item="_download_helping_hands" %}
+
 {% endblock content %}

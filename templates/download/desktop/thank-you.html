@@ -36,7 +36,7 @@ Thank you for your contribution
                     <p>
                         Your download should start automatically. If it doesn&rsquo;t,
                     {% if request.GET.architecture.split|join:"+" == 'amd64+mac' %}
-                        <a href="http://cdimage.ubuntu.com/releases/14.04/release/ubuntu-14.04-desktop-amd64+mac.iso">download now</a>.
+                        <a href="http://cdimage.ubuntu.com/releases/16.04/release/ubuntu-14.04-desktop-amd64+mac.iso">download now</a>.
                     {% else %}
                         <a href="http://releases.ubuntu.com/{{ request.GET.version }}/ubuntu-{{ request.GET.version }}-desktop-{{ request.GET.architecture.split|join:"+" }}.iso">download now</a>.
                     {% endif %}
@@ -53,7 +53,7 @@ Thank you for your contribution
             <div class="box-grey twelve-col no-margin-bottom equal-height">
             <div class="four-col one box box-highlight no-margin-bottom">
                 <div class="text-center four-col">
-                    <img alt="ubuntu one" src="{{ ASSET_SERVER_URL }}1d4164ba-picto-discussion-warmgrey.svg" width="113" height="113" />
+                    <img alt="ubuntu one" src="{{ ASSET_SERVER_URL }}a9ed9a5c-picto-cddvd-warmgrey.svg" width="113" height="113" />
                 </div>
                 <h3>Installation guide</h3>
                 <p>If you need some help installing Ubuntu, please check out our step-by-step guide.</p>
@@ -79,6 +79,10 @@ Thank you for your contribution
 
     </div><!-- /.row .row-download -->
 </div>
+
+{% include "download/shared/_contextual_footer.html" with first_item="_download_verify_your_download" second_item="_download_desktop_guide" third_item="_download_helping_hands" %}
+
+
 {% endblock content %}
 
 {% block footer_extra %}

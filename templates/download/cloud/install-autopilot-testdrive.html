@@ -38,7 +38,7 @@
 
 <div class="strip-inner-wrapper">
 
-    <div class="clearfix instruction" id="download-help">
+    <div class="clearfix instruction" class="download-help">
         <div class="five-col instruction__bullet">
             <div class="one-col">
                 <span class="instruction__step">1</span>
@@ -204,4 +204,7 @@
     <!-- /.strip-inner-wrapper -->
 </div>
 <!-- /.row -->
+
+{% include "download/shared/_contextual_footer.html"  with first_item="_download_cloud_bootstack" second_item="_download_cloud_buy_landscape" third_item="_download_cloud_askubuntu_autopilot" %}
+
 {% endblock content %}

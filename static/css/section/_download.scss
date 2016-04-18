@@ -554,8 +554,8 @@ html.opera-mini {
     }
 
     .box-tip p {
-    margin-bottom: 0;
-  }
+      margin-bottom: 0;
+    }
 
     .row-wiki {
         border-bottom: 1px dotted $warm-grey;
@@ -969,7 +969,7 @@ html.opera-mini {
 
 /* Medium / Tablet viewport
 -------------------------------------------------------------- */
-@media only screen and (min-width : 768px) {
+@media only screen and (min-width : $breakpoint-medium) {
 
     .download {
         .row-list-download {
@@ -984,7 +984,7 @@ html.opera-mini {
 
 /* Medium / Tablet viewport
 -------------------------------------------------------------- */
-@media only screen and (min-width : 769px) {
+@media only screen and (min-width : $breakpoint-medium) {
 
     /* Thank you pages */
     .download .row-download-thanks {
@@ -1022,8 +1022,7 @@ html.opera-mini {
         margin-right: 20px;
     }
 
-
-    #download-help {
+    .download-help {
         dt {
             display: inline-block;
             left: 0;
@@ -1095,7 +1094,7 @@ $grid-border-style: 1px dotted #888;
     border-top: $grid-border-style;
     padding-top: 1rem;
 
-    @media only screen and (min-width : 768px) {
+    @media only screen and (min-width : $breakpoint-medium) {
         border-top: 0;
         display: flex;
         flex-wrap: wrap;
@@ -1104,7 +1103,7 @@ $grid-border-style: 1px dotted #888;
     &__item {
         border-bottom: $grid-border-style;
 
-        @media only screen and (min-width : 768px) {
+        @media only screen and (min-width : $breakpoint-medium) {
             display: flex;
             width: 33.3333%!important;
             padding: 1.5rem 1rem 0;
@@ -1129,4 +1128,26 @@ $grid-border-style: 1px dotted #888;
   @media only screen and (min-width: $breakpoint-medium) {
     padding-bottom: 0;
   }
+}
+
+/* allows steps to be in tight one-cols with little text */
+.download-help__step {
+  min-height: 2.5em;
+  clear: both;
+}
+span.step {
+  border-radius: 40px;
+  background-color: $warm-grey;
+  border: 3px solid $warm-grey;
+  color: white;
+  display: block;
+  text-align: center;
+  vertical-align: bottom;
+  width: 2em;
+  font-size: 1.375em;
+  height: 2em;
+  line-height: 1.75;
+}
+.download .row {
+  padding: 2.5em 0 0 0;
 }
