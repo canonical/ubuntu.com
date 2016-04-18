@@ -1320,7 +1320,7 @@ body.homepage-maas-takeover {
       background-position: center center;
       padding-top: 30px;
     }
-    
+
     .strip-inner-wrapper {
       min-height: 40vw;
       overflow: visible;
@@ -1334,7 +1334,7 @@ body.homepage-maas-takeover {
           margin-top: 50px;
         }
       }
-      
+
       .row-hero__image--small-screen {
         padding-top: 20px;
       }
@@ -1348,5 +1348,16 @@ body.homepage-maas-takeover {
         }
       }
     }
+  }
+}
+
+.featured--event__ods-austin {
+  &:before {
+    background-image: url('#{$asset-server}c4068bb4-austin.png?fmt=jpg&q=20');
+  }
+
+  &:after {
+    background-color: #303030;
+    opacity: 0.7;
   }
 }
