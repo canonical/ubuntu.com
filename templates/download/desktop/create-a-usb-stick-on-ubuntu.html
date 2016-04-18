@@ -13,7 +13,7 @@
 	<h1>How to create a bootable USB stick <br/>on Ubuntu</h1>
 </div><!-- /.row row-hero -->
 <div class="row no-border">
-	<div id="download-help" class="eight-col box box-grey no-border">
+	<div class="eight-col box box-grey no-border download-help">
 	<p>To create a USB stick from which you can install Ubuntu, you must first <a href="/download">download Ubuntu</a>. Then, follow these instructions:</p>
 		<div class="box box-highlight no-margin-bottom">
 			<ol class="no-bullets">
@@ -75,4 +75,7 @@
 		</div><!-- /.box -->
 </div><!-- /.eight-col -->
 </div><!-- /.row -->
+
+{% include "download/shared/_contextual_footer.html" with first_item="_download_desktop_installation" second_item="_download_try_desktop" third_item="_download_helping_hands" %}
+
 {% endblock content %}

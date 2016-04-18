@@ -14,7 +14,7 @@
 </div>
 
 <div class="row no-border">
-	<div id="download-help" class="eight-col box box-grey no-border">
+	<div class="eight-col box box-grey no-border download-help">
 		<p>You can try Ubuntu without actually installing it on your computer&rsquo;s hard drive. You can do this by starting up your computer with either an Ubuntu DVD in the drive or a USB stick with Ubuntu on it in a USB port. Here&rsquo;s how:</p>
 		<div class="box box-highlight clearfix no-margin-bottom">
 			<ol class="no-bullets">
@@ -65,4 +65,7 @@
 		</div>
 </div><!-- /.eight-col -->
 </div><!-- /.row -->
+
+{% include "download/shared/_contextual_footer.html" with first_item="_download_desktop_installation" second_item="_download_try_desktop" third_item="_download_helping_hands" %}
+
 {% endblock content %}

@@ -20,7 +20,7 @@
         </div><!-- / .seven-col -->
 
         <div class="twelve-col no-margin-bottom ">
-            <div class="box box-highlight clearfix">
+            <div class="box box-highlight no-padding-bottom clearfix">
                 <div class="two-col text-center">
                     <img src="{{ ASSET_SERVER_URL }}4cd0df1c-picto-download-orange.svg" alt="" width="113" height="113" />
                 </div>
@@ -28,7 +28,7 @@
                     <h2><a href="/download/desktop">Ubuntu Desktop&nbsp;&rsaquo;</a></h2>
                     <p>Download Ubuntu desktop and replace your current operating system whether it&rsquo;s Windows or Mac OS, or, run Ubuntu alongside it.</p>
                 </div>
-                <div class="twelve-col">
+                <div class="twelve-col no-margin-bottom">
                     <p class="ubuntu-upgrade">Do you want to upgrade? <a href="/download/desktop/upgrade">Follow our simple guide&nbsp;&rsaquo;</a></p>
                 </div>
             </div>
@@ -84,7 +84,23 @@
                 </div>
             </div>
         </div>
+
+        <div class="twelve-col no-margin-bottom box equal-height">
+            <div class="seven-col no-margin-bottom">
+                <h2><a href="/download/ubuntu-flavours">Ubuntu flavours&nbsp;&rsaquo;</a></h2>
+                <p>Ubuntu flavours offer a unique way to experience Ubuntu with
+                different choices of default applications and settings, backed
+                by the full Ubuntu archive for packages and updates.
+                </p>
+            </div>
+            <div class="five-col last-col text-center no-margin-bottom align-vertically priority-0">
+                <img src="{{ ASSET_SERVER_URL }}ebfb7122-picto-generic-warmgrey.svg" alt="" height="112" width="112" />
+            </div>
+        </div>
+
     </div>
 </div><!-- / .row -->
+
+{% include "download/shared/_contextual_footer.html"  with first_item="_download_enterprise_support" second_item="_download_documentation" third_item="_download_helping_hands" %}
 
 {% endblock content %}

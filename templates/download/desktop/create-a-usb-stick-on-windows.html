@@ -13,7 +13,7 @@
 	<h1>How to create a bootable USB <br />stick on Windows</h1>
 </div><!-- /.row row-hero -->
 <div class="row no-border">
-	<div id="download-help" class="eight-col box box-grey no-border">
+	<div class="eight-col box box-grey no-border download-help">
 	<p>To run Ubuntu from a USB stick, the first thing you need to do is insert a USB stick with at least 2GB of free space into your PC.</p>
 	<p>The easiest way to put Ubuntu onto your stick is to use the USB installer provided at <a href="http://www.pendrivelinux.com">pendrivelinux.com</a>. You&rsquo;ll need to <a href="http://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/#button">download and install</a> and follow the instructions.</p>
 	<p><a href="http://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/#button">Download Pen Drive Linux's USB Installer&nbsp;&rsaquo;</a></p>
@@ -53,4 +53,7 @@
 		</div><!-- /.box -->
 </div><!-- /.eight-col -->
 </div><!-- /.row -->
+
+{% include "download/shared/_contextual_footer.html" with first_item="_download_desktop_installation" second_item="_download_try_desktop" third_item="_download_helping_hands" %}
+
 {% endblock content %}

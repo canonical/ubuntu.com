@@ -23,6 +23,11 @@ body {
 .mktError {
   color: #df382c;
 }
+// XXX Peter - a white row?
+/// strips
+.row.row-white {
+  background-color: $white;
+}
 
 // fixes main nav not closing issue
 @media only screen and (max-width: $navigation-threshold) {
@@ -413,67 +418,72 @@ body {
 .download,
 .phone,
 .tablet {
-    #context-footer {
-        background: #fff;
-        padding: 0;
-        margin-bottom: 0;
-        div > div > div {
-            border: 0; // kills borders on very nested divs... like we have for further reading
-            padding-bottom: 0;
-        }
-        hr {
-            box-shadow: none;
-            height: 3px;
-        }
+  #context-footer {
+    background: #fff;
+    padding: 0;
+    margin-bottom: 0;
+    div > div > div {
+      border: 0; // kills borders on very nested divs... like we have for further reading
+      padding-bottom: 0;
+    }
+    hr {
+      box-shadow: none;
+      height: 3px;
+    }
+  }
 
-        .strip-inner-wrapper {
-            padding: 1em 1em 0;
-        }
+  .feature-one {
+    padding-left: 0;
+  }
+
+  header.banner {
+    margin-bottom: 0;
+  }
+
+  .nav-secondary .strip-inner-wrapper {
+    padding: 0;
+  }
+
+  .row--dark {
+    background: #262626;
+    color: #ebebea;
+  }
+  // The default section row padding
+  #main-content .row-hero {
+    margin-top: 0;
+    h1 {
+      padding-top: 20px;
     }
-    .row--dark {
-        background: #262626;
-        color: #ebebea;
+    @media only screen and (min-width : $breakpoint-medium) {
+      margin-top: 0;
+      padding-top: 40px;
     }
-    #context-footer div div:first-child {
-        padding-left: 0;
+    @media only screen and (min-width : $breakpoint-large) {
+      padding-top: 100px;
     }
-    header.banner {
-        margin-bottom: 0;
+  }
+}
+.tablet,
+.phone {
+  .row {
+    padding: 20px 10px 0;
+    @media only screen and (min-width : $breakpoint-medium) {
+      padding: 40px 10px 20px;
     }
-    .inner-wrapper {
-        margin: 0;
-        padding-bottom: 0;
+    @media only screen and (min-width : $breakpoint-large) {
+      padding: 100px 40px;
     }
-    .nav-secondary .strip-inner-wrapper {
-        padding: 0;
-    }
-    .row--dark {
-        background: #262626;
-        color: #ebebea;
-    }
-    // The default section row padding
-    #main-content .row-hero {
-        margin-top: 0;
-        h1 {
-            padding-top: 20px;
-        }
-        @media only screen and (min-width : $breakpoint-medium) {
-            margin-top: 0;
-            padding-top: 40px;
-        }
-        @media only screen and (min-width : $breakpoint-large) {
-            padding-top: 100px;
-        }
-    }
-    .row {
-        padding: 20px 10px 0;
-        @media only screen and (min-width : $breakpoint-medium) {
-            padding: 40px 10px 20px;
-        }
-        @media only screen and (min-width : $breakpoint-large) {
-            padding: 100px 40px;
-        }
-    }
+  }
+}
+.download {
+  .row {
+    padding: 3em 0 2em 0;
+  }
+}
+.download-help {
+  .row {
+    padding: 2em 0 0 0;
+  }
 }
 /*
  * Cookie policy style updates

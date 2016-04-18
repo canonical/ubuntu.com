@@ -30,6 +30,7 @@
                     <h4>Applied Micro X-Gene ARMv8</h4>
                     <ul class="no-bullets">
                         <li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/trusty/main/installer-arm64/current/images/generic/netboot/xgene/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Applied Micro X-Gene ARMv8 14.04 download', 'eventLabel' : 'From Download ARM', 'eventValue' : undefined });" class="external">14.04 LTS</a></li>
+                        <li><a href="http://ports.ubuntu.com/ubuntu-ports/dists/wily/main/installer-arm64/current/images/netboot/ubuntu-installer/arm64/xgene-uboot/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Applied Micro X-Gene ARMv8 15.10 download', 'eventLabel' : 'From Download ARM', 'eventValue' : undefined });" class="external">15.10</a></li>
                     </ul>
                     <p><a class="external" href="https://wiki.ubuntu.com/ARM/Server/Install/Mustang">Installation instructions for the Mustang platform</a></p>
                 </div>
@@ -68,7 +69,7 @@
     </div><!-- /.strip-inner-wrapper -->
 </div>
 
-<div class="row no-border">
+<div class="row row-white no-border">
     <div class="strip-inner-wrapper">
         <div class="four-col text-center priority-0">
             <img src="{{ ASSET_SERVER_URL }}c3499461-picto-server-warmgrey.svg" alt="" width="200" height="200" />
@@ -83,4 +84,7 @@
         </div><!-- /.twelve-col -->
     </div><!-- /.strip-inner-wrapper -->
 </div><!-- /.row -->
+
+{% include "download/shared/_contextual_footer.html"  with first_item="_download_server_installation" second_item="_download_server_guide" third_item="_download_helping_hands" %}
+
 {% endblock content %}
