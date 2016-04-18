@@ -1558,3 +1558,52 @@ button.button--primary__deactivated:hover {
 .list--grid__image-container img {
   width: 60px;
 }
+
+/// A candidate to replace the `.instruction` module, which
+/// requires lots of unnecessary markup
+.instructions {
+  counter-reset: instructions;
+  list-style: none;
+  margin-left: 0;
+  padding-left: 70px;
+
+  @media only screen and (max-width : $breakpoint-medium) {
+    padding-left: 0;
+  }
+}
+.instructions__bullet {
+  counter-increment: instructions;
+  min-height: 50px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 40px;
+  padding-right: 40px;
+
+  &:before {
+    display: block;
+    float: left;
+    margin-left: -70px;
+    content: counter(instructions);
+    background: #888888;
+    border-radius: 100%;
+    color: white;
+    text-align: center;
+    vertical-align: top;
+    font-size: 2em;
+    line-height: 50px;
+    font-weight: 400;
+    width: 50px;
+    height: 50px;
+
+    @media only screen and (max-width : $breakpoint-medium) {
+      margin-left: 0;
+      margin-bottom: 20px;
+      float: none;
+    }
+  }
+}
+
+.instructions__content {
+  font-size: 1.4375em;
+  padding-top: .4em;
+}
