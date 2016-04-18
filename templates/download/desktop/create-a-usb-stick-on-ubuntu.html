@@ -5,75 +5,59 @@
 {% block extra_body_class %}download-help{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to create a bootable USB stick on Ubuntu"  %}
+    <div class="strip-inner-wrapper">
+        {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to create a bootable USB stick on Ubuntu"  %}
+    </div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row row-hero no-padding-bottom">
-	<h1>How to create a bootable USB stick <br/>on Ubuntu</h1>
+    <div class="strip-inner-wrapper">
+        <div class="eight-col append-one">
+            <h1>How to create a bootable USB stick on Ubuntu</h1>
+            <p>To create a USB stick from which you can install Ubuntu, you must first <a href="/download">download Ubuntu</a>. Then, follow these instructions:</p>
+        </div>
+    </div>
 </div><!-- /.row row-hero -->
+
 <div class="row no-border">
-	<div class="eight-col box box-grey no-border download-help">
-	<p>To create a USB stick from which you can install Ubuntu, you must first <a href="/download">download Ubuntu</a>. Then, follow these instructions:</p>
-		<div class="box box-highlight no-margin-bottom">
-			<ol class="no-bullets">
-				<li>
-					<span>1</span>
-					<div>
-						<p>Insert a USB stick with at least 2GB of free space.</p>
-					</div>
-				</li>
-				<li>
-					<span>2</span>
-					<div>
-						<p>Open the dash and search for <strong>Startup Disk Creator</strong>.</p>
-					</div>
-				</li>
-				<li>
-					<span>3</span>
-					<div>
-						<p>Select the <strong>Startup Disk Creator</strong> to launch the app.</p>
-						<div class="help-image">
-							<img src="{{ ASSET_SERVER_URL }}0bf5586f-image-createausbstickonubuntu-1.jpg" alt="" height="280" width="444">
-							<a href="{{ ASSET_SERVER_URL }}0bf5586f-image-createausbstickonubuntu-1.jpg">Click to enlarge</a>
-						</div>
-					</div>
-				</li>
-				<li>
-					<span>4</span>
-					<div>
-						<p>Click <strong>'Other'</strong> to choose the downloaded ISO file.</p>
-					</div>
-				</li>
-				<li>
-					<span>5</span>
-					<div>
-						<p>Select the file and click <strong>'Open'</strong>.</p>
-						<div class="help-image">
-							<img src="{{ ASSET_SERVER_URL }}d6c00e81-image-createausbstickonubuntu-2.jpg" alt="" height="388" width="444">
-							<a href="{{ ASSET_SERVER_URL }}d6c00e81-image-createausbstickonubuntu-2.jpg">Click to enlarge</a>
-						</div>
-					</div>
-				</li>
-				<li>
-					<span>6</span>
-					<div>
-						<p>Select the USB stick in the bottom box and click <strong>'Make Startup Disk'</strong>.</p>
-						<div class="help-image">
-							<img src="{{ ASSET_SERVER_URL }}040ec594-image-createausbstickonubuntu-3.jpg" alt="" height="375" width="450">
-							<a href="{{ ASSET_SERVER_URL }}040ec594-image-createausbstickonubuntu-3.jpg">Click to enlarge</a>
-						</div>
-					</div>
-				</li>
-				<li>
-					<span>7</span>
-					<div>
-						<p>That&rsquo;s it! When the process completes, you&rsquo;ll be ready to restart your computer and begin installing Ubuntu.</p>
-					</div>
-				</li>
-			</ol>
-		</div><!-- /.box -->
-</div><!-- /.eight-col -->
+    <div class="strip-inner-wrapper">
+        <ol class="instructions nine-col append-one">
+            <li class="instructions__bullet">
+                <p class="instructions__content">Insert a USB stick with at least 2GB of free space</p>
+            </li>
+            <li class="instructions__bullet">
+                <p class="instructions__content">Open the dash <a href="#"></a>nd search for <strong>Startup Disk Creator</strong></p>
+            </li>
+            <li class="instructions__bullet">
+                <p class="instructions__content">Select the <strong>Startup Disk Creator</strong> to launch the app</p>
+                <div class="help-image">
+                    <img src="{{ ASSET_SERVER_URL }}0bf5586f-image-createausbstickonubuntu-1.jpg" alt="" height="280" width="444">
+                    <a href="{{ ASSET_SERVER_URL }}0bf5586f-image-createausbstickonubuntu-1.jpg">Click to enlarge</a>
+                </div>
+            </li>
+            <li class="instructions__bullet">
+                <p class="instructions__content">Click <strong>'Other'</strong> to choose the downloaded ISO file</p>
+            </li>
+            <li class="instructions__bullet">
+                <p class="instructions__content">Select the file and click <strong>'Open'</strong></p>
+                <div class="help-image">
+                    <img src="{{ ASSET_SERVER_URL }}d6c00e81-image-createausbstickonubuntu-2.jpg" alt="" height="388" width="444">
+                    <a href="{{ ASSET_SERVER_URL }}d6c00e81-image-createausbstickonubuntu-2.jpg">Click to enlarge</a>
+                </div>
+            </li>
+            <li class="instructions__bullet">
+                <p class="instructions__content">Select the USB stick in the bottom box and click <strong>'Make Startup Disk'</strong></p>
+                <div class="help-image">
+                    <img src="{{ ASSET_SERVER_URL }}040ec594-image-createausbstickonubuntu-3.jpg" alt="" height="375" width="450">
+                    <a href="{{ ASSET_SERVER_URL }}040ec594-image-createausbstickonubuntu-3.jpg">Click to enlarge</a>
+                </div>
+            </li>
+            <li class="instructions__bullet">
+                <p class="instructions__content">That&rsquo;s it! When the process completes, you&rsquo;ll be ready to restart your computer and begin installing Ubuntu</p>
+            </li>
+        </ol>
+    </div><!-- /.strip-inner-wrapper -->
 </div><!-- /.row -->
 
 {% include "download/shared/_contextual_footer.html" with first_item="_download_desktop_installation" second_item="_download_try_desktop" third_item="_download_helping_hands" %}
