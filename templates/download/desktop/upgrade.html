@@ -3,61 +3,64 @@
 {% block title %}Instructions on how to upgrade your Ubuntu desktop.{% endblock %}
 
 {% block second_level_nav_items %}
-{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Upgrade" tertiary="true" %}
+<div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Upgrade" tertiary="true" %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row no-border">
-    <div class="strip-inner-wrapper">
-        <h1>Upgrade from a previous version of Ubuntu</h1>
+    <div class="strip-inner-wrapper row-white">
+        <div class="eight-col">
+            <h1>Upgrade from a previous version of Ubuntu</h1>
+            <p>We recommend that you backup your existing Ubuntu installation before you update your computer.</p>
+        </div>
         <div class="twelve-col box no-border no-margin-bottom download-help">
-            <div class="eight-col">
-                <p>We recommend that you backup your existing Ubuntu installation before you update your computer.</p>
+            <div class="three-col align-center no-margin-bottom">
+                <img src="{{ ASSET_SERVER_URL }}f68488b1-picto-upgrade-warmgrey.svg" alt="" width="124" height="124" />
             </div>
-            <div class="box box-grey no-border no-margin-bottom twelve-col">
-                <div class="three-col align-center no-margin-bottom">
-                    <img src="{{ ASSET_SERVER_URL }}f68488b1-picto-upgrade-warmgrey.svg" alt="" width="124" height="124" />
+            <div class="nine-col last-col no-margin-bottom">
+                <p>If you are upgrading from a version released prior to Ubuntu 15.10, <a class="external" href="https://help.ubuntu.com/community/UpgradeNotes">please read the upgrade notes for more information</a>.</p>
+                <p>For more recent versions, please read the release notes for Ubuntu <a class="external" href="https://wiki.ubuntu.com/{{ lts_release_name }}/ReleaseNotes">{{ lts_release }} LTS</a> and for <a class="external" href="https://wiki.ubuntu.com/{{ latest_release_name }}/ReleaseNotes">Ubuntu {{ latest_release }}</a>.</p>
+            </div><!-- /.nine-col -->
+        </div><!-- /.box -->
+        <div class="twelve-col box no-border no-margin-bottom download-help">
+        <div class="eight-col">
+            <div class="one-col download-help__step">
+                <span class="step">1</span>
+            </div>
+            <div class="seven-col last-col">
+                <h2>Launch the Software Updater</h2>
+                <p>Press the <strong>Superkey (Windows key)</strong> to launch the Dash and search for <strong>Update Manager</strong></p>
+                <div class="help-image">
+                    <img src="{{ ASSET_SERVER_URL }}de3da8d8-download-desktop-upgrade-1.jpg" alt="" />
                 </div>
-                <div class="nine-col last-col no-margin-bottom">
-                    <p>If you are upgrading from a version released prior to Ubuntu 15.10, <a class="external" href="https://help.ubuntu.com/community/UpgradeNotes">please read the upgrade notes for more information</a>.</p>
-                    <p>For more recent versions, please read the release notes for Ubuntu <a class="external" href="https://wiki.ubuntu.com/{{ lts_release_name }}/ReleaseNotes">{{ lts_release }} LTS</a> and for <a class="external" href="https://wiki.ubuntu.com/{{ latest_release_name }}/ReleaseNotes">Ubuntu {{ latest_release }}</a>.</p>
-                </div><!-- /.ten-col -->
-            </div><!-- /.box -->
-            <div class="eight-col">
-                <div class="one-col download-help__step">
-                        <span class="step">1</span>
-                        <div class="seven-col last-col">
-                            <div>
-                                <h2>Launch the Software Updater</h2>
-                                <p>Press the <strong>Superkey (Windows key)</strong> to launch the Dash and search for <strong>Update Manager</strong></p>
-                            </div>
-                        </div>
-                        <div class="help-image">
-                            <img src="{{ ASSET_SERVER_URL }}de3da8d8-download-desktop-upgrade-1.jpg" alt="" />
-                        </div>
-                     </div>
-                     <div class="one-col download-help__step">
-                         <span class="step">2</span>
-                        <div class="seven-col last-col">
-                            <h2>Check for updates</h2>
-                            <p>Select the tab called "<strong>Updates</strong>". Then set the "<strong>Notify me of a new Ubuntu version</strong>" dropdown menu to "<strong>For any new version</strong>". Press <strong>Alt+F2</strong> and type in "<strong>update-manager</strong>" (without the quotes) into the command box. The Update Manager should open up and tell you that a new distribution is available. Click <strong>Upgrade</strong> and follow the on-screen instructions.</p>
-                        </div>
-                        <div class="help-image">
-                            <img class="" src="{{ ASSET_SERVER_URL }}4bcdd988-download-desktop-upgrade-2.jpg" alt="" />
-                        </div>
-                     </div>
-                     <div class="one-col download-help__step">
-                         <span class="step">3</span>
-                        <div class="seven-col last-col">
-                            <h2>Install the upgrade</h2>
-                            <p>A message will appear informing you of the availability of the new release. Click <strong>Upgrade</strong> and follow the on-screen instructions.</p>
-                        </div>
-                        <div class="help-image">
-                            <img src="{{ ASSET_SERVER_URL }}d709d29a-download-desktop-upgrade-3.jpg" alt="" />
-                        </div>
-                     </div>
-            </div><!-- /.box -->
-        </div><!-- /.row -->
-    </div>
+            </div>
+            <div class="one-col download-help__step">
+                <span class="step">2</span>
+            </div>
+            <div class="seven-col last-col">
+                <h2>Check for updates</h2>
+                <p>Select the tab called "<strong>Updates</strong>". Then set the "<strong>Notify me of a new Ubuntu version</strong>" dropdown menu to "<strong>For any new version</strong>". Press <strong>Alt+F2</strong> and type in "<strong>update-manager</strong>" (without the quotes) into the command box. The Update Manager should open up and tell you that a new distribution is available. Click <strong>Upgrade</strong> and follow the on-screen instructions.</p>
+                <div class="help-image">
+                    <img class="" src="{{ ASSET_SERVER_URL }}4bcdd988-download-desktop-upgrade-2.jpg" alt="" />
+                </div>
+            </div>
+            <div class="one-col download-help__step">
+                <span class="step">3</span>
+            </div>
+            <div class="seven-col last-col">
+                <h2>Install the upgrade</h2>
+                <p>A message will appear informing you of the availability of the new release. Click <strong>Upgrade</strong> and follow the on-screen instructions.</p>
+                <div class="help-image">
+                    <img src="{{ ASSET_SERVER_URL }}d709d29a-download-desktop-upgrade-3.jpg" alt="" />
+                </div>
+            </div>
+        </div><!-- /.box -->
+    </div><!-- /.row -->
 </div>
-        {% endblock content %}
+</div>
+
+{% include "download/shared/_contextual_footer.html" with first_item="_download_desktop_installation" second_item="_download_try_desktop" third_item="_download_helping_hands" %}
+
+{% endblock content %}
