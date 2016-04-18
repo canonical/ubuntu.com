@@ -1,90 +1,90 @@
 <div id="context-footer" class="context-footer {{ level_1 }}-context-footer clearfix no-border">
-<hr />
-  <div class="twelve-col equal-height--vertical-divider no-margin-bottom">
+    <hr />
+    <div class="twelve-col equal-height--vertical-divider no-margin-bottom">
 
-    {% if feature_1 == none %}
-    <div class="equal-height--vertical-divider__item four-col feature-two">
-      <h3>Build a cloud with Autopilot</h3>
-      <p>Deploy and manage your cloud quickly and easily.</p>
-      <p><a href="/download/cloud">Get started with OpenStack Autopilot&nbsp;&rsaquo;</a></p>
-    </div>
-    {% endif %}
+        {% if feature_1 == none %}
+        <div class="equal-height--vertical-divider__item four-col feature-two">
+            <h3>Build a cloud with Autopilot</h3>
+            <p>Deploy and manage your cloud quickly and easily.</p>
+            <p><a href="/download/cloud">Get started with OpenStack Autopilot&nbsp;&rsaquo;</a></p>
+        </div>
+        {% endif %}
 
-    {% if feature_1 == "installing-openStack-yourself" %}
-    <div class="equal-height--vertical-divider__item four-col">
-      <h3>Installing OpenStack yourself</h3>
-      <p>If you prefer a manual setup of the latest OpenStack version, you can follow the instructions in our OpenStack operations guide.</p>
-      <p><a href="https://help.ubuntu.com/lts/clouddocs/installer/" class="external">Read the instructions</a></p>
-    </div>
-    {% endif %}
+        {% if feature_1 == "installing-openStack-yourself" %}
+        <div class="equal-height--vertical-divider__item four-col">
+            <h3>Installing OpenStack yourself</h3>
+            <p>If you prefer a manual setup of the latest OpenStack version, you can follow the instructions in our OpenStack operations guide.</p>
+            <p><a href="https://help.ubuntu.com/lts/clouddocs/installer/" class="external">Read the instructions</a></p>
+        </div>
+        {% endif %}
 
-    {% if feature_1 == "want-a-fully-managed-private-cloud" %}
-    <div class="equal-height--vertical-divider__item four-col">
-      <h3>Want a fully managed private cloud?</h3>
-      <p>BootStack is your OpenStack private cloud with our experts responsible for design, deployment and availability.</p>
-      <p><a href="/cloud/openstack/managed-cloud/contact-us">Get BootStack&nbsp;&rsaquo;</a></p>
-    </div>
-    {% endif %}
+        {% if feature_1 == "want-a-fully-managed-private-cloud" %}
+        <div class="equal-height--vertical-divider__item four-col">
+            <h3>Want a fully managed private cloud?</h3>
+            <p>BootStack is your OpenStack private cloud with our experts responsible for design, deployment and availability.</p>
+            <p><a href="/cloud/openstack/managed-cloud/contact-us">Get BootStack&nbsp;&rsaquo;</a></p>
+        </div>
+        {% endif %}
 
-    {% if feature_1 == "experience-juju" %}
-    <div class="equal-height--vertical-divider__item four-col">
-      <h3>Experience Juju</h3>
-      <p>Try our demo and see how easy it can be to manage services in the cloud.</p>
-      <p><a href="https://demo.jujucharms.com/" class="external">Try the Juju demo</a></p>
-    </div>
-    {% endif %}
+        {% if feature_1 == "experience-juju" %}
+        <div class="equal-height--vertical-divider__item four-col">
+            <h3>Experience Juju</h3>
+            <p>Try our demo and see how easy it can be to manage services in the cloud.</p>
+            <p><a href="https://demo.jujucharms.com/" class="external">Try the Juju demo</a></p>
+        </div>
+        {% endif %}
 
-    {% if feature_1 == "browse-the-charm-store" %}
-    <div class="equal-height--vertical-divider__item four-col">
-      <h3>Browse the Charm Store</h3>
-      <p>Charms are scripts that can be written in any language to deploy and configure services.</p>
-      <p><a href="https://jujucharms.com/store" class="external">Find out more at jujucharms.com</a></p>
-    </div>
-    {% endif %}
+        {% if feature_1 == "browse-the-charm-store" %}
+        <div class="equal-height--vertical-divider__item four-col">
+            <h3>Browse the Charm Store</h3>
+            <p>Charms are scripts that can be written in any language to deploy and configure services.</p>
+            <p><a href="https://jujucharms.com/store" class="external">Find out more at jujucharms.com</a></p>
+        </div>
+        {% endif %}
 
-    {% if feature_1 == "install-maas" %}
-    <div class="equal-height--vertical-divider__item four-col">
-      <h3>Install MAAS</h3>
-      <p>Metal as a Service (MAAS) brings the language of the cloud to physical servers.</p>
-      <p><a href="https://www.maas.io" class="external">Find out more at maas.io</a></p>
-    </div>
-    {% endif %}
+        {% if feature_1 == "install-maas" %}
+        <div class="equal-height--vertical-divider__item four-col">
+            <h3>Install MAAS</h3>
+            <p>Metal as a Service (MAAS) brings the language of the cloud to physical servers.</p>
+            <p><a href="https://www.maas.io" class="external">Find out more at maas.io</a></p>
+        </div>
+        {% endif %}
 
-    {% if feature_2 == none %}
-    <div class="equal-height--vertical-divider__item four-col picto">
-      <h3>Get in touch</h3>
-      <p>Contact us for more information or to discuss your specific needs.</p>
-      <p><a href="/cloud/contact-us">Contact us&nbsp;&rsaquo;</a></p>
-      {% include "shared/_digesto.html" with section="cloud" %}
-    </div>
-    {% endif %}
+        {% if feature_2 == none %}
+        <div class="equal-height--vertical-divider__item four-col picto">
+            <h3>Get in touch</h3>
+            <p>Contact us for more information or to discuss your specific needs.</p>
+            <p><a href="/cloud/contact-us">Contact us&nbsp;&rsaquo;</a></p>
+            {% include "shared/_digesto.html" with section="cloud" %}
+        </div>
+        {% endif %}
 
-    {% if feature_2 == "try-lxd" %}
-    <div class="equal-height--vertical-divider__item four-col picto">
-      <h3>Try LXD for real, now</h3>
-      <p>Get 30 minutes free access to a system with live LXD containers.</p>
-      <p><a href="https://linuxcontainers.org/lxd/try-it/" class="external">Try LXD</a></p>
-    </div>
-    {% endif %}
+        {% if feature_2 == "try-lxd" %}
+        <div class="equal-height--vertical-divider__item four-col picto">
+            <h3>Try LXD for real, now</h3>
+            <p>Get 30 minutes free access to a system with live LXD containers.</p>
+            <p><a href="https://linuxcontainers.org/lxd/try-it/" class="external">Try LXD</a></p>
+        </div>
+        {% endif %}
 
-    {% if feature_3 == none %}
-    <div class="equal-height--vertical-divider__item four-col last-col">
-      <h3>Further reading</h3>
-      {% if level_3 != 'snappy' %}
-        {% include "templates/_further_reading_links.html" with feed="https://insights.ubuntu.com/group/cloud-and-server/feed" articles=5 %}
-      {% endif %}
-      {% if level_3 == 'snappy' or level_1 == 'internet-of-things' %}
-        {% include "templates/_further_reading_links.html" with feed="http://insights.ubuntu.com/group/internet-of-things/feed/" articles=5 %}
-      {% endif %}
-    </div>
-    {% endif %}
+        {% if feature_3 == none %}
+        <div class="equal-height--vertical-divider__item four-col last-col">
+            <h3>Further reading</h3>
+            {% if level_3 != 'snappy' %}
+            {% include "templates/_further_reading_links.html" with feed="https://insights.ubuntu.com/group/cloud-and-server/feed" articles=5 %}
+            {% endif %}
+            {% if level_3 == 'snappy' or level_1 == 'internet-of-things' %}
+            {% include "templates/_further_reading_links.html" with feed="http://insights.ubuntu.com/group/internet-of-things/feed/" articles=5 %}
+            {% endif %}
+        </div>
+        {% endif %}
 
-    {% if feature_3 == "experience-juju" %}
-    <div class="equal-height--vertical-divider__item four-col last-col">
-      <h3>Experience Juju</h3>
-      <p>Try our demo and see how easy it can be to manage services in the cloud.</p>
-      <p><a href="https://demo.jujucharms.com/">Try the Juju demo&nbsp;&rsaquo;</a></p>
+        {% if feature_3 == "experience-juju" %}
+        <div class="equal-height--vertical-divider__item four-col last-col">
+            <h3>Experience Juju</h3>
+            <p>Try our demo and see how easy it can be to manage services in the cloud.</p>
+            <p><a href="https://demo.jujucharms.com/">Try the Juju demo&nbsp;&rsaquo;</a></p>
+        </div>
+        {% endif %}
     </div>
-    {% endif %}
-  </div>
 </div>
