@@ -969,7 +969,7 @@ html.opera-mini {
 
 /* Medium / Tablet viewport
 -------------------------------------------------------------- */
-@media only screen and (min-width : 768px) {
+@media only screen and (min-width : $breakpoint-medium) {
 
     .download {
         .row-list-download {
@@ -984,7 +984,7 @@ html.opera-mini {
 
 /* Medium / Tablet viewport
 -------------------------------------------------------------- */
-@media only screen and (min-width : 768px) { /* was 769, which I get - but do we need it? */
+@media only screen and (min-width : $breakpoint-medium) {
 
     /* Thank you pages */
     .download .row-download-thanks {
@@ -1022,8 +1022,6 @@ html.opera-mini {
         margin-right: 20px;
     }
 
-
-    #download-help,
     .download-help {
         dt {
             display: inline-block;
@@ -1096,7 +1094,7 @@ $grid-border-style: 1px dotted #888;
     border-top: $grid-border-style;
     padding-top: 1rem;
 
-    @media only screen and (min-width : 768px) {
+    @media only screen and (min-width : $breakpoint-medium) {
         border-top: 0;
         display: flex;
         flex-wrap: wrap;
@@ -1105,7 +1103,7 @@ $grid-border-style: 1px dotted #888;
     &__item {
         border-bottom: $grid-border-style;
 
-        @media only screen and (min-width : 768px) {
+        @media only screen and (min-width : $breakpoint-medium) {
             display: flex;
             width: 33.3333%!important;
             padding: 1.5rem 1rem 0;
@@ -1132,16 +1130,15 @@ $grid-border-style: 1px dotted #888;
   }
 }
 
-/* added by peter - 17 April 2016
-  allows steps to be in tight one-cols with little text */
-.eight-col .one-col {
+/* allows steps to be in tight one-cols with little text */
+.download-help__step {
   min-height: 2.5em;
   clear: both;
 }
-span.step { /* added by peter - 16 April 2016 */
-  border-radius: 2em;
-  background-color: #888888;
-  border: 3px solid #888888;
+span.step {
+  border-radius: 40px;
+  background-color: $warm-grey;
+  border: 3px solid $warm-grey;
   color: white;
   display: block;
   text-align: center;
@@ -1151,6 +1148,6 @@ span.step { /* added by peter - 16 April 2016 */
   height: 2em;
   line-height: 1.75;
 }
-.download .row {  /* added by peter - 16 April 2016 */
+.download .row {
   padding: 2.5em 0 0 0;
 }

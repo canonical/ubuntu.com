@@ -3,7 +3,7 @@
     <hr />
     <div class="strip-inner-wrapper">
         <div class="strip-inner-wrapper twelve-col equal-height--vertical-divider no-margin-bottom">
-            <div class="equal-height--vertical-divider__item four-col {{ first_item_class|default:''}}">
+            <div class="equal-height--vertical-divider__item four-col feature-one {{ first_item_class|default:''}}">
                 {% with "shared/contextual_footers/"|add:first_item|add:".html" as item_file %}
                 {% include item_file %}
                 {% endwith %}
