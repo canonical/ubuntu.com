@@ -165,7 +165,7 @@ body {
     }
 }
 // end @media only screen and (max-width : $breakpoint-medium)
-#main-content .row-hero {
+.row-hero {
     margin-top: 40px;
     padding-top: 0;
     @media only screen and (max-width: 768px) {
@@ -365,6 +365,7 @@ body {
     }
     .inner-wrapper {
         max-width: 100%;
+        margin-top: 0;
     }
     .row {
         padding-left: 0;
@@ -449,7 +450,7 @@ body {
     color: #ebebea;
   }
   // The default section row padding
-  #main-content .row-hero {
+  .row-hero {
     margin-top: 0;
     h1 {
       padding-top: 20px;
