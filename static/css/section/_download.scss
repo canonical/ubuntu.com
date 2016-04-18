@@ -1152,3 +1152,19 @@ span.step {
 .download .row {
   padding: 2.5em 0 0 0;
 }
+
+// XXX - add provision for stepped list without headings in VF
+.list-step__item {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.list-step__bullet {
+    position: absolute;
+    top: 0;
+}
+
+.list-step__text {
+    display: inline-block;
+    padding-top: .5em;
+}
