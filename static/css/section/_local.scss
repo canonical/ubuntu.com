@@ -1700,21 +1700,14 @@ $item-spacing: 20px;
   color: #e95420;
 }
 
-#breadcrumbs > ul > li > ul.second-level-nav + li > a:after {
-  content: '\203A';
-  display: inline-block;
-  height: 5px;
-  margin-left: 8px;
-  position: absolute;
-  width: 5px;
-}
-
-.third-level-nav + a::before,
-ul.third-level-nav > li:first-child > a::before {
-  content: '\203A';
-  display: inline-block;
-  height: 5px;
-  margin-left: -8px;
-  position: absolute;
-  width: 5px;
+// XXX adding cheveron between 2nd and 3rd level nav-global
+@media only screen and (max-width : $breakpoint-large) {
+  ul.third-level-nav > li:first-child > a::before {
+    content: '\203A';
+    display: inline-block;
+    height: 5px;
+    margin-left: -11px;
+    position: absolute;
+    width: 5px;
+  }
 }
