@@ -467,7 +467,10 @@ body {
     background: #262626;
     color: #ebebea;
   }
+}
   // The default section row padding
+.phone,
+.tablet {
   .row-hero {
     margin-top: 0;
     h1 {
@@ -479,6 +482,22 @@ body {
     }
     @media only screen and (min-width : $breakpoint-large) {
       padding-top: 100px;
+    }
+  }
+}
+
+.download {
+  .row {
+    padding: 40px 10px 40px 10px;
+  }
+  .row-hero {
+    margin-top: 40px;
+    @media only screen and (min-width : $breakpoint-medium) {
+      margin-top: 0;
+      padding-top: 40px;
+    }
+    @media only screen and (min-width : $breakpoint-large) {
+      padding-top: 40px;
     }
   }
 }
