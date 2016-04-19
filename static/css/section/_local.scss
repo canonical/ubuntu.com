@@ -1577,8 +1577,9 @@ button.button--primary__deactivated:hover {
 
   &:before {
     display: block;
-    float: left;
-    margin-left: -70px;
+    margin-left: 0;
+    margin-bottom: 20px;
+    float: none;
     content: counter(instructions);
     background: #888888;
     border-radius: 100%;
@@ -1591,15 +1592,23 @@ button.button--primary__deactivated:hover {
     width: 50px;
     height: 50px;
 
-    @media only screen and (max-width : $breakpoint-medium) {
-      margin-left: 0;
+    @media only screen and (min-width: $breakpoint-medium) {
+      float: left;
+      margin-left: -70px;
       margin-bottom: 20px;
-      float: none;
     }
   }
 }
 
 .list-stepped__title {
-  font-size: 1.4375em;
-  padding-top: .4em;
+  font-size: 1.066625em;
+
+  @media only screen and (min-width: $breakpoint-medium) {
+    font-size: 1.1428125em;
+  }
+
+  @media only screen and (min-width: $breakpoint-large) {
+    font-size: 1.4375em;
+    padding-top: .4em;
+  }
 }
