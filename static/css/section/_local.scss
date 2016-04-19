@@ -381,6 +381,9 @@ body {
         @media only screen and (max-width : $breakpoint-medium) {
             margin-left: 0;
         }
+        +a { // in full screen sections, move second nav left
+          padding: 8px 10px 0 0;
+        }
     }
     @media only screen and (min-width : $breakpoint-medium) {
         .strip-inner-wrapper {
@@ -1572,10 +1575,10 @@ button.button--primary__deactivated:hover {
         padding-bottom: 14px;
     }
     .nav-secondary .breadcrumb li a {
-        padding: 8px 10px 0;
+        padding: 8px 10px;
     }
     .nav-secondary .breadcrumb li a.breadcrumb-link {
-      padding: 8px 10px 0 0;
+      padding: 8px 10px;
     }
 }
 /// XXX Karl (10.04.2016)
@@ -1693,6 +1696,25 @@ $item-spacing: 20px;
 }
 
 // XXX added this to make the active class live
-#breadcrumbs > div > ul > li > ul.third-level-nav > li > a {
+#breadcrumbs > div > ul > li > ul.third-level-nav > li a.active {
   color: #e95420;
+}
+
+#breadcrumbs > ul > li > ul.second-level-nav + li > a:after {
+  content: '\203A';
+  display: inline-block;
+  height: 5px;
+  margin-left: 8px;
+  position: absolute;
+  width: 5px;
+}
+
+.third-level-nav + a::before,
+ul.third-level-nav > li:first-child > a::before {
+  content: '\203A';
+  display: inline-block;
+  height: 5px;
+  margin-left: -8px;
+  position: absolute;
+  width: 5px;
 }
