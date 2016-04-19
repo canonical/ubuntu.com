@@ -5,9 +5,9 @@
 {% block extra_body_class %}download-help{% endblock %}
 
 {% block second_level_nav_items %}
-    <div class="strip-inner-wrapper">
-        {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to create a bootable USB stick on Windows"  %}
-    </div>
+<div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to create a bootable USB stick on Windows"  %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -15,9 +15,9 @@
     <div class="strip-inner-wrapper">
         <div class="nine-col append-one">
             <h1>How to create a bootable USB stick on Windows</h1>
-            <p>To run Ubuntu from a USB stick, the first thing you need to do is insert a USB stick with at least 2GB of free space into your PC.</p>
-            <p>The easiest way to put Ubuntu onto your stick is to use the USB installer provided at <a href="http://www.pendrivelinux.com">pendrivelinux.com</a>. You&rsquo;ll need to <a href="http://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/#button">download and install</a> and follow the instructions.</p>
-            <p><a href="http://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/#button">Download Pen Drive Linux's USB Installer&nbsp;&rsaquo;</a></p>
+            <p>To run or install Ubuntu from a USB stick, the first thing you need to do is insert a USB stick with at least 2GB of free space into your PC.</p>
+            <p>The easiest way to put Ubuntu onto your stick is to use the Rufus USB installer. You’ll need to download and install and follow the instructions.</p>
+            <p><a class="external" href="https://rufus.akeo.ie/">Download the Rufus USB installer</a></p>
         </div>
     </div>
 </div><!-- /.row row-hero -->
@@ -25,29 +25,49 @@
     <div class="strip-inner-wrapper">
         <ol class="list-stepped eight-col append-one">
             <li class="list-stepped__item">
-                <p class="list-stepped__title">Select 'Ubuntu' from the dropdown list.</p>
+                <p class="list-stepped__title">Open Rufus and select your USB stick in the <strong>'Device'</strong> dropdown</p>
                 <div class="help-image">
-                    <img src="{{ ASSET_SERVER_URL }}32a4a43b-image-createausbstickonwindows-1.jpg" alt="" height="451" width="444">
-                    <a href="{{ ASSET_SERVER_URL }}32a4a43b-image-createausbstickonwindows-1.jpg">Click to enlarge</a>
+                    <img src="{{ ASSET_SERVER_URL }}bf622829-download-desktop-usb-windows-1.jpg" alt="">
+                    <a href="{{ ASSET_SERVER_URL }}bf622829-download-desktop-usb-windows-1.jpg">Click to enlarge</a>
                 </div>
             </li>
             <li class="list-stepped__item">
-                <p class="list-stepped__title">Click <strong>'Browse'</strong> and open the downloaded ISO file.</p>
+                <p class="list-stepped__title">Click the CD Rom icon next to the <strong>'FreeDOS'</strong> dropdown, then find your downloaded Ubuntu ISO and click <strong>'Open'</strong></p>
                 <div class="help-image">
-                    <img src="{{ ASSET_SERVER_URL }}c16130d3-image-createausbstickonwindows-2.jpg" alt="" height="326" width="444">
-                    <a href="{{ ASSET_SERVER_URL }}c16130d3-image-createausbstickonwindows-2.jpg">Click to enlarge</a>
+                    <img src="{{ ASSET_SERVER_URL }}fc469e59-download-desktop-usb-windows-2.jpg" alt="">
+                    <a href="{{ ASSET_SERVER_URL }}fc469e59-download-desktop-usb-windows-2.jpg">Click to enlarge</a>
                 </div>
             </li>
             <li class="list-stepped__item">
-                <p class="list-stepped__title">Choose the USB drive and click <strong>'Create'</strong>.</p>
+                <p class="list-stepped__title">Click <strong>'Yes'</strong> when it asks to download Syslinux software</p>
                 <div class="help-image">
-                    <img src="{{ ASSET_SERVER_URL }}ed75cbd0-image-createausbstickonwindows-3.jpg" alt="" height="360" width="444">
-                    <a href="{{ ASSET_SERVER_URL }}ed75cbd0-image-createausbstickonwindows-3.jpg">Click to enlarge</a>
+                    <img src="{{ ASSET_SERVER_URL }}69f34161-download-desktop-usb-windows-3.jpg" alt="">
+                    <a href="{{ ASSET_SERVER_URL }}69f34161-download-desktop-usb-windows-3.jpg">Click to enlarge</a>
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <p class="list-stepped__title">Click <strong>'OK'</strong> to write in ISO Image mode</p>
+                <div class="help-image">
+                    <img src="{{ ASSET_SERVER_URL }}8caaedc2-download-desktop-usb-windows-4.jpg" alt="">
+                    <a href="{{ ASSET_SERVER_URL }}8caaedc2-download-desktop-usb-windows-4.jpg">Click to enlarge</a>
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <p class="list-stepped__title">Confirm that your USB stick is selected and then <strong>'OK'</strong> to continue</p>
+                <div class="help-image">
+                    <img src="{{ ASSET_SERVER_URL }}ee3b255d-download-desktop-usb-windows-5.jpg" alt="">
+                    <a href="{{ ASSET_SERVER_URL }}ee3b255d-download-desktop-usb-windows-5.jpg">Click to enlarge</a>
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <p class="list-stepped__title">When it is finished, just restart your computer and start using Ubuntu, or you can install Ubuntu</p>
+                <div class="help-image">
+                    <img src="{{ ASSET_SERVER_URL }}febc3c7b-download-desktop-usb-windows-7.jpg" alt="">
+                    <a href="{{ ASSET_SERVER_URL }}febc3c7b-download-desktop-usb-windows-7.jpg">Click to enlarge</a>
                 </div>
             </li>
         </ol>
-    </div>
-</div><!-- /.eight-col -->
+    </div><!-- /.strip-inner-wrapper -->
 </div><!-- /.row -->
 
 {% include "download/shared/_contextual_footer.html" with first_item="_download_desktop_installation" second_item="_download_try_desktop" third_item="_download_helping_hands" %}
