@@ -1,12 +1,22 @@
 {% extends "base_index.html" %}
 
-{% block takeover_body_class %}meizu-takeover{% endblock takeover_body_class %}
+{% block takeover_body_class %}{% endblock takeover_body_class %}
 
 {% block takeover_content %}
-	<div class="lang-switch-wrapper strip-inner-wrapper"><a href="/global" class="lang-switch" lang="en">Global homepage&nbsp;&rsaquo;</a></div>
-	{% include "takeovers/_meizu_europe_kylin.html" %}
+<section class="row row-hero strip no-border china">
+    <div class="strip-inner-wrapper equal-height">
+        <div class="six-col append-one equal-height__item equal-height__align-vertically">
+            <h1>亲， 您知道我们Ubuntu已经有正式的<a href="http://cn.ubuntu.com" >中文官方网站</a>了么?</h1>
+            <p class="intro"><a href="http://cn.ubuntu.com" class="button--primary" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : 'GeoIP China hoempage', 'eventLabel' : '现在就去看看吧 link', 'eventValue' : undefined });">现在就去看看吧</a></p>
+            <p class="intro">Or continue browsing <a href="http://www.ubuntu.com/global">ubuntu.com</a></p>
+        </div>
+        <div class="row-hero__image five-col last-col equal-height__item equal-height__align-vertically align-center">
+            <img src="https://assets.ubuntu.com/v1/84489620-picto-knowledge-orange.svg" alt="Knowledge owl pictogram">
+        </div>
+    </div>
+</section>
 {% endblock takeover_content %}
 
 {% block footer_content %}
-	{% include "takeovers/_footer_homepage_kylin.html" %}
+
 {% endblock footer_content %}
