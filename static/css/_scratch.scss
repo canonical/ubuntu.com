@@ -27,10 +27,17 @@ body {
   }
 }
 // increasing .context-footer li (further reading bug)
-.context-footer li {
-  font-size: 1.230769231em;
-  label {
-    font-size: .812500317em;
+.context-footer {
+  p,
+  li {
+    font-size: .875em;
+  }
+  @media only screen and (min-width : $breakpoint-medium) {
+    p,
+    label,
+    li {
+      font-size: 1em;
+    }
   }
 }
 // additional helper class for shouty text
