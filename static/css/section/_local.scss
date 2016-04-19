@@ -366,6 +366,8 @@ body {
     .inner-wrapper {
         max-width: 100%;
         margin-top: 0;
+        margin-bottom: 0;
+        padding-bottom: 0;
     }
     .row {
         padding-left: 0;
@@ -430,10 +432,11 @@ body {
         hr {
             box-shadow: none;
             height: 3px;
+            margin: 0;
         }
 
         .strip-inner-wrapper {
-            padding: 1em 1em 0;
+            padding: 2em 1em 1em 1em;
         }
     }
     .row--dark {
@@ -479,7 +482,7 @@ body {
     }
   }
 }
-.download,
+
 .tablet,
 .phone {
   .row {
@@ -1551,6 +1554,9 @@ button.button--primary__deactivated:hover {
     }
     .nav-secondary .breadcrumb li a {
         padding: 8px 10px 0;
+    }
+    .nav-secondary .breadcrumb li a.breadcrumb-link {
+      padding: 8px 10px 0 0;
     }
 }
 /// XXX Karl (10.04.2016)
