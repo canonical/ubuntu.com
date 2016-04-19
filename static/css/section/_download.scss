@@ -87,6 +87,7 @@
 
     .row {
         padding: 40px;
+        padding-top: 2em;
     }
 
     #main-content .row-hero {
@@ -1036,7 +1037,7 @@ html.opera-mini {
             width: 55%;
         }
         .help-image a {
-            display: none;
+            display: block;
         }
         .box-tip {
             background: #fff url(#{$asset-server}18aa8a3c-pictogram-download-tip-60x49.png) $gutter-width $gutter-width no-repeat;
@@ -1150,4 +1151,20 @@ span.step {
 }
 .download .row {
   padding: 2.5em 0 0 0;
+}
+
+// XXX - add provision for stepped list without headings in VF
+.list-step__item {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.list-step__bullet {
+    position: absolute;
+    top: 0;
+}
+
+.list-step__text {
+    display: inline-block;
+    padding-top: .5em;
 }
