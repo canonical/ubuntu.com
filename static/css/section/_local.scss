@@ -1579,6 +1579,8 @@ button.button--primary__deactivated:hover {
 /// XXX Robin 2016-04-19
 /// A candidate to replace the `.instruction` module, which
 /// requires lots of unnecessary markup
+$item-spacing: 20px;
+
 .list-stepped {
   counter-reset: instructions;
   list-style: none;
@@ -1589,11 +1591,13 @@ button.button--primary__deactivated:hover {
     padding-left: 0;
   }
 }
+
 .list-stepped__item {
   counter-increment: instructions;
   min-height: 50px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: $item-spacing;
+  padding-bottom: $item-spacing;
+  @extend %vf-clearfix;
 
   &:before {
     display: block;
@@ -1615,7 +1619,7 @@ button.button--primary__deactivated:hover {
     @media only screen and (min-width: $breakpoint-medium) {
       float: left;
       margin-left: -70px;
-      margin-bottom: 20px;
+      margin-bottom: 0;
     }
   }
 }
@@ -1630,5 +1634,41 @@ button.button--primary__deactivated:hover {
   @media only screen and (min-width: $breakpoint-large) {
     font-size: 1.4375em;
     padding-top: .4em;
+  }
+}
+
+.list-stepped__box {
+  background-color: #f7f7f7;
+  padding-top: $item-spacing;
+  padding-bottom: $item-spacing;
+  padding-left: $item-spacing;
+  padding-right: $item-spacing;
+
+  @media only screen and (min-width: $breakpoint-medium) {
+    margin-top: -$item-spacing;
+    margin-bottom: -($item-spacing - 2);
+  }
+}
+
+
+.list-stepped--spaced {
+  @extend .list-stepped;
+
+  .list-stepped__item {
+    padding-top: $item-spacing * 2;
+    padding-bottom: $item-spacing * 2;
+    margin-bottom: 0;
+  }
+
+  .list-stepped__box {
+      padding-top: $item-spacing * 2;
+      padding-bottom: $item-spacing * 2;
+      padding-left: $item-spacing * 2;
+      padding-right: $item-spacing * 2;
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        margin-top: -$item-spacing * 2;
+        margin-bottom: -( ( $item-spacing * 2 ) - 2 );
+      }
   }
 }
