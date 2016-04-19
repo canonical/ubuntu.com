@@ -26,7 +26,20 @@ body {
     background-image: url('#{$asset-path}img/backgrounds/image-background-paper.png');
   }
 }
-
+// increasing .context-footer li (further reading bug)
+.context-footer {
+  p,
+  li {
+    font-size: .875em;
+  }
+  @media only screen and (min-width : $breakpoint-medium) {
+    p,
+    label,
+    li {
+      font-size: 1em;
+    }
+  }
+}
 // additional helper class for shouty text
 .caps {
     text-transform: uppercase;
