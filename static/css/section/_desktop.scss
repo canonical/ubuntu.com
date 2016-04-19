@@ -651,10 +651,11 @@
   //Medium screen
   @media only screen and (min-width: $breakpoint-medium) {
     .row-hero {
-      background-image: url('#{$asset-server}59a1fae2-developer-hero-laptop.png');
-      background-position: top right;
+      background-image: url('#{$asset-server}2e62cdb4-desktop-developer-hero.png');
+      background-position: top right -220px;
       background-repeat: no-repeat;
-      background-size: 22em;
+      background-size: 36em;
+      min-resolution: 310px;
     }
 
     .pull-bottom-left {
@@ -667,8 +668,8 @@
   //Large screen
   @media only screen and (min-width: $breakpoint-large) {
     .row-hero {
-      background-position: top right;
-      background-size: 56%;
+      background-position: top right -347px;
+      background-size: 90%;
       min-height: 500px;
     }
     .row-developer-tools {
