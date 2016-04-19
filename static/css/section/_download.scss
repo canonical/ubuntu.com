@@ -209,31 +209,35 @@ html.opera-mini {
   min-height: 9.5em;
 }
 
-.download .inner-wrapper form fieldset {
-    background: none;
-    margin: 0;
-    padding-left: $gutter-width;
-    padding-top: 2px;
-    padding-bottom: 0;
-    padding-right: 0;
-}
-
-.download .inner-wrapper form select {
-    font-weight: 300;
-    margin-bottom: 30px;
-    width: 100%;
-}
-
-.download .strip-inner-wrapper form button,
-.download .strip-inner-wrapper form .link-cta-download,
-.download .strip-inner-wrapper .link-cta-download {
-    font-size: 1.21875em;
-    padding: 10px 14px;
-    border: 0;
-    float: left;
-    text-align: center;
-    width: 100%;
-    margin-bottom: 1em;
+.download {
+  .inner-wrapper {
+    form fieldset {
+      background: none;
+      margin: 0;
+      padding-left: $gutter-width;
+      padding-top: 2px;
+      padding-bottom: 0;
+      padding-right: 0;
+    }
+    form select {
+      font-weight: 300;
+      margin-bottom: 30px;
+      width: 100%;
+    }
+  }
+  .strip-inner-wrapper {
+    form button,
+    form .link-cta-download,
+    .link-cta-download {
+      font-size: 1.21875em;
+      padding: 10px 14px;
+      border: 0;
+      float: left;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 1em;
+    }
+  }
 }
 
 .download #main-content .row-background a:link.link-cta-download {
@@ -1148,9 +1152,6 @@ span.step {
   font-size: 1.375em;
   height: 2em;
   line-height: 1.75;
-}
-.download .row {
-  padding: 2.5em 0 0 0;
 }
 
 // XXX - add provision for stepped list without headings in VF
