@@ -1554,9 +1554,10 @@ button.button--primary__deactivated:hover {
   width: 60px;
 }
 
+/// XXX Robin 2016-04-19
 /// A candidate to replace the `.instruction` module, which
 /// requires lots of unnecessary markup
-.instructions {
+.list-stepped {
   counter-reset: instructions;
   list-style: none;
   margin-left: 0;
@@ -1566,7 +1567,7 @@ button.button--primary__deactivated:hover {
     padding-left: 0;
   }
 }
-.instructions__bullet {
+.list-stepped__item {
   counter-increment: instructions;
   min-height: 50px;
   padding-top: 60px;
@@ -1598,7 +1599,7 @@ button.button--primary__deactivated:hover {
   }
 }
 
-.instructions__content {
+.list-stepped__title {
   font-size: 1.4375em;
   padding-top: .4em;
 }

@@ -27,43 +27,43 @@
 </div>
 <div class="row no-border">
     <div class="strip-inner-wrapper">
-        <ol class="instructions eight-col append-one">
-            <li class="instructions__bullet">
-                <p class="instructions__content"><a href="/download/desktop">Download Ubuntu Desktop</a></p>
+        <ol class="list-stepped eight-col append-one">
+            <li class="list-stepped__item">
+                <p class="list-stepped__title"><a href="/download/desktop">Download Ubuntu Desktop</a></p>
             </li>
-            <li class="instructions__bullet">
-                <p class="instructions__content">Open the Terminal (in /Applications/Utilities/ or query Terminal in Spotlight)</p>
+            <li class="list-stepped__item">
+                <p class="list-stepped__title">Open the Terminal (in /Applications/Utilities/ or query Terminal in Spotlight)</p>
             </li>
-            <li class="instructions__bullet">
-                <p class="instructions__content">Convert the .iso file to .img using the convert option of hdiutil</p>
+            <li class="list-stepped__item">
+                <p class="list-stepped__title">Convert the .iso file to .img using the convert option of hdiutil</p>
                 <p>e.g.: <pre>hdiutil convert -format UDRW -o ~/path/to/target.img ~/path/to/ubuntu.iso</pre></p>
                 <p><strong>Note:</strong> OS X tends to put the .dmg ending on the output file automatically</p>
             </li>
-            <li class="instructions__bullet">
-                <p class="instructions__content">Run <pre>diskutil list</pre> to get the current list of devices</p>
+            <li class="list-stepped__item">
+                <p class="list-stepped__title">Run <pre>diskutil list</pre> to get the current list of devices</p>
             </li>
-            <li class="instructions__bullet">
-                <p class="instructions__content">Insert your flash media</p>
+            <li class="list-stepped__item">
+                <p class="list-stepped__title">Insert your flash media</p>
             </li>
-            <li class="instructions__bullet">
-                <p class="instructions__content">Run <pre>diskutil list</pre> again and determine the device node assigned to your flash media (e.g. /dev/disk2)</p>
+            <li class="list-stepped__item">
+                <p class="list-stepped__title">Run <pre>diskutil list</pre> again and determine the device node assigned to your flash media (e.g. /dev/disk2)</p>
             </li>
-            <li class="instructions__bullet">
-                <p class="instructions__content">Run <pre>diskutil unmountDisk /dev/diskN</pre> (replace N with the disk number from the last command; in the previous example, N would be 2)</p>
+            <li class="list-stepped__item">
+                <p class="list-stepped__title">Run <pre>diskutil unmountDisk /dev/diskN</pre> (replace N with the disk number from the last command; in the previous example, N would be 2)</p>
             </li>
-            <li class="instructions__bullet">
-                <p class="instructions__content">Execute <pre>sudo dd if=/path/to/downloaded.img of=/dev/rdiskN bs=1m</pre> (replace /path/to/downloaded.img with the path where the image file is located; for example, ./ubuntu.img or ./ubuntu.dmg)</p>
+            <li class="list-stepped__item">
+                <p class="list-stepped__title">Execute <pre>sudo dd if=/path/to/downloaded.img of=/dev/rdiskN bs=1m</pre> (replace /path/to/downloaded.img with the path where the image file is located; for example, ./ubuntu.img or ./ubuntu.dmg)</p>
                 <ul>
                     <li>Using /dev/rdisk instead of /dev/disk may be faster</li>
                     <li>If you see the error dd: Invalid number '1m', you are using GNU dd. Use the same command but replace bs=1m with bs=1M</li>
                     <li>If you see the error dd: /dev/diskN: Resource busy, make sure the disk is not in use. Start the 'Disk Utility.app' and unmount (don't eject) the drive</li>
                 </ul>
             </li>
-            <li class="instructions__bullet">
-                <p class="instructions__content">Run <pre>diskutil eject /dev/diskN</pre> and remove your flash media when the command completes</p>
+            <li class="list-stepped__item">
+                <p class="list-stepped__title">Run <pre>diskutil eject /dev/diskN</pre> and remove your flash media when the command completes</p>
             </li>
-            <li class="instructions__bullet">
-                <p class="instructions__content">Restart your Mac and press alt/option key while the Mac is restarting to choose the USB stick</p>
+            <li class="list-stepped__item">
+                <p class="list-stepped__title">Restart your Mac and press alt/option key while the Mac is restarting to choose the USB stick</p>
             </li>
         </ol>
     </div>
