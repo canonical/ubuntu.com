@@ -5,58 +5,53 @@
 {% block extra_body_class %}download-help{% endblock %}
 
 {% block second_level_nav_items %}
-    <div class="strip-inner-wrapper">
-        {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to burn a DVD on OS X"  %}
-    </div>
+<div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to burn a DVD on OS X"  %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="strip-inner-wrapper">
-    <div class="row row-hero no-padding-bottom">
-        <h1>How to burn a DVD on OS X</h1>
-    </div>
-    <div class="row no-border">
-        <div class="ten-col box box-grey no-border download-help">
-            <p>The easiest way to burn an ISO, the file you need to install Ubuntu from a DVD, is by using <strong>Disk Utility</strong>. If you&rsquo;re using an older version of Mac OS X, you might not have the Disk Utility application. In this case, use Disk Copy.</p>
-            <div class="box box-highlight no-margin-bottom">
-                <ol class="list-step">
-                    <li class="list-step__item">
-                        <span class="list-step__bullet">1</span>
-                        <p class="list-step__text">Launch <strong>'Disk Utility'</strong> (Applications &rarr; Utilities &rarr; Disk Utility).</p>
 
-                    </li>
-                    <li class="list-step__item">
-                        <span class="list-step__bullet">2</span>
-                        <p class="list-step__text">Insert your blank DVD.</p>
-                    </li>
-                    <li class="list-step__item">
-                        <span class="list-step__bullet">3</span>
-                        <p class="list-step__text">Drag and drop your .iso file to the left pane in Disk Utility. Now both the blank disc and the .iso should be listed.</p>
-                    </li>
-                    <li class="list-step__item">
-                        <span class="list-step__bullet">4</span>
-                        <p class="list-step__text">Select the .iso file, and click on the <strong>'Burn'</strong> button in the toolbar.</p>
-                        <div class="help-image">
-                            <img src="{{ ASSET_SERVER_URL }}53029019-desktop-burn-a-dvd-on-mac-4.png?w=444" alt="" height="388" width="444">
-                            <a href="{{ ASSET_SERVER_URL }}53029019-desktop-burn-a-dvd-on-mac-4.png">Click to enlarge</a>
-                        </div>
-                    </li>
-                    <li class="list-step__item">
-                        <span class="list-step__bullet">5</span>
-                        <p class="list-step__text">Ensure that the <strong>'Verify burned data'</strong> checkbox is ticked (you may need to click on the disclosure triangle to see the checkbox).</p>
-                        <div class="help-image">
-                            <img src="{{ ASSET_SERVER_URL }}65cc3384-desktop-burn-a-dvd-on-mac-5.png?w=444" alt="" height="388" width="444">
-                            <a href="{{ ASSET_SERVER_URL }}65cc3384-desktop-burn-a-dvd-on-mac-5.png">Click to enlarge</a>
-                        </div>
-                    </li>
-                    <li class="list-step__item">
-                        <span class="list-step__bullet">6</span>
-                        <p class="list-step__text">Click <strong>'Burn'</strong>. The data will be burned and verified.</p>
-                    </li>
-                </ol>
-            </div><!-- /.box -->
-        </div><!-- /.eight-col -->
+<div class="row row-hero no-padding-bottom">
+    <div class="strip-inner-wrapper">
+        <div class="nine-col append-one">
+            <h1>How to burn a DVD on OS X</h1>
+            <p>The easiest way to burn an ISO, the file you need to install Ubuntu from a DVD, is by using <strong>Disk Utility</strong>. If you&rsquo;re using an older version of Mac OS X, you might not have the Disk Utility application. In this case, use Disk Copy.</p>
+        </div>
     </div>
+</div>
+<div class="row no-border">
+    <div class="strip-inner-wrapper">
+        <ol class="list-stepped eight-col append-one">
+            <li class="list-stepped__item">
+                <p class="list-stepped__title">Launch <strong>'Disk Utility'</strong> (Applications &rarr; Utilities &rarr; Disk Utility).</p>
+                </li>
+                <li class="list-stepped__item">
+                    <p class="list-stepped__title">Insert your blank DVD.</p>
+                </li>
+                <li class="list-stepped__item">
+                    <p class="list-stepped__title">Drag and drop your .iso file to the left pane in Disk Utility. Now both the blank disc and the .iso should be listed.</p>
+                </li>
+                <li class="list-stepped__item">
+                    <p class="list-stepped__title">Select the .iso file, and click on the <strong>'Burn'</strong> button in the toolbar.</p>
+                    <div class="help-image">
+                        <img src="{{ ASSET_SERVER_URL }}53029019-desktop-burn-a-dvd-on-mac-4.png?w=444" alt="" height="388" width="444">
+                        <a href="{{ ASSET_SERVER_URL }}53029019-desktop-burn-a-dvd-on-mac-4.png">Click to enlarge</a>
+                    </div>
+                </li>
+                <li class="list-stepped__item">
+                    <p class="list-stepped__title">Ensure that the <strong>'Verify burned data'</strong> checkbox is ticked (you may need to click on the disclosure triangle to see the checkbox).</p>
+                    <div class="help-image">
+                        <img src="{{ ASSET_SERVER_URL }}65cc3384-desktop-burn-a-dvd-on-mac-5.png?w=444" alt="" height="388" width="444">
+                        <a href="{{ ASSET_SERVER_URL }}65cc3384-desktop-burn-a-dvd-on-mac-5.png">Click to enlarge</a>
+                    </div>
+                </li>
+                <li class="list-stepped__item">
+                    <p class="list-stepped__title">Click <strong>'Burn'</strong>. The data will be burned and verified.</p>
+                </li>
+            </ol>
+        </div><!-- /.box -->
+    </div><!-- /.eight-col -->
 </div><!-- /.row -->
 
 {% include "download/shared/_contextual_footer.html" with first_item="_download_desktop_installation" second_item="_download_try_desktop" third_item="_download_helping_hands" %}
