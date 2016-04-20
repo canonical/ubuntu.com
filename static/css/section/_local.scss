@@ -1575,10 +1575,10 @@ button.button--primary__deactivated:hover {
         padding-bottom: 14px;
     }
     .nav-secondary .breadcrumb li a {
-        padding: 8px 10px;
+        padding: 8px 10px 0 10px;
     }
     .nav-secondary .breadcrumb li a.breadcrumb-link {
-      padding: 8px 10px;
+      padding: 8px 10px 0 10px;
     }
 }
 /// XXX Karl (10.04.2016)
@@ -1672,7 +1672,6 @@ $item-spacing: 20px;
   }
 }
 
-
 .list-stepped--spaced {
   @extend .list-stepped;
 
@@ -1692,23 +1691,5 @@ $item-spacing: 20px;
         margin-top: -$item-spacing * 2;
         margin-bottom: -( ( $item-spacing * 2 ) - 2 );
       }
-  }
-}
-
-// XXX added this to make the active class live
-#breadcrumbs > div > ul > li > ul.third-level-nav > li a.active,
-ul.third-level-nav > li.active > a {
-  color: #e95420;
-}
-
-// XXX adding cheveron between 2nd and 3rd level nav-global
-@media only screen and (min-width : $breakpoint-large) {
-  ul.third-level-nav > li:first-child > a::before {
-    content: '\203A';
-    display: inline-block;
-    height: 5px;
-    margin-left: -11px;
-    position: absolute;
-    width: 5px;
   }
 }
