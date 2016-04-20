@@ -85,7 +85,7 @@
 -------------------------------------------------------------- */
 .download {
 
-    .row {
+    .wrapper .row {
         padding: 40px;
         padding-top: 2em;
     }
@@ -730,7 +730,7 @@ html.opera-mini {
     }
   }
 
-  .instructions {
+  .instructions { // XXX Robin to remove
     padding: 0 inherit;
 
     pre {
@@ -754,7 +754,7 @@ html.opera-mini {
       }
     }
   }
-}
+} // XXX end Robin remove
 
 /* Contribute page */
 
@@ -1038,13 +1038,15 @@ html.opera-mini {
         .help-image a {
             display: block;
         }
-        .box-tip {
-            background: #fff url(#{$asset-server}18aa8a3c-pictogram-download-tip-60x49.png) $gutter-width $gutter-width no-repeat;
-            margin-bottom: 1.538em;
-            padding-left: 100px;
-            padding-bottom: 1.25em;
-        }
     }
+
+    .box-tip {
+        background: #fff url(#{$asset-server}18aa8a3c-pictogram-download-tip-60x49.png) $gutter-width $gutter-width no-repeat;
+        margin-bottom: 1.538em;
+        padding-left: 100px;
+        padding-bottom: 1.25em;
+    }
+
     #download-other .box {
         margin-bottom: 0;
     }
@@ -1124,26 +1126,14 @@ $grid-border-style: 1px dotted #888;
   }
 }
 
-/* allows steps to be in tight one-cols with little text */
-.download-help__step {
-  min-height: 2.5em;
-  clear: both;
-}
-span.step {
-  border-radius: 40px;
-  background-color: $warm-grey;
-  border: 3px solid $warm-grey;
-  color: white;
-  display: block;
-  text-align: center;
-  vertical-align: bottom;
-  width: 2em;
-  font-size: 1.375em;
-  height: 2em;
-  line-height: 1.75;
+// XXX - add provision for stepped list without headings in VF
+.list-step__title {
+
+    & + .box {
+        margin-top: 1em;
+    }
 }
 
-// XXX - add provision for stepped list without headings in VF
 .list-step__item {
     margin-bottom: 2rem;
     position: relative;

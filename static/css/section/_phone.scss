@@ -57,14 +57,6 @@
   }
 }
 
-// Full-width nav alignment fix
-.phone .nav-secondary .breadcrumb li .breadcrumb-link {
-  @media only screen and (min-width : $navigation-threshold) {
-    padding-left: 0;
-  }
-}
-
-
 @media only screen and (max-width : 768px) {
 
   .video-container.for-mobile {
@@ -871,8 +863,6 @@ body.phone-partners {
 // --------------------------------------------------------------
 body.phone {
   .row-hero {
-    padding-top: 0;
-
     a img {
       vertical-align: middle;
       margin-right: 10px;

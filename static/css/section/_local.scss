@@ -134,6 +134,11 @@ body {
         }
     }
 }
+
+.breadcrumb-link--second-level:after {
+  color: $warm-grey;
+}
+
 // pulling in the old guidelines version of combined-list
 .row .combined-list {
     div,
@@ -381,6 +386,9 @@ body {
         @media only screen and (max-width : $breakpoint-medium) {
             margin-left: 0;
         }
+        +a { // in full screen sections, move second nav left
+          padding: 8px 10px 0 0;
+        }
     }
     @media only screen and (min-width : $breakpoint-medium) {
         .strip-inner-wrapper {
@@ -408,14 +416,14 @@ body {
 .management,
 .server,
 .support {
-    #context-footer {
-        background: #fff;
-        margin-bottom: 0;
-        div > div > div:last-of-type {
-            border: 0; // kills borders on very nested divs... like we have for further reading
-            padding-bottom: 0;
-        }
-    }
+  #context-footer {
+      background: #fff;
+      margin-bottom: 0;
+      div > div > div:last-of-type {
+          border: 0; // kills borders on very nested divs... like we have for further reading
+          padding-bottom: 0;
+      }
+  }
 }
 // extra rules for full width sections other than homepage
 .download,
@@ -1370,11 +1378,86 @@ html.opera-mini {
     }
 }
 // end @media only screen and (min-width : $breakpoint-large)
+
+/* start of fix for vanilla margins on non-full screen pages */
 @media only screen and (min-width: $breakpoint-medium) {
-    #context-footer div div.feature-one {
-        display: table-cell;
+  #context-footer div div.feature-one {
+    display: table-cell;
+  }
+  .about-context-footer, //XXX PRM
+  .cloud-context-footer,
+  .desktop-context-footer,
+  .internet-of-things-context-footer,
+  .legal-context-footer,
+  .management-context-footer,
+  .server-context-footer,
+  .support-context-footer {
+    .row {
+      margin-left: 0;
+      margin-right: 0;
     }
+  }
+
+  .about,
+  .cloud,
+  .desktop,
+  .internet-of-things,
+  .legal,
+  .management,
+  .server,
+  .support {
+    .row {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    hr {
+      margin-left: -20px;
+      margin-right: -20px;
+    }
+  }
+  /* XXX vanilla fix? */
+  .equal-height--vertical-divider .equal-height--vertical-divider__item {
+    border-bottom: 0;
+  }
 }
+
+@media only screen and (min-width: $breakpoint-large) {
+  #context-footer div div.feature-one {
+    display: table-cell;
+  }
+  .about-context-footer,
+  .cloud-context-footer,
+  .desktop-context-footer,
+  .internet-of-things-context-footer,
+  .legal-context-footer,
+  .management-context-footer,
+  .server-context-footer,
+  .support-context-footer {
+    .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  .about,
+  .cloud,
+  .desktop,
+  .internet-of-things,
+  .legal,
+  .management,
+  .server,
+  .support {
+    .row {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+    #context-footer hr {
+      margin-left: -40px;
+      margin-right: -40px;
+    }
+  }
+} /* end fix for vanilla margins on non-full screen pages */
+
 #context-footer div div.feature-two {
     padding-left: 0;
 }
@@ -1572,10 +1655,10 @@ button.button--primary__deactivated:hover {
         padding-bottom: 14px;
     }
     .nav-secondary .breadcrumb li a {
-        padding: 8px 10px 0;
-    }
-    .nav-secondary .breadcrumb li a.breadcrumb-link {
-      padding: 8px 10px 0 0;
+        padding-top: 8px;
+        padding-right: 10px;
+        padding-bottom: 0;
+        padding-left: 10px;
     }
 }
 /// XXX Karl (10.04.2016)
@@ -1631,7 +1714,7 @@ $item-spacing: 20px;
     vertical-align: top;
     font-size: 2em;
     line-height: 50px;
-    font-weight: 400;
+    font-weight: 300;
     width: 50px;
     height: 50px;
 
@@ -1669,7 +1752,6 @@ $item-spacing: 20px;
   }
 }
 
-
 .list-stepped--spaced {
   @extend .list-stepped;
 
@@ -1689,5 +1771,12 @@ $item-spacing: 20px;
         margin-top: -$item-spacing * 2;
         margin-bottom: -( ( $item-spacing * 2 ) - 2 );
       }
+  }
+}
+
+// Full-width nav alignment fix
+.nav-secondary .strip-inner-wrapper .breadcrumb li .breadcrumb-link {
+  @media only screen and (min-width : $navigation-threshold) {
+    padding-left: 0;
   }
 }
