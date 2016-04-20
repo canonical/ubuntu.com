@@ -18,8 +18,8 @@
             <h1>How to verify your Ubuntu download</h1>
 
             <div class="box warning">
-              <b>NOTE:</b> You will need to use a terminal app to verify an Ubuntu ISO image.
-              These instructions assume basic knowledge of the command line, checking of SHA256 checksums and use of GnuPG.
+              <p><b>NOTE:</b> You will need to use a terminal app to verify an Ubuntu ISO image.
+              These instructions assume basic knowledge of the command line, checking of SHA256 checksums and use of GnuPG.</p>
             </div>
 
             <p>Verifying your ISO helps insure the data integrity and authenticity of
@@ -40,10 +40,9 @@
 <div class="row">
   <div class="strip-inner-wrapper">
     <div class="nine-col">
-      <ol class="list-step">
-        <li class="list-step__item">
-          <h3 class="list-step__title">
-            <span class="list-step__bullet">1</span>
+      <ol class="list-stepped">
+        <li class="list-stepped__item">
+          <h3 class="list-stepped__title">
             Download sums
             </h3>
             <p>Download the SHA256SUMS and SHA256SUMS.gpg files from any of the mirrors and put them in the same directory.</p>
@@ -51,15 +50,14 @@
             <img src="https://assets.ubuntu.com/v1/f1cce1af-verify-1-releases.png" alt="Verify release screenshot" />
         </li>
 
-        <li class="list-step__item">
-            <h3 class="list-step__title">
-              <span class="list-step__bullet">2</span>
+        <li class="list-stepped__item">
+            <h3 class="list-stepped__title">
               Get the signature key
             </h3>
 
             <div class="box box-tip">
-              <b>Tip:</b> On non-Linux systems, you might need to download the GPG tools for this next step.
-              To check if you have the GPG tools installed, run the command <code>gpg --version</code> or <code>gpg2 --version</code>.
+              <p><b>Tip:</b> On non-Linux systems, you might need to download the GPG tools for this next step.
+              To check if you have the GPG tools installed, run the command <code>gpg --version</code> or <code>gpg2 --version</code>.</p>
             </div>
 
             <h4>Find out what key was used to issue the signature</h4>
@@ -92,9 +90,8 @@ gpg:               imported: 2
             </code>
         </li>
 
-        <li class="list-step__item">
-            <h3 class="list-step__title">
-            <span class="list-step__bullet">3</span>
+        <li class="list-stepped__item">
+            <h3 class="list-stepped__title">
             Verify signature
             </h3>
             <p>Now you can re-run the original command to verify the signature.</p>
@@ -121,9 +118,8 @@ Primary key fingerprint: 8439 38DF 228D 22F7 B374  2BC0 D94A A3F0 EFE2 1092
             </div>
         </li>
 
-        <li class="list-step__item">
-            <h3 class="list-step__title">
-              <span class="list-step__bullet">4</span>
+        <li class="list-stepped__item">
+            <h3 class="list-stepped__title">
               Check the ISO
             </h3>
             <p>Now you need to generate a sha256 checksum for the downloaded ISO and compare it to the one you downloaded in your SHA256SUM file.</p>
