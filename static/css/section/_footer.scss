@@ -57,16 +57,19 @@ footer.global {
       margin-bottom: 0;
       padding: .833333333em 10px;
     }
+    
     h2 {
       /// open/close arrow closed
       background-image: url("#{$asset-server}7bd1bd7b-arrow_down_9fa097.svg");
       background-position: 96% 50%;
       background-repeat: no-repeat;
       background-size: 13px 13px;
+      
       a:link,
       a:visited {
         color: #888;
       }
+      
       a::after {
         content: ""; /* hide the default > */
       }
@@ -78,6 +81,7 @@ footer.global {
 
       &.active {
         background-image: url("#{$asset-server}43e2b367-arrow_up_9fa097.png");
+        
         + ul.second-level-nav {
           display: block;
         }
@@ -87,6 +91,18 @@ footer.global {
     .second-level-nav li > a {
       /// secondary nav menu items
       padding: .2em 10px;
+      font-size: 1em;
+      margin-left: 10px;
+      display: block;
+      width: 100%;
+      
+      @media only screen and (min-width : $breakpoint-medium) {
+        font-size: .75em;
+        padding: 0;
+        margin-left: 0;
+        width: auto;
+        display: inline-block;
+      }
     }
   }
 
@@ -122,10 +138,15 @@ footer.global {
   }
   
   #nav-global {
-    font-size: 16px;
+    font-size: .833333333em;
     border: 0;
     margin: 0;
     padding: 0;
+        
+    .nav-global-more {
+      border-top: 1px solid #d4d7d4;
+      margin-top: -1px;
+    }
     
     h2 {
       padding-left: 30px;
@@ -134,9 +155,9 @@ footer.global {
     .nav-global-wrapper {
       
       display: none;
+      
       &.active {
         /// display when clicked
-        background-image: url("#{$asset-server}43e2b367-arrow_up_9fa097.png");
         background-repeat: no-repeat;
         background-position: 96% 50%;
         background-size: 13px 13px;
@@ -155,12 +176,15 @@ footer.global {
         box-sizing: border-box;
         border-bottom: 1px solid #d4d7d4;
         border-left: 1px solid #d4d7d4;
+        
         &:nth-child(odd) {
           border-left: 0;
         }
+        
         &.more {
           width: 100%;
         }
+        
         a {
           font-size: 1em;
           padding-left: 1em;
@@ -172,7 +196,9 @@ footer.global {
         }
       }
     }
+    
     ul {
+      
       li.test {
         width: 50%;
         box-sizing: border-box;
@@ -182,6 +208,7 @@ footer.global {
           border-left: 0;
         }
       }
+      
       li.more {
         width: 100%;
       }
@@ -206,13 +233,14 @@ footer.global {
       display: block;
       float: none;
       font-weight: 400;
+      font-size: .833333333em;
       padding: 12px 0 12px 28px;
     }
   }
   
   /// copyright and legal links
   .legal {
-    padding: 1em;
+    padding: 10px;
     box-shadow: none;
     
     p,
@@ -224,9 +252,11 @@ footer.global {
       font-size: 12px;
       margin-bottom: 0;
     }
+    
     p {
       padding-bottom: .5em;
     }
+    
     li {
       display: inline;
       list-style: none;
@@ -340,6 +370,7 @@ footer.global {
        
        li:first-of-type {
          padding-top: 5px;
+         
          a {
            margin-left: 10px;
          }
@@ -517,6 +548,7 @@ footer.global {
               border: 0;
               padding-right: 0;
             }
+            
             ul {
               margin: 0;
               display: block;
@@ -526,6 +558,7 @@ footer.global {
               float: none;
               padding-bottom: 0;
               width: 100%;
+              
               li {
                 margin-left: 0;
                 float: none;
@@ -547,6 +580,7 @@ footer.global {
 
     .footer-b {
       box-shadow: none;
+      
       h2 {
         background: initial;
         float: left;
@@ -563,46 +597,57 @@ footer.global {
         padding: 0;
         margin: 0;
         border: 0;
+        
         li {
           overflow: hidden;
+          
           ul li {
             width: auto;
             float: left;
             line-height: 1;
+            
             &::after {
               content: "|";
               padding: 0 .5em;
               font-size: .6666em;
             }
+            
             &:last-of-type::after { ///XXX not working?
               content: "";
             }
           }
         }
       }
+      
       .second-level-nav li > a {
         /// secondary nav menu items
         padding: 0;
       }
     }
+    
     .legal {
       background: url("#{asset-server}33beb5cc-logo-ubuntu-grey.png") 100% 0 no-repeat;
     }
-  }
+  }  
+  
 }
+
 /// Large screens
 @media only screen and (min-width : $breakpoint-large) {
 
   #nav-global {
+    
     ul {
       li:first-of-type a {
         margin-left: 0; // PRM
       }
+      
       li.more a {
         text-indent: 0;
         display: block;
       }
     }
+    
     .nav-global-wrapper {
       width: $breakpoint-large !important;
     }
@@ -613,26 +658,32 @@ footer.global {
     .footer-b, .footer-b > ul, .legal {
       margin: 0 auto;
     }
+    
     .footer-a {
       div {
         width: $breakpoint-large;
         margin: 0 auto;
       }
     }
+    
     .footer-b {
       width: $breakpoint-large;
       padding: 0 0 20px;
       margin: 0 auto;
-      font-size: .75em;
+      font-size: 1em;
+      
       .inline-lists {
+        
         ul {
           width: $breakpoint-large;
         }
+        
         h2 {
           margin: 0 .5em .5em 0;
         }
       }
     }
+    
     .legal {
       padding-left: .5em;
     }
