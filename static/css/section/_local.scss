@@ -442,10 +442,6 @@ body {
             height: 3px;
             margin: 0;
         }
-
-        .strip-inner-wrapper {
-            padding: 2em 0;
-        }
     }
     .row--dark {
         background: #262626;
@@ -520,9 +516,6 @@ body {
     @media only screen and (min-width : $breakpoint-large) {
       padding: 100px 40px;
     }
-  }
-  .row-footer {
-    padding-top: 0;
   }
 }
 
@@ -1790,4 +1783,12 @@ $item-spacing: 20px;
 /// https://github.com/ubuntudesign/vanilla-framework/blob/master/scss/modules/_typography.scss#L357
 pre {
   margin-bottom: .75em;
+}
+
+/// Contextual footer fix for full-width layouts
+/// XXX Robin 2016-04-20
+/// Consider for moving into ubuntu-vanilla-theme
+.context-footer .strip-inner-wrapper .row-footer {
+  padding-top: 50px;
+  padding-bottom: 30px;
 }
