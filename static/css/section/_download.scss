@@ -1156,6 +1156,13 @@ span.step {
 }
 
 // XXX - add provision for stepped list without headings in VF
+.list-step__title {
+
+    & + .box {
+        margin-top: 1em;
+    }
+}
+
 .list-step__item {
     margin-bottom: 2rem;
     position: relative;
