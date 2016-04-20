@@ -1435,9 +1435,7 @@ html.opera-mini {
   }
 
   .about,
-  .cloud,
   .desktop,
-  .internet-of-things,
   .legal,
   .management,
   .server,
@@ -1451,6 +1449,14 @@ html.opera-mini {
       margin-right: -40px;
     }
   }
+
+  .cloud,
+  .internet-of-things,
+  #context-footer hr {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+
 } /* end fix for vanilla margins on non-full screen pages */
 
 #context-footer div div.feature-two {
