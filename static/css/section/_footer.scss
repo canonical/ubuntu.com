@@ -51,11 +51,11 @@ footer.global {
     h2, .top-link {
       font-size: .75em;
       text-transform: uppercase;
-      color: #888;
+      color: $warm-grey;
       line-height: 1.5em;
       letter-spacing: .05em;
       margin-bottom: 0;
-      padding: .833333333em 1.1em;
+      padding: .833333333em 10px;
     }
     h2 {
       /// open/close arrow closed
@@ -86,11 +86,17 @@ footer.global {
 
     .second-level-nav li > a {
       /// secondary nav menu items
-      padding: .2em 1em;
+      padding: .2em 10px;
     }
   }
 
   #nav-global h2 {
+    position: relative;
+    
+    &.active {
+      border-bottom: 1px solid #d4d7d4;
+    }
+    
     &::before {
       // addes the external icon
       background-image: url("#{$asset-server}e1b12fdd-external-link-9fa097.svg");
@@ -98,10 +104,12 @@ footer.global {
       -webkit-background-size: 14px 14px;
       -o-background-size: 14px 14px;
       background-size: 14px 14px;
-      background-position-y: 2px;
+      background-position: center center;
       background-repeat: no-repeat;
       content: "";
-      display: inline-block;
+      position: absolute;
+      margin-top: 1px;
+      left: 10px;
       height: 15px;
       width: 15px;
     }
@@ -112,12 +120,19 @@ footer.global {
   li.more > a  {
     display: none; /* hide until 'active' class */
   }
+  
   #nav-global {
     font-size: 16px;
     border: 0;
     margin: 0;
     padding: 0;
+    
+    h2 {
+      padding-left: 30px;
+    }
+    
     .nav-global-wrapper {
+      
       display: none;
       &.active {
         /// display when clicked
@@ -177,6 +192,7 @@ footer.global {
     text-transform: uppercase;
     width: 100%;
     position: initial;
+    
     a {
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
@@ -193,10 +209,12 @@ footer.global {
       padding: 12px 0 12px 28px;
     }
   }
+  
   /// copyright and legal links
   .legal {
     padding: 1em;
     box-shadow: none;
+    
     p,
     ul,
     li,
@@ -212,15 +230,20 @@ footer.global {
     li {
       display: inline;
       list-style: none;
-      margin-right: 10px;
+      margin-right: 5px;
+      
       & > a {
-        margin-right: 10px;
+        margin-right: 5px;
         position: relative;
-        vertical-align: middle;
+        vertical-align: bottom;
       }
+      
       &::after {
         content: "•";
+        color: $warm-grey;
+        font-size: 1em;
       }
+      
       &:last-of-type::after {
         content: "";
         padding-left: 0;
@@ -270,6 +293,7 @@ footer.global {
     z-index: 101;
     position: relative;
     margin-top: -30px;
+    
     .nav-global-wrapper {
       width: auto;
       background: none repeat scroll 0 0 #FFFFFF;
@@ -277,13 +301,16 @@ footer.global {
       position: relative;
       text-align: left;
     }
+    
     div {
       box-shadow: none;
     }
+    
     ul {
       margin-bottom: 0;
       margin-left: 0;
       top: 0;
+      
       li {
         float: left;
         display: block;
@@ -294,9 +321,11 @@ footer.global {
         position: relative;
         top: 0;
       }
+      
       li:first-of-type a {
         margin-left: 10px;
       }
+      
       ul {
        display: none;
        float: none;
@@ -308,12 +337,14 @@ footer.global {
        -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
        -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+       
        li:first-of-type {
          padding-top: 5px;
          a {
            margin-left: 10px;
          }
        }
+       
        li {
          float: none;
          width: auto;
@@ -324,6 +355,7 @@ footer.global {
          margin: 0 2.5em 0 0;
        }
      }
+     
      .more span {
        display: block;
        top: -10px;
@@ -341,11 +373,13 @@ footer.global {
       -o-transform: rotate(90deg);
       filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
      }
+     
     .more {
       border-left: 1px solid transparent;
       border-right: 1px solid transparent;
       min-width: 60px;
     }
+    
     a.active {
       color: #dd4814;
       border-top: 3px solid #dd4814;
@@ -353,6 +387,7 @@ footer.global {
       opacity: 1;
     }
   }
+  
   a:link,
   a:visited {
     color: #333;
@@ -373,17 +408,20 @@ footer.global {
     display: block;
     list-style-image: none;
   }
+  
   .open {
     background: #fff;
     min-width: 120px;
     border-left: 1px solid #d7d7d7;
     border-right: 1px solid #d7d7d7;
+    
     a:link,
     a:visited,
     span {
       color: #dd4814;
       opacity: 1;
     }
+    
     ul {
       display: block;
       a:link,
@@ -407,28 +445,34 @@ footer.global {
       padding: 0;
       margin: 0;
       border: 0;
+      
       h2 + ul.second-level-nav {
         /// open the primary/secondary navs
         display: block;
       }
+      
       h2 {
         background: none;
         text-transform: none;
         font-weight: 400;
         padding: 0;
+        
         a:link,
         a:visited {
           color: #333;
           font-weight: normal;
         }
+        
         .active {
           background: none;
         }
       }
+      
       ul {
         li {
           border: 0;
         }
+        
         &:last-child {
           border: 0;
           padding-right: 0;
@@ -442,14 +486,17 @@ footer.global {
       border-bottom: 1px solid #d8d8d8;
       display: block;
       clear: both;
+      
       .second-level-nav li > a {
         padding: 0;
         line-height: 2em;
       }
+      
       div {
         padding-bottom: 10px;
         margin: 0 auto;
         width: 100%;
+        
         ul {
           //padding-left: 15px;
           border-collapse: collapse;
@@ -457,9 +504,7 @@ footer.global {
           float: none;
           padding-bottom: 0;
           width: 100%;
-          //margin-left: -15px;
-          //padding-left: 0;
-          //margin: 0;
+          
           li {
             border-right: 1px dotted #888;
             display: table-cell;
@@ -505,9 +550,15 @@ footer.global {
       h2 {
         background: initial;
         float: left;
-        margin: 0 .5em .5em .5em;
-        line-height: 1.75;
+        margin: 0 .5em .5em;
+        line-height: 1.5;
+        
+        a:after { 
+          content: ":"; 
+        }
+        
       }
+      
       ul {
         padding: 0;
         margin: 0;

@@ -354,6 +354,7 @@ body {
   }
   .inner-wrapper {
     max-width: 100%;
+    margin-bottom: 0;
   }
   .row {
     padding-left: 0;
@@ -386,6 +387,7 @@ body {
 .nav-secondary .third-level-nav li a:hover {
   color: $link-color;
 }
+
 .about,
 .cloud,
 .desktop,
@@ -404,6 +406,7 @@ body {
     }
   }
 }
+
 // extra rules for full width sections other than homepage
 .download,
 .phone,
@@ -412,10 +415,12 @@ body {
     background: #fff;
     padding-bottom: 35px; // replaces the padding taken off .inner-wrapper
     margin-bottom: 0;
+    
     div > div > div {
       border: 0; // kills borders on very nested divs... like we have for further reading
       padding-bottom: 0;
     }
+    
     hr {
       box-shadow: none;
       height: 3px;
