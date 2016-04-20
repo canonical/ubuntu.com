@@ -1374,7 +1374,7 @@ html.opera-mini {
 }
 // end @media only screen and (min-width : $breakpoint-large)
 
-} /* start of fix for vanilla margins on non-full screen pages */
+/* start of fix for vanilla margins on non-full screen pages */
 @media only screen and (min-width: $breakpoint-medium) {
   #context-footer div div.feature-one {
     display: table-cell;
@@ -1390,14 +1390,10 @@ html.opera-mini {
     .row {
       margin-left: 0;
       margin-right: 0;
-      hr {
-        margin-left: -40px;
-        margin-right: -40px;
-      }
     }
   }
 
-  .about, //XXX PRM
+  .about,
   .cloud,
   .desktop,
   .internet-of-things,
@@ -1406,16 +1402,25 @@ html.opera-mini {
   .server,
   .support {
     .row {
-      padding-left: 40px;
-      padding-right: 40px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    hr {
+      margin-left: -20px;
+      margin-right: -20px;
     }
   }
+  /* XXX vanilla fix? */
+  .equal-height--vertical-divider .equal-height--vertical-divider__item {
+    border-bottom: 0;
+  }
 }
+
 @media only screen and (min-width: $breakpoint-large) {
   #context-footer div div.feature-one {
     display: table-cell;
   }
-  .about-context-footer, //XXX PRM
+  .about-context-footer,
   .cloud-context-footer,
   .desktop-context-footer,
   .internet-of-things-context-footer,
