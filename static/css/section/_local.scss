@@ -1783,3 +1783,11 @@ $item-spacing: 20px;
     padding-left: 0;
   }
 }
+
+/// Pre needs margin-bottom in smaller screens too
+/// XXX Robin 2016-04-20
+/// Update in typography vanilla? or ubuntu-vanilla-them?
+/// https://github.com/ubuntudesign/vanilla-framework/blob/master/scss/modules/_typography.scss#L357
+pre {
+  margin-bottom: .75em;
+}
