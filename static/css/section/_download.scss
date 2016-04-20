@@ -1148,3 +1148,22 @@ $grid-border-style: 1px dotted #888;
     display: inline-block;
     padding-top: .5em;
 }
+
+// XXX code stuff
+pre {
+  border-radius: 4px;
+  background-color: #2c001e;
+  border: 1px solid #2c001e;
+  overflow: scroll;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+pre > code {
+  border: 0;
+  background: transparent;
+  font-size: 1em;
+  font-weight: 300;
+  padding: 0.7em 1em;
+  color: #fff;
+  width: 100%;
+}
