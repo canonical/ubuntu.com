@@ -381,6 +381,9 @@ body {
         @media only screen and (max-width : $breakpoint-medium) {
             margin-left: 0;
         }
+        +a { // in full screen sections, move second nav left
+          padding: 8px 10px 0 0;
+        }
     }
     @media only screen and (min-width : $breakpoint-medium) {
         .strip-inner-wrapper {
@@ -1572,10 +1575,10 @@ button.button--primary__deactivated:hover {
         padding-bottom: 14px;
     }
     .nav-secondary .breadcrumb li a {
-        padding: 8px 10px 0;
-    }
-    .nav-secondary .breadcrumb li a.breadcrumb-link {
-      padding: 8px 10px 0 0;
+        padding-top: 8px;
+        padding-right: 10px;
+        padding-bottom: 0;
+        padding-left: 10px;
     }
 }
 /// XXX Karl (10.04.2016)
@@ -1631,7 +1634,7 @@ $item-spacing: 20px;
     vertical-align: top;
     font-size: 2em;
     line-height: 50px;
-    font-weight: 400;
+    font-weight: 300;
     width: 50px;
     height: 50px;
 
@@ -1668,7 +1671,6 @@ $item-spacing: 20px;
     margin-bottom: -($item-spacing - 2);
   }
 }
-
 
 .list-stepped--spaced {
   @extend .list-stepped;

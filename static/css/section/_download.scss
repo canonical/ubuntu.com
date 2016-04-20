@@ -730,7 +730,7 @@ html.opera-mini {
     }
   }
 
-  .instructions {
+  .instructions { // XXX Robin to remove
     padding: 0 inherit;
 
     pre {
@@ -754,7 +754,7 @@ html.opera-mini {
       }
     }
   }
-}
+} // XXX end Robin remove
 
 /* Contribute page */
 
@@ -1124,25 +1124,6 @@ $grid-border-style: 1px dotted #888;
   @media only screen and (min-width: $breakpoint-medium) {
     padding-bottom: 0;
   }
-}
-
-/* allows steps to be in tight one-cols with little text */
-.download-help__step {
-  min-height: 2.5em;
-  clear: both;
-}
-span.step {
-  border-radius: 40px;
-  background-color: $warm-grey;
-  border: 3px solid $warm-grey;
-  color: white;
-  display: block;
-  text-align: center;
-  vertical-align: bottom;
-  width: 2em;
-  font-size: 1.375em;
-  height: 2em;
-  line-height: 1.75;
 }
 
 // XXX - add provision for stepped list without headings in VF
