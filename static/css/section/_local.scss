@@ -448,7 +448,9 @@ body {
         color: #ebebea;
     }
     #context-footer div div:first-child {
+      @media only screen and (min-width : $breakpoint-large + 80) {
         padding-left: 0;
+      }
     }
     hr {
       box-shadow: none;
