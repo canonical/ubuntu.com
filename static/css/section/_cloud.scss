@@ -75,41 +75,18 @@
       max-width: 60px;
     }
 
+    /// Make two-col four-col on smaller screens
     .two-col {
-      width: 48%;
+      @media only screen and (max-width: $breakpoint-medium) {
+        width: 48.89381%;
+        margin-right: 2.21239%;
+        float: left;
 
-      &:nth-of-type(2n) {
-        margin-right: 0;
-      }
-
-      @media only screen and (min-width: 769px) {
-        width: 31.8584%;
-        margin-right: 2.21238%;
-
-        &.last-col,
         &:nth-of-type(2n) {
-          margin-right: 2.21238%;
-        }
-
-        &:nth-of-type(3n) {
-          margin-right: 0;
-        }
-      }
-
-      @media only screen and (min-width: 978px) {
-        width: 14.823%;
-
-        &:nth-of-type(3n) {
-          margin-right: 2.21238%;
-        }
-
-        &.last-col {
           margin-right: 0;
         }
       }
     }
-
-
   }
 }
 .cloud-home {
