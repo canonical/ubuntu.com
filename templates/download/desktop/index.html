@@ -5,9 +5,9 @@
 {% block extra_body_class %}download-desktop-home{% endblock %}
 
 {% block second_level_nav_items %}
-    <div class="strip-inner-wrapper">
-        {% include "templates/_nav_breadcrumb.html" with section_title="Download" page_title="Desktop"  %}
-    </div>
+<div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Download" page_title="Desktop"  %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -15,7 +15,6 @@
     <div class="strip-inner-wrapper">
         <div class="eight-col append-four">
             <h1>Download Ubuntu Desktop</h1>
-            <h2>{{lts_new_release}}</h2>
         </div><!-- /.eight-col -->
     </div>
 
@@ -38,9 +37,9 @@
                     </ul>
 
                 </div>
-                <div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom download-button">
+                <div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom gap-from-top">
                     <p>
-                        <a class="link-cta-download button--primary" href="/download/desktop/contribute/?version=16.04&amp;architecture=amd64">Download</a>
+                        <a class="button--primary link-cta-download" href="/download/desktop/contribute/?version=16.04&amp;architecture=amd64">Download</a>
                     </p>
                     <ul class="no-bullets">
                         <li><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></li>
@@ -48,9 +47,9 @@
                     </ul>
                 </div><!-- /.four-col -->
             </div><!-- /.box -->
-        </div>
-    </div>
-</div>
+        </div><!-- /.twelve-col -->
+    </div><!-- /.strip-inner-wrapper -->
+</div><!-- /.row -->
 
 <div class="row row-easy-ways">
     <div class="strip-inner-wrapper">
