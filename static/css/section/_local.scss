@@ -1698,3 +1698,10 @@ $item-spacing: 20px;
       }
   }
 }
+
+// Full-width nav alignment fix
+.nav-secondary .strip-inner-wrapper .breadcrumb li .breadcrumb-link {
+  @media only screen and (min-width : $navigation-threshold) {
+    padding-left: 0;
+  }
+}
