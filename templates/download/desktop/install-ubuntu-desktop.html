@@ -1,12 +1,12 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Install Ubuntu {{ lts_release }} LTS{% endblock %}
+{% block title %}Install Ubuntu {{lts_release_full}}{% endblock %}
 
 {% block extra_body_class %}download-help{% endblock %}
 
 {% block second_level_nav_items %}
 <div class="strip-inner-wrapper">
-    {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Install Ubuntu {{ lts_release }} LTS"  %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Install Ubuntu {{lts_release_full}}"  %}
 </div>
 {% endblock second_level_nav_items %}
 
@@ -14,7 +14,7 @@
 <div class="row row-hero no-padding-bottom">
     <div class="strip-inner-wrapper">
         <div class="nine-col append-one">
-            <h1>Install Ubuntu {{ lts_release }} LTS</h1>
+            <h1>Install Ubuntu {{lts_release_full}}</h1>
         </div>
     </div>
 </div>
