@@ -11,7 +11,7 @@
 			{% if level_2 %}
 				<li><a class="breadcrumb-link" href="/{{ level_1 }}/">{{ section_title }}</a>
 				<ul class="second-level-nav">
-					<li><a class="active" href="/{{ level_1 }}/{{ level_2 }}/">{{ page_title }}</a></li>
+					<li><a class="active breadcrumb-link--second-level" href="/{{ level_1 }}/{{ level_2 }}/">{{ page_title }}</a></li>
 				</ul>
 			{% else %}
 				<li><a{% if section_title == 'Things' %} id="IoT-breadcrumb"{% endif %} class="breadcrumb-link" href="/{{ level_1 }}/">{{ section_title }}</a>
