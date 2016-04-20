@@ -85,7 +85,7 @@
 -------------------------------------------------------------- */
 .download {
 
-    .row {
+    .wrapper .row {
         padding: 40px;
         padding-top: 2em;
     }
@@ -1038,13 +1038,15 @@ html.opera-mini {
         .help-image a {
             display: block;
         }
-        .box-tip {
-            background: #fff url(#{$asset-server}18aa8a3c-pictogram-download-tip-60x49.png) $gutter-width $gutter-width no-repeat;
-            margin-bottom: 1.538em;
-            padding-left: 100px;
-            padding-bottom: 1.25em;
-        }
     }
+
+    .box-tip {
+        background: #fff url(#{$asset-server}18aa8a3c-pictogram-download-tip-60x49.png) $gutter-width $gutter-width no-repeat;
+        margin-bottom: 1.538em;
+        padding-left: 100px;
+        padding-bottom: 1.25em;
+    }
+
     #download-other .box {
         margin-bottom: 0;
     }
@@ -1144,6 +1146,13 @@ span.step {
 }
 
 // XXX - add provision for stepped list without headings in VF
+.list-step__title {
+
+    & + .box {
+        margin-top: 1em;
+    }
+}
+
 .list-step__item {
     margin-bottom: 2rem;
     position: relative;
