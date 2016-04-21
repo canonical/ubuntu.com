@@ -1,22 +1,22 @@
 body,
 html {
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 body {
-    background-size: cover;
-    @media only screen and (min-width : $breakpoint-medium) {
-        padding-top: 30px;
-    }
+  background-size: cover;
+  @media only screen and (min-width : $breakpoint-medium) {
+    padding-top: 30px;
+  }
 }
 // XXX Graham (10.04.2016)
 // Move to Vanilla
 // remove negative margin and add border back
 .row.row-grey {
-    border-bottom: 1px dotted $warm-grey;
-    margin-top: 0;
-    &.no-border {
-        border-bottom: 0;
-    }
+  border-bottom: 1px dotted $warm-grey;
+  margin-top: 0;
+  &.no-border {
+    border-bottom: 0;
+  }
 }
 /// XXX Peter - marketo required field marker
 .mktoLabel > span,
@@ -31,108 +31,108 @@ body {
 
 // fixes main nav not closing issue
 @media only screen and (max-width: $navigation-threshold) {
-    .banner .nav-primary #nav:hover {
-        display: inherit;
+  .banner .nav-primary #nav:hover {
+    display: inherit;
+  }
+  #menu.active:after {
+    background-image: url("https://assets.ubuntu.com/v1/f9f534bd-nav-arrow.svg");
+    background-repeat: no-repeat;
+    background-position: 50% 26px;
+    content: "";
+    display: block;
+    height: 23px;
+    margin-left: 0;
+    padding-bottom: 17px;
+    position: relative;
+    top: -5px;
+    width: 48px;
+    z-index: 999;
+  }
+  .banner .nav-primary ul {
+    display: none;
+    li {
+      border-left: 1px solid #cccccc;
+      border-right: 0;
+      a,
+      a.active,
+      a.active:link,
+      a:link {
+        font-weight: 300;
+      }
+      // XXX Ant (10.04.2016)
+      // Added !important to override some deep selectors in Vanilla
+      a:hover,
+      a:link:hover {
+        background: $light-grey !important;
+        color: $text-color !important;
+      }
+      a.active:hover,
+      a.active:link:hover {
+        background: #dddddd !important;
+        color: $text-color !important;
+      }
     }
-    #menu.active:after {
-        background-image: url("https://assets.ubuntu.com/v1/f9f534bd-nav-arrow.svg");
-        background-repeat: no-repeat;
-        background-position: 50% 26px;
-        content: "";
-        display: block;
-        height: 23px;
-        margin-left: 0;
-        padding-bottom: 17px;
-        position: relative;
-        top: -5px;
-        width: 48px;
-        z-index: 999;
-    }
-    .banner .nav-primary ul {
+    &.active {
+      display: block;
+      ul {
         display: none;
-        li {
-            border-left: 1px solid #cccccc;
-            border-right: 0;
-            a,
-            a.active,
-            a.active:link,
-            a:link {
-                font-weight: 300;
-            }
-            // XXX Ant (10.04.2016)
-            // Added !important to override some deep selectors in Vanilla
-            a:hover,
-            a:link:hover {
-                background: $light-grey !important;
-                color: $text-color !important;
-            }
-            a.active:hover,
-            a.active:link:hover {
-                background: #dddddd !important;
-                color: $text-color !important;
-            }
-        }
-        &.active {
-            display: block;
-            ul {
-                display: none;
-            }
-        }
+      }
     }
-    .nav-secondary .breadcrumb {
-        padding-bottom: 0;
-        padding-top: 0;
+  }
+  .nav-secondary .breadcrumb {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+  .nav-secondary {
+    ul.third-level-nav li {
+      padding-left: 30px;
     }
-    .nav-secondary {
-        ul.third-level-nav li {
-            padding-left: 30px;
-        }
-        ul.second-level-nav li {
-            box-sizing: border-box;
-            width: 50%;
-            margin: 0;
-            float: left;
-            a,
-            a:link {
-                font-size: 0.875em;
-            }
-        }
-        .breadcrumb {
-            padding-bottom: 0;
-            padding-top: 0;
-            li .after {
-                background-image: url('https://assets.ubuntu.com/v1/74545443-nav-down-arrow.svg');
-                background-position: center center;
-                background-repeat: no-repeat;
-                background-size: 18px;
-                float: right;
-                height: 18px;
-                padding: 10px;
-                position: relative;
-                right: 3px;
-                top: 0;
-                width: 18px;
-            }
-            li .breadcrumb-link {
-                color: $text-color;
-                &--second-level:after,
-                &:after {
-                    content: '';
-                }
-            }
-            li a.active,
-            li a.active:link {
-                font-weight: 700;
-                color: $black;
-            }
-        }
-        &:hover {
-            border-bottom: 1px solid $box-border;
-            ul.breadcrumb li .after {
-                background-image: url('https://assets.ubuntu.com/v1/cadd096c-nav-up-arrow.svg');
-            }
-        }
+    ul.second-level-nav li {
+      box-sizing: border-box;
+      width: 50%;
+      margin: 0;
+      float: left;
+      a,
+      a:link {
+        font-size: 0.875em;
+      }
     }
+    .breadcrumb {
+      padding-bottom: 0;
+      padding-top: 0;
+      li .after {
+        background-image: url('https://assets.ubuntu.com/v1/74545443-nav-down-arrow.svg');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 18px;
+        float: right;
+        height: 18px;
+        padding: 10px;
+        position: relative;
+        right: 3px;
+        top: 0;
+        width: 18px;
+      }
+      li .breadcrumb-link {
+        color: $text-color;
+        &--second-level:after,
+        &:after {
+          content: '';
+        }
+      }
+      li a.active,
+      li a.active:link {
+        font-weight: 700;
+        color: $black;
+      }
+    }
+    &:hover {
+      border-bottom: 1px solid $box-border;
+      ul.breadcrumb li .after {
+        background-image: url('https://assets.ubuntu.com/v1/cadd096c-nav-up-arrow.svg');
+      }
+    }
+  }
 }
 
 .breadcrumb-link--second-level:after {
@@ -141,33 +141,33 @@ body {
 
 // pulling in the old guidelines version of combined-list
 .row .combined-list {
-    div,
-    ul {
-        margin-bottom: 0;
-    }
+  div,
+  ul {
+    margin-bottom: 0;
+  }
+  li.last-item {
+    border-bottom: 1px dotted $warm-grey;
+    padding-bottom: 10px;
+  }
+  .last-col {
+    margin-bottom: 20px;
     li.last-item {
-        border-bottom: 1px dotted $warm-grey;
-        padding-bottom: 10px;
+      border-bottom: 0;
+      padding-bottom: 0;
     }
-    .last-col {
-        margin-bottom: 20px;
-        li.last-item {
-            border-bottom: 0;
-            padding-bottom: 0;
-        }
-    }
+  }
 }
 @media only screen and (min-width : $breakpoint-medium) {
-    .row .combined-list {
-        div,
-        ul {
-            margin-bottom: 20px;
-        }
-        li.last-item {
-            border-bottom: 0;
-            padding-bottom: 0;
-        }
+  .row .combined-list {
+    div,
+    ul {
+      margin-bottom: 20px;
     }
+    li.last-item {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
 }
 // end @media only screen and (max-width : $breakpoint-medium)
 .row-hero {
@@ -180,234 +180,232 @@ body {
 // local override for uvt list ticks
 .list-ticks li,
 .list-ticks--compact li {
-    background-image: url('https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg');
+  background-image: url('https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg');
 }
 // flex container
 @media only screen and (min-width: $breakpoint-medium) {
-    .flex,
-    .phone .row .flex-container {
-        display: flex;
-        margin: auto;
-    }
+  .flex,
+  .phone .row .flex-container {
+    display: flex;
+    margin: auto;
+  }
 }
 // align content vertically
 .vertically-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .flex-align-center {
-    align-self: center;
+  align-self: center;
 }
 // the small icons to the left of headings need to not be full width on small screens - this may well become a pattern
 .twelve-col .inline-small {
-    float: left;
-    margin-bottom: 10px;
+  float: left;
+  margin-bottom: 10px;
+  width: 48px;
+  // this is to vertically center the heading/icon
+  & + div > h3,
+  & + h2 {
+    padding-top: 8px;
+  }
+  @media only screen and (min-width: $breakpoint-medium) {
+    margin-bottom: inherit;
     width: 48px;
-    // this is to vertically center the heading/icon
     & + div > h3,
     & + h2 {
-        padding-top: 8px;
+      padding-top: 0;
     }
+  }
+  @media only screen and (min-width: $breakpoint-medium) {
+    & + .three-col {
+      width: 48.8938%;
+    }
+  }
+  img {
+    width: 38px;
     @media only screen and (min-width: $breakpoint-medium) {
-        margin-bottom: inherit;
-        width: 48px;
-        & + div > h3,
-        & + h2 {
-            padding-top: 0;
-        }
+      width: 50px;
     }
-    @media only screen and (min-width: $breakpoint-medium) {
-        & + .three-col {
-            width: 48.8938%;
-        }
-    }
-    img {
-        width: 38px;
-        @media only screen and (min-width: $breakpoint-medium) {
-            width: 50px;
-        }
-    }
+  }
 }
 // newsletter sign up. Remove 2 x 5px padding added by guidelines
 .vertical-divider .box-digest li:last-of-type,
 .vertical-divider div.box-digest {
-    padding-bottom: 0;
+  padding-bottom: 0;
 }
 .strip-light {
-    background-color: #fff;
+  background-color: #fff;
 }
 // billboard__content
 .billboard__content {
-    background: rgba(255,255,255,.85);
-    color: $cool-grey;
-    padding: 20px;
+  background: rgba(255,255,255,.85);
+  color: $cool-grey;
+  padding: 20px;
 }
 .billboard__title {
-    @media only screen and (min-width : $breakpoint-large) {
-        font-size: 2.8125em;
-        line-height: 1;
-    }
+  @media only screen and (min-width : $breakpoint-large) {
+    font-size: 2.8125em;
+    line-height: 1;
+  }
 }
 .billboard__copy {
-    @media only screen and (min-width : $breakpoint-medium) {
-        font-size: 1.438em;
-    }
-    @media only screen and (min-width : $breakpoint-large) {
-        font-size: 2em;
-    }
+  @media only screen and (min-width : $breakpoint-medium) {
+    font-size: 1.438em;
+  }
+  @media only screen and (min-width : $breakpoint-large) {
+    font-size: 2em;
+  }
 }
 .billboard__title + .billboard__copy {
-    @media only screen and (min-width : $breakpoint-medium) {
-        font-size: 1em;
-    }
-    @media only screen and (min-width : $breakpoint-large) {
-        font-size: 1.438em;
-    }
+  @media only screen and (min-width : $breakpoint-medium) {
+    font-size: 1em;
+  }
+  @media only screen and (min-width : $breakpoint-large) {
+    font-size: 1.438em;
+  }
 }
 // Events listings
 .event-map {
-    float: left;
-    img {
-        margin-right: 20px;
-        width: 76px;
-    }
+  float: left;
+  img {
+    margin-right: 20px;
+    width: 76px;
+  }
 }
 .event-details-wrapper h3 {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 .event-details {
-    color: #888;
-    font-size: 0.8125em;
-    line-height: 1.2;
-    margin-bottom: 0;
-    width: 70%;
-    clear: none;
-    display: inline;
-    float: left;
-    margin-top: 4px;
+  color: #888;
+  font-size: 0.8125em;
+  line-height: 1.2;
+  margin-bottom: 0;
+  width: 70%;
+  clear: none;
+  display: inline;
+  float: left;
+  margin-top: 4px;
 }
 .event-details dd {
-    margin-left: 0;
-    padding-right: 0;
+  margin-left: 0;
+  padding-right: 0;
 }
 .location {
-    background-size: 20px 20px;
-    box-sizing: border-box;
-    background-image: url('https://insights.ubuntu.com/wp-content/themes/resource-centre/static/img/location.svg');
-    background-position: 0 5px;
-    background-repeat: no-repeat;
-    display: block;
-    float: left;
-    padding: 6px 20px 6px 24px;
-    width: 100%;
+  background-size: 20px 20px;
+  box-sizing: border-box;
+  background-image: url('https://insights.ubuntu.com/wp-content/themes/resource-centre/static/img/location.svg');
+  background-position: 0 5px;
+  background-repeat: no-repeat;
+  display: block;
+  float: left;
+  padding: 6px 20px 6px 24px;
+  width: 100%;
 }
 .venue {
-    background-size: 20px 20px;
-    box-sizing: border-box;
-    background-image: url('https://insights.ubuntu.com/wp-content/themes/resource-centre/static/img/gps.svg');
-    background-position: 0 5px;
-    background-repeat: no-repeat;
-    display: block;
-    float: left;
-    padding: 6px 20px 6px 24px;
-    width: 100%;
+  background-size: 20px 20px;
+  box-sizing: border-box;
+  background-image: url('https://insights.ubuntu.com/wp-content/themes/resource-centre/static/img/gps.svg');
+  background-position: 0 5px;
+  background-repeat: no-repeat;
+  display: block;
+  float: left;
+  padding: 6px 20px 6px 24px;
+  width: 100%;
 }
 .event-date {
-    background-size: 20px 20px;
-    background-image: url('https://insights.ubuntu.com/wp-content/themes/resource-centre/static/img/calendar.svg');
-    background-position: 0 4px;
-    background-repeat: no-repeat;
-    clear: both;
-    display: block;
-    padding: 6px 20px 6px 24px;
+  background-size: 20px 20px;
+  background-image: url('https://insights.ubuntu.com/wp-content/themes/resource-centre/static/img/calendar.svg');
+  background-position: 0 4px;
+  background-repeat: no-repeat;
+  clear: both;
+  display: block;
+  padding: 6px 20px 6px 24px;
 }
 .image-wrap {
-    background-size: 78px 78px;
-    position: relative;
-    display: inline-block;
-    max-width: 100%;
-    vertical-align: middle;
-    margin-bottom: 0;
+  background-size: 78px 78px;
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: middle;
+  margin-bottom: 0;
 }
 .image-wrap img {
-    border-radius: 4px;
-    margin-top: 7px;
+  border-radius: 4px;
+  margin-top: 7px;
 }
 // Full width sections
 .download,
 .homepage,
 .phone,
 .tablet {
-    .wrapper {
-        background: none;
-        width: 100%;
-        max-width: 100%;
+  .wrapper {
+    background: none;
+    width: 100%;
+    max-width: 100%;
+  }
+  @media only screen and (min-width : $breakpoint-large) {
+    .cookie-policy .wrapper {
+      width: $breakpoint-large;
     }
-    @media only screen and (min-width : $breakpoint-large) {
-        .cookie-policy .wrapper {
-            width: $breakpoint-large;
-        }
+  }
+  @media only screen and (min-width : $breakpoint-medium) {
+    .strip-inner-wrapper {
+      background: none;
+      border: none;
+      margin: 0;
+      padding: 0 8px;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      box-sizing: border-box;
+      margin: 0 auto;
+      max-width: $breakpoint-large;
+      float: none;
     }
-    @media only screen and (min-width : $breakpoint-medium) {
-        .strip-inner-wrapper {
-            background: none;
-            border: none;
-            margin: 0;
-            padding: 0 8px;
-            -webkit-box-shadow: none;
-            -moz-box-shadow: none;
-            box-shadow: none;
-            box-sizing: border-box;
-            margin: 0 auto;
-            max-width: $breakpoint-large;
-            float: none;
-        }
+  }
+  #main-content {
+    background: none;
+    box-shadow: none;
+  }
+  .inner-wrapper {
+      max-width: 100%;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-bottom: 0;
+  }
+  .row {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .nav-secondary ul.breadcrumb {
+    margin-left: 0;
+    @media only screen and (max-width : $breakpoint-large) {
+      margin-left: 10px;
     }
-    #main-content {
-        background: none;
-        box-shadow: none;
+    @media only screen and (max-width : $breakpoint-medium) {
+      margin-left: 0;
     }
-    .inner-wrapper {
-        max-width: 100%;
-        margin-top: 0;
-        margin-bottom: 0;
-        padding-bottom: 0;
+  }
+  @media only screen and (min-width : $breakpoint-medium) {
+    .strip-inner-wrapper {
+      padding: 0 30px;
     }
+  }
+  @media only screen and (min-width : $breakpoint-large) {
     .row {
-        padding-left: 0;
-        padding-right: 0;
+      padding: 40px 0;
     }
-    .nav-secondary ul.breadcrumb {
-        margin-left: 0;
-        @media only screen and (max-width : $breakpoint-large) {
-            margin-left: 10px;
-        }
-        @media only screen and (max-width : $breakpoint-medium) {
-            margin-left: 0;
-        }
-        +a { // in full screen sections, move second nav left
-          padding: 8px 10px 0 0;
-        }
+    .strip-inner-wrapper {
+      padding: 0;
     }
-    @media only screen and (min-width : $breakpoint-medium) {
-        .strip-inner-wrapper {
-            padding: 0 30px;
-        }
-    }
-    @media only screen and (min-width : $breakpoint-large) {
-        .row {
-            padding: 40px 0;
-        }
-        .strip-inner-wrapper {
-            padding: 0;
-        }
-    }
+  }
 }
 .nav-secondary .second-level-nav li a:hover,
 .nav-secondary .third-level-nav li a:hover {
-    color: $link-color;
+  color: $link-color;
 }
+
 .about,
 .cloud,
 .desktop,
@@ -522,857 +520,301 @@ body {
 }
 
 /*
- * Cookie policy style updates
- * To be updated in core-patterns
- */
+* Cookie policy style updates
+* To be updated in core-patterns
+*/
 // this removes the empty global nav container if javascript is off
 .no-js body {
-    padding-top: 0;
+  padding-top: 0;
 }
 strong {
-    font-weight: 400;
+  font-weight: 400;
 }
 // Overrides the top padding on video container which was only required when the
 // youtube have fixed controls pushing the video up by 30px.
 .video-container {
-    padding-top: 0;
+  padding-top: 0;
 }
 // was causing horizontal scroll on mobile
 .nav-secondary ul {
-    margin-left: 0;
+  margin-left: 0;
 }
-footer.global {
-    ul.inline li:last-child {
-        width: auto;
-    }
-    .legal.has-cookie {
-        /* if the cookie message is being displayed add padding so the legal links are still visible */
-        padding-bottom: 70px;
-    }
-}
+//.global {
+//    ul.inline li:last-child {
+//        width: auto;
+//    }
+//    .legal.has-cookie {
+//        /* if the cookie message is being displayed add padding so the legal links are still visible */
+//        padding-bottom: 70px;
+//    }
+//}
 .cookie-policy {
-    box-shadow: (0 -1px 2px rgba(0, 0, 0, 0.2));
-    background-color: #fae4dc;
-    bottom: 0;
-    position: fixed;
+  box-shadow: (0 -1px 2px rgba(0, 0, 0, 0.2));
+  background-color: #fae4dc;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  .wrapper {
+    background: transparent;
+  }
+  p {
+    box-sizing: border-box;
+    font-size: 13px;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding: 8px 10px;
     width: 100%;
-    z-index: 100;
-    .wrapper {
-        background: transparent;
-    }
-    p {
-        box-sizing: border-box;
-        font-size: 13px;
-        margin-bottom: 0;
-        margin-left: 0;
-        padding: 8px 10px;
-        width: 100%;
-    }
-    .link-cta {
-        background-image: url('#{$asset-server}3f057022-close-orange.svg');
-        background-repeat: no-repeat;
-        color: #fff;
-        float: right;
-        font-size: 1em;
-        height: 15px;
-        margin: 12px 10px;
-        padding: 0;
-        text-decoration: none;
-        text-indent: -9999px;
-        width: 16px;
-    }
+  }
+  .link-cta {
+    background-image: url('#{$asset-server}3f057022-close-orange.svg');
+    background-repeat: no-repeat;
+    color: #fff;
+    float: right;
+    font-size: 1em;
+    height: 15px;
+    margin: 12px 10px;
+    padding: 0;
+    text-decoration: none;
+    text-indent: -9999px;
+    width: 16px;
+  }
 }
 html.no-svg,
 html.opera-mini {
-    .cookie-policy .link-cta {
-        background-image: url('#{$asset-server}898777ac-close-orange.png');
-    }
+  .cookie-policy .link-cta {
+    background-image: url('#{$asset-server}898777ac-close-orange.png');
+  }
 }
 html.opera-mini {
-    .cookie-policy {
-        position: relative;
-        top: 0;
-    }
+  .cookie-policy {
+    position: relative;
+    top: 0;
+  }
 }
 /* resource hub content */
 .strip-dark .resource--link {
-    &:before {
-        border-right-color: #2c001e;
-    }
-    &,
-    &:active,
-    &:hover,
-    &:link,
-    &:visited {
-        color: #333;
-        -moz-box-shadow: none;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-    }
+  &:before {
+    border-right-color: #2c001e;
+  }
+  &,
+  &:active,
+  &:hover,
+  &:link,
+  &:visited {
+    color: #333;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
 }
 .row-grey .resource--link:before {
-    border-right-color: #f7f7f7;
+  border-right-color: #f7f7f7;
 }
 .resource--link {
-    display: block;
-    &,
-    &:active,
-    &:hover,
-    &:link,
-    &:visited {
-        color: inherit;
-        text-decoration: none;
-        outline: 0;
-        h2 {
-            color: #dd4814;
-        }
+  display: block;
+  &,
+  &:active,
+  &:hover,
+  &:link,
+  &:visited {
+    color: inherit;
+    text-decoration: none;
+    outline: 0;
+    h2 {
+      color: #dd4814;
     }
-    &:hover .title {
-        text-decoration: underline;
+  }
+  &:hover .title {
+    text-decoration: underline;
+  }
+  -moz-transition: background 0.2s ease-out;
+  -webkit-transition: background 0.2s ease-out;
+  transition: background 0.2s ease-out;
+  position: relative;
+  cursor: pointer;
+  padding-bottom: 40px;
+  &.four-col h2 {
+    a:link,
+    a:visited {
+      font-size: 1.125em;
+      /* 36 / 32 */
     }
-    -moz-transition: background 0.2s ease-out;
-    -webkit-transition: background 0.2s ease-out;
-    transition: background 0.2s ease-out;
-    position: relative;
-    cursor: pointer;
-    padding-bottom: 40px;
-    &.four-col h2 {
-        a:link,
-        a:visited {
-            font-size: 1.125em;
-            /* 36 / 32 */
-        }
+  }
+  &.twelve-col h2 {
+    a:link,
+    a:visited {
+      font-size: 1.40625em;
+      /* 36 / 32 */
     }
-    &.twelve-col h2 {
-        a:link,
-        a:visited {
-            font-size: 1.40625em;
-            /* 36 / 32 */
-        }
-    }
-    &:hover {
-        background-color: #fafafa;
-    }
-    &:after {
-        -moz-transition: all 0.2s ease-out;
-        -webkit-transition: all 0.2s ease-out;
-        transition: all 0.2s ease-out;
-        content: "";
-        position: absolute;
-        z-index: 2;
-        right: -6px;
-        top: 14px;
-        height: 1px;
-        width: 41px;
-        -ms-transform: rotate(45deg);
-        -webkit-transform: rotate(45deg);
-        transform: rotate(45deg);
-        -moz-box-shadow: 0 -1px 2px 0 #ddd;
-        -webkit-box-shadow: 0 -1px 2px 0 #ddd;
-        box-shadow: 0 -1px 2px 0 #ddd;
-    }
-    &:hover:after {
-        right: -9px;
-        top: 18px;
-        width: 48px;
-    }
-    &:before {
-        content: "";
-        position: absolute;
-        -moz-transition: border-width 0.2s ease-out;
-        -webkit-transition: border-width 0.2s ease-out;
-        transition: border-width 0.2s ease-out;
-        top: -2px;
-        right: -3px;
-        width: 0;
-        height: 0;
-        border-bottom: 30px solid #fdfdfd;
-        border-right: 30px solid #fff;
-        -webkit-box-shadow: -2px 2px 2px rgba(176, 176, 176, 0.4);
-        -moz-box-shadow: -2px 2px 2px rgba(176, 176, 176, 0.4);
-        box-shadow: -2px 2px 2px rgba(176, 176, 176, 0.4);
-        z-index: 2;
-        border-radius: 0 0 0 0;
-    }
-    &:hover:before {
-        border-bottom-width: 35px;
-        border-right-width: 35px;
-    }
-    &:last-of-type {
-        margin-bottom: 30px;
-    }
-    .content-cat {
-        color: $warm-grey;
-        font-size: 14px;
-        letter-spacing: 1px;
-        margin: 0;
-        padding: 0 0 0 20px;
-        position: absolute;
-        text-transform: uppercase;
-    }
-    .content-cat {
-        background: url("#{$asset-server}ed42aefa-icon-resource-hub-icon-document.png") left center no-repeat;
-    }
-    .content-cat-webinar {
-        background: url("#{$asset-server}8f8326fa-icon-resource-hub-webinar.png") left center no-repeat;
-    }
-    &.box-image-centered div + span img {
-        margin-top: 40px;
-    }
+  }
+  &:hover {
+    background-color: #fafafa;
+  }
+  &:after {
+    -moz-transition: all 0.2s ease-out;
+    -webkit-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+    content: "";
+    position: absolute;
+    z-index: 2;
+    right: -6px;
+    top: 14px;
+    height: 1px;
+    width: 41px;
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -moz-box-shadow: 0 -1px 2px 0 #ddd;
+    -webkit-box-shadow: 0 -1px 2px 0 #ddd;
+    box-shadow: 0 -1px 2px 0 #ddd;
+  }
+  &:hover:after {
+    right: -9px;
+    top: 18px;
+    width: 48px;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    -moz-transition: border-width 0.2s ease-out;
+    -webkit-transition: border-width 0.2s ease-out;
+    transition: border-width 0.2s ease-out;
+    top: -2px;
+    right: -3px;
+    width: 0;
+    height: 0;
+    border-bottom: 30px solid #fdfdfd;
+    border-right: 30px solid #fff;
+    -webkit-box-shadow: -2px 2px 2px rgba(176, 176, 176, 0.4);
+    -moz-box-shadow: -2px 2px 2px rgba(176, 176, 176, 0.4);
+    box-shadow: -2px 2px 2px rgba(176, 176, 176, 0.4);
+    z-index: 2;
+    border-radius: 0 0 0 0;
+  }
+  &:hover:before {
+    border-bottom-width: 35px;
+    border-right-width: 35px;
+  }
+  &:last-of-type {
+    margin-bottom: 30px;
+  }
+  .content-cat {
+    color: $warm-grey;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin: 0;
+    padding: 0 0 0 20px;
+    position: absolute;
+    text-transform: uppercase;
+  }
+  .content-cat {
+    background: url("#{$asset-server}ed42aefa-icon-resource-hub-icon-document.png") left center no-repeat;
+  }
+  .content-cat-webinar {
+    background: url("#{$asset-server}8f8326fa-icon-resource-hub-webinar.png") left center no-repeat;
+  }
+  &.box-image-centered div + span img {
+    margin-top: 40px;
+  }
 }
 html.yui3-js-enabled .resource:hover a {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 .row-grey .resource:before {
-    border-right-color: #F7F7F7;
+  border-right-color: #F7F7F7;
 }
 .command-line {
-    position: relative;
-    border-radius: 4px;
-    background-color: $dark-aubergine;
-    border: 1px solid $dark-aubergine;
-    overflow: hidden;
-    transition: all 0.2s;
-    &__input {
-        border: 0;
-        background: transparent;
-        font-size: 1em;
-        font-family: Ubuntu Mono;
-        font-weight: 300;
-        padding: 0.7em 1em;
-        color: #fff;
-        width: 100%;
-    }
-    &__copy-button {
-        transition: background-color 0.2s;
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 50px;
-        border: 0;
-        height: 100%;
-        display: block;
-        text-indent: -9999px;
-        background-image: url('#{$asset-server}994e60f9-get-link-url_16.svg');
-        background-repeat: no-repeat;
-        background-position: center;
-        background-color: #fff;
-        &:hover {
-            background-color: darken(#fff, 4%);
-        }
-    }
-    &.is-copied {
-        border-color: $success;
-        //background-color: $mid-aubergine;
-    }
-}
-footer.global {
-    .footer-a {
-        border-bottom: 1px solid #d8d8d8;
-        display: block;
-        clear: both;
-        ul li {
-            border-right: 1px dotted $warm-grey;
-            display: table-cell;
-            float: none;
-            margin-left: 0;
-            padding-bottom: 0;
-            padding-left: 0;
-            padding-right: 0;
-            width: auto;
-            width: 124px;
-        }
-        ul li.secondary-desktop {
-            width: 128px;
-        }
-        ul li.secondary-server {
-            width: 118px;
-        }
-        ul li.secondary-tablet {
-            width: 123px;
-        }
-        ul li.secondary-cloud {
-            width: 115px;
-        }
-        ul li.secondary-tv {
-            width: 115px;
-        }
-        ul li.secondary-management {
-            width: 143px;
-        }
-        ul li.last-item,
-        ul li:last-child {
-            border: 0;
-            padding-right: 0;
-        }
-        ul ul {
-            margin-left: 0;
-            display: block;
-        }
-        li li {
-            margin-left: 0;
-            float: none;
-            width: auto;
-            display: block;
-            min-height: 0;
-            border: 0;
-            margin-bottom: 2px;
-            padding-left: 0;
-            padding-bottom: inherit;
-            background: none;
-        }
-        li li:last-child {
-            margin-bottom: 0;
-        }
-        li li a {
-            display: block;
-        }
-        a::after {
-            content: "";
-        }
-        #nav-global li:first-of-type a {
-            margin-left: 0;
-        }
-    }
-    /* end footer-a */
-    .footer-b {
-        padding: 0 0 20px;
-        margin: 0 auto;
-        font-size: 0.75em;
-
-        ul ul, ul li, h2 {
-          margin: 0;
-          padding: 0;
-          line-height: 2;
-          width: auto;
-          float: none;
-          font-weight: 300;
-        }
-        h2 {
-          float: left;
-          margin-right: 6px;
-          display: inline;
-          font-weight: 400;
-          font-size: 1em;
-          a i {
-            font-style: normal;
-            display: none;
-          }
-        }
-        li {
-          width: 100%;
-          display: block;
-          clear: both;
-          overflow: hidden;
-        }
-        li li {
-          width: auto;
-          background: 0;
-          float: left;
-          clear: none;
-        }
-        li li:last-child {
-          width: 200px;
-        }
-        li li:after {
-          content: "|";
-          padding-left: 6px;
-          padding-right: 6px;
-          position: relative;
-        }
-        li h2 a:after,
-        li li:last-child:after,
-        li li.last-item:after  {
-            content: "";
-        }
-    } /* end footer-b */
-}
-/// add ubuntu logo to the footer in medium and large
-@media only screen and (min-width : $breakpoint-medium) {
-    footer.global .legal {
-        background: url("//assets.ubuntu.com/sites/ubuntu/latest/u/img/logos/logo-ubuntu-grey.png") 100% 0 no-repeat;
-        ul {
-            padding-left: 0;
-        }
-    }
-}
-/// footer legal row
-div.legal {
+  position: relative;
+  border-radius: 4px;
+  background-color: $dark-aubergine;
+  border: 1px solid $dark-aubergine;
+  overflow: hidden;
+  transition: all 0.2s;
+  &__input {
+    border: 0;
+    background: transparent;
+    font-size: 1em;
+    font-family: Ubuntu Mono;
     font-weight: 300;
-    position: relative;
-    clear: both;
-    min-height: 40px;
-    margin: 0 auto;
-}
-/* end legal */
-/// don't let the footer-b fonts get small on non large screens
-footer.global .footer-b li {
-    ul {
-        li {
-            a:link,
-            a:visited {
-                font-size: 1em;
-            }
-            h2 {
-                a:link,
-                a:visited {
-                    font-size: 1em;
-                }
-            }
-        }
-    }
-}
-nav div.footer-a div {
-    /* Can be removed once live */
-    margin: 0 auto;
+    padding: 0.7em 1em;
+    color: #fff;
     width: 100%;
-    /* 980px / 15px (baseline font); 980px + (60px x 2) = 1100px */
+  }
+  &__copy-button {
+    transition: background-color 0.2s;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50px;
+    border: 0;
+    height: 100%;
+    display: block;
+    text-indent: -9999px;
+    background-image: url('#{$asset-server}994e60f9-get-link-url_16.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #fff;
+    &:hover {
+      background-color: darken(#fff, 4%);
+    }
+  }
+  &.is-copied {
+    border-color: $success;
+    //background-color: $mid-aubergine;
+  }
 }
-html.no-svg,
-html.opera-mini {
-    footer.global .footer-a ul li h2 span,
-    footer.global .footer-a ul li.secondary-cloud h2 span,
-    footer.global .footer-a ul li.secondary-desktop h2 span,
-    footer.global .footer-a ul li.secondary-management h2 span,
-    footer.global .footer-a ul li.secondary-phone h2 span,
-    footer.global .footer-a ul li.secondary-server h2 span,
-    footer.global .footer-a ul li.secondary-tablet h2 span,
-    footer.global .footer-a ul li.secondary-tv h2 span,
-    footer.global .footer-b ul li h2 span,
-    footer.global .footer-b ul li.secondary-cloud h2 span,
-    footer.global .footer-b ul li.secondary-desktop h2 span,
-    footer.global .footer-b ul li.secondary-management h2 span,
-    footer.global .footer-b ul li.secondary-phone h2 span,
-    footer.global .footer-b ul li.secondary-server h2 span,
-    footer.global .footer-b ul li.secondary-tablet h2 span,
-    footer.global .footer-b ul li.secondary-tv h2 span {
-        background-image: url("#{$asset-server}7a7e0d52-arrow_down_9fa097.png");
-    }
-    footer.global .footer-a ul li h2.active span,
-    footer.global .footer-a ul li.secondary-cloud h2.active span,
-    footer.global .footer-a ul li.secondary-desktop h2.active span,
-    footer.global .footer-a ul li.secondary-management h2.active span,
-    footer.global .footer-a ul li.secondary-phone h2.active span,
-    footer.global .footer-a ul li.secondary-server h2.active span,
-    footer.global .footer-a ul li.secondary-tablet h2.active span,
-    footer.global .footer-a ul li.secondary-tv h2.active span,
-    footer.global .footer-b ul li h2.active span,
-    footer.global .footer-b ul li.secondary-cloud h2.active span,
-    footer.global .footer-b ul li.secondary-desktop h2.active span,
-    footer.global .footer-b ul li.secondary-management h2.active span,
-    footer.global .footer-b ul li.secondary-phone h2.active span,
-    footer.global .footer-b ul li.secondary-server h2.active span,
-    footer.global .footer-b ul li.secondary-tablet h2.active span,
-    footer.global .footer-b ul li.secondary-tv h2.active span {
-        //background-image: url("#{$asset-server}43e2b367-arrow_up_9fa097.png");
-    }
-    footer.global .top-link a {
-        background-image: url("#{$asset-server}ca0559fd-picto-upload-warmgrey.png");
-    }
-    .nav-secondary ul.breadcrumb li .after {
-        background-image: url("#{$asset-server}88de5861-nav-down-arrow.png");
-    }
-    .nav-secondary.open ul.breadcrumb li .after {
-        background-image: url("#{$asset-server}fc92aa19-nav-up-arrow.png"), none;
-    }
-}
-@media only screen and (max-width : $breakpoint-medium - 1) {
-    footer.global {
-        overflow: hidden;
-        padding-top: 0;
-        width: 106%;
-        .legal p {
-            padding-right: 8%;
-        }
-        .footer-a,
-        .footer-b {
-            display: block;
-            border-bottom: 0;
-            margin-bottom: 0;
-            padding-bottom: 0;
-            .clearfix {
-                padding-bottom: 0;
-            }
-            ul {
-                margin-left: 0;
-                margin-right: -10px;
-            }
-            ul li,
-            ul li.secondary-cloud,
-            ul li.secondary-desktop,
-            ul li.secondary-management,
-            ul li.secondary-phone,
-            ul li.secondary-server,
-            ul li.secondary-tablet,
-            ul li.secondary-tv {
-                border-bottom: 1px solid #D4D7D4;
-                width: 100%;
-                display: block;
-                border-right: 0;
-                border-left: 0;
-                margin-bottom: 0;
-                float: left;
-                padding: 0;
-                overflow: visible;
-                margin-left: -10px;
-                margin-right: -10px;
-                padding-left: 10px;
-                &.last-item {
-                    padding-bottom: 0;
-                }
-                h2 {
-                    box-sizing: border-box;
-                    margin: 0 0 10px;
-                    padding: 10px 0;
-                    width: 95%;
-                    cursor: pointer;
-                    margin-bottom: 0;
-                    display: inline-block;
-                    float: left;
-                    background-image: url("#{$asset-server}7bd1bd7b-arrow_down_9fa097.svg");
-                    background-position: 96% 50%;
-                    background-repeat: no-repeat;
-                    background-size: 13px 13px;
-                    &.active {
-                        background-image: url("#{$asset-server}dd3d9dec-arrow_up_9fa097.svg");
-                    }
-                    &.active + ul.second-level-nav {
-                        margin-bottom: -1px;
-                        border-top: 1px solid #D4D7D4;
-                        float: left;
-                    }
-                    a:link,
-                    a:visited {
-                        color: $warm-grey;
-                        letter-spacing: 0.05em;
-                        margin: 0;
-                        text-transform: uppercase;
-                        margin-top: 8px;
-                    }
-                    a:hover {
-                        color: $warm-grey;
-                        text-decoration: none;
-                    }
-                    span {
-                        background-image: url("#{$asset-server}7bd1bd7b-arrow_down_9fa097.svg");
-                        background-position: 0 2px;
-                        background-repeat: no-repeat;
-                        background-size: 100% 100%;
-                        clear: none;
-                        display: block;
-                        float: right;
-                        height: 13px;
-                        margin-left: 6px;
-                        width: 13px;
-                        top: 10px;
-                        right: 10px;
-                        position: absolute;
-                        z-index: -3;
-                    }
-                     & + ul.second-level-nav,
-                    .secondary-management {
-                        display: none;
-                    }
-                    &.active + ul.second-level-nav {
-                        display: block;
-                    }
-                }
-                ul.second-level-nav {
-                    float: left;
-                    width: 100%;
-                    margin-left: -10px;
-                    margin-right: -10px;
-                    padding-left: 10px;
-                    li {
-                        border-bottom: 0;
-                        display: block;
-                        margin: 0;
-                        padding: 0;
-                        /*width: 50%;*/
-                        width: 100%;
-                        float: left;
-                        padding-right: 10px;
-                        a {
-                            //margin-left: -15px;
-                            border-bottom: 1px solid #D4D7D4;
-                            color: #333333;
-                            display: block;
-                            float: left;
-                            font-size: 12px;
-                            /* was 1.166em; if we use ems the footer-a and footer-b sizes diverge */
-                            margin-bottom: 0;
-                            overflow: hidden;
-                            padding: 8px 0 8px 20px;
-                            margin-left: -10px;
-                            text-align: left;
-                            white-space: normal;
-                            width: 100%;
-                        }
-                    }
-                    li:after {
-                        content: "";
-                        padding-left: 0;
-                        padding-right: 0;
-                        position: static;
-                    }
-                }
-            }
-            ul li.secondary-management h2 span {
-                margin-right: -15px;
-            }
-        }
-        .footer-b {
-            ul li {
-                line-height: 1;
-                h2 {
-                    margin-left: 0;
-                    margin-top: 0;
-                    line-height: 1;
-                    a {
-                        line-height: 1;
-                    }
-                    span {
-                        margin-right: 0;
-                    }
-                    li {
-                        margin-left: 30px;
-                    }
-                }
-                ul.second-level-nav li a {
-                    margin-left: 0;
-                    padding: 10px 20px;
-                }
-                ul.second-level-nav li {
-                    padding-right: 10px;
-                }
-            }
-            ul.second-level-nav {
-                margin-left: -10px;
-                margin-right: -25px;
-            }
-            ul li:first-of-type h2 {
-                border-top: 0;
-            }
-            ul li:last-of-type h2 {
-                border-bottom: 0;
-            }
-        }
-    }
-    footer #nav-global {
-        padding-top: 0;
-        margin-top: 0;
-        h2 {
-            padding: 10px 14px 10px 9px;
-            span {
-                margin-right: 8%;
-            }
-        }
-        li.more li a {
-            font-size: 1em;
-        }
-    }
-    .top-link {
-        -moz-box-shadow: 0 -4px 4px -4px rgba(0,0,0,0.3) inset;
-        -webkit-box-shadow: 0 -4px 4px -4px rgba(0,0,0,0.3) inset;
-        box-shadow: 0 -4px 4px -4px rgba(0,0,0,0.3) inset;
-        background: none repeat scroll 0 0 transparent;
-        border: 0 none;
-        float: left;
-        font-size: 0.75em;
-        letter-spacing: 0.05em;
-        margin: 0 0 0 -10px;
-        padding-right: 20px;
-        text-transform: uppercase;
-        width: 100%;
-        position: initial;
-        a {
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-            background-image: url("//assets.ubuntu.com/sites/ubuntu/latest/u/img/pictograms/picto-pack/picto-upload-warmgrey.svg");
-            background-position: 10px center;
-            background-repeat: no-repeat;
-            background-size: 14px 14px;
-            border-bottom: 0 none;
-            color: #888888;
-            display: block;
-            float: none;
-            font-weight: 400;
-            padding: 12px 0 12px 28px;
-        }
-    }
-}
-html.no-svg,
-html.opera-mini {
-    footer #nav-global {
-        h2 span {
-            background-image: url("#{$asset-server}7a7e0d52-arrow_down_9fa097.png");
-        }
-        h2.active span {
-            background-image: url("#{$asset-server}43e2b367-arrow_up_9fa097.png");
-        }
-        h2:before {
-            background-image: url('#{$asset-server}48002a8b-external-link.png');
-        }
-    }
-}
+
+
 // for headings of external list links, currentley only seen on download/alternative-downloads
 .external--title span {
-    background: url("#{$asset-server}e1bba201-external-link-cool-grey.svg") left center no-repeat;
-    background-size: 20px;
-    padding-left: 26px;
+  background: url("#{$asset-server}e1bba201-external-link-cool-grey.svg") left center no-repeat;
+  background-size: 20px;
+  padding-left: 26px;
 }
-.legal > ul > li {
-    display: inline;
-    list-style: none;
-    margin-right: 10px;
-    & > a {
-        font-size: 12px;
-        margin-right: 10px;
-        color: #333;
-        position: relative;
-        vertical-align: middle;
-    }
-    &::after {
-        content: "•";
-    }
-    &:last-of-type::after {
-        content: "";
-        padding-left: 0;
-    }
-}
+
 #livechat-compact-container,
 #livechat-full {
-    display: none;
+  display: none;
 }
 /* Medium / Tablet viewport
 -------------------------------------------------------------- */
 @media only screen and (min-width : $breakpoint-medium) {
-    footer.global .legal.has-cookie {
-        /* if the cookie message is being displayed add padding so the legal links are still visible */
-        padding-bottom: 40px;
-    }
-    .resource .content-cat {
-        bottom: 16px;
-        left: 20px;
-    }
-    #livechat-compact-container,
-    #livechat-full,
-    #nav-global {
-        display: block;
-        -moz-box-shadow: none;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-    }
-    footer #nav-global {
-        display: none;
-    }
-    footer #nav-global div {
-        display: none;
-    }
-    footer #nav-global .nav-global-wrapper ul {
-        margin-left: 10px;
-    }
-    footer #nav-global .nav-global-wrapper ul ul {
-        margin-left: 0;
-    }
-    footer.global {
-        .two-col {
-            width: 14.89361%;
-            display: inline-block;
-            min-height: 0;
-        }
-    }
-    footer.global .footer-a {
-        //padding-bottom: 20px;
-        //margin-bottom: 20px;
-    }
+
+  .resource .content-cat {
+    bottom: 16px;
+    left: 20px;
+  }
+  #livechat-compact-container,
+  #livechat-full {
+    display: block;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
 }
-@media only screen and (min-width : $breakpoint-medium) {
-    footer.global .footer-a {
-        padding-bottom: 20px;
-        margin-bottom: 20px;
-        ul {
-            margin-left: -15px;
-        }
-        div {
-            padding-bottom: 10px;
-        }
-        h2 {
-            padding-left: 15px;
-        }
-        ul {
-            //margin-left: -15px;
-            padding-left: 15px;
-            border-collapse: collapse;
-            display: table;
-            float: none;
-            padding-bottom: 0;
-            width: 100%;
-        }
-        ul li {
-            border-right: 1px dotted $warm-grey;
-        }
-        ul li a {
-            padding-right: 20px;
-        }
-        ul li li {
-            border: 0;
-        }
-    }
-}
+
 @media only screen and (max-width : 842px) and (min-width : $breakpoint-medium) {
-    header.banner nav.nav-primary {
-        ul li a:active,
-        ul li a:hover,
-        ul li a:link,
-        ul li a:visited {
-            padding: 12px 10px 14px;
-            transition: padding 0.4s;
-        }
+  header.banner nav.nav-primary {
+    ul li a:active,
+    ul li a:hover,
+    ul li a:link,
+    ul li a:visited {
+      padding: 12px 10px 14px;
+      transition: padding 0.4s;
     }
+  }
 }
 @media only screen and (max-width : $breakpoint-medium) {
-    header.banner {
-        .search-toggle {
-            right: 48px;
-        }
+  header.banner {
+    .search-toggle {
+      right: 48px;
     }
-}
-/* @section Large / Desktop viewport
--------------------------------------------------------------- */
-@media only screen and (min-width : $breakpoint-large) {
-    footer.global .footer-b,
-    footer.global .footer-b,
-    footer.global .inline-lists ul,
-    footer.global nav div.footer-a div {
-        width: $breakpoint-large;
-        /* 980px / 15px (baseline font); 980px + (60px x 2) = 1100px */
-    }
-    footer.global .legal.has-cookie {
-        /* if the cookie message is being displayed add padding so the legal links are still visible */
-        padding-bottom: 30px;
-    }
-    .cookie-policy p {
-        padding-left: 0;
-        padding-right: 0;
-    }
-    #nav-global li.more a {
-        text-indent: 0;
-        display: block;
-    }
-    footer.global {
-        padding-top: 40px;
-        .row {
-            padding-left: 40px;
-            padding-right: 40px;
-        }
-    }
-    footer.global .footer-b li h2 a:after {
-        content: ":";
-    }
+  }
 }
 // end @media only screen and (min-width : $breakpoint-large)
+
 
 /* start of fix for vanilla margins on non-full screen pages */
 @media only screen and (min-width: $breakpoint-medium) {
@@ -1435,9 +877,9 @@ html.opera-mini {
   }
 
   .about,
-  .cloud,
+  //.cloud,
   .desktop,
-  .internet-of-things,
+  //.internet-of-things,
   .legal,
   .management,
   .server,
@@ -1465,156 +907,156 @@ html.opera-mini {
     }
 }
 .juju-bundle-card {
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.35);
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.35);
+  padding: 20px;
+  text-align: center;
+  &__image-container {
+    background-color: $light-grey;
+    margin-bottom: 12%;
+    position: relative;
     padding: 20px;
-    text-align: center;
-    &__image-container {
-        background-color: $light-grey;
-        margin-bottom: 12%;
-        position: relative;
-        padding: 20px;
+  }
+  &__image {
+    height: auto;
+    max-height: 180px;
+    max-width: 100%;
+    position: relative;
+    z-index: 0;
+  }
+  &__link {
+    box-sizing: border-box;
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    p:hover {
+      text-decoration: underline;
     }
-    &__image {
-        height: auto;
-        max-height: 180px;
-        max-width: 100%;
-        position: relative;
-        z-index: 0;
+  }
+  &__name {
+    position: absolute;
+    bottom: -18%;
+    display: block;
+    width: 100%;
+  }
+  &__link:link,
+  &__link:visited {
+    color: $cool-grey;
+  }
+  &__details-list {
+    display: inline-block;
+  }
+  &__details-item {
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 0;
+    &::after {
+      content: "•";
+      color: $warm-grey;
+      padding-left: 5px;
+      position: relative;
+      vertical-align: middle;
     }
-    &__link {
-        box-sizing: border-box;
-        display: block;
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 1;
-        p:hover {
-            text-decoration: underline;
-        }
+    &:last-of-type::after {
+      content: "";
+      padding-left: 0;
     }
-    &__name {
-        position: absolute;
-        bottom: -18%;
-        display: block;
-        width: 100%;
-    }
-    &__link:link,
-    &__link:visited {
-        color: $cool-grey;
-    }
-    &__details-list {
-        display: inline-block;
-    }
-    &__details-item {
-        float: left;
-        margin-right: 5px;
-        margin-bottom: 0;
-        &::after {
-            content: "•";
-            color: $warm-grey;
-            padding-left: 5px;
-            position: relative;
-            vertical-align: middle;
-        }
-        &:last-of-type::after {
-            content: "";
-            padding-left: 0;
-        }
-    }
+  }
 }
 .row.row-full-width {
-    padding: 0;
+  padding: 0;
 }
 // for large util
 .for-large {
-    @media only screen and (max-width: 1024px) {
-        display: none;
-    }
+  @media only screen and (max-width: 1024px) {
+    display: none;
+  }
 }
 // XXX Ant (10.04.2016)
 // Move to Vanilla
 // Untility class for-medium fix
 @media only screen and (max-width: $breakpoint-medium) {
-    .for-medium,
-    .for-tablet {
-        display: block;
-    }
+  .for-medium,
+  .for-tablet {
+    display: block;
+  }
 }
 // inline-icons imported from old guidelines
 .inline-icons {
-    margin: 0 0 $gutter-width;
-    li {
-        margin-right: 20px;
-        margin-bottom: 20px;
-        text-align: left;
-        display: inline-block;
-        &.last-item {
-            margin-right: 0;
-        }
+  margin: 0 0 $gutter-width;
+  li {
+    margin-right: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+    display: inline-block;
+    &.last-item {
+      margin-right: 0;
     }
-    &.no-margin-bottom li {
-        margin-bottom: 0;
-    }
-    img {
-        vertical-align: middle;
-        height: 30px;
-    }
+  }
+  &.no-margin-bottom li {
+    margin-bottom: 0;
+  }
+  img {
+    vertical-align: middle;
+    height: 30px;
+  }
 }
 @media only screen and (min-width: $breakpoint-large) {
-    .inline-icons {
-        text-align: left;
-        margin-bottom: 20px;
-    }
+  .inline-icons {
+    text-align: left;
+    margin-bottom: 20px;
+  }
 }
 // end @media only screen and (min-width: $breakpoint-large)
 // box-padded-feature imported from old guidelines
 .box-padded-feature {
+  border-radius: 4px;
+  background: $warm-grey url('#{$asset-path}c88fbee7-soft-centre-bkg.gif') repeat scroll 0 0;
+  border: 0;
+  margin-bottom: 20px;
+  padding: 11px 5px 6px;
+  h3 {
+    color: $white;
+    font-size: 1.21875em;
+    margin-left: ($gutter-width / 4);
+  }
+  h4 {
+    font-size: 1em;
+    font-weight: normal;
+  }
+  > div {
+    background: $white;
     border-radius: 4px;
-    background: $warm-grey url('#{$asset-path}c88fbee7-soft-centre-bkg.gif') repeat scroll 0 0;
-    border: 0;
-    margin-bottom: 20px;
-    padding: 11px 5px 6px;
-    h3 {
-        color: $white;
-        font-size: 1.21875em;
-        margin-left: ($gutter-width / 4);
+    overflow: hidden;
+    padding: 20px 8px;
+  }
+  div div {
+    margin-bottom: 0;
+  }
+  .inline-icons {
+    display: table;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    li {
+      display: table-cell;
+      text-align: left;
+      float: none;
     }
-    h4 {
-        font-size: 1em;
-        font-weight: normal;
-    }
-    > div {
-        background: $white;
-        border-radius: 4px;
-        overflow: hidden;
-        padding: 20px 8px;
-    }
-    div div {
-        margin-bottom: 0;
-    }
-    .inline-icons {
-        display: table;
-        margin: 0;
-        text-align: center;
-        width: 100%;
-        li {
-            display: table-cell;
-            text-align: left;
-            float: none;
-        }
-    }
-    .one-col {
-        width: 48px;
-        float: left;
-    }
+  }
+  .one-col {
+    width: 48px;
+    float: left;
+  }
 }
 // XXX Ant (09.04.2016)
 // https://github.com/ubuntudesign/www.ubuntu.com/issues/242
 // Utility clas to clear both directions
 .clear {
-    clear: both;
+  clear: both;
 }
 // XXX Ant (10.04.2016)
 // Deactivated styles for buttons
@@ -1622,28 +1064,28 @@ a.button--primary__deactivated,
 a.button--primary__deactivated:hover,
 button.button--primary__deactivated,
 button.button--primary__deactivated:hover {
-    background: #efefef;
-    color: #fff;
-    cursor: not-allowed;
+  background: #efefef;
+  color: #fff;
+  cursor: not-allowed;
 }
 // XXX Ant (10.04.2016)
 // https://github.com/ubuntudesign/www.ubuntu.com/issues/260
 // Remove border of grey-box as it didnt have borders before but is extending
 // box in the theme.
 .box-grey {
-    border: 0;
+  border: 0;
 }
 // Override the "align-items: center" from equal-height__align-vertically,
 // which makes all items appear horizontally centered
 .equal-height > .equal-height__align-vertically {
-    h2,
-    p {
-        align-items: stretch;
-        width: 100%;
-    }
+  h2,
+  p {
+    align-items: stretch;
+    width: 100%;
+  }
 }
 .pull-left--less {
-    margin-left: -20px;
+  margin-left: -20px;
 }
 @media only screen and (min-width : $navigation-threshold) {
     .nav-secondary .breadcrumb {
@@ -1659,12 +1101,12 @@ button.button--primary__deactivated:hover {
 /// XXX Karl (10.04.2016)
 /// we're using a similar style in various places, cosider pushing upstream
 .external-heading {
-    background: url("https://assets.ubuntu.com/v1/e1bba201-external-link-cool-grey.svg") left center no-repeat;
-    background-size: 16px;
-    padding-left: 22px;
+  background: url("https://assets.ubuntu.com/v1/e1bba201-external-link-cool-grey.svg") left center no-repeat;
+  background-size: 16px;
+  padding-left: 22px;
 }
 .header-search input[type=search] {
-    padding-right: 40px;
+  padding-right: 40px;
 }
 
 /// Modify list--grid__image-container to make sure images always
