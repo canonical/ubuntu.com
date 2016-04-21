@@ -514,174 +514,75 @@ body.homepage .row--devices__inner {
   }
 }
 
-// featured promo like half width banners
-body.homepage .row--featured {
-  overflow: hidden;
-  padding-top: 0;
-
-  @media only screen and (min-width : 768px) {
-    padding: 0;
-  }
-}
-
+/// Featured row, for takeunders
 .featured {
-  box-sizing: border-box;
-  display: inline;
   float: left;
-  margin: 0;
+  width: 50%;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-top: -40px;
 
-  @media only screen and (max-width : 768px) {
-    padding: 40px 0;
-    display: block;
-    float: left;
-    width: 100%;
-  }
-
-  @media only screen and (min-width : 769px) {
-    min-height: 19em;
-    padding: 40px 0;
-  }
-
-  @media only screen and (max-width : 768px) {
-    display: block;
-    float: left;
-    width: 100%;
-  }
-
-  &:before {
-    bottom: 0;
-    content: "";
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    @media only screen and (max-width : 768px) {
-      width: 205%;
-    }
-    z-index: -1; // behind parent
-  }
-
-  &:after {
-    bottom: 0;
-    content: "";
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    @media only screen and (max-width : 768px) {
-      width: 205%;
-    }
-    z-index: -1; // behind parent
+  @media only screen and (min-width : $breakpoint-large) {
+    padding-right: 0;
+    padding-left: 0;
+    margin-bottom: -40px;
   }
 }
-
-.featured__title a,
-.featured__desc,
-.featured__image {
-  color: #fff;
-  position: relative;
-  z-index: 1;
+.equal-height .equal-height__item.featured {
+  flex-direction: row;
 }
-
-@media only screen and (max-width : 767px) {
-  .featured__image {
-    display: none;
-  }
-}
-
 .featured--left {
-
-  &:before {
-    left: 0;
-    margin-left: -100%;
-  }
-}
-
-.featured--right {
+  @extend .featured;
+  background-color: #63105c;
   position: relative;
-
-  &:before {
-    background-color: $dark-aubergine;
-    content: '';
-    right: -100%;
-      @media only screen and (min-width : 769px) {
-        right: -102%;
-      }
-    left: auto;
-    position: absolute;
-    top: 0;
-    width: 202%;
-    @media only screen and (max-width : 768px) {
-      width: 240%;
-    }
-    z-index: -1;
+}
+.featured--left::before {
+  position: absolute;
+  display: none;
+  @media only screen and (min-width : $breakpoint-large) {
+    display: block;
   }
-
-    &:after {
-    background-color: $dark-aubergine;
-    content: '';
-    right: -100%;
-    @media only screen and (min-width : 769px) {
-      right: -102%;
-    }
-    left: auto;
-    position: absolute;
-    top: 0;
-    width: 202%;
-    @media only screen and (max-width : 768px) {
-      width: 240%;
-    }
-    z-index: 0;
+  left: -3000px;
+  margin-top: -40px;
+  content: "";
+  width: 3000px;
+  flex: auto;
+  height: 100%;
+  background-color: #63105c;
+}
+.featured--right {
+  @extend .featured;
+  background-color: #2C001E;
+  position: relative;
+}
+.featured--right::after {
+  position: absolute;
+  display: none;
+  @media only screen and (min-width : $breakpoint-large) {
+    display: block;
   }
-
+  right: -3000px;
+  margin-top: -40px;
+  content: "";
+  width: 3000px;
+  flex: auto;
+  height: 100%;
+  background-color: #2C001E;
+}
+.featured__content {
+  color: white;
+}
+.featured__content--subtle {
+  opacity: 0.17;
 }
 
 // homepage features
 $loulou: #63105c; // http://chir.ag/projects/name-that-color/#63105c
 
-.featured--left {
-  position: relative;
-  background-color: $loulou;
-
-  &:before {
-    background-color: $loulou;
-    content: '';
-    left: -100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 200%;
-      @media only screen and (max-width : 768px) {
-        width: 230%;
-      }
-    z-index: -1;
-  }
-}
-
-.featured--left__image {
-  opacity: 0.17;
-}
-
 // openstack feature
 $shark: #181c21; // http://chir.ag/projects/name-that-color/#181C21
-
-.featured--event:before {
-  background-color: $shark;
-  background-size: cover;
-}
-
-.featured--right__image {
-  position: relative;
-  z-index: 1;
-}
-
-.featured--right__content {
-  position: relative;
-  z-index: 1;
-}
-
 
 // ============================ Takeovers ============================
 // cloud default, don not remove
