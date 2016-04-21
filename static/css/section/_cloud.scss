@@ -785,6 +785,16 @@ body.cloud-ubuntu-openstack-reference-architecture {
     }
   }
 }
+/*  Small cloud/storage - XXX this is a candidate to raise up a level */
+body.cloud-storage {
+  .equal-height--vertical-divider .equal-height--vertical-divider__item {
+    border: none;
+  }
+
+  .twelve-col .equal-height--vertical-divider {
+    margin-bottom: 0;
+  }
+}
 
 /* Medium / Tablet viewport
 -------------------------------------------------------------- */
@@ -1800,8 +1810,7 @@ html.js .cloud-openstack-managed-cloud .js__required {
 
 /* Autopilot
 -------------------------------------------------------------- */
-.cloud-openstack-autopilot,
-.cloud-openstack-autopilot-b {
+.cloud-openstack-autopilot {
 
     .autopilot-dynamic h2 {
         padding-bottom: 1em;
@@ -1874,36 +1883,15 @@ html.js .cloud-openstack-managed-cloud .js__required {
   }
 }
 
-
-.stepped {
-  margin-left: 25px;
-  margin-top: 15px;
-
-  @media only screen and (max-width: 768px) {
-    margin-left: 60px;
-  }
-
-  &__item {
-    margin-bottom: 35px;
-  }
-
-  li {
-    position: relative;
-
-    span {
-      display: inline-block;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      line-height: 40px;
-      background-color: #ccc;
-      color: #fff;
-      text-align: center;
-      vertical-align: top;
-      font-size: 1.5em;
-      font-weight: 300;
-      left: -60px;
-      position: absolute;
+/* Cloud LXD
+-------------------------------------------------------------- */
+.cloud-lxd {
+  @media only screen and (max-width: $breakpoint-medium) {
+    .row-building-on-lxc,
+    .row-openstack-integration {
+        img {
+            display: none;
+        }
     }
   }
 }

@@ -1,28 +1,36 @@
 <div class="row no-border">
-	{% if level_2 != 'cloud' %}<div class="twelve-col">
-		<h2>Get the version you need</h2>
-	</div>{% endif %}
-	<div class="twelve-col">
-		<div class="equal-height--vertical-divider">
-			<div class="equal-height--vertical-divider__item four-col">{% if level_2 == 'cloud' %}
-				<h3 class="header--upgrade">Latest version of Ubuntu OpenStack</h3>
-				<p>If you prefer a manual setup of the latest Ubuntu OpenStack version, you can follow the instructions in our OpenStack operations guide. </p>
-				<p><a class="external" href="https://help.ubuntu.com/lts/clouddocs/en/Intro.html">View instructions here</a></p>
-			{% else %}
-				<h3 class="header--dvd">Buy DVDs from the Ubuntu shop</h3>
-				<p>Ubuntu Server 14.04 LTS is now available for purchase on DVD in the Ubuntu shop, along with the desktop version.</p>
-				<p><a href="http://shop.canonical.com/index.php?cPath=17" class="external">Go to the Ubuntu shop</a></p>{% endif %}
-			</div>
-			<div class="equal-height--vertical-divider__item four-col">
-				<h3 class="header--openstack">Use any version of OpenStack</h3>
-				<p>If you&rsquo;re staying on 12.04 or 14.04 but you need OpenStack Juno, run the following command:</p>
-				<pre><code>sudo add-apt-repository cloud-archive:juno</code></pre>
-			</div><!-- /.four-col -->
-			<div class="equal-height--vertical-divider__item four-col last-col">
-				<h3 class="header--download">Download a previous release</h3>
-				<p>Looking for a previous LTS point release with its original stack? Older versions of Ubuntu remain available.</p>
-				<p><a class="external" href="http://releases.ubuntu.com">Previous releases</a></p>
-			</div>
-		</div>
-	</div>
+    <div class="strip-inner-wrapper">
+        {% if level_2 != 'cloud' %}<div class="twelve-col">
+            <h2>Get the version you need</h2>
+        </div>{% endif %}
+        <div class="twelve-col">
+            <div class="equal-height--vertical-divider">
+                <div class="equal-height--vertical-divider__item four-col">
+                    {% if level_2 == 'cloud' %}
+                        <h3 class="header--upgrade">sudo apt install openstack</h3>
+                        <p>To setup Ubuntu OpenStack by hand run:</p>
+                        <pre><code>sudo apt install conjure-up</code></pre>
+                        <p>Followed by</p>
+                        <pre><code>conjure-up openstack</code></pre>
+                        <p><a href="https://help.ubuntu.com/lts/clouddocs/installer/">More documentation&nbsp;&rsaquo;</a></p>
+                    {% else %}
+                        <h3 class="header--dvd">Buy DVDs from the Ubuntu shop</h3>
+                        <p>Ubuntu Server 14.04 LTS is now available for purchase on DVD in the Ubuntu shop, along with the desktop version.</p>
+                        <p><a href="http://shop.canonical.com/index.php?cPath=17" class="external">Go to the Ubuntu shop</a></p>
+                    {% endif %}
+                </div>
+                <div class="equal-height--vertical-divider__item four-col">
+                    <h3 class="header--openstack">Ubuntu OpenStack tools</h3>
+                    <p>Use our award winning tools, proven in production to deploy, manage and scale your OpenStack environment:</p>
+                    <pre><code>sudo add-apt-repository cloud-archive:juno</code></pre>
+                    <p><a href="https://help.ubuntu.com/lts/clouddocs/en/Intro.html">Follow the step-by-step guide&nbsp;&rsaquo;</a></p>
+                </div><!-- /.four-col -->
+                <div class="equal-height--vertical-divider__item four-col last-col">
+                    <h3 class="header--download">Run Ubuntu in the public cloud</h3>
+                    <p>Optimised Ubuntu images are already available on most major clouds. They are also available for download.</p>
+                    <p><a href="https://cloud-images.ubuntu.com">Download standard Ubuntu Server cloud images&nbsp;&rsaquo;</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -5,141 +5,144 @@
 {% block extra_body_class %}contribute-to-ubuntu{% endblock %}
 
 {% block second_level_nav_items %}
-    {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Contribute"  %}
+    <div class="strip-inner-wrapper">
+        {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="Contribute"  %}
+    </div>
 {% endblock second_level_nav_items %}
 
 {% block outer_content %}
 
 <div id="contribute-introductions" class="row row-hero contribution-intro-row">
-    <div class="contribution-intro">
-        <h1>Tell us what we should do more&hellip;</h1>
-        <p>&hellip;and put your money where your mouth is ;)</p>
+    <div class="strip-inner-wrapper">
+        <div class="contribution-intro nine-col">
+            <h1>Tell us what we should do more&hellip;</h1>
+            <p>&hellip;and put your money where your mouth is ;)</p>
+        </div>
+        <div class="contribution-intro nine-col">
+            <h1>Help shape the future of Ubuntu&hellip;</h1>
+            <p>&hellip;tell us what to do more of!</p>
+        </div>
+        <div class="nine-col">
+            <div id="contribute-form-container" class="contribute-page box box-highlight clearfix">
+                <form class="main-form" id="contributions-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <div class="sliders-container noscript">
+                        <div class="slider-area" id="ubuntu-mobile">
+                            <p class="title"><strong>Ubuntu for personal and mobile computing</strong></p>
+                            <p class="description">I want convergence now!</p>
+
+                            <fieldset class="contribution-value">
+                                <label for="amount-mobile">&#36; </label>
+                                <input type="number" min="0" max="125" id="amount-mobile" name="amount_1" value="3" class="amount-input" tabindex="1">
+                            </fieldset>
+
+                            <div class="contribution-slider"></div>
+
+                            <!--  Hidden fields -->
+                            <input type="hidden" name="item_name_1" value="Ubuntu for personal and mobile computing">
+                        </div>
+                        <div class="slider-area" id="ubuntu-for-cloud">
+                            <p class="title"><strong>Ubuntu for cloud computing</strong></p>
+                            <p class="description">I want Ubuntu running my cloud and as a guest in my cloud of choice.</p>
+
+                            <fieldset class="contribution-value">
+                                <label for="amount_cloud">&#36; </label>
+                                <input type="number" max="125" id="amount_cloud" name="amount_2" value="3" class="amount-input" tabindex="2">
+                            </fieldset>
+
+                            <div class="contribution-slider"></div>
+
+                            <!-- hidden fields -->
+                            <input type="hidden" name="item_name_2" value="Ubuntu for cloud computing">
+                        </div>
+                        <div class="slider-area" id="ubuntu-for-things">
+                            <p class="title"><strong>Ubuntu for things</strong></p>
+                            <p class="description">I want a secure, upgradeable Internet of Things, powered by Ubuntu.</p>
+
+                            <fieldset class="contribution-value">
+                                <label for="amount_things">&#36; </label>
+                                <input type="number" max="125" id="amount_things" name="amount_3" value="3" class="amount-input" tabindex="3">
+                            </fieldset>
+
+                            <div class="contribution-slider"></div>
+
+                            <!-- hidden fields -->
+                            <input type="hidden" name="item_name_3" value="Ubuntu for things">
+                        </div>
+                        <div class="slider-area" id="community-projects">
+                            <p class="title"><strong>Community projects</strong></p>
+                            <p class="description">I support LoCo teams,  UbuCons and other events, upstream projects and all the good work the community does.</p>
+
+                            <fieldset class="contribution-value">
+                                <label for="amount_community">&#36; </label>
+                                <input type="number" max="125" id="amount_community" name="amount_4" value="3" class="amount-input"  tabindex="4">
+                            </fieldset>
+
+                            <div class="contribution-slider"></div>
+
+                            <!-- hidden fields -->
+                            <input type="hidden" name="item_name_4" value="Community projects">
+                        </div>
+                        <div class="slider-area" id="tip-to-canonical">
+                            <p class="title"><strong>Tip to Canonical</strong></p>
+                            <p class="description">Hats off for making Ubuntu possible. Keep it up.</p>
+
+                            <fieldset class="contribution-value">
+                                <label for="amount_canonical">&#36; </label>
+                                <input type="number" max="125" id="amount_canonical" name="amount_5" value="3" class="amount-input" tabindex="5">
+                            </fieldset>
+
+                            <div class="contribution-slider"></div>
+
+                            <!-- hidden fields -->
+                            <input type="hidden" name="item_name_5" value="Tip to Canonical">
+                        </div>
+                    </div>
+                    <div class="total-area-row noscript">
+                        <div class="total-area">
+                            <div class="contribution">
+                                <p class="title">Your contribution</p>
+
+                                <p class="price">
+                                    <span class="currency">&#36;</span>
+                                    <span class="final-amount">16</span>
+                                </p>
+                            </div>
+
+                            <div class="price-equivalent">
+                                <img alt="T-shirt" src="{{ ASSET_SERVER_URL }}b26d26e5-t-shirt.png">
+                                <p class="title">The same price as</p>
+                                <p class="desc">Peace, Love and Linux t-shirt</p>
+                                <p class="price">$<span class="value">20</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contribute-row no-border">
+                        <div class="contribute">
+                            <input type="hidden" name="cmd" value="_cart">
+                            <input type="hidden" name="business" value="donations@ubuntu.com">
+                            <input type="hidden" name="lc" value="GB">
+                            <input type="hidden" name="upload" value="1">
+                            <input type="hidden" name="currency_code" value="USD">
+                            <input type="hidden" name="button_subtype" value="services">
+                            <input type="hidden" name="no_note" value="1">
+                            <input type="hidden" name="no_shipping" value="1">
+                            <input type="hidden" name="rm" value="1">
+
+                            <input type="hidden" name="return" value="http://{{ request.META.HTTP_HOST }}/download/desktop/thank-you/?version={{ request.GET.version }}&architecture={{ request.GET.architecture }}">
+                            <input type="hidden" name="cancel_return" value="http://{{ request.META.HTTP_HOST }}/download/desktop/thank-you/?version={{ request.GET.version }}&architecture={{ request.GET.architecture }}">
+
+                            <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
+                            <button type="submit" class="button--primary pay-with-paypal" tabindex="9">Pay with PayPal</button>
+
+                            {% if request.GET.version and request.GET.architecture %}
+                            <a href="/download/desktop/thank-you/?version={{ request.GET.version }}&architecture={{ request.GET.architecture.split|join:"+" }}" class="skip" tabindex="11">Not now, take me to the download&nbsp;&rsaquo;</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="contribution-intro">
-        <h1>Help shape the future of Ubuntu&hellip;</h1>
-        <p>&hellip;tell us what to do more of!</p>
-    </div>
-</div>
-
-<div id="contribute-form-container" class="contribute-page">
-    <form class="main-form" id="contributions-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <div class="row no-border">
-            <div class="sliders-container noscript">
-                <div class="slider-area" id="ubuntu-mobile">
-                    <p class="title"><strong>Ubuntu for personal and mobile computing</strong></p>
-                    <p class="ten-col">I want convergence now!</p>
-
-                    <fieldset class="contribution-value">
-                        <label for="amount-mobile">&#36; </label>
-                        <input type="number" min="0" max="125" id="amount-mobile" name="amount_1" value="3" class="amount-input" tabindex="1">
-                    </fieldset>
-
-                    <div class="contribution-slider"></div>
-
-                    <!--  Hidden fields -->
-                    <input type="hidden" name="item_name_1" value="Ubuntu for personal and mobile computing">
-                </div>
-                <div class="slider-area" id="ubuntu-for-cloud">
-                    <p class="title"><strong>Ubuntu for cloud computing</strong></p>
-                    <p class="ten-col">I want Ubuntu running my cloud and as a guest in my cloud of choice.</p>
-
-                    <fieldset class="contribution-value">
-                        <label for="amount_cloud">&#36; </label>
-                        <input type="number" max="125" id="amount_cloud" name="amount_2" value="3" class="amount-input" tabindex="2">
-                    </fieldset>
-
-                    <div class="contribution-slider"></div>
-
-                    <!-- hidden fields -->
-                    <input type="hidden" name="item_name_2" value="Ubuntu for cloud computing">
-                </div>
-                <div class="slider-area" id="ubuntu-for-things">
-                    <p class="title"><strong>Ubuntu for things</strong></p>
-                    <p class="ten-col">I want a secure, upgradeable Internet of Things, powered by Ubuntu.</p>
-
-                    <fieldset class="contribution-value">
-                        <label for="amount_things">&#36; </label>
-                        <input type="number" max="125" id="amount_things" name="amount_3" value="3" class="amount-input" tabindex="3">
-                    </fieldset>
-
-                    <div class="contribution-slider"></div>
-
-                    <!-- hidden fields -->
-                    <input type="hidden" name="item_name_3" value="Ubuntu for things">
-                </div>
-                <div class="slider-area" id="community-projects">
-                    <p class="title"><strong>Community projects</strong></p>
-                    <p class="ten-col">I support LoCo teams,  UbuCons and other events, upstream projects and all the good work the community does.</p>
-
-                    <fieldset class="contribution-value">
-                        <label for="amount_community">&#36; </label>
-                        <input type="number" max="125" id="amount_community" name="amount_4" value="3" class="amount-input"  tabindex="4">
-                    </fieldset>
-
-                    <div class="contribution-slider"></div>
-
-                    <!-- hidden fields -->
-                    <input type="hidden" name="item_name_4" value="Community projects">
-                </div>
-                <div class="slider-area" id="tip-to-canonical">
-                    <p class="title"><strong>Tip to Canonical</strong></p>
-                    <p class="ten-col">Hats off for making Ubuntu possible. Keep it up.</p>
-
-                    <fieldset class="contribution-value">
-                        <label for="amount_canonical">&#36; </label>
-                        <input type="number" max="125" id="amount_canonical" name="amount_5" value="3" class="amount-input" tabindex="5">
-                    </fieldset>
-
-                    <div class="contribution-slider"></div>
-
-                    <!-- hidden fields -->
-                    <input type="hidden" name="item_name_5" value="Tip to Canonical">
-                </div>
-            </div>
-        </div>
-        <div class="row no-border total-area-row noscript">
-            <div class="total-area">
-                <div class="contribution">
-                    <p class="title">Your contribution</p>
-
-                    <p class="price">
-                        <span class="currency">&#36;</span>
-                        <span class="final-amount">16</span>
-                    </p>
-                </div>
-
-                <div class="price-equivalent">
-                    <img alt="T-shirt" src="{{ ASSET_SERVER_URL }}b26d26e5-t-shirt.png">
-                    <p class="title">The same price as</p>
-                    <p class="desc">Peace, Love and Linux t-shirt</p>
-                    <p class="price">$<span class="value">20</span></p>
-                </div>
-            </div>
-        </div>
-        <div class="row contribute-row no-border">
-            <div class="contribute">
-                <input type="hidden" name="cmd" value="_cart">
-                <input type="hidden" name="business" value="donations@ubuntu.com">
-                <input type="hidden" name="lc" value="GB">
-                <input type="hidden" name="upload" value="1">
-                <input type="hidden" name="currency_code" value="USD">
-                <input type="hidden" name="button_subtype" value="services">
-                <input type="hidden" name="no_note" value="1">
-                <input type="hidden" name="no_shipping" value="1">
-                <input type="hidden" name="rm" value="1">
-
-                <input type="hidden" name="return" value="http://{{ request.META.HTTP_HOST }}/download/desktop/thank-you/?version={{ request.GET.version }}&architecture={{ request.GET.architecture }}">
-                <input type="hidden" name="cancel_return" value="http://{{ request.META.HTTP_HOST }}/download/desktop/thank-you/?version={{ request.GET.version }}&architecture={{ request.GET.architecture }}">
-
-                <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
-                <button type="submit" class="button--primary pay-with-paypal" tabindex="9">Pay with PayPal</button>
-
-                {% if request.GET.version and request.GET.architecture %}
-                <a href="/download/desktop/thank-you/?version={{ request.GET.version }}&architecture={{ request.GET.architecture.split|join:"+" }}" class="skip" tabindex="11">Not now, take me to the download&nbsp;&rsaquo;</a>
-                {% endif %}
-            </div>
-        </div>
-    </form>
 </div>
 {% endblock outer_content %}
 
@@ -329,7 +332,7 @@ function resizeSliders(form) {
     var containerWidth = parseInt(width);
     var inputWidth = form.one('.contribution-value').get('offsetWidth');
     // sliders should sit alongside inputs with padding
-    var sliderLength = containerWidth - 20 - inputWidth;
+    var sliderLength = containerWidth - 50 - inputWidth;
 
     form.getData('sliders').forEach(function(slider) {
         slider.set('length', sliderLength + 'px');

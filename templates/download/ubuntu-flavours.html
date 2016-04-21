@@ -7,27 +7,31 @@ their own choice of default applications and settings, backed by the
 full Ubuntu archive for packages and updates.{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Ubuntu flavours" page_title="Ubuntu flavours"  %}
+    <div class="strip-inner-wrapper">
+        {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Ubuntu flavours" page_title="Ubuntu flavours"  %}
+    </div><!-- /.strip-inner-wrapper -->
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero equal-height">
-	<div class="seven-col equal-height__item">
-		<h1>Ubuntu flavours</h1>
-		<p>Ubuntu flavours offer a unique way to experience Ubuntu,
-		each with their own choice of default applications and settings.
-		Ubuntu flavours are backed by the full Ubuntu archive for packages
-		and updates.
-		</p>
-	</div><!-- /.eight-col -->
-    <div class="four-col push-one last-col equal-height__item equal-height__align-vertically">
-        <img src="{{ ASSET_SERVER_URL }}ebfb7122-picto-generic-warmgrey.svg" width="200" height="200" alt="" class="priority-0" />
+<div class="row row-flavours-hero row-image-centered equal-height no-border">
+    <div class="strip-inner-wrapper">
+        <div class="seven-col equal-height__item">
+            <h1>Ubuntu flavours</h1>
+            <p>Ubuntu flavours offer a unique way to experience Ubuntu,
+            each with their own choice of default applications and settings.
+            Ubuntu flavours are backed by the full Ubuntu archive for packages
+            and updates.
+            </p>
+        </div><!-- /.eight-col -->
+        <div class="four-col push-one equal-height__item equal-height__align-vertically not-for-small">
+            <img src="{{ ASSET_SERVER_URL }}ebfb7122-picto-generic-warmgrey.svg" width="200" height="200" alt="" class="priority-0" />
+        </div>
     </div>
 </div>
 
-<div class="row no-border">
-    <div class="twelve-col">
-
+<div class="row">
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col">
         <ul class="list--grid twelve-col no-bullets no-margin-bottom">
           <li class="list--grid__item four-col">
             <div class="one-col list--grid__image-container">
@@ -122,14 +126,15 @@ full Ubuntu archive for packages and updates.{% endblock %}
             </div>
             <div class="three-col last-col list--grid__description">
                 <h3><a class="external" href="https://xubuntu.org/">Xubuntu</a></h3>
-                <p>Xubuntu provides a light, stable and configurable desktop
-                environment with conservative workflows, thanks to its choice of
-                Xfce as the desktop environment.</p>
+                <p>Xubuntu is an elegant and easy to use operating system. Xubuntu comes with Xfce, which is a stable, light and configurable desktop environment.</p>
             </div>
           </li>
         </ul>
 
     </div><!-- /.twelve-col -->
+    </div><!-- /.strip-inner-wrapper -->
 </div><!-- /.row -->
+
+{% include "download/shared/_contextual_footer.html"  with first_item="_download_more_info_enterprise" second_item="_download_all_installation" third_item="_download_helping_hands" %}
 
 {% endblock content %}

@@ -1,96 +1,87 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}How to create a bootable USB stick on OS X{% endblock %}
+{% block title %}Create a USB stick on OS X{% endblock %}
 
 {% block extra_body_class %}download-help{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to create a bootable USB stick on OS X"  %}
+<div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to create a bootable USB stick on OS X"  %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row row-hero no-padding-bottom">
-	<h1>How to create a bootable USB stick on OS X</h1>
+    <div class="strip-inner-wrapper">
+        <div class="nine-col append-one">
+            <h1>How to create a bootable USB stick on OS X</h1>
+
+            <p>To run or install Ubuntu on a Mac from a USB stick, the first thing you need to do is insert a USB stick with at least 2GB of free space into your PC.</p>
+            <p>The easiest way to put Ubuntu onto your stick is to use the UNetbootin USB installer. You’ll need to download and install and follow the instructions.</p>
+            <p><a href="http://unetbootin.github.io/">Download the UNetbootin USB installer</a>.</p>
+        </div>
+    </div>
 </div>
-<div class="row no-border">
-	<div id="download-help" class="eight-col box box-grey no-border">
-	<p>We would encourage Mac users to download Ubuntu Desktop Edition by burning a CD. But if you prefer to use a USB stick, please follow the instructions below.</p>
-	<p><strong>Note:</strong> this procedure requires that you create an .img file from the .iso file you download.  It will also change the filesystem that is on the USB stick to make it bootable, so backup all data before continuing.</p>
-
-		<div class="box box-tip no-margin-bottom">
-			<p><strong>Tip:</strong> Drag and drop a file from Finder to Terminal to 'paste' the full path without risking typing errors.</p>
-		</div>
-
-		<div class="box box-highlight">
-			<ol class="no-bullets">
-				<li class="clearfix">
-					<span>1</span>
-					<div>
-						<p><a href="/download/desktop">Download Ubuntu Desktop</a></p>
-					</div>
-				</li>
-				<li class="clearfix">
-					<span>2</span>
-					<div>
-						<p>Open the Terminal (in /Applications/Utilities/ or query Terminal in Spotlight).</p>
-					</div>
-				</li>
-				<li class="clearfix">
-					<span>3</span>
-					<div>
-						<p>Convert the .iso file to .img using the convert option of hdiutil e.g., <pre>hdiutil convert -format UDRW -o ~/path/to/target.img ~/path/to/ubuntu.iso</pre></p>
-						<p><strong>Note:</strong> OS X tends to put the .dmg ending on the output file automatically.</p>
-					</div>
-				</li>
-				<li class="clearfix">
-					<span>4</span>
-					<div>
-						<p>Run <pre>diskutil list</pre> to get the current list of devices.</p>
-					</div>
-				</li>
-				<li class="clearfix">
-					<span>5</span>
-					<div>
-						<p>Insert your flash media.</p>
-					</div>
-				</li>
-				<li class="clearfix">
-					<span>6</span>
-					<div>
-						<p>Run <pre>diskutil list</pre> again and determine the device node assigned to your flash media (e.g. /dev/disk2).</p>
-					</div>
-				</li>
-				<li class="clearfix">
-					<span>7</span>
-					<div>
-						<p>Run <pre>diskutil unmountDisk /dev/diskN</pre> (replace N with the disk number from the last command; in the previous example, N would be 2).</p>
-					</div>
-				</li>
-				<li class="clearfix">
-					<span>8</span>
-					<div>
-						<p>Execute <pre>sudo dd if=/path/to/downloaded.img of=/dev/rdiskN bs=1m</pre> (replace /path/to/downloaded.img with the path where the image file is located; for example, ./ubuntu.img or ./ubuntu.dmg).</p>
-						<ul>
-							<li>Using /dev/rdisk instead of /dev/disk may be faster</li>
-							<li>If you see the error dd: Invalid number '1m', you are using GNU dd. Use the same command but replace bs=1m with bs=1M</li>
-							<li>If you see the error dd: /dev/diskN: Resource busy, make sure the disk is not in use. Start the 'Disk Utility.app' and unmount (don't eject) the drive</li>
-						</ul>
-					</div>
-				</li>
-				<li class="clearfix">
-					<span>9</span>
-					<div>
-						<p>Run <pre>diskutil eject /dev/diskN</pre> and remove your flash media when the command completes.</p>
-					</div>
-				</li>
-				<li class="clearfix">
-					<span class="double">10</span>
-					<div>
-						<p>Restart your Mac and press alt/option key while the Mac is restarting to choose the USB stick.</p>
-					</div>
-				</li>
-			</ol>
-		</div><!-- /.box -->
-</div><!-- /.eight-col -->
+<div class="row">
+    <div class="strip-inner-wrapper">
+        <ol class="list-stepped eight-col append-one">
+            <li class="list-stepped__item">
+                <p>Download the <a href="/download/desktop">64-bit Ubuntu Desktop ISO</a></p>
+            </li>
+            <li class="list-stepped__item">
+                <p>Launch UNetbootin and allow the osascript to make changes</p>
+                <div class="help-image">
+                    <a href="{{ ASSET_SERVER_URL }}6ee463ef-mac-usb-1-osautils.jpg?w=494" title="Click to enlarge image"><img src="{{ ASSET_SERVER_URL }}6ee463ef-mac-usb-1-osautils.jpg?w=494" alt="Type your password"></a>
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <p>Select the ‘Diskimage’ radio button and then click the '...’ button</p>
+                <div class="help-image">
+                    <a href="{{ ASSET_SERVER_URL }}85365387-mac-usb-2-select-diskimage.jpg?w=494" title="Click to enlarge image"><img src="{{ ASSET_SERVER_URL }}85365387-mac-usb-2-select-diskimage.jpg?w=494" alt="unetbootin"></a>
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <p>Select the Ubuntu ISO file you downloaded and click 'Open'</p>
+                <div class="help-image">
+                    <a href="{{ ASSET_SERVER_URL }}1325c614-mac-usb-3-select-iso.jpg?w=494" title="Click to enlarge image"><img src="{{ ASSET_SERVER_URL }}1325c614-mac-usb-3-select-iso.jpg?w=494" alt="Select disk image"></a>
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <p>Then select your flash drive in the bottom row and click 'OK'</p>
+                <div class="box box-tip no-margin-bottom">
+                    <p><strong>Tip:</strong> If you are unsure which one is your flash drive, in a terminal you can type</p>
+                    <pre>diskutil list</pre>
+                    <p>with the drive <em>not</em> inserted and then inserted to see which one it is.</p>
+                </div>
+                <div class="help-image">
+                    <a href="{{ ASSET_SERVER_URL }}34ca8b8f-mac-usb-4-select-usb-drive.jpg?w=494" title="Click to enlarge image"><img src="{{ ASSET_SERVER_URL }}34ca8b8f-mac-usb-4-select-usb-drive.jpg?w=494" alt="unetbootin select drive"></a>
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <p>After UNetbootin finishes, click ‘Exit’ and restart your Mac</p>
+                <div class="help-image">
+                    <a href="{{ ASSET_SERVER_URL }}74bbe11c-mac-usb-5-done.jpg?w=494" title="Click to enlarge image"><img src="{{ ASSET_SERVER_URL }}74bbe11c-mac-usb-5-done.jpg?w=494" alt="unetbootin complete"></a>
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <p>Press alt/option key while the Mac is restarting to choose the USB stick to try or install Ubuntu</p>
+            </li>
+        </ol>
+    </div>
 </div><!-- /.row -->
+
+<div class="row no-border">
+    <div class="strip-inner-wrapper">
+        <div class="five-col append-three">
+            <h3>Need more help?</h3>
+            <p>For more help, please look on the <a href="https://help.ubuntu.com/community/How%20to%20install%20Ubuntu%20on%20MacBook%20using%20USB%20Stick">community help wiki</a>.</p>
+        </div>
+        <div class="two-col align-center not-for-small">
+            <img src="{{ ASSET_SERVER_URL }}1b45cd30-picto-help-warmgrey.svg" alt="" />
+        </div>
+    </div>
+</div><!-- /.row -->
+
+{% include "download/shared/_contextual_footer.html" with first_item="_download_desktop_installation" second_item="_download_try_desktop" third_item="_download_helping_hands" %}
+
 {% endblock content %}

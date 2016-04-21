@@ -1,7 +1,7 @@
 {% load versioned_static  %}
 <!doctype html>
 
-{% with lts_release="16.04" latest_release="16.04" lts_release_name="XenialXerus" latest_release_name="XenialXerus" openstack_version="Liberty" %}
+{% with lts_release="16.04" latest_release="16.04" lts_release_full="16.04 LTS" latest_release_full="16.04 LTS"  latest_release_name="XenialXerus" lts_release_name="XenialXerus" openstack_version="Liberty" %}
 
 <!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en" dir="ltr"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en" dir="ltr"> <![endif]-->
@@ -162,29 +162,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- footer content goes here -->
 {% include "templates/footer.html" %}
 
-{% comment %}<!-- start google content things/iot ab test -->{% endcomment %}
-<script>
-// Define JavaScript for each page variation of this experiment.
-var pageVariations = [
-  function() {}, // Original: Do nothing. This will render the default HTML.
-  function() { // Variation 1: IoT
-    var iot = [ 'IoT', 'IoT-footer', 'IoT-homepage', 'IoT-breadcrumb' ];
-    for (var i = 0; i <= iot.length; i++ ) {
-      var id = document.getElementById(iot[i]);
-      if (id) {
-        id.innerHTML = 'IoT';
-      }
-    }
-  }
-];
-// Wait for the DOM to load, then execute the view for the chosen variation.
-$(document).ready(
-  // Execute the chosen view
-  pageVariations[chosenVariation]
-);
-</script>
-{% comment %}<!-- end google content experiment -->{% endcomment %}
-
 <!-- Use this only until Modernizr fixes Opera Mini background-size detection -->
 <script>
 	var isOperaMini = (navigator.userAgent.indexOf('Opera Mini') > -1);
@@ -209,6 +186,6 @@ $(document).ready(
 </body>
 </html>
 
-<!-- This comment was updated on 2015-01-07 10:21 -->
+<!-- This comment was updated on 2015-04-19 18:43:00 -->
 
 {% endwith %}

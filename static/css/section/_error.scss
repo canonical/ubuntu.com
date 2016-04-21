@@ -23,7 +23,7 @@ body.error-page {
         color: #fff;
         font-size: 90px;
         font-weight: bold;
-        height: 126px;
+        height: 154px;
         padding-top: 28px;
         position: absolute;
         right: 0;
@@ -50,11 +50,15 @@ body.error-page {
 
 /* Medium / Tablet viewport
 -------------------------------------------------------------- */
-@media only screen and (min-width : 769px) {
-  body.error-page #main-content .hero-box .last-col {
+@media only screen and (min-width: $breakpoint-medium) {
+  body.error-page {
+    #main-content .hero-box span {
+      display: block;
+    }
+
+    #main-content .hero-box .last-col,
+    &.error500 #main-content .hero-box img {
       padding-top: 110px;
-  }
-  body.error-page #main-content .hero-box span {
-    display: block;
+    }
   }
 }

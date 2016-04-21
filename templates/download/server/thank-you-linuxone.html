@@ -6,21 +6,26 @@ Thanks for downloading Ubuntu for LinuxONE and z Systems
 {% block extra_body_class %}download-thankyou{% endblock %}
 
 {% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
     {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server" page_title="Thank you"  %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block head_extra %}
-  <meta http-equiv="refresh" content="3;url=http://cdimage.ubuntu.com/releases/xenial/beta-2/ubuntu-16.04-beta2-server-s390x.iso">
+  <meta http-equiv="refresh" content="3;url=http://cdimage.ubuntu.com/releases/16.04/release/ubuntu-16.04-server-s390x.iso">
 {% endblock %}
 
 {% block content %}
 
-    <div class="row row-hero no-border">
+<div class="row row-hero no-border">
+    <div class="strip-inner-wrapper">
         <h1>Thanks for downloading Ubuntu for LinuxONE and z&nbsp;Systems</h1>
         <p>Your ISO download should start automatically.</p>
-        <p>If it doesn&rsquo;t, or for alternative options <a href="http://cdimage.ubuntu.com/releases/xenial/beta-2/">visit the download page</a>.</p>
+        <p>If it doesn&rsquo;t, or for alternative options <a href="http://cdimage.ubuntu.com/releases/16.04/release/">visit the download page</a>.</p>
     </div>
-    <div class="row row-grey no-border">
+</div>
+<div class="row row-grey no-border">
+    <div class="strip-inner-wrapper">
         <div class="box-grey twelve-col no-margin-bottom equal-height">
             <div class="four-col support box box-highlight equal-height__item">
                 <div class="text-center four-col">
@@ -47,6 +52,9 @@ Thanks for downloading Ubuntu for LinuxONE and z Systems
                 <p><a href="http://askubuntu.com/questions/tagged/server" class="external">Get help</a></p>
             </div><!-- /.four-col -->
         </div><!-- /.row .row-box -->
+    </div><!-- /.strip-inner-wrapper -->
+</div><!-- /.row .row-grey -->
 
-    </div><!-- /.row .row-download -->
+{% include "download/shared/_contextual_footer.html"  with first_item="_download_server_installation" second_item="_download_server_guide" third_item="_download_helping_hands" %}
+
 {% endblock content %}

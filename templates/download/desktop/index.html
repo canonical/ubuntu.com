@@ -5,9 +5,9 @@
 {% block extra_body_class %}download-desktop-home{% endblock %}
 
 {% block second_level_nav_items %}
-    <div class="strip-inner-wrapper">
-        {% include "templates/_nav_breadcrumb.html" with section_title="Download" page_title="Desktop"  %}
-    </div>
+<div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Download" page_title="Desktop"  %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -15,7 +15,6 @@
     <div class="strip-inner-wrapper">
         <div class="eight-col append-four">
             <h1>Download Ubuntu Desktop</h1>
-            <h2>{{lts_new_release}}</h2>
         </div><!-- /.eight-col -->
     </div>
 
@@ -23,13 +22,13 @@
         <div class="twelve-col no-margin-bottom">
             <div class="box box-highlight clearfix equal-height--vertical-divider">
                 <div class="equal-height--vertical-divider__item eight-col no-margin-bottom">
-                    <h2>Ubuntu {{latest_release}}</h2>
-                    <p>The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{latest_release}} comes with nine months of security and maintenance updates.</p>
-                    <p><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="external">Ubuntu {{latest_release}} release notes</a></p>
+                    <h2>Ubuntu {{lts_release_full}}</h2>
+                    <p>Download the latest version of Ubuntu, for desktop PCs and laptops. LTS stands for long-term support – which means five years of free security and maintenance updates, guaranteed.</p>
+                    <p><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="external">Ubuntu {{lts_release_full}} release notes</a></p>
 
                     <p>Recommended system requirements:</p>
 
-                    <ul>
+                    <ul class="list-ticks--compact">
                         <li>2 GHz dual core processor or better</li>
                         <li>2 GB system memory</li>
                         <li>25 GB of free hard drive space</li>
@@ -38,9 +37,9 @@
                     </ul>
 
                 </div>
-                <div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom download-button">
+                <div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom gap-from-top">
                     <p>
-                        <a class="button--primary" href="/download/desktop/contribute/?version=16.04&architecture=amd64">Download</a>
+                        <a class="button--primary link-cta-download" href="/download/desktop/contribute/?version=16.04&amp;architecture=amd64">Download</a>
                     </p>
                     <ul class="no-bullets">
                         <li><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></li>
@@ -48,41 +47,48 @@
                     </ul>
                 </div><!-- /.four-col -->
             </div><!-- /.box -->
+        </div><!-- /.twelve-col -->
+    </div><!-- /.strip-inner-wrapper -->
+</div><!-- /.row -->
+
+<div class="row row-easy-ways">
+    <div class="strip-inner-wrapper">
+
+
+        <div class="twelve-col">
+            <h2>Easy ways to switch to Ubuntu</h2>
+        </div>
+        <div class="equal-height">
+            <div class="equal-height__item four-col box">
+                <h3 class="header--ubuntu">From an older version</h3>
+                <p>If you&rsquo;re already running Ubuntu, you can upgrade in a few clicks from <a href="/download/desktop/upgrade">Software Updater</a>.</p>
+                <ul class="no-bullets">
+                    <li><a href="/download/desktop/burn-a-dvd-on-ubuntu">How to burn a DVD on Ubuntu&nbsp;&rsaquo;</a></li>
+                    <li><a href="/download/desktop/create-a-usb-stick-on-ubuntu">How to create a bootable USB stick on Ubuntu&nbsp;&rsaquo;</a></li>
+                </ul>
+            </div>
+            <div class="equal-height__item four-col box">
+                <h3 class="header--windows">From Windows</h3>
+                <p>If you&rsquo;re using Windows 8 or any computer with a 64-bit processor, we recommend the 64-bit download.</p>
+                <ul class="no-bullets">
+                    <li><a href="/download/desktop/burn-a-dvd-on-windows">How to burn a DVD on Windows&nbsp;&rsaquo;</a></li>
+                    <li><a href="/download/desktop/create-a-usb-stick-on-windows">How to create a bootable USB stick on Windows&nbsp;&rsaquo;</a></li>
+                </ul>
+            </div>
+            <div class="equal-height__item four-col last-col box">
+                <h3 class="header--mac">From Mac OS X</h3>
+                <p>Most Macs with Intel processors will work with either 64-bit or Mac images. If the 64-bit image doesn't work, try the Mac image.</p>
+                <ul class="no-bullets">
+                    <li><a href="/download/desktop/burn-a-dvd-on-mac-osx">How to burn a DVD on OS X&nbsp;&rsaquo;</a></li>
+                    <li><a href="/download/desktop/create-a-usb-stick-on-mac-osx">How to create a bootable USB stick on OS X&nbsp;&rsaquo;</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="row row-easy-ways">
-	<div class="twelve-col">
-		<h2>Easy ways to switch to Ubuntu</h2>
-	</div>
-	<div class="equal-height">
-		<div class="equal-height__item four-col box">
-			<h3 class="header--ubuntu">From an older version</h3>
-			<p>If you&rsquo;re already running Ubuntu, you can upgrade in a few clicks from <a href="/download/desktop/upgrade">Software Updater</a>.</p>
-			<ul class="no-bullets">
-				<li><a href="/download/desktop/burn-a-dvd-on-ubuntu">How to burn a DVD on Ubuntu&nbsp;&rsaquo;</a></li>
-				<li><a href="/download/desktop/create-a-usb-stick-on-ubuntu">How to create a bootable USB stick on Ubuntu&nbsp;&rsaquo;</a></li>
-			</ul>
-		</div>
-		<div class="equal-height__item four-col box">
-			<h3 class="header--windows">From Windows</h3>
-			<p>If you&rsquo;re using Windows 8 or any computer with a 64-bit processor, we recommend the 64-bit download.</p>
-			<ul class="no-bullets">
-				<li><a href="/download/desktop/burn-a-dvd-on-windows">How to burn a DVD on Windows&nbsp;&rsaquo;</a></li>
-				<li><a href="/download/desktop/create-a-usb-stick-on-windows">How to create a bootable USB stick on Windows&nbsp;&rsaquo;</a></li>
-			</ul>
-		</div>
-		<div class="equal-height__item four-col last-col box">
-			<h3 class="header--mac">From Mac OS X</h3>
-			<p>Most Macs with Intel processors will work with either 64-bit or Mac images. If the 64-bit image doesn't work, try the Mac image.</p>
-			<ul class="no-bullets">
-				<li><a href="/download/desktop/burn-a-dvd-on-mac-osx">How to burn a DVD on OS X&nbsp;&rsaquo;</a></li>
-				<li><a href="/download/desktop/create-a-usb-stick-on-mac-osx">How to create a bootable USB stick on OS X&nbsp;&rsaquo;</a></li>
-			</ul>
-		</div>
-	</div>
-</div>
-
 {% include "download/desktop/_other-ways.html" %}
+
+{% include "download/shared/_contextual_footer.html" with first_item="_download_desktop_installation" first_item_class="" second_item="_download_try_desktop" second_item_class="" third_item="_download_helping_hands" third_item_class="" %}
+
 {% endblock content %}

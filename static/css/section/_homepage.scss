@@ -116,28 +116,6 @@ body.homepage {
     header.banner {
       margin-bottom: 5px;
     }
-
-    .takeover {
-      overflow: hidden;
-
-      img.background {
-        width: auto;
-        float: none;
-        left: 38%;
-        position: absolute;
-        top: 0;
-        z-index: 1;
-      }
-
-      .four-col {
-        padding: 75px 0 0;
-        margin: 0;
-
-        img {
-          padding-top: 90px;
-        }
-      }
-      }
   }
 }
 
@@ -488,7 +466,7 @@ body.homepage .row--cloud-products {
   background-color: #fff;
 
   @media only screen and (min-width : 768px) {
-    background-image: url('#{$asset-server}f27582be-image-cloud-static.jpg');
+    background-image: url('#{$asset-server}890dec32-cloud-laptop.jpg?w=792');
     background-repeat: no-repeat;
     background-position: 77% center;
     background-size: 50%;
@@ -636,7 +614,7 @@ body.homepage .row--featured {
     top: 0;
     width: 202%;
     @media only screen and (max-width : 768px) {
-      width: 205%;
+      width: 240%;
     }
     z-index: -1;
   }
@@ -653,7 +631,7 @@ body.homepage .row--featured {
     top: 0;
     width: 202%;
     @media only screen and (max-width : 768px) {
-      width: 205%;
+      width: 240%;
     }
     z-index: 0;
   }
@@ -676,7 +654,7 @@ $loulou: #63105c; // http://chir.ag/projects/name-that-color/#63105c
     top: 0;
     width: 200%;
       @media only screen and (max-width : 768px) {
-        width: 205%;
+        width: 230%;
       }
     z-index: -1;
   }
@@ -1320,7 +1298,7 @@ body.homepage-maas-takeover {
       background-position: center center;
       padding-top: 30px;
     }
-    
+
     .strip-inner-wrapper {
       min-height: 40vw;
       overflow: visible;
@@ -1334,7 +1312,7 @@ body.homepage-maas-takeover {
           margin-top: 50px;
         }
       }
-      
+
       .row-hero__image--small-screen {
         padding-top: 20px;
       }
@@ -1347,6 +1325,86 @@ body.homepage-maas-takeover {
           margin-top: 150px;
         }
       }
+    }
+  }
+}
+
+#main-content .row-hero.china {
+  @media only screen and (min-width : 768px) {
+    padding-bottom: 55px;
+    padding-top: 75px;
+  }
+
+  @media only screen and (min-width : 984px) {
+    padding-bottom: 110px;
+    padding-top: 150px;
+  }
+}
+
+// 16.04 takeover
+.release-1604 .row-hero {
+  background-image: url('https://assets.ubuntu.com/v1/34ab80ea-image-background-16-04.jpg?w=1150');
+  background-position: right center;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-top: 20px;
+  width: auto;
+
+  @media only screen and (min-width : 768px) {
+    background-image: url('https://assets.ubuntu.com/v1/34ab80ea-image-background-16-04.jpg');
+    background-size: cover;
+    margin-bottom: 40px;
+    margin-left: 40px;
+    margin-right: 40px;
+    min-height: 540px;
+  }
+
+  @media only screen and (min-width : 986px) {
+    min-height: 800px;
+  }
+
+  a {
+    color: $white;
+  }
+
+  .button--primary {
+    color: $cool-grey;
+    background-color: $white;
+
+    &:hover {
+      background-color: #f7f7f7;
+    }
+  }
+
+  &__image {
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: 2em;
+  }
+
+  @media only screen and (min-width : 768px) {
+    &__title {
+      font-size: 3em;
+      margin-top: 100px;
+    }
+
+    &__text {
+      margin-top: 25px;
+    }
+  }
+
+  @media only screen and (min-width : 984px) {
+    &__title {
+      font-size: 4.5em;
+      line-height: 1.8;
+      margin-top: 130px;
+    }
+
+    &__text {
+      margin-top: 70px;
     }
   }
 }
