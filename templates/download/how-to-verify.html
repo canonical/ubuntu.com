@@ -85,6 +85,22 @@ gpg: no ultimately trusted keys found
 gpg: Total number processed: 2
 gpg:               imported: 2</code>
             </pre>
+
+            <h4>Verify the key fingerprints</h4>
+
+            <pre>
+                <code>
+gpg --list-keys --with-fingerprint 0xFBB75451 0xEFE21092
+pub   1024D/FBB75451 2004-12-30
+      Key fingerprint = C598 6B4F 1257 FFA8 6632  CBA7 4618 1433 FBB7 5451
+uid                  Ubuntu CD Image Automatic Signing Key &lt;cdimage@ubuntu.com>
+
+pub   4096R/EFE21092 2012-05-11
+      Key fingerprint = 8439 38DF 228D 22F7 B374  2BC0 D94A A3F0 EFE2 1092
+uid                  Ubuntu CD Image Automatic Signing Key (2012) &lt;cdimage@ubuntu.com></code>
+            </pre>
+
+
         </li>
 
         <li class="list-stepped__item">
