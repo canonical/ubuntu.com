@@ -1151,12 +1151,16 @@ $grid-border-style: 1px dotted #888;
 
 // XXX code stuff
 pre {
-  border-radius: 4px;
-  background-color: #2c001e;
-  border: 1px solid #2c001e;
   overflow: scroll;
   padding-top: 1em;
-  padding-bottom: 1em;
+  padding-top: 10px;
+  padding-right: 15px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  background-color: #333;
+  border: none;
+  border-radius: 2px;
+  color: #cdcdcd;
 }
 pre > code {
   border: 0;
@@ -1164,6 +1168,6 @@ pre > code {
   font-size: 1em;
   font-weight: 300;
   padding: 0.7em 1em;
-  color: #fff;
+  color: #cdcdcd;
   width: 100%;
 }
