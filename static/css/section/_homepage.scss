@@ -515,15 +515,29 @@ body.homepage .row--devices__inner {
 }
 
 /// Featured row, for takeunders
+body.homepage .row-featured {
+  padding-left: 0;
+  padding-right: 0;
+  margin-top: -20px;
+
+  @media only screen and (min-width : $breakpoint-medium) {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: -40px;
+  }
+}
 .featured {
-  float: left;
-  width: 50%;
+  float: none;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 40px;
   padding-bottom: 40px;
-  margin-top: -40px;
 
+  @media only screen and (min-width : $breakpoint-medium) {
+    margin-bottom: -20px;
+    float: left;
+    width: 50%;
+  }
   @media only screen and (min-width : $breakpoint-large) {
     padding-right: 0;
     padding-left: 0;
@@ -537,39 +551,40 @@ body.homepage .row--devices__inner {
   @extend .featured;
   background-color: #63105c;
   position: relative;
-}
-.featured--left::before {
-  position: absolute;
-  display: none;
-  @media only screen and (min-width : $breakpoint-large) {
-    display: block;
+
+  &::before {
+    position: absolute;
+    display: none;
+    @media only screen and (min-width : $breakpoint-medium) {
+      display: block;
+    }
+    left: -3000px;
+    margin-top: -40px;
+    content: "";
+    width: 3000px;
+    flex: auto;
+    height: 100%;
+    background-color: #63105c;
   }
-  left: -3000px;
-  margin-top: -40px;
-  content: "";
-  width: 3000px;
-  flex: auto;
-  height: 100%;
-  background-color: #63105c;
 }
 .featured--right {
   @extend .featured;
-  background-color: #2C001E;
   position: relative;
-}
-.featured--right::after {
-  position: absolute;
-  display: none;
-  @media only screen and (min-width : $breakpoint-large) {
-    display: block;
+
+  &::after {
+    position: absolute;
+    display: none;
+    @media only screen and (min-width : $breakpoint-medium) {
+      display: block;
+    }
+    right: -3000px;
+    margin-top: -40px;
+    content: "";
+    width: 3000px;
+    flex: auto;
+    height: 100%;
+    background-color: #2C001E;
   }
-  right: -3000px;
-  margin-top: -40px;
-  content: "";
-  width: 3000px;
-  flex: auto;
-  height: 100%;
-  background-color: #2C001E;
 }
 .featured__content {
   color: white;
@@ -1301,5 +1316,30 @@ body.homepage-maas-takeover {
     &__text {
       margin-top: 70px;
     }
+  }
+}
+
+.featured--event__ods-austin {
+  &::before {
+    position: absolute;
+    display: block;
+    right: -3000px;
+    margin-top: -40px;
+    content: "";
+    width: 3000px;
+    flex: auto;
+    height: 100%;
+    left: 0;
+    z-index: -2;
+    background-image: url('#{$asset-server}c4068bb4-austin.png?fmt=jpg&q=20');
+  }
+
+  &::after {
+    background-color: #303030;
+    left: 0;
+    top: 40px;
+    display: block;
+    opacity: 0.7;
+    z-index: -1;
   }
 }
