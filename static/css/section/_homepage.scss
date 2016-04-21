@@ -530,16 +530,11 @@ body.homepage .row--devices__inner {
     margin-bottom: -40px;
   }
 }
-.featured__content {
-  color: white;
-}
-.featured__content--subtle {
-  opacity: 0.17;
-}
 .equal-height .equal-height__item.featured {
   flex-direction: row;
 }
 .featured--left {
+  @extend .featured;
   background-color: #63105c;
   position: relative;
 }
@@ -558,6 +553,7 @@ body.homepage .row--devices__inner {
   background-color: #63105c;
 }
 .featured--right {
+  @extend .featured;
   background-color: #2C001E;
   position: relative;
 }
@@ -574,6 +570,12 @@ body.homepage .row--devices__inner {
   flex: auto;
   height: 100%;
   background-color: #2C001E;
+}
+.featured__content {
+  color: white;
+}
+.featured__content--subtle {
+  opacity: 0.17;
 }
 
 // homepage features
