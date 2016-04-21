@@ -534,7 +534,6 @@ body.homepage .row-featured {
   padding-bottom: 40px;
 
   @media only screen and (min-width : $breakpoint-medium) {
-    margin-top: -40px;
     margin-bottom: -20px;
     float: left;
     width: 50%;
@@ -570,7 +569,6 @@ body.homepage .row-featured {
 }
 .featured--right {
   @extend .featured;
-  background-color: #2C001E;
   position: relative;
 
   &::after {
@@ -1322,12 +1320,24 @@ body.homepage-maas-takeover {
 }
 
 .featured--event__ods-austin {
-  &:before {
+  &::before {
+    position: absolute;
+    display: block;
+    right: -3000px;
+    margin-top: -40px;
+    content: "";
+    width: 3000px;
+    flex: auto;
+    height: 100%;
+    left: 0;
+    z-index: -2;
     background-image: url('#{$asset-server}c4068bb4-austin.png?fmt=jpg&q=20');
   }
 
-  &:after {
+  &::after {
     background-color: #303030;
+    left: 0;
     opacity: 0.7;
+    z-index: -1;
   }
 }
