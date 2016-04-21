@@ -107,20 +107,21 @@
     </div>
 </section>
 
-<section class="row row--featured strip no-border">
+<section class="row strip no-border">
     <div class="strip-inner-wrapper equal-height">
-        <div class="featured featured--left six-col right">
-            <div class="two-col not-for-small">
-                <img class="featured__image featured--left__image not-for-small" src="{{ ASSET_SERVER_URL }}3aa7e9a6-picto-articles-white.svg?q=40" width="150" alt="" />
+        <div class="featured featured--left equal-height__item">
+            <div class="four-col prepend-one not-for-small">
+                <img class="featured__content--subtle" src="{{ ASSET_SERVER_URL }}3aa7e9a6-picto-articles-white.svg?q=40" width="150" alt="" />
             </div>
-            <div class="three-col last-col no-margin-bottom">
-                <h2 class="featured__title"><a href="https://insights.ubuntu.com/2015/11/24/opus-2-develops-the-legal-cloud-of-the-future-on-ubuntu-openstack" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : 'Opus 2 takeunder', 'eventLabel' : 'Learn more about Ubuntu', 'eventValue' : undefined });">The legal cloud of the future&nbsp;&rsaquo;</a></h2>
-                <p class="featured__desc">Read how Opus 2&rsquo;s flagship service was built entirely on Ubuntu OpenStack.</p>
+            <div class="six-col append-one no-margin-bottom">
+                <h2><a class="featured__content" href="https://insights.ubuntu.com/2015/11/24/opus-2-develops-the-legal-cloud-of-the-future-on-ubuntu-openstack" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : 'Opus 2 takeunder', 'eventLabel' : 'Learn more about Ubuntu', 'eventValue' : undefined });">The legal cloud of the future&nbsp;&rsaquo;</a></h2>
+                <p class="featured__content">Read how Opus 2&rsquo;s flagship service was built entirely on Ubuntu OpenStack.</p>
             </div>
         </div>
         {% include "takeovers/takeunders/_telco.html" %}
     </div>
 </section>
+
 {% comment %}
 <style type="text/css">
     /* background image for the event feature */
