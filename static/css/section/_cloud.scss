@@ -75,41 +75,18 @@
       max-width: 60px;
     }
 
+    /// Make two-col six-col on smaller screens
     .two-col {
-      width: 48%;
+      @media only screen and (max-width: $breakpoint-medium) {
+        width: 48.89381%;
+        margin-right: 2.21239%;
+        float: left;
 
-      &:nth-of-type(2n) {
-        margin-right: 0;
-      }
-
-      @media only screen and (min-width: 769px) {
-        width: 31.8584%;
-        margin-right: 2.21238%;
-
-        &.last-col,
         &:nth-of-type(2n) {
-          margin-right: 2.21238%;
-        }
-
-        &:nth-of-type(3n) {
-          margin-right: 0;
-        }
-      }
-
-      @media only screen and (min-width: 978px) {
-        width: 14.823%;
-
-        &:nth-of-type(3n) {
-          margin-right: 2.21238%;
-        }
-
-        &.last-col {
           margin-right: 0;
         }
       }
     }
-
-
   }
 }
 .cloud-home {
@@ -413,7 +390,6 @@ body.cloud-cloud-management {
   .grey-box {
     background-color: $light-grey;
     padding: 20px;
-    min-height: 160px;
   }
 
   // Styling for slider rows
@@ -445,7 +421,7 @@ body.cloud-cloud-management {
 
   .slider-container {
     float: left;
-    margin-top: 10px;
+    margin-top: 5px;
   }
 
   .slider-value {
@@ -453,7 +429,10 @@ body.cloud-cloud-management {
     float: left;
     font-size: 1em;
     margin-left: 0;
+    margin-bottom: 6px;
     padding-left: 0;
+    padding-top: 0;
+    padding-bottom: 0;
 
     label {
       color: $warm-grey;
@@ -1586,7 +1565,7 @@ body.cloud-storage {
   .checkbox-vms-servers__list {
     list-style: none;
     margin-left: 0;
-    padding-top: 14px;
+    margin-bottom: 0;
 
     &-item {
       float: left;
@@ -1601,8 +1580,15 @@ body.cloud-storage {
     label {
       position: relative;
       top: -2px;
+      margin-bottom: 0;
       margin-right: 5px;
       cursor: pointer;
+    }
+    input {
+      margin-top: 0;
+      display: block;
+      margin-top: 2px;
+      margin-bottom: 2px;
     }
   }
 
