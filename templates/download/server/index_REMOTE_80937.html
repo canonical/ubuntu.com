@@ -1,0 +1,96 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Download Ubuntu Server | Download{% endblock %}
+
+{% block extra_body_class %}download-server-home{% endblock %}
+
+{% block second_level_nav_items %}
+    <div class="strip-inner-wrapper">
+        {% include "templates/_nav_breadcrumb.html" with section_title="Download" page_title="Server" tertiary="true"  %}
+    </div>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-grey">
+    <div class="strip-inner-wrapper">
+        <div class="eight-col append-four">
+            <h1>Download Ubuntu Server</h1>
+            <h2>{{lts_new_release}}</h2>
+        </div>
+        <div class="strip-inner-wrapper">
+            <div class="twelve-col no-margin-bottom">
+                <div class="box box-highlight clearfix equal-height--vertical-divider">
+                    <div class="equal-height--vertical-divider__item eight-col no-margin-bottom">
+                    <h2>Ubuntu Server {{lts_release_full}}</h2>
+                    <p>The long-term support version of Ubuntu Server, including the Icehouse release of OpenStack and support guaranteed until April 2019 &mdash; 64-bit only.</p>
+                    <p><a href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes" class="external">Ubuntu Server {{lts_release_full}} release notes</a></p>
+                </div>
+                <div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom gap-from-top">
+                    <p><a href="/download/server/thank-you?version={{lts_release}}&amp;architecture=amd64" class="link-cta-download button--primary">Download</a></p>
+                    <p><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
+                </div><!-- /.four-col -->
+            </div><!-- /.box -->
+        </div>
+    </div>
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col">
+            <h2>How you can use Ubuntu Server</h2>
+        </div>
+        <div class="equal-height">
+            <div class="six-col box">
+                <h3>OpenStack</h3>
+                <p>Build your cloud with Autopilot, the easiest way to create and manage an OpenStack cloud. Test drive on VMs or build a free test cloud on your own hardware for up to ten machines today.</p>
+                <p><a href="/download/cloud">Get started with  Autopilot&nbsp;&rsaquo;</a></p>
+            </div>
+            <div class="six-col box last-col">
+                <h3>Ubuntu Server for ARM</h3>
+                <p>Optimised for hyperscale deployments and certified on a number of ARM chipsets, Ubuntu Server for ARM includes the 64-bit ARMv8 platforms.</p>
+                <p><a href="/download/server/arm">Get Ubuntu Server for ARM&nbsp;&rsaquo;</a></p>
+            </div>
+            <div class="six-col box">
+                <h3>Ubuntu for POWER8</h3>
+                <p>Ubuntu is now available on the IBM POWER8 platform, bringing the entire Ubuntu and OpenStack ecosystem to IBM POWER8</p>
+                <p><a href="/download/server/power8">Get Ubuntu {{latest_release}} for  POWER8&nbsp;&rsaquo;</a></p>
+            </div>
+            <div class="six-col box last-col">
+                <h3>Ubuntu for IBM LinuxONE</h3>
+                <p>IBM LinuxONE and z Systems leverage open technology solutions to meet the demands of the new application economy. Ubuntu is now available, with Juju and Ubuntu OpenStack.</p>
+                <p><a href="/download/server/linuxone">Get Ubuntu for LinuxONE&nbsp;&rsaquo;</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row no-border">
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col">
+            <h2>Get the version you need</h2>
+        </div>
+        <div class="twelve-col">
+            <div class="equal-height equal-height--vertical-divider">
+                <div class="four-col equal-height--vertical-divider__item">
+                    <h3 class="header--dvd">Buy a {{lts_release_full}} USB stick</h3>
+                    <p>Ubuntu {{lts_release_full}} is available for purchase on USB stick, from the online Ubuntu shop.</p>
+                    <p><a href="http://shop.canonical.com/index.php?cPath=17">Buy now&nbsp;&rsaquo;</a></p>
+                </div><!-- /.desktop -->
+                <div class="four-col equal-height--vertical-divider__item">
+                    <h3 class="header--download">Find alternative downloads</h3>
+                    <p>Ubuntu is available via BitTorrent links and  regional mirrors. You can also use the network installer.</p>
+                    <p><a href="/download/alternative-downloads">Alternative downloads&nbsp;&rsaquo;</a></p>
+                </div><!-- /.four-col -->
+                <div class="four-col equal-height--vertical-divider__item last-col">
+                    <h3 class="header--server">Download a previous release</h3>
+                    <p>Looking for a previous LTS point release with its original stack? Older versions of Ubuntu remain available.</p>
+                    <p><a href="http://releases.ubuntu.com" class="external">Previous releases</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include "download/shared/_contextual_footer.html"  with first_item="_download_server_installation" second_item="_download_server_guide" third_item="_download_helping_hands" %}
+
+{% endblock content %}
