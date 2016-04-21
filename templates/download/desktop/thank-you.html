@@ -20,7 +20,7 @@ Thank you for your contribution
 
     {% if request.GET.version and request.GET.architecture %}
         {% if request.GET.architecture.split|join:"+" == 'amd64+mac' %}
-    <meta http-equiv="refresh" content="3;url=http://cdimage.ubuntu.com/releases/14.04/release/ubuntu-14.04-desktop-amd64+mac.iso">
+    <meta http-equiv="refresh" content="3;url=http://cdimage.ubuntu.com/releases/{{ latest_release }}/release/ubuntu-{{ latest_release }}-desktop-amd64+mac.iso">
         {% else %}
     <noscript>
         <meta http-equiv="refresh" content="3;url=http://releases.ubuntu.com/{{ request.GET.version }}/ubuntu-{{ request.GET.version }}-desktop-{{ request.GET.architecture.split|join:"+" }}.iso">
@@ -36,7 +36,7 @@ Thank you for your contribution
                     <p>
                         Your download should start automatically. If it doesn&rsquo;t,
                     {% if request.GET.architecture.split|join:"+" == 'amd64+mac' %}
-                        <a href="http://cdimage.ubuntu.com/releases/16.04/release/ubuntu-14.04-desktop-amd64+mac.iso">download now</a>.
+                        <a href="http://cdimage.ubuntu.com/releases/{{ latest_release }}/release/ubuntu-{{ latest_release }}-desktop-amd64+mac.iso">download now</a>.
                     {% else %}
                         <a href="http://releases.ubuntu.com/{{ request.GET.version }}/ubuntu-{{ request.GET.version }}-desktop-{{ request.GET.architecture.split|join:"+" }}.iso">download now</a>.
                     {% endif %}
