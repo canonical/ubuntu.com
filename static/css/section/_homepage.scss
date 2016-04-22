@@ -595,7 +595,11 @@ body.homepage .row-featured {
 
 .takeunder-juju {
   background-color: #f5f5f5;
-  background-image: url('#{$asset-server}f552b31a-juju-16-04-takeunder.png');
+  
+  @media only screen and (min-width : $breakpoint-medium) {
+    background-image: url('#{$asset-server}f552b31a-juju-16-04-takeunder.png');
+  }
+  
   background-repeat: no-repeat;
   background-size: 36%;
   background-position: 0 50%;
