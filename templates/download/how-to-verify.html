@@ -136,6 +136,8 @@ Primary key fingerprint: 8439 38DF 228D 22F7 B374  2BC0 D94A A3F0 EFE2 1092</cod
             </h3>
             <p>Now you need to generate a sha256 checksum for the downloaded ISO and compare it to the one you downloaded in your SHA256SUM file.</p>
 
+            <p>Make sure the downloaded the SHA256SUMS and SHA256SUMS.gpg files are in the same directory as the Ubuntu iso. Then run the following commands in a terminal.</p>
+
             <p>On Ubuntu, the command to check will look like:</p>
             <pre class="twelve-col"><code>sha256sum -c SHA256SUMS 2>&amp;1 | grep OK</code></pre>
 
