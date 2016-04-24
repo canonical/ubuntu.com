@@ -11,7 +11,6 @@
 //		@section ubuntu-for-android
 //  	@section ubuntu-for-android > features
 //		@section backed-by-canonical
-//		@section contextualised footer
 
 // BEM example
 //	.nav {
@@ -1148,12 +1147,6 @@ body.phone-ubuntu-for-android-contact-us .row-hero {
 // --------------------------------------------------------------
 @media only screen and (min-width : 768px) {
 
-    #context-footer.phone-context-footer .feature-three {
-        p {
-          padding-right: 90px;
-        }
-    } // end @section contextualised
-
     body.phone {
         .row-app-grid img {
             margin-left: -80px;
@@ -1780,18 +1773,6 @@ body.phone-ubuntu-for-android-contact-us .row-hero {
     }
 
   } // end @section developers
-
-
-  // @section contextualised footer #context-footer (984)
-  // --------------------------------------------------------------
-  .phone-context-footer .feature-three {
-    background: url('#{$asset-server}c1576f82-phone-bottom-find-out.png') right center no-repeat;
-    min-height: 170px;
-
-    p {
-      padding-right: 65px;
-    }
-  } // end @section contextualised
 
   // @section body.phone-ubuntu-for-android-features + body.phone-ubuntu-for-android-features (984)
   // --------------------------------------------------------------
