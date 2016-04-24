@@ -81,5 +81,8 @@
         <img src="{{ ASSET_SERVER_URL }}0607d665-landscape-screenshot.png" class="touch-border landscape-screenshot priority-0" alt="Landscape screenshot" />
     </div>
 </div>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_desktop_contact_us" second_item="_devices_newsletter_signup" third_item="_desktop_further_reading" %}
+
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

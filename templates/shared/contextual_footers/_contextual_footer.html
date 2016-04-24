@@ -1,0 +1,20 @@
+<!-- contextual-footer -->
+<div class="cf clearfix">
+    <hr class="cf__hort-divider" />
+    <div class="strip-inner-wrapper">
+        <!-- div class="row" -->
+        <div class="twelve-col cf__content-container equal-height--vertical-divider no-margin-bottom">
+            <div class="equal-height--vertical-divider__item four-col cf__feature--first {{ first_item_class|default:''}}">
+                {% with "shared/contextual_footers/"|add:first_item|add:".html" as item_file %} {% include item_file %} {% endwith %}
+            </div>
+            <div class="equal-height--vertical-divider__item four-col cf__feature {{ second_item_class|default:''}}">
+                {% with "shared/contextual_footers/"|add:second_item|add:".html" as item_file %} {% include item_file %} {% endwith %}
+            </div>
+            <div class="equal-height--vertical-divider__item four-col cf__feature {{ third_item_class|default:''}} last-col">
+                {% with "shared/contextual_footers/"|add:third_item|add:".html" as item_file %} {% include item_file %} {% endwith %}
+            </div>
+            <!-- /div -->
+        </div>
+    </div>
+</div>
+<!-- /#context-footer -->
