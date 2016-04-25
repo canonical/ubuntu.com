@@ -1,0 +1,47 @@
+{% extends "internet-of-things/base_things.html" %}
+
+{% block title %}Digital signage | Ubuntu for the Internet of Things {% endblock %}
+
+{% block meta_description %}With hundreds of thousands of devices deployed the world over, Ubuntu Core is the perfect small-footprintOS for the digital signage sector.{% endblock meta_description %}
+{% block meta_keywords %}digital signage linux , digital signage Ubuntu, signage player, signage software, digital signage raspberry Pi, digital signage innovation{% endblock meta_keywords %}
+
+{% block second_level_nav_items %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="IoT" page_title="Digital signage" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<section class="row row-hero">
+  <div class="eight-col">
+      <h1>Digital signage on Ubuntu</h1>
+      <ul class="six-col list-ticks--compact">
+        <li>Secure, reliable and remotely upgradable</li>
+        <li>Rich ecosystem of hardware and software solutions</li>
+        <li>Hundreds of thousands of devices already deployed</li>
+      </ul>
+  </div>
+</section>
+
+<section class="row">
+  <div class="eight-col">
+      <h1>Innovation in digital signage</h1>
+      <p>With Ubuntu Core, digital display owners can innovate at speed, thanks to the wealth of innovative apps already created by our partners.</p>
+  </div>
+</section>
+
+<section class="row row-cta no-border">
+  <div class="three-col align-center not-for-small">
+    <img src="{{ ASSET_SERVER_URL }}e35b1108-picto-corepower-orange.svg" width="160" alt="" />
+  </div>
+  <div class="eight-col last-col">
+    <div class="inline-small one-col align-center for-small">
+      <img src="{{ ASSET_SERVER_URL }}e35b1108-picto-corepower-orange.svg" width="38" alt="" />
+    </div>
+    <h2>Build your own digital signage solution</h2>
+    <p class="clear">Ubuntu Core is entirely open source and and supports a range of digital signage players. Just install it on a Raspberry Pi or NUC, download the app of your choice, create an account and you’re ready to go.</p>
+    <p><a href="http://partners.ubuntu.com/programmes/iot" class="external">Build a digital signage product on Ubuntu</a></p>
+  </div>
+</section>
+
+{% include "internet-of-things/shared/_contextual_footer.html" %}
+
+{% endblock content %}
