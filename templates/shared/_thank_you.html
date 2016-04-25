@@ -1,4 +1,5 @@
 <div class="row row-hero no-border equal-height">
+  {% if level_1 == "tablet" or level_1 == "phone" or level_1 == "download" %}<div class="strip-inner-wrapper">{% endif %}
 	<div class="thank-you eight-col equal-height__item">
 		<h1>Thank you for {{ thanks_context }}</h1>
 		<p class="intro">A member of our team will be in touch {{ details }}within <strong>one working day</strong></p>
@@ -7,4 +8,6 @@
 		<img src="{{ ASSET_SERVER_URL }}52d53696-picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
 	</div>
 </div>
-{% include "shared/_thank_you_footer.html" %}	
+  {% if level_1 == "tablet" or level_1 == "phone" or level_1 == "download" %}</div>{% endif %}
+
+{% include "shared/_thank_you_footer.html" %}
