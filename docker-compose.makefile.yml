@@ -1,5 +1,5 @@
-npm:
-  extends: {'service': 'npm', 'file': 'docker-compose.yml'}
+assets:
+  extends: {'service': 'assets', 'file': 'docker-compose.yml'}
 
 web:
   extends: {'service': 'base', 'file': 'docker-compose.yml'}

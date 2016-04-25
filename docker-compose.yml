@@ -4,10 +4,10 @@ base:
   volumes:
     - .:/srv
 
-npm:
+assets:
   extends: {'service': 'base', 'file': 'docker-compose.yml'}
   build: .
-  dockerfile: Dockerfile-npm
+  dockerfile: Dockerfile-assets
   command: /bin/bash -c 'umask 0000 && npm install && gulp watch'
 
 web:
