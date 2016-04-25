@@ -58,61 +58,38 @@
               <p><b>Tip:</b> On non-Linux systems, you might need to download the GPG tools for this next step. To check if you have the GPG tools installed, run the command <code>gpg --version</code> or <code>gpg2 --version</code>.</p>
             </div>
 
-            <h4>Find out what key was used to issue the signature</h4>
-
-            <p>Running GnuPG to verify the signature we can find out what key is needed (note: some versions of the gpg command are gpg2).</p>
+            <p>Get the public keys from the Ubuntu key server and add them to your keyring.</p>
 
             <pre>
                 <code>
-gpg --verify SHA256SUMS.gpg SHA256SUMS
-gpg: Signature made Fri 25 Mar 04:36:20 2016 GMT using DSA key ID FBB75451
-gpg: Can't check signature: No public key
-gpg: Signature made Fri 25 Mar 04:36:20 2016 GMT using RSA key ID EFE21092
-gpg: Can't check signature: No public key</code>
-            </pre>
-
-            <p>Looking at the output, you can see the key IDs are 0xFBB75451 (generated in 2004, deprecated) and 0xEFE21092 (generated in 2012, current).</p>
-
-            <h4>Now get the public key from the Ubuntu key server and add them to your keyring.</h4>
-
-              <pre>
-                  <code>
-gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0xFBB75451 0xEFE21092
-gpg: /Users/lola/.gnupg/trustdb.gpg: trustdb created
-gpg: key EFE21092: public key "Ubuntu CD Image Automatic Signing Key (2012) &lt;cdimage@ubuntu.com>" imported
-gpg: key FBB75451: public key "Ubuntu CD Image Automatic Signing Key &lt;cdimage@ubuntu.com>" imported
+$ gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys "8439 38DF 228D 22F7 B374 2BC0 D94A A3F0 EFE2 1092" "C598 6B4F 1257 FFA8 6632 CBA7 4618 1433 FBB7 5451"
+gpg: directory `/home/ubuntu/.gnupg' created
+gpg: new configuration file `/home/ubuntu/.gnupg/gpg.conf' created
+gpg: WARNING: options in `/home/ubuntu/.gnupg/gpg.conf' are not yet active during this run
+gpg: keyring `/home/ubuntu/.gnupg/secring.gpg' created
+gpg: keyring `/home/ubuntu/.gnupg/pubring.gpg' created
+gpg: requesting key EFE21092 from hkp server keyserver.ubuntu.com
+gpg: requesting key FBB75451 from hkp server keyserver.ubuntu.com
+gpg: /home/ubuntu/.gnupg/trustdb.gpg: trustdb created
+gpg: key EFE21092: public key "Ubuntu CD Image Automatic Signing Key (2012) <cdimage@ubuntu.com>" imported
+gpg: key FBB75451: public key "Ubuntu CD Image Automatic Signing Key <cdimage@ubuntu.com>" imported
 gpg: no ultimately trusted keys found
 gpg: Total number processed: 2
-gpg:               imported: 2</code>
+gpg:               imported: 2  (RSA: 1)
+                </code>
             </pre>
-
-            <h4>Verify the key fingerprints</h4>
-
-            <pre>
-                <code>
-gpg --list-keys --with-fingerprint 0xFBB75451 0xEFE21092
-pub   1024D/FBB75451 2004-12-30
-      Key fingerprint = C598 6B4F 1257 FFA8 6632  CBA7 4618 1433 FBB7 5451
-uid                  Ubuntu CD Image Automatic Signing Key &lt;cdimage@ubuntu.com>
-
-pub   4096R/EFE21092 2012-05-11
-      Key fingerprint = 8439 38DF 228D 22F7 B374  2BC0 D94A A3F0 EFE2 1092
-uid                  Ubuntu CD Image Automatic Signing Key (2012) &lt;cdimage@ubuntu.com></code>
-            </pre>
-
-
         </li>
 
         <li class="list-stepped__item">
             <h3 class="list-stepped__title">
             Verify signature
             </h3>
-            <p>Now you can re-run the original command to verify the signature.</p>
+            <p>Now you can verify the signature.</p>
 
             <div class="twelve-col ">
                 <pre>
                     <code>
-gpg --verify SHA256SUMS.gpg SHA256SUMS
+$ gpg --verify SHA256SUMS.gpg SHA256SUMS
 gpg: Signature made Fri 25 Mar 04:36:20 2016 GMT using DSA key ID FBB75451
 gpg: Good signature from "Ubuntu CD Image Automatic Signing Key &lt;cdimage@ubuntu.com>" [unknown]
 gpg: WARNING: This key is not certified with a trusted signature!
@@ -139,12 +116,15 @@ Primary key fingerprint: 8439 38DF 228D 22F7 B374  2BC0 D94A A3F0 EFE2 1092</cod
             <p>Make sure the downloaded the SHA256SUMS and SHA256SUMS.gpg files are in the same directory as the Ubuntu iso. Then run the following commands in a terminal.</p>
 
             <p>On Ubuntu, the command to check will look like:</p>
-            <pre class="twelve-col"><code>sha256sum -c SHA256SUMS 2>&amp;1 | grep OK</code></pre>
+            <pre class="twelve-col"><code>$ sha256sum -c SHA256SUMS 2>&amp;1 | grep OK</code></pre>
 
             <p>On Mac OS X, the command and good output will look like the following.</p>
-            <pre class="twelve-col"><code>shasum -a 256 -c SHA256SUMS 2>&amp;1 | grep OK</code></pre>
+            <pre class="twelve-col"><code>$ shasum -a 256 -c SHA256SUMS 2>&amp;1 | grep OK</code></pre>
 
             <p>If you’re using Windows, you may need to download a <a class="external" href="http://www.labtestproject.com/files/win/sha256sum/sha256sum.exe">SHA-256 tool</a> first. Once you have, your command will look like:
+            <pre class="twelve-col"><code>ubuntu-16.04-desktop-amd64.iso: OK</code></pre>
+
+            <p>The output you want will look similar to the following:</p>
             <pre class="twelve-col"><code>ubuntu-16.04-desktop-amd64.iso: OK</code></pre>
 
             <p>If you get no results (or any result other than that shown above) you will need to check your download again.</p>
