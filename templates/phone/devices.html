@@ -6,7 +6,7 @@
 
 {% block meta_description %}
     Ubuntu is available all over Europe on the BQ Aquaris E4.5 and BQ Aquaris E5 HD,
-    direct from the BQ website. Many more devices are in the works, so watch this space. 
+    direct from the BQ website. Many more devices are in the works, so watch this space.
 {% endblock %}
 
 {% block second_level_nav_items %}
@@ -17,4 +17,7 @@
 
 {% block content %}
     {% include "phone/_devices.html" with BQ_BUY_LINK="http://store.bq.com/gl/" %}
+
+    {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_phone_partners_developers" second_item="_devices_newsletter_signup" third_item="_phone_further_reading" %}
+
 {% endblock content %}

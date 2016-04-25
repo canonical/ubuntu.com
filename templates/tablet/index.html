@@ -44,7 +44,7 @@
 <section class="row row--developers strip-light">
   <div class="strip-inner-wrapper">
     <div class="five-col not-for-small">
-     <img src="{{ ASSET_SERVER_URL }}12b46991-apps-grid.png" alt="A selection of Ubuntu apps" /> 
+     <img src="{{ ASSET_SERVER_URL }}12b46991-apps-grid.png" alt="A selection of Ubuntu apps" />
     </div>
     <div class="six-col prepend-one last-col">
       <h2>Develop once for multiple form factors</h2>
@@ -85,6 +85,6 @@
   </div>
 </section>
 
-{% include "tablet/shared/_contextual_footer.html" with feature_1="devices" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_tablet_available" second_item="_devices_newsletter_signup" third_item="_tablet_further_reading" %}
 
 {% endblock content %}

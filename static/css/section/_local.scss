@@ -406,59 +406,14 @@ body {
   color: $link-color;
 }
 
-.about,
-.cloud,
-.desktop,
-.internet-of-things,
-.legal,
-.management,
-.server,
-.support {
-  #context-footer {
-      background: #fff;
-      margin-bottom: 0;
-      div > div > div:last-of-type {
-          border: 0; // kills borders on very nested divs... like we have for further reading
-          padding-bottom: 0;
-      }
-  }
-}
 // extra rules for full width sections other than homepage
 .download,
 .phone,
 .tablet {
-    #context-footer {
-        background: #fff;
-        padding: 0;
-        margin-bottom: 0;
-        div > div > div:last-of-type {
-            border: 0; // kills borders on very nested divs... like we have for further reading
-            padding-bottom: 0;
-        }
-        hr {
-            box-shadow: none;
-            height: 3px;
-            margin: 0;
-        }
-    }
-    .row--dark {
-        background: #262626;
-        color: #ebebea;
-    }
-    #context-footer div div:first-child {
-      @media only screen and (min-width : $breakpoint-large + 80) {
-        padding-left: 0;
-      }
-    }
-    hr {
-      box-shadow: none;
-      height: 3px;
-    }
-
-  .feature-one {
-    padding-left: 0;
+  .row--dark {
+      background: #262626;
+      color: #ebebea;
   }
-
   header.banner {
     margin-bottom: 0;
   }
@@ -818,22 +773,6 @@ html.yui3-js-enabled .resource:hover a {
 
 /* start of fix for vanilla margins on non-full screen pages */
 @media only screen and (min-width: $breakpoint-medium) {
-  #context-footer div div.feature-one {
-    display: table-cell;
-  }
-  .about-context-footer, //XXX PRM
-  .cloud-context-footer,
-  .desktop-context-footer,
-  .internet-of-things-context-footer,
-  .legal-context-footer,
-  .management-context-footer,
-  .server-context-footer,
-  .support-context-footer {
-    .row {
-      margin-left: 0;
-      margin-right: 0;
-    }
-  }
 
   .about,
   .cloud,
@@ -847,10 +786,6 @@ html.yui3-js-enabled .resource:hover a {
       padding-left: 20px;
       padding-right: 20px;
     }
-    hr {
-      margin-left: -20px;
-      margin-right: -20px;
-    }
   }
   /* XXX vanilla fix? */
   .equal-height--vertical-divider .equal-height--vertical-divider__item {
@@ -859,27 +794,9 @@ html.yui3-js-enabled .resource:hover a {
 }
 
 @media only screen and (min-width: $breakpoint-large) {
-  #context-footer div div.feature-one {
-    display: table-cell;
-  }
-  .about-context-footer,
-  .cloud-context-footer,
-  .desktop-context-footer,
-  .internet-of-things-context-footer,
-  .legal-context-footer,
-  .management-context-footer,
-  .server-context-footer,
-  .support-context-footer {
-    .row {
-      margin-left: 0;
-      margin-right: 0;
-    }
-  }
 
   .about,
-  //.cloud,
   .desktop,
-  //.internet-of-things,
   .legal,
   .management,
   .server,
@@ -888,16 +805,9 @@ html.yui3-js-enabled .resource:hover a {
       padding-left: 40px;
       padding-right: 40px;
     }
-    #context-footer hr {
-      margin-left: -40px;
-      margin-right: -40px;
-    }
   }
 } /* end fix for vanilla margins on non-full screen pages */
 
-#context-footer div div.feature-two {
-    padding-left: 0;
-}
 @media only screen and (min-width: $breakpoint-medium) {
     .info-release-end-of-life {
         .for-mobile,
@@ -1227,12 +1137,4 @@ $item-spacing: 20px;
 /// https://github.com/ubuntudesign/vanilla-framework/blob/master/scss/modules/_typography.scss#L357
 pre {
   margin-bottom: .75em;
-}
-
-/// Contextual footer fix for full-width layouts
-/// XXX Robin 2016-04-20
-/// Consider for moving into ubuntu-vanilla-theme
-.context-footer .strip-inner-wrapper .row-footer {
-  padding-top: 50px;
-  padding-bottom: 30px;
 }
