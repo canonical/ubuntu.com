@@ -152,10 +152,11 @@
 
 {% endblock content %}
 {% block footer_extra %}
-<script>
-    partnersApiParams = '?programme__name=Internet%20of%20Things';
-    partnersElementId = '#iot-partners';
-</script>
-{% load versioned_static  %}
-<script src="{% versioned_static 'js/partners.js' %}"></script>
+  <script>
+      YUI().use('event-base', function (Y) {
+          Y.on('domready', function () {
+              core.loadPartners('?programme__name=Internet%20of%20Things', '#iot-partners');
+          });
+      });
+  </script>
 {% endblock %}
