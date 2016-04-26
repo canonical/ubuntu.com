@@ -155,9 +155,10 @@
 
 {% block footer_extra %}
 <script>
-    partnersApiParams = '?programme__name=Certified%20Public%20Cloud&programme__name=Charm%20Partner%20Programme&programme__name=OpenStack&featured=true';
-    partnersElementId = '#cloud-partners';
+    YUI().use('event-base', function (Y) {
+        Y.on('domready', function () {
+            core.loadPartners('?programme__name=Certified%20Public%20Cloud&programme__name=Charm%20Partner%20Programme&programme__name=OpenStack&featured=true', '#cloud-partners');
+        });
+    });
 </script>
-{% load versioned_static  %}
-<script src="{% versioned_static 'js/partners.js' %}"></script>
 {% endblock %}
