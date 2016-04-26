@@ -26,7 +26,6 @@ YUI().use('jsonp', 'node', function(Y) {
         url,
         (function(elementId) {
           return function(response) {
-            console.log(elementId)
             return core.renderJSON(response, elementId);
           }
         })(cloud['elementId'])
