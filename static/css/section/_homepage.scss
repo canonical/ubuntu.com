@@ -595,15 +595,15 @@ body.homepage .row-featured {
 
 .takeunder-juju {
   background-color: #f5f5f5;
-  
+
   @media only screen and (min-width : $breakpoint-medium) {
     background-image: url('#{$asset-server}f552b31a-juju-16-04-takeunder.png');
   }
-  
+
   background-repeat: no-repeat;
   background-size: 36%;
   background-position: 0 50%;
-  
+
   &::before {
     background: #f5f5f5;
   }
@@ -1373,31 +1373,31 @@ body.homepage-maas-takeover {
   margin: 10px;
   padding-top: 10px;
   width: auto;
-  
+
   &__title {
     margin-top: 0;
   }
-  
+
   &__text-image {
     margin-top: 20px;
     width: 60px;
-    
+
     @media only screen and (min-width : 768px + 1) {
       margin-top: 80px;
       width: 100px;
     }
   }
-  
+
   @media only screen and (min-width : 768px) {
     background-size: cover;
     margin: 20px;
     min-height: 380px;
   }
-    
+
   .row-hero__link {
     color: $white;
   }
-  
+
   .button--primary {
     background-color: $white;
     color: $cool-grey;
@@ -1406,13 +1406,13 @@ body.homepage-maas-takeover {
       background-color: #f7f7f7;
     }
   }
-  
+
   &__text {
     @media only screen and (min-width : 768px) {
       margin-left: 2vw;
       width: 40.37611%;
     }
-    
+
     @media only screen and (min-width : 984px) {
       margin-left: 8.5177%;
       width: 31.8584%;
@@ -1432,7 +1432,7 @@ body.homepage-maas-takeover {
 
   @media only screen and (min-width : 984px) {
     min-height: 550px;
-    
+
     &__title {
       font-size: 4em;
       line-height: 1.8;
@@ -1442,3 +1442,22 @@ body.homepage-maas-takeover {
   }
 }
 
+.takeunder-pro5 {
+  background-color: #f5f5f5;
+
+  @media only screen and (min-width : $breakpoint-medium) {
+    background-image: url('#{$asset-server}0d1e4e42-meizu-pro5-single.png?w=150');
+  }
+
+  background-repeat: no-repeat;
+  background-size: 36%;
+  background-position: 0 50%;
+
+  @media only screen and (min-width : 850px) {
+    background-position: 0 40px;
+  }
+
+  &::before {
+    background: #f5f5f5;
+  }
+}
