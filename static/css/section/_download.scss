@@ -1101,20 +1101,12 @@ $grid-border-style: 1px dotted #888;
 
         @media only screen and (min-width : $breakpoint-medium) {
             display: flex;
-            width: 33.3333%!important;
             padding: 1.5rem 1rem 0;
             border-right: $grid-border-style;
-            border-bottom: $grid-border-style;
             margin: 0!important;
 
-            &:nth-child(3n) {
-                border-right: 0;
-            }
-
-            &:nth-last-child(3),
-            &:nth-last-child(2),
-            &:nth-last-child(1) {
-                border-bottom: 0;
+            &.last-col {
+                border-right: 0!important;
             }
         }
     }

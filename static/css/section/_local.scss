@@ -14,10 +14,12 @@ body {
 .row.row-grey {
   border-bottom: 1px dotted $warm-grey;
   margin-top: 0;
-  &.no-border {
-    border-bottom: 0;
-  }
 }
+
+.no-border {
+  border-bottom: 0;
+}
+
 /// XXX Peter - marketo required field marker
 .mktoLabel > span,
 .mktError {
