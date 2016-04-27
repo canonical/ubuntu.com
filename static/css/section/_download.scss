@@ -1089,38 +1089,6 @@ html.opera-mini {
     }
 }
 
-/* List Grid
--------------------------------------------------------------- */
-
-$grid-border-style: 1px dotted #888;
-
-.list--grid {
-
-    border-top: $grid-border-style;
-    padding-top: 1rem;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-        border-top: 0;
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    &__item {
-        border-bottom: $grid-border-style;
-
-        @media only screen and (min-width : $breakpoint-medium) {
-            display: flex;
-            padding: 1.5rem 1rem 0;
-            border-right: $grid-border-style;
-            margin: 0!important;
-
-            &.last-col {
-                border-right: 0!important;
-            }
-        }
-    }
-}
-
 .download.download-ubuntu-flavours .row.row-flavours-hero {
   @media only screen and (min-width: $breakpoint-medium) {
     padding-bottom: 0;
