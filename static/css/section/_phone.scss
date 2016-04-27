@@ -5,12 +5,6 @@
 //		@section general
 //		@section phone home
 //		@section more general
-//		@section operators-and-oems
-//		@section animations on design page
-//		@section design
-//		@section ubuntu-for-android
-//  	@section ubuntu-for-android > features
-//		@section backed-by-canonical
 
 // BEM example
 //	.nav {
@@ -25,21 +19,20 @@
 
 // @section general
 // --------------------------------------------------------------
-
 @mixin transform($transforms) {
-    -moz-transform:     $transforms;
-    -o-transform:       $transforms;
-    -ms-transform:      $transforms;
-    -webkit-transform:  $transforms;
+  -moz-transform:       $transforms;
+  -o-transform:         $transforms;
+  -ms-transform:        $transforms;
+  -webkit-transform:    $transforms;
   transform:            $transforms;
 }
 
 @mixin scale($scale: 1) {
-    -webkit-transform: scale($scale);
-    -moz-transform:    scale($scale);
-    -ms-transform:     scale($scale);
-    -o-transform:      scale($scale);
-  transform:           scale($scale);
+  -webkit-transform:  scale($scale);
+  -moz-transform:     scale($scale);
+  -ms-transform:      scale($scale);
+  -o-transform:       scale($scale);
+  transform:          scale($scale);
 }
 // scale
 @mixin scale($scale) {
@@ -73,116 +66,6 @@
   background-size: cover;
 }
 
-.box-phone,
-.box-android {
-  min-height: 15em;
-  //padding-right: $six-col;
-}
-
-.box-phone {
-  background: $white url('#{$asset-server}1455315c-devices-phone-hero-353x206.png') 95% center no-repeat;
-}
-
-.box-android {
-  background: $white url('#{$asset-server}f9841a01-photo-industry-android-381x230.jpg') 90% center no-repeat;
-}
-
-.js .phone-app-list {
-  li {
-    opacity: 0;
-      -webkit-transition-duration: .5s;
-      -moz-transition-duration: .5s;
-      -o-transition-duration: .5s;
-    transition-duration: .5s;
-  }
-
-  &.run li {
-    -moz-animation: pop-out 1s forwards;
-    -webkit-animation: pop-out 1s forwards;
-    -animation: pop-out 1s forwards;
-  }
-
-  $nth-child-1 : 1.3s;
-
-  &.run li:nth-child(1) {
-    -moz-animation-delay: $nth-child-1;
-    -webkit-animation-delay: $nth-child-1;
-    -animation-delay: $nth-child-1;
-  }
-
-  $nth-child-2 : 1.5s;
-
-  &.run li:nth-child(2) {
-    -moz-animation-delay: $nth-child-2;
-    -webkit-animation-delay: $nth-child-2;
-    -animation-delay: $nth-child-2;
-  }
-
-  $nth-child-3 : 1.7s;
-
-  &.run li:nth-child(3) {
-    -moz-animation-delay: $nth-child-3;
-    -webkit-animation-delay: $nth-child-3;
-    -animation-delay: $nth-child-3;
-  }
-
-  $nth-child-4 : 1.9s;
-
-  &.run li:nth-child(4) {
-    -moz-animation-delay: $nth-child-4;
-    -webkit-animation-delay: $nth-child-4;
-    -animation-delay: $nth-child-4;
-  }
-
-  $nth-child-5 : 2.1s;
-
-  &.run li:nth-child(5) {
-    -moz-animation-delay: $nth-child-5;
-    -webkit-animation-delay: $nth-child-5;
-    -animation-delay: $nth-child-5;
-  }
-
-  $nth-child-6 : 2.3s;
-
-  &.run li:nth-child(6) {
-    -moz-animation-delay: $nth-child-6;
-    -webkit-animation-delay: $nth-child-6;
-    -animation-delay: $nth-child-6;
-  }
-
-  $nth-child-7 : 2.5s;
-
-  &.run li:nth-child(7) {
-    -moz-animation-delay: $nth-child-7;
-    -webkit-animation-delay: $nth-child-7;
-    -animation-delay: $nth-child-7;
-  }
-
-  $nth-child-8 : 2.7s;
-
-  &.run li:nth-child(8) {
-    -moz-animation-delay: $nth-child-8;
-    -webkit-animation-delay: $nth-child-8;
-    -animation-delay: $nth-child-8;
-  }
-
-  $nth-child-9 : 2.9s;
-
-  &.run li:nth-child(9) {
-    -moz-animation-delay: $nth-child-9;
-    -webkit-animation-delay: $nth-child-9;
-    -animation-delay: $nth-child-9;
-  }
-
-  $nth-child-10 : 3.1s;
-
-  &.run li:nth-child(10) {
-    -moz-animation-delay: $nth-child-10;
-    -webkit-animation-delay: $nth-child-10;
-    -animation-delay: $nth-child-10;
-  }
-}
-
 // @section phone hero banners
 // --------------------------------------------------------------
 body.phone {
@@ -208,24 +91,9 @@ body.phone-home {
       .close-video {
         display: none;
       }
+      
       iframe {
           width: 100%;
-      }
-    }
-
-    .mobile-video {
-      position: relative;
-      padding-bottom: 56.25%;
-      padding-top: 25px;
-      height: 0;
-      margin-bottom: 20px;
-
-      iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
       }
     }
 
@@ -288,20 +156,6 @@ body.phone-home {
     }
   } // end row-hero
 
-    .topbar {
-      width: 100%;
-      max-width: 100%;
-      -moz-transition-duration: .7s;
-      -o-transition-duration: .7s;
-      -webkit-transition-duration: .7s;
-      background: rgba(0, 0, 0, .5);
-      height: 40px;
-      transition-duration: .7s;
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-
     .the-video {
       padding-bottom: 56.25%; /* 16:9 */
       height: 0;
@@ -320,14 +174,6 @@ body.phone-home {
       right: 5px;
       z-index: 60;
       display: none;
-    }
-
-    .video-background {
-      background: $black;
-      display: block;
-      height: 320px;
-      margin-bottom: 5px;
-      width: 569px;
     }
 
     .video.hide {
@@ -450,12 +296,7 @@ body.phone-home {
         }
       }
     }
-
-
-
-
 } // end phone home
-
 
 // phone scopes row
 body.phone-home .row--access-content {
@@ -469,22 +310,12 @@ body.phone-home .row--access-content {
   }
 }
 
-
-.row--phone-promo {
-  background: url('#{$asset-server}974c4e8c-background-origami.png') -140px 0;
-  padding-bottom: 80px;
-}
-
 p[itemprop="price"] {
   font-size: 23px;
   margin-top: 20px;
 }
 
 body.phone-devices #main-content {
-
-    .device-header {
-      margin-bottom: 20px;
-    }
 
     .link-cta-ubuntu {
         margin-right: 10px;
@@ -564,19 +395,6 @@ body.phone-developers {
     }
   }
 
-  .row-more-than {
-    overflow: hidden;
-    padding-bottom: 200px;
-    min-height: 700px;
-    padding-top: 0;
-
-    img {
-      position: absolute;
-      top: 320px;
-      width: 100%;
-    }
-  }
-
   .row-scope-frameworks {
     .strip-inner-wrapper {
       position: relative;
@@ -616,25 +434,6 @@ body.phone-features {
         width: 100%;
     }
 
-    .row--today {
-        border-bottom: 1px dotted $warm-grey;
-
-        .for-mobile {
-            margin: -20px -10px 10px;
-
-            img {
-                width: 100%;
-                height: auto;
-            }
-        }
-    }
-
-  .row-introducing-scopes {
-      img {
-            margin-bottom: -23px;
-        }
-    }
-
     .row--phone-details {
         background: $black;
         color: $white;
@@ -651,212 +450,6 @@ body.phone-features {
     }
 
 } // end body.phone-features
-
-body.phone-developers {
-  .row-scopes {
-     background: none;
-    min-height: none;
-  }
-} // end body.phone-developers
-
-// @section phone home / developers
-// --------------------------------------------------------------
-body.phone-developers {
-
-  .row-apps {
-    background: url('#{$asset-server}3087be95-background-developer-apps.png') no-repeat;
-  }
-
-  .phone-app-list {
-    position: relative;
-    top: -40px;
-
-    li {
-      left: 0;
-      opacity: 1;
-      position: absolute;
-      top: 0;
-      z-index: 3;
-
-      img {
-        max-width: none;
-      }
-
-      &:nth-child(1) {
-        top: -5px;
-      }
-      &:nth-child(2) {
-        top: 135px;
-        left: 72px;
-      }
-      &:nth-child(3) {
-        left: 334px;
-        top: 306px;
-      }
-      &:nth-child(4) {
-        left: 515px;
-        top: 350px;
-      }
-      &:nth-child(5) {
-        left: 766px;
-        top: 426px;
-      }
-      &:nth-child(6) {
-        left: 691px;
-        top: 575px;
-      }
-      &:nth-child(7) {
-        left: 536px;
-        top: 708px;
-      }
-    } // end li
-
-  } // end phone-app-list
-
-} // end body.phone-developers
-
-// @section phone partners
-// --------------------------------------------------------------
-body.phone-partners {
-
-  table {
-    display: table;
-
-    tbody th {
-      font-weight: normal;
-    }
-  }
-
-  .row-developers {
-    //min-height: 595px;
-    overflow: hidden;
-  }
-
-  .phone-app-list {
-    position: relative;
-
-    li {
-      text-align: center;
-
-      &:nth-child(8) {
-        display: block;
-        left: auto;
-        margin-bottom: 20px;
-        opacity: 1;
-        position: relative;
-        top: auto;
-        width: 100%;
-      }
-    }
-  } // end phone-app-list
-
-  .cag-list {
-    margin-left: -2%;
-
-    li {
-        box-sizing: border-box;
-      width: 48%;
-      margin-left: 2%;
-    }
-  }
-} // end body.phone-partners
-
-
-// @section phone home / features
-// --------------------------------------------------------------
-.pull-off-top {
-    margin-top: -100px;
-    min-height: 520px;
-}
-
-.pull-off-top .five-col {
-    min-height: 520px;
-}
-
-.row--edge {
-    position: relative;
-    min-height: 1080px;
-
-    .six-col {
-        height: 0;
-    }
-}
-
-#edge-video-wrapper {
-    background: url('#{$asset-server}136f2305-image-single-greeter.png') 0 0 no-repeat;
-    width: 248px;
-    height: 490px;
-    padding: 0;
-    margin: 0 auto;
-    background-size: cover;
-    position: relative;
-    margin-bottom: -470px;
-    top: 275px;
-}
-
-#edge-video {
-  position: relative;
-  display: block;
-  margin: 0 auto;
-  width: 205px;
-  height: 365px;
-  padding: 0;
-  margin-right: 22px;
-  top: 55px;
-}
-
-#swipe-from-left,
-#swipe-from-right,
-#swipe-from-top,
-#swipe-from-bottom {
-  img {
-      -webkit-transition: 1s ease-in-out;
-      -moz-transition: 1s ease-in-out;
-      -o-transition: 1s ease-in-out;
-    transition: 1s ease-in-out;
-  }
-}
-
-#swipe-from-left.run img {
-    -webkit-transform: translate(2em,0);
-    -moz-transform: translate(2em,0);
-    -o-transform: translate(2em,0);
-    -ms-transform: translate(2em,0);
-  transform: translate(2em,0);
-}
-
-#swipe-from-top.run img {
-    -webkit-transform: translate(0, 2em);
-    -moz-transform: translate(0, 2em);
-    -o-transform: translate(0, 2em);
-    -ms-transform: translate(0, 2em);
-  transform: translate(0, 2em);
-}
-
-#swipe-from-right.run img {
-    -webkit-transform: translate(-2em,0);
-    -moz-transform: translate(-2em,0);
-    -o-transform: translate(-2em,0);
-    -ms-transform: translate(-2em,0);
-  transform: translate(-2em,0);
-}
-
-#swipe-from-bottom.run img {
-    -webkit-transform: translate(0, -2em);
-    -moz-transform: translate(0, -2em);
-    -o-transform: translate(0, -2em);
-    -ms-transform: translate(0, -2em);
-  transform: translate(0, -2em);
-}
-
-#example_video_1 {
-   background: transparent url('#{$asset-server}0e00290b-image-phone-homescreen.png') no-repeat 0 0;
-     -moz-background-size:cover;
-     -o-background-size:cover;
-     -webkit-background-size:cover;
-   background-size:cover;
-}
-// devices
 
 // @section more general
 // --------------------------------------------------------------
@@ -905,10 +498,6 @@ body.phone-contact-us {
 // @section features
 // --------------------------------------------------------------
 body.phone-features {
-
-  .pull-off-top--last {
-      margin-bottom: -60px;
-  }
 
   .row--video {
     background: $black;
@@ -961,198 +550,12 @@ body.phone-features {
           z-index: 999;
         }
   }
-
-  .row-scopes {
-    background: none;
-
-    #example_video_1 {
-      width: 300px    !important;
-      height: 584px		!important;
-      display: block;
-      margin: 0 auto;
-    }
-
-  }
-
-  .row--edge {
-        img {
-            position: absolute;
-            left: -999em;
-        }
-
-  }
-
-  #main-content .infographic {
-    background: #340214;
-    color: $white;
-    padding-top: 0 ;
-    padding-bottom: $gutter-width;
-    margin-top: 0;
-    overflow: hidden;
-
-    h2 {
-      margin-top: 100px;
-      padding-right: 80px;
-    }
-
-    .main-image {
-      opacity: 1;
-        -moz-transition: opacity 2s;
-        -webkit-transition: opacity 2s;
-        -o-transition: opacity 2s;
-      transition: opacity 2s;
-      position: absolute;
-      margin-left: -38px;
-    }
-
-    .no-print {
-      text-align: center;
-
-      .main-image {
-        display: none;
-      }
-      .info-pic-1 {
-        display: block;
-        opacity: 1;
-        margin-left: 0;
-        position: static;
-      }
-    } // end no-print
-
-    .hide {
-      opacity: 0;
-    }
-
-    .thumbnails {
-      list-style-type: none;
-      height: 80px;
-      position: absolute;
-      top: 350px;
-      text-align: center;
-      padding-bottom: 20px;
-      width: 550px;
-
-      img {
-        margin-right: 20px;
-      }
-    }
-
-  } // infographic
-
 } // end body.phone-features
 
-
-body.phone-ubuntu-for-android {
-  .row-free .eight-col ul {
-    background:url('#{$asset-server}e0f0c177-android-background-dotted.png');
-    padding: $gutter-width 0;
-    text-align: center;
-    width: 100%;
-  }
-
-  inline inline-icons
-
-  #ecosystem .inline-icons li {
-    margin-bottom: 0;
-  }
-}
-
-body.phone-ubuntu-for-android #easy-integration {
-  background: $light-grey url('#{$asset-server}c917f7dd-bg-android-integrate-301x296.png') right bottom no-repeat;
-  background-size: 311px 306px;
-  margin-bottom: 0;
-  width: 100%;
-}
-
-body.phone-ubuntu-for-android #ecosystem {
-  background: $light-grey;
-}
-
-.row-android .four-col {
-  background:url('#{$asset-server}e0f0c177-android-background-dotted.png') 0 2px;
-  display: table;
-  text-align: center;
-}
-
-.row-android span {
-  display: table-cell;
-  vertical-align: middle;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-body.phone-ubuntu-for-android .box-contact {
-  border-radius: 4px;
-  padding: $gutter-width;
-  margin-bottom: $gutter-width;
-}
-
-// @section ubuntu-for-android > features
-// --------------------------------------------------------------
-body.phone-ubuntu-for-android-features {
-  h1 {
-    position: relative;
-    z-index: 2;
-  }
-  .row-hero { overflow: visible; }
-  .row-hero img { margin-bottom: $gutter-width; }
-  .default-apps{
-    ul {
-      padding: 20px 0;
-    }
-    li {
-      width: 50%;
-      min-height: 125px;
-    }
-  }
-}
-
-// @section backed-by-canonical
-// --------------------------------------------------------------
-body.phone-backed-by-canonical,
-body.tablet-backed-by-canonical {
-  #main-content .row-hero {
-    height: auto;
-    min-height: 0;
-    padding-top: 40px;
-
-    p {
-      width: 570px;
-    }
-  }
-  #main-content .intro {
-    background-image: url('#{$asset-server}60d9b81e-picto-canonical.svg');
-    background-position: 90% center;
-    background-repeat: no-repeat;
-    //padding: 0 $four-col 0 0;
-  }
-  .intro li .link-cta-ubuntu { margin-right: $gutter-width; }
-  .row-experience .five-col { margin-top: $gutter-width * 4; }
-}
-html.no-svg,
-html.opera-mini {
-  body.phone-backed-by-canonical,
-  body.tablet-backed-by-canonical {
-    #main-content .intro {
-      background-image: url('#{$asset-server}faf8037a-picto-canonical.png');
-    }
-  }
-}
-
-body.phone-ubuntu-for-android-contact-us .row-hero {
-  height: auto;
-}
 
 // Medium / Tablet viewport
 // --------------------------------------------------------------
 @media only screen and (min-width : 768px) {
-
-    body.phone {
-        .row-app-grid img {
-            margin-left: -80px;
-            margin-top: 0;
-        }
-    }
 
   body.phone-home {
 
@@ -1213,19 +616,6 @@ body.phone-ubuntu-for-android-contact-us .row-hero {
             bottom: 0;
         }
 
-        .row--scopes__music {
-            min-height: 100px;
-
-            .row--scopes__content {
-                margin-top: 0;
-                padding-left: 60px;
-            }
-
-            .screens {
-                top: auto;
-            }
-        }
-
         #main-content .row-hero {
             background: url('#{$asset-server}9bb69e76-features-intro-row-2x.jpg?w=2000') center center no-repeat;
             background-size: cover;
@@ -1234,93 +624,6 @@ body.phone-ubuntu-for-android-contact-us .row-hero {
             padding-top: 100px;
         }
 
-        .row--scopes__news {
-            border-bottom: 0;
-        }
-
-        .row--today {
-            background: url('#{$asset-server}869e5003-image-today.jpg') no-repeat;
-            background-size: cover;
-            color: $white;
-            min-height: 425px;
-            padding-top: 40px;
-            border-bottom: 0;
-        }
-
-        .row--today__content {
-            padding-top: 60px;
-        }
-
-      .row-introducing-scopes {
-          background: url('#{$asset-server}26710e9f-image-scopes-background.png') no-repeat;
-          overflow: hidden;
-
-          img {
-                margin-top: -60px;
-                margin-bottom: 0;
-            }
-        }
-
-    .row-scopes {
-      background:  url('#{$asset-server}07a129a2-image-phone-scopes-background.jpg') no-repeat;
-      background-size: cover;
-      min-height: 500px;
-
-      #example_video_1 {
-        width: 300px    !important;
-        height: 540px		!important;
-        display: block;
-        margin: 0;
-      }
-
-      div.six-col {
-        position: absolute;
-        top: -17px;
-      }
-
-      div.five-col {
-        background: $white;
-        float: right;
-        margin-right: 50px;
-        padding: 20px;
-      }
-    }
-
-    .row--edge {
-
-            min-height: 0;
-
-            .six-col {
-                height: auto;
-                padding-bottom: 20px;
-            }
-
-            #swipe-from-left {
-                padding-top: 27px;
-            }
-
-            #edge-video-wrapper {
-                width: 248px;
-                height: 490px;
-                padding: 0;
-                margin: 0 auto;
-                background-size: cover;
-                top: 40px;
-            }
-
-            #edge-video {
-              width: 205px;
-              height: 365px;
-              padding: 0;
-              margin-right: 22px;
-              top: 55px;
-            }
-
-      div.first {
-        padding-top: 40px;
-      }
-    }
-
         .row--phone-details {
 
             .four-col,
@@ -1328,14 +631,6 @@ body.phone-ubuntu-for-android-contact-us .row-hero {
                 min-height: 640px;
             }
         }
-
-      .row-more-than {
-          //min-height: 438px;
-            img {
-                position: relative;
-          }
-        }
-
   } // end body.phone-features
 
     // body.phone-developers
@@ -1451,36 +746,6 @@ body.phone-ubuntu-for-android-contact-us .row-hero {
         }
 
   } // end body.phone-developers
-
-  body.phone-ubuntu-for-android-features {
-    .default-apps{
-      ul {
-        padding: 20px;
-      }
-      li {
-        border-bottom: 0;
-        border-right: 0;
-        height: 130px;
-        margin-bottom: 0;
-        padding-top: 10px;
-        text-align: center;
-        width: 155px;
-      }
-      li.bottom {
-        border-bottom: 0;
-        margin-bottom: $gutter-width;
-      }
-      li.last-item {
-        border-right: 0;
-      }
-    }
-  }
-
-  body.phone-ubuntu-for-android {
-    .row-hero-android img {
-      display: block;
-    }
-  }
 }
 
 .device-image img {
@@ -1509,10 +774,6 @@ body.phone-ubuntu-for-android-contact-us .row-hero {
       overflow: visible;
     }
 
-    .align-base {
-      margin-top: 86px;
-    }
-
     #main-content .row-hero {
       background-image: url('#{$asset-server}19213020-intro-row.jpg?w=1300');
       background-size: cover;
@@ -1528,51 +789,6 @@ body.phone-ubuntu-for-android-contact-us .row-hero {
     .row-developers {
       padding-top: 80px;
     }
-
-    .row-scopes {
-      min-height: 568px;
-
-      div:last-child {
-        top: -50px;
-        right: auto;
-      }
-    }
-
-    // phone news (Tumblr) feed
-    .phone-news-feed__item {
-
-      a:link,
-      a:visited {
-        color: $warm-grey;
-        word-break: break-word;
-      }
-
-      h3 {
-        word-break: break-word;
-      }
-
-      blockquote {
-        margin-bottom: 10px;
-      }
-
-      br {
-        margin-bottom: 8px;
-      }
-
-      p {
-        margin-bottom: 10px;
-      }
-    }
-
-    .phone-news-feed__item:last-child {
-      margin-right: 0;
-    }
-
-    .phone-news-feed__category {
-      color: $warm-grey;
-      text-transform: uppercase;
-    }
-
   } // end phone home
 
   // @section features /phone/features (984)
@@ -1594,125 +810,12 @@ body.phone-ubuntu-for-android-contact-us .row-hero {
       min-height: 468px;
       border: 0;
     }
-
-    .row--today {
-      min-height: 544px;
-    }
-
-    .row--today__content {
-      padding-top: 100px;
-    }
-
-    .row-scopes {
-      min-height: 580px;
-
-      #example_video_1 {
-        width: 364px !important;
-        height: 648px !important;
-      }
-
-      div.six-col {
-        top: -33px;
-      }
-
-      div.five-col {
-        margin-right: 70px;
-      }
-    }
-
-    .row--edge {
-      padding-bottom: 60px;
-
-      img {
-        position: relative;
-        left: auto;
-        padding-bottom: 30px;
-      }
-
-      #edge-video-wrapper {
-        background-size: cover;
-        height: 703px;
-        padding: 0;
-        top: 35px;
-        margin: 0 auto;
-        width: 357px;
-      }
-
-      #edge-video {
-        width: 290px;
-        height: 520px;
-        left: 30px;
-        top: 77px;
-        padding: 0;
-        margin: 0;
-      }
-
-      div.first {
-        padding-top: 30px;
-      }
-
-      #swipe-from-left {
-        padding-top: 0;
-      }
-    }
   }
   // end @section features
-
-  // @section partners /phone/partners (984)
-  //--------------------------------------------------------------
-  body.phone-partners {
-
-    .row-developers {
-      min-height: 595px;
-      overflow: visible;
-    }
-
-    .phone-app-list {
-      li {
-
-        &:nth-child(1) {
-          top: -5px;
-          left: -80px;
-        }
-        &:nth-child(4) {
-          left: 227px;
-          top: 279px;
-        }
-        &:nth-child(5) {
-          left: 458px;
-          top: 350px;
-        }
-        &:nth-child(6) {
-          left: 536px;
-          top: 205px;
-        }
-        &:nth-child(7),
-        &:nth-child(8) {
-          display: block;
-        }
-        &:nth-child(8) {
-          display: block;
-          width: auto;
-          top: inherit;
-        }
-      }
-    } // end phone-app-list
-
-    .cag-list {
-
-      li {
-        width: 18%;
-      }
-    }
-
-  } // end @section partners
 
   // @section partners /phone/developers (984)
   //--------------------------------------------------------------
   body.phone-developers {
-    .row-apps {
-      overflow: visible;
-    }
 
     .row-scope-frameworks {
       padding-bottom: 100px;
@@ -1747,23 +850,6 @@ body.phone-ubuntu-for-android-contact-us .row-hero {
       padding: 20px;
     }
 
-
-    .phone-app-list {
-      li {
-        &:nth-child(5) {
-          left: 766px;
-          top: 426px;
-        }
-        &:nth-child(6) {
-          display: block;
-        }
-        &:nth-child(7) {
-          left: 536px;
-          top: 708px;
-        }
-      }
-    } // end phone-app-list
-
       #main-content .row-more-than {
         img {
           margin-bottom: -300px;
@@ -1773,32 +859,6 @@ body.phone-ubuntu-for-android-contact-us .row-hero {
     }
 
   } // end @section developers
-
-  // @section body.phone-ubuntu-for-android-features + body.phone-ubuntu-for-android-features (984)
-  // --------------------------------------------------------------
-  body.phone-ubuntu-for-android {
-    .row-hero-android {
-      background: url('#{$asset-server}73da7c89-photo-android-hero-749x456.jpg') 145% top no-repeat;
-      min-height: 22.5em;
-      margin-bottom: 0;
-
-      img {
-        display: none;
-      }
-    }
-  }
-
-  body.phone-ubuntu-for-android-features {
-    .default-apps{
-        li {
-        border-bottom: 1px dotted $warm-grey;
-        border-right: 1px dotted $warm-grey;
-        height: 150px;
-        padding-top: 20px;
-        width: 166px;
-      }
-    }
-  } // body.phone-ubuntu-for-android-features
 
 } // end @media only screen and (min-width : 984px)
 
