@@ -1,0 +1,48 @@
+
+/* List Grid
+-------------------------------------------------------------- */
+
+// TEMP - to be moved upstream to VF
+
+$grid-border-style: 1px dotted #888;
+
+.list--grid {
+
+    @media only screen and (min-width: $breakpoint-medium) {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__img {
+        display: block;
+        margin: auto;
+    }
+
+    p {
+        font-size: .875rem;
+    }
+
+    &__item {
+        border-bottom: $grid-border-style;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+
+        @media only screen and (min-width: $breakpoint-medium) {
+            display: flex;
+            flex-wrap: wrap;
+            border-right: $grid-border-style;
+            margin: 0;
+            padding: 1.5em .75em 0;
+
+            &.last-col {
+                border-right: 0;
+            }
+
+            &.last-row {
+                border-bottom: 0;
+            }
+        }
+    }
+}

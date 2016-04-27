@@ -1,71 +1,13 @@
 /*	@section tablet
 --------------------------------------------------------------
-	Contents:
-		@section general
-		@section tablet home
+  Contents:
+    @section general
+    @section tablet home
 
 -------------------------------------------------------------- */
 
 /*	@section general
 -------------------------------------------------------------- */
-.flexbox .tablet { /* this may need to move to local if we use it elsewhere, we should then also consider adding it to the ubuntu vanilla theme, and heck, maybe even vanilla frawmework! */
-  .list--grid {
-    @media only screen and (min-width : 768px) {
-      margin-top: 60px;
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    @media only screen and (max-width : 768px) {
-      margin-top: 20px;
-      margin-bottom: 30px;
-    }
-
-    &__image-container {
-      float: left;
-      margin-right: 6.94444%;
-      width: 19.7917%;
-    }
-
-    &__description {
-      width: 73.2639%;
-    }
-
-    .list--grid__item {
-      border-bottom: 1px dotted $warm-grey;
-
-      &:last-child {
-        border-bottom: 0;
-      }
-
-      @media only screen and (min-width : 768px) {
-        border-right: 1px dotted $warm-grey;
-        box-sizing: border-box;
-        margin-bottom: 0;
-        margin-right: 0;
-        padding: 30px $gutter-width 10px;
-        width: 33%;
-
-        // remove the border from the last three items
-        &:nth-last-child(1),
-        &:nth-last-child(2),
-        &:nth-last-child(3) {
-          border-bottom: 0;
-        }
-
-        // remove the padding from the first item of each row
-        &:nth-child(3n+1) {
-          padding-left: 0;
-        }
-
-        // remove the right hand border from the
-        &:nth-child(3n) {
-          border-right: 0;
-        }
-      }
-    }
-  }
-}
 
 .tablet-overview,
 .tablet-features {
