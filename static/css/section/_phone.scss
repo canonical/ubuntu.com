@@ -114,24 +114,24 @@ body.phone-home {
     color: $white;
 
     .for-mobile {
-          margin: 0 -10px 10px;
+      margin: 0 -10px 10px;
 
-          img {
-                width: 100%;
-                height: auto;
-            }
-        }
-
-        .the-video {
-        background: $black;
-        display: none;
-        min-height: 588px;
-        left: 0;
-        padding-bottom: 130px;
-        position: absolute;
-        top: 0;
+      img {
         width: 100%;
-        }
+        height: auto;
+      }
+    }
+
+    .the-video {
+      background: $black;
+      display: none;
+      min-height: 588px;
+      left: 0;
+      padding-bottom: 130px;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
 
     .hide-me,
     .show-me {
@@ -151,51 +151,51 @@ body.phone-home {
     }
 
     .show-me {
-            height: auto;
-            opacity: 1;
+      height: auto;
+      opacity: 1;
     }
   } // end row-hero
 
-    .the-video {
-      padding-bottom: 56.25%; /* 16:9 */
-      height: 0;
-    }
-    .the-video iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
+  .the-video {
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+  }
+  .the-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 
-    .close-vid-link {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      z-index: 60;
-      display: none;
-    }
+  .close-vid-link {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 60;
+    display: none;
+  }
 
-    .video.hide {
-        display: none;
-    }
+  .video.hide {
+    display: none;
+  }
 
-    #main-content .row-hero {
-        -moz-transition-duration: .7s;
-        -o-transition-duration: .7s;
-        -webkit-transition-duration: .7s;
-        background-size: cover;
-        transition-duration: .7s;
-      margin-top: 0;
-      overflow: hidden;
-      color: #333;
-    }
+  #main-content .row-hero {
+      -moz-transition-duration: .7s;
+      -o-transition-duration: .7s;
+      -webkit-transition-duration: .7s;
+    background-size: cover;
+    transition-duration: .7s;
+    margin-top: 0;
+    overflow: hidden;
+    color: #333;
+  }
 
-    .scopes-text {
-      background: $black;
-      color: $white;
-      margin-top: -12vw;
-    }
+  .scopes-text {
+    background: $black;
+    color: $white;
+    margin-top: -12vw;
+  }
 
   @media only screen and (max-width : 768px) {
     .scopes-text {
@@ -206,26 +206,24 @@ body.phone-home {
     }
   }
 
+  .row-developers {
+    background: url('#{$asset-server}9ebbb024-background-developer.png');
+  }
 
+  #main-content .row-hero .six-col {
+    padding-top: 10px;
+  }
 
-    .row-developers {
-      background: url('#{$asset-server}9ebbb024-background-developer.png');
-    }
+  .row--beautiful-design {
 
-    #main-content .row-hero .six-col {
-      padding-top: 10px;
-    }
+    @media only screen and (max-width : 768px) {
 
-    .row--beautiful-design {
+      padding: 0;
 
-      @media only screen and (max-width : 768px) {
-
-        padding: 0;
-
-        h2,
-        p {
-          padding: 0 10px;
-        }
+      h2,
+      p {
+        padding: 0 10px;
+      }
 
         img {
           width: 100%;
