@@ -40,17 +40,16 @@
 
   &__content-container {
     float: none;
-    margin-top: 1em;
     margin-bottom: 1em;
-    margin-bottom: 7px;
+    margin-top: 1em;
     padding-left: 10px;
     padding-right: 10px;
 
     @media only screen and (min-width: $breakpoint-medium) {
-      margin-top: 3em;
-      margin-left: 0;
       margin-bottom: 1em;
+      margin-left: 0;
       margin-right: 0;
+      margin-top: 3em;
       padding-left: 0;
       padding-right: 0;
     }
@@ -104,15 +103,18 @@
     @extend %contextual-footer-responsive-fonts;
 
     &--label {
-      font-size: .85em;
+      font-size: .92857143em;
     }
   }
 
   &__list {
-    @extend %contextual-footer-responsive-fonts;
     list-style: none;
     margin-bottom: 5px;
     margin-left: 0;
+
+    li {
+      @extend %contextual-footer-responsive-fonts;
+    }
   }
 }
 
