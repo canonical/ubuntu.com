@@ -1,29 +1,5 @@
 {% extends "cloud/base_cloud.html" %}
 
-{% block content-experiment %}<!-- Google Analytics Content Experiment code -->
-<script>
-  // stop local redirect
-  if (document.domain === "www.ubuntu.com") {
-    function utmx_section(){}function utmx(){}(function(){var
-k='3554866-2',d=document,l=d.location,c=d.cookie;
-if(l.search.indexOf('utm_expid='+k)>0)return;
-function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
-indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
-length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
-'<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
-'://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
-'&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
-valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
-'" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
-  }
-</script>
-<script>
-  if (document.domain === "www.ubuntu.com") {
-    utmx('url','A/B');
-  }
-</script>
-<!-- End of Google Analytics Content Experiment code -->{% endblock %}
-
 {% block title %}Ubuntu in the cloud | Cloud{% endblock %}
 
 {% block meta_description %}Whether you’re building your own OpenStack cloud, want a hosted private cloud or want to use Ubuntu in the public cloud, we offer all the training, software, tools, services and support you need.{% endblock meta_description %}
@@ -55,7 +31,7 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
 <section class="row">
     <div class="six-col append-two">
         <h2>Create your cloud with OpenStack Autopilot</h2>
-        <p class="intro">Deploy and manage your cloud quickly and easily.</p>
+        <p>Deploy and manage your cloud quickly and easily.</p>
         <ul class="list-ticks--compact">
             <li>Fully automated deployment &mdash; just add servers</li>
             <li>Deploy, manage and scale your OpenStack cloud with ease</li>
@@ -218,7 +194,7 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
 <section class="row row-maas row-grey">
     <div class="six-col">
         <h2>MAAS is Metal as a Service</h2>
-        <p class="intro">The bare metal physical cloud</p>
+        <p>The bare metal physical cloud</p>
         <ul class="list-ticks--compact">
             <li>Cloud-style automation for physical servers</li>
             <li>Works with all certified servers from every major vendor</li>
@@ -235,7 +211,7 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
 <section class="row">
     <div class="eight-col">
         <h2>Use Ubuntu on certified public clouds</h2>
-        <p class="intro">The most popular operating system across public clouds.</p>
+        <p>The most popular operating system across public clouds.</p>
         <ul class=" list-ticks--compact">
             <li>Canonical guarantees the consistency, security and performance of Ubuntu on all our certified public clouds</li>
             <li>Enterprise-grade commercial support is available</li>
@@ -322,8 +298,8 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
 
 <section class="row row-insights row-grey no-padding-bottom">
     <h2 class="twelve-col">The latest Ubuntu Cloud news and events</h2>
-    <div class="twelve-col vertical-divider">
-      <div id="insights-cloud-feed" class='six-col'>
+    <div class="twelve-col equal-height--vertical-divider no-margin-bottom">
+      <div id="insights-cloud-feed" class='six-col equal-height--vertical-divider__item'>
         <ul class="no-bullets smaller">
           <li>Read news, case studies, whitepapers and more on <a class="external" href="https://insights.ubuntu.com">insights.ubuntu.com</a></li>
         </ul>
@@ -333,13 +309,13 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
           $.getFeed({
             url: 'http://insights.ubuntu.com/topic/Cloud/feed',
             success: function(feed) {
-              var html = "<ul class='no-bullets smaller'>";
+              var html = "";
               for(var i = 0; i < feed.items.length && i < 4; i++) {
                 var item = feed.items[i];
                 var d = $.trim(item.description).substring(0, 100).split(" ").slice(0, -1).join(" ") + "\&hellip\;";
                 html += "<li class='six-col'><h3><a href='" + item.link + "' class='external'>" + item.title + "</a></h3><p>" + d + "</p></li>";
               }
-              html = "<div id='insights-cloud-feed' class='six-col'><ul class='no-bullets smaller'>" + html + "</ul></div>";
+              html = "<div id='insights-cloud-feed' class='equal-height--vertical-divider__item six-col'><ul class='no-bullets'>" + html + "</ul></div>";
               if ($('#insights-cloud-feed')) {
                 $('#insights-cloud-feed').replaceWith(html);
               }

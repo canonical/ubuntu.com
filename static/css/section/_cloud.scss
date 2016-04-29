@@ -96,13 +96,13 @@
   }
 
   .row-maas {
-    @media only screen and (min-width : 768px) {
+    @media only screen and (min-width : $breakpoint-medium) {
       background-image: url('#{$asset-server}f58e0ebf-image-maas-screenshot.jpg?op=region&rect=0,0,300,600');
       background-position: right top;
       background-repeat: no-repeat;
     }
 
-    @media only screen and (min-width : 984px) {
+    @media only screen and (min-width : $breakpoint-large) {
       background-image: url('#{$asset-server}f58e0ebf-image-maas-screenshot.jpg?op=region&rect=0,0,450,600');
       background-position: right top;
       background-repeat: no-repeat;
@@ -139,6 +139,14 @@
     }
   }
 
+  // news list on /cloud
+  #insights-cloud-feed li {
+    font-size: 1.142857143em;
+    @media only screen and (min-width : $breakpoint-large) {
+      font-size: .875em;
+    }
+  }
+  // events list on /cloud
   .event-map {
     float: left;
 
@@ -151,14 +159,17 @@
 
   .event-details {
     color: #888;
-    font-size: .8125em;
+    font-size: .92857143em;
     line-height: 1.2;
     margin-bottom: 0;
-    width: 70%;
+    width: 66%;
     clear: none;
     display: inline;
     float: left;
     margin-top: 4px;
+    @media only screen and (min-width : $breakpoint-large) {
+      font-size: .875em;
+    }
   }
 
   .event-details dd {
@@ -217,13 +228,13 @@
 
 /* Used on multiple /cloud pages */
 .row-autopilot {
-  @media only screen and (min-width : 768px) {
+  @media only screen and (min-width : $breakpoint-medium) {
     background-image: url('#{$asset-server}6e179925-image-cloud-openstack-autopilot-screenshot.jpg?op=region&rect=0,0,300,600');
     background-position: right bottom;
     background-repeat: no-repeat;
   }
 
-  @media only screen and (min-width : 984px) {
+  @media only screen and (min-width : $breakpoint-large) {
     background-image: url('#{$asset-server}6e179925-image-cloud-openstack-autopilot-screenshot.jpg?op=region&rect=0,0,450,800');
     background-position: right top;
     background-repeat: no-repeat;
@@ -537,7 +548,7 @@ body.cloud-juju {
 }
 
 body.cloud-maas {
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $breakpoint-medium) {
     .row-hero {
       background: url('#{$asset-server}a164f3d0-image-maas-screenshot.jpg') no-repeat 450px 0;
       background-size: 75%;
@@ -735,7 +746,7 @@ body.cloud-openstack-managed-cloud {
     margin-bottom: 40px;
   }
 
-  @media only screen and (max-width : 768px) {
+  @media only screen and (max-width : $breakpoint-medium) {
     .row-step .step {
       position: absolute;
       left: 0;
@@ -777,7 +788,7 @@ body.cloud-storage {
 
 /* Medium / Tablet viewport
 -------------------------------------------------------------- */
-@media only screen and (min-width : 768px) {
+@media only screen and (min-width : $breakpoint-medium) {
   body.cloud-storage {
     .storage-options {
       border-bottom: 1px dotted $warm-grey;
@@ -908,7 +919,7 @@ body.cloud-storage {
         display: block;
         left: 0;
         position: absolute;
-        width: 984px;
+        width: $breakpoint-large;
         z-index: 3;
       }
 
@@ -917,7 +928,7 @@ body.cloud-storage {
         height: 152px;
         background: transparent url('#{$asset-server}487a58c4-clouds-background.png') repeat-x;
         background-position: 0 0;
-        width: 984px;
+        width: $breakpoint-large;
         display: block;
         bottom: 0;
         left: 0;
@@ -930,7 +941,7 @@ body.cloud-storage {
         height: 152px;
         background: transparent url('#{$asset-server}190d12e9-clouds-background-b.png') repeat-x;
         background-position: 0 0;
-        width: 984px;
+        width: $breakpoint-large;
         display: block;
         bottom: 30px;
         left: -10%;
@@ -1397,7 +1408,7 @@ body.cloud-storage {
 
 /* Large / Desktop viewport
 -------------------------------------------------------------- */
-@media only screen and (min-width : 984px) {
+@media only screen and (min-width : $breakpoint-large) {
 
   .row--training__image {
     position: absolute;
@@ -1504,7 +1515,7 @@ body.cloud-storage {
       }
     }
 
-}/* end @media only screen and (min-width : 984px) */
+}/* end @media only screen and (min-width : $breakpoint-large) */
 
 /* BootStack Calculator
 -------------------------------------------------------------- */
@@ -1661,7 +1672,7 @@ body.cloud-storage {
       font-size: 1.25em;
     }
 
-    @media only screen and (min-width : 768px) {
+    @media only screen and (min-width : $breakpoint-medium) {
       &#diy-section .intro {
         margin-bottom: 2.2em;
       }
@@ -1828,7 +1839,7 @@ html.js .cloud-openstack-managed-cloud .js__required {
     height: 400px;
   }
 
-  @media only screen and (max-width : 768px) {
+  @media only screen and (max-width : $breakpoint-medium) {
     .row-step .step {
       position: absolute;
       left: 0;
@@ -1836,7 +1847,7 @@ html.js .cloud-openstack-managed-cloud .js__required {
     }
   }
 
-  @media only screen and (min-width : 768px) {
+  @media only screen and (min-width : $breakpoint-medium) {
     #main-content .row-hero {
       background-image: url('#{$asset-server}3d1bc1a9-image-cloud-openstack-autopilot-screenshot.jpg?op=region&rect=0,0,450,800');
       background-position: 122% 0%;
@@ -1846,7 +1857,7 @@ html.js .cloud-openstack-managed-cloud .js__required {
     }
   }
 
-  @media only screen and (min-width : 984px) {
+  @media only screen and (min-width : $breakpoint-large) {
     #main-content .row-hero {
       background-position: top right;
     }
