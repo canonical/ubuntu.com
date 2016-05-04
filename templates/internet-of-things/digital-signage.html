@@ -2,11 +2,12 @@
 
 {% block title %}Digital signage | Ubuntu for the Internet of Things {% endblock %}
 
-{% block meta_description %}With hundreds of thousands of devices deployed the world over, Ubuntu Core is the perfect small-footprintOS for the digital signage sector.{% endblock meta_description %}
-{% block meta_keywords %}digital signage linux , digital signage Ubuntu, signage player, signage software, digital signage raspberry Pi, digital signage innovation{% endblock meta_keywords %}
+{% block meta_description %}With hundreds of thousands of devices deployed the world over, Ubuntu Core is the perfect robust, reliable and secure OS for the digital signage sector.{% endblock meta_description %}
+{% block meta_keywords %}digital signage linux , digital signage Ubuntu, signage player, signage software, digital signage raspberry Pi, digital signage innovation, open source digital signage
+{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
-    {% include "templates/_nav_breadcrumb.html" with section_title="IoT" page_title="Digital signage" %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="IoT" page_title="Digital Signage" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -21,27 +22,105 @@
   </div>
 </section>
 
+<section class="row row-grey">
+    <h2>Signage players need the power of Ubuntu</h2>
+    <ul class="list-ticks six-col">
+        <li>Small footprint, serious power: reducing your hardware costs while still running 4k video</li>
+        <li>Remote maintenance: no need for on-site personnel</li>
+        <li>Security: closes the door to screen takeovers and other attacks</li>
+        <li>Stability: designed for 24/7 availability</li>
+        <li>Software development: existing libraries and codebase, flexibility in development, all the way down to the device driver</li>
+    </ul>
+    <ul class="list-ticks six-col last-col">
+        <li>Atomic upgradability: low bandwidth, prompt delivery of new features</li>
+        <li>Low cost: open source digital signage</li>
+        <li>Application isolation enables security, robustness and simpler maintenance</li>
+        <li>Faster innovation: wide peripheral support, Wi-Fi, 3G/4G, NFC, Bluetooth, software-defined radio, deep learning, audio and camera support (including RealSense)</li>
+    </ul>
+</section>
+
 <section class="row">
-  <div class="eight-col">
-      <h1>Innovation in digital signage</h1>
-      <p>With Ubuntu Core, digital display owners can innovate at speed, thanks to the wealth of innovative apps already created by our partners.</p>
-  </div>
+    <div class="eight-col prepend-four">
+        <h2>Simplified software management</h2>
+        <p>Ubuntu Core gives your screens the uptime and robustness you need. Uniquely stable and secure, it is based on the same operating system that runs the majority of the world's clouds.</p>
+        <p>Ubuntu Core adds the ability to upgrade the entire software stack remotely and securely, from the kernel all the way up to the apps. Canary rollout and rollback capability gives you peace of mind during upgrades: if anything goes wrong, the device automatically reverts to the last working release. With update management facilities to manage roll-out as you wish, Ubuntu Core is the ultimate digital signage OS.</p>
+    </div>    
+</section>
+
+<section class="row row-grey">
+    <div class="eight-col">
+        <h2>Partners and players</h2>
+        <p>The Ubuntu Core app store makes it easy for systems integrators and device makers to find solutions, while enabling OEMs to generate revenues from their devices over the entire lifetime of their products.</p>
+    </div>
+        
+    <ul class="no-bullets equal-height twelve-col">
+        <li class="equal-height_item four-col box">
+            <h3>Screenly</h3>
+            <p>Turn a Raspberry Pi into a digital signage player.</p>
+            <p><a href="">Read the case study</a></p>
+        </li>
+        <li class="equal-height_item four-col box">
+            <h3>BroadSign</h3>
+            <p>The world&rsquo;s largest digital signage vendor player is now Ubuntu certified.</p>
+        </li>
+        <li class="equal-height_item four-col last-col box">
+            <h3>South African</h3>
+            <p>TBC</p>
+        </li>
+        <li class="equal-height_item four-col box">
+            <h3>Rise Vision</h3>
+            <p>A simple solution for delivering content worth sharing to digital signage everywhere.</p>
+        </li>
+        <li class="equal-height_item four-col box">
+            <h3>Intel NUC</h3>
+            <p>TBC</p>
+        </li>
+        <li class="equal-height_item four-col last-col box">
+            <h3>4YouSee</h3>
+            <p>TBC</p>
+        </li>
+    </ul>
+    
+    <p class="clear"><a href="#">Build a digital signage product on Ubuntu&nbsp;&rsaquo;</a></p>
+</section>
+
+<section class="row">
+    <div class="eight-col">
+        <h2>Innovation in digital signage</h2>
+        <p>With Ubuntu Core, digital display owners can innovate at speed, thanks to the wealth of innovative apps already created by our partners.</p>
+    </div>
+    <ul class="no-bullets equal-height twelve-col">
+        <li class="equal-height_item four-col box">
+            <h3>Boldmind</h3>
+            <p>Sell unsold inventory and display localised advertising.</p>
+        </li>
+        <li class="equal-height_item four-col box">
+            <h3>Lime Micro</h3>
+            <p>Turn a digital signage player into a 4G base station.</p>
+        </li>
+        <li class="equal-height_item four-col last-col box">
+            <h3>Hoxton Analytics</h3>
+            <p>Turn your digital sign into a people counter.</p>
+        </li>
+    </ul>
+    
+    <p class="clear"><a href="#">Build a digital signage product on Ubuntu&nbsp;&rsaquo;</a></p>
 </section>
 
 <section class="row row-cta no-border">
   <div class="three-col align-center not-for-small">
-    <img src="{{ ASSET_SERVER_URL }}e35b1108-picto-corepower-orange.svg" width="160" alt="" />
+    <img src="{{ ASSET_SERVER_URL }}45888d3f-image-picto-projects-we-love.svg" width="160" alt="" />
   </div>
   <div class="eight-col last-col">
     <div class="inline-small one-col align-center for-small">
-      <img src="{{ ASSET_SERVER_URL }}e35b1108-picto-corepower-orange.svg" width="38" alt="" />
+      <img src="{{ ASSET_SERVER_URL }}45888d3f-image-picto-projects-we-love.svg" width="38" alt="" />
     </div>
     <h2>Build your own digital signage solution</h2>
-    <p class="clear">Ubuntu Core is entirely open source and and supports a range of digital signage players. Just install it on a Raspberry Pi or NUC, download the app of your choice, create an account and you’re ready to go.</p>
-    <p><a href="http://partners.ubuntu.com/programmes/iot" class="external">Build a digital signage product on Ubuntu</a></p>
+    <p>Ubuntu Core is entirely open source and and supports a range of digital signage players. Just install it on a Raspberry Pi or NUC, download the app of your choice, create an account and you&rsquo;re ready to go.</p>
+    <p><a href="#" class="external">Build a digital signage product on Ubuntu</a></p>
   </div>
 </section>
 
-{% include "internet-of-things/shared/_contextual_footer.html" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_devices_newsletter_signup" third_item="_iot_further_reading" %}
 
 {% endblock content %}
