@@ -5,6 +5,7 @@
 
 {% block content %}
 <div class="row row-hero no-border search-container">
+    <div class="strip-inner-wrapper">    
     {% if query %}
     {% if results %}
     <h1>We've found {% if total %}{{ total }} {% endif %}results for "{{query}}"</h1>
@@ -17,9 +18,9 @@
 
     <form action="/search">
         <fieldset class="main-search">
-        		<label for="search-input" class="off-left">Search</label>
+            <label for="search-input" class="off-left">Search</label>
             <input name="q" id="search-input" type="search" value="{{ query }}" placeholder="e.g. juju" />
-            <button type="submit"><img src="{{ ASSET_SERVER_URL }}a8f26953-search-black.png" alt="search" /></button>
+            <button type="submit"><img src="{{ ASSET_SERVER_URL }}19750a6d-search-black.svg" alt="search" /></button>
         </fieldset>
     </form>
 
@@ -30,7 +31,7 @@
     <section id="search-results" class="no-margin-bottom list list-spaced">
         <p class="result-line results-top">Results{% if start or end %} {{ start }} to {{ end }}{% endif %}</p>
 {% for result in results %}
-        <article class="search-result">
+        <article class="search-result twelve-col">
             <h1>
                 <a href="{{ result.url }}" class="title-main">{{ result.title|safe }}</a>
                 <small class="result-url"><a href="{{ result.url }}">{{ result.url }}</a></small>
@@ -91,5 +92,6 @@
 {% endif %} {# request_succeeded #}
 
 {% endif %} {# query #}
+    </div>
 </div>
 {% endblock content %}
