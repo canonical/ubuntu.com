@@ -6,9 +6,11 @@ base:
 
 assets:
   extends: {'service': 'base', 'file': 'docker-compose.yml'}
+  links:
+    - web
   build: .
   dockerfile: Dockerfile-assets
-  command: /bin/bash -c 'umask 0000 && npm install && gulp watch'
+  command: /bin/bash -c 'umask 0000 && npm install && gulp dev'
 
 web:
   extends: {'service': 'base', 'file': 'docker-compose.yml'}

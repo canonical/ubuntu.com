@@ -1,6 +1,7 @@
 'use strict';
 
 var autoprefixer = require('gulp-autoprefixer');
+var browserSync = require('browser-sync').create();
 var del = require('del');
 var gulp = require('gulp');
 var plumber = require('gulp-plumber');
@@ -34,6 +35,12 @@ var templateWatch = 'templates/**/*.html';
 
 
 /* Gulp instructions start here */
+gulp.task('browser-sync', function() {
+    return browserSync.init({
+        proxy: "web:5000"
+    });
+});
+
 gulp.task('sass', function() {
     return gulp.src(sassInput)
         .pipe(plumber())
@@ -45,6 +52,7 @@ gulp.task('sass', function() {
           sourceRoot: sassSourceRoot
         }))
         .pipe(gulp.dest(sassOutput))
+        .pipe(browserSync.stream())
 });
 
 gulp.task('sass:clean', function() {
@@ -65,14 +73,14 @@ gulp.task('sass:watch', function() {
 });
 
 gulp.task('template:watch', function() {
-    livereload.listen();
     gulp.watch([templateWatch], function (file) {
         return gulp.src(file.path)
-            .pipe(livereload())
+        .pipe(browserSync.stream())
     });
 });
 
 gulp.task('watch', ['sass:watch', 'template:watch']);
+gulp.task('dev', ['watch', 'browser-sync']);
 
 gulp.task('test', ['sass:lint']);
 gulp.task('build', ['test', 'sass']);
