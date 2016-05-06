@@ -1,7 +1,10 @@
 body,
 html {
   overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
+
 body {
   background-size: cover;
   @media only screen and (min-width : $breakpoint-medium) {
@@ -35,7 +38,7 @@ body {
     display: inherit;
   }
   #menu.active:after {
-    background-image: url("https://assets.ubuntu.com/v1/f9f534bd-nav-arrow.svg");
+    background-image: url("#{$asset-server}f9f534bd-nav-arrow.svg");
     background-repeat: no-repeat;
     background-position: 50% 26px;
     content: "";
@@ -87,6 +90,7 @@ body {
     ul.third-level-nav li {
       padding-left: 30px;
     }
+    
     ul.second-level-nav li {
       box-sizing: border-box;
       width: 50%;
@@ -94,14 +98,14 @@ body {
       float: left;
       a,
       a:link {
-        font-size: 0.875em;
+        font-size: 1.142857143em;
       }
     }
     .breadcrumb {
       padding-bottom: 0;
       padding-top: 0;
       li .after {
-        background-image: url('https://assets.ubuntu.com/v1/74545443-nav-down-arrow.svg');
+        background-image: url('#{$asset-server}74545443-nav-down-arrow.svg');
         background-position: center center;
         background-repeat: no-repeat;
         background-size: 18px;
@@ -114,7 +118,11 @@ body {
         width: 18px;
       }
       li .breadcrumb-link {
+        border-bottom: 1px solid $alto-grey;
         color: $text-color;
+        outline: none;
+        font-size: 1.142857143em;
+
         &--second-level:after,
         &:after {
           content: '';
@@ -125,11 +133,16 @@ body {
         font-weight: 700;
         color: $black;
       }
+      li:first-of-type {
+        border-bottom: 0;
+      }
     }
-    &:hover {
-      border-bottom: 1px solid $box-border;
+    &.open {
+      border-bottom: 1px solid $alto-grey;
+      display: inherit;
+    
       ul.breadcrumb li .after {
-        background-image: url('https://assets.ubuntu.com/v1/cadd096c-nav-up-arrow.svg');
+        background-image: url('#{$asset-server}cadd096c-nav-up-arrow.svg');
       }
     }
   }
@@ -141,6 +154,31 @@ body {
 
 .breadcrumb-link--second-level:after {
   color: $warm-grey;
+}
+
+@media only screen and (max-width: $navigation-threshold - 1) {
+  .breadcrumbs .second-level-nav,
+  .breadcrumbs .second-level-nav:hover {
+    border: 0;
+    margin-bottom: 4px;
+  }
+
+  .breadcrumbs:hover {
+    .second-level-nav,
+    .third-level-nav {
+      display: none;
+    }
+    .second-level-nav {
+      border: 0;
+    }
+  }
+
+  .breadcrumbs.open {
+    .second-level-nav,
+    .third-level-nav {
+      display: block;
+    }
+  }
 }
 
 // pulling in the old guidelines version of combined-list
@@ -184,7 +222,7 @@ body {
 // local override for uvt list ticks
 .list-ticks li,
 .list-ticks--compact li {
-  background-image: url('https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg');
+  background-image: url('#{$asset-server}c4b02d61-tick-orange.svg');
 }
 // flex container
 @media only screen and (min-width: $breakpoint-medium) {
@@ -470,12 +508,18 @@ body {
 .phone {
   .row {
     padding: 20px 10px 0;
+    
     @media only screen and (min-width : $breakpoint-medium) {
       padding: 40px 10px 20px;
     }
+    
     @media only screen and (min-width : $breakpoint-large) {
       padding: 100px 40px;
     }
+  }
+  
+  .row-hero {
+    padding: 0 10px 0;
   }
 }
 
@@ -1016,7 +1060,7 @@ button.button--primary__deactivated:hover {
 /// XXX Karl (10.04.2016)
 /// we're using a similar style in various places, cosider pushing upstream
 .external-heading {
-  background: url("https://assets.ubuntu.com/v1/e1bba201-external-link-cool-grey.svg") left center no-repeat;
+  background: url("#{$asset-server}e1bba201-external-link-cool-grey.svg") left center no-repeat;
   background-size: 16px;
   padding-left: 22px;
 }
