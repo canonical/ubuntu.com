@@ -1,8 +1,6 @@
 body,
 html {
   overflow-x: hidden;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -87,8 +85,20 @@ body {
     padding-top: 0;
   }
   .nav-secondary {
-    ul.third-level-nav li {
-      padding-left: 30px;
+    ul.third-level-nav {
+      margin-top: -15px;
+      padding-top: 0;
+      
+      li {
+        box-sizing: border-box;
+        padding-left: 10px;
+        width: 50%;
+        
+        a,
+        a:link {
+          font-size: 1.142857143em;
+        }
+      }
     }
     
     ul.second-level-nav li {
@@ -158,7 +168,9 @@ body {
 
 @media only screen and (max-width: $navigation-threshold - 1) {
   .breadcrumbs .second-level-nav,
-  .breadcrumbs .second-level-nav:hover {
+  .breadcrumbs .second-level-nav:hover,
+  .breadcrumbs .third-level-nav,
+  .breadcrumbs .third-level-nav:hover {
     border: 0;
     margin-bottom: 4px;
   }
