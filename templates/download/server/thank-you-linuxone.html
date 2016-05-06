@@ -26,23 +26,44 @@ Thanks for downloading Ubuntu for LinuxONE and z Systems
         </div>
         <div class="five-col last-col box">
             <h2>Newsletter sign-up</h2>
-            <p>Stay up-to-date on new features, upgrades and how others are using Ubuntu on IBM LinuxOne and z&nbsp;Systems.</p>
+            <p>As you move into a production environment keep up-to-date on new features, upgrades and how others are using Ubuntu 16.04 LTS on IBM LinuxOne and z Systems.</p>
             <!-- MARKETO FORM -->
             <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
             <script src="{{ ASSET_SERVER_URL }}6ce35d3e-jquery-ui.min.js"></script>‌​
             <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1400">
                 <fieldset>
                     <ul class="no-bullets">
-                        <li  class="mktFormReq mktField">
+                        <li class="mktFormReq mktField">    
+                            <label for="FirstName" class="mktoLabel">First Name: <span>*</span></label>
+                            <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" />
+                        </li>
+                        <li class="mktFormReq mktField">    
+                            <label for="LastName" class="mktoLabel">Last Name: <span>*</span></label>
+                            <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" />
+                        </li>
+                        <li class="mktFormReq mktField">    
+                            <label for="Company" class="mktoLabel">Company Name: <span>*</span></label>
+                            <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired" />
+                        </li>
+                        <li class="mktFormReq mktField">
                             <label for="Email" class="mktoLabel " >Email address: <span>*</span></label>
-                            <input required  id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired" >
+                            <input required  id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired" />
                         </li>
                         <li class="mktField">
-                            <input class="mktoField" value="yes" id="NewsletterOpt-In" name="NewsletterOpt-In" type="checkbox">
-                            <label  class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>
+                            <input class="mktoField" value="yes" id="NewsletterOpt-In" name="NewsletterOpt-In" type="checkbox" />
+                            <label class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>
                         </li>
-                        <li  class="mktField">
-                            <button type="submit" class="mktoButton link-cta-download button--primary">Sign-up</button></span><input type="hidden" name="formid" class="mktoField " value="1400"><input type="hidden" name="lpId" class="mktoField " value="2469"><input type="hidden" name="subId" class="mktoField" value="30"><input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335"><input type="hidden" name="lpurl" class="mktoField" value="//pages.ubuntu.com/download-LinuxONE.html?cr={creative}&amp;kw={keyword}"><input type="hidden" name="cr" class="mktoField " value=""><input type="hidden" name="kw" class="mktoField " value=""><input type="hidden" name="q" class="mktoField " value="">
+                        <li class="mktField">
+                            <button type="submit" class="mktoButton link-cta-download button--primary">Sign-up</button>
+                            
+                            <input type="hidden" name="formid" class="mktoField " value="1400" />
+                            <input type="hidden" name="lpId" class="mktoField " value="2469" />
+                            <input type="hidden" name="subId" class="mktoField" value="30" />
+                            <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335" />
+                            <input type="hidden" name="lpurl" class="mktoField" value="//pages.ubuntu.com/download-LinuxONE.html?cr={creative}&amp;kw={keyword}" />
+                            <input type="hidden" name="cr" class="mktoField " value="" />
+                            <input type="hidden" name="kw" class="mktoField " value="" />
+                            <input type="hidden" name="q" class="mktoField " value="" />
                         </li>
                     </ul>
                 </fieldset>
@@ -67,28 +88,28 @@ Thanks for downloading Ubuntu for LinuxONE and z Systems
         <div class="box-grey twelve-col no-margin-bottom equal-height">
             <div class="four-col support box box-highlight equal-height__item">
                 <div class="text-center four-col">
-                    <img alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}03c5463a-picto-business-warmgrey.svg" width="113" height="113" />
+                    <img alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}8a199d55-picto-articles-warmgrey.svg" width="113" height="113" />
                 </div>
-                <h3>Ubuntu Advantage</h3>
-                <p>Commercial support agreements to suit your business needs.</p>
-                <p><a href="http://www.ubuntu.com/server/management">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
-            </div><!-- /.four-col -->
+                <h3>Forrester Research eBook</h3>
+                <p>Get more from the cloud with the right platform approach.</p>
+                <p><a href="https://pages.ubuntu.com/Forrester_TAP_Report_2016.html"  class="external">Download eBook</a></p>
+            </div>
             <div class="four-col one box box-highlight equal-height__item">
                 <div class="text-center four-col">
-                    <img alt="ubuntu one" src="{{ ASSET_SERVER_URL }}2a8cf960-picto-startfirst-warmgrey.svg" width="113" height="113" />
+                    <img alt="ubuntu one" src="{{ ASSET_SERVER_URL }}8a199d55-picto-articles-warmgrey.svg" width="113" height="113" />
                 </div>
-                <h3>OpenStack Training</h3>
-                <p>In a classroom or at your company, learn the ins and outs of OpenStack.</p>
-                <p><a href="/cloud/openstack/training">Learn more about OpenStack Training&nbsp;&rsaquo;</a></p>
-            </div><!-- /.four-col -->
+                <h3>IDC Analyst White Paper</h3>
+                <p>Learn more about next generation applications on Ubuntu for LinuxONE/z.</p>
+                <p><a href="http://www-01.ibm.com/marketing/iwm/dre/signup?source=stg-web&S_PKG=ov47989&S_TACT=C47305CW" class="external">Download whitepaper</a></p>
+            </div>
             <div class="four-col ask last-col box box-highlight equal-height__item">
                 <div class="text-center four-col">
-                    <img alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}422b612c-picto-forum-warmgrey.svg" width="113" height="113" />
+                    <img alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}87cb77c7-picto-desktop-warmgrey.svg" width="113" height="113" />
                 </div>
-                <h3>Ask Ubuntu</h3>
-                <p>Need help? Ask your questions here.</p>
-                <p><a href="http://askubuntu.com/questions/tagged/server" class="external">Get help</a></p>
-            </div><!-- /.four-col -->
+                <h3>IBM Systems Magazine Webinar</h3>
+                <p>Discover the Cloud and scale out world of Ubuntu on IBM.</p>
+                <p><a href="https://ibmsystemsmag.webex.com/ibmsystemsmag/lsr.php?RCID=8a447682b6dd0bffe57723fc5238d202" class="external">Watch webinar on-demand</a></p>
+            </div>
         </div><!-- /.row .row-box -->
     </div><!-- /.strip-inner-wrapper -->
 </div><!-- /.row .row-grey -->
