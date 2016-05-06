@@ -157,13 +157,13 @@ body {
 }
 
 @media only screen and (max-width: $navigation-threshold - 1) {
-  #breadcrumbs .second-level-nav,
-  #breadcrumbs .second-level-nav:hover {
+  .breadcrumbs .second-level-nav,
+  .breadcrumbs .second-level-nav:hover {
     border: 0;
     margin-bottom: 4px;
   }
 
-  #breadcrumbs:hover {
+  .breadcrumbs:hover {
     .second-level-nav,
     .third-level-nav {
       display: none;
@@ -173,7 +173,7 @@ body {
     }
   }
 
-  #breadcrumbs.open {
+  .breadcrumbs.open {
     .second-level-nav,
     .third-level-nav {
       display: block;
