@@ -49,7 +49,7 @@
   }
 }
 
-@media only screen and (max-width : 768px) {
+@media only screen and ($breakpoint-medium) {
 
   .video-container.for-mobile {
     margin-bottom: 0!important;
@@ -197,7 +197,7 @@ body.phone-home {
     margin-top: -12vw;
   }
 
-  @media only screen and (max-width : 768px) {
+  @media only screen and ($breakpoint-medium) {
     .scopes-text {
       background: $white;
       color: $black;
@@ -216,7 +216,7 @@ body.phone-home {
 
   .row--beautiful-design {
 
-    @media only screen and (max-width : 768px) {
+    @media only screen and ($breakpoint-medium) {
 
       padding: 0;
 
