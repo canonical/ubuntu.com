@@ -15,10 +15,12 @@ body {
 .row.row-grey {
   border-bottom: 1px dotted $warm-grey;
   margin-top: 0;
-  &.no-border {
-    border-bottom: 0;
-  }
 }
+
+.no-border {
+  border-bottom: 0;
+}
+
 /// XXX Peter - marketo required field marker
 .mktoLabel > span,
 .mktError {
@@ -1078,12 +1080,6 @@ button.button--primary__deactivated:hover {
 }
 .header-search input[type=search] {
   padding-right: 40px;
-}
-
-/// Modify list--grid__image-container to make sure images always
-/// appear at 60px, regardless of their actual size
-.list--grid__image-container img {
-  width: 60px;
 }
 
 /// XXX Robin 2016-04-19
