@@ -489,6 +489,7 @@ body {
 .tablet {
   .row-hero {
     margin-top: 0;
+    
     h1 {
       padding-top: 20px;
     }
@@ -534,6 +535,13 @@ body {
   
   .row-hero {
     padding: 0 10px 0;
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      padding: 40px 10px 20px;
+    }
+    @media only screen and (min-width : $breakpoint-large) {
+      padding: 100px 40px;
+    }
   }
 }
 
