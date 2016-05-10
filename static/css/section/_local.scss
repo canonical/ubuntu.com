@@ -295,7 +295,9 @@ body {
 .billboard__content {
   background: rgba(255,255,255,.85);
   color: $cool-grey;
-  padding: 20px;
+  @media only screen and (min-width : $breakpoint-medium) {
+    padding: 20px;
+  }
 }
 .billboard__title {
   @media only screen and (min-width : $breakpoint-large) {
