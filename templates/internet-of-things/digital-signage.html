@@ -39,12 +39,15 @@
     </ul>
 </section>
 
-<section class="row strip strip-dark no-border">
-    <div class="eight-col">
+<section class="row strip-dark no-border equal-height">
+    <div class="eight-col equal-height__item">
         <h2>Simplified software management</h2>
         <p>Ubuntu Core gives your screens the uptime and robustness you need. Uniquely stable and secure, it is based on the same operating system that runs the majority of the world's clouds.</p>
         <p>Ubuntu Core adds the ability to upgrade the entire software stack remotely and securely, from the kernel all the way up to the apps. Canary rollout and rollback capability gives you peace of mind during upgrades: if anything goes wrong, the device automatically reverts to the last working release. With update management facilities to manage roll-out as you wish, Ubuntu Core is the ultimate digital signage OS.</p>
     </div>    
+    <div class="four-col last-col equal-height__item equal-height__align-vertically">
+        <img src="{{ ASSET_SERVER_URL }}543a1e1a-snappy_orange_hex-01.svg" alt="" />
+    </div>
 </section>
 
 <section class="row">
@@ -53,29 +56,47 @@
         <p>The Ubuntu Core app store makes it easy for systems integrators and device makers to find solutions, while enabling OEMs to generate revenues from their devices over the entire lifetime of their products.</p>
     </div>
         
-    <ul class="no-bullets equal-height twelve-col">
+    <ul class="list-partners no-bullets equal-height twelve-col">
         <li class="equal-height_item four-col box">
+            <div class="list-partners__image-container four-col align-center">
+                <img class="list-partners__image" src="{{ ASSET_SERVER_URL }}5917a214-logo-screenly.png" alt="Screenly logo" />
+            </div>
             <h3>Screenly</h3>
             <p>Turn a Raspberry Pi into a digital signage player.</p>
-            <p><a href="">Read the case study</a></p>
+            <p><a href="#">Read the case study</a></p>
         </li>
         <li class="equal-height_item four-col box">
+            <div class="list-partners__image-container four-col align-center">
+                <img class="list-partners__image" src="{{ ASSET_SERVER_URL }}09f14e7a-logo-broadsign.png" alt="BroadSign logo" />
+            </div>
             <h3>BroadSign</h3>
             <p>The world&rsquo;s largest digital signage vendor player is now Ubuntu certified.</p>
         </li>
         <li class="equal-height_item four-col last-col box">
-            <h3>South African</h3>
+            <div class="list-partners__image-container four-col align-center">
+                <img class="list-partners__image" src="http://placehold.it/350x150?text=:'(" alt="Rise Vision logo" />
+            </div>
+            <h3>Mediabox</h3>
             <p>TBC</p>
         </li>
         <li class="equal-height_item four-col box">
+            <div class="list-partners__image-container four-col align-center">
+                <img class="list-partners__image" src="{{ ASSET_SERVER_URL }}f2396b21-logo-risevision.png" alt="Rise Vision logo" />
+            </div>
             <h3>Rise Vision</h3>
             <p>A simple solution for delivering content worth sharing to digital signage everywhere.</p>
         </li>
         <li class="equal-height_item four-col box">
-            <h3>Intel NUC</h3>
+            <div class="list-partners__image-container four-col align-center">
+                <img class="list-partners__image" src="{{ ASSET_SERVER_URL }}c24cb4b9-logo-intel.svg" alt="Intel® NUC logo" />
+            </div>
+            <h3>Intel® NUC</h3>
             <p>TBC</p>
         </li>
         <li class="equal-height_item four-col last-col box">
+            <div class="list-partners__image-container four-col align-center">
+                <img class="list-partners__image" src="{{ ASSET_SERVER_URL }}391ea778-logo-4yousee.png" alt="4YouSee logo" />
+            </div>
             <h3>4YouSee</h3>
             <p>TBC</p>
         </li>
@@ -89,16 +110,26 @@
         <h2>Innovation in digital signage</h2>
         <p>With Ubuntu Core, digital display owners can innovate at speed, thanks to the wealth of innovative apps already created by our partners.</p>
     </div>
-    <ul class="no-bullets equal-height twelve-col">
+    <ul class="list-partners no-bullets equal-height twelve-col">
         <li class="equal-height_item four-col box">
+            <div class="list-partners__image-container four-col align-center">
+                <img class="list-partners__image" src="{{ ASSET_SERVER_URL }}d4e5daf4-logo-boldmind.png" alt="Boldmind logo" />
+            </div>
             <h3>Boldmind</h3>
             <p>Sell unsold inventory and display localised advertising.</p>
         </li>
         <li class="equal-height_item four-col box">
+            <div class="list-partners__image-container four-col align-center">
+                <img class="list-partners__image" src="{{ ASSET_SERVER_URL }}5e68dad7-logo-lime-microsystems.png" alt="Lime Micro logo" />
+            </div>
             <h3>Lime Micro</h3>
             <p>Turn a digital signage player into a 4G base station.</p>
         </li>
         <li class="equal-height_item four-col last-col box">
+            <div class="list-partners__image-container four-col align-center">
+                <img class="list-partners__image" src="{{ ASSET_SERVER_URL }}d4ae60aa-logo-hoxton-analytics.svg" alt="Hoxton Analytics logo" />
+            </div>
+            
             <h3>Hoxton Analytics</h3>
             <p>Turn your digital sign into a people counter.</p>
         </li>
@@ -121,6 +152,6 @@
   </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_devices_newsletter_signup" third_item="_iot_further_reading" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_contact" second_item="_iot_webinars" third_item="_iot_further_reading" %}
 
 {% endblock content %}
