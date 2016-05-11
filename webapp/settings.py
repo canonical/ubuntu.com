@@ -35,8 +35,12 @@ USE_TZ = False
 STATIC_URL = '/static/'
 STATIC_ROOT = "static"
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, "templates")]
+APPEND_SLASH = False
+REMOVE_SLASH = True
 
-MIDDLEWARE_CLASSES = []
+MIDDLEWARE_CLASSES = [
+    'unslashed.middleware.RemoveSlashMiddleware',
+]
 
 STATICFILES_FINDERS = [
     'django_static_root_finder.finders.StaticRootFinder'
