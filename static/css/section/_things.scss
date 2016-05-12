@@ -173,7 +173,7 @@ body.internet-of-things-developers {
       background: url('#{$asset-server}039723db-iot-developers-robot.jpg?q=60&amp;w=984') center center no-repeat;
       background-size: cover;
 
-      @media only screen and (min-width: 984px) {
+      @media only screen and (mins-width: 984px) {
         min-height: 420px;
       }
 
@@ -193,3 +193,17 @@ body.internet-of-things-developers {
   padding-top: 0;
   margin-bottom: 0;
 }
+
+// digital signage page
+.row-cta--digital-signage {
+  background: url('#{$asset-server}68b1a2e2-banner_pixels05.png') no-repeat;
+  background-size: cover;
+  
+  a {
+    color: $white;
+    border-bottom: 1px solid white;
+    text-decoration: none;
+  }
+}
+
+ 
