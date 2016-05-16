@@ -196,20 +196,8 @@ body.internet-of-things-developers {
 
 // digital signage page
 .internet-of-things-digital-signage {
-  #main-content .row-hero {
-    //margin-top: 0;
-
-    @media only screen and (min-width: $breakpoint-medium) {
-      //margin-top: 0;
-    }
-  }
-  
-  .row-hero__image-container {
-
-  }
-  
-  .row-hero__image {
-    
+  .list-partners li {
+    font-size: 1em;
   }
 
   @media only screen and (min-width: $breakpoint-medium) {
@@ -230,14 +218,6 @@ body.internet-of-things-developers {
     color: $white;
     border-bottom: 1px solid white;
     text-decoration: none;
-  }
-  
-  .list-partners li:last-child {
-    margin-bottom: 0;
-    
-    @media only screen and (min-width: $breakpoint-medium) {
-      margin-bottom: 20px;
-    }
   }
 }
 
