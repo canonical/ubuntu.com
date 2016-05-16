@@ -196,14 +196,21 @@ body.internet-of-things-developers {
 
 // digital signage page
 .internet-of-things-digital-signage {
-  .list-partners li {
-    font-size: 1em;
+  .row-hero__image {
+    width: 200px;
+    @media only screen and (min-width: $breakpoint-medium) {
+      width: auto;  
+    }
   }
-
+ 
   @media only screen and (min-width: $breakpoint-medium) {
     #main-content .row-hero h1 {
       margin-top: 40px;
     }
+  }
+  
+  .list-partners li {
+    font-size: 1em;
   }
 }
 
