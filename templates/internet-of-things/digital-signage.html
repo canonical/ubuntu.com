@@ -11,8 +11,8 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-hero">
-  <div class="eight-col">
+<section class="row row-hero equal-height">
+  <div class="seven-col equal-height__item">
       <h1>Digital signage on Ubuntu</h1>
       <ul class="six-col list-ticks--compact">
         <li>Secure, reliable and remotely upgradable</li>
@@ -20,23 +20,28 @@
         <li>Hundreds of thousands of devices already deployed</li>
       </ul>
   </div>
+  <div class="row-hero__image-container equal-height__item equal-height__align-vertically five-col last-col">
+    <img class="row-hero__image" src="{{ ASSET_SERVER_URL }}4a0a6007-digital-signs.png" width="300" alt="" />
+  </div>
 </section>
 
 <section class="row no-border">
     <h2>Signage players need the power of Ubuntu</h2>
-    <ul class="list-ticks six-col">
-        <li>Small footprint, serious power: reducing your hardware costs while still running 4k video</li>
-        <li>Remote maintenance: no need for on-site personnel</li>
-        <li>Security: closes the door to screen takeovers and other attacks</li>
-        <li>Stability: designed for 24/7 availability</li>
-        <li>Software development: existing libraries and codebase, flexibility in development, all the way down to the device driver</li>
-    </ul>
-    <ul class="list-ticks six-col last-col">
-        <li>Atomic upgradability: low bandwidth, prompt delivery of new features</li>
-        <li>Low cost: open source digital signage</li>
-        <li>Application isolation enables security, robustness and simpler maintenance</li>
-        <li>Faster innovation: wide peripheral support, Wi-Fi, 3G/4G, NFC, Bluetooth, software-defined radio, deep learning, audio and camera support (including RealSense)</li>
-    </ul>
+    <div class="combined-list">
+        <ul class="list-ticks six-col">
+            <li>Small footprint, serious power: reducing your hardware costs while still running 4k video</li>
+            <li>Remote maintenance: no need for on-site personnel</li>
+            <li>Security: closes the door to screen takeovers and other attacks</li>
+            <li>Stability: designed for 24/7 availability</li>
+            <li class="last-item">Software development: existing libraries and codebase, flexibility in development, all the way down to the device driver</li>
+        </ul>
+        <ul class="list-ticks six-col last-col">
+            <li>Atomic upgradability: low bandwidth, prompt delivery of new features</li>
+            <li>Low cost: open source digital signage</li>
+            <li>Application isolation enables security, robustness and simpler maintenance</li>
+            <li>Faster innovation: wide peripheral support, Wi-Fi, 3G/4G, NFC, Bluetooth, software-defined radio, deep learning, audio and camera support (including RealSense)</li>
+        </ul>
+    </div>
 </section>
 
 <section class="row strip-dark no-border equal-height">
@@ -45,7 +50,7 @@
         <p>Ubuntu Core gives your screens the uptime and robustness you need. Uniquely stable and secure, it is based on the same operating system that runs the majority of the world's clouds.</p>
         <p>Ubuntu Core adds the ability to upgrade the entire software stack remotely and securely, from the kernel all the way up to the apps. Canary rollout and rollback capability gives you peace of mind during upgrades: if anything goes wrong, the device automatically reverts to the last working release. With update management facilities to manage roll-out as you wish, Ubuntu Core is the ultimate digital signage OS.</p>
     </div>    
-    <div class="four-col last-col equal-height__item equal-height__align-vertically">
+    <div class="four-col last-col align-center equal-height__item equal-height__align-vertically">
         <img src="{{ ASSET_SERVER_URL }}543a1e1a-snappy_orange_hex-01.svg" alt="" />
     </div>
 </section>
@@ -56,7 +61,7 @@
         <p>The Ubuntu Core app store makes it easy for systems integrators and device makers to find solutions, while enabling OEMs to generate revenues from their devices over the entire lifetime of their products.</p>
     </div>
         
-    <ul class="list-partners no-bullets equal-height twelve-col">
+    <ul class="list-partners no-bullets equal-height twelve-col no-margin-bottom">
         <li class="equal-height_item four-col box">
             <div class="list-partners__image-container four-col align-center">
                 <img class="list-partners__image" src="{{ ASSET_SERVER_URL }}391ea778-logo-4yousee.png" alt="4YouSee logo" />
@@ -88,7 +93,7 @@
         <h2>Innovation in digital signage</h2>
         <p>With Ubuntu Core, digital display owners can innovate at speed, thanks to the wealth of innovative apps already created by our partners.</p>
     </div>
-    <ul class="list-partners no-bullets equal-height twelve-col">
+    <ul class="list-partners no-bullets equal-height twelve-col no-margin-bottom">
         <li class="equal-height_item four-col box">
             <div class="list-partners__image-container four-col align-center">
                 <img class="list-partners__image" src="{{ ASSET_SERVER_URL }}d4e5daf4-logo-boldmind.png" alt="Boldmind logo" />
