@@ -1,13 +1,13 @@
  // internet-of-things section wide styles
 .internet-of-things {
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $breakpoint-medium) {
     // Leave row-cta here for now but if it spreads to other sections maybe think about it being a new pattern.
     .row-cta {
       padding: 80px 40px 60px;
     }
   }
 
-  @media only screen and (min-width: 984px) {
+  @media only screen and (min-width: $breakpoint-large) {
     .row-cta {
       padding: 90px 40px 70px;
     }
@@ -36,7 +36,7 @@
 .border-small {
   border-bottom: 1px dotted #888;
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $breakpoint-medium) {
     border: 0;
   }
 }
@@ -46,7 +46,7 @@
   #main-content .row-hero {
     margin-top: 0;
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}8d5f669e-DARWIN_2.png?q=60&w=984');
       background-position: 309px -35px;
       background-repeat: no-repeat;
@@ -55,7 +55,7 @@
       min-height: 550px;
     }
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $breakpoint-medium) {
       h1 {
         margin-top: 17%;
       }
@@ -63,7 +63,7 @@
   }
 
   .row-developers {
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $breakpoint-medium) {
       background: url('#{$asset-server}a301749d-iot-overview-developer.jpg?q=70&w=984') center center no-repeat;
   		background-size: cover;
       min-height: 460px;
@@ -77,7 +77,7 @@
 
 //internet-of-things/partners
 .internet-of-things-partners {
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $breakpoint-medium) {
     #main-content .row-hero {
       background: url('#{$asset-server}da0d4008-iot-partners-hero-house.jpg?q=70&w=984') center center no-repeat;
   		background-size: cover;
@@ -91,7 +91,7 @@
     background: url('#{$asset-server}be523ae7-dell-edge-gateway-5000-series.jpg?h=300') 50% 100% no-repeat;
     padding-bottom: 300px;
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $breakpoint-medium) {
       background: url('#{$asset-server}be523ae7-dell-edge-gateway-5000-series.jpg?h=400') 90% 50% no-repeat;
       min-height: 400px;
       padding-bottom: inherit;
@@ -99,7 +99,7 @@
   }
 
   // override the bullshit at line 26 of desktop.scss
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $breakpoint-medium) {
     .row-case-studies > h2:first-child {
       margin-bottom: 20px;
     }
@@ -118,11 +118,11 @@ body.internet-of-things-features {
     margin-top: 0;
     padding-top: 20px;
 
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: $breakpoint-medium) {
       background-position: 400px 20px;
     }
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}d1c96b0e-erle_robotics_ubuntu_drone.jpg?q=60');
       background-repeat: no-repeat;
       min-height: 470px;
@@ -130,7 +130,7 @@ body.internet-of-things-features {
     }
   }
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $breakpoint-medium) {
     .row-marketplace {
       background: url('#{$asset-server}d1f7b4c2-iot-features-led.jpg?q=60&w=984') left -74px no-repeat;
       background-size: cover;
@@ -139,7 +139,7 @@ body.internet-of-things-features {
     }
   }
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: $breakpoint-medium) {
     .row-marketplace {
       min-height: 400px;
     }
@@ -148,7 +148,7 @@ body.internet-of-things-features {
 
 //internet-of-things/developers
 body.internet-of-things-developers {
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $breakpoint-medium) {
     #main-content .row-hero {
       background: url('#{$asset-server}8b907c80-iot-developers-hero.jpg?q=60&w=984') center center no-repeat;
       background-size: cover;
@@ -156,7 +156,7 @@ body.internet-of-things-developers {
       padding-top: 40px;
     }
 
-    @media only screen and (min-width: 984px) {
+    @media only screen and (min-width: $breakpoint-large) {
       min-height: 560px;
     }
 
@@ -173,7 +173,7 @@ body.internet-of-things-developers {
       background: url('#{$asset-server}039723db-iot-developers-robot.jpg?q=60&amp;w=984') center center no-repeat;
       background-size: cover;
 
-      @media only screen and (min-width: 984px) {
+      @media only screen and (mins-width: $breakpoint-large) {
         min-height: 420px;
       }
 
@@ -193,3 +193,43 @@ body.internet-of-things-developers {
   padding-top: 0;
   margin-bottom: 0;
 }
+
+// digital signage page
+.internet-of-things-digital-signage {
+  .row-hero__image {
+    width: 200px;
+    @media only screen and (min-width: $breakpoint-medium) {
+      width: auto;  
+    }
+  }
+ 
+  @media only screen and (min-width: $breakpoint-medium) {
+    #main-content .row-hero h1 {
+      margin-top: 40px;
+    }
+  }
+  
+  .list-partners li {
+    font-size: 1em;
+  }
+}
+
+.row-cta--digital-signage {
+  background: url('#{$asset-server}68b1a2e2-banner_pixels05.png') center center no-repeat;
+  
+  @media only screen and (min-width: $breakpoint-medium) {
+    background-size: cover;
+  }
+  
+  a {
+    color: $white;
+    border-bottom: 1px solid white;
+    text-decoration: none;
+  }
+  
+  .button--secondary {
+    color: $cool-grey;
+  }
+}
+
+ 
