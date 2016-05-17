@@ -97,9 +97,6 @@
     .gap-from-top {
         margin-top: 20px;
     }
-    .last-row {
-        margin-bottom: 60px;
-    }
     .chinese-download {
         margin-bottom: 20px;
     }
@@ -1085,46 +1082,6 @@ html.opera-mini {
 
         .row-hero {
             padding-bottom: 0!important;
-        }
-    }
-}
-
-/* List Grid
--------------------------------------------------------------- */
-
-$grid-border-style: 1px dotted #888;
-
-.list--grid {
-
-    border-top: $grid-border-style;
-    padding-top: 1rem;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-        border-top: 0;
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    &__item {
-        border-bottom: $grid-border-style;
-
-        @media only screen and (min-width : $breakpoint-medium) {
-            display: flex;
-            width: 33.3333%!important;
-            padding: 1.5rem 1rem 0;
-            border-right: $grid-border-style;
-            border-bottom: $grid-border-style;
-            margin: 0!important;
-
-            &:nth-child(3n) {
-                border-right: 0;
-            }
-
-            &:nth-last-child(3),
-            &:nth-last-child(2),
-            &:nth-last-child(1) {
-                border-bottom: 0;
-            }
         }
     }
 }
