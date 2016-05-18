@@ -133,6 +133,9 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
                 e.preventDefault();
                 core.rerunAnimation(e.target.get('parentNode').one('.slider-animation').getAttribute('class').replace('slider-animation ','').replace(' run',''));
             });
+
+            var vidObject = '<iframe width="984" height="554" src="http://www.youtube.com/embed/-dpfHYpfEXY?showinfo=0&vq=hd1080&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe>'
+
             if(Y.one('.show-video')){
                 Y.one('.show-video').on('click',function(e) {
                     e.preventDefault();
@@ -141,11 +144,11 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
                     videoPanel.addClass('show');
                     if(Y.one('body').hasClass('tablet-design')){
                         Y.one('.row-hero').setStyle('height','590px');
-                        Y.one('.the-video div').set('innerHTML','<iframe width="984" height="554" src="http://www.youtube.com/embed/-dpfHYpfEXY?showinfo=0&vq=hd1080&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe>');
+                        Y.one('.the-video div').set('innerHTML', vidObject);
                     } else {
                         Y.one('.row-hero').setStyle('height','588px').append('<div id="topbar" class="topbar"></div>'), 2000;
                         Y.one('.row-hero .row-content').removeClass('show-me').addClass('hide-me');
-                        Y.one('.video-container').set('innerHTML','<iframe width="984" height="554" src="http://www.youtube.com/embed/-dpfHYpfEXY?showinfo=0&vq=hd1080&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe>');
+                        Y.one('.video-container').set('innerHTML', vidObject);
                     }
                 });
             }
@@ -154,6 +157,7 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
                     e.preventDefault();
                     Y.one('.close-vid-link').setStyle('display','none');
                     videoPanel.removeClass('show');
+                    Y.one('.video-container').empty();
                     if(Y.one('body').hasClass('tablet-design')){
                         Y.one('.row-hero').setStyle('height','460px');
                     } else {
@@ -585,7 +589,7 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
                   commandInput.select();
                   try {
                       var successful = document.execCommand('copy');
-                			dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Copy to clipboard', 'eventAction' : commandInput.get('value'), 'eventLabel' : document.URL, 'eventValue' : undefined });
+                            dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Copy to clipboard', 'eventAction' : commandInput.get('value'), 'eventLabel' : document.URL, 'eventValue' : undefined });
                       _this.addClass('is-copied');
                       setTimeout(function(e) {
                           _this.removeClass('is-copied');
