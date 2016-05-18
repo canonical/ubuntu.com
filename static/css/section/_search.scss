@@ -9,33 +9,44 @@
   font-size: 2em;    
 }
 
-.banner .nav-primary .header-search .form-text {
-	-webkit-appearance: none;
-	border: 0;
-	color: $text-color;
-	width: 100%;
-	border-bottom: 1px solid $alto-grey;
+/* XXX the need for this fix should be addressed in VF- */
+@media only screen and (min-width : 985px) and (max-width: 1024px) {
+  .banner .logo {
+    margin: 0 15px;
+  }
 
-	&::-webkit-input-placeholder {
-		color: $white;
-  	opacity: 0.4;
-	}
+  .header-search {
+    margin-right: 10px;
+  }
+}
+
+.banner .nav-primary .header-search .form-text {
+  -webkit-appearance: none;
+  color: $text-color;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid $alto-grey;
+
+  &::-webkit-input-placeholder {
+      color: $warm-grey;
+      opacity: 0.6;
+  }
+
+  @media only screen and (min-width : $navigation-threshold) {
+    border-bottom: 0;
+    background-color: #c34113;
+
+    &::-webkit-input-placeholder {
+        color: $white;
+        opacity: 0.5;
+    }
+  }
 }
 
 @media only screen and (min-width : $navigation-threshold) {
-	.banner .nav-primary {
-		.header-search {
-	  	max-width: 180px;
 
-			.form-text {
-				color: $white;
-				border-bottom: 0;
-
-				button[type=submit] {
-					margin-left: -60px;
-					margin-top: 0;
-				}
-			}
-		}
-	}
+  .header-search {
+    max-width: 210px;
+    padding-right: 3px;
+  }
 }
