@@ -271,7 +271,7 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
             if(Y.one('.show-video')) {
                 Y.one('.show-video').on('click',function(e) {
                     e.preventDefault();
-                    //Y.one('#panel').addClass('flipped');
+                    Y.one('.video-container.for-mobile').set('innerHTML','');
                     setTimeout(function(){ Y.one('.the-video').set('innerHTML','<div class="videoWrapper"><iframe style="width:100%" src="http://www.youtube.com/embed/-dpfHYpfEXY?showinfo=0&hd=1&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe></div>');Y.one('#topbar').setStyle('z-index', '50');}, 1000);
                 });
             }
