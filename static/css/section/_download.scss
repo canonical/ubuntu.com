@@ -86,8 +86,16 @@
 .download {
 
     .wrapper .row {
-        padding: 40px;
-        padding-top: 2em;
+        @media only screen and (min-width : $breakpoint-large) {
+          padding: 40px;
+          padding-top: 2em;
+        }
+    }
+    
+    @media only screen and (min-width : $breakpoint-medium) {
+      .strip-inner-wrapper {
+        padding: 0;
+      }
     }
 
     #main-content .row-hero {
