@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, url
 
 from django_yaml_redirects import load_redirects
-from views import UbuntuTemplateFinder, DownloadView, SearchView
+from .views import UbuntuTemplateFinder, DownloadView, SearchView
 
 urlpatterns = load_redirects()
 urlpatterns += patterns(
