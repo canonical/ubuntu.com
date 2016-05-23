@@ -24,4 +24,16 @@
     <li><a{% if level_3 == 'licence-agreement-faq' %} class="active"{% endif %} href="/legal/contributors/licence-agreement-faq">Licence agreement FAQ</a></li>
     <li><a{% if level_3 == 'submit' %} class="active"{% endif %} href="/legal/contributors/submit">Submit</a></li>
     {% endif %}
+
+    {% if level_2 == 'short-terms' and level_3 == 'ja' %}
+    <li><a{% if level_3 == 'ja' %} class="active"{% endif %} href="/legal/short-terms/ja">JA</a></li>
+    {% endif %}
+
+    {% if level_2 == 'short-terms' and level_3 == '2015-06-24' %}
+    <li><a{% if level_3 == '2015-06-24' %} class="active"{% endif %} href="/legal/short-terms/2015-06-24">2015-06-24</a></li>
+    {% endif %}
+
+    {% if level_2 == 'short-terms' and level_3 == '2015-09-09' %}
+    <li><a{% if level_3 == '2015-09-09' %} class="active"{% endif %} href="/legal/short-terms/2015-09-09">2015-09-09</a></li>
+    {% endif %}
 </ul>
