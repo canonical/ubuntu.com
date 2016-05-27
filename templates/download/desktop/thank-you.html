@@ -18,12 +18,12 @@ Thank you for your contribution
 
 {% block content %}
 
-    {% if request.GET.version and request.GET.architecture %}
-        {% if request.GET.architecture.split|join:"+" == 'amd64+mac' %}
-    <meta http-equiv="refresh" content="3;url=http://cdimage.ubuntu.com/releases/{{ latest_release }}/release/ubuntu-{{ latest_release }}-desktop-amd64+mac.iso">
+    {% if start_download %}
+        {% if architecture == 'amd64+mac' %}
+    <meta http-equiv="refresh" content="3;url=http://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso">
         {% else %}
     <noscript>
-        <meta http-equiv="refresh" content="3;url=http://releases.ubuntu.com/{{ request.GET.version }}/ubuntu-{{ request.GET.version }}-desktop-{{ request.GET.architecture.split|join:"+" }}.iso">
+        <meta http-equiv="refresh" content="3;url=http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">
     </noscript>
         {% endif %}
     {% endif %}
@@ -31,14 +31,14 @@ Thank you for your contribution
     <div class="row no-border">
         <div class="strip-inner-wrapper">
             <div class="eight-col">
-                {% if request.GET.version and request.GET.architecture %}
+                {% if start_download %}
                     <h1>Thank you for downloading Ubuntu Desktop</h1>
                     <p>
                         Your download should start automatically. If it doesn&rsquo;t,
-                    {% if request.GET.architecture.split|join:"+" == 'amd64+mac' %}
-                        <a href="http://cdimage.ubuntu.com/releases/{{ latest_release }}/release/ubuntu-{{ latest_release }}-desktop-amd64+mac.iso">download now</a>.
+                    {% if architecture == 'amd64+mac' %}
+                        <a href="http://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso">download now</a>.
                     {% else %}
-                        <a href="http://releases.ubuntu.com/{{ request.GET.version }}/ubuntu-{{ request.GET.version }}-desktop-{{ request.GET.architecture.split|join:"+" }}.iso">download now</a>.
+                        <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download now</a>.
                     {% endif %}
                     </p>
                 {% else %}
@@ -88,11 +88,12 @@ Thank you for your contribution
 {% block footer_extra %}
 <script src="{% versioned_static 'js/helpers.js' %}"></script>
 
+{% if start_download %}
 <script>
 // Download file information
 var defaultLocation = 'http://releases.ubuntu.com/'; // Default to releases.ubuntu.com
-var version = '{{ request.GET.version }}';
-var architecture = '{{ request.GET.architecture.split|join:"+" }}';
+var version = '{{ version }}';
+var architecture = '{{ architecture }}';
 
 // Mirrors for this country
 var mirrors = {{ mirror_list|safe }};
@@ -167,5 +168,6 @@ function chooseRandomMirror(mirrors) {
     return selectedMirror;
 }
 </script>
+{% endif %}
 
 {% endblock footer_extra %}
