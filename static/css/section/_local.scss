@@ -10,9 +10,17 @@ body {
   }
 }
 
+<<<<<<< 65930b0b90d351260a66b51dd6300dd802334c9f
 @media only screen and (min-width : $breakpoint-large) {
   .inner-wrapper {
     margin-bottom: 30px;
+=======
+@media only screen and (max-width : $breakpoint-medium) {
+  .inner-wrapper {
+    border-radius: 0;
+    box-shadow: none;
+    padding-bottom: 0;
+>>>>>>> Remove .inner-wrapper styles for small and medium
   }
 }
 
