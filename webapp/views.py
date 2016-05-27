@@ -35,7 +35,20 @@ class DownloadView(UbuntuTemplateFinder):
         """
 
         context = super(DownloadView, self).get_context_data(**kwargs)
+        version = self.request.GET.get('version')
+        architecture = self.request.GET.get('architecture')
+        context['start_download'] = version and architecture
 
+        if context['start_download']:
+            # Sanitise for paths
+            # (https://bugs.launchpad.net/ubuntu-website-content/+bug/1586361)
+            version = version.replace('/', ' ').replace(' ', '+')
+            architecture = architecture.replace('/', ' ').replace(' ', '+')
+
+            context['version'] = version
+            context['architecture'] = architecture
+
+        # Add mirrors
         mirrors_path = os.path.join(
             os.getcwd(),
             'etc/ubuntu-mirrors-rss.xml'
