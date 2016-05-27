@@ -9,6 +9,13 @@ body {
     padding-top: 30px;
   }
 }
+
+@media only screen and (min-width : $breakpoint-medium + 1) {
+  .inner-wrapper {
+    margin-bottom: 30px;
+  }
+}
+
 // XXX Graham (10.04.2016)
 // Move to Vanilla
 // remove negative margin and add border back
@@ -17,6 +24,7 @@ body {
   margin-top: 0;
 }
 
+.row.row-grey.no-border,
 .no-border {
   border-bottom: 0;
 }
