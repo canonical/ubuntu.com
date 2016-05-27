@@ -1,6 +1,7 @@
 import json
 import sys
 import os
+import re
 from urllib2 import URLError
 
 from feedparser import parse
@@ -35,7 +36,21 @@ class DownloadView(UbuntuTemplateFinder):
         """
 
         context = super(DownloadView, self).get_context_data(**kwargs)
+        version = self.request.GET.get('version', '')
+        architecture = self.request.GET.get('architecture', '')
 
+        # Sanitise for paths
+        # (https://bugs.launchpad.net/ubuntu-website-content/+bug/1586361)
+        version_pattern = re.compile(r'(\d+(?:\.\d+)+).*')
+        architecture = architecture.replace('..', '')
+        architecture = architecture.replace('/', '+').replace(' ', '+')
+
+        if architecture and version_pattern.match(version):
+            context['start_download'] = version and architecture
+            context['version'] = version
+            context['architecture'] = architecture
+
+        # Add mirrors
         mirrors_path = os.path.join(
             os.getcwd(),
             'etc/ubuntu-mirrors-rss.xml'
