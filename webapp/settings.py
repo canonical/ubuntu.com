@@ -34,7 +34,6 @@ USE_L10N = False
 USE_TZ = False
 STATIC_URL = '/static/'
 STATIC_ROOT = "static"
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, "templates")]
 APPEND_SLASH = False
 REMOVE_SLASH = True
 
@@ -46,10 +45,18 @@ STATICFILES_FINDERS = [
     'django_static_root_finder.finders.StaticRootFinder'
 ]
 
-# See http://tinyurl.com/django-context-processors
-TEMPLATE_CONTEXT_PROCESSORS = [
-    "django.core.context_processors.request",    # {{ request }} object
-    "django_asset_server_url.asset_server_url"   # {{ ASSET_SERVER_URL }}
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.core.context_processors.request',
+                'django_asset_server_url.asset_server_url',
+            ],
+        },
+    },
 ]
 
 ASSET_SERVER_URL = 'https://assets.ubuntu.com/v1/'
