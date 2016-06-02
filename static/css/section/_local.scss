@@ -16,6 +16,14 @@ body {
   }
 }
 
+@media only screen and (max-width : $breakpoint-medium) {
+  .inner-wrapper {
+    border-radius: 0;
+    box-shadow: none;
+    padding-bottom: 0;
+  }
+}
+
 // XXX Graham (10.04.2016)
 // Move to Vanilla
 // remove negative margin and add border back
