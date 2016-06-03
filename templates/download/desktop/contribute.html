@@ -128,14 +128,14 @@
                             <input type="hidden" name="no_shipping" value="1">
                             <input type="hidden" name="rm" value="1">
 
-                            <input type="hidden" name="return" value="http://{{ request.META.HTTP_HOST }}/download/desktop/thank-you/?version={{ request.GET.version }}&architecture={{ request.GET.architecture }}">
-                            <input type="hidden" name="cancel_return" value="http://{{ request.META.HTTP_HOST }}/download/desktop/thank-you/?version={{ request.GET.version }}&architecture={{ request.GET.architecture }}">
+                            <input type="hidden" name="return" value="http://{{ http_host }}/download/desktop/thank-you/?version={{ version }}&architecture={{ architecture }}">
+                            <input type="hidden" name="cancel_return" value="http://{{ http_host }}/download/desktop/thank-you/?version={{ version }}&architecture={{ architecture }}">
 
                             <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
                             <button type="submit" class="button--primary pay-with-paypal" tabindex="9">Pay with PayPal</button>
 
-                            {% if request.GET.version and request.GET.architecture %}
-                            <a href="/download/desktop/thank-you/?version={{ request.GET.version }}&architecture={{ request.GET.architecture.split|join:"+" }}" class="skip" tabindex="11">Not now, take me to the download&nbsp;&rsaquo;</a>
+                            {% if version and architecture %}
+                            <a href="/download/desktop/thank-you/?version={{ version }}&architecture={{ architecture.split|join:"+" }}" class="skip" tabindex="11">Not now, take me to the download&nbsp;&rsaquo;</a>
                             {% endif %}
                         </div>
                     </div>

@@ -10,6 +10,10 @@ urlpatterns += patterns(
         r'^(?P<template>download/(desktop|server|cloud)/thank-you)$',
         DownloadView.as_view()
     ),
+    url(
+        r'^(?P<template>download/desktop/contribute)$',
+        DownloadView.as_view()
+    ),
     url(r'^(?P<template>search)$', SearchView.as_view()),
     url(r'^(?P<template>.*)[^\/]$', UbuntuTemplateFinder.as_view()),
     url(r'$^', UbuntuTemplateFinder.as_view()),

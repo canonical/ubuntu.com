@@ -52,7 +52,6 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.core.context_processors.request',
                 'django_asset_server_url.asset_server_url',
             ],
         },
