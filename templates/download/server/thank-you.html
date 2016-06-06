@@ -14,13 +14,13 @@ Thanks for downloading Ubuntu Server
 
 {% block content %}
     <noscript>
-        <meta http-equiv="refresh" content="3;url=http://releases.ubuntu.com/{{ request.GET.version }}/ubuntu-{{ request.GET.version }}-server-{{ request.GET.architecture.split|join:"+" }}.iso">
+        <meta http-equiv="refresh" content="3;url=http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-server-{{ architecture.split|join:"+" }}.iso">
     </noscript>
 
     <div class="row row-hero no-border">
         <div class="strip-inner-wrapper">
             <h1>Thanks for downloading Ubuntu Server</h1>
-            <p>Your download should start automatically. If it doesn&rsquo;t, <a href="http://releases.ubuntu.com/{{ request.GET.version }}/ubuntu-{{ request.GET.version }}-server-{{ request.GET.architecture.split|join:"+" }}.iso">download now</a>.</p>
+            <p>Your download should start automatically. If it doesn&rsquo;t, <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-server-{{ architecture.split|join:"+" }}.iso">download now</a>.</p>
         </div>
     </div>
     <div class="row row-grey no-border">
@@ -64,8 +64,8 @@ Thanks for downloading Ubuntu Server
 <script>
 // Download file information
 var defaultLocation = 'http://releases.ubuntu.com/'; // Default to releases.ubuntu.com
-var version = '{{ request.GET.version }}';
-var architecture = '{{ request.GET.architecture.split|join:"+" }}';
+var version = '{{ version }}';
+var architecture = '{{ architecture.split|join:"+" }}';
 
 // Mirrors for this country
 var mirrors = {{ mirror_list|safe }};

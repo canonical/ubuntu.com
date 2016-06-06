@@ -2,7 +2,7 @@ import json
 import sys
 import os
 import re
-from urllib2 import URLError
+from urllib.error import URLError
 
 from feedparser import parse
 from django_template_finder_view import TemplateFinder
@@ -36,6 +36,8 @@ class DownloadView(UbuntuTemplateFinder):
         """
 
         context = super(DownloadView, self).get_context_data(**kwargs)
+        context['http_host'] = self.request.META.get('HTTP_HOST', '')
+
         version = self.request.GET.get('version', '')
         architecture = self.request.GET.get('architecture', '')
 
