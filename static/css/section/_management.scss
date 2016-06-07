@@ -35,9 +35,9 @@ body.management {
 		box-sizing: border-box;
 		background: #f6f6f6;
 	}
-	.stats-panel dl, .stat dl {
+	.stats-panel dl, 
+	.stat dl {
 		box-sizing: border-box;
-    float: left;
     min-height: 107px;
     padding: 20px 0 0;
     text-align: center;
@@ -48,7 +48,7 @@ body.management {
 	.stat dl {
     padding-top: 6px;
 		border: 0;
-		font-size: 32px;
+		font-size: 1.8em;
 		text-align: center;
     }
 
@@ -349,14 +349,15 @@ body.management-ema-whitepaper {
 @media only screen and (min-width : 768px) {
 	body.management {
 		.stat dl {
-	    	margin: 0 0 0 40px;
-	    }
+      margin: 0 0 0 40px;
+      float: left;
+    }
 		.stats-panel dd, .stat dd {
-		    margin-left: 0;
+      margin-left: 0;
 		}
 		.stats-panel p a {
-	    	font-size: .8125em;
-	    }
+      font-size: .8125em;
+    }
 		.row-return-investment {
 			background-image: url("#{$asset-server}d600dad9-image-cutyouritcosts.svg");
 			background-position: 96px bottom;
