@@ -2,7 +2,10 @@ import json
 import sys
 import os
 import re
-from urllib.error import URLError
+try:
+    from urllib.error import URLError
+except ImportError:
+    from urllib2 import URLError
 
 from feedparser import parse
 from django_template_finder_view import TemplateFinder
