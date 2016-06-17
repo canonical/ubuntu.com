@@ -51,6 +51,9 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
+            'builtins': [
+                'webapp.templatetags.feeds',
+            ],
             'context_processors': [
                 'django_asset_server_url.asset_server_url',
             ],
