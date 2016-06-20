@@ -10,7 +10,7 @@ except ImportError:
 from feedparser import parse
 from django_template_finder_view import TemplateFinder
 
-from lib.gsa import GSAParser
+from webapp.lib.gsa import GSAParser
 
 
 class UbuntuTemplateFinder(TemplateFinder):
