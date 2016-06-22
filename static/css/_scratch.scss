@@ -218,36 +218,7 @@ header.banner .nav-primary li:hover ul:after {
 }
 
 // Nested ordered list items (e.g., 1.. 1.1, 1.2). Only needed in legal at the moment
-.list-nested-numbers {
-  // counter-reset: item;
-  // list-style-type: none;
-  // margin: 0;
-  //
-  // &__sublist {
-  //   list-style-type: none;
-  //   margin-bottom: 0;
-  //   margin-top: 1em;
-  // }
-  //
-  // &__item {
-  //   &--outer {
-  //     counter-increment: item;
-  //     counter-reset: inner_item;
-  //
-  //     &:before {
-  //       content: counters(item, ".") ". ";
-  //     }
-  //   }
-  //
-  //   &--inner {
-  //     &:before {
-  //       counter-increment: inner_item;
-  //       content: counters(item, " ") "." counters(inner_item, " ");
-  //       margin-right: 0.2rem;
-  //     }
-  //   }
-  // }
-}
+// KW 2016-06-22
 
 .nested-counter {
   list-style-type: none;
