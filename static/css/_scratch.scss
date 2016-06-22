@@ -206,13 +206,72 @@ header.banner .nav-primary li:hover ul:after {
 
 // partners logos with copy on /internet-of-things/digital-signage not used anywhere else but could become a pattern
 .list-partners {
-  
+
   &__image {
     max-height: 65px;
   }
-  
+
   &__image-container {
     border-bottom: 1px dotted $warm-grey;
     padding-bottom: 20px;
-  }    
+  }
+}
+
+// Nested ordered list items (e.g., 1.. 1.1, 1.2). Only needed in legal at the moment
+.list-nested-numbers {
+  // counter-reset: item;
+  // list-style-type: none;
+  // margin: 0;
+  //
+  // &__sublist {
+  //   list-style-type: none;
+  //   margin-bottom: 0;
+  //   margin-top: 1em;
+  // }
+  //
+  // &__item {
+  //   &--outer {
+  //     counter-increment: item;
+  //     counter-reset: inner_item;
+  //
+  //     &:before {
+  //       content: counters(item, ".") ". ";
+  //     }
+  //   }
+  //
+  //   &--inner {
+  //     &:before {
+  //       counter-increment: inner_item;
+  //       content: counters(item, " ") "." counters(inner_item, " ");
+  //       margin-right: 0.2rem;
+  //     }
+  //   }
+  // }
+}
+
+.nested-counter {
+  list-style-type: none;
+  counter-reset: item;
+  margin-left: 0;
+
+  .nested-counter {
+    margin-top: 10px;
+  }
+
+  &__item {
+    counter-increment: item;
+    padding-left: 4px;
+
+    &:before {
+      content: counters(item, ".") ". ";
+    }
+
+    .nested-counter__item {
+      padding-left: 24px;
+
+      &:before {
+        content: counters(item, ".") " ";
+      }
+    }
+  }
 }
