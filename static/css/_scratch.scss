@@ -206,13 +206,40 @@ header.banner .nav-primary li:hover ul:after {
 
 // partners logos with copy on /internet-of-things/digital-signage not used anywhere else but could become a pattern
 .list-partners {
-  
+
   &__image {
     max-height: 65px;
   }
-  
+
   &__image-container {
     border-bottom: 1px dotted $warm-grey;
     padding-bottom: 20px;
-  }    
+  }
+}
+
+// aubergine hero
+.aubergine-hero {
+  background-color: $dark-aubergine;
+  color: $light-grey;
+  max-height: 100%;
+  padding: 2rem;
+
+  @media (min-width:$breakpoint-medium) {
+    padding: 4rem 0;
+  }
+
+  .box-highlight {
+    background-color: $light-grey;
+    color: $cool-grey;
+    box-shadow: none;
+    border: 0;
+
+    @media (max-width:$breakpoint-medium) {
+      margin-top: 2rem;
+    }
+
+    .last-col {
+      padding-top: 1rem;
+    }
+  }
 }
