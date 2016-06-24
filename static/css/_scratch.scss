@@ -217,6 +217,36 @@ header.banner .nav-primary li:hover ul:after {
   }
 }
 
+// Nested ordered list items (e.g., 1.. 1.1, 1.2). Only needed in legal at the moment
+// KW 2016-06-22
+
+.nested-counter {
+  list-style-type: none;
+  counter-reset: item;
+  margin-left: 0;
+
+  .nested-counter {
+    margin-top: 10px;
+  }
+
+  &__item {
+    counter-increment: item;
+    padding-left: 4px;
+
+    &:before {
+      content: counters(item, ".") ". ";
+    }
+
+    .nested-counter__item {
+      padding-left: 24px;
+
+      &:before {
+        content: counters(item, ".") " ";
+      }
+    }
+  }
+}
+
 // aubergine hero
 .aubergine-hero {
   background-color: $dark-aubergine;

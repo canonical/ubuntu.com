@@ -45,36 +45,36 @@
         <p>Each service offering includes access to Canonical's knowledge base and the support described below within the scope and subject to the exceptions detailed in the <a href="#appendix-1">support scope documentation</a>.</p>
 
         <ol class="numbered">
-            <li><span class="number">2.1</span> Releases
+            <li id="support-scope-releases"><span class="number">2.1</span> Releases
                 <ul>
                     <li>Canonical will provide support for installation, configuration, maintenance, and management of any standard release of Ubuntu when installed using official sources and within its product life cycle. The life cycle for each version of Ubuntu are specified here: <a href="http://www.ubuntu.com/info/release-end-of-life">www.ubuntu.com/info/release-end-of-life</a>.</li>
                 </ul>
             </li>
-            <li><span class="number">2.2</span> Hardware
+            <li id="support-scope-hardware"><span class="number">2.2</span> Hardware
                 <ul>
                     <li>Ubuntu Certified hardware has passed our extensive testing and review process. More information about the Ubuntu certification process and a list of certified hardware can be found on the Ubuntu Certification page: <a href="http://www.ubuntu.com/certification">www.ubuntu.com/certification</a>.  The services apply only with respect to the customer&#39;s hardware which has been certified.  In the event the customer requests the services with respect to hardware which is not certified, Canonical will use reasonable efforts to provide support services, but may not adhere to the obligations described in this service description.</li>
                 </ul>
             </li>
-            <li><span class="number">2.3</span> Packages
+            <li id="support-scope-packages"><span class="number">2.3</span> Packages
                 <ol class="numbered">
                     <li><span class="number">2.3.1</span> The services apply only to packages found in the Ubuntu Main Repository and Canonical-owned packages in the Universe Repository except (i) the "proposed" and "backports" repository pockets, and (ii) the exclusions noted in the applicable support scope documentation.</li>
                     <li><span class="number">2.3.2</span> Canonical will not provide support for any packages that have been modified from the version in the Ubuntu archives.</li>
                 </ol>
             </li>
-            <li><span class="number">2.4</span> Kernels
+            <li id="support-scope-kernels"><span class="number">2.4</span> Kernels
                 <ol class="numbered">
                     <li><span class="number">2.4.1</span> The kernel provided initially in the release of a long-term support (LTS) version of Ubuntu is supported for the entire lifecycle of the LTS.</li>
                     <li><span class="number">2.4.2</span> Hardware enablement (HWE) kernels provide support for newer hardware in an LTS release and are released in conjunction with the non-LTS Ubuntu releases. Non-LTS HWE kernels are supported until the HWE kernel from the next LTS has been released.</li>
                     <li><span class="number">2.4.3</span> More information about kernel support can be found at <a href="http://www.ubuntu.com/info/release-end-of-life">www.ubuntu.com/info/release-end-of-life</a></li>
                 </ol>
             </li>
-            <li><span class="number">2.5</span> Landscape
+            <li id="support-scope-landscape"><span class="number">2.5</span> Landscape
                 <ol class="numbered">
                     <li><span class="number">2.5.1</span> All Landscape products, including Landscape On Premises (when purchased) are fully supported.</li>
                     <li><span class="number">2.5.2</span> Access to the Landscape SaaS systems management tool is included with all support offerings, unless otherwise noted.</li>
                 </ol>
             </li>
-            <li><span class="number">2.6</span> OpenStack
+            <li id="support-scope-openstack"><span class="number">2.6</span> OpenStack
                 <ol class="numbered">
                     <li><span class="number">2.6.1</span> This section applies to services purchased for the support of OpenStack.</li>
                     <li><span class="number">2.6.2</span> The minimum number of supported nodes for an OpenStack deployment is 5.</li>
@@ -92,18 +92,58 @@
         </ol>
     </div>
 
-    <div class="box four-col last-col">
-        <h3>Additional information</h3>
-        <ul class="list">
-            <li><a href="#appendix-1">Appendix 1 - Support scope&nbsp;&rsaquo;</a></li>
-            <li><a href="#appendix-2">Appendix 2 - Support process&nbsp;&rsaquo;</a></li>
-            <li><a href="#appendix-3">Appendix 3 - Management escalation&nbsp;&rsaquo;</a></li>
-        </ul>
+    <div class="box four-col last-col not-for-small">
+        <h3>Contents</h3>
+        <ol class="nested-counter">
+            <li class="nested-counter__item"><a href="#service-description-overview">Overview&nbsp;&rsaquo;</a></li>
+            <li class="nested-counter__item">
+                <a href="#ua-support-scope">Support scope&nbsp;&rsaquo;</a>
+                <ol class="nested-counter">
+                    <li class="nested-counter__item"><a href="#support-scope-releases">Releases&nbsp;&rsaquo;</a></li>
+                    <li class="nested-counter__item"><a href="#support-scope-hardware">Hardware&nbsp;&rsaquo;</a></li>
+                    <li class="nested-counter__item"><a href="#support-scope-packages">Packages&nbsp;&rsaquo;</a></li>
+                    <li class="nested-counter__item"><a href="#support-scope-kernels">Kernels&nbsp;&rsaquo;</a></li>
+                    <li class="nested-counter__item"><a href="#support-scope-landscape">Landscape&nbsp;&rsaquo;</a></li>
+                    <li class="nested-counter__item"><a href="#support-scope-openstack">Openstack&nbsp;&rsaquo;</a></li>
+                </ol>
+            </li>
+            <li class="nested-counter__item"><a href="#response-times">Response times&nbsp;&rsaquo;</a></li>
+            <li class="nested-counter__item"><a href="#support-process">Support process&nbsp;&rsaquo;</a></li>
+            <li class="nested-counter__item"><a href="#assurance">Assurance&nbsp;&rsaquo;</a></li>
+        </ol>
+
+        <h3><a href="#appendix-1">Appendix 1 - Support scope&nbsp;&rsaquo;</a></h3>
+        <ol>
+            <li><a href="#ua-openstack-cloud-region">OpenStack Cloud Region&nbsp;&rsaquo;</a></li>
+            <li><a href="#ua-server">Server&nbsp;&rsaquo;</a></li>
+            <li><a href="#ua-virtual-guest">Virtual Guest&nbsp;&rsaquo;</a></li>
+            <li><a href="#ua-ceph-storage">Ceph Storage&nbsp;&rsaquo;</a></li>
+            <li><a href="#ua-swift-storage">Swift Storage&nbsp;&rsaquo;</a></li>
+            <li><a href="#ua-maas">MAAS&nbsp;&rsaquo;</a></li>
+            <li><a href="#ua-switch">Switch&nbsp;&rsaquo;</a></li>
+            <li><a href="#ua-desktop">Desktop&nbsp;&rsaquo;</a></li>
+            <li><a href="#ua-landscape-virtual-machines">Landscape Agents for Virtual Machines&nbsp;&rsaquo;</a></li>
+            <li><a href="#tam">Technical Account Manager&nbsp;&rsaquo;</a></li>
+            <li><a href="#dedicated-services-engineer">Dedicated Services Engineer&nbsp;&rsaquo;</a></li>
+            <li><a href="#landscape-on-premises">Landscape On Premises&nbsp;&rsaquo;</a></li>
+        </ol>
+
+        <h3><a href="#appendix-2">Appendix 2 - Support process&nbsp;&rsaquo;</a></h3>
+        <ol>
+            <li><a href="#ua-support-service-initiation">Service initiation&nbsp;&rsaquo;</a></li>
+            <li><a href="#ua-support-submitting-support-requests">Submitting support requests&nbsp;&rsaquo;</a></li>
+            <li><a href="#ua-support-severity-levels">Support severity levels&nbsp;&rsaquo;</a></li>
+            <li><a href="#ua-support-languages">Support languages&nbsp;&rsaquo;</a></li>
+            <li><a href="#ua-support-remote-sessions">Remote sessions&nbsp;&rsaquo;</a></li>
+            <li><a href="#ua-support-regions">Support regions&nbsp;&rsaquo;</a></li>
+        </ol>
+
+        <h3><a href="#appendix-3">Appendix 3 - Management escalation&nbsp;&rsaquo;</a></h3>
     </div>
 
     <div class="eight-col">
 
-        <h2>3. Response times</h2>
+        <h2 id="response-times">3. Response times</h2>
 
         <ol class="numbered">
             <li><span class="number">3.1</span> Canonical will use reasonable efforts to respond to support requests made by the customer within the response times set forth below based on the applicable service and severity level.</li>
@@ -198,7 +238,7 @@
     </table>
 
     <div class="eight-col">
-        <h2>4. Support process</h2>
+        <h2 id="support-process">4. Support process</h2>
         <p>Canonical will use reasonable efforts to resolve support cases, but Canonical does not guarantee a work-around, resolution or resolution time.</p>
 
         <ol class="numbered">
@@ -206,7 +246,7 @@
             <li><span class="number">4.2</span> The customer may escalate support issues <a href="#appendix-3">following the escalation process</a>.</li>
         </ol>
 
-        <h2>5. Assurance</h2>
+        <h2 id="assurance">5. Assurance</h2>
         <ol class="numbered">
             <li><span class="number">5.1</span> The customer is entitled to participate in the Ubuntu Assurance Programme, subject to its terms and conditions. Canonical may update the Assurance Programme and its terms periodically. The current Ubuntu Assurance Programme and its IP indemnification terms are available at our Ubuntu Assurance page: <a href="http://www.ubuntu.com/legal/ubuntu-advantage/assurance">www.ubuntu.com/legal/ubuntu-advantage/assurance</a>.</li>
         </ol>
@@ -529,9 +569,9 @@
 <div class="row no-border no-border" id="appendix-2">
     <div class="eight-col">
 
-        <h2 id="ua-support-process">Ubuntu Advantage Support Process</h2>
+        <h2 id="ua-support-process">Appendix 2 - Ubuntu Advantage Support&nbsp;Process</h2>
 
-        <h3>1. Service initiation</h3>
+        <h3 id="ua-support-service-initiation">1. Service initiation</h3>
 
         <ol class="numbered">
             <li><span class="number">1.1</span> Upon commencement of the services, Canonical will provide access for a single technical representative to Landscape, the support portal and the online knowledge base.</li>
@@ -581,7 +621,7 @@
             <li><span class="number">1.3</span> The customer may change their specified technical representatives at any time by submitting a support request via the support portal.</li>
         </ol>
 
-        <h3>2. Submitting support requests</h3>
+        <h3 id="ua-support-submitting-support-requests">2. Submitting support requests</h3>
 
         <ol class="numbered">
             <li><span class="number">2.1</span> The customer may open a support request once the customer account has been provisioned within the support portal.</li>
@@ -593,7 +633,7 @@
             <li><span class="number">2.7</span> Canonical will keep a record of each case within the support portal enabling the customer to track and respond to all current cases and allowing for review of historical cases.</li>
         </ol>
 
-        <h3>3. Support severity levels</h3>
+        <h3 id="ua-support-severity-levels">3. Support severity levels</h3>
 
         <ol class="numbered">
             <li><span class="number">3.1</span> Once a support request is opened, a Canonical Support Engineer will validate the case information and work with the customer to assess the urgency and determine the severity level.</li>
@@ -630,17 +670,17 @@
 
     <div class="eight-col">
 
-        <h3>4. Languages</h3>
+        <h3 id="ua-support-languages">4. Languages</h3>
 
         <p>Canonical will provide support in English. Other languages may be available at certain times.</p>
 
-        <h3>5. Remote sessions</h3>
+        <h3 id="ua-support-remote-sessions">5. Remote sessions</h3>
 
         <ol class="numbered">
             <li><span class="number">5.1</span> Canonical may offer to access the customer&#39;s supported system using a remote access service. In such case, Canonical will determine which remote access service to use.</li>
         </ol>
 
-        <h3>6. Support regions</h3>
+        <h3 id="ua-support-regions">6. Support regions</h3>
 
         <p>Canonical may provide services from any location, including but not limited to the following countries:</p>
 
@@ -676,7 +716,7 @@
 <div class="row no-border no-border" id="appendix-3">
     <div class="eight-col">
 
-        <h2 id="ua-escalation">Ubuntu Advantage Management Escalation</h2>
+        <h2 id="ua-escalation">Appendix 3 - Ubuntu Advantage Management Escalation</h2>
 
         <p>In the event of an unsatisfactory service of any kind, there are several ways to escalate this situation to Canonical management.</p>
 
