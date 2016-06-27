@@ -39,7 +39,7 @@
                 <div class="seven-col last-col list-stepped__box right">
                     <p>You&rsquo;ll need  at least five machines with two disks in each, two of which have two network interfaces (NICs).</p>
                     <p>No hardware available? <a href="/download/cloud">Test drive OpenStack Autopilot for virtual machines</a></p>
-                    <p><a href="/download/server">Install Ubuntu Server</a> on one of the machines with two network interfaces.</p>
+                    <p>Install <a class="external" href="http://releases.ubuntu.com/14.04/">Ubuntu Server 14.04 LTS</a> on one of the machines with two network interfaces.</p>
                     <p>You need to setup a private network with all machines plugged in and enough IP addresses available for all physical and virtual machines you plan to run.</p>
                 </div>
             </li>
@@ -76,7 +76,7 @@
                     <h3 class="list-stepped__title">Install MAAS</h3>
                 </div>
                 <div class="seven-col last-col list-stepped__box right">
-                    <p>To install MAAS, type the command below and follow the step-by-step instructions:</p>
+                    <p>To install MAAS, start off on your Ubuntu Server 14.04 LTS machine and type the command below following the step-by-step instructions:</p>
                     <p class="command-line">
                       <input class="command-line__input" value="sudo apt-get install maas" readonly="readonly">
                       <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
@@ -88,7 +88,7 @@
                     </p>
                     <ul class="no-bullets">
                         <li>Login to the MAAS UI at http://&lt;maas.ip&gt;/MAAS/</li>
-                        <li>Go to the &ldquo;Images&rdquo; tab and import disk images for &ldquo;{{ lts_release_full }} amd64&rdquo;</li>
+                        <li>Go to the &ldquo;Images&rdquo; tab and import disk images for &ldquo;14.04 LTS amd64&rdquo;</li>
                         <li>In your MAAS user&rsquo;s settings (top-right corner) add your personal public SSH key so you can later log into the nodes</li>
                         <li>Go to the &ldquo;Networks&rdquo; tab and for each of the networks auto-created, click &ldquo;Edit network&rdquo; to add the default gateway and DNS server details</li>
                     </ul>
@@ -108,9 +108,9 @@
                         </li>
                         <li>Fill in details for the dynamic and static ranges, remembering to leave gaps for the floating IPs
                             <ul>
-                                <li>Dynamic range &mdash; that has as many IPs as there are total NICs connected to the network (minimum 15)</li>
-                                <li>Static range &mdash; that has as many IPs as there are machines connected to the network</li>
-                                <li>Floating IP range &mdash; that has as many IPs as instances that you&rsquo;ll have in your cloud</li>
+                                <li>Dynamic range &mdash; reserve 60 IPs plus total number of NICs connected to the network in MAAS</li>
+                                <li>Static range &mdash; reserve 20 IPs plus total number of machines in MAAS</li>
+                                <li>Floating IP range &mdash; that has as many IPs as instances that you&rsquo;ll want to have in your cloud</li>
                             </ul>
                         </li>
                     </ul>
