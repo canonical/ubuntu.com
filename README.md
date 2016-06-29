@@ -24,4 +24,10 @@ If you get an ubuntu-vanilla-theme error on first startup, go into your /node_mo
 
 ``` npm install --save-dev gulp-sass@2 ```
 
+License
+---
+
+The content of this project is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International license](https://creativecommons.org/licenses/by-sa/4.0/), and the underlying code used to format and display that content is licensed under the [LGPLv3](http://opensource.org/licenses/lgpl-3.0.html) by [Canonical Ltd](http://www.canonical.com/).
+
+
 With ♥ from Canonical
