@@ -1,4 +1,4 @@
-Ubuntu.com website project
+www.ubuntu.com website project
 ===
 
 This is a simple databaseless informational website project, based on
