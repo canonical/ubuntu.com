@@ -866,8 +866,8 @@ body.cloud-storage {
   }
 
   .row--training__image {
-    position: absolute;
-    top: -122px;
+    position: relative;
+    top: -61px;
     right: -20px;
   }
 
@@ -1409,8 +1409,7 @@ body.cloud-storage {
 @media only screen and (min-width : $breakpoint-large) {
 
   .row--training__image {
-    position: absolute;
-    right: -20px;
+    top: -122px;
   }
 
   body.cloud-openstack-managed-cloud {
