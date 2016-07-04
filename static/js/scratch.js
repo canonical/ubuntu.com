@@ -1,5 +1,5 @@
 YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'gallery-effects','cookie','event-resize','jsonp', 'io', 'dump', 'json-parse', function(Y) {
-
+    // Used in legal/contributors/submit.html
     var lp_lookup_callback = {
         timeout: 3000,
         on: {
@@ -19,76 +19,35 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
         }
     };
 
-    core.setupFeatureDisplay = function() {
-        if(Y.one('.list-features-content') != null) {
-            Y.all('.list-features-content li').setStyle('display','none');
-            Y.one('#list-feature-saas').setStyle('display','block');
-            Y.all('.nav-list-features li').each(function (node) {
-                node.delegate('click', function(e){
-                    e.preventDefault();
-                    var clicked = this.get('text');
-                    Y.all('.nav-list-features li a').removeClass('active');
-                    this.addClass('active');
-                    var toShow = '';
-                    switch(clicked) {
-                        case 'SAAS':
-                            toShow = '#list-feature-saas';
-                        break;
-                            case 'Service orchestration':
-                            toShow = '#list-feature-orchestration';
-                        break;
-                            case 'PAAS':
-                            toShow = '#list-feature-paas';
-                        break;
-                            case 'Guest OS':
-                            toShow = '#list-feature-guest';
-                        break;
-                            case 'Public cloud':
-                            toShow = '#list-feature-public';
-                        break;
-                            case 'Private cloud':
-                            toShow = '#list-feature-private';
-                        break;
-                            case 'Virtualisation':
-                            toShow = '#list-feature-virtualisation';
-                        break;
-                    }
-                    Y.all('.list-features-content li').setStyle('display','none');
-                    Y.one(toShow).setStyle('display','block');
-                }, 'a');
-            });
-        }
-    }
-
-
+    // Should be rewritten in jQuery or ES5
     core.setupAnimations = function(){
-        if(Y.one('body').hasClass('phone-home')) {
+        if (Y.one('body').hasClass('phone-home')) {
             var yOffset = 250;
         } else {
             var yOffset = 350;
         }
-        if(Y.one('body').hasClass('phone-developers') || Y.one('body').hasClass('phone-home') || Y.one('body').hasClass('phone-partners')){
+        if (Y.one('body').hasClass('phone-developers') || Y.one('body').hasClass('phone-home') || Y.one('body').hasClass('phone-partners')) {
             var edgeMagic = Y.all('.edge-magic');
             Y.on('scroll', function(e) {
                  edgeMagic.each(function (node) {
-                    if(window.scrollY > node.getXY()[1] - yOffset && window.scrollY < node.getXY()[1] && !node.run){
+                    if (window.scrollY > node.getXY()[1] - yOffset && window.scrollY < node.getXY()[1] && !node.run) {
                         node.run = true;
                         node.one('.slider-animation').addClass('run');
-                        if(node.one('.slider-animation').getAttribute('class') == 'slider-animation full-swipe run'){
+                        if (node.one('.slider-animation').getAttribute('class') == 'slider-animation full-swipe run') {
                             setTimeout(function(){ node.one('.launcher').addClass('return') }, 2000);
                         }
                     }
                 });
             });
 
-            Y.all('.replay').on('click', function(e){
+            Y.all('.replay').on('click', function(e) {
                 e.preventDefault();
                 core.rerunAnimation(e.target.get('parentNode').one('.slider-animation').getAttribute('class').replace('slider-animation ','').replace(' run',''));
             });
-            if(Y.one('.content-controls .gallery-screen')){
+            if (Y.one('.content-controls .gallery-screen')) {
                 Y.one('.content-controls .gallery-screen').setStyle('display','block');
                 var infoIndex = 0;
-                setInterval(function(){
+                setInterval(function() {
                     Y.all('.infographic .main-image').addClass('hide');
                     Y.one('.infographic .info-pic-'+infoIndex).removeClass('hide');
                     if(++infoIndex > 4){ infoIndex = 0; }
@@ -97,52 +56,52 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
         }
 
         // scope animations
-        if(Y.one('body').hasClass('phone-features')){
+        if (Y.one('body').hasClass('phone-features')) {
             var videoPanel = Y.all('.row--video');
-            if(Y.one('.show-video')){
+            if (Y.one('.show-video')) {
                 Y.one('.show-video').on('click',function(e) {
                     e.preventDefault();
                     videoPanel.addClass('show');
-                        Y.one('.the-video div').set('innerHTML','<div class="video-container active"><iframe width="984" height="554" src="http://www.youtube.com/embed/CsDFMIphtZk?showinfo=0&vq=hd1080&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe></div>');
+                    Y.one('.the-video div').set('innerHTML','<div class="video-container active"><iframe width="984" height="554" src="http://www.youtube.com/embed/CsDFMIphtZk?showinfo=0&vq=hd1080&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe></div>');
                 });
             }
         } // end if(Y.one('body').hasClass('phone-features'))
 
-        if(Y.one('body').hasClass('tablet-design') || Y.one('body').hasClass('phone-home') ||  Y.one('body').hasClass('desktop-home') || Y.one('body').hasClass('homepage')) {
-            if(Y.one('body').hasClass('tablet-design') || Y.one('body').hasClass('desktop-home') || Y.one('body').hasClass('homepage')) {
+        if (Y.one('body').hasClass('tablet-design') || Y.one('body').hasClass('phone-home') ||  Y.one('body').hasClass('desktop-home') || Y.one('body').hasClass('homepage')) {
+            if (Y.one('body').hasClass('tablet-design') || Y.one('body').hasClass('desktop-home') || Y.one('body').hasClass('homepage')) {
                 var edgeMagic = Y.all('.slider-animation');
             }
-            if(Y.one('body').hasClass('desktop-home')) {
+            if (Y.one('body').hasClass('desktop-home')) {
                 var yOffset = 1000;
             }
             var videoPanel = Y.all('.the-video');
             Y.on('scroll', function(e) {
                 edgeMagic.each(function (node) {
-                    if(window.scrollY > node.getXY()[1] - yOffset && window.scrollY < node.getXY()[1] && !node.run){
+                    if (window.scrollY > node.getXY()[1] - yOffset && window.scrollY < node.getXY()[1] && !node.run) {
                         node.run = true;
                         node.addClass('run');
                     }
                 });
             });
 
-            Y.all('.screen').on('click', function(e){
+            Y.all('.screen').on('click', function(e) {
                 core.rerunAnimation(e.target.get('parentNode').get('parentNode').get('parentNode').one('.slider-animation').getAttribute('class').replace('slider-animation ','').replace(' run',''));
             });
 
-            Y.all('.replay').on('click', function(e){
+            Y.all('.replay').on('click', function(e) {
                 e.preventDefault();
                 core.rerunAnimation(e.target.get('parentNode').one('.slider-animation').getAttribute('class').replace('slider-animation ','').replace(' run',''));
             });
 
             var vidObject = '<iframe width="984" height="554" src="http://www.youtube.com/embed/-dpfHYpfEXY?showinfo=0&vq=hd1080&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe>'
 
-            if(Y.one('.show-video')){
+            if (Y.one('.show-video')) {
                 Y.one('.show-video').on('click',function(e) {
                     e.preventDefault();
                     e.stopPropagation();
                     Y.one('.close-vid-link').setStyle('display','block');
                     videoPanel.addClass('show');
-                    if(Y.one('body').hasClass('tablet-design')){
+                    if (Y.one('body').hasClass('tablet-design')) {
                         Y.one('.row-hero').setStyle('height','590px');
                         Y.one('.the-video div').set('innerHTML', vidObject);
                     } else {
@@ -152,13 +111,13 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
                     }
                 });
             }
-            if(Y.one('.close-video')){
+            if (Y.one('.close-video')) {
                 Y.one('.close-video').on('click',function(e) {
                     e.preventDefault();
                     Y.one('.close-vid-link').setStyle('display','none');
                     videoPanel.removeClass('show');
                     Y.one('.video-container').empty();
-                    if(Y.one('body').hasClass('tablet-design')){
+                    if (Y.one('body').hasClass('tablet-design')) {
                         Y.one('.row-hero').setStyle('height','460px');
                     } else {
                         Y.one('.row-hero').setStyle('height','678px');
@@ -170,7 +129,8 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
             }
         }
     }
-
+    
+    // Is already using jQuery
     core.scopesSlideshow = function() {
 
         // Developer overview slideshow
@@ -208,74 +168,36 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
             3500);
         };
     };
-
-    core.runAnimation = function($anim) {
-        switch($anim) {
-            case 'search-screen':
-                Y.one('.search-screen').addClass('run');
-                setTimeout(function(){ Y.one('.search-screen').removeClass('run'); }, 2000);
-            break;
-            case 'go-back':
-                Y.one('.go-back').addClass('run');
-            break;
-        }
-    };
-
-    core.updateSlider = function( $index ) {
-        if($index >= 4){ $index = 0; }
-        if($index <= -1){ $index = 3; }
-        YUI().use('node', function(Y) {
-            Y.one('.slide-container').setStyle('left','-'+(700 * $index)+'px');
-            Y.all('.slider-dots li').removeClass('active');
-            Y.all('.slider-dots li.pip-'+$index).addClass('active');
-            Y.all('.slider-animation').removeClass('run');
-            Y.one('.full-swipe .launcher').removeClass('return');
-            switch($index+''){
-                case '0':
-                    setTimeout(function(){ Y.one('.edge-magic').addClass('run'); }, 1200);
-                break;
-                case '1':
-                    setTimeout(function(){ Y.one('.full-swipe').addClass('run');}, 1200);
-                    setTimeout(function(){ Y.one('.full-swipe .launcher').addClass('return') }, 2000);
-                break;
-                case '2':
-                    setTimeout(function(){ Y.one('.go-back').addClass('run'); }, 1200);
-                break;
-                case '3':
-                    setTimeout(function(){ Y.one('.content-controls').addClass('run'); }, 1200);
-                break;
-            }
-        });
-        return $index;
-    }
-
+    
+    // Should be rewritten in jQuery or ES5
     core.rerunAnimation = function($type){
         Y.one('.'+$type).removeClass('run');
-        if($type == 'full-swipe'){
+        if ($type == 'full-swipe'){
             Y.one('.full-swipe .launcher').removeClass('return');
             setTimeout(function(){ Y.one('.full-swipe').addClass('run'); }, 400);
             setTimeout(function(){ Y.one('.full-swipe .launcher').addClass('return') }, 1400);
-        }else if($type == 'notification-slider' || $type == 'search-screen'){
+        } else if ($type == 'notification-slider' || $type == 'search-screen'){
             Y.one('.'+$type).removeClass('run');
             setTimeout(function(){ Y.one('.'+$type).addClass('run'); }, 1000);
-        }else if($type == 'slider-animation') {
+        } else if ($type == 'slider-animation') {
 
-        }else{
+        } else {
             Y.one('.'+$type).removeClass('run');
             setTimeout(function(){ Y.one('.'+$type).addClass('run'); }, 400);
         }
     }
-
-    core.flipVideo = function(){
-        if(Y.one('body').hasClass('phone-home')) {
-            if(Y.one('.show-video')) {
+    
+    // Should be rewritten in jQuery or ES5
+    core.phoneVideo = function(){
+        if (Y.one('body').hasClass('phone-home')) {
+            if (Y.one('.show-video')) {
                 Y.one('.show-video').on('click',function(e) {
                     e.preventDefault();
                     Y.one('.video-container.for-mobile').set('innerHTML','');
                     setTimeout(function(){ Y.one('.the-video').set('innerHTML','<div class="videoWrapper"><iframe style="width:100%" src="http://www.youtube.com/embed/-dpfHYpfEXY?showinfo=0&hd=1&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe></div>');Y.one('#topbar').setStyle('z-index', '50');}, 1000);
                 });
             }
-            if(Y.one('.close-video')) {
+            if (Y.one('.close-video')) {
                 Y.one('.close-video').on('click',function(e) {
                     e.preventDefault();
                     Y.one('#panel .back').setStyle('z-index', '0');
@@ -285,51 +207,8 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
             }
         }
     }
-
-    core.externalLinks = function() {
-        Y.all('a.external-link').each(function() {
-            this.on('click',function(e) {
-                e.preventDefault();
-                window.open(this.getAttribute('href'), '_blank');
-            });
-        })
-    }
-
-    core.chineseDownload = function() {
-        if(Y.one('body').hasClass('download-desktop-zh-CN')){
-            var ltsform = Y.one('form.lts');
-            var latestform = Y.one('form.latest');
-            Y.one('form.lts button').on('click',function(e){
-                e.preventDefault();
-                this.set('text','开始...');
-                ltsform.submit();
-            });
-
-            Y.one('form.latest button').on('click',function(e){
-                e.preventDefault();
-                this.set('text','开始...');
-                latestform.submit();
-            });
-
-            Y.one('.lts .input-bits').on('change', function() {
-                var bits = Y.one('form.lts .text-bits');
-                var form_cta = ltsform.one('.link-cta-ubuntu');
-                var val = this.get('value');
-                var iso = val == '32' ? 'http://china-images.ubuntu.com/releases/12.04/ubuntu-12.04-desktop-i386.iso' : 'http://china-images.ubuntu.com/releases/12.04/ubuntu-12.04-desktop-amd64.iso';
-                ltsform.setAttribute('action', iso);
-                bits.set('text',val);
-            });
-            Y.one('.latest .input-bits').on('change', function() {
-                var bits = Y.one('form.latest .text-bits');
-                var form_cta = latestform.one('.link-cta-ubuntu');
-                var val = this.get('value');
-                var iso = val == '32' ? 'http://cdimage.ubuntu.com/ubuntukylin/releases/13.10/release/ubuntukylin-13.10-desktop-i386.iso' : 'http://cdimage.ubuntu.com/ubuntukylin/releases/13.10/release/ubuntukylin-13.10-desktop-amd64.iso';
-                latestform.setAttribute('action', iso);
-                bits.set('text',val);
-            });
-        }
-    }
-
+    
+    // Should be rewritten in jQuery or ES5
     core.cookiePolicy = function() {
         if(Y.Cookie.get("_cookies_accepted") != 'true'){
             open();
@@ -357,35 +236,8 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
             });
         }
     }
-
-    core.supportsTransitions = function() {
-        var b = document.body || document.documentElement;
-        var s = b.style;
-        var p = 'transition';
-        if(typeof s[p] == 'string') {return true; }
-        // Tests for vendor specific prop
-        v = ['Moz', 'webkit', 'Webkit', 'Khtml', 'O', 'ms'],
-        p = p.charAt(0).toUpperCase() + p.substr(1);
-        for(var i=0; i<v.length; i++) {
-            if(typeof s[v[i] + p] == 'string') { return true; }
-        }
-        return false;
-    }
-
-    core.setHTMLClasses = function(){
-        if(Y.one('body').hasClass('homepage')){
-            if (!core.supportsTransitions()) {
-                document.getElementsByTagName("html")[0].className += " no-transitions";
-            }
-            document.getElementsByTagName("html")[0].className += " run";
-
-        }
-    }
-
-    core.removeNoJS = function(){
-        Y.all('html').removeClass('no-js').addClass('yes-js');
-    }
-
+    
+    // Should be rewritten in jQuery or ES5
     core.footerMobileNav = function() {
         Y.all('.footer-a li h2').on('click', function(e) {
             e.target.toggleClass('active open');
@@ -394,14 +246,16 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
             e.target.toggleClass('active open');
         });
     };
-
-    core.resizeListener = function() {
+    
+    // This should be coming from global.js
+    core.globalResizeListener = function() {
         Y.on('windowresize', function(e) {
             core.redrawGlobal();
         });
         core.globalInit();
     };
 
+    // This should be coming from global.js
     core.globalInit= function() {
         if (document.documentElement.clientWidth < 768) {
             core.globalPrepend = 'div.nav-global-footer';
@@ -415,6 +269,7 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
         }
     };
 
+    // This should be coming from global.js
     core.redrawGlobal = function() {
         var globalNav = Y.one("#nav-global");
         if (document.documentElement.clientWidth < 768 && core.globalPrepend != 'div.nav-global-footer') {
@@ -438,6 +293,7 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
         }
     };
 
+    // This should be coming from global.js
     core.setupGlobalNavAccordion = function() {
         if(Y.one('#nav-global h2') !== null) {
             Y.one('#nav-global h2').setStyle('cursor', 'pointer').append('<span></span>').on('click',function(e) {
@@ -447,6 +303,7 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
         }
     };
 
+    // Should be rewritten in jQuery or ES5
     core.renderJSON = function (response, id) {
         if (id == undefined) {
             id = '#dynamic-logos';
@@ -463,6 +320,7 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
         }
     };
 
+    // Should be rewritten in jQuery or ES5
     core.loadPartners = function (params, elementID, feedName) {
         if (typeof feedName === 'undefined') {
             feedName = 'partners';
@@ -476,12 +334,13 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
         Y.jsonp(url, callback);
     };
 
+    // Should be rewritten in jQuery or ES5
     core.deviceAnimation = function() {
-        if(Y.one('body').hasClass('homepage')) {
+        if (Y.one('body').hasClass('homepage')) {
           //MIGHTY MORPHIN' DEVICE CODE
 
           //As the Modernizr used doesn't have Prefix
-          var whichTransitionEvent = (function (){
+          var whichTransitionEvent = (function () {
               var t;
               var el = document.createElement('fakeelement');
               var transitions = {
@@ -491,8 +350,8 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
                 "WebkitAnimation": "webkitAnimationEnd"
               }
 
-              for(t in transitions){
-                  if( el.style[t] !== undefined ){
+              for (t in transitions) {
+                  if ( el.style[t] !== undefined ) {
                       return transitions[t];
                   }
               }
@@ -505,37 +364,26 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
 
 
           //From the click
-          function replayMorph()
-          {
-            if( morphPlayComplete )
-            {
+          function replayMorph() {
+            if ( morphPlayComplete ) {
               var elm = this;
-              if( nonCSSMorph )
-              {
+              if ( nonCSSMorph ) {
                 nextNonMorph();
-              }
-              else
-              {
+              } else {
                 var newone = elm.cloneNode(true);
-
                 elm.parentNode.replaceChild(newone, elm);
                 newone.onclick = replayMorph;
                 newone.style.cursor = 'inherit';
-                addTransEndEvent( newone );
+                addTransEndEvent(newone);
               }
-
               morphPlayComplete = false;
             }
           }
 
-          function addTransEndEvent( e )
-          {
-            if(whichTransitionEvent)
-            {
+          function addTransEndEvent( e ) {
+            if (whichTransitionEvent) {
               e.addEventListener(whichTransitionEvent,setMorphComplete);
-            }
-            else
-            {
+            } else {
               startNonMorph();
             }
            }
@@ -544,31 +392,24 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
             e.currentTarget.style.cursor = "pointer";
           }
 
-          function startNonMorph()
-          {
+          function startNonMorph() {
             nonCSSMorph = true;
-            deviceMorphDiv.className="no-morph";
+            deviceMorphDiv.classNam = "no-morph";
             deviceMorphDiv.onclick = replayMorph;
             setTimeout( nextNonMorph, 2000 );
           }
 
-          function nextNonMorph()
-          {
+          function nextNonMorph() {
             currentNonMorphDevice++;
-            if( currentNonMorphDevice >= nonMorphImageList.length )
-            {
+            if (currentNonMorphDevice >= nonMorphImageList.length ) {
               currentNonMorphDevice = 0;
               morphPlayComplete = true;
               deviceMorphDiv.style.cursor = "pointer";
-            }
-            else
-            {
-
+            } else {
               deviceMorphDiv.style.cursor = 'inherit';
               setTimeout( nextNonMorph, 2000 );
             }
             document.getElementById("device-morph").style.backgroundImage = "url("+nonMorphImageList[currentNonMorphDevice]+")";
-
           }
           var deviceMorphDiv = document.getElementById("device-morph");
           var devices = document.getElementById("devices");
@@ -577,7 +418,8 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
           addTransEndEvent( devices );
         }
     };
-
+    
+    // Should be rewritten in jQuery or ES5
     core.commandLine = function () {
       Y.all('.command-line').each(function() {
           var _this = this;
@@ -608,14 +450,10 @@ YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'galle
       });
     }
 
-    core.removeNoJS();
-    core.setupFeatureDisplay();
     core.setupAnimations();
-    core.flipVideo();
-    core.externalLinks();
+    core.phoneVideo();
     core.cookiePolicy();
-    core.setHTMLClasses();
-    core.resizeListener();
+    core.globalResizeListener();
     core.footerMobileNav();
     core.setupGlobalNavAccordion();
     core.scopesSlideshow();
