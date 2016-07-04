@@ -16,6 +16,7 @@
 
 if (!core) { var core = {}; }
 YUI().use('node', 'anim', 'event-resize', function (Y) {
+    // REMOVE
     core.hashSlide = function () {
         Y.all('#main-content a').each(function (node) {
             if (node.get('hash') !== '') {
@@ -31,7 +32,7 @@ YUI().use('node', 'anim', 'event-resize', function (Y) {
             }
         });
     };
-
+    // REMOVE
     core.slideToAnchor = function ($name) {
         if ($name !== '') {
             var destination = Y.one($name).getXY()[1] - 20,
@@ -51,14 +52,14 @@ YUI().use('node', 'anim', 'event-resize', function (Y) {
             ffAnim.run(1000);
         }
     };
-
+    // REMOVE
     core.getPullQuotes = function () {
         Y.all('span.pullquote').each(function (node) {
             var item = Y.Node.create('<div class="pull-quote js">&ldquo;' + node.getContent() + '&rdquo;</div>');
             node.get('parentNode').get('parentNode').get('parentNode').append(item);
         });
     };
-
+    // USING??? IF NOT REMOVE
     core.setupTooltips = function () {
         if (Y.one('.tooltip') !== null) {
             Y.all('.tooltip').each(function (node) {
@@ -75,7 +76,7 @@ YUI().use('node', 'anim', 'event-resize', function (Y) {
             });
         }
     };
-
+    // REMOVE, UNUSED
     core.sectionTabs = function () {
 
         if (Y.one('.tabbed-content')) {
@@ -106,6 +107,7 @@ YUI().use('node', 'anim', 'event-resize', function (Y) {
         }
     };
 
+    // REMOVE UNSUED
     core.tabbedContent = function () {
         Y.all('.tabbed-content .accordion-button').on('click', function (e) {
             e.preventDefault();
@@ -113,6 +115,7 @@ YUI().use('node', 'anim', 'event-resize', function (Y) {
         });
     };
     
+    // NEED ... WRITE IN ES5
 	core.svgFallback = function() {
 		if (typeof Modernizr === "object") {
 			if (!Modernizr.svg || !Modernizr.backgroundsize) {
@@ -130,7 +133,7 @@ YUI().use('node', 'anim', 'event-resize', function (Y) {
 			}
 		}
 	};
-
+  // BAD, USE CSS
     core.resourceHubBoxes = function () {
         Y.all(".resource").on('click', function (e) {
             e.preventDefault();
@@ -140,7 +143,7 @@ YUI().use('node', 'anim', 'event-resize', function (Y) {
             }
         });
     };
-
+    // NEED, WRITE IN ES5
     core.mobileNav = function () {
         if (Y.one('.header-search')) {
             Y.one('.nav-primary').insert('<a class="search-toggle"></a><a id="menu" class="nav-toggle">menu</a>', 'before');
@@ -182,7 +185,7 @@ YUI().use('node', 'anim', 'event-resize', function (Y) {
         }
 
     };
-
+    // REWRITE IN ES6
     core.navOnboarding = function () {
         var key = 'ubuntu',
             nav_secondary = Y.one('.nav-secondary'),
@@ -201,7 +204,7 @@ YUI().use('node', 'anim', 'event-resize', function (Y) {
             }
         }
     };
-
+    // NOT USING YUI
     core.setLocalStorage = function ($value) {
         var key = 'ubuntu',
             value = $value,
