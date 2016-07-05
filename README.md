@@ -1,4 +1,4 @@
-www.ubuntu.com website
+www.ubuntu.com codebase
 ===
 
 This is the codebase and content for [www.ubuntu.com](http://www.ubuntu.com), a simple databaseless informational website project based on [Django](https://www.djangoproject.com/).
