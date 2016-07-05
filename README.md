@@ -1,10 +1,14 @@
-www.ubuntu.com website project
+www.ubuntu.com website
 ===
 
-This is a simple databaseless informational website project, based on
-[static-django-bootstrap](https://github.com/ubuntudesign/static-django-bootstrap).
+This is the codebase and content for [www.ubuntu.com](http://www.ubuntu.com), a simple databaseless informational website project based on [Django](https://www.djangoproject.com/).
 
-Basic usage
+Bugs and issues
+---
+
+Found a bug or have an idea for a new feature? Feel free to [create a new issue](/ubuntudesign/www.ubuntu.com/issues/new), or suggest a fix by [creating a pull request](https://help.github.com/articles/creating-a-pull-request/).
+
+Local development
 ---
 
 To run the site locally:
