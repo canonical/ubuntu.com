@@ -6,7 +6,7 @@ This is the codebase and content for [www.ubuntu.com](http://www.ubuntu.com), a 
 Bugs and issues
 ---
 
-Found a bug or have an idea for a new feature? Feel free to [create a new issue](/ubuntudesign/www.ubuntu.com/issues/new), or suggest a fix by [creating a pull request](https://help.github.com/articles/creating-a-pull-request/).
+Found a bug or have an idea for a new feature? Feel free to [create a new issue](https://github.com/ubuntudesign/www.ubuntu.com/issues/new), or suggest a fix by [creating a pull request](https://help.github.com/articles/creating-a-pull-request/).
 
 Local development
 ---
