@@ -1464,3 +1464,61 @@ body.homepage-maas-takeover {
     background: #f5f5f5;
   }
 }
+
+body.homepage-bootstack-generic {
+  header.banner { margin-bottom: 0; }
+ 
+  #main-content {
+ 
+    margin-top: 0;
+ 
+ 
+ 
+    .row-hero {
+ 
+      background-color: rgba(255,255,255,0.6);
+ 
+      padding-top: 20px;
+ 
+      padding-bottom: 0;
+ 
+      margin-top: 0;
+ 
+    }
+ 
+    .row-aux {
+ 
+      background-color: transparent;
+ 
+    }
+ 
+        @media only screen and (min-width : 768px) {
+ 
+                h1 { padding-top: 45px; }
+ 
+      .row-hero {
+ 
+        padding-top: 100px;
+ 
+        padding-bottom: 75px;
+ 
+      }
+ 
+        }
+ 
+        @media only screen and (min-width : 984px) {
+ 
+                h1 { padding-top: 55px; }
+ 
+      .row-hero {
+ 
+        padding-top: 60px;
+ 
+        padding-bottom: 45px;
+ 
+      }
+ 
+        }
+  }
+ 
+}
