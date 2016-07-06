@@ -28,31 +28,31 @@
 </script>
 
 <script  src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
-    
+
 <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1261">
     <fieldset>
         <h3>About you</h3>
-        <ul class="no-bullets">          
-  
-            <li class="mktFormReq mktField">    
-                <label for="FirstName" class="mktoLabel">First name: <span>*</span></label>
+        <ul class="no-bullets">
+
+            <li class="mktFormReq mktField">
+                <label for="FirstName" class="mktoLabel">First name:</label>
                 <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" />
             </li>
-            <li class="mktFormReq mktField">    
-                <label for="LastName" class="mktoLabel">Last name: <span>*</span></label>
+            <li class="mktFormReq mktField">
+                <label for="LastName" class="mktoLabel">Last name:</label>
                 <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" />
             </li>
-            <li class="mktFormReq mktField">    
-                <label for="Email" class="mktoLabel">Email address: <span>*</span></label>
+            <li class="mktFormReq mktField">
+                <label for="Email" class="mktoLabel">Email address:</label>
                 <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
             </li>
-            <li class="mktFormReq mktField">    
-                <label for="Phone" class="mktoLabel">Phone number: <span>*</span></label>
+            <li class="mktFormReq mktField">
+                <label for="Phone" class="mktoLabel">Phone number:</label>
                 <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" />
             </li>
-            {% include "shared/forms/_country.html" %}    
-            <li class="mktFormReq mktField">    
-                <label for="Company" class="mktoLabel">Company: <span>*</span></label>
+            {% include "shared/forms/_country.html" %}
+            <li class="mktFormReq mktField">
+                <label for="Company" class="mktoLabel">Company:</label>
                 <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired" />
             </li>
             {% include "shared/forms/_job_role.html" %}
@@ -60,26 +60,26 @@
     </fieldset>
     <fieldset>
         <ul class="no-bullets">
-            <li class="mktFormReq mktField">    
-                <label for="Comments_from_Contact__c" class="mktoLabel">What is your preferred location for the training?<span>*</span></label>
+            <li class="mktFormReq mktField">
+                <label for="Comments_from_Contact__c" class="mktoLabel">What is your preferred location for the training?</label>
                 <textarea required id="Comments_from_Contact__c" name="Comments_from_Contact__c" rows="5" class="mktoField mktoRequired" maxlength="2000"></textarea>
             </li>
         </ul>
     </fieldset>
     <fieldset>
-        <ul class="no-bullets">       
+        <ul class="no-bullets">
             <li class="mktField">
                 <input name="Optin_cloud_nuture" id="Optin_cloud_nuture" type="checkbox" value="yes" class="mktoField">
                 <label for="Optin_cloud_nuture" class="mktoLabel">Would you like to receive regular cloud updates from Ubuntu?</label><label for="Optin_cloud_nuture"></label>
             </li>
-            <li class="mktField">    
+            <li class="mktField">
                 <input class="mktoField" value="yes" id="NewsletterOpt-In" name="NewsletterOpt-In" type="checkbox" />
-                <label class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>        
+                <label class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>
             </li>
             <li>
                 All information provided will be handled in accordance with the Canonical <a href="http://www.ubuntu.com/legal" target="_blank">privacy policy</a>.
             </li>
-            <li class="mktField">    
+            <li class="mktField">
                 <button type="submit" class="mktoButton">Submit</button>
                 <input type="hidden" name="formid" class="mktoField" value="1261" />
                 <input type="hidden" name="lpId" class="mktoField" value="2161" />
