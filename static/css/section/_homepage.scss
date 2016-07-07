@@ -925,10 +925,8 @@ body.juju-takeover {
   }
 
   #main-content {
-    margin-top: 0;
-
     .row-hero {
-      margin-top: 0;
+      margin-top: 1.5em;
       padding-bottom: 0;
 
       .row-hero-text {
@@ -942,7 +940,6 @@ body.juju-takeover {
       }
 
       .for-mobile.twelve-col {
-
         box-sizing: border-box;
 
         img {
@@ -956,6 +953,7 @@ body.juju-takeover {
       }
 
       @media only screen and (min-width : 768px) {
+        margin-top: 0;
 
         .row-hero-text {
           margin-bottom: 11.5em;
@@ -968,7 +966,7 @@ body.juju-takeover {
 
           img {
             position: absolute;
-            top: -15rem;
+            top: -12.5rem;
             right: -7rem;
             z-index: 1;
           }
@@ -991,6 +989,10 @@ body.juju-takeover {
 
         .row-hero-text {
           padding-left: 20px;
+        }
+        
+        .large-screen-graphic img {
+            top: -15rem;
         }
       }
 
