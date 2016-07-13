@@ -12,7 +12,7 @@
 
         <h1>Ubuntu Advantage service&nbsp;description</h1>
 
-        <p class="intro">Valid since 18 April 2016</p>
+        <p class="intro">Valid since 12 July 2016</p>
 
         <h2 id="service-description-overview">1. Overview</h2>
 
@@ -32,7 +32,7 @@
             </li>
             <li><span class="number">1.3</span> Add on service offerings:
                 <ul>
-                    <li>Landscape Agents for Virtual Machines</li>
+                    <li>Landscape Seats</li>
                     <li>Technical Account Manager</li>
                     <li>Dedicated Services Engineer</li>
                     <li>Landscape On Premises</li>
@@ -64,7 +64,7 @@
             <li id="support-scope-kernels"><span class="number">2.4</span> Kernels
                 <ol class="numbered">
                     <li><span class="number">2.4.1</span> The kernel provided initially in the release of a long-term support (LTS) version of Ubuntu is supported for the entire lifecycle of the LTS.</li>
-                    <li><span class="number">2.4.2</span> Hardware enablement (HWE) kernels provide support for newer hardware in an LTS release and are released in conjunction with the non-LTS Ubuntu releases. Non-LTS HWE kernels are supported until the HWE kernel from the next LTS has been released.</li>
+                    <li><span class="number">2.4.2</span> Hardware enablement (HWE) kernels provide support for newer hardware in an LTS release and are released in conjunction with the non-LTS Ubuntu releases. HWE kernels are supported until the next LTS point release.</li>
                     <li><span class="number">2.4.3</span> More information about kernel support can be found at <a href="http://www.ubuntu.com/info/release-end-of-life">www.ubuntu.com/info/release-end-of-life</a></li>
                 </ol>
             </li>
@@ -83,10 +83,18 @@
                     <li><span class="number">2.6.5</span> Supported versions of OpenStack:
                         <ul>
                             <li>The version of OpenStack provided initially in the release of a long-term support (LTS) version of Ubuntu is supported for the entire lifecycle of that Ubuntu version.</li>
-                            <li>Releases of OpenStack released after an LTS version of Ubuntu are available in the Ubuntu Cloud Archive and are supported for a minimum of 18 months from the release date of the Ubuntu version that included the applicable OpenStack release.</li>
+                            <li>Releases of OpenStack released after an LTS version of Ubuntu are available in the Ubuntu Cloud Archive. Each release is supported for a minimum of 18 months from the release date of the Ubuntu version that included the applicable OpenStack version.</li>
                             <li>The OpenStack release support schedule is available here <a href="http://www.ubuntu.com/info/release-end-of-life">www.ubuntu.com/info/release-end-of-life</a>.</li>
                         </ul>
                     </li>
+                </ol>
+            </li>
+            <li id="support-scope-kernels"><span class="number">2.7</span> Charms
+                <ol class="numbered">
+                    <li><span class="number">2.7.1</span>This section applies to services purchased for the support of OpenStack.</li>
+                    <li><span class="number">2.7.2</span> Canonical will provide support for the charms required to run an OpenStack cloud deployed using Canonical&rsquo;s reference architecture.</li>
+                    <li><span class="number">2.7.3</span> Each charm version is supported for one year from the release date.</li>
+                    <li><span class="number">2.7.4</span> Canonical will not provide support for any charms that have been modified from the supported version found in the Charm Store.</li>
                 </ol>
             </li>
         </ol>
@@ -156,20 +164,20 @@
         <thead>
             <tr scope="row">
                 <th>Service</th>
-                <th>Support availability</th>
+                <th>Business hours</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>Ubuntu Advantage Server Essential<br />
                     Ubuntu Advantage Desktop</td>
-                <td>Monday - Friday 09:00 - 17:00</td>
+                <td>Monday &dash; Friday 09:00 &dash; 17:00</td>
             </tr>
             <tr>
                 <td>Ubuntu Advantage Server Standard<br />
                     Ubuntu Advantage Virtual Guest Standard<br />
                     Ubuntu Advantage MAAS Standard</td>
-                <td>Monday - Friday 08:00 - 18:00</td>
+                <td>Monday &dash; Friday 08:00 &dash; 18:00</td>
             </tr>
             <tr>
                 <td>Ubuntu Advantage OpenStack Cloud Region<br />
@@ -180,7 +188,7 @@
                     Ubuntu Advantage MAAS Advanced<br />
                     Ubuntu Advantage Switch<br />
                     Landscape On Premises</td>
-                <td>Monday - Sunday 24 hours</td>
+                <td>Monday &dash; Friday 08:00 &dash; 18:00 hours</td>
             </tr>
         </tbody>
     </table>
@@ -190,10 +198,10 @@
         <thead>
             <tr scope="row">
                 <th>&nbsp;</th>
-                <th>Level 1</th>
-                <th>Level 2</th>
-                <th>Level 3</th>
-                <th>Level 4</th>
+                <th>Severity <br />Level 1</th>
+                <th>Severity <br />Level 2</th>
+                <th>Severity <br />Level 3</th>
+                <th>Severity <br />Level 4</th>
             </tr>
         </thead>
         <tbody>
@@ -458,7 +466,7 @@
             <li>Peripherals which are not certified to work with Ubuntu</li>
         </ul>
 
-        <h3 id="ua-landscape-virtual-machines">Landscape Agents for Virtual Machines</h3>
+        <h3 id="ua-landscape-virtual-machines">Landscape Seats</h3>
 
         <p>Definitions:</p>
 
@@ -484,7 +492,7 @@
         <p>Definitions:</p>
 
         <ul>
-            <li>"TAM" means a Canonical support engineer who personally collaborates with the customer&#39;s staff and management.</li>
+            <li>"TAM" means a Canonical support engineer who works remotely to personally collaborates with the customer&#39;s staff and management.</li>
         </ul>
 
         <p>Canonical will enhance its support offering by providing a TAM, who will perform the following services for up to 10 hours per week during the term of service:</p>
@@ -497,7 +505,7 @@
 
         <p>Canonical will hold a quarterly service review meeting with the customer to assess service performance and determine areas of improvement.</p>
 
-        <p>The TAM will visit the customer annually for on-site technical review.</p>
+        <p>The TAM will visit the customer&#39;s site annually for on-site technical review.</p>
 
         <p>The TAM is available to respond to support cases during the TAM&#39;s working hours.  Outside of such hours, support will be provided per the Ubuntu Advantage Support Process.</p>
 
@@ -506,7 +514,7 @@
         <p>Definitions:</p>
 
         <ul>
-            <li>"DSE" means a Canonical support engineer dedicated to work full-time for a single customer.</li>
+            <li>"DSE" means a Canonical support engineer dedicated to work full-time remotely for a single customer.</li>
         </ul>
 
         <p>Canonical will enhance its support offering by providing a DSE, who will perform the following services during local business hours for up to 40 hours per week (subject to Canonical leave policies) during the term of service:</p>
@@ -550,7 +558,7 @@
         <p>Service excludes:</p>
 
         <ul>
-            <li>Support beyond that of the packages required to install and run Landscape On Premises.</li>
+            <li>Support beyond that of the Landscape On Premises packages.</li>
         </ul>
 
         <p>Supported versions of Landscape On Premises:</p>
@@ -644,25 +652,25 @@
 
     <table class="twelve-col">
         <tr>
-            <th><strong>Level 1</strong><br />
+            <th><strong>Severity Level 1</strong><br />
                 Core functionality not available</th>
             <td>Canonical will use continuous effort according to the service level purchased, through appropriate support engineer(s) and/or development engineer(s), to provide a work-around or permanent solution. As soon as core functionality is available, the severity level will be lowered to the new appropriate severity level.</td>
         </tr>
 
         <tr>
-            <th><strong>Level 2</strong><br />
+            <th><strong>Severity Level 2</strong><br />
                 Core&nbsp;functionality&nbsp;severely&nbsp;degraded</th>
             <td>Canonical will provide concerted  efforts during the applicable business hours to provide the customer with a work-around or permanent solution. As soon as core functionality is no longer severely degraded, the severity level will be lowered to level 3.</td>
         </tr>
 
         <tr>
-            <th><strong>Level 3</strong><br />
+            <th><strong>Severity Level 3</strong><br />
                 Standard support request</th>
             <td>Canonical will use reasonable efforts during the applicable business hours to provide the customer with a work-around or permanent solution as soon as possible, balanced against higher severity level cases. If a work-around is provided, Canonical&#39;s support engineers will continue to work on developing a permanent resolution to the case.</td>
         </tr>
 
         <tr>
-            <th><strong>Level 4</strong><br />
+            <th><strong>Severity Level 4</strong><br />
                 Non-urgent request</th>
             <td>Level 4 requests include cosmetic issues, informational requests, feature requests, and similar matters.  Canonical does not provide a timeline or guarantee for inclusion of any feature requests. Canonical will review each level 4 case and determine whether it is a product enhancement to be considered for a future release, an issue to be fixed in the current release or an issue to be fixed in a future release. Canonical will review and respond to information requests with a reasonable level of effort during coverage hours. Canonical may close cases representing level 4 issues after responding if Canonical believes it is appropriate to do so.</td>
         </tr>
@@ -697,6 +705,7 @@
             <li>Hungary</li>
             <li>Italy</li>
             <li>Japan</li>
+            <li>Norway</li>
             <li>Poland</li>
             <li>South Korea</li>
             <li>Spain</li>
@@ -736,7 +745,7 @@
         </ul>
         <p>Urgent needs</p>
         <ul>
-            <li>You may escalate to Canonical&#39;s Support &amp; Technical Services Manager by emailing <a href="mailto:%73%75%70%70%6F%72%74%2D%6D%61%6E%61%67%65%72%40%63%61%6E%6F%6E%69%63%61%6C%2E%63%6F%6D">support-manager@canonical.com</a> or calling <a href="tel:+1 514 940 8910">+1 514 940 8910</a>.</li>
+            <li>You may escalate to Canonical&#39;s Support &amp; Technical Services Manager by emailing <a href="mailto:%73%75%70%70%6F%72%74%2D%6D%61%6E%61%67%65%72%40%63%61%6E%6F%6E%69%63%61%6C%2E%63%6F%6D">support-manager@canonical.com</a> or calling <a href="tel:+15149408910">+1 514 940 8910</a>.</li>
             <li>If you require further escalation, you may email Canonical&#39;s Support &amp; Technical Services Director at <a href="mailto:%6F%70%65%72%61%74%69%6F%6E%73%2D%64%69%72%65%63%74%6F%72%40%63%61%6E%6F%6E%69%63%61%6C%2E%63%6F%6D">operations-director@canonical.com</a>.</li>
         </ul>
 
