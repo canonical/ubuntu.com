@@ -12,7 +12,7 @@ Thanks for downloading Ubuntu for LinuxONE and z Systems
 {% endblock second_level_nav_items %}
 
 {% block head_extra %}
-<meta http-equiv="refresh" content="3;url=http://cdimage.ubuntu.com/releases/16.04/release/ubuntu-16.04-server-s390x.iso">
+<meta http-equiv="refresh" content="3;url=http://cdimage.ubuntu.com/releases/{{lts_release}}/release/ubuntu-{{lts_release}}-server-s390x.iso">
 {% endblock %}
 
 {% block content %}
@@ -21,9 +21,9 @@ Thanks for downloading Ubuntu for LinuxONE and z Systems
     <div class="strip-inner-wrapper">
         <div class="six-col">
             <h1>Thanks for downloading Ubuntu for LinuxONE and z&nbsp;Systems</h1>
-            <p>Thank you for downloading Ubuntu {{lts_release_full}} for IBM LinuxONE and z Systems. Your ISO download should start automatically.</p>
+            <p>Thank you for downloading Ubuntu {{lts_release_full_with_point}} for IBM LinuxONE and z Systems. Your ISO download should start automatically.</p>
             <p>If it doesn&rsquo;t, or for alternative options <a href="http://cdimage.ubuntu.com/releases/xenial/release ">visit the download page</a>.</p>
-            <p>Ubuntu 16.04 LTS for IBM LinuxONE and z Systems is priced at $19,500 per drawer per year, covering unlimited usage of Ubuntu within that drawer, 24x7 Ubuntu Advantage Advanced support services and regular security and reliability fixes from Canonical.</p>
+            <p>Ubuntu {{lts_release_full_with_point}} for IBM LinuxONE and z Systems is priced at $19,500 per drawer per year, covering unlimited usage of Ubuntu within that drawer, 24x7 Ubuntu Advantage Advanced support services and regular security and reliability fixes from Canonical.</p>
             <p>Your use of Ubuntu on z Systems and LinuxONE in production constitutes <a href="http://www.ubuntu.com/legal/short-terms">acceptance of these terms</a>.</p>
             <p>For questions about Ubuntu Advantage for LinuxONE and z Systems, please call us +44 (0) 207 630 2406 or email us at <a href="mailto:ibm@ubuntu.com">ibm@ubuntu.com</a>.</p>
         </div>

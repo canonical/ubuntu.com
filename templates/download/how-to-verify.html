@@ -45,7 +45,7 @@
             Download sums
             </h3>
             <p>Download the SHA256SUMS and SHA256SUMS.gpg files from any of the mirrors and put them in the same directory.</p>
-            <p><a href="http://releases.ubuntu.com/{{ lts_release }}">Download sums and signature for {{ lts_release_full }}&nbsp;&rsaquo;</a></p>
+            <p><a href="http://releases.ubuntu.com/{{lts_release_no_point}}">Download sums and signature for Ubuntu {{ lts_release_full_with_point }}&nbsp;&rsaquo;</a></p>
             <img src="https://assets.ubuntu.com/v1/f1cce1af-verify-1-releases.png" alt="Verify release screenshot" />
         </li>
 
@@ -71,8 +71,8 @@ gpg: keyring `/home/ubuntu/.gnupg/pubring.gpg' created
 gpg: requesting key EFE21092 from hkp server keyserver.ubuntu.com
 gpg: requesting key FBB75451 from hkp server keyserver.ubuntu.com
 gpg: /home/ubuntu/.gnupg/trustdb.gpg: trustdb created
-gpg: key EFE21092: public key "Ubuntu CD Image Automatic Signing Key (2012) <cdimage@ubuntu.com>" imported
-gpg: key FBB75451: public key "Ubuntu CD Image Automatic Signing Key <cdimage@ubuntu.com>" imported
+gpg: key EFE21092: public key "Ubuntu CD Image Automatic Signing Key (2012) &lt;cdimage@ubuntu.com>" imported
+gpg: key FBB75451: public key "Ubuntu CD Image Automatic Signing Key &lt;cdimage@ubuntu.com>" imported
 gpg: no ultimately trusted keys found
 gpg: Total number processed: 2
 gpg:               imported: 2  (RSA: 1)
@@ -139,7 +139,7 @@ Primary key fingerprint: 8439 38DF 228D 22F7 B374  2BC0 D94A A3F0 EFE2 1092</cod
             <pre class="twelve-col"><code>$ sha256sum.exe -c SHA256SUMS</code></pre>
 
             <p>The output you want will look similar to the following:</p>
-            <pre class="twelve-col"><code>ubuntu-16.04-desktop-amd64.iso: OK</code></pre>
+            <pre class="twelve-col"><code>ubuntu-{{lts_release}}-desktop-amd64.iso: OK</code></pre>
 
             <p>If you get no results (or any result other than that shown above) you will need to check your download again.</p>
         </li>
