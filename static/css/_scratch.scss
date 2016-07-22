@@ -206,7 +206,7 @@ header.banner .nav-primary li:hover ul:after {
 
 // partners logos with copy on /internet-of-things/digital-signage not used anywhere else but could become a pattern
 .list-partners {
-  
+
   &__item {
     padding: 0; // reset the padding added by the .box class, the whole boc needs to be a link
   }
@@ -219,7 +219,7 @@ header.banner .nav-primary li:hover ul:after {
     border-bottom: 1px dotted $warm-grey;
     padding-bottom: 20px;
   }
-  
+
   &__link {
     color: $text-color;
     display: block;
@@ -227,10 +227,10 @@ header.banner .nav-primary li:hover ul:after {
     padding: 1.333em 20px; // adding the .box padding back again
     position: relative;
     width: 100%;
-    
+
     &:hover {
       text-decoration: none;
-      
+
       .list-partners__title {
         text-decoration: underline;
       }
@@ -265,7 +265,7 @@ header.banner .nav-primary li:hover ul:after {
         content: counters(item, ".") " ";
       }
     }
-  } 
+  }
 }
 
 // aubergine hero
@@ -273,7 +273,7 @@ header.banner .nav-primary li:hover ul:after {
   background-color: $dark-aubergine;
   color: $light-grey;
   max-height: 100%;
-  padding: 2rem;
+  padding: 1rem;
 
   @media (min-width:$breakpoint-medium) {
     padding: 4rem 0;
