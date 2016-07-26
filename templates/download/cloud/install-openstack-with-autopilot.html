@@ -16,20 +16,20 @@
 
 {% block content %}
 <div class="row">
-    <div class="strip-inner-wrapper">
-        <div class="seven-col append-one">
+    <div class="strip-inner-wrapper equal-height">
+        <div class="seven-col append-one equal-height__item">
             <h1>Installing Canonical&rsquo;s OpenStack Autopilot</h1>
             <p>OpenStack Autopilot is by far the best way to build and manage an OpenStack private cloud. Follow the instructions below to download, configure and install.</p>
         </div>
-        <div class="four-col last-col box">
-            <h3>Talk to our experts</h3>
-            <p>Let our cloud experts help you take the next step.</p>
-            <p><a href="/cloud/contact-us">Contact us &rsaquo;</a></p>
+        <div class="four-col  equal-height__item equal-height__align-vertically last-col">
+            <img class="hero-image" src="{{ ASSET_SERVER_URL }}dfd42685-picto-cloud-darkaubergine.svg" alt="" width="200" height="200">
         </div>
     </div>
 </div>
 
-<div class="row row-install-autopilot">
+{% include "download/shared/_get_ebook.html" with url="download/cloud/install-openstack-with-autopilot"%}
+
+<div id="instructions" class="row row-install-autopilot">
     <div class="strip-inner-wrapper">
         <ol class="list-stepped--spaced download-help">
             <li class="list-stepped__item">
@@ -38,7 +38,7 @@
                 </div>
                 <div class="seven-col last-col list-stepped__box right">
                     <p>You&rsquo;ll need  at least five machines with two disks in each, two of which have two network interfaces (NICs).</p>
-                    <p>No hardware available? <a href="/download/cloud">Test drive OpenStack Autopilot for virtual machines</a></p>
+                    <p>No hardware available? <a href="/download/cloud/install-autopilot-testdrive">Test drive OpenStack Autopilot for virtual machines</a></p>
                     <p>Install <a class="external" href="http://releases.ubuntu.com/14.04/">Ubuntu Server 14.04 LTS</a> on one of the machines with two network interfaces.</p>
                     <p>You need to setup a private network with all machines plugged in and enough IP addresses available for all physical and virtual machines you plan to run.</p>
                 </div>
