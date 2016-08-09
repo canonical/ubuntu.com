@@ -4,18 +4,17 @@ var ai = [{ url: "http://www.ubuntu.com", title:"Ubuntu" },
 { url: "http://askubuntu.com", title:"Ask!" },
 { url: "http://developer.ubuntu.com", title:"Developer" },
 { url: "https://design.ubuntu.com", title:"Design" },
-{ url: "http://discourse.ubuntu.com", title:"Discourse" },
 { url: "http://www.ubuntu.com/certification", title:"Hardware" },
 { url: "https://insights.ubuntu.com", title:"Insights" },
 { url: "https://jujucharms.com", title:"Juju" },
+{ url: "http://maas.ubuntu.com", title:"MAAS" },
 { url: "http://partners.ubuntu.com", title:"Partners" },
-{ url: "http://shop.ubuntu.com", title:"Shop" }];
+{ url: "https://buy.ubuntu.com/", title:"Shop" }];
 
-var more = [{ url: "http://apps.ubuntu.com", title:"Apps" },
-{ url: "https://help.ubuntu.com", title:"Help" },
+var more = [{ url: "https://help.ubuntu.com", title:"Help" },
 { url: "http://ubuntuforums.org", title:"Forum" },
 { url: "http://www.launchpad.net", title:"Launchpad" },
-{ url: "http://maas.ubuntu.com", title:"MAAS" },
+{ url: "http://shop.ubuntu.com", title:"Merchandise" },
 { url: "http://www.canonical.com", title:"Canonical" }];
 
 
