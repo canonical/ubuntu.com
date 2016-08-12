@@ -990,7 +990,7 @@ body.juju-takeover {
         .row-hero-text {
           padding-left: 20px;
         }
-        
+
         .large-screen-graphic img {
             top: -15rem;
         }
@@ -1460,40 +1460,40 @@ body.homepage-maas-takeover {
 }
 
 body.homepage-bootstack-generic {
-  header.banner { 
-    margin-bottom: 0; 
+  header.banner {
+    margin-bottom: 0;
   }
- 
+
   #main-content {
     margin-top: 0;
- 
+
     .row-hero {
       background-color: rgba(255,255,255,0.6);
       padding-top: 20px;
       padding-bottom: 0;
       margin-top: 0;
     }
- 
+
     .row-aux {
       background-color: transparent;
     }
- 
+
     @media only screen and (min-width : 768px) {
-      h1 { 
-        padding-top: 45px; 
+      h1 {
+        padding-top: 45px;
       }
- 
+
       .row-hero {
         padding-top: 100px;
         padding-bottom: 75px;
       }
     }
- 
+
     @media only screen and (min-width : 984px) {
-      h1 { 
-        padding-top: 55px; 
+      h1 {
+        padding-top: 55px;
       }
- 
+
       .row-hero {
         padding-top: 60px;
         padding-bottom: 45px;
@@ -1506,12 +1506,12 @@ body.homepage-bootstack-generic {
 body.homepage-maas-generic-takeover {
   .banner {
     margin-bottom: 0;
-    box-shadow: none;  
+    box-shadow: none;
   }
-  
+
   #main-content {
-    margin-top: 0; 
-    
+    margin-top: 0;
+
     .row-hero {
       background: url('https://assets.ubuntu.com/v1/8ce3e107-hero-1.jpg?w=1600&q=40') 0 12% no-repeat;
       background-size: cover;
@@ -1520,21 +1520,78 @@ body.homepage-maas-generic-takeover {
       min-height: 255px;
       padding-top: 40px;
       transition-duration: 1s;
-      
+
       @media only screen and (min-width : 768px) {
         min-height: 400px;
         padding-top: 40px;
       }
-      
+
       @media only screen and (min-width : 984px) {
         min-height: 455px;
         padding-top: 60px;
       }
     }
-    
+
     .row-hero__logo {
       margin-bottom: 30px;
       max-width: 220px;
+    }
+  }
+}
+
+
+// autopilot devops takeover
+body.homepage-autopilot-devops-takeover {
+  .banner {
+    border: none;
+    box-shadow: none;
+    margin-bottom: 0;
+  }
+
+  #main-content {
+    margin-top: 0;
+
+    .row-hero {
+      background-image: url('#{$asset-server}33f77842-openstack-autopilot-takeover.jpg?w-768');
+      background-position: right;
+      background-repeat: no-repeat;
+      background-size: 250vw;
+      color: #fff;
+      margin-top: 0;
+      min-height: 475px;
+      transition-duration: 1s;
+
+      @media only screen and (max-width: 767px) {
+        color: $text-color;
+        padding: 10px;
+
+        &__heading {
+          font-size: 2em;
+        }
+
+        .strip-inner-wrapper {
+          padding: 20px 10px 10px;
+          background-color: rgba(255, 255, 255, .6);
+        }
+      }
+
+      @media only screen and (min-width : 768px) {
+        background-size: cover;
+        background-image: url('#{$asset-server}33f77842-openstack-autopilot-takeover.jpg?w=984');
+        min-height: 45vw;
+        padding-top: 10vw;
+      }
+
+      @media only screen and (min-width : 984px) {
+        background-image: url('#{$asset-server}33f77842-openstack-autopilot-takeover.jpg');
+        min-height: 45vw;
+        padding-top: 10vw;
+
+        .button--primary {
+          margin-top: 20px;
+          width: 100%;
+        }
+      }
     }
   }
 }
