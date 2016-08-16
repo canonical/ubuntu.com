@@ -206,11 +206,6 @@ header.banner .nav-primary li:hover ul:after {
 
 // partners logos with copy on /internet-of-things/digital-signage not used anywhere else but could become a pattern
 .list-partners {
-
-  &__item {
-    padding: 0; // reset the padding added by the .box class, the whole boc needs to be a link
-  }
-
   &__image {
     max-height: 65px;
   }
@@ -221,20 +216,9 @@ header.banner .nav-primary li:hover ul:after {
   }
 
   &__link {
-    color: $text-color;
     display: block;
-    height: 100%;
-    padding: 1.333em 20px; // adding the .box padding back again
     position: relative;
     width: 100%;
-
-    &:hover {
-      text-decoration: none;
-
-      .list-partners__title {
-        text-decoration: underline;
-      }
-    }
   }
 }
 
