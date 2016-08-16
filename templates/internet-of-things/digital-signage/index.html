@@ -3,6 +3,7 @@
 {% block title %}Digital signage | Ubuntu for the Internet of Things {% endblock %}
 
 {% block meta_description %}With hundreds of thousands of devices deployed the world over, Ubuntu Core is the perfect robust, reliable and secure OS for the digital signage sector.{% endblock meta_description %}
+
 {% block meta_keywords %}digital signage linux , digital signage Ubuntu, signage player, signage software, digital signage raspberry Pi, digital signage innovation, open source digital signage
 {% endblock meta_keywords %}
 
@@ -12,22 +13,17 @@
 
 {% block content %}
 <section class="row row-hero equal-height">
-  <div class="seven-col equal-height__item">
-      <h1>Digital signage on Ubuntu</h1>
-      <ul class="six-col list-ticks--compact">
-        <li>Secure, reliable and remotely upgradable</li>
-        <li>Rich ecosystem of hardware and software solutions</li>
-        <li>Hundreds of thousands of devices already deployed</li>
-      </ul>
-  </div>
-  <div class="equal-height__item equal-height__align-vertically five-col last-col align-center">
-        <img
-            class="row-hero__image"
-            srcset="{{ ASSET_SERVER_URL }}4a0a6007-digital-signs.png?w=600 2x"
-            src="{{ ASSET_SERVER_URL }}4a0a6007-digital-signs.png?w=300"
-            alt=""
-        />
-  </div>
+    <div class="seven-col equal-height__item">
+        <h1>Digital signage on Ubuntu</h1>
+        <ul class="six-col list-ticks--compact">
+            <li>Secure, reliable and remotely upgradable</li>
+            <li>Rich ecosystem of hardware and software solutions</li>
+            <li>Hundreds of thousands of devices already deployed</li>
+        </ul>
+    </div>
+    <div class="equal-height__item equal-height__align-vertically five-col last-col align-center">
+        <img class="row-hero__image" srcset="{{ ASSET_SERVER_URL }}4a0a6007-digital-signs.png?w=600 2x" src="{{ ASSET_SERVER_URL }}4a0a6007-digital-signs.png?w=300" alt="" />
+    </div>
 </section>
 
 <section class="row no-border">
@@ -61,6 +57,7 @@
     <div class="eight-col">
         <h2>Partners and players</h2>
         <p>The Ubuntu Core app store makes it easy for systems integrators and device makers to find solutions, while enabling OEMs to generate revenues from their devices over the entire lifetime of their products.</p>
+        <p class="clear"><a class="button--primary" href="/internet-of-things/digital-signage/contact-us?page=dspage_id=partnerbutton" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Digital Signage Page - Partners and players', 'eventLabel' : 'Get in touch', 'eventValue' : undefined });">Get in touch</a></p>
     </div>
 
     <ul class="list-partners no-bullets equal-height twelve-col no-margin-bottom">
@@ -72,7 +69,7 @@
             </a>
             <h3 class="accessibility-aid">Screenly</h3>
             <p>The world's most popular digital signage player for the Raspberry Pi.</p>
-            <a href="https://www.brighttalk.com/webcast/6793/206421">View webinar&nbsp;&rsaquo;</a>
+            <a href="https://www.brighttalk.com/webcast/6793/206421?utm_source=ubuntuweb&utm_medium=dspage&utm_campaign=DSwebinar">View webinar&nbsp;&rsaquo;</a>
         </li>
         <li class="list-partners__item equal-height_item four-col box">
             <a class="list-partners__link" href="https://www.4yousee.com.br/">
@@ -102,8 +99,6 @@
             <p>A simple solution for delivering content worth sharing to digital signage everywhere.</p>
         </li>
     </ul>
-
-    <p class="clear"><a class="button--primary" href="/internet-of-things/digital-signage/contact-us">Get in touch</a></p>
 </section>
 
 <section class="row no-border">
@@ -120,6 +115,7 @@
             </a>
             <h3 class="accessibility-aid">Boldmind</h3>
             <p>Use data triggers to schedule content.</p>
+            <a href="https://www.brighttalk.com/webcast/6793/211999?utm_source=ubuntuweb&utm_medium=dspageboldmindbox&utm_campaign=DSwebinar">View webinar&nbsp;&rsaquo;</a>
         </li>
         <li class="list-partners__item equal-height_item four-col box">
             <a class="list-partners__link" href="http://www.limemicro.com/">
@@ -129,6 +125,7 @@
             </a>
             <h3 class="accessibility-aid">Lime Micro</h3>
             <p>Turn a digital signage player into a 4G base station.</p>
+            <a href="https://www.brighttalk.com/webcast/6793/211999?utm_source=ubuntuweb&utm_medium=dspagelimemicrobox&utm_campaign=DSwebinar">View webinar&nbsp;&rsaquo;</a>
         </li>
         <li class="list-partners__item equal-height_item four-col last-col box">
             <a class="list-partners__link" href="http://www.hoxtonanalytics.com/">
@@ -143,11 +140,11 @@
 </section>
 
 <section class="row strip-dark row-cta row-cta--digital-signage no-border">
-  <div class="eight-col prepend-three last-col">
-    <h2>Build your own digital signage solution</h2>
-    <p>Ubuntu Core is entirely open source and supports a range of digital signage players. Just install it on a Raspberry Pi or NUC, download the app of your choice, create an account and you&rsquo;re ready to go.</p>
-    <p><a class="button--secondary" href="/internet-of-things/digital-signage/contact-us">Get in touch</a></p>
-  </div>
+    <div class="eight-col prepend-three last-col">
+        <h2>Build your own digital signage solution</h2>
+        <p>Ubuntu Core is entirely open source and supports a range of digital signage players. Just install it on a Raspberry Pi or NUC, download the app of your choice, create an account and you&rsquo;re ready to go.</p>
+        <p><a class="button--secondary" href="/internet-of-things/digital-signage/contact-us" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Digital Signage Page - Build your own', 'eventLabel' : 'Get in touch', 'eventValue' : undefined });">Get in touch</a></p>
+    </div>
 </section>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_contact" second_item="_iot_webinars" third_item="_iot_further_reading" %}
