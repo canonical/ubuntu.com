@@ -55,100 +55,93 @@
     <h2>Build an OpenStack cloud with Autopilot</h2>
 
     <div class="six-col">
-        <h3>Install Autopilot on your own servers</h3>
         <p><b>Experience OpenStack at its best</b></p>
         <p>OpenStack Autopilot is the world’s easiest dynamic OpenStack installer. It handles every aspect of your cloud both during installation, expansion, and everyday operations.</p>
-            <p>Requirements for Autopilot:</p>
-            <ul class="list-ticks--compact">
-                <li>At least five machines with two disks</li>
-                <li>Two machines with x2 network interfaces (NICs)</li>
-                <li>A dedicated switch to create a private cloud LAN</li>
-                <li>Internet access through a router on that LAN</li>
-            </ul>
-            <a class="button--primary" href="/download/cloud/install-openstack-with-autopilot">
-                Get Autopilot for your hardware
+        <p>
+            <a class="button--primary" href="/download/cloud">
+            Get Autopilot
             </a>
+        </p>
+    </div>
+
+    <div class="six-col last-col">
+        <p><b>Requirements for Autopilot:</b></p>
+        <ul class="list-ticks--compact">
+            <li>At least five machines with two disks</li>
+            <li>Two machines with x2 network interfaces (NICs)</li>
+            <li>A dedicated switch to create a private cloud LAN</li>
+            <li>Internet access through a router on that LAN</li>
+        </ul>
+    </div>
+
+
+</section>
+
+
+<section class="row strip-dark row-cost no-border">
+    <h2>How much does it cost?</h2>
+    <div class="six-col">
+        <p>You can try OpenStack Autopilot for free, but you need to purchase
+            Ubuntu Advantage when you use more than 10 machines.  Ubuntu Advantage
+            is our enterprise management and support service. It gives you Landscape
+            to monitor and manage your cloud, and access to 24x7 phone and email support.</p>
+            <p>
+                <a class="button--primary" href="/cloud/plans-and-pricing">
+                    See Ubuntu Advantage pricing
+                </a>
+            </p>
         </div>
 
-        <div class="six-col last-col">
-            <h3>Try Autopilot on vSphere virtual machines</h3>
-            <p><b>Evaluate the Autopilot at no cost!</b></p>
-            <p>The Autopilot can run on vSphere using virtual machines to simulate an OpenStack deployment. For folks with easy access to a vSphere cluster, this is the recommended place to start.</p>
-                <p>Requirements for VMware:</p>
-                <ul class="list-ticks--compact">
-                    <li>Access to a vSphere account</li>
-                    <li>Download the Autopilot test drive</li>
-                </ul>
-                <a class="button--primary" href="/download/cloud/install-autopilot-testdrive">
-                    Test drive Autopilot on VMware
+        <div class="three-col box align-center">
+            <h3 class="caps">Free</h3>
+            <p class="intro">Up to ten machines</p>
+        </div>
+
+        <div class="three-col last-col box align-center">
+            <h3 title="USD">$750</h3>
+            <p class="intro">Annually, per server</p>
+        </div>
+    </section>
+
+    <section class="row no-border">
+        <div class="nine-col">
+            <h2>How Autopilot works</h2>
+        </div>
+        <div class="six-col append-six">
+            <h3>Before you start</h3>
+            <p>You need to get at least five machines to run OpenStack and you need to install Ubuntu Server on one of them.</p>
+        </div>
+        <div class="six-col append-one">
+            <ol class="list-stepped">
+                <li class="list-stepped__item">
+                    <h3 class="list-stepped__title">Use MAAS to register your machines</h3>
+                    <p>Using MAAS, you setup the rest of the servers and define your network.</p>
+                </li>
+                <li class="list-stepped__item">
+                    <h3 class="list-stepped__title">Build your cloud with Autopilot</h3>
+                    <p>Select your OpenStack configuration. Choose your hypervisor (KVM), networking (Open vSwitch, Open Daylight) and storage components (Ceph, Swift and iSCSI). Add your hardware and install.</p>
+                </li>
+                <li class="list-stepped__item">
+                    <h3 class="list-stepped__title">Start using your cloud</h3>
+                    <p>Using the OpenStack dashboard create users and virtual machines and try out your cloud</p>
+                </li>
+                <li class="list-stepped__item">
+                    <h3 class="list-stepped__title">Monitor and scale out</h3>
+                    <p>Using Autopilot&rsquo;s dashboard, you can monitor your cloud utilisation and add hardware to scale-out as needed.</p>
+                </li>
+            </ol>
+            <p>
+                <a href="/download/cloud" class="button--primary">
+                    Build your own cloud now
                 </a>
-            </div>
+            </p>
+        </div>
+        <div class="prepend-one four-col last-col">
+            <img src="{{ ASSET_SERVER_URL }}4455ef04-autopilot-diagram.svg" alt="Autopilot diagram" width="100%" />
+        </div>
+    </section>
+
+    {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
 
 
-        </section>
-
-
-        <section class="row strip-dark row-cost no-border">
-            <h2>How much does it cost?</h2>
-            <div class="six-col">
-                <p>You can try OpenStack Autopilot for free, but you need to purchase
-                    Ubuntu Advantage when you use more than 10 machines.  Ubuntu Advantage
-                    is our enterprise management and support service. It gives you Landscape
-                    to monitor and manage your cloud, and access to 24x7 phone and email support.</p>
-                    <p>
-                        <a class="button--primary" href="/cloud/plans-and-pricing">
-                            See Ubuntu Advantage pricing
-                        </a>
-                    </p>
-                </div>
-
-                <div class="three-col box align-center">
-                    <h3 class="caps">Free</h3>
-                    <p class="intro">Up to ten machines</p>
-                </div>
-
-                <div class="three-col last-col box align-center">
-                    <h3 title="USD">$750</h3>
-                    <p class="intro">Annually, per server</p>
-                </div>
-            </section>
-
-            <section class="row no-border">
-                <div class="nine-col">
-                    <h2>How Autopilot works on your own hardware</h2>
-                </div>
-                <div class="six-col append-six">
-                    <h3>Before you start</h3>
-                    <p>You need to get at least five machines to run OpenStack and you need to install Ubuntu Server on one of them.</p>
-                </div>
-                <div class="six-col append-one">
-                    <ol class="list-stepped">
-                        <li class="list-stepped__item">
-                            <h3 class="list-stepped__title">Use MAAS to register your machines</h3>
-                            <p>Using MAAS, you setup the rest of the servers and define your network.</p>
-                        </li>
-                        <li class="list-stepped__item">
-                            <h3 class="list-stepped__title">Build your cloud with Autopilot</h3>
-                            <p>Select your OpenStack configuration. Choose your hypervisor (KVM), networking (Open vSwitch, Open Daylight) and storage components (Ceph, Swift and iSCSI). Add your hardware and install.</p>
-                        </li>
-                        <li class="list-stepped__item">
-                            <h3 class="list-stepped__title">Start using your cloud</h3>
-                            <p>Using the OpenStack dashboard create users and virtual machines and try out your cloud</p>
-                        </li>
-                        <li class="list-stepped__item">
-                            <h3 class="list-stepped__title">Monitor and scale out</h3>
-                            <p>Using Autopilot&rsquo;s dashboard, you can monitor your cloud utilisation and add hardware to scale-out as needed.</p>
-                        </li>
-                    </ol>
-                    <p><a href="/download/cloud/install-openstack-with-autopilot" class="button--primary">Build your own cloud now</a></p>
-                    <p><a href="/download/cloud">Or, for a quick test, try the Autopilot test drive for&nbsp;VMs&nbsp;&rsaquo;</a></p>
-                </div>
-                <div class="prepend-one four-col last-col">
-                    <img src="{{ ASSET_SERVER_URL }}4455ef04-autopilot-diagram.svg" alt="Autopilot diagram" width="100%" />
-                </div>
-            </section>
-
-            {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
-
-
-            {% endblock content %}
+    {% endblock content %}
