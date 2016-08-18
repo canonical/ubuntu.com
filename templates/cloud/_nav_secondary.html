@@ -7,21 +7,7 @@
     <li><a{% if level_2 == 'lxd' %} class="active"{% endif %} href="/cloud/lxd">LXD</a></li>
     <li><a{% if level_2 == 'snappy' %} class="active"{% endif %} href="/cloud/snappy">Snappy</a></li>
     <li><a{% if level_2 == 'storage' %} class="active"{% endif %} href="/cloud/storage">Cloud storage</a></li>
-    <li><a{% if level_1 == 'cloud' and level_2 == 'partners' %} class="active"{% endif %} href="/cloud/partners">Partners</a></li>
-    <li><a class="{% if level_2 == 'plans-and-pricing' %} active{% endif %}" href="/cloud/plans-and-pricing">Plans and pricing</a></li>
-    <li><a class="last-item{% if level_2 == 'training' %} active{% endif %}" href="/cloud/training">Training</a></li>
-    {% if level_3 == 'thank-you' and not level_4 %}
-            <li{% if level_3 == 'thank-you' %} class="active"{% endif %}>Thank you</li>
-    {% endif %}
-    {% if level_2 == 'training' and level_3 == 'order' %}
-            <li{% if level_3 == 'order' %} class="active"{% endif %}>Order</li>
-    {% endif %}
-    {% if level_2 == 'training' and level_3 == 'order-thank-you' %}
-            <li{% if level_3 == 'order-thank-you' %} class="active"{% endif %}>Thank you</li>
-    {% endif %}
-    {% if level_2 == 'training' or level_2 == 'storage' or level_2 == 'managed-cloud' %}
-            {% if level_3 == 'contact-us' or level_3 == 'classroom-contact-us' or level_3 == 'onsite-contact-us' %}
-            <li{% if level_3 == 'contact-us' %} class="active"{% endif %}>Contact us</li>
-            {% endif %}
-    {% endif %}
+    <li><a{% if level_2 == 'partners' %} class="active"{% endif %} href="/cloud/partners">Partners</a></li>
+    <li><a{% if level_2 == 'training' %} class="active"{% endif %} href="/cloud/training">Training</a></li>
+    <li><a class="last-item{% if level_2 == 'plans-and-pricing' %} active{% endif %}" href="/cloud/plans-and-pricing">Plans and pricing</a></li>
 </ul>
