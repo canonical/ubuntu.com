@@ -147,19 +147,28 @@
     }
   }
   // events list on /cloud
-  .event-map {
+  .event__map {
     float: left;
 
-    img {
-      margin-right: 20px;
+    &-image {
       width: 76px;
+      border-radius: 4px;
+      margin-top: 7px;
+      margin-right: 20px;
+    }
+
+    &-image-wrap {
+      background-size: 78px 78px;
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+      vertical-align: middle;
+      margin-bottom: 0;
     }
   }
 
-
-  .event-details {
+  .event__details {
     color: #888;
-    font-size: .92857143em;
     line-height: 1.2;
     margin-bottom: 0;
     width: 66%;
@@ -167,62 +176,62 @@
     display: inline;
     float: left;
     margin-top: 4px;
-    @media only screen and (min-width : $breakpoint-large) {
+
+    &-title {
       font-size: .875em;
+      @media only screen and (min-width : $breakpoint-large) {
+        font-size: 1.2578125em;
+      }
+
     }
-  }
 
-  .event-details dd {
-    margin-left: 0;
-    padding-right: 0;
-  }
+    &-location {
+      margin-left: 0;
+      background-size: 20px 20px;
+      box-sizing: border-box;
+      background-image: url('https://insights.ubuntu.com/wp-content/themes/resource-centre/static/img/location.svg');
+      background-position: 0 5px;
+      background-repeat: no-repeat;
+      display: block;
+      float: left;
+      padding: 6px 20px 6px 24px;
+      width: 100%;
+      font-size: .92857143em;
+      @media only screen and (min-width : $breakpoint-large) {
+        font-size: .875em;
+      }
+    }
 
-  .location {
-    background-size: 20px 20px;
-    box-sizing: border-box;
-    background-image: url('https://insights.ubuntu.com/wp-content/themes/resource-centre/static/img/location.svg');
-    background-position: 0 5px;
-    background-repeat: no-repeat;
-    display: block;
-    float: left;
-    padding: 6px 20px 6px 24px;
-    width: 100%;
-  }
+    &-venue {
+      background-size: 20px 20px;
+      box-sizing: border-box;
+      background-image: url('https://insights.ubuntu.com/wp-content/themes/resource-centre/static/img/gps.svg');
+      background-position: 0 5px;
+      background-repeat: no-repeat;
+      display: block;
+      float: left;
+      padding: 6px 20px 6px 24px;
+      width: 100%;
+      font-size: .92857143em;
+      @media only screen and (min-width : $breakpoint-large) {
+        font-size: .875em;
+      }
+    }
 
-  .venue {
-    background-size: 20px 20px;
-    box-sizing: border-box;
-    background-image: url('https://insights.ubuntu.com/wp-content/themes/resource-centre/static/img/gps.svg');
-    background-position: 0 5px;
-    background-repeat: no-repeat;
-    display: block;
-    float: left;
-    padding: 6px 20px 6px 24px;
-    width: 100%;
-  }
-
-  .event-date {
-    background-size: 20px 20px;
-    background-image: url('https://insights.ubuntu.com/wp-content/themes/resource-centre/static/img/calendar.svg');
-    background-position: 0 4px;
-    background-repeat: no-repeat;
-    clear: both;
-    display: block;
-    padding: 6px 20px 6px 24px;
-  }
-
-  .image-wrap {
-    background-size: 78px 78px;
-    position: relative;
-    display: inline-block;
-    max-width: 100%;
-    vertical-align: middle;
-    margin-bottom: 0;
-  }
-
-  .image-wrap img {
-    border-radius: 4px;
-    margin-top: 7px;
+    &-date {
+      background-size: 20px 20px;
+      background-image: url('https://insights.ubuntu.com/wp-content/themes/resource-centre/static/img/calendar.svg');
+      background-position: 0 4px;
+      background-repeat: no-repeat;
+      clear: both;
+      display: block;
+      margin-left: 0;
+      padding: 6px 20px 6px 24px;
+      font-size: .92857143em;
+      @media only screen and (min-width : $breakpoint-large) {
+        font-size: .875em;
+      }
+    }
   }
 }
 
