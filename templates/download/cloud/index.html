@@ -13,12 +13,10 @@
 
 {% block content %}
 
-<div class="aubergine-hero">
+<div class="row row-grey">
     <div class="strip-inner-wrapper">
-
-        <h1>Download OpenStack Autopilot</h1>
-        <p class="intro">Canonical&rsquo;s <a href="/cloud/openstack/autopilot">OpenStack Autopilot</a> fully automates the deployment of an OpenStack Cloud &mdash; just add <abbr title="Virtual Machines">VMs</abbr> or servers.</p>
-
+        <h1>Get OpenStack Autopilot</h1>
+        <p class="intro">Canonical&rsquo;s <a href="/cloud/openstack/autopilot">OpenStack Autopilot</a> fully automates the deployment of an OpenStack Cloud &mdash; just add servers.</p>
         <div class="box box-highlight clearfix equal-height--vertical-divider">
             <div class="equal-height--vertical-divider__item six-col no-margin-bottom">
                 <h2>Install OpenStack Autopilot on your&nbsp;hardware</h2>
@@ -32,149 +30,214 @@
                     <li>A dedicated switch to create a private cloud LAN</li>
                     <li>Internet access through a router on that LAN</li>
                 </ul>
-                <p><a href="/download/cloud/install-openstack-with-autopilot" class="button--primary">Autopilot installation instructions</a></p>
             </div><!-- /.four-col -->
         </div><!-- /.box -->
+    </div><!-- /.strip-inner-wrapper -->
+</div><!-- /.row row-grey -->
 
-    </div>
-</div>
+{% include "download/shared/_get_ebook.html"%}
 
-<section class="row row-grey">
+<div id="instructions" class="row row-install-autopilot">
     <div class="strip-inner-wrapper">
-        <div class="twelve-col no-margin-bottom">
-            <div class="box box-highlight clearfix equal-height--vertical-divider">
-                <div class="equal-height--vertical-divider__item six-col no-margin-bottom">
-                    <h2>Try Autopilot on vSphere virtual machines</h2>
-                    <p><b>Evaluate the Autopilot at no cost!</b></p>
-                    <p>The Autopilot can run on vSphere using virtual machines to simulate
-                        an OpenStack deployment. For folks with easy access to a vSphere cluster,
-                        this is the recommended place to start.</p>
-                    </div>
-                    <div class="equal-height--vertical-divider__item six-col last-col no-margin-bottom download-button">
-                        <h3>Requirements</h3>
-                        <ul class="list-ticks--compact">
-                            <li>Access to a vSphere account</li>
-                            <li>Download the Autopilot test drive</li>
-                        </ul>
-                        <p>
-                            <a href="/download/cloud/install-autopilot-testdrive" class="button--primary">
-                                Autopilot test drive instructions
-                            </a>
-                        </p>
-                    </div><!-- /.four-col -->
-                </div><!-- /.box -->
-            </div><!-- /.twelve-col -->
-        </div><!-- /.strip-inner-wrapper -->
-    </section><!-- /.row-grey -->
+        <ol class="list-stepped--spaced download-help">
+            <li class="list-stepped__item">
+                <div class="five-col">
+                    <h3 class="list-stepped__title">Set up your hardware</h3>
+                </div>
+                <div class="seven-col last-col list-stepped__box right">
+                    <p>You&rsquo;ll need  at least five machines with two disks in each, two of which have two network interfaces (NICs).</p>
+                    <p>Install <a class="external" href="http://releases.ubuntu.com/14.04/">Ubuntu Server 14.04 LTS</a> on one of the machines with two network interfaces.</p>
+                    <p>You need to setup a private network with all machines plugged in and enough IP addresses available for all physical and virtual machines you plan to run.</p>
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <div class="five-col">
+                    <h3 class="list-stepped__title">Add required repositories</h3>
+                </div>
+                <div class="seven-col last-col list-stepped__box right">
+                    <p>From the command line type the commands below and follow the step-by-step instructions:</p>
+                    <p class="command-line">
+                        <input class="command-line__input" value="sudo apt-get install python-software-properties" readonly="readonly">
+                        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+                    </p>
+                    <p class="command-line">
+                        <input class="command-line__input" value="sudo add-apt-repository ppa:juju/stable" readonly="readonly">
+                        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+                    </p>
+                    <p class="command-line">
+                        <input class="command-line__input" value="sudo add-apt-repository ppa:maas/stable" readonly="readonly">
+                        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+                    </p>
+                    <p class="command-line">
+                        <input class="command-line__input" value="sudo add-apt-repository ppa:cloud-installer/stable" readonly="readonly">
+                        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+                    </p>
+                    <p class="command-line">
+                        <input class="command-line__input" value="sudo apt-get update" readonly="readonly">
+                        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+                    </p>
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <div class="five-col">
+                    <h3 class="list-stepped__title">Install MAAS</h3>
+                </div>
+                <div class="seven-col last-col list-stepped__box right">
+                    <p>To install MAAS, start off on your Ubuntu Server 14.04 LTS machine and type the command below following the step-by-step instructions:</p>
+                    <p class="command-line">
+                        <input class="command-line__input" value="sudo apt-get install maas" readonly="readonly">
+                        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+                    </p>
+                    <p>Create your admin credentials by typing:</p>
+                    <p class="command-line">
+                        <input class="command-line__input" value="sudo maas-region-admin createadmin" readonly="readonly">
+                        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+                    </p>
+                    <ul class="no-bullets">
+                        <li>Login to the MAAS UI at http://&lt;maas.ip&gt;/MAAS/</li>
+                        <li>Go to the &ldquo;Images&rdquo; tab and import disk images for both &ldquo;14.04 LTS amd64&rdquo; and &ldquo;16.04 LTS amd64&rdquo;</li>
+                        <li>In your MAAS user&rsquo;s settings (top-right corner) add your personal public SSH key so you can later log into the nodes</li>
+                        <li>Go to the &ldquo;Networks&rdquo; tab and for each of the networks auto-created, click &ldquo;Edit network&rdquo; to add the default gateway and DNS server details</li>
+                    </ul>
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <div class="five-col">
+                    <h3 class="list-stepped__title">Configure the MAAS cluster</h3>
+                </div>
+                <div class="seven-col last-col list-stepped__box right">
+                    <ul>
+                        <li>Go to the &ldquo;Clusters&rdquo; tab, open the &ldquo;Cluster master&rdquo; link, hover over the row for the interface that is connected to the private network and select the edit icon (looks like a pencil &mdash; <img src="{{ ASSET_SERVER_URL }}e4e804d6-edit.svg" alt="" />)
+                            <ul>
+                                <li>Set this interface to manage DHCP and DNS</li>
+                                <li>Set the &ldquo;Router IP&rdquo; to the default gateway</li>
+                            </ul>
+                        </li>
+                        <li>Fill in details for the dynamic and static ranges, remembering to leave gaps for the floating IPs
+                            <ul>
+                                <li>Dynamic range &mdash; reserve 60 IPs plus total number of NICs connected to the network in MAAS</li>
+                                <li>Static range &mdash; reserve 20 IPs plus total number of machines in MAAS</li>
+                                <li>Floating IP range &mdash; that has as many IPs as instances that you&rsquo;ll want to have in your cloud</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <div class="five-col">
+                    <h3 class="list-stepped__title">Register your hardware with MAAS</h3>
+                </div>
+                <div class="seven-col last-col list-stepped__box right">
+                    <p>Now you need to enlist and commission machines:</p>
+                    <ul>
+                        <li>Ensure all machines are set to PXE boot, if possible disable all other boot options, including local disk, in the BIOS</li>
+                        <li>Power the machines on so they will all appear in the &ldquo;Nodes&rdquo; tab of MAAS</li>
+                        <li>Edit each machine filling in the power type and parameters</li>
+                        <li>Select all the machines and, using the &ldquo;Take action&rdquo; dropdown, &ldquo;Commission&rdquo; them.</li>
+                        <li>Wait until all machines have a &ldquo;Ready&rdquo; status</li>
+                    </ul>
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <div class="five-col">
+                    <h3 class="list-stepped__title">Launch OpenStack Autopilot</h3>
+                </div>
+                <div class="seven-col last-col list-stepped__box right">
+                    <p>Setup Landscape and launch the OpenStack Autopilot with the following commands:</p>
+                    <p class="command-line">
+                        <input class="command-line__input" value="sudo apt-get install openstack" readonly="readonly">
+                        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+                    </p>
+                    <p class="command-line">
+                        <input class="command-line__input" value="sudo openstack-install" readonly="readonly">
+                        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+                    </p>
+                    <ul>
+                        <li>Choose the &ldquo;Landscape OpenStack Autopilot&rdquo; option</li>
+                        <li>Create a new OpenStack Password</li>
+                        <li>Fill in your:
+                            <ul>
+                                <li>Admin email address</li>
+                                <li>Admin name</li>
+                                <li>MAAS server IP</li>
+                                <li>MAAS user API key &mdash; found in your user&rsquo;s settings (top-right corner)</li>
+                            </ul>
+                        </li>
+                        <li>When everything is installed, you will be given a link</li>
+                        <li>Open that link to access the Landscape UI</li>
+                        <li>Login with your admin email and OpenStack password</li>
+                    </ul>
+                    <img src="{{ ASSET_SERVER_URL }}9e962ae6-install-openstack-with-autopilot-step6.png" alt="">
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <div class="five-col">
+                    <h3 class="list-stepped__title">Review your checklist</h3>
+                </div>
+                <div class="seven-col last-col list-stepped__box right">
+                    <p>At the bottom of the setup page there is a checklist with the status of all of your resources. These should all be green, if it isn&rsquo;t follow the instructions to resolve </p>
+                    <img src="{{ ASSET_SERVER_URL }}97950116-install-openstack-with-autopilot-step7.png" alt="" />
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <div class="five-col">
+                    <h3 class="list-stepped__title">Choose your OpenStack components</h3>
+                </div>
+                <div class="seven-col last-col list-stepped__box right">
+                    <img src="{{ ASSET_SERVER_URL }}32a02c50-install-openstack-with-autopilot-step8.png" alt="" />
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <div class="five-col">
+                    <h3 class="list-stepped__title">Select the hardware on which to deploy the cloud</h3>
+                </div>
+                <div class="seven-col last-col list-stepped__box right">
+                    <img src="{{ ASSET_SERVER_URL }}30c17ac2-install-openstack-with-autopilot-step9.png" alt="" />
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <div class="five-col">
+                    <h3 class="list-stepped__title">Select &ldquo;Install&rdquo; to start building your cloud</h3>
+                </div>
+                <div class="seven-col last-col list-stepped__box right">
+                    <img src="{{ ASSET_SERVER_URL }}77bc020b-Installing+region+1++++table+++Progress.png" alt="" />
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <div class="five-col">
+                    <h3 class="list-stepped__title">Create an OpenStack account to access your Horizon dashboard</h3>
+                </div>
+                <div class="seven-col last-col list-stepped__box right">
+                    <img src="{{ ASSET_SERVER_URL }}19a76480-while-you-wait.png" alt="" /><br/><br/><br/>
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <div class="five-col">
+                    <h3 class="list-stepped__title">Monitor your region and scale out</h3>
+                </div>
+                <div class="seven-col last-col list-stepped__box right">
+                    <img src="{{ ASSET_SERVER_URL }}7405e963-install-openstack-with-autopilot-step12.png" alt="" />
+                </div>
+            </li>
+        </ol>
+    </div><!-- /.strip-inner-wrapper -->
+</div><!-- /#instructions -->
 
-    {% include "download/server/_other-ways.html" %}
+<div class="row row-white">
+    <div class="strip-inner-wrapper">
+        <div class="five-col append-three">
+            <h3>Need more help?</h3>
+            <p>Let our cloud experts help you take the next step. <a href="http://www.ubuntu.com/cloud/contact-us">Contact us&nbsp;&rsaquo;</a></p>
+            <p>Already a Landscape Dedicated Server customer? Upgrading is simple, see the instructions in the <a href="https://help.landscape.canonical.com/LDS/ReleaseNotes">release notes</a>.</p>
+        </div>
+        <div class="two-col align-center not-for-small">
+            <img src="{{ ASSET_SERVER_URL }}1b45cd30-picto-help-warmgrey.svg" alt="" />
+        </div>
+    </div><!-- /.strip-inner-wrapper -->
+</div><!-- /.row -->
 
+{% include "download/server/_other-ways.html" %}
 
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_cloud_bootstack" second_item="_download_cloud_buy_landscape" third_item="_download_documentation" %}
 
-    {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_cloud_installation" second_item="_download_documentation" third_item="_download_helping_hands" %}
-
-
-    {% endblock content %}
-    {% block footer_extra %}
-    <!-- dependencies -->
-    <script src="{{ ASSET_SERVER_URL }}ec520d10-XMLHttpRequest.min.js"></script>
-    <script src="{{ ASSET_SERVER_URL }}4176b39e-serialize.js"></script>
-    <script src="{{ ASSET_SERVER_URL }}6b7597df-event-listener-polyfill.js"></script>
-    <!-- script -->
-    <script>
-    /**
-    * Validation for download form
-    */
-    $(function(){$("#comments").hide()});
-
-    $('#Ubuntu_User__c').on('change',function(){
-        var selection = $(this).val();
-        if(selection == 'Commercially only') {
-            $('#comments').show('slow');
-            $("#Comments_from_lead__c").attr('required', 'required');
-        } else {
-            $('#comments').hide('slow');
-            $('#Comments_from_lead__c').removeAttr('required');
-        }
-    });
-
-    $("#form-download-marketo").validate({
-        errorElement: "span",
-        errorClass: "mktFormMsg mktError",
-        onkeyup: false,
-        onclick: false,
-        onblur: false
-    });
-
-    /**
-    * Given a form element, extract its data and its "action" target URL
-    * and submit the form using Ajax
-    */
-    backgroundSubmit = function (formElement, submitCallback) {
-        var request = new XMLHttpRequest();
-        var submitUrl = formElement.getAttribute('action');
-        var formData = serialize(formElement)
-
-        request.open("POST", submitUrl, true);
-
-        //Send the proper header information along with the request
-        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-        // When request has finished, call the callback function
-        if (submitCallback) {
-            request.addEventListener(
-                'readystatechange',
-                function() {
-                    if (this.readyState == 4) {
-                        // Pass context and arguments on to submitCallback
-                        submitCallback.apply(this, arguments);
-                    }
-                }
-            );
-        }
-
-        // Send off the POST request
-        request.send(formData);
-    }
-
-    /**
-    * After submit has happened
-    * start download and send the user to the instructions page
-    */
-    afterSubmit = function() {
-        // Now start the download
-        downloadFrame = document.createElement("iframe");
-        downloadFrame.setAttribute("src", "https://landscape.canonical.com/downloads/vmware-autopilot/vmware-openstack-autopilot.tar.bz2");
-        downloadFrame.style.width = 0+"px";
-        downloadFrame.style.height = 0+"px";
-        document.body.insertBefore(downloadFrame, document.body.childNodes[0]);
-        // And redirect to the instructions page
-        window.setTimeout(
-            function () {window.location.href = "/download/cloud/install-autopilot-testdrive";},
-            1000
-        );
-    }
-
-    /**
-    * Handler for a form submit event
-    * to disable the normal submit, and instead use backgroundSubmit
-    */
-    backgroundSubmitHandler = function (submitEvent) {
-        // Prevent normal submit
-        event.preventDefault ? event.preventDefault() : event.returnValue = false;
-        // Check form is valid
-        if ($(marketoForm).valid()) {
-            // Change the submit location
-            marketoForm.action = "https://app-sjg.marketo.com/index.php/leadCapture/save2"
-            // Submit the form in the background
-            backgroundSubmit(marketoForm, afterSubmit);
-        }
-    }
-
-    // Get the form
-    marketoForm = document.getElementById('form-download-marketo');
-
-    // Attach the submit handler to the form
-    marketoForm.addEventListener('submit', backgroundSubmitHandler)
-    </script>
-    {% endblock footer_extra %}
+{% endblock content %}
