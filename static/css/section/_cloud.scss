@@ -28,7 +28,7 @@
     $light-aubergine:		  #77216f; - light aubergine (consumer)
     $mid-aubergine:			  #5e2750; - mid aubergine (both)
     $dark-aubergine:		  #2c001e; - dark aubergine (enterprise)
-    $warm-grey:				    #888888; - warm grey
+    $warm-grey:				    $warm-grey888; - warm grey
     $cool-grey:				    #333333; - cool grey
     $light-grey:			    #f7f7f7; - light grey
 
@@ -156,7 +156,7 @@
   }
 
   // news and events list on /cloud
-  .newsevent{
+  .newsevent {
 
     &__title {
       font-size: 1em;
@@ -186,9 +186,9 @@
     }
 
     &__details {
-      color: #888;
+      color: $warm-grey;
       line-height: 1.2;
-      margin-bottom: 0.5em;
+      margin-bottom: .5em;
       width: 66%;
       clear: none;
       display: inline;
@@ -823,7 +823,7 @@ body.cloud-storage {
   body.cloud-training  {
 
     .training-list li:first-child {
-      border-bottom: 1px dotted #888;
+      border-bottom: 1px dotted $warm-grey;
       padding-bottom: 20px;
       margin-bottom: 35px;
       display: block;
@@ -861,8 +861,8 @@ body.cloud-storage {
   body.cloud-openstack-managed-cloud {
 
     .row--video {
-      border-top: 1px dotted #888;
-      border-bottom: 1px dotted #888;
+      border-top: 1px dotted $warm-grey;
+      border-bottom: 1px dotted $warm-grey;
       min-height: 432px;
       padding: 0;
 
@@ -1129,7 +1129,7 @@ body.cloud-storage {
       background: url('#{$asset-server}1ecacda4-image-background-jujugradient.svg') repeat-x left bottom;
 
       .build-your-own {
-        border-top: 1px dotted #888;
+        border-top: 1px dotted $warm-grey;
         margin-top: 20px;
         padding-top: 40px;
       }
@@ -1644,7 +1644,7 @@ body.cloud-storage {
       .input-helper {
         position: absolute;
         left: 43%;
-        color: #888;
+        color: $warm-grey;
         margin-top: 5px;
       }
 
@@ -1903,7 +1903,7 @@ html.js .cloud-openstack-managed-cloud .js__required {
   fill: #fff;
 }
 .ubuntu-pie .other-label {
-  fill: #888;
+  fill: $warm-grey;
 }
 
 .row--leaders__container {
