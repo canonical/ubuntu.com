@@ -160,7 +160,7 @@
       }
 
       &-image-wrap {
-        background-size: 78px 78px;
+        background-size: 78px;
         position: relative;
         display: inline-block;
         max-width: 100%;
@@ -183,7 +183,7 @@
         margin-left: 0;
         background-size: 20px 20px;
         box-sizing: border-box;
-        background-image: url('https://insights.ubuntu.com/wp-content/themes/resource-centre/static/img/location.svg');
+        background-image: url('#{asset-server}dc06486f-location.svg');
         background-position: 0 5px;
         background-repeat: no-repeat;
         display: block;
@@ -199,7 +199,7 @@
       &-venue {
         background-size: 20px 20px;
         box-sizing: border-box;
-        background-image: url('https://insights.ubuntu.com/wp-content/themes/resource-centre/static/img/gps.svg');
+        background-image: url('#{asset-server}48947556-gps.svg');
         background-position: 0 5px;
         background-repeat: no-repeat;
         display: block;
@@ -214,7 +214,7 @@
 
       &-date {
         background-size: 20px 20px;
-        background-image: url('https://insights.ubuntu.com/wp-content/themes/resource-centre/static/img/calendar.svg');
+        background-image: url('#{asset-server}c7d1850b-calendar.svg');
         background-position: 0 4px;
         background-repeat: no-repeat;
         clear: both;
