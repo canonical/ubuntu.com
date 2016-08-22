@@ -43,6 +43,22 @@
 /*	@section cloud
 -------------------------------------------------------------- */
 
+%icon {
+  margin-left: 0;
+  background-size: 20px 20px;
+  box-sizing: border-box;
+  background-position: 0 5px;
+  background-repeat: no-repeat;
+  display: block;
+  float: left;
+  padding: 6px 20px 6px 24px;
+  width: 100%;
+  font-size: .92857143em;
+  @media only screen and (min-width : $breakpoint-large) {
+    font-size: .875em;
+  }
+}
+
 .cloud {
 
   // XXX Ant (09.04.2016)
@@ -180,51 +196,18 @@
       margin-top: 4px;
 
       &-location {
-        margin-left: 0;
-        background-size: 20px 20px;
-        box-sizing: border-box;
-        background-image: url('#{asset-server}dc06486f-location.svg');
-        background-position: 0 5px;
-        background-repeat: no-repeat;
-        display: block;
-        float: left;
-        padding: 6px 20px 6px 24px;
-        width: 100%;
-        font-size: .92857143em;
-        @media only screen and (min-width : $breakpoint-large) {
-          font-size: .875em;
-        }
+        @extend %icon;
+        background-image: url('#{$asset-server}dc06486f-location.svg');
       }
 
       &-venue {
-        background-size: 20px 20px;
-        box-sizing: border-box;
-        background-image: url('#{asset-server}48947556-gps.svg');
-        background-position: 0 5px;
-        background-repeat: no-repeat;
-        display: block;
-        float: left;
-        padding: 6px 20px 6px 24px;
-        width: 100%;
-        font-size: .92857143em;
-        @media only screen and (min-width : $breakpoint-large) {
-          font-size: .875em;
-        }
+        @extend %icon;
+        background-image: url('#{$asset-server}48947556-gps.svg');
       }
 
       &-date {
-        background-size: 20px 20px;
-        background-image: url('#{asset-server}c7d1850b-calendar.svg');
-        background-position: 0 4px;
-        background-repeat: no-repeat;
-        clear: both;
-        display: block;
-        margin-left: 0;
-        padding: 6px 20px 6px 24px;
-        font-size: .92857143em;
-        @media only screen and (min-width : $breakpoint-large) {
-          font-size: .875em;
-        }
+        @extend %icon;
+        background-image: url('#{$asset-server}c7d1850b-calendar.svg');
       }
     }
   }
