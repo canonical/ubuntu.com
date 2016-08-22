@@ -139,15 +139,8 @@
     }
   }
 
-  // news list on /cloud
-  #insights-cloud-feed li {
-    font-size: 1em;
-    @media only screen and (min-width : $breakpoint-large) {
-      font-size: .875em;
-    }
-  }
-  // events list on /cloud
-  .event__map {
+  // news and events list on /cloud
+  .newsevent__map {
     float: left;
 
     &-image {
@@ -167,10 +160,10 @@
     }
   }
 
-  .event__details {
+  .newsevent__details {
     color: #888;
     line-height: 1.2;
-    margin-bottom: 0;
+    margin-bottom: 0.5em;
     width: 66%;
     clear: none;
     display: inline;
