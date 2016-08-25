@@ -1591,3 +1591,26 @@ body.homepage-autopilot-devops-takeover {
     }
   }
 }
+
+// autopilot devops takeover
+body.homepage-linux-25th-takeover {
+  #main-content {
+    .row-hero {
+      @media only screen and (min-width : 768px) {
+        min-height: 285px;
+
+        .row-hero__heading {
+          margin-top: 60px;
+        }
+      }
+
+      @media only screen and (min-width : 984px) {
+        min-height: 350px;
+
+        .row-hero__heading {
+          margin-top: 45px;
+        }
+      }
+    }
+  }
+}
