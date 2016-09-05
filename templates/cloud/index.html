@@ -38,9 +38,8 @@
             <li>First ten servers for free</li>
             <li>Rapid scaling to add more capacity when you need it</li>
             <li>Includes management tooling and commercial support from Canonical</li>
-            <li>Test drive OpenStack Autopilot on VMware</li>
         </ul>
-        <p><a href="/download/cloud" class="button--primary">Test drive OpenStack Autopilot</a></p>
+        <p><a href="/download/cloud" class="button--primary">Get OpenStack Autopilot</a></p>
         <p><a href="/cloud/openstack/autopilot">Learn more about Autopilot&nbsp;&rsaquo;</a></p>
     </div>
     <div class="box four-col last-col">
@@ -300,7 +299,7 @@
     <h2 class="twelve-col">The latest Ubuntu Cloud news and events</h2>
     <div class="twelve-col equal-height--vertical-divider no-margin-bottom">
       <div id="insights-cloud-feed" class='six-col equal-height--vertical-divider__item'>
-        <ul class="no-bullets smaller">
+        <ul class="no-bullets">
           <li>Read news, case studies, whitepapers and more on <a class="external" href="https://insights.ubuntu.com">insights.ubuntu.com</a></li>
         </ul>
       </div><!-- end .insights-cloud-feed -->
@@ -313,7 +312,7 @@
               for(var i = 0; i < feed.items.length && i < 4; i++) {
                 var item = feed.items[i];
                 var d = $.trim(item.description).substring(0, 100).split(" ").slice(0, -1).join(" ") + "\&hellip\;";
-                html += "<li class='six-col'><h3><a href='" + item.link + "' class='external'>" + item.title + "</a></h3><p>" + d + "</p></li>";
+                html += "<li class='six-col'><h3 class='newsevent__title'><a href='" + item.link + "' class='external'>" + item.title + "</a></h3><p>" + d + "</p></li>";
               }
               html = "<div id='insights-cloud-feed' class='equal-height--vertical-divider__item six-col'><ul class='no-bullets'>" + html + "</ul></div>";
               if ($('#insights-cloud-feed')) {
