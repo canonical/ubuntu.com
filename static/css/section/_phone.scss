@@ -91,7 +91,7 @@ body.phone-home {
       .close-video {
         display: none;
       }
-      
+
       iframe {
           width: 100%;
       }
@@ -314,15 +314,34 @@ p[itemprop="price"] {
 }
 
 body.phone-devices #main-content {
+  .link-cta-ubuntu {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
 
-    .link-cta-ubuntu {
-        margin-right: 10px;
-        margin-bottom: 10px;
+  .link-cta-ubuntu + a {
+    display: block;
+  }
+
+  .devices {
+    table-layout: fixed;
+
+    &__title {
+      font-weight: 400;
     }
 
-    .link-cta-ubuntu + a {
-        display: block;
+    &__item {
+      text-align: left;
+      vertical-align: top;
     }
+
+    &__image {
+      margin-bottom: 10px;
+      max-height: 200px;
+    }
+
+
+  }
 }
 
 body.phone-home .store-promo {
