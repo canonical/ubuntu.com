@@ -1,44 +1,100 @@
-
 /**
  * Partners logo cloud
  *
  * @project        Ubuntu Core Front-End Framework
  * @author         Web Team at Canonical Ltd
- * @copyright      Canonical Ltd
  */
 
-if (!core) { var core = {}; }
+if (typeof partners !== "undefined") {
+    throw TypeError('Namespace "partners" not available');
+}
 
-// Loops through the partner clouds and loads the feeds for each.
-core.loadPartnerClouds = function() {
+// Define this namespace
+var partners = {}
+
+/**
+ * Loops through the partner clouds and loads the feeds for each.
+ */
+partners.loadPartnerClouds = function() {
+    var logosCallbackClosure = function(count) {
+        return function(partnerLogos) {
+            return partners.renderLogos(
+                partnerLogos,
+                partnerLogoClouds[count]['elementId']
+            );
+        }
+    }
+
     for (var cloudIter in partnerLogoClouds) {
-        var cloud = partnerLogoClouds[cloudIter];
+        var params = partnerLogoClouds[cloudIter]['params'];
         var partnersAPI = 'http://partners.ubuntu.com/partners.json';
-        var feedURI = partnersAPI + cloud['params'] + '&callback={callback}';
-        core.loadJSON(feedURI, cloud['elementId', function(response) {
-            var response = JSON.parse(response);
-            return core.renderJSON(response, elementId);
-        });
+        var feedURI = partnersAPI + params + '&callback={callback}';
+
+        partners.loadJSONP(
+            feedURI,
+            logosCallbackClosure(cloudIter)
+        );
     }
     return true;
 }
 
-// Loads a given URI and returns to response to the callback function.
-core.loadJSON = function(uri, elementId, callback) {
-    var xobj = new XMLHttpRequest();
-    xobj.overrideMimeType("application/json");
-    xobj.open('GET', uri, true);
-    xobj.onreadystatechange = function () {
-          if (xobj.readyState == 4 && xobj.status == "200") {
-            callback(xobj.responseText, elementId);
-          }
-    };
-    xobj.send(null);
- }
+/**
+ * Loads a given JSONP URI with a specified callback function,
+ * Assigning a unique name to the callback function and writing it into
+ * the URL in place of {callback}
+ */
+partners.loadJSONP = function(uri, callback) {
+    // Name the callback function
+    var functionName = 'callback' + Date.now();
+    window[functionName] = callback;
 
- // Checks partnerLogoClouds is available and if not warns.
- if (typeof(partnerLogoClouds) === 'object') {
-     core.loadPartnerClouds();
- } else {
-     console.warn('Load partner logos: Expected array "partnerLogoClouds" not found. Stopping.');
- }
+    uri = uri.replace('{callback}', functionName);
+
+    var script = document.createElement('script');
+    script.src = uri;
+    document.body.appendChild(script);
+}
+
+ /**
+  * Render partner logos from a given object of partner logo data
+  */
+ partners.renderLogos = function (partnerLogos, selector) {
+    if (! selector) {
+        selector = '#dynamic-logos';
+    }
+
+    var containers = document.querySelectorAll(selector);
+
+    if (! containers.length) {
+        console.warn('No partner logo containers found for selector: ' + selector);
+    }
+
+    var numberPartners = partnerLogos.length;
+    var numberToDisplay = numberPartners < 10 ? numberPartners : 10;
+
+    for (var containerIndex = 0; containerIndex < containers.length; containerIndex++) {
+        var container = containers[containerIndex];
+        var htmlContents = ""
+
+        for (var partnerIndex = 0; partnerIndex < numberToDisplay; partnerIndex++) {
+            var partnerLogo = partnerLogos[partnerIndex];
+
+            htmlContents += '<li class="inline-logos__item">';
+            htmlContents += '  <img class="inline-logos__image" onload="this.style.opacity=\'1\';" '
+            htmlContents += '       src="' + partnerLogo.logo + '" '
+            htmlContents += '       alt="' + partnerLogo.name + '"'
+            htmlContents += '  >'
+            htmlContents += '</li>';
+        }
+
+        container.innerHTML = htmlContents;
+    }
+ };
+
+
+// Check partnerLogoClouds is available and if not produce warning
+if (typeof(partnerLogoClouds) === 'object') {
+    partners.loadPartnerClouds();
+} else {
+    console.warn('Load partner logos: Expected array "partnerLogoClouds" not found. Stopping.');
+}
