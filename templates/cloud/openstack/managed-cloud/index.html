@@ -267,7 +267,6 @@
 {% endblock content %}
 
 {% block footer_extra %}
-<script src="{% versioned_static 'js/helpers.js' %}"></script>
 <script>
 /**
  * Ubuntu YUI sliders
@@ -523,12 +522,8 @@ function updateSliderBackground(event) {
     var max = slider.get('max');
     var min = slider .get('min');
     var percentage = ((value - min) / (max - min)) * 100;
-
-    // Update background of slider
-    if (canSetLinearGradient()) {
-        var sliderRail = slider.get('container').one('.yui3-slider-rail');
-        sliderRail.setStyle('background', 'linear-gradient(to left, #E1DAD2 ' + (100 - percentage) + '%, #DD4713 0%)');
-    }
+    var sliderRail = slider.get('container').one('.yui3-slider-rail');
+    sliderRail.setStyle('background', 'linear-gradient(to left, #E1DAD2 ' + (100 - percentage) + '%, #DD4713 0%)');
 }
 
 // format currency nicely
