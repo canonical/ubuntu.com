@@ -1,226 +1,71 @@
-/*jslint regexp: true */
-/*global YUI, core, browser, window, Modernizr, localStorage */
-
 /**
  * Ubuntu Core Front-End Framework
  *
  * Core javascript file part of Ubuntu Core Front-End Framework
  *
- * This file containes the classes required by ubuntu.com to interact.
- *
  * @project        Ubuntu Core Front-End Framework
  * @author         Web Team at Canonical Ltd
- * @copyright      2012 Canonical Ltd
  *
  */
 
 if (!core) { var core = {}; }
-YUI().use('node', 'anim', 'event-resize', function (Y) {
-    // REMOVE
-    core.hashSlide = function () {
-        Y.all('#main-content a').each(function (node) {
-            if (node.get('hash') !== '') {
-                var targetURL = node.get('origin') + node.get('pathname');
-                if (window.location.href === targetURL) {
-                    node.on("click", function (e) {
-                        e.preventDefault();
-                        if (!this.hasClass('slideless')) {
-                            core.slideToAnchor(node.get('hash'));
-                        }
-                    });
-                }
-            }
-        });
-    };
-    // REMOVE
-    core.slideToAnchor = function ($name) {
-        if ($name !== '') {
-            var destination = Y.one($name).getXY()[1] - 20,
-                webkitAnim = new Y.Anim({
-                    node: Y.one('html'),
-                    to: { scroll: [0, destination]},
-                    easing: 'easeOut',
-                    duration: 1
-                }),
-                ffAnim = new Y.Anim({
-                    node: Y.one('body'),
-                    to: { scroll: [0, destination]},
-                    easing: 'easeOut',
-                    duration: 1
-                });
-            webkitAnim.run(1000);
-            ffAnim.run(1000);
-        }
-    };
-    // REMOVE
-    core.getPullQuotes = function () {
-        Y.all('span.pullquote').each(function (node) {
-            var item = Y.Node.create('<div class="pull-quote js">&ldquo;' + node.getContent() + '&rdquo;</div>');
-            node.get('parentNode').get('parentNode').get('parentNode').append(item);
-        });
-    };
-    // USING??? IF NOT REMOVE
-    core.setupTooltips = function () {
-        if (Y.one('.tooltip') !== null) {
-            Y.all('.tooltip').each(function (node) {
-                node.get('parentNode').prepend('<p class="tooltip-label">' + node.get('title') + '</p>');
-                var title = this.get('title');
-                node.on('mouseover', function () {
-                    this.set('title', '');
-                    this.get('parentNode').one('.tooltip-label').setStyle('display', 'inline');
-                });
-                node.on('mouseout', function () {
-                    this.set('title', title);
-                    this.get('parentNode').one('.tooltip-label').setStyle('display', 'none');
-                });
-            });
-        }
-    };
-    // REMOVE, UNUSED
-    core.sectionTabs = function () {
 
-        if (Y.one('.tabbed-content')) {
-            Y.one('.tabbed-menu').append('<img src="//assets.ubuntu.com/sites/ubuntu/latest/u/img/patterns/tabbed-nav-arrow.png" class="arrow" height="6" width="12" alt="">');
-
-            var p = Y.one('.tabbed-menu a.active'),
-                s = p.get('href').split('#')[1],
-                a = Y.one('.arrow'),
-                w = (p.get('clientWidth') / 2) - 7,
-                x = (p.get('parentNode').getXY()[0] - p.get('parentNode').get('parentNode').getXY()[0]) + w;
-            Y.all('.tabbed-content').each(function () {
-                if (this.get('id') !== s) {
-                    this.setStyle('opacity', '0');
-                }
-            });
-            a.setStyle('left', x + 'px').setStyle('display', 'inline');
-            Y.all('.tabbed-menu a').on('click', function (e) {
-                e.preventDefault();
-                Y.all('.tabbed-menu a').removeClass('active');
-                e.currentTarget.addClass('active');
-                Y.all('.tabbed-content').addClass('hide').setStyle('opacity', '0');
-                s = e.currentTarget.get('hash');
-                Y.one(s).removeClass('hide');
-                new Y.Anim({ node: s, to: { opacity: 1 } }).run();
-                x = (e.currentTarget.get('parentNode').getXY()[0] - e.currentTarget.get('parentNode').get('parentNode').getXY()[0]) + w;
-                new Y.Anim({ node: a, to: { left: x + 'px' } }).run();
-            });
-        }
-    };
-
-    // REMOVE UNSUED
-    core.tabbedContent = function () {
-        Y.all('.tabbed-content .accordion-button').on('click', function (e) {
-            e.preventDefault();
-            e.target.get('parentNode').toggleClass('open');
-        });
-    };
-    
-    // NEED ... WRITE IN ES5
-	core.svgFallback = function() {
-		if (typeof Modernizr === "object") {
-			if (!Modernizr.svg || !Modernizr.backgroundsize) {
-				Y.all("img[src$='.svg']").each(function(node) {
-					src = node.getAttribute('src').toString();
-					if (src.indexOf('assets.ubuntu.com/v1/') > -1) {
-						// Support for the newer asset server
-						src = src + '?fmt=png';
-					} else {
-						// Old asset manager and locally assets
-						src = src.match(/.*\/(.+?)\./)[0] + 'png';
-					}
-					node.setAttribute("src", src);
-				});
-			}
+core.svgFallback = function() {
+	if (typeof Modernizr === "object") {
+		if (!Modernizr.svg || !Modernizr.backgroundsize) {
+			var svgs = document.querySelectorAll("img[src$='.svg']")
+            svgs.each(function(node) {
+                var src = node.src;
+                if (src.indexOf('assets.ubuntu.com/v1/') > -1) {
+					// Support for the newer asset server
+					node.src = src + '?fmt=png';
+				} else {
+					// Old asset manager and locally assets
+					node.src = src.match(/.*\/(.+?)\./)[0] + 'png';
+				}
+			});
 		}
-	};
-  // BAD, USE CSS
-    core.resourceHubBoxes = function () {
-        Y.all(".resource").on('click', function (e) {
+	}
+};
+
+core.mobileNav = function () {
+    var header = document.querySelector('header.banner');
+    var navPrimary = document.querySelector('.nav-primary');
+    var navSecondary = document.querySelector('.nav-secondary');
+    var breadcrumbLinks = document.querySelector('.breadcrumb li a');
+
+    if (navPrimary) {
+        // Add the navigation toggle
+        navToggle = document.createElement('a');
+        navToggle.classList.add('nav-toggle');
+        navToggle.id = 'menu';
+        navToggle.innerHTML = 'menu';
+        header.insertBefore(navToggle, navPrimary);
+
+        // Adds a click listener to the navigation toggle
+        navToggle.addEventListener('click', function(e) {
             e.preventDefault();
-            e.stopPropagation();
-            if (e.currentTarget.one('a') !== null) {
-                window.location = e.currentTarget.one('a').get("href");
-            }
+            // Toggle the navigations display state
+            navToggle.classList.toggle('active');
+            navPrimary.classList.toggle('active');
+            document.querySelector('#nav ul').classList.toggle('active');
         });
-    };
-    // NEED, WRITE IN ES5
-    core.mobileNav = function () {
-        if (Y.one('.header-search')) {
-            Y.one('.nav-primary').insert('<a class="search-toggle"></a><a id="menu" class="nav-toggle">menu</a>', 'before');
-        } else {
-            Y.one('.nav-primary').insert('</a><a id="menu" class="nav-toggle">menu</a>', 'before');
-        }
+    }
 
-        Y.all('.nav-toggle').on('click', function (e) {
+    if (breadcrumbLinks) {
+        // Add chevron to first link
+        var firstBreadcrumb = document.querySelector('.breadcrumb > li a');
+        var breadcrumbChevron = document.createElement('a');
+        breadcrumbChevron.classList.add('after');
+        firstBreadcrumb.insertBefore(breadcrumbChevron, firstBreadcrumb.lastChild);
+        // Add click listener to the chevron
+        breadcrumbChevron.addEventListener('click', function(e) {
             e.preventDefault();
-            if (Y.one('.header-search')) {
-                Y.one('.header-search').removeClass('active');
-            }
-
-            Y.all('.nav-toggle').toggleClass('active');
-            Y.all('header nav ul').toggleClass('active');
-            Y.all('.nav-primary').toggleClass('active');
+            // Toggle the secondary navigations display state
+            navSecondary.classList.toggle('open');
         });
+    }
+};
 
-        if (Y.one('.header-search')) {
-            Y.one('.search-toggle').on('click', function (e) {
-                e.preventDefault();
-
-                Y.all('.nav-toggle').removeClass('active');
-                Y.all('header nav ul').removeClass('active');
-                Y.all('.nav-primary').removeClass('active');
-
-                Y.one('.header-search').toggleClass('active');
-                Y.one('.header-search .form-text').focus();
-            });
-        }
-
-        if (Y.one('.breadcrumb li a')) {
-            Y.one('.breadcrumb > li a').insert('<span class="after"></span>');
-            Y.one('.breadcrumb li a .after').on('click', function (e) {
-                e.preventDefault();
-                Y.one('.nav-secondary').toggleClass('open');
-                core.setLocalStorage('onboard');
-            });
-        }
-
-    };
-    // REWRITE IN ES6
-    core.navOnboarding = function () {
-        var key = 'ubuntu',
-            nav_secondary = Y.one('.nav-secondary'),
-            ls;
-
-        if (nav_secondary && !nav_secondary.test(':empty')) {
-            if (Y.one('html').hasClass('localstorage')) {
-                if (localStorage.getItem(key) === null) {
-                    nav_secondary.addClass('open');
-                } else {
-                    ls = JSON.parse(localStorage.getItem(key));
-                    if (ls.navigation !== 'onboard') {
-                        nav_secondary.addClass('open');
-                    }
-                }
-            }
-        }
-    };
-    // NOT USING YUI
-    core.setLocalStorage = function ($value) {
-        var key = 'ubuntu',
-            value = $value,
-            ubuntu = {};
-
-        ubuntu.navigation = value;
-        localStorage.setItem(key, JSON.stringify(ubuntu));
-    };
-
-    core.sectionTabs();
-    core.tabbedContent();
-    core.getPullQuotes();
-    core.setupTooltips();
-    core.svgFallback();
-    core.resourceHubBoxes();
-    core.mobileNav();
-    core.navOnboarding();
-    core.hashSlide();
-});
+core.svgFallback();
+core.mobileNav();
