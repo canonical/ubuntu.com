@@ -153,10 +153,11 @@
 {% endblock content %}
 {% block footer_extra %}
   <script>
-      YUI().use('event-base', function (Y) {
-          Y.on('domready', function () {
-              core.loadPartners('?programme__name=Internet%20of%20Things', '#iot-partners');
-          });
-      });
+      partnerLogoClouds = [{
+          'params': '?programme__name=Internet%20of%20Things',
+          'elementId':'#iot-partners'
+      }];
   </script>
+  {% load versioned_static  %}
+  <script src="{% versioned_static 'js/partners.js' %}"></script>
 {% endblock %}

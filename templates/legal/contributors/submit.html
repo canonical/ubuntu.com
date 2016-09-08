@@ -586,7 +586,7 @@ div.ok {
           <ul class="no-bullets">
               <li><img src="https://www.tfaforms.com/forms/captcha" width="200" height="60" alt="Visual CAPTCHA"></li>
               <li>
-                  <label class="preField off-left">Characters</label> 
+                  <label class="preField off-left">Characters</label>
                   <input type="text" name="tfa_captcha_text" id="tfa_captcha_text">
               </li>
               <li>
@@ -713,6 +713,26 @@ new function(_) {
 	}
 	_addEvent(window,'load',populateForms);
 }();
+
+// Used in legal/contributors/submit.html
+var lp_lookup_callback = {
+	timeout: 3000,
+	on: {
+		success : function (id, response) {
+			var messages = [];
+			try {
+				messages = Y.JSON.parse(response.responseText);
+			} catch (e) {
+				console.warn("JSON Parse failed!");
+				return;
+			}
+			document.querySelector('#lp_error').innerHTML = messages.message;
+		},
+		failure : function (id, response) {
+			console.warn("Async call failed!");
+		}
+	}
+};
 
 var launchpad_id_lookup = function() {
 	Y.one('#tfa_LPid').on('blur', function (e) {
