@@ -15,12 +15,8 @@
 <div id="contribute-introductions" class="row row-hero contribution-intro-row">
     <div class="strip-inner-wrapper">
         <div class="contribution-intro nine-col">
-            <h1>Tell us what we should do more&hellip;</h1>
-            <p>&hellip;and put your money where your mouth is ;)</p>
-        </div>
-        <div class="contribution-intro nine-col">
-            <h1>Help shape the future of Ubuntu&hellip;</h1>
-            <p>&hellip;tell us what to do more of!</p>
+            <h1>Help shape the future of Ubuntu</h1>
+            <p>Tell us what is most important to you.</p>
         </div>
         <div class="nine-col">
             <div id="contribute-form-container" class="contribute-page box box-highlight clearfix">
@@ -147,7 +143,7 @@
 {% endblock outer_content %}
 
 {% block footer_extra %}
-<script src="{% versioned_static 'js/helpers.js' %}"></script>
+<script src="{% versioned_static 'js/polyfills.js' %}"></script>
 <script>
 /**
  * Ubuntu YUI contribution sliders
@@ -162,9 +158,6 @@
  YUI({bootstrap: false}).use('slider', function (Y) {
     // Remove the noscript classes
     Y.all('.noscript').removeClass('noscript');
-
-    // Show only one (random) of the introductions
-    hideAllButOne(Y.all('.contribution-intro'));
 
     // Setup the contributions form and its sliders
     var contributionsForm = Y.one('#contributions-form');
@@ -277,12 +270,8 @@ function updateSliderBackground(event) {
     var value = slider.getValue();
     var max = slider.get('max');
     var percentage = (value / max) * 100;
-
-    // Update background of slider
-    if (canSetLinearGradient()) {
-        var sliderRail = slider.get('container').one('.yui3-slider-rail');
-        sliderRail.setStyle('background', 'linear-gradient(to left, #E1DAD2 ' + (100 - percentage) + '%, #DD4713 0%)');
-    }
+    var sliderRail = slider.get('container').one('.yui3-slider-rail');
+    sliderRail.setStyle('background', 'linear-gradient(to left, #E1DAD2 ' + (100 - percentage) + '%, #DD4713 0%)');
 }
 
 function calculateTotal(sliders) {
@@ -392,14 +381,7 @@ function sendContributionFormAnalytics( form ) {
 
     // preparing GA submission. step 1 _addTrans
     var orderId = generateRandomId();
-
-    var introductionHeader = "";
-    form.ancestor('body').all('.contribution-intro').each(function(element, index) {
-        if (element.getStyle('display') == 'block') {
-            introductionHeader = 'header-' + (index + 1);
-        }
-    })
-
+    var category = '';
     var total = calculateTotal(form.getData('sliders'));
     var transactionProducts = [];
 
@@ -408,7 +390,7 @@ function sendContributionFormAnalytics( form ) {
         var name = slider.get('container').ancestor('.slider-area').get('id');
         var value = slider.getValue();
         if (value > 0) {
-            transactionProducts.push({'sku': name, 'name': name, 'category': introductionHeader, 'price': value, 'quantity': 1 });
+            transactionProducts.push({'sku': name, 'name': name, 'category': category, 'price': value, 'quantity': 1 });
         }
     });
 
@@ -425,6 +407,16 @@ function sendContributionFormAnalytics( form ) {
 }
 
 /**
+ * Generate a random ID including the datestamp for uniqueness
+ */
+function generateRandomId() {
+    // really crude unique ID
+    var date = new Date();
+    var random = Math.floor(Math.random()*1000);
+    return date.valueOf()+''+random;
+}
+
+/**
  * To be fired when leaving the form without submitting
  * Set all values to zero
  * And submit analytics data
@@ -435,9 +427,5 @@ function abandonForm(event) {
     form.getData('sliders').forEach(function(slider) { slider.set('value', 0); });
     sendContributionFormAnalytics(form);
 }
-</script>
-
-<script>
-
 </script>
 {% endblock footer_extra %}

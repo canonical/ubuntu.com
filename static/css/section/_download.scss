@@ -91,7 +91,7 @@
           padding-top: 2em;
         }
     }
-    
+
     @media only screen and (min-width : $breakpoint-medium) {
       .strip-inner-wrapper {
         padding: 0;
@@ -788,12 +788,6 @@ html.opera-mini {
     .contribution-intro-row {
         padding-bottom: 0;
     }
-    .contribution-intro {
-        display: none;
-    }
-    .contribution-intro:first-child {
-        display: block;
-    }
     .sliders-container {
         background-color: #EFEFEF;
         padding: 20px;
@@ -940,12 +934,6 @@ html.opera-mini {
 
 /* Special overrides for JS-enabled */
 .js .contribute-to-ubuntu {
-    .contribution-intro:first-child {
-        display: none;
-    }
-    .contribution-intro-row {
-        min-height: 95px;
-    }
 
     .slider-area {
       p {
@@ -975,7 +963,7 @@ html.opera-mini {
         display: block;
         margin: 0 auto 20px auto;
     }
-    // removes the left padding added at line 217 
+    // removes the left padding added at line 217
     .inner-wrapper .newsletter-signup fieldset {
       padding-left: 0;
     }
