@@ -171,6 +171,13 @@ body {
   }
 }
 
+// Hide the breadcrumb expand button in expanded nav
+@media only screen and (min-width: $navigation-threshold) {
+  .nav-secondary .breadcrumb li .after {
+    display: none;
+  }
+}
+
 .breadcrumb .third-level-nav .active a {
   color: $ubuntu-orange;
 }
