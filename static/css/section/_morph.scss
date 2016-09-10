@@ -31,8 +31,13 @@
   box-sizing:content-box;
   position: relative;
   margin: 0 auto;
+  cursor: pointer;
 }
-  
+
+.run #devices {
+  cursor: inherit;
+}
+
 .row--devices .run {
   #devices
   {
@@ -57,7 +62,7 @@
   backface-visibility: hidden;
   box-sizing:content-box;
 
-  
+
   background-repeat  : no-repeat,
                        no-repeat,
                        no-repeat,
@@ -81,7 +86,7 @@
 #devices #device-phone
 {
   opacity: 1;
-background-image   : url(//assets.ubuntu.com/v1/2c3ba39c-device_phone_tc2.png), 
+background-image   : url(//assets.ubuntu.com/v1/2c3ba39c-device_phone_tc2.png),
           url(//assets.ubuntu.com/v1/f4a4523a-device_phone_tl.png),
           url(//assets.ubuntu.com/v1/23338ec9-device_phone_br.png),
           url(//assets.ubuntu.com/v1/70439812-device_phone_tr.png),
@@ -111,7 +116,7 @@ background-position:  top center,
 #devices #device-laptop
 {
   background-size: 100px,138px,140px,902px,140px,900px,16px,99%;
-background-image   : url(//assets.ubuntu.com/v1/9612cf16-device_laptop_bc2.png), 
+background-image   : url(//assets.ubuntu.com/v1/9612cf16-device_laptop_bc2.png),
           url(//assets.ubuntu.com/v1/fb5b8eee-device_laptop_tl.png),
           url(//assets.ubuntu.com/v1/b5dc46bf-device_laptop_br.png),
           url(//assets.ubuntu.com/v1/7b12fe81-device_laptop_bl.png),
@@ -163,7 +168,7 @@ background-position: bottom center,
 {
 
   background-size:77px, 137px, 157px, 138px,970px,896px,17px,98%;
-  background-position: top center, 
+  background-position: top center,
             top left,
                        bottom right,
                        top right,
@@ -180,7 +185,7 @@ background-image   : url(//assets.ubuntu.com/v1/a05e2032-device_tablet_tc2.png),
           url(//assets.ubuntu.com/v1/8cec3319-device_tablet_ml.png),
                 linear-gradient(to right, rgba(164, 164, 170, 1),  rgba(29, 26, 26, 1));
 
-    
+
 }
 .row--devices .run {
   #devices #device-tablet
@@ -326,7 +331,7 @@ background-size:480px;
 {
   opacity: 1;
   background-size: 137px,68px,69px,69px,452px,448px,5px,98%;
-background-image   : url(//assets.ubuntu.com/v1/c836a5aa-device_phone_tc2.png), 
+background-image   : url(//assets.ubuntu.com/v1/c836a5aa-device_phone_tc2.png),
           url(//assets.ubuntu.com/v1/c07ed6ce-device_phone_tl.png),
           url(//assets.ubuntu.com/v1/51b5a292-device_phone_br.png),
           url(//assets.ubuntu.com/v1/7735e4e4-device_phone_tr.png),
@@ -347,7 +352,7 @@ background-position:  top center,
 #devices #device-laptop
 {
   background-size: 50px,69px,70px,451px,70px,450px,8px,99%;
-background-image   : url(//assets.ubuntu.com/v1/36bca713-device_laptop_bc2.png), 
+background-image   : url(//assets.ubuntu.com/v1/36bca713-device_laptop_bc2.png),
           url(//assets.ubuntu.com/v1/308feeb5-device_laptop_tl.png),
           url(//assets.ubuntu.com/v1/f51d389d-device_laptop_br.png),
           url(//assets.ubuntu.com/v1/e46408ac-device_laptop_bl.png),
@@ -370,7 +375,7 @@ background-position: bottom center,
 {
 
   background-size:38px, 68px, 78px, 69px,485px,448px,8px,98%;
-  background-position: top center, 
+  background-position: top center,
             top left,
                        bottom right,
                        top right,
@@ -387,8 +392,7 @@ background-image   : url(//assets.ubuntu.com/v1/a5c8b36b-device_tablet_tc2.png),
           url(//assets.ubuntu.com/v1/7b549da0-device_tablet_ml.png),
                 linear-gradient(to right, rgba(164, 164, 170, 1),  rgba(29, 26, 26, 1));
 
-    
-}
 
 }
 
+}

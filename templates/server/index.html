@@ -357,18 +357,18 @@
 {% endblock content %}
 
 {% block footer_extra %}
-<script>
-partnerLogoClouds = [
-    {
-        'params': '?programme=certified-public-cloud&featured=true',
-        'elementId':'#public-cloud-partners'
-    },
-    {
-        'params': '?service_offered__name=Big+data',
-        'elementId' : '#big-data-partners'
-    }
-];
-</script>
-{% load versioned_static  %}
-<script src="{% versioned_static 'js/partners.js' %}"></script>
+    <script>
+    partnerLogoClouds = [
+        {
+            'params': '?programme=certified-public-cloud&featured=true',
+            'elementId':'#public-cloud-partners'
+        },
+        {
+            'params': '?service_offered__name=Big+data',
+            'elementId' : '#big-data-partners'
+        }
+    ];
+    </script>
+    {% load versioned_static  %}
+    <script src="{% versioned_static 'js/partners.js' %}"></script>
 {% endblock footer_extra %}
