@@ -60,7 +60,6 @@
 <script src="{{ ASSET_SERVER_URL }}2c8fd8c9-Imager.js"></script>
 
 {% comment %}<!-- the following has been added to allow things/iot ab testing -->{% endcomment %}
-<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
 <script src="//www.google-analytics.com/cx/api.js?experiment=IbIACoOrTnG8eSnRY64nWQ"></script>
 <script>
   var chosenVariation = cxApi.chooseVariation();
@@ -164,7 +163,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Use this only until Modernizr fixes Opera Mini background-size detection -->
 <script>
 	var isOperaMini = (navigator.userAgent.indexOf('Opera Mini') > -1);
-	if(isOperaMini) {
+	if (isOperaMini) {
 		var root = document.documentElement;
 		root.className += " opera-mini";
 	}

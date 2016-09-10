@@ -9,6 +9,10 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
+
+<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
+<script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
+
 <div class="row row-hero">
     <h1>Contact Canonical</h1>
     <h2>Considering Ubuntu for your business?</h2>
@@ -19,7 +23,6 @@
         <p>All fields are required.</p>
 
         <!-- MARKETO FORM -->
-        <script  src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
 
         <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1257">
             <fieldset>
@@ -97,6 +100,7 @@
                 <input type="hidden" name="retURL" value="http://www.ubuntu.com/about/contact-us/form/thank-you" />
             </fieldset>
         </form>
+
         <script>
         $("#mktoForm_1257").validate({
             errorElement: "span",

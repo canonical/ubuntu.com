@@ -121,8 +121,10 @@
 {% endblock content %}
 {% block footer_extra %}
 <script>
-    partnersApiParams = '?programme__name=Desktop&featured=true';
-    partnersElementId = '#hardware-partners';
+  partnerLogoClouds = [{
+    'params': '?programme__name=Desktop&featured=true',
+    'elementId':'#hardware-partners'
+  }];
 </script>
 {% load versioned_static  %}
 <script src="{% versioned_static 'js/partners.js' %}"></script>

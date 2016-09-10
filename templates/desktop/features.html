@@ -267,22 +267,18 @@
 {% endblock content %}
 {% block footer_extra %}
 <script>
-YUI().use('node', function (Y) {
-    var photoRow = Y.one('.row-photos'),
-        caption = Y.one('.row-photos .photo-credit'),
-        credits = {
-                    "photo-1": "Photo by community member Tomáš Kijas",
-                    "photo-2": "Photo by community member Life Nomadic",
-                    "photo-3": "Photo by community member Martin Wagner"
-                };
+    var photoRow = document.querySelector('.row-photos');
+    var caption = photoRow.querySelector('.photo-credit');
+    var credits = {'photo-1': 'Photo by community member Tomáš Kijas',
+                   'photo-2': 'Photo by community member Life Nomadic',
+                   'photo-3': 'Photo by community member Martin Wagner'};
     if (photoRow) {
         var n = Math.floor((Math.random() * 3) + 1);
-        if (!credits["photo-" + n]) {
+        if (!credits['photo-' + n]) {
             n = 1;
         }
-        photoRow.addClass('photo-' + n);
-        caption.set('text', credits["photo-" + n]);
+        photoRow.classList.add('photo-' + n);
+        caption.innerHTML = credits["photo-" + n];
     }
-});
 </script>
 {% endblock footer_extra %}
