@@ -60,10 +60,8 @@
               <div class="slider-area" id="how-many-vms">
                   <fieldset class="slider-value">
                       <label for="amount-vms" class="off-left">VMs</label>
-                      <input type="number" min="0" max="5000" id="amount-vms" name="amount_1" value="10" class="amount-input" />
+                      <input type="number" min="0" max="5000" id="amount-vms" name="amount_1" value="10" class="add-slider amount-input" />
                   </fieldset>
-
-                  <div class="slider-container"></div>
 
                   <!--  Hidden fields -->
                   <input type="hidden" name="item_name_1" value="VMs" />
@@ -76,10 +74,8 @@
               <div class="slider-area" id="how-many-servers">
                   <fieldset class="slider-value">
                       <label for="amount-servers" class="off-left">Servers</label>
-                      <input type="number" min="0" max="5000" id="amount-servers" name="amount_2" value="10" class="amount-input" />
+                      <input type="number" min="0" max="5000" id="amount-servers" name="amount_2" value="10" class="add-slider amount-input" />
                   </fieldset>
-
-                  <div class="slider-container"></div>
 
                   <!--  Hidden fields -->
                   <input type="hidden" name="item_name_2" value="Servers">
@@ -268,6 +264,10 @@
 {% endblock content %}
 
 {% block footer_extra %}
+<script src="{% versioned_static 'js/forms.js' %}"></script>
+<script>
+    forms.addSliders('.add-slider');
+</script>
 <script>
 /**
  * Ubuntu YUI sliders
@@ -363,46 +363,13 @@ var daysInYear = 365,
     groupedTabbed = Y.one('.grouped-tabbed');
     groupedTabbed.all('.grouped-tabbed__item').on('click', updateBillingPeriod);
 
-    // Sliders
-    vmsSlider = new Y.Slider({min: 0, max: 5000, thumbUrl: '#'});
-    serversSlider = new Y.Slider({min: 7, max: 1000, thumbUrl: '#'});
-    var sliders = [vmsSlider, serversSlider];
-
-    vmsInput.setData({slider: vmsSlider, area: vmsArea});
-    serversInput.setData({slider: serversSlider, area: serversArea});
-
-    // Update sliders
-    Y.each(inputs, function(input) {
-        // Setup input area
-        input.on(['change', 'keyup', 'mouseup'], updateSliderFromInput);  // Update slider when input changes
-
-        // Update slider
-        slider = input.getData('slider')
-        slider.set('input', input); // Link input to slider
-        slider.set('container', input.getData('area').one('.slider-container')); // Link container to slider itself
-        slider.after("valueChange", updateInputFromSlider); // Update input when slider updates
-        slider.after("valueChange", updateSliderBackground);
-        slider.after("valueChange", render);
-
-        // Render the slider
-        slider.render(slider.get('container')); // Render the sliders into their containers
-    });
-
     checkboxContainer.all('input[type=radio]').on('change', updateViewBy);
 
     calculatorForm.on(['change', 'keyup'], render);  // Update slider when input changes
 
-    calculatorForm.setData('sliders', sliders);
-
     // When the window resizes, resize sliders
     var yuiWindow = Y.one('window');
     yuiWindow.setData('calculatorForm', calculatorForm);
-    yuiWindow.on('resize', function(resizeEvent) {resizeSliders(calculatorForm)});
-    resizeSliders(calculatorForm);
-
-    // Initial values
-    vmsSlider.setValue(100);
-    serversSlider.setValue(60);
 });
 
 // Function to update the servers variables and update calculations
