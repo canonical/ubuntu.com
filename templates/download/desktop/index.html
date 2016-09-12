@@ -39,7 +39,14 @@
                 </div>
                 <div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom gap-from-top">
                     <p>
-                        <a class="button--primary link-cta-download" href="/download/desktop/contribute/?version={{lts_release}}&amp;architecture=amd64">Download</a>
+                        <a class="button--primary link-cta-download" href="/download/desktop/thank-you/?version={{lts_release}}&amp;architecture=amd64">Download</a>
+                        <script>
+                            // Contributions only work with JavaScript
+                            // So if we have JavaScript, send them to /contribute
+                            var downloadLink = document.querySelector('.link-cta-download');
+                            var contributeUrl = downloadLink.href.replace('/thank-you', '/contribute');
+                            downloadLink.href = contributeUrl;
+                        </script>
                     </p>
                     <ul class="no-bullets">
                         <li><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></li>
