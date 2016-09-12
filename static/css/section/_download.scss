@@ -738,6 +738,10 @@ html.opera-mini {
 
 /* Contribute page */
 .contribute {
+  .no-js & {
+    display: none;
+  }
+
   &__options {
     background-color: #EFEFEF;
     padding: 20px;
