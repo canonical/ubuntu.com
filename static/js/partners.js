@@ -15,7 +15,7 @@ var partners = {}
 /**
  * Loops through the partner clouds and loads the feeds for each.
  */
-partners.loadPartnerClouds = function() {
+partners.loadPartnerClouds = function(partnerLogoClouds) {
     var logosCallbackClosure = function(count) {
         return function(partnerLogos) {
             return partners.renderLogos(
@@ -93,8 +93,8 @@ partners.loadJSONP = function(uri, callback) {
 
 
 // Check partnerLogoClouds is available and if not produce warning
-if (typeof(partnerLogoClouds) === 'object') {
-    partners.loadPartnerClouds();
-} else {
-    console.warn('Load partner logos: Expected array "partnerLogoClouds" not found. Stopping.');
-}
+// if (typeof(partnerLogoClouds) === 'object') {
+//     partners.loadPartnerClouds();
+// } else {
+//     console.warn('Load partner logos: Expected array "partnerLogoClouds" not found. Stopping.');
+// }

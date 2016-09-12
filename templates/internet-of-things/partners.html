@@ -152,12 +152,12 @@
 
 {% endblock content %}
 {% block footer_extra %}
-  <script>
-      partnerLogoClouds = [{
-        'params': '?programme__name=Internet%20of%20Things',
-        'elementId': '#iot-partners'
-      }];
-  </script>
   {% load versioned_static  %}
   <script src="{% versioned_static 'js/partners.js' %}"></script>
+  <script>
+      partners.loadPartnerClouds([{
+        'params': '?programme__name=Internet%20of%20Things',
+        'elementId': '#iot-partners'
+      }]);
+  </script>
 {% endblock %}

@@ -120,12 +120,12 @@
 
 {% endblock content %}
 {% block footer_extra %}
-<script>
-  partnerLogoClouds = [{
-    'params': '?programme__name=Desktop&featured=true',
-    'elementId':'#hardware-partners'
-  }];
-</script>
-{% load versioned_static  %}
-<script src="{% versioned_static 'js/partners.js' %}"></script>
+  {% load versioned_static  %}
+  <script src="{% versioned_static 'js/partners.js' %}"></script>
+  <script>
+    partners.loadPartnerClouds([{
+      'params': '?programme__name=Desktop&featured=true',
+      'elementId':'#hardware-partners'
+    }]);
+  </script>
 {% endblock %}
