@@ -19,6 +19,12 @@ body {
   }
 }
 
+// Style all range input boxes with ubuntu fancy styles
+[type=range] {
+  @extend %input-range;
+}
+
+
 // XXX Graham (10.04.2016)
 // Move to Vanilla
 // remove negative margin and add border back

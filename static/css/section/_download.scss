@@ -736,225 +736,131 @@ html.opera-mini {
     width: 100%;
 }
 
-/* /download/help/install-ubuntu-openstack */
-.download-cloud-install-ubuntu-openstack {
-  #main-content .row-hero {
-    border-bottom: 1px dotted $warm-grey;
-        padding-bottom: 40px;
-
-    & + .row {
-      padding-top: 0;
-    }
+/* Contribute page */
+.contribute {
+  &__options {
+    background-color: #EFEFEF;
+    padding: 20px;
+    border-radius: 5px;
   }
 
-  .instructions { // XXX Robin to remove
-    padding: 0 inherit;
+  &__option-amount {
+    font-size: 16px;
+    display: flex;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+  }
 
-    pre {
-      background-color: #000;
-      color: #fff;
+  &__option-currency {
+    display: inline-block;
+    color: $warm-grey;
+    padding: 5px;
+    order: 2;
+  }
+
+  &__option-value {
+    padding: 4px;
+    width: 55px;
+    order: 3;
+  }
+
+  &__option-slider {
+    order: 1;
+    flex-grow: 1;
+    margin-right: 16px;
+    background-color: transparent;
+  }
+
+  &__equivalent {
+    max-width: 350px;
+
+    p {
+      margin-bottom: 0;
     }
 
-    .three-col {
-      padding: 40px;
-    }
+    &-image {
+      margin-right: 20px;
+      margin-bottom: 20px;
 
-    .box {
-      border: none;
-      border-left: 1px dotted $warm-grey;
-      border-radius: 0;
-            margin: 0;
-            padding: 40px 80px 40px 40px;
-
-      ul li {
-        color: $cool-grey;
+      @media only screen and (min-width: $breakpoint-medium) {
+        float: left;
       }
     }
+
+    &__equivalent-price {
+      color: $warm-grey;
+    }
   }
-} // XXX end Robin remove
 
-/* Contribute page */
+  &__summary {
+    margin-top: 40px;
+    margin-bottom: 20px;
 
-.contribute-to-ubuntu {
-    form input[type=number] {
-        border-radius: 2px;
-        background: #fff;
-        border: 1px solid #999;
-        font-family: Ubuntu,Arial,"libra sans",sans-serif;
-        padding: 4px;
-        width: 50px;
-        display: inline-block;
-        font-size: 1em;
-        padding-top: 2px;
+    .no-js & {
+      display: none;
     }
-    form input[type=number]:focus {
-        border: 1px solid #000;
+  }
+
+  &__total {
+    float: right;
+
+    &-heading {
+      margin-top: -0.3em;
+      margin-bottom: 0;
     }
 
-    /* Styling for contributions slider rows */
-    .contribution-intro-row {
-        padding-bottom: 0;
+    &-currency {
+      color: $warm-grey;
     }
-    .sliders-container {
-        background-color: #EFEFEF;
-        padding: 20px;
-        border-radius: 5px;
-    }
-    .slider-area {
-        overflow: hidden;
-        margin-top: 20px;
-    }
-    .slider-area p {
-        margin-bottom: 0;
-    }
-    .slider-area:first-child {
-        margin-top: 0;
-    }
+  }
 
-    .slider-area p {
-        float: left;
-    }
+  &__finalise {
+    border-top: 1px solid #efefef;
+    padding-top: 20px;
+  }
 
-    .contribution-slider {
-        float: left;
-        margin-top: 4px;
-    }
+  &__submit {
+    float: right;
+    width: auto;
+    margin-bottom: 0;
 
-    .contribution-value, .download .inner-wrapper .contribution-value {
-        float: right;
-        font-size: 16px;
+    &[disabled] {
+      opacity: .3;
     }
-    .contribution-value label {
-        display: inline-block;
-        color: $warm-grey;
+    &.hidden {
+      display: none;
     }
+  }
 
-    /* totalling area styling */
-    .contribution {
-        float: right;
-        font-size: 20px;
-    }
-    .contribution .price {
-        float: right;
-    }
-    .contribution .currency {
-        color: $warm-grey;
-    }
-    .contribution .final-amount {
-        display: inline-block;
-        padding: 0 5px;
-        border-radius: 5px;
-        text-align: right;
-    }
-    .price-equivalent {
-        max-width: 350px;
-    }
-    .price-equivalent p {
-        margin-bottom: 0;
-    }
-    .price-equivalent img {
-        margin-right: 20px;
-        margin-bottom: 20px;
-    }
-    .price-equivalent .title {
-        font-weight: bold;
-    }
-    .price-equivalent .price {
-        color: $warm-grey;
-    }
-    .total-area {
-        max-width: 624px;
-    }
-    .total-area-row {
-      margin-top: 40px;
-      margin-bottom: 20px;
-    }
-    .total-area-row.noscript {
-        display: none;
-    }
+  &__skip.button--primary {
+    float: right;
+    text-indent: -1000px;
+    position: relative;
+    width: 15.3em;
 
-    .total-area .contribution .title {
-        margin-top: -0.3em;
-        margin-bottom: 0;
+    &::after {top: 0;
+      left: 0;
+      content: "Download Ubuntu Desktop";
+      display: inline-block;
+      color: white;
+      position: absolute;
+      text-indent: 0;
+      padding: 11px 24px;
     }
-    .total-area .contribution .price .final-amount {
-        font-weight: bold;
-    }
-
-    .contribute-row {
-        padding-top: 20px;
-    }
-    .contribute {
-        border-top: 1px solid #efefef;
-        padding-top: 20px;
-        max-width: 624px;
-    }
-    .contribute .pay-with-paypal, .download .contribute button.pay-with-paypal {
-        float: right;
-        font-size: 1em;
-        width: auto;
-    }
-
-    /*  Slider styles */
-    .yui3-slider-content, .yui3-widget {
-        display: block;
-        padding: 5px 0;
-    }
-    .yui3-slider-rail-cap-left, .yui3-slider-rail-cap-right {
-        display: none;
-    }
-    .yui3-slider-rail {
-        display: block;
-        height: 4px;
-        background-color: #DD4713;
-        background: linear-gradient(to left, #E1DAD2 98.4%, #DD4713 0%);
-        border-radius: 2px;
-        overflow: visible;
-        box-shadow: inset 0px 1px 0px 0px rgba(0, 0, 0, 0.15);
-        cursor: pointer;
-    }
-    .yui3-slider-rail .yui3-slider-thumb {
-        width:  18px;
-        height: 18px;
-        border-radius: 4px;
-        background: #fff;
-        overflow: visible;
-        display: block;
-        position: relative;
-        top: -7px !important;
-        outline: none;
-        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-    }
-
-    .yui3-slider-rail .yui3-slider-thumb:hover {
-        -webkit-transform: scale(1.25, 1.25);
-        transform: scale(1.25, 1.25);
-        -ms-transition: transform 0.1s cubic-bezier(0.895, 0.03, 0.685, 0.22);
-        transition:  transform 0.1s cubic-bezier(0.895, 0.03, 0.685, 0.22);
-    }
-
-    .yui3-slider-thumb-shadow, .yui3-slider-thumb-image {
-        display: none;
-    }
+  }
 }
 
-/* Special overrides for JS-enabled */
-.js .contribute-to-ubuntu {
+// Overrides
+input[type=number].contribute__option-value {
+  @extend .contribute__option-value;
+}
 
-    .slider-area {
-      p {
-        float: none;
-      }
-      .description {
-        margin-top: 10px;
-        margin-bottom: 10px;
-      }
-    }
-    .contribution-slider {
-        min-height: 24px;
-        min-width: 10px;
-    }
+.download .inner-wrapper form fieldset.contribute__options {
+  @extend .contribute__options;
+}
+
+.download .contribute button.contribute__submit {
+  @extend .contribute__submit;
 }
 
 
@@ -1012,10 +918,6 @@ html.opera-mini {
 
     .download-cloud-home .inline-icons li {
         margin-bottom: 20px;
-    }
-
-    body.contribute-to-ubuntu .price-equivalent img {
-        float: left;
     }
 
     #download-help li span,
