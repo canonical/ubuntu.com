@@ -52,10 +52,6 @@ forms.addSliders = function (numberElementsSelector, slidersClass) {
       )
     }
 
-    var numberElements = document.querySelectorAll(numberElementsSelector)
-    for (var elemIndex = 0; elemIndex < numberElements.length; elemIndex++) {
-      var numberElement = numberElements[elemIndex];
-      appendSlider(numberElement);
-    }
+    document.querySelectorAll(numberElementsSelector).forEach(appendSlider);
   }
 }
