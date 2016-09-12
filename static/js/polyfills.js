@@ -28,12 +28,10 @@ if (!Array.prototype.forEach) {
 /**
  * Add Array methods to NodeList
  */
-if (!NodeList.prototype.forEach) {
-  Object.getOwnPropertyNames(Array.prototype).forEach(
-    function (methodName) {
-      if(methodName !== "length") {
-        NodeList.prototype[methodName] = Array.prototype[methodName];
-      }
+Object.getOwnPropertyNames(Array.prototype).forEach(
+  function (methodName) {
+    if(!(methodName in NodeList.prototype)) {
+      NodeList.prototype[methodName] = Array.prototype[methodName];
     }
-  );
-}
+  }
+);
