@@ -135,13 +135,13 @@
     /**
      * Get the total amount of all the contribution items selected
      */
-    var calculateTotal = function (itemsSelector) {
+    var calculateTotal = function (itemValuesSelector) {
         var total = 0;
-        document.querySelectorAll(itemsSelector).forEach(
-            function(valueElement) {
-                total += parseInt(valueElement.value);
-            }
-        );
+        itemValues = document.querySelectorAll(itemValuesSelector);
+        for (var index = 0; index < itemValues.length; index++) {
+            var valueElement = itemValues[index];
+            total += parseInt(valueElement.value);
+        }
         return total;
     }
 
