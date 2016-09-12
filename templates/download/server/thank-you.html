@@ -71,13 +71,13 @@ var architecture = '{{ architecture }}';
 var mirrors = {{ mirror_list|safe }};
 
 if (version && architecture) {
-    // Report to Google Analytics
-    YUI().use('event-base', function (Y) {
-        Y.on('domready', function () {
-            dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Downloaded', 'eventLabel' : 'User downloaded Ubuntu (' + version + '-server-' + architecture + ')', 'eventValue' : undefined });
-        });
+    dataLayer.push({
+        'event': 'GAEvent',
+        'eventCategory': 'Download',
+        'eventAction': 'Downloaded',
+        'eventLabel': 'User downloaded Ubuntu (' + version + '-server-' + architecture + ')',
+        'eventValue': undefined
     });
-
     startDownload(mirrors, version, architecture, defaultLocation);
 }
 

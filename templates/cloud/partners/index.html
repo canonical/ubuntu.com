@@ -154,12 +154,12 @@
 {% endblock content %}
 
 {% block footer_extra %}
-  <script>
-      partnerLogoClouds = [{
-          'params': '?programme__name=Certified%20Public%20Cloud&programme__name=Charm%20Partner%20Programme&programme__name=OpenStack&featured=true',
-          'elementId':'#cloud-partners'
-      }];
-  </script>
   {% load versioned_static  %}
   <script src="{% versioned_static 'js/partners.js' %}"></script>
+  <script>
+    partners.loadPartnerClouds([{
+        'params': '?programme__name=Certified%20Public%20Cloud&programme__name=Charm%20Partner%20Programme&programme__name=OpenStack&featured=true',
+        'elementId':'#cloud-partners'
+    }]);
+  </script>
 {% endblock %}

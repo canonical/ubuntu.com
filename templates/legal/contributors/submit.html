@@ -3,35 +3,21 @@
 {% block meta_description %}Canonical Contribution Agreement for work to be included in selected open source software projects.{% endblock %}
 
 {% block head_extra %}
-<script type="text/javascript" src="//www.tfaforms.com/wForms/3.4/js/wforms.js"></script>
-<script type="text/javascript" src="//www.tfaforms.com/wForms/3.4/js/wforms_custom_validation.js"></script>
-<script type="text/javascript" src="//www.tfaforms.com/wForms/3.4/js/localization-en_GB.js"></script>
+<script type="text/javascript" src="https://www.tfaforms.com/wForms/3.4/js/wforms.js"></script>
+<script type="text/javascript" src="https://www.tfaforms.com/wForms/3.4/js/wforms_custom_validation.js"></script>
+<script type="text/javascript" src="https://www.tfaforms.com/wForms/3.4/js/localization-en_GB.js"></script>
 
-<script type="text/javascript" src="//www.tfaforms.com/wForms/3.4/js/wforms_prefill.js"></script>
+<script type="text/javascript" src="https://www.tfaforms.com/wForms/3.4/js/wforms_prefill.js"></script>
 <link href="//www.tfaforms.com/css/form.css" rel="stylesheet" type="text/css" />
 
 
 
 <script>
-/* make jslint happy */
-/*global base2, document, wFORMS, $, $$ */
-
-
 // Use this in a FormAssembly code block to add a string to a field's class (that's how standard validations work)
 // this allows form developer to add validations not permitted by FormAssembly's UI.
 
-function custom_validation(id, class_info)
-{
-	base2.DOM.Element.addEventListener(document,'DOMContentLoaded',
-	function()
-	{
-		try {document.getElementById(id).className += " " + class_info;}
-		catch(err)
-		{
-			throw new Error("Custom validation could not be applied to field " + id);
-		}
-	},
-	false);
+function custom_validation(id, class_info) {
+	document.getElementById(id).classList.add(class_info);
 }
 
 // validate-length validates string does not exceed given number of chars
@@ -735,10 +721,21 @@ var lp_lookup_callback = {
 };
 
 var launchpad_id_lookup = function() {
-	Y.one('#tfa_LPid').on('blur', function (e) {
-	    Y.io("/lookup_launchpad_id/" + Y.one('#tfa_LPid').get('value'), lp_lookup_callback);
+	var tfaLPid = document.getElementById('tfa_LPid');
+	tfaLPid.addEventListener('blur', function(e) {
+	    httpGetAsync("/lookup_launchpad_id/" + tfaLPid.value, lp_lookup_callback);
 	});
 }();
+
+function httpGetAsync(theUrl, callback) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", theUrl, true);
+    xmlHttp.send(null);
+}
 
 </script>
 {% endblock content %}
