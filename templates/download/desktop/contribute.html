@@ -18,6 +18,9 @@
             <p>Tell us what is most important to you.</p>
             <noscript>
                 <p><strong>Contributions require JavaScript. Please enable JavaScript if you want to contribute.</strong></p>
+                {% if start_download %}
+                <p><a href="/download/desktop/thank-you/?version={{ version }}&amp;architecture={{ architecture }}">Take me to the download&nbsp;&rsaquo;</a></p>
+                {% endif %}
             </noscript>
         </div>
 
