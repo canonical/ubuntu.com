@@ -184,6 +184,11 @@
             }
         );
 
+        var lastItem = items[items.length - 1];
+        if (! matchingItem && totalAmount > lastItem['price']) {
+            matchingItem = lastItem;
+        }
+
         return matchingItem;
     }
 
