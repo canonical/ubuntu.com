@@ -57,13 +57,12 @@
 
 <!-- javascript -->
 <script src="{{ ASSET_SERVER_URL }}b0601acd-modernizr.2.7.1.js"></script>
-<script src="{{ ASSET_SERVER_URL }}2c8fd8c9-Imager.js"></script>
 
-{% comment %}<!-- the following has been added to allow things/iot ab testing -->{% endcomment %}
+{% comment %}<!-- the following has been added to allow things/iot ab testing -->
 <script src="https://www.google-analytics.com/cx/api.js?experiment=IbIACoOrTnG8eSnRY64nWQ"></script>
 <script>
   var chosenVariation = cxApi.chooseVariation();
-</script>
+</script> <!-- not currently testing... left for easy of readding-->{% endcomment %}
 
 {% block head_extra %}{% endblock %}
 
