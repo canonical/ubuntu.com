@@ -46,4 +46,3 @@ if("document"in self){if(!("classList"in document.createElement("_"))||document.
 /* String.prototype.startsWith polyfill, by Mathius Bynens, https://mathiasbynens.be/
  * https://github.com/mathiasbynens/String.prototype.startsWith */
 String.prototype.startsWith||!function(){"use strict";var t=function(){try{var t={},r=Object.defineProperty,e=r(t,t,t)&&r}catch(n){}return e}(),r={}.toString,e=function(t){if(null==this)throw TypeError();var e=String(this);if(t&&"[object RegExp]"==r.call(t))throw TypeError();var n=e.length,i=String(t),a=i.length,o=arguments.length>1?arguments[1]:void 0,h=o?Number(o):0;h!=h&&(h=0);var u=Math.min(Math.max(h,0),n);if(a+u>n)return!1;for(var g=-1;++g<a;)if(e.charCodeAt(u+g)!=i.charCodeAt(g))return!1;return!0};t?t(String.prototype,"startsWith",{value:e,configurable:!0,writable:!0}):String.prototype.startsWith=e}();
->>>>>>> Add polyfills for basic ECMAScript 5 features
