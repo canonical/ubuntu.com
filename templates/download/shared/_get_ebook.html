@@ -11,7 +11,7 @@
             <!-- MARKETO FORM -->
             <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
             <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
-            
+
             <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1460">
                 <fieldset style="margin-top: -1.7em">
                     <ul class="no-bullets">
@@ -35,6 +35,8 @@
                             <label for="Email" class="mktoLabel " >Email address:</label>
                             <input required  id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired" >
                         </li>
+
+                        {% include "shared/forms/_country.html" %}
 
                         <li  class="mktFormReq mktField">
                             <label for="Phone" class="mktoLabel " >Phone number:</label>
