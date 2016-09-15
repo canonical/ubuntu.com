@@ -89,7 +89,7 @@ class SearchView(UbuntuTemplateFinder):
     https://pages.apigee.com/web-api-design-ebook.html
 
     This gets results from Canonical's Google Search Appliance,
-    currently located at: tupilaq.internal (10.22.112.9)
+    currently located at: butlerov.internal (10.22.112.8)
 
     Developing
     ===
@@ -102,7 +102,7 @@ class SearchView(UbuntuTemplateFinder):
     Get SSH access to 10.55.60.86, which does have GSA access
     and then create a localhost tunnel:
 
-    ssh -f 10.55.60.86 -L 2000:tupilaq.internal:80 -N
+    ssh -f 10.55.60.86 -L 2000:butlerov.internal:80 -N
     '''
 
     def get_context_data(self, **kwargs):
@@ -118,10 +118,10 @@ class SearchView(UbuntuTemplateFinder):
         - offset: where to start results at (default: 0)
         """
 
-        # On live the GSA domain will be tupilaq.internal
+        # On live the GSA domain will be butlerov.internal
         # but on dev, we need to access GSA through localhost
         # (see GSASearchView docstring above)
-        gsa_domain = 'tupilaq.internal'
+        gsa_domain = 'butlerov.internal'
 
         if 'runserver' in sys.argv:
             gsa_domain = 'localhost:2000'
