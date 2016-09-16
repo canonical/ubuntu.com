@@ -72,14 +72,14 @@ forms.stateFormField = function() {
     switch(stateChange) {
       case 'US':
         formStateContainer.style.display = 'inline';
-        formStateLabel.innerHTML='State:';
+        formStateLabel.innerHTML = 'State:';
         formUSAOpt.style.display = 'inline';
         formStateSelect.selectedIndex = '-1';
         formCanadaOpt.style.display = 'none';
         break;
       case 'CA':
         formStateContainer.style.display = 'inline';
-        formStateLabel.innerHTML='Province:';
+        formStateLabel.innerHTML = 'Province:';
         formCanadaOpt.style.display = 'inline';
         formStateSelect.selectedIndex = '-1';
         formUSAOpt.style.display = 'none';
