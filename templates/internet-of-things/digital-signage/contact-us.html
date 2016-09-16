@@ -38,6 +38,7 @@
                         <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" />
                     </li>
                     {% include "shared/forms/_country.html" %}
+                    {% include "shared/forms/_state.html" %}
                 </ul>
             </fieldset>
 
@@ -92,7 +93,6 @@
                 onblur: false
             });
         </script>
-        <script  src="{{ ASSET_SERVER_URL }}f97fa297-stateCountry.js"></script>
 
     </div>
 </div>
