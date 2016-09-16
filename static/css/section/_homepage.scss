@@ -1629,6 +1629,15 @@ body.homepage-nextcloud-takeover {
       background-position: center bottom;
       color: $white;
       margin-top: 0;
+
+      .row-hero__heading {
+        margin-top: 20px;
+      }
+
+      .row-hero___image {
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
       
       @media only screen and (min-width : 768px) {
         background-image: url('#{$asset-server}56f66029-Nextbox+09.2016.desktop.background.png');
@@ -1636,6 +1645,10 @@ body.homepage-nextcloud-takeover {
 
         .row-hero__heading {
           margin-top: 60px;
+        }
+        
+        .row-hero___image {
+          margin-top: 50px;
         }
       }
 
@@ -1645,12 +1658,13 @@ body.homepage-nextcloud-takeover {
         .row-hero__heading {
           margin-top: 45px;
         }
+
+        .row-hero___image {
+          margin-top: 40px;
+        }
+        
       }
       
-      .row-hero___image {
-        margin-top: 40px;
-      }
-
       .button--primary {
         background-color: $white;
         color: $cool-grey;
