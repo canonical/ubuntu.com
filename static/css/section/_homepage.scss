@@ -1617,9 +1617,21 @@ body.homepage-linux-25th-takeover {
 
 // nextcloud takeover
 body.homepage-nextcloud-takeover {
+  header.banner {
+    border-bottom: 0;
+    margin-bottom: 0;
+  }
+
   #main-content {
     .row-hero {
+      background-image: url('#{$asset-server}0c05a721-Nextbox+09.2016.mobile.background.png');
+      background-size: cover;
+      background-position: center bottom;
+      color: $white;
+      margin-top: 0;
+      
       @media only screen and (min-width : 768px) {
+        background-image: url('#{$asset-server}56f66029-Nextbox+09.2016.desktop.background.png');
         min-height: 440px;
 
         .row-hero__heading {
@@ -1632,6 +1644,19 @@ body.homepage-nextcloud-takeover {
 
         .row-hero__heading {
           margin-top: 45px;
+        }
+      }
+      
+      .row-hero___image {
+        margin-top: 40px;
+      }
+
+      .button--primary {
+        background-color: $white;
+        color: $cool-grey;
+    
+        &:hover {
+          background-color: #f7f7f7;
         }
       }
     }
