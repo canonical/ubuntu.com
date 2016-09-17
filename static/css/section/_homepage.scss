@@ -552,9 +552,11 @@ body.homepage .row-featured {
   &::before {
     position: absolute;
     display: none;
+    
     @media only screen and (min-width : $breakpoint-medium) {
       display: block;
     }
+    
     left: -3000px;
     margin-top: -40px;
     content: "";
@@ -572,9 +574,11 @@ body.homepage .row-featured {
   &::after {
     position: absolute;
     display: none;
+    
     @media only screen and (min-width : $breakpoint-medium) {
       display: block;
     }
+    
     right: -3000px;
     margin-top: -40px;
     content: "";
