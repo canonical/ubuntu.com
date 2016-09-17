@@ -6,111 +6,125 @@
 {% block meta_keywords %}Features, Ubuntu, Core, snappy, internet, things, devices, lightweight, OS, operating system, Linux, open source, Canonical, snapcraft, update, secure, security, mobile, internet, connected, home, appliance{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
     {% include "templates/_nav_breadcrumb.html" with section_title="IoT" page_title="Features" %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero">
-  <div class="six-col">
-      <h1>Features</h1>
-      <p>Ubuntu Core can power devices of practically any type and size, with the security and extensibility of a full-scale OS.</p>
-      <ul class="six-col list-ticks--compact">
-        <li>Safe, reliable, transactional updates with tests and rollback</li>
-        <li>Applications confined by Canonical&rsquo;s AppArmor kernel security system</li>
-        <li>Amazing developer experience with Snapcraft to build from source</li>
-        <li>Easily extensible with frameworks</li>
-      </ul>
-  </div>
-</div>
-
-<div class="row row-grey no-border border-small">
-  <div class="twelve-col">
-    <h2 class="twelve-col">Setting the security standard</h2>
-  </div>
-  <ul class="no-bullets twelve-col equal-height--vertical-divider">
-    <li class="equal-height--vertical-divider__item four-col">
-      <div class="inline-small align-center">
-        <img src="{{ ASSET_SERVER_URL }}eb4f6183-picto-safety-orange.svg" width="50" alt="" />
-      </div>
-      <div class="no-margin-bottom">
-        <h3>Security built-in</h3>
-      </div>
-      <p class="clear">Critical infrastructure systems are common subjects for attacks, which is why all Ubuntu Core devices can be updated fast. And to ensure that apps can be installed safely, they are isolated using kernel containers, with human-friendly security profiles.</p>
-    </li>
-    <li class="equal-height--vertical-divider__item four-col">
-      <div class="inline-small align-center">
-        <img src="{{ ASSET_SERVER_URL }}423e9265-picto-upgrade-orange.svg" width="50" alt="" />
-      </div>
-      <div class="no-margin-bottom">
-        <h3>Transactional updates</h3>
-      </div>
-      <p class="clear">Snappy lets you update your servers faster. All data is backed up allowing for rollback if it fails &mdash; so your system is never in an incomplete state. It means you can deploy updates automatically, protecting your valuable data and apps.</p>
-    </li>
-    <li class="equal-height--vertical-divider__item four-col last-col">
-      <div class="inline-small align-center">
-        <img src="{{ ASSET_SERVER_URL }}c8cb5889-picto-edit-orange.svg" width="50" alt="" />
-      </div>
-      <div class="no-margin-bottom">
-        <h3>Signature authentication</h3>
-      </div>
-      <p class="clear">As well as isolating apps from each other (and the system itself), Ubuntu Core uses signatures to authenticate all code running on your servers and devices. If it&rsquo;s not the code you publish, it won&rsquo;t make it onto your devices. </p>
-    </li>
-  </ul>
-</div>
-
-<div class="row row-marketplace no-border border-small">
-  <div class="six-col for-small">
-      <img src="{{ ASSET_SERVER_URL }}d1f7b4c2-iot-features-led.jpg?q=60&amp;w=768" alt="" />
-  </div>
-  <div class="billboard__content five-col">
-    <h2>A marketplace for incredible apps</h2>
-    <p>The introduction of extensible devices such as hubs and gateways creates a market for apps from the global developer community. Ubuntu Core&rsquo;s app store enables developers to publish applications purposed for a whole host of diverse devices &mdash; and it even allows you to create your own app store for your device.</p>
-  </div>
-</div>
-
-<div class="row no-border no-padding-bottom">
-  <div class="seven-col">
-    <h2>Seamless connectivity to the cloud</h2>
-    <p>From testing and development to updates in the wild, the cloud is integral  to Ubuntu Core. Leading tech players are already throwing their weight behind the platform, with the likes of both Microsoft and Amazon using Ubuntu Core images on their public clouds. Images can be deployed on any OpenStack private cloud, too. </p>
-  </div>
-  <div class="five-col last-col">
-    <ul class="inline-logos inline-logos--large inline-logos--compact no-bullets no-margin">
-      <li class="inline-logos__item">
-        <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}25b3d138-201509-amazon_aws_4c_en.svg" alt="amazon" />
-      </li>
-      <li class="inline-logos__item">
-        <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}eed716e9-logo-openstack.svg" alt="OpenStack" />
-      </li>
-      <li class="inline-logos__item">
-        <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}2b5837e9-logo-microsoft-azure.svg" alt="Azure" />
-      </li>
-    </ul>
-  </div>
-</div>
-
-<div class="row strip-dark equal-height no-border">
-  <div class="six-col append-one equal-height__item">
-    <h2>It&rsquo;s supported on servers too</h2>
-    <p>The world&rsquo;s fastest Xeon server is supported by Ubuntu Core, alongside massively multi-core ARM CPUs such as Thunder from Cavium. Which means it&rsquo;s just as effective in the datacentre as it is on any connected device. From its vast range of supported hardware platforms to the practically infinite extensibility of Snapcraft with frameworks, snappy Ubuntu Core enables you to create the future &mdash; safe in the knowledge that there is no more secure or cost-effective OS for the Internet of Things.</p>
-  </div>
-  <div class="five-col last-col equal-height__item equal-height__align-vertically">
-    <img src="{{ ASSET_SERVER_URL }}40f9b5c2-servers.svg" alt="" />
-  </div>
-</div>
-
-<div class="row row-cta no-border">
-  <div class="three-col align-center not-for-small">
-    <img src="{{ ASSET_SERVER_URL }}e35b1108-picto-corepower-orange.svg" width="160" alt="" />
-  </div>
-  <div class="eight-col last-col">
-    <div class="inline-small one-col align-center for-small">
-      <img src="{{ ASSET_SERVER_URL }}e35b1108-picto-corepower-orange.svg" width="38" alt="" />
+<section class="row row-hero">
+    <div class="strip-inner-wrapper">
+        <div class="six-col">
+            <h1>Features</h1>
+            <p>Ubuntu Core can power devices of practically any type and size, with the security and extensibility of a full-scale OS.</p>
+        <ul class="six-col list-ticks--compact">
+            <li>Safe, reliable, transactional updates with tests and rollback</li>
+            <li>Applications confined by Canonical&rsquo;s AppArmor kernel security system</li>
+            <li>Amazing developer experience with Snapcraft to build from source</li>
+            <li>Easily extensible with frameworks</li>
+          </ul>
+        </div>
     </div>
-    <h2>A platform for opportunity</h2>
-    <p class="clear">Ubuntu Core provides a production-ready platform for shipping, updating and selling your products, making it easier for customers to find and install your apps.</p>
-    <p><a href="http://partners.ubuntu.com/programmes/iot" class="external">Learn more about partnering with Ubuntu</a></p>
-  </div>
-</div>
+</section>
+
+<section class="row row-grey no-border border-small">
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col">
+            <h2 class="twelve-col">Setting the security standard</h2>
+        </div>
+        <ul class="no-bullets twelve-col equal-height--vertical-divider">
+            <li class="equal-height--vertical-divider__item four-col">
+                <div class="inline-small one-col align-center">
+                    <img src="{{ ASSET_SERVER_URL }}eb4f6183-picto-safety-orange.svg" width="50" alt="" />
+                </div>
+                <div class="three-col last-col no-margin-bottom">
+                    <h3>Security built-in</h3>
+                </div>
+                <p class="clear">Critical infrastructure systems are common subjects for attacks, which is why all Ubuntu Core devices can be updated fast. And to ensure that apps can be installed safely, they are isolated using kernel containers, with human-friendly security profiles.</p>
+            </li>
+            <li class="equal-height--vertical-divider__item four-col">
+                <div class="inline-small one-col align-center">
+                    <img src="{{ ASSET_SERVER_URL }}423e9265-picto-upgrade-orange.svg" width="50" alt="" />
+                </div>
+                <div class="three-col last-col no-margin-bottom">
+                    <h3>Transactional updates</h3>
+                </div>
+                    <p class="clear">Snappy lets you update your servers faster. All data is backed up allowing for rollback if it fails &mdash; so your system is never in an incomplete state. It means you can deploy updates automatically, protecting your valuable data and apps.</p>
+            </li>
+            <li class="equal-height--vertical-divider__item four-col last-col">
+                <div class="inline-small one-col align-center">
+                    <img src="{{ ASSET_SERVER_URL }}c8cb5889-picto-edit-orange.svg" width="50" alt="" />
+                </div>
+                <div class="three-col last-col no-margin-bottom">
+                    <h3>Signature authentication</h3>
+                </div>
+                    <p class="clear">As well as isolating apps from each other (and the system itself), Ubuntu Core uses signatures to authenticate all code running on your servers and devices. If it&rsquo;s not the code you publish, it won&rsquo;t make it onto your devices. </p>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section class="row row-marketplace no-border border-small">
+    <div class="strip-inner-wrapper">
+        <div class="six-col for-small">
+            <img src="{{ ASSET_SERVER_URL }}d1f7b4c2-iot-features-led.jpg?q=60&amp;w=768" alt="" />
+        </div>
+        <div class="billboard__content five-col">
+            <h2>A marketplace for incredible apps</h2>
+            <p>The introduction of extensible devices such as hubs and gateways creates a market for apps from the global developer community. Ubuntu Core&rsquo;s app store enables developers to publish applications purposed for a whole host of diverse devices &mdash; and it even allows you to create your own app store for your device.</p>
+        </div>
+    </div>
+</section>
+
+<section class="row no-border no-padding-bottom">
+    <div class="strip-inner-wrapper">
+        <div class="seven-col">
+            <h2>Seamless connectivity to the cloud</h2>
+            <p>From testing and development to updates in the wild, the cloud is integral  to Ubuntu Core. Leading tech players are already throwing their weight behind the platform, with the likes of both Microsoft and Amazon using Ubuntu Core images on their public clouds. Images can be deployed on any OpenStack private cloud, too. </p>
+        </div>
+        <div class="five-col last-col">
+            <ul class="inline-logos inline-logos--large inline-logos--compact no-bullets no-margin">
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}25b3d138-201509-amazon_aws_4c_en.svg" alt="amazon" />
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}eed716e9-logo-openstack.svg" alt="OpenStack" />
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}2b5837e9-logo-microsoft-azure.svg" alt="Azure" />
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="row strip-dark equal-height no-border">
+    <div class="strip-inner-wrapper">
+        <div class="six-col append-one equal-height__item">
+            <h2>It&rsquo;s supported on servers too</h2>
+            <p>The world&rsquo;s fastest Xeon server is supported by Ubuntu Core, alongside massively multi-core ARM CPUs such as Thunder from Cavium. Which means it&rsquo;s just as effective in the datacentre as it is on any connected device. From its vast range of supported hardware platforms to the practically infinite extensibility of Snapcraft with frameworks, snappy Ubuntu Core enables you to create the future &mdash; safe in the knowledge that there is no more secure or cost-effective OS for the Internet of Things.</p>
+        </div>
+        <div class="five-col last-col equal-height__item equal-height__align-vertically">
+            <img src="{{ ASSET_SERVER_URL }}40f9b5c2-servers.svg" alt="" />
+        </div>
+    </div>
+</section>
+
+<section class="row row-cta no-border">
+    <div class="strip-inner-wrapper">
+        <div class="three-col align-center not-for-small">
+            <img src="{{ ASSET_SERVER_URL }}e35b1108-picto-corepower-orange.svg" width="160" alt="" />
+        </div>
+        <div class="eight-col last-col">
+            <div class="inline-small one-col align-center for-small">
+                <img src="{{ ASSET_SERVER_URL }}e35b1108-picto-corepower-orange.svg" width="38" alt="" />
+            </div>
+            <h2>A platform for opportunity</h2>
+            <p class="clear">Ubuntu Core provides a production-ready platform for shipping, updating and selling your products, making it easier for customers to find and install your apps.</p>
+            <p><a href="http://partners.ubuntu.com/programmes/iot" class="external">Learn more about partnering with Ubuntu</a></p>
+        </div>
+    </div>
+</section>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_devices_newsletter_signup" third_item="_iot_further_reading" %}
 

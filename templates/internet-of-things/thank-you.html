@@ -3,22 +3,25 @@
 {% block title %}Thank you } Ubuntu for the Internet of Things{% endblock %}
 
 {% block second_level_nav_items %}
-    {% include "templates/_nav_breadcrumb.html" with section_title="IoT" subsection_title="Contact us" page_title="Thank you"  %}
+<div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="IoT" subsection_title="Contact us" page_title="Thank you" %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row no-border equal-height">
-    <div class="thank-you eight-col equal-height__item">
-        <h1>Thank you for enquiring about Ubuntu for the Internet of Things</h1>
-        <p class="intro">A member of our team will be in touch within one working day</p>
+<section class="row no-border equal-height">
+    <div class="strip-inner-wrapper">
+        <div class="thank-you eight-col equal-height__item">
+            <h1>Thank you for enquiring about Ubuntu for the Internet of Things</h1>
+            <p class="intro">A member of our team will be in touch within one working day</p>
+        </div>
+        <div class="four-col last-col equal-height__item equal-height__align-vertically">
+            <img src="{{ ASSET_SERVER_URL }}52d53696-picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
+        </div>
     </div>
-    <div class="four-col last-col equal-height__item equal-height__align-vertically">
-        <img src="{{ ASSET_SERVER_URL }}52d53696-picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
-    </div>
-</div>
+</section>
 
 {% include "shared/_thank_you_footer.html" %}
-
 
 {% endblock content %}
 {% block footer_extra %}

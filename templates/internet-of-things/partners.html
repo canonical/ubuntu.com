@@ -7,153 +7,163 @@
 {% block meta_keywords %}Features, Ubuntu, Core, snappy, internet, things, devices, lightweight, OS, operating system, Linux, open source, Canonical, snapcraft, update, secure, security, mobile, internet, connected, home, appliance, developer, ISV, OEM, partner, industry, robots, automation, router, gateway{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
     {% include "templates/_nav_breadcrumb.html" with section_title="IoT" page_title="For partners" %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero no-border border-small">
-  <div class="six-col for-small">
-      <img src="{{ ASSET_SERVER_URL }}da0d4008-iot-partners-hero-house.jpg?q=60&amp;w=768" alt="" />
-  </div>
-  <div class="eight-col">
-      <h1>For partners</h1>
-      <p>Snappy Ubuntu Core is a secure, stable and easily updated OS for any internet-enabled device, from drones and industrial gateways to intelligent heating, lighting and security systems.</p>
-      <div class="four-col no-margin bottom">
-        <ul class="list-ticks--compact">
-          <li>Enterprise-grade security model</li>
-          <li>Reliable and future-proof</li>
-          <li>Lower support costs with transactional updates</li>
-          <li>Tools to manage your IoT deployments</li>
-        </ul>
-        <p><a href="/internet-of-things/contact-us" class="button--primary">Get in touch</a></p>
-      </div>
-  </div>
-</div>
-
-<div class="row no-border">
-  <div class="eight-col">
-    <h2>Next-generation networking</h2>
-    <p>The newest switches and gateways have the power to run Snappy Ubuntu Core and on top of it, snappy networking applications. That&rsquo;s why the OS can now be installed as a development Linux kernel for both whitebox and OCP switch designs. As a result, ODMs, Network Operating System vendors and whitebox resellers can all offer products running Ubuntu &mdash; in many cases, the same OS their customers are running on their servers and OpenStack clouds.</p>
-  </div>
-  <div class="four-col last-col align-center not-for-small">
-    <img src="{{ ASSET_SERVER_URL }}bec97851-picto-dashboard-warmgrey.svg" width="220" alt="" />
-  </div>
-</div>
-
-<div class="row strip strip-dark no-border">
- <div class="ten-col prepend-one">
-   <blockquote class="pull-quote"><p><span>&ldquo;</span>[Ubuntu Core] will enable Industrial Internet Consortium members to more easily build secure distributed systems for the industrial Internet of Things.<span>&rdquo;</span>
-   </p>
-   <p><cite>Richard Soley, Executive Director of the Industrial Internet Consortium</cite></p></blockquote>
- </div>
-</div>
-
-<div class="row">
-  <div class="twelve-col equal-height">
-    <div class="nine-col">
-      <h2>Enterprise-grade, industry hardened</h2>
-      <p>Ubuntu's widespread deployment in enterprise datacentres sets the stage for its entry to industrial control and management systems.</p>
-      <p>The world&rsquo;s fastest Xeon server, alongside massively multi-core ARM CPUs such as Thunder from Cavium, are all equally well supported by Snappy Ubuntu Core. From high-end server appliances that power the next generation of switches and routers, to hyperscale container-oriented infrastructure and rack-centric transcoding engines, Snappy Ubuntu Core supports the widest range of server-class silicon for appliance designers and developers &mdash; and it&rsquo;s widely accepted in enterprise datacentres too.</p>
+<section class="row row-hero no-border border-small">
+    <div class="strip-inner-wrapper">
+        <div class="six-col for-small">
+            <img src="{{ ASSET_SERVER_URL }}da0d4008-iot-partners-hero-house.jpg?q=60&amp;w=768" alt="" />
+        </div>
+        <div class="eight-col">
+            <h1>For partners</h1>
+            <p>Snappy Ubuntu Core is a secure, stable and easily updated OS for any internet-enabled device, from drones and industrial gateways to intelligent heating, lighting and security systems.</p>
+            <div class="four-col no-margin bottom">
+                <ul class="list-ticks--compact">
+                    <li>Enterprise-grade security model</li>
+                    <li>Reliable and future-proof</li>
+                    <li>Lower support costs with transactional updates</li>
+                    <li>Tools to manage your IoT deployments</li>
+                </ul>
+                <p><a href="/internet-of-things/contact-us" class="button--primary">Get in touch</a></p>
+            </div>
+        </div>
     </div>
-  </div>
+</section>
 
-  <div class="twelve-col">
-      <h2 class="muted-heading">A growing list of partners</h2>
-      <div class="twelve-col">
-        <ul id="iot-partners" class="inline-logos inline-logos--large no-bullets no-margin dynamic-logos">
-          {% get_json_feed "http://partners.ubuntu.com/partners.json?programme__name=Internet%20of%20Things" limit=10 as iot_partners %}
-          {% for partner in iot_partners %}
-            <li class="inline-logos__item">
-              <img class="inline-logos__image" src="{{ partner.logo }}" alt="{{ partner.name }}" />
+<section class="row no-border">
+    <div class="strip-inner-wrapper">
+        <div class="eight-col">
+            <h2>Next-generation networking</h2>
+            <p>The newest switches and gateways have the power to run Snappy Ubuntu Core and on top of it, snappy networking applications. That&rsquo;s why the OS can now be installed as a development Linux kernel for both whitebox and OCP switch designs. As a result, ODMs, Network Operating System vendors and whitebox resellers can all offer products running Ubuntu &mdash; in many cases, the same OS their customers are running on their servers and OpenStack clouds.</p>
+        </div>
+        <div class="four-col last-col align-center not-for-small">
+            <img src="{{ ASSET_SERVER_URL }}bec97851-picto-dashboard-warmgrey.svg" width="220" alt="" />
+        </div>
+    </div>
+</section>
+
+<section class="row strip strip-dark no-border">
+    <div class="strip-inner-wrapper">
+        <div class="ten-col prepend-one">
+            <blockquote class="pull-quote"><p><span>&ldquo;</span>[Ubuntu Core] will enable Industrial Internet Consortium members to more easily build secure distributed systems for the industrial Internet of Things.<span>&rdquo;</span></p>
+            <p><cite>Richard Soley, Executive Director of the Industrial Internet Consortium</cite></p></blockquote>
+        </div>
+    </div>
+</section>
+
+<section class="row">
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col equal-height">
+            <div class="nine-col">
+                <h2>Enterprise-grade, industry hardened</h2>
+                <p>Ubuntu's widespread deployment in enterprise datacentres sets the stage for its entry to industrial control and management systems.</p>
+                <p>The world&rsquo;s fastest Xeon server, alongside massively multi-core ARM CPUs such as Thunder from Cavium, are all equally well supported by Snappy Ubuntu Core. From high-end server appliances that power the next generation of switches and routers, to hyperscale container-oriented infrastructure and rack-centric transcoding engines, Snappy Ubuntu Core supports the widest range of server-class silicon for appliance designers and developers &mdash; and it&rsquo;s widely accepted in enterprise datacentres too.</p>
+            </div>
+        </div>
+
+        <div class="twelve-col">
+            <h2 class="muted-heading">A growing list of partners</h2>
+            <div class="twelve-col">
+                <ul id="iot-partners" class="inline-logos inline-logos--large no-bullets no-margin dynamic-logos"></ul>
+            </div>
+            <p class="align-center"><a href="http://partners.ubuntu.com/programmes/iot" class="external">See all our Internet of Things partners</a></p>
+        </div>
+    </div>
+</section>
+
+<section class="row row-case-studies row-grey">
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col">
+            <h2 class="twelve-col">What our partners are saying</h2>
+        </div>
+        <ul class="no-bullets twelve-col equal-height--vertical-divider">
+            <li class="equal-height--vertical-divider__item four-col">
+                <h3>Dell&rsquo;s Industrial Gateway</h3>
+                <blockquote class="pull-quote"><p><span>&ldquo;</span>Snappy Ubuntu Core&rsquo;s ability to automatically roll back to the last known working version of the OS provides developers with peace of mind.<span>&rdquo;</span></p>
+                <p><cite>Jason Shepherd, Director, IoT Strategy and Partnerships, Dell</cite></p></blockquote>
+                <p><a href="https://insights.ubuntu.com/2015/10/21/snappy-core-unlocks-iot-value-within-the-dell-edge-gateway-5000-series/" class="external">Read the <span class="accessibility-aid">'Dell&rsquo;s Industrial Gateway' </span>case study</a></p>
             </li>
-          {% endfor %}
+            <li class="equal-height--vertical-divider__item four-col">
+                <h3>ChillHub from GE</h3>
+                <blockquote class="pull-quote"><p><span>&ldquo;</span>FirstBuild&rsquo;s approach to open innovation makes it possible for the online community to help us conceive and design products that people want, and speed them to market.<span>&rdquo;</span></p>
+                <p><cite>Natarajan Venkatakrishnan, Director, GE FirstBuild and Partnerships, Dell</cite></p></blockquote>
+                <p><a href="https://insights.ubuntu.com/2015/05/11/iot-world-canonical-industry-leaders-drive-iot-commercialization/" class="external">Read the <span class="accessibility-aid">'GE&rsquo;s ChillHub' </span>case study</a></p>
+            </li>
+            <li class="equal-height--vertical-divider__item four-col last-col">
+                <h3>DJI Drone</h3>
+                <blockquote class="pull-quote"><p><span>&ldquo;</span>We are excited to see what applications our developer community will come up with for this new platform.<span>&rdquo;</span></p>
+                <p><cite>Michael Perry, DJI&rsquo;s Director of Strategic Partnerships.</cite></p></blockquote>
+                <p><a href="https://insights.ubuntu.com/2015/11/02/dji-launches-most-powerful-computer-for-drones-on-ubuntu/" class="external">Read the <span class="accessibility-aid">'DJI Drone' </span>case study</a></p>
+            </li>
         </ul>
-      </div>
-      <p class="align-center"><a href="http://partners.ubuntu.com/programmes/iot" class="external">See all our Internet of Things partners</a></p>
-  </div>
-</div>
+    </div>
+</section>
 
-<div class="row row-case-studies row-grey">
-    <div class="twelve-col">
-      <h2 class="twelve-col">What our partners are saying</h2>
+<section class="row row-supported-hardware strip-light">
+    <div class="strip-inner-wrapper">
+        <div class="seven-col apend-one">
+            <h2>Supported hardware</h2>
+            <p>Reducing the time between innovation and sales is a key advantage for Ubuntu based devices. Both ARMv7 and X86-64 are supported by Snappy Ubuntu Core. From Raspberry Pi to the Dell Edge 5000 Gateway, Ubuntu works across the widest range of developer boards, helping you create your application safe in the knowledge that you can select the right silicon closer to the point of manufacture.</p>
+        </div>
     </div>
-    <ul class="no-bullets twelve-col equal-height--vertical-divider">
-        <li class="equal-height--vertical-divider__item four-col">
-            <h3>Dell&rsquo;s Industrial Gateway</h3>
-            <blockquote class="pull-quote"><p><span>&ldquo;</span>Snappy Ubuntu Core&rsquo;s ability to automatically roll back to the last known working version of the OS provides developers with peace of mind.<span>&rdquo;</span></p>
-            <p><cite>Jason Shepherd, Director, IoT Strategy and Partnerships, Dell</cite></p></blockquote>
-            <p><a href="https://insights.ubuntu.com/2015/10/21/snappy-core-unlocks-iot-value-within-the-dell-edge-gateway-5000-series/" class="external">Read the <span class="accessibility-aid">'Dell&rsquo;s Industrial Gateway' </span>case study</a></p>
-        </li>
-        <li class="equal-height--vertical-divider__item four-col">
-            <h3>ChillHub from GE</h3>
-            <blockquote class="pull-quote"><p><span>&ldquo;</span>FirstBuild&rsquo;s approach to open innovation makes it possible for the online community to help us conceive and design products that people want, and speed them to market.<span>&rdquo;</span></p>
-            <p><cite>Natarajan Venkatakrishnan, Director, GE FirstBuild and Partnerships, Dell</cite></p></blockquote>
-            <p><a href="https://insights.ubuntu.com/2015/05/11/iot-world-canonical-industry-leaders-drive-iot-commercialization/" class="external">Read the <span class="accessibility-aid">'GE&rsquo;s ChillHub' </span>case study</a></p>
-        </li>
-        <li class="equal-height--vertical-divider__item four-col last-col">
-            <h3>DJI Drone</h3>
-            <blockquote class="pull-quote"><p><span>&ldquo;</span>We are excited to see what applications our developer community will come up with for this new platform.<span>&rdquo;</span></p>
-            <p><cite>Michael Perry, DJI&rsquo;s Director of Strategic Partnerships.</cite></p></blockquote>
-            <p><a href="https://insights.ubuntu.com/2015/11/02/dji-launches-most-powerful-computer-for-drones-on-ubuntu/" class="external">Read the <span class="accessibility-aid">'DJI Drone' </span>case study</a></p>
-        </li>
-    </ul>
-</div>
+</section>
 
-<div class="row row-supported-hardware">
-  <div class="seven-col apend-one">
-    <h2>Supported hardware</h2>
-    <p>Reducing the time between innovation and sales is a key advantage for Ubuntu based devices. Both ARMv7 and X86-64 are supported by Snappy Ubuntu Core. From Raspberry Pi to the Dell Edge 5000 Gateway, Ubuntu works across the widest range of developer boards, helping you create your application safe in the knowledge that you can select the right silicon closer to the point of manufacture.</p>
-  </div>
-</div>
+<section class="row row-grey">
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col">
+            <h2 class="twelve-col">Commercial information</h2>
+        </div>
+        <div class="twelve-col equal-height--vertical-divider">
+            <div class="equal-height--vertical-divider__item four-col">
+                <div class="inline-small one-col align-center">
+                    <img src="{{ ASSET_SERVER_URL }}60d9b81e-picto-canonical.svg" width="50" alt="" />
+                </div>
+                <div class="three-col last-col no-margin-bottom">
+                    <h3>Supported by Canonical</h3>
+                </div>
+                <p class="clear">Ubuntu Core is a free and open source operating system. There are no royalties associated with its usage. Commercial services can be provided by Canonical, however, for a per-unit service fee plus additional costs covering engineering, board certification, maintenance, quality assurance and third-party licensing.</p>
+            </div>
+            <div class="equal-height--vertical-divider__item four-col">
+                <div class="inline-small one-col align-center">
+                    <img src="{{ ASSET_SERVER_URL }}c74f59b7-picto-reducecosts-warmgrey.svg" width="50" alt="" />
+                </div>
+                <div class="three-col last-col no-margin-bottom">
+                    <h3>A complete solution</h3>
+                </div>
+                <p class="clear">Engagements cover component and system enablement as well as certification. Engagements are structured with baseline volume commitments, volume-based pricing for service fees and minimal recurrent engineering. Ubuntu Desktop is a complete solution for OEMs and ODMs.</p>
+            </div>
+            <div class="equal-height--vertical-divider__item four-col last-col">
+                <div class="inline-small one-col align-center">
+                    <img src="{{ ASSET_SERVER_URL }}9816a979-picto-support-darkaubergine.svg" width="50" alt="" />
+                </div>
+                <div class="three-col last-col no-margin-bottom">
+                    <h3>Ongoing support</h3>
+                </div>
+                <p class="clear">The ability to update your devices is central to your security and long-term competitiveness. Canonical takes care of all security and critical bug fixes to the base platform offering and provides the infrastructure to support your update management strategy. Ubuntu has a world-class track record maintaining a secure and stable operating system.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-<div class="row row-grey">
-  <div class="twelve-col">
-    <h2 class="twelve-col">Commercial information</h2>
-  </div>
-  <div class="twelve-col equal-height--vertical-divider">
-    <div class="equal-height--vertical-divider__item four-col">
-      <div class="inline-small align-center">
-        <img src="{{ ASSET_SERVER_URL }}60d9b81e-picto-canonical.svg" width="50" alt="" />
-      </div>
-      <div class="no-margin-bottom">
-        <h3>Supported by Canonical</h3>
-      </div>
-      <p class="clear">Ubuntu Core is a free and open source operating system. There are no royalties associated with its usage. Commercial services can be provided by Canonical, however, for a per-unit service fee plus additional costs covering engineering, board certification, maintenance, quality assurance and third-party licensing.</p>
+<section class="row row-cta no-border">
+    <div class="strip-inner-wrapper">
+        <div class="three-col align-center not-for-small">
+            <img src="{{ ASSET_SERVER_URL }}02297f92-picto-discussion-orange.svg" width="160" alt="" />
+        </div>
+        <div class="eight-col">
+            <div class="inline-small one-col align-center for-small">
+                <img src="{{ ASSET_SERVER_URL }}02297f92-picto-discussion-orange.svg" width="38" alt="" />
+            </div>
+            <h2>Partner with us</h2>
+            <p class="clear">Ubuntu Core provides a production-ready platform for shipping, updating and selling your products, making it easier for customers to find and install your apps.</p>
+            <p><a href="http://partners.ubuntu.com/programmes/iot" class="external">Learn more about partnering with Ubuntu </a></p>
+        </div>
     </div>
-    <div class="equal-height--vertical-divider__item four-col">
-      <div class="inline-small align-center">
-        <img src="{{ ASSET_SERVER_URL }}c74f59b7-picto-reducecosts-warmgrey.svg" width="50" alt="" />
-      </div>
-      <div class="no-margin-bottom">
-        <h3>A complete solution</h3>
-      </div>
-      <p class="clear">Engagements cover component and system enablement as well as certification. Engagements are structured with baseline volume commitments, volume-based pricing for service fees and minimal recurrent engineering. Ubuntu Desktop is a complete solution for OEMs and ODMs.</p>
-    </div>
-    <div class="equal-height--vertical-divider__item four-col last-col">
-      <div class="inline-small align-center">
-        <img src="{{ ASSET_SERVER_URL }}9816a979-picto-support-darkaubergine.svg" width="50" alt="" />
-      </div>
-      <div class="no-margin-bottom">
-        <h3>Ongoing support</h3>
-      </div>
-      <p class="clear">The ability to update your devices is central to your security and long-term competitiveness. Canonical takes care of all security and critical bug fixes to the base platform offering and provides the infrastructure to support your update management strategy. Ubuntu has a world-class track record maintaining a secure and stable operating system.</p>
-    </div>
-  </div>
-</div>
-
-<div class="row row-cta no-border">
-  <div class="three-col align-center not-for-small">
-    <img src="{{ ASSET_SERVER_URL }}02297f92-picto-discussion-orange.svg" width="160" alt="" />
-  </div>
-  <div class="eight-col">
-    <div class="inline-small one-col align-center for-small">
-      <img src="{{ ASSET_SERVER_URL }}02297f92-picto-discussion-orange.svg" width="38" alt="" />
-    </div>
-    <h2>Partner with us</h2>
-    <p class="clear">Ubuntu Core provides a production-ready platform for shipping, updating and selling your products, making it easier for customers to find and install your apps.</p>
-    <p><a href="http://partners.ubuntu.com/programmes/iot" class="external">Learn more about partnering with Ubuntu </a></p>
-  </div>
-</div>
+</section>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_devices_newsletter_signup" third_item="_iot_further_reading" %}
 
