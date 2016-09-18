@@ -159,71 +159,22 @@
 
     <div class="twelve-col equal-height">
         <div class="juju-bundle-card six-col">
-            <div class="juju-bundle-card__image-container">
-                <object wmode="transparent" width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/apache-core-batch-processing-20/diagram.svg"></object>
-                <a class="juju-bundle-card__link" href="https://jujucharms.com/apache-core-batch-processing/">
-                    <p class="juju-bundle-card__name">Apache MapReduce</p>
-                </a>
-            </div>
-            <ul class="juju-bundle-card__details-list no-bullets">
-                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
-            </ul>
+            <div class="juju-card" data-id="apache-core-batch-processing"></div>
         </div>
         <div class="juju-bundle-card six-col last-col">
-            <div class="juju-bundle-card__image-container">
-                <object wmode="transparent" width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/apache-hadoop-spark/diagram.svg"></object>
-                <a class="juju-bundle-card__link" href="https://jujucharms.com/apache-hadoop-spark/">
-                    <p class="juju-bundle-card__name">Apache Spark</p>
-                </a>
-            </div>
-            <ul class="juju-bundle-card__details-list no-bullets">
-                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
-            </ul>
+            <div class="juju-card" data-id="apache-hadoop-spark"></div>
         </div>
         <div class="juju-bundle-card six-col">
-            <div class="juju-bundle-card__image-container">
-                <object wmode="transparent" width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/openstack-base/diagram.svg"></object>
-                <a class="juju-bundle-card__link" href="https://jujucharms.com/openstack-base/">
-                    <p class="juju-bundle-card__name">OpenStack</p>
-                </a>
-            </div>
-            <ul class="juju-bundle-card__details-list no-bullets">
-                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
-            </ul>
+            <div class="juju-card" data-id="openstack-base"></div>
         </div>
         <div class="juju-bundle-card six-col last-col">
-            <div class="juju-bundle-card__image-container">
-                <object wmode="transparent" width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/wiki-scalable/diagram.svg"></object>
-                <a class="juju-bundle-card__link" href="https://jujucharms.com/wiki-scalable/">
-                    <p class="juju-bundle-card__name">Wiki-scalable</p>
-                </a>
-            </div>
-            <ul class="juju-bundle-card__details-list no-bullets">
-                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/jorge">jorge</a></li>
-            </ul>
+            <div class="juju-card" data-id="wiki-scalable"></div>
         </div>
         <div class="juju-bundle-card six-col">
-            <div class="juju-bundle-card__image-container">
-                <object wmode="transparent" width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/django/diagram.svg"></object>
-                <a class="juju-bundle-card__link" href="https://jujucharms.com/django/">
-                    <p class="juju-bundle-card__name">Django</p>
-                </a>
-            </div>
-            <ul class="juju-bundle-card__details-list no-bullets">
-                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
-            </ul>
+            <div class="juju-card" data-id="django"></div>
         </div>
         <div class="juju-bundle-card six-col last-col">
-            <div class="juju-bundle-card__image-container">
-                <object wmode="transparent" width="100%" class="juju-bundle-card__image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v4/bundle/web-infrastructure-in-a-box/diagram.svg"></object>
-                <a class="juju-bundle-card__link" href="https://jujucharms.com/web-infrastructure-in-a-box/">
-                    <p class="juju-bundle-card__name">Web infrastructure in a box</p>
-                </a>
-            </div>
-            <ul class="juju-bundle-card__details-list no-bullets">
-                <li class="juju-bundle-card__details-item">by <a href="https://jujucharms.com/u/charmers/">charmers</a></li>
-            </ul>
-        </div>
+            <div class="juju-card" data-id="web-infrastructure-in-a-box"></div>
     </div>
 
     <div class="twelve-col">
@@ -246,3 +197,7 @@
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_juju_charm_store" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
 
 {% endblock content %}
+
+{% block footer_extra %}
+    <script async src="https://assets.ubuntu.com/v1/juju-cards-v1.3.0.js"></script>
+{% endblock footer_extra %}
