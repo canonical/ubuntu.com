@@ -17,8 +17,7 @@
   font-weight: bold;
 }*/
 
-//*	@section cloud
-
+// patterns
 %newsevent__details-icon {
   background-position: 0 5px;
   background-repeat: no-repeat;
@@ -36,6 +35,7 @@
   }
 }
 
+//	@section cloud all pages
 .cloud {
 
   // XXX Ant (09.04.2016)
@@ -81,14 +81,83 @@
       }
     }
   }
+
+  .row-get-started {
+
+    .box {
+      min-height: 170px;
+
+      div {
+        border-bottom: 1px dotted $warm-grey;
+        margin-bottom: 15px;
+        min-height: 85px;
+      }
+    }
+
+    img {
+      display: block;
+      margin: 0 auto;
+      vertical-align: middle;
+    }
+
+    .logo-joyent,
+    .logo-gcp {
+      padding-top: 15px;
+    }
+
+    .logo-ibm {
+      padding-top: 12px;
+    }
+
+    .logo-hpcloud {
+      padding-top: 10px;
+    }
+
+    .logo-windowsazure {
+      padding-top: 7px;
+    }
+
+    .logo-softlayer {
+      padding-top: 23px;
+    }
+
+    a:hover p {
+      text-decoration: underline;
+    }
+  }
+
+  .ubuntu-pie {
+    margin: 7% auto;
+    max-width: 350px;
+
+    .other-label {
+      fill: $warm-grey;
+    }
+
+    //* Pie segments */
+    .ubuntu {
+      fill: $brand-color;
+    }
+
+    .other {
+      fill: transparent;
+    }
+
+    //* Labels */
+    svg tspan {
+      max-width: 0;
+      text-align: center;
+      text-transform: capitalize;
+    }
+
+    .ubuntu-label {
+      fill: $white;
+    }
+  }
 }
 
+// @section /cloud overview
 .cloud-home {
-
-  .row-hero .list-ubuntu {
-    position: relative;
-    z-index: 10;
-  }
 
   .row-maas {
     @media only screen and (min-width : $breakpoint-medium) {
@@ -101,36 +170,6 @@
       background-image: url('#{$asset-server}f58e0ebf-image-maas-screenshot.jpg?op=region&rect=0,0,450,600');
       background-position: right top;
       background-repeat: no-repeat;
-    }
-  }
-
-  .juju-charms-list {
-    &__link:link,
-    &__link:visited {
-      color: $cool-grey;
-      display: block;
-      height: 100%;
-      left: 0;
-      position: relative;
-      top: 0;
-      width: 100%;
-    }
-
-    &__image {
-      margin-bottom: 8px;
-      max-width: 60px;
-    }
-  }
-
-  .row-cloud-tools .note {
-    color: $warm-grey;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-  }
-
-  .row-services {
-    img {
-      margin-bottom: 20px;
     }
   }
 
@@ -193,187 +232,8 @@
   }
 }
 
-//* Used on multiple /cloud pages */
-.row-autopilot {
-  @media only screen and (min-width : $breakpoint-medium) {
-    background-image: url('#{$asset-server}6e179925-image-cloud-openstack-autopilot-screenshot.jpg?op=region&rect=0,0,300,600');
-    background-position: right bottom;
-    background-repeat: no-repeat;
-  }
-
-  @media only screen and (min-width : $breakpoint-large) {
-    background-image: url('#{$asset-server}6e179925-image-cloud-openstack-autopilot-screenshot.jpg?op=region&rect=0,0,450,800');
-    background-position: right top;
-    background-repeat: no-repeat;
-  }
-}
-
-.cloud .six-col .inline-items li {
-  display: inline;
-  float: left;
-  margin-right: 25px;
-}
-
-.cloud .six-col .inline-items li.last-item { margin-right: 0; }
-
-.nav-list-features ul {
-  margin-right: -$gutter-width;
-  position: relative;
-}
-
-.nav-list-features li {
-  display: inherit;
-  margin-right: 0;
-  margin-top: 26px;
-  text-align: right;
-}
-
-.nav-list-features li a:link,
-.nav-list-features li a:visited {
-  color: $cool-grey;
-  display: block;
-  padding-right: $gutter-width;
-}
-
-.nav-list-features li a:hover {
-  text-decoration: none;
-}
-
-.nav-list-features li a:after {
-  content: "";
-}
-
-.js .nav-list-features li a.active {
-  background: url('#{$asset-server}2c065280-feature-arrows.png') 100% 0 no-repeat;
-  font-weight: normal;
-  margin-right: -1px;
-}
-
-.js .nav-list-features li#nav-list-feature-private a.active,
-.js .nav-list-features li#nav-list-feature-virtualisation a.active {
-  background-position: right -18px;
-}
-
-.list-features-content li {
-  background-color: $light-grey;
-  border-radius: 4px;
-  box-shadow:inset 0 0 5px 1px rgba(0,0,0,0.1);
-  min-height: 255px;
-  padding: 30px 30px 100px 30px;
-  position: relative;
-}
-
-//* @subsection cloud > public-cloud */
-.public-cloud-home {
-  .row-hero {
-    background: url('#{$asset-server}b5a74160-pictograms-public-cloud-353x119.png') 574px 70px no-repeat;
-  }
-
-  .row-hero h2 {
-    padding: 0 480px 25px 0;
-  }
-
-  .row-why-public-cloud  {
-    background: $white url('#{$asset-server}7bb65fef-pictogram-public-cloud-cropped-235x351.png') right 50px no-repeat;
-  }
-}
-
-.box-cloud-contact-header h2 { margin-bottom: 10px; }
-
-.box-cloud-contact .box-cloud-contact-header {
-  border-bottom: 1px dotted $warm-grey;
-  float: left;
-  margin-bottom: 20px;
-  margin-right: 20px;
-  padding-bottom: 15px;
-
-  p {
-    color: $warm-grey;
-    font-size: 1.3125em;
-    line-height: 1.4;
-    margin: 0;
-    margin-bottom: 0;
-  }
-}
-
-.box-cloud-contact p.six-col {
-  margin: -5px 0 0 -50px;
-}
-
-
-.box-try-cloud-guest {
-  padding-bottom: 0;
-}
-
-.box-try-cloud-guest p {
-  border-bottom: 1px dotted $warm-grey;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-}
-
-.box-cloud-contact p a.link-cta-canonical {
-    float: left;
-}
-
-.cloud-public-cloud-strategy .row-hero {
-  background: $white url('#{$asset-server}d6cda277-pictogram-public-cloud-350x350.png') no-repeat scroll 105% 20px;
-}
-
-.cloud .packages {
-
-  h2 {
-    width: 45.4761%;
-  }
-
-  .price-annual  {
-    top: 242px;
-  }
-
-  .price-monthly {
-    top: 200px;
-  }
-}
-
-.cloud-cloud-management {
-  .row-hero {
-
-    .intro {
-      margin-bottom: 35px;
-    }
-
-    img {
-      margin-bottom: 20px;
-    }
-  }
-
-  .audience-enterprise {
-    margin-top: 18px;
-
-    .truncated {
-      display: inline;
-    }
-
-    .full {
-      display: none;
-    }
-  }
-}
-
-//* Special overrides for JS-enabled */
-.js .cloud-openstack-managed-cloud {
-
-  .slider-area p {
-      float: none;
-  }
-
-  .slider-container {
-    min-height: 24px;
-    min-width: 10px;
-  }
-}
-
-//* @subsection cloud > training */
-.cloud-training  {
+// @subsection cloud > training */
+.cloud-training {
 
   .course-details {
     margin-top: 3px;
@@ -394,41 +254,8 @@
   }
 }
 
-.cloud-build-a-cloud {
-
-  .openstack-open-cloud {
-    margin-top: 20px;
-  }
-
-  .start-today h2 {
-    margin-top: 10px;
-  }
-}
-
+// @subsection /cloud/public-cloud
 .cloud-public-cloud {
-
-  .certified-public-clouds {
-
-    .inline-icons{
-      margin-bottom: 0;
-
-      li {
-        margin: 20px 40px 20px 0;
-      }
-
-      li.last-item {
-        margin-right: 0;
-      }
-    }
-  }
-
-  .developers-favourite {
-
-    img {
-      margin-left: -10px;
-      margin-top: 10px;
-    }
-  }
 
   .row-juju-advantage {
 
@@ -442,6 +269,7 @@
   }
 }
 
+// @subsection /cloud/juju
 .cloud-juju {
 
   .row-hero {
@@ -453,17 +281,9 @@
       margin: 10px 0;
     }
   }
-
-  .row-one-stop-shop img {
-    margin-bottom: $gutter-width;
-    margin-left: -$gutter-width;
-  }
-
-  .row-join-the-fun h2 {
-    margin-top: 15px;
-  }
 }
 
+// @subsection /cloud/maas
 .cloud-maas {
 
   @media only screen and (min-width: $breakpoint-medium) {
@@ -489,159 +309,37 @@
   }
 }
 
-.no-svg, .opera-mini {
+// no-svg and opera-mini fixes for cloud/maas
+.no-svg,
+.opera-mini {
 
   .cloud-maas h1 {
     background-image: url("#{$asset-server}6574f6c8-image-picto-maas-40.png");
   }
 }
 
-.cloud .row-community { padding-bottom: 40px !important; }
-
-.cloud-labs {
-  .box {
-    margin-bottom: $gutter-width;
-  }
-}
-
-.cloud-ecosystem {
-  .partner-logo {
-    margin: 10px 0 20px;
-  }
-}
-
-//* cloud helper classes */
-.offer {
-  color: $warm-grey;
-  font-size: .875em;
-  letter-spacing: 1px;
-  position: relative;
-  text-transform: uppercase;
-}
-
-.tight-section {
-  padding-bottom: 0;
-  padding-top: 0;
-
-  a {
-    display: block;
-    margin-bottom: 40px;
-  }
-
-  .ubuntu-column a {
-    margin-bottom: 0;
-  }
-}
-
-//* ubuntu-openstack-interoperability-lab */
-.cloud-ecosystem-ubuntu-openstack-interoperability-lab {
-
-  li.box {
-    margin-right: 20px;
-    margin-bottom: 20px;
-    padding: 20px 10px 14px;
-    text-align: center;
-    width: 63px;
-  }
-
-  #main-content .row-get-involved {
-    overflow: hidden;
-
-    span img {
-      margin: initial;
-      margin-bottom: 20px;
-      margin-left: -10px;
-    }
-  }
-}
-
-//* BootStack /cloud/bootstack
-.row {
-
-  &--paas_list__item {
-    float: left;
-    margin-top: 10px;
-    width: 40%;
-  }
-
-  &--paas_list__item:first-child {
-    padding-top: 30px;
-    position: relative;
-
-    img {
-      bottom: 0;
-    }
-  }
-}
-
+// @subsection /cloud/managed-cloud
 .cloud-openstack-managed-cloud {
+
   .video-container {
     padding-bottom: 53.25%;
   }
+}
 
-  .row--video {
-    min-height: 212px;
-    padding: 0;
+//* Special overrides for JS-enabled  on /cloud/openstack/managed-cloud
+.js .cloud-openstack-managed-cloud {
 
-    .show-video {
-      background: url('#{$asset-server}9f0ed0db-video-bg.png');
-      background-position: 50% 50%;
-      background-repeat: no-repeat;
-      display: block;
-      min-height: 212px;
-      overflow: hidden;
-      text-indent: -999em;
-      width: 100%;
-    }
+  .slider-area p {
+      float: none;
+  }
 
-    &.show {
-      h2,
-      .show-video,
-      .video-link {
-        background: $cool-grey;
-        left: -999em;
-        position: absolute;
-      }
-    }
-
-    iframe {
-      float: left;
-      width: 100%;
-    }
-
-    h2 {
-      color: $white;
-      margin-left: 40px;
-      margin-top: -.65em; // half the line height - if one line
-      position: absolute;
-      top: 60px;
-      width: 50%;
-      z-index: 999;
-    }
+  .slider-container {
+    min-height: 24px;
+    min-width: 10px;
   }
 }
 
-.cloud-ubuntu-openstack-reference-architecture {
-
-  .for-small {
-    margin-right: 5px;
-    vertical-align: middle;
-  }
-
-  .juju-and-maas {
-
-    .two-col {
-      width: 46.52777%;
-      margin-right: 6.94444%;
-    }
-
-    .two-col.last-col {
-      margin-right: 0;
-    }
-  }
-}
-
-//*  Small cloud/storage - XXX this is a candidate to raise up a level */
+//  @subsection cloud/storage - XXX this is a candidate to raise up a level */
 .cloud-storage {
 
   .equal-height--vertical-divider .equal-height--vertical-divider__item {
@@ -651,122 +349,71 @@
   .twelve-col .equal-height--vertical-divider {
     margin-bottom: 0;
   }
-}
 
-//* Medium / Tablet viewport
-
-@media only screen and (min-width : $breakpoint-medium) {
-  .cloud-storage {
-    .storage-options {
+  .storage-options {
+    @media only screen and (min-width : $breakpoint-medium) {
       border-bottom: 1px dotted $warm-grey;
     }
+  }
 
-    .hero-image {
+  .hero-image {
+    @media only screen and (min-width : $breakpoint-medium) {
       margin-top: -60px;
     }
   }
+}
 
-  .cloud-ubuntu-openstack {
+// @subsection /cloud/training
+.cloud-training  {
 
-    .list-step {
+  .row-hero {
 
-      &::before {
-        background: $white url('#{$asset-server}fbb5ad68-image-list-stroke.png') repeat-y 53% top;
-        content: ' ';
-        height: 100%;
-        left: -1px;
-        position: absolute;
-        top: 0;
-        width: 2px;
-        z-index: 2;
-      }
-
-      .last-step {
-        display: inline-block;
-        float: left;
-        position: relative;
-        width: 100%;
-      }
-
-      .last-step::after {
-        background: $white;
-        content: ' ';
-        height: 100%;
-        left: -1px;
-        position: absolute;
-        top: 0;
-        width: 2px;
-        z-index: 2;
-      }
-    }
-  }
-
-  .cloud-training  {
-
-    .training-list li:first-child {
-      border-bottom: 1px dotted $warm-grey;
-      display: block;
-      float: left;
-      margin-bottom: 35px;
-      padding-bottom: 20px;
-    }
-
-    .training-list .no-border:first-child  {
-      border: 0;
-    }
-
-    .training-list li:first-child li {
-      border-bottom: 0;
-      float: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    .row-hero {
+    @media only screen and (min-width : $breakpoint-medium) {
       min-height: 343px;
     }
   }
 
-  .row--training-image {
+  .row--training__image {
     position: absolute;
-    right: -20px;
-    top: -61px;
-  }
 
-  .cloud-openstack-managed-cloud {
+    @media only screen and (min-width : $breakpoint-medium) {
+      right: -20px;
+      top: -84px;
+    }
 
-    .row--video {
-      border-bottom: 1px dotted $warm-grey;
-      border-top: 1px dotted $warm-grey;
-      min-height: 432px;
-      padding: 0;
-
-      &.show {
-        border-color: transparent;
-      }
-
-      .show-video {
-        background-size: auto auto;
-        display: block;
-        min-height: 432px;
-        overflow: hidden;
-        text-indent: -999em;
-        width: 100%;
-      }
-
-      h2 {
-        color: $cool-grey;
-        margin-left: 40px;
-        margin-top: -0.65em; // half the line height - if one line
-        position: absolute;
-        top: 60px;
-        width: 60%;
-        z-index: 999;
-      }
+    @media only screen and (min-width : $breakpoint-large) {
+      right: -40px;
+      top: -121px;
     }
   }
 
-  .cloud-partners .row-hero {
+  .training-list {
+
+    li {
+      border-bottom: 0;
+      float: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+
+      &:first-child {
+        border-bottom: 1px dotted $warm-grey;
+        display: block;
+        float: left;
+        margin-bottom: 35px;
+        padding-bottom: 20px;
+      }
+    }
+
+    .no-border:first-child {
+      border: 0;
+    }
+  }
+}
+
+// @subsection /cloud/partners
+.cloud-partners {
+
+  .row-hero {
     overflow: hidden;
     min-height: 380px;
 
@@ -813,584 +460,84 @@
       margin-top: 17%;
       position: relative;
       z-index: 3;
-    }
 
-    .cloud-row-hero-image:after {
-      background: $cool-grey;
-      content: ' ';
-      display: block;
-      height: 152px;
-      left: 0;
-      position: absolute;
-      top: 0;
-      width: 152px;
-      z-index: 4;
-    }
-  }
-
-  .cloud-home {
-    #main-content .row-hero {
-
-      .list-ubuntu--compact {
-        position: relative;
-        z-index: 10;
-      }
-
-      .products-hero-container {
-        background: url('#{$asset-server}79729d72-products-hero-background.png') no-repeat;
-        height: 550px;
-        position: absolute;
-        right: 60px;
-        top: -20px;
-        width: 600px;
-        z-index: -100;
-      }
-
-      .cloud-tools-list span,
-      .cloud-tools-list a {
-        animation: scaleInPop 0.2s forwards, fadeIn 0.2s linear forwards;
-          -moz-animation: scaleInPop 0.2s forwards, fadeIn 0.2s linear forwards;
-          -webkit-animation: scaleInPop 0.2s forwards, fadeIn 0.2s linear forwards;
-        background: url('#{$asset-server}73006c5b-products-hero-phone.svg') no-repeat;
-        background-size: 66px 66px;
-        height: 66px;
-        opacity: 0;
-        position: absolute;
-        text-indent: -999em;
-        width: 66px;
-
-        &.item-line {
-          animation: fadeIn 0.3s linear forwards;
-            -moz-animation: fadeIn 0.3s linear forwards;
-            -webkit-animation: fadeIn 0.3s linear forwards;
-          content: ' ';
-          display: block;
-          position: absolute;
-        }
-
-        &.item-one {
-          animation-delay: 1.6s;
-            -moz-animation-delay: 1.6s;
-            -webkit-animation-delay: 1.6s;
-          background-image: url("#{$asset-server}a7916513-picto-openstack.svg");
-          left: 357px;
-          top: 55px;
-        }
-
-        &.item-one-line,
-        &.item-four-line {
-          animation-delay: 1.85s;
-            -moz-animation-delay: 1.85s;
-            -webkit-animation-delay: 1.85s;
-          background: url('#{$asset-server}ec446611-partners-hero-line-vertical.png');
-          height: 52px;
-          left: 387px;
-          top: 137px;
-          width: 2px;
-        }
-
-        &.item-two {
-          animation-delay: 1.85s;
-            -moz-animation-delay: 1.85s;
-            -webkit-animation-delay: 1.85s;
-          background-image: url("#{$asset-server}999949f8-picto-startfirst-midaubergine.svg");
-          left: 484px;
-          top: 108px;
-        }
-
-        &.item-two-line,
-        &.item-five-line {
-          animation-delay: 2s;
-            -moz-animation-delay: 2s;
-            -webkit-animation-delay: 2s;
-          background: url('#{$asset-server}4fc1680b-partners-hero-line-diagonal.png');
-          height: 38px;
-          left: 445px;
-          top: 175px;
-          width: 38px;
-        }
-
-        &.item-three {
-          animation-delay: 2s;
-            -moz-animation-delay: 2s;
-            -webkit-animation-delay: 2s;
-          background-image: url("#{$asset-server}60bd6cf1-picto-juju.svg");
-          left: 547px;
-          top: 245px;
-        }
-
-        &.item-three-line,
-        &.item-six-line {
-          animation-delay: 2.15s;
-            -moz-animation-delay: 2.15s;
-            -webkit-animation-delay: 2.15s;
-          background: url('#{$asset-server}d505cff1-partners-hero-line-horizontal.png');
-          height: 2px;
-          left: 469px;
-          top: 277px;
-          width: 52px;
-        }
-
-        &.item-four {
-          animation-delay: 2.15s;
-            -moz-animation-delay: 2.15s;
-            -webkit-animation-delay: 2.15s;
-          background-image: url("#{$asset-server}261ad7cb-picto-maas.svg");
-          left: 367px;
-          top: 425px;
-        }
-
-        &.item-four-line {
-          animation-delay: 2.3s;
-            -moz-animation-delay: 2.3s;
-            -webkit-animation-delay: 2.3s;
-          left: 396px;
-          top: 347px;
-        }
-
-        &.item-five {
-          animation-delay: 2.3s;
-            -moz-animation-delay: 2.3s;
-            -webkit-animation-delay: 2.3s;
-          background-image: url("#{$asset-server}50c0306d-image-picto-landscape.svg");
-          left: 226px;
-          top: 372px;
-        }
-
-        &.item-five-line {
-          animation-delay: 2.45s;
-            -moz-animation-delay: 2.45s;
-            -webkit-animation-delay: 2.45s;
-          left: 301px;
-          top: 328px;
-        }
-
-        &.item-six {
-          animation-delay: 2.45s;
-            -moz-animation-delay: 2.45s;
-            -webkit-animation-delay: 2.45s;
-          background-image: url("#{$asset-server}c986edab-picto-cloud-midaubergine-solid.svg");
-          left: 170px;
-          top: 245px;
-        }
-
-        &.item-six-line {
-          animation-delay: 2.6s;
-            -moz-animation-delay: 2.6s;
-            -webkit-animation-delay: 2.6s;
-          left: 259px;
-          top: 273px;
-        }
-
-        &.item-seven {
-          animation: scaleIn 0.3s forwards, fadeIn 0.6s linear forwards, rotateIn 3.0s ease-out forwards;
-            -moz-animation: scaleIn 0.3s forwards, fadeIn 0.6s linear forwards, rotateIn 3.0s ease-out forwards;
-            -webkit-animation: scaleIn 0.3s forwards, fadeIn 0.6s linear forwards, rotateIn 3.0s ease-out forwards;
-          animation-delay: 1s;
-            -moz-animation-delay: 1s;
-            -webkit-animation-delay: 1s;
-          background: url('#{$asset-server}c4f35e06-partners-hero-ubuntu.svg') no-repeat;
-          left: 320px;
-          top: 198px;
-          height: 140px;
-          width: 140px;
-        }
-      }
-
-    }
-
-    .row-build-your-cloud {
-      background: url('#{$asset-server}1ecacda4-image-background-jujugradient.svg') repeat-x left bottom;
-
-      .build-your-own {
-        border-top: 1px dotted $warm-grey;
-        margin-top: 20px;
-        padding-top: 40px;
-      }
-    }
-
-    .row-public-cloud {
-      ul li {
-        margin-top: 40px;
-        margin-bottom: 0;
-      }
-
-      ul li.first-item {
-        padding-left: 0;
-      }
-
-      ul li.last-item {
-        border: 0;
-        padding-right: 0;
-      }
-    }
-
-    .row-cloud-tools .landscape img {
-      margin-top: -26px;
-    }
-
-    .row-cloud-tools p.text-center {
-      min-height: 170px;
-    }
-
-    .row-cloud-jobs-promo .seven-col {
-      padding-top: 65px;
-    }
-
-    .row-your-cloud .seven-col {
-      padding-top: 27px;
-    }
-
-    .row-diverse-ecosystem .seven-col {
-      padding-top: 55px;
-    }
-
-    .row-services {
-      overflow: hidden;
-
-      img {
-        left: 50.9362%;
+      &::after {
+        background: $cool-grey;
+        content: ' ';
+        display: block;
+        height: 152px;
+        left: 0;
         position: absolute;
         top: 0;
-      }
-    }
-
-    .tight-section div div {
-      padding-bottom: 40px;
-    }
-  }
-
-  .no-svg, .opera-mini {
-
-    .cloud-home {
-
-      .row-build-your-cloud {
-        background: url('#{$asset-server}997ba25a-image-background-jujugradient.png') repeat-x left bottom;
-      }
-    }
-  }
-
-  .cloud-build-a-cloud {
-
-    .row-hero {
-
-      h2 {
-          font-size: 2.25em;
-        }
-    }
-
-    .ubuntu-column img {
-      display: block;
-    }
-
-    .row-management {
-      background: url('#{$asset-server}c527807d-screenshot-landscape-358x37.png') no-repeat 107% 0%;
-      min-height: 0;
-    }
-
-    .row-interoperability img {
-      margin-bottom: -60px;
-      position: relative;
-      top: -62px;
-    }
-  }
-
-  .cloud-cloud-management {
-
-    .row-hero {
-
-      .intro {
-        margin-bottom: 35px;
-      }
-
-      img {
-        margin-bottom: 60px;
-      }
-    }
-
-    .audience-enterprise {
-      margin-top: 18px;
-
-      .truncated {
-        display: none;
-      }
-
-      .full {
-        display: inline;
-      }
-    }
-  }
-
-  .cloud-tools-jumpstart {
-
-    .row-jumpstart-training img {
-      margin-top: 20px;
-    }
-
-    .row-orange-box img {
-      margin: 55px auto;
-    }
-  }
-
-  .row-step h2 {
-    height: auto;
-
-    span {
-      float: none;
-      margin-right: 0;
-    }
-  }
-
-  .cloud-juju {
-
-    .row-hero,
-    .row-get-started {
-      background: url('#{$asset-server}3c2a0155-media-wiki-ubuntu.png?w=800') no-repeat 444px 0;
-    }
-
-    .row-config-scale h2 {
-      margin-top: 30px;
-    }
-
-    .row-one-stop-shop img {
-      margin-bottom: $gutter-width * 2;
-      margin-left: -$gutter-width * 2;
-    }
-
-    .bundle-card__image-container {
-      height: 345px;
-    }
-  }
-
-  .cloud-public-cloud {
-
-    .row-juju-advantage {
-      overflow: hidden;
-
-      div {
-        min-height: 540px;
-      }
-
-      .last-col .pull-left-20 {
-        bottom: 0;
-        left: -16px;
-        position: absolute;
-      }
-
-      .pull-left-40 {
-        bottom: 40px;
-        left: -130px;
-        position: absolute;
-      }
-    }
-
-    .box-management {
-      position: relative;
-    }
-
-    .box-management img {
-      margin-left: -20px;
-      margin-top: 10px;
-      position: absolute;
-    }
-    .push-down {
-      margin-top: 50px;
-    }
-
-    .row-services {
-      min-height: 420px;
-      padding-bottom: 0;
-
-      img {
-        margin-top: 20px;
-        max-width: none;
-      }
-
-      div {
-        border-right: 1px dotted $warm-grey;
-        margin-bottom: 0;
-        padding-right: $gutter-width;
-      }
-
-      div.last-col {
-        border-right: 0;
-        padding-right: 0;
-      }
-    }
-  }
-
-  .cloud-contact-us {
-    .row-hero {
-      padding-bottom: 0;
-    }
-  }
-
-  .row-get-started {
-
-    .box {
-      min-height: 170px;
-    }
-
-    .box div {
-      border-bottom: 1px dotted $warm-grey;
-      margin-bottom: 15px;
-      min-height: 85px;
-    }
-
-    img {
-      display: block;
-      margin: 0 auto;
-      vertical-align: middle;
-    }
-
-    .logo-joyent,
-    .logo-gcp {
-      padding-top: 15px;
-    }
-
-    .logo-ibm {
-      padding-top: 12px;
-    }
-
-    .logo-hpcloud {
-      padding-top: 10px;
-    }
-
-    .logo-windowsazure {
-      padding-top: 7px;
-    }
-
-    .logo-softlayer {
-      padding-top: 23px;
-    }
-
-    a:hover p {
-      text-decoration: underline;
-    }
-  }
-
-
-  .cloud-ecosystem-ubuntu-openstack-interoperability-lab {
-
-    li.box {
-      width: 140px;
-    }
-
-    #main-content .row-get-involved {
-      overflow: hidden;
-
-      span img {
-        margin: initial;
-        margin-left: -40px;
-      }
-    }
-  }
-
-  //* @subsection cloud > ecosystem > ubuntu OIL */
-  .cloud-ecosystem-ubuntu-openstack-interoperability-lab {
-
-    .row-testing-integration {
-      background-color: $white;
-      background-image: url("#{$asset-server}312f7dec-image-ubuntuopenstackinteroperabilitylab.svg");
-      background-position: 95% 40%;
-      background-repeat: no-repeat;
-      background-size: 326px auto;
-    }
-  }
-
-  html.no-svg,
-  .opera-mini {
-
-    .cloud-ecosystem-ubuntu-openstack-interoperability-lab .row-testing-integration {
-      background-image: url("#{$asset-server}abfce5b4-image-ubuntuopenstackinteroperabilitylab.png");
-    }
-  }
-
-  //* BootStack /cloud/bootstack- */
-  .row {
-
-    &--paas_list {
-      margin-top: 30px;
-    }
-
-    &--paas_list__item:first-child {
-      margin-right: 30px;
-      padding-top: 23px;
-      position: relative;
-
-      img {
-        bottom: 0;
+        width: 152px;
+        z-index: 4;
       }
     }
   }
 }
 
-//* Large / Desktop viewport */
-@media only screen and (min-width : $breakpoint-large) {
+// @subsection /cloud/juju
+.cloud-juju {
 
-  .row--training__image {
-    top: -122px;
+  .row-hero,
+  .row-get-started {
+    background: url('#{$asset-server}3c2a0155-media-wiki-ubuntu.png?w=800') no-repeat 444px 0;
   }
 
-  .cloud-openstack-managed-cloud {
-
-    .row--video {
-      clear: both;
-
-      .show-video {
-        min-height: 554px;
-      }
-    }
+  .bundle-card__image-container {
+    height: 345px;
   }
+}
 
-  .cloud-home {
-    .row-cloud-tools .landscape img {
-      margin-top: -117px;
-    }
-  }
+// @subsection /cloud/public-cloud
+.cloud-public-cloud {
 
-  //* ubuntu-openstack-interoperability-lab */
-  .cloud-ecosystem-ubuntu-openstack-interoperability-lab {
+  .row-services {
+    min-height: 420px;
+    padding-bottom: 0;
 
-    .row-hero ul {
+    img {
       margin-top: 20px;
+      max-width: none;
     }
 
-    li.box {
-      width: 189px;
+    div {
+      border-right: 1px dotted $warm-grey;
+      margin-bottom: 0;
+      padding-right: $gutter-width;
     }
 
-    li.box.last-item {
-      margin-right: 0;
-    }
-
-    #main-content .row-get-involved {
-
-      span img {
-        margin-left: -40px;
-      }
+    div.last-col {
+      border-right: 0;
+      padding-right: 0;
     }
   }
 
-  .cloud-public-cloud {
+  .row-juju-advantage {
+    overflow: hidden;
 
-    .row-get-started {
-
-      .box {
-        min-height: 170px;
-      }
+    div {
+      min-height: 540px;
     }
 
-    .row-juju-advantage {
-      overflow: hidden;
+    .last-col .pull-left-20 {
+      bottom: 0;
+      left: -16px;
+      position: absolute;
 
-      .last-col .pull-left-20 {
+      @media only screen and (min-width : $breakpoint-large) {
         left: -20px;
         margin-top: 20px;
         position: relative;
       }
+    }
 
-      .pull-left-40 {
+    .pull-left-40 {
+      bottom: 40px;
+      left: -130px;
+      position: absolute;
+
+      @media only screen and (min-width : $breakpoint-large) {
         left: -40px;
         padding-top: 40px;
         position: relative;
@@ -1398,64 +545,109 @@
     }
   }
 
-  .cloud-cloud-management {
+  .row-get-started {
+    @media only screen and (min-width : $breakpoint-large) {
 
-    .row-hero {
-
-      img {
-        margin-bottom: 20px;
+      .box {
+        min-height: 170px;
       }
     }
   }
+}
 
-  .cloud-tools-cluster .inner-wrapper {
+// @subsection /cloud/contact-us
+.cloud-contact-us {
+
+  .row-hero {
+    padding-bottom: 0;
+  }
+}
+
+// @subsection  /cloud/openstack
+.cloud-openstack {
+
+  .row-autopilot {
+    @media only screen and (min-width : $breakpoint-medium) {
+      background-image: url('#{$asset-server}6e179925-image-cloud-openstack-autopilot-screenshot.jpg?op=region&rect=0,0,300,600');
+      background-position: right bottom;
+      background-repeat: no-repeat;
+    }
+
+    @media only screen and (min-width : $breakpoint-large) {
+      background-image: url('#{$asset-server}6e179925-image-cloud-openstack-autopilot-screenshot.jpg?op=region&rect=0,0,450,800');
+      background-position: right top;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+// @subsection /cloud/openstac/autopilot
+.cloud-openstack-autopilot {
+
+    .autopilot-dynamic h2 {
+        padding-bottom: 1em;
+    }
+
+    .autopilot-dynamic .video-container {
+        width: 95%;
+    }
+
+  .autopilot-dynamic .back-link {
+    color: #AEA79F; // DDD pick a standard colour?
+    opacity: .9;
+    transition: opacity .3s;
+
+    &:hover {
+      text-decoration: none;
+      opacity: 1;
+    }
 
     img {
-      margin-top: 20px;
-    }
-
-    .row-hero img {
-      margin-top: 60px;
-    }
-  }
-
-  .thank-you {
-
-    p.intro {
-      font-size: 1.75em;
+      vertical-align: text-bottom;
+      -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      transform: rotate(180deg);
     }
   }
 
-  .ui-datepicker {
-    display: none;
-    font-family: ubuntu;
+
+  @media only screen and (min-width : $breakpoint-medium) {
+    #main-content .row-hero {
+      background-image: url('#{$asset-server}85280667-image-cloud-openstack-autopilot-screenshot.jpg?op=region&rect=0,0,450,800');
+      background-position: 122% 0%;
+      background-repeat: no-repeat;
+      margin-top: 0;
+      padding-top: 40px;
+    }
   }
 
-  .ui-widget-header {
-    background: $ubuntu-orange;
+  @media only screen and (min-width : $breakpoint-large) {
+    #main-content .row-hero {
+      background-position: top right;
+    }
   }
 
-  .ui-datepicker-calendar {
-    tbody { background: $white; }
-  }
+  .row-cost {
+    .box {
+      color: $cool-grey;
+      border: 0;
 
-  .ui-datepicker-calendar td {
-    text-align: center;
-  }
+      h3 {
+        margin-top: 0;
+      }
 
-    //* BootStack /cloud/bootstack */
-    .row {
-
-      &--paas_list__item:first-child {
-        padding-top: 28px;
+      .price {
+        font-size: 2em;
+        margin-bottom: 5px;
       }
     }
+  }
+}
 
-} //* end @media only screen and (min-width : $breakpoint-large) */
-
-//* BootStack Calculator */
+// @subsection /cloud/openstack/managed-cloud
 .cloud-openstack-managed-cloud {
 
+  // BootStack calculator
   .my-server input[type=number] {
     padding: .6956522em .869565em;
     width: 50%;
@@ -1784,97 +976,12 @@
   }
 }
 
-//* Event listings */
-
-.event-details__header {
-  margin-bottom: 5px;
-}
-
-.event-details__container {
-  overflow: hidden;
-}
-
+//* Special overrides for JS-enabled
 .js .cloud-openstack-managed-cloud .js__required {
   display: block;
 }
 
-//* Autopilot
-
-.cloud-openstack-autopilot {
-
-    .autopilot-dynamic h2 {
-        padding-bottom: 1em;
-    }
-
-    .autopilot-dynamic .video-container {
-        width: 95%;
-    }
-
-  .autopilot-dynamic .back-link {
-    color: #AEA79F; // DDD pick a standard colour?
-    opacity: .9;
-    transition: opacity .3s;
-
-    &:hover {
-      text-decoration: none;
-      opacity: 1;
-    }
-
-    img {
-      vertical-align: text-bottom;
-      -webkit-transform: rotate(180deg);
-      -ms-transform: rotate(180deg);
-      transform: rotate(180deg);
-    }
-  }
-
-  .row-step.step-one .step::after {
-    height: 400px;
-  }
-
-  @media only screen and (max-width : $breakpoint-medium) {
-    .row-step .step {
-      display: inline-block;
-      left: 0;
-      position: absolute;
-    }
-  }
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    #main-content .row-hero {
-      background-image: url('#{$asset-server}85280667-image-cloud-openstack-autopilot-screenshot.jpg?op=region&rect=0,0,450,800');
-      background-position: 122% 0%;
-      background-repeat: no-repeat;
-      margin-top: 0;
-      padding-top: 40px;
-    }
-  }
-
-  @media only screen and (min-width : $breakpoint-large) {
-    #main-content .row-hero {
-      background-position: top right;
-    }
-  }
-
-  .row-cost {
-    .box {
-      color: $cool-grey;
-      border: 0;
-
-      h3 {
-        margin-top: 0;
-      }
-
-      .price {
-        font-size: 2em;
-        margin-bottom: 5px;
-      }
-    }
-  }
-}
-
-//* Cloud LXD
-
+// @subsection /cloud/lxd
 .cloud-lxd {
   @media only screen and (max-width: $breakpoint-medium) {
 
@@ -1888,35 +995,12 @@
   }
 }
 
-.ubuntu-pie {
-  margin: 7% auto;
-  max-width: 350px;
+// @subsection /cloud/newsletter-thank-you
+.thank-you {
 
-  .other-label {
-    fill: $warm-grey;
+  @media only screen and (min-width : $breakpoint-large) {
+    .intro {
+      font-size: 1.75em;
+    }
   }
-
-  //* Pie segments */
-  .ubuntu {
-    fill: $brand-color;
-  }
-
-  .other {
-    fill: transparent;
-  }
-
-  //* Labels */
-  svg tspan {
-    max-width: 0;
-    text-align: center;
-    text-transform: capitalize;
-  }
-
-  .ubuntu-label {
-    fill: $white;
-  }
-}
-
-.row--leaders__container {
-  align-items: stretch;
 }
