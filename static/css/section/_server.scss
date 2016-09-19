@@ -5,8 +5,6 @@
 //
 //  Project:		Ubuntu Front-End Server section
 //  Author:			Web Team at Canonical Ltd
-//  Last edited by: Peter Mahnke
-//  Last edited on: 19 September 2016
 //
 // ---------------------------------------------------------------
 // ---------------------------------------------------------------
@@ -67,6 +65,19 @@
   h1 {
     float: none;
     margin-bottom: 18px;
+  }
+
+  .welcome-hyperscale {
+    @media only screen and (min-width : $breakpoint-medium) {
+      background-image: url('#{$asset-server}ab812f69-image-server-hyperscale.svg');
+      background-position: 575px center;
+      background-repeat: no-repeat;
+
+      .no-svg &,
+      .opera-mini & {
+        background-image: url("#{$asset-server}b47ff24b-image-server-hyperscale.png");
+      }
+    }
   }
 
   .partner-logo {
