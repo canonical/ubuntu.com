@@ -84,14 +84,6 @@
       }
     }
   }
-
-  .welcome-hyperscale {
-    @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url("#{$asset-server}ab812f69-image-server-hyperscale.svg");
-      background-position: 575px center;
-      background-repeat: no-repeat;
-    }
-  }
 }
 
 // @subsection /server/contact-us
@@ -101,16 +93,6 @@
     h2 {
       color: $cool-grey;
       padding-top: 0;
-    }
-  }
-}
-
-// @fix for opera and no-svg
-.no-svg,
-.opera-mini {
-  .server-hyperscale .welcome-hyperscale {
-    @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url("#{$asset-server}b47ff24b-image-server-hyperscale.png");
     }
   }
 }
