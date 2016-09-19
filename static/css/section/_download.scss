@@ -5,8 +5,6 @@
 //
 //  Project:		Ubuntu Front-End Download section
 //  Author:			Web Team at Canonical Ltd
-//  Last edited by: Peter Mahnke
-//  Last edited on: 18 September 2016
 //
 // ---------------------------------------------------------------
 // ---------------------------------------------------------------
@@ -80,7 +78,7 @@
   }
 
   .box-tip {
-    background: #fff url(#{$asset-server}18aa8a3c-pictogram-download-tip-60x49.png) $gutter-width $gutter-width no-repeat;
+    background: $white url(#{$asset-server}18aa8a3c-pictogram-download-tip-60x49.png) $gutter-width $gutter-width no-repeat;
     margin-bottom: 1.538em;
     padding-bottom: 1.25em;
     padding-left: 100px;
@@ -148,7 +146,6 @@
     }
   }
 
-  // XXX code stuff
   pre {
     background-color: $cool-grey;
     border: 0;
@@ -260,12 +257,12 @@
 
     h1,
     p {
-      color: #fff;
+      color: $white;
     }
 
     a:link,
     a:visited {
-      color: #fff;
+      color: $white;
       text-decoration: underline;
     }
 
@@ -274,7 +271,7 @@
     }
 
     a:hover.link-cta-download {
-      color: rgba(255, 255, 255, 1);
+      color: $white;
     }
 
     a.external {
@@ -291,7 +288,7 @@
       -moz-box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, .2);
       -webkit-box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, .2);
       box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, .2);
-      color: #fff;
+      color: $white;
     }
 
     .vertical-divider > div,
@@ -580,12 +577,12 @@
   .row-background {
     a:link,
     a:visited {
-      color: #fff;
+      color: $white;
       text-decoration: none;
     }
 
     a:hover {
-      color: #fff;
+      color: $white;
       text-decoration: underline;
     }
 
