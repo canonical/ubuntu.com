@@ -7,7 +7,9 @@
 {% block meta_keywords %}Ubuntu OpenStack, cloud ecosystem, cloud partners, cloud consulting, cloud tools, Canonical{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
     {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Ecosystem" %}
+</div>
 {% endblock second_level_nav_items %}
 {% block head_extra %}
 
@@ -77,77 +79,89 @@
 {% endblock %}
 
 {% block content %}
-<div class="row row-hero no-border">
-  <div class="hero-content seven-col">
-    <h1>Partners</h1>
-    <p>The cloud world is evolving rapidly and Ubuntu is at the centre, with world&dash;class partners and a suite of OpenStack partner programmes.</p>
-  </div>
-  <div class="four-col last-col align-center">
-    <img class="cloud-row-hero-image" src="{{ ASSET_SERVER_URL }}1c786630-image-cloud.svg" alt="Ubuntu in a cloud" />
-  </div>
-  <div class="bg-clouds"></div><!-- <div class="bg-more-clouds"></div> -->
-</div><!-- /.row -->
+<section class="row row-hero no-border">
+    <div class="strip-inner-wrapper">
+        <div class="hero-content seven-col">
+            <h1>Partners</h1>
+            <p>The cloud world is evolving rapidly and Ubuntu is at the centre, with world&dash;class partners and a suite of OpenStack partner programmes.</p>
+        </div>
+        <div class="four-col last-col align-center">
+            <img class="cloud-row-hero-image" src="{{ ASSET_SERVER_URL }}1c786630-image-cloud.svg" alt="Ubuntu in a cloud" />
+        </div>
+        <div class="bg-clouds"></div>
+    </div>
+</section>
 
 <div class="row equal-height">
-    <div class="four-col not-for-small equal-height__item equal-height__align-vertically">
-        <img src="{{ ASSET_SERVER_URL }}f7bff337-logo-juju-171x174.png" width="171" height="171" alt="Juju" />
+    <div class="strip-inner-wrapper">
+        <div class="four-col not-for-small equal-height__item equal-height__align-vertically">
+            <img src="{{ ASSET_SERVER_URL }}f7bff337-logo-juju-171x174.png" width="171" height="171" alt="Juju" />
+        </div>
+        <div class="eight-col last-col equal-height__item">
+            <h2>Charm partner programme</h2>
+            <p>Canonical&rsquo;s Charm partner programme helps you leverage the power of Juju, the ground-breaking service modelling tool, by helping you create Juju charms for your products. Charms encapsulate all the important configuration information, defining how your services will be deployed and how they will work with other services.</p>
+            <p><a href="http://partners.ubuntu.com/partner-programmes/software#charm-partner-programme">Learn more about the Charm partner programme&nbsp;&rsaquo;</a></p>
+        </div>
+        <div class="four-col for-small align-center">
+            <img src="{{ ASSET_SERVER_URL }}f7bff337-logo-juju-171x174.png" width="171" height="171" alt="Juju" />
+        </div>
     </div>
-    <div class="eight-col last-col equal-height__item">
-        <h2>Charm partner programme</h2>
-        <p>Canonical&rsquo;s Charm partner programme helps you leverage the power of Juju, the ground-breaking service modelling tool, by helping you create Juju charms for your products. Charms encapsulate all the important configuration information, defining how your services will be deployed and how they will work with other services.</p>
-        <p><a href="http://partners.ubuntu.com/partner-programmes/software#charm-partner-programme">Learn more about the Charm partner programme&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="four-col for-small align-center">
-        <img src="{{ ASSET_SERVER_URL }}f7bff337-logo-juju-171x174.png" width="171" height="171" alt="Juju" />
-    </div>
-</div><!-- /.row -->
+</section>
 
-<div class="row">
-    <div class="eight-col">
-        <h2>Ubuntu OpenStack interoperability lab</h2>
-        <p>Ubuntu is the world&rsquo;s most popular choice for OpenStack clouds. And as more new solutions are developed for OpenStack, interoperability between components becomes increasingly important. With the Ubuntu OpenStack interoperability lab, we test and integrate your hardware and software rigorously, to ensure all components can be combined reliably in real-world deployments. </p>
-        <p><a href="http://partners.ubuntu.com/partner-programmes/openstack">Learn more about the Ubuntu Openstack interoperability lab&nbsp;&rsaquo;</a></p>
-    </div><!-- /.eight-col -->
-    <a href="https://insights.ubuntu.com/2013/08/29/ubuntu-openstack-factsheet/" class="four-col box box-highlight resource--link resource-factsheet last-col">
-        <h2>Ubuntu OpenStack factsheet&nbsp;&rsaquo;</h2>
-        <p>What makes up Ubuntu OpenStack? And how do all the parts fit together?&nbsp;&rsaquo;</p>
-        <p class="content-cat content-cat-factsheet">Factsheet</p>
-    </a>
-</div><!-- /.row row-hero -->
+<section class="row">
+    <div class="strip-inner-wrapper">
+        <div class="eight-col">
+            <h2>Ubuntu OpenStack interoperability lab</h2>
+            <p>Ubuntu is the world&rsquo;s most popular choice for OpenStack clouds. And as more new solutions are developed for OpenStack, interoperability between components becomes increasingly important. With the Ubuntu OpenStack interoperability lab, we test and integrate your hardware and software rigorously, to ensure all components can be combined reliably in real-world deployments. </p>
+            <p><a href="http://partners.ubuntu.com/partner-programmes/openstack">Learn more about the Ubuntu Openstack interoperability lab&nbsp;&rsaquo;</a></p>
+        </div><!-- /.eight-col -->
+        <a href="https://insights.ubuntu.com/2013/08/29/ubuntu-openstack-factsheet/" class="four-col box box-highlight resource--link resource-factsheet last-col">
+            <h2>Ubuntu OpenStack factsheet&nbsp;&rsaquo;</h2>
+            <p>What makes up Ubuntu OpenStack? And how do all the parts fit together?&nbsp;&rsaquo;</p>
+            <p class="content-cat content-cat-factsheet">Factsheet</p>
+        </a>
+    </div>
+</section>
 
-<div class="row">
-    <div class="prepend-one two-col append-one">
-        <img src="{{ ASSET_SERVER_URL }}69dadbd3-logo-premiercloudpartner.svg" alt="" />
+<section class="row">
+    <div class="strip-inner-wrapper">
+        <div class="prepend-one two-col append-one">
+            <img src="{{ ASSET_SERVER_URL }}69dadbd3-logo-premiercloudpartner.svg" alt="" />
+        </div>
+        <div class="eight-col last-col">
+            <h2>World leading public cloud partners</h2>
+            <p>If you operate a public cloud or you&rsquo;re considering launching one, the Ubuntu certified public cloud programme lets you make certified, secure and up to date Ubuntu images available to your users, along with the opportunity to sell management, monitoring and commercial support from Canonical &mdash; all of which represent additional revenue opportunities.</p>
+            <p><a href="http://partners.ubuntu.com/partner-programmes/public-cloud">Learn more about the Ubuntu certified public cloud programme&nbsp;&rsaquo;</a></p>
+        </div>
     </div>
-    <div class="eight-col last-col">
-        <h2>World leading public cloud partners</h2>
-        <p>If you operate a public cloud or you&rsquo;re considering launching one, the Ubuntu certified public cloud programme lets you make certified, secure and up to date Ubuntu images available to your users, along with the opportunity to sell management, monitoring and commercial support from Canonical &mdash; all of which represent additional revenue opportunities.</p>
-        <p><a href="http://partners.ubuntu.com/partner-programmes/public-cloud">Learn more about the Ubuntu certified public cloud programme&nbsp;&rsaquo;</a></p>
-    </div><!-- /.eight-col -->
-</div><!-- /.row row-hero -->
+</sction>
 
-<div class="row">
-    <div class="twelve-col">
-        <h2 class="muted-heading">A selection of our cloud partners</h2>
+<section class="row">
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col">
+            <h2 class="muted-heading">A selection of our cloud partners</h2>
+        </div>
+        <div class="twelve-col">
+            <ul id="cloud-partners" class="inline-logos no-margin dynamic-logos"></ul>
+        </div>
+        <div class="twelve-col">
+            <p class="align-center"><a href="http://partners.ubuntu.com/find-a-partner?programme=openstack&amp;programme=charm-partner-programme&amp;programme=certified-public-cloud" class="external">See all our cloud partners</a></p>
+        </div>
     </div>
-    <div class="twelve-col">
-        <ul id="cloud-partners" class="inline-logos no-margin dynamic-logos"></ul>
-    </div>
-    <div class="twelve-col">
-        <p class="align-center"><a href="http://partners.ubuntu.com/find-a-partner?programme=openstack&amp;programme=charm-partner-programme&amp;programme=certified-public-cloud" class="external">See all our cloud partners</a></p>
-    </div>
-</div><!-- /.row -->
+</section>
 
-<div class="row row-grey no-border">
-    <div class="four-col align-center">
-        <img src="{{ ASSET_SERVER_URL }}2cc56cf9-picto-partner-midaubergine.svg" width="160" height="160" alt="" />
+<section class="row row-grey no-border">
+    <div class="strip-inner-wrapper">
+        <div class="four-col align-center">
+            <img src="{{ ASSET_SERVER_URL }}2cc56cf9-picto-partner-midaubergine.svg" width="160" height="160" alt="" />
+        </div>
+        <div class="eight-col last-col">
+            <h2>Become a cloud partner</h2>
+            <p>To learn more about becoming a Charm, Ubuntu certified public cloud or Ubuntu OpenStack partner, please contact us today.</p>
+            <p><a href="http://partners.ubuntu.com/contact-us" class="button--primary">Get in touch</a> or <a href="http://partners.ubuntu.com/partnering-with-us" class="external">Learn more about partnering with us</a></p>
+        </div>
     </div>
-    <div class="eight-col last-col">
-        <h2>Become a cloud partner</h2>
-        <p>To learn more about becoming a Charm, Ubuntu certified public cloud or Ubuntu OpenStack partner, please contact us today.</p>
-        <p><a href="http://partners.ubuntu.com/contact-us" class="button--primary">Get in touch</a> or <a href="http://partners.ubuntu.com/partnering-with-us" class="external">Learn more about partnering with us</a></p>
-    </div>
-</div>
+</section>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_autopilot" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
 

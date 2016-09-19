@@ -5,130 +5,146 @@
 {% block meta_keywords %}Cloud, deployment, provision, server, MAAS, bare metal, Metal as a Service, Juju, Ubuntu, private cloud, OpenStack, Ubuntu OpenStack{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
     {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="MAAS" %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero">
-    <div class="five-col">
-        <h1>MAAS</h1>
-        <h2>Metal as a Service offers cloud style provisioning for physical servers</h2>
-        <ul class="list-ticks--compact">
-            <li>Zero-touch deployment of Windows, Ubuntu, CentOS, RHEL and SUSE</li>
-            <li>Inventory management of every device in every server</li>
-            <li>Open-source IP Address Manager (IPAM)</li>
-            <li>Includes a REST API, Web UI and command-line client</li>
-            <li>Designed for devops at scale &mdash; big data, private cloud, PAAS and HPC all thrive on MAAS</li>
-        </ul>
-        <p><a href="http://maas.io" class="button--primary">Get started</a></p>
-    </div>
-</div>
-
-<div class="row no-border">
-    <div class="five-col">
-        <h2>The smartest way to manage bare metal</h2>
-        <p>MAAS delivers the fastest OS installation times in the industry thanks to its image-based installer. Set up the RAID and network configuration you want through the MAAS web UI or CLI, then press a button and come back in minutes to a fully-deployed OS.</p>
-    </div>
-    <div class="seven-col last-col">
-        <ul class="inline-logos">
-          <li class="inline-logos__item">
-            <img class="inline-logos__image" alt="Ubuntu logo" src="{{ ASSET_SERVER_URL }}c037fd75-ubuntu-logo.png" />
-          </li>
-          <li class="inline-logos__item">
-            <img class="inline-logos__image" alt="Windows logo" src="{{ ASSET_SERVER_URL }}30574235-windows-logo.svg" />
-          </li>
-          <li class="inline-logos__item">
-            <img class="inline-logos__image" alt="CentOS logo" src="{{ ASSET_SERVER_URL }}c69a8b3c-centos-logo.png" />
-          </li>
-          <li class="inline-logos__item">
-            <img class="inline-logos__image" alt="Redhat logo" src="{{ ASSET_SERVER_URL }}eda6b94a-redhat-logo.svg" />
-          </li>
-          <li class="inline-logos__item">
-            <img class="inline-logos__image" alt="Suse logo" src="{{ ASSET_SERVER_URL }}6697a21a-suse-logo.png" />
-          </li>
-        </ul>
-    </div>
-</div>
-
-<div class="row row-full-width">
-    <div class="twelve-col no-margin-bottom last-col">
-        <div class="video-container">
-            <iframe width="906" height="500" src="https://www.youtube.com/embed/eHfaiKlUYsM?rel=0&amp;&amp;hd=1" frameborder="0" allowfullscreen></iframe>
+<section class="row row-hero">
+    <div class="strip-inner-wrapper">
+        <div class="five-col">
+            <h1>MAAS</h1>
+            <h2>Metal as a Service offers cloud style provisioning for physical servers</h2>
+            <ul class="list-ticks--compact">
+                <li>Zero-touch deployment of Windows, Ubuntu, CentOS, RHEL and SUSE</li>
+                <li>Inventory management of every device in every server</li>
+                <li>Open-source IP Address Manager (IPAM)</li>
+                <li>Includes a REST API, Web UI and command-line client</li>
+                <li>Designed for devops at scale &mdash; big data, private cloud, PAAS and HPC all thrive on MAAS</li>
+            </ul>
+            <p><a href="http://maas.io" class="button--primary">Get started</a></p>
         </div>
     </div>
-</div>
+</section>
 
-<div class="row your-hardware-any-hardware">
-    <div class="five-col">
-        <h2>Make the most of your hardware &mdash; any hardware</h2>
-        <p>With MAAS, your new hardware can be part of your working infrastructure within minutes. Breathe new life into old hardware by recycling it for use in other parts of your network. Works with all certified servers from any major vendor saving you from costly upgrades and vendor lock-in.</p>
+<section class="row no-border">
+    <div class="strip-inner-wrapper">
+        <div class="five-col">
+            <h2>The smartest way to manage bare metal</h2>
+            <p>MAAS delivers the fastest OS installation times in the industry thanks to its image-based installer. Set up the RAID and network configuration you want through the MAAS web UI or CLI, then press a button and come back in minutes to a fully-deployed OS.</p>
+        </div>
+        <div class="seven-col last-col">
+            <ul class="inline-logos">
+              <li class="inline-logos__item">
+                <img class="inline-logos__image" alt="Ubuntu logo" src="{{ ASSET_SERVER_URL }}c037fd75-ubuntu-logo.png" />
+              </li>
+              <li class="inline-logos__item">
+                <img class="inline-logos__image" alt="Windows logo" src="{{ ASSET_SERVER_URL }}30574235-windows-logo.svg" />
+              </li>
+              <li class="inline-logos__item">
+                <img class="inline-logos__image" alt="CentOS logo" src="{{ ASSET_SERVER_URL }}c69a8b3c-centos-logo.png" />
+              </li>
+              <li class="inline-logos__item">
+                <img class="inline-logos__image" alt="Redhat logo" src="{{ ASSET_SERVER_URL }}eda6b94a-redhat-logo.svg" />
+              </li>
+              <li class="inline-logos__item">
+                <img class="inline-logos__image" alt="Suse logo" src="{{ ASSET_SERVER_URL }}6697a21a-suse-logo.png" />
+              </li>
+            </ul>
+        </div>
     </div>
-    <div class="seven-col last-col">
-        <ul class="inline-logos">
-          <li class="inline-logos__item">
-            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}68713fd5-logo-lenovo.svg" alt="Lenovo" />
-          </li>
-           <li class="inline-logos__item">
-            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}05f5c6da-ibmpos_blue.jpg" alt="IBM" />
-          </li>
-           <li class="inline-logos__item">
-            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}ef92a823-Cisco_logo.png" alt="Cisco" />
-          </li>
-           <li class="inline-logos__item">
-            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}5ddba83a-logo-dell.svg" alt="Dell" />
-          </li>
-           <li class="inline-logos__item">
-            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}a298e7ec-logo-hp.svg" alt="HP" />
-          </li>
-           <li class="inline-logos__item">
-            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}ab8e3ab9-logo-open-compute-160.png" alt="Open Compute" />
-          </li>
-           <li class="inline-logos__item">
-            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}2c5dcff7-logo-quanta-160.png" alt="Quanta" />
-          </li>
-        </ul>
-    </div>
-</div>
+</section>
 
-<div class="row">
-    <div class="eight-col">
-        <h2>Dynamic provisioning and scaling</h2>
-        <p>Hardware provisioned through MAAS can be utilised dynamically, just like cloud instances &mdash; except that we&rsquo;re talking about the whole physical node. Through an intuitive web interface or API you can add, commission, update, deploy and recycle physical servers at will. As your needs change, you can respond rapidly, by adding new nodes and dynamically re-deploying them between services.</p>
-        <p><a href="http://maas.io/get-started" class="external">Install MAAS in six easy steps</a></p>
+<section class="row row-full-width">
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col no-margin-bottom last-col">
+            <div class="video-container">
+                <iframe width="906" height="500" src="https://www.youtube.com/embed/eHfaiKlUYsM?rel=0&amp;&amp;hd=1" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
     </div>
+</section>
 
-    <a href="http://insights.ubuntu.com/2013/08/29/top-10-questions-about-maas/" class="four-col last-col box box-highlight resource--link resource-data-sheet">
-        <h2>MAAS FAQ&nbsp;&rsaquo;</h2>
-        <p>Top 10 questions about MAAS. Your guide to MAAS, bare-metal provisioning, and more.</p>
-        <p class="content-cat content-cat-webinar">Datasheet</p>
-        <div class='curl'></div>
-    </a>
-</div>
-
-<div class="row row--autopilot">
-    <div class="five-col">
-        <h2>Build a cloud using MAAS and OpenStack Autopilot</h2>
-        <p>Cloud style automation provided by MAAS is perfect for deploying OpenStack with Autopilot  – the fastest and easiest way to build a cloud from the bare metal up.</p>
-
-        <h3>Hardware requirements</h3>
-        <ul class="list-ticks--compact">
-            <li>At least five machines with two disks</li>
-            <li>Two machines with x2 network interfaces (NICs)</li>
-        </ul>
-        <p><a href="/download/cloud" class="button--primary">Install Autopilot and MAAS</a></p>
+<section class="row your-hardware-any-hardware">
+    <div class="strip-inner-wrapper">
+        <div class="five-col">
+            <h2>Make the most of your hardware &mdash; any hardware</h2>
+            <p>With MAAS, your new hardware can be part of your working infrastructure within minutes. Breathe new life into old hardware by recycling it for use in other parts of your network. Works with all certified servers from any major vendor saving you from costly upgrades and vendor lock-in.</p>
+        </div>
+        <div class="seven-col last-col">
+            <ul class="inline-logos">
+              <li class="inline-logos__item">
+                <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}68713fd5-logo-lenovo.svg" alt="Lenovo" />
+              </li>
+               <li class="inline-logos__item">
+                <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}05f5c6da-ibmpos_blue.jpg" alt="IBM" />
+              </li>
+               <li class="inline-logos__item">
+                <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}ef92a823-Cisco_logo.png" alt="Cisco" />
+              </li>
+               <li class="inline-logos__item">
+                <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}5ddba83a-logo-dell.svg" alt="Dell" />
+              </li>
+               <li class="inline-logos__item">
+                <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}a298e7ec-logo-hp.svg" alt="HP" />
+              </li>
+               <li class="inline-logos__item">
+                <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}ab8e3ab9-logo-open-compute-160.png" alt="Open Compute" />
+              </li>
+               <li class="inline-logos__item">
+                <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}2c5dcff7-logo-quanta-160.png" alt="Quanta" />
+              </li>
+            </ul>
+        </div>
     </div>
-</div>
+</section>
 
-<div class="row equal-height no-border">
-    <div class="four-col equal-height__item equal-height__align-vertically align-center">
-      <img src="{{ ASSET_SERVER_URL }}0ff68df6-logo-juju.svg" alt="" width="172" height="176" />
+<section class="row">
+    <div class="strip-inner-wrapper">
+        <div class="eight-col">
+            <h2>Dynamic provisioning and scaling</h2>
+            <p>Hardware provisioned through MAAS can be utilised dynamically, just like cloud instances &mdash; except that we&rsquo;re talking about the whole physical node. Through an intuitive web interface or API you can add, commission, update, deploy and recycle physical servers at will. As your needs change, you can respond rapidly, by adding new nodes and dynamically re-deploying them between services.</p>
+            <p><a href="http://maas.io/get-started" class="external">Install MAAS in six easy steps</a></p>
+        </div>
+    
+        <a href="http://insights.ubuntu.com/2013/08/29/top-10-questions-about-maas/" class="four-col last-col box box-highlight resource--link resource-data-sheet">
+            <h2>MAAS FAQ&nbsp;&rsaquo;</h2>
+            <p>Top 10 questions about MAAS. Your guide to MAAS, bare-metal provisioning, and more.</p>
+            <p class="content-cat content-cat-webinar">Datasheet</p>
+            <div class='curl'></div>
+        </a>
     </div>
-    <div class="eight-col equal-height__item last-col">
-        <h2>Deploy services in seconds using Juju</h2>
-        <p>With Juju you can deploy, orchestrate and scale services in your MAAS cluster in seconds. Don&rsquo;t spend hours planning and implementing a service deployment; just choose how many nodes your new service needs, then apply a pre-written charm. When your needs change, you can monitor, scale and adjust deployment parameters in real time, and when you're finished with a service, Juju can remove it without a trace.</p>
-        <p><a href="/cloud/juju">Learn more about Juju&nbsp;&rsaquo;</a></p>
+</section>
+
+<section class="row row--autopilot">
+    <div class="strip-inner-wrapper">
+        <div class="five-col">
+            <h2>Build a cloud using MAAS and OpenStack Autopilot</h2>
+            <p>Cloud style automation provided by MAAS is perfect for deploying OpenStack with Autopilot  – the fastest and easiest way to build a cloud from the bare metal up.</p>
+    
+            <h3>Hardware requirements</h3>
+            <ul class="list-ticks--compact">
+                <li>At least five machines with two disks</li>
+                <li>Two machines with x2 network interfaces (NICs)</li>
+            </ul>
+            <p><a href="/download/cloud" class="button--primary">Install Autopilot and MAAS</a></p>
+        </div>
     </div>
-</div>
+</section>
+
+<section class="row equal-height no-border">
+    <div class="strip-inner-wrapper">
+        <div class="four-col equal-height__item equal-height__align-vertically align-center">
+          <img src="{{ ASSET_SERVER_URL }}0ff68df6-logo-juju.svg" alt="" width="172" height="176" />
+        </div>
+        <div class="eight-col equal-height__item last-col">
+            <h2>Deploy services in seconds using Juju</h2>
+            <p>With Juju you can deploy, orchestrate and scale services in your MAAS cluster in seconds. Don&rsquo;t spend hours planning and implementing a service deployment; just choose how many nodes your new service needs, then apply a pre-written charm. When your needs change, you can monitor, scale and adjust deployment parameters in real time, and when you're finished with a service, Juju can remove it without a trace.</p>
+            <p><a href="/cloud/juju">Learn more about Juju&nbsp;&rsaquo;</a></p>
+        </div>
+    </div>
+</section>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_maas" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
 

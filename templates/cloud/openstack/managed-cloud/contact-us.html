@@ -7,84 +7,88 @@
 {% block meta_keywords %}Ubuntu BootStack, BootStack, private cloud, support, Ubuntu OpenStack, consulting, build a cloud, Ubuntu, Canonical{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
 	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="OpenStack" page_title="Contact us" %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero no-border">
-	<div class="eight-col">
-		<h2>Schedule a demo</h2>
-		<p class="intro">Fill in your details below and a member of our BootStack team will be in touch.</p>
-	</div>
-	<div class="eight-col">
-
-<!-- MARKETO FORM -->
-
-<form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1128">
-<fieldset>
-    <ul class="no-bullets">
-
-        <li  class="mktFormReq mktField">
-<label for="FirstName" class="mktoLabel " >First name:</label>
-<input required  id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField   mktoRequired" >
-        </li>
-
-        <li  class="mktFormReq mktField">
-<label for="LastName" class="mktoLabel " >Last name:</label>
-<input required  id="LastName" name="LastName" maxlength="255" type="text" class="mktoField   mktoRequired" >
-        </li>
-
-        <li  class="mktFormReq mktField">
-<label for="Company" class="mktoLabel " >Company:</label>
-<input required  id="Company" name="Company" maxlength="255" type="text" class="mktoField   mktoRequired" >
-        </li>
-
+<section class="row row-hero no-border">
+    <div class="strip-inner-wrapper">
+    	<div class="eight-col">
+    		<h2>Schedule a demo</h2>
+    		<p class="intro">Fill in your details below and a member of our BootStack team will be in touch.</p>
+    	</div>
+    	<div class="eight-col">
+    
+    <!-- MARKETO FORM -->
+    
+    <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1128">
+    <fieldset>
+        <ul class="no-bullets">
+    
+            <li  class="mktFormReq mktField">
+    <label for="FirstName" class="mktoLabel " >First name:</label>
+    <input required  id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField   mktoRequired" >
+            </li>
+    
+            <li  class="mktFormReq mktField">
+    <label for="LastName" class="mktoLabel " >Last name:</label>
+    <input required  id="LastName" name="LastName" maxlength="255" type="text" class="mktoField   mktoRequired" >
+            </li>
+    
+            <li  class="mktFormReq mktField">
+    <label for="Company" class="mktoLabel " >Company:</label>
+    <input required  id="Company" name="Company" maxlength="255" type="text" class="mktoField   mktoRequired" >
+            </li>
+    
+            <li  class="mktField">
+    <label for="Title" class="mktoLabel " >Job title (optional):</label>
+    <input id="Title" name="Title" maxlength="255" type="text" class="mktoField  " >
+            </li>
+    
+            <li  class="mktFormReq mktField">
+    <label for="Email" class="mktoLabel " >Email address:</label>
+    <input required  id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired" >
+            </li>
+    
+            <li  class="mktFormReq mktField">
+    <label for="Phone" class="mktoLabel " >Phone number:</label>
+    <input required  id="Phone" name="Phone" maxlength="255" title="" type="tel" class="mktoField mktoTelField  mktoRequired" >
+            </li>
+    
+            <li  class="mktField">
+    <label for="Comments_from_Contact__c" class="mktoLabel " >Additional questions and comments</label>
+    <textarea id="Comments_from_Contact__c" name="Comments_from_Contact__c" rows="5" class="mktoField " maxlength="2000" ></textarea>
+            </li>
+    
         <li  class="mktField">
-<label for="Title" class="mktoLabel " >Job title (optional):</label>
-<input id="Title" name="Title" maxlength="255" type="text" class="mktoField  " >
+            <input class="mktoField" value="yes" id="NewsletterOpt-In" name="NewsletterOpt-In" type="checkbox">
+            <label  class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>
         </li>
-
-        <li  class="mktFormReq mktField">
-<label for="Email" class="mktoLabel " >Email address:</label>
-<input required  id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired" >
-        </li>
-
-        <li  class="mktFormReq mktField">
-<label for="Phone" class="mktoLabel " >Phone number:</label>
-<input required  id="Phone" name="Phone" maxlength="255" title="" type="tel" class="mktoField mktoTelField  mktoRequired" >
-        </li>
-
+        <li>All information provided will be handled in accordance with the Canonical <a href="http://www.ubuntu.com/legal" target="_blank">privacy policy</a>.</li>
+    
         <li  class="mktField">
-<label for="Comments_from_Contact__c" class="mktoLabel " >Additional questions and comments</label>
-<textarea id="Comments_from_Contact__c" name="Comments_from_Contact__c" rows="5" class="mktoField " maxlength="2000" ></textarea>
-        </li>
-
-    <li  class="mktField">
-        <input class="mktoField" value="yes" id="NewsletterOpt-In" name="NewsletterOpt-In" type="checkbox">
-        <label  class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>
-    </li>
-    <li>All information provided will be handled in accordance with the Canonical <a href="http://www.ubuntu.com/legal" target="_blank">privacy policy</a>.</li>
-
-    <li  class="mktField">
-<button type="submit" class="mktoButton">Submit</button></span><input type="hidden" name="formid" class="mktoField " value="1128"><input type="hidden" name="lpId" class="mktoField " value="1646"><input type="hidden" name="subId" class="mktoField " value="30"><input type="hidden" name="munchkinId" class="mktoField " value="066-EOV-335"><input type="hidden" name="lpurl" class="mktoField " value="https://pages.ubuntu.com/contact-us-bootstack.html?cr={creative}&amp;kw={keyword}"><input type="hidden" name="cr" class="mktoField " value=""><input type="hidden" name="kw" class="mktoField " value=""><input type="hidden" name="q" class="mktoField " value=""><input type="hidden" name="returnURL" value="http://www.ubuntu.com/cloud/openstack/managed-cloud/thank-you" /><input type="hidden" name="retURL" value="http://www.ubuntu.com/cloud/openstack/managed-cloud/thank-you" />
-
-        </li>
-    </ul>
-</fieldset>
-
-</form>
-<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
-<script  src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
-<script>
-$("#mktoForm_1128").validate({
-    errorElement: "span",
-    errorClass: "mktFormMsg mktError"
-});
-</script>
-
-<!-- /MARKETO FORM -->
-	</div><!-- /.eight-col -->
-</div><!-- /.row -->
+    <button type="submit" class="mktoButton">Submit</button></span><input type="hidden" name="formid" class="mktoField " value="1128"><input type="hidden" name="lpId" class="mktoField " value="1646"><input type="hidden" name="subId" class="mktoField " value="30"><input type="hidden" name="munchkinId" class="mktoField " value="066-EOV-335"><input type="hidden" name="lpurl" class="mktoField " value="https://pages.ubuntu.com/contact-us-bootstack.html?cr={creative}&amp;kw={keyword}"><input type="hidden" name="cr" class="mktoField " value=""><input type="hidden" name="kw" class="mktoField " value=""><input type="hidden" name="q" class="mktoField " value=""><input type="hidden" name="returnURL" value="http://www.ubuntu.com/cloud/openstack/managed-cloud/thank-you" /><input type="hidden" name="retURL" value="http://www.ubuntu.com/cloud/openstack/managed-cloud/thank-you" />
+    
+            </li>
+        </ul>
+    </fieldset>
+    
+    </form>
+    <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
+    <script  src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
+    <script>
+    $("#mktoForm_1128").validate({
+        errorElement: "span",
+        errorClass: "mktFormMsg mktError"
+    });
+    </script>
+    
+    <!-- /MARKETO FORM -->
+    	</div><!-- /.eight-col -->
+    </div>
+</section>
 
 
 {% endblock content %}
