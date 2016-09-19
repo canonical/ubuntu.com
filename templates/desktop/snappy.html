@@ -6,27 +6,32 @@
 {% block meta_keywords %}snappy, Ubuntu Core, Ubuntu 16.04 LTS, snaps, apps, debs, snap, docker, coreos, atomic, snapcraft, snapd{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
 	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Ubuntu Core on the Cloud" %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <section class="row row-hero equal-height">
-    <div class="six-col equal-height__item">
-        <h1>A &lsquo;snap&rsquo; is a universal Linux package</h1>
-        <p>Snaps work on any distribution or device. Snaps are faster to install, easier to create, safer to run, and they update automatically and transactionally so your app is always fresh and never broken.</p>
-
-        <p>The public collection of snaps includes the latest and best apps from GitHub and beyond, so you have the whole world of Linux apps at your fingertips. Take the tour below to experience &lsquo;hello world&rsquo; as a snap, or jump to the <a href="http://snapcraft.io/create/">developer guide</a> to create your own snaps.</p>
-    </div>
-    <div class="six-col last-col equal-height__item equal-height__align-vertically">
-        <ul class="inline-logos">
-            <li class="inline-logos__item"><img src="{{ ASSET_SERVER_URL }}c24cb4b9-logo-intel.svg" class="inline-logos__image" alt="Intel logo" /></li>
-            <li class="inline-logos__item"><img src="{{ ASSET_SERVER_URL }}47e40767-power8.png" class="inline-logos__image" alt="POWER logo" /></li>
-            <li class="inline-logos__item"><img src="{{ ASSET_SERVER_URL }}15214c8e-logo-arm.png" alt="ARM logo" /></li>
-        </ul>
+    <div class="strip-inner-wrapper">
+        <div class="six-col equal-height__item">
+            <h1>A &lsquo;snap&rsquo; is a universal Linux package</h1>
+            <p>Snaps work on any distribution or device. Snaps are faster to install, easier to create, safer to run, and they update automatically and transactionally so your app is always fresh and never broken.</p>
+    
+            <p>The public collection of snaps includes the latest and best apps from GitHub and beyond, so you have the whole world of Linux apps at your fingertips. Take the tour below to experience &lsquo;hello world&rsquo; as a snap, or jump to the <a href="http://snapcraft.io/create/">developer guide</a> to create your own snaps.</p>
+        </div>
+        <div class="six-col last-col equal-height__item equal-height__align-vertically">
+            <ul class="inline-logos">
+                <li class="inline-logos__item"><img src="{{ ASSET_SERVER_URL }}c24cb4b9-logo-intel.svg" class="inline-logos__image" alt="Intel logo" /></li>
+                <li class="inline-logos__item"><img src="{{ ASSET_SERVER_URL }}47e40767-power8.png" class="inline-logos__image" alt="POWER logo" /></li>
+                <li class="inline-logos__item"><img src="{{ ASSET_SERVER_URL }}15214c8e-logo-arm.png" alt="ARM logo" /></li>
+            </ul>
+        </div>
     </div>
 </section>
 
 <section class="row">
+    <div class="strip-inner-wrapper">
     <div class="wrapper">
         <div class="eight-col">
             <h2>The &lsquo;hello&rsquo; world tour</h2>
@@ -111,99 +116,104 @@ all the private data on this system to the developer "frankie".
 
 Do you still want to install ‘flubber’? [y/N] N</code></pre>
     </div>
+    </div>
 </section>
 
 <section class="row">
-    <div class="wrapper">
-        <div class="seven-col">
-            <h2>Popular snaps</h2>
-            <p>If you are running Ubuntu {{latest_release_full}}, you can try all of this without having to install <code>snapd</code>. Check out snaps on <a class="external" href="https://uappexplorer.com/apps?type=snappy">uappexplorer.com</a> or just use the command line to install any of these great snaps:</p>
+    <div class="strip-inner-wrapper">
+        <div class="wrapper">
+            <div class="seven-col">
+                <h2>Popular snaps</h2>
+                <p>If you are running Ubuntu {{latest_release_full}}, you can try all of this without having to install <code>snapd</code>. Check out snaps on <a class="external" href="https://uappexplorer.com/apps?type=snappy">uappexplorer.com</a> or just use the command line to install any of these great snaps:</p>
+            </div>
+    
+            <ul class="grid-list twelve-col no-bullets no-margin-bottom">
+                <li class="grid-list__item four-col">
+                    <div class="one-col ">
+                        <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}e512b0e2-jenkins.svg" alt="icon">
+                    </div>
+                    <div class="three-col last-col">
+                        <h3>Jenkins</h3>
+                    </div>
+                </li>
+                <li class="grid-list__item four-col">
+                    <div class="one-col ">
+                        <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}3ea99f54-htop.svg" alt="icon">
+                    </div>
+                    <div class="three-col last-col">
+                        <h3>htop</h3>
+                    </div>
+                </li>
+                <li class="grid-list__item four-col last-col">
+                    <div class="one-col ">
+                        <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}3ad2e1e3-notes.svg" alt="icon">
+                    </div>
+                    <div class="three-col last-col">
+                        <h3>Notes</h3>
+                    </div>
+                </li>
+    
+                <li class="grid-list__item four-col">
+                    <div class="one-col ">
+                        <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}476aaa77-cassandra.svg" alt="icon">
+                    </div>
+                    <div class="three-col last-col">
+                        <h3>Cassandra</h3>
+                    </div>
+                </li>
+                <li class="grid-list__item four-col">
+                    <div class="one-col ">
+                        <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}24badefc-freecad.svg" alt="icon">
+                    </div>
+                    <div class="three-col last-col">
+                        <h3>Freecad</h3>
+                    </div>
+                </li>
+                <li class="grid-list__item four-col last-col">
+                    <div class="one-col ">
+                        <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}aacc8ea7-shout.svg" alt="icon">
+                    </div>
+                    <div class="three-col last-col">
+                        <h3>Shout</h3>
+                    </div>
+                </li>
+    
+                <li class="grid-list__item four-col last-row">
+                    <div class="one-col ">
+                        <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}d96a74dd-moon-buggy.svg" alt="icon">
+                    </div>
+                    <div class="three-col last-col">
+                        <h3>moon-buggy</h3>
+                    </div>
+                </li>
+                <li class="grid-list__item four-col last-row">
+                    <div class="one-col ">
+                        <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}c675c7a0-webdm.svg" alt="icon">
+                    </div>
+                    <div class="three-col last-col">
+                        <h3>WebDM</h3>
+                    </div>
+                </li>
+                <li class="grid-list__item four-col last-row last-col">
+                    <div class="one-col ">
+                        <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}b0f30b97-hangups.svg" alt="icon">
+                    </div>
+                    <div class="three-col last-col">
+                        <h3>Hangups</h3>
+                    </div>
+                </li>
+            </ul>
         </div>
-
-        <ul class="grid-list twelve-col no-bullets no-margin-bottom">
-            <li class="grid-list__item four-col">
-                <div class="one-col ">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}e512b0e2-jenkins.svg" alt="icon">
-                </div>
-                <div class="three-col last-col">
-                    <h3>Jenkins</h3>
-                </div>
-            </li>
-            <li class="grid-list__item four-col">
-                <div class="one-col ">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}3ea99f54-htop.svg" alt="icon">
-                </div>
-                <div class="three-col last-col">
-                    <h3>htop</h3>
-                </div>
-            </li>
-            <li class="grid-list__item four-col last-col">
-                <div class="one-col ">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}3ad2e1e3-notes.svg" alt="icon">
-                </div>
-                <div class="three-col last-col">
-                    <h3>Notes</h3>
-                </div>
-            </li>
-
-            <li class="grid-list__item four-col">
-                <div class="one-col ">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}476aaa77-cassandra.svg" alt="icon">
-                </div>
-                <div class="three-col last-col">
-                    <h3>Cassandra</h3>
-                </div>
-            </li>
-            <li class="grid-list__item four-col">
-                <div class="one-col ">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}24badefc-freecad.svg" alt="icon">
-                </div>
-                <div class="three-col last-col">
-                    <h3>Freecad</h3>
-                </div>
-            </li>
-            <li class="grid-list__item four-col last-col">
-                <div class="one-col ">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}aacc8ea7-shout.svg" alt="icon">
-                </div>
-                <div class="three-col last-col">
-                    <h3>Shout</h3>
-                </div>
-            </li>
-
-            <li class="grid-list__item four-col last-row">
-                <div class="one-col ">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}d96a74dd-moon-buggy.svg" alt="icon">
-                </div>
-                <div class="three-col last-col">
-                    <h3>moon-buggy</h3>
-                </div>
-            </li>
-            <li class="grid-list__item four-col last-row">
-                <div class="one-col ">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}c675c7a0-webdm.svg" alt="icon">
-                </div>
-                <div class="three-col last-col">
-                    <h3>WebDM</h3>
-                </div>
-            </li>
-            <li class="grid-list__item four-col last-row last-col">
-                <div class="one-col ">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}b0f30b97-hangups.svg" alt="icon">
-                </div>
-                <div class="three-col last-col">
-                    <h3>Hangups</h3>
-                </div>
-            </li>
-        </ul>
     </div>
 </section>
 
 <section class="row no-border">
-    <div class="wrapper">
-        <div class="eight-col">
-            <h2>Creating snaps is easy!</h2>
-            <p>Snaps have a very simple internal structure &mdash; you can easily craft them by hand! But the easiest way to build a snap is with snapcraft, which supports building from source and from existing packages. Snapcraft also handles publishing your snaps to the world. Read how to <a href="http://snapcraft.io/create/">create a snap</a> and join the snap crafting community &mdash; we have a fun crowd of people who hang out on the <a class="external" href="https://webchat.freenode.net/?channels=snappy">#snappy channel on Freenode</a> or on <a href="mailto:snapcraft@lists.snapcraft.io">snapcraft@lists.snapcraft.io</a>.</p>
+    <div class="strip-inner-wrapper">
+        <div class="wrapper">
+            <div class="eight-col">
+                <h2>Creating snaps is easy!</h2>
+                <p>Snaps have a very simple internal structure &mdash; you can easily craft them by hand! But the easiest way to build a snap is with snapcraft, which supports building from source and from existing packages. Snapcraft also handles publishing your snaps to the world. Read how to <a href="http://snapcraft.io/create/">create a snap</a> and join the snap crafting community &mdash; we have a fun crowd of people who hang out on the <a class="external" href="https://webchat.freenode.net/?channels=snappy">#snappy channel on Freenode</a> or on <a href="mailto:snapcraft@lists.snapcraft.io">snapcraft@lists.snapcraft.io</a>.</p>
+            </div>
         </div>
     </div>
 </section>
