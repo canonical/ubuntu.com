@@ -2,8 +2,8 @@
     <div class="strip-inner-wrapper">
         <div class="six-col append-one">
             <h1>Ubuntu Phone lineup</h1>
-            <p class="intro">Ubuntu Phone is available on a growing range of commercial handsets.
-            Here you can explore our current devices and learn where you can purchase them.</p>
+            <p>Ubuntu Phone is available on a growing range of commercial handsets which you can explore below.</p>
+            <p>All our devices are currently sold out, but new devices will be coming&nbsp;soon.</p>
         </div>
         <div class="five-col last-col not-for-small">
             <img src="{{ ASSET_SERVER_URL }}f81442e7-device-hero-row.png?w=480" alt="Ubuntu phones lineup" />
@@ -13,24 +13,11 @@
 
 <section class="row strip">
     <div class="strip-inner-wrapper">
-        <h2>All our devices are currently sold out, but new devices will be coming&nbsp;soon!</h2>
-        <p>In the meantime you can:</p>
-        <div class=" equal-height">
-            <div class="box four-col equal-height__item">
-                <h3>Flash your device</h3>
-                <p>Anyone can switch to Ubuntu on compatible phones.</p>
-                <p><a href="">Install ubuntu on your phone&nbsp;&rsaquo;</a></p>
-            </div>
-            <div class="box four-col equal-height__item">
-                <h3>Get an ubuntu tablet</h3>
-                <p>The BQ Aquarius M10 ubuntu edition tablet</p>
-                <p><a href="">View Ubuntu tablet&nbsp;&rsaquo;</a></p>
-            </div>
-            <div class="box four-col last-col equal-height__item">
-                <h3>Stay informed</h3>
-                <p>Why not sign up to our devices newsletter to be the first to know about news and exclusives.</p>
-                <p><a href="">Sign up to our newsletter&nbsp;&rsaquo;</a></p>
-            </div>
+        <div class="twelve-col">
+            <h2>Be the first to know when the next Ubuntu phone will be available</h2>
+        </div>
+        <div class="eight-col prepend-two">
+            {% include "phone/shared/_devices_newsletter.html" %}
         </div>
     </div>
 </section>
@@ -38,81 +25,98 @@
 <section class="row strip-light">
     <div class="strip-inner-wrapper equal-height">
         <div class="eight-col">
-            <h2>Sold out devices specifications</h2>
+            <h2>Previous devices</h2>
         </div>
 
-    <table class="devices">
-        <tr>
-            <td>&nbsp;</td>
-            <th class="devices__title">
-                <img class="devices__image" src="{{ ASSET_SERVER_URL }}31de2bd6-bq-e4.5-single.png" alt="BQ Aquaris E4.5" />
-                <p>BQ Aquaris E4.5</p>
-            </th>
-            <th class="devices__title">
-                <img class="devices__image" itemprop="image" src="{{ ASSET_SERVER_URL }}db45d440-bq-e5-single.png" alt="BQ Aquaris E5" />
-                <p>BQ Aquaris E5</p>
-            </th>
-            <th class="devices__title">
-                <img class="devices__image" src="{{ ASSET_SERVER_URL }}1e629b35-meizu-mx4-single.png?w=296" alt="Meizu MX4" />
-                <p>Meizu MX4 Ubuntu Edition</p>
-            </th>
-            <th class="devices__title">
-                <img class="devices__image" src="{{ ASSET_SERVER_URL }}0d1e4e42-meizu-pro5-single.png" alt="Meizu Pro 5" />
-                <p>Meizu PRO 5</p>
-            </th>
-        </tr>
-        <tr>
-            <th class="devices__title">Dimensions</th>
-            <td class="devices__item"><p>137 x 67 x 9mm</p></td>
-            <td class="devices__item"><p>142 x 71 x 8.65mm</p></td>
-            <td class="devices__item"><p>144 x 75.2 x 8.9mm</p></td>
-            <td class="devices__item"><p>156.7 x 78 x 7.5mm</p></td>
-        </tr>
-        <tr>
-            <th class="devices__title">Weight</th>
-            <td class="devices__item"><p>123g</p></td>
-            <td class="devices__item"><p>134g</p></td>
-            <td class="devices__item"><p>147g</p></td>
-            <td class="devices__item"><p>168g</p></td>
-        </tr>
-        <tr>
-            <th class="devices__title">Camera</th>
-            <td class="devices__item"><p>8 megapixel</p></td>
-            <td class="devices__item"><p>13 megapixel</p></td>
-            <td class="devices__item"><p>20.7 megapixel rear<br />2 megapixel front</p></td>
-            <td class="devices__item"><p>21.16 megapixel rear<br />5 megapixel front</p></td>
-        </tr>
-        <tr>
-            <th class="devices__title">Processor</th>
-            <td class="devices__item"><p>Quad-core: 1.3GHz</p></td>
-            <td class="devices__item"><p>Quad-core: 1.3GHz</p></td>
-            <td class="devices__item"><p>Octa-core: 1.7GHz</p></td>
-            <td class="devices__item"><p>Octa-core: 4x2.1 GHz, 4x1.5 GHz</p></td>
-        </tr>
-        <tr>
-            <th class="devices__title">Memory</th>
-            <td class="devices__item"><p>1GB</p></td>
-            <td class="devices__item"><p>1GB</p></td>
-            <td class="devices__item"><p>2GB</p></td>
-            <td class="devices__item"><p>3GB</p></td>
-        </tr>
-        <tr>
-            <th class="devices__title">Storage</th>
-            <td class="devices__item"><p>8GB + MicroSD slot</p></td>
-            <td class="devices__item"><p>16 GB + MicroSD slot</p></td>
-            <td class="devices__item"><p>16GB</p></td>
-            <td class="devices__item"><p>32GB + MicroSD slot</p></td>
-        </tr>
-    </table>
+        <table class="devices">
+            <tr>
+                <td>&nbsp;</td>
+                <th class="devices__title">
+                    <img class="devices__image" src="{{ ASSET_SERVER_URL }}31de2bd6-bq-e4.5-single.png" alt="BQ Aquaris E4.5" />
+                    <p>BQ Aquaris E4.5</p>
+                </th>
+                <th class="devices__title">
+                    <img class="devices__image" itemprop="image" src="{{ ASSET_SERVER_URL }}db45d440-bq-e5-single.png" alt="BQ Aquaris E5" />
+                    <p>BQ Aquaris E5</p>
+                </th>
+                <th class="devices__title">
+                    <img class="devices__image" src="{{ ASSET_SERVER_URL }}1e629b35-meizu-mx4-single.png?w=296" alt="Meizu MX4" />
+                    <p>Meizu MX4 Ubuntu Edition</p>
+                </th>
+                <th class="devices__title">
+                    <img class="devices__image" src="{{ ASSET_SERVER_URL }}0d1e4e42-meizu-pro5-single.png" alt="Meizu Pro 5" />
+                    <p>Meizu PRO 5</p>
+                </th>
+            </tr>
+            <tr>
+                <th class="devices__title">Dimensions</th>
+                <td class="devices__item"><p>137 x 67 x 9mm</p></td>
+                <td class="devices__item"><p>142 x 71 x 8.65mm</p></td>
+                <td class="devices__item"><p>144 x 75.2 x 8.9mm</p></td>
+                <td class="devices__item"><p>156.7 x 78 x 7.5mm</p></td>
+            </tr>
+            <tr>
+                <th class="devices__title">Weight</th>
+                <td class="devices__item"><p>123g</p></td>
+                <td class="devices__item"><p>134g</p></td>
+                <td class="devices__item"><p>147g</p></td>
+                <td class="devices__item"><p>168g</p></td>
+            </tr>
+            <tr>
+                <th class="devices__title">Camera</th>
+                <td class="devices__item"><p>8 megapixel</p></td>
+                <td class="devices__item"><p>13 megapixel</p></td>
+                <td class="devices__item"><p>20.7 megapixel rear<br />2 megapixel front</p></td>
+                <td class="devices__item"><p>21.16 megapixel rear<br />5 megapixel front</p></td>
+            </tr>
+            <tr>
+                <th class="devices__title">Processor</th>
+                <td class="devices__item"><p>Quad-core: 1.3GHz</p></td>
+                <td class="devices__item"><p>Quad-core: 1.3GHz</p></td>
+                <td class="devices__item"><p>Octa-core: 1.7GHz</p></td>
+                <td class="devices__item"><p>Octa-core: 4x2.1 GHz, 4x1.5 GHz</p></td>
+            </tr>
+            <tr>
+                <th class="devices__title">Memory</th>
+                <td class="devices__item"><p>1GB</p></td>
+                <td class="devices__item"><p>1GB</p></td>
+                <td class="devices__item"><p>2GB</p></td>
+                <td class="devices__item"><p>3GB</p></td>
+            </tr>
+            <tr>
+                <th class="devices__title">Storage</th>
+                <td class="devices__item"><p>8GB + MicroSD slot</p></td>
+                <td class="devices__item"><p>16 GB + MicroSD slot</p></td>
+                <td class="devices__item"><p>16GB</p></td>
+                <td class="devices__item"><p>32GB + MicroSD slot</p></td>
+            </tr>
+            <tr>
+                <th class="devices__title">Price</th>
+                <td class="devices__item"><p>169.90&euro;</p></td>
+                <td class="devices__item"><p>199.90&euro;</p></td>
+                <td class="devices__item"><p>299&euro;</p></td>
+                <td class="devices__item"><p>$369.99</p></td>
+            </tr>
+        </table>
+    </div>
 </section>
 
-
-
-
-
-
-<section class="row row--note strip-light no-border">
+<section class="row strip">
     <div class="strip-inner-wrapper">
-        <p class="note">Please note: prices and availability may vary.</p>
+        <div class="twelve-col">
+            <h3 class="muted-heading">In the meantime you can:</h3>
+        </div>
+        <div class="equal-height">
+            <div class="box six-col equal-height--item">
+                <h3>Flash your device</h3>
+                <p>Anyone can install Ubuntu on compatible phones.</p>
+                <p><a href="">Install Ubuntu on your phone&nbsp;&rsaquo;</a></p>
+            </div>
+            <div class="box six-col last-col equal-height--item">
+                <h3>Get an Ubuntu tablet</h3>
+                <p>BQ phones may be sold out but why not learn more about the BQ M10 tablet that’s available.</p>
+                <p><a href="">View Ubuntu tablet&nbsp;&rsaquo;</a></p>
+            </div>
+        </div>
     </div>
 </section>
