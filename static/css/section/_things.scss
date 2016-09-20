@@ -17,6 +17,12 @@
     background: $light-grey;
     color: $cool-grey;
 
+    .pull-quote {
+      @media only screen and (min-width: $breakpoint-medium) {
+        margin: 0 .6em;
+      }
+    }
+
     p,
     .pull-quote cite {
       color: $cool-grey;
@@ -199,16 +205,16 @@ body.internet-of-things-developers {
   .row-hero__image {
     width: 200px;
     @media only screen and (min-width: $breakpoint-medium) {
-      width: auto;  
+      width: auto;
     }
   }
- 
+
   @media only screen and (min-width: $breakpoint-medium) {
     #main-content .row-hero h1 {
       margin-top: 40px;
     }
   }
-  
+
   .list-partners li {
     font-size: 1em;
   }
@@ -216,20 +222,18 @@ body.internet-of-things-developers {
 
 .row-cta--digital-signage {
   background: url('#{$asset-server}68b1a2e2-banner_pixels05.png') center center no-repeat;
-  
+
   @media only screen and (min-width: $breakpoint-medium) {
     background-size: cover;
   }
-  
+
   a {
     color: $white;
     border-bottom: 1px solid white;
     text-decoration: none;
   }
-  
+
   .button--secondary {
     color: $cool-grey;
   }
 }
-
- 
