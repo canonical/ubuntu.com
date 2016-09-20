@@ -173,21 +173,8 @@
 // @subsection /management/return-on-investment
 .management-return-on-investment {
 
-  .row-hero {
-    padding-bottom: 40px;
-  }
-
-  .row-box {
-    padding-bottom: 40px;
-    padding-top: 40px;
-  }
-
   .logos img {
     margin: 20px 0 0 40px;
-  }
-
-  .row-landscape {
-    margin-bottom: 0;
   }
 }
 
@@ -198,10 +185,6 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-  }
-
-  .inventory {
-    margin-bottom: 30px;
   }
 }
 
@@ -237,38 +220,11 @@
     }
   }
 
-  .equal-height > li {
-    @media only screen and (max-width : $breakpoint-medium) {
-      height: auto;
-    }
-  }
-
-  .ubuntu-advantage {
-    margin-bottom: 0;
-
-    img {
-      margin-left: -$gutter-width;
-    }
-  }
-
   table {
     table-layout: fixed;
 
     .row-title {
       width: 18em;
     }
-  }
-}
-
-// @subsection /management/working-with-landscape
-.management-working-with-landscape {
-
-  .row-hero .eight-col {
-    margin-bottom: 0;
-    padding-bottom: 1.25em;
-  }
-
-  iframe {
-    margin-bottom: 1.25em;
   }
 }
