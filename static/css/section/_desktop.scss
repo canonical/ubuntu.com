@@ -42,36 +42,28 @@
         line-height: 1.5em;
       }
     }
-
-    @media only screen and (min-width: $breakpoint-medium) {
-      > h2:first-child {
-        margin-bottom: 71%;
-      }
-    }
   }
 
   .row-apps {
 
     @media only screen and (max-width: $breakpoint-medium) {
       overflow: hidden;
-      width: 100%;
 
-      .one-col {
+      .grid-list__icon  {
         float: left;
         margin-right: 2.21238%;
-        width: 20%;
+        width: 30%;
       }
 
-      .three-col {
+      .grid-list__description  {
         float: left;
         margin-right: 0;
-        width: 64%;
+        width: 54%;
       }
     }
 
-    // medium and up
-    @media only screen and (min-width: $breakpoint-medium) {
-      h3 {
+    h3 {
+      @media only screen and (min-width: $breakpoint-medium) {
         margin-top: 5%;
       }
     }
@@ -210,9 +202,7 @@
   .row-gaming {
 
     @media only screen and (min-width: $breakpoint-medium) {
-      padding: 0;
-      padding-bottom: 55%;
-      width: 100%;
+      padding: 0 0 55%;
     }
 
     div {
@@ -221,8 +211,8 @@
       @media only screen and (min-width: $breakpoint-medium) {
         bottom: 20px;
         color: $header-link-color;
-        right: 40px;
         position: absolute;
+        right: 40px;
         z-index: 3000;
       }
     }
