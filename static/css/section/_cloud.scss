@@ -408,17 +408,17 @@
     overflow: hidden;
     min-height: 380px;
 
-      &:before {
-        content: ' ';
-        background: url('#{$asset-server}03ede53b-clouds-foreground.png') left bottom no-repeat;
-        bottom: 0;
-        display: block;
-        height: 400px;
-        left: 0;
-        position: absolute;
-        width: $breakpoint-large;
-        z-index: 3;
-      }
+    &:before {
+      background: url('#{$asset-server}03ede53b-clouds-foreground.png') left bottom no-repeat;
+      bottom: 0;
+      content: ' ';
+      display: block;
+      height: 400px;
+      left: 0;
+      position: absolute;
+      width: $breakpoint-large;
+      z-index: 3;
+    }
 
     .bg-clouds {
       background: transparent url('#{$asset-server}487a58c4-clouds-background.png') repeat-x;
@@ -447,12 +447,15 @@
     }
 
     .cloud-row-hero-image {
-      margin-right: -40%;
-      margin-top: 17%;
       position: relative;
       z-index: 3;
 
-      &::after {
+      @media only screen and (min-width : $breakpoint-medium) {
+        margin-right: -40%;
+        margin-top: 17%;
+      }
+
+      &:after {
         background: $cool-grey;
         content: ' ';
         display: block;
