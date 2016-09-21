@@ -11,7 +11,7 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-grey">
+<div class="row row-grey no-border">
     <div class="strip-inner-wrapper">
         <div class="eight-col append-four">
             <h1>Download Ubuntu Desktop</h1>
@@ -23,7 +23,7 @@
             <div class="box box-highlight clearfix equal-height--vertical-divider">
                 <div class="equal-height--vertical-divider__item eight-col no-margin-bottom">
                     <h2>Ubuntu {{lts_release_full_with_point}}</h2>
-                    <p>Download the latest version of Ubuntu, for desktop PCs and laptops. LTS stands for long-term support – which means five years of free security and maintenance updates, guaranteed.</p>
+                    <p>The Long Term Support (LTS) version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{lts_release}} LTS comes with five years of security and maintenance updates, guaranteed.</p>
                     <p><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="external">Ubuntu {{lts_release_full}} release notes</a></p>
 
                     <p>Recommended system requirements:</p>
@@ -56,6 +56,36 @@
         </div><!-- /.twelve-col -->
     </div><!-- /.strip-inner-wrapper -->
 </div><!-- /.row -->
+
+<div class="row row-grey">
+    <div class="strip-inner-wrapper">
+    	<div class="twelve-col no-margin-bottom">
+    		<div class="box box-highlight clearfix vertical-divider">
+    			<div class="eight-col no-margin-bottom">
+                    <h2>Ubuntu {{latest_release}}</h2>
+    				<p>The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{latest_release}} comes with nine months of security and maintenance updates.</p>
+    				<p><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="external">Ubuntu {{latest_release}} release notes</a></p>
+    			</div>
+    			<div class="four-col last-col no-margin-bottom download-button">
+    				<form class="form-download gap-from-top" action="/download/desktop/contribute/" method="get">
+    					<fieldset>
+    						<input type="hidden" name="version" value="{{latest_release}}" />
+    						<label for="input-bits">Choose your flavour</label>
+    						<select id="input-bits" name="architecture">
+    							<option value="amd64" selected="selected">64-bit &mdash; recommended</option>
+    							<option value="i386">32-bit &mdash; for machines with less than 2GB RAM</option>
+    						</select>
+    					</fieldset>
+    					<div>
+    						<button type="submit">Download</button>
+    					</div>
+                        <p><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
+    				</form>
+    			</div><!-- /.four-col -->
+    		</div><!-- /.box -->
+    	</div>
+    </div>
+</div>
 
 <div class="row row-easy-ways">
     <div class="strip-inner-wrapper">
