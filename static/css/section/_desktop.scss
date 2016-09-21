@@ -24,7 +24,9 @@
     }
 
     .row-case-studies--title {
-      margin-bottom: 72%;
+      @media only screen and (min-width: $breakpoint-medium) {
+        margin-bottom: 72%;
+      }
     }
 
     .pull-quote {
@@ -155,6 +157,12 @@
 
     @media only screen and (min-width: $breakpoint-medium) {
       margin-bottom: 0;
+    }
+
+    .no-margin-bottom {
+      @media only screen and (max-width: $breakpoint-medium) {
+        margin-bottom: 20px;
+      }
     }
   }
 
