@@ -15,7 +15,7 @@
   .row-case-studies {
     background-color: $dark-aubergine;
     background-image: url('#{$asset-server}3c1c3b37-background-tile.jpg');
-    color: $header-link-color;
+    color: $white;
 
     blockquote {
       @media only screen and (min-width: $breakpoint-medium) {
@@ -23,11 +23,15 @@
       }
     }
 
+    .row-case-studies--title {
+      margin-bottom: 72%;
+    }
+
     .pull-quote {
       margin-bottom: .75em;
 
       p {
-        color: $header-link-color;
+        color: $white;
         font-size: 1em;
         line-height: 1.5em;
 
@@ -37,7 +41,7 @@
       }
 
       cite {
-        color: $header-link-color;
+        color: $white;
         font-size: 1em;
         line-height: 1.5em;
       }
@@ -210,7 +214,7 @@
 
       @media only screen and (min-width: $breakpoint-medium) {
         bottom: 20px;
-        color: $header-link-color;
+        color: $white;
         position: absolute;
         right: 40px;
         z-index: 3000;
@@ -359,6 +363,7 @@
   }
 
   .row-case-studies {
+
     @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}02d89f50-map.jpg');
       background-repeat: no-repeat;
@@ -587,7 +592,7 @@
 
   .row-intel {
     background-color: #007cc5;
-    color: $header-link-color;
+    color: $white;
 
     @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}0caaa961-image-intelonastick-background.png');
@@ -596,8 +601,8 @@
     }
 
     .external {
-      background-image: url('#{$asset-server}6effa961-icon-externallink-header-link-color.png');
-      color: $header-link-color;
+      background-image: url('#{$asset-server}6effa961-icon-externallink-white.png');
+      color: $white;
     }
 
     img {
