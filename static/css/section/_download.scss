@@ -125,6 +125,29 @@
         padding: 20px 0 20px 84px;
         margin: 0 -20px -41px -20px;
     }
+
+    // XXX code stuff
+    pre {
+      overflow: auto;
+      padding-top: 1em;
+      padding-top: 10px;
+      padding-right: 15px;
+      padding-bottom: 10px;
+      padding-left: 15px;
+      background-color: #333;
+      border: none;
+      border-radius: 2px;
+      color: #cdcdcd;
+    }
+    pre > code {
+      border: 0;
+      background: transparent;
+      font-size: 1em;
+      font-weight: 300;
+      padding: 0.7em 1em;
+      color: #cdcdcd;
+      width: 100%;
+    }
 }
 
 .download-server-thank-you-linuxone #main-content .row-hero {
@@ -1022,27 +1045,4 @@ input[type=number].contribute__option-value {
 .list-step__text {
     display: inline-block;
     padding-top: .5em;
-}
-
-// XXX code stuff
-pre {
-  overflow: auto;
-  padding-top: 1em;
-  padding-top: 10px;
-  padding-right: 15px;
-  padding-bottom: 10px;
-  padding-left: 15px;
-  background-color: #333;
-  border: none;
-  border-radius: 2px;
-  color: #cdcdcd;
-}
-pre > code {
-  border: 0;
-  background: transparent;
-  font-size: 1em;
-  font-weight: 300;
-  padding: 0.7em 1em;
-  color: #cdcdcd;
-  width: 100%;
 }

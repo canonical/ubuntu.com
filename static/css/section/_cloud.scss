@@ -496,9 +496,11 @@
     }
 
     div {
-      border-right: 1px dotted $warm-grey;
-      margin-bottom: 0;
-      padding-right: $gutter-width;
+      @media only screen and (min-width: $breakpoint-medium) {
+        border-right: 1px dotted $warm-grey;
+        margin-bottom: 0;
+        padding-right: $gutter-width;
+      }
     }
 
     div.last-col {
