@@ -1,282 +1,195 @@
-// @section desktop-home
-.row-case-studies {
-  background-color: $dark-aubergine;
-  background-image: url('#{$asset-server}3c1c3b37-background-tile.jpg');
-  color: #fff;
+@charset 'UTF-8';
 
-  .pull-quote {
-    margin-bottom: .75em;
+// ---------------------------------------------------------------
+// ---------------------------------------------------------------
+//
+//  Project:    Ubuntu Front-End Desktop section
+//  Author:     Web Team at Canonical Ltd
+//
+// ---------------------------------------------------------------
+// ---------------------------------------------------------------
 
-    p {
-      color: #fff;
-      font-size: 1em;
-      line-height: 1.5em;
+// @global desktop section_title
+.desktop {
 
-      span {
-        top: .2em;
+  .row-case-studies {
+    background-color: $dark-aubergine;
+    background-image: url('#{$asset-server}3c1c3b37-background-tile.jpg');
+    color: $white;
+
+    blockquote {
+      @media only screen and (min-width: $breakpoint-medium) {
+        margin-bottom: 20px;
       }
     }
 
-    cite {
-      color: #fff;
-      font-size: 1em;
-      line-height: 1.5em;
+    .row-case-studies--title {
+      @media only screen and (min-width: $breakpoint-medium) {
+        margin-bottom: 72%;
+      }
+    }
+
+    .pull-quote {
+      margin-bottom: .75em;
+
+      p {
+        color: $white;
+        font-size: 1em;
+        line-height: 1.5em;
+
+        span {
+          top: .2em;
+        }
+      }
+
+      cite {
+        color: $white;
+        font-size: 1em;
+        line-height: 1.5em;
+      }
     }
   }
 
-  @media only screen and (min-width: $breakpoint-medium) {
-    > h2:first-child {
-      margin-bottom: 71%;
-    }
-  }
-}
-
-/// small screens
-@media only screen and (max-width: $breakpoint-medium) {
   .row-apps {
+
+    @media only screen and (max-width: $breakpoint-medium) {
+      overflow: hidden;
+
+      .grid-list__icon  {
+        float: left;
+        margin-right: 2.21238%;
+        width: 30%;
+      }
+
+      .grid-list__description  {
+        float: left;
+        margin-right: 0;
+        width: 54%;
+      }
+    }
+
+    h3 {
+      @media only screen and (min-width: $breakpoint-medium) {
+        margin-top: 5%;
+      }
+    }
+  }
+
+  .row-landscape,
+  .row-complete {
     overflow: hidden;
+    padding-bottom: 20px;
+
+    @media only screen and (min-width: $breakpoint-medium) {
+      padding-bottom: 0;
+
+      .pull-right {
+        max-width: 60%;
+      }
+    }
+  }
+
+  .landscape-screenshot {
+    -webkit-box-shadow: -2px 0 2px 1px rgba(0, 0, 0, .1);
+    -moz-box-shadow: -2px 0 2px 1px rgba(0, 0, 0, .1);
+    box-shadow: -2px 0 2px 1px rgba(0, 0, 0, .1);
+  }
+
+  .share-this {
+    clear: both;
+    display: block;
+    height: 25px;
+    margin-top: 20px;
+    position: relative;
     width: 100%;
 
-    .one-col {
+    iframe {
+      display: inline-block;
       float: left;
-      width: 20%;
-      margin-right: 2.21238%;
+      margin: 0;
+      padding: 0;
+      width: 110px;
     }
 
-    .three-col {
-      margin-right: 0;
-      float: left;
-      width: 64%;
-    }
-  }
-}
-
-.row-landscape,
-.row-complete {
-  overflow: hidden;
-  padding-bottom: 20px;
-
-  @media only screen and (min-width: $breakpoint-medium) {
-    padding-bottom: 0;
-
-    .pull-right {
-      max-width: 60%;
+    .twitter-share-button {
+      display: inline-block;
+      float: none;
+      margin-right: 18px;
+      width: 58px;
     }
   }
 }
 
-.landscape-screenshot {
-  -webkit-box-shadow: -2px 0px 2px 1px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: -2px 0px 2px 1px rgba(0, 0, 0, 0.1);
-  box-shadow: -2px 0px 2px 1px rgba(0, 0, 0, 0.1);
-}
+// @section desktop-home
+.desktop-home {
 
-.desktop .share-this {
-  clear: both;
-  display: block;
-  height: 25px;
-  margin-top: 20px;
-  position: relative;
-  width: 100%;
+  .row-hero {
 
-  iframe {
-    display: inline-block;
-    float: left;
-    margin: 0;
-    padding: 0;
-    width: 110px;
-  }
-
-  .twitter-share-button {
-    display: inline-block;
-    float: none;
-    margin-right: 18px;
-    width: 58px;
-  }
-}
-
-.row-community {
-  background: #fff;
-  color: $cool-grey;
-  padding: 40px 20px 20px;
-
-  .nine-col .six-col {
-    background: #fff;
-    display: block;
-  }
-
-  .box {
-    border: 0;
-  }
-
-  .where-to-find-us {
-    background: #fff;
-    margin: 0;
-    padding: 15px 20px;
-
-    ul {
-      margin-bottom: 0;
-    }
-
-    a { padding: 2px 0 2px 26px; }
-
-    .ask-ubuntu a {
-      background: url('#{$asset-server}7da3c811-icon-irc.png') 0 2px no-repeat;
-    }
-
-    .mailing-lists a {
-      background: url('#{$asset-server}b65ef76e-icon-mail.png') 0 2px no-repeat;
-    }
-
-    .ubuntu-blog a {
-      background: url('#{$asset-server}891041a1-icon-rss.png') 0 2px no-repeat;
-    }
-
-    h3,
-    h4 {
-      border-bottom: 1px dotted $warm-grey;
-      font-size: 1em;
-      margin-bottom: 10px;
-      padding-bottom: 5px;
-    }
-  }
-
-  .eight-col,
-  .eight-col.box,
-  .six-col,
-  .nine-col {
-    padding: 20px;
-  }
-
-  .six-col,
-  .six-col,
-  .eight-col {
-    background:$white;
-    position: relative;
-  }
-
-  .nine-col div,
-  .nine-col div {
-    background: #fff;
-    display: block;
-    float: left;
-  }
-}
-
-.row-case-studies-light {
-  background-color: $light-grey;
-  background-image: none;
-  color: #333;
-
-  .pull-quote p,
-  .pull-quote cite {
-    color: #333;
-  }
-}
-
-@media only screen and (min-width: $breakpoint-medium) {
-  //Medium screen
-  .row-apps {
-    h3 {
-      margin-top: 5%;
-    }
-  }
-
-  .row-case-study {
-    .headline {
-      font-size: 1.7737857143em;
-    }
-
-    blockquote {
-      margin-bottom: 20px;
-    }
-  }
-}
-
-
-/// desktop Overview
-.desktop-home #main-content {
-  .row-industry img {
-    display: block;
-    margin: 0 auto 10px;
-    max-width: 150px;
-  }
-
-  .row-latest-hardware .eight-col,
-  .row-tour .six-col {
-    margin-bottom: 20px;
-  }
-
-  //Medium screen
-  @media only screen and (min-width: $breakpoint-medium) {
-    .row-hero {
+    @media only screen and (min-width: $breakpoint-medium) {
       background-color: $light-grey;
       background-image: url('#{$asset-server}364631d0-desktop-overview-hero.jpg?w=984');
-      background-repeat: no-repeat;
       background-position: 73% 13%, bottom right;
+      background-repeat: no-repeat;
+      border-bottom: 0;
       margin-top: 0;
       min-height: 573px;
-      border-bottom: 0;
 
       h1 {
         margin-top: 40px;
       }
 
       .light {
-        color: #333;
+        color: $cool-grey;
       }
     }
+  }
 
-    .row-latest-hardware .eight-col,
-    .row-tour .six-col {
+  .row-industry {
+    img {
+      display: block;
+      margin: 0 auto 10px;
+      max-width: 150px;
+    }
+  }
+
+  .row-latest-hardware {
+    margin-bottom: 20px;
+
+    @media only screen and (min-width: $breakpoint-medium) {
       margin-bottom: 0;
     }
 
-    .row-industry .box {
-      overflow: hidden;
-      padding-bottom: 0;
-
-      img {
-        margin: 0;
-        margin-bottom: -60px;
-        padding-left: 40px;
+    .no-margin-bottom {
+      @media only screen and (max-width: $breakpoint-medium) {
+        margin-bottom: 20px;
       }
     }
   }
 
-  @media only screen and (max-width: 844px) {
-    .row-complete .pull-right {
+  .row-complete .pull-right {
+    @media only screen and (max-width: 844px) {
       margin-top: 7%;
-    }
-  }
-
-  //Large screen
-  @media only screen and (min-width: $breakpoint-large) {
-    .row-hero {
-      background-size: cover;
-      margin-top: 0;
-      min-height: 574px;
-
-      h1 {
-        margin-top: 40px;
-      }
     }
   }
 }
 
-/// desktop Features
-.desktop-features #main-content {
+// @subsection /desktop/features
+.desktop-features {
 
- .skype-container {
-    max-width: 479px;
-    position: relative;
+  .row-hero {
 
-    .spinner {
-      height: 11%;
-      left: 57%;
-      position: absolute;
-      top: 51%;
-      width: 4%;
+    @media only screen and (min-width: $breakpoint-medium) {
+      background-image: url('#{$asset-server}9fe68ee3-desktop-features-hero.png?w=897');
+      background-position: top right -170px;
+      background-repeat: no-repeat;
+      background-size: 36em;
+      min-height: 310px;
+    }
+
+    @media only screen and (min-width: $breakpoint-large) {
+      background-position: top right -347px;
+      background-size: initial;
+      min-height: 500px;
     }
   }
 
@@ -292,21 +205,6 @@
     }
   }
 
-  .row-hero {
-    @media only screen and (min-width: $breakpoint-medium) {
-      background-image: url('#{$asset-server}9fe68ee3-desktop-features-hero.png?w=897');
-      background-position: top right -170px;
-      background-size: 36em;
-      background-repeat: no-repeat;
-      min-height: 310px;
-    }
-    @media only screen and (min-width: $breakpoint-large) {
-      background-position: top right -347px;
-      background-size: initial;
-      min-height: 500px;
-    }
-  }
-
   .row-web-browsing {
     @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}d037640f-desktop.png?w=984');
@@ -314,22 +212,23 @@
   }
 
   .row-gaming {
+
     @media only screen and (min-width: $breakpoint-medium) {
-      width: 100%;
-      padding: 0;
-      padding-bottom: 55%;
+      padding: 0 0 55%;
     }
+
     div {
       margin-top: 58%;
 
       @media only screen and (min-width: $breakpoint-medium) {
-        color: #fff;
-        position: absolute;
         bottom: 20px;
+        color: $white;
+        position: absolute;
         right: 40px;
         z-index: 3000;
       }
     }
+
     .borderlands {
       left: 0;
       position: absolute;
@@ -355,7 +254,7 @@
       p,
       h2 {
         @media only screen and (min-width: $breakpoint-medium) {
-          text-shadow: 0 0 2px black;
+          text-shadow: 0 0 2px #000;
         }
       }
     }
@@ -372,95 +271,22 @@
 
     &.photo-1 {
       @media only screen and (min-width: $breakpoint-medium) {
-        background-size: cover;
         background-image: url('#{$asset-server}6c84454e-desktop-photos-1.jpg');
+        background-size: cover;
       }
     }
+
     &.photo-2 {
       @media only screen and (min-width: $breakpoint-medium) {
-        background-size: cover;
         background-image: url('#{$asset-server}25593e05-desktop-photos-2.jpg');
+        background-size: cover;
       }
     }
+
     &.photo-3 {
       @media only screen and (min-width: $breakpoint-medium) {
-        background-size: cover;
         background-image: url('#{$asset-server}a6e14067-desktop-photos-3.jpg');
-      }
-    }
-  }
-
-  .row-compatible {
-    @media only screen and (min-width: $breakpoint-medium) {
-      overflow: hidden;
-      position: relative;
-    }
-
-    img {
-      max-width: 200px;
-    }
-
-    .two-col {
-      @media only screen and (min-width: $breakpoint-medium) {
-        margin-top: 1.5em;
-      }
-
-      @media only screen and (min-width: $breakpoint-large) {
-        margin-top: 0;
-      }
-    }
-
-    .three-col {
-      @media only screen and (min-width: $breakpoint-medium) {
-        position: relative;
-      }
-    }
-
-    .four-col {
-      @media only screen and (min-width: $breakpoint-medium) {
-        position: relative;
-        min-height: 200px;
-      }
-    }
-
-    .six-col {
-      @media only screen and (min-width: $breakpoint-medium) {
-        margin-top: 2.5em;
-      }
-
-      @media only screen and (min-width: $breakpoint-large) {
-        margin-top: 0;
-      }
-    }
-
-    .picto-desktop {
-      @media only screen and (min-width: $breakpoint-medium) {
-        margin-left: -65%;
-        max-width: none;
-        position: absolute;
-        top: 0;
-        width: 12em;
-      }
-    }
-
-    .picto-mobile,
-    .picto-camera {
-      @media only screen and (min-width: $breakpoint-medium) {
-        position: absolute;
-        width: 7em;
-      }
-    }
-
-    .picto-mobile {
-      @media only screen and (min-width: $breakpoint-medium) {
-        left: 60px;
-        top: 0;
-      }
-    }
-    .picto-camera {
-      @media only screen and (min-width: $breakpoint-medium) {
-        bottom: 0;
-        right: 0;
+        background-size: cover;
       }
     }
   }
@@ -480,96 +306,88 @@
 }
 
 
-/// desktop Enterprise
-.desktop-enterprise #main-content {
+// @subsection /desktop/enterprise
+.desktop-enterprise {
 
-  @media only screen and (min-width: $breakpoint-medium) {
-    //Medium screen
+  .row-hero {
 
-    .row-hero {
+    @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}ca8a41c4-desktop-enterprise-hero.png');
-      background-repeat: no-repeat;
       background-position: 232% 3%;
+      background-repeat: no-repeat;
       background-size: 81%;
       min-height: 400px;
       overflow: hidden;
     }
 
-    .row-certified {
-      background-image: url("#{$asset-server}31a45631-desktop-enterprise-certified.jpg");
-      background-repeat: no-repeat;
+    @media only screen and (min-width: $breakpoint-large) {
+      min-height: 457px;
+    }
+  }
+
+  .row-certified {
+    @media only screen and (min-width: $breakpoint-medium) {
+      background-image: url('#{$asset-server}31a45631-desktop-enterprise-certified.jpg');
       background-position: -80% 39%;
+      background-repeat: no-repeat;
       background-size: 75%;
       min-height: 373px;
       overflow: hidden;
     }
-  }
 
-  @media only screen and (min-width: $breakpoint-large) {
-    //Large screen
-    .row-hero {
-      min-height: 457px;
-    }
-
-    .row-certified {
+    @media only screen and (min-width: $breakpoint-large) {
       min-height: 457px;
     }
   }
 }
 
+// @subsection /desktop/education
+.desktop-education {
 
-/// desktop Education
-.desktop-education #main-content {
-  @media only screen and (min-width: $breakpoint-medium) {
-    //Medium screen
-    .row-hero {
+  .row-hero {
+    @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}3a51704e-desktop-education-hero.jpg?w=984');
-      background-repeat: no-repeat;
       background-position: right 10px center;
+      background-repeat: no-repeat;
+      border-bottom: 0;
       margin-top: 0;
       min-height: 574px;
-      border-bottom: 0;
 
       h1 {
         margin-top: 40px;
       }
     }
 
-    .row-case-studies {
+    @media only screen and (min-width: $breakpoint-large) {
+      background-position: 0 -50px;
+      background-size: cover;
+      margin-top: 0;
+      min-height: 574px;
+
+      h1 {
+        margin-top: 40px;
+      }
+    }
+  }
+
+  .row-case-studies {
+
+    @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}02d89f50-map.jpg');
       background-repeat: no-repeat;
       background-size: cover;
     }
   }
-
-  @media only screen and (min-width: $breakpoint-large) {
-    //Medium screen
-    .row-hero {
-      background-size: cover;
-      background-position: 0px -50px;
-      margin-top: 0;
-      min-height: 574px;
-
-      h1 {
-        margin-top: 40px;
-      }
-    }
-  }
 }
 
-/// desktop Government
-.desktop-government #main-content {
-  .podium img {
-    display: block;
-    margin: 0 auto;
-  }
+// @subsection /desktop/government
+.desktop-government {
 
-  @media only screen and (min-width: $breakpoint-medium) {
-    //Medium screen
-    .row-hero {
+  .row-hero {
+    @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}826a470a-desktop-government-hero+%281%29.jpg');
-      background-repeat: no-repeat;
       background-position: 0 83%;
+      background-repeat: no-repeat;
       margin-top: 0;
       min-height: 350px;
       background-size: 100%;
@@ -580,23 +398,7 @@
       }
     }
 
-    .row-case-studies {
-      background-image: url('#{$asset-server}5b74fa2a-map.jpg');
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-
-    .row-security {
-      background-repeat: no-repeat;
-      background-image: url('#{$asset-server}99d49a7d-padlock-chain.png');
-      background-position: 89% 93%;
-      min-height: 310px;
-    }
-  }
-
-  @media only screen and (min-width: $breakpoint-large) {
-    //Large screen
-    .row-hero {
+    @media only screen and (min-width: $breakpoint-large) {
       background-position: 0% 0%;
       background-size: cover;
       margin-top: 0;
@@ -607,200 +409,172 @@
       }
     }
   }
+
+  .row-case-studies {
+
+    @media only screen and (min-width: $breakpoint-medium) {
+      background-image: url('#{$asset-server}5b74fa2a-map.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+
+  .row-security {
+    @media only screen and (min-width: $breakpoint-medium) {
+      background-image: url('#{$asset-server}99d49a7d-padlock-chain.png');
+      background-position: 89% 93%;
+      background-repeat: no-repeat;
+      min-height: 310px;
+    }
+  }
 }
 
-/// desktop developer
-.desktop-for-developers #main-content {
-
-  .row-why-ubuntu li {
-    font-size: 13px;
-  }
+// @subsection /desktop/developer
+.desktop-for-developers {
 
   .row-easy-deployment {
     background-color: $box-solid-grey;
   }
 
-  .row-tailored-support {
-    border-bottom: 0;
-
-    table {
-      margin: 20px 0;
-    }
-  }
-
-  //Medium screen
-  @media only screen and (min-width: $breakpoint-medium) {
-    .row-hero {
+  .row-hero {
+    @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}2e62cdb4-desktop-developer-hero.png');
       background-position: top right -220px;
       background-repeat: no-repeat;
       background-size: 36em;
-      min-resolution: 310px;
+      min-height: 310px;
     }
 
-    .pull-bottom-left {
+    @media only screen and (min-width: $breakpoint-large) {
+      background-position: top right -347px;
+      background-size: 90%;
+      min-height: 500px;
+    }
+  }
+
+  .pull-bottom-left {
+    @media only screen and (min-width: $breakpoint-medium) {
       float: left;
       margin-bottom: -30px;
       margin-left: -30px;
     }
   }
 
-  //Large screen
-  @media only screen and (min-width: $breakpoint-large) {
-    .row-hero {
-      background-position: top right -347px;
-      background-size: 90%;
-      min-height: 500px;
-    }
-    .row-developer-tools {
-      .pull-bottom-right {
+  .row-developer-tools {
+    .pull-bottom-right {
+
+      @media only screen and (min-width: $breakpoint-large) {
         bottom: -60px;
         float: right;
       }
     }
+
     .pull-bottom-left {
-      float: left;
-      margin-bottom: -60px;
-      margin-left: -40px;
+
+      @media only screen and (min-width: $breakpoint-large) {
+        float: left;
+        margin-bottom: -60px;
+        margin-left: -40px;
+      }
     }
   }
 }
 
+// @subsection /desktop/ubuntu-kylin
+.desktop-ubuntu-kylin {
 
-/// desktop China / Kylin
-$item_margin: 40px;
+  .row-hero {
 
-.desktop-ubuntu-kylin,
-.desktop-ubuntu-kylin-zh-CN {
-  .screenshot-shadowed {
-    margin-left: -5px;
-  }
-
-  .row-partnership ul {
-    margin-left: -$item_margin;
-
-    li {
-      margin-left: $item_margin;
-    }
-  }
-
-  .right {
-    float: right;
-  }
-
-  .pull-left,
-  .pull-right {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .lang-switch {
-    margin-bottom: 20px;
-  }
-
-  @media only screen and (max-width: $breakpoint-medium) {
-
-    .pull-left,
-    .pull-right {
-      width: 100;
-      margin:0;
-    }
-
-
-  }
-
-  @media only screen and (min-width: $breakpoint-medium) {
-    .lang-switch {
-      margin-bottom: 0;
-      position: absolute;
-      right: 40px;
-      top: -20px;
-    }
-    .row-ubuntu-kylin-more img {
-      margin-top: -95px;
-    }
-  }
-}
-
-@media only screen and (min-width: $breakpoint-medium) {
-  //Medium screen
-  .desktop-ubuntu-kylin,
-  .desktop-ubuntu-kylin-zh-CN {
-
-    .row-hero {
+    @media only screen and (min-width: $breakpoint-medium) {
       background: url('#{$asset-server}b0f9da06-desktop-kylin-hero.jpg?w=720') 400px center no-repeat;
       padding-bottom: 55px;
     }
 
-    .row-ubuntu-kylin-more h3 {
-      margin-top: 30px;
-    }
-
-   .row-sogou {
-      .touch-border {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        margin-bottom: 0;
-
-        img {
-          float: left;
-        }
-      }
-    }
-
-    .pull-left {
-      margin-bottom: -40px;
-      margin-left: -20px;
-    }
-
-    .pull-right {
-      margin-bottom: -20px;
-      margin-right: -20px;
-    }
-  }
-}
-
-@media only screen and (min-width: $breakpoint-large) {
-  //Large screen
-  .desktop-ubuntu-kylin-zh-CN .row-hero {
-    padding-bottom: 80px;
-  }
-
-  .desktop-ubuntu-kylin,
-  .desktop-ubuntu-kylin-zh-CN {
-    .row-hero {
+    @media only screen and (min-width: $breakpoint-large) {
       background: url('#{$asset-server}b0f9da06-desktop-kylin-hero.jpg?w=800') 498px 20px no-repeat;
       padding-bottom: 55px;
     }
   }
 
-  .desktop-ubuntu-kylin,
-  .desktop-ubuntu-kylin-zh-CN {
-    .pull-left {
+  .row-partnership {
+
+    ul {
+      margin-left: -40px;
+
+      li {
+        margin-left: 40px;
+      }
+    }
+  }
+
+  .pull-left {
+    margin-left: 0;
+    margin-right: 0;
+
+    @media only screen and (max-width: $breakpoint-medium) {
+      margin: 0;
+      width: 100;
+    }
+
+    @media only screen and (min-width: $breakpoint-medium) {
+      margin-bottom: -40px;
+      margin-left: -20px;
+    }
+
+    @media only screen and (min-width: $breakpoint-large) {
       margin-bottom: -60px;
       margin-left: -40px;
     }
+  }
 
-    .pull-right {
+  .pull-right {
+    margin-left: 0;
+    margin-right: 0;
+
+    @media only screen and (max-width: $breakpoint-medium) {
+      margin: 0;
+      width: 100;
+    }
+
+    @media only screen and (min-width: $breakpoint-medium) {
+      margin-bottom: -20px;
+      margin-right: -20px;
+    }
+
+    @media only screen and (min-width: $breakpoint-large) {
       margin-bottom: -40px;
       margin-right: -40px;
     }
   }
 }
 
+// @subsection /desktop/partners
 .desktop-partners {
+
   sup {
-    font-size: 0.7em;
+    font-size: .7em;
     line-height: 1em;
   }
 
+  .row-case-studies-light {
+    background-color: $light-grey;
+    background-image: none;
+    color: $cool-grey;
+
+    .pull-quote p,
+    .pull-quote cite {
+      color: $cool-grey;
+    }
+  }
+
   .row-commercial {
-    @media only screen and (min-width: $breakpoint-medium) {
-      .four-col:after {
+
+    .four-col::after {
+
+      @media only screen and (min-width: $breakpoint-medium) {
         background-image: url('#{$asset-server}f2a25267-image-list-stroke.svg');
         background-repeat: repeat-x;
-        content: " ";
+        content: ' ';
         display: block;
         height: 5px;
         left: 85px;
@@ -808,15 +582,13 @@ $item_margin: 40px;
         top: 39px;
         width: 74%;
       }
-    }
 
-    @media only screen and (min-width: $breakpoint-large) {
-      .four-col:after {
+      @media only screen and (min-width: $breakpoint-large) {
         width: 76%;
       }
     }
 
-    .four-col.last-col:after {
+    .four-col.last-col::after {
       display: none;
     }
 
@@ -828,17 +600,17 @@ $item_margin: 40px;
 
   .row-intel {
     background-color: #007cc5;
-    color: #fff;
+    color: $white;
 
     @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}0caaa961-image-intelonastick-background.png');
-      background-repeat: no-repeat;
       background-position: 50% 50%;
+      background-repeat: no-repeat;
     }
 
-    a.external {
-      color: #fff;
+    .external {
       background-image: url('#{$asset-server}6effa961-icon-externallink-white.png');
+      color: $white;
     }
 
     img {
