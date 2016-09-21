@@ -417,8 +417,10 @@ body {
   margin-top: 7px;
 }
 // Full width sections
+.server,
 .ubuntu-search,
 .download,
+.desktop,
 .homepage,
 .cloud,
 .phone,
@@ -493,6 +495,7 @@ body {
 // extra rules for full width sections other than homepage
 .download,
 .phone,
+.server,
 .tablet {
   .row--dark {
       background: #262626;
@@ -513,7 +516,8 @@ body {
 }
   // The default section row padding
 .phone,
-.tablet {
+.tablet,
+.server {
   .row-hero {
     margin-top: 0;
 
@@ -547,7 +551,8 @@ body {
 }
 
 .tablet,
-.phone {
+.phone,
+.server {
   .row {
     padding: 20px 10px 0;
 
