@@ -9,101 +9,106 @@
 {% block meta_keywords %}Ubuntu OpenStack, Canonical, OpenStack Autopilot, OpenStack, cloud, Juju, Maas, Ubuntu Guest, private cloud, public cloud, vSphere{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
-{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="OpenStack" page_title="autopilot" %}
+<div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="OpenStack" page_title="autopilot" %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
 
 <section class="row row-hero">
-    <div class="six-col">
-        <h1>OpenStack Autopilot</h1>
-        <p class="intro">The Canonical OpenStack installer is the easiest way to build a reference architecture OpenStack private cloud.</p>
-        <ul class="list-ticks--compact">
-            <li>Fully automated install and operations</li>
-            <li>Choice of storage and SDN technologies</li>
-            <li>Highest performance cloud architecture</li>
-            <li>Add hardware at any time to scale up</li>
-            <li>Works on all major vendor servers</li>
-            <li>Free to all support customers</li>
-            <li>From 5 servers upwards, your cloud grows on demand</li>
-        </ul>
-        <p>By automating every step of the deployment, management, operations and update process, the Canonical OpenStack Autopilot brings the cost of OpenStack into line with public cloud alternatives. Stand up your private cloud without any dedicated staff. This is the OpenStack most large-scale operators have chosen.</p>
-        <p>
-            <a class="button--primary" href="/download/cloud">
-                Get Autopilot
-            </a>
-        </p>
-    </div>
-    <div class="six-col last-col for-small">
-        <img src="{{ ASSET_SERVER_URL }}85280667-image-cloud-openstack-autopilot-screenshot.jpg?op=region&amp;rect=0,0,630,630" alt="Landscape screenshot" />
+    <div class="strip-inner-wrapper">
+        <div class="six-col">
+            <h1>OpenStack Autopilot</h1>
+            <p class="intro">The Canonical OpenStack installer is the easiest way to build a reference architecture OpenStack private cloud.</p>
+            <ul class="list-ticks--compact">
+                <li>Fully automated install and operations</li>
+                <li>Choice of storage and SDN technologies</li>
+                <li>Highest performance cloud architecture</li>
+                <li>Add hardware at any time to scale up</li>
+                <li>Works on all major vendor servers</li>
+                <li>Free to all support customers</li>
+                <li>From 5 servers upwards, your cloud grows on demand</li>
+            </ul>
+            <p>By automating every step of the deployment, management, operations and update process, the Canonical OpenStack Autopilot brings the cost of OpenStack into line with public cloud alternatives. Stand up your private cloud without any dedicated staff. This is the OpenStack most large-scale operators have chosen.</p>
+            <p>
+                <a class="button--primary" href="/download/cloud">
+                    Get Autopilot
+                </a>
+            </p>
+        </div>
+        <div class="six-col last-col for-small">
+            <img src="{{ ASSET_SERVER_URL }}85280667-image-cloud-openstack-autopilot-screenshot.jpg?op=region&amp;rect=0,0,630,630" alt="Landscape screenshot" />
+        </div>
     </div>
 </section>
 
 <!-- main window -->
 <section class="row no-border autopilot-dynamic" id="autopilot-main">
-    <h2>Autopilot in action</h2>
-    <div class="twelve-col">
-        <div class="video-container">
-            <iframe width="453" height="255" src="https://www.youtube.com/embed/RiEZB1-83wQ" frameborder="0" allowfullscreen></iframe>
+    <div class="strip-inner-wrapper">
+        <h2>Autopilot in action</h2>
+        <div class="twelve-col">
+            <div class="video-container">
+                <iframe width="453" height="255" src="https://www.youtube.com/embed/RiEZB1-83wQ" frameborder="0" allowfullscreen></iframe>
+            </div>
         </div>
     </div>
 </section>
 
 
 <section class="row">
-
-    <h2>Build an OpenStack cloud with Autopilot</h2>
-
-    <div class="six-col">
-        <h4>Experience OpenStack at its best</h4>
-        <p>OpenStack Autopilot is the world’s easiest dynamic OpenStack installer. It handles every aspect of your cloud both during installation, expansion, and everyday operations.</p>
-        <p>
-            <a class="button--primary" href="/download/cloud">
-            Get Autopilot
-            </a>
-        </p>
-    </div>
-
-    <div class="six-col last-col">
-        <h4>Requirements for Autopilot:</h4>
-        <ul class="list-ticks--compact">
-            <li>At least five machines with two disks</li>
-            <li>Two machines with x2 network interfaces (NICs)</li>
-            <li>A dedicated switch to create a private cloud LAN</li>
-            <li>Internet access through a router on that LAN</li>
-        </ul>
-    </div>
-
-
-</section>
-
-
-<section class="row strip-dark row-cost no-border">
-    <h2>How much does it cost?</h2>
-    <div class="six-col">
-        <p>You can try OpenStack Autopilot for free, but you need to purchase
-            Ubuntu Advantage when you use more than 10 machines.  Ubuntu Advantage
-            is our enterprise management and support service. It gives you Landscape
-            to monitor and manage your cloud, and access to 24x7 phone and email support.</p>
+    <div class="strip-inner-wrapper">
+        <h2>Build an OpenStack cloud with Autopilot</h2>
+        <div class="six-col">
+            <h4>Experience OpenStack at its best</h4>
+            <p>OpenStack Autopilot is the world’s easiest dynamic OpenStack installer. It handles every aspect of your cloud both during installation, expansion, and everyday operations.</p>
             <p>
-                <a class="button--primary" href="/cloud/plans-and-pricing">
-                    See Ubuntu Advantage pricing
+                <a class="button--primary" href="/download/cloud">
+                Get Autopilot
                 </a>
             </p>
         </div>
-
-        <div class="three-col box align-center">
-            <h3 class="caps">Free</h3>
-            <p class="intro">Up to ten machines</p>
+        <div class="six-col last-col">
+            <h4>Requirements for Autopilot:</h4>
+            <ul class="list-ticks--compact">
+                <li>At least five machines with two disks</li>
+                <li>Two machines with x2 network interfaces (NICs)</li>
+                <li>A dedicated switch to create a private cloud LAN</li>
+                <li>Internet access through a router on that LAN</li>
+            </ul>
         </div>
+    </div>
+</section>
 
-        <div class="three-col last-col box align-center">
-            <h3 title="USD">$750</h3>
-            <p class="intro">Annually, per server</p>
-        </div>
-    </section>
+<section class="row strip-dark row-cost no-border">
+    <div class="strip-inner-wrapper">
+        <h2>How much does it cost?</h2>
+        <div class="six-col">
+            <p>You can try OpenStack Autopilot for free, but you need to purchase
+                Ubuntu Advantage when you use more than 10 machines.  Ubuntu Advantage
+                is our enterprise management and support service. It gives you Landscape
+                to monitor and manage your cloud, and access to 24x7 phone and email support.</p>
+                <p>
+                    <a class="button--primary" href="/cloud/plans-and-pricing">
+                        See Ubuntu Advantage pricing
+                    </a>
+                </p>
+            </div>
+    
+            <div class="three-col box align-center">
+                <h3 class="caps">Free</h3>
+                <p class="intro">Up to ten machines</p>
+            </div>
+    
+            <div class="three-col last-col box align-center">
+                <h3 title="USD">$750</h3>
+                <p class="intro">Annually, per server</p>
+            </div>
+    </div>
+</section>
 
-    <section class="row no-border">
+<section class="row no-border">
+    <div class="strip-inner-wrapper">
         <div class="nine-col">
             <h2>How Autopilot works</h2>
         </div>
@@ -139,7 +144,8 @@
         <div class="prepend-one four-col last-col">
             <img src="{{ ASSET_SERVER_URL }}4455ef04-autopilot-diagram.svg" alt="Autopilot diagram" width="100%" />
         </div>
-    </section>
+    </div>
+</section>
 
     {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
 

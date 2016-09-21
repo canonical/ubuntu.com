@@ -2,7 +2,9 @@
 {% block title %}Ubuntu Advantage Storage contact us{% endblock %}
 
 {% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
 	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Storage" page_title="Contact us" %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block head_extra %}
@@ -26,7 +28,8 @@
 {% endblock %}
 
 {% block content %}
-<div class="row row-hero no-border">
+<section class="row row-hero no-border">
+    <div class="strip-inner-wrapper">
 	<h1>Ubuntu Advantage Storage</h1>
 	<div class="eight-col">
 	  <p class="intro">Let Canonical help you build your own software-defined storage&nbsp;network.</p>
@@ -102,4 +105,5 @@
       </form>
 </div>
 </div>
+</section>
 {% endblock content %}

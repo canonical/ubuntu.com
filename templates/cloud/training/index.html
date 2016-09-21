@@ -7,84 +7,93 @@
 {% block meta_keywords %}cloud training, openstack training, Ubuntu OpenStack, private cloud, Canonical training, Ubuntu Server, Ubuntu Training{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
   {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="OpenStack" page_title="Jumpstart" %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block outer_content %}
 {% block content %}
-<div class="row row-hero row--training">
-  <h1>Train with Ubuntu</h1>
-    <div class="six-col">
-        <p>Train your sysadmins and devops engineers to become Ubuntu OpenStack experts. Canonical runs training programmes to suit all environments and all levels of experience. Explore, prototype and design with cloud technologies so you can get the most out of OpenStack.</p>
+<section class="row row-hero row--training">
+    <div class="strip-inner-wrapper">
+        <h1>Train with Ubuntu</h1>
+        <div class="six-col">
+            <p>Train your sysadmins and devops engineers to become Ubuntu OpenStack experts. Canonical runs training programmes to suit all environments and all levels of experience. Explore, prototype and design with cloud technologies so you can get the most out of OpenStack.</p>
+        </div>
+        <div class="five-col last-col text-center not-for-small">
+            <img class="row--training-image" alt="" src="{{ ASSET_SERVER_URL }}58f24048-image-ubuntu-openstack-medals.png" />
+        </div>
     </div>
-    <div class="five-col last-col text-center not-for-small">
-        <img class="row--training-image" alt="" src="{{ ASSET_SERVER_URL }}58f24048-image-ubuntu-openstack-medals.png" />
-    </div>
-</div>
-<div class="row">
-    <ul class="training-list list twelve-col no-bullets">
-        <li>
-            <h2>OpenStack Fundamentals</h2>
-            <div class="equal-height--vertical-divider">
-                <div class="equal-height--vertical-divider__item seven-col">
-                    <h3>Classroom training</h3>
-                    <p>3-day hands-on classroom-based course that will give you the best introduction for setting up and running your own Ubuntu OpenStack cloud.</p>
-                    <p><a class="external" href="https://insights.ubuntu.com/wp-content/uploads/226b/067_CAN_OpenStack_Fundamentals_Flyer_A4_v4_Screen.pdf">Read the course outline (PDF)</a></p>
-                </div>
-                <div class="equal-height--vertical-divider__item five-col last-col">
-                    <dl class="course-details" itemscope itemtype="http://schema.org/Product">
-                        <dt>Duration</dt>
-                        <dd>3 days</dd>
-                        <dt>Cost</dt>
-                        <dd>USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="1950.00">1,950</span> per attendee</dd>
-                        <dt>Availability</dt>
-                        <dd>Open admissions</dd>
-                    </dl>
-                    {% comment %}
-                    <!-- Example of event layout -->
-                    <ul class="five-col no-bullets no-border">
-                        <li><a class="external" href="https://insights.ubuntu.com/event/ubuntu-openstack-fundamentals-training-session/">13-15 May 2015, Vancouver, BC, Canada</a></li>
-                    </ul>
-                    {% endcomment %}
-                    <p>Additional sessions are being planned for this year. <a href="/cloud/training/classroom-contact-us">Register your interest&nbsp;&rsaquo;</a></p>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="equal-height--vertical-divider twelve-col">
-                <div class="equal-height--vertical-divider__item seven-col">
-                    <h3>Onsite training</h3>
-                    <p>3-day hands-on course at your premises for up to 15 people that will give you the best introduction for setting up and running your own Ubuntu OpenStack cloud.</p>
-                    <p><a class="external" href="https://insights.ubuntu.com/wp-content/uploads/226b/067_CAN_OpenStack_Fundamentals_Flyer_A4_v4_Screen.pdf">Read the course outline (PDF)</a></p>
-                </div>
-                <div class="equal-height--vertical-divider__item five-col last-col" itemscope itemtype="http://data-vocabulary.org/Event">
-                    <dl class="course-details">
-                        <dt>Duration</dt>
-                        <dd itemprop="duration">3 days</dd>
-                        <dt>Cost</dt>
-                        <dd>USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="19500.00">19,500</span> up to 15 attendees</dd>
-                        <dt>Location</dt>
-                        <dd>Your premises</dd>
-                        <dt>Availability</dt>
-                        <dd>Private groups only</dd>
-                    </dl>
-                    <p><a href="/cloud/training/onsite-contact-us">Contact us to book yours&nbsp;&rsaquo;</a></p>
-                </div>
-            </div>
-        </li>
-    </ul>
-</div>
+</section>
 
-<div class="row no-border">
-  <div class="seven-col">
-    <h2>Questions about training?</h2>
-    <p>If you have a question about OpenStack training or want to register your interest for future training.</p>
-    <p><a href="/cloud/training/contact-us">Contact us&nbsp;&rsaquo;</a></p>
-  </div>
-  <div class="five-col align-center last-col">
-    <img src="{{ ASSET_SERVER_URL }}9b170f06-picto-help-orange.svg" width="135" alt="" />
-  </div>
-</div>
+<section class="row">
+    <div class="strip-inner-wrapper">
+        <ul class="training-list list twelve-col no-bullets">
+            <li>
+                <h2>OpenStack Fundamentals</h2>
+                <div class="equal-height--vertical-divider">
+                    <div class="equal-height--vertical-divider__item seven-col">
+                        <h3>Classroom training</h3>
+                        <p>3-day hands-on classroom-based course that will give you the best introduction for setting up and running your own Ubuntu OpenStack cloud.</p>
+                        <p><a class="external" href="https://insights.ubuntu.com/wp-content/uploads/226b/067_CAN_OpenStack_Fundamentals_Flyer_A4_v4_Screen.pdf">Read the course outline (PDF)</a></p>
+                    </div>
+                    <div class="equal-height--vertical-divider__item five-col last-col">
+                        <dl class="course-details" itemscope itemtype="http://schema.org/Product">
+                            <dt>Duration</dt>
+                            <dd>3 days</dd>
+                            <dt>Cost</dt>
+                            <dd>USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="1950.00">1,950</span> per attendee</dd>
+                            <dt>Availability</dt>
+                            <dd>Open admissions</dd>
+                        </dl>
+                        {% comment %}
+                        <!-- Example of event layout -->
+                        <ul class="five-col no-bullets no-border">
+                            <li><a class="external" href="https://insights.ubuntu.com/event/ubuntu-openstack-fundamentals-training-session/">13-15 May 2015, Vancouver, BC, Canada</a></li>
+                        </ul>
+                        {% endcomment %}
+                        <p>Additional sessions are being planned for this year. <a href="/cloud/training/classroom-contact-us">Register your interest&nbsp;&rsaquo;</a></p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="equal-height--vertical-divider twelve-col">
+                    <div class="equal-height--vertical-divider__item seven-col">
+                        <h3>Onsite training</h3>
+                        <p>3-day hands-on course at your premises for up to 15 people that will give you the best introduction for setting up and running your own Ubuntu OpenStack cloud.</p>
+                        <p><a class="external" href="https://insights.ubuntu.com/wp-content/uploads/226b/067_CAN_OpenStack_Fundamentals_Flyer_A4_v4_Screen.pdf">Read the course outline (PDF)</a></p>
+                    </div>
+                    <div class="equal-height--vertical-divider__item five-col last-col" itemscope itemtype="http://data-vocabulary.org/Event">
+                        <dl class="course-details">
+                            <dt>Duration</dt>
+                            <dd itemprop="duration">3 days</dd>
+                            <dt>Cost</dt>
+                            <dd>USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="19500.00">19,500</span> up to 15 attendees</dd>
+                            <dt>Location</dt>
+                            <dd>Your premises</dd>
+                            <dt>Availability</dt>
+                            <dd>Private groups only</dd>
+                        </dl>
+                        <p><a href="/cloud/training/onsite-contact-us">Contact us to book yours&nbsp;&rsaquo;</a></p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section class="row no-border">
+    <div class="strip-inner-wrapper">
+        <div class="seven-col">
+            <h2>Questions about training?</h2>
+            <p>If you have a question about OpenStack training or want to register your interest for future training.</p>
+            <p><a href="/cloud/training/contact-us">Contact us&nbsp;&rsaquo;</a></p>
+        </div>
+        <div class="five-col align-center last-col">
+            <img src="{{ ASSET_SERVER_URL }}9b170f06-picto-help-orange.svg" width="135" alt="" />
+        </div>
+    </div>
+</section>
 
 {% endblock content %}
 {% endblock outer_content %}
