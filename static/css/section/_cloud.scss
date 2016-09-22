@@ -1018,3 +1018,63 @@
     }
   }
 }
+
+/* Cloud Training */
+
+/* @subsection cloud > training */
+.cloud-training  {
+
+  .row-training {
+
+    @media only screen and (min-width: $breakpoint-medium) {
+      margin-top: 0;
+      min-height: 300px;
+      padding-top: 20px;
+      position: relative;
+    }
+
+    @media only screen and (min-width: $breakpoint-large) {
+      min-height: 343px;
+      padding-top: 40px;
+    }
+
+    &__image {
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        max-width: 300px;
+        position: absolute;
+        right: 20px;
+        top: 0;
+      }
+
+      @media only screen and (min-width: $breakpoint-large) {
+        max-width: 360px;
+        right: 40px;
+        width: auto;
+      }
+    }
+  }
+
+  .training-list__item {
+    @media only screen and (min-width: $breakpoint-medium) {
+      margin-top: 40px;
+    }
+  }
+
+  .course-details {
+    margin-top: 3px;
+
+    dt {
+      float: left;
+      margin-right: 6px;
+
+      &:after {
+        content: ": ";
+      }
+    }
+
+    dd {
+      margin-bottom: 10px;
+    }
+  }
+}

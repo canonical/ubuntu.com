@@ -12,20 +12,18 @@
 
 {% block outer_content %}
 {% block content %}
-<div class="row row-hero row--training">
+<div class="row row-hero row-training">
   <h1>Train with Ubuntu</h1>
     <div class="six-col">
         <p>Train your sysadmins and devops engineers to become Ubuntu OpenStack experts. Canonical runs training programmes to suit all environments and all levels of experience. Explore, prototype and design with cloud technologies so you can get the most out of OpenStack.</p>
     </div>
-    <div class="five-col last-col text-center not-for-small">
-        <img class="row--training__image" alt="" src="{{ ASSET_SERVER_URL }}58f24048-image-ubuntu-openstack-medals.png" />
-    </div>
+    <img class="row-training__image not-for-small" alt="" src="{{ ASSET_SERVER_URL }}58f24048-image-ubuntu-openstack-medals.png" />
 </div>
 <div class="row">
     <ul class="training-list list twelve-col no-bullets">
-        <li>
+        <li class="twelve-col training-list__item">
             <h2>OpenStack Fundamentals</h2>
-            <div class="equal-height--vertical-divider">
+            <div class="equal-height--vertical-divider twelve-col">
                 <div class="equal-height--vertical-divider__item seven-col">
                     <h3>Classroom training</h3>
                     <p>3-day hands-on classroom-based course that will give you the best introduction for setting up and running your own Ubuntu OpenStack cloud.</p>
@@ -50,7 +48,7 @@
                 </div>
             </div>
         </li>
-        <li>
+        <li class="twelve-col training-list__item">
             <div class="equal-height--vertical-divider twelve-col">
                 <div class="equal-height--vertical-divider__item seven-col">
                     <h3>Onsite training</h3>
@@ -69,6 +67,28 @@
                         <dd>Private groups only</dd>
                     </dl>
                     <p><a href="/cloud/training/onsite-contact-us">Contact us to book yours&nbsp;&rsaquo;</a></p>
+                </div>
+            </div>
+        </li>
+        <li class="twelve-col training-list__item">
+            <div class="equal-height--vertical-divider twelve-col">
+                <div class="equal-height--vertical-divider__item seven-col">
+                    <h3>High availability architecture add-on training</h3>
+                    <p>This is a half day add-on course that is bundled with the OpenStack Fundamentals course, at your premises, for up to 15 students, that will provide fundamental instruction on High Availability for OpenStack.</p>
+                    <p>Read the course outline ></p>
+                </div>
+                <div class="equal-height--vertical-divider__item five-col last-col" itemscope itemtype="http://data-vocabulary.org/Event">
+                    <dl class="course-details">
+                        <dt>Duration</dt>
+                        <dd itemprop="duration">4.5 hrs</dd>
+                        <dt>Cost</dt>
+                        <dd>USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="19500.00">2,000</span> up to 15 attendees</dd>
+                        <dt>Location</dt>
+                        <dd>Your premises</dd>
+                        <dt>Availability</dt>
+                        <dd>From September 26, 2016</dd>
+                    </dl>
+                    <p><a href="/cloud/training/classroom-contact-us">Contact us to book yours&nbsp;&rsaquo;</a></p>
                 </div>
             </div>
         </li>
