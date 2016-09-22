@@ -83,7 +83,7 @@
 
     Notes:
     -----------------------------------------------------------------
-    Using '.yui3-js-enabled' for CSS with JS enabled as it's there for free atm, be nice to have just js-enabled as a class.
+    Using '.js' for CSS with JS enabled as it's there for free atm, be nice to have just js-enabled as a class.
 
 -----------------------------------------------------------------
 -------------------------------------------------------------- */
@@ -101,6 +101,9 @@ core scss files are in /sites/core/static/css
 // import vanilla themes
 @import "../../node_modules/ubuntu-vanilla-theme/scss/theme";
 @include ubuntu-vanilla-theme;
+
+// Other modules
+@import 'modules/input-range';
 
 @import "scratch";
 

@@ -9,13 +9,13 @@
 {% block extra_body_class %}management-home{% endblock %}
 
 {% block second_level_nav_items %}
-    {% include "templates/_nav_breadcrumb.html" with section_title="Management" page_title="Overview"  %}
+{% include "templates/_nav_breadcrumb.html" with section_title="Management" page_title="Overview"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
 
 <div class="row row-hero">
-  <h1>Support and management tools</h1>
+    <h1>Support and management tools</h1>
     <div class="seven-col no-margin-bottom">
         <p>Ubuntu Advantage is the commercial support package from Canonical. It includes Landscape, the Ubuntu systems management tool, for running desktop, server and public cloud deployments, or building and managing private OpenStack clouds.</p>
         <p><a href="https://buy.ubuntu.com" class="button--primary"><span class="external">Visit the Ubuntu Advantage store</span></a></p>
@@ -29,25 +29,25 @@
 
 <div class="row row-grey equal-height--vertical-divider">
     <div class="equal-height--vertical-divider__item six-col">
-    <div class="one-col align-center no-margin-bottom">
-        <img src="{{ ASSET_SERVER_URL }}bb7440f9-picto-server-orange.svg" width="50" height="50" alt="" class="priority-0"/>
-    </div>
-    <div class="five-col last-col no-margin-bottom">
-        <h3>Manage desktops and servers with Landscape</h3>
-        <h4 class="note caps">Free for 30 days</h4>
-    </div>
+        <div class="one-col align-center no-margin-bottom">
+            <img src="{{ ASSET_SERVER_URL }}bb7440f9-picto-server-orange.svg" width="50" height="50" alt="" class="priority-0"/>
+        </div>
+        <div class="five-col last-col no-margin-bottom">
+            <h3>Manage desktops and servers with Landscape</h3>
+            <h4 class="note caps">Free for 30 days</h4>
+        </div>
         <p>Try the SaaS version of Landscape on your desktop, server and public cloud deployments &mdash; free for 30 days.</p>
         <p><a href="https://landscape.canonical.com/trial-registration">Try Landscape for free for 30 days&nbsp;&rsaquo;</a></p>
     </div><!-- /.six-col -->
 
     <div class="equal-height--vertical-divider__item six-col last-col">
-    <div class="one-col align-center no-margin-bottom">
-        <img src="{{ ASSET_SERVER_URL }}b2015716-picto-cloud-orange.svg" width="50" height="50" alt="" class="priority-0"/>
-    </div>
-    <div class="five-col last-col no-margin-bottom">
-        <h3>Build a cloud with OpenStack Autopilot</h3>
-        <h4 class="note caps">Up to ten machines for free</h4>
-    </div>
+        <div class="one-col align-center no-margin-bottom">
+            <img src="{{ ASSET_SERVER_URL }}b2015716-picto-cloud-orange.svg" width="50" height="50" alt="" class="priority-0"/>
+        </div>
+        <div class="five-col last-col no-margin-bottom">
+            <h3>Build a cloud with OpenStack Autopilot</h3>
+            <h4 class="note caps">Up to ten machines for free</h4>
+        </div>
         <p>Canonical&rsquo;s OpenStack Autopilot builds and manages a highly resilient OpenStack cloud from the bare metal up.</p>
         <p><a href="/download/cloud">Install OpenStack Autopilot&nbsp;&rsaquo;</a></p>
     </div><!-- /.six-col -->
@@ -63,7 +63,7 @@
     </div>
     <div class="six-col last-col">
         <div class="video-container">
-            <iframe width="442" height="249" src="http://www.youtube.com/embed/as09TEW0-4Q?rel=0&amp;wmode=opaque&amp;modestbranding=0" frameborder="0" allowfullscreen></iframe>
+            <iframe width="442" height="249" src="https://www.youtube.com/embed/as09TEW0-4Q?rel=0&amp;wmode=opaque&amp;modestbranding=0" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 </div>
@@ -76,10 +76,10 @@
 </div><!-- /.row quote no-border -->
 
 <div class="row row-return-investment">
-    <div class="six-col stat">
-        <dl>
-            <dt>1,121%</dt>
-            <dd>ROI over five years</dd>
+    <div class="six-col stats-panel">
+        <dl class="four-col stats-panel--group">
+            <dt class="stats-panel--number">1,121%</dt>
+            <dd class="stats-panel--definition">ROI over five years</dd>
         </dl>
     </div>
     <div class="six-col last-col">

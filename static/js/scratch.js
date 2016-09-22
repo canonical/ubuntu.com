@@ -1,462 +1,279 @@
-YUI().use('node','gallery-carousel','gallery-carousel-anim','substitute', 'gallery-effects','cookie','event-resize','jsonp', 'io', 'dump', 'json-parse', function(Y) {
-    // Used in legal/contributors/submit.html
-    var lp_lookup_callback = {
-        timeout: 3000,
-        on: {
-            success : function (id, response) {
-                var messages = [];
-                try {
-                    messages = Y.JSON.parse(response.responseText);
-                } catch (e) {
-                    Y.log("JSON Parse failed!");
-                    return;
+core.setupAnimations = function() {
+    var yOffset = 350;
+
+    // Add the click event to display the video when clicking on the video
+    // placeholder
+    if (document.body.classList.contains('phone-features')) {
+        var videoPanel = document.querySelector('.row--video');
+        var showVideo = document.querySelector('.show-video');
+        if (showVideo) {
+            showVideo.addEventListener('click', function(e) {
+                e.preventDefault();
+                videoPanel.classList.add('show');
+                document.querySelector('.the-video').innerHTML = '<div class="video-container"><iframe width="984" height="554" src="http://www.youtube.com/embed/CsDFMIphtZk?showinfo=0&vq=hd1080&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe></div>';
+            });
+        }
+    }
+
+    // Add the click event to display and close a video on the phone
+    // overview page
+    if (document.body.classList.contains('phone-home')) {
+        var videoPanel = document.querySelector('.the-video');
+        var showVideo = document.querySelector('.show-video');
+        var closeVideoLink = document.querySelector('.close-vid-link');
+        var closeVideo = document.querySelector('.close-video');
+        var rowHero = document.querySelector('.row-hero');
+        var rowContent = document.querySelector('.row-content');
+
+        if (showVideo) {
+            showVideo.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeVideoLink.style.display = 'block';
+                videoPanel.classList.add('show');
+                rowHero.style.height = '588px';
+                rowContent.classList.remove('show-me');
+                rowContent.classList.add('hide-me');
+                videoPanel.innerHTML = '<iframe width="984" height="554" src="http://www.youtube.com/embed/-dpfHYpfEXY?showinfo=0&vq=hd1080&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe>';
+            });
+        }
+
+        if (closeVideo) {
+            closeVideo.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeVideoLink.style.display = 'none';
+                videoPanel.classList.remove('show');
+                rowHero.style.height = '678px';
+                rowContent.classList.remove('hide-me');
+                rowContent.classList.add('show-me');
+                videoPanel.innerHTML = '';
+            });
+        }
+    }
+
+    // Adds a scroll listener to the homepage which adds a class of `run`
+    // to the slider-animation element.
+    if (document.body.classList.contains('homepage')) {
+        var sliderAnimation = document.querySelector('.slider-animation');
+        if (sliderAnimation) {
+            window.addEventListener('scroll', function(e) {
+                if (window.scrollY > sliderAnimation.getBoundingClientRect().top - yOffset &&
+                    window.scrollY < sliderAnimation.getBoundingClientRect().top &&
+                    !sliderAnimation.run) {
+                    sliderAnimation.run = true;
+                    sliderAnimation.classList.add('run');
+                    setTimeout(function(e) {
+                        sliderAnimation.classList.remove('run');
+                    }, 8000);
                 }
-                Y.one('#lp_error').setHTML(messages.message);
-            },
-            failure : function (id, response) {
-                Y.log("Async call failed!");
-            }
-        }
-    };
-
-    // Should be rewritten in jQuery or ES5
-    core.setupAnimations = function(){
-        if (Y.one('body').hasClass('phone-home')) {
-            var yOffset = 250;
-        } else {
-            var yOffset = 350;
-        }
-        if (Y.one('body').hasClass('phone-developers') || Y.one('body').hasClass('phone-home') || Y.one('body').hasClass('phone-partners')) {
-            var edgeMagic = Y.all('.edge-magic');
-            Y.on('scroll', function(e) {
-                 edgeMagic.each(function (node) {
-                    if (window.scrollY > node.getXY()[1] - yOffset && window.scrollY < node.getXY()[1] && !node.run) {
-                        node.run = true;
-                        node.one('.slider-animation').addClass('run');
-                        if (node.one('.slider-animation').getAttribute('class') == 'slider-animation full-swipe run') {
-                            setTimeout(function(){ node.one('.launcher').addClass('return') }, 2000);
-                        }
-                    }
-                });
             });
 
-            Y.all('.replay').on('click', function(e) {
+            sliderAnimation.addEventListener('click', function(e) {
                 e.preventDefault();
-                core.rerunAnimation(e.target.get('parentNode').one('.slider-animation').getAttribute('class').replace('slider-animation ','').replace(' run',''));
-            });
-            if (Y.one('.content-controls .gallery-screen')) {
-                Y.one('.content-controls .gallery-screen').setStyle('display','block');
-                var infoIndex = 0;
+                sliderAnimation.classList.add('run');
+                setTimeout(function(e) {
+                    sliderAnimation.classList.remove('run');
+                }, 8000);
+            })
+        }
+    }
+}
+
+// Sets the left value of the slider list to appear as a slider.
+// XXX Ant, look at recreating in pure CSS.
+core.scopesSlideshow = function() {
+    if (document.body.classList.contains('phone-developers')) {
+        var slider = document.getElementById('slider');
+        var sliderList = slider.querySelector('ul');
+        var sliderListItems = sliderList.querySelectorAll('li');
+        var index = 0;
+        if (sliderListItems) {
+            var slideWidth = sliderListItems[0].offsetWidth;
+            var slideHeight = sliderListItems[0].offsetHeight;
+            var sliderUlWidth = sliderListItems.length * slideWidth;
+            slider.style.width = slideWidth + 'px';
+            slider.style.height = slideHeight + 'px';
+            sliderList.style.width = sliderUlWidth + 'px';
+
+            window.onload = function() {
                 setInterval(function() {
-                    Y.all('.infographic .main-image').addClass('hide');
-                    Y.one('.infographic .info-pic-'+infoIndex).removeClass('hide');
-                    if(++infoIndex > 4){ infoIndex = 0; }
-                }, 4000);
-            }
-        }
-
-        // scope animations
-        if (Y.one('body').hasClass('phone-features')) {
-            var videoPanel = Y.all('.row--video');
-            if (Y.one('.show-video')) {
-                Y.one('.show-video').on('click',function(e) {
-                    e.preventDefault();
-                    videoPanel.addClass('show');
-                    Y.one('.the-video div').set('innerHTML','<div class="video-container active"><iframe width="984" height="554" src="http://www.youtube.com/embed/CsDFMIphtZk?showinfo=0&vq=hd1080&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe></div>');
-                });
-            }
-        } // end if(Y.one('body').hasClass('phone-features'))
-
-        if (Y.one('body').hasClass('tablet-design') || Y.one('body').hasClass('phone-home') ||  Y.one('body').hasClass('desktop-home') || Y.one('body').hasClass('homepage')) {
-            if (Y.one('body').hasClass('tablet-design') || Y.one('body').hasClass('desktop-home') || Y.one('body').hasClass('homepage')) {
-                var edgeMagic = Y.all('.slider-animation');
-            }
-            if (Y.one('body').hasClass('desktop-home')) {
-                var yOffset = 1000;
-            }
-            var videoPanel = Y.all('.the-video');
-            Y.on('scroll', function(e) {
-                edgeMagic.each(function (node) {
-                    if (window.scrollY > node.getXY()[1] - yOffset && window.scrollY < node.getXY()[1] && !node.run) {
-                        node.run = true;
-                        node.addClass('run');
+                    sliderList.style.left = (index * -slideWidth) + 'px';
+                    index++;
+                    if (index > sliderListItems.length - 1) {
+                        index = 0;
                     }
-                });
-            });
-
-            Y.all('.screen').on('click', function(e) {
-                core.rerunAnimation(e.target.get('parentNode').get('parentNode').get('parentNode').one('.slider-animation').getAttribute('class').replace('slider-animation ','').replace(' run',''));
-            });
-
-            Y.all('.replay').on('click', function(e) {
-                e.preventDefault();
-                core.rerunAnimation(e.target.get('parentNode').one('.slider-animation').getAttribute('class').replace('slider-animation ','').replace(' run',''));
-            });
-
-            var vidObject = '<iframe width="984" height="554" src="http://www.youtube.com/embed/-dpfHYpfEXY?showinfo=0&vq=hd1080&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe>'
-
-            if (Y.one('.show-video')) {
-                Y.one('.show-video').on('click',function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    Y.one('.close-vid-link').setStyle('display','block');
-                    videoPanel.addClass('show');
-                    if (Y.one('body').hasClass('tablet-design')) {
-                        Y.one('.row-hero').setStyle('height','590px');
-                        Y.one('.the-video div').set('innerHTML', vidObject);
-                    } else {
-                        Y.one('.row-hero').setStyle('height','588px').append('<div id="topbar" class="topbar"></div>'), 2000;
-                        Y.one('.row-hero .row-content').removeClass('show-me').addClass('hide-me');
-                        Y.one('.video-container').set('innerHTML', vidObject);
-                    }
-                });
-            }
-            if (Y.one('.close-video')) {
-                Y.one('.close-video').on('click',function(e) {
-                    e.preventDefault();
-                    Y.one('.close-vid-link').setStyle('display','none');
-                    videoPanel.removeClass('show');
-                    Y.one('.video-container').empty();
-                    if (Y.one('body').hasClass('tablet-design')) {
-                        Y.one('.row-hero').setStyle('height','460px');
-                    } else {
-                        Y.one('.row-hero').setStyle('height','678px');
-                        Y.one('#topbar').remove()
-                        Y.one('.row-hero .row-content').addClass('show-me');
-                    };
-                    Y.one('.the-video div').set('innerHTML','');
-                });
-            }
+                }, 3500);
+            };
         }
     }
-    
-    // Is already using jQuery
-    core.scopesSlideshow = function() {
+};
 
-        // Developer overview slideshow
-      var slideCount = $('#slider ul li').length;
-      var slideWidth = $('#slider ul li').width();
-      var slideHeight = $('#slider ul li').height();
-      var sliderUlWidth = slideCount * slideWidth;
+// The cookie policy injection and interaction
+core.cookiePolicy = function() {
+    if (getCookie('_cookies_accepted') !== 'true'){
+        state('open');
+    }
 
-      $('#slider').css({
-        width: slideWidth,
-        height: slideHeight
-      });
-
-      $('#slider ul').css({
-        width: sliderUlWidth,
-        marginLeft: -slideWidth
-      });
-
-      $('#slider ul li:last-child').prependTo('#slider ul');
-
-      function moveRight() {
-        $('#slider ul').animate({
-          left: -slideWidth
-        }, 200, function() {
-          $('#slider ul li:first-child').appendTo('#slider ul');
-          $('#slider ul').css('left', '');
-        });
-      };
-
-      window.onload = function() {
-      setInterval(
-            function(){
-                moveRight();
-            },
-            3500);
-        };
-    };
-    
-    // Should be rewritten in jQuery or ES5
-    core.rerunAnimation = function($type){
-        Y.one('.'+$type).removeClass('run');
-        if ($type == 'full-swipe'){
-            Y.one('.full-swipe .launcher').removeClass('return');
-            setTimeout(function(){ Y.one('.full-swipe').addClass('run'); }, 400);
-            setTimeout(function(){ Y.one('.full-swipe .launcher').addClass('return') }, 1400);
-        } else if ($type == 'notification-slider' || $type == 'search-screen'){
-            Y.one('.'+$type).removeClass('run');
-            setTimeout(function(){ Y.one('.'+$type).addClass('run'); }, 1000);
-        } else if ($type == 'slider-animation') {
-
-        } else {
-            Y.one('.'+$type).removeClass('run');
-            setTimeout(function(){ Y.one('.'+$type).addClass('run'); }, 400);
+    function state(stateChange) {
+        switch(stateChange) {
+            case 'open':
+                var range = document.createRange();
+                var cookieNode = range.createContextualFragment('<div class="cookie-policy"><div class="wrapper"><a href="?cp=close" class="link-cta">Close</a><p>We use cookies to improve your experience. By your continued use of this site you accept such use. To change your settings please <a href="http://www.ubuntu.com/legal/terms-and-policies/privacy-policy#cookies">see our policy</a>.</p></div></div>');
+                document.body.insertBefore(cookieNode, document.body.lastChild);
+                document.querySelector('footer.global .legal').classList.add('has-cookie');
+                document.querySelector('.cookie-policy .link-cta').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    state('close');
+                });
+                break;
+            case 'close':
+                document.querySelector('.cookie-policy').style.display = 'none';
+                setCookie('_cookies_accepted', 'true', 3000);
+                break;
         }
     }
-    
-    // Should be rewritten in jQuery or ES5
-    core.phoneVideo = function(){
-        if (Y.one('body').hasClass('phone-home')) {
-            if (Y.one('.show-video')) {
-                Y.one('.show-video').on('click',function(e) {
-                    e.preventDefault();
-                    Y.one('.video-container.for-mobile').set('innerHTML','');
-                    setTimeout(function(){ Y.one('.the-video').set('innerHTML','<div class="videoWrapper"><iframe style="width:100%" src="http://www.youtube.com/embed/-dpfHYpfEXY?showinfo=0&hd=1&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe></div>');Y.one('#topbar').setStyle('z-index', '50');}, 1000);
-                });
+
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = 'expires=' + d.toUTCString();
+        document.cookie = cname + '=' + cvalue + '; ' + expires;
+    }
+
+    function getCookie(cname) {
+        var name = cname + '=';
+        var ca = document.cookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') {
+                c = c.substring(1);
             }
-            if (Y.one('.close-video')) {
-                Y.one('.close-video').on('click',function(e) {
-                    e.preventDefault();
-                    Y.one('#panel .back').setStyle('z-index', '0');
-                    Y.one('.the-video').set('innerHTML','');
-                    Y.one('#panel').removeClass('flipped');
-                });
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length,c.length);
             }
         }
+        return '';
     }
-    
-    // Should be rewritten in jQuery or ES5
-    core.cookiePolicy = function() {
-        if(Y.Cookie.get("_cookies_accepted") != 'true'){
-            open();
-        }
+}
 
-        function open() {
-            YUI().use('node', function(Y) {
-                Y.one('body').prepend('<div class="cookie-policy"><div class="wrapper"><a href="?cp=close" class="link-cta">Close</a><p>We use cookies to improve your experience. By your continued use of this site you accept such use. To change your settings please <a href="http://www.ubuntu.com/legal/terms-and-policies/privacy-policy#cookies">see our policy</a>.</p></div></div>');
-                Y.one('footer.global .legal').addClass('has-cookie');
-                Y.one('.cookie-policy .link-cta').on('click',function(e){
-                    e.preventDefault();
-                    close();
-                });
-            });
-        }
-        function close() {
-            YUI().use('node', function(Y) {
-                Y.one('.cookie-policy').setStyle('display','none');
-                setCookie();
-            });
-        }
-        function setCookie() {
-            YUI().use('cookie', function (Y) {
-                Y.Cookie.set("_cookies_accepted", "true", { expires: new Date("January 12, 2025") });
-            });
-        }
+// Toogles classes the active and open classes on the footer titles
+core.footerMobileNav = function() {
+    var footerTitlesA = document.querySelectorAll('.footer-a li h2');
+    var footerTitlesB = document.querySelectorAll('.footer-b li h2');
+    footerTitlesA.forEach(function(node) {
+        node.addEventListener('click', function(e) {
+            e.target.classList.toggle('active');
+        });
+    });
+
+    footerTitlesB.forEach(function(node) {
+        node.addEventListener('click', function(e) {
+            e.target.classList.toggle('active');
+        });
+    });
+};
+
+// Listens to resizes and triggers a redraw of the global nav
+core.globalResizeListener = function() {
+    window.addEventListener('resize', function(e) {
+        core.redrawGlobal();
+    });
+    core.globalInit();
+};
+
+// If the window is less then  768px the global footer in injected into the
+// footer. Otherwise it adds the global nav to the top of the body.
+core.globalInit = function() {
+    if (document.documentElement.clientWidth < 768) {
+        core.globalPrepend = 'div.nav-global-footer';
+        core.setupGlobalNav();
+        var globalFooterTitle = document.createElement('h2');
+        globalFooterTitle.innerHTML = 'Ubuntu websites';
+        var globalWrapper = document.getElementById('nav-global');
+        globalWrapper.insertBefore(globalFooterTitle, globalWrapper.lastChild);
+    } else if (document.documentElement.clientWidth >= 768) {
+        core.globalPrepend = 'body';
+        core.setupGlobalNav();
+        document.querySelector('footer.global').classList.add('no-global');
     }
-    
-    // Should be rewritten in jQuery or ES5
-    core.footerMobileNav = function() {
-        Y.all('.footer-a li h2').on('click', function(e) {
-            e.target.toggleClass('active open');
-        });
-        Y.all('.footer-b li h2').on('click', function(e) {
-            e.target.toggleClass('active open');
-        });
-    };
-    
-    // This should be coming from global.js
-    core.globalResizeListener = function() {
-        Y.on('windowresize', function(e) {
-            core.redrawGlobal();
-        });
-        core.globalInit();
-    };
+};
 
-    // This should be coming from global.js
-    core.globalInit= function() {
-        if (document.documentElement.clientWidth < 768) {
-            core.globalPrepend = 'div.nav-global-footer';
+// On resize the global navigation my be moved to a new location based on
+// the screen width.
+core.redrawGlobal = function() {
+    var globalNav = document.getElementById('nav-global');
+    if (document.documentElement.clientWidth < 768 &&
+        core.globalPrepend !== 'div.nav-global-footer') {
+        core.globalPrepend = 'div.nav-global-footer';
+        if (globalNav) {
+            document.body.removeChild(globalNav);
+            core.globalInit();
+            core.setupGlobalNavAccordion();
+        }
+    } else if (document.documentElement.clientWidth >= 768 &&
+        core.globalPrepend !== 'body') {
+        document.querySelector('footer.global').classList.add('no-global');
+        core.globalPrepend = 'body';
+        if (globalNav) {
+            var navGlobalFooter = document.querySelector('.nav-global-footer');
+            navGlobalFooter.removeChild(globalNav);
             core.setupGlobalNav();
-            Y.one('.nav-global-wrapper').insert('<h2>Ubuntu websites</h2>','before');
-        } else if (document.documentElement.clientWidth >= 768) {
-            core.globalPrepend = 'body';
-            core.setupGlobalNav();
-            Y.all('#additional-info h2').setStyle('cursor', 'default');
-            Y.one('footer.global').addClass('no-global');
         }
-    };
-
-    // This should be coming from global.js
-    core.redrawGlobal = function() {
-        var globalNav = Y.one("#nav-global");
-        if (document.documentElement.clientWidth < 768 && core.globalPrepend != 'div.nav-global-footer') {
-            core.globalPrepend = 'div.nav-global-footer';
-            if (globalNav) {
-                globalNav.remove();
-                core.setupGlobalNav();
-                Y.one('.nav-global-wrapper').insert('<h2>Ubuntu websites</h2>','before');
-                Y.one('#nav-global h2').setStyle('cursor', 'pointer').append('<span></span>').on('click',function(e) {
-                    this.toggleClass('active');
-                    this.next('div').toggleClass('active');
-                });
-            }
-        } else if (document.documentElement.clientWidth >= 768 && core.globalPrepend != 'body') {
-            Y.one('footer.global').addClass('no-global');
-            core.globalPrepend = 'body';
-            if (globalNav) {
-                globalNav.remove();
-                core.setupGlobalNav();
-            }
-        }
-    };
-
-    // This should be coming from global.js
-    core.setupGlobalNavAccordion = function() {
-        if(Y.one('#nav-global h2') !== null) {
-            Y.one('#nav-global h2').setStyle('cursor', 'pointer').append('<span></span>').on('click',function(e) {
-                this.toggleClass('active');
-                this.next('div').toggleClass('active');
-            });
-        }
-    };
-
-    // Should be rewritten in jQuery or ES5
-    core.renderJSON = function (response, id) {
-        if (id == undefined) {
-            id = '#dynamic-logos';
-        }
-        if (! Y.one(id)) {
-            return;
-        }
-        var JSON = response;
-        var numberPartners = JSON.length;
-        var numberToDisplay = numberPartners < 10 ? numberPartners : 10;
-
-        for (var i = 0; i < numberToDisplay; i++) {
-            Y.one(id).append(Y.Node.create('<li class="inline-logos__item"><img class="inline-logos__image" onload="this.style.opacity=\'1\';" src="'+JSON[i].logo+'" alt="'+JSON[i].name+'"></li>'));
-        }
-    };
-
-    // Should be rewritten in jQuery or ES5
-    core.loadPartners = function (params, elementID, feedName) {
-        if (typeof feedName === 'undefined') {
-            feedName = 'partners';
-        }
-
-        var partnersAPI = "http://partners.ubuntu.com/" + feedName + ".json";
-        var url = partnersAPI + params + "&callback={callback}";
-        var callback = function(response) {
-            return core.renderJSON(response, elementID);
-        }
-        Y.jsonp(url, callback);
-    };
-
-    // Should be rewritten in jQuery or ES5
-    core.deviceAnimation = function() {
-        if (Y.one('body').hasClass('homepage')) {
-          //MIGHTY MORPHIN' DEVICE CODE
-
-          //As the Modernizr used doesn't have Prefix
-          var whichTransitionEvent = (function () {
-              var t;
-              var el = document.createElement('fakeelement');
-              var transitions = {
-                "animation"      : "animationend",
-                "OAnimation"     : "oAnimationEnd",
-                "MozAnimation"   : "animationend",
-                "WebkitAnimation": "webkitAnimationEnd"
-              }
-
-              for (t in transitions) {
-                  if ( el.style[t] !== undefined ) {
-                      return transitions[t];
-                  }
-              }
-          } ());
-
-          var nonCSSMorph = false;
-          var currentNonMorphDevice = 0;
-          var nonMorphImageList = ["assets/no-tran-phone.png","assets/no-tran-tablet.png","assets/no-tran-laptop.png"];
-          var morphPlayComplete = false;
-
-
-          //From the click
-          function replayMorph() {
-            if ( morphPlayComplete ) {
-              var elm = this;
-              if ( nonCSSMorph ) {
-                nextNonMorph();
-              } else {
-                var newone = elm.cloneNode(true);
-                elm.parentNode.replaceChild(newone, elm);
-                newone.onclick = replayMorph;
-                newone.style.cursor = 'inherit';
-                addTransEndEvent(newone);
-              }
-              morphPlayComplete = false;
-            }
-          }
-
-          function addTransEndEvent( e ) {
-            if (whichTransitionEvent) {
-              e.addEventListener(whichTransitionEvent,setMorphComplete);
-            } else {
-              startNonMorph();
-            }
-           }
-          function setMorphComplete(e) {
-            morphPlayComplete = true;
-            e.currentTarget.style.cursor = "pointer";
-          }
-
-          function startNonMorph() {
-            nonCSSMorph = true;
-            deviceMorphDiv.classNam = "no-morph";
-            deviceMorphDiv.onclick = replayMorph;
-            setTimeout( nextNonMorph, 2000 );
-          }
-
-          function nextNonMorph() {
-            currentNonMorphDevice++;
-            if (currentNonMorphDevice >= nonMorphImageList.length ) {
-              currentNonMorphDevice = 0;
-              morphPlayComplete = true;
-              deviceMorphDiv.style.cursor = "pointer";
-            } else {
-              deviceMorphDiv.style.cursor = 'inherit';
-              setTimeout( nextNonMorph, 2000 );
-            }
-            document.getElementById("device-morph").style.backgroundImage = "url("+nonMorphImageList[currentNonMorphDevice]+")";
-          }
-          var deviceMorphDiv = document.getElementById("device-morph");
-          var devices = document.getElementById("devices");
-          devices.className = "playing";
-          devices.onclick = replayMorph;
-          addTransEndEvent( devices );
-        }
-    };
-    
-    // Should be rewritten in jQuery or ES5
-    core.commandLine = function () {
-      Y.all('.command-line').each(function() {
-          var _this = this;
-          var copyButton = _this.one('.js-copy-to-clipboard');
-          var commandInput = _this.one('.command-line__input');
-          if (copyButton && commandInput) {
-              copyButton.on('click', function(e) {
-                  e.preventDefault;
-                  commandInput.select();
-                  try {
-                      var successful = document.execCommand('copy');
-                            dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Copy to clipboard', 'eventAction' : commandInput.get('value'), 'eventLabel' : document.URL, 'eventValue' : undefined });
-                      _this.addClass('is-copied');
-                      setTimeout(function(e) {
-                          _this.removeClass('is-copied');
-                      }, 300);
-                  } catch(err) {
-                      console.log('Unable to copy');
-                  }
-              });
-          }
-
-          if (commandInput) {
-              commandInput.on('click', function(e) {
-                  this.select();
-              });
-          }
-      });
     }
+};
 
-    core.setupAnimations();
-    core.phoneVideo();
-    core.cookiePolicy();
-    core.globalResizeListener();
-    core.footerMobileNav();
-    core.setupGlobalNavAccordion();
-    core.scopesSlideshow();
-    core.deviceAnimation();
-    core.commandLine();
-});
+// Add the click listener to the global nav
+core.setupGlobalNavAccordion = function() {
+    var globalTitle = document.querySelector('#nav-global h2');
+    if (globalTitle !== null) {
+        globalTitle.addEventListener('click', function(e) {
+            globalTitle.classList.toggle('active');
+            globalTitle.nextSibling.classList.toggle('active');
+        });
+    }
+};
+
+// Adds click eventlistener to the copy-to-clipboard buttons. Selects the input
+// and tries to copy the value to the clipboard.
+core.commandLine = function () {
+  document.querySelectorAll('.command-line').forEach(function(node) {
+      var copyButton = node.querySelector('.js-copy-to-clipboard');
+      var commandInput = node.querySelector('.command-line__input');
+      if (copyButton && commandInput) {
+          copyButton.addEventListener('click', function(e) {
+              e.preventDefault;
+              commandInput.select();
+              try {
+                  var successful = document.execCommand('copy');
+                  dataLayer.push({
+                      'event': 'GAEvent',
+                      'eventCategory': 'Copy to clipboard',
+                      'eventAction': commandInput.value,
+                      'eventLabel': document.URL,
+                      'eventValue': undefined
+                  });
+                  node.classList.add('is-copied');
+                  setTimeout(function(e) {
+                      node.classList.remove('is-copied');
+                  }, 300);
+              } catch(err) {
+                  node.classList.add('is-not-copied');
+                  console.log('Unable to copy');
+              }
+          });
+      }
+
+      if (commandInput) {
+          commandInput.addEventListener('click', function(e) {
+              this.select();
+          });
+      }
+  });
+}
+
+core.setupAnimations();
+core.scopesSlideshow();
+core.cookiePolicy();
+core.footerMobileNav();
+core.globalResizeListener();
+core.setupGlobalNavAccordion();
+core.commandLine();

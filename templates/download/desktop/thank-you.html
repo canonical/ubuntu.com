@@ -86,7 +86,7 @@ Thank you for your contribution
 {% endblock content %}
 
 {% block footer_extra %}
-<script src="{% versioned_static 'js/helpers.js' %}"></script>
+<script src="{% versioned_static 'js/polyfills.js' %}"></script>
 
 {% if start_download %}
 <script>
@@ -99,13 +99,13 @@ var architecture = '{{ architecture }}';
 var mirrors = {{ mirror_list|safe }};
 
 if (version && architecture && architecture != 'amd64+mac') {
-    // Report to Google Analytics
-    YUI().use('event-base', function (Y) {
-        Y.on('domready', function () {
-            dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Downloaded', 'eventLabel' : 'User downloaded Ubuntu (' + version + '-desktop-' + architecture + ')', 'eventValue' : undefined });
-        });
+    dataLayer.push({
+        'event': 'GAEvent',
+        'eventCategory': 'Download',
+        'eventAction': 'Downloaded',
+        'eventLabel': 'User downloaded Ubuntu (' + version + '-desktop-' + architecture + ')',
+        'eventValue': undefined
     });
-
     startDownload(mirrors, version, architecture, defaultLocation);
 }
 

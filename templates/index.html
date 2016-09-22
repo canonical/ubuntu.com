@@ -1,16 +1,16 @@
 {% extends "base_index.html" %}
 
 
-{% block takeover_body_class %}homepage-autopilot-devops-takeover{% endblock takeover_body_class %}
+{% block takeover_body_class %}homepage-nextcloud-takeover{% endblock takeover_body_class %}
 
 {% block head_extra %}
-
+<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
 <script src="{{ ASSET_SERVER_URL }}c954db4a-jfeed_prm.js"></script>
 {% endblock %}
 
 {% block takeover_content %}
 
-{% include "takeovers/_autopilot-devops.html" %}
+{% include "takeovers/_nextcloud_takeover.html" %}
 
 <section class="row row--ubuntu-news js-hidden row-grey strip no-border">
     <div class="strip-inner-wrapper">
@@ -98,7 +98,7 @@
     <div class="strip-inner-wrapper">
         <div class="row--iot__desc four-col">
             <h2><a href="/internet-of-things">For all your things&nbsp;&rsaquo;</a></h2>
-            <p>Snappy Ubuntu Core delivers bullet-proof security, reliable updates and the enormous Ubuntu ecosystem to a wide range of internet things, connected devices and autonomous machines.</p>
+            <p>Snappy Ubuntu Core delivers bullet-proof security, reliable updates and the enormous Ubuntu ecosystem to a wide range of internet things, connected devices and autonomous&nbsp;machines.</p>
         </div>
         <div class="eight-col last-col align-center">
             <div class="row--iot__image"></div>
@@ -109,7 +109,7 @@
 
 <section class="row row-featured strip no-border">
     <div class="strip-inner-wrapper equal-height">
-        {% include "takeovers/takeunders/_cio-report.html" %}
+        {% include "takeovers/takeunders/_autopilot-takeunder.html" %}
         {% include "takeovers/takeunders/_ua-store.html" %}
     </div>
 </section>
