@@ -493,10 +493,12 @@ body {
 }
 
 // extra rules for full width sections other than homepage
-.download,
-.phone,
+.cloud,
 .server,
-.tablet {
+.desktop,
+.phone,
+.tablet,
+.download {
   .row--dark {
       background: #262626;
       color: #ebebea;
@@ -515,9 +517,12 @@ body {
   }
 }
   // The default section row padding
+.cloud,
+.server,
+.desktop,
 .phone,
 .tablet,
-.server {
+.download {
   .row-hero {
     margin-top: 0;
 
@@ -550,9 +555,12 @@ body {
   }
 }
 
-.tablet,
+.cloud,
+.server,
+.desktop,
 .phone,
-.server {
+.tablet,
+.download {
   .row {
     padding: 20px 10px 0;
 
