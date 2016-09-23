@@ -30,12 +30,21 @@
           <li class="inline-logos__item">
             <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}6819c967-logo-ebay-01.svg" alt="Ebay logo" width="100" />
           </li>
+          <li class="inline-logos__item">
+            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}d2a87c83-PayPal.svg" alt="PayPal logo" width="120" />
+          </li>
+          <li class="inline-logos__item">
+            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}c2c171b0-Box_%28Company_logo%29.svg" alt="Box logo" width="80" />
+          </li>
         </ul>
 </section>
 
 <section class="row">
     <h2 class="muted-heading">Supported guest operating systems</h2>
         <ul class="inline-logos no-margin dynamic-logos">
+          <li class="inline-logos__item">
+            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}eda6b94a-redhat-logo.svg" alt="Redhat logo" />
+          </li>
           <li class="inline-logos__item">
             <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}31bd1765-centos.svg" alt="Walmart logo" />
           </li>
@@ -44,6 +53,9 @@
           </li>
           <li class="inline-logos__item">
             <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}2eafb62e-openlogo.svg" alt="Debian logo" />
+          </li>
+          <li class="inline-logos__item">
+            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}0ad254cc-oracle_redbadge.png" alt="Oracle-Linux logo" />
           </li>
         </ul>
 </section>
@@ -70,7 +82,7 @@
     <div class="seven-col">
         <h2>Getting started with LXD</h2>
         <p>On Ubuntu 16.04 LTS, activate LXD with:</p>
-        <pre>$ sudo lxd init</pre>
+        <code><pre>$ sudo lxd init</pre></code><
         <p>You can generally hit Enter to accept the default answers to the questions, and once you&rsquo;re setup you can start to launch machines. To create your first container:</p>
     </div>
     <div class="twelve-col no-margin-bottom">
@@ -88,7 +100,7 @@
         <pre>$ lxc exec first-machine bash
 root@first-machine:~#</pre>
         <p>Type &lsquo;exit&rsquo; to quit the container and return to your host. Launch more containers and see how quickly subsequent machines can be created.</p>
-        <p><a href="https://linuxcontainers.org/lxd/getting-started-cli/ ">Read more on linuxcontainers.org</a></p>
+        <p><a class="external" href="https://linuxcontainers.org/lxd/getting-started-cli/ ">Read more on linuxcontainers.org</a></p>
     </div>
 </section>
 
@@ -117,8 +129,8 @@ root@first-machine:~#</pre>
         <div class="six-col last-col">
             <ul class="list-ticks--canonical">
                 <li>Rapid provisioning, instant guest boot</li>
-                <li>Remote image services</li>
                 <li>Secure by default, with AppArmor, user namespaces, SECCOMP</li>
+                <li>Remote image services</li>
                 <li>Extensible storage and networking</li>
             </ul>
         </div>
@@ -146,7 +158,7 @@ root@first-machine:~#</pre>
         <p><a class="external" href="https://linuxcontainers.org/lxd/try-it/">Try LXD online now</a></p>
     </div>
     <div class="four-col align-center last-col">
-        <img src="{{ ASSET_SERVER_URL }}b3c24977-docker-small_v-trans.png" alt="" />
+        <img src="{{ ASSET_SERVER_URL }}fe637cb5-docker.svg" alt="" />
     </div>
 </section>
 
