@@ -287,7 +287,10 @@ body {
   // this is to vertically center the heading/icon
   & + div > h3,
   & + h2 {
+    float: left;
+    margin-left: 1em;
     padding-top: 8px;
+    width: 66%;
   }
   @media only screen and (min-width: $breakpoint-medium) {
     margin-bottom: inherit;
