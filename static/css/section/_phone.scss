@@ -274,7 +274,7 @@
 }
 
 // @subsection /phone/developers
-.phone-developers {
+.phone.phone-developers {
 
   .row-scope-frameworks {
     padding-bottom: 20px;
@@ -341,60 +341,60 @@
           position: relative;
           top: -19px;
         }
-      }
 
-      #slider ul {
+        ul {
 
-        @media only screen and (min-width : $breakpoint-medium) {
-          height: 500px;
-          list-style: none;
-          margin: 0;
-          padding: 0;
-          position: relative;
-          transition: left .8s;
-        }
-      }
+          @media only screen and (min-width : $breakpoint-medium) {
+            height: 500px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            transition: left .8s;
 
-      #slider ul li {
+            li {
 
-        @media only screen and (min-width : $breakpoint-medium) {
-          background: $mid-grey;
-          display: block;
-          float: left;
-          height: 612px;
-          margin: 0;
-          padding: 0;
-          position: relative;
-          text-align: center;
-          top: 12px;
-          width: 360px;
+              @media only screen and (min-width : $breakpoint-medium) {
+                background: $mid-grey;
+                display: block;
+                float: left;
+                height: 612px;
+                margin: 0;
+                padding: 0;
+                position: relative;
+                text-align: center;
+                top: 12px;
+                width: 360px;
 
-          img {
-            width: 100%;
+                img {
+                  width: 100%;
+                }
+              }
+            }
           }
         }
       }
+    }
 
-      #scopes-content {
-        padding-top: 1.5rem;
+    #scopes-content {
+      padding-top: 1.5rem;
 
-        @media only screen and (min-width : $breakpoint-medium) {
-          padding-left: 60px;
-          padding-top: 4.5rem;
-          position: relative;
-          z-index: 999;
-        }
+      @media only screen and (min-width : $breakpoint-medium) {
+        padding-left: 60px;
+        padding-top: 4.5rem;
+        position: relative;
+        z-index: 999;
+      }
 
-        @media only screen and (max-width: $breakpoint-large) {
-          padding-left: 0;
-          padding-top: 40px;
-        }
+      @media only screen and (max-width: 1024px) and (min-width: $breakpoint-medium) {
+        padding-left: 0;
+        padding-top: 40px;
       }
     }
+  }
 
-    .strip-inner-wrapper {
-      position: relative;
-    }
+  .strip-inner-wrapper {
+    position: relative;
   }
 
   .row-shine {
