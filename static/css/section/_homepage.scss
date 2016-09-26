@@ -1679,3 +1679,59 @@ body.homepage-nextcloud-takeover {
     }
   }
 }
+
+// nextcloud takeover
+body.homepage-kubernetes-takeover {
+  header.banner {
+    border-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  #main-content {
+    .row-hero {
+      background-image: url('#{$asset-server}11d1e050-Kubernetes_backgd_mobile.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin-top: 0;
+      
+      @media only screen and (min-width : 768px) {
+        background-image: url('#{$asset-server}c81ac621-Kubernetes_backgd_desktop_svg.svg');
+        background-position: 100% 0%;
+        min-height: 440px;
+      }
+      
+      @media only screen and (min-width : 984px) {
+        min-height: 540px;
+      }
+      
+      &__heading {
+        margin-top: 20px;
+        
+        @media only screen and (min-width : 768px) {
+          margin-top: 60px;
+        }
+        
+        @media only screen and (min-width : 984px) {
+          margin-top: 60px;
+        }
+      }
+
+      &__image {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        
+        @media only screen and (min-width : 768px) {
+          margin-top: 50px;
+        }
+        
+        @media only screen and (min-width : 984px) {
+          margin-top: 60px;
+        }
+      }
+      
+      .button--primary {
+        margin-top: 340px;
+      }
+    }
+  }
+}
