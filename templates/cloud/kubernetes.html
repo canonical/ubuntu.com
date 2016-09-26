@@ -2,8 +2,8 @@
 
 {% block title %} The Canonical Distribution of Kubernetes | Cloud{% endblock %}
 
-{% block meta_description %}{% endblock %}
-{% block meta_keywords %}{% endblock %}
+{% block meta_description %}The Canonical Distribution of Kubernetes delivers a ‘pure K8s’ experience, tested across a wide range of clouds and integrated with modern metrics and monitoring. {% endblock %}
+{% block meta_keywords %}Kubernetes, containers, Ubuntu OpenStack, Canonical, The Canonical Distribution of Kubernetes, OpenStack, cloud, Juju, Charms{% endblock %}
 
 {% block second_level_nav_items %}
     {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="kubernetes" %}
@@ -14,13 +14,13 @@
     <div class="equal-height">
         <div class="eight-col equal-height__item">
             <h1>The Canonical Distribution of&nbsp;Kubernetes</h1>
-            <p>Enterprise Kubernetes, anywhere.</p>
+            <h2>Enterprise Kubernetes, anywhere</h2>
             <p>In partnership with Google, Canonical now delivers a &lsquo;pure <abbr title="Kubernetes">K8s</abbr>&rsquo; experience, tested across a wide range of clouds and integrated with modern metrics and monitoring.</p>
             <p>The Canonical Distribution of Kubernetes works across all major public clouds and private infrastructure, enabling your teams to operate Kubernetes clusters on demand, anywhere.</p>
             <p><a href="https://jujucharms.com/canonical-kubernetes/" class="external">Deploy Canonical’s Kubernetes bundle</a></p>
         </div>
         <div class="four-col last-col equal-height__item equal-height__align-vertically align-center">
-            <img src="https://assets.ubuntu.com/v1/ea4329f3-kubernetes-icon.svg" width="200" alt="" />
+            <img src="{{ ASSET_SERVER_URL }}dba11aee-kubernetes.svg" width="220" alt="" />
         </div>
     </div>
 </section>
@@ -35,7 +35,7 @@
     <div class="equal-height">
         <div class="box six-col equal-height--item">
             <h2>Elasticity built-in</h2>
-            <p>Even for experts, installing and operating Kubernetes at scale is daunting. By using Ubuntu and Juju, the Canonical Kubernetes is simple, naturally elastic and integrates with common operations dashboards. Charms deliver the latest stable Kubernetes and Juju makes it easy to manage and grow your cluster.</p>
+            <p>Even for experts, installing and operating Kubernetes at scale is daunting. By using Ubuntu and Juju, Canonical&rsquo;s Kubernetes is simple, naturally elastic and integrates with common operations dashboards. Charms deliver the latest stable Kubernetes and Juju makes it easy to manage and grow your cluster.</p>
         </div>
 
         <div class="box six-col last-col equal-height--item">
@@ -50,35 +50,35 @@
 
         <div class="box six-col last-col equal-height--item">
             <h2>Cost-effective at scale</h2>
-            <p>The major cost of Kubernetes is the  operations expertise needed to run at scale.  The Canonical Kubernetes bundle includes all operational scripting and tooling needed to manage a long-lived cluster, including upgrades and elastic scaling. With Juju you get all the industries best practices for Kubernetes ops for free.</p>
+            <p>The major cost of Kubernetes is the  operations expertise needed to run at scale.  Canonical&rsquo;s Kubernetes bundle includes all operational scripting and tooling needed to manage a long-lived cluster, including upgrades and elastic scaling. With Juju you get all the industries best practices for Kubernetes ops for free.</p>
         </div>
     </div>
 </section>
 
 <section class="row">
-    <div class="">
-        <div class="six-col">
-            <h2>Production features</h2>
-            <ul class="list-ticks--compact">
-                <li>Access to the latest stable upstream Kubernetes release</li>
-                <li>Access to daily ‘edge’ builds of upstream Kubernetes development branch (1.5.x) with rollback</li>
-                <li>Scale master nodes independently of worker nodes</li>
-                <li>Workloads are automatically portable between public clouds, private clouds and bare metal with an easy onramp to Google Container Engine (GKE)</li>
-                <li>Easily create and remove user access</li>
-                <li>Maintenance mode and supported upgrade path to new upstream versions</li>
-                <li>Kubernetes dashboard, Prometheus, for monitoring and alerting, collection and processing of system metrics</li>
-                <li>Elastic Stack for Insights with Beats log collection and monitoring and analysis and visualisation with Elasticsearch and Kibana</li>
-                <li>Optionally backed by Ceph for filesystem and block storage</li>
-            </ul>
-            <p><a href="">Learn more in the Canonical Distribution of Kubernetes datasheet LINK NEEDED&nbsp;&rsaquo;</a></p>
-        </div>
+    <div class="six-col">
+        <h2>Production features</h2>
+        <ul class="list-ticks--compact">
+            <li>Access to the latest stable upstream Kubernetes release</li>
+            <li>Access to daily ‘edge’ builds of upstream Kubernetes development branch (1.5.x) with rollback</li>
+            <li>Scale master nodes independently of worker nodes</li>
+            <li>Workloads are automatically portable between public clouds, private clouds and bare metal with an easy onramp to Google Container Engine (GKE)</li>
+            <li>Easily create and remove user access</li>
+            <li>Maintenance mode and supported upgrade path to new upstream versions</li>
+            <li>Kubernetes dashboard, Prometheus, for monitoring and alerting, collection and processing of system metrics</li>
+            <li>Elastic Stack for Insights with Beats log collection and monitoring and analysis and visualisation with Elasticsearch and Kibana</li>
+            <li>Optionally backed by Ceph for filesystem and block storage</li>
+        </ul>
+    </div>
+    <div class="juju-bundle-card six-col last-col">
+        <div class="juju-card" data-id="canonical-kubernetes"></div>
     </div>
 </section>
 
 <section class="row row-grey">
     <div class="equal-height">
         <div class="four-col equal-height__item equal-height__align-vertically">
-            <img src="https://assets.ubuntu.com/v1/9f035e4a-picto-support-orange.svg" class="not-for-small" width="250" alt="" />
+            <img src="{{ ASSET_SERVER_URL }}9f035e4a-picto-support-orange.svg" class="not-for-small" width="200" alt="" />
         </div>
         <div class="eight-col last-col equal-height__item">
             <h2>Support and customisation services</h2>
@@ -91,18 +91,18 @@
     </div>
 </section>
 
-<section class="row">
+<section class="row row-expertise">
     <div class="equal-height">
         <div class="six-col equal-height__item">
             <h2>Exchange expertise and ideas with thousands of other IT professionals</h2>
             <p>Want to talk to other Ubuntu users straight away? Share ideas and get advice and help from our large, active community of IT professionals. As a community, we set high standards for friendliness and tolerance. We welcome your questions and contributions!</p>
             <p><a href="/support/community" class="external">Community support</a></p>
         </div>
-        <div class="three-col equal-height__item equal-height__align-vertically">
-            <img src="https://assets.ubuntu.com/v1/1b45cd30-picto-help-warmgrey.svg" class="not-for-small" width="250" alt="" />
-        </div>
-        <div class="three-col last-col equal-height__item equal-height__align-vertically">
-            <img src="https://assets.ubuntu.com/v1/89cd962f-picto-share-warmgrey.svg" class="not-for-small" width="250" alt="" />
+        <div class="four-col equal-height__item equal-height__align-vertically">
+            <div class="align-center">
+                <img src="{{ ASSET_SERVER_URL }}1b45cd30-picto-help-warmgrey.svg" class="row-expertise__image not-for-small" width="150" alt="" />
+                <img src="{{ ASSET_SERVER_URL }}89cd962f-picto-share-warmgrey.svg" class="row-expertise__image not-for-small" width="150" alt="" />
+            </div>
         </div>
     </div>
 </section>
@@ -110,3 +110,7 @@
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_autopilot" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
 
 {% endblock content %}
+
+{% block footer_extra %}
+    <script async src="https://assets.ubuntu.com/v1/juju-cards-v1.3.0.js"></script>
+{% endblock footer_extra %}
