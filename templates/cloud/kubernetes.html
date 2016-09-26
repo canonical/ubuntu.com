@@ -1,8 +1,8 @@
 {% extends "cloud/base_cloud.html" %}
 
-{% block title %} | Cloud{% endblock %}
+{% block title %} The Canonical Distribution of Kubernetes | Cloud{% endblock %}
 
-{% block meta_description %}c{% endblock %}
+{% block meta_description %}{% endblock %}
 {% block meta_keywords %}{% endblock %}
 
 {% block second_level_nav_items %}
@@ -11,23 +11,26 @@
 
 {% block content %}
 <section class="row">
-    <div class="">
-        <div class="eight-col">
-            <h1>The Canonical Kubernetes</h1>
-            <p>Enterprise Kubernetes, anywhere</p>
+    <div class="equal-height">
+        <div class="eight-col equal-height__item">
+            <h1>The Canonical Distribution of&nbsp;Kubernetes</h1>
+            <p>Enterprise Kubernetes, anywhere.</p>
             <p>In partnership with Google, Canonical now delivers a &lsquo;pure <abbr title="Kubernetes">K8s</abbr>&rsquo; experience, tested across a wide range of clouds and integrated with modern metrics and monitoring.</p>
-            <p>The Canonical Kubernetes works across all major public clouds and private infrastructure, enabling your teams to operate Kubernetes clusters on demand, anywhere.</p>
-            <p>Deploy the Canonical Kubernetes charm [external link: https://jujucharms.com/canonical-kubernetes/ ]</p>
+            <p>The Canonical Distribution of Kubernetes works across all major public clouds and private infrastructure, enabling your teams to operate Kubernetes clusters on demand, anywhere.</p>
+            <p><a href="https://jujucharms.com/canonical-kubernetes/" class="external">Deploy Canonical’s Kubernetes bundle</a></p>
+        </div>
+        <div class="four-col last-col equal-height__item equal-height__align-vertically align-center">
+            <img src="https://assets.ubuntu.com/v1/ea4329f3-kubernetes-icon.svg" width="200" alt="" />
         </div>
     </div>
 </section>
-
+{% comment %}
 <section class="row">
     <div class="">
         [Video goes here]
     </div>
 </section>
-
+{% endcomment %}
 <section class="row row-grey">
     <div class="equal-height">
         <div class="box six-col equal-height--item">
@@ -37,7 +40,7 @@
 
         <div class="box six-col last-col equal-height--item">
             <h2>Your choice of infrastructure</h2>
-            <p>The Canonical Kubernetes is certified on most major public clouds and on-premise private infrastructure like VMware, OpenStack or bare-metal MAAS. The ability to move workloads is critical for organisations to remain competitive, foster innovation and avoid infrastructure lock-in.</p>
+            <p>The Canonical Distribution of Kubernetes is certified on most major public clouds and on-premise private infrastructure like VMware, OpenStack or bare-metal MAAS. The ability to move workloads is critical for organisations to remain competitive, foster innovation and avoid infrastructure lock-in.</p>
         </div>
 
         <div class="box six-col equal-height--item">
@@ -67,14 +70,17 @@
                 <li>Elastic Stack for Insights with Beats log collection and monitoring and analysis and visualisation with Elasticsearch and Kibana</li>
                 <li>Optionally backed by Ceph for filesystem and block storage</li>
             </ul>
-            <p><a href="">Learn more in the Canonical Kubernetes datasheet LINK NEEDED&nbsp;&rsaquo;</a></p>
+            <p><a href="">Learn more in the Canonical Distribution of Kubernetes datasheet LINK NEEDED&nbsp;&rsaquo;</a></p>
         </div>
     </div>
 </section>
 
-<section class="row">
-    <div class="">
-        <div class="eight-col">
+<section class="row row-grey">
+    <div class="equal-height">
+        <div class="four-col equal-height__item equal-height__align-vertically">
+            <img src="https://assets.ubuntu.com/v1/9f035e4a-picto-support-orange.svg" class="not-for-small" width="250" alt="" />
+        </div>
+        <div class="eight-col last-col equal-height__item">
             <h2>Support and customisation services</h2>
             <p>Enterprise support for Kubernetes is provided by Canonical in partnership with Google where customers gain access to a global pool of knowledge and expertise.</p>
             <p>We also offer consulting services and customisation for larger organisations to integrate Kubernetes with existing infrastructure.</p>
@@ -86,11 +92,17 @@
 </section>
 
 <section class="row">
-    <div class="">
-        <div class="eight-col">
+    <div class="equal-height">
+        <div class="six-col equal-height__item">
             <h2>Exchange expertise and ideas with thousands of other IT professionals</h2>
             <p>Want to talk to other Ubuntu users straight away? Share ideas and get advice and help from our large, active community of IT professionals. As a community, we set high standards for friendliness and tolerance. We welcome your questions and contributions!</p>
-            <p><a href="" class="external">Community support > [link to http://ubuntu.com/support/community]</a></p>
+            <p><a href="/support/community" class="external">Community support</a></p>
+        </div>
+        <div class="three-col equal-height__item equal-height__align-vertically">
+            <img src="https://assets.ubuntu.com/v1/1b45cd30-picto-help-warmgrey.svg" class="not-for-small" width="250" alt="" />
+        </div>
+        <div class="three-col last-col equal-height__item equal-height__align-vertically">
+            <img src="https://assets.ubuntu.com/v1/89cd962f-picto-share-warmgrey.svg" class="not-for-small" width="250" alt="" />
         </div>
     </div>
 </section>
