@@ -1690,6 +1690,11 @@ body.homepage-kubernetes-takeover {
   #main-content {
     .row-hero {
       background-image: url('#{$asset-server}f5e7d881-Kubernetes_backgd_mobile.png');
+      
+      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+        background-image: url('#{$asset-server}32d31c25-Kubernetes_backgd_mobile_720.png');
+      }
+      
       background-color: $light-grey;
       background-size: cover;
       background-repeat: no-repeat;
