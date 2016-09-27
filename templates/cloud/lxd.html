@@ -55,7 +55,7 @@
             <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}2eafb62e-openlogo.svg" alt="Debian logo" />
           </li>
           <li class="inline-logos__item">
-            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}0ad254cc-oracle_redbadge.png" alt="Oracle-Linux logo" />
+            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}08646a72-logo-oracle.svg" alt="Oracle-Linux logo" />
           </li>
         </ul>
 </section>
@@ -69,7 +69,7 @@
 </section>
 
 <section class="row equal-height">
-    <div class="four-col equal-height__item equal-height__align-vertically">
+    <div class="four-col equal-height__item equal-height__align-vertically not-for-small">
         <img src="{{ ASSET_SERVER_URL }}00438906-pictogram-virtualisation.svg" width="220" alt="" />
     </div>
     <div class="eight-col last-col equal-height__item">
@@ -82,23 +82,23 @@
     <div class="seven-col">
         <h2>Getting started with LXD</h2>
         <p>On Ubuntu 16.04 LTS, activate LXD with:</p>
-        <code><pre>$ sudo lxd init</pre></code><
+        <pre class="command-line"><code>$ sudo lxd init</code></pre>
         <p>You can generally hit Enter to accept the default answers to the questions, and once you&rsquo;re setup you can start to launch machines. To create your first container:</p>
+        <pre class="command-line"><code>$ lxc launch ubuntu: first-machine</code></pre>
     </div>
-    <div class="twelve-col no-margin-bottom">
-        <pre>$ lxc launch ubuntu: first-machine</pre>
+    <div class="ten-col no-margin-bottom">
         <p>You can see that machine:</p>
-        <pre>$ lxc list
+        <pre class="command-line"><code>$ lxc list
 +-----------------+---------+------------------------+------+------------+-----------+
 |      NAME       |  STATE  |          IPV4          | IPV6 |    TYPE    | SNAPSHOTS |
 +-----------------+---------+------------------------+------+------------+-----------+
 | first-machine   | RUNNING |  xx.xx.xx.xx           |      | PERSISTENT | 0         |
-+-----------------+---------+------------------------+------+------------+-----------+</pre>
++-----------------+---------+------------------------+------+------------+-----------+</code></pre>
     </div>
     <div class="seven-col">
         <p>And you can jump into that container with:</p>
-        <pre>$ lxc exec first-machine bash
-root@first-machine:~#</pre>
+        <pre class="command-line"><code>$ lxc exec first-machine bash
+root@first-machine:~#</code></pre>
         <p>Type &lsquo;exit&rsquo; to quit the container and return to your host. Launch more containers and see how quickly subsequent machines can be created.</p>
         <p><a class="external" href="https://linuxcontainers.org/lxd/getting-started-cli/ ">Read more on linuxcontainers.org</a></p>
     </div>
@@ -138,7 +138,7 @@ root@first-machine:~#</pre>
 </section>
 
 <section class="row equal-height">
-    <div class="four-col equal-height__item equal-height__align-vertically">
+    <div class="four-col equal-height__item equal-height__align-vertically not-for-small">
         <img src="{{ ASSET_SERVER_URL }}ce5e0ec1-nova-compute.svg" alt="" />
     </div>
     <div class="eight-col last-col equal-height__item">
@@ -153,7 +153,7 @@ root@first-machine:~#</pre>
     <div class="eight-col">
         <h2>How does LXD compare to Docker?</h2>
         <p>Docker and LXD are complementary, use them both, use them together!</p>
-        <p>LXD gives you a classic virtual machine experience with all your administrative processes are running there, from sshd to syslog, so LXD feels just like a normal machine. All the apps work the same way, operations are identical, and of course you can run your Docker processes inside LXD containers.</p>
+        <p>LXD gives you a classic virtual machine experience with all your administrative processes running there, from sshd to syslog, so LXD feels just like a normal machine. All the apps work the same way, operations are identical, and of course you can run your Docker processes inside LXD containers.</p>
         <p>By contrast, Docker strips the container down to the naked application process, giving you fantastic density but requiring you to use a dedicated container coordination system like Kubernetes.</p>
         <p><a class="external" href="https://linuxcontainers.org/lxd/try-it/">Try LXD online now</a></p>
     </div>
