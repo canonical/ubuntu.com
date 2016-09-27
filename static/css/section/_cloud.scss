@@ -1003,3 +1003,18 @@
     }
   }
 }
+
+.cloud-kubernetes {
+  .row-expertise__image {
+    margin-right: 20px;
+    width: 15vw;
+
+    @media only screen and (min-width : $breakpoint-large) {
+      width: 150px;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
