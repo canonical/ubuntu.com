@@ -14,593 +14,599 @@
   padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
-}
 
-// @section /phone overview
-.phone-home {
+  // @section /phone overview
+  &.phone-home {
 
-  .row-hero {
-    -moz-transition-duration: .7s;
-    -o-transition-duration: .7s;
-    -webkit-transition-duration: .7s;
-    background-size: cover;
-    color: $cool-grey;
-    margin-top: 0;
-    transition-duration: .7s;
-    overflow: hidden;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      background: $white url('#{$asset-server}19213020-intro-row.jpg?w=984') no-repeat;
-      background-position: 40% 30%;
-      background-size: 115%;
-      color: $white;
-      height: 529px;
-      padding-top: 40px;
-    }
-
-    @media only screen and (min-width : $breakpoint-large) {
-      background-image: url('#{$asset-server}19213020-intro-row.jpg?w=1300');
+    .row-hero {
       background-size: cover;
-      min-height: 580px;
-      overflow: visible;
-      position: relative;
-    }
-
-    h1 {
-      padding-top: 0;
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        margin-top: 40px;
-      }
-
-      @media only screen and (min-width : $breakpoint-large) {
-        margin-top: 80px;
-      }
-    }
-
-    .intro {
-      @media only screen and (min-width : $breakpoint-medium) {
-        font-size: 23px;
-      }
-    }
-
-    .for-mobile {
-      margin: 0 -10px 10px;
-
-      img {
-        height: auto;
-        width: 100%;
-      }
-    }
-
-    .video-container.for-mobile {
-
-      @media only screen and ($breakpoint-medium) {
-        margin-bottom: 0 !important;
-      }
-    }
-
-    .mobile-vid {
-
-      @media only screen and ($breakpoint-medium) {
-        margin: 0;
-        padding: 0;
-      }
-    }
-
-    .the-video {
-      background: $black;
-      display: none;
-      height: 0;
-      left: 0;
-      min-height: 588px;
-      padding-bottom: 56.25%; //* 16:9 *//
-      position: absolute;
-      top: 0;
-      width: 100%;
-
-      .close-video {
-        display: none;
-      }
-
-      .show {
-        @media only screen and (min-width : $breakpoint-medium) {
-          display: block;
-          padding-bottom: 0;
-        }
-      }
-    }
-
-    .hide-me,
-    .show-me {
-      -moz-transition-duration: 2s;
-      -o-transition-duration: 2s;
-      -webkit-transition-duration: 2s;
-      height: 0;
-      opacity: 0;
-      transition-duration: 2s;
-    }
-
-    .close-vid-link {
-      display: none;
-      position: absolute;
-      right: 5px;
-      top: 5px;
-      z-index: 60;
-    }
-
-    .video.hide {
-      display: none;
-    }
-
-    .show-me {
-      height: auto;
-      opacity: 1;
-    }
-
-    .video-link {
-      display: none;
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        display: inline-block;
-      }
-    }
-
-    a {
-      outline: none;
-    }
-  }
-
-  .row--access-content {
-    margin-top: -3px;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      background-color: $black;
-      background-image: url('#{$asset-server}5bcc34b9-scopes-row-black-bg.jpg?w=1400');
-      background-position: 40px 60px;
-      background-repeat: no-repeat;
-      background-size: 50%;
+      color: $cool-grey;
       margin-top: 0;
-    }
-
-    @media (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-      //Higher resolution for high-res screens
-      background-image: url('#{$asset-server}5bcc34b9-scopes-row-black-bg.jpg?w=1000');
-    }
-
-    @media only screen and (min-width : $breakpoint-large) {
-      max-height: 64vw;
-    }
-
-    @media only screen and (min-width : 1600px) {
-      max-height: 60vw;
-    }
-
-    .flex-container {
       overflow: hidden;
+      -moz-transition-duration: .7s;
+      -o-transition-duration: .7s;
+      -webkit-transition-duration: .7s;
+      transition-duration: .7s;
 
       @media only screen and (min-width : $breakpoint-medium) {
-        height: 68vw;
+        background: $white url('#{$asset-server}19213020-intro-row.jpg?w=984') no-repeat;
+        background-position: 40% 30%;
+        background-size: 115%;
+        color: $white;
+        height: 529px;
+        padding-top: 40px;
       }
 
       @media only screen and (min-width : $breakpoint-large) {
-        height: 56vw;
-      }
-    }
-
-    h2 {
-      text-align: left;
-    }
-
-    .scopes-text {
-      background: $white;
-      color: $black;
-      margin-top: -12vw;
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        background: $black;
-        color: $white;
-        margin-top: -12rem;
-        padding-top: 2rem;
-      }
-    }
-  }
-
-  .row--beautiful-design {
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url('#{$asset-server}91d3d632-beautiful-features.jpg?w=1500');
-      background-position: 32% 42%;
-      background-repeat: no-repeat;
-      background-size: cover;
-      color: $white;
-      padding: 0;
-    }
-
-    a {
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        border-bottom: 1px solid $white;
-        color: $white;
-        text-decoration: none;
+        background-image: url('#{$asset-server}19213020-intro-row.jpg?w=1300');
+        background-size: cover;
+        min-height: 580px;
+        overflow: visible;
+        position: relative;
       }
 
+      h1 {
+        padding-top: 0;
 
-      h2,
-      p {
-        @media only screen and ($breakpoint-medium) {
-          padding: 0 10px;
+        @media only screen and (min-width : $breakpoint-medium) {
+          margin-top: 40px;
+        }
+
+        @media only screen and (min-width : $breakpoint-large) {
+          margin-top: 80px;
         }
       }
 
-      img {
+      .intro {
+        @media only screen and (min-width : $breakpoint-medium) {
+          font-size: 23px;
+        }
+      }
 
-        @media only screen and ($breakpoint-medium) {
-          padding-bottom: 20px;
+      .for-mobile {
+        margin: 0 -10px 10px;
+
+        img {
+          height: auto;
           width: 100%;
         }
       }
 
-      .for-small {
+      .video-container.for-mobile {
+
+        @media only screen and ($breakpoint-medium) {
+          margin-bottom: 0 !important;
+        }
+      }
+
+      .mobile-vid {
 
         @media only screen and ($breakpoint-medium) {
           margin: 0;
           padding: 0;
         }
       }
-    }
-  }
-} // end phone home
 
-// @subsection /phone/devices
-.phone-devices {
-
-  p[itemprop="price"] {
-    font-size: 23px;
-    margin-top: 20px;
-  }
-
-  .device-image img {
-    max-width: 50%;
-
-    @media only screen and (min-width : $breakpoint-large) {
-      max-width: 100%;
-    }
-  }
-
-  .row--note {
-    padding: 40px;
-  }
-}
-
-// @subsection /phone/developers
-.phone.phone-developers {
-
-  .row-scope-frameworks {
-    padding-bottom: 20px;
-
-    @media only screen and (min-width: $breakpoint-medium) {
-      // ANT - WHY IS THIS OVERWRITTEN BY .tablet .row, .phone .row { padding: 40px 10px 20px; } ON LIVE?
-      padding-bottom: 0;
-    }
-
-    @media only screen and (min-width : $breakpoint-large) {
-      padding-bottom: 100px;
-    }
-
-    &--image {
-      margin-bottom: -5px;
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        left: 440px;
-        margin: auto;
-        position: absolute;
-        top: 7px;
-      }
-
-      @media only screen and (min-width : $breakpoint-large) {
-        padding-bottom: 0;
-        top: 15px;
-      }
-    }
-
-    .strip-inner-wrapper {
-      padding-bottom: 20px;
-      position: relative;
-    }
-  }
-
-  .row-slideshow {
-    padding-bottom: 0;
-    padding-top: 0;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      overflow: hidden;
-    }
-
-    .carousel {
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        background-image: url('#{$asset-server}a042ddd8-carousel-bg.png?w=401');
-        background-repeat: no-repeat;
-        box-sizing: border-box;
-        margin: 120px 30px 60px;
-        padding: 110px 20px;
-      }
-
-      @media only screen and (max-width: $breakpoint-large) and (min-width: $breakpoint-medium) {
+      .the-video {
+        background: $black;
         display: none;
-      }
+        height: 0;
+        left: 0;
+        min-height: 588px;
+        padding-bottom: 56.25%; //* 16:9 *//
+        position: absolute;
+        top: 0;
+        width: 100%;
 
-      #slider {
-
-        @media only screen and (min-width : $breakpoint-medium) {
-          left: -1px;
-          margin: 0;
-          overflow: hidden;
-          position: relative;
-          top: -19px;
+        .close-video {
+          display: none;
         }
 
-        ul {
-
+        .show {
           @media only screen and (min-width : $breakpoint-medium) {
-            height: 500px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            position: relative;
-            transition: left .8s;
-
-            li {
-
-              @media only screen and (min-width : $breakpoint-medium) {
-                background: $mid-grey;
-                display: block;
-                float: left;
-                height: 612px;
-                margin: 0;
-                padding: 0;
-                position: relative;
-                text-align: center;
-                top: 12px;
-                width: 360px;
-
-                img {
-                  width: 100%;
-                }
-              }
-            }
+            display: block;
+            padding-bottom: 0;
           }
         }
       }
-    }
 
-    #scopes-content {
-      padding-top: 1.5rem;
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        padding-left: 60px;
-        padding-top: 4.5rem;
-        position: relative;
-        z-index: 999;
+      .hide-me,
+      .show-me {
+        -moz-transition-duration: 2s;
+        -o-transition-duration: 2s;
+        -webkit-transition-duration: 2s;
+        height: 0;
+        opacity: 0;
+        transition-duration: 2s;
       }
 
-      @media only screen and (max-width: 1024px) and (min-width: $breakpoint-medium) {
-        padding-left: 0;
-        padding-top: 40px;
+      .close-vid-link {
+        display: none;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        z-index: 60;
       }
-    }
-  }
 
-  .strip-inner-wrapper {
-    position: relative;
-  }
+      .video.hide {
+        display: none;
+      }
 
-  .row-shine {
-    border: 0;
-    min-height: 0;
+      .show-me {
+        height: auto;
+        opacity: 1;
+      }
 
-    @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url('#{$asset-server}d4117ccb-space-for-content-row.jpg?w=1400');
-      background-position: 50% 13%;
-      background-repeat: no-repeat;
-      background-size: cover;
-      color: $white;
-      min-height: 470px;
-      padding-top: 60px;
-    }
+      .video-link {
+        display: none;
 
-    @media only screen and (min-width : $breakpoint-large) {
-      min-height: 571px;
-    }
-
-    &__content {
-      padding-bottom: 20px;
-
-      @media only screen and (min-width : $breakpoint-large) {
-        padding-top: 20px;
+        @media only screen and (min-width : $breakpoint-medium) {
+          display: inline-block;
+        }
       }
 
       a {
-        color: $ubuntu-orange;
+        outline: none;
+      }
+    }
+
+    .row--beautiful-design {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background-image: url('#{$asset-server}91d3d632-beautiful-features.jpg?w=1500');
+        background-position: 32% 42%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: $white;
+      }
+
+      a {
 
         @media only screen and (min-width : $breakpoint-medium) {
           border-bottom: 1px solid $white;
           color: $white;
           text-decoration: none;
         }
-      }
-    }
-
-    .for-mobile {
-      margin: -20px -10px 10px;
-
-      img {
-        width: 100%;
-      }
-    }
-  }
-}
-
-// @subsection /phone/features
-.phone.phone-features {
-
-  .pull-right-40 {
-    margin-right: -41px;
-  }
-
-  .row-hero {
-    border-bottom: 1px dotted $warm-grey;
-    margin-top: 0;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      background: url('#{$asset-server}9bb69e76-features-intro-row-2x.jpg?w=2000') center center no-repeat;
-      background-size: cover;
-      border-bottom: 0;
-      min-height: 366px;
-      padding-top: 100px;
-    }
-
-    @media only screen and (min-width : $breakpoint-large) {
-      border: 0;
-      min-height: 468px;
-    }
 
 
-    h1 {
-      padding-top: 0;
+        h2,
+        p {
+          @media only screen and ($breakpoint-medium) {
+            padding: 0 10px;
+          }
+        }
 
-      a {
-        @media only screen and (min-width : $breakpoint-medium) {
-          color: $white;
+        img {
+
+          @media only screen and ($breakpoint-medium) {
+            padding-bottom: 20px;
+            width: 100%;
+          }
+        }
+
+        .for-small {
+
+          @media only screen and ($breakpoint-medium) {
+            margin: 0;
+            padding: 0;
+          }
         }
       }
     }
 
-    .for-mobile {
-      margin: 0 -10px 10px;
+    .row--access-content {
+      margin-top: -3px;
 
-      img {
-        width: 100%;
-      }
-    }
-  }
-
-  .row--phone-details {
-    background: $black;
-    color: $white;
-    overflow: hidden;
-    padding-bottom: 20px;
-
-    .four-col,
-    .eight-col {
       @media only screen and (min-width : $breakpoint-medium) {
-        min-height: 640px;
+        background-color: $black;
+        background-image: url('#{$asset-server}5bcc34b9-scopes-row-black-bg.jpg?w=1400');
+        background-position: 40px 60px;
+        background-repeat: no-repeat;
+        background-size: 50%;
+        height: 68vw;
+        margin-top: 0;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        max-height: 64vw;
+      }
+
+      @media only screen and (min-width : 1600px) {
+        max-height: 60vw;
+      }
+
+      .flex-container {
+        overflow: hidden;
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          height: 68vw;
+        }
+
+        @media only screen and (min-width : $breakpoint-large) {
+          height: 56vw;
+        }
+      }
+
+      h2 {
+        text-align: left;
+      }
+
+      .scopes-text {
+        background: $white;
+        color: $black;
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          background: $black;
+          color: $white;
+          margin-top: -12vw;
+        }
+      }
+    }
+  } // end phone home
+
+  // @subsection /phone/devices
+  &.phone-devices {
+
+    .devices {
+      table-layout: fixed;
+
+      &__title {
+        font-weight: 400;
+      }
+
+      &__item {
+        text-align: left;
+        vertical-align: top;
+      }
+
+      &__image {
+        margin-bottom: 10px;
+        max-height: 200px;
       }
     }
 
-    a {
-      color: $white;
+    .promo-signup {
+
+      &--email {
+        margin-bottom: 10px;
+      }
     }
 
-    .external {
-      background-image: url('#{$asset-server}0d55fd52-external-link-white.svg');
+    .muted-heading {
+      margin-bottom: 0;
     }
   }
 
-  .row--video {
-    background: $black;
-    padding: 0;
+  // @subsection /phone/developers
+  &.phone-developers {
 
-    @media only screen and (min-width : $breakpoint-medium) {
-      min-height: 432px;
-      padding: 0;
+    .row-scope-frameworks {
+      padding-bottom: 20px;
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        // ANT - WHY IS THIS OVERWRITTEN BY .tablet .row, .phone .row { padding: 40px 10px 20px; } ON LIVE?
+        padding-bottom: 0;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        padding-bottom: 100px;
+      }
+
+      &--image {
+        margin-bottom: -5px;
+        overflow: hidden;
+
+        @media only screen and (min-width: $breakpoint-medium) {
+          left: 440px;
+          margin: auto;
+          position: absolute;
+          top: 7px;
+        }
+
+        @media only screen and (min-width : $breakpoint-large) {
+          padding-bottom: 0;
+          top: 15px;
+        }
+      }
+
+      .strip-inner-wrapper {
+        padding-bottom: 20px;
+        position: relative;
+      }
     }
 
-    @media only screen and (min-width : $breakpoint-large) {
-      min-height: 554px;
+    .row-slideshow {
+      padding-bottom: 0;
+      padding-top: 0;
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        overflow: hidden;
+      }
+
+      .carousel {
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          background-image: url('#{$asset-server}a042ddd8-carousel-bg.png?w=401');
+          background-repeat: no-repeat;
+          box-sizing: border-box;
+          margin: 120px 30px 60px;
+          padding: 110px 20px;
+        }
+
+        @media only screen and (max-width: $breakpoint-large) and (min-width: $breakpoint-medium) {
+          display: none;
+        }
+
+        #slider {
+
+          @media only screen and (min-width : $breakpoint-medium) {
+            left: -1px;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+            top: -19px;
+          }
+
+          ul {
+
+            @media only screen and (min-width : $breakpoint-medium) {
+              height: 500px;
+              list-style: none;
+              margin: 0;
+              padding: 0;
+              position: relative;
+              transition: left .8s;
+
+              li {
+
+                @media only screen and (min-width : $breakpoint-medium) {
+                  background: $mid-grey;
+                  display: block;
+                  float: left;
+                  height: 612px;
+                  margin: 0;
+                  padding: 0;
+                  position: relative;
+                  text-align: center;
+                  top: 12px;
+                  width: 360px;
+
+                  img {
+                    width: 100%;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      #scopes-content {
+        padding-top: 1.5rem;
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          padding-left: 60px;
+          padding-top: 4.5rem;
+          position: relative;
+          z-index: 999;
+        }
+
+        @media only screen and (max-width: 1024px) and (min-width: $breakpoint-medium) {
+          padding-left: 0;
+          padding-top: 40px;
+        }
+      }
     }
 
-    .video-link {
-      height: 0;
-      margin-bottom: 0;
-      padding-bottom: 56.25%; //* 16:9 *//
-      padding-top: 25px;
+    .strip-inner-wrapper {
       position: relative;
     }
 
-    .show-video {
-      background: url('#{$asset-server}c24f0381-video-poster.jpg') center center;
-      background-size: cover;
-      display: block;
-      height: 100%;
-      left: 0;
+    .row-shine {
+      border: 0;
+      min-height: 0;
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background-image: url('#{$asset-server}d4117ccb-space-for-content-row.jpg?w=1400');
+        background-position: 50% 13%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: $white;
+        min-height: 470px;
+        padding-top: 60px;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        min-height: 571px;
+      }
+
+      &__content {
+        padding-bottom: 20px;
+
+        @media only screen and (min-width : $breakpoint-large) {
+          padding-top: 20px;
+        }
+
+        a {
+          color: $ubuntu-orange;
+
+          @media only screen and (min-width : $breakpoint-medium) {
+            border-bottom: 1px solid $white;
+            color: $white;
+            text-decoration: none;
+          }
+        }
+      }
+
+      .for-mobile {
+        margin: -20px -10px 10px;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  // @subsection /phone/features
+  &.phone-features {
+
+    .pull-right-40 {
+      margin-right: -41px;
+    }
+
+    .row-hero {
+      border-bottom: 1px dotted $warm-grey;
+      margin-top: 0;
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server}9bb69e76-features-intro-row-2x.jpg?w=2000') center center no-repeat;
+        background-size: cover;
+        border-bottom: 0;
+        min-height: 366px;
+        padding-top: 100px;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        border: 0;
+        min-height: 468px;
+      }
+
+
+      h1 {
+        padding-top: 0;
+
+        a {
+          @media only screen and (min-width : $breakpoint-medium) {
+            color: $white;
+          }
+        }
+      }
+
+      .for-mobile {
+        margin: 0 -10px 10px;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+
+    .row--phone-details {
+      background: $black;
+      color: $white;
       overflow: hidden;
-      position: absolute;
-      text-indent: -999em;
-      top: 0;
-      width: 100%;
+      padding-bottom: 20px;
+
+      .four-col,
+      .eight-col {
+        @media only screen and (min-width : $breakpoint-medium) {
+          min-height: 640px;
+        }
+      }
+
+      a {
+        color: $white;
+      }
+
+      .external {
+        background-image: url('#{$asset-server}0d55fd52-external-link-white.svg');
+      }
+    }
+
+    .row--video {
+      background: $black;
+      padding: 0;
 
       @media only screen and (min-width : $breakpoint-medium) {
         min-height: 432px;
+        padding: 0;
       }
 
       @media only screen and (min-width : $breakpoint-large) {
         min-height: 554px;
       }
-    }
 
-    &.show {
-
-      h2,
-      .show-video,
       .video-link {
-        left: -999em;
+        height: 0;
+        margin-bottom: 0;
+        padding-bottom: 56.25%; //* 16:9 *//
+        padding-top: 25px;
+        position: relative;
+      }
+
+      .show-video {
+        background: url('#{$asset-server}c24f0381-video-poster.jpg') center center;
+        background-size: cover;
+        display: block;
+        height: 100%;
+        left: 0;
+        overflow: hidden;
         position: absolute;
+        text-indent: -999em;
+        top: 0;
+        width: 100%;
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          min-height: 432px;
+        }
+
+        @media only screen and (min-width : $breakpoint-large) {
+          min-height: 554px;
+        }
+      }
+
+      &.show {
+
+        h2,
+        .show-video,
+        .video-link {
+          left: -999em;
+          position: absolute;
+        }
+      }
+
+      h2 {
+        color: $white;
+        margin-left: 40px;
+        margin-top: -.65em; // half the line height - if one line
+        position: absolute;
+        right: 0;
+        top: 50%;
+        width: 36%;
+        z-index: 999;
       }
     }
 
-    h2 {
-      color: $white;
-      margin-left: 40px;
-      margin-top: -.65em; // half the line height - if one line
-      position: absolute;
-      right: 0;
-      top: 50%;
-      width: 36%;
-      z-index: 999;
+    .row--store-promo__content {
+
+      @media only screen and (min-width : $breakpoint-large) {
+        padding-top: 30px;
+      }
     }
-  }
+  } // end body.phone-features
 
-  .row--store-promo__content {
+  // @subsection /phone/partners
+  &.phone-partners {
 
-    @media only screen and (min-width : $breakpoint-large) {
-      padding-top: 30px;
+    .row-more--image {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        margin-bottom: 40px;
+        margin-top: 60px;
+      }
     }
-  }
-} // end body.phone-features
 
-// @subsection /phone/partners
-.phone-partners {
+    .row-dev-opportunity--image {
 
-  .row-more--image {
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      margin-bottom: 40px;
-      margin-top: 60px;
+      @media only screen and (min-width : $breakpoint-medium) {
+        margin-top: 40px;
+      }
     }
-  }
 
-  .row-dev-opportunity--image {
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      margin-top: 40px;
+    .row-origami {
+      background: #edeeee url('#{$asset-server}974c4e8c-background-origami.png') no-repeat;
+      background-size: cover;
     }
-  }
-
-  .row-origami {
-    background: #edeeee url('#{$asset-server}974c4e8c-background-origami.png') no-repeat;
-    background-size: cover;
   }
 }
