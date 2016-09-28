@@ -977,6 +977,11 @@
 
 // @subsection /cloud/lxd
 .cloud-lxd {
+  .command-line {
+    background: $light-grey;
+    border: 0;
+  }
+  
   @media only screen and (max-width: $breakpoint-medium) {
 
     .row-building-on-lxc,
@@ -995,6 +1000,21 @@
   @media only screen and (min-width : $breakpoint-large) {
     .intro {
       font-size: 1.75em;
+    }
+  }
+}
+
+.cloud-kubernetes {
+  .row-expertise__image {
+    margin-right: 20px;
+    width: 15vw;
+
+    @media only screen and (min-width : $breakpoint-large) {
+      width: 150px;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
     }
   }
 }

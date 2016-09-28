@@ -2,8 +2,8 @@
     <div class="strip-inner-wrapper">
         <div class="six-col append-one">
             <h1>Ubuntu Phone lineup</h1>
-            <p class="intro">Ubuntu Phone is available on a growing range of commercial handsets.
-            Here you can explore our current devices and learn where you can purchase them.</p>
+            <p>Ubuntu Phone is available on a growing range of commercial handsets which you can explore below.</p>
+            <p>Note &mdash; all our devices are currently sold out, but new devices will be coming&nbsp;soon.</p>
         </div>
         <div class="five-col last-col not-for-small">
             <img src="{{ ASSET_SERVER_URL }}f81442e7-device-hero-row.png?w=480" alt="Ubuntu phones lineup" />
@@ -11,113 +11,112 @@
     </div>
 </section>
 
-<section itemscope itemtype="http://schema.org/Product" class="row strip-light">
+<section class="row strip">
     <div class="strip-inner-wrapper">
-        <div class="device-image six-col align-center">
-            <p><img itemprop="image" src="{{ ASSET_SERVER_URL }}0d1e4e42-meizu-pro5-single.png" alt="Meizu Pro 5" /></p>
+        <div class="twelve-col">
+            <h2>Sign up to our devices newsletter for the latest on Ubuntu Phone</h2>
         </div>
-        <div class="six-col last-col">
-            <h2 itemprop="name">The all new Meizu Pro 5</h2>
-            <ul itemprop="description" class="list-ticks">
-                <li>5.7inch 1080p screen with a re-tuned delta cool color AMOLED screen</li>
-                <li>Corning Gorilla Glass 3 with improved damage resistance and toughness</li>
-                <li>21.16 megapixel rear-facing camera with PDAF phase laser-assisted focusing and LARGAN 6P lenses for improved resolution</li>
-                <li>5 megapixel front-facing camera</li>
-                <li>Hi-Fi Sound</li>
-                <li>32GB of internal memory</li>
-                <li>3GB RAM</li>
-                <li>8 core Exynos 7420 processor and MALI T760 GPU</li>
-                <li>Slots for two micro-SIM cards for phone use across multiple networks</li>
-                <li>Dimensions: 156.7 x 78 x 7.5mm</li>
-                <li>Weight: 168g</li>
-            </ul>
-
-            <p itemprop="price">Only &dollar;369.99</p>
-            <p>
-                <a itemprop="url" class="button--primary button--primary__deactivated">Sold out</a>
-            </p>
+        <div class="eight-col">
+            {% include "phone/shared/_devices_newsletter.html" %}
         </div>
     </div>
 </section>
 
-<section itemscope itemtype="http://schema.org/Product" class="row strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="device-image six-col align-center">
-            <p><img itemprop="image" src="{{ ASSET_SERVER_URL }}31de2bd6-bq-e4.5-single.png" alt="BQ Aquaris E4.5" /></p>
+<section class="row strip-light">
+    <div class="strip-inner-wrapper equal-height">
+        <div class="eight-col">
+            <h2>Previous devices</h2>
         </div>
-        <div class="six-col last-col">
-            <h2 itemprop="name">BQ Aquaris E4.5</h2>
-            <ul itemprop="description" class="list-ticks">
-                <li>Slots for two micro-SIM cards so you can use your phone on more than one network</li>
-                <li>MediaTek Quad Core Cortex A7 processor running at up to 1.3GHz and 1GB RAM for a faster experience</li>
-                <li>Dragontrail glass for scratch and impact resistance</li>
-                <li>8 megapixel camera with autofocus and dual flash</li>
-                <li>Full HD (1080p) camera for super-sharp video recording</li>
-                <li>8GB internal memory with MicroSD slot for extra storage (up to 32GB)</li>
-                <li>Dimensions: 137 x 67 x 9mm</li>
-                <li>Weight: 123g</li>
-            </ul>
-            <p itemprop="price">Only 169,90&euro;</p>
-            <p>
-                <a itemprop="url" class="button--primary button--primary__deactivated">Sold out</a>
-            </p>
-        </div>
+
+        <table class="devices">
+            <tr>
+                <td>&nbsp;</td>
+                <th class="devices__title align-center">
+                    <img class="devices__image" src="{{ ASSET_SERVER_URL }}31de2bd6-bq-e4.5-single.png" alt="BQ Aquaris E4.5" />
+                    <p>BQ Aquaris E4.5</p>
+                </th>
+                <th class="devices__title align-center">
+                    <img class="devices__image" itemprop="image" src="{{ ASSET_SERVER_URL }}db45d440-bq-e5-single.png" alt="BQ Aquaris E5" />
+                    <p>BQ Aquaris E5</p>
+                </th>
+                <th class="devices__title align-center">
+                    <img class="devices__image" src="{{ ASSET_SERVER_URL }}1e629b35-meizu-mx4-single.png?w=296" alt="Meizu MX4" />
+                    <p>Meizu MX4 Ubuntu Edition</p>
+                </th>
+                <th class="devices__title align-center">
+                    <img class="devices__image" src="{{ ASSET_SERVER_URL }}0d1e4e42-meizu-pro5-single.png" alt="Meizu Pro 5" />
+                    <p>Meizu PRO 5</p>
+                </th>
+            </tr>
+            <tr>
+                <th class="devices__title">Dimensions</th>
+                <td class="devices__item"><p>137 x 67 x 9mm</p></td>
+                <td class="devices__item"><p>142 x 71 x 8.65mm</p></td>
+                <td class="devices__item"><p>144 x 75.2 x 8.9mm</p></td>
+                <td class="devices__item"><p>156.7 x 78 x 7.5mm</p></td>
+            </tr>
+            <tr>
+                <th class="devices__title">Weight</th>
+                <td class="devices__item"><p>123g</p></td>
+                <td class="devices__item"><p>134g</p></td>
+                <td class="devices__item"><p>147g</p></td>
+                <td class="devices__item"><p>168g</p></td>
+            </tr>
+            <tr>
+                <th class="devices__title">Camera</th>
+                <td class="devices__item"><p>8 megapixel</p></td>
+                <td class="devices__item"><p>13 megapixel</p></td>
+                <td class="devices__item"><p>20.7 megapixel rear<br />2 megapixel front</p></td>
+                <td class="devices__item"><p>21.16 megapixel rear<br />5 megapixel front</p></td>
+            </tr>
+            <tr>
+                <th class="devices__title">Processor</th>
+                <td class="devices__item"><p>Quad-core: 1.3GHz</p></td>
+                <td class="devices__item"><p>Quad-core: 1.3GHz</p></td>
+                <td class="devices__item"><p>Octa-core: 1.7GHz</p></td>
+                <td class="devices__item"><p>Octa-core: 4x2.1 GHz, 4x1.5 GHz</p></td>
+            </tr>
+            <tr>
+                <th class="devices__title">Memory</th>
+                <td class="devices__item"><p>1GB</p></td>
+                <td class="devices__item"><p>1GB</p></td>
+                <td class="devices__item"><p>2GB</p></td>
+                <td class="devices__item"><p>3GB</p></td>
+            </tr>
+            <tr>
+                <th class="devices__title">Storage</th>
+                <td class="devices__item"><p>8GB + MicroSD slot</p></td>
+                <td class="devices__item"><p>16 GB + MicroSD slot</p></td>
+                <td class="devices__item"><p>16GB</p></td>
+                <td class="devices__item"><p>32GB + MicroSD slot</p></td>
+            </tr>
+            <tr>
+                <th class="devices__title">Price</th>
+                <td class="devices__item"><p>&euro;169.90</p></td>
+                <td class="devices__item"><p>&euro;199.90</p></td>
+                <td class="devices__item"><p>&euro;299</p></td>
+                <td class="devices__item"><p>$369.99</p></td>
+            </tr>
+        </table>
     </div>
 </section>
 
-<section itemscope itemtype="http://schema.org/Product" class="row strip-light">
+<section class="row strip no-border">
     <div class="strip-inner-wrapper">
-        <div class="device-image six-col align-center">
-            <p><img itemprop="image" src="{{ ASSET_SERVER_URL }}db45d440-bq-e5-single.png" alt="BQ Aquaris E5" /></p>
+        <div class="twelve-col">
+            <h3 class="muted-heading">In the meantime you can</h3>
         </div>
-        <div class="six-col last-col">
-            <h2 itemprop="name">BQ Aquaris E5 HD</h2>
-            <ul itemprop="description" class="list-ticks">
-                <li>5 inch Capacitive multi-touch screen with 5 simultaneous-detection points</li>
-                <li>Dragontrail glass for scratch and impact resistance</li>
-                <li>13 megapixel camera with autofocus and dual flash</li>
-                <li>16 GB internal memory with MicroSD slot for extra storage (up to 32GB)</li>
-                <li>Dimensions 142 x 71 x 8.65mm</li>
-                <li>Weight: 134g</li>
-                <li>Full HD (1080p) camera for super-sharp video recording </li>
-                <li>Slots for two micro-SIM cards for phone use across multiple networks</li>
-            </ul>
-            <p itemprop="price">Only 199,90&euro;</p>
-            <p>
-                <a itemprop="url" class="button--primary button--primary__deactivated">Sold out</a>
-            </p>
+        <div class="equal-height">
+            <div class="box six-col equal-height--item">
+                <h3>Flash your device</h3>
+                <p>Anyone can install Ubuntu on compatible phones.</p>
+                <p><a href="https://developer.ubuntu.com/en/phone/devices/installing-ubuntu-for-devices/" class="external">Install Ubuntu on your phone</a></p>
+            </div>
+            <div class="box six-col last-col equal-height--item">
+                <h3>Get an Ubuntu Tablet</h3>
+                <p>BQ phones may be sold out but why not learn more about the BQ M10 tablet that’s available.</p>
+                <p><a href="/tablet">View Ubuntu Tablet&nbsp;&rsaquo;</a></p>
+            </div>
         </div>
-    </div>
-</section>
-
-
-<section itemscope itemtype="http://schema.org/Product" class="row strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="device-image four-col align-center prepend-one">
-            <p><img itemprop="image" src="{{ ASSET_SERVER_URL }}1e629b35-meizu-mx4-single.png?w=296" alt="Meizu MX4" /></p>
-        </div>
-        <div class="six-col last-col prepend-one">
-            <h2 itemprop="name">Meizu MX4 Ubuntu Edition</h2>
-            <ul itemprop="description" class="list-ticks">
-                <li>20.7 megapixel rear-facing camera with autofocus and dual LED flash and separate front-facing camera</li>
-                <li>5.36 inch screen with Nega liquid crystal technology, and LED backlight module</li>
-                <li>Corning Gorilla Glass 3 with improved damage resistance and toughness</li>
-                <li>4k video capture at a rate of 30 frames per second</li>
-                <li>16GB of internal memory </li>
-                <li>Available in two colour options &ndash; Silver Edge and Gold</li>
-                <li>Dimensions: 144 x 75.2 x 8.9mm</li>
-                <li>Weight: 147g</li>
-            </ul>
-            <p itemprop="price">Only 299&euro;</p>
-            <p>
-                <a itemprop="url" class="button--primary button--primary__deactivated">Sold out</a>
-            </p>
-        </div>
-    </div>
-</section>
-
-<section class="row row--note strip-light no-border">
-    <div class="strip-inner-wrapper">
-        <p class="note">Please note: prices and availability may vary.</p>
     </div>
 </section>

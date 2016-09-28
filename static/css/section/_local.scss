@@ -280,14 +280,18 @@ body {
   align-self: center;
 }
 // the small icons to the left of headings need to not be full width on small screens - this may well become a pattern
-.twelve-col .inline-small {
+.inline-small {
   float: left;
   margin-bottom: 10px;
   width: 48px;
   // this is to vertically center the heading/icon
   & + div > h3,
+  & + div > h2,
   & + h2 {
+    float: left;
+    margin-left: 1em;
     padding-top: 8px;
+    width: 66%;
   }
   @media only screen and (min-width: $breakpoint-medium) {
     margin-bottom: inherit;
