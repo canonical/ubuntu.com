@@ -23,10 +23,6 @@
       color: $cool-grey;
       margin-top: 0;
       overflow: hidden;
-      -moz-transition-duration: .7s;
-      -o-transition-duration: .7s;
-      -webkit-transition-duration: .7s;
-      transition-duration: .7s;
 
       @media only screen and (min-width : $breakpoint-medium) {
         background: $white url('#{$asset-server}19213020-intro-row.jpg?w=984') no-repeat;
@@ -58,8 +54,9 @@
       }
 
       .intro {
+
         @media only screen and (min-width : $breakpoint-medium) {
-          font-size: 23px;
+          font-size: 1.4375rem;
         }
       }
 
@@ -103,6 +100,7 @@
         }
 
         .show {
+
           @media only screen and (min-width : $breakpoint-medium) {
             display: block;
             padding-bottom: 0;
@@ -279,6 +277,10 @@
 
   // @subsection /phone/developers
   &.phone-developers {
+
+    #main-content {
+      overflow: hidden;
+    }
 
     .row-scope-frameworks {
       padding-bottom: 20px;
