@@ -6,12 +6,14 @@
 {% block meta_keywords %}Kubernetes, containers, Ubuntu OpenStack, Canonical, The Canonical Distribution of Kubernetes, OpenStack, cloud, Juju, Charms{% endblock %}
 
 {% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
     {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="kubernetes" %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row">
-    <div class="equal-height">
+<section class="row strip-light">
+    <div class="strip-inner-wrapper equal-height">
         <div class="eight-col equal-height__item">
             <h1>The Canonical Distribution of&nbsp;Kubernetes</h1>
             <h2>Enterprise Kubernetes, anywhere</h2>
@@ -26,7 +28,7 @@
 </section>
 
 <section class="row row-grey">
-    <div class="equal-height">
+    <div class="strip-inner-wrapper equal-height">
         <div class="box six-col equal-height--item">
             <h2>Elasticity built-in</h2>
             <p>Even for experts, installing and operating Kubernetes at scale is daunting. By using Ubuntu and Juju, Canonical&rsquo;s Kubernetes is simple, naturally elastic and integrates with common operations dashboards. Charms deliver the latest stable Kubernetes and Juju makes it easy to manage and grow your cluster.</p>
@@ -50,28 +52,30 @@
 </section>
 
 <section class="row">
-    <div class="six-col">
-        <h2>Production features</h2>
-        <ul class="list-ticks--compact">
-            <li>Access to the latest stable upstream Kubernetes release</li>
-            <li>Access to daily &lsquo;edge&rsquo; builds of upstream Kubernetes development branch (1.5.x) with rollback</li>
-            <li>Scale master nodes independently of worker nodes</li>
-            <li>Workloads are automatically portable between public clouds, private clouds and bare metal with an easy onramp to Google Container Engine (GKE)</li>
-            <li>Easily create and remove user access</li>
-            <li>Maintenance mode and supported upgrade path to new upstream versions</li>
-            <li>Kubernetes dashboard, Prometheus, for monitoring and alerting, collection and processing of system metrics</li>
-            <li>Elastic Stack for Insights with Beats log collection and monitoring and analysis and visualisation with Elasticsearch and Kibana</li>
-            <li>Optionally backed by Ceph for filesystem and block storage</li>
-        </ul>
-        <p><a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Datasheet_Canonical-kubernetes_28.09.16_WEB.pdf" class="external">Learn more in the Canonical Distribution of Kubernetes&nbsp;datasheet</a></p>
-    </div>
-    <div class="six-col last-col">
-        <div class="juju-card" data-id="canonical-kubernetes"></div>
+    <div class="strip-inner-wrapper">
+        <div class="six-col">
+            <h2>Production features</h2>
+            <ul class="list-ticks--compact">
+                <li>Access to the latest stable upstream Kubernetes release</li>
+                <li>Access to daily &lsquo;edge&rsquo; builds of upstream Kubernetes development branch (1.5.x) with rollback</li>
+                <li>Scale master nodes independently of worker nodes</li>
+                <li>Workloads are automatically portable between public clouds, private clouds and bare metal with an easy onramp to Google Container Engine (GKE)</li>
+                <li>Easily create and remove user access</li>
+                <li>Maintenance mode and supported upgrade path to new upstream versions</li>
+                <li>Kubernetes dashboard, Prometheus, for monitoring and alerting, collection and processing of system metrics</li>
+                <li>Elastic Stack for Insights with Beats log collection and monitoring and analysis and visualisation with Elasticsearch and Kibana</li>
+                <li>Optionally backed by Ceph for filesystem and block storage</li>
+            </ul>
+            <p><a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Datasheet_Canonical-kubernetes_28.09.16_WEB.pdf" class="external">Learn more in the Canonical Distribution of Kubernetes&nbsp;datasheet</a></p>
+        </div>
+        <div class="six-col last-col">
+            <div class="juju-card" data-id="canonical-kubernetes"></div>
+        </div>
     </div>
 </section>
 
 <section class="row row-grey">
-    <div class="equal-height">
+    <div class="strip-inner-wrapper equal-height">
         <div class="four-col equal-height__item equal-height__align-vertically not-for-small">
             <img src="{{ ASSET_SERVER_URL }}9f035e4a-picto-support-orange.svg" width="200" alt="" />
         </div>
@@ -87,7 +91,7 @@
 </section>
 
 <section class="row row-expertise no-border">
-    <div class="equal-height">
+    <div class="strip-inner-wrapper equal-height">
         <div class="six-col equal-height__item">
             <h2>Exchange expertise and ideas with thousands of other IT professionals</h2>
             <p>Want to talk to other Ubuntu users straight away? Share ideas and get advice and help from our large, active community of IT professionals. As a community, we set high standards for friendliness and tolerance. We welcome your questions and contributions.</p>

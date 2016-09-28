@@ -15,7 +15,7 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-hero no-border">
+<section class="row row-hero no-border no-padding-bottom strip-light">
     <div class="strip-inner-wrapper">
         <div class="hero-content twelve-col">
             <h1>Build your cloud strategy with Ubuntu</h1>
@@ -24,7 +24,7 @@
     </div>
 </section>
 
-<section class="row row-full-width">
+<section class="row strip-light">
     <div class="strip-inner-wrapper">
         <div class="twelve-col no-margin-bottom last-col">
             <div class="video-container">
@@ -64,7 +64,7 @@
     </div>
 </section>
 
-<section class="row no-border">
+<section class="row no-border strip-light">
     <div class="strip-inner-wrapper">
         {% include "cloud/shared/_openstack_clients.html" %}
     </div>

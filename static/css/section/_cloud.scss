@@ -260,32 +260,23 @@
   }
 }
 
-// @subsection /cloud/juju
-.cloud-juju {
-
-  .row-hero {
-    a {
-      margin-top: 20px;
-    }
-
-    img {
-      margin: 10px 0;
-    }
-  }
-}
 
 // @subsection /cloud/maas
 .cloud-maas {
 
   @media only screen and (min-width: $breakpoint-medium) {
     .row-hero {
-      background: url('#{$asset-server}a164f3d0-image-maas-screenshot.jpg') no-repeat 450px 0;
+      background-image: url('#{$asset-server}a164f3d0-image-maas-screenshot.jpg');
+      background-repeat: no-repeat;
+      background-position: 190% 0;
       background-size: 75%;
     }
 
     .row--autopilot {
-      background: url('#{$asset-server}c1369eb7-cloud-maas-landscape.jpg') no-repeat 450px 0;
-      background-size: 72%;
+      background-image: url('#{$asset-server}c1369eb7-cloud-maas-landscape.jpg');
+      background-repeat: no-repeat;
+      background-position: 190% 0;
+      background-size: 75%;
     }
   }
 
@@ -453,7 +444,14 @@
 
   .row-hero,
   .row-get-started {
-    background: url('#{$asset-server}3c2a0155-media-wiki-ubuntu.png?w=800') no-repeat 444px 0;
+    background-image: url('#{$asset-server}3c2a0155-media-wiki-ubuntu.png?w=800');
+    background-position: top right;
+    background-repeat: no-repeat;
+  }
+  
+  .row-hero {
+    background-position: 120% 0;
+    padding-bottom: 0;
   }
 
   .bundle-card__image-container {
@@ -463,27 +461,6 @@
 
 // @subsection /cloud/public-cloud
 .cloud-public-cloud {
-
-  .row-services {
-    min-height: 420px;
-    padding-bottom: 0;
-
-    img {
-      margin-top: 20px;
-      max-width: none;
-    }
-
-    div {
-      border-right: 1px dotted $warm-grey;
-      margin-bottom: 0;
-      padding-right: $gutter-width;
-    }
-
-    div.last-col {
-      border-right: 0;
-      padding-right: 0;
-    }
-  }
 
   .row-juju-advantage {
     overflow: hidden;
