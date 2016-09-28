@@ -959,7 +959,7 @@
     background: $light-grey;
     border: 0;
   }
-  
+
   @media only screen and (max-width: $breakpoint-medium) {
 
     .row-building-on-lxc,
@@ -1033,26 +1033,45 @@
     }
   }
 
-  .training-list__item {
-    @media only screen and (min-width: $breakpoint-medium) {
-      margin-top: 40px;
-    }
-  }
+  .training-list {
 
-  .course-details {
-    margin-top: 3px;
+    &__item {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      padding-top: 0;
 
-    dt {
-      float: left;
-      margin-right: 6px;
+      @media only screen and (min-width: $breakpoint-medium) {
+        margin-bottom: 40px;
+        padding-bottom: 40px;
+      }
 
-      &:after {
-        content: ": ";
+      @media only screen and (min-width: $breakpoint-large) {
+        margin-bottom: 60px;
+        padding-bottom: 60px;
       }
     }
 
-    dd {
-      margin-bottom: 10px;
+    &__course-summary {
+      border-bottom: 0;
+    }
+
+    &__course-details {
+      dt {
+        float: left;
+        margin-right: 6px;
+
+        &:after {
+          content: ": ";
+        }
+      }
+
+      dd {
+        margin-bottom: 10px;
+      }
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        margin-top: 3px;
+      }
     }
   }
 }
