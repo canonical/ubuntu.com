@@ -377,28 +377,6 @@
       top: -121px;
     }
   }
-
-  .training-list {
-
-    li {
-      border-bottom: 0;
-      float: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
-
-      &:first-child {
-        border-bottom: 1px dotted $warm-grey;
-        display: block;
-        float: left;
-        margin-bottom: 35px;
-        padding-bottom: 20px;
-      }
-    }
-
-    .no-border:first-child {
-      border: 0;
-    }
-  }
 }
 
 // @subsection /cloud/partners
@@ -981,7 +959,7 @@
     background: $light-grey;
     border: 0;
   }
-  
+
   @media only screen and (max-width: $breakpoint-medium) {
 
     .row-building-on-lxc,
@@ -1015,6 +993,85 @@
 
     &:last-of-type {
       margin-right: 0;
+    }
+  }
+}
+
+/* Cloud Training */
+
+/* @subsection cloud > training */
+.cloud-training  {
+
+  .row-training {
+
+    @media only screen and (min-width: $breakpoint-medium) {
+      margin-top: 0;
+      min-height: 300px;
+      padding-top: 20px;
+      position: relative;
+    }
+
+    @media only screen and (min-width: $breakpoint-large) {
+      min-height: 343px;
+      padding-top: 40px;
+    }
+
+    &__image {
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        max-width: 300px;
+        position: absolute;
+        right: 20px;
+        top: 0;
+      }
+
+      @media only screen and (min-width: $breakpoint-large) {
+        max-width: 360px;
+        right: 40px;
+        width: auto;
+      }
+    }
+  }
+
+  .training-list {
+
+    &__item {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      padding-top: 0;
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        margin-bottom: 40px;
+        padding-bottom: 40px;
+      }
+
+      @media only screen and (min-width: $breakpoint-large) {
+        margin-bottom: 60px;
+        padding-bottom: 60px;
+      }
+    }
+
+    &__course-summary {
+      border-bottom: 0;
+    }
+
+    &__course-details {
+      dt {
+        float: left;
+        margin-right: 6px;
+
+        &:after {
+          content: ": ";
+        }
+      }
+
+      dd {
+        margin-bottom: 10px;
+      }
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        margin-top: 3px;
+      }
     }
   }
 }
