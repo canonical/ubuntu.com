@@ -10,7 +10,7 @@ core.setupAnimations = function() {
             showVideo.addEventListener('click', function(e) {
                 e.preventDefault();
                 videoPanel.classList.add('show');
-                document.querySelector('.the-video').innerHTML = '<div class="video-container"><iframe width="984" height="554" src="http://www.youtube.com/embed/CsDFMIphtZk?showinfo=0&vq=hd1080&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe></div>';
+                document.querySelector('.the-video').innerHTML = '<div class="video-container"><iframe width="984" height="554" src="https://www.youtube.com/embed/CsDFMIphtZk?showinfo=0&vq=hd1080&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe></div>';
             });
         }
     }
@@ -33,7 +33,7 @@ core.setupAnimations = function() {
                 rowHero.style.height = '588px';
                 rowContent.classList.remove('show-me');
                 rowContent.classList.add('hide-me');
-                videoPanel.innerHTML = '<iframe width="984" height="554" src="http://www.youtube.com/embed/-dpfHYpfEXY?showinfo=0&vq=hd1080&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe>';
+                videoPanel.innerHTML = '<iframe width="984" height="554" src="https://www.youtube.com/embed/-dpfHYpfEXY?showinfo=0&vq=hd1080&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe>';
             });
         }
 
@@ -117,7 +117,7 @@ core.cookiePolicy = function() {
         switch(stateChange) {
             case 'open':
                 var range = document.createRange();
-                var cookieNode = range.createContextualFragment('<div class="cookie-policy"><div class="wrapper"><a href="?cp=close" class="link-cta">Close</a><p>We use cookies to improve your experience. By your continued use of this site you accept such use. To change your settings please <a href="http://www.ubuntu.com/legal/terms-and-policies/privacy-policy#cookies">see our policy</a>.</p></div></div>');
+                var cookieNode = range.createContextualFragment('<div class="cookie-policy"><div class="wrapper"><a href="?cp=close" class="link-cta">Close</a><p>We use cookies to improve your experience. By your continued use of this site you accept such use. To change your settings please <a href="/legal/terms-and-policies/privacy-policy#cookies">see our policy</a>.</p></div></div>');
                 document.body.insertBefore(cookieNode, document.body.lastChild);
                 document.querySelector('footer.global .legal').classList.add('has-cookie');
                 document.querySelector('.cookie-policy .link-cta').addEventListener('click', function(e) {
