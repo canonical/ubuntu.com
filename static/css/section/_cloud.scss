@@ -319,11 +319,6 @@
 
 //* Special overrides for JS-enabled  on /cloud/openstack/managed-cloud
 .js .cloud-openstack-managed-cloud {
-
-  .slider-area p {
-      float: none;
-  }
-
   .slider-container {
     min-height: 24px;
     min-width: 10px;
@@ -639,14 +634,15 @@
   .slider-area {
     margin-top: 20px;
     overflow: hidden;
+    display: flex;
 
-    p {
-      float: left;
-      margin-bottom: 0;
-
-      &:first-child {
-        margin-top: 0;
-      }
+    & input[type=number] {
+      width: 5em;
+      margin-right: 1em;
+    }
+    & input[type=range] {
+      min-width: 130px;
+      flex-grow: 1;
     }
   }
 
@@ -693,7 +689,18 @@
     list-style: none;
     margin-left: 0;
 
-    .grouped-tabbed__item {
+    &__input {
+      position: absolute;
+      left: -10000px;
+
+      &:checked ~ .grouped-tabbed__button {
+       background: $ubuntu-orange;
+       color: $white;
+       border-color: $ubuntu-orange;
+     }
+    }
+
+    &__item {
       float: left;
       margin-bottom: 0;
       width: 33%;
@@ -707,7 +714,7 @@
       }
     }
 
-    .grouped-tabbed__button {
+    &__button {
       text-align: center;
       padding: 8px;
       display: block;
@@ -716,17 +723,6 @@
       color: $ubuntu-orange;
       margin-left: -1px;
       margin-right: -1px;
-
-      &:hover,
-      &:focus {
-        text-decoration: none;
-      }
-
-      &.is-active {
-        background: $ubuntu-orange;
-        color: $white;
-        border-color: $ubuntu-orange;
-      }
     }
   }
 
@@ -899,52 +895,6 @@
 
   .option__value-savings.negative {
     color: $error;
-  }
-
-  // Slider styles
-  .yui3-slider-content, .yui3-widget {
-    display: block;
-    padding: 5px 0;
-  }
-
-  .yui3-slider-rail-cap-left, .yui3-slider-rail-cap-right {
-    display: none;
-  }
-
-  .yui3-slider-rail {
-    display: block;
-    height: 4px;
-    background-color: $brand-color;
-    background: linear-gradient(to left, #E1DAD2 98.4%, $brand-color 0%); // DDD pick a standard colour?
-    border-radius: 2px;
-    overflow: visible;
-    box-shadow: inset 0px 1px 0px 0px rgba(0, 0, 0, 0.15);
-    cursor: pointer;
-
-    .yui3-slider-thumb {
-      width:  18px;
-      height: 18px;
-      border-radius: 4px;
-      background: $white;
-      overflow: visible;
-      display: block;
-      position: relative;
-      top: -7px !important;
-      outline: none;
-      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .2);
-      cursor: pointer;
-
-      &:hover {
-        -webkit-transform: scale(1.25, 1.25);
-        transform: scale(1.25, 1.25);
-        -ms-transition: transform 0.1s cubic-bezier(0.895, 0.03, 0.685, 0.22);
-        transition:  transform 0.1s cubic-bezier(0.895, 0.03, 0.685, 0.22);
-      }
-    }
-  }
-
-  .yui3-slider-thumb-shadow, .yui3-slider-thumb-image {
-    display: none;
   }
 }
 
