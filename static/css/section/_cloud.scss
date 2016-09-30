@@ -319,11 +319,6 @@
 
 //* Special overrides for JS-enabled  on /cloud/openstack/managed-cloud
 .js .cloud-openstack-managed-cloud {
-
-  .slider-area p {
-      float: none;
-  }
-
   .slider-container {
     min-height: 24px;
     min-width: 10px;
@@ -639,14 +634,15 @@
   .slider-area {
     margin-top: 20px;
     overflow: hidden;
+    display: flex;
 
-    p {
-      float: left;
-      margin-bottom: 0;
-
-      &:first-child {
-        margin-top: 0;
-      }
+    & input[type=number] {
+      width: 5em;
+      margin-right: 1em;
+    }
+    & input[type=range] {
+      min-width: 130px;
+      flex-grow: 1;
     }
   }
 
@@ -693,7 +689,18 @@
     list-style: none;
     margin-left: 0;
 
-    .grouped-tabbed__item {
+    &__input {
+      position: absolute;
+      left: -10000px;
+
+      &:checked ~ .grouped-tabbed__button {
+       background: $ubuntu-orange;
+       color: $white;
+       border-color: $ubuntu-orange;
+     }
+    }
+
+    &__item {
       float: left;
       margin-bottom: 0;
       width: 33%;
@@ -707,7 +714,7 @@
       }
     }
 
-    .grouped-tabbed__button {
+    &__button {
       text-align: center;
       padding: 8px;
       display: block;
@@ -716,17 +723,6 @@
       color: $ubuntu-orange;
       margin-left: -1px;
       margin-right: -1px;
-
-      &:hover,
-      &:focus {
-        text-decoration: none;
-      }
-
-      &.is-active {
-        background: $ubuntu-orange;
-        color: $white;
-        border-color: $ubuntu-orange;
-      }
     }
   }
 
