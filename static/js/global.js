@@ -1,7 +1,7 @@
 var ai = [
   { url: "http://www.ubuntu.com", title:"Ubuntu" },
   { url: "http://community.ubuntu.com/", title:"Community" },
-  { url: "http://askubuntu.com", title:"Ask!" },
+  { url: "https://askubuntu.com", title:"Ask!" },
   { url: "http://developer.ubuntu.com", title:"Developer" },
   { url: "https://design.ubuntu.com", title:"Design" },
   { url: "http://www.ubuntu.com/certification", title:"Hardware" },
