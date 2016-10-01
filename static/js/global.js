@@ -2,7 +2,7 @@ var ai = [
   { url: "http://www.ubuntu.com", title:"Ubuntu" },
   { url: "https://community.ubuntu.com/", title:"Community" },
   { url: "https://askubuntu.com", title:"Ask!" },
-  { url: "http://developer.ubuntu.com", title:"Developer" },
+  { url: "https://developer.ubuntu.com", title:"Developer" },
   { url: "https://design.ubuntu.com", title:"Design" },
   { url: "http://www.ubuntu.com/certification", title:"Hardware" },
   { url: "https://insights.ubuntu.com", title:"Insights" },
@@ -109,7 +109,7 @@ core.getActive = function(link) {
 
 core.getURL = function(){
   var url = document.URL;
-  url = url.replace('https://developer.ubuntu.com','http://developer.ubuntu.com');
+  url = url.replace('https://developer.ubuntu.com','https://developer.ubuntu.com');
   return url;
 };
 
