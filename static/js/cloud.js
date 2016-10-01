@@ -69,7 +69,7 @@ cloud.calculator = function() {
           uaCost = 0,
           numberOfUnits = 0;
 
-      switch(billingPeroid) {
+      switch(billingPeriod) {
         case 'hour': staffCost = annualStaffCost / hoursInYear; break;
         case 'month': staffCost = annualStaffCost / monthsInYear; break;
         case 'year': staffCost = annualStaffCost; break;
@@ -85,7 +85,7 @@ cloud.calculator = function() {
           var uaHourlyCost = numberOfUnits * uaPriceVm,
               vmCostPerHour = numberOfUnits * vmPerHour;
 
-          switch(billingPeroid) {
+          switch(billingPeriod) {
             case 'hour':
               bootstackCost = vmCostPerHour;
               uaCost = uaHourlyCost;
@@ -95,7 +95,7 @@ cloud.calculator = function() {
               uaCost = uaHourlyCost * hoursInMonth;
               break;
             case 'year':
-              bootstackCost = vmCostPerHour * hoursInYesr;
+              bootstackCost = vmCostPerHour * hoursInYear;
               uaCost = uaHourlyCost * hoursInYear;
               break;
           }
@@ -116,7 +116,7 @@ cloud.calculator = function() {
 
           var serverHourlyCost = numberOfUnits * bootstackServerHourlyPrice;
 
-          switch(billingPeroid) {
+          switch(billingPeriod) {
             case 'hour':
               bootstackCost = serverHourlyCost;
               uaCost = uaServerHourlyCost;
@@ -126,7 +126,7 @@ cloud.calculator = function() {
               uaCost = uaServerHourlyCost * hoursInMonth;
               break;
             case 'year':
-              bootstackCost = serverHourlyCost * hoursInYesr;
+              bootstackCost = serverHourlyCost * hoursInYear;
               uaCost = uaServerHourlyCost * hoursInYear;
               break;
           }
