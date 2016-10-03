@@ -53,6 +53,7 @@ TEMPLATES = [
         'OPTIONS': {
             'builtins': [
                 'webapp.templatetags.feeds',
+                'webapp.templatetags.utils',
             ],
             'context_processors': [
                 'django_asset_server_url.asset_server_url',
