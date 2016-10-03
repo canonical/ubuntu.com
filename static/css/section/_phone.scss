@@ -1,238 +1,193 @@
-// @section phone
-// --------------------------------------------------------------
+@charset 'UTF-8';
 
-//	Contents:
-//		@section general
-//		@section phone home
-//		@section more general
+// ---------------------------------------------------------------
+// ---------------------------------------------------------------
+//
+//  Project:    Ubuntu Front-End Phone section
+//  Author:     Web Team at Canonical Ltd
+//
+// ---------------------------------------------------------------
+// ---------------------------------------------------------------
 
-// BEM example
-//	.nav {
-//		&__list {
-//			&__item {
-//				&--featured {
-//				}
-//			}
-//		}
-//	}
-// --------------------------------------------------------------
-
-// @section general
-// --------------------------------------------------------------
-@mixin transform($transforms) {
-  -moz-transform:       $transforms;
-  -o-transform:         $transforms;
-  -ms-transform:        $transforms;
-  -webkit-transform:    $transforms;
-  transform:            $transforms;
-}
-
-@mixin scale($scale: 1) {
-  -webkit-transform:  scale($scale);
-  -moz-transform:     scale($scale);
-  -ms-transform:      scale($scale);
-  -o-transform:       scale($scale);
-  transform:          scale($scale);
-}
-// scale
-@mixin scale($scale) {
-  @include transform(scale($scale));
-}
-
-.wf-loading h1, .wf-loading p {
-  visibility:hidden;
-}
-
+// @global phone section_title
 .phone {
-  .pull-right-40 {
-    margin-right:-41px;
-  }
-}
-
-@media only screen and ($breakpoint-medium) {
-
-  .video-container.for-mobile {
-    margin-bottom: 0!important;
-  }
-
-  .mobile-vid {
-    padding: 0;
-    margin: 0;
-  }
-}
-
-.row-origami {
-  background: #edeeee url('#{$asset-server}974c4e8c-background-origami.png') no-repeat;
-  background-size: cover;
-}
-
-// @section phone hero banners
-// --------------------------------------------------------------
-body.phone {
+  padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
-  padding-bottom: 0;
-}
 
-// @section phone home / overview
-// --------------------------------------------------------------
-body.phone-home {
+  // @section /phone overview
+  &.phone-home {
 
-  #main-content {
+    .row-hero {
+      background-size: cover;
+      color: $cool-grey;
+      margin-top: 0;
+      overflow: hidden;
 
-    .row h1 {
-      padding-top: 0;
-    }
-  }
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: $white url('#{$asset-server}19213020-intro-row.jpg?w=984') no-repeat;
+        background-position: 40% 30%;
+        background-size: 115%;
+        color: $white;
+        height: 529px;
+        padding-top: 40px;
+      }
 
-  .row-hero {
+      @media only screen and (min-width : $breakpoint-large) {
+        background-image: url('#{$asset-server}19213020-intro-row.jpg?w=1300');
+        background-size: cover;
+        min-height: 580px;
+        overflow: visible;
+        position: relative;
+      }
 
-    .the-video {
-      .close-video {
+      h1 {
+        padding-top: 0;
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          margin-top: 40px;
+        }
+
+        @media only screen and (min-width : $breakpoint-large) {
+          margin-top: 80px;
+        }
+      }
+
+      .intro {
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          font-size: 1.4375rem;
+        }
+      }
+
+      .for-mobile {
+        margin: 0 -10px 10px;
+
+        img {
+          height: auto;
+          width: 100%;
+        }
+      }
+
+      .video-container.for-mobile {
+
+        @media only screen and ($breakpoint-medium) {
+          margin-bottom: 0 !important;
+        }
+      }
+
+      .mobile-vid {
+
+        @media only screen and ($breakpoint-medium) {
+          margin: 0;
+          padding: 0;
+        }
+      }
+
+      .the-video {
+        background: $black;
+        display: none;
+        height: 0;
+        left: 0;
+        min-height: 588px;
+        padding-bottom: 56.25%; //* 16:9 *//
+        position: absolute;
+        top: 0;
+        width: 100%;
+
+        .close-video {
+          display: none;
+        }
+
+        .show {
+
+          @media only screen and (min-width : $breakpoint-medium) {
+            display: block;
+            padding-bottom: 0;
+          }
+        }
+      }
+
+      .hide-me,
+      .show-me {
+        -moz-transition-duration: 2s;
+        -o-transition-duration: 2s;
+        -webkit-transition-duration: 2s;
+        height: 0;
+        opacity: 0;
+        transition-duration: 2s;
+      }
+
+      .close-vid-link {
+        display: none;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        z-index: 60;
+      }
+
+      .video.hide {
         display: none;
       }
 
-      iframe {
-          width: 100%;
-      }
-    }
-
-    .video-link {
-      display: none;
-
-      @media only screen and (min-width : 768px) {
-        display: inline-block;
-      }
-    }
-
-    a {
-      outline: none;
-    }
-  }
-
-  #main-content .row-hero {
-    color: $white;
-
-    .for-mobile {
-      margin: 0 -10px 10px;
-
-      img {
-        width: 100%;
+      .show-me {
         height: auto;
+        opacity: 1;
+      }
+
+      .video-link {
+        display: none;
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          display: inline-block;
+        }
+      }
+
+      a {
+        outline: none;
       }
     }
 
-    .the-video {
-      background: $black;
-      display: none;
-      min-height: 588px;
-      left: 0;
-      padding-bottom: 130px;
-      position: absolute;
-      top: 0;
-      width: 100%;
-    }
+    .row--beautiful-design {
 
-    .hide-me,
-    .show-me {
-        -moz-transition-duration: 2s;
-        -o-transition-duration: 2s;
-        -webkit-transition-duration: 2s;
-      height: 0;
-      opacity: 0;
-      transition-duration: 2s;
-    }
-
-    .hide-me {
-        -moz-transition-duration: 2s;
-        -o-transition-duration: 2s;
-        -webkit-transition-duration: 2s;
-      transition-duration: 2s;
-    }
-
-    .show-me {
-      height: auto;
-      opacity: 1;
-    }
-  } // end row-hero
-
-  .the-video {
-    padding-bottom: 56.25%; /* 16:9 */
-    height: 0;
-  }
-  .the-video iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .close-vid-link {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    z-index: 60;
-    display: none;
-  }
-
-  .video.hide {
-    display: none;
-  }
-
-  #main-content .row-hero {
-      -moz-transition-duration: .7s;
-      -o-transition-duration: .7s;
-      -webkit-transition-duration: .7s;
-    background-size: cover;
-    transition-duration: .7s;
-    margin-top: 0;
-    overflow: hidden;
-    color: #333;
-  }
-
-  .scopes-text {
-    background: $black;
-    color: $white;
-    margin-top: -12vw;
-  }
-
-  @media only screen and ($breakpoint-medium) {
-    .scopes-text {
-      background: $white;
-      color: $black;
-      padding-top: 2rem;
-      margin-top: -12rem;
-    }
-  }
-
-  .row-developers {
-    background: url('#{$asset-server}9ebbb024-background-developer.png');
-  }
-
-  #main-content .row-hero .six-col {
-    padding-top: 10px;
-  }
-
-  .row--beautiful-design {
-
-    @media only screen and ($breakpoint-medium) {
-
-      padding: 0;
-
-      h2,
-      p {
-        padding: 0 10px;
+      @media only screen and (min-width : $breakpoint-medium) {
+        background-image: url('#{$asset-server}91d3d632-beautiful-features.jpg?w=1500');
+        background-position: 32% 42%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: $white;
       }
+
+      a {
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          border-bottom: 1px solid $white;
+          color: $white;
+          text-decoration: none;
+        }
+
+
+        h2,
+        p {
+          @media only screen and ($breakpoint-medium) {
+            padding: 0 10px;
+          }
+        }
 
         img {
-          width: 100%;
-          padding-bottom: 20px;
+
+          @media only screen and ($breakpoint-medium) {
+            padding-bottom: 20px;
+            width: 100%;
+          }
         }
 
         .for-small {
-          padding: 0;
-          margin: 0;
+
+          @media only screen and ($breakpoint-medium) {
+            margin: 0;
+            padding: 0;
+          }
         }
       }
     }
@@ -240,685 +195,420 @@ body.phone-home {
     .row--access-content {
       margin-top: -3px;
 
+      @media only screen and (min-width : $breakpoint-medium) {
+        background-color: $black;
+        background-image: url('#{$asset-server}5bcc34b9-scopes-row-black-bg.jpg?w=1400');
+        background-position: 40px 60px;
+        background-repeat: no-repeat;
+        background-size: 50%;
+        height: 68vw;
+        margin-top: 0;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        max-height: 64vw;
+      }
+
+      @media only screen and (min-width : 1600px) {
+        max-height: 60vw;
+      }
+
       .flex-container {
         overflow: hidden;
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          height: 68vw;
+        }
+
+        @media only screen and (min-width : $breakpoint-large) {
+          height: 56vw;
+        }
       }
 
       h2 {
         text-align: left;
       }
-    }
 
-    @media only screen and (min-width : 768px) {
+      .scopes-text {
+        background: $white;
+        color: $black;
 
-      #main-content .row-hero .six-col {
-        padding-top: 40px;
-      }
-
-      .row--access-content {
-        background-image: url('#{$asset-server}5bcc34b9-scopes-row-black-bg.jpg?w=1400');
-        background-color: $black;
-        background-repeat: no-repeat;
-        background-position: 40px 60px;
-        background-size: 50%;
-        margin-top: 0;
-
-        &,
-        .flex-container {
-          height: 68vw;
-        }
-
-        @media only screen and (min-width : 1024px) {
-          .flex-container {
-            height: 56vw;
-          }
-        }
-
-        @media (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-          //Higher resolution for high-res screens
-          background-image: url('#{$asset-server}5bcc34b9-scopes-row-black-bg.jpg?w=1000');
-        }
-      }
-
-      .row--beautiful-design {
-        background-image: url('#{$asset-server}91d3d632-beautiful-features.jpg?w=1500');
-        background-position: 32% 42%;
-        background-repeat: no-repeat;
-        background-size: cover;
-        color: $white;
-
-        a {
+        @media only screen and (min-width : $breakpoint-medium) {
+          background: $black;
           color: $white;
-          text-decoration: none;
-          border-bottom: 1px solid $white;
+          margin-top: -12vw;
         }
       }
     }
-} // end phone home
+  } // end phone home
 
-// phone scopes row
-body.phone-home .row--access-content {
+  // @subsection /phone/devices
+  &.phone-devices {
 
-  @media only screen and (min-width : 1024px) {
-    max-height: 64vw;
-  }
+    .devices {
+      table-layout: fixed;
 
-  @media only screen and (min-width : 1600px) {
-    max-height: 60vw;
-  }
-}
-
-p[itemprop="price"] {
-  font-size: 23px;
-  margin-top: 20px;
-}
-
-body.phone-devices #main-content {
-  .link-cta-ubuntu {
-    margin-right: 10px;
-    margin-bottom: 10px;
-  }
-
-  .link-cta-ubuntu + a {
-    display: block;
-  }
-
-  .devices {
-    table-layout: fixed;
-
-    &__title {
-      font-weight: 400;
-    }
-
-    &__item {
-      text-align: left;
-      vertical-align: top;
-    }
-
-    &__image {
-      margin-bottom: 10px;
-      max-height: 200px;
-    }
-  }
-
-  .promo-signup {
-
-    &--email {
-      float: left;
-      margin-right: 1em;
-      width: 25rem;
-    }
-
-    &--button {
-      float: left;
-    }
-
-    &--additional {
-      margin-top: 1rem;
-    }
-  }
-}
-
-body.phone-home .store-promo {
-  .link-cta-ubuntu {
-      margin-right: 10px;
-  }
-}
-
-.for-mobile img {
-  width: 100%;
-}
-
-body.phone-developers {
-  // Phone/developers slideshow
-
-  #main-content {
-    overflow: hidden;
-  }
-
-  .row-scope-frameworks {
-    padding-bottom: 20px;
-  }
-
-  .row-shine-content {
-    padding-bottom: 20px;
-
-    a {
-      color: #dd4814;
-
-      @media only screen and (min-width : 768px) {
-        color: $white;
-        text-decoration: none;
-        border-bottom: 1px solid $white;
-      }
-    }
-  }
-
-  .row-slideshow {
-    padding-top: 0;
-    padding-bottom: 0;
-
-    #scopes-content {
-      padding-top: 1.5rem;
-
-      @media only screen and (min-width : 768px) {
-        padding-top: 4.5rem;
+      &__title {
+        font-weight: 400;
       }
 
-    }
-
-    .strip-inner-wrapper {
-      position: relative;
-    }
-  }
-
-  @media only screen and (min-width: 768px) {
-      .row-scope-frameworks {
-          padding-bottom: 400px;
+      &__item {
+        text-align: left;
+        vertical-align: top;
       }
-  }
 
-  .row-shine {
-    border: 0;
-    min-height: 0;
-
-    .for-mobile {
-        margin: -20px -10px 10px;
-    }
-  }
-
-  .row-scope-frameworks {
-    .strip-inner-wrapper {
-      position: relative;
-    }
-
-    &--image {
-      margin-bottom: -5px;
-    }
-  }
-
-  .row-community h2,
-  .row-community p {
-    background: $white;
-    padding-left: 10px;
-  }
-
-  .img--full-width {
-    width: 100%;
-  }
-} // end body.phone-developers
-
-body.phone-features {
-
-    #main-content .row-hero {
-        border-bottom: 1px dotted $warm-grey;
-        margin-top: 0;
-
-        h1 {
-          padding-top: 0;
-        }
-    }
-    #main-content .row-hero .for-mobile {
-        margin: 0 -10px 10px;
-    }
-
-    #main-content .row-hero .for-mobile img {
-        width: 100%;
-    }
-
-    .row--phone-details {
-        background: $black;
-        color: $white;
-        overflow: hidden;
-        padding-bottom: 20px;
-
-        a {
-          color: $white;
-        }
-
-        .external {
-          background-image: url('#{$asset-server}0d55fd52-external-link-white.svg');
-        }
-    }
-
-} // end body.phone-features
-
-// @section more general
-// --------------------------------------------------------------
-body.phone {
-  .row-hero {
-    a img {
-      vertical-align: middle;
-      margin-right: 10px;
-    }
-
-    a.close-video {
-      color: $white;
-      margin-top: 0px;
-      padding-left: 5px;
-      img {
-        vertical-align: middle;
-        margin-right: 5px;
+      &__image {
+        margin-bottom: 10px;
+        max-height: 200px;
       }
     }
-  }
-}
 
-// @section thank-you
-// --------------------------------------------------------------
-body.phone-thank-you {
-  .row-hero{
-    height: auto;
-    padding-bottom: 20px;
-  }
-  .row-box {
-    border-radius: 0;
-  }
-}
+    .promo-signup {
 
-body.phone-contact-us {
-  .row {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    padding-top: 0
-  }
-  .row-hero {
-    height: auto;
-  }
-}
+      &--email {
+        margin-bottom: 10px;
+      }
+    }
 
-// @section features
-// --------------------------------------------------------------
-body.phone-features {
-
-  .row--video {
-    background: $black;
-    padding: 0;
-
-    .video-link {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 */
-      padding-top: 25px;
-      height: 0;
+    .muted-heading {
       margin-bottom: 0;
     }
-
-    .show-video {
-      background: url('#{$asset-server}c24f0381-video-poster.jpg') center center;
-      background-size: cover;
-      display: block;
-      text-indent: -999em;
-      overflow: hidden;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-      &.show {
-
-          h2,
-          .show-video,
-          .video-link {
-              left: -999em;
-              position: absolute;
-          }
-        }
-
-        iframe {
-          width: 100%;
-          float: left;
-        }
-
-        h2 {
-          color: $white;
-          position: absolute;
-          top: 50%;
-          margin-top: -0.65em; // half the line height - if one line
-          right: 0;
-          width: 36%;
-          margin-left: 40px;
-          z-index: 999;
-        }
   }
-} // end body.phone-features
 
+  // @subsection /phone/developers
+  &.phone-developers {
 
-// Medium / Tablet viewport
-// --------------------------------------------------------------
-@media only screen and (min-width : 768px) {
-
-  body.phone-home {
+    #main-content {
+      overflow: hidden;
+    }
 
     .row-scope-frameworks {
       padding-bottom: 20px;
-    }
 
-    #main-content .row-hero {
-      background: $white url('#{$asset-server}19213020-intro-row.jpg?w=984') no-repeat;
-      background-size: 115%;
-      height: 529px;
-      overflow: hidden;
-      background-position: 40% 30%;
-      padding-top: 40px;
-      color: $white;
-
-      h1 {
-          margin-top: 40px;
-      }
-
-      .intro {
-          font-size: 23px;
-        }
-
-        .the-video.show {
-        display: block;
+      @media only screen and (min-width: $breakpoint-medium) {
+        // ANT - WHY IS THIS OVERWRITTEN BY .tablet .row, .phone .row { padding: 40px 10px 20px; } ON LIVE?
         padding-bottom: 0;
-        }
-    }
-
-  } // end phone home
-
-  body.phone-features {
-    .row-hero {
-      a {
-        color: $white;
       }
-    }
-      .row--video {
-            padding: 0;
-            min-height: 432px;
 
-            .show-video {
+      @media only screen and (min-width : $breakpoint-large) {
+        padding-bottom: 100px;
+      }
 
-                width: 100%;
-                display: block;
-                text-indent: -999em;
-                overflow: hidden;
-                min-height:432px;
-            }
-        }
-
-        .row--store-promo__content {
-            padding-top: 40px;
-        }
-
-        .screens {
-            bottom: 0;
-        }
-
-        #main-content .row-hero {
-            background: url('#{$asset-server}9bb69e76-features-intro-row-2x.jpg?w=2000') center center no-repeat;
-            background-size: cover;
-            min-height: 366px;
-            border-bottom: 0;
-            padding-top: 100px;
-        }
-
-        .row--phone-details {
-
-            .four-col,
-            .eight-col {
-                min-height: 640px;
-            }
-        }
-  } // end body.phone-features
-
-    // body.phone-developers
-  body.phone-developers {
-    .row-slideshow {
+      &--image {
+        margin-bottom: -5px;
         overflow: hidden;
 
-        .carousel {
-          @media only screen and (max-width: 1024px) {
-            display: none;
-          }
+        @media only screen and (min-width: $breakpoint-medium) {
+          left: 440px;
+          margin: auto;
+          position: absolute;
+          top: 7px;
+        }
 
+        @media only screen and (min-width : $breakpoint-large) {
+          padding-bottom: 0;
+          top: 15px;
+        }
+      }
+
+      .strip-inner-wrapper {
+        padding-bottom: 20px;
+        position: relative;
+      }
+    }
+
+    .row-slideshow {
+      padding-bottom: 0;
+      padding-top: 0;
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        overflow: hidden;
+      }
+
+      .carousel {
+
+        @media only screen and (min-width : $breakpoint-medium) {
           background-image: url('#{$asset-server}a042ddd8-carousel-bg.png?w=401');
           background-repeat: no-repeat;
-          padding: 110px 20px;
-          margin: 120px 30px 60px;
           box-sizing: border-box;
+          margin: 120px 30px 60px;
+          padding: 110px 20px;
+        }
+
+        @media only screen and (max-width: $breakpoint-large) and (min-width: $breakpoint-medium) {
+          display: none;
         }
 
         #slider {
-          position: relative;
-          overflow: hidden;
-          margin: 0;
-          top: -19px;
-          left: -1px;
-        }
 
-        #slider ul {
-          transition: left .8s;
-          position: relative;
-          margin: 0;
-          padding: 0;
-          height: 500px;
-          list-style: none;
-        }
-
-        #slider ul li {
-          position: relative;
-          display: block;
-          float: left;
-          margin: 0;
-          padding: 0;
-          width: 360px;
-          height: 612px;
-          background: #ccc;
-          text-align: center;
-          top: 12px;
-
-          img {
-            width: 100%;
-          }
-        }
-
-        #scopes-content {
+          @media only screen and (min-width : $breakpoint-medium) {
+            left: -1px;
+            margin: 0;
+            overflow: hidden;
             position: relative;
-            z-index: 999;
-            padding-left: 60px;
+            top: -19px;
+          }
 
-            @media only screen and (max-width: 1024px) {
-              padding-left: 0;
-              padding-top: 40px;
+          ul {
+
+            @media only screen and (min-width : $breakpoint-medium) {
+              height: 500px;
+              list-style: none;
+              margin: 0;
+              padding: 0;
+              position: relative;
+              transition: left .8s;
+
+              li {
+
+                @media only screen and (min-width : $breakpoint-medium) {
+                  background: $mid-grey;
+                  display: block;
+                  float: left;
+                  height: 612px;
+                  margin: 0;
+                  padding: 0;
+                  position: relative;
+                  text-align: center;
+                  top: 12px;
+                  width: 360px;
+
+                  img {
+                    width: 100%;
+                  }
+                }
+              }
             }
-        }
-    } // end row-slideshow
-  }
-
-  // @section partners /phone/partners
-  //--------------------------------------------------------------
-  body.phone-partners {
-    .row-more--image {
-      margin-bottom: 40px;
-      margin-top: 60px;
-    }
-
-    .row-dev-opportunity--image {
-      margin-top: 40px;
-    }
-  } // end @section partners
-
-  // @section partners /phone/developers (768)
-  //--------------------------------------------------------------
-  body.phone-developers {
-
-        .row-scope-frameworks {
-            padding-bottom: 0;
-
-            &--image {
-              top: 7px;
-              position: absolute;
-              left: 440px;
-              margin: auto;
-            }
-        }
-
-        .row-shine {
-            background-image: url('#{$asset-server}d4117ccb-space-for-content-row.jpg?w=1400');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: 50% 13%;
-            color: $white;
-            min-height: 470px;
-            padding-top: 60px;
-        }
-
-      .row-more-than {
-          padding-bottom: 40px;
-          min-height: 0;
-          padding-top: 40px;
-
-            img {
-                width: 240px;
-                top: 0;
           }
         }
+      }
 
-  } // end body.phone-developers
-}
+      #scopes-content {
+        padding-top: 1.5rem;
 
-.device-image img {
-  max-width: 50%;
+        @media only screen and (min-width : $breakpoint-medium) {
+          padding-left: 60px;
+          padding-top: 4.5rem;
+          position: relative;
+          z-index: 999;
+        }
 
-  @media only screen and (min-width : 984px) {
-    max-width: 100%;
-  }
-}
-
-// Large / Desktop viewport (984)
-// --------------------------------------------------------------
-@media only screen and (min-width : 984px) {
-  body.phone-devices #main-content {
-    .link-cta-ubuntu {
-      margin-bottom: 0;
-    }
-
-    .link-cta-ubuntu + a {
-      display: inline-block;
-    }
-  }
-
-  body.phone-home {
-    .wrapper {
-      overflow: visible;
-    }
-
-    #main-content .row-hero {
-      background-image: url('#{$asset-server}19213020-intro-row.jpg?w=1300');
-      background-size: cover;
-      min-height: 580px;
-      overflow: visible;
-      position: relative;
-
-      h1 {
-        margin-top: 80px;
+        @media only screen and (max-width: 1024px) and (min-width: $breakpoint-medium) {
+          padding-left: 0;
+          padding-top: 40px;
+        }
       }
     }
 
-    .row-developers {
-      padding-top: 80px;
+    .strip-inner-wrapper {
+      position: relative;
     }
-  } // end phone home
 
-  // @section features /phone/features (984)
-  //--------------------------------------------------------------
-  body.phone-features {
+    .row-shine {
+      border: 0;
+      min-height: 0;
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background-image: url('#{$asset-server}d4117ccb-space-for-content-row.jpg?w=1400');
+        background-position: 50% 13%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: $white;
+        min-height: 470px;
+        padding-top: 60px;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        min-height: 571px;
+      }
+
+      &__content {
+        padding-bottom: 20px;
+
+        @media only screen and (min-width : $breakpoint-large) {
+          padding-top: 20px;
+        }
+
+        a {
+          color: $ubuntu-orange;
+
+          @media only screen and (min-width : $breakpoint-medium) {
+            border-bottom: 1px solid $white;
+            color: $white;
+            text-decoration: none;
+          }
+        }
+      }
+
+      .for-mobile {
+        margin: -20px -10px 10px;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  // @subsection /phone/features
+  &.phone-features {
+
+    .pull-right-40 {
+      margin-right: -41px;
+    }
+
+    .row-hero {
+      border-bottom: 1px dotted $warm-grey;
+      margin-top: 0;
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server}9bb69e76-features-intro-row-2x.jpg?w=2000') center center no-repeat;
+        background-size: cover;
+        border-bottom: 0;
+        min-height: 366px;
+        padding-top: 100px;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        border: 0;
+        min-height: 468px;
+      }
+
+
+      h1 {
+        padding-top: 0;
+
+        a {
+          @media only screen and (min-width : $breakpoint-medium) {
+            color: $white;
+          }
+        }
+      }
+
+      .for-mobile {
+        margin: 0 -10px 10px;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+
+    .row--phone-details {
+      background: $black;
+      color: $white;
+      overflow: hidden;
+      padding-bottom: 20px;
+
+      .four-col,
+      .eight-col {
+        @media only screen and (min-width : $breakpoint-medium) {
+          min-height: 640px;
+        }
+      }
+
+      a {
+        color: $white;
+      }
+
+      .external {
+        background-image: url('#{$asset-server}0d55fd52-external-link-white.svg');
+      }
+    }
+
     .row--video {
-      min-height: 554px;
+      background: $black;
+      padding: 0;
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        min-height: 432px;
+        padding: 0;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        min-height: 554px;
+      }
+
+      .video-link {
+        height: 0;
+        margin-bottom: 0;
+        padding-bottom: 56.25%; //* 16:9 *//
+        padding-top: 25px;
+        position: relative;
+      }
 
       .show-video {
-        min-height: 554px;
+        background: url('#{$asset-server}c24f0381-video-poster.jpg') center center;
+        background-size: cover;
+        display: block;
+        height: 100%;
+        left: 0;
+        overflow: hidden;
+        position: absolute;
+        text-indent: -999em;
+        top: 0;
+        width: 100%;
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          min-height: 432px;
+        }
+
+        @media only screen and (min-width : $breakpoint-large) {
+          min-height: 554px;
+        }
+      }
+
+      &.show {
+
+        h2,
+        .show-video,
+        .video-link {
+          left: -999em;
+          position: absolute;
+        }
+      }
+
+      h2 {
+        color: $white;
+        margin-left: 40px;
+        margin-top: -.65em; // half the line height - if one line
+        position: absolute;
+        right: 0;
+        top: 50%;
+        width: 36%;
+        z-index: 999;
       }
     }
 
     .row--store-promo__content {
+
+      @media only screen and (min-width : $breakpoint-large) {
         padding-top: 30px;
+      }
     }
+  } // end body.phone-features
 
-    #main-content .row-hero {
-      min-height: 468px;
-      border: 0;
-    }
-  }
-  // end @section features
+  // @subsection /phone/partners
+  &.phone-partners {
 
-  // @section partners /phone/developers (984)
-  //--------------------------------------------------------------
-  body.phone-developers {
+    .row-more--image {
 
-    .row-scope-frameworks {
-      padding-bottom: 100px;
-
-      &--image {
-        top: 15px;
+      @media only screen and (min-width : $breakpoint-medium) {
+        margin-bottom: 40px;
+        margin-top: 60px;
       }
     }
 
-    .row-shine {
-      min-height: 571px;
-    }
+    .row-dev-opportunity--image {
 
-    .row-shine-content {
-      padding-top: 20px;
-    }
-
-    .row--scopes__img {
-      position: relative;
-      min-height: 580px;
-
-      img {
-        position: relative;
-        width: auto;
-        z-index: 2;
-        display: block;
+      @media only screen and (min-width : $breakpoint-medium) {
+        margin-top: 40px;
       }
     }
 
-    .row--scopes__content div {
-      background: $white;
-      padding: 20px;
-    }
-
-      #main-content .row-more-than {
-        img {
-          margin-bottom: -300px;
-          margin-top: 10px;
-          width: auto;
-        }
-    }
-
-  } // end @section developers
-
-} // end @media only screen and (min-width : 984px)
-
-// Row note
-body.phone {
-  .row--note {
-    padding: 40px;
-  }
-}
-
-// Carousel override
-.row-slideshow {
-
-  @media screen and (max-width: 1024px) {
-
-    .carousel-text-col {
-      width: 100%;
-      padding: 30px 0 40px!important;
-      margin-bottom: 0;
-    }
-  }
-
-  @media screen and (min-width: 1025px) {
-
-    .carousel-text-col.last-col {
-      display: flex;
-      align-items: center;
+    .row-origami {
+      background: #edeeee url('#{$asset-server}974c4e8c-background-origami.png') no-repeat;
+      background-size: cover;
     }
   }
 }
