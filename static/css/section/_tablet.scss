@@ -1,408 +1,327 @@
-/*	@section tablet
---------------------------------------------------------------
-  Contents:
-    @section general
-    @section tablet home
+@charset 'UTF-8';
 
--------------------------------------------------------------- */
+// ---------------------------------------------------------------
+// ---------------------------------------------------------------
+//
+//  Project:		Ubuntu Front-End Tablet section
+//  Author:			Web Team at Canonical Ltd
+//
+// ---------------------------------------------------------------
+// ---------------------------------------------------------------
 
-/*	@section general
--------------------------------------------------------------- */
 
-.tablet-overview,
-.tablet-features {
-  .billboard {
-    background-size: cover;
-    background-position: top center;
-    background-repeat: no-repeat;
-    min-height: 260px;
-
-    @media only screen and (min-width : 768px) {
-      min-height: 40vh;
-    }
-
-    @media only screen and (min-width : 984px) {
-      min-height: 80vh;
-    }
-  }
-}
-
-.tablet .row--buy {
-  &__title {
-    @media only screen and (min-width : 984px) {
-      width: 40.37611%;
-    }
-  }
-
-  &:before {
-    @media only screen and (min-width : 768px) {
-      background: url('#{$asset-server}ffc49bc1-tablet-coming-soon.png?w=800') center center no-repeat;
-      background-size: contain;
-      content: "";
-      display: block;
-      height: 70%;
-      overflow: visible;
-      position: absolute;
-      right: 4vw;
-      top: 100px;
-      width: 60vw;
-    }
-    @media only screen and (min-width : 984px) {
-      height: 78%;
-      top: 70px;
-    }
-  }
-}
-
-/*	@section tablet home
--------------------------------------------------------------- */
-.js .tablet-overview {
-  .align-vertically {
-    transform-style: flat;
-  }
-
-  .heading__image {
-    transform: none;
-    top: auto;
-  }
-}
-
+// @global tablet section_title
 .tablet {
+
   .row--canonical {
     background: $dark-aubergine;
-    color: #fff;
+    color: $white;
 
     &__inner {
-      display: flex;
       align-items: center;
+      display: flex;
       flex-wrap: wrap;
     }
 
-    @media only screen and (min-width : 984px) {
-      min-height:  0;
-    }
-  }
-
-  .heading__image {
-    position: relative;
-    bottom: -2px;
-    height: .9em;
-
-    @media only screen and (min-width : 984px) {
-      height: .78em;
-    }
-  }
-
-  .row--no-limit {
-    background-image: url('#{$asset-server}82cd0641-no-limit.jpg');
-
-    .billboard__content-bottom {
-      margin-top: 80px;
+    @media only screen and (min-width : $breakpoint-large) {
+      min-height: 0;
     }
   }
 
   .row--developers .strip-inner-wrapper {
-    display: flex;
     align-items: center;
-  }
-}
-
-.tablet-overview {
-  .row-hero {
-    overflow: hidden;
-  }
-  .row-hero__image {
-    margin: 10px 0;
+    display: flex;
   }
 
-  .row-hero:before {
-    @media only screen and (min-width : 768px) {
-      background: url('#{$asset-server}14b9087a-tablet-overview-hero.png?w=800') center center no-repeat;
-      background-size: contain;
-      content: "";
-      display: block;
-      height: 89%;
-      overflow: visible;
-      position: absolute;
-      right: -24vw;
-      top: 5%;
-      width: 75vw;
-    }
+  .row--buy {
+    &__title {
 
-    @media only screen and (min-width : 769px) {
-      right: 0vw;
-      width: 53vw;
-    }
-
-    @media only screen and (min-width : 1400px) {
-      top: 5%;
-      right: 2vw;
-      width: 50vw;
-    }
-  }
-}
-
-/*	@section tablet devices
--------------------------------------------------------------- */
-.tablet-devices .list-ubuntu:last-child {
-  margin-bottom: 20px;
-}
-
-/*	@section tablet developers
--------------------------------------------------------------- */
-.tablet-developers {
-  .row-hero {
-    overflow: hidden;
-
-    @media only screen and (min-width : 769px) {
-      overflow: hidden;
-      min-height: 550px;
-    }
-  }
-
-  @media only screen and (min-width : 768px) {
-    .row-hero:before {
-      background: url('#{$asset-server}7fbc7231-tablet-developers-hero.png?w=646') center center no-repeat;
-      background-size: contain;
-      content: "";
-      display: block;
-      height: 85%;
-      overflow: visible;
-      position: absolute;
-      right: -30vw;
-      top: 40px;
-      width: 80vw;
-    }
-  }
-
-  @media only screen and (min-width : 984px) {
-    .row-hero:before {
-      right: 10vw;
-      width: 40vw;
-    }
-  }
-
-  .row--scopes__image {
-    margin: 30px 0;
-  }
-
-  .row.strip-canonical {
-    @media only screen and (min-width : 984px) {
-      min-height:  0;
-    }
-  }
-
-  .row--one-app__image {
-    @media only screen and (min-width : 768px) {
-      margin-top: 30px;
-    }
-
-    @media only screen and (min-width : 984px) {
-      margin-top: 60px;
-    }
-  }
-} // end tablet-developers
-
-/*	@section tablet features
--------------------------------------------------------------- */
-.tablet-features {
-  .row-hero {
-    overflow: hidden;
-
-    @media only screen and (min-width : 769px) {
-      overflow: hidden;
-      min-height: 600px;
-    }
-  }
-
-  @media only screen and (min-width : 768px) {
-    .row-hero:before {
-      background: url('#{$asset-server}4edf954e-tablet-browser-video.png?w=800') center center no-repeat;
-      background-size: contain;
-      content: "";
-      display: block;
-      height: 85%;
-      overflow: visible;
-      position: absolute;
-      right: -30vw;
-      top: 40px;
-      width: 80vw;
-    }
-  }
-
-  @media only screen and (min-width : 984px) {
-    .row-hero:before {
-      right: 10vw;
-      width: 40vw;
-    }
-  }
-
-  .row--scopes {
-    @media only screen and (min-width : 984px) {
-      min-height: 730px;
-      display: flex;
-      align-items: center;
+      @media only screen and (min-width : 984px) {
+        width: 40.37611%;
+      }
     }
 
     &:before {
-      @media only screen and (min-width : 768px) {
-        background: url('#{$asset-server}b6052399-scopes-tablet-portrait.png?w=890') center right no-repeat;
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server}ffc49bc1-tablet-coming-soon.png?w=800') center center no-repeat;
         background-size: contain;
-        content: "";
-        height: 80%;
-        left: 4vw;
+        content: '';
+        display: block;
+        height: 70%;
+        overflow: visible;
         position: absolute;
-        top: 10%;
-        width: 48vw;
+        right: 4vw;
+        top: 100px;
+        width: 60vw;
       }
 
-      @media only screen and (min-width : 984px) {
-        background-size: auto;
-        height: 500px;
-        left: 0;
-        top: 110px;
-        width: 50vw;
+      @media only screen and (min-width : $breakpoint-large) {
+        height: 78%;
+        top: 70px;
       }
     }
   }
 
-  .row.row--scopes {
-    @media only screen and (min-width : 768px) {
-      padding-left: 0 !important;
-    }
-  }
 
-  .row--scopes__image {
-    margin: 10px 0;
-  }
+  // @section /tablet overview
+  &.tablet-overview {
 
-  .row--great-things {
-    background: url('#{$asset-server}48c4fdac-Young-woman-using-tablet-computer.jpg') center center no-repeat;
-    background-size: cover;
+    .heading__image {
+      bottom: -2px;
+      height: .9em;
+      position: relative;
+      top: auto;
+      transform: none;
 
-    .billboard__content-bottom {
-      margin-top: 100px;
-    }
-  }
-
-  .row--mobile-office {
-    background: url('#{$asset-server}2dffe073-web_tablet_features_wp.png') 0 0;
-    background-size: cover;
-
-    @media only screen and (max-width : 768px) {
-      background-image: none;
+      @media only screen and (min-width : $breakpoint-large) {
+        height: .78em;
+      }
     }
 
-    &:before {
-      background: #e9e9ea;
-      content: "";
-      display: block;
+    .row-hero {
+      overflow: hidden;
 
-      @media only screen and (max-width : 768px) {
-        height: 29%;
+      &__image {
+        margin: 10px 0;
       }
 
-      @media only screen and (min-width : 984px) {
-        height: 340px;
+      &:before {
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          background: url('#{$asset-server}14b9087a-tablet-overview-hero.png?w=800') center center no-repeat;
+          background-size: contain;
+          content: '';
+          display: block;
+          height: 89%;
+          overflow: visible;
+          position: absolute;
+          right: -24vw;
+          top: 5%;
+          width: 75vw;
+        }
+
+        @media only screen and (min-width : 769px) {
+          right: 0;
+          width: 53vw;
+        }
+
+        @media only screen and (min-width : 1400px) {
+          right: 2vw;
+          top: 5%;
+          width: 50vw;
+        }
+      }
+    }
+  }
+
+  //	@section /tablet/features
+  &.tablet-features {
+    .row-hero {
+      overflow: hidden;
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        overflow: hidden;
+        padding: 40px 10px 20px;
       }
 
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
+      @media only screen and (min-width : $breakpoint-large) {
+        padding: 100px 40px;
+      }
+
+      &:before {
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          background: url('#{$asset-server}4edf954e-tablet-browser-video.png?w=800') center center no-repeat;
+          background-size: contain;
+          content: '';
+          display: block;
+          height: 85%;
+          overflow: visible;
+          position: absolute;
+          right: -30vw;
+          top: 40px;
+          width: 80vw;
+        }
+
+        @media only screen and (min-width : $breakpoint-large) {
+          right: 10vw;
+          width: 40vw;
+        }
+      }
     }
 
-    &__image {
-      @media only screen and (min-width : 768px) {
+    .row--mobile-office__image {
+
+      @media only screen and (min-width : $breakpoint-medium) {
         margin-top: 30px;
       }
 
-      @media only screen and (min-width : 984px) {
+      @media only screen and (min-width : $breakpoint-large) {
         margin-top: 60px;
       }
     }
-  }
 
-} // end tablet features
+    .row--scopes {
 
-/*	@section tablet partners
--------------------------------------------------------------- */
-body.tablet-partners {
-  .row-hero {
-    overflow: hidden;
-  }
-  .row-hero__image {
-    margin: 10px 0;
-  }
+      @media only screen and (min-width : $breakpoint-medium) {
+        padding-left: 0 !important;
+      }
 
-  .row-hero:before {
-    @media only screen and (min-width : 768px) {
-      background: url('#{$asset-server}969bb3c1-9a.-scope-task-switcher-tablet-portrait-landscape.png?w=700') center center no-repeat;
-      background-size: contain;
-      content: "";
-      display: block;
-      height: 80%;
-      overflow: visible;
-      position: absolute;
-      right: -24vw;
-      top: 10%;
-      width: 70vw;
+      @media only screen and (min-width : $breakpoint-large) {
+        align-items: center;
+        display: flex;
+        min-height: 730px;
+      }
+
+      &:before {
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          background: url('#{$asset-server}b6052399-scopes-tablet-portrait.png?w=890') center right no-repeat;
+          background-size: contain;
+          content: '';
+          height: 80%;
+          left: 4vw;
+          position: absolute;
+          top: 10%;
+          width: 48vw;
+        }
+
+        @media only screen and (min-width : $breakpoint-large) {
+          background-size: auto;
+          height: 500px;
+          left: 0;
+          top: 110px;
+          width: 50vw;
+        }
+      }
+
+      &__image {
+        margin: 10px 0;
+      }
     }
+  } // end tablet features
 
-    @media only screen and (min-width : 769px) {
-      right: 2vw;
-      width: 47vw;
-    }
-
-    @media only screen and (min-width : 1400px) {
-      right: 2vw;
-      width: 50vw;
-    }
- }
-
-  .row--partner-with-us {
-    align-items: center;
-    background: url('#{$asset-server}278f59db-event-mwc-2015.jpg') center 55% no-repeat;
-    background-size: cover;
-    display: flex;
-
-    @media only screen and (min-width : 984px) {
-      min-height: 470px;
+  //	@section /tablet/devices
+  &.tablet-devices {
+    .list-ubuntu:last-child {
+      margin-bottom: 20px;
     }
   }
 
-  .row--hardware:before {
-    @media only screen and (min-width : 768px) {
-      background: url('#{$asset-server}a45fde67-brand-book-illustration-4x.png') 0 center no-repeat;
-      background-size: contain;
-      content: "";
-      display: block;
-      height: 80%;
-      overflow: visible;
-      position: absolute;
-      top: 0;
-      width: 40vw;
-      right: 30px;
-   }
+  //	@section /tablet/developers
+  &.tablet-developers {
+    .row-hero {
+      overflow: hidden;
 
-    @media only screen and (min-width : 984px) {
-      height: 80%;
-      right: 0;
-      top: 0;
-      width: 48vw;
+      @media only screen and (min-width : $breakpoint-medium + 1) {
+        min-height: 550px;
+      }
+
+      &:before {
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          background: url('#{$asset-server}7fbc7231-tablet-developers-hero.png?w=646') center center no-repeat;
+          background-size: contain;
+          content: '';
+          display: block;
+          height: 85%;
+          overflow: visible;
+          position: absolute;
+          right: -30vw;
+          top: 40px;
+          width: 80vw;
+        }
+
+        @media only screen and (min-width : $breakpoint-large) {
+          right: 10vw;
+          width: 40vw;
+        }
+      }
     }
-  }
 
-  .partner-logos {
-    margin-top: 30px;
-    margin-left: 0;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
+    .row--scopes__image {
+      margin: 30px 0;
+    }
 
-    &__item {
-      text-align: center;
-      margin-bottom: 60px;
+    .row--one-app__image {
+      @media only screen and (min-width : $breakpoint-medium) {
+        margin-top: 30px;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        margin-top: 60px;
+      }
+    }
+  } // end tablet-developers
+
+  //	@section /tablet/partners
+  &.tablet-partners {
+    .row-hero {
+      overflow: hidden;
+
+      &__image {
+        margin: 10px 0;
+      }
+
+      &:before {
+        @media only screen and (min-width : $breakpoint-medium) {
+          background: url('#{$asset-server}969bb3c1-9a.-scope-task-switcher-tablet-portrait-landscape.png?w=700') center center no-repeat;
+          background-size: contain;
+          content: '';
+          display: block;
+          height: 80%;
+          overflow: visible;
+          position: absolute;
+          right: -24vw;
+          top: 10%;
+          width: 70vw;
+        }
+
+        @media only screen and (min-width : 769px) {
+          right: 2vw;
+          width: 47vw;
+        }
+
+        @media only screen and (min-width : 1400px) {
+          right: 2vw;
+          width: 50vw;
+        }
+      }
+    }
+
+    .row--partner-with-us {
+      align-items: center;
+      background: url('#{$asset-server}278f59db-event-mwc-2015.jpg') center 55% no-repeat;
+      background-size: cover;
+      display: flex;
+
+      @media only screen and (min-width : $breakpoint-large) {
+        min-height: 470px;
+      }
+    }
+
+    .row--hardware:before {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server}a45fde67-brand-book-illustration-4x.png') 0 center no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height: 80%;
+        overflow: visible;
+        position: absolute;
+        right: 30px;
+        top: 0;
+        width: 40vw;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        height: 80%;
+        right: 0;
+        top: 0;
+        width: 48vw;
+      }
     }
   }
 }
