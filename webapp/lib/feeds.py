@@ -1,35 +1,45 @@
 import feedparser
 import logging
-import requests
-from cachecontrol import CacheControlAdapter
-from cachecontrol.caches import FileCache
-from cachecontrol.heuristics import ExpiresAfter
+import json
+from requests.exceptions import Timeout
+from requests_cache import CachedSession
+
 from django.conf import settings
 
 
 logger = logging.getLogger(__name__)
+requests_timeout = getattr(settings, 'FEED_TIMEOUT', 30)
+expiry_seconds = getattr(settings, 'FEED_EXPIRY', 300)
+
+cached_request = CachedSession(
+    expire_after=expiry_seconds,
+)
 
 
 def get_feed(feed_url):
     """
     Return feed parsed feed
     """
-    requests_timeout = getattr(settings, 'FEED_TIMOUT', 1)
 
-    cache_adapter = CacheControlAdapter(
-        cache=FileCache('.web_cache'),
-        heuristic=ExpiresAfter(hours=1),
-    )
+    try:
+        response = cached_request.get(feed_url, timeout=requests_timeout)
 
-    session = requests.Session()
-    session.mount('http://', cache_adapter)
-    session.mount('https://', cache_adapter)
+        content_type = response.headers['Content-Type']
 
-    show_exceptions = getattr(settings, 'DEBUG', True)
+        if 'rss' in content_type.lower():
+            content = feedparser.parse(response.text)
+        elif 'json' in content_type.lower():
+            content = json.loads(response.text)
+        else:
+            raise TypeError('Unknown content type: {}'.format(content_type))
 
-    feed_request = session.get(
-        feed_url,
-        timeout=requests_timeout
-    )
+    except Timeout as timeout_error:
+        logger.warning(
+            'Attempt to get feed timed out after {}. Message: {}'.format(
+                requests_timeout,
+                str(timeout_error)
+            )
+        )
+        content = []  # Empty response
 
-    return feedparser.parse(feed_request.text)
+    return content
