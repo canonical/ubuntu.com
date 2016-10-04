@@ -5,5 +5,6 @@ register = template.Library()
 
 
 @register.simple_tag
-def get_feed(feed_url):
-    return feeds.get_feed(feed_url).entries
+def get_feed(feed_url, offset=0, limit=None, **kwargs):
+    limit = limit + offset if limit is not None else None
+    return feeds.get_feed(feed_url, **kwargs).entries[offset:limit]
