@@ -4,42 +4,54 @@
 {% block extra_body_class %}server-server-management{% endblock %}
 
 {% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
 	{% include "templates/_nav_breadcrumb.html" with section_title="Server" page_title="Server management"  %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero">
-	<h1>Server management</h1>
-		<div class="six-col">
-			<p class="intro">Get peace of mind with Ubuntu Advantage: Cost-effective systems management and professional support from Canonical, the Ubuntu experts.</p>
-		</div>
-		<div class="six-col last-col text-center">
-			<img src="{{ ASSET_SERVER_URL }}f2f89f79-image-server-management.svg" alt="" />
-		</div>
+<section class="row row-hero strip-light">
+    <div class="strip-inner-wrapper">
+        <h1>Server management</h1>
+        <div class="equal-height twelve-col">
+		    <div class="six-col equal-height__item">
+			    <p class="intro">Get peace of mind with Ubuntu Advantage: Cost-effective systems management and professional support from Canonical, the Ubuntu experts.</p>
+		    </div>
+            <div class="six-col last-col equal-height__item equal-height__align-vertically">
+			    <img src="{{ ASSET_SERVER_URL }}f2f89f79-image-server-management.svg" alt="" />
+		    </div>
+        </div>
 		<div class="twelve-col">
-			<div class="six-col no-margin-bottom">
+			<div class="six-col">
 				<p>Ubuntu Advantage is the commercial support package from Canonical, offering efficient systems administration software, fast problem resolution and access to experts when you need them.</p>
 			</div>
-			<div class="six-col no-margin-bottom last-col">
+			<div class="six-col last-col">
 				<p>Landscape is the systems management tool available with Ubuntu Advantage. It allows you to manage thousands of Ubuntu machines as easily as one, making the administration of Ubuntu desktops, servers and cloud instances more cost-effective.</p>
 			</div>
             <p><a href="https://buy.ubuntu.com/collections/ubuntu-advantage-for-servers" class="button--primary"><span class="external">Buy Ubuntu Advantage for servers</span></a></p>
             <p><a href="/management">Find out more about Landscape&nbsp;&rsaquo;</a></p>
-		</div><!-- /.twelve-col -->
-</div><!-- /.row -->
+		</div>
+    </div>
+</section>
 
-<div class="row equal-height">
-	<h2 class="twelve-col">Ubuntu Advantage for servers</h2>
-  <p>Choose the right level of cover to meet your needs.</p>
-  {% include "shared/_ubuntu_advantage_server.html" %}
-  <p class="six-col equal-height__item"><a href="/management/contact-us">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
-</div><!-- /.row -->
+<section class="row">
+    <div class="strip-inner-wrapper equal-height">
+        <h2 class="twelve-col">Ubuntu Advantage for servers</h2>
+        <p>Choose the right level of cover to meet your needs.</p>
+        {% include "shared/_ubuntu_advantage_server.html" %}
+        <div class="six-col equal-height__item">
+            <p><a href="/management/contact-us">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+        </div>
+    </div>
+</section>
 
 {% include "shared/_ubuntu_advantage_whats_included.html" %}
 
-<div class="row equal-height row-community row-image-centered no-border no-margin-bottom">
-{% include "shared/_ubuntu_advantage_community.html" %}
-</div><!-- /.row -->
+<section class="row no-border no-margin-bottom">
+    <div class="strip-inner-wrapper equal-height">
+    {% include "shared/_ubuntu_advantage_community.html" %}
+    </div>
+</section>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_server_download" second_item="_server_contact_us" third_item="_cloud_further_reading" %}
 
