@@ -425,6 +425,7 @@ body {
 .download,
 .homepage,
 .phone,
+.server,
 .tablet {
   .wrapper {
     background: none;
@@ -496,6 +497,7 @@ body {
 // extra rules for full width sections other than homepage
 .download,
 .phone,
+.server,
 .tablet {
   .row--dark {
       background: #262626;
@@ -516,7 +518,8 @@ body {
 }
   // The default section row padding
 .phone,
-.tablet {
+.tablet,
+.server {
   .row-hero {
     margin-top: 0;
 
@@ -550,7 +553,8 @@ body {
 }
 
 .tablet,
-.phone {
+.phone,
+.server {
   .row {
     padding: 20px 10px 0;
 
@@ -560,6 +564,10 @@ body {
 
     @media only screen and (min-width : $breakpoint-large) {
       padding: 100px 40px;
+    }
+    
+    &.no-padding-bottom {
+      padding-bottom: 0;
     }
   }
 
@@ -1166,4 +1174,11 @@ $item-spacing: 20px;
 /// https://github.com/ubuntudesign/vanilla-framework/blob/master/scss/modules/_typography.scss#L357
 pre {
   margin-bottom: .75em;
+}
+
+.row.row-ubuntu-advantage-promo {
+  background-image: url('#{$asset-server}a4b68f44-activities-listing.png?W=800');
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position: right top;
 }
