@@ -68,7 +68,6 @@ core.setupAnimations = function() {
             });
 
             sliderAnimation.addEventListener('click', function(e) {
-                e.preventDefault();
                 sliderAnimation.classList.add('run');
                 setTimeout(function(e) {
                     sliderAnimation.classList.remove('run');
