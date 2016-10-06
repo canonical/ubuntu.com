@@ -30,7 +30,9 @@
   }
 
   .contextual-footer .strip-inner-wrapper {
-    margin: 0 20px;
+    @media only screen and (min-width : $breakpoint-medium) {
+      margin: 0 20px;
+    }
   }
 
   .no-svg,
