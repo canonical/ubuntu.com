@@ -1,0 +1,99 @@
+<section class="row row-hero strip no-border">
+	<div class="strip-inner-wrapper">
+		<div class="five-col">
+			<h1>Visit us at OpenStack Summit Vancouver 2015</h1>
+			<p class="intro">Meet us at booth P3.</p>
+			<p><a href="https://insights.ubuntu.com/event/openstack-summit-vancouver/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : 'ODS Vancouver takeover', 'eventLabel' : 'Find out more', 'eventValue' : undefined });" class="external">Find out more</a></p>
+		</div>
+		<div class="prepend-one six-col last-col">
+			<img src="{{ ASSET_SERVER_URL }}c5838368-openstack-cloud.png" alt="OpenStack cloud" />
+		</div>
+		<span class="dot dot-one"></span><span class="dot dot-two"></span><span class="dot dot-three"></span><span class="dot dot-four"></span><span class="dot dot-five"></span>
+		<span class="shutter shutter-one"></span><span class="shutter shutter-two"></span><span class="shutter shutter-three"></span><span class="shutter shutter-four"></span><span class="shutter shutter-five"></span><span class="shutter shutter-six"></span><span class="shutter shutter-seven"></span><span class="shutter shutter-eight"></span><span class="shutter shutter-nine"></span><span class="shutter shutter-ten"></span><span class="shutter shutter-eleven"></span><span class="shutter shutter-twelve"></span>
+	</div>
+</section>
+
+{% block head_extra %}
+
+<style type="text/css">
+@keyframes fadeIn {
+  0%    { display: none; opacity: 0; }
+  100%  { display: block; opacity: 1; }
+}
+-@-moz-keyframes fadeIn {
+  0%    { display: none; opacity: 0; }
+  100%  { display: block; opacity: 1; }
+}
+@-webkit-keyframes fadeIn {
+  0%    { display: none; opacity: 0; }
+  100%  { display: block; opacity: 1; }
+}
+
+/*fadeOut*/
+@keyframes fadeOut {
+  0%    { display: none; opacity: 1; }
+  100%  { display: block; opacity: 0; }
+}
+-@-moz-keyframes fadeOut {
+  0%    { display: none; opacity: 1; }
+  100%  { display: block; opacity: 0; }
+}
+@-webkit-keyframes fadeOut {
+  0%    { display: none; opacity: 1; }
+  100%  { display: block; opacity: 0; }
+}
+
+/*scaleInPop*/
+@keyframes scaleInPop {
+  0% { 
+      -ms-transform: scale()(0, 0); /* IE 9 */
+      -webkit-transform: scale(0, 0); /* Chrome, Safari, Opera */
+    transform: scale(0, 0);
+  }
+  50% { 
+      -ms-transform: scale()(1.2, 1.2); /* IE 9 */
+      -webkit-transform: scale(1.2, 1.2); /* Chrome, Safari, Opera */
+    transform: scale(1.2, 1.2);
+  }
+  100% { 
+      -ms-transform: scale()(1, 1); /* IE 9 */
+      -webkit-transform: scale(1, 1); /* Chrome, Safari, Opera */
+    transform: scale(1, 1);
+  }
+}
+@-moz-keyframes scaleInPop {
+  0% { 
+      -ms-transform: scale()(0, 0); /* IE 9 */
+      -webkit-transform: scale(0, 0); /* Chrome, Safari, Opera */
+    transform: scale(0, 0);
+  }
+  50% { 
+      -ms-transform: scale()(1.2, 1.2); /* IE 9 */
+      -webkit-transform: scale(1.2, 1.2); /* Chrome, Safari, Opera */
+    transform: scale(1.2, 1.2);
+  }
+  100% { 
+      -ms-transform: scale()(1, 1); /* IE 9 */
+      -webkit-transform: scale(1, 1); /* Chrome, Safari, Opera */
+    transform: scale(1, 1);
+  }
+}
+@-webkit-keyframes scaleInPop {
+  0% { 
+      -ms-transform: scale()(0, 0); /* IE 9 */
+      -webkit-transform: scale(0, 0); /* Chrome, Safari, Opera */
+    transform: scale(0, 0);
+  }
+  50% { 
+      -ms-transform: scale()(1.2, 1.2); /* IE 9 */
+      -webkit-transform: scale(1.2, 1.2); /* Chrome, Safari, Opera */
+    transform: scale(1.2, 1.2);
+  }
+  100% { 
+      -ms-transform: scale()(1, 1); /* IE 9 */
+      -webkit-transform: scale(1, 1); /* Chrome, Safari, Opera */
+    transform: scale(1, 1);
+  }
+}
+</style>
+{% endblock %}

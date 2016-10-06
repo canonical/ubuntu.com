@@ -1,0 +1,117 @@
+{% block head_extra %}
+<style type="text/css">
+	@-moz-keyframes spin {
+	  0% {
+	    -moz-transform: rotate(0deg);
+	    transform: rotate(0deg);
+	    }
+	  100% {
+	    -moz-transform: rotate(360deg);
+	    transform: rotate(360deg);
+	    }
+	}
+	@-o-keyframes spin {
+	  0% {
+	    -o-transform: rotate(0deg);
+	    transform: rotate(0deg);
+	    }
+	  100% {
+	    -o-transform: rotate(360deg);
+	    transform: rotate(360deg);
+	    }
+	}
+	@-webkit-keyframes spin {
+	  0% {
+	    -webkit-transform: rotate(0deg);
+	    transform: rotate(0deg);
+	    }
+	  100% {
+	    -webkit-transform: rotate(360deg);
+	    transform: rotate(360deg);
+	    }
+	}
+	@keyframes spin {
+	  0% {
+	    transform: rotate(0deg);
+	    }
+	  100% {
+	    transform: rotate(360deg);
+	    }
+	}
+</style>
+{% endblock head_extra %}
+
+<div class="row row-hero no-border">
+	<div class="box box-highlight clearfix">
+		<div>
+			<div class="bubbles">
+			<img src="{{ ASSET_SERVER_URL }}296d4f0d-_1.png" class="b1" />
+			<img src="{{ ASSET_SERVER_URL }}a363483b-_2.png" class="b2" />
+			<img src="{{ ASSET_SERVER_URL }}80d20dd1-_3.png" class="b3" />
+			<img src="{{ ASSET_SERVER_URL }}74f81602-_4.png" class="b4" />
+			<img src="{{ ASSET_SERVER_URL }}13874cd5-_5.png" class="b5" />
+			<img src="{{ ASSET_SERVER_URL }}73bff5d1-_6.png" class="b6" />
+			<img src="{{ ASSET_SERVER_URL }}cbaee9a5-_7.png" class="b7" />
+			<img src="{{ ASSET_SERVER_URL }}bb0aeaec-_8.png" class="b8" />
+			<img src="{{ ASSET_SERVER_URL }}8d95bc57-_9.png" class="b9" />
+			<img src="{{ ASSET_SERVER_URL }}bbb42e28-_10.png" class="b10" />
+			<img src="{{ ASSET_SERVER_URL }}2268d6cf-_11.png" class="b11" />
+			<img src="{{ ASSET_SERVER_URL }}da72a0f9-_12.png" class="b12" />
+			<img src="{{ ASSET_SERVER_URL }}e1ca035a-_13.png" class="b13" />
+			<img src="{{ ASSET_SERVER_URL }}3457264f-_14.png" class="b14" />
+			<img src="{{ ASSET_SERVER_URL }}d7cb60cb-_15.png" class="b15" />
+			<img src="{{ ASSET_SERVER_URL }}47942aee-_16.png" class="b16" />
+			<img src="{{ ASSET_SERVER_URL }}913d9d61-_17.png" class="b17" />
+			<img src="{{ ASSET_SERVER_URL }}68f45532-_18.png" class="b18" />
+			<img src="{{ ASSET_SERVER_URL }}4a7a1f90-_19.png" class="b19" />
+		</div>
+		<h1 class="left-header">Tick, tock, tablet time!</h1>
+		<noscript><div class="no-js-countdown">19 February 2013 <br/>18:00 GMT</div></noscript>
+		<div id="defaultCountdown"></div>
+		<div id="countdownLabels"><span>HRS </span><span>MINS</span><span>SECS</span></div>
+		<img src="{{ ASSET_SERVER_URL }}4df05576-spinner-white.png" width="80" height ="80" id="countdownLoader" />
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="{{ ASSET_SERVER_URL }}265a86a9-jquery.js"></script>
+<script type="text/javascript" src="{{ ASSET_SERVER_URL }}2e0cb3ed-jquery.countdown.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$('#countdownLabels').show();
+		$('.bubbles img').hide();
+		var index = 1;
+		var current = null;
+		var animTimer = setInterval(function(){
+			current = $('.bubbles .b'+index);
+			if(current.css('display') == 'block') {
+				current.fadeOut(2000);
+			}else{
+				current.fadeIn(2000);
+			}
+			index = (index <= 18)? index + 1 : 1;
+		}, 750);
+		
+		var d = new Date();
+		var b = $('#current_time').text().trim().split(' ')[0].split(':');
+		var t = $('#current_time').text().trim().split(' ')[1].split(':');
+		var day = b[0];
+		var h = t[0];
+		var m = t[1];
+		var vh = 16 - h;
+		if(day == 18){
+			vh += 24;
+		}
+		var vm = 00 - m;
+		d = new Date(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate(),d.getUTCHours() + vh,d.getUTCMinutes() + vm);
+		$('#defaultCountdown').countdown({until: d,format: 'HMS',onExpiry: itsHere, compact:true,  timezone: 0}); 
+		$('h1, #defaultCountdown, #countdownLabels').hide().fadeIn(2000);
+	});
+	function itsHere() {
+		$('.countdown_amount, #countdownLabels').hide();
+		$('#countdownLoader').fadeIn(700);
+		var wait = 30000;
+		setTimeout(function(){ location.reload() }, wait);
+	}
+	
+</script>
