@@ -260,3 +260,32 @@
     }
   }
 }
+
+.internet-of-things-robotics {
+  .row-full-width {
+    iframe {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .ubuntu-loves-robotics {
+    margin-top: 0;
+
+    @media only screen and (min-width: $breakpoint-medium) {
+      background-image: url('#{$asset-server}8d5f669e-DARWIN_2.png?q=60&w=984');
+      background-position: 309px -35px;
+      background-repeat: no-repeat;
+      background-size: 85%;
+      margin-top: 0;
+      min-height: 550px;
+    }
+
+    h1 {
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        margin-top: 17%;
+      }
+    }
+  }
+}
