@@ -12,8 +12,8 @@
 </div>
 {% endblock second_level_nav_items %}
 
-{% block header %}
-<section class="row row-hero clearfix">
+{% block content %}
+<section class="row row-hero clearfix strip-light">
     <div class="strip-inner-wrapper">
         <div class="left eight-col">
             <h1>Ubuntu leads in hyperscale</h1>
@@ -23,16 +23,17 @@
         </div>
     </div>
 </section>
-{% endblock %}
 
-{% block content %}
 <section class="row welcome-hyperscale">
-    <div class="strip-inner-wrapper">
-        <div class="seven-col">
+    <div class="strip-inner-wrapper equal-height">
+        <div class="six-col equal-height__item">
             <h2>Welcome to hyperscale, the future of the datacentre</h2>
             <p>Computing in the 21st century will be done at an unprecedented scale, connecting people across the continents to a vast network of business, social and entertainment services.</p>
             <p>Providing compute capacity at that magnitude is today&rsquo;s top infrastructure challenge. That challenge is being taken on by a new wave of ultra-dense hardware, combined with software designed to natively scale out.</p>
             <p>Tomorrow&rsquo;s servers will be built upon multiple architectures, including Intel x86 and ARM, and will be connected into datacentre-wide clusters via flexible, high-speed fabrics. At the heart of these clusters lies Ubuntu Server, the OS leading the cloud computing revolution.</p>
+        </div>
+        <div class="six-col last-col not-for-small equal-height__item equal-height__align-vertically">
+            <img src="{{ ASSET_SERVER_URL }}ab812f69-image-server-hyperscale.svg" alt="" />
         </div>
     </div>
 </section>
@@ -75,8 +76,8 @@
     </div>
 </section>
 
-<section class="row equal-height">
-    <div class="strip-inner-wrapper">
+<section class="row strip-light">
+    <div class="strip-inner-wrapper equal-height">
         <div class="equal-height__item seven-col">
             <h2>Canonical&rsquo;s long-term commitment</h2>
             <p>Canonical&rsquo;s first investment in hyperscale dates back to 2008. We invested early in at scale management tools like Landscape and Juju, supporting the management of machines and services at scale through enterprise-class automation.</p>
@@ -91,24 +92,24 @@
 
 <section class="row no-border">
     <div class="strip-inner-wrapper equal-height--vertical-divider">
-        <h2 class="twelve-col">The complete solution for hyperscale</h2>
-        <div class="equal-height--vertical-divider__item six-col">
-            <h3>Workload-level orchestration with Juju</h3>
-            <p>Canonical&rsquo;s Juju framework goes beyond traditional orchestration systems to create a new paradigm in workload deployment.</p>
-            <p>Juju decouples services deployed onto the cluster from the nodes running them, and makes the deployment of the individual service easy.</p>
-            <p>Juju also supports deployment to cloud services like Amazon EC2 and Rackspace Cloud, and includes charms for open source workloads and key server ISV products.</p>
-            <p><a href="/cloud/orchestration/juju">Get more details on Juju here&nbsp;&rsaquo;</a></p>
-        </div>
-        <div class="equal-height--vertical-divider__item six-col last-col">
-            <h3>Bare-metal provisioning with MAAS</h3>
-            <p>With their unique architecture, hyperscale servers need to be provisioned through scalable automation. Canonical&rsquo;s Metal as a Service (MAAS) addresses the problem of deploying hundreds of OS instances to a cluster of nodes:</p>
-            <p>MAAS provides a flexible mechanism to automatically detect, provision and configure individual nodes with Ubuntu server without any complex or manual configuration </p>
-            <p><a href="/cloud/orchestration/maas">Learn more about MAAS&nbsp;&rsaquo;</a></p>
+        <div class="twelve-col">
+            <h2 class="twelve-col">The complete solution for hyperscale</h2>
+            <div class="equal-height--vertical-divider__item six-col">
+                <h3>Workload-level orchestration with Juju</h3>
+                <p>Canonical&rsquo;s Juju framework goes beyond traditional orchestration systems to create a new paradigm in workload deployment.</p>
+                <p>Juju decouples services deployed onto the cluster from the nodes running them, and makes the deployment of the individual service easy.</p>
+                <p>Juju also supports deployment to cloud services like Amazon EC2 and Rackspace Cloud, and includes charms for open source workloads and key server ISV products.</p>
+                <p><a href="/cloud/orchestration/juju">Get more details on Juju here&nbsp;&rsaquo;</a></p>
+            </div>
+            <div class="equal-height--vertical-divider__item six-col last-col">
+                <h3>Bare-metal provisioning with MAAS</h3>
+                <p>With their unique architecture, hyperscale servers need to be provisioned through scalable automation. Canonical&rsquo;s Metal as a Service (MAAS) addresses the problem of deploying hundreds of OS instances to a cluster of nodes:</p>
+                <p>MAAS provides a flexible mechanism to automatically detect, provision and configure individual nodes with Ubuntu server without any complex or manual configuration </p>
+                <p><a href="/cloud/orchestration/maas">Learn more about MAAS&nbsp;&rsaquo;</a></p>
+            </div>
         </div>
     </div>
-</section>
 
-<section class="row">
     <div class="strip-inner-wrapper equal-height">
         <div class="box box-highlight four-col ">
             <h3>Deployment-time workload acceleration</h3>
@@ -125,7 +126,7 @@
     </div>
 </section>
 
-<section class="row">
+<section class="row strip-light">
     <div class="strip-inner-wrapper">
         <div class="eight-col">
             <h2>Your roadmap for hyperscale success</h2>
@@ -189,32 +190,36 @@
 
 {% include "shared/_ubuntu_advantage_whats_included.html" %}
 
-<section class="row no-border">
+<section class="row strip-light">
     <div class="strip-inner-wrapper">
-        <div class="twelve-col clearfix">
-            <div class="box-padded-feature">
-                <h3>Works with all your hardware and software</h3>
-                    <div>
-                        <div class="six-col">
-                            <ul class="inline-icons clearfix">
-                                <li><img src="{{ ASSET_SERVER_URL }}31ce3f12-logo-dell-45x45.png" width="45" height="45" alt="Dell" /></li>
-                                <li><img src="{{ ASSET_SERVER_URL }}0985d8ac-logo-ibm-46x45.png" width="46" height="45" alt="IBM" /></li>
-                                <li><img src="{{ ASSET_SERVER_URL }}5bc8867e-logo-hp-41x45.png" width="41" height="45" alt="HP" /></li>
-                                <li><img src="{{ ASSET_SERVER_URL }}f2b90d0e-logo-intel-50x45.png" width="50" height="45" alt="Intel" /></li>
-                            </ul>
-                            <p><a href="/certification">View all certified hardware&nbsp;&rsaquo;</a></p>
-                        </div><!-- /.six-col -->
-                        <div class="six-col last-col">
-                            <ul class="inline-icons clearfix">
-                                <li><img src="{{ ASSET_SERVER_URL }}1dda56b0-logo-centrify-94x45.png" width="94" height="45" alt="Centrify" /></li>
-                                <li><img src="{{ ASSET_SERVER_URL }}ab23c143-logo-likewise-100x45.png" width="100" height="45" alt="Likewise" /></li>
-                                <li><img src="{{ ASSET_SERVER_URL }}0e002897-logo-openstack-45x45.png" width="45" height="45" alt="OpenStack" /></li>
-                                <li><img src="{{ ASSET_SERVER_URL }}17dd429b-logo-openbravo-112x45.png" width="112" height="45" alt="Openbravo" /></li>
-                            </ul>
-                            <p><a href="/partners/certified-software">View all certified software&nbsp;&rsaquo;</a></p>
-                        </div>
-                    </div>
-            </div>
+        <div class="twelve-col">
+            <h2 class="muted-heading">A selection of our hardware partners</h2>
+            <ul id="hardware-partners" class="inline-logos no-margin dynamic-logos">
+              {% get_json_feed "http://partners.ubuntu.com/partners.json?programme__name=Desktop&featured=true" limit=10 as hardware_partners %}
+              {% for partner in hardware_partners %}
+                <li class="inline-logos__item">
+                  <img class="inline-logos__image" src="{{ partner.logo }}" alt="{{ partner.name }}" />
+                </li>
+              {% endfor %}
+            </ul>
+            <p class="align-center"><a href="/certification">View all certified hardware&nbsp;&rsaquo;</a></p>
+        </div>
+    </div>
+</section>
+
+<section class="row no-border strip-light">
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col">
+            <h2 class="muted-heading">A selection of our software partners</h2>
+            <ul id="software-partners" class="inline-logos no-margin dynamic-logos">
+              {% get_json_feed "http://partners.ubuntu.com/partners.json?programme__name=OpenStack&service-offered=softwarecontent-publisher" limit=10 as software_partners %}
+              {% for partner in software_partners %}
+                <li class="inline-logos__item">
+                  <img class="inline-logos__image" src="{{ partner.logo }}" alt="{{ partner.name }}" />
+                </li>
+              {% endfor %}
+            </ul>
+            <p class="align-center"><a href="/partners/certified-software">View all certified software&nbsp;&rsaquo;</a></p>
         </div>
     </div>
 </section>

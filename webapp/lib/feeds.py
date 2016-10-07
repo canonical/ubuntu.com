@@ -1,35 +1,60 @@
 import feedparser
 import logging
-import requests
-from cachecontrol import CacheControlAdapter
-from cachecontrol.caches import FileCache
-from cachecontrol.heuristics import ExpiresAfter
+import json
+from requests.exceptions import Timeout
+from requests_cache import CachedSession
+
 from django.conf import settings
 
 
 logger = logging.getLogger(__name__)
+requests_timeout = getattr(settings, 'FEED_TIMEOUT', 60)
+expiry_seconds = getattr(settings, 'FEED_EXPIRY', 300)
+
+cached_request = CachedSession(
+    expire_after=expiry_seconds,
+)
 
 
-def get_feed(feed_url):
+def get_json_feed_content(url, offset=0, limit=None):
     """
-    Return feed parsed feed
+    Get the entries in a JSON feed
     """
-    requests_timeout = getattr(settings, 'FEED_TIMOUT', 1)
 
-    cache_adapter = CacheControlAdapter(
-        cache=FileCache('.web_cache'),
-        heuristic=ExpiresAfter(hours=1),
-    )
+    end = limit + offset if limit is not None else None
 
-    session = requests.Session()
-    session.mount('http://', cache_adapter)
-    session.mount('https://', cache_adapter)
+    try:
+        response = cached_request.get(url, timeout=requests_timeout)
+        content = json.loads(response.text)
+    except Timeout as timeout_error:
+        logger.warning(
+            'Attempt to get feed timed out after {}. Message: {}'.format(
+                requests_timeout,
+                str(timeout_error)
+            )
+        )
+        content = []  # Empty response
 
-    show_exceptions = getattr(settings, 'DEBUG', True)
+    return content[offset:end]
 
-    feed_request = session.get(
-        feed_url,
-        timeout=requests_timeout
-    )
 
-    return feedparser.parse(feed_request.text)
+def get_rss_feed_content(url, offset=0, limit=None):
+    """
+    Get the entries from an RSS feed
+    """
+
+    end = limit + offset if limit is not None else None
+
+    try:
+        response = cached_request.get(url, timeout=requests_timeout)
+        content = feedparser.parse(response.text).entries
+    except Timeout as timeout_error:
+        logger.warning(
+            'Attempt to get feed timed out after {}. Message: {}'.format(
+                requests_timeout,
+                str(timeout_error)
+            )
+        )
+        content = []  # Empty response
+
+    return content[offset:end]

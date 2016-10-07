@@ -12,8 +12,8 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-her equal-height">
-    <div class="strip-inner-wrapper">
+<section class="row row-hero strip-light">
+    <div class="strip-inner-wrapper equal-height">
         <div class="six-col equal-height__item">
             <h1>Scale out with Ubuntu Server</h1>
             <p>Ubuntu Server brings economic and technical scalability to your datacentre, public or private. Whether you want to deploy an OpenStack cloud, a Hadoop cluster or a 50,000-node render farm, Ubuntu Server delivers the best value scale-out performance available.</p>
@@ -60,8 +60,8 @@
     </div>
 </section>
 
-<section class="row row-grey equal-height">
-    <div class="strip-inner-wrapper">
+<section class="row row-grey">
+    <div class="strip-inner-wrapper equal-height">
         <div class="eight-col equal-height__item">
             <h2>Ubuntu Server on Power</h2>
             <p>In addition to x86 and ARM servers, Ubuntu is supported on the Power architecture. For the enterprise datacentre, this means you can now build your infrastructure on any hardware you choose.</p>
@@ -72,7 +72,7 @@
     </div>
 </section>
 
-<section class="row">
+<section class="row strip-light">
     <div class="strip-inner-wrapper">
         <div class="twelve-col">
             <h2 id="performance-and-versatility">Performance and versatility</h2>
@@ -128,12 +128,14 @@
                 <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}64493bba-logo-openbravo.png" alt="Openbravo" />
             </li>
         </ul>
-        <p class="text-center"><a href="/partners/certified-software">View all certified software&nbsp;&rsaquo;</a></p>
+        <div class="twelve-col">
+            <p class="text-center"><a href="/partners/certified-software">View all certified software&nbsp;&rsaquo;</a></p>
+        </div>
     </div>
 </section>
 
-<section class="row equal-height--vertical-divider">
-    <div class="strip-inner-wrapper">
+<section class="row">
+    <div class="strip-inner-wrapper equal-height--vertical-divider">
         <div class="equal-height--vertical-divider__item six-col">
             <h2 id="make-your-it-budget-go-further">Scale without limits</h2>
             <p>With no licence fees or subscription costs, Ubuntu Server can help you scale your data centre efficiently. Subscriptions to Ubuntu Advantage, Canonical&rsquo;s management programme, include support for unlimited virtualisation and, unlike legacy enterprise Linux distributions, the price does not increase with additional CPU cores or sockets. </p>
@@ -152,8 +154,8 @@
 
 {% include "shared/_release_schedule.html" %}
 
-<section class="row row-support-systems-management equal-height">
-    <div class="strip-inner-wrapper">
+<section class="row row-support-systems-management">
+    <div class="strip-inner-wrapper equal-height">
         <div class="eight-col equal-height__item">
             <h2 id="smarter-systems-management">Landscape &mdash; support and systems management</h2>
             <p>The Ubuntu Advantage service programme provides fast problem resolution, direct access to Ubuntu experts and efficient administration with the Ubuntu systems management package, Landscape.</p>
@@ -167,8 +169,8 @@
     </div>
 </section>
 
-<section class="row row-juju-maas equal-height--vertical-divider">
-    <div class="strip-inner-wrapper">
+<section class="row row-juju-maas">
+    <div class="strip-inner-wrapper equal-height--vertical-divider">
         <div class="equal-height--vertical-divider__item four-col box-juju">
             <div class="four-col text-center">
                 <img src="{{ ASSET_SERVER_URL }}60bd6cf1-picto-juju.svg" alt="Juju logo" width="100" height="100" />
@@ -198,7 +200,7 @@
     </div>
 </section>
 
-<section class="row no-border no-padding-bottom">
+<section class="row no-border no-padding-bottom strip-light">
     <div class="strip-inner-wrapper">
         <h2 id="deploy-anywhere">Deploys anywhere</h2>
         <div class="eight-col no-margin-bottom">
@@ -210,17 +212,24 @@
     </div>
 </section>
 
-<section class="row">
+<section class="row strip-light">
     <div class="strip-inner-wrapper">
         <div class="twelve-col">
             <h2 class="muted-heading">A selection of our public cloud partners</h2>
-            <ul id="public-cloud-partners" class="inline-logos no-margin dynamic-logos"></ul>
+            <ul id="public-cloud-partners" class="inline-logos no-margin dynamic-logos">
+              {% get_json_feed "http://partners.ubuntu.com/partners.json?programme=certified-public-cloud&featured=true" limit=10 as public_cloud_partners %}
+              {% for partner in public_cloud_partners %}
+                <li class="inline-logos__item">
+                  <img class="inline-logos__image" src="{{ partner.logo }}" alt="{{ partner.name }}" />
+                </li>
+              {% endfor %}
+            </ul>
             <p class="align-center"><a href="http://partners.ubuntu.com/find-a-partner?programme=certified-public-cloud" class="external">See all of our public cloud partners</a></p>
         </div>
     </div>
 </section>
 
-<section class="row no-border no-padding-bottom">
+<section class="row no-border no-padding-bottom strip-light">
     <div class="strip-inner-wrapper">
         <div class="eight-col last-col no-margin-bottom">
             <h2 id="built-for-big-data">Built for big data and cloud</h2>
@@ -231,18 +240,25 @@
     </div>
 </section>
 
-<section class="row">
-    <div class="strip-inner-wrapper">
+<section class="row strip-light">
+    <div class="strip-inner-wrapper strip-light">
         <div class="twelve-col">
             <h2 class="muted-heading">A selection of our big data partners</h2>
-            <ul id="big-data-partners" class="inline-logos no-margin dynamic-logos"></ul>
+            <ul id="big-data-partners" class="inline-logos no-margin dynamic-logos">
+              {% get_json_feed "http://partners.ubuntu.com/partners.json?service_offered__name=Big+data" limit=10 as big_data_partners %}
+              {% for partner in big_data_partners %}
+                <li class="inline-logos__item">
+                  <img class="inline-logos__image" src="{{ partner.logo }}" alt="{{ partner.name }}" />
+                </li>
+              {% endfor %}
+            </ul>
             <p class="align-center"><a href="http://partners.ubuntu.com/find-a-partner?service-offered=big-data" class="external">See all of our big data partners</a></p>
         </div>
     </div>
 </section>
 
-<section class="row equal-height">
-    <div class="strip-inner-wrapper">
+<section class="row strip-light">
+    <div class="strip-inner-wrapper equal-height">
         <div class="six-col equal-height__item">
             <h2 id="the-fast-track-to-virtualisation">The fast track to virtualisation and containers</h2>
             <p>Ready to boost efficiencies and reduce costs? Virtualise your servers with Ubuntu Server, KVM and LXD. When you use a secure, lean version of Ubuntu as a guest operating system for your application, you can create virtual machines and machine containers in seconds. KVM, LXD, Xen, VMware, Vagrant, VirtualBox, and Docker are all first class experiences with Ubuntu Server. KVM virtualisation is now also available in Ubuntu Server for ARM and IBM POWER8.</p>
@@ -353,8 +369,8 @@
     </div>
 </section>
 
-<section class="row row-grey equal-height no-border">
-    <div class="strip-inner-wrapper">
+<section class="row row-grey no-border">
+    <div class="strip-inner-wrapper equal-height">
         {% if level_1 == 'desktop' and not level_2 %}
         <div class="six-col">
             <h2 id="a-thriving-community">A thriving community</h2>
@@ -386,20 +402,3 @@
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_server_download" second_item="_server_contact_us" third_item="_cloud_further_reading" %}
 
 {% endblock content %}
-
-{% block footer_extra %}
-{% load versioned_static  %}
-<script src="{% versioned_static 'js/partners.js' %}"></script>
-<script>
-    partners.loadPartnerClouds([
-        {
-            'params': '?programme=certified-public-cloud&featured=true',
-            'elementId':'#public-cloud-partners'
-        },
-        {
-            'params': '?service_offered__name=Big+data',
-            'elementId' : '#big-data-partners'
-        }
-    ]);
-</script>
-{% endblock footer_extra %}
