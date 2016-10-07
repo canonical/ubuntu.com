@@ -11,19 +11,21 @@
 
 {% block content %}
 
-<section class="row row-hero no-border">
-    <div class="six-col">
-        <h1>Robots and drones on Ubuntu</h1>
+<section class="row row-hero no-border js-livestream-intro equal-height">
+    <div class="six-col equal-height__item equal-height__align-vertically">
+        <h1>Robots and drones <br />on Ubuntu</h1>
         <p>Autonomous, secure, reliable and remotely upgradeable.</p>
-        <p><a href="" class="button--primary">Watch the latest video</a></p>
+        <p><a href="" class="button--primary js-livestream-trigger">Watch ROScon Livestream</a></p>
     </div>
 </section>
 
-<section class="row row-full-width no-border">
+<section class="livestream-video js-livestream-video">
     <iframe id="ls_embed_1475013685" src="//livestream.com/accounts/21698585/events/6415740/player?width=984&height=550&enableInfoAndActivity=true&autoPlay=true&mute=false" width="984" height="550" frameborder="0" scrolling="no" allowfullscreen> </iframe><script type="text/javascript" data-embed_id="ls_embed_1475013685" src="//livestream.com/assets/plugins/referrer_tracking.js"></script>
+    <a href="#_" class="livestream-video-close js-livestream-video-close">Close livestream &rsaquo;</a>
 </section>
 
-<section class="row">
+<!-- Disable until PDF assets available -->
+<!-- <section class="row">
     <h2>Latest news</h2>
     <ul class="no-bullets equal-height--vertical-divider">
         <li class="four-col equal-height--vertical-divider__item">
@@ -45,7 +47,7 @@
         </li>
     </ul>
     <p><a href="http://insights.ubuntu.com/tag/robotics">Read more robotics articles on Ubuntu Insights&nbsp;&rsaquo;</a></p>
-</section>
+</section> -->
 
 <section class="row">
     <div class="twelve-col">
@@ -73,9 +75,8 @@
     </div>
 </section>
 
-</section>
 <section class="row row-grey">
-    <div class="eight-col">
+    <div class="seven-col">
         <h2>A path to production</h2>
         <p>Commercialise your robotics projects with Ubuntu Core. Leverage a large community and standard, open source solutions for a faster route to market. Continuously improve your robots and drones wherever they are in the field, with a fail-safe remote upgrade system.</p>
     </div>
@@ -92,7 +93,7 @@
 </section>
 
 <section class="row row-grey equal-height">
-    <div class="eight-col equal-height__item equal-height__align-vertically">
+    <div class="seven-col equal-height__item equal-height__align-vertically">
         <h2>New software revenues</h2>
         <p>Offer an appstore for your drones and robots and you can generate revenue from updates, add-on functionality, support services or complete reconfigurations.</p>
     </div>
@@ -119,5 +120,21 @@
 </section>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_devices_newsletter_signup" third_item="_iot_further_reading" %}
+
+<script>
+    $(function() {
+        $( ".js-livestream-trigger" ).on( "click", function(e) {
+            $(".js-livestream-intro").hide();
+            $(".js-livestream-video").show();
+            e.preventDefault();
+        });
+
+        $( ".js-livestream-video-close" ).on( "click", function(e) {
+            $(".js-livestream-video").hide();
+            $(".js-livestream-intro").show();
+            e.preventDefault();
+        });
+    });
+</script>
 
 {% endblock content %}
