@@ -41,121 +41,123 @@
 </section>
 
 <!-- BootStack calculator -->
-<div class="row" id="calculator-form">
-    <div class="eight-col append-four">
-        <h2>BootStack calculator</h2>
-        <p>Our calculator can help you identify your potential return on investment by comparing the  costs of a BootStack managed cloud against the staff costs of a self-built and managed cloud.</p>
-    </div>
-    <div class="js__required">
-        <div class="four-col grey-box box">
-            <h3 class="sub-heading">View by</h3>
-            <ul class="checkbox-vms-servers__list">
-                <li class="checkbox-vms-servers__list-item">
-                    <label for="radio-servers">Servers</label>
-                    <input type="radio" id="radio-servers" name="vms-or-servers" value="Servers" checked />
-                </li>
-                <li class="checkbox-vms-servers__list-item">
-                    <label for="radio-vms">VMs</label>
-                    <input type="radio" id="radio-vm//s" name="vms-or-servers" value="VMs" />
-                </li>
-            </ul>
+<section class="row" id="calculator-form">
+    <div class="strip-inner-wrapper">
+        <div class="eight-col append-four">
+            <h2>BootStack calculator</h2>
+            <p>Our calculator can help you identify your potential return on investment by comparing the  costs of a BootStack managed cloud against the staff costs of a self-built and managed cloud.</p>
         </div>
-        <div class="four-col grey-box box" id="vms">
-            <h3 class="sub-heading">Number of VMs</h3>
-            <div class="slider-area" id="how-many-vms">
-              <label for="number-of-vms" class="off-left">VMs</label>
-              <input type="number" min="0" max="5000" id="number-of-vms" name="amount_1" value="100" class="add-slider amount-input" />
-
-              <!--  Hidden fields -->
-              <input type="hidden" name="item_name_1" value="VMs" />
-            </div>
-        </div>
-        <div class="four-col grey-box box is-hidden" id="servers">
-            <h3 class="sub-heading">Number of servers</h3>
-            <div class="slider-area" id="how-many-servers">
-                <label for="number-of-servers" class="off-left">Servers</label>
-                <input type="number" min="0" max="1000" id="number-of-servers" name="amount_2" value="60" class="add-slider amount-input" />
-
-                <!--  Hidden fields -->
-                <input type="hidden" name="item_name_2" value="Servers">
-            </div>
-        </div>
-        <div class="four-col grey-box box last-col">
-            <h3 class="sub-heading">Billing period</h3>
-            <ul class="grouped-tabbed">
-                <li class="grouped-tabbed__item">
-                  <input class="grouped-tabbed__input" type="radio" name="billing-period" id="hourly-billing" value="hour" />
-                  <label class="grouped-tabbed__button" for="hourly-billing">Hour</a>
-                </li>
-                <li class="grouped-tabbed__item">
-                  <input class="grouped-tabbed__input" type="radio" name="billing-period" id="monthly-billing" checked="checked" value="month" />
-                  <label class="grouped-tabbed__button" for="monthly-billing">Month</a>
-                </li>
-                <li class="grouped-tabbed__item">
-                  <input class="grouped-tabbed__input" type="radio" name="billing-period" id="yearly-billing" value="year" />
-                  <label class="grouped-tabbed__button" for="yearly-billing">Year</a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="equal-height">
-            <div class="equal-height__item six-col box result" id="bootstack-section">
-              <header class="result__header">
-                <div class="result__header-banner">
-                  <h4 class="result__header-sub-heading">BootStack managed cloud</h4>
-                </div>
-                <h3 class="result__header-amount"><span id="bootstack-cost">&mdash;</span> per <span class="billing-period">month</span></h3>
-                <p class="note">BootStack cost including Ubuntu Advantage support</p>
-              </header>
-              <div class="result__content">
-                <p class="intro">Canonical builds, manages and operates your cloud 24x7.</p>
-                <ul class="no-margin-bottom">
-                  <li>Built with Canonical OpenStack, the world&rsquo;s leading open cloud platform</li>
-                  <li>Your choice of hardware, certified by Canonical for Ubuntu and OpenStack</li>
-                  <li>A suite of management tools and the training you need to take control</li>
+        <div class="js__required">
+            <div class="four-col grey-box box">
+                <h3 class="sub-heading">View by</h3>
+                <ul class="checkbox-vms-servers__list">
+                    <li class="checkbox-vms-servers__list-item">
+                        <label for="radio-servers">Servers</label>
+                        <input type="radio" id="radio-servers" name="vms-or-servers" value="Servers" checked />
+                    </li>
+                    <li class="checkbox-vms-servers__list-item">
+                        <label for="radio-vms">VMs</label>
+                        <input type="radio" id="radio-vm//s" name="vms-or-servers" value="VMs" />
+                    </li>
                 </ul>
-              </div>
-              <footer class="result__footer">
-                <h3 class="result__footer-title">Price includes Ubuntu Advantage</h3>
-                <p>Commercial support for your cloud from the experts at&nbsp;Canonical.</p>
-              </footer>
             </div>
-
-            <div class="equal-height__item six-col last-col box result" id="diy-section">
-                <header class="result__header">
-                  <div class="result__header-banner">
-                    <h4 class="result__header-sub-heading">Self-built and managed cloud</h4>
-                  </div>
-                  <h3 class="result__header-amount"><span id="self-built-cost">&mdash;</span> per <span class="billing-period">month</span></h3>
-                  <p class="note">Staff cost <span class="self-built-staff-cost">$0</span> plus Ubuntu Advantage support cost <span class="self-built-ua-cost">$0</span></p>
-                </header>
-                <div class="result__content">
-                  <p class="intro">Your in-house staff costs to operate your cloud 24x7: <span class="self-built-staff-cost">$0</span> per <span class="billing-period">month</span></p>
-                  <ul class="no-bullets">
-                    <li>
-                      <input type="number" min="0" max="50" id="number-of-staff" name="amount_3" value="6" class="input-staff" />
-                      <label for="number-of-staff">Staff required</label>
-                    </li>
-                    <li>
-                      <input type="number" min="0" max="250" id="staff-annual-salary" name="amount_4" value="100" class="input-salary" />
-                      <span class="input-helper">$k</span>
-                      <label for="staff-annual-salary">Average annual salary</label>
-                    </li>
-                  </ul>
-                  <p class="note">• Average salary data obtained from Indeed.com for&nbsp;the&nbsp;USA</p>
+            <div class="four-col grey-box box" id="vms">
+                <h3 class="sub-heading">Number of VMs</h3>
+                <div class="slider-area" id="how-many-vms">
+                  <label for="number-of-vms" class="off-left">VMs</label>
+                  <input type="number" min="0" max="5000" id="number-of-vms" name="amount_1" value="100" class="add-slider amount-input" />
+    
+                  <!--  Hidden fields -->
+                  <input type="hidden" name="item_name_1" value="VMs" />
                 </div>
-                <footer class="result__footer">
-                  <h3 class="result__footer-title">
-                    Ubuntu Advantage support:<br/>
-                    <span class="self-built-ua-cost">$0</span> per <span class="billing-period">month</span>
-                    for <span id="num-servers-or-vms-output"></span> <span id="servers-or-vms-output"></span>
-                  </h3>
-                  <p>Supplement your team with commercial support for your cloud from the experts at&nbsp;Canonical.</p>
-                </footer>
+            </div>
+            <div class="four-col grey-box box is-hidden" id="servers">
+                <h3 class="sub-heading">Number of servers</h3>
+                <div class="slider-area" id="how-many-servers">
+                    <label for="number-of-servers" class="off-left">Servers</label>
+                    <input type="number" min="0" max="1000" id="number-of-servers" name="amount_2" value="60" class="add-slider amount-input" />
+    
+                    <!--  Hidden fields -->
+                    <input type="hidden" name="item_name_2" value="Servers">
+                </div>
+            </div>
+            <div class="four-col grey-box box last-col">
+                <h3 class="sub-heading">Billing period</h3>
+                <ul class="grouped-tabbed">
+                    <li class="grouped-tabbed__item">
+                      <input class="grouped-tabbed__input" type="radio" name="billing-period" id="hourly-billing" value="hour" />
+                      <label class="grouped-tabbed__button" for="hourly-billing">Hour</a>
+                    </li>
+                    <li class="grouped-tabbed__item">
+                      <input class="grouped-tabbed__input" type="radio" name="billing-period" id="monthly-billing" checked="checked" value="month" />
+                      <label class="grouped-tabbed__button" for="monthly-billing">Month</a>
+                    </li>
+                    <li class="grouped-tabbed__item">
+                      <input class="grouped-tabbed__input" type="radio" name="billing-period" id="yearly-billing" value="year" />
+                      <label class="grouped-tabbed__button" for="yearly-billing">Year</a>
+                    </li>
+                </ul>
+            </div>
+    
+            <div class="equal-height">
+                <div class="equal-height__item six-col box result" id="bootstack-section">
+                  <header class="result__header">
+                    <div class="result__header-banner">
+                      <h4 class="result__header-sub-heading">BootStack managed cloud</h4>
+                    </div>
+                    <h3 class="result__header-amount"><span id="bootstack-cost">&mdash;</span> per <span class="billing-period">month</span></h3>
+                    <p class="note">BootStack cost including Ubuntu Advantage support</p>
+                  </header>
+                  <div class="result__content">
+                    <p class="intro">Canonical builds, manages and operates your cloud 24x7.</p>
+                    <ul class="no-margin-bottom">
+                      <li>Built with Canonical OpenStack, the world&rsquo;s leading open cloud platform</li>
+                      <li>Your choice of hardware, certified by Canonical for Ubuntu and OpenStack</li>
+                      <li>A suite of management tools and the training you need to take control</li>
+                    </ul>
+                  </div>
+                  <footer class="result__footer">
+                    <h3 class="result__footer-title">Price includes Ubuntu Advantage</h3>
+                    <p>Commercial support for your cloud from the experts at&nbsp;Canonical.</p>
+                  </footer>
+                </div>
+    
+                <div class="equal-height__item six-col last-col box result" id="diy-section">
+                    <header class="result__header">
+                      <div class="result__header-banner">
+                        <h4 class="result__header-sub-heading">Self-built and managed cloud</h4>
+                      </div>
+                      <h3 class="result__header-amount"><span id="self-built-cost">&mdash;</span> per <span class="billing-period">month</span></h3>
+                      <p class="note">Staff cost <span class="self-built-staff-cost">$0</span> plus Ubuntu Advantage support cost <span class="self-built-ua-cost">$0</span></p>
+                    </header>
+                    <div class="result__content">
+                      <p class="intro">Your in-house staff costs to operate your cloud 24x7: <span class="self-built-staff-cost">$0</span> per <span class="billing-period">month</span></p>
+                      <ul class="no-bullets">
+                        <li>
+                          <input type="number" min="0" max="50" id="number-of-staff" name="amount_3" value="6" class="input-staff" />
+                          <label for="number-of-staff">Staff required</label>
+                        </li>
+                        <li>
+                          <input type="number" min="0" max="250" id="staff-annual-salary" name="amount_4" value="100" class="input-salary" />
+                          <span class="input-helper">$k</span>
+                          <label for="staff-annual-salary">Average annual salary</label>
+                        </li>
+                      </ul>
+                      <p class="note">• Average salary data obtained from Indeed.com for&nbsp;the&nbsp;USA</p>
+                    </div>
+                    <footer class="result__footer">
+                      <h3 class="result__footer-title">
+                        Ubuntu Advantage support:<br/>
+                        <span class="self-built-ua-cost">$0</span> per <span class="billing-period">month</span>
+                        for <span id="num-servers-or-vms-output"></span> <span id="servers-or-vms-output"></span>
+                      </h3>
+                      <p>Supplement your team with commercial support for your cloud from the experts at&nbsp;Canonical.</p>
+                    </footer>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <section class="row no-padding-bottom no-border">
     <div class="strip-inner-wrapper">
