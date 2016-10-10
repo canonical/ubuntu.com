@@ -75,8 +75,7 @@
     }
   }
 
-  .row-landscape,
-  .row-complete {
+  .row-landscape {
     overflow: hidden;
     padding-bottom: 20px;
 
@@ -127,8 +126,9 @@
 
     @media only screen and (min-width: $breakpoint-medium) {
       background-color: $light-grey;
-      background-image: url('#{$asset-server}364631d0-desktop-overview-hero.jpg?w=984');
-      background-position: 73% 13%, bottom right;
+      background-image: url('#{$asset-server}364631d0-desktop-overview-hero.jpg?w=1024');
+      background-position: 73% 81%;
+      background-size: cover;
       background-repeat: no-repeat;
       border-bottom: 0;
       margin-top: 0;
@@ -165,12 +165,6 @@
       }
     }
   }
-
-  .row-complete .pull-right {
-    @media only screen and (max-width: 844px) {
-      margin-top: 7%;
-    }
-  }
 }
 
 // @subsection /desktop/features
@@ -187,7 +181,7 @@
     }
 
     @media only screen and (min-width: $breakpoint-large) {
-      background-position: top right -347px;
+      background-position: right -346px center;
       background-size: initial;
       min-height: 500px;
     }
@@ -208,6 +202,8 @@
   .row-web-browsing {
     @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}d037640f-desktop.png?w=984');
+      background-repeat: no-repeat;
+      background-size: cover;
     }
   }
 
@@ -215,6 +211,7 @@
 
     @media only screen and (min-width: $breakpoint-medium) {
       padding: 0 0 55%;
+      min-height: 450px;
     }
 
     &__content {
@@ -223,7 +220,6 @@
       @media only screen and (min-width: $breakpoint-medium) {
         bottom: 20px;
         color: $white;
-        position: absolute;
         right: 40px;
         z-index: 3000;
       }
