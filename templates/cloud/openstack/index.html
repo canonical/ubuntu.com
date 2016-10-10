@@ -26,13 +26,14 @@
             </ul>
             <p><a href="/download/cloud" class="button--primary">Get started with OpenStack Autopilot</a></p>
             <p><a href="/cloud/openstack/autopilot">Learn more about Autopilot&nbsp;&rsaquo;</a></p>
-    
+
         </div>
         <div class="four-col last-col">
             {% comment %} might want to add this image instead of the chart - {{ ASSET_SERVER_URL }}845e046c-partner-openstack.png
             {% endcomment %}
             <figure id="ubuntu-pie" class="ubuntu-pie"></figure>
-            <p class="note">* <a href="http://www.openstack.org/assets/survey/Public-User-Survey-Report.pdf" class="external">Among OpenStack deployments with more than 1,000 users, OpenStack survey &mdash; October 2015 [PDF 6.7MB]</a></p>
+            <p class="note">Among OpenStack deployments with more than 1,600 users,
+              <a href="https://www.openstack.org/assets/survey/April-2016-User-Survey-Report.pdf" class="external">OpenStack survey &mdash; April 2016 [PDF 14.6MB]</a></p>
         </div>
     </div>
 </section>
@@ -44,8 +45,8 @@
   var width = document.querySelector('#ubuntu-pie').offsetWidth;
 
   var dataset = [
-    { label: 'ubuntu', count: 65, left: (width / 2.75), top: -5 },
-    { label: 'other', count: 35, left: -(width / 2.75), top: -5 }
+    { label: 'ubuntu', count: 55, left: (width / 2.75), top: -5 },
+    { label: 'other', count: 45, left: -(width / 2.75), top: -5 }
   ];
   var height = width;
   var radius = Math.min(width, height) / 2;

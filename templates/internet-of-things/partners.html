@@ -60,7 +60,14 @@
   <div class="twelve-col">
       <h2 class="muted-heading">A growing list of partners</h2>
       <div class="twelve-col">
-        <ul id="iot-partners" class="inline-logos inline-logos--large no-bullets no-margin dynamic-logos"></ul>
+        <ul id="iot-partners" class="inline-logos inline-logos--large no-bullets no-margin dynamic-logos">
+          {% get_json_feed "http://partners.ubuntu.com/partners.json?programme__name=Internet%20of%20Things" limit=10 as iot_partners %}
+          {% for partner in iot_partners %}
+            <li class="inline-logos__item">
+              <img class="inline-logos__image" src="{{ partner.logo }}" alt="{{ partner.name }}" />
+            </li>
+          {% endfor %}
+        </ul>
       </div>
       <p class="align-center"><a href="http://partners.ubuntu.com/programmes/iot" class="external">See all our Internet of Things partners</a></p>
   </div>
@@ -151,13 +158,3 @@
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_devices_newsletter_signup" third_item="_iot_further_reading" %}
 
 {% endblock content %}
-{% block footer_extra %}
-  {% load versioned_static  %}
-  <script src="{% versioned_static 'js/partners.js' %}"></script>
-  <script>
-    partners.loadPartnerClouds([{
-      'params': '?programme__name=Internet%20of%20Things',
-      'elementId': '#iot-partners'
-    }]);
-  </script>
-{% endblock %}
