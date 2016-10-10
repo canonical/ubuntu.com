@@ -396,7 +396,7 @@
       margin-top: 0;
       min-height: 350px;
       background-size: 100%;
-      border-bottom: 0;
+      
 
       h1 {
         padding-top: 40px;
@@ -404,7 +404,7 @@
     }
 
     @media only screen and (min-width: $breakpoint-large) {
-      background-position: 0% 0%;
+      background-position: 0 -191px;
       background-size: cover;
       margin-top: 0;
       min-height: 574px;
@@ -419,16 +419,17 @@
 
     @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}5b74fa2a-map.jpg');
+      background-position: center 30px;
       background-repeat: no-repeat;
-      background-size: cover;
+      background-size: 83%;
     }
   }
 
   .row-security {
     @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}99d49a7d-padlock-chain.png');
-      background-position: 89% 93%;
-      background-repeat: no-repeat;
+      background-position: 30px center;
+      background-size: initial;
       min-height: 310px;
     }
   }
@@ -490,15 +491,18 @@
 .desktop-ubuntu-kylin {
 
   .row-hero {
-
     @media only screen and (min-width: $breakpoint-medium) {
-      background: url('#{$asset-server}b0f9da06-desktop-kylin-hero.jpg?w=720') 400px center no-repeat;
-      padding-bottom: 55px;
+      background-image: url('#{$asset-server}b0f9da06-desktop-kylin-hero.jpg?w=720');
+      background-position: right -170px center;
+      background-repeat: no-repeat;
+      background-size: 37em;
+      min-height: 310px;
     }
 
     @media only screen and (min-width: $breakpoint-large) {
-      background: url('#{$asset-server}b0f9da06-desktop-kylin-hero.jpg?w=800') 498px 20px no-repeat;
-      padding-bottom: 55px;
+      background-position: right -346px center;
+      background-size: 56em;
+      min-height: 500px;
     }
   }
 
