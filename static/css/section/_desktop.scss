@@ -452,6 +452,16 @@
     }
   }
 
+  .whats-new-graphic {
+    @media only screen and (min-width: $breakpoint-medium) {
+      background-image: url('#{$asset-server}e8731111-desktop-developer-whatsnew1610.jpg');
+      background-position: top right -220px;
+      background-repeat: no-repeat;
+      background-size: 36em;
+      min-height: 310px;
+    }
+  }
+
   .pull-bottom-left {
     @media only screen and (min-width: $breakpoint-medium) {
       float: left;
