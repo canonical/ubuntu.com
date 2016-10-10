@@ -152,13 +152,13 @@
 
   .row-maas {
     @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url('#{$asset-server}f58e0ebf-image-maas-screenshot.jpg?op=region&rect=0,0,300,600');
+      background-image: url('#{$asset-server}f58e0ebf-image-maas-screenshot.jpg?op=region&rect=0,0,300,500');
       background-position: right top;
       background-repeat: no-repeat;
     }
 
     @media only screen and (min-width : $breakpoint-large) {
-      background-image: url('#{$asset-server}f58e0ebf-image-maas-screenshot.jpg?op=region&rect=0,0,450,600');
+      background-image: url('#{$asset-server}f58e0ebf-image-maas-screenshot.jpg?op=region&rect=0,0,470,640');
       background-position: right top;
       background-repeat: no-repeat;
     }
@@ -442,18 +442,12 @@
 // @subsection /cloud/juju
 .cloud-juju {
 
-  .row-hero,
   .row-get-started {
     background-image: url('#{$asset-server}3c2a0155-media-wiki-ubuntu.png?w=800');
     background-position: top right;
     background-repeat: no-repeat;
   }
   
-  .row-hero {
-    background-position: 120% 0;
-    padding-bottom: 0;
-  }
-
   .bundle-card__image-container {
     height: 345px;
   }
@@ -565,8 +559,6 @@
       background-image: url('#{$asset-server}85280667-image-cloud-openstack-autopilot-screenshot.jpg?op=region&rect=0,0,450,800');
       background-position: 122% 0%;
       background-repeat: no-repeat;
-      margin-top: 0;
-      padding-top: 40px;
     }
   }
 
@@ -935,6 +927,10 @@
   .command-line {
     background: $light-grey;
     border: 0;
+    
+     > code {
+      color: $cool-grey;
+    }
   }
 
   @media only screen and (max-width: $breakpoint-medium) {
