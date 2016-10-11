@@ -65,6 +65,11 @@ forms.stateFormField = function() {
   var formUSAOpt = document.querySelector('[value="SelectState"]');
   var formCanadaOpt = document.querySelector('[value="SelectProvince"]');
 
+  // Only if things exist...
+  if (formStateContainer === null) {
+    return;
+  }
+
 	// starting state, no field
 	state('default');
 

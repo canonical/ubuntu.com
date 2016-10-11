@@ -22,20 +22,21 @@
                 <p>Download the long-term support edition of Ubuntu Kylin {{lts_release_full_with_point}} ISO image file. To install Ubuntu Kylin, burn the image file on a DVD or create a bootable USB disk.</p>
             </div>
             <div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom">
-                <form class="form-download gap-from-top lts" action="http://cdimage.ubuntu.com/ubuntukylin/releases/{{lts_release}}/release/ubuntukylin-{{lts_release}}-desktop-amd64.iso" method="get">
-                    <fieldset>
-                        <div>
-                            <button type="submit" class="link-cta-download button--primary" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : '{{lts_release}} 64 bit', 'eventLabel' : 'From English-language Chinese download', 'eventValue' : undefined });">Download 64-bit</button>
-                        </div>
-                    </fieldset>
-                </form>
-                <form class="form-download lts" action="http://cdimage.ubuntu.com/ubuntukylin/releases/{{lts_release}}/release/ubuntukylin-{{lts_release}}-desktop-i386.iso" method="get">
-                    <fieldset>
-                        <div>
-                            <button type="submit" class="link-cta-download button--primary" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : '{{lts_release}} 32 bit', 'eventLabel' : 'From English-language Chinese download', 'eventValue' : undefined });">Download 32-bit</button>
-                        </div>
-                    </fieldset>
-                </form>
+                <p>
+                    <a
+                    href="http://cdimage.ubuntu.com/ubuntukylin/releases/{{lts_release}}/release/ubuntukylin-{{lts_release}}-desktop-amd64.iso"
+                    class="link-cta-download button--primary"
+                    onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : '{{lts_release}} 64 bit', 'eventLabel' : 'Ubuntu Kylin', 'eventValue' : undefined });
+                    ">Download 64-bit</a>
+                </p>
+
+                <p>
+                    <a
+                    href="http://cdimage.ubuntu.com/ubuntukylin/releases/{{lts_release}}/release/ubuntukylin-{{lts_release}}-desktop-i386.iso"
+                    class="link-cta-download button--primary"
+                    onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : '{{lts_release}} 32 bit', 'eventLabel' : 'Ubuntu Kylin', 'eventValue' : undefined });
+                    ">Download 32-bit</a>
+                </p>
                 <p class="note">If you have an older PC with less than 2GB of memory, choose the 32-bit download.</p>
             </div>
         </div><!-- /.box -->

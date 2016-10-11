@@ -58,19 +58,6 @@
     margin-bottom: 18px;
   }
 
-  .welcome-hyperscale {
-    @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url('#{$asset-server}ab812f69-image-server-hyperscale.svg');
-      background-position: 575px center;
-      background-repeat: no-repeat;
-
-      .no-svg &,
-      .opera-mini & {
-        background-image: url("#{$asset-server}b47ff24b-image-server-hyperscale.png");
-      }
-    }
-  }
-
   .partner-logo {
     margin: 0 auto 10px;
 

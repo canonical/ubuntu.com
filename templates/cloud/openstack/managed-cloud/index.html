@@ -33,7 +33,7 @@
 </section>
 
 <!-- BootStack calculator -->
-<div class="row" id="calculator-form">
+<section class="row" id="calculator-form">
     <div class="strip-inner-wrapper">
         <div class="eight-col append-four">
             <h2>BootStack calculator</h2>
@@ -45,171 +45,111 @@
                 <ul class="checkbox-vms-servers__list">
                     <li class="checkbox-vms-servers__list-item">
                         <label for="radio-servers">Servers</label>
-                        <input type="radio" id="radio-servers" name="vms-or-servers" value="servers" checked />
+                        <input type="radio" id="radio-servers" name="vms-or-servers" value="Servers" checked />
                     </li>
                     <li class="checkbox-vms-servers__list-item">
                         <label for="radio-vms">VMs</label>
-                        <input type="radio" id="radio-vm//s" name="vms-or-servers" value="vms" />
+                        <input type="radio" id="radio-vm//s" name="vms-or-servers" value="VMs" />
                     </li>
                 </ul>
             </div>
-            <div class="four-col grey-box box" id="vms-input">
+            <div class="four-col grey-box box" id="vms">
                 <h3 class="sub-heading">Number of VMs</h3>
-                <div class="sliders-container">
-                  <div class="slider-area" id="how-many-vms">
-                      <fieldset class="slider-value">
-                          <label for="amount-vms" class="off-left">VMs</label>
-                          <input type="number" min="0" max="5000" id="amount-vms" name="amount_1" value="10" class="amount-input" />
-                      </fieldset>
+                <div class="slider-area" id="how-many-vms">
+                  <label for="number-of-vms" class="off-left">VMs</label>
+                  <input type="number" min="0" max="5000" id="number-of-vms" name="amount_1" value="100" class="add-slider amount-input" />
     
-                      <div class="slider-container"></div>
-    
-                      <!--  Hidden fields -->
-                      <input type="hidden" name="item_name_1" value="VMs" />
-                  </div>
+                  <!--  Hidden fields -->
+                  <input type="hidden" name="item_name_1" value="VMs" />
                 </div>
             </div>
-            <div class="four-col grey-box box is-hidden" id="servers-input">
+            <div class="four-col grey-box box is-hidden" id="servers">
                 <h3 class="sub-heading">Number of servers</h3>
-                <div class="sliders-container">
-                  <div class="slider-area" id="how-many-servers">
-                      <fieldset class="slider-value">
-                          <label for="amount-servers" class="off-left">Servers</label>
-                          <input type="number" min="0" max="5000" id="amount-servers" name="amount_2" value="10" class="amount-input" />
-                      </fieldset>
+                <div class="slider-area" id="how-many-servers">
+                    <label for="number-of-servers" class="off-left">Servers</label>
+                    <input type="number" min="0" max="1000" id="number-of-servers" name="amount_2" value="60" class="add-slider amount-input" />
     
-                      <div class="slider-container"></div>
-    
-                      <!--  Hidden fields -->
-                      <input type="hidden" name="item_name_2" value="Servers">
-                  </div>
+                    <!--  Hidden fields -->
+                    <input type="hidden" name="item_name_2" value="Servers">
                 </div>
             </div>
             <div class="four-col grey-box box last-col">
                 <h3 class="sub-heading">Billing period</h3>
                 <ul class="grouped-tabbed">
                     <li class="grouped-tabbed__item">
-                        <a href="#" class="grouped-tabbed__button" data-billing="hour">Hour</a>
+                      <input class="grouped-tabbed__input" type="radio" name="billing-period" id="hourly-billing" value="hour" />
+                      <label class="grouped-tabbed__button" for="hourly-billing">Hour</a>
                     </li>
                     <li class="grouped-tabbed__item">
-                        <a href="#" class="grouped-tabbed__button is-active" data-billing="month">Month</a>
+                      <input class="grouped-tabbed__input" type="radio" name="billing-period" id="monthly-billing" checked="checked" value="month" />
+                      <label class="grouped-tabbed__button" for="monthly-billing">Month</a>
                     </li>
                     <li class="grouped-tabbed__item">
-                        <a href="#" class="grouped-tabbed__button" data-billing="year">Year</a>
+                      <input class="grouped-tabbed__input" type="radio" name="billing-period" id="yearly-billing" value="year" />
+                      <label class="grouped-tabbed__button" for="yearly-billing">Year</a>
                     </li>
                 </ul>
             </div>
     
             <div class="equal-height">
                 <div class="equal-height__item six-col box result" id="bootstack-section">
-                    <header class="result__header">
-                        <div class="result__header-banner">
-                          <h4 class="result__header-sub-heading">BootStack managed cloud</h4>
-                        </div>
-                        <h3 class="result__header-amount"><span class="calculated-amount">&mdash;</span> per <span class="selected-duration">month</span></h3>
-                        <p class="note">BootStack cost including Ubuntu Advantage support</p>
-                    </header>
-                    <div class="result__content">
-                        <p class="intro">Canonical builds, manages and operates your cloud 24x7.</p>
-                        <ul class="no-margin-bottom">
-                            <li>Built with Canonical OpenStack, the world&rsquo;s leading open cloud platform</li>
-                            <li>Your choice of hardware, certified by Canonical for Ubuntu and OpenStack</li>
-                            <li>A suite of management tools and the training you need to take control</li>
-                        </ul>
+                  <header class="result__header">
+                    <div class="result__header-banner">
+                      <h4 class="result__header-sub-heading">BootStack managed cloud</h4>
                     </div>
-                    <footer class="result__footer">
-                        <h3 class="result__footer-title">Price includes Ubuntu Advantage</h3>
-                        <p>Commercial support for your cloud from the experts at&nbsp;Canonical.</p>
-                    </footer>
+                    <h3 class="result__header-amount"><span id="bootstack-cost">&mdash;</span> per <span class="billing-period">month</span></h3>
+                    <p class="note">BootStack cost including Ubuntu Advantage support</p>
+                  </header>
+                  <div class="result__content">
+                    <p class="intro">Canonical builds, manages and operates your cloud 24x7.</p>
+                    <ul class="no-margin-bottom">
+                      <li>Built with Canonical OpenStack, the world&rsquo;s leading open cloud platform</li>
+                      <li>Your choice of hardware, certified by Canonical for Ubuntu and OpenStack</li>
+                      <li>A suite of management tools and the training you need to take control</li>
+                    </ul>
+                  </div>
+                  <footer class="result__footer">
+                    <h3 class="result__footer-title">Price includes Ubuntu Advantage</h3>
+                    <p>Commercial support for your cloud from the experts at&nbsp;Canonical.</p>
+                  </footer>
                 </div>
     
                 <div class="equal-height__item six-col last-col box result" id="diy-section">
                     <header class="result__header">
-                        <div class="result__header-banner">
-                            <h4 class="result__header-sub-heading">Self-built and managed cloud</h4>
-                        </div>
-                        <h3 class="result__header-amount"><span class="calculated-amount">&mdash;</span> per <span class="selected-duration">month</span></h3>
-                        <p class="note">Staff cost <span class="result__header-calculation--staff">$0</span> plus Ubuntu Advantage support cost <span class="result__header-calculation--ua">$0</span></p>
+                      <div class="result__header-banner">
+                        <h4 class="result__header-sub-heading">Self-built and managed cloud</h4>
+                      </div>
+                      <h3 class="result__header-amount"><span id="self-built-cost">&mdash;</span> per <span class="billing-period">month</span></h3>
+                      <p class="note">Staff cost <span class="self-built-staff-cost">$0</span> plus Ubuntu Advantage support cost <span class="self-built-ua-cost">$0</span></p>
                     </header>
                     <div class="result__content">
-                        <p class="intro">Your in-house staff costs to operate your cloud 24x7: <span class="result__header-calculation--staff">$0</span> per <span class="selected-duration">month</span></p>
-                        <ul class="no-bullets">
-                            <li>
-                                <input type="number" min="0" max="50" id="amount-staff" name="amount_3" value="6" class="input-staff" />
-                                <label for="amount-staff">Staff required</label>
-                            </li>
-                            <li>
-                                <input type="number" min="0" max="250" id="amount-salary" name="amount_4" value="100" class="input-salary" />
-                                <span class="input-helper">$k</span>
-                                <label for="amount-salary">Average annual salary</label>
-                            </li>
-                        </ul>
-                        <p class="note">• Average salary data obtained from Indeed.com for&nbsp;the&nbsp;USA</p>
+                      <p class="intro">Your in-house staff costs to operate your cloud 24x7: <span class="self-built-staff-cost">$0</span> per <span class="billing-period">month</span></p>
+                      <ul class="no-bullets">
+                        <li>
+                          <input type="number" min="0" max="50" id="number-of-staff" name="amount_3" value="6" class="input-staff" />
+                          <label for="number-of-staff">Staff required</label>
+                        </li>
+                        <li>
+                          <input type="number" min="0" max="250" id="staff-annual-salary" name="amount_4" value="100" class="input-salary" />
+                          <span class="input-helper">$k</span>
+                          <label for="staff-annual-salary">Average annual salary</label>
+                        </li>
+                      </ul>
+                      <p class="note">• Average salary data obtained from Indeed.com for&nbsp;the&nbsp;USA</p>
                     </div>
                     <footer class="result__footer">
-                        <h3 class="result__footer-title">Ubuntu Advantage support:<br/> <span class="result__header-calculation--ua">$0</span> per <span class="selected-duration">month</span> for <span class="selected-amount"></span> <span class="selected-type"></span></h3>
-                        <p>Supplement your team with commercial support for your cloud from the experts at&nbsp;Canonical.</p>
+                      <h3 class="result__footer-title">
+                        Ubuntu Advantage support:<br/>
+                        <span class="self-built-ua-cost">$0</span> per <span class="billing-period">month</span>
+                        for <span id="num-servers-or-vms-output"></span> <span id="servers-or-vms-output"></span>
+                      </h3>
+                      <p>Supplement your team with commercial support for your cloud from the experts at&nbsp;Canonical.</p>
                     </footer>
                 </div>
             </div>
         </div>
-    
-        <noscript>
-          <div class="twelve-col box">
-              <h2>JavaScript required</h2>
-              <p class="eight-col">The bootstack calculator requires JavsScript to produce an output. Please turn on JavaScript or sign up below to be kept in the loop.</p>
-          </div>
-        </noscript>
-    
-        <div class="twelve-col submit-email box">
-            <h3>Start saving with BootStack today</h3>
-            <p>Get in touch with our experts to learn more.</p>
-    
-            <!-- MARKETO FORM -->
-    
-            <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1273" class="submit-email__form">
-                <fieldset class="submit-email__fieldset">
-                    <ul class="no-bullets">
-                        <li class="mktFormReq mktField submit-email__input five-col">
-                            <input required  id="Email" name="Email" maxlength="255" type="email" placeholder="Enter your email address" class="mktoField mktoEmailField  mktoRequired mktoInvalid" />
-                        </li>
-                        <li class="mktField submit-email__button two-col">
-                            <button type="submit" class="mktoButton">Submit</button>
-                            <!--  Hidden fields -->
-                            <input type="hidden" name="formid" class="mktoField " value="1273" />
-                            <input type="hidden" name="lpId" class="mktoField " value="2209" />
-                            <input type="hidden" name="subId" class="mktoField " value="30" />
-                            <input type="hidden" name="munchkinId" class="mktoField " value="066-EOV-335" />
-                            <input type="hidden" name="lpurl" class="mktoField " value="https://pages.ubuntu.com/Form---BootStack_Landing-page---calculator.html?cr={creative}&amp;kw={keyword}" />
-                            <input type="hidden" name="cr" class="mktoField " value="" />
-                            <input type="hidden" name="kw" class="mktoField " value="" />
-                            <input type="hidden" name="q" class="mktoField " value="" />
-                        </li>
-                    </ul>
-                </fieldset>
-                <!--  Hidden fields -->
-                <input type="hidden" name="returnURL" value="http://www.ubuntu.com/cloud/openstack/managed-cloud/thank-you" />
-                <input type="hidden" name="retURL" value="http://www.ubuntu.com/cloud/openstack/managed-cloud/thank-you" />
-            </form>
-            <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
-            <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
-            <script>
-            $("#mktoForm_1273").validate({
-                errorElement: "span",
-                errorClass: "mktFormMsg mktError",
-                onkeyup: false,
-                onclick: false,
-                onblur: false
-            });
-            </script>
-            <!-- /MARKETO FORM -->
-        </div>
-        <div class="eight-col">
-            <h4>Legal disclaimer</h4>
-            <p class="smaller">The Bootstack calculator provides estimates only. Pricing and savings are not guaranteed. Not all configurations that are compatible with Bootstack.</p>
-        </div>
     </div>
-</div>
+</section>
 
 <section class="row no-padding-bottom no-border strip-light">
     <div class="strip-inner-wrapper">
@@ -274,287 +214,10 @@
 {% endblock content %}
 
 {% block footer_extra %}
+<script src="{% versioned_static 'js/forms.js' %}"></script>
+<script src="{% versioned_static 'js/cloud.js' %}"></script>
 <script>
-/**
- * Ubuntu YUI sliders
- *
- * This class controls the sliders to distribute the donation
- *
- * @project     Ubuntu Core Front-End Framework
- * @author      Web Team at Canonical Ltd
- * @copyright   2012 Canonical Ltd
- *
- **/
-
-
-var daysInYear = 365,
-    monthsInYear = 12,
-    hoursInDay = 24,
-    vmPerHour = 0.05,
-    uaPriceVm = 0.03,
-    bootstackPriceServerHour = 15 / hoursInDay,
-    viewBy = 'vms',
-    billingPeroid = 'month',
-    vmsSlider,
-    serversSlider,
-    diyAmountSpan,
-    bootstackAmountSpan,
-    staffNoPeople,
-    staffSalary,
-    noOfVms,
-    noOfServers,
-    noOfVmsInput,
-    noOfServersInput,
-    staffInput,
-    salaryInput,
-    checkboxContainer,
-    uAServerPriceHour,
-    vmsInputSection,
-    serversInputSection,
-    groupedTabbed,
-    diyPeriodSpan,
-    bootstackPeriodSpan,
-    diyStaffCost,
-    diyUACost,
-    selectedAmountSpan,
-    selectedTypeSpan,
-    uAAZServersSmall = {
-      threshold: 101,
-      amount: 75000
-    },
-    uAAZServersMedium = {
-      threshold: 501,
-      amount: 180000
-    },
-    uAAZServersLarge = {
-      amount: 350000
-    },
-    billingOffset = {
-      'hour': 1,
-      'month': hoursInDay * 30,
-      'year': hoursInDay * daysInYear
-    };
-
- YUI({bootstrap: false}).use('slider', function (Y) {
-
-    diyAmountSpan = Y.one('#diy-section .calculated-amount');
-    bootstackAmountSpan = Y.one('#bootstack-section .calculated-amount');
-    diyPeriodSpan = Y.all('#diy-section .selected-duration');
-    bootstackPeriodSpan = Y.one('#bootstack-section .selected-duration');
-    staffInput = Y.one('#amount-staff');
-    salaryInput = Y.one('#amount-salary');
-    noOfServersInput = Y.one('#amount-servers');
-    noOfVmsInput = Y.one('#amount-vms');
-    checkboxContainer = Y.one('.checkbox-vms-servers__list');
-    vmsInputSection = Y.one('#vms-input');
-    serversInputSection = Y.one('#servers-input');
-    diyStaffCost = Y.all('.result__header-calculation--staff');
-    diyUACost = Y.all('.result__header-calculation--ua');
-    viewBy = checkboxContainer.one('input[type=radio][checked]').get('value');
-    selectedAmountSpan = Y.one('.selected-amount'),
-    selectedTypeSpan = Y.one('.selected-type');
-
-    // Setup the calculator form
-    var calculatorForm = Y.one('#calculator-form');
-
-    // Slider areas
-    var vmsArea = Y.one('#how-many-vms');
-    var serversArea = calculatorForm.one('#how-many-servers');
-
-    // Create slider input
-    var vmsInput = vmsArea.one('#amount-vms');
-    var serversInput = serversArea.one('#amount-servers');
-    var inputs = [vmsInput, serversInput];
-
-    groupedTabbed = Y.one('.grouped-tabbed');
-    groupedTabbed.all('.grouped-tabbed__item').on('click', updateBillingPeriod);
-
-    // Sliders
-    vmsSlider = new Y.Slider({min: 0, max: 5000, thumbUrl: '#'});
-    serversSlider = new Y.Slider({min: 7, max: 1000, thumbUrl: '#'});
-    var sliders = [vmsSlider, serversSlider];
-
-    vmsInput.setData({slider: vmsSlider, area: vmsArea});
-    serversInput.setData({slider: serversSlider, area: serversArea});
-
-    // Update sliders
-    Y.each(inputs, function(input) {
-        // Setup input area
-        input.on(['change', 'keyup', 'mouseup'], updateSliderFromInput);  // Update slider when input changes
-
-        // Update slider
-        slider = input.getData('slider')
-        slider.set('input', input); // Link input to slider
-        slider.set('container', input.getData('area').one('.slider-container')); // Link container to slider itself
-        slider.after("valueChange", updateInputFromSlider); // Update input when slider updates
-        slider.after("valueChange", updateSliderBackground);
-        slider.after("valueChange", render);
-
-        // Render the slider
-        slider.render(slider.get('container')); // Render the sliders into their containers
-    });
-
-    checkboxContainer.all('input[type=radio]').on('change', updateViewBy);
-
-    calculatorForm.on(['change', 'keyup'], render);  // Update slider when input changes
-
-    calculatorForm.setData('sliders', sliders);
-
-    // When the window resizes, resize sliders
-    var yuiWindow = Y.one('window');
-    yuiWindow.setData('calculatorForm', calculatorForm);
-    yuiWindow.on('resize', function(resizeEvent) {resizeSliders(calculatorForm)});
-    resizeSliders(calculatorForm);
-
-    // Initial values
-    vmsSlider.setValue(100);
-    serversSlider.setValue(60);
-});
-
-// Function to update the servers variables and update calculations
-function render() {
-
-    noOfVms = parseInt(noOfVmsInput.get('value'));
-    noOfServers = parseInt(noOfServersInput.get('value'));
-    staffNoPeople = parseInt(staffInput.get('value'));
-    staffSalary = parseInt(salaryInput.get('value'));
-
-    var diyAmount = bootstackAmount = uAServerPriceHour = uaCost = 0;
-
-    var staffCost = staffNoPeople * staffSalary * 1000;
-
-    if (viewBy === 'vms') {
-        // VM calculations
-        vmsInputSection.removeClass('is-hidden');
-        serversInputSection.addClass('is-hidden');
-
-        uaCost = noOfVms * uaPriceVm * billingOffset[billingPeroid];
-
-        switch(billingPeroid) {
-            case 'hour':
-                staffCost = staffCost / daysInYear / hoursInDay;
-            break;
-            case 'month':
-                staffCost = staffCost / monthsInYear;
-            break;
-            default:
-                diyAmount = '-';
-            break;
-        }
-        bootstackAmount = (noOfVms * vmPerHour) * billingOffset[billingPeroid];
-        selectedAmountSpan.set('text', noOfVms);
-        selectedTypeSpan.set('text', 'VMs');
-    } else {
-        // Server calculations
-        vmsInputSection.addClass('is-hidden');
-        serversInputSection.removeClass('is-hidden');
-
-        if (noOfServers < uAAZServersSmall.threshold ) {
-            uAServerPriceHour = uAAZServersSmall.amount / daysInYear / hoursInDay;
-        } else if (noOfServers < uAAZServersMedium.threshold ) {
-            uAServerPriceHour = uAAZServersMedium.amount / daysInYear / hoursInDay;
-        } else {
-            uAServerPriceHour = uAAZServersLarge.amount / daysInYear / hoursInDay;
-        }
-
-        var uaCost = uAServerPriceHour * billingOffset[billingPeroid];
-
-        switch(billingPeroid) {
-            case 'hour':
-                staffCost = staffCost / daysInYear / hoursInDay;
-            break;
-            case 'month':
-                staffCost = staffCost / monthsInYear;
-            break;
-            default:
-                diyAmount = '-';
-            break;
-        }
-        bootstackAmount = (noOfServers * bootstackPriceServerHour) * billingOffset[billingPeroid];
-        selectedAmountSpan.set('text', noOfServers);
-        selectedTypeSpan.set('text', 'servers');
-    }
-    diyAmount = uaCost + staffCost;
-
-    diyStaffCost.set('text', formatPrice(staffCost));
-    diyUACost.set('text', formatPrice(uaCost));
-    bootstackAmountSpan.set('text', formatPrice(bootstackAmount));
-    diyAmountSpan.set('text', formatPrice(diyAmount));
-}
-
-// Function to update the selected Billing Period
-function updateBillingPeriod(event) {
-  event.preventDefault();
-  var target = event.target;
-  groupedTabbed.all('.grouped-tabbed__button').removeClass('is-active');
-  target.addClass('is-active');
-  billingPeroid = target.getData('billing');
-  diyPeriodSpan.set('text', billingPeroid);
-  bootstackPeriodSpan.set('text', billingPeroid);
-  render();
-}
-
-// Function to update the viewBy variable
-function updateViewBy(event) {
-  viewBy = event.target.get('value');
-  render();
-}
-
-// Function to update the input value from the Slider value
-function updateInputFromSlider(event) {
-    // Update input field and recalculate
-    var slider = event.target;
-    slider.get('input').set( "value", slider.getValue() );
-}
-
-function updateSliderFromInput(event) {
-    var input = event.target;
-    // Input can't be more than 10000
-    if (input.get('value') > 10000) {
-        input.set('value', 10000);
-    }
-    // Or less than zero
-    if (input.get('value') < 0) {
-        input.set('value', 0);
-    }
-    var value = parseInt(input.get('value')) || 0;
-    var slider = input.getData('slider');
-    slider.setValue(value);
-}
-
-function updateSliderBackground(event) {
-    // Get values
-    var slider = event.target;
-    var value = slider.getValue();
-    var max = slider.get('max');
-    var min = slider .get('min');
-    var percentage = ((value - min) / (max - min)) * 100;
-    var sliderRail = slider.get('container').one('.yui3-slider-rail');
-    sliderRail.setStyle('background', 'linear-gradient(to left, #E1DAD2 ' + (100 - percentage) + '%, #DD4713 0%)');
-}
-
-// format currency nicely
-function formatPrice(number) {
-    numberWithCommas = Math.ceil(number).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    amount = '$' + numberWithCommas;
-    amount = amount.replace('$-', '-$');
-    return amount;
-}
-
-
-// Recalculate the sliders' lengths
-function resizeSliders(form) {
-    // Calculate length
-    var container = form.one('.sliders-container');
-    var widthString = container.getComputedStyle('width');
-    var width = widthString.replace('px', '');
-    var containerWidth = parseInt(width);
-    var inputWidth = form.one('.slider-value').get('offsetWidth');
-    // sliders should sit alongside inputs with padding
-    var sliderLength = containerWidth - 20 - inputWidth;
-
-    vmsSlider.set('length', sliderLength + 'px');
-}
-
+    forms.addSliders('.add-slider');
+    cloud.calculator();
 </script>
 {% endblock footer_extra %}

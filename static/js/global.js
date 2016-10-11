@@ -1,8 +1,8 @@
 var ai = [
   { url: "http://www.ubuntu.com", title:"Ubuntu" },
-  { url: "http://community.ubuntu.com/", title:"Community" },
-  { url: "http://askubuntu.com", title:"Ask!" },
-  { url: "http://developer.ubuntu.com", title:"Developer" },
+  { url: "https://community.ubuntu.com/", title:"Community" },
+  { url: "https://askubuntu.com", title:"Ask!" },
+  { url: "https://developer.ubuntu.com", title:"Developer" },
   { url: "https://design.ubuntu.com", title:"Design" },
   { url: "http://www.ubuntu.com/certification", title:"Hardware" },
   { url: "https://insights.ubuntu.com", title:"Insights" },
@@ -14,9 +14,9 @@ var ai = [
 
 var more = [
   { url: "https://help.ubuntu.com", title:"Help" },
-  { url: "http://ubuntuforums.org", title:"Forum" },
-  { url: "http://www.launchpad.net", title:"Launchpad" },
-  { url: "http://shop.ubuntu.com", title:"Merchandise" },
+  { url: "https://ubuntuforums.org", title:"Forum" },
+  { url: "https://launchpad.net", title:"Launchpad" },
+  { url: "https://shop.canonical.com", title:"Merchandise" },
   { url: "http://www.canonical.com", title:"Canonical" }
 ];
 
@@ -109,7 +109,7 @@ core.getActive = function(link) {
 
 core.getURL = function(){
   var url = document.URL;
-  url = url.replace('https://developer.ubuntu.com','http://developer.ubuntu.com');
+  url = url.replace('https://developer.ubuntu.com','https://developer.ubuntu.com');
   return url;
 };
 
