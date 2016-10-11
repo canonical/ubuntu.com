@@ -426,6 +426,7 @@ body {
 .homepage,
 .phone,
 .server,
+.support,
 .tablet {
   .wrapper {
     background: none;
@@ -498,6 +499,7 @@ body {
 .download,
 .phone,
 .server,
+.support,
 .tablet {
   .row--dark {
       background: #262626;
@@ -565,7 +567,7 @@ body {
     @media only screen and (min-width : $breakpoint-large) {
       padding: 100px 40px;
     }
-    
+
     &.no-padding-bottom {
       padding-bottom: 0;
     }
@@ -880,9 +882,7 @@ html.js .resource:hover a {
   .desktop,
   .internet-of-things,
   .legal,
-  .management,
-  .server,
-  .support {
+  .server {
     .row {
       padding-left: 20px;
       padding-right: 20px;
@@ -899,9 +899,7 @@ html.js .resource:hover a {
   .about,
   .desktop,
   .legal,
-  .management,
-  .server,
-  .support {
+  .server {
     .row {
       padding-left: 40px;
       padding-right: 40px;
@@ -1177,14 +1175,14 @@ pre {
 }
 
 .row.row-ubuntu-advantage-promo {
-  
+
   @media only screen and (min-width: $breakpoint-medium) {
     background-image: url('#{$asset-server}a4b68f44-activities-listing.png?W=600');
     background-repeat: no-repeat;
     background-size: 56%;
     background-position: 158% 45px;
   }
-  
+
   @media only screen and (min-width: $breakpoint-large) {
     background-image: url('#{$asset-server}a4b68f44-activities-listing.png?W=800');
     background-position: right top;

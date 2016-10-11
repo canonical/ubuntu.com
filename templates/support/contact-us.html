@@ -1,9 +1,9 @@
-{% extends "management/base_management.html" %}
+{% extends "support/base_support.html" %}
 
-{% block title %}Contact Canonical | Management{% endblock %}
+{% block title %}Contact Canonical | Support{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Management" page_title="Contact us" %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Support" page_title="Contact us" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -74,8 +74,8 @@
                 <input type="hidden" name="cr" class="mktoField" value="" />
                 <input type="hidden" name="kw" class="mktoField" value="" />
                 <input type="hidden" name="q" class="mktoField" value="" />
-                <input type="hidden" name="returnURL" value="http://www.ubuntu.com/management/thank-you" />
-                <input type="hidden" name="retURL" value="http://www.ubuntu.com/management/thank-you" />
+                <input type="hidden" name="returnURL" value="http://www.ubuntu.com/support/thank-you" />
+                <input type="hidden" name="retURL" value="http://www.ubuntu.com/support/thank-you" />
             </fieldset>
             <script>
             $("#mktoForm_1240").validate({

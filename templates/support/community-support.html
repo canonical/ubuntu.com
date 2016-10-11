@@ -1,0 +1,48 @@
+{% extends "support/base_support.html" %}
+
+{% block title %}Community support{% endblock %}
+
+{% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Community support" page_title="Overview" %}
+</div>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-border">
+    <div class="strip-inner-wrapper">
+        <div class="eight-col">
+            <h1>Community support</h1>
+            <p class="seven-col">You can find support from a variety of sources. Take a look &ndash; you&rsquo;re likely to find an answer to every question. If you can&rsquo;t find an answer, just ask the people in our active forums.</p>
+        </div>
+        <div class="four-col last-col text-center priority-0">
+            <img src="{{ ASSET_SERVER_URL }}039628d5-picto-community-orange.svg" width="150" alt="Community">
+        </div>
+    </div>
+</div>
+
+<div class="row no-border">
+    <div class="strip-inner-wrapper equal-height">
+        <div class="six-col box equal-height__item">
+            <h3><a href="https://community.ubuntu.com/help-information/" class="external">Get free community support</a></h3>
+            <p><a href="https://askubuntu.com/">Ask Ubuntu</a> and <a href="https://ubuntuforums.org/">Ubuntu Forums</a> are great sources of answers to common questions about installing, troubleshooting and optimizing Ubuntu. And if you want to speak with the Ubuntu Community directly, try one of these <a href="https://wiki.ubuntu.com/IRC/ChannelList">IRC channels</a>.</p>
+        </div><!-- /.six-col -->
+        <div class="six-col box last-col equal-height__item">
+            <h3><a href="https://help.ubuntu.com/" class="external">Read the docs</a></h3>
+            <p>If you&rsquo;re stuck on a problem, someone else has probably encountered it too. Take a look at the <a href="https://help.ubuntu.com" class="external">official documentation</a>.</p>
+        </div><!-- /.six-col -->
+        <div class="six-col box equal-height__item">
+            <h3><a href="https://answers.launchpad.net/ubuntu" class="external">Technical answers system</a></h3>
+            <p>Use Launchpad to add your support question. Keep your query active until you get an answer or browse and search historical questions and answers.</p>
+        </div><!-- /.six-col -->
+        <div class="six-col box last-col equal-height__item">
+            <h3><a href="/usn">Ubuntu security notices&nbsp;&rsaquo;</a></h3>
+            <p>Keep your system up to date with the Ubuntu security notices that affect the current supported releases of Ubuntu.</p>
+        </div><!-- /.six-col -->
+    </div>
+</div><!-- / .row -->
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
+
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

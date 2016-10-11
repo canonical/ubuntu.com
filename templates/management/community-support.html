@@ -1,0 +1,34 @@
+{% extends "support/_base_support.html" %}
+
+{% block title %}Support{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Support" page_title="Overview" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero no-border">
+	<h1>Support</h1>
+	<p class="seven-col">You can find support from a variety of sources. Take a look &ndash; you&rsquo;re likely to find an answer to every question. If you can&rsquo;t find an answer, just ask the people in our active forums.</p>
+</div>
+
+<div class="row equal-height no-border">
+	<div class="six-col box equal-height__item">
+		<h3><a href="/management">Enterprise support&nbsp;&rsaquo;</a></h3>
+		<p>24x7 Enterprise support from Canonical, the company behind Ubuntu. Server and private cloud enterprise customers include: Bloomberg, Ericsson, Orange, Ebay, Wells Fargo, and Continental.</p>
+	</div><!-- /.six-col -->
+	<div class="six-col box last-col equal-height__item">
+		<h3><a href="https://help.ubuntu.com/" class="external">Access free documentation</a></h3>
+		<p>If you&rsquo;re stuck on a problem, someone else has probably encountered it too. Take a look at the <a href="https://help.ubuntu.com" class="external">official documentation</a>.</p>
+	</div><!-- /.six-col -->
+	<div class="six-col box equal-height__item">
+		<h3><a href="https://answers.launchpad.net/ubuntu" class="external">Technical answers system</a></h3>
+		<p>Use Launchpad to add your support question. Keep your query active until you get an answer or browse and search historical questions and answers.</p>
+	</div><!-- /.six-col -->
+	<div class="six-col box last-col equal-height__item">
+		<h3><a href="https://community.ubuntu.com/help-information/" class="external">Get free community support</a></h3>
+		<p><a href="https://askubuntu.com/">Ask Ubuntu</a> and <a href="https://ubuntuforums.org/">Ubuntu Forums</a> are great sources of answers to common questions about installing, troubleshooting and optimizing Ubuntu. And if you want to speak with the Ubuntu Community directly, try one of these <a href="https://wiki.ubuntu.com/IRC/ChannelList">IRC channels</a>.</p>
+
+	</div><!-- /.six-col -->
+</div><!-- / .row -->
+{% endblock content %}

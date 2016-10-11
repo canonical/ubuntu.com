@@ -1,0 +1,39 @@
+@charset 'UTF-8';
+// ---------------------------------------------------------------
+// ---------------------------------------------------------------
+//
+//  Project:		Ubuntu Front-End support-home section
+//  Author:			Web Team at Canonical Ltd
+//
+// ---------------------------------------------------------------
+// ---------------------------------------------------------------
+
+//	@section all /support
+.support {
+
+  .row-hero {
+    position: relative;
+  }
+
+  // @subsections /support/plans-and-pricing
+  &.support-plans-and-pricing {
+    .no-svg &,
+    .opera-mini & {
+      .row-hero {
+        background-image: url('#{$asset-server}2cb97b41-image-ubuntuadvantage.png');
+      }
+    }
+
+    .ua-price {
+      font-size: 2em;
+    }
+
+    table {
+      table-layout: fixed;
+
+      .pricing-features-column {
+        width: 50%;
+      }
+    }
+  }
+}
