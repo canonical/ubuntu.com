@@ -19,7 +19,7 @@
             <noscript>
                 <p><strong>Contributions require JavaScript. Please enable JavaScript if you want to contribute.</strong></p>
                 {% if start_download %}
-                <p><a href="/download/desktop/thank-you/?version={{ version }}&amp;architecture={{ architecture }}">Take me to the download&nbsp;&rsaquo;</a></p>
+                <p><a href="/download/desktop/thank-you?version={{ version }}&amp;architecture={{ architecture }}">Take me to the download&nbsp;&rsaquo;</a></p>
                 {% endif %}
             </noscript>
         </div>
@@ -115,14 +115,14 @@
                 <input type="hidden" name="no_shipping" value="1">
                 <input type="hidden" name="rm" value="1">
 
-                <input type="hidden" name="return" value="http://{{ http_host }}/download/desktop/thank-you/?version={{ version }}&amp;architecture={{ architecture }}">
-                <input type="hidden" name="cancel_return" value="http://{{ http_host }}/download/desktop/thank-you/?version={{ version }}&amp;architecture={{ architecture }}">
+                <input type="hidden" name="return" value="http://{{ http_host }}/download/desktop/thank-you?version={{ version }}&amp;architecture={{ architecture }}">
+                <input type="hidden" name="cancel_return" value="http://{{ http_host }}/download/desktop/thank-you?version={{ version }}&amp;architecture={{ architecture }}">
 
                 <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
                 <button type="submit" class="contribute__submit" tabindex="9">Pay with PayPal</button>
 
                 {% if start_download %}
-                <a href="/download/desktop/thank-you/?version={{ version }}&amp;architecture={{ architecture }}" class="contribute__skip" tabindex="11">Not now, take me to the download&nbsp;&rsaquo;</a>
+                <a href="/download/desktop/thank-you?version={{ version }}&amp;architecture={{ architecture }}" class="contribute__skip" tabindex="11">Not now, take me to the download&nbsp;&rsaquo;</a>
                 {% endif %}
             </div>
         </form>

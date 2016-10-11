@@ -260,3 +260,77 @@
     }
   }
 }
+
+.internet-of-things-robotics {
+
+  .livestream-video {
+    display: none;
+  }
+
+  .livestream-video-close {
+    display: block;
+    padding: 0 1rem;
+    text-align: right;
+  }
+
+  .row-hero {
+    background-image: url('#{$asset-server}b26f3723-robotics_background_760px.jpg');
+    background-repeat: no-repeat;
+    background-position: center 0;
+    margin-top: 0;
+    min-height: 420px;
+    padding-top: 40px;
+    color: $light-grey;
+
+    @media screen and (min-width: 768px){
+      background-image: url('#{$asset-server}a8155a65-robotics_background_desktop.jpg?w=984');
+      min-height: 560px;
+    }
+
+    .button--primary {
+      margin-top: 1rem;
+    }
+
+    h1 {
+      text-align: left;
+      width: 100%;
+    }
+  }
+
+  .row-full-width {
+    iframe {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .ubuntu-loves-robotics {
+    margin-top: 0;
+
+    @media only screen and (min-width: $breakpoint-medium) {
+      background-image: url('#{$asset-server}8d5f669e-DARWIN_2.png?q=60&w=984');
+      background-position: 309px -35px;
+      background-repeat: no-repeat;
+      background-size: 85%;
+      margin-top: 0;
+      min-height: 550px;
+    }
+
+    h1 {
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        margin-top: 17%;
+      }
+    }
+  }
+}
+
+.internet-of-things-robotics {
+  @media only screen and (min-width: $breakpoint-large) {
+    .case-studies__image {
+      display: block;
+      height: 177px;
+      width: 290px;
+    }
+  }
+}
