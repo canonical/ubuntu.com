@@ -152,13 +152,13 @@
 
   .row-maas {
     @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url('#{$asset-server}f58e0ebf-image-maas-screenshot.jpg?op=region&rect=0,0,300,500');
+      background-image: url('#{$asset-server}1066e824-cloud_maas.jpg?op=region&rect=0,0,300,500');
       background-position: right top;
       background-repeat: no-repeat;
     }
 
     @media only screen and (min-width : $breakpoint-large) {
-      background-image: url('#{$asset-server}f58e0ebf-image-maas-screenshot.jpg?op=region&rect=0,0,470,640');
+      background-image: url('#{$asset-server}1066e824-cloud_maas.jpg?op=region&rect=0,0,470,640');
       background-position: right top;
       background-repeat: no-repeat;
     }
@@ -266,14 +266,14 @@
 
   @media only screen and (min-width: $breakpoint-medium) {
     .row-hero {
-      background-image: url('#{$asset-server}a164f3d0-image-maas-screenshot.jpg');
+      background-image: url('#{$asset-server}1066e824-cloud_maas.jpg');
       background-repeat: no-repeat;
       background-position: 190% 0;
       background-size: 75%;
     }
 
     .row--autopilot {
-      background-image: url('#{$asset-server}c1369eb7-cloud-maas-landscape.jpg');
+      background-image: url('#{$asset-server}b72144a5-cloud_landscape_components.png');
       background-repeat: no-repeat;
       background-position: 190% 0;
       background-size: 75%;
@@ -282,7 +282,7 @@
 
   h1 {
     background-image: url('#{$asset-server}33b96a7f-maas-logo.svg');
-    background-position: 0 5px;
+    background-position: 0 18px;
     background-repeat: no-repeat;
     background-size: 1.4em;
     margin-left: -6px;
@@ -438,9 +438,12 @@
 .cloud-juju {
 
   .row-get-started {
-    background-image: url('#{$asset-server}3c2a0155-media-wiki-ubuntu.png?w=800');
-    background-position: top right;
-    background-repeat: no-repeat;
+    
+    @media only screen and (min-width : $breakpoint-medium) {
+      background-image: url('#{$asset-server}8149d09f-Service+View+-+zoom.png?w=600');
+      background-position: top right;
+      background-repeat: no-repeat;
+    }
   }
   
   .bundle-card__image-container {
@@ -506,13 +509,13 @@
 
   .row-autopilot {
     @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url('#{$asset-server}6e179925-image-cloud-openstack-autopilot-screenshot.jpg?op=region&rect=0,0,300,600');
+      background-image: url('#{$asset-server}b72144a5-cloud_landscape_components.png?op=region&rect=0,0,300,600');
       background-position: right bottom;
       background-repeat: no-repeat;
     }
 
     @media only screen and (min-width : $breakpoint-large) {
-      background-image: url('#{$asset-server}6e179925-image-cloud-openstack-autopilot-screenshot.jpg?op=region&rect=0,0,450,800');
+      background-image: url('#{$asset-server}b72144a5-cloud_landscape_components.png?op=region&rect=0,0,450,800');
       background-position: right top;
       background-repeat: no-repeat;
     }
