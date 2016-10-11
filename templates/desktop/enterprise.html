@@ -11,7 +11,7 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-hero">
+<section class="row row-hero strip-light">
     <div class="strip-inner-wrapper">
         <div class="six-col">
             <h1>Ubuntu for enterprise</h1>
@@ -23,7 +23,7 @@
     </div>
 </section>
 
-<section class="row row-grey">
+<section class="row row-grey no-border">
     <div class="strip-inner-wrapper">
         <h2>Enterprise essentials built-in</h2>
             <div class="combined-list">
@@ -42,7 +42,7 @@
     </div>
 </section>
 
-<section class="row row-case-studies no-border-bottom">
+<section class="row strip-dark no-border">
     <div class="strip-inner-wrapper">
         <div class="twelve-col">
             <h2>Ubuntu in action</h2>
@@ -64,24 +64,22 @@
     </div>
 </section>
 
-<section class="row row-landscape">
+<section class="row row-landscape strip-light">
     <div class="strip-inner-wrapper">
         <div class="five-col no-margin-bottom">
-            <div>
-                <h2>Enterprise-wide support and management tools</h2>
-                <p>Ubuntu Advantage is the professional support package from the experts at Canonical. Get 24x7 support with access to engineers with first-hand experience of your issues. It also includes Landscape, the Ubuntu systems management tool, for monitoring, managing, patching and compliance reporting on all your Ubuntu desktops.</p>
-                <p><a href="/management">Learn about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
-            </div>
+            <h2>Enterprise-wide support and management tools</h2>
+            <p>Ubuntu Advantage is the professional support package from the experts at Canonical. Get 24x7 support with access to engineers with first-hand experience of your issues. It also includes Landscape, the Ubuntu systems management tool, for monitoring, managing, patching and compliance reporting on all your Ubuntu desktops.</p>
+            <p><a href="/management">Learn about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
         </div>
-        <div class="pull-right right priority-0">
-            <img src="{{ ASSET_SERVER_URL }}0607d665-landscape-screenshot.png" class="touch-border landscape-screenshot" alt="Landscape screenshot" />
+        <div class="seven-col last-col no-margin-bottom not-for-small">
+            <img src="{{ ASSET_SERVER_URL }}a4b68f44-activities-listing.png" alt="" />
         </div>
     </div>
 </section>
 
 {% include "shared/_release_schedule.html" %}
 
-<section class="row no-border row-certified">
+<section class="row no-border row-certified strip-light"> 
     <div class="strip-inner-wrapper">
         <div class="five-col push-seven last-col">
             <div>
