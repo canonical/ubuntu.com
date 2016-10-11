@@ -13,6 +13,11 @@
 
   .row-hero {
     position: relative;
+    margin-top: 20px;
+
+    @media only screen and (max-width: $breakpoint-medium) {
+      margin-top: 0;
+    }
   }
 
   // @subsections /support/plans-and-pricing
@@ -50,6 +55,12 @@
       .pricing-features-column {
         width: 50%;
       }
+    }
+  }
+
+  &.support-community-support {
+    .row-community-support-options {
+      padding-top: 0;
     }
   }
 }
