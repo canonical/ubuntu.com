@@ -1190,3 +1190,12 @@ pre {
     background-size: 40%;
   }
 }
+
+// XXX this should be part of the theme - smaller fonts in tables for small screens
+td,
+th {
+
+  @media only screen and (max-width: $breakpoint-medium) {
+    font-size: 14px;
+  }
+}
