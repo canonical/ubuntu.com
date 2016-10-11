@@ -24,6 +24,22 @@
       }
     }
 
+    .row-pricing__image-container {
+
+      @media only screen and (max-width: $breakpoint-medium) {
+        float: left;
+        margin-bottom: 0;
+        margin-right: 1em;
+        width: 50px;
+      }
+
+      .row-pricing__title {
+        @media only screen and (max-width: $breakpoint-medium) {
+          margin: .3em 1em 1.8em;
+        }
+      }
+    }
+
     .ua-price {
       font-size: 2em;
     }
