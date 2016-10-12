@@ -40,12 +40,41 @@
                 <p class="note">If you have an older PC with less than 2GB of memory, choose the 32-bit download.</p>
             </div>
         </div><!-- /.box -->
-        <p class="intro"><a class="external" href="http://www.ubuntu-china.cn" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Download Kylin hero', 'eventLabel' : 'From Ubuntu download kylin', 'eventValue' : undefined });">Ubuntu 中国网站现已面世</a></p>
         </div>
-
     </div>
 </div>
 
+<div class="row no-border row-grey">
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col no-margin-bottom">
+            <div class="box box-highlight clearfix vertical-divider">
+                <div class="eight-col no-margin-bottom">
+                    <h2>Ubuntu Kylin {{latest_release}}</h2>
+                    <p>Download the latest version, Ubuntu Kylin {{latest_release}} as an ISO image file. To install Ubuntu Kylin, burn the image file onto a DVD or create a bootable USB disk.
+</p>
+                </div>
+                <div class="four-col last-col no-margin-bottom">
+                    <form class="form-download gap-from-top" action="http://cdimage.ubuntu.com/ubuntukylin/releases/{{latest_release}}/release/ubuntukylin-{{latest_release}}-desktop-amd64.iso" method="get">
+                        <fieldset>
+                            <div>
+                                <button type="submit" class="link-cta-ubuntu cta-large" onclick="_gaq.push(['_trackEvent', 'Download Link', '{{latest_release}} 64 bit', 'From English-language Chinese download']);">Download 64-bit</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <form class="form-download" action="http://cdimage.ubuntu.com/ubuntukylin/releases/{{latest_release}}/release/ubuntukylin-{{latest_release}}-desktop-i386.iso" method="get">
+                        <fieldset>
+                            <div>
+                                <button type="submit" class="link-cta-ubuntu cta-large" onclick="_gaq.push(['_trackEvent', 'Download Link', '{{latest_release}} 32 bit', 'From English-language Chinese download']);">Download 32-bit</button>
+                            </div>
+                        </fieldset>
+                    </form>
+            <p class="note">If you have an older PC with less than 2GB of memory, choose the 32-bit download.</p>
+                </div>
+            </div>
+            <p class="intro"><a class="external" href="http://www.ubuntu-china.cn" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Download Kylin hero', 'eventLabel' : 'From Ubuntu download kylin', 'eventValue' : undefined });">Ubuntu中国站</a></p>
+        </div>
+    </div>
+</div>
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_kylin_bittorrent" second_item="_download_kylin_community" third_item="_download_helping_hands" %}
 
 {% endblock content %}

@@ -196,13 +196,13 @@ body.homepage {
   }
 }
 
-  .intro-left,
-  .intro-right {
-    @media only screen and (min-width : 984px) {
-      background: url('#{$asset-server}bcb69486-image-intro-dots.svg') repeat-x right center;
-      background-size: 10px;
-    }
+.intro-left,
+.intro-right {
+  @media only screen and (min-width : 984px) {
+    background: url('#{$asset-server}bcb69486-image-intro-dots.svg') repeat-x right center;
+    background-size: 10px;
   }
+}
 
 .intro-right {
   background-position: left center;
@@ -386,8 +386,18 @@ body.homepage .row--intro .intro-middle li a:hover {
   }
 }
 
-.row--ubuntu-news {
-  background: #fff;
+body.homepage .row--ubuntu-news {
+  background-color: #fff;
+  margin-bottom: -60px;
+
+  @media only screen and (min-width : 768px) {
+    margin-bottom: 0px;
+    padding-top: 60px;
+  }
+
+  @media only screen and (min-width : 984px) {
+    padding-top: 100px;
+  }
 
   a {
     position: relative;
@@ -552,11 +562,11 @@ body.homepage .row-featured {
   &::before {
     position: absolute;
     display: none;
-    
+
     @media only screen and (min-width : $breakpoint-medium) {
       display: block;
     }
-    
+
     left: -3000px;
     margin-top: -40px;
     content: "";
@@ -574,11 +584,11 @@ body.homepage .row-featured {
   &::after {
     position: absolute;
     display: none;
-    
+
     @media only screen and (min-width : $breakpoint-medium) {
       display: block;
     }
-    
+
     right: -3000px;
     margin-top: -40px;
     content: "";
@@ -1596,7 +1606,7 @@ body.homepage-autopilot-devops-takeover {
   }
 }
 
-// autopilot devops takeover
+// linux 25th takeover
 body.homepage-linux-25th-takeover {
   #main-content {
     .row-hero {
@@ -1642,7 +1652,7 @@ body.homepage-nextcloud-takeover {
         margin-top: 10px;
         margin-bottom: 20px;
       }
-      
+
       @media only screen and (min-width : 768px) {
         background-image: url('#{$asset-server}5aa79282-56f66029-Nextbox+09.2016.desktop.background-large.png');
         min-height: 440px;
@@ -1650,7 +1660,7 @@ body.homepage-nextcloud-takeover {
         .row-hero__heading {
           margin-top: 60px;
         }
-        
+
         .row-hero___image {
           margin-top: 50px;
         }
@@ -1667,11 +1677,11 @@ body.homepage-nextcloud-takeover {
           margin-top: 60px;
         }
       }
-      
+
       .button--primary {
         background-color: $white;
         color: $cool-grey;
-    
+
         &:hover {
           background-color: #f7f7f7;
         }
@@ -1694,33 +1704,33 @@ body.homepage-kubernetes-takeover {
       background-size: cover;
       background-repeat: no-repeat;
       margin-top: 0;
-      
-      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+
+      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
         background-image: url('#{$asset-server}32d31c25-Kubernetes_backgd_mobile_720.png');
         background-position: right 40px;
         background-size: 100%;
       }
-      
+
       @media only screen and (min-width : $breakpoint-medium) {
         background-image: url('#{$asset-server}c0df5df2-Kubernetes_backgd_desktop-1.png');
         background-size: 126% auto;
         background-position: 70% -45px;
-        min-height: 400px; 
+        min-height: 400px;
       }
-      
+
       @media only screen and (min-width : $breakpoint-large) {
         background-position: 74% -68px;
         background-size: auto;
         min-height: 580px;
       }
-      
+
       &__heading {
         margin-top: 20px;
-        
+
         @media only screen and (min-width : $breakpoint-medium) {
           margin-top: 60px;
         }
-        
+
         @media only screen and (min-width : $breakpoint-large) {
           margin-top: 100px;
         }
@@ -1729,19 +1739,19 @@ body.homepage-kubernetes-takeover {
       &__image {
         margin-top: 10px;
         margin-bottom: 20px;
-        
+
         @media only screen and (min-width : $breakpoint-medium) {
           margin-top: 50px;
         }
-        
+
         @media only screen and (min-width : $breakpoint-large) {
           margin-top: 60px;
         }
       }
-      
+
       .button--primary {
         margin-top: 340px;
-        
+
         @media only screen and (min-width : $breakpoint-medium) {
           margin-top: 20px;
         }

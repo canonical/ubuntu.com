@@ -11,7 +11,7 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-grey">
+<div class="row row-grey no-border">
     <div class="strip-inner-wrapper">
         <div class="eight-col append-four">
             <h1>Download Ubuntu Desktop</h1>
@@ -23,8 +23,8 @@
             <div class="box box-highlight clearfix equal-height--vertical-divider">
                 <div class="equal-height--vertical-divider__item eight-col no-margin-bottom">
                     <h2>Ubuntu {{lts_release_full_with_point}}</h2>
-                    <p>Download the latest version of Ubuntu, for desktop PCs and laptops. LTS stands for long-term support – which means five years of free security and maintenance updates, guaranteed.</p>
-                    <p><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="external">Ubuntu {{lts_release_full}} release notes</a></p>
+                    <p>Download the latest LTS version of Ubuntu, for desktop PCs and laptops. LTS stands for long-term support – which means five years of free security and maintenance updates, guaranteed.</p>
+                    <p><a href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes" class="external">Ubuntu {{lts_release_full}} release notes</a></p>
 
                     <p>Recommended system requirements:</p>
 
@@ -56,6 +56,46 @@
         </div><!-- /.twelve-col -->
     </div><!-- /.strip-inner-wrapper -->
 </div><!-- /.row -->
+
+<div class="row row-grey">
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col no-margin-bottom">
+            <div class="box box-highlight clearfix vertical-divider">
+                <div class="equal-height--vertical-divider__item eight-col no-margin-bottom">
+                    <h2>Ubuntu {{latest_release}}</h2>
+                    <p>The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{latest_release}} comes with nine months of security and maintenance updates.</p>
+                    <p><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="external">Ubuntu {{latest_release}} release notes</a></p>
+
+                    <p>Recommended system requirements:</p>
+
+                    <ul class="list-ticks--compact">
+                        <li>2 GHz dual core processor or better</li>
+                        <li>2 GB system memory</li>
+                        <li>25 GB of free hard drive space</li>
+                        <li>Either a DVD drive or a USB port for the installer media</li>
+                        <li>Internet access is helpful</li>
+                    </ul>
+
+                </div>
+                <div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom download-button">
+                    <p>
+                        <a class="button--primary link-cta-download" href="/download/desktop/thank-you/?version={{latest_release}}&amp;architecture=amd64">Download</a>
+                        <script>
+                            // Contributions only work with JavaScript
+                            // So if we have JavaScript, send them to /contribute
+                            var downloadLink = document.querySelector('.link-cta-download');
+                            var contributeUrl = downloadLink.href.replace('/thank-you', '/contribute');
+                            downloadLink.href = contributeUrl;
+                        </script>
+                    </p>
+                    <ul class="no-bullets">
+                        <li><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></li>
+                    </ul>
+                </div><!-- /.four-col -->
+            </div><!-- /.box -->
+        </div>
+    </div>
+</div>
 
 <div class="row row-easy-ways">
     <div class="strip-inner-wrapper">
