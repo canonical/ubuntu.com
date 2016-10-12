@@ -124,10 +124,6 @@
       background-repeat: no-repeat;
       border-bottom: 0;
       min-height: 573px;
-
-      .light {
-        color: $cool-grey;
-      }
     }
   }
 
@@ -158,19 +154,28 @@
 .desktop-features {
 
   .row-hero {
+    overflow: hidden;
 
-    @media only screen and (min-width: $breakpoint-medium) {
-      background-image: url('#{$asset-server}9fe68ee3-desktop-features-hero.png?w=897');
-      background-position: top right -170px;
-      background-repeat: no-repeat;
-      background-size: 36em;
-      min-height: 310px;
-    }
+    &:before {
 
-    @media only screen and (min-width: $breakpoint-large) {
-      background-position: right -346px center;
-      background-size: initial;
-      min-height: 500px;
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server}9fe68ee3-desktop-features-hero.png?w=897') center center no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height: 75%;
+        overflow: visible;
+        position: absolute;
+        right: -30vw;
+        top: 40px;
+        width: 80vw;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        height: 85%;
+        right: 3vw;
+        width: 50vw;
+      }
     }
   }
 
@@ -301,19 +306,28 @@
 .desktop-enterprise {
 
   .row-hero {
+    overflow: hidden;
 
-    @media only screen and (min-width: $breakpoint-medium) {
-      background-image: url('#{$asset-server}ca8a41c4-desktop-enterprise-hero.png');
-      background-position: right -170px center;
-      background-repeat: no-repeat;
-      background-size: 37em;
-      min-height: 310px;
-    }
+    &:before {
 
-    @media only screen and (min-width: $breakpoint-large) {
-      background-position: right -346px center;
-      background-size: 56em;
-      min-height: 500px;
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server}ca8a41c4-desktop-enterprise-hero.png?w=897') center center no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height: 75%;
+        overflow: visible;
+        position: absolute;
+        right: -30vw;
+        top: 40px;
+        width: 80vw;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        height: 85%;
+        right: 3vw;
+        width: 50vw;
+      }
     }
   }
 
@@ -422,18 +436,28 @@
 
 
   .row-hero {
-    @media only screen and (min-width: $breakpoint-medium) {
-      background-image: url('#{$asset-server}2e62cdb4-desktop-developer-hero.png');
-      background-position: right -170px center;
-      background-repeat: no-repeat;
-      background-size: 37em;
-      min-height: 310px;
-    }
+    overflow: hidden;
 
-    @media only screen and (min-width: $breakpoint-large) {
-      background-position: right -346px center;
-      background-size: 56em;
-      min-height: 500px;
+    &:before {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server}2e62cdb4-desktop-developer-hero.png?w=897') center center no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height: 75%;
+        overflow: visible;
+        position: absolute;
+        right: -30vw;
+        top: 40px;
+        width: 80vw;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        height: 85%;
+        right: 3vw;
+        width: 50vw;
+      }
     }
   }
 
@@ -488,18 +512,28 @@
 .desktop-ubuntu-kylin {
 
   .row-hero {
-    @media only screen and (min-width: $breakpoint-medium) {
-      background-image: url('#{$asset-server}b0f9da06-desktop-kylin-hero.jpg?w=720');
-      background-position: right -170px center;
-      background-repeat: no-repeat;
-      background-size: 37em;
-      min-height: 310px;
-    }
+    overflow: hidden;
 
-    @media only screen and (min-width: $breakpoint-large) {
-      background-position: right -346px center;
-      background-size: 56em;
-      min-height: 500px;
+    &:before {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server}b0f9da06-desktop-kylin-hero.jpg?w=897') center center no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height: 75%;
+        overflow: visible;
+        position: absolute;
+        right: -30vw;
+        top: 40px;
+        width: 80vw;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        height: 85%;
+        right: 3vw;
+        width: 50vw;
+      }
     }
   }
 
