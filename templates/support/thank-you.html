@@ -1,9 +1,11 @@
-{% extends "management/base_management.html" %}
+{% extends "support/base_support.html" %}
 
-{% block title %}Thank you | Management{% endblock %}
+{% block title %}Thank you | Support{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Management" subsection_title="Contact us" page_title="Thank you"  %}
+<div class="strip-inner-wrapper">
+	{% include "templates/_nav_breadcrumb.html" with section_title="Support" subsection_title="Contact us" page_title="Thank you"  %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}

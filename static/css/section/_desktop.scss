@@ -388,7 +388,7 @@
       margin-top: 0;
       min-height: 350px;
       background-size: 100%;
-      
+
 
       h1 {
         padding-top: 40px;
@@ -408,7 +408,6 @@
   }
 
   .row-case-studies {
-
     @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}5b74fa2a-map.jpg');
       background-position: center 30px;
@@ -420,7 +419,8 @@
   .row-security {
     @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}99d49a7d-padlock-chain.png');
-      background-position: 30px center;
+      background-position: 80% center;
+      background-repeat: no-repeat;
       background-size: initial;
       min-height: 310px;
     }
@@ -433,7 +433,7 @@
   .row-easy-deployment {
     background-color: $box-solid-grey;
   }
-  
+
 
   .row-hero {
     overflow: hidden;
@@ -463,11 +463,20 @@
 
   .whats-new-graphic {
     @media only screen and (min-width: $breakpoint-medium) {
-      background-image: url('#{$asset-server}e8731111-desktop-developer-whatsnew1610.jpg');
-      background-position: top right -220px;
-      background-repeat: no-repeat;
-      background-size: 36em;
       min-height: 310px;
+      position: relative;
+
+      &:before {
+        content: url('#{$asset-server}e8731111-desktop-developer-whatsnew1610.jpg?w=600');
+        position: absolute;
+        right: -100%;
+        @media (min-width: 920px){
+          right: -85%;
+        }
+        top: 20px;
+        max-width: 500px;
+
+      }
     }
   }
 
