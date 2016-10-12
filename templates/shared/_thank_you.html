@@ -1,13 +1,14 @@
-<div class="row row-hero no-border equal-height">
-  {% if level_1 == "tablet" or level_1 == "phone" or level_1 == "download" %}<div class="strip-inner-wrapper">{% endif %}
-	<div class="thank-you eight-col equal-height__item">
-		<h1>Thank you for {{ thanks_context }}</h1>
-		<p class="intro">A member of our team will be in touch {{ details }}within <strong>one working day</strong></p>
-	</div>
-	<div class="four-col last-col equal-height__item equal-height__align-vertically">
-		<img src="{{ ASSET_SERVER_URL }}52d53696-picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
-	</div>
-</div>
-  {% if level_1 == "tablet" or level_1 == "phone" or level_1 == "download" %}</div>{% endif %}
-
+<section class="row row-hero no-border strip-light">
+  {% if level_1 == "tablet" or level_1 == "phone" or level_1 == "download" or level_1 == "server" or level_1 == "cloud" or level_1 == "desktop" %}<div class="strip-inner-wrapper">{% endif %}
+    <div class="equal-height">
+    	<div class="thank-you eight-col equal-height__item">
+    		<h1>Thank you for {{ thanks_context }}</h1>
+    		<p class="intro">A member of our team will be in touch {{ details }}within <strong>one working day</strong></p>
+    	</div>
+    	<div class="four-col last-col equal-height__item equal-height__align-vertically">
+    		<img src="{{ ASSET_SERVER_URL }}52d53696-picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
+    	</div>
+    </div>
+  {% if level_1 == "tablet" or level_1 == "phone" or level_1 == "download" or level_1 == "server" or level_1 == "cloud" or level_1 == "desktop" %}</div>{% endif %}
+</section>
 {% include "shared/_thank_you_footer.html" %}

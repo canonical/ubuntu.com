@@ -318,6 +318,7 @@ body {
 .vertical-divider div.box-digest {
   padding-bottom: 0;
 }
+// same as row-white
 .strip-light {
   background-color: #fff;
 }
@@ -421,9 +422,12 @@ body {
   margin-top: 7px;
 }
 // Full width sections
+.server,
 .ubuntu-search,
 .download,
+.desktop,
 .homepage,
+.cloud,
 .phone,
 .server,
 .tablet {
@@ -495,10 +499,13 @@ body {
 }
 
 // extra rules for full width sections other than homepage
-.download,
-.phone,
+.cloud,
 .server,
-.tablet {
+.desktop,
+.phone,
+.tablet,
+.download,
+.server {
   .row--dark {
       background: #262626;
       color: #ebebea;
@@ -517,8 +524,12 @@ body {
   }
 }
   // The default section row padding
+.cloud,
+.server,
+.desktop,
 .phone,
 .tablet,
+.download,
 .server {
   .row-hero {
     margin-top: 0;
@@ -552,8 +563,12 @@ body {
   }
 }
 
-.tablet,
+.cloud,
+.server,
+.desktop,
 .phone,
+.tablet,
+.download,
 .server {
   .row {
     padding: 20px 10px 0;
@@ -565,7 +580,11 @@ body {
     @media only screen and (min-width : $breakpoint-large) {
       padding: 100px 40px;
     }
-    
+
+    .touch-border, .touch-bottom {
+      margin-bottom: -100px;
+    }
+
     &.no-padding-bottom {
       padding-bottom: 0;
     }
@@ -1177,14 +1196,14 @@ pre {
 }
 
 .row.row-ubuntu-advantage-promo {
-  
+
   @media only screen and (min-width: $breakpoint-medium) {
     background-image: url('#{$asset-server}a4b68f44-activities-listing.png?W=600');
     background-repeat: no-repeat;
     background-size: 56%;
     background-position: 158% 45px;
   }
-  
+
   @media only screen and (min-width: $breakpoint-large) {
     background-image: url('#{$asset-server}a4b68f44-activities-listing.png?W=800');
     background-position: right top;
