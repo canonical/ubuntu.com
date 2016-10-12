@@ -1,34 +1,115 @@
-{% extends "support/_base_support.html" %}
+{% extends "support/base_support.html" %}
 
-{% block title %}Support{% endblock %}
+{% block meta_description %}Landscape, the systems management tool provided with Ubuntu Advantage, Canonical's service programme, allows you to manage large-scale deployments of Ubuntu machines as easily as one, making it far more cost-effective to support large networks of desktops, servers and cloud instances.{% endblock %}
+
+{% block meta_keywords %}Landscape, systems management, Ubuntu, Canonical, Linux, Ubuntu Advantage, compliance, inventory, deployment, provision, provisioning, manage, management, monitor, monitoring, scriptable, enterprise, software, API, web, dedicated, desktop, server, cloud, OpenStack, Eucalyptus, Amazon, EC2, ROI, cost-effective, trial, free, autopilot, SaaS{% endblock %}
+
+{% block title %}Support and management tools{% endblock %}
+
+{% block extra_body_class %}support-home{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Support" page_title="Overview" %}
+<div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Support" page_title="Overview"  %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero no-border">
-	<h1>Support</h1>
-	<p class="seven-col">You can find support from a variety of sources. Take a look &ndash; you&rsquo;re likely to find an answer to every question. If you can&rsquo;t find an answer, just ask the people in our active forums.</p>
-</div>
 
-<div class="row equal-height no-border">
-	<div class="six-col box equal-height__item">
-		<h3><a href="/management">Enterprise support&nbsp;&rsaquo;</a></h3>
-		<p>24x7 Enterprise support from Canonical, the company behind Ubuntu. Server and private cloud enterprise customers include: Bloomberg, Ericsson, Orange, Ebay, Wells Fargo, and Continental.</p>
-	</div><!-- /.six-col -->
-	<div class="six-col box last-col equal-height__item">
-		<h3><a href="https://help.ubuntu.com/" class="external">Access free documentation</a></h3>
-		<p>If you&rsquo;re stuck on a problem, someone else has probably encountered it too. Take a look at the <a href="https://help.ubuntu.com" class="external">official documentation</a>.</p>
-	</div><!-- /.six-col -->
-	<div class="six-col box equal-height__item">
-		<h3><a href="https://answers.launchpad.net/ubuntu" class="external">Technical answers system</a></h3>
-		<p>Use Launchpad to add your support question. Keep your query active until you get an answer or browse and search historical questions and answers.</p>
-	</div><!-- /.six-col -->
-	<div class="six-col box last-col equal-height__item">
-		<h3><a href="https://community.ubuntu.com/help-information/" class="external">Get free community support</a></h3>
-		<p><a href="https://askubuntu.com/">Ask Ubuntu</a> and <a href="https://ubuntuforums.org/">Ubuntu Forums</a> are great sources of answers to common questions about installing, troubleshooting and optimizing Ubuntu. And if you want to speak with the Ubuntu Community directly, try one of these <a href="https://wiki.ubuntu.com/IRC/ChannelList">IRC channels</a>.</p>
+<section class="row row-hero">
+    <div class="strip-inner-wrapper">
+        <h1>Support and management tools</h1>
+        <div class="seven-col no-margin-bottom">
+            <p>Ubuntu Advantage is the commercial support package from Canonical. It includes Landscape, the Ubuntu systems management tool, for running desktop, server and public cloud deployments, or building and managing private OpenStack clouds. </p>
+            <p><a href="https://buy.ubuntu.com" class="button--primary"><span class="external">Visit the Ubuntu Advantage store</span></a></p>
+            <p><a href="/support/contact-us">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+        </div><!-- /.six-col -->
+        <div class="five-col last-col align-center">
+            <img alt="" width="288" height="155" src="{{ ASSET_SERVER_URL }}11da76f5-image-management.svg" class="priority-0" />
+        </div><!-- /.six-col -->
+    </div>
+</section><!-- /.row-hero -->
 
-	</div><!-- /.six-col -->
-</div><!-- / .row -->
+
+<section class="row row-white">
+    <div class="strip-inner-wrapper equal-height--vertical-divider">
+        <div class="equal-height--vertical-divider__item six-col">
+            <div class="one-col align-center no-margin-bottom">
+                <img src="{{ ASSET_SERVER_URL }}bb7440f9-picto-server-orange.svg" width="50" height="50" alt="" class="priority-0"/>
+            </div>
+            <div class="five-col last-col no-margin-bottom">
+                <h3>Manage desktops and servers with Landscape</h3>
+                <h4 class="note caps">Free for 30 days</h4>
+            </div>
+            <p>Try the SaaS version of Landscape on your desktop, server and public cloud deployments &mdash; free for 30 days.</p>
+            <p><a href="https://landscape.canonical.com/trial-registration">Try Landscape for free for 30 days&nbsp;&rsaquo;</a></p>
+        </div><!-- /.six-col -->
+
+        <div class="equal-height--vertical-divider__item six-col last-col">
+            <div class="one-col align-center no-margin-bottom">
+                <img src="{{ ASSET_SERVER_URL }}b2015716-picto-cloud-orange.svg" width="50" height="50" alt="" class="priority-0"/>
+            </div>
+            <div class="five-col last-col no-margin-bottom">
+                <h3>Build a cloud with OpenStack Autopilot</h3>
+                <h4 class="note caps">Up to ten machines for free</h4>
+            </div>
+            <p>Canonical&rsquo;s OpenStack Autopilot builds and manages a highly resilient OpenStack cloud from the bare metal up.</p>
+            <p><a href="/download/cloud">Install OpenStack Autopilot&nbsp;&rsaquo;</a></p>
+        </div><!-- /.six-col -->
+    </div>
+</section><!-- /.row-hero -->
+
+{% include "shared/_ubuntu_advantage_whats_included.html" %}
+
+<section class="row row-white">
+    <div class="strip-inner-wrapper">
+        <div class="ten-col push-one align-center">
+            <h2 class="muted-heading">A selection of Ubuntu Advantage customers</h2>
+            <ul class="inline-logos">
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}1a062141-logo-bloomberg.svg" width="187" alt="Bloomburg logo">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}3c7e83fc-atandt-logo.svg" width="61" alt="at&amp;t logo">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}3161e6ba-logo-walmart.svg" width="210" alt="Walmart logo">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}03a06060-logo-deutschetelekom.svg" width="242" alt="Deutshe Telekom logo">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}e0f7037f-logo-ebay.svg" width="170" alt="Ebay logo">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}06c5609f-logo-cisco.svg" width="156" alt="Cisco logo">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}ddb0f9d6-logo-ntt.svg" width="71" alt="NTT logo">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}15e9c496-logo-bestbuy.svg" width="166" alt="Best Buy logo">
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+<section id="community-support" class="row row-white no-border">
+    <div class="strip-inner-wrapper">
+        <div class="eight-col">
+            <h2>Community support</h2>
+            <p>As one of the largest open source projects, with Ubuntu you can find support from a variety of sources. Take a look - you&rsquo;re likely to find an answer to every question. If you can&rsquo;t find an answer, just ask the people in our active forums.</p>
+            <p><a href="/support/community-support">Learn more about community support&nbsp;&rsaquo;</a></p>
+        </div>
+        <div class="four-col last-col text-center priority-0">
+            <img src="{{ ASSET_SERVER_URL }}039628d5-picto-community-orange.svg" width="150" alt="Community">
+        </div>
+    </div>
+</section>
+
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
+
 {% endblock content %}
