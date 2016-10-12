@@ -4,13 +4,14 @@
 
 {% block second_level_nav_items %}
 <div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Plans and pricing" %}
 {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Plans and pricing" %}
 </div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-hero equal-height">
-    <div class="strip-inner-wrapper">
+<section class="row row-hero strip-light">
+    <div class="strip-inner-wrapper equal-height">
         <div class="seven-col equal-height__item">
             <h1>Plans and pricing</h1>
             <p class="intro six-col">Ubuntu OpenStack offers the best economics of any commercially supported OpenStack solution. Canonical offers everything you need from fully managed clouds to training and support. We aim to be as easy and economical as possible to work with and that includes flexible pricing.</p>
@@ -21,7 +22,7 @@
     </div>
 </section>
 
-<section class="row no-border no-padding-bottom">
+<section class="row no-border no-padding-bottom strip-light">
     <div class="strip-inner-wrapper">
         <div class="eight-col no-margin-bottom">
             <h2>Ubuntu Advantage for OpenStack</h2>
@@ -31,7 +32,7 @@
     </div>
 </section>
 
-<section class="row no-border no-padding-bottom">
+<section class="row no-border no-padding-bottom strip-light">
     <div class="strip-inner-wrapper">
         <div class="eight-col">
             <h3>Per node</h3>
@@ -43,7 +44,7 @@
     </div>
 </section>
 
-<section class="row no-border no-padding-bottom">
+<section class="row no-border no-padding-bottom strip-light">
     <div class="strip-inner-wrapper">
         <div class="eight-col">
             <h3>Metered</h3>
@@ -56,7 +57,7 @@
     </div>
 </section>
 
-<section class="row">
+<section class="row strip-light">
     <div class="strip-inner-wrapper">
         <div class="eight-col">
         <h3>Service provider</h3>
@@ -70,7 +71,7 @@
     </div>
 </section>
 
-<section class="row">
+<section class="row strip-light">
     <div class="strip-inner-wrapper">
         <div class="eight-col append-four">
             <h2>OpenStack Autopilot</h2>
@@ -80,7 +81,7 @@
     </div>
 </section><!-- end row -->
 
-<section class="row">
+<section class="row strip-light">
     <div class="strip-inner-wrapper">
         <h2>BootStack fully managed OpenStack Cloud</h2>
         <div class="eight-col append-four no-margin-bottom">
@@ -101,7 +102,7 @@
     </div>
 </section>
 
-<section class="row">
+<section class="row strip-light">
     <div class="strip-inner-wrapper">
         <div class="seven-col">
             <h2>Consulting</h2>
@@ -114,7 +115,7 @@
     </div>
 </section>
 
-<section class="row row-get-started">
+<section class="row row-get-started strip-light">
     <div class="strip-inner-wrapper">
         <h2>Ubuntu on public clouds</h2>
         <p class="eight-col">Ubuntu Server is available as a cloud guest on participating public clouds. Pricing depends on size of virtual machine.  Check with each provider for more details.</p>
@@ -124,7 +125,7 @@
     </div>
 </section>
 
-<section class="row no-border">
+<section class="row no-border strip-light">
     <div class="strip-inner-wrapper">
         <h2>Cloud tools</h2>
         <p>Ubuntu provides tools to help you create, scale and manage your cloud.</p>

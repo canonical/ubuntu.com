@@ -318,6 +318,7 @@ body {
 .vertical-divider div.box-digest {
   padding-bottom: 0;
 }
+// same as row-white
 .strip-light {
   background-color: #fff;
 }
@@ -579,11 +580,11 @@ body {
     @media only screen and (min-width : $breakpoint-large) {
       padding: 100px 40px;
     }
-    
+
     .touch-border, .touch-bottom {
       margin-bottom: -100px;
     }
-    
+
     &.no-padding-bottom {
       padding-bottom: 0;
     }
@@ -1195,14 +1196,14 @@ pre {
 }
 
 .row.row-ubuntu-advantage-promo {
-  
+
   @media only screen and (min-width: $breakpoint-medium) {
     background-image: url('#{$asset-server}a4b68f44-activities-listing.png?W=600');
     background-repeat: no-repeat;
     background-size: 56%;
     background-position: 158% 45px;
   }
-  
+
   @media only screen and (min-width: $breakpoint-large) {
     background-image: url('#{$asset-server}a4b68f44-activities-listing.png?W=800');
     background-position: right top;

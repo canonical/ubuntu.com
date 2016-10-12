@@ -15,17 +15,12 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-hero no-border">
+<section class="row row-hero no-border no-padding-bottom strip-light">
     <div class="strip-inner-wrapper">
         <div class="hero-content twelve-col">
             <h1>Build your cloud strategy with Ubuntu</h1>
             <p class="intro">70% of public cloud workloads and 55% of OpenStack clouds run on Ubuntu.<a href="#fn1" id="r1">*</a></p>
         </div>
-    </div>
-</section>
-
-<section class="row row-full-width">
-    <div class="strip-inner-wrapper">
         <div class="twelve-col no-margin-bottom last-col">
             <div class="video-container">
                 <iframe width="906" height="500" src="https://www.youtube.com/embed/RiEZB1-83wQ?rel=0&amp;&amp;hd=1" frameborder="0" allowfullscreen></iframe>
@@ -64,7 +59,7 @@
     </div>
 </section>
 
-<section class="row no-border">
+<section class="row no-border strip-light">
     <div class="strip-inner-wrapper">
         {% include "cloud/shared/_openstack_clients.html" %}
     </div>
@@ -91,7 +86,7 @@
     </div>
 </section>
 
-<section class="row no-border no-padding-bottom">
+<section class="row no-border no-padding-bottom strip-light">
     <div class="strip-inner-wrapper">
         <h2>Juju is the universal app store for the cloud</h2>
         <div class="eight-col">
@@ -99,7 +94,7 @@
             <ul class="list-ticks--compact">
                 <li>Find solutions for anything from databases and big data to containers and benchmarking</li>
                 <li>Write your own solution in any language and add it to the store</li>
-                <li>Model, configure, deploy and manage entire cloud environments with only a few commands</li>
+                <li>Model, configure, deploy and manage entire cloud environments with only a few commands</li> 
                 <li>Increase productivity, improve workflow, reuse solutions and deploy across all major public and private clouds</li>
             </ul>
             <p><a href="/cloud/juju">Learn more about Juju&nbsp;&rsaquo;</a></p>
@@ -184,7 +179,7 @@
     </div>
 </section>
 
-<section class="row">
+<section class="row strip-light">
     <div class="strip-inner-wrapper">
         <div class="twelve-col">
           <h2 class="muted-heading">Leading vendors publish on Juju</h2>
@@ -315,35 +310,24 @@
   }
 </script>
 
-<section class="row row-insights row-grey no-padding-bottom">
+<section class="row row-insights row-grey">
     <div class="strip-inner-wrapper">
         <h2 class="twelve-col">The latest Ubuntu Cloud news and events</h2>
         <div class="twelve-col equal-height--vertical-divider no-margin-bottom">
-          <div id="insights-cloud-feed" class='six-col equal-height--vertical-divider__item'>
-            <ul class="no-bullets">
-              <li>Read news, case studies, whitepapers and more on <a class="external" href="https://insights.ubuntu.com">insights.ubuntu.com</a></li>
-            </ul>
-          </div><!-- end .insights-cloud-feed -->
-          <script>
-            $(function() {
-              $.getFeed({
-                url: 'http://insights.ubuntu.com/topic/Cloud/feed',
-                success: function(feed) {
-                  var html = "";
-                  for(var i = 0; i < feed.items.length && i < 4; i++) {
-                    var item = feed.items[i];
-                    var d = $.trim(item.description).substring(0, 100).split(" ").slice(0, -1).join(" ") + "\&hellip\;";
-                    html += "<li class='six-col'><h3 class='newsevent__title'><a href='" + item.link + "' class='external'>" + item.title + "</a></h3><p>" + d + "</p></li>";
-                  }
-                  html = "<div id='insights-cloud-feed' class='equal-height--vertical-divider__item six-col'><ul class='no-bullets'>" + html + "</ul></div>";
-                  if ($('#insights-cloud-feed')) {
-                    $('#insights-cloud-feed').replaceWith(html);
-                  }
-                }
-              });
-            });
-          </script>
-    {% include "cloud/shared/_events_overview.html" %}
+            <div id='insights-cloud-feed' class='equal-height--vertical-divider__item six-col'>
+                <ul class='no-bullets'>
+                    {% get_rss_feed "https://insights.ubuntu.com/topic/Cloud/feed/" limit=4 as cloud_feed %}
+                    {% autoescape off %}
+                    {% for item in cloud_feed %}
+                    <li class='six-col'>
+                        <h3 class='newsevent__title'><a href='{{ item.link }}' class='external'>{{ item.title }}</a></h3>
+                        <p>{{ item.description|force_escape|truncate_chars:100 }}</p>
+                    </li>
+                    {% endfor %}
+                    {% endautoescape %}
+                </ul>
+            </div>
+        {% include "cloud/shared/_events_overview.html" %}
         </div><!-- end .twelve-col .vertical-divider -->
     </div>
 </section>
@@ -361,7 +345,6 @@
 
 {% block head_extra %}
 <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
-<script src="{{ ASSET_SERVER_URL }}c954db4a-jfeed_prm.js"></script>
 
 <style type="text/css">
   @keyframes fadeIn {

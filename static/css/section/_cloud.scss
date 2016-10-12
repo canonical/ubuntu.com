@@ -152,13 +152,13 @@
 
   .row-maas {
     @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url('#{$asset-server}f58e0ebf-image-maas-screenshot.jpg?op=region&rect=0,0,300,600');
+      background-image: url('#{$asset-server}f58e0ebf-image-maas-screenshot.jpg?op=region&rect=0,0,300,500');
       background-position: right top;
       background-repeat: no-repeat;
     }
 
     @media only screen and (min-width : $breakpoint-large) {
-      background-image: url('#{$asset-server}f58e0ebf-image-maas-screenshot.jpg?op=region&rect=0,0,450,600');
+      background-image: url('#{$asset-server}f58e0ebf-image-maas-screenshot.jpg?op=region&rect=0,0,470,640');
       background-position: right top;
       background-repeat: no-repeat;
     }
@@ -260,32 +260,23 @@
   }
 }
 
-// @subsection /cloud/juju
-.cloud-juju {
-
-  .row-hero {
-    a {
-      margin-top: 20px;
-    }
-
-    img {
-      margin: 10px 0;
-    }
-  }
-}
 
 // @subsection /cloud/maas
 .cloud-maas {
 
   @media only screen and (min-width: $breakpoint-medium) {
     .row-hero {
-      background: url('#{$asset-server}a164f3d0-image-maas-screenshot.jpg') no-repeat 450px 0;
+      background-image: url('#{$asset-server}a164f3d0-image-maas-screenshot.jpg');
+      background-repeat: no-repeat;
+      background-position: 190% 0;
       background-size: 75%;
     }
 
     .row--autopilot {
-      background: url('#{$asset-server}c1369eb7-cloud-maas-landscape.jpg') no-repeat 450px 0;
-      background-size: 72%;
+      background-image: url('#{$asset-server}c1369eb7-cloud-maas-landscape.jpg');
+      background-repeat: no-repeat;
+      background-position: 190% 0;
+      background-size: 75%;
     }
   }
 
@@ -446,11 +437,12 @@
 // @subsection /cloud/juju
 .cloud-juju {
 
-  .row-hero,
   .row-get-started {
-    background: url('#{$asset-server}3c2a0155-media-wiki-ubuntu.png?w=800') no-repeat 444px 0;
+    background-image: url('#{$asset-server}3c2a0155-media-wiki-ubuntu.png?w=800');
+    background-position: top right;
+    background-repeat: no-repeat;
   }
-
+  
   .bundle-card__image-container {
     height: 345px;
   }
@@ -458,27 +450,6 @@
 
 // @subsection /cloud/public-cloud
 .cloud-public-cloud {
-
-  .row-services {
-    min-height: 420px;
-    padding-bottom: 0;
-
-    img {
-      margin-top: 20px;
-      max-width: none;
-    }
-
-    div {
-      border-right: 1px dotted $warm-grey;
-      margin-bottom: 0;
-      padding-right: $gutter-width;
-    }
-
-    div.last-col {
-      border-right: 0;
-      padding-right: 0;
-    }
-  }
 
   .row-juju-advantage {
     overflow: hidden;
@@ -583,8 +554,6 @@
       background-image: url('#{$asset-server}85280667-image-cloud-openstack-autopilot-screenshot.jpg?op=region&rect=0,0,450,800');
       background-position: 122% 0%;
       background-repeat: no-repeat;
-      margin-top: 0;
-      padding-top: 40px;
     }
   }
 
@@ -908,6 +877,10 @@
   .command-line {
     background: $light-grey;
     border: 0;
+    
+     > code {
+      color: $cool-grey;
+    }
   }
 
   @media only screen and (max-width: $breakpoint-medium) {

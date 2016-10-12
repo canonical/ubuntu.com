@@ -1,29 +1,7 @@
-{% block head_extra %}
-<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
-<script src="{{ ASSET_SERVER_URL }}c954db4a-jfeed_prm.js"></script>
-{% endblock %}
-	<div id="insights-footer-feed"><noscript><a class="external" href="https://insights.ubuntu.com" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'insights.u.c no js message', 'eventLabel' : 'Further reading', 'eventValue' : undefined });">Find out more at insights.ubuntu.com</a></noscript></div>
-	<script>
-		var feedurl={% if feed %}"{{ feed }}"{% else %}"https://insights.ubuntu.com/feed/"{% endif %};
-		var feedlimit={% if articles %}{{ articles }}{% else %}4{% endif %};
-    $.getFeed({
-      url: feedurl,
-      success: function(feed) {
-        var html = "<ul class='contextual-footer__list'>";
-        for(var i = 0; i < feed.items.length && i < feedlimit; i++) {
-          var item = feed.items[i];
-          html += "<li><a href='" + item.link + "'>" + item.title + "&nbsp;&rsaquo;</a></li>";
-        }
-        html += "</ul>";
-        if ($('#insights-footer-feed')) {
-          $('#insights-footer-feed').append(html);
-        }
-      }, failure: function () {
-        var html = "<ul class='contextual-footer__list'><li>Read news, case studies, whitepapers and more on <a class='external' href='https://insights.ubuntu.com'>insights.ubuntu.com</a></li></ul>"; // default if feed fails
-        if ($('#insights-footer-feed')) {
-          $('#insights-footer-feed').append(html);
-        }
-      }
-    });
+{% get_rss_feed "https://insights.ubuntu.com/feed/" limit=4 as feed %}
 
-</script>
+<ul class='contextual-footer__list'>
+{% for item in feed %}
+    <li><a href="{{item.link}}">{{item.title}}&nbsp;&rsaquo;</a></li>
+{% endfor %}
+</ul>
