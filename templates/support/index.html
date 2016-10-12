@@ -16,7 +16,7 @@
 
 {% block content %}
 
-<div class="row row-hero">
+<section class="row row-hero">
     <div class="strip-inner-wrapper">
         <h1>Support and management tools</h1>
         <div class="seven-col no-margin-bottom">
@@ -28,10 +28,10 @@
             <img alt="" width="288" height="155" src="{{ ASSET_SERVER_URL }}11da76f5-image-management.svg" class="priority-0" />
         </div><!-- /.six-col -->
     </div>
-</div><!-- /.row-hero -->
+</section><!-- /.row-hero -->
 
 
-<div class="row row-grey">
+<section class="row row-white">
     <div class="strip-inner-wrapper equal-height--vertical-divider">
         <div class="equal-height--vertical-divider__item six-col">
             <div class="one-col align-center no-margin-bottom">
@@ -57,31 +57,46 @@
             <p><a href="/download/cloud">Install OpenStack Autopilot&nbsp;&rsaquo;</a></p>
         </div><!-- /.six-col -->
     </div>
-</div><!-- /.row-hero -->
+</section><!-- /.row-hero -->
 
 {% include "shared/_ubuntu_advantage_whats_included.html" %}
 
-<div id="landscape" class="row">
-    <div class="strip-inner-wrapper equal-height">
-        <div class="seven-col equal-height__item">
-            <h2>Landscape</h2>
-            <p>Take control of your infrastructure with Landscape, the most cost-effective way to support and monitor large and growing networks of desktops, servers and clouds. Reduce your team&rsquo;s efforts required for basic, day-to-day management.</p>
-            <ul class="list-ticks--canonical six-col">
-                <li>Systems management</li>
-                <li>Monitor your machines at scale</li>
-                <li>Maintain security and compliance</li>
-                <li>Control your inventory</li>
-                <li>Integrate with your current systems</li>
+<section class="row row-white">
+    <div class="strip-inner-wrapper">
+        <div class="ten-col push-one align-center">
+            <h2 class="muted-heading">A selection of Ubuntu Advantage customers</h2>
+            <ul class="inline-logos">
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}1a062141-logo-bloomberg.svg" width="187" alt="Bloomburg logo">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}3c7e83fc-atandt-logo.svg" width="61" alt="at&amp;t logo">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}3161e6ba-logo-walmart.svg" width="210" alt="Walmart logo">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}03a06060-logo-deutschetelekom.svg" width="242" alt="Deutshe Telekom logo">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}e0f7037f-logo-ebay.svg" width="170" alt="Ebay logo">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}06c5609f-logo-cisco.svg" width="156" alt="Cisco logo">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}ddb0f9d6-logo-ntt.svg" width="71" alt="NTT logo">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}15e9c496-logo-bestbuy.svg" width="166" alt="Best Buy logo">
+                </li>
             </ul>
-            <p class="six-col"><a class="external" href="https://landscape.canonical.com/">Sign-up for a free 30 day trial on landscape.canonical.com </a></p>
-        </div>
-        <div class="five-col last-col priority-0 equal-height__item equal-height__align-vertically">
-            <img src="{{ ASSET_SERVER_URL }}58b386e6-landscape-logo.svg" width="200" alt="Landscape">
         </div>
     </div>
-</div>
+</section>
 
-<div id="community-support" class="row row-white no-border">
+
+<section id="community-support" class="row row-white no-border">
     <div class="strip-inner-wrapper">
         <div class="eight-col">
             <h2>Community support</h2>
@@ -92,7 +107,7 @@
             <img src="{{ ASSET_SERVER_URL }}039628d5-picto-community-orange.svg" width="150" alt="Community">
         </div>
     </div>
-</div>
+</section>
 
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}

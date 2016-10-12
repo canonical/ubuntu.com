@@ -1,18 +1,21 @@
-<section class="row {% if level_1 != 'management' %} no-padding-bottom no-border row-grey{% endif %} row-ubuntu-advantage-promo">
+<section class="row {% if level_2 != 'support' %} no-padding-bottom no-border row-grey{% endif %} row-ubuntu-advantage-promo">
     <div class="strip-inner-wrapper">
         <div class="eight-col">
             <h2>Ubuntu Advantage: what&rsquo;s included?</h2>
             <h3>Systems management: Landscape</h3>
-            <p>With the Landscape systems management tool, you can automate updates and manage physical, virtual and cloud-based systems from a single interface. It's easy to set up, easy to use and requires no special hardware. It features:</p>
+            <p>Take control of your infrastructure with our Landscape systems management tool. Reduce your team&rsquo;s efforts on day-to-day management with the most cost-effective tool to support and monitor large and growing networks of desktops, servers and clouds.</p>
+
             <div class="combined-list clearfix eight-col">
                 <ul class="list-ticks--canonical four-col">
-                    <li>Management at scale</li>
-                    <li>Deploy or rollback security updates</li>
-                    <li class="last-item">Compliance reports</li>
+                    <li>Automate updates and manage physical, virtual and cloud-based systems from a single interface</li>
+                    <li>Monitor and manage your machines at scale</li>
+                    <li class="last-item">Maintain security and compliance</li>
                 </ul>
                 <ul class="list-ticks--canonical four-col last-col">
-                    <li>Role-based access</li>
-                    <li class="last-item">Informative monitoring</li>
+                    <li>Control your inventory</li>
+                    <li>Integrate with your current systems</li>
+                    <li>Deploy or rollback security updates</li>
+                    <li class="last-item">Role-based access</li>
                 </ul>
             </div><!-- /.combined-list -->
             <p><a class="external" href="https://landscape.canonical.com">Learn more about Landscape</a></p>
@@ -20,27 +23,27 @@
     </div>
 </section>
 
-    {% if level_2 != 'cloud' %}
-    <section class="row{% if level_1 != 'management' %} row-grey{% endif %}">
-        <div class="strip-inner-wrapper">
-            <div class="twelve-col equal-height--vertical-divider">
-                <div class="four-col equal-height--vertical-divider__item">
-                    <h3>24x7 phone and email support</h3>
-                    <p>Canonical&rsquo;s Global Support &amp; Services team provides around-the-clock coverage for Ubuntu deployments all over the world. Telephone support gives you access to engineers with first-hand experience of your issues, while the online portal lets you track the progress of cases in real time.</p>
-                </div><!-- /.four-col -->
-                <div class="four-col equal-height--vertical-divider__item">
-                    <h3>Technical library</h3>
-                    <p>Exclusive to Ubuntu Advantage subscribers, the Canonical Knowledge Base is an online library of articles on technical issues including security, migration and networking.</p>
-                </div><!-- /.four-col -->
-                <div class="four-col last-col no-margin-bottom equal-height--vertical-divider__item">
-                    <h3>Customer login</h3>
-                    <p>Already a customer? Access the support portal or Landscape&#39;s SaaS.</p>
-                    <p><a href="https://support.canonical.com/" class="external">Support portal login</a></p>
-                    <p><a href="https://landscape.canonical.com/login/authenticate" class="external">Landscape login</a></p>
-                </div><!-- /.four-col -->
-            </div><!-- /.twelve-col -->
-            <p><a href="https://buy.ubuntu.com" class="button--primary"><span class="external">Buy Ubuntu Advantage</span></a></p>
-        </div>
+{% if level_2 != 'cloud' %}
+<section class="row{% if level_1 != 'management' %} row-grey{% endif %}">
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col equal-height--vertical-divider">
+            <div class="four-col equal-height--vertical-divider__item">
+                <h3>24x7 phone and email support</h3>
+                <p>Canonical&rsquo;s Global Support &amp; Services team provides around-the-clock coverage for Ubuntu deployments all over the world. Telephone support gives you access to engineers with first-hand experience of your issues, while the online portal lets you track the progress of cases in real time.</p>
+            </div><!-- /.four-col -->
+            <div class="four-col equal-height--vertical-divider__item">
+                <h3>Technical library</h3>
+                <p>Exclusive to Ubuntu Advantage subscribers, the Canonical Knowledge Base is an online library of articles on technical issues including security, migration and networking.</p>
+            </div><!-- /.four-col -->
+            <div class="four-col last-col no-margin-bottom equal-height--vertical-divider__item">
+                <h3>Customer login</h3>
+                <p>Already a customer? Access the support portal or Landscape&#39;s SaaS.</p>
+                <p><a href="https://support.canonical.com/" class="external">Support portal login</a></p>
+                <p><a href="https://landscape.canonical.com/login/authenticate" class="external">Landscape login</a></p>
+            </div><!-- /.four-col -->
+        </div><!-- /.twelve-col -->
+        <p><a href="https://buy.ubuntu.com" class="button--primary"><span class="external">Buy Ubuntu Advantage</span></a></p>
     </div>
+</div>
 </section>
 {% endif %}
