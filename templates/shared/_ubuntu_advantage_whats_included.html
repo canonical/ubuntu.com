@@ -1,4 +1,4 @@
-<section class="row {% if level_2 != 'support' %} no-padding-bottom no-border row-grey{% endif %} row-ubuntu-advantage-promo">
+<section class="row {% if level_1 != 'support' %} no-padding-bottom no-border row-grey{% endif %} row-ubuntu-advantage-promo">
     <div class="strip-inner-wrapper">
         <div class="eight-col">
             <h2>Ubuntu Advantage: what&rsquo;s included?</h2>
@@ -23,8 +23,7 @@
     </div>
 </section>
 
-{% if level_2 != 'cloud' %}
-<section class="row{% if level_1 != 'management' %} row-grey{% endif %}">
+<section class="row{% if level_1 != 'support' %} row-grey{% endif %}">
     <div class="strip-inner-wrapper">
         <div class="twelve-col equal-height--vertical-divider">
             <div class="four-col equal-height--vertical-divider__item">
@@ -46,4 +45,3 @@
     </div>
 </div>
 </section>
-{% endif %}
