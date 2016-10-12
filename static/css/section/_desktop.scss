@@ -394,7 +394,6 @@
   }
 
   .row-case-studies {
-
     @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}5b74fa2a-map.jpg');
       background-position: center 30px;
@@ -406,7 +405,8 @@
   .row-security {
     @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}99d49a7d-padlock-chain.png');
-      background-position: 30px center;
+      background-position: 80% center;
+      background-repeat: no-repeat;
       background-size: initial;
       min-height: 310px;
     }
