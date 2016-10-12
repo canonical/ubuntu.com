@@ -24,7 +24,7 @@
                     <p><a href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes" class="external">Ubuntu Server {{lts_release_full}} release notes</a></p>
                 </div>
                 <div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom gap-from-top">
-                    <p><a href="/download/server/thank-you?version={{lts_release}}&amp;architecture=amd64" class="link-cta-download button--primary">Download</a></p>
+                    <p><a href="/download/server/thank-you?version={{lts_release}}&amp;architecture=amd64" class="link-cta-download button--primary" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{lst_release_full}}', 'eventValue' : undefined });">Download</a></p>
                     <p><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
                 </div><!-- /.four-col -->
             </div><!-- /.box -->
@@ -37,16 +37,8 @@
                     <p>The latest version of Ubuntu Server, including the Newton release of OpenStack and nine months of security and maintenance updates.</p>
                     <p><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="external">Ubuntu Server {{latest_release}} release notes</a></p>
                 </div>
-                <div class="four-col equal-height--vertical-divider__item last-col">
-                    <form class="form-download gap-from-top" action="/download/server/thank-you/" method="get">
-                        <fieldset>
-                            <input name="version" value="{{latest_release}}" type="hidden">
-                            <input name="architecture" value="amd64" type="hidden">
-                        </fieldset>
-                        <div>
-                            <button type="submit">Download</button>
-                        </div>
-                    </form>
+                <div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom gap-from-top">
+                    <p><a href="/download/server/thank-you?version={{latest_release}}&amp;architecture=amd64" class="link-cta-download button--primary" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{latest_release_full}}', 'eventValue' : undefined });">Download</a></p>
                     <p><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
                 </div><!-- /.four-col -->
             </div><!-- /.box -->
