@@ -527,7 +527,7 @@ body {
 .phone,
 .tablet,
 .download,
-.server {
+.support {
   .row-hero {
     margin-top: 0;
 
@@ -1212,4 +1212,9 @@ th {
   @media only screen and (max-width: $breakpoint-medium) {
     font-size: 14px;
   }
+}
+
+// XXX there is an issue https://github.com/ubuntudesign/vanilla-framework/pull/696 to fix in ubuntu-vanilla-framework
+table {
+  overflow-x: auto;
 }
