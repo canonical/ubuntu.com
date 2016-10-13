@@ -550,7 +550,7 @@ body {
   }
   .row-hero {
     margin-top: 0;
-    
+
     @media only screen and (min-width : $breakpoint-medium) {
       padding-top: 40px;
     }
@@ -1163,9 +1163,14 @@ $item-spacing: 20px;
   @extend .list-stepped;
 
   .list-stepped__item {
-    padding-top: $item-spacing * 2;
-    padding-bottom: $item-spacing * 2;
+    padding-top: 0;
+    padding-bottom: $item-spacing;
     margin-bottom: 0;
+
+      @media only screen and (min-width: $breakpoint-medium) {
+          padding-top: $item-spacing * 2;
+          padding-bottom: $item-spacing * 2;
+      }
   }
 
   .list-stepped__box {
