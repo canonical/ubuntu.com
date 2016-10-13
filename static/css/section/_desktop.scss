@@ -384,7 +384,8 @@
     @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}02d89f50-map.jpg');
       background-repeat: no-repeat;
-      background-size: cover;
+      background-size: 74%;
+      background-position: center 30px;
     }
   }
 }
@@ -395,11 +396,11 @@
   .row-hero {
     @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}826a470a-desktop-government-hero+%281%29.jpg');
-      background-position: 0 83%;
+      background-position: center 0;
       background-repeat: no-repeat;
       margin-top: 0;
       min-height: 350px;
-      background-size: 100%;
+      background-size: 80%;
 
 
       h1 {
@@ -422,9 +423,9 @@
   .row-case-studies {
     @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}5b74fa2a-map.jpg');
-      background-position: center 30px;
+      background-position: center 0;
       background-repeat: no-repeat;
-      background-size: 83%;
+      background-size: 75%;
     }
   }
 
