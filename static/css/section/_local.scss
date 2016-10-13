@@ -594,9 +594,16 @@ body {
     @media only screen and (min-width : $breakpoint-medium) {
       padding: 40px 10px 20px;
     }
+
     @media only screen and (min-width : $breakpoint-large) {
       padding: 100px 40px;
     }
+  }
+}
+
+.desktop-home .row-hero {
+  @media only screen and (min-width: $breakpoint-medium) {
+    padding-top: 80px;
   }
 }
 
