@@ -39,11 +39,11 @@
                 </div>
                 <div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom gap-from-top">
                     <p>
-                        <a class="button--primary link-cta-download" href="/download/desktop/thank-you?version={{lts_release}}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{lst_release_full}}', 'eventValue' : undefined });">Download</a>
+                        <a class="button--primary link-cta-download js-lts-download" href="/download/desktop/thank-you?version={{lts_release}}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{lst_release_full}}', 'eventValue' : undefined });">Download</a>
                         <script>
                             // Contributions only work with JavaScript
                             // So if we have JavaScript, send them to /contribute
-                            var downloadLink = document.querySelector('.link-cta-download');
+                            var downloadLink = document.querySelector('.js-lts-download');
                             var contributeUrl = downloadLink.href.replace('/thank-you', '/contribute');
                             downloadLink.href = contributeUrl;
                         </script>
@@ -70,11 +70,11 @@
                 </div>
                 <div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom gap-from-top">
                     <p>
-                        <a class="button--primary link-cta-download" href="/download/desktop/thank-you/?version={{latest_release}}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{latest_release_full}}', 'eventValue' : undefined });">Download</a>
+                        <a class="button--primary link-cta-download js-latest-download" href="/download/desktop/thank-you/?version={{latest_release}}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{latest_release_full}}', 'eventValue' : undefined });">Download</a>
                         <script>
                             // Contributions only work with JavaScript
                             // So if we have JavaScript, send them to /contribute
-                            var downloadLink = document.querySelector('.link-cta-download');
+                            var downloadLink = document.querySelector('.js-latest-download');
                             var contributeUrl = downloadLink.href.replace('/thank-you', '/contribute');
                             downloadLink.href = contributeUrl;
                         </script>
