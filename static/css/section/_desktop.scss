@@ -639,6 +639,25 @@
     }
   }
 
+  .row-certified-hardware {
+
+    &__image {
+      min-height: 225px;
+
+      > img {
+        width: 330px;
+      }
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        min-height: 200px;
+
+        > img {
+          width: 100%;
+        }
+      }
+    }
+  }
+
   .row-intel {
     background-color: #007cc5;
     color: $white;
