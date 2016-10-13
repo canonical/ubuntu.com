@@ -208,7 +208,7 @@
   .row-videos {
     @media only screen and (min-width: $breakpoint-medium) {
       border-bottom: 0;
-    }  
+    }
   }
 
   .row-gaming {
@@ -348,7 +348,7 @@
       background-image: url('#{$asset-server}31a45631-desktop-enterprise-certified.jpg');
       background-position: 93% 39%;
       background-repeat: no-repeat;
-      background-size: 56%;
+      background-size: 45%;
       min-height: 373px;
       overflow: hidden;
     }
@@ -483,12 +483,10 @@
         content: url('#{$asset-server}e8731111-desktop-developer-whatsnew1610.jpg?w=600');
         position: absolute;
         right: -100%;
+        top: 20px;
         @media (min-width: 920px){
           right: -85%;
         }
-        top: 20px;
-        max-width: 500px;
-
       }
     }
   }
