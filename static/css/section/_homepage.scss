@@ -1759,3 +1759,232 @@ body.homepage-kubernetes-takeover {
     }
   }
 }
+
+@mixin dots($top, $delay, $direction) {
+  &:after {
+    opacity: 0;
+    animation-name: reveal;
+    animation-duration: .2s;
+    animation-fill-mode: forwards;
+    animation-delay: $delay;
+    content: '';
+    background-image: url('#{$asset-server}d526f638-dots.svg');
+    display: block;
+    position: absolute;
+    @if $direction == 'right' {
+      right: -120px;
+    } @else {
+      left: 20px;
+    }
+    top: $top;
+    width: 100px;
+    height: 10px;
+  }
+}
+
+body.homepage-1610 {
+  $animation-width: 1200px;
+
+  header.banner {
+    border-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .row-hero {
+    background-image: url('#{$asset-server}d1059f8b-mobile_background.png');
+    background-size: cover;
+    border: none;
+    box-sizing: border-box;
+    display: block;
+    margin-bottom: 20px;
+    overflow: hidden;
+    padding-top: 40px;
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      background-image: url('#{$asset-server}618be899-tablet_background.png');
+      margin: 20px;
+      min-height: 600px;
+      padding-top: 40px;
+      width: -moz-calc(100% - 40px);
+      width: -webkit-calc(100% - 40px);
+      width: -o-calc(100% - 40px);
+      width: calc(100% - 40px);
+    }
+
+    @media only screen and (min-width : $breakpoint-large) {
+      background-image: url('#{$asset-server}88633fdf-takeover.16.10.background.desktop.png');
+      margin: 40px 40px 0;
+      min-height: 680px;
+      padding: 80px 40px 0;
+      width: -moz-calc(100% - 80px);
+      width: -webkit-calc(100% - 80px);
+      width: -o-calc(100% - 80px);
+      width: calc(100% - 80px);
+
+      .six-col {
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  .row--ubuntu-news {
+    background-color: transparent;
+  }
+
+  .devices {
+    margin: 40px 0;
+
+    &--medium {
+      display: none;
+    }
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      &--small {
+        display: none;
+      }
+
+      &--medium {
+        display: inline;
+        position: absolute;
+        bottom: 60px;
+        left: 1%;
+        width: 98%;
+      }
+    }
+
+    @media only screen and (min-width : $animation-width) {
+      &--small,
+      &--medium {
+        display: none;
+      }
+    }
+
+    &__image {
+      width: 100%;
+    }
+  }
+
+  .device-animation {
+    display: none;
+  }
+
+  @media only screen and (min-width : $animation-width) {
+    .device-animation {
+      box-sizing: border-box;
+      display: block;
+      left: -130px;
+      position: relative;
+      top: 145px;
+      width: 1240px;
+      height: 350px;
+
+      &__cof {
+        animation: bounce;
+        animation-duration: 3.5s;
+        animation-fill-mode: forwards;
+        position: absolute;
+        top: 125px;
+        left: 0;
+        width: 60px;
+      }
+
+      &__list {
+        list-style: none;
+        padding: 0;
+      }
+
+      &__list-item--laptop,
+      &__list-item--tablet,
+      &__list-item--phone {
+        animation-duration: .3s;
+        animation-fill-mode: forwards;
+        animation-name: appear;
+        display: block;
+        opacity: 0;
+        position: absolute;
+        top: 50px;
+        transform: scale(1);
+      }
+
+      &__list-item--laptop {
+        @include dots(100px, 1.3s, 'right');
+        left: 124px;
+        animation-delay: .8s;
+      }
+
+      &__list-item--tablet {
+        @include dots(85px, 2.3s, 'right');
+        left: 620px;
+        animation-delay: 1.9s;
+        top: 64px;
+      }
+
+      &__list-item--phone {
+        left: 1010px;
+        animation-delay: 2.8s;
+        top: 55px;
+      }
+    }
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+    left: 0;
+  }
+  14% {
+    transform: scale(1.5);
+  }
+  28% {
+    transform: scale(1.2);
+    left: 265px;
+  }
+  42% {
+    transform: scale(1.3);
+  }
+  56% {
+    transform: scale(.9);
+    left: 718px;
+  }
+
+  70% {
+    transform: scale(1.1);
+  }
+  84% {
+    transform: scale(.7);
+    left: 1030px;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 1300px;
+    opacity: 0;
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(.9);
+  }
+  40% {
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
