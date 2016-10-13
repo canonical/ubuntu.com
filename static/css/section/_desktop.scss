@@ -124,10 +124,6 @@
       background-repeat: no-repeat;
       border-bottom: 0;
       min-height: 573px;
-
-      .light {
-        color: $cool-grey;
-      }
     }
   }
 
@@ -137,20 +133,26 @@
       margin: 0 auto 10px;
       max-width: 150px;
     }
+
+    .muted-heading {
+      @media only screen and (min-width: $breakpoint-medium) {
+        margin-bottom: 3em;
+      }
+    }
   }
 
   .row-latest-hardware {
-    margin-bottom: 20px;
-
-    @media only screen and (min-width: $breakpoint-medium) {
-      margin-bottom: 0;
-    }
-
-    .no-margin-bottom {
-      @media only screen and (max-width: $breakpoint-medium) {
+    .row-latest-hardware__image {
         margin-bottom: 20px;
-      }
+
+        @media only screen and (min-width: $breakpoint-medium) {
+          margin-bottom: 0;
+        }
     }
+  }
+
+  .row-latest-hardware {
+    margin-bottom: 0;
   }
 }
 
@@ -158,19 +160,28 @@
 .desktop-features {
 
   .row-hero {
+    overflow: hidden;
 
-    @media only screen and (min-width: $breakpoint-medium) {
-      background-image: url('#{$asset-server}9fe68ee3-desktop-features-hero.png?w=897');
-      background-position: top right -170px;
-      background-repeat: no-repeat;
-      background-size: 36em;
-      min-height: 310px;
-    }
+    &:before {
 
-    @media only screen and (min-width: $breakpoint-large) {
-      background-position: right -346px center;
-      background-size: initial;
-      min-height: 500px;
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server}9fe68ee3-desktop-features-hero.png?w=897') center center no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height: 75%;
+        overflow: visible;
+        position: absolute;
+        right: -30vw;
+        top: 40px;
+        width: 80vw;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        height: 85%;
+        right: 3vw;
+        width: 50vw;
+      }
     }
   }
 
@@ -192,6 +203,12 @@
       background-repeat: no-repeat;
       background-size: cover;
     }
+  }
+
+  .row-videos {
+    @media only screen and (min-width: $breakpoint-medium) {
+      border-bottom: 0;
+    }  
   }
 
   .row-gaming {
@@ -301,26 +318,35 @@
 .desktop-enterprise {
 
   .row-hero {
-    
-    @media only screen and (min-width: $breakpoint-medium) {
-      background-image: url('#{$asset-server}ca8a41c4-desktop-enterprise-hero.png');
-      background-position: right -170px center;
-      background-repeat: no-repeat;
-      background-size: 37em;
-      min-height: 310px;
-    }
+    overflow: hidden;
 
-    @media only screen and (min-width: $breakpoint-large) {
-      background-position: right -346px center;
-      background-size: 56em;
-      min-height: 500px;
+    &:before {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server}ca8a41c4-desktop-enterprise-hero.png?w=897') center center no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height: 75%;
+        overflow: visible;
+        position: absolute;
+        right: -30vw;
+        top: 40px;
+        width: 80vw;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        height: 85%;
+        right: 3vw;
+        width: 50vw;
+      }
     }
   }
 
   .row-certified {
     @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}31a45631-desktop-enterprise-certified.jpg');
-      background-position: 0% 39%;
+      background-position: 93% 39%;
       background-repeat: no-repeat;
       background-size: 56%;
       min-height: 373px;
@@ -374,7 +400,7 @@
       margin-top: 0;
       min-height: 350px;
       background-size: 100%;
-      
+
 
       h1 {
         padding-top: 40px;
@@ -394,7 +420,6 @@
   }
 
   .row-case-studies {
-
     @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}5b74fa2a-map.jpg');
       background-position: center 30px;
@@ -406,7 +431,8 @@
   .row-security {
     @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server}99d49a7d-padlock-chain.png');
-      background-position: 30px center;
+      background-position: 80% center;
+      background-repeat: no-repeat;
       background-size: initial;
       min-height: 310px;
     }
@@ -419,21 +445,50 @@
   .row-easy-deployment {
     background-color: $box-solid-grey;
   }
-  
+
 
   .row-hero {
-    @media only screen and (min-width: $breakpoint-medium) {
-      background-image: url('#{$asset-server}2e62cdb4-desktop-developer-hero.png');
-      background-position: right -170px center;
-      background-repeat: no-repeat;
-      background-size: 37em;
-      min-height: 310px;
-    }
+    overflow: hidden;
 
-    @media only screen and (min-width: $breakpoint-large) {
-      background-position: right -346px center;
-      background-size: 56em;
-      min-height: 500px;
+    &:before {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server}2e62cdb4-desktop-developer-hero.png?w=897') center center no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height: 75%;
+        overflow: visible;
+        position: absolute;
+        right: -30vw;
+        top: 40px;
+        width: 80vw;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        height: 85%;
+        right: 3vw;
+        width: 50vw;
+      }
+    }
+  }
+
+  .whats-new-graphic {
+    @media only screen and (min-width: $breakpoint-medium) {
+      min-height: 310px;
+      position: relative;
+
+      &:before {
+        content: url('#{$asset-server}e8731111-desktop-developer-whatsnew1610.jpg?w=600');
+        position: absolute;
+        right: -100%;
+        @media (min-width: 920px){
+          right: -85%;
+        }
+        top: 20px;
+        max-width: 500px;
+
+      }
     }
   }
 
@@ -469,18 +524,28 @@
 .desktop-ubuntu-kylin {
 
   .row-hero {
-    @media only screen and (min-width: $breakpoint-medium) {
-      background-image: url('#{$asset-server}b0f9da06-desktop-kylin-hero.jpg?w=720');
-      background-position: right -170px center;
-      background-repeat: no-repeat;
-      background-size: 37em;
-      min-height: 310px;
-    }
+    overflow: hidden;
 
-    @media only screen and (min-width: $breakpoint-large) {
-      background-position: right -346px center;
-      background-size: 56em;
-      min-height: 500px;
+    &:before {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server}b0f9da06-desktop-kylin-hero.jpg?w=897') center center no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height: 75%;
+        overflow: visible;
+        position: absolute;
+        right: -30vw;
+        top: 40px;
+        width: 80vw;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        height: 85%;
+        right: 3vw;
+        width: 50vw;
+      }
     }
   }
 
@@ -583,6 +648,25 @@
     .picto {
       margin-bottom: 40px;
       max-width: 80px;
+    }
+  }
+
+  .row-certified-hardware {
+
+    &__image {
+      min-height: 225px;
+
+      > img {
+        width: 330px;
+      }
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        min-height: 200px;
+
+        > img {
+          width: 100%;
+        }
+      }
     }
   }
 

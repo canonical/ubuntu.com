@@ -196,13 +196,13 @@ body.homepage {
   }
 }
 
-  .intro-left,
-  .intro-right {
-    @media only screen and (min-width : 984px) {
-      background: url('#{$asset-server}bcb69486-image-intro-dots.svg') repeat-x right center;
-      background-size: 10px;
-    }
+.intro-left,
+.intro-right {
+  @media only screen and (min-width : 984px) {
+    background: url('#{$asset-server}bcb69486-image-intro-dots.svg') repeat-x right center;
+    background-size: 10px;
   }
+}
 
 .intro-right {
   background-position: left center;
@@ -386,8 +386,18 @@ body.homepage .row--intro .intro-middle li a:hover {
   }
 }
 
-.row--ubuntu-news {
-  background: #fff;
+body.homepage .row--ubuntu-news {
+  background-color: #fff;
+  margin-bottom: -60px;
+
+  @media only screen and (min-width : 768px) {
+    margin-bottom: 0px;
+    padding-top: 60px;
+  }
+
+  @media only screen and (min-width : 984px) {
+    padding-top: 100px;
+  }
 
   a {
     position: relative;
@@ -552,11 +562,11 @@ body.homepage .row-featured {
   &::before {
     position: absolute;
     display: none;
-    
+
     @media only screen and (min-width : $breakpoint-medium) {
       display: block;
     }
-    
+
     left: -3000px;
     margin-top: -40px;
     content: "";
@@ -574,11 +584,11 @@ body.homepage .row-featured {
   &::after {
     position: absolute;
     display: none;
-    
+
     @media only screen and (min-width : $breakpoint-medium) {
       display: block;
     }
-    
+
     right: -3000px;
     margin-top: -40px;
     content: "";
@@ -1596,7 +1606,7 @@ body.homepage-autopilot-devops-takeover {
   }
 }
 
-// autopilot devops takeover
+// linux 25th takeover
 body.homepage-linux-25th-takeover {
   #main-content {
     .row-hero {
@@ -1642,7 +1652,7 @@ body.homepage-nextcloud-takeover {
         margin-top: 10px;
         margin-bottom: 20px;
       }
-      
+
       @media only screen and (min-width : 768px) {
         background-image: url('#{$asset-server}5aa79282-56f66029-Nextbox+09.2016.desktop.background-large.png');
         min-height: 440px;
@@ -1650,7 +1660,7 @@ body.homepage-nextcloud-takeover {
         .row-hero__heading {
           margin-top: 60px;
         }
-        
+
         .row-hero___image {
           margin-top: 50px;
         }
@@ -1667,11 +1677,11 @@ body.homepage-nextcloud-takeover {
           margin-top: 60px;
         }
       }
-      
+
       .button--primary {
         background-color: $white;
         color: $cool-grey;
-    
+
         &:hover {
           background-color: #f7f7f7;
         }
@@ -1694,33 +1704,33 @@ body.homepage-kubernetes-takeover {
       background-size: cover;
       background-repeat: no-repeat;
       margin-top: 0;
-      
-      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+
+      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
         background-image: url('#{$asset-server}32d31c25-Kubernetes_backgd_mobile_720.png');
         background-position: right 40px;
         background-size: 100%;
       }
-      
+
       @media only screen and (min-width : $breakpoint-medium) {
         background-image: url('#{$asset-server}c0df5df2-Kubernetes_backgd_desktop-1.png');
         background-size: 126% auto;
         background-position: 70% -45px;
-        min-height: 400px; 
+        min-height: 400px;
       }
-      
+
       @media only screen and (min-width : $breakpoint-large) {
         background-position: 74% -68px;
         background-size: auto;
         min-height: 580px;
       }
-      
+
       &__heading {
         margin-top: 20px;
-        
+
         @media only screen and (min-width : $breakpoint-medium) {
           margin-top: 60px;
         }
-        
+
         @media only screen and (min-width : $breakpoint-large) {
           margin-top: 100px;
         }
@@ -1729,23 +1739,252 @@ body.homepage-kubernetes-takeover {
       &__image {
         margin-top: 10px;
         margin-bottom: 20px;
-        
+
         @media only screen and (min-width : $breakpoint-medium) {
           margin-top: 50px;
         }
-        
+
         @media only screen and (min-width : $breakpoint-large) {
           margin-top: 60px;
         }
       }
-      
+
       .button--primary {
         margin-top: 340px;
-        
+
         @media only screen and (min-width : $breakpoint-medium) {
           margin-top: 20px;
         }
       }
     }
+  }
+}
+
+@mixin dots($top, $delay, $direction) {
+  &:after {
+    opacity: 0;
+    animation-name: reveal;
+    animation-duration: .2s;
+    animation-fill-mode: forwards;
+    animation-delay: $delay;
+    content: '';
+    background-image: url('#{$asset-server}d526f638-dots.svg');
+    display: block;
+    position: absolute;
+    @if $direction == 'right' {
+      right: -120px;
+    } @else {
+      left: 20px;
+    }
+    top: $top;
+    width: 100px;
+    height: 10px;
+  }
+}
+
+body.homepage-1610 {
+  $animation-width: 1200px;
+
+  header.banner {
+    border-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .row-hero {
+    background-image: url('#{$asset-server}d1059f8b-mobile_background.png');
+    background-size: cover;
+    border: none;
+    box-sizing: border-box;
+    display: block;
+    margin-bottom: 20px;
+    overflow: hidden;
+    padding-top: 40px;
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      background-image: url('#{$asset-server}618be899-tablet_background.png');
+      margin: 20px;
+      min-height: 600px;
+      padding-top: 40px;
+      width: -moz-calc(100% - 40px);
+      width: -webkit-calc(100% - 40px);
+      width: -o-calc(100% - 40px);
+      width: calc(100% - 40px);
+    }
+
+    @media only screen and (min-width : $breakpoint-large) {
+      background-image: url('#{$asset-server}88633fdf-takeover.16.10.background.desktop.png');
+      margin: 40px 40px 0;
+      min-height: 680px;
+      padding: 80px 40px 0;
+      width: -moz-calc(100% - 80px);
+      width: -webkit-calc(100% - 80px);
+      width: -o-calc(100% - 80px);
+      width: calc(100% - 80px);
+
+      .six-col {
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  .row--ubuntu-news {
+    background-color: transparent;
+  }
+
+  .devices {
+    margin: 40px 0;
+
+    &--medium {
+      display: none;
+    }
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      &--small {
+        display: none;
+      }
+
+      &--medium {
+        display: inline;
+        position: absolute;
+        bottom: 60px;
+        left: 1%;
+        width: 98%;
+      }
+    }
+
+    @media only screen and (min-width : $animation-width) {
+      &--small,
+      &--medium {
+        display: none;
+      }
+    }
+
+    &__image {
+      width: 100%;
+    }
+  }
+
+  .device-animation {
+    display: none;
+  }
+
+  @media only screen and (min-width : $animation-width) {
+    .device-animation {
+      box-sizing: border-box;
+      display: block;
+      left: -130px;
+      position: relative;
+      top: 145px;
+      width: 1240px;
+      height: 350px;
+
+      &__cof {
+        animation: bounce;
+        animation-duration: 3.5s;
+        animation-fill-mode: forwards;
+        position: absolute;
+        top: 125px;
+        left: 0;
+        width: 60px;
+      }
+
+      &__list {
+        list-style: none;
+        padding: 0;
+      }
+
+      &__list-item--laptop,
+      &__list-item--tablet,
+      &__list-item--phone {
+        animation-duration: .3s;
+        animation-fill-mode: forwards;
+        animation-name: appear;
+        display: block;
+        opacity: 0;
+        position: absolute;
+        top: 50px;
+        transform: scale(1);
+      }
+
+      &__list-item--laptop {
+        @include dots(100px, 1.3s, 'right');
+        left: 124px;
+        animation-delay: .8s;
+      }
+
+      &__list-item--tablet {
+        @include dots(85px, 2.3s, 'right');
+        left: 620px;
+        animation-delay: 1.9s;
+        top: 64px;
+      }
+
+      &__list-item--phone {
+        left: 1010px;
+        animation-delay: 2.8s;
+        top: 55px;
+      }
+    }
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+    left: 0;
+  }
+  14% {
+    transform: scale(1.5);
+  }
+  28% {
+    transform: scale(1.2);
+    left: 265px;
+  }
+  42% {
+    transform: scale(1.3);
+  }
+  56% {
+    transform: scale(.9);
+    left: 718px;
+  }
+
+  70% {
+    transform: scale(1.1);
+  }
+  84% {
+    transform: scale(.7);
+    left: 1030px;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 1300px;
+    opacity: 0;
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(.9);
+  }
+  40% {
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

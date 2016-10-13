@@ -314,39 +314,30 @@
     <div class="strip-inner-wrapper">
         <h2 class="twelve-col">The latest Ubuntu Cloud news and events</h2>
         <div class="twelve-col equal-height--vertical-divider no-margin-bottom">
-          <div id="insights-cloud-feed" class='six-col equal-height--vertical-divider__item'>
-            <ul class="no-bullets">
-              <li>Read news, case studies, whitepapers and more on <a class="external" href="https://insights.ubuntu.com">insights.ubuntu.com</a></li>
-            </ul>
-          </div><!-- end .insights-cloud-feed -->
-          <script>
-            $(function() {
-              $.getFeed({
-                url: 'http://insights.ubuntu.com/topic/Cloud/feed',
-                success: function(feed) {
-                  var html = "";
-                  for(var i = 0; i < feed.items.length && i < 4; i++) {
-                    var item = feed.items[i];
-                    var d = $.trim(item.description).substring(0, 100).split(" ").slice(0, -1).join(" ") + "\&hellip\;";
-                    html += "<li class='six-col'><h3 class='newsevent__title'><a href='" + item.link + "' class='external'>" + item.title + "</a></h3><p>" + d + "</p></li>";
-                  }
-                  html = "<div id='insights-cloud-feed' class='equal-height--vertical-divider__item six-col'><ul class='no-bullets'>" + html + "</ul></div>";
-                  if ($('#insights-cloud-feed')) {
-                    $('#insights-cloud-feed').replaceWith(html);
-                  }
-                }
-              });
-            });
-          </script>
-    {% include "cloud/shared/_events_overview.html" %}
+            <div id='insights-cloud-feed' class='equal-height--vertical-divider__item six-col'>
+                <ul class='no-bullets'>
+                    {% get_rss_feed "https://insights.ubuntu.com/topic/Cloud/feed/" limit=4 as cloud_feed %}
+                    {% autoescape off %}
+                    {% for item in cloud_feed %}
+                    <li class='six-col'>
+                        <h3 class='newsevent__title'><a href='{{ item.link }}' class='external'>{{ item.title }}</a></h3>
+                        <p>{{ item.description|force_escape|truncate_chars:100 }}</p>
+                    </li>
+                    {% endfor %}
+                    {% endautoescape %}
+                </ul>
+            </div>
+        {% include "cloud/shared/_events_overview.html" %}
         </div><!-- end .twelve-col .vertical-divider -->
     </div>
 </section>
 
 <section class="row no-border">
     <div class="strip-inner-wrapper">
-        <p id="fn1" class="note"><a href="#r1">*</a> <a href="http://thecloudmarket.com/stats#/by_platform_definition" class="external">The Cloud Market</a>, August 2015 and <a href="http://superuser.openstack.org/articles/openstack-users-share-how-their-deployments-stack-up" class="external">OpenStack survey &mdash; May 2015</a></p>
-        <p id="fn2" class="note"><a href="#r2">**</a> <a href="http://www.zdnet.com/article/ubuntu-linux-continues-to-rule-the-cloud/" class="external">zdnet.com</a>, 27 August 2015</p>
+        <div class="twelve-col">
+            <p id="fn1" class="note"><a href="#r1">*</a> <a href="http://thecloudmarket.com/stats#/by_platform_definition" class="external">The Cloud Market</a>, August 2015 and <a href="http://superuser.openstack.org/articles/openstack-users-share-how-their-deployments-stack-up" class="external">OpenStack survey &mdash; May 2015</a></p>
+            <p id="fn2" class="note"><a href="#r2">**</a> <a href="http://www.zdnet.com/article/ubuntu-linux-continues-to-rule-the-cloud/" class="external">zdnet.com</a>, 27 August 2015</p>
+        </div>
     </div>
 </section>
 
@@ -356,7 +347,6 @@
 
 {% block head_extra %}
 <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
-<script src="{{ ASSET_SERVER_URL }}c954db4a-jfeed_prm.js"></script>
 
 <style type="text/css">
   @keyframes fadeIn {

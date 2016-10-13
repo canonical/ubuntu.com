@@ -1,11 +1,11 @@
-{% extends "templates/one-column.html" %} 
+{% extends "templates/one-column.html" %}
 
 {% block title %}Search results{% if query %} for "{{query}}"{% endif %} | Ubuntu{% endblock %}
 {% block extra_body_class %}ubuntu-search{% endblock %}
 
 {% block content %}
 <div class="row row-hero no-border search-container">
-    <div class="strip-inner-wrapper">    
+    <div class="strip-inner-wrapper">
     {% if query %}
     {% if results %}
     <h1>We've found {% if total %}{{ total }} {% endif %}results for "{{query}}"</h1>
@@ -51,7 +51,7 @@
         <li>Using individual words instead of phrases</li>
         <li>Trying a different spelling</li>
     </ul>
-    
+
     <h2>Still no luck?</h2>
 
     <ul>
@@ -82,12 +82,12 @@
 
 {% else %} {# parse_succeeded false #}
     <label for="search-input" role="error" class="error-notification">
-        Failed to parse results. If you have time, please <a href="https://bugs.launchpad.net/ubuntu-website-content/+filebug">file a bug</a>.
+        Failed to parse results. If you have time, please <a href="https://github.com/ubuntudesign/www.ubuntu.com/issues/new">file a bug</a>.
     </label>
 {% endif %}
 {% else %} {# request_succeeded false #}
     <label for="search-input" role="error" class="error-notification">
-        Failed to retrieve search results. If you have time, please <a href="https://bugs.launchpad.net/ubuntu-website-content/+filebug">file a bug</a>.
+        Failed to retrieve search results. If you have time, please <a href="https://github.com/ubuntudesign/www.ubuntu.com/issues/new">file a bug</a>.
     </label>
 {% endif %} {# request_succeeded #}
 

@@ -1,8 +1,10 @@
 import feedparser
 import logging
 import json
+from datetime import datetime
 from requests.exceptions import Timeout
 from requests_cache import CachedSession
+from time import mktime
 
 from django.conf import settings
 
@@ -57,4 +59,9 @@ def get_rss_feed_content(url, offset=0, limit=None):
         )
         content = []  # Empty response
 
-    return content[offset:end]
+    content = content[offset:end]
+    for item in content:
+        updated_time = mktime(item['updated_parsed'])
+        item['updated_datetime'] = datetime.fromtimestamp(updated_time)
+
+    return content

@@ -1,6 +1,6 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Install Ubuntu {{lts_release_full}}{% endblock %}
+{% block title %}Install Ubuntu {{lts_release_full|striptags}}{% endblock %}
 
 {% block extra_body_class %}download-help{% endblock %}
 

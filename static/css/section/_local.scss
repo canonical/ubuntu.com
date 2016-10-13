@@ -318,6 +318,7 @@ body {
 .vertical-divider div.box-digest {
   padding-bottom: 0;
 }
+// same as row-white
 .strip-light {
   background-color: #fff;
 }
@@ -429,6 +430,7 @@ body {
 .cloud,
 .phone,
 .server,
+.support,
 .tablet {
   .wrapper {
     background: none;
@@ -471,13 +473,8 @@ body {
   }
   .nav-secondary ul.breadcrumb {
     margin-left: 0;
-    @media only screen and (max-width : $breakpoint-large) {
-      margin-left: 10px;
-    }
-    @media only screen and (max-width : $breakpoint-medium) {
-      margin-left: 0;
-    }
   }
+
   @media only screen and (min-width : $breakpoint-medium) {
     .strip-inner-wrapper {
       padding: 0 30px;
@@ -504,7 +501,8 @@ body {
 .phone,
 .tablet,
 .download,
-.server {
+.server,
+.support {
   .row--dark {
       background: #262626;
       color: #ebebea;
@@ -529,7 +527,7 @@ body {
 .phone,
 .tablet,
 .download,
-.server {
+.support {
   .row-hero {
     margin-top: 0;
 
@@ -568,7 +566,8 @@ body {
 .phone,
 .tablet,
 .download,
-.server {
+.server,
+.support  {
   .row {
     padding: 20px 10px 0;
 
@@ -579,11 +578,11 @@ body {
     @media only screen and (min-width : $breakpoint-large) {
       padding: 100px 40px;
     }
-    
+
     .touch-border, .touch-bottom {
       margin-bottom: -100px;
     }
-    
+
     &.no-padding-bottom {
       padding-bottom: 0;
     }
@@ -595,9 +594,16 @@ body {
     @media only screen and (min-width : $breakpoint-medium) {
       padding: 40px 10px 20px;
     }
+
     @media only screen and (min-width : $breakpoint-large) {
       padding: 100px 40px;
     }
+  }
+}
+
+.desktop-home .row-hero {
+  @media only screen and (min-width: $breakpoint-medium) {
+    padding-top: 80px;
   }
 }
 
@@ -898,9 +904,7 @@ html.js .resource:hover a {
   .desktop,
   .internet-of-things,
   .legal,
-  .management,
-  .server,
-  .support {
+  .server {
     .row {
       padding-left: 20px;
       padding-right: 20px;
@@ -917,9 +921,7 @@ html.js .resource:hover a {
   .about,
   .desktop,
   .legal,
-  .management,
-  .server,
-  .support {
+  .server {
     .row {
       padding-left: 40px;
       padding-right: 40px;
@@ -1194,18 +1196,16 @@ pre {
   margin-bottom: .75em;
 }
 
-.row.row-ubuntu-advantage-promo {
-  
-  @media only screen and (min-width: $breakpoint-medium) {
-    background-image: url('#{$asset-server}a4b68f44-activities-listing.png?W=600');
-    background-repeat: no-repeat;
-    background-size: 56%;
-    background-position: 158% 45px;
+// XXX this should be part of the theme - smaller fonts in tables for small screens
+td,
+th {
+
+  @media only screen and (max-width: $breakpoint-medium) {
+    font-size: 14px;
   }
-  
-  @media only screen and (min-width: $breakpoint-large) {
-    background-image: url('#{$asset-server}a4b68f44-activities-listing.png?W=800');
-    background-position: right top;
-    background-size: 40%;
-  }
+}
+
+// XXX there is an issue https://github.com/ubuntudesign/vanilla-framework/pull/696 to fix in ubuntu-vanilla-framework
+table {
+  overflow-x: auto;
 }

@@ -1,94 +1,87 @@
-/*	@section tv
---------------------------------------------------------------
-	Contents:
-		@section general
-		@section experience
-		@section commercial-info & contributors
+@charset 'UTF-8';
+// ---------------------------------------------------------------
+// ---------------------------------------------------------------
+//
+//  Project:    Ubuntu Front-End management-home section
+//  Author:      Web Team at Canonical Ltd
+//
+// ---------------------------------------------------------------
+// ---------------------------------------------------------------
 
--------------------------------------------------------------- */
+//  @section all /tv
+.tv {
 
-/*	@section general
--------------------------------------------------------------- */
+  .row-hero {
+    h2 {
+      font-size: 1.5625em;
+    }
 
+    p {
+      padding-left: 0;
+    }
 
-body.tv .row-hero p { padding-left: 0; }
-
-.tv .no-margin { margin-bottom: 0; }
-
-body.tv .row-hero iframe { margin-bottom: 20px }
-body.tv-experience {
-	blockquote.quote-grey br {
-		display: block;
-	}
-}
-body.tv-features-and-specs .inline-icons li { margin-top: 1.25em; margin-bottom: 0; }
-
-body.tv-features-and-specs .row-hero h2 { margin-bottom: 1em; }
-
-
-
-/*	@section experience
--------------------------------------------------------------- */
-body.tv-experience .row-hero {
-	overflow: hidden;
-}
-
-.row-tv-talk {
-  border-radius: 0;
-	padding-top: 0;
-}
-
-.row-tv-talk .box {
-	background: $light-grey;
-}
-
-/*	@section commercial-info & contributors
--------------------------------------------------------------- */
-.tv-commercial-info .row-terms .article {
-	background-image: url('#{$asset-server}b15f4e8a-pictogram-partner-124x124.png');
-}
-
-.tv-commercial-info .row-maintenance .article {
-	background-image: url('#{$asset-server}d49d3cf5-pictogram-upgrade-124x124.png');
-}
-
-.tv-commercial-info .row-engineering .article {
-	background-image: url('#{$asset-server}8bf83c0a-pictogram-engineering-124x124.png');
-}
-
-body.tv .row-tv-contact {
-	border-bottom: 0;
-	padding: 20px 0 20px $gutter-width;
-}
-
-
-/* Medium / Tablet viewport
--------------------------------------------------------------- */
-@media only screen and (min-width : 768px) {
-	body.tv-experience .row-hero h2,
-	body.tv-industry .row-hero h2,
-	body.tv-features-and-specs .row-hero h2 {
-  	font-size: 1.5625em;
+    iframe {
+      margin-bottom: 20px;
+    }
   }
-}
 
-/* Large / Desktop viewport
--------------------------------------------------------------- */
-@media only screen and (min-width : 984px) {
-	body.tv-experience {
-	 	.row-hero .intro {
-			padding: 0 57.4468% 2em 0;
-			margin: 0;
-		}
-		.inner-wrapper .row-hero .intro img {
-			position: absolute;
-			right: -120px;
-			bottom: -35px;
-		}
-	}
+  .no-margin {
+    margin-bottom: 0;
+  }
 
-	html.no-svg,
-	html.opera-mini {
-		background-image: url(https://assets.ubuntu.com/v1/8d9877ff-pictogram-develop-125x125.png);
-	}
+  .contextual-footer .strip-inner-wrapper {
+    @media only screen and (min-width : $breakpoint-medium) {
+      margin: 0 20px;
+    }
+  }
+
+  .no-svg,
+  .opera-mini {
+    @media only screen and (min-width : $breakpoint-large) {
+      background-image: url(#{$asset-server}8d9877ff-pictogram-develop-125x125.png);
+    }
+  }
+
+  // @subsection /tv/experience
+  &.tv-experience {
+    .row-hero {
+      overflow: hidden;
+
+      .intro {
+        @media only screen and (min-width : $breakpoint-large) {
+          margin: 0;
+          padding: 0 57.4468% 2em 0;
+
+          img {
+            @media only screen and (min-width : $breakpoint-large) {
+              bottom: -35px;
+              position: absolute;
+              right: -120px;
+            }
+          }
+        }
+      }
+
+      .quote-grey br {
+        display: block;
+      }
+    }
+  }
+
+  // @subsection /tv/featurs-and-specs
+  &.tv-features-and-specs {
+    .inline-icons li {
+      margin-bottom: 0;
+      margin-top: 1.25em;
+
+      img {
+        height: 90px;
+        width: 90px;
+      }
+    }
+
+    .row-hero h2 {
+      margin-bottom: 1em;
+    }
+  }
 }
