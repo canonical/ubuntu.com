@@ -344,23 +344,32 @@
 .cloud-training  {
 
   .row-hero {
-
+    position: relative;
+    
     @media only screen and (min-width : $breakpoint-medium) {
       min-height: 343px;
     }
   }
 
-  .row--training__image {
-    position: absolute;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      right: -20px;
-      top: -84px;
+  .row--training {
+    position: relative;
+    
+    &__content {
+      position: relative;
     }
-
-    @media only screen and (min-width : $breakpoint-large) {
-      right: -40px;
-      top: -121px;
+    
+    &__image {
+      position: absolute;
+  
+      @media only screen and (min-width : $breakpoint-medium) {
+        right: 20px;
+        top: -40px;
+      }
+  
+      @media only screen and (min-width : $breakpoint-large) {
+        right: 40px;
+        top: -100px;
+      }
     }
   }
 }
@@ -551,7 +560,7 @@
 
   @media only screen and (min-width : $breakpoint-medium) {
     #main-content .row-hero {
-      background-image: url('#{$asset-server}85280667-image-cloud-openstack-autopilot-screenshot.jpg?op=region&rect=0,0,450,800');
+      background-image: url('#{$asset-server}85280667-image-cloud-openstack-autopilot-screenshot.jpg?op=region&rect=0,0,450,900');
       background-position: 122% 0%;
       background-repeat: no-repeat;
     }
