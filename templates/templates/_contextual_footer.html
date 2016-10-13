@@ -3,7 +3,7 @@
     <div id="context-footer" class="row context-footer {{ level_1 }}-context-footer clearfix no-border">
         <hr />
         <div class="strip-inner-wrapper">
-            <div class="{% if level_1 == 'tablet' or level_1 == 'phone' %}strip-inner-wrapper {% endif %}twelve-col equal-height--vertical-divider no-margin-bottom">
+            <div class="{% if level_1 == 'tablet' or level_1 == 'phone' or level_1 == 'desktop' or level_1 == 'server' or level_1 == 'cloud' %}strip-inner-wrapper {% endif %}twelve-col equal-height--vertical-divider no-margin-bottom">
                 {% with ""|add:level_1|add:"/shared/_contextual_footer.html" as contextual %}
                     {% include contextual %}
                 {% endwith %}
