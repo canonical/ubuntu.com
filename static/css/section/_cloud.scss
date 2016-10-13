@@ -345,7 +345,7 @@
 
   .row-hero {
     position: relative;
-    
+
     @media only screen and (min-width : $breakpoint-medium) {
       min-height: 343px;
     }
@@ -353,19 +353,19 @@
 
   .row--training {
     position: relative;
-    
+
     &__content {
       position: relative;
     }
-    
+
     &__image {
       position: absolute;
-  
+
       @media only screen and (min-width : $breakpoint-medium) {
         right: 20px;
         top: -40px;
       }
-  
+
       @media only screen and (min-width : $breakpoint-large) {
         right: 40px;
         top: -100px;
@@ -447,14 +447,14 @@
 .cloud-juju {
 
   .row-get-started {
-    
+
     @media only screen and (min-width : $breakpoint-medium) {
       background-image: url('#{$asset-server}8149d09f-Service+View+-+zoom.png?w=600');
       background-position: top right;
       background-repeat: no-repeat;
     }
   }
-  
+
   .bundle-card__image-container {
     height: 345px;
   }
@@ -563,9 +563,29 @@
 
   @media only screen and (min-width : $breakpoint-medium) {
     #main-content .row-hero {
-      background-image: url('#{$asset-server}85280667-image-cloud-openstack-autopilot-screenshot.jpg?op=region&rect=0,0,450,900');
-      background-position: 122% 0%;
-      background-repeat: no-repeat;
+      overflow: hidden;
+
+      &:before {
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          background: url('#{$asset-server}b72144a5-cloud_landscape_components.png?w=897') center center no-repeat;
+          background-size: contain;
+          content: '';
+          display: block;
+          height: 75%;
+          overflow: visible;
+          position: absolute;
+          right: -30vw;
+          top: 60px;
+          width: 80vw;
+        }
+
+        @media only screen and (min-width : $breakpoint-large) {
+          height: 85%;
+          right: 3vw;
+          width: 45vw;
+        }
+      }
     }
   }
 
@@ -889,7 +909,7 @@
   .command-line {
     background: $light-grey;
     border: 0;
-    
+
      > code {
       color: $cool-grey;
     }
