@@ -4,7 +4,7 @@
 
 {% block second_level_nav_items %}
 <div class="strip-inner-wrapper">
-    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Plans and pricing" %}
+{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Plans and pricing" %}
 </div>
 {% endblock second_level_nav_items %}
 
@@ -65,8 +65,10 @@
         <div class="ten-col">
         {% include "shared/_ubuntu_advantage_cloud_service_provider.html" %}
         </div>
-
-        <p class="eight-col"><a href="/support/contact-us">Buy Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+        
+        <div class="eight-col">
+            <p><a href="/management/contact-us">Buy Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+        </div>
     </div>
 </section>
 
@@ -97,7 +99,9 @@
                 </tr>
             </table>
         </div>
-        <p><a href="/cloud/openstack/managed-cloud/contact-us">Schedule a BootStack demo&nbsp;&rsaquo;</a></p>
+        <div class="eight-col">
+            <p><a href="/cloud/openstack/managed-cloud/contact-us">Schedule a BootStack demo&nbsp;&rsaquo;</a></p>
+        </div>
     </div>
 </section>
 
