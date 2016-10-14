@@ -4,7 +4,7 @@ var ai = [
   { url: "https://askubuntu.com", title:"Ask!" },
   { url: "https://developer.ubuntu.com", title:"Developer" },
   { url: "https://design.ubuntu.com", title:"Design" },
-  { url: "http://www.ubuntu.com/certification", title:"Hardware" },
+  { url: "https://certification.ubuntu.com", title:"Hardware" },
   { url: "https://insights.ubuntu.com", title:"Insights" },
   { url: "https://jujucharms.com", title:"Juju" },
   { url: "http://maas.ubuntu.com", title:"MAAS" },
@@ -98,11 +98,6 @@ core.getActive = function(link) {
   var fullurl = core.getURL();
   var url = fullurl.substr(0,link.length);
 
-  if(link == 'http://www.ubuntu.com') {
-    if(fullurl.substr(0,35) == 'http://www.ubuntu.com/certification' ){
-      return '';
-    }
-  }
   return (url == link)?'class="active"':'';
 };
 
