@@ -231,6 +231,63 @@
         toggleSubmit(total);
     }
 
+    /**
+     * Generate a random ID including the datestamp for uniqueness
+     */
+    function generateRandomId() {
+        // really crude unique ID
+        var date = new Date();
+        var random = Math.floor(Math.random()*1000);
+        return date.valueOf()+''+random;
+    }
+
+    /**
+     * Send form values to Google Analytics
+     * Also send which header has been shown
+     */
+    function sendContributionFormAnalytics( submitEvent ) {
+        form = submitEvent.target;
+
+        // preparing GA submission. step 1 _addTrans
+        var orderId = generateRandomId();
+        var total = document.querySelector('.contribute__total-amount').innerText;
+        var transactionProducts = [];
+
+        // add the individual items
+        document.querySelectorAll('.contribute__option-amount').forEach(function(amountElement) {
+            var name = amountElement.parentNode.id;
+            var value = amountElement.querySelector('[type=number]').value;
+            if (value > 0) {
+                transactionProducts.push(
+                    {
+                        'sku': name,
+                        'name': name,
+                        'category': '',
+                        'price': value,
+                        'quantity': 1
+                    }
+                );
+            }
+        });
+        debugger;
+
+        dataLayer.push({
+            'transactionId': orderId,
+            'transactionAffiliation': 'Ubuntu contributions',
+            'transactionTotal': total,
+            'transactionTax': 0,
+            'transactionShipping': 0,
+            'transactionProducts': transactionProducts,
+            'event' : 'transactionComplete'
+        });
+    }
+
+    // Submit analytics before submitting form
+    document.querySelector('#contributions-form').addEventListener(
+        'submit',
+        sendContributionFormAnalytics
+    );
+
     var optionsArea = document.querySelector('.contribute__options');
     optionsArea.addEventListener('change', updateSummary);
     optionsArea.addEventListener('input', updateSummary);
