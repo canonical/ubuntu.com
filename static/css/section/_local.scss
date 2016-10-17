@@ -1,23 +1,38 @@
+@charset 'UTF-8';
+// ---------------------------------------------------------------
+// ---------------------------------------------------------------
+//
+//  Project:		Ubuntu Front-End local overrides
+//  Author:			Web Team at Canonical Ltd
+//
+// ---------------------------------------------------------------
+// ---------------------------------------------------------------
+
+
+// body
 body {
   background-size: cover;
+
   @media only screen and (min-width : $breakpoint-medium) {
     padding-top: 30px;
   }
 }
 
-@media only screen and (min-width : $breakpoint-large) {
-  .inner-wrapper {
-    margin-bottom: 30px;
-  }
-}
 
-@media only screen and (max-width : $breakpoint-medium) {
-  .inner-wrapper {
+// .inner-wrapper
+.inner-wrapper {
+
+  @media only screen and (max-width : $breakpoint-medium) {
     border-radius: 0;
     box-shadow: none;
     padding-bottom: 0;
   }
+
+  @media only screen and (min-width : $breakpoint-large) {
+    margin-bottom: 30px;
+  }
 }
+
 
 // Style all range input boxes with ubuntu fancy styles
 [type=range] {
@@ -25,28 +40,63 @@ body {
 }
 
 
-// XXX Graham (10.04.2016)
-// Move to Vanilla
-// remove negative margin and add border back
-.row.row-grey {
-  border-bottom: 1px dotted $warm-grey;
-  margin-top: 0;
+
+// row
+.row {
+
+  .row-hero {
+      margin-top: 40px;
+      padding-top: 0;
+
+      @media only screen and (max-width: $breakpoint-medium) {
+        margin-top: 20px;
+      }
+    }
+
+    &.row-white {
+      background-color: $white;
+    }
+
+  // XXX Graham (10.04.2016)
+  // Move to Vanilla
+  // remove negative margin and add border back
+  &.row-grey {
+    border-bottom: 1px dotted $warm-grey;
+    margin-top: 0;
+  }
+
+  &.row-grey.no-border,
+  &.no-border {
+    border-bottom: 0;
+  }
+
+  .combined-list {
+
+    div,
+    ul {
+      margin-bottom: 0;
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        margin-bottom: 20px;
+      }
+    }
+
+    li.last-item {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .last-col {
+      margin-bottom: 20px;
+    }
+  }
 }
 
-.row.row-grey.no-border,
-.no-border {
-  border-bottom: 0;
-}
 
 /// XXX Peter - marketo required field marker
 .mktoLabel > span,
 .mktError {
   color: #df382c;
-}
-// XXX Peter - a white row?
-/// strips
-.row.row-white {
-  background-color: $white;
 }
 
 // fixes main nav not closing issue
@@ -219,44 +269,8 @@ body {
   }
 }
 
-// pulling in the old guidelines version of combined-list
-.row .combined-list {
-  div,
-  ul {
-    margin-bottom: 0;
-  }
-  li.last-item {
-    border-bottom: 1px dotted $warm-grey;
-    padding-bottom: 10px;
-  }
-  .last-col {
-    margin-bottom: 20px;
-    li.last-item {
-      border-bottom: 0;
-      padding-bottom: 0;
-    }
-  }
-}
-@media only screen and (min-width : $breakpoint-medium) {
-  .row .combined-list {
-    div,
-    ul {
-      margin-bottom: 20px;
-    }
-    li.last-item {
-      border-bottom: 0;
-      padding-bottom: 0;
-    }
-  }
-}
-// end @media only screen and (max-width : $breakpoint-medium)
-.row-hero {
-    margin-top: 40px;
-    padding-top: 0;
-    @media only screen and (max-width: 768px) {
-        margin-top: 20px;
-    }
-}
+
+
 // local override for uvt list ticks
 .list-ticks li,
 .list-ticks--compact li {
@@ -442,6 +456,7 @@ body {
       width: $breakpoint-large;
     }
   }
+
   @media only screen and (min-width : $breakpoint-medium) {
     .strip-inner-wrapper {
       background: none;
