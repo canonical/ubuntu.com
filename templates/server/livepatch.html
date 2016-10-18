@@ -1,0 +1,107 @@
+
+{% extends "server/base_server.html" %}
+
+{% block title %}Canonical Livepatch Service | Server{% endblock %}
+{% block meta_description %}The Canonical Livepatch Service for Ubuntu 16.04 servers reduces planned or unplanned downtime whilst keeping on top of compliance and security.{% endblock %}
+{% block meta_keywords %}Canonical Livepatch Service, Kernel Live Patching, Landscape, Server, Ubuntu Advantage, Ubuntu, Ubuntu operating system, OS, platform, Linux, distribution, OpenStack, Ubuntu OpenStack, Ubuntu Cloud, server, tablet, smartphone, phone, Windows alternative, Mac alternative, free software, open source, thin client, Juju, MAAS, Landscape, Ubuntu Advantage, download Ubuntu, deployment, provisioning, service orchestration, services, commercial support, paid support, long term support, LTS, 14.04, 14.10, Trusty Tahr, Utopic Unicorn, Icehouse, Juno{% endblock meta_keywords %}
+
+{% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Server" page_title="Canonical Livepatch Service"  %}
+</div>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<section class="row row-hero clearfix strip-light no-border">
+    <div class="strip-inner-wrapper">
+        <div class="left eight-col">
+            <h1>Canonical Livepatch Service</h1>
+            <h2>Apply critical kernel patches without rebooting.</h2>
+            <p>Want to apply critical kernel security fixes without rebooting your system? The Canonical Livepatch Service for Ubuntu 16.04 LTS reduces planned or unplanned downtime while maintaining compliance and security.</p>
+            <p><a class="button--primary" href="/livepatch">Sign up</a></p>
+        </div>
+    </div>
+</section>
+
+<div class="row no-border">
+    <div class="strip-inner-wrapper equal-height">
+        <div class="four-col equal-height--vertical-divider__item clearfix">
+            <div class="inline-small align-center">
+                <img src="https://assets.ubuntu.com/v1/999949f8-picto-startfirst-midaubergine.svg
+" width="50" alt="">
+             </div>
+            <div class="no-margin-bottom">
+                <h3>Maximise service availability</h3>
+            </div>
+            <p class="clear">Mission-critical workloads, such as enterprise databases, virtual/cloud hosts or infrastructure services, can&rsquo;t afford downtime. The Canonical Livepatch Service lets you apply kernel fixes in seconds, without restarting your Ubuntu 16.04 LTS system. Fewer reboots means improved service availability.</p>
+        </div>
+        <div class="four-col equal-height--vertical-divider__item clearfix">
+            <div class="inline-small align-center">
+                <img src="https://assets.ubuntu.com/v1/6dd40b7c-picto-certification-warmgrey.svg" width="50" alt="">
+            </div>
+            <div class="no-margin-bottom">
+                <h3>Maintain security and compliance</h3>
+            </div>
+            <p class="clear">When a security loophole is identified in the Linux kernel, patching is the only way to reduce your exposure from malicious attack.</p>
+            <p>But finding a downtime window to address security vulnerabilities can be challenging. The Canonical Livepatch Service applies Linux kernel patches without rebooting, keeping your Ubuntu 16.04 LTS systems secure and compliant.</p>
+        </div>
+        <div class="four-col equal-height--vertical-divider__item clearfix last-col">
+            <div class="inline-small align-center">
+                <img src="https://assets.ubuntu.com/v1/1a3082c0-picto-shareu1-orange.svg" width="50" alt="">
+            </div>
+            <div class="no-margin-bottom">
+                <h3>Integrated service delivery</h3>
+            </div>
+            <p class="clear">The Canonical Livepatch Service is available with an Ubuntu Advantage subscription. For existing customers introducing the Canonical Livepatch Service into your existing administrative processes is simple since it’s integrated into existing tools like Landscape and support processes.</p>
+        </div>
+    </div>
+</div>
+
+<section class="row strip-light no-border">
+    <div class="strip-inner-wrapper">
+        <div class="seven-col append-one">
+            <h2>How to enable the Canonical Livepatch Service</h2>
+            <p>To enable the Canonical Livepatch Service for the first time you must install the canonical-livepatch daemon:</p>
+            <pre class="command-line"><code>$ sudo apt install canonical-livepatch</code></pre>
+            <p>And then enable it:</p>
+            <pre class="command-line"><code>$ sudo canonical-livepatch enable</code></pre>
+            <p>This command will first ask you if the system is covered under an Ubuntu Advantage support contract with Canonical. If so, you&rsquo;ll be directed to the <a href="https://auth.livepatch.canonical.com/">Canonical Livepatch portal</a> where you can generate your credentials, then paste them into the dialog.</p>
+        </div>
+
+        <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/20161017_LivePatching_DS_.pdf" class="four-col last-col box box-highlight resource--link resource-whitepaper">
+            <h2>Resources&nbsp;›</h2>
+            <p>Download datasheet for more detail on the Canonical Livepatch Service including FAQs.</p>
+            <p class="content-cat content-cat-whitepaper">Download datasheet</p>
+        </a>
+    </div>
+</section>
+
+<section class="row no-border">
+    <div class="strip-inner-wrapper">
+        <div class="six-col no-margin-bottom">
+            <h2>Install in under a minute</h2>
+        </div>
+        <div class="twelve-col last-col">
+            <div class="video-container">
+                <iframe width="906" height="500" src="https://www.youtube.com/embed/9hvqFfwE4u0?rel=0&amp;&amp;hd=1" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="six-col">
+            <p><a href="/livepatch" class="external">Sign up for the Canonical Livepatch Service</a></p>
+        </div>
+    </div>
+</section>
+
+<section class="row strip-light no-border">
+    <div class="strip-inner-wrapper">
+        <div class="seven-col">
+            <h2>Got a question?</h2>
+            <p>Exchange expertise and ideas with thousands of other IT professionals. Want to talk to other Ubuntu users straight away? Share ideas and get advice and help from our large, active community of IT professionals. As a community, we set high standards for friendliness and tolerance. We welcome your questions and contributions.</p>
+            <p><a href="/support/community">Community support&nbsp;&rsaquo;</a></p>
+        </div>
+    </div>
+</section>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_server_download" second_item="_server_contact_us" third_item="_cloud_further_reading" %}
+
+{% endblock content %}

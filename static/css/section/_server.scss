@@ -100,3 +100,17 @@
     }
   }
 }
+
+// @subsection /server/livepatch
+.server-livepatch {
+
+  .row-hero {
+    @media only screen and (min-width : $breakpoint-medium) {
+      background: $white url('#{$asset-server}e2c4c299-server-livepatch-hero.jpg?w=984') no-repeat;
+      background-size: cover;
+      color: $white;
+      min-height: 450px;
+      padding: 0;
+    }
+  }
+}
