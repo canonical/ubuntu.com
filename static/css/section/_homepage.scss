@@ -1125,14 +1125,35 @@ body.homepage-maas-takeover {
   }
 }
 
-.featured--event__mwc {
-  &:before {
+// Events happening in Barcelona
+.featured--event__barcelona {
+  background-color: transparent;
+
+  a {
+    color: $white;
+  }
+
+  &::before {
+    position: absolute;
+    display: block;
+    right: -3000px;
+    margin-top: -40px;
+    content: "";
+    width: 3000px;
+    flex: auto;
+    height: 100%;
+    left: 0;
+    z-index: -2;
     background-image: url('#{$asset-server}bda4bb5d-barcelona-map-2.png?fmt=jpg&q=20');
   }
 
-  &:after {
+  &::after {
     background-color: #303030;
+    left: 0;
+    top: 40px;
+    display: block;
     opacity: 0.7;
+    z-index: -1;
   }
 }
 
