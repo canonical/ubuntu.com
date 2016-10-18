@@ -14,8 +14,10 @@
 {% block content %}
 <section class="row row-hero clearfix strip-light no-border">
     <div class="strip-inner-wrapper">
-        <div class="left eight-col">
+        <div class="left eight-col no-margin-bottom">
             <h1>Canonical Livepatch Service</h1>
+        </div>
+        <div class="left six-col">
             <h2>Apply critical kernel patches without rebooting.</h2>
             <p>Want to apply critical kernel security fixes without rebooting your system? The Canonical Livepatch Service for Ubuntu 16.04 LTS reduces planned or unplanned downtime while maintaining compliance and security.</p>
             <p><a class="button--primary" href="/livepatch">Sign up</a></p>
@@ -52,20 +54,36 @@
             <div class="no-margin-bottom">
                 <h3>Integrated service delivery</h3>
             </div>
-            <p class="clear">The Canonical Livepatch Service is available with an Ubuntu Advantage subscription. For existing customers introducing the Canonical Livepatch Service into your existing administrative processes is simple since it’s integrated into existing tools like Landscape and support processes.</p>
+            <p class="clear">The Canonical Livepatch Service is available with an Ubuntu Advantage subscription. For existing customers introducing the Canonical Livepatch Service into your existing administrative processes is simple.</p>
         </div>
     </div>
 </div>
 
 <section class="row strip-light no-border">
     <div class="strip-inner-wrapper">
+        <div class="twelve-col">
+            <h2>How to enable the Canonical Livepatch&nbsp;Service</h2>
+        </div>
         <div class="seven-col append-one">
-            <h2>How to enable the Canonical Livepatch Service</h2>
-            <p>To enable the Canonical Livepatch Service for the first time you must install the canonical-livepatch daemon:</p>
-            <pre class="command-line"><code>$ sudo snap install canonical-livepatch</code></pre>
-            <p>And then enable it:</p>
-            <pre class="command-line"><code>$ sudo canonical-livepatch enable</code></pre>
-            <p>This command will first ask you if the system is covered under an Ubuntu Advantage support contract with Canonical. If so, you&rsquo;ll be directed to the <a href="https://auth.livepatch.canonical.com/">Canonical Livepatch portal</a> where you can generate your credentials, then paste them into the dialog.</p>
+            <ol class="list-stepped--spaced">
+                <li class="list-stepped__item">
+                    <div class="six-col no-margin-bottom">
+                        <p class="list-stepped__title">Generate your credentials via the <a href="https://auth.livepatch.canonical.com/">Canonical Livepatch portal</a></p>
+                    </div>
+                </li>
+                <li class="list-stepped__item">
+                    <div class="six-col no-margin-bottom">
+                        <p class="list-stepped__title">Install the canonical-livepatch daemon:</p>
+                        <pre class="command-line"><code>$ sudo snap install canonical-livepatch</code></pre>
+                    </div>
+                </li>
+                <li class="list-stepped__item">
+                    <div class="six-col no-margin-bottom">
+                        <p class="list-stepped__title">Enable it:</p>
+                        <pre class="command-line"><code>$ sudo canonical-livepatch enable [TOKEN]</code></pre>
+                    </div>
+                </li>
+            </ol>
         </div>
 
         <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/20161017_LivePatching_DS_.pdf" class="four-col last-col box box-highlight resource--link resource-whitepaper">
