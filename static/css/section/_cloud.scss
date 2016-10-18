@@ -71,6 +71,13 @@
         }
       }
     }
+
+    .resource .content-cat {
+      @media only screen and (min-width : $breakpoint-medium) {
+        bottom: 16px;
+        left: 20px;
+      }
+    }
   }
 
   .row-get-started {
@@ -143,6 +150,25 @@
 
     .ubuntu-label {
       fill: $white;
+    }
+  }
+
+  /* resource hub content */
+  .strip-dark .resource--link {
+
+    &:before {
+      border-right-color: #2c001e;
+    }
+
+    &,
+    &:active,
+    &:hover,
+    &:link,
+    &:visited {
+      color: $cool-grey;
+      -moz-box-shadow: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
     }
   }
 }
@@ -453,6 +479,14 @@
       background-position: top right;
       background-repeat: no-repeat;
     }
+  }
+
+  /// XXX Karl (10.04.2016)
+  /// we're using a similar style in various places, cosider pushing upstream
+  .external-heading {
+    background: url("#{$asset-server}e1bba201-external-link-cool-grey.svg") left center no-repeat;
+    background-size: 16px;
+    padding-left: 22px;
   }
 
   .bundle-card__image-container {
