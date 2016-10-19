@@ -137,7 +137,7 @@
         @media only screen and (max-width: $navigation-threshold) {
           border-bottom: 1px solid $alto-grey;
           color: $text-color;
-          font-size: 1.125rem;
+          font-size: 1rem; // XXX should this be 1.125rem?
           outline: none;
         }
 
@@ -174,7 +174,7 @@
           a,
           a:link {
             @media only screen and (max-width: $navigation-threshold) {
-              font-size: 1.125rem;
+              font-size: 1rem;
             }
           }
 
