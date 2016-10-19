@@ -15,6 +15,21 @@
   padding-left: 0;
   padding-right: 0;
 
+  .flex,
+  .flex-container {
+    overflow: hidden;
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      display: flex;
+      height: 68vw;
+      margin: auto;
+    }
+
+    @media only screen and (min-width : $breakpoint-large) {
+      height: 56vw;
+    }
+  }
+
   // @section /phone overview
   &.phone-home {
 
@@ -213,18 +228,6 @@
         max-height: 60vw;
       }
 
-      .flex-container {
-        overflow: hidden;
-
-        @media only screen and (min-width : $breakpoint-medium) {
-          height: 68vw;
-        }
-
-        @media only screen and (min-width : $breakpoint-large) {
-          height: 56vw;
-        }
-      }
-
       h2 {
         text-align: left;
       }
@@ -280,6 +283,10 @@
 
     #main-content {
       overflow: hidden;
+    }
+
+    .strip-inner-wrapper {
+      position: relative;
     }
 
     .row-scope-frameworks {
@@ -400,10 +407,6 @@
       }
     }
 
-    .strip-inner-wrapper {
-      position: relative;
-    }
-
     .row-shine {
       border: 0;
       min-height: 0;
@@ -437,6 +440,10 @@
             color: $white;
             text-decoration: none;
           }
+        }
+
+        .flex-align-center {
+          align-self: center;
         }
       }
 

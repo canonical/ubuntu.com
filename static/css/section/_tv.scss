@@ -83,5 +83,56 @@
     .row-hero h2 {
       margin-bottom: 1em;
     }
+
+    // end @media only screen and (min-width: $breakpoint-large)
+    // box-padded-feature imported from old guidelines
+    .box-padded-feature {
+      background: $warm-grey url('#{$asset-path}c88fbee7-soft-centre-bkg.gif') repeat scroll 0 0;
+      border: 0;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      padding: 11px 5px 6px;
+
+      h3 {
+        color: $white;
+        font-size: 1.21875em;
+        margin-left: ($gutter-width / 4);
+      }
+
+      h4 {
+        font-size: 1em;
+        font-weight: normal;
+      }
+
+      > div {
+        background: $white;
+        border-radius: 4px;
+        overflow: hidden;
+        padding: 20px 8px;
+      }
+
+      div div {
+        margin-bottom: 0;
+      }
+
+      .inline-icons {
+        display: table;
+        margin: 0;
+        text-align: center;
+        width: 100%;
+
+        li {
+          display: table-cell;
+          float: none;
+          text-align: left;
+        }
+      }
+
+      .one-col {
+        float: left;
+        width: 48px;
+      }
+    }
+
   }
 }

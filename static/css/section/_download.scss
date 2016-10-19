@@ -127,6 +127,22 @@
     }
 }
 
+.download {
+  .row {
+    padding: 40px 10px 40px 10px;
+  }
+  .row-hero {
+    margin-top: 0;
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      padding-top: 40px;
+    }
+    @media only screen and (min-width : $breakpoint-large) {
+      padding-top: 40px;
+    }
+  }
+}
+
 .download-server-thank-you-linuxone #main-content .row-hero {
   border-bottom: 1px dotted $warm-grey;
 }
@@ -503,7 +519,7 @@ html.opera-mini {
 }
 
 .download .box ul li p {
-    color: #333;
+    color: $cool-grey;
     margin-bottom: 0;
 }
 
@@ -567,7 +583,7 @@ html.opera-mini {
         margin-bottom: 0;
         margin-left: 20px;
         min-height: 0;
-        color: #333;
+        color: $cool-grey;
     }
 
     .box-tip p {
@@ -1032,7 +1048,7 @@ pre {
   padding-right: 15px;
   padding-bottom: 10px;
   padding-left: 15px;
-  background-color: #333;
+  background-color: $cool-grey;
   border: none;
   border-radius: 2px;
   color: #cdcdcd;
