@@ -424,8 +424,8 @@ body {
 // Full width sections
 .server,
 .ubuntu-search,
-.download,
 .desktop,
+.download,
 .homepage,
 .cloud,
 .phone,
@@ -526,7 +526,6 @@ body {
 .desktop,
 .phone,
 .tablet,
-.download,
 .support {
   .row-hero {
     margin-top: 0;
@@ -535,27 +534,10 @@ body {
       padding-top: 20px;
     }
     @media only screen and (min-width : $breakpoint-medium) {
-      margin-top: 0;
       padding-top: 40px;
     }
     @media only screen and (min-width : $breakpoint-large) {
       padding-top: 100px;
-    }
-  }
-}
-
-.download {
-  .row {
-    padding: 40px 10px 40px 10px;
-  }
-  .row-hero {
-    margin-top: 0;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      padding-top: 40px;
-    }
-    @media only screen and (min-width : $breakpoint-large) {
-      padding-top: 40px;
     }
   }
 }
@@ -565,7 +547,6 @@ body {
 .desktop,
 .phone,
 .tablet,
-.download,
 .server,
 .support  {
   .row {
