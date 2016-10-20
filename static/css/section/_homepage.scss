@@ -2008,3 +2008,55 @@ body.homepage-1610 {
     opacity: 1;
   }
 }
+
+body.homepage-livepatch {
+  .row-hero {
+    background-image: url('#{$asset-server}3b4ea1e2-Yakkety_Yak_Wallpaper_Mobile_1080x1920_grey_version.png?w=768');
+
+    @media only screen and (min-width : $breakpoint-medium) {
+        background-image: url('#{$asset-server}6bcb129c-Yakkety_Yak_Wallpaper_4096x2304_grey_version.png');
+    }
+
+    background-size: cover;
+    margin-top: -5px;
+    overflow: hidden;
+    padding-bottom: 20px;
+    padding-top: 50px;
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      padding-bottom: 100px;
+      padding-top: 100px;
+    }
+
+    @media only screen and (min-width : 1350px) {
+      padding-bottom: 200px;
+      padding-top: 200px;
+    }
+
+    &__image {
+      margin: 40px 0;
+    }
+
+    &:before {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server}7a3a71fc-dell-xps-laptop-front.png?w=927') center center no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height: 75%;
+        overflow: visible;
+        position: absolute;
+        right: -30vw;
+        top: 40px;
+        width: 80vw;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        height: 85%;
+        right: -8vw;
+        width: 55vw;
+      }
+    }
+  }
+}
