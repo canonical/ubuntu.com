@@ -42,9 +42,14 @@
       margin-bottom: 1em;
       width: 100%;
     }
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      padding: 0 30px;
+    }
   }
 
   .row {
+    padding: 40px 10px 20px;
 
     @media only screen and (min-width : $breakpoint-large) {
       padding: 32px 40px 40px 40px;
@@ -86,27 +91,27 @@
   }
 
   // XXX code stuff
-  pre {
-    background-color: $cool-grey;
-    border: 0;
-    border-radius: 2px;
-    color: #cdcdcd;
-    overflow: auto;
-    padding-bottom: 10px;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 10px;
-
-    code {
-      background: transparent;
-      border: 0;
-      color: #cdcdcd;
-      font-size: 1em;
-      font-weight: 300;
-      padding: .7em 1em;
-      width: 100%;
-    }
-  }
+  //  pre {
+  //    background-color: $cool-grey;
+  //    border: 0;
+  //    border-radius: 2px;
+  //    color: $mid-grey;
+  //    overflow: auto;
+  //    padding-bottom: 10px;
+  //    padding-left: 15px;
+  //    padding-right: 15px;
+  //    padding-top: 10px;
+  //
+  //    code {
+  //      background: transparent;
+  //      border: 0;
+  //      color: $mid-grey;
+  //      font-size: 1em;
+  //      font-weight: 300;
+  //      padding: .7em 1em;
+  //      width: 100%;
+  //    }
+  //  }
 
   .header--ubuntu,
   .header--windows,
