@@ -203,6 +203,7 @@ body {
 .cloud,
 .download,
 .desktop,
+.download,
 .homepage,
 .phone,
 .server,
@@ -240,11 +241,30 @@ body {
     box-shadow: none;
   }
 
-  .inner-wrapper {
-    margin-bottom: 0;
+  .row--dark {
+    background: #262626;
+    color: #ebebea;
+  }
+}
+  // The default section row padding
+.cloud,
+.server,
+.desktop,
+.phone,
+.tablet,
+.support {
+  .row-hero {
     margin-top: 0;
-    max-width: 100%;
-    padding-bottom: 0;
+
+    h1 {
+      padding-top: 20px;
+    }
+    @media only screen and (min-width : $breakpoint-medium) {
+      padding-top: 40px;
+    }
+    @media only screen and (min-width : $breakpoint-large) {
+      padding-top: 100px;
+    }
   }
 
   .row {
