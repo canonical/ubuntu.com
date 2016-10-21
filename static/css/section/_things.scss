@@ -131,41 +131,6 @@
     color: $white;
   }
 
-  // @subsection /internet-of-things/features
-  &.internet-of-things-features {
-    .row-hero {
-      background-position: 430px -25px;
-      background-size: 69%;
-      margin-top: 0;
-      padding-top: 20px;
-
-      @media only screen and (max-width: $breakpoint-medium) {
-        background-position: 400px 20px;
-      }
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server}d1c96b0e-erle_robotics_ubuntu_drone.jpg?q=60');
-        background-repeat: no-repeat;
-        min-height: 470px;
-        padding-top: 40px;
-      }
-    }
-
-    .row-marketplace {
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        background: url('#{$asset-server}d1f7b4c2-iot-features-led.jpg?q=60&w=984') left -74px no-repeat;
-        background-size: cover;
-        min-height: 500px;
-        overflow: hidden;
-      }
-
-      @media only screen and (max-width: $breakpoint-medium) {
-        min-height: 400px;
-      }
-    }
-  }
-
   // @subsection /internet-of-things/developers
   &.internet-of-things-developers {
     .row-hero {
