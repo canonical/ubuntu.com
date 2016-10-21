@@ -281,32 +281,21 @@ body {
     }
 
     &.row-hero {
+      margin-top: 0;
       padding: 0 10px;
 
       @media only screen and (min-width : $breakpoint-medium) {
+        margin-top: 0;
         padding: 40px 10px 20px;
       }
 
       @media only screen and (min-width : $breakpoint-large) {
         padding: 100px 40px;
       }
-    }
-  }
 
-  .row-hero {
-    margin-top: 0;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      margin-top: 0;
-      padding-top: 40px;
-    }
-
-    @media only screen and (min-width : $breakpoint-large) {
-      padding-top: 100px;
-    }
-
-    h1 {
-      padding-top: 20px;
+      h1 {
+        padding-top: 20px;
+      }
     }
   }
 

@@ -153,7 +153,7 @@
     }
   }
 
-  /* resource hub content */
+  // resource hub content
   .strip-dark .resource--link {
 
     &:before {
@@ -165,439 +165,402 @@
     &:hover,
     &:link,
     &:visited {
-      color: $cool-grey;
       -moz-box-shadow: none;
       -webkit-box-shadow: none;
       box-shadow: none;
-    }
-  }
-}
-
-// @section /cloud overview
-.cloud-home {
-
-  .row-maas {
-    @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url('#{$asset-server}1066e824-cloud_maas.jpg?op=region&rect=0,0,300,500');
-      background-position: right top;
-      background-repeat: no-repeat;
-    }
-
-    @media only screen and (min-width : $breakpoint-large) {
-      background-image: url('#{$asset-server}1066e824-cloud_maas.jpg?op=region&rect=0,0,470,640');
-      background-position: right top;
-      background-repeat: no-repeat;
+      color: $cool-grey;
     }
   }
 
-  // news and events list on /cloud
-  .newsevent { // DDD do we need this bespoke pattern for the /cloud news list?
+  // @section /cloud overview
+  &.cloud-home {
 
-    &__title {
-      font-size: 1rem;
+    .row-maas {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background-image: url('#{$asset-server}1066e824-cloud_maas.jpg?op=region&rect=0,0,300,500');
+        background-position: right top;
+        background-repeat: no-repeat;
+      }
 
       @media only screen and (min-width : $breakpoint-large) {
-        font-size: 1.25rem; // going for 20px
+        background-image: url('#{$asset-server}1066e824-cloud_maas.jpg?op=region&rect=0,0,470,640');
+        background-position: right top;
+        background-repeat: no-repeat;
       }
     }
 
-    &__map {
-      float: left;
+    // news and events list on /cloud
+    .newsevent { // DDD do we need this bespoke pattern for the /cloud news list?
 
-      &-image {
-        border-radius: 4px;
-        margin-right: 20px;
-        margin-top: 7px;
-        width: 76px;
+      &__title {
+        font-size: 1rem;
+
+        @media only screen and (min-width : $breakpoint-large) {
+          font-size: 1.25rem; // going for 20px
+        }
       }
 
-      &-image-wrap {
-        background-size: 78px;
-        display: inline-block;
-        margin-bottom: 0;
-        max-width: 100%;
-        position: relative;
-        vertical-align: middle;
-      }
-    }
+      &__map {
+        float: left;
 
-    &__details {
-      clear: none;
-      color: $warm-grey;
-      display: inline;
-      float: left;
-      line-height: 1.2;
-      margin-bottom: .5em;
-      margin-top: 4px;
-      width: 66%;
+        &-image {
+          border-radius: 4px;
+          margin-right: 20px;
+          margin-top: 7px;
+          width: 76px;
+        }
 
-      &-location {
-        @extend %newsevent__details-icon;
-        background-image: url('#{$asset-server}dc06486f-location.svg');
+        &-image-wrap {
+          background-size: 78px;
+          display: inline-block;
+          margin-bottom: 0;
+          max-width: 100%;
+          position: relative;
+          vertical-align: middle;
+        }
       }
 
-      &-venue {
-        @extend %newsevent__details-icon;
-        background-image: url('#{$asset-server}48947556-gps.svg');
-      }
+      &__details {
+        clear: none;
+        color: $warm-grey;
+        display: inline;
+        float: left;
+        line-height: 1.2;
+        margin-bottom: .5em;
+        margin-top: 4px;
+        width: 66%;
 
-      &-date {
-        @extend %newsevent__details-icon;
-        background-image: url('#{$asset-server}c7d1850b-calendar.svg');
+        &-location {
+          @extend %newsevent__details-icon;
+          background-image: url('#{$asset-server}dc06486f-location.svg');
+        }
+
+        &-venue {
+          @extend %newsevent__details-icon;
+          background-image: url('#{$asset-server}48947556-gps.svg');
+        }
+
+        &-date {
+          @extend %newsevent__details-icon;
+          background-image: url('#{$asset-server}c7d1850b-calendar.svg');
+        }
       }
     }
   }
-}
 
-// @subsection cloud > training */
-.cloud-training {
+  // @subsection cloud > training */
+  &.cloud-training {
 
-  .course-details {
-    margin-top: 3px;
+    .course-details {
+      margin-top: 3px;
 
-    dt {
-      float: left;
-      margin-right: 6px;
+      dt {
+        float: left;
+        margin-right: 6px;
 
-      &::after {
-        content: ': ';
+        &::after {
+          content: ': ';
+        }
+      }
+
+      dd {
+        margin-bottom: 10px;
+      }
+
+    }
+  }
+
+  // @subsection /cloud/public-cloud
+  &.cloud-public-cloud {
+
+    .row-get-started {
+      @media only screen and (min-width : $breakpoint-large) {
+
+        .box {
+          min-height: 170px;
+        }
       }
     }
-
-    dd {
-      margin-bottom: 10px;
-    }
-
   }
-}
-
-// @subsection /cloud/public-cloud
-.cloud-public-cloud {
-
-  .row-juju-advantage {
-
-    div {
-      min-height: 144px;
-    }
-
-    .last-col .pull-left-20 {
-      margin-left: 0;
-    }
-  }
-}
 
 
-// @subsection /cloud/maas
-.cloud-maas {
+  // @subsection /cloud/maas
+  &.cloud-maas {
 
-  @media only screen and (min-width: $breakpoint-medium) {
     .row-hero {
-      background-image: url('#{$asset-server}1066e824-cloud_maas.jpg');
-      background-repeat: no-repeat;
-      background-position: 190% 0;
-      background-size: 75%;
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        background-image: url('#{$asset-server}1066e824-cloud_maas.jpg');
+        background-position: 190% 0;
+        background-repeat: no-repeat;
+        background-size: 75%;
+      }
     }
 
     .row--autopilot {
-      background-image: url('#{$asset-server}b72144a5-cloud_landscape_components.png');
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        background-image: url('#{$asset-server}b72144a5-cloud_landscape_components.png');
+        background-position: 190% 0;
+        background-repeat: no-repeat;
+        background-size: 75%;
+      }
+    }
+
+    h1 {
+      background-image: url('#{$asset-server}33b96a7f-maas-logo.svg');
+      background-position: 0 18px;
       background-repeat: no-repeat;
-      background-position: 190% 0;
-      background-size: 75%;
+      background-size: 1.4em;
+      margin-left: -6px;
+      padding-left: 1.5em;
+      padding-top: 5px;
     }
   }
 
-  h1 {
-    background-image: url('#{$asset-server}33b96a7f-maas-logo.svg');
-    background-position: 0 18px;
-    background-repeat: no-repeat;
-    background-size: 1.4em;
-    margin-left: -6px;
-    padding-left: 1.5em;
-    padding-top: 5px;
-  }
-}
+  // no-svg and opera-mini fixes for cloud/maas
+  .no-svg,
+  .opera-mini {
 
-// no-svg and opera-mini fixes for cloud/maas
-.no-svg,
-.opera-mini {
-
-  .cloud-maas h1 {
-    background-image: url('#{$asset-server}6574f6c8-image-picto-maas-40.png');
-  }
-}
-
-// @subsection /cloud/managed-cloud
-.cloud-openstack-managed-cloud {
-
-  .video-container {
-    padding-bottom: 53.25%;
-  }
-}
-
-//* Special overrides for JS-enabled  on /cloud/openstack/managed-cloud
-.js .cloud-openstack-managed-cloud {
-  .slider-container {
-    min-height: 24px;
-    min-width: 10px;
-  }
-}
-
-//  @subsection cloud/storage - XXX this is a candidate to raise up a level */
-.cloud-storage {
-
-  .equal-height--vertical-divider .equal-height--vertical-divider__item {
-    border: 0;
-  }
-
-  .twelve-col .equal-height--vertical-divider {
-    margin-bottom: 0;
-  }
-
-  .storage-options {
-    @media only screen and (min-width : $breakpoint-medium) {
-      border-bottom: 1px dotted $warm-grey;
+    .cloud-maas h1 {
+      background-image: url('#{$asset-server}6574f6c8-image-picto-maas-40.png');
     }
   }
 
-  .hero-image {
-    @media only screen and (min-width : $breakpoint-medium) {
-      margin-top: -60px;
-    }
-  }
-}
+  // @subsection /cloud/managed-cloud
+  &.cloud-openstack-managed-cloud {
 
-// @subsection /cloud/training
-.cloud-training  {
-
-  .row-hero {
-    position: relative;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      min-height: 343px;
+    .video-container {
+      padding-bottom: 53.25%;
     }
   }
 
-  .row--training {
-    position: relative;
+  //* Special overrides for JS-enabled  on /cloud/openstack/managed-cloud
+  .js {
+    .slider-container {
+      min-height: 24px;
+      min-width: 10px;
+    }
+  }
 
-    &__content {
+  //  @subsection cloud/storage - XXX this is a candidate to raise up a level */
+  &.cloud-storage {
+
+    .equal-height--vertical-divider .equal-height--vertical-divider__item {
+      border: 0;
+    }
+
+    .twelve-col .equal-height--vertical-divider {
+      margin-bottom: 0;
+    }
+
+    .storage-options {
+      @media only screen and (min-width : $breakpoint-medium) {
+        border-bottom: 1px dotted $warm-grey;
+      }
+    }
+
+    .hero-image {
+      @media only screen and (min-width : $breakpoint-medium) {
+        margin-top: -60px;
+      }
+    }
+  }
+
+  // @subsection /cloud/training
+  &.cloud-training {
+
+    .row-hero {
       position: relative;
-    }
-
-    &__image {
-      position: absolute;
 
       @media only screen and (min-width : $breakpoint-medium) {
-        right: 20px;
-        top: -40px;
+        min-height: 343px;
+      }
+    }
+
+    .row--training {
+      position: relative;
+
+      &__content {
+        position: relative;
       }
 
-      @media only screen and (min-width : $breakpoint-large) {
-        right: 40px;
-        top: -100px;
+      &__image {
+        position: absolute;
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          right: 20px;
+          top: -40px;
+        }
+
+        @media only screen and (min-width : $breakpoint-large) {
+          right: 40px;
+          top: -100px;
+        }
       }
     }
   }
-}
 
-// @subsection /cloud/partners
-.cloud-partners {
+  // @subsection /cloud/partners
+  &.cloud-partners {
 
-  .row-hero {
-    overflow: hidden;
-    min-height: 380px;
+    .row-hero {
+      min-height: 380px;
+      overflow: hidden;
 
-    &:before {
-      background: url('#{$asset-server}03ede53b-clouds-foreground.png') left bottom no-repeat;
-      bottom: 0;
-      content: ' ';
-      display: block;
-      height: 400px;
-      left: 0;
-      position: absolute;
-      width: $breakpoint-large;
-      z-index: 3;
-    }
-
-    .bg-clouds {
-      background: transparent url('#{$asset-server}487a58c4-clouds-background.png') repeat-x;
-      background-position: 0 0;
-      bottom: 0;
-      content: ' ';
-      display: block;
-      height: 152px;
-      left: 0;
-      position: absolute;
-      width: $breakpoint-large;
-      z-index: 2;
-    }
-
-    .bg-more-clouds {
-      background: transparent url('#{$asset-server}190d12e9-clouds-background-b.png') repeat-x;
-      background-position: 0 0;
-      bottom: 30px;
-      content: ' ';
-      display: block;
-      height: 152px;
-      left: -10%;
-      position: absolute;
-      width: $breakpoint-large;
-      z-index: 1;
-    }
-
-    .cloud-row-hero-image {
-      position: relative;
-      z-index: 3;
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        margin-right: -40%;
-        margin-top: 17%;
+      &:before {
+        background: url('#{$asset-server}03ede53b-clouds-foreground.png') left bottom no-repeat;
+        bottom: 0;
+        content: ' ';
+        display: block;
+        height: 400px;
+        left: 0;
+        position: absolute;
+        width: $breakpoint-large;
+        z-index: 3;
       }
 
-      &:after {
-        background: $cool-grey;
+      .bg-clouds {
+        background: transparent url('#{$asset-server}487a58c4-clouds-background.png') repeat-x;
+        background-position: 0 0;
+        bottom: 0;
         content: ' ';
         display: block;
         height: 152px;
         left: 0;
         position: absolute;
-        top: 0;
-        width: 152px;
-        z-index: 4;
+        width: $breakpoint-large;
+        z-index: 2;
+      }
+
+      .bg-more-clouds {
+        background: transparent url('#{$asset-server}190d12e9-clouds-background-b.png') repeat-x;
+        background-position: 0 0;
+        bottom: 30px;
+        content: ' ';
+        display: block;
+        height: 152px;
+        left: -10%;
+        position: absolute;
+        width: $breakpoint-large;
+        z-index: 1;
+      }
+
+      .cloud-row-hero-image {
+        position: relative;
+        z-index: 3;
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          margin-right: -40%;
+          margin-top: 17%;
+        }
+
+        &:after {
+          background: $cool-grey;
+          content: ' ';
+          display: block;
+          height: 152px;
+          left: 0;
+          position: absolute;
+          top: 0;
+          width: 152px;
+          z-index: 4;
+        }
       }
     }
   }
-}
 
-// @subsection /cloud/juju
-.cloud-juju {
+  // @subsection /cloud/juju
+  &.cloud-juju {
 
-  .row-get-started {
+    .row-get-started {
 
-    @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url('#{$asset-server}8149d09f-Service+View+-+zoom.png?w=600');
-      background-position: top right;
-      background-repeat: no-repeat;
+      @media only screen and (min-width : $breakpoint-medium) {
+        background-image: url('#{$asset-server}8149d09f-Service+View+-+zoom.png?w=600');
+        background-position: top right;
+        background-repeat: no-repeat;
+      }
+    }
+
+    /// XXX Karl (10.04.2016)
+    /// we're using a similar style in various places, cosider pushing upstream
+    .external-heading {
+      background: url('#{$asset-server}e1bba201-external-link-cool-grey.svg') left center no-repeat;
+      background-size: 16px;
+      padding-left: 22px;
+    }
+
+    .bundle-card__image-container {
+      height: 345px;
     }
   }
 
-  /// XXX Karl (10.04.2016)
-  /// we're using a similar style in various places, cosider pushing upstream
-  .external-heading {
-    background: url("#{$asset-server}e1bba201-external-link-cool-grey.svg") left center no-repeat;
-    background-size: 16px;
-    padding-left: 22px;
-  }
+  // @subsection /cloud/contact-us
+  &.cloud-contact-us {
 
-  .bundle-card__image-container {
-    height: 345px;
-  }
-}
-
-// @subsection /cloud/public-cloud
-.cloud-public-cloud {
-
-  .row-juju-advantage {
-    overflow: hidden;
-
-    div {
-      min-height: 540px;
+    .row-hero {
+      padding-bottom: 0;
     }
+  }
 
-    .last-col .pull-left-20 {
-      bottom: 0;
-      left: -16px;
-      position: absolute;
+  // @subsection  /cloud/openstack
+  &.cloud-openstack {
+
+    .row-autopilot {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background-image: url('#{$asset-server}b72144a5-cloud_landscape_components.png?op=region&rect=0,0,300,600');
+        background-position: right bottom;
+        background-repeat: no-repeat;
+      }
 
       @media only screen and (min-width : $breakpoint-large) {
-        left: -20px;
-        margin-top: 20px;
-        position: relative;
-      }
-    }
-
-    .pull-left-40 {
-      bottom: 40px;
-      left: -130px;
-      position: absolute;
-
-      @media only screen and (min-width : $breakpoint-large) {
-        left: -40px;
-        padding-top: 40px;
-        position: relative;
+        background-image: url('#{$asset-server}b72144a5-cloud_landscape_components.png?op=region&rect=0,0,450,800');
+        background-position: right top;
+        background-repeat: no-repeat;
       }
     }
   }
 
-  .row-get-started {
-    @media only screen and (min-width : $breakpoint-large) {
-
-      .box {
-        min-height: 170px;
-      }
-    }
-  }
-}
-
-// @subsection /cloud/contact-us
-.cloud-contact-us {
-
-  .row-hero {
-    padding-bottom: 0;
-  }
-}
-
-// @subsection  /cloud/openstack
-.cloud-openstack {
-
-  .row-autopilot {
-    @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url('#{$asset-server}b72144a5-cloud_landscape_components.png?op=region&rect=0,0,300,600');
-      background-position: right bottom;
-      background-repeat: no-repeat;
-    }
-
-    @media only screen and (min-width : $breakpoint-large) {
-      background-image: url('#{$asset-server}b72144a5-cloud_landscape_components.png?op=region&rect=0,0,450,800');
-      background-position: right top;
-      background-repeat: no-repeat;
-    }
-  }
-}
-
-// @subsection /cloud/openstac/autopilot
-.cloud-openstack-autopilot {
+  // @subsection /cloud/openstac/autopilot
+  &.cloud-openstack-autopilot {
 
     .autopilot-dynamic h2 {
-        padding-bottom: 1em;
+      padding-bottom: 1em;
     }
 
     .autopilot-dynamic .video-container {
-        width: 95%;
+      width: 95%;
     }
 
-  .autopilot-dynamic .back-link {
-    color: #AEA79F; // DDD pick a standard colour?
-    opacity: .9;
-    transition: opacity .3s;
+    .autopilot-dynamic .back-link {
+      color: #AEA79F; // DDD pick a standard colour?
+      opacity: .9;
+      transition: opacity .3s;
 
-    &:hover {
-      text-decoration: none;
-      opacity: 1;
+      &:hover {
+        text-decoration: none;
+        opacity: 1;
+      }
+
+      img {
+        -ms-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+        vertical-align: text-bottom;
+      }
     }
 
-    img {
-      vertical-align: text-bottom;
-      -webkit-transform: rotate(180deg);
-      -ms-transform: rotate(180deg);
-      transform: rotate(180deg);
-    }
-  }
 
+    .row-hero {
+      @media only screen and (min-width : $breakpoint-medium) {
+        overflow: hidden;
+      }
 
-  @media only screen and (min-width : $breakpoint-medium) {
-    #main-content .row-hero {
-      overflow: hidden;
+      @media only screen and (min-width : $breakpoint-large) {
+        background-position: top right;
+      }
 
       &:before {
 
@@ -623,12 +586,6 @@
     }
   }
 
-  @media only screen and (min-width : $breakpoint-large) {
-    #main-content .row-hero {
-      background-position: top right;
-    }
-  }
-
   .row-cost {
     .box {
       color: $cool-grey;
@@ -644,422 +601,425 @@
       }
     }
   }
-}
 
-// @subsection /cloud/openstack/managed-cloud
-.cloud-openstack-managed-cloud {
+  // @subsection /cloud/openstack/managed-cloud
+  &.cloud-openstack-managed-cloud {
 
-  // BootStack calculator
-  .my-server input[type=number] {
-    padding: .6956522em .869565em;
-    width: 50%;
-  }
-
-  .grey-box {
-    background-color: $light-grey;
-    padding: 20px;
-  }
-
-  // Styling for slider rows
-
-  .checkbox-vms-servers {
-    margin-bottom: 2em;
-  }
-
-  .slider-area {
-    margin-top: 20px;
-    overflow: hidden;
-    display: flex;
-
-    & input[type=number] {
-      width: 5em;
-      margin-right: 1em;
-    }
-    & input[type=range] {
-      min-width: 130px;
-      flex-grow: 1;
-    }
-  }
-
-  .input-salary,
-  .input-staff {
-    background: transparent;
-    border: 0;
-    font-weight: 300;
-  }
-
-  .slider-container {
-    float: left;
-    margin-top: 5px;
-  }
-
-  .slider-value {
-    border: 0;
-    float: left;
-    font-size: 1em;
-    margin-bottom: 6px;
-    margin-left: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-top: 0;
-
-    label {
-      color: $warm-grey;
-      display: inline-block;
-    }
-  }
-
-  .is-hidden,
-  .js__required {
-    display: none;
-  }
-
-  .sub-heading {
-    font-size: 1.25em;
-    margin-bottom: 1.5em;
-  }
-
-  .grouped-tabbed {
-    box-sizing: border-box;
-    list-style: none;
-    margin-left: 0;
-
-    &__input {
-      position: absolute;
-      left: -10000px;
-
-      &:checked ~ .grouped-tabbed__button {
-       background: $ubuntu-orange;
-       color: $white;
-       border-color: $ubuntu-orange;
-     }
+    // BootStack calculator
+    .my-server input[type=number] {
+      padding: .6956522em .869565em;
+      width: 50%;
     }
 
-    &__item {
-      float: left;
-      margin-bottom: 0;
-      width: 33%;
+    .grey-box {
+      background-color: $light-grey;
+      padding: 20px;
+    }
 
-      &:first-of-type .grouped-tabbed__button {
-        border-radius: 4px 0 0 4px;
+    // Styling for slider rows
+
+    .checkbox-vms-servers {
+      margin-bottom: 2em;
+    }
+
+    .slider-area {
+      display: flex;
+      margin-top: 20px;
+      overflow: hidden;
+
+      & input[type=number] {
+        margin-right: 1em;
+        width: 5em;
       }
-
-      &:last-of-type .grouped-tabbed__button {
-        border-radius: 0 4px 4px 0;
+      & input[type=range] {
+        min-width: 130px;
+        flex-grow: 1;
       }
     }
 
-    &__button {
-      text-align: center;
-      padding: 8px;
-      display: block;
-      border: 1px solid $box-border;
-      background: $white;
-      color: $ubuntu-orange;
-      margin-left: -1px;
-      margin-right: -1px;
-    }
-  }
-
-  .checkbox-vms-servers__list {
-    list-style: none;
-    margin-left: 0;
-    margin-bottom: 0;
-
-    &-item {
-      float: left;
-      margin-right: 40px;
-      margin-bottom: 0;
-
-      &:last-of-type {
-        margin-right: 0;
-      }
-    }
-
-    label {
-      position: relative;
-      top: -2px;
-      margin-bottom: 0;
-      margin-right: 5px;
-      cursor: pointer;
-    }
-    input {
-      display: block;
-      margin-top: 2px;
-      margin-bottom: 2px;
-    }
-  }
-
-  .result {
-
-    &__header {
-      border-bottom: 1px solid $box-border;
-      padding-bottom: 30px;
-      padding-top: 3px;
-      text-align: center;
-    }
-
-    &__header-amount {
-      font-size: 2em;
-      margin-bottom: .1em;
-      padding-bottom: 5px;
-      padding-top: 20px;
-    }
-
-    &__header-banner {
-      background: $light-grey;
-      border-bottom: 1px solid $box-border;
-      margin-bottom: 10px;
-      margin-left: -20px;
-      margin-right: -20px;
-      margin-top: -24px;
-      padding-bottom: 10px;
-      padding-top: 14px;
-    }
-
-    &__header-sub-heading {
-      font-size: 1.25em;
+    .input-salary,
+    .input-staff {
+      background: transparent;
+      border: 0;
       font-weight: 300;
-      margin-bottom: 0;
     }
 
-    &__header-calculation {
-      font-size: 1.25em;
-      color: $warm-grey;
+    .slider-container {
+      float: left;
+      margin-top: 5px;
     }
 
-    &__content {
-      padding-top: 23px;
-      padding-bottom: 30px;
-      border-bottom: 1px solid $box-border;
-      margin-bottom: 30px;
+    .slider-value {
+      border: 0;
+      float: left;
+      font-size: 1em;
+      margin-bottom: 6px;
+      margin-left: 0;
+      padding-bottom: 0;
+      padding-left: 0;
+      padding-top: 0;
 
-      .input-staff,
-      .input-salary {
-        box-sizing: border-box;
-        width: 50%;
-        margin-right: 20px;
-      }
-
-      .input-helper {
-        position: absolute;
-        left: 43%;
+      label {
         color: $warm-grey;
-        margin-top: 5px;
-      }
-
-      .note {
-        margin-top: 35px;
-        padding-left: 10px;
-        text-indent: -10px;
+        display: inline-block;
       }
     }
 
-    &__footer-title {
+    .is-hidden,
+    .js__required {
+      display: none;
+    }
+
+    .sub-heading {
       font-size: 1.25em;
+      margin-bottom: 1.5em;
     }
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    .grouped-tabbed {
+      box-sizing: border-box;
+      list-style: none;
+      margin-left: 0;
+
+      &__input {
+        left: -10000px;
+        position: absolute;
+
+        &:checked ~ .grouped-tabbed__button {
+          background: $ubuntu-orange;
+          border-color: $ubuntu-orange;
+          color: $white;
+        }
+      }
+
+      &__item {
+        float: left;
+        margin-bottom: 0;
+        width: 33%;
+
+        &:first-of-type .grouped-tabbed__button {
+          border-radius: 4px 0 0 4px;
+        }
+
+        &:last-of-type .grouped-tabbed__button {
+          border-radius: 0 4px 4px 0;
+        }
+      }
+
+      &__button {
+        background: $white;
+        border: 1px solid $box-border;
+        color: $ubuntu-orange;
+        display: block;
+        margin-left: -1px;
+        margin-right: -1px;
+        padding: 8px;
+        text-align: center;
+      }
+    }
+
+    .checkbox-vms-servers__list {
+      list-style: none;
+      margin-bottom: 0;
+      margin-left: 0;
+
+      &-item {
+        float: left;
+        margin-bottom: 0;
+        margin-right: 40px;
+
+        &:last-of-type {
+          margin-right: 0;
+        }
+      }
+
+      label {
+        cursor: pointer;
+        margin-bottom: 0;
+        margin-right: 5px;
+        position: relative;
+        top: -2px;
+      }
+      input {
+        display: block;
+        margin-bottom: 2px;
+        margin-top: 2px;
+      }
+    }
+
+    .result {
+
+      &__header {
+        border-bottom: 1px solid $box-border;
+        padding-bottom: 30px;
+        padding-top: 3px;
+        text-align: center;
+      }
+
+      &__header-amount {
+        font-size: 2em;
+        margin-bottom: .1em;
+        padding-bottom: 5px;
+        padding-top: 20px;
+      }
+
+      &__header-banner {
+        background: $light-grey;
+        border-bottom: 1px solid $box-border;
+        margin-bottom: 10px;
+        margin-left: -20px;
+        margin-right: -20px;
+        margin-top: -24px;
+        padding-bottom: 10px;
+        padding-top: 14px;
+      }
+
+      &__header-sub-heading {
+        font-size: 1.25em;
+        font-weight: 300;
+        margin-bottom: 0;
+      }
+
+      &__header-calculation {
+        color: $warm-grey;
+        font-size: 1.25em;
+      }
+
+      &__content {
+        border-bottom: 1px solid $box-border;
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        padding-top: 23px;
+
+        .input-staff,
+        .input-salary {
+          box-sizing: border-box;
+          margin-right: 20px;
+          width: 50%;
+        }
+
+        .input-helper {
+          color: $warm-grey;
+          left: 43%;
+          margin-top: 5px;
+          position: absolute;
+        }
+
+        .note {
+          margin-top: 35px;
+          padding-left: 10px;
+          text-indent: -10px;
+        }
+      }
+
+      &__footer-title {
+        font-size: 1.25em;
+      }
+
       &#diy-section .intro {
-        margin-bottom: 2.2em;
+        @media only screen and (min-width : $breakpoint-medium) {
+          margin-bottom: 2.2em;
+        }
       }
 
       .extend-gap {
-        margin-bottom: 32px;
+        @media only screen and (min-width : $breakpoint-medium) {
+          margin-bottom: 32px;
+        }
       }
     }
-  }
 
-  .submit-email {
-    background: $light-grey;
-    padding: 20px 20px 0 20px;
+    .submit-email {
+      background: $light-grey;
+      padding: 20px 20px 0 20px;
 
-    &__fieldset {
-      background: transparent;
-      padding: 0;
-    }
+      &__fieldset {
+        background: transparent;
+        padding: 0;
+      }
 
-    &__button {
-      margin-top: 0;
+      &__button {
+        margin-top: 0;
 
-      button {
-        height: 42px;
+        button {
+          height: 42px;
+        }
       }
     }
-  }
 
-  input[type=number] {
-    border-radius: 2px;
-    background: $white;
-    border: 1px solid $box-border;
-    font-family: Ubuntu,Arial,"libra sans",sans-serif;
-    padding: 8px;
-    width: 60px;
-    display: inline-block;
-    font-size: 1em;
+    input[type=number] {
+      background: $white;
+      border: 1px solid $box-border;
+      border-radius: 2px;
+      display: inline-block;
+      font-family: Ubuntu,Arial,'libra sans',sans-serif;
+      font-size: 1em;
+      padding: 8px;
+      width: 60px;
 
-    &:focus {
-      border: 1px solid $black;
+      &:focus {
+        border: 1px solid $black;
+      }
+    }
+
+    .option {
+      border-radius: 2px;
+    }
+
+    .option__item-title {
+      color: $warm-grey;
+    }
+
+    .option__list {
+      border-top: 2px solid $light-grey;
+      padding-top: 1em;
+    }
+    .option__list:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .option__list-savings {
+      font-weight: bold;
+    }
+
+    .option__value-savings.positive {
+      color: $success;
+    }
+
+    .option__value-savings.negative {
+      color: $error;
     }
   }
 
-  .option {
-    border-radius: 2px;
+  //* Special overrides for JS-enabled
+  .js .cloud-openstack-managed-cloud .js__required {
+    display: block;
   }
 
-  .option__item-title {
-    color: $warm-grey;
-  }
+  // @subsection /cloud/lxd
+  &.cloud-lxd {
+    .command-line {
+      background: $light-grey;
+      border: 0;
 
-  .option__list {
-    border-top: 2px solid $light-grey;
-    padding-top: 1em;
-  }
-  .option__list:first-child {
-    border-top: none;
-    padding-top: 0;
-  }
-
-  .option__list-savings {
-    font-weight: bold;
-  }
-
-  .option__value-savings.positive {
-    color: $success;
-  }
-
-  .option__value-savings.negative {
-    color: $error;
-  }
-}
-
-//* Special overrides for JS-enabled
-.js .cloud-openstack-managed-cloud .js__required {
-  display: block;
-}
-
-// @subsection /cloud/lxd
-.cloud-lxd {
-  .command-line {
-    background: $light-grey;
-    border: 0;
-
-     > code {
-      color: $cool-grey;
+      > code {
+        color: $cool-grey;
+      }
     }
-  }
 
-  @media only screen and (max-width: $breakpoint-medium) {
 
     .row-building-on-lxc,
     .row-openstack-integration {
 
       img {
-        display: none;
+        @media only screen and (max-width: $breakpoint-medium) {
+          display: none;
+        }
       }
     }
   }
-}
 
-// @subsection /cloud/newsletter-thank-you
-.thank-you {
+  // @subsection /cloud/newsletter-thank-you
+  &.cloud-newsletter-thank-you {
 
-  @media only screen and (min-width : $breakpoint-large) {
-    .intro {
-      font-size: 1.75em;
+    .thank-you {
+      .intro {
+        @media only screen and (min-width : $breakpoint-large) {
+          font-size: 1.75em;
+        }
+      }
     }
   }
-}
 
-.cloud-kubernetes {
-  .row-expertise__image {
-    margin-right: 20px;
-    width: 15vw;
+  &.cloud-kubernetes {
 
-    @media only screen and (min-width : $breakpoint-large) {
-      width: 150px;
-    }
+    .row-expertise__image {
+      margin-right: 20px;
+      width: 15vw;
 
-    &:last-of-type {
-      margin-right: 0;
+      @media only screen and (min-width : $breakpoint-large) {
+        width: 150px;
+      }
+
+      &:last-of-type {
+        margin-right: 0;
+      }
     }
   }
-}
 
-/* Cloud Training */
+  /* @subsection cloud > training */
+  &.cloud-training  {
 
-/* @subsection cloud > training */
-.cloud-training  {
-
-  .row-training {
-
-    @media only screen and (min-width: $breakpoint-medium) {
-      margin-top: 0;
-      min-height: 300px;
-      padding-top: 20px;
-      position: relative;
-    }
-
-    @media only screen and (min-width: $breakpoint-large) {
-      min-height: 343px;
-      padding-top: 40px;
-    }
-
-    &__image {
+    .row-training {
 
       @media only screen and (min-width: $breakpoint-medium) {
-        max-width: 300px;
-        position: absolute;
-        right: 20px;
-        top: 0;
+        margin-top: 0;
+        min-height: 300px;
+        padding-top: 20px;
+        position: relative;
       }
 
       @media only screen and (min-width: $breakpoint-large) {
-        max-width: 360px;
-        right: 40px;
-        width: auto;
-      }
-    }
-  }
-
-  .training-list {
-
-    &__item {
-      margin-bottom: 20px;
-      padding-bottom: 20px;
-      padding-top: 0;
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        margin-bottom: 40px;
-        padding-bottom: 40px;
+        min-height: 343px;
+        padding-top: 40px;
       }
 
-      @media only screen and (min-width: $breakpoint-large) {
-        margin-bottom: 60px;
-        padding-bottom: 60px;
+      &__image {
+
+        @media only screen and (min-width: $breakpoint-medium) {
+          max-width: 300px;
+          position: absolute;
+          right: 20px;
+          top: 0;
+        }
+
+        @media only screen and (min-width: $breakpoint-large) {
+          max-width: 360px;
+          right: 40px;
+          width: auto;
+        }
       }
     }
 
-    &__course-summary {
-      border-bottom: 0;
-    }
+    .training-list {
 
-    &__course-details {
-      dt {
-        float: left;
-        margin-right: 6px;
+      &__item {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        padding-top: 0;
 
-        &:after {
-          content: ": ";
+        @media only screen and (min-width: $breakpoint-medium) {
+          margin-bottom: 40px;
+          padding-bottom: 40px;
+        }
+
+        @media only screen and (min-width: $breakpoint-large) {
+          margin-bottom: 60px;
+          padding-bottom: 60px;
         }
       }
 
-      dd {
-        margin-bottom: 10px;
+      &__course-summary {
+        border-bottom: 0;
       }
 
-      @media only screen and (min-width: $breakpoint-medium) {
-        margin-top: 3px;
+      &__course-details {
+        dt {
+          float: left;
+          margin-right: 6px;
+
+          &:after {
+            content: ': ';
+          }
+        }
+
+        dd {
+          margin-bottom: 10px;
+        }
+
+        @media only screen and (min-width: $breakpoint-medium) {
+          margin-top: 3px;
+        }
       }
     }
   }
