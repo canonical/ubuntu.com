@@ -15,13 +15,13 @@
     <div class="six-col equal-height__item equal-height__align-vertically">
         <h1>Robots and drones <br />on Ubuntu</h1>
         <p>Autonomous, secure, reliable and remotely upgradeable.</p>
-        <p><a href="" class="button--primary js-livestream-trigger">Watch ROSCon Livestream</a></p>
+        <p><a href="" class="button--primary js-livestream-trigger">Watch ROSCon videos</a></p>
     </div>
 </section>
 
-<section class="livestream-video js-livestream-video">
-    <iframe id="ls_embed_1475013685" src="//livestream.com/accounts/21698585/events/6415740/player?width=984&height=550&enableInfoAndActivity=true&autoPlay=true&mute=false" width="984" height="550" frameborder="0" scrolling="no" allowfullscreen> </iframe><script type="text/javascript" data-embed_id="ls_embed_1475013685" src="//livestream.com/assets/plugins/referrer_tracking.js"></script>
-    <a href="#_" class="livestream-video-close js-livestream-video-close">Close livestream &rsaquo;</a>
+<section class="livestream-video js-livestream-video u-off-screen">
+    <iframe src="https://player.vimeo.com/video/187699562?color=ffffff&title=0&byline=0&portrait=0" width="978" height="550" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    <a href="#_" class="livestream-video-close js-livestream-video-close">Close video &rsaquo;</a>
 </section>
 
 <section class="row case-studies">
@@ -118,20 +118,10 @@
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_devices_newsletter_signup" third_item="_iot_further_reading" %}
 
-<script>
-    $(function() {
-        $( ".js-livestream-trigger" ).on( "click", function(e) {
-            $(".js-livestream-intro").hide();
-            $(".js-livestream-video").show();
-            e.preventDefault();
-        });
-
-        $( ".js-livestream-video-close" ).on( "click", function(e) {
-            $(".js-livestream-video").hide();
-            $(".js-livestream-intro").show();
-            e.preventDefault();
-        });
-    });
-</script>
-
 {% endblock content %}
+
+{% block footer_extra %}
+<script>
+  core.swapContent('.js-livestream-intro', '.js-livestream-video', '.js-livestream-video-close', '.js-livestream-trigger');
+</script>
+{% endblock footer_extra %}
