@@ -773,3 +773,13 @@ th {
 table {
   overflow-x: auto;
 }
+
+// XXX is implemented in newer versions of Vanilla - for hiding content off-screen
+.u-off-screen {
+  height: 1px !important;
+  left: -10000px !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  top: auto !important;
+  width: 1px !important;
+}
