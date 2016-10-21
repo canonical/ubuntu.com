@@ -12,6 +12,12 @@
 // @global internet-of-things
 .internet-of-things {
 
+  .nav-secondary {
+    @media only screen and (min-width: $breakpoint-large) {
+      padding-left: 10px;
+    }
+  }
+
   .row-cta {
 
     @media only screen and (min-width: $breakpoint-medium) {
@@ -257,17 +263,13 @@
 
 .internet-of-things-robotics {
 
-  .livestream-video {
-    display: none;
-  }
-
   .livestream-video-close {
     display: block;
     padding: 0 1rem;
     text-align: right;
   }
 
-  .row-hero {
+  .row.row-hero {
     background-image: url('#{$asset-server}b26f3723-robotics_background_760px.jpg');
     background-repeat: no-repeat;
     background-position: center 0;
