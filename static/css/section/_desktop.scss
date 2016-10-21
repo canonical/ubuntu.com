@@ -75,11 +75,6 @@
     }
   }
 
-  .row-landscape {
-    overflow: hidden;
-    padding-bottom: 20px;
-  }
-
   .landscape-screenshot {
     -webkit-box-shadow: -2px 0 2px 1px rgba(0, 0, 0, .1);
     -moz-box-shadow: -2px 0 2px 1px rgba(0, 0, 0, .1);
@@ -487,33 +482,6 @@
         @media (min-width: 920px){
           right: -85%;
         }
-      }
-    }
-  }
-
-  .pull-bottom-left {
-    @media only screen and (min-width: $breakpoint-medium) {
-      float: left;
-      margin-bottom: -30px;
-      margin-left: -30px;
-    }
-  }
-
-  .row-developer-tools {
-    .pull-bottom-right {
-
-      @media only screen and (min-width: $breakpoint-large) {
-        bottom: -60px;
-        float: right;
-      }
-    }
-
-    .pull-bottom-left {
-
-      @media only screen and (min-width: $breakpoint-large) {
-        float: left;
-        margin-bottom: -60px;
-        margin-left: -40px;
       }
     }
   }
