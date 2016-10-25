@@ -149,15 +149,26 @@
 
     .row-autonomous {
 
-      @media only screen and (min-width: $breakpoint-medium) {
-        background: url('#{$asset-server}ec11fa9e-developers-robots-erle-spider.jpg?q=60') -80px 50% no-repeat;
-        background-size: 55% auto;
-      }
-
       &__content {
+        position: relative;
 
         @media only screen and (min-width: $breakpoint-medium) {
           padding: 50px 0;
+        }
+
+        &:before {
+          @media only screen and (min-width : $breakpoint-medium) {
+            background: url('#{$asset-server}ec11fa9e-developers-robots-erle-spider.jpg?w=897') center center no-repeat;
+            background-size: contain;
+            content: '';
+            display: block;
+            height: 150%;
+            overflow: visible;
+            position: absolute;
+            top: -21%;
+            left: -170%;
+            width: 150%;
+          }
         }
       }
     }
