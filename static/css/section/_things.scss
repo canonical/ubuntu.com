@@ -22,10 +22,18 @@
 
     @media only screen and (min-width: $breakpoint-medium) {
       padding: 80px 40px 60px;
+
+      .inline-small + h2 {
+        margin-left: 0;
+      }
     }
 
     @media only screen and (min-width: $breakpoint-large) {
       padding: 90px 40px 70px;
+
+      .inline-small + h2 {
+        margin-left: 0;
+      }
     }
   }
 
@@ -70,25 +78,6 @@
 
   // @section /internet-of-things overview
   &.internet-of-things-overview {
-    .row-hero {
-      margin-top: 0;
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server}8d5f669e-DARWIN_2.png?q=60&w=984');
-        background-position: 309px -35px;
-        background-repeat: no-repeat;
-        background-size: 85%;
-        margin-top: 0;
-        min-height: 550px;
-      }
-
-      h1 {
-
-        @media only screen and (min-width: $breakpoint-medium) {
-          margin-top: 17%;
-        }
-      }
-    }
 
     .row-developers {
 
