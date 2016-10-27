@@ -55,7 +55,7 @@
     </div>
 </section>
 
-<section class="row">
+<section class="row strip-light">
     <div class="strip-inner-wrapper">
         <div class="twelve-col equal-height">
             <div class="nine-col">
@@ -66,10 +66,16 @@
         </div>
 
         <div class="twelve-col">
-            <h2 class="muted-heading">A growing list of partners</h2>
-            <div class="twelve-col">
-                <ul id="iot-partners" class="inline-logos inline-logos--large no-bullets no-margin dynamic-logos"></ul>
-            </div>
+          <h2 class="muted-heading">A growing list of partners</h2>
+          <div class="twelve-col">
+            <ul id="iot-partners" class="inline-logos inline-logos--large no-bullets no-margin dynamic-logos">
+              {% get_json_feed "http://partners.ubuntu.com/partners.json?programme__name=Internet%20of%20Things" limit=10 as iot_partners %}
+              {% for partner in iot_partners %}
+                <li class="inline-logos__item">
+                  <img class="inline-logos__image" src="{{ partner.logo }}" alt="{{ partner.name }}" />
+                </li>
+              {% endfor %}
+            </ul>
             <p class="align-center"><a href="http://partners.ubuntu.com/programmes/iot" class="external">See all our Internet of Things partners</a></p>
         </div>
     </div>
@@ -82,21 +88,27 @@
         </div>
         <ul class="no-bullets twelve-col equal-height--vertical-divider">
             <li class="equal-height--vertical-divider__item four-col">
-                <h3>Dell&rsquo;s Industrial Gateway</h3>
-                <blockquote class="pull-quote"><p><span>&ldquo;</span>Snappy Ubuntu Core&rsquo;s ability to automatically roll back to the last known working version of the OS provides developers with peace of mind.<span>&rdquo;</span></p>
-                <p><cite>Jason Shepherd, Director, IoT Strategy and Partnerships, Dell</cite></p></blockquote>
+                <div class="twelve-col">
+                    <h3>Dell&rsquo;s Industrial Gateway</h3>
+                    <blockquote class="pull-quote"><p><span>&ldquo;</span>Snappy Ubuntu Core&rsquo;s ability to automatically roll back to the last known working version of the OS provides developers with peace of mind.<span>&rdquo;</span></p>
+                    <p><cite>Jason Shepherd, Director, IoT Strategy and Partnerships, Dell</cite></p></blockquote>
+                </div>
                 <p><a href="https://insights.ubuntu.com/2015/10/21/snappy-core-unlocks-iot-value-within-the-dell-edge-gateway-5000-series/" class="external">Read the <span class="accessibility-aid">'Dell&rsquo;s Industrial Gateway' </span>case study</a></p>
             </li>
             <li class="equal-height--vertical-divider__item four-col">
-                <h3>ChillHub from GE</h3>
-                <blockquote class="pull-quote"><p><span>&ldquo;</span>FirstBuild&rsquo;s approach to open innovation makes it possible for the online community to help us conceive and design products that people want, and speed them to market.<span>&rdquo;</span></p>
-                <p><cite>Natarajan Venkatakrishnan, Director, GE FirstBuild and Partnerships, Dell</cite></p></blockquote>
+                <div class="twelve-col">
+                    <h3>ChillHub from GE</h3>
+                    <blockquote class="pull-quote"><p><span>&ldquo;</span>FirstBuild&rsquo;s approach to open innovation makes it possible for the online community to help us conceive and design products that people want, and speed them to market.<span>&rdquo;</span></p>
+                    <p><cite>Natarajan Venkatakrishnan, Director, GE FirstBuild and Partnerships, Dell</cite></p></blockquote>
+                </div>
                 <p><a href="https://insights.ubuntu.com/2015/05/11/iot-world-canonical-industry-leaders-drive-iot-commercialization/" class="external">Read the <span class="accessibility-aid">'GE&rsquo;s ChillHub' </span>case study</a></p>
             </li>
             <li class="equal-height--vertical-divider__item four-col last-col">
-                <h3>DJI Drone</h3>
-                <blockquote class="pull-quote"><p><span>&ldquo;</span>We are excited to see what applications our developer community will come up with for this new platform.<span>&rdquo;</span></p>
-                <p><cite>Michael Perry, DJI&rsquo;s Director of Strategic Partnerships.</cite></p></blockquote>
+                <div class="twelve-col">
+                    <h3>DJI Drone</h3>
+                    <blockquote class="pull-quote"><p><span>&ldquo;</span>We are excited to see what applications our developer community will come up with for this new platform.<span>&rdquo;</span></p>
+                    <p><cite>Michael Perry, DJI&rsquo;s Director of Strategic Partnerships.</cite></p></blockquote>
+                </div>
                 <p><a href="https://insights.ubuntu.com/2015/11/02/dji-launches-most-powerful-computer-for-drones-on-ubuntu/" class="external">Read the <span class="accessibility-aid">'DJI Drone' </span>case study</a></p>
             </li>
         </ul>
