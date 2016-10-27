@@ -22,10 +22,18 @@
 
     @media only screen and (min-width: $breakpoint-medium) {
       padding: 80px 40px 60px;
+
+      .inline-small + h2 {
+        margin-left: 0;
+      }
     }
 
     @media only screen and (min-width: $breakpoint-large) {
       padding: 90px 40px 70px;
+
+      .inline-small + h2 {
+        margin-left: 0;
+      }
     }
   }
 
@@ -70,30 +78,11 @@
 
   // @section /internet-of-things overview
   &.internet-of-things-overview {
-    .row-hero {
-      margin-top: 0;
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server}8d5f669e-DARWIN_2.png?q=60&w=984');
-        background-position: 309px -35px;
-        background-repeat: no-repeat;
-        background-size: 85%;
-        margin-top: 0;
-        min-height: 550px;
-      }
-
-      h1 {
-
-        @media only screen and (min-width: $breakpoint-medium) {
-          margin-top: 17%;
-        }
-      }
-    }
 
     .row-developers {
 
       @media only screen and (min-width: $breakpoint-medium) {
-        background: url('#{$asset-server}a301749d-iot-overview-developer.jpg?q=70&w=984') center center no-repeat;
+        background: url('#{$asset-server}1d3618a4-GettyImages-592235063_medium.jpg') center center no-repeat;
         background-size: cover;
         min-height: 460px;
       }
@@ -142,41 +131,6 @@
     color: $white;
   }
 
-  // @subsection /internet-of-things/features
-  &.internet-of-things-features {
-    .row-hero {
-      background-position: 430px -25px;
-      background-size: 69%;
-      margin-top: 0;
-      padding-top: 20px;
-
-      @media only screen and (max-width: $breakpoint-medium) {
-        background-position: 400px 20px;
-      }
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server}d1c96b0e-erle_robotics_ubuntu_drone.jpg?q=60');
-        background-repeat: no-repeat;
-        min-height: 470px;
-        padding-top: 40px;
-      }
-    }
-
-    .row-marketplace {
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        background: url('#{$asset-server}d1f7b4c2-iot-features-led.jpg?q=60&w=984') left -74px no-repeat;
-        background-size: cover;
-        min-height: 500px;
-        overflow: hidden;
-      }
-
-      @media only screen and (max-width: $breakpoint-medium) {
-        min-height: 400px;
-      }
-    }
-  }
-
   // @subsection /internet-of-things/developers
   &.internet-of-things-developers {
     .row-hero {
@@ -195,15 +149,26 @@
 
     .row-autonomous {
 
-      @media only screen and (min-width: $breakpoint-medium) {
-        background: url('#{$asset-server}ec11fa9e-developers-robots-erle-spider.jpg?q=60') -80px 50% no-repeat;
-        background-size: 55% auto;
-      }
-
       &__content {
+        position: relative;
 
         @media only screen and (min-width: $breakpoint-medium) {
           padding: 50px 0;
+        }
+
+        &:before {
+          @media only screen and (min-width : $breakpoint-medium) {
+            background: url('#{$asset-server}ec11fa9e-developers-robots-erle-spider.jpg?w=897') center center no-repeat;
+            background-size: contain;
+            content: '';
+            display: block;
+            height: 150%;
+            overflow: visible;
+            position: absolute;
+            top: -21%;
+            left: -170%;
+            width: 150%;
+          }
         }
       }
     }
@@ -270,18 +235,6 @@
   }
 
   .row.row-hero {
-    background-image: url('#{$asset-server}b26f3723-robotics_background_760px.jpg');
-    background-repeat: no-repeat;
-    background-position: center 0;
-    margin-top: 0;
-    min-height: 420px;
-    padding-top: 40px;
-    color: $light-grey;
-
-    @media screen and (min-width: 768px){
-      background-image: url('#{$asset-server}a8155a65-robotics_background_desktop.jpg?w=984');
-      min-height: 560px;
-    }
 
     .button--primary {
       margin-top: 1rem;
@@ -304,10 +257,6 @@
     margin-top: 0;
 
     @media only screen and (min-width: $breakpoint-medium) {
-      background-image: url('#{$asset-server}8d5f669e-DARWIN_2.png?q=60&w=984');
-      background-position: 309px -35px;
-      background-repeat: no-repeat;
-      background-size: 85%;
       margin-top: 0;
       min-height: 550px;
     }

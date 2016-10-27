@@ -282,16 +282,17 @@
 }
 
 // Full width sections
-.server,
-.ubuntu-search,
-.download,
-.desktop,
-.homepage,
 .cloud,
+.desktop,
+.download,
+.homepage,
+.internet-of-things,
 .phone,
 .server,
+.server,
 .support,
-.tablet {
+.tablet,
+.ubuntu-search {
   .nav-secondary ul.breadcrumb {
     margin-left: 0;
   }
@@ -299,13 +300,14 @@
 
 // extra rules for full width sections other than homepage
 .cloud,
-.server,
 .desktop,
-.phone,
-.tablet,
 .download,
+.internet-of-things,
+.phone,
 .server,
-.support {
+.server,
+.support,
+.tablet {
   .banner {
     margin-bottom: 0;
   }
