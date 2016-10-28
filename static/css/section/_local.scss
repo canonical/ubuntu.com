@@ -19,6 +19,8 @@ body {
 
 // .inner-wrapper
 .inner-wrapper {
+  margin-left: auto;
+  margin-right: auto;
 
   @media only screen and (max-width : $breakpoint-medium) {
     border-radius: 0;
@@ -210,6 +212,10 @@ body {
 .support,
 .tablet,
 .ubuntu-search {
+  .inner-wrapper {
+    max-width: inherit;
+  }
+
   .wrapper {
     background: none;
     max-width: 100%;
