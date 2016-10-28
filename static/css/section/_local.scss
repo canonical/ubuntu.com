@@ -214,6 +214,10 @@ body {
 .ubuntu-search {
   .inner-wrapper {
     max-width: inherit;
+
+    @media only screen and (min-width : $breakpoint-large) {
+      margin-bottom: 0;
+    }
   }
 
   .wrapper {
@@ -265,9 +269,11 @@ body {
     h1 {
       padding-top: 20px;
     }
+
     @media only screen and (min-width : $breakpoint-medium) {
       padding-top: 40px;
     }
+
     @media only screen and (min-width : $breakpoint-large) {
       padding-top: 100px;
     }
@@ -370,7 +376,7 @@ strong {
     outline: 0;
 
     h2 {
-      color: #dd4814;
+      color: $ubuntu-orange;
     }
   }
 
