@@ -79,6 +79,10 @@
   // @section /internet-of-things overview
   &.internet-of-things-overview {
 
+    .row-hero {
+
+    }
+
     .row-developers {
 
       @media only screen and (min-width: $breakpoint-medium) {
@@ -88,8 +92,14 @@
       }
     }
 
-    .row--leaders {
-      min-height: 438px;
+    .row {
+      &--leaders {
+        min-height: 438px;
+      }
+
+      &--verticals__image {
+        height: 150px;
+      }
     }
   }
 

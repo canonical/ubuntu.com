@@ -15,79 +15,114 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-hero row-grey">
+
+
+<section class="row row-hero aubergine-hero">
     <div class="strip-inner-wrapper">
-        <div class="twelve-col for-small">
-            <img src="{{ ASSET_SERVER_URL }}8d5f669e-DARWIN_2.png?q=60&amp;w=768" alt="" />
-        </div>
         <div class="six-col">
             <h1>Ubuntu for the Internet of Things</h1>
             <p>Ubuntu Core, also known as Snappy, is a stripped down version of Ubuntu, designed to run securely on autonomous machines, devices and other internet-connected digital things. From homes to drones, these devices are set to revolutionise many aspects of our lives, but they need an operating system that is different from that of traditional PCs.</p>
         </div>
+        <div class="six-col last-col">
+            <img alt="" src="{{ ASSET_SERVER_URL }}134755a6-IOT_overview_graphic.svg" />
+        </div>
     </div>
 </section>
 
-<section class="row equal-height">
+<section class="row strip-light">
     <div class="strip-inner-wrapper">
-        <div class="four-col equal-height__item equal-height__align-vertically align-center">
-            <img src="{{ ASSET_SERVER_URL }}989c34de-snappy-ubuntu-core-logo-01.svg" width="200" alt="Snappy logo" />
+        <div class="six-col">
+            <h2>What is a Ubuntu Core?</h2>
+            <p>Ubuntu Core is the smallest Ubuntu ever &mdash; a tiny, transactional operating system that can run on everything from IoT devices to large-scale container deployments. And with it comes a new kind of app: the super-secure, ultra-reliable &rsquo;snap&rsquo;.</p>
         </div>
-        <div class="eight-col last-col equal-height__item">
-            <h2>Why Ubuntu Core?</h2>
-            <p>Create differentiated devices that will continue to generate revenue over your product's lifetime, with a software platform that&rsquo;s easy to update and upgrade.</p>
+    </div>
+</section>
+
+<section class="row">
+    <div class="strip-inner-wrapper">
+        <div class="six-col">
+            <h2>What is a snap?</h2>
+            <p>A snap is a secure, easily upgraded and distributed, universal Linux app packaging format, which contains a compressed app and all its dependencies.</p>
+            <p>Snap packages are:</p>
             <ul class="clear list-ticks--compact">
-                <li>Faster, more reliable and stronger security guarantees for apps and users.</li>
-                <li>Atomic transaction upgrades for apps and the Ubuntu Core software itself, all of which can be rolled back if needed, for simple maintenance and upgrades.</li>
-                <li>Separation of OS and application files as a set of distinct read-only images, to easily and securely add multiple apps and functionalities onto a single device.</li>
-                <li>A new, simpler application packaging system to make it easier for developers to build and maintain apps.</li>
-                <li>Signature authentication to prove that what&rsquo;s running is exactly what developers have published, for greater end user security.</li>
+                <li>Confined for strict security</li>
+                <li>Transactional for reliable updates</li>
+                <li>Compressed to save disk space</li>
+                <li>Widely adopted by industry leaders</li>
             </ul>
-            <p><a href="/internet-of-things/features">Learn more about the features&nbsp;&rsaquo;</a></p>
+            <p><a href="">Learn more about Ubuntu core [link to core page]</a></p>
         </div>
     </div>
 </section>
 
-<section class="row row--leaders">
-    <div class="strip-inner-wrapper equal-height">
-        <div class="five-col equal-height__item equal-height__align-vertically row--leaders__container">
-            <h2>Industry leaders use Ubuntu Core</h2>
-            <p>From Dell and Microsoft to a host of trailblazing tech startups, the Internet of Things is already embracing Ubuntu Core.</p>
-            <p><a href="/internet-of-things/partners">Learn more about partnering with Ubuntu&nbsp;&rsaquo;</a></p>
-        </div>
-        <div class="seven-col last-col equal-height__item">
-            <ul class="inline-logos inline-logos--large no-bullets no-margin">
-                <li class="inline-logos__item">
-                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}2b5837e9-logo-microsoft-azure.svg" alt="Azure" />
-                </li>
-                <li class="inline-logos__item">
-                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}2620e09a-logo-raspberry-pi-001.svg" width="60" alt="Raspberry Pi" />
-                </li>
-                <li class="inline-logos__item">
-                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}5ddba83a-logo-dell.svg" alt="Dell" />
-                </li>
-                <li class="inline-logos__item">
-                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}c24cb4b9-logo-intel.svg" alt="Intel" />
-                </li>
-                <li class="inline-logos__item">
-                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}c8749268-logo-ros.svg" width="160" alt="Ros" />
-                </li>
-                <li class="inline-logos__item">
-                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}96b03a93-logo-dji.svg" alt="dji" />
-                </li>
-            </ul>
-        </div>
-    </div>
-</section>
-
-<section class="row row-developers">
+<section class="row strip-light">
     <div class="strip-inner-wrapper">
-        <div class="six-col for-mobile">
-            <img src="{{ ASSET_SERVER_URL }}a301749d-iot-overview-developer.jpg?q=60&amp;w=768" alt="" />
+        <div class="eight-col">
+            <h2>Why Ubuntu Core?</h2>
+            <p>Create differentiated devices that will continue to generate revenue over your product&rsquo;s lifetime, with a software platform that&rsquo;s easy to update and upgrade.</p>
+            <ul class="clear list-ticks--compact">
+                <li>It is fast and reliable with strong security features for apps and users</li>
+                <li>Atomic, transactional upgrades and rollbacks for both apps and Ubuntu Core itself make it simple and safe to maintain the software on your remote devices</li>
+                <li>Both the OS and applications are separated into distinct read-only images,  making it safe to have multiple apps on a single device</li>
+                <li>The snap format is a better, simpler application packaging system</li>
+                <li>Signature authentication ensures what’s running is exactly what developers have published</li>
+            </ul>
+            <p><a href="/internet-of-things/core">Learn more about the features&nbsp;&rsaquo;</a></p>
         </div>
-        <div class="billboard__content five-col">
-            <h2>The best choice for developers</h2>
-            <p>With Ubuntu Core, you can develop a snappy app (or &lsquo;snap&rsquo;) on your laptop and then monetise it immediately, by publishing directly to the snappy store.</p>
-            <p><a href="/internet-of-things/developers">Learn about developing and selling apps&nbsp;&rsaquo;</a></p>
+    </div>
+</section>
+
+<section class="row">
+    <div class="strip-inner-wrapper">
+        <ul class="no-bullets equal-height--vertical-divider">
+            <li class="four-col equal-height--vertical-divider__item">
+                <h2>Best for developers</h2>
+                <p>With Ubuntu Core, you can develop a packaged  application on your laptop, then monetise it  by publishing it directly to the snap store.</p>
+                <p><a href="/internet-of-things/developers?utm_campaign=device-fy17-iot-website&utm_medium=keyaudiencesection&utm_source=overviewpage&utm_content=bestchoicefordevelopers">Learn about developing and selling apps&nbsp;&rsaquo;</a></p>
+            </li>
+            <li class="four-col equal-height--vertical-divider__item">
+                <h2>Best for connected things</h2>
+                <p>Built with cost-effective deployment and  maintenance in mind, Ubuntu Core offers a faster route to market for IoT devices.</p>
+                <p><a href="/internet-of-things/core">Learn more about Ubuntu Core&nbsp;&rsaquo;</a></p>
+            </li>
+            <li class="four-col equal-height--vertical-divider__item last-col">
+                <h2>Best for industry</h2>
+                <p>From Dell and Microsoft to a host of trailblazing tech startups, the internet of things is already embracing Ubuntu Core.</p>
+                <p><a href="/internet-of-things/partners?utm_campaign=device-fy17-iot-website&utm_medium=keyaudiencesection&utm_source=overviewpage&utm_content=industryleadersusecore">Learn more about Ubuntu partners&nbsp;&rsaquo;</a></p>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section class="row strip-light row--verticals">
+    <div class="strip-inner-wrapper equal-height--vertical-divider">
+        <div class="eight-col">
+            <h2>Where can I use it?</h2>
+            <p>Millions of digital signs deployed around the world. 80% of robots at the last DARPA Robotics Challenge. From building automation to industrial gateways, Ubuntu is powering a new wave of smart devices for the Internet of Things.</p>
+        </div>
+        <div class="four-col equal-height--vertical-divider__item">
+            <div class="twelve-col align-center">
+                <img alt="" src="{{ ASSET_SERVER_URL }}ba062228-digital-signage.svg" class="row--verticals__image" />
+            </div>
+            <h3>Digital signage</h3>
+            <p>With a small footprint and serious power, Ubuntu Core provides a perfect platform for deploying millions of digital signage players securely in the field.</p>
+            <p><a href="/internet-of-things/digital-signage?utm_campaign=device-fy17-iot-website&utm_medium=verticalsection&utm_source=overviewpage&utm_content=findoutmoreondspage">Find out more&nbsp;&rsaquo;</a></p>
+        </div>
+        <div class="four-col equal-height--vertical-divider__item">
+            <div class="twelve-col align-center">
+                <img alt="" src="{{ ASSET_SERVER_URL }}68703716-robot.svg" class="row--verticals__image" />
+            </div>
+            <h3>Robotics</h3>
+            <p>Already the most widely adopted platform for ROS, bringing autonomous, secure, reliable and remotely upgradeable for your next robotics project.</p>
+            <p><a href="/internet-of-things/robotics?utm_campaign=device-fy17-iot-website&utm_medium=verticalsection&utm_source=overviewpage&utm_content=findoutmoreonroboticspage">Find out more&nbsp;&rsaquo;</a></p>
+        </div>
+        <div class="four-col last-col equal-height--vertical-divider__item">
+            <div class="twelve-col align-center">
+                <img alt="" src="{{ ASSET_SERVER_URL }}6f00f039-Edge+gateway.svg" class="row--verticals__image" />
+            </div>
+            <h3>Edge gateways</h3>
+            <p>Ubuntu Core is the perfect choice for building your edge gateways and keeping it up to date in the field.</p>
+            <p><a href="/internet-of-things/edgegateways?utm_campaign=device-fy17-iot-website&utm_medium=verticalsection&utm_source=overviewpage&utm_content=findoutmoreonedgegatewaypage">Find out more&nbsp;&rsaquo;</a></p>
         </div>
     </div>
 </section>
@@ -102,8 +137,8 @@
                 <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="38" alt="" />
             </div>
             <h2>Let&rsquo;s work together</h2>
-            <p class="clear">Want to talk to us about using Ubuntu Core for your next project?</p>
-            <p><a href="/internet-of-things/contact-us" class="button--primary">Get in touch</a></p>
+            <p class="clear">Talk to us if you are thinking about using Ubuntu Core for your next Internet of Things project.</p>
+            <p><a href="/internet-of-things/contact-us?utm_campaign=device-fy17-iot-website&utm_medium=bottomcontactusbutton&utm_source=overviewpage&utm_content=letsworktogether" class="button--primary">Get in touch</a></p>
         </div>
     </div>
 </section>
