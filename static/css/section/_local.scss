@@ -19,8 +19,6 @@ body {
 
 // .inner-wrapper
 .inner-wrapper {
-  margin-left: auto;
-  margin-right: auto;
 
   @media only screen and (max-width : $breakpoint-medium) {
     border-radius: 0;
@@ -205,21 +203,12 @@ body {
 .cloud,
 .download,
 .desktop,
-.download,
 .homepage,
 .phone,
 .server,
 .support,
 .tablet,
 .ubuntu-search {
-  .inner-wrapper {
-    max-width: inherit;
-
-    @media only screen and (min-width : $breakpoint-large) {
-      margin-bottom: 0;
-    }
-  }
-
   .wrapper {
     background: none;
     max-width: 100%;
@@ -251,32 +240,11 @@ body {
     box-shadow: none;
   }
 
-  .row--dark {
-    background: #262626;
-    color: #ebebea;
-  }
-}
-  // The default section row padding
-.cloud,
-.server,
-.desktop,
-.phone,
-.tablet,
-.support {
-  .row-hero {
+  .inner-wrapper {
+    margin-bottom: 0;
     margin-top: 0;
-
-    h1 {
-      padding-top: 20px;
-    }
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      padding-top: 40px;
-    }
-
-    @media only screen and (min-width : $breakpoint-large) {
-      padding-top: 100px;
-    }
+    max-width: 100%;
+    padding-bottom: 0;
   }
 
   .row {
@@ -376,7 +344,7 @@ strong {
     outline: 0;
 
     h2 {
-      color: $ubuntu-orange;
+      color: #dd4814;
     }
   }
 
@@ -691,7 +659,7 @@ $item-spacing: 20px;
   margin-left: 0;
   padding-left: 70px;
 
-  @media only screen and (max-width : $breakpoint-medium -1) {
+  @media only screen and (max-width : $breakpoint-medium) {
     padding-left: 0;
   }
 }
