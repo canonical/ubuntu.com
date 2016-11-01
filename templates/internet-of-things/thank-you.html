@@ -1,6 +1,6 @@
 {% extends "internet-of-things/base_things.html" %}
 
-{% block title %}Thank you } Ubuntu for the Internet of Things{% endblock %}
+{% block title %}Thank you | Ubuntu for the Internet of Things{% endblock %}
 
 {% block second_level_nav_items %}
 <div class="strip-inner-wrapper">
@@ -9,11 +9,11 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row no-border equal-height">
+<section class="row no-border equal-height strip-light">
     <div class="strip-inner-wrapper">
         <div class="thank-you eight-col equal-height__item">
-            <h1>Thank you for enquiring about Ubuntu for the Internet of Things</h1>
-            <p class="intro">A member of our team will be in touch within one working day</p>
+            <h1>Thank you for your interest in Ubuntu for the Internet of Things</h1>
+            <p>A member of our team will follow up with you shortly. In the meantime, explore <a href="http://snapcraft.io" class="external">snapcraft.io</a>, where vendors and the open source community collaborate to deliver great software, securely, to a wide range of devices and cloud.</p>
         </div>
         <div class="four-col last-col equal-height__item equal-height__align-vertically">
             <img src="{{ ASSET_SERVER_URL }}52d53696-picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
@@ -21,7 +21,7 @@
     </div>
 </section>
 
-{% include "shared/_thank_you_footer.html" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_for_developers" second_item="_iot_newsletter_signup" third_item="_iot_further_reading" %}
 
 {% endblock content %}
 {% block footer_extra %}
