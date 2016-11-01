@@ -5,164 +5,153 @@
 
 {% block meta_description %}With BootStack, Canonical will build, support and manage your cloud for only $15 per host per day.{% endblock meta_description %}
 
-{% block meta_keywords %}Ubuntu BootStack, BootStack, private cloud, support, Ubuntu OpenStack, consulting, build a cloud, Ubuntu, Canonical, Managed Cloud{% endblock meta_keywords %}
+{% block meta_keywords %}Ubuntu BootStack, BootStack, private cloud, support, Ubuntu  OpenStack, consulting, build a cloud, Ubuntu, Canonical{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
 <div class="strip-inner-wrapper">
-	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="OpenStack" page_title="Managed cloud"  %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="OpenStack" page_title="Managed cloud"  %}
 </div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
+<!-- Hero -->
+<section class="row row-hero strip-aubergine">
+    <div class="strip-inner-wrapper">
+        <h1 class="nine-col">BootStack &mdash; your managed cloud with no lock-in</h1>
+        <div class="eight-col">
+            <p class="intro">BootStack is a managed service where the world-class team at Canonical build and operate your OpenStack cloud either on-premises or hosted.</p>
+            <p>You don’t need the in-house expertise to stand-up and scale your cloud. And, when you’re ready, we can hand over operational control.</p>
+        </div>
+        <div class="twelve-col">
+            <p><img src="{{ ASSET_SERVER_URL }}56548c71-Bootstack_illustration.svg" alt="Bootstrap illustration" /></p>
+        </div>
+        <div class="twelve-col">
+            <p><a href="/cloud/managed-cloud/contact-us" class="button--primary">Schedule a demo</a></p>
+        </div>
+    </div>
+</section>
+
+<!-- Section 1 -->
 <section class="row row-hero no-border strip-light">
     <div class="strip-inner-wrapper">
-        <h1 class="nine-col">BootStack &mdash; your managed cloud</h1>
+        <h1 class="eight-col">Learn about BootStack hosted cloud</h1>
         <div class="eight-col">
-            <p class="intro">The BootStack service gives you an OpenStack private cloud, running on your hardware, in your choice of datacentre with Canonical responsible for design, deployment and availability. We&rsquo;ll even train your team and, when it suits you, hand over operational control.</p>
-            <ul class="no-bullets">
-                <li><a class="button--primary" href="/cloud/openstack/managed-cloud/contact-us" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'BootStack contact link', 'eventLabel' : 'From BootStack page hero section', 'eventValue' : undefined });">Schedule a demo</a></li>
-                <li><a href="#calculator-form">See how much you can save with our calculator&nbsp;&rsaquo;</a></li>
-            </ul>
-        </div><!-- /.eight-col -->
-        <div class="twelve-col no-margin-bottom last-col">
             <div class="video-container">
                 <iframe width="906" height="500" src="https://www.youtube.com/embed/hCSTwyG7bbg?rel=0&amp;&amp;hd=1" frameborder="0" allowfullscreen></iframe>
             </div>
-        </div>
+        </div><!-- /.eight-col -->
     </div>
 </section>
 
-<!-- BootStack calculator -->
-<section class="row" id="calculator-form">
+<!-- Section 2 -->
+
+
+<div class="row row-grey">
     <div class="strip-inner-wrapper">
-        <div class="eight-col append-four">
-            <h2>BootStack calculator</h2>
-            <p>Our calculator can help you identify your potential return on investment by comparing the  costs of a BootStack managed cloud against the staff costs of a self-built and managed cloud.</p>
+        <div class="twelve-col">
+            <h2>Your cloud, your site, our expertise</h2>
         </div>
-        <div class="js__required">
-            <div class="four-col grey-box box">
-                <h3 class="sub-heading">View by</h3>
-                <ul class="checkbox-vms-servers__list">
-                    <li class="checkbox-vms-servers__list-item">
-                        <label for="radio-servers">Servers</label>
-                        <input type="radio" id="radio-servers" name="vms-or-servers" value="Servers" checked />
-                    </li>
-                    <li class="checkbox-vms-servers__list-item">
-                        <label for="radio-vms">VMs</label>
-                        <input type="radio" id="radio-vm//s" name="vms-or-servers" value="VMs" />
-                    </li>
-                </ul>
-            </div>
-            <div class="four-col grey-box box" id="vms">
-                <h3 class="sub-heading">Number of VMs</h3>
-                <div class="slider-area" id="how-many-vms">
-                  <label for="number-of-vms" class="off-left">VMs</label>
-                  <input type="number" min="0" max="5000" id="number-of-vms" name="amount_1" value="100" class="add-slider amount-input" />
-    
-                  <!--  Hidden fields -->
-                  <input type="hidden" name="item_name_1" value="VMs" />
+        <ul class="grid-list twelve-col no-bullets">
+            <li class="grid-list__item four-col">
+                <div class="grid-list__icon one-col ">
+                    <img class="grid-list__img" src="https://assets.ubuntu.com/v1/14cf6193-pictogram-reduce_costs-orange-hex.svg" alt="">
                 </div>
-            </div>
-            <div class="four-col grey-box box is-hidden" id="servers">
-                <h3 class="sub-heading">Number of servers</h3>
-                <div class="slider-area" id="how-many-servers">
-                    <label for="number-of-servers" class="off-left">Servers</label>
-                    <input type="number" min="0" max="1000" id="number-of-servers" name="amount_2" value="60" class="add-slider amount-input" />
-    
-                    <!--  Hidden fields -->
-                    <input type="hidden" name="item_name_2" value="Servers">
+                <div class="grid-list__description three-col last-col">
+                    <h3>Predictable costs</h3>
+                    <p>Your cloud is built to your specifications, on dedicated hardware and priced in a predictable fashion</p>
                 </div>
-            </div>
-            <div class="four-col grey-box box last-col">
-                <h3 class="sub-heading">Billing period</h3>
-                <ul class="grouped-tabbed">
-                    <li class="grouped-tabbed__item">
-                      <input class="grouped-tabbed__input" type="radio" name="billing-period" id="hourly-billing" value="hour" />
-                      <label class="grouped-tabbed__button" for="hourly-billing">Hour</a>
-                    </li>
-                    <li class="grouped-tabbed__item">
-                      <input class="grouped-tabbed__input" type="radio" name="billing-period" id="monthly-billing" checked="checked" value="month" />
-                      <label class="grouped-tabbed__button" for="monthly-billing">Month</a>
-                    </li>
-                    <li class="grouped-tabbed__item">
-                      <input class="grouped-tabbed__input" type="radio" name="billing-period" id="yearly-billing" value="year" />
-                      <label class="grouped-tabbed__button" for="yearly-billing">Year</a>
-                    </li>
-                </ul>
-            </div>
-    
-            <div class="equal-height">
-                <div class="equal-height__item six-col box result" id="bootstack-section">
-                  <header class="result__header">
-                    <div class="result__header-banner">
-                      <h4 class="result__header-sub-heading">BootStack managed cloud</h4>
-                    </div>
-                    <h3 class="result__header-amount"><span id="bootstack-cost">&mdash;</span> per <span class="billing-period">month</span></h3>
-                    <p class="note">BootStack cost including Ubuntu Advantage support</p>
-                  </header>
-                  <div class="result__content">
-                    <p class="intro">Canonical builds, manages and operates your cloud 24x7.</p>
-                    <ul class="no-margin-bottom">
-                      <li>Built with Canonical OpenStack, the world&rsquo;s leading open cloud platform</li>
-                      <li>Your choice of hardware, certified by Canonical for Ubuntu and OpenStack</li>
-                      <li>A suite of management tools and the training you need to take control</li>
-                    </ul>
-                  </div>
-                  <footer class="result__footer">
-                    <h3 class="result__footer-title">Price includes Ubuntu Advantage</h3>
-                    <p>Commercial support for your cloud from the experts at&nbsp;Canonical.</p>
-                  </footer>
+            </li>
+
+            <li class="grid-list__item four-col">
+                <div class="grid-list__icon one-col ">
+                    <img class="grid-list__img" src="https://assets.ubuntu.com/v1/31c507a5-image-juju.svg" alt="">
                 </div>
-    
-                <div class="equal-height__item six-col last-col box result" id="diy-section">
-                    <header class="result__header">
-                      <div class="result__header-banner">
-                        <h4 class="result__header-sub-heading">Self-built and managed cloud</h4>
-                      </div>
-                      <h3 class="result__header-amount"><span id="self-built-cost">&mdash;</span> per <span class="billing-period">month</span></h3>
-                      <p class="note">Staff cost <span class="self-built-staff-cost">$0</span> plus Ubuntu Advantage support cost <span class="self-built-ua-cost">$0</span></p>
-                    </header>
-                    <div class="result__content">
-                      <p class="intro">Your in-house staff costs to operate your cloud 24x7: <span class="self-built-staff-cost">$0</span> per <span class="billing-period">month</span></p>
-                      <ul class="no-bullets">
-                        <li>
-                          <input type="number" min="0" max="50" id="number-of-staff" name="amount_3" value="6" class="input-staff" />
-                          <label for="number-of-staff">Staff required</label>
-                        </li>
-                        <li>
-                          <input type="number" min="0" max="250" id="staff-annual-salary" name="amount_4" value="100" class="input-salary" />
-                          <span class="input-helper">$k</span>
-                          <label for="staff-annual-salary">Average annual salary</label>
-                        </li>
-                      </ul>
-                      <p class="note">• Average salary data obtained from Indeed.com for&nbsp;the&nbsp;USA</p>
-                    </div>
-                    <footer class="result__footer">
-                      <h3 class="result__footer-title">
-                        Ubuntu Advantage support:<br/>
-                        <span class="self-built-ua-cost">$0</span> per <span class="billing-period">month</span>
-                        for <span id="num-servers-or-vms-output"></span> <span id="servers-or-vms-output"></span>
-                      </h3>
-                      <p>Supplement your team with commercial support for your cloud from the experts at&nbsp;Canonical.</p>
-                    </footer>
+                <div class="grid-list__description three-col last-col">
+                    <h3>Model your workloads with Juju</h3>
+                    <p>Connect and deploy your business and software workloads using our award-winning service modelling tool, Juju.</p>
                 </div>
-            </div>
+            </li>
+
+            <li class="grid-list__item four-col last-col">
+                <div class="grid-list__icon one-col ">
+                    <img class="grid-list__img" src="https://assets.ubuntu.com/v1/878af602-pictogram-virtualisation-orange-hex.svg" alt="">
+                </div>
+                <div class="grid-list__description three-col last-col last-col ">
+                    <h3>Easy Network Function Virtualization</h3>
+                    <p>Develop and test your VNFs before deploying them into a production OpenStack cloud.</p>
+                </div>
+            </li>
+
+            <li class="grid-list__item four-col last-row">
+                <div class="grid-list__icon one-col ">
+                    <img class="grid-list__img" src="https://assets.ubuntu.com/v1/b35c8ec0-storage.svg" alt="">
+                </div>
+                <div class="grid-list__description three-col last-col">
+                    <h3>Cloud native storage</h3>
+                    <p>Embed the proven software‐defined storage (SDS) technologies like Ceph, NexentaEdge, Swift and SwiftStack.</p>
+                </div>
+            </li>
+
+            <li class="grid-list__item four-col last-row">
+                <div class="grid-list__icon one-col ">
+                    <img class="grid-list__img" src="https://assets.ubuntu.com/v1/dbfe22f3-pictogram-certification-orange-hex.svg" alt="">
+                </div>
+                <div class="grid-list__description three-col last-col">
+                    <h3>Guaranteed availability &amp; quality</h3>
+                    <p>Our expertise, based on the management of hundreds of clouds, is backed up by a clear SLA</p>
+                </div>
+            </li>
+
+            <li class="grid-list__item four-col last-row last-col">
+                <div class="grid-list__icon one-col ">
+                    <img class="grid-list__img" src="https://assets.ubuntu.com/v1/921119ff-pictogram-training-orange-hex.svg" alt="">
+                </div>
+                <div class="grid-list__description three-col last-col">
+                    <h3>Complete control and no vendor-lock in</h3>
+                    <p>Your team can access every tool and every machine — and we can transfer operations to you on demand.</p>
+                </div>
+            </li>
+        </ul>
+        <div class="twelve-col">
+            <p><a href="/cloud/managed-cloud/contact-us" class="button--primary">Schedule a demo</a></p>
         </div>
     </div>
-</section>
+</div>
 
-<section class="row no-padding-bottom no-border strip-light">
-    <div class="strip-inner-wrapper">
-        <h2 class="seven-col no-margin">Get a private BootStack managed cloud in three easy steps</h2>
-    </div>
-</section>
-
+<!-- Section 3 -->
 <section class="row strip-light">
     <div class="strip-inner-wrapper">
+        <div>
+            <h2 class="eight-col">BootStack is trusted by these enterprises and telcos:</h2>
+        </div>
+        <ul class="inline-logos">
+          <li class="inline-logos__item">
+            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}481063cd-pccw.svg?w=160" alt="PCCW logo">
+          </li>
+          <li class="inline-logos__item">
+            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}2e38f398-uct.svg?w=160" alt="UCT logo">
+          </li>
+          <li class="inline-logos__item">
+            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}25de1877-Tele2.svg?w=160" alt="Tele2 logo">
+          </li>
+          <li class="inline-logos__item">
+            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}507a0979-B_Voidbridge_Primary_Master_Logo_3D_RGB-1024x283.jpg?w=160" alt="Voidbridge logo">
+          </li>
+          <li class="inline-logos__item">
+            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}ff4e18ac-mimedia_logo_lrg.png?w=160" alt="Mimedia logo">
+          </li>
+        </ul>
+    </div>
+</section>
+
+<!-- Section 4 -->
+<section class="row no-border strip-light">
+    <div class="strip-inner-wrapper">
+        <h2 class="seven-col no-margin">Get a private BootStack managed cloud in three easy steps:</h2>
         <ol class="list-stepped twelve-col">
           <li class="list-stepped__item">
             <div class="six-col">
-              <h3 class="list-stepped__title">We specify your cloud</h3>
+              <h3 class="list-stepped__title">We <strong>build</strong> your cloud</h3>
               <p>Together, we design your cloud to the required size and specifications &mdash; on your site, in your datacentre or hosted with one of our partners.</p>
             </div>
             <div class="prepend-one four-col last-col align-center not-for-small">
@@ -171,7 +160,7 @@
           </li>
           <li class="list-stepped__item">
             <div class="six-col">
-              <h3 class="list-stepped__title">We run your cloud</h3>
+              <h3 class="list-stepped__title">We <strong>operate</strong> your cloud</h3>
               <p>Our OpenStack experts take full responsibility for the management, monitoring and 24x7 availability of your new cloud.</p>
             </div>
             <div class="prepend-one four-col last-col align-center not-for-small">
@@ -180,7 +169,7 @@
           </li>
           <li class="list-stepped__item twelve-col">
             <div class="six-col">
-              <h3 class="list-stepped__title">We transfer control</h3>
+              <h3 class="list-stepped__title">We <strong>transfer</strong> control</h3>
               <p>As and when you decide to take control of your cloud back in house, we will train your team on its operations to ensure a smooth handover.</p>
             </div>
             <div class="prepend-one four-col last-col align-center not-for-small">
@@ -191,22 +180,47 @@
     </div>
 </section>
 
-<section class="row row-grey no-border">
-    <div class="strip-inner-wrapper">
-        <div class="seven-col append-one">
-            <h2>Your cloud, your site, our experience</h2>
-            <ul class="list-ticks--canonical">
-                <li><strong>Zero investment</strong> &mdash; we build the cloud and host it, so you don&rsquo;t have to hire a team of experts or commit upfront investment</li>
-                <li><strong>Predictable costs</strong> &mdash; your cloud is built to your specifications, on dedicated hardware and priced in a predictable fashion</li>
-                <li><strong>Guaranteed availability</strong> &mdash; our expertise, based on the management of hundreds of clouds, is backed up by a clear SLA</li>
-                <li><strong>Complete control</strong> &mdash; your team can access every tool and every machine &mdash; and we can transfer operations to you on demand.</li>
-            </ul>
+<!-- Section 5 -->
+<section class="row">
+    <div class="strip-inner-wrapper equal-height--vertical-divider">
+        <div class="twelve-col">
+            <h2>BootStack can be customised to your requirements:</h2>
         </div>
-        <a href="https://pages.canonical.com/Softlayer-BootStack.html" class="four-col last-col box box-highlight resource--link resource-whitepaper">
-            <h2>Cloud hosting service made easy&nbsp;&rsaquo;</h2>
-            <p>Discover how Canonical and Softlayer can help you build and manage your OpenStack cloud.</p>
-            <p class="content-cat content-cat-whitepaper">Whitepaper</p>
-        </a>
+        <div class="equal-height--vertical-divider__item four-col">
+            <div class="four-col">
+                <h3>Hosted BootStack</h3>
+                <p>We have chosen QTS and eShelter as a hosted option for BootStack worldwide, providing the highest performing dedicated cloud infrastructure available.</p>
+                <p>Their customisation options enable OpenStack to be used for provisioning bare metal as well as virtual machines from data centres around the world.</p>
+                <p><a href="/cloud/juju">Download QTS brochure&nbsp;›</a></p>
+            </div>
+        </div>
+        <div class="equal-height--vertical-divider__item four-col">
+            <h3>BootStack Direct</h3>
+            <p>Whereas a Hosted BootStack leaves the operations to us, BootStack Direct guarantees the operation of the cloud goes directly to you, including training and support for your staff.</p>
+            <p>We would get your OpenStack cloud up and running in days, preparing your team to become OpenStack operations experts. </p>
+            <p><a href="https://ubuntu.cloud/wp-content/uploads/2016/02/e843/Datasheet_Bootstack_your_Big_Data_Cloud_2015_Alexia_WEB-AW.pdf">Download BootStack Direct brochure&nbsp;›</a></p>
+        </div>
+        <div class="equal-height--vertical-divider__item four-col last-col">
+            <h3>BootStack for Kubernetes</h3>
+            <p>Whether you want to orchestrate your container cluster on top of your OpenStack cloud or other substrate we’ll build and operate it for you using the Canonical Distribution of Kubernetes. Focus on your applications not infrastructure.</p>
+            <p><a href="/cloud/kubernetes">Learn more about the Canonical Distribution of Kubernetes&nbsp;›</a></p>
+        </div>
+    </div>
+</section>
+
+<!-- Section 6 -->
+<section class="row no-border strip-light">
+    <div class="strip-inner-wrapper">
+        <h2 class="nine-col">BootStack and PLUMgrid SDN</h2>
+
+        <div class="six-col">
+            <img src="http://placehold.it/350x250?text=Coming+soon" alt="" />
+        </div>
+
+        <div class="six-col last-col">
+            <p>See how PLUMgrid leverages BootStack to help enterprises and service providers operationalise their webscale OpenStack and Container cloud’s SDN deployments.</p>
+            <p><a class="button--primary" href="https://pages.ubuntu.com/Secure-scale-and-simplify-your-cloud-deployments_webinar.html">Watch webinar on-demand</a></p>
+        </div>
     </div>
 </section>
 
