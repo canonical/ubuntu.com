@@ -1,0 +1,32 @@
+{% extends "core/base_core.html" %}
+
+{% block title %}Core{% endblock %}
+
+{% block meta_description %}{% endblock meta_description %}
+
+{% block meta_keywords %}{% endblock meta_keywords %}
+
+{% block extra_body_class %}core-overview{% endblock %}
+
+{% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Core" page_title="Overview" %}
+</div>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<section class="row row-hero no-border strip-light">
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col for-small">
+            <img src="{{ ASSET_SERVER_URL }}8d5f669e-DARWIN_2.png?q=60&amp;w=768" alt="" />
+        </div>
+        <div class="six-col">
+            <h1>Core</h1>
+        </div>
+    </div>
+</section>
+
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_devices_newsletter_signup" third_item="_iot_further_reading" %}
+
+{% endblock content %}
