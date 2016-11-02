@@ -73,6 +73,11 @@ body {
       border-bottom: 0;
     }
   }
+
+  &.row-cool-grey {
+    background-color: $cool-grey;
+    color: $white;
+  }
 }
 
 // combined lists
@@ -776,4 +781,11 @@ table {
   position: absolute !important;
   top: auto !important;
   width: 1px !important;
+}
+
+/// XXX used in Core and IoT to ensure that the verticals signpost images are the same size
+.row--verticals__image {
+  display: block;
+  height: 177px;
+  width: 290px;
 }

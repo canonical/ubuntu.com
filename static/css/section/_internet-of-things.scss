@@ -78,18 +78,18 @@
 
   // @section /internet-of-things overview
   &.internet-of-things-overview {
-
-    .row-developers {
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        background: url('#{$asset-server}1d3618a4-GettyImages-592235063_medium.jpg') center center no-repeat;
-        background-size: cover;
-        min-height: 460px;
+    .row {
+      &--snap-store {
+        &__image {
+          margin-top: 60px;
+        }
       }
-    }
 
-    .row--leaders {
-      min-height: 438px;
+      &--verticals__image {
+        display: block;
+        height: 177px;
+        width: 290px;
+      }
     }
   }
 
@@ -176,7 +176,7 @@
     .row-toys {
 
       @media only screen and (min-width: $breakpoint-medium) {
-        background: url('#{$asset-server}9d8a0713-devlopers_2.jpg?q=60&amp;w=1024') center center no-repeat;
+        background: url('#{$asset-server}9d8a0713-devlopers_2.jpg?w=1024') center center no-repeat;
         background-size: cover;
       }
 
@@ -286,29 +286,27 @@
     }
   }
 
-  .ubuntu-loves-robotics {
-    margin-top: 0;
+  .case-studies__image {
 
-    @media only screen and (min-width: $breakpoint-medium) {
-      margin-top: 0;
-      min-height: 550px;
-    }
-
-    h1 {
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        margin-top: 17%;
-      }
-    }
-  }
-}
-
-.internet-of-things-robotics {
-  @media only screen and (min-width: $breakpoint-large) {
-    .case-studies__image {
+    @media only screen and (min-width: $breakpoint-large) {
       display: block;
       height: 177px;
       width: 290px;
     }
   }
+
+  .grid-list__item {
+    padding: 1.5em;
+  }
+
+  .robot_logo {
+      padding-bottom: 2em;
+      max-width: 200px;
+  }
+
+  .robot_product {
+      max-height: 100px;
+  }
+
+
 }
