@@ -1,9 +1,9 @@
-{% extends "internet-of-things/base_things.html" %}
-{% block title %}Contact us | Ubuntu for the Internet of Things{% endblock %}
+{% extends "core/base_core.html" %}
+{% block title %}Contact us | Ubuntu Core{% endblock %}
 
 {% block second_level_nav_items %}
 <div class="strip-inner-wrapper">
-	{% include "templates/_nav_breadcrumb.html" with section_title="IoT" page_title="Contact us"  %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Core" page_title="Contact us"  %}
 </div>
 {% endblock second_level_nav_items %}
 
@@ -17,7 +17,7 @@
         <div class="eight-col">
             <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
             <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
-
+        
             <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1266">
                 <fieldset>
                     <h3>About you</h3>
@@ -42,7 +42,7 @@
                         {% include "shared/forms/_state.html" %}
                     </ul>
                 </fieldset>
-
+        
                 <fieldset>
                     <h3>About your company</h3>
                     <ul class="no-bullets">
@@ -56,7 +56,7 @@
                         </li>
                     </ul>
                 </fieldset>
-
+        
                 <fieldset>
                     <h3>Your comments</h3>
                     <ul class="no-bullets">
@@ -81,8 +81,8 @@
                     <input type="hidden" name="cr" class="mktoField" value="" />
                     <input type="hidden" name="kw" class="mktoField" value="" />
                     <input type="hidden" name="q" class="mktoField" value="" />
-                    <input type="hidden" name="returnURL" value="http://ubuntu.com/internet-of-things/thank-you" />
-                    <input type="hidden" name="retURL" value="http://ubuntu.com/internet-of-things/thank-you" />
+                    <input type="hidden" name="returnURL" value="http://ubuntu.com/core/thank-you" />
+                    <input type="hidden" name="retURL" value="http://ubuntu.com/core/thank-you" />
                 </fieldset>
             </form>
             <script>
@@ -94,7 +94,7 @@
                     onblur: false
                 });
             </script>
-
+        
         </div>
     </div>
 </section>

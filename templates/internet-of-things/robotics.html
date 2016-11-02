@@ -13,51 +13,27 @@
 
 {% block content %}
 
-<section class="row row-hero no-border js-livestream-intro">
+<section class="row row-hero no-border js-livestream__intro">
     <div class="strip-inner-wrapper">
         <div class="six-col">
-            <h1>Robots and drones <br />on Ubuntu</h1>
-            <p>Autonomous, secure, reliable and remotely upgradeable.</p>
-            <p><a href="" class="button--primary js-livestream-trigger">Watch ROSCon videos</a></p>
+            <h1>Robots and drones,<br />rocking Ubuntu Core</h1>
+            <p>Autonomous, secure, and remotely upgradeable, the new wave of robots and drones
+feature amazing apps for advanced industrial intelligence.</p>
+            <p><a href="" class="button--primary js-livestream__trigger">Watch ROSCon videos</a></p>
         </div>
     </div>
 </section>
 
-<section class="row row-hero livestream-video js-livestream-video u-off-screen">
+<section class="row livestream__video js-livestream__video u-off-screen no-border">
     <div class="strip-inner-wrapper">
         <div class="twelve-col">
-            <iframe src="https://player.vimeo.com/video/187699562?color=ffffff&title=0&byline=0&portrait=0" width="978" height="550" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-            <a href="#_" class="livestream-video-close js-livestream-video-close">Close video &rsaquo;</a>
+            <iframe src="https://player.vimeo.com/video/187699139?color=ffffff&title=0&byline=0&portrait=0" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <a href="#_" class="livestream__close js-livestream__close">Close video &rsaquo;</a>
         </div>
     </div>
 </section>
 
-<section class="row case-studies strip-light">
-    <div class="strip-inner-wrapper">
-        <h2>Latest news</h2>
-        <ul class="no-bullets equal-height--vertical-divider">
-            <li class="four-col equal-height--vertical-divider__item">
-                <a href="https://pages.ubuntu.com/AerolionCS.html"><img src="{{ ASSET_SERVER_URL }}b370647c-sewage6-1.jpg" class="case-studies__image twelve-col" alt="" /></a>
-                <p>Tunnel Drones &mdash; Aerolion and Ubuntu make anything possible.</p>
-                <p><a href="https://pages.ubuntu.com/AerolionCS.html" class="external">Download case study</a></p>
-            </li>
-            <li class="four-col equal-height--vertical-divider__item">
-                <a href="http://insights.ubuntu.com/2016/09/07/welcoming-the-parrot-s-l-a-m-dunk-the-new-drone-development-kit/?utm_source=roboticspage&utm_medium=latestnewsblock&utm_campaign=device-roboticspage"><img src="{{ ASSET_SERVER_URL }}bfb9384a-robotics_drone.png?w=768" class="case-studies__image twelve-col" alt="S.L.A.M.dunk" /></a>
-                <p>Introducing S.L.A.M.dunk, the new drone development kit from Parrot.</p>
-                <p><a href="http://insights.ubuntu.com/2016/09/07/welcoming-the-parrot-s-l-a-m-dunk-the-new-drone-development-kit/?utm_source=roboticspage&utm_medium=latestnewsblock&utm_campaign=device-roboticspage" class="external">Read more on Ubuntu Insights</a></p>
-            </li>
-            <li class="four-col equal-height--vertical-divider__item last-col">
-                <a href="http://insights.ubuntu.com/2016/10/05/roscon-the-robotics-conference-for-developers/"><img src="{{ ASSET_SERVER_URL }}7dfcc747-ROSConSeoul.png?w=768" class="case-studies__image twelve-col" alt="" /></a>
-                <p>ROScon &mdash; the robotics conference for developers.</p>
-                <p><a href="http://insights.ubuntu.com/2016/10/05/roscon-the-robotics-conference-for-developers/" class="external">Read more on Ubuntu Insights</a></p>
-            </li>
-        </ul>
-        <div class="twelve-col">
-            <p><a href="http://insights.ubuntu.com/tag/robotics">Read more robotics articles on Ubuntu Insights&nbsp;&rsaquo;</a></p>
-        </div>
-    </div>
-</section>
-
+<!-- partners -->
 <section class="row strip-light">
     <div class="strip-inner-wrapper">
         <div class="twelve-col">
@@ -75,40 +51,63 @@
     </div>
 </section>
 
+<section class="row case-studies strip-light">
+    <div class="strip-inner-wrapper">
+        <h2>The internet of tinkerers, toys, tunnels and tanks</h2>
+        <ul class="no-bullets equal-height--vertical-divider">
+            <li class="four-col equal-height--vertical-divider__item">
+                <a href="https://pages.ubuntu.com/AerolionCS.html"><img src="{{ ASSET_SERVER_URL }}b370647c-sewage6-1.jpg" class="case-studies__image twelve-col" alt="" /></a>
+                <p>Tunnel Drones &mdash; Aerolion provides easy access to inaccessible places. Add accessories and apps to a drone to create new industrial solutions.</p>
+                <p><a href="https://pages.ubuntu.com/AerolionCS.html" class="external">Download case study</a></p>
+            </li>
+            <li class="four-col equal-height--vertical-divider__item">
+                <a href="http://insights.ubuntu.com/2016/09/07/welcoming-the-parrot-s-l-a-m-dunk-the-new-drone-development-kit/?utm_source=roboticspage&utm_medium=latestnewsblock&utm_campaign=device-roboticspage"><img src="{{ ASSET_SERVER_URL }}bfb9384a-robotics_drone.png?w=768" class="case-studies__image twelve-col" alt="S.L.A.M.dunk" /></a>
+                <p>Introducing S.L.A.M.dunk, the new drone development kit from Parrot. Build apps for the next generation of consumer and enterprise devices.</p>
+                <p><a href="http://insights.ubuntu.com/2016/09/07/welcoming-the-parrot-s-l-a-m-dunk-the-new-drone-development-kit/?utm_source=roboticspage&utm_medium=latestnewsblock&utm_campaign=device-roboticspage" class="external">Read more</a></p>
+            </li>
+            <li class="four-col equal-height--vertical-divider__item last-col">
+                <a href="http://insights.ubuntu.com/2016/10/05/roscon-the-robotics-conference-for-developers/"><img src="{{ ASSET_SERVER_URL }}7dfcc747-ROSConSeoul.png?w=768" class="case-studies__image twelve-col" alt="" /></a>
+                <p>ROScon &mdash; the robotics conference for developers and entrepreneurs.</p>
+                <p><a href="http://insights.ubuntu.com/2016/10/05/roscon-the-robotics-conference-for-developers/" class="external">Read more</a></p>
+            </li>
+        </ul>
+    </div>
+</section>
+
 <section class="row strip-light">
     <div class="strip-inner-wrapper equal-height">
         <div class="five-col equal-height__item equal-height__align-vertically not-for-small">
             <img alt="ROS logo" src="{{ ASSET_SERVER_URL }}c8749268-logo-ros.svg" width="250" />
         </div>
         <div class="seven-col last-col equal-height__item equal-height__align-vertically">
-            <h2>Robots that can see, hear and think</h2>
-            <p>ROS (Robotic Operating System) is built on Ubuntu. With powerful computer vision and AI libraries and a wide choice of supported sensors, it&rsquo;s the most popular robotic development environment for everything from autonomous drones to self-driving cars.</p>
+            <h2>Robots that can see, hear, and think</h2>
+            <p>ROS (Robotic Operating System) is built on Ubuntu. With computer vision and AI libraries and a wide choice of supported sensors, it&rsquo;s the most popular robotic development environment for everything from autonomous drones to self-driving cars.</p>
         </div>
     </div>
 </section>
 
-<section class="row row-grey">
+<section class="row row-grey row--benefits">
     <div class="strip-inner-wrapper equal-height--vertical-divider">
         <div class="four-col equal-height--vertical-divider__item">
             <div class="twelve-col align-center">
-                <img alt="" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=175%C3%97175&w=175&h=175" width="175" />
+                <img alt="" src="{{ ASSET_SERVER_URL }}fb03978f-core_orange_st_hex.svg" class="row--benefits__image" width="175" />
             </div>
-            <h2>A path to production</h2>
-            <p>Commercialise your robotics projects with Ubuntu Core. Leverage a large community and standard, open source solutions for a faster route to market. Continuously improve your robots and drones wherever they are in the field, with a fail-safe remote upgrade system.</p>
+            <h2>From prototype to production</h2>
+            <p>Commercialise your robotics projects with Ubuntu Core, taking machines to market with snaps for updates and security. Regular and reliable upgrades improve your robots and drones in the field, with a fail-safe update system.</p>
         </div>
         <div class="four-col equal-height--vertical-divider__item">
             <div class="twelve-col align-center">
-                <img alt="" src="{{ ASSET_SERVER_URL }}eb4f6183-picto-safety-orange.svg" width="175" />
+                <img alt="" src="{{ ASSET_SERVER_URL }}32ed27a6-picto-safety-warmgrey.svg" class="row--benefits__image" width="175" />
             </div>
-            <h2>Built-in security</h2>
-            <p>Ubuntu Core delivers application containment, restricted file accessibility and read-only files, to ensure the integrity of the software running on your robots. The result is guaranteed security, from the drivers to the apps that run on your robots.</p>
+            <h2>Industry-leading security</h2>
+            <p>Ubuntu Core delivers application confinement, restricted file access and read-only applications, to ensure the integrity of the software running your robots. The result is security by design, from the drivers on your board to the apps that define your robot behaviours.</p>
         </div>
         <div class="four-col equal-height--vertical-divider__item last-col">
             <div class="twelve-col align-center">
-                <img alt="" src="{{ ASSET_SERVER_URL }}3c166f3f-pictogram-reduce_costs-orange-hex.svg" width="175" />
+                <img alt="" src="{{ ASSET_SERVER_URL }}4da450cc-pictogram-reduce_costs-orange-hex.svg" class="row--benefits__image" width="175" />
             </div>
-            <h2>New software revenues</h2>
-            <p>Offer an appstore for your drones and robots and you can generate revenue from updates, add-on functionality, support services or complete reconfigurations.</p>
+            <h2>New revenues</h2>
+            <p>Offer an appstore for your drones and robots and you can generate revenue from updates, add-on functionality, support services or complete reconfigurations. </p>
         </div>
     </div>
 </section>
@@ -122,19 +121,6 @@
     </div>
 </section>
 
-<section class="row ubuntu-loves-robotics no-border row-grey">
-    <div class="strip-inner-wrapper equal-height">
-        <div class="eight-col equal-height__item equal-height__align-vertically">
-            <h2>Ubuntu loves robotics</h2>
-            <p>The most widely adopted platform for ROS, Ubuntu ran on an estimated 80% of robots at the last DARPA Robotics Challenge. In fact, it offers a wealth of libraries and hardware options, from smart IoT and robotics to AI development.</p>
-            <p>Learn more about developing robotics projects with Ubuntu &mdash; and deploying them with Ubuntu Core.</p>
-            <p><a href="https://developer.ubuntu.com/en/snappy/?utm_campaign=device-fy17-iot-vertical-robotics-webpage&utm_medium=startdevelop&utm_source=ubunturobotics" class="external">Read more on our developer site</a></p>
-        </div>
-        <div class="four-col equal-height__item equal-height__align-vertically last-col not-for-small">
-            <img alt="Darwin robot" src="{{ ASSET_SERVER_URL }}3c86bccd-darwin.png?w=200" width="200" />
-        </div>
-    </div>
-</section>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_devices_newsletter_signup" third_item="_iot_further_reading" %}
 
@@ -142,6 +128,6 @@
 
 {% block footer_extra %}
 <script>
-  core.swapContent('.js-livestream-intro', '.js-livestream-video', '.js-livestream-video-close', '.js-livestream-trigger');
+  core.swapContent('.js-livestream__intro', '.js-livestream__video', '.js-livestream__close', '.js-livestream__trigger');
 </script>
 {% endblock footer_extra %}
