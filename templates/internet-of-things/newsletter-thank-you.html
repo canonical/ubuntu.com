@@ -5,38 +5,44 @@
 {% block title %}Thank you | Ubuntu for the Internet of Things{% endblock %}
 
 {% block second_level_nav_items %}
-    {% include "templates/_nav_breadcrumb.html" with section_title="IoT" page_title="Thank you" %}
+<div class="strip-inner-wrapper">
+   {% include "templates/_nav_breadcrumb.html" with section_title="IoT" page_title="Thank you" %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero no-border equal-height">
-    <div class="equal-height__item thank-you eight-col">
-        <h1>Thank you for subscribing!</h1>
-        <p class="intro">You will now begin receiving our devices newsletter. You may unsubscribe any time by clicking the link in the email.</p>
+<section class="row row-hero no-border equal-height">
+    <div class="strip-inner-wrapper">
+        <div class="equal-height__item thank-you eight-col">
+            <h1>Thank you for subscribing!</h1>
+            <p class="intro">You will now begin receiving our devices newsletter. You may unsubscribe any time by clicking the link in the email.</p>
+        </div>
+        <div class="four-col last-col equal-height__item equal-height__align-vertically">
+            <img src="{{ ASSET_SERVER_URL }}52d53696-picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
+        </div>
     </div>
-    <div class="four-col last-col equal-height__item equal-height__align-vertically">
-        <img src="{{ ASSET_SERVER_URL }}52d53696-picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
-    </div>
-</div><!-- /.row-hero -->
+</section>
 
-<div class="row equal-height no-border">
-    <h2 class="twelve-col">More about our enterprise services</h2>
-    <ul id="thank-you-extra" class="no-bullets">
-        <li class="advantage four-col first">
-            <h4>Want to learn more about developing with Ubuntu Core?</h4>
-            <p>Learn how to build or port apps with the next generation of Ubuntu.</p>
-            <p><a href="https://developer.ubuntu.com/en/snappy/" class="external">Try snappy Ubuntu Core</a></p>
-        </li>
-        <li class="cloud four-col">
-            <h4>Build a cloud with Autopilot</h4>
-            <p>Deploy and manage your cloud quickly and easily.</p>
-            <p><a href="/download/cloud">Get started with OpenStack Autopilot&nbsp;&rsaquo;</a></p>
-        </li>
-        <li class="jumpstart four-col last-col">
-            <h4>Ubuntu Advantage</h4>
-            <p>Purchase our enterprise support and management tools and access Ubuntu experts whenever you need.</p>
-            <p><a href="/support">Learn about Ubuntu Advantagee&nbsp;&rsaquo;</a></p>
-        </li>
-    </ul>
-</div><!-- end row-->
+<section class="row equal-height no-border">
+    <div class="strip-inner-wrapper">
+        <h2 class="twelve-col">More about our enterprise services</h2>
+        <ul id="thank-you-extra" class="no-bullets">
+            <li class="advantage four-col first">
+                <h4>Want to learn more about developing with Ubuntu Core?</h4>
+                <p>Learn how to build or port apps with the next generation of Ubuntu.</p>
+                <p><a href="https://developer.ubuntu.com/en/snappy/" class="external">Try snappy Ubuntu Core</a></p>
+            </li>
+            <li class="cloud four-col">
+                <h4>Build a cloud with Autopilot</h4>
+                <p>Deploy and manage your cloud quickly and easily.</p>
+                <p><a href="/download/cloud">Get started with OpenStack Autopilot&nbsp;&rsaquo;</a></p>
+            </li>
+            <li class="jumpstart four-col last-col">
+                <h4>Ubuntu Advantage</h4>
+                <p>Purchase our enterprise support and management tools and access Ubuntu experts whenever you need.</p>
+                <p><a href="/management/ubuntu-advantage">Learn about Ubuntu Advantagee&nbsp;&rsaquo;</a></p>
+            </li>
+        </ul>
+    </div>
+</section>
 {% endblock content %}
