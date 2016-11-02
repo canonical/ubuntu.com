@@ -78,18 +78,18 @@
 
   // @section /internet-of-things overview
   &.internet-of-things-overview {
-
-    .row-developers {
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        background: url('#{$asset-server}1d3618a4-GettyImages-592235063_medium.jpg') center center no-repeat;
-        background-size: cover;
-        min-height: 460px;
+    .row {
+      &--snap-store {
+        &__image {
+          margin-top: 60px;
+        }
       }
-    }
 
-    .row--leaders {
-      min-height: 438px;
+      &--verticals__image {
+        display: block;
+        height: 177px;
+        width: 290px;
+      }
     }
   }
 
