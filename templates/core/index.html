@@ -13,7 +13,7 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-hero strip-light">
+<section class="row row-hero">
     <div class="strip-inner-wrapper">
         <div class="six-col">
             <h1>Ubuntu Core</h1>
@@ -60,7 +60,9 @@
     <div class="strip-inner-wrapper">
         <div class="eight-col">
             <h2>Why use Ubuntu Core?</h2>
-            <p>Ubuntu Core uses the same kernel, libraries and system software as classic Ubuntu.  You can develop snaps on your Ubuntu PC just like any other application. The difference is that it&rsquo;s been built for the Internet of Things.</p>
+            <div class="eight-col">
+                <p class="seven-col">Ubuntu Core uses the same kernel, libraries and system software as classic Ubuntu.  You can develop snaps on your Ubuntu PC just like any other application. The difference is that it&rsquo;s been built for the Internet of Things.</p>
+            </div>
         </div>
         <ul class="no-bullets twelve-col">
             <li class="three-col">
@@ -83,36 +85,58 @@
     </div>
 </section>
 
-<section class="row no-padding-bottom">
+<section class="row strip-light">
     <div class="strip-inner-wrapper">
         <div class="eight-col">
             <h2>Features</h2>
-            <p>Ubuntu Core is different from classic Ubuntu distributions. It is purposely lightweight and transactionally updated system, with security at its heart. The fundamental unit is the &ldquo;snap&rdquo; &mdash; a self contained, isolated and protected bit of code that performs a well defined set of functions.  Even the Kernel and core are snaps.</p>
+            <div class="eight-col">
+                <p>Ubuntu Core is different from classic Ubuntu distributions. It is purposely lightweight and transactionally updated system, with security at its heart. The fundamental unit is the &ldquo;snap&rdquo; &mdash; a self contained, isolated and protected bit of code that performs a well defined set of functions.  Even the Kernel and core are snaps.</p>
+            </div>
         </div>
-        <div class="twelve-col equal-height--vertical-divider ">
+        
+        <div class="twelve-col not-for-small">
+            <div class="six-col">
+                <h4 class="six-col">Classic Ubuntu 16.04</h4>
+            </div>
+            <div class="six-col last-col">
+                <h4 class="six-col">Ubuntu Core 16</h4>
+            </div>
+            <img src="{{ ASSET_SERVER_URL }}c34c1d3a-Ubuntu+Classic+vs+Core+-+Desktop+%28label%29+%281%29.svg" alt="" />
+        </div>
+
+        <div class="twelve-col equal-height--vertical-divider for-small">
             <div class="align-center six-col equal-height--vertical-divider__item">
-                <h3 class="six-col">Classic Ubuntu 16.04</h3>
+                <div class="six-col">
+                    <h4 class="six-col">Classic Ubuntu 16.04</h4>
+                </div>
                 <img src="{{ ASSET_SERVER_URL }}7e9755bf-mobile+-+Infographic-1.svg" alt="" />
             </div>
             <div class="align-center six-col  equal-height--vertical-divider__item last-col">
-                <h3 class="six-col">Ubuntu Core 16</h3>
+                <div class="six-col">
+                    <h4 class="six-col">Ubuntu Core 16</h4>
+                </div>
                 <img src="{{ ASSET_SERVER_URL }}e75ed184-mobile+-+Infographic-2.svg" alt="" />
             </div>
         </div>
     </div>
 </section>
 
-<section class="row">
-    <div class="strip-inner-wrapper equal-height">
+<section class="row strip-light">
+    <div class="strip-inner-wrapper">
         <div class="twelve-col">
-            <div class="six-col equal-height__item">
+            <div class="six-col">
                 <h3>The smallest Ubuntu</h3>
                 <p>Ubuntu Core is smaller than competing &ldquo;micro&rdquo; container OS offerings. It is small because it&rsquo;s really just a base filesystem. Apps are delivered as snaps, alongside a free choice of container runtimes and coordination systems. And because it&rsquo;s got a smaller attack surface, it&rsquo;s much more secure.</p>
             </div>
-            <div class="six-col last-col equal-height__item equal-height__align-vertically">
+            <div class="four-col last-col prepend-one no-margin-bottom">
                 <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}16981ed0-GRAPHIC_os_image_size.svg?w=200" alt="" />
             </div>
         </div>
+    </div>
+</section>     
+
+<section class="row strip-light">
+    <div class="strip-inner-wrapper equal-height">
         <div class="twelve-col equal-height--vertical-divider">
             <div class="six-col">
                 <h3>Tamper-resistant</h3>
@@ -148,7 +172,7 @@
     </div>
 </section>
 
-<section class="row no-border">
+<section class="row no-border strip-light">
     <div class="strip-inner-wrapper">
         <div class="eight-col">
             <h2>Want to make your own Ubuntu Core device?</h2>
