@@ -1,0 +1,141 @@
+{% extends "core/base_core.html" %}
+
+{% block title %}Core{% endblock %}
+
+{% block meta_description %}Introducing Ubuntu Core, the smallest Ubuntu ever, the perfect host operating system for IoT devices and large-scale cloud container deployments{% endblock meta_description %}
+
+{% block extra_body_class %}core-overview{% endblock %}
+
+{% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Core" page_title="Overview" %}
+</div>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<section class="row row-hero strip-light">
+    <div class="strip-inner-wrapper">
+        <div class="six-col">
+            <h1>Core</h1>
+            <p>Ubuntu Core is a tiny, transactional version of Ubuntu for IoT devices and large container deployments. It runs a new breed of super-secure, remotely upgradeable Linux app packages known as snaps &dash; and it&rsquo;s trusted by leading IoT players, from chipset vendors to device makers and system integrators.</p>
+            <p><a class="button--primary" href="http://developer.ubuntu.com/en/snappy/start/?utm_campaign=Device_FY17_IOT&amp;utm_medium=corepage&amp;utm_source=ubuntuwebsite&amp;utm_content=">Download Ubuntu Core</a></p>
+            <p><a class="external" href="http://snapcraft.io/?utm_campaign=1)%20Device_FY17_IOT&amp;utm_medium=corepageintrosection&amp;utm_source=ubuntuwebsite&amp;utm_content=findoutmoreonsnap">Learn more about snaps</a></p>
+        </div>
+    </div>
+</section>
+
+<section class="row strip-light">
+    <div class="strip-inner-wrapper">
+        <div class="">
+            <h2>Ubuntu powers the next wave of smart IoT</h2>
+            <ul class="no-bullets twelve-col">
+                <li class="four-col">
+                    <h3>Digital Signage</h3>
+                    <p>With a small footprint and full OpenGL with reliable updates, Ubuntu Core provides a perfect platform for millions of digital signs.</p>
+                    <p><a href="/internet-of-things/digital-signage?utm_campaign=device-fy17-iot-website&amp;utm_medium=verticalsection&amp;utm_source=corepage&amp;utm_content=findoutmoreondspage">Find out more</a></p>
+                </li>
+                <li class="four-col">
+                    <h3>Edge Gateways</h3>
+                    <p>Rich networking and protocol support make Ubuntu Core the perfect choice for your industrial gateways.</p>
+                    <p><a href="/internet-of-things/edgegateways?utm_campaign=device-fy17-iot-website&amp;utm_medium=verticalsection&amp;utm_source=corepage&amp;utm_content=findoutmoreonedgegatewaypage">Find out more</a></p>
+                </li>
+                <li class="four-col last-col">
+                    <h3>Robotics</h3>
+                    <p>With full support for ROS in snapcraft, it&rsquo;s easy to enable apps on robots and drones, creating new ecosystems and business models.</p>
+                    <p><a href="/internet-of-things/robotics?utm_campaign=device-fy17-iot-website&amp;utm_medium=verticalsection&amp;utm_source=corepage&amp;utm_content=findoutmoreonroboticspage">Find out more</a></p>
+                </li>
+            </ul>
+            <p><a href="http://www.ubuntu.com/internet-of-things/contact-us?utm_campaign=device-fy17-iot-website&amp;utm_medium=corepage&amp;utm_source=ubuntuwebsite&amp;utm_content=contactusforotherverticals">Contact us</a></p>
+        </div>
+    </div>
+</section>
+
+<section class="row">
+    <div class="strip-inner-wrapper">
+        <div class="eight-col">
+            <h2>Why use Ubuntu Core?</h2>
+            <p>Ubuntu Core uses the same kernel, libraries and system software as classic Ubuntu.  You can develop snaps on your Ubuntu PC just like any other application. The difference is that it&rsquo;s been built for the Internet of Things.</p>
+        </div>
+        <ul class="no-bullets twelve-col">
+            <li class="three-col">
+                <h3>Secure by default</h3>
+                <p>Automatic updates ensure that critical security issues are addressed in the field, even if a device is unattended. </p>
+            </li>
+            <li class="three-col">
+                <h3>Lower costs</h3>
+                <p>Ubuntu Core is free. It can be distributed at no cost, with a custom kernel, BSP and suite of apps to suit your device. </p>
+            </li>
+            <li class="three-col">
+                <h3>Unrivalled reliability</h3>
+                <p>Transactional over-the-air updates - with full rollback features - cut the costs of managing devices in the field. </p>
+            </li>
+            <li class="three-col last-col">
+                <h3>Hassle-free app stores</h3>
+                <p>You can easily deploy your own app store and curate a suite of certified apps from an open ecosystem.</p>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section class="row no-padding-bottom">
+    <div class="strip-inner-wrapper">
+        <div class="eight-col">
+            <h2>Features</h2>
+            <p>Ubuntu Core is different from classic Ubuntu distributions. It is purposely lightweight and transactionally updated system, with security at its heart. The fundamental unit is the &ldquo;snap&rdquo; -- a self contained, isolated and protected bit of code that performs a well defined set of functions.  Even the Kernel and core are snaps.</p>
+        </div>
+        <div class="twelve-col equal-height--vertical-divider">
+            <div class="six-col equal-height--vertical-divider__item">
+                <h3>Classic Ubuntu 16.04</h3>
+            </div>
+            <div class="six-col equal-height--vertical-divider__item last-col">
+                <h3>Ubuntu Core 16</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="row">
+    <div class="strip-inner-wrapper equal-height">
+        <div class="twelve-col">
+            <div class="six-col equal-height__item">
+                <h3>The smallest Ubuntu</h3>
+                <p>Ubuntu Core is smaller than competing &ldquo;micro&rdquo; container OS offerings. It is small because it&rsquo;s really just a base filesystem. Apps are delivered as snaps, alongside a free choice of container runtimes and coordination systems. And because it&rsquo;s got a smaller attack surface, it&rsquo;s much more secure.</p>
+            </div>
+            <div class="six-col last-col equal-height__item equal-height__align-vertically">
+            </div>
+        </div>
+        <div class="twelve-col equal-height--vertical-divider">
+            <div class="six-col">
+                <h3>Tamper-resistant</h3>
+                <p>Snaps on the filesystem are immutable and almost impossible to hack because they are read-only and digitally signed. Their integrity can be verified any time and your system will be secure, from startup to shutdown.</p>
+            </div>
+            <div class="six-col last-col">
+                <h3>Freedom of choice</h3>
+                <p>Snaps are optional extensions to the base Ubuntu Core system. They can be provided by any vendor and integrate with any other snaps through secure, well-defined interfaces. So, unlike its rivals, Ubuntu Core cannot lock you in.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="row">
+    <div class="strip-inner-wrapper">
+        <div class="eight-col">
+            <h2>Wide variety of target platforms</h2>
+            <p>Ubuntu Core supports an unrivalled range of SoCs and single-board computers, from the 32-bit ARM Raspberry Pi (2 and 3) and the 64-bit ARM Qualcomm Dragonboard to Intel&rsquo;s full range of IoT SoCs. It runs in all the leading clouds too &mdash; Amazon, Microsoft and Google include Ubuntu Core images for production container deployments and minimal OS operations.</p>
+        </div>
+    </div>
+</section>
+
+<section class="row no-border">
+    <div class="strip-inner-wrapper">
+        <div class="eight-col">
+            <h2>Want to make your own Ubuntu Core device?</h2>
+            <p><a href="http://docs.ubuntu.com/core/build-a-device/images">Build a custom Ubuntu Core image&nbsp;&rsaquo;</a></p>
+        </div>
+    </div>
+</section>
+
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_devices_newsletter_signup" third_item="_iot_further_reading" %}
+
+{% endblock content %}
