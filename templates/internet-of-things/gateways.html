@@ -13,7 +13,7 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-hero strip-light">
+<section class="row row-hero row-grey">
     <div class="strip-inner-wrapper equal-height">
         <div class="seven-col equal-height__item">
             <h1>IoT gateways on Ubuntu</h1>
@@ -29,21 +29,27 @@
 <section class="row strip-light">
     <div class="strip-inner-wrapper">
         <h2>Webinars and case studies</h2>
-        <ul class="no-bullets equal-height--vertical-divider">
-            <li class="four-col equal-height--vertical-divider__item">
-                <img src="{{ ASSET_SERVER_URL }}2cbd7850-Logo_azeti_without_subline.jpg?w=200" alt="" />
+        <ul class="list-partners no-bullets equal-height twelve-col no-margin-bottom">
+            <li class="list-partners__item equal-height_item four-col box">
+                <div class="list-partners__image-container four-col align-center">
+                    <img src="{{ ASSET_SERVER_URL }}2cbd7850-Logo_azeti_without_subline.jpg?w=200" alt="" class="list-partners__image" />
+                </div>
                 <p>Azeti uses Ubuntu Core to improve deployment operations and security for a wide range of industries.</p>
-                <p><a class="external" href="https://pages.ubuntu.com/AzetiCS.html?utm_campaign=Device_FY17_IOT&utm_medium=edgegatewaycontentblock&utm_source=ubuntuwebsite&utm_content=azeticasestudy">Read the case study</a></p>
+                <p><a class="external" href="https://pages.ubuntu.com/AzetiCS.html?utm_campaign=Device_FY17_IOT&amp;utm_medium=edgegatewaycontentblock&amp;utm_source=ubuntuwebsite&amp;utm_content=azeticasestudy">Read the case study<span class="accessibility-aid"> </span></a></p>
             </li>
-            <li class="four-col equal-height--vertical-divider__item">
-                <img src="{{ ASSET_SERVER_URL }}25517997-cloud_plugs_logo.png?w=200" alt="" />
+            <li class="list-partners__item equal-height_item four-col box">
+                <div class="list-partners__image-container four-col align-center">
+                    <img class="list-partners__image" src="{{ ASSET_SERVER_URL }}25517997-cloud_plugs_logo.png?w=200" alt="" />
+                </div>
                 <p>Watch CloudPlugs define Industry 4.0, the convergence of information and operations.</p>
-                <p><a class="external" href="https://www.brighttalk.com/webcast/6793/218271?utm_campaign=fy17-vertical-edgegateway-webinar&utm_medium=edgegatewaycontentblock&utm_source=ubuntuwebsite&utm_content=cloudplugs">Watch the webinar</a></p>
+                <p><a class="external" href="https://www.brighttalk.com/webcast/6793/218271?utm_campaign=fy17-vertical-edgegateway-webinar&amp;utm_medium=edgegatewaycontentblock&amp;utm_source=ubuntuwebsite&amp;utm_content=cloudplugs">Watch the webinar<span class="accessibility-aid"> </span></a></p>
             </li>
-            <li class="four-col last-col equal-height--vertical-divider__item no-margin-bottom">
-                <img src="{{ ASSET_SERVER_URL }}5afc09fa-partner-logo-eclipse.png?w=200" alt="" />
+            <li class="list-partners__item equal-height_item four-col box last-col">
+                <div class="list-partners__image-container four-col align-center">
+                    <img class="list-partners__image" src="{{ ASSET_SERVER_URL }}5afc09fa-partner-logo-eclipse.png" alt="" />
+                </div>
                 <p>The Eclipse IoT Working Group outlines the three software stacks required for IoT.</p>
-                <p><a class="external" href="https://pages.ubuntu.com/FY17DS-WebForm_RiseVisionCaseStudy.html">Read teh whitepaper</a></p>
+                <p><a class="external" href="https://pages.ubuntu.com/FY17DS-WebForm_RiseVisionCaseStudy.html">Read the whitepaper<span class="accessibility-aid"> </span></a></p>
             </li>
         </ul>
     </div>
@@ -66,44 +72,34 @@
     </div>
 </section>
 
-<section class="row no-border">
+<section class="row">
     <div class="strip-inner-wrapper">
-        <ul class="grid-list twelve-col no-bullets">
-            <li class="grid-list__item four-col">
-                <div class="grid-list__description four-col">
-                    <h3>Cost effective</h3>
-                    <p>Multiple applications can run on the same hardware, with strict app confinement. Replace three  devices controlling light, AC and power with a single more flexible device.</p>
-                </div>
+        <ul class="twelve-col no-bullets equal-height--vertical-divider">
+            <li class="four-col equal-height--vertical-divider__item">
+                <h3>Cost effective</h3>
+                <p>Multiple applications can run on the same hardware, with strict app confinement. Replace three  devices controlling light, AC and power with a single more flexible device.</p>
             </li>
-            <li class="grid-list__item four-col">
-                <div class="grid-list__description four-col">
-                    <h3>Secure and reliable</h3>
-                    <p>Transactional updates guarantee failsafe upgrades making sure your equipment stays secure. Regular and reliable updates ensure healthy ecosystems and regulatory compliance.</p>
-                </div>
+            <li class="four-col equal-height--vertical-divider__item">
+                <h3>Secure and reliable</h3>
+                <p>Transactiomnal updates guarantee failsafe upgrades making sure your equipment stays secure. Regular and reliable updates ensure healthy ecosystems and regulatory compliance.</p>
             </li>
-            <li class="grid-list__item four-col last-col">
-                <div class="grid-list__description four-col">
-                    <h3>Multi-protocol support</h3>
-                    <p>Use any of the libraries and code available for Ubuntu. Build the apps you need for your edge gateways, with Modbus, CAN, Zigbee, COAP or in the cloud  MQTT, AMQP.</p>
-                </div>
+            <li class="four-col last-col equal-height--vertical-divider__item">
+                <h3>Multi-protocol support</h3>
+                <p>Use any of the libraries and code available for Ubuntu. Build the apps you need for your edge gateways, with Modbus, CAN, Zigbee, COAP or in the cloud  MQTT, AMQP.</p>
             </li>
-            <li class="grid-list__item last-row four-col">
-                <div class="grid-list__description four-col">
-                    <h3>Edge intelligence</h3>  
-                    <p>From video surveillance to neural networks, Ubuntu Core enables complex operations at the edge of the network. Use apps on gateways for lower latency, saving you the cost of network and cloud storage.</p>
-                </div>
+        </ul>
+        <ul class="twelve-col no-bullets equal-height--vertical-divider">
+            <li class="last-row four-col equal-height--vertical-divider__item">
+                <h3>Edge intelligence</h3>  
+                <p>From video surveillance to neural networks, Ubuntu Core enables complex operations at the edge of the network. Use apps on gateways for lower latency, saving you the cost of network and cloud storage.</p>
             </li>
-            <li class="grid-list__item last-row four-col">
-                <div class="grid-list__description four-col">
-                    <h3>Diverse hardware</h3>
-                    <p>From ARM to Intel, there is a board that suits your next device. Prototype quickly, then go straight to production with standard reference modules and a standard Linux platform.</p>
-                </div>
+            <li class="last-row four-col equal-height--vertical-divider__item">
+                <h3>Diverse hardware</h3>
+                <p>From ARM to Intel, there is a board that suits your next device. Prototype quickly, then go straight to production with standard reference modules and a standard Linux platform.</p>
             </li>
-            <li class="grid-list__item last-row four-col last-col">
-                <div class="grid-list__description four-col">
-                    <h3>Easy integration</h3>
-                    <p>It&rsquo;s easy and fast to create and distribute applications for edge gateways. Ubuntu Core devices come with an app store and update mechanism included.</p>
-                </div>
+            <li class="last-row four-col last-col equal-height--vertical-divider__item">
+                <h3>Easy integration</h3>
+                <p>It&rsquo;s easy and fast to create and distribute applications for edge gateways. Ubuntu Core devices come with an app store and update mechanism included.</p>
             </li>
         </ul>
     </div>
