@@ -286,29 +286,27 @@
     }
   }
 
-  .ubuntu-loves-robotics {
-    margin-top: 0;
+  .case-studies__image {
 
-    @media only screen and (min-width: $breakpoint-medium) {
-      margin-top: 0;
-      min-height: 550px;
-    }
-
-    h1 {
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        margin-top: 17%;
-      }
-    }
-  }
-}
-
-.internet-of-things-robotics {
-  @media only screen and (min-width: $breakpoint-large) {
-    .case-studies__image {
+    @media only screen and (min-width: $breakpoint-large) {
       display: block;
       height: 177px;
       width: 290px;
     }
   }
+
+  .grid-list__item {
+    padding: 1.5em;
+  }
+
+  .robot_logo {
+      padding-bottom: 2em;
+      max-width: 200px;
+  }
+
+  .robot_product {
+      max-height: 100px;
+  }
+
+
 }
