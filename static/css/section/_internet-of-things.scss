@@ -35,7 +35,44 @@
         margin-left: 0;
       }
     }
+
   }
+
+  // XXX remove this from UVT?
+  .grid-list {
+
+    p {
+      font-size: 1em;
+    }
+
+    &__item {
+      margin-bottom: 20px;
+      padding: 0;
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        margin: 0;
+      }
+
+
+      & > [class*='-col']:first-child {
+
+        @media only screen and (min-width: $breakpoint-medium) {
+          padding: 1em 1.5em 0 1.5em;
+          width: 45%;
+        }
+      }
+
+      & > [class*='-col']:last-child {
+        padding: 0;
+        width: 100%;
+
+        @media only screen and (min-width: $breakpoint-medium) {
+          padding: 1em 1.5em 0 1.5em;
+        }
+      }
+    }
+  }
+
 
   // override the darkness
   .row-case-studies {
@@ -100,6 +137,10 @@
       margin-bottom: 2em;
       max-height: 75px;
       max-width: 275px;
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        max-width: 100%;
+      }
     }
   }
 
@@ -271,6 +312,13 @@
         height: 150px;
       }
     }
+    &--contactus {
+      padding: 0 10px;
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        padding: 20px 10px 0;
+      }
+    }
   }
 
   .livestream {
@@ -305,13 +353,14 @@
     }
   }
 
-  .grid-list__item {
-    padding: 1.5em;
-  }
-
   .robot_logo {
       padding-bottom: 2em;
       max-width: 200px;
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        max-width: 100%;
+      }
+
   }
 
   .robot_product {
