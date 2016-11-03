@@ -73,6 +73,11 @@ body {
       border-bottom: 0;
     }
   }
+
+  &.row-cool-grey {
+    background-color: $cool-grey;
+    color: $white;
+  }
 }
 
 // combined lists
@@ -202,9 +207,12 @@ body {
 // Full width sections
 .cloud,
 .download,
-.desktop,
+.internet-of-things,
 .homepage,
+.internet-of-things,
 .phone,
+.desktop,
+.core,
 .server,
 .support,
 .tablet,
@@ -261,7 +269,9 @@ body {
 .cloud,
 .desktop,
 .download,
+.internet-of-things,
 .phone,
+.core,
 .server,
 .support,
 .tablet {
@@ -279,30 +289,19 @@ body {
     &.no-padding-bottom {
       padding-bottom: 0;
     }
-
-    &.row-hero {
-      padding: 0 10px;
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        padding: 40px 10px 20px;
-      }
-
-      @media only screen and (min-width : $breakpoint-large) {
-        padding: 100px 40px;
-      }
-    }
   }
 
   .row-hero {
     margin-top: 0;
+    padding: 0 10px;
 
     @media only screen and (min-width : $breakpoint-medium) {
+      padding: 40px 10px 20px;
       margin-top: 0;
-      padding-top: 40px;
     }
 
     @media only screen and (min-width : $breakpoint-large) {
-      padding-top: 100px;
+      padding: 100px 40px;
     }
 
     h1 {
@@ -782,4 +781,11 @@ table {
   position: absolute !important;
   top: auto !important;
   width: 1px !important;
+}
+
+/// XXX used in Core and IoT to ensure that the verticals signpost images are the same size
+.row--verticals__image {
+  display: block;
+  height: 177px;
+  width: 290px;
 }
