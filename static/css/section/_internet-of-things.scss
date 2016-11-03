@@ -123,9 +123,18 @@
       }
 
       &--verticals__image {
-        display: block;
-        height: 177px;
-        width: 290px;
+        display: none;
+
+        @media only screen and (min-width: $breakpoint-medium) {
+          display: block;
+          width: 100%;
+          height: inherit;
+        }
+
+        @media only screen and (min-width: $breakpoint-large) {
+          height: 177px;
+          width: 290px;
+        }
       }
     }
   }
@@ -144,123 +153,14 @@
     }
   }
 
-  //internet-of-things/partners
-  &.internet-of-things-partners {
-    .row-hero {
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        background: url('#{$asset-server}da0d4008-iot-partners-hero-house.jpg?q=70&w=984') center center no-repeat;
-        background-size: cover;
-        color: $white;
-        margin-top: 0;
-        padding-top: 40px;
-      }
-    }
-
-    .row-supported-hardware {
-      background: url('#{$asset-server}be523ae7-dell-edge-gateway-5000-series.jpg?h=300') 50% 100% no-repeat;
-      padding-bottom: 300px;
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        background: url('#{$asset-server}be523ae7-dell-edge-gateway-5000-series.jpg?h=400') 90% 50% no-repeat;
-        min-height: 400px;
-        padding-bottom: inherit;
-      }
-    }
-
-    // XXX override the bullshit at line 26 of desktop.scss
-    .row-case-studies > h2:first-child {
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        margin-bottom: 20px;
-      }
-    }
-  }
-
   // XXX in lots of section
   .strip-dark blockquote p {
     color: $white;
   }
 
-  // @subsection /internet-of-things/developers
-  &.internet-of-things-developers {
-    .row-hero {
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        background: url('#{$asset-server}8b907c80-iot-developers-hero.jpg?q=60&w=984') center center no-repeat;
-        background-size: cover;
-        margin-top: 0;
-        padding-top: 40px;
-      }
-
-      @media only screen and (min-width: $breakpoint-large) {
-        min-height: 560px;
-      }
-    }
-
-    .row-autonomous {
-
-      &__content {
-        position: relative;
-
-        @media only screen and (min-width: $breakpoint-medium) {
-          padding: 50px 0;
-        }
-
-        &:before {
-          @media only screen and (min-width : $breakpoint-medium) {
-            background: url('#{$asset-server}ec11fa9e-developers-robots-erle-spider.jpg?w=897') center center no-repeat;
-            background-size: contain;
-            content: '';
-            display: block;
-            height: 150%;
-            overflow: visible;
-            position: absolute;
-            top: -21%;
-            left: -170%;
-            width: 150%;
-          }
-        }
-      }
-    }
-
-    .row-toys {
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        background: url('#{$asset-server}9d8a0713-devlopers_2.jpg?w=1024') center center no-repeat;
-        background-size: cover;
-      }
-
-      @media only screen and (min-width: $breakpoint-large) {
-        min-height: 420px;
-      }
-
-      &__content {
-        padding-top: 20px;
-      }
-    }
-
-
-    // here be dragons
-    .snappy-language-image {
-      margin-top: -27px;
-    }
-
-    .inline-logos--compact {
-      margin-bottom: 0;
-      padding-top: 0;
-    }
-  }
-
   // @subsection /internet-of-things/digital-signage
   &.internet-of-things-digital-signage {
     .row-hero {
-
-      h1 {
-        @media only screen and (min-width: $breakpoint-medium) {
-          margin-top: 40px;
-        }
-      }
 
       &__image--small {
         margin-top: 20px;
