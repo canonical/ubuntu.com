@@ -21,7 +21,7 @@
             <p>Ubuntu Core offers a secure, reliable and remotely upgradeable platform for intelligent edge devices.</p>
         </div>
         <div class="equal-height__item equal-height__align-vertically five-col last-col align-center not-for-small">
-            <img class="row-hero__image" src="{{ ASSET_SERVER_URL }}a77f8ef7-iot_edge_gateways_infographic.svg" alt="" />
+            <img class="row-hero__image" src="{{ ASSET_SERVER_URL }}b181a602-iot_edge_gateways_infographic.svg" alt="" />
         </div>
     </div>
 </section>
@@ -31,19 +31,19 @@
         <h2>Webinars and case studies</h2>
         <ul class="no-bullets equal-height--vertical-divider">
             <li class="four-col equal-height--vertical-divider__item">
-                <img src="{{ ASSET_SERVER_URL }}2cbd7850-Logo_azeti_without_subline.jpg?w=200" alt="" />
+                <img class="gateways-logo" src="{{ ASSET_SERVER_URL }}eab2ecff-azeti_logo.png?h=75" alt="" />
                 <p>Azeti uses Ubuntu Core to improve deployment operations and security for a wide range of industries.</p>
                 <p><a class="external" href="https://pages.ubuntu.com/AzetiCS.html?utm_campaign=Device_FY17_IOT&utm_medium=edgegatewaycontentblock&utm_source=ubuntuwebsite&utm_content=azeticasestudy">Read the case study</a></p>
             </li>
             <li class="four-col equal-height--vertical-divider__item">
-                <img src="{{ ASSET_SERVER_URL }}25517997-cloud_plugs_logo.png?w=200" alt="" />
+                <img class="gateways-logo" src="{{ ASSET_SERVER_URL }}25517997-cloud_plugs_logo.png?h=75" alt="" />
                 <p>Watch CloudPlugs define Industry 4.0, the convergence of information and operations.</p>
                 <p><a class="external" href="https://www.brighttalk.com/webcast/6793/218271?utm_campaign=fy17-vertical-edgegateway-webinar&utm_medium=edgegatewaycontentblock&utm_source=ubuntuwebsite&utm_content=cloudplugs">Watch the webinar</a></p>
             </li>
             <li class="four-col last-col equal-height--vertical-divider__item no-margin-bottom">
-                <img src="{{ ASSET_SERVER_URL }}5afc09fa-partner-logo-eclipse.png?w=200" alt="" />
+                <img class="gateways-logo" src="{{ ASSET_SERVER_URL }}3c803253-Eclipse-logo-2014.svg?h=75" alt="" />
                 <p>The Eclipse IoT Working Group outlines the three software stacks required for IoT.</p>
-                <p><a class="external" href="https://pages.ubuntu.com/FY17DS-WebForm_RiseVisionCaseStudy.html">Read teh whitepaper</a></p>
+                <p><a class="external" href="https://pages.ubuntu.com/FY17DS-WebForm_RiseVisionCaseStudy.html">Read the whitepaper</a></p>
             </li>
         </ul>
     </div>
@@ -54,14 +54,14 @@
         <div class="twelve-col">
             <h2 class="muted-heading">IoT gateway partners on Ubuntu Core</h2>
             <ul id="edge-gateway-partners" class="inline-logos no-margin dynamic-logos">
-                {% get_json_feed "http://partners.ubuntu.com/partners.json?technology=edge-gateway" limit=10 as edge_gateway_partners %}
+                {% get_json_feed "http://partners.ubuntu.com/partners.json?technology__name=Edge%20Gateway" limit=10 as edge_gateway_partners %}
                 {% for partner in edge_gateway_partners %}
                 <li class="inline-logos__item">
                     <img class="inline-logos__image" src="{{ partner.logo }}" alt="{{ partner.name }}" />
                 </li>
                 {% endfor %}
             </ul>
-            <p class="align-center"><a href="http://partners.ubuntu.com/find-a-partner?technology=edge-gateway" class="external">See all of our robotics partners</a></p>
+            <p class="align-center"><a href="http://partners.ubuntu.com/find-a-partner?technology=edge-gateway" class="external">See all of our gateway partners</a></p>
         </div>
     </div>
 </section>
@@ -89,7 +89,7 @@
             </li>
             <li class="grid-list__item last-row four-col">
                 <div class="grid-list__description four-col">
-                    <h3>Edge intelligence</h3>  
+                    <h3>Edge intelligence</h3>
                     <p>From video surveillance to neural networks, Ubuntu Core enables complex operations at the edge of the network. Use apps on gateways for lower latency, saving you the cost of network and cloud storage.</p>
                 </div>
             </li>
@@ -111,9 +111,34 @@
 
 <section class="row strip-light no-border">
     <div class="strip-inner-wrapper">
-        <div class="twelve-col">
+        <div class="prepend-two eight-col">
             <h2 class="muted-heading">Software innovation for every industry</h2>
-            <p>MORE LOGOS HERE</p>
+            <ul class="inline-logos no-margin">
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}25517997-cloud_plugs_logo.png" alt="CloudPlugs">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}eab2ecff-azeti_logo.png" alt="Azeti">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}3c803253-Eclipse-logo-2014.svg" alt="Eclipse">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}518c2d91-partner-logo-evrythng.png" alt="Evrything">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}e8b58fdd-partner-logo-device-hive.png" alt="Device Hive">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}4b614123-nexiona_logo.png" alt="Nexiona">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}c43b0c65-KNX_logo.svg" alt="KNX">
+                </li>
+                <li class="inline-logos__item">
+                    <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}33c9b8cb-partner-logo-emutex.png" alt="Emutex">
+                </li>
+            </ul>
         </div>
     </div>
 </section>
@@ -128,7 +153,7 @@
         <div class="six-col last-col equal-height--vertical-divider__item no-margin-bottom">
             <h2>Simple development and distribution for ISVs and SIs</h2>
             <p>Independent software vendors and system integrators develop with the familiar environment and use the wealth of libraries available in Ubuntu. With Ubuntu Core you can easily manage the  software you distribute. Use the Ubuntu Store to reach new customers.</p>
-            <p><a class="external" href="http://snapcraft.io/?utm_campaign=Device_FY17_IOT&amp;utm_medium=edgegatewaysolutioncta&amp;utm_source=ubuntuwebsite&amp;utm_content=isvandis">Find out more about&nbsp;snaps</a></p>
+            <p><a class="external" href="http://snapcraft.io/?utm_campaign=Device_FY17_IOT&amp;utm_medium=gatewaysolutioncta&amp;utm_source=ubuntuwebsite&amp;utm_content=isvandis">Find out more about&nbsp;snaps</a></p>
         </div>
     </div>
 </section>
