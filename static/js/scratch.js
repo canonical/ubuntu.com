@@ -269,6 +269,30 @@ core.commandLine = function () {
   });
 }
 
+// Attach listeners to switch between two pieces of content with links
+core.swapContent = function(primaryContainerClass, secondaryContainerClass, showPrimaryClass, showSecondaryClass) {
+  var showPrimary = document.querySelector(showPrimaryClass);
+  var showSecondary = document.querySelector(showSecondaryClass);
+  var primaryElement = document.querySelector(primaryContainerClass);
+  var secondaryElement = document.querySelector(secondaryContainerClass);
+
+  if (showPrimary) {
+    showPrimary.addEventListener('click', function(e) {
+      e.preventDefault();
+      primaryElement.classList.remove('u-off-screen');
+      secondaryElement.classList.add('u-off-screen');
+    });
+  }
+
+  if (showSecondary) {
+    showSecondary.addEventListener('click', function(e) {
+      e.preventDefault();
+      secondaryElement.classList.remove('u-off-screen');
+      primaryElement.classList.add('u-off-screen');
+    });
+  }
+}
+
 core.setupAnimations();
 core.scopesSlideshow();
 core.cookiePolicy();
