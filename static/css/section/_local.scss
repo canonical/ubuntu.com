@@ -106,6 +106,11 @@ body {
   &.row-contact-form {
     padding-top: 0;
   }
+
+  &.row-cool-grey {
+    background-color: $cool-grey;
+    color: $white;
+  }
 }
 
 // combined lists
@@ -235,9 +240,12 @@ body {
 // Full width sections
 .cloud,
 .download,
-.desktop,
+.internet-of-things,
 .homepage,
+.internet-of-things,
 .phone,
+.desktop,
+.core,
 .server,
 .support,
 .tablet,
@@ -285,10 +293,45 @@ body {
 .cloud,
 .desktop,
 .download,
+.internet-of-things,
 .phone,
+.core,
 .server,
 .support,
 .tablet {
+  .row {
+    padding: 20px 10px 0;
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      padding: 40px 10px 20px;
+    }
+
+    @media only screen and (min-width : $breakpoint-large) {
+      padding: 100px 40px;
+    }
+
+    &.no-padding-bottom {
+      padding-bottom: 0;
+    }
+  }
+
+  .row-hero {
+    margin-top: 0;
+    padding: 0 10px;
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      padding: 40px 10px 20px;
+      margin-top: 0;
+    }
+
+    @media only screen and (min-width : $breakpoint-large) {
+      padding: 100px 40px;
+    }
+
+    h1 {
+      padding-top: 20px;
+    }
+  }
 
   .touch-border{
     margin-bottom: -100px;
@@ -740,4 +783,21 @@ th {
 // XXX there is an issue https://github.com/ubuntudesign/vanilla-framework/pull/696 to fix in ubuntu-vanilla-framework
 table {
   overflow-x: auto;
+}
+
+// XXX is implemented in newer versions of Vanilla - for hiding content off-screen
+.u-off-screen {
+  height: 1px !important;
+  left: -10000px !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  top: auto !important;
+  width: 1px !important;
+}
+
+/// XXX used in Core and IoT to ensure that the verticals signpost images are the same size
+.row--verticals__image {
+  display: block;
+  height: 177px;
+  width: 290px;
 }
