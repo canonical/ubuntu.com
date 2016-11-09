@@ -40,7 +40,7 @@ def get_json_feed_content(url, offset=0, limit=None):
     return content[offset:end]
 
 
-def get_rss_feed_content(url, offset=0, limit=None):
+def get_rss_feed_content(url, offset=0, limit=None, exclude_items_in=None):
     """
     Get the entries from an RSS feed
     """
@@ -58,6 +58,10 @@ def get_rss_feed_content(url, offset=0, limit=None):
             )
         )
         content = []  # Empty response
+
+    if exclude_items_in:
+        exclude_ids = [x['guid'] for x in exclude_items_in]
+        content = filter(lambda x: x['guid'] not in exclude_ids, content)
 
     content = content[offset:end]
     for item in content:
