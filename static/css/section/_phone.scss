@@ -466,14 +466,12 @@
 
     .row-hero {
       border-bottom: 1px dotted $warm-grey;
-      margin-top: 0;
 
       @media only screen and (min-width : $breakpoint-medium) {
         background: url('#{$asset-server}9bb69e76-features-intro-row-2x.jpg?w=2000') center center no-repeat;
         background-size: cover;
         border-bottom: 0;
         min-height: 366px;
-        padding-top: 100px;
       }
 
       @media only screen and (min-width : $breakpoint-large) {
@@ -483,7 +481,6 @@
 
 
       h1 {
-        padding-top: 0;
 
         a {
           @media only screen and (min-width : $breakpoint-medium) {
