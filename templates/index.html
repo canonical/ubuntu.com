@@ -10,21 +10,29 @@
 
 {% include "takeovers/_core.html" %}
 
+
+{% get_rss_feed "https://insights.ubuntu.com/tag/spotlight/feed" limit=1 as spotlight_feed %}
+{% get_rss_feed "https://insights.ubuntu.com/feed" limit=3 exclude_items_in=spotlight_feed as insights_feed %}
+
 <section class="row row--ubuntu-news strip no-border">
-    <div class="strip-inner-wrapper">
-        <div class="twelve-col">
+    <div class="strip-inner-wrapper equal-height--vertical-divider">
+        <div class="nine-col equal-height--vertical-divider__item">
             <h2 class="external row--ubuntu-news__title"><span><a href="https://insights.ubuntu.com/">Latest news from Insights</a></span></h2>
-            <div id="insights-cloud-feed" class="twelve-col">
-                <ul class="row--ubuntu-news__list no-bullets vertical-divider">
-                    {% get_rss_feed "https://insights.ubuntu.com/feed/" limit=4 as cloud_feed %}
-                    {% for item in cloud_feed %}
-                    <li class="three-col {% if forloop.last %}last-col{% endif %}">
-                        <h3><a href="{{ item.link }}">{{ item.title }}</a></h3>
-                        <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
-                    </li>
-                    {% endfor %}
-                </ul>
+            {% for item in insights_feed %}
+            <div class="three-col {% if forloop.last %}last-col no-margin-bottom{% endif %}">
+                <h3><a href="{{ item.link }}">{{ item.title }}</a></h3>
+                <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
             </div>
+            {% endfor %}
+        </div>
+        <div class="three-col no-margin-bottom last-col equal-height--vertical-divider__item">
+            <h2 class="external row--ubuntu-news__title"><span><a href="https://insights.ubuntu.com/tag/spotlight/">Spotlight</a></span></h2>
+            {% for item in spotlight_feed %}
+            <div class="three-col {% if forloop.last %}last-col{% endif %}">
+                <h3><a href="{{ item.link }}">{{ item.title }}</a></h3>
+                <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
