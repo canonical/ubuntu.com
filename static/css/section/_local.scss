@@ -73,6 +73,11 @@ body {
       border-bottom: 0;
     }
   }
+
+  &.row-cool-grey {
+    background-color: $cool-grey;
+    color: $white;
+  }
 }
 
 // combined lists
@@ -202,9 +207,12 @@ body {
 // Full width sections
 .cloud,
 .download,
-.desktop,
+.internet-of-things,
 .homepage,
+.internet-of-things,
 .phone,
+.desktop,
+.core,
 .server,
 .support,
 .tablet,
@@ -261,7 +269,9 @@ body {
 .cloud,
 .desktop,
 .download,
+.internet-of-things,
 .phone,
+.core,
 .server,
 .support,
 .tablet {
@@ -761,4 +771,21 @@ th {
 // XXX there is an issue https://github.com/ubuntudesign/vanilla-framework/pull/696 to fix in ubuntu-vanilla-framework
 table {
   overflow-x: auto;
+}
+
+// XXX is implemented in newer versions of Vanilla - for hiding content off-screen
+.u-off-screen {
+  height: 1px !important;
+  left: -10000px !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  top: auto !important;
+  width: 1px !important;
+}
+
+/// XXX used in Core and IoT to ensure that the verticals signpost images are the same size
+.row--verticals__image {
+  display: block;
+  height: 177px;
+  width: 290px;
 }
