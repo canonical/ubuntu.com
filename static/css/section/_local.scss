@@ -289,23 +289,23 @@ body {
     &.no-padding-bottom {
       padding-bottom: 0;
     }
-  }
 
-  .row-hero {
-    margin-top: 0;
-    padding: 0 10px;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      padding: 40px 10px 20px;
+    &.row-hero {
       margin-top: 0;
-    }
+      padding: 0 10px;
 
-    @media only screen and (min-width : $breakpoint-large) {
-      padding: 100px 40px;
-    }
+      @media only screen and (min-width : $breakpoint-medium) {
+        margin-top: 0;
+        padding: 40px 10px 20px;
+      }
 
-    h1 {
-      padding-top: 20px;
+      @media only screen and (min-width : $breakpoint-large) {
+        padding: 100px 40px;
+      }
+
+      h1 {
+        padding-top: 20px;
+      }
     }
   }
 

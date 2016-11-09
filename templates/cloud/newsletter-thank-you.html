@@ -5,9 +5,24 @@
 {% block title %}Thank you{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Newsletter" page_title="Thank you" tertiary="true" %}
+<div class="strip-inner-wrapper">
+  {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Newsletter" page_title="Thank you" tertiary="true" %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
-{% include "shared/_newsletter_thank_you.html" %}
+<section class="row row-hero no-border strip-light">
+  <div class="strip-inner-wrapper">
+    <div class="equal-height">
+      <div class="thank-you eight-col equal-height__item">
+        <h1>Thank you for subscribing!</h1>
+        <p class="intro">You will begin receiving emails as new content is posted. You may unsubscribe any time by clicking the link in the email.</p>
+      </div>
+      <div class="four-col last-col equal-height__item equal-height__align-vertically">
+        <img src="{{ ASSET_SERVER_URL }}52d53696-picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
+      </div>
+    </div>
+  </div>
+</section><!-- /.row-hero -->
+{% include "shared/_thank_you_footer.html" %}
 {% endblock content %}
