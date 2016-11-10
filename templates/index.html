@@ -10,22 +10,35 @@
 
 {% include "takeovers/_core.html" %}
 
+
+{% get_rss_feed "https://insights.ubuntu.com/tag/spotlight/feed" limit=1 as spotlight_feed %}
+{% if spotlight_feed %}
+    {% get_rss_feed "https://insights.ubuntu.com/feed" limit=3 exclude_items_in=spotlight_feed as insights_feed %}
+{% else %}
+    {% get_rss_feed "https://insights.ubuntu.com/feed" limit=4 as insights_feed %}
+{% endif %}
 <section class="row row--ubuntu-news strip no-border">
-    <div class="strip-inner-wrapper">
-        <div class="twelve-col">
-            <h2 class="external row--ubuntu-news__title"><span><a href="https://insights.ubuntu.com/">Latest news from Insights</a></span></h2>
-            <div id="insights-cloud-feed" class="twelve-col">
-                <ul class="row--ubuntu-news__list no-bullets vertical-divider">
-                    {% get_rss_feed "https://insights.ubuntu.com/feed/" limit=4 as cloud_feed %}
-                    {% for item in cloud_feed %}
-                    <li class="three-col {% if forloop.last %}last-col{% endif %}">
-                        <h3><a href="{{ item.link }}">{{ item.title }}</a></h3>
-                        <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
-                    </li>
-                    {% endfor %}
-                </ul>
+    <div class="strip-inner-wrapper equal-height--vertical-divider">
+        <div class="{% if spotlight_feed %}nine-col{% else %}twelve-col{% endif %} equal-height--vertical-divider__item">
+            <h2 class="external row--ubuntu-news__title"><span><a href="https://insights.ubuntu.com/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'clicks insights feed link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">Latest news from Insights</a></span></h2>
+{% for item in insights_feed %}
+            <div class="three-col {% if forloop.last %}last-col no-margin-bottom{% endif %}">
+                <h3><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'clicks news link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">{{ item.title }}</a></h3>
+                <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
             </div>
+{% endfor %}
         </div>
+{% if spotlight_feed %}
+        <div class="three-col no-margin-bottom last-col equal-height--vertical-divider__item">
+            <h2 class="external row--ubuntu-news__title"><span><a href="https://insights.ubuntu.com/tag/spotlight/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'clicks spotlight feed link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">Spotlight</a></span></h2>
+{% for item in spotlight_feed %}
+            <div class="three-col {% if forloop.last %}last-col{% endif %}">
+                <h3><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'clicks spotlight link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">{{ item.title }}</a></h3>
+                <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
+            </div>
+{% endfor %}
+        </div>
+{% endif %}
     </div>
 </section>
 
