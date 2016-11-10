@@ -38,13 +38,46 @@ body {
 
 // row styles
 .row {
+  margin: 0;
+  padding: 20px 10px 0 10px;
+
+  @media only screen and (min-width : $breakpoint-medium) {
+    padding: 40px 20px 20px 20px;
+  }
+
+  @media only screen and (min-width : $breakpoint-large) {
+    padding: 100px 40px 100px 40px;
+  }
+
+  &.no-padding-bottom {
+    padding-bottom: 0;
+  }
+
+  &.no-border {
+    border-bottom: 0;
+  }
+
+  h1 {
+    padding-top: 20px;
+  }
 
   &.row-hero {
-    margin-top: 40px;
-    padding-top: 0;
+    padding: 0 10px 0 10px;
 
-    @media only screen and (max-width: $breakpoint-medium) {
-      margin-top: 20px;
+    @media only screen and (min-width : $breakpoint-medium) {
+      padding: 40px 10px 20px 10px;
+    }
+
+    @media only screen and (min-width : $breakpoint-large) {
+      padding: 100px 40px 100px 40px;
+    }
+
+    &.no-padding-bottom {
+      padding-bottom: 0;
+    }
+
+    &.no-border {
+      border-bottom: 0;
     }
   }
 
@@ -68,10 +101,10 @@ body {
       border-right-color: $light-grey;
     }
 
-    &.no-border,
-    .no-border {
-      border-bottom: 0;
-    }
+  }
+
+  &.row-contact-form {
+    padding-top: 0;
   }
 
   &.row-cool-grey {
@@ -253,15 +286,6 @@ body {
     margin-top: 0;
     max-width: 100%;
     padding-bottom: 0;
-  }
-
-  .row {
-    padding-left: 0;
-    padding-right: 0;
-
-    @media only screen and (min-width : $breakpoint-large) {
-      padding: 40px 0;
-    }
   }
 }
 
@@ -523,12 +547,7 @@ html.js .resource:hover a {
 .internet-of-things,
 .legal,
 .server {
-  .row {
-    @media only screen and (min-width: $breakpoint-medium) {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-  }
+
   /* XXX vanilla fix? */
   .equal-height--vertical-divider .equal-height--vertical-divider__item {
     @media only screen and (min-width: $breakpoint-medium) {
@@ -537,17 +556,6 @@ html.js .resource:hover a {
   }
 }
 
-.about,
-.desktop,
-.legal,
-.server {
-  .row {
-    @media only screen and (min-width: $breakpoint-large) {
-      padding-left: 40px;
-      padding-right: 40px;
-    }
-  }
-} /* end fix for vanilla margins on non-full screen pages */
 
 // info section
 .info-release-end-of-life {
@@ -766,6 +774,10 @@ th {
   @media only screen and (max-width: $breakpoint-medium) {
     font-size: 14px;
   }
+}
+
+.no-margin-bottom {
+  margin-bottom: 0;
 }
 
 // XXX there is an issue https://github.com/ubuntudesign/vanilla-framework/pull/696 to fix in ubuntu-vanilla-framework

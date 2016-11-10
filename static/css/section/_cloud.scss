@@ -153,7 +153,7 @@
     }
   }
 
-  // resource hub content
+  /* resource hub content */
   .strip-dark .resource--link {
 
     &:before {
@@ -165,30 +165,15 @@
     &:hover,
     &:link,
     &:visited {
+      color: $cool-grey;
       -moz-box-shadow: none;
       -webkit-box-shadow: none;
       box-shadow: none;
-      color: $cool-grey;
     }
   }
 
   // @section /cloud overview
   &.cloud-home {
-
-    .row-maas {
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        background-image: url('#{$asset-server}1066e824-cloud_maas.jpg?op=region&rect=0,0,300,500');
-        background-position: right top;
-        background-repeat: no-repeat;
-      }
-
-      @media only screen and (min-width : $breakpoint-large) {
-        background-image: url('#{$asset-server}1066e824-cloud_maas.jpg?op=region&rect=0,0,470,640');
-        background-position: right top;
-        background-repeat: no-repeat;
-      }
-    }
 
     // news and events list on /cloud
     .newsevent { // DDD do we need this bespoke pattern for the /cloud news list?
@@ -274,36 +259,33 @@
   // @subsection /cloud/public-cloud
   &.cloud-public-cloud {
 
-    .row-get-started {
-      @media only screen and (min-width : $breakpoint-large) {
+    .row-juju-advantage {
 
-        .box {
-          min-height: 170px;
-        }
+      div {
+        min-height: 144px;
+      }
+
+      .last-col .pull-left-20 {
+        margin-left: 0;
       }
     }
   }
 
-
   // @subsection /cloud/maas
   &.cloud-maas {
 
-    .row-hero {
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server}1066e824-cloud_maas.jpg');
-        background-position: 190% 0;
+    @media only screen and (min-width: $breakpoint-medium) {
+      .row-hero {
+        background-image: url('#{$asset-server}ee944209-screenshot-cloud_maas.png?w=800');
+        background-position: 100% 33%;
         background-repeat: no-repeat;
-        background-size: 75%;
+        background-size: 50%;
       }
-    }
 
-    .row--autopilot {
-
-      @media only screen and (min-width: $breakpoint-medium) {
+      .row--autopilot {
         background-image: url('#{$asset-server}b72144a5-cloud_landscape_components.png');
-        background-position: 190% 0;
         background-repeat: no-repeat;
+        background-position: 190% 0;
         background-size: 75%;
       }
     }
@@ -315,32 +297,30 @@
       background-size: 1.4em;
       margin-left: -6px;
       padding-left: 1.5em;
-      padding-top: 5px;
+    }
+
+    // no-svg and opera-mini fixes for cloud/maas
+    &.no-svg,
+    &.opera-mini {
+
+      h1 {
+        background-image: url('#{$asset-server}6574f6c8-image-picto-maas-40.png');
+      }
     }
   }
-
-  // no-svg and opera-mini fixes for cloud/maas
-  .no-svg,
-  .opera-mini {
-
-    .cloud-maas h1 {
-      background-image: url('#{$asset-server}6574f6c8-image-picto-maas-40.png');
-    }
-  }
-
   // @subsection /cloud/managed-cloud
   &.cloud-openstack-managed-cloud {
 
     .video-container {
       padding-bottom: 53.25%;
     }
-  }
 
-  //* Special overrides for JS-enabled  on /cloud/openstack/managed-cloud
-  .js {
-    .slider-container {
-      min-height: 24px;
-      min-width: 10px;
+    //* Special overrides for JS-enabled  on /cloud/openstack/managed-cloud
+    &.js {
+      .slider-container {
+        min-height: 24px;
+        min-width: 10px;
+      }
     }
   }
 
@@ -369,10 +349,9 @@
   }
 
   // @subsection /cloud/training
-  &.cloud-training {
+  &.cloud-training  {
 
     .row-hero {
-      position: relative;
 
       @media only screen and (min-width : $breakpoint-medium) {
         min-height: 343px;
@@ -406,8 +385,8 @@
   &.cloud-partners {
 
     .row-hero {
-      min-height: 380px;
       overflow: hidden;
+      min-height: 550px;
 
       &:before {
         background: url('#{$asset-server}03ede53b-clouds-foreground.png') left bottom no-repeat;
@@ -415,32 +394,32 @@
         content: ' ';
         display: block;
         height: 400px;
-        left: 0;
+        left: 77px;
         position: absolute;
         width: $breakpoint-large;
         z-index: 3;
       }
 
-      .bg-clouds {
+      &.bg-clouds {
         background: transparent url('#{$asset-server}487a58c4-clouds-background.png') repeat-x;
         background-position: 0 0;
         bottom: 0;
         content: ' ';
         display: block;
-        height: 152px;
+        height: 552px;
         left: 0;
         position: absolute;
         width: $breakpoint-large;
         z-index: 2;
       }
 
-      .bg-more-clouds {
+      &.bg-more-clouds {
         background: transparent url('#{$asset-server}190d12e9-clouds-background-b.png') repeat-x;
         background-position: 0 0;
         bottom: 30px;
         content: ' ';
         display: block;
-        height: 152px;
+        height: 652px;
         left: -10%;
         position: absolute;
         width: $breakpoint-large;
@@ -486,13 +465,58 @@
     /// XXX Karl (10.04.2016)
     /// we're using a similar style in various places, cosider pushing upstream
     .external-heading {
-      background: url('#{$asset-server}e1bba201-external-link-cool-grey.svg') left center no-repeat;
+      background: url("#{$asset-server}e1bba201-external-link-cool-grey.svg") left center no-repeat;
       background-size: 16px;
       padding-left: 22px;
     }
 
     .bundle-card__image-container {
       height: 345px;
+    }
+  }
+
+  // @subsection /cloud/public-cloud
+  &.cloud-public-cloud {
+
+    .row-juju-advantage {
+      overflow: hidden;
+
+      div {
+        min-height: 540px;
+      }
+
+      .last-col .pull-left-20 {
+        bottom: 0;
+        left: -16px;
+        position: absolute;
+
+        @media only screen and (min-width : $breakpoint-large) {
+          left: -20px;
+          margin-top: 20px;
+          position: relative;
+        }
+      }
+
+      .pull-left-40 {
+        bottom: 40px;
+        left: -130px;
+        position: absolute;
+
+        @media only screen and (min-width : $breakpoint-large) {
+          left: -40px;
+          padding-top: 40px;
+          position: relative;
+        }
+      }
+    }
+
+    .row-get-started {
+      @media only screen and (min-width : $breakpoint-large) {
+
+        .box {
+          min-height: 170px;
+        }
+      }
     }
   }
 
@@ -508,7 +532,6 @@
   &.cloud-openstack {
 
     .row-autopilot {
-
       @media only screen and (min-width : $breakpoint-medium) {
         background-image: url('#{$asset-server}b72144a5-cloud_landscape_components.png?op=region&rect=0,0,300,600');
         background-position: right bottom;
@@ -545,59 +568,61 @@
       }
 
       img {
-        -ms-transform: rotate(180deg);
-        -webkit-transform: rotate(180deg);
-        transform: rotate(180deg);
         vertical-align: text-bottom;
+        -webkit-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        transform: rotate(180deg);
       }
     }
 
 
-    .row-hero {
-      @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width : $breakpoint-medium) {
+      #main-content .row-hero {
         overflow: hidden;
-      }
 
-      @media only screen and (min-width : $breakpoint-large) {
+        &:before {
+
+          @media only screen and (min-width : $breakpoint-medium) {
+            background: url('#{$asset-server}b72144a5-cloud_landscape_components.png?w=897') center center no-repeat;
+            background-size: contain;
+            content: '';
+            display: block;
+            height: 75%;
+            overflow: visible;
+            position: absolute;
+            right: -30vw;
+            top: 60px;
+            width: 80vw;
+          }
+
+          @media only screen and (min-width : $breakpoint-large) {
+            height: 85%;
+            right: 3vw;
+            width: 45vw;
+          }
+        }
+      }
+    }
+
+    @media only screen and (min-width : $breakpoint-large) {
+      #main-content .row-hero {
         background-position: top right;
       }
-
-      &:before {
-
-        @media only screen and (min-width : $breakpoint-medium) {
-          background: url('#{$asset-server}b72144a5-cloud_landscape_components.png?w=897') center center no-repeat;
-          background-size: contain;
-          content: '';
-          display: block;
-          height: 75%;
-          overflow: visible;
-          position: absolute;
-          right: -30vw;
-          top: 60px;
-          width: 80vw;
-        }
-
-        @media only screen and (min-width : $breakpoint-large) {
-          height: 85%;
-          right: 3vw;
-          width: 45vw;
-        }
-      }
     }
-  }
 
-  .row-cost {
-    .box {
-      color: $cool-grey;
-      border: 0;
+    .row-cost {
+      .box {
+        color: $cool-grey;
+        border: 0;
 
-      h3 {
-        margin-top: 0;
-      }
+        h3 {
+          margin-top: 0;
+        }
 
-      .price {
-        font-size: 2em;
-        margin-bottom: 5px;
+        .price {
+          font-size: 2em;
+          margin-bottom: 5px;
+        }
       }
     }
   }
@@ -623,13 +648,13 @@
     }
 
     .slider-area {
-      display: flex;
       margin-top: 20px;
       overflow: hidden;
+      display: flex;
 
       & input[type=number] {
-        margin-right: 1em;
         width: 5em;
+        margin-right: 1em;
       }
       & input[type=range] {
         min-width: 130px;
@@ -681,13 +706,13 @@
       margin-left: 0;
 
       &__input {
-        left: -10000px;
         position: absolute;
+        left: -10000px;
 
         &:checked ~ .grouped-tabbed__button {
           background: $ubuntu-orange;
-          border-color: $ubuntu-orange;
           color: $white;
+          border-color: $ubuntu-orange;
         }
       }
 
@@ -706,26 +731,26 @@
       }
 
       &__button {
-        background: $white;
-        border: 1px solid $box-border;
-        color: $ubuntu-orange;
+        text-align: center;
+        padding: 8px;
         display: block;
+        border: 1px solid $box-border;
+        background: $white;
+        color: $ubuntu-orange;
         margin-left: -1px;
         margin-right: -1px;
-        padding: 8px;
-        text-align: center;
       }
     }
 
     .checkbox-vms-servers__list {
       list-style: none;
-      margin-bottom: 0;
       margin-left: 0;
+      margin-bottom: 0;
 
       &-item {
         float: left;
-        margin-bottom: 0;
         margin-right: 40px;
+        margin-bottom: 0;
 
         &:last-of-type {
           margin-right: 0;
@@ -733,16 +758,16 @@
       }
 
       label {
-        cursor: pointer;
-        margin-bottom: 0;
-        margin-right: 5px;
         position: relative;
         top: -2px;
+        margin-bottom: 0;
+        margin-right: 5px;
+        cursor: pointer;
       }
       input {
         display: block;
-        margin-bottom: 2px;
         margin-top: 2px;
+        margin-bottom: 2px;
       }
     }
 
@@ -780,28 +805,28 @@
       }
 
       &__header-calculation {
-        color: $warm-grey;
         font-size: 1.25em;
+        color: $warm-grey;
       }
 
       &__content {
+        padding-top: 23px;
+        padding-bottom: 30px;
         border-bottom: 1px solid $box-border;
         margin-bottom: 30px;
-        padding-bottom: 30px;
-        padding-top: 23px;
 
         .input-staff,
         .input-salary {
           box-sizing: border-box;
-          margin-right: 20px;
           width: 50%;
+          margin-right: 20px;
         }
 
         .input-helper {
-          color: $warm-grey;
-          left: 43%;
-          margin-top: 5px;
           position: absolute;
+          left: 43%;
+          color: $warm-grey;
+          margin-top: 5px;
         }
 
         .note {
@@ -815,14 +840,12 @@
         font-size: 1.25em;
       }
 
-      &#diy-section .intro {
-        @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width : $breakpoint-medium) {
+        &#diy-section .intro {
           margin-bottom: 2.2em;
         }
-      }
 
-      .extend-gap {
-        @media only screen and (min-width : $breakpoint-medium) {
+        .extend-gap {
           margin-bottom: 32px;
         }
       }
@@ -847,14 +870,14 @@
     }
 
     input[type=number] {
+      border-radius: 2px;
       background: $white;
       border: 1px solid $box-border;
-      border-radius: 2px;
-      display: inline-block;
-      font-family: Ubuntu,Arial,'libra sans',sans-serif;
-      font-size: 1em;
+      font-family: Ubuntu,Arial,"libra sans",sans-serif;
       padding: 8px;
       width: 60px;
+      display: inline-block;
+      font-size: 1em;
 
       &:focus {
         border: 1px solid $black;
@@ -889,11 +912,11 @@
     .option__value-savings.negative {
       color: $error;
     }
-  }
 
-  //* Special overrides for JS-enabled
-  .js .cloud-openstack-managed-cloud .js__required {
-    display: block;
+    //* Special overrides for JS-enabled
+    &.js__required {
+      display: block;
+    }
   }
 
   // @subsection /cloud/lxd
@@ -907,12 +930,12 @@
       }
     }
 
+    @media only screen and (max-width: $breakpoint-medium) {
 
-    .row-building-on-lxc,
-    .row-openstack-integration {
+      .row-building-on-lxc,
+      .row-openstack-integration {
 
-      img {
-        @media only screen and (max-width: $breakpoint-medium) {
+        img {
           display: none;
         }
       }
@@ -920,19 +943,17 @@
   }
 
   // @subsection /cloud/newsletter-thank-you
-  &.cloud-newsletter-thank-you {
+  .cloud-newsletter-thank-you   {
 
-    .thank-you {
+    @media only screen and (min-width : $breakpoint-large) {
       .intro {
-        @media only screen and (min-width : $breakpoint-large) {
-          font-size: 1.75em;
-        }
+        font-size: 1.75em;
       }
     }
   }
 
+  // @subsection /cloud/kubernetes
   &.cloud-kubernetes {
-
     .row-expertise__image {
       margin-right: 20px;
       width: 15vw;
@@ -947,7 +968,7 @@
     }
   }
 
-  /* @subsection cloud > training */
+  // @subsection /cloud/training
   &.cloud-training  {
 
     .row-training {
@@ -1009,7 +1030,7 @@
           margin-right: 6px;
 
           &:after {
-            content: ': ';
+            content: ": ";
           }
         }
 
