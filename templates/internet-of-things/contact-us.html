@@ -8,98 +8,23 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-hero no-border no-margin-bottom no-padding-bottom strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col">
-            <h1>Contact us</h1>
-            <p>If you are thinking about using Ubuntu Core to power your Internet of Things devices, please fill in your details below and a member of our team will get in touch.</p>
-        </div>
-    </div>
-</section>
-<section class="row no-border strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col">
-            <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
-            <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
 
-            <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1266">
-                <fieldset>
-                    <h3>About you</h3>
-                    <ul class="no-bullets">
-                        <li class="mktFormReq mktField">
-                            <label for="FirstName" class="mktoLabel">First name:</label>
-                            <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" />
-                        </li>
-                        <li class="mktFormReq mktField">
-                            <label for="LastName" class="mktoLabel">Last name:</label>
-                            <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" />
-                        </li>
-                        <li class="mktFormReq mktField">
-                            <label for="Email" class="mktoLabel">Email address:</label>
-                            <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
-                        </li>
-                        <li class="mktFormReq mktField">
-                            <label for="Phone" class="mktoLabel">Phone number:</label>
-                            <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" />
-                        </li>
-                        {% include "shared/forms/_country.html" %}
-                        {% include "shared/forms/_state.html" %}
-                    </ul>
-                </fieldset>
+    {% if product == 'digital-signage' %}
 
-                <fieldset>
-                    <h3>About your company</h3>
-                    <ul class="no-bullets">
-                        <li class="mktFormReq mktField">
-                            <label for="Company" class="mktoLabel">Company:</label>
-                            <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired" />
-                        </li>
-                        <li class="mktFormReq mktField">
-                            <label for="Title" class="mktoLabel">Job title:</label>
-                            <input required id="Title" name="Title" maxlength="255" type="text" class="mktoField mktoRequired" />
-                        </li>
-                    </ul>
-                </fieldset>
+        {% include "internet-of-things/shared/_contact_us_form.html" with     h1="Contact us about digital signage"    intro_text="If you are thinking about building a digital signage product on Ubuntu, please fill in your details below and a member of our team will get in touch."    formid="1422"   lpId="2166"    returnURL="http://ubuntu.com/internet-of-things/thank-you"    %}
 
-                <fieldset>
-                    <h3>Your comments</h3>
-                    <ul class="no-bullets">
-                        <li class="mktFormReq mktField">
-                            <label for="Comments_from_lead__c" class="mktoLabel">What would you like to talk to us about?</label>
-                            <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" class="mktoField mktoRequired" maxlength="2000"></textarea>
-                        </li>
-                        <li class="mktField">
-                            <input class="mktoField" value="yes" id="NewsletterOpt-In" name="NewsletterOpt-In" type="checkbox" />
-                            <label class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>
-                        </li>
-                        <li>All information provided will be handled in accordance with the Canonical <a href="http://www.ubuntu.com/legal" target="_blank">privacy policy</a>.</li>
-                        <li class="mktField">
-                            <button type="submit" class="mktoButton">Submit</button></span>
-                        </li>
-                    </ul>
-                    <input type="hidden" name="formid" class="mktoField" value="1266" />
-                    <input type="hidden" name="lpId" class="mktoField" value="2166" />
-                    <input type="hidden" name="subId" class="mktoField" value="30" />
-                    <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335" />
-                    <input type="hidden" name="lpurl" class="mktoField" value="https://pages.ubuntu.com/things-contact-us.html?cr={creative}&amp;kw={keyword}" />
-                    <input type="hidden" name="cr" class="mktoField" value="" />
-                    <input type="hidden" name="kw" class="mktoField" value="" />
-                    <input type="hidden" name="q" class="mktoField" value="" />
-                    <input type="hidden" name="returnURL" value="http://ubuntu.com/internet-of-things/thank-you" />
-                    <input type="hidden" name="retURL" value="http://ubuntu.com/internet-of-things/thank-you" />
-                </fieldset>
-            </form>
-            <script>
-                $("#mktoForm_1266").validate({
-                    errorElement: "span",
-                    errorClass: "mktFormMsg mktError",
-                    onkeyup: false,
-                    onclick: false,
-                    onblur: false
-                });
-            </script>
+    {% elif product == 'gateways' %}
 
-        </div>
-    </div>
-</section>
+        {% include "internet-of-things/shared/_contact_us_form.html" with     h1="Contact us about gateways"    intro_text="If you would like to know more about Ubuntu for edge gateways please fill in your details below and a member of our team will get in touch."    formid="1663"   lpId="3143"    returnURL="http://ubuntu.com/internet-of-things/thank-you"    %}
+
+    {% elif product == 'robotics' %}
+
+        {% include "internet-of-things/shared/_contact_us_form.html" with     h1="Contact us about robotics"    intro_text="If you would like to know more about Ubuntu for Robotics please fill in your details below and a member of our team will get in touch."    formid="1650"   lpId="2838"    returnURL="http://ubuntu.com/internet-of-things/thank-you"    %}
+
+    {% else %}
+
+        {% include "internet-of-things/shared/_contact_us_form.html" with     h1="Contact us"   intro_text="If you are thinking about using Ubuntu Core to power your Internet of Things devices, please fill in your details below and a member of our team will get in touch."    formid="1266"   lpId="2551"    returnURL="http://ubuntu.com/internet-of-things/thank-you"    %}
+
+    {% endif %}
+
 {% endblock content %}
