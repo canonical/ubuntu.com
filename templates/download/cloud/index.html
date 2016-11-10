@@ -25,29 +25,40 @@
             <div class="equal-height--vertical-divider__item six-col last-col no-margin-bottom download-button">
                 <h3>Requirements</h3>
                 <ul class="list-ticks--compact">
-                    <li>At least five machines with two disks</li>
-                    <li>Two machines with x2 network interfaces (NICs)</li>
+                    <li>A minimum of 5 machines with the following roles:
+                        <ul class="list-ticks--compact">
+                            <li>1 machine for the MAAS server</li>
+                            <li>1 machine for the Autopilot</li>
+                            <li>3 or more machines for the cloud:
+                                <ul class="list-ticks--compact">
+                                    <li>At least one must have 2 NICs</li>
+                                    <li>At least 3 must have 2 disks</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                     <li>A dedicated switch to create a private cloud LAN</li>
                     <li>Internet access through a router on that LAN</li>
                 </ul>
-            </div><!-- /.four-col -->
-        </div><!-- /.box -->
-    </div><!-- /.strip-inner-wrapper -->
-</div><!-- /.row row-grey -->
+            </div>
+        </div>
+    </div>
+</div>
 
 {% include "download/shared/_get_ebook.html"%}
 
 <div id="instructions" class="row row-install-autopilot">
     <div class="strip-inner-wrapper">
+        <h2>Installation instructions</h2>
         <ol class="list-stepped--spaced download-help">
             <li class="list-stepped__item">
                 <div class="five-col">
                     <h3 class="list-stepped__title">Set up your hardware</h3>
                 </div>
                 <div class="seven-col last-col list-stepped__box right">
-                    <p>You&rsquo;ll need  at least five machines with two disks in each, two of which have two network interfaces (NICs).</p>
-                    <p>Install <a class="external" href="http://releases.ubuntu.com/14.04/">Ubuntu Server 14.04 LTS</a> on one of the machines with two network interfaces.</p>
-                    <p>You need to setup a private network with all machines plugged in and enough IP addresses available for all physical and virtual machines you plan to run.</p>
+                    <p>Install <a class="external" href="http://releases.ubuntu.com/14.04/">Ubuntu Server 14.04 LTS</a> on the machine designated to be the MAAS server.</p>
+                    <p>You need to setup a private network with all machines plugged in and enough IP addresses available for all physical and virtual machines you plan to run. This network must not have a DHCP server: MAAS will fill in that role.</p>
+                    <p>For the simplest topology, connect the second NIC of the dual-nic machine(s) to the same network.</p>
                 </div>
             </li>
             <li class="list-stepped__item">
@@ -58,14 +69,6 @@
                     <p>From the command line type the commands below and follow the step-by-step instructions:</p>
                     <p class="command-line">
                         <input class="command-line__input" value="sudo apt-get install python-software-properties" readonly="readonly">
-                        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
-                    </p>
-                    <p class="command-line">
-                        <input class="command-line__input" value="sudo add-apt-repository ppa:juju/stable" readonly="readonly">
-                        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
-                    </p>
-                    <p class="command-line">
-                        <input class="command-line__input" value="sudo add-apt-repository ppa:maas/stable" readonly="readonly">
                         <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
                     </p>
                     <p class="command-line">
@@ -88,16 +91,19 @@
                         <input class="command-line__input" value="sudo apt-get install maas" readonly="readonly">
                         <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
                     </p>
-                    <p>Create your admin credentials by typing:</p>
+                    <ul>
+                        <li>Create your admin credentials by typing:</li>
+                    </ul>
                     <p class="command-line">
                         <input class="command-line__input" value="sudo maas-region-admin createadmin" readonly="readonly">
                         <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
                     </p>
-                    <ul class="no-bullets">
+                    <ul>
                         <li>Login to the MAAS UI at http://&lt;maas.ip&gt;/MAAS/</li>
-                        <li>Go to the &ldquo;Images&rdquo; tab and import disk images for both &ldquo;14.04 LTS amd64&rdquo; and &ldquo;16.04 LTS amd64&rdquo;</li>
-                        <li>In your MAAS user&rsquo;s settings (top-right corner) add your personal public SSH key so you can later log into the nodes</li>
-                        <li>Go to the &ldquo;Networks&rdquo; tab and for each of the networks auto-created, click &ldquo;Edit network&rdquo; to add the default gateway and DNS server details</li>
+                        <li>Go to the settings tab and change the image download URL in the Boot Images section to http://images.maas.io/ephemeral-v2/daily/ and click save</li>
+                        <li>Still in the settings tab, insert an upstream DNS server if needed and then click on the save button for that form</li>
+                        <li>Go to the &ldquo;Images&rdquo; tab and import disk images for both &ldquo;14.04 LTS amd64&rdquo; and &ldquo;16.04 LTS amd64&rdquo;. This will take a few minutes, depending on your bandwidth. Let&rsquo;s continue with the configuration while that download happens.</li>
+                        <li>In your MAAS user&rsquo;s settings (top-right corner) add your personal public SSH key so you can later log into the nodes.</li>
                     </ul>
                 </div>
             </li>
@@ -117,7 +123,8 @@
                             <ul>
                                 <li>Dynamic range &mdash; reserve 60 IPs plus total number of NICs connected to the network in MAAS</li>
                                 <li>Static range &mdash; reserve 20 IPs plus total number of machines in MAAS</li>
-                                <li>Floating IP range &mdash; that has as many IPs as instances that you&rsquo;ll want to have in your cloud</li>
+                                <li>Floating IP range &mdash; that has as many IPs as instances that you&rsquo;ll want to have in your cloud. This is not a MAAS configuration, but you should leave room for them.</li>
+                                <li>Save the changes and go back to the Images tab and wait for the image download to be finished. Once that is done, proceed to the next step.</li>
                             </ul>
                         </li>
                     </ul>
@@ -135,6 +142,13 @@
                         <li>Edit each machine filling in the power type and parameters</li>
                         <li>Select all the machines and, using the &ldquo;Take action&rdquo; dropdown, &ldquo;Commission&rdquo; them.</li>
                         <li>Wait until all machines have a &ldquo;Ready&rdquo; status</li>
+                        <li>Verify the networking by going to the details page for the node(s) that have multiple NICs and check that the second NIC:
+                            <ul>
+                                <li>Is connected to the subnet</li>
+                                <li>Has the &ldquo;IP address&rdquo; field set to &ldquo;unconfigured&rdquo;</li>
+                            </ul>
+                        </li>
+                        <li>The first NIC should be the same except the IP address field will be set to &ldquo;Auto assign&rdquo;.</li>
                     </ul>
                 </div>
             </li>
@@ -149,10 +163,11 @@
                         <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
                     </p>
                     <p class="command-line">
-                        <input class="command-line__input" value="sudo openstack-install" readonly="readonly">
+                        <input class="command-line__input" value="sudo JUJU_BOOTSTRAP_TO=<hostname> openstack-install" readonly="readonly">
                         <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
                     </p>
                     <ul>
+                        <li>Replace &lt;hostname&gt; above with the hostname of the machine that was selected for the Autopilot role</li>
                         <li>Choose the &ldquo;Landscape OpenStack Autopilot&rdquo; option</li>
                         <li>Create a new OpenStack Password</li>
                         <li>Fill in your:
@@ -220,8 +235,11 @@
                 </div>
             </li>
         </ol>
-    </div><!-- /.strip-inner-wrapper -->
-</div><!-- /#instructions -->
+        <div class="six-col">
+            <p>To setup MAAS 1.9 with different network topologies read <a href="https://insights.ubuntu.com/2015/04/10/maas-network-layouts-for-the-landscape-autopilot/" class="external">MAAS&nbsp;1.9 network layouts for the Landscape Autopilot</a>.</p>
+        </div>
+    </div>
+</div>
 
 <div class="row row-white">
     <div class="strip-inner-wrapper">
@@ -233,8 +251,8 @@
         <div class="two-col align-center not-for-small">
             <img src="{{ ASSET_SERVER_URL }}1b45cd30-picto-help-warmgrey.svg" alt="" />
         </div>
-    </div><!-- /.strip-inner-wrapper -->
-</div><!-- /.row -->
+    </div>
+</div>
 
 {% include "download/server/_other-ways.html" %}
 
