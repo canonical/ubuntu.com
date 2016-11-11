@@ -270,7 +270,7 @@ class ContactView(UbuntuTemplateFinder):
         # Get any existing context
         context = super(ContactView, self).get_context_data(**kwargs)
 
-        # Add level_* context variables
+        # Add product query param to context
         context['product'] = self.request.GET.get('product')
 
         return context
