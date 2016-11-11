@@ -1,7 +1,7 @@
 {% extends "cloud/base_cloud.html" %}
 {% load versioned_static  %}
 
-{% block title %}BootStack - Your Managed cloud | Ubuntu{% endblock %}
+{% block title %}BootStack - Your managed cloud | Ubuntu{% endblock %}
 
 {% block meta_description %}With BootStack, Canonical will build, support and manage your cloud for only $15 per host per day.{% endblock meta_description %}
 
@@ -32,12 +32,13 @@
 <!-- Section 1 -->
 <section class="row row-hero no-border strip-light">
     <div class="strip-inner-wrapper">
-        <h1 class="eight-col">Learn about BootStack hosted cloud</h1>
-        <div class="eight-col">
+        <div class="twelve-col">
+            <h1>Learn about BootStack hosted cloud</h1>
             <div class="video-container">
                 <iframe width="906" height="500" src="https://www.youtube.com/embed/hCSTwyG7bbg?rel=0&amp;&amp;hd=1" frameborder="0" allowfullscreen></iframe>
             </div>
-        </div><!-- /.eight-col -->
+        </div>
+
     </div>
 </section>
 
@@ -75,7 +76,7 @@
                     <img class="grid-list__img" src="https://assets.ubuntu.com/v1/878af602-pictogram-virtualisation-orange-hex.svg" alt="">
                 </div>
                 <div class="grid-list__description three-col last-col last-col ">
-                    <h3>Easy Network Function Virtualization</h3>
+                    <h3>Easy network function virtualization</h3>
                     <p>Develop and test your VNFs before deploying them into a production OpenStack cloud.</p>
                 </div>
             </li>
@@ -95,8 +96,8 @@
                     <img class="grid-list__img" src="https://assets.ubuntu.com/v1/dbfe22f3-pictogram-certification-orange-hex.svg" alt="">
                 </div>
                 <div class="grid-list__description three-col last-col">
-                    <h3>Guaranteed availability &amp; quality</h3>
-                    <p>Our expertise, based on the management of hundreds of clouds, is backed up by a clear SLA</p>
+                    <h3>Guaranteed availability and quality</h3>
+                    <p>Our expertise, based on the management of hundreds of clouds, is backed up by a clear SLA and regular independent audits for quality assurance.</p>
                 </div>
             </li>
 
@@ -105,7 +106,7 @@
                     <img class="grid-list__img" src="https://assets.ubuntu.com/v1/921119ff-pictogram-training-orange-hex.svg" alt="">
                 </div>
                 <div class="grid-list__description three-col last-col">
-                    <h3>Complete control and no vendor-lock in</h3>
+                    <h3>Complete control and no vendor lock-in</h3>
                     <p>Your team can access every tool and every machine — and we can transfer operations to you on demand.</p>
                 </div>
             </li>
@@ -120,14 +121,14 @@
 <section class="row strip-light">
     <div class="strip-inner-wrapper">
         <div>
-            <h2 class="eight-col">BootStack is trusted by these enterprises and telcos:</h2>
+            <h2 class="twelve-col muted-heading">BootStack is trusted by these enterprises and telcos</h2>
         </div>
         <ul class="inline-logos">
           <li class="inline-logos__item">
             <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}481063cd-pccw.svg?w=160" alt="PCCW logo">
           </li>
-          <li class="inline-logos__item">
-            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}2e38f398-uct.svg?w=160" alt="UCT logo">
+          <li class="inline-logos__item" style="width: 350px">
+            <img class="inline-logos__image" style="max-height: 150px; max-width: 350px; margin-bottom:2rem" src="{{ ASSET_SERVER_URL }}2e38f398-uct.svg?w=350" alt="UCT logo">
           </li>
           <li class="inline-logos__item">
             <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}25de1877-Tele2.svg?w=160" alt="Tele2 logo">
@@ -145,7 +146,7 @@
 <!-- Section 4 -->
 <section class="row no-border strip-light">
     <div class="strip-inner-wrapper">
-        <h2 class="seven-col no-margin">Get a private BootStack managed cloud in three easy steps:</h2>
+        <h2 class="seven-col no-margin">Get a private BootStack managed cloud in three easy steps</h2>
         <ol class="list-stepped twelve-col">
           <li class="list-stepped__item">
             <div class="six-col">
@@ -168,7 +169,7 @@
           <li class="list-stepped__item twelve-col">
             <div class="six-col">
               <h3 class="list-stepped__title">We <strong>transfer</strong> control</h3>
-              <p>As and when you decide to take control of your cloud back in house, we will train your team on its operations to ensure a smooth handover.</p>
+              <p>If you decide to take the cloud in-house, we will train your team on its operations to ensure a smooth handover.</p>
             </div>
             <div class="prepend-one four-col last-col align-center not-for-small">
               <img src="{{ ASSET_SERVER_URL }}8276de8d-transfer.svg" alt="" width="134" />
@@ -182,25 +183,23 @@
 <section class="row">
     <div class="strip-inner-wrapper equal-height--vertical-divider">
         <div class="twelve-col">
-            <h2>BootStack can be customised to your requirements:</h2>
+            <h2>BootStack can be customised to your requirements</h2>
         </div>
         <div class="equal-height--vertical-divider__item four-col">
             <div class="four-col">
                 <h3>Hosted BootStack</h3>
-                <p>We have chosen QTS and eShelter as a hosted option for BootStack worldwide, providing the highest performing dedicated cloud infrastructure available.</p>
-                <p>Their customisation options enable OpenStack to be used for provisioning bare metal as well as virtual machines from data centres around the world.</p>
-                <p><a href="/cloud/juju">Download QTS brochure&nbsp;›</a></p>
+                <p>We have chosen QTS and eShelter as a hosted option for BootStack worldwide, providing the highest performing dedicated cloud infrastructure available. Their customisation options enable OpenStack to be used for provisioning bare metal as well as virtual machines from datacentres around the world.</p>
+                <p><a class="external" href="https://insights.ubuntu.com/2016/08/22/qts-and-canonical-unveil-private-fully-managed-openstack-cloud/">Read the QTS press release&nbsp;›</a></p>
             </div>
         </div>
         <div class="equal-height--vertical-divider__item four-col">
             <h3>BootStack Direct</h3>
-            <p>Whereas a Hosted BootStack leaves the operations to us, BootStack Direct guarantees the operation of the cloud goes directly to you, including training and support for your staff.</p>
-            <p>We would get your OpenStack cloud up and running in days, preparing your team to become OpenStack operations experts. </p>
+            <p>Whereas a Hosted BootStack leaves the operations to us, BootStack Direct guarantees the operation of the cloud goes directly to you, including training and support for your staff. We will get your OpenStack cloud up and running in days, preparing your team to become OpenStack operations experts.</p>
             <p><a href="https://ubuntu.cloud/wp-content/uploads/2016/02/e843/Datasheet_Bootstack_your_Big_Data_Cloud_2015_Alexia_WEB-AW.pdf">Download BootStack Direct brochure&nbsp;›</a></p>
         </div>
         <div class="equal-height--vertical-divider__item four-col last-col">
             <h3>BootStack for Kubernetes</h3>
-            <p>Whether you want to orchestrate your container cluster on top of your OpenStack cloud or other substrate we’ll build and operate it for you using the Canonical Distribution of Kubernetes. Focus on your applications not infrastructure.</p>
+            <p>Whether you want to orchestrate your container cluster on top of your OpenStack cloud or other substrate, we’ll build and operate it for you using the Canonical Distribution of Kubernetes. Focus on your applications not infrastructure.</p>
             <p><a href="/cloud/kubernetes">Learn more about the Canonical Distribution of Kubernetes&nbsp;›</a></p>
         </div>
     </div>
@@ -212,12 +211,12 @@
         <h2 class="nine-col">BootStack and PLUMgrid SDN</h2>
 
         <div class="six-col">
-            <img src="http://placehold.it/350x250?text=Coming+soon" alt="" />
+            <img src="{{ ASSET_SERVER_URL }}31d74ed6-Screen+Shot+2016-11-08+at+14.17.14.png" alt="" />
         </div>
 
         <div class="six-col last-col">
             <p>See how PLUMgrid leverages BootStack to help enterprises and service providers operationalise their webscale OpenStack and Container cloud’s SDN deployments.</p>
-            <p><a class="button--primary" href="https://pages.ubuntu.com/Secure-scale-and-simplify-your-cloud-deployments_webinar.html">Watch webinar on-demand</a></p>
+            <p><a class="external" href="https://pages.ubuntu.com/Secure-scale-and-simplify-your-cloud-deployments_webinar.html">Watch webinar on-demand</a></p>
         </div>
     </div>
 </section>
