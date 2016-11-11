@@ -21,12 +21,7 @@
 
     @media only screen and (min-width : $breakpoint-medium) {
       display: flex;
-      height: 68vw;
       margin: auto;
-    }
-
-    @media only screen and (min-width : $breakpoint-large) {
-      height: 56vw;
     }
   }
 
@@ -417,11 +412,13 @@
         background-repeat: no-repeat;
         background-size: cover;
         color: $white;
+        height: 68vw;
         min-height: 470px;
         padding-top: 60px;
       }
 
       @media only screen and (min-width : $breakpoint-large) {
+        height: 56vw;
         min-height: 571px;
       }
 
