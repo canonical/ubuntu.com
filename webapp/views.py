@@ -259,3 +259,18 @@ class SearchView(UbuntuTemplateFinder):
         item['direction'] = direction
 
         return item
+
+
+class ContactView(UbuntuTemplateFinder):
+    def get_context_data(self, **kwargs):
+        """
+        Get context data from a get parameter for the given page
+        """
+
+        # Get any existing context
+        context = super(ContactView, self).get_context_data(**kwargs)
+
+        # Add level_* context variables
+        context['product'] = self.request.GET.get('product')
+
+        return context
