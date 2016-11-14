@@ -322,6 +322,14 @@
         min-width: 10px;
       }
     }
+
+    .row-expertise {
+      .four-col {
+        @media only screen and (min-width : $breakpoint-large) {
+          min-height: 220px;
+        }
+      }
+    }
   }
 
   //  @subsection cloud/storage - XXX this is a candidate to raise up a level */
