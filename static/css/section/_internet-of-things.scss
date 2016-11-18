@@ -35,7 +35,29 @@
         margin-left: 0;
       }
     }
+  }
 
+
+  // partners logos with copy on /internet-of-things/digital-signage not used anywhere else but could become a pattern
+  .list-partners {
+    &__image {
+      max-height: 65px;
+    }
+
+    &__image-container {
+      border-bottom: 1px dotted $warm-grey;
+      padding-bottom: 20px;
+    }
+
+    &__link {
+      display: block;
+      position: relative;
+      width: 100%;
+    }
+
+    li {
+      font-size: 1em;
+    }
   }
 
   // XXX remove this from UVT?
@@ -167,10 +189,6 @@
       }
     }
 
-    .list-partners li {
-      font-size: 1em;
-    }
-
     .row-cta--digital-signage {
       background: url('#{$asset-server}68b1a2e2-banner_pixels05.png') center center no-repeat;
 
@@ -254,17 +272,17 @@
   }
 
   .robot_logo {
-      padding-bottom: 2em;
-      max-width: 200px;
+    padding-bottom: 2em;
+    max-width: 200px;
 
-      @media only screen and (min-width: $breakpoint-medium) {
-        max-width: 100%;
-      }
+    @media only screen and (min-width: $breakpoint-medium) {
+      max-width: 100%;
+    }
 
   }
 
   .robot_product {
-      max-height: 100px;
+    max-height: 100px;
   }
 
 
