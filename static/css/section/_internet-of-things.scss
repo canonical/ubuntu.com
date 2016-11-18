@@ -36,6 +36,23 @@
       }
     }
 
+    // partners logos with copy on /internet-of-things/digital-signage not used anywhere else but could become a pattern
+    .list-partners {
+      &__image {
+        max-height: 65px;
+      }
+
+      &__image-container {
+        border-bottom: 1px dotted $warm-grey;
+        padding-bottom: 20px;
+      }
+
+      &__link {
+        display: block;
+        position: relative;
+        width: 100%;
+      }
+    }
   }
 
   // XXX remove this from UVT?

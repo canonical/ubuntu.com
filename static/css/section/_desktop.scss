@@ -122,6 +122,86 @@
       }
     }
 
+    // fade in list animation - located on desktop overview 'Benefits for all industry sectors' GB 16/10/2015
+    // only hide it if js is on
+    .js .list-fade {
+      opacity: 0;
+    }
+
+    .list-fade__title {
+      margin-bottom: 40px;
+    }
+
+    .list-fade__item {
+      -moz-animation-duration: 1.2s;
+      -webkit-animation-duration: 1.2s;
+      animation-duration: 1.2s;
+      line-height: 1.3;
+      overflow: visible;
+      text-align: center;
+      text-decoration: none;
+      position: relative;
+
+      a {
+        color: $warm-grey;
+
+        img {
+          -moz-animation-duration: 1.2s;
+          -webkit-animation-duration: 1.2s;
+          animation-duration: 1.2s;
+          margin-bottom: 10px;
+
+          &:hover {
+            opacity: .8;
+          }
+        }
+      }
+    }
+
+    // the .run class is added with js
+    .run {
+      .list-fade {
+        opacity: 0;
+        animation: fadeIn .9s linear forwards;
+        animation-delay: 1s;
+        -moz-animation: fadeIn .9s linear forwards;
+        -moz-animation-delay: 1s;
+        -webkit-animation: fadeIn .9s linear forwards;
+        -webkit-animation-delay: 1s;
+
+        .list-fade__item {
+          animation: fadeIn .2s linear forwards, scaleIn .3s linear forwards;
+          -webkit-animation: fadeIn .2s linear forwards, scaleIn .3s linear forwards;
+          -moz-animation: fadeIn .2s linear forwards, scaleIn .3s linear forwards;
+          opacity: 0;
+        }
+
+        .list-fade__item:first-child {
+          -moz-animation-delay: 1s;
+          -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+        }
+
+        .list-fade__item:nth-child(2) {
+          -moz-animation-delay: 1.1s;
+          -webkit-animation-delay: 1.1s;
+          animation-delay: 1.1s;
+        }
+
+        .list-fade__item:nth-child(3) {
+          -moz-animation-delay: 1.2s;
+          -webkit-animation-delay: 1.2s;
+          animation-delay: 1.2s;
+        }
+
+        .list-fade__item:nth-child(4) {
+          -moz-animation-delay: 1.3s;
+          -webkit-animation-delay: 1.3s;
+          animation-delay: 1.3s;
+        }
+      }
+    }
+
     .row-industry {
       img {
         display: block;
