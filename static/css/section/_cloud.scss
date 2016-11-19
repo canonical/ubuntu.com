@@ -37,6 +37,36 @@
     z-index: 5;
   }
 
+  .ubuntu-pie {
+    margin: 7% auto;
+    max-width: 350px;
+
+    .other-label {
+      fill: $warm-grey;
+    }
+
+    //* Pie segments */
+    .ubuntu {
+      fill: $brand-color;
+    }
+
+    .other {
+      fill: transparent;
+    }
+
+    //* Labels */
+    svg tspan {
+      max-width: 0;
+      text-align: center;
+      text-transform: capitalize;
+    }
+
+    .ubuntu-label {
+      fill: $white;
+    }
+  }
+
+
   .juju-charms-list {
     .box {
       padding: 0;
@@ -124,35 +154,6 @@
     }
   }
 
-  .ubuntu-pie {
-    margin: 7% auto;
-    max-width: 350px;
-
-    .other-label {
-      fill: $warm-grey;
-    }
-
-    //* Pie segments */
-    .ubuntu {
-      fill: $brand-color;
-    }
-
-    .other {
-      fill: transparent;
-    }
-
-    //* Labels */
-    svg tspan {
-      max-width: 0;
-      text-align: center;
-      text-transform: capitalize;
-    }
-
-    .ubuntu-label {
-      fill: $white;
-    }
-  }
-
   /* resource hub content */
   .strip-dark .resource--link {
 
@@ -174,6 +175,21 @@
 
   // @section /cloud overview
   &.cloud-home {
+
+    .row-maas {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background-image: url('#{$asset-server}ee944209-screenshot-cloud_maas.png?w=800');
+        background-position: 100% 50%;
+        background-repeat: no-repeat;
+        background-size: 45%;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        background-position: 130% 50%;
+        background-size: 55%;
+      }
+    }
 
     // news and events list on /cloud
     .newsevent { // DDD do we need this bespoke pattern for the /cloud news list?
@@ -234,59 +250,26 @@
     }
   }
 
-  // @subsection cloud > training */
-  &.cloud-training {
-
-    .course-details {
-      margin-top: 3px;
-
-      dt {
-        float: left;
-        margin-right: 6px;
-
-        &::after {
-          content: ': ';
-        }
-      }
-
-      dd {
-        margin-bottom: 10px;
-      }
-
-    }
-  }
-
-  // @subsection /cloud/public-cloud
-  &.cloud-public-cloud {
-
-    .row-juju-advantage {
-
-      div {
-        min-height: 144px;
-      }
-
-      .last-col .pull-left-20 {
-        margin-left: 0;
-      }
-    }
-  }
-
   // @subsection /cloud/maas
   &.cloud-maas {
 
-    @media only screen and (min-width: $breakpoint-medium) {
-      .row-hero {
+    .row-hero {
+
+      @media only screen and (min-width: $breakpoint-medium) {
         background-image: url('#{$asset-server}ee944209-screenshot-cloud_maas.png?w=800');
         background-position: 100% 33%;
         background-repeat: no-repeat;
         background-size: 50%;
       }
+    }
 
-      .row--autopilot {
-        background-image: url('#{$asset-server}b72144a5-cloud_landscape_components.png');
+    .row--autopilot {
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        background-image: url('#{$asset-server}b72144a5-cloud_landscape_components.png?op=region&rect=0,0,900,900');
         background-repeat: no-repeat;
-        background-position: 190% 0;
-        background-size: 75%;
+        background-position: 100% 0;
+        background-size: 50%;
       }
     }
 
@@ -308,39 +291,6 @@
       }
     }
   }
-  // @subsection /cloud/managed-cloud
-  &.cloud-openstack-managed-cloud {
-
-    .video-container {
-      padding-bottom: 53.25%;
-    }
-
-    //* Special overrides for JS-enabled  on /cloud/openstack/managed-cloud
-    &.js {
-      .slider-container {
-        min-height: 24px;
-        min-width: 10px;
-      }
-    }
-
-    .row-expertise {
-      .four-col {
-        @media only screen and (min-width : $breakpoint-large) {
-          min-height: 220px;
-        }
-      }
-    }
-    .picto-transfer {
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        margin-left: 3em;
-      }
-
-      @media only screen and (min-width : $breakpoint-large) {
-        margin-left: 4em;
-      }
-    }
-  }
 
   //  @subsection cloud/storage - XXX this is a candidate to raise up a level */
   &.cloud-storage {
@@ -354,6 +304,7 @@
     }
 
     .storage-options {
+
       @media only screen and (min-width : $breakpoint-medium) {
         border-bottom: 1px dotted $warm-grey;
       }
@@ -367,36 +318,9 @@
   }
 
   // @subsection /cloud/training
-  &.cloud-training  {
+  &.cloud-training {
 
-    .row-hero {
 
-      @media only screen and (min-width : $breakpoint-medium) {
-        min-height: 343px;
-      }
-    }
-
-    .row--training {
-      position: relative;
-
-      &__content {
-        position: relative;
-      }
-
-      &__image {
-        position: absolute;
-
-        @media only screen and (min-width : $breakpoint-medium) {
-          right: 20px;
-          top: -40px;
-        }
-
-        @media only screen and (min-width : $breakpoint-large) {
-          right: 40px;
-          top: -100px;
-        }
-      }
-    }
   }
 
   // @subsection /cloud/partners
@@ -496,42 +420,9 @@
   // @subsection /cloud/public-cloud
   &.cloud-public-cloud {
 
-    .row-juju-advantage {
-      overflow: hidden;
-
-      div {
-        min-height: 540px;
-      }
-
-      .last-col .pull-left-20 {
-        bottom: 0;
-        left: -16px;
-        position: absolute;
-
-        @media only screen and (min-width : $breakpoint-large) {
-          left: -20px;
-          margin-top: 20px;
-          position: relative;
-        }
-      }
-
-      .pull-left-40 {
-        bottom: 40px;
-        left: -130px;
-        position: absolute;
-
-        @media only screen and (min-width : $breakpoint-large) {
-          left: -40px;
-          padding-top: 40px;
-          position: relative;
-        }
-      }
-    }
-
     .row-get-started {
-      @media only screen and (min-width : $breakpoint-large) {
-
-        .box {
+      .box {
+        @media only screen and (min-width : $breakpoint-large) {
           min-height: 170px;
         }
       }
@@ -550,6 +441,7 @@
   &.cloud-openstack {
 
     .row-autopilot {
+
       @media only screen and (min-width : $breakpoint-medium) {
         background-image: url('#{$asset-server}b72144a5-cloud_landscape_components.png?op=region&rect=0,0,300,600');
         background-position: right bottom;
@@ -566,6 +458,39 @@
 
   // @subsection /cloud/openstac/autopilot
   &.cloud-openstack-autopilot {
+
+    .row-hero {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        overflow: hidden;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        background-position: top right;
+      }
+
+      &:before {
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          background: url('#{$asset-server}b72144a5-cloud_landscape_components.png?w=897') center center no-repeat;
+          background-size: contain;
+          content: '';
+          display: block;
+          height: 75%;
+          overflow: visible;
+          position: absolute;
+          right: -30vw;
+          top: 60px;
+          width: 80vw;
+        }
+
+        @media only screen and (min-width : $breakpoint-large) {
+          height: 85%;
+          right: 3vw;
+          width: 45vw;
+        }
+      }
+    }
 
     .autopilot-dynamic h2 {
       padding-bottom: 1em;
@@ -592,348 +517,49 @@
         transform: rotate(180deg);
       }
     }
+  }
 
+  .row-cost {
+    .box {
+      color: $cool-grey;
+      border: 0;
 
-    @media only screen and (min-width : $breakpoint-medium) {
-      #main-content .row-hero {
-        overflow: hidden;
-
-        &:before {
-
-          @media only screen and (min-width : $breakpoint-medium) {
-            background: url('#{$asset-server}b72144a5-cloud_landscape_components.png?w=897') center center no-repeat;
-            background-size: contain;
-            content: '';
-            display: block;
-            height: 75%;
-            overflow: visible;
-            position: absolute;
-            right: -30vw;
-            top: 60px;
-            width: 80vw;
-          }
-
-          @media only screen and (min-width : $breakpoint-large) {
-            height: 85%;
-            right: 3vw;
-            width: 45vw;
-          }
-        }
+      h3 {
+        margin-top: 0;
       }
-    }
 
-    @media only screen and (min-width : $breakpoint-large) {
-      #main-content .row-hero {
-        background-position: top right;
-      }
-    }
-
-    .row-cost {
-      .box {
-        color: $cool-grey;
-        border: 0;
-
-        h3 {
-          margin-top: 0;
-        }
-
-        .price {
-          font-size: 2em;
-          margin-bottom: 5px;
-        }
+      .price {
+        font-size: 2em;
+        margin-bottom: 5px;
       }
     }
   }
 
+
   // @subsection /cloud/openstack/managed-cloud
   &.cloud-openstack-managed-cloud {
 
-    // BootStack calculator
-    .my-server input[type=number] {
-      padding: .6956522em .869565em;
-      width: 50%;
-    }
+    .strip-aubergine {
+      background-image: url('#{$asset-server}5018678f-hero_bootstack.jpg');
+      background-size: cover;
+      color: $white;
 
-    .grey-box {
-      background-color: $light-grey;
-      padding: 20px;
-    }
-
-    // Styling for slider rows
-
-    .checkbox-vms-servers {
-      margin-bottom: 2em;
-    }
-
-    .slider-area {
-      margin-top: 20px;
-      overflow: hidden;
-      display: flex;
-
-      & input[type=number] {
-        width: 5em;
-        margin-right: 1em;
-      }
-      & input[type=range] {
-        min-width: 130px;
-        flex-grow: 1;
+      .button--primary {
+        margin: 2rem 0 0;
       }
     }
 
-    .input-salary,
-    .input-staff {
-      background: transparent;
-      border: 0;
-      font-weight: 300;
-    }
+    .row-expertise {
+      .four-col {
 
-    .slider-container {
-      float: left;
-      margin-top: 5px;
-    }
-
-    .slider-value {
-      border: 0;
-      float: left;
-      font-size: 1em;
-      margin-bottom: 6px;
-      margin-left: 0;
-      padding-bottom: 0;
-      padding-left: 0;
-      padding-top: 0;
-
-      label {
-        color: $warm-grey;
-        display: inline-block;
-      }
-    }
-
-    .is-hidden,
-    .js__required {
-      display: none;
-    }
-
-    .sub-heading {
-      font-size: 1.25em;
-      margin-bottom: 1.5em;
-    }
-
-    .grouped-tabbed {
-      box-sizing: border-box;
-      list-style: none;
-      margin-left: 0;
-
-      &__input {
-        position: absolute;
-        left: -10000px;
-
-        &:checked ~ .grouped-tabbed__button {
-          background: $ubuntu-orange;
-          color: $white;
-          border-color: $ubuntu-orange;
-        }
-      }
-
-      &__item {
-        float: left;
-        margin-bottom: 0;
-        width: 33%;
-
-        &:first-of-type .grouped-tabbed__button {
-          border-radius: 4px 0 0 4px;
-        }
-
-        &:last-of-type .grouped-tabbed__button {
-          border-radius: 0 4px 4px 0;
-        }
-      }
-
-      &__button {
-        text-align: center;
-        padding: 8px;
-        display: block;
-        border: 1px solid $box-border;
-        background: $white;
-        color: $ubuntu-orange;
-        margin-left: -1px;
-        margin-right: -1px;
-      }
-    }
-
-    .checkbox-vms-servers__list {
-      list-style: none;
-      margin-left: 0;
-      margin-bottom: 0;
-
-      &-item {
-        float: left;
-        margin-right: 40px;
-        margin-bottom: 0;
-
-        &:last-of-type {
-          margin-right: 0;
-        }
-      }
-
-      label {
-        position: relative;
-        top: -2px;
-        margin-bottom: 0;
-        margin-right: 5px;
-        cursor: pointer;
-      }
-      input {
-        display: block;
-        margin-top: 2px;
-        margin-bottom: 2px;
-      }
-    }
-
-    .result {
-
-      &__header {
-        border-bottom: 1px solid $box-border;
-        padding-bottom: 30px;
-        padding-top: 3px;
-        text-align: center;
-      }
-
-      &__header-amount {
-        font-size: 2em;
-        margin-bottom: .1em;
-        padding-bottom: 5px;
-        padding-top: 20px;
-      }
-
-      &__header-banner {
-        background: $light-grey;
-        border-bottom: 1px solid $box-border;
-        margin-bottom: 10px;
-        margin-left: -20px;
-        margin-right: -20px;
-        margin-top: -24px;
-        padding-bottom: 10px;
-        padding-top: 14px;
-      }
-
-      &__header-sub-heading {
-        font-size: 1.25em;
-        font-weight: 300;
-        margin-bottom: 0;
-      }
-
-      &__header-calculation {
-        font-size: 1.25em;
-        color: $warm-grey;
-      }
-
-      &__content {
-        padding-top: 23px;
-        padding-bottom: 30px;
-        border-bottom: 1px solid $box-border;
-        margin-bottom: 30px;
-
-        .input-staff,
-        .input-salary {
-          box-sizing: border-box;
-          width: 50%;
-          margin-right: 20px;
-        }
-
-        .input-helper {
-          position: absolute;
-          left: 43%;
-          color: $warm-grey;
-          margin-top: 5px;
-        }
-
-        .note {
-          margin-top: 35px;
-          padding-left: 10px;
-          text-indent: -10px;
-        }
-      }
-
-      &__footer-title {
-        font-size: 1.25em;
-      }
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        &#diy-section .intro {
-          margin-bottom: 2.2em;
-        }
-
-        .extend-gap {
-          margin-bottom: 32px;
+        @media only screen and (min-width : $breakpoint-large) {
+          min-height: 220px;
         }
       }
     }
 
-    .submit-email {
-      background: $light-grey;
-      padding: 20px 20px 0 20px;
-
-      &__fieldset {
-        background: transparent;
-        padding: 0;
-      }
-
-      &__button {
-        margin-top: 0;
-
-        button {
-          height: 42px;
-        }
-      }
-    }
-
-    input[type=number] {
-      border-radius: 2px;
-      background: $white;
-      border: 1px solid $box-border;
-      font-family: Ubuntu,Arial,"libra sans",sans-serif;
-      padding: 8px;
-      width: 60px;
-      display: inline-block;
-      font-size: 1em;
-
-      &:focus {
-        border: 1px solid $black;
-      }
-    }
-
-    .option {
-      border-radius: 2px;
-    }
-
-    .option__item-title {
-      color: $warm-grey;
-    }
-
-    .option__list {
-      border-top: 2px solid $light-grey;
-      padding-top: 1em;
-    }
-    .option__list:first-child {
-      border-top: none;
-      padding-top: 0;
-    }
-
-    .option__list-savings {
-      font-weight: bold;
-    }
-
-    .option__value-savings.positive {
-      color: $success;
-    }
-
-    .option__value-savings.negative {
-      color: $error;
-    }
-
-    //* Special overrides for JS-enabled
-    &.js__required {
-      display: block;
+    .video-container {
+      padding-bottom: 53.25%;
     }
   }
 
@@ -947,24 +573,13 @@
         color: $cool-grey;
       }
     }
-
-    @media only screen and (max-width: $breakpoint-medium) {
-
-      .row-building-on-lxc,
-      .row-openstack-integration {
-
-        img {
-          display: none;
-        }
-      }
-    }
   }
 
   // @subsection /cloud/newsletter-thank-you
   .cloud-newsletter-thank-you   {
 
-    @media only screen and (min-width : $breakpoint-large) {
-      .intro {
+    .intro {
+      @media only screen and (min-width : $breakpoint-large) {
         font-size: 1.75em;
       }
     }
@@ -989,7 +604,32 @@
   // @subsection /cloud/training
   &.cloud-training  {
 
-    .row-training {
+    .row-hero {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        min-height: 343px;
+      }
+    }
+
+    .course-details {
+      margin-top: 3px;
+
+      dt {
+        float: left;
+        margin-right: 6px;
+
+        &::after {
+          content: ': ';
+        }
+      }
+
+      dd {
+        margin-bottom: 10px;
+      }
+    }
+
+    .row--training {
+      position: relative;
 
       @media only screen and (min-width: $breakpoint-medium) {
         margin-top: 0;
@@ -1003,7 +643,12 @@
         padding-top: 40px;
       }
 
+      &__content {
+        position: relative;
+      }
+
       &__image {
+        position: absolute;
 
         @media only screen and (min-width: $breakpoint-medium) {
           max-width: 300px;
@@ -1015,6 +660,7 @@
         @media only screen and (min-width: $breakpoint-large) {
           max-width: 360px;
           right: 40px;
+          top: -100px;
           width: auto;
         }
       }
@@ -1061,15 +707,5 @@
         }
       }
     }
-  }
-}
-
-.strip-aubergine {
-  background-image: url('https://assets.ubuntu.com/v1/5018678f-hero_bootstack.jpg');
-  background-size: cover;
-  color: #fff;
-
-  .button--primary {
-    margin: 2rem 0 0;
   }
 }
