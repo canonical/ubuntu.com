@@ -295,7 +295,7 @@
     .attr('dy', '0');
   labels.append('tspan')
     .text(function (d) {return '(' + d.count + '%)'})
-    .attr('x', function(d) { return d.left - getObjWidth(this) / 2; })
+    .attr('x', function(d) { return d.left - getObjWidth(this) / 4; })
     .attr('dy', '20');
 
   // FF/Opera does not support offsetWidth for tspan's. If undefined
