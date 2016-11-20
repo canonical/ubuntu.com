@@ -257,6 +257,11 @@
           right: 3vw;
           width: 50vw;
         }
+
+        @media only screen and (min-width: $viewport-threshold) {
+          background-position: 10% center;
+          background-size: 600px;
+        }
       }
     }
 
@@ -273,14 +278,21 @@
     }
 
     .row-web-browsing {
+
       @media only screen and (min-width: $breakpoint-medium) {
         background-image: url('#{$asset-server}d037640f-desktop.png?w=984');
         background-repeat: no-repeat;
         background-size: cover;
       }
+
+      @media only screen and (min-width: $viewport-threshold) {
+        //reset to strip-dark
+        background-image: none;
+      }
     }
 
     .row-videos {
+
       @media only screen and (min-width: $breakpoint-medium) {
         border-bottom: 0;
       }
@@ -291,8 +303,8 @@
       @media only screen and (min-width: $breakpoint-medium) {
         background-image: url('#{$asset-server}126ebaea-borderlands.jpg');
         background-repeat: no-repeat;
-        background-size: cover;
         background-position: 0 0 ;
+        background-size: cover;
         min-height: 488px;
         padding-bottom: 0;
       }
@@ -415,6 +427,11 @@
           right: 3vw;
           width: 50vw;
         }
+
+        @media only screen and (min-width: $viewport-threshold) {
+          background-position: 10% center;
+          background-size: 600px;
+        }
       }
     }
 
@@ -430,6 +447,11 @@
 
       @media only screen and (min-width: $breakpoint-large) {
         min-height: 457px;
+      }
+
+      @media only screen and (min-width: $viewport-threshold) {
+        background-position: 60% center;
+        background-size: 600px;
       }
     }
   }
@@ -452,6 +474,10 @@
         margin-top: 0;
         min-height: 574px;
       }
+
+      @media only screen and (min-width: $viewport-threshold) {
+        background-position: 300px -1050px;
+      }
     }
 
     .row-case-studies {
@@ -461,6 +487,10 @@
         background-repeat: no-repeat;
         background-size: 74%;
         background-position: center 30px;
+      }
+
+      @media only screen and (min-width: $viewport-threshold) {
+        background-size: 25%;
       }
     }
   }
@@ -485,21 +515,31 @@
     }
 
     .row-case-studies {
+
       @media only screen and (min-width: $breakpoint-medium) {
         background-image: url('#{$asset-server}5b74fa2a-map.jpg');
         background-position: center 0;
         background-repeat: no-repeat;
         background-size: 75%;
       }
+
+      @media only screen and (min-width: $viewport-threshold) {
+        background-size: 25%;
+      }
     }
 
     .row-security {
+
       @media only screen and (min-width: $breakpoint-medium) {
         background-image: url('#{$asset-server}99d49a7d-padlock-chain.png');
         background-position: 80% center;
         background-repeat: no-repeat;
         background-size: initial;
         min-height: 310px;
+      }
+
+      @media only screen and (min-width: $viewport-threshold) {
+        background-position: 60% center;
       }
     }
   }
@@ -533,6 +573,11 @@
           height: 85%;
           right: 3vw;
           width: 50vw;
+        }
+
+        @media only screen and (min-width: $viewport-threshold) {
+          background-position: 10% center;
+          background-size: 600px;
         }
       }
     }
@@ -580,6 +625,11 @@
           height: 85%;
           right: 3vw;
           width: 50vw;
+        }
+
+        @media only screen and (min-width: $viewport-threshold) {
+          background-position: 10% center;
+          background-size: 600px;
         }
       }
     }
