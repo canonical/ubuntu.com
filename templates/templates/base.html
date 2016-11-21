@@ -15,7 +15,7 @@
 {% block content-experiment %}{% endblock %}
 
 <meta charset="UTF-8" />
-<meta name="description" content="{% block meta_description %}Ubuntu is an open source software platform that runs everywhere from the smartphone, the tablet and the PC to the server and the cloud.{% endblock %}" />
+<meta name="description" content="{% block meta_description %}Ubuntu is an open source software platform that runs everywhere from IoT devices, the smartphone, the tablet and the PC to the server and the cloud.{% endblock %}" />
 
 <meta name="keywords" content="{% block meta_keywords %}Ubuntu, Ubuntu operating system, OS, platform, Linux, distribution, OpenStack, Ubuntu OpenStack, Ubuntu Cloud, server, tablet, smartphone, phone, Windows alternative, Mac alternative, free software, open source, thin client, Juju, MAAS, Landscape, Ubuntu Advantage, download Ubuntu, deployment, provisioning, service orchestration, services, commercial support, paid support, long-term support, LTS, {{ latest_release }}, 14.10, Trusty Tahr, Utopic Unicorn, Icehouse, Juno{% endblock %}" />
 
@@ -88,36 +88,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </a>
         </div>
         <div id="nav">
-      		<ul>
-      			<li class="accessibility-aid"><a accesskey="s" href="#main-content">Jump to content</a></li>
-      			<li><a class="first{% if level_1 == 'cloud' %} active{% endif %}" href="/cloud">Cloud</a>
-      				{% include "cloud/_nav_secondary.html" with promo="true" %}
-      			</li>
-      			<li><a{% if level_1 == 'server' %} class="active"{% endif %} href="/server">Server</a>
-      				{% include "server/_nav_secondary.html" with promo="true" %}
-      			</li>
-      			<li><a {% if level_1 == 'desktop' %} class="active"{% endif %} href="/desktop">Desktop</a>
-      				{% include "desktop/_nav_secondary.html" with promo="true" %}
-      			</li>
+          <ul>
+            <li class="accessibility-aid"><a accesskey="s" href="#main-content">Jump to content</a></li>
+            <li><a class="first{% if level_1 == 'cloud' %} active{% endif %}" href="/cloud">Cloud</a>
+              {% include "cloud/_nav_secondary.html" with promo="true" %}
+            </li>
+            <li><a{% if level_1 == 'server' %} class="active"{% endif %} href="/server">Server</a>
+              {% include "server/_nav_secondary.html" with promo="true" %}
+            </li>
+            <li><a {% if level_1 == 'desktop' %} class="active"{% endif %} href="/desktop">Desktop</a>
+              {% include "desktop/_nav_secondary.html" with promo="true" %}
+            </li>
                 <li><a{% if level_1 == 'core' %} class="active"{% endif %} href="/core">Core</a>
-      				{% include "core/_nav_secondary.html" with promo="true" %}
-      			</li>
+              {% include "core/_nav_secondary.html" with promo="true" %}
+            </li>
                 <li><a{% if level_1 == 'internet-of-things' %} class="active"{% endif %} href="/internet-of-things">IoT</a>
-      				{% include "internet-of-things/_nav_secondary.html" with promo="true" %}
-      			</li>
-      			<li><a{% if level_1 == 'phone' %} class="active"{% endif %} href="/phone">Phone</a>
-      				{% include "phone/_nav_secondary.html" with promo="true" %}
-      			</li>
-      			<li><a{% if level_1 == 'tablet' %} class="active"{% endif %} href="/tablet">Tablet</a>
-      				{% include "tablet/_nav_secondary.html" with promo="true" %}
-      			</li>
-      			<li><a{% if level_1 == 'support' %} class="active"{% endif %} href="/support">Support</a>
-      				{% include "support/_nav_secondary.html" with promo="true" %}
-      			</li>
-      			<li><a{% if level_1 == 'download' %} class="active"{% endif %} href="/download">Download</a>
-      				{% include "download/_nav_secondary.html" with promo="true" %}
-      			</li>
-      		</ul>
+              {% include "internet-of-things/_nav_secondary.html" with promo="true" %}
+            </li>
+            <li><a{% if level_1 == 'phone' %} class="active"{% endif %} href="/phone">Phone</a>
+              {% include "phone/_nav_secondary.html" with promo="true" %}
+            </li>
+            <li><a{% if level_1 == 'tablet' %} class="active"{% endif %} href="/tablet">Tablet</a>
+              {% include "tablet/_nav_secondary.html" with promo="true" %}
+            </li>
+            <li><a{% if level_1 == 'support' %} class="active"{% endif %} href="/support">Support</a>
+              {% include "support/_nav_secondary.html" with promo="true" %}
+            </li>
+            <li><a{% if level_1 == 'download' %} class="active"{% endif %} href="/download">Download</a>
+              {% include "download/_nav_secondary.html" with promo="true" %}
+            </li>
+          </ul>
         </div>
         <div id="site-search">
             <div class="search-toggle">
@@ -125,7 +125,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <a href="#" class="search-toggle__link close"></a>
             </div>
             <form action="/search" id="google-appliance-search-form" class="header-search">
-            		<label for="edit-keys" class="accessibility-aid">Search</label>
+                <label for="edit-keys" class="accessibility-aid">Search</label>
                 <input type="search" maxlength="255" name="q" id="edit-keys" class="form-text" placeholder="Search" value="{{ query }}" />
                 <button type="submit">
                     <svg xmlns="//www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 90 90"><g color="#000"><path fill="none" stroke-width="4" overflow="visible" enable-background="accumulate" d="M0 0h90v90H0z"/><path d="M69 36.5a33 33.5 0 1 1-66 0 33 33.5 0 1 1 66 0z" transform="matrix(.636 0 0 .627 16.114 16.12)" fill="none" stroke="#fff" stroke-width="9.5" overflow="visible" enable-background="accumulate" class="svg-search-frame" /><path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans" d="M55.773 52.917L52.94 55.75l14 14 2.833-2.833-14-14z" font-size="xx-small" fill="#fff" stroke-width="6" overflow="visible" enable-background="accumulate" font-family="Sans" class="svg-search-handle" /><path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans" d="M60.972 57.03c-1.55.01-3.045 1.023-3.626 2.46-.58 1.436-.21 3.207.898 4.29l9.194 9.2c2.683 2.85 3.262 2.464 5.643.083 2.384-2.38 2.77-2.792-.08-5.646l-9.195-9.2c-.734-.753-1.78-1.192-2.83-1.188z" fill="#fff" stroke-width="11.804" class="svg-search-handle" /></g></svg>
@@ -158,13 +158,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <!-- Use this only until Modernizr fixes Opera Mini background-size detection -->
 <script>
-	var isOperaMini = (navigator.userAgent.indexOf('Opera Mini') > -1);
-	if (isOperaMini) {
-		var root = document.documentElement;
-		root.className += " opera-mini";
-	}
-	if(!core){ var core = {}; }
-	core.globalPrepend = 'body';
+  var isOperaMini = (navigator.userAgent.indexOf('Opera Mini') > -1);
+  if (isOperaMini) {
+    var root = document.documentElement;
+    root.className += " opera-mini";
+  }
+  if(!core){ var core = {}; }
+  core.globalPrepend = 'body';
 </script>
 
 <script src="{% versioned_static 'js/polyfills.js' %}"></script>
