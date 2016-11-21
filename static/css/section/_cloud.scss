@@ -175,6 +175,21 @@
   // @section /cloud overview
   &.cloud-home {
 
+    .row-maas {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background-image: url('#{$asset-server}ee944209-screenshot-cloud_maas.png?w=800');
+        background-position: 100% 50%;
+        background-repeat: no-repeat;
+        background-size: 45%;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        background-position: 130% 50%;
+        background-size: 55%;
+      }
+    }
+
     // news and events list on /cloud
     .newsevent { // DDD do we need this bespoke pattern for the /cloud news list?
 
@@ -367,7 +382,7 @@
   }
 
   // @subsection /cloud/training
-  &.cloud-training  {
+  &.cloud-training {
 
     .row-hero {
 
