@@ -9,7 +9,7 @@ def clean_path(p):
 
 
 def grab_ubuntu_page(path):
-    full_path = 'http://www.ubuntu.com%s' % path
+    full_path = 'https://www.ubuntu.com%s' % path
     try:
         return urllib2.urlopen(full_path).readlines(), path
     except urllib2.HTTPError:
@@ -37,7 +37,7 @@ for path in cleaned:
             (path.find("/templates") == -1) and \
             (path.find("/mu-b760b7ee-790eb464-8b1bbe62-de00513f") == -1) and \
             (path.find("patterns-assets") == -1):
-        full_path = 'http://www.ubuntu.com%s' % path
+        full_path = 'https://www.ubuntu.com%s' % path
         page, path = grab_ubuntu_page(path)
         print '"{title}", "{path}"'.format(
             title=get_title_from_html(page).replace('"', '""'),
