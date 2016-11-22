@@ -468,25 +468,7 @@ body.homepage .row--iot {
 
 // row--cloud-products
 body.homepage .row--cloud-products {
-  background-color: #fff;
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    background-image: url('#{$asset-server}890dec32-cloud-laptop.jpg?w=792');
-    background-repeat: no-repeat;
-    background-position: 77% center;
-    background-size: 50%;
-    padding-top: 100px;
-    padding-bottom: 100px;
-  }
-
-  @media only screen and (min-width: $breakpoint-large) {
-    padding-bottom: 170px;
-    padding-top: 180px;
-  }
-
-  @media only screen and (min-width: $viewport-threshold) {
-    background-size: 600px;
-  }
+  background-color: $white;
 }
 
 body.homepage .row--devices {
