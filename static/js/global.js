@@ -1,5 +1,5 @@
 var ai = [
-  { url: "http://www.ubuntu.com", title:"Ubuntu" },
+  { url: "https://www.ubuntu.com", title:"Ubuntu" },
   { url: "https://community.ubuntu.com/", title:"Community" },
   { url: "https://askubuntu.com", title:"Ask!" },
   { url: "https://developer.ubuntu.com", title:"Developer" },

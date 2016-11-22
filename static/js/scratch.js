@@ -116,7 +116,7 @@ core.cookiePolicy = function() {
         switch(stateChange) {
             case 'open':
                 var range = document.createRange();
-                var cookieNode = range.createContextualFragment('<div class="cookie-policy"><div class="wrapper"><a href="?cp=close" class="link-cta">Close</a><p>We use cookies to improve your experience. By your continued use of this site you accept such use. To change your settings please <a href="http://www.ubuntu.com/legal/terms-and-policies/privacy-policy#cookies">see our policy</a>.</p></div></div>');
+                var cookieNode = range.createContextualFragment('<div class="cookie-policy"><div class="wrapper"><a href="?cp=close" class="link-cta">Close</a><p>We use cookies to improve your experience. By your continued use of this site you accept such use. To change your settings please <a href="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy#cookies">see our policy</a>.</p></div></div>');
                 document.body.insertBefore(cookieNode, document.body.lastChild);
                 document.querySelector('footer.global .legal').classList.add('has-cookie');
                 document.querySelector('.cookie-policy .link-cta').addEventListener('click', function(e) {

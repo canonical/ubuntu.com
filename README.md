@@ -1,7 +1,7 @@
 www.ubuntu.com codebase
 ===
 
-This is the codebase and content for [www.ubuntu.com](http://www.ubuntu.com), a simple databaseless informational website project based on [Django](https://www.djangoproject.com/).
+This is the codebase and content for [www.ubuntu.com](https://www.ubuntu.com), a simple databaseless informational website project based on [Django](https://www.djangoproject.com/).
 
 Bugs and issues
 ---

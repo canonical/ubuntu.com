@@ -8,6 +8,6 @@ no_indecies = map(
     endpoints
 )
 
-prefixed = ["http://www.ubuntu.com/" + str(e) for e in no_indecies]
+prefixed = ["https://www.ubuntu.com/" + str(e) for e in no_indecies]
 
 print "\n".join(prefixed)
