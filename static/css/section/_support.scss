@@ -60,6 +60,10 @@
 
   .grid-list {
     margin: 1rem 0 2rem;
+
+    @media (min-width: $breakpoint-medium) {
+      margin: 1rem -12px 2rem;
+    }
   }
 
   .grid-list__item {
