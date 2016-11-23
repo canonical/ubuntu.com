@@ -59,7 +59,7 @@
 .support-home {
 
   .grid-list {
-    margin: 1rem 0 2rem;
+    margin: 1rem 0 0;
 
     @media (min-width: $breakpoint-medium) {
       margin: 1rem -12px 2rem;
@@ -71,7 +71,19 @@
     padding-bottom: 1rem;
 
     p {
-      font-size: 1rem;
+      @media (min-width: $breakpoint-medium) {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .advantage-link {
+
+    clear: both;
+
+    @media (max-width: $breakpoint-medium) {
+      margin-top: -2rem;
+      padding-bottom: 1rem;
     }
   }
 
