@@ -2082,13 +2082,14 @@ body.homepage-advantage {
   }
 
   .row-hero {
-    background-image: url('https://assets.ubuntu.com/v1/f4cb93a3-Yakkety_Yak-Wallpaper_aubergine.jpg');
-    background-size: cover;
+    background-color: $dark-aubergine;
     margin-top: 0;
     padding-top: 20px;
     padding-bottom: 20px;
 
     @media only screen and (min-width : $breakpoint-medium) {
+      background-image: url('https://assets.ubuntu.com/v1/f4cb93a3-Yakkety_Yak-Wallpaper_aubergine.jpg');
+      background-size: cover;
       padding-top: 80px;
       padding-bottom: 80px;
     }
