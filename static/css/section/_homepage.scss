@@ -2083,6 +2083,7 @@ body.homepage-advantage {
 
   .row-hero {
     background-color: $dark-aubergine;
+    background-image: none;
     margin-top: 0;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -2101,6 +2102,10 @@ body.homepage-advantage {
       @media only screen and (min-width : $breakpoint-large) {
         margin-top: 20px;
       }
+    }
+
+    a {
+      color: #fff;
     }
   }
 }
