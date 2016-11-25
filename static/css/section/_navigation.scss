@@ -101,6 +101,12 @@
         }
       }
     }
+
+    #site-search {
+      @media only screen and (min-width: $navigation-threshold) {
+        display: table-cell;
+      }
+    }
   }
 
   .search-toggle {
