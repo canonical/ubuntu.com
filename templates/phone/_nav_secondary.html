@@ -1,7 +1,0 @@
-<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
-    <li><a{% if level_1 == 'phone' and not level_2 %} class="active"{% endif %} href="/phone">Overview</a></li>
-    <li><a{% if level_1 == 'phone' and level_2 == 'features' %} class="active"{% endif %} href="/phone/features" >Features</a></li>
-    <li><a{% if level_1 == 'phone' and level_2 == 'devices' or level_2 == 'devices-in' %} class="active"{% endif %} href="/phone/devices" >Devices</a></li>
-    <li><a{% if level_1 == 'phone' and level_2 == 'developers' %} class="active"{% endif %} href="/phone/developers" >For developers</a></li>
-    <li><a{% if level_1 == 'phone' and level_2 == 'partners' %}  class="active"{% endif %} href="/phone/partners">For partners</a></li>
-</ul>
