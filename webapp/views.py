@@ -274,3 +274,17 @@ class ContactView(UbuntuTemplateFinder):
         context['product'] = self.request.GET.get('product')
 
         return context
+
+class ContactThankYouView(UbuntuTemplateFinder):
+    def get_context_data(self, **kwargs):
+        """
+        Get context data from a get parameter for the given page
+        """
+
+        # Get any existing context
+        context = super(ContactThankYouView, self).get_context_data(**kwargs)
+
+        # Add product query param to context
+        context['product'] = self.request.GET.get('product')
+
+        return context
