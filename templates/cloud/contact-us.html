@@ -1,176 +1,61 @@
 {% extends "cloud/base_cloud.html" %}
-{% block title %}Cloud computing with Ubuntu{% endblock %}
+{% block title %}Contact us | Ubuntu Cloud{% endblock %}
 
 {% block second_level_nav_items %}
 <div class="strip-inner-wrapper">
-    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Contact us"  %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Contact us" %}
 </div>
 {% endblock second_level_nav_items %}
 
-{% block header %}
-<section class="row row-hero no-border strip-light">
+{% block content %}
+<section class="row row-hero no-border no-margin-bottom no-padding-bottom strip-light">
     <div class="strip-inner-wrapper">
-        <div class="eight-col">
-            <h1>Contact us</h1>
-            <p>Fill in your details below and a member of our cloud sales team will be in touch.</p>
+
+{% if product == 'cloud-training' %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about our training courses" intro_text="Fill in your details below and a member of our training team will be in touch." formid="1263" lpId="2163" returnURL="https://www.ubuntu.com/cloud/thank-you?product=cloud-training" %}
+
+{% elif product == 'cloud-training-classroom' %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Register for Ubuntu OpenStack Training" intro_text="If you are interested in the Ubuntu OpenStack training, please fill out the form below and we’ll get back to you with available dates and locations." formid="1261" lpId="2161" returnURL="https://www.ubuntu.com/cloud/thank-you?product=cloud-training-classroom" %}
+
+{% elif product == 'cloud-training-onsite' %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about our training courses" intro_text="Fill in your details below and a member of our training team will be in touch." formid="1223" lpId="1973" returnURL="https://www.ubuntu.com/cloud/thank-you?product=cloud-training-onsite" %}
+
+{% elif product == 'cloud-training-server-admin' %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about our Ubuntu Server Administration training courses" intro_text="Fill in your details below and a member of our training team will be in touch." formid="1448" lpId="2661" returnURL="https://www.ubuntu.com/cloud/thank-you?product=cloud-training-server-admin" %}
+
+{% elif product == 'storage' %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Ubuntu Advantage Storage" intro_text="Let Canonical help you build your own software-defined storage network." formid="1233" lpId="2001" returnURL="https://www.ubuntu.com/cloud/thank-you?product=storage" %}
+
+
+{% elif product == 'managed-cloud' %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Schedule a demo" intro_text="Fill in your details below and a member of our BootStack team will be in touch." formid="1128" lpId="1646" returnURL="https://www.ubuntu.com/cloud/thank-you?product=managed-cloud" %}
+
+{% else %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about the cloud" intro_text="Fill in your details below and a member of our cloud sales team will be in touch." formid='1251'  lpId='2086' returnURL='https://www.ubuntu.com/cloud/thank-you' %}
+
+{% endif %}
     </div>
 </section>
-{% endblock %}
 
-{% block content %}
+{% endblock content %}
 
+{% block footer_extra %}
 <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
 <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
-
-<section class="row row-contact-form no-border strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col">
-            <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1251">
-                <fieldset>
-                    <h3>About you</h3>
-                    <ul class="no-bullets">
-                        <li class="mktFormReq mktField">
-                            <label for="FirstName" class="mktoLabel">First name:</label>
-                            <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" />
-                        </li>
-                        <li class="mktFormReq mktField">
-                            <label for="LastName" class="mktoLabel">Last name:</label>
-                            <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" />
-                        </li>
-                        <li class="mktFormReq mktField">
-                            <label for="Email" class="mktoLabel">Email address:</label>
-                            <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
-                        </li>
-                        <li class="mktFormReq mktField">
-                            <label for="Phone" class="mktoLabel">Phone number:</label>
-                            <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" />
-                        </li>
-                        {% include "shared/forms/_country.html" %}
-                        {% include "shared/forms/_state.html" %}
-                    </ul>
-                </fieldset>
-                <fieldset>
-                    <h3>About your role</h3>
-                    <ul class="no-bullets">
-                        {% include "shared/forms/_job_role.html" %}
-                    </ul>
-                </fieldset>
-                <fieldset>
-                    <h3>About your company</h3>
-                    <ul class="no-bullets">
-                        <li class="mktFormReq mktField">
-                            <label for="Company" class="mktoLabel">Company name:</label>
-                            <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired" />
-                        </li>
-                        {% include "shared/forms/_industry.html" %}
-                    </ul>
-                </fieldset>
-                <fieldset>
-                    <h3>IT and your organisation</h3>
-                    <ul class="no-bullets">
-                        <li class="mktFormReq mktField">
-                            <label for="Ubuntu_User__c" class="mktoLabel">How do you currently use Ubuntu?</label>
-                            <select required id="Ubuntu_User__c" name="Ubuntu_User__c" class="mktoField mktoRequired" />
-                            <option value="">Select...</option>
-                            <option value="Privately only">Privately only</option>
-                            <option value="Commercially only">Commercially only</option>
-                            <option value="Privately and commercially">Privately and commercially</option>
-                            <option value="Not at all">Not at all</option>
-                        </select>
-                    </li>
-
-                    <li class="mktFormReq mktField">
-                        <label for="num_employees__c" class="mktoLabel">How many employees does your organisation have? </label>
-                        <select required id="num_employees__c" name="num_employees__c" class="mktoField mktoRequired" />
-                        <option value="">Select...</option>
-                        <option value="None">None</option>
-                        <option value="<500"><500</option>
-                        <option value="501-1000">501-1000</option>
-                        <option value="1001-2000">1001-2000</option>
-                        <option value="2001-5000">2001-5000</option>
-                        <option value="5000+">5000+</option>
-                    </select>
-                </li>
-
-                <li class="mktFormReq mktField">
-                    <label for="NumUbuntuServers__c" class="mktoLabel">Number of Ubuntu servers currently deployed?</label>
-                    <select required id="NumUbuntuServers__c" name="NumUbuntuServers__c" class="mktoField mktoRequired" />
-                    <option value="">Select...</option>
-                    <option value="25 or less">25 or less</option>
-                    <option value="26 &ndash; 100">26 &ndash; 100</option>
-                    <option value="101 &ndash; 250">101 &ndash; 250</option>
-                    <option value="251 &ndash; 500">251 &ndash; 500</option>
-                    <option value="501 or more">501 or more</option></select>
-                </li>
-
-                <li class="mktFormReq mktField">
-                    <label for="Why_Cloud__c" class="mktoLabel">Why are you interested in cloud?</label>
-                    <select required id="Why_Cloud__c" name="Why_Cloud__c" class="mktoField mktoRequired" />
-                    <option value="">Select...</option>
-                    <option value="Increasing Revenues">Increasing Revenues</option>
-                    <option value="Minimising operational expenditure">Minimising operational expenditure</option>
-                    <option value="Optimising efficiency">Optimising efficiency</option>
-                    <option value="Handling spikes in traffic">Handling spikes in traffic</option>
-                    <option value="Technical">Technical</option>
-                    <option value="Other">Other</option>
-                </select>
-            </li>
-
-            <li class="mktFormReq mktField">
-                <label for="Project_Timeframe__c" class="mktoLabel">How soon do you plan to deploy your cloud solution?</label>
-                <select required id="Project_Timeframe__c" name="Project_Timeframe__c" class="mktoField mktoRequired" />
-                <option value="">Select...</option>
-                <option value="less than 3 months">less than 3 months</option>
-                <option value="3 &ndash; 6 months">3 &ndash; 6 months</option>
-                <option value="6 &ndash; 12 months">6 &ndash; 12 months</option>
-                <option value="No specific dates">No specific dates</option></select>
-            </li>
-
-            <li class="mktFormReq mktField">
-                <label for="Comments_from_lead__c" class="mktoLabel">What would you like to talk to us about?</label>
-                <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="4" class="mktoField mktoRequired" maxlength="2000"></textarea>
-            </li>
-        </ul>
-    </fieldset>
-    <fieldset>
-        <ul class="no-bullets">
-            <li class="mktField">
-                <input class="mktoField" value="yes" id="NewsletterOpt-In" name="NewsletterOpt-In" type="checkbox" />
-                <label class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>
-            </li>
-            <li>
-                All information provided will be handled in accordance with the Canonical <a href="https://www.ubuntu.com/legal" target="_blank">privacy policy</a>.
-            </li>
-
-            <li class="mktField">
-                <button type="submit" class="mktoButton">Submit</button>
-            </li>
-        </ul>
-
-        <input type="hidden" name="formid" class="mktoField" value="1251" />
-        <input type="hidden" name="lpId" class="mktoField" value="2086" />
-        <input type="hidden" name="subId" class="mktoField" value="30" />
-        <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335" />
-        <input type="hidden" name="lpurl" class="mktoField" value="https://pages.ubuntu.com/Cloud-contact-us.html?cr={creative}&amp;kw={keyword}" />
-        <input type="hidden" name="cr" class="mktoField" value="" />
-        <input type="hidden" name="kw" class="mktoField" value="" />
-        <input type="hidden" name="q" class="mktoField" value="" />
-        <input type="hidden" name="returnURL" value="https://www.ubuntu.com/cloud/thank-you" />
-        <input type="hidden" name="retURL" value="https://www.ubuntu.com/cloud/thank-you" />
-    </fieldset>
-</form>
-
 <script>
-$("#mktoForm_1251").validate({
+  $("#mktoForm").validate({
     errorElement: "span",
     errorClass: "mktFormMsg mktError",
     onkeyup: false,
     onclick: false,
     onblur: false
-});
+  });
 </script>
-
-</div>
-</div>
-</section>
-{% endblock content %}
+{% endblock footer_extra %}

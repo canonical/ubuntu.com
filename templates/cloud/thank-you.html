@@ -4,13 +4,41 @@
 
 {% block second_level_nav_items %}
 <div class="strip-inner-wrapper">
-	{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Contact us" page_title="Thank you"  %}
+  {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Contact us" page_title="Thank you"  %}
 </div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
-{% include "shared/_thank_you.html" with thanks_context="enquiring about Cloud" %}
 
+  {% if product == 'cloud-training' %}
+
+      {% include "shared/_thank_you.html" with thanks_context="enquiring about our training courses" %}
+
+  {% elif product == 'cloud-training-classroom' %}
+
+      {% include "shared/_thank_you.html" with thanks_context="enquiring about our classroom training courses" %}
+
+  {% elif product == 'cloud-training-onsite' %}
+
+      {% include "shared/_thank_you.html" with thanks_context="enquiring about our onsite training courses" %}
+
+  {% elif product == 'cloud-training-server-admin' %}
+
+      {% include "shared/_thank_you.html" with thanks_context="enquiring about our server admin training courses" %}
+
+  {% elif product == 'storage' %}
+
+      {% include "shared/_thank_you.html" with thanks_context="enquiring about Ubuntu Advantage Storage" %}
+
+  {% elif product == 'managed-cloud' %}
+
+      {% include "shared/_thank_you.html" with thanks_context="enquiring about BootStack" %}
+
+  {% else %}
+
+      {% include "shared/_thank_you.html" with thanks_context="enquiring about the Ubuntu Cloud" %}
+
+  {% endif %}
 
 {% endblock content %}
 {% block footer_extra %}
