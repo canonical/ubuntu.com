@@ -12,13 +12,14 @@
             </li>
             <li class="mktField mktLblRight">
                 <span class="mktInput mktLblRight">
-                    <input class="mktFormCheckbox" name="NewsletterOpt-In" id="NewsletterOpt-In" value="yes" type="checkbox" />
-                    <label class="contextual-footer__text--label" for="NewsletterOpt-In">I would also like to receive other occasional updates from Canonical by email.</label>&nbsp;<span class="mktFormMsg"></span>
+                    <input class="mktFormCheckbox" name="canonicalUpdatesOptIn" id="canonicalUpdatesOptIn" value="yes" type="checkbox" />
+                    <label class="contextual-footer__text--label" for="canonicalUpdatesOptIn">I would also like to receive other occasional updates from Canonical by email.</label>&nbsp;<span class="mktFormMsg"></span>
                 </span>
             </li>
             <li>
                 <span class="off-left"><input type="text" name="_marketo_comments" value=""></span>
                 <span class='mktoButtonWrap'><button type='submit' class='mktoButton'  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Cloud newsletter', 'eventLabel' : 'Sign-up for news updates', 'eventValue' : undefined });">Subscribe now</button></span>
+                <input type="hidden" name="NewsletterOpt-In" value="yes" />
                 <input value="1959" class="mktoField mktoFieldDescriptor" name="lpId" type="hidden" />
                 <input value="30" class="mktoField mktoFieldDescriptor" name="subId" type="hidden" />
                 <input type="hidden" name="lpurl" value="https://pages.canonical.com/Insights-Subscription_Insights-Subscription-test.html?cr={creative}&amp;kw={keyword}" />

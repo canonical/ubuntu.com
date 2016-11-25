@@ -1,13 +1,8 @@
-<section class="row row-hero no-border no-margin-bottom no-padding-bottom strip-light">
-    <div class="strip-inner-wrapper">
         <div class="eight-col">
             <h1>{{h1}}</h1>
             <p>{{intro_text}}</p>
         </div>
         <div class="eight-col">
-            <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
-            <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
-
             <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm">
                 <fieldset>
                     <h3>About you</h3>
@@ -55,12 +50,12 @@
                             <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" class="mktoField mktoRequired" maxlength="2000"></textarea>
                         </li>
                         <li class="mktField">
-                            <input class="mktoField" value="yes" id="NewsletterOpt-In" name="NewsletterOpt-In" type="checkbox" />
-                            <label class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>
+                            <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="NewsletterOpt-In" type="checkbox" />
+                            <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I would like to receive occasional news from Canonical by email.</label>
                         </li>
                         <li>All information provided will be handled in accordance with the Canonical <a href="https://www.ubuntu.com/legal" target="_blank">privacy policy</a>.</li>
                         <li class="mktField">
-                            <button type="submit" class="mktoButton">Submit</button></span>
+                            <button type="submit" class="mktoButton"  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'iot contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button></span>
                         </li>
                     </ul>
                     <input type="hidden" name="formid" class="mktoField" value="{{formid}}" />
@@ -75,16 +70,4 @@
                     <input type="hidden" name="retURL" value="{{returnURL}}" />
                 </fieldset>
             </form>
-            <script>
-                $("#mktoForm").validate({
-                    errorElement: "span",
-                    errorClass: "mktFormMsg mktError",
-                    onkeyup: false,
-                    onclick: false,
-                    onblur: false
-                });
-            </script>
-
         </div>
-    </div>
-</section>
