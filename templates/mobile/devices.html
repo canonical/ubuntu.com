@@ -1,0 +1,23 @@
+{% extends "mobile/base_mobile.html" %}
+
+{% block title %}Devices | Ubuntu for mobile{% endblock %}
+
+{% block meta_description %}{% endblock %}
+
+{% block meta_keywords %}{% endblock %}
+
+{% block extra_body_class %}mobile-home{% endblock %}
+
+{% block second_level_nav_items %}
+    <div class="strip-inner-wrapper">
+        {% include "templates/_nav_breadcrumb.html" with section_title="Mobile" page_title="Overview"  %}
+    </div>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+
+[DEVICES]
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_phone_partners_developers" second_item="_devices_newsletter_signup" third_item="_phone_further_reading" %}
+
+{% endblock content %}
