@@ -1,12 +1,12 @@
-{% extends "cloud/base_cloud.html" %}
+{% extends "server/base_server.html" %}
 
-{% block title %}MAAS | Cloud{% endblock %}
+{% block title %}MAAS | Server{% endblock %}
 {% block meta_description %}With Maas - Metal as a Service, you can ready your servers for deployment as a private cloud quickly.{% endblock meta_description %}
-{% block meta_keywords %}Cloud, deployment, provision, server, MAAS, bare metal, Metal as a Service, Juju, Ubuntu, private cloud, OpenStack, Ubuntu OpenStack{% endblock meta_keywords %}
+{% block meta_keywords %}server, cloud, deployment, server provisioning, service, provision, server, MAAS, bare metal, Metal as a Service, Juju, Ubuntu, private cloud, OpenStack, Ubuntu OpenStack{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
 <div class="strip-inner-wrapper">
-    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="MAAS" %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Server" page_title="Server provisioning" %}
 </div>
 {% endblock second_level_nav_items %}
 
@@ -141,6 +141,6 @@
     </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_maas" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_maas" second_item="_server_contact_us" third_item="_cloud_further_reading" %}
 
 {% endblock content %}
