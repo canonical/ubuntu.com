@@ -29,70 +29,70 @@
       }
     }
   }
-}
 
-// @subsection /server/management
-.server-management {
+  // @subsection /server/management
+  &.server-management {
 
-  .row-community {
-    @media only screen and (min-width : $breakpoint-medium) {
-      border-bottom: 0;
-      margin-bottom: 0;
+    .row-community {
+      @media only screen and (min-width : $breakpoint-medium) {
+        border-bottom: 0;
+        margin-bottom: 0;
 
-      .nine-col {
-        background: $white;
+        .nine-col {
+          background: $white;
+        }
+      }
+    }
+
+    .row-ubuntu-advantage-promo {
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        background-image: url('#{$asset-server}65274d19-landscape-screenshot.png?W=600');
+        background-position: 158% 45px;
+        background-repeat: no-repeat;
+        background-size: 56%;
+      }
+
+      @media only screen and (min-width: $breakpoint-large) {
+        background-position: right -100px top 40px;
+        background-size: 40%;
       }
     }
   }
 
-  .row-ubuntu-advantage-promo {
+  // @subsection /server/hyperscale
+  &.server-hyperscale {
 
-    @media only screen and (min-width: $breakpoint-medium) {
-      background-image: url('#{$asset-server}65274d19-landscape-screenshot.png?W=600');
-      background-position: 158% 45px;
-      background-repeat: no-repeat;
-      background-size: 56%;
+    h1 {
+      float: none;
+      margin-bottom: 18px;
     }
 
-    @media only screen and (min-width: $breakpoint-large) {
-      background-position: right -100px top 40px;
-      background-size: 40%;
-    }
-  }
-}
+    .partner-logo {
+      margin: 0 auto 10px;
 
-// @subsection /server/hyperscale
-.server-hyperscale {
+      @media only screen and (min-width : $breakpoint-medium) {
+        height: 105px;
 
-  h1 {
-    float: none;
-    margin-bottom: 18px;
-  }
-
-  .partner-logo {
-    margin: 0 auto 10px;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      height: 105px;
-
-      img {
-        position: relative;
-        top: 50%;
-        -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
+        img {
+          position: relative;
+          top: 50%;
+          -webkit-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+        }
       }
     }
   }
-}
 
-// @subsection /server/contact-us
-.server-contact-us {
+  // @subsection /server/contact-us
+  &.server-contact-us {
 
-  .row-hero {
-    h2 {
-      color: $cool-grey;
-      padding-top: 0;
+    .row-hero {
+      h2 {
+        color: $cool-grey;
+        padding-top: 0;
+      }
     }
   }
 
@@ -114,46 +114,45 @@
         padding: 20px 0;
       }
     }
+  }
+  // @subsection /server/maas
+  &.server-maas {
 
-    // @subsection /server/maas
-    &.server-maas {
+    .row-hero {
 
-      .row-hero {
-
-        @media only screen and (min-width: $breakpoint-medium) {
-          background-image: url('#{$asset-server}ee944209-screenshot-cloud_maas.png?w=800');
-          background-position: 100% 33%;
-          background-repeat: no-repeat;
-          background-size: 50%;
-        }
+      @media only screen and (min-width: $breakpoint-medium) {
+        background-image: url('#{$asset-server}ee944209-screenshot-cloud_maas.png?w=800');
+        background-position: 100% 33%;
+        background-repeat: no-repeat;
+        background-size: 50%;
       }
+    }
 
-      .row--autopilot {
+    .row--autopilot {
 
-        @media only screen and (min-width: $breakpoint-medium) {
-          background-image: url('#{$asset-server}b72144a5-cloud_landscape_components.png?op=region&rect=0,0,900,900');
-          background-position: 100% 0;
-          background-repeat: no-repeat;
-          background-size: 50%;
-        }
+      @media only screen and (min-width: $breakpoint-medium) {
+        background-image: url('#{$asset-server}b72144a5-cloud_landscape_components.png?op=region&rect=0,0,900,900');
+        background-position: 100% 0;
+        background-repeat: no-repeat;
+        background-size: 50%;
       }
+    }
+
+    h1 {
+      background-image: url('#{$asset-server}33b96a7f-maas-logo.svg');
+      background-position: 0 18px;
+      background-repeat: no-repeat;
+      background-size: 1.4em;
+      margin-left: -6px;
+      padding-left: 1.5em;
+    }
+
+    // no-svg and opera-mini fixes for cloud/maas
+    &.no-svg,
+    &.opera-mini {
 
       h1 {
-        background-image: url('#{$asset-server}33b96a7f-maas-logo.svg');
-        background-position: 0 18px;
-        background-repeat: no-repeat;
-        background-size: 1.4em;
-        margin-left: -6px;
-        padding-left: 1.5em;
-      }
-
-      // no-svg and opera-mini fixes for cloud/maas
-      &.no-svg,
-      &.opera-mini {
-
-        h1 {
-          background-image: url('#{$asset-server}6574f6c8-image-picto-maas-40.png');
-        }
+        background-image: url('#{$asset-server}6574f6c8-image-picto-maas-40.png');
       }
     }
   }
