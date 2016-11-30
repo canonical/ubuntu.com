@@ -51,10 +51,10 @@
 <section class="row row-grey">
     <div class="strip-inner-wrapper">
         <div class="eight-col">
-            <h2>Your first step to containers is the easiest</h2>  
+            <h2>Your first step to containers is the easiest</h2>
             <p>LXD containers are just like traditional physical and virtual machines - install applications the same way, secure them the same way, operate them with the same tools, but gain the raw performance and density of containers.</p>
-            <p>Launch new Linux machines in a second and run hundreds of them on a single server. Connect them separately and securely to networks. Live-migrate these machines between hosts just like a VM. And drive all of this through a clean REST API. That&rsquo;s LXD &mdash; and it&rsquo;s revolutionising high-performance computing and high-density infrastructure operations.</p>  
-        </div>    
+            <p>Launch new Linux machines in a second and run hundreds of them on a single server. Connect them separately and securely to networks. Live-migrate these machines between hosts just like a VM. And drive all of this through a clean REST API. That&rsquo;s LXD &mdash; and it&rsquo;s revolutionising high-performance computing and high-density infrastructure operations.</p>
+        </div>
     </div>
 </section>
 
@@ -64,9 +64,9 @@
             <img src="{{ ASSET_SERVER_URL }}00438906-pictogram-virtualisation.svg" width="220" alt="" />
         </div>
         <div class="eight-col last-col equal-height__item">
-            <h2>Like a virtual machine, only faster</h2>  
-            <p>The speed and density of containers, the familiarity of virtual machines &mdash; Canonical&rsquo;s LXD is the next‐generation hypervisor for Linux at scale. LXD is designed to &ldquo;lift and shift&rdquo; Linux VMs to containers without modifying the app or operations. Nearly all applications can be installed in LXD containers, gaining performance and density. There is no need to touch the application to make it run in an LXD container because LXD&rsquo;s machine containers operate just like virtual machines.</p>  
-        </div>    
+            <h2>Like a virtual machine, only faster</h2>
+            <p>The speed and density of containers, the familiarity of virtual machines &mdash; Canonical&rsquo;s LXD is the next‐generation hypervisor for Linux at scale. LXD is designed to &ldquo;lift and shift&rdquo; Linux VMs to containers without modifying the app or operations. Nearly all applications can be installed in LXD containers, gaining performance and density. There is no need to touch the application to make it run in an LXD container because LXD&rsquo;s machine containers operate just like virtual machines.</p>
+        </div>
     </div>
 </section>
 
@@ -174,9 +174,11 @@
         <div class="eight-col">
             <h2>How does LXD compare to Docker?</h2>
             <p>Docker and LXD are complementary, use them both, use them together!</p>
-            <p>LXD gives you a classic virtual machine experience with all your administrative processes running there, from sshd to syslog, so LXD feels just like a normal machine. All the apps work the same way, operations are identical, and of course you can run your Docker processes inside LXD containers.</p>
-            <p>By contrast, Docker strips the container down to the naked application process, giving you fantastic density but requiring you to use a dedicated container coordination system like Kubernetes.</p>
-            <p><a class="external" href="https://linuxcontainers.org/lxd/try-it/">Try LXD online now</a></p>
+            <p>LXD gives you a classic virtual machine experience with all your administrative processes running, from sshd to syslog, so LXD feels just like a normal system.  All the apps work the same way, operations are identical, and of course you can run your Docker processes inside LXD containers.  LXD is a cheaper, faster and better alternative to KVM, VMware and VirtualBox, for Linux-on-Linux workloads.</p>
+            <p>LXD guests always boot into a functional operating system.  Process #1 is always <code>/sbin/init</code>, which forks off the usual things you expect in a Linux/UNIX OS environment: cron, at, ssh, syslog, journal, ntp, etc.  Docker instances typically contain one and only one process or application.</p>
+            <p>LXD usage is often driven by operations where it is a fine addition to any infrastructure-as-a-service cloud, making those IaaS OS instances much faster.  Whereas Docker usage is often driven by developers and forms the basis for platform-as-a-service clouds, making those PaaS application instances faster and more portable.</p>
+            <p>Docker can run alongside LXD with both instances working together.  Moreover, Docker can run inside of LXD with zero performance impact.</p>
+            <p><a class="external" href="https://insights.ubuntu.com/2016/11/30/docker-and-canonical-partnership-gives-users-best-of-ubuntu-and-docker/">Find out more about our partnership with Docker</a></p>
         </div>
         <div class="four-col align-center last-col">
             <img src="{{ ASSET_SERVER_URL }}fe637cb5-docker.svg" alt="" />
