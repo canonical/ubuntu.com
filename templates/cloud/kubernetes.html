@@ -27,6 +27,49 @@
     </div>
 </section>
 
+<section class="row strip-light">
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col">
+            <h2 class="muted-heading">Certified on public clouds and on-premise infrastructure</h2>
+        </div>
+        <div class="eight-col prepend-two">
+            <ul id="cloud-partners" class="inline-logos no-margin dynamic-logos">
+              <li class="inline-logos__item">
+                <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}4f54c31c-Google-Cloud-Platform.png" alt="Google Cloud Platform" />
+              </li>
+
+              <li class="inline-logos__item">
+                <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}7774ce37-MS-Azure_rgb_Blk.png" alt="Microsoft Azure" />
+              </li>
+
+              <li class="inline-logos__item">
+                <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}d584bd83-logo-vmware.svg" alt="VMware" />
+              </li>
+
+              <li class="inline-logos__item">
+                <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}39002345-AmazonWebservices_Logo.svg" alt="AWS" />
+              </li>
+
+              <li class="inline-logos__item">
+                <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}f7f8709c-logo-joyent.svg" alt="Joyent" />
+              </li>
+
+              <li class="inline-logos__item">
+                <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}33409c7b-logo-maas.svg" alt="MAAS" />
+              </li>
+
+              <li class="inline-logos__item">
+                <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}eed716e9-logo-openstack.svg" alt="OpenStack" style="max-height:90px;"/>
+              </li>
+
+              <li class="inline-logos__item">
+                <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}cd876488-products-hero-desktop.svg" alt="Local host" style="max-height:45px;"/>&emsp;<strong>Local&nbsp;hosts</strong>
+              </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
 <section class="row row-grey">
     <div class="strip-inner-wrapper equal-height">
         <div class="box six-col equal-height--item">
@@ -47,6 +90,17 @@
         <div class="box six-col last-col equal-height--item">
             <h2>Cost-effective at scale</h2>
             <p>The major cost of Kubernetes is the  operations expertise needed to run at scale.  Canonical&rsquo;s Kubernetes bundle includes all operational scripting and tooling needed to manage a long-lived cluster, including upgrades and elastic scaling. With Juju you get all the industries best practices for Kubernetes ops for free.</p>
+        </div>
+    </div>
+</section>
+
+<section class="row">
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col">
+            <h2>Getting Started</h2>
+            <div class="vimeo-container">
+                <iframe src="https://player.vimeo.com/video/190300823?color=ffffff&title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </div>
         </div>
     </div>
 </section>
@@ -111,5 +165,5 @@
 {% endblock content %}
 
 {% block footer_extra %}
-    <script async src="https://assets.ubuntu.com/v1/juju-cards-v1.3.0.js"></script>
+    <script async src="{{ ASSET_SERVER_URL }}juju-cards-v1.3.0.js"></script>
 {% endblock footer_extra %}
