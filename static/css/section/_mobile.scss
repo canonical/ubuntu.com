@@ -1,0 +1,40 @@
+.mobile-features {
+  .row-hero {
+    overflow: hidden;
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      overflow: hidden;
+      padding: 40px 10px 20px;
+    }
+
+    @media only screen and (min-width : $breakpoint-large) {
+      padding: 100px 40px;
+    }
+
+    &:before {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server}4edf954e-tablet-browser-video.png?w=800') center center no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height: 85%;
+        overflow: visible;
+        position: absolute;
+        right: -30vw;
+        top: 40px;
+        width: 80vw;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        right: 10vw;
+        width: 40vw;
+      }
+    }
+  }
+
+  .row--design {
+    background-color: #000;
+    background-image: none;
+  }
+}
