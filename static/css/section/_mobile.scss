@@ -39,6 +39,48 @@
   }
 }
 
+.mobile-partners {
+  .row-hero {
+    overflow: hidden;
+
+    &__image {
+      margin: 10px 0;
+    }
+
+    &:before {
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server}969bb3c1-9a.-scope-task-switcher-tablet-portrait-landscape.png?w=700') center center no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height: 80%;
+        overflow: visible;
+        position: absolute;
+        right: -24vw;
+        top: 10%;
+        width: 70vw;
+      }
+
+      @media only screen and (min-width : 769px) {
+        right: 2vw;
+        width: 47vw;
+      }
+
+      @media only screen and (min-width : 1400px) {
+        right: 2vw;
+        width: 50vw;
+      }
+    }
+  }
+
+  .row-more--image {
+    @media only screen and (min-width : $breakpoint-medium) {
+      margin-bottom: 40px;
+      margin-top: 60px;
+    }
+  }
+}
+
 .mobile-developers {
   .row-hero {
     overflow: hidden;
