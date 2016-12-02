@@ -38,3 +38,44 @@
     background-image: none;
   }
 }
+
+.mobile-developers {
+  .row-hero {
+    overflow: hidden;
+
+    @media only screen and (min-width : $breakpoint-medium + 1) {
+      min-height: 550px;
+    }
+
+    &:before {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server}7fbc7231-tablet-developers-hero.png?w=646') center center no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height: 85%;
+        overflow: visible;
+        position: absolute;
+        right: -30vw;
+        top: 40px;
+        width: 80vw;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        right: 10vw;
+        width: 40vw;
+      }
+    }
+  }
+
+  .row--one-app__image {
+    @media only screen and (min-width : $breakpoint-medium) {
+      margin-top: 30px;
+    }
+
+    @media only screen and (min-width : $breakpoint-large) {
+      margin-top: 60px;
+    }
+  }
+}
