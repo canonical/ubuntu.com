@@ -16,8 +16,116 @@
 
 {% block content %}
 
-[DEVELOPERS]
+<section class="row row-hero">
+    <div class="strip-inner-wrapper row-hero__inner-wrapper">
+        <div class="five-col">
+            <h1>For developers</h1>
+            <img class="twelve-col for-small" src="{{ ASSET_SERVER_URL }}7fbc7231-tablet-developers-hero.png?w=480" alt="" />
+            <p>Ubuntu is the only operating system that can run both a mobile-based full touch interface and a true PC experience from a single smart device.</p>
+            <ul class="list-ticks--compact">
+                <li>A comprehensive developer offering that works across the desktop, the tablet and the phone</li>
+                <li>The world&rsquo;s favourite desktop Linux distribution, with a mature app marketplace</li>
+                <li>Choose from a number of app development options from web to native apps</li>
+                <li>Used by millions of developers, all over the world</li>
+            </ul>
+        </div>
+    </div>
+</section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_phone_partners_developers" second_item="_devices_newsletter_signup" third_item="_phone_further_reading" %}
+<section class="row row--one-app strip-light">
+    <div class="strip-inner-wrapper">
+        <div class="eight-col">
+            <h2>One app on Ubuntu for all form factors</h2>
+            <img class="twelve-col for-small" src="{{ ASSET_SERVER_URL }}6b76b7c9-tablet-developers-form-factors.jpg?w=480" alt="" />
+            <p class="eight-col">With Ubuntu, you can write a single app with responsive interfaces that allow it to run on any Ubuntu device. Use the Ubuntu SDK to build your app and make it available to users of Ubuntu PCs, phones and tablets, all in a single upload to the Ubuntu Store.</p>
+        </div>
+        <div class="twelve-col not-for-small">
+            <img class="row--one-app__image" src="{{ ASSET_SERVER_URL }}6b76b7c9-tablet-developers-form-factors.jpg?w=984" srcset="{{ ASSET_SERVER_URL }}6b76b7c9-tablet-developers-form-factors.jpg?w=700 880w, {{ ASSET_SERVER_URL }}6b76b7c9-tablet-developers-form-factors.jpg?w=800 980w, {{ ASSET_SERVER_URL }}6b76b7c9-tablet-developers-form-factors.jpg?w=984 1064w" alt="Ubuntu on a phone, tablet and PC monitor" />
+        </div>
+    </div>
+</section>
+
+<section class="row strip-light">
+    <div class="strip-inner-wrapper">
+        <div class="eight-col">
+            <h2 class="twelve-col">Build it your way</h2>
+            <p>Ubuntu&rsquo;s tight integration cycle enables a true write-once, run-everywhere approach that conserves precious developer time.</p>
+        </div>
+        <div class="twelve-col equal-height--vertical-divider">
+            <div class="four-col equal-height--vertical-divider__item">
+                <div class="four-col clearfix no-margin-bottom">
+                    <div class="inline-small align-center">
+                        <img width="50" alt="A selection of apps" src="{{ ASSET_SERVER_URL }}c5022a72-browser-tabs.svg">
+                    </div>
+                    <div class="no-margin-bottom">
+                        <h3>Convergent native apps</h3>
+                    </div>
+                </div>
+                <p>For graphics-heavy apps and games, Ubuntu offers full native OpenGL, alongside a QML development environment that lets you combine game engines written in C or C++ with JavaScript-based UI glue.</p>
+                <p>That&rsquo;s why firms like EA, Valve Software and Unity Technologies are already committing to Ubuntu.</p>
+                <p><a href="https://developer.ubuntu.com/en/phone/apps/" class="external">Learn more about native apps</a></p>
+            </div>
+            <div class="four-col equal-height--vertical-divider__item">
+                <div class="four-col clearfix no-margin-bottom">
+                    <div class="inline-small align-center">
+                        <img width="50" alt="" src="{{ ASSET_SERVER_URL }}5b24f6af-terminal-app-symbolic.svg">
+                    </div>
+                    <div class="no-margin-bottom">
+                        <h3>HTML5 web apps</h3>
+                    </div>
+                </div>
+                <p>Our unique web app system lets you adapt any web property for installation as an app on Ubuntu. </p>
+                <p>Running independently of the browser, it can be granted its own icon and access to system services and easily adapted to Ubuntu. </p>
+                <p>Our browser supports WebRTC services to allow web based communication to just work.</p>
+                <p><a href="https://developer.ubuntu.com/en/phone/web/" class="external">Learn more about web apps</a></p>
+            </div>
+            <div class="four-col equal-height--vertical-divider__item last-col">
+                <div class="four-col clearfix no-margin-bottom">
+                    <div class="inline-small align-center">
+                        <img width="50" alt="" src="{{ ASSET_SERVER_URL }}4ed8f862-search.svg">
+                    </div>
+                    <div class="no-margin-bottom">
+                        <h3>Ubuntu&rsquo;s unique scopes</h3>
+                    </div>
+                </div>
+                <p>Scopes deliver content from multiple sources by topic, straight to the user’s fingertips. </p>
+                <p>Ubuntu tablets and phones ship with a number of pre-installed scopes, including News and NearBy for location-based information. </p>
+                <p>You can build your own scope by using the straightforward framework on an Ubuntu tablet or phone, without building an app.</p>
+                <p><a href="https://developer.ubuntu.com/en/scopes/" class="external">Learn more about scopes</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="row row--dark no-border">
+    <div class="strip-inner-wrapper">
+        <h2>Three reasons to build your next app on Ubuntu</h2>
+        <div class="seven-col">
+            <ol class="list-ticks--compact">
+                <li>You can create one application that can run on any Ubuntu device and inherently scale to any type of display</li>
+                <li>Ubuntu offers API support for deep service integration for native apps as well as simple frameworks for web app development (including JavaScript frameworks like Cordova and Node.JS environments)</li>
+                <li>Ubuntu is one of industry&rsquo;s most established developer communities, empowering open development for devices including PCs, smartphones and tablets</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<section class="row strip-light no-border">
+    <div class="strip-inner-wrapper equal-height--vertical-divider">
+        <div class="six-col equal-height--vertical-divider__item">
+            <h2>Explore the Ubuntu SDK</h2>
+            <p>Try out the integrated development environment for developing apps and scopes for Ubuntu.</p>
+            <p><a href="https://developer.ubuntu.com/en/start/" class="external">Get started</a></p>
+        </div>
+        <div class="six-col last-col equal-height--vertical-divider__item">
+            <h2>Snaps: the new app format from cloud to IoT</h2>
+            <p>Snap is a new app format inspired by mobile apps  to distribute software safely and efficiently on a wide set of devices from the datacentre to the field.</p>
+            <p><a href="http://snapcraft.io/" class="external">Learn more about snaps</a></p>
+        </div>
+    </div>
+</section>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_mobile_developer" second_item="_devices_newsletter_signup" third_item="_mobile_further_reading" %}
 
 {% endblock content %}
