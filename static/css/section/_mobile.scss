@@ -37,4 +37,10 @@
     background-color: #000;
     background-image: none;
   }
+
+  .row--applications .grid-list__img {
+    @media only screen and (min-width : $breakpoint-medium) {
+      max-width: 100%;
+    }
+  }
 }
