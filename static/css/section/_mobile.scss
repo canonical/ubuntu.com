@@ -37,6 +37,51 @@
     background-color: #000;
     background-image: none;
   }
+
+  .row--scopes {
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      padding-left: 0 !important;
+    }
+
+    @media only screen and (min-width : $breakpoint-large) {
+      align-items: center;
+      display: flex;
+      min-height: 730px;
+    }
+
+    &:before {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server}b6052399-scopes-tablet-portrait.png?w=890') center right no-repeat;
+        background-size: contain;
+        content: '';
+        height: 80%;
+        left: 4vw;
+        position: absolute;
+        top: 10%;
+        width: 48vw;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        background-size: auto;
+        height: 500px;
+        left: 0;
+        top: 110px;
+        width: 50vw;
+      }
+    }
+
+    &__image {
+      margin: 10px 0;
+    }
+  }
+
+  .row--applications .grid-list__img {
+    @media only screen and (min-width : $breakpoint-medium) {
+      max-width: 100%;
+    }
+  }
 }
 
 .mobile-partners {
