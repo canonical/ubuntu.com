@@ -79,6 +79,16 @@
       margin-top: 60px;
     }
   }
+
+  .row-case-studies {
+    background-image: none;
+
+    &__intro {
+      @media only screen and (min-width : $breakpoint-medium) {
+        margin-bottom: 40px;
+      }
+    }
+  }
 }
 
 .mobile-developers {
