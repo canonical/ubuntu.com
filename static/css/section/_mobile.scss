@@ -228,4 +228,25 @@
       max-height: 200px;
     }
   }
+
+  .row-iot {
+    background-image: none;
+    margin-top: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+
+    &__cta {
+      @media only screen and (min-width : $breakpoint-medium) {
+        margin-top: 10px;
+      }
+      @media only screen and (min-width : $breakpoint-large) {
+        margin-top: 20px;
+      }
+    }
+  }
 }
