@@ -121,3 +121,56 @@
     }
   }
 }
+
+.mobile-devices {
+  .row-hero {
+    overflow: hidden;
+
+    &__image {
+      margin: 10px 0;
+    }
+
+    &:before {
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server}b2bccccf-mobile_phone%26tablet.png') center center no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height: 80%;
+        overflow: visible;
+        position: absolute;
+        right: -24vw;
+        top: 10%;
+        width: 70vw;
+      }
+
+      @media only screen and (min-width : 769px) {
+        right: 2vw;
+        width: 47vw;
+      }
+
+      @media only screen and (min-width : 1400px) {
+        right: 2vw;
+        width: 50vw;
+      }
+    }
+  }
+
+  .devices {
+    table-layout: fixed;
+
+    &__title {
+      font-weight: 400;
+    }
+
+    &__item {
+      text-align: left;
+      vertical-align: top;
+    }
+
+    &__image {
+      margin-bottom: 10px;
+      max-height: 200px;
+    }
+  }
+}
