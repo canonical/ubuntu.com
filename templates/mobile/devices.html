@@ -2,21 +2,181 @@
 
 {% block title %}Devices | Ubuntu for mobile{% endblock %}
 
-{% block meta_description %}{% endblock %}
-
-{% block meta_keywords %}{% endblock %}
+{% block meta_keywords %}Ubuntu tablet, Ubuntu for tablets, Ubuntu Edition, Ubuntu, tablet Ubuntu, lightweight laptop, thin laptop, Linux tablet, Linux tablets, Linux on tablet, Linux for tablets, tablet Linux, screen replacement, Laptop and tablet, hybrid tablet, hybrid laptop, laptop replacement, laptop replacement screens, laptop screen replacement, convertible laptop, 2 in 1 laptop, two in one laptop, laptop battery replacement, Ubuntu convergence, Ubuntu tablet convergence, BQ Aquaris, BQ Aquaris M10, BQ tablet
+Ubuntu smartphone, Ubuntu smartphones, smartphone Ubuntu, Ubuntu phone, Ubuntu phones, Ubuntu mobile phone, Ubuntu mobile phones, Ubuntu for phone, Meizu Ubuntu phone, Meizu phone, Meizu phones, Ubuntu convergence, Ubuntu phone convergence, Meizu MX4, Meizu MX4 Ubuntu Edition, Mobile Meizu{% endblock %}
 
 {% block extra_body_class %}mobile-home{% endblock %}
 
 {% block second_level_nav_items %}
     <div class="strip-inner-wrapper">
-        {% include "templates/_nav_breadcrumb.html" with section_title="Mobile" page_title="Overview"  %}
+        {% include "templates/_nav_breadcrumb.html" with section_title="Mobile" page_title="Devices"  %}
     </div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
 
-[DEVICES]
+<section class="row row-hero">
+    <div class="strip-inner-wrapper">
+        <div class="six-col">
+            <h1>Mobile devices</h1>
+            <p>The Ubuntu experience is available on a number of commercial devices. </p>
+            <ul class="list-ubuntu">
+                <li>Mobile devices that  turn into PCs*</li>
+                <li>Applications that follow you from mobile to PC</li>
+                <li>Fast access to content through scopes</li>
+            </ul>
+            <p class="note">* Selected models only</p>
+        </div>
+    </div>
+</section>
+
+<section itemscope itemtype="https://schema.org/Product" class="row strip-light">
+    <div class="strip-inner-wrapper">
+        <div class="device-image five-col append-one align-center not-for-small">
+            <p><img itemprop="image" src="{{ ASSET_SERVER_URL }}954529ef-Front-Portrait.png?w=400" alt="BQ Aquaris M10" /></p>
+        </div>
+        <div class="six-col last-col">
+            <h2 itemprop="name">BQ Aquaris M10 Ubuntu Edition tablet</h2>
+            <img class="for-small" itemprop="image" src="{{ ASSET_SERVER_URL }}bf7ba998-Front-Landscape.png?w=480" alt="BQ E5" />
+            <div class="six-col">
+                <ul itemprop="description" class="list-ticks">
+                    <li>10.1 inch multi-touch screen</li>
+                    <li>MediaTek Quad Core MT8163A processor up to 1.5GHz</li>
+                    <li>High capacity Li-Po battery (7280mAh)</li>
+                    <li>Full HD (1080p) camera for super-sharp video recording</li>
+                    <li>2GB RAM and 16GB internal memory</li>
+                    <li>MicroSD slot for extra storage (up to 64GB)</li>
+                    <li>8 megapixel rear camera with autofocus and 5 megapixel front camera</li>
+                    <li>Frontal speakers</li>
+                    <li>Micro HDMI port</li>
+                    <li>Dimensions: 246 x 171 x 8.2mm</li>
+                    <li>Lightweight at only 470g</li>
+                </ul>
+            </div>
+            <p><a itemprop="url" class="button--primary" href="https://store.bq.com/en/ubuntu-edition-aquaris-m10?utm_source=Ubuntu.com_devices&amp;utm_medium=Button&amp;utm_campaign=m10-ubuntu-edition-canonical&amp;"><span class="external">Buy now</span></a></p>
+        </div>
+    </div>
+</section>
+
+<section class="row strip-light">
+    <div class="strip-inner-wrapper">
+        <div class="eight-col">
+            <h2>Ubuntu Phone lineup</h2>
+            <p>Ubuntu Phone is available on a growing range of commercial handsets which you can explore below.</p>
+            <p>Note: All our phones are currently sold out, but new devices will be coming soon.</p>
+        </div>
+    </div>
+</section>
+
+<section class="row strip">
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col">
+            <h2>Sign up to our devices newsletter for the latest on Ubuntu mobile</h2>
+        </div>
+        <div class="eight-col">
+            {% include "mobile/shared/_devices_newsletter.html" %}
+        </div>
+    </div>
+</section>
+
+<section class="row strip-light no-border">
+    <div class="strip-inner-wrapper">
+        <div class="eight-col">
+            <h2>Previous devices</h2>
+        </div>
+        <table class="devices">
+            <tr>
+                <td>&nbsp;</td>
+                <th class="devices__title align-center">
+                    <img class="devices__image" src="{{ ASSET_SERVER_URL }}31de2bd6-bq-e4.5-single.png" alt="BQ Aquaris E4.5" />
+                    <p>BQ Aquaris E4.5</p>
+                </th>
+                <th class="devices__title align-center">
+                    <img class="devices__image" itemprop="image" src="{{ ASSET_SERVER_URL }}db45d440-bq-e5-single.png" alt="BQ Aquaris E5" />
+                    <p>BQ Aquaris E5</p>
+                </th>
+                <th class="devices__title align-center">
+                    <img class="devices__image" src="{{ ASSET_SERVER_URL }}1e629b35-meizu-mx4-single.png?w=296" alt="Meizu MX4" />
+                    <p>Meizu MX4 Ubuntu Edition</p>
+                </th>
+                <th class="devices__title align-center">
+                    <img class="devices__image" src="{{ ASSET_SERVER_URL }}0d1e4e42-meizu-pro5-single.png" alt="Meizu Pro 5" />
+                    <p>Meizu PRO 5</p>
+                </th>
+            </tr>
+            <tr>
+                <th class="devices__title">Dimensions</th>
+                <td class="devices__item"><p>137 x 67 x 9mm</p></td>
+                <td class="devices__item"><p>142 x 71 x 8.65mm</p></td>
+                <td class="devices__item"><p>144 x 75.2 x 8.9mm</p></td>
+                <td class="devices__item"><p>156.7 x 78 x 7.5mm</p></td>
+            </tr>
+            <tr>
+                <th class="devices__title">Weight</th>
+                <td class="devices__item"><p>123g</p></td>
+                <td class="devices__item"><p>134g</p></td>
+                <td class="devices__item"><p>147g</p></td>
+                <td class="devices__item"><p>168g</p></td>
+            </tr>
+            <tr>
+                <th class="devices__title">Camera</th>
+                <td class="devices__item"><p>8 megapixel</p></td>
+                <td class="devices__item"><p>13 megapixel</p></td>
+                <td class="devices__item"><p>20.7 megapixel rear<br />2 megapixel front</p></td>
+                <td class="devices__item"><p>21.16 megapixel rear<br />5 megapixel front</p></td>
+            </tr>
+            <tr>
+                <th class="devices__title">Processor</th>
+                <td class="devices__item"><p>Quad-core: 1.3GHz</p></td>
+                <td class="devices__item"><p>Quad-core: 1.3GHz</p></td>
+                <td class="devices__item"><p>Octa-core: 1.7GHz</p></td>
+                <td class="devices__item"><p>Octa-core: 4x2.1 GHz, 4x1.5 GHz</p></td>
+            </tr>
+            <tr>
+                <th class="devices__title">Memory</th>
+                <td class="devices__item"><p>1GB</p></td>
+                <td class="devices__item"><p>1GB</p></td>
+                <td class="devices__item"><p>2GB</p></td>
+                <td class="devices__item"><p>3GB</p></td>
+            </tr>
+            <tr>
+                <th class="devices__title">Storage</th>
+                <td class="devices__item"><p>8GB + MicroSD slot</p></td>
+                <td class="devices__item"><p>16 GB + MicroSD slot</p></td>
+                <td class="devices__item"><p>16GB</p></td>
+                <td class="devices__item"><p>32GB + MicroSD slot</p></td>
+            </tr>
+            <tr>
+                <th class="devices__title">Price</th>
+                <td class="devices__item"><p>&euro;169.90</p></td>
+                <td class="devices__item"><p>&euro;199.90</p></td>
+                <td class="devices__item"><p>&euro;299</p></td>
+                <td class="devices__item"><p>$369.99</p></td>
+            </tr>
+        </table>
+        <div class="eight-col">
+            <h3>Alternatively, flash your own device</h3>
+            <p>Anyone can install Ubuntu on compatible phones.</p>
+            <p><a href="https://developer.ubuntu.com/en/phone/devices/installing-ubuntu-for-devices/" class="external">Find out how to install Ubuntu on a mobile device</a></p>
+        </div>
+    </div>
+</section>
+
+<section class="row strip-dark no-border row-iot">
+    <div class="strip-inner-wrapper equal-height">
+        <div class="five-col append-one equal-height__item equal-height__align-vertically">
+            <h2>Did you know Ubuntu is available on IoT devices too?</h2>
+            <div class="twelve-col for-small">
+                <img src="{{ ASSET_SERVER_URL }}763a9500-IOT_overview_graphic.svg" alt="" class="row-hero__image" />
+            </div>
+            <p>Powered by <a href="/core">Ubuntu Core</a>, the small and secure version of Ubuntu for IoT, a number of consumer and professional devices are available from Canonical partners. From the NextCloud Box, which lets you build your private home cloud, to Screenly, which will power your digital display screens, Ubuntu is present from robotics and digital signage to industrial and home gateways.</p>
+            <p><a href="/internet-of-things">Find out more about Ubuntu on the Internet of Things&nbsp;&rsaquo;</a></p>
+        </div>
+        <div class="six-col last-col equal-height__item equal-height__align-vertically not-for-small">
+            <img src="{{ ASSET_SERVER_URL }}763a9500-IOT_overview_graphic.svg" alt="" class="row-hero__image" />
+        </div>
+    </div>
+</section>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_phone_partners_developers" second_item="_devices_newsletter_signup" third_item="_phone_further_reading" %}
 
