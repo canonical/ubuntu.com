@@ -65,7 +65,7 @@
     @media only screen and (min-width : $breakpoint-large) {
       background-image: url('#{$asset-server}19213020-intro-row.jpg?w=1300');
       background-size: cover;
-      min-height: 580px;
+      min-height: 554px;
       overflow: visible;
       position: relative;
     }
@@ -90,7 +90,7 @@
       display: none;
       height: 0;
       left: 0;
-      min-height: 588px;
+      min-height: 554px;
       padding-bottom: 56.25%; //* 16:9 *//
       position: absolute;
       top: 0;
@@ -98,6 +98,16 @@
 
       .close-video {
         display: none;
+      }
+
+      iframe {
+        @media only screen and (min-width : $breakpoint-medium) {
+          height: 400px;
+        }
+
+        @media only screen and (min-width : $breakpoint-large) {
+          height: 554px;
+        }
       }
 
       &.show {
