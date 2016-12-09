@@ -6,6 +6,7 @@
       background-position: 32% 42%;
       background-repeat: no-repeat;
       background-size: cover;
+      border: none;
       color: $white;
     }
 
@@ -55,8 +56,9 @@
       background: $white url('#{$asset-server}19213020-intro-row.jpg?w=984') no-repeat;
       background-position: 40% 30%;
       background-size: 115%;
+      border: none;
       color: $white;
-      height: 529px;
+      height: 400px;
       padding-top: 40px;
     }
 
@@ -66,34 +68,6 @@
       min-height: 580px;
       overflow: visible;
       position: relative;
-    }
-
-    h1 {
-      padding-top: 0;
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        margin-top: 40px;
-      }
-
-      @media only screen and (min-width : $breakpoint-large) {
-        margin-top: 80px;
-      }
-    }
-
-    .intro {
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        font-size: 1.4375rem;
-      }
-    }
-
-    .for-mobile {
-      margin: 0 -10px 10px;
-
-      img {
-        height: auto;
-        width: 100%;
-      }
     }
 
     .video-container.for-mobile {
@@ -173,9 +147,23 @@
     a {
       outline: none;
     }
+
+    &__content {
+      @media only screen and (min-width : $breakpoint-medium) {
+        margin-top: 10vw;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        margin-top: 100px;
+      }
+    }
   }
 
   .row--enabled-devices {
+    @media only screen and (min-width : $breakpoint-medium) {
+      border: none;
+    }
+
     &:before {
       @media only screen and (min-width : $breakpoint-medium) {
         background-image: url('#{$asset-server}ffc49bc1-tablet-coming-soon.png?w=800');
