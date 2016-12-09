@@ -15,22 +15,22 @@ core.setupAnimations = function() {
         }
     }
 
-    // Add the click event to display and close a video on the phone
+    // Add the click event to display and close a video on the mobile
     // overview page
-    if (document.body.classList.contains('phone-home')) {
+    if (document.body.classList.contains('mobile-home')) {
         var videoPanel = document.querySelector('.the-video');
         var showVideo = document.querySelector('.show-video');
         var closeVideoLink = document.querySelector('.close-vid-link');
         var closeVideo = document.querySelector('.close-video');
         var rowHero = document.querySelector('.row-hero');
-        var rowContent = document.querySelector('.row-content');
+        var rowContent = document.querySelector('.row--fingertips__content');
 
         if (showVideo) {
             showVideo.addEventListener('click', function(e) {
                 e.preventDefault();
                 closeVideoLink.style.display = 'block';
                 videoPanel.classList.add('show');
-                rowHero.style.height = '588px';
+                rowHero.style.height = '554px';
                 rowContent.classList.remove('show-me');
                 rowContent.classList.add('hide-me');
                 videoPanel.innerHTML = '<iframe width="984" height="554" src="https://www.youtube.com/embed/-dpfHYpfEXY?showinfo=0&vq=hd1080&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe>';
@@ -42,7 +42,7 @@ core.setupAnimations = function() {
                 e.preventDefault();
                 closeVideoLink.style.display = 'none';
                 videoPanel.classList.remove('show');
-                rowHero.style.height = '678px';
+                rowHero.style.height = '554px';
                 rowContent.classList.remove('hide-me');
                 rowContent.classList.add('show-me');
                 videoPanel.innerHTML = '';
