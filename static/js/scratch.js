@@ -52,7 +52,7 @@ core.setupAnimations = function() {
 
     // Adds a scroll listener to the homepage which adds a class of `run`
     // to the slider-animation element.
-    if (document.body.classList.contains('homepage')) {
+    if (document.body.classList.contains('homepage') || document.body.classList.contains('mobile-home')) {
         var sliderAnimation = document.querySelector('.slider-animation');
         if (sliderAnimation) {
             window.addEventListener('scroll', function(e) {
