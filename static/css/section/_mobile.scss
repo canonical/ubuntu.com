@@ -1,5 +1,11 @@
 .mobile-home {
 
+  .row-hero {
+    @media only screen and (min-width : $breakpoint-medium) {
+      border-bottom: 0; 
+    }
+  }
+
   .row--devices {
     overflow: hidden;
 
