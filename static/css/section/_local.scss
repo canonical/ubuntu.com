@@ -575,11 +575,19 @@ html.js .resource:hover a {
   }
 }
 
+.not-for-large {
+
+  @media only screen and (min-width: 1024px) {
+    display: none !important;
+  }
+}
+
 // XXX Ant (10.04.2016)
 // Move to Vanilla
-// Untility class for-medium fix
+// Utility class for-medium fix
 .for-medium,
 .for-tablet {
+
   @media only screen and (max-width: $breakpoint-medium) {
     display: block;
   }
