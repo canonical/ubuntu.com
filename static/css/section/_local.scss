@@ -243,13 +243,12 @@ body {
 .internet-of-things,
 .homepage,
 .internet-of-things,
-.phone,
 .desktop,
 .core,
 .server,
 .support,
-.tablet,
-.ubuntu-search {
+.ubuntu-search,
+.mobile {
   .wrapper {
     background: none;
     max-width: 100%;
@@ -294,11 +293,10 @@ body {
 .desktop,
 .download,
 .internet-of-things,
-.phone,
 .core,
 .server,
 .support,
-.tablet {
+.mobile {
   .row {
     padding: 20px 10px 0;
 
@@ -577,11 +575,19 @@ html.js .resource:hover a {
   }
 }
 
+.not-for-large {
+
+  @media only screen and (min-width: 1024px) {
+    display: none !important;
+  }
+}
+
 // XXX Ant (10.04.2016)
 // Move to Vanilla
-// Untility class for-medium fix
+// Utility class for-medium fix
 .for-medium,
 .for-tablet {
+
   @media only screen and (max-width: $breakpoint-medium) {
     display: block;
   }

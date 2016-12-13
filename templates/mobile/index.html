@@ -1,0 +1,129 @@
+{% extends "mobile/base_mobile.html" %}
+
+{% block title %}Ubuntu for phones and tablets{% endblock %}
+
+{% block meta_description %}Ubuntu is the perfect operating system for manufacturers who want to build mobile devices for either the consumer or enterprise market. Ubuntu represents a remarkable opportunity for OEMs, content providers and app developers.{% endblock %}
+
+{% block meta_keywords %}
+Ubuntu phone, Ubuntu tablet, convergence, mobile, IoT, devices, Linux phone, Linux tablet, Laptop and tablet, hybrid tablet, hybrid laptop, laptop replacement, laptop replacement screens, laptop screen replacement, convertible laptop, 2 in 1 laptop, two in one laptop
+{% endblock %}
+
+{% block extra_body_class %}mobile-home{% endblock %}
+
+{% block second_level_nav_items %}
+    <div class="strip-inner-wrapper">
+        {% include "templates/_nav_breadcrumb.html" with section_title="Mobile" page_title="Overview"  %}
+    </div>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+
+<section class="row row-hero row--devices">
+    <div class="strip-inner-wrapper">
+        <div class="six-col">
+            <h1>Everything you need from a PC &mdash; in a tablet or phone</h1>
+            <p class="clear">Enjoy all the power of a PC on your tablet or phone &mdash; at home, at work or on the move.</p>
+            <ul class="list-ticks--compact">
+                <li>Connect a wireless mouse and a keyboard to enter PC mode</li>
+                <li>Use two apps simultaneously with the Side Stage</li>
+                <li>Use all the PC apps you need: email, the web and office apps</li>
+            </ul>
+        </div>
+        <div class="six-col last-col">
+            <div class="slider-animation for-large">
+                <div id="device-morph">
+                    <div id="devices">
+                        <div id="device-phone"><div></div></div>
+                        <div id="device-tablet"><div></div></div>
+                        <div id="device-laptop"><img src="{{ ASSET_SERVER_URL }}a0ae228b-laptop-base.png" alt="" /><div></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="not-for-large align-center">
+                <img srcset="{{ ASSET_SERVER_URL }}0a597e81-mobile_overview-hero.png?w=750 2x" src="{{ ASSET_SERVER_URL }}0a597e81-mobile_overview-hero.png?w=375" alt="Phone and tablet on the albums screen" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="row row--beautiful-design">
+    <div class="strip-inner-wrapper">
+        <div class="eight-col for-small">
+            <img srcset="{{ ASSET_SERVER_URL }}91d3d632-beautiful-features.jpg?w=750 2x" src="{{ ASSET_SERVER_URL }}91d3d632-beautiful-features.jpg?w=375" alt="Calendar app on Ubuntu phone"/>
+        </div>
+        <div class="four-col last-col">
+            <h2>Beautifully designed&nbsp;features</h2>
+            <p>Ubuntu mobile has been designed with obsessive attention to detail. Form follows function throughout, from the ever-changing welcome screen to essentials like messaging and alarms.</p>
+            <p>Today&rsquo;s mobile devices are as powerful as ultra-light laptops, which means they are now capable of convergence. They can be connected to a keyboard, mouse and monitor &mdash; and used as a full PC.</p>
+            <p><a href="/mobile/features">See what Ubuntu can do&nbsp;&rsaquo;</a></p>
+        </div>
+    </div>
+</section>
+
+<section class="row row--enabled-devices">
+    <div class="strip-inner-wrapper equal-height">
+        <div class="prepend-seven five-col row--enabled-devices__content equal-height__item equal-height__align-vertically">
+            <h2>Ubuntu enabled devices</h2>
+            <p>Canonical and its partners regularly release new Ubuntu phones and tablets.</p>
+            <p><a href="/mobile/devices">Learn more about the devices available&nbsp;&rsaquo;</a></p>
+        </div>
+    </div>
+</section>
+
+<section class="row row--fingertips">
+    <div class="strip-inner-wrapper">
+        <p class="close-vid-link">
+            <a href="#" class="slideless close-video">Close the video <img src="https://assets.ubuntu.com/v1/c51c1c63-close-button.png" width="24" height="24" alt=""></a>
+        </p>
+        <div class="the-video">
+            <div></div>
+        </div>
+        <div class="row--fingertips__content hide-me show-me">
+            <div class="five-col">
+                <h2>Life at your fingertips</h2>
+                <p>Ubuntu introduces a new way to enjoy content and services on your phone, without relying on&nbsp;traditional apps.</p>
+                <p class="video-link"><a href="#_" class="show-video button--primary">Watch the video</a></p>
+            </div>
+            <div class="five-col mobile-vid for-mobile">
+                <div class="video-container for-mobile">
+                    <iframe src="https://www.youtube.com/embed/-dpfHYpfEXY" allowfullscreen=""></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="row row--developers strip-light">
+    <div class="strip-inner-wrapper">
+        <div class="five-col not-for-small">
+            <img src="{{ ASSET_SERVER_URL }}12b46991-apps-grid.png" alt="A selection of Ubuntu apps" />
+        </div>
+        <div class="six-col prepend-one last-col">
+            <h2>Develop once for multiple form factors</h2>
+            <div class="five-col for-small align-center">
+                <img src="{{ ASSET_SERVER_URL }}12b46991-apps-grid.png?w=480" width="320" alt="A selection of Ubuntu apps" />
+            </div>
+            <p>With Ubuntu, developers can use the SDK toolkit to write a single native app that runs on Ubuntu phone, tablet and PC. Developers have a choice of programming languages and tools to use that spans native QML and HTML5, plus comprehensive API support for Cordova and JavaScript application frameworks.</p>
+            <p><a href="/tablet/developers">Learn more about app development&nbsp;&rsaquo;</a></p>
+        </div>
+    </div>
+</section>
+
+<section class="row no-border">
+    <div class="strip-inner-wrapper">
+        <div class="eight-col">
+            <h2>Perfect for partners</h2>
+            <p>Ubuntu enables hardware makers to create phone and tablets of all kinds, including enterprise-grade convergent devices that can eliminate the need for conventional PCs in the workplace. Build anything from low-cost consumer electronics to enterprise-grade convergence devices for the office &mdash; and Ubuntu makes a great platform for ruggedised, industrial and military hardware.</p>
+            <p><a href="/mobile/partners">Learn more about building devices&nbsp;&rsaquo;</a></p>
+        </div>
+        <div class="three-col prepend-one last-col not-for-small">
+            <img src="{{ ASSET_SERVER_URL }}03c5463a-picto-business-warmgrey.svg" alt="" />
+        </div>
+    </div>
+</section>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_phone_partners_developers" second_item="_devices_newsletter_signup" third_item="_phone_further_reading" %}
+
+{% include "shared/_device_animation.html" %}
+
+{% endblock content %}
