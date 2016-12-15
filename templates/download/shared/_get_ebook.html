@@ -133,15 +133,17 @@ afterSubmit = function() {
 * to disable the normal submit, and instead use backgroundSubmit
 */
 
-backgroundSubmitHandler = function (submitEvent) {
-    // Prevent normal submit
-    submitEvent.preventDefault ? submitEvent.preventDefault() : submitEvent.returnValue = false;
-    // Check form is valid
-    if ($(marketoForm).valid()) {
-        // Change the submit location
-        marketoForm.action = "https://app-sjg.marketo.com/index.php/leadCapture/save2"
-        // Submit the form in the background
-        backgroundSubmit(marketoForm, afterSubmit);
+backgroundSubmitHandlerClosure = function($) {
+    return function (submitEvent) {
+        // Prevent normal submit
+        submitEvent.preventDefault ? submitEvent.preventDefault() : submitEvent.returnValue = false;
+        // Check form is valid
+        if ($(marketoForm).valid()) {
+            // Change the submit location
+            marketoForm.action = "https://app-sjg.marketo.com/index.php/leadCapture/save2"
+            // Submit the form in the background
+            backgroundSubmit(marketoForm, afterSubmit);
+        }
     }
 }
 
@@ -149,5 +151,8 @@ backgroundSubmitHandler = function (submitEvent) {
 marketoForm = document.getElementById('mktoForm_1460');
 
 // Attach the submit handler to the form
-marketoForm.addEventListener('submit', backgroundSubmitHandler)
+marketoForm.addEventListener(
+    'submit',
+    backgroundSubmitHandlerClosure(jQuery)
+)
 </script>
