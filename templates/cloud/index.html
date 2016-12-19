@@ -17,13 +17,34 @@
 {% block content %}
 <section class="row row-hero no-border strip-light">
     <div class="strip-inner-wrapper">
-        <div class="hero-content twelve-col">
+        <div class="hero-content six-col">
             <h1>Build your cloud strategy with Ubuntu</h1>
             <p class="intro">70% of public cloud workloads and 55% of OpenStack clouds run on Ubuntu.<a href="#fn1" id="r1">*</a></p>
         </div>
-        <div class="twelve-col no-margin-bottom last-col">
-            <div class="video-container">
-                <iframe width="906" height="500" src="https://www.youtube.com/embed/RiEZB1-83wQ?rel=0&amp;&amp;hd=1" frameborder="0" allowfullscreen></iframe>
+        <div class="six-col" style="padding-bottom: 2em;">
+            <ul class="list-ubuntu--compact">
+                <li>Create your own private cloud with <a class="ab-link-test" href="/cloud/openstack/autopilot">OpenStack Autopilot</a></li>
+                <li>Get us to build and manage your OpenStack cloud with&nbsp;<a class="ab-link-test" href="/cloud/openstack/managed-cloud">BootStack</a></li>
+                <li>Deploy applications to any cloud with <a class="ab-link-test" href="/cloud/juju">Juju</a></li>
+                <li>Get cloud-style automation for physical servers with <a class="ab-link-test" href="/server/maas">MAAS</a></li>
+                <li>Use Ubuntu on certified <a class="ab-link-test" href="/cloud/public-cloud">public clouds</a></li>
+            </ul>
+        </div>
+        <div class="cloud-tools not-for-small">
+            <div class="cloud-tools__container">
+                <a class="cloud-tools__item cloud-tools__item--one" href="/cloud/openstack" title="OpenStack">OpenStack</a>
+                <span class="cloud-tools__item cloud-tools__item--line cloud-tools__item--line-one"></span>
+                <a class="cloud-tools__item cloud-tools__item--two" href="/cloud/openstack/managed-cloud" title="BootStack">BootStack</a>
+                <span class="cloud-tools__item cloud-tools__item--line cloud-tools__item--line-two"></span>
+                <a class="cloud-tools__item cloud-tools__item--three" href="/cloud/tools/juju" title="Juju">Juju</a>
+                <span class="cloud-tools__item cloud-tools__item--line cloud-tools__item--line-three"></span>
+                <a class="cloud-tools__item cloud-tools__item--four" href="/server/maas" title="MAAS">MAAS</a>
+                <span class="cloud-tools__item cloud-tools__item--line cloud-tools__item--line-four"></span>
+                <a class="cloud-tools__item cloud-tools__item--five" href="/cloud/openstack/autopilot" title="Autopilot">Autopilot</a>
+                <span class="cloud-tools__item cloud-tools__item--line cloud-tools__item--line-five"></span>
+                <a class="cloud-tools__item cloud-tools__item--six" href="/cloud/public-cloud" title="Public cloud">Public cloud</a>
+                <span class="cloud-tools__item cloud-tools__item--line cloud-tools__item--line-six"></span>
+                <span class="cloud-tools__item cloud-tools__item--seven">Ubuntu</span>
             </div>
         </div>
     </div>
@@ -41,12 +62,11 @@
                 <li>Rapid scaling to add more capacity when you need it</li>
                 <li>Includes management tooling and commercial support from Canonical</li>
             </ul>
-            <p><a href="/download/cloud" class="button--primary">Get OpenStack Autopilot</a></p>
-            <p><a href="/cloud/openstack/autopilot">Learn more about Autopilot&nbsp;&rsaquo;</a></p>
+            <p><a href="/cloud/openstack/autopilot" class="button--primary">Get OpenStack Autopilot</a></p>
         </div>
         <div class="box four-col last-col">
             <h3>Do it yourself?</h3>
-            <p>Manually deploy OpenStack services with Juju.</p>
+            <p>Manually deploy OpenStack services with MAAS and Juju.</p>
             <ul>
                 <li>Bare metal install</li>
                 <li>Guided process</li>
@@ -54,7 +74,7 @@
                 <li>Unmanaged</li>
                 <li>Manual upgrades</li>
             </ul>
-            <p><a href="https://help.ubuntu.com/lts/clouddocs/installer/" class="external">Find out how</a></p>
+            <p><a href="https://help.ubuntu.com/" class="external">Find out how</a></p>
         </div>
     </div>
 </section>
@@ -68,17 +88,15 @@
 <section class="row strip-dark no-border">
     <div class="strip-inner-wrapper">
         <div class="eight-col">
-            <h2>Canonical BootStack is a fully managed private cloud on OpenStack</h2>
+            <h2>BootStack is a fully managed private cloud on OpenStack</h2>
         </div>
         <div class="six-col">
             <ul class="list-ticks--compact">
-                <li>We&rsquo;ll set up an OpenStack cloud on your premises and operate it according to an agreed SLA</li>
+                <li>We&rsquo;ll build an OpenStack cloud on your premises or hosted environment and operate it according to an agreed SLA</li>
                 <li>We&rsquo;ll train your staff to run it</li>
                 <li>When you&rsquo;re ready, we&rsquo;ll hand over the keys</li>
-                <li>&dollar;15 per day per server</li>
-                <li>&dollar;0.05 per hour per fully managed VM</li>
             </ul>
-            <p><a href="/cloud/openstack/managed-cloud#calculator-form" class="button--primary">Calculate your savings</a></p>
+            <p><a href="/cloud/openstack/managed-cloud" class="button--primary">Let us build, operate and transfer your cloud</a></p>
         </div>
         <div class="six-col last-col text-center">
             <img src="{{ ASSET_SERVER_URL }}466046c7-illustration-cloud-bootstack.svg?w=320" alt="" class="not-for-small" width="320" />
