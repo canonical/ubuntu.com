@@ -1,12 +1,12 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Create a USB stick on OS X{% endblock %}
+{% block title %}Create a USB stick on macOS{% endblock %}
 
 {% block extra_body_class %}download-help{% endblock %}
 
 {% block second_level_nav_items %}
 <div class="strip-inner-wrapper">
-    {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to create a bootable USB stick on OS X"  %}
+    {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Desktop" page_title="How to create a bootable USB stick on macOS"  %}
 </div>
 {% endblock second_level_nav_items %}
 
@@ -14,7 +14,7 @@
 <div class="row row-hero no-padding-bottom">
     <div class="strip-inner-wrapper">
         <div class="nine-col append-one">
-            <h1>How to create a bootable USB stick on OS X</h1>
+            <h1>How to create a bootable USB stick on macOS</h1>
             <p>Before you begin, you need to <a href="/download">download Ubuntu</a> and, if you want, <a href="/download/how-to-verify">verify the download</a>.</p>
             <p>To run or install Ubuntu on a Mac from a USB stick, the first thing you need to do is insert a USB stick with at least 2GB of free space into your PC.</p>
             <p>The easiest way to put Ubuntu onto your stick is to use the UNetbootin USB installer. You&rsquo;ll need to download and install and follow the instructions.</p>
@@ -31,19 +31,19 @@
             <li class="list-stepped__item">
                 <p>Launch UNetbootin and allow the osascript to make changes</p>
                 <div class="help-image">
-                    <a href="{{ ASSET_SERVER_URL }}6ee463ef-mac-usb-1-osautils.jpg?w=494" title="Click to enlarge image"><img src="{{ ASSET_SERVER_URL }}6ee463ef-mac-usb-1-osautils.jpg?w=494" alt="Type your password"></a>
+                    <a href="{{ ASSET_SERVER_URL }}081c9922-osascript-auth.png" title="Click to enlarge image"><img src="{{ ASSET_SERVER_URL }}081c9922-osascript-auth.png?w=494" alt="Type your password"></a>
                 </div>
             </li>
             <li class="list-stepped__item">
                 <p>Select the ‘Diskimage’ radio button and then click the '...’ button</p>
                 <div class="help-image">
-                    <a href="{{ ASSET_SERVER_URL }}85365387-mac-usb-2-select-diskimage.jpg?w=494" title="Click to enlarge image"><img src="{{ ASSET_SERVER_URL }}85365387-mac-usb-2-select-diskimage.jpg?w=494" alt="unetbootin"></a>
+                    <a href="{{ ASSET_SERVER_URL }}c9cf468c-unetbootin.png" title="Click to enlarge image"><img src="{{ ASSET_SERVER_URL }}c9cf468c-unetbootin.png?w=494" alt="unetbootin"></a>
                 </div>
             </li>
             <li class="list-stepped__item">
                 <p>Select the Ubuntu ISO file you downloaded and click 'Open'</p>
                 <div class="help-image">
-                    <a href="{{ ASSET_SERVER_URL }}1325c614-mac-usb-3-select-iso.jpg?w=494" title="Click to enlarge image"><img src="{{ ASSET_SERVER_URL }}1325c614-mac-usb-3-select-iso.jpg?w=494" alt="Select disk image"></a>
+                    <a href="{{ ASSET_SERVER_URL }}7cd52408-open-iso.png" title="Click to enlarge image"><img src="{{ ASSET_SERVER_URL }}7cd52408-open-iso.png?w=494" alt="Select disk image"></a>
                 </div>
             </li>
             <li class="list-stepped__item">
@@ -54,13 +54,13 @@
                     <p>with the drive <em>not</em> inserted and then inserted to see which one it is.</p>
                 </div>
                 <div class="help-image">
-                    <a href="{{ ASSET_SERVER_URL }}34ca8b8f-mac-usb-4-select-usb-drive.jpg?w=494" title="Click to enlarge image"><img src="{{ ASSET_SERVER_URL }}34ca8b8f-mac-usb-4-select-usb-drive.jpg?w=494" alt="unetbootin select drive"></a>
+                    <a href="{{ ASSET_SERVER_URL }}888e8078-unetbootin-after.png" title="Click to enlarge image"><img src="{{ ASSET_SERVER_URL }}888e8078-unetbootin-after.png?w=494" alt="unetbootin select drive"></a>
                 </div>
             </li>
             <li class="list-stepped__item">
                 <p>After UNetbootin finishes, click ‘Exit’ and restart your Mac</p>
                 <div class="help-image">
-                    <a href="{{ ASSET_SERVER_URL }}74bbe11c-mac-usb-5-done.jpg?w=494" title="Click to enlarge image"><img src="{{ ASSET_SERVER_URL }}74bbe11c-mac-usb-5-done.jpg?w=494" alt="unetbootin complete"></a>
+                    <a href="{{ ASSET_SERVER_URL }}888e8078-unetbootin-after.png" title="Click to enlarge image"><img src="{{ ASSET_SERVER_URL }}888e8078-unetbootin-after.png?w=494" alt="unetbootin complete"></a>
                 </div>
             </li>
             <li class="list-stepped__item">
