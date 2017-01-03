@@ -15,16 +15,13 @@
 #device-morph {
   margin: 0;
   padding: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 
 #devices {
   transform-origin: 0 0;
   width: 280px;
   height: 546px;
-  transform: rotate(0deg) scale(0.9,0.9) translateX(200px) translateY(-30px) translateZ(0px);
+  transform: rotate(0deg) scale(0.9,0.9) translateX(0) translateY(-30px) translateZ(0px);
   -webkit-box-shadow: 0 0 15px 2px rgba(238,238,238,1);
   -moz-box-shadow: 0 0 15px 2px rgba(238,238,238,1);
   box-shadow: 0 0 15px 2px rgba(238,238,238,1);
@@ -240,12 +237,14 @@ div.skrollable-before > #device-morph div IMG {
   }
 
   #devices {
-    transform: rotate(0deg) scale(0.9,0.9) translateX(100px) translateY(-15px);
+    transform: rotate(0deg) scale(0.9,0.9) translateX(0) translateY(5px);
     width: 140px;
     height: 273px;
   }
   @media only screen and (min-width: 768px) {
     #device-morph {
+      position: absolute;
+      left: 0;
       width: 492px;
       top: 240px;
     }
