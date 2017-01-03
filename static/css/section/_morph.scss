@@ -1,17 +1,17 @@
-#device-morph.no-morph
-{
-  background-image:url(//assets.ubuntu.com/v1/d7d98acc-no-tran-phone.png);
+#device-morph.no-morph {
+  background-image: url("//assets.ubuntu.com/v1/d7d98acc-no-tran-phone.png");
   background-repeat: no-repeat;
-  background-position: 0px 20px;
+  background-position: 0 20px;
 }
 
-#device-morph.no-morph div
-{
-  display:none;
+#device-morph.no-morph div {
+  display: none;
 }
+
 .device-morph-wrap {
   position: relative;
 }
+
 #device-morph {
   margin: 0;
   padding: 0;
@@ -21,14 +21,14 @@
 }
 
 #devices {
-  transform-origin:0px 0px;
-  width:280px;
-  height:546px;
+  transform-origin: 0 0;
+  width: 280px;
+  height: 546px;
   transform: rotate(0deg) scale(0.9,0.9) translateX(200px) translateY(-30px) translateZ(0px);
-  -webkit-box-shadow: 0px 0px 15px 2px rgba(238,238,238,1);
-  -moz-box-shadow: 0px 0px 15px 2px rgba(238,238,238,1);
-  box-shadow: 0px 0px 15px 2px rgba(238,238,238,1);
-  box-sizing:content-box;
+  -webkit-box-shadow: 0 0 15px 2px rgba(238,238,238,1);
+  -moz-box-shadow: 0 0 15px 2px rgba(238,238,238,1);
+  box-shadow: 0 0 15px 2px rgba(238,238,238,1);
+  box-sizing: content-box;
   position: relative;
   margin: 0 auto;
   cursor: pointer;
@@ -39,360 +39,253 @@
 }
 
 .row--devices .run {
-  #devices
-  {
+  #devices {
     animation-name: swooshWidth;
-    animation-delay:-0.4s;
-      animation-duration: 4s;
-      animation-direction: alternate;
-      animation-iteration-count: 2;
+    animation-delay: -0.4s;
+    animation-duration: 4s;
+    animation-direction: alternate;
+    animation-iteration-count: 2;
   }
 }
-#devices>div
-{
-  opacity: 0;
-  padding:0px;
-  width:100%;
-  height:100%;
 
+#devices > div {
+  opacity: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
   position: absolute;
-  top:0px;
-  left:0px;
+  top: 0;
+  left: 0;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  box-sizing:content-box;
-
-
-  background-repeat  : no-repeat,
-                       no-repeat,
-                       no-repeat,
-                       no-repeat,
-                       no-repeat,
-                       no-repeat,
-                       no-repeat,
-                       no-repeat,
-                       no-repeat;
-
-  background-position: top left,
-                       top right,
-                       bottom left,
-                       bottom right,
-                       top left,
-                       top left,
-                       top right,
-                       bottom left;
+  box-sizing: content-box;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  background-position: top left, top right, bottom left, bottom right, top left, top left, top right, bottom left;
 }
 
-#devices #device-phone
-{
+#devices #device-phone {
   opacity: 1;
-background-image   : url(//assets.ubuntu.com/v1/2c3ba39c-device_phone_tc2.png),
-          url(//assets.ubuntu.com/v1/f4a4523a-device_phone_tl.png),
-          url(//assets.ubuntu.com/v1/23338ec9-device_phone_br.png),
-          url(//assets.ubuntu.com/v1/70439812-device_phone_tr.png),
-          url(//assets.ubuntu.com/v1/4d5838d4-device_phone_bl.png),
-          url(//assets.ubuntu.com/v1/7f61904e-device_phone_tc.png),
-          url(//assets.ubuntu.com/v1/99c51932-device_phone_ml.png),
-                linear-gradient(to right, rgba(164, 164, 170, 1),  rgba(29, 26, 26, 1));
-background-position:  top center,
-            top left,
-                       bottom right,
-                       top right,
-                       bottom left,
-                       top left,
-                       top left,
-                       2px -2px;
+  background-image: url(//assets.ubuntu.com/v1/2c3ba39c-device_phone_tc2.png), url(//assets.ubuntu.com/v1/f4a4523a-device_phone_tl.png), url(//assets.ubuntu.com/v1/23338ec9-device_phone_br.png), url(//assets.ubuntu.com/v1/70439812-device_phone_tr.png), url(//assets.ubuntu.com/v1/4d5838d4-device_phone_bl.png), url(//assets.ubuntu.com/v1/7f61904e-device_phone_tc.png), url(//assets.ubuntu.com/v1/99c51932-device_phone_ml.png), linear-gradient(to right, rgba(164, 164, 170, 1), rgba(29, 26, 26, 1));
+  background-position: top center, top left, bottom right, top right, bottom left, top left, top left, 2px -2px;
 }
-.row--devices .run {
-  #device-phone
-  {
-      animation-name: swooshPhone;
-      animation-delay:-0.4s;
-      animation-duration: 4s;
-      animation-direction: alternate;
-      animation-iteration-count: 2;
-  }
-}
-#devices #device-laptop
-{
-  background-size: 100px,138px,140px,902px,140px,900px,16px,99%;
-background-image   : url(//assets.ubuntu.com/v1/9612cf16-device_laptop_bc2.png),
-          url(//assets.ubuntu.com/v1/fb5b8eee-device_laptop_tl.png),
-          url(//assets.ubuntu.com/v1/b5dc46bf-device_laptop_br.png),
-          url(//assets.ubuntu.com/v1/7b12fe81-device_laptop_bl.png),
-          url(//assets.ubuntu.com/v1/48f4c7a1-device_laptop_tr.png),
-          url(//assets.ubuntu.com/v1/babb0695-device_laptop_tc.png),
-          url(//assets.ubuntu.com/v1/2a608943-device_laptop_ml.png),
-          linear-gradient(to right, black,  black);
 
-background-position: bottom center,
-                      top left,
-                      bottom right,
-                      bottom left,
-                      top right,
-                      top left,
-                      top left,
-                      2px 2px;
-}
 .row--devices .run {
-  #devices #device-laptop
-  {
-      animation-name: swooshLaptop;
-      animation-delay:-0.4s;
-      animation-duration: 4s;
-      animation-direction: alternate;
-      animation-iteration-count: 2;
+  #device-phone {
+    animation-name: swooshPhone;
+    animation-delay: -0.4s;
+    animation-duration: 4s;
+    animation-direction: alternate;
+    animation-iteration-count: 2;
   }
 }
+
+#devices #device-laptop {
+  background-size: 100px,138px,140px,902px,140px,900px,16px,99%;
+  background-image: url(//assets.ubuntu.com/v1/9612cf16-device_laptop_bc2.png), url(//assets.ubuntu.com/v1/fb5b8eee-device_laptop_tl.png), url(//assets.ubuntu.com/v1/b5dc46bf-device_laptop_br.png), url(//assets.ubuntu.com/v1/7b12fe81-device_laptop_bl.png), url(//assets.ubuntu.com/v1/48f4c7a1-device_laptop_tr.png), url(//assets.ubuntu.com/v1/babb0695-device_laptop_tc.png), url(//assets.ubuntu.com/v1/2a608943-device_laptop_ml.png), linear-gradient(to right, black, black);
+  background-position: bottom center, top left, bottom right, bottom left, top right, top left, top left, 2px 2px;
+}
+
+.row--devices .run {
+  #devices #device-laptop {
+    animation-name: swooshLaptop;
+    animation-delay: -0.4s;
+    animation-duration: 4s;
+    animation-direction: alternate;
+    animation-iteration-count: 2;
+  }
+}
+
 #devices #device-laptop IMG {
-  display:block;
-  margin-left:-14%;
+  display: block;
+  margin-left: -14%;
   position: absolute;
-  bottom:-5%;
-  width:131%;
-  height:0%;
+  bottom: -5%;
+  width: 131%;
+  height: 0;
   max-width: 131%;
 }
 
 .row--devices .run {
   #device-laptop IMG {
-  animation-name: swooshLaptopKeyboard;
-  animation-delay:-0.4s;
+    animation-name: swooshLaptopKeyboard;
+    animation-delay: -0.4s;
     animation-duration: 4s;
     animation-direction: alternate;
     animation-iteration-count: 2;
-
   }
 }
-#devices #device-tablet
-{
 
-  background-size:77px, 137px, 157px, 138px,970px,896px,17px,98%;
-  background-position: top center,
-            top left,
-                       bottom right,
-                       top right,
-                       bottom left,
-                       top left,
-                       top left,
-                       2px 2px;
-background-image   : url(//assets.ubuntu.com/v1/a05e2032-device_tablet_tc2.png),
-          url(//assets.ubuntu.com/v1/a013d343-device_tablet_tl.png),
-          url(//assets.ubuntu.com/v1/0c7f2179-device_tablet_br.png),
-          url(//assets.ubuntu.com/v1/e049ceec-device_tablet_tr.png),
-          url(//assets.ubuntu.com/v1/0b18c8e7-device_tablet_bl.png),
-          url(//assets.ubuntu.com/v1/e7035ebc-device_tablet_tc.png),
-          url(//assets.ubuntu.com/v1/8cec3319-device_tablet_ml.png),
-                linear-gradient(to right, rgba(164, 164, 170, 1),  rgba(29, 26, 26, 1));
-
-
+#devices #device-tablet {
+  background-size: 77px, 137px, 157px, 138px,970px,896px,17px,98%;
+  background-position: top center, top left, bottom right, top right, bottom left, top left, top left, 2px 2px;
+  background-image: url(//assets.ubuntu.com/v1/a05e2032-device_tablet_tc2.png), url(//assets.ubuntu.com/v1/a013d343-device_tablet_tl.png), url(//assets.ubuntu.com/v1/0c7f2179-device_tablet_br.png), url(//assets.ubuntu.com/v1/e049ceec-device_tablet_tr.png), url(//assets.ubuntu.com/v1/0b18c8e7-device_tablet_bl.png), url(//assets.ubuntu.com/v1/e7035ebc-device_tablet_tc.png), url(//assets.ubuntu.com/v1/8cec3319-device_tablet_ml.png), linear-gradient(to right, rgba(164, 164, 170, 1), rgba(29, 26, 26, 1));
 }
+
 .row--devices .run {
-  #devices #device-tablet
-  {
+  #devices #device-tablet {
     animation-name: swooshTablet;
-    animation-delay:-0.4s;
-      animation-duration: 4s;
-      animation-direction: alternate;
-      animation-iteration-count: 2;
+    animation-delay: -0.4s;
+    animation-duration: 4s;
+    animation-direction: alternate;
+    animation-iteration-count: 2;
   }
 }
-#devices div h1
-{
-  position:absolute;
-  top:-10%;
-}
-.row--devices .run {
 
-#devices div div
-{
-  opacity:inherit;
-  padding:0px;
-  margin-bottom:0;
-  border: solid 1px #000;
-  position:relative;
-  margin-left:auto;
-  margin-right:auto;
-  background-color:#1f1f25;
-  background-repeat: no-repeat;
+#devices div h1 {
+  position: absolute;
+  top: -10%;
 }
-}
+
 .row--devices .run {
-  #devices div div
-  {
-    animation-name: screenWidths;
-    animation-delay:-0.4s;
-      animation-duration: 4s;
-      animation-direction: alternate;
-      animation-iteration-count: 2;
+  #devices div div {
+    opacity: inherit;
+    padding: 0;
+    margin-bottom: 0;
+    border: solid 1px #000;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #1f1f25;
+    background-repeat: no-repeat;
   }
 }
-#devices.playing.paused div.skrollable-after>#device-morph div,div.skrollable-after>#device-morph div IMG,div.skrollable-before>#device-morph div,div.skrollable-before>#device-morph div IMG
-{
+
+.row--devices .run {
+  #devices div div {
+    animation-name: screenWidths;
+    animation-delay: -0.4s;
+    animation-duration: 4s;
+    animation-direction: alternate;
+    animation-iteration-count: 2;
+  }
+}
+
+#devices.playing.paused div.skrollable-after > #device-morph div,
+div.skrollable-after > #device-morph div IMG,
+div.skrollable-before > #device-morph div,
+div.skrollable-before > #device-morph div IMG {
   animation-play-state: paused;
 }
-#device-phone div
-{
-  width:85%; height:78%; margin-top:20%; margin-left: 7%;
-  background-image : url(//assets.ubuntu.com/v1/a3e33b07-phone-screen.jpg);
-}
-#device-tablet div
-{
-background-image : url(//assets.ubuntu.com/v1/acae4f52-tablet-screen.jpg);
-background-size: 688px;
-}
-#device-laptop div
-{
-background-image : url(//assets.ubuntu.com/v1/1b0e89fd-laptop-screen.jpg);
-background-size:960px;
+
+#device-phone div {
+  width: 85%;
+  height: 78%;
+  margin-top: 20%;
+  margin-left: 7%;
+  background-image: url("//assets.ubuntu.com/v1/a3e33b07-phone-screen.jpg");
 }
 
+#device-tablet div {
+  background-image: url("//assets.ubuntu.com/v1/acae4f52-tablet-screen.jpg");
+  background-size: 688px;
+}
 
-
-
-
-
-
-
-
-@media only screen and (max-width: 768px)
-{
-
-@keyframes swooshWidth {
-    0%,10% {
-      width:140px;
-    height:273px;
-    transform: rotate(0deg) scale(0.9,0.9) translateX(100px) translateY(-15px);animation-timing-function: ease-in-out;
-  }
-  /*18% {transform: rotate(0deg) scale(0.8,0.8) translateX(190px) translateY(-30px);width:368px;height:600px;animation-timing-function: ease-out}*/
-  40%,59% {
-    width:384px;
-    height:263px;
-    transform: rotate(0deg) scale(0.7,0.7) translateX(25px) translateY(25px);animation-timing-function: ease-in-out
-  }
-  /*70% {
+#device-laptop div {
+  background-image: url("//assets.ubuntu.com/v1/1b0e89fd-laptop-screen.jpg");
+  background-size: 960px;
+}
+@media only screen and (max-width: 768px) {
+   @keyframes swooshWidth{
+    0%,
+    10% {
+      width: 140px;
+      height: 273px;
+      transform: rotate(0deg) scale(0.9,0.9) translateX(100px) translateY(-15px);
+      animation-timing-function: ease-in-out;
+    }
+    /*18% {transform: rotate(0deg) scale(0.8,0.8) translateX(190px) translateY(-30px);width:368px;height:600px;animation-timing-function: ease-out}*/
+    40%,
+    59% {
+      width: 384px;
+      height: 263px;
+      transform: rotate(0deg) scale(0.7,0.7) translateX(25px) translateY(25px);
+      animation-timing-function: ease-in-out;
+    }
+    /*70% {
     transform: rotate(0deg) scale(0.7,0.7) translateX(130px) translateY(-40px);
     width:728px;
     height:560px;
     animation-timing-function: ease-out;
   }*/
-  90%,100% {
-    width:518px;
-    height:335px;
-    transform: rotate(0deg) scale(0.5,0.5) translateX(50px) translateY(50px);
+    100%,
+    90% {
+      width: 518px;
+      height: 335px;
+      transform: rotate(0deg) scale(0.5,0.5) translateX(50px) translateY(50px);
+    }
   }
-}
+  @keyframes screenWidths {
+    0%,
+    10% {
+      width: 85%;
+      height: 78%;
+      margin-top: 20%;
+      animation-timing-function: ease-in-out;
+    }
 
-@keyframes screenWidths {
-    0%,10% {width:85%; height:78%; margin-top:20%;animation-timing-function: ease-in-out
+    40%,
+    59% {
+      width: 83%;
+      height: 76%;
+      margin-top: 7.6%;
+      animation-timing-function: ease-in-out;
+    }
+
+    100%,
+    90% {
+      width: 93%;
+      height: 81%;
+      margin-top: 3%;
+    }
   }
-  40%,59% {width:83%; height:76%; margin-top:7.6%;animation-timing-function: ease-in-out
+
+  #devices {
+    transform: rotate(0deg) scale(0.9,0.9) translateX(100px) translateY(-15px);
+    width: 140px;
+    height: 273px;
   }
-  90%,100% {width:93%; height:81%; margin-top:3%;
+  @media only screen and (min-width: 768px) {
+    #device-morph {
+      width: 492px;
+      top: 240px;
+    }
   }
-}
 
-#devices
-{
-  transform: rotate(0deg) scale(0.9,0.9) translateX(100px) translateY(-15px);
-    width:140px;
-    height:273px;
-}
+  #device-phone div {
+    width: 85%;
+    height: 78%;
+    margin-top: 20%;
+    margin-left: 7%;
+    background-image: url("//assets.ubuntu.com/v1/111a9ea6-phone-screen.jpg");
+    background-size: 225px;
+  }
 
-#device-morph {
+  #device-tablet div {
+    background-image: url("//assets.ubuntu.com/v1/4c14b700-tablet-screen.jpg");
+    background-size: 344px;
+  }
 
-}
+  #device-laptop div {
+    background-image: url("//assets.ubuntu.com/v1/c4172cc4-laptop-screen.jpg");
+    background-size: 480px;
+  }
 
-@media only screen and (min-width: 768px) {
-#device-morph
-{
-width:492px;
-top: 240px;
-}
-}
-#device-phone div
-{
-  width:85%; height:78%; margin-top:20%; margin-left: 7%;
-  background-image : url(//assets.ubuntu.com/v1/111a9ea6-phone-screen.jpg);
-background-size:225px;
-}
-#device-tablet div
-{
-background-image : url(//assets.ubuntu.com/v1/4c14b700-tablet-screen.jpg);
-background-size: 344px;
-}
-#device-laptop div
-{
-background-image : url(//assets.ubuntu.com/v1/c4172cc4-laptop-screen.jpg);
-background-size:480px;
-}
+  #devices #device-phone {
+    opacity: 1;
+    background-size: 137px,68px,69px,69px,452px,448px,5px,98%;
+    background-image: url(//assets.ubuntu.com/v1/c836a5aa-device_phone_tc2.png), url(//assets.ubuntu.com/v1/c07ed6ce-device_phone_tl.png), url(//assets.ubuntu.com/v1/51b5a292-device_phone_br.png), url(//assets.ubuntu.com/v1/7735e4e4-device_phone_tr.png), url(//assets.ubuntu.com/v1/62967a44-device_phone_bl.png), url(//assets.ubuntu.com/v1/622f8066-device_phone_tc.png), url(//assets.ubuntu.com/v1/b73e4969-device_phone_ml.png), linear-gradient(to right, rgba(164, 164, 170, 1), rgba(29, 26, 26, 1));
+    background-position: top center, top left, bottom right, top right, bottom left, top left, top left, 2px 2px;
+  }
 
-#devices #device-phone
-{
-  opacity: 1;
-  background-size: 137px,68px,69px,69px,452px,448px,5px,98%;
-background-image   : url(//assets.ubuntu.com/v1/c836a5aa-device_phone_tc2.png),
-          url(//assets.ubuntu.com/v1/c07ed6ce-device_phone_tl.png),
-          url(//assets.ubuntu.com/v1/51b5a292-device_phone_br.png),
-          url(//assets.ubuntu.com/v1/7735e4e4-device_phone_tr.png),
-          url(//assets.ubuntu.com/v1/62967a44-device_phone_bl.png),
-          url(//assets.ubuntu.com/v1/622f8066-device_phone_tc.png),
-          url(//assets.ubuntu.com/v1/b73e4969-device_phone_ml.png),
-                linear-gradient(to right, rgba(164, 164, 170, 1),  rgba(29, 26, 26, 1));
-background-position:  top center,
-            top left,
-                       bottom right,
-                       top right,
-                       bottom left,
-                       top left,
-                       top left,
-                       2px 2px;
-}
+  #devices #device-laptop {
+    background-size: 50px,69px,70px,451px,70px,450px,8px,99%;
+    background-image: url(//assets.ubuntu.com/v1/36bca713-device_laptop_bc2.png), url(//assets.ubuntu.com/v1/308feeb5-device_laptop_tl.png), url(//assets.ubuntu.com/v1/f51d389d-device_laptop_br.png), url(//assets.ubuntu.com/v1/e46408ac-device_laptop_bl.png), url(//assets.ubuntu.com/v1/cc005c52-device_laptop_tr.png), url(//assets.ubuntu.com/v1/dbdcd97c-device_laptop_tc.png), url(//assets.ubuntu.com/v1/083d9680-device_laptop_ml.png), linear-gradient(to right, black, black);
+    background-position: bottom center, top left, bottom right, bottom left, top right, top left, top left, 2px 2px;
+  }
 
-#devices #device-laptop
-{
-  background-size: 50px,69px,70px,451px,70px,450px,8px,99%;
-background-image   : url(//assets.ubuntu.com/v1/36bca713-device_laptop_bc2.png),
-          url(//assets.ubuntu.com/v1/308feeb5-device_laptop_tl.png),
-          url(//assets.ubuntu.com/v1/f51d389d-device_laptop_br.png),
-          url(//assets.ubuntu.com/v1/e46408ac-device_laptop_bl.png),
-          url(//assets.ubuntu.com/v1/cc005c52-device_laptop_tr.png),
-          url(//assets.ubuntu.com/v1/dbdcd97c-device_laptop_tc.png),
-          url(//assets.ubuntu.com/v1/083d9680-device_laptop_ml.png),
-          linear-gradient(to right, black,  black);
-
-background-position: bottom center,
-                      top left,
-                      bottom right,
-                      bottom left,
-                      top right,
-                      top left,
-                      top left,
-                      2px 2px;
-}
-
-#devices #device-tablet
-{
-
-  background-size:38px, 68px, 78px, 69px,485px,448px,8px,98%;
-  background-position: top center,
-            top left,
-                       bottom right,
-                       top right,
-                       bottom left,
-                       top left,
-                       top left,
-                       2px 2px;
-background-image   : url(//assets.ubuntu.com/v1/a5c8b36b-device_tablet_tc2.png),
-          url(//assets.ubuntu.com/v1/f583fce7-device_tablet_tl.png),
-          url(//assets.ubuntu.com/v1/23a5fc0f-device_tablet_br.png),
-          url(//assets.ubuntu.com/v1/a7ee7bd3-device_tablet_tr.png),
-          url(//assets.ubuntu.com/v1/ba871b70-device_tablet_bl.png),
-          url(//assets.ubuntu.com/v1/d6d7aab0-device_tablet_tc.png),
-          url(//assets.ubuntu.com/v1/7b549da0-device_tablet_ml.png),
-                linear-gradient(to right, rgba(164, 164, 170, 1),  rgba(29, 26, 26, 1));
-
-
-}
-
+  #devices #device-tablet {
+    background-size: 38px, 68px, 78px, 69px,485px,448px,8px,98%;
+    background-position: top center, top left, bottom right, top right, bottom left, top left, top left, 2px 2px;
+    background-image: url(//assets.ubuntu.com/v1/a5c8b36b-device_tablet_tc2.png), url(//assets.ubuntu.com/v1/f583fce7-device_tablet_tl.png), url(//assets.ubuntu.com/v1/23a5fc0f-device_tablet_br.png), url(//assets.ubuntu.com/v1/a7ee7bd3-device_tablet_tr.png), url(//assets.ubuntu.com/v1/ba871b70-device_tablet_bl.png), url(//assets.ubuntu.com/v1/d6d7aab0-device_tablet_tc.png), url(//assets.ubuntu.com/v1/7b549da0-device_tablet_ml.png), linear-gradient(to right, rgba(164, 164, 170, 1), rgba(29, 26, 26, 1));
+  }
 }
