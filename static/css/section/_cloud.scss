@@ -181,6 +181,10 @@
     .row-hero {
       @media only screen and (min-width : $animation-viewport) {
         min-height: 550px;
+
+        .six-col {
+          z-index: 2;
+        }
       }
 
       .strip-inner-wrapper {
@@ -196,6 +200,7 @@
           position: absolute;
           top: -30px;
           width: 100%;
+          z-index: 1;
 
           &__container {
             background: url('#{$asset-server}79729d72-products-hero-background.png') no-repeat;
@@ -434,6 +439,10 @@
           background-image: url('#{$asset-server}c7d1850b-calendar.svg');
         }
       }
+    }
+
+    .row--office-hours {
+      background-image: none;
     }
   }
 
