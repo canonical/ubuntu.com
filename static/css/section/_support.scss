@@ -58,6 +58,16 @@
 
 .support-home {
 
+  .row-call {
+    &--text {
+        margin-top: inherit;
+
+        @media (min-width: $breakpoint-medium) {
+          margin-top: 1.75rem;
+        }
+    }
+  }
+
   .grid-list {
     margin: 1rem 0 0;
 
