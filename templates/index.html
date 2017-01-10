@@ -23,17 +23,17 @@
             <h2 class="external row--ubuntu-news__title"><span><a href="https://insights.ubuntu.com/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'clicks insights feed link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">Latest news from Insights</a></span></h2>
 {% for item in insights_feed %}
             <div class="three-col {% if forloop.last %}last-col no-margin-bottom{% endif %}">
-                <h3><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'clicks news link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">{{ item.title }}</a></h3>
+                <h3><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'ubuntu.com homepage news link', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title }}</a></h3>
                 <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
             </div>
 {% endfor %}
         </div>
 {% if spotlight_feed %}
         <div class="three-col no-margin-bottom last-col equal-height--vertical-divider__item">
-            <h2 class="external row--ubuntu-news__title"><span><a href="https://insights.ubuntu.com/tag/spotlight/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'clicks spotlight feed link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">Spotlight</a></span></h2>
+            <h2 class="external row--ubuntu-news__title"><span><a href="https://insights.ubuntu.com/tag/spotlight/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'ubuntu.com homepage spotlight feed link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">Spotlight</a></span></h2>
 {% for item in spotlight_feed %}
             <div class="three-col {% if forloop.last %}last-col{% endif %}">
-                <h3><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'clicks spotlight link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">{{ item.title }}</a></h3>
+                <h3><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'ubuntu.com homepage spotlight article', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title }}</a></h3>
                 <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
             </div>
 {% endfor %}
