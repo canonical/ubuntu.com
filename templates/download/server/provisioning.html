@@ -1,0 +1,218 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Get MAAS to run your physical cloud | Download | Ubuntu{% endblock %}
+
+{% block meta_description %}{% endblock meta_description %}
+
+{% block meta_keywords %}{% endblock meta_keywords %}
+
+
+{% block second_level_nav_items %}
+    <div class="strip-inner-wrapper">
+        {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Server" page_title="Provisioning" %}
+    </div>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+
+<div class="row row-grey no-border">
+    <div class="strip-inner-wrapper">
+        <h1>Get Metal as a Service</h1>
+        <div class="ten-col">
+            <p class="intro">Metal as a Service (MAAS) gives you automated server provisioning and easy network setup for your physical servers for amazing data centre operational efficiency &mdash; on premise, open source and supported.</p>
+        </div>
+        <div class="box box-highlight clearfix equal-height--vertical-divider">
+            <div class="equal-height--vertical-divider__item six-col">
+                <h2>Install MAAS on your&nbsp;hardware</h2>
+                <p>Follow the instructions below to download, configure and install MAAS.</p>
+            </div>
+            <div class="equal-height--vertical-divider__item six-col last-col no-margin-bottom download-button">
+                <h3>Requirements</h3>
+                <ul class="list-ticks--compact">
+                    <li>You will need one small server for MAAS and at least one server which can be managed with a BMC.</li>
+                    <li>It is recommended to have the MAAS server provide DHCP and DNS on a network the managed machines are connected to.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row row--ebook no-border">
+    <div class="strip-inner-wrapper">
+        <div class="six-col append-six">
+            <h2>Before you start, you’ll want this&nbsp;eBook</h2>
+        </div>
+        <div class="six-col append-one">
+            <h3>For Network Administrators &amp; IT Pros, Bare Metal Provisioning Has Become Strategic</h3>
+            <p>Enterprises and telcos are transitioning from traditional scale-up models of the past to scale-out architecture of the future where solutions are delivered on disparate clouds, machines, and environments simultaneously. System administrators and DevOps organisations need to have the flexibility of not ripping and replacing their entire infrastructure to take advantage of the opportunities the cloud offers.</p>
+            <p>Canonical’s MAAS helps organisations to take full advantage of existing hardware investments by maximising hardware efficiency, and a pathway to leverage the performance and security of hardware based solutions with the economics and efficiencies of the cloud.</p>
+        </div>
+        <div class="five-col last-col">
+
+            <!-- MARKETO FORM -->
+            <script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
+            <script src="https://assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
+
+            <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1460">
+                <fieldset>
+                    <ul class="no-bullets">
+
+                        <li class="mktFormReq mktField">
+                            <label for="FirstName" class="mktoLabel ">First name:</label>
+                            <input required="" id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField   mktoRequired">
+                        </li>
+
+                        <li class="mktFormReq mktField">
+                            <label for="LastName" class="mktoLabel ">Last name:</label>
+                            <input required="" id="LastName" name="LastName" maxlength="255" type="text" class="mktoField   mktoRequired">
+                        </li>
+
+                        <li class="mktFormReq mktField">
+                            <label for="JobRole" class="mktoLabel ">Job role:</label>
+                            <input required="" id="JobRole" name="JobRole" maxlength="255" type="text" class="mktoField   mktoRequired">
+                        </li>
+
+                        <li class="mktFormReq mktField">
+                            <label for="Company" class="mktoLabel ">Company name:</label>
+                            <input required="" id="Company" name="Company" maxlength="255" type="text" class="mktoField   mktoRequired">
+                        </li>
+
+                        <li class="mktFormReq mktField">
+                            <label for="Email" class="mktoLabel ">Email:</label>
+                            <input required="" id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired">
+                        </li>
+
+                        <li class="mktFormReq mktField">
+                            <label for="Phone" class="mktoLabel ">Phone number:</label>
+                            <input required="" id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired">
+                        </li>
+
+                        <li class="mktField">
+                            <input class="mktoField" value="yes" id="NewsletterOpt-In" name="NewsletterOpt-In" type="checkbox">
+                            <label class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>
+                        </li>
+
+                        <li class="mktField">
+                            <button type="submit" class="mktoButton" onsubmit="backgroundSubmitHandler();">Download the eBook</button><input type="hidden" name="formid" class="mktoField " value="1460"><input type="hidden" name="formVid" class="mktoField " value="1460"><input type="hidden" name="lpId" class="mktoField " value="2707"><input type="hidden" name="subId" class="mktoField " value="30"><input type="hidden" name="munchkinId" class="mktoField " value="066-EOV-335"><input type="hidden" name="lpurl" class="mktoField " value="https://pages.ubuntu.com/Form---autopilot-cloud-ebook_autopilot-cloud-ebook-landing-page.html?cr={creative}&amp;kw={keyword}"><input type="hidden" name="cr" class="mktoField " value=""><input type="hidden" name="kw" class="mktoField " value=""><input type="hidden" name="q" class="mktoField " value="">
+                        </li>
+                        <li>All information provided will be handled in accordance with the Canonical <a href="/legal">privacy policy</a>.</li>
+                    </ul>
+                </fieldset>
+
+                <input type="hidden" name="returnURL" value="https://www.ubuntu.com/download/cloud#instructions">
+                <input type="hidden" name="retURL" value="https://www.ubuntu.com/download/cloud#instructions">
+            </form>
+            <!-- /MARKETO FORM -->
+        </div>
+    </div>
+</div>
+
+<div id="instructions" class="row row-install-autopilot no-border">
+    <div class="strip-inner-wrapper">
+        <h2>Installation instructions</h2>
+        <ol class="list-stepped--spaced download-help">
+            <li class="list-stepped__item">
+                <div class="five-col">
+                    <h3 class="list-stepped__title">Install Ubuntu Server</h3>
+                </div>
+                <div class="seven-col last-col list-stepped__box right">
+                    <p><a href="http://www.ubuntu.com/download/server">Download Ubuntu Server 16.04 LTS</a> and follow the step-by-step installation instructions on your MAAS server.</p>
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <div class="five-col">
+                    <h3 class="list-stepped__title">Install MAAS</h3>
+                </div>
+                <div class="seven-col last-col list-stepped__box right">
+                    <p>From the command line type the commands below and follow the step-by-step instructions:</p>
+                    <p class="command-line">
+                        <input class="command-line__input" value="sudo apt-get update" readonly="readonly">
+                        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+                    </p>
+                    <p class="command-line">
+                        <input class="command-line__input" value="sudo apt-get install maas" readonly="readonly">
+                        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+                    </p>
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <div class="five-col">
+                    <h3 class="list-stepped__title">Create admin user</h3>
+                </div>
+                <div class="seven-col last-col list-stepped__box right">
+                    <p>Create your admin credentials by typing:</p>
+                    <p class="command-line">
+                        <input class="command-line__input" value="sudo maas createadmin" readonly="readonly">
+                        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+                    </p>
+                    <p>Login to the MAAS UI at http://<your.maas.ip>:5240/MAAS/</p>
+                </div>
+            </li>
+
+            <li class="list-stepped__item">
+                <div class="five-col">
+                    <h3 class="list-stepped__title">Turn on DHCP</h3>
+                </div>
+                <div class="seven-col last-col list-stepped__box right">
+                    <p>Go to the “Networks” tab, and select the VLAN for which you want to enable DHCP. On the “Take action” button select “Provide DHCP”.</p>
+                    <ul>
+                        <li>Set the Rack controller that will manage DHCP.</li>
+                        <li>Select the subnet where to create the DHCP dynamic range on.</li>
+                        <li>Fill in details for the dynamic range.</li>
+                    </ul>
+                    <img src="https://assets.ubuntu.com/v1/ab018774-vlan-details.png" alt="Screenshot of Networks tab" />
+                </div>
+            </li>
+
+            <li class="list-stepped__item">
+                <div class="five-col">
+                    <h3 class="list-stepped__title">Import images</h3>
+                </div>
+                <div class="seven-col last-col list-stepped__box right">
+                    <p>Go to the “Images” tab and choose the OS releases and architectures you want to install dynamically.</p>
+                    <img src="https://assets.ubuntu.com/v1/e4a4fc29-boot-images.png" alt="Screenshot of Images tab" >
+                </div>
+            </li>
+            <li class="list-stepped__item">
+                <div class="five-col">
+                    <h3 class="list-stepped__title">Enlist and commission servers</h3>
+                </div>
+                <div class="seven-col last-col list-stepped__box right">
+                    <p>Now you are ready to enlist and commission machines.</p>
+
+                    <ul>
+                        <li>Set all the servers to PXE boot.</li>
+                        <li>Boot each machine once. You should see these machines appear in MAAS.</li>
+                        <li>If your machines do not have a IPMI based BMC, proceed to edit them and enter their BMC details.</li>
+                        <li>Select all the machines and “Commission” them using the “Take action” button.</li>
+                        <li>When machines have a “Ready” status you can start deploying.</li>
+                    </ul>
+                    <img src="https://assets.ubuntu.com/v1/cdc79a2b-node-listing.png" alt="Screenshot of Machines node list" />
+                </div>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row row-white no-border">
+    <div class="strip-inner-wrapper equal-height">
+        <div class="five-col append-one equal-height__item">
+            <h3>Technical Documentation</h3>
+            <p>For those looking to self-support MAAS we provide <a href="https://docs.ubuntu.com/maas/2.1/en/">extensive documentation</a> covering:</p>
+            <ul>
+                <li>What MAAS offers</li>
+                <li>How MAAS works</li>
+                <li>Key components and colocation of all services</li>
+                <li>Installation methods</li>
+                <li>Minimum requirements</li>
+            </ul>
+        </div>
+        <div class="six-col align-center not-for-small equal-height__item equal-height__align-vertically">
+            <img src="https://assets.ubuntu.com/v1/75f86e11-pictogram-articles-orange-hex.svg" alt="">
+        </div>
+    </div>
+</div>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_server_installation" second_item="_download_server_guide" third_item="_download_helping_hands" %}
+
+{% endblock content %}
