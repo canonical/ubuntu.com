@@ -437,6 +437,7 @@ body.homepage .row--iot {
   background-repeat:  no-repeat;
   overflow: hidden;
   background: #fff;
+  z-index: -5;
 
   @media only screen and (min-width : $breakpoint-medium) {
     padding: 150px 0;
@@ -1122,25 +1123,26 @@ body.homepage-maas-takeover {
   }
 
   &::before {
-    position: absolute;
-    display: block;
-    right: -3000px;
-    margin-top: -40px;
+    background-image: url('#{$asset-server}bda4bb5d-barcelona-map-2.png?fmt=jpg&q=20');
+    background-repeat: no-repeat;
     content: "";
-    width: 3000px;
+    display: block;
     flex: auto;
     height: 100%;
     left: 0;
+    margin-top: -40px;
+    position: absolute;
+    right: -3000px;
+    width: 3000px;
     z-index: -2;
-    background-image: url('#{$asset-server}bda4bb5d-barcelona-map-2.png?fmt=jpg&q=20');
   }
 
   &::after {
     background-color: #303030;
-    left: 0;
-    top: 40px;
     display: block;
+    left: 0;
     opacity: 0.7;
+    top: 40px;
     z-index: -1;
   }
 }
