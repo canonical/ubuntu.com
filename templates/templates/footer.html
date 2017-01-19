@@ -55,9 +55,14 @@
         <p class="twelve-col">&copy; {% now "Y" %} Canonical Ltd. Ubuntu and Canonical are registered trademarks of Canonical Ltd.</p>
         <ul class="inline-list clear">
             <li><a accesskey="8" href="/legal">Legal information</a></li>
-            <li><a href="https://github.com/ubuntudesign/www.ubuntu.com/issues/new">Report a bug on this site</a></li>
+            <li><a href="https://github.com/ubuntudesign/www.ubuntu.com/issues/new" id="report-a-bug">Report a bug on this site</a></li>
         </ul>
-        <span class="accessibility-aid"><a href="#">Got to the top of the page</a></span>
+        <script>
+          /* Add the page to the report a bug link */
+          var bugLink = document.querySelector('#report-a-bug');
+          bugLink.href += '?body=%0a%0a%0a---%0a*Reported%20from:%20' + location.href + '*';
+        </script>
+        <span class="accessibility-aid"><a href="#">Go to the top of the page</a></span>
     </div><!-- /.legal -->
 </footer>
 {% endblock footer %}

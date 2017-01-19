@@ -75,8 +75,8 @@ body {
 
     &.active a {
     background-image:
-            url('#{$asset-server}aab97879-icon-wechat.svg'),
-            url('#{$asset-server}2be70a94-qr-code-wechat.png');
+            url('#{$asset-server-url}aab97879-icon-wechat.svg'),
+            url('#{$asset-server-url}2be70a94-qr-code-wechat.png');
         background-repeat: no-repeat;
         background-position: left top, right top;
         background-size: 37px 37px, auto;
@@ -86,11 +86,11 @@ body {
 } // &__item
 
 .list--social__item--wechat a {
-    background: url('#{$asset-server}aab97879-icon-wechat.svg') no-repeat;
+    background: url('#{$asset-server-url}aab97879-icon-wechat.svg') no-repeat;
 }
 
 .list--social__item--weibo a {
-    background: url('#{$asset-server}d2d0d5b0-icon-weibo.svg') no-repeat;
+    background: url('#{$asset-server-url}d2d0d5b0-icon-weibo.svg') no-repeat;
 }
 
 main .list--social {

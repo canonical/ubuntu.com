@@ -14,7 +14,7 @@
 
   .row-case-studies {
     background-color: $dark-aubergine;
-    background-image: url('#{$asset-server}3c1c3b37-background-tile.jpg');
+    background-image: url('#{$asset-server-url}3c1c3b37-background-tile.jpg');
     color: $white;
 
     blockquote {
@@ -112,7 +112,7 @@
 
       @media only screen and (min-width: $breakpoint-medium) {
         background-color: $light-grey;
-        background-image: url('#{$asset-server}364631d0-desktop-overview-hero.jpg?w=1024');
+        background-image: url('#{$asset-server-url}364631d0-desktop-overview-hero.jpg?w=1024');
         background-position: 73% 81%;
         background-repeat: no-repeat;
         background-size: cover;
@@ -240,7 +240,7 @@
       &:before {
 
         @media only screen and (min-width : $breakpoint-medium) {
-          background: url('#{$asset-server}9fe68ee3-desktop-features-hero.png?w=897') center center no-repeat;
+          background: url('#{$asset-server-url}9fe68ee3-desktop-features-hero.png?w=897') center center no-repeat;
           background-size: contain;
           content: '';
           display: block;
@@ -275,7 +275,7 @@
     .row-web-browsing {
 
       @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server}d037640f-desktop.png?w=984');
+        background-image: url('#{$asset-server-url}d037640f-desktop.png?w=984');
         background-repeat: no-repeat;
         background-size: cover;
       }
@@ -291,7 +291,7 @@
     .row-gaming {
 
       @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server}126ebaea-borderlands.jpg');
+        background-image: url('#{$asset-server-url}126ebaea-borderlands.jpg');
         background-repeat: no-repeat;
         background-position: 0 0 ;
         background-size: cover;
@@ -321,7 +321,7 @@
 
       .borderlands-flash {
         animation: flash-sign 10s infinite;
-        background-image: url('#{$asset-server}30d55ce9-borderlands-flash.jpg');
+        background-image: url('#{$asset-server-url}30d55ce9-borderlands-flash.jpg');
         background-repeat: no-repeat;
         background-size: cover;
         height: 488px;
@@ -359,21 +359,21 @@
 
       &.photo-1 {
         @media only screen and (min-width: $breakpoint-medium) {
-          background-image: url('#{$asset-server}6c84454e-desktop-photos-1.jpg');
+          background-image: url('#{$asset-server-url}6c84454e-desktop-photos-1.jpg');
           background-size: cover;
         }
       }
 
       &.photo-2 {
         @media only screen and (min-width: $breakpoint-medium) {
-          background-image: url('#{$asset-server}25593e05-desktop-photos-2.jpg');
+          background-image: url('#{$asset-server-url}25593e05-desktop-photos-2.jpg');
           background-size: cover;
         }
       }
 
       &.photo-3 {
         @media only screen and (min-width: $breakpoint-medium) {
-          background-image: url('#{$asset-server}a6e14067-desktop-photos-3.jpg');
+          background-image: url('#{$asset-server-url}a6e14067-desktop-photos-3.jpg');
           background-size: cover;
         }
       }
@@ -403,7 +403,7 @@
       &:before {
 
         @media only screen and (min-width : $breakpoint-medium) {
-          background: url('#{$asset-server}ca8a41c4-desktop-enterprise-hero.png?w=897') center center no-repeat;
+          background: url('#{$asset-server-url}ca8a41c4-desktop-enterprise-hero.png?w=897') center center no-repeat;
           background-size: contain;
           content: '';
           display: block;
@@ -425,7 +425,7 @@
 
     .row-certified {
       @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server}31a45631-desktop-enterprise-certified.jpg');
+        background-image: url('#{$asset-server-url}31a45631-desktop-enterprise-certified.jpg');
         background-position: 93% 39%;
         background-repeat: no-repeat;
         background-size: 45%;
@@ -454,7 +454,7 @@
 
     .row-hero {
       @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server}3a51704e-desktop-education-hero.jpg?w=984');
+        background-image: url('#{$asset-server-url}3a51704e-desktop-education-hero.jpg?w=984');
         background-position: right 10px center;
         background-repeat: no-repeat;
         margin-top: 0;
@@ -476,7 +476,7 @@
     .row-case-studies {
 
       @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server}02d89f50-map.jpg');
+        background-image: url('#{$asset-server-url}02d89f50-map.jpg');
         background-repeat: no-repeat;
         background-size: 74%;
         background-position: center 30px;
@@ -493,7 +493,7 @@
 
     .row-hero {
       @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server}826a470a-desktop-government-hero+%281%29.jpg');
+        background-image: url('#{$asset-server-url}826a470a-desktop-government-hero+%281%29.jpg');
         background-position: center 0;
         background-repeat: no-repeat;
         background-size: 80%;
@@ -510,7 +510,7 @@
     .row-case-studies {
 
       @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server}5b74fa2a-map.jpg');
+        background-image: url('#{$asset-server-url}5b74fa2a-map.jpg');
         background-position: center 0;
         background-repeat: no-repeat;
         background-size: 75%;
@@ -524,7 +524,7 @@
     .row-security {
 
       @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server}99d49a7d-padlock-chain.png');
+        background-image: url('#{$asset-server-url}99d49a7d-padlock-chain.png');
         background-position: 80% center;
         background-repeat: no-repeat;
         background-size: initial;
@@ -550,7 +550,7 @@
       &:before {
 
         @media only screen and (min-width : $breakpoint-medium) {
-          background: url('#{$asset-server}2e62cdb4-desktop-developer-hero.png?w=897') center center no-repeat;
+          background: url('#{$asset-server-url}2e62cdb4-desktop-developer-hero.png?w=897') center center no-repeat;
           background-size: contain;
           content: '';
           display: block;
@@ -576,7 +576,7 @@
         position: relative;
 
         &:before {
-          content: url('#{$asset-server}e8731111-desktop-developer-whatsnew1610.jpg?w=600');
+          content: url('#{$asset-server-url}e8731111-desktop-developer-whatsnew1610.jpg?w=600');
           position: absolute;
           right: -100%;
           top: 20px;
@@ -597,7 +597,7 @@
       &:before {
 
         @media only screen and (min-width : $breakpoint-medium) {
-          background: url('#{$asset-server}b0f9da06-desktop-kylin-hero.jpg?w=897') center center no-repeat;
+          background: url('#{$asset-server-url}b0f9da06-desktop-kylin-hero.jpg?w=897') center center no-repeat;
           background-size: contain;
           content: '';
           display: block;
@@ -693,7 +693,7 @@
       .four-col::after {
 
         @media only screen and (min-width: $breakpoint-medium) {
-          background-image: url('#{$asset-server}f2a25267-image-list-stroke.svg');
+          background-image: url('#{$asset-server-url}f2a25267-image-list-stroke.svg');
           background-repeat: repeat-x;
           content: ' ';
           display: block;
@@ -743,13 +743,13 @@
       color: $white;
 
       @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server}0caaa961-image-intelonastick-background.png');
+        background-image: url('#{$asset-server-url}0caaa961-image-intelonastick-background.png');
         background-position: 50% 50%;
         background-repeat: no-repeat;
       }
 
       .external {
-        background-image: url('#{$asset-server}6effa961-icon-externallink-white.png');
+        background-image: url('#{$asset-server-url}6effa961-icon-externallink-white.png');
         color: $white;
       }
 
