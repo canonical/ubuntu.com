@@ -166,7 +166,7 @@ body.homepage {
     position: relative;
 
     &:before {
-      background-image: url('#{$asset-server}bcb69486-image-intro-dots.svg');
+      background-image: url('#{$asset-server-url}bcb69486-image-intro-dots.svg');
       background-position:  right center;
       background-repeat: repeat-x;
       background-size: 10px;
@@ -199,7 +199,7 @@ body.homepage {
 .intro-left,
 .intro-right {
   @media only screen and (min-width : $breakpoint-large) {
-    background: url('#{$asset-server}bcb69486-image-intro-dots.svg') repeat-x right center;
+    background: url('#{$asset-server-url}bcb69486-image-intro-dots.svg') repeat-x right center;
     background-size: 10px;
   }
 }
@@ -264,7 +264,7 @@ body.homepage {
     &:before,
     &:after {
       display: block;
-      background: url('#{$asset-server}bcb69486-image-intro-dots.svg') repeat-x right center;
+      background: url('#{$asset-server-url}bcb69486-image-intro-dots.svg') repeat-x right center;
       background-size: 10px;
       content: "";
       position: absolute;
@@ -292,7 +292,7 @@ body.homepage {
 }
 
 .intro-middle li a.intro-cloud {
-  background-image: url('#{$asset-server}7153d45d-icon-intro-cloud.svg');
+  background-image: url('#{$asset-server-url}7153d45d-icon-intro-cloud.svg');
 
   &:before {
     width: 36px;
@@ -305,7 +305,7 @@ body.homepage {
 }
 
 .intro-middle li a.intro-server {
-  background-image: url('#{$asset-server}949bb7ae-icon-intro-server.svg');
+  background-image: url('#{$asset-server-url}949bb7ae-icon-intro-server.svg');
 
   &:before {
     width: 38px;
@@ -318,7 +318,7 @@ body.homepage {
 }
 
 .intro-middle li a.intro-desktop {
-  background-image: url('#{$asset-server}0a347261-icon-intro-desktop.svg');
+  background-image: url('#{$asset-server-url}0a347261-icon-intro-desktop.svg');
 
   &:before {
     width: 38px;
@@ -330,7 +330,7 @@ body.homepage {
 }
 
 .intro-middle li a.intro-phone {
-  background-image: url('#{$asset-server}1f6d7af8-icon-intro-phone.svg');
+  background-image: url('#{$asset-server-url}1f6d7af8-icon-intro-phone.svg');
 
   &:before {
     width: 54px;
@@ -342,7 +342,7 @@ body.homepage {
 }
 
 .intro-middle li a.intro-tablet {
-  background-image: url('#{$asset-server}08d4cf5a-icon-intro-tablet.svg');
+  background-image: url('#{$asset-server-url}08d4cf5a-icon-intro-tablet.svg');
 
   &:before {
     width: 34px;
@@ -355,7 +355,7 @@ body.homepage {
 }
 
 .intro-middle li a.intro-iot {
-  background-image: url('#{$asset-server}473ea07f-icon-intro-iot.svg');
+  background-image: url('#{$asset-server-url}473ea07f-icon-intro-iot.svg');
 
   &:before {
     width: 39px;
@@ -404,7 +404,7 @@ body.homepage .row--ubuntu-news {
 
   @media only screen and (min-width : $breakpoint-medium) {
     .row--ubuntu-news__title {
-      background: url('#{$asset-server}e1bba201-external-link-cool-grey.svg') left center no-repeat;
+      background: url('#{$asset-server-url}e1bba201-external-link-cool-grey.svg') left center no-repeat;
       background-size: 16px;
       padding-left: 22px;
       font-size: 1em;
@@ -445,7 +445,7 @@ body.homepage .row--iot {
 
   .row--iot__image {
     background-size: 700px auto;
-    background-image: url('#{$asset-server}2f56d557-image-iot.jpg?q=80');
+    background-image: url('#{$asset-server-url}2f56d557-image-iot.jpg?q=80');
     background-repeat: no-repeat;
     height: 500px;
     left: 40px;
@@ -597,7 +597,7 @@ body.homepage .row-featured {
   background-color: #f5f5f5;
 
   @media only screen and (min-width : $breakpoint-medium) {
-    background-image: url('#{$asset-server}f552b31a-juju-16-04-takeunder.png');
+    background-image: url('#{$asset-server-url}f552b31a-juju-16-04-takeunder.png');
   }
 
   background-repeat: no-repeat;
@@ -668,7 +668,7 @@ body.homepage-cloud-default {
         overflow: visible;
         position: relative;
         &::after {
-          background-image: url('#{$asset-server}5b8d47f1-laptop-india.jpg');
+          background-image: url('#{$asset-server-url}5b8d47f1-laptop-india.jpg');
           background-repeat: no-repeat;
           content: "";
           display: block;
@@ -718,7 +718,7 @@ body.homepage-15-10 {
       padding-bottom: 0;
 
       @media only screen and (min-width : $breakpoint-medium) {
-        background: url('#{$asset-server}8d298549-home-takeover-.jpg?w=1800&q=80') 50% 50% no-repeat;
+        background: url('#{$asset-server-url}8d298549-home-takeover-.jpg?w=1800&q=80') 50% 50% no-repeat;
         background-size: cover;
         color: $cool-grey;
         min-height: 80vh;
@@ -753,19 +753,19 @@ body.homepage.meizu-takeover {
   }
 
   .list--social__item--wechat a {
-    background: url('#{$asset-server}602a7470-icon-wechat-orange.svg') no-repeat;
+    background: url('#{$asset-server-url}602a7470-icon-wechat-orange.svg') no-repeat;
     background-size: 37px 37px;
   }
 
   .list--social__item--weibo a {
-    background: url('#{$asset-server}a456bf5f-icon-weibo-orange.svg') no-repeat;
+    background: url('#{$asset-server-url}a456bf5f-icon-weibo-orange.svg') no-repeat;
     background-size: 37px 37px;
   }
 
   .list--social__item.active a {
     background-image:
-      url('#{$asset-server}602a7470-icon-wechat-orange.svg'),
-      url('#{$asset-server}2be70a94-qr-code-wechat.png');
+      url('#{$asset-server-url}602a7470-icon-wechat-orange.svg'),
+      url('#{$asset-server-url}2be70a94-qr-code-wechat.png');
   }
 
   header.banner {
@@ -788,7 +788,7 @@ body.homepage.meizu-takeover {
     }
 
     #main-content .row-hero {
-      background-image: url('#{$asset-server}7ea7024c-meizu-takeover.jpg');
+      background-image: url('#{$asset-server-url}7ea7024c-meizu-takeover.jpg');
       background-position: right 30%;
       background-repeat: no-repeat;
       background-size: cover;
@@ -834,7 +834,7 @@ body.homepage.meizu-takeover {
 
   #main-content .row-hero {
     background-color: $dark-aubergine;
-    background-image: url('#{$asset-server}640e7d6c-testdrive-takeover-01.svg');
+    background-image: url('#{$asset-server-url}640e7d6c-testdrive-takeover-01.svg');
     background-repeat: no-repeat;
     color: #fff;
     margin-top: 0;
@@ -892,7 +892,7 @@ body.homepage-russia {
         margin-top: 0;
         overflow: hidden;
         padding-bottom: 0;
-        background: url('#{$asset-server}7a415ac3-bq-ru-takeover.jpg') 50% 50% no-repeat;
+        background: url('#{$asset-server-url}7a415ac3-bq-ru-takeover.jpg') 50% 50% no-repeat;
         background-size: cover;
         min-height: 80vh;
       }
@@ -1023,7 +1023,7 @@ body.homepage-maas-takeover {
     margin-top: 0;
 
     .row-hero {
-      background: url('#{$asset-server}8ce3e107-hero-1.jpg?w=1600&amp;q=40') 0 12% no-repeat;
+      background: url('#{$asset-server-url}8ce3e107-hero-1.jpg?w=1600&amp;q=40') 0 12% no-repeat;
       background-size: cover;
       color: #fff;
       margin-top: 0;
@@ -1065,7 +1065,7 @@ body.homepage-maas-takeover {
 
   #main-content .row-hero {
     background-color: $cool-grey;
-    background-image: url('#{$asset-server}882ae6de-image-background-paper.png');
+    background-image: url('#{$asset-server-url}882ae6de-image-background-paper.png');
     background-repeat: repeat;
     background-size: cover;
     color: #fff;
@@ -1123,7 +1123,7 @@ body.homepage-maas-takeover {
   }
 
   &::before {
-    background-image: url('#{$asset-server}bda4bb5d-barcelona-map-2.png?fmt=jpg&q=20');
+    background-image: url('#{$asset-server-url}bda4bb5d-barcelona-map-2.png?fmt=jpg&q=20');
     background-repeat: no-repeat;
     content: "";
     display: block;
@@ -1159,13 +1159,13 @@ body.homepage-maas-takeover {
   }
 
   #main-content .row-hero {
-    background-image: url('#{$asset-server}62d039fe-meizu-pro5-background-small.png');
+    background-image: url('#{$asset-server-url}62d039fe-meizu-pro5-background-small.png');
     background-size: cover;
     margin-top: 0;
     overflow: hidden;
 
     @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url('#{$asset-server}0a11c33e-meizu-pro5-background.png');
+      background-image: url('#{$asset-server-url}0a11c33e-meizu-pro5-background.png');
       padding-top: 30px;
     }
 
@@ -1236,14 +1236,14 @@ body.homepage-maas-takeover {
   }
 
   #main-content .row-hero {
-    background: url('#{$asset-server}2991cd53-hero-background-sm.jpg') bottom center no-repeat;
+    background: url('#{$asset-server-url}2991cd53-hero-background-sm.jpg') bottom center no-repeat;
     background-size: cover;
     margin-top: 0;
     overflow: hidden;
     padding-top: 30px;
 
     @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url('#{$asset-server}52fbb3e9-hero-background-lg.jpg');
+      background-image: url('#{$asset-server-url}52fbb3e9-hero-background-lg.jpg');
       background-position: center center;
       padding-top: 30px;
     }
@@ -1254,7 +1254,7 @@ body.homepage-maas-takeover {
       position: relative;
 
       @media only screen and (min-width : $breakpoint-medium) {
-        background: url('#{$asset-server}ff61f48c-hero-tablet-2x.png?w=440') 0 50px no-repeat;
+        background: url('#{$asset-server-url}ff61f48c-hero-tablet-2x.png?w=440') 0 50px no-repeat;
         min-height: 400px;
 
         .row-hero__text {
@@ -1267,7 +1267,7 @@ body.homepage-maas-takeover {
       }
 
       @media only screen and (min-width : $breakpoint-large) {
-        background: url('#{$asset-server}ff61f48c-hero-tablet-2x.png?w=630') -30px 100px no-repeat;
+        background: url('#{$asset-server-url}ff61f48c-hero-tablet-2x.png?w=630') -30px 100px no-repeat;
         min-height: 630px;
 
         .row-hero__text {
@@ -1365,7 +1365,7 @@ body.homepage-maas-takeover {
     height: 100%;
     left: 0;
     z-index: -2;
-    background-image: url('#{$asset-server}c4068bb4-austin.png?fmt=jpg&q=20');
+    background-image: url('#{$asset-server-url}c4068bb4-austin.png?fmt=jpg&q=20');
   }
 
   &::after {
@@ -1385,7 +1385,7 @@ body.homepage-maas-takeover {
   background: -webkit-linear-gradient(45deg,  #0a5287 0%,#0a5084 100%);
   background: linear-gradient(45deg,  #0a5287 0%,#0a5084 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0a5287', endColorstr='#0a5084',GradientType=1 );
-  background-image: url('#{$asset-server}d2b89998-image-background-paper.jpg?w=1150');
+  background-image: url('#{$asset-server-url}d2b89998-image-background-paper.jpg?w=1150');
   background-position: right center;
   margin: 10px;
   padding-top: 10px;
@@ -1463,7 +1463,7 @@ body.homepage-maas-takeover {
   background-color: #f5f5f5;
 
   @media only screen and (min-width : $breakpoint-medium) {
-    background-image: url('#{$asset-server}0d1e4e42-meizu-pro5-single.png?w=150');
+    background-image: url('#{$asset-server-url}0d1e4e42-meizu-pro5-single.png?w=150');
   }
 
   background-repeat: no-repeat;
@@ -1572,7 +1572,7 @@ body.homepage-autopilot-devops-takeover {
     margin-top: 0;
 
     .row-hero {
-      background-image: url('#{$asset-server}33f77842-openstack-autopilot-takeover.jpg?w-768');
+      background-image: url('#{$asset-server-url}33f77842-openstack-autopilot-takeover.jpg?w-768');
       background-position: right;
       background-repeat: no-repeat;
       background-size: cover;
@@ -1597,13 +1597,13 @@ body.homepage-autopilot-devops-takeover {
 
       @media only screen and (min-width : $breakpoint-medium) {
         background-size: cover;
-        background-image: url('#{$asset-server}33f77842-openstack-autopilot-takeover.jpg?w=984');
+        background-image: url('#{$asset-server-url}33f77842-openstack-autopilot-takeover.jpg?w=984');
         min-height: 45vw;
         padding-top: 10vw;
       }
 
       @media only screen and (min-width : $breakpoint-large) {
-        background-image: url('#{$asset-server}33f77842-openstack-autopilot-takeover.jpg');
+        background-image: url('#{$asset-server-url}33f77842-openstack-autopilot-takeover.jpg');
         min-height: 45vw;
         padding-top: 10vw;
 
@@ -1648,7 +1648,7 @@ body.homepage-nextcloud-takeover {
 
   #main-content {
     .row-hero {
-      background-image: url('#{$asset-server}0c05a721-Nextbox+09.2016.mobile.background.png');
+      background-image: url('#{$asset-server-url}0c05a721-Nextbox+09.2016.mobile.background.png');
       background-size: cover;
       background-position: center bottom;
       color: $white;
@@ -1664,7 +1664,7 @@ body.homepage-nextcloud-takeover {
       }
 
       @media only screen and (min-width : $breakpoint-medium) {
-        background-image: url('#{$asset-server}5aa79282-56f66029-Nextbox+09.2016.desktop.background-large.png');
+        background-image: url('#{$asset-server-url}5aa79282-56f66029-Nextbox+09.2016.desktop.background-large.png');
         min-height: 440px;
 
         .row-hero__heading {
@@ -1709,20 +1709,20 @@ body.homepage-kubernetes-takeover {
 
   #main-content {
     .row-hero {
-      background-image: url('#{$asset-server}f5e7d881-Kubernetes_backgd_mobile.png');
+      background-image: url('#{$asset-server-url}f5e7d881-Kubernetes_backgd_mobile.png');
       background-color: $light-grey;
       background-size: cover;
       background-repeat: no-repeat;
       margin-top: 0;
 
       @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-        background-image: url('#{$asset-server}32d31c25-Kubernetes_backgd_mobile_720.png');
+        background-image: url('#{$asset-server-url}32d31c25-Kubernetes_backgd_mobile_720.png');
         background-position: right 40px;
         background-size: 100%;
       }
 
       @media only screen and (min-width : $breakpoint-medium) {
-        background-image: url('#{$asset-server}c0df5df2-Kubernetes_backgd_desktop-1.png');
+        background-image: url('#{$asset-server-url}c0df5df2-Kubernetes_backgd_desktop-1.png');
         background-size: 126% auto;
         background-position: 70% -45px;
         min-height: 400px;
@@ -1778,7 +1778,7 @@ body.homepage-kubernetes-takeover {
     animation-fill-mode: forwards;
     animation-delay: $delay;
     content: '';
-    background-image: url('#{$asset-server}d526f638-dots.svg');
+    background-image: url('#{$asset-server-url}d526f638-dots.svg');
     display: block;
     position: absolute;
     @if $direction == 'right' {
@@ -1801,7 +1801,7 @@ body.homepage-1610 {
   }
 
   .row-hero {
-    background-image: url('#{$asset-server}d1059f8b-mobile_background.png');
+    background-image: url('#{$asset-server-url}d1059f8b-mobile_background.png');
     background-size: cover;
     border: none;
     box-sizing: border-box;
@@ -1811,7 +1811,7 @@ body.homepage-1610 {
     padding-top: 40px;
 
     @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url('#{$asset-server}618be899-tablet_background.png');
+      background-image: url('#{$asset-server-url}618be899-tablet_background.png');
       margin: 20px;
       min-height: 600px;
       padding-top: 40px;
@@ -1822,7 +1822,7 @@ body.homepage-1610 {
     }
 
     @media only screen and (min-width : $breakpoint-large) {
-      background-image: url('#{$asset-server}88633fdf-takeover.16.10.background.desktop.png');
+      background-image: url('#{$asset-server-url}88633fdf-takeover.16.10.background.desktop.png');
       margin: 40px 40px 0;
       min-height: 680px;
       padding: 80px 40px 0;
@@ -2001,10 +2001,10 @@ body.homepage-1610 {
 
 body.homepage-livepatch {
   .row-hero {
-    background-image: url('#{$asset-server}3b4ea1e2-Yakkety_Yak_Wallpaper_Mobile_1080x1920_grey_version.png?w=768');
+    background-image: url('#{$asset-server-url}3b4ea1e2-Yakkety_Yak_Wallpaper_Mobile_1080x1920_grey_version.png?w=768');
 
     @media only screen and (min-width : $breakpoint-medium) {
-        background-image: url('#{$asset-server}6bcb129c-Yakkety_Yak_Wallpaper_4096x2304_grey_version.png');
+        background-image: url('#{$asset-server-url}6bcb129c-Yakkety_Yak_Wallpaper_4096x2304_grey_version.png');
     }
 
     background-size: cover;
@@ -2030,7 +2030,7 @@ body.homepage-livepatch {
     &:before {
 
       @media only screen and (min-width : $breakpoint-medium) {
-        background: url('#{$asset-server}2193f4aa-livepatch-laptop.png') center center no-repeat;
+        background: url('#{$asset-server-url}2193f4aa-livepatch-laptop.png') center center no-repeat;
         background-size: contain;
         content: '';
         display: block;

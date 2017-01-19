@@ -47,7 +47,7 @@
     .row-ubuntu-advantage-promo {
 
       @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server}65274d19-landscape-screenshot.png?W=600');
+        background-image: url('#{$asset-server-url}65274d19-landscape-screenshot.png?W=600');
         background-position: 158% 45px;
         background-repeat: no-repeat;
         background-size: 56%;
@@ -101,7 +101,7 @@
 
     .row-hero {
       @media only screen and (min-width : $breakpoint-medium) {
-        background: $white url('#{$asset-server}e2c4c299-server-livepatch-hero.jpg?w=984') no-repeat;
+        background: $white url('#{$asset-server-url}e2c4c299-server-livepatch-hero.jpg?w=984') no-repeat;
         background-size: cover;
         color: $white;
         min-height: 450px;
@@ -121,7 +121,7 @@
     .row-hero {
 
       @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server}90669a61-screenshot-cloud_maas.png?w=800');
+        background-image: url('#{$asset-server-url}90669a61-screenshot-cloud_maas.png?w=800');
         background-position: 100% 33%;
         background-repeat: no-repeat;
         background-size: 50%;
@@ -131,7 +131,7 @@
     .row--autopilot {
 
       @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server}b72144a5-cloud_landscape_components.png?op=region&rect=0,0,900,900');
+        background-image: url('#{$asset-server-url}b72144a5-cloud_landscape_components.png?op=region&rect=0,0,900,900');
         background-position: 100% 0;
         background-repeat: no-repeat;
         background-size: 50%;
@@ -139,7 +139,7 @@
     }
 
     h1 {
-      background-image: url('#{$asset-server}33b96a7f-maas-logo.svg');
+      background-image: url('#{$asset-server-url}33b96a7f-maas-logo.svg');
       background-position: 0 18px;
       background-repeat: no-repeat;
       background-size: 1.4em;
@@ -152,7 +152,7 @@
     &.opera-mini {
 
       h1 {
-        background-image: url('#{$asset-server}6574f6c8-image-picto-maas-40.png');
+        background-image: url('#{$asset-server-url}6574f6c8-image-picto-maas-40.png');
       }
     }
   }

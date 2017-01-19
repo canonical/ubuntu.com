@@ -144,7 +144,7 @@ body {
 // local override for uvt list ticks
 .list-ticks li,
 .list-ticks--compact li {
-  background-image: url('#{$asset-server}c4b02d61-tick-orange.svg');
+  background-image: url('#{$asset-server-url}c4b02d61-tick-orange.svg');
 }
 
 // align content vertically
@@ -459,11 +459,11 @@ strong {
   }
 
   .content-cat {
-    background: url("#{$asset-server}ed42aefa-icon-resource-hub-icon-document.png") left center no-repeat;
+    background: url("#{$asset-server-url}ed42aefa-icon-resource-hub-icon-document.png") left center no-repeat;
   }
 
   .content-cat-webinar {
-    background: url("#{$asset-server}8f8326fa-icon-resource-hub-webinar.png") left center no-repeat;
+    background: url("#{$asset-server-url}8f8326fa-icon-resource-hub-webinar.png") left center no-repeat;
   }
 
   &.box-image-centered div + span img {
@@ -496,7 +496,7 @@ html.js .resource:hover a {
 
   &__copy-button {
     background-color: $white;
-    background-image: url('#{$asset-server}994e60f9-get-link-url_16.svg');
+    background-image: url('#{$asset-server-url}994e60f9-get-link-url_16.svg');
     background-position: center;
     background-repeat: no-repeat;
     border: 0;
@@ -521,7 +521,7 @@ html.js .resource:hover a {
 
 // for headings of external list links, currently only seen on download/alternative-downloads
 .external--title span {
-  background: url("#{$asset-server}e1bba201-external-link-cool-grey.svg") left center no-repeat;
+  background: url("#{$asset-server-url}e1bba201-external-link-cool-grey.svg") left center no-repeat;
   background-size: 20px;
   padding-left: 26px;
 }
