@@ -39,12 +39,13 @@
 
 <div class="row row--ebook no-border">
     <div class="strip-inner-wrapper">
-        <div class="six-col append-six">
-            <h2>Before you start, you’ll want this&nbsp;eBook</h2>
-        </div>
         <div class="six-col append-one">
+            <h2>Before you start, you’ll want this&nbsp;eBook</h2>
+            <div class="twelve-col not-for-small">
+              <img src="{{ ASSET_SERVER_URL }}5e6b2dce-MAAS-ebook-web.svg" alt="" width="440" />
+            </div>
             <h3>Server Provisioning: What Network Admins and IT Pros Need to Know</h3>
-            <p>This document is designed to help system administrators and DevOps focused organizations to understand bare metal server provisioning, understand its value proposition, and learn about how leading companies are using server provisioning solutions within their hyperscale environments.</p>
+            <p>This document is designed to help system administrators and DevOps focused organisations to understand bare metal server provisioning, understand its value proposition, and learn about how leading companies are using server provisioning solutions within their hyperscale environments.</p>
             <p>Canonical&rsquo;s MAAS helps organisations to take full advantage of existing hardware investments by maximising hardware efficiency, and a pathway to leverage the performance and security of hardware based solutions with the economics and efficiencies of the cloud.</p>
         </div>
         <div class="five-col last-col">
@@ -53,7 +54,7 @@
             <script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
             <script src="https://assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
 
-            <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1460">
+            <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1862">
                 <fieldset>
                     <ul class="no-bullets">
 
@@ -99,8 +100,8 @@
                     </ul>
                 </fieldset>
 
-                <input type="hidden" name="returnURL" value="https://www.ubuntu.com/download/cloud#instructions">
-                <input type="hidden" name="retURL" value="https://www.ubuntu.com/download/cloud#instructions">
+                <input type="hidden" name="returnURL" value="https://www.ubuntu.com/download/server/provisioning#instructions">
+                <input type="hidden" name="retURL" value="https://www.ubuntu.com/download/server/provisioning#instructions">
             </form>
             <!-- /MARKETO FORM -->
         </div>
@@ -109,7 +110,7 @@
 
 <div id="instructions" class="row row-install-autopilot no-border">
     <div class="strip-inner-wrapper">
-        <h2>Installation instructions</h2>
+        <h2>Install MAAS in 6 easy steps</h2>
         <ol class="list-stepped--spaced download-help">
             <li class="list-stepped__item">
                 <div class="five-col">
@@ -160,7 +161,7 @@
                         <li>Select the subnet where to create the DHCP dynamic range on.</li>
                         <li>Fill in details for the dynamic range.</li>
                     </ul>
-                    <img src="https://assets.ubuntu.com/v1/ab018774-vlan-details.png" alt="Screenshot of Networks tab" />
+                    <img src="{{ ASSET_SERVER_URL }}ab018774-vlan-details.png" alt="Screenshot of Networks tab" />
                 </div>
             </li>
 
@@ -170,7 +171,7 @@
                 </div>
                 <div class="seven-col last-col list-stepped__box right">
                     <p>Go to the “Images” tab and choose the OS releases and architectures you want to install dynamically.</p>
-                    <img src="https://assets.ubuntu.com/v1/e4a4fc29-boot-images.png" alt="Screenshot of Images tab" >
+                    <img src="{{ ASSET_SERVER_URL }}e4a4fc29-boot-images.png" alt="Screenshot of Images tab" >
                 </div>
             </li>
             <li class="list-stepped__item">
@@ -187,7 +188,7 @@
                         <li>Select all the machines and “Commission” them using the “Take action” button.</li>
                         <li>When machines have a “Ready” status you can start deploying.</li>
                     </ul>
-                    <img src="https://assets.ubuntu.com/v1/cdc79a2b-node-listing.png" alt="Screenshot of Machines node list" />
+                    <img src="{{ ASSET_SERVER_URL }}cdc79a2b-node-listing.png" alt="Screenshot of Machines node list" />
                 </div>
             </li>
         </ol>
@@ -197,8 +198,8 @@
 <div class="row row-white no-border">
     <div class="strip-inner-wrapper equal-height">
         <div class="five-col append-one equal-height__item">
-            <h3>Technical Documentation</h3>
-            <p>For those looking to self-support MAAS we provide <a href="https://docs.ubuntu.com/maas/2.1/en/">extensive documentation</a> covering:</p>
+            <h3>Technical documentation</h3>
+            <p>For those looking to self-support MAAS we provide <a href="https://docs.ubuntu.com/maas/2.1/en/" class="external">extensive documentation</a> covering:</p>
             <ul>
                 <li>What MAAS offers</li>
                 <li>How MAAS works</li>
@@ -208,7 +209,7 @@
             </ul>
         </div>
         <div class="six-col align-center not-for-small equal-height__item equal-height__align-vertically">
-            <img src="https://assets.ubuntu.com/v1/75f86e11-pictogram-articles-orange-hex.svg" alt="">
+            <img src="{{ ASSET_SERVER_URL }}75f86e11-pictogram-articles-orange-hex.svg" alt="">
         </div>
     </div>
 </div>
