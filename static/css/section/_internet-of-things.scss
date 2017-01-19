@@ -190,7 +190,7 @@
     }
 
     .row-cta--digital-signage {
-      background: url('#{$asset-server}68b1a2e2-banner_pixels05.png') center center no-repeat;
+      background: url('#{$asset-server-url}68b1a2e2-banner_pixels05.png') center center no-repeat;
 
       @media only screen and (min-width: $breakpoint-medium) {
         background-size: cover;
@@ -203,7 +203,7 @@
 
   .row {
     &-hero {
-      background-image: url('#{$asset-server}613bd7dc-robotics_mobile.png');
+      background-image: url('#{$asset-server-url}613bd7dc-robotics_mobile.png');
       background-position: bottom;
       background-size: cover;
       background-repeat: no-repeat;
@@ -211,7 +211,7 @@
       padding-bottom: 50%;
 
       @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server}ecdbd3cb-robotics.jpg');
+        background-image: url('#{$asset-server-url}ecdbd3cb-robotics.jpg');
         padding-bottom: 100px;
       }
 

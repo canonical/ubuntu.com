@@ -41,7 +41,7 @@
   }
 
   p.ubuntu-upgrade {
-      background: $light-grey url('#{$asset-server}f68488b1-picto-upgrade-warmgrey.svg') 20px center no-repeat;
+      background: $light-grey url('#{$asset-server-url}f68488b1-picto-upgrade-warmgrey.svg') 20px center no-repeat;
       background-size: 40px 40px;
       border-top: 1px solid #e3e3e3;
       border-radius: 0 0 4px 4px;
@@ -56,7 +56,7 @@
 html.no-svg,
 html.opera-mini {
     .download p.ubuntu-upgrade {
-        background-image: url('#{$asset-server}fa83e8f4-pictorgram-upgrade-44x44.png');
+        background-image: url('#{$asset-server-url}fa83e8f4-pictorgram-upgrade-44x44.png');
     }
 }
 
@@ -167,31 +167,31 @@ html.opera-mini {
         padding: .3em 0 .6em 2.4em;
     }
     .header--ubuntu {
-        background-image: url("#{$asset-server}cb3ecebb-picto-ubuntu.svg");
+        background-image: url("#{$asset-server-url}cb3ecebb-picto-ubuntu.svg");
     }
     .header--windows {
-        background-image: url("#{$asset-server}08563efa-picto-windows.svg");
+        background-image: url("#{$asset-server-url}08563efa-picto-windows.svg");
     }
     .header--mac {
-        background-image: url("#{$asset-server}4239507e-picto-mac.svg");
+        background-image: url("#{$asset-server-url}4239507e-picto-mac.svg");
     }
     .header--dvd {
-        background-image: url("#{$asset-server}a9ed9a5c-picto-cddvd-warmgrey.svg");
+        background-image: url("#{$asset-server-url}a9ed9a5c-picto-cddvd-warmgrey.svg");
     }
     .header--download {
-        background-image: url("#{$asset-server}be3876ec-picto-download-warmgrey.svg");
+        background-image: url("#{$asset-server-url}be3876ec-picto-download-warmgrey.svg");
     }
     .header--kylin {
-        background-image: url("#{$asset-server}590018e7-picto-ubuntukylin.svg");
+        background-image: url("#{$asset-server-url}590018e7-picto-ubuntukylin.svg");
     }
     .header--openstack {
-        background-image: url("#{$asset-server}a7916513-picto-openstack.svg");
+        background-image: url("#{$asset-server-url}a7916513-picto-openstack.svg");
     }
     .header--server {
-        background-image: url("#{$asset-server}c3499461-picto-server-warmgrey.svg");
+        background-image: url("#{$asset-server-url}c3499461-picto-server-warmgrey.svg");
     }
     .header--upgrade {
-        background-image: url("#{$asset-server}f68488b1-picto-upgrade-warmgrey.svg");
+        background-image: url("#{$asset-server-url}f68488b1-picto-upgrade-warmgrey.svg");
     }
 
     .row-easy-ways {
@@ -208,7 +208,7 @@ html.opera-mini {
     }
 
     #main-content .row-background {
-        background: url("#{$asset-server}ad0985ac-image-background-wallpaper1404.jpg") no-repeat center center;
+        background: url("#{$asset-server-url}ad0985ac-image-background-wallpaper1404.jpg") no-repeat center center;
         background-size: cover;
         background-color: #62273A;
         background-color: -webkit-linear-gradient(#62273A 0%, #a62d2d 100%);
@@ -237,11 +237,11 @@ html.opera-mini {
         }
 
         a.external {
-            background-image: url("#{$asset-server}c4b33571-icon-externallink-white.svg");
+            background-image: url("#{$asset-server-url}c4b33571-icon-externallink-white.svg");
         }
 
         a.external:hover {
-            background-image: url("#{$asset-server}a1f09697-icon-externallink-warmgrey.svg");
+            background-image: url("#{$asset-server-url}a1f09697-icon-externallink-warmgrey.svg");
         }
 
         .box-highlight {
@@ -273,7 +273,7 @@ html.opera-mini {
     }
 
     a.external:hover {
-    background-image: url("#{$asset-server}c4b33571-icon-externallink-white.svg");
+    background-image: url("#{$asset-server-url}c4b33571-icon-externallink-white.svg");
     }
 }
 
@@ -281,28 +281,28 @@ html.no-svg,
 html.opera-mini {
     .download {
         .header--ubuntu {
-            background-image: url("#{$asset-server}b66b2b31-picto-ubuntu.png");
+            background-image: url("#{$asset-server-url}b66b2b31-picto-ubuntu.png");
         }
         .header--windows {
-            background-image: url("#{$asset-server}6447e9cf-picto-windows.png");
+            background-image: url("#{$asset-server-url}6447e9cf-picto-windows.png");
         }
         .header--mac {
-            background-image: url("#{$asset-server}8f429189-picto-mac.png");
+            background-image: url("#{$asset-server-url}8f429189-picto-mac.png");
         }
         .header--dvd {
-            background-image: url("#{$asset-server}35559463-picto-cddvd-warmgrey.png");
+            background-image: url("#{$asset-server-url}35559463-picto-cddvd-warmgrey.png");
         }
         .header--download {
-            background-image: url("#{$asset-server}7fb8fbf5-picto-download-warmgrey.png");
+            background-image: url("#{$asset-server-url}7fb8fbf5-picto-download-warmgrey.png");
         }
         .header--kylin {
-            background-image: url("#{$asset-server}3e66a066-picto-ubuntukylin.png");
+            background-image: url("#{$asset-server-url}3e66a066-picto-ubuntukylin.png");
         }
         .header--openstack {
-            background-image: url("#{$asset-server}fc902cdf-picto-openstack.png");
+            background-image: url("#{$asset-server-url}fc902cdf-picto-openstack.png");
         }
         .header--server {
-            background-image: url("#{$asset-server}45f53eda-picto-server-warmgrey.png");
+            background-image: url("#{$asset-server-url}45f53eda-picto-server-warmgrey.png");
         }
     }
 }
@@ -340,12 +340,12 @@ html.opera-mini {
         background-repeat: no-repeat;
         padding-top: 160px;
     }
-    .one .box { background-image: url(#{$asset-server}c748d2fd-pictogram-ubuntu-one-113x113.png); }
-    .support .box { background-image: url(#{$asset-server}6d589b26-pictogram-support-113x113.png); }
-    .ask .box { background-image: url(#{$asset-server}db32f14e-pictogram-ask-ubuntu-113x113.png); }
-    .jumpstart .box { background-image:  url(#{$asset-server}724533d0-pictogram-jumpstart-113x113.png); }
-    .advantage .box { background-image: url(#{$asset-server}c39e35bd-pictogram-advantage-113x113.png); }
-    .consulting .box { background-image:  url(#{$asset-server}6dba47a9-pictogram-consulting-113x113.png); }
+    .one .box { background-image: url(#{$asset-server-url}c748d2fd-pictogram-ubuntu-one-113x113.png); }
+    .support .box { background-image: url(#{$asset-server-url}6d589b26-pictogram-support-113x113.png); }
+    .ask .box { background-image: url(#{$asset-server-url}db32f14e-pictogram-ask-ubuntu-113x113.png); }
+    .jumpstart .box { background-image:  url(#{$asset-server-url}724533d0-pictogram-jumpstart-113x113.png); }
+    .advantage .box { background-image: url(#{$asset-server-url}c39e35bd-pictogram-advantage-113x113.png); }
+    .consulting .box { background-image:  url(#{$asset-server-url}6dba47a9-pictogram-consulting-113x113.png); }
 }
 
 /*	@section help
@@ -428,7 +428,7 @@ html.opera-mini {
     }
 
     .ask-ubuntu-box {
-        background-image: url(#{$asset-server}422b612c-picto-forum-warmgrey.svg);
+        background-image: url(#{$asset-server-url}422b612c-picto-forum-warmgrey.svg);
         background-size: 50px 50px;
         background-repeat: no-repeat;
         background-position: 0 center;
@@ -439,7 +439,7 @@ html.opera-mini {
 .no-svg,
 .opera-mini {
     .ask-ubuntu-box {
-        background-image: url(#{$asset-server}5de3bb0c-picto-forum-warmgrey.png);
+        background-image: url(#{$asset-server-url}5de3bb0c-picto-forum-warmgrey.png);
     }
 }
 
@@ -769,7 +769,7 @@ input[type=number].contribute__option-value {
     }
 
     .box-tip {
-        background: #fff url(#{$asset-server}18aa8a3c-pictogram-download-tip-60x49.png) $gutter-width $gutter-width no-repeat;
+        background: #fff url(#{$asset-server-url}18aa8a3c-pictogram-download-tip-60x49.png) $gutter-width $gutter-width no-repeat;
         margin-bottom: 1.538em;
         padding-left: 100px;
         padding-bottom: 1.25em;
