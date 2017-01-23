@@ -65,12 +65,22 @@
 
                         <li class="mktFormReq mktField">
                             <label for="LastName" class="mktoLabel ">Last name:</label>
-                            <input required="" id="LastName" name="LastName" maxlength="255" type="text" class="mktoField   mktoRequired">
+                            <input required="" id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired">
                         </li>
 
                         <li class="mktFormReq mktField">
                             <label for="JobRole" class="mktoLabel ">Job role:</label>
-                            <input required="" id="JobRole" name="JobRole" maxlength="255" type="text" class="mktoField   mktoRequired">
+                            <select id="JobRole" name="JobRole" required class="mktoField mktoRequired">
+                                <option disabled selected value>Select...</option>
+                                <option value="CEO/Owner">CEO/Owner</option>
+                                <option value="VP/Director">VP/Director</option>
+                                <option value="Manager">Manager</option>
+                                <option value="IT Administrator">IT Administrator</option>
+                                <option value="Developer">Developer</option>
+                                <option value="Student">Student</option>
+                                <option value="Ubuntu Enthusiast">Ubuntu Enthusiast</option>
+                                <option value="Other">Other</option>
+                            </select>
                         </li>
 
                         <li class="mktFormReq mktField">
