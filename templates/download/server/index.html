@@ -11,7 +11,7 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-grey row-hero no-border">
+<section class="row row-grey row-hero">
     <div class="strip-inner-wrapper">
         <div class="eight-col append-four">
             <h1>Download Ubuntu Server</h1>
@@ -26,8 +26,8 @@
                 <div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom gap-from-top">
                     <p><a href="/download/server/thank-you?version={{lts_release}}&amp;architecture=amd64" class="link-cta-download button--primary" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{lts_release_full}}', 'eventValue' : undefined });">Download</a></p>
                     <p><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
-                </div><!-- /.four-col -->
-            </div><!-- /.box -->
+                </div>
+            </div>
         </div>
 
         <div class="twelve-col no-margin-bottom">
@@ -40,41 +40,57 @@
                 <div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom gap-from-top">
                     <p><a href="/download/server/thank-you?version={{latest_release}}&amp;architecture=amd64" class="link-cta-download button--primary" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{latest_release_full}}', 'eventValue' : undefined });">Download</a></p>
                     <p><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
-                </div><!-- /.four-col -->
-            </div><!-- /.box -->
-        </div><!-- /.twelve-col -->
-    </div>
-</div>
-
-<div class="row row-grey">
-    <div class="strip-inner-wrapper">
-        <h2 class="twelve-col">How you can use Ubuntu Server</h2>
-        <div class="equal-height">
-            <div class="six-col box">
-                <h3>OpenStack</h3>
-                <p>Build your cloud with Autopilot, the easiest way to create and manage an OpenStack cloud. Test drive on VMs or build a free test cloud on your own hardware for up to ten machines today.</p>
-                <p><a href="/download/cloud">Get started with  Autopilot&nbsp;&rsaquo;</a></p>
+                </div>
             </div>
-            <div class="six-col box last-col">
+        </div>
+    </div>
+</section>
+
+<section class="row">
+    <div class="strip-inner-wrapper equal-height--vertical-divider">
+        <div class="six-col equal-height--vertical-divider__item">
+            <h2>Server Provisioning</h2>
+            <h3>MAAS<h3>
+            <p>Metal as a Service (MAAS) offers cloud style provisioning for physical servers.</p>
+            <p>Designed for building data centres with complex networks.</p>
+            <p>Supports Windows, Ubuntu, CentOS, RHEL and SUSE.</p>
+            <p><a href="/download/server/provisioning">Install MAAS&nbsp;&rsaquo;</a></p>
+        </div>
+        <div class="six-col last-col equal-height--vertical-divider__item">
+            <h2>Server Management</h2>
+            <h3>Landscape<h3>
+            <p>Landscape is the leading management tool to deploy, monitor and manage your Ubuntu servers.</p>
+            <p>It features Autopilot, the fastest way to build an OpenStack cloud.</p>
+            <p>Landscape is part of Ubuntu Advantage, Canonical’s world-class support service.</p>
+            <p><a href="https://landscape.canonical.com/try-landscape" class="external">Try Landscape</a></p>
+        </div>
+    </div>
+</section>
+
+<section class="row row-grey">
+    <div class="strip-inner-wrapper">
+        <h2 class="twelve-col">Alternative architectures</h2>
+        <div class="equal-height">
+            <div class="four-col box">
                 <h3>Ubuntu Server for ARM</h3>
                 <p>Optimised for hyperscale deployments and certified on a number of ARM chipsets, Ubuntu Server for ARM includes the 64-bit ARMv8 platforms.</p>
                 <p><a href="/download/server/arm">Get Ubuntu Server for ARM&nbsp;&rsaquo;</a></p>
             </div>
-            <div class="six-col box">
+            <div class="four-col box">
                 <h3>Ubuntu for POWER8</h3>
                 <p>Ubuntu is now available on the IBM POWER8 platform, bringing the entire Ubuntu and OpenStack ecosystem to IBM POWER8</p>
                 <p><a href="/download/server/power8">Get Ubuntu for POWER8&nbsp;&rsaquo;</a></p>
             </div>
-            <div class="six-col box last-col">
+            <div class="four-col box last-col">
                 <h3>Ubuntu for IBM LinuxONE</h3>
                 <p>IBM LinuxONE and z Systems leverage open technology solutions to meet the demands of the new application economy. Ubuntu is now available, with Juju and Ubuntu OpenStack.</p>
                 <p><a href="/download/server/linuxone">Get Ubuntu for LinuxONE&nbsp;&rsaquo;</a></p>
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<div class="row no-border">
+<section class="row no-border">
     <div class="strip-inner-wrapper">
         <h2 class="twelve-col">Get the version you need</h2>
         <div class="twelve-col">
@@ -95,7 +111,7 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_server_installation" second_item="_download_server_guide" third_item="_download_helping_hands" %}
 
