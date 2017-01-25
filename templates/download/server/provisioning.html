@@ -93,6 +93,11 @@
                             <input required="" id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired">
                         </li>
 
+                        <!-- country -->
+                        {% include "shared/forms/_country.html" %}
+                        <!-- state/province -->
+                        {% include "shared/forms/_state.html" %}
+
                         <li class="mktFormReq mktField">
                             <label for="Phone" class="mktoLabel ">Phone number:</label>
                             <input required="" id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired">
