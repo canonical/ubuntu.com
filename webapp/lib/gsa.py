@@ -57,7 +57,9 @@ class GSAParser:
         """
 
         results_data = self.results(query, start, num)
-        results_data["results_nav"]["total_results"] = self.total_results(query)
+        results_data["results_nav"]["total_results"] = self.total_results(
+            query
+        )
 
         return results_data
 
