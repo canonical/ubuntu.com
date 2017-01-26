@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 import os
 import urllib2
 import string
@@ -36,7 +38,7 @@ os.chdir(template_dir)
 html_files = os.popen('find . -name "*.html"').readlines()
 cleaned = map(clean_path, html_files)
 
-print '"Page title", "URL"'
+print('"Page title", "URL"')
 for path in cleaned:
     if (path.find("/_") == -1) and \
             (path.find("/base_") == -1) and \
@@ -45,8 +47,9 @@ for path in cleaned:
             (path.find("patterns-assets") == -1):
         full_path = 'https://www.ubuntu.com%s' % path
         page, path = grab_ubuntu_page(path)
-        print '"{title}", "{path}"'.format(
-            title=get_title_from_html(page).replace('"', '""'),
-            path=full_path
+        print(
+            '"{title}", "{path}"'.format(
+                title=get_title_from_html(page).replace('"', '""'),
+                path=full_path
+            )
         )
-

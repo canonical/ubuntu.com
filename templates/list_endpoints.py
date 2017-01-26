@@ -10,4 +10,4 @@ no_indecies = map(
 
 prefixed = ["https://www.ubuntu.com/" + str(e) for e in no_indecies]
 
-print "\n".join(prefixed)
+print("\n".join(prefixed))
