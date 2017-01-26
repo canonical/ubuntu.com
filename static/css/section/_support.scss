@@ -10,6 +10,17 @@
 
 //	@section all /support
 .support {
+  .row.row--contact-us {
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+
+  .row--contact-us__wrapper {
+    background-image: url('#{$asset-server-url}00d6e773-contact_orange_phone.svg');
+    background-position: 10px;
+    background-repeat: no-repeat;
+    padding-left: 60px;
+  }
 
   // @subsections /support/plans-and-pricing
   &.support-plans-and-pricing {
