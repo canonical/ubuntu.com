@@ -41,6 +41,14 @@ STATIC_ROOT = "static"
 APPEND_SLASH = False
 REMOVE_SLASH = True
 
+# Use the IP address for now, as Docker doesn't use the
+# VPN DNS server
+# @TODO: Once Docker sorts this out, go back to using butlerov
+# https://github.com/docker/docker/issues/23910
+
+# SEARCH_SERVER_URL = 'http://butlerov.internal/search'
+SEARCH_SERVER_URL = 'http://10.22.112.8/search'
+
 MIDDLEWARE_CLASSES = [
     'unslashed.middleware.RemoveSlashMiddleware',
 ]
