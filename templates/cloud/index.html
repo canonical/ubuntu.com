@@ -29,7 +29,6 @@
                 <li>Get cloud-style automation for physical servers with <a class="ab-link-test" href="/server/maas">MAAS</a></li>
                 <li>Use Ubuntu on certified <a class="ab-link-test" href="/cloud/public-cloud">public clouds</a></li>
             </ul>
-            <p><a href="http://ubunt.eu/OpenStack_officehour" class="external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Cloud overview', 'eventLabel' : 'Sign up for OpenStack and containers office hours', 'eventValue' : undefined });">Sign up for OpenStack and containers office hours</a></p>
         </div>
         <div class="cloud-tools not-for-small">
             <div class="cloud-tools__container">
@@ -51,38 +50,50 @@
     </div>
 </section>
 
-<section class="row">
+<section class="row strip-dark row--office-hours no-border">
+    <div class="strip-inner-wrapper equal-height">
+        <div class="six-col equal-height__item">
+            <h2>OpenStack and containers office&nbsp;hours</h2>
+            <p>Sign-up for a one-hour web session with an expert from Canonical.</p>
+            <p>Get help with Ubuntu OpenStack, Autopilot, Kubernetes, LXD, Juju and MAAS. Ask as many questions as you want.</p>
+            <p><a href="http://ubunt.eu/OpenStack_officehour" class="button--primary" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Cloud overview', 'eventLabel' : 'Register now', 'eventValue' : undefined });">Register now</a></p>
+        </div>
+        <div class="six-col last-col equal-height__item align-center">
+            <img src="{{ ASSET_SERVER_URL }}b0e012b6-Openstack+Surgery+-+Dark+background.svg" alt="" />
+        </div>
+    </div>
+</section>
+
+<section class="row strip-light">
     <div class="strip-inner-wrapper">
-        <div class="six-col append-two">
-            <h2>Create your cloud with OpenStack Autopilot</h2>
-            <p>Deploy and manage your cloud quickly and easily.</p>
-            <ul class="list-ticks--compact">
-                <li>Fully automated deployment &mdash; just add servers</li>
-                <li>Deploy, manage and scale your OpenStack cloud with ease</li>
-                <li>First ten servers for free</li>
-                <li>Rapid scaling to add more capacity when you need it</li>
-                <li>Includes management tooling and commercial support from Canonical</li>
-            </ul>
-            <p><a href="/cloud/openstack/autopilot" class="button--primary">Get OpenStack Autopilot</a></p>
-        </div>
-        <div class="box four-col last-col">
-            <h3>Do it yourself?</h3>
-            <p>Manually deploy OpenStack services with MAAS and Juju.</p>
-            <ul>
-                <li>Bare metal install</li>
-                <li>Guided process</li>
-                <li>Proof of concept</li>
-                <li>Unmanaged</li>
-                <li>Manual upgrades</li>
-            </ul>
-            <p><a href="https://help.ubuntu.com/" class="external">Find out how</a></p>
-        </div>
+        {% include "cloud/shared/_openstack_clients.html" %}
     </div>
 </section>
 
 <section class="row no-border strip-light">
     <div class="strip-inner-wrapper">
-        {% include "cloud/shared/_openstack_clients.html" %}
+        <div class="eight-col">
+            <h2>Try an OpenStack cloud with conjure-up</h2>
+            <p>Conjure-up&rsquo;s ability to easily and quickly deploy real-world OpenStack on a single laptop using LXD containers is ideal for first-time users or developers.</p>
+            <p><a href="/download/cloud">Install OpenStack with conjure-up&nbsp;&rsaquo;</a></p>
+        </div>
+    </div>
+</section>
+
+<section class="row no-border">
+    <div class="strip-inner-wrapper">
+        <div class="six-col">
+            <h2>Build your production cloud with OpenStack Autopilot</h2>
+            <p>Deploy and manage your cloud quickly and easily.</p>
+            <ul class="list-ticks--compact">
+                <li>Fully automated deployment &mdash; just add servers or VMs</li>
+                <li>Deploy, manage and scale your OpenStack cloud with ease</li>
+                <li>First ten servers for free</li>
+                <li>Rapid scaling to add more capacity when you need it</li>
+                <li>Includes management tooling and commercial support from Canonical</li>
+            </ul>
+            <p><a href="/cloud/openstack/autopilot">Get OpenStack Autopilot&nbsp;&rsaquo;</a></p>
+        </div>
     </div>
 </section>
 
@@ -97,7 +108,7 @@
                 <li>We&rsquo;ll train your staff to run it</li>
                 <li>When you&rsquo;re ready, we&rsquo;ll hand over the keys</li>
             </ul>
-            <p><a href="/cloud/openstack/managed-cloud" class="button--primary">Let us build, operate and transfer your cloud</a></p>
+            <p><a href="/cloud/openstack/managed-cloud">Let us build, operate and transfer your cloud&nbsp;&rsaquo;</a></p>
         </div>
         <div class="six-col last-col text-center">
             <img src="{{ ASSET_SERVER_URL }}466046c7-illustration-cloud-bootstack.svg?w=320" alt="" class="not-for-small" width="320" />
@@ -253,20 +264,6 @@
         </div>
         <div class="four-col last-col">
             <figure id="ubuntu-pie" class="ubuntu-pie align-center"></figure>
-        </div>
-    </div>
-</section>
-
-<section class="row strip-dark row--office-hours no-border">
-    <div class="strip-inner-wrapper equal-height">
-        <div class="six-col equal-height__item">
-            <h2>OpenStack and containers office&nbsp;hours</h2>
-            <p>Sign-up for a one-hour web session with an expert from Canonical.</p>
-            <p>Get help with Ubuntu OpenStack, Autopilot, Kubernetes, LXD, Juju and MAAS. Ask as many questions as you want.</p>
-            <p><a href="http://ubunt.eu/OpenStack_officehour" class="button--primary" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Cloud overview', 'eventLabel' : 'Register now', 'eventValue' : undefined });">Register now</a></p>
-        </div>
-        <div class="six-col last-col equal-height__item align-center">
-            <img src="{{ ASSET_SERVER_URL }}b0e012b6-Openstack+Surgery+-+Dark+background.svg" alt="" />
         </div>
     </div>
 </section>
