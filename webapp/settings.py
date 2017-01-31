@@ -47,6 +47,7 @@ REMOVE_SLASH = True
 
 # SEARCH_SERVER_URL = 'http://butlerov.internal/search'
 SEARCH_SERVER_URL = 'http://10.22.112.8/search'
+SEARCH_TIMEOUT = 10
 
 MIDDLEWARE_CLASSES = [
     'unslashed.middleware.RemoveSlashMiddleware',
