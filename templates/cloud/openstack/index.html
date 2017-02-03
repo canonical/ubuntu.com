@@ -40,67 +40,74 @@
 <script src="{{ ASSET_SERVER_URL }}3c99518b-d3-version3.5.6.min.js"></script>
 
 <script>
-  'use strict';
-  var width = document.querySelector('#ubuntu-pie').offsetWidth;
+  function drawChart() {
+    'use strict';
+    document.querySelector('#ubuntu-pie').innerHTML = "";
+    var width = document.querySelector('#ubuntu-pie').offsetWidth;
 
-  var dataset = [
-    { label: 'ubuntu', count: 55, left: (width / 2.75), top: -5 },
-    { label: 'other', count: 45, left: -(width / 2.75), top: -5 }
-  ];
-  var height = width;
-  var radius = Math.min(width, height) / 2;
-  var donutWidth = width / 4;
-  var color = d3.scale.category20b();
-  var svg = d3.select('#ubuntu-pie')
-    .append('svg')
-    .attr('width', width)
-    .attr('height', height)
-    .attr('viewBox', '0 0 ' + (width + 2) + ' ' + (height + 2))
-    .append('g')
-    .attr('transform', 'translate(' + (width / 2 + 1) +
+    var dataset = [
+      { label: 'ubuntu', count: 55, left: (width / 2.75), top: -5 },
+      { label: 'other', count: 45, left: -(width / 2.75), top: -5 }
+    ];
+    var height = width;
+    var radius = Math.min(width, height) / 2;
+    var donutWidth = width / 4;
+    var color = d3.scale.category20b();
+    var svg = d3.select('#ubuntu-pie')
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height)
+      .attr('viewBox', '0 0 ' + (width + 2) + ' ' + (height + 2))
+      .append('g')
+      .attr('transform', 'translate(' + (width / 2 + 1) +
       ',' + (height / 2 + 1) + ')');
 
-  var arc = d3.svg.arc()
-    .innerRadius(radius - donutWidth)
-    .outerRadius(radius);
+    var arc = d3.svg.arc()
+      .innerRadius(radius - donutWidth)
+      .outerRadius(radius);
 
-  var pie = d3.layout.pie()
-    .value(function(d) { return d.count; })
-    .sort(null);
+    var pie = d3.layout.pie()
+      .value(function(d) { return d.count; })
+      .sort(null);
 
-  svg.selectAll('path')
-    .data(pie(dataset))
-    .enter()
-    .append('path')
-    .style('stroke', '#aea79f')
-    .style('stroke-width', '1')
-    .style("stroke-dasharray", ("3, 3"))
-    .attr('d', arc)
-    .attr('class', function(d, i) {
-      return d.data.label;
-    });
+    svg.selectAll('path')
+      .data(pie(dataset))
+      .enter()
+      .append('path')
+      .style('stroke', '#aea79f')
+      .style('stroke-width', '1')
+      .style("stroke-dasharray", ("3, 3"))
+      .attr('d', arc)
+      .attr('class', function(d, i) {
+        return d.data.label;
+      });
 
-  // Add labels as <text> elements
-  var labels = svg.selectAll('foreignObject')
-    .data(dataset)
-    .enter()
-    .append('text')
-    .attr('y', function(d) { return d.top; })
-    .attr('class', function(d) { return d.label + '-label'; });
+    // Add labels as <text> elements
+    var labels = svg.selectAll('foreignObject')
+      .data(dataset)
+      .enter()
+      .append('text')
+      .attr('y', function(d) { return d.top; })
+      .attr('class', function(d) { return d.label + '-label'; });
 
-  // Fill <text> labels with <tspan>s
-  labels.append('tspan')
-    .text(function (d) {return d.label;})
-    .attr('x', function(d) {
-      var spanWidth = 43;
-      if( d.label === 'ubuntu') { spanWidth = 53 }
-      return d.left - spanWidth / 2;
-    })
-    .attr('dy', '0');
-  labels.append('tspan')
-    .text(function (d) {return '(' + d.count + '%)'})
-    .attr('x', function(d) { return d.left - 44 / 2; })
-    .attr('dy', '20');
+    // Fill <text> labels with <tspan>s
+    labels.append('tspan')
+      .text(function (d) {return d.label;})
+      .attr('x', function(d) {
+        var spanWidth = 43;
+        if( d.label === 'ubuntu') { spanWidth = 53 }
+        return d.left - spanWidth / 2;
+      })
+      .attr('dy', '0');
+    labels.append('tspan')
+      .text(function (d) {return '(' + d.count + '%)'})
+      .attr('x', function(d) { return d.left - 44 / 2; })
+      .attr('dy', '20');
+  }
+
+  window.addEventListener('resize', drawChart, false);
+
+  drawChart();
 </script>
 
 <section class="row strip-light">
@@ -154,7 +161,7 @@
     <div class="strip-inner-wrapper">
         <div class="six-col">
             <h2>Build a production cloud with&nbsp;Autopilot</h2>
-            <p>Canonical&rsquo;s production cloud installer &mdash; OpenStack Autopilot &mdash; is the best way to build a clustered OpenStack cloud.</p>
+            <p>Canonical&rsquo;s production cloud installer &mdash; OpenStack Autopilot &mdash; is&nbsp;the best way to build a clustered OpenStack cloud.</p>
         </div>
         <div class="twelve-col combined-list">
             <ul class="list-ticks--compact six-col">
@@ -200,17 +207,15 @@
     <div class="strip-inner-wrapper">
         <h2>Get a customised cloud</h2>
         <div class="eight-col">
-            <p>Engage us to tailor OpenStack to your requirements, with the exact components you want and the precise configuration you need to support all your cloud applications and workloads.</p>
-            <div class="four-col combined-list">
-                <ul class="list-ticks--compact">
+            <p class="seven-col">Engage us to tailor OpenStack to your requirements, with the exact components you want and the precise configuration you need to support all your cloud applications and workloads.</p>
+            <div class="combined-list">
+                <ul class="list-ticks--compact four-col">
                     <li>SLAs and support services</li>
                     <li>On-site engineering and support</li>
                     <li>Reference architecture design</li>
                     <li>OpenStack feature development</li>
                 </ul>
-            </div>
-            <div class="four-col last-col">
-                <ul class="list-ticks--compact">
+                <ul class="list-ticks--compact four-col last-col">
                     <li>Variable service placement</li>
                     <li>Automated deployment scripts</li>
                     <li>Repeatable deployment</li>
