@@ -437,7 +437,6 @@ body.homepage .row--iot {
   background-repeat:  no-repeat;
   overflow: hidden;
   background: #fff;
-  z-index: -5;
 
   @media only screen and (min-width : $breakpoint-medium) {
     padding: 150px 0;
@@ -512,6 +511,7 @@ body.homepage .row-featured {
   padding-right: 0;
   margin-top: -20px;
   overflow: hidden;
+  z-index: 1; //fixes overlap issues with previous row image
 
   @media only screen and (min-width : $breakpoint-medium) {
     margin: -100px 0 0;
