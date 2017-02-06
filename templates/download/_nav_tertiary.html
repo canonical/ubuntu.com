@@ -5,6 +5,9 @@
         <li><a {% if level_3 == 'linuxone' %} class="active"{% endif %}href="/download/server/linuxone">LinuxONE</a></li>
         <li><a {% if level_3 == 'provisioning' %} class="active"{% endif %}href="/download/server/provisioning">Provisioning</a></li>
 {% endif %}
+{% if level_2 == 'cloud' %}
+        <li><a {% if level_3 == 'conjure-up' %} class="active"{% endif %}href="/download/cloud/conjure-up">Conjure-up</a></li>
+{% endif %}
 {% if level_3 == 'burn-a-dvd-on-macos' %}
         <li><a class="active" href="/download/desktop/burn-a-dvd-on-macos">How to burn a DVD on macOS</a></li>
 {% endif %}
