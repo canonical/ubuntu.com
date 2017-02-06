@@ -263,82 +263,10 @@
             <p><a href="/cloud/public-cloud">Get Ubuntu on the public cloud&nbsp;&rsaquo;</a></p>
         </div>
         <div class="four-col last-col">
-            <figure id="ubuntu-pie" class="ubuntu-pie align-center"></figure>
+            {% include "cloud/shared/_openstack-aws-pie-chart.html" %}
         </div>
     </div>
 </section>
-
-<script src="{{ ASSET_SERVER_URL }}3c99518b-d3-version3.5.6.min.js"></script>
-
-<script>
-  'use strict';
-  var width = document.querySelector('#ubuntu-pie').offsetWidth;
-  var dataset = [
-    { label: 'ubuntu', count: 60, left: (width / 2.75), top: -5 },
-    { label: 'other', count: 40, left: -(width / 2.75), top: -5 }
-  ];
-  var height = width;
-  var radius = Math.min(width, height) / 2;
-  var donutWidth = width / 4;
-  var color = d3.scale.category20b();
-  var svg = d3.select('#ubuntu-pie')
-    .append('svg')
-    .attr('width', width)
-    .attr('height', height)
-    .attr('viewBox', '0 0 ' + (width + 2) + ' ' + (height + 2))
-    .append('g')
-    .attr('transform', 'translate(' + (width / 2 + 1) +
-      ',' + (height / 2 + 1) + ')');
-
-  var arc = d3.svg.arc()
-    .innerRadius(radius - donutWidth)
-    .outerRadius(radius);
-
-  var pie = d3.layout.pie()
-    .value(function(d) { return d.count; })
-    .sort(null);
-
-    svg.selectAll('path')
-      .data(pie(dataset))
-      .enter()
-      .append('path')
-      .style('stroke', '#aea79f')
-      .style('stroke-width', '1')
-      .style("stroke-dasharray", ("3, 3"))
-      .attr('d', arc)
-      .attr('class', function(d, i) {
-        return d.data.label;
-      });
-
-  // Add labels as <text> elements
-  var labels = svg.selectAll('foreignObject')
-    .data(dataset)
-    .enter()
-    .append('text')
-    .attr('y', function(d) { return d.top; })
-    .attr('class', function(d) { return d.label + '-label'; });
-
-  // Fill <text> labels with <tspan>s
-  labels.append('tspan')
-    .text(function (d) {return d.label;})
-    .attr('x', function(d) { return d.left - getObjWidth(this) / 2; })
-    .attr('dy', '0');
-  labels.append('tspan')
-    .text(function (d) {return '(' + d.count + '%)'})
-    .attr('x', function(d) { return d.left - getObjWidth(this) / 4; })
-    .attr('dy', '20');
-
-  // FF/Opera does not support offsetWidth for tspan's. If undefined
-  // use the getBoundingClientRect method.
-  function getObjWidth(obj) {
-    var objWidth = obj.offsetWidth;
-    if (objWidth !== undefined) {
-      return objWidth;
-    } else {
-      return obj.getBoundingClientRect().width;
-    }
-  }
-</script>
 
 <section class="row row-insights row-grey">
     <div class="strip-inner-wrapper">
@@ -358,7 +286,7 @@
                 </ul>
             </div>
         {% include "cloud/shared/_events_overview.html" %}
-        </div><!-- end .twelve-col .vertical-divider -->
+        </div>
     </div>
 </section>
 
