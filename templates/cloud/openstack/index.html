@@ -19,114 +19,44 @@
         <div class="seven-col append-one">
             <h1>OpenStack</h1>
             <ul class="list-ticks--compact">
-                <li>OpenStack is the leading open cloud platform</li>
+                <li>OpenStack is the leading open cloud&nbsp;platform</li>
                 <li>Ubuntu is the world&rsquo;s most popular operating system for&nbsp;OpenStack</li>
-                <li>Ubuntu OpenStack is the world’s most stable and manageable cloud</li>
-                <li>Autopilot is the fastest and most reliable way to build your OpenStack cloud</li>
+                <li>Ubuntu OpenStack is the world’s most stable and manageable&nbsp;cloud</li>
+                <li>Try or build your own cloud, engage us to build and manage it or commission a completely bespoke cloud&nbsp;solution</li>
             </ul>
-            <p><a href="/download/cloud" class="button--primary">Get started with OpenStack Autopilot</a></p>
-            <p><a href="/cloud/openstack/autopilot">Learn more about Autopilot&nbsp;&rsaquo;</a></p>
+            <p><a href="/download/cloud" class="button--primary" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Cloud openstack', 'eventLabel' : 'Install OpenStack ', 'eventValue' : undefined });">Install OpenStack</a></p>
 
         </div>
         <div class="four-col last-col">
-            {% comment %} might want to add this image instead of the chart - {{ ASSET_SERVER_URL }}845e046c-partner-openstack.png
-            {% endcomment %}
-            <figure id="ubuntu-pie" class="ubuntu-pie"></figure>
-            <p class="note">Among OpenStack deployments with more than 1,600 users,
-              <a href="https://www.openstack.org/assets/survey/April-2016-User-Survey-Report.pdf" class="external">OpenStack survey &mdash; April 2016 [PDF 14.6MB]</a></p>
+            {% include "cloud/shared/_openstack-pie-chart.html" %}
         </div>
     </div>
 </section>
 
-<script src="{{ ASSET_SERVER_URL }}3c99518b-d3-version3.5.6.min.js"></script>
-
-<script>
-  'use strict';
-  var width = document.querySelector('#ubuntu-pie').offsetWidth;
-
-  var dataset = [
-    { label: 'ubuntu', count: 55, left: (width / 2.75), top: -5 },
-    { label: 'other', count: 45, left: -(width / 2.75), top: -5 }
-  ];
-  var height = width;
-  var radius = Math.min(width, height) / 2;
-  var donutWidth = width / 4;
-  var color = d3.scale.category20b();
-  var svg = d3.select('#ubuntu-pie')
-    .append('svg')
-    .attr('width', width)
-    .attr('height', height)
-    .attr('viewBox', '0 0 ' + (width + 2) + ' ' + (height + 2))
-    .append('g')
-    .attr('transform', 'translate(' + (width / 2 + 1) +
-      ',' + (height / 2 + 1) + ')');
-
-  var arc = d3.svg.arc()
-    .innerRadius(radius - donutWidth)
-    .outerRadius(radius);
-
-  var pie = d3.layout.pie()
-    .value(function(d) { return d.count; })
-    .sort(null);
-
-  svg.selectAll('path')
-    .data(pie(dataset))
-    .enter()
-    .append('path')
-    .style('stroke', '#aea79f')
-    .style('stroke-width', '1')
-    .style("stroke-dasharray", ("3, 3"))
-    .attr('d', arc)
-    .attr('class', function(d, i) {
-      return d.data.label;
-    });
-
-  // Add labels as <text> elements
-  var labels = svg.selectAll('foreignObject')
-    .data(dataset)
-    .enter()
-    .append('text')
-    .attr('y', function(d) { return d.top; })
-    .attr('class', function(d) { return d.label + '-label'; });
-
-  // Fill <text> labels with <tspan>s
-  labels.append('tspan')
-    .text(function (d) {return d.label;})
-    .attr('x', function(d) {
-      var spanWidth = 43;
-      if( d.label === 'ubuntu') { spanWidth = 53 }
-      return d.left - spanWidth / 2;
-    })
-    .attr('dy', '0');
-  labels.append('tspan')
-    .text(function (d) {return '(' + d.count + '%)'})
-    .attr('x', function(d) { return d.left - 44 / 2; })
-    .attr('dy', '20');
-</script>
-
 <section class="row row-grey">
     <div class="strip-inner-wrapper">
-        <h2 class="twelve-col">Three ways to get OpenStack on Ubuntu</h2>
+        <h2 class="twelve-col">Four ways to get OpenStack on Ubuntu</h2>
         <div class="equal-height">
-            <div class="equal-height__item four-col box">
-                <h3>Build your cloud</h3>
-                <p>OpenStack Autopilot is our fully automated tool for easy OpenStack deployment, management and operations.</p>
-                <p><a href="/download/cloud">Get Autopilot&nbsp;&rsaquo;
+            <div class="equal-height__item six-col box">
+                <h3>Get started on a single machine</h3>
+                <p>Conjure-up&rsquo;s ability to easily and quickly deploy real-world OpenStack on a single laptop using LXD containers is ideal for first-time users or developers.</p>
+                <p><a href="/download/cloud" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Cloud openstack', 'eventLabel' : 'Use conjure-up', 'eventValue' : undefined });">Use conjure-up&nbsp;&rsaquo;</a></p>
+            </div>
+            <div class="equal-height__item six-col box last-col box">
+                <h3>Build your own production grade cloud</h3>
+                <p>Canonical&rsquo;s OpenStack Autopilot is a fully automated tool for easy OpenStack deployment, management and operations.</p>
+                <p><a href="/download/cloud" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Cloud openstack', 'eventLabel' : 'Use Autopilot', 'eventValue' : undefined });">Use Autopilot&nbsp;&rsaquo;
                 </a></p>
             </div>
-            <div class="equal-height__item four-col box">
+            <div class="equal-height__item six-col box">
                 <h3>Buy a managed cloud</h3>
-                <p>With Bootstack, we will set up and operate an OpenStack cloud for you on your premises from only $15 per server.</p>
-                <p><a href="/cloud/openstack/managed-cloud">
-                    Get BootStack&nbsp;&rsaquo;
-                </a></p>
+                <p>With Bootstack, we will set up and operate an OpenStack cloud for you on your premises from only $15 per server per&nbsp;day.</p>
+                <p><a href="/cloud/openstack/managed-cloud" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Cloud openstack', 'eventLabel' : 'Get BootStack', 'eventValue' : undefined });">Get BootStack&nbsp;&rsaquo;</a></p>
             </div>
-            <div class="equal-height__item four-col last-col box">
+            <div class="equal-height__item six-col last-col box">
                 <h3>Get a customised cloud</h3>
-                <p>Our engineers can tailor OpenStack to support your specific requirements and cloud applications</p>
-                <p><a href="/cloud/contact-us">
-                    Contact us&nbsp;&rsaquo;
-                </a></p>
+                <p>Our engineers can tailor OpenStack to support your specific requirements and cloud applications.</p>
+                <p><a href="/cloud/contact-us">Contact us&nbsp;&rsaquo;</a></p>
             </div>
         </div>
     </div>
@@ -138,26 +68,38 @@
     </div>
 </section>
 
+<section class="row">
+    <div class="strip-inner-wrapper">
+        <div class="eight-col">
+            <h2>Install OpenStack on a single machine with conjure-up</h2>
+            <p>Want to try out Ubuntu OpenStack for the first time or develop &lsquo;cloud native&rsquo; software on a single machine? Start with conjure-up.</p>
+            <p>Conjure-up is a command line tool exclusive to Ubuntu 16.04 that enables developers to
+            easily deploy real-world, multi-node OpenStack on a single machine using LXD containers.</p>
+            <p><a href="/download/cloud" class="button--primary" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Cloud openstack', 'eventLabel' : 'Use conjure-up button', 'eventValue' : undefined });">Use conjure-up</a></p>
+        </div>
+    </div>
+</section>
+
 <section class="row row-autopilot no-border">
     <div class="strip-inner-wrapper">
         <div class="six-col">
-            <h2>Build a cloud with Autopilot</h2>
-            <p>OpenStack Autopilot is a tool that deploys, manages, and operates your OpenStack cloud. Using MAAS, Juju and Landscape, it helps you build your OpenStack cloud in minutes.</p>
+            <h2>Build a production cloud with&nbsp;Autopilot</h2>
+            <p>Canonical&rsquo;s production cloud installer &mdash; OpenStack Autopilot &mdash; is&nbsp;the best way to build a clustered OpenStack cloud.</p>
         </div>
         <div class="twelve-col combined-list">
             <ul class="list-ticks--compact six-col">
-                <li>Install Autopilot on your hardware</li>
-                <li>Dynamically scale as needed</li>
-                <li>Choice of SWIFT or Ceph for storage</li>
-                <li>Uses our tested reference architecture</li>
-                <li>Automatically builds for High Availability</li>
-                <li>User defined custom machine roles</li>
-                <li>Security updates for host server OS</li>
+                <li>Fully automated install and operations</li>
+                <li>Choice of storage and SDN technologies</li>
+                <li>Highest performance cloud architecture</li>
+                <li>Add hardware at any time to scale up</li>
+                <li>Works on all major vendor servers</li>
+                <li>Free to all Ubuntu Advantage customers</li>
+                <li>From 5 servers upwards, your cloud grows on demand</li>
+                <li>Automatically builds for high availability</li>
             </ul>
         </div>
         <div class="six-col">
-            <p><a href="/download/cloud" class="button--primary">Get Autopilot</a></p>
-            <p><a href="/cloud/openstack/autopilot">Learn more about Autopilot&nbsp;&rsaquo;</a></p>
+            <p><a href="/download/cloud" class="button--primary" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Cloud openstack', 'eventLabel' : 'Use Autopilot button', 'eventValue' : undefined });">Use Autopilot</a></p>
         </div>
     </div>
 </section>
@@ -175,7 +117,7 @@
                     <li>Guaranteed availability backed by a clear SLA</li>
                     <li>Transfer operations anytime you want</li>
                 </ul>
-                <p><a href="/cloud/openstack/managed-cloud" class="button--primary">Learn more about BootStack</a></p>
+                <p><a href="/cloud/openstack/managed-cloud">Learn more about BootStack&nbsp;&rsaquo;</a></p>
             </div>
             <div class="five-col last-col equal-height__item equal-height__align-vertically">
               <img src="{{ ASSET_SERVER_URL }}466046c7-illustration-cloud-bootstack.svg?w=320" alt="" class="not-for-small" width="320" />
@@ -188,17 +130,15 @@
     <div class="strip-inner-wrapper">
         <h2>Get a customised cloud</h2>
         <div class="eight-col">
-            <p>Engage us to tailor OpenStack to your requirements, with the exact components you want and the precise configuration you need to support all your cloud applications and workloads.</p>
-            <div class="four-col combined-list">
-                <ul class="list-ticks--compact">
+            <p class="seven-col">Engage us to tailor OpenStack to your requirements, with the exact components you want and the precise configuration you need to support all your cloud applications and workloads.</p>
+            <div class="combined-list">
+                <ul class="list-ticks--compact four-col">
                     <li>SLAs and support services</li>
                     <li>On-site engineering and support</li>
                     <li>Reference architecture design</li>
                     <li>OpenStack feature development</li>
                 </ul>
-            </div>
-            <div class="four-col last-col">
-                <ul class="list-ticks--compact">
+                <ul class="list-ticks--compact four-col last-col">
                     <li>Variable service placement</li>
                     <li>Automated deployment scripts</li>
                     <li>Repeatable deployment</li>
@@ -218,6 +158,6 @@
     </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_install_openstack" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_autopilot" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
 
 {% endblock content %}

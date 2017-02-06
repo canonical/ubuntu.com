@@ -1,0 +1,93 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Build OpenStack with conjure-up | Download{% endblock %}
+
+{% block extra_body_class %}download-cloud-conjure-up{% endblock %}
+
+{% block meta_description %}Want to deploy OpenStack on a single machine? Use Conjure-up. It’s the easy and free.{% endblock %}
+
+{% block meta_keywords %}OpenStack, Juju, conjure-up{% endblock %}
+
+{% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
+  {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Cloud" page_title="Conjure-up"  %}
+</div>
+{% endblock second_level_nav_items %}
+
+
+{% block content %}
+
+<section class="row row-grey no-border">
+  <div class="strip-inner-wrapper">
+    <h1>Try OpenStack on a single machine using&nbsp;conjure&#8209;up</h1>
+    <div class="box box-highlight clearfix equal-height--vertical-divider">
+      <div class="equal-height--vertical-divider__item six-col">
+        <h2>OpenStack with conjure-up</h2>
+        <p>Conjure-up&rsquo;s ability to easily and quickly deploy real-world OpenStack on a single laptop using LXD containers is ideal for first-time users or developers.</p>
+      </div>
+      <div class="equal-height--vertical-divider__item six-col last-col no-margin-bottom download-button">
+        <h3>Requirements</h3>
+        <ul class="list-ticks--compact">
+          <li>Laptop, desktop or virtual machine with 16Gb RAM and Ubuntu 16.04 LTS installed</li>
+          <li>An hour of your time</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "download/shared/_get_ebook.html"%}
+
+<section class="row row-grey no-border">
+  <div class="strip-inner-wrapper">
+    <div class="twelve-col">
+        <h2>Watch the conjure-up walkthrough</h2>
+    </div>
+    <div class="twelve-col">
+        <div class="vimeo-container">
+            <iframe src="https://player.vimeo.com/video/202195588?color=ffffff&title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <h2>Installation instructions</h2>
+    <p>It&rsquo;s as easy as &mdash;</p>
+    <div class="six-col">
+      <p class="command-line">
+        <input class="command-line__input" value="$ sudo apt-add-repository ppa:juju/stable" readonly="readonly">
+        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+      </p>
+      <p class="command-line">
+        <input class="command-line__input" value="$ sudo apt-add-repository ppa:conjure-up/next" readonly="readonly">
+        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+      </p>
+      <p class="command-line">
+        <input class="command-line__input" value="$ sudo apt update" readonly="readonly">
+        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+      </p>
+      <p class="command-line">
+        <input class="command-line__input" value="$ sudo apt install conjure-up" readonly="readonly">
+        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+      </p>
+      <p class="command-line">
+        <input class="command-line__input" value="$ conjure-up" readonly="readonly">
+        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+      </p>
+      <p>&hellip; and then follow the on-screen instructions.</p>
+      <p>To learn more about conjure-up visit <a href="http://conjure-up.io/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Download cloud conjure-up', 'eventLabel' : 'conjure-up.io', 'eventValue' : undefined });">conjure-up.io&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="row strip-light no-border">
+  <div class="strip-inner-wrapper">
+    <div class="eight-col">
+      <h2>Ready to build your own production cloud?</h2>
+      <p>OpenStack Autopilot is a fully automated tool for easy OpenStack deployment, management and operations.</p>
+      <p><a href="/download/cloud/autopilot" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Download cloud conjure-up', 'eventLabel' : 'Use OpenStack Autopilot', 'eventValue' : undefined });">Use OpenStack Autopilot&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_cloud_bootstack" second_item="_download_cloud_buy_landscape" third_item="_download_documentation" %}
+
+{% endblock content %}
