@@ -1,0 +1,266 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Build OpenStack with Autopilot| Download{% endblock %}
+
+{% block extra_body_class %}download-cloud-conjure-up{% endblock %}
+
+{% block meta_description %}Whether you’re building your own OpenStack cloud, want a hosted private cloud or want to use Ubuntu in the public cloud, we offer all the training, software, tools, services and support you need.{% endblock %}
+
+{% block meta_keywords %}OpenStack, Cloud, Ubuntu OpenStack, private cloud, public cloud, open-source,  IAAS, infrastructure, service, Ubuntu, Ubuntu Cloud Infrastructure, Ubuntu Cloud Guest, Juju, Maas, orchestration, deployment, provisioning{% endblock %}
+
+{% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
+  {% include "templates/_nav_breadcrumb.html" with section_title="Download" subsection_title="Cloud" page_title="Autopilot"  %}
+</div>
+{% endblock second_level_nav_items %}
+
+
+{% block content %}
+
+<section class="row row-grey no-border">
+  <div class="strip-inner-wrapper">
+    <div class="eight-col">
+      <h1>Get a production cloud with OpenStack Autopilot</h1>
+    </div>
+    <div class="box box-highlight clearfix equal-height--vertical-divider">
+      <div class="equal-height--vertical-divider__item six-col">
+        <h2>Install OpenStack Autopilot on your&nbsp;hardware</h2>
+        <p>Canonical&rsquo;s OpenStack Autopilot handles every aspect of your production cloud across multiple physical machines through installation, expansion and everyday operations.</p>
+      </div>
+      <div class="equal-height--vertical-divider__item six-col last-col no-margin-bottom download-button">
+        <h3>Requirements</h3>
+        <ul class="list-ticks--compact">
+          <li>A minimum of 5 machines with the following roles:
+            <ul class="list-ticks--compact">
+              <li>1 machine for the MAAS server</li>
+              <li>1 machine for the Autopilot</li>
+              <li>3 or more machines for the cloud:
+                <ul class="list-ticks--compact">
+                  <li>At least one must have 2 NICs</li>
+                  <li>At least 3 must have 2 disks</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>A dedicated switch to create a private cloud LAN</li>
+          <li>Internet access through a router on that LAN</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "download/shared/_get_ebook.html"%}
+
+<section id="instructions" class="row row-install-autopilot">
+  <div class="strip-inner-wrapper">
+    <h2>Installation instructions</h2>
+    <ol class="list-stepped--spaced download-help">
+      <li class="list-stepped__item">
+        <div class="five-col">
+          <h3 class="list-stepped__title">Set up your hardware</h3>
+        </div>
+        <div class="seven-col last-col list-stepped__box right">
+          <p>Install <a class="external" href="http://releases.ubuntu.com/14.04/">Ubuntu Server 14.04 LTS</a> on the machine designated to be the MAAS server.</p>
+          <p>You need to setup a private network with all machines plugged in and enough IP addresses available for all physical and virtual machines you plan to run. This network must not have a DHCP server: MAAS will fill in that role.</p>
+          <p>For the simplest topology, connect the second NIC of the dual-nic machine(s) to the same network.</p>
+        </div>
+      </li>
+      <li class="list-stepped__item">
+        <div class="five-col">
+          <h3 class="list-stepped__title">Add required repositories</h3>
+        </div>
+        <div class="seven-col last-col list-stepped__box right">
+          <p>From the command line type the commands below and follow the step-by-step instructions:</p>
+          <p class="command-line">
+            <input class="command-line__input" value="sudo apt-get install python-software-properties" readonly="readonly">
+            <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+          </p>
+          <p class="command-line">
+            <input class="command-line__input" value="sudo add-apt-repository ppa:cloud-installer/stable" readonly="readonly">
+            <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+          </p>
+          <p class="command-line">
+            <input class="command-line__input" value="sudo apt-get update" readonly="readonly">
+            <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+          </p>
+        </div>
+      </li>
+      <li class="list-stepped__item">
+        <div class="five-col">
+          <h3 class="list-stepped__title">Install MAAS</h3>
+        </div>
+        <div class="seven-col last-col list-stepped__box right">
+          <p>To install MAAS, start off on your Ubuntu Server 14.04 LTS machine and type the command below following the step-by-step instructions:</p>
+          <p class="command-line">
+            <input class="command-line__input" value="sudo apt-get install maas" readonly="readonly">
+            <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+          </p>
+          <ul>
+            <li>Create your admin credentials by typing:</li>
+          </ul>
+          <p class="command-line">
+            <input class="command-line__input" value="sudo maas-region-admin createadmin" readonly="readonly">
+            <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+          </p>
+          <ul>
+            <li>Login to the MAAS UI at http://&lt;maas.ip&gt;/MAAS/</li>
+            <li>Go to the settings tab and change the image download URL in the Boot Images section to http://images.maas.io/ephemeral-v2/daily/ and click save</li>
+            <li>Still in the settings tab, insert an upstream DNS server if needed and then click on the save button for that form</li>
+            <li>Go to the &ldquo;Images&rdquo; tab and import disk images for both &ldquo;14.04 LTS amd64&rdquo; and &ldquo;16.04 LTS amd64&rdquo;. This will take a few minutes, depending on your bandwidth. Let&rsquo;s continue with the configuration while that download happens.</li>
+            <li>In your MAAS user&rsquo;s settings (top-right corner) add your personal public SSH key so you can later log into the nodes.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="list-stepped__item">
+        <div class="five-col">
+          <h3 class="list-stepped__title">Configure the MAAS cluster</h3>
+        </div>
+        <div class="seven-col last-col list-stepped__box right">
+          <ul>
+            <li>Go to the &ldquo;Clusters&rdquo; tab, open the &ldquo;Cluster master&rdquo; link, hover over the row for the interface that is connected to the private network and select the edit icon (looks like a pencil &mdash; <img src="{{ ASSET_SERVER_URL }}e4e804d6-edit.svg" alt="" />)
+              <ul>
+                <li>Set this interface to manage DHCP and DNS</li>
+                <li>Set the &ldquo;Router IP&rdquo; to the default gateway</li>
+              </ul>
+            </li>
+            <li>Fill in details for the dynamic and static ranges, remembering to leave gaps for the floating IPs
+              <ul>
+                <li>Dynamic range &mdash; reserve 60 IPs plus total number of NICs connected to the network in MAAS</li>
+                <li>Static range &mdash; reserve 20 IPs plus total number of machines in MAAS</li>
+                <li>Floating IP range &mdash; that has as many IPs as instances that you&rsquo;ll want to have in your cloud. This is not a MAAS configuration, but you should leave room for them.</li>
+                <li>Save the changes and go back to the Images tab and wait for the image download to be finished. Once that is done, proceed to the next step.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="list-stepped__item">
+        <div class="five-col">
+          <h3 class="list-stepped__title">Register your hardware with MAAS</h3>
+        </div>
+        <div class="seven-col last-col list-stepped__box right">
+          <p>Now you need to enlist and commission machines:</p>
+          <ul>
+            <li>Ensure all machines are set to PXE boot, if possible disable all other boot options, including local disk, in the BIOS</li>
+            <li>Power the machines on so they will all appear in the &ldquo;Nodes&rdquo; tab of MAAS</li>
+            <li>Edit each machine filling in the power type and parameters</li>
+            <li>Select all the machines and, using the &ldquo;Take action&rdquo; dropdown, &ldquo;Commission&rdquo; them.</li>
+            <li>Wait until all machines have a &ldquo;Ready&rdquo; status</li>
+            <li>Verify the networking by going to the details page for the node(s) that have multiple NICs and check that the second NIC:
+              <ul>
+                <li>Is connected to the subnet</li>
+                <li>Has the &ldquo;IP address&rdquo; field set to &ldquo;unconfigured&rdquo;</li>
+              </ul>
+            </li>
+            <li>The first NIC should be the same except the IP address field will be set to &ldquo;Auto assign&rdquo;.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="list-stepped__item">
+        <div class="five-col">
+          <h3 class="list-stepped__title">Launch OpenStack Autopilot</h3>
+        </div>
+        <div class="seven-col last-col list-stepped__box right">
+          <p>Setup Landscape and launch the OpenStack Autopilot with the following commands:</p>
+          <p class="command-line">
+            <input class="command-line__input" value="sudo apt-get install openstack" readonly="readonly">
+            <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+          </p>
+          <p class="command-line">
+            <input class="command-line__input" value="sudo JUJU_BOOTSTRAP_TO=<hostname> openstack-install" readonly="readonly">
+            <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+          </p>
+          <ul>
+            <li>Replace &lt;hostname&gt; above with the hostname of the machine that was selected for the Autopilot role</li>
+            <li>Choose the &ldquo;Landscape OpenStack Autopilot&rdquo; option</li>
+            <li>Create a new OpenStack Password</li>
+            <li>Fill in your:
+              <ul>
+                <li>Admin email address</li>
+                <li>Admin name</li>
+                <li>MAAS server IP</li>
+                <li>MAAS user API key &mdash; found in your user&rsquo;s settings (top-right corner)</li>
+              </ul>
+            </li>
+            <li>When everything is installed, you will be given a link</li>
+            <li>Open that link to access the Landscape UI</li>
+            <li>Login with your admin email and OpenStack password</li>
+          </ul>
+          <img src="{{ ASSET_SERVER_URL }}9e962ae6-install-openstack-with-autopilot-step6.png" alt="">
+        </div>
+      </li>
+      <li class="list-stepped__item">
+        <div class="five-col">
+          <h3 class="list-stepped__title">Review your checklist</h3>
+        </div>
+        <div class="seven-col last-col list-stepped__box right">
+          <p>At the bottom of the setup page there is a checklist with the status of all of your resources. These should all be green, if it isn&rsquo;t follow the instructions to resolve </p>
+          <img src="{{ ASSET_SERVER_URL }}97950116-install-openstack-with-autopilot-step7.png" alt="" />
+        </div>
+      </li>
+      <li class="list-stepped__item">
+        <div class="five-col">
+          <h3 class="list-stepped__title">Choose your OpenStack components</h3>
+        </div>
+        <div class="seven-col last-col list-stepped__box right">
+          <img src="{{ ASSET_SERVER_URL }}32a02c50-install-openstack-with-autopilot-step8.png" alt="" />
+        </div>
+      </li>
+      <li class="list-stepped__item">
+        <div class="five-col">
+          <h3 class="list-stepped__title">Select the hardware on which to deploy the cloud</h3>
+        </div>
+        <div class="seven-col last-col list-stepped__box right">
+          <img src="{{ ASSET_SERVER_URL }}30c17ac2-install-openstack-with-autopilot-step9.png" alt="" />
+        </div>
+      </li>
+      <li class="list-stepped__item">
+        <div class="five-col">
+          <h3 class="list-stepped__title">Select &ldquo;Install&rdquo; to start building your cloud</h3>
+        </div>
+        <div class="seven-col last-col list-stepped__box right">
+          <img src="{{ ASSET_SERVER_URL }}77bc020b-Installing+region+1++++table+++Progress.png" alt="" />
+        </div>
+      </li>
+      <li class="list-stepped__item">
+        <div class="five-col">
+          <h3 class="list-stepped__title">Create an OpenStack account to access your Horizon dashboard</h3>
+        </div>
+        <div class="seven-col last-col list-stepped__box right">
+          <img src="{{ ASSET_SERVER_URL }}19a76480-while-you-wait.png" alt="" /><br/><br/><br/>
+        </div>
+      </li>
+      <li class="list-stepped__item">
+        <div class="five-col">
+          <h3 class="list-stepped__title">Monitor your region and scale out</h3>
+        </div>
+        <div class="seven-col last-col list-stepped__box right">
+          <img src="{{ ASSET_SERVER_URL }}7405e963-install-openstack-with-autopilot-step12.png" alt="" />
+        </div>
+      </li>
+    </ol>
+    <div class="six-col">
+      <p>To setup MAAS 1.9 with different network topologies read <a href="https://insights.ubuntu.com/2015/04/10/maas-network-layouts-for-the-landscape-autopilot/" class="external">MAAS&nbsp;1.9 network layouts for the Landscape Autopilot</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="row row-white no-border">
+  <div class="strip-inner-wrapper equal-height">
+    <div class="four-col align-center not-for-small equal-height__item equal-height__align-vertically">
+      <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="200" alt="" />
+    </div>
+    <div class="seven-col prepend-one last-col equal-height__item equal-height__align-vertically">
+      <h2>Need more help?</h2>
+      <p>Let our cloud experts help you take the next step.</p>
+      <p><a href="/cloud/contact-us">Contact us&nbsp;&rsaquo;</a></p>
+      <p>Already a Landscape Dedicated Server customer? Upgrading is simple, see the instructions in the <a href="https://help.landscape.canonical.com/LDS/ReleaseNotes" class="external">release notes</a>.</p>
+    </div>
+  </div>
+</section>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_cloud_bootstack" second_item="_download_cloud_buy_landscape" third_item="_download_documentation" %}
+
+
+{% endblock content %}
