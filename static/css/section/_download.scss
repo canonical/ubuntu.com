@@ -97,11 +97,14 @@ html.opera-mini {
     margin-bottom: 0;
 }
 
-.download-cloud-home .row--ebook,
-.download-server-provisioning .row--ebook,
-.download-cloud-conjure-up .row--ebook {
-  background: $dark-aubergine;
-  color: #ebebea;
+.download-cloud-home,
+.download-server-provisioning,
+.download-cloud-conjure-up,
+.download-cloud-autopilot  {
+  .row--ebook {
+    background: $dark-aubergine;
+    color: #ebebea;
+  }
 }
 
 .download-desktop {
