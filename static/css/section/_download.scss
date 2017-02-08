@@ -165,7 +165,8 @@ html.opera-mini {
     .header--kylin,
     .header--openstack,
     .header--server,
-    .header--upgrade  {
+    .header--upgrade,
+    .header--articles  {
         background-repeat: no-repeat;
         background-size: 2em 2em;
         background-position: top left;
@@ -197,6 +198,9 @@ html.opera-mini {
     }
     .header--upgrade {
         background-image: url("#{$asset-server-url}f68488b1-picto-upgrade-warmgrey.svg");
+    }
+    .header--articles {
+      background-image: url("#{$asset-server-url}8a199d55-picto-articles-warmgrey.svg");
     }
 
     .row-easy-ways {
