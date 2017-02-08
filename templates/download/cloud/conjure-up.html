@@ -38,7 +38,7 @@
 
 {% include "download/shared/_get_ebook.html"%}
 
-<section class="row row-grey no-border">
+<section class="row row-grey">
   <div class="strip-inner-wrapper">
     <div class="twelve-col">
         <h2>Watch the conjure-up walkthrough</h2>
@@ -48,19 +48,41 @@
             <iframe src="https://player.vimeo.com/video/202195588?color=ffffff&title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         </div>
     </div>
+  </div>
+</section>
 
+<section id="instructions" class="row row-install-autopilot">
+  <div class="strip-inner-wrapper">
     <h2>Installation instructions</h2>
-    <p>It&rsquo;s as easy as:</p>
-    <div class="six-col">
-      <p class="command-line">
-        <input class="command-line__input" value="snap install conjure-up --classic --beta" readonly="readonly">
-        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
-      </p>
-      <p class="command-line">
-        <input class="command-line__input" value="conjure-up" readonly="readonly">
-        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
-      </p>
-      <p>&hellip; and then follow the on-screen instructions.</p>
+    <ol class="list-stepped--spaced download-help">
+      <li class="list-stepped__item">
+        <div class="five-col">
+          <h3 class="list-stepped__title">Install and start conjure-up</h3>
+        </div>
+        <div class="seven-col last-col list-stepped__box right">
+            <p>Getting OpenStack running on your computer is easy with conjure-up.</p>
+            <p>From the command line type the commands below and follow the step-by-step instructions:</p>
+            <p class="command-line">
+              <input class="command-line__input" value="snap install conjure-up --classic --beta" readonly="readonly">
+              <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+            </p>
+            <p class="command-line">
+              <input class="command-line__input" value="conjure-up" readonly="readonly">
+              <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+            </p>
+        </div>
+      </li>
+      <li class="list-stepped__item">
+        <div class="five-col">
+          <h3 class="list-stepped__title">Select the ‘OpenStack with NovaLXD’ spell</h3>
+        </div>
+        <div class="seven-col last-col list-stepped__box right">
+          <img src="{{ ASSET_SERVER_URL }}23a02e6d-conjure-up-install-openstack.png?w=444" width="444" alt="screenshot of the conjure-up interface with the 'OpenStack with NovaLXD' option selected" />
+          <p>Then follow the rest of the on-screen instructions.</p>
+        </div>
+      </li>
+    </ol>
+    <div class="eight-col">
       <p>To learn more about conjure-up visit <a href="http://conjure-up.io/" class="external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Download cloud conjure-up', 'eventLabel' : 'conjure-up.io', 'eventValue' : undefined });">conjure-up.io</a></p>
     </div>
   </div>
