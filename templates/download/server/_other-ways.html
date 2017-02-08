@@ -7,12 +7,8 @@
             <div class="equal-height--vertical-divider">
                 <div class="equal-height--vertical-divider__item four-col">
                     {% if level_2 == 'cloud' %}
-                        <h3 class="header--upgrade">sudo apt install openstack</h3>
-                        <p>To setup Ubuntu OpenStack by hand run:</p>
-                        <pre><code>sudo apt install openstack</code></pre>
-                        <p>Followed by</p>
-                        <pre><code>conjure-up openstack</code></pre>
-                        <p><a class="external" href="http://conjure-up.io/">More information on conjure-up.io</a></p>
+                        <h3 class="header--articles">Further OpenStack reading</h3>
+                        {% include "templates/_further_reading_links.html" with feed="https://insights.ubuntu.com/tag/openstack/feed" limit=3 %}
                     {% else %}
                         {% include "download/shared/_buy_a_usb.html" %}
                     {% endif %}
