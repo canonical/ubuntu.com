@@ -6,7 +6,7 @@
         <div class="six-col append-one">
             <p class="not-for-small"><img src="{{ ASSET_SERVER_URL }}8697cae9-openstack-made-easy-illustration.svg" height="335" alt="" class="not-for-small"></p>
             <p>The phase change from traditional, monolithic software to multi-host microservices-based big software demands that you approach the challenge of deployment, integration and operations from a different perspective.</p>
-            <p>This eBook will give you a deeper understanding into why there is a perceived complexity to the installation and operations of OpenStack and how tools like Canonical&rsquo;s OpenStack Autopilot can help you build a modern, scalable, repeatable and affordable private cloud infrastructure.</p>
+            <p>This eBook will give you a deeper understanding into why there is a perceived complexity to the installation and operations of OpenStack and how tools like Canonical&rsquo;s conjure-up and OpenStack Autopilot can help you build a modern, scalable, repeatable and affordable private cloud infrastructure.</p>
         </div>
         <div class="five-col last-col">
 
@@ -71,88 +71,88 @@
 <script src="{{ ASSET_SERVER_URL }}6b7597df-event-listener-polyfill.js"></script>
 <!-- script -->
 <script>
-$("#mktoForm_1460").validate({
-    errorElement: "span",
-    errorClass: "mktFormMsg mktError",
-    onkeyup: false,
-    onclick: false,
-    onblur: false
-});
+    $("#mktoForm_1460").validate({
+        errorElement: "span",
+        errorClass: "mktFormMsg mktError",
+        onkeyup: false,
+        onclick: false,
+        onblur: false
+    });
 
-/**
-* Given a form element, extract its data and its "action" target URL
-* and submit the form using Ajax
-*/
-backgroundSubmit = function (formElement, submitCallback) {
-    var request = new XMLHttpRequest();
-    var submitUrl = formElement.getAttribute('action');
-    var formData = serialize(formElement)
+    /**
+    * Given a form element, extract its data and its "action" target URL
+    * and submit the form using Ajax
+    */
+    backgroundSubmit = function (formElement, submitCallback) {
+        var request = new XMLHttpRequest();
+        var submitUrl = formElement.getAttribute('action');
+        var formData = serialize(formElement)
 
-    request.open("POST", submitUrl, true);
+        request.open("POST", submitUrl, true);
 
-    //Send the proper header information along with the request
-    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        //Send the proper header information along with the request
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-    // When request has finished, call the callback function
-    if (submitCallback) {
-        request.addEventListener(
-            'readystatechange',
-            function() {
-                if (this.readyState == 4) {
-                    // Pass context and arguments on to submitCallback
-                    submitCallback.apply(this, arguments);
+        // When request has finished, call the callback function
+        if (submitCallback) {
+            request.addEventListener(
+                'readystatechange',
+                function() {
+                    if (this.readyState == 4) {
+                        // Pass context and arguments on to submitCallback
+                        submitCallback.apply(this, arguments);
+                    }
                 }
-            }
+            );
+        }
+
+        // Send off the POST request
+        request.send(formData);
+    }
+
+    /**
+    * After submit has happened
+    * start download and send the user to the instructions page
+    */
+    afterSubmit = function() {
+        // Now start the download
+        downloadFrame = document.createElement("iframe");
+        downloadFrame.setAttribute("src", "{{ ASSET_SERVER_URL }}f1bfc377-ebook_OpenStack_Made_Easy_20160726.pdf.zip");
+        downloadFrame.style.width = 0+"px";
+        downloadFrame.style.height = 0+"px";
+        document.body.insertBefore(downloadFrame, document.body.childNodes[0]);
+        // And redirect to the instructions page
+        window.setTimeout(
+            function () {window.location.href = "/{{ url|default:'download/cloud'}}#instructions";},
+            1000
         );
     }
 
-    // Send off the POST request
-    request.send(formData);
-}
+    /**
+    * Handler for a form submit event
+    * to disable the normal submit, and instead use backgroundSubmit
+    */
 
-/**
-* After submit has happened
-* start download and send the user to the instructions page
-*/
-afterSubmit = function() {
-    // Now start the download
-    downloadFrame = document.createElement("iframe");
-    downloadFrame.setAttribute("src", "{{ ASSET_SERVER_URL }}f1bfc377-ebook_OpenStack_Made_Easy_20160726.pdf.zip");
-    downloadFrame.style.width = 0+"px";
-    downloadFrame.style.height = 0+"px";
-    document.body.insertBefore(downloadFrame, document.body.childNodes[0]);
-    // And redirect to the instructions page
-    window.setTimeout(
-        function () {window.location.href = "/{{ url|default:'download/cloud'}}#instructions";},
-        1000
-    );
-}
-
-/**
-* Handler for a form submit event
-* to disable the normal submit, and instead use backgroundSubmit
-*/
-
-backgroundSubmitHandlerClosure = function($) {
-    return function (submitEvent) {
-        // Prevent normal submit
-        submitEvent.preventDefault ? submitEvent.preventDefault() : submitEvent.returnValue = false;
-        // Check form is valid
-        if ($(marketoForm).valid()) {
-            // Change the submit location
-            marketoForm.action = "https://app-sjg.marketo.com/index.php/leadCapture/save2"
-            // Submit the form in the background
-            backgroundSubmit(marketoForm, afterSubmit);
+    backgroundSubmitHandlerClosure = function($) {
+        return function (submitEvent) {
+            // Prevent normal submit
+            submitEvent.preventDefault ? submitEvent.preventDefault() : submitEvent.returnValue = false;
+            // Check form is valid
+            if ($(marketoForm).valid()) {
+                // Change the submit location
+                marketoForm.action = "https://app-sjg.marketo.com/index.php/leadCapture/save2"
+                // Submit the form in the background
+                backgroundSubmit(marketoForm, afterSubmit);
+            }
         }
     }
-}
 
-// Get the form
-marketoForm = document.getElementById('mktoForm_1460');
+    // Get the form
+    marketoForm = document.getElementById('mktoForm_1460');
 
-// Attach the submit handler to the form
-marketoForm.addEventListener(
-    'submit',
-    backgroundSubmitHandlerClosure(jQuery)
-)
+    // Attach the submit handler to the form
+    marketoForm.addEventListener(
+        'submit',
+        backgroundSubmitHandlerClosure(jQuery)
+    )
 </script>
