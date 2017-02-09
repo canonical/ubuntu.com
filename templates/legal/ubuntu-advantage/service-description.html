@@ -12,7 +12,7 @@
 
         <h1>Ubuntu Advantage service&nbsp;description</h1>
 
-        <p class="intro">Valid since 2 October 2016</p>
+        <p class="intro">Valid since 9 February 2017</p>
 
         <h2 id="service-description-overview">1. Overview</h2>
 
@@ -27,7 +27,7 @@
                     <li>Ubuntu Advantage Swift Storage</li>
                     <li>Ubuntu Advantage MAAS (Standard/Advanced)</li>
                     <li>Ubuntu Advantage Switch</li>
-                    <li>Ubuntu Advantage Desktop</li>
+                    <li>Ubuntu Advantage Desktop (Standard/Advanced)</li>
                 </ul>
             </li>
             <li><span class="number">1.3</span> Add on service offerings:
@@ -67,6 +67,14 @@
                         <li><span class="number">2.4.1</span> The kernel provided initially in the release of a long-term support (LTS) version of Ubuntu is supported for the entire lifecycle of the LTS.</li>
                         <li><span class="number">2.4.2</span> Hardware enablement (HWE) kernels provide support for newer hardware in an LTS release and are released in conjunction with the non-LTS Ubuntu releases. HWE kernels are supported until the next LTS point release.</li>
                         <li><span class="number">2.4.3</span> More information about kernel support can be found at <a href="/info/release-end-of-life">www.ubuntu.com/info/release-end-of-life</a></li>
+                        <li><span class="number">2.4.4</span> Kernel livepatching
+                            <ul>
+                                <li>The customer is entitled to a licence to use Canonical&#39;s kernel livepatch daemon, access to available kernel livepatches, and support for livepatches on all systems covered by Ubuntu Advantage, for which the livepatching features are available.</li>
+                                <li>Canonical provides livepatches for High and Critical kernel CVEs. Note that some CVEs may be ineligible for livepatching due to technical limitations within the livepatching system.</li>
+                                <li>Canonical can not provide kernel support bug fixes as kernel livepatches.</li>
+                                <li>Kernel livepatching is available for generic and low latency 64-bit Intel/AMD 4.4 kernels on Ubuntu 16.04.</li>
+                            </ul>
+                            </li>
                     </ol>
                 </li>
                 <li id="support-scope-landscape"><span class="number">2.5</span> Landscape
@@ -84,7 +92,7 @@
                                 <li>Ubuntu Advantage OpenStack Cloud Region</li>
                             </ul>
                         </li>
-                        <li><span class="number">2.6.2</span> OpenStack support requires environments with 5 or more supported nodes.</li>
+                        <li><span class="number">2.6.2</span> OpenStack support requires environments with 10 or more supported nodes.</li>
                         <li><span class="number">2.6.3</span> Canonical Architecture means:
                             <ul>
                                 <li>An Ubuntu OpenStack installation, deployed under contract with Canonical using Juju, MAAS, and an official Charm release. For any deployments done under contract with Canonical, which results in customization of any Charms, customization will be valid for 90 days after the official release of the Charm which includes the customizations.</li>
@@ -105,7 +113,7 @@
                 <li id="charms"><span class="number">2.7</span> Charms
                     <ol class="numbered">
                         <li><span class="number">2.7.1</span>This section applies to services purchased for the support of OpenStack.</li>
-                        <li><span class="number">2.7.2</span> Canonical will provide support for the charms required to run an OpenStack cloud deployed using Canonical&rsquo;s reference architecture.</li>
+                        <li><span class="number">2.7.2</span> Canonical will provide support for the charms required to run an OpenStack cloud deployed using the Canonical Architecture.</li>
                         <li><span class="number">2.7.3</span> Each charm version is supported for one year from the release date.</li>
                         <li><span class="number">2.7.4</span> Canonical will not provide support for any charms that have been modified from the supported version found in the Charm Store.</li>
                     </ol>
@@ -193,7 +201,7 @@
             <tbody>
                 <tr>
                     <td>Ubuntu Advantage Server Essential<br />
-                        Ubuntu Advantage Desktop</td>
+                        Ubuntu Advantage Desktop Standard</td>
                     <td>Monday &dash; Friday 09:00 &dash; 17:00</td>
                 </tr>
                 <tr>
@@ -210,7 +218,8 @@
                         Ubuntu Advantage Swift Storage<br />
                         Ubuntu Advantage MAAS Advanced<br />
                         Ubuntu Advantage Switch<br />
-                        Landscape On Premises</td>
+                        Landscape On Premises<br />
+                        Ubuntu Advantage Desktop Advanced</td>
                     <td>Monday &dash; Friday 08:00 &dash; 18:00</td>
                 </tr>
             </tbody>
@@ -229,14 +238,8 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Ubuntu Advantage Desktop</td>
-                    <td>2 business days</td>
-                    <td>2 business days</td>
-                    <td>2 business days</td>
-                    <td>2 business days</td>
-                </tr>
-                <tr>
-                    <td>Ubuntu Advantage Server Essential</td>
+                    <td>Ubuntu Advantage Server Essential<br />
+                        Ubuntu Advantage Desktop Standard</td>
                     <td>1 business day</td>
                     <td>1 business day</td>
                     <td>2 business day</td>
@@ -259,7 +262,8 @@
                         Ubuntu Advantage Swift Storage<br />
                         Ubuntu Advantage MAAS Advanced<br />
                         Ubuntu Advantage Switch<br />
-                        Landscape On Premises</td>
+                        Landscape On Premises<br />
+                        Ubuntu Advantage Desktop Advanced</td>
                     <td>1 hour</td>
                     <td>4 business hours</td>
                     <td>6 business hours</td>
@@ -416,7 +420,7 @@
 
                 <ul>
                     <li>Ubuntu Advantage support for KVM guests.</li>
-                    <li>Access to the Landscape systems management tool for Ubuntu LXD guests, except where covered by Landscape Seats of Landscape On Premises.</li>
+                    <li>Access to the Landscape systems management tool for Ubuntu LXD guests, except where covered by Landscape Seats or Landscape On Premises.</li>
                 </ul>
 
                 <h4 id="kvm-guest-support">Advanced</h4>
@@ -430,7 +434,7 @@
                 <p>Service excludes:</p>
 
                 <ul>
-                    <li>Access to the Landscape systems management tool for Ubuntu LXD or Ubuntu KVM guests, except where covered by Landscape Seats of Landscape On Premises.</li>
+                    <li>Access to the Landscape systems management tool for Ubuntu LXD or Ubuntu KVM guests, except where covered by Landscape Seats or Landscape On Premises.</li>
                 </ul>
 
                 <h3 id="ua-virtual-guest">Ubuntu Advantage Virtual Guest</h3>
@@ -548,12 +552,29 @@
                 <p>Services exclude:</p>
 
                 <ul>
-                    <li>Virtual Machines</li>
-                    <li>Machine Containers</li>
-                    <li>Application Containers</li>
-                    <li>Dual-booting (Cohabitating with other Operating Systems)</li>
-                    <li>Developer tools</li>
+                    <li>Virtual machines</li>
+                    <li>Machine containers</li>
+                    <li>Application containers</li>
+                    <li>Dual-booting (cohabitating with other operating systems)</li>
                     <li>Peripherals which are not certified to work with Ubuntu</li>
+                    <li>Support for non-desktop packages</li>
+                    <li>Community flavours of Ubuntu</li>
+                </ul>
+
+                <h4 id="ua-desktop-standard">Standard</h4>
+                <p>Service includes:</p>
+                <ul>
+                    <li>Basic network authentication and connectivity using sssd, winbind, network-manager, and network-manager related plugins in the Ubuntu Main repository</li>
+                </ul>
+                <p>Service excludes:</p>
+                <ul>
+                    <li>Developer tools</li>
+                    <li>Support for packages not in the base Ubuntu desktop image</li>
+                </ul>
+                <h4 id="ua-desktop-advanced">Advanced</h4>
+                <p>Service includes:</p>
+                <ul>
+                    <li>Desktop provisioning with Canonical tools</li>
                 </ul>
 
                 <h3 id="ua-landscape-virtual-machines">Landscape Seats</h3>
@@ -832,7 +853,7 @@
 
                 <h3>Ask for a Peer Review</h3>
 
-                <p>As a normal business practice, Canonical performs peer reviews on a percentage of all cases. Customers can specifically request a peer review on a case within the case comments or by calling +1 514 940 8895. An impartial engineer will be assigned to review the case and provide feedback.</p>
+                <p>As a normal business practice, Canonical performs peer reviews on a percentage of all cases. Customers can specifically request a peer review on a case within the case comments or by calling the phone number listed in the support portal. An impartial engineer will be assigned to review the case and provide feedback.</p>
 
                 <h3>Management escalation</h3>
 
@@ -842,7 +863,7 @@
                 </ul>
                 <p>Urgent needs</p>
                 <ul>
-                    <li>You may escalate to Canonical&#39;s Support &amp; Technical Services Manager by emailing <a href="mailto:%73%75%70%70%6F%72%74%2D%6D%61%6E%61%67%65%72%40%63%61%6E%6F%6E%69%63%61%6C%2E%63%6F%6D">support-manager@canonical.com</a> or calling <a href="tel:+15149408910">+1 514 940 8910</a>.</li>
+                    <li>You may escalate to Canonical&#39;s Support &amp; Technical Services Manager by emailing <a href="mailto:%73%75%70%70%6F%72%74%2D%6D%61%6E%61%67%65%72%40%63%61%6E%6F%6E%69%63%61%6C%2E%63%6F%6D">support-manager@canonical.com</a>.</li>
                     <li>If you require further escalation, you may email Canonical&#39;s Support &amp; Technical Services Director at <a href="mailto:%6F%70%65%72%61%74%69%6F%6E%73%2D%64%69%72%65%63%74%6F%72%40%63%61%6E%6F%6E%69%63%61%6C%2E%63%6F%6D">operations-director@canonical.com</a>.</li>
                 </ul>
 
