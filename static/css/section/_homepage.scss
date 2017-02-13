@@ -469,6 +469,50 @@ body.homepage .row--iot {
 // row--cloud-products
 body.homepage .row--cloud-products {
   background-color: $white;
+  background-image: url('#{$asset-server-url}f8ab7c6a-cloud_section_bundle_mobile.svg');
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  min-height: 360px;
+  overflow: hidden;
+  position: relative;
+
+  @media only screen and (min-width : 500px) {
+    min-height: 520px;
+  }
+
+  @media only screen and (min-width : $breakpoint-medium) {
+    background-image: none;
+    min-height: 340px;
+
+    .four-col {
+      padding-top: 45px;
+      z-index: 1; //account for overlapping content and absolutely positioned image
+    }
+  }
+
+  @media only screen and (min-width : $breakpoint-large) {
+    min-height: 460px;
+  }
+
+  .strip-inner-wrapper {
+    position: relative;
+  }
+
+  &__image {
+    @media only screen and (min-width : $breakpoint-medium) {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      width: 700px;
+    }
+
+    @media only screen and (min-width : $breakpoint-large) {
+      top: -100px;
+      right: -88px;
+      width: 933px;
+    }
+  }
 }
 
 body.homepage .row--devices {
