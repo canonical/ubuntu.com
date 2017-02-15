@@ -15,10 +15,119 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-hero no-border strip-light">
+<section class="row row-hero strip-light">
   <div class="strip-inner-wrapper">
-    <h1>Containers</h1>
+    <div class="eight-col">
+      <h1>Containers</h1>
+      <p class="intro">Ubuntu is the number one platform for containers.</p>
+      <p>From LXD to Kubernetes to Docker, Canonical has partnered with industry leaders to offer a full range of technologies and services to run containers at scale on public, private and hybrid or bare metal clouds.<p>
+      <p><a href="">Talk to us about your container strategy&nbsp;&rsaquo;</a></p>
+    </div>
   </div>
+</section>
+
+<section class="row">
+  <div class="strip-inner-wrapper">
+    [EBOOK INCLUDE]
+  </div>
+</section>
+
+<section class="row">
+  <div class="strip-inner-wrapper">
+    <div class="eight-col">
+      <h2>LXD, the pure-container hypervisor</h2>
+    </div>
+    <div class="four-col">
+      <h3>Lift-and-shift existing VM workloads</h3>
+      <p>Move your existing Linux VMs straight to containers, easily, without modifying the apps or your operations. LXD&rsquo;s machine containers operate just like virtual machines.</p>
+    </div>
+    <div class="four-col">
+      <h3>25% faster than legacy VMs</h3>
+      <p>Run an unmodified Linux operating system and applications with VM-style operations at incredible speed with zero latency.</p>
+    </div>
+    <div class="four-col last-col">
+      <h3>10x the density of ESX</h3>
+      <p>LXD&rsquo;s pure-container approach to Linux virtualisation offers dramatic density advantages over VMware ESX and Linux KVM for private and public cloud infrastructure.</p>
+    </div>
+    <div class="eight-col">
+      <p><a href="">Learn more about LXD&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="row">
+  <div class="strip-inner-wrapper">
+    <div class="eight-col">
+      <h2>The Canonical Distribution of Kubernetes</h2>
+    </div>
+    <div class="four-col">
+      <h3>Elasticity built-in</h3>
+      <p>Looking for a container orchestration system to help build your microservice-based app? Canonical’s Kubernetes is simple and naturally elastic.</p>
+    </div>
+    <div class="four-col">
+      <h3>Cost-effective at scale</h3>
+      <p>Modelled using Juju, Canonical’s Kubernetes includes all operational scripting and tooling needed to manage a long-lived cluster, including upgrades and elastic scaling.</p>
+    </div>
+    <div class="four-col last-col">
+      <h3>Analytics on tap</h3>
+      <p>Can be easily integrated with Prometheus for monitoring, Ceph for storage and Elastic Stack including Kibana for analysis and visualisations.</p>
+    </div>
+    <div class="eight-col">
+      <p><a href="">Learn more about the Canonical Distribution of Kubernetes&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="row">
+  <div class="strip-inner-wrapper">
+    <div class="eight-col">
+      <h2>Docker Engine on Ubuntu</h2>
+    </div>
+    <div class="four-col">
+      <h3>Enterprise ready Docker</h3>
+      <p>We work closely with Docker Inc. to deliver an integrated Commercially Supported Docker Engine offering on Ubuntu.</p>
+    </div>
+    <div class="four-col">
+      <h3>Reliable updates</h3>
+      <p>The Docker Engine images are published as snap package which update automatically and transactionally.</p>
+    </div>
+    <div class="four-col last-col">
+      <h3>Single vendor solution</h3>
+      <p>Canonical provides Level 1 and Level 2 technical support for the CS Docker Engine and are backed by Docker Inc. for Level 3 support.</p>
+    </div>
+    <div class="eight-col">
+      <p><a href="">Learn more about Docker Engine on Ubuntu&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+
+<section class="row">
+  <div class="strip-inner-wrapper">
+    Partnering with industry leaders
+    Include logos:
+    AWS, GCP, Azure, Kubernetes, Docker,
+    Joyent, IBM, Vmware
+  </div>
+</section>
+
+<section class="row">
+  <div class="strip-inner-wrapper">
+    <div class="eight-col">
+      Expert support from Canonical
+      If you need the assurance of a professional support subscription for your desktop, server, cloud or container deployment, Ubuntu Advantage has got you covered:
+       24/7 access to the world’s leading Ubuntu experts
+      Landscape systems management tool
+      IP assurance for your Ubuntu environment
+      Kernel livepatching to ensure you have the latest kernel security updates.
+
+      [ Visit the Ubuntu Advantage store ] or contact us >
+    </div>
+    <div class="four-col last-col">
+      [Support image]
+    </div>
+  </div>
+</div>
 </section>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_containers_juju" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
