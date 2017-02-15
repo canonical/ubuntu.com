@@ -711,40 +711,12 @@
     }
   }
 
-  // @subsection /cloud/lxd
-  &.cloud-lxd {
-    .command-line {
-      background: $light-grey;
-      border: 0;
-
-      > code {
-        color: $cool-grey;
-      }
-    }
-  }
-
   // @subsection /cloud/newsletter-thank-you
   .cloud-newsletter-thank-you   {
 
     .intro {
       @media only screen and (min-width : $breakpoint-large) {
         font-size: 1.75em;
-      }
-    }
-  }
-
-  // @subsection /cloud/kubernetes
-  &.cloud-kubernetes {
-    .row-expertise__image {
-      margin-right: 20px;
-      width: 15vw;
-
-      @media only screen and (min-width : $breakpoint-large) {
-        width: 150px;
-      }
-
-      &:last-of-type {
-        margin-right: 0;
       }
     }
   }
