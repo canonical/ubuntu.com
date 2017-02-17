@@ -16,7 +16,7 @@
   <div class="strip-inner-wrapper equal-height">
     <div class="seven-col equal-height__item">
       <h1>The LXD container hypervisor</h1>
-      <h2>10x the density of ESX, 25% faster, with zero latency</h2>
+      <p class="intro">10x the density of ESX, 25% faster, with zero latency</p>
       <p>Move your Linux VMs straight to containers, easily and without modifying the apps or your operations. Canonical&rsquo;s LXD is a pure-container hypervisor that runs unmodified Linux operating systems and applications with VM-style operations at incredible speed and density.</p>
       <p><a href="/containers/contact-us">Talk to us about your container strategy&nbsp;&rsaquo;</a></p>
     </div>
@@ -78,21 +78,13 @@
 </section>
 
 <section class="row row-grey">
-  <div class="strip-inner-wrapper">
-    <div class="eight-col">
-      <h2>Your first step to containers is the easiest</h2>
-      <p>LXD containers are just like traditional physical and virtual machines.  You can install applications, secure them, operate them with the same tools, but gain the raw performance and density of containers.  They launch in seconds and you can run hundreds on a single server. Connect them separately and securely to networks, live-migrate between hosts and drive all of this through a clean REST API.</p>
-    </div>
-  </div>
-</section>
-
-<section class="row strip-light">
   <div class="strip-inner-wrapper equal-height">
-    <div class="four-col equal-height__item equal-height__align-vertically not-for-small">
-      <img src="{{ ASSET_SERVER_URL }}00438906-pictogram-virtualisation.svg" width="220" alt="" />
+    <div class="box six-col equal-height__item">
+      <h3>Your first step to containers is easy</h3>
+      <p>LXD containers are just like traditional physical and virtual machines.  You can log in remotely, manage the guest OS the standard way, install applications, secure them, and operate them with the same tools, but gain the raw performance and density of containers.  LXD guests launch in seconds and you can run hundreds on a single server. Connect them separately and securely to networks, live-migrate between hosts and drive all of this through a clean REST API.</p>
     </div>
-    <div class="eight-col last-col equal-height__item">
-      <h2>Like a virtual machine, only faster</h2>
+    <div class="box six-col equal-height__item last-col">
+      <h3>Like a virtual machine, only faster</h3>
       <p>LXD is the next‐generation hypervisor for Linux at scale. LXD is designed to &ldquo;lift and shift&rdquo; Linux VMs to containers without modifying the app or operations. Nearly all applications can be installed in LXD containers with no need to touch the application to make it run because LXD&rsquo;s machine containers operate just like VMs.</p>
     </div>
   </div>
@@ -121,8 +113,6 @@
 <section class="row strip-light">
   <div class="strip-inner-wrapper">
     <div class="seven-col">
-      <h2>Getting started with LXD</h2>
-      <p>On Ubuntu 16.04 LTS, activate LXD with:</p>
       <pre class="command-line"><code>$ sudo lxd init</code></pre>
       <p>You can generally hit Enter to accept the default answers to the questions, and once you&rsquo;re setup you can start to launch machines. To create your first container:</p>
       <pre class="command-line"><code>$ lxc launch ubuntu: first-machine</code></pre>
@@ -145,6 +135,77 @@
     </div>
   </div>
 </section>
+
+
+
+<section id="instructions" class="row row-install-autopilot">
+  <div class="strip-inner-wrapper">
+    <h2>Getting started with LXD</h2>
+    <ol class="list-stepped--spaced download-help">
+      <li class="list-stepped__item">
+        <div class="five-col">
+          <h3 class="list-stepped__title">Activate LXD (on Ubuntu 16.04 LTS or greater)</h3>
+        </div>
+        <div class="seven-col last-col list-stepped__box right">
+            <p class="command-line">
+              <input class="command-line__input" value="$ sudo lxd init" readonly="readonly">
+              <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+            </p>
+            <p>You can generally hit Enter to accept the default answers to the questions, and once you&rsquo;re setup you can start to launch machines.</p>
+        </div>
+      </li>
+      <li class="list-stepped__item">
+        <div class="five-col">
+          <h3 class="list-stepped__title">Create your first container</h3>
+        </div>
+        <div class="seven-col last-col list-stepped__box right">
+            <p class="command-line">
+              <input class="command-line__input" value="$ lxc launch ubuntu: first-machine" readonly="readonly">
+              <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+            </p>
+            <p>This will fetch the base Ubuntu guest OS, then launch an instance of that called &rsquo;first-machine&rsquo;</p>
+        </div>
+      </li>
+      <li class="list-stepped__item">
+        <div class="five-col">
+          <h3 class="list-stepped__title">See your machine running</h3>
+        </div>
+        <div class="seven-col last-col list-stepped__box right">
+          <p class="command-line">
+            <input class="command-line__input" value="$ lxc list" readonly="readonly">
+            <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+          </p>
+          <img src="{{ ASSET_SERVER_URL }}51651853-lxc-list.png?w=444" width="444" alt="" />
+        </div>
+      </li>
+      <li class="list-stepped__item">
+        <div class="five-col">
+          <h3 class="list-stepped__title">Jump into that container</h3>
+        </div>
+        <div class="seven-col last-col list-stepped__box right">
+            <p class="command-line">
+              <input class="command-line__input" value="$ lxc exec first-machine bash" readonly="readonly">
+              <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+            </p>
+            <p class="command-line">
+              <input class="command-line__input" value="root@first-machine:~#" readonly="readonly">
+              <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
+            </p>
+        </div>
+      </li>
+    </ol>
+    <div class="eight-col">
+      <p><a class="external" href="https://linuxcontainers.org/lxd/getting-started-cli/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Read more on linuxcontainers.org', 'eventLabel' : 'linuxcontainers.org', 'eventValue' : undefined });">Read more on linuxcontainers.org</a></p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
 
 <section class="row">
   <div class="strip-inner-wrapper">
