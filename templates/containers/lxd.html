@@ -42,12 +42,12 @@
           <li>Easy monitoring of guest processes</li>
           <li>Very precise quality-of-service and quotas</li>
           <li>Snapshots and live migration</li>
+          <li>RESTful API and simple CLI</li>
           <li class="last-item">Support for ARM, POWER, X86 and Z</li>
         </ul>
       </div>
       <div class="six-col last-col">
         <ul class="list-ticks--canonical">
-          <li>RESTful API and simple CLI</li>
           <li>Rapid provisioning, instant guest boot</li>
           <li>Secure by default, with AppArmor, user namespaces, SECCOMP</li>
           <li>Remote image services</li>
@@ -140,7 +140,7 @@
               <input class="command-line__input" value="$ lxc launch ubuntu: first-machine" readonly="readonly">
               <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
             </p>
-            <p>This will fetch the base Ubuntu guest OS, then launch an instance of that called &rsquo;first-machine&rsquo;</p>
+            <p>This will fetch the base Ubuntu guest OS, then launch an instance of that called &rsquo;first-machine&rsquo;.</p>
         </div>
       </li>
       <li class="list-stepped__item">
@@ -178,23 +178,15 @@
   </div>
 </section>
 
-<section class="row">
-  <div class="strip-inner-wrapper">
-    <h2>Is LXD a real Linux hypervisor?</h2>
-      <div class="eight-col">
+<section class="row row-grey">
+  <div class="strip-inner-wrapper equal-height--vertical-divider">
+    <div class="six-col equal-height--vertical-divider__item">
+      <h3>Is LXD a real Linux hypervisor?</h3>
         <p>Yes: LXD containers give you the experience of virtual machines with the security of a hypervisor, but much, much faster. Without all the overhead, you get the full performance of your host environment. On bare metal, LXD containers are as fast as the native OS. In the cloud, you get subdivided machines without subpar performance.</p>
         <p>You can live-migrate LXD containers from machine to machine. We&rsquo;re working with silicon companies to ensure hardware-assisted security and isolation for containers, like virtual machines. Additionally, you can bind storage or network interfaces to the containers, just like virtual machines.</p>
     </div>
-  </div>
-</section>
-
-<section class="row">
-  <div class="strip-inner-wrapper equal-height">
-    <div class="four-col equal-height__item equal-height__align-vertically not-for-small">
-      <img src="{{ ASSET_SERVER_URL }}ce5e0ec1-nova-compute.svg" alt="" />
-    </div>
-    <div class="eight-col last-col equal-height__item">
-      <h2>Ultra-fast OpenStack with LXD</h2>
+    <div class="six-col equal-height--vertical-divider__item last-col">
+      <h3>Ultra-fast OpenStack with LXD</h3>
       <p>The combination of LXD and OpenStack makes for a very happy system administrator in a Linux-oriented private cloud. All the agility of OpenStack, all the performance of your metal with no virt overhead.</p>
       <p>The nova-lxd  driver allows OpenStack instances to be scheduled as Linux containers. Images are booted from OpenStack&rsquo;s image service, Glance, and instances communicate over Neutron&rsquo;s networking functionality just like KVM based VMs.</p>
     </div>
@@ -209,7 +201,6 @@
       <p>We also offer consulting services and customisation for larger organisations to integrate LXD with existing infrastructure.</p>
       <p>To discuss your requirement connect with a member of the Canonical team.</p>
       <p><a href="/support">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
-      <p><a href="/containers/contact-us">Contact us&nbsp;&rsaquo;</a></p>
     </div>
     <div class="three-col prepend-one equal-height__item equal-height__align-vertically last-col not-for-small">
       <img src="{{ ASSET_SERVER_URL }}9f035e4a-picto-support-orange.svg" alt="" />
