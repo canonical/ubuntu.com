@@ -127,3 +127,38 @@ header.banner .nav-primary li:hover ul:after {
 .u-full-width {
   width: 100%;
 }
+
+/// XXX phone number list boxes
+.phone-numbers {
+  border-radius: 4px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, .2);
+  overflow: hidden;
+  padding: 0;
+
+  &__title {
+    background-color: $light-grey;
+    padding: 15px $gutter-width;
+  }
+
+  &__list {
+    margin-left: 0;
+    padding: 0 $gutter-width;
+  }
+
+  &__list-item {
+    border-bottom: 1px dotted $warm-grey;
+    list-style: none;
+    margin-bottom: 0;
+    padding: 10px 0;
+
+    &:last-of-type {
+      border: 0;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  &__number {
+    float: right;
+  }
+}
