@@ -8,6 +8,36 @@
 // ---------------------------------------------------------------
 // ---------------------------------------------------------------
 
+// Shared components
+.row--whitepaper {
+  background-image: none;
+}
+
+// @subsection /containers
+.containers-home {
+  .icon-text {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+    @media only screen and (min-width : $breakpoint-large) {
+      margin-bottom: 40px;
+    }
+
+    &__icon {
+      margin-right: 20px;
+      width: 50px;
+
+      @media only screen and (min-width : $breakpoint-large) {
+        margin-right: 40px;
+        width: auto;
+      }
+    }
+  }
+
+
+}
+
 // @subsection /containers/kubernetes
 .containers-kubernetes {
   .row-expertise__image {

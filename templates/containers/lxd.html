@@ -12,7 +12,7 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-hero strip-light">
+<section class="row row-hero strip-light no-border">
   <div class="strip-inner-wrapper equal-height">
     <div class="seven-col equal-height__item">
       <h1>The LXD container hypervisor</h1>
@@ -25,6 +25,8 @@
     </div>
   </div>
 </section>
+
+{% include "containers/shared/_whitepaper.html" %}
 
 <section class="row row-grey">
   <div class="strip-inner-wrapper">
