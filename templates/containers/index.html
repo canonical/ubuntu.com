@@ -1,10 +1,10 @@
 {% extends "containers/base_containers.html" %}
 
-{% block title %}Ubuntu in the cloud | Containers{% endblock %}
+{% block title %}Containers{% endblock %}
 
 {% block meta_description %}Whether you’re building your own OpenStack cloud, want a hosted private cloud or want to use Ubuntu in the public cloud, we offer all the training, software, tools, services and support you need.{% endblock meta_description %}
 
-{% block meta_keywords %}OpenStack, Cloud, Ubuntu OpenStack, private cloud, public cloud, open-source,  IAAS, infrastructure, service, Ubuntu, Ubuntu Cloud Infrastructure, Ubuntu Cloud Guest, Juju, Maas, orchestration, deployment, provisioning, training{% endblock meta_keywords %}
+{% block meta_keywords %}Containers, Docker, LXC, LXD, Kubernetes, conjure-up, container management, Ubuntu, Canonical, Linux, Ubuntu Advantage, deployment, provision, provisioning, manage, management, monitor, monitoring, scriptable, enterprise, software, API, web, hosted, dedicated, server, cloud, OpenStack, Amazon, EC2, ROI, cost-effective, trial, free{% endblock meta_keywords %}
 
 {% block extra_body_class %}containers-home{% endblock %}
 
@@ -15,21 +15,27 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-hero strip-light">
-  <div class="strip-inner-wrapper">
-    <div class="eight-col">
+<section class="row row-hero strip-light no-border">
+  <div class="strip-inner-wrapper equal-height">
+    <div class="seven-col append-one equal-height__item">
       <h1>Containers</h1>
       <p class="intro">Ubuntu is the number one platform for containers.</p>
       <p>From LXD to Kubernetes to Docker, Canonical has partnered with industry leaders to offer a full range of technologies and services to run containers at scale on public, private and hybrid or bare metal clouds.<p>
-      <p><a href="">Talk to us about your container strategy&nbsp;&rsaquo;</a></p>
+      <p><a href="/containers/contact-us">Talk to us about your container strategy&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="four-col last-col equal-height__item align-center">
+      <img src="{{ ASSET_SERVER_URL }}a9aff224-Containers-illustration.svg" width="312" alt="" />
     </div>
   </div>
 </section>
 
+{% include "containers/shared/_whitepaper.html" %}
+
 <section class="row row-grey">
   <div class="strip-inner-wrapper">
-    <div class="eight-col">
-      <h2>LXD, the pure-container hypervisor</h2>
+    <div class="icon-text">
+      <img src="{{ ASSET_SERVER_URL }}a71002bd-lxd_logo.svg" alt="LXD logo" class="icon-text__icon" />
+      <h2 class="no-margin-bottom">LXD, the pure-container hypervisor</h2>
     </div>
     <div class="twelve-col equal-height">
       <div class="four-col equal-height__item equal-height--vertical-divider__item">
@@ -46,15 +52,16 @@
       </div>
     </div>
     <div class="eight-col">
-      <p><a href="">Learn more about LXD&nbsp;&rsaquo;</a></p>
+      <p><a href="/containers/lxd">Learn more about LXD&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
 
 <section class="row row-white">
   <div class="strip-inner-wrapper">
-    <div class="eight-col">
-      <h2>The Canonical Distribution of Kubernetes</h2>
+    <div class="icon-text">
+      <img src="{{ ASSET_SERVER_URL }}24e41fc3-kubernetes_logo.svg" alt="Kubernetes logo" class="icon-text__icon" />
+      <h2 class="no-margin-bottom">The Canonical Distribution of Kubernetes</h2>
     </div>
     <div class="twelve-col equal-height">
       <div class="four-col equal-height__item equal-height--vertical-divider__item">
@@ -71,15 +78,15 @@
       </div>
     </div>
     <div class="eight-col">
-      <p><a href="">Learn more about the Canonical Distribution of Kubernetes&nbsp;&rsaquo;</a></p>
+      <p><a href="/containers/kubernetes">Learn more about the Canonical Distribution of Kubernetes&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
 
 <section class="row row-grey">
   <div class="strip-inner-wrapper">
-    <div class="eight-col">
-      <h2>Docker Engine on Ubuntu</h2>
+    <div class="icon-text">
+        <img src="{{ ASSET_SERVER_URL }}1eb617a5-docker_logo.svg" alt="Docker logo" class="icon-text__icon" /><h2 class="no-margin-bottom">Docker Engine on Ubuntu</h2>
     </div>
     <div class="twelve-col equal-height">
       <div class="four-col equal-height__item equal-height--vertical-divider__item">
@@ -96,7 +103,7 @@
       </div>
     </div>
     <div class="eight-col">
-      <p><a href="">Learn more about Docker Engine on Ubuntu&nbsp;&rsaquo;</a></p>
+      <p><a href="/containers/docker-ubuntu">Learn more about Docker Engine on Ubuntu&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
@@ -118,20 +125,21 @@
 </section>
 
 <section class="row no-border">
-  <div class="strip-inner-wrapper">
-    <div class="eight-col">
+  <div class="strip-inner-wrapper equal-height">
+    <div class="six-col append-one equal-height__item equal-height__align-vertically">
       <h2>Expert support from Canonical</h2>
       <p>If you need the assurance of a professional support subscription for your desktop, server, cloud or container deployment, Ubuntu Advantage has got you covered:</p>
-      <ul class="">
+      <ul class="list-ticks">
         <li>24/7 access to the world&rsquo;s leading Ubuntu experts</li>
         <li>Landscape systems management tool</li>
         <li>IP assurance for your Ubuntu environment</li>
-        <li>Kernel livepatching to ensure you have the latest kernel security updates</li>
+        <li>Kernel livepatching to ensure you have the latest kernel security&nbsp;updates</li>
       </ul>
-      [ Visit the Ubuntu Advantage store ] or contact us >
+      <p><a href="https://buy.ubuntu.com/" class="button--primary">Visit the Ubuntu Advantage store</a></p>
+      <p>Or <a href="/containers/contact-us">contact us&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="four-col last-col">
-      [Support image]
+    <div class="five-col last-col equal-height__item equal-height__align-vertically not-for-small">
+      <img src="{{ ASSET_SERVER_URL }}11da76f5-image-management.svg" class="u-full-width" width="288" height="155" />
     </div>
   </div>
 </div>

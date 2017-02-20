@@ -15,7 +15,7 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-hero strip-light">
+<section class="row row-hero strip-light no-border">
   <div class="strip-inner-wrapper equal-height">
     <div class="eight-col equal-height__item">
       <h1>Docker Engine on Ubuntu</h1>
@@ -29,6 +29,8 @@
     </div>
   </div>
 </section>
+
+{% include "containers/shared/_whitepaper.html" %}
 
 <section class="row row-grey">
   <div class="strip-inner-wrapper equal-height">
@@ -64,7 +66,7 @@
         <li>Stable, maintained releases of Docker are published and updated by Docker as snap packages on Ubuntu, enabling direct access to the official Docker Engine for all Ubuntu users</li>
         <li>Canonical provides Level 1 and Level 2 technical support for the CS Docker Engine and are backed by Docker Inc. for Level 3 support</li>
         <li>Canonical also ensures global availability of secure  Ubuntu images on Docker Hub</li>
-      </ul>    
+      </ul>
       <p><a href="/containers/contact-us">Talk to our container team&nbsp;&rsaquo;</a></p>
     </div>
     <div class="four-col equal-height__item equal-height__align-vertically not-for-small last-col">
