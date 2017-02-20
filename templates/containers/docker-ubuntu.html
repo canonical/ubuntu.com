@@ -1,0 +1,100 @@
+{% extends "containers/base_containers.html" %}
+
+{% block title %}Docker Engine on Ubuntu | Containers{% endblock %}
+
+{% block meta_description %}Canonical works in partnership with Docker Inc. to provide customers with a single path for the commercial support of Docker Engine running in production Ubuntu environments.{% endblock meta_description %}
+
+{% block meta_keywords %}Docker, Docker Engine, Docker Kubernetes, containers, Ubuntu OpenStack, Canonical, The Canonical Distribution of Kubernetes, OpenStack, cloud, Juju, Charms{% endblock meta_keywords %}
+
+{% block extra_body_class %}containers-home{% endblock %}
+
+{% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
+  {% include "templates/_nav_breadcrumb.html" with section_title="Containers" page_title="Overview" %}
+</div>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<section class="row row-hero strip-light">
+  <div class="strip-inner-wrapper">
+    <div class="eight-col">
+      <h1>Docker Engine on Ubuntu</h1>
+      <p class="intro">Integrated support service with enterprise SLAs</p>
+      <p>Docker Engine is a lightweight container runtime with robust tooling that builds and runs your container. Over 65% of all Docker-based scale out operations run on Ubuntu.</p>
+      <p>Canonical works closely with Docker Inc. to deliver an integrated Commercially Supported (CS) Docker Engine offering on Ubuntu. This partnership provides customers with the fastest and easiest path for support of Ubuntu and Docker Engine in enterprise Docker operations.</p>
+      <p><a href="/containers/contact-us">Talk to us about your container strategy&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="row row-grey">
+  <div class="strip-inner-wrapper equal-height">
+    <h2>Why run Docker Engine on Ubuntu?</h2>
+    <div class="box six-col equal-height--item">
+        <h3>One vendor, simpler relationships</h3>
+        <p>In a growing infrastructure, having just one vendor for both container and OS-level support reduces relationship complexity and the potential for friction.</p>
+    </div>
+
+    <div class="box six-col last-col equal-height--item">
+      <h3>Enhanced security</h3>
+      <p>Packaging Docker Engine as a snap delivers additional isolation and confinement benefits which significantly improve the security of your Docker app.</p>
+    </div>
+
+    <div class="box six-col equal-height--item">
+      <h3>Safer, simpler roll backs</h3>
+      <p>If needed, you can easily undo an update and reinstall an older Docker snap that worked.</p>
+    </div>
+
+    <div class="box six-col last-col equal-height--item">
+      <h3>Faster, more reliable updates through Snaps</h3>
+      <p>Docker Engine image Snaps are faster to install and update automatically and transactionally so your Docker app is always fresh and never broken.</p>
+    </div>
+  </div>
+</section>
+
+<section class="row row-grey">
+  <div class="strip-inner-wrapper equal-height">
+    <div class="eight-col equal-height__item">
+      <h2>How does our Docker support offering work?</h2>
+      <p>Docker and Canonical&rsquo;s integrated support offering for Docker Engine running on Ubuntu provides a streamlined operations and support experience:</p>
+      <ul>
+        <li>Stable, maintained releases of Docker are published and updated by Docker as snap packages on Ubuntu, enabling direct access to the official Docker Engine for all Ubuntu users</li>
+        <li>Canonical provides Level 1 and Level 2 technical support for the CS Docker Engine and are backed by Docker Inc. for Level 3 support</li>
+        <li>Canonical also ensures global availability of secure  Ubuntu images on Docker Hub</li>
+      </ul>    
+      <p><a href="/containers/contact-us">Talk to our container team&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="four-col equal-height__item equal-height__align-vertically not-for-small last-col">
+      <img src="{{ ASSET_SERVER_URL }}9f035e4a-picto-support-orange.svg" width="200" alt="" />
+    </div>
+  </div>
+</section>
+
+<section class="row">
+  <div class="strip-inner-wrapper">
+    <div class="ten-col prepend-one">
+      <blockquote class="pull-quote">
+        <p><span>&ldquo;</span>Through our partnership, we provide users with more choice by bringing the agility, portability, and security benefits of the Docker CS engine to the larger Ubuntu community.<span>&rdquo;</span></p>
+        <p><cite>Nick Stinemates, VP, Business Development &amp; Technical Alliances at Docker, Inc</cite></p>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="row row-grey no-border">
+  <div class="strip-inner-wrapper equal-height">
+    <div class="eight-col equal-height__item">
+      <h2>How does Docker compare to LXD?</h2>
+      <p>LXD gives you a classic virtual machine experience with all your administrative processes running, from sshd to syslog, so it feels just like a normal Ubuntu system. Docker instances typically contain only a single process or application per container.</p>
+      <p>LXD usage is often driven by operations making Infrastructure-as-a-Service OS instances much faster. Whereas Docker usage is often driven by developers making Platform-as-a-Service application instances more portable.</p>
+      <p>Docker can run alongside LXD with both instances working together. Moreover, Docker can run inside of LXD with zero performance impact, allowing you to safely migrate your Docker containers between machines for easy scale up and scale down.</p>
+      <p><a href="/containers/lxd">Learn more about LXD&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="four-col equal-height__item equal-height__align-vertically not-for-small last-col">
+    </div>
+  </div>
+</section>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_containers_juju" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
+
+{% endblock content %}
