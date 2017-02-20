@@ -16,13 +16,16 @@
 
 {% block content %}
 <section class="row row-hero strip-light">
-  <div class="strip-inner-wrapper">
-    <div class="eight-col">
+  <div class="strip-inner-wrapper equal-height">
+    <div class="eight-col equal-height__item">
       <h1>Docker Engine on Ubuntu</h1>
-      <p class="intro">Integrated support service with enterprise SLAs</p>
+      <h2>Integrated support service with enterprise&nbsp;SLAs</h2>
       <p>Docker Engine is a lightweight container runtime with robust tooling that builds and runs your container. Over 65% of all Docker-based scale out operations run on Ubuntu.</p>
       <p>Canonical works closely with Docker Inc. to deliver an integrated Commercially Supported (CS) Docker Engine offering on Ubuntu. This partnership provides customers with the fastest and easiest path for support of Ubuntu and Docker Engine in enterprise Docker operations.</p>
       <p><a href="/containers/contact-us">Talk to us about your container strategy&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="four-col last-col equal-height__item equal-height__align-vertically align-center">
+      <img src="{{ ASSET_SERVER_URL }}fe637cb5-docker.svg" width="220" alt="" />
     </div>
   </div>
 </section>
@@ -57,7 +60,7 @@
     <div class="eight-col equal-height__item">
       <h2>How does our Docker support offering work?</h2>
       <p>Docker and Canonical&rsquo;s integrated support offering for Docker Engine running on Ubuntu provides a streamlined operations and support experience:</p>
-      <ul>
+      <ul class="list-ticks--compact">
         <li>Stable, maintained releases of Docker are published and updated by Docker as snap packages on Ubuntu, enabling direct access to the official Docker Engine for all Ubuntu users</li>
         <li>Canonical provides Level 1 and Level 2 technical support for the CS Docker Engine and are backed by Docker Inc. for Level 3 support</li>
         <li>Canonical also ensures global availability of secure  Ubuntu images on Docker Hub</li>
@@ -70,7 +73,7 @@
   </div>
 </section>
 
-<section class="row">
+<section class="row row-white">
   <div class="strip-inner-wrapper">
     <div class="ten-col prepend-one">
       <blockquote class="pull-quote">
@@ -91,6 +94,7 @@
       <p><a href="/containers/lxd">Learn more about LXD&nbsp;&rsaquo;</a></p>
     </div>
     <div class="four-col equal-height__item equal-height__align-vertically not-for-small last-col">
+      <img src="{{ ASSET_SERVER_URL }}f581fd89-lxd_takeover.png" width="260" alt="LXD" />
     </div>
   </div>
 </section>
