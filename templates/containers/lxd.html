@@ -16,8 +16,8 @@
   <div class="strip-inner-wrapper equal-height">
     <div class="seven-col equal-height__item">
       <h1>The LXD container hypervisor</h1>
-      <p class="intro">10x the density of ESX, 25% faster, with zero latency</p>
-      <p>Move your Linux VMs straight to containers, easily and without modifying the apps or your operations. Canonical&rsquo;s LXD is a pure-container hypervisor that runs unmodified Linux operating systems and applications with VM-style operations at incredible speed and density.</p>
+      <p class="intro">10x the density of ESX, 25% faster, zero latency</p>
+      <p>Move your Linux VMs straight to containers, easily, without modifying the apps or administration processes. Canonical&rsquo;s LXD is a pure-container hypervisor that runs unmodified Linux guest operating systems with VM-style operations at incredible speed and density.</p>
       <p><a href="/containers/contact-us">Talk to us about your container strategy&nbsp;&rsaquo;</a></p>
     </div>
     <div class="text-center equal-height__item equal-height__align-vertically five-col last-col">
@@ -30,24 +30,27 @@
   <div class="strip-inner-wrapper">
     <div class="eight-col">
       <h2>Why use LXD?</h2>
-      <p>LXD gives you a full &lsquo;machine&rsquo; operating system functionality in your containers, not just a single process. It offers the maximum density of guests per host of any container solution and has been implemented in Go, for performance and concurrency. You also get:</p>
+      <p>LXD takes the speed and latency of containers and brings them to the hypervisor world. A LXD container gives you full &lsquo;machine&rsquo; system functionality, not just a single process.  You can run Docker and RunC inside LXD to mix container types. But mostly, LXD is a &ldquo;really fast hypervisor&rdquo; that lets you operate exactly the way you currently operate, only at container speeds. You also get:</p>
     </div>
     <div class="twelve-col combined-list no-margin-bottom">
       <div class="six-col">
         <ul class="list-ticks--canonical">
-          <li>Easy management and sharing of hardware resources</li>
-          <li>Easy monitoring of customer processes directly from the host level</li>
-          <li>RESTful API and simple CLI</li>
-          <li class="last-item">Supports ARM, POWER, X86 and Z</li>
+          <li>Bare-metal performance for guests</li>
+          <li>Easy sharing of hardware resources</li>
+          <li>Easy monitoring of guest processes</li>
+          <li>Very precise quality-of-service and quotas</li>
+          <li>Snapshots and live migration</li>
+          <li class="last-item">Support for ARM, POWER, X86 and Z</li>
         </ul>
       </div>
       <div class="six-col last-col">
         <ul class="list-ticks--canonical">
+          <li>RESTful API and simple CLI</li>
           <li>Rapid provisioning, instant guest boot</li>
           <li>Secure by default, with AppArmor, user namespaces, SECCOMP</li>
           <li>Remote image services</li>
           <li>Extensible storage and networking</li>
-          <li>Written in Go for performance and concurrency</li>
+          <li>Performance and concurrency from Golang</li>
         </ul>
       </div>
     </div>
@@ -163,6 +166,7 @@
               <input class="command-line__input" value="root@first-machine:~#" readonly="readonly">
               <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
             </p>
+            <p>Type &lsquo;exit&rsquo; to quit the container and return to your host. Launch more containers and see how quickly they start. Install SSH and log into them remotely, they behave just like real machines.</p>
         </div>
       </li>
     </ol>
@@ -177,7 +181,7 @@
     <h2>Is LXD a real Linux hypervisor?</h2>
       <div class="eight-col">
         <p>Yes: LXD containers give you the experience of virtual machines with the security of a hypervisor, but much, much faster. Without all the overhead, you get the full performance of your host environment. On bare metal, LXD containers are as fast as the native OS. In the cloud, you get subdivided machines without subpar performance.</p>
-        <p>You can live-migrate LXD containers from machine to machine. We&rsquo;re working with silicon companies to ensure hardware-assisted security and isolation for containers, like virtual machines. Additionally, you can bind storage or network interfaces to the containers, just like virtual machines</p>
+        <p>You can live-migrate LXD containers from machine to machine. We&rsquo;re working with silicon companies to ensure hardware-assisted security and isolation for containers, like virtual machines. Additionally, you can bind storage or network interfaces to the containers, just like virtual machines.</p>
     </div>
   </div>
 </section>
@@ -189,8 +193,8 @@
     </div>
     <div class="eight-col last-col equal-height__item">
       <h2>Ultra-fast OpenStack with LXD</h2>
-      <p>The combination of LXD and OpenStack makes for a very happy system administrator in a Linux‐oriented private cloud. All the agility of OpenStack, all the performance of your metal with no virt overhead.</p>
-      <p>The nova-lxd driver allows OpenStack instances to be scheduled as Linux containers. Images are booted from OpenStack’s image service, Glance, and instances communicate over Neutron’s networking functionality just like KVM based VMs.</p>
+      <p>The combination of LXD and OpenStack makes for a very happy system administrator in a Linux-oriented private cloud. All the agility of OpenStack, all the performance of your metal with no virt overhead.</p>
+      <p>The nova-lxd  driver allows OpenStack instances to be scheduled as Linux containers. Images are booted from OpenStack&rsquo;s image service, Glance, and instances communicate over Neutron&rsquo;s networking functionality just like KVM based VMs.</p>
     </div>
   </div>
 </section>
@@ -202,9 +206,10 @@
       <p>Enterprise support for LXD is provided by Canonical through Ubuntu Advantage.</p>
       <p>We also offer consulting services and customisation for larger organisations to integrate LXD with existing infrastructure.</p>
       <p>To discuss your requirement connect with a member of the Canonical team.</p>
-      <p><a href="/containers/contact-us">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+      <p><a href="/support">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+      <p><a href="/containers/contact-us">Contact us&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="four-col equal-height__item equal-height__align-vertically last-col not-for-small">
+    <div class="three-col prepend-one equal-height__item equal-height__align-vertically last-col not-for-small">
       <img src="{{ ASSET_SERVER_URL }}9f035e4a-picto-support-orange.svg" alt="" />
     </div>
   </div>
@@ -214,11 +219,14 @@
   <div class="strip-inner-wrapper">
     <div class="eight-col">
       <h2>How does LXD compare to Docker?</h2>
-      <p>Docker and LXD are complementary, use them both, use them together!</p>
-      <p>LXD gives you a classic virtual machine experience with all your administrative processes running, from sshd to syslog, so LXD feels just like a normal system.  All the apps work the same way, operations are identical, and of course you can run your Docker processes inside LXD containers.  LXD is a cheaper, faster and better alternative to KVM, VMware and VirtualBox, for Linux-on-Linux workloads.</p>
-      <p>LXD guests always boot into a functional operating system.  Process #1 is always <code>/sbin/init</code>, which forks off the usual things you expect in a Linux/UNIX OS environment: cron, at, ssh, syslog, journal, ntp, etc.  Docker instances typically contain one and only one process or application.</p>
-      <p>LXD usage is often driven by operations where it is a fine addition to any infrastructure-as-a-service cloud, making those IaaS OS instances much faster.  Whereas Docker usage is often driven by developers and forms the basis for platform-as-a-service clouds, making those PaaS application instances faster and more portable.</p>
-      <p>Docker can run alongside LXD with both instances working together.  Moreover, Docker can run inside of LXD with zero performance impact.</p>
+      <ul class="list-ticks--compact">
+        <li>Docker and LXD are complementary, use them both, use them together!</li>
+        <li>LXD gives you a classic virtual machine experience with all your administrative processes running, from sshd to syslog, so LXD feels just like a normal system</li>
+        <li>Docker instances typically contain one and only one process or application</li>
+        <li>LXD usage is often driven by operations where it makes any infrastructure-as-a-service cloud instances much faster</li>
+        <li>Docker usage is usually driven by developers and forms the basis for platform-as-a-service (PaaS) clouds, making those PaaS application instances faster and more portable</li>
+        <li>Docker can run alongside LXD with both instances working together.  Moreover, Docker can run inside of LXD with zero performance impact</li>
+      </ul>
       <p><a class="external" href="http://insights.ubuntu.com/2016/11/30/docker-and-canonical-partner-on-cs-docker-engine-for-ubuntu-users">Find out more about our partnership with Docker</a></p>
     </div>
     <div class="four-col align-center last-col">
