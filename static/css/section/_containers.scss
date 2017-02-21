@@ -30,7 +30,30 @@
 
       @media only screen and (min-width : $breakpoint-large) {
         margin-right: 40px;
-        width: auto;
+        width: 80px;
+      }
+    }
+
+    &__heading {
+      position: relative;
+
+      &:before {
+        @media only screen and (min-width : $breakpoint-medium) {
+          border-left: 1px solid #cdcdcd;
+          content: ' ';
+          display: block;
+          height: 20px;
+          left: -10px;
+          position: absolute;
+          top: 2px;
+          width: 1px;
+        }
+
+        @media only screen and (min-width : $breakpoint-large) {
+          height: 40px;
+          left: -20px;
+          top: 0px;
+        }
       }
     }
   }
