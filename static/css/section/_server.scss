@@ -83,6 +83,17 @@
         }
       }
     }
+
+    .partner-list > li {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        min-height: 24rem;
+      }
+
+      @media only screen and (min-width: $breakpoint-large) {
+        min-height: 21rem;
+      }
+    }
   }
 
   // @subsection /server/contact-us

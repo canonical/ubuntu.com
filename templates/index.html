@@ -62,14 +62,12 @@
 </section>
 
 <section class="row row--cloud-products strip no-border">
-    <div class="strip-inner-wrapper equal-height">
-        <div class="four-col equal-height__item equal-height__align-vertically">
+    <div class="strip-inner-wrapper">
+        <div class="four-col">
             <h2><a href="/cloud/openstack/managed-cloud">Let us host your OpenStack cloud&nbsp;&rsaquo;</a></h2>
             <p>With BootStack, we design, build and run your private cloud infrastructure without vendor lock-in.</p>
         </div>
-        <div class="eight-col last-col">
-            <img src="{{ ASSET_SERVER_URL }}890dec32-cloud-laptop.jpg?w=792" />
-        </div>
+        <img src="{{ ASSET_SERVER_URL }}0bfbd13b-cloud_section_bundle.svg" class="row--cloud-products__image not-for-small" />
     </div>
 </section>
 
@@ -91,12 +89,15 @@
     </div>
     <div class="strip-inner-wrapper not-for-large">
         <div class="twelve-col equal-height">
-            <div class="eight-col last-col equal-height__item equal-height__align-vertically align-center">
+            <div class="eight-col last-col equal-height__item equal-height__align-vertically align-center not-for-small">
                 <img srcset="{{ ASSET_SERVER_URL }}0a597e81-mobile_overview-hero.png?w=750 2x" src="{{ ASSET_SERVER_URL }}0a597e81-mobile_overview-hero.png?w=375" alt="Phone and tablet on the albums screen" />
             </div>
             <div class="four-col equal-height__item equal-height__align-vertically">
                 <h2><a href="/mobile">Multiple devices, one&nbsp;experience&nbsp;&rsaquo;</a></h2>
                 <p>Ubuntu is a single software platform that runs across smartphones, tablets and PCs. It is designed to help make converged computing a reality: one system, one experience, multiple form factors.</p>
+            </div>
+            <div class="twelve-col for-small align-center no-margin-bottom">
+                <img srcset="{{ ASSET_SERVER_URL }}0a597e81-mobile_overview-hero.png?w=750 2x" src="{{ ASSET_SERVER_URL }}0a597e81-mobile_overview-hero.png?w=375" alt="Phone and tablet on the albums screen" />
             </div>
         </div>
     </div>
@@ -117,7 +118,7 @@
 
 <section class="row row-featured strip no-border">
     <div class="strip-inner-wrapper equal-height">
-        {% include "takeovers/takeunders/_qt-webinar.html" %}
+        {% include "takeovers/takeunders/_iot-02-2017.html" %}
         {% include "takeovers/takeunders/_mwc-2017.html" %}
     </div>
 </section>
