@@ -1,0 +1,213 @@
+{% extends "cloud/base_cloud.html" %}
+
+{% block title %}Ubuntu solutions{% endblock %}
+
+{% block meta_description %}Whether you’re building your own OpenStack cloud, want a hosted private cloud or want to use Ubuntu in the public cloud, we offer all the training, software, tools, services and support you need.{% endblock meta_description %}
+
+{% block meta_keywords %}OpenStack, Cloud, Ubuntu OpenStack, private cloud, public cloud, open-source,  IAAS, infrastructure, service, Ubuntu, Ubuntu Cloud Infrastructure, Ubuntu Cloud Guest, Juju, Maas, orchestration, deployment, provisioning, training{% endblock meta_keywords %}
+
+{% block extra_body_class %}cloud-home{% endblock %}
+
+{% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Overview" %}
+</div>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<section class="row no-border">
+    <div class="strip-inner-wrapper">
+        <div class="hero-content twelve-col align-center">
+            <h1>Kubernetes</h1>
+            <p class="intro">Enabling DevOps teams to operate Kubernetes clusters on demand, anywhere.</p>
+        </div>
+    </div>
+</section>
+
+<section class="row strip-light">
+  <div class="strip-inner-wrapper">
+    <div class="six-col">
+      <h3>Enterprise Kubernetes, anywhere</h3>
+      <div class="juju-card" data-id="kubernetes-core"></div>
+    </div>
+    <div class="six-col last-col">
+      <h3>Kubernetes for development</h3>
+      <div class="juju-card" data-id="canonical-kubernetes"></div>
+    </div>
+  </div>
+</section>
+
+<script async src="https://assets.ubuntu.com/v1/juju-cards-v1.3.0.js"></script>
+
+<section class="row row-white">
+  <div class="strip-inner-wrapper">
+    <div class="twelve-col">
+        <h2 class="muted-heading">Partnering with industry leaders</h2>
+        <ul class="inline-logos no-margin dynamic-logos">
+          {% get_json_feed "http://partners.ubuntu.com/partners.json?technology__name=Containers" limit=10 as container_partners %}
+          {% for partner in container_partners %}
+            <li class="inline-logos__item">
+              <img class="inline-logos__image" src="{{ partner.logo }}" alt="{{ partner.name }}" title="{{ partner.name }}" />
+            </li>
+          {% endfor %}
+        </ul>
+    </div>
+  </div>
+</section>
+
+<section class="row no-border">
+  <div class="strip-inner-wrapper equal-height">
+    <div class="six-col append-one equal-height__item equal-height__align-vertically">
+      <h2>Expert support from Canonical</h2>
+      <p>If you need the assurance of a professional support subscription for your desktop, server, cloud or container deployment, Ubuntu Advantage has got you covered:</p>
+      <ul class="list-ticks">
+        <li>24/7 access to the world&rsquo;s leading Ubuntu experts</li>
+        <li>Landscape systems management tool</li>
+        <li>IP assurance for your Ubuntu environment</li>
+        <li>Kernel livepatching to ensure you have the latest kernel security&nbsp;updates</li>
+      </ul>
+      <p><a href="https://buy.ubuntu.com/" class="button--primary" style="color:white !important;"><span class="external">Visit the Ubuntu Advantage store</span></a></p>
+      <p>Or <a href="/contact-us">contact us&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="five-col last-col equal-height__item equal-height__align-vertically not-for-small">
+      <img src="{{ ASSET_SERVER_URL }}11da76f5-image-management.svg" class="u-full-width" width="288" height="155" />
+    </div>
+  </div>
+</section>
+
+<section class="row no-border strip-light">
+  <div class="strip-inner-wrapper">
+    <div class="seven-col append-one">
+      <h2>Get Kubernetes training from Ubuntu</h2>
+      <p>Train your sysadmins and devops engineers to become LXD, Docker or Kubernetes experts.</p>
+      <p>Canonical runs training programmes to suit all environments and all levels of experience.</p>
+      <p>Explore, prototype and design with cloud technologies so you can get the most out of your container deployment.</p>
+      <p><a href="/contact">Contact us&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="four-col align-center last-col">
+      <img src="https://assets.ubuntu.com/v1/2a8a19da-logo-kubernetes-icon.svg" />
+    </div>
+  </div>
+</section>
+
+<section class="row no-border row-grey">
+  <div class="strip-inner-wrapper">
+    <div class="three-col bordered">
+      <h3>Related products</h3>
+      <ul class="list">
+        <li class="clearfix">
+          <div class="one-col last-col">
+            <img src="https://assets.ubuntu.com/v1/0de4fcd5-logo-maas-icon.svg" width="40px;" />
+          </div>
+          <div class="two-col last-col">
+            <p>MAAS</p>
+            <p class="note">Total automation of your physical servers for amazing data centre operational efficiency</p>
+          </div>
+        </li>
+        <li class="clearfix">
+          <div class="one-col last-col">
+            <img src="https://assets.ubuntu.com/v1/e626604e-logo-landscape-icon.svg" width="40px;" />
+          </div>
+          <div class="two-col last-col">
+            <p>Landscape</p>
+            <p class="note">Manage, monitor, and update your Ubuntu server estate from a single pane of glass</p>
+          </div>
+        </li>
+        <li class="clearfix">
+          <div class="one-col last-col">
+            <img src="https://assets.ubuntu.com/v1/0de4fcd5-logo-maas-icon.svg" width="40px;" />
+          </div>
+          <div class="two-col last-col">
+            <p>Conjure-up</p>
+            <p class="note">Ideal for people who want to build an OpenStack cloud on a single machine</p>
+          </div>
+        </li>
+        <li class="clearfix">
+          <div class="one-col last-col">
+            <img src="https://assets.ubuntu.com/v1/31c507a5-logo-juju-icon.svg" width="40px;" />
+          </div>
+          <div class="two-col last-col">
+            <p>Juju</p>
+            <p class="note">Model, configure, deploy and manage your operations in the cloud</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="nine-col last-col bordered">
+          <h3>Latest Kubernetes news and events</h3>
+          <div class="equal-height--vertical-divider">
+            <div class="five-col equal-height--vertical-divider__item">
+              <ul class="no-bullets">
+                <li>
+                  <p><a href="#">Deploying Kubernetes on Bare Metal</a></p>
+                  <p><span style="color: #888">22 February 2017</span> - <a href="https://insights.ubuntu.com" class="blue">insights.ubuntu.com</a></p>
+                  <p>If you're interested in bare metal Kubernetes, we invite you to join us and other contributors in…</p>
+                </li>
+                <li>
+                  <p><a href="#">Webinar: Getting started with the Canonical Distribution of Kubernetes</a></p>
+                  <p><span style="color: #888">22 February 2017</span> - <a href="https://insights.ubuntu.com" class="blue">insights.ubuntu.com</a></p>
+                  <p>Discover the simplest and easiest way to stand up and operate a Kubernetes cluster in AWS….</p>
+                </li>
+              </ul>
+            </div>
+          <div class="four-col last-col equal-height--vertical-divider__item">
+            <div class="newsevent">
+              <ul class="no-bullets">
+                <li>
+
+                  <div class="newsevent clearfix" itemscope="" itemtype="http://data-vocabulary.org/Event">
+                    <div class="twelve-col equal-height--vertical-divider__item no-margin-bottom last-col">
+                      <div class="newsevent__map">
+                        <a href="https://insights.ubuntu.com/event/mobile-world-congress-2017/"><span class="newsevent__map-image-wrap"><img class="newsevent__map-image" src="//maps.googleapis.com/maps/api/staticmap?center=Barcelona&amp;zoom=12&amp;size=106x106&amp;sensor=false" alt=""></span></a>
+                      </div><!-- /.newsevent__map -->
+                      <h3 class="newsevent__title"><a class="external" href="https://insights.ubuntu.com/event/mobile-world-congress-2017/">Mobile World Congress 2017</a></h3>
+                      <dl class="newsevent__details">
+                        <dt class="accessibility-aid">Date:</dt>
+                        <dd class="newsevent__details-date">27 - 2 March 2017<span class="accesibilty-aid"><time itemprop="startDate" datetime="2017-02-27T00:00"></time><time itemprop="endDate" datetime="2017-03-02T00:00"></time></span></dd>
+                        <dt class="accessibility-aid">Location:</dt>
+                        <dd class="newsevent__details-location" itemprop="location" itemscope="" itemtype="http://schema.org/PostalAddress">Barcelona</dd>
+                      </dl>
+                    </div><!-- /.six-col last-col -->
+                  </div><!-- /.clearfix -->
+                  <div class="newsevent clearfix" itemscope="" itemtype="http://data-vocabulary.org/Event">
+                    <div class="twelve-col equal-height--vertical-divider__item no-margin-bottom last-col">
+                      <div class="newsevent__map">
+                        <a href="https://insights.ubuntu.com/event/google-next-2017/"><span class="newsevent__map-image-wrap"><img class="newsevent__map-image" src="//maps.googleapis.com/maps/api/staticmap?center=San Francisco&amp;zoom=12&amp;size=106x106&amp;sensor=false" alt=""></span></a>
+                      </div><!-- /.newsevent__map -->
+                      <h3 class="newsevent__title"><a class="external" href="https://insights.ubuntu.com/event/google-next-2017/">Google Next 2017</a></h3>
+                      <dl class="newsevent__details">
+                        <dt class="accessibility-aid">Date:</dt>
+                        <dd class="newsevent__details-date">8 - 10 March 2017<span class="accesibilty-aid"><time itemprop="startDate" datetime="2017-03-08T00:00"></time><time itemprop="endDate" datetime="2017-03-10T00:00"></time></span></dd>
+                        <dt class="accessibility-aid">Location:</dt>
+                        <dd class="newsevent__details-location" itemprop="location" itemscope="" itemtype="http://schema.org/PostalAddress">San Francisco</dd>
+                      </dl>
+                    </div><!-- /.six-col last-col -->
+                  </div><!-- /.clearfix -->
+                  <div class="newsevent clearfix" itemscope="" itemtype="http://data-vocabulary.org/Event">
+                    <div class="twelve-col equal-height--vertical-divider__item no-margin-bottom last-col">
+                      <div class="newsevent__map">
+                        <a href="https://insights.ubuntu.com/event/cloud-mena-2017/"><span class="newsevent__map-image-wrap"><img class="newsevent__map-image" src="//maps.googleapis.com/maps/api/staticmap?center=Dubai&amp;zoom=12&amp;size=106x106&amp;sensor=false" alt=""></span></a>
+                      </div><!-- /.newsevent__map -->
+                      <h3 class="newsevent__title"><a class="external" href="https://insights.ubuntu.com/event/cloud-mena-2017/">Cloud MENA 2017</a></h3>
+                      <dl class="newsevent__details">
+                        <dt class="accessibility-aid">Date:</dt>
+                        <dd class="newsevent__details-date">1 - 2 May 2017<span class="accesibilty-aid"><time itemprop="startDate" datetime="2017-05-01T00:00"></time><time itemprop="endDate" datetime="2017-05-02T00:00"></time></span></dd>
+                        <dt class="accessibility-aid">Location:</dt>
+                        <dd class="newsevent__details-location" itemprop="location" itemscope="" itemtype="http://schema.org/PostalAddress">Dubai</dd>
+                      </dl>
+                    </div><!-- /.six-col last-col -->
+                  </div><!-- /.clearfix -->
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}
+
+{% block head_extra %}
+<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
+
+{% endblock %}

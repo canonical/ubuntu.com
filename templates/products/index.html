@@ -1,0 +1,262 @@
+{% extends "cloud/base_cloud.html" %}
+
+{% block title %}Ubuntu products{% endblock %}
+
+{% block meta_description %}Whether you’re building your own OpenStack cloud, want a hosted private cloud or want to use Ubuntu in the public cloud, we offer all the training, software, tools, services and support you need.{% endblock meta_description %}
+
+{% block meta_keywords %}OpenStack, Cloud, Ubuntu OpenStack, private cloud, public cloud, open-source,  IAAS, infrastructure, service, Ubuntu, Ubuntu Cloud Infrastructure, Ubuntu Cloud Guest, Juju, Maas, orchestration, deployment, provisioning, training{% endblock meta_keywords %}
+
+{% block extra_body_class %}cloud-home{% endblock %}
+
+{% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Overview" %}
+</div>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<section class="row row-hero no-border">
+    <div class="strip-inner-wrapper">
+        <div class="hero-content eight-col">
+            <h1>Products</h1>
+            <p class="intro">Ubuntu is a platform that spans from the cloud to the server to the PC and edge device. We offer a comprehensive suite of enterprise-grade tools for development, configuration, management and service orchestration. </p>
+        </div>
+    </div>
+</section>
+
+<section class="row no-border strip-light">
+  <div class="strip-inner-wrapper">
+    <div class="six-col special-box">
+      <div class="special-box__header">
+        <img src="https://assets.ubuntu.com/v1/b0cb2fee-products-cloud.svg" />
+        Cloud
+      </div>
+      <div class="special-box__nav">
+        <a href="/products/juju">
+          <p>Juju</p>
+          <p class="note">Model, configure, deploy and manage your operations in the cloud.</p>
+        </a>
+      </div>
+      <div class="special-box__nav">
+        <a href="#">
+          <p>Conjure-up</p>
+          <p class="note">Ideal for people who want to build an OpenStack cloud on a single machine.</p>
+        </a>
+      </div>
+      <div class="special-box__nav">
+        <a href="#">
+          <p>OpenStack Autopilot</p>
+          <p class="note">Handles every aspect of your production cloud across multiple physical machines through installation, expansion and everyday operations.</p>
+        </a>
+      </div>
+      <div class="special-box__nav">
+        <a href="#">
+          <p>BootStack</p>
+          <p class="note">We build, operate and optionally transfer your OpenStack cloud back to you.</p>
+        </a>
+      </div>
+    </div>
+    <div class="six-col special-box last-col">
+      <div class="special-box__header">
+        <img src="https://assets.ubuntu.com/v1/6706e616-products-server.svg" />
+        Server
+      </div>
+      <div class="special-box__nav">
+        <a href="/products/maas">
+          <p>MAAS</p>
+          <p class="note">Total automation of your physical servers for amazing data centre operational efficiency..</p>
+        </a>
+      </div>
+      <div class="special-box__nav">
+        <a href="#">
+          <p>Ubuntu Server</p>
+          <p class="note">The world’s favourite scale-out operating system.</p>
+        </a>
+      </div>
+      <div class="special-box__nav">
+        <a href="#">
+          <p>Landscape</p>
+          <p class="note">Manage, monitor, and update your Ubuntu server estate from a single pane of glass.</p>
+        </a>
+      </div>
+      <div class="special-box__nav">
+        <a href="#">
+          <p>Livepatch</p>
+          <p class="note">Apply critical kernel security fixes without rebooting your system.</p>
+        </a>
+      </div>
+    </div>
+    <div class="six-col special-box">
+      <div class="special-box__header">
+        <img src="https://assets.ubuntu.com/v1/9a7a7d77-products-containers.svg" />
+        Containers
+      </div>
+      <div class="special-box__nav">
+        <a href="#">
+          <p>LXD</p>
+          <p class="note">Ideal for people who want to build an OpenStack cloud on a single machine.</p>
+        </a>
+      </div>
+      <div class="special-box__nav">
+        <a href="#">
+          <p>The Canonical Distribution of Kubernetes</p>
+          <p class="note">Enable your teams to operate pure upstream Kubernetes clusters on demand, anywhere. </p>
+        </a>
+      </div>
+      <div class="special-box__nav">
+        <a href="#">
+          <p>Docker Engine on Ubuntu</p>
+          <p class="note">Canonical works closely with Docker Inc. to deliver an integrated Commercially Supported (CS) Docker Engine offering on Ubuntu.</p>
+        </a>
+      </div>
+    </div>
+    <div class="six-col special-box last-col">
+      <div class="special-box__header">
+        <img src="https://assets.ubuntu.com/v1/7f2acb89-products-DEVICES.svg" />
+        Devices / IoT
+      </div>
+      <div class="special-box__nav">
+        <a href="#">
+          <p>Ubuntu Desktop</p>
+          <p class="note">The popular Linux desktop that powers millions of PCs and laptops around the world.</p>
+        </a>
+      </div>
+      <div class="special-box__nav">
+        <a href="#">
+          <p>Ubuntu Core</p>
+          <p class="note">A tiny, transactional version of Ubuntu for IoT devices and large container deployments. </p>
+        </a>
+      </div>
+      <div class="special-box__nav">
+        <a href="#">
+          <p>Ubuntu Mobile</p>
+          <p class="note">Enjoy all the power of a PC on your tablet or phone — at home, at work or on the move.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
+
+{% block head_extra %}
+<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
+
+<style type="text/css">
+  @keyframes fadeIn {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+-@-moz-keyframes fadeIn {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+@-webkit-keyframes fadeIn {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+
+/*scaleIn*/
+
+@keyframes scaleIn {
+    0% {
+        background-size: 0%;
+    }
+    100% {
+        background-size: 100%;
+    }
+}
+@-moz-keyframes scaleIn {
+    0% {
+        background-size: 0%;
+    }
+    100% {
+        background-size: 100%;
+    }
+}
+@-webkit-keyframes scaleIn {
+    0% {
+        background-size: 0%;
+    }
+    100% {
+        background-size: 100%;
+    }
+}
+
+/*scaleInPop*/
+
+@keyframes scaleInPop {
+    0% {
+        background-size: 0%;
+    }
+    60% {
+        background-size: 100%;
+    }
+    100% {
+        background-size: 90%;
+    }
+}
+@-moz-keyframes scaleInPop {
+    0% {
+        background-size: 0%;
+    }
+    60% {
+        background-size: 100%;
+    }
+    100% {
+        background-size: 90%;
+    }
+}
+@-webkit-keyframes scaleInPop {
+    0% {
+        background-size: 0%;
+    }
+    60% {
+        background-size: 100%;
+    }
+    100% {
+        background-size: 90%;
+    }
+}
+
+/*rotateIn*/
+
+@keyframes rotateIn {
+    0% {
+        transform: rotate(-45deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+@-moz-keyframes rotateIn {
+    0% {
+        -moz-transform: rotate(-45deg);
+    }
+    100% {
+        -moz-transform: rotate(0deg);
+    }
+}
+@-webkit-keyframes rotateIn {
+    0% { -webkit-transform: rotate(-45deg); }
+    100% { -webkit-transform: rotate(0deg); }
+}
+</style>
+{% endblock %}

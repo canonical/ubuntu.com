@@ -8,15 +8,6 @@
 // ---------------------------------------------------------------
 // ---------------------------------------------------------------
 
-// body
-body {
-  background-size: cover;
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    padding-top: 30px;
-  }
-}
-
 // .inner-wrapper
 .inner-wrapper {
 
@@ -240,6 +231,10 @@ body {
 // Full width sections
 .cloud,
 .download,
+.products,
+.solutions,
+.about,
+.contact,
 .internet-of-things,
 .homepage,
 .internet-of-things,
@@ -290,6 +285,10 @@ body {
 
 // The default section row padding - not sure now diff from above section
 .cloud,
+.products,
+.solutions,
+.about,
+.contact,
 .desktop,
 .download,
 .internet-of-things,
@@ -541,6 +540,10 @@ html.js .resource:hover a {
 /* start of fix for vanilla margins on non-full screen pages */
 .about,
 .cloud,
+.products,
+.contact,
+.about,
+.solutions,
 .desktop,
 .internet-of-things,
 .legal,

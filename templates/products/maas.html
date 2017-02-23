@@ -1,0 +1,237 @@
+{% extends "cloud/base_cloud.html" %}
+
+{% block title %}Ubuntu products{% endblock %}
+
+{% block meta_description %}Whether you’re building your own OpenStack cloud, want a hosted private cloud or want to use Ubuntu in the public cloud, we offer all the training, software, tools, services and support you need.{% endblock meta_description %}
+
+{% block meta_keywords %}OpenStack, Cloud, Ubuntu OpenStack, private cloud, public cloud, open-source,  IAAS, infrastructure, service, Ubuntu, Ubuntu Cloud Infrastructure, Ubuntu Cloud Guest, Juju, Maas, orchestration, deployment, provisioning, training{% endblock meta_keywords %}
+
+{% block extra_body_class %}cloud-home{% endblock %}
+
+{% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Overview" %}
+</div>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<section class="row no-border" style="background: url('https://assets.ubuntu.com/v1/74ec613d-product-page-maas.png'); background-size: cover;">
+    <div class="strip-inner-wrapper">
+        <div class="hero-content twelve-col align-center" style="color: white;">
+            <img src="https://assets.ubuntu.com/v1/0228cce3-product-page-maas-logo.svg" />
+            <h1>Get the power of metal at the speed of cloud </h1>
+            <p class="intro twelve-col">Metal as a Service (Maas) offers cloud style provisioning for physical servers.</p>
+            <ul class="inline-list">
+              <li><a href="https://www.ubuntu.com/download/server/provisioning" class="button--primary">Install Maas</a></li>
+              <li><a href="/contact" class="button--secondary">Contact Sales</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="row row-grey no-border">
+  <div class="strip-inner-wrapper">
+    <div class="six-col">
+      <h2>Why use MAAS</h2>
+      <ul class="list-ticks--compact">
+        <li>Zero-touch deployment of Windows, Ubuntu, CentOS, RHEL and SUSE</li>
+        <li>Inventory management of every device in every&nbsp;server</li>
+        <li>Open-source IP Address Manager (IPAM)</li>
+        <li>Includes a REST API, Web UI and command-line&nbsp;client</li>
+        <li>Designed for devops at scale &mdash; big data, private cloud, PAAS and HPC all thrive on MAAS</li>
+      </ul>
+      <p><a href="/download/server/provisioning" class="button--primary">Install MAAS</a></p>
+    </div>
+    <div class="six-col last-col equal-height__item equal-height__align-vertically not-for-small">
+      <img src="{{ ASSET_SERVER_URL }}11da76f5-image-management.svg" class="u-full-width" width="288" height="155" />
+    </div>
+  </div>
+</section>
+
+<section class="row strip-light">
+  <div class="strip-inner-wrapper">
+  <div class="ten-col prepend-one">
+    <h2 class="muted-heading">MAAS is trusted by</h2>
+      <ul class="inline-logos">
+        <li class="inline-logos__item">
+          <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}477b9b52-microsoft-logo.svg" alt="Microsoft">
+        </li>
+        <li class="inline-logos__item">
+          <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}d0b7aa28-logo-deutsche-telekom.png" alt="Deutsche Telekom">
+        </li>
+        <li class="inline-logos__item">
+          <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}df4150e2-nec-logo.svg" alt="NEC">
+        </li>
+        <li class="inline-logos__item">
+          <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}3218bf54-Verizon_2015_logo_-vector.svg" alt="Verizon">
+        </li>
+        <li class="inline-logos__item">
+          <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}73135672-ntt-logo.svg" alt="NTT">
+        </li>
+        <li class="inline-logos__item">
+          <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}071c255b-AT%26T_logo.svg" alt="AT&amp;T">
+        </li>
+        <li class="inline-logos__item">
+          <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}b3315d88-walmart.svg" alt="Walmart">
+        </li>
+        <li class="inline-logos__item">
+          <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}fa970014-box-svg.svg" alt="Box">
+        </li>
+        <li class="inline-logos__item">
+          <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}ee46f563-Best_Buy_Logo.svg" alt="Best Buy">
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="row autopilot-dynamic" id="autopilot-main">
+    <div class="strip-inner-wrapper">
+        <h2>Introducing MAAS: get the power of metal at the speed of cloud</h2>
+        <div class="twelve-col">
+            <div class="video-container">
+                <iframe width="453" height="255" src="https://www.youtube.com/embed/eHfaiKlUYsM" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="row strip-light">
+  <div class="strip-inner-wrapper equal-height">
+    <div class="five-col equal-height__item equal-height__align-vertically">
+      <h2>The smartest way to manage bare metal</h2>
+      <p>MAAS delivers the fastest OS installation times in the industry thanks to its image-based installer. Set up the RAID and network configuration you want through the MAAS web UI or CLI, then press a button and come back in minutes to a fully-deployed OS.</p>
+      <p>Like cloud instances, hardware provisioned through MAAS can be utilised dynamically. Through an intuitive web interface or API you can add, commission, update, deploy and recycle physical servers. As your needs change, you can respond rapidly, adding new nodes and dynamically re-deploying them between services.</p>
+      <p><a href="https://maas.io/how-it-works" class="external">How it works</a></p>
+    </div>
+    <div class="seven-col last-col equal-height__item equal-height__align-vertically">
+      <ul class="inline-logos">
+        <li class="inline-logos__item">
+          <img class="inline-logos__image" alt="Ubuntu logo" src="{{ ASSET_SERVER_URL }}c037fd75-ubuntu-logo.png" />
+        </li>
+        <li class="inline-logos__item">
+          <img class="inline-logos__image" alt="Windows logo" src="{{ ASSET_SERVER_URL }}30574235-windows-logo.svg" />
+        </li>
+        <li class="inline-logos__item">
+          <img class="inline-logos__image" alt="CentOS logo" src="{{ ASSET_SERVER_URL }}c69a8b3c-centos-logo.png" />
+        </li>
+        <li class="inline-logos__item">
+          <img class="inline-logos__image" alt="Redhat logo" src="{{ ASSET_SERVER_URL }}eda6b94a-redhat-logo.svg" />
+        </li>
+        <li class="inline-logos__item">
+          <img class="inline-logos__image" alt="Suse logo" src="{{ ASSET_SERVER_URL }}6697a21a-suse-logo.png" />
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="row strip-light">
+  <div class="strip-inner-wrapper">
+    <div class="equal-height">
+      <div class="seven-col equal-height__item equal-height__align-vertically not-for-small">
+          <ul class="inline-logos">
+            <li class="inline-logos__item">
+              <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}ef92a823-Cisco_logo.png" alt="Cisco" />
+            </li>
+            <li class="inline-logos__item">
+              <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}e668531d-ibm-2.svg" alt="IBM" />
+            </li>
+            <li class="inline-logos__item">
+              <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}5ddba83a-logo-dell.svg" alt="Dell" />
+            </li>
+            <li class="inline-logos__item">
+              <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}68713fd5-logo-lenovo.svg" alt="Lenovo" />
+            </li>
+            <li class="inline-logos__item">
+              <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}ab8e3ab9-logo-open-compute-160.png" alt="Open Compute" />
+            </li>
+            <li class="inline-logos__item">
+              <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}a298e7ec-logo-hp.svg" alt="HP" />
+            </li>
+            <li class="inline-logos__item">
+              <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}2c5dcff7-logo-quanta-160.png" alt="Quanta" />
+            </li>
+          </ul>
+      </div>
+      <div class="five-col last-col equal-height__item equal-height__align-vertically">
+        <h2>Make the most of your hardware &mdash; any hardware</h2>
+        <p>With MAAS, your new hardware can be part of your working infrastructure within minutes. Breathe new life into old hardware by recycling it for use in other parts of your network. Works with all certified servers from any major vendor saving you from costly upgrades and vendor lock-in.</p>
+      </div>
+    </div>
+    <div class="seven-col for-small">
+        <ul class="inline-logos">
+          <li class="inline-logos__item">
+            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}ef92a823-Cisco_logo.png" alt="Cisco" />
+          </li>
+          <li class="inline-logos__item">
+            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}e668531d-ibm-2.svg" alt="IBM" />
+          </li>
+          <li class="inline-logos__item">
+            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}5ddba83a-logo-dell.svg" alt="Dell" />
+          </li>
+          <li class="inline-logos__item">
+            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}68713fd5-logo-lenovo.svg" alt="Lenovo" />
+          </li>
+          <li class="inline-logos__item">
+            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}ab8e3ab9-logo-open-compute-160.png" alt="Open Compute" />
+          </li>
+          <li class="inline-logos__item">
+            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}a298e7ec-logo-hp.svg" alt="HP" />
+          </li>
+          <li class="inline-logos__item">
+            <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}2c5dcff7-logo-quanta-160.png" alt="Quanta" />
+          </li>
+        </ul>
+    </div>
+  </div>
+</section>
+
+<section class="row no-border">
+  <div class="strip-inner-wrapper equal-height">
+    <div class="eight-col append-four">
+      <h2>Pricing</h2>
+      <p>MAAS is supported by Canonical under the Ubuntu Advantage service program. Ubuntu Advantage MAAS includes tools that enable deployment of a wider range of operating systems, SLAs on support and high availability reference architectures.</p>
+    </div>
+
+    <div class="four-col pricing__option equal-height__item box">
+      <h3 class="pricing__title">Self-supported</h3>
+      <p class="pricing__cost">Free</p>
+      <div class="pricing__detail">
+        <ul class="list-ticks--compact">
+          <li>Ubuntu, CentOS, custom images</li>
+        </ul>
+        <p><a href="/download/server/provisioning">Get started&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+
+    <div class="four-col pricing__option equal-height__item box">
+      <h3 class="pricing__title">Professional</h3>
+      <p class="pricing__cost">$5<span class="pricing__unit"> / per server per month</span></p>
+      <div class="pricing__detail">
+        <ul class="list-ticks--compact">
+          <li>All operating systems</li>
+          <li>9 to 5 support on weekdays (US and Europe only)</li>
+        </ul>
+        <p><a href="/contact">Contact us&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+
+    <div class="four-col pricing__option equal-height__item box last-col">
+      <h3 class="pricing__title">Enterprise</h3>
+      <p  class="pricing__cost">$10<span class="pricing__unit"> / per server per month</span></p>
+      <div class="pricing__detail">
+        <ul class="list-ticks--compact">
+          <li>All operating systems</li>
+          <li>24/7 support</li>
+        </ul>
+        <p><a href="/contact">Contact us&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
+
+{% block head_extra %}
+<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
+
+{% endblock %}

@@ -7,6 +7,356 @@
     -----------------------------------------------------------------
 */
 
+.contact-thank-you {
+  .no-bullets li {
+    margin-bottom: 40px;
+  }
+}
+
+.bordered a {
+  color: $cool-grey;
+}
+
+a.blue {
+  color: #007aa6 !important;
+}
+
+.row {
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+
+}
+
+%newsevent__details-icon {
+  background-position: 0 5px;
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  box-sizing: border-box;
+  display: block;
+  float: left;
+  font-size: .875rem;
+  margin-left: 0;
+  padding: 6px 20px 6px 24px;
+  width: 100%;
+
+  @media only screen and (min-width : $breakpoint-large) {
+    font-size: .875em;
+  }
+}
+
+.newsevent { // DDD do we need this bespoke pattern for the /cloud news list?
+
+  &__title {
+    font-size: 1rem;
+
+    @media only screen and (min-width : $breakpoint-large) {
+      font-size: 1.25rem; // going for 20px
+    }
+  }
+
+  &__map {
+    float: left;
+
+    &-image {
+      border-radius: 4px;
+      margin-right: 20px;
+      margin-top: 7px;
+      width: 76px;
+    }
+
+    &-image-wrap {
+      background-size: 78px;
+      display: inline-block;
+      margin-bottom: 0;
+      max-width: 100%;
+      position: relative;
+      vertical-align: middle;
+    }
+  }
+
+  &__details {
+    clear: none;
+    color: $warm-grey;
+    display: inline;
+    float: left;
+    line-height: 1.2;
+    margin-bottom: .5em;
+    margin-top: 4px;
+    width: 66%;
+
+    &-location {
+      @extend %newsevent__details-icon;
+      background-image: url('#{$asset-server-url}dc06486f-location.svg');
+    }
+
+    &-venue {
+      @extend %newsevent__details-icon;
+      background-image: url('#{$asset-server-url}48947556-gps.svg');
+    }
+
+    &-date {
+      @extend %newsevent__details-icon;
+      background-image: url('#{$asset-server-url}c7d1850b-calendar.svg');
+    }
+  }
+}
+
+.special-box {
+  border: 1px solid $mid-grey;
+  border-radius: 2px;
+  background: $white;
+
+  .note {
+    font-size: 16px;
+    padding-right: 50px;
+  }
+
+  &__header {
+    background: $light-grey;
+    padding: 20px;
+    border-bottom: 1px solid $mid-grey;
+
+    img {
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+  }
+
+  a {
+    color: $cool-grey;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__nav {
+    padding: 20px;
+    background-image: url('https://assets.ubuntu.com/v1/9716bbab-chevron.svg');
+    background-repeat: no-repeat;
+    background-position: 95% center;
+    border-bottom: 1px solid $mid-grey;
+
+    &:last-of-type {
+      border-bottom: 0;
+    }
+
+    &:hover {
+      background-color: $light-grey;
+    }
+  }
+}
+
+.solutions {
+
+  .box a {
+    color: $cool-grey;
+
+    &:hover {
+      color: $brand-color;
+    }
+  }
+
+  .box {
+    padding: 35px;
+
+    .align-center {
+      min-height: 100px;
+    }
+  }
+}
+.global-nav {
+  background: $black;
+
+  a {
+    color: white !important;
+  }
+}
+
+.global-nav__more {
+  margin-right: 10px;
+}
+.new-global-nav {
+  display: none;
+
+  &.is-open {
+    display: block;
+  }
+
+  .close-tab {
+    position: relative;
+    bottom: -44px;
+    right: 0;
+    height: 44px;
+    background-color: black;
+    width: 60px;
+    float: right;
+    text-align: center;
+    z-index: 100;
+    padding-top: 15px;
+  }
+  .row {
+    background: $black !important;
+    padding: 50px 40px 0 40px !important;
+    border-bottom: 0 !important;
+
+    .external-title {
+      background-image: url(https://assets.ubuntu.com/v1/0d55fd52-external-link-white.svg);
+      background-repeat: no-repeat;
+      padding-left: 20px;
+      background-size: 1rem;
+    }
+
+    h6 {
+        color: $white;
+    }
+
+    a {
+      color: $white;
+
+      &:hover {
+        color: $white;
+      }
+    }
+
+    hr {
+      border-bottom: 0px solid $warm-grey;
+    }
+
+    .lower-half {
+      margin-top: 40px;
+    }
+    .top-half {
+      margin-bottom: 30px;
+    }
+
+    .product {
+      display: table;
+      margin-top: 30px;
+
+      img {
+        display: table-cell;
+        width: 40px;
+        height: 40px;
+      }
+
+      h3 {
+        margin-bottom: .2rem;
+      }
+
+      &-info {
+        vertical-align: top;
+        display: table-cell;
+        width: 83%;
+        color: $white;
+
+        p {
+          text-size: 14px;
+        }
+      }
+    }
+    .short {
+
+    }
+
+  }
+}
+
+.banner {
+  background: $white !important;
+  margin-bottom: 0 !important;
+
+
+  .navigation {
+    margin-top: 5px;
+    background: $white;
+
+    ul {
+      width: calc(100% + 14px);
+      margin-left: -14px;
+      margin-right: -14px;
+      overflow: visible;
+    }
+  }
+}
+
+.header-search {
+  float: left !important;
+  margin-right: 10px;
+
+  .form-text {
+    background: $white;
+    border-radius: 0;
+
+    &:focus,
+    &:hover {
+      background: $light-grey;
+    }
+
+    &::-webkit-input-placeholder {
+      color: $cool-grey;
+    }
+  }
+
+  .svg-search-frame {
+    stroke: $cool-grey;
+  }
+
+  .svg-search-handle {
+    fill: $cool-grey;
+  }
+}
+
+.global-nav {
+  float: right;
+
+  &__more {
+    line-height: 44px;
+    margin-left: 10px;
+    color: $warm-grey;
+
+    &:hover {
+      text-decoration: none;
+      color: $cool-grey;
+    }
+  }
+}
+
+.banner .nav-primary {
+
+  ul li {
+    border: 0 !important;
+    border-left: 0 !important;
+
+    a {
+      border-left: 0 !important;
+      border-bottom: 2px solid transparent !important;
+      color: $warm-grey !important;
+
+      &.is-active {
+        border-bottom: 2px solid $brand-color !important;
+        color: $cool-grey !important;
+      }
+
+      &:hover {
+        background: transparent !important;
+        color: $cool-grey !important;
+      }
+    }
+
+    &.right {
+      float: right !important;
+    }
+
+    .button--secondary {
+      position: relative;
+      top: 4px;
+    }
+  }
+}
+
+
+
 // Disable default iOS styling on page elements
 input[type=button],
 input[type=submit],

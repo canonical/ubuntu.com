@@ -1,0 +1,264 @@
+{% extends "cloud/base_cloud.html" %}
+
+{% block title %}Ubuntu in the cloud | Cloud{% endblock %}
+
+{% block meta_description %}Whether you’re building your own OpenStack cloud, want a hosted private cloud or want to use Ubuntu in the public cloud, we offer all the training, software, tools, services and support you need.{% endblock meta_description %}
+
+{% block meta_keywords %}OpenStack, Cloud, Ubuntu OpenStack, private cloud, public cloud, open-source,  IAAS, infrastructure, service, Ubuntu, Ubuntu Cloud Infrastructure, Ubuntu Cloud Guest, Juju, Maas, orchestration, deployment, provisioning, training{% endblock meta_keywords %}
+
+{% block extra_body_class %}cloud-home{% endblock %}
+
+{% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Overview" %}
+</div>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<section class="row strip-light no-border">
+    <div class="strip-inner-wrapper">
+        <div class="hero-content twelve-col">
+            <h1>Contact us about the cloud</h1>
+            <p>Thank you for your interest in Ubuntu for cloud. We’re looking forward to hearing from you.</p>
+        </div>
+        <div class="eight-col no-margin-bottom">
+          <h2>You can ask us about…</h2>
+        </div>
+        <div class="six-col">
+          <ul>
+            <li>Deploying Openstack on premises</li>
+            <li>Getting canonical to build and manage your openstack cloud</li>
+          </ul>
+        </div>
+        <div class="six-col last-col">
+          <ul>
+            <li>How to use our cloud tooling at scale</li>
+            <li>Any other questions you have about Ubuntu and Canonical</li>
+          </ul>
+        </div>
+        <div class="six-col">
+          <h2>Request a call back</h2>
+            <form action="contact/thank-you" method="get" id="mktoForm">
+                <fieldset>
+                    <h3>About you</h3>
+                    <ul class="no-bullets">
+                        <li class="mktFormReq mktField">
+                            <label for="FirstName" class="mktoLabel">First name:</label>
+                            <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" />
+                        </li>
+                        <li class="mktFormReq mktField">
+                            <label for="LastName" class="mktoLabel">Last name:</label>
+                            <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" />
+                        </li>
+                        <li class="mktFormReq mktField">
+                            <label for="Email" class="mktoLabel">Email address:</label>
+                            <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
+                        </li>
+                        <li class="mktFormReq mktField">
+                            <label for="Phone" class="mktoLabel">Phone number:</label>
+                            <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" />
+                        </li>
+                        <!-- country -->
+                        {% include "shared/forms/_country.html" %}
+                        <!-- state/province -->
+                        {% include "shared/forms/_state.html" %}
+                    </fieldset>
+
+                    <fieldset>
+                        <h3>About your company</h3>
+                        <ul class="no-bullets">
+                            <li class="mktFormReq mktField">
+                                <label for="Company" class="mktoLabel">Company name:</label>
+                                <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired" />
+                            </li>
+                            <li class="mktFormReq mktField">
+                                <label for="Title" class="mktoLabel">Job title:</label>
+                                <input required id="Title" name="Title" maxlength="255" type="text" class="mktoField mktoRequired" />
+                            </li>
+                        </ul>
+                    </fieldset>
+
+                    <fieldset>
+                        <h3>Your comments</h3>
+                        <ul class="no-bullets">
+                            <li class="mktFormReq mktField">
+                                <label for="Comments_from_lead__c" class="mktoLabel">What would you like to talk to us about?</label>
+                                <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="4" class="mktoField mktoRequired" maxlength="2000"></textarea>
+                            </li>
+                        </ul>
+                    </fieldset>
+
+                    <fieldset>
+                        <ul class="no-bullets">
+                            <li class="mktField">
+                                <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+                                <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I would like to receive occasional news from Canonical by email.</label>
+                            </li>
+                            <li class="mktField">
+                                <input class="mktoField" value="yes" id="NewsletterOpt-In" name="NewsletterOpt-In" type="checkbox" />
+                                <label class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would also like to receive the monthly Cloud Newsletter.</label>
+                            </li>
+                            <li>
+                                All information provided will be handled in accordance with the Canonical <a href="/legal" target="_blank">privacy policy</a>.
+                            </li>
+                            <li class="mktField">
+                                <a href="contact/thank-you" class="button--primary" style="color: white !important;">Submit</a>
+                            </li>
+                        </ul>
+
+                        <!-- hidden fields -->
+                        <input type="hidden" name="formid" class="mktoField" value="{{formid}}" />
+                        <input type="hidden" name="lpId" class="mktoField" value="{{lpId}}" />
+                        <input type="hidden" name="subId" class="mktoField" value="30" />
+                        <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335" />
+                        <input type="hidden" name="lpurl" class="mktoField" value="https://pages.ubuntu.com/Cloud-contact-us.html?cr={creative}&amp;kw={keyword}" />
+                        <input type="hidden" name="cr" class="mktoField" value="" />
+                        <input type="hidden" name="kw" class="mktoField" value="" />
+                        <input type="hidden" name="q" class="mktoField" value="" />
+                        <input type="hidden" name="returnURL" value="{{returnURL}}" />
+                        <input type="hidden" name="retURL" value="{{returnURL}}" />
+                    </fieldset>
+                </form>
+        </div>
+        <div class="six-col last-col">
+          <h2>Give us a call</h2>
+          <p>If you prefer to speak to us straight away, give us a call on one of the following phone numbers.</p>
+          <ul>
+              <li>Americas: +1 781 761 9427</li>
+              <li>France: +33 184889319</li>
+              <li>Germany: +49 61512746816</li>
+              <li>Japan: +81 345777736</li>
+              <li>Korea: +82 318108759</li>
+              <li>Mexico: +52 5541636681</li>
+              <li>Spain: +34 932201131</li>
+              <li>Taiwan: +88 6255924779</li>
+              <li>UK and rest of the world: +44 207 093 5161</li>
+        </ul>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+
+{% block head_extra %}
+<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
+
+<style type="text/css">
+  @keyframes fadeIn {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+-@-moz-keyframes fadeIn {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+@-webkit-keyframes fadeIn {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+
+/*scaleIn*/
+
+@keyframes scaleIn {
+    0% {
+        background-size: 0%;
+    }
+    100% {
+        background-size: 100%;
+    }
+}
+@-moz-keyframes scaleIn {
+    0% {
+        background-size: 0%;
+    }
+    100% {
+        background-size: 100%;
+    }
+}
+@-webkit-keyframes scaleIn {
+    0% {
+        background-size: 0%;
+    }
+    100% {
+        background-size: 100%;
+    }
+}
+
+/*scaleInPop*/
+
+@keyframes scaleInPop {
+    0% {
+        background-size: 0%;
+    }
+    60% {
+        background-size: 100%;
+    }
+    100% {
+        background-size: 90%;
+    }
+}
+@-moz-keyframes scaleInPop {
+    0% {
+        background-size: 0%;
+    }
+    60% {
+        background-size: 100%;
+    }
+    100% {
+        background-size: 90%;
+    }
+}
+@-webkit-keyframes scaleInPop {
+    0% {
+        background-size: 0%;
+    }
+    60% {
+        background-size: 100%;
+    }
+    100% {
+        background-size: 90%;
+    }
+}
+
+/*rotateIn*/
+
+@keyframes rotateIn {
+    0% {
+        transform: rotate(-45deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+@-moz-keyframes rotateIn {
+    0% {
+        -moz-transform: rotate(-45deg);
+    }
+    100% {
+        -moz-transform: rotate(0deg);
+    }
+}
+@-webkit-keyframes rotateIn {
+    0% { -webkit-transform: rotate(-45deg); }
+    100% { -webkit-transform: rotate(0deg); }
+}
+</style>
+{% endblock %}

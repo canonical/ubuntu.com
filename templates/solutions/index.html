@@ -1,0 +1,250 @@
+{% extends "cloud/base_cloud.html" %}
+
+{% block title %}Ubuntu solutions{% endblock %}
+
+{% block meta_description %}Whether you’re building your own OpenStack cloud, want a hosted private cloud or want to use Ubuntu in the public cloud, we offer all the training, software, tools, services and support you need.{% endblock meta_description %}
+
+{% block meta_keywords %}OpenStack, Cloud, Ubuntu OpenStack, private cloud, public cloud, open-source,  IAAS, infrastructure, service, Ubuntu, Ubuntu Cloud Infrastructure, Ubuntu Cloud Guest, Juju, Maas, orchestration, deployment, provisioning, training{% endblock meta_keywords %}
+
+{% block extra_body_class %}cloud-home{% endblock %}
+
+{% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Overview" %}
+</div>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<section class="row no-border">
+    <div class="strip-inner-wrapper">
+        <div class="hero-content eight-col">
+            <h1>Solutions</h1>
+            <p class="intro">Learn how we help developers, telcos and enterprises use Ubuntu at scale from the cloud to the edge. We offer design, consulting, training and support services for customers considering large scale Ubuntu deployments.</p>
+        </div>
+    </div>
+</section>
+
+<section class="row no-border strip-light">
+  <div class="strip-inner-wrapper equal-height">
+    <div class="four-col box">
+      <a href="/solutions/openstack">
+      <div class="align-center four-col">
+        <img src="https://assets.ubuntu.com/v1/833bca99-solution-OpenStack_Logo_Mark.svg"/>
+      </div>
+      <h3>OpenStack</h3></a>
+      <p>We build on-premise, production-grade OpenStack clouds for the world’s largest enterprises and telcos.</p>
+    </div>
+    <div class="four-col box">
+      <a href="/solutions/kubernetes">
+      <div class="align-center four-col">
+        <img src="https://assets.ubuntu.com/v1/f46d02f4-solution-kubernetes.svg"/>
+      </div>
+      <h3>Kubernetes</h3></a>
+      <p>Enabling DevOps teams to operate Kubernetes clusters on demand, anywhere.</p>
+    </div>
+    <div class="four-col last-col box">
+      <a href="#">
+      <div class="align-center four-col">
+        <img src="https://assets.ubuntu.com/v1/0adb41c7-solution-big-data.svg"/>
+      </div>
+      <h3>Big data</h3></a>
+      <p>Delivering on the competitive promise of Big Data whilst reducing setup complexity.</p>
+    </div>
+    <div class="four-col box">
+      <a href="#">
+      <div class="align-center four-col">
+        <img src="https://assets.ubuntu.com/v1/38efd13b-solution-robot.svg"/>
+      </div>
+      <h3>Robots</h3></a>
+      <p>Ubuntu Core is the platform of choice for the next wave of autonomous robots and drones.</p>
+    </div>
+    <div class="four-col box">
+      <a href="#">
+      <div class="align-center four-col">
+        <img src="https://assets.ubuntu.com/v1/5cd1a437-solution-digital-signage02.svg"/>
+      </div>
+      <h3>Digital signage</h3></a>
+      <p>Secure, reliable and remotely upgradable with a rich ecosystem of hardware and software solutions.</p>
+    </div>
+    <div class="four-col last-col box">
+      <a href="#">
+      <div class="align-center four-col">
+        <img src="https://assets.ubuntu.com/v1/6becd557-solution-gateways.svg"/>
+      </div>
+      <h3>Gateways</h3></a>
+      <p>Gateways running Ubuntu Core connect sensors and actuators to clouds while providing edge analytics and intelligence.</p>
+    </div>
+    <div class="four-col box">
+      <a href="#">
+      <div class="align-center four-col">
+        <img src="https://assets.ubuntu.com/v1/cfd24c2a-solution-fin-serve.svg"/>
+      </div>
+      <h3>Financial services</h3></a>
+      <p>Scale to massive transactional volume on a proven platform designed for security and reliability.</p>
+    </div>
+    <div class="four-col box">
+      <a href="#">
+      <div class="align-center four-col">
+        <img src="https://assets.ubuntu.com/v1/5db9d655-solution-telco.svg"/>
+      </div>
+      <h3>Telco</h3></a>
+      <p>Accelerate service delivery, speed of operations and control spend with the only truly open, web-scale architecture for NFV.</p>
+    </div>
+    <div class="four-col last-col box">
+      <a href="#">
+      <div class="align-center four-col">
+        <img src="https://assets.ubuntu.com/v1/9bd9454d-solution-public-cloud01.svg"/>
+      </div>
+      <h3>Public cloud</h3></a>
+      <p>Ubuntu is the public cloud’s favourite guest OS, running most scale-out workloads for Netflix, Instagram and Uber.</p>
+    </div>
+    <div class="four-col box">
+      <a href="#">
+      <div class="align-center four-col">
+        <img src="https://assets.ubuntu.com/v1/83a95bc3-solution-gaming.svg"/>
+      </div>
+      <h3>Gaming</h3></a>
+      <p>Engage a global player base with dynamic gaming experiences delivered on the world’s favourite cloud platform.</p>
+    </div>
+    <div class="four-col box">
+      <a href="#">
+      <div class="align-center four-col">
+        <img src="https://assets.ubuntu.com/v1/9fe84d70-solution-retail.svg"/>
+      </div>
+      <h3>Retail</h3></a>
+      <p>Serve a global customer base with industry-leading scale and analytics to personalise your retail experience</p>
+    </div>
+    <div class="four-col last-col box">
+      <a href="#">
+      <div class="align-center four-col">
+        <img src="https://assets.ubuntu.com/v1/239e4234-solution-devops.svg"/>
+      </div>
+      <h3>Devops</h3></a>
+      <p>Save time and innovate more by managing your entire application lifecycle on Ubuntu.</p>
+    </div>
+  </div>
+</section>
+{% endblock content %}
+
+{% block head_extra %}
+<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
+
+<style type="text/css">
+  @keyframes fadeIn {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+-@-moz-keyframes fadeIn {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+@-webkit-keyframes fadeIn {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+
+/*scaleIn*/
+
+@keyframes scaleIn {
+    0% {
+        background-size: 0%;
+    }
+    100% {
+        background-size: 100%;
+    }
+}
+@-moz-keyframes scaleIn {
+    0% {
+        background-size: 0%;
+    }
+    100% {
+        background-size: 100%;
+    }
+}
+@-webkit-keyframes scaleIn {
+    0% {
+        background-size: 0%;
+    }
+    100% {
+        background-size: 100%;
+    }
+}
+
+/*scaleInPop*/
+
+@keyframes scaleInPop {
+    0% {
+        background-size: 0%;
+    }
+    60% {
+        background-size: 100%;
+    }
+    100% {
+        background-size: 90%;
+    }
+}
+@-moz-keyframes scaleInPop {
+    0% {
+        background-size: 0%;
+    }
+    60% {
+        background-size: 100%;
+    }
+    100% {
+        background-size: 90%;
+    }
+}
+@-webkit-keyframes scaleInPop {
+    0% {
+        background-size: 0%;
+    }
+    60% {
+        background-size: 100%;
+    }
+    100% {
+        background-size: 90%;
+    }
+}
+
+/*rotateIn*/
+
+@keyframes rotateIn {
+    0% {
+        transform: rotate(-45deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+@-moz-keyframes rotateIn {
+    0% {
+        -moz-transform: rotate(-45deg);
+    }
+    100% {
+        -moz-transform: rotate(0deg);
+    }
+}
+@-webkit-keyframes rotateIn {
+    0% { -webkit-transform: rotate(-45deg); }
+    100% { -webkit-transform: rotate(0deg); }
+}
+</style>
+{% endblock %}

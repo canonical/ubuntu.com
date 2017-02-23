@@ -1,0 +1,107 @@
+{% extends "cloud/base_cloud.html" %}
+
+{% block title %}Ubuntu products{% endblock %}
+
+{% block meta_description %}Whether you’re building your own OpenStack cloud, want a hosted private cloud or want to use Ubuntu in the public cloud, we offer all the training, software, tools, services and support you need.{% endblock meta_description %}
+
+{% block meta_keywords %}OpenStack, Cloud, Ubuntu OpenStack, private cloud, public cloud, open-source,  IAAS, infrastructure, service, Ubuntu, Ubuntu Cloud Infrastructure, Ubuntu Cloud Guest, Juju, Maas, orchestration, deployment, provisioning, training{% endblock meta_keywords %}
+
+{% block extra_body_class %}cloud-home{% endblock %}
+
+{% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
+    {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Overview" %}
+</div>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<section class="row no-border" style="background: url('https://assets.ubuntu.com/v1/5166f4e5-product-page-juju.png'); background-size: cover;">
+    <div class="strip-inner-wrapper">
+        <div class="hero-content twelve-col align-center" style="color: white;">
+            <img src="https://assets.ubuntu.com/v1/67057b2c-product-page-juju-logo.svg" />
+            <h1>Operate big software at scale on any cloud</h1>
+            <p class="intro twelve-col">Juju is an open source application modelling tool. Configure, deploy, scale, manage and maintain infrastructures on public and private clouds.</p>
+            <ul class="inline-list">
+              <li><a href="http://jujucharms.com/login" class="button--primary">Try Juju as a service</a></li>
+              <li><a href="/contact" class="button--secondary">Get Juju on premise</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="row no-border row-grey">
+  <div class="strip-inner-wrapper">
+    <div class="twelve-col">
+      <h2>Why use Juju?</h2>
+    </div>
+    <div class="ten-col prepend-one">
+      <img src="https://assets.ubuntu.com/v1/2b14096e-Why+use+juju.png" />
+    </div>
+  </div>
+</section>
+
+<section class="row row-white">
+  <div class="strip-inner-wrapper">
+    <div class="twelve-col">
+        <h2 class="muted-heading">Partnering with industry leaders</h2>
+        <ul class="inline-logos no-margin dynamic-logos">
+          {% get_json_feed "http://partners.ubuntu.com/partners.json?technology__name=Containers" limit=10 as container_partners %}
+          {% for partner in container_partners %}
+            <li class="inline-logos__item">
+              <img class="inline-logos__image" src="{{ partner.logo }}" alt="{{ partner.name }}" title="{{ partner.name }}" />
+            </li>
+          {% endfor %}
+        </ul>
+    </div>
+  </div>
+</section>
+
+
+<section class="row no-border strip-light">
+  <div class="strip-inner-wrapper">
+    <h2>Juju solutions</h2>
+    <div class="four-col">
+      <div class="juju-card" data-id="kubernetes-core"></div>
+    </div>
+    <div class="four-col">
+      <div class="juju-card" data-id="apache-processing-mapreduce"></div>
+    </div>
+    <div class="four-col last-col">
+      <div class="juju-card" data-id="openstack-base"></div>
+    </div>
+  </div>
+</section>
+
+<section class="row no-border row-grey">
+  <div class="strip-inner-wrapper">
+    <div class="twelve-col">
+      <h3 class="muted-heading">What people are saying about Juju</h3>
+    </div>
+    <div class="four-col bordered">
+      <blockquote class="pull-quote">
+          <p><span>&ldquo;</span>Using the modelling ethos brought by Juju allows me to quickly run big data applications in a multitude of places.<span>&rdquo;</span></p>
+          <p><cite>Tom Barber, Spicule LTD</cite></p>
+      </blockquote>
+    </div>
+    <div class="four-col bordered">
+      <blockquote class="pull-quote">
+          <p><span>&ldquo;</span>Juju enables you to encapsulate each different part of your infrastructure and lets everything talk to each other.<span>&rdquo;</span></p>
+          <p><cite>Merlijn Sebrechts, University Of Ghent</cite></p>
+      </blockquote>
+    </div>
+    <div class="four-col last-col">
+      <blockquote class="pull-quote">
+          <p><span>&ldquo;</span>“Juju acts as a thin layer on top of your infrastructure that allows all your operational code to talk to each other.<span>&rdquo;</span></p>
+          <p><cite>Konstantin Boudnik, EPAM Systems</cite></p>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+  <script async src="https://assets.ubuntu.com/v1/juju-cards-v1.3.0.js"></script>
+{% endblock content %}
+
+{% block head_extra %}
+<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
+
+{% endblock %}
