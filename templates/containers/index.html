@@ -1,0 +1,151 @@
+{% extends "containers/base_containers.html" %}
+
+{% block title %}Containers{% endblock %}
+
+{% block meta_description %}Whether you’re building your own OpenStack cloud, want a hosted private cloud or want to use Ubuntu in the public cloud, we offer all the training, software, tools, services and support you need.{% endblock meta_description %}
+
+{% block meta_keywords %}Containers, Docker, LXC, LXD, Kubernetes, conjure-up, container management, Ubuntu, Canonical, Linux, Ubuntu Advantage, deployment, provision, provisioning, manage, management, monitor, monitoring, scriptable, enterprise, software, API, web, hosted, dedicated, server, cloud, OpenStack, Amazon, EC2, ROI, cost-effective, trial, free{% endblock meta_keywords %}
+
+{% block extra_body_class %}containers-home{% endblock %}
+
+{% block second_level_nav_items %}
+<div class="strip-inner-wrapper">
+  {% include "templates/_nav_breadcrumb.html" with section_title="Containers" page_title="Overview" %}
+</div>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<section class="row row-hero strip-light no-border">
+  <div class="strip-inner-wrapper equal-height">
+    <div class="six-col append-one equal-height__item">
+      <h1>Containers</h1>
+      <h2>Ubuntu is the number one platform for containers</h2>
+      <p>From LXD to Kubernetes to Docker, Canonical has partnered with industry leaders to offer a full range of technologies and services to run containers at scale on public, private and hybrid or bare metal clouds.<p>
+      <p><a href="/containers/contact-us">Talk to us about your container strategy&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="five-col last-col equal-height__item align-center">
+      <img src="{{ ASSET_SERVER_URL }}a9aff224-Containers-illustration.svg" width="350" alt="" />
+    </div>
+  </div>
+</section>
+
+{% include "containers/shared/_whitepaper.html" %}
+
+<section class="row row-grey">
+  <div class="strip-inner-wrapper">
+    <div class="icon-text">
+      <img src="{{ ASSET_SERVER_URL }}08aaf473-image-lxd.svg?w=80" alt="LXD logo" width="80" class="icon-text__icon" />
+      <h2 class="icon-text__heading no-margin-bottom">LXD, the pure-container hypervisor</h2>
+    </div>
+    <div class="twelve-col equal-height">
+      <div class="four-col equal-height__item equal-height--vertical-divider__item">
+        <h3>Lift-and-shift existing VM workloads</h3>
+        <p>Move your existing Linux VMs straight to containers, easily, without modifying the apps or your operations. LXD&rsquo;s machine containers operate just like virtual machines.</p>
+      </div>
+      <div class="four-col equal-height__item equal-height--vertical-divider__item">
+        <h3>25% faster than legacy VMs</h3>
+        <p>Run an unmodified Linux operating system and applications with VM-style operations at incredible speed with zero latency.</p>
+      </div>
+      <div class="four-col equal-height__item equal-height--vertical-divider__item last-col">
+        <h3>10x the density of ESX</h3>
+        <p>LXD&rsquo;s pure-container approach to Linux virtualisation offers dramatic density advantages over VMware ESX and Linux KVM for private and public cloud infrastructure.</p>
+      </div>
+    </div>
+    <div class="eight-col">
+      <p><a href="/containers/lxd">Learn more about LXD&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="row row-white">
+  <div class="strip-inner-wrapper">
+    <div class="icon-text">
+      <img src="{{ ASSET_SERVER_URL }}24e41fc3-kubernetes_logo.svg" alt="Kubernetes logo" class="icon-text__icon" />
+      <h2 class="icon-text__heading no-margin-bottom">The Canonical Distribution of Kubernetes</h2>
+    </div>
+    <div class="twelve-col equal-height">
+      <div class="four-col equal-height__item equal-height--vertical-divider__item">
+        <h3>Elasticity built-in</h3>
+        <p>Looking for a container orchestration system to help build your microservice-based app? Canonical’s Kubernetes is simple and naturally elastic.</p>
+      </div>
+      <div class="four-col equal-height__item equal-height--vertical-divider__item">
+        <h3>Cost-effective at scale</h3>
+        <p>Modelled using Juju, Canonical’s Kubernetes includes all operational scripting and tooling needed to manage a long-lived cluster, including upgrades and elastic scaling.</p>
+      </div>
+      <div class="four-col equal-height__item equal-height--vertical-divider__item last-col">
+        <h3>Analytics on tap</h3>
+        <p>Can be easily integrated with Prometheus for monitoring, Ceph for storage and Elastic Stack including Kibana for analysis and visualisations.</p>
+      </div>
+    </div>
+    <div class="eight-col">
+      <p><a href="/containers/kubernetes">Learn more about the Canonical Distribution of Kubernetes&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="row row-grey">
+  <div class="strip-inner-wrapper">
+    <div class="icon-text">
+        <img src="{{ ASSET_SERVER_URL }}1eb617a5-docker_logo.svg" alt="Docker logo" class="icon-text__icon" />
+        <h2 class="icon-text__heading no-margin-bottom">Docker Engine on Ubuntu</h2>
+    </div>
+    <div class="twelve-col equal-height">
+      <div class="four-col equal-height__item equal-height--vertical-divider__item">
+        <h3>Enterprise ready Docker</h3>
+        <p>We work closely with Docker Inc. to deliver an integrated Commercially Supported Docker Engine offering on Ubuntu.</p>
+      </div>
+      <div class="four-col equal-height__item equal-height--vertical-divider__item">
+        <h3>Reliable updates</h3>
+        <p>The Docker Engine images are published as snap package which update automatically and transactionally.</p>
+      </div>
+      <div class="four-col equal-height__item equal-height--vertical-divider__item last-col">
+        <h3>Single vendor solution</h3>
+        <p>Canonical provides Level 1 and Level 2 technical support for the CS Docker Engine and are backed by Docker Inc. for Level 3 support.</p>
+      </div>
+    </div>
+    <div class="eight-col">
+      <p><a href="/containers/docker-ubuntu">Learn more about Docker Engine on Ubuntu&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="row row-white">
+  <div class="strip-inner-wrapper">
+    <div class="twelve-col">
+        <h2 class="muted-heading">Partnering with industry leaders</h2>
+        <ul class="inline-logos no-margin dynamic-logos">
+          {% get_json_feed "http://partners.ubuntu.com/partners.json?technology__name=Containers" limit=10 as container_partners %}
+          {% for partner in container_partners %}
+            <li class="inline-logos__item">
+              <img class="inline-logos__image" src="{{ partner.logo }}" alt="{{ partner.name }}" title="{{ partner.name }}" />
+            </li>
+          {% endfor %}
+        </ul>
+    </div>
+  </div>
+</section>
+
+<section class="row no-border">
+  <div class="strip-inner-wrapper equal-height">
+    <div class="six-col append-one equal-height__item equal-height__align-vertically">
+      <h2>Expert support from Canonical</h2>
+      <p>If you need the assurance of a professional support subscription for your desktop, server, cloud or container deployment, Ubuntu Advantage has got you covered:</p>
+      <ul class="list-ticks">
+        <li>24/7 access to the world&rsquo;s leading Ubuntu experts</li>
+        <li>Landscape systems management tool</li>
+        <li>IP assurance for your Ubuntu environment</li>
+        <li>Kernel livepatching to ensure you have the latest kernel security&nbsp;updates</li>
+      </ul>
+      <p><a href="https://buy.ubuntu.com/" class="button--primary"><span class="external">Visit the Ubuntu Advantage store</span></a></p>
+      <p>Or <a href="/containers/contact-us">contact us&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="five-col last-col equal-height__item equal-height__align-vertically not-for-small">
+      <img src="{{ ASSET_SERVER_URL }}11da76f5-image-management.svg" class="u-full-width" width="288" height="155" />
+    </div>
+  </div>
+</div>
+</section>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_containers_juju" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
+
+{% endblock content %}

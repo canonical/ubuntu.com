@@ -24,6 +24,7 @@
 
 .banner {
   .nav-primary {
+
     ul li a:active,
     ul li a:hover,
     ul li a:link,
@@ -60,11 +61,28 @@
         a.active,
         a.active:link,
         a:link {
-
+                    
           @media only screen and (max-width: $navigation-threshold) {
+            border-left: 0;
             font-weight: 300;
           }
         }
+        
+        &:last-child {
+          border-right-color: #df4a16;
+          
+          a {
+            border-left: 0;
+            border-right: 1px solid #cccccc;
+            left: 1px;
+            position: relative;
+          
+            @media only screen and (min-width : $navigation-threshold) {
+              border-right: 0;
+            }
+          }
+        }
+        
 
         // XXX Ant (10.04.2016)
         // Added !important to override some deep selectors in Vanilla
@@ -290,6 +308,7 @@
 
 // Full width sections
 .cloud,
+.containers,
 .desktop,
 .download,
 .homepage,
@@ -307,6 +326,7 @@
 
 // extra rules for full width sections other than homepage
 .cloud,
+.containers,
 .desktop,
 .download,
 .internet-of-things,
