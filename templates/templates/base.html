@@ -95,6 +95,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <li><a{% if level_1 == 'server' %} class="active"{% endif %} href="/server">Server</a>
               {% include "server/_nav_secondary.html" with promo="true" %}
             </li>
+            <li><a class="first{% if level_1 == 'containers' %} active{% endif %}" href="/containers">Containers</a>
+              {% include "containers/_nav_secondary.html" with promo="true" %}
+            </li>
             <li><a {% if level_1 == 'desktop' %} class="active"{% endif %} href="/desktop">Desktop</a>
               {% include "desktop/_nav_secondary.html" with promo="true" %}
             </li>
