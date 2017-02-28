@@ -143,7 +143,7 @@ body.homepage {
 
 .row--intro {
   background: $ubuntu-orange;
-  color: #fff;
+  color: $white;
 }
 
 // row--intro
@@ -250,7 +250,7 @@ body.homepage {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 96px;
-  color: #fff;
+  color: $white;
   display: block;
   line-height: 1.3;
   overflow: visible;
@@ -368,7 +368,7 @@ body.homepage {
 }
 
 body.homepage .row--intro .intro-middle li a:hover {
-  color: #fff;
+  color: $white;
   display: block;
   text-indent: 0;
 }
@@ -386,7 +386,7 @@ body.homepage .row--intro .intro-middle li a:hover {
 }
 
 body.homepage .row--ubuntu-news {
-  background-color: #fff;
+  background-color: $white;
 
   @media only screen and (min-width: $breakpoint-medium) {
     margin-bottom: 0px;
@@ -436,7 +436,7 @@ body.homepage .row--iot {
   background-position: 50% 50%;
   background-repeat:  no-repeat;
   overflow: hidden;
-  background: #fff;
+  background: $white;
 
   @media only screen and (min-width: $breakpoint-medium) {
     padding: 150px 0;
@@ -627,7 +627,7 @@ body.homepage .row-featured {
     width: 3000px;
     flex: auto;
     height: 100%;
-    background-color: #2C001E;
+    background-color: $dark-aubergine;
   }
 }
 .featured__content {
@@ -638,7 +638,7 @@ body.homepage .row-featured {
 }
 
 .takeunder-juju {
-  background-color: #f5f5f5;
+  background-color: $color-light;
 
   @media only screen and (min-width: $breakpoint-medium) {
     background-image: url('#{$asset-server-url}f552b31a-juju-16-04-takeunder.png');
@@ -649,7 +649,7 @@ body.homepage .row-featured {
   background-position: 0 50%;
 
   &::before {
-    background: #f5f5f5;
+    background: $color-light;
   }
 }
 
@@ -684,7 +684,7 @@ body.homepage-cloud-default {
 // snapdeal-india-takeover
 .snapdeal-india-takeover {
   #main-content .row-hero {
-    background-color: #fff;
+    background-color: $white;
     margin-top: -20px;
     overflow: hidden;
     padding-bottom: 0;
@@ -773,7 +773,7 @@ body.homepage-15-10 {
       }
 
       .link-cta-ubuntu {
-        color: #fff;
+        color: $white;
       }
 
       h1 {
@@ -791,7 +791,7 @@ body.homepage-15-10 {
 
 body.homepage.meizu-takeover {
   .lang-switch {
-    color: #fff;
+    color: $white;
     float: left;
     padding: 10px 0 0 10px;
   }
@@ -836,7 +836,7 @@ body.homepage.meizu-takeover {
       background-position: right 30%;
       background-repeat: no-repeat;
       background-size: cover;
-      color: #fff;
+      color: $white;
       margin-top: -40px;
       min-height: 700px;
       padding-top: 10%;
@@ -846,7 +846,7 @@ body.homepage.meizu-takeover {
       }
 
       a {
-        color: #fff;
+        color: $white;
       }
     }
   }
@@ -880,7 +880,7 @@ body.homepage.meizu-takeover {
     background-color: $dark-aubergine;
     background-image: url('#{$asset-server-url}640e7d6c-testdrive-takeover-01.svg');
     background-repeat: no-repeat;
-    color: #fff;
+    color: $white;
     margin-top: 0;
     padding-top: 30px;
 
@@ -1050,7 +1050,7 @@ body.juju-takeover {
       }
 
       .button--primary {
-        color: #fff;
+        color: $white;
       }
     }
   }
@@ -1069,7 +1069,7 @@ body.homepage-maas-takeover {
     .row-hero {
       background: url('#{$asset-server-url}8ce3e107-hero-1.jpg?w=1600&amp;q=40') 0 12% no-repeat;
       background-size: cover;
-      color: #fff;
+      color: $white;
       margin-top: 0;
       min-height: 255px;
       padding-top: 40px;
@@ -1112,7 +1112,7 @@ body.homepage-maas-takeover {
     background-image: url('#{$asset-server-url}882ae6de-image-background-paper.png');
     background-repeat: repeat;
     background-size: cover;
-    color: #fff;
+    color: $white;
     margin-top: 0;
     padding-top: 30px;
 
@@ -1182,7 +1182,7 @@ body.homepage-maas-takeover {
   }
 
   &::after {
-    background-color: #303030;
+    background-color: $cool-grey;
     display: block;
     left: 0;
     opacity: 0.7;
@@ -1348,7 +1348,7 @@ body.homepage-maas-takeover {
   }
 
   &::after {
-    background-color: #303030;
+    background-color: $cool-grey;
     left: 0;
     top: 40px;
     display: block;
@@ -1358,7 +1358,7 @@ body.homepage-maas-takeover {
 }
 
 .takeunder-pro5 {
-  background-color: #f5f5f5;
+  background-color: $color-light;
 
   @media only screen and (min-width: $breakpoint-medium) {
     background-image: url('#{$asset-server-url}0d1e4e42-meizu-pro5-single.png?w=150');
@@ -1373,7 +1373,7 @@ body.homepage-maas-takeover {
   }
 
   &::before {
-    background: #f5f5f5;
+    background: $color-light;
   }
 }
 
@@ -1433,7 +1433,7 @@ body.homepage-maas-generic-takeover {
     .row-hero {
       background: url('https://assets.ubuntu.com/v1/8ce3e107-hero-1.jpg?w=1600&q=40') 0 12% no-repeat;
       background-size: cover;
-      color: #fff;
+      color: $white;
       margin-top: 0;
       min-height: 255px;
       padding-top: 40px;
@@ -1474,7 +1474,7 @@ body.homepage-autopilot-devops-takeover {
       background-position: right;
       background-repeat: no-repeat;
       background-size: cover;
-      color: #fff;
+      color: $white;
       margin-top: 0;
       min-height: 45vw;
       transition-duration: 1s;
@@ -1591,7 +1591,7 @@ body.homepage-nextcloud-takeover {
         color: $cool-grey;
 
         &:hover {
-          background-color: #f7f7f7;
+          background-color: $color-light;
         }
       }
     }
@@ -2009,7 +2009,7 @@ body.homepage-advantage {
     }
 
     a {
-      color: #fff;
+      color: $white;
     }
   }
 }

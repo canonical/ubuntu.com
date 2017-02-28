@@ -38,8 +38,8 @@
       position: relative;
 
       &:before {
-        @media only screen and (min-width: $breakpoint-medium) {
-          border-left: 1px solid #cdcdcd;
+        @media only screen and (min-width : $breakpoint-medium) {
+          border-left: 1px solid $color-mid-light;
           content: ' ';
           display: block;
           height: 20px;
