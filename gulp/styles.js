@@ -5,7 +5,7 @@ autoprefixer = require('gulp-autoprefixer'),
 cssnano = require('gulp-cssnano'),
 rename = require('gulp-rename'),
 sourcemaps = require('gulp-sourcemaps'),
-sassPath = 'static/css/styles.scss';
+sassPath = 'static/sass/css/styles.scss';
 
 // Provide details of Sass errors
 function throwSassError(sassError) {
@@ -27,7 +27,7 @@ gulp.task('sass:develop', function() {
     .pipe(sass({ style: 'expanded', errLogToConsole: true }))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
     .pipe(sourcemaps.write('maps/'))
-    .pipe(gulp.dest('static/css/'))
+    .pipe(gulp.dest('static/sass/css/'))
 });
 
 // Build Sass for production
@@ -40,8 +40,8 @@ gulp.task('sass:build', function() {
       onError: throwSassError
     }))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
-    .pipe(gulp.dest('static/css/'))
+    .pipe(gulp.dest('static/sass/css/'))
     .pipe(cssnano())
     .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest('static/css/'));
+    .pipe(gulp.dest('static/sass/css/'));
 });
