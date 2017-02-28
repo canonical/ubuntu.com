@@ -5,7 +5,7 @@ autoprefixer = require('gulp-autoprefixer'),
 cssnano = require('gulp-cssnano'),
 rename = require('gulp-rename'),
 sourcemaps = require('gulp-sourcemaps'),
-sassPath = 'static/styles.scss';
+sassPath = 'static/css/styles.scss';
 
 // Provide details of Sass errors
 function throwSassError(sassError) {
