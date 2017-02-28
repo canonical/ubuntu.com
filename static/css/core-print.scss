@@ -9,8 +9,12 @@
  *
  */
  
-$white: #fff;
-$black: #000;
+// import global settings
+@import 'global-settings';
+
+// import vanilla themes
+@import "../../node_modules/ubuntu-vanilla-theme/scss/theme";
+@include ubuntu-vanilla-theme;
 
 * { background: $white; color: $black; }
 
