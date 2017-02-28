@@ -2,8 +2,7 @@
   "author": {
     "email": "webteam@canonical.com",
     "name": "ubuntu-website",
-    "url": "http://design.canonical.com/team",
-    "license": "LGPL v3"
+    "url": "http://design.canonical.com/team"
   },
   "bugs": {
     "email": "webteam@canonical.com",
@@ -23,19 +22,29 @@
     "markdown-spellcheck": "^0.11.0",
     "wrench": "^1.5.9"
   },
-  "dependencies": {
-    "ubuntu-vanilla-theme": "0.0.34"
-  }
-  "homepage": "https://github.com/ubuntudesign/www.ubuntu.com",
+  "homepage": "http://vanilla-framework.github.io/vanilla-framework/",
   "keywords": [
     "ubuntu",
     "vanilla",
+    "framework",
     "CSS",
     "SASS",
     "SCSS",
     "mixin",
     "module"
-  ]
+  ],
+  "license": "LGPL-3.0",
+  "name": "vanilla-framework",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vanilla-framework/vanilla-framework"
   },
+  "scripts": {
+    "clean": "rm -r build; rm -r node_modules"
+  },
+  "dependencies": {
+    "ubuntu-vanilla-theme": "0.0.34"
+  },
+  "license": "LGPL v3",
   "version": "0.0.1"
 }
