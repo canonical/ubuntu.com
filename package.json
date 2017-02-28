@@ -1,18 +1,50 @@
 {
-  "name": "ubuntu-website",
-  "version": "0.0.1",
-  "description": "Django website for ubuntu.com",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": {
+    "email": "webteam@canonical.com",
+    "name": "ubuntu-website",
+    "url": "http://design.canonical.com/team"
   },
+  "bugs": {
+    "email": "webteam@canonical.com",
+    "url": "https://github.com/ubuntudesign/www.ubuntu.com/issues"
+  },
+  "description": "Django website for ubuntu.com",
+  "devDependencies": {
+    "es6-promise": "^4.0.5",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "3.1.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-rename": "1.2.2",
+    "gulp-sass": "3.1.0",
+    "gulp-sass-lint": "1.3.2",
+    "gulp-shell": "^0.5.2",
+    "gulp-sourcemaps": "^2.3.1",
+    "markdown-spellcheck": "^0.11.0",
+    "wrench": "^1.5.9"
+  },
+  "homepage": "http://vanilla-framework.github.io/vanilla-framework/",
   "keywords": [
-    "website",
-    "ubuntu"
+    "ubuntu",
+    "vanilla",
+    "framework",
+    "CSS",
+    "SASS",
+    "SCSS",
+    "mixin",
+    "module"
   ],
-  "author": "Canonical webteam",
-  "license": "LGPL v3",
+  "license": "LGPL-3.0",
+  "name": "vanilla-framework",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vanilla-framework/vanilla-framework"
+  },
+  "scripts": {
+    "clean": "rm -r build; rm -r node_modules"
+  },
   "dependencies": {
     "ubuntu-vanilla-theme": "0.0.34"
-  }
+  },
+  "license": "LGPL v3",
+  "version": "0.0.1"
 }

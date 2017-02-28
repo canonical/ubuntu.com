@@ -1,0 +1,495 @@
+.mobile-home {
+
+  .row-hero {
+    @media only screen and (min-width : $breakpoint-medium) {
+      border-bottom: 0;
+    }
+  }
+
+  .row--devices {
+    overflow: hidden;
+
+    .slider-animation {
+      min-height: 520px;
+
+      @media only screen and (max-width : $breakpoint-medium) {
+        min-height: 250px;
+        margin-left: 20px;
+      }
+    }
+  }
+
+  .row--beautiful-design {
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      background-image: url('#{$asset-server-url}91d3d632-beautiful-features.jpg?w=1500');
+      background-position: 32% 42%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      border: none;
+      color: $white;
+    }
+
+    a {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        border-bottom: 1px solid $white;
+        color: $white;
+        text-decoration: none;
+      }
+
+
+      h2,
+      p {
+
+        @media only screen and ($breakpoint-medium) {
+          padding: 0 10px;
+        }
+      }
+
+      img {
+
+        @media only screen and ($breakpoint-medium) {
+          padding-bottom: 20px;
+          width: 100%;
+        }
+      }
+
+      .for-small {
+
+        @media only screen and ($breakpoint-medium) {
+          margin: 0;
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  .row--fingertips {
+    background-size: cover;
+    color: $cool-grey;
+    margin-top: 0;
+    overflow: hidden;
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      background: $white url('#{$asset-server-url}19213020-intro-row.jpg?w=984') no-repeat;
+      background-position: 40% 30%;
+      background-size: 115%;
+      border: none;
+      color: $white;
+      height: 400px;
+      padding-top: 40px;
+    }
+
+    @media only screen and (min-width : $breakpoint-large) {
+      background-image: url('#{$asset-server-url}19213020-intro-row.jpg?w=1300');
+      background-size: cover;
+      min-height: 554px;
+      overflow: visible;
+      position: relative;
+    }
+
+    .video-container.for-mobile {
+
+      @media only screen and ($breakpoint-medium) {
+        margin-bottom: 0 !important;
+      }
+    }
+
+    .mobile-vid {
+
+      @media only screen and ($breakpoint-medium) {
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    .the-video {
+      background: $black;
+      display: none;
+      height: 0;
+      left: 0;
+      min-height: 554px;
+      padding-bottom: 56.25%; //* 16:9 *//
+      position: absolute;
+      top: 0;
+      width: 100%;
+
+      .close-video {
+        display: none;
+      }
+
+      iframe {
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          height: 400px;
+        }
+
+        @media only screen and (min-width : $breakpoint-large) {
+          height: 554px;
+        }
+      }
+
+      &.show {
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          display: block;
+          padding-bottom: 0;
+        }
+      }
+    }
+
+    .hide-me,
+    .show-me {
+      -moz-transition-duration: 2s;
+      -o-transition-duration: 2s;
+      -webkit-transition-duration: 2s;
+      height: 0;
+      opacity: 0;
+      transition-duration: 2s;
+    }
+
+    .close-vid-link {
+      display: none;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      z-index: 60;
+    }
+
+    .video.hide {
+      display: none;
+    }
+
+    .show-me {
+      height: auto;
+      opacity: 1;
+    }
+
+    .video-link {
+      display: none;
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        display: inline-block;
+      }
+    }
+
+    a {
+      outline: none;
+    }
+
+    &__content {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        margin-top: 10vw;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        margin-top: 100px;
+      }
+    }
+  }
+
+  .row--enabled-devices {
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      border: none;
+    }
+
+    &:before {
+      @media only screen and (min-width : $breakpoint-medium) {
+        background-image: url('#{$asset-server-url}ffc49bc1-tablet-coming-soon.png?w=800');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height: 60%;
+        left: -4vw;
+        overflow: visible;
+        position: absolute;
+        top: 70px;
+        width: 60vw;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        height: 78%;
+      }
+    }
+
+    &__content {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        min-height: 30vw;
+      }
+    }
+  }
+
+  .promo-signup #mce-success-response.response {
+    padding: 10px;
+    position: inherit;
+    top: 60px;
+  }
+}
+
+// import the devices animation sass
+@import '_morph.scss';
+
+.mobile-features {
+  .row-hero {
+    overflow: hidden;
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      overflow: hidden;
+      padding: 40px 10px 20px;
+    }
+
+    @media only screen and (min-width : $breakpoint-large) {
+      padding: 100px 40px;
+    }
+
+    &:before {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server-url}4edf954e-tablet-browser-video.png?w=800') center center no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height: 85%;
+        overflow: visible;
+        position: absolute;
+        right: -30vw;
+        top: 40px;
+        width: 80vw;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        right: 10vw;
+        width: 40vw;
+      }
+    }
+  }
+
+  .row--design {
+    background-color: #000;
+    background-image: none;
+  }
+
+  .row--scopes {
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      padding-left: 0 !important;
+    }
+
+    @media only screen and (min-width : $breakpoint-large) {
+      align-items: center;
+      display: flex;
+      min-height: 730px;
+    }
+
+    &:before {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server-url}b6052399-scopes-tablet-portrait.png?w=890') center right no-repeat;
+        background-size: contain;
+        content: '';
+        height: 80%;
+        left: 4vw;
+        position: absolute;
+        top: 10%;
+        width: 48vw;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        background-size: auto;
+        height: 500px;
+        left: 0;
+        top: 110px;
+        width: 50vw;
+      }
+    }
+
+    &__image {
+      margin: 10px 0;
+    }
+  }
+
+  .row--applications .grid-list__img {
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      max-width: 100%;
+    }
+  }
+}
+
+.mobile-partners {
+  .row-hero {
+    overflow: hidden;
+
+    &__image {
+      margin: 10px 0;
+    }
+
+    &:before {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server-url}969bb3c1-9a.-scope-task-switcher-tablet-portrait-landscape.png?w=700') center center no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height: 80%;
+        overflow: visible;
+        position: absolute;
+        right: -24vw;
+        top: 10%;
+        width: 70vw;
+      }
+
+      @media only screen and (min-width : 769px) {
+        right: 2vw;
+        width: 47vw;
+      }
+
+      @media only screen and (min-width : 1400px) {
+        right: 2vw;
+        width: 50vw;
+      }
+    }
+  }
+
+  .row-more--image {
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      margin-bottom: 40px;
+      margin-top: 60px;
+    }
+  }
+
+  .row-case-studies {
+    background-image: none;
+
+    &__intro {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        margin-bottom: 40px;
+      }
+    }
+  }
+}
+
+.mobile-developers {
+  .row-hero {
+    overflow: hidden;
+
+    @media only screen and (min-width : $breakpoint-medium + 1) {
+      min-height: 550px;
+    }
+
+    &:before {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server-url}7fbc7231-tablet-developers-hero.png?w=646') center center no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height: 85%;
+        overflow: visible;
+        position: absolute;
+        right: -30vw;
+        top: 40px;
+        width: 80vw;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        right: 10vw;
+        width: 40vw;
+      }
+    }
+  }
+
+  .row--one-app__image {
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      margin-top: 30px;
+    }
+
+    @media only screen and (min-width : $breakpoint-large) {
+      margin-top: 60px;
+    }
+  }
+}
+
+.mobile-devices {
+  .row-hero {
+    overflow: hidden;
+
+    &__image {
+      margin: 10px 0;
+    }
+
+    &:before {
+      @media only screen and (min-width : $breakpoint-medium) {
+        background: url('#{$asset-server-url}b2bccccf-mobile_phone%26tablet.png') center center no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height: 80%;
+        overflow: visible;
+        position: absolute;
+        right: -24vw;
+        top: 10%;
+        width: 70vw;
+      }
+
+      @media only screen and (min-width : 769px) {
+        right: 2vw;
+        width: 47vw;
+      }
+
+      @media only screen and (min-width : 1400px) {
+        right: 2vw;
+        width: 50vw;
+      }
+    }
+  }
+
+  .devices {
+    table-layout: fixed;
+
+    &__title {
+      font-weight: 400;
+    }
+
+    &__item {
+      text-align: left;
+      vertical-align: top;
+    }
+
+    &__image {
+      margin-bottom: 10px;
+      max-height: 200px;
+    }
+  }
+
+  .row-iot {
+    background-image: none;
+    margin-top: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+
+    &__cta {
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        margin-top: 10px;
+      }
+      @media only screen and (min-width : $breakpoint-large) {
+        margin-top: 20px;
+      }
+    }
+  }
+}
