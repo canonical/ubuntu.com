@@ -12,7 +12,7 @@
 body {
   background-size: cover;
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     padding-top: 30px;
   }
 }
@@ -20,13 +20,13 @@ body {
 // .inner-wrapper
 .inner-wrapper {
 
-  @media only screen and (max-width : $breakpoint-medium) {
+  @media only screen and (max-width: $breakpoint-medium) {
     border-radius: 0;
     box-shadow: none;
     padding-bottom: 0;
   }
 
-  @media only screen and (min-width : $breakpoint-large) {
+  @media only screen and (min-width: $breakpoint-large) {
     margin-bottom: 30px;
   }
 }
@@ -41,11 +41,11 @@ body {
   margin: 0;
   padding: 20px 10px 0 10px;
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     padding: 40px 20px 20px 20px;
   }
 
-  @media only screen and (min-width : $breakpoint-large) {
+  @media only screen and (min-width: $breakpoint-large) {
     padding: 100px 40px 100px 40px;
   }
 
@@ -64,11 +64,11 @@ body {
   &.row-hero {
     padding: 0 10px 0 10px;
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       padding: 40px 10px 20px 10px;
     }
 
-    @media only screen and (min-width : $breakpoint-large) {
+    @media only screen and (min-width: $breakpoint-large) {
       padding: 100px 40px 100px 40px;
     }
 
@@ -120,7 +120,7 @@ body {
   ul {
     margin-bottom: 0;
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       margin-bottom: 20px;
     }
   }
@@ -201,14 +201,14 @@ body {
     background: rgba(255,255,255,.85);
     color: $cool-grey;
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       padding: 20px;
     }
   }
 
   &__title {
 
-    @media only screen and (min-width : $breakpoint-large) {
+    @media only screen and (min-width: $breakpoint-large) {
       font-size: 2.8125em;
       line-height: 1;
     }
@@ -216,22 +216,22 @@ body {
 
   &__copy {
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       font-size: 1.438em;
     }
 
-    @media only screen and (min-width : $breakpoint-large) {
+    @media only screen and (min-width: $breakpoint-large) {
       font-size: 2em;
     }
   }
 
   &__title + &__copy {
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       font-size: 1em;
     }
 
-    @media only screen and (min-width : $breakpoint-large) {
+    @media only screen and (min-width: $breakpoint-large) {
       font-size: 1.438em;
     }
   }
@@ -258,7 +258,7 @@ body {
 
   .strip-inner-wrapper {
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       background: none;
       border: 0;
       -moz-box-shadow: none;
@@ -271,7 +271,7 @@ body {
       padding: 0 30px;
     }
 
-    @media only screen and (min-width : $breakpoint-large) {
+    @media only screen and (min-width: $breakpoint-large) {
       padding: 0;
     }
   }
@@ -302,11 +302,11 @@ body {
   .row {
     padding: 20px 10px 0;
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       padding: 40px 10px 20px;
     }
 
-    @media only screen and (min-width : $breakpoint-large) {
+    @media only screen and (min-width: $breakpoint-large) {
       padding: 100px 40px;
     }
 
@@ -318,12 +318,12 @@ body {
       margin-top: 0;
       padding: 0 10px;
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         margin-top: 0;
         padding: 40px 10px 20px;
       }
 
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
         padding: 100px 40px;
       }
 
@@ -532,7 +532,7 @@ html.js .resource:hover a {
 #livechat-full {
   display: none;
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     box-shadow: none;
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
@@ -675,7 +675,7 @@ $item-spacing: 20px;
   margin-left: 0;
   padding-left: 70px;
 
-  @media only screen and (max-width : $breakpoint-medium) {
+  @media only screen and (max-width: $breakpoint-medium) {
     padding-left: 0;
   }
 }

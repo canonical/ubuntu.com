@@ -30,14 +30,14 @@
   }
 
   .contextual-footer .strip-inner-wrapper {
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       margin: 0 20px;
     }
   }
 
   .no-svg,
   .opera-mini {
-    @media only screen and (min-width : $breakpoint-large) {
+    @media only screen and (min-width: $breakpoint-large) {
       background-image: url(#{$asset-server-url}8d9877ff-pictogram-develop-125x125.png);
     }
   }
@@ -48,12 +48,12 @@
       overflow: hidden;
 
       .intro {
-        @media only screen and (min-width : $breakpoint-large) {
+        @media only screen and (min-width: $breakpoint-large) {
           margin: 0;
           padding: 0 57.4468% 2em 0;
 
           img {
-            @media only screen and (min-width : $breakpoint-large) {
+            @media only screen and (min-width: $breakpoint-large) {
               bottom: -35px;
               position: absolute;
               right: -120px;

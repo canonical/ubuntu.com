@@ -1,7 +1,7 @@
 .mobile-home {
 
   .row-hero {
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       border-bottom: 0;
     }
   }
@@ -12,7 +12,7 @@
     .slider-animation {
       min-height: 520px;
 
-      @media only screen and (max-width : $breakpoint-medium) {
+      @media only screen and (max-width: $breakpoint-medium) {
         min-height: 250px;
         margin-left: 20px;
       }
@@ -21,7 +21,7 @@
 
   .row--beautiful-design {
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server-url}91d3d632-beautiful-features.jpg?w=1500');
       background-position: 32% 42%;
       background-repeat: no-repeat;
@@ -32,7 +32,7 @@
 
     a {
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         border-bottom: 1px solid $white;
         color: $white;
         text-decoration: none;
@@ -71,7 +71,7 @@
     margin-top: 0;
     overflow: hidden;
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       background: $white url('#{$asset-server-url}19213020-intro-row.jpg?w=984') no-repeat;
       background-position: 40% 30%;
       background-size: 115%;
@@ -81,7 +81,7 @@
       padding-top: 40px;
     }
 
-    @media only screen and (min-width : $breakpoint-large) {
+    @media only screen and (min-width: $breakpoint-large) {
       background-image: url('#{$asset-server-url}19213020-intro-row.jpg?w=1300');
       background-size: cover;
       min-height: 554px;
@@ -121,18 +121,18 @@
 
       iframe {
 
-        @media only screen and (min-width : $breakpoint-medium) {
+        @media only screen and (min-width: $breakpoint-medium) {
           height: 400px;
         }
 
-        @media only screen and (min-width : $breakpoint-large) {
+        @media only screen and (min-width: $breakpoint-large) {
           height: 554px;
         }
       }
 
       &.show {
 
-        @media only screen and (min-width : $breakpoint-medium) {
+        @media only screen and (min-width: $breakpoint-medium) {
           display: block;
           padding-bottom: 0;
         }
@@ -169,7 +169,7 @@
     .video-link {
       display: none;
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         display: inline-block;
       }
     }
@@ -180,11 +180,11 @@
 
     &__content {
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         margin-top: 10vw;
       }
 
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
         margin-top: 100px;
       }
     }
@@ -192,12 +192,12 @@
 
   .row--enabled-devices {
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       border: none;
     }
 
     &:before {
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         background-image: url('#{$asset-server-url}ffc49bc1-tablet-coming-soon.png?w=800');
         background-position: center center;
         background-repeat: no-repeat;
@@ -212,14 +212,14 @@
         width: 60vw;
       }
 
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
         height: 78%;
       }
     }
 
     &__content {
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         min-height: 30vw;
       }
     }
@@ -239,18 +239,18 @@
   .row-hero {
     overflow: hidden;
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       overflow: hidden;
       padding: 40px 10px 20px;
     }
 
-    @media only screen and (min-width : $breakpoint-large) {
+    @media only screen and (min-width: $breakpoint-large) {
       padding: 100px 40px;
     }
 
     &:before {
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         background: url('#{$asset-server-url}4edf954e-tablet-browser-video.png?w=800') center center no-repeat;
         background-size: contain;
         content: '';
@@ -263,7 +263,7 @@
         width: 80vw;
       }
 
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
         right: 10vw;
         width: 40vw;
       }
@@ -277,11 +277,11 @@
 
   .row--scopes {
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       padding-left: 0 !important;
     }
 
-    @media only screen and (min-width : $breakpoint-large) {
+    @media only screen and (min-width: $breakpoint-large) {
       align-items: center;
       display: flex;
       min-height: 730px;
@@ -289,7 +289,7 @@
 
     &:before {
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         background: url('#{$asset-server-url}b6052399-scopes-tablet-portrait.png?w=890') center right no-repeat;
         background-size: contain;
         content: '';
@@ -300,7 +300,7 @@
         width: 48vw;
       }
 
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
         background-size: auto;
         height: 500px;
         left: 0;
@@ -316,7 +316,7 @@
 
   .row--applications .grid-list__img {
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       max-width: 100%;
     }
   }
@@ -332,7 +332,7 @@
 
     &:before {
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         background: url('#{$asset-server-url}969bb3c1-9a.-scope-task-switcher-tablet-portrait-landscape.png?w=700') center center no-repeat;
         background-size: contain;
         content: '';
@@ -345,12 +345,12 @@
         width: 70vw;
       }
 
-      @media only screen and (min-width : 769px) {
+      @media only screen and (min-width: 769px) {
         right: 2vw;
         width: 47vw;
       }
 
-      @media only screen and (min-width : 1400px) {
+      @media only screen and (min-width: 1400px) {
         right: 2vw;
         width: 50vw;
       }
@@ -359,7 +359,7 @@
 
   .row-more--image {
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       margin-bottom: 40px;
       margin-top: 60px;
     }
@@ -370,7 +370,7 @@
 
     &__intro {
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         margin-bottom: 40px;
       }
     }
@@ -381,13 +381,13 @@
   .row-hero {
     overflow: hidden;
 
-    @media only screen and (min-width : $breakpoint-medium + 1) {
+    @media only screen and (min-width: $breakpoint-medium + 1) {
       min-height: 550px;
     }
 
     &:before {
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         background: url('#{$asset-server-url}7fbc7231-tablet-developers-hero.png?w=646') center center no-repeat;
         background-size: contain;
         content: '';
@@ -400,7 +400,7 @@
         width: 80vw;
       }
 
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
         right: 10vw;
         width: 40vw;
       }
@@ -409,11 +409,11 @@
 
   .row--one-app__image {
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       margin-top: 30px;
     }
 
-    @media only screen and (min-width : $breakpoint-large) {
+    @media only screen and (min-width: $breakpoint-large) {
       margin-top: 60px;
     }
   }
@@ -428,7 +428,7 @@
     }
 
     &:before {
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         background: url('#{$asset-server-url}b2bccccf-mobile_phone%26tablet.png') center center no-repeat;
         background-size: contain;
         content: '';
@@ -441,12 +441,12 @@
         width: 70vw;
       }
 
-      @media only screen and (min-width : 769px) {
+      @media only screen and (min-width: 769px) {
         right: 2vw;
         width: 47vw;
       }
 
-      @media only screen and (min-width : 1400px) {
+      @media only screen and (min-width: 1400px) {
         right: 2vw;
         width: 50vw;
       }
@@ -477,17 +477,17 @@
     padding-top: 20px;
     padding-bottom: 20px;
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       padding-top: 80px;
       padding-bottom: 80px;
     }
 
     &__cta {
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         margin-top: 10px;
       }
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
         margin-top: 20px;
       }
     }

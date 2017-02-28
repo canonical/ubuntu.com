@@ -93,13 +93,13 @@ body.homepage {
   }
 
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     .number-one-for-cloud {
       position: relative;
     }
   }
 
-  @media only screen and (min-width : $breakpoint-large) {
+  @media only screen and (min-width: $breakpoint-large) {
     .cookie-policy .wrapper {
       width: $breakpoint-large;
     }
@@ -107,7 +107,7 @@ body.homepage {
 }
 
 
-@media only screen and (min-width : $breakpoint-large) {
+@media only screen and (min-width: $breakpoint-large) {
   .homepage {
     header.banner {
       margin-bottom: 5px;
@@ -118,7 +118,7 @@ body.homepage {
 .lang-switch-wrapper {
   padding-bottom: 0;
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     .five-col {
       padding-top: 0;
     }
@@ -129,7 +129,7 @@ body.homepage {
     }
   }
 
-  @media only screen and (min-width : $breakpoint-large) {
+  @media only screen and (min-width: $breakpoint-large) {
     .five-col {
       padding-top: 0;
     }
@@ -147,7 +147,7 @@ body.homepage {
 }
 
 // row--intro
-@media only screen and (min-width : 769px) {
+@media only screen and (min-width: 769px) {
   .row--intro {
     padding-top: inherit;
   }
@@ -161,7 +161,7 @@ body.homepage {
   }
 }
 
-@media only screen and (min-width : $breakpoint-large) {
+@media only screen and (min-width: $breakpoint-large) {
   .ubuntu-intro__list {
     position: relative;
 
@@ -180,13 +180,13 @@ body.homepage {
   }
 }
 
-@media only screen and (max-width : $breakpoint-medium) {
+@media only screen and (max-width: $breakpoint-medium) {
   .ubuntu-intro__list:before {
     display: none;
   }
 }
 
-@media only screen and (min-width : 769px) {
+@media only screen and (min-width: 769px) {
   .intro-left,
   .intro-right {
     -webkit-flex-grow: 1;
@@ -198,7 +198,7 @@ body.homepage {
 
 .intro-left,
 .intro-right {
-  @media only screen and (min-width : $breakpoint-large) {
+  @media only screen and (min-width: $breakpoint-large) {
     background: url('#{$asset-server-url}bcb69486-image-intro-dots.svg') repeat-x right center;
     background-size: 10px;
   }
@@ -214,7 +214,7 @@ body.homepage {
   float: left;
   width: 100%;
 
-  @media only screen and (min-width : 769px) {
+  @media only screen and (min-width: 769px) {
     margin: 0;
     padding-bottom: 0;
   }
@@ -228,20 +228,20 @@ body.homepage {
   position: relative;
   width: 50%;
 
-  @media only screen and (max-width : $breakpoint-medium) {
+  @media only screen and (max-width: $breakpoint-medium) {
     width: 32%;
   }
 
-  @media only screen and (max-width : 667px) and (orientation : landscape) {
+  @media only screen and (max-width: 667px) and (orientation: landscape) {
     width: 20%;
   }
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     text-indent: -999em;
     width: 121px;
   }
 
-  @media only screen and (min-width : $breakpoint-large) {
+  @media only screen and (min-width: $breakpoint-large) {
     width: 164px;
   }
 }
@@ -260,7 +260,7 @@ body.homepage {
   position: relative;
   width: 100%;
 
-  @media only screen and (min-width : $breakpoint-large) {
+  @media only screen and (min-width: $breakpoint-large) {
     &:before,
     &:after {
       display: block;
@@ -286,7 +286,7 @@ body.homepage {
     }
   }
 
-  @media only screen and (min-width : 769px) {
+  @media only screen and (min-width: 769px) {
     padding-top: 130px;
   }
 }
@@ -373,13 +373,13 @@ body.homepage .row--intro .intro-middle li a:hover {
   text-indent: 0;
 }
 
-@media only screen and (min-width : 769px) {
+@media only screen and (min-width: 769px) {
   .row--devices__content {
    margin-top: 100px;
   }
 }
 
-@media only screen and (max-width : $breakpoint-medium) {
+@media only screen and (max-width: $breakpoint-medium) {
   .row--devices {
     min-height: 0;
   }
@@ -388,12 +388,12 @@ body.homepage .row--intro .intro-middle li a:hover {
 body.homepage .row--ubuntu-news {
   background-color: #fff;
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     margin-bottom: 0px;
     padding-top: 60px;
   }
 
-  @media only screen and (min-width : $breakpoint-large) {
+  @media only screen and (min-width: $breakpoint-large) {
     padding-top: 70px;
   }
 
@@ -402,7 +402,7 @@ body.homepage .row--ubuntu-news {
     z-index: 2;
   }
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     .row--ubuntu-news__title {
       background: url('#{$asset-server-url}e1bba201-external-link-cool-grey.svg') left center no-repeat;
       background-size: 16px;
@@ -438,7 +438,7 @@ body.homepage .row--iot {
   overflow: hidden;
   background: #fff;
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     padding: 150px 0;
   }
 
@@ -452,13 +452,13 @@ body.homepage .row--iot {
     top: -100px;
     width: 700px;
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
     top: -163px;
 
     }
   }
 
-  @media only screen and (max-width : 767px) {
+  @media only screen and (max-width: 767px) {
     .row--iot__image {
       background: none;
       display: none;
@@ -477,11 +477,11 @@ body.homepage .row--cloud-products {
   overflow: hidden;
   position: relative;
 
-  @media only screen and (min-width : 500px) {
+  @media only screen and (min-width: 500px) {
     min-height: 520px;
   }
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     background-image: none;
     min-height: 340px;
 
@@ -491,7 +491,7 @@ body.homepage .row--cloud-products {
     }
   }
 
-  @media only screen and (min-width : $breakpoint-large) {
+  @media only screen and (min-width: $breakpoint-large) {
     min-height: 460px;
   }
 
@@ -500,14 +500,14 @@ body.homepage .row--cloud-products {
   }
 
   &__image {
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       position: absolute;
       top: -40px;
       right: 0;
       width: 700px;
     }
 
-    @media only screen and (min-width : $breakpoint-large) {
+    @media only screen and (min-width: $breakpoint-large) {
       top: -100px;
       right: -88px;
       width: 933px;
@@ -525,11 +525,11 @@ body.homepage .row--devices__inner {
   min-height: 460px;
   position: relative;
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     min-height: 280px;
   }
 
-  @media only screen and (min-width : 769px) {
+  @media only screen and (min-width: 769px) {
     background-size: auto 660px;
     background-position: 15% 60px;
     min-height: 590px;
@@ -544,7 +544,7 @@ body.homepage .row--devices__inner {
 #devices {
   margin: 180px auto 0;
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     margin-top: 20px;
   }
 }
@@ -557,11 +557,11 @@ body.homepage .row-featured {
   overflow: hidden;
   z-index: 1; //fixes overlap issues with previous row image
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     margin: -100px 0 0;
   }
 
-  @media only screen and (min-width : $breakpoint-large) {
+  @media only screen and (min-width: $breakpoint-large) {
     margin: -100px 0 -60px 0;
   }
 }
@@ -572,12 +572,12 @@ body.homepage .row-featured {
   padding-top: 40px;
   padding-bottom: 40px;
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     margin-bottom: -20px;
     float: left;
     width: 50%;
   }
-  @media only screen and (min-width : $breakpoint-large) {
+  @media only screen and (min-width: $breakpoint-large) {
     padding-right: 0;
     padding-left: 0;
     margin-bottom: -40px;
@@ -595,7 +595,7 @@ body.homepage .row-featured {
     position: absolute;
     display: none;
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       display: block;
     }
 
@@ -617,7 +617,7 @@ body.homepage .row-featured {
     position: absolute;
     display: none;
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       display: block;
     }
 
@@ -640,7 +640,7 @@ body.homepage .row-featured {
 .takeunder-juju {
   background-color: #f5f5f5;
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     background-image: url('#{$asset-server-url}f552b31a-juju-16-04-takeunder.png');
   }
 
@@ -662,13 +662,13 @@ $shark: #181c21; // http://chir.ag/projects/name-that-color/#181C21
 // ============================ Takeovers ============================
 // cloud default, don not remove
 body.homepage-cloud-default {
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     h1 {
       padding-top: 90px;
     }
   }
 
-  @media only screen and (min-width : $breakpoint-large) {
+  @media only screen and (min-width: $breakpoint-large) {
     .row-popular-cloud {
       padding-top: 80px;
       padding-top: 80px;
@@ -677,7 +677,7 @@ body.homepage-cloud-default {
     h1 {
       padding-top: 105px;
     }
-  } // @media only screen and (min-width : $breakpoint-large)
+  } // @media only screen and (min-width: $breakpoint-large)
 } // body.homepage-cloud-default
 
 
@@ -696,7 +696,7 @@ body.homepage-cloud-default {
     }
   }
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     header.banner {
       -moz-box-shadow: none;
       -webkit-box-shadow: none;
@@ -736,7 +736,7 @@ body.homepage-cloud-default {
     }
   }
 
-  @media only screen and (min-width : $breakpoint-large) {
+  @media only screen and (min-width: $breakpoint-large) {
     #main-content .row-hero {
       margin-top: -53px;
       min-height: 615px;
@@ -761,7 +761,7 @@ body.homepage-15-10 {
       overflow: hidden;
       padding-bottom: 0;
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         background: url('#{$asset-server-url}8d298549-home-takeover-.jpg?w=1800&q=80') 50% 50% no-repeat;
         background-size: cover;
         color: $cool-grey;
@@ -777,11 +777,11 @@ body.homepage-15-10 {
       }
 
       h1 {
-          @media only screen and (min-width : $breakpoint-medium) {
+          @media only screen and (min-width: $breakpoint-medium) {
             margin-top: 50px;
           }
 
-          @media only screen and (min-width : 1600px) {
+          @media only screen and (min-width: 1600px) {
             margin-top: 60px;
           }
       }
@@ -822,7 +822,7 @@ body.homepage.meizu-takeover {
     margin-left: 0;
   }
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     .lang-switch {
       padding: 0;
     }
@@ -851,7 +851,7 @@ body.homepage.meizu-takeover {
     }
   }
 
-  @media only screen and (min-width : $breakpoint-large) {
+  @media only screen and (min-width: $breakpoint-large) {
     #main-content .row-hero {
       padding-top: 7%;
     }
@@ -860,7 +860,7 @@ body.homepage.meizu-takeover {
 
 .homepage-autopilot #main-content .row-hero .twelve-col {
   margin-top: 30px;
-  @media only screen and (min-width : $breakpoint-large) {
+  @media only screen and (min-width: $breakpoint-large) {
     margin-top: 40px;
   }
 }
@@ -897,18 +897,18 @@ body.homepage.meizu-takeover {
       }
     }
 
-    @media only screen and (max-width : 760px) {
+    @media only screen and (max-width: 760px) {
       background-image: none;
       min-height: auto;
     }
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       background-position: 60% 130px;
       min-height: 550px;
       padding-top: 60px;
     }
 
-    @media only screen and (min-width : $breakpoint-large) {
+    @media only screen and (min-width: $breakpoint-large) {
       background-position: 60% 200px;
       min-height: 600px;
     }
@@ -925,14 +925,14 @@ body.homepage-russia {
   #main-content {
     margin-top: 0;
 
-    @media only screen and (max-width : 767px) {
+    @media only screen and (max-width: 767px) {
       div.strip-inner-wrapper.strip-dark {
         color: $cool-grey;
       }
     }
 
     .row-hero {
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         margin-top: 0;
         overflow: hidden;
         padding-bottom: 0;
@@ -942,11 +942,11 @@ body.homepage-russia {
       }
 
       h1 {
-          @media only screen and (min-width : $breakpoint-medium) {
+          @media only screen and (min-width: $breakpoint-medium) {
             margin-top: 50px;
           }
 
-          @media only screen and (min-width : 1600px) {
+          @media only screen and (min-width: 1600px) {
             margin-top: 60px;
           }
       }
@@ -994,7 +994,7 @@ body.juju-takeover {
         margin-top: 20px;
       }
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         margin-top: 0;
 
         .row-hero-text {
@@ -1027,7 +1027,7 @@ body.juju-takeover {
         }
       }
 
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
 
         .row-hero-text {
           padding-left: 20px;
@@ -1038,7 +1038,7 @@ body.juju-takeover {
         }
       }
 
-      @media only screen and (min-width : 1014px) {
+      @media only screen and (min-width: 1014px) {
         .row-hero-text {
           padding-left: 0;
           max-width: 75%;
@@ -1075,12 +1075,12 @@ body.homepage-maas-takeover {
       padding-top: 40px;
       transition-duration: 1s;
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         min-height: 400px;
         padding-top: 40px;
       }
 
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
         min-height: 455px;
         padding-top: 60px;
       }
@@ -1120,12 +1120,12 @@ body.homepage-maas-takeover {
       min-height: 50vw;
       position: relative;
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         min-height: 520px;
         padding-top: 160px;
       }
 
-      @media only screen and (max-width : 767px) {
+      @media only screen and (max-width: 767px) {
         .row-hero-text {
           margin-bottom: 26px;
           padding-left: 40%;
@@ -1137,14 +1137,14 @@ body.homepage-maas-takeover {
         top: -20px;
         margin-left: -50vw;
 
-        @media only screen and (min-width : 315px) {
+        @media only screen and (min-width: 315px) {
           top: -50px;
           margin-left: 0;
           left: -140px;
           max-width: 250px;
         }
 
-        @media only screen and (min-width : 570px) {
+        @media only screen and (min-width: 570px) {
           left: -50px;
         }
       }
@@ -1208,7 +1208,7 @@ body.homepage-maas-takeover {
     margin-top: 0;
     overflow: hidden;
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server-url}0a11c33e-meizu-pro5-background.png');
       padding-top: 30px;
     }
@@ -1217,7 +1217,7 @@ body.homepage-maas-takeover {
       min-height: 50vw;
       position: relative;
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         min-height: 550px;
 
         .row-hero-text {
@@ -1231,7 +1231,7 @@ body.homepage-maas-takeover {
         }
       }
 
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
         min-height: 580px;
 
         .row-hero-text {
@@ -1253,13 +1253,13 @@ body.homepage-maas-takeover {
 
   &.index_kylin {
     #main-content .row-hero .strip-inner-wrapper {
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         .row-hero-text {
           margin-top: 180px;
         }
       }
 
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
         .row-hero-text {
           margin-top: 165px;
         }
@@ -1286,7 +1286,7 @@ body.homepage-maas-takeover {
     overflow: hidden;
     padding-top: 30px;
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server-url}52fbb3e9-hero-background-lg.jpg');
       background-position: center center;
       padding-top: 30px;
@@ -1297,7 +1297,7 @@ body.homepage-maas-takeover {
       overflow: visible;
       position: relative;
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         background: url('#{$asset-server-url}ff61f48c-hero-tablet-2x.png?w=440') 0 50px no-repeat;
         min-height: 400px;
 
@@ -1310,7 +1310,7 @@ body.homepage-maas-takeover {
         padding-top: 20px;
       }
 
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
         background: url('#{$asset-server-url}ff61f48c-hero-tablet-2x.png?w=630') -30px 100px no-repeat;
         min-height: 630px;
 
@@ -1323,7 +1323,7 @@ body.homepage-maas-takeover {
 }
 
 #main-content .row-hero.china {
-  @media only screen and (min-width : $breakpoint-large) {
+  @media only screen and (min-width: $breakpoint-large) {
     h1 {
       font-size: 2.4em;
     }
@@ -1345,14 +1345,14 @@ body.homepage-maas-takeover {
   padding-top: 10px;
   width: auto;
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     background-image: url('https://assets.ubuntu.com/v1/34ab80ea-image-background-16-04.jpg');
     background-size: cover;
     margin: 20px;
     min-height: 540px;
   }
 
-  @media only screen and (min-width : 986px) {
+  @media only screen and (min-width: 986px) {
     min-height: 85vh;
   }
 
@@ -1377,7 +1377,7 @@ body.homepage-maas-takeover {
     font-size: 2em;
   }
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     &__title {
       font-size: 3em;
       margin-top: 6vh;
@@ -1388,7 +1388,7 @@ body.homepage-maas-takeover {
     }
   }
 
-  @media only screen and (min-width : $breakpoint-large) {
+  @media only screen and (min-width: $breakpoint-large) {
     &__title {
       font-size: 3.5em;
       line-height: 1.8;
@@ -1443,13 +1443,13 @@ body.homepage-maas-takeover {
     margin-top: 20px;
     width: 60px;
 
-    @media only screen and (min-width : $breakpoint-medium + 1) {
+    @media only screen and (min-width: $breakpoint-medium + 1) {
       margin-top: 80px;
       width: 100px;
     }
   }
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     background-size: cover;
     margin: 20px;
     min-height: 380px;
@@ -1469,12 +1469,12 @@ body.homepage-maas-takeover {
   }
 
   &__text {
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       margin-left: 2vw;
       width: 40.37611%;
     }
 
-    @media only screen and (min-width : $breakpoint-large) {
+    @media only screen and (min-width: $breakpoint-large) {
       margin-left: 8.5177%;
       width: 31.8584%;
     }
@@ -1484,14 +1484,14 @@ body.homepage-maas-takeover {
     margin: 0 auto;
   }
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     &__title {
       margin-top: 4vh;
       margin-left: 2vw;
     }
   }
 
-  @media only screen and (min-width : $breakpoint-large) {
+  @media only screen and (min-width: $breakpoint-large) {
     min-height: 550px;
 
     &__title {
@@ -1506,7 +1506,7 @@ body.homepage-maas-takeover {
 .takeunder-pro5 {
   background-color: #f5f5f5;
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     background-image: url('#{$asset-server-url}0d1e4e42-meizu-pro5-single.png?w=150');
   }
 
@@ -1514,7 +1514,7 @@ body.homepage-maas-takeover {
   background-size: 36%;
   background-position: 0 50%;
 
-  @media only screen and (min-width : 850px) {
+  @media only screen and (min-width: 850px) {
     background-position: 0 40px;
   }
 
@@ -1542,7 +1542,7 @@ body.homepage-bootstack-generic {
       background-color: transparent;
     }
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       h1 {
         padding-top: 45px;
       }
@@ -1553,7 +1553,7 @@ body.homepage-bootstack-generic {
       }
     }
 
-    @media only screen and (min-width : $breakpoint-large) {
+    @media only screen and (min-width: $breakpoint-large) {
       h1 {
         padding-top: 55px;
       }
@@ -1585,12 +1585,12 @@ body.homepage-maas-generic-takeover {
       padding-top: 40px;
       transition-duration: 1s;
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         min-height: 400px;
         padding-top: 40px;
       }
 
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
         min-height: 455px;
         padding-top: 60px;
       }
@@ -1639,14 +1639,14 @@ body.homepage-autopilot-devops-takeover {
         }
       }
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         background-size: cover;
         background-image: url('#{$asset-server-url}33f77842-openstack-autopilot-takeover.jpg?w=984');
         min-height: 45vw;
         padding-top: 10vw;
       }
 
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
         background-image: url('#{$asset-server-url}33f77842-openstack-autopilot-takeover.jpg');
         min-height: 45vw;
         padding-top: 10vw;
@@ -1664,7 +1664,7 @@ body.homepage-autopilot-devops-takeover {
 body.homepage-linux-25th-takeover {
   #main-content {
     .row-hero {
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         min-height: 285px;
 
         .row-hero__heading {
@@ -1672,7 +1672,7 @@ body.homepage-linux-25th-takeover {
         }
       }
 
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
         min-height: 350px;
 
         .row-hero__heading {
@@ -1707,7 +1707,7 @@ body.homepage-nextcloud-takeover {
         margin-bottom: 20px;
       }
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         background-image: url('#{$asset-server-url}5aa79282-56f66029-Nextbox+09.2016.desktop.background-large.png');
         min-height: 440px;
 
@@ -1720,7 +1720,7 @@ body.homepage-nextcloud-takeover {
         }
       }
 
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
         min-height: 540px;
 
         .row-hero__heading {
@@ -1765,14 +1765,14 @@ body.homepage-kubernetes-takeover {
         background-size: 100%;
       }
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         background-image: url('#{$asset-server-url}c0df5df2-Kubernetes_backgd_desktop-1.png');
         background-size: 126% auto;
         background-position: 70% -45px;
         min-height: 400px;
       }
 
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
         background-position: 74% -68px;
         background-size: auto;
         min-height: 580px;
@@ -1781,11 +1781,11 @@ body.homepage-kubernetes-takeover {
       &__heading {
         margin-top: 20px;
 
-        @media only screen and (min-width : $breakpoint-medium) {
+        @media only screen and (min-width: $breakpoint-medium) {
           margin-top: 60px;
         }
 
-        @media only screen and (min-width : $breakpoint-large) {
+        @media only screen and (min-width: $breakpoint-large) {
           margin-top: 100px;
         }
       }
@@ -1794,11 +1794,11 @@ body.homepage-kubernetes-takeover {
         margin-top: 10px;
         margin-bottom: 20px;
 
-        @media only screen and (min-width : $breakpoint-medium) {
+        @media only screen and (min-width: $breakpoint-medium) {
           margin-top: 50px;
         }
 
-        @media only screen and (min-width : $breakpoint-large) {
+        @media only screen and (min-width: $breakpoint-large) {
           margin-top: 60px;
         }
       }
@@ -1806,7 +1806,7 @@ body.homepage-kubernetes-takeover {
       .button--primary {
         margin-top: 340px;
 
-        @media only screen and (min-width : $breakpoint-medium) {
+        @media only screen and (min-width: $breakpoint-medium) {
           margin-top: 20px;
         }
       }
@@ -1854,7 +1854,7 @@ body.homepage-1610 {
     overflow: hidden;
     padding-top: 40px;
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('#{$asset-server-url}618be899-tablet_background.png');
       margin: 20px;
       min-height: 600px;
@@ -1865,7 +1865,7 @@ body.homepage-1610 {
       width: calc(100% - 40px);
     }
 
-    @media only screen and (min-width : $breakpoint-large) {
+    @media only screen and (min-width: $breakpoint-large) {
       background-image: url('#{$asset-server-url}88633fdf-takeover.16.10.background.desktop.png');
       margin: 40px 40px 0;
       min-height: 680px;
@@ -1892,7 +1892,7 @@ body.homepage-1610 {
       display: none;
     }
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       &--small {
         display: none;
       }
@@ -1906,7 +1906,7 @@ body.homepage-1610 {
       }
     }
 
-    @media only screen and (min-width : $animation-width) {
+    @media only screen and (min-width: $animation-width) {
       &--small,
       &--medium {
         display: none;
@@ -1922,7 +1922,7 @@ body.homepage-1610 {
     display: none;
   }
 
-  @media only screen and (min-width : $animation-width) {
+  @media only screen and (min-width: $animation-width) {
     .device-animation {
       box-sizing: border-box;
       display: block;
@@ -2047,7 +2047,7 @@ body.homepage-livepatch {
   .row-hero {
     background-image: url('#{$asset-server-url}3b4ea1e2-Yakkety_Yak_Wallpaper_Mobile_1080x1920_grey_version.png?w=768');
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
         background-image: url('#{$asset-server-url}6bcb129c-Yakkety_Yak_Wallpaper_4096x2304_grey_version.png');
     }
 
@@ -2057,12 +2057,12 @@ body.homepage-livepatch {
     padding-bottom: 20px;
     padding-top: 50px;
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       padding-bottom: 100px;
       padding-top: 100px;
     }
 
-    @media only screen and (min-width : 1350px) {
+    @media only screen and (min-width: 1350px) {
       padding-bottom: 200px;
       padding-top: 200px;
     }
@@ -2073,7 +2073,7 @@ body.homepage-livepatch {
 
     &:before {
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         background: url('#{$asset-server-url}2193f4aa-livepatch-laptop.png') center center no-repeat;
         background-size: contain;
         content: '';
@@ -2086,7 +2086,7 @@ body.homepage-livepatch {
         width: 80vw;
       }
 
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
         height: 85%;
         right: -8vw;
         width: 55vw;
@@ -2108,16 +2108,16 @@ body.homepage-core {
     padding-top: 20px;
     padding-bottom: 20px;
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       padding-top: 80px;
       padding-bottom: 80px;
     }
 
     &__cta {
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         margin-top: 10px;
       }
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
         margin-top: 20px;
       }
     }
@@ -2138,7 +2138,7 @@ body.homepage-advantage {
     padding-top: 20px;
     padding-bottom: 20px;
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       background-image: url('https://assets.ubuntu.com/v1/f4cb93a3-Yakkety_Yak-Wallpaper_aubergine.jpg');
       background-size: cover;
       padding-top: 80px;
@@ -2146,10 +2146,10 @@ body.homepage-advantage {
     }
 
     &__cta {
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         margin-top: 10px;
       }
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
         margin-top: 20px;
       }
     }
