@@ -3,7 +3,7 @@ var sassLint = require('gulp-sass-lint');
 var exec = require('child_process').exec;
 
 gulp.task('lint:sass', function() {
-  return gulp.src('scss/**/*.s+(a|c)ss')
+  return gulp.src('static/css/**/*.s+(a|c)ss')
     .pipe(sassLint())
     .pipe(sassLint.format())
     .pipe(sassLint.failOnError())
