@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var sassLint = require('gulp-sass-lint');
 var exec = require('child_process').exec;
+var jshint = require('gulp-jshint');
 
 gulp.task('lint:sass', function() {
   return gulp.src('static/css/**/*.s+(a|c)ss')
@@ -14,4 +15,10 @@ gulp.task('lint:spellcheck', function(cb) {
     console.log(stdout);
     cb(err);
   });
+});
+
+gulp.task('lint:javascript', function () {
+  gulp.src(['static/js/*.js', '!./static/js/polyfills.js'])
+    .pipe(jshint())
+    .pipe(jshint.reporter());
 });

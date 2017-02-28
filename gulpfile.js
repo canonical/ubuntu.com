@@ -17,12 +17,16 @@ wrench.readdirSyncRecursive('./gulp').filter(function(file) {
 /* Gulp help instructions triggered as Gulp default task */
 gulp.task('help', function() {
   console.log('develop - Watch sass files and generate unminified CSS for development');
-  console.log('test  - Lint Sass');
+  console.log('test - Lint Sass and JavaScript');
+  console.log('lint-sass - Lint Sass');
+  console.log('lint-javascript - Lint JavaScript');
   console.log('build  - Lint Sass files and generate minified CSS for production');
 });
 
 /* Gulp default task list */
 gulp.task('default', ['help']);
 gulp.task('develop', ['watch', 'sass:develop']);
-gulp.task('test', ['lint:sass', 'lint:spellcheck']);
+gulp.task('test', ['lint:sass', 'lint:javascript']);
+gulp.task('lint-js', ['lint:javascript']);
+gulp.task('lint-sass', ['lint:sass']);
 gulp.task('build', ['lint:sass', 'sass:build']);
