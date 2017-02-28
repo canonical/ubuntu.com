@@ -2,7 +2,7 @@ if (typeof forms !== 'undefined') {
   throw TypeError("Namespace 'forms' not available");
 }
 
-var forms = {}
+var forms = {};
 
 /**
  * Add sliders (input type=range) next to all input type=number elements
@@ -22,8 +22,8 @@ forms.addSliders = function (numberElementsSelector, slidersClass) {
       return function(changeEvent) {
         targetNode = changeEvent.target;
         sisterNode.value = targetNode.value;
-      }
-    }
+      };
+    };
 
     var appendSlider = function (numberElement) {
       var thisSlider = slider.cloneNode();
@@ -49,17 +49,17 @@ forms.addSliders = function (numberElementsSelector, slidersClass) {
       numberElement.parentNode.insertBefore(
         thisSlider,
         numberElement.nextSibling
-      )
-    }
+      );
+    };
 
     document.querySelectorAll(numberElementsSelector).forEach(appendSlider);
   }
-}
+};
 
 
 // Marketo form state/province select/optgroup js
 forms.stateFormField = function() {
-	var formStateLabel = document.querySelector('[for="State"]');
+  var formStateLabel = document.querySelector('[for="State"]');
   var formStateSelect = document.getElementById('State');
   var formStateContainer = document.querySelector('.mktoPlaceholderState');
   var formUSAOpt = document.querySelector('[value="SelectState"]');
@@ -70,33 +70,35 @@ forms.stateFormField = function() {
     return;
   }
 
-	// starting state, no field
-	state('default');
+  // starting state, no field
+  state('default');
 
-	function state(stateChange) {
+  function state(stateChange) {
     switch(stateChange) {
       case 'US':
-        formStateContainer.style.display = 'inline';
-        formStateLabel.innerHTML = 'State:';
-        formUSAOpt.style.display = 'inline';
-        formStateSelect.selectedIndex = '-1';
-        formCanadaOpt.style.display = 'none';
-        break;
+      formStateContainer.style.display = 'inline';
+      formStateLabel.innerHTML = 'State:';
+      formUSAOpt.style.display = 'inline';
+      formStateSelect.selectedIndex = '-1';
+      formCanadaOpt.style.display = 'none';
+      break;
+
       case 'CA':
-        formStateContainer.style.display = 'inline';
-        formStateLabel.innerHTML = 'Province:';
-        formCanadaOpt.style.display = 'inline';
-        formStateSelect.selectedIndex = '-1';
-        formUSAOpt.style.display = 'none';
-        break;
+      formStateContainer.style.display = 'inline';
+      formStateLabel.innerHTML = 'Province:';
+      formCanadaOpt.style.display = 'inline';
+      formStateSelect.selectedIndex = '-1';
+      formUSAOpt.style.display = 'none';
+      break;
+
       default:
-        // default is to hide the field
-        formStateContainer.style.display = 'none';
-        formUSAOpt.style.display = 'none';
-        formCanadaOpt.style.display = 'none';
-        break;
-     };
-	};
+      // default is to hide the field
+      formStateContainer.style.display = 'none';
+      formUSAOpt.style.display = 'none';
+      formCanadaOpt.style.display = 'none';
+      break;
+    }
+  }
 
 	var countrySelect = document.getElementById('Country');
 	  countrySelect.addEventListener('change', function(e) {
