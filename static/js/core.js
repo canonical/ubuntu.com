@@ -11,21 +11,21 @@
 if (!core) { var core = {}; }
 
 core.svgFallback = function() {
-	if (typeof Modernizr === "object") {
-		if (!Modernizr.svg || !Modernizr.backgroundsize) {
-			var svgs = document.querySelectorAll("img[src$='.svg']")
-            svgs.each(function(node) {
-                var src = node.src;
-                if (src.indexOf('assets.ubuntu.com/v1/') > -1) {
-					// Support for the newer asset server
-					node.src = src + '?fmt=png';
-				} else {
-					// Old asset manager and locally assets
-					node.src = src.match(/.*\/(.+?)\./)[0] + 'png';
-				}
-			});
-		}
-	}
+  if (typeof Modernizr === "object") {
+    if (!Modernizr.svg || !Modernizr.backgroundsize) {
+      var svgs = document.querySelectorAll("img[src$='.svg']");
+      svgs.each(function(node) {
+        var src = node.src;
+        if (src.indexOf('assets.ubuntu.com/v1/') > -1) {
+          // Support for the newer asset server
+          node.src = src + '?fmt=png';
+        } else {
+          // Old asset manager and locally assets
+          node.src = src.match(/.*\/(.+?)\./)[0] + 'png';
+        }
+      });
+    }
+  }
 };
 
 core.mobileNav = function () {
