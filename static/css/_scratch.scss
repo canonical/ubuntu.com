@@ -22,7 +22,7 @@ body {
   background-position: center top;
   background-repeat: repeat-y;
 
-  @media only screen and (min-width : $breakpoint-medium) {
+  @media only screen and (min-width: $breakpoint-medium) {
     background-image: url('#{$asset-path}img/backgrounds/image-background-paper.png');
   }
 }
@@ -42,7 +42,7 @@ body {
   margin-bottom: 1.5em;
 }
 
-@media only screen and (max-width : 768px) {
+@media only screen and (max-width: 768px) {
     // helper class for small
     .small-align-center {
         text-align: center;

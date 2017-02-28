@@ -30,7 +30,7 @@
     ul li a:link,
     ul li a:visited {
 
-      @media only screen and (max-width : 842px) and (min-width : $breakpoint-medium) {
+      @media only screen and (max-width: 842px) and (min-width: $breakpoint-medium) {
         padding: 12px 10px 14px;
         transition: padding .4s;
       }
@@ -77,7 +77,7 @@
             left: 1px;
             position: relative;
           
-            @media only screen and (min-width : $navigation-threshold) {
+            @media only screen and (min-width: $navigation-threshold) {
               border-right: 0;
             }
           }
@@ -129,7 +129,7 @@
 
   .search-toggle {
 
-    @media only screen and (max-width : $breakpoint-medium) {
+    @media only screen and (max-width: $breakpoint-medium) {
       right: 48px;
     }
   }
@@ -152,7 +152,7 @@
         padding-top: 0;
       }
 
-      @media only screen and (min-width : $navigation-threshold) {
+      @media only screen and (min-width: $navigation-threshold) {
         padding-bottom: 14px;
         margin-left: 24px; // will be set to 0 when everything full width
       }
@@ -166,7 +166,7 @@
           outline: none;
         }
 
-        @media only screen and (min-width : $navigation-threshold) {
+        @media only screen and (min-width: $navigation-threshold) {
           padding-left: 0;
         }
 
@@ -262,7 +262,7 @@
 
         a {
 
-          @media only screen and (min-width : $navigation-threshold) {
+          @media only screen and (min-width: $navigation-threshold) {
             padding-bottom: 0;
             padding-left: 10px;
             padding-right: 10px;

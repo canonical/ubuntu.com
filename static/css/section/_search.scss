@@ -10,7 +10,7 @@
 }
 
 /* XXX the need for this fix should be addressed in VF- */
-@media only screen and (min-width : 985px) and (max-width: 1024px) {
+@media only screen and (min-width: 985px) and (max-width: 1024px) {
   .banner .logo {
     margin: 0 15px;
   }
@@ -32,7 +32,7 @@
       opacity: 0.6;
   }
 
-  @media only screen and (min-width : $navigation-threshold) {
+  @media only screen and (min-width: $navigation-threshold) {
     border-bottom: 0;
     background-color: #c34113;
 
@@ -43,7 +43,7 @@
   }
 }
 
-@media only screen and (min-width : $navigation-threshold) {
+@media only screen and (min-width: $navigation-threshold) {
 
   .header-search {
     max-width: 210px;
