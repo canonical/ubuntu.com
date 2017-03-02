@@ -9,7 +9,7 @@ before_install:
 install:
   - npm install --legacy-bundling
   - npm install node-sass
-  - node_modules/node-sass/bin/node-sass --include-path node_modules static/css/styles.scss --output static/css/
+  - node_modules/node-sass/bin/node-sass --include-path node_modules static/css/{styles,core-print}.scss --output static/css/
   - pip install --upgrade pip
   - pip install -r requirements.txt
   - pip install flake8 requests[security]
