@@ -35,11 +35,7 @@ Requirements
 Notes
 ----
 
-If you get an ubuntu-vanilla-theme error on first startup, go into your /node_modules/ubuntu-vanilla-theme directory and run:
-
-``` npm install --save-dev gulp-sass@2 ```
-
-then
+If you get an ubuntu-vanilla-theme error on first startup, try the following:
 
 ``` docker-compose run sass ```
 
