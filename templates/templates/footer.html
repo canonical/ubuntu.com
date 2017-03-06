@@ -1,71 +1,82 @@
 {% block footer %}
 <footer class="global clearfix">
-
-    <div class="footer-c">
-        <p class="top-link"><a href="#">Back to top</a></p>
-    </div>
-    <nav id="main-navigation" role="navigation" class="clearfix">
-        <div class="footer-a">
-            <div class="clearfix">
-                <ul>
-                    <li class="secondary secondary-cloud"><h2><a href="/cloud">Cloud</a></h2>
-                        {% include "cloud/_nav_secondary.html" %}
-                    </li>
-                    <li class="secondary secondary-server"><h2><a href="/server">Server</a></h2>
-                        {% include "server/_nav_secondary.html" %}
-                    </li>
-                    <li class="secondary secondary-containers"><h2><a href="/server">Containers</a></h2>
-                        {% include "containers/_nav_secondary.html" %}
-                    </li>
-                    <li class="secondary secondary-desktop"><h2><a href="/desktop" class="active-trail">Desktop</a></h2>
-                        {% include "desktop/_nav_secondary.html" %}
-                    </li>
-                    <li class="secondary secondary-core"><h2><a id="core-footer" href="/internet-of-things">Core</a></h2>
-                        {% include "core/_nav_secondary.html" %}
-                    </li>
-                    <li class="secondary secondary-iot"><h2><a id="IoT-footer" href="/internet-of-things">IoT</a></h2>
-                        {% include "internet-of-things/_nav_secondary.html" %}
-                    </li>
-                    <li class="secondary secondary-mobile"><h2><a id="mobile-footer" href="/mobile">Mobile</a></h2>
-                        {% include "mobile/_nav_secondary.html" %}
-                    </li>
-                    <li class="secondary secondary-support"><h2><a href="/support">Support</a></h2>
-                        {% include "support/_nav_secondary.html" %}
-                    </li>
-                </ul>
-            </div>
-        </div><!-- /.footer-a -->
-        <div class="footer-b inline-lists">
-            <ul class="clearfix">
-                <li><h2><a href="/download">Download</a></h2>
-                    {% include "download/_nav_secondary.html" %}
-                </li>
-                <li><h2><a href="/about">About</a></h2>
-                    <ul class="second-level-nav">
-                        <li><a href="/about/about-ubuntu">About Ubuntu</a></li>
-                        <li><a href="http://www.canonical.com/careers">Careers</a></li>
-                        <li><a href="/about/canonical-and-ubuntu">Canonical and Ubuntu</a></li>
-                        <li><a accesskey="7" href="/about/contact-us">Contact us</a></li>
-                        <li><a href="https://insights.ubuntu.com/feed/">Canonical news feed</a></li>
-                        <li class="last-item"><a accesskey="2" href="https://insights.ubuntu.com/press-centre/">Press centre</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="nav-global-footer clearfix"></div>
-    <div class="legal">
-        <p class="twelve-col">&copy; {% now "Y" %} Canonical Ltd. Ubuntu and Canonical are registered trademarks of Canonical Ltd.</p>
-        <ul class="inline-list clear">
-            <li><a accesskey="8" href="/legal">Legal information</a></li>
-            <li><a href="https://github.com/ubuntudesign/www.ubuntu.com/issues/new" id="report-a-bug">Report a bug on this site</a></li>
+  <div class="footer-c">
+    <p class="top-link"><a href="#">Back to top</a></p>
+  </div>
+  <nav id="main-navigation" role="navigation" class="clearfix">
+    <div class="footer-a">
+      <div class="clearfix">
+        <ul>
+          <li class="secondary secondary-cloud"><h2><a href="/cloud">Cloud</a></h2>
+            {% include "cloud/_nav_secondary.html" %}
+          </li>
+          <li class="secondary secondary-server"><h2><a href="/server">Server</a></h2>
+            {% include "server/_nav_secondary.html" %}
+          </li>
+          <li class="secondary secondary-containers"><h2><a href="/server">Containers</a></h2>
+            {% include "containers/_nav_secondary.html" %}
+          </li>
+          <li class="secondary secondary-desktop"><h2><a href="/desktop" class="active-trail">Desktop</a></h2>
+            {% include "desktop/_nav_secondary.html" %}
+          </li>
+          <li class="secondary secondary-core"><h2><a id="core-footer" href="/internet-of-things">Core</a></h2>
+            {% include "core/_nav_secondary.html" %}
+          </li>
+          <li class="secondary secondary-iot"><h2><a id="IoT-footer" href="/internet-of-things">IoT</a></h2>
+            {% include "internet-of-things/_nav_secondary.html" %}
+          </li>
+          <li class="secondary secondary-mobile"><h2><a id="mobile-footer" href="/mobile">Mobile</a></h2>
+            {% include "mobile/_nav_secondary.html" %}
+          </li>
+          <li class="secondary secondary-support"><h2><a href="/support">Support</a></h2>
+            {% include "support/_nav_secondary.html" %}
+          </li>
         </ul>
-        <script>
-          /* Add the page to the report a bug link */
-          var bugLink = document.querySelector('#report-a-bug');
-          bugLink.href += '?body=%0a%0a%0a---%0a*Reported%20from:%20' + location.href + '*';
-        </script>
-        <span class="accessibility-aid"><a href="#">Go to the top of the page</a></span>
-    </div><!-- /.legal -->
+      </div>
+    </div><!-- /.footer-a -->
+    <div class="nav-wrapper">
+      <div class="footer-b inline-lists">
+        <ul class="clearfix">
+          <li><h2><a href="/download">Download</a></h2>
+            {% include "download/_nav_secondary.html" %}
+          </li>
+          <li><h2><a href="/about">About</a></h2>
+            <ul class="second-level-nav">
+              <li><a href="/about/about-ubuntu">About Ubuntu</a></li>
+              <li><a href="http://www.canonical.com/careers">Careers</a></li>
+              <li><a href="/about/canonical-and-ubuntu">Canonical and Ubuntu</a></li>
+              <li><a accesskey="7" href="/about/contact-us">Contact us</a></li>
+              <li><a href="https://insights.ubuntu.com/feed/">Canonical news feed</a></li>
+              <li class="last-item"><a accesskey="2" href="https://insights.ubuntu.com/press-centre/">Press centre</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="nav-global-footer"></div>
+      <div class="contacts-list">
+        <h2 class="contacts-list__title">Call us:</h2>
+        <ul class="contacts-list__list">
+          <li class="contacts-list__item">Americas <a href="tel:+1 888 9861322" class="contacts-list__number">+1&nbsp;888&nbsp;9861322</a></li>
+          <li class="contacts-list__item contacts-list__item--separator">Germany <a href="tel:+49 800 1838219" class="contacts-list__number">+49&nbsp;800&nbsp;1838219</a></li>
+          <li class="contacts-list__item">France <a href="tel:+33 800914061" class="contacts-list__number">+33&nbsp;800914061</a></li>
+          <li class="contacts-list__item contacts-list__item--separator">Spain <a href="tel:+34 900 833872" class="contacts-list__number">+34&nbsp;900&nbsp;833872</a></li>
+          <li class="contacts-list__item">UK and RoW <a href="tel:+44 800 0588704" class="contacts-list__number">+44&nbsp;800&nbsp;0588704</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="legal">
+    <p class="twelve-col">&copy; {% now "Y" %} Canonical Ltd. Ubuntu and Canonical are registered trademarks of Canonical Ltd.</p>
+    <ul class="inline-list clear">
+      <li><a accesskey="8" href="/legal">Legal information</a></li>
+      <li><a href="https://github.com/ubuntudesign/www.ubuntu.com/issues/new" id="report-a-bug">Report a bug on this site</a></li>
+    </ul>
+    <script>
+    /* Add the page to the report a bug link */
+    var bugLink = document.querySelector('#report-a-bug');
+    bugLink.href += '?body=%0a%0a%0a---%0a*Reported%20from:%20' + location.href + '*';
+    </script>
+    <span class="accessibility-aid"><a href="#">Go to the top of the page</a></span>
+  </div><!-- /.legal -->
 </footer>
 {% endblock footer %}
