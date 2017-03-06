@@ -658,7 +658,9 @@ footer.global {
     }
 
     .legal {
-      background: url("#{$asset-server-url}33beb5cc-logo-ubuntu-grey.png") 100% 0 no-repeat;
+      background-image: url("#{$asset-server-url}33beb5cc-logo-ubuntu-grey.png");
+      background-repeat: no-repeat;
+      background-position: right 20px;
       margin-left: -5px;
     }
   }
@@ -720,5 +722,88 @@ footer.global {
     .legal {
       padding-left: .5em;
     }
+  }
+}
+
+/* Phone numbers */
+///XXX : KW - this is a fix to fit in with the current footer until it's replaced with the Vanilla one
+.nav-wrapper {
+  margin: 0 auto;
+  width: 100%;
+  @media only screen and (min-width : $breakpoint-large) {
+    width: $breakpoint-large;
+  }
+}
+
+footer.global .footer-b {
+  width: auto;
+
+  @media only screen and (min-width : $breakpoint-medium) {
+    margin-bottom: 5px;
+    float: left;
+    width: 600px;
+  }
+}
+
+
+.contacts-list {
+  max-width: 295px;
+  margin-left: 10px;
+  margin-top: 10px;
+
+  @media only screen and (min-width : $breakpoint-medium) {
+    margin-left: 5px;
+    margin-top: 0;
+  }
+
+  @media only screen and (min-width : $breakpoint-large) {
+    float: right;
+  }
+
+  &__title {
+    display: inline;
+    @media only screen and (min-width : $breakpoint-medium) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__list {
+    display: inline;
+  }
+
+  &__item {
+    display: block;
+    font-size: .75em;
+    margin-bottom: 3px;
+    padding: .2em 0;
+    width: 100%;
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      display: inline-block;
+      margin-left: 0;
+      padding: 0;
+      width: auto;
+    }
+
+
+    &:first-child {
+      margin-top: 5px;
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        margin-top: 0;
+      }
+    }
+
+
+    &--separator::after {
+      @media only screen and (min-width : $breakpoint-medium) {
+        content: ' |';
+      }
+    }
+  }
+
+  &__number,
+  &__number:hover {
+    color: $cool-grey !important; //required to override the selector from hell
   }
 }
