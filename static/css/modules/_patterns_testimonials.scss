@@ -3,7 +3,6 @@
   %blockquote {
     border: 0;
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
     height: 100%;
     padding-left: 2rem;
@@ -16,7 +15,6 @@
     align-self: center;
     border-radius: 50%;
     margin-bottom: 1rem;
-    max-width: 70px;
   }
   
   %quotes {
@@ -67,12 +65,10 @@
   }
   
   .p-testimonial {
+    @extend %blockquote;
+    flex-direction: column;
     
-    &__blockquote {
-      @extend %blockquote;
-    }  
-    
-    &__blockquote--large {
+    &--large {
       @extend %blockquote;
       flex-direction: row;
       justify-content: space-around;
@@ -103,6 +99,7 @@
     // profile image
     &__image {
       @extend %image;
+      max-width: 70px;
     }
     
     &__image--large {
