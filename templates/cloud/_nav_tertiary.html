@@ -1,7 +1,6 @@
 <ul class="third-level-nav">
     {% if level_2 == 'openstack' and not level_4 %}
     <li><a{% if level_3 == 'autopilot'%} class="active"{% endif %} href="/cloud/openstack/autopilot">Autopilot</a></li>
-    <li><a{% if level_3 == 'managed-cloud' %} class="active"{% endif %} href="/cloud/openstack/managed-cloud">Managed cloud</a></li>
     {% endif %}
     {% if level_3 == 'managed-cloud' and level_4 %}
     <li><a href="/{{level_1}}/{{level_2}}/{{level_3}}">Managed cloud</a></li>
