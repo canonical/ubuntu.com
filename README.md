@@ -23,12 +23,25 @@ Now visit <http://127.0.0.1:8001>
 
 To see what other `make` commands are available, run `make help`.
 
+Requirements
+----
+
+* **Docker** - you will need to download, install and run [docker](https://www.docker.com/products/docker)
+* **npm**
+  * Install the node.js package manager, [npm](https://nodejs.org/en/download/), this might be easier with the node version manager,  [nvm]](https://github.com/creationix/nvm/blob/master/README.markdown). On a Mac with homebrew, try `brew install nvm` and follow the instructions, then `nvm install --lts` to install the long term supported version of node
+  * Rebuild the sass with `docker-compose run sass`
+  * Restart the server `make stop run`
+
 Notes
 ----
 
-If you get an ubuntu-vanilla-theme error on first startup, go into your /node_modules/ubuntu-vanilla-theme directory and run:
+If you get an ubuntu-vanilla-theme error on first startup, try the following:
 
-``` npm install --save-dev gulp-sass@2 ```
+``` docker-compose run sass ```
+
+and even possibly
+
+``` make stop run ```
 
 License
 ---
