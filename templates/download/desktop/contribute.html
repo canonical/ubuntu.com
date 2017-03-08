@@ -139,19 +139,6 @@
     );
 
     /**
-     * Get the total amount of all the contribution items selected
-     */
-    var calculateTotal = function (itemsSelector) {
-        var total = 0;
-        document.querySelectorAll(itemsSelector).forEach(
-            function(valueElement) {
-                total += parseInt(valueElement.value);
-            }
-        );
-        return total;
-    }
-
-    /**
      * Select an equivalent item for a certain contribution amount
      */
     var chooseEquivalentItem = function (totalAmount) {
@@ -224,7 +211,13 @@
     }
 
     var updateSummary = function () {
-        var total = calculateTotal('.contribute__option-value');
+        // Get the total amount of all the contribution items selected
+        var total = 0;
+        document.querySelectorAll('.contribute__option-value').forEach(
+            function(valueElement) {
+                total += parseInt(valueElement.value || 0);
+            }
+        );
         var item = chooseEquivalentItem(total);
         document.querySelector('.contribute__total-amount').innerText = total;
         updateEquivalentItem(item);
@@ -256,7 +249,7 @@
         // add the individual items
         document.querySelectorAll('.contribute__option-amount').forEach(function(amountElement) {
             var name = amountElement.parentNode.id;
-            var value = amountElement.querySelector('[type=number]').value;
+            var value = amountElement.querySelector('[type=number]').value || 0;
             if (value > 0) {
                 transactionProducts.push(
                     {
@@ -285,6 +278,22 @@
     document.querySelector('#contributions-form').addEventListener(
         'submit',
         sendContributionFormAnalytics
+    );
+
+    /**
+     * Reset fields back to 0, if missing values
+     */
+    document.querySelectorAll('.contribute__option-value').forEach(
+        function(valueElement) {
+            valueElement.addEventListener(
+                'blur',
+                function () {
+                    if (isNaN(parseInt(valueElement.value))) {
+                        valueElement.value = 0;
+                    }
+                }
+            )
+        }
     );
 
     var optionsArea = document.querySelector('.contribute__options');

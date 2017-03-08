@@ -21,7 +21,7 @@ forms.addSliders = function (numberElementsSelector, slidersClass) {
     var updateValueClosure = function (sisterNode) {
       return function(changeEvent) {
         targetNode = changeEvent.target;
-        sisterNode.value = targetNode.value;
+        sisterNode.value = targetNode.value || 0;
       }
     }
 
