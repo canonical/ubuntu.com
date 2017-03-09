@@ -2139,7 +2139,7 @@ body.homepage-advantage {
     padding-bottom: 20px;
 
     @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url('https://assets.ubuntu.com/v1/f4cb93a3-Yakkety_Yak-Wallpaper_aubergine.jpg');
+      background-image: url('#{$asset-server-url}f4cb93a3-Yakkety_Yak-Wallpaper_aubergine.jpg');
       background-size: cover;
       padding-top: 80px;
       padding-bottom: 80px;
@@ -2156,6 +2156,37 @@ body.homepage-advantage {
 
     a {
       color: #fff;
+    }
+  }
+}
+
+body.homepage-containers-ebook {
+  header.banner {
+    border-bottom: none;
+    box-shadow: none;
+    margin-bottom: 0;
+  }
+
+  .row-hero {
+    background-color: $dark-aubergine;
+    background-image: none;
+    margin-top: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      background-image: url('#{$asset-server-url}f4cb93a3-Yakkety_Yak-Wallpaper_aubergine.jpg');
+      background-size: cover;
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+
+    a {
+      color: #fff;
+    }
+
+    &__image {
+      width: 411px;
     }
   }
 }
