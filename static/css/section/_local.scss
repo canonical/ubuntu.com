@@ -25,7 +25,11 @@ body {
 .heading-5,
 .heading-6 {
   &--headline {
-    margin-bottom: 3.75rem;
+    margin-bottom: 2rem;
+    
+    @media only screen and (min-width : $breakpoint-medium) {
+      margin-bottom: 3.75rem;
+    }
   }
 }
 
