@@ -367,7 +367,7 @@ strong {
     outline: 0;
 
     h2 {
-      color: #dd4814;
+      color: $brand-color;
     }
   }
 
@@ -394,7 +394,7 @@ strong {
   }
 
   &:hover {
-    background-color: #fafafa;
+    background-color: $light-grey;
   }
 
   &:after {
@@ -411,9 +411,8 @@ strong {
     -ms-transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
-    -moz-box-shadow: 0 -1px 2px 0 #ddd;
-    -webkit-box-shadow: 0 -1px 2px 0 #ddd;
-    box-shadow: 0 -1px 2px 0 #ddd;
+    -webkit-box-shadow: 0 -1px 2px 0 $color-mid-light;
+    box-shadow: 0 -1px 2px 0 $color-mid-light;
   }
 
   &:hover:after {
@@ -432,7 +431,7 @@ strong {
     right: -3px;
     width: 0;
     height: 0;
-    border-bottom: 30px solid #fdfdfd;
+    border-bottom: 30px solid $light-grey;
     border-right: 30px solid $white;
     -webkit-box-shadow: -2px 2px 2px rgba(176, 176, 176, 0.4);
     -moz-box-shadow: -2px 2px 2px rgba(176, 176, 176, 0.4);
@@ -693,9 +692,9 @@ $item-spacing: 20px;
     margin-bottom: 20px;
     float: none;
     content: counter(instructions);
-    background: #888888;
+    background: $warm-grey;
     border-radius: 100%;
-    color: white;
+    color: $white;
     text-align: center;
     vertical-align: top;
     font-size: 2em;
@@ -729,7 +728,7 @@ $item-spacing: 20px;
 }
 
 .list-stepped__box {
-  background-color: #f7f7f7;
+  background-color: $color-light;
   padding-top: $item-spacing;
   padding-bottom: $item-spacing;
   padding-left: $item-spacing;

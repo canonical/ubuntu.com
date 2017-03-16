@@ -67,7 +67,7 @@
   }
 
   #device-laptop {
-    background-image: url('#{$asset-server-url}9612cf16-device_laptop_bc2.png'), url('#{$asset-server}fb5b8eee-device_laptop_tl.png'), url('#{$asset-server}b5dc46bf-device_laptop_br.png'), url('#{$asset-server}7b12fe81-device_laptop_bl.png'), url('#{$asset-server}48f4c7a1-device_laptop_tr.png'), url('#{$asset-server}babb0695-device_laptop_tc.png'), url('#{$asset-server}2a608943-device_laptop_ml.png'), linear-gradient(to right, black,  black);
+    background-image: url('#{$asset-server-url}9612cf16-device_laptop_bc2.png'), url('#{$asset-server}fb5b8eee-device_laptop_tl.png'), url('#{$asset-server}b5dc46bf-device_laptop_br.png'), url('#{$asset-server}7b12fe81-device_laptop_bl.png'), url('#{$asset-server}48f4c7a1-device_laptop_tr.png'), url('#{$asset-server}babb0695-device_laptop_tc.png'), url('#{$asset-server}2a608943-device_laptop_ml.png'), linear-gradient(to right, $black,  $black);
     background-position: bottom center, top left, bottom right, bottom left, top right, top left, top left, 2px 2px;
     background-size: 100px,138px,140px,902px,140px,900px,16px,99%;
 
@@ -116,7 +116,7 @@
       animation-name: screenWidths;
       background-color:#1f1f25;
       background-repeat: no-repeat;
-      border: solid 1px #000;
+      border: solid 1px $black;
       margin-bottom:0;
       margin-left:auto;
       margin-right:auto;

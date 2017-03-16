@@ -230,12 +230,12 @@ html.opera-mini {
 
         h1,
         p {
-            color: #ffffff;
+            color: $white;
         }
         a:link,
         a:visited {
             text-decoration: underline;
-            color: #fff;
+            color: $white;
         }
         a:hover {
             color: rgba(255,255,255,0.6);
@@ -259,7 +259,7 @@ html.opera-mini {
                 -webkit-box-shadow: inset 0 1px 2px 0 rgba(0,0,0,0.2);
                box-shadow: inset 0 1px 2px 0 rgba(0,0,0,0.2);
             background-color: rgba(0, 0, 0, .25);
-            color: #ffffff;
+            color: $white;
         }
 
         .vertical-divider > div,
@@ -272,12 +272,12 @@ html.opera-mini {
 .download.download-ubuntu-kylin #main-content .row-background {
     a:link,
     a:visited {
-        color: #fff;
+        color: $white;
         text-decoration: none;
     }
 
     a:hover {
-        color: #fff;
+        color: $white;
         text-decoration: underline;
     }
 
@@ -344,7 +344,7 @@ html.opera-mini {
 .download-thank-you .row-download-thanks {
 
     .four-col .box {
-        background-color: #fff;
+        background-color: $white;
         background-position: center $gutter-width;
         background-repeat: no-repeat;
         padding-top: 160px;
@@ -668,7 +668,7 @@ html.opera-mini {
       left: 0;
       content: "Download Ubuntu Desktop";
       display: inline-block;
-      color: white;
+      color: $white;
       position: absolute;
       text-indent: 0;
       padding: 11px 24px;
@@ -778,7 +778,7 @@ input[type=number].contribute__option-value {
     }
 
     .box-tip {
-        background: #fff url(#{$asset-server-url}18aa8a3c-pictogram-download-tip-60x49.png) $gutter-width $gutter-width no-repeat;
+        background: $white url(#{$asset-server-url}18aa8a3c-pictogram-download-tip-60x49.png) $gutter-width $gutter-width no-repeat;
         margin-bottom: 1.538em;
         padding-left: 100px;
         padding-bottom: 1.25em;
@@ -857,7 +857,7 @@ pre {
   background-color: $cool-grey;
   border: none;
   border-radius: 2px;
-  color: #cdcdcd;
+  color: $color-mid-light;
 }
 pre > code {
   border: 0;
@@ -865,6 +865,6 @@ pre > code {
   font-size: 1em;
   font-weight: 300;
   padding: 0.7em 1em;
-  color: #cdcdcd;
+  color: $color-mid-light;
   width: 100%;
 }

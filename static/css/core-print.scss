@@ -8,17 +8,24 @@
  * @copyright	2012 Canonical Ltd
  *
  */
+ 
+// import global settings
+@import 'global-settings';
 
-* { background: #fff; color: #000; }
+// import vanilla themes
+@import "../../node_modules/ubuntu-vanilla-theme/scss/theme";
+@include ubuntu-vanilla-theme;
+
+* { background: $white; color: $black; }
 
 body {
-  background: white;
+  background: $white;
   font-size: 16pt;
   line-height: 1.5;
 }
 
 a:link, a:visited {
-  color: #898989;
+  color: $warm-grey;
   background: transparent;
   font-weight: bold;
   text-decoration: underline;
