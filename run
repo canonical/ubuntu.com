@@ -74,7 +74,9 @@ PORT=8000
 DJANGO_DEBUG=true
 
 # Read current environment variables
-export $(cat .env | grep -v ^\# | xargs)
+if [ -f .env ]; then
+    export $(cat .env | grep -v ^\# | xargs)
+fi
 
 # Optional arguments
 # ==
@@ -115,15 +117,15 @@ done
 docker_run() {
   # The standard set of "docker run" arguments
 
-  [ -t 1 ] && tty="--tty" || tty=""  # Do we have a terminal?
+  [ -t 1 ] && tty="--tty --interactive" || tty=""  # Do we have a terminal?
+  [ -f .env ] && env_file="--env-file .env" || env_file=""  # Do we have an env file?
 
   docker run  \
     --user $(id -u):$(id -g)  `# Use the current user inside container`  \
-    --env-file .env           `# Pass environment variables into the container`  \
+    ${env_file}               `# Pass environment variables into the container, if file exists`  \
     --volume `pwd`:`pwd`      `# Mirror current directory inside container`  \
     --workdir `pwd`           `# Set current directory to the image's work directory`  \
     ${tty}                    `# Attach a pseudo-terminal, if relevant`  \
-    --interactive             `# Add interactive capabilities to terminal prompt`  \
     $@                        `# Extra arguments`
 }
 
