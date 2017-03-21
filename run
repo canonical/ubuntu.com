@@ -25,7 +25,6 @@ Commands
 - watch: Run \`yarn run watch\`
 - build: Run \`yarn run build\`
 - test: Run \`yarn run test\` and \`./manage.py test\`
-- node <args>: Run node
 - yarn <args>: Run yarn
 - django <args>: Run ./manage.py <args>
 - clean: Remove all images and containers, any installed dependencies and the .docker-project file
@@ -75,16 +74,19 @@ PORT=8000
 DJANGO_DEBUG=true
 
 # Read current environment variables
-export $(cat .env | grep -v ^\# | xargs)
+if [ -f .env ]; then
+    export $(cat .env | grep -v ^\# | xargs)
+fi
 
 # Optional arguments
 # ==
 #  --port {port} - The local port to run the web service on
+#  --node-module {path} - Path to a local version of a node module
 #  --no-debug - Turn off Django DEBUG mode
-#  --watch - Toggle "yarn run watch" in the background
 #  --help - Show usage instructions
 invalid() {
     echo "Command not recognised."
+    echo ""
     echo "$USAGE"
     exit 1
 }
@@ -115,15 +117,15 @@ done
 docker_run() {
   # The standard set of "docker run" arguments
 
-  [ -t 1 ] && tty="--tty" || tty=""  # Do we have a terminal?
+  [ -t 1 ] && tty="--tty --interactive" || tty=""  # Do we have a terminal?
+  [ -f .env ] && env_file="--env-file .env" || env_file=""  # Do we have an env file?
 
   docker run  \
     --user $(id -u):$(id -g)  `# Use the current user inside container`  \
-    --env-file .env           `# Pass environment variables into the container`  \
+    ${env_file}               `# Pass environment variables into the container, if file exists`  \
     --volume `pwd`:`pwd`      `# Mirror current directory inside container`  \
     --workdir `pwd`           `# Set current directory to the image's work directory`  \
     ${tty}                    `# Attach a pseudo-terminal, if relevant`  \
-    --interactive             `# Add interactive capabilities to terminal prompt`  \
     $@                        `# Extra arguments`
 }
 
@@ -189,9 +191,6 @@ case $run_command in
   ;;
   "django") docker_django $@ ;;
   "yarn") docker_yarn $@ ;;
-  *)
-    echo "Unrecognised command: $run_command"
-    echo $USAGE
-  ;;
+  *) invalid ;;
 esac
 
