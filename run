@@ -79,11 +79,12 @@ export $(cat .env | grep -v ^\# | xargs)
 # Optional arguments
 # ==
 #  --port {port} - The local port to run the web service on
+#  --node-module {path} - Path to a local version of a node module
 #  --no-debug - Turn off Django DEBUG mode
-#  --watch - Toggle "yarn run watch" in the background
 #  --help - Show usage instructions
 invalid() {
     echo "Command not recognised."
+    echo ""
     echo "$USAGE"
     exit 1
 }
@@ -188,9 +189,6 @@ case $run_command in
   ;;
   "django") docker_django $@ ;;
   "yarn") docker_yarn $@ ;;
-  *)
-    echo "Unrecognised command: $run_command"
-    echo $USAGE
-  ;;
+  *) invalid ;;
 esac
 
