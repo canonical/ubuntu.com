@@ -123,6 +123,7 @@ docker_run() {
   docker run  \
     --user $(id -u):$(id -g)  `# Use the current user inside container`  \
     ${env_file}               `# Pass environment variables into the container, if file exists`  \
+    --rm                      `# Tidy up by deleting the container when it stops`  \
     --volume `pwd`:`pwd`      `# Mirror current directory inside container`  \
     --workdir `pwd`           `# Set current directory to the image's work directory`  \
     ${tty}                    `# Attach a pseudo-terminal, if relevant`  \
@@ -169,7 +170,7 @@ case $run_command in
         $yarn_image run watch     `# Use the image for node version 7`
     fi
 
-    docker_django runserver 0.0.0.0:${PORT}
+    docker_django
   ;;
   "watch")
     yarn_install
