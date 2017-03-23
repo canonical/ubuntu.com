@@ -145,9 +145,6 @@ body.homepage {
 $full-size: 1020px;
 
 .row--intro {
-  background-image: url('#{$asset-server-url}4a3a6943-background.png');
-  background-size: cover;
-
   @media only screen and (min-width : 769px) {
     padding-top: inherit;
   }
@@ -262,6 +259,14 @@ $full-size: 1020px;
   position: relative;
   width: 100%;
 
+  &:hover {
+    @media only screen and (min-width : $breakpoint-medium) {
+      display: block;
+      text-decoration: none;
+      text-indent: 0;
+    }
+  }
+
   @media only screen and (min-width: $full-size) {
     &:before,
     &:after {
@@ -374,11 +379,6 @@ $full-size: 1020px;
     }
   }
 
-}
-
-body.homepage .row--intro .ubuntu-intro__content li a:hover {
-  display: block;
-  text-indent: 0;
 }
 
 @media only screen and (min-width : 769px) {
