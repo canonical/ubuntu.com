@@ -77,5 +77,5 @@ yarn run watch  # Dynamically watch for Sass changes and build CSS
 You can use the `./run` script to use NPM modules from a local folder on a one-time basis, instead of the modules declared in `package.json`, as follows:
 
 ``` bash
-./run --node-module $HOME/project/vanilla-framework watch  # Build CSS dynamically, using a local version of vanilla-framework
+./run --node-module $HOME/projects/vanilla-framework watch  # Build CSS dynamically, using a local version of vanilla-framework
 ```
