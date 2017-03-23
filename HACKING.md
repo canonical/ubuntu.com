@@ -65,7 +65,7 @@ yarn install
 Then you can use the built in scripts to build or watch the Sass:
 
 ``` bash
-npm build  # Build the Sass to CSS then exit
+npm run build  # Build the Sass to CSS then exit
 npm run watch  # Dynamically watch for Sass changes and build CSS
 # or
 yarn run build  # Build the Sass to CSS then exit
