@@ -78,6 +78,25 @@ if [ -f .env ]; then
     export $(cat .env | grep -v ^\# | xargs)
 fi
 
+# Bind yarn cache to host folder if available
+yarn_cache_host=""
+yarn_cache_docker="/home/shared/.cache/yarn/"
+if type yarn 2>/dev/null; then
+  # Get correct location from installed yarn
+  yarn_cache_host=`yarn cache dir`
+else
+  case "$(uname -s)" in
+    "Darwin")
+      yarn_cache_host="${HOME}/Library/Caches/"
+    ;;
+    "Linux")
+      yarn_cache_host="${HOME}/.cache/yarn/"
+    ;;
+  esac
+fi
+mkdir -p ${yarn_cache_host}
+yarn_cache_arg="--volume ${yarn_cache_host}:${yarn_cache_docker}"
+
 # Optional arguments
 # ==
 #  --port {port} - The local port to run the web service on
@@ -141,8 +160,9 @@ docker_django () {
 docker_yarn () {
   # Run "yarn" from the "node" image
   docker_run  \
+    ${yarn_cache_arg} \
     ${module_volumes[@]+"${module_volumes[@]}"}  `# Add any override modules as volumes`  \
-    $yarn_image $@               `# Use the image for node version 7`
+    $yarn_image $@              `# Use the image for node version 7`
 }
 
 yarn_install () {
@@ -194,4 +214,3 @@ case $run_command in
   "yarn") docker_yarn $@ ;;
   *) invalid ;;
 esac
-
