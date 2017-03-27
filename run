@@ -105,6 +105,10 @@ invalid() {
     exit 1
 }
 
+# Find current run command
+run_command=${1:-}
+if [[ -n "${run_command}" ]]; then shift; fi
+
 module_volumes=()
 
 while [[ -n "${1:-}" ]] && [[ "${1:0:1}" == "-" ]]; do
@@ -176,9 +180,6 @@ clean_cache () {
 
 
 # Do the real business
-run_command=${1:-}
-if [[ -n "${run_command}" ]]; then shift; fi
-
 case $run_command in
   ""|"start")
     yarn_install
