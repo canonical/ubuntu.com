@@ -63,7 +63,7 @@ if grep -q '^docker:' /etc/group && ! groups | grep -q '\bdocker\b'; then
 fi
 
 # Check if yarn is locally installed
-command -v yarn >/dev/null 2>&1 && LOCAL_YARN_INSTALLED=1 || LOCAL_YARN_INSTALLED=0
+command -v yarn >/dev/null 2>&1 && LOCAL_YARN_INSTALLED=true || LOCAL_YARN_INSTALLED=false
 
 # Generate the project name
 if [[ -f ".docker-project" ]]; then
@@ -76,6 +76,7 @@ fi
 # Defaults
 PORT=8000
 DJANGO_DEBUG=true
+OPT_CACHE_CLEAN_FORCE=false
 
 # Read current environment variables
 if [ -f .env ]; then
@@ -86,7 +87,7 @@ fi
 yarn_cache_host="yarn_cache"
 yarn_cache_docker="/home/shared/.cache/yarn/"
 # If yarn is installed, use its local cache directory
-if LOCAL_YARN_INSTALLED; then
+if [ "$LOCAL_YARN_INSTALLED" = true ]; then
   yarn_cache_host=`yarn cache dir`
   mkdir -p ${yarn_cache_host}
 fi
@@ -113,6 +114,15 @@ module_volumes=()
 
 while [[ -n "${1:-}" ]] && [[ "${1:0:1}" == "-" ]]; do
     key="$1"
+    case $run_command in
+      "clean-cache")
+          case $key in
+              -f|--force)
+                  OPT_CACHE_CLEAN_FORCE=true
+              ;;
+          esac
+      ;;
+    esac
 
     case $key in
         -p|--port)
@@ -127,7 +137,6 @@ while [[ -n "${1:-}" ]] && [[ "${1:0:1}" == "-" ]]; do
         ;;
         --no-debug) DJANGO_DEBUG=false ;;
         -h|--help) echo "$USAGE"; exit ;;
-        *) invalid ;;
     esac
     shift
 done
@@ -171,10 +180,16 @@ yarn_install () {
 
 clean_cache () {
   # Clean yarn cache volume
-  docker volume rm yarn_cache
-  if LOCAL_YARN_INSTALLED; then
-    yarn clean
-    mkdir -p ${yarn_cache_host}
+  echo "Deleting yarn_cache Docker volume..."
+  docker volume rm yarn_cache 2>/dev/null || echo "No volume found"
+  if [ $LOCAL_YARN_INSTALLED = true ]; then
+    if [ $OPT_CACHE_CLEAN_FORCE = true ]; then
+      yarn cache clean
+    else
+      echo "#"
+      echo "# Yarn is locally installed, use --force to clean your local cache"
+      echo "#"
+    fi
   fi
 }
 
