@@ -28,6 +28,7 @@ Commands
 - yarn <args>: Run yarn
 - django <args>: Run ./manage.py <args>
 - clean: Remove all images and containers, any installed dependencies and the .docker-project file
+- clean-cache: Empty cache files, which are saved between projects (eg, yarn)
 
 Persistent options
 ---
@@ -61,6 +62,9 @@ if grep -q '^docker:' /etc/group && ! groups | grep -q '\bdocker\b'; then
     exit 1
 fi
 
+# Check if yarn is locally installed
+command -v yarn >/dev/null 2>&1 && LOCAL_YARN_INSTALLED=1 || LOCAL_YARN_INSTALLED=0
+
 # Generate the project name
 if [[ -f ".docker-project" ]]; then
   project=$(cat .docker-project)
@@ -78,23 +82,14 @@ if [ -f .env ]; then
     export $(cat .env | grep -v ^\# | xargs)
 fi
 
-# Bind yarn cache to host folder if available
-yarn_cache_host=""
+# Bind yarn cache to named volume or local yarn cache if available
+yarn_cache_host="yarn_cache"
 yarn_cache_docker="/home/shared/.cache/yarn/"
-if type yarn 2>/dev/null; then
-  # Get correct location from installed yarn
+# If yarn is installed, use its local cache directory
+if LOCAL_YARN_INSTALLED; then
   yarn_cache_host=`yarn cache dir`
-else
-  case "$(uname -s)" in
-    "Darwin")
-      yarn_cache_host="${HOME}/Library/Caches/"
-    ;;
-    "Linux")
-      yarn_cache_host="${HOME}/.cache/yarn/"
-    ;;
-  esac
+  mkdir -p ${yarn_cache_host}
 fi
-mkdir -p ${yarn_cache_host}
 yarn_cache_arg="--volume ${yarn_cache_host}:${yarn_cache_docker}"
 
 # Optional arguments
@@ -170,6 +165,15 @@ yarn_install () {
   docker_run $yarn_image install
 }
 
+clean_cache () {
+  # Clean yarn cache volume
+  docker volume rm yarn_cache
+  if LOCAL_YARN_INSTALLED; then
+    yarn clean
+    mkdir -p ${yarn_cache_host}
+  fi
+}
+
 
 # Do the real business
 run_command=${1:-}
@@ -209,6 +213,9 @@ case $run_command in
   "clean")
     rm -rf node_modules .docker-project
     docker volume rm --force ${project}-dependencies
+  ;;
+  "clean-cache")
+    clean_cache $@
   ;;
   "django") docker_django $@ ;;
   "yarn") docker_yarn $@ ;;
