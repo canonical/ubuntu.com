@@ -135,6 +135,7 @@ docker_django () {
   docker_run  \
     --volume ${project}-dependencies:/usr/local/lib/python2.7/site-packages  `# Store dependencies in a docker volume`  \
     --publish ${PORT}:${PORT}  `# Export the server port`  \
+    --env PORT=${PORT}  `# Set the port correctly`  \
     $django_image $@  `# Run the django image`
 }
 
