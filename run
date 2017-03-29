@@ -62,36 +62,24 @@ if grep -q '^docker:' /etc/group && ! groups | grep -q '\bdocker\b'; then
     exit 1
 fi
 
-# Check if yarn is locally installed
-command -v yarn >/dev/null 2>&1 && LOCAL_YARN_INSTALLED=true || LOCAL_YARN_INSTALLED=false
-
 # Generate the project name
 if [[ -f ".docker-project" ]]; then
   project=$(cat .docker-project)
 else
-  project=$((pwd | md5sum 2> /dev/null || md5 -q -s `pwd`) | cut -c1-8)
+  directory=$(basename `pwd`)
+  hash=$((pwd | md5sum 2> /dev/null || md5 -q -s `pwd`) | cut -c1-8)
+  project=canonical-webteam-${directory}-${hash}
   echo $project > .docker-project
 fi
 
 # Defaults
 PORT=8000
 DJANGO_DEBUG=true
-OPT_CACHE_CLEAN_FORCE=false
 
 # Read current environment variables
 if [ -f .env ]; then
     export $(cat .env | grep -v ^\# | xargs)
 fi
-
-# Bind yarn cache to named volume or local yarn cache if available
-yarn_cache_host="yarn_cache"
-yarn_cache_docker="/home/shared/.cache/yarn/"
-# If yarn is installed, use its local cache directory
-if [ "$LOCAL_YARN_INSTALLED" = true ]; then
-  yarn_cache_host=`yarn cache dir`
-  mkdir -p ${yarn_cache_host}
-fi
-yarn_cache_arg="--volume ${yarn_cache_host}:${yarn_cache_docker}"
 
 # Optional arguments
 # ==
@@ -114,15 +102,6 @@ module_volumes=()
 
 while [[ -n "${1:-}" ]] && [[ "${1:0:1}" == "-" ]]; do
     key="$1"
-    case $run_command in
-      "clean-cache")
-          case $key in
-              -f|--force)
-                  OPT_CACHE_CLEAN_FORCE=true
-              ;;
-          esac
-      ;;
-    esac
 
     case $key in
         -p|--port)
@@ -169,7 +148,7 @@ docker_django () {
 docker_yarn () {
   # Run "yarn" from the "node" image
   docker_run  \
-    ${yarn_cache_arg} \
+    --volume ${CANONICAL_WEBTEAM_YARN_CACHE_VOLUME:-canonical-webteam-yarn-cache}:/home/shared/.cache/yarn/  `# Bind yarn cache to volume` \
     ${module_volumes[@]+"${module_volumes[@]}"}  `# Add any override modules as volumes`  \
     $yarn_image $@              `# Use the image for node version 7`
 }
@@ -181,16 +160,11 @@ yarn_install () {
 
 clean_cache () {
   # Clean yarn cache volume
-  echo "Deleting yarn_cache Docker volume..."
-  docker volume rm yarn_cache 2>/dev/null || echo "No volume found"
-  if [ $LOCAL_YARN_INSTALLED = true ]; then
-    if [ $OPT_CACHE_CLEAN_FORCE = true ]; then
-      yarn cache clean
-    else
-      echo "#"
-      echo "# Yarn is locally installed, use --force to clean your local cache"
-      echo "#"
-    fi
+  if docker volume ls | grep -q canonical-webteam-yarn-cache; then
+    echo "Deleting cache volume:"
+    docker volume rm --force canonical-webteam-yarn-cache
+  else
+    echo "No cache volume found"
   fi
 }
 
@@ -238,3 +212,4 @@ case $run_command in
   "yarn") docker_yarn $@ ;;
   *) invalid ;;
 esac
+
