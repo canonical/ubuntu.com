@@ -94,10 +94,6 @@ invalid() {
     exit 1
 }
 
-# Find current run command
-run_command=${1:-}
-if [[ -n "${run_command}" ]]; then shift; fi
-
 module_volumes=()
 
 while [[ -n "${1:-}" ]] && [[ "${1:0:1}" == "-" ]]; do
@@ -116,6 +112,7 @@ while [[ -n "${1:-}" ]] && [[ "${1:0:1}" == "-" ]]; do
         ;;
         --no-debug) DJANGO_DEBUG=false ;;
         -h|--help) echo "$USAGE"; exit ;;
+        *) invalid ;;
     esac
     shift
 done
@@ -168,6 +165,9 @@ clean_cache () {
   fi
 }
 
+# Find current run command
+run_command=${1:-}
+if [[ -n "${run_command}" ]]; then shift; fi
 
 # Do the real business
 case $run_command in
