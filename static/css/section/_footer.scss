@@ -449,18 +449,19 @@ footer.global {
       h2 + ul.second-level-nav {
         /// open the primary/secondary navs
         display: block;
+        margin-bottom: 1.5em;
       }
 
       h2 {
         background: none;
         text-transform: none;
-        font-weight: normal;
+        font-weight: strong;
         padding: 0;
 
         a:link,
         a:visited {
           color: $cool-grey;
-          font-weight: normal;
+          font-weight: strong;
         }
 
         .active {
@@ -481,13 +482,12 @@ footer.global {
         a:link,
         a:visited {
           color: $cool-grey;
-          font-weight: 300;
         }
       }
     }
 
     .footer-a {
-      padding: 20px 0;
+      padding: 20px 0 0;
       margin-bottom: 20px;
       border-bottom: 1px solid $footer-border;
       display: block;
@@ -495,7 +495,7 @@ footer.global {
 
       .second-level-nav li > a {
         padding: 0;
-        line-height: 2em;
+        line-height: 1.6em;
       }
     }
   }
