@@ -441,6 +441,17 @@ footer.global {
 
   /// vertical main nav lists
   footer.global {
+    .button--primary {
+      color: $cool-grey;
+      background-color: $white;
+      border: 1px solid $color-mid-light;
+      padding: 6px 18px;
+  
+      &:hover {
+        background-color: #f7f7f7;
+      }
+    } 
+
     .footer-a {
       padding: 0;
       margin: 0;
@@ -504,17 +515,6 @@ footer.global {
 
 /// Large screens
 @media only screen and (min-width : $breakpoint-large) {
-  .button--primary {
-    color: $cool-grey;
-    background-color: $white;
-    border: 1px solid $color-mid-light;
-    padding: 6px 18px;
-
-    &:hover {
-      background-color: #f7f7f7;
-    }
-  } 
-  
   #nav-global {
 
     ul {
