@@ -504,7 +504,15 @@ footer.global {
 
 /// Large screens
 @media only screen and (min-width : $breakpoint-large) {
+  .button--primary {
+    color: $cool-grey;
+    background-color: $white;
 
+    &:hover {
+      background-color: #f7f7f7;
+    }
+  } 
+  
   #nav-global {
 
     ul {
