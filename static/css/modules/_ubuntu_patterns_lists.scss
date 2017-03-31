@@ -1,0 +1,97 @@
+// Site specific list styling
+
+@mixin list-link {
+  background-size: 100%;
+  display: block;
+  height: 32px;
+  text-indent: -999em;
+  width: 32px;
+}
+
+@mixin ubuntu-p-lists {
+  @include ubuntu-p-inline-list-icons;
+  @include ubuntu-p-inline-list--small;
+  @include ubuntu-p-inline-list-middot-small;
+}
+
+@mixin ubuntu-p-inline-list-icons {
+  .p-inline-list-icons {
+    margin-left: 0;
+    padding-left: 0;
+    
+    .p-inline-list__item {
+       @include inline-list-item;
+       float: left;
+    }
+    
+    .p-inline-list__link {
+      &--twitter {
+        @include list-link;
+        background-image: url('#{$asset-server-url}f672b2a5-twitter-social.svg');
+      }
+      
+      &--google {
+        @include list-link;
+        background-image: url('#{$asset-server-url}cbbe083c-logo_google-plus.svg');
+      }
+      
+      &--facebook {
+        @include list-link;
+        background-image: url('#{$asset-server-url}18010ac5-facebook-social.svg');
+      }
+
+      &--linkedin {
+        @include list-link;
+        background-image: url('#{$asset-server-url}ea3cd34b-linkedin-icon.svg');
+      }
+    }
+  }  
+}
+
+@mixin ubuntu-p-inline-list--small {
+  .p-inline-list--small {
+    margin-left: 0;
+    padding-left: 0;
+    
+    .p-inline-list__item {
+      @include inline-list-item;
+      font-size: .875rem;
+    }
+  }
+}
+
+// Displays a list inline with items separated by dots
+@mixin ubuntu-p-inline-list-middot-small {
+  .p-inline-list--middot-small {
+    margin-left: 0;
+    padding-left: 0;
+
+    .p-inline-list__item {
+      @include inline-list-item;
+      font-size: .875rem;
+      position: relative;
+
+      &::after {
+        color: $color-mid-dark;
+        content: '\00b7';
+        font-size: 1.4rem;
+        line-height: 0;
+        position: absolute;
+        right: -1rem;
+        top: .55rem;
+      }
+
+      &:hover::after {
+        color: $color-mid-dark;
+      }
+
+      &:last-of-type,
+      .last-item {
+        &::after {
+          content: '';
+        }
+      }
+    }
+  }
+}
+
