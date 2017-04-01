@@ -1,58 +1,58 @@
 {% block footer %}
-<footer class="global clearfix">
+<footer class="p-footer global">
   <div class="footer-c">
     <p class="top-link"><a href="#">Back to top</a></p>
   </div>
-  <nav id="main-navigation" class="footer-a clearfix">
+  <nav id="main-navigation" class="footer-a p-footer__nav clearfix">
     <div class="strip-inner-wrapper">
       <div class="clearfix">
         <div class="two-col u-no-margin--bottom">
-          <ul>
-            <li><h2><a href="/cloud">Cloud</a></h2>
+          <ul class="p-footer__list">
+            <li class=""><h2 class="p-footer__title"><a class="p-link--soft" href="/cloud">Cloud</a></h2>
               {% include "cloud/_nav_secondary.html" %}
             </li>
           </ul>
         </div>
         <div class="two-col u-no-margin--bottom">
           <ul>
-            <li><h2><a href="/server">Server</a></h2>
+            <li><h2 class="p-footer__title"><a class="p-link--soft" href="/server">Server</a></h2>
               {% include "server/_nav_secondary.html" %}
             </li>
-            <li><h2><a href="/server">Containers</a></h2>
+            <li><h2 class="p-footer__title"><a class="p-link--soft" href="/server">Containers</a></h2>
               {% include "containers/_nav_secondary.html" %}
             </li>
           </ul>
         </div>
         <div class="two-col u-no-margin--bottom">
           <ul>
-            <li><h2><a href="/desktop">Desktop</a></h2>
+            <li><h2 class="p-footer__title"><a class="p-link--soft" href="/desktop">Desktop</a></h2>
               {% include "desktop/_nav_secondary.html" %}
             </li>
           </ul>
         </div>
         <div class="two-col u-no-margin--bottom">
           <ul>
-            <li><h2><a href="/internet-of-things">Core</a></h2>
+            <li><h2 class="p-footer__title"><a class="p-link--soft" href="/internet-of-things">Core</a></h2>
               {% include "core/_nav_secondary.html" %}
             </li>
-            <li><h2><a href="/internet-of-things">IoT</a></h2>
+            <li><h2 class="p-footer__title"><a class="p-link--soft" href="/internet-of-things">IoT</a></h2>
               {% include "internet-of-things/_nav_secondary.html" %}
             </li>
           </ul>
         </div>
         <div class="two-col u-no-margin--bottom">
           <ul>
-            <li><h2><a href="/mobile">Mobile</a></h2>
+            <li><h2 class="p-footer__title"><a class="p-link--soft" href="/mobile">Mobile</a></h2>
               {% include "mobile/_nav_secondary.html" %}
             </li>
-            <li><h2><a href="/support">Support</a></h2>
+            <li><h2 class="p-footer__title"><a class="p-link--soft" href="/support">Support</a></h2>
               {% include "support/_nav_secondary.html" %}
             </li>
           </ul>
         </div>
         <div class="two-col u-no-margin--bottom last-col">
           <ul>
-            <li><h2><a href="/download">Downloads</a></h2>
+            <li><h2 class="p-footer__title"><a class="p-link--soft" href="/download">Downloads</a></h2>
               {% include "download/_nav_secondary.html" %}
             </li>
           </ul>
