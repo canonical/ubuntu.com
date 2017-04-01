@@ -26,6 +26,7 @@ core scss files are in /sites/core/static/css
 @import
 'modules/settings_colors',
 'modules/settings_grid';
+
 // base
 @import 
 'modules/base_input-range';
@@ -38,6 +39,7 @@ core scss files are in /sites/core/static/css
 
 // patterns
 @import
+'modules/patterns_footer',
 'modules/patterns_links',
 'modules/patterns_lists',
 'modules/patterns_testimonials';
@@ -49,6 +51,7 @@ core scss files are in /sites/core/static/css
 // Include all the CSS
 
 // patterns
+@include vf-p-footer;
 @include vf-p-links;
 @include vf-p-lists;
 @include vf-p-testimonials;
