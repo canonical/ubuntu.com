@@ -30,17 +30,6 @@
         display: none;
       }
     }
-    
-    .button--primary {
-      color: $color-dark;
-      background-color: $white;
-      border: 1px solid $color-mid-light;
-      padding: 6px 18px;
-  
-      &:hover {
-        background-color: #f7f7f7;
-      }
-    } 
 
     &__nav {
       border-bottom: 1px solid $color-mid-light;
@@ -99,7 +88,7 @@
       }
       
       /// open and close the primary/secondary navs
-      + ul.second-level-nav {
+      + .second-level-nav {
         display: none;
         
         @media only screen and (min-width: $breakpoint-medium + 1) {
@@ -155,6 +144,17 @@
     &__content {
       font-size: 1em;
     }
+    
+    .button--primary {
+      color: $color-dark;
+      background-color: $white;
+      border: 1px solid $color-mid-light;
+      padding: 6px 18px;
+  
+      &:hover {
+        background-color: #f7f7f7;
+      }
+    } 
     
     .p-inline-list--small {
       .p-inline-list__item {
