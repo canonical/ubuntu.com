@@ -1,0 +1,175 @@
+// Site specific footer styling
+@mixin footer-title {
+  color: $color-mid-dark;
+  cursor: pointer;
+  line-height: 1.5em;
+  margin-bottom: 0;
+}
+
+@mixin ubuntu-p-footer {
+  .p-footer {
+    border: 0;
+    -moz-box-shadow: 0 4px 4px -4px rgba(0,0,0,.3) inset;
+    -webkit-box-shadow: 0 4px 4px -4px rgba(0,0,0,.3) inset;
+    box-shadow: 0 4px 4px -4px rgba(0,0,0,.3) inset;
+    
+    .top-link {
+      @include footer-title;
+      background-image: url("#{$asset-server-url}e4a5a8c0-picto-upload-warmgrey.svg");
+      background-position: 10px center;
+      background-repeat: no-repeat;
+      background-size: 14px 14px;
+      display: block;
+      font-size: .8125em;
+      left: auto;
+      padding-left: 30px;
+      position: relative;
+    }
+    
+    .button--primary {
+      color: $cool-grey;
+      background-color: $white;
+      border: 1px solid $color-mid-light;
+      padding: 6px 18px;
+  
+      &:hover {
+        background-color: #f7f7f7;
+      }
+    } 
+
+    &__nav {
+      border-bottom: 1px dotted $color-mid-dark;
+
+      @media only screen and (min-width: $breakpoint-medium + 1) {
+        margin-bottom: 20px;
+        padding: 40px 0;
+      }
+    }
+    
+    &__links {
+      padding: 0;
+    }
+    
+    &__item {
+      display: block;
+      margin-bottom: 0;
+      
+      @media only screen and (min-width: $breakpoint-medium + 1) {
+        margin-bottom: 2rem;
+      }
+    }
+    
+    &__title {
+      @include footer-title;
+      border-top: 1px solid $color-mid-light;
+      background-image: url("#{$asset-server-url}7bd1bd7b-arrow_down_9fa097.svg");
+      background-position: 96% 50%;
+      background-repeat: no-repeat;
+      background-size: 13px 13px;
+      font-size: .8125em;
+      padding: 10px 0;
+
+      @media only screen and (min-width: $breakpoint-medium + 1) {
+        background: none;
+        color: $color-dark;
+        border: 0;
+        padding: 0;
+      }
+      
+      a:link,
+      a:visited {
+        color: $color-mid-dark;
+        font-weight: normal;
+        padding-left: 10px;
+        
+        @media only screen and (min-width: $breakpoint-medium + 1) {
+          color: $color-dark;
+          padding-left: 0;
+        }
+      }
+            
+      a::after {
+        content: ""; /* hide the default > */
+      }
+      
+      /// open and close the primary/secondary navs
+      + ul.second-level-nav {
+        display: none;
+        
+        @media only screen and (min-width: $breakpoint-medium + 1) {
+          display: block;
+        }
+      }
+      
+      &.active {
+        background-image: url("#{$asset-server-url}43e2b367-arrow_up_9fa097.png");
+  
+        + .second-level-nav {
+          display: block;
+        }
+      }
+    }
+    
+    &__link {
+      &:hover {
+        color: $color-dark;
+      }
+    }
+  }
+  
+  // second level nav - HTML for this can't be changed as it's used in the main nav also
+  .second-level-nav {
+    margin: 0;
+    
+    li {
+      margin-bottom: 0;
+      
+      a {
+        color: $color-dark;
+        display: block;
+        border-top: 1px solid $color-mid-light;
+        font-size: .8125em;
+        padding: 10px 10px;
+        
+        @media only screen and (min-width: $breakpoint-medium + 1) {
+          border: 0;
+          padding: 0;
+        }
+      }
+    }
+  }
+  
+  .p-footer--secondary {
+    padding: 20px 10px 0;
+    
+    @media only screen and (min-width: $breakpoint-medium + 1) {
+      padding: 0; 
+    }
+    
+    &__content {
+      font-size: 1em;
+    }
+    
+    .p-inline-list--small {
+      .p-inline-list__item {
+        display: block;
+        
+        @media only screen and (min-width: $breakpoint-medium) {
+          display: inline-block;  
+        }
+      }
+    }
+  }
+
+  // social icons in footer
+  .p-inline-list-icons {
+    @media only screen and (min-width: $breakpoint-medium) {
+      padding-left: 0;
+      float: right;
+    }
+    
+    @media only screen and (min-width: $breakpoint-large) {
+      margin-top: 10px;
+    }
+  }
+}
