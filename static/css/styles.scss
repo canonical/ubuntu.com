@@ -22,89 +22,71 @@ core scss files are in /sites/core/static/css
 @import "../../node_modules/ubuntu-vanilla-theme/scss/theme";
 @include ubuntu-vanilla-theme;
 
-// Other modules
-@import 'modules/input-range';
-@import 'modules/patterns_testimonials';
+// settings
+@import
+'modules/settings_colors',
+'modules/settings_grid';
+
+// base
+@import 
+'modules/base_input-range';
+
+// utilities
+@import 
+'modules/utilities_clearfix',
+'modules/utilities_floats',
+'modules/utilities_margin_collapse';
+
+// patterns
+@import
+'modules/patterns_footer',
+'modules/patterns_links',
+'modules/patterns_lists',
+'modules/patterns_testimonials';
+
+// site specific patterns
+@import
+'modules/ubuntu_patterns_lists',
+'modules/ubuntu_patterns_footer';
+
+// Include all the CSS
+
+// patterns
+@include vf-p-footer;
+@include vf-p-links;
+@include vf-p-lists;
 @include vf-p-testimonials;
 
+// site specific patterns
+@include ubuntu-p-lists;
+@include ubuntu-p-footer;
+
+// utilities
+@include vf-u-clearfix;
+@include vf-u-floats;
+@include vf-u-margin-collapse;
+
+// site specific
 @import "scratch";
 
-/*	@section navigation
--------------------------------------------------------------- */
+// section specific
 @import "section/navigation";
-
-/*	@section footer
--------------------------------------------------------------- */
-@import "section/footer";
-
-/*	@section cookie policy
--------------------------------------------------------------- */
+@import "section/global";
 @import "section/cookie_policy";
-
-/*	@section homepage
--------------------------------------------------------------- */
 @import "section/homepage";
-
-/*	@section cloud
--------------------------------------------------------------- */
 @import "section/cloud";
-
-/*	@section containers
--------------------------------------------------------------- */
 @import "section/containers";
-
-/*	@section download
--------------------------------------------------------------- */
 @import "section/download";
-
-/*	@section legal
--------------------------------------------------------------- */
 @import "section/legal";
-
-/*	@section search
--------------------------------------------------------------- */
 @import "section/search";
-
-/*	@section desktop
--------------------------------------------------------------- */
 @import "section/desktop";
-
-/*	@section core
--------------------------------------------------------------- */
 @import "section/core";
-
-/*	@section mobile
--------------------------------------------------------------- */
 @import "section/mobile";
-
-/*	@section things
--------------------------------------------------------------- */
 @import "section/internet-of-things";
-
-/*	@section tv
--------------------------------------------------------------- */
 @import "section/tv";
-
-/*	@section server
--------------------------------------------------------------- */
 @import "section/server";
-
-/*  @section support
--------------------------------------------------------------- */
 @import "section/support";
-
-/*  @section contextual-footer
--------------------------------------------------------------- */
 @import "section/contextual_footer";
-
-/*  @section error
--------------------------------------------------------------- */
 @import "section/error";
-
-/*  @section local
--------------------------------------------------------------- */
 @import "section/local";
-
-/*  @section third party
--------------------------------------------------------------- */
 @import "section/third-party";
