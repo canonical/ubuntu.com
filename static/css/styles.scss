@@ -35,6 +35,7 @@ core scss files are in /sites/core/static/css
 @import 
 'modules/utilities_clearfix',
 'modules/utilities_floats',
+'modules/utilities_off-screen',
 'modules/utilities_margin_collapse';
 
 // patterns
@@ -64,6 +65,7 @@ core scss files are in /sites/core/static/css
 // utilities
 @include vf-u-clearfix;
 @include vf-u-floats;
+@include vf-u-off-screen;
 @include vf-u-margin-collapse;
 
 // site specific
