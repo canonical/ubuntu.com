@@ -13,6 +13,7 @@ USAGE="Usage
   $ ./run \\
     [-p|--port NUM]          # Specify local port for server \\
     [-m|--node-module PATH]  # A path to a local node module to use instead of the installed dependencies \\
+    [-d|--detach]            # Detach container to the backgorund \\
     [--no-debug]             # Turn off Django's DEBUG setting \\
     [COMMAND]                # Optionally provide a command to run
 
@@ -73,6 +74,7 @@ else
 fi
 
 # Defaults
+DETACH=''
 PORT=8000
 DJANGO_DEBUG=true
 
@@ -100,6 +102,7 @@ while [[ -n "${1:-}" ]] && [[ "${1:0:1}" == "-" ]]; do
     key="$1"
 
     case $key in
+        -d|--detach) DETACH='--detach' ;;
         -p|--port)
             if [ -z "${2:-}" ]; then invalid; fi
             PORT="$2"
@@ -134,25 +137,54 @@ docker_run() {
 }
 
 docker_django () {
+  container_name="${project}-django"
+
+  # Kill any previously running containers
+  if docker ps | grep -q ${container_name}; then
+    echo "Killing previous container:"
+    docker kill ${container_name} || true
+  fi
+
   # Run Django using the docker image
   docker_run  \
+    --name ${container_name} \
     --volume ${project}-dependencies:/usr/local/lib/python2.7/site-packages  `# Store dependencies in a docker volume`  \
     --publish ${PORT}:${PORT}  `# Export the server port`  \
     --env PORT=${PORT}  `# Set the port correctly`  \
+    ${DETACH} `# Detach from session if flag is set`  \
     $django_image $@  `# Run the django image`
 }
 
 docker_yarn () {
+  container_name="${project}-yarn"
+
+  # Kill any previously running containers
+  if docker ps | grep -q ${container_name}; then
+    echo "Killing previous container:"
+    docker kill ${container_name} || true
+  fi
+
   # Run "yarn" from the "node" image
   docker_run  \
+    --name ${container_name} \
     --volume ${CANONICAL_WEBTEAM_YARN_CACHE_VOLUME:-canonical-webteam-yarn-cache}:/home/shared/.cache/yarn/  `# Bind yarn cache to volume` \
     ${module_volumes[@]+"${module_volumes[@]}"}  `# Add any override modules as volumes`  \
     $yarn_image $@              `# Use the image for node version 7`
 }
 
 yarn_install () {
+  container_name="${project}-yarn-install"
+
+  # Kill any previously running containers
+  if docker ps | grep -q ${container_name}; then
+    echo "Killing previous container:"
+    docker kill ${container_name} || true
+  fi
+
   # Install yarn dependencies, without module overrides
-  docker_run $yarn_image install
+  docker_run \
+    --name ${container_name} \
+    ${yarn_image} install
 }
 
 clean_cache () {
@@ -177,7 +209,7 @@ case $run_command in
 
     # Run watch command in the background
     if [[ ${1:-} == "--watch" ]] || [[ ${1:-} == "-w" ]]; then
-      container_name="yarn-$(date +'%s')"
+      container_name="${project}-yarn-$(date +'%s')"
       trap 'docker kill ${container_name}' EXIT
       docker_run  \
         --name ${container_name}  `# Name the unit so it can be killed` \
@@ -202,6 +234,10 @@ case $run_command in
     docker_django test
   ;;
   "clean")
+    running_containers="$(docker ps -aq --filter name=${project})"
+    if [ -n "${running_containers}" ]; then
+      docker rm --force $running_containers
+    fi
     rm -rf node_modules .docker-project
     docker volume rm --force ${project}-dependencies
   ;;
@@ -212,4 +248,3 @@ case $run_command in
   "yarn") docker_yarn $@ ;;
   *) invalid ;;
 esac
-
