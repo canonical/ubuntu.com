@@ -46,13 +46,9 @@
     &__item {
       display: block;
       margin-bottom: 0;
-      
-      @media only screen and (min-width: $navigation-threshold) {
-        margin-bottom: 1.5rem;
-      }
-      
+            
       @media only screen and (min-width: $navigation-threshold + 1) {
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
       }
     }
     
@@ -60,11 +56,11 @@
       @include footer-title;
       border-top: 1px solid $color-mid-light;
       background-image: url("#{$asset-server-url}7bd1bd7b-arrow_down_9fa097.svg");
-      background-position: 96% 50%;
+      background-position: calc(100% - 10px) 50%;
       background-repeat: no-repeat;
       background-size: 13px 13px;
       font-size: .857142857rem;
-      padding: 10px 0;
+      padding: 10px 0 5px;
 
       @media only screen and (min-width: $navigation-threshold) {
         background: none;
@@ -81,11 +77,11 @@
       a:link,
       a:visited {
         color: $color-mid-dark;
-        font-weight: normal;
         padding-left: 10px;
         
         @media only screen and (min-width: $navigation-threshold) {
           color: $color-dark;
+          font-weight: normal;
           padding-left: 0;
         }
       }
@@ -180,7 +176,7 @@
     }
     
     &__content {
-      font-size: .8125rem;
+      font-size: .75rem;
     }
     
     .button--primary {
