@@ -1,10 +1,13 @@
 // Site specific list styling
+$twitter:   #1da1f2; 
+$google:    #dc4e41;
+$linkedin:  #0274b3;
+$facebook:  #3b5898;
 
 @mixin list-link {
-  background-size: 100%;
   display: block;
   height: 32px;
-  text-indent: -999em;
+  fill: $color-mid-dark;
   width: 32px;
 }
 
@@ -24,26 +27,42 @@
        float: left;
     }
     
+    .p-inline-list_icon {
+      @include list-link;
+    }
+    
     .p-inline-list__link {
       &--twitter {
         @include list-link;
-        background-image: url('#{$asset-server-url}f672b2a5-twitter-social.svg');
+        
+        &:hover .twitter-icon {
+          fill: $twitter;
+        }
       }
       
       &--google {
         @include list-link;
-        background-image: url('#{$asset-server-url}cbbe083c-logo_google-plus.svg');
+        
+        &:hover .google-plus {
+          fill: $google;
+        }
       }
-      
+            
       &--facebook {
         @include list-link;
-        background-image: url('#{$asset-server-url}18010ac5-facebook-social.svg');
-      }
-
+        
+        &:hover .facebook-icon {
+          fill: $facebook;
+        }
+      }      
+      
       &--linkedin {
         @include list-link;
-        background-image: url('#{$asset-server-url}ea3cd34b-linkedin-icon.svg');
-      }
+        
+        &:hover .linkedin-icon {
+          fill: $linkedin;
+        }
+      }      
     }
   }  
 }
