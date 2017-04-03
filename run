@@ -184,6 +184,7 @@ yarn_install () {
   # Install yarn dependencies, without module overrides
   docker_run \
     --name ${container_name} \
+    --volume ${CANONICAL_WEBTEAM_YARN_CACHE_VOLUME:-canonical-webteam-yarn-cache}:/home/shared/.cache/yarn/  `# Bind yarn cache to volume` \
     ${yarn_image} install
 }
 
