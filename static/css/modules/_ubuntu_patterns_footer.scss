@@ -60,13 +60,12 @@
       background-repeat: no-repeat;
       background-size: 13px 13px;
       font-size: .857142857rem;
-      padding: 10px 0 5px;
+      padding: 10px 0;
 
       @media only screen and (min-width: $navigation-threshold) {
         background: none;
         border: 0;
         color: $color-dark;
-        font-size: 1rem;
         padding: 0 0 6px;
       }
       
@@ -124,12 +123,14 @@
       background-position: 5px center;
       background-repeat: no-repeat;
       background-size: 14px 14px;
-      border-bottom: 1px solid $color-dark;
+      border-bottom: 1px solid $color-mid-dark;
       display: block;
       font-size: .857142857rem;
       left: auto;
+      margin-bottom: -1px;
       padding: 10px 0 10px 30px;
       position: relative;
+      z-index: 2;
       
       @media only screen and (min-width: $navigation-threshold) {
         display: none;
