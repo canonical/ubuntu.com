@@ -120,6 +120,15 @@ while [[ -n "${1:-}" ]] && [[ "${1:0:1}" == "-" ]]; do
     shift
 done
 
+kill_docker_container() {
+  container_name="${1}"
+  # Kill any previously running containers
+  if docker ps | grep -q ${container_name}; then
+    echo "Killing previous container:"
+    docker kill ${container_name} || true
+  fi
+}
+
 docker_run() {
   # The standard set of "docker run" arguments
 
@@ -138,12 +147,7 @@ docker_run() {
 
 docker_django () {
   container_name="${project}-django"
-
-  # Kill any previously running containers
-  if docker ps | grep -q ${container_name}; then
-    echo "Killing previous container:"
-    docker kill ${container_name} || true
-  fi
+  kill_docker_container "${container_name}"
 
   # Run Django using the docker image
   docker_run  \
@@ -157,12 +161,7 @@ docker_django () {
 
 docker_yarn () {
   container_name="${project}-yarn"
-
-  # Kill any previously running containers
-  if docker ps | grep -q ${container_name}; then
-    echo "Killing previous container:"
-    docker kill ${container_name} || true
-  fi
+  kill_docker_container "${container_name}"
 
   # Run "yarn" from the "node" image
   docker_run  \
@@ -174,12 +173,7 @@ docker_yarn () {
 
 yarn_install () {
   container_name="${project}-yarn-install"
-
-  # Kill any previously running containers
-  if docker ps | grep -q ${container_name}; then
-    echo "Killing previous container:"
-    docker kill ${container_name} || true
-  fi
+  kill_docker_container "${container_name}"
 
   # Install yarn dependencies, without module overrides
   docker_run \
@@ -211,7 +205,7 @@ case $run_command in
     # Run watch command in the background
     if [[ ${1:-} == "--watch" ]] || [[ ${1:-} == "-w" ]]; then
       container_name="${project}-yarn-$(date +'%s')"
-      trap 'docker kill ${container_name}' EXIT
+      kill_docker_container "${container_name}"
       docker_run  \
         --name ${container_name}  `# Name the unit so it can be killed` \
         --detach                  `# Run in the background` \
