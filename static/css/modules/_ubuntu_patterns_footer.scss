@@ -13,10 +13,22 @@
     -webkit-box-shadow: 0 4px 4px -4px rgba(0,0,0,.3) inset;
     box-shadow: 0 4px 4px -4px rgba(0,0,0,.3) inset;
     
+    @media only screen and (max-width: $navigation-threshold) {
+      &__nav-col {
+        width: 100%;
+      }
+    }
+    
+    @media only screen and (max-width: $navigation-threshold) {
+      .strip-inner-wrapper--nav {
+        padding: 0 !important;
+      }
+    }
+    
     &__nav {
       border-bottom: 1px solid $color-mid-light;
 
-      @media only screen and (min-width: $breakpoint-medium) {
+      @media only screen and (min-width: $navigation-threshold) {
         border-bottom: 1px dotted $color-mid-dark;
         margin-bottom: 20px;
         padding: 20px 0;
@@ -35,7 +47,7 @@
       display: block;
       margin-bottom: 0;
       
-      @media only screen and (min-width: $breakpoint-medium) {
+      @media only screen and (min-width: $navigation-threshold) {
         margin-bottom: 1.5rem;
       }
       
@@ -51,14 +63,19 @@
       background-position: 96% 50%;
       background-repeat: no-repeat;
       background-size: 13px 13px;
-      font-size: .8125em;
+      font-size: .857142857em;
       padding: 10px 0;
 
-      @media only screen and (min-width: $breakpoint-medium) {
+      @media only screen and (min-width: $navigation-threshold) {
         background: none;
         border: 0;
         color: $color-dark;
-        padding: 0;
+        font-size: 1em;
+        padding: 0 0 6px;
+      }
+      
+      @media only screen and (min-width: $breakpoint-large) {
+        font-size: .8125em;
       }
       
       a:link,
@@ -67,12 +84,12 @@
         font-weight: normal;
         padding-left: 10px;
         
-        @media only screen and (min-width: $breakpoint-medium) {
+        @media only screen and (min-width: $navigation-threshold) {
           color: $color-dark;
           padding-left: 0;
         }
       }
-            
+                  
       a::after {
         content: ""; /* hide the default > */
       }
@@ -81,7 +98,7 @@
       + .second-level-nav {
         display: none;
         
-        @media only screen and (min-width: $breakpoint-medium) {
+        @media only screen and (min-width: $navigation-threshold) {
           display: block;
         }
       }
@@ -89,6 +106,10 @@
       &.active {
         background-image: url("#{$asset-server-url}43e2b367-arrow_up_9fa097.png");
   
+        @media only screen and (min-width: $navigation-threshold) {
+          background: none;
+        }
+        
         + .second-level-nav {
           display: block;
         }
@@ -114,7 +135,7 @@
       padding: 5px 0 10px 30px;
       position: relative;
       
-      @media only screen and (min-width: $breakpoint-medium) {
+      @media only screen and (min-width: $navigation-threshold) {
         display: none;
       }
     }
@@ -132,11 +153,16 @@
         color: $color-dark;
         display: block;
         font-size: .8125em;
-        padding: 10px 10px;
+        padding: 10px;
         
-        @media only screen and (min-width: $breakpoint-medium) {
+        @media only screen and (min-width: $navigation-threshold) {
           border: 0;
-          padding: 0;
+          font-size: 1em;
+          padding: 0 0 5px 0;
+        }
+        
+        @media only screen and (min-width: $breakpoint-large) {
+          font-size: .8125em;
         }
       }
     }
@@ -145,8 +171,12 @@
   .p-footer--secondary {
     padding: 20px 10px 0;
     
-    @media only screen and (min-width: $breakpoint-medium + 1) {
+    @media only screen and (min-width: $navigation-threshold) {
       padding: 0; 
+    }
+    
+    a:hover {
+      color: currentColor;
     }
     
     &__content {
@@ -168,7 +198,7 @@
       .p-inline-list__item {
         display: block;
         
-        @media only screen and (min-width: $breakpoint-medium) {
+        @media only screen and (min-width: $navigation-threshold) {
           display: inline-block;  
         }
       }
@@ -177,7 +207,7 @@
 
   // social icons in footer
   .p-inline-list-icons {
-    @media only screen and (min-width: $breakpoint-medium) {
+    @media only screen and (min-width: $navigation-threshold) {
       float: right;
       padding-left: 0;
     }
