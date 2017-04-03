@@ -59,7 +59,7 @@
       background-position: calc(100% - 10px) 50%;
       background-repeat: no-repeat;
       background-size: 13px 13px;
-      font-size: .857142857rem;
+      font-size: .8125rem;
       padding: 10px 0;
 
       @media only screen and (min-width: $navigation-threshold) {
@@ -120,7 +120,7 @@
     .link-to-top {
       @include footer-title;
       background-image: url("#{$asset-server-url}e4a5a8c0-picto-upload-warmgrey.svg");
-      background-position: 5px center;
+      background-position: 10px center;
       background-repeat: no-repeat;
       background-size: 14px 14px;
       border-bottom: 1px solid $color-mid-dark;
@@ -140,30 +140,30 @@
         color: $color-mid-dark;
       }
     }
-  }
-  
-  // second level nav - HTML for this can't be changed as it's used in the main nav also
-  .second-level-nav {
-    margin: 0;
     
-    li {
-      margin-bottom: 0;
+    // second level nav - HTML for this can't be changed as it's used in the main nav also
+    .second-level-nav {
+      margin: 0;
       
-      a {
-        border-top: 1px solid $color-mid-light;
-        color: $color-dark;
-        display: block;
-        font-size: .8125rem;
-        padding: 10px 10px 10px 20px;
+      li {
+        margin-bottom: 0;
         
-        @media only screen and (min-width: $navigation-threshold) {
-          border: 0;
-          font-size: 1rem;
-          padding: 0 0 5px 0;
-        }
-        
-        @media only screen and (min-width: $breakpoint-large) {
+        a {
+          border-top: 1px solid $color-mid-light;
+          color: $color-dark;
+          display: block;
           font-size: .8125rem;
+          padding: 10px 10px 10px 20px;
+          
+          @media only screen and (min-width: $navigation-threshold) {
+            border: 0;
+            font-size: 1rem;
+            padding: 0 0 5px 0;
+          }
+          
+          @media only screen and (min-width: $breakpoint-large) {
+            font-size: .8125rem;
+          }
         }
       }
     }
