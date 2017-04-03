@@ -117,7 +117,7 @@
       }
     }
     
-    .top-link {
+    .link-to-top {
       @include footer-title;
       background-image: url("#{$asset-server-url}e4a5a8c0-picto-upload-warmgrey.svg");
       background-position: 5px center;
@@ -134,6 +134,10 @@
       
       @media only screen and (min-width: $navigation-threshold) {
         display: none;
+      }
+      
+      a {
+        color: $color-mid-dark;
       }
     }
   }
