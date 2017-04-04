@@ -37,6 +37,7 @@
       background-position: calc(100% - 10px) 50%;
       background-repeat: no-repeat;
       background-size: 13px 13px;
+      border-bottom: 1px solid $color-mid-light;
       color: $color-mid-dark;
       font-size: .8125rem;
       line-height: 1.5em;
@@ -56,18 +57,18 @@
       &::before {
         // addes the external icon
         background-image: url("#{$asset-server-url}e1b12fdd-external-link-9fa097.svg");
-        background-position: 0 0;
+        background-position: 0 3px;
         background-repeat: no-repeat;
         background-size: 14px 14px;
         content: "";
-        height: 14px;
+        height: 17px;
         left: 10px;
         position: absolute;
         width: 14px;
       }
       
       &.active {
-        border-bottom: 1px solid #d4d7d4;
+        border-bottom: 1px solid $color-mid-light;
       }
 
       @media only screen and (max-width: $breakpoint-medium) {
@@ -84,8 +85,8 @@
       margin: 0;
       
       li {
-        border-bottom: 1px solid #d4d7d4;
-        border-left: 1px solid #d4d7d4;
+        border-bottom: 1px solid $color-mid-light;
+        border-left: 1px solid $color-mid-light;
         box-sizing: border-box;
         display: inline;
         float: left;
@@ -107,8 +108,10 @@
         }
 
         &.more {
-          border-top: 1px solid #d4d7d4;
+          border-bottom: 1px solid $color-mid-light;
+          border-top: 1px solid $color-mid-light;
           margin-top: -1px;
+          margin-bottom: 20px;
 
           @media only screen and (max-width: $breakpoint-medium) {
             padding: 0;
@@ -127,6 +130,7 @@
         }
       }
     }
+    
   }
 
   /// Ubuntu websites global nav
