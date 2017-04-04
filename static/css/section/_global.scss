@@ -14,12 +14,7 @@
 
 /// Small screens
 .p-footer {
-  /// margin for cookie message
-  .legal.has-cookie {
-    /* if the cookie message is being displayed add padding so the legal links are still visible */
-    padding-bottom: 70px;
-  }
-
+  
   #nav-global {
     border: 0;
     font-size: .8125rem;
@@ -30,8 +25,8 @@
       
       &.active {
         /// display when clicked
-        background-repeat: no-repeat;
         background-position: 96% 50%;
+        background-repeat: no-repeat;
         background-size: 13px 13px;
         display: block;
       }
@@ -61,13 +56,13 @@
       &::before {
         // addes the external icon
         background-image: url("#{$asset-server-url}e1b12fdd-external-link-9fa097.svg");
-        background-size: 14px 14px;
         background-position: 0 0;
         background-repeat: no-repeat;
+        background-size: 14px 14px;
         content: "";
-        position: absolute;
-        left: 10px;
         height: 14px;
+        left: 10px;
+        position: absolute;
         width: 14px;
       }
       
@@ -89,17 +84,16 @@
       margin: 0;
       
       li {
-        margin: 0;
-        font-size: .8125rem;
-        line-height: 2em;
-        display: inline-block;
-        width: 50%;
-        float: left;
-        display: inline-block;
-        box-sizing: border-box;
         border-bottom: 1px solid #d4d7d4;
         border-left: 1px solid #d4d7d4;
-
+        box-sizing: border-box;
+        display: inline;
+        float: left;
+        font-size: .8125rem;
+        line-height: 2em;
+        margin: 0;
+        width: 50%;
+        
         @media only screen and (max-width: $breakpoint-medium) {
           padding: 5px;
         }
@@ -123,11 +117,12 @@
 
         a {
           font-size: .8125rem;
-          padding-left: 10px;
           line-height: 0;
+          padding-left: 10px;
+          
           &:link,
           &:visited {
-            color: $cool-grey;
+            color: $color-dark;
           }
         }
       }
@@ -152,7 +147,6 @@
 
 /// Medium screens
 @media only screen and (min-width : $breakpoint-medium) {
-  // global nav
   #nav-global {
     background: $color-light;
     box-shadow: none;
@@ -252,28 +246,26 @@
 
     a:link,
     a:visited {
+      border-bottom: 0;
+      border-top: 3px solid transparent;
       color: $color-dark;
+      display: block;
       font-size: .8125rem;
       font-weight: 300;
       line-height: 1.6;
-      border-top: 3px solid transparent;
-      border-bottom: 0;
-      margin-right: 10px;
-      margin-left: 10px;
-      padding-top: 3px;
-      padding-bottom: 4px;
+      list-style-image: none;
+      margin: 0 10px;
+      padding: 3px 0 4px;
       position: relative;
       text-decoration: none;
       transition: opacity 0.25s ease-in-out;
-      display: block;
-      list-style-image: none;
     }
 
     .open {
       background: $color-x-light;
-      min-width: 120px;
       border-left: 1px solid $color-mid-light;
       border-right: 1px solid $color-mid-light;
+      min-width: 120px;
   
       a:link,
       a:visited,
