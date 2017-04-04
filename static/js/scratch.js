@@ -118,7 +118,7 @@ core.cookiePolicy = function() {
                 var range = document.createRange();
                 var cookieNode = range.createContextualFragment('<div class="cookie-policy"><div class="wrapper"><a href="?cp=close" class="link-cta">Close</a><p>We use cookies to improve your experience. By your continued use of this site you accept such use. To change your settings please <a href="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy#cookies">see our policy</a>.</p></div></div>');
                 document.body.insertBefore(cookieNode, document.body.lastChild);
-                document.querySelector('footer.global .legal').classList.add('has-cookie');
+                document.querySelector('footer.p-footer').classList.add('has-cookie');
                 document.querySelector('.cookie-policy .link-cta').addEventListener('click', function(e) {
                     e.preventDefault();
                     state('close');
@@ -156,15 +156,8 @@ core.cookiePolicy = function() {
 
 // Toogles classes the active and open classes on the footer titles
 core.footerMobileNav = function() {
-    var footerTitlesA = document.querySelectorAll('.footer-a li h2');
-    var footerTitlesB = document.querySelectorAll('.footer-b li h2');
+    var footerTitlesA = document.querySelectorAll('footer li h2');
     footerTitlesA.forEach(function(node) {
-        node.addEventListener('click', function(e) {
-            e.target.classList.toggle('active');
-        });
-    });
-
-    footerTitlesB.forEach(function(node) {
         node.addEventListener('click', function(e) {
             e.target.classList.toggle('active');
         });
@@ -192,7 +185,7 @@ core.globalInit = function() {
     } else if (document.documentElement.clientWidth >= 768) {
         core.globalPrepend = 'body';
         core.setupGlobalNav();
-        document.querySelector('footer.global').classList.add('no-global');
+        document.querySelector('footer.p-footer').classList.add('no-global');
     }
 };
 
@@ -210,7 +203,7 @@ core.redrawGlobal = function() {
         }
     } else if (document.documentElement.clientWidth >= 768 &&
         core.globalPrepend !== 'body') {
-        document.querySelector('footer.global').classList.add('no-global');
+        document.querySelector('footer.p-footer').classList.add('no-global');
         core.globalPrepend = 'body';
         if (globalNav) {
             var navGlobalFooter = document.querySelector('.nav-global-footer');
