@@ -120,12 +120,12 @@ while [[ -n "${1:-}" ]] && [[ "${1:0:1}" == "-" ]]; do
     shift
 done
 
-kill_docker_container() {
+rm_docker_container() {
   container_name="${1}"
   # Kill any previously running containers
-  if docker ps | grep -q ${container_name}; then
-    echo "Killing previous container:"
-    docker kill ${container_name} || true
+  if docker ps --all | grep -q ${container_name}; then
+    echo "Removing container:"
+    docker rm --force ${container_name} || true
   fi
 }
 
@@ -147,7 +147,7 @@ docker_run() {
 
 docker_django () {
   container_name="${project}-django"
-  kill_docker_container "${container_name}"
+  rm_docker_container "${container_name}"
 
   # Run Django using the docker image
   docker_run  \
@@ -161,7 +161,7 @@ docker_django () {
 
 docker_yarn () {
   container_name="${project}-yarn"
-  kill_docker_container "${container_name}"
+  rm_docker_container "${container_name}"
 
   # Run "yarn" from the "node" image
   docker_run  \
@@ -173,7 +173,7 @@ docker_yarn () {
 
 yarn_install () {
   container_name="${project}-yarn-install"
-  kill_docker_container "${container_name}"
+  rm_docker_container "${container_name}"
 
   # Install yarn dependencies, without module overrides
   docker_run \
@@ -205,12 +205,12 @@ case $run_command in
     # Run watch command in the background
     if [[ ${1:-} == "--watch" ]] || [[ ${1:-} == "-w" ]]; then
       container_name="${project}-yarn-watch"
-      kill_docker_container "${container_name}"
+      rm_docker_container "${container_name}"
       docker_run  \
         --name ${container_name}  `# Name the unit so it can be killed` \
         --detach                  `# Run in the background` \
         $yarn_image run watch     `# Use the image for node version 7`
-      trap "kill_docker_container '${container_name}'" EXIT
+      trap "rm_docker_container '${container_name}'" EXIT
     fi
 
     docker_django
