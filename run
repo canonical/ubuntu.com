@@ -230,9 +230,9 @@ case $run_command in
     docker_django test
   ;;
   "clean")
-    running_containers="$(docker ps -aq --filter name=${project})"
-    if [ -n "${running_containers}" ]; then
-      docker rm --force $running_containers
+    project_containers="$(docker ps -aq --filter name=${project})"
+    if [ -n "${project_containers}" ]; then
+      docker rm --force $project_containers
     fi
     rm -rf node_modules .docker-project
     docker volume rm --force ${project}-dependencies
