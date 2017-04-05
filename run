@@ -210,7 +210,7 @@ case $run_command in
         --name ${container_name}  `# Name the unit so it can be killed` \
         --detach                  `# Run in the background` \
         $yarn_image run watch     `# Use the image for node version 7`
-      trap "kill_docker_container '${container_name}'" EXIT INT TERM
+      trap "kill_docker_container '${container_name}'" EXIT
     fi
 
     docker_django
