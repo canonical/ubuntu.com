@@ -204,12 +204,13 @@ case $run_command in
 
     # Run watch command in the background
     if [[ ${1:-} == "--watch" ]] || [[ ${1:-} == "-w" ]]; then
-      container_name="${project}-yarn-$(date +'%s')"
+      container_name="${project}-yarn-watch"
       kill_docker_container "${container_name}"
       docker_run  \
         --name ${container_name}  `# Name the unit so it can be killed` \
         --detach                  `# Run in the background` \
         $yarn_image run watch     `# Use the image for node version 7`
+      trap "kill_docker_container '${container_name}'" EXIT INT TERM
     fi
 
     docker_django
