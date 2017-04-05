@@ -26,7 +26,7 @@ body {
 .heading-6 {
   &--headline {
     margin-bottom: 2rem;
-    
+
     @media only screen and (min-width : $breakpoint-medium) {
       margin-bottom: 3.75rem;
     }
@@ -126,6 +126,20 @@ body {
   &.row-cool-grey {
     background-color: $cool-grey;
     color: $white;
+  }
+
+  &.row-system-management {
+    @media only screen and (min-width: $breakpoint-medium) {
+      background-image: url('#{$asset-server-url}fe2cdde9-features-graph.png');
+      background-position: 158% 45px;
+      background-repeat: no-repeat;
+      background-size: 56%;
+    }
+
+    @media only screen and (min-width: $breakpoint-large) {
+      background-position: right -45% top 60px;
+      background-size: 60%;
+    }
   }
 }
 
