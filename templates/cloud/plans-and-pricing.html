@@ -9,14 +9,12 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-hero strip-light">
-    <div class="strip-inner-wrapper equal-height">
-        <div class="seven-col equal-height__item">
+<section class="row row-hero strip-dark">
+    <div class="strip-inner-wrapper">
+        <div class="six-col">
             <h1>Plans and pricing</h1>
-            <p class="intro six-col">Ubuntu OpenStack offers the best economics of any commercially supported OpenStack solution. Canonical offers everything you need from fully managed clouds to training and support. We aim to be as easy and economical as possible to work with and that includes flexible pricing.</p>
-        </div>
-        <div class="five-col last-col align-center equal-height__item equal-height__align-vertically">
-            <img src="{{ ASSET_SERVER_URL }}d8e144cc-picto-reducecosts-midaubergine.svg" width="220" alt="" />
+            <p class="intro">Ubuntu OpenStack offers the best economics of any commercially supported OpenStack solution.</p>
+            <p>Canonical offers everything you need from fully managed clouds to training and support. We aim to be as easy and economical as possible to work with and that includes flexible pricing.</p>
         </div>
     </div>
 </section>
@@ -160,32 +158,36 @@
               <thead>
                 <tr>
                   <th scope="col">&nbsp;</th>
-                  <th scope="col">Price</th>
+                  <th scope="col" colspan="2">Price</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th rowspan="1" scope="row"><a href="/server/maas">MAAS</a></th>
-                  <td>FREE</td>
+                  <td colspan="2">FREE</td>
                 </tr>
                 <tr>
                   <th rowspan="1" scope="row"><a href="/cloud/juju">Juju</a></th>
-                  <td>FREE</td>
+                  <td colspan="2">FREE</td>
                 </tr>
                 <tr>
                   <th rowspan="1" scope="row"><a href="/cloud/openstack">Ubuntu OpenStack</a></th>
-                  <td>FREE</td>
+                  <td colspan="2">FREE</td>
                 </tr>
                 <tr>
-                  <th rowspan="1" scope="row"><a href="/support">Landscape</a></th>
-                  <td>
-                      Free up to ten machines <br />
-                      or <br />
-                      $0.01 per machine hour (SaaS) <br />
-                      or <br />
-                      sold as part of Ubuntu Advantage (SaaS or on-premises)
+                  <th rowspan="2" scope="row"><a href="/support">Landscape</a></th>
+                  <td width="50%">
+                      <h6 class="no-margin-bottom">SaaS</h6>
+                      <p>$0.01 per machine hour</p>
+                  </td>
+                  <td width="50%">
+                      <h6 class="no-margin-bottom">On-premises</h6>
+                      <p>Free up to ten machines</p>
                   </td>
                 </tr>
+                <tr>
+                    <td colspan="2">Or comes as part of <a href="/support/plans-and-pricing">Ubuntu Advantage</a> subscription</td>
+                <tr>
               </tbody>
             </table>
         </div>
