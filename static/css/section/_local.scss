@@ -26,7 +26,7 @@ body {
 .heading-6 {
   &--headline {
     margin-bottom: 2rem;
-    
+
     @media only screen and (min-width : $breakpoint-medium) {
       margin-bottom: 3.75rem;
     }
@@ -148,6 +148,13 @@ body {
 
   .last-col {
     margin-bottom: 20px;
+  }
+
+  @media only screen and (max-width: $breakpoint-medium) {
+    .list-ticks--canonical:not(.last-col) li:last-of-type {
+      border-bottom: 1px dotted $warm-grey;
+      padding-bottom: 10px;
+    }
   }
 }
 
