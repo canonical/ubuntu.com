@@ -726,6 +726,24 @@
     }
   }
 
+  // @subsection /cloud/plans-and-pricing
+  &.cloud-plans-and-pricing {
+    .row-ubuntu-advantage-promo {
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        background-image: url('#{$asset-server-url}65274d19-landscape-screenshot.png?W=600');
+        background-position: 158% 45px;
+        background-repeat: no-repeat;
+        background-size: 56%;
+      }
+
+      @media only screen and (min-width: $breakpoint-large) {
+        background-position: right -100px top 40px;
+        background-size: 40%;
+      }
+    }
+  }
+
   // @subsection /cloud/training
   &.cloud-training  {
 

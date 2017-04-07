@@ -163,6 +163,13 @@ body {
   .last-col {
     margin-bottom: 20px;
   }
+
+  @media only screen and (max-width: $breakpoint-medium) {
+    .list-ticks--canonical:not(.last-col) li:last-of-type {
+      border-bottom: 1px dotted $warm-grey;
+      padding-bottom: 10px;
+    }
+  }
 }
 
 /// XXX Peter - marketo required field marker

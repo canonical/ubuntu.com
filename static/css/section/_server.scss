@@ -125,6 +125,21 @@
         padding: 20px 0;
       }
     }
+
+    .row--kernal-livepatching {
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        background-image: url('#{$asset-server-url}4d62c90a-applying-Livepatches.png?W=600');
+        background-position: 158% 45px;
+        background-repeat: no-repeat;
+        background-size: 56%;
+      }
+
+      @media only screen and (min-width: $breakpoint-large) {
+        background-position: right -100px center;
+        background-size: 40%;
+      }
+    }
   }
   // @subsection /server/maas
   &.server-maas {
