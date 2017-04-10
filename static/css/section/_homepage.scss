@@ -2134,7 +2134,7 @@ body.homepage-core {
 
 body.homepage-advantage {
   header.banner {
-    border-bottom: none;
+    border: 0;
     box-shadow: none;
     margin-bottom: 0;
   }
@@ -2196,5 +2196,122 @@ body.homepage-containers-ebook {
     &__image {
       width: 411px;
     }
+  }
+}
+
+body.homepage-1704 {
+  header.banner {
+    border-bottom: none;
+    box-shadow: none;
+    margin-bottom: 0;
+  }
+
+  .row-hero {
+    border: 0;
+    box-sizing: border-box;
+    color: $white;
+    display: block;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    
+    @media only screen and (min-width : $breakpoint-medium) {
+      padding: 20px 20px 0;
+    }
+    
+    @media only screen and (min-width : $breakpoint-large) {
+      padding-top: 40px;
+    }
+    
+    .countdown {
+      align-items: center;
+      background-image: url('#{$asset-server-url}12bdc8c9-Laptop.svg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: auto 100%;
+      display: flex;
+      justify-content: center;
+      min-height: 200px;
+      margin: 20px auto;
+      position: relative;
+      text-align: center;
+      
+      @media only screen and (min-width : $breakpoint-medium) {
+        background-size: 100% auto;
+        min-height: 278px;
+        margin: 40px auto;
+        width: 100%;
+      }
+      
+      @mixin countdown-list {
+        background: $white;
+        border-radius: 4px;
+        height: 3rem;
+        overflow: hidden;
+        width: 3rem;
+        top: 0;
+        
+        @media only screen and (min-width : $breakpoint-medium) {
+          height: 5rem;
+          width: 5rem;
+        }
+      }
+      
+      &__list--years {
+        @include countdown-list;
+      }
+      
+      &__list--months {
+        @include countdown-list;
+        margin-left: 20px;
+      }
+
+      &__item {
+        color: $color-brand;
+        font-size: 200%;
+        height: 100%;
+        vertical-align: middle;
+        padding: 0;
+        margin: 0;
+        
+        @media only screen and (min-width : $breakpoint-medium) {
+          font-size: 300%;
+        }
+      }
+    }
+    
+    &__inner {
+      background-image: url('#{$asset-server-url}ab1a7e82-background.png');
+      background-size: cover;
+      transition-duration: 1s;
+      padding: 0 20px;
+      margin: 0;
+            
+      @media only screen and (min-width : $breakpoint-large) {
+        max-width: 1084px;
+        margin: 0 auto;
+        padding: 0 50px 0;
+      }
+    }
+    
+    .equal-height__align-vertically {
+      align-items: flex-start;
+    }
+    
+    &__heading {
+      text-align: left;
+    }
+    
+    &__content {
+      
+      @media only screen and (min-width : $breakpoint-medium) {
+        min-height: 380px;
+      }
+      
+      @media only screen and (min-width : $breakpoint-large) {
+        min-height: 580px;
+      }
+    }
+        
   }
 }
