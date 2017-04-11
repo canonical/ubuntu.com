@@ -2265,14 +2265,24 @@ body.homepage-1704 {
         @include countdown-list;
         margin-left: 20px;
       }
-
+      
+      @mixin transition {
+        @for $i from 1 through 15 {
+          &:nth-child(#{$i}) {
+            transition: all .1s #{$i * .1}s ease-in;
+          }
+        }
+      }
+      
       &__item {
+        @include transition;
+        animation-iteration-count: 3;
         color: $color-brand;
         font-size: 200%;
         height: 100%;
-        vertical-align: middle;
-        padding: 0;
         margin: 0;
+        padding: 0;
+        vertical-align: middle;
         
         @media only screen and (min-width : $breakpoint-medium) {
           font-size: 300%;
