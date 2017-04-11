@@ -2212,7 +2212,7 @@ body.homepage-1704 {
     color: $white;
     display: block;
     margin: 0;
-    padding: 0;
+    padding: 0 0 30px;
     overflow: hidden;
     
     @media only screen and (min-width : $breakpoint-medium) {
@@ -2232,28 +2232,36 @@ body.homepage-1704 {
       display: flex;
       justify-content: center;
       min-height: 200px;
-      margin: 20px auto;
+      margin: 0 auto 30px;
       position: relative;
       text-align: center;
       
       @media only screen and (min-width : $breakpoint-medium) {
         background-size: 100% auto;
         min-height: 278px;
-        margin: 40px auto;
+        margin: 0 auto;
         width: 100%;
       }
       
       @mixin countdown-list {
-        background: $white;
-        border-radius: 4px;
-        height: 3rem;
+        height: 4rem;
         overflow: hidden;
-        width: 3rem;
-        top: 0;
+        padding: 0;
+        position: relative;
+        top: -1%;
+        width: 4rem;
+
         
         @media only screen and (min-width : $breakpoint-medium) {
-          height: 5rem;
-          width: 5rem;
+          height: 4.5rem;
+          top: -1.5%;
+          width: 4.5rem;
+        }
+
+        @media only screen and (min-width : $breakpoint-large) {
+          height: 6rem;
+          top: -4%;
+          width: 6rem;
         }
       }
       
@@ -2267,25 +2275,39 @@ body.homepage-1704 {
       }
       
       @mixin transition {
-        @for $i from 1 through 15 {
+        @for $i from 1 through 14 {
           &:nth-child(#{$i}) {
-            transition: all .1s #{$i * .1}s ease-in;
+            animation: fadein .2s #{$i * .15}s linear forwards;
           }
         }
       }
       
       &__item {
         @include transition;
-        animation-iteration-count: 3;
+        align-items: center;
+        background: $white;
+        border-radius: 4px;
         color: $color-brand;
+        display: flex;
         font-size: 200%;
         height: 100%;
+        justify-content: center;
+        left: 0;
         margin: 0;
+        opacity: 0;
         padding: 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
         vertical-align: middle;
+        width: 100%;
         
         @media only screen and (min-width : $breakpoint-medium) {
-          font-size: 300%;
+          font-size: 250%;
+        }
+
+        @media only screen and (min-width : $breakpoint-large) {
+          font-size: 360%;
         }
       }
     }
