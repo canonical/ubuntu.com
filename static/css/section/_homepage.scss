@@ -2134,7 +2134,7 @@ body.homepage-core {
 
 body.homepage-advantage {
   header.banner {
-    border-bottom: none;
+    border: 0;
     box-shadow: none;
     margin-bottom: 0;
   }
@@ -2196,5 +2196,153 @@ body.homepage-containers-ebook {
     &__image {
       width: 411px;
     }
+  }
+}
+
+body.homepage-1704 {
+  header.banner {
+    border-bottom: none;
+    box-shadow: none;
+    margin-bottom: 0;
+  }
+
+  .row-hero {
+    border: 0;
+    box-sizing: border-box;
+    color: $white;
+    display: block;
+    margin: 0;
+    padding: 0 0 30px;
+    overflow: hidden;
+    
+    @media only screen and (min-width : $breakpoint-medium) {
+      padding: 20px 20px 0;
+    }
+    
+    @media only screen and (min-width : $breakpoint-large) {
+      padding-top: 40px;
+    }
+    
+    .countdown {
+      align-items: center;
+      background-image: url('#{$asset-server-url}12bdc8c9-Laptop.svg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: auto 100%;
+      display: flex;
+      justify-content: center;
+      min-height: 200px;
+      margin: 20px auto 30px;
+      position: relative;
+      text-align: center;
+      
+      @media only screen and (min-width : $breakpoint-medium) {
+        background-size: 100% auto;
+        min-height: 278px;
+        margin: 0 auto;
+        width: 100%;
+      }
+      
+      @mixin countdown-list {
+        height: 4rem;
+        overflow: hidden;
+        padding: 0;
+        position: relative;
+        top: -6px;
+        width: 4rem;
+
+        
+        @media only screen and (min-width : $breakpoint-medium) {
+          height: 4.5rem;
+          top: -4px;
+          width: 4.5rem;
+        }
+
+        @media only screen and (min-width : $breakpoint-large) {
+          height: 6rem;
+          top: -12px;
+          width: 6rem;
+        }
+      }
+      
+      &__list--years {
+        @include countdown-list;
+      }
+      
+      &__list--months {
+        @include countdown-list;
+        margin-left: 20px;
+      }
+      
+      @mixin transition {
+        @for $i from 1 through 26 {
+          &:nth-child(#{$i}) {
+            animation: fadein .1s #{$i * .1}s linear forwards;
+          }
+        }
+      }
+      
+      &__item {
+        @include transition;
+        align-items: center;
+        background: $white;
+        border-radius: 4px;
+        color: $color-brand;
+        display: flex;
+        font-size: 200%;
+        height: 100%;
+        justify-content: center;
+        left: 0;
+        margin: 0;
+        opacity: 0;
+        padding: 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        vertical-align: middle;
+        width: 100%;
+        
+        @media only screen and (min-width : $breakpoint-medium) {
+          font-size: 250%;
+        }
+
+        @media only screen and (min-width : $breakpoint-large) {
+          font-size: 360%;
+        }
+      }
+    }
+    
+    &__inner {
+      background-image: url('#{$asset-server-url}ab1a7e82-background.png');
+      background-size: cover;
+      transition-duration: 1s;
+      padding: 0 20px;
+      margin: 0;
+            
+      @media only screen and (min-width : $breakpoint-large) {
+        max-width: 1084px;
+        margin: 0 auto;
+        padding: 0 50px 0;
+      }
+    }
+    
+    .equal-height__align-vertically {
+      align-items: flex-start;
+    }
+    
+    &__heading {
+      text-align: left;
+    }
+    
+    &__content {
+      @media only screen and (min-width : $breakpoint-medium) {
+        min-height: 380px;
+      }
+      
+      @media only screen and (min-width : $breakpoint-large) {
+        min-height: 580px;
+      }
+    }
+        
   }
 }
