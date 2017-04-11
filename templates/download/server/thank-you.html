@@ -19,10 +19,84 @@ Thanks for downloading Ubuntu Server
 
     <div class="row row-hero no-border">
         <div class="strip-inner-wrapper">
-            <h1>Thanks for downloading Ubuntu Server</h1>
-            <p>Your download should start automatically. If it doesn&rsquo;t, <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-server-{{ architecture }}.iso">download now</a>.</p>
+            <div class="twelve-col">
+                <h1>Thank you for downloading Ubuntu Server</h1>
+                {% if version and architecture %}
+                    <p>Your download should start automatically. If it doesn&rsquo;t, <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-server-{{ architecture }}.iso">download now</a>.</p>
+                {% endif %}
+            </div>
         </div>
     </div>
+    <div class="row strip-light">
+        <div class="strip-inner-wrapper">
+            <div class="eight-col">
+                <h2>Your next steps with Ubuntu Server</h2>
+                <p>
+                    Use Ubuntu&rsquo;s tools to help you provision and manage
+                    your servers
+                </p>
+            </div>
+            <div class="twelve-col">
+                <div class="six-col">
+                    <img src="{{ ASSET_SERVER_URL }}d0a84cb4-image-inventory-management.jpg"
+                        alt="Landscape inventory management" />
+                </div>
+                <div class="six-col last-col">
+                    <h3>Server management with Landscape</h3>
+                    <ul class="list-ticks--compact">
+                        <li>
+                            Landscape is the leading management tool to deploy,
+                            monitor and manage your Ubuntu servers
+                        </li>
+                        <li>
+                            It features Autopilot, the fastest way to build an
+                            OpenStack cloud
+                        </li>
+                        <li>
+                            Landscape is also available as  part of Ubuntu
+                            Advantage, Canonical&rsquo;s world-class support
+                            service
+                        </li>
+                    </ul>
+                    <p>
+                        <a href="https://landscape.canonical.com/"
+                            class="button--secondary">
+                            <span class="external">Get Landscape</span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row strip-light no-border">
+        <div class="strip-inner-wrapper">
+            <div class="six-col">
+                <h3>Server provisioning with MAAS</h3>
+                <ul class="list-ticks--compact">
+                    <li>
+                        Metal as a Service (MAAS) offers cloud style
+                        provisioning for physical servers
+                    </li>
+                    <li>
+                        Designed for building data centres with complex
+                        networks
+                    </li>
+                    <li>Supports Windows, Ubuntu, CentOS, RHEL and SUSE</li>
+                </ul>
+                <p>
+                    <a href="https://maas.io/" class="button--secondary">
+                        <span class="external">Get MAAS</span>
+                    </a>
+                </p>
+            </div>
+            <div class="six-col last-col">
+                <img src="{{ ASSET_SERVER_URL }}d0a84cb4-image-inventory-management.jpg"
+                    alt="Landscape inventory management" />
+            </div>
+        </div>
+    </div>
+
+
     <div class="row row-grey no-border">
         <div class="strip-inner-wrapper">
             <div class="box-grey twelve-col no-margin-bottom equal-height">
@@ -41,7 +115,7 @@ Thanks for downloading Ubuntu Server
                     </div>
                     <h3>Ubuntu Advantage</h3>
                     <p>Commercial support agreements to suit your business needs.</p>
-                    <p><a href="https://www.ubuntu.com/server/management">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+                    <p><a href="/cloud/plans-and-pricing">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
                 </div><!-- /.four-col -->
                 <div class="four-col ask last-col box box-highlight equal-height__item">
                     <div class="text-center four-col">
