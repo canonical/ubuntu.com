@@ -2232,7 +2232,7 @@ body.homepage-1704 {
       display: flex;
       justify-content: center;
       min-height: 200px;
-      margin: 0 auto 30px;
+      margin: 20px auto 30px;
       position: relative;
       text-align: center;
       
@@ -2248,19 +2248,19 @@ body.homepage-1704 {
         overflow: hidden;
         padding: 0;
         position: relative;
-        top: -1%;
+        top: -6px;
         width: 4rem;
 
         
         @media only screen and (min-width : $breakpoint-medium) {
           height: 4.5rem;
-          top: -1.5%;
+          top: -4px;
           width: 4.5rem;
         }
 
         @media only screen and (min-width : $breakpoint-large) {
           height: 6rem;
-          top: -4%;
+          top: -12px;
           width: 6rem;
         }
       }
@@ -2275,9 +2275,9 @@ body.homepage-1704 {
       }
       
       @mixin transition {
-        @for $i from 1 through 14 {
+        @for $i from 1 through 26 {
           &:nth-child(#{$i}) {
-            animation: fadein .2s #{$i * .15}s linear forwards;
+            animation: fadein .1s #{$i * .1}s linear forwards;
           }
         }
       }
@@ -2335,7 +2335,6 @@ body.homepage-1704 {
     }
     
     &__content {
-      
       @media only screen and (min-width : $breakpoint-medium) {
         min-height: 380px;
       }
