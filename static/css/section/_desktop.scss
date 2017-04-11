@@ -569,23 +569,6 @@
         }
       }
     }
-
-    .whats-new-graphic {
-      @media only screen and (min-width: $breakpoint-medium) {
-        min-height: 310px;
-        position: relative;
-
-        &:before {
-          content: url('#{$asset-server-url}e8731111-desktop-developer-whatsnew1610.jpg?w=600');
-          position: absolute;
-          right: -100%;
-          top: 20px;
-          @media (min-width: 920px){
-            right: -85%;
-          }
-        }
-      }
-    }
   }
 
   // @subsection /desktop/ubuntu-kylin
