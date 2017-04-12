@@ -2277,7 +2277,7 @@ body.homepage-1704 {
       @mixin transition {
         @for $i from 1 through 26 {
           &:nth-child(#{$i}) {
-            animation: fadein .1s #{$i * .1}s linear forwards;
+            animation: fadein .1s #{$i * .1}s ease-in forwards;
           }
         }
       }
