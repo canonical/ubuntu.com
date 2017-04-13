@@ -2226,7 +2226,6 @@ body.homepage-1704 {
     .countdown {
       align-items: center;
       background-image: url('#{$asset-server-url}12bdc8c9-Laptop.svg');
-      //background-image: url('#{$asset-server-url}76146474-laptop-17-04-final.svg');
       background-repeat: no-repeat;
       background-position: center center;
       background-size: auto 100%;
@@ -2243,7 +2242,7 @@ body.homepage-1704 {
         margin: 0 auto;
         width: 100%;
       }
-      
+                 
       .laptop-final {
         background-image: url('#{$asset-server-url}3a1cd19a-laptop-17-04-final-edited.svg');
         background-repeat: no-repeat;
@@ -2254,7 +2253,7 @@ body.homepage-1704 {
         top: 0;
         width: 100%;
         height: 100%;
-        animation: fadein 6s ease-in-out forwards;
+        animation: fadein 5.555555s ease-in forwards;
         
         @media only screen and (min-width : $breakpoint-medium) {
           background-size: 100% auto;
@@ -2289,7 +2288,6 @@ body.homepage-1704 {
       
       &__list--months {
         @include countdown-list;
-        
         margin-left: 10px;
         
         @media only screen and (min-width : $breakpoint-large) {
@@ -2300,22 +2298,16 @@ body.homepage-1704 {
       @mixin transition {
         $total: 26;
         $start: 1;
-        $step: .1;
-          @for $i from $start through $total {
-            $diff: $i / $total;
-            $add: null;
-            @if $i >= 10 {
-              $add: $step * tan($diff);
-            } @else if $i >= 18 {  
-              $add: $step * cos($diff);
-            } @else {  
-              $add: $step * sin($diff);
-            }
-            
-            &:nth-child(#{$i}) {
-              animation: fadein .1s #{$i * $add}s ease-in-out forwards;
-            }
+        $step: .2;
+        $initial-delay: 1;
+        @for $i from $start through $total {
+          $diff: $i / $total;
+          $add: $step * cos($diff);
+          $delay: ($i * $add) + $initial-delay;
+          &:nth-child(#{$i}) {
+            animation: fadein .1s #{$delay}s ease-in-out forwards;
           }
+        }
       }
             
       @function sin($angle) {
@@ -2402,7 +2394,7 @@ body.homepage-1704 {
         }
 
         @media only screen and (min-width : $breakpoint-large) {
-          font-size: 500%;
+          font-size: 450%;
         }
       }
     }

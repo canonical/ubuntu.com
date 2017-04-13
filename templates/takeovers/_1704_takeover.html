@@ -1,3 +1,8 @@
+<script>
+window.onload = function() {
+  document.getElementById('js-countdown').classList.add('animate');
+};
+</script>
 <style type="text/css">
 @-webkit-keyframes fadein {
     0% { opacity: 0; }
@@ -28,7 +33,7 @@
             </div>
         </div>
         <div class="align-center five-col last-col equal-height__item equal-height__align-vertically no-margin-bottom">
-          <div class="countdown">
+          <div id="js-countdown" class="countdown">
               <span class="laptop-final"></span>
             	<ol class="countdown__list--years no-bullets">
               		<li class="countdown__item">04</li>
