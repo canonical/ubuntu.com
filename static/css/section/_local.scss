@@ -26,7 +26,7 @@ body {
 .heading-6 {
   &--headline {
     margin-bottom: 2rem;
-    
+
     @media only screen and (min-width : $breakpoint-medium) {
       margin-bottom: 3.75rem;
     }
@@ -127,6 +127,20 @@ body {
     background-color: $cool-grey;
     color: $white;
   }
+
+  &.row-system-management {
+    @media only screen and (min-width: $breakpoint-medium) {
+      background-image: url('#{$asset-server-url}b89de9f4-feature.png');
+      background-position: 158% center;
+      background-repeat: no-repeat;
+      background-size: 56%;
+    }
+
+    @media only screen and (min-width: $breakpoint-large) {
+      background-position: right -45% center;
+      background-size: 60%;
+    }
+  }
 }
 
 // combined lists
@@ -148,6 +162,13 @@ body {
 
   .last-col {
     margin-bottom: 20px;
+  }
+
+  @media only screen and (max-width: $breakpoint-medium) {
+    .list-ticks--canonical:not(.last-col) li:last-of-type {
+      border-bottom: 1px dotted $warm-grey;
+      padding-bottom: 10px;
+    }
   }
 }
 

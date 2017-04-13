@@ -28,34 +28,83 @@
 <section class="row">
     <div class="strip-inner-wrapper">
         <h2>What&rsquo;s new in {{lts_release_full}}</h2>
-        <div class="six-col">
-            <h3>Ubuntu Server</h3>
-            <ul class="list-ticks--canonical">
-                <li>Supported for five years by Canonical</li>
-                <li>Runs on all major architectures - x86, x86-64, ARM v7, ARM64, POWER8 and IBM s390x (LinuxONE)</li>
-                <li>ZFS stable, feature-rich file system with snapshot capabilities</li>
-                <li>LXD Linux container hypervisor enhancements including QoS and resource controls (CPU, memory, block I/O, storage quota)</li>
-                <li>Install Ubuntu Core Snaps</li>
-                <li>First production release of DPDK - line speed kernel networking</li>
-                <li>Linux 4.4 kernel and systemd service manager</li>
-                <li>Certification as a guest on AWS, Microsoft Azure, Joyent, IBM and HP Cloud</li>
-                <li>Updates to Tomcat (v8), Postgresql (v9.5), Docker v(1.10), Puppet (v3.8.5), Qemu (v2.5), Libvirt (v1.3.1), LXC (v2.0), and MySQL (v5.6)</li>
-            </ul>
-        </div>
-        <div class="six-col last-col">
-            <h3>Ubuntu OpenStack</h3>
-            <ul class="list-ticks--canonical">
-                <li>Supported for five years by Canonical</li>
-                <li>Updated to the Mitaka release, including automated installation, queuing/notification and the integration of database-as-a-service</li>
-                <li>Nova LXD driver - deploy OpenStack instances as system containers, dramatically increasing per-node density</li>
-                <li>Juju OpenStack bundle -  automated deployment of OpenStack into LXD system containers</li>
-                <li>ZFS support for LXD OpenStack hosts</li>
-                <li>Certified by Microsoft to host Windows Server 2012 and Windows Server 2008 R2 as guests, under its Server Virtualisation Validation Program (SVVP)</li>
-                <li>OpenStack software, Juju, MAAS, LXD on IBM LinuxONE mainframe</li>
-            </ul>
-        </div>
+        <div class="combined-list">
+        <ul class="list-ticks--canonical six-col">
+            <li>Supported for five years by Canonical</li>
+            <li>
+                Runs on all major architectures &ndash; x86, x86-64, ARM v7,
+                ARM64, POWER8 and IBM s390x (LinuxONE)
+            </li>
+            <li>
+                ZFS stable, feature-rich file system with snapshot
+                capabilities
+            </li>
+            <li>
+                LXD Linux container hypervisor enhancements including QoS and
+                resource controls (CPU, memory, block I/O, storage quota)
+            </li>
+            <li>Install Ubuntu Core Snaps</li>
+        </ul>
+        <ul class="list-ticks--canonical six-col last-col">
+            <li>
+                First production release of DPDK &ndash; line speed kernel
+                networking
+            </li>
+            <li>Linux 4.4 kernel and systemd service manager</li>
+            <li>
+                Certification as a guest on AWS, Microsoft Azure, Joyent, IBM
+                and HP Cloud
+            </li>
+            <li>
+                Updates to Tomcat (v8), Postgresql (v9.5), Docker v(1.10),
+                Puppet (v3.8.5), Qemu (v2.5), Libvirt (v1.3.1), LXC (v2.0),
+                and MySQL (v5.6)
+            </li>
+        </ul>
+    </div>
         <div class="eleven-col">
-            <p><a class="external" href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes">Read more in the release notes</a></p>
+            <p><a class="external"
+            href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes">
+                Read more in the release notes
+            </a></p>
+        </div>
+    </div>
+</section>
+
+<section class="row strip-light">
+    <div class="strip-inner-wrapper equal-height">
+        <div class="four-col equal-height__item equal-height__align-vertically align-center">
+            <img class="priority-0" src="{{ ASSET_SERVER_URL }}e047e34e-picto-landscape.svg"
+                alt="Landscape pictogram" width="200" height="200" />
+        </div>
+        <div class="eight-col last-col equal-height__item">
+            <h2>Landscape: Server management</h2>
+            <p>
+                Landscape allows you to manage thousands of Ubuntu machines as
+                easily as one, making the administration of Ubuntu desktops,
+                servers and cloud instances more cost-effective.<br />It&rsquo;s
+                easy to set up, easy to use and it requires no special
+                hardware. It features:
+            </p>
+            <div class="combined-list">
+                <ul class="list-ticks--compact four-col">
+                    <li>Management at scale</li>
+                    <li>Deploy or rollback security updates</li>
+                    <li>Compliance reporting</li>
+                </ul>
+                <ul class="list-ticks--compact four-col last-col">
+                    <li>Role-based access</li>
+                    <li>Informative monitoring</li>
+                </ul>
+            </div>
+            <p>
+                <a href="https://landscape.canonical.com/"
+                    class="button--primary">
+                    <span class="external">
+                        Learn more about Landscape
+                    </span>
+                </a>
+            </p>
         </div>
     </div>
 </section>
@@ -84,7 +133,7 @@
                 <p>Our regular release cycle means that we support most of the latest applications. A lean initial installation and integrated deployment and application modeling technologies make Ubuntu Server a great solution for simple deployment and management at scale.</p>
             </div>
         </div>
-    
+
         <h3 class="muted-heading">Works with all your hardware and software</h3>
         <ul class="inline-logos">
             <li class="inline-logos__item">
@@ -113,7 +162,7 @@
             </li>
         </ul>
         <p class="text-center twelve-col"><a href="https://certification.ubuntu.com">View all certified hardware&nbsp;&rsaquo;</a></p>
-    
+
         <ul class="inline-logos">
             <li class="inline-logos__item">
                 <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}76999dfc-logo-centrify.png" alt="Centrify" />
@@ -134,40 +183,7 @@
     </div>
 </section>
 
-<section class="row">
-    <div class="strip-inner-wrapper equal-height--vertical-divider">
-        <div class="equal-height--vertical-divider__item six-col">
-            <h2 id="make-your-it-budget-go-further">Scale without limits</h2>
-            <p>With no licence fees or subscription costs, Ubuntu Server can help you scale your data centre efficiently. Subscriptions to Ubuntu Advantage, Canonical&rsquo;s management programme, include support for unlimited virtualisation and, unlike legacy enterprise Linux distributions, the price does not increase with additional CPU cores or sockets. </p>
-        </div>
-        
-        <div class="equal-height--vertical-divider__item six-col last-col">
-            <h3>Read our success stories</h3>
-            <ul class="list">
-                <li><a href="http://insights.ubuntu.com/2012/04/02/ubuntu-big-data-environment-provides-new-insight-into-music-industry-trends/" class="external">Ubuntu Big Data environment provides new insight into music industry trends</a></li>
-                <li><a href="http://insights.ubuntu.com/2012/01/30/ubuntu-powers-online-presence-for-heart-fm-capital-fm-and-classic-fm/" class="external">Ubuntu powers online presence for Heart FM, Capital FM and Classic FM</a></li>
-                <li class="last-item"><a href="http://insights.ubuntu.com/2012/01/24/jt-global-standardises-mission-critical-production-system-on-ubuntu/" class="external">JT Global standardises mission-critical production system on Ubuntu</a></li>
-            </ul>
-        </div>
-    </div>
-</section>
-
 {% include "shared/_release_schedule.html" %}
-
-<section class="row row-support-systems-management">
-    <div class="strip-inner-wrapper equal-height">
-        <div class="eight-col equal-height__item">
-            <h2 id="smarter-systems-management">Landscape &mdash; support and systems management</h2>
-            <p>The Ubuntu Advantage service programme provides fast problem resolution, direct access to Ubuntu experts and efficient administration with the Ubuntu systems management package, Landscape.</p>
-            <p>Landscape enables you to automate updates and control physical, virtual and cloud servers from a single interface. It&rsquo;s easy to set up and easy to use, giving you the power to manage thousands of machines as easily as you can manage one.</p>
-            <p><a href="https://buy.ubuntu.com" class="button--primary"><span class="external">Visit the Ubuntu Advantage store</span></a></p>
-            <p><a href="/server/management">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
-        </div>
-        <div class="four-col last-col equal-height__item equal-height__align-vertically">
-            <img class="priority-0" src="{{ ASSET_SERVER_URL }}e047e34e-picto-landscape.svg" alt="Landscape pictogram" width="200" height="200" />
-        </div>
-    </div>
-</section>
 
 <section class="row row-juju-maas">
     <div class="strip-inner-wrapper equal-height--vertical-divider">
@@ -196,6 +212,37 @@
             <h2>LXD &mdash; system containers</h2>
             <p>LXD, the Linux container hypervisor, merges the speed and density of containers with the manageability and security of traditional virtual machines. Economics are directly tied to density, and no other virtualisation technology is as fast or dense as LXD.</p>
             <p><a href="/cloud/lxd">Learn more about LXD&nbsp;&rsaquo;</a></p>
+        </div>
+    </div>
+</section>
+
+<section class="row row-grey no-border">
+    <div class="strip-inner-wrapper">
+        <div class="seven-col">
+            <h2>Ubuntu Advantage: world class support</h2>
+            <p>
+                The Ubuntu Advantage service programme provides fast problem
+                resolution, direct access to Ubuntu experts and efficient
+                administration with the Ubuntu systems management package,
+                Landscape.
+            </p>
+            <p>
+                <a href="/support">
+                    Learn more about Ubuntu Advantage&nbsp;&rsaquo;
+                </a>
+            </p>
+        </div>
+        <div class=" prepend-one four-col box last-col">
+            <h3>Get in contact</h3>
+            <p>
+                Speak to one of our technical support team members about your
+                server requirements.
+            </p>
+            <p>
+                <a href="/server/contact-us">
+                    Contact us about your server requirements&nbsp;&rsaquo;
+                </a>
+            </p>
         </div>
     </div>
 </section>
@@ -262,11 +309,11 @@
         <div class="six-col equal-height__item">
             <h2 id="the-fast-track-to-virtualisation">The fast track to virtualisation and containers</h2>
             <p>Ready to boost efficiencies and reduce costs? Virtualise your servers with Ubuntu Server, KVM and LXD. When you use a secure, lean version of Ubuntu as a guest operating system for your application, you can create virtual machines and machine containers in seconds. KVM, LXD, Xen, VMware, Vagrant, VirtualBox, and Docker are all first class experiences with Ubuntu Server. KVM virtualisation is now also available in Ubuntu Server for ARM and IBM POWER8.</p>
-    
+
             <p>Canonical supports an open ecosystem of operating system intercompatibility. By providing choice, users of Ubuntu for both servers and clouds are empowered to succeed with any workload. We encourage others to do the same and offer support for all (currently supported) versions of Ubuntu Server running on other virtualisation platforms, including KVM on other commercially available Linux distributions, VMware vSphere, and Microsoft Hyper-V.</p>
         </div>
         <div class="six-col last-col">
-    
+
             <table>
                 <thead>
                     <tr>
@@ -341,7 +388,7 @@
                     </tr>
                 </tbody>
             </table>
-    
+
         </div>
         <div class="twelve-col">
             <h3 class="muted-heading">All guests are welcome on Ubuntu</h3>
@@ -398,7 +445,7 @@
         </div>
     </div>
 </section>
-    
+
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_server_download" second_item="_server_contact_us" third_item="_cloud_further_reading" %}
 
 {% endblock content %}
