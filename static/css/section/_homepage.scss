@@ -2242,6 +2242,23 @@ body.homepage-1704 {
         margin: 0 auto;
         width: 100%;
       }
+                 
+      .laptop-final {
+        background-image: url('#{$asset-server-url}3a1cd19a-laptop-17-04-final-edited.svg');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: auto 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        animation: fadein 5.555555s ease-in forwards;
+        
+        @media only screen and (min-width : $breakpoint-medium) {
+          background-size: 100% auto;
+        }
+      }
       
       @mixin countdown-list {
         height: 4rem;
@@ -2271,17 +2288,87 @@ body.homepage-1704 {
       
       &__list--months {
         @include countdown-list;
-        margin-left: 20px;
-      }
-      
-      @mixin transition {
-        @for $i from 1 through 26 {
-          &:nth-child(#{$i}) {
-            animation: fadein .1s #{$i * .1}s linear forwards;
-          }
+        margin-left: 10px;
+        
+        @media only screen and (min-width : $breakpoint-large) {
+          margin-left: 20px;
         }
       }
       
+      @mixin transition {
+        $total: 26;
+        $start: 1;
+        $step: .2;
+        $initial-delay: 1;
+        @for $i from $start through $total {
+          $diff: $i / $total;
+          $add: $step * cos($diff);
+          $delay: ($i * $add) + $initial-delay;
+          &:nth-child(#{$i}) {
+            animation: fadein .1s #{$delay}s ease-in-out forwards;
+          }
+        }
+      }
+            
+      @function sin($angle) {
+        $sin: 0;
+        $angle: rad($angle);
+        // Iterate a bunch of times.
+        @for $i from 0 through 10 {
+          $sin: $sin + pow(-1, $i) * pow($angle, (2 * $i + 1)) / fact(2 * $i + 1);
+        }
+        @return $sin;
+      }
+      
+      @function pow($number, $exp) {
+        $value: 1;
+        @if $exp > 0 {
+          @for $i from 1 through $exp {
+            $value: $value * $number;
+          }
+        }
+        @else if $exp < 0 {
+          @for $i from 1 through -$exp {
+            $value: $value / $number;
+          }
+        }
+        @return $value;
+      }
+
+      @function rad($angle) {
+        $unit: unit($angle);
+        $unitless: $angle / ($angle * 0 + 1);
+        // If the angle has 'deg' as unit, convert to radians.
+        @if $unit == deg {
+          $unitless: $unitless / 180 * pi();
+        }
+        @return $unitless;
+      }
+      
+      @function fact($number) {
+        $value: 1;
+        @if $number > 0 {
+          @for $i from 1 through $number {
+            $value: $value * $i;
+          }
+        }
+        @return $value;
+      }
+      
+      @function cos($angle) {
+        $cos: 0;
+        $angle: rad($angle);
+        // Iterate a bunch of times.
+        @for $i from 0 through 10 {
+          $cos: $cos + pow(-1, $i) * pow($angle, 2 * $i) / fact(2 * $i);
+        }
+        @return $cos;
+      }
+      
+      @function tan($angle) {
+        @return sin($angle) / cos($angle);
+      }
+
       &__item {
         @include transition;
         align-items: center;
@@ -2289,7 +2376,7 @@ body.homepage-1704 {
         border-radius: 4px;
         color: $color-brand;
         display: flex;
-        font-size: 200%;
+        font-size: 280%;
         height: 100%;
         justify-content: center;
         left: 0;
@@ -2303,11 +2390,11 @@ body.homepage-1704 {
         width: 100%;
         
         @media only screen and (min-width : $breakpoint-medium) {
-          font-size: 250%;
+          font-size: 350%;
         }
 
         @media only screen and (min-width : $breakpoint-large) {
-          font-size: 360%;
+          font-size: 450%;
         }
       }
     }
