@@ -2223,6 +2223,20 @@ body.homepage-1704 {
       padding-top: 40px;
     }
     
+    .countdown-start {
+      align-items: center;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      top: 0;
+      left: 0;
+      
+      @media only screen and (min-width : $breakpoint-medium) {
+        margin: 0 auto;
+        width: 100%;
+      }
+    }
+    
     .countdown {
       align-items: center;
       background-image: url('#{$asset-server-url}12bdc8c9-Laptop.svg');
@@ -2297,7 +2311,7 @@ body.homepage-1704 {
       
       @mixin transition {
         $total: 26;
-        $start: 1;
+        $start: 2;
         $step: .2;
         $initial-delay: 1;
         @for $i from $start through $total {
@@ -2310,16 +2324,6 @@ body.homepage-1704 {
         }
       }
             
-      @function sin($angle) {
-        $sin: 0;
-        $angle: rad($angle);
-        // Iterate a bunch of times.
-        @for $i from 0 through 10 {
-          $sin: $sin + pow(-1, $i) * pow($angle, (2 * $i + 1)) / fact(2 * $i + 1);
-        }
-        @return $sin;
-      }
-      
       @function pow($number, $exp) {
         $value: 1;
         @if $exp > 0 {
@@ -2365,10 +2369,6 @@ body.homepage-1704 {
         @return $cos;
       }
       
-      @function tan($angle) {
-        @return sin($angle) / cos($angle);
-      }
-
       &__item {
         @include transition;
         align-items: center;
@@ -2395,6 +2395,10 @@ body.homepage-1704 {
 
         @media only screen and (min-width : $breakpoint-large) {
           font-size: 450%;
+        }
+        
+        &.start {
+          opacity: 1;
         }
       }
     }
