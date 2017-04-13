@@ -57,6 +57,8 @@
     {% block head_extra %}{% endblock %}
 
     {% block crazy_egg %}{% endblock crazy_egg %}
+    <!-- google webmaster tools verification -->
+    <meta name="google-site-verification" content="ddh2iq7ZuKf1LpkL_gtM_T7DkKDVD7ibq6Ceue4a_3M" />
   </head>
 
   <body class="{% if level_1 != "" %}{% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}{% endif %}{% if level_2 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}{% endif %}{% if level_3 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}-{{ level_3 }} {% endif %} {% include "templates/body-class.html" %}{% if extra_body_class != "" %} {% block extra_body_class %}{% endblock %}{% endif %}">
@@ -104,9 +106,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               </li>
               <li><a{% if level_1 == 'internet-of-things' %} class="active"{% endif %} href="/internet-of-things">IoT</a>
                 {% include "internet-of-things/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a{% if level_1 == 'mobile' %} class="active"{% endif %} href="/mobile">Mobile</a>
-                {% include "mobile/_nav_secondary.html" with promo="true" %}
               </li>
               <li><a{% if level_1 == 'support' %} class="active"{% endif %} href="/support">Support</a>
                 {% include "support/_nav_secondary.html" with promo="true" %}
