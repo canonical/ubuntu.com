@@ -45,7 +45,7 @@
     }
 
     &__image-container {
-      border-bottom: 1px dotted $warm-grey;
+      border-bottom: 1px dotted $color-mid-light;
       padding-bottom: 20px;
     }
 
@@ -98,8 +98,8 @@
 
   // override the darkness
   .row-case-studies {
-    background: $light-grey;
-    color: $cool-grey;
+    background: $color-light;
+    color: $color-mid-dark;
 
     .pull-quote {
 
@@ -108,12 +108,12 @@
       }
 
       cite {
-        color: $cool-grey;
+        color: $color-mid-dark;
       }
     }
 
     p {
-      color: $cool-grey;
+      color: $color-mid-dark;
     }
   }
 
@@ -127,7 +127,7 @@
   }
 
   .border-small {
-    border-bottom: 1px dotted $warm-grey;
+    border-bottom: 1px dotted $color-mid-light;
 
     @media only screen and (min-width: $breakpoint-medium) {
       border: 0;
@@ -177,7 +177,7 @@
 
   // XXX in lots of section
   .strip-dark blockquote p {
-    color: $white;
+    color: $color-x-light;
   }
 
   // @subsection /internet-of-things/digital-signage
@@ -190,7 +190,7 @@
     }
 
     .row-cta--digital-signage {
-      background: url('#{$asset-server-url}68b1a2e2-banner_pixels05.png') center center no-repeat;
+      background: url('#{$assets-path-url}68b1a2e2-banner_pixels05.png') center center no-repeat;
 
       @media only screen and (min-width: $breakpoint-medium) {
         background-size: cover;
@@ -203,15 +203,15 @@
 
   .row {
     &-hero {
-      background-image: url('#{$asset-server-url}613bd7dc-robotics_mobile.png');
+      background-image: url('#{$assets-path-url}613bd7dc-robotics_mobile.png');
       background-position: bottom;
       background-size: cover;
       background-repeat: no-repeat;
-      color: $white;
+      color: $color-x-light;
       padding-bottom: 50%;
 
       @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server-url}ecdbd3cb-robotics.jpg');
+        background-image: url('#{$assets-path-url}ecdbd3cb-robotics.jpg');
         padding-bottom: 100px;
       }
 

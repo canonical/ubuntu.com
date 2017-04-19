@@ -22,22 +22,22 @@
     Medium / Tablet viewport
     Large / Desktop viewport
 
-    $ubuntu-orange:			  #dd4814; /* ubuntu orange (used for text links also on any site except canonical)
+    $color-ubuntu-orange:			  #dd4814; /* ubuntu orange (used for text links also on any site except canonical)
     $light-orange:        #fdf6f2; - used as background on pre text
     $canonical-aubergine:	#772953; - canonical aubergine
     $light-aubergine:		  #77216f; - light aubergine (consumer)
     $mid-aubergine:			  #5e2750; - mid aubergine (both)
-    $dark-aubergine:		  #2c001e; - dark aubergine (enterprise)
-    $warm-grey:				    #aea79f; - warm grey
-    $cool-grey:				    #333333; - cool grey
-    $light-grey:			    #f7f7f7; - light grey
+    $color-dark-aubergine:		  #2c001e; - dark aubergine (enterprise)
+    $color-mid-light:				    #aea79f; - warm grey
+    $color-mid-dark:				    #333333; - cool grey
+    $color-light:			    #f7f7f7; - light grey
 
 ------------------------------------------------------------------
 -------------------------------------------------------------- */
 
 /* assets database path */
-$asset-path: "https://assets.ubuntu.com/sites/ubuntu/latest/u/img/";
-/* usage: background: url(#{$asset-path}/backgrounds/background.jpg) no-repeat 0 0; */
+$assets-path: "https://assets.ubuntu.com/sites/ubuntu/latest/u/img/";
+/* usage: background: url(#{$assets-path}/backgrounds/background.jpg) no-repeat 0 0; */
 
 /* home
 -------------------------------------------------------------- */
@@ -46,7 +46,7 @@ $asset-path: "https://assets.ubuntu.com/sites/ubuntu/latest/u/img/";
   .legal-doc {
     hr {
       border: 0;
-      border-bottom: 1px dotted $warm-grey;
+      border-bottom: 1px dotted $color-mid-light;
       margin: 40px 0;
     }
     h3 {
@@ -58,8 +58,8 @@ $asset-path: "https://assets.ubuntu.com/sites/ubuntu/latest/u/img/";
     text-align: left;
   }
 
-  .eight-col ol,
-  .eight-col ul {
+  .col-8 ol,
+  .col-8 ul {
     margin-bottom: 1.4em;
   }
 
@@ -83,44 +83,44 @@ $asset-path: "https://assets.ubuntu.com/sites/ubuntu/latest/u/img/";
     }
 
     .web-terms {
-      background-image: url('#{$asset-server-url}53640d35-picto-ubuntu-warmgrey.svg');
+      background-image: url('#{$assets-path-url}53640d35-picto-ubuntu-warmgrey.svg');
     }
 
     .ubuntu-advantage {
-      background-image: url('#{$asset-server-url}03c5463a-picto-business-warmgrey.svg');
+      background-image: url('#{$assets-path-url}03c5463a-picto-business-warmgrey.svg');
     }
 
     .contributors {
-      background-image: url('#{$asset-server-url}b06cbaa6-picto-canonical-warmgrey.svg');
+      background-image: url('#{$assets-path-url}b06cbaa6-picto-canonical-warmgrey.svg');
     }
 
     .bootstack {
-      background-image: url('#{$asset-server-url}2a8cf960-picto-startfirst-warmgrey.svg');
+      background-image: url('#{$assets-path-url}2a8cf960-picto-startfirst-warmgrey.svg');
     }
 
     .short-terms {
-      background-image: url('#{$asset-server-url}0838729a-picto-bookmark-warmgrey.svg');
+      background-image: url('#{$assets-path-url}0838729a-picto-bookmark-warmgrey.svg');
     }
 
     a:hover {
       .web-terms {
-        background-image: url('#{$asset-server-url}c5cb0f8e-picto-ubuntu.svg');
+        background-image: url('#{$assets-path-url}c5cb0f8e-picto-ubuntu.svg');
       }
 
       .ubuntu-advantage {
-        background-image: url('#{$asset-server-url}4c6b0e06-picto-business-orange.svg');
+        background-image: url('#{$assets-path-url}4c6b0e06-picto-business-orange.svg');
       }
 
       .contributors {
-        background-image: url('#{$asset-server-url}60d9b81e-picto-canonical.svg');
+        background-image: url('#{$assets-path-url}60d9b81e-picto-canonical.svg');
       }
 
       .bootstack {
-        background-image: url('#{$asset-server-url}c5326cfa-picto-startfirst-orange.svg');
+        background-image: url('#{$assets-path-url}c5326cfa-picto-startfirst-orange.svg');
       }
 
       .short-terms {
-        background-image: url('#{$asset-server-url}57ad35aa-picto-bookmark-orange.svg');
+        background-image: url('#{$assets-path-url}57ad35aa-picto-bookmark-orange.svg');
       }
     }
   }

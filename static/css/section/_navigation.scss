@@ -90,7 +90,7 @@
         a:link:hover {
 
           @media only screen and (max-width: $navigation-threshold) {
-            background: $light-grey !important;
+            background: $color-light !important;
             color: $text-color !important;
           }
         }
@@ -173,7 +173,7 @@
         // removes the '>' for med/small in the breadcrumb
         &--second-level:after,
         &:after {
-          color: $warm-grey;
+          color: $color-mid-light;
 
           @media only screen and (max-width: $navigation-threshold) {
             content: '';
@@ -204,7 +204,7 @@
           }
 
           a:hover {
-          color: $link-color;
+          color: $color-link;
         }
       }
       }
@@ -242,7 +242,7 @@
         .after {
 
           @media only screen and (max-width: $navigation-threshold) {
-            background-image: url('#{$asset-server-url}74545443-nav-down-arrow.svg');
+            background-image: url('#{$assets-path-url}74545443-nav-down-arrow.svg');
             background-position: center center;
             background-repeat: no-repeat;
             background-size: 18px;
@@ -274,7 +274,7 @@
 
             @media only screen and (max-width: $navigation-threshold) {
               font-weight: 700;
-              color: $black;
+              color: $color-x-dark;
             }
           }
         }
