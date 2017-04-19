@@ -7,7 +7,7 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero no-border" id="service-description">
+<div class="row row-hero no-border" id="service-description" lang="ja">
   <div class="eight-col">
     <h1>Ubuntu Advantage<br/>サービス記述書</h1>
     <p class="intro">2016年10月2日より有効</p>
@@ -178,7 +178,7 @@
   <table class="twelve-col">
     <caption>営業時間表</caption>
     <thead>
-      <tr scope="row">
+      <tr>
         <th>サービス</th>
         <th>営業時間</th>
       </tr>
@@ -213,7 +213,7 @@
   <table class="twelve-col">
     <caption>応答時間表</caption>
     <thead>
-      <tr scope="row">
+      <tr>
         <th>&nbsp;</th>
         <th>重大度 <br />レベル1</th>
         <th>重大度 <br />レベル2</th>
@@ -270,7 +270,7 @@
   </div>
 </div>
 
-<div class="row no-border" id="appendix-1">
+<div class="row no-border" id="appendix-1" lang="ja">
   <div class="eight-col">
     <h2 id="ua-appendix-1_support-scope">付録1 - サポート範囲</h2>
     <h3 id="ua-openstack-cloud-region">Ubuntu Advantage OpenStack Cloud Region</h3>
@@ -304,57 +304,57 @@
     <table>
       <thead>
         <tr>
-          <th scope="col">内容</th>
-          <th scope="col">Essential</th>
-          <th scope="col">Standard</th>
-          <th scope="col">Advanced</th>
+          <th>内容</th>
+          <th>Essential</th>
+          <th>Standard</th>
+          <th>Advanced</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td scope="row">24x7セルフサービスカスタマケアポータルおよびナレッジベース (<a href="#ua-support-scope">セクション2</a>を参照)</td>
+          <td>24x7セルフサービスカスタマケアポータルおよびナレッジベース (<a href="#ua-support-scope">セクション2</a>を参照)</td>
           <td><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
           <td><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
           <td><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
         </tr>
         <tr>
-          <td scope="row">Ubuntu Serverイメージのデフォルトパッケージに対する8x5チケットサポート (<a href="#response-times">セクション3</a>を参照)</td>
+          <td>Ubuntu Serverイメージのデフォルトパッケージに対する8x5チケットサポート (<a href="#response-times">セクション3</a>を参照)</td>
           <td><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
           <td><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
           <td><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
         </tr>
         <tr>
-          <td scope="row">Landscape管理 (<a href="#support-scope-landscape">セクション2.5</a>を参照)</td>
+          <td>Landscape管理 (<a href="#support-scope-landscape">セクション2.5</a>を参照)</td>
           <td><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
           <td><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
           <td><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
         </tr>
         <tr>
-          <td scope="row">Ubuntu法的保証プログラム (<a href="#assurance">セクション5</a>を参照)</td>
+          <td>Ubuntu法的保証プログラム (<a href="#assurance">セクション5</a>を参照)</td>
           <td><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
           <td><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
           <td><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
         </tr>
         <tr>
-          <td scope="row">10x5 Ubuntu Main内のすべてのパッケージに対する電話およびチケットサポート (<a href="#response-times">セクション3</a>)を参照)、ただし<a href="#lxd-guest-support">このセクション</a>に記載されているものを除く</td>
+          <td>10x5 Ubuntu Main内のすべてのパッケージに対する電話およびチケットサポート (<a href="#response-times">セクション3</a>)を参照)、ただし<a href="#lxd-guest-support">このセクション</a>に記載されているものを除く</td>
           <td></td>
           <td><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
           <td><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
         </tr>
         <tr>
-          <td scope="row">無制限の<a href="#lxd-guest-support">Ubuntu LXD ゲストサポート</a></td>
+          <td>無制限の<a href="#lxd-guest-support">Ubuntu LXD ゲストサポート</a></td>
           <td></td>
           <td><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
           <td><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
         </tr>
         <tr>
-          <td scope="row">24x7 Ubuntu Main内のすべてのパッケージに対する電話およびチケットサポート (<a href="#response-times">セクション3</a>を参照)、およびバックポートおよびuniverse内のCanonical作成パッケージ。ただし<a href="#kvm-guest-support">このセクション</a>に記載されているものを除く</td>
+          <td>24x7 Ubuntu Main内のすべてのパッケージに対する電話およびチケットサポート (<a href="#response-times">セクション3</a>を参照)、およびバックポートおよびuniverse内のCanonical作成パッケージ。ただし<a href="#kvm-guest-support">このセクション</a>に記載されているものを除く</td>
           <td></td>
           <td></td>
           <td><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
         </tr>
         <tr>
-          <td scope="row">無制限の<a href="#kvm-guest-support">Ubuntu KVM ゲストサポート</a></td>
+          <td>無制限の<a href="#kvm-guest-support">Ubuntu KVM ゲストサポート</a></td>
           <td></td>
           <td></td>
           <td><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
@@ -566,7 +566,7 @@
   </div>
 </div>
 
-<div class="row no-border no-border" id="appendix-2">
+<div class="row no-border no-border" id="appendix-2" lang="ja">
   <div class="eight-col">
     <h2 id="ua-support-process">付録2 - Ubuntu Advantageサポート<br />プロセス</h2>
     <h3 id="ua-support-service-initiation">1. サービス開始</h3>
@@ -697,7 +697,7 @@
   </div>
 </div>
 
-<div class="row no-border no-border" id="appendix-3">
+<div class="row no-border no-border" id="appendix-3" lang="ja">
   <div class="eight-col">
     <h2 id="ua-escalation">付録3 - Ubuntu Advantageマネジメントエスカレーション</h2>
     <p>サービスに不満がある場合は、いくつかの方法でその状況をCanonicalの経営陣にエスカレーションできます。</p>
