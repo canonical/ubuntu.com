@@ -52,97 +52,6 @@ body {
   @extend %input-range;
 }
 
-// row styles
-.row {
-  margin: 0;
-  padding: 20px 10px 0 10px;
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    padding: 40px 20px 20px 20px;
-  }
-
-  @media only screen and (min-width : $breakpoint-large) {
-    padding: 100px 40px 100px 40px;
-  }
-
-  &.no-padding-bottom {
-    padding-bottom: 0;
-  }
-
-  &.no-border {
-    border-bottom: 0!important;
-  }
-
-  h1 {
-    padding-top: 20px;
-  }
-
-  &.row-hero {
-    padding: 0 10px 0 10px;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      padding: 40px 10px 20px 10px;
-    }
-
-    @media only screen and (min-width : $breakpoint-large) {
-      padding: 100px 40px 100px 40px;
-    }
-
-    &.no-padding-bottom {
-      padding-bottom: 0;
-    }
-
-    &.no-border {
-      border-bottom: 0;
-    }
-  }
-
-  &.row-white,
-  &.strip-light {
-    background-color: $white;
-  }
-
-  // XXX Graham (10.04.2016)
-  // Move to Vanilla
-  // remove negative margin and add border back
-  &.row-grey {
-    border-bottom: 1px dotted $warm-grey;
-    margin-top: 0;
-
-    .resource:before {
-      border-right-color: $light-grey;
-    }
-
-    .resource--link:before {
-      border-right-color: $light-grey;
-    }
-
-  }
-
-  &.row-contact-form {
-    padding-top: 0;
-  }
-
-  &.row-cool-grey {
-    background-color: $cool-grey;
-    color: $white;
-  }
-
-  &.row-system-management {
-    @media only screen and (min-width: $breakpoint-medium) {
-      background-image: url('#{$asset-server-url}b89de9f4-feature.png');
-      background-position: 158% center;
-      background-repeat: no-repeat;
-      background-size: 56%;
-    }
-
-    @media only screen and (min-width: $breakpoint-large) {
-      background-position: right -45% center;
-      background-size: 60%;
-    }
-  }
-}
-
 // combined lists
 .combined-list {
 
@@ -166,7 +75,7 @@ body {
 
   @media only screen and (max-width: $breakpoint-medium) {
     .list-ticks--canonical:not(.last-col) li:last-of-type {
-      border-bottom: 1px dotted $warm-grey;
+      border-bottom: 1px dotted $color-mid-light;
       padding-bottom: 10px;
     }
   }
@@ -181,7 +90,7 @@ body {
 // local override for uvt list ticks
 .list-ticks li,
 .list-ticks--compact li {
-  background-image: url('#{$asset-server-url}c4b02d61-tick-orange.svg');
+  background-image: url('#{$assets-path-url}c4b02d61-tick-orange.svg');
 }
 
 // align content vertically
@@ -216,7 +125,7 @@ body {
     }
   }
 
-  & + .three-col {
+  & + .col-3 {
     @media only screen and (min-width: $breakpoint-medium) {
       width: 48.8938%;
     }
@@ -236,7 +145,7 @@ body {
 
   &__content {
     background: rgba(255,255,255,.85);
-    color: $cool-grey;
+    color: $color-mid-dark;
 
     @media only screen and (min-width : $breakpoint-medium) {
       padding: 20px;
@@ -412,7 +321,7 @@ strong {
     text-decoration: underline;
   }
 
-  &.four-col h2 {
+  &.col-4 h2 {
 
     a:link,
     a:visited {
@@ -421,7 +330,7 @@ strong {
     }
   }
 
-  &.twelve-col h2 {
+  &.col-12 h2 {
 
     a:link,
     a:visited {
@@ -470,7 +379,7 @@ strong {
     width: 0;
     height: 0;
     border-bottom: 30px solid #fdfdfd;
-    border-right: 30px solid $white;
+    border-right: 30px solid $color-x-light;
     -webkit-box-shadow: -2px 2px 2px rgba(176, 176, 176, 0.4);
     -moz-box-shadow: -2px 2px 2px rgba(176, 176, 176, 0.4);
     box-shadow: -2px 2px 2px rgba(176, 176, 176, 0.4);
@@ -488,7 +397,7 @@ strong {
   }
 
   .content-cat {
-    color: $warm-grey;
+    color: $color-mid-light;
     font-size: 14px;
     letter-spacing: 1px;
     margin: 0;
@@ -498,11 +407,11 @@ strong {
   }
 
   .content-cat {
-    background: url("#{$asset-server-url}ed42aefa-icon-resource-hub-icon-document.png") left center no-repeat;
+    background: url("#{$assets-path-url}ed42aefa-icon-resource-hub-icon-document.png") left center no-repeat;
   }
 
   .content-cat-webinar {
-    background: url("#{$asset-server-url}8f8326fa-icon-resource-hub-webinar.png") left center no-repeat;
+    background: url("#{$assets-path-url}8f8326fa-icon-resource-hub-webinar.png") left center no-repeat;
   }
 
   &.box-image-centered div + span img {
@@ -515,8 +424,8 @@ html.js .resource:hover a {
 }
 
 .command-line {
-  background-color: $dark-aubergine;
-  border: 1px solid $dark-aubergine;
+  background-color: $color-dark-aubergine;
+  border: 1px solid $color-dark-aubergine;
   border-radius: 4px;
   overflow: hidden;
   position: relative;
@@ -525,7 +434,7 @@ html.js .resource:hover a {
   &__input {
     background: transparent;
     border: 0;
-    color: $white;
+    color: $color-x-light;
     font-family: Ubuntu Mono;
     font-size: 1em;
     font-weight: 300;
@@ -534,8 +443,8 @@ html.js .resource:hover a {
   }
 
   &__copy-button {
-    background-color: $white;
-    background-image: url('#{$asset-server-url}994e60f9-get-link-url_16.svg');
+    background-color: $color-x-light;
+    background-image: url('#{$assets-path-url}994e60f9-get-link-url_16.svg');
     background-position: center;
     background-repeat: no-repeat;
     border: 0;
@@ -549,18 +458,18 @@ html.js .resource:hover a {
     width: 50px;
 
     &:hover {
-      background-color: darken($white, 4%);
+      background-color: darken($color-x-light, 4%);
     }
   }
   &.is-copied {
-    border-color: $success;
+    border-color: $color-positive;
     //background-color: $mid-aubergine;
   }
 }
 
 // for headings of external list links, currently only seen on download/alternative-downloads
 .external--title span {
-  background: url("#{$asset-server-url}e1bba201-external-link-cool-grey.svg") left center no-repeat;
+  background: url("#{$assets-path-url}e1bba201-external-link-cool-grey.svg") left center no-repeat;
   background-size: 20px;
   padding-left: 26px;
 }
@@ -635,7 +544,7 @@ html.js .resource:hover a {
 
 // inline-icons imported from old guidelines
 .inline-icons {
-  margin: 0 0 $gutter-width;
+  margin: 0 0 $grid-gutter-width;
 
   @media only screen and (min-width: $breakpoint-large) {
     margin-bottom: 20px;
@@ -677,8 +586,8 @@ a.button--primary__deactivated,
 a.button--primary__deactivated:hover,
 button.button--primary__deactivated,
 button.button--primary__deactivated:hover {
-  background: $ubuntu-orange;
-  color: $white;
+  background: $color-ubuntu-orange;
+  color: $color-x-light;
   cursor: not-allowed;
   opacity: .3;
 }
@@ -704,106 +613,106 @@ button.button--primary__deactivated:hover {
 /// XXX Robin 2016-04-19
 /// A candidate to replace the `.instruction` module, which
 /// requires lots of unnecessary markup
-$item-spacing: 20px;
+// $item-spacing: 20px;
+//
+// .list-stepped {
+//   counter-reset: instructions;
+//   list-style: none;
+//   margin-left: 0;
+//   padding-left: 70px;
+//
+//   @media only screen and (max-width : $breakpoint-medium) {
+//     padding-left: 0;
+//   }
+// }
 
-.list-stepped {
-  counter-reset: instructions;
-  list-style: none;
-  margin-left: 0;
-  padding-left: 70px;
-
-  @media only screen and (max-width : $breakpoint-medium) {
-    padding-left: 0;
-  }
-}
-
-.list-stepped__item {
-  counter-increment: instructions;
-  min-height: 50px;
-  padding-top: $item-spacing;
-  padding-bottom: $item-spacing;
-  @extend %vf-clearfix;
-
-  &:before {
-    display: block;
-    margin-left: 0;
-    margin-bottom: 20px;
-    float: none;
-    content: counter(instructions);
-    background: #888888;
-    border-radius: 100%;
-    color: white;
-    text-align: center;
-    vertical-align: top;
-    font-size: 2em;
-    line-height: 50px;
-    font-weight: 300;
-    width: 50px;
-    height: 50px;
-
-    @media only screen and (min-width: $breakpoint-medium) {
-      float: left;
-      margin-left: -70px;
-      margin-bottom: 0;
-    }
-  }
-  .box {
-    clear: both;
-  }
-}
-
-.list-stepped__title {
-  font-size: 1.066625em;
-
-  @media only screen and (min-width: $breakpoint-medium) {
-    font-size: 1.1428125em;
-  }
-
-  @media only screen and (min-width: $breakpoint-large) {
-    font-size: 1.4375em;
-    padding-top: .4em;
-  }
-}
-
-.list-stepped__box {
-  background-color: #f7f7f7;
-  padding-top: $item-spacing;
-  padding-bottom: $item-spacing;
-  padding-left: $item-spacing;
-  padding-right: $item-spacing;
-
-  @media only screen and (min-width: $breakpoint-medium) {
-    margin-top: -$item-spacing;
-    margin-bottom: -($item-spacing - 2);
-  }
-}
-
-.list-stepped--spaced {
-  @extend .list-stepped;
-
-  .list-stepped__item {
-    padding-top: 0;
-    padding-bottom: $item-spacing;
-    margin-bottom: 0;
-
-      @media only screen and (min-width: $breakpoint-medium) {
-          padding-top: $item-spacing * 2;
-          padding-bottom: $item-spacing * 2;
-      }
-  }
-
-  .list-stepped__box {
-      padding-bottom: $item-spacing * 2;
-      padding-left: $item-spacing * 2;
-      padding-right: $item-spacing * 2;
-      padding-top: $item-spacing * 2;
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        margin-top: -$item-spacing * 2;
-        margin-bottom: -( ( $item-spacing * 2 ) - 2 );
-      }
-  }
-}
+// .list-stepped__item {
+//   counter-increment: instructions;
+//   min-height: 50px;
+//   padding-top: $item-spacing;
+//   padding-bottom: $item-spacing;
+//   //@extend %vf-clearfix;
+//
+//   &:before {
+//     display: block;
+//     margin-left: 0;
+//     margin-bottom: 20px;
+//     float: none;
+//     content: counter(instructions);
+//     background: #888888;
+//     border-radius: 100%;
+//     color: white;
+//     text-align: center;
+//     vertical-align: top;
+//     font-size: 2em;
+//     line-height: 50px;
+//     font-weight: 300;
+//     width: 50px;
+//     height: 50px;
+//
+//     @media only screen and (min-width: $breakpoint-medium) {
+//       float: left;
+//       margin-left: -70px;
+//       margin-bottom: 0;
+//     }
+//   }
+//   .box {
+//     clear: both;
+//   }
+// }
+//
+// .list-stepped__title {
+//   font-size: 1.066625em;
+//
+//   @media only screen and (min-width: $breakpoint-medium) {
+//     font-size: 1.1428125em;
+//   }
+//
+//   @media only screen and (min-width: $breakpoint-large) {
+//     font-size: 1.4375em;
+//     padding-top: .4em;
+//   }
+// }
+//
+// .list-stepped__box {
+//   background-color: #f7f7f7;
+//   padding-top: $item-spacing;
+//   padding-bottom: $item-spacing;
+//   padding-left: $item-spacing;
+//   padding-right: $item-spacing;
+//
+//   @media only screen and (min-width: $breakpoint-medium) {
+//     margin-top: -$item-spacing;
+//     margin-bottom: -($item-spacing - 2);
+//   }
+// }
+//
+// .list-stepped--spaced {
+//   @extend .list-stepped;
+//
+//   .list-stepped__item {
+//     padding-top: 0;
+//     padding-bottom: $item-spacing;
+//     margin-bottom: 0;
+//
+//       @media only screen and (min-width: $breakpoint-medium) {
+//           padding-top: $item-spacing * 2;
+//           padding-bottom: $item-spacing * 2;
+//       }
+//   }
+//
+//   .list-stepped__box {
+//       padding-bottom: $item-spacing * 2;
+//       padding-left: $item-spacing * 2;
+//       padding-right: $item-spacing * 2;
+//       padding-top: $item-spacing * 2;
+//
+//       @media only screen and (min-width: $breakpoint-medium) {
+//         margin-top: -$item-spacing * 2;
+//         margin-bottom: -( ( $item-spacing * 2 ) - 2 );
+//       }
+//   }
+// }
 
 /// Pre needs margin-bottom in smaller screens too
 /// XXX Robin 2016-04-20

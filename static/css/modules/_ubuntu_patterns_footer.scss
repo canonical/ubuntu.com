@@ -55,7 +55,7 @@
     &__title {
       @include footer-title;
       border-top: 1px solid $color-mid-light;
-      background-image: url("#{$asset-server-url}7bd1bd7b-arrow_down_9fa097.svg");
+      background-image: url("#{$assets-path-url}7bd1bd7b-arrow_down_9fa097.svg");
       background-position: calc(100% - 10px) 50%;
       background-repeat: no-repeat;
       background-size: 13px 13px;
@@ -99,7 +99,7 @@
       }
       
       &.active {
-        background-image: url("#{$asset-server-url}43e2b367-arrow_up_9fa097.png");
+        background-image: url("#{$assets-path-url}43e2b367-arrow_up_9fa097.png");
   
         @media only screen and (min-width: $navigation-threshold) {
           background: none;
@@ -119,7 +119,7 @@
     
     .link-to-top {
       @include footer-title;
-      background-image: url("#{$asset-server-url}e4a5a8c0-picto-upload-warmgrey.svg");
+      background-image: url("#{$assets-path-url}e4a5a8c0-picto-upload-warmgrey.svg");
       background-position: 10px center;
       background-repeat: no-repeat;
       background-size: 14px 14px;

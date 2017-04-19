@@ -9,9 +9,9 @@
     these browser can't handle a big stylesheet.
 -------------------------------------------------------------- */
 
+// import vanilla themes
+@import "../../node_modules/vanilla-brochure-theme/scss/theme";
+@include vanilla-brochure-theme;
+
 // import global settings
 @import 'global-settings';
-
-// import vanilla themes
-@import "../../node_modules/ubuntu-vanilla-theme/scss/theme";
-@include ubuntu-vanilla-theme;

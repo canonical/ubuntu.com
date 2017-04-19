@@ -17,13 +17,13 @@ button {
 // Temporarally adding this until the small-viewport change
 // is merged into the theme. - KW 20160409
 body {
-  background-color: $light-grey;
-  background-image: url('#{$asset-path}img/backgrounds/image-background-paper.png?w=$breakpoint-medium');
+  background-color: $color-light;
+  background-image: url('#{$assets-path}img/backgrounds/image-background-paper.png?w=$breakpoint-medium');
   background-position: center top;
   background-repeat: repeat-y;
 
   @media only screen and (min-width : $breakpoint-medium) {
-    background-image: url('#{$asset-path}img/backgrounds/image-background-paper.png');
+    background-image: url('#{$assets-path}img/backgrounds/image-background-paper.png');
   }
 }
 
@@ -74,8 +74,8 @@ body {
 
     &.active a {
     background-image:
-            url('#{$asset-server-url}aab97879-icon-wechat.svg'),
-            url('#{$asset-server-url}2be70a94-qr-code-wechat.png');
+            url('#{$assets-path-url}aab97879-icon-wechat.svg'),
+            url('#{$assets-path-url}2be70a94-qr-code-wechat.png');
         background-repeat: no-repeat;
         background-position: left top, right top;
         background-size: 37px 37px, auto;
@@ -85,11 +85,11 @@ body {
 } // &__item
 
 .list--social__item--wechat a {
-    background: url('#{$asset-server-url}aab97879-icon-wechat.svg') no-repeat;
+    background: url('#{$assets-path-url}aab97879-icon-wechat.svg') no-repeat;
 }
 
 .list--social__item--weibo a {
-    background: url('#{$asset-server-url}d2d0d5b0-icon-weibo.svg') no-repeat;
+    background: url('#{$assets-path-url}d2d0d5b0-icon-weibo.svg') no-repeat;
 }
 
 main .list--social {
@@ -136,17 +136,17 @@ header.banner .nav-primary li:hover ul:after {
   padding: 0;
 
   &__title {
-    background-color: $light-grey;
-    padding: 15px $gutter-width;
+    background-color: $color-light;
+    padding: 15px $grid-gutter-width;
   }
 
   &__list {
     margin-left: 0;
-    padding: 0 $gutter-width;
+    padding: 0 $grid-gutter-width;
   }
 
   &__list-item {
-    border-bottom: 1px dotted $warm-grey;
+    border-bottom: 1px dotted $color-mid-light;
     list-style: none;
     margin-bottom: 0;
     padding: 10px 0;

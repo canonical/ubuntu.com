@@ -14,16 +14,16 @@
 
   .box-padded-feature {
     @media only screen and (min-width : $breakpoint-medium) {
-      .six-col {
-        border-right: 1px dotted $warm-grey;
+      .col-6 {
+        border-right: 1px dotted $color-mid-light;
       }
 
-      .six-col.last-col {
+      .col-6.last-col {
         border-right: 0;
       }
 
       .border-bottom {
-        border-bottom: 1px dotted $warm-grey;
+        border-bottom: 1px dotted $color-mid-light;
         margin-bottom: 10px;
         padding-bottom: 10px;
       }
@@ -38,8 +38,8 @@
         border-bottom: 0;
         margin-bottom: 0;
 
-        .nine-col {
-          background: $white;
+        .col-9 {
+          background: $color-x-light;
         }
       }
     }
@@ -47,7 +47,7 @@
     .row-ubuntu-advantage-promo {
 
       @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server-url}65274d19-landscape-screenshot.png?W=600');
+        background-image: url('#{$assets-path-url}65274d19-landscape-screenshot.png?W=600');
         background-position: 158% 45px;
         background-repeat: no-repeat;
         background-size: 56%;
@@ -101,7 +101,7 @@
 
     .row-hero {
       h2 {
-        color: $cool-grey;
+        color: $color-mid-dark;
         padding-top: 0;
       }
     }
@@ -112,9 +112,9 @@
 
     .row-hero {
       @media only screen and (min-width : $breakpoint-medium) {
-        background: $white url('#{$asset-server-url}e2c4c299-server-livepatch-hero.jpg?w=984') no-repeat;
+        background: $color-x-light url('#{$assets-path-url}e2c4c299-server-livepatch-hero.jpg?w=984') no-repeat;
         background-size: cover;
-        color: $white;
+        color: $color-x-light;
         min-height: 450px;
         padding: 0;
       }
@@ -129,7 +129,7 @@
     .row--kernal-livepatching {
 
       @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server-url}4d62c90a-applying-Livepatches.png?W=600');
+        background-image: url('#{$assets-path-url}4d62c90a-applying-Livepatches.png?W=600');
         background-position: 158% 45px;
         background-repeat: no-repeat;
         background-size: 56%;
@@ -147,7 +147,7 @@
     .row-hero {
 
       @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server-url}90669a61-screenshot-cloud_maas.png?w=800');
+        background-image: url('#{$assets-path-url}90669a61-screenshot-cloud_maas.png?w=800');
         background-position: 100% 33%;
         background-repeat: no-repeat;
         background-size: 50%;
@@ -157,7 +157,7 @@
     .row--autopilot {
 
       @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server-url}b72144a5-cloud_landscape_components.png?op=region&rect=0,0,900,900');
+        background-image: url('#{$assets-path-url}b72144a5-cloud_landscape_components.png?op=region&rect=0,0,900,900');
         background-position: 100% 0;
         background-repeat: no-repeat;
         background-size: 50%;
@@ -165,7 +165,7 @@
     }
 
     h1 {
-      background-image: url('#{$asset-server-url}33b96a7f-maas-logo.svg');
+      background-image: url('#{$assets-path-url}33b96a7f-maas-logo.svg');
       background-position: 0 18px;
       background-repeat: no-repeat;
       background-size: 1.4em;
@@ -207,7 +207,7 @@
 
       &__unit {
         font-size: .75em;
-        color: $warm-grey;
+        color: $color-mid-light;
       }
 
       &__detail {
@@ -221,7 +221,7 @@
     &.opera-mini {
 
       h1 {
-        background-image: url('#{$asset-server-url}6574f6c8-image-picto-maas-40.png');
+        background-image: url('#{$assets-path-url}6574f6c8-image-picto-maas-40.png');
       }
     }
   }

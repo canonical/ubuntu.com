@@ -41,7 +41,7 @@
   }
 
   p.ubuntu-upgrade {
-      background: $light-grey url('#{$asset-server-url}f68488b1-picto-upgrade-warmgrey.svg') 20px center no-repeat;
+      background: $color-light url('#{$assets-path-url}f68488b1-picto-upgrade-warmgrey.svg') 20px center no-repeat;
       background-size: 40px 40px;
       border-top: 1px solid #e3e3e3;
       border-radius: 0 0 4px 4px;
@@ -56,7 +56,7 @@
 html.no-svg,
 html.opera-mini {
     .download p.ubuntu-upgrade {
-        background-image: url('#{$asset-server-url}fa83e8f4-pictorgram-upgrade-44x44.png');
+        background-image: url('#{$assets-path-url}fa83e8f4-pictorgram-upgrade-44x44.png');
     }
 }
 
@@ -102,7 +102,7 @@ html.opera-mini {
 .download-cloud-conjure-up,
 .download-cloud-autopilot  {
   .row--ebook {
-    background: $dark-aubergine;
+    background: $color-dark-aubergine;
     color: #ebebea;
   }
 }
@@ -110,7 +110,7 @@ html.opera-mini {
 .download-desktop {
   div.warning {
     padding: 20px 40px;
-    margin-bottom: $gutter-width;
+    margin-bottom: $grid-gutter-width;
   }
 }
 
@@ -121,18 +121,18 @@ html.opera-mini {
         padding-bottom: 0;
 
         & + .row {
-            padding-top: $gutter-width;
+            padding-top: $grid-gutter-width;
         }
     }
 }
 
 .download-help .box-juju {
-    padding-top: 2 * $gutter-width;
-    padding-bottom: 2 * $gutter-width;
+    padding-top: 2 * $grid-gutter-width;
+    padding-bottom: 2 * $grid-gutter-width;
 }
 
 .download #download-other {
-    background: $light-grey;
+    background: $color-light;
     border-radius: 4px;
     padding: 20px;
 }
@@ -145,7 +145,7 @@ html.opera-mini {
 
     li h5 {
         font-weight: normal;
-        color: $cool-grey;
+        color: $color-mid-dark;
         margin-left: -15px;
     }
 
@@ -173,40 +173,40 @@ html.opera-mini {
         padding: .3em 0 .6em 2.4em;
     }
     .header--ubuntu {
-        background-image: url("#{$asset-server-url}cb3ecebb-picto-ubuntu.svg");
+        background-image: url("#{$assets-path-url}cb3ecebb-picto-ubuntu.svg");
     }
     .header--windows {
-        background-image: url("#{$asset-server-url}08563efa-picto-windows.svg");
+        background-image: url("#{$assets-path-url}08563efa-picto-windows.svg");
     }
     .header--mac {
-        background-image: url("#{$asset-server-url}4239507e-picto-mac.svg");
+        background-image: url("#{$assets-path-url}4239507e-picto-mac.svg");
     }
     .header--dvd {
-        background-image: url("#{$asset-server-url}a9ed9a5c-picto-cddvd-warmgrey.svg");
+        background-image: url("#{$assets-path-url}a9ed9a5c-picto-cddvd-warmgrey.svg");
     }
     .header--download {
-        background-image: url("#{$asset-server-url}be3876ec-picto-download-warmgrey.svg");
+        background-image: url("#{$assets-path-url}be3876ec-picto-download-warmgrey.svg");
     }
     .header--kylin {
-        background-image: url("#{$asset-server-url}590018e7-picto-ubuntukylin.svg");
+        background-image: url("#{$assets-path-url}590018e7-picto-ubuntukylin.svg");
     }
     .header--openstack {
-        background-image: url("#{$asset-server-url}a7916513-picto-openstack.svg");
+        background-image: url("#{$assets-path-url}a7916513-picto-openstack.svg");
     }
     .header--server {
-        background-image: url("#{$asset-server-url}c3499461-picto-server-warmgrey.svg");
+        background-image: url("#{$assets-path-url}c3499461-picto-server-warmgrey.svg");
     }
     .header--upgrade {
-        background-image: url("#{$asset-server-url}f68488b1-picto-upgrade-warmgrey.svg");
+        background-image: url("#{$assets-path-url}f68488b1-picto-upgrade-warmgrey.svg");
     }
     .header--articles {
-      background-image: url("#{$asset-server-url}8a199d55-picto-articles-warmgrey.svg");
+      background-image: url("#{$assets-path-url}8a199d55-picto-articles-warmgrey.svg");
     }
 
     .row-easy-ways {
         .box-highlight{
             p {
-                border-bottom: 1px dotted $warm-grey;
+                border-bottom: 1px dotted $color-mid-light;
                 padding-bottom: 20px;
                 margin-bottom: 20px;
             }
@@ -217,7 +217,7 @@ html.opera-mini {
     }
 
     #main-content .row-background {
-        background: url("#{$asset-server-url}ad0985ac-image-background-wallpaper1404.jpg") no-repeat center center;
+        background: url("#{$assets-path-url}ad0985ac-image-background-wallpaper1404.jpg") no-repeat center center;
         background-size: cover;
         background-color: #62273A;
         background-color: -webkit-linear-gradient(#62273A 0%, #a62d2d 100%);
@@ -246,11 +246,11 @@ html.opera-mini {
         }
 
         a.external {
-            background-image: url("#{$asset-server-url}c4b33571-icon-externallink-white.svg");
+            background-image: url("#{$assets-path-url}c4b33571-icon-externallink-white.svg");
         }
 
         a.external:hover {
-            background-image: url("#{$asset-server-url}a1f09697-icon-externallink-warmgrey.svg");
+            background-image: url("#{$assets-path-url}a1f09697-icon-externallink-warmgrey.svg");
         }
 
         .box-highlight {
@@ -286,7 +286,7 @@ html.opera-mini {
     }
 
     a.external:hover {
-    background-image: url("#{$asset-server-url}c4b33571-icon-externallink-white.svg");
+    background-image: url("#{$assets-path-url}c4b33571-icon-externallink-white.svg");
     }
 }
 
@@ -294,28 +294,28 @@ html.no-svg,
 html.opera-mini {
     .download {
         .header--ubuntu {
-            background-image: url("#{$asset-server-url}b66b2b31-picto-ubuntu.png");
+            background-image: url("#{$assets-path-url}b66b2b31-picto-ubuntu.png");
         }
         .header--windows {
-            background-image: url("#{$asset-server-url}6447e9cf-picto-windows.png");
+            background-image: url("#{$assets-path-url}6447e9cf-picto-windows.png");
         }
         .header--mac {
-            background-image: url("#{$asset-server-url}8f429189-picto-mac.png");
+            background-image: url("#{$assets-path-url}8f429189-picto-mac.png");
         }
         .header--dvd {
-            background-image: url("#{$asset-server-url}35559463-picto-cddvd-warmgrey.png");
+            background-image: url("#{$assets-path-url}35559463-picto-cddvd-warmgrey.png");
         }
         .header--download {
-            background-image: url("#{$asset-server-url}7fb8fbf5-picto-download-warmgrey.png");
+            background-image: url("#{$assets-path-url}7fb8fbf5-picto-download-warmgrey.png");
         }
         .header--kylin {
-            background-image: url("#{$asset-server-url}3e66a066-picto-ubuntukylin.png");
+            background-image: url("#{$assets-path-url}3e66a066-picto-ubuntukylin.png");
         }
         .header--openstack {
-            background-image: url("#{$asset-server-url}fc902cdf-picto-openstack.png");
+            background-image: url("#{$assets-path-url}fc902cdf-picto-openstack.png");
         }
         .header--server {
-            background-image: url("#{$asset-server-url}45f53eda-picto-server-warmgrey.png");
+            background-image: url("#{$assets-path-url}45f53eda-picto-server-warmgrey.png");
         }
     }
 }
@@ -329,7 +329,7 @@ html.opera-mini {
 }
 
 .download .box ul li p {
-    color: $cool-grey;
+    color: $color-mid-dark;
     margin-bottom: 0;
 }
 
@@ -347,18 +347,18 @@ html.opera-mini {
 /* Thank you pages */
 .download-thank-you .row-download-thanks {
 
-    .four-col .box {
+    .col-4 .box {
         background-color: #fff;
-        background-position: center $gutter-width;
+        background-position: center $grid-gutter-width;
         background-repeat: no-repeat;
         padding-top: 160px;
     }
-    .one .box { background-image: url(#{$asset-server-url}c748d2fd-pictogram-ubuntu-one-113x113.png); }
-    .support .box { background-image: url(#{$asset-server-url}6d589b26-pictogram-support-113x113.png); }
-    .ask .box { background-image: url(#{$asset-server-url}db32f14e-pictogram-ask-ubuntu-113x113.png); }
-    .jumpstart .box { background-image:  url(#{$asset-server-url}724533d0-pictogram-jumpstart-113x113.png); }
-    .advantage .box { background-image: url(#{$asset-server-url}c39e35bd-pictogram-advantage-113x113.png); }
-    .consulting .box { background-image:  url(#{$asset-server-url}6dba47a9-pictogram-consulting-113x113.png); }
+    .one .box { background-image: url(#{$assets-path-url}c748d2fd-pictogram-ubuntu-one-113x113.png); }
+    .support .box { background-image: url(#{$assets-path-url}6d589b26-pictogram-support-113x113.png); }
+    .ask .box { background-image: url(#{$assets-path-url}db32f14e-pictogram-ask-ubuntu-113x113.png); }
+    .jumpstart .box { background-image:  url(#{$assets-path-url}724533d0-pictogram-jumpstart-113x113.png); }
+    .advantage .box { background-image: url(#{$assets-path-url}c39e35bd-pictogram-advantage-113x113.png); }
+    .consulting .box { background-image:  url(#{$assets-path-url}6dba47a9-pictogram-consulting-113x113.png); }
 }
 
 /*	@section help
@@ -369,7 +369,7 @@ html.opera-mini {
   }
 
     li {
-        border-bottom: 1px dotted $warm-grey;
+        border-bottom: 1px dotted $color-mid-light;
         margin-bottom: 1.25em;
         min-height: 5em;
         padding-bottom: .625em;
@@ -393,7 +393,7 @@ html.opera-mini {
         margin-bottom: 0;
         margin-left: 20px;
         min-height: 0;
-        color: $cool-grey;
+        color: $color-mid-dark;
     }
 
     .box-tip p {
@@ -401,20 +401,20 @@ html.opera-mini {
     }
 
     .row-wiki {
-        border-bottom: 1px dotted $warm-grey;
+        border-bottom: 1px dotted $color-mid-light;
         margin-top: 20px;
     }
 
     dl {
     font-size: 1em;
-    border-top: 1px dotted $warm-grey;
+    border-top: 1px dotted $color-mid-light;
     margin-bottom: 10px;
     padding-top: 10px;
     position: relative;
     }
 
     dl.last {
-      border-bottom: 1px dotted $warm-grey;
+      border-bottom: 1px dotted $color-mid-light;
   }
 
     dd {
@@ -441,7 +441,7 @@ html.opera-mini {
     }
 
     .ask-ubuntu-box {
-        background-image: url(#{$asset-server-url}422b612c-picto-forum-warmgrey.svg);
+        background-image: url(#{$assets-path-url}422b612c-picto-forum-warmgrey.svg);
         background-size: 50px 50px;
         background-repeat: no-repeat;
         background-position: 0 center;
@@ -452,7 +452,7 @@ html.opera-mini {
 .no-svg,
 .opera-mini {
     .ask-ubuntu-box {
-        background-image: url(#{$asset-server-url}5de3bb0c-picto-forum-warmgrey.png);
+        background-image: url(#{$assets-path-url}5de3bb0c-picto-forum-warmgrey.png);
     }
 }
 
@@ -489,8 +489,8 @@ html.opera-mini {
         width: $size;
         height: $size;
         line-height: $size;
-        background-color: $warm-grey;
-        color: $white;
+        background-color: $color-mid-light;
+        color: $color-x-light;
         text-align: center;
         vertical-align: top;
         font-size: 2em;
@@ -505,16 +505,16 @@ html.opera-mini {
     }
 
     &__details {
-        background-color: $light-grey;
+        background-color: $color-light;
     }
 }
 
 #download-help li span,
 #ubuntu-help li span {
   border-radius: 40px;
-    background-color: $warm-grey;
-    border: 3px solid $warm-grey;
-    color: $white;
+    background-color: $color-mid-light;
+    border: 3px solid $color-mid-light;
+    color: $color-x-light;
     display: block;
     float: left;
     text-align: center;
@@ -583,7 +583,7 @@ html.opera-mini {
 
   &__option-currency {
     display: inline-block;
-    color: $warm-grey;
+    color: $color-mid-light;
     padding: 5px;
     order: 2;
   }
@@ -618,7 +618,7 @@ html.opera-mini {
     }
 
     &__equivalent-price {
-      color: $warm-grey;
+      color: $color-mid-light;
     }
   }
 
@@ -640,7 +640,7 @@ html.opera-mini {
     }
 
     &-currency {
-      color: $warm-grey;
+      color: $color-mid-light;
     }
   }
 
@@ -739,7 +739,7 @@ input[type=number].contribute__option-value {
 
     .download .download-description {
         box-sizing: border-box;
-        border-right: 1px dotted $warm-grey;
+        border-right: 1px dotted $color-mid-light;
         display: inline;
         float: left;
         min-height: 8em;
@@ -782,7 +782,7 @@ input[type=number].contribute__option-value {
     }
 
     .box-tip {
-        background: #fff url(#{$asset-server-url}18aa8a3c-pictogram-download-tip-60x49.png) $gutter-width $gutter-width no-repeat;
+        background: #fff url(#{$assets-path-url}18aa8a3c-pictogram-download-tip-60x49.png) $grid-gutter-width $grid-gutter-width no-repeat;
         margin-bottom: 1.538em;
         padding-left: 100px;
         padding-bottom: 1.25em;
@@ -858,7 +858,7 @@ pre {
   padding-right: 15px;
   padding-bottom: 10px;
   padding-left: 15px;
-  background-color: $cool-grey;
+  background-color: $color-mid-dark;
   border: none;
   border-radius: 2px;
   color: #cdcdcd;
