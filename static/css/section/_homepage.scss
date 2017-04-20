@@ -688,849 +688,6 @@ body.homepage-cloud-default {
   } // @media only screen and (min-width : $breakpoint-large)
 } // body.homepage-cloud-default
 
-
-// snapdeal-india-takeover
-.snapdeal-india-takeover {
-  #main-content .row-hero {
-    background-color: #fff;
-    margin-top: -20px;
-    overflow: hidden;
-    padding-bottom: 0;
-    padding-top: 40px;
-
-    .phone-image {
-      display: block;
-      margin: 0 auto;
-    }
-  }
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    header.banner {
-      -moz-box-shadow: none;
-      -webkit-box-shadow: none;
-      box-shadow: none;
-    }
-
-    #main-content .row-hero {
-      margin-top: -40px;
-      min-height: 550px;
-      padding-top: 80px;
-
-      .five-col {
-        overflow: visible;
-        position: relative;
-        &::after {
-          background-image: url('#{$asset-server-url}5b8d47f1-laptop-india.jpg');
-          background-repeat: no-repeat;
-          content: "";
-          display: block;
-          height: 680px;
-          position: absolute;
-          left: 460px;
-          top: -20px;
-          width: 833px;
-        }
-        .phone-image {
-          left: 83%;
-          position: absolute;
-          top: 75%;
-          z-index: 1;
-        }
-      }
-
-      h1 {
-        margin-top: 7%;
-      }
-    }
-  }
-
-  @media only screen and (min-width : $breakpoint-large) {
-    #main-content .row-hero {
-      margin-top: -53px;
-      min-height: 615px;
-      padding-top: 106px;
-    }
-  }
-}
-
-// homepage-15-10
-body.homepage-15-10 {
-
-  header.banner {
-    box-shadow: none;
-    margin-bottom: 0;
-  }
-
-  #main-content {
-    margin-top: 0;
-
-    .row-hero {
-      margin-top: 0;
-      overflow: hidden;
-      padding-bottom: 0;
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        background: url('#{$asset-server-url}8d298549-home-takeover-.jpg?w=1800&q=80') 50% 50% no-repeat;
-        background-size: cover;
-        color: $cool-grey;
-        min-height: 80vh;
-      }
-
-      a {
-        color: $cool-grey;
-      }
-
-      .link-cta-ubuntu {
-        color: #fff;
-      }
-
-      h1 {
-          @media only screen and (min-width : $breakpoint-medium) {
-            margin-top: 50px;
-          }
-
-          @media only screen and (min-width : 1600px) {
-            margin-top: 60px;
-          }
-      }
-    }
-  }
-}
-
-body.homepage.meizu-takeover {
-  .lang-switch {
-    color: #fff;
-    float: left;
-    padding: 10px 0 0 10px;
-  }
-
-  .list--social__item--wechat a {
-    background: url('#{$asset-server-url}602a7470-icon-wechat-orange.svg') no-repeat;
-    background-size: 37px 37px;
-  }
-
-  .list--social__item--weibo a {
-    background: url('#{$asset-server-url}a456bf5f-icon-weibo-orange.svg') no-repeat;
-    background-size: 37px 37px;
-  }
-
-  .list--social__item.active a {
-    background-image:
-      url('#{$asset-server-url}602a7470-icon-wechat-orange.svg'),
-      url('#{$asset-server-url}2be70a94-qr-code-wechat.png');
-  }
-
-  header.banner {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-  }
-
-  .list--social {
-    margin-left: 0;
-  }
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    .lang-switch {
-      padding: 0;
-    }
-
-    .inner-wrapper{
-      margin-top: -6px;
-    }
-
-    #main-content .row-hero {
-      background-image: url('#{$asset-server-url}7ea7024c-meizu-takeover.jpg');
-      background-position: right 30%;
-      background-repeat: no-repeat;
-      background-size: cover;
-      color: #fff;
-      margin-top: -40px;
-      min-height: 700px;
-      padding-top: 10%;
-
-      h1 {
-        margin-top: 125px;
-      }
-
-      a {
-        color: #fff;
-      }
-    }
-  }
-
-  @media only screen and (min-width : $breakpoint-large) {
-    #main-content .row-hero {
-      padding-top: 7%;
-    }
-  }
-}
-
-.homepage-autopilot #main-content .row-hero .twelve-col {
-  margin-top: 30px;
-  @media only screen and (min-width : $breakpoint-large) {
-    margin-top: 40px;
-  }
-}
-
-// homepage-autopilot-launch 16 Nov 2015
-.homepage-autopilot-launch {
-  header.banner {
-    box-shadow: none;
-    margin-bottom: 0;
-  }
-
-  .inner-wrapper {
-    margin-top: 0;
-  }
-
-  #main-content .row-hero {
-    background-color: $dark-aubergine;
-    background-image: url('#{$asset-server-url}640e7d6c-testdrive-takeover-01.svg');
-    background-repeat: no-repeat;
-    color: #fff;
-    margin-top: 0;
-    padding-top: 30px;
-
-    .for-small {
-      box-sizing: border-box;
-      margin-left: 0;
-      margin-right: -10px;
-      width: 100%;
-
-      img {
-        width: 100%;
-        float: left;
-        display: block;
-      }
-    }
-
-    @media only screen and (max-width : 760px) {
-      background-image: none;
-      min-height: auto;
-    }
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      background-position: 60% 130px;
-      min-height: 550px;
-      padding-top: 60px;
-    }
-
-    @media only screen and (min-width : $breakpoint-large) {
-      background-position: 60% 200px;
-      min-height: 600px;
-    }
-  }
-}
-
-// homepage-russia
-body.homepage-russia {
-  header.banner {
-    box-shadow: none;
-    margin-bottom: 0;
-  }
-
-  #main-content {
-    margin-top: 0;
-
-    @media only screen and (max-width : 767px) {
-      div.strip-inner-wrapper.strip-dark {
-        color: $cool-grey;
-      }
-    }
-
-    .row-hero {
-      @media only screen and (min-width : $breakpoint-medium) {
-        margin-top: 0;
-        overflow: hidden;
-        padding-bottom: 0;
-        background: url('#{$asset-server-url}7a415ac3-bq-ru-takeover.jpg') 50% 50% no-repeat;
-        background-size: cover;
-        min-height: 80vh;
-      }
-
-      h1 {
-          @media only screen and (min-width : $breakpoint-medium) {
-            margin-top: 50px;
-          }
-
-          @media only screen and (min-width : 1600px) {
-            margin-top: 60px;
-          }
-      }
-    }
-  }
-}
-
-// juju takeover
-body.juju-takeover {
-
-  header.banner {
-    box-shadow: none;
-    margin-bottom: 0;
-  }
-
-  .wrapper {
-    overflow-x: hidden;
-  }
-
-  #main-content {
-    .row-hero {
-      margin-top: 1.5em;
-      padding-bottom: 0;
-
-      .row-hero-text {
-        margin-bottom: 1.5em;
-        position: relative;
-        z-index: 2;
-      }
-
-      .large-screen-graphic {
-        display: none;
-      }
-
-      .for-mobile.twelve-col {
-        box-sizing: border-box;
-
-        img {
-          padding: 20px 10%;
-          width: 80%;
-        }
-      }
-
-      h1 {
-        margin-top: 20px;
-      }
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        margin-top: 0;
-
-        .row-hero-text {
-          margin-bottom: 11.5em;
-          width: 300px;
-        }
-
-        .large-screen-graphic {
-          display: block;
-          position: relative;
-
-          img {
-            position: absolute;
-            top: -12.5rem;
-            right: -7rem;
-            z-index: 1;
-          }
-        }
-
-        color: $cool-grey;
-        min-height: 500px;
-
-        &-text {
-          max-width: 55%;
-          margin-top: 150px;
-
-          .intro {
-            margin-bottom: 1.5em;
-          }
-        }
-      }
-
-      @media only screen and (min-width : $breakpoint-large) {
-
-        .row-hero-text {
-          padding-left: 20px;
-        }
-
-        .large-screen-graphic img {
-            top: -15rem;
-        }
-      }
-
-      @media only screen and (min-width : 1014px) {
-        .row-hero-text {
-          padding-left: 0;
-          max-width: 75%;
-        }
-      }
-
-      a {
-        color: $cool-grey;
-      }
-
-      .button--primary {
-        color: #fff;
-      }
-    }
-  }
-}
-
-// maas takeover
-body.homepage-maas-takeover {
-  .banner {
-    margin-bottom: 0;
-    box-shadow: none;
-  }
-
-  #main-content {
-    margin-top: 0;
-
-    .row-hero {
-      background: url('#{$asset-server-url}8ce3e107-hero-1.jpg?w=1600&amp;q=40') 0 12% no-repeat;
-      background-size: cover;
-      color: #fff;
-      margin-top: 0;
-      min-height: 255px;
-      padding-top: 40px;
-      transition-duration: 1s;
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        min-height: 400px;
-        padding-top: 40px;
-      }
-
-      @media only screen and (min-width : $breakpoint-large) {
-        min-height: 455px;
-        padding-top: 60px;
-      }
-    }
-
-    .row-hero__logo {
-      margin-bottom: 30px;
-      max-width: 220px;
-    }
-
-  }
-}
-
-
-
-// intel-nuc-takeover 06-02-2016
-.intel-nuc-takeover {
-  header.banner {
-    box-shadow: none;
-    margin-bottom: 0;
-  }
-
-  .inner-wrapper {
-    margin-top: 0;
-  }
-
-  #main-content .row-hero {
-    background-color: $cool-grey;
-    background-image: url('#{$asset-server-url}882ae6de-image-background-paper.png');
-    background-repeat: repeat;
-    background-size: cover;
-    color: #fff;
-    margin-top: 0;
-    padding-top: 30px;
-
-    .strip-inner-wrapper {
-      min-height: 50vw;
-      position: relative;
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        min-height: 520px;
-        padding-top: 160px;
-      }
-
-      @media only screen and (max-width : 767px) {
-        .row-hero-text {
-          margin-bottom: 26px;
-          padding-left: 40%;
-        }
-      }
-
-      .small-screen-graphic img {
-        position: absolute;
-        top: -20px;
-        margin-left: -50vw;
-
-        @media only screen and (min-width : 315px) {
-          top: -50px;
-          margin-left: 0;
-          left: -140px;
-          max-width: 250px;
-        }
-
-        @media only screen and (min-width : 570px) {
-          left: -50px;
-        }
-      }
-
-      .large-screen-graphic {
-        position: absolute;
-        left: -120px;
-        top: -70px;
-      }
-    }
-  }
-}
-
-// Events happening in Barcelona
-.featured--event__barcelona {
-  background-color: transparent;
-
-  a {
-    color: $white;
-  }
-
-  &::before {
-    background-image: url('#{$asset-server-url}bda4bb5d-barcelona-map-2.png?fmt=jpg&q=20');
-    background-repeat: no-repeat;
-    content: "";
-    display: block;
-    flex: auto;
-    height: 100%;
-    left: 0;
-    margin-top: -40px;
-    position: absolute;
-    right: -3000px;
-    width: 3000px;
-    z-index: -2;
-  }
-
-  &::after {
-    background-color: #303030;
-    display: block;
-    left: 0;
-    opacity: 0.7;
-    top: 40px;
-    z-index: -1;
-  }
-}
-
-// Meizu Pro 5 takeover - 22-02-2016
-.meizu-pro5-takeover {
-  header.banner {
-    box-shadow: none;
-    margin-bottom: 0;
-  }
-
-  .inner-wrapper {
-    margin-top: 0;
-  }
-
-  #main-content .row-hero {
-    background-image: url('#{$asset-server-url}62d039fe-meizu-pro5-background-small.png');
-    background-size: cover;
-    margin-top: 0;
-    overflow: hidden;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url('#{$asset-server-url}0a11c33e-meizu-pro5-background.png');
-      padding-top: 30px;
-    }
-
-    .strip-inner-wrapper {
-      min-height: 50vw;
-      position: relative;
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        min-height: 550px;
-
-        .row-hero-text {
-          margin-top: 150px;
-        }
-
-        .large-screen-graphic {
-          left: 400px;
-          position: absolute;
-          top: 50px;
-        }
-      }
-
-      @media only screen and (min-width : $breakpoint-large) {
-        min-height: 580px;
-
-        .row-hero-text {
-          margin-top: 110px;
-        }
-
-        .large-screen-graphic {
-          left: 500px;
-          position: absolute;
-          top: 60px;
-        }
-      }
-
-      .small-screen-graphic img {
-        margin: 10px 0;
-      }
-    }
-  }
-
-  &.index_kylin {
-    #main-content .row-hero .strip-inner-wrapper {
-      @media only screen and (min-width : $breakpoint-medium) {
-        .row-hero-text {
-          margin-top: 180px;
-        }
-      }
-
-      @media only screen and (min-width : $breakpoint-large) {
-        .row-hero-text {
-          margin-top: 165px;
-        }
-      }
-    }
-  }
-}
-
-// m10 convergence takeover
-.m10-convergence-takeover {
-  header.banner {
-    box-shadow: none;
-    margin-bottom: 0;
-  }
-
-  .inner-wrapper {
-    margin-top: 0;
-  }
-
-  #main-content .row-hero {
-    background: url('#{$asset-server-url}2991cd53-hero-background-sm.jpg') bottom center no-repeat;
-    background-size: cover;
-    margin-top: 0;
-    overflow: hidden;
-    padding-top: 30px;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url('#{$asset-server-url}52fbb3e9-hero-background-lg.jpg');
-      background-position: center center;
-      padding-top: 30px;
-    }
-
-    .strip-inner-wrapper {
-      min-height: 40vw;
-      overflow: visible;
-      position: relative;
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        background: url('#{$asset-server-url}ff61f48c-hero-tablet-2x.png?w=440') 0 50px no-repeat;
-        min-height: 400px;
-
-        .row-hero__text {
-          margin-top: 50px;
-        }
-      }
-
-      .row-hero__image--small-screen {
-        padding-top: 20px;
-      }
-
-      @media only screen and (min-width : $breakpoint-large) {
-        background: url('#{$asset-server-url}ff61f48c-hero-tablet-2x.png?w=630') -30px 100px no-repeat;
-        min-height: 630px;
-
-        .row-hero__text {
-          margin-top: 150px;
-        }
-      }
-    }
-  }
-}
-
-#main-content .row-hero.china {
-  @media only screen and (min-width : $breakpoint-large) {
-    h1 {
-      font-size: 2.4em;
-    }
-
-    margin-bottom: 40px;
-  }
-}
-
-// 16.04 takeover
-.release-1604 .row-hero {
-  background: #6d2263;
-  background: -moz-linear-gradient(45deg,  #6d2263 0%, #c3472e 100%);
-  background: -webkit-linear-gradient(45deg,  #6d2263 0%,#c3472e 100%);
-  background: linear-gradient(45deg,  #6d2263 0%,#c3472e 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6d2263', endColorstr='#c3472e',GradientType=1 );
-  background-image: url('https://assets.ubuntu.com/v1/34ab80ea-image-background-16-04.jpg?w=1150');
-  background-position: right center;
-  margin: 10px;
-  padding-top: 10px;
-  width: auto;
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    background-image: url('https://assets.ubuntu.com/v1/34ab80ea-image-background-16-04.jpg');
-    background-size: cover;
-    margin: 20px;
-    min-height: 540px;
-  }
-
-  @media only screen and (min-width : 986px) {
-    min-height: 85vh;
-  }
-
-  a {
-    color: $white;
-  }
-
-  .button--primary {
-    color: $cool-grey;
-    background-color: $white;
-
-    &:hover {
-      background-color: #f7f7f7;
-    }
-  }
-
-  &__image {
-    margin: 0 auto;
-  }
-
-  &__title {
-    font-size: 2em;
-  }
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    &__title {
-      font-size: 3em;
-      margin-top: 6vh;
-    }
-
-    &__text {
-      margin-top: -5px;
-    }
-  }
-
-  @media only screen and (min-width : $breakpoint-large) {
-    &__title {
-      font-size: 3.5em;
-      line-height: 1.8;
-    }
-
-  }
-}
-
-.featured--event__ods-austin {
-  &::before {
-    position: absolute;
-    display: block;
-    right: -3000px;
-    margin-top: -40px;
-    content: "";
-    width: 3000px;
-    flex: auto;
-    height: 100%;
-    left: 0;
-    z-index: -2;
-    background-image: url('#{$asset-server-url}c4068bb4-austin.png?fmt=jpg&q=20');
-  }
-
-  &::after {
-    background-color: #303030;
-    left: 0;
-    top: 40px;
-    display: block;
-    opacity: 0.7;
-    z-index: -1;
-  }
-}
-
-// takeover-cloud-ibm takeover
-.takeover-cloud-ibm .row-hero {
-  background: #0a5287;
-  background: -moz-linear-gradient(45deg,  #0a5287 0%, #0a5084 100%);
-  background: -webkit-linear-gradient(45deg,  #0a5287 0%,#0a5084 100%);
-  background: linear-gradient(45deg,  #0a5287 0%,#0a5084 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0a5287', endColorstr='#0a5084',GradientType=1 );
-  background-image: url('#{$asset-server-url}d2b89998-image-background-paper.jpg?w=1150');
-  background-position: right center;
-  margin: 10px;
-  padding-top: 10px;
-  width: auto;
-
-  &__title {
-    margin-top: 0;
-  }
-
-  &__text-image {
-    margin-top: 20px;
-    width: 60px;
-
-    @media only screen and (min-width : $breakpoint-medium + 1) {
-      margin-top: 80px;
-      width: 100px;
-    }
-  }
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    background-size: cover;
-    margin: 20px;
-    min-height: 380px;
-  }
-
-  .row-hero__link {
-    color: $white;
-  }
-
-  .button--primary {
-    background-color: $white;
-    color: $cool-grey;
-
-    &:hover {
-      background-color: #f7f7f7;
-    }
-  }
-
-  &__text {
-    @media only screen and (min-width : $breakpoint-medium) {
-      margin-left: 2vw;
-      width: 40.37611%;
-    }
-
-    @media only screen and (min-width : $breakpoint-large) {
-      margin-left: 8.5177%;
-      width: 31.8584%;
-    }
-  }
-
-  &__image {
-    margin: 0 auto;
-  }
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    &__title {
-      margin-top: 4vh;
-      margin-left: 2vw;
-    }
-  }
-
-  @media only screen and (min-width : $breakpoint-large) {
-    min-height: 550px;
-
-    &__title {
-      font-size: 4em;
-      line-height: 1.8;
-      margin-left: 8.5177%;
-      margin-top: 6vh;
-    }
-  }
-}
-
-.takeunder-pro5 {
-  background-color: #f5f5f5;
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    background-image: url('#{$asset-server-url}0d1e4e42-meizu-pro5-single.png?w=150');
-  }
-
-  background-repeat: no-repeat;
-  background-size: 36%;
-  background-position: 0 50%;
-
-  @media only screen and (min-width : 850px) {
-    background-position: 0 40px;
-  }
-
-  &::before {
-    background: #f5f5f5;
-  }
-}
-
 body.homepage-bootstack-generic {
   header.banner {
     margin-bottom: 0;
@@ -1611,148 +768,7 @@ body.homepage-maas-generic-takeover {
   }
 }
 
-
-// autopilot devops takeover
-body.homepage-autopilot-devops-takeover {
-  .banner {
-    border: none;
-    box-shadow: none;
-    margin-bottom: 0;
-  }
-
-  #main-content {
-    margin-top: 0;
-
-    .row-hero {
-      background-image: url('#{$asset-server-url}33f77842-openstack-autopilot-takeover.jpg?w-768');
-      background-position: right;
-      background-repeat: no-repeat;
-      background-size: cover;
-      color: #fff;
-      margin-top: 0;
-      min-height: 45vw;
-      transition-duration: 1s;
-
-      @media only screen and (max-width: 767px) {
-        color: $text-color;
-        padding: 10px;
-
-        &__heading {
-          font-size: 2em;
-        }
-
-        .strip-inner-wrapper {
-          padding: 20px 10px 10px;
-          background-color: rgba(255, 255, 255, .6);
-        }
-      }
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        background-size: cover;
-        background-image: url('#{$asset-server-url}33f77842-openstack-autopilot-takeover.jpg?w=984');
-        min-height: 45vw;
-        padding-top: 10vw;
-      }
-
-      @media only screen and (min-width : $breakpoint-large) {
-        background-image: url('#{$asset-server-url}33f77842-openstack-autopilot-takeover.jpg');
-        min-height: 45vw;
-        padding-top: 10vw;
-
-        .button--primary {
-          margin-top: 20px;
-          width: 100%;
-        }
-      }
-    }
-  }
-}
-
-// linux 25th takeover
-body.homepage-linux-25th-takeover {
-  #main-content {
-    .row-hero {
-      @media only screen and (min-width : $breakpoint-medium) {
-        min-height: 285px;
-
-        .row-hero__heading {
-          margin-top: 60px;
-        }
-      }
-
-      @media only screen and (min-width : $breakpoint-large) {
-        min-height: 350px;
-
-        .row-hero__heading {
-          margin-top: 45px;
-        }
-      }
-    }
-  }
-}
-
-// nextcloud takeover
-body.homepage-nextcloud-takeover {
-  header.banner {
-    border-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  #main-content {
-    .row-hero {
-      background-image: url('#{$asset-server-url}0c05a721-Nextbox+09.2016.mobile.background.png');
-      background-size: cover;
-      background-position: center bottom;
-      color: $white;
-      margin-top: 0;
-
-      .row-hero__heading {
-        margin-top: 20px;
-      }
-
-      .row-hero___image {
-        margin-top: 10px;
-        margin-bottom: 20px;
-      }
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        background-image: url('#{$asset-server-url}5aa79282-56f66029-Nextbox+09.2016.desktop.background-large.png');
-        min-height: 440px;
-
-        .row-hero__heading {
-          margin-top: 60px;
-        }
-
-        .row-hero___image {
-          margin-top: 50px;
-        }
-      }
-
-      @media only screen and (min-width : $breakpoint-large) {
-        min-height: 540px;
-
-        .row-hero__heading {
-          margin-top: 60px;
-        }
-
-        .row-hero___image {
-          margin-top: 60px;
-        }
-      }
-
-      .button--primary {
-        background-color: $white;
-        color: $cool-grey;
-
-        &:hover {
-          background-color: #f7f7f7;
-        }
-      }
-    }
-  }
-}
-
-// nextcloud takeover
+// kubernetes takeover
 body.homepage-kubernetes-takeover {
   header.banner {
     border-bottom: 0;
@@ -1841,265 +857,6 @@ body.homepage-kubernetes-takeover {
     top: $top;
     width: 100px;
     height: 10px;
-  }
-}
-
-body.homepage-1610 {
-  $animation-width: 1200px;
-
-  header.banner {
-    border-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .row-hero {
-    background-image: url('#{$asset-server-url}d1059f8b-mobile_background.png');
-    background-size: cover;
-    border: none;
-    box-sizing: border-box;
-    display: block;
-    margin-bottom: 20px;
-    overflow: hidden;
-    padding-top: 40px;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url('#{$asset-server-url}618be899-tablet_background.png');
-      margin: 20px;
-      min-height: 600px;
-      padding-top: 40px;
-      width: -moz-calc(100% - 40px);
-      width: -webkit-calc(100% - 40px);
-      width: -o-calc(100% - 40px);
-      width: calc(100% - 40px);
-    }
-
-    @media only screen and (min-width : $breakpoint-large) {
-      background-image: url('#{$asset-server-url}88633fdf-takeover.16.10.background.desktop.png');
-      margin: 40px 40px 0;
-      min-height: 680px;
-      padding: 80px 40px 0;
-      width: -moz-calc(100% - 80px);
-      width: -webkit-calc(100% - 80px);
-      width: -o-calc(100% - 80px);
-      width: calc(100% - 80px);
-
-      .six-col {
-        margin-bottom: 30px;
-      }
-    }
-  }
-
-  .row--ubuntu-news {
-    background-color: transparent;
-  }
-
-  .devices {
-    margin: 40px 0;
-
-    &--medium {
-      display: none;
-    }
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      &--small {
-        display: none;
-      }
-
-      &--medium {
-        display: inline;
-        position: absolute;
-        bottom: 60px;
-        left: 1%;
-        width: 98%;
-      }
-    }
-
-    @media only screen and (min-width : $animation-width) {
-      &--small,
-      &--medium {
-        display: none;
-      }
-    }
-
-    &__image {
-      width: 100%;
-    }
-  }
-
-  .device-animation {
-    display: none;
-  }
-
-  @media only screen and (min-width : $animation-width) {
-    .device-animation {
-      box-sizing: border-box;
-      display: block;
-      left: -130px;
-      position: relative;
-      top: 145px;
-      width: 1240px;
-      height: 350px;
-
-      &__cof {
-        animation: bounce;
-        animation-duration: 3.5s;
-        animation-fill-mode: forwards;
-        position: absolute;
-        top: 125px;
-        left: 0;
-        width: 60px;
-      }
-
-      &__list {
-        list-style: none;
-        padding: 0;
-      }
-
-      &__list-item--laptop,
-      &__list-item--tablet,
-      &__list-item--phone {
-        animation-duration: .3s;
-        animation-fill-mode: forwards;
-        animation-name: appear;
-        display: block;
-        opacity: 0;
-        position: absolute;
-        top: 50px;
-        transform: scale(1);
-      }
-
-      &__list-item--laptop {
-        @include dots(100px, 1.3s, 'right');
-        left: 124px;
-        animation-delay: .8s;
-      }
-
-      &__list-item--tablet {
-        @include dots(85px, 2.3s, 'right');
-        left: 620px;
-        animation-delay: 1.9s;
-        top: 64px;
-      }
-
-      &__list-item--phone {
-        left: 1010px;
-        animation-delay: 2.8s;
-        top: 55px;
-      }
-    }
-  }
-}
-
-@keyframes bounce {
-  0% {
-    transform: scale(1);
-    left: 0;
-  }
-  14% {
-    transform: scale(1.5);
-  }
-  28% {
-    transform: scale(1.2);
-    left: 265px;
-  }
-  42% {
-    transform: scale(1.3);
-  }
-  56% {
-    transform: scale(.9);
-    left: 718px;
-  }
-
-  70% {
-    transform: scale(1.1);
-  }
-  84% {
-    transform: scale(.7);
-    left: 1030px;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    left: 1300px;
-    opacity: 0;
-  }
-}
-
-@keyframes appear {
-  0% {
-    opacity: 0;
-    transform: scale(1);
-  }
-  20% {
-    transform: scale(.9);
-  }
-  40% {
-    transform: scale(1);
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes reveal {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-body.homepage-livepatch {
-  .row-hero {
-    background-image: url('#{$asset-server-url}3b4ea1e2-Yakkety_Yak_Wallpaper_Mobile_1080x1920_grey_version.png?w=768');
-
-    @media only screen and (min-width : $breakpoint-medium) {
-        background-image: url('#{$asset-server-url}6bcb129c-Yakkety_Yak_Wallpaper_4096x2304_grey_version.png');
-    }
-
-    background-size: cover;
-    margin-top: -5px;
-    overflow: hidden;
-    padding-bottom: 20px;
-    padding-top: 50px;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      padding-bottom: 100px;
-      padding-top: 100px;
-    }
-
-    @media only screen and (min-width : 1350px) {
-      padding-bottom: 200px;
-      padding-top: 200px;
-    }
-
-    &__image {
-      margin: 40px 0;
-    }
-
-    &:before {
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        background: url('#{$asset-server-url}2193f4aa-livepatch-laptop.png') center center no-repeat;
-        background-size: contain;
-        content: '';
-        display: block;
-        height: 75%;
-        overflow: visible;
-        position: absolute;
-        right: -30vw;
-        top: 40px;
-        width: 80vw;
-      }
-
-      @media only screen and (min-width : $breakpoint-large) {
-        height: 85%;
-        right: -8vw;
-        width: 55vw;
-      }
-    }
   }
 }
 
@@ -2214,15 +971,15 @@ body.homepage-1704 {
     margin: 0;
     padding: 0 0 30px;
     overflow: hidden;
-    
+
     @media only screen and (min-width : $breakpoint-medium) {
       padding: 20px 20px 0;
     }
-    
+
     @media only screen and (min-width : $breakpoint-large) {
       padding-top: 40px;
     }
-    
+
     .countdown-start {
       align-items: center;
       position: absolute;
@@ -2230,13 +987,13 @@ body.homepage-1704 {
       justify-content: center;
       top: 0;
       left: 0;
-      
+
       @media only screen and (min-width : $breakpoint-medium) {
         margin: 0 auto;
         width: 100%;
       }
     }
-    
+
     .countdown {
       align-items: center;
       background-image: url('#{$asset-server-url}12bdc8c9-Laptop.svg');
@@ -2249,14 +1006,14 @@ body.homepage-1704 {
       margin: 20px auto 30px;
       position: relative;
       text-align: center;
-      
+
       @media only screen and (min-width : $breakpoint-medium) {
         background-size: 100% auto;
         min-height: 278px;
         margin: 0 auto;
         width: 100%;
       }
-                 
+
       .laptop-final {
         background-image: url('#{$asset-server-url}3a1cd19a-laptop-17-04-final-edited.svg');
         background-repeat: no-repeat;
@@ -2268,12 +1025,12 @@ body.homepage-1704 {
         width: 100%;
         height: 100%;
         animation: fadein 5.555555s ease-in forwards;
-        
+
         @media only screen and (min-width : $breakpoint-medium) {
           background-size: 100% auto;
         }
       }
-      
+
       @mixin countdown-list {
         height: 4rem;
         overflow: hidden;
@@ -2282,7 +1039,7 @@ body.homepage-1704 {
         top: -6px;
         width: 4rem;
 
-        
+
         @media only screen and (min-width : $breakpoint-medium) {
           height: 4.5rem;
           top: -4px;
@@ -2295,20 +1052,20 @@ body.homepage-1704 {
           width: 6rem;
         }
       }
-      
+
       &__list--years {
         @include countdown-list;
       }
-      
+
       &__list--months {
         @include countdown-list;
         margin-left: 10px;
-        
+
         @media only screen and (min-width : $breakpoint-large) {
           margin-left: 20px;
         }
       }
-      
+
       @mixin transition {
         $total: 26;
         $start: 2;
@@ -2323,7 +1080,7 @@ body.homepage-1704 {
           }
         }
       }
-            
+
       @function pow($number, $exp) {
         $value: 1;
         @if $exp > 0 {
@@ -2348,7 +1105,7 @@ body.homepage-1704 {
         }
         @return $unitless;
       }
-      
+
       @function fact($number) {
         $value: 1;
         @if $number > 0 {
@@ -2358,7 +1115,7 @@ body.homepage-1704 {
         }
         @return $value;
       }
-      
+
       @function cos($angle) {
         $cos: 0;
         $angle: rad($angle);
@@ -2368,7 +1125,7 @@ body.homepage-1704 {
         }
         @return $cos;
       }
-      
+
       &__item {
         @include transition;
         align-items: center;
@@ -2388,7 +1145,7 @@ body.homepage-1704 {
         top: 0;
         vertical-align: middle;
         width: 100%;
-        
+
         @media only screen and (min-width : $breakpoint-medium) {
           font-size: 350%;
         }
@@ -2396,44 +1153,44 @@ body.homepage-1704 {
         @media only screen and (min-width : $breakpoint-large) {
           font-size: 450%;
         }
-        
+
         &.start {
           opacity: 1;
         }
       }
     }
-    
+
     &__inner {
       background-image: url('#{$asset-server-url}ab1a7e82-background.png');
       background-size: cover;
       transition-duration: 1s;
       padding: 0 20px;
       margin: 0;
-            
+
       @media only screen and (min-width : $breakpoint-large) {
         max-width: 1084px;
         margin: 0 auto;
         padding: 0 50px 0;
       }
     }
-    
+
     .equal-height__align-vertically {
       align-items: flex-start;
     }
-    
+
     &__heading {
       text-align: left;
     }
-    
+
     &__content {
       @media only screen and (min-width : $breakpoint-medium) {
         min-height: 380px;
       }
-      
+
       @media only screen and (min-width : $breakpoint-large) {
         min-height: 580px;
       }
     }
-        
+
   }
 }
