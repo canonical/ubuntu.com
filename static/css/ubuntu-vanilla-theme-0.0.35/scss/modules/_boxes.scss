@@ -1,0 +1,237 @@
+////
+/// @author       Web Team at Canonical Ltd
+/// @link         http://ubuntudesign.github.io/ubuntu-vanilla-theme/docs/#mixin-ubuntu-boxes
+/// @since        0.0.2
+////
+
+/// Boxes classes
+/// @group Boxes
+@mixin ubuntu-boxes() {
+  @include ubuntu-box;
+  @include ubuntu-box-grey;
+  @include ubuntu-box-orange;
+  @include ubuntu-box-highlight;
+  @include ubuntu-box-textured;
+  @include ubuntu-box-padded;
+  @include ubuntu-box-padded-feature;
+  @include ubuntu-resource;
+}
+
+@mixin ubuntu-box() {
+  .box {
+    @extend %box;
+    background: $white;
+    border: 1px solid $mid-grey;
+  }
+}
+
+@mixin ubuntu-box-grey() {
+  .box-grey {
+    @extend %box;
+    background: $light-grey;
+    color: $cool-grey;
+  }
+}
+
+@mixin ubuntu-box-orange() {
+  .box-orange {
+    background: $ubuntu-orange;
+    color: $white;
+  }
+}
+
+@mixin ubuntu-box-highlight() {
+  .box-highlight {
+    border: 1px solid $light-grey;
+    box-shadow: 0 2px 2px 0 $mid-grey;
+  }
+}
+
+@mixin ubuntu-box-textured() {
+  .box-textured {
+    background: url("#{$asset-path}patterns/grey-textured-background.jpg");
+    border: 0;
+    box-shadow: 0 2px 2px 0 $mid-grey;
+  }
+}
+
+@mixin ubuntu-box-padded() {
+  .box-padded {
+    background: $box-solid-grey;
+    border: 0;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding: 6px 5px;
+
+    h3 {
+      font-size: 1.21875em;
+      margin-left: ($gutter-width / 4);
+      margin-top: 5px;
+    }
+
+    li h3 {
+      font-size: 1.21875em;
+      margin: 0;
+    }
+
+    div {
+      background: $white;
+      border-radius: 4px;
+      overflow: hidden;
+      padding: 8px 8px 2px;
+    }
+  }
+}
+
+@mixin ubuntu-box-padded-feature() {
+  .box-padded-feature {
+    background: url("#{$asset-path}patterns/soft-centre-bkg.gif") repeat scroll 0 0 $warm-grey;
+    border-radius: 4px;
+    border: 0;
+    margin-bottom: 20px;
+    padding: 11px 5px 6px;
+
+    h3 {
+      color: $white;
+      font-size: 1.21875em;
+      margin-left: ($gutter-width / 4);
+    }
+
+    h4 {
+      font-size: 1em;
+      font-weight: normal;
+    }
+
+    > div {
+      background: $white;
+      border-radius: 4px;
+      overflow: hidden;
+      padding: 20px 8px;
+    }
+
+    div div {
+      margin-bottom: 0;
+    }
+
+    .one-col {
+      float: left;
+      width: 48px;
+    }
+  }
+
+  @media only screen and (max-width : $breakpoint-medium) {
+    .box-padded-feature .inline-icons li {
+      display: block;
+      float: left;
+    }
+
+    .box-padded-feature {
+      .one-col {
+        float: left;
+        width: 48px;
+      }
+    }
+  }
+}
+
+@mixin ubuntu-resource() {
+  .resource {
+    cursor: pointer;
+    padding-bottom: 40px;
+    position: relative;
+    transition: background .2s ease-out;
+
+    &.four-col {
+      h2 a:link,
+      h2 a:visited {
+        font-size: 1.125em;
+      }
+    }
+
+    &.twelve-col {
+      h2 a:link,
+      h2 a:visited {
+        font-size: 1.40625em;
+      }
+    }
+
+    &:hover {
+      background-color: $resource-hover;
+    }
+
+    &::after {
+      box-shadow: 0 -1px 2px 0 $resource-shadow;
+      content: '';
+      height: 1px;
+      position: absolute;
+      right: -6px;
+      top: 14px;
+      transform: rotate(45deg);
+      transition: all .2s ease-out;
+      width: 41px;
+      z-index: 2;
+    }
+
+    &:hover::after {
+      right: -9px;
+      top: 18px;
+      width: 48px;
+    }
+
+    &::before {
+      border-bottom: 30px solid $light-grey;
+      border-radius: 0;
+      border-right: 30px solid $white;
+      box-shadow: -2px 2px 2px rgba($light-grey, .4);
+      content: '';
+      height: 0;
+      position: absolute;
+      right: -3px;
+      top: -2px;
+      transition: border-width .2s ease-out;
+      width: 0;
+      z-index: 2;
+    }
+
+    &:hover::before {
+      border-bottom-width: 35px;
+      border-right-width: 35px;
+    }
+
+    &:last-of-type {
+      margin-bottom: 30px;
+    }
+
+    .content-cat {
+      background: url("#{$asset-path}icons/icon-resource-hub-icon-document.png") left center no-repeat;
+      color: $warm-grey;
+      font-size: 14px;
+      letter-spacing: 1px;
+      margin: 0;
+      padding: 0 0 0 20px;
+      position: absolute;
+      text-transform: uppercase;
+    }
+
+    .content-cat-webinar {
+      background: url("#{$asset-path}icons/icon-resource-hub-webinar.png") left center no-repeat;
+    }
+
+    &.box-image-centered div + span img {
+      margin-top: 40px;
+    }
+  }
+
+  .resource h2 {
+    padding-right: 20px;
+  }
+
+  .row-grey .resource::before {
+    border-right-color: $light-grey;
+  }
+}
+
+%box {
+  border-radius: 4px;
+  padding: 1.333em $gutter-width;
+}

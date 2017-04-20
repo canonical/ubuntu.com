@@ -1,0 +1,124 @@
+// scss-lint:disable QualifyingElement, IdSelector
+
+////
+/// @author       Web Team at Canonical Ltd
+/// @link         http://ubuntudesign.github.io/ubuntu-vanilla-theme/docs/#mixin-ubuntu-header
+/// @since        0.0.7
+////
+
+/// Default header styling
+@mixin ubuntu-header() {
+
+  @media only screen and (min-width: $breakpoint-large + 1) {
+    .banner {
+      margin-bottom: 30px;
+    }
+  }
+
+  .banner .nav-primary ul {
+    border: 0;
+
+    li {
+      border-left-color: darken($brand-color, 4%);
+
+      ul {
+        box-shadow: 0 2px 2px -1px $warm-grey;
+        border-radius: 10px;
+        background: $light-grey;
+        border: 1px solid $mid-grey;
+        display: none;
+        float: none;
+        margin: 0;
+        padding: 5px 0 20px;
+        position: absolute;
+        top: 51px;
+        width: 200px;
+      }
+    }
+
+    li a,
+    li a:link,
+    li a:visited,
+    li a.active:link,
+    li a.active:visited {
+      @media only screen and (min-width: $breakpoint-medium) {
+        border-left: 1px solid lighten($brand-color, 4%);
+      }
+      
+      font-weight: normal;
+
+      &:hover {
+        background: lighten($brand-color, 6%);
+        box-shadow: none;
+        color: $white;
+      }
+    }
+
+    ul {
+      @media only screen and (min-width: $navigation-threshold) {
+        display: none;
+      }
+
+      li {
+        border: 0;
+      }
+
+      li:last-child {
+        border: 0;
+      }
+
+    }
+
+    li ul li a,
+    li ul li a:link,
+    li ul li a:visited {
+      color: $cool-grey;
+      border: 0;
+      padding: 10px 0 0 14px;
+      font-weight: normal;
+      text-align: left;
+      width: 186px;
+    }
+
+    .second-level-nav li a {
+      &:link:hover,
+      &:visited:hover {
+        background: none;
+        color: $ubuntu-orange;
+      }
+    }
+
+    .second-level-nav .active {
+      &:link,
+      &:visited,
+      &:link:hover,
+      &:visited:hover {
+        background: none;
+        border: 0;
+        color: $cool-grey;
+      }
+    }
+      
+    li:hover ul::after {
+      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QYODgYVPPJJpQAAAT9JREFUKM+dkD9IAnEUx7+/IkVxFaxoKYxIWhqKwJw0JAJ315Yac8+1tUFo6HCp34XRdRp11z+J4BzckqShPzdEQ5G/EhPO6V5Tcg3G0QcePHjvffjygB4oXAIApFMxyPlcWM7nwulU7NfMNQqXGABsZNcCCpcKtapBtapBCpcK2fXlAAAcy3vMlUxTdgEAO9ubybPiPjWFoE6nQ5ZlUfNDULl0RAdSPuncddL30+gnCgOAlngLaocyn4nG9fmFJXj9fhARAMDr82MuEcfk7LSuFQu8DTvovO1SuTxlAKCqPFO5Ov/6FIIsy/qzROOdrst6S1V5xunomo0LrT4yOh4JDg6BMXfvIdvGs/mExutLPZpYnAIAdmNUVuwBbI1NRODxePEf2u0WHu9u4ev3rTLTfKBQaNh1qp5piWCa9/gGBheo3r6AmYcAAAAASUVORK5CYII=') no-repeat;
+      content: '';
+      display: block;
+      height: 8px;
+      left: 20px;
+      position: relative;
+      top: -13px;
+      width: 200px;
+      z-index: 999;
+    }
+
+    li:hover ul {
+      display: block;
+    }
+  }
+
+  @media only screen and (min-width : $breakpoint-large + 1) {
+    .banner .logo {
+      margin-left: 0;
+    }
+  }
+}

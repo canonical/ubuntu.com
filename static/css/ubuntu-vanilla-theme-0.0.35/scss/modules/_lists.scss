@@ -1,0 +1,51 @@
+////
+/// @author       Web Team at Canonical Ltd
+/// @link         http://ubuntudesign.github.io/vanilla-framework/docs/#mixin-ubuntu-lists
+/// @since        0.0.3
+////
+
+/// Canoical list styling
+/// @group Lists
+/// @example
+///   <ul>
+///     <li>...</li>
+///   </ul>
+@mixin ubuntu-lists {
+
+  /// Compact style lists with ticks
+  .list-ticks--compact {
+    @extend %list-ticks--compact;
+
+    li {
+      background-image: svg-tick($bullet-color);
+    }
+  }
+
+  /// Canonical style lists with ticks
+  .list-ticks--canonical {
+    @extend %list-ticks;
+
+    li {
+      background-image: svg-tick($canonical-aubergine);
+    }
+  }
+
+  /// Canonical compact style lists with ticks
+  .list-ticks--canonical-compact {
+    @extend %list-ticks--compact;
+
+    li {
+      background-image: svg-tick($canonical-aubergine);
+    }
+  }
+}
+
+// The placeholder for basic tick lists. This is a plceholder as we use it to extend in themes.
+%list-ticks--compact {
+  @extend %list-ticks;
+
+  li {
+    border: 0;
+    padding: 10px 0 0 25px;
+  }
+}

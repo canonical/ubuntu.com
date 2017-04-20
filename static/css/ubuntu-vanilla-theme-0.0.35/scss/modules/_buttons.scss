@@ -1,0 +1,116 @@
+////
+/// @author       Web Team at Canonical Ltd
+/// @link         http://ubuntudesign.github.io/ubuntu-vanilla-theme/docs/#mixin-ubuntu-buttons
+/// @since        0.0.2
+////
+
+/// Button classes
+/// @group Buttons
+@mixin ubuntu-buttons() {
+  @include ubuntu-cta-ubuntu;
+  @include ubuntu-cta-canonical;
+  @include ubuntu-cta-invert;
+  @include ubuntu-cta-deactivated;
+  @include ubuntu-cta-large;
+}
+
+/// Ubuntu styled CTA button
+/// @group Buttons
+/// @example
+///   <a href="" class="link-cta-ubuntu">Ubuntu button</a>
+@mixin ubuntu-cta-ubuntu() {
+  .link-cta-ubuntu,
+  .cta-ubuntu,
+  button[type="submit"],
+  input[type="submit"] {
+    @extend %ubuntu-button;
+    background: $ubuntu-orange;
+    color: $white;
+
+    &:hover {
+      background: darken($ubuntu-orange, 6.2%);
+      text-decoration: none;
+    }
+  }
+}
+
+/// Canonical styled CTA button
+/// @group Buttons
+/// @example
+///   <a href="" class="canonical-cta-ubuntu">Canonical button</a>
+@mixin ubuntu-cta-canonical() {
+  .link-cta-canonical,
+  .cta-canonical {
+    @extend %ubuntu-button;
+    background: $canonical-aubergine;
+    color: $white;
+
+    &:hover {
+      background: darken($canonical-aubergine, 6.2%);
+      text-decoration: none;
+    }
+  }
+
+  .row-enterprise .link-cta-canonical {
+    background: $white;
+    color: $canonical-aubergine;
+
+    &:hover {
+      background: $white;
+      text-decoration: underline;
+    }
+  }
+}
+
+/// Inverted styled CTA button
+/// @group Buttons
+/// @example
+///   <a href="" class="link-cta-invert">Inverted button</a>
+@mixin ubuntu-cta-invert() {
+  .link-cta-invert {
+    @extend %ubuntu-button;
+    background: $white;
+    color: $cool-grey;
+
+    &:hover {
+      background: $white;
+      text-decoration: underline;
+    }
+  }
+}
+
+/// Dactivated styled CTA button
+/// @group BUttons
+/// @example
+///   <a href="" class="cta-deactivated">Deactivated button</a>
+@mixin ubuntu-cta-deactivated() {
+  .cta-deactivated {
+    background: $box-solid-grey;
+    color: $white;
+    cursor: not-allowed;
+  }
+}
+
+/// Large styled CTA button
+/// @group Buttons
+/// @example
+///   <a href="" class="link-cta-ubuntu cta-large">Large Ubuntu button</a>
+@mixin ubuntu-cta-large() {
+  .cta-large {
+    font-size: 1.125em;
+    padding: 10px 20px;
+  }
+}
+
+%placeholder ubuntu-button {
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 1em;
+  font-smoothing: subpixel-antialiased;
+  margin: 0;
+  padding: 8px 14px;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+}
