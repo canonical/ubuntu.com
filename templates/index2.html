@@ -1,6 +1,6 @@
 {% extends "base_index.html" %}
 
-{% block takeover_body_class %}homepage-containers-ebook{% endblock takeover_body_class %}
+{% block takeover_body_class %}homepage-1704{% endblock takeover_body_class %}
 
 {% block head_extra %}
   <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
@@ -8,7 +8,7 @@
 
 {% block takeover_content %}
 
-{% include "takeovers/_containers-ebook.html" %}
+{% include "takeovers/_1704_takeover.html" %}
 
 {% get_rss_feed "https://insights.ubuntu.com/tag/spotlight/feed" limit=1 as spotlight_feed %}
 
@@ -121,7 +121,7 @@
 <section class="row row-featured strip no-border">
   <div class="strip-inner-wrapper equal-height">
     {% include "takeovers/takeunders/_iot-02-2017.html" %}
-    {% include "takeovers/takeunders/_maas-webinar.html" %}
+    {% include "takeovers/takeunders/_landscape-self-service.html" %}
   </div>
 </section>
 
