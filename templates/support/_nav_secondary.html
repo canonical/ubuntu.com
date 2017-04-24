@@ -1,5 +1,5 @@
-	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
-		<li><a{% if level_1 == 'support' and not level_2 %} class="active"{% endif %} href="/support">Overview</a></li>
-		<li><a{% if level_2 == 'community-support' %} class="active"{% endif %} href="/support/community-support">Community support</a></li>
-		<li><a{% if level_2 == 'plans-and-pricing' %} class="active"{% endif %} href="/support/plans-and-pricing">Plans and pricing</a></li>
-	</ul>
+  <ul{% if list_class %} class="{{ list_class }}"{% endif %} class="hover-menu">
+    <li><a{% if level_1 == 'support' and not level_2 %} class="active"{% endif %} href="/support">Overview</a></li>
+    <li><a{% if level_2 == 'community-support' %} class="active"{% endif %} href="/support/community-support">Community support</a></li>
+    <li><a{% if level_2 == 'plans-and-pricing' %} class="active"{% endif %} href="/support/plans-and-pricing">Plans and pricing</a></li>
+  </ul>
