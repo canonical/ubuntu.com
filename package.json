@@ -4,9 +4,10 @@
   "description": "Django website for ubuntu.com",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node-sass --include-path node_modules --output static/css static/css",
-    "watch": "node-sass --include-path node_modules --watch --source-map true --recursive static/css/styles.scss static/css/styles.css"
+    "test": "sass-lint static/**/*.scss --verbose --no-exit",
+    "build": "node-sass --include-path node_modules static/sass --output static/css ",
+    "watch": "node-sass --include-path node_modules --watch --source-map true --recursive static/sass/styles.scss static/css/styles.css",
+    "clean": "rm -rf node_modules yarn-error.log static/css"
   },
   "keywords": [
     "website",
@@ -14,8 +15,10 @@
   ],
   "author": "Canonical webteam",
   "license": "LGPL v3",
-  "dependencies": {
-    "node-sass": "^4.5.0",
+  "devDependencies": {
+    "node-sass": "4.5.2",
+    "sass-lint": "1.10.2",
     "vanilla-brochure-theme": "^1.0.4"
   }
 }
+
