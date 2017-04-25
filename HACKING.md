@@ -17,7 +17,7 @@ Then to learn about this script's options, type:
 The basic options are:
 
 ``` bash
-./run start  # Start the Django server, optionally watching for changes
+./run serve  # Start the Django server, optionally watching for changes
 ./run build  # Build the CSS
 ./run watch  # Watch and build the CSS whenever Sass changes
 ./run clean  # Remove created files and docker containers
@@ -28,7 +28,7 @@ The basic options are:
 The `start` function optionally takes a `--watch` argument:
 
 ``` bash
-./run start --watch
+./run serve --watch
 ```
 
 This will effectively run the `./run watch` command in the background while also running the server.
@@ -79,3 +79,4 @@ You can use the `./run` script to use NPM modules from a local folder on a one-t
 ``` bash
 ./run --node-module $HOME/projects/vanilla-framework watch  # Build CSS dynamically, using a local version of vanilla-framework
 ```
+
