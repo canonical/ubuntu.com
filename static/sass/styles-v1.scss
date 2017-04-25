@@ -200,15 +200,10 @@ $color-link: #e95420;
   }
 }
 
-// site search
-.p-site-search {
-  max-width: 100%;
-  display: none;
-}
-
 // delete before merging
 .contextual-footer,
-.p-footer {
+.p-footer,
+.p-site-search {
   display: none;
 }
 // ^^^^^^^^
@@ -224,11 +219,13 @@ $color-link: #e95420;
 // **************************
 
 // navigation logo is too big and adding a bottom margin
+// https://github.com/vanilla-framework/vanilla-framework/issues/1037
 .p-navigation__logo {
   margin: .75rem;
 }
 
 // at exactly $breakpoint-medium, there is not a clean switch between mobile/desktop nav styles
+// https://github.com/vanilla-framework/vanilla-framework/issues/1038
 .p-navigation__links .p-navigation__link {
   @media (min-width: $breakpoint-medium) {
     background: none;
