@@ -1,20 +1,13 @@
 @charset "UTF-8";
 
-$color-brand: #e95420;
-$color-link: #e95420;
+@import 'global-settings-v1';
 
 // custom mixins
-@mixin full-width-breakout {
-  position: relative;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: 100vw;
-}
+@import 'mixins/full-width-breakout';
 
 // import vanilla-brochure-theme
 @import "../../node_modules/vanilla-brochure-theme/scss/theme";
 @include vanilla-brochure-theme;
-
 
 // @TODO move into separate partial
 // .p-navigation override
