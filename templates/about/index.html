@@ -1,67 +1,56 @@
 <!-- to use v1 CSS, simply swap the next partial include to "about/base_about-v1.html" -->
 
-{% extends "about/base_about-v1.html" %}
+{% extends "about/base_about.html" %}
 
 {% block title %}About the Ubuntu project{% endblock %}
 
 {% block second_level_nav_items %}
-  {% include "templates/_nav_breadcrumb-v1.html" with section_title="About" page_title="The Ubuntu Project" %}
+  {% include "templates/_nav_breadcrumb.html" with section_title="About" page_title="The Ubuntu Project" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
+<div class="row row-hero">
+  <h1>About the Ubuntu project</h1>
+  <p class="eight-col">We believe in fast, effective computing for everyone. Created by the open-source community and Canonical, Ubuntu is free to use and share, at home and in business.</p>
+</div><!-- /.row -->
 
-<div class="p-strip">
-  <div class="row">
-    <div class="col-8">
-      <h1>About the Ubuntu project</h1>
-      <p>We believe in fast, effective computing for everyone. Created by the open-source community and Canonical, Ubuntu is free to use and share, at home and in business.</p>
-    </div>
-  </div>
-</div>
+<div class="row equal-height--vertical-divider">
+  <div class="equal-height--vertical-divider__item four-col">
+    <h3>The Ubuntu Promise</h3>
+    <p>Ubuntu is free. Always has been and always will be. From the operating system to security updates, storage to software.</p>
+    <p>Ubuntu is fast to load, easy to use, available in most languages and accessible to all.</p>
+    <p>Ubuntu applications are all free and open source &mdash; so you can share them with anyone you like, as often as you like.</p>
+    <p>Ubuntu comes with full support and all kinds of services available worldwide.</p>
+  </div><!-- / .four-col -->
+  <div class="equal-height--vertical-divider__item four-col">
+    <h3><a href="/about/about-ubuntu/our-philosophy">Open-source software&nbsp;&rsaquo;</a></h3>
+    <p>Ubuntu is created by open-source developers because we believe that everybody should have access to the best possible technologies.</p>
+    <p>This passionate global community works together to continually evolve the best systems in the world and then make them available to everybody, absolutely free.</p>
+  </div><!-- / .four-col -->
+  <div class="equal-height--vertical-divider__item four-col last-col">
+    <h3><a href="/about/canonical-and-ubuntu">Ubuntu and Canonical&nbsp;&rsaquo;</a></h3>
+    <p>Ubuntu is backed by Canonical &mdash; the number-one Ubuntu services provider.</p>
+    <p>Companies can choose to receive expert training, support or consultancy for a fee that goes towards the continued development of Ubuntu.</p>
+  </div><!-- / .four-col -->
+</div><!-- / .row -->
 
-<div class="p-strip">
-  <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <h2 class="p-heading--three">The Ubuntu Promise</a></h2>
-      <p>Ubuntu is free. Always has been and always will be. From the operating system to security updates, storage to software.</p>
-      <p>Ubuntu is fast to load, easy to use, available in most languages and accessible to all.</p>
-      <p>Ubuntu applications are all free and open source &mdash; so you can share them with anyone you like, as often as you like.</p>
-      <p>Ubuntu comes with full support and all kinds of services available worldwide.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h2 class="p-heading--three"><a href="/about/about-ubuntu/our-philosophy">Open-source software&nbsp;&rsaquo;</a></h2>
-      <p>Ubuntu is created by open-source developers because we believe that everybody should have access to the best possible technologies.</p>
-      <p>This passionate global community works together to continually evolve the best systems in the world and then make them available to everybody, absolutely free.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h2 class="p-heading--three"><a href="/about/canonical-and-ubuntu">Ubuntu and Canonical&nbsp;&rsaquo;</a></h2>
-      <p>Ubuntu is backed by Canonical &mdash; the number-one Ubuntu services provider.</p>
-      <p>Companies can choose to receive expert training, support or consultancy for a fee that goes towards the continued development of Ubuntu.</p>
-    </div>
-  </div>
-</div>
+<div class="row no-border">
+  <h2>Why use Ubuntu?</h2>
+  <ul class="list-ticks eight-col">
+    <li>Ubuntu is far more than an operating system. With thousands of applications to choose from, it&#39;s completely free and easy to use.</li>
+    <li>Ubuntu is made for sharing. Use it, modify it, improve it, share it. Anywhere, any time and with any number of people all over the world. No licence required.</li>
+    <li>Ubuntu operating systems are regularly updated. Come in a new, improved, easy-to-install release every six months, so you&#39;re always up to date.</li>
+    <li>Ubuntu comes with all the support you need and powers the most popular computers &mdash; on servers, desktops, notebooks and netbooks.</li>
+    <li>Ubuntu comes with a ready-made community dedicated to building and promoting free systems and software. Join us.</li>
+  </ul>
 
-<div class="p-strip">
-  <div class="row">
-    <div class="col-7">
-      <h2 class="p-heading--three">Why use Ubuntu?</h2>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Ubuntu is far more than an operating system. With thousands of applications to choose from, it&#39;s completely free and easy to use.</li>
-        <li class="p-list__item is-ticked">Ubuntu is made for sharing. Use it, modify it, improve it, share it. Anywhere, any time and with any number of people all over the world. No licence required.</li>
-        <li class="p-list__item is-ticked">Ubuntu operating systems are regularly updated. Come in a new, improved, easy-to-install release every six months, so you&#39;re always up to date.</li>
-        <li class="p-list__item is-ticked">Ubuntu comes with all the support you need and powers the most popular computers &mdash; on servers, desktops, notebooks and netbooks.</li>
-        <li class="p-list__item is-ticked">Ubuntu comes with a ready-made community dedicated to building and promoting free systems and software. Join us.</li>
+  <div class="prepend-one two-col last-col">
+    <h3>Take a look:</h3>
+      <ul class="list">
+        <li><a href="/desktop">Ubuntu</a></li>
+        <li><a href="/server">Ubuntu Server</a></li>
+        <li><a href="https://community.ubuntu.com/contribute/">Get involved</a></li>
       </ul>
-    </div>
-    <div class="col-4 prefix-1">
-      <h3>Take a look:</h3>
-        <ul class="p-list--divided">
-          <li class="p-list__item"><a href="/desktop">Ubuntu</a></li>
-          <li class="p-list__item"><a href="/server">Ubuntu Server</a></li>
-          <li class="p-list__item"><a href="https://community.ubuntu.com/contribute/">Get involved</a></li>
-        </ul>
-    </div>
   </div>
-</div>
-
+</div><!-- / .row -->
 {% endblock content %}
