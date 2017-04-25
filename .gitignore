@@ -1,22 +1,30 @@
+# Local environments and dependencies
+env/
+node_modules/
+.bundle/
+.docker-project
+
+# Version control
 .bzr/
+bzr-repo/
+
+# Backup, cache and log files
 *.pyc
 *.bak
 *.tmp
-*.css.map
-.sass-cache
-*.~*~
-env/
-etc/
-*.css
-bzr-repo/
-pip-cache/
-npm-debug.log
-node_modules
-etc/ubuntu-mirrors-rss.xml
-django-error.log
-node_modules/
-src/
-cache.sqlite
-.docker-project
+*.log
+*.*~
+.DS_store
+*-cache/
+\#*\#
 
-yarn-error.log
+# Local databases
+*.sqlite
+
+# Generated CSS
+*.css
+*.map
+
+# Ubuntu mirrors cache
+etc/ubuntu-mirrors-rss.xml
+

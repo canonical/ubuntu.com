@@ -1,0 +1,70 @@
+////
+/// @author       Web Team at Canonical Ltd
+/// @link         http://ubuntudesign.github.io/ubuntu-vanilla-theme/docs/#mixin-ubuntu-arrows
+/// @since        0.0.2
+////
+
+/// Arrows classes
+/// @group Utils
+@mixin ubuntu-arrows() {
+  @include ubuntu-arrow-up;
+  @include ubuntu-arrow-down;
+  @include ubuntu-arrow-right;
+  @include ubuntu-arrow-left;
+}
+
+/// Arrow up
+/// @group Utils
+@mixin ubuntu-arrow-up() {
+  .arrow-up {
+    @extend %arrow;
+    background-image: url('#{$asset-path}patterns/arrow-up.png');
+    left: 20px;
+    top: -11px;
+  }
+}
+
+/// Arrow down
+/// @group Utils
+@mixin ubuntu-arrow-down() {
+  .arrow-down {
+    @extend %arrow;
+    background-image: url('#{$asset-path}patterns/arrow-down.png');
+    bottom: -11px;
+    right: 20px;
+  }
+}
+
+/// Arrow right
+/// @group Utils
+@mixin ubuntu-arrow-right() {
+  .arrow-right {
+    @extend %arrow;
+    background-image: url('#{$asset-path}patterns/arrow-right.png');
+    height: 18px;
+    right: -11px;
+    top: 20px;
+    width: 11px;
+  }
+}
+
+/// Arrow left
+/// @group Utils
+@mixin ubuntu-arrow-left() {
+  .arrow-left {
+    @extend %arrow;
+    background-image: url('#{$asset-path}patterns/arrow-left.png');
+    bottom: 20px;
+    height: 18px;
+    left: -11px;
+    width: 11px;
+  }
+}
+
+%arrow {
+  background-position: 0;
+  background-repeat: no-repeat;
+  height: 11px;
+  position: absolute;
+  width: 18px;
+}

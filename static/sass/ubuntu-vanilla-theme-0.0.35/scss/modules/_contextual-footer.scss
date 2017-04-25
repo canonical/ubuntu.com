@@ -1,0 +1,91 @@
+////
+/// @author       Web Team at Canonical Ltd
+/// @link         http://ubuntudesign.github.io/ubuntu-vanilla-theme/docs/#mixin-ubuntu-contextual-footer
+/// @since        0.0.2
+////
+
+/// Arrows classes
+/// @group Utils
+@mixin ubuntu-contextual-footer() {
+  .context-footer {
+    box-sizing: border-box;
+    clear: both;
+    display: block;
+    ///font-size: .875em;
+    padding: 0 10px;
+    position: relative;
+    width: 100%;
+
+    hr {
+      background: $ubuntu-orange;
+      border: 0;
+      box-shadow: inset 0 2px 2px -2px $warm-grey;
+      clear: both;
+      height: 14px;
+      margin: 0 -10px 20px;
+    }
+
+    div > div {
+      border-bottom: 1px dotted $warm-grey;
+      padding-bottom: 20px;
+
+      &:last-child {
+        border: 0;
+        padding-bottom: 0;
+      }
+    }
+
+    ul {
+      margin-bottom: 5px;
+    }
+
+    h3 {
+      font-size: 1em;
+      font-weight: normal;
+      margin-bottom: .75em;
+    }
+  }
+
+  @media only screen and (min-width : $breakpoint-medium) {
+    .context-footer {
+      div > div {
+        border: 0;
+        padding-bottom: 0;
+      }
+
+      hr {
+        margin: 0 -30px 40px;
+      }
+
+      h3 {
+        font-size: 1.07143125em;
+      }
+
+      p,
+      li,
+      a {
+        font-size: .9375em;
+      }
+    }
+  } // end @media only screen and (max-width : 768px)
+
+  @media only screen and (min-width: $breakpoint-large) {
+    .context-footer {
+      padding: 0 20px;
+
+      hr {
+        margin: 0 -20px 40px;
+      }
+
+      h3 {
+        font-size: 1.14286em;
+      }
+
+      p,
+      li,
+      a {
+        font-size: 1em;
+      }
+    }
+  } // end @media only screen and (min-width: 984px)
+}
