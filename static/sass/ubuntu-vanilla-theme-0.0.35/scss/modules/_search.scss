@@ -1,0 +1,19 @@
+////
+/// @author       Web Team at Canonical Ltd
+/// @link         http://ubuntudesign.github.io/ubuntu-vanilla-theme/docs/#mixin-ubuntu-search
+/// @since        0.0.3
+////
+
+/// Search box styles
+/// @group Header
+@mixin ubuntu-search {
+  .header-search,
+  .search-form {
+    [type="search"],
+    [type="text"] {
+      @media only screen and (min-width :$navigation-threshold) {
+        border-radius: 4px;
+      }
+    }
+  }
+}
