@@ -15,9 +15,8 @@ $color-link: #e95420;
 @import "../../node_modules/vanilla-brochure-theme/scss/theme";
 @include vanilla-brochure-theme;
 
-// custom pattern overrides specific to this site
-@import "pattern_navigation";
 
+// @TODO move into separate partial
 // .p-navigation override
 .p-navigation {
   margin-bottom: 0;
@@ -55,6 +54,7 @@ $color-link: #e95420;
   }
 }
 
+// @TODO move into separate partial
 // .nav-secondary override
 .nav-secondary {
   //
@@ -148,8 +148,8 @@ $color-link: #e95420;
   }
 }
 
+// @TODO move into separate partial
 // rollover menu
-
 .p-navigation__link {
   position: relative;
 }
@@ -200,9 +200,7 @@ $color-link: #e95420;
   }
 }
 
-// delete before merging
-.contextual-footer,
-.p-footer,
+// @TODO convert site search to v1 styling
 .p-site-search {
   display: none;
 }
