@@ -39,16 +39,17 @@ $color-link: #e95420;
       &:nth-child(2n) {
         border-left: 1px solid $color-mid-light;
       }
+
+      &:last-of-type {
+        border-bottom: 1px solid $color-mid-light;
+      }
     }
 
     @media (min-width: $breakpoint-medium) {
+      padding: 1rem .75rem;
+
       &:hover {
         background-color: lighten(#df4a16, 10%);
-      }
-    }
-    @media (max-width: $breakpoint-medium) {
-      &:last-of-type {
-        border-bottom: 1px solid $color-mid-light;
       }
     }
   }
