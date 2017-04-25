@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "sass-lint static/**/*.scss --verbose --no-exit",
-    "build": "node-sass --include-path node_modules static/sass --output static/css ",
-    "watch": "node-sass --include-path node_modules --watch --source-map true --recursive static/sass/styles.scss static/css/styles.css",
+    "build": "node-sass --include-path node_modules static/sass --output static/css",
+    "watch": "node-sass --include-path node_modules --source-map true --watch static/sass --output static/css",
     "clean": "rm -rf node_modules yarn-error.log static/css"
   },
   "keywords": [
@@ -18,7 +18,7 @@
   "devDependencies": {
     "node-sass": "4.5.2",
     "sass-lint": "1.10.2",
-    "vanilla-brochure-theme": "^1.0.4"
+    "vanilla-brochure-theme": "1.0.4"
   }
 }
 
