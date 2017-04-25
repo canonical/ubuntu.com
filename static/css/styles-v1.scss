@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+// import vanilla-brochure-theme
+@import "../../node_modules/vanilla-brochure-theme/scss/theme";
+@include vanilla-brochure-theme;
+
+// patterns
+@import 'modules-v1/patterns_footer';
+@import 'modules-v1/ubuntu_patterns_lists';
+
+// Include the CSS
+// patterns
+@include ubuntu-p-footer;
+@include ubuntu-p-lists;
