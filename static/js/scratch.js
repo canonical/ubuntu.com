@@ -303,7 +303,6 @@ core.siteSearch = function(){
 
   siteSearchToggle.addEventListener('click', function(e) {
     siteSearchForm.classList.toggle('u-visible');
-    console.log('hello');
     e.preventDefault();
   });
 }
