@@ -293,3 +293,19 @@ core.footerMobileNav();
 core.globalResizeListener();
 core.setupGlobalNavAccordion();
 core.commandLine();
+
+// v1
+
+core.siteSearch = function(){
+
+  siteSearchToggle = document.querySelector('.search-toggle__link');
+  siteSearchForm  = document.querySelector('.p-site-search__form');
+
+  siteSearchToggle.addEventListener('click', function(e) {
+    siteSearchForm.classList.toggle('u-visible');
+    console.log('hello');
+    e.preventDefault();
+  });
+}
+
+core.siteSearch();
