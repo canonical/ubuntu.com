@@ -9,6 +9,9 @@
 @import "../../node_modules/vanilla-brochure-theme/scss/theme";
 @include vanilla-brochure-theme;
 
+// vendor
+@import 'vendors/global-nav/build';
+
 // import site specific patterns and overrides
 @import "v1_pattern_site_search";
 @import "v1_pattern_navigation";
