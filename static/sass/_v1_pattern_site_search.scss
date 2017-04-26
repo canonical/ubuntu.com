@@ -13,7 +13,7 @@
 
 .p-site-search {
   float: right;
-  margin: 1rem 0;
+  margin: $sp-medium 0;
 
   &__form {
     clear: both;
@@ -23,7 +23,8 @@
     width: 100%;
     max-height: 48px;
 
-    &:target {
+    &:target,
+    &:active {
       display: block;
     }
 
@@ -46,7 +47,7 @@
 
       .p-site-search__button {
         top: -.5rem;
-        right: 1rem;
+        right: $sp-medium;
       }
     }
   }
@@ -58,7 +59,7 @@
 
   &__button {
     position: absolute;
-    top: -.1rem;
+    top: -.$sp-medium;
     right: 1.75rem;
     width: 1.5rem;
     height: 1.5rem;
