@@ -72,7 +72,7 @@
   }
 }
 
-@media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
+@media (min-width: $breakpoint-medium) and (max-width: calc($breakpoint-large - 1)) {
   .p-site-search__input {
     border-bottom: 1px solid $color-mid-dark!important;
   }
