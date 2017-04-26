@@ -38,9 +38,7 @@
 
 // .nav-secondary override
 .nav-secondary {
-  //
   // small screen view
-  //
   @media (max-width: $breakpoint-medium) {
     background: $color-x-light;
 
@@ -96,9 +94,7 @@
     position: relative;
   }
 
-  //
   // large screen view
-  //
   @media (min-width: $breakpoint-medium) {
     @include full-width-breakout;
     background: $color-light;
