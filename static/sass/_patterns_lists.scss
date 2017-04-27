@@ -23,8 +23,8 @@ $facebook:  #3b5898;
     padding-left: 0;
 
     .p-inline-list__item {
-       @include inline-list-item;
-       float: left;
+      @include inline-list-item;
+      float: left;
     }
 
     .p-inline-list_icon {
@@ -74,7 +74,6 @@ $facebook:  #3b5898;
 
     .p-inline-list__item {
       @include inline-list-item;
-      font-size: .8125rem;
     }
   }
 }
@@ -87,7 +86,6 @@ $facebook:  #3b5898;
 
     .p-inline-list__item {
       @include inline-list-item;
-      font-size: .8125rem;
       position: relative;
 
       &::after {
@@ -96,8 +94,8 @@ $facebook:  #3b5898;
         font-size: 1.4rem;
         line-height: 0;
         position: absolute;
-        right: -.85rem;
-        top: .4rem;
+        right: -.75rem;
+        top: .55rem;
       }
 
       &:hover::after {

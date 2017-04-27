@@ -1,4 +1,7 @@
 // Footer pattern styling
+
+$color-shadow: rgba(0, 0, 0, .3);
+
 @mixin footer-title {
   color: $color-mid-dark;
   cursor: pointer;
@@ -9,11 +12,13 @@
 @mixin ubuntu-p-footer {
   .p-footer {
     border: 0;
-    box-shadow: 0 4px 4px -4px rgba(0,0,0,.3) inset;
+    box-shadow: 0 4px 4px -4px $color-shadow inset;
+    font-size: 1rem;
+    margin-bottom: 1rem;
     padding-top: 0;
 
     @media only screen and (min-width: $breakpoint-medium) {
-      padding-top: 0.75rem;
+      padding-top: .75rem;
     }
 
     @media only screen and (max-width: $breakpoint-medium) {
@@ -22,21 +27,20 @@
       }
     }
 
-    @media only screen and (max-width: $breakpoint-medium) {
-      .strip-inner-wrapper--nav {
-        padding: 0 !important;
-        max-width: 100% !important;
-      }
-    }
-
     &__nav {
       border-bottom: 1px solid $color-mid-light;
 
       @media only screen and (min-width: $breakpoint-medium) {
-        border-bottom: 1px dotted $color-mid-dark;
-        margin-bottom: 20px;
-        padding: 40px 0;
+        border: 0;
+        padding-top: 40px;
       }
+    }
+
+    &__divider {
+      @include full-width-breakout;
+      border: 0;
+      border-bottom: 1px dotted $color-x-dark;
+      border-collapse: separate;
     }
 
     &__links {
@@ -55,12 +59,12 @@
 
     &__title {
       @include footer-title;
-      border-top: 1px solid $color-mid-light;
       background-image: url("#{$assets-path}7bd1bd7b-arrow_down_9fa097.svg");
       background-position: calc(100% - 10px) 50%;
       background-repeat: no-repeat;
       background-size: 13px 13px;
-      font-size: .8125rem;
+      border-top: 1px solid $color-mid-light;
+      font-size: .87rem;
       padding: 10px 0;
 
       @media only screen and (min-width: $breakpoint-medium) {
@@ -87,7 +91,7 @@
       }
 
       a::after {
-        content: ""; /* hide the default > */
+        content: ''; // hide the default > */
       }
 
       /// open and close the primary/secondary navs
@@ -112,6 +116,13 @@
       }
     }
 
+    &__container {
+      @media only screen and (max-width: $breakpoint-medium - 1px) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+
     &__link {
       &:hover {
         color: $color-dark;
@@ -126,7 +137,6 @@
       background-size: 14px 14px;
       border-bottom: 1px solid $color-mid-dark;
       display: block;
-      font-size: .857142857rem;
       left: auto;
       margin-bottom: -1px;
       padding: 10px 0 10px 30px;
@@ -154,17 +164,13 @@
           border-top: 1px solid $color-mid-light;
           color: $color-dark;
           display: block;
-          font-size: .8125rem;
+          font-size: .867rem;
           padding: 10px 10px 10px 20px;
 
           @media only screen and (min-width: $breakpoint-medium) {
             border: 0;
-            font-size: 1rem;
-            padding: 0 0 5px 0;
-          }
-
-          @media only screen and (min-width: $breakpoint-large) {
             font-size: .8125rem;
+            padding: 0 0 5px;
           }
         }
       }
@@ -174,6 +180,10 @@
   .p-footer--secondary {
     padding: 20px 10px 0;
 
+    &__content {
+      margin-bottom: .3rem;
+    }
+
     @media only screen and (min-width: $breakpoint-medium) {
       padding: 0;
     }
@@ -182,14 +192,10 @@
       color: currentColor;
     }
 
-    &__content {
-      font-size: .8125rem;
-    }
-
     .button--primary {
-      color: $color-dark;
       background-color: $color-x-light;
       border: 1px solid $color-mid-light;
+      color: $color-dark;
       padding: 6px 18px;
 
       &:hover {
@@ -197,13 +203,11 @@
       }
     }
 
-    .p-inline-list--small {
-      .p-inline-list__item {
-        display: block;
+    .p-inline-list__item {
+      display: block;
 
-        @media only screen and (min-width: $breakpoint-medium) {
-          display: inline-block;
-        }
+      @media only screen and (min-width: $breakpoint-medium) {
+        display: inline-block;
       }
     }
   }
@@ -224,6 +228,7 @@
   .p-inline-list--small,
   .p-inline-list--middot-small {
     margin-left: 0;
+    margin-top: 0;
     padding-left: 0;
   }
 }

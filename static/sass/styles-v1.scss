@@ -16,72 +16,13 @@
 // import site specific patterns and overrides
 @import "v1_pattern_site_search";
 @import "v1_pattern_navigation";
-
-// patterns
-@import 'modules-v1/patterns_footer';
-@import 'modules-v1/ubuntu_patterns_lists';
-
-@include ubuntu-p-footer;
-@include ubuntu-p-lists;
-
-// @TODO move into separate partial
-// .p-navigation override
-.p-navigation {
-  margin-bottom: 0;
-  border-bottom: 1px solid $color-light;
-}
-
-.p-navigation__links .p-navigation {
-  background-color: $color-mid-dark;
-
-  &__link {
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    @media (max-width: $breakpoint-medium) {
-      width: 50%;
-      float: left;
-      padding: $sp-x-small $sp-small;
-
-      &:nth-child(2n) {
-        border-left: 1px solid $color-mid-light;
-      }
-
-      &:last-of-type {
-        border-bottom: 1px solid $color-mid-light;
-      }
-    }
-
-    @media (min-width: $breakpoint-medium) {
-      padding: 1rem .75rem;
-
-      &:hover {
-        background-color: lighten(#df4a16, 10%);
-      }
-    }
-  }
-}
-
-// @TODO move into separate partial
-// .nav-secondary override
-.nav-secondary {
-  //
-  // small screen view
-  //
-  @media (max-width: $breakpoint-medium) {
-    background: $color-x-light;
-
-    .p-breadcrumbs {
-      @include full-width-breakout;
-      border-bottom: 1px solid $color-mid-light;
-    }
->>>>>>> add footer styles to new styles sass
+@import 'patterns_footer';
+@import 'patterns_lists';
 
 @include p-site-search;
 @include p-navigation;
-
+@include ubuntu-p-footer;
+@include ubuntu-p-lists;
 
 // **************************
 // Bug fixes
