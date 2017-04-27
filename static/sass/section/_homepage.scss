@@ -669,7 +669,8 @@ $shark: #181c21; // http://chir.ag/projects/name-that-color/#181C21
 
 // ============================ Takeovers ============================
 // cloud default, don not remove
-body.homepage-cloud-default {
+body.homepage-cloud-default,
+body.homepage-cloud-default--2 {
   @media only screen and (min-width : $breakpoint-medium) {
     h1 {
       padding-top: 90px;
@@ -686,7 +687,16 @@ body.homepage-cloud-default {
       padding-top: 105px;
     }
   } // @media only screen and (min-width : $breakpoint-large)
-} // body.homepage-cloud-default
+
+  
+} 
+
+// Override for the A/B test
+  body.homepage-cloud-default--2 {
+    .strip.no-border {
+      border-bottom: 1px dotted $warm-grey !important;
+    }
+  }// body.homepage-cloud-default
 
 body.homepage-bootstack-generic {
   header.banner {
