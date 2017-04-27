@@ -19,7 +19,7 @@
         cursor: pointer;
       }
 
-      @media (max-width: $breakpoint-medium) {
+      @media (max-width: $breakpoint-medium - 1) {
         width: 50%;
         float: left;
         padding: $sp-x-small $sp-small;
@@ -46,7 +46,7 @@
   // .nav-secondary override
   .nav-secondary {
     // small screen view
-    @media (max-width: $breakpoint-medium) {
+    @media (max-width: $breakpoint-medium - 1) {
       background: $color-x-light;
 
       .p-breadcrumbs {
@@ -136,7 +136,7 @@
     position: relative;
   }
 
-  @media (min-width: $breakpoint-medium) {
+  @media (min-width: $breakpoint-medium + 1) {
     .p-navigation__link:hover .hover-menu {
       display:block;
     }

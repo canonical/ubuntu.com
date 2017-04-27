@@ -54,3 +54,11 @@
     }
   }
 }
+
+// global nav spills onto two lines at 768px
+// https://github.com/canonical-webteam/global-nav/issues/14
+@media only screen and (max-width: 770px) {
+  #nav-global ul .more {
+      min-width: 55px;
+  }
+}
