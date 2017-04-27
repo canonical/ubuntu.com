@@ -1,4 +1,9 @@
 @mixin p-navigation {
+
+  html {
+    overflow-x: hidden !important; // prevent horizontal overflow full width breakout
+  }
+
   .p-navigation {
     margin-bottom: 0;
     border-bottom: 1px solid $color-light;
