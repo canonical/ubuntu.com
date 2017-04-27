@@ -55,6 +55,12 @@
   }
 }
 
+@media (min-width: $breakpoint-medium ) {
+  .p-navigation:target .p-navigation__toggle--close {
+    display: none !important; // specificity
+  }
+}
+
 // global nav spills onto two lines at 768px
 // https://github.com/canonical-webteam/global-nav/issues/14
 @media only screen and (max-width: 770px) {

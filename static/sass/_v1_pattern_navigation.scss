@@ -39,11 +39,15 @@
       }
 
       @media (min-width: $breakpoint-medium) {
-        padding: 1rem .75rem;
+        padding: $sp-medium $sp-x-small;
 
         &:hover {
           background-color: $color-brand-light;
         }
+      }
+
+      @media (min-width: $breakpoint-large) {
+        padding: $sp-medium $sp-small;
       }
     }
   }
