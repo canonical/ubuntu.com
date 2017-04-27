@@ -105,7 +105,12 @@
     @media (min-width: $breakpoint-medium) {
       @include full-width-breakout;
       background: $color-light;
+      border-bottom: 1px solid $color-mid-light;
       padding: $sp-small 0;
+
+      @media (max-width: $breakpoint-large) {
+        border-top: 1px solid $color-mid-light;
+      }
 
       &__menu::before {
         content: '\203A';
