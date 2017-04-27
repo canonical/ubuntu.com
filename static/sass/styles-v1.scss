@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
-@import 'global-settings-v1';
+//settings
+@import '_settings_colors';
 
 // custom mixins
 @import 'mixins/full-width-breakout';
@@ -15,6 +16,10 @@
 // import site specific patterns and overrides
 @import "v1_pattern_site_search";
 @import "v1_pattern_navigation";
+
+@include p-site-search;
+@include p-navigation;
+
 
 // **************************
 // Bug fixes
@@ -37,7 +42,7 @@
 .p-navigation__links .p-navigation__link {
   @media (min-width: $breakpoint-medium) {
     background: none;
-    border-left: 1px solid #df4a16;
+    border-left: 1px solid $color-brand-light;
     border-bottom: none;
 
     &:last-child {
