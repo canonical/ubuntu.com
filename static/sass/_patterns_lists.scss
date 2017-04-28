@@ -1,8 +1,4 @@
 // Site specific list styling
-$twitter:   #1da1f2;
-$google:    #dc4e41;
-$linkedin:  #0274b3;
-$facebook:  #3b5898;
 
 @mixin list-link {
   display: block;
@@ -18,6 +14,11 @@ $facebook:  #3b5898;
 }
 
 @mixin ubuntu-p-inline-list-icons {
+  $color-twitter:   #1da1f2;
+  $color-google:    #dc4e41;
+  $color-linkedin:  #0274b3;
+  $color-facebook:  #3b5898;
+
   .p-inline-list-icons {
     margin-left: 0;
     padding-left: 0;
@@ -36,7 +37,7 @@ $facebook:  #3b5898;
         @include list-link;
 
         &:hover .twitter-icon {
-          fill: $twitter;
+          fill: $color-twitter;
         }
       }
 
@@ -44,7 +45,7 @@ $facebook:  #3b5898;
         @include list-link;
 
         &:hover .google-plus {
-          fill: $google;
+          fill: $color-google;
         }
       }
 
@@ -52,7 +53,7 @@ $facebook:  #3b5898;
         @include list-link;
 
         &:hover .facebook-icon {
-          fill: $facebook;
+          fill: $color-facebook;
         }
       }
 
@@ -60,7 +61,7 @@ $facebook:  #3b5898;
         @include list-link;
 
         &:hover .linkedin-icon {
-          fill: $linkedin;
+          fill: $color-linkedin;
         }
       }
     }

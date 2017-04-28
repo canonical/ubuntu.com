@@ -1,20 +1,19 @@
 // Footer pattern styling
 
-$color-shadow: rgba(0, 0, 0, .3);
-
 @mixin footer-title {
   color: $color-mid-dark;
   cursor: pointer;
-  line-height: 1.5em;
+  line-height: 1.5;
   margin-bottom: 0;
 }
 
 @mixin ubuntu-p-footer {
+  $color-shadow: rgba(0, 0, 0, .3);
+
   .p-footer {
     border: 0;
     box-shadow: 0 4px 4px -4px $color-shadow inset;
-    font-size: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: $sp-medium;
     padding-top: 0;
 
     @media only screen and (min-width: $breakpoint-medium) {
@@ -192,17 +191,6 @@ $color-shadow: rgba(0, 0, 0, .3);
       color: currentColor;
     }
 
-    .button--primary {
-      background-color: $color-x-light;
-      border: 1px solid $color-mid-light;
-      color: $color-dark;
-      padding: 6px 18px;
-
-      &:hover {
-        background-color: $color-light;
-      }
-    }
-
     .p-inline-list__item {
       display: block;
 
@@ -222,13 +210,5 @@ $color-shadow: rgba(0, 0, 0, .3);
     @media only screen and (min-width: $breakpoint-large) {
       margin-top: 10px;
     }
-  }
-
-  .p-inline-list,
-  .p-inline-list--small,
-  .p-inline-list--middot-small {
-    margin-left: 0;
-    margin-top: 0;
-    padding-left: 0;
   }
 }
