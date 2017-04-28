@@ -17,7 +17,7 @@
     padding-top: 0;
 
     @media only screen and (min-width: $breakpoint-medium) {
-      padding-top: .75rem;
+      padding-top: $sp-small;
     }
 
     @media only screen and (max-width: $breakpoint-medium) {
@@ -180,7 +180,7 @@
     padding: 20px 10px 0;
 
     &__content {
-      margin-bottom: .3rem;
+      margin-bottom: $sp-xx-small;
     }
 
     @media only screen and (min-width: $breakpoint-medium) {
@@ -208,7 +208,7 @@
     }
 
     @media only screen and (min-width: $breakpoint-large) {
-      margin-top: 10px;
+      margin-top: $sp-x-small;
     }
   }
 }
