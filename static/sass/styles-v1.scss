@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
-@import 'global-settings-v1';
+//settings
+@import '_settings_colors';
 
 // custom mixins
 @import 'mixins/full-width-breakout';
@@ -12,197 +13,13 @@
 // vendor
 @import 'vendors/global-nav/build';
 
-// @TODO move into separate partial
-// .p-navigation override
-.p-navigation {
-  margin-bottom: 0;
-  border-bottom: 1px solid $color-light;
-}
+// import site specific patterns and overrides
+@import "v1_pattern_site_search";
+@import "v1_pattern_navigation";
 
-.p-navigation__links .p-navigation {
-  background-color: $color-mid-dark;
+@include p-site-search;
+@include p-navigation;
 
-  &__link {
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    @media (max-width: $breakpoint-medium) {
-      width: 50%;
-      float: left;
-      padding: $sp-x-small $sp-small;
-
-      &:nth-child(2n) {
-        border-left: 1px solid $color-mid-light;
-      }
-
-      &:last-of-type {
-        border-bottom: 1px solid $color-mid-light;
-      }
-    }
-
-    @media (min-width: $breakpoint-medium) {
-      padding: 1rem .75rem;
-
-      &:hover {
-        background-color: lighten(#df4a16, 10%);
-      }
-    }
-  }
-}
-
-// @TODO move into separate partial
-// .nav-secondary override
-.nav-secondary {
-  //
-  // small screen view
-  //
-  @media (max-width: $breakpoint-medium) {
-    background: $color-x-light;
-
-    .p-breadcrumbs {
-      @include full-width-breakout;
-      border-bottom: 1px solid $color-mid-light;
-    }
-
-    .p-breadcrumbs__item {
-      position: relative;
-      left: 50%;
-      transform: translate(-50%, 0);
-      width: 100vw;
-    }
-
-    .p-breadcrumbs__link {
-      border-bottom: 1px solid $color-mid-light;
-      width: 100%;
-      display: inline-block;
-      padding: $sp-x-small;
-      margin-bottom: $sp-medium;
-      color: $color-dark;
-    }
-
-    .p-inline-list {
-      margin-left: 0;
-    }
-
-    &__menu {
-
-      width: 100%;
-
-      .p-inline-list__item {
-        width: 50%;
-        float: left;
-        margin-right: 0;
-
-        a {
-          padding: $sp-x-small;
-          color: $color-x-dark;
-          display: inline-block;
-        }
-
-        .is-active {
-          font-weight: bold;
-        }
-      }
-    }
-  }
-
-  &__menu {
-    display: inline-block;
-    margin-left: $sp-large;
-    position: relative;
-  }
-
-  //
-  // large screen view
-  //
-  @media (min-width: $breakpoint-medium) {
-    @include full-width-breakout;
-    background: $color-light;
-    padding: $sp-small 0;
-
-    &__menu::before {
-      content: '\203A';
-      font-weight: 400;
-      color: $color-mid-dark;
-      left: -$sp-small;
-      position: absolute;
-      top: 0;
-    }
-
-    a {
-      color: $color-dark;
-    }
-
-    .p-breadcrumbs__link {
-      color: $color-mid-dark;
-    }
-  }
-
-  .row {
-    padding-left: $sp-x-small;
-    padding-right: $sp-x-small;
-  }
-}
-
-// @TODO move into separate partial
-// rollover menu
-.p-navigation__link {
-  position: relative;
-}
-
-@media (min-width: $breakpoint-medium) {
-  .p-navigation__link:hover .hover-menu {
-    display:block;
-  }
-
-  .p-navigation .p-navigation__nav ul li:hover ul::after {
-    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QYODgYVPPJJpQAAAT9JREFUKM+dkD9IAnEUx7+/IkVxFaxoKYxIWhqKwJw0JAJ315Yac8+1tUFo6HCp34XRdRp11z+J4BzckqShPzdEQ5G/EhPO6V5Tcg3G0QcePHjvffjygB4oXAIApFMxyPlcWM7nwulU7NfMNQqXGABsZNcCCpcKtapBtapBCpcK2fXlAAAcy3vMlUxTdgEAO9ubybPiPjWFoE6nQ5ZlUfNDULl0RAdSPuncddL30+gnCgOAlngLaocyn4nG9fmFJXj9fhARAMDr82MuEcfk7LSuFQu8DTvovO1SuTxlAKCqPFO5Ov/6FIIsy/qzROOdrst6S1V5xunomo0LrT4yOh4JDg6BMXfvIdvGs/mExutLPZpYnAIAdmNUVuwBbI1NRODxePEf2u0WHu9u4ev3rTLTfKBQaNh1qp5piWCa9/gGBheo3r6AmYcAAAAASUVORK5CYII=') no-repeat;
-    content: '';
-    display: block;
-    height: $sp-x-small;
-    left: $sp-x-large;
-    position: absolute;
-    top: -$sp-x-small;
-    width: 200px;
-    z-index: 999;
-  }
-}
-
-.hover-menu {
-  box-shadow: 0 2px 2px -1px #888;
-  border-radius: 10px;
-  background: #f7f7f7;
-  border: 1px solid #cdcdcd;
-  display: none;
-  float: none;
-  margin: 0;
-  padding: $sp-x-small 0 $sp-medium;
-  position: absolute;
-  top: 60px;
-  left: 0;
-  width: 200px;
-  z-index: 1;
-
-  li {
-    padding: $sp-x-small $sp-small 0;
-
-    &:last-child {
-      padding-bottom: 0;
-    }
-  }
-
-  a {
-    color: $color-dark!important;
-  }
-}
-
-// @TODO convert site search to v1 styling
-.p-site-search {
-  display: none;
-}
-// ^^^^^^^^
 
 // **************************
 // Bug fixes
@@ -225,7 +42,7 @@
 .p-navigation__links .p-navigation__link {
   @media (min-width: $breakpoint-medium) {
     background: none;
-    border-left: 1px solid #df4a16;
+    border-left: 1px solid $color-brand-light;
     border-bottom: none;
 
     &:last-child {
@@ -235,5 +52,19 @@
     a {
       color: $color-light;
     }
+  }
+}
+
+@media (min-width: $breakpoint-medium ) {
+  .p-navigation:target .p-navigation__toggle--close {
+    display: none !important; // specificity
+  }
+}
+
+// global nav spills onto two lines at 768px
+// https://github.com/canonical-webteam/global-nav/issues/14
+@media only screen and (max-width: 770px) {
+  #nav-global ul .more {
+      min-width: 55px;
   }
 }
