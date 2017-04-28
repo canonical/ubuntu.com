@@ -61,22 +61,22 @@
       .p-breadcrumbs {
         @include full-width-breakout;
         border-bottom: 1px solid $color-mid-light;
-      }
 
-      .p-breadcrumbs__item {
-        position: relative;
-        left: 50%;
-        transform: translate(-50%, 0);
-        width: 100vw;
-      }
+        &__item {
+          position: relative;
+          left: 50%;
+          transform: translate(-50%, 0);
+          width: 100vw;
+        }
 
-      .p-breadcrumbs__link {
-        border-bottom: 1px solid $color-mid-light;
-        width: 100%;
-        display: inline-block;
-        padding: $sp-x-small;
-        margin-bottom: $sp-medium;
-        color: $color-dark;
+        &__link {
+          border-bottom: 1px solid $color-mid-light;
+          width: 100%;
+          display: inline-block;
+          padding: $sp-x-small;
+          margin-bottom: $sp-medium;
+          color: $color-dark;
+        }
       }
 
       &__menu {
