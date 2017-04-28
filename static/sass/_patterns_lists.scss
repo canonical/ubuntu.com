@@ -1,0 +1,114 @@
+// Site specific list styling
+
+@mixin list-link {
+  display: block;
+  height: $sp-x-large;
+  fill: $color-mid-dark;
+  width: $sp-x-large;
+}
+
+@mixin ubuntu-p-lists {
+  @include ubuntu-p-inline-list-icons;
+  @include ubuntu-p-inline-list--small;
+  @include ubuntu-p-inline-list-middot-small;
+}
+
+@mixin ubuntu-p-inline-list-icons {
+  $color-twitter:   #1da1f2;
+  $color-google:    #dc4e41;
+  $color-linkedin:  #0274b3;
+  $color-facebook:  #3b5898;
+
+  .p-inline-list-icons {
+    margin-left: 0;
+    padding-left: 0;
+
+    .p-inline-list__item {
+      @include inline-list-item;
+      float: left;
+    }
+
+    .p-inline-list_icon {
+      @include list-link;
+    }
+
+    .p-inline-list__link {
+      &--twitter {
+        @include list-link;
+
+        &:hover .twitter-icon {
+          fill: $color-twitter;
+        }
+      }
+
+      &--google {
+        @include list-link;
+
+        &:hover .google-plus {
+          fill: $color-google;
+        }
+      }
+
+      &--facebook {
+        @include list-link;
+
+        &:hover .facebook-icon {
+          fill: $color-facebook;
+        }
+      }
+
+      &--linkedin {
+        @include list-link;
+
+        &:hover .linkedin-icon {
+          fill: $color-linkedin;
+        }
+      }
+    }
+  }
+}
+
+@mixin ubuntu-p-inline-list--small {
+  .p-inline-list--small {
+    margin-left: 0;
+    padding-left: 0;
+
+    .p-inline-list__item {
+      @include inline-list-item;
+    }
+  }
+}
+
+// Displays a list inline with items separated by dots
+@mixin ubuntu-p-inline-list-middot-small {
+  .p-inline-list--middot-small {
+    margin-left: 0;
+    padding-left: 0;
+
+    .p-inline-list__item {
+      @include inline-list-item;
+      position: relative;
+
+      &::after {
+        color: $color-mid-dark;
+        content: '\00b7';
+        font-size: 1.4rem;
+        line-height: 0;
+        position: absolute;
+        right: -.75rem;
+        top: .4rem;
+      }
+
+      &:hover::after {
+        color: $color-mid-dark;
+      }
+
+      &:last-of-type,
+      .last-item {
+        &::after {
+          content: '';
+        }
+      }
+    }
+  }
+}
