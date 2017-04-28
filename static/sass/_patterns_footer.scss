@@ -31,7 +31,7 @@
 
       @media only screen and (min-width: $breakpoint-medium) {
         border: 0;
-        padding-top: 40px;
+        padding-top: $sp-xx-large;
       }
     }
 
@@ -52,7 +52,7 @@
       margin-bottom: 0;
 
       @media only screen and (min-width: $breakpoint-medium + 1) {
-        margin-bottom: 1.5rem;
+        margin-bottom: $sp-large;
       }
     }
 
@@ -64,7 +64,7 @@
       background-size: 13px 13px;
       border-top: 1px solid $color-mid-light;
       font-size: .87rem;
-      padding: 10px 0;
+      padding: $sp-small 0;
 
       @media only screen and (min-width: $breakpoint-medium) {
         background: none;
@@ -138,7 +138,7 @@
       display: block;
       left: auto;
       margin-bottom: -1px;
-      padding: 10px 0 10px 30px;
+      padding: $sp-medium 0 $sp-medium $sp-x-large;
       position: relative;
       z-index: 2;
 
@@ -164,12 +164,12 @@
           color: $color-dark;
           display: block;
           font-size: .867rem;
-          padding: 10px 10px 10px 20px;
+          padding: $sp-small $sp-small $sp-small $sp-medium;
 
           @media only screen and (min-width: $breakpoint-medium) {
             border: 0;
             font-size: .8125rem;
-            padding: 0 0 5px;
+            padding: 0 0 $sp-x-small;;
           }
         }
       }
