@@ -79,27 +79,23 @@
         color: $color-dark;
       }
 
-      .p-inline-list {
-        margin-left: 0;
-      }
-
       &__menu {
         width: 100%;
 
-        .p-inline-list__item {
+         {
           width: 50%;
           float: left;
           margin-right: 0;
 
-          a {
-            padding: $sp-x-small;
-            color: $color-x-dark;
-            display: inline-block;
-          }
-
           .is-active {
             font-weight: bold;
           }
+        }
+
+        .p-inline-list__link {
+          padding: $sp-x-small;
+          color: $color-x-dark;
+          display: inline-block;
         }
       }
     }
@@ -136,6 +132,12 @@
 
       .p-breadcrumbs__link {
         color: $color-mid-dark;
+      }
+    }
+
+    @media (min-width: $breakpoint-large) {
+      &__row {
+        padding: 0 $sp-x-small;
       }
     }
 
