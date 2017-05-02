@@ -1,34 +1,42 @@
-{% extends "about/base_about.html" %}
+{% extends "about/base_about-v1.html" %}
 
 {% block title %}Thank you{% endblock %}
 
 {% block content %}
 
-<div class="row row-hero no-margin-bottom">
-	<h1>Thanks for getting in touch</h1>
-	<h2>A member of our team will be in touch within <br/><strong>one working day</strong>.</h2>
-</div><!-- /.row-hero -->
+<div class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h1>Thanks for getting in touch</h1>
+      <h2 class="p-heading--three">A member of our team will be in touch within <br/><strong>one working day</strong>.</h2>
+    </div>
+  </div>
+</div>
 
-<div class="row no-border">
-  <h3>More about our enterprise services</h3>
-	<ul id="thank-you-extra" class="equal-height--vertical-divider no-bullets">
-		<li class="equal-height--vertical-divider__item advantage four-col first">
-			<h4>Ubuntu Advantage</h4>
-			<p>Purchase our desktop support and access Ubuntu experts whenever you need.</p>
-			<p><a href="/business/advantage">Learn about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
-		</li>
-		<li class="equal-height--vertical-divider__item cloud four-col">
-			<h4>Ubuntu Cloud</h4>
-			<p>Our OpenStack-based public and private cloud platform.<br/><br/></p>
-			<p><a href="/cloud">Learn about Ubuntu Cloud&nbsp;&rsaquo;</a></p>
-		</li>
-		<li class="equal-height--vertical-divider__item jumpstart four-col last-col">
-			<h4>Cloud Jumpstart</h4>
-			<p>Let a Canonical engineer help you build a test cloud on your premises.</p>
-			<p><a href="/cloud/solutions/jumpstart">Learn about Cloud Jumpstart&nbsp;&rsaquo;</a></p>
-		</li>
-	</ul>
-</div><!-- end row-->
+<div class="p-strip">
+  <div class="row">
+    <div class="col-8">
+        <h3>More about our enterprise services</h3>
+    </div>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <h4 class="p-heading--three">Ubuntu Advantage</h4>
+      <p>Purchase our desktop support and access Ubuntu experts whenever you need.</p>
+      <p><a href="/business/advantage">Learn about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h4 class="p-heading--three">Ubuntu Cloud</h4>
+      <p>Our OpenStack-based public and private cloud platform.<br/><br/></p>
+      <p><a href="/cloud">Learn about Ubuntu Cloud&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h4 class="p-heading--three">Cloud Jumpstart</h4>
+      <p>Let a Canonical engineer help you build a test cloud on your premises.</p>
+      <p><a href="/cloud/solutions/jumpstart">Learn about Cloud Jumpstart&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</div>
 
 {% endblock content %}
 {% block footer_extra %}
