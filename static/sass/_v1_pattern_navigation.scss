@@ -103,8 +103,11 @@
 
     &__menu {
       display: inline-block;
-      margin-left: $sp-large;
       position: relative;
+
+      @media (min-width: $breakpoint-medium) {
+        margin-left: $sp-large;
+      }
     }
 
     // large screen view
@@ -225,7 +228,7 @@
 
     @media (min-width: $breakpoint-large) {
       margin-left: 2.5rem;
-      
+
       .p-inline-list__item {
         margin-right: 1.5rem;
       }
