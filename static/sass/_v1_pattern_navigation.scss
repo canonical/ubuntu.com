@@ -134,6 +134,10 @@
 
       a {
         color: $color-dark;
+
+        &.is-active {
+          color: $color-brand;
+        }
       }
 
       .p-breadcrumbs__link {
@@ -230,7 +234,7 @@
 
     @media (min-width: $breakpoint-large) {
       margin-left: 2.5rem;
-      
+
       .p-inline-list__item {
         margin-right: 1.5rem;
       }
