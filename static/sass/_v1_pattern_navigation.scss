@@ -55,6 +55,7 @@
   // .nav-secondary override
   .nav-secondary,
   .nav-tertiary {
+    font-size: .875rem;
     // small screen view
     @media (max-width: $breakpoint-medium - 1) {
       background: $color-x-light;
@@ -119,6 +120,10 @@
 
       @media (max-width: $breakpoint-large) {
         border-top: 1px solid $color-mid-light;
+      }
+
+      .p-breadcrumbs__item {
+        margin-bottom: 0;
       }
 
       &__menu::before {
