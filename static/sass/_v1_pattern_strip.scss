@@ -8,7 +8,11 @@
     }
 
     &.is-deep {
-      padding: 6.25rem 0;
+      padding: 2.5rem 0;
+
+      @media (min-width: $breakpoint-medium) {
+        padding: 6.25rem 0;
+      }
     }
 
     &.is-bordered {
