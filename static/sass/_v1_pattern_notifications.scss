@@ -1,9 +1,5 @@
 // Notification style patterns
 @mixin ubuntu-p-notification {
-  @include vf-notifications-default;
-  @include vf-notifications-positive;
-  @include vf-notifications-warning;
-  @include vf-notifications-negative;
   @include p-notifications-floating;
 }
 
@@ -19,8 +15,8 @@
 
     @media (min-width: $breakpoint-large) {
       left: 50%;
-      margin-left: calc(#{$breakpoint-large} / -2);
-      width: $breakpoint-large;
+      margin-left: calc(#{$grid-max-width} / -2);
+      width: $grid-max-width;
     }
 
     &__content {
