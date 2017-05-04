@@ -3,26 +3,27 @@
 {% block title %}BootStack privacy information{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Legal" subsection_title="BootStack" page_title="Privacy information" %}
+  {% include "templates/_nav_breadcrumb.html" with section_title="Legal" subsection_title="BootStack" page_title="Privacy information" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero no-border">
-    <div class="eight-col">
-        <h1>BootStack privacy</h1>
-        <p>At Canonical, we consider your privacy to be extremely important to us. Please see our <a href="/legal/terms-and-policies/privacy-policy">privacy policy</a> which sets out Canonical&#39;s fundamental principles on privacy and details about how Canonical collects data and what we do with it.</p>
-        <p>In relation to BootStack, we are aware that privacy is also especially important to you and we therefore want to reassure you that:</p>
-        <ul class="list-ticks">
-          <li>Canonical does not have direct access to the data on your OpenStack cloud</li>
-          <li>Canonical will not access the data on your OpenStack cloud at any time</li>
-          <li>Backup and recovery of the data on your OpenStack cloud is your responsibility</li>
-        </ul>
-      </div>
-      <div class="four-col box last-col">
-        <h3>Related content</h3>
-        <ul class="list">
-          <li class="last-item"><a href="/legal/terms-and-policies/privacy-policy">Privacy policy&nbsp;&rsaquo;</a></li>
-        </ul>
-    </div>
+<div class="row">
+  <div class="col-8">
+    <h1>BootStack privacy</h1>
+    <p>At Canonical, we consider your privacy to be extremely important to us. Please see our <a href="/legal/terms-and-policies/privacy-policy">privacy policy</a> which sets out Canonical&#39;s fundamental principles on privacy and details about how Canonical
+      collects data and what we do with it.</p>
+    <p>In relation to BootStack, we are aware that privacy is also especially important to you and we therefore want to reassure you that:</p>
+    <ul class="p-list">
+      <li class="p-list__item is-ticked">Canonical does not have direct access to the data on your OpenStack cloud</li>
+      <li class="p-list__item is-ticked">Canonical will not access the data on your OpenStack cloud at any time</li>
+      <li class="p-list__item is-ticked">Backup and recovery of the data on your OpenStack cloud is your responsibility</li>
+    </ul>
+  </div>
+  <div class="col-4 box">
+    <h3>Related content</h3>
+    <ul class="p-list">
+      <li><a href="/legal/terms-and-policies/privacy-policy">Privacy policy&nbsp;&rsaquo;</a></li>
+    </ul>
+  </div>
 </div>
 {% endblock content %}
