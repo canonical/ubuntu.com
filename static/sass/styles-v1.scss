@@ -7,24 +7,26 @@
 @import 'mixins/full-width-breakout';
 
 // import vanilla-brochure-theme
-@import "../../node_modules/vanilla-brochure-theme/scss/theme";
+@import '../../node_modules/vanilla-brochure-theme/scss/theme';
 @include vanilla-brochure-theme;
 
 // vendor
 @import 'vendors/global-nav/build';
 
 // import site specific patterns and overrides
-@import "v1_pattern_site_search";
-@import "v1_pattern_navigation";
+@import 'v1_pattern_site_search';
+@import 'v1_pattern_navigation';
 @import 'patterns_footer';
 @import 'patterns_lists';
-@import "v1_pattern_strip";
+@import 'v1_pattern_strip';
+@import 'v1_pattern_notifications';
 
 @include p-site-search;
 @include p-navigation;
 @include ubuntu-p-footer;
 @include ubuntu-p-lists;
 @include p-strip;
+@include ubuntu-p-notification;
 
 // **************************
 // Bug fixes
