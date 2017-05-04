@@ -7,12 +7,12 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero no-border" id="service-description" lang="ja">
-  <div class="eight-col">
+<div class="row" id="service-description" lang="ja">
+  <div class="col-8">
     <h1>Ubuntu Advantage<br/>サービス記述書</h1>
-    <p class="intro">2016年10月2日より有効</p>
+    <p>2016年10月2日より有効</p>
     <h2 id="service-description-overview">1. 目次</h2>
-    <ol class="numbered">
+    <ol>
       <li><span class="number">1.1</span> 本書は以下のサービスを定義します。Canonicalは、本書に定義の通り、顧客契約の対象のサービスのみを提供します。</li>
       <li><span class="number">1.2</span> プライマリーサービス：
         <ul>
@@ -38,7 +38,7 @@
 
     <h2 id="ua-support-scope">2. サポート範囲</h2>
     <p>各サービス製品には、Canonicalのナレッジベースおよび本書の範囲内の下記のサポートへのアクセスが含まれます。ただし<a href="#appendix-1">サポート範囲文書</a>に記載の例外に従います。</p>
-    <ol class="numbered">
+    <ol>
       <li id="support-scope-releases"><span class="number">2.1</span> リリース
         <ul>
           <li>Canonicalは、プロジェクトのライフサイクル中に公式ソースを使用してインストールされたUbuntuの全標準リリースのインストール、設定、保守、および管理に関するサポートを提供します。Ubuntuのバージョン別ライフサイクルについては、こちらをご覧ください：<br /><a href="/info/release-end-of-life">www.ubuntu.com/info/release-end-of-life</a></li>
@@ -51,14 +51,14 @@
         </ul>
       </li>
       <li id="support-scope-packages"><span class="number">2.3</span> パッケージ
-        <ol class="numbered">
+        <ol>
           <li><span class="number">2.3.1</span> 本サービスは、Ubuntu MainリポジトリにあるパッケージおよびUniverse RepositoryにあるCanonical所有のパッケージのみに適用されます。ただし、(i) 「proposed」および「backports」リポジトリポケット、および (ii) 該当するサポート範囲文書に記載された除外事項は除きます。<br />
           Universe Repositoryのサポート対象パッケージには、Jujuパッケージ、MAASパッケージ、nova-conductorパッケージ、およびこれらのパッケージと関連して使用される依存パッケージが含まれます。</li>
           <li><span class="number">2.3.2</span> Ubuntuアーカイブにあるバージョンから変更されているパッケージはサポート対象外です。</li>
         </ol>
       </li>
       <li id="support-scope-kernels"><span class="number">2.4</span> カーネルのライブパッチ
-        <ol class="numbered">
+        <ol>
           <li><span class="number">2.4.1</span>顧客は、Canonicalのカーネルライブパッチデーモンの使用許諾ライセンス、利用可能なカーネルライブパッチへのアクセス、ライブパッチ機能が利用可能でUbuntu Advantageが対応しているすべてのシステムについてライブパッチのサポートを受ける権利があります。</li>
           <li><span class="number">2.4.2</span>Canonicalでは、緊急 (Critical) および高 (High) レベルのカーネル脆弱性CVE用ライブパッチを提供します。ただし、ライブパッチシステム内の技術的限界のため、CVEの一部はライブパッチの対象外となる可能性がありますのでご注意ください。</li>
           <li><span class="number">2.4.3</span>Canonicalでは、カーネルのサポートのための不具合修正をカーネルライブパッチとして提供することはできません。</li>
@@ -66,13 +66,13 @@
         </ol>
       </li>
       <li id="support-scope-landscape"><span class="number">2.5</span> Landscape
-        <ol class="numbered">
+        <ol>
           <li><span class="number">2.5.1</span> Landscape On Premises (購入した場合) を含むすべてのLandscape製品は完全にサポートされます。</li>
           <li><span class="number">2.5.2</span> 別途記述がない限り、Landscape SaaSシステム管理ツールへのアクセスはすべてのサポート製品に含まれています。</li>
         </ol>
       </li>
       <li id="support-scope-openstack"><span class="number">2.6</span> OpenStack
-        <ol class="numbered">
+        <ol>
           <li><span class="number">2.6.1</span> 本セクションは、OpenStackのサポートのために購入されたサービスに適用されます。OpenStackサポートが含まれるサービスは以下の通りです：
             <ul>
               <li>Ubuntu Advantage Server Standard</li>
@@ -99,7 +99,7 @@
         </ol>
       </li>
       <li id="charms"><span class="number">2.7</span> チャーム
-        <ol class="numbered">
+        <ol>
           <li><span class="number">2.7.1</span> 本セクションは、OpenStackのサポートのために購入されたサービスに適用されます。</li>
           <li><span class="number">2.7.2</span> Canonicalは、Canonicalアーキテクチャを使用してデプロイされたOpenStackクラウドを実行するために必要なチャームに対するサポートを提供します。</li>
           <li><span class="number">2.7.3</span> 各チャームバージョンは、リリース日から1年間サポートされます。</li>
@@ -109,7 +109,7 @@
     </ol>
   </div>
 
-  <div class="box four-col last-col not-for-small">
+  <div class="box col-4 not-for-small">
     <h3>Contents</h3>
     <ol class="nested-counter">
       <li class="nested-counter__item"><a href="#service-description-overview">概要&nbsp;&rsaquo;</a></li>
@@ -160,16 +160,16 @@
     <h3><a href="#appendix-3">付録3 - マネジメントエスカレーション&nbsp;&rsaquo;</a></h3>
   </div>
 
-  <div class="box four-col last-col">
+  <div class="box col-4">
     <h3>英訳</h3>
-    <ul class="list">
-      <li class="last-item"><a href="/legal/ubuntu-advantage/service-description">Ubuntu Advantage service description&nbsp;›</a></li>
+    <ul class="p-list">
+      <li><a href="/legal/ubuntu-advantage/service-description">Ubuntu Advantage service description&nbsp;›</a></li>
     </ul>
   </div>
 
-  <div class="eight-col">
+  <div class="col-8">
     <h2 id="response-times">3. 応答時間</h2>
-    <ol class="numbered">
+    <ol>
       <li><span class="number">3.1</span> Canonicalは、以下に規定する応答時間内に、該当するサービスレベルおよび重大度に基づき、顧客からのサポート要求に応答するための合理的な努力を払います。</li>
       <li><span class="number">3.2</span> 「営業時間」および「営業日」は下表に定義されます。これらは祝日を除き、別の場所が合意されない限り、顧客の本社のある地域に基づきます。</li>
     </ol>
@@ -256,22 +256,22 @@
     </tbody>
   </table>
 
-  <div class="eight-col">
+  <div class="col-8">
     <h2 id="support-process">4. サポートプロセス</h2>
     <p>Canonicalは、サポートケースを解決できるよう合理的な努力を払いますが、回避策、解決策、または解決時間は保証しません。</p>
-    <ol class="numbered">
+    <ol>
       <li><span class="number">4.1</span> Canonicalは、<a href="#appendix-2">サポートプロセスに従って</a>サービスを提供します。</li>
       <li><span class="number">4.2</span> 顧客は、<a href="#appendix-3">エスカレーションプロセスに従って</a>サポート問題をエスカレーションできます。</li>
     </ol>
     <h2 id="assurance">5. 保証</h2>
-    <ol class="numbered">
+    <ol>
       <li><span class="number">5.1</span> 顧客は、利用規約に従って、Ubuntu保証プログラムに加入する権利を有します。Canonicalは、保証プログラムおよびその規約を定期的に更新することができます。現在のUbuntu保証プログラムおよびそのIP免責条項はUbuntu保証ページでご覧いただけます：<br /><a href="/legal/ubuntu-advantage/assurance">www.ubuntu.com/legal/ubuntu-advantage/assurance</a></li>
     </ol>
   </div>
 </div>
 
-<div class="row no-border" id="appendix-1" lang="ja">
-  <div class="eight-col">
+<div class="row" id="appendix-1" lang="ja">
+  <div class="col-8">
     <h2 id="ua-appendix-1_support-scope">付録1 - サポート範囲</h2>
     <h3 id="ua-openstack-cloud-region">Ubuntu Advantage OpenStack Cloud Region</h3>
     <p>定義：</p>
@@ -561,21 +561,21 @@
     </ul>
     <!-- / Appendix 1 -->
   </div>
-  <div class="eight-col">
+  <div class="col-8">
     <p><a href="#service-description">先頭へ戻る</a></p>
   </div>
 </div>
 
-<div class="row no-border no-border" id="appendix-2" lang="ja">
-  <div class="eight-col">
+<div class="row" id="appendix-2" lang="ja">
+  <div class="col-8">
     <h2 id="ua-support-process">付録2 - Ubuntu Advantageサポート<br />プロセス</h2>
     <h3 id="ua-support-service-initiation">1. サービス開始</h3>
-    <ol class="numbered">
+    <ol>
       <li><span class="number">1.1</span> サービス開始時、Canonicalは、Landscape、サポートポータル、およびオンラインナレッジベースへのアクセス権を1人の技術担当者に付与します。</li>
       <li><span class="number">1.2</span> この初期技術担当者を通じて、顧客は、下表の通り、サポート対象のシステム数に基づいてCanonicalとの接点となる技術担当者を選択できます。これらの技術担当者はポータルをサポートするためのクレデンシャルを持ち、サポート要求の主要窓口となります。</li>
     </ol>
   </div>
-  <table class="eight-col">
+  <table class="col-8">
     <caption>サポート対象のマシンの表</caption>
     <thead>
       <tr>
@@ -610,12 +610,12 @@
       </tr>
     </tbody>
   </table>
-  <div class="eight-col">
-    <ol class="numbered">
+  <div class="col-8">
+    <ol>
       <li><span class="number">1.3</span> 顧客は、サポートポータル経由でサポート要求を提出することにより、指定された技術担当者をいつでも変更できます。</li>
     </ol>
     <h3 id="ua-support-submitting-support-requests">2. サポート要求の提出</h3>
-    <ol class="numbered">
+    <ol>
       <li><span class="number">2.1</span> 顧客アカウントがサポートポータルに作成されると、顧客はサポート要求をオープンできます。</li>
       <li><span class="number">2.2</span> 別途記載がない限り、顧客は、サポートポータル経由で、または電話でサポートチームに連絡することにより、サポートケースを提出できます。</li>
       <li><span class="number">2.3</span> サポートケースは、単一の独立した問題または要求である必要があります。</li>
@@ -625,7 +625,7 @@
       <li><span class="number">2.7</span> 各ケースのレコードは、Canonicalのサポートポータル内に保持されます。顧客は現行のすべてのケースの追跡と応答が可能で、これまでのケースをレビューできます。</li>
     </ol>
     <h3 id="ua-support-severity-levels">3. サポートの重大度レベル</h3>
-    <ol class="numbered">
+    <ol>
       <li><span class="number">3.1</span> サポート要求がオープンすると、Canonicalのサポートエンジニアがケース情報を検証して重大度レベルを決定し、顧客と共にケースの緊急性を評価します。</li>
       <li><span class="number">3.2</span> 応答時間は、該当するサービスのサービス記述書に規定された通りです。</li>
       <li><span class="number">3.3</span> 重大度レベルの決定に際して、Canonicalのサポートチームは下記の定義を使用します。</li>
@@ -656,13 +656,13 @@
       </tr>
     </tbody>
   </table>
-  <div class="eight-col">
+  <div class="col-8">
     <h3 id="ua-support-hotfixes">4. ホットフィックス</h3>
     <p>クリティカルなケースを暫定的に解決するため、Canonicalは、影響を受けるソフトウェア (パッケージなど) のパッチ適用バージョンを提供する場合があります。このようなバージョンは「ホットフィックス」と呼ばれます。Canonicalが提供するホットフィックスは、そのパッチがUbuntu Archivesのソフトウェアのリリースに適用された後、90日間有効です。ただし、上流プロジェクトでパッチが拒否された場合、ホットフィックスのサポートは終了し、ケースはオープンの状態が継続します。</p>
     <h3 id="ua-support-languages">5. 言語</h3>
     <p>Canonicalは英語でサポートを提供します。タイミングによってはその他の言語が利用可能な場合があります。</p>
     <h3 id="ua-support-remote-sessions">6. リモートセッション</h3>
-    <ol class="numbered">
+    <ol>
       <li><span class="number">6.1</span> Canonicalは、リモートアクセスサービスを使用し、顧客のサポート対象システムへのアクセスを提供できるものとします。この場合、使用するリモートアクセスサービスはCanonicalが決定します。</li>
     </ol>
     <h3 id="ua-support-regions">7. サポート地域</h3>
@@ -692,13 +692,13 @@
   </div>
   <!-- / Appendix 2 -->
 
-  <div class="eight-col">
+  <div class="col-8">
     <p><a href="#service-description">先頭へ戻る</a></p>
   </div>
 </div>
 
-<div class="row no-border no-border" id="appendix-3" lang="ja">
-  <div class="eight-col">
+<div class="row" id="appendix-3" lang="ja">
+  <div class="col-8">
     <h2 id="ua-escalation">付録3 - Ubuntu Advantageマネジメントエスカレーション</h2>
     <p>サービスに不満がある場合は、いくつかの方法でその状況をCanonicalの経営陣にエスカレーションできます。</p>
     <h3>ケース終了後のフィードバック</h3>
@@ -717,7 +717,7 @@
     </ul>
   </div>
   <!-- / Appendix 3 -->
-  <div class="eight-col">
+  <div class="col-8">
     <p><a href="#service-description">先頭へ戻る</a></p>
   </div>
 </div>
