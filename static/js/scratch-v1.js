@@ -3,23 +3,23 @@ core.cookiePolicy = function() {
   if (getCookie('_cookies_accepted') !== 'true'){
     state('open');
   }
-  
+
   function state(stateChange) {
     switch(stateChange) {
       case 'open':
-      var range = document.createRange();
-      var cookieNode = range.createContextualFragment('<div class="p-notification p-notification--floating cookie-policy"><p class="p-notification--floating__content">We use cookies to improve your experience. By your continued use of this site you accept such use.<br /> To change your settings please <a href="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy#cookies">see our policy</a>. <a href="?cp=close" class="p-notification--floating__close js-close">Close</a></p></div>');
-      document.body.insertBefore(cookieNode, document.body.lastChild);
-      document.querySelector('footer.p-footer').classList.add('has-cookie');
-      document.querySelector('.cookie-policy .js-close').addEventListener('click', function(e) {
-        e.preventDefault();
-        state('close');
-      });
-      break;
+        var range = document.createRange();
+        var cookieNode = range.createContextualFragment('<div class="p-notification p-notification--floating cookie-policy"><p class="p-notification--floating__content">We use cookies to improve your experience. By your continued use of this site you accept such use.<br /> To change your settings please <a href="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy#cookies">see our policy</a>. <a href="?cp=close" class="p-notification--floating__close js-close">Close</a></p></div>');
+        document.body.insertBefore(cookieNode, document.body.lastChild);
+        document.querySelector('footer.p-footer').classList.add('has-cookie');
+        document.querySelector('.cookie-policy .js-close').addEventListener('click', function(e) {
+          e.preventDefault();
+          state('close');
+        });
+        break;
       case 'close':
-      document.querySelector('.cookie-policy').style.display = 'none';
-      setCookie('_cookies_accepted', 'true', 3000);
-      break;
+        document.querySelector('.cookie-policy').style.display = 'none';
+        setCookie('_cookies_accepted', 'true', 3000);
+        break;
     }
   }
 
