@@ -1,0 +1,41 @@
+// Notification style patterns
+@mixin ubuntu-p-notification {
+  @include vf-notifications-default;
+  @include vf-notifications-positive;
+  @include vf-notifications-warning;
+  @include vf-notifications-negative;
+  @include p-notifications-floating;
+}
+
+@mixin p-notifications-floating  {
+  .p-notification--floating {
+    @include vf-notifications-default;
+
+    bottom: 0;
+    position: fixed;
+    text-align: left;
+    width: 100%;
+    z-index: 2;
+
+    @media (min-width: $breakpoint-large) {
+      left: 50%;
+      margin-left: calc(#{$breakpoint-large} / -2);
+      width: $breakpoint-large;
+    }
+
+    &__content {
+      margin-bottom: 0;
+    }
+
+    &__close {
+      background-image: url('#{$assets-path}66542f40-close.svg');
+      text-indent: -99999px;
+      background-size: $sp-medium;
+      position: absolute;
+      top: $sp-small;
+      right: $sp-small;
+      height: $sp-medium;
+      width: $sp-medium;
+    }
+  }
+}
