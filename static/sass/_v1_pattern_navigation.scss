@@ -10,6 +10,12 @@
     font-size: .875rem;
     font-weight: 400;
 
+    &__logo {
+      @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
+        padding-left: 1rem;
+      }
+    }
+
     &__row {
       @media (min-width: $breakpoint-large) {
         position: relative;
