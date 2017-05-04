@@ -230,6 +230,13 @@
   }
 
   .nav-tertiary__menu {
+
+    @media (max-width: $breakpoint-medium - 1) {
+      .p-inline-list__item {
+        padding: .75rem 1rem;
+      }
+    }
+
     @media (min-width: $breakpoint-medium) {
       margin-left: 2.5rem;
 
