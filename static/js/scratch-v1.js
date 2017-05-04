@@ -1,117 +1,9 @@
-core.setupAnimations = function() {
-  var yOffset = 350;
-
-  // Add the click event to display the video when clicking on the video
-  // placeholder
-  if (document.body.classList.contains('phone-features')) {
-    var videoPanel = document.querySelector('.row--video');
-    var showVideo = document.querySelector('.show-video');
-    if (showVideo) {
-      showVideo.addEventListener('click', function(e) {
-        e.preventDefault();
-        videoPanel.classList.add('show');
-        document.querySelector('.the-video').innerHTML = '<div class="video-container"><iframe width="984" height="554"   src="https://www.youtube.com/embed/CsDFMIphtZk?showinfo=0&vq=hd1080&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe></div>';
-      });
-    }
-  }
-
-  // Add the click event to display and close a video on the mobile
-  // overview page
-  if (document.body.classList.contains('mobile-home')) {
-    var videoPanel = document.querySelector('.the-video');
-    var showVideo = document.querySelector('.show-video');
-    var closeVideoLink = document.querySelector('.close-vid-link');
-    var closeVideo = document.querySelector('.close-video');
-    var rowHero = document.querySelector('.row-hero');
-    var rowContent = document.querySelector('.row--fingertips__content');
-
-    if (showVideo) {
-      showVideo.addEventListener('click', function(e) {
-        e.preventDefault();
-        closeVideoLink.style.display = 'block';
-        videoPanel.classList.add('show');
-        rowHero.style.height = '554px';
-        rowContent.classList.remove('show-me');
-        rowContent.classList.add('hide-me');
-        videoPanel.innerHTML = '<iframe width="984" height="554" src="https://www.youtube.com/embed/-dpfHYpfEXY?showinfo=0&vq=hd1080&rel=0&modestbranding=0&autoplay=1" frameborder="0" allowfullscreen></iframe>';
-      });
-    }
-
-    if (closeVideo) {
-      closeVideo.addEventListener('click', function(e) {
-        e.preventDefault();
-        closeVideoLink.style.display = 'none';
-        videoPanel.classList.remove('show');
-        rowHero.style.height = '554px';
-        rowContent.classList.remove('hide-me');
-        rowContent.classList.add('show-me');
-        videoPanel.innerHTML = '';
-      });
-    }
-  }
-
-  // Adds a scroll listener to the homepage which adds a class of `run`
-  // to the slider-animation element.
-  if (document.body.classList.contains('homepage') || document.body.classList.contains('mobile-home')) {
-    var sliderAnimation = document.querySelector('.slider-animation');
-    if (sliderAnimation) {
-      window.addEventListener('scroll', function(e) {
-        if (window.scrollY > sliderAnimation.getBoundingClientRect().top - yOffset &&
-        window.scrollY < sliderAnimation.getBoundingClientRect().top &&
-        !sliderAnimation.run) {
-          sliderAnimation.run = true;
-          sliderAnimation.classList.add('run');
-          setTimeout(function(e) {
-            sliderAnimation.classList.remove('run');
-          }, 8000);
-        }
-      });
-
-      sliderAnimation.addEventListener('click', function(e) {
-        sliderAnimation.classList.add('run');
-        setTimeout(function(e) {
-          sliderAnimation.classList.remove('run');
-        }, 8000);
-      })
-    }
-  }
-}
-
-// Sets the left value of the slider list to appear as a slider.
-// XXX Ant, look at recreating in pure CSS.
-core.scopesSlideshow = function() {
-  if (document.body.classList.contains('phone-developers')) {
-    var slider = document.getElementById('slider');
-    var sliderList = slider.querySelector('ul');
-    var sliderListItems = sliderList.querySelectorAll('li');
-    var index = 0;
-    if (sliderListItems) {
-      var slideWidth = sliderListItems[0].offsetWidth;
-      var slideHeight = sliderListItems[0].offsetHeight;
-      var sliderUlWidth = sliderListItems.length * slideWidth;
-      slider.style.width = slideWidth + 'px';
-      slider.style.height = slideHeight + 'px';
-      sliderList.style.width = sliderUlWidth + 'px';
-
-      window.onload = function() {
-        setInterval(function() {
-          sliderList.style.left = (index * -slideWidth) + 'px';
-          index++;
-          if (index > sliderListItems.length - 1) {
-            index = 0;
-          }
-        }, 3500);
-      };
-    }
-  }
-};
-
 // The cookie policy injection and interaction
 core.cookiePolicy = function() {
   if (getCookie('_cookies_accepted') !== 'true'){
     state('open');
   }
-
+  
   function state(stateChange) {
     switch(stateChange) {
       case 'open':
@@ -284,8 +176,6 @@ core.swapContent = function(primaryContainerClass, secondaryContainerClass, show
   }
 }
 
-core.setupAnimations();
-core.scopesSlideshow();
 core.cookiePolicy();
 core.footerMobileNav();
 core.globalResizeListener();
