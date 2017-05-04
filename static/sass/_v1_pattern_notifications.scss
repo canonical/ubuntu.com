@@ -25,16 +25,17 @@
 
     &__content {
       margin-bottom: 0;
+      padding-right: $sp-large;
     }
 
     &__close {
       background-image: url('#{$assets-path}66542f40-close.svg');
-      text-indent: -99999px;
       background-size: $sp-medium;
-      position: absolute;
-      top: $sp-small;
-      right: $sp-small;
       height: $sp-medium;
+      position: absolute;
+      right: $sp-small;
+      text-indent: -99999px;
+      top: $sp-small;
       width: $sp-medium;
     }
   }
