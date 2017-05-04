@@ -118,6 +118,14 @@
       }
     }
 
+    a {
+      color: $color-dark;
+
+      &.is-active {
+        color: $color-brand;
+      }
+    }
+
     // large screen view
     @media (min-width: $breakpoint-medium) {
       @include full-width-breakout;
@@ -136,14 +144,6 @@
         left: -$sp-small;
         position: absolute;
         top: 0;
-      }
-
-      a {
-        color: $color-dark;
-
-        &.is-active {
-          color: $color-brand;
-        }
       }
 
       .p-breadcrumbs__link {
