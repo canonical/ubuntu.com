@@ -10,9 +10,6 @@
 @import "../../node_modules/vanilla-brochure-theme/scss/theme";
 @include vanilla-brochure-theme;
 
-// vendor
-@import 'vendors/global-nav/build';
-
 // import site specific patterns and overrides
 @import "v1_pattern_site_search";
 @import "v1_pattern_navigation";
@@ -23,6 +20,10 @@
 @include p-navigation;
 @include ubuntu-p-footer;
 @include ubuntu-p-lists;
+
+// vendors
+@import
+'../components/canonical-global-nav/src/sass/main';
 
 // **************************
 // Bug fixes
@@ -64,10 +65,3 @@
   }
 }
 
-// global nav spills onto two lines at 768px
-// https://github.com/canonical-webteam/global-nav/issues/14
-@media only screen and (max-width: 770px) {
-  #nav-global ul .more {
-      min-width: 55px;
-  }
-}
