@@ -10,6 +10,10 @@
     font-size: .875rem;
     font-weight: 400;
 
+    @media (max-width: $breakpoint-medium) {
+      font-weight: 300;
+    }
+
     &__logo {
       @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
         padding-left: 1rem;
@@ -57,9 +61,25 @@
   }
 
   // .nav-secondary override
+
+  .nav-secondary {
+    &__row {
+      @media (min-width: $breakpoint-medium) {
+        padding: 0 $sp-x-small;
+      }
+    }
+  }
+
   .nav-secondary,
   .nav-tertiary {
-    // small screen view
+
+    .p-inline-list__link,
+    .p-breadcrumbs__link {
+      font-size: .875rem;
+      font-weight: 300;
+    }
+
+    // small screen view only
     @media (max-width: $breakpoint-medium - 1) {
       background: $color-x-light;
 
@@ -128,6 +148,10 @@
       background: $color-light;
       border-bottom: 1px solid $color-mid-light;
       padding: $sp-small 0;
+
+      .p-breadcrumbs__item {
+        margin-bottom: 0;
+      }
 
       @media (max-width: $breakpoint-large) {
         border-top: 1px solid $color-mid-light;
@@ -216,6 +240,7 @@
 
     & + .second-level-nav,
     & + .second-level-nav & {
+      display: inline-block;
       padding-left: 0;
       margin-bottom: 0;
     }
@@ -227,6 +252,10 @@
 
   .nav-tertiary__menu {
 
+    .p-inline-list__item {
+      font-size: .875rem;
+    }
+
     @media (max-width: $breakpoint-medium - 1) {
       .p-inline-list__item {
         padding: .75rem 1rem;
@@ -234,7 +263,8 @@
     }
 
     @media (min-width: $breakpoint-medium) {
-      margin-left: 2.5rem;
+      margin-left: 1.5rem;
+      display: inline-block;
 
       .p-inline-list__item {
         margin-right: .75rem;
@@ -242,7 +272,6 @@
     }
 
     @media (min-width: $breakpoint-large) {
-      margin-left: 2.5rem;
 
       .p-inline-list__item {
         margin-right: 1.5rem;
