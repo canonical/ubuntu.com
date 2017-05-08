@@ -7,8 +7,9 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row">
-  <div class="col-8">
+<div class="p-strip is-deep">
+  <div class="row">
+    <div class="col-8 suffix-1">
     <h1>BootStack privacy</h1>
     <p>At Canonical, we consider your privacy to be extremely important to us. Please see our <a href="/legal/terms-and-policies/privacy-policy">privacy policy</a> which sets out Canonical&#39;s fundamental principles on privacy and details about how Canonical
       collects data and what we do with it.</p>
@@ -19,11 +20,12 @@
       <li class="p-list__item is-ticked">Backup and recovery of the data on your OpenStack cloud is your responsibility</li>
     </ul>
   </div>
-  <div class="col-4 box">
+    <div class="col-4 p-card">
     <h3>Related content</h3>
     <ul class="p-list">
       <li><a href="/legal/terms-and-policies/privacy-policy">Privacy policy&nbsp;&rsaquo;</a></li>
     </ul>
+  </div>
   </div>
 </div>
 {% endblock content %}
