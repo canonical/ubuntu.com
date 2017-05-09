@@ -13,12 +13,8 @@
   .p-footer {
     border: 0;
     box-shadow: 0 4px 4px -4px $color-shadow inset;
-    margin-bottom: $sp-medium;
-    padding-top: 0;
-
-    @media only screen and (min-width: $breakpoint-medium) {
-      padding-top: $sp-small;
-    }
+    padding: $sp-xx-large 0;
+    margin-bottom: 0;
 
     @media only screen and (max-width: $breakpoint-medium) {
       &__nav-col {
@@ -31,7 +27,6 @@
 
       @media only screen and (min-width: $breakpoint-medium) {
         border: 0;
-        padding-top: $sp-xx-large;
       }
     }
 
