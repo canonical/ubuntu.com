@@ -3,19 +3,26 @@
 {% block title %}BootStack services description{% endblock %}
 
 {% block second_level_nav_items %}
-  {% include "templates/_nav_breadcrumb.html" with section_title="Legal" subsection_title="BootStack" page_title="Service description" %}
+  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Legal" subsection_title="BootStack" page_title="Service description" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
+<div class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h1>BootStack Services Description</h1>
+      <p>Valid since 1 July 2015</p>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-8">
-    <h1>BootStack Services Description</h1>
-    <p>Valid since 1 July 2015</p>
     <h2 id="general">1. General</h2>
-    <ol>
+    <ol class="p-list">
       <li>
         <h3>1.1 In this Services Description:</h3>
-        <ol class="numbered unstyled">
+        <ol class="p-list">
           <li><strong>Day:</strong> means a period of 24 hours starting at midnight Greenwich Mean Time.</li>
           <li><strong>Month:</strong> means a calendar month.</li>
           <li><strong>Validated Systems:</strong> the systems used by Canonical in its labs to reproduce the incident cases so as to identify if an issue relates to OpenStack or the specific configuration or hardware of the Customer</li>
@@ -23,16 +30,18 @@
       </li>
     </ol>
   </div>
-  <hr class="twelve-col" />
+</div>
+
+<div class="row">
   <div class="col-8">
     <h2 id="services">2. Services</h2>
-    <ol>
+    <ol class="p-list">
       <li>
         <h3>2.1 Build</h3>
-        <ol>
+        <ol class="p-list">
           <li>
             <p>Canonical will build and initialize a high availability or non-high availability (as stated in the customer&rsquo;s order) production grade cloud for customer (the &ldquo;Cloud&rdquo;). The Cloud will include:</p>
-            <ul class="p-list">
+            <ul>
               <li>Industry standard server and storage software (initially for the number of nodes set out in the customer&rsquo;s order) with a configuration as defined by the customer and Canonical). For the avoidance of doubt, the customer may increase
                 the number of nodes throughout the term of the customer&rsquo;s agreement with Canonical by opening a support ticket with Canonical.</li>
               <li>The OpenStack information dashboard known as &ldquo;Horizon&rdquo;</li>
@@ -78,11 +87,11 @@
       </li>
       <li>
         <h3>2.2 Operate</h3>
-        <ol>
+        <ol class="p-list">
           <li>
             <h4>2.2.1 General operation</h4>
             <p>Canonical will operate, monitor and manage the Cloud. This will include providing the following services:</p>
-            <ul class="p-list">
+            <ul>
               <li>Reboot of the KVM hosts when necessary</li>
               <li>Backup and restoration of the management infrastructure (the OpenStack database)</li>
               <li>Hardware and software failure monitoring and application of fixes</li>
@@ -94,7 +103,7 @@
           <li>
             <h4>2.2.2 Patching</h4>
             <p>Canonical will conduct the following patching and updating of the Cloud software, at Canonical&rsquo;s discretion:</p>
-            <ul class="p-list">
+            <ul>
               <li>Patching and upgrading of the Ubuntu operating system</li>
               <li>Patching and upgrading of OpenStack</li>
               <li>Patching and upgrading of the hypervisor (hosts)</li>
@@ -104,7 +113,7 @@
           <li>
             <h4>2.2.3 Administrative Access</h4>
             <p>Canonical will have administrative access to the Cloud. The customer will have access to the following applications:</p>
-            <ul class="p-list">
+            <ul>
               <li>The entire OpenStack dashboard</li>
               <li>The entire OpenStack API set</li>
               <li>Landscape</li>
@@ -115,10 +124,10 @@
       </li>
       <li>
         <h3>2.3 Out of scope</h3>
-        <ol>
+        <ol class="p-list">
           <li>
             <p>Canonical is not responsible for the following, which are not part of the Services:</p>
-            <ul class="p-list">
+            <ul>
               <li>Monitoring guest virtual machine instances running on the Cloud</li>
               <li>Managing the operating system running on virtual machine instances running on the Cloud</li>
               <li>Managing the applications running within the virtual machine instances running on the Cloud</li>
@@ -129,7 +138,7 @@
       </li>
       <li>
         <h3>2.4 Meetings</h3>
-        <ol>
+        <ol class="p-list">
           <li>
             <p>The parties will meet regularly to discuss the Cloud and the Services provided by Canonical. The agenda of these meetings to be agreed by the parties.</p>
           </li>
@@ -137,7 +146,7 @@
       </li>
       <li>
         <h3>2.5 Service initiation</h3>
-        <ol>
+        <ol class="p-list">
           <li>
             <h4>2.5.1 Deployment</h4>
             <p>Subject to customer meeting applicable dependencies, Canonical will provide the Cloud to the customer in the two weeks after Canonical&rsquo;s acceptance of the hardware and network.</p>
@@ -145,7 +154,7 @@
           <li>
             <h4>2.5.2 Commencement of the services</h4>
             <p>Canonical will provide documentation to customer providing further detail on the Services, including:</p>
-            <ul class="p-list">
+            <ul>
               <li>Anticipated date of delivery of the Cloud</li>
               <li>Limitations to utilization of the resources within the Cloud</li>
               <li>Size of the Cloud, specification of each node, network diagram</li>
@@ -166,7 +175,7 @@
       </li>
       <li>
         <h3>2.6 Support</h3>
-        <ol>
+        <ol class="p-list">
           <li>
             <h4>2.6.1 Overview</h4>
             <p>Canonical will provide support during the term of customer&rsquo;s agreement with Canonical during the hours specified in the hours table below and meeting the responsibilities specified in the responsibilities table below, subject to customer
@@ -345,7 +354,7 @@
       </li>
       <li>
         <h3>2.7 Customer dependencies</h3>
-        <ol>
+        <ol class="p-list">
           <li>
             <p>Canonical will not be liable for a failure to provide the Services as a result of a failure of customer to deliver a related dependency. In particular, customer will:</p>
             <ul class="p-list">
@@ -359,21 +368,25 @@
             </ul>
           </li>
         </ol>
-        <li>
+      </li>
     </ol>
   </div>
-  <hr class="twelve-col" />
+</div>
+
+<div class="row">
   <div class="col-8">
     <h2 id="expiry-termination">3. On expiry or termination of customer&rsquo;s agreement with Canonical</h2>
-    <ol>
+    <ol class="p-list">
       <li>
         <p>At the end of customer&rsquo;s agreement with Canonical, customer has the choice of discontinuing the Services and managing the Cloud itself. In such case, subject to agreement of appropriate licence terms, Canonical will hand over the administrative
           control of Landscape and the Nagios monitoring tool to customer and customer can continue to monitor it.</p>
-        <ul class="p-list">
-          <li>Should customer choose to discontinue the Services, customer will choose one of the following options: Canonical will transfer the ownership of the hosts to customer. In this case, customer assumes the responsibility of paying the Cloud service
+        <p>Should customer choose to discontinue the Services, customer will choose one of the following options:</p>
+        <ul>
+          <li>Canonical will transfer the ownership of the hosts to customer. In this case, customer assumes the responsibility of paying the Cloud service
             provider (if any) for any use of such services after the transfer. Unless otherwise licensed, the licence for the LDS Product terminates at such time.</li>
           <li>If the servers are within the premise of customer&rsquo;s data center, Canonical will hand over all control of the hosts and management software to customer. Unless otherwise licensed, the licence for the LDS Product shall terminate at such
-            time.</li>
+            time.
+          </li>
           <li>Optional training is offered to customer at the recommended list price for such service prior to the transfer of the Cloud or at any mutually agreeable time.</li>
         </ul>
         <p>Canonical will hand over all access to the Cloud and will encourage customer to change the login credentials in all systems. Customer will be solely responsible for the Cloud from the point of transfer.</p>
