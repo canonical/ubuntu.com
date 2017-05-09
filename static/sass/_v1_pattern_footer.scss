@@ -46,8 +46,10 @@
       display: block;
       margin-bottom: 0;
 
-      @media only screen and (min-width: $breakpoint-medium + 1) {
-        margin-bottom: $sp-large;
+      + .p-footer__item {
+        @media only screen and (min-width: $breakpoint-medium + 1) {
+          margin-top: $sp-large;
+        }
       }
     }
 
