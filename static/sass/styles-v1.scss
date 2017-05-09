@@ -42,6 +42,10 @@
 // https://github.com/vanilla-framework/vanilla-framework/issues/1037
 .p-navigation__logo {
   margin: .65rem;
+
+  @media (min-width: $breakpoint-medium) {
+    padding-left: .4rem;
+  }
 }
 
 // at exactly $breakpoint-medium, there is not a clean switch between mobile/desktop nav styles
