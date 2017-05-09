@@ -6,12 +6,12 @@
 
   .p-navigation {
     margin-bottom: 0;
-    border-bottom: 1px solid $color-light;
     font-size: .875rem;
     font-weight: 400;
 
     @media (max-width: $breakpoint-medium) {
       font-weight: 300;
+      border-bottom: 1px solid $color-light;
     }
 
     &__logo {
@@ -63,6 +63,11 @@
   // .nav-secondary override
 
   .nav-secondary {
+
+    @media (min-width: $breakpoint-medium) {
+       border-top: 1px solid $color-mid-light;
+    }
+
     &__row {
       @media (min-width: $breakpoint-medium) {
         padding: 0 $sp-x-small;
