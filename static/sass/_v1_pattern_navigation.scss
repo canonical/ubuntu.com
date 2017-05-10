@@ -7,6 +7,8 @@
   .p-navigation {
     margin-bottom: 0;
     border-bottom: 1px solid $color-light;
+    font-size: .875rem;
+    font-weight: 400;
 
     &__row {
       @media (min-width: $breakpoint-large) {
@@ -53,7 +55,8 @@
   }
 
   // .nav-secondary override
-  .nav-secondary {
+  .nav-secondary,
+  .nav-tertiary {
     // small screen view
     @media (max-width: $breakpoint-medium - 1) {
       background: $color-x-light;
@@ -102,8 +105,11 @@
 
     &__menu {
       display: inline-block;
-      margin-left: $sp-large;
       position: relative;
+
+      @media (min-width: $breakpoint-medium) {
+        margin-left: $sp-large;
+      }
     }
 
     // large screen view
@@ -195,6 +201,39 @@
 
     a {
       color: $color-dark !important; // specificity
+    }
+  }
+
+  // tertiary navigation
+
+  .p-breadcrumbs__link {
+
+    & + .second-level-nav,
+    & + .second-level-nav & {
+      padding-left: 0;
+      margin-bottom: 0;
+    }
+
+    .second-level-nav & {
+      border-bottom: 0;
+    }
+  }
+
+  .nav-tertiary__menu {
+    @media (min-width: $breakpoint-medium) {
+      margin-left: 2.5rem;
+
+      .p-inline-list__item {
+        margin-right: .75rem;
+      }
+    }
+
+    @media (min-width: $breakpoint-large) {
+      margin-left: 2.5rem;
+      
+      .p-inline-list__item {
+        margin-right: 1.5rem;
+      }
     }
   }
 }
