@@ -261,40 +261,40 @@
               <fieldset id="tfa_Yourcontactdetai1" class="wfSection fieldset-2">
                 <h3>Your contact details</h3>
                 <ul class="p-list">
-                  <li>
+                  <li class="p-list__item">
                     <div id="tfa_Firstname1-D" class="oneField">
                       <label class="preField" for="tfa_Firstname1">First name</label> <input type="text" id="tfa_Firstname1" name="tfa_Firstname1" value="" size="40" class="required">
                     </div>
                   </li>
-                  <li>
+                  <li class="p-list__item">
                     <div id="tfa_Lastname1-D" class="oneField">
                       <label class="preField" for="tfa_Lastname1">Last name</label> <input type="text" id="tfa_Lastname1" name="tfa_Lastname1" value="" size="40" class="required">
                     </div>
                   </li>
-                  <li>
+                  <li class="p-list__item">
                     <div id="tfa_Email1-D" class="oneField">
                       <label class="preField" for="tfa_Email1">Email</label>
                       <input type="text" id="tfa_Email1" name="tfa_Email1" value="" size="40" class="validate-email required">
                     </div>
                   </li>
-                  <li>
+                  <li class="p-list__item">
                     <div id="tfa_Phone-D" class="oneField">
                       <label class="preField" for="tfa_Phone">Phone</label> <input type="text" id="tfa_Phone" name="tfa_Phone" value="" size="40" class="required">
                     </div>
                   </li>
-                  <li>
+                  <li class="p-list__item">
                     <label class="preField" for="tfa_LPid">Launchpad ID (<a id="lp_help" href="https://login.launchpad.net">Don't know your Launchpad ID?</a>)</label>
                     <input id="tfa_Openid" name="tfa_Openid" value="" class="" type="hidden">
                     <input id="tfa_LPid" name="tfa_LPid" value="" class="" type="text">
                     <span class="input-help"><span id="lp_error" class="errMsg"></span></span>
                   </li>
-                  <li>
+                  <li class="p-list__item">
                     <div id="tfa_Address-D" class="oneField">
                       <label class="preField" for="tfa_Address">Address</label>
                       <textarea cols="40" rows="4" id="tfa_Address" name="tfa_Address" class="required"></textarea>
                     </div>
                   </li>
-                  <li>
+                  <li class="p-list__item">
                     <div id="tfa_Country-D" class="oneField">
                       <label class="preField" for="tfa_Country">Country</label>
                       <select id="tfa_Country" name="tfa_Country" class="required">
@@ -538,7 +538,7 @@
           <option value="tfa_Zimbabwe" class="">Zimbabwe</option></select>
                     </div>
                   </li>
-                  <li>
+                  <li class="p-list__item">
                     <div id="tfa_USState-D" class="oneField offstate-b">
                       <label class="preField" for="tfa_USState">US state</label> <select id="tfa_USState" name="tfa_USState" class="required">
           <option value="">Please select...</option>
@@ -599,7 +599,7 @@
               <fieldset class="fieldset-3">
                 <h3>Project contact</h3>
                 <ul class="p-list">
-                  <li>
+                  <li class="p-list__item">
                     <div id="tfa_PleaseaddtheCano-D" class="oneField">
                       <label class="preField" for="tfa_PleaseaddtheCano">Please add the Canonical Project Manager or contact</label>
                       <input type="text" id="tfa_PleaseaddtheCano" name="tfa_PleaseaddtheCano" value="" size="40" class="required">
@@ -613,15 +613,15 @@
                 <p class="instructions">Please enter the characters you see in this picture:</p>
                 <div class="oneField">
                   <ul class="p-list">
-                    <li><img src="https://www.tfaforms.com/forms/captcha" width="200" height="60" alt="Visual CAPTCHA"></li>
-                    <li>
+                    <li class="p-list__item"><img src="https://www.tfaforms.com/forms/captcha" width="200" height="60" alt="Visual CAPTCHA"></li>
+                    <li class="p-list__item">
                       <label class="preField off-left">Characters</label>
                       <input type="text" name="tfa_captcha_text" id="tfa_captcha_text">
                     </li>
-                    <li>
+                    <li class="p-list__item">
                       <p>This helps prevent automated form submissions. If you are not sure what the characters are, make your best guess. You will have another try in the next screen. <a href="https://www.tfaforms.com/forms/captcha/1">Can't see the image? Listen to an audible version in English.</a></p>
                     </li>
-                    <li>
+                    <li class="p-list__item">
                       <div class="htmlsection" id="html-tmp-0767356147928">
                         <p>By clicking 'I agree' you are confirming that you accept the terms detailed&nbsp;above.</p>
                       </div>
@@ -644,14 +644,14 @@
     <div class="col-4 p-card">
       <h3>Related content</h3>
       <ul class="p-list">
-        <li><a class="p-link--external" href="http://www.canonical.com/projects/directory">Open source software projects</a></li>
+        <li class="p-list__item"><a class="p-link--external" href="http://www.canonical.com/projects/directory">Open source software projects</a></li>
       </ul>
     </div>
     <div class="col-4 p-card">
       <h3>Additional information</h3>
       <ul class="p-list">
-        <li><a href="{{ ASSET_SERVER_URL }}ff2478d1-Canonical-HA-CLA-ANY-I_v1.2.pdf">Agreement for individual contributors [PDF]&nbsp;&rsaquo;</a></li>
-        <li><a href="{{ ASSET_SERVER_URL }}31b14270-Canonical-HA-CLA-ANY-E_v1.2.pdf">Agreement for entities [PDF]&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="{{ ASSET_SERVER_URL }}ff2478d1-Canonical-HA-CLA-ANY-I_v1.2.pdf">Agreement for individual contributors [PDF]&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="{{ ASSET_SERVER_URL }}31b14270-Canonical-HA-CLA-ANY-E_v1.2.pdf">Agreement for entities [PDF]&nbsp;&rsaquo;</a></li>
       </ul>
     </div>
   </div>
