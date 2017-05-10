@@ -8,9 +8,10 @@
     @include vf-notifications-default;
 
     bottom: 0;
+    left: $sp-small;
+    right: $sp-small;
     position: fixed;
-    text-align: left;
-    width: 100%;
+    width: auto;
     z-index: 2;
 
     @media (min-width: $breakpoint-large) {
