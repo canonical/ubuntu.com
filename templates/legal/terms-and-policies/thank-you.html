@@ -3,22 +3,24 @@
 {% block title %}Thank you | Intellectual property policy | Terms and policies{% endblock %}
 
 {% block second_level_nav_items %}
-	{% include "templates/_nav_breadcrumb.html" with section_title="Legal" subsection_title="Terms and policies" page_title="Intellectual property policy" %}
+  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Legal" subsection_title="Terms and policies" page_title="Intellectual property policy" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row">
-	<h1>Thank you</h1>
-	<div class="col-8">
-		<p>Thank you for contacting us. Every email we receive is read and handled by a person from the Canonical Team. We promise to get back to you as soon as possible with a useful response, so please bear with us as this may take an extra day or two.</p>
-		<ul class="p-list">
-			<li class="p-list__item"><a href="/legal/terms-and-policies/intellectual-property-policy">Intellectual property policy&nbsp;&rsaquo;</a></li>
-			<li class="p-list__item"><a href="http://www.canonical.com" class="p-link--external">Canonical home page</a></li>
-			<li class="p-list__item"><a href="/">Ubuntu home page&nbsp;&rsaquo;</a></li>
-		</ul>
-	</div>
-	<div class="col-4">
-		<img src="{{ ASSET_SERVER_URL }}6aae23e9-picto-thankyou-orange.svg" width="200" alt="Smile">
-	</div><!-- /.col-4 -->
+<div class="p-strip">
+  <div class="row">
+    <h1>Thank you</h1>
+    <div class="col-8">
+      <p>Thank you for contacting us. Every email we receive is read and handled by a person from the Canonical Team. We promise to get back to you as soon as possible with a useful response, so please bear with us as this may take an extra day or two.</p>
+      <ul class="p-list">
+        <li class="p-list__item"><a href="/legal/terms-and-policies/intellectual-property-policy">Intellectual property policy&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="http://www.canonical.com" class="p-link--external">Canonical home page</a></li>
+        <li class="p-list__item"><a href="/">Ubuntu home page&nbsp;&rsaquo;</a></li>
+      </ul>
+    </div>
+    <div class="col-4">
+      <img src="{{ ASSET_SERVER_URL }}6aae23e9-picto-thankyou-orange.svg" width="200" alt="Smile">
+    </div><!-- /.col-4 -->
+  </div>
 </div>
 {% endblock content %}
