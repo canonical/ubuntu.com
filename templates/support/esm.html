@@ -1,0 +1,96 @@
+{% extends "support/base_support-v1.html" %}
+
+{% block title %}Ubuntu 12.04 LTS Extended Security Maintenance{% endblock %}
+
+{% block second_level_nav_items %}
+  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Support" page_title="" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+
+<div class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h1>Ubuntu 12.04 Extended Security Maintenance</h1>
+      <p>Following the end-of-life of Ubuntu 12.04 LTS in April 2017, Canonical is offering Ubuntu 12.04 ESM (Extended Security Maintenance). ESM provides ongoing security fixes for the kernel and the essential user space packages through April 2019. These  ongoing security fixes are delivered through a secure, private archive available exclusively to Ubuntu Advantage customers.</p>
+      <p>Buy Ubuntu Advantage [https://buy.ubuntu.com/]</p>
+      <p>Learn more about Ubuntu Advantage ></p>
+    </div>
+    <div class="col-4">
+      <img src="{{ ASSET_SERVER_URL }}9e59756d-shield-ESM.svg" alt="" />
+    </div>
+  </div>
+</div>
+
+<div class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-8">
+      Any questions? Call us on +1 781 761 9427 (Americas), +44 207 093 5161 (RoW) or contact us online.
+    </div>
+  </div>
+</div>
+
+<div class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-8">
+      Benefits of ESM
+      All Ubuntu 12.04 LTS users are encouraged to upgrade to Ubuntu 16.04 LTS. But for those who cannot upgrade immediately, Ubuntu 12.04 ESM updates will help ensure the on-going security and integrity of their LTS systems.
+      Canonical’s Ubuntu security team provide fixes on high and critical CVEs (common vulnerabilities and exposures) for the most commonly used server packages in the Ubuntu main archive. ESM provides the essential continuation of the security updates that Ubuntu 12.04 LTS users have always received.
+      Learn which server packages are maintained >
+    </div>
+    <div class="col-4">
+      Ubuntu 12.04 ESM FAQs >
+      Answers to your most frequently asked questions about Ubuntu 12.04 ESM.
+    </div>
+  </div>
+</div>
+
+<div class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>There are three ways to get ESM through Ubuntu Advantage</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      Buy direct
+      Users interested in Ubuntu 12.04 ESM updates can purchase Ubuntu Advantage from our online store.
+    </div>
+    <div class="col-4">
+      Buy from AWS Marketplace
+      For Amazon AWS users, you can purchase Ubuntu Advantage Standard or Advanced through the AWS Marketplace.
+    </div>
+    <div class="col-4">
+      Existing subscribers
+      If you’re already a qualifying Ubuntu Advantage customer, you can request your credentials at support.canonical.com.
+      Any questions, contact us >
+    </div>
+  </div>
+</div>
+
+<div class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-8">
+      How to enable ESM on your system
+      To enable ESM on your Ubuntu 12.04 systems, from the command line type the following commands and follow the step-by-step instructions:
+      $ sudo ubuntu-advantage enable-esm [ENTER TOKEN]
+      $ sudo apt-get update
+    </div>
+  </div>
+</div>
+
+<div class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-8">
+      Get ESM for Ubuntu 12.04
+      If you would like to discuss ESM for Ubuntu 12.04 please get in touch.
+      Or visit the Ubuntu Advantage store
+    </div>
+  </div>
+</div>
+
+
+{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
+
+{% endblock content %}
+{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}
