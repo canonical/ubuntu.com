@@ -51,7 +51,12 @@
       }
 
       @media (min-width: $breakpoint-medium) {
-        padding: $sp-medium $sp-small;
+        padding: 0;
+
+        > a {
+          padding: $sp-medium $sp-small;
+          display: inline-block;
+        }
 
         &:hover {
           background-color: $color-brand-light;
