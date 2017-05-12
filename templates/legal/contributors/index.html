@@ -3,31 +3,43 @@
 {% block title %}Contributor licence agreement{% endblock %}
 
 {% block second_level_nav_items %}
-    {% include "templates/_nav_breadcrumb.html" with section_title="Legal" page_title="Contributors" tertiary="true" %}
+    {% include "templates/_nav_breadcrumb-v1.html" with section_title="Legal" page_title="Contributors" tertiary="true" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero no-border">
-    <div class="eight-col">
-        <h1>Canonical contributor licence&nbsp;agreement</h1>
-        <p>At Canonical, we manage a lot of <a class="external" href="http://www.canonical.com/projects/directory">open source projects</a> and we&rsquo;re required to have agreements with everyone who takes part in them. It&rsquo;s the easiest way for you to give us permission to use your contributions. In effect, you&rsquo;re giving us a licence, but you still own the copyright &mdash; so you retain the right to modify your code and use it in other projects. </p>
-		<p>Several upstream projects require all contributors to agree on the rules for inclusion of their code, we encourage Ubuntu members to support those when working with the upstream on contribution of patches back to those projects or direct contributions. For most <a href="http://www.canonical.com/projects/directory" class="external">projects at Canonical</a>, the preferred approach is a wide licence rather than an assignment of ownership, and the agreements are documented below. Other projects take their own view but we typically recommend supporting their preferred approach to contribution and licensing, whatever that might be.</p>
+<div class="p-strip">
+  <div class="row">
+    <div class="col-8 suffix-1">
+      <h1>Canonical contributor licence&nbsp;agreement</h1>
+      <p>At Canonical, we manage a lot of <a class="p-link--external" href="http://www.canonical.com/projects/directory">open source projects</a> and we&rsquo;re required to have agreements with everyone who takes part in them. It&rsquo;s the easiest way
+        for you to give us permission to use your contributions. In effect, you&rsquo;re giving us a licence, but you still own the copyright &mdash; so you retain the right to modify your code and use it in other projects. </p>
+      <p>Several upstream projects require all contributors to agree on the rules for inclusion of their code, we encourage Ubuntu members to support those when working with the upstream on contribution of patches back to those projects or direct contributions.
+        For most <a href="http://www.canonical.com/projects/directory" class="p-link--external">projects at Canonical</a>, the preferred approach is a wide licence rather than an assignment of ownership, and the agreements are documented below. Other
+        projects take their own view but we typically recommend supporting their preferred approach to contribution and licensing, whatever that might be.</p>
     </div>
-    <div class="four-col last-col text-center">
-        <img src="{{ ASSET_SERVER_URL }}7b1d9e05-image-document-canonical.svg" alt="Canonical contributor licence agreement"  class="priority-0" />
+    <div class="col-4">
+      <div class="u-align--center">
+        <img src="{{ ASSET_SERVER_URL }}7b1d9e05-image-document-canonical.svg" alt="Canonical contributor licence agreement" class="u-hidden--small" />
+      </div>
     </div>
+  </div>
 </div>
-<div class="row no-border equal-height">
-    <div class="six-col box equal-height__item">
-        <h3>Sign the contributor agreement</h3>
-        <p>When you&rsquo;re ready to contribute to a project at Canonical, we have two forms: one for individual contributors and one for companies and other organisations. Before you make your first contribution, please ensure you&rsquo;ve already created a <a href="https://launchpad.net">Launchpad</a> account, then complete the appropriate form.</p>
-        <p><a href="/legal/contributors/submit">Sign the contributor agreement&nbsp;&rsaquo;</a></p>
-    </div>
 
-    <div class="six-col box last-col equal-height__item">
+<div class="p-strip">
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-6 p-card">
+        <h3>Sign the contributor agreement</h3>
+        <p>When you&rsquo;re ready to contribute to a project at Canonical, we have two forms: one for individual contributors and one for companies and other organisations. Before you make your first contribution, please ensure you&rsquo;ve already created
+          a <a href="https://launchpad.net">Launchpad</a> account, then complete the appropriate form.</p>
+        <p><a href="/legal/contributors/submit">Sign the contributor agreement&nbsp;&rsaquo;</a></p>
+      </div>
+      <div class="col-6 p-card">
         <h3>Frequently asked questions</h3>
         <p>We use the Harmony CLA to protect your rights regarding any contribution you make to our open source projects. Learn more about how it works and what it means for you. </p>
         <p><a href="/legal/contributors/licence-agreement-faq">Contribution FAQ&nbsp;&rsaquo;</a></p>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock content %}
