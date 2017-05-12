@@ -1,22 +1,28 @@
-{% extends "about/base_about.html" %}
+{% extends "about/base_about-v1.html" %}
 
 {% block title %}Flavours | About Ubuntu{% endblock %}
 
 {% block second_level_nav_items %}
-{% include "templates/_nav_breadcrumb.html" with section_title="About" subsection_title="About Ubuntu" page_title="Flavours" tertiary="true" %}
+{% include "templates/_nav_breadcrumb-v1.html" with section_title="About" subsection_title="About Ubuntu" page_title="Flavours" tertiary="true" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero no-border">
-  <h1>Flavours</h1>
+<div class="p-strip is-deep">
+  <div class="row">
+    <div class="col-8">
+      <h1>Flavours</h1>
+    </div>
+  </div>
+</div>
 
-  <div class="eight-col">
-    <p class="intro">Ubuntu is a popular operating system and a popular starting point for people who want to create their own operating systems.</p>
+<div class="row">
+  <div class="col-8">
+    <p>Ubuntu is a popular operating system and a popular starting point for people who want to create their own operating systems.</p>
 
     <h3>Recognised Ubuntu flavours</h3>
     <p>These are flavours that use Ubuntu as their foundation and contribute significantly towards the project.</p>
 
-    <ul>
+    <ul class="p-list">
       <li><a href="https://kubuntu.org/">Kubuntu</a> &mdash; Ubuntu with the K Desktop environment</li>
       <li><a href="http://lubuntu.me/">Lubuntu</a> &mdash; Ubuntu that uses LXDE</li>
       <li><a href="http://www.mythbuntu.org/">Mythbuntu</a> &mdash; Designed for creating a home theatre PC with MythTV</li>
@@ -43,5 +49,5 @@
     <h3>Other editions</h3>
     <p>A complete list of known flavours is maintained on the <a href="https://wiki.ubuntu.com/DerivativeTeam/Derivatives">Ubuntu Wiki Derivatives Team page.</a></p>
   </div>
-</div><!-- / .row -->
+</div>
 {% endblock content %}

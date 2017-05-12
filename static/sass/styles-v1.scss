@@ -7,20 +7,24 @@
 @import 'mixins/full-width-breakout';
 
 // import vanilla-brochure-theme
-@import "../../node_modules/vanilla-brochure-theme/scss/theme";
+@import '../../node_modules/vanilla-brochure-theme/scss/theme';
 @include vanilla-brochure-theme;
 
 // vendor
 @import 'vendors/global-nav/build';
 
 // import site specific patterns and overrides
-@import "v1_pattern_site_search";
-@import "v1_pattern_navigation";
-@import 'patterns_footer';
-@import 'patterns_lists';
+@import 'v1_pattern_site_search';
+@import 'v1_pattern_navigation';
+@import 'v1_pattern_strip';
+@import 'v1_pattern_notifications';
+@import 'v1_pattern_footer';
+@import 'v1_pattern_lists';
 
-@include p-site-search;
-@include p-navigation;
+@include ubuntu-p-site-search;
+@include ubuntu-p-navigation;
+@include ubuntu-p-strip;
+@include ubuntu-p-notification;
 @include ubuntu-p-footer;
 @include ubuntu-p-lists;
 
@@ -37,7 +41,11 @@
 // navigation logo is too big and adding a bottom margin
 // https://github.com/vanilla-framework/vanilla-framework/issues/1037
 .p-navigation__logo {
-  margin: .75rem;
+  margin: .65rem;
+
+  @media (min-width: $breakpoint-medium) {
+    padding-left: .4rem;
+  }
 }
 
 // at exactly $breakpoint-medium, there is not a clean switch between mobile/desktop nav styles
@@ -70,4 +78,22 @@
   #nav-global ul .more {
       min-width: 55px;
   }
+}
+
+
+/// XXX Base font size is set to 16px across all viewports
+/// This is a change to be made upstream in vanilla-framework
+/// Issue: https://github.com/vanilla-framework/vanilla-framework/issues/1053
+html {
+  font-size: $font-base-size;
+
+  @media screen and (min-width: $breakpoint-medium) {
+    font-size: $font-base-size;
+  }
+}
+
+/// XXX Compact button style
+/// This should be considered for inclusion in vanilla-framework
+.p-button--neutral.is-compact {
+  padding: $sp-x-small $sp-small;
 }

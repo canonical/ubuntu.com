@@ -1,4 +1,4 @@
-@mixin p-navigation {
+@mixin ubuntu-p-navigation {
 
   html {
     overflow-x: hidden !important; // prevent horizontal overflow full width breakout
@@ -6,7 +6,19 @@
 
   .p-navigation {
     margin-bottom: 0;
-    border-bottom: 1px solid $color-light;
+    font-size: .875rem;
+    font-weight: 400;
+
+    @media (max-width: $breakpoint-medium) {
+      font-weight: 300;
+      border-bottom: 1px solid $color-light;
+    }
+
+    &__logo {
+      @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
+        padding-left: 1rem;
+      }
+    }
 
     &__row {
       @media (min-width: $breakpoint-large) {
@@ -39,22 +51,45 @@
       }
 
       @media (min-width: $breakpoint-medium) {
-        padding: $sp-medium $sp-x-small;
+        padding: 0;
+
+        > a {
+          padding: $sp-medium $sp-small;
+          display: inline-block;
+        }
 
         &:hover {
           background-color: $color-brand-light;
         }
       }
-
-      @media (min-width: $breakpoint-large) {
-        padding: $sp-medium $sp-small;
-      }
     }
   }
 
   // .nav-secondary override
+
   .nav-secondary {
-    // small screen view
+
+    @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large){
+       border-top: 1px solid $color-mid-light;
+    }
+
+    &__row {
+      @media (min-width: $breakpoint-medium) {
+        padding: 0 $sp-small;
+      }
+    }
+  }
+
+  .nav-secondary,
+  .nav-tertiary {
+
+    .p-inline-list__link,
+    .p-breadcrumbs__link {
+      font-size: .875rem;
+      font-weight: 300;
+    }
+
+    // small screen view only
     @media (max-width: $breakpoint-medium - 1) {
       background: $color-x-light;
 
@@ -74,7 +109,7 @@
           width: 100%;
           display: inline-block;
           padding: $sp-x-small;
-          margin-bottom: $sp-medium;
+          margin-bottom: $sp-x-small;
           color: $color-dark;
         }
       }
@@ -102,8 +137,19 @@
 
     &__menu {
       display: inline-block;
-      margin-left: $sp-large;
       position: relative;
+
+      @media (min-width: $breakpoint-medium) {
+        margin-left: $sp-large;
+      }
+    }
+
+    a {
+      color: $color-dark;
+
+      &.is-active {
+        color: $color-brand;
+      }
     }
 
     // large screen view
@@ -111,10 +157,10 @@
       @include full-width-breakout;
       background: $color-light;
       border-bottom: 1px solid $color-mid-light;
-      padding: $sp-small 0;
+      padding: $sp-x-small 0 $sp-small 0;
 
-      @media (max-width: $breakpoint-large) {
-        border-top: 1px solid $color-mid-light;
+      .p-breadcrumbs__item {
+        margin-bottom: 0;
       }
 
       &__menu::before {
@@ -126,10 +172,6 @@
         top: 0;
       }
 
-      a {
-        color: $color-dark;
-      }
-
       .p-breadcrumbs__link {
         color: $color-mid-dark;
       }
@@ -137,7 +179,7 @@
 
     @media (min-width: $breakpoint-large) {
       &__row {
-        padding: 0 $sp-x-small;
+        padding: 0 $sp-small;
       }
     }
 
@@ -195,6 +237,51 @@
 
     a {
       color: $color-dark !important; // specificity
+    }
+  }
+
+  // tertiary navigation
+
+  .p-breadcrumbs__link {
+
+    & + .second-level-nav,
+    & + .second-level-nav & {
+      display: inline-block;
+      padding-left: 0;
+      margin-bottom: 0;
+    }
+
+    .second-level-nav & {
+      border-bottom: 0;
+    }
+  }
+
+  .nav-tertiary__menu {
+
+    .p-inline-list__item {
+      font-size: .875rem;
+    }
+
+    @media (max-width: $breakpoint-medium - 1) {
+      .p-inline-list__item {
+        padding: .75rem 1rem;
+      }
+    }
+
+    @media (min-width: $breakpoint-medium) {
+      margin-left: 1.5rem;
+      display: inline-block;
+
+      .p-inline-list__item {
+        margin-right: .75rem;
+      }
+    }
+
+    @media (min-width: $breakpoint-large) {
+
+      .p-inline-list__item {
+        margin-right: 1.5rem;
+      }
     }
   }
 }

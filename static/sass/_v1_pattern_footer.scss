@@ -13,11 +13,11 @@
   .p-footer {
     border: 0;
     box-shadow: 0 4px 4px -4px $color-shadow inset;
-    margin-bottom: $sp-medium;
-    padding-top: 0;
+    padding: 0 0 $sp-xx-large 0;
+    margin-bottom: 0;
 
     @media only screen and (min-width: $breakpoint-medium) {
-      padding-top: $sp-small;
+      padding: $sp-xx-large 0;
     }
 
     @media only screen and (max-width: $breakpoint-medium) {
@@ -31,7 +31,6 @@
 
       @media only screen and (min-width: $breakpoint-medium) {
         border: 0;
-        padding-top: $sp-xx-large;
       }
     }
 
@@ -51,8 +50,10 @@
       display: block;
       margin-bottom: 0;
 
-      @media only screen and (min-width: $breakpoint-medium + 1) {
-        margin-bottom: $sp-large;
+      + .p-footer__item {
+        @media only screen and (min-width: $breakpoint-medium + 1) {
+          margin-top: $sp-large;
+        }
       }
     }
 
@@ -63,14 +64,14 @@
       background-repeat: no-repeat;
       background-size: 13px 13px;
       border-top: 1px solid $color-mid-light;
-      font-size: .87rem;
+      font-size: .8125rem;
       padding: $sp-small 0;
 
       @media only screen and (min-width: $breakpoint-medium) {
         background: none;
         border: 0;
         color: $color-dark;
-        padding: 0 0 $sp-xx-small;
+        padding: 0 0 $sp-x-small;
       }
 
       @media only screen and (min-width: $breakpoint-large) {
@@ -138,7 +139,7 @@
       display: block;
       left: auto;
       margin-bottom: -1px;
-      padding: $sp-medium 0 $sp-medium $sp-x-large;
+      padding: $sp-small 0 $sp-small $sp-x-large;
       position: relative;
       z-index: 2;
 
@@ -163,12 +164,11 @@
           border-top: 1px solid $color-mid-light;
           color: $color-dark;
           display: block;
-          font-size: .867rem;
+          font-size: .8125rem;
           padding: $sp-small $sp-small $sp-small $sp-medium;
 
           @media only screen and (min-width: $breakpoint-medium) {
             border: 0;
-            font-size: .8125rem;
             padding: 0 0 $sp-x-small;;
           }
         }
@@ -177,7 +177,7 @@
   }
 
   .p-footer--secondary {
-    padding: $sp-large $sp-medium 0;
+    padding: $sp-large $sp-small 0;
 
     &__content {
       margin-bottom: $sp-xx-small;
@@ -210,5 +210,10 @@
     @media only screen and (min-width: $breakpoint-large) {
       margin-top: $sp-x-small;
     }
+  }
+
+  // contextual footer
+  .contextual-footer {
+    border-top: 3px solid $color-brand;
   }
 }

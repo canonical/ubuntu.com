@@ -1,0 +1,22 @@
+@mixin ubuntu-p-strip {
+
+  .p-strip {
+    padding: 3.75rem 0;
+
+    &.is-shallow {
+      padding: 2.5rem 0;
+    }
+
+    &.is-deep {
+      padding: 2.5rem 0;
+
+      @media (min-width: $breakpoint-medium) {
+        padding: 6.25rem 0;
+      }
+    }
+
+    &.is-bordered {
+      border-bottom: 1px dotted $color-mid-dark;
+    }
+  }
+}

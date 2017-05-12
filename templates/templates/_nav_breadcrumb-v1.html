@@ -13,7 +13,7 @@
           {% if level_2 %}
             <li class="p-breadcrumbs__item"><a class="p-breadcrumbs__link" href="/{{ level_1 }}">{{ section_title }}</a>
             <ul class="second-level-nav">
-              <li class="p-breadcrumbs__item"><a class="active p-breadcrumbs__link" href="/{{ level_1 }}/{{ level_2 }}">{{ page_title }}</a></li>
+              <li class="p-breadcrumbs__item"><a class="is-active p-breadcrumbs__link" href="/{{ level_1 }}/{{ level_2 }}">{{ page_title }}</a></li>
             </ul>
           {% else %}
             <li class="p-breadcrumbs__item"><a{% if section_title == 'Things' %} id="IoT-breadcrumb"{% endif %} class="p-breadcrumbs__link" href="/{{ level_1 }}">{{ section_title }}</a>
