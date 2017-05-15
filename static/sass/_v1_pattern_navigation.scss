@@ -265,23 +265,23 @@
 
     @media (max-width: $breakpoint-medium - 1) {
       .p-inline-list__item {
-        padding: .5rem;
+        padding: $sp-x-small;
       }
     }
 
     @media (min-width: $breakpoint-medium) {
-      margin-left: 1.5rem;
+      margin-left: $sp-large;
       display: inline-block;
 
       .p-inline-list__item {
-        margin-right: .75rem;
+        margin-right: $sp-small;
       }
     }
 
     @media (min-width: $breakpoint-large) {
 
       .p-inline-list__item {
-        margin-right: 1.5rem;
+        margin-right: $sp-large;
       }
     }
   }
