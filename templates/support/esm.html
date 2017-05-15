@@ -3,67 +3,71 @@
 {% block title %}Ubuntu 12.04 LTS Extended Security Maintenance{% endblock %}
 
 {% block second_level_nav_items %}
-  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Support" page_title="" %}
+  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Support" page_title="ESM" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
 
 <div class="p-strip is-deep is-bordered">
-  <div class="row">
+  <div class="row u-equal-height">
     <div class="col-8">
       <h1>Ubuntu 12.04 Extended Security Maintenance</h1>
       <p>Following the end-of-life of Ubuntu 12.04 LTS in April 2017, Canonical is offering Ubuntu 12.04 ESM (Extended Security Maintenance). ESM provides ongoing security fixes for the kernel and the essential user space packages through April 2019. These  ongoing security fixes are delivered through a secure, private archive available exclusively to Ubuntu Advantage customers.</p>
-      <p>Buy Ubuntu Advantage [https://buy.ubuntu.com/]</p>
-      <p>Learn more about Ubuntu Advantage ></p>
+      <p><a href="https://buy.ubuntu.com/" class="p-button--brand">Buy Ubuntu Advantage</a></p>
+      <p><a href="/support">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-4">
+    <div class="col-4 u-vertically-center u-align--center">
       <img src="{{ ASSET_SERVER_URL }}9e59756d-shield-ESM.svg" alt="" />
     </div>
   </div>
 </div>
 
-<div class="p-strip is-deep is-bordered">
+<div class="p-strip--grey is-bordered p-phone-contact">
   <div class="row">
-    <div class="col-8">
-      Any questions? Call us on +1 781 761 9427 (Americas), +44 207 093 5161 (RoW) or contact us online.
+    <div class="col-12 p-phone-contact__wrapper">
+      <p class="p-phone-contact__content">Any questions? Call us on <tel href="+1 781 761 9427">+1 781 761 9427</tel> (Americas), <tel href="+44 207 093 5161">+44 207 093 5161</tel> (RoW) or <a href="/support/contact-us">contact us online</a>.</p>
     </div>
   </div>
 </div>
 
 <div class="p-strip is-deep is-bordered">
   <div class="row">
-    <div class="col-8">
-      Benefits of ESM
-      All Ubuntu 12.04 LTS users are encouraged to upgrade to Ubuntu 16.04 LTS. But for those who cannot upgrade immediately, Ubuntu 12.04 ESM updates will help ensure the on-going security and integrity of their LTS systems.
-      Canonical’s Ubuntu security team provide fixes on high and critical CVEs (common vulnerabilities and exposures) for the most commonly used server packages in the Ubuntu main archive. ESM provides the essential continuation of the security updates that Ubuntu 12.04 LTS users have always received.
-      Learn which server packages are maintained >
+    <div class="col-8 suffix-1">
+      <h2>Benefits of ESM</h2>
+      <p>All Ubuntu 12.04 LTS users are encouraged to upgrade to Ubuntu 16.04 LTS. But for those who cannot upgrade immediately, Ubuntu 12.04 ESM updates will help ensure the on-going security and integrity of their LTS systems.</p>
+      <p>Canonical’s Ubuntu security team provide fixes on high and critical CVEs (common vulnerabilities and exposures) for the most commonly used server packages in the Ubuntu main archive. ESM provides the essential continuation of the security updates that Ubuntu 12.04 LTS users have always received.</p>
+      <p><a href="https://wiki.ubuntu.com/SecurityTeam/ESM/12.04" class="p-link--external">Learn which server packages are maintained</a></p>
     </div>
-    <div class="col-4">
-      Ubuntu 12.04 ESM FAQs >
-      Answers to your most frequently asked questions about Ubuntu 12.04 ESM.
+    <div class="col-4 p-card p-card--resource">
+      <h2 class="p-card--resource__heading">Ubuntu 12.04 ESM FAQs&nbsp;&rsaquo;</h2>
+      <p>Answers to your most frequently asked questions about Ubuntu 12.04 ESM.</p>
     </div>
   </div>
 </div>
 
-<div class="p-strip is-deep is-bordered">
+<div class="p-strip--grey is-deep is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>There are three ways to get ESM through Ubuntu Advantage</h2>
     </div>
   </div>
+  <div class="row p-divider u-equal-height">
+    <div class="col-4 p-divider__block">
+      <h3>Buy direct</h3>
+      <p>Users interested in Ubuntu 12.04 ESM updates can purchase Ubuntu Advantage from our <a href="https://buy.ubuntu.com/" class="p-link--external">online store</a>.</p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3>Buy from AWS Marketplace</h3>
+      <p>For Amazon AWS users, you can purchase Ubuntu Advantage <a href="https://aws.amazon.com/marketplace/pp/B01MZ1LSBQ?qid=1486382973569&sr=0-1&ref_=srh_res_product_title" class="p-link--external">Standard</a> or <a href="https://aws.amazon.com/marketplace/pp/B01N9JG6EM?qid=1490357851557&sr=0-7&ref_=srh_res_product_title" class="p-link--external">Advanced</a> through the AWS Marketplace.</p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3>Existing subscribers</h3>
+      <p>If you’re already a qualifying Ubuntu Advantage customer, you can request your credentials at <a href="http://support.canonical.com/" class="p-link--external">support.canonical.com</a>.</p>
+    </div>
+  </div>
   <div class="row">
-    <div class="col-4">
-      Buy direct
-      Users interested in Ubuntu 12.04 ESM updates can purchase Ubuntu Advantage from our online store.
-    </div>
-    <div class="col-4">
-      Buy from AWS Marketplace
-      For Amazon AWS users, you can purchase Ubuntu Advantage Standard or Advanced through the AWS Marketplace.
-    </div>
-    <div class="col-4">
-      Existing subscribers
-      If you’re already a qualifying Ubuntu Advantage customer, you can request your credentials at support.canonical.com.
-      Any questions, contact us >
+    <div class="col-8">
+      <p><a href="/support/contact-us">Any questions, contact us&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </div>
@@ -71,20 +75,29 @@
 <div class="p-strip is-deep is-bordered">
   <div class="row">
     <div class="col-8">
-      How to enable ESM on your system
-      To enable ESM on your Ubuntu 12.04 systems, from the command line type the following commands and follow the step-by-step instructions:
-      $ sudo ubuntu-advantage enable-esm [ENTER TOKEN]
-      $ sudo apt-get update
+      <h2>How to enable ESM on your system</h2>
+      <p>To enable ESM on your Ubuntu 12.04 systems, from the command line type the following commands and follow the step-by-step instructions:</p>
+      <p class="p-code-snippet">
+        <input class="p-code-snippet__input" value="sudo ubuntu-advantage enable-esm [ENTER TOKEN]" readonly="readonly">
+        <button class="p-code-snippet__action">Copy to clipboard</button>
+      </p>
+      <p class="p-code-snippet">
+        <input class="p-code-snippet__input" value="sudo apt-get update" readonly="readonly">
+        <button class="p-code-snippet__action">Copy to clipboard</button>
+      </p>
     </div>
   </div>
 </div>
 
-<div class="p-strip is-deep">
+<div class="p-strip--grey is-deep">
   <div class="row">
+    <div class="col-3">
+      <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="140" alt="" />
+    </div>
     <div class="col-8">
-      Get ESM for Ubuntu 12.04
-      If you would like to discuss ESM for Ubuntu 12.04 please get in touch.
-      Or visit the Ubuntu Advantage store
+      <h2>Get ESM for Ubuntu 12.04</h2>
+      <p>If you would like to discuss ESM for Ubuntu 12.04 please <a href="/support/contact-us">get in touch</a>.</p>
+      <p>Or <a href="https://buy.ubuntu.com" class="p-link--external">visit the Ubuntu Advantage store</a></p>
     </div>
   </div>
 </div>
