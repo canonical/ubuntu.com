@@ -197,6 +197,10 @@
   @media (min-width: $breakpoint-medium + 1) {
     .p-navigation__link:hover .hover-menu {
       display:block;
+
+      .p-inline-list__item {
+        display: block;
+      }
     }
 
     .p-navigation .p-navigation__nav ul li:hover ul::after {
