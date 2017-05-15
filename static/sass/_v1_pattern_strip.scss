@@ -1,6 +1,7 @@
 @mixin ubuntu-p-strip {
 
-  .p-strip {
+  .p-strip,
+  .p-strip--grey {
     padding: 3.75rem 0;
 
     &.is-shallow {
@@ -18,5 +19,9 @@
     &.is-bordered {
       border-bottom: 1px dotted $color-mid-dark;
     }
+  }
+
+  .p-strip--grey {
+    background-color: $color-light;
   }
 }
