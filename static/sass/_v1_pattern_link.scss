@@ -1,0 +1,12 @@
+@mixin ubuntu-p-link {
+  h1.p-link--external,
+  h2.p-link--external,
+  h3.p-link--external,
+  h4.p-link--external,
+  h5.p-link--external,
+  h6.p-link--external {
+    background: url('#{$assets-path}e1bba201-external-link-cool-grey.svg') left center no-repeat;
+    background-size: 20px;
+    padding-left: 26px;
+  }
+}
