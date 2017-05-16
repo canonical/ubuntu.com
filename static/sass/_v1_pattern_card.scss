@@ -1,0 +1,15 @@
+@mixin ubuntu-p-card {
+  .p-card__footer--upgrade {
+    background: $color-light url('#{$assets-path}f68488b1-picto-upgrade-warmgrey.svg') 20px center no-repeat;
+    background-size: 40px 40px;
+    padding: 20px 20px 20px 84px;
+    margin: 20px -20px 0 -20px;
+  }
+
+  html.no-svg,
+  html.opera-mini {
+    .p-card__footer--ubuntu-upgrade {
+      background-image: url('#{$assets-path}fa83e8f4-pictorgram-upgrade-44x44.png');
+    }
+  }
+}
