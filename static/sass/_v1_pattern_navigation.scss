@@ -231,6 +231,11 @@
     width: 200px;
     z-index: 1;
 
+    &::before {
+      //Remove the chevron
+      display: none;
+    }
+
     li {
       padding: $sp-x-small $sp-small 0;
 
