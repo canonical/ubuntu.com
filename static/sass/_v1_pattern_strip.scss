@@ -52,8 +52,11 @@
 
   .p-strip--suru-accent {
     @extend %strip--accent;
-    background-image: url('#{$assets-path}728c5851-Yakkety_Yak-Wallpaper_8192x4608_aubergine_wider.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+
+    @media (min-width: $breakpoint-medium) {
+      background-image: url('#{$assets-path}728c5851-Yakkety_Yak-Wallpaper_8192x4608_aubergine_wider.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
   }
 }
