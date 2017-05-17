@@ -34,11 +34,11 @@
           <p class="p-card__content" style="margin-top: 3rem;">
             <a class="p-button--brand is-large js-lts-download" style="width: 100%;" href="/download/desktop/thank-you?version={{lts_release}}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{lts_release_full}}', 'eventValue' : undefined });">Download</a>
             <script>
-            // Contributions only work with JavaScript
-            // So if we have JavaScript, send them to /contribute
-            var downloadLink = document.querySelector('.js-lts-download');
-            var contributeUrl = downloadLink.href.replace('/thank-you', '/contribute');
-            downloadLink.href = contributeUrl;
+              // Contributions only work with JavaScript
+              // So if we have JavaScript, send them to /contribute
+              var downloadLink = document.querySelector('.js-lts-download');
+              var contributeUrl = downloadLink.href.replace('/thank-you', '/contribute');
+              downloadLink.href = contributeUrl;
             </script>
           </p>
           <p class="p-card__content"><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
@@ -63,19 +63,19 @@
           <p class="p-card__content" style="margin-top: 3rem;">
             <a class="p-button--brand is-large js-latest-download" style="width: 100%;" href="/download/desktop/thank-you/?version={{latest_release}}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{latest_release_full}}', 'eventValue' : undefined });">Download</a>
             <script>
-            // Contributions only work with JavaScript
-            // So if we have JavaScript, send them to /contribute
-            var downloadLink = document.querySelector('.js-latest-download');
-            var contributeUrl = downloadLink.href.replace('/thank-you', '/contribute');
-            downloadLink.href = contributeUrl;
+              // Contributions only work with JavaScript
+              // So if we have JavaScript, send them to /contribute
+              var downloadLink = document.querySelector('.js-latest-download');
+              var contributeUrl = downloadLink.href.replace('/thank-you', '/contribute');
+              downloadLink.href = contributeUrl;
             </script>
           </p>
           <p class="p-card__content"><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
-        </ul>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 
 <div class="p-strip is-deep">
@@ -130,7 +130,7 @@
       </div>
     </div>
   </div>
-  </div>
+</div>
 
   {% include "download/desktop/_other-ways.html" %}
 
