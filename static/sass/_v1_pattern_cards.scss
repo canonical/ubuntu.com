@@ -1,9 +1,10 @@
-// Resource box style patterns
 @mixin ubuntu-p-cards {
   @include p-card--resource;
 }
 
 @mixin p-card--resource {
+  $fold-size: 30px;
+
   .p-card--resource {
     cursor: pointer;
     display: block;
@@ -25,7 +26,7 @@
     }
 
     &:after {
-      transition: all 0.2s ease-out;
+      transition: all .2s ease-out;
       content: "";
       position: absolute;
       z-index: 2;
@@ -46,21 +47,21 @@
     &:before {
       content: "";
       position: absolute;
-      transition: border-width 0.2s ease-out;
+      transition: border-width .2s ease-out;
       top: -2px;
       right: -3px;
       width: 0;
       height: 0;
-      border-bottom: 30px solid #fdfdfd;
-      border-right: 30px solid $color-x-light;
-      box-shadow: -2px 2px 2px rgba(176, 176, 176, 0.4);
+      border-bottom: $fold-size solid $color-x-light;
+      border-right: $fold-size solid $color-x-light;
+      box-shadow: -2px 2px 2px rgba(176, 176, 176, .4);
       z-index: 2;
-      border-radius: 0 0 0 0;
+      border-radius: 0;
     }
 
     &:hover:before {
-      border-bottom-width: 35px;
-      border-right-width: 35px;
+      border-bottom-width: $fold-size +5px;
+      border-right-width: $fold-size + 5px;
     }
 
     &__heading {
