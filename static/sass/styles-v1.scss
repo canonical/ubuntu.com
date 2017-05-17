@@ -104,8 +104,13 @@ html {
 
 /// XXX Brand button color fix
 /// .p-button--brand is blue when visited
-.p-button--brand:visited {
-  color: $color-x-light;
+a.p-button--brand {
+  &:link,
+  &:visited,
+  &:active,
+  &:hover {
+    color: $color-x-light;
+  }
 }
 
 /// XXX Vertically spaced - add vertical margins to an element
