@@ -45,91 +45,52 @@
 
       <p>Each service offering includes access to Canonical's knowledge base and the support described below within the scope and subject to the exceptions detailed in the <a href="#appendix-1">support scope documentation</a>.</p>
 
-      <ol class="p-list">
-        <li id="support-scope-releases"><span class="number">2.1</span> Releases
-          <ul>
-            <li class="p-list__item">Canonical will provide support for installation, configuration, maintenance, and management of any standard release of Ubuntu when installed using official sources and within its product life cycle. The life cycle for each version of Ubuntu
-              are specified here: <a href="/info/release-end-of-life">www.ubuntu.com/info/release-end-of-life</a>.</li>
-          </ul>
-        </li>
-        <li id="support-scope-hardware"><span class="number">2.2</span> Hardware
-          <ul>
-            <li class="p-list__item">Ubuntu Certified hardware has passed our extensive testing and review process. More information about the Ubuntu certification process and a list of certified hardware can be found on the Ubuntu Certification page: <a href="https://certification.ubuntu.com">www.ubuntu.com/certification</a>.
-              The services apply only with respect to the customer&#39;s hardware which has been certified. In the event the customer requests the services with respect to hardware which is not certified, Canonical will use reasonable efforts to provide
-              support services, but may not adhere to the obligations described in this service description.</li>
-          </ul>
-        </li>
-        <li id="support-scope-packages"><span class="number">2.3</span> Packages
-          <ol class="p-list">
-            <li class="p-list__item"><span class="number">2.3.1</span> The services apply only to packages found in the Ubuntu Main Repository and Canonical-owned packages in the Universe Repository except (i) the "proposed" and "backports" repository pockets, and (ii) the exclusions
-              noted in the applicable support scope documentation.<br /> The supported packages from the Universe Repository include, but may not be limited to, Juju packages, MAAS packages, the nova-conductor package, and their dependencies to the extent
-              used in connection with those packages.</li>
-            <li class="p-list__item"><span class="number">2.3.2</span> Canonical will not provide support for any packages that have been modified from the version in the Ubuntu archives.</li>
-          </ol>
-        </li>
-        <li id="support-scope-kernels"><span class="number">2.4</span> Kernels
-          <ol class="p-list">
-            <li class="p-list__item"><span class="number">2.4.1</span> The kernel provided initially in the release of a long-term support (LTS) version of Ubuntu is supported for the entire lifecycle of the LTS.</li>
-            <li class="p-list__item"><span class="number">2.4.2</span> Hardware enablement (HWE) kernels provide support for newer hardware in an LTS release and are released in conjunction with the non-LTS Ubuntu releases. HWE kernels are supported until the next LTS point release.</li>
-            <li class="p-list__item"><span class="number">2.4.3</span> More information about kernel support can be found at <a href="/info/release-end-of-life">www.ubuntu.com/info/release-end-of-life</a></li>
-            <li class="p-list__item"><span class="number">2.4.4</span> Kernel livepatching
-              <ul>
-                <li class="p-list__item">The customer is entitled to a licence to use Canonical&#39;s kernel livepatch daemon, access to available kernel livepatches, and support for livepatches on all systems covered by Ubuntu Advantage, for which the livepatching features are
-                  available.
-                </li>
-                <li class="p-list__item">Canonical provides livepatches for High and Critical kernel CVEs. Note that some CVEs may be ineligible for livepatching due to technical limitations within the livepatching system.</li>
-                <li class="p-list__item">Canonical can not provide kernel support bug fixes as kernel livepatches.</li>
-                <li class="p-list__item">Kernel livepatching is available for generic and low latency 64-bit Intel/AMD 4.4 kernels on Ubuntu 16.04.</li>
-              </ul>
-            </li>
-          </ol>
-        </li>
-        <li id="support-scope-landscape"><span class="number">2.5</span> Landscape
-          <ol class="p-list">
-            <li class="p-list__item"><span class="number">2.5.1</span> All Landscape products, including Landscape On Premises (when purchased) are fully supported.</li>
-            <li class="p-list__item"><span class="number">2.5.2</span> Access to the Landscape SaaS systems management tool is included with all support offerings, unless otherwise noted.</li>
-          </ol>
-        </li>
-        <li id="support-scope-openstack"><span class="number">2.6</span> OpenStack
-          <ol class="p-list">
-            <li class="p-list__item"><span class="number">2.6.1</span> This section applies to services purchased for the support of OpenStack. OpenStack support is included with:
-              <ul>
-                <li class="p-list__item">Ubuntu Advantage Server Standard</li>
-                <li class="p-list__item">Ubuntu Advantage Server Advanced</li>
-                <li class="p-list__item">Ubuntu Advantage OpenStack Cloud Region</li>
-              </ul>
-            </li>
-            <li class="p-list__item"><span class="number">2.6.2</span> OpenStack support requires environments with 10 or more supported nodes.</li>
-            <li class="p-list__item"><span class="number">2.6.3</span> Canonical Architecture means:
-              <ul>
-                <li class="p-list__item">An Ubuntu OpenStack installation, deployed under contract with Canonical using Juju, MAAS, and an official Charm release. For any deployments done under contract with Canonical, which results in customization of any Charms, customization
-                  will be valid for 90 days after the official release of the Charm which includes the customizations.</li>
-                <li class="p-list__item">A deployment of Ubuntu OpenStack using Canonical’s OpenStack Autopilot.</li>
-              </ul>
-            </li>
-            <li class="p-list__item"><span class="number">2.6.4</span> For installations not deployed using the Canonical Architecture, support is limited to bugs in the Ubuntu OpenStack packages themselves. Support is also not included for deployment, configuration, or optimization
-              issues in OpenStack installations.</li>
-            <li class="p-list__item"><span class="number">2.6.5</span> Support for up to a total of 3 TB of usable storage per deployed node. This allowance can be used for of Ubuntu Advantage Ceph, or Ubuntu Advantage Swift or a combination of these.</li>
-            <li class="p-list__item"><span class="number">2.6.6</span> Supported versions of OpenStack:
-              <ul>
-                <li class="p-list__item">The version of OpenStack provided initially in the release of a long-term support (LTS) version of Ubuntu is supported for the entire lifecycle of that Ubuntu version.</li>
-                <li class="p-list__item">Releases of OpenStack released after an LTS version of Ubuntu are available in the Ubuntu Cloud Archive. Each OpenStack release in the Ubuntu Cloud Archive is supported on an Ubuntu LTS version for a minimum of 18 months from the release
-                  date of the Ubuntu version that included the applicable OpenStack version.</li>
-                <li class="p-list__item">The OpenStack release support schedule is available here <a href="/info/release-end-of-life">www.ubuntu.com/info/release-end-of-life</a>.</li>
-              </ul>
-            </li>
-          </ol>
-        </li>
-        <li id="charms"><span class="number">2.7</span> Charms
-          <ol class="p-list">
-            <li class="p-list__item"><span class="number">2.7.1</span>This section applies to services purchased for the support of OpenStack.</li>
-            <li class="p-list__item"><span class="number">2.7.2</span> Canonical will provide support for the charms required to run an OpenStack cloud deployed using the Canonical Architecture.</li>
-            <li class="p-list__item"><span class="number">2.7.3</span> Each charm version is supported for one year from the release date.</li>
-            <li class="p-list__item"><span class="number">2.7.4</span> Canonical will not provide support for any charms that have been modified from the supported version found in the Charm Store.</li>
-          </ol>
-        </li>
-      </ol>
-    </div>
+    <ol class="p-list">
+      <li id="support-scope-releases"><span class="number">2.1</span> Releases
+        <ul>
+          <li class="p-list__item">Canonical will provide support for installation, configuration, maintenance, and management of any standard release of Ubuntu when installed using official sources and within its product life cycle. The life cycle for each version of Ubuntu
+            are specified here: <a href="/info/release-end-of-life">www.ubuntu.com/info/release-end-of-life</a>.</li>
+        </ul>
+      </li>
+      <li id="support-scope-hardware"><span class="number">2.2</span> Hardware
+        <ul>
+          <li class="p-list__item">Ubuntu Certified hardware has passed our extensive testing and review process. More information about the Ubuntu certification process and a list of certified hardware can be found on the Ubuntu Certification page: <a href="https://certification.ubuntu.com">www.ubuntu.com/certification</a>.
+            The services apply only with respect to the customer&#39;s hardware which has been certified. In the event the customer requests the services with respect to hardware which is not certified, Canonical will use reasonable efforts to provide
+            support services, but may not adhere to the obligations described in this service description.</li>
+        </ul>
+      </li>
+      <li id="support-scope-packages"><span class="number">2.3</span> Packages
+        <ol class="p-list">
+          <li class="p-list__item"><span class="number">2.3.1</span> The services apply only to packages found in the Ubuntu Main Repository and Canonical-owned packages in the Universe Repository except (i) the "proposed" and "backports" repository pockets, and (ii) the exclusions
+            noted in the applicable support scope documentation.<br /> The supported packages from the Universe Repository include, but may not be limited to, Juju packages, MAAS packages, the nova-conductor package, and their dependencies to the extent
+            used in connection with those packages.</li>
+          <li class="p-list__item"><span class="number">2.3.2</span> Canonical will not provide support for any packages that have been modified from the version in the Ubuntu archives.</li>
+        </ol>
+      </li>
+      <li id="support-scope-kernels"><span class="number">2.4</span> Kernels
+        <ol class="p-list">
+          <li class="p-list__item"><span class="number">2.4.1</span> The kernel provided initially in the release of a long-term support (LTS) version of Ubuntu is supported for the entire lifecycle of the LTS.</li>
+          <li class="p-list__item"><span class="number">2.4.2</span> Hardware enablement (HWE) kernels provide support for newer hardware in an LTS release and are released in conjunction with the non-LTS Ubuntu releases. HWE kernels are supported until the next LTS point release.</li>
+          <li class="p-list__item"><span class="number">2.4.3</span> More information about kernel support can be found at <a href="/info/release-end-of-life">www.ubuntu.com/info/release-end-of-life</a></li>
+          <li class="p-list__item"><span class="number">2.4.4</span> Kernel livepatching
+            <ul>
+              <li class="p-list__item">The customer is entitled to a licence to use Canonical&#39;s kernel livepatch daemon, access to available kernel livepatches, and support for livepatches on all systems covered by Ubuntu Advantage, for which the livepatching features are
+                available.</li>
+              <li class="p-list__item">Canonical provides livepatches for High and Critical kernel CVEs. Note that some CVEs may be ineligible for livepatching due to technical limitations within the livepatching system.</li>
+              <li class="p-list__item">Canonical can not provide kernel support bug fixes as kernel livepatches.</li>
+              <li class="p-list__item">Kernel livepatching is available for generic and low latency 64-bit Intel/AMD 4.4 kernels on Ubuntu 16.04.</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+      <li id="support-scope-landscape"><span class="number">2.5</span> Landscape
+        <ol class="p-list">
+          <li class="p-list__item"><span class="number">2.5.1</span> All Landscape products, including Landscape On Premises (when purchased) are fully supported.</li>
+          <li class="p-list__item"><span class="number">2.5.2</span> Access to the Landscape SaaS systems management tool is included with all support offerings, unless otherwise noted.</li>
+        </ol>
+      </li>
+    </ol>
+  </div>
 
     <div class="col-4 not-for-small p-card">
       <h3>Contents</h3>
