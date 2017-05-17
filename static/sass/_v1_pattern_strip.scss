@@ -1,11 +1,22 @@
 @mixin ubuntu-p-strip {
+  @include ubuntu-p-strip-modifiers;
+  @include ubuntu-p-strip--grey;
+  @include ubuntu-p-strip--accent;
+}
 
+@mixin ubuntu-p-strip-modifiers {
   .p-strip,
-  .p-strip--grey {
+  .p-strip--grey,
+  .p-strip--accent,
+  .p-strip--suru-accent {
     padding: 3.75rem 0;
 
     &.is-shallow {
       padding: 2.5rem 0;
+    }
+
+    &.is-x-shallow {
+      padding: 1.5rem 0;
     }
 
     &.is-deep {
@@ -20,8 +31,29 @@
       border-bottom: 1px dotted $color-mid-dark;
     }
   }
+}
 
+@mixin ubuntu-p-strip--grey {
   .p-strip--grey {
     background-color: $color-light;
+  }
+}
+
+@mixin ubuntu-p-strip--accent {
+  %strip--accent {
+    @include strip;
+    background-color: $color-accent;
+    color: determine-text-color($color-accent);
+  }
+
+  .p-strip--accent {
+    @extend %strip--accent;
+  }
+
+  .p-strip--suru-accent {
+    @extend %strip--accent;
+    background-image: url('#{$assets-path}728c5851-Yakkety_Yak-Wallpaper_8192x4608_aubergine_wider.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 }
