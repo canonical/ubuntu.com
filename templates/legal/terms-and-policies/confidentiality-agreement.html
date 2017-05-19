@@ -7,47 +7,48 @@
 
 <link href="https://www.tfaforms.com/css/form.css" rel="stylesheet" type="text/css" />
 <script>
-    wFORMS.behaviors.prefill.skip = false;
+  wFORMS.behaviors.prefill.skip = false;
 </script>
 <style type="text/css" media="screen">
-.supportInfo {
-  display: none;
-}
+  .supportInfo {
+    display: none;
+  }
 
-.offstate-b {
-  display: none;
-}
+  .offstate-b {
+    display: none;
+  }
 
-div.error, div.ok {
-    margin:20px 50px;
-    text-align:center;
+  div.error,
+  div.ok {
+    margin: 20px 50px;
+    text-align: center;
     padding: 0;
-}
+  }
 
-div.error p, div.ok p {
+  div.error p,
+  div.ok p {
     margin: 10px;
-}
+  }
 
-.wForm textarea {
+  .wForm textarea {
     width: 100%;
-}
+  }
 
-div.error {
+  div.error {
     background: #FCC;
     color: #200;
     border: 1px solid #D77;
-}
+  }
 
-div.ok {
+  div.ok {
     background: #DFD;
     color: #020;
     border: 1px solid #0A0;
-}
+  }
 
-form label.reqMark {
-  color: #333;
-}
-
+  form label.reqMark {
+    color: #333;
+  }
 </style>
 <script>
   /* make jslint happy */
@@ -57,30 +58,31 @@ form label.reqMark {
   // Use this in a FormAssembly code block to add a string to a field's class (that's how standard validations work)
   // this allows form developer to add validations not permitted by FormAssembly's UI.
 
-  function custom_validation(id, class_info)
-  {
-    base2.DOM.Element.addEventListener(document,'DOMContentLoaded',
-    function()
-    {
-      try {document.getElementById(id).className += " " + class_info;}
-      catch(err)
-      {
-        throw new Error("Custom validation could not be applied to field " + id);
-      }
-    },
-    false);
+  function custom_validation(id, class_info) {
+    base2.DOM.Element.addEventListener(document, 'DOMContentLoaded',
+      function() {
+        try {
+          document.getElementById(id).className += " " + class_info;
+        } catch (err) {
+          throw new Error("Custom validation could not be applied to field " + id);
+        }
+      },
+      false);
   }
 
   // validate-length validates string does not exceed given number of chars
 
-  wFORMS.behaviors.validation.rules.isUnderLimit   = { selector: ".validate-length", check: 'isUnderLimit' };
+  wFORMS.behaviors.validation.rules.isUnderLimit = {
+    selector: ".validate-length",
+    check: 'isUnderLimit'
+  };
   wFORMS.behaviors.validation.messages.isUnderLimit = "This text is too long.";
 
   wFORMS.behaviors.validation.instance.prototype.isUnderLimit = function(element, value) {
     var pattern = new RegExp(/validate-length (\d*)/i);
     var matches = element.className.match(pattern);
 
-    if(matches && matches[1]) {
+    if (matches && matches[1]) {
       return (value.length <= matches[1]);
     }
     return true;
@@ -92,7 +94,10 @@ form label.reqMark {
   // we just check for exactly 12 digits, and each digit may be optionally followed by a dash
   // so dashes are essentially ignored
 
-  wFORMS.behaviors.validation.rules.isAWSAccountNumber = { selector: ".validate-awsaccountnumber", check: 'validateAWSAccountNumber' };
+  wFORMS.behaviors.validation.rules.isAWSAccountNumber = {
+    selector: ".validate-awsaccountnumber",
+    check: 'validateAWSAccountNumber'
+  };
   wFORMS.behaviors.validation.messages.isAWSAccountNumber = "Not a valid Amazon AWS Account number (expected format '1234-5678-0987')";
 
   wFORMS.behaviors.validation.instance.prototype.validateAWSAccountNumber = function(element, value) {
@@ -500,7 +505,7 @@ form label.reqMark {
                     </li>
                     <li class="p-list__item">
                       <div class="actions" id="tfa_0-A">
-                        <input type="submit" class="primaryAction" value="I agree">
+                        <input type="submit" class="p-button--brand" value="I agree">
                       </div>
                       <div style="clear:both"></div>
                       <input type="hidden" value="353675" name="tfa_dbFormId" id="tfa_dbFormId">

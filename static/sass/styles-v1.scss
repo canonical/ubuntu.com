@@ -123,6 +123,20 @@ html {
   padding-top: $sp-medium;
 }
 
+// brand submit buttons bg override
+// https://github.com/vanilla-framework/vanilla-framework/issues/1080
+
+.p-button--brand[type=submit]{
+  background-color: $color-brand;
+  border-color: $color-brand;
+
+  &:hover,
+  &:active {
+    background-color: darken($color-brand, 10%);
+    border-color: darken($color-brand, 10%);
+  }
+}
+
 /// XXX remove abbr `text-decoration: underline dotted;`
 /// add to :hover
 /// from [normalize.css](https://github.com/necolas/normalize.css/blob/master/normalize.css)
