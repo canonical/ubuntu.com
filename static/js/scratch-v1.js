@@ -117,9 +117,9 @@ core.setupGlobalNavAccordion = function() {
 // Adds click eventlistener to the copy-to-clipboard buttons. Selects the input
 // and tries to copy the value to the clipboard.
 core.commandLine = function () {
-  document.querySelectorAll('.command-line').forEach(function(node) {
-    var copyButton = node.querySelector('.js-copy-to-clipboard');
-    var commandInput = node.querySelector('.command-line__input');
+  document.querySelectorAll('.p-code-snippet').forEach(function(node) {
+    var copyButton = node.querySelector('.p-code-snippet__action');
+    var commandInput = node.querySelector('.p-code-snippet__input');
     if (copyButton && commandInput) {
       copyButton.addEventListener('click', function(e) {
         e.preventDefault;

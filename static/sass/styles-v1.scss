@@ -97,3 +97,21 @@ html {
 .p-button--neutral.is-compact {
   padding: $sp-x-small $sp-small;
 }
+
+/// XXX Brand button color fix
+/// .p-button--brand is blue when visited
+a.p-button--brand {
+  &:link,
+  &:visited,
+  &:active,
+  &:hover {
+    color: $color-x-light;
+  }
+}
+
+/// XXX Vertically spaced - add vertical margins to an element
+/// An attempt to solve some of the vertical spacing issues
+.u-vertically-spaced {
+  padding-bottom: $sp-medium;
+  padding-top: $sp-medium;
+}
