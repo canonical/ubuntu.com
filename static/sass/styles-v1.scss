@@ -97,3 +97,17 @@ html {
 .p-button--neutral.is-compact {
   padding: $sp-x-small $sp-small;
 }
+
+// brand submit buttons bg override
+// https://github.com/vanilla-framework/vanilla-framework/issues/1080
+
+.p-button--brand[type=submit]{
+  background-color: $color-brand;
+  border-color: $color-brand;
+
+  &:hover,
+  &:active {
+    background-color: darken($color-brand, 10%);
+    border-color: darken($color-brand, 10%);
+  }
+}
