@@ -175,3 +175,34 @@
     }
   }
 }
+
+@mixin ubuntu-p-nested-counter-lists {
+  .p-nested-counter-list {
+    list-style-type: none;
+    counter-reset: item;
+    margin-left: 0;
+    padding-left: 0;
+
+    & & {
+      margin-top: $sp-small;
+    }
+
+    &__item {
+      counter-increment: item;
+      padding-left: $sp-xx-small;
+      padding-bottom: $sp-small;
+
+      &:before {
+        content: counters(item, ".") ". ";
+      }
+
+      & & {
+        padding-left: 0;
+
+        &:before {
+          content: counters(item, ".") " ";
+        }
+      }
+    }
+  }
+}
