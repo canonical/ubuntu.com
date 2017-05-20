@@ -1,169 +1,181 @@
-{% extends "download/_base_download.html" %}
+{% extends "download/_base_download-v1.html" %}
 
 {% block title %}Alternative downloads{% endblock %}
 
 {% block meta_description %}Want to download via-bitTorrent links, get DVD images with more language packs, use the text-based alternate installer or find previous versions of Ubuntu?{% endblock %}
 
 {% block second_level_nav_items %}
-<div class="strip-inner-wrapper">
-    {% include "templates/_nav_breadcrumb.html" with section_title="Downloads" subsection_title="Desktop" page_title="Alternative downloads"  %}
-</div><!-- /.strip-inner-wrapper -->
+{% include "templates/_nav_breadcrumb-v1.html" with section_title="Downloads" subsection_title="Desktop" page_title="Alternative downloads"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row equal-height">
-    <div class="strip-inner-wrapper">
-        <div class="seven-col equal-height__item">
-            <h1>Alternative downloads</h1>
-            <p>There are several other ways to get Ubuntu including torrents, which can potentially mean a quicker download, our network installer for older systems and special configurations and links to our regional DVD image mirrors for our older (and newer) releases. If you don&rsquo;t specifically require any of these installers, we recommend using our <a href="/download">default installers</a>.</p>
-        </div><!-- /.eight-col -->
-        <div class="five-col last-col equal-height__item equal-height__align-vertically">
-            <img src="{{ ASSET_SERVER_URL }}be3876ec-picto-download-warmgrey.svg" width="200" height="200" alt="" class="priority-0" />
-        </div>
+<div class="p-strip is-deep is-bordered">
+  <div class="row u-equal-height">
+    <div class="col-7">
+      <h1>Alternative downloads</h1>
+      <p>There are several other ways to get Ubuntu including torrents, which can potentially mean a quicker download, our network installer for older systems and special configurations and links to our regional DVD image mirrors for our older (and newer) releases. If you don&rsquo;t specifically require any of these installers, we recommend using our <a href="/download">default installers</a>.</p>
     </div>
-</div>
-
-<div class="row">
-    <div class="strip-inner-wrapper">
-        <h2>Network installer</h2>
-        <div class="eight-col">
-            <p>The network installer lets you install Ubuntu over the network. This is useful, for example, if you have an old machine with a non-bootable CD-ROM or a computer that can&rsquo;t run the graphical interface-based installer, either because they don&rsquo;t meet the minimum requirements for the live CD/DVD or because they require extra configuration before  the graphical desktop can be used, or if you want to install Ubuntu on a large number of computers at once.</p>
-            <ul class="list-ticks--compact">
-                <li><a class="download-network external" href="http://cdimage.ubuntu.com/netboot/{{latest_release}}/">Download the network installer for {{latest_release_full}}</a></li>
-                <li><a class="download-network external" href="http://cdimage.ubuntu.com/netboot/16.04/">Download the network installer for 16.04 LTS</a></li>
-                <li><a class="download-network external" href="http://cdimage.ubuntu.com/netboot/14.04/">Download the network installer for 14.04 LTS</a></li>
-            </ul>
-        </div><!-- /.eight-col -->
-    </div><!-- /.strip-inner-wrapper -->
-</div><!-- /.row -->
-
-<div class="row">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col append-four">
-            <h2>BitTorrent</h2>
-            <p>BitTorrent is a peer-to-peer download network that sometimes enables higher download speeds and more reliable downloads of large files. You will need to install a BitTorrent client on your computer in order to enable this download method.</p>
-        </div>
-        <div class="four-col">
-            <h3 class="external--title"><span>Ubuntu {{latest_release}}</span></h3>
-            <ul class="no-bullets list">
-                <li><a class="download-torrent" href="http://releases.ubuntu.com/{{latest_release}}/ubuntu-{{latest_release}}-desktop-amd64.iso.torrent">Ubuntu {{latest_release}} Desktop (64-bit)&nbsp;&rsaquo;</a></li>
-                <li><a class="download-torrent" href="http://releases.ubuntu.com/{{latest_release}}/ubuntu-{{latest_release}}-desktop-i386.iso.torrent">Ubuntu {{latest_release}} Desktop (32-bit)&nbsp;&rsaquo;</a></li>
-                <li><a class="download-torrent" href="http://releases.ubuntu.com/{{latest_release}}/ubuntu-{{latest_release}}-server-amd64.iso.torrent">Ubuntu {{latest_release}} Server (64-bit)&nbsp;&rsaquo;</a></li>
-                <li><a class="download-torrent" href="http://releases.ubuntu.com/{{latest_release}}/ubuntu-{{latest_release}}-server-i386.iso.torrent">Ubuntu {{latest_release}} Server (32-bit)&nbsp;&rsaquo;</a></li>
-            </ul>
-        </div><!-- /.four-col -->
-        <div class="four-col">
-            <h3 class="external--title"><span>Ubuntu {{lts_release_full_with_point}}</span></h3>
-            <ul class="no-bullets list">
-                <li><a class="download-torrent" href="http://releases.ubuntu.com/{{lts_release_no_point}}/ubuntu-{{lts_release_with_point}}-desktop-amd64.iso.torrent">Ubuntu {{lts_release_with_point}} Desktop (64-bit)&nbsp;&rsaquo;</a></li>
-                <li><a class="download-torrent" href="http://releases.ubuntu.com/{{lts_release_no_point}}/ubuntu-{{lts_release_with_point}}-desktop-i386.iso.torrent">Ubuntu {{lts_release_with_point}} Desktop (32-bit)&nbsp;&rsaquo;</a></li>
-                <li><a class="download-torrent" href="http://releases.ubuntu.com/{{lts_release_no_point}}/ubuntu-{{lts_release_with_point}}-server-amd64.iso.torrent">Ubuntu {{lts_release_with_point}} Server (64-bit)&nbsp;&rsaquo;</a></li>
-                <li><a class="download-torrent" href="http://releases.ubuntu.com/{{lts_release_no_point}}/ubuntu-{{lts_release_with_point}}-server-i386.iso.torrent">Ubuntu {{lts_release_with_point}} Server (32-bit)&nbsp;&rsaquo;</a></li>
-            </ul>
-        </div><!-- /.four-col -->
-        <div class="four-col last-col">
-            <h3 class="external--title"><span>Ubuntu 14.04.5 LTS</span></h3>
-            <ul class="no-bullets list">
-                <li><a class="download-lts" href="http://releases.ubuntu.com/14.04/ubuntu-14.04.5-desktop-amd64.iso.torrent">Ubuntu 14.04.5 Desktop (64-bit)&nbsp;&rsaquo;</a></li>
-                <li><a class="download-lts" href="http://releases.ubuntu.com/14.04/ubuntu-14.04.5-desktop-i386.iso.torrent">Ubuntu 14.04.5 Desktop (32-bit)&nbsp;&rsaquo;</a></li>
-                <li><a class="download-lts" href="http://releases.ubuntu.com/14.04/ubuntu-14.04.5-server-amd64.iso.torrent">Ubuntu 14.04.5 Server (64-bit)&nbsp;&rsaquo;</a></li>
-                <li><a class="download-lts" href="http://releases.ubuntu.com/14.04/ubuntu-14.04.5-server-i386.iso.torrent">Ubuntu 14.04.5 Server (32-bit)&nbsp;&rsaquo;</a></li>
-            </ul>
-        </div><!-- /.four-col -->
-    </div><!-- /.strip-inner-wrapper -->
-</div><!-- /.row -->
-
-<div class="row">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col append-four">
-            <h2>Other images</h2>
-            <p>For other versions of the Ubuntu installer please select your nearest mirror; however, we recommend you use  the <a href="/download">standard installer</a> as all other packages are available in Ubuntu Software Centre.</p>
-        </div>
-        <h3 class="external--title"><span>Select the nearest mirror</span></h3>
-        <ul class="twelve-col no-bullets list">
-            <li class="four-col"><a class="download-mirror" href="http://mirror.waia.asn.au/ubuntu-releases/">Australia &rsaquo;</a></li>
-            <li class="four-col"><a class="download-mirror" href="http://ftp.funet.fi/pub/Linux/INSTALL/Ubuntu/dvd-releases/releases">Finland &rsaquo;</a></li>
-            <li class="four-col last-col"><a class="download-mirror" href="ftp://ftp.free.fr/mirrors/ftp.ubuntu.com/releases/">France &rsaquo;</a></li>
-            <li class="four-col"><a class="download-mirror" href="http://de.releases.ubuntu.com/">Germany &rsaquo;</a></li>
-            <li class="four-col"><a class="download-mirror" href="http://ftp.ntua.gr/pub/linux/ubuntu-releases-dvd">Greece &rsaquo;</a></li>
-            <li class="four-col last-col"><a class="download-mirror" href="http://ftp.heanet.ie/pub/ubuntu-cdimage/releases">Ireland &rsaquo;</a></li>
-            <li class="four-col"><a class="download-mirror" href="http://nl.archive.ubuntu.com/ubuntu-cdimages">Netherlands &rsaquo;</a></li>
-            <li class="four-col"><a class="download-mirror" href="http://mirror.yandex.ru/ubuntu-cdimage/releases">Russian Federation &rsaquo;</a></li>
-            <li class="four-col last-col"><a class="download-mirror" href="http://ubuntu.cica.es/releases/">Spain &rsaquo;</a></li>
-            <li class="four-col"><a class="download-mirror" href="http://ftp.acc.umu.se/mirror/cdimage.ubuntu.com/releases">Sweden &rsaquo;</a></li>
-            <li class="four-col"><a class="download-mirror" href="http://tw.archive.ubuntu.com/ubuntu-cd/">Taiwan &rsaquo;</a></li>
-            <li class="four-col"><a class="download-mirror" href="http://www.mirrorservice.org/sites/cdimage.ubuntu.com/cdimage/releases">United Kingdom &rsaquo;</a></li>
-            <li class="four-col last-col"><a class="download-mirror" href="http://mirror.pnl.gov/releases/">United States &rsaquo;</a></li>
-        </ul>
-        <div class="twelve-col">
-            <p><a href="https://launchpad.net/ubuntu/+cdmirrors" class="external download-mirror">See all Ubuntu mirrors</a></p>
-        </div>
-    </div><!-- /.strip-inner-wrapper -->
-</div>
-
-<div class="row">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col append-four">
-            <h2 class="external--title">Past ARM releases</h2>
-            <p>Find older versions of Ubuntu for specific ARM platforms.</p>
-        </div>
-
-        <div class="twelve-col equal-height no-margin-bottom">
-            <div class="six-col box">
-                <ul class="inline-logos  not-for-small">
-                    <li class="inline-logos__item"><img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}ca664713-partners-logo-apm.svg" alt="" width="150" /></li>
-                </ul>
-                <h3>Applied Micro X-Gene ARMv8</h3>
-                <ul class="no-bullets list">
-                    <li><a class="external" href="http://ports.ubuntu.com/ubuntu-ports/dists/trusty/main/installer-arm64/current/images/generic/netboot/xgene/">14.04 LTS</a></li>
-                    <li><a class="external" href="https://wiki.ubuntu.com/ARM/Server/Install/Mustang">Installation instructions for the Mustang platform</a></li>
-                </ul>
-            </div>
-            <div class="six-col last-col box">
-                <ul class="inline-logos not-for-small">
-                    <li class="inline-logos__item"><img src="{{ ASSET_SERVER_URL }}f38c9ed1-hpe_pri_grn_pos_rgb.svg" alt="" width="150" /></li>
-                </ul>
-                <h3>HP Moonshot</h3>
-                <ul class="no-bullets list">
-                    <li><a class="external" href="http://ports.ubuntu.com/ubuntu-ports/dists/trusty-updates/main/installer-armhf/current/images/keystone/netboot/">m800 ARMv7 netboot image (14.04 LTS)</a></li>
-                    <li><a class="external" href="http://ports.ubuntu.com/ubuntu-ports/dists/trusty-updates/main/installer-arm64/current/images/generic/netboot/xgene/">m400 ARMv8 netboot image (14.04 LTS)</a></li>
-                    <li><a class="external" href="http://h20564.www2.hp.com/hpsc/doc/public/display?docId=c03933547">HP ProLiant Moonshot user guide</a></li>
-                </ul>
-            </div>
-            <div class="six-col box">
-                <ul class="inline-logos not-for-small">
-                    <li class="inline-logos__item"><img src="{{ ASSET_SERVER_URL }}4fc650f0-Marvell_Logo.svg" alt="" width="150" /></li>
-                </ul>
-                <h3>Marvell Armada XP</h3>
-                <ul class="no-bullets list">
-                    <li><a class="external" href="http://ports.ubuntu.com/ubuntu-ports/dists/precise-updates/main/installer-armhf/current/images/armadaxp/netboot">12.04 LTS</a></li>
-                    <li><a class="external" href="https://wiki.ubuntu.com/ARM/Server/Install/ArmadaXP">Installation instructions for Armada XP-based systems</a></li>
-                </ul>
-            </div>
-            <div class="six-col last-col box">
-                <ul class="inline-logos not-for-small">
-                    <li class="inline-logos__item"><img src="{{ ASSET_SERVER_URL }}43b35b55-logo-cavium.png" alt="" width="150" /></li>
-                </ul>
-                <h3>Cavium Thunder 48 and 96 core ARMv8</h3>
-                <ul class="no-bullets list">
-                    <li><a class="external" href="http://cavium.com/ThunderX_ARM_Processors.html">Cavium ThunderX product details </a></li>
-                    <li><a class="external" href="http://www.cavium.com/ContactCavium.htm">14.04 LTS Tech Preview available directly from Cavium</a></li>
-                </ul>
-            </div>
-        </div>
+    <div class="col-5 u-vertically-center u-align--center u-hidden--small">
+      <img src="{{ ASSET_SERVER_URL }}be3876ec-picto-download-warmgrey.svg" width="200" height="200" alt="" />
     </div>
+  </div>
 </div>
 
-<div class="row no-border">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col">
-            <h2>Past releases and other flavours</h2>
-            <p>Looking for an older release of Ubuntu? Whether you need an obsolete release or a previous LTS point release with its original stack, you can find them in past releases.</p>
-            <p><a class="external download-pastreleases" href="http://releases.ubuntu.com/">Past releases</a></p>
-        </div><!-- /.eight-col -->
-    </div><!-- /.strip-inner-wrapper -->
-</div><!-- /.row -->
+<div class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Network installer</h2>
+      <p>The network installer lets you install Ubuntu over the network. This is useful, for example, if you have an old machine with a non-bootable CD-ROM or a computer that can&rsquo;t run the graphical interface-based installer, either because they don&rsquo;t meet the minimum requirements for the live CD/DVD or because they require extra configuration before  the graphical desktop can be used, or if you want to install Ubuntu on a large number of computers at once.</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked"><a class="download-network external" href="http://cdimage.ubuntu.com/netboot/{{latest_release}}/">Download the network installer for {{latest_release_full}}</a></li>
+        <li class="p-list__item is-ticked"><a class="download-network external" href="http://cdimage.ubuntu.com/netboot/16.04/">Download the network installer for 16.04 LTS</a></li>
+        <li class="p-list__item is-ticked"><a class="download-network external" href="http://cdimage.ubuntu.com/netboot/14.04/">Download the network installer for 14.04 LTS</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_more_info_enterprise" second_item="_download_all_installation" third_item="_download_helping_hands" %}
+<div class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>BitTorrent</h2>
+      <p>BitTorrent is a peer-to-peer download network that sometimes enables higher download speeds and more reliable downloads of large files. You will need to install a BitTorrent client on your computer in order to enable this download method.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4">
+      <h3 class="p-link--external"><span>Ubuntu {{latest_release}}</span></h3>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{latest_release}}/ubuntu-{{latest_release}}-desktop-amd64.iso.torrent">Ubuntu {{latest_release}} Desktop (64-bit)&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{latest_release}}/ubuntu-{{latest_release}}-desktop-i386.iso.torrent">Ubuntu {{latest_release}} Desktop (32-bit)&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{latest_release}}/ubuntu-{{latest_release}}-server-amd64.iso.torrent">Ubuntu {{latest_release}} Server (64-bit)&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{latest_release}}/ubuntu-{{latest_release}}-server-i386.iso.torrent">Ubuntu {{latest_release}} Server (32-bit)&nbsp;&rsaquo;</a></li>
+      </ul>
+    </div>
+    <div class="col-4">
+      <h3 class="p-link--external"><span>Ubuntu {{lts_release_full_with_point}}</span></h3>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{lts_release_no_point}}/ubuntu-{{lts_release_with_point}}-desktop-amd64.iso.torrent">Ubuntu {{lts_release_with_point}} Desktop (64-bit)&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{lts_release_no_point}}/ubuntu-{{lts_release_with_point}}-desktop-i386.iso.torrent">Ubuntu {{lts_release_with_point}} Desktop (32-bit)&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{lts_release_no_point}}/ubuntu-{{lts_release_with_point}}-server-amd64.iso.torrent">Ubuntu {{lts_release_with_point}} Server (64-bit)&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{lts_release_no_point}}/ubuntu-{{lts_release_with_point}}-server-i386.iso.torrent">Ubuntu {{lts_release_with_point}} Server (32-bit)&nbsp;&rsaquo;</a></li>
+      </ul>
+    </div>
+    <div class="col-4">
+      <h3 class="p-link--external"><span>Ubuntu 14.04.5 LTS</span></h3>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a class="download-lts" href="http://releases.ubuntu.com/14.04/ubuntu-14.04.5-desktop-amd64.iso.torrent">Ubuntu 14.04.5 Desktop (64-bit)&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a class="download-lts" href="http://releases.ubuntu.com/14.04/ubuntu-14.04.5-desktop-i386.iso.torrent">Ubuntu 14.04.5 Desktop (32-bit)&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a class="download-lts" href="http://releases.ubuntu.com/14.04/ubuntu-14.04.5-server-amd64.iso.torrent">Ubuntu 14.04.5 Server (64-bit)&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a class="download-lts" href="http://releases.ubuntu.com/14.04/ubuntu-14.04.5-server-i386.iso.torrent">Ubuntu 14.04.5 Server (32-bit)&nbsp;&rsaquo;</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Other images</h2>
+      <p>For other versions of the Ubuntu installer please select your nearest mirror; however, we recommend you use  the <a href="/download">standard installer</a> as all other packages are available in Ubuntu Software Centre.</p>
+      <h3 class="p-link--external"><span>Select the nearest mirror</span></h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <ul class="p-list--divided is-trisected">
+        <li class="p-list__item"><a  href="http://mirror.waia.asn.au/ubuntu-releases/">Australia &rsaquo;</a></li>
+        <li class="p-list__item"><a href="http://ftp.funet.fi/pub/Linux/INSTALL/Ubuntu/dvd-releases/releases">Finland &rsaquo;</a></li>
+        <li class="p-list__item"><a href="ftp://ftp.free.fr/mirrors/ftp.ubuntu.com/releases/">France &rsaquo;</a></li>
+        <li class="p-list__item"><a href="http://de.releases.ubuntu.com/">Germany &rsaquo;</a></li>
+        <li class="p-list__item"><a href="http://ftp.ntua.gr/pub/linux/ubuntu-releases-dvd">Greece &rsaquo;</a></li>
+        <li class="p-list__item"><a href="http://ftp.heanet.ie/pub/ubuntu-cdimage/releases">Ireland &rsaquo;</a></li>
+        <li class="p-list__item"><a href="http://nl.archive.ubuntu.com/ubuntu-cdimages">Netherlands &rsaquo;</a></li>
+        <li class="p-list__item"><a href="http://mirror.yandex.ru/ubuntu-cdimage/releases">Russian Federation &rsaquo;</a></li>
+        <li class="p-list__item"><a href="http://ubuntu.cica.es/releases/">Spain &rsaquo;</a></li>
+        <li class="p-list__item"><a href="http://ftp.acc.umu.se/mirror/cdimage.ubuntu.com/releases">Sweden &rsaquo;</a></li>
+        <li class="p-list__item"><a href="http://tw.archive.ubuntu.com/ubuntu-cd/">Taiwan &rsaquo;</a></li>
+        <li class="p-list__item"><a href="http://www.mirrorservice.org/sites/cdimage.ubuntu.com/cdimage/releases">United Kingdom &rsaquo;</a></li>
+        <li class="p-list__item"><a href="http://mirror.pnl.gov/releases/">United States &rsaquo;</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <p><a href="https://launchpad.net/ubuntu/+cdmirrors" class="p-link--external">See all Ubuntu mirrors</a></p>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Past ARM releases</h2>
+      <p>Find older versions of Ubuntu for specific ARM platforms.</p>
+    </div>
+  </div>
+
+  <div class="row u-equal-height u-no-margin--bottom">
+    <div class="col-6 p-card">
+      <div class="u-align--center u-vertically-center u-hidden--small" style="min-height: 8rem;">
+        <img src="{{ ASSET_SERVER_URL }}ca664713-partners-logo-apm.svg" alt="" width="150" />
+      </div>
+      <h3 class="p-card__title">Applied Micro X-Gene ARMv8</h3>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a class="p-link--external" href="http://ports.ubuntu.com/ubuntu-ports/dists/trusty/main/installer-arm64/current/images/generic/netboot/xgene/">14.04 LTS</a></li>
+        <li class="p-list__item"><a class="p-link--external" href="https://wiki.ubuntu.com/ARM/Server/Install/Mustang">Installation instructions for the Mustang platform</a></li>
+      </ul>
+    </div>
+    <div class="col-6 p-card">
+      <div class="u-align--center u-vertically-center u-hidden--small" style="min-height: 8rem;">
+        <img src="{{ ASSET_SERVER_URL }}f38c9ed1-hpe_pri_grn_pos_rgb.svg" alt="" width="150" />
+      </div>
+      <h3 class="p-card__title">HP Moonshot</h3>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a class="p-link--external" href="http://ports.ubuntu.com/ubuntu-ports/dists/trusty-updates/main/installer-armhf/current/images/keystone/netboot/">m800 ARMv7 netboot image (14.04 LTS)</a></li>
+        <li class="p-list__item"><a class="p-link--external" href="http://ports.ubuntu.com/ubuntu-ports/dists/trusty-updates/main/installer-arm64/current/images/generic/netboot/xgene/">m400 ARMv8 netboot image (14.04 LTS)</a></li>
+        <li class="p-list__item"><a class="p-link--external" href="http://h20564.www2.hp.com/hpsc/doc/public/display?docId=c03933547">HP ProLiant Moonshot user guide</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row u-equal-height">
+    <div class="col-6 p-card">
+      <div class="u-align--center u-vertically-center u-hidden--small" style="min-height: 8rem;">
+        <img src="{{ ASSET_SERVER_URL }}4fc650f0-Marvell_Logo.svg" alt="" width="150" />
+      </div>
+      <h3 class="p-card__title">Marvell Armada XP</h3>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a class="p-link--external" href="http://ports.ubuntu.com/ubuntu-ports/dists/precise-updates/main/installer-armhf/current/images/armadaxp/netboot">12.04 LTS</a></li>
+        <li class="p-list__item"><a class="p-link--external" href="https://wiki.ubuntu.com/ARM/Server/Install/ArmadaXP">Installation instructions for Armada XP-based systems</a></li>
+      </ul>
+    </div>
+    <div class="col-6 p-card">
+      <div class="u-align--center u-vertically-center u-hidden--small" style="min-height: 8rem;">
+        <img src="{{ ASSET_SERVER_URL }}43b35b55-logo-cavium.png" alt="" width="150" />
+      </div>
+      <h3 class="p-card__title">Cavium Thunder 48 and 96 core ARMv8</h3>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a class="p-link--external" href="http://cavium.com/ThunderX_ARM_Processors.html">Cavium ThunderX product details </a></li>
+        <li class="p-list__item"><a class="p-link--external" href="http://www.cavium.com/ContactCavium.htm">14.04 LTS Tech Preview available directly from Cavium</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>Past releases and other flavours</h2>
+      <p>Looking for an older release of Ubuntu? Whether you need an obsolete release or a previous LTS point release with its original stack, you can find them in past releases.</p>
+      <p><a class="p-link--external" href="http://releases.ubuntu.com/">Past releases</a></p>
+    </div>
+  </div>
+</div>
+
+{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_download_more_info_enterprise" second_item="_download_all_installation" third_item="_download_helping_hands" %}
 
 {% endblock content %}

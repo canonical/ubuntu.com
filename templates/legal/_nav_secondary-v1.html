@@ -1,4 +1,4 @@
-  <ul{% if list_class %} class="{{ list_class }}"{% endif %} class="hover-menu">
+  <ul class="{% if list_class %}{{ list_class }}{% endif %} hover-menu">
     <li><a{% if level_1 == 'legal' and not level_2 %} class="is-active"{% endif %} href="/legal">Overview</a></li>
     <li><a{% if level_2 == 'terms-and-policies' %} class="is-active" {% endif %} href="/legal/terms-and-policies">Terms and policies</a></li>
     <li><a{% if level_2 == 'ubuntu-advantage' %} class="is-active" {% endif %} href="/legal/ubuntu-advantage">Ubuntu Advantage</a></li>
