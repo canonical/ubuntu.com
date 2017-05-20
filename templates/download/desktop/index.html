@@ -7,19 +7,18 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="p-strip is-deep">
+<div class="p-strip is-deep is-bordered">
   <div class="row">
-    <div class="col-8">
+    <div class="col-10">
       <h1>Download Ubuntu Desktop</h1>
     </div>
   </div>
-
   <div class="row">
     <div class="col-12 p-card--highlighted p-divider">
+      <h2>Ubuntu {{lts_release_full_with_point}}</h2>
       <div class="u-equal-height">
         <div class="col-8 p-divider__block">
-          <h2 class="p-card__title">Ubuntu {{lts_release_full_with_point}}</h2>
-          <p class="p-card__content">Download the latest LTS version of Ubuntu, for desktop PCs and laptops. LTS stands for long-term support &mdash; which means five years of free security and maintenance updates, guaranteed.</p>
+          <p class="p-card__content">Download the latest LTS version of Ubuntu, for desktop PCs and laptops. LTS stands for Long-term support &mdash; which means five years of free security and maintenance updates, guaranteed.</p>
           <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu {{lts_release_full}} release notes</a></p>
           <p>Recommended system requirements:</p>
           <ul class="p-list">
@@ -31,7 +30,7 @@
           </ul>
         </div>
         <div class="col-4">
-          <p class="p-card__content" style="margin-top: 3rem;">
+          <p class="p-card__content">
             <a class="p-button--brand is-large js-lts-download" style="width: 100%;" href="/download/desktop/thank-you?version={{lts_release}}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{lts_release_full}}', 'eventValue' : undefined });">Download</a>
             <script>
               // Contributions only work with JavaScript
@@ -46,21 +45,17 @@
       </div>
     </div>
   </div>
-</div>
-
-
-<div class="p-strip">
   <div class="row">
     <div class="col-12 p-card--highlighted p-divider">
+      <h2>Ubuntu {{latest_release}}</h2>
       <div class="u-equal-height">
         <div class="col-8 p-divider__block">
-          <h2 class="p-card__title">Ubuntu {{latest_release}}</h2>
           <p class="p-card__content">The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{latest_release}} comes with nine months of security and maintenance updates.</p>
           <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu {{latest_release}} release notes</a></p>
           <p class="p-card__content">Recommended system requirements are the same as for Ubuntu {{lts_release_full_with_point}}.</p>
         </div>
         <div class="col-4">
-          <p class="p-card__content" style="margin-top: 3rem;">
+          <p class="p-card__content">
             <a class="p-button--brand is-large js-latest-download" style="width: 100%;" href="/download/desktop/thank-you/?version={{latest_release}}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{latest_release_full}}', 'eventValue' : undefined });">Download</a>
             <script>
               // Contributions only work with JavaScript
@@ -71,11 +66,11 @@
             </script>
           </p>
           <p class="p-card__content"><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
-          </ul>
-        </div>
+        </ul>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <div class="p-strip is-deep">
@@ -132,8 +127,8 @@
   </div>
 </div>
 
-  {% include "download/desktop/_other-ways.html" %}
+{% include "download/desktop/_other-ways.html" %}
 
-  {% include "shared-v1/contextual_footers/_contextual_footer.html" with first_item="_download_desktop_installation" first_item_class="" second_item="_download_try_desktop" second_item_class="" third_item="_download_helping_hands" third_item_class="" %}
+{% include "shared-v1/contextual_footers/_contextual_footer.html" with first_item="_download_desktop_installation" first_item_class="" second_item="_download_try_desktop" second_item_class="" third_item="_download_helping_hands" third_item_class="" %}
 
-  {% endblock content %}
+{% endblock content %}
