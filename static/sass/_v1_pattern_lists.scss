@@ -12,6 +12,8 @@
   @include ubuntu-p-inline-list--small;
   @include ubuntu-p-inline-list-middot-small;
   @include ubuntu-p-is-ticked;
+  @include ubuntu-p-is-trisected;
+  @include ubuntu-p-is-quartered;
 }
 
 @mixin ubuntu-p-is-ticked {
@@ -114,6 +116,60 @@
       .last-item {
         &::after {
           content: '';
+        }
+      }
+    }
+  }
+}
+
+@mixin ubuntu-p-is-trisected {
+
+  [class*='p-list'] {
+
+    &.is-trisected {
+
+      @media (min-width: $breakpoint-medium) {
+        display: flex;
+        flex-wrap: wrap;
+
+        .p-list__item {
+          width: calc(33.33% - .75rem);
+          margin-right: 1rem;
+
+          &:nth-child(3n+3) {
+            margin-right: 0;
+          }
+
+          &:nth-last-child(0) {
+            border-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin ubuntu-p-is-quartered {
+
+  [class*='p-list'] {
+
+    &.is-quartered {
+
+      @media (min-width: $breakpoint-medium) {
+        display: flex;
+        flex-wrap: wrap;
+
+        .p-list__item {
+          width: calc(25% - .5rem);
+          margin-right: .5rem;
+
+          &:nth-child(4n+4) {
+            margin-right: 0;
+          }
+
+          &:nth-last-child(0) {
+            border-bottom: 0;
+          }
         }
       }
     }

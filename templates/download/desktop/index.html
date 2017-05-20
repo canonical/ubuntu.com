@@ -16,7 +16,7 @@
 
   <div class="row">
     <div class="col-12 p-card--highlighted p-divider">
-      <div class="row u-equal-height">
+      <div class="u-equal-height">
         <div class="col-8 p-divider__block">
           <h2 class="p-card__title">Ubuntu {{lts_release_full_with_point}}</h2>
           <p class="p-card__content">Download the latest LTS version of Ubuntu, for desktop PCs and laptops. LTS stands for long-term support &mdash; which means five years of free security and maintenance updates, guaranteed.</p>
@@ -34,11 +34,11 @@
           <p class="p-card__content" style="margin-top: 3rem;">
             <a class="p-button--brand is-large js-lts-download" style="width: 100%;" href="/download/desktop/thank-you?version={{lts_release}}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{lts_release_full}}', 'eventValue' : undefined });">Download</a>
             <script>
-            // Contributions only work with JavaScript
-            // So if we have JavaScript, send them to /contribute
-            var downloadLink = document.querySelector('.js-lts-download');
-            var contributeUrl = downloadLink.href.replace('/thank-you', '/contribute');
-            downloadLink.href = contributeUrl;
+              // Contributions only work with JavaScript
+              // So if we have JavaScript, send them to /contribute
+              var downloadLink = document.querySelector('.js-lts-download');
+              var contributeUrl = downloadLink.href.replace('/thank-you', '/contribute');
+              downloadLink.href = contributeUrl;
             </script>
           </p>
           <p class="p-card__content"><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
@@ -52,7 +52,7 @@
 <div class="p-strip">
   <div class="row">
     <div class="col-12 p-card--highlighted p-divider">
-      <div class="row u-equal-height">
+      <div class="u-equal-height">
         <div class="col-8 p-divider__block">
           <h2 class="p-card__title">Ubuntu {{latest_release}}</h2>
           <p class="p-card__content">The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{latest_release}} comes with nine months of security and maintenance updates.</p>
@@ -63,19 +63,19 @@
           <p class="p-card__content" style="margin-top: 3rem;">
             <a class="p-button--brand is-large js-latest-download" style="width: 100%;" href="/download/desktop/thank-you/?version={{latest_release}}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{latest_release_full}}', 'eventValue' : undefined });">Download</a>
             <script>
-            // Contributions only work with JavaScript
-            // So if we have JavaScript, send them to /contribute
-            var downloadLink = document.querySelector('.js-latest-download');
-            var contributeUrl = downloadLink.href.replace('/thank-you', '/contribute');
-            downloadLink.href = contributeUrl;
+              // Contributions only work with JavaScript
+              // So if we have JavaScript, send them to /contribute
+              var downloadLink = document.querySelector('.js-latest-download');
+              var contributeUrl = downloadLink.href.replace('/thank-you', '/contribute');
+              downloadLink.href = contributeUrl;
             </script>
           </p>
           <p class="p-card__content"><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
-        </ul>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 
 <div class="p-strip is-deep">
@@ -130,7 +130,7 @@
       </div>
     </div>
   </div>
-  </div>
+</div>
 
   {% include "download/desktop/_other-ways.html" %}
 
