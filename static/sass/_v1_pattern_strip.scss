@@ -2,13 +2,17 @@
   @include ubuntu-p-strip-modifiers;
   @include ubuntu-p-strip--grey;
   @include ubuntu-p-strip--accent;
+  @include ubuntu-p-strip-white;
 }
 
 @mixin ubuntu-p-strip-modifiers {
   .p-strip,
   .p-strip--grey,
   .p-strip--accent,
-  .p-strip--suru-accent {
+  .p-strip--suru-accent,
+  .p-strip--light,
+  .p-strip--dark,
+  .p-strip--white {
     padding: 3.75rem 0;
 
     &.is-shallow {
@@ -36,6 +40,12 @@
 @mixin ubuntu-p-strip--grey {
   .p-strip--grey {
     background-color: $color-light;
+  }
+}
+
+@mixin ubuntu-p-strip-white {
+  .p-strip--white {
+    background-color: $color-x-light;
   }
 }
 
