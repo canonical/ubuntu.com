@@ -1,135 +1,132 @@
-{% extends "download/_base_download.html" %}
+{% extends "download/_base_download-v1.html" %}
 {% load versioned_static  %}
 
 {% block title %}
-Thanks for downloading Ubuntu Server
+  Thanks for downloading Ubuntu Server
 {% endblock %}
 {% block extra_body_class %}download-thankyou{% endblock %}
 
 {% block second_level_nav_items %}
-    <div class="strip-inner-wrapper">
-        {% include "templates/_nav_breadcrumb.html" with section_title="Downloads" subsection_title="Server" page_title="Thank you"  %}
-    </div>
+  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Downloads" subsection_title="Server" page_title="Thank you"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-    <noscript>
-        <meta http-equiv="refresh" content="3;url=http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-server-{{ architecture }}.iso">
-    </noscript>
+<noscript>
+  <meta http-equiv="refresh" content="3;url=http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-server-{{ architecture }}.iso">
+</noscript>
 
-    <div class="row row-hero no-border">
-        <div class="strip-inner-wrapper">
-            <div class="twelve-col">
-                <h1>Thank you for downloading Ubuntu Server</h1>
-                {% if version and architecture %}
-                    <p>Your download should start automatically. If it doesn&rsquo;t, <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-server-{{ architecture }}.iso">download now</a>.</p>
-                {% endif %}
-            </div>
-        </div>
+<div class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h1>Thank you for downloading Ubuntu Server</h1>
+      {% if version and architecture %}
+      <p>Your download should start automatically. If it doesn&rsquo;t, <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-server-{{ architecture }}.iso">download now</a>.</p>
+      {% endif %}
     </div>
-    <div class="row strip-light">
-        <div class="strip-inner-wrapper">
-            <div class="eight-col">
-                <h2>Your next steps with Ubuntu Server</h2>
-                <p>
-                    Use Ubuntu&rsquo;s tools to help you provision and manage
-                    your servers
-                </p>
-            </div>
-            <div class="twelve-col">
-                <div class="six-col not-for-small">
-                    <img src="{{ ASSET_SERVER_URL }}b89de9f4-feature.png"
-                        alt="Landscape load management" />
-                </div>
-                <div class="six-col last-col">
-                    <h3>Server management with Landscape</h3>
-                    <ul class="list-ticks--compact">
-                        <li>
-                            Landscape is the leading management tool to deploy,
-                            monitor and manage your Ubuntu servers
-                        </li>
-                        <li>
-                            It features Autopilot, the fastest way to build an
-                            OpenStack cloud
-                        </li>
-                        <li>
-                            Landscape is also available as  part of Ubuntu
-                            Advantage, Canonical&rsquo;s world-class support
-                            service
-                        </li>
-                    </ul>
-                    <p>
-                        <a href="https://landscape.canonical.com/"
-                            class="button--secondary">
-                            <span class="external">Get Landscape</span>
-                        </a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row strip-light no-border">
-        <div class="strip-inner-wrapper">
-            <div class="six-col">
-                <h3>Server provisioning with MAAS</h3>
-                <ul class="list-ticks--compact">
-                    <li>
-                        Metal as a Service (MAAS) offers cloud style
-                        provisioning for physical servers
-                    </li>
-                    <li>
-                        Designed for building data centres with complex
-                        networks
-                    </li>
-                    <li>Supports Windows, Ubuntu, CentOS, RHEL and SUSE</li>
-                </ul>
-                <p>
-                    <a href="https://maas.io/" class="button--secondary">
-                        <span class="external">Get MAAS</span>
-                    </a>
-                </p>
-            </div>
-            <div class="six-col last-col not-for-small">
-                <img src="{{ ASSET_SERVER_URL }}da6f94b0-image-cloud-maas-2.jpg"
-                    alt="" />
-            </div>
-        </div>
+  </div>
+</div>
+
+<div class="p-strip is-shallow is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Your next steps with Ubuntu Server</h2>
+      <p>Use Ubuntu&rsquo;s tools to help you provision and manage
+        your servers.</p>
+      </div>
     </div>
 
+    <div class="row">
+      <div class="col-6 u-hidden--small">
+        <img src="{{ ASSET_SERVER_URL }}b89de9f4-feature.png"
+        alt="Landscape load management" />
+      </div>
+      <div class="col-6">
+        <h3>Server management with Landscape</h3>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">
+            Landscape is the leading management tool to deploy,
+            monitor and manage your Ubuntu servers
+          </li>
+          <li class="p-list__item is-ticked">
+            It features Autopilot, the fastest way to build an
+            OpenStack cloud
+          </li>
+          <li class="p-list__item is-ticked">
+            Landscape is also available as  part of Ubuntu
+            Advantage, Canonical&rsquo;s world-class support
+            service
+          </li>
+        </ul>
+        <p>
+          <a href="https://landscape.canonical.com/"
+          class="p-button--neutral">
+          <span class="p-link--external">Get Landscape</span>
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
 
-    <div class="row row-grey no-border">
-        <div class="strip-inner-wrapper">
-            <div class="box-grey twelve-col no-margin-bottom equal-height">
+<div class="p-strip is-shallow is-bordered">
+  <div class="row">
+    <div class="col-6">
+      <h3>Server provisioning with MAAS</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">
+          Metal as a Service (MAAS) offers cloud style
+          provisioning for physical servers
+        </li>
+        <li class="p-list__item is-ticked">
+          Designed for building data centres with complex
+          networks
+        </li>
+        <li class="p-list__item is-ticked">Supports Windows, Ubuntu, CentOS, RHEL and SUSE</li>
+      </ul>
+      <p>
+        <a href="https://maas.io/" class="button--secondary">
+          <span class="p-link--external">Get MAAS</span>
+        </a>
+      </p>
+    </div>
+    <div class="col-6 u-hidden--small">
+      <img src="{{ ASSET_SERVER_URL }}da6f94b0-image-cloud-maas-2.jpg"
+      alt="" />
+    </div>
+  </div>
+</div>
 
-                <div class="four-col one box box-highlight equal-height__item">
-                    <div class="text-center four-col">
-                        <img alt="ubuntu one" src="{{ ASSET_SERVER_URL }}2a8cf960-picto-startfirst-warmgrey.svg" width="113" height="113" />
-                    </div>
-                    <h3>Installation guides</h3>
-                    <p>If you need some help installing Ubuntu, please check out our step-by-step guides.</p>
-                    <p><a href="/download/server/install-ubuntu-server">Installation instructions for Ubuntu Server&nbsp;&rsaquo;</a></p>
-                </div><!-- /.four-col -->
-                <div class="four-col support box box-highlight equal-height__item">
-                    <div class="text-center four-col">
-                        <img alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}03c5463a-picto-business-warmgrey.svg" width="113" height="113" />
-                    </div>
-                    <h3>Ubuntu Advantage</h3>
-                    <p>Commercial support agreements to suit your business needs.</p>
-                    <p><a href="/cloud/plans-and-pricing">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
-                </div><!-- /.four-col -->
-                <div class="four-col ask last-col box box-highlight equal-height__item">
-                    <div class="text-center four-col">
-                        <img alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}422b612c-picto-forum-warmgrey.svg" width="113" height="113" />
-                    </div>
-                    <h3>Ask Ubuntu</h3>
-                    <p>Need help? Ask your questions here.</p>
-                    <p><a href="https://askubuntu.com/questions/tagged/server" class="external">Get help</a></p>
-                </div><!-- /.four-col -->
-            </div>
-        </div><!-- /.strip-inner-wrapper -->
-    </div><!-- /.row .row-grey -->
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_server_installation" second_item="_download_server_guide" third_item="_download_verify_your_download" %}
+<div class="p-strip--light is-shallow">
+  <div class="row u-equal-height">
+    <div class="col-4 p-card--highlighted">
+      <div class="u-align--center" style="margin: 1rem 0;">
+        <img alt="ubuntu one" src="{{ ASSET_SERVER_URL }}2a8cf960-picto-startfirst-warmgrey.svg" width="113" height="113" />
+      </div>
+      <h3>Installation guides</h3>
+      <p class="p-card__content">If you need some help installing Ubuntu, please check out our step-by-step guides.</p>
+      <p class="p-card__content"><a href="/download/server/install-ubuntu-server">Installation instructions for Ubuntu Server&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 p-card--highlighted">
+      <div class="u-align--center" style="margin: 1rem 0;">
+        <img alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}03c5463a-picto-business-warmgrey.svg" width="113" height="113" />
+      </div>
+      <h3>Ubuntu Advantage</h3>
+      <p class="p-card__content">Commercial support agreements to suit your business needs.</p>
+      <p class="p-card__content"><a href="/cloud/plans-and-pricing">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 p-card--highlighted">
+      <div class="u-align--center" style="margin: 1rem 0;">
+        <img alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}422b612c-picto-forum-warmgrey.svg" width="113" height="113" />
+      </div>
+      <h3>Ask Ubuntu</h3>
+      <p class="p-card__content">Need help? Ask your questions here.</p>
+      <p class="p-card__content"><a href="https://askubuntu.com/questions/tagged/server" class="p-link--external">Get help</a></p>
+    </div>
+  </div>
+</div>
+</div>
+
+{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_download_server_installation" second_item="_download_server_guide" third_item="_download_verify_your_download" %}
 
 {% endblock content %}
 {% block footer_extra %}
@@ -145,75 +142,75 @@ var architecture = '{{ architecture }}';
 var mirrors = {{ mirror_list|safe }};
 
 if (version && architecture) {
-    dataLayer.push({
-        'event': 'GAEvent',
-        'eventCategory': 'Download',
-        'eventAction': 'Downloaded',
-        'eventLabel': 'User downloaded Ubuntu (' + version + '-server-' + architecture + ')',
-        'eventValue': undefined
-    });
-    startDownload(mirrors, version, architecture, defaultLocation);
+  dataLayer.push({
+    'event': 'GAEvent',
+    'eventCategory': 'Download',
+    'eventAction': 'Downloaded',
+    'eventLabel': 'User downloaded Ubuntu (' + version + '-server-' + architecture + ')',
+    'eventValue': undefined
+  });
+  startDownload(mirrors, version, architecture, defaultLocation);
 }
 
 function startDownload(mirrors, version, architecture, defaultLocation) {
-    // Select a random mirror from list
-    var selectedMirror = chooseRandomMirror(mirrors);
-    var downloadLocation = defaultLocation;
+  // Select a random mirror from list
+  var selectedMirror = chooseRandomMirror(mirrors);
+  var downloadLocation = defaultLocation;
 
-    // Build the download link
-    if (selectedMirror && selectedMirror.link) {
-        downloadLocation = selectedMirror.link;
-    }
-    var downloadLink = downloadLocation + version + '/ubuntu-' + version + '-server-' + architecture + '.iso';
+  // Build the download link
+  if (selectedMirror && selectedMirror.link) {
+    downloadLocation = selectedMirror.link;
+  }
+  var downloadLink = downloadLocation + version + '/ubuntu-' + version + '-server-' + architecture + '.iso';
 
-    // Start download
-    delayStartDownload(downloadLink, 3000);
+  // Start download
+  delayStartDownload(downloadLink, 3000);
 }
 
 /**
- * Kick off a download link
- * after a certain delay in milliseconds
- */
+* Kick off a download link
+* after a certain delay in milliseconds
+*/
 function delayStartDownload(downloadLink, delay) {
-    window.setTimeout(
-        function () {
-            window.location.href = downloadLink;
-        },
-        delay
-    )
+  window.setTimeout(
+    function () {
+      window.location.href = downloadLink;
+    },
+    delay
+  )
 }
 
 /**
- * Choose randomly from a given list of mirrors
- * Weight the choice by the bandwidth of each mirror
- */
+* Choose randomly from a given list of mirrors
+* Weight the choice by the bandwidth of each mirror
+*/
 function chooseRandomMirror(mirrors) {
-    var selectedMirror = null;
+  var selectedMirror = null;
 
-    // Calculate total bandwidth
-    var totalBandwidth = 0;
-    mirrors.forEach(function (mirror) {
-        mirror.bandwidth = parseInt(mirror.bandwidth) ? parseInt(mirror.bandwidth) : 0;
-        totalBandwidth += mirror.bandwidth;
-    });
+  // Calculate total bandwidth
+  var totalBandwidth = 0;
+  mirrors.forEach(function (mirror) {
+    mirror.bandwidth = parseInt(mirror.bandwidth) ? parseInt(mirror.bandwidth) : 0;
+    totalBandwidth += mirror.bandwidth;
+  });
 
-    // Random weight-point to download
-    var downloadPoint = Math.floor(Math.random() * totalBandwidth);
-    var weightPoint = 0;
+  // Random weight-point to download
+  var downloadPoint = Math.floor(Math.random() * totalBandwidth);
+  var weightPoint = 0;
 
-    // Select a mirror based on weighting
-    for (var mirrorIndex = 0; mirrorIndex < mirrors.length;mirrorIndex++) {
-        var mirror = mirrors[mirrorIndex];
-        weightPoint += mirror.bandwidth;
+  // Select a mirror based on weighting
+  for (var mirrorIndex = 0; mirrorIndex < mirrors.length;mirrorIndex++) {
+    var mirror = mirrors[mirrorIndex];
+    weightPoint += mirror.bandwidth;
 
-        // If this is the random point to download
-        if (downloadPoint < weightPoint) {
-            selectedMirror = mirror;
-            break;
-        }
+    // If this is the random point to download
+    if (downloadPoint < weightPoint) {
+      selectedMirror = mirror;
+      break;
     }
+  }
 
-    return selectedMirror;
+  return selectedMirror;
 }
 </script>
 
