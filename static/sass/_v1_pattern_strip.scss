@@ -2,6 +2,7 @@
   @include ubuntu-p-strip-modifiers;
   @include ubuntu-p-strip--grey;
   @include ubuntu-p-strip--accent;
+  @include ubuntu-p-strip-white;
 }
 
 @mixin ubuntu-p-strip-modifiers {
@@ -38,6 +39,12 @@
 @mixin ubuntu-p-strip--grey {
   .p-strip--grey {
     background-color: $color-light;
+  }
+}
+
+@mixin ubuntu-p-strip-white {
+  .p-strip--white {
+    background-color: $color-x-light;
   }
 }
 
