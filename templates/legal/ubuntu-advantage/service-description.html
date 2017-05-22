@@ -260,18 +260,64 @@
         <li class="p-list__item">"Cloud Guest" means an instance of Ubuntu Server not running in a Public Cloud.</li>
         <li class="p-list__item">"Full Stack Support" means addressing problems pertaining to user and operations-level OpenStack functionality, performance and availability.</li>
         <li class="p-list__item">"Bug-fix Support" means support for valid code bugs in OpenStack Packages only. This does not include troubleshooting of issues to determine if a bug is present.</li>
-        <li class="p-list__item">"Valid Customizations" means configurations made through Horizon or the OpenStack API of the OpenStack Packages. For the avoidance of doubt, valid customizations do not include architectural changes that are not expressly executed or authorized
-          by Canonical. Configuration options set during a Foundation OpenStack Build should be considered critical to the health of the Cloud. Any changes to these may render the cloud unsupported. Request for changes should be validated by Canonical to
-          ensure continued support.</li>
+        <li class="p-list__item">"Valid Customizations" means configurations made through Horizon or the OpenStack API of the OpenStack Packages. For the avoidance of doubt, valid customizations do not include architectural changes that are not expressly executed or authorized by Canonical. Configuration options set during a Foundation OpenStack Build should be considered critical to the health of the Cloud. Any changes to these may render the cloud unsupported. Request for changes should be validated by Canonical to ensure continued support.</li>
       </ul>
 
-      <p>Support is limited to a single region and a maximum number of nodes based upon the size of the Ubuntu Advantage OpenStack Cloud Region purchased.</p>
+      <p>Supported versions of OpenStack:</p>
+      <ul>
+        <li class="p-list__item">The version of OpenStack provided initially in the release of a Long Term Support (LTS) version of Ubuntu is supported for the entire lifecycle of that Ubuntu version.</li>
+        <li class="p-list__item">Releases of OpenStack released after an LTS version of Ubuntu are available in the Ubuntu Cloud Archive. Each OpenStack release in the Ubuntu Cloud Archive is supported on an Ubuntu LTS version for a minimum of 18 months from the release date of the
+          Ubuntu version that included the applicable OpenStack version.</li>
+        <li class="p-list__item">The OpenStack release support schedule is available here <a href="http://www.ubuntu.com/info/release-end-of-life">http://www.ubuntu.com/info/release-end-of-life</a>.</li>
+      </ul>
 
-      <p>Service additionally includes:</p>
+      <p>Support of OpenStack</p>
+      <ul>
+        <li class="p-list__item">OpenStack support requires each Region to consist of 12 or more supported nodes. All nodes that participate in the OpenStack environment must be covered under an active support agreement.</li>
+        <li class="p-list__item">In addition to the hardware requirements laid out in Section 2.2, hardware must meet the minimum criteria for Ubuntu OpenStack, available at</li>
+        <li class="p-list__item">Full Stack Support of an OpenStack Cloud is only available when deployed via a Foundation OpenStack Build engagement.</li>
+        <li class="p-list__item">
+          <ul>
+            <li class="p-list__item">Canonical will provide support for the charms deployed via a Foundation OpenStack Build.</li>
+            <li class="p-list__item">For any deployments done under contract with Canonical, which results in customization of any Charms, customization will be valid for 90 days after the official release of the Charm which includes the customizations.</li>
+            <li class="p-list__item">Support is included for all packages required to run OpenStack as deployed via the Foundation OpenStack Build engagement.</li>
+            <li class="p-list__item">Upgrades of OpenStack components as part of the regular Ubuntu LTS maintenance cycle are supported.</li>
+            <li class="p-list__item">Upgrades between versions of OpenStack (for instance, from OpenStack Newton to Mitaka) or versions of Ubuntu (for instance, from Ubuntu 14.04 LTS to Ubuntu 16.04 LTS), Juju and MAAS are supported as long as the upgrade is performed following a documented
+              process as specified by Canonical as part of the Foundation OpenStack Build.</li>
+            <li class="p-list__item">Addition of new cloud nodes and replacement of existing nodes with new nodes of equivalent capacity are both supported.</li>
+            <li class="p-list__item">Full Stack Support excludes customizations which are not considered Valid Customizations.</li>
+            <li class="p-list__item">Ubuntu Advantage Virtual Guest Advanced services for Cloud Guests.</li>
+          </ul>
+        </li>
+        <li class="p-list__item">OpenStack clouds not deployed through a Foundation OpenStack Build are limited to Bug-fix Support.</li>
+      </ul>
+      <p>OpenStack support does not include support beyond Bug-fix Support during the deployment or configuration of an OpenStack cloud.</p>
+
+      <p>Charms</p>
+      <ul>
+        <li class="p-list__item">Each charm version is supported for one year from the release date.</li>
+        <li class="p-list__item">Canonical will not provide support for any charms that have been modified from the supported version found in in the page at <a href="https://wiki.ubuntu.com/OpenStack/OpenStackCharms">https://wiki.ubuntu.com/OpenStack/OpenStackCharms</a>.</li>
+      </ul>
+
+      <p>Support for Ceph or Swift deployments of up to a total of 3 TB of usable storage per deployed node. This allowance can be used for Ubuntu Advantage Ceph, Ubuntu Advantage Swift or a combination of these.</p>
+
+      <p>Licence to use available Canonical provided Microsoft-certified drivers in Windows Guest instances.</p>
+
+      <p>Licence to use the Ceph Dash Monitoring tool.</p>
+
+      <p>Service excludes:</p>
 
       <ul>
-        <li class="p-list__item">Support for all packages required to run OpenStack.</li>
-        <li class="p-list__item">Ubuntu Advantage Server Advanced services for cloud guests.</li>
+        <li class="p-list__item">Support for workloads other than those required to run an OpenStack deployment.</li>
+        <li class="p-list__item">Support for guest instances other than Cloud Guests.</li>
+      </ul>
+
+      <h3 id="ua-advantage-openstack">Ubuntu Advantage OpenStack Cloud Region</h3>
+
+      <p>Ubuntu Advantage OpenStack Cloud Region is the same as Ubuntu Advantage OpenStack Cloud, except as follows:</p>
+
+      <ul>
+        <li class="p-list__item">Support is limited to a single region and a maximum number of nodes based upon the size of the Ubuntu Advantage OpenStack Cloud Region purchased.</li>
         <li class="p-list__item">Landscape on-premises</li>
       </ul>
 
