@@ -375,6 +375,7 @@
 
       <ul>
         <li class="p-list__item">Support for the packages found in the server/cloud image manifest.</li>
+        <li class="p-list__item">Extended Security Maintenance for customers who have purchased a minimum of 100 Ubuntu Advantage Essential supported nodes.</li>
       </ul>
 
       <p>Service excludes:</p>
@@ -391,12 +392,13 @@
 
       <ul>
         <li class="p-list__item">Ubuntu Advantage Virtual Guest Standard support for an unlimited number of Ubuntu LXD guests.</li>
+        <li class="p-list__item">Extended Security Maintenance for Ubuntu</li>
       </ul>
 
       <p>Service excludes:</p>
 
       <ul>
-        <li class="p-list__item">Ubuntu Advantage support for KVM guests.</li>
+        <li class="p-list__item">Support for KVM-related packages and KVM guests.</li>
         <li class="p-list__item">Access to the Landscape systems management tool for Ubuntu LXD guests, except where covered by Landscape Seats or Landscape on-premises.</li>
       </ul>
 
@@ -406,6 +408,8 @@
 
       <ul>
         <li class="p-list__item">Ubuntu Advantage Virtual Guest Advanced support for an unlimited number of Ubuntu LXD and Ubuntu KVM guests.</li>
+        <li class="p-list__item">Licence to use FIPS HMAC Checksum packages (if and when available) on the systems covered under Ubuntu Advantage Server Advanced.</li>
+        <li class="p-list__item">Extended Security Maintenance for Ubuntu</li>
       </ul>
 
       <p>Service excludes:</p>
@@ -418,11 +422,12 @@
 
       <ul>
         <li class="p-list__item">Services are provided for Ubuntu Server when installed and running in a virtualized environment on a physical host or in an Ubuntu Certified Public Cloud partner&#39;s environment. Certified Public Cloud partners can be found in the Ubuntu partner listing.</li>
+        <li class="p-list__item">Extended Security Maintenance for Ubuntu</li>
         <li class="p-list__item">
           Service excludes:
           <ul>
             <li class="p-list__item">Support for KVM-related packages and KVM guests.</li>
-            <li class="p-list__item">Additional Service exclusions match those of the applicable Ubuntu Advantage Server service offering.</li>
+            <li class="p-list__item">Additional exclusions match those of the applicable Ubuntu Advantage Server service offering.</li>
           </ul>
         </li>
 
@@ -445,6 +450,7 @@
       <ul>
         <li class="p-list__item">Support for all packages required to run a Ceph deployment.</li>
         <li class="p-list__item">Support for all servers necessary to meet the storage and replication requirements. This includes auxiliary (non-storage) nodes such as Ceph monitors.</li>
+        <li class="p-list__item">License to use the Ceph Dash monitoring tool.</li>
       </ul>
 
       <p>Service excludes:</p>
@@ -488,6 +494,7 @@
         <li class="p-list__item">Support for the ability to boot machines using operating system images provided by Canonical.</li>
         <li class="p-list__item">Support for the tooling required to convert certified operating system images not provided by Canonical into MAAS images.</li>
         <li class="p-list__item">Support for the tooling required to properly implement a standard Highly-Available MAAS configuration.</li>
+        <li class="p-list__item">License to use MAAS Custom Imaging tools.</li>
       </ul>
 
       <p>Service excludes:</p>
@@ -558,6 +565,55 @@
       <ul>
         <li class="p-list__item">Desktop provisioning with Canonical tools</li>
       </ul>
+
+      <h3 id="ua-docker">Ubuntu Advantage for Docker</h3>
+      <p>Definitions:</p>
+      <ul>
+        <li class="p-list__item">"Docker" means the software known as Docker Enterprise Edition Basic as published by Docker, Inc.</li>
+      </ul>
+      <p>Service includes:</p>
+      <ul>
+        <li class="p-list__item">Support for the host machine running Ubuntu.</li>
+        <li class="p-list__item">Support for all packages required to run Docker as found in the Docker package archives.</li>
+        <li class="p-list__item">Support for an unlimited number of Docker containers.</li>
+        <li class="p-list__item">Ubuntu Advantage Virtual Guest Advanced services for Docker containers running Ubuntu and installed from official sources.</li>
+      </ul>
+      <p>Service excludes:</p>
+      <ul>
+        <li class="p-list__item">Support for workloads other than those required to run Docker on the host machine.</li>
+        <li class="p-list__item">Landscape seats for Docker containers.</li>
+      </ul>
+      <p>Releases of Docker are supported as defined on Docker&rsquo;s website at: https://success.docker.com/Policies/Maintenance_Lifecycle</p>
+
+      <h3 id="canonical-dist-kubernetes">The Canonical Distribution of Kubernetes</h3>
+      <p>Definitions:</p>
+      <ul>
+        <li class="p-list__item">"Canonical Distribution of Kubernetes" means Kubernetes deployed using Juju and the official Canonical-Kubernetes bundle on bare metal, cloud guests, or virtual machines.</li>
+        <li class="p-list__item">"Deployment" means the process of deploying the Canonical Distribution of Kubernetes. A deployment is considered successful once Juju reports all applications in a "started" state.</li>
+        <li class="p-list__item">"Upgrade" means the process of upgrading Kubernetes between versions. An upgrade is considered successful once Juju reports all applications in a "started" state. Canonical will provide support for valid bugs encountered during
+          the Upgrade process.</li>
+        <li class="p-list__item">"Support" means break-fix support and answering basic questions about Kubernetes. Deployment and Upgrade assistance, as well as configuration and optimization of Kubernetes fall outside the scope of support.</li>
+      </ul>
+      <p>Minimum deployment of the Canonical Distribution of Kubernetes is the base configuration of the Canonical-Kubernetes bundle. Support must be purchased for all nodes in the supported Kubernetes environment.</p>
+      <p>Supported versions of Kubernetes include the current stable version of Kubernetes and the most recent previous version as listed:</p>
+      <ul>
+        <li class="p-list__item">https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions</li>
+      </ul>
+      <p>Support is limited to the software packages and charms necessary for running the Canonical Distribution of Kubernetes.</p>
+      <p>For any deployment of the Canonical Distribution of Kubernetes carried out by Canonical while under contract for this deployment, which result in the customization of any Charms, the customization will be supported for 90 days after the official release of the Charm which includes the customizations.</p>
+
+      <h3 id="extended-security-maintenance">Extended Security Maintenance</h3>
+      <p>Extended Security Maintenance includes available High and Critical CVE fixes for a number of server packages in the Ubuntu Main Repository through 28 April 2019. A complete list of packages included in Extended Security Maintenance can be found at: <a href="https://wiki.ubuntu.com/SecurityTeam/ESM/12.04#Maintained_Packages">https://wiki.ubuntu.com/SecurityTeam/ESM/12.04#Maintained_Packages</a>
+      </p>
+      <p>Extended Security Maintenance is included for 64-bit x86 AMD/Intel installations.</p>
+      <p>Service excludes:</p>
+      <ul>
+        <li class="p-list__item">Bug fixes for packages in the end of life release, unless a bug was created by an Extended Security Maintenance security update.</li>
+        <li class="p-list__item">Security fixes for packages not found in the Maintained Packages list.</li>
+        <li class="p-list__item">Security fixes for CVEs that are not High or Critical</li>
+      </ul>
+      <p>Extended Security Maintenance does not guarantee secure software or fixes to all High or Critical CVEs.</p>
+
 
       <h3 id="ua-landscape-virtual-machines">Landscape Seats</h3>
 
