@@ -143,3 +143,12 @@ abbr[title] {
     text-decoration: underline dotted;
   }
 }
+
+// consecutive fieldsets do not having adequate bottom spacing
+// https://github.com/vanilla-framework/vanilla-framework/issues/1081
+fieldset {
+
+  & + & {
+    margin-top: $sp-large;
+  }
+}
