@@ -1,4 +1,4 @@
-{% extends "support/base_support.html" %}
+{% extends "support/base_support-v1.html" %}
 
 {% block meta_description %}Landscape, the systems management tool provided with Ubuntu Advantage, Canonical's service programme, allows you to manage large-scale deployments of Ubuntu machines as easily as one, making it far more cost-effective to support large networks of desktops, servers and cloud instances.{% endblock %}
 
@@ -7,9 +7,7 @@
 {% block extra_body_class %}support-home{% endblock %}
 
 {% block second_level_nav_items %}
-<div class="strip-inner-wrapper">
-    {% include "templates/_nav_breadcrumb.html" with section_title="Support" page_title="Overview"  %}
-</div>
+  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Support" page_title="Overview" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -133,19 +131,19 @@
 </section>
 
 <section id="community-support" class="row strip-light no-border">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col">
-            <h2>Community support</h2>
-            <p>As one of the largest open source projects, with Ubuntu you can find support from a variety of sources. Take a look - you&rsquo;re likely to find an answer to every question. If you can&rsquo;t find an answer, just ask the people in our active forums.</p>
-            <p><a href="/support/community-support">Learn more about community support&nbsp;&rsaquo;</a></p>
-        </div>
-        <div class="four-col last-col text-center priority-0">
-            <img src="{{ ASSET_SERVER_URL }}039628d5-picto-community-orange.svg" width="150" alt="Community">
-        </div>
-    </div>
+  <div class="strip-inner-wrapper">
+      <div class="eight-col">
+          <h2>Community support</h2>
+          <p>As one of the largest open source projects, with Ubuntu you can find support from a variety of sources. Take a look - you&rsquo;re likely to find an answer to every question. If you can&rsquo;t find an answer, just ask the people in our active forums.</p>
+          <p><a href="/support/community-support">Learn more about community support&nbsp;&rsaquo;</a></p>
+      </div>
+      <div class="four-col last-col text-center priority-0">
+          <img src="{{ ASSET_SERVER_URL }}039628d5-picto-community-orange.svg" width="150" alt="Community">
+      </div>
+  </div>
 </section>
 
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
+{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
 
 {% endblock content %}
