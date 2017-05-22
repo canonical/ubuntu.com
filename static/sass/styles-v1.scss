@@ -100,6 +100,7 @@ html {
   padding: $sp-x-small $sp-small;
 }
 
+
 /// XXX Brand button color fix
 /// .p-button--brand is blue when visited
 a.p-button--brand {
@@ -116,4 +117,15 @@ a.p-button--brand {
 .u-vertically-spaced {
   padding-bottom: $sp-medium;
   padding-top: $sp-medium;
+}
+
+/// XXX remove abbr `text-decoration: underline dotted;`
+/// add to :hover
+/// from [normalize.css](https://github.com/necolas/normalize.css/blob/master/normalize.css)
+abbr[title] {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline dotted;
+  }
 }
