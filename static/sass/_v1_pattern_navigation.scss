@@ -317,15 +317,14 @@
   }
 
   /// XXX adding > on nav
-  .second-level-nav::before {
+  ul.p-breadcrumbs >li > a:first-of-type::after {
 
     @media (min-width: $breakpoint-medium + 1) {
-      content: '\203A';
-      display: inline-block;
-      height: 1rem;
-      margin-left: -.5rem;
+      color: $color-mid-dark;
+      content: '\00a0\00a0\203A';
+      font-weight: 400;
+      font-size: 1rem;
       position: absolute;
-      width: 1rem;
     }
   }
 }
