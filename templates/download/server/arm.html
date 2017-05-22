@@ -1,71 +1,68 @@
-{% extends "download/_base_download.html" %}
+{% extends "download/_base_download-v1.html" %}
 
 {% block title %}Ubuntu for ARM | Download{% endblock %}
 
 {% block second_level_nav_items %}
-    <div class="strip-inner-wrapper">
-        {% include "templates/_nav_breadcrumb.html" with section_title="Downloads" subsection_title="Server" page_title="ARM" %}
-    </div>
+  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Downloads" subsection_title="Server" page_title="ARM" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-grey">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col">
-            <h1>Ubuntu Server for ARM</h1>
-            <p>Ubuntu {{lts_release_full_with_point}} includes support for the very latest ARM-based server systems powered by certified 64-bit processors.</p>
-            <p>Develop and test using over 50,000 software packages and runtimes &mdash; including Go, Java, Javascript, PHP, Python and Ruby &mdash; and deploy at scale using our complete scale-out management suite including MAAS and Juju. Ubuntu delivers server-grade performance on ARM, while fully retaining the reliable and familiar Ubuntu experience.</p>
-        </div>
-        <div class="twelve-col box box-highlight">
-            <div class="twelve-col no-margin-bottom equal-height--vertical-divider">
-                <div class="equal-height--vertical-divider__item six-col">
-                    <h3>Ubuntu Server</h3>
-                    <p>This is the iso image of the Ubuntu Server installer.</p>
-                    <p><a href="http://cdimage.ubuntu.com/releases/{{lts_release}}/release/ubuntu-{{lts_release}}-server-arm64.iso" class="link-cta-download button--primary" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">Download Ubuntu {{lts_release_full_with_point}}</a></p>
-                    <p><a href="/download/alternative-downloads">Alternative and previous releases&nbsp;&rsaquo;</a></p>
-                </div>
-                <div class="equal-height--vertical-divider__item six-col last-col">
-                    <h3>Ubuntu netboot</h3>
-                    <p>This installer lets you install Ubuntu over the network.</p>
-                    <p><a href="http://cdimage.ubuntu.com/netboot/{{lts_release}}" class="link-cta-download button--primary" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM netboot download', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">Download Ubuntu {{lts_release_full_with_point}}</a></p>
-                    <p><a href="https://help.ubuntu.com/community/Installation/Netboot">Learn about netboot images&nbsp;&rsaquo;</a></p>
-                </div>
-            </div>
-        </div>
-    </div><!-- /.strip-inner-wrapper -->
-</div><!-- /.row -->
-<div class="row">
-    <div class="strip-inner-wrapper equal-height">
-        <div class="eight-col no-margin-bottom equal-height__item">
-            <h3>Containers, databases, web and more</h3>
-            <p>Ubuntu Server for ARM includes everything you are looking for in a server operating system, including:</p>
-            <ul class="list-ticks--compact">
-                <li>The LXD container hypervisor, giving you instant access to isolated, secured environments running with bare-metal performance</li>
-                <li>Application container technology based on Docker and Kubernetes, including FAN-based networking.</li>
-                <li>SQL and NoSQL databases including CouchDB, MySQL, PostgreSQL, Redis and sqlite</li>
-                <li>A wide collection of Web technologies, from HTTP servers to frameworks including Apache, Django, memcached, nginx, Wordpress and varnish</li>
-            </ul>
-        </div>
-        <div class="four-col last-col no-margin-bottom not-for-small equal-height__item equal-height__align-vertically">
-            <img src="{{ ASSET_SERVER_URL }}c3499461-picto-server-warmgrey.svg" alt="" width="200" height="200" />
-        </div>
-    </div><!-- /.strip-inner-wrapper -->
+<div class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h1>Ubuntu Server for ARM</h1>
+      <p>Ubuntu {{lts_release_full_with_point}} includes support for the very latest ARM-based server systems powered by certified 64-bit processors.</p>
+      <p>Develop and test using over 50,000 software packages and runtimes &mdash; including Go, Java, Javascript, PHP, Python and Ruby &mdash; and deploy at scale using our complete scale-out management suite including MAAS and Juju. Ubuntu delivers server-grade performance on ARM, while fully retaining the reliable and familiar Ubuntu experience.</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6 p-card--highlighted is-divided">
+      <h3 class="p-card__title">Ubuntu Server</h3>
+      <p class="p-card__content">This is the iso image of the Ubuntu Server installer.</p>
+      <p class="p-card__content"><a href="http://cdimage.ubuntu.com/releases/{{lts_release}}/release/ubuntu-{{lts_release}}-server-arm64.iso" class="p-button--brand is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">Download Ubuntu {{lts_release_full_with_point}}</a></p>
+      <p><a href="/download/alternative-downloads">Alternative and previous releases&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-6 p-card--highlighted is-divided">
+      <h3 class="p-card__title">Ubuntu netboot</h3>
+      <p class="p-card__content">This installer lets you install Ubuntu over the network.</p>
+      <p class="p-card__content"><a href="http://cdimage.ubuntu.com/netboot/{{lts_release}}" class="p-button--brand is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM netboot download', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">Download Ubuntu {{lts_release_full_with_point}}</a></p>
+      <p><a href="https://help.ubuntu.com/community/Installation/Netboot">Learn about netboot images&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
 </div>
 
-<div class="row row-white no-border">
-    <div class="strip-inner-wrapper equal-height">
-        <div class="four-col text-center not-for-small equal-height__item equal-height__align-vertically">
-            <img src="{{ ASSET_SERVER_URL }}b5352dc1-logo-arm.svg" alt="" width="200" height="200" />
-        </div>
-        <div class="eight-col last-col equal-height__item">
-            <h3>Commercially supported and ready to deploy today</h3>
-            <p>Pair your ARM server deployment with enterprise-grade 24x7 support with Ubuntu Advantage to get the SLA-backed  assurance that you are fully covered by our system and architecture experts &mdash; no matter what comes up.</p>
-            <p>Built for cutting-edge hardware, from the HP Moonshot range to standard form-factor certified systems, Ubuntu and ARM Server provide truly compelling economics for cloud-scale deployment.</p>
-            <p><a href="/server/contact-us">Contact us about your ARM server plans&nbsp;&rsaquo;</a></p>
-        </div><!-- /.twelve-col -->
-    </div><!-- /.strip-inner-wrapper -->
-</div><!-- /.row -->
+<div class="p-strip--light is-deep is-bordered">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h3>Containers, databases, web and more</h3>
+      <p>Ubuntu Server for ARM includes everything you are looking for in a server operating system, including:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">The LXD container hypervisor, giving you instant access to isolated, secured environments running with bare-metal performance</li>
+        <li class="p-list__item is-ticked">Application container technology based on Docker and Kubernetes, including FAN-based networking</li>
+        <li class="p-list__item is-ticked">SQL and NoSQL databases including CouchDB, MySQL, PostgreSQL, Redis and sqlite</li>
+        <li class="p-list__item is-ticked">A wide collection of Web technologies, from HTTP servers to frameworks including Apache, Django, memcached, nginx, Wordpress and varnish</li>
+      </ul>
+    </div>
+    <div class="col-4 u-align--center u-vertically-center u-hidden--small">
+      <img src="{{ ASSET_SERVER_URL }}c3499461-picto-server-warmgrey.svg" alt="" width="200" height="200" />
+    </div>
+  </div>
+</div>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_server_arm_guide" second_item="_download_enterprise_support" third_item="_download_helping_hands" %}
+<div class="p-strip is-deep">
+  <div class="row u-equal-height">
+    <div class="col-4 u-align--center u-vertically-center u-hidden--small">
+      <img src="{{ ASSET_SERVER_URL }}b5352dc1-logo-arm.svg" alt="" width="200" height="200" />
+    </div>
+    <div class="col-8">
+      <h3>Commercially supported and ready to deploy today</h3>
+      <p>Pair your ARM server deployment with enterprise-grade 24x7 support with Ubuntu Advantage to get the SLA-backed  assurance that you are fully covered by our system and architecture experts &mdash; no matter what comes up.</p>
+      <p>Built for cutting-edge hardware, from the HP Moonshot range to standard form-factor certified systems, Ubuntu and ARM Server provide truly compelling economics for cloud-scale deployment.</p>
+      <p><a href="/server/contact-us">Contact us about your ARM server plans&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</div>
+
+{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_download_server_arm_guide" second_item="_download_enterprise_support" third_item="_download_helping_hands" %}
 
 {% endblock content %}
