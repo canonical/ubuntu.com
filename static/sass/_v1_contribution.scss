@@ -9,6 +9,14 @@
       display: none;
     }
 
+    &__heading {
+        margin-bottom: .5rem;
+    }
+
+    &__description {
+       margin-bottom: 0;
+     }
+
     &__options {
       background-color: $color-light;
       padding: 20px;
@@ -92,7 +100,7 @@
     &__submit {
       float: right;
       width: auto;
-      margin-bottom: 0;
+      margin: 0 0 .5rem 1rem;
 
       &[disabled] {
         opacity: .3;
