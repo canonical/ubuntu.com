@@ -2,7 +2,7 @@
 <!doctype html>
 
 {# Release versions - update as appropriate #}
-{% with latest_release_name="ZestyZapus" latest_release="17.04" latest_release_full='17.04' lts_release_name="XenialXerus" lts_release_no_point="16.04" lts_release="16.04.2" lts_release_full='16.04 LTS' lts_release_with_point="16.04.2" lts_release_full_with_point='16.04.2 <abbr title="long-term support">LTS</abbr>' lts_openstack_version="Mitaka" latest_openstack_version="Ocata" %}
+{% with latest_release_name="ZestyZapus" latest_release="17.04" latest_release_full='17.04' lts_release_name="XenialXerus" lts_release_no_point="16.04" lts_release="16.04.2" lts_release_full='16.04 LTS' lts_release_with_point="16.04.2" lts_release_full_with_point='16.04.2 <abbr title="Long-term support">LTS</abbr>' lts_openstack_version="Mitaka" latest_openstack_version="Ocata" %}
 
 <!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en" dir="ltr"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en" dir="ltr"> <![endif]-->
@@ -118,7 +118,7 @@
             </li>
             <li class="p-navigation__link">
               <a class="{% if level_1 == 'support' %}is-active{% endif %}" href="/support">Support</a>
-              {% include "support/_nav_secondary-v1.html" with promo="true" %}
+              {% include "support/_nav_secondary-v1.html" with list_class="hover-menu" %}
             </li>
             <li class="p-navigation__link">
               <a class="{% if level_1 == 'download' %}is-active{% endif %} " href="/download">Downloads</a>

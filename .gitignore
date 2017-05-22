@@ -1,30 +1,47 @@
-# Local environments and dependencies
-env/
-node_modules/
-.bundle/
-.docker-project
-
-# Version control
-.bzr/
-bzr-repo/
-
-# Backup, cache and log files
-*.pyc
-*.bak
-*.tmp
-*.log
-*.*~
-.DS_store
-*-cache/
+# OS files
+Desktop.ini
+Thumbs.db
+._*
+*.DS_Store
+*~
 \#*\#
+__*
+.AppleDouble
+.LSOverride
 
-# Local databases
-*.sqlite
+# Cache and backup
+*.bak
+*.pyc
+*-cache/
 
-# Generated CSS
+# Local data
+*.sqlite*
+*.log
+logs/
+pids
+*.pid
+*.seed
+.*-metadata
+
+# Local dependencies
+.bundle/
+node_modules/
+bower_components/
+vendor/
+
+# Build files
+/build/
+_site/
+
+# Local environment settings
+.docker-project
+.envrc
+env/
+env3/
+
+# Sass
 *.css
-*.map
+*.css.map
 
-# Ubuntu mirrors cache
+# Project-specific ignores
 etc/ubuntu-mirrors-rss.xml
-

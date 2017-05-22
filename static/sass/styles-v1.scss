@@ -20,6 +20,7 @@
 @import 'v1_pattern_notifications';
 @import 'v1_pattern_footer';
 @import 'v1_pattern_lists';
+@import 'v1_pattern_link';
 
 @include ubuntu-p-site-search;
 @include ubuntu-p-navigation;
@@ -27,6 +28,7 @@
 @include ubuntu-p-notification;
 @include ubuntu-p-footer;
 @include ubuntu-p-lists;
+@include ubuntu-p-link;
 
 // **************************
 // Bug fixes
@@ -109,5 +111,35 @@ html {
   &:active {
     background-color: darken($color-brand, 10%);
     border-color: darken($color-brand, 10%);
+  }
+}
+
+
+/// XXX Brand button color fix
+/// .p-button--brand is blue when visited
+a.p-button--brand {
+  &:link,
+  &:visited,
+  &:active,
+  &:hover {
+    color: $color-x-light;
+  }
+}
+
+/// XXX Vertically spaced - add vertical margins to an element
+/// An attempt to solve some of the vertical spacing issues
+.u-vertically-spaced {
+  padding-bottom: $sp-medium;
+  padding-top: $sp-medium;
+}
+
+/// XXX remove abbr `text-decoration: underline dotted;`
+/// add to :hover
+/// from [normalize.css](https://github.com/necolas/normalize.css/blob/master/normalize.css)
+abbr[title] {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline dotted;
   }
 }
