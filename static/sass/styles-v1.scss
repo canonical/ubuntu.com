@@ -165,3 +165,12 @@ li:not(.p-breadcrumbs__item) {
   margin: $sp-xx-large 0;
   width: 100;
 }
+
+// consecutive fieldsets do not having adequate bottom spacing
+// https://github.com/vanilla-framework/vanilla-framework/issues/1081
+fieldset {
+
+  & + & {
+    margin-top: $sp-large;
+  }
+}
