@@ -1,54 +1,60 @@
-{% extends "download/_base_download.html" %}
+{% extends "download/_base_download-v1.html" %}
 
 {% block title %}Build OpenStack with conjure-up or Autopilot| Download{% endblock %}
-
 {% block extra_body_class %}download-cloud-home{% endblock %}
 
 {% block second_level_nav_items %}
-<div class="strip-inner-wrapper">
-  {% include "templates/_nav_breadcrumb.html" with section_title="Downloads" page_title="Cloud" tertiary="true"  %}
-</div>
+{% include "templates/_nav_breadcrumb-v1.html" with section_title="Downloads" page_title="Cloud" tertiary="true"  %}
 {% endblock second_level_nav_items %}
 
-
 {% block content %}
-<section class="row row-grey no-border">
-  <div class="strip-inner-wrapper">
-    <h1>Get OpenStack</h1>
-    <p class="intro">Try out OpenStack on a single machine or start building a production cloud on a cluster: you choose.</p>
-    <div class="box box-highlight clearfix equal-height--vertical-divider">
-      <div class="equal-height--vertical-divider__item six-col">
-        <p class="intro">Single machine</p>
-        <h2>Try OpenStack on a single&nbsp;machine</h2>
-        <p>Conjure-up is an ideal tool for people who want to build an OpenStack cloud on a single machine using LXD containers.</p>
-        <p><a href="/download/cloud/conjure-up">Try conjure-up on single machine&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="six-col last-col equal-height--vertical-divider__item">
-        <p class="intro">Cluster</p>
-        <h2>Build your own production&nbsp;cloud</h2>
-        <p>Canonical&rsquo;s OpenStack Autopilot handles every aspect of your production cloud across multiple physical machines through installation, expansion and everyday operations.</p>
-        <p><a href="/download/cloud/autopilot">Build a production cloud with Autopilot&nbsp;&rsaquo;</a></p>
+<div class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-10">
+      <h1>Get OpenStack</h1>
+      <p>Try out OpenStack on a single machine or start building a production cloud on a cluster: you choose.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 p-card--highlighted p-divider">
+      <div class="u-equal-height">
+        <div class="col-6 p-divider__block">
+          <p class="p-heading--five">Single machine</p>
+          <h2>Try OpenStack on a single&nbsp;machine</h2>
+          <p class="p-card__content">Conjure-up is an ideal tool for people who want to build an OpenStack cloud on a single machine using LXD containers.</p>
+          <p class="p-card__content"><a href="/download/cloud/conjure-up">Try conjure-up on single machine&nbsp;&rsaquo;</a></p>
+        </div>
+        <div class="col-6">
+          <p class="p-heading--five">Cluster</p>
+          <h2>Build your own production&nbsp;cloud</h2>
+          <p class="p-card__content">Canonical&rsquo;s OpenStack Autopilot handles every aspect of your production cloud across multiple physical machines through installation, expansion and everyday operations.</p>
+          <p class="p-card__content"><a href="/download/cloud/autopilot">Build a production cloud with Autopilot&nbsp;&rsaquo;</a></p>
+        </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<section class="row row-white">
-  <div class="strip-inner-wrapper equal-height">
-    <div class="four-col align-center not-for-small equal-height__item equal-height__align-vertically">
+<div class="p-strip is-bordered">
+  <div class="row u-equal-height">
+    <div class="col-4 u-vertically-center u-align--center u-hidden--small">
       <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="200" alt="" />
     </div>
-    <div class="seven-col prepend-one last-col equal-height__item equal-height__align-vertically">
-      <h2>Need more help?</h2>
-      <p>Let our cloud experts help you take the next step.</p>
-      <p><a href="/cloud/contact-us">Contact us&nbsp;&rsaquo;</a></p>
-      <p>Already a Landscape Dedicated Server customer? Upgrading is simple, see the instructions in the <a href="https://help.landscape.canonical.com/LDS/ReleaseNotes" class="external">release notes</a>.</p>
+    <div class="col-7 prefix-1 u-vertically-center">
+      <div class="row">
+        <div class="col-12">
+          <h2>Need more help?</h2>
+          <p>Let our cloud experts help you take the next step.</p>
+          <p><a href="/cloud/contact-us" class="p-button--neutral">Contact us</a></p>
+          <p>Already a Landscape Dedicated Server customer? Upgrading is simple, see the instructions in the <a href="https://help.landscape.canonical.com/LDS/ReleaseNotes" class="p-link--external">release notes</a>.</p>
+        </div>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
-{% include "download/server/_other-ways.html" %}
+{% include "download/server/_other-ways-v1.html" %}
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_cloud_bootstack" second_item="_download_cloud_buy_landscape" third_item="_download_documentation" %}
+{% include "shared-v1/contextual_footers/_contextual_footer.html" with first_item="_download_cloud_bootstack" second_item="_download_cloud_buy_landscape" third_item="_download_documentation" %}
 
 {% endblock content %}
