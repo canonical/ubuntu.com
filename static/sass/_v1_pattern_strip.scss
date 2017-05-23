@@ -11,8 +11,7 @@
   .p-strip--accent,
   .p-strip--suru-accent,
   .p-strip--light,
-  .p-strip--dark,
-  .p-strip--white {
+  .p-strip--dark {
     padding: 3.75rem 0;
 
     &.is-shallow {
@@ -40,12 +39,6 @@
 @mixin ubuntu-p-strip--grey {
   .p-strip--grey {
     background-color: $color-light;
-  }
-}
-
-@mixin ubuntu-p-strip-white {
-  .p-strip--white {
-    background-color: $color-x-light;
   }
 }
 
