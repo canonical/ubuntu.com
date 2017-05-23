@@ -10,7 +10,7 @@ Found a bug or have an idea for a new feature? Feel free to [create a new issue]
 
 ## Local development
 
-The simplest way to run the site locally is to first [install Docker](https://docs.docker.com/engine/installation/), add your user to the `docker` group, and then use the `./run` script:
+The simplest way to run the site locally is to first [install Docker](https://docs.docker.com/engine/installation/) (on Linux you may need to [add your user to the `docker` group](https://docs.docker.com/engine/installation/linux/linux-postinstall/)), and then use the `./run` script:
 
 ``` bash
 ./run
