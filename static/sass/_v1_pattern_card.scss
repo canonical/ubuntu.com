@@ -1,15 +1,19 @@
 @mixin ubuntu-p-card {
-  .p-card__footer--upgrade {
-    background: $color-light url('#{$assets-path}f68488b1-picto-upgrade-warmgrey.svg') $sp-medium center no-repeat;
-    background-size: $sp-xx-large $sp-xx-large;
-    padding: $sp-medium $sp-medium $sp-medium 5.25rem;
-    margin: 0 -1.2rem;
-  }
 
-.no-svg,
-.opera-mini {
-    .p-card__footer--ubuntu-upgrade {
-      background-image: url('#{$assets-path}fa83e8f4-pictorgram-upgrade-44x44.png');
+  .p-card--ubuntu-upgrade {
+    @extend .p-card;
+    padding: 1.333rem 0;
+
+    > .row {
+      margin: 1rem 0;
+      padding: 0 1.33rem;
+    }
+
+    &__footer {
+      background: $color-light url('#{$assets-path}f68488b1-picto-upgrade-warmgrey.svg') $sp-medium center no-repeat;
+      background-size: $sp-xx-large $sp-xx-large;
+      margin: 0;
+      padding: $sp-medium $sp-medium $sp-medium 5.25rem;
     }
   }
 }
