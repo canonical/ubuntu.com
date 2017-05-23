@@ -14,6 +14,7 @@
   @include ubuntu-p-is-ticked;
   @include ubuntu-p-is-trisected;
   @include ubuntu-p-is-quartered;
+  @include ubuntu-p-inline-logos;
 }
 
 @mixin ubuntu-p-is-ticked {
@@ -171,6 +172,59 @@
             border-bottom: 0;
           }
         }
+      }
+    }
+  }
+}
+
+@mixin ubuntu-p-inline-logos {
+
+  .p-inline-logos {
+    float: left;
+    margin-left: 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      padding-top: $sp-large;
+    }
+
+    &__item {
+      display: inline-block;
+      margin-right: $grid-gutter-width;
+      padding: 0 0 $sp-large;
+      width: 100%;
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        display: inline-block;
+        height: 3.5rem;
+        line-height: 3.75rem;
+        margin: 0 $sp-x-large $sp-x-large;
+        width: 9rem;
+      }
+
+      &.clear-row {
+        clear: left;
+      }
+
+      &.last-item {
+        border: 0;
+      }
+    }
+
+    &__image {
+      max-height: $sp-x-large;
+      max-width: 7rem;
+      transition: all .3s ease-out;
+      vertical-align: middle;
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        float: none;
+        height: auto;
+        max-height: 3.5rem;
+        max-width: 9rem;
+        vertical-align: middle;
       }
     }
   }
