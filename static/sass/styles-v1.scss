@@ -125,6 +125,20 @@ html {
   padding-top: $sp-medium;
 }
 
+// brand submit buttons bg override
+// https://github.com/vanilla-framework/vanilla-framework/issues/1080
+
+.p-button--brand[type=submit]{
+  background-color: $color-brand;
+  border-color: $color-brand;
+
+  &:hover,
+  &:active {
+    background-color: darken($color-brand, 10%);
+    border-color: darken($color-brand, 10%);
+  }
+}
+
 /// XXX remove abbr `text-decoration: underline dotted;`
 /// add to :hover
 /// from [normalize.css](https://github.com/necolas/normalize.css/blob/master/normalize.css)
@@ -133,5 +147,32 @@ abbr[title] {
 
   &:hover {
     text-decoration: underline dotted;
+  }
+}
+
+// Add spacing for nested lists in body copy
+// This is a change to be made upstream in vanilla-framework
+// https://github.com/vanilla-framework/vanilla-framework/issues/960
+li:not(.p-breadcrumbs__item) {
+  ol, ul, .p-list {
+    margin-top: $sp-medium;
+    padding-left: $sp-medium;
+  }
+}
+
+// overflow tables
+.table__wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: $sp-xx-large 0;
+  width: 100;
+}
+
+// consecutive fieldsets do not having adequate bottom spacing
+// https://github.com/vanilla-framework/vanilla-framework/issues/1081
+fieldset {
+
+  & + & {
+    margin-top: $sp-large;
   }
 }

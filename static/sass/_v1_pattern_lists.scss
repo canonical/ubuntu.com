@@ -14,6 +14,7 @@
   @include ubuntu-p-is-ticked;
   @include ubuntu-p-is-trisected;
   @include ubuntu-p-is-quartered;
+  @include ubuntu-p-nested-counter-lists;
 }
 
 @mixin ubuntu-p-is-ticked {
@@ -170,6 +171,38 @@
           &:nth-last-child(0) {
             border-bottom: 0;
           }
+        }
+      }
+    }
+  }
+}
+
+@mixin ubuntu-p-nested-counter-lists {
+  .p-nested-counter-list {
+    list-style-type: none;
+    counter-reset: item;
+    margin-left: 0;
+    padding-left: 0;
+
+    & & {
+      margin-top: $sp-small;
+      padding-left: $sp-medium;
+    }
+
+    &__item {
+      counter-increment: item;
+      padding-left: $sp-xx-small;
+      padding-bottom: $sp-small;
+
+      &:before {
+        content: counters(item, ".") ". ";
+      }
+
+      & & {
+        padding-left: 0;
+
+        &:before {
+          content: counters(item, ".") " ";
         }
       }
     }

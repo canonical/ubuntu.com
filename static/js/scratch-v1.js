@@ -38,13 +38,13 @@ core.cookiePolicy = function() {
       while (c.charAt(0)==' ') {
         c = c.substring(1);
       }
-      if (c.indexOf(name) == 0) {
+      if (c.indexOf(name) === 0) {
         return c.substring(name.length,c.length);
       }
     }
     return '';
   }
-}
+};
 
 // Toogles classes the active and open classes on the footer titles
 core.footerMobileNav = function() {
@@ -122,8 +122,8 @@ core.commandLine = function () {
     var commandInput = node.querySelector('.p-code-snippet__input');
     if (copyButton && commandInput) {
       copyButton.addEventListener('click', function(e) {
-        e.preventDefault;
         commandInput.select();
+        e.preventDefault;
         try {
           var successful = document.execCommand('copy');
           dataLayer.push({
@@ -150,7 +150,7 @@ core.commandLine = function () {
       });
     }
   });
-}
+};
 
 // Attach listeners to switch between two pieces of content with links
 core.swapContent = function(primaryContainerClass, secondaryContainerClass, showPrimaryClass, showSecondaryClass) {
@@ -174,7 +174,7 @@ core.swapContent = function(primaryContainerClass, secondaryContainerClass, show
       primaryElement.classList.add('u-off-screen');
     });
   }
-}
+};
 
 core.cookiePolicy();
 core.footerMobileNav();
@@ -193,6 +193,29 @@ core.siteSearch = function(){
     siteSearchForm.classList.toggle('u-visible');
     e.preventDefault();
   });
-}
+};
 
 core.siteSearch();
+
+// Contributor form toggle
+core.contributorFormToggle = function(){
+
+  individualContributorRadio = document.querySelector('#tfa_Iamsigningasanin1');
+  individualForm = document.querySelector('#tfa_CanonicalIndivid');
+
+  orgContributorRadio  = document.querySelector('#tfa_Iamsigningonbeha1');
+  orgForm = document.querySelector('#tfa_CanonicalEntityC');
+
+  individualContributorRadio.addEventListener('click', function(e) {
+    console.log("triggered");
+    individualForm.classList.remove('u-hidden');
+    orgForm.classList.add('u-hidden');
+  });
+
+  orgContributorRadio.addEventListener('click', function(e) {
+    orgForm.classList.remove('u-hidden');
+    individualForm.classList.add('u-hidden');
+  });
+};
+
+core.contributorFormToggle();
