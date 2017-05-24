@@ -40,16 +40,6 @@
 // the bug
 // **************************
 
-// navigation logo is too big and adding a bottom margin
-// https://github.com/vanilla-framework/vanilla-framework/issues/1037
-.p-navigation__logo {
-  margin: .65rem;
-
-  @media (min-width: $breakpoint-medium) {
-    padding-left: .4rem;
-  }
-}
-
 // at exactly $breakpoint-medium, there is not a clean switch between mobile/desktop nav styles
 // https://github.com/vanilla-framework/vanilla-framework/issues/1038
 .p-navigation__links .p-navigation__link {
