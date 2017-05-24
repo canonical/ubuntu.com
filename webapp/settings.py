@@ -15,9 +15,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'no_secret')
 
 # See https://docs.djangoproject.com/en/dev/ref/contrib/
 INSTALLED_APPS = [
+    'canonicalwebteam',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',  # Needed for STATICFILES_DIRS to work
-    'canonicalwebteam'
 ]
 
 WHITENOISE_MAX_AGE = 31557600
