@@ -1,0 +1,62 @@
+// XXX temporary copied code from master branch of Vanilla-framwork until
+// This can be removed when https://github.com/canonical-websites/www.ubuntu.com/issues/1824 is complete
+// Image grid to showcase group of images
+@mixin vf-p-inline-images {
+  .p-inline-images {
+    @extend %clearfix;
+    display: block;
+    list-style: none; // if list is used as wrapper
+    text-align: center;
+
+    &__item {
+      display: inline-block;
+      margin: $sp-x-large;
+      max-width: 6rem;
+      text-align: center;
+      vertical-align: middle;
+      width: 100%;
+
+      @media (min-width: $breakpoint-medium) {
+        margin: $sp-xxx-large;
+        max-width: 11.25rem;
+      }
+
+      * {
+        width: 100%;
+      }
+    }
+
+    @include deprecate('2.0.0', 'Use .p-inline-images__item instead') {
+      &__img {
+        display: inline-block;
+        margin: $sp-x-large;
+        max-width: 6rem;
+        text-align: center;
+        vertical-align: middle;
+        width: 100%;
+
+        @media (min-width: $breakpoint-medium) {
+          margin: $sp-xxx-large;
+          max-width: 11.25rem;
+        }
+      }
+    }
+  }
+}
+
+// XXX Extension of the inline images to add logo support
+// This should be proposed up to vanilla-brochure-theme once approved
+@mixin ubuntu-p-inline-images {
+  @include vf-p-inline-images;
+
+  .p-inline-images__logo {
+    max-height: $sp-xxx-large;
+    max-width: 7rem;
+    width: auto;
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      max-height: 5.5rem;
+      max-width: 9rem;
+    }
+  }
+}
