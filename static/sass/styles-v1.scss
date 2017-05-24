@@ -76,7 +76,7 @@
   }
 }
 
-// global nav spills onto two lines at 768px
+// global nav spills onto two lines at $breakpoint-medium
 // https://github.com/canonical-webteam/global-nav/issues/14
 @media only screen and (max-width: 770px) {
   #nav-global ul .more {
@@ -131,5 +131,36 @@ abbr[title] {
 
   &:hover {
     text-decoration: underline dotted;
+  }
+}
+
+/// XXX inline-images item patch + class to make logo images smaller
+.p-inline-images {
+
+  &__item {
+    display: inline-block;
+    margin: 2rem;
+    max-width: 6rem;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+
+    @media (min-width: $breakpoint-medium) {
+      margin: 3rem;
+      max-width: 11.25rem;
+    }
+  }
+
+  &__image {
+    max-height: $sp-x-large;
+    max-width: 7rem;
+    transition: all .3s ease-out;
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      float: none;
+      height: auto;
+      max-height: 3.5rem;
+      max-width: 9rem;
+    }
   }
 }
