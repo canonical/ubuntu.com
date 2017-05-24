@@ -1,17 +1,15 @@
-{% extends "core/base_core.html" %}
+{% extends "core/base_core-v1.html" %}
 {% block title %}Contact us | Ubuntu Core{% endblock %}
 
 {% block second_level_nav_items %}
-<div class="strip-inner-wrapper">
-  {% include "templates/_nav_breadcrumb.html" with section_title="Core" page_title="Contact us"  %}
-</div>
+  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Core" page_title="Contact us"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-hero no-border no-margin-bottom no-padding-bottom strip-light">
-    <div class="strip-inner-wrapper">
 
-        {% include "shared/_client-contact-us-form.html" with h1="Contact us"  intro_text="If you are thinking about using Ubuntu Core to power your Internet of Things devices or anything else, please fill in your details below and a member of our team will get in touch." formid="1266" lpId="2166"  returnURL="https://www.ubuntu.com/core/thank-you"  %}
+<div class="p-strip is-deep">
+  <div class="row">
+        {% include "shared-v1/_client-contact-us-form.html" with h1="Contact us"  intro_text="If you are thinking about using Ubuntu Core to power your Internet of Things devices or anything else, please fill in your details below and a member of our team will get in touch." formid="1266" lpId="2166"  returnURL="https://www.ubuntu.com/core/thank-you"  %}
 
     </div>
 </section>
