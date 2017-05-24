@@ -1217,13 +1217,24 @@ body.homepage-maas-may-2017 {
     margin-top: 0;
 
     .row-hero {
-      background: url('#{$asset-server-url}6d40cf91-MAAS-background-desktop.png?w=900&q=40') no-repeat;
+      background-color: #333;
       background-size: cover;
+      background-position: left top;
       color: #fff;
       margin-top: 0;
       min-height: 255px;
       padding-top: 20px;
       transition-duration: 1s;
+
+      &__title {
+        font-size: 2.8125rem;
+        margin-bottom: 2.5rem;
+        margin-top: -2rem;
+      }
+
+      .intro {
+        margin-bottom: 1.75rem;
+      }
 
       @media only screen and (min-width : $breakpoint-medium) {
         > div div {
@@ -1232,13 +1243,20 @@ body.homepage-maas-may-2017 {
       }
 
       @media only screen and (min-width : $breakpoint-medium) {
+        background-position: 75% 0%;
         padding: 60px 0 40px;
       }
 
       @media only screen and (min-width : $breakpoint-large) {
-        background-image: url('#{$asset-server-url}813e2a3c-MAAS-background-desktop-large-screen.png?w=1600&q=60');
+        background-image: url('#{$asset-server-url}a328d904-MAAS-background-desktop-large-screen.png');
+        background-position: 77% 0%;
         padding: 100px 0;
       }
+
+      @media only screen and (min-width : 1600px) {
+        background-position: 85% 0;
+      }
+
 
       &__image-for-small {
         padding: 50px 0 70px;
