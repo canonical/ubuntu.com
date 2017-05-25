@@ -206,16 +206,18 @@ core.contributorFormToggle = function(){
   orgContributorRadio  = document.querySelector('#tfa_Iamsigningonbeha1');
   orgForm = document.querySelector('#tfa_CanonicalEntityC');
 
-  individualContributorRadio.addEventListener('click', function(e) {
-    console.log("triggered");
-    individualForm.classList.remove('u-hidden');
-    orgForm.classList.add('u-hidden');
-  });
-
-  orgContributorRadio.addEventListener('click', function(e) {
-    orgForm.classList.remove('u-hidden');
-    individualForm.classList.add('u-hidden');
-  });
+  if(individualContributorRadio) {
+    individualContributorRadio.addEventListener('click', function(e) {
+      individualForm.classList.remove('u-hidden');
+      orgForm.classList.add('u-hidden');
+    });
+  }
+  if(orgContributorRadio) {
+    orgContributorRadio.addEventListener('click', function(e) {
+      orgForm.classList.remove('u-hidden');
+      individualForm.classList.add('u-hidden');
+    });
+  }
 };
 
 core.contributorFormToggle();
