@@ -13,14 +13,14 @@
 {% block content %}
 
 <section class="p-strip is-deep is-bordered">
-  <div class="row">
+  <div class="row u-equal-height">
     <div class="col-7">
       <h1>Ubuntu Advantage commercial support</h1>
       <p>Ubuntu Advantage is the commercial support package from Canonical. It includes Landscape, the Ubuntu systems management tool, and the Canonical Livepatch Service, which enables you to apply kernel fixes without restarting your Ubuntu {{lts_release_full}} systems.</p>
       <p><a href="https://buy.ubuntu.com" class="button--primary"><span class="p-link--external">Visit the Ubuntu Advantage store</span></a></p>
     </div>
-    <div class="col-5">
-      <img alt="" src="{{ ASSET_SERVER_URL }}11da76f5-image-management.svg" />
+    <div class="col-5 u-align--center u-vertically-center">
+      <img alt="" src="{{ ASSET_SERVER_URL }}11da76f5-image-management.svg" class="u-full-width" />
     </div>
   </div>
 </section>
@@ -107,7 +107,7 @@
   </div>
 </section>
 
-{% include "shared/_systems_management_tool.html" %}
+{% include "shared-v1/_systems-management-tool.html" %}
 
 <section class="p-strip">
 <div class="row">
