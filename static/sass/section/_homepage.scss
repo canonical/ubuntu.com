@@ -1223,11 +1223,14 @@ body.homepage-maas-may-2017 {
       color: #fff;
       margin-top: 0;
       min-height: 255px;
-      padding-top: 20px;
+      padding-top: 40px;
 
-      &__title {
-        font-size: 2.8125rem;
-        margin-top: -1.75rem;
+      h1 {
+        padding-top: 0;
+
+        @media only screen and (min-width : $breakpoint-medium) {
+          padding-top: 60px;
+        }
       }
 
       .intro {
