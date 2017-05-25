@@ -133,7 +133,7 @@
           border-bottom: 1px solid $color-mid-light;
           width: 100%;
           display: inline-block;
-          padding: $sp-x-small $sp-x-small $sp-x-small $sp-small;
+          padding: $sp-x-small;
           margin-bottom: $sp-x-small;
           color: $color-dark;
         }
@@ -284,6 +284,8 @@
 
     .second-level-nav & {
       border-bottom: 0;
+      padding-top: 0;
+      padding-bottom: 0;
     }
   }
 
@@ -295,7 +297,7 @@
 
     @media (max-width: $breakpoint-medium - 1) {
       .p-inline-list__item {
-        padding: .75rem 1rem;
+        padding: 0 $sp-x-small;
       }
     }
 
