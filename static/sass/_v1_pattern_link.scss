@@ -12,9 +12,18 @@
     }
   }
 
-  .p-button--neutral {
-    span.p-link--external {
-      background-image: url('#{$assets-path}e1bba201-external-link-cool-grey.svg');
+  .p-button {
+    &--neutral {
+      .p-link--external {
+        background-image: url('#{$assets-path}e1bba201-external-link-cool-grey.svg');
+      }
+    }
+
+    &--brand {
+      .p-link--external {
+        background-image: url('#{$assets-path}0d55fd52-external-link-white.svg');
+        background-size: .85em;
+      }
     }
   }
 }
