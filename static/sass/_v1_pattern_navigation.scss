@@ -280,6 +280,7 @@
       display: inline-block;
       padding-left: 0;
       margin-bottom: 0;
+      margin-left: .125rem;
     }
 
     .second-level-nav & {
@@ -295,23 +296,23 @@
 
     @media (max-width: $breakpoint-medium - 1) {
       .p-inline-list__item {
-        padding: .75rem 1rem;
+        padding: $sp-x-small;
       }
     }
 
     @media (min-width: $breakpoint-medium) {
-      margin-left: 1.5rem;
+      margin-left: $sp-large;
       display: inline-block;
 
       .p-inline-list__item {
-        margin-right: .75rem;
+        margin-right: $sp-small;
       }
     }
 
     @media (min-width: $breakpoint-large) {
 
       .p-inline-list__item {
-        margin-right: 1.5rem;
+        margin-right: $sp-large;
       }
     }
   }
