@@ -76,7 +76,7 @@
 // https://github.com/canonical-webteam/global-nav/issues/14
 @media only screen and (max-width: 770px) {
   #nav-global ul .more {
-      min-width: 55px;
+    min-width: 55px;
   }
 }
 
@@ -168,5 +168,24 @@ fieldset {
 
   & + & {
     margin-top: $sp-large;
+  }
+}
+
+/// container for Vimeo
+.vimeo-container {
+  height: auto;
+  max-width: 100%;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+
+  & iframe,
+  & object,
+  & embed {
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 100%;
   }
 }
