@@ -20,6 +20,7 @@
 @import 'v1_pattern_notifications';
 @import 'v1_pattern_footer';
 @import 'v1_pattern_lists';
+@import 'v1_pattern_card';
 @import 'v1_pattern_link';
 @import 'v1_contribution';
 @import 'v1_pattern_inline-images';
@@ -30,6 +31,7 @@
 @include ubuntu-p-notification;
 @include ubuntu-p-footer;
 @include ubuntu-p-lists;
+@include ubuntu-p-card;
 @include ubuntu-p-link;
 @include ubuntu-p-contribute;
 @include ubuntu-p-inline-images;
@@ -43,16 +45,6 @@
 // respective repos and referenced here, accompanied with a breif description of
 // the bug
 // **************************
-
-// navigation logo is too big and adding a bottom margin
-// https://github.com/vanilla-framework/vanilla-framework/issues/1037
-.p-navigation__logo {
-  margin: .65rem;
-
-  @media (min-width: $breakpoint-medium) {
-    padding-left: .4rem;
-  }
-}
 
 // at exactly $breakpoint-medium, there is not a clean switch between mobile/desktop nav styles
 // https://github.com/vanilla-framework/vanilla-framework/issues/1038
@@ -78,7 +70,7 @@
   }
 }
 
-// global nav spills onto two lines at 768px
+// global nav spills onto two lines at $breakpoint-medium
 // https://github.com/canonical-webteam/global-nav/issues/14
 @media only screen and (max-width: 770px) {
   #nav-global ul .more {
