@@ -336,16 +336,4 @@
       }
     }
   }
-
-  /// XXX adding > on nav
-  ul.p-breadcrumbs >li > a:first-of-type::after {
-
-    @media (min-width: $breakpoint-medium + 1) {
-      color: $color-mid-dark;
-      content: '\00a0\00a0\203A';
-      font-weight: 400;
-      font-size: 1rem;
-      position: absolute;
-    }
-  }
 }
