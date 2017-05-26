@@ -10,38 +10,41 @@
 {% block content %}
 <div class="p-strip is-bordered">
   <div class="row">
-    <div class="col-6">
+    <div class="u-equal-height">
+      <div class="col-6">
       <h1>Ubuntu Kylin for&nbsp;China</h1>
       <p>Ubuntu Kylin is an official flavour of Ubuntu. It is a free PC operating system created for China and complies with the Chinese government procurement regulations. It includes all the features you&rsquo;ve come to expect from Ubuntu, alongside essential Chinese software and apps. The interface has been designed specifically to put Chinese users first &mdash; and with support for touch screens and HiDPI monitors, it runs beautifully on all kinds of hardware.</p>
-      <p><a href="http://cn.ubuntu.com" class="button--primary">Ubuntu 中国网站现已面世</a></p>
+      <p><a href="http://cn.ubuntu.com" class="p-button--brand">Ubuntu 中国网站现已面世</a></p>
       <p><a href="/download/ubuntu-kylin">Download Ubuntu Kylin&nbsp;&rsaquo;</a></p>
+    </div>
+      <div class="col-6 u-vertically-center">
+      <img class="u-hidden--small" src="https://assets.ubuntu.com/v1/7ee4a52c-dell-xps-laptop-front.png?w=897" alt="">
+    </div>
     </div>
   </div>
 </div>
 
-<div class="p-strip">
+<div class="p-strip is-bordered">
   <div class="row">
     <div class="u-equal-height">
-      <div class="col-6">
+      <div class="col-7 suffix-1">
         <h2>A global partnership</h2>
         <p>To create Ubuntu Kylin, Canonical partnered with China Software and Integrated Chip Promotions Centre (CSIP) and the National University of Defense Technology (NUDT) to produce a fully localised and customised version of Ubuntu.</p>
         <p>The team is working together with the open-source community to adapt the core features of Ubuntu to better suit Chinese users. Along with localised versions of the Ubuntu Software Centre, Ubuntu Kylin also features some of the most commonly used
           Chinese applications.</p>
       </div>
-      <div class="col-6 u-vertically-center">
-        <div class="u-align--center">
-          <ul class="p-list">
-            <li><img src="{{ ASSET_SERVER_URL }}e9ec49b2-logo-canonical-288.png" alt="Canonical" width="288" height="40" /></li>
-            <li><img src="{{ ASSET_SERVER_URL }}b8b1a85b-logo-csip-180.png" alt="CSIP" width="180" height="71" /></li>
-            <li><img src="{{ ASSET_SERVER_URL }}3c62e9e2-logo-nudt-288.png" alt="NUDT" width="288" height="72" /></li>
-          </ul>
-        </div>
+      <div class="col-4 u-vertically-center u-align--center">
+        <ul class="p-list">
+          <li><img src="{{ ASSET_SERVER_URL }}e9ec49b2-logo-canonical-288.png" alt="Canonical" width="288" height="40" /></li>
+          <li><img src="{{ ASSET_SERVER_URL }}b8b1a85b-logo-csip-180.png" alt="CSIP" width="180" height="71" /></li>
+          <li><img src="{{ ASSET_SERVER_URL }}3c62e9e2-logo-nudt-288.png" alt="NUDT" width="288" height="72" /></li>
+        </ul>
       </div>
     </div>
   </div>
 </div>
 
-<div class="p-strip--grey">
+<div class="p-strip--grey is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>What&rsquo;s new in Ubuntu Kylin {{lts_release_full}}?</h2>
@@ -60,7 +63,7 @@
   </div>
 </div>
 
-<div class="p-strip">
+<div class="p-strip is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>What&rsquo;s new in Ubuntu Kylin {{latest_release_full}}?</h2>
@@ -70,7 +73,7 @@
   </div>
 </div>
 
-<div class="p-strip--grey">
+<div class="p-strip--grey is-bordered">
   <div class="row">
     <div class="col-6">
       <div>
@@ -120,7 +123,7 @@
   </div>
 </div>
 
-<div class="p-strip">
+<div class="p-strip is-bordered">
   <div class="row">
     <div class="col-6">
       <h3>Youker Calendar</h3>
@@ -132,7 +135,7 @@
   </div>
 </div>
 
-<div class="p-strip--grey">
+<div class="p-strip--grey is-bordered">
   <div class="row">
     <div class="col-6 u-align--center">
       <img src="{{ ASSET_SERVER_URL }}bfc3a0a6-desktop-kylin-youker-weather.jpg" alt="" width="471" height="481" />
