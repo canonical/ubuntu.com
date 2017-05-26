@@ -1,0 +1,9 @@
+@mixin ubuntu-p-pull-quote {
+
+  .p-pull-quote--accent {
+    @extend .p-pull-quote;
+    > p {
+      color: $color-x-light;
+    }
+  }
+}
