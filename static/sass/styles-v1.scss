@@ -171,25 +171,6 @@ fieldset {
   }
 }
 
-/// container for Vimeo
-.vimeo-container {
-  height: auto;
-  max-width: 100%;
-  overflow: hidden;
-  padding-bottom: 56.25%;
-  position: relative;
-
-  & iframe,
-  & object,
-  & embed {
-    height: 100%;
-    left: 0;
-    top: 0;
-    position: absolute;
-    width: 100%;
-  }
-}
-
 // XXX Muted heading theme
 // https://github.com/vanilla-framework/vanilla-brochure-theme/issues/66
 .p-heading--muted {

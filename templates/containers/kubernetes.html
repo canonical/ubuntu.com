@@ -3,7 +3,7 @@
 {% block meta_description %}The Canonical Distribution of Kubernetes delivers a ‘pure K8s’ experience, tested across a wide range of clouds and integrated with modern metrics and monitoring.{% endblock %}
 
 {% block second_level_nav_items %}
-{% include "templates/_nav_breadcrumb-v1.html" with section_title="Containers" page_title="kubernetes" %}
+  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Containers" page_title="kubernetes" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -32,7 +32,7 @@
     <div class="col-7">
       <h3>Getting started with the Canonical&nbsp;Distribution&nbsp;of&nbsp;Kubernetes</h3>
       <p>Watch this on-demand webinar to discover the simplest and easiest way to stand up and operate a Kubernetes cluster in AWS.</p>
-      <p><a href="https://pages.ubuntu.com/Getting-started-with-K8s-webinar-on-demand.html" class="external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Containers Kubernetes', 'eventLabel' : 'Watch now', 'eventValue' : undefined });">Watch now</a></p>
+      <p><a href="https://pages.ubuntu.com/Getting-started-with-K8s-webinar-on-demand.html" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Containers Kubernetes', 'eventLabel' : 'Watch now', 'eventValue' : undefined });">Watch now</a></p>
     </div>
   </div>
 </div>
@@ -86,8 +86,8 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <div class="vimeo-container">
-        <iframe src="https://player.vimeo.com/video/190300823?color=ffffff&title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <div class="u-embedded-media">
+        <iframe class="u-embedded-media__element" src="https://player.vimeo.com/video/190300823?color=ffffff&title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
       </div>
     </div>
   </div>
@@ -104,7 +104,7 @@
     <div class="u-equal-height">
       <div class="col-6 p-card">
         <h3 class="p-card__title">Elasticity built-in</h3>
-        <p class="p-card__content">Even for experts, installing and operating Kubernetes at scale is daunting. By installing it with <a class="external" href="http://conjure-up.io">conjure-up</a> and managing your deployment with Juju, Canonical&rsquo;s Distribution of Kubernetes is simple, naturally elastic and integrates with common operations dashboards. Charms deliver the latest stable Kubernetes and Juju makes it easy to manage and grow your cluster.</p>
+        <p class="p-card__content">Even for experts, installing and operating Kubernetes at scale is daunting. By installing it with <a class="p-link--external" href="http://conjure-up.io">conjure-up</a> and managing your deployment with Juju, Canonical&rsquo;s Distribution of Kubernetes is simple, naturally elastic and integrates with common operations dashboards. Charms deliver the latest stable Kubernetes and Juju makes it easy to manage and grow your cluster.</p>
       </div>
 
       <div class="col-6 p-card">
@@ -136,7 +136,7 @@
       <ul class="p-list">
         <li class="p-list__item is-ticked">Access to the latest stable upstream Kubernetes release</li>
         <li class="p-list__item is-ticked">Access to daily &lsquo;edge&rsquo; builds of upstream Kubernetes development branch (1.6.x) with rollback</li>
-        <li class="p-list__item is-ticked">Easy install with <a class="external" href="http://jujucharms.com">Juju</a> or <a class="" href="http://conjure-up.io">conjure-up</a></li>
+        <li class="p-list__item is-ticked">Easy install with <a class="p-link--external" href="http://jujucharms.com">Juju</a> or <a class="" href="http://conjure-up.io">conjure-up</a></li>
         <li class="p-list__item is-ticked">Scale master nodes independently of worker nodes</li>
         <li class="p-list__item is-ticked">Workloads are automatically portable between public clouds, private clouds and bare metal with an easy onramp to Google Container Engine (GKE)</li>
         <li class="p-list__item is-ticked">Easily create and remove user access</li>
@@ -145,7 +145,7 @@
         <li class="p-list__item is-ticked">Optional: Elastic Stack for Insights with Beats log collection and monitoring and analysis and visualisation with Elasticsearch and Kibana</li>
         <li class="p-list__item is-ticked">Optional: Ceph for filesystem and block storage</li>
       </ul>
-      <p><a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Datasheet_Canonical-kubernetes_28.09.16_WEB.pdf" class="external">Learn more in the Canonical Distribution of Kubernetes&nbsp;datasheet</a></p>
+      <p><a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Datasheet_Canonical-kubernetes_28.09.16_WEB.pdf" class="p-link--external">Learn more in the Canonical Distribution of Kubernetes&nbsp;datasheet</a></p>
     </div>
     <div class="col-6">
       <div class="juju-card" data-id="canonical-kubernetes"></div>
@@ -165,7 +165,7 @@
         <p>We also offer consulting services and customisation for larger organisations to integrate Kubernetes with existing infrastructure.</p>
         <p>For customers needing a fully managed Kubernetes, Canonical will deploy and operate your cluster remotely, and hand over to your own team as soon as they are familiar with the operational practices under the hood.</p>
         <p>To discuss your requirement connect with a member of the Canonical team.</p>
-        <p><a href="/containers/contact-us?product=kubernetes" class="button--primary">Contact us</a></p>
+        <p><a href="/containers/contact-us?product=kubernetes" class="p-button--brand">Contact us</a></p>
       </div>
     </div>
   </div>
@@ -177,7 +177,7 @@
       <div class="col-6">
         <h2>Exchange expertise and ideas with thousands of other IT professionals</h2>
         <p>Want to talk to other Ubuntu users straight away? Share ideas and get advice and help from our large, active community of IT professionals. As a community, we set high standards for friendliness and tolerance. We welcome your questions and contributions.</p>
-        <p><a class="external" href="https://community.ubuntu.com/help-information/">Community support</a></p>
+        <p><a class="p-link--external" href="https://community.ubuntu.com/help-information/">Community support</a></p>
       </div>
       <div class="col-4 u-vertically-center u-hidden--small">
         <div class="u-align--center">
