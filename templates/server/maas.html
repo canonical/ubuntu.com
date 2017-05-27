@@ -7,7 +7,7 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="p-strip is-deep is-bordered">
+<div class="p-strip is-deep is-bordered row-hero" >
   <div class="row">
     <div class="col-5">
       <h1>MAAS</h1>
@@ -22,9 +22,9 @@
       </ul>
       <p><a href="/download/server/provisioning" class="p-button--brand">Install MAAS</a></p>
     </div>
-    <div class="col-7">
-      <img class="u-image-position--right" src="{{ ASSET_SERVER_URL }}90669a61-screenshot-cloud_maas.png?w=800" alt="screenshot of maas" />
-      </div>
+    <div class="col-7 p-hero__item">
+      <img class="p-hero__image" src="{{ ASSET_SERVER_URL }}8ca2eab9-hero-ui-image.png?w=870" alt="screenshot of maas" />
+    </div>
   </div>
 </div>
 
@@ -167,52 +167,57 @@
   </div>
 </div>
 
-<div class="p-strip is-bordered">
+<div class="p-strip--light is-deep">
   <div class="row">
     <div class="col-8">
       <h2>Pricing</h2>
       <p>MAAS is supported by Canonical under the Ubuntu Advantage service program. Ubuntu Advantage MAAS includes tools that enable deployment of a wider range of operating systems, SLAs on support and high availability reference architectures.</p>
     </div>
-    </div>
-    <div class="row">
+  </div>
+  <div class="row">
     <div class="u-equal-height">
-    <div class="col-4 pricing__option box">
-      <h3 class="pricing__title">Self-supported</h3>
-      <p class="pricing__cost">Free</p>
-      <div class="pricing__detail">
-        <ul class="list-ticks--compact">
-          <li>Ubuntu and CentOS</li>
-        </ul>
-        <p><a href="/download/server/provisioning">Get started&nbsp;&rsaquo;</a></p>
+      <div class="col-4 p-card">
+        <h3 class="p-card__title">Self-supported</h3>
+        <footer class="p-card__footer">
+          <p class="p-card__title">Free</p>
+        </footer>
+        <footer class="p-card__footer">
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">Ubuntu and CentOS</li>
+          </ul>
+          <p><a href="/download/server/provisioning">Get started&nbsp;&rsaquo;</a></p>
+        </footer>
       </div>
-    </div>
-
-    <div class="col-4 pricing__option box">
-      <h3 class="pricing__title">Professional</h3>
-      <p class="pricing__cost">$5<span class="pricing__unit"> / per server per month</span></p>
-      <div class="pricing__detail">
-        <ul class="list-ticks--compact">
-          <li>All operating systems</li>
-          <li>9 to 5 support on weekdays (US and Europe only)</li>
-        </ul>
-        <p><a href="/cloud/contact-us">Contact us&nbsp;&rsaquo;</a></p>
+      <div class="col-4 p-card">
+        <h3 class="p-card__title">Professional</h3>
+        <footer class="p-card__footer">
+          <p class="p-card__title">$5<span class="p-heading--six" style="color: #888;"> / per server per month</span></p>
+        </footer>
+        <footer class="p-card__footer">
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">All operating systems</li>
+            <li class="p-list__item is-ticked">9 to 5 support on weekdays (US and Europe only)</li>
+          </ul>
+          <p><a href="/cloud/contact-us">Contact us&nbsp;&rsaquo;</a></p>
+        </footer>
       </div>
-    </div>
-
-    <div class="col-4 pricing__option box">
-      <h3 class="pricing__title">Enterprise</h3>
-      <p  class="pricing__cost">$10<span class="pricing__unit"> / per server per month</span></p>
-      <div class="pricing__detail">
-        <ul class="list-ticks--compact">
-          <li>All operating systems</li>
-          <li>24/7 support</li>
-        </ul>
-        <p><a href="/cloud/contact-us">Contact us&nbsp;&rsaquo;</a></p>
+      <div class="col-4 p-card">
+        <h3 class="p-card__title">Enterprise</h3>
+        <footer class="p-card__footer">
+          <p class="p-card__title">$10<span  class="p-heading--six" style="color: #888;"> / per server per month</span></p>
+        </footer>
+        <footer class="p-card__footer">
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">All operating systems</li>
+            <li class="p-list__item is-ticked">24/7 support</li>
+          </ul>
+          <p><a href="/cloud/contact-us">Contact us&nbsp;&rsaquo;</a></p>
+        </footer>
       </div>
     </div>
   </div>
 </div>
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_maas-faq" second_item="_maas-juju" third_item="_maas-autopilot" %}
+  {% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_maas-faq" second_item="_maas-juju" third_item="_maas-autopilot" %}
 
-{% endblock content %}
+  {% endblock content %}
