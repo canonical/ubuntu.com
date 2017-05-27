@@ -16,4 +16,84 @@
       padding: $sp-medium $sp-medium $sp-medium 5.25rem;
     }
   }
+
+  .p-card--resource {
+    background: $color-x-light;
+    border: 1px solid $color-mid-light;
+    border-radius: 2px;
+    cursor: pointer;
+    display: block;
+    margin-bottom: $sp-medium;
+    padding: $sp-large $sp-large $sp-xx-large $sp-large;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      right: -3px;
+      width: 0;
+      height: 0;
+      border-bottom: $sp-x-large solid $color-mid-light;
+      border-right: $sp-x-large solid $color-x-light;
+      -webkit-box-shadow: -2px 2px 2px rgba(176, 176, 176, 0.4);
+      -moz-box-shadow: -2px 2px 2px rgba(176, 176, 176, 0.4);
+      box-shadow: -2px 2px 2px rgba(176, 176, 176, 0.4);
+      z-index: 2;
+      border-radius: 0 0 0 0;
+    }
+
+    &::after {
+      -moz-transition: all 0.2s ease-out;
+      -webkit-transition: all 0.2s ease-out;
+      transition: all 0.2s ease-out;
+      content: "";
+      position: absolute;
+      z-index: 2;
+      right: -6px;
+      top: $sp-medium;
+      height: 1px;
+      width: $sp-xx-large;
+      -ms-transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      -moz-box-shadow: 0 -1px 2px 0 #ddd;
+      -webkit-box-shadow: 0 -1px 2px 0 #ddd;
+      box-shadow: 0 -1px 2px 0 #ddd;
+    }
+
+    &:last-of-type {
+      margin-bottom: $sp-x-large;
+    }
+
+    &__link,
+    &__link:active,
+    &__link:hover,
+    &__link:link,
+    &__link:visited {
+      color: inherit;
+      text-decoration: none;
+      outline: 0;
+
+    }
+
+    &__title,
+    &__title:active,
+    &__title:hover,
+    &__title:link,
+    &__title:visited {
+      color: #dd4814;
+    }
+
+    &__category {
+      background: url('#{$assets-path}ed42aefa-icon-resource-hub-icon-document.png') left center no-repeat;
+      color: $color-mid-dark;
+      font-size: $sp-medium;
+      letter-spacing: 1px;
+      margin: 0;
+      padding: 0 0 0 $sp-medium;
+      position: absolute;
+      text-transform: uppercase;
+    }
+  }
 }
