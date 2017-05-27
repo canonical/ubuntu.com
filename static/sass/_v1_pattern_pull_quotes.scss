@@ -5,5 +5,13 @@
     > p {
       color: $color-x-light;
     }
+
+    > p:last-of-type::after,
+    > p:last-of-type::after,
+    > p:first-of-type::before,
+    > p:first-of-type::before
+     {
+        color: $color-brand;
+      }
   }
 }
