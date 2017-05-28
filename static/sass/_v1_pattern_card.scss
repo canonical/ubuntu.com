@@ -25,5 +25,17 @@
     margin: 0;
     padding: 0 0 0 $sp-large;
     text-transform: uppercase;
+
+    > a:link,
+    > a:visited {
+      color: $color-mid-dark;
+      text-decoration: none;
+    }
+
+    > a:hover,
+    > a:active {
+      color: $color-brand;
+      text-decoration: underline;
+    }
   }
 }
