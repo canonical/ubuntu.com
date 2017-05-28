@@ -6,7 +6,7 @@
 {% block extra_body_class %}containers-home{% endblock %}
 
 {% block second_level_nav_items %}
-  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Containers" page_title="Overview" %}
+  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Containers" page_title="Docker Engine" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -53,6 +53,19 @@
   <div class="row">
     <div class="u-equal-height">
       <div class="p-card col-6">
+        <h3 class="p-card__title">One vendor, simpler relationships</h3>
+        <p class="p-card__content">In a growing infrastructure, having just one vendor for both container and OS-level support reduces relationship complexity and the potential for friction.</p>
+      </div>
+      <div class="p-card col-6">
+        <h3 class="p-card__title">Enhanced security</h3>
+        <p class="p-card__content">Packaging Docker Engine as a snap delivers additional isolation and confinement benefits which significantly improve the security of your Docker app.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="p-card col-6">
         <h3 class="p-card__title">Safer, simpler roll backs</h3>
         <p class="p-card__content">If needed, you can easily undo an update and reinstall an older Docker snap that worked.</p>
       </div>
@@ -70,7 +83,6 @@
       <h2>How does our Docker support offering work?</h2>
     </div>
   </div>
-
   <div class="row">
     <div class="u-equal-height">
       <div class="col-8">
@@ -78,11 +90,9 @@
         <ul class="p-list">
           <li class="p-list__item is-ticked">Stable, maintained releases of Docker are published and updated by Docker as snap packages on Ubuntu, enabling direct access to the official Docker Engine for all Ubuntu users</li>
           <li class="p-list__item is-ticked">Canonical provides Level 1 and Level 2 technical support for Docker Enterprise Edition and are backed by Docker Inc. for Level 3 support</li>
-          <li class="p-list__item is-ticked">Canonical also ensures global availability of secure Ubuntu images on Docker Hub</li>
+          <li class="p-list__item is-ticked">Canonical also ensures global availability of secure  Ubuntu images on Docker Hub</li>
         </ul>
-        <p>
-          <a href="/containers/contact-us?product=docker">Talk to our container team&nbsp;&rsaquo;</a>
-        </p>
+        <p><a href="/containers/contact-us?product=docker">Talk to our container team&nbsp;&rsaquo;</a></p>
       </div>
       <div class="col-4 u-align--center u-vertically-center u-hidden--small">
         <img src="{{ ASSET_SERVER_URL }}9f035e4a-picto-support-orange.svg" width="200" alt="" />
@@ -108,7 +118,8 @@
           <p class="p-testimonial__quote--large">Through our partnership, we provide users with more choice by bringing the agility, portability, and security benefits of the Docker Enterprise Edition to the larger Ubuntu community</p>
           <div class="p-testimonial__citation-wrap--large">
             <cite class="p-testimonial__citation--large">
-              <img class="p-testimonial__logo" src="{{ ASSET_SERVER_URL }}b12d2f83-docker_logo_h.svg" alt="" /> Nick Stinemates, VP, Business Development &amp; Technical Alliances at Docker, Inc</cite>
+                <img class="p-testimonial__logo" src="{{ ASSET_SERVER_URL }}b12d2f83-docker_logo_h.svg" alt="" /> Nick Stinemates, VP, Business Development &amp; Technical Alliances at Docker, Inc
+              </cite>
           </div>
         </div>
       </blockquote>
