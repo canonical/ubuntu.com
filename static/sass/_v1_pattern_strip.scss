@@ -50,6 +50,11 @@
 
   .p-strip--accent {
     @extend %strip--accent;
+
+    fieldset {
+      background-color: $color-accent;
+      border-color: $color-accent;
+    }
   }
 
   .p-strip--suru-accent {
