@@ -8,7 +8,7 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="p-strip--light is-deep is-bordered">
+<div class="p-strip--light is-deep">
   <div class="row">
     <div class="col-10">
       <h1>Get a production cloud with OpenStack Autopilot</h1>
@@ -26,13 +26,13 @@
           <ul class="p-list">
             <li class="p-list__item is-ticked">A minimum of 6 machines with the following roles:
               <ul class="p-list">
-                <li class="p-list__item is-ticked">1 machine for the MAAS server</li>
-                <li class="p-list__item is-ticked">1 machine for the Juju controller</li>
-                <li class="p-list__item is-ticked">1 machine for the OpenStack Autopilot</li>
-                <li class="p-list__item is-ticked">3 or more machines for the cloud (6 or more if you want HA):
+                <li class="p-list__item">1 machine for the MAAS server</li>
+                <li class="p-list__item">1 machine for the Juju controller</li>
+                <li class="p-list__item">1 machine for the OpenStack Autopilot</li>
+                <li class="p-list__item">3 or more machines for the cloud (6 or more if you want HA):
                   <ul class="p-list">
-                    <li class="p-list__item is-ticked">At least one must have 2 NICs</li>
-                    <li class="p-list__item is-ticked">At least 3 must have 2 disks</li>
+                    <li class="p-list__item">At least one must have 2 NICs</li>
+                    <li class="p-list__item">At least 3 must have 2 disks</li>
                   </ul>
                 </li>
               </ul>
@@ -84,9 +84,9 @@
               <button class="js-copy-to-clipboard p-code-snippet__action">Copy to clipboard</button>
             </p>
             <ul class="p-list">
-              <li class="p-list__item is-ticked">Login to the MAAS UI at http://&lt;maas.ip&gt;/MAAS/</li>
-              <li class="p-list__item is-ticked">Fill in the details on the welcome page and import images for Ubuntu 14.04 LTS and 16.04 LTS. Importing images may take a while, but you can click &ldquo;continue&rdquo; as soon as it&rsquo;s started</li>
-              <li class="p-list__item is-ticked">If you haven&rsquo;t imported your SSH key before, now is your chance to import one from Launchpad, GitHub or you can also upload it directly</li>
+              <li class="p-list__item">Login to the MAAS UI at http://&lt;maas.ip&gt;/MAAS/</li>
+              <li class="p-list__item">Fill in the details on the welcome page and import images for Ubuntu 14.04 LTS and 16.04 LTS. Importing images may take a while, but you can click &ldquo;continue&rdquo; as soon as it&rsquo;s started</li>
+              <li class="p-list__item">If you haven&rsquo;t imported your SSH key before, now is your chance to import one from Launchpad, GitHub or you can also upload it directly</li>
             </ul>
           </div>
         </li>
@@ -95,8 +95,8 @@
           <h3 class="p-list-step__title"><span class="p-list-step__bullet">3</span>Configure the MAAS subnet and&nbsp;DHCP</h3>
           <div class="p-list-step__content">
             <ul class="p-list">
-              <li class="p-list__item is-ticked">Go to the &ldquo;Subnets&rdquo; tab and click on your subnet. Verify that &ldquo;gateway&rdquo; and &ldquo;DNS&rdquo; are filled in and update as necessary</li>
-              <li class="p-list__item is-ticked">Go back (or click on &ldquo;subnets&rdquo; again) and this time click on the &ldquo;untagged&rdquo; VLAN. Select &ldquo;Provide dhcp&rdquo; in the &ldquo;Take action&rdquo; button  and select a suitable Dynamic range. To start with, count one IP per NIC connected to the network</li>
+              <li class="p-list__item">Go to the &ldquo;Subnets&rdquo; tab and click on your subnet. Verify that &ldquo;gateway&rdquo; and &ldquo;DNS&rdquo; are filled in and update as necessary</li>
+              <li class="p-list__item">Go back (or click on &ldquo;subnets&rdquo; again) and this time click on the &ldquo;untagged&rdquo; VLAN. Select &ldquo;Provide dhcp&rdquo; in the &ldquo;Take action&rdquo; button  and select a suitable Dynamic range. To start with, count one IP per NIC connected to the network</li>
             </ul>
           </div>
         </li>
@@ -105,7 +105,7 @@
           <h3 class="p-list-step__title"><span class="p-list-step__bullet">4</span>Verify image syncing</h3>
           <div class="p-list-step__content">
             <ul class="p-list">
-              <li class="p-list__item is-ticked">Go to the &ldquo;Images&rdquo; tab and check if the Ubuntu images have all been downloaded and are in a &ldquo;Synced&rdquo; state. This is the process started earlier, and depending on your bandwidth it may take a while for it to finish. You can only proceed with the next steps if the images are synced</li>
+              <li class="p-list__item">Go to the &ldquo;Images&rdquo; tab and check if the Ubuntu images have all been downloaded and are in a &ldquo;Synced&rdquo; state. This is the process started earlier, and depending on your bandwidth it may take a while for it to finish. You can only proceed with the next steps if the images are synced</li>
             </ul>
           </div>
         </li>
@@ -115,18 +115,18 @@
           <div class="p-list-step__content">
             <p>Now you need to enlist and commission machines:</p>
             <ul class="p-list">
-              <li class="p-list__item is-ticked">Ensure all machines are set to PXE boot, if possible disable all other boot options, including local disk, in the BIOS</li>
-              <li class="p-list__item is-ticked">Power the machines on. They will all appear in the &ldquo;Nodes&rdquo; tab of MAAS after a while</li>
-              <li class="p-list__item is-ticked">Edit each machine, filling in the power type and other parameters, if they are not correct already</li>
-              <li class="p-list__item is-ticked">Select all the machines and, using the &ldquo;Take action&rdquo; dropdown, &ldquo;Commission&rdquo; them</li>
-              <li class="p-list__item is-ticked">Wait until all machines have a &ldquo;Ready&rdquo; status</li>
-              <li class="p-list__item is-ticked">Verify the networking by going to the details page for the node(s) that have multiple NICs and check that the second NIC (the non-PXE one):
+              <li class="p-list__item">Ensure all machines are set to PXE boot, if possible disable all other boot options, including local disk, in the BIOS</li>
+              <li class="p-list__item">Power the machines on. They will all appear in the &ldquo;Nodes&rdquo; tab of MAAS after a while</li>
+              <li class="p-list__item">Edit each machine, filling in the power type and other parameters, if they are not correct already</li>
+              <li class="p-list__item">Select all the machines and, using the &ldquo;Take action&rdquo; dropdown, &ldquo;Commission&rdquo; them</li>
+              <li class="p-list__item">Wait until all machines have a &ldquo;Ready&rdquo; status</li>
+              <li class="p-list__item">Verify the networking by going to the details page for the node(s) that have multiple NICs and check that the second NIC (the non-PXE one):
                 <ul class="p-list">
-                  <li class="p-list__item is-ticked">Is connected to the subnet</li>
-                  <li class="p-list__item is-ticked">Has the &ldquo;IP address&rdquo; field set to &ldquo;unconfigured&rdquo;</li>
+                  <li class="p-list__item">Is connected to the subnet</li>
+                  <li class="p-list__item">Has the &ldquo;IP address&rdquo; field set to &ldquo;unconfigured&rdquo;</li>
                 </ul>
               </li>
-              <li class="p-list__item is-ticked">The first NIC should be the same except the IP address field will be set to &ldquo;Auto assign&rdquo;</li>
+              <li class="p-list__item">The first NIC should be the same except the IP address field will be set to &ldquo;Auto assign&rdquo;</li>
             </ul>
           </div>
         </li>
@@ -144,41 +144,41 @@
               <button class="js-copy-to-clipboard p-code-snippet__action">Copy to clipboard</button>
             </p>
             <ul class="p-list">
-              <li class="p-list__item is-ticked">Replace &lt;hostname&gt; above with the hostname of the machine that was selected for the Juju controller role. Do not add the domain name to it</li>
-              <li class="p-list__item is-ticked">
+              <li class="p-list__item">Replace &lt;hostname&gt; above with the hostname of the machine that was selected for the Juju controller role. Do not add the domain name to it</li>
+              <li class="p-list__item">
                 <p>Select &ldquo;Landscape&rdquo;</p>
                 <a href="{{ ASSET_SERVER_URL }}24390fd2-1_select_landscape.png">
                   <img src="{{ ASSET_SERVER_URL }}24390fd2-1_select_landscape.png?w=424" alt="Select landscape" />
                 </a>
               </li>
-              <li class="p-list__item is-ticked">
+              <li class="p-list__item">
                 <p>Select &ldquo;maas&rdquo; as the cloud type</p>
               </li>
-              <li class="p-list__item is-ticked">Fill in your:
+              <li class="p-list__item">Fill in your:
                 <ul class="p-list">
-                  <li class="p-list__item is-ticked">MAAS server IP</li>
-                  <li class="p-list__item is-ticked">MAAS user API key &mdash; found in your user&rsquo;s settings in the MAAS user interface (top-right corner)</li>
+                  <li class="p-list__item">MAAS server IP</li>
+                  <li class="p-list__item">MAAS user API key &mdash; found in your user&rsquo;s settings in the MAAS user interface (top-right corner)</li>
                 </ul>
                 <a href="{{ ASSET_SERVER_URL }}4e155f7e-3_maas_ip_api_key.png">
                   <img src="{{ ASSET_SERVER_URL }}4e155f7e-3_maas_ip_api_key.png?w=424" alt="Set IP and API key" />
                 </a>
               </li>
-              <li class="p-list__item is-ticked">
+              <li class="p-list__item">
                 <p>The next page will show you the list of applications that make up a Landscape deployment. In the case of Landscape, all applications will be deployed to one machine only using LXD containers. If you want to select which machine that will be, you can click on the &ldquo;Architect&rdquo; button of any application. Otherwise, click on &ldquo;Deploy&rdquo; on the bottom right</p>
                 <a href="{{ ASSET_SERVER_URL }}ab5505f6-4_list_of_applications.png">
                   <img src="{{ ASSET_SERVER_URL }}ab5505f6-4_list_of_applications.png?w=424" alt="Applications list" />
                 </a>
               </li>
-              <li class="p-list__item is-ticked">
+              <li class="p-list__item">
                 <p>When everything is installed, you will be asked to provide details about the Landscape administrator to be created: name, email and password</p>
               </li>
-              <li class="p-list__item is-ticked">
+              <li class="p-list__item">
                 <p>Finally, a summary will be displayed with a link for you to access Landscape and begin your Openstack deployment. Open that link to access Landscape</p>
                 <a href="{{ ASSET_SERVER_URL }}12db1ed7-8_summary.png">
                   <img src="{{ ASSET_SERVER_URL }}12db1ed7-8_summary.png?w=424" alt="Set IP and API key" />
                 </a>
               </li>
-              <li class="p-list__item is-ticked">
+              <li class="p-list__item">
                 <p>Login with your Admin Email and Password</p>
               </li>
             </ul>
