@@ -1,0 +1,163 @@
+// List Grid
+@mixin vf-p-matrix {
+  .p-matrix {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @media (min-width: $breakpoint-small) {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    &__item {
+      @extend %clearfix;
+      border-top: 1px dotted $color-mid-dark;
+      padding: $sp-medium;
+
+      &:empty {
+        display: none; // hide orphans
+      }
+
+      &:first-child {
+        border-top: 0;
+      }
+
+      @media (min-width: $breakpoint-small) {
+        border-right: 1px dotted $color-mid-dark;
+        border-top: 1px dotted $color-mid-dark;
+        margin-bottom: 0;
+        padding-right: $sp-medium;
+
+        &:empty {
+          display: block; // hide orphans
+        }
+      }
+    }
+
+    &__img,
+    &__content {
+      display: inline-block;
+      //float: left;
+    }
+
+    &__img {
+      margin-right: $sp-medium;
+      max-width: calc(30% - #{$sp-medium});
+    }
+
+    &__content {
+      max-width: 90%;
+    }
+
+    &__title {
+      margin-bottom: $sp-x-small;
+    }
+
+    &__desc {
+      margin-bottom: 0;
+    }
+
+    &__link {
+      border-bottom: 0;
+    }
+  }
+}
+
+@mixin ubuntu-p-matrix {
+  @include vf-p-matrix;
+  .p-matrix {
+
+    // undo
+    .p-matrix__item {
+      @media (min-width: $breakpoint-small) {
+        border: 0;
+        width: 90%;
+      }
+    }
+
+    &.is-split {
+      .p-matrix__item {
+        @media (min-width: $breakpoint-small) {
+          width: calc(50% - .666666rem);
+
+          &:nth-child(-n+1) {
+            border-top: 0;
+          }
+
+          &:nth-child(n+1) {
+            border-right: 1px dotted $color-mid-dark;
+            padding-right: $sp-medium;
+          }
+
+          &:nth-child(n+3) {
+            border-top: 1px dotted $color-mid-dark;
+          }
+
+          &:nth-child(2n) {
+            border-right: 0;
+            padding-right: 0;
+          }
+        }
+      }
+    }
+
+    &.is-trisected {
+      .p-matrix__item {
+
+        @media (min-width: $breakpoint-small) {
+          width: calc(33.333% - .666666rem);
+
+          &:nth-child(-n+3) {
+            border-top: 0;
+          }
+
+          &:nth-child(n) {
+            border-bottom: 1px dotted $color-mid-dark;
+            border-right: 1px dotted $color-mid-dark;
+            padding-right: $sp-medium;
+          }
+
+          &:nth-child(3n+1):nth-last-child(-n+3),
+          &:nth-child(3n+1):nth-last-child(-n+3) ~ li {
+            border-bottom: 0;
+          }
+
+          &:nth-child(3n) {
+            border-right: 0;
+            padding-right: 0;
+          }
+        }
+      }
+    }
+
+
+    &.is-quartered {
+      .p-matrix__item {
+        @media (min-width: $breakpoint-small) {
+          width: calc(25% - .666666rem);
+
+          &:nth-child(-n+4) {
+            border-top: 0;
+          }
+
+          &:nth-child(n) {
+            border-bottom: 1px dotted $color-mid-dark;
+            border-right: 1px dotted $color-mid-dark;
+            padding-right: $sp-medium;
+          }
+
+          &:nth-child(4n+1):nth-last-child(-n+4),
+          &:nth-child(4n+1):nth-last-child(-n+4) ~ li {
+            border-bottom: 0;
+          }
+
+          &:nth-child(4n) {
+            border-right: 0;
+            padding-right: 0;
+          }
+        }
+      }
+    }
+  }
+}
