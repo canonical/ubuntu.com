@@ -52,7 +52,7 @@
     <meta name="google-site-verification" content="ddh2iq7ZuKf1LpkL_gtM_T7DkKDVD7ibq6Ceue4a_3M" />
   </head>
 
-  <body>
+  <body {% if extra_body_class != "" %}class="{% block extra_body_class %}{% endblock %}"{% endif %}>
     <!-- google tag manager -->
     <script>
       dataLayer = [];
