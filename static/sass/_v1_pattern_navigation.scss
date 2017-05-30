@@ -70,6 +70,10 @@
           > a {
             display: inline-block;
             padding: $sp-medium $sp-small;
+
+            &.is-active {
+              background-color: $color-brand-dark;
+            }
           }
 
           &:hover {

@@ -25,6 +25,8 @@
 @import 'v1_contribution';
 @import 'v1_pattern_inline-images';
 @import 'v1_patterns_testimonials';
+@import 'v1_pattern_hero';
+@import 'v1_pattern_pull_quotes';
 
 @include ubuntu-p-site-search;
 @include ubuntu-p-navigation;
@@ -37,6 +39,8 @@
 @include ubuntu-p-contribute;
 @include ubuntu-p-inline-images;
 @include ubuntu-p-testimonials;
+@include ubuntu-p-hero;
+@include ubuntu-p-pull-quote;
 
 // **************************
 // Bug fixes
@@ -177,4 +181,9 @@ fieldset {
   color: $color-dark;
   font-size: 0.875rem;
   text-transform: uppercase;
+}
+
+/// XXX fix .p-heading-icon making the icon go to the top
+.p-heading-icon__img {
+  align-self: flex-start;
 }

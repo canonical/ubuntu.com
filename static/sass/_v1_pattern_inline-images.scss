@@ -2,13 +2,44 @@
 // This can be removed when https://github.com/canonical-websites/www.ubuntu.com/issues/1824 is complete
 // Image grid to showcase group of images
 @mixin vf-p-inline-images {
+  %item {
+    display: inline-block;
+    max-width: 6rem;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+
+    @media (min-width: $breakpoint-medium) {
+      margin: $sp-xxx-large;
+      max-width: 11.25rem;
+    }
+
+    * {
+      width: 100%;
+    }
+  }
+
   .p-inline-images {
     @extend %clearfix;
     display: block;
     list-style: none; // if list is used as wrapper
+    margin-left: 0;
+    padding-left: 0;
     text-align: center;
 
     &__item {
+      @extend %item;
+      margin: $sp-x-large;
+    }
+
+    &__item-compact {
+      @extend %item;
+      margin: $sp-medium;
+    }
+  }
+
+  @include deprecate('2.0.0', 'Use .p-inline-images__item instead') {
+    &__img {
       display: inline-block;
       margin: $sp-x-large;
       max-width: 6rem;
@@ -20,29 +51,10 @@
         margin: $sp-xxx-large;
         max-width: 11.25rem;
       }
-
-      * {
-        width: 100%;
-      }
-    }
-
-    @include deprecate('2.0.0', 'Use .p-inline-images__item instead') {
-      &__img {
-        display: inline-block;
-        margin: $sp-x-large;
-        max-width: 6rem;
-        text-align: center;
-        vertical-align: middle;
-        width: 100%;
-
-        @media (min-width: $breakpoint-medium) {
-          margin: $sp-xxx-large;
-          max-width: 11.25rem;
-        }
-      }
     }
   }
 }
+
 
 // XXX Extension of the inline images to add logo support
 // This should be proposed up to vanilla-brochure-theme once approved
