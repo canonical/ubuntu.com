@@ -1,13 +1,11 @@
-{% extends "desktop/base_desktop.html" %}
+{% extends "desktop/base_desktop-v1.html" %}
 
 {% block title %}Thank you{% endblock %}
 
 {% block second_level_nav_items %}
-<div class="strip-inner-wrapper">
-	{% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Thank you" %}
-</div>
+  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Desktop" page_title="Thank you" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-{% include "shared/_thank_you.html" with thanks_context="your interest in Ubuntu" %}
+  {% include "shared-v1/_thank_you.html" with thanks_context="your interest in Ubuntu" %}
 {% endblock content %}
