@@ -688,8 +688,8 @@ body.homepage-cloud-default--2 {
     }
   } // @media only screen and (min-width : $breakpoint-large)
 
-  
-} 
+
+}
 
 // Override for the A/B test
   body.homepage-cloud-default--2 {
@@ -1202,5 +1202,63 @@ body.homepage-1704 {
       }
     }
 
+  }
+}
+
+body.homepage-maas-may-2017 {
+
+  .banner {
+    margin-bottom: 0;
+    box-shadow: none;
+    border-bottom: 0;
+  }
+
+  #main-content {
+    margin-top: 0;
+
+    .row-hero {
+      background-color: #333;
+      background-size: cover;
+      background-position: left top;
+      color: #fff;
+      margin-top: 0;
+      min-height: 255px;
+      padding-top: 40px;
+
+      .intro {
+        margin-bottom: 1.75rem;
+      }
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        > div div {
+          min-height: 400px;
+          align-items: flex-start;
+          margin-bottom: 0;
+        }
+      }
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        background-position: 75% 0%;
+        padding: 60px 0 40px;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        background-image: url('#{$asset-server-url}a328d904-MAAS-background-desktop-large-screen.png');
+        background-position: 77% 0%;
+        padding: 100px 0;
+      }
+
+      @media only screen and (min-width : 1600px) {
+        background-position: 85% 0;
+      }
+
+      &__image-for-small {
+        padding: 30px 0 50px;
+      }
+
+      a {
+        color: #fff;
+      }
+    }
   }
 }

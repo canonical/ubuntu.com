@@ -1,6 +1,6 @@
 {% extends "base_index.html" %}
 
-{% block takeover_body_class %}homepage-cloud-default{% endblock takeover_body_class %}
+{% block takeover_body_class %}homepage-maas-may-2017{% endblock takeover_body_class %}
 
 {% block head_extra %}
   <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
@@ -8,7 +8,7 @@
 
 {% block takeover_content %}
 
-{% include "takeovers/_cloud_default.html" %}
+{% include "takeovers/_maas_may_2017.html" %}
 
 {% get_rss_feed "https://insights.ubuntu.com/tag/spotlight/feed" limit=1 as spotlight_feed %}
 
@@ -46,7 +46,7 @@
 <section class="row row--intro strip strip-grey no-border">
   <div class="strip-inner-wrapper">
     <h2 class="text-center twelve-col">
-      Ubuntu is an open source software operating system that runs from the 
+      Ubuntu is an open source software operating system that runs from the
       desktop, to the cloud, to all your internet connected things
       </h2>
   </div>
