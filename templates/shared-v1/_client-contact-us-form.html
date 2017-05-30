@@ -4,7 +4,6 @@
     <p>{{intro_text}}</p>
   </div>
 </div>
-
 <div class="row">
   <div class="col-8">
     <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm">
@@ -42,6 +41,7 @@
             <label for="Title" class="mktoLabel">Job title:</label>
             <input required id="Title" name="Title" maxlength="255" type="text" class="mktoField mktoRequired" />
           </li>
+
         </ul>
       </fieldset>
 
@@ -58,7 +58,7 @@
           </li>
           <li class="p-list__item">All information provided will be handled in accordance with the Canonical <a href="https://www.ubuntu.com/legal" target="_blank">privacy policy</a>.</li>
           <li class="mktField p-list__item">
-            <button type="submit" class="mktoButton p-button--brand" style="margin: 1rem 0;" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'iot contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button></span>
+            <button type="submit" class="mktoButton p-button--brand" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'iot contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button>
           </li>
         </ul>
         <input type="hidden" name="formid" class="mktoField" value="{{formid}}" />
