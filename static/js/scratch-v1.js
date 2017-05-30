@@ -194,8 +194,24 @@ core.siteSearch = function(){
     e.preventDefault();
   });
 };
-
 core.siteSearch();
+
+
+// secondary nav toggle
+// @TODO create js visibility util
+core.secondaryNav = function(){
+
+  secondaryNavToggle = document.querySelector('.second-level-nav-toggle__link');
+  navSecondaryMenu  = document.querySelector('.nav-secondary__menu');
+
+console.log(navSecondaryMenu);
+
+  secondaryNavToggle.addEventListener('click', function(e) {
+    navSecondaryMenu.classList.toggle('is-visible');
+    e.preventDefault();
+  });
+};
+core.secondaryNav();
 
 // Contributor form toggle
 core.contributorFormToggle = function(){
