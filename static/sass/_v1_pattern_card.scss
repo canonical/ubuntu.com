@@ -16,4 +16,26 @@
       padding: $sp-medium $sp-medium $sp-medium 5.25rem;
     }
   }
+
+  .p-card__category {
+    background: url('#{$assets-path}ed42aefa-icon-resource-hub-icon-document.png') left center no-repeat;
+    color: $color-mid-dark;
+    font-size: $sp-medium;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0 0 0 $sp-large;
+    text-transform: uppercase;
+
+    > a:link,
+    > a:visited {
+      color: $color-mid-dark;
+      text-decoration: none;
+    }
+
+    > a:hover,
+    > a:active {
+      color: $color-brand;
+      text-decoration: underline;
+    }
+  }
 }

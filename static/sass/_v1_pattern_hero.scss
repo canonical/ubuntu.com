@@ -1,0 +1,38 @@
+@mixin ubuntu-p-hero {
+  /*
+  positions hero image on a row that overflows to the right
+  for larger screens
+  */
+  .p-hero {
+    background-color: $color-x-light;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: $color-x-light;
+    margin-top: 0;
+    padding-bottom: 5.625rem;
+    padding-top: 5.625rem;
+    position: relative;
+
+    @media only screen and (max-width : $breakpoint-medium) {
+      padding: $sp-xx-large 0;
+    }
+
+    &__item {
+      margin-bottom: -5.625rem;
+      overflow: visible;
+      position: relative;
+
+      @media only screen and (max-width : $breakpoint-medium) {
+        display: none;
+      }
+    }
+
+    &__image {
+      margin-bottom: 0;
+      max-width: none;
+      margin-left: 5.625rem;
+      height: 100%;
+    }
+  }
+}

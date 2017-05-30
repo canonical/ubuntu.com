@@ -6,11 +6,10 @@
 {% block extra_body_class %}containers-home{% endblock %}
 
 {% block second_level_nav_items %}
-  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Containers" page_title="Docker Engine" %}
+{% include "templates/_nav_breadcrumb-v1.html" with div_title="Containers" page_title="Overview" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-
 <div class="p-strip is-deep">
   <div class="row">
     <div class="u-equal-height">
@@ -36,7 +35,6 @@
       <h2>Why run Docker Engine on Ubuntu?</h2>
     </div>
   </div>
-
   <div class="row">
     <div class="u-equal-height">
       <div class="p-card col-6">
@@ -49,26 +47,13 @@
       </div>
     </div>
   </div>
-
-  <div class="row">
-    <div class="u-equal-height">
-      <div class="p-card col-6">
-        <h3 class="p-card__title">One vendor, simpler relationships</h3>
-        <p class="p-card__content">In a growing infrastructure, having just one vendor for both container and OS-level support reduces relationship complexity and the potential for friction.</p>
-      </div>
-      <div class="p-card col-6">
-        <h3 class="p-card__title">Enhanced security</h3>
-        <p class="p-card__content">Packaging Docker Engine as a snap delivers additional isolation and confinement benefits which significantly improve the security of your Docker app.</p>
-      </div>
-    </div>
-  </div>
-
   <div class="row">
     <div class="u-equal-height">
       <div class="p-card col-6">
         <h3 class="p-card__title">Safer, simpler roll backs</h3>
         <p class="p-card__content">If needed, you can easily undo an update and reinstall an older Docker snap that worked.</p>
       </div>
+
       <div class="p-card col-6">
         <h3 class="p-card__title">Faster, more reliable updates with snaps</h3>
         <p class="p-card__content">Docker Engine image snaps are faster to install and update automatically and transactionally so your Docker app is always fresh and never broken.</p>
@@ -77,13 +62,14 @@
   </div>
 </div>
 
+
 <div class="p-strip--grey is-bordered is-deep">
   <div class="row">
     <div class="col-10">
-      <h2>How does our Docker support offering work?</h2>
+    <h2>How does our Docker support offering work?</h2>
     </div>
-  </div>
-  <div class="row">
+    </div>
+    <div class="row">
     <div class="u-equal-height">
       <div class="col-8">
         <p>Docker and Canonical&rsquo;s integrated support offering for Docker Engine running on Ubuntu provides a streamlined operations and support experience:</p>
@@ -107,7 +93,6 @@
       <h2 class="p-heading--three">What people are saying about Docker Engine on Ubuntu</h2>
     </div>
   </div>
-
   <div class="row">
     <div class="u-equal-height">
       <blockquote class="p-testimonial--large">
@@ -118,32 +103,31 @@
           <p class="p-testimonial__quote--large">Through our partnership, we provide users with more choice by bringing the agility, portability, and security benefits of the Docker Enterprise Edition to the larger Ubuntu community</p>
           <div class="p-testimonial__citation-wrap--large">
             <cite class="p-testimonial__citation--large">
-                <img class="p-testimonial__logo" src="{{ ASSET_SERVER_URL }}b12d2f83-docker_logo_h.svg" alt="" /> Nick Stinemates, VP, Business Development &amp; Technical Alliances at Docker, Inc
-              </cite>
+              <img class="p-testimonial__logo" src="{{ ASSET_SERVER_URL }}b12d2f83-docker_logo_h.svg" alt="" /> Nick Stinemates, VP, Business Development &amp; Technical Alliances at Docker, Inc</cite>
+            </div>
           </div>
+        </blockquote>
+      </div>
+    </div>
+</div>
+
+  <div class="p-strip--grey is-deep">
+    <div class="row">
+      <div class="u-equal-height">
+        <div class="col-8">
+          <h2>How does Docker compare to LXD?</h2>
+          <p>LXD gives you a classic virtual machine experience with all your administrative processes running, from sshd to syslog, so it feels just like a normal Ubuntu system. Docker instances typically contain only a single process or application per container.</p>
+          <p>LXD usage is often driven by operations making Infrastructure-as-a-Service OS instances much faster. Whereas Docker usage is often driven by developers making Platform-as-a-Service application instances more portable.</p>
+          <p>Docker can run alongside LXD with both instances working together. Moreover, Docker can run inside of LXD with zero performance impact, allowing you to safely migrate your Docker containers between machines for easy scale up and scale down.</p>
+          <p><a href="/containers/lxd">Learn more about LXD&nbsp;&rsaquo;</a></p>
         </div>
-      </blockquote>
-    </div>
-  </div>
-</div>
-
-<div class="p-strip--grey is-deep">
-  <div class="row">
-    <div class="u-equal-height">
-      <div class="col-8">
-        <h2>How does Docker compare to LXD?</h2>
-        <p>LXD gives you a classic virtual machine experience with all your administrative processes running, from sshd to syslog, so it feels just like a normal Ubuntu system. Docker instances typically contain only a single process or application per container.</p>
-        <p>LXD usage is often driven by operations making Infrastructure-as-a-Service OS instances much faster. Whereas Docker usage is often driven by developers making Platform-as-a-Service application instances more portable.</p>
-        <p>Docker can run alongside LXD with both instances working together. Moreover, Docker can run inside of LXD with zero performance impact, allowing you to safely migrate your Docker containers between machines for easy scale up and scale down.</p>
-        <p><a href="/containers/lxd">Learn more about LXD&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-4 u-vertically-center u-hidden--small">
-        <img src="{{ ASSET_SERVER_URL }}fe9b270c-lxd_black-orange_hex_su.svg" width="100%" alt="LXD" />
+        <div class="col-4 u-vertically-center u-hidden--small">
+          <img src="{{ ASSET_SERVER_URL }}fe9b270c-lxd_black-orange_hex_su.svg" width="100%" alt="LXD" />
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_containers_juju" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
+  {% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_containers_juju" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
 
-{% endblock content %}
+  {% endblock content %}
