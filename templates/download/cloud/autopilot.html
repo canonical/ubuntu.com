@@ -70,24 +70,20 @@
             <p>To install MAAS, start off on your Ubuntu Server 16.04 LTS machine and  type the command below following the step-by-step instructions:</p>
             <p class="p-code-snippet">
               <input class="p-code-snippet__input" value="sudo apt update" readonly="readonly">
-              <button class="js-copy-to-clipboard p-code-snippet__action">Copy to clipboard</button>
+              <button class="p-code-snippet__action">Copy to clipboard</button>
             </p>
             <p class="p-code-snippet">
               <input class="p-code-snippet__input" value="sudo apt install maas" readonly="readonly">
-              <button class="js-copy-to-clipboard p-code-snippet__action">Copy to clipboard</button>
+              <button class="p-code-snippet__action">Copy to clipboard</button>
             </p>
-            <ul class="p-list">
-              <li class="p-list__item is-ticked">Create your admin credentials and optionally import your SSH key by typing:</li>
-            </ul>
+            <p>Create your admin credentials and optionally import your SSH key by typing:</p>
             <p class="p-code-snippet">
               <input class="p-code-snippet__input" value="sudo maas createadmin" readonly="readonly">
-              <button class="js-copy-to-clipboard p-code-snippet__action">Copy to clipboard</button>
+              <button class="p-code-snippet__action">Copy to clipboard</button>
             </p>
-            <ul class="p-list">
-              <li class="p-list__item">Login to the MAAS UI at http://&lt;maas.ip&gt;/MAAS/</li>
-              <li class="p-list__item">Fill in the details on the welcome page and import images for Ubuntu 14.04 LTS and 16.04 LTS. Importing images may take a while, but you can click &ldquo;continue&rdquo; as soon as it&rsquo;s started</li>
-              <li class="p-list__item">If you haven&rsquo;t imported your SSH key before, now is your chance to import one from Launchpad, GitHub or you can also upload it directly</li>
-            </ul>
+            <p>Login to the MAAS UI at <code>http://&lt;maas.ip&gt;/MAAS/</code></p>
+            <p>Fill in the details on the welcome page and import images for Ubuntu 14.04 LTS and 16.04 LTS. Importing images may take a while, but you can click &ldquo;continue&rdquo; as soon as it&rsquo;s started</p>
+            <p>If you haven&rsquo;t imported your SSH key before, now is your chance to import one from Launchpad, GitHub or you can also upload it directly</p>
           </div>
         </li>
 
@@ -104,9 +100,7 @@
         <li class="p-list-step__item col-12">
           <h3 class="p-list-step__title"><span class="p-list-step__bullet">4</span>Verify image syncing</h3>
           <div class="p-list-step__content">
-            <ul class="p-list">
-              <li class="p-list__item">Go to the &ldquo;Images&rdquo; tab and check if the Ubuntu images have all been downloaded and are in a &ldquo;Synced&rdquo; state. This is the process started earlier, and depending on your bandwidth it may take a while for it to finish. You can only proceed with the next steps if the images are synced</li>
-            </ul>
+            <p>Go to the &ldquo;Images&rdquo; tab and check if the Ubuntu images have all been downloaded and are in a &ldquo;Synced&rdquo; state. This is the process started earlier, and depending on your bandwidth it may take a while for it to finish. You can only proceed with the next steps if the images are synced</p>
           </div>
         </li>
 
@@ -137,14 +131,14 @@
             <p>Setup Landscape and launch the OpenStack Autopilot with the following commands:</p>
             <p class="p-code-snippet">
               <input class="p-code-snippet__input" value="snap install conjure-up --classic" readonly="readonly">
-              <button class="js-copy-to-clipboard p-code-snippet__action">Copy to clipboard</button>
+              <button class="p-code-snippet__action">Copy to clipboard</button>
             </p>
             <p class="p-code-snippet">
               <input class="p-code-snippet__input" value="conjure-up --bootstrap-to &lt;hostname&gt;" readonly="readonly">
-              <button class="js-copy-to-clipboard p-code-snippet__action">Copy to clipboard</button>
+              <button class="p-code-snippet__action">Copy to clipboard</button>
             </p>
             <ul class="p-list">
-              <li class="p-list__item">Replace &lt;hostname&gt; above with the hostname of the machine that was selected for the Juju controller role. Do not add the domain name to it</li>
+              <li class="p-list__item">Replace <code>&lt;hostname&gt;</code> above with the hostname of the machine that was selected for the Juju controller role. Do not add the domain name to it</li>
               <li class="p-list__item">
                 <p>Select &ldquo;Landscape&rdquo;</p>
                 <a href="{{ ASSET_SERVER_URL }}24390fd2-1_select_landscape.png">
