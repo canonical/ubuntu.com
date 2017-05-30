@@ -219,11 +219,15 @@ body.has-background {
 
 /// XXX fix nested bullets to use default styles
 ul.p-list  ul.p-list {
-  list-style-type: disc;
+  list-style-type: circle;
 
   ul.p-list {
-    list-style-type: circle;
+    list-style-type: disc;
   }
+}
+
+.p-list-step__content ul.p-list {
+  list-style-type: disc;
 }
 
 /// XXX fix two-digit padding in .p-list-step__bullet
