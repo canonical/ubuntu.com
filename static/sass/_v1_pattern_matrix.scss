@@ -4,11 +4,16 @@
   .p-matrix {
 
     // undo
-    .p-matrix__item {
+    &__item {
       @media (min-width: $breakpoint-small) {
         border: 0;
-        width: 90%;
+        width: 100%;
       }
+    }
+
+    &__content {
+      max-width: 100%;
+      padding: $sp-medium $sp-large 0 $sp-large;
     }
 
     &.is-split {
