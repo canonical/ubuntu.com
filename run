@@ -14,7 +14,7 @@
 set -euo pipefail
 
 # Define the versions of the two docker images
-django_image="canonicalwebteam/django:v2.1.0"
+django_image="canonicalwebteam/django:v2.1.2"
 node_image="canonicalwebteam/node:v0.1.0"
 
 USAGE="Usage
@@ -75,11 +75,13 @@ fi
 
 # Settings
 module_volumes=()
-node_cache_volume="${CANONICAL_WEBTEAM_NODE_CACHE_VOLUME:-canonical-webteam-node-cache}"
+yarn_cache_volume="${CANONICAL_WEBTEAM_YARN_CACHE_VOLUME:-canonical-webteam-node-cache}"
 [ -t 1 ] && tty="--tty --interactive" || tty=""           # Do we have a terminal?
 [ -f .env ] && env_file="--env-file .env" || env_file=""  # Do we have an env file?
-pip_dependencies_volume="${project}-pip-dependencies"
+django_lib_volume="${project}-django-lib"
+pip_cache_volume="${CANONICAL_WEBTEAM_PIP_CACHE_VOLUME:-canonical-webteam-pip-cache}"
 
+run_serve_docker_opts="${CANONICAL_WEBTEAM_RUN_SERVE_DOCKER_OPTS:-}"
 
 # Defaults environment settings
 PORT=8000
@@ -157,10 +159,10 @@ node_run () {
 
     # Run a command in the "node" image
     run_as_user "${container_name}"  \
-        --volume ${node_cache_volume}:/home/shared/.cache/  `# Bind cache to volume` \
-        ${module_volumes[@]+"${module_volumes[@]}"}  `# Add any override modules as volumes`  \
-        ${extra_options}                             `# Extra options`  \
-        ${node_image} ${command}                     `# Run command in node image`
+        --volume ${yarn_cache_volume}:/home/shared/.cache/yarn/  `# Bind cache to volume` \
+        ${module_volumes[@]+"${module_volumes[@]}"}              `# Add any override modules as volumes`  \
+        ${extra_options}                                         `# Extra options`  \
+        ${node_image} ${command}                                 `# Run command in node image`
 }
 
 node_install () {
@@ -171,7 +173,7 @@ node_install () {
 
     # Install yarn dependencies, without module overrides
     run_as_user "${project}-yarn-install" \
-        --volume ${node_cache_volume}:/home/shared/.cache/  `# Bind yarn cache to volume` \
+        --volume ${yarn_cache_volume}:/home/shared/.cache/yarn/  `# Bind yarn cache to volume` \
         ${node_image} yarn install  `# Install yarn dependencies`
 }
 
@@ -183,11 +185,12 @@ django_run () {
 
     # Run Django using the docker image
     run_as_user ${container_name} \
-        --volume ${pip_dependencies_volume}:/usr/local/lib/python3.6/site-packages  `# Store dependencies in a docker volume`  \
-        --env PORT=${PORT}                        `# Set the port correctly`  \
-        --env DJANGO_DEBUG=${DJANGO_DEBUG}        `# Set django debug mode`  \
-        ${extra_options}                          `# Any extra docker options`  \
-        ${django_image} ${command}                `# Run command in the Django image`
+        --volume ${django_lib_volume}:/usr/local/lib/          `# Store dependencies in a docker volume`  \
+        --volume ${pip_cache_volume}:/home/shared/.cache/pip/  `# Bind cache to volume` \
+        --env PORT=${PORT}                                     `# Set the port correctly`  \
+        --env DJANGO_DEBUG=${DJANGO_DEBUG}                     `# Set django debug mode`  \
+        ${extra_options}                                       `# Any extra docker options`  \
+        ${django_image} ${command}                             `# Run command in the Django image`
 }
 
 
@@ -230,7 +233,7 @@ case $run_command in
         
 
         # Run the serve container, publishing the port, and detaching if required
-        django_run "${project}-serve" "" "--env PORT=${PORT} --publish ${PORT}:${PORT} ${detach}"
+        django_run "${project}-serve" "" "--env PORT=${PORT} --publish ${PORT}:${PORT} ${detach} ${run_serve_docker_opts} ${*}"
         
     ;;
     "stop")
@@ -271,12 +274,18 @@ case $run_command in
     ;;
     "clean-cache")
         # Clean node cache volume
-        echo "Removing cache volume ${node_cache_volume}"
-        containers_using_volume=$(docker ps --quiet --all --filter "volume=${node_cache_volume}")
+        echo "Removing cache volume ${yarn_cache_volume}"
+        containers_using_volume=$(docker ps --quiet --all --filter "volume=${yarn_cache_volume}")
         if [ -n "${containers_using_volume}" ]; then docker rm --force ${containers_using_volume}; fi
-        docker volume rm --force ${node_cache_volume}
+        docker volume rm --force ${yarn_cache_volume}
+
+        # Clean node cache volume
+        echo "Removing cache volume ${pip_cache_volume}"
+        containers_using_volume=$(docker ps --quiet --all --filter "volume=${pip_cache_volume}")
+        if [ -n "${containers_using_volume}" ]; then docker rm --force ${containers_using_volume}; fi
+        docker volume rm --force ${pip_cache_volume}
     ;;
-    "django") django_run "${project}-django-$(date +'%s')" "${@}" "--rm" ;;
-    "node") node_run "${project}-node-$(date +'%s')" "${@}" ;;
+    "django") django_run "${project}-django-$(date +'%s')" "${*}" "--rm" ;;
+    "node") node_run "${project}-node-$(date +'%s')" "${*}" ;;
     *) invalid "Command '${run_command}' not recognised." ;;
 esac
