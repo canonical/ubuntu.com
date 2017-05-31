@@ -3,23 +3,17 @@
 @mixin ubuntu-p-inline-images {
   @include vf-p-inline-images;
 
-  // XXX Inline images padding fix
-  // This temp fix can be removed when this issue is closed: https://github.com/vanilla-framework/vanilla-framework/issues/1084
   .p-inline-images {
-    @extend %clearfix;
-    display: block;
-    list-style: none; // if list is used as wrapper
     margin-left: 0;
     padding-left: 0;
-    text-align: center;
 
+    // XXX Inline images padding fix
+    // This temp fix can be removed when this issue is closed: https://github.com/vanilla-framework/vanilla-framework/issues/1084
     &__item {
-      @extend %item;
       margin: 1.875rem;
     }
 
-    &__item-compact {
-      @extend %item;
+    &__item--compact {
       margin: $sp-medium;
     }
   }
