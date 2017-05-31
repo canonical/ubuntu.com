@@ -60,7 +60,8 @@
             border-left: 0;
           }
 
-          &:last-of-type {
+          &:last-of-type,
+          &:nth-last-child(2) {
             border-bottom: 1px solid $color-mid-light;
           }
         }
@@ -70,6 +71,10 @@
           > a {
             display: inline-block;
             padding: $sp-medium $sp-small;
+
+            &.is-active {
+              background-color: $color-brand-dark;
+            }
           }
 
           &:hover {
