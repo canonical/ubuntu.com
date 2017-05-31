@@ -1,110 +1,110 @@
-{% extends "download/_base_download.html" %}
-
+{% extends "download/_base_download-v1.html" %}
 {% block title %}Build OpenStack with conjure-up | Download{% endblock %}
-
 {% block extra_body_class %}download-cloud-conjure-up{% endblock %}
-
 {% block meta_description %}Want to deploy OpenStack on a single machine? Use Conjure-up. It’s the easy and free.{% endblock %}
 
 {% block second_level_nav_items %}
-<div class="strip-inner-wrapper">
-  {% include "templates/_nav_breadcrumb.html" with section_title="Downloads" subsection_title="Cloud" page_title="Conjure-up"  %}
-</div>
+{% include "templates/_nav_breadcrumb-v1.html" with section_title="Downloads" subsection_title="Cloud" page_title="Conjure-up"  %}
 {% endblock second_level_nav_items %}
 
 
 {% block content %}
 
-<section class="row row-grey no-border">
-  <div class="strip-inner-wrapper">
-    <h1>Try OpenStack on a single machine using&nbsp;conjure&#8209;up</h1>
-    <div class="box box-highlight clearfix equal-height--vertical-divider">
-      <div class="equal-height--vertical-divider__item six-col">
-        <h2>OpenStack with conjure-up</h2>
-        <p>Conjure-up&rsquo;s ability to easily and quickly deploy real-world OpenStack on a single laptop using LXD containers is ideal for first-time users or developers.</p>
-      </div>
-      <div class="equal-height--vertical-divider__item six-col last-col no-margin-bottom download-button">
-        <h3>Requirements</h3>
-        <ul class="list-ticks--compact">
-          <li>Laptop, desktop or virtual machine with 16Gb RAM and Ubuntu 16.04 LTS installed</li>
-          <li>An hour of your time</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-{% include "download/shared/_get_ebook.html"%}
-
-<section class="row row-grey">
-  <div class="strip-inner-wrapper">
-    <div class="twelve-col">
-        <h2>Watch the conjure-up walkthrough</h2>
-    </div>
-    <div class="twelve-col">
-        <div class="vimeo-container">
-            <iframe src="https://player.vimeo.com/video/202195588?color=ffffff&title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<div class="p-strip--light no-border">
+  <div class="row">
+    <div class="col-12">
+      <h1>Try OpenStack on a single machine</h1>
+      <div class="p-card--highlighted">
+        <div class="u-equal-height p-divider">
+          <div class="col-6 p-divider__block">
+            <h2>OpenStack with conjure-up</h2>
+            <p>Conjure-up&rsquo;s ability to easily and quickly deploy real-world OpenStack on a single laptop using LXD containers is ideal for first-time users or developers.</p>
+          </div>
+          <div class="col-6 p-divider__block">
+            <h3>Requirements</h3>
+            <ul class="p-list">
+              <li class="p-list__item is-ticked">Laptop, desktop or virtual machine with 16Gb RAM and Ubuntu 16.04 LTS installed</li>
+              <li class="p-list__item is-ticked">An hour of your time</li>
+            </ul>
+          </div>
         </div>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
-<section id="instructions" class="row row-install-autopilot">
-  <div class="strip-inner-wrapper">
+{% include "download/shared/_get_ebook-v1.html"%}
+
+<div class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2>Watch the conjure-up walkthrough</h2>
+      <div class="u-embedded-media">
+        <iframe class="u-embedded-media__element" src="https://player.vimeo.com/video/202195588?color=ffffff&title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="instructions" class="p-strip--light is-deep is-bordered">
+  <div class="row">
     <h2>Installation instructions</h2>
-    <ol class="list-stepped--spaced download-help">
-      <li class="list-stepped__item">
-        <div class="five-col">
-          <h3 class="list-stepped__title">Install and start conjure-up</h3>
-        </div>
-        <div class="seven-col last-col list-stepped__box right">
-            <p>Getting OpenStack running on your computer is easy with conjure-up.</p>
-            <p>From the command line type the commands below and follow the step-by-step instructions:</p>
-            <p class="command-line">
-              <input class="command-line__input" value="snap install conjure-up --classic" readonly="readonly">
-              <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
-            </p>
-            <p class="command-line">
-              <input class="command-line__input" value="conjure-up" readonly="readonly">
-              <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
-            </p>
+    <ol class="p-stepped-list--detailed">
+      <li class="p-list-step__item col-12">
+        <h3 class="p-list-step__title"><span class="p-list-step__bullet">1</span>Install and start conjure-up</h3>
+        <div class="p-list-step__content">
+          <p>Getting OpenStack running on your computer is easy with conjure-up.</p>
+          <p>From the command line type the commands below and follow the step-by-step instructions:</p>
+          <p class="p-code-snippet">
+            <input class="p-code-snippet__input" value="snap install conjure-up --classic" readonly="readonly">
+            <button class="p-code-snippet__action">Copy to clipboard</button>
+          </p>
+          <p class="p-code-snippet">
+            <input class="p-code-snippet__input" value="conjure-up" readonly="readonly">
+            <button class="p-code-snippet__action">Copy to clipboard</button>
+          </p>
         </div>
       </li>
-      <li class="list-stepped__item">
-        <div class="five-col">
-          <h3 class="list-stepped__title">Select the ‘OpenStack with NovaLXD’ spell</h3>
-        </div>
-        <div class="seven-col last-col list-stepped__box right">
+      <li class="p-list-step__item col-12">
+        <h3 class="p-list-step__title"><span class="p-list-step__bullet">2</span>Select the ‘OpenStack with NovaLXD’ spell</h3>
+        <div class="p-list-step__content">
           <img src="{{ ASSET_SERVER_URL }}23a02e6d-conjure-up-install-openstack.png?w=444" width="444" alt="screenshot of the conjure-up interface with the 'OpenStack with NovaLXD' option selected" />
           <p>Then follow the rest of the on-screen instructions.</p>
         </div>
       </li>
-      <li class="list-stepped__item">
-        <div class="five-col">
-          <h3 class="list-stepped__title">Follow the on-screen instructions</h3>
-        </div>
-        <div class="seven-col last-col list-stepped__box right">
-        <p>Configure OpenStack with conjure-up and, when it is completed, go to http://&lt;openstack ip&gt;/horizon and login with the default username &ldquo;admin&rdquo; and password &ldquo;openstack&rdquo;.</p>
+      <li class="p-list-step__item col-12">
+        <h3 class="p-list-step__title"><span class="p-list-step__bullet">3</span>Follow the on-screen instructions</h3>
+        <div class="p-list-step__content">
+          <p>Configure OpenStack with conjure-up and, when it is completed, go to <code>http://&lt;openstack ip&gt;/horizon</code> and login with the default username &ldquo;admin&rdquo; and password &ldquo;openstack&rdquo;.</p>
           <img src="{{ ASSET_SERVER_URL }}6f24640b-conjure-up-openstack-horizon.png?w=444" width="444" alt="screenshot of the conjure-up interface with the 'OpenStack with NovaLXD' option selected" />
         </div>
       </li>
     </ol>
-    <div class="eight-col">
-      <p>To learn more about conjure-up visit <a href="http://conjure-up.io/" class="external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Download cloud conjure-up', 'eventLabel' : 'conjure-up.io', 'eventValue' : undefined });">conjure-up.io</a></p>
+    <div class="col-8">
+      <p>To learn more about conjure-up visit <a href="http://conjure-up.io/" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Download cloud conjure-up', 'eventLabel' : 'conjure-up.io', 'eventValue' : undefined });">conjure-up.io</a></p>
     </div>
   </div>
-</section>
+</div>
 
-<section class="row strip-light no-border">
-  <div class="strip-inner-wrapper">
-    <div class="eight-col">
-      <h2>Ready to build your own production cloud?</h2>
-      <p>OpenStack Autopilot is a fully automated tool for easy OpenStack deployment, management and operations.</p>
-      <p><a href="/download/cloud/autopilot" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Download cloud conjure-up', 'eventLabel' : 'Use OpenStack Autopilot', 'eventValue' : undefined });">Use OpenStack Autopilot&nbsp;&rsaquo;</a></p>
+<div class="p-strip">
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-4 u-align--center u-vertically-center u-hidden--small">
+        <img src="{{ ASSET_SERVER_URL}}acfcc851-picto-cloud-orange.svg" width="200" alt="cloud image" />
+      </div>
+      <div class="col-7 prefix-1 u-vertically-center">
+        <div class="row">
+          <div class="col-12">
+            <h2>Ready to build your own production cloud?</h2>
+            <p>OpenStack Autopilot is a fully automated tool for easy OpenStack deployment, management and operations.</p>
+            <p><a href="/download/cloud/autopilot" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Download cloud conjure-up', 'eventLabel' : 'Use OpenStack Autopilot', 'eventValue' : undefined });">Use OpenStack Autopilot&nbsp;&rsaquo;</a></p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_cloud_bootstack" second_item="_download_cloud_buy_landscape" third_item="_download_documentation" %}
+{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_download_cloud_bootstack" second_item="_download_cloud_buy_landscape" third_item="_download_documentation" %}
 
 {% endblock content %}
