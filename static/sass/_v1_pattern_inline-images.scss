@@ -14,7 +14,13 @@
     text-align: center;
 
     &__item {
+      @extend %item;
       margin: 1.875rem;
+    }
+
+    &__item-compact {
+      @extend %item;
+      margin: $sp-medium;
     }
   }
 
