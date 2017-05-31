@@ -43,6 +43,12 @@
   }
 }
 
+@mixin ubuntu-p-strip--x-light {
+  .p-strip--x-light {
+    background-color: $color-x-light;
+  }
+}
+
 @mixin ubuntu-p-strip--accent {
   %strip--accent {
     @include strip;

@@ -27,6 +27,7 @@
 @import 'v1_patterns_testimonials';
 @import 'v1_pattern_hero';
 @import 'v1_pattern_pull_quotes';
+@import 'v1_utility_full-width';
 
 @include ubuntu-p-site-search;
 @include ubuntu-p-navigation;
@@ -41,6 +42,7 @@
 @include ubuntu-p-testimonials;
 @include ubuntu-p-hero;
 @include ubuntu-p-pull-quote;
+@include ubuntu-u-full-width;
 
 // **************************
 // Bug fixes
@@ -91,7 +93,7 @@
 html {
   font-size: $font-base-size;
 
-  @media screen and (min-width: $breakpoint-medium) {
+  @media (min-width: $breakpoint-medium) {
     font-size: $font-base-size;
   }
 }
@@ -121,6 +123,20 @@ html {
 .u-vertically-spaced {
   padding-bottom: $sp-medium;
   padding-top: $sp-medium;
+}
+
+/// XXX Utility to add bottom padding
+/// Proposal for inlcusion in vanilla: https://github.com/vanilla-framework/vanilla-framework/issues/1091
+.u-padding-bottom {
+  padding-bottom: $sp-medium;
+
+  &--large {
+    padding-bottom: $sp-large;
+  }
+
+  &--x-large {
+    padding-bottom: $sp-x-large;
+  }
 }
 
 // brand submit buttons bg override
@@ -186,4 +202,17 @@ fieldset {
 /// XXX fix .p-heading-icon making the icon go to the top
 .p-heading-icon__img {
   align-self: flex-start;
+}
+
+// XXX Applies suru background to the site
+// Candidate for moving to the vanilla-brochure-theme
+body.has-background {
+  background-color: $color-light;
+  background-image: url(#{$assets-path}f8a323a7-image-background-paper.png?w=768);
+  background-position: center top;
+  background-repeat: repeat-y;
+
+  @media (min-width: $breakpoint-medium ) {
+    background-image: url(#{$assets-path}f8a323a7-image-background-paper.png);
+  }
 }
