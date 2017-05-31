@@ -234,3 +234,12 @@ ul.p-list  ul.p-list {
 .p-list-step__bullet {
   padding: .65rem .4rem;
 }
+
+// XXX add margin bottom to code snippets
+.p-code-snippet {
+  margin-bottom: $sp-large;
+
+  & + p {
+    margin-bottom: $sp-small;
+  }
+}
