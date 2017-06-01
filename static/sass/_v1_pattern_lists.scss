@@ -15,6 +15,7 @@
   @include ubuntu-p-is-trisected;
   @include ubuntu-p-is-quartered;
   @include ubuntu-p-nested-counter-lists;
+  @include ubuntu-p-list-imgstack;
 }
 
 @mixin ubuntu-p-is-ticked {
@@ -205,6 +206,15 @@
           content: counters(item, ".") " ";
         }
       }
+    }
+  }
+}
+
+@mixin ubuntu-p-list-imgstack {
+  .p-list--imgstack {
+
+    .p-list__item {
+      margin-bottom: $sp-xx-large;
     }
   }
 }
