@@ -236,10 +236,11 @@ ul.p-list  ul.p-list {
 }
 
 // XXX add margin bottom to code snippets
-.p-code-snippet {
+.p-code-snippet,
+pre {
   margin-bottom: $sp-large;
 
-  & + p {
-    margin-bottom: $sp-small;
+  p + & {
+    margin-top: -$sp-small;
   }
 }
