@@ -216,3 +216,21 @@ body.has-background {
     background-image: url(#{$assets-path}f8a323a7-image-background-paper.png);
   }
 }
+
+/// XXX fix nested bullets to use default styles
+ul.p-list  ul.p-list {
+  list-style-type: circle;
+
+  ul.p-list {
+    list-style-type: disc;
+  }
+}
+
+.p-list-step__content ul.p-list {
+  list-style-type: disc;
+}
+
+/// XXX fix two-digit padding in .p-list-step__bullet
+.p-list-step__bullet {
+  padding: .65rem .4rem;
+}
