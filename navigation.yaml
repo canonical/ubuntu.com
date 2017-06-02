@@ -1,0 +1,245 @@
+- title: Cloud
+  url_path: /cloud
+  include_in_menu: True
+
+  children:
+    - title: OpenStack
+      url_path: /cloud/openstack
+
+      children:
+        - title: Autopilot
+          url_path: /cloud/openstack/autopilot
+
+    - title: Managed cloud
+      url_path: /cloud/managed-cloud
+    - title: Public cloud
+      url_path: /cloud/public-cloud
+    - title: Juju
+      url_path: /cloud/juju
+    - title: Storage
+      url_path: /cloud/storage
+    - title: Partners
+      url_path: /cloud/partners
+    - title: Training
+      url_path: /cloud/training
+    - title: Plans and pricing
+      url_path: /cloud/plans-and-pricing
+
+- title: Server
+  url_path: /server
+  include_in_menu: True
+
+  children:
+    - title: Server management
+      url_path: /server/management
+    - title: Hyperscale
+      url_path: /server/hyperscale
+    - title: Livepatch
+      url_path: /server/livepatch
+    - title: Server provisioning
+      url_path: /server/maas
+
+- title: Containers
+  url_path: /containers
+  include_in_menu: True
+
+  children:
+    - title: LXD
+      url_path: /containers/lxd
+    - title: Kubernetes
+      url_path: /containers/kubernetes
+    - title: Docker Engine
+      url_path: /containers/docker-ubuntu
+
+- title: Desktop
+  url_path: /desktop
+  include_in_menu: True
+
+  children:
+    - title: Features
+      url_path: /desktop/features
+    - title: For enterprise
+      url_path: /desktop/enterprise
+    - title: For education
+      url_path: /desktop/education
+    - title: For government
+      url_path: /desktop/government
+    - title: For developers
+      url_path: /desktop/developers
+    - title: For China
+      url_path: /desktop/ubuntukylin
+    - title: For partners
+      url_path: /desktop/partners
+    - title: Snappy
+      url_path: /desktop/snappy
+
+- title: Core
+  url_path: /core
+  include_in_menu: True
+
+- title: IoT
+  url_path: /internet-of-things
+  include_in_menu: True
+
+  children:
+    - title: Digital signage
+      url_path: /internet-of-things/digital-signage
+    - title: Robotics
+      url_path: /internet-of-things/robotics
+    - title: Gateways
+      url_path: /internet-of-things/gateways
+
+- title: Support
+  url_path: /support
+  include_in_menu: True
+
+  children:
+    - title: Community support
+      url_path: /support/community-support
+    - title: Plans and pricing
+      url_path: /support/plans-and-pricing
+    - title: ESM
+      url_path: /support/esm
+
+- title: Downloads
+  url_path: /download
+  include_in_menu: True
+
+  children:
+    - title: Cloud
+      url_path: /download/cloud
+
+      children:
+        - title: Autopilot
+          url_path: /download/cloud/autopilot
+        - title: Conjure-up
+          url_path: /download/cloud/conjure-up
+
+    - title: Server
+      url_path: /download/server
+
+      children:
+        - title: ARM
+          url_path: /download/server/arm
+        - title: POWER8
+          url_path: /download/server/power8
+        - title: LinuxONE
+          url_path: /download/server/linuxone
+        - title: Provisioning
+          url_path: /download/server/provisioning
+
+    - title: Desktop
+      url_path: /download/desktop
+    - title: Ubuntu Kylin
+      url_path: /download/ubuntu-kylin
+    - title: Alternative downloads
+      url_path: /download/alternative-downloads
+    - title: Ubuntu flavours
+      url_path: /download/ubuntu-flavours
+
+- title: About
+  url_path: /about
+
+  children:
+    - title: About Ubuntu
+      url_path: /about/about-ubuntu
+
+      children:
+        - title: Philosophy
+          url_path: /about/about-ubuntu/our-philosophy
+        - title: Licensing
+          url_path: /about/about-ubuntu/licensing
+        - title: Governance
+          url_path: /about/about-ubuntu/governance
+        - title: Code of Conduct
+          url_path: /about/about-ubuntu/conduct
+        - title: Diversity
+          url_path: /about/about-ubuntu/diversity
+
+    - title: Canonical and Ubuntu
+      url_path: /about/canonical-and-ubuntu
+
+      children:
+        - title: Ubuntu and Debian
+          url_path: /about/about-ubuntu/ubuntu-and-debian
+        - title: Flavours
+          url_path: /about/about-ubuntu/flavours
+
+    - title: Contact us
+      url_path: /about/contact-us
+
+- title: Ubuntu release end of life
+  url_path: /info/release-end-of-life
+
+- title: Legal
+  url_path: /legal
+
+  children:
+    - title: Terms and policies
+      url_path: /legal/terms-and-policies
+
+      children:
+        - title: Terms and conditions
+          url_path: /legal/terms-and-policies/terms
+        - title: Privacy policy
+          url_path: /legal/terms-and-policies/privacy-policy
+        - title: Intellectual property
+          url_path: /legal/terms-and-policies/intellectual-property-policy
+        - title: Online account terms
+          url_path: /legal/terms-and-policies/online-account-terms
+        - title: U1 Terms of Service
+          url_path: /legal/terms-and-policies/terms-of-service
+        - title: Confidentiality agreement
+          url_path: /legal/terms-and-policies/confidentiality-agreement
+        - title: Developer terms
+          url_path: /legal/terms-and-policies/developer-terms-and-conditions
+        - title: Livepatch terms
+          url_path: /legal/terms-and-policies/livepatch-terms-of-service
+        - title: JAAS terms
+          url_path: /legal/terms-and-policies/jaas-beta-terms-of-service
+
+    - title: Ubuntu Advantage
+      url_path: /legal/ubuntu-advantage
+
+      children:
+        - title: Service description
+          url_path: /legal/ubuntu-advantage/service-description
+        - title: Ubuntu Assurance
+          url_path: /legal/ubuntu-advantage/assurance
+
+    - title: BootStack
+      url_path: /legal/bootstack
+
+      children:
+        - title: Service description
+          url_path: /legal/bootstack/service-description
+        - title: Privacy
+          url_path: /legal/bootstack/privacy
+
+    - title: Contributors
+      url_path: /legal/contributors
+
+      children:
+        - title: Licence agreement FAQ
+          url_path: /legal/contributors/licence-agreement-faq
+        - title: Submit
+          url_path: /legal/contributors/submit
+
+    - title: Short terms
+      url_path: /legal/short-terms
+
+      children:
+        - title: JA
+          url_path: /legal/short-terms/ja
+        - title: 2015-06-24
+          url_path: /legal/short-terms/2015-06-24
+        - title: 2015-09-09
+          url_path: /legal/short-terms/2015-09-09
+        - title: 2016-05-20
+          url_path: /legal/short-terms/2016-05-20
+        - title: 2015-06-24
+          url_path: /legal/short-terms/2015-06-24
+        - title: 2015-09-09
+          url_path: /legal/short-terms/2015-09-09
+        - title: 2016-05-20
+          url_path: /legal/short-terms/2016-05-20
