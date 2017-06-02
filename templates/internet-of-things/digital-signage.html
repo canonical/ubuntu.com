@@ -5,25 +5,29 @@
 {% block meta_description %}With hundreds of thousands of devices deployed the world over, Ubuntu Core is the perfect robust, reliable and secure OS for the digital signage sector.{% endblock meta_description %}
 
 {% block second_level_nav_items %}
+<div class="row">
   {% include "templates/_nav_breadcrumb-v1.html" with section_title="IoT" page_title="Digital Signage" %}
+</div>
 {% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="p-strip is-deep is-bordered">
   <div class="row">
     <div class="u-equal-height">
-      <div class="col-6">
+      <div class="col-7">
         <h1>Digital signage on Ubuntu</h1>
         <div class="u-hidden--medium u-hidden--large u-align--center" style="padding-top: 1em;">
-          <img src="{{ ASSET_SERVER_URL }}4a0a6007-digital-signs.png" alt="" width="260" />
+          <img src="{{ ASSET_SERVER_URL }}4a0a6007-digital-signs.png" alt="" width="260"/>
         </div>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Secure, reliable and remotely upgradable</li>
-          <li class="p-list__item is-ticked">Rich ecosystem of hardware and software solutions</li>
-          <li class="p-list__item is-ticked">Hundreds of thousands of devices already deployed</li>
-        </ul>
+        <div class="col-5">
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">Secure, reliable and remotely upgradable</li>
+            <li class="p-list__item is-ticked">Rich ecosystem of hardware and software solutions</li>
+            <li class="p-list__item is-ticked">Hundreds of thousands of devices already deployed</li>
+          </ul>
+        </div>
       </div>
-      <div class="col-6 u-vertically-center u-align--center not-for-small">
+      <div class="col-5 u-vertically-center u-align--center u-hidden--small">
         <img srcset="{{ ASSET_SERVER_URL }}4a0a6007-digital-signs.png?w=600 2x" src="{{ ASSET_SERVER_URL }}4a0a6007-digital-signs.png?w=300" alt="" />
       </div>
     </div>
@@ -57,9 +61,13 @@
 
 <div class="p-strip--light">
   <div class="row">
-    <div class="col-8">
+    <div class="col-12">
       <h2>Digital signage players need the power of Ubuntu</h2>
-      <p class="nine-col">With a small footprint and serious power, Ubuntu Core reduces hardware costs while still running 4k video. A low cost, open source solution, it builds from its heritage on servers to bring a secure and stable platform, designed for 24/7 availability and resistant to screen takeovers and other attacks.</p>
+      </div>
+      </div>
+      <div class="row">
+        <div class="col-9">
+      <p>With a small footprint  and serious power, Ubuntu Core reduces hardware costs while still running 4k video. A low cost, open source solution, it builds from its heritage on servers to bring a secure and stable platform, designed for 24/7 availability and resistant to screen takeovers and other attacks.</p>
     </div>
   </div>
   <div class="row">
@@ -67,27 +75,26 @@
       <ul class="p-list--divided is-split">
         <li class="p-list__item is-ticked">Atomic upgradability: low bandwidth, prompt delivery of new features</li>
         <li class="p-list__item is-ticked">Software development: existing libraries and codebase, flexibility in development, all the way down to the device driver</li>
-        <li class="p-list__item is-ticked">Remote maintenance: no need for on-site personnel</li>
         <li class="p-list__item is-ticked">Application isolation enables security, robustness and simpler maintenance</li>
         <li class="p-list__item is-ticked">Faster innovation: wide peripheral support, Wi-Fi, 3G/4G, NFC, Bluetooth, software-defined radio, deep learning, audio and camera support (including RealSense)</li>
+        <li class="p-list__item is-ticked">Remote maintenance: no need for on-site personnel</li>
       </ul>
     </div>
   </div>
 </div>
 
 <div class="p-strip--accent is-deep">
-  <div class="row">
-    <div class="u-equal-height">
-      <div class="col-8">
-        <h2>Simplified software management</h2>
-        <p>Ubuntu Core gives your screens the uptime and robustness you need. Uniquely stable and secure, it is based on the same operating system that runs the majority of the world's clouds.</p>
-        <p>Ubuntu Core adds the ability to upgrade the entire software stack remotely and securely, from the kernel all the way up to the apps. Canary rollout and rollback capability gives you peace of mind during upgrades: if anything goes wrong, the device automatically reverts to the last working release. With update management facilities to manage roll-out as you wish, Ubuntu Core is the ultimate digital signage OS.</p>
-      </div>
-      <div class="col-4 u-align--center u-vertically-center">
-        <img src="{{ ASSET_SERVER_URL }}543a1e1a-snappy_orange_hex-01.svg" alt="" />
-      </div>
+  <div class="row"><div class="u-equal-height">
+    <div class="col-8">
+      <h2>Simplified software management</h2>
+      <p>Ubuntu Core gives your screens the uptime and robustness you need. Uniquely stable and secure, it is based on the same operating system that runs the majority of the world's clouds.</p>
+      <p>Ubuntu Core adds the ability to upgrade the entire software stack remotely and securely, from the kernel all the way up to the apps. Canary rollout and rollback capability gives you peace of mind during upgrades: if anything goes wrong, the device automatically reverts to the last working release. With update management facilities to manage roll-out as you wish, Ubuntu Core is the ultimate digital signage OS.</p>
+    </div>
+    <div class="col-4 u-align--center u-vertically-center">
+      <img src="{{ ASSET_SERVER_URL }}543a1e1a-snappy_orange_hex-01.svg" alt="" />
     </div>
   </div>
+</div>
 </div>
 
 <div class="p-strip is-bordered">
@@ -179,7 +186,7 @@
 
 <div class="p-strip--image is-dark is-deep" style="background-image: url('{{ ASSET_SERVER_URL }}68b1a2e2-banner_pixels05.png');">
   <div class="row">
-    <div class="col-8 prefix-3">
+    <div class="col-11 prefix-3">
       <h2>Build your own digital signage solution</h2>
       <p>Ubuntu Core is entirely open source and supports a range of digital signage players. Just install it on a Raspberry Pi or NUC, download the app of your choice, create an account and you&rsquo;re ready to go.</p>
       <p><a class="p-button--neutral" href="/internet-of-things/contact-us?product=digital-signage" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Digital Signage Page - Build your own', 'eventLabel' : 'Get in touch', 'eventValue' : undefined });">Get in touch</a></p>
