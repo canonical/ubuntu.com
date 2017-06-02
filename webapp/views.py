@@ -1,9 +1,80 @@
 import json
 import os
 import re
+from copy import deepcopy
 
 from feedparser import parse
 from django_template_finder_view import TemplateFinder
+from django.conf import settings
+
+
+def _find_page_by_path(path, pages):
+    """
+    Locate a page from within a tree pages and children
+    of any depth.
+    """
+
+    current_page = None
+
+    for page in pages:
+        if path == page['url_path']:
+            current_page = page
+            break
+        elif 'children' in page:
+            current_page = _find_page_by_path(path, page['children'])
+
+    return current_page
+
+
+def _find_page_section(path, sections):
+    """
+    Given a tree of sections with child pages,
+    Return the page and its section.
+
+    If the path matches the section itself,
+    return a page with the title of "Overview"
+    """
+
+    matching_page = None
+    matching_section = None
+
+    for section in sections:
+        if path == section['url_path']:
+            matching_section = section
+            matching_page = deepcopy(section)
+            matching_page['title'] = 'Overview'
+            break
+        elif 'children' in section:
+            page = _find_page_by_path(path, section['children'])
+
+            if page:
+                matching_section = section
+                matching_page = page
+                break
+
+    return matching_section, matching_page
+
+
+def _common_context(path):
+    """
+    Set any context that we want to pass to all pages
+    """
+
+    common_context = {}
+
+    # Get breadcrumb information and pass to template
+    section, page = _find_page_section(path, settings.NAV_ITEMS)
+    if section and page:
+        common_context['section_path'] = section.get('url_path')
+        common_context['section_title'] = section.get('title')
+        common_context['page_path'] = page.get('url_path')
+        common_context['page_title'] = page.get('title')
+        common_context['page_children'] = page.get('children')
+
+    # Pass menu items to template
+    common_context['menu_items'] = settings.MENU_ITEMS
+
+    return common_context
 
 
 class UbuntuTemplateFinder(TemplateFinder):
@@ -15,13 +86,11 @@ class UbuntuTemplateFinder(TemplateFinder):
         # Get any existing context
         context = super(UbuntuTemplateFinder, self).get_context_data(**kwargs)
 
+        # Add common context items
+        context.update(_common_context(self.request.path))
+
         # Add product query param to context
         context['product'] = self.request.GET.get('product')
-
-        # Add level_* context variables
-        clean_path = self.request.path.strip('/')
-        for index, path, in enumerate(clean_path.split('/')):
-            context["level_" + str(index + 1)] = path
 
         return context
 
@@ -35,6 +104,10 @@ class DownloadView(UbuntuTemplateFinder):
         """
 
         context = super(DownloadView, self).get_context_data(**kwargs)
+
+        # Add common context items
+        context.update(_common_context(self.request.path))
+
         context['http_host'] = self.request.META.get('HTTP_HOST', '')
 
         version = self.request.GET.get('version', '')
