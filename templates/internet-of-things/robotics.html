@@ -70,7 +70,6 @@
   </div>
 </div>
 
-
 <div class="p-strip--light is-deep is-bordered">
   <div class="row">
     <ul class="p-matrix is-split u-clearfix">
@@ -107,7 +106,7 @@
     <div class="col-12">
       <h2>Ubuntu runs on the robotic platforms that matter</h2>
       <p>Want to run Ubuntu Core on your hardware or write apps for an IoT device?</p>
-      <p><a class="p-link--external"  href="https://developer.ubuntu.com/en/snappy/?utm_campaign=device-fy17-iot-vertical-robotics-webpage&utm_medium=partnerhardwarelink&utm_source=ubunturobotics">Learn more</a></p>
+      <p><a class="p-link--external" href="https://developer.ubuntu.com/en/snappy/?utm_campaign=device-fy17-iot-vertical-robotics-webpage&utm_medium=partnerhardwarelink&utm_source=ubunturobotics">Learn more</a></p>
     </div>
   </div>
   <div class="row">
@@ -154,21 +153,20 @@
   </div>
 </div>
 
-
-  <div class="p-strip--accent is-deep">
-    <div class="row">
-      <div class="u-equal-height u-vertically-center">
-        <div class="col-3">
-          <img src="{{ ASSET_SERVER_URL }}04927a56-robot_2px-white.svg" alt="robots are cool ;-)" class="u-hidden--small" />
-        </div>
-        <div class="col-9">
-          <h2>Will your next robot run on Ubuntu?</h2>
-          <p><a href="/internet-of-things/contact-us?product=robotics" class="p-button--brand">Contact us</a></p>
-        </div>
+<div class="p-strip--accent is-deep">
+  <div class="row">
+    <div class="u-equal-height u-vertically-center">
+      <div class="col-3">
+        <img src="{{ ASSET_SERVER_URL }}04927a56-robot_2px-white.svg" alt="robots are cool ;-)" class="u-hidden--small" />
+      </div>
+      <div class="col-9">
+        <h2>Will your next robot run on Ubuntu?</h2>
+        <p><a href="/internet-of-things/contact-us?product=robotics" class="p-button--brand">Contact us</a></p>
       </div>
     </div>
   </div>
+</div>
 
-  {% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_iot_newsletter_signup" third_item="_iot_further_reading" %}
+{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_iot_newsletter_signup" third_item="_iot_further_reading" %}
 
-  {% endblock content %}
+{% endblock content %}
