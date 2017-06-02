@@ -60,7 +60,6 @@
   </head>
 
   <body class="{% if level_1 != "" %}{% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}{% endif %}{% if level_2 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}{% endif %}{% if level_3 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}-{{ level_3 }} {% endif %} {% include "templates/body-class.html" %}{% if extra_body_class != "" %} {% block extra_body_class %}{% endblock %}{% endif %}">
-
     <!-- google tag manager -->
     <script>
       dataLayer = [];
@@ -85,33 +84,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </a>
           </div>
           <div id="nav">
-            <ul>
-              <li class="accessibility-aid"><a accesskey="s" href="#main-content">Jump to content</a></li>
-              <li><a class="first{% if level_1 == 'cloud' %} active{% endif %}" href="/cloud">Cloud</a>
-                {% include "cloud/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a{% if level_1 == 'server' %} class="active"{% endif %} href="/server">Server</a>
-                {% include "server/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a class="first{% if level_1 == 'containers' %} active{% endif %}" href="/containers">Containers</a>
-                {% include "containers/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a {% if level_1 == 'desktop' %} class="active"{% endif %} href="/desktop">Desktop</a>
-                {% include "desktop/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a{% if level_1 == 'core' %} class="active"{% endif %} href="/core">Core</a>
-                {% include "core/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a{% if level_1 == 'internet-of-things' %} class="active"{% endif %} href="/internet-of-things">IoT</a>
-                {% include "internet-of-things/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a{% if level_1 == 'support' %} class="active"{% endif %} href="/support">Support</a>
-                {% include "support/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a{% if level_1 == 'download' %} class="active"{% endif %} href="/download">Downloads</a>
-                {% include "download/_nav_secondary.html" with promo="true" %}
-              </li>
-            </ul>
+            {% block main_nav %}
+              {% include 'templates/main-nav.html' %}
+            {% endblock %}
           </div>
           <div id="site-search">
             <div class="search-toggle">

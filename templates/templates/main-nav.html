@@ -1,0 +1,18 @@
+<ul>
+  <li class="accessibility-aid"><a accesskey="s" href="#main-content">Jump to content</a></li>
+
+  {% for menu_item in menu_items %}
+    <li>
+      <a class="first {% if menu_item.url_path == section_path %}active{% endif %}" href="{{ menu_item.url_path }}">{{ menu_item.title }}</a>
+
+      <ul class="second-level-nav">
+        <li><a href="{{ menu_item.title }}">Overview</a></li>
+        {% if menu_item.children %}
+          {% for child in menu_item.children %}
+            <li><a href="{{ child.url_path }}">{{ child.title }}</a></li>
+          {% endfor %}
+        {% endif %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>

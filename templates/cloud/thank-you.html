@@ -2,6 +2,10 @@
 
 {% block title %}Thank you{% endblock %}
 
+{% block main_nav %}
+  {% include 'templates/main-nav.html' with section_path="/cloud" %}
+{% endblock %}
+
 {% block breadcrumb_nav %}
   {% include 'templates/breadcrumb-nav.html' with section_path="/cloud" section_title="Cloud" page_path="/cloud/thank-you" page_title="Thank you" %}
 {% endblock %}
