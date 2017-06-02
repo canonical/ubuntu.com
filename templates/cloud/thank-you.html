@@ -2,11 +2,9 @@
 
 {% block title %}Thank you{% endblock %}
 
-{% block second_level_nav_items %}
-<div class="strip-inner-wrapper">
-  {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="Contact us" page_title="Thank you"  %}
-</div>
-{% endblock second_level_nav_items %}
+{% block breadcrumb_nav %}
+  {% include 'templates/breadcrumb-nav.html' with section_path="/cloud" section_title="Cloud" page_path="/cloud/thank-you" page_title="Thank you" %}
+{% endblock %}
 
 {% block content %}
 
