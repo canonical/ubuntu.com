@@ -59,6 +59,16 @@
   .p-strip--accent {
     @extend %strip--accent;
 
+    a:link,
+    a:visited {
+      color: $color-x-light;
+    }
+
+    .p-link--external {
+      background-image: url('#{$assets-path}0d55fd52-external-link-white.svg');
+      background-size: .85em;
+    }
+
     fieldset {
       background-color: $color-accent;
       border-color: $color-accent;
