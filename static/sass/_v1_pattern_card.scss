@@ -38,4 +38,22 @@
       text-decoration: underline;
     }
   }
+
+  .p-strip--accent {
+    .p-card--highlighted {
+      color: $color-mid-dark;
+
+      a:link,
+      a:visited {
+        color: $color-brand;
+      }
+
+      a:hover,
+      a:active {
+        color: $color-brand;
+        text-decoration: underline;
+      }
+    }
+  }
+
 }
