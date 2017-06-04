@@ -1,131 +1,156 @@
-{% extends "templates/one-column.html" %}
-
+{% extends "templates/one-column-v1.html" %}
 {% block meta_description %}When an Ubuntu release reaches its end of life it receives no further maintenance updates, including critical security upgrades. It is highly recommended that you upgrade to a recent version of Ubuntu at this point.{% endblock %}
-
 {% block title %}Release end of life{% endblock %}
 
 {% block content %}
-<div class="row row-hero">
-  <h1>Ubuntu release end of life</h1>
-  <div class="eight-col">
-    <p>When an Ubuntu release reaches its &ldquo;end of life&rdquo; it receives no further maintenance updates, including critical security upgrades. We highly recommend that you upgrade to a recent version of Ubuntu at this point.</p>
-    <p>This command will print the exact status of your system.</p>
-    <pre>$ ubuntu-support-status</pre>
-    <p>For information on previous and upcoming releases and please see the <a href="https://wiki.ubuntu.com/Releases" class="external">Ubuntu Releases wiki</a> for more details.</p>
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="u-equal-height">
+    <div class="col-7">
+      <h1>Ubuntu release end of life</h1>
+      <p>When an Ubuntu release reaches its &ldquo;end of life&rdquo; it receives no further maintenance updates, including critical security upgrades. We highly recommend that you upgrade to a recent version of Ubuntu at this point.</p>
+      <p>This command will print the exact status of your system.</p>
+      <div class="p-code-snippet">
+        <input class="p-code-snippet__input" value="ubuntu-support-status" readonly="readonly">
+        <button class="p-code-snippet__action">Copy to clipboard</button>
+      </div>
+      <p>For information on previous and upcoming releases and please see the <a href="https://wiki.ubuntu.com/Releases" class="p-link--external">Ubuntu Releases wiki</a> for more details.</p>
+    </div>
+    <div class="col-5 u-vertically-center u-align--center u-hidden--small">
+<img src="{{ ASSET_SERVER_URL }}ed348358-logo-cof.svg" width="200" alt="ubuntu logo" />
+      </div>
+      </div>
   </div>
-</div><!-- / .row -->
-<div class="row">
-  <div class="seven-col">
-    <h2>Ubuntu Server and desktop release end of life</h2>
-    <p>Standard Ubuntu releases are supported for 9 months and Ubuntu LTS (long-term support) releases are supported for five years on both the desktop and the server. During that time, there will be security fixes and other critical updates. The Ubuntu support lifecycle is as follows:</p>
-  </div>
-  <div class="twelve-col">
-    <img src="{{ ASSET_SERVER_URL }}aed27baa-release-ubuntu-end-of-life.png?w=800" width="800" alt="Ubuntu Desktop release cycle, 5 year long-term support" class="not-for-small" />
-    <table class="for-small">
-      <thead>
-        <tr><th>Release</th><th>Released</th><th>End of life</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Ubuntu 16.04 LTS</td><td>Apr-2016</td><td>Apr-2021</td></tr>
-        <tr><td>Ubuntu 15.10</td><td>Oct-2015</td><td>Dec-2015</td></tr>
-        <tr><td>Ubuntu 15.04</td><td>Apr-2015</td><td>Jun-2015</td></tr>
-        <tr><td>Ubuntu 14.10</td><td>Oct-2014</td><td>Dec-2014</td></tr>
-        <tr><td>Ubuntu 14.04 LTS</td><td>Apr-2014</td><td>Apr-2019</td></tr>
-        <tr><td>Ubuntu 12.04 LTS</td><td>Apr-2012</td><td>Apr-2017</td></tr>
-        <tr><td>Ubuntu 10.04 LTS</td><td>Apr-2010</td><td>Apr-2015</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="six-col">
-    <p><a href="/download">Download the latest version of Ubuntu&nbsp;&rsaquo;</a></p>
-  </div>
-</div>
+</section>
 
-<div class="row">
-  <div class="eight-col">
-    <h2>Kernel release end of life</h2>
-    <p>The Ubuntu LTS enablement stacks provide newer kernel and X support for existing Ubuntu LTS releases. These can be installed manually, or are automatically shipped if installing from 12.04.2/14.04.2 and newer release media. These newer enablement stacks are meant for desktop and server, and even recommended for cloud or virtual images. The Ubuntu kernel support lifecycle is as follows:</p>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-7">
+      <h2>Ubuntu Server and desktop release end of life</h2>
+      <p>Standard Ubuntu releases are supported for 9 months and Ubuntu LTS (long-term support) releases are supported for five years on both the desktop and the server. During that time, there will be security fixes and other critical updates. The Ubuntu support lifecycle is as follows:</p>
+    </div>
   </div>
-  <div class="twelve-col">
-    <p><img src="{{ ASSET_SERVER_URL }}34e06f19-kernel-release-end-of-life.png" alt="" class="not-for-small" /></p>
-    <table class="for-small">
-      <thead>
-        <tr><th>Release</th><th>Released</th><th>End of life</th></tr>
-      </thead>
-      <tbody>
-                <tr><td>Ubuntu 16.04.5</td><td>Aug-2018</td><td>Apr-2021</td></tr>
-        <tr><td>Ubuntu 18.04.0</td><td>Apr-2018</td><td>Apr-2023</td></tr>
-        <tr><td>Ubuntu 16.04.4</td><td>Feb-2018</td><td>Aug-2018</td></tr>
-        <tr><td>Ubuntu 17.10</td><td>Oct-2017</td><td>Jul-2018</td></tr>
-        <tr><td>Ubuntu 16.04.3</td><td>Aug-2017</td><td>Feb-2018</td></tr>
-        <tr><td>Ubuntu 17.04</td><td>Apr-2017</td><td>Jan-2018</td></tr>
-        <tr><td>Ubuntu 16.04.2 (v4.8)</td><td>Feb-2017</td><td>Aug-2017</td></tr>
-        <tr><td>Ubuntu 16.10</td><td>Oct-2016</td><td>Jul-2017</td></tr>
-        <tr><td>Ubuntu 16.04.1 (v4.4)</td><td>Aug-2016</td><td>Apr-2021</td></tr>
-        <tr><td>Ubuntu 14.04.5 (v4.4)</td><td>Aug-2016</td><td>May-2019</td></tr>
-        <tr><td>Ubuntu 16.04.0 (v4.4)</td><td>Apr-2016</td><td>Apr-2021</td></tr>
-        <tr><td>Ubuntu 14.04.4 (v4.2)</td><td>Feb-2016</td><td>Aug-2016</td></tr>
-        <tr><td>Ubuntu 15.10 (v4.2)</td><td>Oct-2015</td><td>Oct-2015</td></tr>
-        <tr><td>Ubuntu 14.04.3 (v3.19)</td><td>Aug-2015</td><td>Aug-2016</td></tr>
-        <tr><td>Ubuntu 15.04 (v3.19)</td><td>Apr-2015</td><td>Jan-2016</td></tr>
-        <tr><td>Ubuntu 14.04.2 (v3.16)</td><td>Feb-2015</td><td>Feb-2016</td></tr>
-        <tr><td>Ubuntu 14.10 (v3.16)</td><td>Oct-2010</td><td>Jul-2011</td></tr>
-        <tr><td>Ubuntu 14.04.1 (v3.13)</td><td>Aug-2014</td><td>Feb-2016</td></tr>
-        <tr><td>Ubuntu 12.04.5 (v3.13)</td><td>Aug-2014</td><td>May-2017</td></tr>
-        <tr><td>Ubuntu 14.04.0 (v3.13)</td><td>Apr-2014</td><td>Mar-2019</td></tr>
-        <tr><td>Ubuntu 12.04.4 (v3.11)</td><td>Feb-2014</td><td>Aug-2014</td></tr>
-        <tr><td>Ubuntu 13.10 (v3.11)</td><td>Oct-2010</td><td>Jul-2011</td></tr>
-        <tr><td>Ubuntu 12.04.3 (v3.8)</td><td>Aug-2013</td><td>Aug-2014</td></tr>
-        <tr><td>Ubuntu 13.04 (v3.8)</td><td>Apr-2013</td><td>Jan-2014</td></tr>
-        <tr><td>Ubuntu 12.04.2 (v3.5)</td><td>Feb-2013</td><td>Aug-2014</td></tr>
-        <tr><td>Ubuntu 12.10 (v3.5)</td><td>Oct-2012</td><td>Apr-2014</td></tr>
-        <tr><td>Ubuntu 12.04.1 (v3.2)</td><td>Aug-2012</td><td>Apr-2017</td></tr>
-        <tr><td>Ubuntu 12.04.0 (v3.2)</td><td>Apr-2012</td><td>Apr-2017</td></tr>
-      </tbody>
-    </table>
+  <div class="row">
+    <div class="col-12">
+      <img src="{{ ASSET_SERVER_URL }}aed27baa-release-ubuntu-end-of-life.png?w=800" width="800" alt="Ubuntu Desktop release cycle, 5 year long-term support" class="u-hidden--small" />
+      <table class="u-visible--small u-hidden--medium u-hidden--large">
+        <thead>
+          <tr><th>Release</th><th>Released</th><th>End of life</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Ubuntu 16.04 LTS</td><td>Apr-2016</td><td>Apr-2021</td></tr>
+          <tr><td>Ubuntu 15.10</td><td>Oct-2015</td><td>Dec-2015</td></tr>
+          <tr><td>Ubuntu 15.04</td><td>Apr-2015</td><td>Jun-2015</td></tr>
+          <tr><td>Ubuntu 14.10</td><td>Oct-2014</td><td>Dec-2014</td></tr>
+          <tr><td>Ubuntu 14.04 LTS</td><td>Apr-2014</td><td>Apr-2019</td></tr>
+          <tr><td>Ubuntu 12.04 LTS</td><td>Apr-2012</td><td>Apr-2017</td></tr>
+          <tr><td>Ubuntu 10.04 LTS</td><td>Apr-2010</td><td>Apr-2015</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-6">
+      <p><a href="/download">Download the latest version of Ubuntu&nbsp;&rsaquo;</a></p>
+    </div>
   </div>
-  <div class="eight-col">
-    <p>For more information on previous and upcoming kernel releases please see the <a href="https://wiki.ubuntu.com/Kernel/LTSEnablementStack" class="external">Ubuntu LTS Enablement Stack wiki page</a>.</p>
-  </div>
-</div>
+</section>
 
-<div class="row no-border">
-  <div class="eight-col">
-    <h2>Ubuntu OpenStack release end of life</h2>
-    <p>Canonical&rsquo;s Ubuntu Cloud archive allows users the ability to install newer releases of <a href="/cloud/openstack" class="external">Ubuntu OpenStack</a> on an Ubuntu Server as they become available up through the next Ubuntu LTS release. The Ubuntu OpenStack support lifecycle is as follows:</p>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Kernel release end of life</h2>
+      <p>The Ubuntu LTS enablement stacks provide newer kernel and X support for existing Ubuntu LTS releases. These can be installed manually, or are automatically shipped if installing from 12.04.2/14.04.2 and newer release media. These newer enablement stacks are meant for desktop and server, and even recommended for cloud or virtual images. The Ubuntu kernel support lifecycle is as follows:</p>
+    </div>
   </div>
-  <div class="twelve-col">
-    <p><img src="{{ ASSET_SERVER_URL }}dd209641-openstack-release-eol-20161213.png" alt="" class="not-for-small" /></p>
-    <table class="for-small">
-      <thead>
-        <tr><th>Release</th><th>Released</th><th>End of life</th><th>Extended customer support</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>OpenStack Queens</td><td>Apr-2019</td><td>Apr-2024</td></tr>
-        <tr><td>Ubuntu 18.04 LTS</td><td>Oct-2018</td><td>Oct-2023</td></tr>
-        <tr><td>OpenStack Queens</td><td>Apr-2018</td><td>Apr-2021</td></tr>
-        <tr><td>OpenStack Pike</td><td>Oct-2017</td><td>Apr-2019</td></tr>
-        <tr><td>OpenStack Ocata</td><td>Apr-2017</td><td>Jan-2019</td><td>Aug-2019</td></tr>
-        <tr><td>OpenStack Newton</td><td>Oct-2016</td><td>Apr-2018</td></tr>
-        <tr><td>OpenStack Mitaka</td><td>Apr-2016</td><td>Apr-2021</td></tr>
-        <tr><td>Ubuntu 16.04 LTS</td><td>Apr-2016</td><td>Apr-2021</td></tr>
-        <tr><td>OpenStack Mitaka</td><td>Apr-2016</td><td>Apr-2019</td></tr>
-        <tr><td>OpenStack Liberty</td><td>Oct-2015</td><td>Apr-2017</td></tr>
-        <tr><td>OpenStack Kilo</td><td>Apr-2015</td><td>Oct-2016</td><td>Apr-2017</td></tr>
-        <tr><td>OpenStack Juno</td><td>Oct-2014</td><td>Apr-2016</td></tr>
-        <tr><td>OpenStack Icehouse</td><td>Apr-2014</td><td>Apr-2019</td></tr>
-        <tr><td>Ubuntu 14.04 LTS</td><td>Apr-2014</td><td>Apr-2019</td></tr>
-        <tr><td>OpenStack Icehouse</td><td>Apr-2014</td><td>Apr-2017</td></tr>
-        <tr><td>OpenStack Havana</td><td>Oct-2013</td><td>Jul-2014</td></tr>
-        <tr><td>OpenStack Grizzly</td><td>May-2013</td><td>Aug-2014</td></tr>
-        <tr><td>OpenStack Folsom</td><td>Sep-2012</td><td>Jun-2014</td></tr>
-        <tr><td>OpenStack Essex</td><td>Apr-2012</td><td>Apr-2017</td></tr>
-        <tr><td>Ubuntu 12.04 LTS</td><td>Apr-2012</td><td>Apr-2017</td></tr>
-      </tbody>
-    </table>
+  <div class="row">
+    <div class="col-12">
+      <p><img src="{{ ASSET_SERVER_URL }}34e06f19-kernel-release-end-of-life.png" alt="" class="u-hidden--small" /></p>
+      <table class="u-visible--small u-hidden--medium u-hidden--large">
+        <thead>
+          <tr><th>Release</th><th>Released</th><th>End of life</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Ubuntu 16.04.5</td><td>Aug-2018</td><td>Apr-2021</td></tr>
+          <tr><td>Ubuntu 18.04.0</td><td>Apr-2018</td><td>Apr-2023</td></tr>
+          <tr><td>Ubuntu 16.04.4</td><td>Feb-2018</td><td>Aug-2018</td></tr>
+          <tr><td>Ubuntu 17.10</td><td>Oct-2017</td><td>Jul-2018</td></tr>
+          <tr><td>Ubuntu 16.04.3</td><td>Aug-2017</td><td>Feb-2018</td></tr>
+          <tr><td>Ubuntu 17.04</td><td>Apr-2017</td><td>Jan-2018</td></tr>
+          <tr><td>Ubuntu 16.04.2 (v4.8)</td><td>Feb-2017</td><td>Aug-2017</td></tr>
+          <tr><td>Ubuntu 16.10</td><td>Oct-2016</td><td>Jul-2017</td></tr>
+          <tr><td>Ubuntu 16.04.1 (v4.4)</td><td>Aug-2016</td><td>Apr-2021</td></tr>
+          <tr><td>Ubuntu 14.04.5 (v4.4)</td><td>Aug-2016</td><td>May-2019</td></tr>
+          <tr><td>Ubuntu 16.04.0 (v4.4)</td><td>Apr-2016</td><td>Apr-2021</td></tr>
+          <tr><td>Ubuntu 14.04.4 (v4.2)</td><td>Feb-2016</td><td>Aug-2016</td></tr>
+          <tr><td>Ubuntu 15.10 (v4.2)</td><td>Oct-2015</td><td>Oct-2015</td></tr>
+          <tr><td>Ubuntu 14.04.3 (v3.19)</td><td>Aug-2015</td><td>Aug-2016</td></tr>
+          <tr><td>Ubuntu 15.04 (v3.19)</td><td>Apr-2015</td><td>Jan-2016</td></tr>
+          <tr><td>Ubuntu 14.04.2 (v3.16)</td><td>Feb-2015</td><td>Feb-2016</td></tr>
+          <tr><td>Ubuntu 14.10 (v3.16)</td><td>Oct-2010</td><td>Jul-2011</td></tr>
+          <tr><td>Ubuntu 14.04.1 (v3.13)</td><td>Aug-2014</td><td>Feb-2016</td></tr>
+          <tr><td>Ubuntu 12.04.5 (v3.13)</td><td>Aug-2014</td><td>May-2017</td></tr>
+          <tr><td>Ubuntu 14.04.0 (v3.13)</td><td>Apr-2014</td><td>Mar-2019</td></tr>
+          <tr><td>Ubuntu 12.04.4 (v3.11)</td><td>Feb-2014</td><td>Aug-2014</td></tr>
+          <tr><td>Ubuntu 13.10 (v3.11)</td><td>Oct-2010</td><td>Jul-2011</td></tr>
+          <tr><td>Ubuntu 12.04.3 (v3.8)</td><td>Aug-2013</td><td>Aug-2014</td></tr>
+          <tr><td>Ubuntu 13.04 (v3.8)</td><td>Apr-2013</td><td>Jan-2014</td></tr>
+          <tr><td>Ubuntu 12.04.2 (v3.5)</td><td>Feb-2013</td><td>Aug-2014</td></tr>
+          <tr><td>Ubuntu 12.10 (v3.5)</td><td>Oct-2012</td><td>Apr-2014</td></tr>
+          <tr><td>Ubuntu 12.04.1 (v3.2)</td><td>Aug-2012</td><td>Apr-2017</td></tr>
+          <tr><td>Ubuntu 12.04.0 (v3.2)</td><td>Apr-2012</td><td>Apr-2017</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div class="eight-col">
-    <p>For more information on previous and upcoming Ubuntu OpenStack releases please see the <a href="https://wiki.ubuntu.com/OpenStack/CloudArchive" class="external">Ubuntu Cloud Archive wiki page</a>.</p>
+  <div class="row">
+    <div class="col-8">
+      <p>For more information on previous and upcoming kernel releases please see the <a href="https://wiki.ubuntu.com/Kernel/LTSEnablementStack" class="p-link--external">Ubuntu LTS Enablement Stack wiki page</a>.</p>
+    </div>
   </div>
-</div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>Ubuntu OpenStack release end of life</h2>
+      <p>Canonical&rsquo;s Ubuntu Cloud archive allows users the ability to install newer releases of <a href="/cloud/openstack" class="p-link--external">Ubuntu OpenStack</a> on an Ubuntu Server as they become available up through the next Ubuntu LTS release. The Ubuntu OpenStack support lifecycle is as follows:</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <p><img src="{{ ASSET_SERVER_URL }}dd209641-openstack-release-eol-20161213.png" alt="" class="u-hidden--small" /></p>
+      <table class="u-visible--small u-hidden--medium u-hidden--large">
+        <thead>
+          <tr><th>Release</th><th>Released</th><th>End of life</th><th>Extended customer support</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>OpenStack Queens</td><td>Apr-2019</td><td>Apr-2024</td></tr>
+          <tr><td>Ubuntu 18.04 LTS</td><td>Oct-2018</td><td>Oct-2023</td></tr>
+          <tr><td>OpenStack Queens</td><td>Apr-2018</td><td>Apr-2021</td></tr>
+          <tr><td>OpenStack Pike</td><td>Oct-2017</td><td>Apr-2019</td></tr>
+          <tr><td>OpenStack Ocata</td><td>Apr-2017</td><td>Jan-2019</td><td>Aug-2019</td></tr>
+          <tr><td>OpenStack Newton</td><td>Oct-2016</td><td>Apr-2018</td></tr>
+          <tr><td>OpenStack Mitaka</td><td>Apr-2016</td><td>Apr-2021</td></tr>
+          <tr><td>Ubuntu 16.04 LTS</td><td>Apr-2016</td><td>Apr-2021</td></tr>
+          <tr><td>OpenStack Mitaka</td><td>Apr-2016</td><td>Apr-2019</td></tr>
+          <tr><td>OpenStack Liberty</td><td>Oct-2015</td><td>Apr-2017</td></tr>
+          <tr><td>OpenStack Kilo</td><td>Apr-2015</td><td>Oct-2016</td><td>Apr-2017</td></tr>
+          <tr><td>OpenStack Juno</td><td>Oct-2014</td><td>Apr-2016</td></tr>
+          <tr><td>OpenStack Icehouse</td><td>Apr-2014</td><td>Apr-2019</td></tr>
+          <tr><td>Ubuntu 14.04 LTS</td><td>Apr-2014</td><td>Apr-2019</td></tr>
+          <tr><td>OpenStack Icehouse</td><td>Apr-2014</td><td>Apr-2017</td></tr>
+          <tr><td>OpenStack Havana</td><td>Oct-2013</td><td>Jul-2014</td></tr>
+          <tr><td>OpenStack Grizzly</td><td>May-2013</td><td>Aug-2014</td></tr>
+          <tr><td>OpenStack Folsom</td><td>Sep-2012</td><td>Jun-2014</td></tr>
+          <tr><td>OpenStack Essex</td><td>Apr-2012</td><td>Apr-2017</td></tr>
+          <tr><td>Ubuntu 12.04 LTS</td><td>Apr-2012</td><td>Apr-2017</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <p>For more information on previous and upcoming Ubuntu OpenStack releases please see the <a href="https://wiki.ubuntu.com/OpenStack/CloudArchive" class="p-link--external">Ubuntu Cloud Archive wiki page</a>.</p>
+    </div>
+  </div>
+</section>
 {% endblock content %}
