@@ -1,11 +1,12 @@
-{% extends "templates/one-column.html" %}
+{% extends "templates/one-column-v1.html" %}
 
 {% block title %}Search results{% if query %} for "{{query}}"{% endif %} | Ubuntu{% endblock %}
 {% block extra_body_class %}ubuntu-search{% endblock %}
 
 {% block content %}
-<div class="row row-hero no-border search-container">
-  <div class="strip-inner-wrapper">
+<div class="p-strip is-deep search-container">
+  <div class="row">
+    <div class="col-12">
     {% if query %}
       {% if results.items %}
         <h1>We've found {{ results.total }} results for "{{ query }}"</h1>
