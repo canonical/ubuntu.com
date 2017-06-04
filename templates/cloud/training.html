@@ -1,144 +1,146 @@
-{% extends "cloud/base_cloud.html" %}
-
+{% extends "cloud/base_cloud-v1.html" %}
 {% block title %}Training | Cloud{% endblock %}
-
 {% block meta_description %}Canonical run OpenStack and Ubuntu training programmes to suit all environments and all levels of experience.{% endblock meta_description %}
 
 {% block second_level_nav_items %}
-<div class="strip-inner-wrapper">
-  {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" subsection_title="OpenStack" page_title="Jumpstart" %}
-</div>
+{% include "templates/_nav_breadcrumb-v1.html" with section_title="Cloud" subsection_title="OpenStack" page_title="Jumpstart" %}
 {% endblock second_level_nav_items %}
 
 {% block outer_content %}
 {% block content %}
-<section class="row row-hero row--training strip-light">
-  <div class="strip-inner-wrapper row--training__content">
-    <h1>Train with Ubuntu</h1>
-    <div class="six-col">
+<section class="p-strip is-deep is-bordered u-image-position">
+  <div class="row">
+    <div class="col-6">
+      <h1>Train with Ubuntu</h1>
       <p>Train your sysadmins and devops engineers to become Ubuntu OpenStack experts. Canonical runs training programmes to suit all environments and all levels of experience. Explore, prototype and design with cloud technologies so you can get the most out of OpenStack. All classes and materials are provided in English.</p>
     </div>
-    <img class="row--training__image not-for-small" alt="" src="{{ ASSET_SERVER_URL }}58f24048-image-ubuntu-openstack-medals.png" />
+    <img class="u-image-position--top u-image-position--right u-hidden--small" alt="" src="{{ ASSET_SERVER_URL }}58f24048-image-ubuntu-openstack-medals.png" style="right: 150px;"/>
   </div>
 </section>
 
-<section class="row strip-light">
-  <div class="strip-inner-wrapper">
-    <div class="eight-col">
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-7">
       <h2>OpenStack Fundamentals</h2>
+      <h3>Online training by Hastexo</h3>
+      <p>Independent providers of online OpenStack training materials, certified by&nbsp;Canonical.</p>
+      <p><a href="https://academy.hastexo.com/courses/course-v1:hastexo+hx201+201610-juju/about" class="p-link--external">OpenStack 101 by Hastexo</a></p>
     </div>
-    <ul class="twelve-col list no-bullets training-list">
-      <li class="training-list__item">
-        <div class="equal-height--vertical-divider">
-          <div class="equal-height--vertical-divider__item seven-col no-margin-bottom training-list__course-summary">
-            <h3>Online training</h3>
-            <p>Independent providers of online OpenStack training materials, certified by&nbsp;Canonical.</p>
-            <p><a href="https://academy.hastexo.com/courses/course-v1:hastexo+hx201+201610-juju/about" class="external">OpenStack 101 by Hastexo</a></p>
-          </div>
-        </div>
-      </li>
-      <li class="training-list__item">
-        <div class="equal-height--vertical-divider">
-          <div class="equal-height--vertical-divider__item seven-col no-margin-bottom training-list__course-summary">
-            <h3>On-site training</h3>
-            <p>3-day hands-on course at your premises for up to 15 people that will give you the best introduction for setting up and running your own Ubuntu OpenStack cloud.</p>
-            <p><a class="external" href="http://insights.ubuntu.com/wp-content/uploads/Ubuntu_OpenStack_Fundamentals_Training.pdf">Read the course outline (PDF)</a></p>
-          </div>
-          <div class="equal-height--vertical-divider__item five-col last-col no-margin-bottom">
-            <dl class="training-list__course-details" itemscope itemtype="https://schema.org/Product">
-              <dt>Duration</dt>
-              <dd>3 days</dd>
-              <dt>Cost</dt>
-              <dd>USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="19500">19,500</span> up to 15 attendees</dd>
-              <dt>Location</dt>
-              <dd>Your premises</dd>
-              <dt>Availability</dt>
-              <dd>Private groups only</dd>
-            </dl>
-            <p><a href="/cloud/contact-us?product=cloud-training-onsite">Contact us to book yours&nbsp;&rsaquo;</a></p>
-          </div>
-        </div>
-      </li>
-      <li class="training-list__item">
-        <div class="equal-height--vertical-divider">
-          <div class="equal-height--vertical-divider__item seven-col no-margin-bottom training-list__course-summary">
-            <h3>High Availability Architecture add-on training</h3>
-            <p>This is a half day add-on course that is bundled with the OpenStack Fundamentals course, at your premises, for up to 15 students, that will provide fundamental instruction on High Availability for OpenStack.</p>
-            <p><a class="external" href="http://insights.ubuntu.com/wp-content/uploads/8032/ubuntu-openstack-high-availability-architecture.pdf">Read the course outline (PDF)</a></p>
-          </div>
-          <div class="equal-height--vertical-divider__item five-col last-col no-margin-bottom">
-            <dl class="training-list__course-details" itemscope itemtype="https://schema.org/Product">
-              <dt>Duration</dt>
-              <dd>4.5 hrs</dd>
-              <dt>Cost</dt>
-              <dd>USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="2000">2,000 </span> up to 15 attendees</dd>
-              <dt>Location</dt>
-              <dd>Your premises</dd>
-              <dt>Availability</dt>
-              <dd>From 26 September 2016</dd>
-            </dl>
-            <p><a href="/cloud/contact-us?product=cloud-training-onsite">Contact us to book yours&nbsp;&rsaquo;</a></p>
-          </div>
-        </div>
-      </li>
-      <li class="training-list__item">
-        <h2>Ubuntu Server Administration</h2>
-        <div class="equal-height--vertical-divider">
-          <div class="equal-height--vertical-divider__item seven-col no-margin-bottom training-list__course-summary">
-            <h3>Basic on-site training</h3>
-            <p>3-day hands-on course at your premises for up to 15 students, that will provide fundamental instruction on how to install and administer Ubuntu Server.</p>
-            <p><a class="external" href="http://insights.ubuntu.com/wp-content/uploads/1ee7/Training_basic-Ubuntu-server-administration.pdf">Read the course outline (PDF)</a></p>
-          </div>
-          <div class="equal-height--vertical-divider__item five-col last-col no-margin-bottom">
-            <dl class="training-list__course-details" itemscope itemtype="https://schema.org/Product">
-              <dt>Duration</dt>
-              <dd>3 days</dd>
-              <dt>Cost</dt>
-              <dd>USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="14500">14,500</span> up to 15 attendees</dd>
-              <dt>Location</dt>
-              <dd>Your premises</dd>
-              <dt>Availability</dt>
-              <dd>From 10 October 2016</dd>
-            </dl>
-            <p><a href="/cloud/training/server-admin-onsite-contact-us">Contact us to book yours&nbsp;&rsaquo;</a></p>
-          </div>
-        </div>
-      </li>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <hr />
+      <h3>On-site training</h3>
+    </div>
+  </div>
+  <div class="row p-divider">
+    <div class="col-7 p-divider__block">
+      <p>3-day hands-on course at your premises for up to 15 people that will give you the best introduction for setting up and running your own Ubuntu OpenStack cloud.</p>
+      <p><a class="p-link--external" href="http://insights.ubuntu.com/wp-content/uploads/Ubuntu_OpenStack_Fundamentals_Training.pdf">Read the course outline (PDF)</a></p>
+    </div>
+    <div class="col-5 p-divider__block">
+      <dl class="p-inline-definition-list" itemscope itemtype="https://schema.org/Product">
+        <dt class="p-inline-definition-list__title">Duration</dt>
+        <dd class="p-inline-definition-list__item">3 days</dd>
+        <dt class="p-inline-definition-list__title">Cost</dt>
+        <dd class="p-inline-definition-list__item">USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="19500">19,500</span> up to 15 attendees</dd>
+        <dt class="p-inline-definition-list__title">Location</dt>
+        <dd class="p-inline-definition-list__item">Your premises</dd>
+        <dt class="p-inline-definition-list__title">Availability</dt>
+        <dd class="p-inline-definition-list__item">Private groups only</dd>
+      </dl>
+      <p><a href="/cloud/contact-us?product=cloud-training-onsite">Contact us to book yours&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
 
-      <li class="training-list__item">
-        <div class="equal-height--vertical-divider">
-          <div class="equal-height--vertical-divider__item seven-col no-margin-bottom training-list__course-summary">
-            <h3>Advanced on-site training</h3>
-            <p>You&rsquo;ve been using Ubuntu Server for a while and want to advance your skills. The Ubuntu Advanced Server course is an intensive 3-day hands-on course in which you will learn and use advanced techniques.</p>
-            <p><a class="external" href="https://insights.ubuntu.com/wp-content/uploads/138d/Training_Advanced-server-administration_02.17.pdf">Read the course outline (PDF)</a></p>
-          </div>
-          <div class="equal-height--vertical-divider__item five-col last-col no-margin-bottom">
-            <dl class="training-list__course-details" itemscope itemtype="https://schema.org/Product">
-              <dt>Duration</dt>
-              <dd>3 days</dd>
-              <dt>Cost</dt>
-              <dd>USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="14500">14,500</span> up to 15 attendees</dd>
-              <dt>Location</dt>
-              <dd>Your premises</dd>
-              <dt>Availability</dt>
-              <dd>From 6 February 2017</dd>
-            </dl>
-            <p><a href="/cloud/training/server-admin-onsite-contact-us">Contact us to book yours&nbsp;&rsaquo;</a></p>
-          </div>
-        </div>
-      </li>
-    </ul>
+  <div class="row">
+    <div class="col-12">
+      <hr />
+      <h3>High Availability Architecture add-on training</h3>
+    </div>
+  </div>
+  <div class="row p-divider">
+    <div class="col-7 p-divider__block">
+      <p>This is a half day add-on course that is bundled with the OpenStack Fundamentals course, at your premises, for up to 15 students, that will provide fundamental instruction on High Availability for OpenStack.</p>
+      <p><a class="p-link--external" href="http://insights.ubuntu.com/wp-content/uploads/8032/ubuntu-openstack-high-availability-architecture.pdf">Read the course outline (PDF)</a></p>
+    </div>
+    <div class="col-5 p-divider__block">
+      <dl class="p-inline-definition-list" itemscope itemtype="https://schema.org/Product">
+        <dt class="p-inline-definition-list__title">Duration</dt>
+        <dd class="p-inline-definition-list__item">4.5 hrs</dd>
+        <dt class="p-inline-definition-list__title">Cost</dt>
+        <dd class="p-inline-definition-list__item">USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="2000">2,000 </span> up to 15 attendees</dd>
+        <dt class="p-inline-definition-list__title">Location</dt>
+        <dd class="p-inline-definition-list__item">Your premises</dd>
+        <dt class="p-inline-definition-list__title">Availability</dt>
+        <dd class="p-inline-definition-list__item">From 26 September 2016</dd>
+      </dl>
+      <p><a href="/cloud/contact-us?product=cloud-training-onsite">Contact us to book yours&nbsp;&rsaquo;</a></p>
+    </div>
   </div>
 </section>
 
-<section class="row no-border strip-light">
-  <div class="strip-inner-wrapper">
-    <div class="seven-col">
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2>Ubuntu Server Administration</h2>
+      <h3>Basic on-site training</h3>
+    </div>
+  </div>
+  <div class="row p-divider">
+    <div class="col-7 p-divider__block">
+      <p>3-day hands-on course at your premises for up to 15 students, that will provide fundamental instruction on how to install and administer Ubuntu Server.</p>
+      <p><a class="p-link--external" href="http://insights.ubuntu.com/wp-content/uploads/1ee7/Training_basic-Ubuntu-server-administration.pdf">Read the course outline (PDF)</a></p>
+    </div>
+    <div class="col-5 p-divider__block">
+      <dl class="p-inline-definition-list" itemscope itemtype="https://schema.org/Product">
+        <dt class="p-inline-definition-list__title">Duration</dt>
+        <dd class="p-inline-definition-list__item">3 days</dd>
+        <dt class="p-inline-definition-list__title">Cost</dt>
+        <dd class="p-inline-definition-list__item">USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="14500">14,500</span> up to 15 attendees</dd>
+        <dt class="p-inline-definition-list__title">Location</dt>
+        <dd class="p-inline-definition-list__item">Your premises</dd>
+        <dt class="p-inline-definition-list__title">Availability</dt>
+        <dd class="p-inline-definition-list__item">From 10 October 2016</dd>
+      </dl>
+      <p><a href="/cloud/training/server-admin-onsite-contact-us">Contact us to book yours&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <hr />
+      <h3>Advanced on-site training</h3>
+    </div>
+  </div>
+  <div class="row p-divider">
+    <div class="col-7 p-divider__block">
+      <p>You&rsquo;ve been using Ubuntu Server for a while and want to advance your skills. The Ubuntu Advanced Server course is an intensive 3-day hands-on course in which you will learn and use advanced techniques.</p>
+      <p><a class="p-link--external" href="https://insights.ubuntu.com/wp-content/uploads/138d/Training_Advanced-server-administration_02.17.pdf">Read the course outline (PDF)</a></p>
+    </div>
+    <div class="col-5 p-divider__block">
+      <dl class="p-inline-definition-list" itemscope itemtype="https://schema.org/Product">
+        <dt class="p-inline-definition-list__title">Duration</dt>
+        <dd class="p-inline-definition-list__item">3 days</dd>
+        <dt class="p-inline-definition-list__title">Cost</dt>
+        <dd class="p-inline-definition-list__item">USD <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="14500">14,500</span> up to 15 attendees</dd>
+        <dt class="p-inline-definition-list__title">Location</dt>
+        <dd class="p-inline-definition-list__item">Your premises</dd>
+        <dt class="p-inline-definition-list__title">Availability</dt>
+        <dd class="p-inline-definition-list__item">From 6 February 2017</dd>
+      </dl>
+      <p><a href="/cloud/training/server-admin-onsite-contact-us">Contact us to book yours&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-7">
       <h2>Questions about training?</h2>
       <p>If you have a question about OpenStack training or want to register your interest for future training.</p>
       <p><a href="/cloud/contact-us">Contact us&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="five-col align-center last-col">
+    <div class="col-5 u-align--center u-hidden--small">
       <img src="{{ ASSET_SERVER_URL }}9b170f06-picto-help-orange.svg" width="135" alt="" />
     </div>
   </div>
