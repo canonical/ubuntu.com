@@ -46,8 +46,9 @@
 @include ubuntu-u-full-width;
 @include ubuntu-p-matrix;
 
-// sections
-@import 'section/v1_homepage';
+// import section specific patterns and overrides
+@import 'v1_section/v1_cloud';
+@import 'v1_section/v1_homepage';
 
 // Takeovers and takeunders
 @import 'takeovers/kubernetes-webinar';
