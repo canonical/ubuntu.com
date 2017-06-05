@@ -8,10 +8,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
+import yaml
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'no_secret')
+
+
+with open('navigation.yaml') as navigation_file:
+    NAV_ITEMS = yaml.load(navigation_file.read())
+    MENU_ITEMS = [item for item in NAV_ITEMS if item.get('include_in_menu')]
 
 # See https://docs.djangoproject.com/en/dev/ref/contrib/
 INSTALLED_APPS = [

@@ -1,0 +1,27 @@
+{% if section_path and section_title and page_path and page_title %}
+<nav class="breadcrumbs nav-secondary clearfix">
+  <div class="strip-inner-wrapper">
+    <ul class="breadcrumb">
+      <li>
+        <a class="breadcrumb-link" href="{{ section_path }}">
+          {{ section_title }}
+        </a>
+
+        <ul class="second-level-nav">
+          <li>
+            <a class="active" href="{{ page_path }}">
+              {{ page_title }}
+            </a>
+          </li>
+
+          {% if page_children %}
+            {% for child in page_children %}
+              <li><a href="{{ child.url_path }}">{{ child.title }}</a></li>
+            {% endfor %}
+          {% endif %}
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% endif %}
