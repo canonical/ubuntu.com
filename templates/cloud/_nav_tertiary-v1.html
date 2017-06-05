@@ -1,3 +1,4 @@
+{% if level_3 %}
 <ul class="p-inline-list nav-tertiary__menu">
   {% if level_2 == 'openstack' and not level_4 %}
   <li class="p-inline-list__item"><a{% if level_3 == 'autopilot'%} class="is-active"{% endif %} href="/cloud/openstack/autopilot">Autopilot</a></li>
@@ -21,3 +22,4 @@
   <li class="p-inline-list__item"><a {% if level_4 == 'contact-us' %} class="is-active"{% endif %} href="/{{level_1}}/{{level_2}}/{{level_3}}/{{level_4}}">Contact us</a></li>
   {% endif %}
 </ul>
+{% endif %}
