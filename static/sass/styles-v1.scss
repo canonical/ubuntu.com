@@ -246,3 +246,17 @@ pre {
     margin-top: -$sp-small;
   }
 }
+
+// XXX add to grahams section page when live
+// flex to flow charm list around
+.p-list-flex {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__item {
+    margin-bottom: 16px;
+    margin-right: 18px;
+    max-height: 172px;
+    max-width: 142px;
+  }
+}
