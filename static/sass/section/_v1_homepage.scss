@@ -235,95 +235,21 @@
 
   /// Featured row, for takeunders
   .p-takeunder {
-    padding-left: 0;
-    padding-right: 0;
-    margin-top: -20px;
-    overflow: hidden;
-    z-index: 1; //fixes overlap issues with previous row image
+    color: $color-x-light;
 
-    @media only screen and (min-width : $breakpoint-medium) {
-      margin: -100px 0 0;
+    &__title {
     }
 
-    @media only screen and (min-width : $breakpoint-large) {
-      margin: -100px 0 -60px 0;
-    }
-  }
-
-
-
-  // takeunders
-  .equal-height .equal-height__item.p-takeunder {
-    flex-direction: row;
-  }
-
-  .p-takeunder {
-    float: none;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      float: left;
-      margin-bottom: -20px;
-      width: 50%;
-    }
-
-    @media only screen and (min-width : $breakpoint-large) {
-      padding-left: 0;
-      padding-right: 0;
-      margin-bottom: -40px;
-    }
-
-    &--left {
-      position: relative;
-
-      &::before {
-        content: "";
-        display: none;
-
-        @media only screen and (min-width : $breakpoint-medium) {
-          display: block;
-        }
-
-        flex: auto;
-        height: 100%;
-        left: -3000px;
-        margin-top: -40px;
-        position: absolute;
-        width: 3000px;
-      }
-    }
-
-    &--right {
-      position: relative;
-
-      &::after {
-        position: absolute;
-        display: none;
-
-        @media only screen and (min-width : $breakpoint-medium) {
-          display: block;
-        }
-
-        right: -3000px;
-        margin-top: -40px;
-        content: "";
-        width: 3000px;
-        flex: auto;
-        height: 100%;
-      }
+    &__link {
     }
 
     &__content {
-      color: white;
-
-      &--subtle {
-        opacity: 0.17;
-      }
     }
 
+    a:link,
+    a:visited {
+      color: $color-x-light;
+    }
 
   }
 }
