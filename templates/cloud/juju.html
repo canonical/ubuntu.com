@@ -1,12 +1,15 @@
 {% extends "cloud/base_cloud-v1.html" %}
+
 {% block title %}Juju | Cloud{% endblock %}
+
 {% block meta_description %}Juju is Devops Distilled - a powerful, time-saving service orchestration framework that allows developers to deploy cloud services in seconds.{% endblock %}
 
 {% block second_level_nav_items %}
-{% include "templates/_nav_breadcrumb-v1.html" with section_title="Cloud" page_title="Juju" %}
+  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Cloud" page_title="Juju" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
+
 <section class="p-strip is-deep is-bordered">
   <div class="row">
     <div class="col-6">
@@ -216,8 +219,8 @@
       <p><a href="https://jujucharms.com/jaas" class="p-button--brand"><span class="p-link--external">Use Juju-as-a-Service beta today</span></a></p>
     </div>
     <div class="col-6 u-hidden--small u-hidden--medium">
-      <img src="{{ ASSET_SERVER_URL }}8149d09f-Service+View+-+zoom.png?h=332" class="u-image-position--top u-image-position--right" alt=""/>
-      </div>
+      <img src="{{ ASSET_SERVER_URL }}8149d09f-Service+View+-+zoom.png?h=332" class="u-image-position--top u-image-position--right" alt="" />
+    </div>
   </div>
 </section>
 
