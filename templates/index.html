@@ -3,7 +3,7 @@
 {% block takeover_body_class %}homepage-maas-may-2017{% endblock takeover_body_class %}
 
 {% block head_extra %}
-  <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
+<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
 {% endblock %}
 
 {% block takeover_content %}
@@ -13,85 +13,106 @@
 {% get_rss_feed "https://insights.ubuntu.com/tag/spotlight/feed" limit=1 as spotlight_feed %}
 
 {% if spotlight_feed %}
-  {% get_rss_feed "https://insights.ubuntu.com/feed" limit=3 exclude_items_in=spotlight_feed as insights_feed %}
+{% get_rss_feed "https://insights.ubuntu.com/feed" limit=3 exclude_items_in=spotlight_feed as insights_feed %}
 {% else %}
-  {% get_rss_feed "https://insights.ubuntu.com/feed" limit=4 as insights_feed %}
+{% get_rss_feed "https://insights.ubuntu.com/feed" limit=4 as insights_feed %}
 {% endif %}
 
-<section class="row row--ubuntu-news strip no-border">
-  <div class="strip-inner-wrapper equal-height--vertical-divider">
-    <div class="{% if spotlight_feed %}nine-col{% else %}twelve-col{% endif %} equal-height--vertical-divider__item">
-      <h2 class="external row--ubuntu-news__title"><span><a href="https://insights.ubuntu.com/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'clicks insights feed link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">Latest news from Insights</a></span></h2>
-      {% for item in insights_feed %}
-        <div class="three-col {% if forloop.last %}last-col no-margin-bottom{% endif %}">
-          <h3><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'ubuntu.com homepage news link', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title }}</a></h3>
+<section class="p-strip is-deep row--ubuntu-news">
+  <div class="row {% if spotlight_feed %}p-divider{% endif %}">
+    <div class="{% if spotlight_feed %}col-9 p-divider__block{% else %}col-12{% endif %}">
+      {# insights heading #}
+      <h2 class="p-link--external p-heading--insights__title">
+        <a href="https://insights.ubuntu.com/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'clicks insights feed link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">
+          Latest news from Insights
+        </a>
+      </h2>
+
+      {# insights news items #}
+      <div class="row">
+        {% for item in insights_feed %}
+        <div class="col-3">
+          <h3 class="p-heading--four"><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'ubuntu.com homepage news link', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title }}</a></h3>
           <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
         </div>
-      {% endfor %}
-    </div>
-    {% if spotlight_feed %}
-      <div class="three-col no-margin-bottom last-col equal-height--vertical-divider__item">
-        <h2 class="external row--ubuntu-news__title"><span><a href="https://insights.ubuntu.com/tag/spotlight/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'ubuntu.com homepage spotlight feed link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">Spotlight</a></span></h2>
-        {% for item in spotlight_feed %}
-          <div class="three-col {% if forloop.last %}last-col{% endif %}">
-            <h3><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'ubuntu.com homepage spotlight article', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title }}</a></h3>
-            <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
-          </div>
         {% endfor %}
       </div>
+    </div>
+
+    {# spotlight heading #}
+    {% if spotlight_feed %}
+    <div class="col-3 p-divider__block">
+      <h2 class="p-link--external p-heading--insights__title">
+        <a href="https://insights.ubuntu.com/tag/spotlight/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'ubuntu.com homepage spotlight feed link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">
+          Spotlight
+        </a>
+      </h2>
+      {% for item in spotlight_feed %}
+      <h3 class="p-heading--four"><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'ubuntu.com homepage spotlight article', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title }}</a></h3>
+      <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
+      {% endfor %}
+    </div>
     {% endif %}
   </div>
 </section>
 
-<section class="row row--intro strip strip-grey no-border">
-  <div class="strip-inner-wrapper">
-    <h2 class="text-center twelve-col">
-      Ubuntu is an open source software operating system that runs from the
-      desktop, to the cloud, to all your internet connected things
+<section class="p-strip--light">
+  <div class="row u-align--center">
+    <div class="col-12">
+      <h2 class="p-heading--three">
+        Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things
       </h2>
-  </div>
-  <div class="ubuntu-intro">
-    <div class="ubuntu-intro__before"></div>
-    <div class="ubuntu-intro__content">
-      <ul class="ubuntu-intro__list no-bullets inline">
-        <li class="ubuntu-intro__list-item"><a class="ubuntu-intro__link ubuntu-intro__link--cloud" href="/cloud">Cloud</a></li>
-        <li class="ubuntu-intro__list-item"><a class="ubuntu-intro__link ubuntu-intro__link--server" href="/server">Server</a></li>
-        <li class="ubuntu-intro__list-item"><a class="ubuntu-intro__link ubuntu-intro__link--containers" href="/containers">Containers</a></li>
-        <li class="ubuntu-intro__list-item"><a class="ubuntu-intro__link ubuntu-intro__link--desktop" href="/desktop">Desktop</a></li>
-        <li class="ubuntu-intro__list-item"><a class="ubuntu-intro__link ubuntu-intro__link--iot" href="/internet-of-things">IoT</a></li>
-      </ul>
     </div>
-    <div class="ubuntu-intro__after"></div>
+    <div class="p-ubuntu-intro">
+      <div class="p-ubuntu-intro__before"></div>
+      <div class="p-ubuntu-intro__content">
+        <ul class="p-ubuntu-intro__list no-bullets inline">
+          <li class="p-ubuntu-intro__list-item"><a class="p-ubuntu-intro__link p-ubuntu-intro__link--cloud" href="/cloud">Cloud</a></li>
+          <li class="p-ubuntu-intro__list-item"><a class="p-ubuntu-intro__link p-ubuntu-intro__link--server" href="/server">Server</a></li>
+          <li class="p-ubuntu-intro__list-item"><a class="p-ubuntu-intro__link p-ubuntu-intro__link--containers" href="/containers">Containers</a></li>
+          <li class="p-ubuntu-intro__list-item"><a class="p-ubuntu-intro__link p-ubuntu-intro__link--desktop" href="/desktop">Desktop</a></li>
+          <li class="p-ubuntu-intro__list-item"><a class="p-ubuntu-intro__link p-ubuntu-intro__link--iot" href="/internet-of-things">IoT</a></li>
+        </ul>
+      </div>
+      <div class="p-ubuntu-intro__after"></div>
+    </div>
   </div>
 </section>
 
-<section class="row row--cloud-products strip">
-  <div class="strip-inner-wrapper">
-    <div class="four-col prepend-eight">
-      <h2><a href="/cloud/openstack/managed-cloud">Let us host your OpenStack cloud&nbsp;&rsaquo;</a></h2>
+<section class="p-strip is-deep is-bordered u-image-position u-vertically-center">
+  <div class="row">
+    <div class="col-7">
+      <img src="{{ ASSET_SERVER_URL }}0bfbd13b-cloud_section_bundle.svg" class="u-image-position--top u-image-position--left u-hidden--small" style="left: -15%; height: 100%;" />
+    </div>
+    <div class="col-5">
+      <h3><a href="/cloud/openstack/managed-cloud">Let us host your OpenStack cloud&nbsp;&rsaquo;</a></h3>
       <p>With BootStack, we design, build and run your private cloud infrastructure without vendor lock-in.</p>
     </div>
-    <img src="{{ ASSET_SERVER_URL }}0bfbd13b-cloud_section_bundle.svg" class="row--cloud-products__image not-for-small" />
   </div>
 </section>
 
-<section class="row row--iot row-grey strip no-border">
-  <div class="strip-inner-wrapper">
-    <div class="row--iot__desc four-col">
-      <h2><a href="/internet-of-things">For all your things&nbsp;&rsaquo;</a></h2>
+<section class="p-strip is-deep is-bordered u-image-position u-vertically-center">
+  <div class="row">
+    <div class="col-5">
+      <h3><a href="/internet-of-things">For all your things&nbsp;&rsaquo;</a></h3>
       <p>Ubuntu Core delivers bullet-proof security, reliable updates and the enormous Ubuntu ecosystem to a wide range of internet things, connected devices and autonomous&nbsp;machines.</p>
     </div>
-    <div class="eight-col last-col align-center">
+    <div class="col-7 u-align--center">
       <div class="row--iot__image"></div>
-      <img class="for-small" src="{{ ASSET_SERVER_URL }}2f56d557-image-iot.jpg?w=280" width="280" alt="" />
+      <img class="u-image-position--top u-image-position--right  u-hidden--small" src="{{ ASSET_SERVER_URL }}2f56d557-image-iot.jpg?h=350" style="right: 10%;" />
+      <img class="u-visible--small u-hidden--medium u-hidden--large" src="{{ ASSET_SERVER_URL }}22f56d557-image-iot.jpg?w=280" width="280" alt="" />
     </div>
   </div>
 </section>
 
-<section class="row row-featured strip no-border">
-  <div class="strip-inner-wrapper equal-height">
-    {% include "takeovers/takeunders/_iot-02-2017.html" %}
-    {% include "takeovers/takeunders/_landscape-self-service.html" %}
+<section class="p-strip is-shallow p-takeunder">
+  <div class="row">
+    <div class="col-6 p-takeunder--left" style="background-color: #2c001e;">
+      {% include "takeovers/takeunders/_iot-02-2017.html" %}
+    </div>
+    <div class="col-6 p-takeunder--right" style="background-color: #63105c;">
+      {% include "takeovers/takeunders/_landscape-self-service.html" %}
+    </div>
   </div>
 </section>
 

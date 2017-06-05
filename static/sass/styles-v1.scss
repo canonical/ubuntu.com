@@ -28,6 +28,7 @@
 @import 'v1_pattern_hero';
 @import 'v1_pattern_pull_quotes';
 @import 'v1_utility_full-width';
+@import 'section/v1_homepage';
 
 @include ubuntu-p-site-search;
 @include ubuntu-p-navigation;
@@ -197,6 +198,18 @@ fieldset {
   color: $color-dark;
   font-size: 0.875rem;
   text-transform: uppercase;
+}
+
+.p-heading--insights__title {
+  color: $color-dark;
+  font-size: 1rem;
+  font-weight: 300;
+  text-transform: uppercase;
+
+  a:link,
+  a:visited {
+    color: $color-dark;
+  }
 }
 
 /// XXX fix .p-heading-icon making the icon go to the top
