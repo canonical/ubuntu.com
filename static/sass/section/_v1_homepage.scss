@@ -235,7 +235,42 @@
 
   /// Featured row, for takeunders
   .p-takeunder {
+    box-sizing: content-box;
     color: $color-x-light;
+    margin: -16px 0;
+    padding: 2rem 0;
+    position: relative;
+
+    &__block {
+      margin-left: 0;
+
+      &--left {
+        &::before {
+          background-color: #2c001e;
+          //display: none;
+          content: "";
+          flex: auto;
+          height: 100%;
+          left: -3000px;
+          margin-top: 0;
+          position: absolute;
+          width: 3000px;
+        }
+      }
+      &--right {
+        &::before {
+          background-color: #63105c;
+          display: block;
+          position: absolute;
+          right: -3000px;
+          margin-top: 0;
+          content: "";
+          width: 3000px;
+          flex: auto;
+          height: 100%;
+        }
+      }
+    }
 
     &__title {
     }
