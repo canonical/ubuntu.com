@@ -56,6 +56,7 @@
     color: determine-text-color($color-accent);
   }
 
+// XXX many of these might have to go up to vbt
   .p-strip--accent {
     @extend %strip--accent;
 
@@ -72,6 +73,13 @@
     fieldset {
       background-color: $color-accent;
       border-color: $color-accent;
+    }
+
+    .p-button--neutral {
+      &:link,
+      &:visited {
+        color: $color-accent;
+      }
     }
   }
 
