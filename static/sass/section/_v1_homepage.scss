@@ -4,11 +4,8 @@
 
     @media only screen and (min-width : 769px) {
       clear: both;
-      display: -webkit-box;
-      display: -moz-box;
-      display: -ms-flexbox;
       display: flex;
-      margin-bottom: 10px;
+      margin-bottom: .625rem;
     }
 
     &__list {
@@ -25,13 +22,13 @@
           background-image: url('#{$assets-path}e5e0fe8e-image-intro-dots-grey.svg');
           background-position:  right center;
           background-repeat: repeat-x;
-          background-size: 10px;
+          background-size: .625rem;
           content: "";
           display: block;
-          height: 20px;
+          height: 1.25rem;
           position: absolute;
-          top: 65px;
-          width: 20px;
+          top: 4rem;
+          width: 1.25rem;
         }
       }
     }
@@ -39,25 +36,23 @@
     &__before,
     &__after  {
       @media only screen and (min-width : $breakpoint-medium + 1) {
-        -webkit-flex-grow: 1;
-        -moz-flex-grow: 1;
         flex-grow: 1;
-        height: 150px;
+        height: 9.375rem;
       }
 
       @media only screen and (min-width : $breakpoint-large) {
         background: url('#{$assets-path}e5e0fe8e-image-intro-dots-grey.svg') repeat-x right center;
-        background-size: 11px;
+        background-size: $sp-small;
       }
     }
 
     &__after {
       background-position: left center;
-      margin-left: -20px;
+      margin-left: -1.25rem;
     }
 
     &__before {
-      margin-right: -1rem;
+      margin-right: -$sp-medium;
     }
 
     &__list {
@@ -65,7 +60,7 @@
       float: left;
       width: 100%;
 
-      @media only screen and (min-width : 769px) {
+      @media only screen and (min-width : $breakpoint-medium + 1) {
         margin: 0;
         padding-bottom: 0;
       }
@@ -89,23 +84,23 @@
 
       @media only screen and (min-width : $breakpoint-medium) {
         text-indent: -999em;
-        width: 121px;
+        width: 7.5625rem;
       }
 
       @media only screen and (min-width : $breakpoint-large) {
-        width: 164px;
+        width: 10.25rem;
       }
     }
 
     &__link {
       background-position: center center;
       background-repeat: no-repeat;
-      background-size: 96px;
+      background-size: 6rem;
       color: $color-mid-dark;
       display: block;
       line-height: 1.3;
       overflow: visible;
-      padding-top: 115px;
+      padding-top: 7.1875rem;
       text-align: center;
       text-decoration: none;
       position: relative;
@@ -124,55 +119,55 @@
         &:after {
           display: block;
           background: url('#{$assets-path}e5e0fe8e-image-intro-dots-grey.svg') repeat-x right center;
-          background-size: 10px;
+          background-size: .625rem;
           content: "";
           position: absolute;
-          top: 60px;
+          top: 3.75rem;
         }
 
         &:before {
-          height: 30px;
+          height: 1.875rem;
           left: 0;
-          width: 60px;
-          background-size: 18px;
+          width: 3.75rem;
+          background-size: 1.125rem;
           background-repeat: no-repeat;
         }
 
         &:after {
-          height: 30px;
+          height: 1.875rem;
           right: 0;
-          width: 65px;
+          width: 4rem;
         }
       }
 
-      @media only screen and (min-width : 769px) {
-        padding-top: 130px;
+      @media only screen and (min-width : $breakpoint-medium + 1) {
+        padding-top: 11.875rem;
       }
 
       &--cloud {
         background-image: url('#{$assets-path}23137566-cloud.svg');
 
         &:before {
-          width: 37px;
+          width: 2.3125rem;
         }
 
         &:after {
-          right: -24px;
-          width: 50px;
+          right: -$sp-large;
+          width: 3.125rem;
         }
       }
 
       &--server {
         background-image: url('#{$assets-path}daeaa851-server.svg');
-        background-size: 80px;
+        background-size: 5rem;
 
         &:before {
-          width: 41px;
+          width: $sp-xx-large;
         }
 
         &:after {
-          right: -26px;
-          width: 61px;
+          right: -1.625rem;
+          width: 3.8125rem;
         }
       }
 
@@ -180,54 +175,54 @@
         background-image: url('#{$assets-path}d1978b1b-laptop.svg');
 
         &:before {
-          width: 38px;
+          width: 2.375rem;
         }
 
         &:after {
-          right: -25px;
-          width: 55px;
+          right: -$sp-large;
+          width: 3.4375rem;
         }
       }
 
       &--phone {
         background-image: url('#{$assets-path}c2a5e744-phone.svg');
-        background-size: 50px;
+        background-size: 3.125rem;
 
         &:before {
-          width: 58px;
+          width: 3.625rem;
         }
 
         &:after {
-          right: 20px;
-          width: 31px;
+          right: 1.25rem;
+          width: 1.9375rem;
         }
       }
 
       &--containers {
         background-image: url('#{$assets-path}dead5f08-containers.svg');
-        background-size: 80px;
+        background-size: 5rem;
 
         &:before {
-          width: 43px;
+          width: 2.6875rem;
         }
 
         &:after {
-          right: -20px;
-          width: 50px;
+          right: -1.25rem;
+          width: 3.125rem;
         }
       }
 
       &--iot {
         background-image: url('#{$assets-path}91c70f10-iot.svg');
-        background-size: 85px;
+        background-size: 5.3125rem;
 
         &:before {
-          width: 42px;
+          width: 2.625rem;
         }
 
         &:after {
-          right: 20px;
-          width: 15px;
+          right: 1.25rem;
+          width: .9375rem;
         }
       }
     }
@@ -235,15 +230,13 @@
 
   /// Featured row, for takeunders
   .p-takeunder {
-    border-radius: 2px;
+    border-radius: .125rem;
     color: $color-x-light;
-    padding: 2rem;
+    padding: $sp-x-large;
 
     a:link,
     a:visited {
       color: $color-x-light;
     }
-
   }
-
 }
