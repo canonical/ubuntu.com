@@ -1,22 +1,16 @@
-{% extends "server/base_server.html" %}
-
+{% extends "server/base_server-v1.html" %}
 {% block title %}Contact us | Ubuntu Server{% endblock %}
-{% block meta_description %}Fast, easy and quick to deploy, switching to Ubuntu has never been easier{% endblock %}
-{% block meta_keywords %}Ubuntu, Ubuntu operating system, OS, Linux, Windows alternative, Mac alternative, thin client, Business server{% endblock %}
+{% block meta_description %}Contact Canonical about Ubuntu Server{% endblock %}
 
 {% block second_level_nav_items %}
-<div class="strip-inner-wrapper">
-  {% include "templates/_nav_breadcrumb.html" with section_title="Server" page_title="Contact us"  %}
-</div>
+  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Server" page_title="Contact us"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-hero no-border no-margin-bottom no-padding-bottom strip-light">
-    <div class="strip-inner-wrapper">
-
-  {% include "shared/_cloud-contact-us-form.html" with  h1="Contact Canonical"   intro_text="Considering Ubuntu Server for your business?"  formid="1254"   lpId="2152"  returnURL="https://www.ubuntu.com/server/thank-you"  %}
-
-    </div>
+<div class="p-strip">
+  <div class="row">
+    {% include "shared-v1/_cloud-contact-us-form.html" with  h1="Contact Canonical"   intro_text="Considering Ubuntu Server for your business?"  formid="1254"   lpId="2152"  returnURL="https://www.ubuntu.com/server/thank-you"  %}
+  </div>
  </section>
 
 {% endblock content %}

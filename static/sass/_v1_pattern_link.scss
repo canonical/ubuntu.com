@@ -1,0 +1,29 @@
+@mixin ubuntu-p-link {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    &.p-link--external {
+      background: url('#{$assets-path}e1bba201-external-link-cool-grey.svg') left .2em no-repeat;
+      background-size: .85em;
+      padding-left: 1em;
+    }
+  }
+
+  .p-button {
+    &--neutral {
+      .p-link--external {
+        background-image: url('#{$assets-path}e1bba201-external-link-cool-grey.svg');
+      }
+    }
+
+    &--brand {
+      .p-link--external {
+        background-image: url('#{$assets-path}0d55fd52-external-link-white.svg');
+        background-size: .85em;
+      }
+    }
+  }
+}

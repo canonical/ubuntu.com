@@ -1,68 +1,54 @@
-
-{% extends "download/_base_download.html" %}
-
+{% extends "download/_base_download-v1.html" %}
 {% block title %}Download Ubuntu Kylin | Download{% endblock %}
 
 {% block second_level_nav_items %}
-    <div class="strip-inner-wrapper">
-        {% include "templates/_nav_breadcrumb.html" with section_title="Downloads" subsection_title="Desktop" page_title="zh-CN" %}
-    </div>
+  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Downloads" subsection_title="Desktop" page_title="zh-CN" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-grey no-border no-padding-bottom">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col append-four">
-            <h1>Download Ubuntu Kylin</h1>
-        </div>
-        <div class="twelve-col no-margin-bottom">
-            <div class="box box-highlight clearfix equal-height--vertical-divider">
-                <div class="equal-height--vertical-divider__item eight-col no-margin-bottom">
-                    <h2>Ubuntu Kylin {{lts_release_full_with_point}}</h2>
-                    <p>Download the long-term support edition of Ubuntu Kylin {{lts_release_full_with_point}} ISO image file. To install Ubuntu Kylin, burn the image file on a DVD or create a bootable USB disk.</p>
-                </div>
-                <div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom">
-                    <p>
-                        <a
-                        href="http://cdimage.ubuntu.com/ubuntukylin/releases/{{lts_release}}/release/ubuntukylin-{{lts_release}}-desktop-amd64.iso"
-                        class="link-cta-download button--primary"
-                        onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Ubuntu Kylin', 'eventLabel' : '{{lts_release}} 64 bit', 'eventValue' : undefined });
-                        ">Download (64-bit)</a>
-                    </p>
-
-                    <p>
-                        <a
-                        href="http://cdimage.ubuntu.com/ubuntukylin/releases/{{lts_release}}/release/ubuntukylin-{{lts_release}}-desktop-i386.iso"
-                        class="link-cta-download button--primary"
-                        onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Ubuntu Kylin', 'eventLabel' : '{{lts_release}} 32 bit', 'eventValue' : undefined });"
-                        >Download (32-bit)</a>
-                    </p>
-                    <p class="note">If you have an older PC with less than 2GB of memory, choose the 32-bit download.</p>
-                </div>
-            </div><!-- /.box -->
-        </div>
-
-        <div class="twelve-col">
-            <div class="box box-highlight clearfix vertical-divider equal-height--vertical-divider">
-                <div class="eight-col no-margin-bottom equal-height--vertical-divider__item">
-                    <h2>Ubuntu Kylin {{latest_release}}</h2>
-                    <p>Download the latest version, Ubuntu Kylin {{latest_release}} as an ISO image file. To install Ubuntu Kylin, burn the image file onto a DVD or create a bootable USB disk.</p>
-                </div>
-                <div class="four-col last-col no-margin-bottom equal-height--vertical-divider__item">
-                    <p>
-                        <a href="http://cdimage.ubuntu.com/ubuntukylin/releases/{{latest_release}}/release/ubuntukylin-{{latest_release}}-desktop-amd64.iso" class="link-cta-download button--primary" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Ubuntu Kylin', 'eventLabel' : '{{latest_release}} 64 bit', 'eventValue' : undefined });"
-                        >Download (64-bit)</a></p>
-                    <p>
-                        <a href="http://cdimage.ubuntu.com/ubuntukylin/releases/{{latest_release}}/release/ubuntukylin-{{latest_release}}-desktop-i386.iso" class="link-cta-download button--primary" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Ubuntu Kylin', 'eventLabel' : '{{latest_release}} 32 bit', 'eventValue' : undefined });"
-                        >Download (32-bit)</a></p>
-                    <p class="note">If you have an older PC with less than 2GB of memory, choose the 32-bit download.</p>
-                </div>
-            </div>
-            <p class="intro"><a class="external" href="http://www.ubuntu-china.cn" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'go to China website', 'eventLabel' : 'From Ubuntu download kylin', 'eventValue' : undefined });">Ubuntu中国站</a></p>
-        </div>
+<div class="p-strip is-deep">
+  <div class="row">
+    <div class="col-12">
+      <h1>Download Ubuntu Kylin</h1>
     </div>
-</div>
+  </div>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_kylin_bittorrent" second_item="_download_kylin_community" third_item="_download_helping_hands" %}
+  <div class="row">
+    <div class="col-12 p-card--highlighted">
+      <h2>Ubuntu Kylin {{lts_release_full_with_point}}</h2>
+      <div class="u-equal-height p-divider">
+        <div class="col-8 p-divider__block">
+          <p class="p-card__content">Download the long-term support edition of Ubuntu Kylin {{lts_release_full_with_point}} ISO image file. To install Ubuntu Kylin, burn the image file on a DVD or create a bootable USB disk.</p>
+        </div>
+        <div class="col-4">
+          <p class="p-card__content"><a class="p-button--brand is-wide"            href="http://cdimage.ubuntu.com/ubuntukylin/releases/{{lts_release}}/release/ubuntukylin-{{lts_release}}-desktop-amd64.iso" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Ubuntu Kylin', 'eventLabel' : '{{lts_release}} 64 bit', 'eventValue' : undefined });">Download (64-bit)</a></p>
+          <p><a class="p-button--neutral is-wide" href="http://cdimage.ubuntu.com/ubuntukylin/releases/{{lts_release}}/release/ubuntukylin-{{lts_release}}-desktop-i386.iso" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Ubuntu Kylin', 'eventLabel' : '{{lts_release}} 32 bit', 'eventValue' : undefined });">Download (32-bit)</a></p>
+          <p>If you have an older PC with less than 2GB of memory, choose the 32-bit download.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-12 p-card--highlighted">
+      <h2>Ubuntu Kylin {{latest_release}}</h2>
+      <div class="u-equal-height p-divider">
+        <div class="col-8 p-divider__block">
+          <p class="p-card__content">Download the latest version, Ubuntu Kylin {{latest_release}} as an ISO image file. To install Ubuntu Kylin, burn the image file onto a DVD or create a bootable USB disk.</p>
+        </div>
+        <div class="col-4">
+          <p class="p-card__content">
+            <a class="p-button--brand is-wide" href="http://cdimage.ubuntu.com/ubuntukylin/releases/{{latest_release}}/release/ubuntukylin-{{latest_release}}-desktop-amd64.iso" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Ubuntu Kylin', 'eventLabel' : '{{latest_release}} 64 bit', 'eventValue' : undefined });">Download (64-bit)</a></p>
+            <p class="p-card__content"><a class="p-button--neutral is-wide" href="http://cdimage.ubuntu.com/ubuntukylin/releases/{{latest_release}}/release/ubuntukylin-{{latest_release}}-desktop-i386.iso" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Ubuntu Kylin', 'eventLabel' : '{{latest_release}} 32 bit', 'eventValue' : undefined });">Download (32-bit)</a></p>
+            <p>If you have an older PC with less than 2GB of memory, choose the 32-bit download.</p>
+          </div>
+        </div>
+      </div>
+      <p class="p-heading--four"><a class="p-link--external" href="http://www.ubuntu-china.cn" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'go to China website', 'eventLabel' : 'From Ubuntu download kylin', 'eventValue' : undefined });">Ubuntu中国站</a></p>
+    </div>
+  </div>
+
+{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_download_kylin_bittorrent" second_item="_download_kylin_community" third_item="_download_helping_hands" %}
 
 {% endblock content %}

@@ -1,187 +1,172 @@
-{% extends "internet-of-things/base_things.html" %}
-
+{% extends "internet-of-things/base_things-v1.html" %}
 {% block title %}Robotics | Ubuntu for the Internet of Things {% endblock %}
-
 {% block meta_description %}With hundreds of thousands of drones and robots deployed the world over, Ubuntu Core is the perfect robust, reliable and secure OS for the robotics sector. {% endblock meta_description %}
-{% block meta_keywords %}Internet of the Robotic Things, robot, ros, DJI, parrot, simbe, aerolion, robotics development, intel, qualcomm, nvidia, robotics engineering, robots, robotic, 3d robotics, best robotics, farming robots, robotics technology, robotics projects, rethink robotics, raspberry pi, 3dr robotics, 3d robotics solo, kmel robotics, autel robotics, moley robotics, fastbrick robotics, 3d robotics iris, erle robotics, blue frog robotics, robotic arm, machine learning, m2m, smart robots{% endblock meta_keywords %}
 
 {% block second_level_nav_items %}
-<div class="strip-inner-wrapper">
-    {% include "templates/_nav_breadcrumb.html" with section_title="IoT" page_title="Robotics" %}
-</div>
+{% include "templates/_nav_breadcrumb-v1.html" with section_title="IoT" page_title="Robotics" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
 
-<section class="row row-hero no-border js-livestream__intro">
-    <div class="strip-inner-wrapper">
-        <div class="six-col">
-            <h1>Robots and drones,<br />rocking Ubuntu Core</h1>
-            <p>Autonomous, secure, and remotely upgradeable, the new wave of robots and drones
-feature amazing apps for advanced industrial intelligence.</p>
-            <p><a href="" class="button--primary js-livestream__trigger">Watch ROSCon videos</a></p>
+<div class="p-strip--image is-deep is-dark js-livestream__intro" style="background-position: center center; background-image:url('{{ ASSET_SERVER_URL }}ecdbd3cb-robotics.jpg?w=984')">
+  <div class="row">
+    <div class="col-6">
+      <h1>Robots and drones,<br />rocking Ubuntu Core</h1>
+      <p>Autonomous, secure, and remotely upgradeable, the new wave of robots and drones feature amazing apps for advanced industrial intelligence.</p>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="p-heading--muted u-align--center">Join the robotics trailblazers on Ubuntu</h2>
+      <ul id="public-cloud-partners" class="p-inline-images">
+        {% get_json_feed "http://partners.ubuntu.com/partners.json?technology__name=Robotics" limit=10 as public_cloud_partners %}
+        {% for partner in public_cloud_partners %}
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ partner.logo }}" alt="{{ partner.name }}" />
+        </li>
+        {% endfor %}
+      </ul>
+      <p><a href="http://partners.ubuntu.com/find-a-partner?technology=robotics" class="p-link--external">See all of our robotics partners</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip--accent is-bordered">
+  <div class="row">
+    <div class="col-10 prefix-1">
+      <blockquote class="p-pull-quote--accent">
+        <p>I think that Ubuntu Core 16, with the ability to deploy ROS applications as snaps, offers an opportunity to make the whole software management process easier and more secure, helping developers and organisations in their robotics deployment.</p>
+        <cite class="p-pull-quote__citation">Brian Gerkey, CEO, Open Source Robotics Foundation (OSRF)</cite>
+      </blockquote>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2>The internet of tinkerers, toys, tunnels and tanks</h2>
+    </div>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <a href="https://pages.ubuntu.com/AerolionCS.html"><img src="{{ ASSET_SERVER_URL }}b370647c-sewage6-1.jpg" class="case-studies__image u-hidden--small col-12" alt="" /></a>
+      <p>Tunnel Drones &mdash; Aerolion provides easy access to inaccessible places. Add accessories and apps to a drone to create new industrial solutions.</p>
+      <p><a href="https://pages.ubuntu.com/AerolionCS.html" class="p-link--external">Download case study</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <a href="http://insights.ubuntu.com/2016/09/07/welcoming-the-parrot-s-l-a-m-dunk-the-new-drone-development-kit/?utm_source=roboticspage&utm_medium=latestnewsblock&utm_campaign=device-roboticspage"><img src="{{ ASSET_SERVER_URL }}bfb9384a-robotics_drone.png?w=768" class="case-studies__image u-hidden--small col-12" alt="S.L.A.M.dunk" /></a>
+      <p>Introducing S.L.A.M.dunk, the new drone development kit from Parrot. Build apps for the next generation of consumer and enterprise devices.</p>
+      <p><a href="http://insights.ubuntu.com/2016/09/07/welcoming-the-parrot-s-l-a-m-dunk-the-new-drone-development-kit/?utm_source=roboticspage&utm_medium=latestnewsblock&utm_campaign=device-roboticspage" class="p-link--external">Read more</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <a href="http://insights.ubuntu.com/2016/10/05/roscon-the-robotics-conference-for-developers/"><img src="{{ ASSET_SERVER_URL }}7dfcc747-ROSConSeoul.png?w=768" class="case-studies__image u-hidden--small col-12" alt="" /></a>
+      <p>ROScon &mdash; the robotics conference for developers and entrepreneurs.</p>
+      <p><a href="http://insights.ubuntu.com/2016/10/05/roscon-the-robotics-conference-for-developers/" class="p-link--external">Read more</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip--light is-deep is-bordered">
+  <div class="row">
+    <ul class="p-matrix is-split u-clearfix">
+      <li class="p-matrix__item">
+        <div>
+          <h2 class="p-matrix__title">Robots that can think</h2>
+          <p class="p-matrix__desc">ROS (Robotic Operating System) is built on Ubuntu. With computer vision and AI libraries and a wide choice of supported sensors, it&rsquo;s the most popular robotic development environment for everything from autonomous drones to self-driving cars.</p>
         </div>
-    </div>
-</section>
-
-<section class="row livestream__video js-livestream__video u-off-screen no-border">
-    <div class="strip-inner-wrapper">
-        <div class="twelve-col">
-            <iframe src="https://player.vimeo.com/video/187699139?color=ffffff&title=0&byline=0&portrait=0" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-            <a href="#_" class="livestream__close js-livestream__close">Close video &rsaquo;</a>
+      </li>
+      <li class="p-matrix__item">
+        <div>
+          <h2 class="p-matrix__title">From prototype to production</h2>
+          <p class="p-matrix__desc">Commercialise your robotics projects with Ubuntu Core, taking machines to market with snaps for updates and security. Regular and reliable upgrades improve your robots and drones in the field, with a fail-safe update system.</p>
         </div>
-    </div>
-</section>
-
-<!-- partners -->
-<section class="row strip-light no-border">
-    <div class="strip-inner-wrapper">
-        <div class="twelve-col">
-            <h2 class="muted-heading">Join the robotics trailblazers on Ubuntu</h2>
-            <ul id="public-cloud-partners" class="inline-logos no-margin dynamic-logos">
-                {% get_json_feed "http://partners.ubuntu.com/partners.json?technology__name=Robotics" limit=10 as public_cloud_partners %}
-                {% for partner in public_cloud_partners %}
-                <li class="inline-logos__item">
-                    <img class="inline-logos__image" src="{{ partner.logo }}" alt="{{ partner.name }}" />
-                </li>
-                {% endfor %}
-            </ul>
-            <p class="align-center"><a href="http://partners.ubuntu.com/find-a-partner?technology=robotics" class="external">See all of our robotics partners</a></p>
+      </li>
+      <li class="p-matrix__item">
+        <div>
+          <h2 class="p-matrix__title">Industry-leading security</h2>
+          <p class="p-matrix__desc">Ubuntu Core delivers application confinement, restricted file access and read-only applications, to ensure the integrity of the software running your robots. The result is security by design, from the drivers on your board to the apps that define your robot behaviours.</p>
         </div>
-    </div>
-</section>
-
-<section class="row strip strip-dark no-border">
-    <div class="strip-inner-wrapper">
-        <div class="ten-col prepend-one">
-            <blockquote class="pull-quote"><p><span>&ldquo;</span>I think that Ubuntu Core 16, with the ability to deploy ROS applications as snaps, offers an opportunity to make the whole software management process easier and more secure, helping developers and organisations in their robotics deployment.<span>&rdquo;</span></p>
-            <p><cite>Brian Gerkey, CEO, Open Source Robotics Foundation (OSRF)</cite></p></blockquote>
+      </li>
+      <li class="p-matrix__item">
+        <div>
+          <h2 class="p-matrix__title">New revenues</h2>
+          <p class="p-matrix__desc">Offer an appstore for your drones and robots and you can generate revenue from updates, add-on functionality, support services or complete reconfigurations.</p>
         </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="p-strip is-deep">
+  <div class="row">
+    <div class="col-12">
+      <h2>Ubuntu runs on the robotic platforms that matter</h2>
+      <p>Want to run Ubuntu Core on your hardware or write apps for an IoT device?</p>
+      <p><a class="p-link--external" href="https://developer.ubuntu.com/en/snappy/?utm_campaign=device-fy17-iot-vertical-robotics-webpage&utm_medium=partnerhardwarelink&utm_source=ubunturobotics">Learn more</a></p>
     </div>
-</section>
-
-<section class="row case-studies strip-light">
-    <div class="strip-inner-wrapper">
-        <h2>The internet of tinkerers, toys, tunnels and tanks</h2>
-        <ul class="no-bullets equal-height--vertical-divider">
-            <li class="four-col equal-height--vertical-divider__item">
-                <a href="https://pages.ubuntu.com/AerolionCS.html"><img src="{{ ASSET_SERVER_URL }}b370647c-sewage6-1.jpg" class="case-studies__image not-for-small twelve-col" alt="" /></a>
-                <p>Tunnel Drones &mdash; Aerolion provides easy access to inaccessible places. Add accessories and apps to a drone to create new industrial solutions.</p>
-                <p><a href="https://pages.ubuntu.com/AerolionCS.html" class="external">Download case study</a></p>
-            </li>
-            <li class="four-col equal-height--vertical-divider__item">
-                <a href="http://insights.ubuntu.com/2016/09/07/welcoming-the-parrot-s-l-a-m-dunk-the-new-drone-development-kit/?utm_source=roboticspage&utm_medium=latestnewsblock&utm_campaign=device-roboticspage"><img src="{{ ASSET_SERVER_URL }}bfb9384a-robotics_drone.png?w=768" class="case-studies__image not-for-small twelve-col" alt="S.L.A.M.dunk" /></a>
-                <p>Introducing S.L.A.M.dunk, the new drone development kit from Parrot. Build apps for the next generation of consumer and enterprise devices.</p>
-                <p><a href="http://insights.ubuntu.com/2016/09/07/welcoming-the-parrot-s-l-a-m-dunk-the-new-drone-development-kit/?utm_source=roboticspage&utm_medium=latestnewsblock&utm_campaign=device-roboticspage" class="external">Read more</a></p>
-            </li>
-            <li class="four-col equal-height--vertical-divider__item last-col">
-                <a href="http://insights.ubuntu.com/2016/10/05/roscon-the-robotics-conference-for-developers/"><img src="{{ ASSET_SERVER_URL }}7dfcc747-ROSConSeoul.png?w=768" class="case-studies__image not-for-small twelve-col" alt="" /></a>
-                <p>ROScon &mdash; the robotics conference for developers and entrepreneurs.</p>
-                <p><a href="http://insights.ubuntu.com/2016/10/05/roscon-the-robotics-conference-for-developers/" class="external">Read more</a></p>
-            </li>
-        </ul>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <ul class="p-matrix is-trisected">
+        <li class="p-matrix__item">
+          <div class="u-align--center">
+            <p><img style="padding-bottom: 2em;" src="{{ ASSET_SERVER_URL }}1f53b707-JOULE-LOGO.png?w=200" width="200" alt="Intel Joule" /></p>
+            <p><img style="max-height: 100px;" src="{{ ASSET_SERVER_URL }}6e82053a-intel_joule_module.png?w=200" alt="" /></p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="u-align--center">
+            <p><img style="padding-bottom: 2em;" src="{{ ASSET_SERVER_URL }}fe88db03-parrot-logo.png?w=200" width="200" alt="Parrot" /></p>
+            <p><img style="max-height: 100px;" src="{{ ASSET_SERVER_URL }}cd8709de-parrot_slamdunk.png?w=200" alt="" /></p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="u-align--center">
+            <p><img style="padding-bottom: 2em;" src="{{ ASSET_SERVER_URL }}3cf238fd-Qualcomm-Logo.svg?w=200" width="200" alt="" /></p>
+            <p><img style="max-height: 100px;" src="{{ ASSET_SERVER_URL }}e140ca06-DragonBoard-UpdatedImages-front.png?w=250" alt="" /></p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="u-align--center">
+            <p><img style="padding-bottom: 2em;" src="{{ ASSET_SERVER_URL }}52d4cc16-Nvidia_Logo_Horizontal.svg?w=200" width="200" alt="nVidia" /></p>
+            <p><img style="margin-top: -10px;" src="{{ ASSET_SERVER_URL }}4b594e6e-nvidia-tegra-k1.png?w=150" alt="" /></p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="u-align--center">
+            <p><img style="padding-bottom: 2em;" src="{{ ASSET_SERVER_URL }}255f733c-robotis_logo.png?w=200" width="200" alt="Robotis" /></p>
+            <p><img style="max-height: 100px;" src="{{ ASSET_SERVER_URL }}98fb3266-robotis_robots.png?w=200" alt="" /></p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="u-align--center">
+            <p><img style="padding-bottom: 2em;" src="{{ ASSET_SERVER_URL }}ba366bb7-aerolion-logo.png?h=50" alt="Aerolion" /></p>
+            <p><img style="max-height: 100px;" src="{{ ASSET_SERVER_URL }}3dbccdce-Aerolion_drone.png?w=250" alt="" /></p>
+          </div>
+        </li>
+      </ul>
     </div>
-</section>
+  </div>
+</div>
 
-<section class="row">
-    <div class="strip-inner-wrapper">
-        <ul class="grid-list twelve-col no-bullets">
-            <li class="grid-list__item six-col">
-                <div class="grid-list__description six-col">
-                    <h2>Robots that can think</h2>
-                    <p>ROS (Robotic Operating System) is built on Ubuntu. With computer vision and AI libraries and a wide choice of supported sensors, it&rsquo;s the most popular robotic development environment for everything from autonomous drones to self-driving cars.</p>
-                </div>
-            </li>
-            <li class="grid-list__item six-col last-col">
-                <div class="grid-list__description six-col">
-                    <h2>From prototype to production</h2>
-                    <p>Commercialise your robotics projects with Ubuntu Core, taking machines to market with snaps for updates and security. Regular and reliable upgrades improve your robots and drones in the field, with a fail-safe update system.</p>
-                </div>
-            </li>
-            <li class="grid-list__item last-row six-col">
-                <div class="grid-list__description six-col">
-                    <h2>Industry-leading security</h2>
-                    <p>Ubuntu Core delivers application confinement, restricted file access and read-only applications, to ensure the integrity of the software running your robots. The result is security by design, from the drivers on your board to the apps that define your robot behaviours.</p>
-                </div>
-            </li>
-            <li class="grid-list__item six-col last-row last-col">
-                <div class="grid-list__description six-col">
-                    <h2>New revenues</h2>
-                    <p>Offer an appstore for your drones and robots and you can generate revenue from updates, add-on functionality, support services or complete reconfigurations.</p>
-                </div>
-            </li>
-        </ul>
+<div class="p-strip--accent is-deep">
+  <div class="row">
+    <div class="u-equal-height u-vertically-center">
+      <div class="col-3">
+        <img src="{{ ASSET_SERVER_URL }}04927a56-robot_2px-white.svg" alt="robots are cool ;-)" class="u-hidden--small" />
+      </div>
+      <div class="col-9">
+        <h2>Will your next robot run on Ubuntu?</h2>
+        <p><a href="/internet-of-things/contact-us?product=robotics" class="p-button--brand">Contact us</a></p>
+      </div>
     </div>
-</section>
+  </div>
+</div>
 
-<section class="row strip-light no-border">
-    <div class="strip-inner-wrapper">
-        <div class="twelve-col">
-            <h2>Ubuntu runs on the robotic platforms that matter</h2>
-            <p>Want to run Ubuntu Core on your hardware or write apps for an IoT device?</p>
-            <p><a class="external"  href="https://developer.ubuntu.com/en/snappy/?utm_campaign=device-fy17-iot-vertical-robotics-webpage&utm_medium=partnerhardwarelink&utm_source=ubunturobotics">Learn more</a></p>
-        </div>
-        <ul class="grid-list twelve-col no-bullets">
-            <li class="grid-list__item four-col">
-                <div class="grid-list__description align-center four-col">
-                    <img class="robot_logo" src="{{ ASSET_SERVER_URL }}1f53b707-JOULE-LOGO.png?w=200" alt="Intel Joule" />
-                    <img class="robot_product" src="{{ ASSET_SERVER_URL }}6e82053a-intel_joule_module.png?w=200" alt="" />
-                </div>
-            </li>
-            <li class="grid-list__item four-col">
-                <div class="grid-list__description align-center four-col">
-                    <img class="robot_logo" src="{{ ASSET_SERVER_URL }}fe88db03-parrot-logo.png?w=200" alt="Parrot" />
-                    <img class="robot_product" src="{{ ASSET_SERVER_URL }}cd8709de-parrot_slamdunk.png?w=200" alt="" />
-                </div>
-            </li>
-            <li class="grid-list__item four-col last-col">
-                <div class="grid-list__description align-center four-col">
-                    <img class="robot_logo" src="{{ ASSET_SERVER_URL }}3cf238fd-Qualcomm-Logo.svg?w=200" alt="" />
-                    <img class="robot_product" src="{{ ASSET_SERVER_URL }}e140ca06-DragonBoard-UpdatedImages-front.png?w=250" alt="" />
-                </div>
-            </li>
-            <li class="grid-list__item four-col align-center  last-row">
-                <div class="grid-list__description four-col">
-                    <img class="robot_logo" src="{{ ASSET_SERVER_URL }}52d4cc16-Nvidia_Logo_Horizontal.svg?w=200" alt="nVidia" />
-                    <img style="margin-top: -10px;" src="{{ ASSET_SERVER_URL }}4b594e6e-nvidia-tegra-k1.png?w=150" alt="" />
-                </div>
-            </li>
-            <li class="grid-list__item four-col align-center  last-row">
-                <div class="grid-list__description four-col">
-                    <img class="robot_logo" src="{{ ASSET_SERVER_URL }}255f733c-robotis_logo.png?w=200" alt="Robotis" />
-                    <img class="robot_product" src="{{ ASSET_SERVER_URL }}98fb3266-robotis_robots.png?w=200" alt="" />
-                </div>
-            </li>
-            <li class="grid-list__item four-col align-center  last-row last-col">
-                <div class="grid-list__description four-col">
-                    <img class="robot_logo" src="{{ ASSET_SERVER_URL }}ba366bb7-aerolion-logo.png?h=50" alt="Aerolion" />
-                    <img class="robot_product" src="{{ ASSET_SERVER_URL }}3dbccdce-Aerolion_drone.png?w=250" alt="" />
-                </div>
-            </li>
-        </ul>
-    </div>
-</section>
-
-
-<section class="row row-cool-grey no-border row--contactus">
-    <div class="strip-inner-wrapper equal-height">
-        <div class="three-col equal-height__item equal-height__align-vertically">
-            <img src="{{ ASSET_SERVER_URL }}04927a56-robot_2px-white.svg" alt="robots are cool ;-)" class="not-for-small"/>
-        </div>
-        <div class="nine-col last-col equal-height__item equal-height__align-vertically">
-            <h2>Will your next robot run on Ubuntu?</h2>
-            <p><a href="/internet-of-things/contact-us?product=robotics" class="button--primary">Contact us</a></p>
-        </div>
-    </div>
-</section>
-
-
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_iot_newsletter_signup" third_item="_iot_further_reading" %}
+{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_iot_newsletter_signup" third_item="_iot_further_reading" %}
 
 {% endblock content %}
-
-{% block footer_extra %}
-<script>
-  core.swapContent('.js-livestream__intro', '.js-livestream__video', '.js-livestream__close', '.js-livestream__trigger');
-</script>
-{% endblock footer_extra %}

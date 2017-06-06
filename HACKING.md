@@ -6,7 +6,7 @@ The www.ubuntu.com codebase is a [Django](https://www.djangoproject.com/) app, w
 
 The recommended way to run the site is with the existing `./run` script, which uses Docker behind the scenes.
 
-First [install Docker](https://docs.docker.com/engine/installation/) and add your user to the `docker` group.
+First [install Docker](https://docs.docker.com/engine/installation/) (on Linux you may need to and [add your user to the `docker` group](https://docs.docker.com/engine/installation/linux/linux-postinstall/)).
 
 Then to learn about this script's options, type:
 

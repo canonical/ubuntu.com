@@ -12,9 +12,10 @@ if (!core) { var core = {}; }
 
 core.svgFallback = function() {
 	if (typeof Modernizr === "object") {
-		if (!Modernizr.svg || !Modernizr.backgroundsize) {
+        var isIE = window.navigator.userAgent.indexOf("MSIE ");
+        if (!Modernizr.svg || !Modernizr.backgroundsize || isIE !== -1) {
 			var svgs = document.querySelectorAll("img[src$='.svg']")
-            svgs.each(function(node) {
+            svgs.forEach(function(node) {
                 var src = node.src;
                 if (src.indexOf('assets.ubuntu.com/v1/') > -1) {
 					// Support for the newer asset server

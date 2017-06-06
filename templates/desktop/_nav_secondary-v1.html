@@ -1,11 +1,19 @@
-  <ul{% if list_class %} class="{{ list_class }}"{% endif %} class="hover-menu">
-    <li><a{% if level_1 == 'desktop' and not level_2 %} class="active"{% endif %} href="/desktop">Overview</a></li>
-    <li><a{% if level_1 == 'desktop' and level_2 == 'features' %} class="active"{% endif %} href="/desktop/features">Features</a></li>
-    <li><a{% if level_2 == 'enterprise' %} class="active"{% endif %} href="/desktop/enterprise">For enterprise</a></li>
-    <li><a{% if level_2 == 'education' %} class="active"{% endif %} href="/desktop/education">For education</a></li>
-    <li><a{% if level_2 == 'government' %} class="active"{% endif %} href="/desktop/government">For government</a></li>
-    <li><a{% if level_1 == 'desktop' and level_2 == 'developers' %} class="active"{% endif %} href="/desktop/developers">For developers</a></li>
-    <li><a{% if level_2 == 'ubuntu-kylin' %} class="active"{% endif %} href="/desktop/ubuntukylin">For China</a></li>
-    <li><a{% if level_1 == 'desktop' and level_2 == 'partners' %} class="active"{% endif %} href="/desktop/partners">For partners</a></li>
-    <li><a{% if level_1 == 'desktop' and level_2 == 'snappy' %} class="active"{% endif %} href="/desktop/snappy">Snappy</a></li>
-  </ul>
+<ul class="{% if list_class %}{{ list_class }}{% else %}nav-secondary__menu p-inline-list{% endif %}">
+  <li{% if not list_class %} class="p-inline-list__item"><a class="p-inline-list__link {% else %}><a class="{% endif %}{% if level_1 == 'download' and not level_2 %} is-active"{% endif %}" href="/desktop">Overview</a></li>
+
+  <li{% if not list_class %} class="p-inline-list__item"><a class="p-inline-list__link {% else %}><a class="{% endif %}{% if level_2 == 'features' %} is-active"{% endif %}" href="/desktop/features">Features</a></li>
+
+  <li{% if not list_class %} class="p-inline-list__item"><a class="p-inline-list__link {% else %}><a class="{% endif %}{% if level_2 == 'enterprise' %} is-active"{% endif %}" href="/desktop/enterprise">Enterprise</a></li>
+
+  <li{% if not list_class %} class="p-inline-list__item"><a class="p-inline-list__link {% else %}><a class="{% endif %}{% if level_2 == 'education' %} is-active"{% endif %}" href="/desktop/education">Education</a></li>
+
+  <li{% if not list_class %} class="p-inline-list__item"><a class="p-inline-list__link {% else %}><a class="{% endif %}{% if level_2 == 'government' %} is-active"{% endif %}" href="/desktop/government">Government</a></li>
+
+  <li{% if not list_class %} class="p-inline-list__item"><a class="p-inline-list__link {% else %}><a class="{% endif %}{% if level_2 == 'alternative-downloads' %} is-active"{% endif %}" href="/desktop/developers">For developers</a></li>
+
+  <li{% if not list_class %} class="p-inline-list__item"><a class="p-inline-list__link {% else %}><a class="{% endif %}{% if level_2 == 'ubuntu-kylin' %} is-active"{% endif %}" href="/desktop/ubuntu-kylin">For China</a></li>
+
+  <li{% if not list_class %} class="p-inline-list__item"><a class="p-inline-list__link {% else %}><a class="{% endif %}{% if level_2 == 'ubuntu-flavours' %} is-active"{% endif %}" href="/desktop/partners">For partners</a></li>
+
+  <li{% if not list_class %} class="p-inline-list__item"><a class="p-inline-list__link {% else %}><a class="{% endif %}{% if level_2 == 'snappy' %} is-active"{% endif %}" href="/desktop/snappy">Snappy</a></li>
+</ul>

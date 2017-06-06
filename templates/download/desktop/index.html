@@ -1,126 +1,134 @@
-{% extends "download/_base_download.html" %}
+{% extends "download/_base_download-v1.html" %}
 
 {% block title %}Download Ubuntu Desktop | Download{% endblock %}
-
 {% block extra_body_class %}download-desktop-home{% endblock %}
-
 {% block second_level_nav_items %}
-<div class="strip-inner-wrapper">
-    {% include "templates/_nav_breadcrumb.html" with section_title="Downloads" page_title="Desktop"  %}
-</div>
+{% include "templates/_nav_breadcrumb-v1.html" with section_title="Downloads" page_title="Desktop"  %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-grey no-border">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col append-four">
-            <h1>Download Ubuntu Desktop</h1>
-        </div><!-- /.eight-col -->
+<div class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-10">
+      <h1>Download Ubuntu Desktop</h1>
     </div>
-
-    <div class="strip-inner-wrapper">
-        <div class="twelve-col no-margin-bottom">
-            <div class="box box-highlight clearfix equal-height--vertical-divider">
-                <div class="equal-height--vertical-divider__item eight-col no-margin-bottom">
-                    <h2>Ubuntu {{lts_release_full_with_point}}</h2>
-                    <p>Download the latest LTS version of Ubuntu, for desktop PCs and laptops. LTS stands for long-term support &mdash; which means five years of free security and maintenance updates, guaranteed.</p>
-                    <p><a href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes" class="external">Ubuntu {{lts_release_full}} release notes</a></p>
-
-                    <p>Recommended system requirements:</p>
-
-                    <ul class="list-ticks--compact">
-                        <li>2 GHz dual core processor or better</li>
-                        <li>2 GB system memory</li>
-                        <li>25 GB of free hard drive space</li>
-                        <li>Either a DVD drive or a USB port for the installer media</li>
-                        <li>Internet access is helpful</li>
-                    </ul>
-
-                </div>
-                <div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom gap-from-top">
-                    <p>
-                        <a class="button--primary link-cta-download js-lts-download" href="/download/desktop/thank-you?version={{lts_release}}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{lts_release_full}}', 'eventValue' : undefined });">Download</a>
-                        <script>
-                            // Contributions only work with JavaScript
-                            // So if we have JavaScript, send them to /contribute
-                            var downloadLink = document.querySelector('.js-lts-download');
-                            var contributeUrl = downloadLink.href.replace('/thank-you', '/contribute');
-                            downloadLink.href = contributeUrl;
-                        </script>
-                    </p>
-                    <ul class="no-bullets">
-                        <li><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></li>
-                    </ul>
-                </div>
-            </div>
+  </div>
+  <div class="row">
+    <div class="col-12 p-card--highlighted">
+      <h2>Ubuntu {{lts_release_full_with_point}}</h2>
+      <div class="u-equal-height p-divider">
+        <div class="col-8 p-divider__block">
+          <p class="p-card__content">Download the latest LTS version of Ubuntu, for desktop PCs and laptops. LTS stands for long-term support &mdash; which means five years of free security and maintenance updates, guaranteed.</p>
+          <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu {{lts_release_full}} release notes</a></p>
+          <p>Recommended system requirements:</p>
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">2 GHz dual core processor or better</li>
+            <li class="p-list__item is-ticked">2 GB system memory</li>
+            <li class="p-list__item is-ticked">25 GB of free hard drive space</li>
+            <li class="p-list__item is-ticked">Either a DVD drive or a USB port for the installer media</li>
+            <li class="p-list__item is-ticked">Internet access is helpful</li>
+          </ul>
         </div>
-        
-        <div class="twelve-col no-margin-bottom">
-            <div class="box box-highlight clearfix equal-height--vertical-divider">
-                <div class="equal-height--vertical-divider__item eight-col no-margin-bottom">
-                    <h2>Ubuntu {{latest_release}}</h2>
-                    <p>The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{latest_release}} comes with nine months of security and maintenance updates.</p>
-                    <p><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="external">Ubuntu {{latest_release}} release notes</a></p>
-
-                    <p>Recommended system requirements are the same as for Ubuntu {{lts_release_full_with_point}}.</p>
-                </div>
-                <div class="equal-height--vertical-divider__item four-col last-col no-margin-bottom gap-from-top">
-                    <p>
-                        <a class="button--primary link-cta-download js-latest-download" href="/download/desktop/thank-you/?version={{latest_release}}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{latest_release_full}}', 'eventValue' : undefined });">Download</a>
-                        <script>
-                            // Contributions only work with JavaScript
-                            // So if we have JavaScript, send them to /contribute
-                            var downloadLink = document.querySelector('.js-latest-download');
-                            var contributeUrl = downloadLink.href.replace('/thank-you', '/contribute');
-                            downloadLink.href = contributeUrl;
-                        </script>
-                    </p>
-                    <ul class="no-bullets">
-                        <li><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></li>
-                    </ul>
-                </div><!-- /.four-col -->
-            </div><!-- /.box -->
+        <div class="col-4">
+          <p class="p-card__content">
+            <a class="p-button--brand is-wide js-lts-download" href="/download/desktop/thank-you?version={{lts_release}}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{lts_release_full}}', 'eventValue' : undefined });">Download</a>
+            <script>
+              // Contributions only work with JavaScript
+              // So if we have JavaScript, send them to /contribute
+              var downloadLink = document.querySelector('.js-lts-download');
+              var contributeUrl = downloadLink.href.replace('/thank-you', '/contribute');
+              downloadLink.href = contributeUrl;
+            </script>
+          </p>
+          <p class="p-card__content"><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
         </div>
+      </div>
     </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 p-card--highlighted">
+      <h2>Ubuntu {{latest_release}}</h2>
+      <div class="u-equal-height p-divider">
+        <div class="col-8 p-divider__block">
+          <p class="p-card__content">The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{latest_release}} comes with nine months of security and maintenance updates.</p>
+          <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu {{latest_release}} release notes</a></p>
+          <p class="p-card__content">Recommended system requirements are the same as for Ubuntu {{lts_release_full_with_point}}.</p>
+        </div>
+        <div class="col-4">
+          <p class="p-card__content">
+            <a class="p-button--brand is-wide js-latest-download" href="/download/desktop/thank-you/?version={{latest_release}}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{latest_release_full}}', 'eventValue' : undefined });">Download</a>
+            <script>
+              // Contributions only work with JavaScript
+              // So if we have JavaScript, send them to /contribute
+              var downloadLink = document.querySelector('.js-latest-download');
+              var contributeUrl = downloadLink.href.replace('/thank-you', '/contribute');
+              downloadLink.href = contributeUrl;
+            </script>
+          </p>
+          <p class="p-card__content"><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="row row-easy-ways">
-    <div class="strip-inner-wrapper">
-
-        <div class="twelve-col">
-            <h2>Easy ways to switch to Ubuntu</h2>
-        </div>
-        <div class="equal-height">
-            <div class="equal-height__item four-col box">
-                <h3 class="header--ubuntu">From an older version</h3>
-                <p>If you&rsquo;re already running Ubuntu, you can upgrade in a few clicks from <a href="/download/desktop/upgrade">Software Updater</a>.</p>
-                <ul class="no-bullets">
-                    <li><a href="/download/desktop/burn-a-dvd-on-ubuntu">How to burn a DVD on Ubuntu&nbsp;&rsaquo;</a></li>
-                    <li><a href="/download/desktop/create-a-usb-stick-on-ubuntu">How to create a bootable USB stick on Ubuntu&nbsp;&rsaquo;</a></li>
-                </ul>
-            </div>
-            <div class="equal-height__item four-col box">
-                <h3 class="header--windows">From Windows</h3>
-                <p>If you&rsquo;re using Windows 8 or any computer with a 64-bit processor, we recommend the 64-bit download.</p>
-                <ul class="no-bullets">
-                    <li><a href="/download/desktop/burn-a-dvd-on-windows">How to burn a DVD on Windows&nbsp;&rsaquo;</a></li>
-                    <li><a href="/download/desktop/create-a-usb-stick-on-windows">How to create a bootable USB stick on Windows&nbsp;&rsaquo;</a></li>
-                </ul>
-            </div>
-            <div class="equal-height__item four-col last-col box">
-                <h3 class="header--mac">From macOS</h3>
-                <p>Most Macs with Intel processors will work with either 64-bit or Mac images. If the 64-bit image doesn't work, try the Mac image.</p>
-                <ul class="no-bullets">
-                    <li><a href="/download/desktop/burn-a-dvd-on-macos">How to burn a DVD on macOS&nbsp;&rsaquo;</a></li>
-                    <li><a href="/download/desktop/create-a-usb-stick-on-macos">How to create a bootable USB stick on macOS&nbsp;&rsaquo;</a></li>
-                </ul>
-            </div>
-        </div>
+<div class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2>Easy ways to switch to Ubuntu</h2>
     </div>
+  </div>
+
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-4 p-card">
+        <div class="p-heading-icon">
+          <div class="p-heading-icon__header">
+            <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}cb3ecebb-picto-ubuntu.svg" />
+            <h3 class="p-heading-icon__title">From an older version</h3>
+          </div>
+        </div>
+        <p class="p-card__content">If you&rsquo;re already running Ubuntu, you can upgrade in a few clicks from <a href="/download/desktop/upgrade">Software Updater</a>.</p>
+        <ul class="p-list">
+          <li class="p-list__item"><a href="/download/desktop/burn-a-dvd-on-ubuntu">How to burn a DVD on Ubuntu&nbsp;&rsaquo;</a></li>
+          <li class="p-list__item"><a href="/download/desktop/create-a-usb-stick-on-ubuntu">How to create a bootable USB stick on Ubuntu&nbsp;&rsaquo;</a></li>
+        </ul>
+      </div>
+
+      <div class="col-4 p-card">
+        <div class="p-heading-icon">
+          <div class="p-heading-icon__header">
+            <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}08563efa-picto-windows.svg" />
+            <h3 class="p-heading-icon__title">From Windows</h3>
+          </div>
+        </div>
+        <p class="p-card__content">If you&rsquo;re using Windows 8 or any computer with a 64-bit processor, we recommend the 64-bit download.</p>
+        <ul class="p-list">
+          <li class="p-list__item"><a href="/download/desktop/burn-a-dvd-on-windows">How to burn a DVD on Windows&nbsp;&rsaquo;</a></li>
+          <li class="p-list__item"><a href="/download/desktop/create-a-usb-stick-on-windows">How to create a bootable USB stick on Windows&nbsp;&rsaquo;</a></li>
+        </ul>
+      </div>
+
+      <div class="col-4 p-card">
+        <div class="p-heading-icon">
+          <div class="p-heading-icon__header">
+            <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}4239507e-picto-mac.svg" />
+            <h3 class="p-heading-icon__title">From macOS</h3>
+          </div>
+        </div>
+        <p class="p-card__content">Most Macs with Intel processors will work with either 64-bit or Mac images. If the 64-bit image doesn't work, try the Mac image.</p>
+        <ul class="p-list">
+          <li class="p-list__item"><a href="/download/desktop/burn-a-dvd-on-macos">How to burn a DVD on macOS&nbsp;&rsaquo;</a></li>
+          <li class="p-list__item"><a href="/download/desktop/create-a-usb-stick-on-macos">How to create a bootable USB stick on macOS&nbsp;&rsaquo;</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
 
 {% include "download/desktop/_other-ways.html" %}
 
-{% include "shared/contextual_footers/_contextual_footer.html" with first_item="_download_desktop_installation" first_item_class="" second_item="_download_try_desktop" second_item_class="" third_item="_download_helping_hands" third_item_class="" %}
+{% include "shared-v1/contextual_footers/_contextual_footer.html" with first_item="_download_desktop_installation" first_item_class="" second_item="_download_try_desktop" second_item_class="" third_item="_download_helping_hands" third_item_class="" %}
 
 {% endblock content %}

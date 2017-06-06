@@ -2,7 +2,7 @@
 <!doctype html>
 
 {# Release versions - update as appropriate #}
-{% with latest_release_name="ZestyZapus" latest_release="17.04" latest_release_full='17.04' lts_release_name="XenialXerus" lts_release_no_point="16.04" lts_release="16.04.2" lts_release_full='16.04 LTS' lts_release_with_point="16.04.2" lts_release_full_with_point='16.04.2 <abbr title="long-term support">LTS</abbr>' lts_openstack_version="Mitaka" latest_openstack_version="Ocata" %}
+{% with latest_release_name="ZestyZapus" latest_release="17.04" latest_release_full='17.04' lts_release_name="XenialXerus" lts_release_no_point="16.04" lts_release="16.04.2" lts_release_full='16.04 LTS' lts_release_with_point="16.04.2" lts_release_full_with_point='16.04.2 <abbr title="Long-term support">LTS</abbr>' lts_openstack_version="Mitaka" latest_openstack_version="Ocata" %}
 
 <!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en" dir="ltr"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en" dir="ltr"> <![endif]-->
@@ -52,7 +52,7 @@
     <meta name="google-site-verification" content="ddh2iq7ZuKf1LpkL_gtM_T7DkKDVD7ibq6Ceue4a_3M" />
   </head>
 
-  <body>
+  <body {% if extra_body_class != "" %}class="{% block extra_body_class %}{% endblock %}"{% endif %}>
     <!-- google tag manager -->
     <script>
       dataLayer = [];
@@ -82,7 +82,7 @@
         <a href="#navigation-closed" class="p-navigation__toggle--close" title="close menu">Menu</a>
 
         <div class="p-site-search">
-          <div class="search-toggle u-hidden--medium u-hidden--large">
+          <div class="search-toggle u-hidden--large">
             <a href="#google-appliance-search-form" class="search-toggle__link"></a>
           </div>
         </div>
@@ -93,46 +93,46 @@
           </span>
           <ul class="p-navigation__links">
             <li class="p-navigation__link">
-              <a class="{% if level_1 == 'cloud' %}active{% endif %}" href="/cloud">Cloud</a>
-              {% include "cloud/_nav_secondary-v1.html" with promo="true" %}
+              <a class="{% if level_1 == 'cloud' %}is-active{% endif %}" href="/cloud">Cloud</a>
+              {% include "cloud/_nav_secondary-v1.html" with list_class="hover-menu" %}
             </li>
             <li class="p-navigation__link">
-              <a class="{% if level_1 == 'server' %}active{% endif %}" href="/server">Server</a>
-              {% include "server/_nav_secondary-v1.html" with promo="true" %}
+              <a class="{% if level_1 == 'server' %}is-active{% endif %}" href="/server">Server</a>
+              {% include "server/_nav_secondary-v1.html" with list_class="hover-menu" %}
             </li>
             <li class="p-navigation__link">
-              <a class="{% if level_1 == 'containers' %}active{% endif %}" href="/containers">Containers</a>
-              {% include "containers/_nav_secondary-v1.html" with promo="true" %}
+              <a class="{% if level_1 == 'containers' %}is-active{% endif %}" href="/containers">Containers</a>
+              {% include "containers/_nav_secondary-v1.html" with list_class="hover-menu" %}
             </li>
             <li class="p-navigation__link">
-              <a class="{% if level_1 == 'desktop' %}active{% endif %}" href="/desktop">Desktop</a>
-              {% include "desktop/_nav_secondary-v1.html" with promo="true" %}
+              <a class="{% if level_1 == 'desktop' %}is-active{% endif %}" href="/desktop">Desktop</a>
+              {% include "desktop/_nav_secondary-v1.html" with list_class="hover-menu" %}
             </li>
             <li class="p-navigation__link">
-              <a class="{% if level_1 == 'core' %}active{% endif %}" href="/core">Core</a>
-              {% include "core/_nav_secondary-v1.html" with promo="true" %}
+              <a class="{% if level_1 == 'core' %}is-active{% endif %}" href="/core">Core</a>
+              {% include "core/_nav_secondary-v1.html" with list_class="hover-menu" %}
             </li>
             <li class="p-navigation__link">
-              <a class="{% if level_1 == 'internet-of-things' %}active{% endif %}" href="/internet-of-things">IoT</a>
-              {% include "internet-of-things/_nav_secondary-v1.html" with promo="true" %}
+              <a class="{% if level_1 == 'internet-of-things' %}is-active{% endif %}" href="/internet-of-things">IoT</a>
+              {% include "internet-of-things/_nav_secondary-v1.html" with list_class="hover-menu" %}
             </li>
             <li class="p-navigation__link">
-              <a class="{% if level_1 == 'support' %}active{% endif %}" href="/support">Support</a>
-              {% include "support/_nav_secondary-v1.html" with promo="true" %}
+              <a class="{% if level_1 == 'support' %}is-active{% endif %}" href="/support">Support</a>
+              {% include "support/_nav_secondary-v1.html" with list_class="hover-menu" %}
             </li>
             <li class="p-navigation__link">
-              <a class="{% if level_1 == 'download' %}active{% endif %} " href="/download">Downloads</a>
-              {% include "download/_nav_secondary-v1.html" with promo="true" %}
+              <a class="{% if level_1 == 'download' %}is-active{% endif %} " href="/download">Downloads</a>
+              {% include "download/_nav_secondary-v1.html" with list_class="hover-menu" %}
             </li>
           </ul>
         </nav>
 
-        <form action="/search" class="p-site-search__form u-hidden--small u-visible--medium u-visible--large" id="google-appliance-search-form">
+        <form action="/search" class="p-site-search__form u-hidden--small u-hidden--medium u-visible--large" id="google-appliance-search-form">
           <label for="edit-keys" class="u-off-screen">Search</label>
           <input type="search" maxlength="255" name="q" id="edit-keys" class="p-site-search__input" placeholder="Search" value="{{ query }}" />
           <button type="submit" class="p-site-search__button">
-            <svg class="u-hidden--large" xmlns="//www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 90 90"><g color="#000"><path fill="none" stroke-width="4" overflow="visible" enable-background="accumulate" d="M0 0h90v90H0z"/><path d="M69 36.5a33 33.5 0 1 1-66 0 33 33.5 0 1 1 66 0z" transform="matrix(.636 0 0 .627 16.114 16.12)" fill="none" stroke="#000" stroke-width="9.5" overflow="visible" enable-background="accumulate" class="svg-search-frame" /><path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans" d="M55.773 52.917L52.94 55.75l14 14 2.833-2.833-14-14z" font-size="xx-small" fill="#000" stroke-width="6" overflow="visible" enable-background="accumulate" font-family="Sans" class="svg-search-handle" /><path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans" d="M60.972 57.03c-1.55.01-3.045 1.023-3.626 2.46-.58 1.436-.21 3.207.898 4.29l9.194 9.2c2.683 2.85 3.262 2.464 5.643.083 2.384-2.38 2.77-2.792-.08-5.646l-9.195-9.2c-.734-.753-1.78-1.192-2.83-1.188z" fill="#000" stroke-width="11.804" class="svg-search-handle" /></g></svg>
-            <svg class="u-hidden--small u-hidden--medium" xmlns="//www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 90 90"><g color="#fff"><path fill="none" stroke-width="4" overflow="visible" enable-background="accumulate" d="M0 0h90v90H0z"/><path d="M69 36.5a33 33.5 0 1 1-66 0 33 33.5 0 1 1 66 0z" transform="matrix(.636 0 0 .627 16.114 16.12)" fill="none" stroke="#fff" stroke-width="9.5" overflow="visible" enable-background="accumulate" class="svg-search-frame" /><path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans" d="M55.773 52.917L52.94 55.75l14 14 2.833-2.833-14-14z" font-size="xx-small" fill="#fff" stroke-width="6" overflow="visible" enable-background="accumulate" font-family="Sans" class="svg-search-handle" /><path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans" d="M60.972 57.03c-1.55.01-3.045 1.023-3.626 2.46-.58 1.436-.21 3.207.898 4.29l9.194 9.2c2.683 2.85 3.262 2.464 5.643.083 2.384-2.38 2.77-2.792-.08-5.646l-9.195-9.2c-.734-.753-1.78-1.192-2.83-1.188z" fill="#fff" stroke-width="11.804" class="svg-search-handle" /></g></svg>
+            <svg class="u-hidden--large" xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 90 90'><g color='#000'><path fill='none' stroke-width='4' overflow='visible' enable-background='accumulate' d='M0 0h90v90H0z'/><path d='M69 36.5a33 33.5 0 1 1-66 0 33 33.5 0 1 1 66 0z' transform='matrix(.636 0 0 .627 16.114 16.12)' fill='none' stroke='#000' stroke-width='9.5' overflow='visible' enable-background='accumulate'/><path d='M55.77 52.92L52.94 55.75l14 14 2.83-2.83-14-14z' font-size='xx-small' fill='#000' stroke-width='6' overflow='visible' enable-background='accumulate' font-family='Sans' class='s0'/><path d='M60.97 57.03c-1.55-3.04 1.02-3.63 2.46-0.58 1.44-0.21 3.21 4.29l9.19 9.2c2.68 2.85 3.26 2.46 5.64 2.38-2.38 2.77-2.79-0.08-5.65l-9.19-9.2c-0.73-0.75-1.78-1.19-2.83-1.19z' font-size='xx-small' fill='#000' stroke-width='11.8' overflow='visible' enable-background='accumulate' font-family='Sans' class='s0'/></g></svg>
+            <svg class="u-hidden--small u-hidden--medium" xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 90 90'><g color='#fff'><path fill='none' stroke-width='4' overflow='visible' enable-background='accumulate' d='M0 0h90v90H0z'/><path d='M69 36.5a33 33.5 0 1 1-66 0 33 33.5 0 1 1 66 0z' transform='matrix(.636 0 0 .627 16.114 16.12)' fill='none' stroke='#fff' stroke-width='9.5' overflow='visible' enable-background='accumulate'/><path d='M55.77 52.92L52.94 55.75l14 14 2.83-2.83-14-14z' font-size='xx-small' fill='#fff' stroke-width='6' overflow='visible' enable-background='accumulate' font-family='Sans' class='s0'/><path d='M60.97 57.03c-1.55-3.04 1.02-3.63 2.46-0.58 1.44-0.21 3.21 4.29l9.19 9.2c2.68 2.85 3.26 2.46 5.64 2.38-2.38 2.77-2.79-0.08-5.65l-9.19-9.2c-0.73-0.75-1.78-1.19-2.83-1.19z' font-size='xx-small' fill='#fff' stroke-width='11.8' overflow='visible' enable-background='accumulate' font-family='Sans' class='s0'/></g></svg>
           </button>
         </form>
 
@@ -142,9 +142,9 @@
 
     <div class="wrapper">
       <div id="main-content" class="inner-wrapper">
-        {% if level_1 %}
+        {% if level_1 and second_level_nav_items %}
           {% block second_level_nav %}
-            <nav class="breadcrumbs nav-secondary clearfix">{% spaceless %}{% block second_level_nav_items %}{% endblock second_level_nav_items %}{% endspaceless %}</nav>
+            <nav class="p-breadcrumbs nav-secondary clearfix">{% spaceless %}{% block second_level_nav_items %}{% endblock second_level_nav_items %}{% endspaceless %}</nav>
           {% endblock second_level_nav %}
         {% endif %}
 
@@ -162,7 +162,7 @@
 
     <script src="{% versioned_static 'js/polyfills.js' %}"></script>
     <script src="{% versioned_static 'js/core.js' %}"></script>
-    <script src="{% versioned_static 'js/scratch.js' %}"></script>
+    <script src="{% versioned_static 'js/scratch-v1.js' %}"></script>
     <script src="{{ ASSET_SERVER_URL }}f5bf3854-respond.min.js"></script>
     <script src="{% versioned_static 'components/canonical-global-nav/build/js/global.js' %}"></script>
     <script>ubuntu.globalNav.setup();</script>
