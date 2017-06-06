@@ -1,16 +1,19 @@
 {% extends "base_index.html" %}
+
 {% block second_level_nav_items %}
 <div class="row nav-secondary__row">
   <div class="col-12 u-no-margin--bottom">
-<ul class="p-breadcrumbs">
-  <li class="p-breadcrumbs__item"><a class="p-breadcrumbs__link" href="/index_kylin">China overview</a></li>
-    <ul class="nav-secondary__menu p-inline-list">
-      <li class="p-inline-list__item"><a class="p-inline-list__link" href="/global">www.ubuntu.com</a></li>
-      <li class="p-inline-list__item"><a class="p-inline-list__link external" href="http://cn.ubuntu.com">cn.ubuntu.com</a></li>
+    <ul class="p-breadcrumbs">
+      <li class="p-breadcrumbs__item"><a class="p-breadcrumbs__link" href="/index_kylin">China overview</a></li>
+      <ul class="nav-secondary__menu p-inline-list">
+        <li class="p-inline-list__item"><a class="p-inline-list__link" href="/global">www.ubuntu.com</a></li>
+        <li class="p-inline-list__item"><a class="p-inline-list__link external" href="http://cn.ubuntu.com">cn.ubuntu.com</a></li>
+      </ul>
     </ul>
-</ul>
+  </div>
 </div>
-</div>{% endblock second_level_nav_items %}
+{% endblock second_level_nav_items %}
+
 {% block takeover_content %}
 <section class="p-strip is-deep">
   <div class="row">
