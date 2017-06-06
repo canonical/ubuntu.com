@@ -279,3 +279,11 @@ pre {
     max-width: 142px;
   }
 }
+
+// XXX orange quotes in pull quotes
+.p-pull-quote > p:first-of-type::before,
+.p-pull-quote--accent > p:first-of-type::before,
+.p-pull-quote > p:last-of-type::after,
+.p-pull-quote--accent > p:last-of-type::after {
+  color: $color-brand;
+}

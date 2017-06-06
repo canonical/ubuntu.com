@@ -1,28 +1,11 @@
 // events on insights news feed, code ported from ../section/_cloud.scss
-%newsevent__details-icon {
-  background-position: 0 5px;
-  background-repeat: no-repeat;
-  background-size: 20px 20px;
-  box-sizing: border-box;
-  display: block;
-  float: left;
-  font-size: .875rem;
-  margin-left: 0;
-  padding: 6px 20px 6px 24px;
-  width: 100%;
-
-  @media only screen and (min-width : $breakpoint-large) {
-    font-size: .875rem;
-  }
-}
-
 .newsevent {
 
   &__title {
     font-size: 1rem;
 
     @media only screen and (min-width : $breakpoint-large) {
-      font-size: 1.25rem; // going for 20px
+      font-size: 1.25rem;
     }
   }
 
@@ -30,14 +13,14 @@
     float: left;
 
     &-image {
-      border-radius: 4px;
-      margin-right: 20px;
-      margin-top: 7px;
-      width: 76px;
+      border-radius: $sp-xx-small;
+      margin-right: 1.25rem;
+      margin-top: $sp-x-small;
+      width: 4.75rem;
     }
 
     &-image-wrap {
-      background-size: 78px;
+      background-size: 4.875rem;
       display: inline-block;
       margin-bottom: 0;
       max-width: 100%;
@@ -53,8 +36,25 @@
     float: left;
     line-height: 1.2;
     margin-bottom: .5rem;
-    margin-top: 4px;
+    margin-top: $sp-xx-small;
     width: 66%;
+
+    &-icon {
+      background-position: 0 .3125rem;
+      background-repeat: no-repeat;
+      background-size: 1.25rem 1.25rem;
+      box-sizing: border-box;
+      display: block;
+      float: left;
+      font-size: .875rem;
+      margin-left: 0;
+      padding: .375rem 1.25rem .375rem $sp-large;
+      width: 100%;
+
+      @media only screen and (min-width : $breakpoint-large) {
+        font-size: .875rem;
+      }
+    }
 
     &-location {
       @extend %newsevent__details-icon;
@@ -76,7 +76,7 @@
 // pie charts
 .ubuntu-pie {
   margin: 7% auto;
-  max-width: 350px;
+  max-width: 21.875rem;
 
   .other-label {
     fill: $color-mid-dark;
