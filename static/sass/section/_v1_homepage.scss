@@ -9,53 +9,6 @@
     }
 
     &__list {
-      @media only screen and (min-width : $breakpoint-large) {
-        position: relative;
-      }
-
-      &:before {
-        @media only screen and (max-width : $breakpoint-medium) {
-          display: none;
-        }
-
-        @media only screen and (min-width : $breakpoint-large) {
-          background-image: url('#{$assets-path}e5e0fe8e-image-intro-dots-grey.svg');
-          background-position:  right center;
-          background-repeat: repeat-x;
-          background-size: .625rem;
-          content: "";
-          display: block;
-          height: 1.25rem;
-          position: absolute;
-          top: 4rem;
-          width: 1.25rem;
-        }
-      }
-    }
-
-    &__before,
-    &__after  {
-      @media only screen and (min-width : $breakpoint-medium + 1) {
-        flex-grow: 1;
-        height: 9.375rem;
-      }
-
-      @media only screen and (min-width : $breakpoint-large) {
-        background: url('#{$assets-path}e5e0fe8e-image-intro-dots-grey.svg') repeat-x right center;
-        background-size: $sp-small;
-      }
-    }
-
-    &__after {
-      background-position: left center;
-      margin-left: -1.25rem;
-    }
-
-    &__before {
-      margin-right: -$sp-medium;
-    }
-
-    &__list {
       text-align: center;
       float: left;
       width: 100%;
@@ -74,6 +27,12 @@
       position: relative;
       width: 50%;
 
+      &:first-of-type .p-ubuntu-intro__link:before,
+      &:last-of-type .p-ubuntu-intro__link:after {
+          background: 0;
+        }
+
+
       @media only screen and (max-width : $breakpoint-medium) {
         width: 32%;
       }
@@ -83,7 +42,6 @@
       }
 
       @media only screen and (min-width : $breakpoint-medium) {
-        text-indent: -999em;
         width: 7.5625rem;
       }
 
@@ -110,7 +68,6 @@
         @media only screen and (min-width : $breakpoint-medium) {
           display: block;
           text-decoration: none;
-          text-indent: 0;
         }
       }
 
@@ -126,7 +83,7 @@
         }
 
         &:before {
-          height: 1.875rem;
+          height: 5.875rem;
           left: 0;
           width: 3.75rem;
           background-size: 1.125rem;
@@ -134,7 +91,7 @@
         }
 
         &:after {
-          height: 1.875rem;
+          height: 5.875rem;
           right: 0;
           width: 4rem;
         }
@@ -230,9 +187,30 @@
 
   /// Featured row, for takeunders
   .p-takeunder {
+    &--left,
+    &--right {
     border-radius: .125rem;
     color: $color-x-light;
     padding: $sp-x-large;
+
+    @media only screen and (min-width : $breakpoint-medium) {
+      padding: $sp-x-large 0;
+    }
+  }
+
+  &--left {
+    margin-left: -1 rem;
+    @media only screen and (min-width : $breakpoint-medium) {
+      padding: 1rem;
+    }
+  }
+
+  &--right {
+    margin-right: -1 rem;
+    @media only screen and (min-width : $breakpoint-medium) {
+      padding: 1rem;
+    }
+  }
 
     a:link,
     a:visited {
