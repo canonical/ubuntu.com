@@ -1,18 +1,6 @@
 {% extends "base_index-v1.html" %}
 
-{% block second_level_nav_items %}
-<div class="row nav-secondary__row">
-  <div class="col-12 u-no-margin--bottom">
-    <ul class="p-breadcrumbs">
-      <li class="p-breadcrumbs__item"><a class="p-breadcrumbs__link" href="/index_kylin">China overview</a></li>
-      <ul class="nav-secondary__menu p-inline-list">
-        <li class="p-inline-list__item"><a class="p-inline-list__link" href="/global">www.ubuntu.com</a></li>
-        <li class="p-inline-list__item"><a class="p-inline-list__link external" href="http://cn.ubuntu.com">cn.ubuntu.com</a></li>
-      </ul>
-    </ul>
-  </div>
-</div>
-{% endblock second_level_nav_items %}
+{% block second_level_nav %}{% endblock second_level_nav %}
 
 {% block takeover_content %}
 <section class="p-strip is-deep">
@@ -23,7 +11,7 @@
         <p><a href="http://cn.ubuntu.com" class="p-button--brand" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : 'GeoIP China hoempage', 'eventLabel' : '现在就去看看吧 link', 'eventValue' : undefined });">现在就去看看吧</a></p>
         <p>Or continue browsing <a href="https://www.ubuntu.com/global">ubuntu.com</a></p>
       </div>
-      <div class="col-5 u-vertically-center u-align--center">
+      <div class="col-5 u-vertically-center u-align--center u-hidden--small">
         <img src="https://assets.ubuntu.com/v1/84489620-picto-knowledge-orange.svg" alt="Knowledge owl pictogram" />
       </div>
     </div>
