@@ -162,10 +162,9 @@
 
     <script src="{% versioned_static 'js/polyfills.js' %}"></script>
     <script src="{% versioned_static 'js/core.js' %}"></script>
+    <script src="{{ ASSET_SERVER_URL }}ab9f5f4b-global.js"></script>
     <script src="{% versioned_static 'js/scratch-v1.js' %}"></script>
     <script src="{{ ASSET_SERVER_URL }}f5bf3854-respond.min.js"></script>
-    <script src="{% versioned_static 'components/canonical-global-nav/build/js/global.js' %}"></script>
-    <script>ubuntu.globalNav.setup();</script>
     {% block footer_extra %}{% endblock %}
   </body>
 </html>

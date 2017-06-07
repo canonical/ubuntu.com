@@ -11,6 +11,10 @@
 // body
 body {
   background-size: cover;
+
+  @media only screen and (min-width : $breakpoint-medium) {
+    padding-top: 30px;
+  }
 }
 
 // heading styles
