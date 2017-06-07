@@ -2,7 +2,7 @@
 .homepage {
   .p-ubuntu-intro {
 
-    @media only screen and (min-width : 769px) {
+    @media only screen and (min-width : $breakpoint-medium + 1) {
       clear: both;
       display: flex;
       margin-bottom: .625rem;
@@ -201,14 +201,14 @@
     &--left {
       margin-left: -1 rem;
       @media only screen and (min-width : $breakpoint-medium) {
-        padding: 1rem;
+        padding: $sp-medium;
       }
     }
 
     &--right {
       margin-right: -1 rem;
       @media only screen and (min-width : $breakpoint-medium) {
-        padding: 1rem;
+        padding: $sp-medium;
       }
     }
 
