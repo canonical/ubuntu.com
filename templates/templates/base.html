@@ -113,13 +113,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       {% endblock header_banner %}
     </header>
 
+    {% if breadcrumbs %}
+      <nav class="breadcrumbs nav-secondary clearfix">
+        <div class="strip-inner-wrapper">
+          <ul class="breadcrumb">
+            <li>
+              <a class="breadcrumb-link" href="{{ breadcrumbs.section.path }}">{{ breadcrumbs.section.title }}</a>
+            </li>
+
+            <ul class="second-level-nav">
+              {% for child in breadcrumbs.children %}
+                <li>
+                  <a
+                    class="{% if breadcrumbs.grandchildren %}breadcrumb-link--second-level{% endif %} {% if child.active %}active{% endif %}"
+                    href="{{ child.path }}">{{ child.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+
+            {% if breadcrumbs.grandchildren %}
+              <ul class="third-level-nav">
+                {% for grandchild in breadcrumbs.grandchildren %}
+                    <li>
+                      <a
+                        class="{% if grandchild.active %}active{% endif %}"
+                        href="{{ grandchild.path }}">{{ grandchild.title }}</a>
+                    </li>
+                  {% endfor %}
+              </ul>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+    {% endif %}
+
     <div class="wrapper">
       <div id="main-content" class="inner-wrapper">
-        {% if level_1 %}
-          {% block second_level_nav %}
-            <nav class="breadcrumbs nav-secondary clearfix">{% spaceless %}{% block second_level_nav_items %}{% endblock second_level_nav_items %}{% endspaceless %}</nav>
-          {% endblock second_level_nav %}
-        {% endif %}
 
         {% block content_head %}{% endblock %}
         {% block content_container %}
