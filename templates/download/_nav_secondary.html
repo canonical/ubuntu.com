@@ -1,9 +1,0 @@
-	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
-		<li><a{% if level_1 == 'download' and not level_2 %} class="active"{% endif %} href="/download">Overview</a></li>
-		<li><a{% if level_2 == 'cloud' %} class="active"{% endif %} href="/download/cloud">Cloud</a></li>
-		<li><a{% if level_2 == 'server' %} class="active"{% endif %} href="/download/server">Server</a></li>
-		<li><a{% if level_2 == 'desktop' %} class="active"{% endif %} href="/download/desktop">Desktop</a></li>
-		<li><a{% if level_2 == 'ubuntu-kylin' or level_2 == 'ubuntu-kylin-zh-CN' %} class="active"{% endif %} href="/download/ubuntu-kylin">Ubuntu Kylin</a></li>
-		<li><a{% if level_2 == 'alternative-downloads' %} class="active"{% endif %} href="/download/alternative-downloads">Alternative downloads</a></li>
-		<li><a{% if level_2 == 'ubuntu-flavours' %} class="active"{% endif %} href="/download/ubuntu-flavours">Ubuntu flavours</a></li>
-	</ul>

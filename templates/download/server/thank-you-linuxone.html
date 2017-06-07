@@ -5,9 +5,6 @@ Thanks for downloading Ubuntu for LinuxONE and z Systems
 {% endblock %}
 {% block extra_body_class %}download-thankyou{% endblock %}
 
-{% block second_level_nav_items %}
-  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Downloads" subsection_title="Server" page_title="Thank you"  %}
-{% endblock second_level_nav_items %}
 
 {% block head_extra %}
   <meta http-equiv="refresh" content="3;url=http://cdimage.ubuntu.com/releases/{{lts_release}}/release/ubuntu-{{lts_release}}-server-s390x.iso">
