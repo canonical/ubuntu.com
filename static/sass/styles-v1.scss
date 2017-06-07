@@ -12,6 +12,7 @@
 
 // vendor
 @import 'vendors/global-nav/build';
+@import '../components/canonical-global-nav/src/sass/main';
 
 // import site specific patterns and overrides
 @import 'v1_pattern_site_search';
@@ -264,6 +265,14 @@ pre {
   p + & {
     margin-top: -$sp-small;
   }
+}
+
+// XXX orange quotes in pull quotes
+.p-pull-quote > p:first-of-type::before,
+.p-pull-quote--accent > p:first-of-type::before,
+.p-pull-quote > p:last-of-type::after,
+.p-pull-quote--accent > p:last-of-type::after {
+  color: $color-brand;
 }
 
 // XXX add to grahams section page when live
