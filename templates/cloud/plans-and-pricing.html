@@ -1,198 +1,194 @@
-{% extends "cloud/base_cloud.html" %}
+{% extends "cloud/base_cloud-v1.html" %}
 
 {% block title %}Plans and pricing | Cloud{% endblock %}
 
 {% block second_level_nav_items %}
-<div class="strip-inner-wrapper">
-{% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Plans and pricing" %}
-</div>
+  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Cloud" page_title="Plans and pricing" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-hero strip-dark">
-    <div class="strip-inner-wrapper">
-        <div class="six-col">
-            <h1>Plans and pricing</h1>
-            <p class="intro">Ubuntu OpenStack offers the best economics of any commercially supported OpenStack solution.</p>
-            <p>Canonical offers everything you need from fully managed clouds to training and support. We aim to be as easy and economical as possible to work with and that includes flexible pricing.</p>
-        </div>
+
+<section class="p-strip--accent is-deep">
+  <div class="row">
+    <div class="col-6">
+      <h1>Plans and pricing</h1>
+      <p>Ubuntu OpenStack offers the best economics of any commercially supported OpenStack solution.</p>
+      <p>Canonical offers everything you need from fully managed clouds to training and support. We aim to be as easy and economical as possible to work with and that includes flexible pricing.</p>
     </div>
+  </div>
 </section>
 
-<section class="row strip-light row-ubuntu-advantage-promo">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col">
-            <h2>Landscape: Server management</h2>
-            <p>
-                Landscape allows you to manage thousands of Ubuntu machines as
-                easily as one, making the administration of Ubuntu desktops,
-                servers and cloud instances more cost-effective. It&rsquo;s
-                easy to set up, easy to use and it requires no special
-                hardware. It features:
-            </p>
-            <ul class="list-ticks--compact">
-                <li>Management at scale</li>
-                <li>Deploy or rollback security updates</li>
-                <li>Compliance reports</li>
-                <li>Role-based access</li>
-                <li>Informative monitoring</li>
-            </ul>
-            <p><a href="https://landscape.canonical.com/">Learn more about Landscape&nbsp;&rsaquo;</a></p>
-        </div>
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-7">
+      <h2>Landscape: Server management</h2>
+      <p>Landscape allows you to manage thousands of Ubuntu machines as easily as one, making the administration of Ubuntu desktops, servers and cloud instances more cost-effective. It&rsquo;s easy to set up, easy to use and it requires no special hardware. It features:
+      </p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Management at scale</li>
+        <li class="p-list__item is-ticked">Deploy or rollback security updates</li>
+        <li class="p-list__item is-ticked">Compliance reports</li>
+        <li class="p-list__item is-ticked">Role-based access</li>
+        <li class="p-list__item is-ticked">Informative monitoring</li>
+      </ul>
+      <p><a class="p-link--external" href="https://landscape.canonical.com/">Learn more about Landscape&nbsp;&rsaquo;</a></p>
     </div>
+    <div class="col-5 p-hero__item u-hidden--small">
+      <img class="p-hero__image" src="{{ ASSET_SERVER_URL }}65274d19-landscape-screenshot.png?op=region&amp;rect=0,0,1324,450&amp;w=500" alt="screenshot of Landscape" />
+    </div>
+  </div>
 </section>
 
-<section class="row no-border no-padding-bottom strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col no-margin-bottom">
-            <h2>Ubuntu Advantage for OpenStack</h2>
-            <p>Ubuntu Advantage for OpenStack plans are delivered through Ubuntu Advantage, a professional package of integrated management tooling and enterprise class support. It includes access to Landscape, the systems management tool for using Ubuntu at scale, as well as 24x7 telephone support, online support library and legal assurance.</p>
-            <p>Ubuntu Advantage for OpenStack is available in three flexible packages, to help you to scale your business in the most cost-effective way.</p>
-        </div>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Ubuntu Advantage for OpenStack</h2>
+      <p>Ubuntu Advantage for OpenStack plans are delivered through Ubuntu Advantage, a professional package of integrated management tooling and enterprise class support. It includes access to Landscape, the systems management tool for using Ubuntu at scale, as well as 24x7 telephone support, online support library and legal assurance.</p>
+      <p>Ubuntu Advantage for OpenStack is available in three flexible packages, to help you to scale your business in the most cost-effective way.</p>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <h3>Per node</h3>
+      <p>Build your own cloud using Ubuntu OpenStack with Canonical tools or tooling of your choice. Priced per node per year with alternate packages that offer a choice of SLAs based on your requirements.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10">
+      {% include "shared-v1/_ubuntu_advantage_cloud_per_node.html" %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <h3>Metered</h3>
+      <p>Pay only for resources you consume. Build your own cloud using Ubuntu OpenStack with Canonical tooling using a Canonical&#39;s OpenStack reference architecture. Ubuntu Advantage is delivered as a price per guest VM per hour and per gigabyte of storage used per month.</p>
+      <p>The metered model is also available as a fully managed service: BootStack. This model suits customers seeking to manage cost based on utilisation of their cloud in a similar to that of public cloud providers such as Amazon EC2 and Azure.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10">
+      {% include "shared-v1/_ubuntu_advantage_cloud_metered.html" %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <h3>Service provider</h3>
+      <p>For large volume and public clouds, build your own cloud using Ubuntu OpenStack with Canonical tooling using Canonical&#39;s OpenStack reference architecture. Ubuntu Advantage is priced per OpenStack region. Different packages offer a choice of SLAs based on customer needs and the number of nodes per region. This model suits customers seeking to cap the cost of OpenStack deployment at scale.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10">
+      {% include "shared-v1/_ubuntu_advantage_cloud_service_provider.html" %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <p><a href="/management/contact-us">Buy Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
 </section>
 
-<section class="row no-border no-padding-bottom strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col">
-            <h3>Per node</h3>
-            <p>Build your own cloud using Ubuntu OpenStack with Canonical tools or tooling of your choice. Priced per node per year with alternate packages that offer a choice of SLAs based on your requirements.</p>
-        </div>
-        <div class="ten-col no-margin-bottom">
-            {% include "shared/_ubuntu_advantage_cloud_per_node.html" %}
-        </div>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>OpenStack Autopilot</h2>
+      <p>The quickest and easiest way to install and manage Ubuntu OpenStack is to use Canonical&#39;s OpenStack Autopilot. Autopilot users also get full access to Landscape systems management free of charge for up to 10 machines.</p>
+      <p><a href="/cloud/openstack/autopilot">Get Autopilot&nbsp;&rsaquo;</a></p>
     </div>
+  </div>
 </section>
 
-<section class="row no-border no-padding-bottom strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col">
-            <h3>Metered</h3>
-            <p>Pay only for resources you consume.  Build your own cloud using Ubuntu OpenStack with Canonical tooling using a Canonical&#39;s OpenStack reference architecture. Ubuntu Advantage is delivered as a price per guest VM per hour and per gigabyte of storage used per month.</p>
-            <p>The metered model is also available as a fully managed service: BootStack. This model suits customers seeking to manage cost based on utilisation of their cloud in a similar to that of public cloud providers such as Amazon EC2 and Azure.</p>
-        </div>
-        <div class="ten-col no-margin-bottom">
-            {% include "shared/_ubuntu_advantage_cloud_metered.html" %}
-        </div>
+<section class="p-strip is-bordered" id="bootstack-fully-managed-cloud">
+  <div class="row">
+    <div class="col-8">
+      <h2>BootStack fully managed OpenStack Cloud</h2>
+      <p>Let us build, operate and support your OpenStack Cloud.</p>
+      <table class="audience-enterprise ua-table">
+        <tr>
+          <th scope="row">Cost per server per day</th>
+          <td>$15</td>
+        </tr>
+        <tr>
+          <th scope="row">Cost per fully managed VM per hour</th>
+          <td>$0.05</td>
+        </tr>
+      </table>
+      <p><a href="/cloud/openstack/managed-cloud/contact-us">Schedule a BootStack demo&nbsp;&rsaquo;</a></p>
     </div>
+  </div>
 </section>
 
-<section class="row strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col">
-        <h3>Service provider</h3>
-        <p>For large volume and public clouds, build your own cloud using Ubuntu OpenStack with Canonical tooling using Canonical&#39;s OpenStack reference architecture.  Ubuntu Advantage is priced per OpenStack region.  Different packages offer a choice of SLAs based on customer needs and the number of nodes per region. This model suits customers seeking to cap the cost of OpenStack deployment at scale.</p>
-        </div>
-        <div class="ten-col">
-        {% include "shared/_ubuntu_advantage_cloud_service_provider.html" %}
-        </div>
-
-        <div class="eight-col">
-            <p><a href="/management/contact-us">Buy Ubuntu Advantage&nbsp;&rsaquo;</a></p>
-        </div>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-7">
+      <h2>Consulting</h2>
+      <p>Need greater customisation? We have helped the world&rsquo;s leading telcos and service providers take their OpenStack clouds from concept all the way to production. We have an extensive portfolio of services to help you build and support an Extreme OpenStack cloud.</p>
+      <p><a href="/cloud/contact-us">Contact us to discuss your needs&nbsp;&rsaquo;</a></p>
     </div>
+    <div class="col-5 u-align--center">
+      <img src="{{ ASSET_SERVER_URL }}3ba54a27-picto-contact-midaubergine.svg" width="200" alt="" />
+    </div>
+  </div>
 </section>
 
-<section class="row strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col append-four">
-            <h2>OpenStack Autopilot</h2>
-            <p>The quickest and easiest way to install and manage Ubuntu OpenStack is to use Canonical&#39;s OpenStack Autopilot. Autopilot users also get full access to Landscape systems management free of charge for up to 10 machines.</p>
-            <p><a href="/cloud/openstack/autopilot">Get Autopilot&nbsp;&rsaquo;</a></p>
-        </div>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Ubuntu on public clouds</h2>
+      <p>Ubuntu Server is available as a cloud guest on participating public clouds. Pricing depends on size of virtual machine. Check with each provider for more details.</p>
     </div>
-</section><!-- end row -->
-
-<section class="row strip-light" id="bootstack-fully-managed-cloud">
-    <div class="strip-inner-wrapper">
-        <h2>BootStack fully managed OpenStack Cloud</h2>
-        <div class="eight-col append-four no-margin-bottom">
-            <p>Let us build, operate and support your OpenStack Cloud.</p>
-            <table class="audience-enterprise ua-table">
-                <tr>
-                    <th rowspan="1" scope="row">Cost per server per day</th>
-                    <td>$15</td>
-                </tr>
-                <tr>
-                    <th rowspan="1" scope="row">Cost per fully managed VM per hour</th>
-                    <td>$0.05</td>
-                </tr>
-            </table>
-        </div>
-        <div class="eight-col">
-            <p><a href="/cloud/openstack/managed-cloud/contact-us">Schedule a BootStack demo&nbsp;&rsaquo;</a></p>
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      {% include "cloud/shared/_guest-list-v1.html" %}
     </div>
+  </div>
 </section>
 
-<section class="row strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="seven-col">
-            <h2>Consulting</h2>
-            <p>Need greater customisation? We have helped the world&rsquo;s leading telcos and service providers take their OpenStack clouds from concept all the way to production. We have an extensive portfolio of services to help you build and support an Extreme OpenStack cloud.</p>
-            <p><a href="/cloud/contact-us">Contact us to discuss your needs&nbsp;&rsaquo;</a></p>
-        </div>
-        <div class="five-col text-center last-col">
-            <img src="{{ ASSET_SERVER_URL }}3ba54a27-picto-contact-midaubergine.svg" width="200" alt="" />
-        </div>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>Cloud tools</h2>
+      <p>Ubuntu provides tools to help you create, scale and manage your cloud.</p>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-10">
+      <table class="audience-enterprise ua-table">
+        <thead>
+          <tr>
+            <th scope="col">&nbsp;</th>
+            <th scope="col" colspan="2" class="u-align--center">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><a href="/server/maas">MAAS</a></th>
+            <td colspan="2" class="u-align--center">FREE</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/cloud/juju">Juju</a></th>
+            <td colspan="2" class="u-align--center">FREE</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/cloud/openstack">Ubuntu OpenStack</a></th>
+            <td colspan="2" class="u-align--center">FREE</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/support">Landscape</a></th>
+            <td class="u-align--center"><span class="p-heading--muted">SaaS</span><br  />1¢ per machine per hour</td>
+            <td class="u-align--center"><span class="p-heading--muted">On-premises</span><br />Free up to ten machines</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td class="u-align--center" colspan="2">Or, comes as part of <a href="/support/plans-and-pricing">Ubuntu Advantage</a> subscription</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </section>
 
-<section class="row row-get-started strip-light">
-    <div class="strip-inner-wrapper">
-        <h2>Ubuntu on public clouds</h2>
-        <p class="eight-col">Ubuntu Server is available as a cloud guest on participating public clouds. Pricing depends on size of virtual machine.  Check with each provider for more details.</p>
-        <div>
-            {% include "cloud/shared/_guest-list.html" %}
-        </div>
-    </div>
-</section>
-
-<section class="row no-border strip-light">
-    <div class="strip-inner-wrapper">
-        <h2>Cloud tools</h2>
-        <p>Ubuntu provides tools to help you create, scale and manage your cloud.</p>
-        <div class="eight-col append-four no-margin-bottom">
-            <table class="audience-enterprise ua-table">
-              <thead>
-                <tr>
-                  <th scope="col">&nbsp;</th>
-                  <th scope="col" colspan="2">Price</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th rowspan="1" scope="row"><a href="/server/maas">MAAS</a></th>
-                  <td colspan="2">FREE</td>
-                </tr>
-                <tr>
-                  <th rowspan="1" scope="row"><a href="/cloud/juju">Juju</a></th>
-                  <td colspan="2">FREE</td>
-                </tr>
-                <tr>
-                  <th rowspan="1" scope="row"><a href="/cloud/openstack">Ubuntu OpenStack</a></th>
-                  <td colspan="2">FREE</td>
-                </tr>
-                <tr>
-                  <th rowspan="2" scope="row"><a href="/support">Landscape</a></th>
-                  <td width="50%">
-                      <h6 class="no-margin-bottom">SaaS</h6>
-                      <p>$0.01 per machine hour</p>
-                  </td>
-                  <td width="50%">
-                      <h6 class="no-margin-bottom">On-premises</h6>
-                      <p>Free up to ten machines</p>
-                  </td>
-                </tr>
-                <tr>
-                    <td colspan="2">Or comes as part of <a href="/support/plans-and-pricing">Ubuntu Advantage</a> subscription</td>
-                <tr>
-              </tbody>
-            </table>
-        </div>
-    </div>
-</section>
-
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_autopilot" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
+{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_cloud_autopilot" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
 
 {% endblock content %}

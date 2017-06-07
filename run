@@ -230,11 +230,11 @@ case $run_command in
             node_run "${project}-watch" "yarn run watch" "--detach"  # Run watch in the background
         fi
 
-        
+
 
         # Run the serve container, publishing the port, and detaching if required
-        django_run "${project}-serve" "" "--env PORT=${PORT} --publish ${PORT}:${PORT} ${detach} ${run_serve_docker_opts} ${*}"
-        
+        django_run "${project}-serve" "" "--env PORT=${PORT} --publish ${PORT}:${PORT} ${detach}"
+
     ;;
     "stop")
         echo "Stopping all running containers for ${project}"
@@ -242,7 +242,7 @@ case $run_command in
         docker kill ${running_containers}
     ;;
     "watch")
-        
+
         node_install
         node_run "${project}-build" "yarn run build"
         node_run "${project}-watch" "yarn run watch"
@@ -250,7 +250,7 @@ case $run_command in
     "build")
         node_install
         node_run "${project}-build" "yarn run build"
-        
+
     ;;
     "test")
         node_install

@@ -6,7 +6,7 @@
 
 - Check out this feature branch
 - Run the site using the command `./run serve`
-- View the site locally in your web browser at: [http://0.0.0.0:8001/](http://0.0.0.0:8001/))
+- View the site locally in your web browser at: [http://0.0.0.0:8001/](http://0.0.0.0:8001/)
 - [List additional steps to QA the new features or prove the bug has been resolved]
 
 

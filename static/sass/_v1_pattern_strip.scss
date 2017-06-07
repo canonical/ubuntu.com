@@ -56,6 +56,7 @@
     color: determine-text-color($color-accent);
   }
 
+// XXX many of these might have to go up to vbt
   .p-strip--accent {
     @extend %strip--accent;
 
@@ -73,6 +74,13 @@
       background-color: $color-accent;
       border-color: $color-accent;
     }
+
+    .p-button--neutral {
+      &:link,
+      &:visited {
+        color: $color-accent;
+      }
+    }
   }
 
   .p-strip--suru-accent {
@@ -83,12 +91,5 @@
       background-repeat: no-repeat;
       background-size: cover;
     }
-  }
-}
-
-@mixin ubuntu-p-strip--x-light {
-  .p-strip--x-light {
-    @include strip;
-    background-color: $color-x-light;
   }
 }
