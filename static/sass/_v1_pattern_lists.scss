@@ -1,5 +1,4 @@
 // Site specific list styling
-
 @mixin list-link {
   display: block;
   height: $sp-x-large;
@@ -15,6 +14,8 @@
   @include ubuntu-p-is-trisected;
   @include ubuntu-p-is-quartered;
   @include ubuntu-p-nested-counter-lists;
+  @include ubuntu-p-list-imgstack;
+  @include ubuntu-p-inline-definition-list;
 }
 
 @mixin ubuntu-p-is-ticked {
@@ -207,4 +208,34 @@
       }
     }
   }
+}
+
+@mixin ubuntu-p-list-imgstack {
+  .p-list--imgstack {
+
+    .p-list__item {
+      margin-bottom: $sp-xx-large;
+    }
+  }
+}
+
+@mixin ubuntu-p-inline-definition-list {
+  .p-inline-definition-list {
+    margin: 0;
+    padding: 0;
+
+    &__title {
+      border: 0;
+      float: left;
+      font-size: 1rem;
+      font-weight: 400;
+      margin: 0 1rem 0 0;
+      padding: 0;
+    }
+
+    &__item {
+      margin: 0;
+    }
+  }
+
 }

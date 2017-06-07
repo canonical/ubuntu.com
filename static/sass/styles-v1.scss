@@ -28,6 +28,7 @@
 @import 'v1_pattern_hero';
 @import 'v1_pattern_pull_quotes';
 @import 'v1_utility_full-width';
+@import 'v1_pattern_matrix';
 
 @include ubuntu-p-site-search;
 @include ubuntu-p-navigation;
@@ -43,6 +44,7 @@
 @include ubuntu-p-hero;
 @include ubuntu-p-pull-quote;
 @include ubuntu-u-full-width;
+@include ubuntu-p-matrix;
 
 // **************************
 // Bug fixes
@@ -214,5 +216,47 @@ body.has-background {
 
   @media (min-width: $breakpoint-medium ) {
     background-image: url(#{$assets-path}f8a323a7-image-background-paper.png);
+  }
+}
+
+/// XXX fix nested bullets to use default styles
+ul.p-list  ul.p-list {
+  list-style-type: circle;
+
+  ul.p-list {
+    list-style-type: disc;
+  }
+}
+
+.p-list-step__content ul.p-list {
+  list-style-type: disc;
+}
+
+/// XXX fix two-digit padding in .p-list-step__bullet
+.p-list-step__bullet {
+  padding: .65rem .4rem;
+}
+
+// XXX add margin bottom to code snippets
+.p-code-snippet,
+pre {
+  margin-bottom: $sp-large;
+
+  p + & {
+    margin-top: -$sp-small;
+  }
+}
+
+// XXX add to grahams section page when live
+// flex to flow charm list around
+.p-list-flex {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__item {
+    margin-bottom: 16px;
+    margin-right: 18px;
+    max-height: 172px;
+    max-width: 142px;
   }
 }

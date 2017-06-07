@@ -56,12 +56,30 @@
     color: determine-text-color($color-accent);
   }
 
+// XXX many of these might have to go up to vbt
   .p-strip--accent {
     @extend %strip--accent;
+
+    a:link,
+    a:visited {
+      color: $color-x-light;
+    }
+
+    .p-link--external {
+      background-image: url('#{$assets-path}0d55fd52-external-link-white.svg');
+      background-size: .85em;
+    }
 
     fieldset {
       background-color: $color-accent;
       border-color: $color-accent;
+    }
+
+    .p-button--neutral {
+      &:link,
+      &:visited {
+        color: $color-accent;
+      }
     }
   }
 
@@ -73,12 +91,5 @@
       background-repeat: no-repeat;
       background-size: cover;
     }
-  }
-}
-
-@mixin ubuntu-p-strip--x-light {
-  .p-strip--x-light {
-    @include strip;
-    background-color: $color-x-light;
   }
 }
