@@ -29,8 +29,8 @@
 
       &:first-of-type .p-ubuntu-intro__link:before,
       &:last-of-type .p-ubuntu-intro__link:after {
-          background: 0;
-        }
+        background: 0;
+      }
 
 
       @media only screen and (max-width : $breakpoint-medium) {
@@ -189,32 +189,37 @@
   .p-takeunder {
     &--left,
     &--right {
-    border-radius: .125rem;
-    color: $color-x-light;
-    padding: $sp-x-large;
+      border-radius: .125rem;
+      color: $color-x-light;
+      padding: $sp-x-large;
 
-    @media only screen and (min-width : $breakpoint-medium) {
-      padding: $sp-x-large 0;
+      @media only screen and (min-width : $breakpoint-medium) {
+        padding: $sp-x-large 0;
+      }
     }
-  }
 
-  &--left {
-    margin-left: -1 rem;
-    @media only screen and (min-width : $breakpoint-medium) {
-      padding: 1rem;
+    &--left {
+      margin-left: -1 rem;
+      @media only screen and (min-width : $breakpoint-medium) {
+        padding: 1rem;
+      }
     }
-  }
 
-  &--right {
-    margin-right: -1 rem;
-    @media only screen and (min-width : $breakpoint-medium) {
-      padding: 1rem;
+    &--right {
+      margin-right: -1 rem;
+      @media only screen and (min-width : $breakpoint-medium) {
+        padding: 1rem;
+      }
     }
-  }
 
     a:link,
     a:visited {
       color: $color-x-light;
+    }
+  }
+  .p-navigation {
+    @media only screen and (max-width : $breakpoint-medium) {
+      border: 0;
     }
   }
 }
