@@ -1,6 +1,0 @@
-<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
-  <li><a{% if level_1 == 'containers' and not level_2 %} class="active"{% endif %} href="/containers">Overview</a></li>
-  <li><a{% if level_2 == 'lxd' %} class="active"{% endif %} href="/containers/lxd">LXD</a></li>
-  <li><a{% if level_2 == 'kubernetes' %} class="active"{% endif %} href="/containers/kubernetes">Kubernetes</a></li>
-  <li><a class="last-item{% if level_2 == 'docker-ubuntu' %} active{% endif %}" href="/containers/docker-ubuntu">Docker Engine</a></li>
-</ul>
