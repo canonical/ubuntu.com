@@ -52,7 +52,7 @@
     <meta name="google-site-verification" content="ddh2iq7ZuKf1LpkL_gtM_T7DkKDVD7ibq6Ceue4a_3M" />
   </head>
 
-  <body {% if extra_body_class != "" %}class="{% block extra_body_class %}{% endblock %}"{% endif %}>
+  <body class="{% block extra_body_class %}{% endblock %}">
     <!-- google tag manager -->
     <script>
       dataLayer = [];
@@ -116,20 +116,48 @@
     {% endblock header_banner %}
     </header>
 
+    {% if breadcrumbs %}
+      <nav class="p-breadcrumbs nav-secondary clearfix">
+        <div class="row nav-secondary__row">
+          <div class="col-12 u-no-margin--bottom">
+            <ul class="p-breadcrumbs">
+              <li class="p-breadcrumbs__item">
+                <a class="p-breadcrumbs__link" href="{{ breadcrumbs.section.path }}">{{ breadcrumbs.section.title }}</a>
+
+                <ul class="nav-secondary__menu p-inline-list">
+                  {% for child in breadcrumbs.children %}
+                    <li class="{% if breadcrumbs.grandchildren %}p-breadcrumbs__item{% else %}p-inline-list__item{% endif %}">
+                      <a
+                        class="{% if breadcrumbs.grandchildren %}p-breadcrumbs__link{% else %}p-inline-list__link{% endif %} {% if child.active %}is-active{% endif %}"
+                        href="{{ child.path }}"
+                      >{{ child.title }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+
+                {% if breadcrumbs.grandchildren %}
+                  <ul class="nav-tertiary__menu p-inline-list">
+                    {% for grandchild in breadcrumbs.grandchildren %}
+                      <li class="p-inline-list__item">
+                        <a class="p-inline-list__link {% if grandchild.active %}is-active{% endif %}" href="{{ grandchild.path }}">{{ grandchild.title }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    {% endif %}
+
     <div class="wrapper">
       <div id="main-content" class="inner-wrapper">
-        {% if level_1 %}
-          {% block second_level_nav %}
-            <nav class="p-breadcrumbs nav-secondary clearfix">{% spaceless %}{% block second_level_nav_items %}{% endblock second_level_nav_items %}{% endspaceless %}</nav>
-          {% endblock second_level_nav %}
-        {% endif %}
-
         {% block content_head %}{% endblock %}
         {% block content_container %}
           {% block outer_content %}
           {% endblock outer_content %}
         {% endblock content_container %}
-
       </div><!-- /.inner-wrapper -->
     </div><!-- /.wrapper -->
 
