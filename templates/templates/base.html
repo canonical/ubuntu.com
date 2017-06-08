@@ -87,30 +87,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div id="nav">
             <ul>
               <li class="accessibility-aid"><a accesskey="s" href="#main-content">Jump to content</a></li>
-              <li><a class="first{% if level_1 == 'cloud' %} active{% endif %}" href="/cloud">Cloud</a>
-                {% include "cloud/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a{% if level_1 == 'server' %} class="active"{% endif %} href="/server">Server</a>
-                {% include "server/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a class="first{% if level_1 == 'containers' %} active{% endif %}" href="/containers">Containers</a>
-                {% include "containers/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a {% if level_1 == 'desktop' %} class="active"{% endif %} href="/desktop">Desktop</a>
-                {% include "desktop/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a{% if level_1 == 'core' %} class="active"{% endif %} href="/core">Core</a>
-                {% include "core/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a{% if level_1 == 'internet-of-things' %} class="active"{% endif %} href="/internet-of-things">IoT</a>
-                {% include "internet-of-things/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a{% if level_1 == 'support' %} class="active"{% endif %} href="/support">Support</a>
-                {% include "support/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a{% if level_1 == 'download' %} class="active"{% endif %} href="/download">Downloads</a>
-                {% include "download/_nav_secondary.html" with promo="true" %}
-              </li>
+              {% include 'templates/_menu_section.html' with section=nav_sections.cloud %}
+              {% include 'templates/_menu_section.html' with section=nav_sections.server %}
+              {% include 'templates/_menu_section.html' with section=nav_sections.containers %}
+              {% include 'templates/_menu_section.html' with section=nav_sections.desktop %}
+              {% include 'templates/_menu_section.html' with section=nav_sections.core %}
+              {% include 'templates/_menu_section.html' with section=nav_sections.iot %}
+              {% include 'templates/_menu_section.html' with section=nav_sections.support %}
+              {% include 'templates/_menu_section.html' with section=nav_sections.download %}
             </ul>
           </div>
           <div id="site-search">
