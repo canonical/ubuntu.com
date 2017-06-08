@@ -1,7 +1,6 @@
 {% extends "templates/base.html" %}
-{% block second_level_nav_items %}
-{% include "download/_nav_secondary.html" %}
-{% endblock second_level_nav_items %}
+
+{% block body_class %}download{% endblock %}
 
 {% block outer_content %}
     {% block content %}{% endblock %}
