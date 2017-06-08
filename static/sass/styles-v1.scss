@@ -28,7 +28,6 @@
 @import 'v1_pattern_hero';
 @import 'v1_pattern_pull_quotes';
 @import 'v1_utility_full-width';
-@import 'section/v1_homepage';
 @import 'v1_pattern_matrix';
 
 @include ubuntu-p-site-search;
@@ -46,6 +45,12 @@
 @include ubuntu-p-pull-quote;
 @include ubuntu-u-full-width;
 @include ubuntu-p-matrix;
+
+// sections
+@import 'section/v1_homepage';
+
+// Takeovers and takeunders
+@import 'takeovers/kubernetes-webinar';
 
 // **************************
 // Bug fixes
