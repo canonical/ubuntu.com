@@ -139,8 +139,11 @@
           width: 100%;
           display: inline-block;
           padding: $sp-x-small;
-          margin-bottom: $sp-x-small;
           color: $color-dark;
+
+          @media (max-width: $breakpoint-medium) {
+            padding-left: $sp-medium;
+          }
         }
       }
 
