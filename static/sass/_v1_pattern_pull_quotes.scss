@@ -18,8 +18,8 @@
   .p-pull-quote.is-compact,
   .p-pull-quote--accent.is-compact {
     > p {
-      @include heading-5;
-
+      font-size: $sp-large;
+      line-height: 1.15;
 
       &:first-of-type::before,
       &:last-of-type::after {
