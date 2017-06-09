@@ -38,4 +38,22 @@
       text-decoration: underline;
     }
   }
+
+  // XXX issue with colors for cards in a strip--accent
+  .p-strip--accent {
+    .p-card--highlighted {
+      color: $color-mid-dark;
+
+      a:link,
+      a:visited {
+        color: $color-brand;
+      }
+
+      a:hover,
+      a:active {
+        color: $color-brand;
+        text-decoration: underline;
+      }
+    }
+  }
 }
