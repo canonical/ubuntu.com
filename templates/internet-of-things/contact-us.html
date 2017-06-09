@@ -3,41 +3,36 @@
 
 
 {% block content %}
-<div class="p-strip is-deep">
-    <div class="row">
 
-        {% if product == 'digital-signage' %}
+  {% if product == 'digital-signage' %}
 
-            {% include "shared-v1/_client-contact-us-form.html" with h1="Contact us about digital signage" intro_text="If you are thinking about building a digital signage product on Ubuntu, please fill in your details below and a member of our team will get in touch."  formid="1422" lpId="2166"  returnURL="http://ubuntu.com/internet-of-things/thank-you?product=digital-signage"  %}
+    {% include "shared-v1/_client-contact-us-form.html" with h1="Contact us about digital signage" intro_text="If you are thinking about building a digital signage product on Ubuntu, please fill in your details below and a member of our team will get in touch."  formid="1422" lpId="2166"  returnURL="http://ubuntu.com/internet-of-things/thank-you?product=digital-signage"  %}
 
-        {% elif product == 'gateways' %}
+  {% elif product == 'gateways' %}
 
-            {% include "shared-v1/_client-contact-us-form.html" with h1="Contact us about gateways"  intro_text="If you would like to know more about Ubuntu for edge gateways please fill in your details below and a member of our team will get in touch."  formid="1663" lpId="3143"  returnURL="http://ubuntu.com/internet-of-things/thank-you?product=gateways"  %}
+    {% include "shared-v1/_client-contact-us-form.html" with h1="Contact us about gateways"  intro_text="If you would like to know more about Ubuntu for edge gateways please fill in your details below and a member of our team will get in touch."  formid="1663" lpId="3143"  returnURL="http://ubuntu.com/internet-of-things/thank-you?product=gateways"  %}
 
-        {% elif product == 'robotics' %}
+  {% elif product == 'robotics' %}
 
-            {% include "shared-v1/_client-contact-us-form.html" with h1="Contact us about robotics"  intro_text="If you would like to know more about Ubuntu for Robotics please fill in your details below and a member of our team will get in touch."  formid="1650" lpId="2838"  returnURL="http://ubuntu.com/internet-of-things/thank-you?product=robotics"  %}
+    {% include "shared-v1/_client-contact-us-form.html" with h1="Contact us about robotics"  intro_text="If you would like to know more about Ubuntu for Robotics please fill in your details below and a member of our team will get in touch."  formid="1650" lpId="2838"  returnURL="http://ubuntu.com/internet-of-things/thank-you?product=robotics"  %}
 
-        {% else %}
+  {% else %}
 
-            {% include "shared-v1/_client-contact-us-form.html" with h1="Contact us" intro_text="If you are thinking about using Ubuntu Core to power your Internet of Things devices, please fill in your details below and a member of our team will get in touch."  formid="1266" lpId="2551"  returnURL="http://ubuntu.com/internet-of-things/thank-you?product=iot"  %}
+    {% include "shared-v1/_client-contact-us-form.html" with h1="Contact us" intro_text="If you are thinking about using Ubuntu Core to power your Internet of Things devices, please fill in your details below and a member of our team will get in touch."  formid="1266" lpId="2551"  returnURL="http://ubuntu.com/internet-of-things/thank-you?product=iot"  %}
 
-        {% endif %}
-
-    </div>
-</div>
+  {% endif %}
 
 {% endblock content %}
 {% block footer_extra %}
 <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
 <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
 <script>
-  $("#mktoForm").validate({
-    errorElement: "span",
-    errorClass: "mktFormMsg mktError",
-    onkeyup: false,
-    onclick: false,
-    onblur: false
-  });
+$("#mktoForm").validate({
+  errorElement: "span",
+  errorClass: "mktFormMsg mktError",
+  onkeyup: false,
+  onclick: false,
+  onblur: false
+});
 </script>
 {% endblock footer_extra %}
