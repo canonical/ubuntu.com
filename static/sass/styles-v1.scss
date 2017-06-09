@@ -46,8 +46,9 @@
 @include ubuntu-u-full-width;
 @include ubuntu-p-matrix;
 
-// sections
-@import 'section/v1_homepage';
+// import section specific patterns and overrides
+@import 'v1_section/v1_cloud';
+@import 'v1_section/v1_homepage';
 
 // Takeovers and takeunders
 @import 'takeovers/kubernetes-webinar';
@@ -265,6 +266,14 @@ pre {
   }
 }
 
+// XXX orange quotes in pull quotes
+.p-pull-quote > p:first-of-type::before,
+.p-pull-quote--accent > p:first-of-type::before,
+.p-pull-quote > p:last-of-type::after,
+.p-pull-quote--accent > p:last-of-type::after {
+  color: $color-brand;
+}
+
 // XXX add to grahams section page when live
 // flex to flow charm list around
 .p-list-flex {
@@ -277,4 +286,12 @@ pre {
     max-height: 172px;
     max-width: 142px;
   }
+}
+
+// XXX orange quotes in pull quotes
+.p-pull-quote > p:first-of-type::before,
+.p-pull-quote--accent > p:first-of-type::before,
+.p-pull-quote > p:last-of-type::after,
+.p-pull-quote--accent > p:last-of-type::after {
+  color: $color-brand;
 }
