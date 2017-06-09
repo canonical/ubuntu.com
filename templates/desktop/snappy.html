@@ -4,9 +4,6 @@
 
 {% block meta_description %}Introducing snaps on Ubuntu, the new way to install, update and find apps.{% endblock meta_description %}
 
-{% block second_level_nav_items %}
-  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Desktop" page_title="Snaps on Ubuntu" %}
-{% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="p-strip--grey is-deep is-bordered">
@@ -39,7 +36,7 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <ul class="p-matrix u-clearfix">
+      <ul class="p-matrix is-trisected u-clearfix">
         <li class="p-matrix__item">
           <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}e512b0e2-jenkins.svg" alt="Jenkins logo">
           <div class="p-matrix__content">

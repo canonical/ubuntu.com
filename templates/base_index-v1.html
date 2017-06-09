@@ -1,0 +1,14 @@
+{% extends "templates/base-v1.html" %}
+
+{% block title %}The leading operating system for PCs, IoT devices, servers and the cloud{% endblock %}
+{% block extra_body_class %}homepage {% block takeover_body_class %}{% endblock takeover_body_class %}{% endblock extra_body_class %}
+
+{% block outer_content %}
+  {% block content %}
+    {% block takeover_content %}
+    {% endblock takeover_content %}
+      {% block footer_content %}
+        {# include "ubuntu/takeovers/_footer_homepage.html" #}
+       {% endblock footer_content %}
+   {% endblock content %}
+{% endblock outer_content %}

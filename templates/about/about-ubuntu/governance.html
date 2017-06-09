@@ -2,9 +2,6 @@
 
 {% block title %}Governance | About Ubuntu{% endblock %}
 
-{% block second_level_nav_items %}
-  {% include "templates/_nav_breadcrumb-v1.html" with section_title="About" subsection_title="About Ubuntu" page_title="Governance" tertiary="true" %}
-{% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="p-strip is-deep">
@@ -13,9 +10,7 @@
       <h1>Governance</h1>
     </div>
   </div>
-</div>
-
-<div class="row">
+  <div class="row">
   <div class="col-8">
     <h3>We aim to make Ubuntu a wonderful place to participate.</h3>
     <p>From the outset, we have put governance at the forefront of how Ubuntu is led. We want to draw on the talents of a diverse global community, and to do that, we establish high standards for collaboration, debate, delegation of responsibility and ethics.</p>
@@ -65,4 +60,6 @@
     <p>The LoCo team action mostly happens on the Ubuntu wiki - see the <a href="http://loco.ubuntu.com/teams/">LoCo team directory</a> for more information.</p>
   </div>
 </div>
+</div>
+
 {% endblock content %}

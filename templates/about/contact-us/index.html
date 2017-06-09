@@ -2,9 +2,6 @@
 
 {% block title %}Contact us{% endblock %}
 
-{% block second_level_nav_items %}
-  {% include "templates/_nav_breadcrumb-v1.html" with section_title="About" page_title="Contact us" %}
-{% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="p-strip is-deep">
@@ -13,9 +10,7 @@
       <h1>Contact us</h1>
     </div>
   </div>
-</div>
-
-<div class="row">
+  <div class="row">
   <div class="col-8">
     <h2>Sales enquiries</h2>
     <ul class="p-list">
@@ -28,8 +23,7 @@
     <p>Or <a href="/about/contact-us/form">contact us</a> at Canonical to discuss support, training or technical consulting and we will get in touch with you within two working days.</p>
   </div>
 </div>
-
-<div class="row">
+  <div class="row">
   <div class="col-8" itemscope itemtype="https://schema.org/Organization">
     <h2>Canonical address</h2>
     <p>If you want to speak to someone right away, you can call or write to Canonical. The London-based office is a good place to start.</p>
@@ -66,4 +60,7 @@
     <p>To request an Ubuntu trademark licence, or to make any other trademark enquiry, please <a href="/legal/terms-and-policies/contact-us">submit an enquiry</a>. A member of our trademarks team will be in touch with you shortly.</p>
   </div>
 </div>
+</div>
+
+
 {% endblock content %}

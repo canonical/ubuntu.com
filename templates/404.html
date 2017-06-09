@@ -1,19 +1,21 @@
 {% extends "templates/one-column.html" %}
-
-{% block title %}404 Page not found{% endblock %}
-
+{% block title %}404: Page not found{% endblock %}
 {% block extra_body_class %}error-page error404{% endblock %}
 
-{% block head_extra %}{% endblock %}
-
 {% block content %}
-<div class="row no-border hero-box">
-	<div class="six-col">
-		<img src="{{ ASSET_SERVER_URL }}bcdcf2c8-image-404.svg" alt="Error owl" width="365" />
-	</div>
-	<div class="six-col last-col">
-		<h1>404: Page not found.</h1>
-		<p>Sorry, we couldn&rsquo;t find that page.</p>
-	</div>
-</div><!-- / .row -->
+<div class="p-strip is-deep">
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-6 u-vertically-center u-align--center">
+        <img src="{{ ASSET_SERVER_URL }}bcdcf2c8-image-404.svg?w=365" alt="Error owl" width="365" />
+      </div>
+      <div class="col-6 u-vertically-center">
+        <div>
+          <h1>404: Page not found</h1>
+          <p class="p-heading--four">Sorry, we couldn&rsquo;t find that page.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content %}

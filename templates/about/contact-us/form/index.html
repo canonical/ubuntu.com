@@ -1,29 +1,13 @@
-{% extends "about/base_about.html" %}
+{% extends "about/base_about-v1.html" %}
 
 {% block title %}Contact us{% endblock %}
+
 {% block meta_description %}Fast, easy and quick to deploy, switching to Ubuntu has never been easier{% endblock %}
 
-{% block second_level_nav_items %}
-{% include "templates/_nav_breadcrumb.html" with section_title="About" subsection_title="Contact us" page_title="Form" tertiary="true" %}
-{% endblock second_level_nav_items %}
 
 {% block content %}
 
-<section class="row row-hero no-border no-margin-bottom no-padding-bottom strip-light">
-    <div class="strip-inner-wrapper">
-        {% include "shared/_cloud-contact-us-form.html" with h1="Contact Canonical" intro_text="Just fill in the form below and a member of our team will be in touch within two working days." formid="1257" lpId="2154" returnURL="https://www.ubuntu.com/about/contact-us/form/thank-you"    %}
-        </div>
-        <div class="four-col box last-col" />
-            <h3>Need help with Ubuntu?</h3>
-            <p>If you are just looking for some free support for yourself, you can try:</p>
-            <ul class="list">
-                <li><a class="external" href="http://askubuntu.com/">Ask Ubuntu</a></li>
-                <li><a class="external" href="http://ubuntuforums.org/">The Ubuntu forum</a></li>
-                <li><a class="external" href="https://help.ubuntu.com/">Help docs</a></li>
-            </ul>
-        </div>
-    </div>
-</section>
+  {% include "shared-v1/_cloud-contact-us-form.html" with h1="Contact Canonical" intro_text="Just fill in the form below and a member of our team will be in touch within two working days." formid="1257" lpId="2154" returnURL="https://www.ubuntu.com/about/contact-us/form/thank-you" %}
 
 {% endblock content %}
 

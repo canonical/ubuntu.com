@@ -1,0 +1,104 @@
+// events on insights news feed, code ported from ../section/_cloud.scss
+%newsevent {
+
+  &__title {
+    font-size: $sp-medium;
+
+    @media only screen and (min-width : $breakpoint-large) {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__map {
+    float: left;
+
+    &-image {
+      border-radius: $sp-xx-small;
+      margin-right: 1.25rem;
+      margin-top: $sp-x-small;
+      width: 4.75rem;
+    }
+
+    &-image-wrap {
+      background-size: 4.875rem;
+      display: inline-block;
+      margin-bottom: 0;
+      max-width: 100%;
+      position: relative;
+      vertical-align: middle;
+    }
+  }
+
+  &__details {
+    clear: none;
+    color: $color-mid-dark;
+    display: inline;
+    float: left;
+    line-height: 1.2;
+    margin-bottom: $sp-x-small;
+    margin-top: $sp-xx-small;
+    width: 66%;
+
+    &-icon {
+      background-position: 0 .3125rem;
+      background-repeat: no-repeat;
+      background-size: 1.25rem 1.25rem;
+      box-sizing: border-box;
+      display: block;
+      float: left;
+      font-size: .875rem;
+      margin-left: 0;
+      padding: .375rem 1.25rem .375rem $sp-large;
+      width: 100%;
+
+      @media only screen and (min-width : $breakpoint-large) {
+        font-size: .875rem;
+      }
+    }
+
+    &-location {
+      @extend %newsevent__details-icon;
+      background-image: url('#{$assets-path}dc06486f-location.svg');
+    }
+
+    &-venue {
+      @extend %newsevent__details-icon;
+      background-image: url('#{$assets-path}48947556-gps.svg');
+    }
+
+    &-date {
+      @extend %newsevent__details-icon;
+      background-image: url('#{$assets-path}c7d1850b-calendar.svg');
+    }
+  }
+}
+
+// pie charts
+.ubuntu-pie {
+  margin: 7% auto;
+  max-width: 21.875rem;
+
+  .other-label {
+    fill: $color-mid-dark;
+  }
+
+  //* Pie segments */
+  .ubuntu {
+    fill: $color-brand;
+  }
+
+  .other {
+    fill: transparent;
+  }
+
+  //* Labels */
+  svg tspan {
+    max-width: 0;
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  .ubuntu-label {
+    fill: $color-x-light;
+  }
+}

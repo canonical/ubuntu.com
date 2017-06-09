@@ -1,0 +1,16 @@
+<li>
+  <a
+    class="{% if section.active %}active{% endif %}"
+    href="{{ section.path }}"
+  >{{ section.title }}</a>
+
+  <ul class="second-level-nav">
+    {% if section.children %}
+      {% for child in section.children %}
+        {% if not child.hidden %}
+          <li><a href="{{ child.path }}">{{ child.title }}</a></li>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </ul>
+</li>
