@@ -295,3 +295,24 @@ pre {
 .p-pull-quote--accent > p:last-of-type::after {
   color: $color-brand;
 }
+
+// XXX sup is too high in Vanilla
+// bug - https://github.com/vanilla-framework/vanilla-framework/issues/1109
+sup {
+  font-size: .75em;
+  vertical-align: baseline;
+}
+
+// XXX responsive image utility
+// S - 65%, M - 90%, L - 100%
+.u-responsive-image {
+  width: 65%;
+
+  @media (min-width: $breakpoint-medium ) {
+    width: 90%;
+  }
+
+  @media (min-width: $breakpoint-large ) {
+    width: 100%;
+  }
+}
