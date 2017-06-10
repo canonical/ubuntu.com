@@ -9,8 +9,10 @@
 
       p,
       h2 {
+        color: $color-dark;
 
         @media only screen and (min-width: $breakpoint-medium) {
+          color: $color-light;
           text-shadow: 0 0 .125rem $color-x-dark;
         }
       }
@@ -60,9 +62,9 @@
     padding-bottom: 0;
 
     &__content {
+      color: $color-x-light;
 
       @media only screen and (min-width: $breakpoint-medium) {
-        color: $color-x-light;
         z-index: 3000;
         margin-top: 30%;
       }
