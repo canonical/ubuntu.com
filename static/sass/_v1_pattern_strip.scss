@@ -61,15 +61,10 @@
   .p-strip--dark {
     @extend %strip--accent;
 
-      p > a:link:not(.p-button--neutral),
-      p > a:visited:not(.p-button--neutral) {
-        color: $color-x-light;
-      }
-
-    .p-link--external {
-      background-image: url('#{$assets-path}0d55fd52-external-link-white.svg');
-      background-size: .85em;
-    }
+        .p-link--external {
+          background-image: url('#{$assets-path}0d55fd52-external-link-white.svg');
+          background-size: .85em;
+        }
 
     fieldset {
       background-color: $color-accent;
