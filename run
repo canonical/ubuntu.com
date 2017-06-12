@@ -233,7 +233,7 @@ case $run_command in
 
 
         # Run the serve container, publishing the port, and detaching if required
-        django_run "${project}-serve" "" "--env PORT=${PORT} --publish ${PORT}:${PORT} ${detach}"
+        django_run "${project}-serve" "" "--env PORT=${PORT} --publish ${PORT}:${PORT} ${detach} ${run_serve_docker_opts}"
 
     ;;
     "stop")
