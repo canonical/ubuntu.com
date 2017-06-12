@@ -6,16 +6,6 @@
       @media only screen and (min-width: $breakpoint-medium) {
         margin-top: 21.25rem;
       }
-
-      p,
-      h2 {
-        color: $color-dark;
-
-        @media only screen and (min-width: $breakpoint-medium) {
-          color: $color-light;
-          text-shadow: 0 0 .125rem $color-x-dark;
-        }
-      }
     }
     &__credit {
 
@@ -60,13 +50,14 @@
     background-size: cover;
     min-height: 488px;
     padding-bottom: 0;
+    position: relative;
 
     &__content {
-      color: $color-x-light;
 
       @media only screen and (min-width: $breakpoint-medium) {
-        z-index: 3000;
+        position: relative;
         margin-top: 30%;
+        z-index: 3000;
       }
 
       @media only screen and (min-width : $breakpoint-large) {
@@ -79,7 +70,7 @@
       background-image: url('#{$assets-path}30d55ce9-borderlands-flash.jpg');
       background-repeat: no-repeat;
       background-size: cover;
-      height: 488px;
+      height: 100%;
       left: 0;
       position: absolute;
       top: 0;
@@ -87,6 +78,7 @@
       z-index: 2000;
     }
   }
+
   .borderlands {
     left: 0;
     position: absolute;
