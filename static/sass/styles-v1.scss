@@ -46,6 +46,13 @@
 @include ubuntu-u-full-width;
 @include ubuntu-p-matrix;
 
+// import section specific patterns and overrides
+@import 'v1_section/v1_cloud';
+@import 'v1_section/v1_homepage';
+
+// Takeovers and takeunders
+@import 'takeovers/kubernetes-webinar';
+
 // **************************
 // Bug fixes
 // Each of the the rules below are bug fixes which need to be addressed further upstream
@@ -130,14 +137,23 @@ html {
 /// XXX Utility to add bottom padding
 /// Proposal for inlcusion in vanilla: https://github.com/vanilla-framework/vanilla-framework/issues/1091
 .u-padding-bottom {
-  padding-bottom: $sp-medium;
+
+  @media (min-width: $breakpoint-medium) {
+    padding-bottom: $sp-medium;
+  }
 
   &--large {
-    padding-bottom: $sp-large;
+
+    @media (min-width: $breakpoint-medium) {
+      padding-bottom: $sp-large;
+    }
   }
 
   &--x-large {
-    padding-bottom: $sp-x-large;
+
+    @media (min-width: $breakpoint-medium) {
+      padding-bottom: $sp-x-large;
+    }
   }
 }
 
@@ -201,6 +217,18 @@ fieldset {
   text-transform: uppercase;
 }
 
+.p-heading--insights__title {
+  color: $color-dark;
+  font-size: $sp-medium;
+  font-weight: 300;
+  text-transform: uppercase;
+
+  a:link,
+  a:visited {
+    color: $color-dark;
+  }
+}
+
 /// XXX fix .p-heading-icon making the icon go to the top
 .p-heading-icon__img {
   align-self: flex-start;
@@ -247,6 +275,14 @@ pre {
   }
 }
 
+// XXX orange quotes in pull quotes
+.p-pull-quote > p:first-of-type::before,
+.p-pull-quote--accent > p:first-of-type::before,
+.p-pull-quote > p:last-of-type::after,
+.p-pull-quote--accent > p:last-of-type::after {
+  color: $color-brand;
+}
+
 // XXX add to grahams section page when live
 // flex to flow charm list around
 .p-list-flex {
@@ -258,5 +294,34 @@ pre {
     margin-right: 18px;
     max-height: 172px;
     max-width: 142px;
+  }
+}
+
+// XXX orange quotes in pull quotes
+.p-pull-quote > p:first-of-type::before,
+.p-pull-quote--accent > p:first-of-type::before,
+.p-pull-quote > p:last-of-type::after,
+.p-pull-quote--accent > p:last-of-type::after {
+  color: $color-brand;
+}
+
+// XXX sup is too high in Vanilla
+// bug - https://github.com/vanilla-framework/vanilla-framework/issues/1109
+sup {
+  font-size: .75em;
+  vertical-align: baseline;
+}
+
+// XXX responsive image utility
+// S - 65%, M - 90%, L - 100%
+.u-responsive-image {
+  width: 65%;
+
+  @media (min-width: $breakpoint-medium ) {
+    width: 90%;
+  }
+
+  @media (min-width: $breakpoint-large ) {
+    width: 100%;
   }
 }

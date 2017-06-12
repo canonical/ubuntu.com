@@ -1,8 +1,0 @@
-	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
-		<li><a{% if level_1 == 'legal' and not level_2 %} class="active"{% endif %} href="/legal">Overview</a></li>
-		<li><a{% if level_2 == 'terms-and-policies' %} class="active" {% endif %} href="/legal/terms-and-policies">Terms and policies</a></li>
-		<li><a{% if level_2 == 'ubuntu-advantage' %} class="active" {% endif %} href="/legal/ubuntu-advantage">Ubuntu Advantage</a></li>
-		<li><a{% if level_2 == 'bootstack' %} class="active" {% endif %} href="/legal/bootstack">BootStack</a></li>
-		<li><a{% if level_2 == 'contributors' %} class="active" {% endif %} href="/legal/contributors">Contributors</a></li>
-		<li><a{% if level_2 == 'short-terms' %} class="active" {% endif %} href="/legal/short-terms">Short terms</a></li>
-	</ul>

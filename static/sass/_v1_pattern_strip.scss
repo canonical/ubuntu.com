@@ -57,7 +57,8 @@
   }
 
 // XXX many of these might have to go up to vbt
-  .p-strip--accent {
+  .p-strip--accent,
+  .p-strip--dark {
     @extend %strip--accent;
 
     a:link,
@@ -78,7 +79,11 @@
     .p-button--neutral {
       &:link,
       &:visited {
+        background-color: $color-x-light;
         color: $color-accent;
+      }
+      &:hover {
+        background-color: $color-mid-light;
       }
     }
   }

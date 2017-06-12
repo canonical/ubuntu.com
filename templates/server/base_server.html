@@ -1,7 +1,6 @@
 {% extends "templates/base.html" %}
-{% block second_level_nav_items %}
-{% include "server/_nav_secondary.html" %}
-{% endblock second_level_nav_items %}
+
+{% block body_class %}server{% endblock %}
 
 {% block outer_content %}
     {% block content %}{% endblock %}

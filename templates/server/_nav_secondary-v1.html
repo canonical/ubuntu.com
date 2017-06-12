@@ -1,7 +1,0 @@
-<ul class="{% if list_class %}{{ list_class }}{% else %}nav-secondary__menu p-inline-list{% endif %}">
- <li{% if not list_class %} class="p-inline-list__item"><a class="p-inline-list__link {% else %}><a class="{% endif %}{% if level_1 == 'server' and not level_2 %} is-active{% endif %}" href="/server">Overview</a></li>
-  <li{% if not list_class %} class="p-inline-list__item"><a class="p-inline-list__link {% else %}><a class="{% endif %}{% if level_2 == 'management' %} is-active{% endif %}" href="/server/management">Server management</a></li>
-  <li{% if not list_class %} class="p-inline-list__item"><a class="p-inline-list__link {% else %}><a class="{% endif %}{% if level_2 == 'hyperscale' %} is-active{% endif %}" href="/server/hyperscale">Hyperscale</a></li>
-  <li{% if not list_class %} class="p-inline-list__item"><a class="p-inline-list__link {% else %}><a class="{% endif %}{% if level_2 == 'livepatch' %} is-active{% endif %}" href="/server/livepatch">Livepatch</a></li>
-  <li{% if not list_class %} class="p-inline-list__item"><a class="p-inline-list__link {% else %}><a class="{% endif %}{% if level_2 == 'maas' %} is-active{% endif %}" href="/server/maas">Server provisioning</a></li>
-</ul>

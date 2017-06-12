@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
 import os
+import yaml
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'no_secret')
@@ -58,6 +60,10 @@ STATICFILES_FINDERS = [
     'django_static_root_finder.finders.StaticRootFinder'
 ]
 
+# Read navigation.yaml
+with open('navigation.yaml') as navigation_file:
+    NAV_SECTIONS = yaml.load(navigation_file.read())
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -70,6 +76,7 @@ TEMPLATES = [
             ],
             'context_processors': [
                 'django_asset_server_url.asset_server_url',
+                'webapp.context_processors.navigation',
             ],
         },
     },

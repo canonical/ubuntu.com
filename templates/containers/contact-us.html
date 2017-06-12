@@ -1,9 +1,6 @@
 {% extends "containers/base_containers-v1.html" %}
 {% block title %}Contact us | Containers {% endblock %}
 
-{% block second_level_nav_items %}
-  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Containers" page_title="Contact us" %}
-{% endblock second_level_nav_items %}
 
 {% block content %}
     {% include "shared-v1/_cloud-contact-us-form.html" with  h1="Contact us about containers" intro_text="Fill in your details below and a member of our sales team will be in touch." formid='1964'  lpId='3828' returnURL='https://www.ubuntu.com/containers/thank-you' %}
