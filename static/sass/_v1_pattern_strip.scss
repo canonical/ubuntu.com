@@ -79,8 +79,11 @@
     .p-button--neutral {
       &:link,
       &:visited {
-        background-color: $color-mid-light;
+        background-color: $color-x-light;
         color: $color-accent;
+      }
+      &:hover {
+        background-color: $color-mid-light;
       }
     }
   }
