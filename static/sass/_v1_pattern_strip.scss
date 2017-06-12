@@ -57,14 +57,16 @@
   }
 
 // XXX many of these might have to go up to vbt
+// - the svg icon in .p-link--external.p-link--inverted should be $color-light https://github.com/vanilla-framework/vanilla-framework/issues/1112
+// - fieldset should be dark with .p-strip--dark/accent (vbt) https://github.com/vanilla-framework/vanilla-framework/issues/1113
   .p-strip--accent,
   .p-strip--dark {
     @extend %strip--accent;
 
-        .p-link--external {
-          background-image: url('#{$assets-path}0d55fd52-external-link-white.svg');
-          background-size: .85em;
-        }
+    .p-link--external {
+      background-image: url('#{$assets-path}0d55fd52-external-link-white.svg');
+      background-size: .85em;
+    }
 
     fieldset {
       background-color: $color-accent;
