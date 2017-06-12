@@ -95,6 +95,12 @@
   }
 }
 
+// global menu has too much top spacing
+#nav-global ul ul {
+  @media (min-width: $breakpoint-medium ) {
+    top: 15px;
+  }
+}
 
 /// XXX Base font size is set to 16px across all viewports
 /// This is a change to be made upstream in vanilla-framework
