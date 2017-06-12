@@ -1,138 +1,153 @@
-{% extends "desktop/base_desktop.html" %}
+{% extends "desktop/base_desktop-v1.html" %}
 
 {% block title %}For partners{% endblock %}
 {% block meta_description %}Canonical partners offer Ubuntu certified pre-loaded hardware which integrates component drivers for optimal device performance. Service offerings by Canonical also available for partners include technical support, bespoke engineering, specialised training and consulting services.{% endblock %}
 
 
 {% block content %}
-<section class="row row-hero strip-light">
-    <div class="strip-inner-wrapper equal-height">
-        <div class="seven-col equal-height__item">
-            <h1>Ubuntu for partners</h1>
-            <p>We partner with the world&rsquo;s leading hardware manufacturers and silicon vendors to help deliver an extensive range of Ubuntu certified desktops, notebooks and servers. Becoming a partner means you work with our engineering and certification teams to guarantee the compatibility and optimised performance of all your hardware for the life of the OS.</p>
-            <p><a href="http://partners.ubuntu.com/programmes/hardware" class="external">Learn more about becoming a partner</a></p>
-        </div>
-        <div class="five-col last-col text-center equal-height__item equal-height__align-vertically">
-            <img src="{{ ASSET_SERVER_URL }}3ba54a27-picto-contact-midaubergine.svg" class="picto not-for-small" width="200" alt="" />
-        </div>
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-7">
+        <h1>Ubuntu for partners</h1>
+        <p>We partner with the world&rsquo;s leading hardware manufacturers and silicon vendors to help deliver an extensive range of Ubuntu certified desktops, notebooks and servers. Becoming a partner means you work with our engineering and certification teams to guarantee the compatibility and optimised performance of all your hardware for the life of the OS.</p>
+        <p><a href="http://partners.ubuntu.com/programmes/hardware" class="p-link--external">Learn more about becoming a partner</a></p>
+      </div>
+      <div class="col-5 u-align--center">
+        <img src="{{ ASSET_SERVER_URL }}3ba54a27-picto-contact-midaubergine.svg" class="u-hidden--small" width="200" alt="" />
+      </div>
     </div>
+  </div>
 </section>
 
-<section class="row strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="twelve-col">
-            <h2 class="muted-heading">A selection of our desktop partners</h2>
-            <ul id="hardware-partners" class="inline-logos no-margin dynamic-logos">
-              {% get_json_feed "http://partners.ubuntu.com/partners.json?programme__name=Desktop&featured=true" limit=10 as desktop_partners %}
-              {% for partner in desktop_partners %}
-                <li class="inline-logos__item">
-                  <img class="inline-logos__image" src="{{ partner.logo }}" alt="{{ partner.name }}" />
-                </li>
-              {% endfor %}
-            </ul>
-            <p class="align-center"><a href="http://partners.ubuntu.com/find-a-partner?service-offered=hardware-manufacturer" class="external">See all of our desktop partners</a></p>
-        </div>
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="p-heading--muted u-align--center">A selection of our desktop partners</h2>
+      <ul id="hardware-partners" class="p-inline-images">
+        {% get_json_feed "http://partners.ubuntu.com/partners.json?programme__name=Desktop&featured=true" limit=10 as desktop_partners %}
+        {% for partner in desktop_partners %}
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ partner.logo }}" alt="{{ partner.name }}" />
+        </li>
+        {% endfor %}
+      </ul>
+      <p class="u-align--center"><a href="http://partners.ubuntu.com/find-a-partner?service-offered=hardware-manufacturer" class="p-link--external">See all of our desktop partners</a></p>
     </div>
+  </div>
 </section>
 
-<section class="row row-case-studies row-case-studies-light no-border">
-    <div class="strip-inner-wrapper">
-        <div>
-            <h2 class="twelve-col">What our partners are saying</h2>
-        </div>
-        <div class="twelve-col equal-height--vertical-divider">
-            <div class="equal-height--vertical-divider__item four-col">
-              <blockquote class="pull-quote">
-                <p><span>&ldquo;</span>We are happy about this partnership as our customers in India will have access to Ubuntu preloaded Thinkpad L450 laptop series.<span>&rdquo;</span></p><p>
-                <p><cite>Rahul Agarwal, Managing Director at Lenovo India</cite></p>
-              </blockquote>
-                <p><a href="https://insights.ubuntu.com/2015/07/07/ubuntu-to-ship-on-lenovo-laptops-in-india/" class="external">Read the full article <span class="accessibility-aid"> 'Ubuntu to ship on Lenovo laptops in India'</span></a></p>
-            </div>
-            <div class="equal-height--vertical-divider__item four-col">
-                <blockquote class="pull-quote">
-                    <p><span>&ldquo;</span>Ubuntu has been the perfect OS from the start given its popularity with developers and its cloud capabilities.<span>&rdquo;</span></p>
-                    <p><cite>Barton George, Director of developer programs at Dell services</cite></p>
-                </blockquote>
-                <p><a href="https://insights.ubuntu.com/2015/04/09/designed-for-developers-dell-launches-two-new-ubuntu-based-systems/" class="external">Read the full article<span class="accessibility-aid"> 'Designed for developers &mdash; Dell launches two new Ubuntu-based systems'</span></a></p>
-            </div>
-            <div class="equal-height--vertical-divider__item four-col last-col">
-                <blockquote class="pull-quote">
-                    <p><span>&ldquo;</span>This is another milestone in our productive partnership with Canonical with the introduction of the the Intel<sup>&reg;</sup> Compute Stick with Ubuntu.<span>&rdquo;</span></p>
-                    <p><cite>Joel Christensen, General Manager of Intel NUC and Intel Compute Stick Products</cite></p>
-                </blockquote>
-                <p><a href="https://insights.ubuntu.com/2015/07/02/intel-compute-stick-now-comes-with-ubuntu/" class="external">Read the full article<span class="accessibility-aid"> 'Intel Compute Stick now comes with Ubuntu'</span></a></p>
-            </div>
-        </div>
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-12">
+      <h2>What our partners are saying</h2>
     </div>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <blockquote class="p-pull-quote is-compact">
+        <p>We are happy about this partnership as our customers in India will have access to Ubuntu preloaded Thinkpad L450 laptop series.</p>
+        <cite class="p-pull-quote__citation">Rahul Agarwal, Managing Director at Lenovo India</cite>
+      </blockquote>
+      <p><a href="https://insights.ubuntu.com/2015/07/07/ubuntu-to-ship-on-lenovo-laptops-in-india/" class="p-link--external">Read the full article <span class="u-off-screen"> 'Ubuntu to ship on Lenovo laptops in India'</span></a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <blockquote class="p-pull-quote is-compact">
+        <p>Ubuntu has been the perfect OS from the start given its popularity with developers and its cloud capabilities.</p>
+        <cite class="p-pull-quote__citation">Barton George, Director of developer programs at Dell services</cite>
+      </blockquote>
+      <p><a href="https://insights.ubuntu.com/2015/04/09/designed-for-developers-dell-launches-two-new-ubuntu-based-systems/" class="p-link--external">Read the full article<span class="u-off-screen"> 'Designed for developers &mdash; Dell launches two new Ubuntu-based systems'</span></a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <blockquote class="p-pull-quote is-compact">
+        <p>This is another milestone in our productive partnership with Canonical with the introduction of the the Intel<sup>&reg;</sup> Compute Stick with Ubuntu.</p>
+        <cite class="p-pull-quote__citation">Joel Christensen, General Manager of Intel NUC and Intel Compute Stick Products</cite>
+      </blockquote>
+      <p><a href="https://insights.ubuntu.com/2015/07/02/intel-compute-stick-now-comes-with-ubuntu/" class="p-link--external">Read the full article<span class="u-off-screen"> 'Intel Compute Stick now comes with Ubuntu'</span></a></p>
+    </div>
+  </div>
+</div>
 </section>
 
-<section class="row row-intel no-border">
-    <div class="strip-inner-wrapper equal-height">
-        <div class="five-col prepend-one equal-height__item equal-height__align-vertically">
-            <h2>Intel<sup>&reg;</sup> Compute Stick with&nbsp;Ubuntu</h2>
-            <p>Ubuntu is now being offered preloaded on the Intel Compute Stick which enables users to transform their display into a fully functional computer. Just plug the Intel Compute Stick into any HDMI TV or monitor and you're ready to work, play or access media.</p>
-            <p><a href="http://www.intel.com/content/www/us/en/compute-stick/intel-compute-stick.html" class="external">Learn more</a></p>
-        </div>
-        <div class="six-col last-col align-center equal-height__item">
-            <img src="{{ ASSET_SERVER_URL }}847fdd06-image-intelonastick-device.png" alt="Intel Compute Stick" />
-        </div>
+<section class="p-strip--dark is-deep is-bordered" style="background-color: #007cc5;">
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-6 suffix-1">
+        <h2>Intel<sup>&reg;</sup> Compute Stick with&nbsp;Ubuntu</h2>
+        <p>Ubuntu is now being offered preloaded on the Intel Compute Stick which enables users to transform their display into a fully functional computer. Just plug the Intel Compute Stick into any HDMI TV or monitor and you're ready to work, play or access media.</p>
+        <p><a href="http://www.intel.com/content/www/us/en/compute-stick/intel-compute-stick.html" class="p-link--external">Learn more</a></p>
+      </div>
+      <div class="col-6 u-align--center">
+        <img src="{{ ASSET_SERVER_URL }}847fdd06-image-intelonastick-device.png" alt="Intel Compute Stick" />
+      </div>
     </div>
+  </div>
 </section>
 
-<section class="row row-commercial strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="twelve-col">
-            <h2>Commercial information</h2>
-        </div>
-        <div class="four-col">
-            <img src="{{ ASSET_SERVER_URL }}60d9b81e-picto-canonical.svg" class="picto not-for-small" alt="" width="100%" />
-            <h3>Supported by Canonical</h3>
-            <p>Ubuntu is a free and open source platform. There are no royalties, only a per unit service fee covering the engineering certification, maintenance, quality assurance, third-party licensing fees and Canonical consulting costs.</p>
-        </div>
-        <div class="four-col">
-            <img src="{{ ASSET_SERVER_URL }}527fbcef-picto-developer-warmgrey.svg" class="picto not-for-small" alt="" width="100%" />
-            <h3>A complete solution</h3>
-            <p>Engagements cover component and system enablement as well as certification. Engagements are structured with baseline volume commitments, volume-based pricing for service fees and minimal recurrent engineering. Ubuntu Desktop is a complete solution for OEMs and ODMs.</p>
-        </div>
-        <div class="four-col last-col">
-            <img src="{{ ASSET_SERVER_URL }}423e9265-picto-upgrade-orange.svg" class="picto not-for-small" alt="" width="100%" />
-            <h3>Ongoing support</h3>
-            <p>The ability to update your devices is central to your security and long-term competitiveness. Canonical takes care of all security and critical bug fixes to the base platform offering and provides the infrastructure to support your update management strategy. Ubuntu has a world-class track record maintaining a secure and stable operating system.</p>
-        </div>
-        <div class="twelve-col">
-            <p><a href="http://partners.ubuntu.com/programmes/hardware" class="external">Learn more about working with Canonical</a></p>
-        </div>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-12 u-padding-bottom--large">
+      <h2>Commercial information</h2>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-4 p-heading-icon">
+      <div class="p-heading-icon__header">
+        <img src="{{ ASSET_SERVER_URL }}60d9b81e-picto-canonical.svg" class="p-heading-icon__img u-hidden--small" alt="" />
+        <h3 class="p-heading-icon__title">Supported by Canonical</h3>
+      </div>
+      <p>Ubuntu is a free and open source platform. There are no royalties, only a per unit service fee covering the engineering certification, maintenance, quality assurance, third-party licensing fees and Canonical consulting costs.</p>
+    </div>
+    <div class="col-4 p-heading-icon">
+      <div class="p-heading-icon__header">
+        <img src="{{ ASSET_SERVER_URL }}521def9c-picto-engineering-warmgrey.svg" class="p-heading-icon__img u-hidden--small" alt="" />
+        <h3 class="p-heading-icon__title">A complete solution</h3>
+      </div>
+      <p>Engagements cover component and system enablement as well as certification. Engagements are structured with baseline volume commitments, volume-based pricing for service fees and minimal recurrent engineering. Ubuntu Desktop is a complete solution for OEMs and ODMs.</p>
+    </div>
+    <div class="col-4 p-heading-icon">
+      <div class="p-heading-icon__header">
+        <img src="{{ ASSET_SERVER_URL }}423e9265-picto-upgrade-orange.svg" class="p-heading-icon__img u-hidden--small" alt="" />
+        <h3 class="p-heading-icon__title">Ongoing support</h3>
+      </div>
+      <p>The ability to update your devices is central to your security and long-term competitiveness. Canonical takes care of all security and critical bug fixes to the base platform offering and provides the infrastructure to support your update management strategy. Ubuntu has a world-class track record maintaining a secure and stable operating system.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <p><a href="http://partners.ubuntu.com/programmes/hardware" class="p-link--external">Learn more about working with Canonical</a></p>
+    </div>
+  </div>
 </section>
 
-<section class="row row-certified-hardware no-border strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="six-col">
-            <h2>Ubuntu Desktop certified hardware</h2>
-            <p>To offer top performance on Ubuntu, global and local manufacturers are pre-loading devices with an Ubuntu Certified image. This ensures driver integration and superior device performance.  Canonical is committed to working closely with with the world&rsquo;s leading manufacturers to optimise and certify Ubuntu on their laptops and PCs.</p>
-            <p><a href="https://certification.ubuntu.com">Learn more about Ubuntu Certified hardware&nbsp;&rsaquo;</a></p>
-        </div>
-        <div class="six-col last-col row-certified-hardware__image">
-            <img class="touch-border" src="{{ ASSET_SERVER_URL }}f1d1b842-desktop-overview-hardware.jpg" alt="Photo of laptop running Ubuntu" />
-        </div>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h2>Ubuntu Desktop certified hardware</h2>
+      <p>To offer top performance on Ubuntu, global and local manufacturers are pre-loading devices with an Ubuntu Certified image. This ensures driver integration and superior device performance.  Canonical is committed to working closely with with the world&rsquo;s leading manufacturers to optimise and certify Ubuntu on their laptops and PCs.</p>
+      <p><a class="p-link--external" href="https://certification.ubuntu.com">Learn more about Ubuntu Certified hardware&nbsp;&rsaquo;</a></p>
     </div>
+    <div class="col-6 u-vertically-center">
+      <img src="{{ ASSET_SERVER_URL }}f1d1b842-desktop-overview-hardware.jpg" alt="Photo of laptop running Ubuntu" />
+    </div>
+  </div>
 </section>
 
-<section class="row row-tenders strip-dark no-border">
-    <div class="strip-inner-wrapper">
-        <div class="six-col align-center">
-            <img src="{{ ASSET_SERVER_URL }}1ae6ed1d-image-tenders-with-ubuntu.svg" alt="" width="100%" />
-        </div>
-        <div class="six-col last-col">
-            <h2>Considering buying new devices with Ubuntu?</h2>
-            <p>An increasing number of private and public entities are migrating to Ubuntu, as it offers a robust solution with equivalent performance to other proprietary systems but at a much lower cost. Canonical is ready to share best practices with organisations wishing to deploy Ubuntu.</p>
-            <p>We have extensive experience helping companies worldwide. We have registered global deployments of over two million computers. Canonical can help to meet this growing demand by supporting organisations who are inviting requests for tender.</p>
-            <p><a href="https://www.ubuntu.com/desktop/tenders/contact-us" class="external">Contact us about your tender</a></p>
-            <p><a href="https://insights.ubuntu.com/2015/04/17/tendering-with-ubuntu/" class="external">Learn more about tendering with Ubuntu</a></p>
-        </div>
+<section class="p-strip--accent is-deep">
+  <div class="row">
+    <div class="col-6 suffix-1 u-align--center u-vertically-center">
+      <img class="u-responsive-image" src="{{ ASSET_SERVER_URL }}1ae6ed1d-image-tenders-with-ubuntu.svg" alt=""  />
     </div>
+    <div class="col-6">
+      <h2>Considering buying new devices with Ubuntu?</h2>
+      <p>An increasing number of private and public entities are migrating to Ubuntu, as it offers a robust solution with equivalent performance to other proprietary systems but at a much lower cost. Canonical is ready to share best practices with organisations wishing to deploy Ubuntu.</p>
+      <p>We have extensive experience helping companies worldwide. We have registered global deployments of over two million computers. Canonical can help to meet this growing demand by supporting organisations who are inviting requests for tender.</p>
+      <p><a href="https://www.ubuntu.com/desktop/tenders/contact-us" class="p-button--neutral">Contact us about your tender</a></p>
+      <p><a href="https://insights.ubuntu.com/2015/04/17/tendering-with-ubuntu/" class="p-link--external">Learn more about tendering with Ubuntu</a></p>
+    </div>
+  </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_desktop_contact_us" second_item="_support" third_item="_desktop_further_reading" %}
+{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_desktop_contact_us" second_item="_support" third_item="_desktop_further_reading" %}
 
 {% endblock content %}

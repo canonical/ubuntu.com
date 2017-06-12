@@ -10,8 +10,35 @@
     > p:last-of-type::after,
     > p:first-of-type::before,
     > p:first-of-type::before
-     {
-        color: $color-brand;
+    {
+      color: $color-brand;
+    }
+  }
+
+  .p-pull-quote.is-compact,
+  .p-pull-quote--accent.is-compact {
+    > p {
+      @include heading-5;
+
+
+      &:first-of-type::before,
+      &:last-of-type::after {
+        font-size: $sp-large;
+
+        @media (min-width: $breakpoint-medium) {
+          font-size: $sp-xx-large;
+        }
+
+        @media (min-width: $breakpoint-large) {
+          font-size: $sp-xx-large;
+        }
       }
+    }
+
+    .p-pull-quote__citation {
+      font-size: 1.1rem;
+      line-height: 1.15;
+      margin-top: 2rem;
+    }
   }
 }
