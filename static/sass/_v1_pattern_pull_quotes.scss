@@ -15,8 +15,8 @@
     }
   }
 
-  .p-pull-quote.is-compact,
-  .p-pull-quote--accent.is-compact {
+  .p-pull-quote--accent.is-compact,
+  .p-pull-quote.is-compact {
     .p-pull-quote__item {
       font-size: 1rem;
       margin-bottom: 1.5rem;
@@ -25,14 +25,22 @@
       &:first-of-type::before,
       &:last-of-type::after {
         font-size: $sp-medium;
-
         @media (min-width: $breakpoint-medium) {
           font-size: $sp-large;
         }
-
         @media (min-width: $breakpoint-large) {
           font-size: $sp-x-large;
         }
+      }
+
+      &:first-of-type::before {
+        margin-left: -1.3rem;
+        padding-right: $sp-x-small;
+        top: 0;
+      }
+
+      &:last-of-type::after {
+        line-height: .4;
       }
     }
 

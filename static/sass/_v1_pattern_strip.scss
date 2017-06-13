@@ -57,29 +57,23 @@
   }
 
 // XXX many of these might have to go up to vbt
-  .p-strip--accent {
+// - the svg icon in .p-link--external.p-link--inverted should be $color-light https://github.com/vanilla-framework/vanilla-framework/issues/1112
+// - fieldset should be dark with .p-strip--dark/accent (vbt) https://github.com/vanilla-framework/vanilla-framework/issues/1113
+  .p-strip--accent,
+  .p-strip--dark {
     @extend %strip--accent;
-
-    a:link,
-    a:visited {
-      color: $color-x-light;
-    }
 
     .p-link--external {
       background-image: url('#{$assets-path}0d55fd52-external-link-white.svg');
-      background-size: .85em;
+      background-position: 100% top;
+      background-repeat: no-repeat;
+      background-size: .7rem .7rem;
+      padding-right: .9rem;
     }
 
     fieldset {
       background-color: $color-accent;
       border-color: $color-accent;
-    }
-
-    .p-button--neutral {
-      &:link,
-      &:visited {
-        color: $color-accent;
-      }
     }
   }
 
