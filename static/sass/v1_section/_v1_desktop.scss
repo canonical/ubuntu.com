@@ -23,5 +23,92 @@
         transition: opacity .05s ease-out;
       }
     }
+
+ .desktop-features {
+  .p-strip-photos {
+
+    &__container {
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        margin-top: 21.25rem;
+      }
+    }
+    &__credit {
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        background-color: rgba(0, 0, 0, .6);
+        bottom: 0;
+        color: $color-light;
+        margin-top: -$sp-xxx-large;
+        padding: $sp-small;
+      }
+    }
+
+    &.photo-1 {
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        background-image: url('#{$assets-path}6c84454e-desktop-photos-1.jpg');
+        background-size: cover;
+      }
+    }
+
+    &.photo-2 {
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        background-image: url('#{$assets-path}25593e05-desktop-photos-2.jpg');
+        background-size: cover;
+      }
+    }
+
+    &.photo-3 {
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        background-image: url('#{$assets-path}a6e14067-desktop-photos-3.jpg');
+        background-size: cover;
+      }
+    }
+  }
+
+  .p-gaming {
+    background-image: url('#{$assets-path}126ebaea-borderlands.jpg');
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 488px;
+    padding-bottom: 0;
+    position: relative;
+
+    &__content {
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        position: relative;
+        margin-top: 30%;
+        z-index: 3000;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        margin-bottom: $sp-xx-large;
+      }
+    }
+
+    &__flash {
+      animation: flash-sign 10s infinite;
+      background-image: url('#{$assets-path}30d55ce9-borderlands-flash.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 2000;
+    }
+  }
+
+  .borderlands {
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 1000;
   }
 }

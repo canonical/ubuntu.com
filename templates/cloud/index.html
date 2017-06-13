@@ -1,460 +1,430 @@
-{% extends "cloud/base_cloud.html" %}
+{% extends "cloud/base_cloud-v1.html" %}
 
 {% block title %}Ubuntu in the cloud | Cloud{% endblock %}
 
 {% block meta_description %}Whether you’re building your own OpenStack cloud, want a hosted private cloud or want to use Ubuntu in the public cloud, we offer all the training, software, tools, services and support you need.{% endblock meta_description %}
 
+{% block meta_keywords %}OpenStack, Cloud, Ubuntu OpenStack, private cloud, public cloud, open-source,  IAAS, infrastructure, service, Ubuntu, Ubuntu Cloud Infrastructure, Ubuntu Cloud Guest, Juju, Maas, orchestration, deployment, provisioning, training{% endblock meta_keywords %}
+
 {% block extra_body_class %}cloud-home{% endblock %}
 
+{% block second_level_nav_items %}
+  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Cloud" page_title="Overview" %}
+{% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-hero no-border strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="hero-content six-col">
-            <h1>Build your cloud strategy with Ubuntu</h1>
-            <p class="intro">70% of public cloud workloads and 55% of OpenStack clouds run on Ubuntu.<a href="#fn1" id="r1">*</a></p>
-        </div>
-        <div class="six-col" style="padding-bottom: 2em;">
-            <ul class="list-ubuntu--compact">
-                <li>Use <a href="/download/cloud/conjure-up">conjure-up</a> to easily create an OpenStack cloud using containers on a single machine</li>
-                <li>Build your own production private cloud with <a href="/cloud/openstack/autopilot">OpenStack Autopilot</a></li>
-                <li>Get us to build and manage your production OpenStack cloud with <a href="/cloud/managed-cloud">BootStack</a></li>
-                <li>Model and deploy applications to any cloud with <a href="/cloud/juju">Juju</a></li>
-                <li>Get cloud-style automation for physical servers with <a href="/server/maas">MAAS</a></li>
-                <li>Use Ubuntu on certified <a href="/cloud/public-cloud">public clouds</a></li>
-            </ul>
-        </div>
-        <div class="cloud-tools not-for-small">
-            <div class="cloud-tools__container">
-                <a class="cloud-tools__item cloud-tools__item--one" href="/cloud/openstack" title="OpenStack">OpenStack</a>
-                <span class="cloud-tools__item cloud-tools__item--line cloud-tools__item--line-one"></span>
-                <a class="cloud-tools__item cloud-tools__item--two" href="/cloud/managed-cloud" title="BootStack">BootStack</a>
-                <span class="cloud-tools__item cloud-tools__item--line cloud-tools__item--line-two"></span>
-                <a class="cloud-tools__item cloud-tools__item--three" href="/cloud/tools/juju" title="Juju">Juju</a>
-                <span class="cloud-tools__item cloud-tools__item--line cloud-tools__item--line-three"></span>
-                <a class="cloud-tools__item cloud-tools__item--four" href="/server/maas" title="MAAS">MAAS</a>
-                <span class="cloud-tools__item cloud-tools__item--line cloud-tools__item--line-four"></span>
-                <a class="cloud-tools__item cloud-tools__item--five" href="/cloud/openstack/autopilot" title="Autopilot">Autopilot</a>
-                <span class="cloud-tools__item cloud-tools__item--line cloud-tools__item--line-five"></span>
-                <a class="cloud-tools__item cloud-tools__item--six" href="/cloud/public-cloud" title="Public cloud">Public cloud</a>
-                <span class="cloud-tools__item cloud-tools__item--line cloud-tools__item--line-six"></span>
-                <span class="cloud-tools__item cloud-tools__item--seven">Ubuntu</span>
-            </div>
-        </div>
+
+<section class="p-strip--light is-deep">
+  <div class="row">
+    <div class="col-6">
+      <h1>Build your cloud strategy with Ubuntu</h1>
+      <p class="p-heading--five">70% of public cloud workloads and 54% of OpenStack clouds run on Ubuntu.<a href="#fn1" id="r1">*</a></p>
+      <ul>
+        <li>Get us to build your solid cloud infrastructure and get it up and running in 3 weeks with Foundation Cloud Build</li>
+        <li>Use <a href="/download/cloud/conjure-up">conjure-up</a> to easily create an OpenStack cloud using containers on a single machine</li>
+        <li>Let us manage your production OpenStack cloud with <a href="/cloud/managed-cloud">BootStack</a></li>
+        <li>Model and deploy applications to any cloud with <a href="/cloud/juju">Juju</a></li>
+        <li>Get cloud-style automation for physical servers with <a href="/server/maas">MAAS</a></li>
+        <li>Use Ubuntu on certified <a href="/cloud/public-cloud">public clouds</a></li>
+      </ul>
     </div>
+    <div class="col-6">
+      <div class="cloud-tools u-hidden--small">
+        <div class="cloud-tools__container">
+          <a class="cloud-tools__item cloud-tools__item--one" href="/cloud/openstack" title="OpenStack">OpenStack</a>
+          <span class="cloud-tools__item cloud-tools__item--line cloud-tools__item--line-one"></span>
+          <a class="cloud-tools__item cloud-tools__item--two" href="/cloud/managed-cloud" title="BootStack">BootStack</a>
+          <span class="cloud-tools__item cloud-tools__item--line cloud-tools__item--line-two"></span>
+          <a class="cloud-tools__item cloud-tools__item--three" href="/cloud/tools/juju" title="Juju">Juju</a>
+          <span class="cloud-tools__item cloud-tools__item--line cloud-tools__item--line-three"></span>
+          <a class="cloud-tools__item cloud-tools__item--four" href="/server/maas" title="MAAS">MAAS</a>
+          <span class="cloud-tools__item cloud-tools__item--line cloud-tools__item--line-four"></span>
+          <a class="cloud-tools__item cloud-tools__item--five" href="/cloud/openstack/autopilot" title="Autopilot">Autopilot</a>
+          <span class="cloud-tools__item cloud-tools__item--line cloud-tools__item--line-five"></span>
+          <a class="cloud-tools__item cloud-tools__item--six" href="/cloud/public-cloud" title="Public cloud">Public cloud</a>
+          <span class="cloud-tools__item cloud-tools__item--line cloud-tools__item--line-six"></span>
+          <span class="cloud-tools__item cloud-tools__item--seven">Ubuntu</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="row strip-dark row--office-hours no-border">
-    <div class="strip-inner-wrapper equal-height">
-        <div class="six-col equal-height__item">
-            <h2>OpenStack and containers office&nbsp;hours</h2>
-            <p>Sign-up for a one-hour web session with an expert from Canonical.</p>
-            <p>Get help with Ubuntu OpenStack, Autopilot, Kubernetes, LXD, Juju and MAAS. Ask as many questions as you want.</p>
-            <p><a href="http://ubunt.eu/OpenStack_officehour" class="button--primary" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Cloud overview', 'eventLabel' : 'Register now', 'eventValue' : undefined });">Register now</a></p>
-        </div>
-        <div class="six-col last-col equal-height__item align-center">
-            <img src="{{ ASSET_SERVER_URL }}b0e012b6-Openstack+Surgery+-+Dark+background.svg" alt="" />
-        </div>
+<section class="p-strip--dark is-deep">
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <h2>OpenStack and containers office&nbsp;hours</h2>
+      <p class="u-align--center">
+        <img src="{{ ASSET_SERVER_URL }}b0e012b6-Openstack+Surgery+-+Dark+background.svg" alt="" class="u-hidden--medium u-hidden--large"/>
+      </p>
+      <p>Sign-up for a one-hour web session with an expert from Canonical.</p>
+      <p>Get help with Ubuntu OpenStack, Autopilot, Kubernetes, LXD, Juju and MAAS. Ask as many questions as you want.</p>
+      <p><a href="http://ubunt.eu/OpenStack_officehour" class="p-button--brand" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Cloud overview', 'eventLabel' : 'Register now', 'eventValue' : undefined });">Register now</a></p>
     </div>
+    <div class="col-6 u-align--center u-hidden--small">
+      <img src="{{ ASSET_SERVER_URL }}b0e012b6-Openstack+Surgery+-+Dark+background.svg" alt="" />
+    </div>
+  </div>
 </section>
 
-<section class="row strip-light">
-    <div class="strip-inner-wrapper">
-        {% include "cloud/shared/_openstack_clients.html" %}
-    </div>
+<section class="p-strip--x-light is-bordered">
+  <div class="row">
+    {% include "cloud/shared/_openstack_clients.html" %}
+  </div>
 </section>
 
-<section class="row no-border strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col">
-            <h2>Try an OpenStack cloud with conjure-up</h2>
-            <p>Conjure-up&rsquo;s ability to easily and quickly deploy real-world OpenStack on a single laptop using LXD containers is ideal for first-time users or developers.</p>
-            <p><a href="/download/cloud/conjure-up">Install OpenStack with conjure-up&nbsp;&rsaquo;</a></p>
-        </div>
-        <div class="twelve-col">
-            <div class="vimeo-container">
-                <iframe src="https://player.vimeo.com/video/202448226?color=ffffff&title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-            </div>
-        </div>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Try an OpenStack cloud with conjure-up</h2>
+      <p>Conjure-up&rsquo;s ability to easily and quickly deploy real-world OpenStack on a single laptop using LXD containers is ideal for first-time users or developers.</p>
+      <p><a href="/download/cloud/conjure-up">Install OpenStack with conjure-up&nbsp;&rsaquo;</a></p>
     </div>
+  </div>
+  <div class="row">
+    <div class="u-embedded-media">
+      <iframe class="u-embedded-media__element" src="https://player.vimeo.com/video/202448226?color=ffffff&amp;title=0&amp;byline=0&amp;portrait=0" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
 </section>
 
-<section class="row no-border">
-    <div class="strip-inner-wrapper">
-        <div class="six-col">
-            <h2>Build your production cloud with OpenStack Autopilot</h2>
-            <p>Deploy and manage your cloud quickly and easily.</p>
-            <ul class="list-ticks--compact">
-                <li>Fully automated deployment &mdash; just add servers or VMs</li>
-                <li>Deploy, manage and scale your OpenStack cloud with ease</li>
-                <li>First ten servers for free</li>
-                <li>Rapid scaling to add more capacity when you need it</li>
-                <li>Includes management tooling and commercial support from Canonical</li>
-            </ul>
-            <p><a href="/download/cloud/autopilot">Get OpenStack Autopilot&nbsp;&rsaquo;</a></p>
-        </div>
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-6">
+      <h2>Build your production cloud with OpenStack Autopilot</h2>
+      <p>Deploy and manage your cloud quickly and easily.</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Fully automated deployment &mdash; just add servers or VMs</li>
+        <li class="p-list__item is-ticked">Deploy, manage and scale your OpenStack cloud with ease</li>
+        <li class="p-list__item is-ticked">First ten servers for free</li>
+        <li class="p-list__item is-ticked">Rapid scaling to add more capacity when you need it</li>
+        <li class="p-list__item is-ticked">Includes management tooling and commercial support from Canonical</li>
+      </ul>
+      <p><a href="/download/cloud/autopilot">Get OpenStack Autopilot&nbsp;&rsaquo;</a></p>
     </div>
+  </div>
 </section>
 
-<section class="row strip-dark no-border">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col">
-            <h2>BootStack is a fully managed private cloud on OpenStack</h2>
-        </div>
-        <div class="six-col">
-            <ul class="list-ticks--compact">
-                <li>We&rsquo;ll build an OpenStack cloud on your premises or hosted environment and operate it according to an agreed SLA</li>
-                <li>We&rsquo;ll train your staff to run it</li>
-                <li>When you&rsquo;re ready, we&rsquo;ll hand over the keys</li>
-            </ul>
-            <p><a href="/cloud/managed-cloud">Let us build, operate and transfer your cloud&nbsp;&rsaquo;</a></p>
-        </div>
-        <div class="six-col last-col text-center">
-            <img src="{{ ASSET_SERVER_URL }}466046c7-illustration-cloud-bootstack.svg?w=320" alt="" class="not-for-small" width="320" />
-        </div>
+<section class="p-strip--accent is-deep">
+  <div class="row">
+    <div class="col-8">
+      <h2>BootStack is a fully managed private cloud on OpenStack</h2>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">We&rsquo;ll build an OpenStack cloud on your premises or hosted environment and operate it according to an agreed SLA</li>
+        <li class="p-list__item is-ticked">We&rsquo;ll train your staff to run it</li>
+        <li class="p-list__item is-ticked">When you&rsquo;re ready, we&rsquo;ll hand over the keys</li>
+      </ul>
+      <p><a class="p-link--inverted" href="/cloud/managed-cloud">Let us build, operate and transfer your cloud&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-6 u-align--center u-hidden--small">
+      <img src="{{ ASSET_SERVER_URL }}466046c7-illustration-cloud-bootstack.svg?w=320" alt="" width="320" />
+    </div>
+  </div>
 </section>
 
-<section class="row no-border no-padding-bottom strip-light">
-    <div class="strip-inner-wrapper">
-        <h2>Juju is the universal app store for the cloud</h2>
-        <div class="eight-col">
-            <p>Hundreds of services and pre-configured applications available for single&dash;command deployment to any cloud.</p>
-            <ul class="list-ticks--compact">
-                <li>Find solutions for anything from databases and big data to containers and benchmarking</li>
-                <li>Write your own solution in any language and add it to the store</li>
-                <li>Model, configure, deploy and manage entire cloud environments with only a few commands</li>
-                <li>Increase productivity, improve workflow, reuse solutions and deploy across all major public and private clouds</li>
-            </ul>
-            <p><a href="/cloud/juju">Learn more about Juju&nbsp;&rsaquo;</a></p>
-        </div>
-        <div class="twelve-col">
-            <h3>Over 300 services made for Juju</h3>
-        </div>
-        <div class="juju-charms-list">
-            <div class="two-col align-center box">
-                <a href="https://jujucharms.com/hadoop/" class="juju-charms-list__link">
-                    <img src="{{ ASSET_SERVER_URL }}0c2c6e40-hadoop-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
-                    <p>Hadoop</p>
-                </a>
-            </div>
-            <div class="two-col align-center box">
-                <a href="https://jujucharms.com/mongodb/" class="juju-charms-list__link">
-                    <img src="{{ ASSET_SERVER_URL }}d529fc0b-mongodb-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
-                    <p>MongoDB</p>
-                </a>
-            </div>
-            <div class="two-col align-center box">
-                <a href="https://jujucharms.com/u/asanjar/spark/" class="juju-charms-list__link">
-                    <img src="{{ ASSET_SERVER_URL }}37930aba-spark-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
-                    <p>Spark</p>
-                </a>
-            </div>
-            <div class="two-col align-center box">
-                <a href="https://jujucharms.com/redis/" class="juju-charms-list__link">
-                    <img src="{{ ASSET_SERVER_URL }}74f5267e-redis-icon.svg " alt="" class="juju-charms-list__image" width="100%" />
-                    <p>Redis</p>
-                </a>
-            </div>
-            <div class="two-col align-center box">
-                <a href="https://jujucharms.com/ceph/" class="juju-charms-list__link">
-                    <img src="{{ ASSET_SERVER_URL }}f0331421-ceph-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
-                    <p>Ceph</p>
-                </a>
-            </div>
-            <div class="two-col last-col align-center box">
-                <a href="https://jujucharms.com/wordpress/" class="juju-charms-list__link">
-                    <img src="{{ ASSET_SERVER_URL }}60ca35aa-wordpress-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
-                    <p>Wordpress</p>
-                </a>
-            </div>
-            <div class="two-col align-center box">
-                <a href="https://jujucharms.com/u/ibmcharmers/db2/" class="juju-charms-list__link">
-                    <img src="{{ ASSET_SERVER_URL }}eb358275-db2-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
-                    <p>IBM DB2</p>
-                </a>
-            </div>
-            <div class="two-col align-center box">
-                <a href="https://jujucharms.com/u/hp-discover/nginx/" class="juju-charms-list__link">
-                    <img src="{{ ASSET_SERVER_URL }}a3b1dc20-nginx-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
-                    <p>nginx</p>
-                </a>
-            </div>
-            <div class="two-col align-center box">
-                <a href="https://jujucharms.com/nagios/" class="juju-charms-list__link">
-                    <img src="{{ ASSET_SERVER_URL }}07fbb544-nagios-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
-                    <p>nagios</p>
-                </a>
-            </div>
-            <div class="two-col align-center box">
-                <a href="https://jujucharms.com/mariadb/" class="juju-charms-list__link">
-                    <img src="{{ ASSET_SERVER_URL }}0fe8aaaa-mariadb-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
-                    <p>MariaDB</p>
-                </a>
-            </div>
-            <div class="two-col align-center box">
-                <a href="https://jujucharms.com/postgresql/" class="juju-charms-list__link">
-                    <img src="{{ ASSET_SERVER_URL }}de0e8fb8-postgresql-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
-                    <p>PostgresQL</p>
-                </a>
-            </div>
-            <div class="two-col last-col align-center box">
-                <a href="https://jujucharms.com/mysql/" class="juju-charms-list__link">
-                    <img src="{{ ASSET_SERVER_URL }}70ac97b0-mysql-icon.svg" alt="" class="juju-charms-list__image" width="100%" />
-                    <p>MySQL</p>
-                </a>
-            </div>
-        </div>
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>Juju is the universal app store for the cloud</h2>
+      <p>Hundreds of services and pre-configured applications available for single&dash;command deployment to any cloud.</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Find solutions for anything from databases and big data to containers and benchmarking</li>
+        <li class="p-list__item is-ticked">Write your own solution in any language and add it to the store</li>
+        <li class="p-list__item is-ticked">Model, configure, deploy and manage entire cloud environments with only a few commands</li>
+        <li class="p-list__item is-ticked">Increase productivity, improve workflow, reuse solutions and deploy across all major public and private clouds</li>
+      </ul>
+      <p><a href="/cloud/juju">Learn more about Juju&nbsp;&rsaquo;</a></p>
     </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row">
+    <h3>Over 300 services made for Juju</h3>
+    <ul class="col-12 p-list">
+      <li class="col-2 u-align--center p-card">
+        <a href="https://jujucharms.com/hadoop/" class="p-link--soft">
+          <img src="{{ ASSET_SERVER_URL }}0c2c6e40-hadoop-icon.svg" alt="" class="p-logo" />
+          <p class="u-no-margin--bottom">Hadoop</p>
+        </a>
+      </li>
+      <li class="col-2 u-align--center p-card">
+        <a href="https://jujucharms.com/mongodb/" class="p-link--soft">
+          <img src="{{ ASSET_SERVER_URL }}d529fc0b-mongodb-icon.svg" alt="" class="p-logo" />
+          <p class="u-no-margin--bottom">MongoDB</p>
+        </a>
+      </li>
+      <li class="col-2 u-align--center p-card">
+        <a href="https://jujucharms.com/u/asanjar/spark/" class="p-link--soft">
+          <img src="{{ ASSET_SERVER_URL }}da65dfb1-spark-icon.svg" alt="" class="p-logo" />
+          <p class="u-no-margin--bottom">Spark</p>
+        </a>
+      </li>
+      <li class="col-2 u-align--center p-card">
+        <a href="https://jujucharms.com/redis/" class="p-link--soft">
+          <img src="{{ ASSET_SERVER_URL }}74f5267e-redis-icon.svg " alt="" class="p-logo" />
+          <p class="u-no-margin--bottom">Redis</p>
+        </a>
+      </li>
+      <li class="col-2 u-align--center p-card">
+        <a href="https://jujucharms.com/ceph/" class="p-link--soft">
+          <img src="{{ ASSET_SERVER_URL }}f0331421-ceph-icon.svg" alt="" class="p-logo" />
+          <p class="u-no-margin--bottom">Ceph</p>
+        </a>
+      </li>
+      <li class="col-2 u-align--center p-card">
+        <a href="https://jujucharms.com/wordpress/" class="p-link--soft">
+          <img src="{{ ASSET_SERVER_URL }}60ca35aa-wordpress-icon.svg" alt="" class="p-logo" />
+          <p class="u-no-margin--bottom">Wordpress</p>
+        </a>
+      </li>
+      <li class="col-2 u-align--center p-card u-no-margin--left" style="clear:both">
+        <a href="https://jujucharms.com/u/ibmcharmers/db2/" class="p-link--soft">
+          <img src="{{ ASSET_SERVER_URL }}eb358275-db2-icon.svg" alt="" class="p-logo" />
+          <p class="u-no-margin--bottom">IBM DB2</p>
+        </a>
+      </li>
+      <li class="col-2 u-align--center p-card">
+        <a href="https://jujucharms.com/u/hp-discover/nginx/" class="p-link--soft">
+          <img src="{{ ASSET_SERVER_URL }}a3b1dc20-nginx-icon.svg" alt="" class="p-logo" />
+          <p class="u-no-margin--bottom">nginx</p>
+        </a>
+      </li>
+      <li class="col-2 u-align--center p-card">
+        <a href="https://jujucharms.com/nagios/" class="p-link--soft">
+          <img src="{{ ASSET_SERVER_URL }}07fbb544-nagios-icon.svg" alt="" class="p-logo" />
+          <p class="u-no-margin--bottom">nagios</p>
+        </a>
+      </li>
+      <li class="col-2 u-align--center p-card">
+        <a href="https://jujucharms.com/mariadb/" class="p-link--soft">
+          <img src="{{ ASSET_SERVER_URL }}0fe8aaaa-mariadb-icon.svg" alt="" class="p-logo" />
+          <p class="u-no-margin--bottom">MariaDB</p>
+        </a>
+      </li>
+      <li class="col-2 u-align--center p-card">
+        <a href="https://jujucharms.com/postgresql/" class="p-link--soft">
+          <img src="{{ ASSET_SERVER_URL }}de0e8fb8-postgresql-icon.svg" alt="" class="p-logo" />
+          <p class="u-no-margin--bottom">PostgresQL</p>
+        </a>
+      </li>
+      <li class="col-2 u-align--center p-card">
+        <a href="https://jujucharms.com/mysql/" class="p-link--soft">
+          <img src="{{ ASSET_SERVER_URL }}70ac97b0-mysql-icon.svg" alt="" class="p-logo" />
+          <p class="u-no-margin--bottom">MySQL</p>
+        </a>
+      </li>
+    </ul>
+  </div>
 </section>
 
-<section class="row strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="twelve-col">
-          <h2 class="muted-heading">Leading vendors publish on Juju</h2>
-            <ul class="inline-logos">
-              <li class="inline-logos__item">
-                <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}05f5c6da-ibmpos_blue.jpg?w=160" alt="IBM">
-              </li>
-              <li class="inline-logos__item">
-                <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}a2a68c52-logo-juniper-160.png?w=160" alt="Juniper">
-              </li>
-              <li class="inline-logos__item">
-                <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}02b13c70-2000px-EMC_Corporation_logo.svg.png?w=160" alt="EMC">
-              </li>
-              <li class="inline-logos__item">
-                <img class="inline-logos__image" src="{{ ASSET_SERVER_URL }}1c2b9b74-logo-microsoft-160.png?w=160" alt="Microsoft">
-              </li>
-            </ul>
-        </div>
-    </div>
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <h2 class="p-heading--muted u-align--center">Leading vendors publish on Juju</h2>
+  </div>
+  <ul class="p-inline-images">
+    <li class="p-inline-images__item">
+      <img src="{{ ASSET_SERVER_URL }}683950fd-logo-ibm.svg" alt="IBM">
+    </li>
+    <li class="p-inline-images__item">
+      <img src="{{ ASSET_SERVER_URL }}a2a68c52-logo-juniper-160.png?w=160" alt="Juniper">
+    </li>
+    <li class="p-inline-images__item">
+      <img src="{{ ASSET_SERVER_URL }}02b13c70-2000px-EMC_Corporation_logo.svg.png?w=160" alt="EMC">
+    </li>
+    <li class="p-inline-images__item">
+      <img src="{{ ASSET_SERVER_URL }}477b9b52-microsoft-logo.svg" alt="Microsoft">
+    </li>
+  </ul>
 </section>
 
-<section class="row row-maas row-grey no-border">
-    <div class="strip-inner-wrapper">
-        <div class="six-col">
-            <h2>MAAS is Metal as a Service</h2>
-            <p>The bare metal physical cloud</p>
-            <ul class="list-ticks--compact">
-                <li>Cloud-style automation for physical servers</li>
-                <li>Works with all certified servers from every major vendor</li>
-                <li>Configure RAID, LVM and partitions on storage devices</li>
-                <li>Configure network bonds, VLANs and subnets</li>
-                <li>The leading open source tool for IP address management (IPAM)</li>
-                <li>The fastest way to deploy Ubuntu, CentOS, Windows or custom images</li>
-                <li>Restful API, WebUI and command line client</li>
-            </ul>
-            <p><a href="/server/maas">Learn more about MAAS&nbsp;&rsaquo;</a></p>
-        </div>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-6">
+      <h2>MAAS is Metal as a Service</h2>
+      <h3 class="p-heading--five">The bare metal physical cloud</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Cloud-style automation for physical servers</li>
+        <li class="p-list__item is-ticked">Works with all certified servers from every major vendor</li>
+        <li class="p-list__item is-ticked">Configure RAID, LVM and partitions on storage devices</li>
+        <li class="p-list__item is-ticked">Cloud-style automation for physical servers</li>
+        <li class="p-list__item is-ticked">Works with all certified servers from every major vendor</li>
+        <li class="p-list__item is-ticked">Configure RAID, LVM and partitions on storage devices</li>
+        <li class="p-list__item is-ticked">Configure network bonds, VLANs and subnets</li>
+        <li class="p-list__item is-ticked">The leading open source tool for IP address management (IPAM)</li>
+        <li class="p-list__item is-ticked">The fastest way to deploy Ubuntu, CentOS, Windows or custom images</li>
+        <li class="p-list__item is-ticked">Restful API, WebUI and command line client</li>
+      </ul>
+      <p><a href="/server/maas">Learn more about MAAS&nbsp;&rsaquo;</a></p>
     </div>
+    <div class="col-6 p-hero__item">
+      <img class="p-hero__image" src="{{ ASSET_SERVER_URL }}8ca2eab9-hero-ui-image.png?w=870" alt="Microsoft">
+    </div>
+  </div>
 </section>
 
-<section class="row strip-dark">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col no-margin-bottom">
-            <h2>Landscape</h2>
-            <h3>Server management</h3>
-            <p>
-                Landscape allows you to manage thousands of Ubuntu machines as
-                easily as one, making the administration of Ubuntu desktops,
-                servers and cloud instances more cost-effective.<br />It&rsquo;s
-                easy to set up, easy to use and it requires no special
-                hardware. It features:
-            </p>
-            <div class="combined-list">
-              <ul class="four-col list-ticks--compact">
-                  <li>Management at scale</li>
-                  <li>Deploy or rollback security updates</li>
-                  <li>Compliance reports</li>
-              </ul>
-              <ul class="four-col last-col list-ticks--compact">
-                  <li>Role-based access</li>
-                  <li>Informative monitoring</li>
-              </ul>
-            </div>
-        </div>
-        <div class="twelve-col">
-            <p>
-                <a href="https://landscape.canonical.com/" class="external">
-                    Learn more about Landscape
-                </a>
-            </p>
-        </div>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Use Ubuntu on certified public clouds</h2>
+      <p>The most popular operating system across public clouds.</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Canonical guarantees the consistency, security and performance of Ubuntu on all our certified public clouds</li>
+        <li class="p-list__item is-ticked">Enterprise-grade commercial support is available</li>
+        <li class="p-list__item is-ticked">Twice as popular on the Amazon cloud as all other operating systems combined<a href="#fn2" id="r2">**</a></li>
+      </ul>
+      <p><a href="/cloud/public-cloud">Get Ubuntu on the public cloud&nbsp;&rsaquo;</a></p>
     </div>
+    <div class="col-4">
+      {% include "cloud/shared/_openstack-aws-pie-chart.html" %}
+    </div>
+  </div>
 </section>
 
-<section class="row no-border">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col">
-            <h2>Use Ubuntu on certified public clouds</h2>
-            <p>The most popular operating system across public clouds.</p>
-            <ul class=" list-ticks--compact">
-                <li>Canonical guarantees the consistency, security and performance of Ubuntu on all our certified public clouds</li>
-                <li>Enterprise-grade commercial support is available</li>
-                <li>Twice as popular on the Amazon cloud as all other operating systems combined<a href="#fn2" id="r2">**</a></li>
-            </ul>
-            <p><a href="/cloud/public-cloud">Get Ubuntu on the public cloud&nbsp;&rsaquo;</a></p>
-        </div>
-        <div class="four-col last-col">
-            {% include "cloud/shared/_openstack-aws-pie-chart.html" %}
-        </div>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <h2>Latest cloud news from Insights</h2>
+    <div class="u-equal-height p-divider">
+      <div id="insights-cloud-feed" class="col-6 p-divider__block">
+        <ul class="p-list">
+          {% get_rss_feed "https://insights.ubuntu.com/topic/Cloud/feed/" limit=4 as cloud_feed %} {% autoescape off %} {% for item in cloud_feed %}
+          <li>
+            <h3 class="p-heading--five"><a href="{{ item.link }}" class="p-link--external">{{ item.title }}</a></h3>
+            <p>{{ item.description|force_escape|truncate_chars:100 }}</p>
+          </li>
+          {% endfor %} {% endautoescape %}
+        </ul>
+      </div>
+      {% include "cloud/shared/_events_overview.html" %}
     </div>
+  </div>
 </section>
 
-<section class="row row-insights row-grey">
-    <div class="strip-inner-wrapper">
-        <h2 class="twelve-col">The latest Ubuntu Cloud news and events</h2>
-        <div class="twelve-col equal-height--vertical-divider no-margin-bottom">
-            <div id='insights-cloud-feed' class='equal-height--vertical-divider__item six-col'>
-                <ul class='no-bullets'>
-                    {% get_rss_feed "https://insights.ubuntu.com/topic/Cloud/feed/" limit=4 as cloud_feed %}
-                    {% autoescape off %}
-                    {% for item in cloud_feed %}
-                    <li class='six-col'>
-                        <h3 class='newsevent__title'><a href='{{ item.link }}' class='external'>{{ item.title }}</a></h3>
-                        <p>{{ item.description|force_escape|truncate_chars:100 }}</p>
-                    </li>
-                    {% endfor %}
-                    {% endautoescape %}
-                </ul>
-            </div>
-        {% include "cloud/shared/_events_overview.html" %}
-        </div>
-    </div>
+<section class="p-strip--x-light">
+  <div class="row">
+    <p id="fn1" class="note"><a href="#r1">*</a> <a href="http://thecloudmarket.com/stats#/by_platform_definition" class="p-link--external">The Cloud Market</a>, August 2015 and <a href="http://superuser.openstack.org/articles/openstack-users-share-how-their-deployments-stack-up" class="p-link--external">OpenStack survey &mdash; May 2015</a></p>
+    <p id="fn2" class="note"><a href="#r2">**</a> <a href="http://www.zdnet.com/article/ubuntu-linux-continues-to-rule-the-cloud/" class="p-link--external">zdnet.com</a>, 27 August 2015</p>
+  </div>
 </section>
-
-<section class="row no-border">
-    <div class="strip-inner-wrapper">
-        <div class="twelve-col">
-            <p id="fn1" class="note"><a href="#r1">*</a> <a href="http://thecloudmarket.com/stats#/by_platform_definition" class="external">The Cloud Market</a>, August 2015 and <a href="http://superuser.openstack.org/articles/openstack-users-share-how-their-deployments-stack-up" class="external">OpenStack survey &mdash; May 2015</a></p>
-            <p id="fn2" class="note"><a href="#r2">**</a> <a href="http://www.zdnet.com/article/ubuntu-linux-continues-to-rule-the-cloud/" class="external">zdnet.com</a>, 27 August 2015</p>
-        </div>
-    </div>
-</section>
-
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_autopilot" second_item="_cloud_contact_us" third_item="_cloud_juju" %}
-
 {% endblock content %}
 
 {% block head_extra %}
+
 <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
 
 <style type="text/css">
   @keyframes fadeIn {
     0% {
-        display: none;
-        opacity: 0;
+      display: none;
+      opacity: 0;
     }
     100% {
-        display: block;
-        opacity: 1;
+      display: block;
+      opacity: 1;
     }
-}
--@-moz-keyframes fadeIn {
+  }
+  -@-moz-keyframes fadeIn {
     0% {
-        display: none;
-        opacity: 0;
+      display: none;
+      opacity: 0;
     }
     100% {
-        display: block;
-        opacity: 1;
+      display: block;
+      opacity: 1;
     }
-}
-@-webkit-keyframes fadeIn {
+  }
+  @-webkit-keyframes fadeIn {
     0% {
-        display: none;
-        opacity: 0;
+      display: none;
+      opacity: 0;
     }
     100% {
-        display: block;
-        opacity: 1;
+      display: block;
+      opacity: 1;
     }
-}
-
-/*scaleIn*/
-
-@keyframes scaleIn {
+  }
+  /*scaleIn*/
+  @keyframes scaleIn {
     0% {
-        background-size: 0%;
+      background-size: 0%;
     }
     100% {
-        background-size: 100%;
+      background-size: 100%;
     }
-}
-@-moz-keyframes scaleIn {
+  }
+  @-moz-keyframes scaleIn {
     0% {
-        background-size: 0%;
+      background-size: 0%;
     }
     100% {
-        background-size: 100%;
+      background-size: 100%;
     }
-}
-@-webkit-keyframes scaleIn {
+  }
+  @-webkit-keyframes scaleIn {
     0% {
-        background-size: 0%;
+      background-size: 0%;
     }
     100% {
-        background-size: 100%;
+      background-size: 100%;
     }
-}
-
-/*scaleInPop*/
-
-@keyframes scaleInPop {
+  }
+  /*scaleInPop*/
+  @keyframes scaleInPop {
     0% {
-        background-size: 0%;
+      background-size: 0%;
     }
     60% {
-        background-size: 100%;
+      background-size: 100%;
     }
     100% {
-        background-size: 90%;
+      background-size: 90%;
     }
-}
-@-moz-keyframes scaleInPop {
+  }
+  @-moz-keyframes scaleInPop {
     0% {
-        background-size: 0%;
+      background-size: 0%;
     }
     60% {
-        background-size: 100%;
+      background-size: 100%;
     }
     100% {
-        background-size: 90%;
+      background-size: 90%;
     }
-}
-@-webkit-keyframes scaleInPop {
+  }
+  @-webkit-keyframes scaleInPop {
     0% {
-        background-size: 0%;
+      background-size: 0%;
     }
     60% {
-        background-size: 100%;
+      background-size: 100%;
     }
     100% {
-        background-size: 90%;
+      background-size: 90%;
     }
-}
-
-/*rotateIn*/
-
-@keyframes rotateIn {
+  }
+  /*rotateIn*/
+  @keyframes rotateIn {
     0% {
-        transform: rotate(-45deg);
+      transform: rotate(-45deg);
     }
     100% {
-        transform: rotate(0deg);
+      transform: rotate(0deg);
     }
-}
-@-moz-keyframes rotateIn {
+  }
+  @-moz-keyframes rotateIn {
     0% {
-        -moz-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
     }
     100% {
-        -moz-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
     }
-}
-@-webkit-keyframes rotateIn {
+  }
+  @-webkit-keyframes rotateIn {
     0% { -webkit-transform: rotate(-45deg); }
     100% { -webkit-transform: rotate(0deg); }
-}
+  }
 </style>
 {% endblock %}
