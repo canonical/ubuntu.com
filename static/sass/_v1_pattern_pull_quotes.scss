@@ -1,22 +1,21 @@
 @mixin ubuntu-p-pull-quote {
-
   .p-pull-quote--accent {
     @extend .p-pull-quote;
+
     > p {
       color: $color-x-light;
     }
 
-    > p:last-of-type::after,
-    > p:last-of-type::after,
-    > p:first-of-type::before,
-    > p:first-of-type::before
-    {
+     > p:first-of-type::before,
+     > p:first-of-type::before,
+     > p:last-of-type::after,
+    > p:last-of-type::after {
       color: $color-brand;
     }
   }
 
-  .p-pull-quote.is-compact,
-  .p-pull-quote--accent.is-compact {
+  .p-pull-quote--accent.is-compact,
+  .p-pull-quote.is-compact {
     .p-pull-quote__item {
       font-size: 1rem;
       margin-bottom: 1.5rem;
@@ -25,14 +24,21 @@
       &:first-of-type::before,
       &:last-of-type::after {
         font-size: $sp-medium;
-
         @media (min-width: $breakpoint-medium) {
           font-size: $sp-large;
         }
-
         @media (min-width: $breakpoint-large) {
           font-size: $sp-x-large;
         }
+      }
+
+      &:first-of-type::before {
+        margin-left: -1.3rem;
+        padding-right: $sp-x-small;
+      }
+
+      &:last-of-type::after {
+        line-height: $sp-x-small;
       }
     }
 
