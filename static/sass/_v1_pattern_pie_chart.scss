@@ -1,0 +1,32 @@
+// pie charts
+// issue to bem this pattern -
+@mixin ubuntu-p-pie-chart {
+  .ubuntu-pie {
+    margin: 7% auto;
+    max-width: 21.875rem;
+
+    .other-label {
+      fill: $color-mid-dark;
+    }
+
+    //* Pie segments */
+    .ubuntu {
+      fill: $color-brand;
+    }
+
+    .other {
+      fill: transparent;
+    }
+
+    //* Labels */
+    svg tspan {
+      max-width: 0;
+      text-align: center;
+      text-transform: capitalize;
+    }
+
+    .ubuntu-label {
+      fill: $color-x-light;
+    }
+  }
+}
