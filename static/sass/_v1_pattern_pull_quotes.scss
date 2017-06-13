@@ -6,9 +6,9 @@
       color: $color-x-light;
     }
 
-     > p:first-of-type::before,
-     > p:first-of-type::before,
-     > p:last-of-type::after,
+    > p:first-of-type::before,
+    > p:first-of-type::before,
+    > p:last-of-type::after,
     > p:last-of-type::after {
       color: $color-brand;
     }
@@ -35,10 +35,11 @@
       &:first-of-type::before {
         margin-left: -1.3rem;
         padding-right: $sp-x-small;
+        top: 0;
       }
 
       &:last-of-type::after {
-        line-height: $sp-x-small;
+        line-height: .4;
       }
     }
 

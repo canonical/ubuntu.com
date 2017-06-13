@@ -15,6 +15,7 @@
 
 // import site specific patterns and overrides
 @import 'v1_pattern_site_search';
+@import 'v1_pattern_sun-animation';
 @import 'v1_pattern_navigation';
 @import 'v1_pattern_strip';
 @import 'v1_pattern_notifications';
@@ -45,10 +46,12 @@
 @include ubuntu-p-pull-quote;
 @include ubuntu-u-full-width;
 @include ubuntu-p-matrix;
+@include ubuntu-p-sun-animation;
 
 // import section specific patterns and overrides
 @import 'v1_section/v1_cloud';
 @import 'v1_section/v1_homepage';
+@import 'v1_section/v1_desktop';
 
 // Takeovers and takeunders
 @import 'takeovers/kubernetes-webinar';
@@ -137,14 +140,23 @@ html {
 /// XXX Utility to add bottom padding
 /// Proposal for inlcusion in vanilla: https://github.com/vanilla-framework/vanilla-framework/issues/1091
 .u-padding-bottom {
-  padding-bottom: $sp-medium;
+
+  @media (min-width: $breakpoint-medium) {
+    padding-bottom: $sp-medium;
+  }
 
   &--large {
-    padding-bottom: $sp-large;
+
+    @media (min-width: $breakpoint-medium) {
+      padding-bottom: $sp-large;
+    }
   }
 
   &--x-large {
-    padding-bottom: $sp-x-large;
+
+    @media (min-width: $breakpoint-medium) {
+      padding-bottom: $sp-x-large;
+    }
   }
 }
 
@@ -294,4 +306,25 @@ pre {
 .p-pull-quote > p:last-of-type::after,
 .p-pull-quote--accent > p:last-of-type::after {
   color: $color-brand;
+}
+
+// XXX sup is too high in Vanilla
+// bug - https://github.com/vanilla-framework/vanilla-framework/issues/1109
+sup {
+  font-size: .75em;
+  vertical-align: baseline;
+}
+
+// XXX responsive image utility
+// S - 65%, M - 90%, L - 100%
+.u-responsive-image {
+  width: 65%;
+
+  @media (min-width: $breakpoint-medium ) {
+    width: 90%;
+  }
+
+  @media (min-width: $breakpoint-large ) {
+    width: 100%;
+  }
 }
