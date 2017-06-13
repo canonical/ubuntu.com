@@ -199,7 +199,7 @@
         content: '\203A';
         font-weight: 400;
         color: $color-mid-dark;
-        left: -$sp-medium;
+        left: -0.95rem;
         position: absolute;
         top: 0;
       }
@@ -327,8 +327,9 @@
     }
 
     @media (min-width: $breakpoint-medium) {
-      margin-left: 1.5rem;
+      margin-left: 1.85rem;
       display: inline-block;
+      padding-left: .35rem;
 
       .p-inline-list__item {
         margin-right: .75rem;
