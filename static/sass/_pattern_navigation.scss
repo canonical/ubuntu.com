@@ -132,6 +132,7 @@
           transform: translate(-50%, 0);
           width: 100%;
           margin-left: 0;
+          margin-bottom: 0;
         }
 
         &__link {
@@ -140,10 +141,7 @@
           display: inline-block;
           padding: $sp-x-small;
           color: $color-dark;
-
-          @media (max-width: $breakpoint-medium) {
-            padding-left: $sp-medium;
-          }
+          margin-bottom: $sp-xx-small;
         }
       }
 
@@ -162,7 +160,7 @@
         }
 
         .p-inline-list__link {
-          padding: $sp-x-small;
+          padding: $sp-xx-small;
           color: $color-x-dark;
           display: inline-block;
         }
