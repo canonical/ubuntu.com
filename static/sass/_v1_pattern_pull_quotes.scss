@@ -17,26 +17,27 @@
 
   .p-pull-quote.is-compact,
   .p-pull-quote--accent.is-compact {
-    > p {
-      font-size: $sp-large;
-      line-height: 1.15;
+    .p-pull-quote__item {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      margin-top: 0;
 
       &:first-of-type::before,
       &:last-of-type::after {
-        font-size: $sp-large;
+        font-size: $sp-medium;
 
         @media (min-width: $breakpoint-medium) {
-          font-size: $sp-xx-large;
+          font-size: $sp-large;
         }
 
         @media (min-width: $breakpoint-large) {
-          font-size: $sp-xx-large;
+          font-size: $sp-x-large;
         }
       }
     }
 
     .p-pull-quote__citation {
-      font-size: 1.1rem;
+      font-size: 1rem;
       line-height: 1.15;
       margin-top: 2rem;
     }
