@@ -142,7 +142,7 @@
 
     <div class="wrapper">
       <div id="main-content" class="inner-wrapper">
-        {% if level_1 and second_level_nav_items %}
+        {% if level_1 %}
           {% block second_level_nav %}
             <nav class="p-breadcrumbs nav-secondary clearfix">{% spaceless %}{% block second_level_nav_items %}{% endblock second_level_nav_items %}{% endspaceless %}</nav>
           {% endblock second_level_nav %}
