@@ -1,6 +1,0 @@
-	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
-		<li><a{% if level_1 == 'about' and not level_2 %} class="active"{% endif %} href="/about">Overview</a></li>
-		<li><a{% if level_2 == 'about-ubuntu' %} class="active"{% endif %} href="/about/about-ubuntu">About Ubuntu</a></li>
-		<li class="{% if level_2 == 'contact-us' %}last-item {% endif %}"><a{% if level_2 == 'canonical-and-ubuntu' %} class="active"{% endif %} href="/about/canonical-and-ubuntu" >Canonical and Ubuntu</a></li>
-		<li><a{% if level_2 == 'contact-us' %} class="active" {% endif %} href="/about/contact-us" >Contact us</a></li>
-	</ul>

@@ -1,189 +1,194 @@
-{% extends "internet-of-things/base_things.html" %}
+{% extends "internet-of-things/base_things-v1.html" %}
 
 {% block title %}Digital signage | Ubuntu for the Internet of Things {% endblock %}
 
 {% block meta_description %}With hundreds of thousands of devices deployed the world over, Ubuntu Core is the perfect robust, reliable and secure OS for the digital signage sector.{% endblock meta_description %}
 
-{% block second_level_nav_items %}
-<div class="strip-inner-wrapper">
-    {% include "templates/_nav_breadcrumb.html" with section_title="IoT" page_title="Digital Signage" %}
-</div>
-{% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row row-hero strip-light">
-    <div class="strip-inner-wrapper equal-height">
-        <div class="seven-col equal-height__item">
-            <h1>Digital signage on Ubuntu</h1>
-            <div class="seven-col for-small align-center" style="padding-top: 1em;">
-                <img class="row-hero__image" src="{{ ASSET_SERVER_URL }}4a0a6007-digital-signs.png" alt="" width="260"/>
-            </div>
-            <ul class="six-col list-ticks--compact">
-                <li>Secure, reliable and remotely upgradable</li>
-                <li>Rich ecosystem of hardware and software solutions</li>
-                <li>Hundreds of thousands of devices already deployed</li>
-            </ul>
+<div class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-7">
+        <h1>Digital signage on Ubuntu</h1>
+        <div class="u-hidden--medium u-hidden--large u-align--center" style="padding-top: 1em;">
+          <img src="{{ ASSET_SERVER_URL }}4a0a6007-digital-signs.png" alt="" width="260"/>
         </div>
-        <div class="equal-height__item equal-height__align-vertically five-col last-col align-center not-for-small">
-            <img class="row-hero__image" srcset="{{ ASSET_SERVER_URL }}4a0a6007-digital-signs.png?w=600 2x" src="{{ ASSET_SERVER_URL }}4a0a6007-digital-signs.png?w=300" alt="" />
+        <div class="col-5">
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">Secure, reliable and remotely upgradable</li>
+            <li class="p-list__item is-ticked">Rich ecosystem of hardware and software solutions</li>
+            <li class="p-list__item is-ticked">Hundreds of thousands of devices already deployed</li>
+          </ul>
         </div>
+      </div>
+      <div class="col-5 u-vertically-center u-align--center u-hidden--small">
+        <img srcset="{{ ASSET_SERVER_URL }}4a0a6007-digital-signs.png?w=600 2x" src="{{ ASSET_SERVER_URL }}4a0a6007-digital-signs.png?w=300" alt="" />
+      </div>
     </div>
-</section>
+  </div>
+</div>
 
-<section class="row">
-    <div class="strip-inner-wrapper">
-        <h2>Webinars and case studies</h2>
-        <ul class="no-bullets equal-height--vertical-divider">
-            <li class="four-col equal-height--vertical-divider__item">
-                <img src="{{ ASSET_SERVER_URL }}51f2163c-050065fb-RHB.png?w=300" alt="" />
-                <h3>Building success with a Raspberry Pi!</h3>
-                <p><a class="external" href="https://www.brighttalk.com/webcast/6793/206421?utm_campaign=channel-feed&utm_content=&amp;utm_source=brighttalk-portal&amp;utm_medium=web&amp;utm_term=">Watch the webinar<span hidden> Building success with a Raspberry Pi!</span></a></p>
-            </li>
-            <li class="four-col equal-height--vertical-divider__item">
-                <img src="{{ ASSET_SERVER_URL }}1cd95f27-680e2dda-Data-triggered-content-_-4g-base-staton.png?w=300" alt="" />
-                <h3>Data-triggered content and 4G base stations</h3>
-                <p><a class="external" href="https://www.brighttalk.com/webcast/6793/211999?utm_source=ubuntuweb&amp;utm_medium=dspageboldmindbox&amp;utm_campaign=DSwebinar">Watch the webinar<span hidden> Data-triggered content and 4G base stations</span></a></p>
-            </li>
-            <li class="four-col last-col equal-height--vertical-divider__item no-margin-bottom">
-                <img src="{{ ASSET_SERVER_URL }}d2abb0ff-01f0d584-CaseStudyCoverlarge.jpg?w=300" alt="" />
-                <h3>Open Source Digital Signage with Ubuntu</h3>
-                <p><a class="external" href="https://pages.ubuntu.com/FY17DS-WebForm_RiseVisionCaseStudy.html?from=dspage">Download case study<span hidden> Open Source Digital Signage with Ubuntu</span></a></p>
-            </li>
-        </ul>
+<div class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2>Webinars and case studies</h2>
     </div>
-</section>
-
-<section class="row no-border">
-    <div class="strip-inner-wrapper">
-        <h2>Digital signage players need the power of Ubuntu</h2>
-        <p class="nine-col">With a small footprint  and serious power, Ubuntu Core reduces hardware costs while still running 4k video. A low cost, open source solution, it builds from its heritage on servers to bring a secure and stable platform, designed for 24/7 availability and resistant to screen takeovers and other attacks.</p>
-        <div class="combined-list">
-            <ul class="list-ticks six-col">
-                <li>Atomic upgradability: low bandwidth, prompt delivery of new features</li>
-                <li>Software development: existing libraries and codebase, flexibility in development, all the way down to the device driver</li>
-                <li class="last-item">Remote maintenance: no need for on-site personnel</li>
-            </ul>
-            <ul class="list-ticks six-col last-col">
-                <li>Application isolation enables security, robustness and simpler maintenance</li>
-                <li>Faster innovation: wide peripheral support, Wi-Fi, 3G/4G, NFC, Bluetooth, software-defined radio, deep learning, audio and camera support (including RealSense)</li>
-            </ul>
-        </div>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <img src="{{ ASSET_SERVER_URL }}51f2163c-050065fb-RHB.png?w=300" alt="" />
+      <h3>Building success with a Raspberry Pi!</h3>
+      <p><a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/206421?utm_campaign=channel-feed&utm_content=&amp;utm_source=brighttalk-portal&amp;utm_medium=web&amp;utm_term=">Watch the webinar<span hidden> Building success with a Raspberry Pi!</span></a></p>
     </div>
-</section>
-
-<section class="row strip-dark no-border">
-    <div class="strip-inner-wrapper equal-height">
-        <div class="eight-col equal-height__item">
-            <h2>Simplified software management</h2>
-            <p>Ubuntu Core gives your screens the uptime and robustness you need. Uniquely stable and secure, it is based on the same operating system that runs the majority of the world's clouds.</p>
-            <p>Ubuntu Core adds the ability to upgrade the entire software stack remotely and securely, from the kernel all the way up to the apps. Canary rollout and rollback capability gives you peace of mind during upgrades: if anything goes wrong, the device automatically reverts to the last working release. With update management facilities to manage roll-out as you wish, Ubuntu Core is the ultimate digital signage OS.</p>
-        </div>
-        <div class="four-col last-col align-center equal-height__item equal-height__align-vertically">
-            <img src="{{ ASSET_SERVER_URL }}543a1e1a-snappy_orange_hex-01.svg" alt="" />
-        </div>
+    <div class="col-4 p-divider__block">
+      <img src="{{ ASSET_SERVER_URL }}1cd95f27-680e2dda-Data-triggered-content-_-4g-base-staton.png?w=300" alt="" />
+      <h3>Data-triggered content and 4G base stations</h3>
+      <p><a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/211999?utm_source=ubuntuweb&amp;utm_medium=dspageboldmindbox&amp;utm_campaign=DSwebinar">Watch the webinar<span hidden> Data-triggered content and 4G base stations</span></a></p>
     </div>
-</section>
-
-<section class="row">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col">
-            <h2>Partners and players</h2>
-            <p>The Ubuntu Core app store makes it easy for systems integrators and device makers to find solutions, while enabling OEMs to generate revenues from their devices over the entire lifetime of their products.</p>
-            <p class="clear"><a class="button--primary" href="/internet-of-things/contact-us?product=digital-signage" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Digital Signage Page - Partners and players', 'eventLabel' : 'Get in touch', 'eventValue' : undefined });">Get in touch</a></p>
-        </div>
-
-        <ul class="list-partners no-bullets equal-height twelve-col no-margin-bottom">
-            <li class="list-partners__item equal-height_item four-col box">
-                <a class="list-partners__link" href="https://www.screenlyapp.com/">
-                    <div class="list-partners__image-container four-col align-center">
-                        <img class="list-partners__image" src="{{ ASSET_SERVER_URL }}5917a214-logo-screenly.png" alt="Screenly logo" />
-                    </div>
-                </a>
-                <h3 class="accessibility-aid">Screenly</h3>
-                <p>The world's most popular digital signage player for the Raspberry Pi.</p>
-                <a href="https://www.brighttalk.com/webcast/6793/206421?utm_source=ubuntuweb&utm_medium=dspage&utm_campaign=DSwebinar" title="View Screenly webinar">View webinar&nbsp;&rsaquo;</a>
-            </li>
-            <li class="list-partners__item equal-height_item four-col box">
-                <a class="list-partners__link" href="https://www.4yousee.com.br/">
-                    <div class="list-partners__image-container four-col align-center">
-                        <img class="list-partners__image" src="{{ ASSET_SERVER_URL }}391ea778-logo-4yousee.png" alt="4YouSee logo" />
-                    </div>
-                </a>
-                <h3 class="accessibility-aid">4YouSee</h3>
-                <p>A complete digital signage solution to create, manage and play your digital content, and analyse your audience.</p>
-            </li>
-            <li class="list-partners__item equal-height_item four-col last-col box">
-                <a class="list-partners__link" href="https://developer.ubuntu.com/en/snappy/start/intel-nuc/">
-                    <div class="list-partners__image-container four-col align-center">
-                        <img class="list-partners__image" src="{{ ASSET_SERVER_URL }}c24cb4b9-logo-intel.svg" alt="Intel® NUC logo" />
-                    </div>
-                </a>
-                <h3 class="accessibility-aid">Intel® NUC</h3>
-                <p>Small size, low consumption, fanless operations and low cost mini-PC for digital display or retail kiosks.</p>
-            </li>
-            <li class="list-partners__item equal-height_item four-col box">
-                <a class="list-partners__link" href="https://www.risevision.com/">
-                    <div class="list-partners__image-container four-col align-center">
-                        <img class="list-partners__image" src="{{ ASSET_SERVER_URL }}f2396b21-logo-risevision.png" alt="Rise Vision logo" />
-                    </div>
-                </a>
-                <h3 class="accessibility-aid">Rise Vision</h3>
-                <p>A simple solution for delivering content worth sharing to digital signage everywhere.</p>
-            </li>
-        </ul>
+    <div class="col-4 p-divider__block">
+      <img src="{{ ASSET_SERVER_URL }}d2abb0ff-01f0d584-CaseStudyCoverlarge.jpg?w=300" alt="" />
+      <h3>Open Source Digital Signage with Ubuntu</h3>
+      <p><a class="p-link--external" href="https://pages.ubuntu.com/FY17DS-WebForm_RiseVisionCaseStudy.html?from=dspage">Download case study<span hidden> Open Source Digital Signage with Ubuntu</span></a></p>
     </div>
-</section>
+  </div>
+</div>
 
-<section class="row no-border">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col">
-            <h2>Innovation in digital signage</h2>
-            <p>With Ubuntu Core, digital display owners can innovate at speed, thanks to the wealth of innovative apps already created by our partners.</p>
-        </div>
-        <ul class="list-partners no-bullets equal-height twelve-col">
-            <li class="list-partners__item equal-height_item four-col box">
-                <a class="list-partners__link" href="http://www.boldmind.co.uk/">
-                    <div class="list-partners__image-container four-col align-center">
-                        <img class="list-partners__image" src="{{ ASSET_SERVER_URL }}d4e5daf4-logo-boldmind.png" alt="Boldmind logo" />
-                    </div>
-                </a>
-                <h3 class="accessibility-aid">Boldmind</h3>
-                <p>Use data triggers to schedule content.</p>
-                <a href="https://www.brighttalk.com/webcast/6793/211999?utm_source=ubuntuweb&utm_medium=dspageboldmindbox&utm_campaign=DSwebinar" title="View Boldmind webinar">View webinar&nbsp;&rsaquo;</a>
-            </li>
-            <li class="list-partners__item equal-height_item four-col box">
-                <a class="list-partners__link" href="http://www.limemicro.com/">
-                    <div class="list-partners__image-container four-col align-center">
-                        <img class="list-partners__image" src="{{ ASSET_SERVER_URL }}5e68dad7-logo-lime-microsystems.png" alt="Lime Micro logo" />
-                    </div>
-                </a>
-                <h3 class="accessibility-aid">Lime Micro</h3>
-                <p>Turn a digital signage player into a 4G base station.</p>
-                <a href="https://www.brighttalk.com/webcast/6793/211999?utm_source=ubuntuweb&utm_medium=dspagelimemicrobox&utm_campaign=DSwebinar" title="View Lime Micro webinar">View webinar&nbsp;&rsaquo;</a>
-            </li>
-            <li class="list-partners__item equal-height_item four-col last-col box">
-                <a class="list-partners__link" href="http://www.hoxtonanalytics.com/">
-                    <div class="list-partners__image-container four-col align-center">
-                        <img class="list-partners__image" src="{{ ASSET_SERVER_URL }}d4ae60aa-logo-hoxton-analytics.svg" alt="Hoxton Analytics logo" />
-                    </div>
-                </a>
-                <h3 class="accessibility-aid">Hoxton Analytics</h3>
-                <p>Turn your digital sign into a people counter.</p>
-            </li>
-        </ul>
+<div class="p-strip--light">
+  <div class="row">
+    <div class="col-12">
+      <h2>Digital signage players need the power of Ubuntu</h2>
+      </div>
+      </div>
+      <div class="row">
+        <div class="col-9">
+      <p>With a small footprint  and serious power, Ubuntu Core reduces hardware costs while still running 4k video. A low cost, open source solution, it builds from its heritage on servers to bring a secure and stable platform, designed for 24/7 availability and resistant to screen takeovers and other attacks.</p>
     </div>
-</section>
-
-<section class="row strip-dark row-cta row-cta--digital-signage no-border">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col prepend-three last-col">
-            <h2>Build your own digital signage solution</h2>
-            <p>Ubuntu Core is entirely open source and supports a range of digital signage players. Just install it on a Raspberry Pi or NUC, download the app of your choice, create an account and you&rsquo;re ready to go.</p>
-            <p><a class="button--secondary" href="/internet-of-things/contact-us?product=digital-signage" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Digital Signage Page - Build your own', 'eventLabel' : 'Get in touch', 'eventValue' : undefined });">Get in touch</a></p>
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <ul class="p-list--divided is-split">
+        <li class="p-list__item is-ticked">Atomic upgradability: low bandwidth, prompt delivery of new features</li>
+        <li class="p-list__item is-ticked">Software development: existing libraries and codebase, flexibility in development, all the way down to the device driver</li>
+        <li class="p-list__item is-ticked">Faster innovation: wide peripheral support, Wi-Fi, 3G/4G, NFC, Bluetooth, software-defined radio, deep learning, audio and camera support (including RealSense)</li>
+        <li class="p-list__item is-ticked">Application isolation enables security, robustness and simpler maintenance</li>
+        <li class="p-list__item is-ticked">Remote maintenance: no need for on-site personnel</li>
+      </ul>
     </div>
-</section>
+  </div>
+</div>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_iot_newsletter_signup" third_item="_iot_further_reading" %}
+<div class="p-strip--accent is-deep">
+  <div class="row"><div class="u-equal-height">
+    <div class="col-8">
+      <h2>Simplified software management</h2>
+      <p>Ubuntu Core gives your screens the uptime and robustness you need. Uniquely stable and secure, it is based on the same operating system that runs the majority of the world's clouds.</p>
+      <p>Ubuntu Core adds the ability to upgrade the entire software stack remotely and securely, from the kernel all the way up to the apps. Canary rollout and rollback capability gives you peace of mind during upgrades: if anything goes wrong, the device automatically reverts to the last working release. With update management facilities to manage roll-out as you wish, Ubuntu Core is the ultimate digital signage OS.</p>
+    </div>
+    <div class="col-4 u-align--center u-vertically-center">
+      <img src="{{ ASSET_SERVER_URL }}543a1e1a-snappy_orange_hex-01.svg" alt="" />
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Partners and players</h2>
+      <p>The Ubuntu Core app store makes it easy for systems integrators and device makers to find solutions, while enabling OEMs to generate revenues from their devices over the entire lifetime of their products.</p>
+      <p class="clear"><a class="p-button--neutral" href="/internet-of-things/contact-us?product=digital-signage" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Digital Signage Page - Partners and players', 'eventLabel' : 'Get in touch', 'eventValue' : undefined });">Get in touch</a></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-6 p-card">
+        <header class="p-card__header u-align--center u-vertically-center u-hidden--small" style="min-height: 8rem;">
+          <a href="https://www.screenlyapp.com/"><img style="height: 65px;" src="{{ ASSET_SERVER_URL }}5917a214-logo-screenly.png" alt="Screenly logo" /></a>
+        </header>
+        <h3 class="p-card__title">Screenly</h3>
+        <p class="p-card__content">The world's most popular digital signage player for the Raspberry Pi.</p>
+        <a href="https://www.brighttalk.com/webcast/6793/206421?utm_source=ubuntuweb&utm_medium=dspage&utm_campaign=DSwebinar" title="View Screenly webinar">View webinar&nbsp;&rsaquo;</a>
+      </div>
+      <div class="col-6 p-card">
+        <header class="p-card__header u-align--center u-vertically-center u-hidden--small" style="min-height: 8rem;">
+          <a href="https://www.4yousee.com.br/"><img style="height: 65px;" src="{{ ASSET_SERVER_URL }}391ea778-logo-4yousee.png" alt="4YouSee logo" /></a>
+        </header>
+        <h3 class="p-card__title">4YouSee</h3>
+        <p class="p-card__content">A complete digital signage solution to create, manage and play your digital content, and analyse your audience.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="u-equal-height">
+        <div class="col-6 p-card">
+          <header class="p-card__header u-align--center u-vertically-center u-hidden--small" style="min-height: 8rem;">
+            <a href="https://developer.ubuntu.com/en/snappy/start/intel-nuc/"><img style="height: 65px;" src="{{ ASSET_SERVER_URL }}c24cb4b9-logo-intel.svg" alt="Intel® NUC logo" /></a>
+          </header>
+          <h3 class="p-card__title">Intel® NUC</h3>
+          <p class="p-card__content">Small size, low consumption, fanless operations and low cost mini-PC for digital display or retail kiosks.</p>
+        </div>
+        <div class="col-6 p-card">
+          <header class="p-card__header u-align--center u-vertically-center u-hidden--small" style="min-height: 8rem;">
+            <a href="https://www.risevision.com/"><img style="height: 65px;" src="{{ ASSET_SERVER_URL }}f2396b21-logo-risevision.png" alt="Rise Vision logo" /></a>
+          </header>
+          <h3 class="p-card__title">Rise Vision</h3>
+          <p class="p-card__content">A simple solution for delivering content worth sharing to digital signage everywhere.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>Innovation in digital signage</h2>
+      <p>With Ubuntu Core, digital display owners can innovate at speed, thanks to the wealth of innovative apps already created by our partners.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-6 p-card">
+        <header class="p-card__header u-align--center u-vertically-center u-hidden--small" style="min-height: 8rem;">
+          <a href="http://www.boldmind.co.uk/"><img style="height: 65px;" src="{{ ASSET_SERVER_URL }}d4e5daf4-logo-boldmind.png" alt="Boldmind logo" /></a>
+        </header>
+        <h3 class="p-card__title">Boldmind</h3>
+        <p class="p-card__content">Use data triggers to schedule content.</p>
+        <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/211999?utm_source=ubuntuweb&utm_medium=dspageboldmindbox&utm_campaign=DSwebinar" title="View Boldmind webinar">View webinar</a>
+      </div>
+      <div class="col-6 p-card">
+        <header class="p-card__header u-align--center u-vertically-center u-hidden--small" style="min-height: 8rem;">
+          <a href="http://www.limemicro.com/"><img style="height: 65px;" src="{{ ASSET_SERVER_URL }}5e68dad7-logo-lime-microsystems.png" alt="Lime Micro logo" /></a>
+        </header>
+        <h3 class="p-card__title">Lime Micro</h3>
+        <p class="p-card__content">Turn a digital signage player into a 4G base station.</p>
+        <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/211999?utm_source=ubuntuweb&utm_medium=dspagelimemicrobox&utm_campaign=DSwebinar" title="View Lime Micro webinar">View webinar</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="u-equal-height">
+        <div class="col-6 p-card">
+          <header class="p-card__header u-align--center u-vertically-center u-hidden--small" style="min-height: 8rem;">
+            <a href="http://www.hoxtonanalytics.com/"><img style="height: 65px;" src="{{ ASSET_SERVER_URL }}d4ae60aa-logo-hoxton-analytics.svg" alt="Hoxton Analytics logo" /></a>
+          </header>
+          <h3 class="p-card__title">Hoxton Analytics</h3>
+          <p class="p-card__content">Turn your digital sign into a people counter.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip--image is-dark is-deep" style="background-image: url('{{ ASSET_SERVER_URL }}68b1a2e2-banner_pixels05.png');">
+  <div class="row">
+    <div class="col-11 prefix-3">
+      <h2>Build your own digital signage solution</h2>
+      <p>Ubuntu Core is entirely open source and supports a range of digital signage players. Just install it on a Raspberry Pi or NUC, download the app of your choice, create an account and you&rsquo;re ready to go.</p>
+      <p><a class="p-button--neutral" href="/internet-of-things/contact-us?product=digital-signage" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Digital Signage Page - Build your own', 'eventLabel' : 'Get in touch', 'eventValue' : undefined });">Get in touch</a></p>
+    </div>
+  </div>
+</div>
+
+{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_iot_newsletter_signup" third_item="_iot_further_reading" %}
 
 {% endblock content %}

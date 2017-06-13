@@ -1,4 +1,4 @@
-{% extends "desktop/base_desktop.html" %}
+{% extends "desktop/base_desktop-v1.html" %}
 {% block extra_body_class %}desktop-features{% endblock %}
 {% block head_extra %}
 <style type="text/css">
@@ -30,271 +30,264 @@
 {% block title %}Desktop features{% endblock %}
 {% block meta_description %}Learn about all the great features and default applications in the Ubuntu desktop operating system.{% endblock meta_description %}
 
-{% block second_level_nav_items %}
-<div class="strip-inner-wrapper">
-    {% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="Features" %}
-</div>
-{% endblock second_level_nav_items %}
-
 {% block content %}
-
-<div class="row row-hero row-features strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="six-col">
-            <h1>Features</h1>
-            <p class="intro">Enjoy the simplicity of Ubuntu&rsquo;s intuitive interface. Fast, secure and with thousands of apps to choose from &mdash; for everything you want to do, Ubuntu has what you need.</p>
-            <p><a href="/download/desktop" class="button--primary">Download Ubuntu</a></p>
-        </div>
+<section class="p-strip u-image-position is-deep is-bordered">
+  <div class="row">
+    <div class="col-6">
+      <h1>Features</h1>
+      <p>Enjoy the simplicity of Ubuntu&rsquo;s intuitive interface. Fast, secure and with thousands of apps to choose from &mdash; for everything you want to do, Ubuntu has what you need.</p>
+      <p><a href="/download/desktop" class="p-button--brand">Download Ubuntu</a></p>
     </div>
-</div>
-
-<div class="row row-apps strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="twelve-col">
-            <h2>A whole world of apps</h2>
-            <div class="eight-col">
-                <p>Ubuntu offers thousands of apps available for download. Most are available for free and can be installed with just a few clicks.</p>
-            </div>
-        </div>
-        <ul class="grid-list twelve-col no-bullets">
-            <li class="grid-list__item four-col">
-                <div class="grid-list__icon one-col ">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}3f3a15ef-logo-telegram.svg?fmt=png&w=60" alt="Skype icon" />
-                </div>
-                <div class="grid-list__description three-col last-col">
-                    <h3>Telegram</h3>
-                    <p>Mobile and desktop messaging app with a focus on security and speed.</p>
-                </div>
-            </li>
-
-            <li class="grid-list__item four-col">
-                <div class="grid-list__icon one-col ">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}171fcf42-Chromium_11_Logo.svg?fmt=png&w=60" alt="Chromium icon" />
-                </div>
-                <div class="grid-list__description three-col last-col">
-                    <h3>Chromium</h3>
-                    <p>A fast, simple and secure web browser, built for the modern web.</p>
-                </div>
-            </li>
-
-            <li class="grid-list__item four-col last-col">
-                <div class="grid-list__icon one-col ">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}6b138bd2-thunderbird-icon.png" alt="Thunderbird icon" />
-                </div>
-                <div class="grid-list__description three-col last-col">
-                    <h3>Thunderbird</h3>
-                    <p>Terrific email application, from Mozilla, that&rsquo;s easy to set up and customise.</p>
-                </div>
-            </li>
-
-            <li class="grid-list__item four-col">
-                <div class="grid-list__icon one-col ">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}34214609-dropbox-icon.png" alt="Dropbox icon" />
-                </div>
-                <div class="grid-list__description three-col last-col">
-                    <h3>Dropbox</h3>
-                    <p>The world&rsquo;s favourite cloud backup and file sharing service.</p>
-                </div>
-            </li>
-
-            <li class="grid-list__item four-col">
-                <div class="grid-list__icon one-col ">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}55264c66-libreoffice-icon.png" alt="LibreOffice icon" />
-                </div>
-                <div class="grid-list__description three-col last-col">
-                    <h3>LibreOffice</h3>
-                    <p>The free office productivity suite that&rsquo;s compatible with Microsoft Office.</p>
-                </div>
-            </li>
-
-            <li class="grid-list__item four-col last-col">
-                <div class="grid-list__icon one-col ">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}7fa9fe86-twitter-icon.png" alt="Twitter icon" />
-                </div>
-                <div class="grid-list__description three-col last-col last-col ">
-                    <h3>Twitter</h3>
-                    <p>The social media powerhouse that&rsquo;s become an essential for online life.</p>
-                </div>
-            </li>
-
-            <li class="grid-list__item four-col last-row">
-                <div class="grid-list__icon one-col ">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}7b460167-vlc-icon.png" alt="VLC icon" />
-                </div>
-                <div class="grid-list__description three-col last-col">
-                    <h3>VLC player</h3>
-                    <p>No other video player is compatible with as many different file formats.</p>
-                </div>
-            </li>
-
-            <li class="grid-list__item four-col last-row">
-                <div class="grid-list__icon one-col ">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}5c9184f1-gimp-icon.png" alt="Gimp icon" />
-                </div>
-                <div class="grid-list__description three-col last-col">
-                    <h3>Gimp</h3>
-                    <p>The world&rsquo;s number one free app for image creation and photo retouching.</p>
-                </div>
-            </li>
-
-            <li class="grid-list__item four-col last-row last-col">
-                <div class="grid-list__icon one-col ">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}21cf063d-firefox-icon.png" alt="Firefox icon" />
-                </div>
-                <div class="grid-list__description three-col last-col">
-                    <h3>Firefox</h3>
-                    <p>The speedy, independent, open source browser from Mozilla.</p>
-                </div>
-            </li>
-        </ul>
-        <div class="twelve-col">
-            <p><a href="https://apps.ubuntu.com/cat/" class="external">Visit the Ubuntu apps directory</a></p>
-        </div>
+    <div class="col-6 u-vertically-center u-hidden--small">
+      <img class="u-visible--large u-hidden--medium u-image-position--top" src="{{ ASSET_SERVER_URL }}9fe68ee3-desktop-features-hero.png?w=600" alt="" style="top: 70px; left: 50%;" />
+      <img class="u-visible--medium u-hidden--large" src="{{ ASSET_SERVER_URL }}9fe68ee3-desktop-features-hero.png?w=600" alt="" style="top: 70px; right: 40px;" />
     </div>
-</div>
+  </div>
+</section>
 
-<div class="row row-office-software no-border strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="four-col append-one">
-            <div>
-                <h2>Office software</h2>
-                <p>Create professional documents, spreadsheets and presentations on Ubuntu with LibreOffice, the open source office suite that&rsquo;s compatible with Microsoft Office.   That means you can open and edit files like Word documents, Excel spreadsheets and PowerPoint presentations and share them with other users quickly and easily. You can also use Google docs directly from your desktop.</p>
-            </div>
-        </div>
-        <div class="seven-col last-col">
-            <img src="{{ ASSET_SERVER_URL }}f2a3eead-office-software.jpg" height="414" width="556" alt="Office Apps" />
-        </div>
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>A whole world of apps</h2>
+      <p>Ubuntu offers thousands of apps available for download. Most are available for free and can be installed with just a few clicks.</p>
     </div>
-</div>
-
-<div class="row row-web-browsing strip-dark">
-    <div class="strip-inner-wrapper equal-height">
-        <div class="no-margin-bottom six-col prepend-one align-center equal-height__item equal-height__align-vertically">
-            <img src="{{ ASSET_SERVER_URL }}94b49b69-desktop-features-web-window.jpg?w=430" class="" width="430" alt="" />
-        </div>
-        <div class="five-col last-col equal-height__item equal-height__align-vertically">
-            <div>
-                <h2>Web browsing</h2>
-                <p>Renowned for speed and security, Ubuntu and Firefox make browsing the web a pleasure again.  Ubuntu also includes Chrome, Opera and other browsers that can be installed from the Ubuntu Software Centre.</p>
-            </div>
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <ul class="p-matrix is-trisected u-padding-bottom--x-large">
+        <li class="p-matrix__item">
+          <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}3f3a15ef-logo-telegram.svg?fmt=png&w=60" alt="Skype icon" />
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">Telegram</h3>
+            <p class="p-matrix__desc">Mobile and desktop messaging app with a focus on security and speed.</p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}171fcf42-Chromium_11_Logo.svg?fmt=png&w=60" alt="Chromium icon" />
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">Chromium</h3>
+            <p class="p-matrix__desc">A fast, simple and secure web browser, built for the modern web.</p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}6b138bd2-thunderbird-icon.png" alt="Thunderbird icon" />
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">Thunderbird</h3>
+            <p class="p-matrix__desc">Terrific email application, from Mozilla, that&rsquo;s easy to set up and customise.</p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}34214609-dropbox-icon.png" alt="Dropbox icon" />
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">Dropbox</h3>
+            <p class="p-matrix__desc">The world&rsquo;s favourite cloud backup and file sharing service.</p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}55264c66-libreoffice-icon.png" alt="LibreOffice icon" />
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">LibreOffice</h3>
+            <p class="p-matrix__desc">The free office productivity suite that&rsquo;s compatible with Microsoft Office.</p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}7fa9fe86-twitter-icon.png" alt="Twitter icon" />
+          <div class="p-matrix__content ">
+            <h3 class="p-matrix__title">Twitter</h3>
+            <p class="p-matrix__desc">The social media powerhouse that&rsquo;s become an essential for online life.</p>
+          </div>
+        </li>
+        <li class="p-matrix__item last-row">
+          <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}7b460167-vlc-icon.png" alt="VLC icon" />
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">VLC player</h3>
+            <p class="p-matrix__desc">No other video player is compatible with as many different file formats.</p>
+          </div>
+        </li>
+        <li class="p-matrix__item last-row">
+          <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}5c9184f1-gimp-icon.png" alt="Gimp icon" />
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">Gimp</h3>
+            <p class="p-matrix__desc">The world&rsquo;s number one free app for image creation and photo retouching.</p>
+          </div>
+        </li>
+        <li class="p-matrix__item last-row">
+          <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}21cf063d-firefox-icon.png" alt="Firefox icon" />
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">Firefox</h3>
+            <p class="p-matrix__desc">The speedy, independent, open source browser from Mozilla.</p>
+          </div>
+        </li>
+      </ul>
+      <p><a href="https://apps.ubuntu.com/cat/" class="p-link--external">Visit the Ubuntu apps directory</a></p>
     </div>
-</div>
+  </div>
+</section>
 
-<div class="row row-smarter-searching no-border row-grey">
-    <div class="strip-inner-wrapper equal-height">
-        <div class="five-col append-one equal-height__item equal-height__align-vertically">
-            <div>
-                <h2>Email</h2>
-                <p>Ubuntu comes with Thunderbird, Mozilla&rsquo;s popular email application, so you&rsquo;ll have fast desktop access to your email. No matter which email services you use; Microsoft Exchange, Gmail, Hotmail, POP or IMAP, email just works.</p>
-            </div>
-        </div>
-        <div class="six-col last-col equal-height__item">
-            <div class="email-container">
-                <img src="{{ ASSET_SERVER_URL }}20fdbf70-features-email.jpg" class="" alt="" height="398" width="520" />
-                <img src="{{ ASSET_SERVER_URL }}2aa38e7c-features-email-text.gif" class="email-text" alt="" />
-            </div>
-        </div>
+<section class="p-strip">
+  <div class="row u-vertically-center">
+    <div class="col-5 suffix-1">
+      <div>
+        <h2>Office software</h2>
+        <p>Create professional documents, spreadsheets and presentations on Ubuntu with LibreOffice, the open source office suite that&rsquo;s compatible with Microsoft Office.   That means you can open and edit files like Word documents, Excel spreadsheets and PowerPoint presentations and share them with other users quickly and easily. You can also use Google docs directly from your desktop.</p>
+      </div>
     </div>
-</div>
-
-<div class="row row-photos strip-dark no-border">
-    <div class="strip-inner-wrapper">
-        <div class="five-col">
-            <div>
-                <h2>Photos</h2>
-                <p>Ubuntu is full of free apps to help you enjoy, manage, edit and share your photos &mdash; whatever you use to take them. With fantastic support for cameras and phones, you won&rsquo;t need any extra drivers to get up and running.</p>
-            </div>
-        </div>
-        <span class="photo-credit not-for-small smaller"></span>
+    <div class="col-7">
+      <img src="{{ ASSET_SERVER_URL }}f2a3eead-office-software.jpg" height="414" width="556" alt="Office Apps" />
     </div>
-</div>
+  </div>
+</section>
 
-<div class="row row-organise strip-light">
-    <div class="strip-inner-wrapper equal-height--vertical-divider">
-        <div class="equal-height--vertical-divider__item seven-col">
-            <div class="twelve-col">
-                <img src="{{ ASSET_SERVER_URL }}9ddc7677-desktop_features_shotwell_organise_yourphotos.png?w=531" alt="Stockwell screenshot" />
-            </div>
-            <h2>Organise your photos</h2>
-            <p>With Shotwell, you can quickly and easily import, organise, edit and view your pictures. And you can share your favourite snaps on all popular photo sites and social networks.</p>
+<section class="p-strip--image is-dark is-deep" style="background-image:url('{{ ASSET_SERVER_URL }}d037640f-desktop.png')">
+  <div class="row">
+    <div class="u-equal-height u-vertically-center">
+      <div class="col-6 prefix-1 u-align--center">
+        <img src="{{ ASSET_SERVER_URL }}94b49b69-desktop-features-web-window.jpg?w=430" class="u-hidden--small" width="430" alt="" />
+      </div>
+      <div class="col-6 prefix-1">
+        <div class="p-card--overlay">
+          <h2>Web browsing</h2>
+          <p>Renowned for speed and security, Ubuntu and Firefox make browsing the web a pleasure again.  Ubuntu also includes Chrome, Opera and other browsers that can be installed from the Ubuntu Software Centre.</p>
         </div>
-        <div class="equal-height--vertical-divider__item five-col last-col">
-            <h2>Edit and illustrate</h2>
-            <p>Edit your photos or create professional illustrations and designs with tools like Gimp and Inkscape, available in the Ubuntu Software Centre.</p>
-            <ul class="inline-list">
-                <li>
-                    <img src="{{ ASSET_SERVER_URL }}833323dc-Inkscape.svg" alt="Inkscape icon" />
-                </li>
-                <li>
-                    <img src="{{ ASSET_SERVER_URL }}4d47a674-gimp-60x43.svg" alt="Gimp icon" width="60" />
-                </li>
-                <li>
-                    <img src="{{ ASSET_SERVER_URL }}51ebf780-lightworks.svg" alt="Lightworks icon" />
-                </li>
-                <li>
-                    <img src="{{ ASSET_SERVER_URL }}786ed546-blender.svg" alt="Blender icon" />
-                </li>
-            </ul>
-        </div>
+      </div>
     </div>
-</div>
+  </div>
+</section>
 
-<div class="row row-videos">
-    <div class="strip-inner-wrapper equal-height">
-        <div class="four-col append-one equal-height__item equal-height__align-vertically">
-            <div>
-                <h2>Videos</h2>
-                <p>Watch all your favourite content on Ubuntu with apps for playing, managing and sharing your videos. Edit your movies with PiTiVi and then watch them in Movie Player &mdash; or add VLC and OpenShot from the Ubuntu Software Centre, for compatibility with even more file formats.</p>
-            </div>
-        </div>
-        <div class="seven-col last-col equal-height__item">
-            <img src="{{ ASSET_SERVER_URL }}5ea4959b-desktop-features-videos.jpg?w=542" alt="Video" />
-        </div>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-6 suffix-1">
+      <h2>Email</h2>
+      <p>Ubuntu comes with Thunderbird, Mozilla&rsquo;s popular email application, so you&rsquo;ll have fast desktop access to your email. No matter which email services you use; Microsoft Exchange, Gmail, Hotmail, POP or IMAP, email just works.</p>
     </div>
-</div>
-
-<div class="row row-gaming">
-    <div class="strip-inner-wrapper">
-        <div class="prepend-six six-col last-col row-gaming__content">
-            <h2>Gaming</h2>
-            <p>From Sudoku to shoot-em-ups, we&rsquo;ve got loads of games that&rsquo;ll keep you busy for hours.  There are thousands of games available for Ubuntu, including titles from the Unity and Steam platforms.  Pick from critically acclaimed titles such as Dota 2, Civilization V, Kerbal Space Program, Football Manager 2015 and Borderlands&nbsp;2.</p>
-        </div>
-        <div class="not-for-small borderlands-flash"></div>
+    <div class="col-6 u-vertically-center">
+      <img src="{{ ASSET_SERVER_URL }}20fdbf70-features-email.jpg" class="" alt="" height="398" width="520" />
     </div>
-</div>
+  </div>
+</section>
 
-<div class="row row-smarter-searching strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="eight-col">
-            <div>
-                <h2>Smarter searching</h2>
-                <p>By enabling online search, smart filters make it faster and easier to find the content you need, whether it’s stored on your computer or on the web. Type any query into the Dash home and the Smart Scopes server will determine which categories of content are the most relevant to your search, returning only the best results. And it learns from your past searches making it increasingly accurate over time.</p>
-            </div>
-        </div>
-        <img src="{{ ASSET_SERVER_URL }}bcb09a5b-desktop-features-smarter-searching.jpg?op=region&amp;rect=140,0,910,300" class="touch-border not-for-small" alt="Unity search" width="910" />
+<section class="p-strip--image p-strip-photos">
+  <div class="row">
+    <div class="col-6 p-strip-photos__container">
+      <div class="p-card--overlay">
+        <h2>Photos</h2>
+        <p>Ubuntu is full of free apps to help you enjoy, manage, edit and share your photos &mdash; whatever you use to take them. With fantastic support for cameras and phones, you won&rsquo;t need any extra drivers to get up and running.</p>
+      </div>
     </div>
+  </div>
+  <span class="p-strip-photos__credit u-float--right u-hidden--small"></span>
 </div>
+</section>
 
-{% include "shared/_open_source_phone.html" %}
+<section class="p-strip is-bordered is-deep">
+  <div class="row p-divider">
+    <div class="col-8 p-divider__block">
+      <img src="{{ ASSET_SERVER_URL }}9ddc7677-desktop_features_shotwell_organise_yourphotos.png?w=531" alt="Stockwell screenshot" class="u-padding-bottom--large" />
+      <h2>Organise your photos</h2>
+      <p>With Shotwell, you can quickly and easily import, organise, edit and view your pictures. And you can share your favourite snaps on all popular photo sites and social networks.</p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h2>Edit and illustrate</h2>
+      <p>Edit your photos or create professional illustrations and designs with tools like Gimp and Inkscape, available in the Ubuntu Software Centre.</p>
+      <ul class="p-inline-list">
+        <li class="p-inline-list__item">
+          <img src="{{ ASSET_SERVER_URL }}833323dc-Inkscape.svg" alt="Inkscape icon" />
+        </li>
+        <li class="p-inline-list__item">
+          <img src="{{ ASSET_SERVER_URL }}4d47a674-gimp-60x43.svg" alt="Gimp icon" width="60" />
+        </li>
+        <li class="p-inline-list__item">
+          <img src="{{ ASSET_SERVER_URL }}51ebf780-lightworks.svg" alt="Lightworks icon" />
+        </li>
+        <li class="p-inline-list__item">
+          <img src="{{ ASSET_SERVER_URL }}786ed546-blender.svg" alt="Blender icon" />
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_desktop_get_started" second_item="_desktop_buy_preinstalled" third_item="_desktop_for_china" %}
+<section class="p-strip--light is-deep">
+  <div class="row">
+    <div class="u-equal-height u-vertically-center">
+      <div class="col-5 suffix-1">
+        <h2>Videos</h2>
+        <p>Watch all your favourite content on Ubuntu with apps for playing, managing and sharing your videos. Edit your movies with PiTiVi and then watch them in Movie Player &mdash; or add VLC and OpenShot from the Ubuntu Software Centre, for compatibility with even more file formats.</p>
+      </div>
+      <div class="col-7 u-hidden--small">
+        <img src="{{ ASSET_SERVER_URL }}5ea4959b-desktop-features-videos.jpg?w=542" alt="" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip p-gaming">
+  <div class="row">
+    <div class="col-12 prefix-6 p-gaming__content">
+      <div class="p-card--overlay">
+        <h2>Gaming</h2>
+        <p>From Sudoku to shoot-em-ups, we&rsquo;ve got loads of games that&rsquo;ll keep you busy for hours.  There are thousands of games available for Ubuntu, including titles from the Unity and Steam platforms.  Pick from critically acclaimed titles such as Dota 2, Civilization V, Kerbal Space Program, Football Manager 2015 and Borderlands&nbsp;2.</p>
+      </div>
+    </div>
+    <div class="u-hidden--small p-gaming__flash"></div>
+  </div>
+</section>
+
+<section class="p-strip is-deep is-bordered" style="padding-bottom: 0;">
+  <div class="row">
+    <div class="col-8">
+      <h2>Smarter searching</h2>
+      <p>By enabling online search, smart filters make it faster and easier to find the content you need, whether it’s stored on your computer or on the web. Type any query into the Dash home and the Smart Scopes server will determine which categories of content are the most relevant to your search, returning only the best results. And it learns from your past searches making it increasingly accurate over time.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 u-align--center">
+      <img src="{{ ASSET_SERVER_URL }}bcb09a5b-desktop-features-smarter-searching.jpg?op=region&amp;rect=140,0,910,300" class="u-hidden--small" alt="Unity search" width="910" style="margin-bottom: -6px;" />
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row p-divider">
+    <div class="col-6 p-divider__block">
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header">
+          <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}095a11c1-picto-projectswelove-orange.svg" alt="">
+          <h3 class="p-heading-icon__title">An open source operating system</h3>
+        </div>
+      </div>
+      <p>Our code is shared openly throughout the development cycle. We are transparent about our plans for future releases, so as a developer, carrier or manufacturer, you can work with us to start building Ubuntu mobile experiences now.</p>
+    </div>
+    <div class="col-6 p-divider__block">
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header">
+          <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}faf8037a-picto-canonical.png">
+          <h3 class="p-heading-icon__title">Backed by Canonical</h3>
+        </div>
+      </div>
+      <p>Canonical is the global software vendor that provides commercial, design and engineering support to the Ubuntu project. Today, our hardware enablement team supports the pre-installation of Ubuntu on more than 10% of all new PCs shipped, worldwide.</p>
+      <p><a class="p-link--external" href="http://partners.ubuntu.com/partnering-with-us">Learn more about how we support Ubuntu&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_desktop_get_started" second_item="_desktop_buy_preinstalled" third_item="_desktop_for_china" %}
 
 {% endblock content %}
 {% block footer_extra %}
 <script>
-    var photoRow = document.querySelector('.row-photos');
-    var caption = photoRow.querySelector('.photo-credit');
-    var credits = {'photo-1': 'Photo by community member Tomáš Kijas',
-                   'photo-2': 'Photo by community member Life Nomadic',
-                   'photo-3': 'Photo by community member Martin Wagner'};
-    if (photoRow) {
-        var n = Math.floor((Math.random() * 3) + 1);
-        if (!credits['photo-' + n]) {
-            n = 1;
-        }
-        photoRow.classList.add('photo-' + n);
-        caption.innerHTML = credits["photo-" + n];
-    }
+var photoRow = document.querySelector('.p-strip-photos');
+var caption = photoRow.querySelector('.p-strip-photos__credit');
+var credits = {'photo-1': 'Photo by community member Tomáš Kijas',
+'photo-2': 'Photo by community member Life Nomadic',
+'photo-3': 'Photo by community member Martin Wagner'};
+if (photoRow) {
+  var n = Math.floor((Math.random() * 3) + 1);
+  if (!credits['photo-' + n]) {
+    n = 1;
+  }
+  photoRow.classList.add('photo-' + n);
+  caption.innerHTML = credits["photo-" + n];
+}
 </script>
 {% endblock footer_extra %}

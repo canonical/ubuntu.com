@@ -6,9 +6,6 @@
 their own choice of default applications and settings, backed by the
 full Ubuntu archive for packages and updates.{% endblock %}
 
-{% block second_level_nav_items %}
-  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Downloads" subsection_title="Ubuntu flavours" page_title="Ubuntu flavours"  %}
-{% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="p-strip is-deep">
@@ -30,7 +27,7 @@ full Ubuntu archive for packages and updates.{% endblock %}
 <div class="p-strip is-shallow">
   <div class="row">
     <div class="col-12">
-      <ul class="p-matrix">
+      <ul class="p-matrix is-trisected">
         <li class="p-matrix__item">
           <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}267e8693-Kubuntu_logo.svg" alt="Kubuntu icon">
           <div class="p-matrix__content">

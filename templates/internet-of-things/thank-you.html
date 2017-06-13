@@ -1,46 +1,42 @@
-{% extends "internet-of-things/base_things.html" %}
-
+{% extends "internet-of-things/base_things-v1.html" %}
 {% block title %}Thank you | Ubuntu for the Internet of Things{% endblock %}
 
-{% block second_level_nav_items %}
-<div class="strip-inner-wrapper">
-    {% include "templates/_nav_breadcrumb.html" with section_title="IoT" subsection_title="Contact us" page_title="Thank you" %}
-</div>
-{% endblock second_level_nav_items %}
 
 {% block content %}
-<section class="row no-border equal-height strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="thank-you eight-col equal-height__item">
-            <h1>Thank you for your interest in Ubuntu for the Internet of Things</h1>
-            <p>A member of our team will follow up with you shortly. In the meantime, explore <a href="http://snapcraft.io" class="external">snapcraft.io</a>, where vendors and the open source community collaborate to deliver great software, securely, to a wide range of devices and cloud.</p>
-        </div>
-        <div class="four-col last-col equal-height__item equal-height__align-vertically">
-            <img src="{{ ASSET_SERVER_URL }}52d53696-picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
-        </div>
+<div class="p-strip is-deep">
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-7">
+        <h1>Thank you for your interest in Ubuntu for IoT</h1>
+        <p>A member of our team will follow up with you shortly. In the meantime, explore <a href="http://snapcraft.io" class="p-link--external">snapcraft.io</a>, where vendors and the open source community collaborate to deliver great software, securely, to a wide range of devices and cloud.</p>
+      </div>
+      <div class="col-5 u-hidden--small u-align--center u-vertically-center">
+        <img src="{{ ASSET_SERVER_URL }}52d53696-picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
+      </div>
     </div>
-</section>
+  </div>
+</div>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_for_developers" second_item="_iot_newsletter_signup" third_item="_iot_further_reading" %}
+{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_iot_for_developers" second_item="_iot_newsletter_signup" third_item="_iot_further_reading" %}
 
 {% endblock content %}
 {% block footer_extra %}
 <!-- Google Code for Services Canonical &mdash; contact us Conversion Page -->
 <script>
-/* <![CDATA[ */
-var google_conversion_id = 1012391776;
-var google_conversion_language = "en";
-var google_conversion_format = "3";
-var google_conversion_color = "ffffff";
-var google_conversion_label = "-mBBCIC5vwMQ4L7f4gM";
-var google_conversion_value = 0;
-/* ]]> */
+  /* <![CDATA[ */
+  var google_conversion_id = 1012391776;
+  var google_conversion_language = "en";
+  var google_conversion_format = "3";
+  var google_conversion_color = "ffffff";
+  var google_conversion_label = "-mBBCIC5vwMQ4L7f4gM";
+  var google_conversion_value = 0;
+  /* ]]> */
 </script>
 <script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
 </script>
 <noscript>
-<div style="display:inline;">
-<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/1012391776/?value=0&amp;label=-mBBCIC5vwMQ4L7f4gM&amp;guid=ON&amp;script=0"/>
-</div>
+  <div style="display:inline;">
+    <img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/1012391776/?value=0&amp;label=-mBBCIC5vwMQ4L7f4gM&amp;guid=ON&amp;script=0"/>
+  </div>
 </noscript>
 {% endblock footer_extra %}

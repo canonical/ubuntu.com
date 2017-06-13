@@ -50,10 +50,6 @@ core scss files are in /sites/core/static/css
 'modules/ubuntu_patterns_lists',
 'modules/ubuntu_patterns_footer';
 
-// vendors
-@import
-'../components/canonical-global-nav/src/sass/main';
-
 // Include all the CSS
 
 // patterns
@@ -77,6 +73,7 @@ core scss files are in /sites/core/static/css
 
 // section specific
 @import "section/navigation";
+@import "section/global";
 @import "section/cookie_policy";
 @import "section/homepage";
 @import "section/cloud";

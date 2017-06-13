@@ -5,9 +5,6 @@
 
 {% block meta_keywords %}Ubuntu, Ubuntu operating system, OS, platform, Linux, distribution, OpenStack, Ubuntu OpenStack, Ubuntu Cloud, server, tablet, smartphone, phone, Windows alternative, Mac alternative, free software, open source, thin client, download Ubuntu, long-term support, LTS, {{ latest_release }}, Trusty Tahr, Icehouse, Juno, Kilo, Vivid Vervet, 15.04{% endblock meta_keywords %}
 
-{% block second_level_nav_items %}
-{% include "templates/_nav_breadcrumb-v1.html" with section_title="Downloads" page_title="Overview" %}
-{% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="p-strip is-deep">
@@ -33,7 +30,7 @@
             </div>
           </div>
           <footer class="p-card--ubuntu-upgrade__footer">
-            Do you want to upgrade? <a href="/download/desktop/upgrade">Follow our simple guide&nbsp;&rsaquo;</a>
+            Do you want to upgrade? <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-upgrading-ubuntu-desktop">Follow our simple guide</a>
           </footer>
         </div>
       </div>

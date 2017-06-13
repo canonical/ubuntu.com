@@ -164,6 +164,66 @@ core.footerMobileNav = function() {
     });
 };
 
+// Listens to resizes and triggers a redraw of the global nav
+core.globalResizeListener = function() {
+    window.addEventListener('resize', function(e) {
+        core.redrawGlobal();
+    });
+    core.globalInit();
+};
+
+// If the window is less then  768px the global footer in injected into the
+// footer. Otherwise it adds the global nav to the top of the body.
+core.globalInit = function() {
+    if (document.documentElement.clientWidth < 768) {
+        core.globalPrepend = 'div.nav-global-footer';
+        core.setupGlobalNav();
+        var globalFooterTitle = document.createElement('h2');
+        globalFooterTitle.innerHTML = 'Ubuntu websites';
+        var globalWrapper = document.getElementById('nav-global');
+        globalWrapper.insertBefore(globalFooterTitle, globalWrapper.lastChild);
+    } else if (document.documentElement.clientWidth >= 768) {
+        core.globalPrepend = 'body';
+        core.setupGlobalNav();
+        document.querySelector('footer.p-footer').classList.add('no-global');
+    }
+};
+
+// On resize the global navigation my be moved to a new location based on
+// the screen width.
+core.redrawGlobal = function() {
+    var globalNav = document.getElementById('nav-global');
+    if (document.documentElement.clientWidth < 768 &&
+        core.globalPrepend !== 'div.nav-global-footer') {
+        core.globalPrepend = 'div.nav-global-footer';
+        if (globalNav) {
+            document.body.removeChild(globalNav);
+            core.globalInit();
+            core.setupGlobalNavAccordion();
+        }
+    } else if (document.documentElement.clientWidth >= 768 &&
+        core.globalPrepend !== 'body') {
+        document.querySelector('footer.p-footer').classList.add('no-global');
+        core.globalPrepend = 'body';
+        if (globalNav) {
+            var navGlobalFooter = document.querySelector('.nav-global-footer');
+            navGlobalFooter.removeChild(globalNav);
+            core.setupGlobalNav();
+        }
+    }
+};
+
+// Add the click listener to the global nav
+core.setupGlobalNavAccordion = function() {
+    var globalTitle = document.querySelector('#nav-global h2');
+    if (globalTitle !== null) {
+        globalTitle.addEventListener('click', function(e) {
+            globalTitle.classList.toggle('active');
+            globalTitle.nextSibling.classList.toggle('active');
+        });
+    }
+};
+
 // Adds click eventlistener to the copy-to-clipboard buttons. Selects the input
 // and tries to copy the value to the clipboard.
 core.commandLine = function () {
@@ -230,6 +290,8 @@ core.setupAnimations();
 core.scopesSlideshow();
 core.cookiePolicy();
 core.footerMobileNav();
+core.globalResizeListener();
+core.setupGlobalNavAccordion();
 core.commandLine();
 
 // v1

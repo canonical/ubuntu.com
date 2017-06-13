@@ -1,11 +1,10 @@
-<div class="p-strip">
+<section class="p-strip">
   <div class="row">
     <div class="col-8">
       <h1>{{h1}}</h1>
       <p class="p-heading--four">{{intro_text}}</p>
     </div>
   </div>
-
   <div class="row">
     <div class="col-8">
       <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm">
@@ -34,7 +33,6 @@
             {% include "shared-v1/forms/_state.html" %}
           </ul>
         </fieldset>
-
         <fieldset>
           <h3>About your company</h3>
           <ul class="p-list">
@@ -48,7 +46,6 @@
             </li>
           </ul>
         </fieldset>
-
         <fieldset>
           <h3>Your comments</h3>
           <ul class="p-list">
@@ -58,7 +55,6 @@
             </li>
           </ul>
         </fieldset>
-
         <fieldset>
           <ul class="p-list">
             <li class="mktField p-list__item">
@@ -76,7 +72,6 @@
               <button type="submit" class="mktoButton p-button--brand" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'cloud contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button>
             </li>
           </ul>
-
           <!-- hidden fields -->
           <input type="hidden" name="formid" class="mktoField" value="{{formid}}" />
           <input type="hidden" name="lpId" class="mktoField" value="{{lpId}}" />
@@ -103,6 +98,14 @@
           <li class="p-list__item">UK and RoW <a href="tel:+44 800 0588704" class="u-float--right">+44 800 0588704</a></li>
         </ul>
       </div>
+      <div class="p-card" />
+        <h3 class="p-card__title">Need help with Ubuntu?</h3>
+        <p>If you are just looking for some free support for yourself, you can try:</p>
+        <ul class="p-list--divided">
+          <li class="p-list__item"><a class="p-link--external" href="http://askubuntu.com/">Ask Ubuntu</a></li>
+          <li class="p-list__item"><a class="p-link--external" href="http://ubuntuforums.org/">The Ubuntu forum</a></li>
+          <li class="p-list__item"><a class="p-link--external" href="https://help.ubuntu.com/">Help docs</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
-</div>
+  </section>

@@ -5,50 +5,34 @@
     <div class="strip-inner-wrapper strip-inner-wrapper--nav">
       <div class="p-footer__nav-col two-col u-no-margin--bottom">
         <ul class="p-footer__links">
-          <li class="p-footer__item"><h2 class="p-footer__title"><a class="p-link--soft" href="/cloud">Cloud</a></h2>
-            {% include "cloud/_nav_secondary.html" %}
-          </li>
+          {% include 'templates/_footer_item.html' with section=nav_sections.cloud %}
         </ul>
       </div>
       <div class="p-footer__nav-col two-col u-no-margin--bottom">
         <ul class="p-footer__links">
-          <li class="p-footer__item"><h2 class="p-footer__title"><a class="p-link--soft" href="/server">Server</a></h2>
-            {% include "server/_nav_secondary.html" %}
-          </li>
-          <li class="p-footer__item"><h2 class="p-footer__title"><a class="p-link--soft" href="/server">Containers</a></h2>
-            {% include "containers/_nav_secondary.html" %}
-          </li>
+          {% include 'templates/_footer_item.html' with section=nav_sections.server %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.containers %}
         </ul>
       </div>
       <div class="p-footer__nav-col two-col u-no-margin--bottom">
         <ul class="p-footer__links">
-          <li class="p-footer__item"><h2 class="p-footer__title"><a class="p-link--soft" href="/desktop">Desktop</a></h2>
-            {% include "desktop/_nav_secondary.html" %}
-          </li>
+          {% include 'templates/_footer_item.html' with section=nav_sections.desktop %}
         </ul>
       </div>
       <div class="p-footer__nav-col two-col u-no-margin--bottom">
         <ul class="p-footer__links">
-          <li class="p-footer__item"><h2 class="p-footer__title"><a class="p-link--soft" href="/core">Core</a></h2>
-            {% include "core/_nav_secondary.html" %}
-          </li>
-          <li class="p-footer__item"><h2 class="p-footer__title"><a class="p-link--soft" href="/internet-of-things">IoT</a></h2>
-            {% include "internet-of-things/_nav_secondary.html" %}
-          </li>
+          {% include 'templates/_footer_item.html' with section=nav_sections.core %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.iot %}
         </ul>
       </div>
       <div class="p-footer__nav-col two-col u-no-margin--bottom">
         <ul class="p-footer__links">
-          <li class="p-footer__item"><h2 class="p-footer__title"><a class="p-link--soft" href="/support">Support</a></h2>
-            {% include "support/_nav_secondary.html" %}
-          </li>
+          {% include 'templates/_footer_item.html' with section=nav_sections.support %}
         </ul>
       </div>
       <div class="p-footer__nav-col two-col u-no-margin--bottom last-col">
         <ul class="p-footer__links">
-          <li class="p-footer__item"><h2 class="p-footer__title"><a class="p-link--soft" href="/download">Downloads</a></h2>
-            {% include "download/_nav_secondary.html" %}
-          </li>
+          {% include 'templates/_footer_item.html' with section=nav_sections.download %}
         </ul>
       </div>
     </div>

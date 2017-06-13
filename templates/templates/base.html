@@ -59,8 +59,7 @@
     <meta name="google-site-verification" content="ddh2iq7ZuKf1LpkL_gtM_T7DkKDVD7ibq6Ceue4a_3M" />
   </head>
 
-  <body class="{% if level_1 != "" %}{% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}{% endif %}{% if level_2 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}{% endif %}{% if level_3 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}-{{ level_3 }} {% endif %} {% include "templates/body-class.html" %}{% if extra_body_class != "" %} {% block extra_body_class %}{% endblock %}{% endif %}">
-
+  <body class="{% block body_class %}{% endblock %} {% block extra_body_class %}{% endblock %}">
     <!-- google tag manager -->
     <script>
       dataLayer = [];
@@ -87,30 +86,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div id="nav">
             <ul>
               <li class="accessibility-aid"><a accesskey="s" href="#main-content">Jump to content</a></li>
-              <li><a class="first{% if level_1 == 'cloud' %} active{% endif %}" href="/cloud">Cloud</a>
-                {% include "cloud/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a{% if level_1 == 'server' %} class="active"{% endif %} href="/server">Server</a>
-                {% include "server/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a class="first{% if level_1 == 'containers' %} active{% endif %}" href="/containers">Containers</a>
-                {% include "containers/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a {% if level_1 == 'desktop' %} class="active"{% endif %} href="/desktop">Desktop</a>
-                {% include "desktop/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a{% if level_1 == 'core' %} class="active"{% endif %} href="/core">Core</a>
-                {% include "core/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a{% if level_1 == 'internet-of-things' %} class="active"{% endif %} href="/internet-of-things">IoT</a>
-                {% include "internet-of-things/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a{% if level_1 == 'support' %} class="active"{% endif %} href="/support">Support</a>
-                {% include "support/_nav_secondary.html" with promo="true" %}
-              </li>
-              <li><a{% if level_1 == 'download' %} class="active"{% endif %} href="/download">Downloads</a>
-                {% include "download/_nav_secondary.html" with promo="true" %}
-              </li>
+              {% include 'templates/_menu_section.html' with section=nav_sections.cloud %}
+              {% include 'templates/_menu_section.html' with section=nav_sections.server %}
+              {% include 'templates/_menu_section.html' with section=nav_sections.containers %}
+              {% include 'templates/_menu_section.html' with section=nav_sections.desktop %}
+              {% include 'templates/_menu_section.html' with section=nav_sections.core %}
+              {% include 'templates/_menu_section.html' with section=nav_sections.iot %}
+              {% include 'templates/_menu_section.html' with section=nav_sections.support %}
+              {% include 'templates/_menu_section.html' with section=nav_sections.download %}
             </ul>
           </div>
           <div id="site-search">
@@ -130,15 +113,44 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       {% endblock header_banner %}
     </header>
 
+    {% if breadcrumbs %}
+      <nav class="breadcrumbs nav-secondary clearfix">
+        <div class="strip-inner-wrapper">
+          <ul class="breadcrumb">
+            <li>
+              <a class="breadcrumb-link" href="{{ breadcrumbs.section.path }}">{{ breadcrumbs.section.title }}</a>
+            </li>
+
+            <ul class="second-level-nav">
+              {% for child in breadcrumbs.children %}
+                <li>
+                  <a
+                    class="{% if breadcrumbs.grandchildren %}breadcrumb-link--second-level{% endif %} {% if child.active %}active{% endif %}"
+                    href="{{ child.path }}">{{ child.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+
+            {% if breadcrumbs.grandchildren %}
+              <ul class="third-level-nav">
+                {% for grandchild in breadcrumbs.grandchildren %}
+                    <li>
+                      <a
+                        class="{% if grandchild.active %}active{% endif %}"
+                        href="{{ grandchild.path }}">{{ grandchild.title }}</a>
+                    </li>
+                  {% endfor %}
+              </ul>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+    {% endif %}
+
     <div class="wrapper">
       <div id="main-content" class="inner-wrapper">
-        {% if level_1 %}
-          {% block second_level_nav %}
-            <nav class="breadcrumbs nav-secondary clearfix">{% spaceless %}{% block second_level_nav_items %}{% endblock second_level_nav_items %}{% endspaceless %}</nav>
-          {% endblock second_level_nav %}
-        {% endif %}
 
-        {% block header %}{% endblock %}
+        {% block content_head %}{% endblock %}
         {% block content_container %}
           {% block outer_content %}
           {% endblock outer_content %}
@@ -158,14 +170,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         root.className += " opera-mini";
       }
       if(!core){ var core = {}; }
+      core.globalPrepend = 'body';
     </script>
 
     <script src="{% versioned_static 'js/polyfills.js' %}"></script>
     <script src="{% versioned_static 'js/core.js' %}"></script>
+    <script src="{{ ASSET_SERVER_URL }}ab9f5f4b-global.js"></script>
     <script src="{% versioned_static 'js/scratch.js' %}"></script>
     <script src="{{ ASSET_SERVER_URL }}f5bf3854-respond.min.js"></script>
-    <script src="{% versioned_static 'components/canonical-global-nav/build/js/global.js' %}"></script>
-    <script>ubuntu.globalNav.setup();</script>
     {% block footer_extra %}{% endblock %}
   </body>
 </html>

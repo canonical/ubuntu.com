@@ -10,9 +10,6 @@ Thank you for your contribution
 {% endblock %}
 {% block extra_body_class %}download-thankyou{% endblock %}
 
-{% block second_level_nav_items %}
-{% include "templates/_nav_breadcrumb-v1.html" with section_title="Downloads" subsection_title="Desktop" page_title="Thank you"  %}
-{% endblock second_level_nav_items %}
 
 {% block content %}
 
@@ -55,8 +52,8 @@ Thank you for your contribution
         </div>
         <h3>Installation guide</h3>
         <p class="p-card__content">If you need some help installing Ubuntu, please check out our step-by-step guide.</p>
-        <p class="p-card__content"><a href="/download/desktop/install-ubuntu-desktop">Read the installation instructions&nbsp;&rsaquo;</a></p>
-      </div><!-- /.col-4 -->
+        <p class="p-card__content"><a class="p-link--external"  href="https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-desktop">Read the installation instructions</a></p>
+      </div>
       <div class="col-4 p-card--highlighted">
         <div class="u-align--center" style="margin: 1rem 0;">
           <img alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}03c5463a-picto-business-warmgrey.svg" width="113" height="113" />
@@ -64,7 +61,7 @@ Thank you for your contribution
         <h3>Ubuntu Advantage</h3>
         <p class="p-card__content">Purchase our desktop support and access Ubuntu experts whenever you need to.</p>
         <p class="p-card__content"><a href="https://buy.ubuntu.com/" class="p-link--external">Learn more</a></p>
-      </div><!-- /.col-4 -->
+      </div>
       <div class="col-4 p-card--highlighted">
         <div class="u-align--center" style="margin: 1rem 0;">
           <img alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}422b612c-picto-forum-warmgrey.svg" width="113" height="113" />

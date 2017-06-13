@@ -1,156 +1,137 @@
-{% extends "desktop/base_desktop.html" %}
+{% extends "desktop/base_desktop-v1.html" %}
 
 {% block title %}For education{% endblock %}
 {% block extra_body_class %}desktop-education{% endblock %}
 
-{% block second_level_nav_items %}
-<div class="strip-inner-wrapper">
-    {% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="For enterprise"  %}
-</div>
-{% endblock second_level_nav_items %}
 
 {% block content %}
 
-<section class="row row-hero strip-light">
-   <div class="strip-inner-wrapper">
-       <div class="six-col">
-         <div class="trans-bg">
-             <h1>Ubuntu for education</h1>
-             <p class="intro">With a wide range of educational software and certified hardware, Ubuntu provides secure, cost-effective, accessible computing for students, teachers and school administrators.</p>
-             <p><a href="/desktop/contact-us" class="button--primary">Contact us</a></p>
-         </div>
-       </div>
+<section class="p-strip--image is-light is-deep is-bordered" style="background-image:url('{{ ASSET_SERVER_URL }}3a51704e-desktop-education-hero.jpg?w=984'); background-position: 0 43%; padding: 150px 0;">
+  <div class="row">
+    <div class="col-12 suffix-5">
+      <div class="p-card--overlay">
+        <h1>Ubuntu for education</h1>
+        <p>With a wide range of educational software and certified hardware, Ubuntu provides secure, cost-effective, accessible computing for students, teachers and school administrators.</p>
+        <p><a href="/desktop/contact-us" class="p-button--brand">Contact us</a></p>
+      </div>
     </div>
+  </div>
 </section>
 
-<section class="row no-border">
-    <div class="strip-inner-wrapper">
-        <h2>Education essentials</h2>
-        <div class="combined-list">
-            <ul class="six-col list-ticks">
-                <li>Open source &mdash; free from licensing restrictions</li>
-                <li>Microsoft-compatible office productivity suite</li>
-                <li>Fully translated into 100+ languages</li>
-                <li class="last-item">Long-term support releases come with five years of security patches and updates</li>
-            </ul>
-            <ul class="six-col last-col list-ticks">
-                <li>On-site consulting services and training available</li>
-                <li>Virus free and highly secure</li>
-                <li>Runs well on old and new hardware</li>
-                <li class="last-item">A wide range of education-specific apps for students and educators alike</li>
-            </ul>
-        </div>
+<section class="p-strip--light is-deep">
+  <div class="row">
+    <div class="col-12">
+      <h2>Education essentials</h2>
+      <ul class="p-list--divided is-split">
+        <li class="p-list__item is-ticked">Open source &mdash; free from licensing restrictions</li>
+        <li class="p-list__item is-ticked">Microsoft-compatible office productivity suite</li>
+        <li class="p-list__item is-ticked">Fully translated into 100+ languages</li>
+        <li class="p-list__item is-ticked">On-site consulting services and training available</li>
+        <li class="p-list__item is-ticked">Virus free and highly secure</li>
+        <li class="p-list__item is-ticked">Runs well on old and new hardware</li>
+        <li class="p-list__item is-ticked">A wide range of education-specific apps for students and educators alike</li>
+        <li class="p-list__item is-ticked">Long-term support releases come with five years of security patches and updates</li>
+      </ul>
     </div>
+  </div>
 </section>
 
-<section class="row row-case-studies no-border">
-    <div class="strip-inner-wrapper">
-        <h2 class="row-case-studies--title">A global success in education</h2>
-        <div class="equal-height--vertical-divider">
-            <div class="equal-height--vertical-divider__item four-col">
-                <h3>Penn Manor school district, USA</h3>
-                <p>Penn Manor saved $345,000 on 1,725 Ubuntu PCs at a fraction of what proprietary software costs.</p>
-                <p><a href="https://insights.ubuntu.com/2014/03/25/an-ubuntu-pc-for-everyone-in-penn-manor-school-district-pennsylvania-usa/" class="external">Read the <span class="accessibility-aid">'Penn Manor school district, USA' </span>case study</a></p>
-            </div>
-            <div class="equal-height--vertical-divider__item four-col">
-                <h3>The Andalusian Regional Government, Spain</h3>
-                <blockquote class="pull-quote">
-                    <p><span>&ldquo;</span>Students throughout Andalusia now have access to a stable and easy-to-use technology environment.<span>&rdquo;</span></p>
-                </blockquote>
-                <p><a href="https://insights.ubuntu.com/2010/03/13/andalusia-deploys-220000-ubuntu-desktops-in-schools-throughout-the-region/" class="external">Read the <span class="accessibility-aid">'The Andalusian Regional Government, Spain' </span>case study</a></p>
-            </div>
-            <div class="equal-height--vertical-divider__item four-col last-col">
-                <h3>Universit&eacute; de Nantes, France</h3>
-                <p class="headline">Reduced the total cost of ownership across 40,000 Windows-dominated desktops.</p>
-                <p><a href="https://insights.ubuntu.com/2014/09/02/meeting-evolving-it-needs-at-the-university-of-nantes-france/" class="external">Read the <span class="accessibility-aid">'Universit&eacute; de Nantes, France' </span>case study</a></p>
-            </div>
-        </div>
+<section class="p-strip--accent is-deep">
+  <div class="row">
+    <div class="col-12">
+      <h2>A global success in education</h2>
+      <img class="u-hidden--small u-align--center" src="{{ ASSET_SERVER_URL }}1415a31b-desktop-education-map.jpg" alt="map of key education users of Ubuntu"/>
     </div>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <h3>Penn Manor school district, USA</h3>
+      <p>Penn Manor saved $345,000 on 1,725 Ubuntu PCs at a fraction of what proprietary software costs.</p>
+      <p><a href="https://insights.ubuntu.com/2014/03/25/an-ubuntu-pc-for-everyone-in-penn-manor-school-district-pennsylvania-usa/" class="p-link--external">Read the <span class="u-off-screen">'Penn Manor school district, USA' </span>case study</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3>The Andalusian Regional Government, Spain</h3>
+      <blockquote class="p-pull-quote--accent is-compact">
+        <p class="p-pull-quote__item">Students throughout Andalusia now have access to a stable and easy-to-use technology environment.</p>
+      </blockquote>
+      <p><a href="https://insights.ubuntu.com/2010/03/13/andalusia-deploys-220000-ubuntu-desktops-in-schools-throughout-the-region/" class="p-link--external">Read the <span class="u-off-screen">'The Andalusian Regional Government, Spain' </span>case study</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3>Universit&eacute; de Nantes, France</h3>
+      <p>Reduced the total cost of ownership across 40,000 Windows-dominated desktops.</p>
+      <p><a href="https://insights.ubuntu.com/2014/09/02/meeting-evolving-it-needs-at-the-university-of-nantes-france/" class="p-link--external">Read the <span class="u-off-screen">'Universit&eacute; de Nantes, France' </span>case study</a></p>
+    </div>
+  </div>
+</div>
 </section>
 
-<section class="row row-apps strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="twelve-col">
-            <h2>Countless open source tools and apps available</h2>
-        </div>
-
-        <ul class="grid-list twelve-col no-bullets">
-            <li class="grid-list__item four-col">
-                <div class="grid-list__icon one-col">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}86f02c6d-gcompris-icon.png" alt="Gcompris icon" />
-                </div>
-                <div class="grid-list__description three-col last-col">
-                    <h3>Gcompris</h3>
-                    <p>Software suite of learning and skill building activities for school children.</p>
-                </div>
-            </li>
-
-            <li class="grid-list__item four-col">
-                <div class="grid-list__icon one-col">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}ff1a448c-marble-icon.png" alt="Marble icon" />
-                </div>
-                <div class="grid-list__description three-col last-col">
-                    <h3>Marble</h3>
-                    <p>Extensive virtual world atlas for exploring the earth and other planets.</p>
-                </div>
-            </li>
-
-            <li class="grid-list__item four-col last-col">
-                <div class="grid-list__icon one-col">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}476dda79-italc-icon.png" alt="iTalc icon" />
-                </div>
-                <div class="grid-list__description three-col last-col">
-                    <h3>iTalc</h3>
-                    <p>IT tool which allows teachers to manage individual computers within school’s network.</p>
-                </div>
-            </li>
-
-            <li class="grid-list__item four-col last-row">
-                <div class="grid-list__icon one-col">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}61c45d14-logo-stellarium.svg" alt="Stellarium icon" />
-                </div>
-                <div class="grid-list__description three-col last-col">
-                    <h3>Stellarium</h3>
-                    <p>Planetarium software that displays 3D realistic skies in real time.</p>
-                </div>
-            </li>
-
-            <li class="grid-list__item four-col last-row">
-                <div class="grid-list__icon one-col">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}916e80c1-logo-scratchcat.svg" alt="Scratch icon" />
-                </div>
-                <div class="grid-list__description three-col last-col">
-                    <h3>Scratch</h3>
-                    <p>Collaborative programming environment for creating interactive stories, games and animation.</p>
-                </div>
-            </li>
-
-            <li class="grid-list__item four-col last-row last-col">
-                <div class="grid-list__icon one-col">
-                    <img class="grid-list__img" src="{{ ASSET_SERVER_URL }}8bd49f5f-logo-biogenesis.jpeg" alt="Biogenesis icon" />
-                </div>
-                <div class="grid-list__description three-col last-col">
-                    <h3>Biogenesis</h3>
-                    <p>An artificial life program that simulates the processes involved in the evolution of organisms.</p>
-                </div>
-            </li>
-        </ul>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2>Countless open source tools and apps available</h2>
     </div>
+  </div>
+  <div class="row">
+    <ul class="p-matrix is-trisected u-clearfix">
+      <li class="p-matrix__item">
+        <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}86f02c6d-gcompris-icon.png" alt="Gcompris icon" />
+        <div class="p-matrix__content">
+          <h3 class="p-matrix__title">Gcompris</h3>
+          <p class="p-matrix__desc">Software suite of learning and skill building activities for school children.</p>
+        </div>
+      </li>
+      <li class="p-matrix__item">
+        <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}ff1a448c-marble-icon.png" alt="Marble icon" />
+        <div class="p-matrix__content">
+          <h3 class="p-matrix__title">Marble</h3>
+          <p class="p-matrix__desc">Extensive virtual world atlas for exploring the earth and other planets.</p>
+        </div>
+      </li>
+      <li class="p-matrix__item">
+        <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}476dda79-italc-icon.png" alt="iTalc icon" />
+        <div class="p-matrix__content">
+          <h3 class="p-matrix__title">iTalc</h3>
+          <p class="p-matrix__desc">IT tool which allows teachers to manage individual computers within school’s network.</p>
+        </div>
+      </li>
+      <li class="p-matrix__item last-row">
+        <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}61c45d14-logo-stellarium.svg" alt="Stellarium icon" />
+        <div class="p-matrix__content">
+          <h3 class="p-matrix__title">Stellarium</h3>
+          <p class="p-matrix__desc">Planetarium software that displays 3D realistic skies in real time.</p>
+        </div>
+      </li>
+      <li class="p-matrix__item last-row">
+        <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}916e80c1-logo-scratchcat.svg" alt="Scratch icon" />
+        <div class="p-matrix__content">
+          <h3 class="p-matrix__title">Scratch</h3>
+          <p class="p-matrix__desc">Collaborative programming environment for creating interactive stories, games and animation.</p>
+        </div>
+      </li>
+      <li class="p-matrix__item last-row">
+        <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}8bd49f5f-logo-biogenesis.jpeg" alt="Biogenesis icon" />
+        <div class="p-matrix__content">
+          <h3 class="p-matrix__title">Biogenesis</h3>
+          <p class="p-matrix__desc">An artificial life program that simulates the processes involved in the evolution of organisms.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
 </section>
 
-<section class="row no-border row-landscape strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="six-col">
-            <h2>Support and management tools for&nbsp;your school</h2>
-            <p>Ubuntu Advantage is the professional support package from the experts at Canonical. Get 24x7 support with access to engineers with first-hand experience of your issues. It also includes Landscape, the Ubuntu systems management tool, for monitoring, managing, patching and compliance reporting on all your Ubuntu desktops.</p>
-            <p><a href="/support">Learn about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
-        </div>
-        <div class="six-col last-col not-for-small">
-            <img src="{{ ASSET_SERVER_URL }}4125e046-landscape_activity.png" alt="" />
-        </div>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h2>Support and management tools for&nbsp;your school</h2>
+      <p>Ubuntu Advantage is the professional support package from the experts at Canonical. Get 24x7 support with access to engineers with first-hand experience of your issues. It also includes Landscape, the Ubuntu systems management tool, for monitoring, managing, patching and compliance reporting on all your Ubuntu desktops.</p>
+      <p><a href="/support">Learn about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
     </div>
+    <div class="col-6 u-hidden--small">
+      <img src="{{ ASSET_SERVER_URL }}4125e046-landscape_activity.png" alt="" />
+    </div>
+  </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with  first_item="_desktop_contact_us" second_item="_support" third_item="_desktop_further_reading" %}
+{% include "shared-v1/contextual_footers/_contextual_footer.html"  with  first_item="_desktop_contact_us" second_item="_support" third_item="_desktop_further_reading" %}
 
 {% endblock content %}

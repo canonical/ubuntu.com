@@ -10,8 +10,12 @@
 @import '../../node_modules/vanilla-brochure-theme/scss/theme';
 @include vanilla-brochure-theme;
 
+// vendor
+@import 'vendors/global-nav/build';
+
 // import site specific patterns and overrides
 @import 'v1_pattern_site_search';
+@import 'v1_pattern_sun-animation';
 @import 'v1_pattern_navigation';
 @import 'v1_pattern_strip';
 @import 'v1_pattern_notifications';
@@ -21,11 +25,13 @@
 @import 'v1_pattern_link';
 @import 'v1_contribution';
 @import 'v1_pattern_inline-images';
-@import 'v1_patterns_testimonials';
+@import 'v1_pattern_testimonials';
 @import 'v1_pattern_hero';
 @import 'v1_pattern_pull_quotes';
 @import 'v1_utility_full-width';
 @import 'v1_pattern_matrix';
+@import 'v1_pattern_contextual-footer';
+@import 'v1_pattern_pie_chart';
 
 @include ubuntu-p-site-search;
 @include ubuntu-p-navigation;
@@ -42,10 +48,17 @@
 @include ubuntu-p-pull-quote;
 @include ubuntu-u-full-width;
 @include ubuntu-p-matrix;
+@include ubuntu-p-contextual-footer;
+@include ubuntu-p-pie-chart;
+@include ubuntu-p-sun-animation;
 
-// vendors
-@import
-'../components/canonical-global-nav/src/sass/main';
+// import section specific patterns and overrides
+@import 'v1_section/v1_cloud';
+@import 'v1_section/v1_homepage';
+@import 'v1_section/v1_desktop';
+
+// Takeovers and takeunders
+@import 'takeovers/kubernetes-webinar';
 
 // **************************
 // Bug fixes
@@ -78,6 +91,21 @@
 @media (min-width: $breakpoint-medium ) {
   .p-navigation:target .p-navigation__toggle--close {
     display: none !important; // specificity
+  }
+}
+
+// global nav spills onto two lines at $breakpoint-medium
+// https://github.com/canonical-webteam/global-nav/issues/14
+@media only screen and (max-width: 770px) {
+  #nav-global ul .more {
+    min-width: 55px;
+  }
+}
+
+// global menu has too much top spacing
+#nav-global ul ul {
+  @media (min-width: $breakpoint-medium ) {
+    top: 15px;
   }
 }
 
@@ -122,14 +150,23 @@ html {
 /// XXX Utility to add bottom padding
 /// Proposal for inlcusion in vanilla: https://github.com/vanilla-framework/vanilla-framework/issues/1091
 .u-padding-bottom {
-  padding-bottom: $sp-medium;
+
+  @media (min-width: $breakpoint-medium) {
+    padding-bottom: $sp-medium;
+  }
 
   &--large {
-    padding-bottom: $sp-large;
+
+    @media (min-width: $breakpoint-medium) {
+      padding-bottom: $sp-large;
+    }
   }
 
   &--x-large {
-    padding-bottom: $sp-x-large;
+
+    @media (min-width: $breakpoint-medium) {
+      padding-bottom: $sp-x-large;
+    }
   }
 }
 
@@ -193,6 +230,18 @@ fieldset {
   text-transform: uppercase;
 }
 
+.p-heading--insights__title {
+  color: $color-dark;
+  font-size: $sp-medium;
+  font-weight: 300;
+  text-transform: uppercase;
+
+  a:link,
+  a:visited {
+    color: $color-dark;
+  }
+}
+
 /// XXX fix .p-heading-icon making the icon go to the top
 .p-heading-icon__img {
   align-self: flex-start;
@@ -239,6 +288,14 @@ pre {
   }
 }
 
+// XXX orange quotes in pull quotes
+.p-pull-quote > p:first-of-type::before,
+.p-pull-quote--accent > p:first-of-type::before,
+.p-pull-quote > p:last-of-type::after,
+.p-pull-quote--accent > p:last-of-type::after {
+  color: $color-brand;
+}
+
 // XXX add to grahams section page when live
 // flex to flow charm list around
 .p-list-flex {
@@ -250,5 +307,34 @@ pre {
     margin-right: 18px;
     max-height: 172px;
     max-width: 142px;
+  }
+}
+
+// XXX orange quotes in pull quotes
+.p-pull-quote > p:first-of-type::before,
+.p-pull-quote--accent > p:first-of-type::before,
+.p-pull-quote > p:last-of-type::after,
+.p-pull-quote--accent > p:last-of-type::after {
+  color: $color-brand;
+}
+
+// XXX sup is too high in Vanilla
+// bug - https://github.com/vanilla-framework/vanilla-framework/issues/1109
+sup {
+  font-size: .75em;
+  vertical-align: baseline;
+}
+
+// XXX responsive image utility
+// S - 65%, M - 90%, L - 100%
+.u-responsive-image {
+  width: 65%;
+
+  @media (min-width: $breakpoint-medium ) {
+    width: 90%;
+  }
+
+  @media (min-width: $breakpoint-large ) {
+    width: 100%;
   }
 }

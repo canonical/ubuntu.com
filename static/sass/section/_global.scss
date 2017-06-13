@@ -1,0 +1,313 @@
+@charset "UTF-8";
+/*
+
+  Project:    Ubuntu footer
+  Author:     Web Team at Canonical Ltd
+  Last edited by: Peter Mahnke
+  Last edited on: 14 April 2016
+
+    CONTENTS:
+  -----------------------------------------------------------------
+  footer and global nav
+  three sizes: small, medium, large
+-------------------------------------------------------------- */
+
+/// Small screens
+.p-footer {
+  
+  #nav-global {
+    border: 0;
+    font-size: .8125rem;
+    margin: 0;
+    padding: 0;
+    
+    .nav-global-wrapper {
+      
+      &.active {
+        /// display when clicked
+        background-position: 96% 50%;
+        background-repeat: no-repeat;
+        background-size: 13px 13px;
+        display: block;
+      }
+    }
+    
+    h2 {
+      background-image: url("#{$asset-server-url}7bd1bd7b-arrow_down_9fa097.svg");
+      background-position: calc(100% - 10px) 50%;
+      background-repeat: no-repeat;
+      background-size: 13px 13px;
+      border-bottom: 1px solid $color-mid-light;
+      color: $color-mid-dark;
+      font-size: .8125rem;
+      line-height: 1.5em;
+      margin-bottom: 0;
+      padding: 10px 0 10px 30px;
+      position: relative;
+
+      a:link,
+      a:visited {
+        color: $color-mid-dark;
+      }
+
+      a::after {
+        content: ""; /* hide the default > */
+      }
+      
+      &::before {
+        // addes the external icon
+        background-image: url("#{$asset-server-url}e1b12fdd-external-link-9fa097.svg");
+        background-position: 0 3px;
+        background-repeat: no-repeat;
+        background-size: 14px 14px;
+        content: "";
+        height: 17px;
+        left: 10px;
+        position: absolute;
+        width: 14px;
+      }
+      
+      &.active {
+        border-bottom: 1px solid $color-mid-light;
+      }
+
+      @media only screen and (max-width: $breakpoint-medium) {
+        cursor: pointer;
+
+        &.active {
+          background-image: url("#{$asset-server-url}43e2b367-arrow_up_9fa097.png");
+        }
+      }
+    }
+    
+    .nav-global-main,
+    .nav-global-more {
+      margin: 0;
+      
+      li {
+        border-bottom: 1px solid $color-mid-light;
+        border-left: 1px solid $color-mid-light;
+        box-sizing: border-box;
+        display: inline;
+        float: left;
+        font-size: .8125rem;
+        line-height: 2em;
+        margin: 0;
+        width: 50%;
+        
+        @media only screen and (max-width: $breakpoint-medium) {
+          padding: 5px;
+        }
+
+        &:nth-child(odd) {
+          border-left: 0;
+        }
+        
+        &:last-child {
+          border: 0;
+        }
+
+        &.more {
+          border-bottom: 1px solid $color-mid-light;
+          border-top: 1px solid $color-mid-light;
+          margin-top: -1px;
+          margin-bottom: 20px;
+
+          @media only screen and (max-width: $breakpoint-medium) {
+            padding: 0;
+          }
+        }
+
+        a {
+          font-size: .8125rem;
+          line-height: 0;
+          padding-left: 10px;
+          
+          &:link,
+          &:visited {
+            color: $color-dark;
+          }
+        }
+      }
+    }
+    
+  }
+
+  /// Ubuntu websites global nav
+  #nav-global .nav-global-wrapper,
+  li.more > a  {
+    display: none; /* hide until 'active' class */
+  }
+
+  #nav-global {
+
+    ul {
+      li.more {
+        width: 100%;
+      }
+    }
+  }
+}
+
+/// Medium screens
+@media only screen and (min-width : $breakpoint-medium) {
+  #nav-global {
+    background: $color-light;
+    box-shadow: none;
+    display: block;
+    height: 30px;
+    line-height: 19.2px;
+    margin-top: -30px;
+    position: relative;
+    width: 100%;
+    z-index: 101;
+
+    .nav-global-wrapper {
+      width: auto;
+      background: none repeat scroll 0 0 $color-x-light;
+      margin: 0 auto;
+      position: relative;
+      text-align: left;
+    }
+      
+    div {
+      box-shadow: none;
+    }
+
+    ul {
+      margin-bottom: 0;
+      margin-left: 0;
+      top: 0;
+
+      li {
+        float: left;
+        display: block;
+        text-align: left;
+        margin: 0;
+        height: 30px;
+        margin-top: -1px;
+        position: relative;
+        top: 0;
+      }
+
+      li:first-of-type a {
+        margin-left: 10px;
+      }
+
+      ul {
+        background: $color-x-light;
+        border-top: 1px solid $color-mid-light;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+         display: none;
+         float: none;
+         position: absolute;
+         min-width: 120px;
+         top: 30px;
+
+       li:first-of-type {
+         padding-top: 5px;
+
+         a {
+           margin-left: 10px;
+         }
+       }
+
+       li {
+         float: none;
+         width: auto;
+         background: 0;
+         float: left;
+         clear: none;
+         font-size: 1rem;
+         margin: 0 2.5em 0 0;
+       }
+     }
+
+     .more span {
+       display: block;
+       top: -10px;
+       left: 46px;
+       line-height: 19.2px;
+       height: 0;
+       position: relative;
+       transform-origin: 0 0;
+       transform: rotate(90deg);
+     }
+
+    .more {
+      border-left: 1px solid transparent;
+      border-right: 1px solid transparent;
+      min-width: 60px;
+    }
+
+    a.active {
+      color: $color-brand;
+      border-top: 3px solid $color-brand;
+      text-decoration: none;
+      opacity: 1;
+    }
+  }
+
+    a:link,
+    a:visited {
+      border-bottom: 0;
+      border-top: 3px solid transparent;
+      color: $color-dark;
+      display: block;
+      font-size: .8125rem;
+      font-weight: 300;
+      line-height: 1.6;
+      list-style-image: none;
+      margin: 0 10px;
+      padding: 3px 0 4px;
+      position: relative;
+      text-decoration: none;
+      transition: opacity 0.25s ease-in-out;
+    }
+
+    .open {
+      background: $color-x-light;
+      border-left: 1px solid $color-mid-light;
+      border-right: 1px solid $color-mid-light;
+      min-width: 120px;
+  
+      a:link,
+      a:visited,
+      span {
+        color: $color-brand;
+        opacity: 1;
+      }
+  
+      ul {
+        display: block;
+        a:link,
+        a:visited {
+          color: $color-dark;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+/// Large screens
+@media only screen and (min-width : $breakpoint-large) {
+
+  #nav-global {
+    .nav-global-wrapper {
+      width: $breakpoint-large;
+    }
+
+    ul {
+      li:first-of-type a {
+        margin-left: 0;
+      }
+
+      li.more a {
+        text-indent: 0;
+        display: block;
+      }
+    }
+
+  }
+}

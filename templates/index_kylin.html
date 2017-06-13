@@ -1,22 +1,22 @@
-{% extends "base_index.html" %}
+{% extends "base_index-v1.html" %}
 
-{% block takeover_body_class %}{% endblock takeover_body_class %}
+{% block second_level_nav %}{% endblock second_level_nav %}
 
 {% block takeover_content %}
-<section class="row row-hero strip no-border china">
-    <div class="strip-inner-wrapper equal-height">
-        <div class="six-col append-one equal-height__item equal-height__align-vertically">
-            <h1>亲， 您知道我们Ubuntu已经有正式的<a href="http://cn.ubuntu.com" >中文官方网站</a>了么?</h1>
-            <p class="intro"><a href="http://cn.ubuntu.com" class="button--primary" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : 'GeoIP China hoempage', 'eventLabel' : '现在就去看看吧 link', 'eventValue' : undefined });">现在就去看看吧</a></p>
-            <p class="intro">Or continue browsing <a href="https://www.ubuntu.com/global">ubuntu.com</a></p>
-        </div>
-        <div class="row-hero__image five-col last-col equal-height__item equal-height__align-vertically align-center">
-            <img src="https://assets.ubuntu.com/v1/84489620-picto-knowledge-orange.svg" alt="Knowledge owl pictogram">
-        </div>
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="u-equal-height u-vertically-center">
+      <div class="col-7 suffix-1">
+        <h1>亲， 您知道我们Ubuntu已经有正式的<a href="http://cn.ubuntu.com" >中文官方网站</a>了么?</h1>
+        <p><a href="http://cn.ubuntu.com" class="p-button--brand" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : 'GeoIP China hoempage', 'eventLabel' : '现在就去看看吧 link', 'eventValue' : undefined });">现在就去看看吧</a></p>
+        <p>Or continue browsing <a href="https://www.ubuntu.com/global">ubuntu.com</a></p>
+      </div>
+      <div class="col-5 u-vertically-center u-align--center u-hidden--small">
+        <img src="https://assets.ubuntu.com/v1/84489620-picto-knowledge-orange.svg" alt="Knowledge owl pictogram" />
+      </div>
     </div>
+  </div>
 </section>
 {% endblock takeover_content %}
-
 {% block footer_content %}
-
 {% endblock footer_content %}

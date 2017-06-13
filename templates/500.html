@@ -1,18 +1,21 @@
 {% extends "templates/one-column.html" %}
-
-{% block title %}Server error{% endblock %}
-
+{% block title %}500: Server error{% endblock %}
 {% block extra_body_class %}error-page error500{% endblock %}
 
 {% block content %}
-<div class="row no-border hero-box">
-	<div class="six-col">
-		<img src="https://assets.ubuntu.com/v1/17a02192-image-knowledge-365.png" alt='Error "a owl"' />
-		<span>!</span>
-	</div>
-	<div class="six-col last-col">
-		<h1>500: Server error.</h1>
-		<p>Something's gone wrong, try reloading.</p>
-	</div>
-</div><!-- / .row -->
+<div class="p-strip is-deep">
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-6 u-vertically-center u-align--center">
+        <img src="{{ ASSET_SERVER_URL }}bcdcf2c8-image-404.svg?w=365" alt="Error owl" width="365" />
+      </div>
+      <div class="col-6 u-vertically-center">
+        <div>
+          <h1>500: Server error</h1>
+          <p class="p-heading--four">Something&rsquo;s gone wrong, try reloading.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content %}

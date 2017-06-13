@@ -1,94 +1,92 @@
-{% extends "desktop/base_desktop.html" %}
+{% extends "desktop/base_desktop-v1.html" %}
 
 {% block title %}For enterprise{% endblock %}
 {% block extra_body_class %}desktop-enterprise{% endblock %}
 
-{% block second_level_nav_items %}
-<div class="strip-inner-wrapper">
-    {% include "templates/_nav_breadcrumb.html" with section_title="Desktop" page_title="For enterprise"  %}
-</div>
-{% endblock second_level_nav_items %}
-
 {% block content %}
-<section class="row row-hero strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="six-col">
-            <h1>Ubuntu for enterprise</h1>
-            <p class="intro">On the desktop, Ubuntu has been widely adopted by small and large enterprises because of its ease of use, speed, apps, security model, management tools and low cost of ownership.</p>
-            <p><a href="/desktop/contact-us" class="button--primary">Contact us</a></p>
-            <p><a href="https://buy.ubuntu.com" class="external">Buy Ubuntu Advantage</a></p>
-        </div>
+
+<section class="p-strip u-image-position is-deep is-bordered">
+  <div class="row">
+    <div class="col-6">
+      <h1>Ubuntu for enterprise</h1>
+      <p>On the desktop, Ubuntu has been widely adopted by small and large enterprises because of its ease of use, speed, apps, security model, management tools and low cost of ownership.</p>
+      <p><a href="/desktop/contact-us" class="p-button--brand">Contact us</a></p>
+      <p><a href="https://buy.ubuntu.com" class="p-link--external">Buy Ubuntu Advantage</a></p>
     </div>
+    <div class="col-6 u-vertically-center u-hidden--small">
+      <img class="u-visible--large u-hidden--medium u-image-position--top" src="{{ ASSET_SERVER_URL }}ca8a41c4-desktop-enterprise-hero.png?w=600" alt="" style="top: 70px; right: 20px;" />
+      <img class="u-visible--medium u-hidden--large" src="{{ ASSET_SERVER_URL }}ca8a41c4-desktop-enterprise-hero.png?w=600" alt="" style="top: 70px; right: 40px;" />
+    </div>
+  </div>
 </section>
 
-<section class="row row-grey no-border">
-    <div class="strip-inner-wrapper">
-        <h2>Enterprise essentials built-in</h2>
-            <div class="combined-list">
-            <ul class="six-col list-ticks">
-                <li>Microsoft-compatible office productivity suite</li>
-                <li>Fully translated into 100+ languages</li>
-                <li class="last-item">Open source &mdash; free from licensing restrictions</li>
-            </ul>
-            <ul class="six-col list-ticks last-col">
-                <li>Virus free and highly secure</li>
-                <li>On-site consulting services and training available</li>
-                <li class="last-item">Long-term support releases come with five years of security patches and updates</li>
-
-            </ul>
-        </div>
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-12">
+      <h2>Enterprise essentials built-in</h2>
+      <ul class="p-list--divided is-split">
+        <li class="p-list__item is-ticked">Microsoft-compatible office productivity suite</li>
+        <li class="p-list__item is-ticked">Fully translated into 100+ languages</li>
+        <li class="p-list__item is-ticked">Open source &mdash; free from licensing restrictions</li>
+        <li class="p-list__item is-ticked">Virus free and highly secure</li>
+        <li class="p-list__item is-ticked">On-site consulting services and training available</li>
+        <li class="p-list__item is-ticked">Long-term support releases come with five years of security patches and updates</li>
+      </ul>
     </div>
+  </div>
 </section>
 
-<section class="row row-case-studies strip-dark no-border">
-    <div class="strip-inner-wrapper">
-        <div class="twelve-col">
-            <h2>Ubuntu in action</h2>
-        </div>
-        <div class="twelve-col equal-height--vertical-divider">
-            <div class="equal-height--vertical-divider__item six-col">
-                <h3>Carbonado Intermedia and Auteuristic</h3>
-                <blockquote class="pull-quote">
-                    <p><span>&ldquo;</span>We simply wouldn&rsquo;t be able to deliver our work as fast and cost-effectively as this with any other platform&hellip; Ubuntu gives us wings!<span>&rdquo;</span></p>
-                </blockquote>
-                <p><a href="https://insights.ubuntu.com/2015/02/10/ubuntu-delivers-a-bulletproof-workstation-platform-for-media-productio/" class="external">Read the <span class="accessibility-aid">'Carbonado Intermedia and Auteuristic' </span>case study</a></p>
-            </div>
-            <div class="equal-height--vertical-divider__item six-col last-col">
-                <h3>Bukwang Pharmaceuticals</h3>
-                <p class="headline">Faced with an expensive new contract from Microsoft, Bukwang Pharma switched 400 PCs to Ubuntu and saved $300,000 on annual licensing alone.</p>
-                <p><a href="https://insights.ubuntu.com/2014/07/31/bukwang-pharmaceuticals-cut-it-costs-and-created-business-value-with-ubuntu/" class="external">Read the <span class="accessibility-aid">'Bukwang Pharmaceuticals' </span>case study</a></p>
-            </div>
-        </div>
+<section class="p-strip--accent is-deep">
+  <div class="row">
+    <div class="col-12">
+      <h2>Ubuntu in action</h2>
     </div>
+  </div>
+
+  <div class="row p-divider">
+    <div class="col-6 p-divider__block">
+      <h3 class="p-heading--four">Carbonado Intermedia and Auteuristic</h3>
+      <blockquote class="p-pull-quote--accent is-compact">
+        <p>We simply wouldn&rsquo;t be able to deliver our work as fast and cost-effectively as this with any other platform&hellip; Ubuntu gives us wings!</p>
+      </blockquote>
+      <p><a href="https://insights.ubuntu.com/2015/02/10/ubuntu-delivers-a-bulletproof-workstation-platform-for-media-productio/" class="p-link--external">Read the <span class="u-off-screen">'Carbonado Intermedia and Auteuristic' </span>case study</a></p>
+    </div>
+    <div class="col-6 p-divider__block">
+      <h3 class="p-heading--four">Bukwang Pharmaceuticals</h3>
+      <p>Faced with an expensive new contract from Microsoft, Bukwang Pharma switched 400 PCs to Ubuntu and saved $300,000 on annual licensing alone.</p>
+      <p><a href="https://insights.ubuntu.com/2014/07/31/bukwang-pharmaceuticals-cut-it-costs-and-created-business-value-with-ubuntu/" class="p-link--external">Read the <span class="u-off-screen">'Bukwang Pharmaceuticals' </span>case study</a></p>
+    </div>
+  </div>
 </section>
 
-<section class="row row-landscape strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="six-col">
-            <h2>Enterprise-wide support and management tools</h2>
-            <p>Ubuntu Advantage is the professional support package from the experts at Canonical. Get 24x7 support with access to engineers with first-hand experience of your issues. It also includes Landscape, the Ubuntu systems management tool, for monitoring, managing, patching and compliance reporting on all your Ubuntu desktops.</p>
-            <p><a href="/support">Learn about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
-        </div>
-        <div class="six-col last-col not-for-small">
-            <img src="{{ ASSET_SERVER_URL }}4125e046-landscape_activity.png" alt="" />
-        </div>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-6">
+      <h2>Enterprise-wide support and management tools</h2>
+      <p>Ubuntu Advantage is the professional support package from the experts at Canonical. Get 24x7 support with access to engineers with first-hand experience of your issues. It also includes Landscape, the Ubuntu systems management tool, for monitoring, managing, patching and compliance reporting on all your Ubuntu desktops.</p>
+      <p><a href="/support">Learn about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
     </div>
+    <div class="col-6 u-hidden--small">
+      <img src="{{ ASSET_SERVER_URL }}4125e046-landscape_activity.png" alt="" />
+    </div>
+  </div>
 </section>
 
-{% include "shared/_release_schedule.html" %}
+{% include "shared-v1/_release_schedule.html" %}
 
-<section class="row no-border row-certified strip-light">
-    <div class="strip-inner-wrapper">
-        <div class="five-col">
-            <div>
-                <h2>Pre-installed on certified&nbsp;hardware</h2>
-                <p>Ubuntu runs on the world&rsquo;s best hardware from partners such as Dell, HP and Lenovo. And with nearly 90% of PCs shipped by the major PC companies already certified to work with Ubuntu, it is easy to find hardware that will work for your business.</p>
-                <p><a href="https://certification.ubuntu.com/">Learn more about Ubuntu certified hardware&nbsp;&rsaquo;</a></p>
-            </div>
-        </div>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h2>Pre-installed on certified&nbsp;hardware</h2>
+      <p>Ubuntu runs on the world&rsquo;s best hardware from partners such as Dell, HP and Lenovo. And with nearly 90% of PCs shipped by the major PC companies already certified to work with Ubuntu, it is easy to find hardware that will work for your business.</p>
+      <p><a class="p-link--external" href="https://certification.ubuntu.com/">Learn more about Ubuntu certified hardware</a></p>
     </div>
+    <div class="col-6 u-hidden--small">
+      <img src="{{ ASSET_SERVER_URL }}31a45631-desktop-enterprise-certified.jpg" alt="" />
+    </div>
+  </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_desktop_contact_us" second_item="_support" third_item="_desktop_further_reading" %}
+{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_desktop_contact_us" second_item="_support" third_item="_desktop_further_reading" %}
 
 {% endblock content %}

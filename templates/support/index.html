@@ -6,9 +6,6 @@
 
 {% block extra_body_class %}support-home has-background{% endblock %}
 
-{% block second_level_nav_items %}
-  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Support" page_title="Overview" %}
-{% endblock second_level_nav_items %}
 
 {% block content %}
 <section class="p-strip is-deep is-bordered">
@@ -29,7 +26,7 @@
 <section class="p-strip--x-light is-deep is-bordered">
   <div class="row">
     <h2>Why Ubuntu Advantage?</h2>
-    <ul class="p-matrix u-clearfix u-padding-bottom--x-large">
+    <ul class="p-matrix is-trisected u-clearfix u-padding-bottom--x-large">
       <li class="p-matrix__item">
         <h3 class="p-matrix__title p-heading--four">Enterprise grade security at an affordable price</h3>
         <p class="p-matrix__desc">Access to the latest software and our proactive support
@@ -52,7 +49,7 @@
           library of articles on technical issues.</p>
       </li>
       <li class="p-matrix__item">
-          <h3 class="p-matrix__title p-heading--four">24/7 phone, portal and email support</h3>
+          <h3 class="p-matrix__title p-heading--four">24/7 phone and web support</h3>
           <p class="p-matrix__desc">Around-the-clock coverage for Ubuntu deployments all over
           the world, and ability to track progress through the online
           portal.</p>

@@ -52,7 +52,7 @@
     <meta name="google-site-verification" content="ddh2iq7ZuKf1LpkL_gtM_T7DkKDVD7ibq6Ceue4a_3M" />
   </head>
 
-  <body {% if extra_body_class != "" %}class="{% block extra_body_class %}{% endblock %}"{% endif %}>
+  <body class="{% block extra_body_class %}{% endblock %}">
     <!-- google tag manager -->
     <script>
       dataLayer = [];
@@ -92,38 +92,14 @@
             <a href="#main-content">Jump to main content</a>
           </span>
           <ul class="p-navigation__links">
-            <li class="p-navigation__link">
-              <a class="{% if level_1 == 'cloud' %}is-active{% endif %}" href="/cloud">Cloud</a>
-              {% include "cloud/_nav_secondary-v1.html" with list_class="hover-menu" %}
-            </li>
-            <li class="p-navigation__link">
-              <a class="{% if level_1 == 'server' %}is-active{% endif %}" href="/server">Server</a>
-              {% include "server/_nav_secondary-v1.html" with list_class="hover-menu" %}
-            </li>
-            <li class="p-navigation__link">
-              <a class="{% if level_1 == 'containers' %}is-active{% endif %}" href="/containers">Containers</a>
-              {% include "containers/_nav_secondary-v1.html" with list_class="hover-menu" %}
-            </li>
-            <li class="p-navigation__link">
-              <a class="{% if level_1 == 'desktop' %}is-active{% endif %}" href="/desktop">Desktop</a>
-              {% include "desktop/_nav_secondary-v1.html" with list_class="hover-menu" %}
-            </li>
-            <li class="p-navigation__link">
-              <a class="{% if level_1 == 'core' %}is-active{% endif %}" href="/core">Core</a>
-              {% include "core/_nav_secondary-v1.html" with list_class="hover-menu" %}
-            </li>
-            <li class="p-navigation__link">
-              <a class="{% if level_1 == 'internet-of-things' %}is-active{% endif %}" href="/internet-of-things">IoT</a>
-              {% include "internet-of-things/_nav_secondary-v1.html" with list_class="hover-menu" %}
-            </li>
-            <li class="p-navigation__link">
-              <a class="{% if level_1 == 'support' %}is-active{% endif %}" href="/support">Support</a>
-              {% include "support/_nav_secondary-v1.html" with list_class="hover-menu" %}
-            </li>
-            <li class="p-navigation__link">
-              <a class="{% if level_1 == 'download' %}is-active{% endif %} " href="/download">Downloads</a>
-              {% include "download/_nav_secondary-v1.html" with list_class="hover-menu" %}
-            </li>
+            {% include 'templates/_menu_section-v1.html' with section=nav_sections.cloud %}
+            {% include 'templates/_menu_section-v1.html' with section=nav_sections.server %}
+            {% include 'templates/_menu_section-v1.html' with section=nav_sections.containers %}
+            {% include 'templates/_menu_section-v1.html' with section=nav_sections.desktop %}
+            {% include 'templates/_menu_section-v1.html' with section=nav_sections.core %}
+            {% include 'templates/_menu_section-v1.html' with section=nav_sections.iot %}
+            {% include 'templates/_menu_section-v1.html' with section=nav_sections.support %}
+            {% include 'templates/_menu_section-v1.html' with section=nav_sections.download %}
           </ul>
         </nav>
 
@@ -140,20 +116,48 @@
     {% endblock header_banner %}
     </header>
 
+    {% if breadcrumbs %}
+      <nav class="p-breadcrumbs nav-secondary clearfix">
+        <div class="row nav-secondary__row">
+          <div class="col-12 u-no-margin--bottom">
+            <ul class="p-breadcrumbs">
+              <li class="p-breadcrumbs__item">
+                <a class="p-breadcrumbs__link" href="{{ breadcrumbs.section.path }}">{{ breadcrumbs.section.title }}</a>
+
+                <ul class="nav-secondary__menu p-inline-list">
+                  {% for child in breadcrumbs.children %}
+                    <li class="{% if breadcrumbs.grandchildren %}p-breadcrumbs__item{% else %}p-inline-list__item{% endif %}">
+                      <a
+                        class="{% if breadcrumbs.grandchildren %}p-breadcrumbs__link{% else %}p-inline-list__link{% endif %} {% if child.active %}is-active{% endif %}"
+                        href="{{ child.path }}"
+                      >{{ child.title }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+
+                {% if breadcrumbs.grandchildren %}
+                  <ul class="nav-tertiary__menu p-inline-list">
+                    {% for grandchild in breadcrumbs.grandchildren %}
+                      <li class="p-inline-list__item">
+                        <a class="p-inline-list__link {% if grandchild.active %}is-active{% endif %}" href="{{ grandchild.path }}">{{ grandchild.title }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    {% endif %}
+
     <div class="wrapper">
       <div id="main-content" class="inner-wrapper">
-        {% if level_1 %}
-          {% block second_level_nav %}
-            <nav class="p-breadcrumbs nav-secondary clearfix">{% spaceless %}{% block second_level_nav_items %}{% endblock second_level_nav_items %}{% endspaceless %}</nav>
-          {% endblock second_level_nav %}
-        {% endif %}
-
-        {% block header %}{% endblock %}
+        {% block content_head %}{% endblock %}
         {% block content_container %}
           {% block outer_content %}
           {% endblock outer_content %}
         {% endblock content_container %}
-
       </div><!-- /.inner-wrapper -->
     </div><!-- /.wrapper -->
 
@@ -162,10 +166,9 @@
 
     <script src="{% versioned_static 'js/polyfills.js' %}"></script>
     <script src="{% versioned_static 'js/core.js' %}"></script>
+    <script src="{{ ASSET_SERVER_URL }}ab9f5f4b-global.js"></script>
     <script src="{% versioned_static 'js/scratch-v1.js' %}"></script>
     <script src="{{ ASSET_SERVER_URL }}f5bf3854-respond.min.js"></script>
-    <script src="{% versioned_static 'components/canonical-global-nav/build/js/global.js' %}"></script>
-    <script>ubuntu.globalNav.setup();</script>
     {% block footer_extra %}{% endblock %}
   </body>
 </html>
