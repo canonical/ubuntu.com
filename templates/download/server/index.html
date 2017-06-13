@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="p-strip is-deep is-bordered">
+<section class="p-strip is-deep is-bordered">
   <div class="row">
     <div class="col-10">
       <h1>Download Ubuntu Server</h1>
@@ -40,9 +40,9 @@
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="p-strip--light is-shallow is-bordered">
+<section class="p-strip--light is-shallow is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>Your next steps with Ubuntu Server</h2>
@@ -82,9 +82,9 @@
       <p><a href="https://maas.io/"><span class="p-link--external">Get MAAS</span></a></p>
     </div>
   </div>
-</div>
+</section>
 
-<div class="p-strip is-bordered is-shallow">
+<section class="p-strip is-bordered is-shallow">
   <div class="row">
     <div class="col-12">
       <h2>Ubuntu Server 16.04.1 LTS for OpenStack</h2>
@@ -99,15 +99,14 @@
       </ul>
     </div>
   </div>
-</div>
+</section>
 
-<div class="p-strip--light is-shallow">
+<section class="p-strip--light is-shallow">
   <div class="row">
     <div class="col-10">
       <h2>Alternative architectures</h2>
     </div>
   </div>
-
   <div class="row u-equal-height">
     <div class="col-4 p-card">
       <h3 class="p-card__title">Ubuntu Server for ARM</h3>
@@ -125,20 +124,18 @@
       <p class="p-card__content"><a href="/download/server/linuxone">Get Ubuntu for LinuxONE&nbsp;&rsaquo;</a></p>
     </div>
   </div>
-</div>
+</section>
 
-<div class="p-strip--light is-shallow">
+<section class="p-strip--light is-shallow">
   <div class="row">
     <div class="col-10">
       <h2>Get the version you need</h2>
     </div>
   </div>
-
   <div class="row u-equal-height">
     <div class="col-4 p-divider__block">
       {% include "download/shared/_buy_a_usb-v1.html" %}
     </div>
-
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
@@ -149,7 +146,6 @@
       <p>Ubuntu is available via BitTorrent links and regional mirrors. You can also use the network installer.</p>
       <p><a href="/download/alternative-downloads">Alternative downloads&nbsp;&rsaquo;</a></p>
     </div>
-
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
@@ -161,7 +157,7 @@
       <p><a href="http://releases.ubuntu.com" class="p-link--external">Previous releases</a></p>
     </div>
   </div>
-</div>
+</section>
 
 {% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_download_server_installation" second_item="_download_server_guide" third_item="_download_helping_hands" %}
 
