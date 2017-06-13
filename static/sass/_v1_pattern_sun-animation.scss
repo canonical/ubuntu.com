@@ -1,0 +1,147 @@
+/// sun like animation on cloud overview
+/* Contribute page */
+@mixin ubuntu-p-sun-animation {
+  $animation-viewport: 900px;
+
+  .cloud-tools {
+    display: none;
+    @media only screen and (min-width : $animation-viewport) {
+      display: block;
+      left: 0;
+      position: absolute;
+      top: -30px;
+      width: 100%;
+      z-index: 1;
+
+      &__container {
+        background: url('#{$assets-path}79729d72-products-hero-background.png') -100px 0 no-repeat;
+        height: 550px;
+        position: absolute;
+        right: 20px;
+        top: -10px;
+        width: 506px;
+        @media only screen and (min-width : $breakpoint-large) {
+          right: 0;
+        }
+      }
+
+      &__item {
+        animation: scaleInPop 0.2s forwards, fadeIn 0.2s linear forwards;
+        background: url('#{$assets-path}73006c5b-products-hero-phone.svg') no-repeat;
+        background-size: 66px 66px;
+        height: 66px;
+        opacity: 0;
+        position: absolute;
+        text-indent: -999rem;
+        width: 66px;
+
+        &--line {
+          animation: fadeIn 0.3s linear forwards;
+          content: ' ';
+          display: block;
+          position: absolute;
+
+          &-four,
+          &-one {
+            animation-delay: 1.85s;
+            background: url('#{$assets-path}ec446611-partners-hero-line-vertical.png');
+            height: 52px;
+            left: 287px;
+            top: 137px;
+            width: 2px;
+          }
+
+          &-five,
+          &-two {
+            animation-delay: 2s;
+            background: url('#{$assets-path}4fc1680b-partners-hero-line-diagonal.png');
+            height: 38px;
+            left: 345px;
+            top: 175px;
+            width: 38px;
+          }
+
+          &-six,
+          &-three {
+            animation-delay: 2.15s;
+            background: url('#{$assets-path}d505cff1-partners-hero-line-horizontal.png');
+            height: 2px;
+            left: 369px;
+            top: 277px;
+            width: 52px;
+          }
+
+          &-four {
+            animation-delay: 2.3s;
+            left: 296px;
+            top: 347px;
+          }
+
+          &-five {
+            animation-delay: 2.45s;
+            left: 201px;
+            top: 328px;
+          }
+
+          &-six {
+            animation-delay: 2.6s;
+            left: 159px;
+            top: 273px;
+          }
+        }
+
+        &--one {
+          animation-delay: 1.6s;
+          background-image: url('#{$assets-path}a7916513-picto-openstack.svg');
+          left: 257px;
+          top: 55px;
+        }
+
+        &--two {
+          animation-delay: 1.85s;
+          background-image: url('#{$assets-path}999949f8-picto-startfirst-midaubergine.svg');
+          left: 384px;
+          top: 108px;
+        }
+
+        &--three {
+          animation-delay: 2s;
+          background-image: url('#{$assets-path}60bd6cf1-picto-juju.svg');
+          left: 447px;
+          top: 245px;
+        }
+
+        &--four {
+          animation-delay: 2.15s;
+          background-image: url('#{$assets-path}261ad7cb-picto-maas.svg');
+          left: 267px;
+          top: 425px;
+        }
+
+        &--five {
+          animation-delay: 2.3s;
+          background-image: url('#{$assets-path}50c0306d-image-picto-landscape.svg');
+          left: 126px;
+          top: 372px;
+        }
+
+        &--six {
+          animation-delay: 2.45s;
+          background-image: url('#{$assets-path}c986edab-picto-cloud-midaubergine-solid.svg');
+          left: 70px;
+          top: 245px;
+        }
+
+        &--seven {
+          animation: scaleIn 0.3s forwards, fadeIn 0.6s linear forwards, rotateIn 3.0s ease-out forwards;
+          animation-delay: 1s;
+          background: url('#{$assets-path}c4f35e06-partners-hero-ubuntu.svg') no-repeat;
+          left: 220px;
+          top: 198px;
+          height: 140px;
+          width: 140px;
+        }
+      }
+    }
+  }
+}

@@ -15,6 +15,7 @@
 
 // import site specific patterns and overrides
 @import 'v1_pattern_site_search';
+@import 'v1_pattern_sun-animation';
 @import 'v1_pattern_navigation';
 @import 'v1_pattern_strip';
 @import 'v1_pattern_notifications';
@@ -24,12 +25,13 @@
 @import 'v1_pattern_link';
 @import 'v1_contribution';
 @import 'v1_pattern_inline-images';
-@import 'v1_patterns_testimonials';
+@import 'v1_pattern_testimonials';
 @import 'v1_pattern_hero';
 @import 'v1_pattern_pull_quotes';
 @import 'v1_utility_full-width';
 @import 'v1_pattern_matrix';
 @import 'v1_pattern_contextual-footer';
+@import 'v1_pattern_pie_chart';
 
 @include ubuntu-p-site-search;
 @include ubuntu-p-navigation;
@@ -47,10 +49,13 @@
 @include ubuntu-u-full-width;
 @include ubuntu-p-matrix;
 @include ubuntu-p-contextual-footer;
+@include ubuntu-p-pie-chart;
+@include ubuntu-p-sun-animation;
 
 // import section specific patterns and overrides
 @import 'v1_section/v1_cloud';
 @import 'v1_section/v1_homepage';
+@import 'v1_section/v1_desktop';
 
 // Takeovers and takeunders
 @import 'takeovers/kubernetes-webinar';
