@@ -1,4 +1,4 @@
-{% extends "desktop/base_desktop-v1.html" %}
+{% extends "desktop/base_desktop.html" %}
 
 {% block title %}For education{% endblock %}
 {% block extra_body_class %}desktop-education{% endblock %}
@@ -132,6 +132,6 @@
   </div>
 </section>
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html"  with  first_item="_desktop_contact_us" second_item="_support" third_item="_desktop_further_reading" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with  first_item="_desktop_contact_us" second_item="_support" third_item="_desktop_further_reading" %}
 
 {% endblock content %}

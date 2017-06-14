@@ -1,4 +1,4 @@
-{% extends "download/_base_download-v1.html" %}
+{% extends "download/_base_download.html" %}
 
 {% block title %}Build OpenStack with conjure-up or Autopilot| Download{% endblock %}
 {% block extra_body_class %}download-cloud-home{% endblock %}
@@ -50,8 +50,8 @@
   </div>
 </div>
 
-{% include "download/server/_other-ways-v1.html" %}
+{% include "download/server/_other-ways.html" %}
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html" with first_item="_download_cloud_bootstack" second_item="_download_cloud_buy_landscape" third_item="_download_documentation" %}
+{% include "shared/contextual_footers/_contextual_footer.html" with first_item="_download_cloud_bootstack" second_item="_download_cloud_buy_landscape" third_item="_download_documentation" %}
 
 {% endblock content %}

@@ -1,4 +1,4 @@
-{% extends "desktop/base_desktop-v1.html" %}
+{% extends "desktop/base_desktop.html" %}
 
 {% block title %}Ubuntu PC operating system{% endblock %}
 {% block meta_description %}Fast, secure and stylishly simple, the Ubuntu operating system is used by 50 million people worldwide every day.{% endblock %}
@@ -156,6 +156,6 @@
     </div>
   </section>
 
-  {% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_desktop_download" second_item="_support-image" third_item="_desktop_for_china" %}
+  {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_desktop_download" second_item="_support-image" third_item="_desktop_for_china" %}
 
   {% endblock content %}

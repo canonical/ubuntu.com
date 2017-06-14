@@ -4,8 +4,8 @@
     {% get_rss_feed "https://insights.ubuntu.com/feed/" limit=5 as feed %}
 {% endif %}
 
-<ul class='contextual-footer__list p-list'>
+<ul class='p-list'>
 {% for item in feed %}
-    <li class='p-list__item'><a href="{{item.link}}">{{item.title}}&nbsp;&rsaquo;</a></li>
+    <li class="p-list__item"><a href="{{item.link}}">{{item.title}}&nbsp;&rsaquo;</a></li>
 {% endfor %}
 </ul>

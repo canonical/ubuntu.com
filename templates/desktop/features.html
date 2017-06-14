@@ -1,4 +1,4 @@
-{% extends "desktop/base_desktop-v1.html" %}
+{% extends "desktop/base_desktop.html" %}
 {% block extra_body_class %}desktop-features{% endblock %}
 {% block head_extra %}
 <style type="text/css">
@@ -271,7 +271,7 @@
   </div>
 </section>
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_desktop_get_started" second_item="_desktop_buy_preinstalled" third_item="_desktop_for_china" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_desktop_get_started" second_item="_desktop_buy_preinstalled" third_item="_desktop_for_china" %}
 
 {% endblock content %}
 {% block footer_extra %}

@@ -1,22 +1,22 @@
-{% extends "cloud/base_cloud-v1.html" %}
+{% extends "cloud/base_cloud.html" %}
 {% block title %}Thank you{% endblock %}
 
 {% block content %}
 
 {% if product == 'cloud-training' %}
-  {% include "shared-v1/_thank_you.html" with thanks_context="enquiring about our training courses" %}
+  {% include "shared/_thank_you.html" with thanks_context="enquiring about our training courses" %}
 {% elif product == 'cloud-training-classroom' %}
-  {% include "shared-v1/_thank_you.html" with thanks_context="enquiring about our classroom training courses" %}
+  {% include "shared/_thank_you.html" with thanks_context="enquiring about our classroom training courses" %}
 {% elif product == 'cloud-training-onsite' %}
-  {% include "shared-v1/_thank_you.html" with thanks_context="enquiring about our on-site training courses" %}
+  {% include "shared/_thank_you.html" with thanks_context="enquiring about our on-site training courses" %}
 {% elif product == 'cloud-training-server-admin' %}
-  {% include "shared-v1/_thank_you.html" with thanks_context="enquiring about our server admin training courses" %}
+  {% include "shared/_thank_you.html" with thanks_context="enquiring about our server admin training courses" %}
 {% elif product == 'storage' %}
-  {% include "shared-v1/_thank_you.html" with thanks_context="enquiring about Ubuntu Advantage Storage" %}
+  {% include "shared/_thank_you.html" with thanks_context="enquiring about Ubuntu Advantage Storage" %}
 {% elif product == 'managed-cloud' %}
-  {% include "shared-v1/_thank_you.html" with thanks_context="enquiring about BootStack" %}
+  {% include "shared/_thank_you.html" with thanks_context="enquiring about BootStack" %}
 {% else %}
-  {% include "shared-v1/_thank_you.html" with thanks_context="enquiring about the Ubuntu Cloud" %}
+  {% include "shared/_thank_you.html" with thanks_context="enquiring about the Ubuntu Cloud" %}
 {% endif %}
 
 {% endblock content %}

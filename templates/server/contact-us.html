@@ -1,4 +1,4 @@
-{% extends "server/base_server-v1.html" %}
+{% extends "server/base_server.html" %}
 {% block title %}Contact us | Ubuntu Server{% endblock %}
 {% block meta_description %}Contact Canonical about Ubuntu Server{% endblock %}
 
@@ -6,7 +6,7 @@
 {% block content %}
 <div class="p-strip">
   <div class="row">
-    {% include "shared-v1/_cloud-contact-us-form.html" with  h1="Contact Canonical"   intro_text="Considering Ubuntu Server for your business?"  formid="1254"   lpId="2152"  returnURL="https://www.ubuntu.com/server/thank-you"  %}
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact Canonical"   intro_text="Considering Ubuntu Server for your business?"  formid="1254"   lpId="2152"  returnURL="https://www.ubuntu.com/server/thank-you"  %}
   </div>
  </section>
 

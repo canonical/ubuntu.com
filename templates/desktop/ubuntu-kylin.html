@@ -1,4 +1,4 @@
-{% extends "desktop/base_desktop-v1.html" %}
+{% extends "desktop/base_desktop.html" %}
 
 {% block title %}Ubuntu Kylin{% endblock %}
 {% block meta_description %}Ubuntu Kylin is a Chinese flavour of Ubuntu. Canonical partnered with CSIP and NUDT to produce a fully localised and customised version of Ubuntu.{% endblock %}
@@ -180,6 +180,6 @@
   </div>
 </div>
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_desktop_kylin_download" second_item="_desktop_kylin_learn_more" third_item="_desktop_further_reading" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_desktop_kylin_download" second_item="_desktop_kylin_learn_more" third_item="_desktop_further_reading" %}
 
 {% endblock content %}

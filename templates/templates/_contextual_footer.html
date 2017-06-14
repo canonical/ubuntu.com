@@ -1,13 +1,12 @@
 {% if level_2 == 'contact-us' and not level_3 or level_3 == 'contact-us' or level_3 == 'onsite-contact-us' or level_3 == 'classroom-contact-us' or level_4 == 'contact-us' and not level_5 or level_1 == 'privacy-policy' or level_1 == '2012' or level_1 == '2013' or level_2 == 'register' or level_1 == 'testing' or level_1 == 'legal' or level_3 == 'training-form' or level_2 == 'newsletter-thank-you' or level_2 == 'thank-you' %}
 {% else %}
-    <div id="context-footer" class="row context-footer {{ level_1 }}-context-footer clearfix no-border">
-        <hr />
-        <div class="strip-inner-wrapper">
-            <div class="{% if level_1 == 'tablet' or level_1 == 'phone' or level_1 == 'desktop' or level_1 == 'server' or level_1 == 'cloud' %}strip-inner-wrapper {% endif %}twelve-col equal-height--vertical-divider no-margin-bottom">
-                {% with ""|add:level_1|add:"/shared/_contextual_footer.html" as contextual %}
-                    {% include contextual %}
-                {% endwith %}
-            </div>
-        </div>
-    </div>
+
+<div class="p-strip">
+  <div class="row p-divider u-vertically-spaced">
+    {% with ""|add:level_1|add:"/shared/_contextual_footer.html" as contextual %}
+        {% include contextual %}
+    {% endwith %}
+  </div>
+</div>
+
 {% endif %}

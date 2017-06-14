@@ -1,4 +1,4 @@
-{% extends "cloud/base_cloud-v1.html" %}
+{% extends "cloud/base_cloud.html" %}
 
 {% block title %}Ubuntu in the cloud | Cloud{% endblock %}
 
@@ -9,7 +9,7 @@
 {% block extra_body_class %}cloud-home{% endblock %}
 
 {% block second_level_nav_items %}
-  {% include "templates/_nav_breadcrumb-v1.html" with section_title="Cloud" page_title="Overview" %}
+  {% include "templates/_nav_breadcrumb.html" with section_title="Cloud" page_title="Overview" %}
 {% endblock second_level_nav_items %}
 
 {% block content %}

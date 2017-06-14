@@ -1,748 +1,83 @@
-@charset 'UTF-8';
 
-// ---------------------------------------------------------------
-// ---------------------------------------------------------------
-//
-//  Project:    Ubuntu Front-End Desktop section
-//  Author:     Web Team at Canonical Ltd
-//
-// ---------------------------------------------------------------
-// ---------------------------------------------------------------
+.p-strip-photos {
 
-// @global desktop section_title
-.desktop {
-
-  .row-case-studies {
-    background-color: $dark-aubergine;
-    background-image: url('#{$asset-server-url}3c1c3b37-background-tile.jpg');
-    color: $white;
-
-    blockquote {
-      @media only screen and (min-width: $breakpoint-medium) {
-        margin-bottom: 20px;
-      }
-    }
-
-    .row-case-studies--title {
-      @media only screen and (min-width: $breakpoint-medium) {
-        margin-bottom: 72%;
-      }
-    }
-
-    .pull-quote {
-      margin-bottom: .75em;
-
-      p {
-        color: $white;
-        font-size: 1em;
-        line-height: 1.5em;
-
-        span {
-          top: .2em;
-        }
-      }
-
-      cite {
-        color: $white;
-        font-size: 1em;
-        line-height: 1.5em;
-      }
+  &__container {
+    @media only screen and (min-width: $breakpoint-medium) {
+      margin-top: 21.25rem;
     }
   }
 
-  .row-apps {
-
-    @media only screen and (max-width: $breakpoint-medium) {
-      overflow: hidden;
-
-      .grid-list__icon  {
-        float: left;
-        margin-right: 2.21238%;
-        width: 30%;
-      }
-
-      .grid-list__description  {
-        float: left;
-        margin-right: 0;
-        width: 54%;
-      }
-    }
-
-    h3 {
-      @media only screen and (min-width: $breakpoint-medium) {
-        margin-top: 5%;
-      }
+  &__credit {
+    @media only screen and (min-width: $breakpoint-medium) {
+      background-color: rgba(0, 0, 0, .6);
+      bottom: 0;
+      color: $color-light;
+      margin-top: -$sp-xxx-large;
+      padding: $sp-small;
     }
   }
 
-  .landscape-screenshot {
-    -webkit-box-shadow: -2px 0 2px 1px rgba(0, 0, 0, .1);
-    -moz-box-shadow: -2px 0 2px 1px rgba(0, 0, 0, .1);
-    box-shadow: -2px 0 2px 1px rgba(0, 0, 0, .1);
+  &.photo-1 {
+    @media only screen and (min-width: $breakpoint-medium) {
+      background-image: url('#{$assets-path}6c84454e-desktop-photos-1.jpg');
+      background-size: cover;
+    }
   }
 
-  .share-this {
-    clear: both;
-    display: block;
-    height: 25px;
-    margin-top: 20px;
-    position: relative;
+  &.photo-2 {
+    @media only screen and (min-width: $breakpoint-medium) {
+      background-image: url('#{$assets-path}25593e05-desktop-photos-2.jpg');
+      background-size: cover;
+    }
+  }
+
+  &.photo-3 {
+    @media only screen and (min-width: $breakpoint-medium) {
+      background-image: url('#{$assets-path}a6e14067-desktop-photos-3.jpg');
+      background-size: cover;
+    }
+  }
+}
+
+.p-gaming {
+  background-image: url('#{$assets-path}126ebaea-borderlands.jpg');
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 488px;
+  padding-bottom: 0;
+  position: relative;
+
+  &__content {
+
+    @media only screen and (min-width: $breakpoint-medium) {
+      position: relative;
+      margin-top: 30%;
+      z-index: 3000;
+    }
+
+    @media only screen and (min-width : $breakpoint-large) {
+      margin-bottom: $sp-xx-large;
+    }
+  }
+
+  &__flash {
+    animation: flash-sign 10s infinite;
+    background-image: url('#{$assets-path}30d55ce9-borderlands-flash.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
     width: 100%;
-
-    iframe {
-      display: inline-block;
-      float: left;
-      margin: 0;
-      padding: 0;
-      width: 110px;
-    }
-
-    .twitter-share-button {
-      display: inline-block;
-      float: none;
-      margin-right: 18px;
-      width: 58px;
-    }
+    z-index: 2000;
   }
-
-  // @section desktop-home
-  &.desktop-home {
-
-    .row-hero {
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        background-color: $light-grey;
-        background-image: url('#{$asset-server-url}364631d0-desktop-overview-hero.jpg?w=1024');
-        background-position: 73% 81%;
-        background-repeat: no-repeat;
-        background-size: cover;
-        border-bottom: 0;
-        min-height: 573px;
-        padding-top: 80px;
-      }
-    }
-
-    // fade in list animation - located on desktop overview 'Benefits for all industry sectors' GB 16/10/2015
-    // only hide it if js is on
-    .js .list-fade {
-      opacity: 0;
-    }
-
-    .list-fade__title {
-      margin-bottom: 40px;
-    }
-
-    .list-fade__item {
-      -moz-animation-duration: 1.2s;
-      -webkit-animation-duration: 1.2s;
-      animation-duration: 1.2s;
-      line-height: 1.3;
-      overflow: visible;
-      text-align: center;
-      text-decoration: none;
-      position: relative;
-
-      a {
-        color: $warm-grey;
-
-        img {
-          -moz-animation-duration: 1.2s;
-          -webkit-animation-duration: 1.2s;
-          animation-duration: 1.2s;
-          margin-bottom: 10px;
-
-          &:hover {
-            opacity: .8;
-          }
-        }
-      }
-    }
-
-    // the .run class is added with js
-    .run {
-      .list-fade {
-        opacity: 0;
-        animation: fadeIn .9s linear forwards;
-        animation-delay: 1s;
-        -moz-animation: fadeIn .9s linear forwards;
-        -moz-animation-delay: 1s;
-        -webkit-animation: fadeIn .9s linear forwards;
-        -webkit-animation-delay: 1s;
-
-        .list-fade__item {
-          animation: fadeIn .2s linear forwards, scaleIn .3s linear forwards;
-          -webkit-animation: fadeIn .2s linear forwards, scaleIn .3s linear forwards;
-          -moz-animation: fadeIn .2s linear forwards, scaleIn .3s linear forwards;
-          opacity: 0;
-        }
-
-        .list-fade__item:first-child {
-          -moz-animation-delay: 1s;
-          -webkit-animation-delay: 1s;
-          animation-delay: 1s;
-        }
-
-        .list-fade__item:nth-child(2) {
-          -moz-animation-delay: 1.1s;
-          -webkit-animation-delay: 1.1s;
-          animation-delay: 1.1s;
-        }
-
-        .list-fade__item:nth-child(3) {
-          -moz-animation-delay: 1.2s;
-          -webkit-animation-delay: 1.2s;
-          animation-delay: 1.2s;
-        }
-
-        .list-fade__item:nth-child(4) {
-          -moz-animation-delay: 1.3s;
-          -webkit-animation-delay: 1.3s;
-          animation-delay: 1.3s;
-        }
-      }
-    }
-
-    .row-industry {
-      img {
-        display: block;
-        margin: 0 auto 10px;
-        max-width: 150px;
-      }
-
-      .muted-heading {
-        @media only screen and (min-width: $breakpoint-medium) {
-          margin-bottom: 3em;
-        }
-      }
-    }
-
-    .row-latest-hardware {
-      .row-latest-hardware__image {
-        margin-bottom: 20px;
-
-        @media only screen and (min-width: $breakpoint-medium) {
-          margin-bottom: 0;
-        }
-      }
-    }
-
-    .row-latest-hardware {
-      margin-bottom: 0;
-    }
-  }
-
-  // @subsection /desktop/features
-  &.desktop-features {
-
-    .row-hero {
-      overflow: hidden;
-
-      &:before {
-
-        @media only screen and (min-width : $breakpoint-medium) {
-          background: url('#{$asset-server-url}9fe68ee3-desktop-features-hero.png?w=897') center center no-repeat;
-          background-size: contain;
-          content: '';
-          display: block;
-          height: 75%;
-          overflow: visible;
-          position: absolute;
-          right: -30vw;
-          top: 40px;
-          width: 80vw;
-        }
-
-        @media only screen and (min-width : $breakpoint-large) {
-          height: 85%;
-          right: 3vw;
-          width: 50vw;
-        }
-      }
-    }
-
-    .email-container {
-      max-width: 539px;
-      position: relative;
-
-      .email-text {
-        left: 23%;
-        position: absolute;
-        top: 57%;
-        width: 62%;
-      }
-    }
-
-    .row-web-browsing {
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server-url}d037640f-desktop.png?w=984');
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-    }
-
-    .row-videos {
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        border-bottom: 0;
-      }
-    }
-
-    .row-gaming {
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server-url}126ebaea-borderlands.jpg');
-        background-repeat: no-repeat;
-        background-position: 0 0 ;
-        background-size: cover;
-        min-height: 488px;
-        padding-bottom: 0;
-      }
-
-      &__content {
-
-        @media only screen and (min-width: $breakpoint-medium) {
-          color: $white;
-          z-index: 3000;
-          margin-top: 30%;
-        }
-
-        @media only screen and (min-width : $viewport-threshold) {
-          margin-bottom: 40px;
-        }
-      }
-
-      .borderlands {
-        left: 0;
-        position: absolute;
-        top: 0;
-        z-index: 1000;
-      }
-
-      .borderlands-flash {
-        animation: flash-sign 10s infinite;
-        background-image: url('#{$asset-server-url}30d55ce9-borderlands-flash.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        height: 488px;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 2000;
-      }
-    }
-
-    .row-photos {
-      > div {
-        @media only screen and (min-width: $breakpoint-medium) {
-          margin-top: 340px;
-        }
-
-        p,
-        h2 {
-          @media only screen and (min-width: $breakpoint-medium) {
-            text-shadow: 0 0 2px #000;
-          }
-        }
-      }
-
-      .photo-credit {
-        @media only screen and (min-width: $breakpoint-medium) {
-          background-color: rgba(0, 0, 0, .6);
-          bottom: 0;
-          padding: 10px;
-          position: absolute;
-          right: 0;
-        }
-      }
-
-      &.photo-1 {
-        @media only screen and (min-width: $breakpoint-medium) {
-          background-image: url('#{$asset-server-url}6c84454e-desktop-photos-1.jpg');
-          background-size: cover;
-        }
-      }
-
-      &.photo-2 {
-        @media only screen and (min-width: $breakpoint-medium) {
-          background-image: url('#{$asset-server-url}25593e05-desktop-photos-2.jpg');
-          background-size: cover;
-        }
-      }
-
-      &.photo-3 {
-        @media only screen and (min-width: $breakpoint-medium) {
-          background-image: url('#{$asset-server-url}a6e14067-desktop-photos-3.jpg');
-          background-size: cover;
-        }
-      }
-    }
-
-    .row-organise .inline li {
-      @media only screen and (min-width: $breakpoint-medium) {
-        margin-right: 9.8%;
-        width: 15%;
-      }
-
-      :last-child {
-        @media only screen and (min-width: $breakpoint-medium) {
-          margin-right: 0;
-        }
-      }
-    }
-  }
-
-
-  // @subsection /desktop/enterprise
-  &.desktop-enterprise {
-
-    .row-hero {
-      overflow: hidden;
-
-      &:before {
-
-        @media only screen and (min-width : $breakpoint-medium) {
-          background: url('#{$asset-server-url}ca8a41c4-desktop-enterprise-hero.png?w=897') center center no-repeat;
-          background-size: contain;
-          content: '';
-          display: block;
-          height: 75%;
-          overflow: visible;
-          position: absolute;
-          right: -30vw;
-          top: 40px;
-          width: 80vw;
-        }
-
-        @media only screen and (min-width : $breakpoint-large) {
-          height: 85%;
-          right: 3vw;
-          width: 50vw;
-        }
-      }
-    }
-
-    .row-certified {
-      @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server-url}31a45631-desktop-enterprise-certified.jpg');
-        background-position: 93% 39%;
-        background-repeat: no-repeat;
-        background-size: 45%;
-        min-height: 373px;
-        overflow: hidden;
-      }
-
-      @media only screen and (min-width: $breakpoint-large) {
-        min-height: 457px;
-      }
-
-      @media only screen and (min-width: $viewport-threshold) {
-        background-position: 80% center;
-        background-size: 600px;
-      }
-    }
-  }
-
-  // @subsection /desktop/education
-  &.desktop-education {
-
-    .trans-bg {
-      background: rgba(255,255,255,0.85);
-      padding: 0 1rem 1rem;
-    }
-
-    .row-hero {
-      @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server-url}3a51704e-desktop-education-hero.jpg?w=984');
-        background-position: right 10px center;
-        background-repeat: no-repeat;
-        margin-top: 0;
-        min-height: 580px;
-      }
-
-      @media only screen and (min-width: $breakpoint-large) {
-        background-position: 0 -180px;
-        background-size: cover;
-        margin-top: 0;
-        min-height: 574px;
-      }
-
-      @media only screen and (min-width: $viewport-threshold) {
-        background-position: 0 -315px;
-      }
-    }
-
-    .row-case-studies {
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server-url}02d89f50-map.jpg');
-        background-repeat: no-repeat;
-        background-size: 74%;
-        background-position: center 30px;
-      }
-
-      @media only screen and (min-width: $viewport-threshold) {
-        background-size: 50%;
-      }
-    }
-  }
-
-  // @subsection /desktop/government
-  &.desktop-government {
-
-    .row-hero {
-      @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server-url}826a470a-desktop-government-hero+%281%29.jpg');
-        background-position: center 0;
-        background-repeat: no-repeat;
-        background-size: 80%;
-        min-height: 350px;
-      }
-
-      @media only screen and (min-width: $breakpoint-large) {
-        background-position: 0 -191px;
-        background-size: cover;
-        min-height: 574px;
-      }
-    }
-
-    .row-case-studies {
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server-url}5b74fa2a-map.jpg');
-        background-position: center 0;
-        background-repeat: no-repeat;
-        background-size: 75%;
-      }
-
-      @media only screen and (min-width: $viewport-threshold) {
-        background-size: 50%;
-      }
-    }
-
-    .row-security {
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server-url}99d49a7d-padlock-chain.png');
-        background-position: 80% center;
-        background-repeat: no-repeat;
-        background-size: initial;
-        min-height: 310px;
-      }
-
-      @media only screen and (min-width: $viewport-threshold) {
-        background-position: 70% center;
-      }
-    }
-  }
-
-  // @subsection /desktop/developer
-  &.desktop-for-developers {
-
-    .row-easy-deployment {
-      background-color: $box-solid-grey;
-    }
-
-    .row-hero {
-      overflow: hidden;
-
-      &:before {
-
-        @media only screen and (min-width : $breakpoint-medium) {
-          background: url('#{$asset-server-url}2e62cdb4-desktop-developer-hero.png?w=897') center center no-repeat;
-          background-size: contain;
-          content: '';
-          display: block;
-          height: 75%;
-          overflow: visible;
-          position: absolute;
-          right: -30vw;
-          top: 40px;
-          width: 80vw;
-        }
-
-        @media only screen and (min-width : $breakpoint-large) {
-          height: 85%;
-          right: 3vw;
-          width: 50vw;
-        }
-      }
-    }
-  }
-
-  // @subsection /desktop/ubuntu-kylin
-  &.desktop-ubuntu-kylin {
-
-    .row-hero {
-      overflow: hidden;
-
-      &:before {
-
-        @media only screen and (min-width : $breakpoint-medium) {
-          background: url('#{$asset-server-url}7ee4a52c-dell-xps-laptop-front.png?w=897') center center no-repeat;
-          background-size: contain;
-          content: '';
-          display: block;
-          height: 75%;
-          overflow: visible;
-          position: absolute;
-          right: -30vw;
-          top: 40px;
-          width: 80vw;
-        }
-
-        @media only screen and (min-width : $breakpoint-large) {
-          height: 85%;
-          right: 3vw;
-          width: 50vw;
-        }
-      }
-    }
-
-    .row-partnership {
-
-      ul {
-        margin-left: -40px;
-
-        li {
-          margin-left: 40px;
-        }
-      }
-    }
-
-    .pull-left {
-      margin-left: 0;
-      margin-right: 0;
-
-      @media only screen and (max-width: $breakpoint-medium) {
-        margin: 0;
-        width: 100;
-      }
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        margin-bottom: -40px;
-        margin-left: -20px;
-      }
-
-      @media only screen and (min-width: $breakpoint-large) {
-        margin-bottom: -60px;
-        margin-left: -40px;
-      }
-    }
-
-    .pull-right {
-      margin-left: 0;
-      margin-right: 0;
-
-      @media only screen and (max-width: $breakpoint-medium) {
-        margin: 0;
-        width: 100;
-      }
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        margin-bottom: -20px;
-        margin-right: -20px;
-      }
-
-      @media only screen and (min-width: $breakpoint-large) {
-        margin-bottom: -40px;
-        margin-right: -40px;
-      }
-    }
-  }
-
-  // @subsection /desktop/partners
-  &.desktop-partners {
-
-    sup {
-      font-size: .7em;
-      line-height: 1em;
-    }
-
-    .row-case-studies-light {
-      background-color: $light-grey;
-      background-image: none;
-      color: $cool-grey;
-
-      .pull-quote p,
-      .pull-quote cite {
-        color: $cool-grey;
-      }
-    }
-
-    .row-commercial {
-
-      .four-col::after {
-
-        @media only screen and (min-width: $breakpoint-medium) {
-          background-image: url('#{$asset-server-url}f2a25267-image-list-stroke.svg');
-          background-repeat: repeat-x;
-          content: ' ';
-          display: block;
-          height: 5px;
-          left: 85px;
-          position: absolute;
-          top: 39px;
-          width: 74%;
-        }
-
-        @media only screen and (min-width: $breakpoint-large) {
-          width: 76%;
-        }
-      }
-
-      .four-col.last-col::after {
-        display: none;
-      }
-
-      .picto {
-        margin-bottom: 40px;
-        max-width: 80px;
-      }
-    }
-
-    .row-certified-hardware {
-
-      &__image {
-        min-height: 225px;
-
-        > img {
-          width: 330px;
-        }
-
-        @media only screen and (min-width: $breakpoint-medium) {
-          min-height: 200px;
-
-          > img {
-            width: 100%;
-          }
-        }
-      }
-    }
-
-    .row-intel {
-      background-color: #007cc5;
-      color: $white;
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        background-image: url('#{$asset-server-url}0caaa961-image-intelonastick-background.png');
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
-      }
-
-      .external {
-        background-image: url('#{$asset-server-url}6effa961-icon-externallink-white.png');
-        color: $white;
-      }
-
-      img {
-        margin-top: 9%;
-      }
-    }
-
-    .row-tenders img {
-      max-width: 350px;
-    }
-  }
+}
+
+.borderlands {
+  left: 0;
+  position: absolute;
+  top: 0;
+  z-index: 1000;
 }

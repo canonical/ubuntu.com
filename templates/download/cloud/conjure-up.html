@@ -1,4 +1,4 @@
-{% extends "download/_base_download-v1.html" %}
+{% extends "download/_base_download.html" %}
 {% block title %}Build OpenStack with conjure-up | Download{% endblock %}
 {% block extra_body_class %}download-cloud-conjure-up{% endblock %}
 {% block meta_description %}Want to deploy OpenStack on a single machine? Use Conjure-up. It’s the easy and free.{% endblock %}
@@ -30,7 +30,7 @@
   </div>
 </div>
 
-{% include "download/shared/_get_ebook-v1.html"%}
+{% include "download/shared/_get_ebook.html"%}
 
 <div class="p-strip--light is-bordered">
   <div class="row">
@@ -102,6 +102,6 @@
   </div>
 </div>
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_download_cloud_bootstack" second_item="_download_cloud_buy_landscape" third_item="_download_documentation" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_cloud_bootstack" second_item="_download_cloud_buy_landscape" third_item="_download_documentation" %}
 
 {% endblock content %}

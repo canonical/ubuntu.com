@@ -1,4 +1,4 @@
-{% extends "download/_base_download-v1.html" %}
+{% extends "download/_base_download.html" %}
 
 {% block title %}Ubuntu for ARM | Download{% endblock %}
 
@@ -60,6 +60,6 @@
   </div>
 </div>
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_download_server_arm_guide" second_item="_download_enterprise_support" third_item="_download_helping_hands" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_server_arm_guide" second_item="_download_enterprise_support" third_item="_download_helping_hands" %}
 
 {% endblock content %}

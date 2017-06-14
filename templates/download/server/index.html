@@ -1,4 +1,4 @@
-{% extends "download/_base_download-v1.html" %}
+{% extends "download/_base_download.html" %}
 {% block title %}Download Ubuntu Server | Download{% endblock %}
 
 {% block content %}
@@ -134,7 +134,7 @@
   </div>
   <div class="row u-equal-height">
     <div class="col-4 p-divider__block">
-      {% include "download/shared/_buy_a_usb-v1.html" %}
+      {% include "download/shared/_buy_a_usb.html" %}
     </div>
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon">
@@ -159,6 +159,6 @@
   </div>
 </section>
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_download_server_installation" second_item="_download_server_guide" third_item="_download_helping_hands" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_server_installation" second_item="_download_server_guide" third_item="_download_helping_hands" %}
 
 {% endblock content %}
