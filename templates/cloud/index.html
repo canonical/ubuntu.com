@@ -284,22 +284,49 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered">
-  <div class="row">
-    <h2>Latest cloud news from Insights</h2>
-    <div class="u-equal-height p-divider">
-      <div id="insights-cloud-feed" class="col-6 p-divider__block">
-        <ul class="p-list">
-          {% get_rss_feed "https://insights.ubuntu.com/topic/Cloud/feed/" limit=4 as cloud_feed %} {% autoescape off %} {% for item in cloud_feed %}
-          <li>
-            <h3 class="p-heading--five"><a href="{{ item.link }}" class="p-link--external">{{ item.title }}</a></h3>
-            <p>{{ item.description|force_escape|truncate_chars:100 }}</p>
-          </li>
-          {% endfor %} {% endautoescape %}
-        </ul>
+{% get_rss_feed "https://insights.ubuntu.com/tag/spotlight/feed/?topic=cloud" limit=1 as spotlight_feed %}
+
+{% if spotlight_feed %}
+  {% get_rss_feed "https://insights.ubuntu.com/feed?topic=cloud" limit=3 exclude_items_in=spotlight_feed as insights_feed %}
+{% else %}
+  {% get_rss_feed "https://insights.ubuntu.com/feed?topic=cloud" limit=4 as insights_feed %}
+{% endif %}
+
+<section class="p-strip--light is-deep is-bordered">
+  <div class="row {% if spotlight_feed %}p-divider{% endif %}">
+    <div class="{% if spotlight_feed %}col-9 p-divider__block{% else %}col-12{% endif %}">
+      {# insights heading #}
+      <h2 class="p-link--external p-heading--insights__title">
+        <a href="https://insights.ubuntu.com/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'clicks insights feed link', 'eventLabel' : 'ubuntu.com cloud overview', 'eventValue' : undefined });">
+          Latest cloud news from Insights
+        </a>
+      </h2>
+
+      {# insights news items #}
+      <div class="row">
+        {% for item in insights_feed %}
+          <div class="col-3">
+            <h3 class="p-heading--four"><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'ubuntu.com cloud overview news link', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title }}</a></h3>
+            <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
+          </div>
+        {% endfor %}
       </div>
-      {% include "cloud/shared/_events_overview.html" %}
     </div>
+
+    {# spotlight heading #}
+    {% if spotlight_feed %}
+      <div class="col-3 p-divider__block">
+        <h2 class="p-link--external p-heading--insights__title">
+          <a href="https://insights.ubuntu.com/tag/spotlight/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'ubuntu.com cloud overview spotlight feed link', 'eventLabel' : 'ubuntu.com cloud overview', 'eventValue' : undefined });">
+            Spotlight
+          </a>
+        </h2>
+        {% for item in spotlight_feed %}
+          <h3 class="p-heading--four"><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'ubuntu.com cloud overview spotlight article', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title }}</a></h3>
+          <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
+        {% endfor %}
+      </div>
+    {% endif %}
   </div>
 </section>
 
