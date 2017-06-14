@@ -20,7 +20,7 @@
       padding: $sp-xx-large 0;
     }
 
-    @media only screen and (max-width: $breakpoint-medium) {
+    @media only screen and (max-width: $breakpoint-medium - 1) {
       &__nav-col {
         width: 100%;
       }
@@ -39,6 +39,10 @@
       border: 0;
       border-bottom: 1px dotted $color-x-dark;
       border-collapse: separate;
+
+      @media only screen and (max-width: $breakpoint-medium - 1px) {
+        display: none;
+      }
     }
 
     &__links {
@@ -51,7 +55,7 @@
       margin-bottom: 0;
 
       + .p-footer__item {
-        @media only screen and (min-width: $breakpoint-medium + 1) {
+        @media only screen and (min-width: $breakpoint-medium) {
           margin-top: $sp-large;
         }
       }
