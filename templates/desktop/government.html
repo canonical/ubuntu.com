@@ -2,7 +2,6 @@
 
 {% block title %}For government{% endblock %}
 
-
 {% block content %}
 
 <section class="p-strip--image is-light is-deep" style="background-image:url('{{ ASSET_SERVER_URL }}826a470a-desktop-government-hero+%281%29.jpg'); height: 500px; background-position: 0 77%;">
@@ -15,7 +14,7 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered" style="background: #fff;">
+<section class="p-strip--x-light is-bordered">
   <div class="row">
     <div class="col-12">
       <h2>Government essentials</h2>
@@ -37,7 +36,7 @@
   <div class="row">
     <div class="col-6">
       <h2>Recognised security</h2>
-      <p>UK National security  government agency (CESG) recently rated Ubuntu as the most secure operating system of the 11&nbsp;they tested. </p>
+      <p>UK National security government agency (CESG) recently rated Ubuntu as the most secure operating system of the 11&nbsp;they tested. </p>
       <a href="https://insights.ubuntu.com/2014/01/10/ubuntu-scores-highest-in-uk-gov-security-assessment/" class="p-link--external">Learn more about the CESG test</a>
     </div>
     <div class="col-6">
@@ -52,28 +51,28 @@
   <div class="row">
     <div class="col-12">
       <h2>Used by governments across the globe</h2>
-      <img class="u-hidden--small u-align--center" src="{{ ASSET_SERVER_URL }}9a75cea1-desktop-government-map.jpg" alt="map of key government users of Ubuntu"/>
+      <img class="u-hidden--small u-align--center" src="{{ ASSET_SERVER_URL }}9a75cea1-desktop-government-map.jpg" alt="map of key government users of Ubuntu" />
     </div>
   </div>
   <div class="row p-divider">
     <div class="col-4 p-divider__block">
       <h3>La Gendarmerie Nationale, France</h3>
       <blockquote class="p-pull-quote--accent is-compact">
-        <p>We realised that Windows would cost us &euro;2 million more than Ubuntu every year.</p>
+        <p class="p-pull-quote__item">We realised that Windows would cost us &euro;2 million more than Ubuntu every year.</p>
       </blockquote>
-      <p><a href="https://insights.ubuntu.com/2010/11/10/la-gendarmerie-nationale-upgrades-85000-pcs-to-ubuntu-desktop-edition/" class="p-link--external">Read the <span class="u-off-screen">'La Gendarmerie Nationale, France' </span>case study</a></p>
+      <p><a class="p-link--inverted p-link--external" href="https://insights.ubuntu.com/2010/11/10/la-gendarmerie-nationale-upgrades-85000-pcs-to-ubuntu-desktop-edition/">Read the <span class="u-off-screen">'La Gendarmerie Nationale, France' </span>case study</a></p>
     </div>
     <div class="col-4 p-divider__block">
       <h3>City of Munich, Germany</h3>
       <blockquote class="p-pull-quote--accent is-compact">
-        <p>Ubuntu satisfies our requirements best by combining the low costs and freedom of open source software with ongoing support.</p>
+        <p class="p-pull-quote__item">Ubuntu satisfies our requirements best by combining the low costs and freedom of open source software with ongoing support.</p>
       </blockquote>
-      <p><a href="https://insights.ubuntu.com/2014/07/07/ubuntu-and-open-source-help-the-city-of-munich-save-millions/" class="p-link--external">Read the <span class="u-off-screen">'City of Munich, Germany'</span> case study</a></p>
+      <p><a class="p-link--inverted p-link--external" href="https://insights.ubuntu.com/2014/07/07/ubuntu-and-open-source-help-the-city-of-munich-save-millions/">Read the <span class="u-off-screen">'City of Munich, Germany'</span> case study</a></p>
     </div>
     <div class="col-4 p-divider__block">
       <h3>Uttar Pradesh Government, India</h3>
       <p>Uttar Pradesh boosted IT literacy by putting millions laptops running Ubuntu in schools.</p>
-      <p><a href="https://insights.ubuntu.com/2013/12/04/ubuntu-helps-millions-of-indian-students-to-learn/" class="p-link--external">Read the <span class="u-off-screen">'Uttar Pradesh Government, India' </span>case study</a></p>
+      <p><a class="p-link--inverted p-link--external" href="https://insights.ubuntu.com/2013/12/04/ubuntu-helps-millions-of-indian-students-to-learn/">Read the <span class="u-off-screen">'Uttar Pradesh Government, India' </span>case study</a></p>
     </div>
   </div>
 </section>
@@ -82,7 +81,8 @@
   <div class="row">
     <div class="col-6">
       <h2>Government-wide support and management tools</h2>
-      <p>Ubuntu Advantage is the professional support package from the experts at Canonical. Get 24x7 support with access to engineers with first-hand experience of your issues. It also includes Landscape, the Ubuntu systems management tool, for monitoring, managing, patching and compliance reporting on all your Ubuntu desktops.</p>
+      <p>Ubuntu Advantage is the professional support package from the experts at Canonical. Get 24x7 support with access to engineers with first-hand experience of your issues. It also includes Landscape, the Ubuntu systems management tool, for monitoring,
+        managing, patching and compliance reporting on all your Ubuntu desktops.</p>
       <p><a href="/support">Learn about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-6 u-hidden--small">
@@ -94,4 +94,3 @@
 {% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_desktop_contact_us" second_item="_support" third_item="_desktop_further_reading" %}
 
 {% endblock content %}
-{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

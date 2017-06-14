@@ -25,11 +25,13 @@
 @import 'v1_pattern_link';
 @import 'v1_contribution';
 @import 'v1_pattern_inline-images';
-@import 'v1_patterns_testimonials';
+@import 'v1_pattern_testimonials';
 @import 'v1_pattern_hero';
 @import 'v1_pattern_pull_quotes';
 @import 'v1_utility_full-width';
 @import 'v1_pattern_matrix';
+@import 'v1_pattern_contextual-footer';
+@import 'v1_pattern_pie_chart';
 
 @include ubuntu-p-site-search;
 @include ubuntu-p-navigation;
@@ -46,6 +48,8 @@
 @include ubuntu-p-pull-quote;
 @include ubuntu-u-full-width;
 @include ubuntu-p-matrix;
+@include ubuntu-p-contextual-footer;
+@include ubuntu-p-pie-chart;
 @include ubuntu-p-sun-animation;
 
 // import section specific patterns and overrides
@@ -98,6 +102,12 @@
   }
 }
 
+// global menu has too much top spacing
+#nav-global ul ul {
+  @media (min-width: $breakpoint-medium ) {
+    top: 15px;
+  }
+}
 
 /// XXX Base font size is set to 16px across all viewports
 /// This is a change to be made upstream in vanilla-framework
@@ -298,14 +308,6 @@ pre {
     max-height: 172px;
     max-width: 142px;
   }
-}
-
-// XXX orange quotes in pull quotes
-.p-pull-quote > p:first-of-type::before,
-.p-pull-quote--accent > p:first-of-type::before,
-.p-pull-quote > p:last-of-type::after,
-.p-pull-quote--accent > p:last-of-type::after {
-  color: $color-brand;
 }
 
 // XXX sup is too high in Vanilla

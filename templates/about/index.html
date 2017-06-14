@@ -1,20 +1,19 @@
-{% extends "about/base_about-v1.html" %}
+{% extends "about/base_about.html" %}
 
 {% block title %}About the Ubuntu project{% endblock %}
 
-
 {% block content %}
 
-<div class="p-strip is-deep is-bordered">
+<section class="p-strip is-deep is-bordered">
   <div class="row">
     <div class="col-8">
       <h1>About the Ubuntu project</h1>
       <p>We believe in fast, effective computing for everyone. Created by the open-source community and Canonical, Ubuntu is free to use and share, at home and in business.</p>
     </div>
   </div>
-</div>
+</section>
 
-<div class="p-strip is-bordered">
+<section class="p-strip is-bordered">
   <div class="row p-divider">
     <div class="col-4 p-divider__block">
       <h2 class="p-heading--three">The Ubuntu Promise</h2>
@@ -34,9 +33,9 @@
       <p>Companies can choose to receive expert training, support or consultancy for a fee that goes towards the continued development of Ubuntu.</p>
     </div>
   </div>
-</div>
+</section>
 
-<div class="p-strip">
+<section class="p-strip">
   <div class="row">
     <div class="col-7">
       <h2 class="p-heading--three">Why use Ubuntu?</h2>
@@ -50,13 +49,13 @@
     </div>
     <div class="col-4 prefix-1">
       <h3>Take a look:</h3>
-        <ul class="p-list--divided">
-          <li class="p-list__item"><a href="/desktop">Ubuntu</a></li>
-          <li class="p-list__item"><a href="/server">Ubuntu Server</a></li>
-          <li class="p-list__item"><a href="https://community.ubuntu.com/contribute/">Get involved</a></li>
-        </ul>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a href="/desktop">Ubuntu</a></li>
+        <li class="p-list__item"><a href="/server">Ubuntu Server</a></li>
+        <li class="p-list__item"><a href="https://community.ubuntu.com/contribute/">Get involved</a></li>
+      </ul>
     </div>
   </div>
-</div>
+</section>
 
 {% endblock content %}
