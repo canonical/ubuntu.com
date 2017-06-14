@@ -4,7 +4,6 @@
 
 {% block meta_description %}Fast, easy and quick to deploy, switching to Ubuntu has never been easier{% endblock %}
 
-
 {% block content %}
 
   {% include "shared-v1/_cloud-contact-us-form.html" with h1="Contact Canonical" intro_text="Just fill in the form below and a member of our team will be in touch within two working days." formid="1257" lpId="2154" returnURL="https://www.ubuntu.com/about/contact-us/form/thank-you" %}
@@ -12,15 +11,15 @@
 {% endblock content %}
 
 {% block footer_extra %}
-<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
-<script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
-<script>
-  $("#mktoForm").validate({
-    errorElement: "span",
-    errorClass: "mktFormMsg mktError",
-    onkeyup: false,
-    onclick: false,
-    onblur: false
-  });
-</script>
+  <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
+  <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
+  <script>
+    $("#mktoForm").validate({
+      errorElement: "span",
+      errorClass: "mktFormMsg mktError",
+      onkeyup: false,
+      onclick: false,
+      onblur: false
+    });
+  </script>
 {% endblock footer_extra %}
