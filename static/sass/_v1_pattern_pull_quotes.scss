@@ -1,16 +1,15 @@
 @mixin ubuntu-p-pull-quote {
-
   .p-pull-quote--accent {
     @extend .p-pull-quote;
+
     > p {
       color: $color-x-light;
     }
 
-    > p:last-of-type::after,
-    > p:last-of-type::after,
     > p:first-of-type::before,
-    > p:first-of-type::before
-    {
+    > p:first-of-type::before,
+    > p:last-of-type::after,
+    > p:last-of-type::after {
       color: $color-brand;
     }
   }
