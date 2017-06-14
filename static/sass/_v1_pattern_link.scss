@@ -26,4 +26,15 @@
       }
     }
   }
+  .p-link--grey {
+    &:link,
+    &:visited {
+      color: $color-mid-dark;
+      text-decoration: none;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
