@@ -1,4 +1,4 @@
-{% extends "core/base_core-v1.html" %}
+{% extends "core/base_core.html" %}
 
 {% block title %}Ubuntu Core{% endblock %}
 {% block meta_description %}Introducing Ubuntu Core, the smallest Ubuntu ever, the perfect host operating system for IoT devices and large-scale cloud container deployments{% endblock meta_description %}
@@ -196,6 +196,6 @@
   </div>
 </div>
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_core_learn_more" second_item="_core_contribute" third_item="_iot_further_reading" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_core_learn_more" second_item="_core_contribute" third_item="_iot_further_reading" %}
 
 {% endblock content %}

@@ -1,29 +1,44 @@
-<div class="row no-border">
-    <div class="strip-inner-wrapper">
-        {% if level_2 != 'cloud' %}<div class="twelve-col">
-            <h2>Get the version you need</h2>
-        </div>{% endif %}
-        <div class="twelve-col">
-            <div class="equal-height--vertical-divider">
-                <div class="equal-height--vertical-divider__item four-col">
-                    {% if level_2 == 'cloud' %}
-                        <h3 class="header--articles">Further OpenStack reading</h3>
-                        {% include "templates/_further_reading_links.html" with feed="https://insights.ubuntu.com/tag/openstack/feed" limit=3 %}
-                    {% else %}
-                        {% include "download/shared/_buy_a_usb.html" %}
-                    {% endif %}
-                </div>
-                <div class="equal-height--vertical-divider__item four-col">
-                    <h3 class="header--openstack">Ubuntu OpenStack tools</h3>
-                    <p>Use our award winning tools, proven in production to deploy, manage and scale your OpenStack environment:</p>
-                    <p><a class="external" href="https://help.ubuntu.com/lts/clouddocs/en/Intro.html">Learn more</a></p>
-                </div><!-- /.four-col -->
-                <div class="equal-height--vertical-divider__item four-col last-col">
-                    <h3 class="header--download">Run Ubuntu in the public cloud</h3>
-                    <p>Optimised Ubuntu images are already available on most major clouds. They are also available for download.</p>
-                    <p><a href="https://cloud-images.ubuntu.com">Download standard Ubuntu Server cloud images&nbsp;&rsaquo;</a></p>
-                </div>
-            </div>
-        </div>
+<div class="p-strip">
+  {% if level_2 != 'cloud' %}
+  <div class="row">
+    <div class="col-12">
+      <h2>Get the version you need</h2>
     </div>
+  </div>
+  {% endif %}
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      {% if level_2 == 'cloud' %}
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header">
+          <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}8a199d55-picto-articles-warmgrey.svg" />
+          <h3 class="p-heading-icon__title" style="font-size: 1.5rem;">Further OpenStack reading</h3>
+        </div>
+          {% include "templates/_further_reading_links.html" with feed="https://insights.ubuntu.com/tag/openstack/feed" limit=3 %}
+          {% else %}
+          {% include "download/shared/_buy_a_usb.html" %}
+          {% endif %}
+      </div>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header">
+          <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}a7916513-picto-openstack.svg" />
+          <h3 class="p-heading-icon__title" style="font-size: 1.5rem;">Ubuntu OpenStack tools</h3>
+        </div>
+          <p>Use our award winning tools, proven in production to deploy, manage and scale your OpenStack environment:</p>
+          <p><a class="p-link--external" href="https://help.ubuntu.com/lts/clouddocs/en/Intro.html">Learn more</a></p>
+        </div>
+      </div>
+    <div class="col-4 p-divider__block last-col">
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header">
+          <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}be3876ec-picto-download-warmgrey.svg" />
+          <h3 class="p-heading-icon__title"  style="font-size: 1.5rem;">Run Ubuntu in the public cloud</h3>
+        </div>
+          <p>Optimised Ubuntu images are already available on most major clouds. They are also available for download.</p>
+          <p><a href="https://cloud-images.ubuntu.com">Download standard Ubuntu Server cloud images&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+  </div>
 </div>

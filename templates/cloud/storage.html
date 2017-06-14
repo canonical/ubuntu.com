@@ -1,4 +1,4 @@
-{% extends "cloud/base_cloud-v1.html" %}
+{% extends "cloud/base_cloud.html" %}
 {% block title %}Ubuntu Advantage Storage | Cloud{% endblock %}
 {% block meta_description %}Ubuntu Advantage Storage from Canonical embeds the proven software-defined storage (SDS) technologies of Ceph, NexentaEdge, Swift and SwiftStack, into a 24x7-supported software solution with a unique metered pricing model.{% endblock meta_description %}
 
@@ -129,6 +129,6 @@
             </div>
           </section>
 
-          {% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_newsletter" third_item="_cloud_further_reading" %}
+          {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_newsletter" third_item="_cloud_further_reading" %}
 
           {% endblock content %}
