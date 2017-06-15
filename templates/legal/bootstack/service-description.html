@@ -2,18 +2,19 @@
 
 {% block title %}BootStack services description{% endblock %}
 
-
 {% block content %}
+
 <div class="p-strip">
   <div class="row">
-    <div class="col-8">
+    <div class="col-12">
       <h1>BootStack Services Description</h1>
       <p>Valid since 1 July 2015</p>
     </div>
   </div>
 </div>
 
-<div class="row">
+<div class="p-strip">
+  <div class="row">
   <div class="col-8">
     <h2 id="general">1. General</h2>
     <ol class="p-list">
@@ -28,8 +29,7 @@
     </ol>
   </div>
 </div>
-
-<div class="row">
+  <div class="row">
   <div class="col-8">
     <h2 id="services">2. Services</h2>
     <ol class="p-list">
@@ -39,8 +39,7 @@
           <li class="p-list__item">
             <p>Canonical will build and initialize a high availability or non-high availability (as stated in the customer&rsquo;s order) production grade cloud for customer (the &ldquo;Cloud&rdquo;). The Cloud will include:</p>
             <ul>
-              <li class="p-list__item">Industry standard server and storage software (initially for the number of nodes set out in the customer&rsquo;s order) with a configuration as defined by the customer and Canonical). For the avoidance of doubt, the customer may increase
-                the number of nodes throughout the term of the customer&rsquo;s agreement with Canonical by opening a support ticket with Canonical.</li>
+              <li class="p-list__item">Industry standard server and storage software (initially for the number of nodes set out in the customer&rsquo;s order) with a configuration as defined by the customer and Canonical). For the avoidance of doubt, the customer may increase the number of nodes throughout the term of the customer&rsquo;s agreement with Canonical by opening a support ticket with Canonical.</li>
               <li class="p-list__item">The OpenStack information dashboard known as &ldquo;Horizon&rdquo;</li>
               <li class="p-list__item">Capacity threshold and alerts setting</li>
               <li class="p-list__item">the ability to support the following operating systems as guests:
@@ -51,35 +50,34 @@
               <li class="p-list__item">Any Linux guest operating system that does not require host operating system modification and are specifically OpenStack compatible</li>
               <li class="p-list__item">Windows Server 2008, 2008 R2, 2012</li>
             </ul>
-
             <p>The following software:</p>
             <div class="table__wrapper">
               <table>
-              <thead>
-                <tr>
-                  <th>Software</th>
-                  <th>Versions / Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Ubuntu Server, KVM, and OpenStack</td>
-                  <td>Latest LTS version of Ubuntu and a choice of the latest LTS or the latest version of OpenStack. Please note that choosing the latest version of OpenStack might require more regular version upgrades</td>
-                </tr>
-                <tr>
-                  <td>Juju service orchestrator</td>
-                  <td>Native versions supported on Ubuntu releases</td>
-                </tr>
-                <tr>
-                  <td>MAAS bare metal provisioning utility</td>
-                  <td>Native versions supported on Ubuntu releases</td>
-                </tr>
-                <tr>
-                  <td>Landscape management and monitoring</td>
-                  <td>14.04 or greater<br />Note: restricted to read-only/view access</td>
-                </tr>
-              </tbody>
-            </table>
+                <thead>
+                  <tr>
+                    <th>Software</th>
+                    <th>Versions / Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Ubuntu Server, KVM, and OpenStack</td>
+                    <td>Latest LTS version of Ubuntu and a choice of the latest LTS or the latest version of OpenStack. Please note that choosing the latest version of OpenStack might require more regular version upgrades</td>
+                  </tr>
+                  <tr>
+                    <td>Juju service orchestrator</td>
+                    <td>Native versions supported on Ubuntu releases</td>
+                  </tr>
+                  <tr>
+                    <td>MAAS bare metal provisioning utility</td>
+                    <td>Native versions supported on Ubuntu releases</td>
+                  </tr>
+                  <tr>
+                    <td>Landscape management and monitoring</td>
+                    <td>14.04 or greater<br />Note: restricted to read-only/view access</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </li>
         </ol>
@@ -98,7 +96,6 @@
             </ul>
             <p>Canonical will not have access to any data stored on the Cloud, but will have the ability to manage the physical nodes and virtual instances on which it resides.</p>
           </li>
-
           <li class="p-list__item">
             <h4>2.2.2 Patching</h4>
             <p>Canonical will conduct the following patching and updating of the Cloud software, at Canonical&rsquo;s discretion:</p>
@@ -167,8 +164,7 @@
           </li>
           <li class="p-list__item">
             <h4>2.5.3 Customer&rsquo;s contacts</h4>
-            <p>Canonical service personnel will interface with the customer&rsquo;s technical contacts with respect to the technical support elements of the Services. Customer may appoint up to 2 contacts. Customer may change the specific technical contacts
-              at any time by written request.</p>
+            <p>Canonical service personnel will interface with the customer&rsquo;s technical contacts with respect to the technical support elements of the Services. Customer may appoint up to 2 contacts. Customer may change the specific technical contacts at any time by written request.</p>
           </li>
         </ol>
       </li>
@@ -177,8 +173,7 @@
         <ol class="p-list">
           <li class="p-list__item">
             <h4>2.6.1 Overview</h4>
-            <p>Canonical will provide support during the term of customer&rsquo;s agreement with Canonical during the hours specified in the hours table below and meeting the responsibilities specified in the responsibilities table below, subject to customer
-              meeting the customer responsibilities specified in such table. Canonical&rsquo;s provision of support with respect to each particular OpenStack release will not exceed the published support life of that release</p>
+            <p>Canonical will provide support during the term of customer&rsquo;s agreement with Canonical during the hours specified in the hours table below and meeting the responsibilities specified in the responsibilities table below, subject to customer meeting the customer responsibilities specified in such table. Canonical&rsquo;s provision of support with respect to each particular OpenStack release will not exceed the published support life of that release</p>
           </li>
           <li class="p-list__item">
             <h4>2.6.2 Support process</h4>
@@ -197,133 +192,118 @@
           </li>
           <li class="p-list__item">
             <h4>2.6.2 Fixes, Patches, and Workarounds</h4>
-            <p>Support includes the delivery of applicable fixes, patches on Canonical certified hardware and workarounds for the Cloud and its components. Hardware that Canonical has certified as compatible with Ubuntu will be covered under this paragraph
-              for releases of Ubuntu made after certification. In the event customer plans to support or deploy Ubuntu on hardware that is not certified, customer will notify Canonical.</p>
+            <p>Support includes the delivery of applicable fixes, patches on Canonical certified hardware and workarounds for the Cloud and its components. Hardware that Canonical has certified as compatible with Ubuntu will be covered under this paragraph for releases of Ubuntu made after certification. In the event customer plans to support or deploy Ubuntu on hardware that is not certified, customer will notify Canonical.</p>
             <p><em>Support Hours: 24x7</em></p>
-
             <div class="table__wrapper">
               <table>
-              <caption>Response severity levels table</caption>
-              <thead>
-                <tr>
-                  <th>Severity Level</th>
-                  <th>Effort Period</th>
-                  <th>Response method</th>
-                  <th>Target Response Time</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Sev 1</td>
-                  <td>Continuous effort</td>
-                  <td>Phone</td>
-                  <td>1 hour</td>
-                  <td>
-                    4 hours: support manager<br /> 8 hours: Director of Canonical Technical Services
-                  </td>
-                </tr>
-                <tr>
-                  <td>Sev 2</td>
-                  <td>Continuous effort</td>
-                  <td>Phone</td>
-                  <td>4 hours</td>
-                  <td>
-                    6 hours: support manager<br /> 8 hours: Director of Canonical Technical Services
-                  </td>
-                </tr>
-                <tr>
-                  <td>Sev 3</td>
-                  <td>Continuous effort</td>
-                  <td>Online or phone</td>
-                  <td>8 hours</td>
-                  <td>As needed</td>
-                </tr>
-                <tr>
-                  <td>Sev 4</td>
-                  <td>Continuous effort</td>
-                  <td>Online or phone</td>
-                  <td>1 business day</td>
-                  <td>As needed</td>
-                </tr>
-              </tbody>
-            </table>
+                <caption>Response severity levels table</caption>
+                <thead>
+                  <tr>
+                    <th>Severity Level</th>
+                    <th>Effort Period</th>
+                    <th>Response method</th>
+                    <th>Target Response Time</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Sev 1</td>
+                    <td>Continuous effort</td>
+                    <td>Phone</td>
+                    <td>1 hour</td>
+                    <td>
+                      4 hours: support manager<br /> 8 hours: Director of Canonical Technical Services
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Sev 2</td>
+                    <td>Continuous effort</td>
+                    <td>Phone</td>
+                    <td>4 hours</td>
+                    <td>
+                      6 hours: support manager<br /> 8 hours: Director of Canonical Technical Services
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Sev 3</td>
+                    <td>Continuous effort</td>
+                    <td>Online or phone</td>
+                    <td>8 hours</td>
+                    <td>As needed</td>
+                  </tr>
+                  <tr>
+                    <td>Sev 4</td>
+                    <td>Continuous effort</td>
+                    <td>Online or phone</td>
+                    <td>1 business day</td>
+                    <td>As needed</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-
             <div class="table__wrapper">
               <table>
-              <caption>Response severity definitions table</caption>
-              <thead>
-                <tr>
-                  <th>Severity</th>
-                  <th>Definition</th>
-                  <th>Responsibilities</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Level 1</td>
-                  <td>Core functionality not available.</td>
-                  <td>
-                    Continuous effort will be provided by the appropriate support engineer(s) and/or development engineer(s) to produce a work-around.<br /> As soon as core functionality is available, the severity level will be lowered to level 3.
-                  </td>
-                </tr>
-                <tr>
-                  <td>Level 2</td>
-                  <td>Core functionality severely degraded.</td>
-                  <td>
-                    Canonical will use reasonable efforts during coverage hours to produce a work-around.<br /> The support engineer will aim to produce a work-around that is sufficient to adjust the priority level to level 3.
-                  </td>
-                </tr>
-                <tr>
-                  <td>Level 3</td>
-                  <td>Standard support request</td>
-                  <td>
-                    Canonical will use reasonable efforts during the coverage hours to provide the customer with a work-around as soon as possible balanced against higher severity level cases.<br /> After providing a work-around, Canonical&rsquo;s support
-                    engineers will work on developing a permanent resolution.
-                  </td>
-                </tr>
-                <tr>
-                  <td>Level 4</td>
-                  <td>Non-urgent issues</td>
-                  <td>This severity level covers non-urgent problems including cosmetic issues, feature requests or information requests. For cosmetic issues or feature requests, a support engineer will review the issue to determine whether it is a product
-                    enhancement for a future release. Information requests will be reviewed and responded to with a reasonable level of effort during coverage hours.</td>
-                </tr>
-              </tbody>
-            </table>
+                <caption>Response severity definitions table</caption>
+                <thead>
+                  <tr>
+                    <th>Severity</th>
+                    <th>Definition</th>
+                    <th>Responsibilities</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Level 1</td>
+                    <td>Core functionality not available.</td>
+                    <td>Continuous effort will be provided by the appropriate support engineer(s) and/or development engineer(s) to produce a work-around.<br /> As soon as core functionality is available, the severity level will be lowered to level 3.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Level 2</td>
+                    <td>Core functionality severely degraded.</td>
+                    <td>Canonical will use reasonable efforts during coverage hours to produce a work-around.<br /> The support engineer will aim to produce a work-around that is sufficient to adjust the priority level to level 3.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Level 3</td>
+                    <td>Standard support request</td>
+                    <td>Canonical will use reasonable efforts during the coverage hours to provide the customer with a work-around as soon as possible balanced against higher severity level cases.<br /> After providing a work-around, Canonical&rsquo;s support engineers will work on developing a permanent resolution.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Level 4</td>
+                    <td>Non-urgent issues</td>
+                    <td>This severity level covers non-urgent problems including cosmetic issues, feature requests or information requests. For cosmetic issues or feature requests, a support engineer will review the issue to determine whether it is a product enhancement for a future release. Information requests will be reviewed and responded to with a reasonable level of effort during coverage hours.</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-
             <div class="table__wrapper">
               <table>
-              <caption>BootStack support responsibilities</caption>
-              <thead>
-                <tr>
-                  <th>Definition</th>
-                  <th>&nbsp;</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Canonical&rsquo;s Responsibilities</td>
-                  <td>Upon receipt of the case, Canonical&rsquo;s engineering support will use the test case provided to verify the defect on the Validated Systems accessible to them. Canonical will inform customer when the issue has been verified and will
-                    confirm that the nature and scope of the problem are appropriate for the requested severity level. As soon as verification is concluded, Canonical will begin efforts to develop and distribute a patch for the defect. If a patch is not
-                    possible Canonical&rsquo;s engineering will recommend a workaround, with a possible solution developed for the next version of Ubuntu.</td>
-                </tr>
-                <tr>
-                  <td>Customer&rsquo;s Responsibilities</td>
-                  <td>
-                    Customer&rsquo;s engineering staff are responsible for specifying how the issue arises and in what sub-system it is taking place. Customer&rsquo;s engineers will provide a repeatable test case that Canonical&rsquo;s engineers are able to recreate on Ubuntu
-                    certified systems accessible to them. Customer&rsquo;s engineers will be expected to check Canonical&rsquo;s on-line bug database, Launchpad, to ensure that the issue is not already known and being resolved.<br
-                    /> Customer&rsquo;s engineering staff will work with Canonical&rsquo;s engineers to provide any debugging or further testing required. Where requested customer&rsquo;s engineering staff will provide any technical information requested
-                    necessary to resolve the problem.
-                  </td>
-                </tr>
-                <tr>
-                  <td>Output</td>
-                  <td>Canonical will provide a patch, or workaround or update package for Customer to use in production.</td>
-                </tr>
-              </tbody>
-            </table>
+                <caption>BootStack support responsibilities</caption>
+                <thead>
+                  <tr>
+                    <th>Definition</th>
+                    <th>&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Canonical&rsquo;s Responsibilities</td>
+                    <td>Upon receipt of the case, Canonical&rsquo;s engineering support will use the test case provided to verify the defect on the Validated Systems accessible to them. Canonical will inform customer when the issue has been verified and will confirm that the nature and scope of the problem are appropriate for the requested severity level. As soon as verification is concluded, Canonical will begin efforts to develop and distribute a patch for the defect. If a patch is not possible Canonical&rsquo;s engineering will recommend a workaround, with a possible solution developed for the next version of Ubuntu.</td>
+                  </tr>
+                  <tr>
+                    <td>Customer&rsquo;s Responsibilities</td>
+                    <td>Customer&rsquo;s engineering staff are responsible for specifying how the issue arises and in what sub-system it is taking place. Customer&rsquo;s engineers will provide a repeatable test case that Canonical&rsquo;s engineers are able to recreate on Ubuntu certified systems accessible to them. Customer&rsquo;s engineers will be expected to check Canonical&rsquo;s on-line bug database, Launchpad, to ensure that the issue is not already known and being resolved.<br /> Customer&rsquo;s engineering staff will work with Canonical&rsquo;s engineers to provide any debugging or further testing required. Where requested customer&rsquo;s engineering staff will provide any technical information requested necessary to resolve the problem.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Output</td>
+                    <td>Canonical will provide a patch, or workaround or update package for Customer to use in production.</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </li>
           <li class="p-list__item">
@@ -331,30 +311,30 @@
             <p>In the event that customer receives unsatisfactory service or wishes to escalate a case for urgent action they can escalate as follows.</p>
             <div class="table__wrapper">
               <table>
-              <caption>Escalation contacts table</caption>
-              <thead>
-                <tr>
-                  <th>Escalation Level</th>
-                  <th>Contact</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Level 3</td>
-                  <td>Canonical Technical Services Team<br /> +1 514 940 8895</td>
-                </tr>
-                <tr>
-                  <td>Level 2</td>
-                  <td>Canonical Enterprise Support Manager<br /> support-manager@canonical.com
-                    <br /> +1 514 940 8910</td>
-                </tr>
-                <tr>
-                  <td>Level 1</td>
-                  <td>Director, Operations Technical Services<br /> operations-director@canonical.com
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                <caption>Escalation contacts table</caption>
+                <thead>
+                  <tr>
+                    <th>Escalation Level</th>
+                    <th>Contact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Level 3</td>
+                    <td>Canonical Technical Services Team<br /> +1 514 940 8895</td>
+                  </tr>
+                  <tr>
+                    <td>Level 2</td>
+                    <td>Canonical Enterprise Support Manager<br /> support-manager@canonical.com
+                      <br /> +1 514 940 8910</td>
+                  </tr>
+                  <tr>
+                    <td>Level 1</td>
+                    <td>Director, Operations Technical Services<br /> operations-director@canonical.com
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </li>
         </ol>
@@ -379,20 +359,16 @@
     </ol>
   </div>
 </div>
-
-<div class="row">
+  <div class="row">
   <div class="col-8">
     <h2 id="expiry-termination">3. On expiry or termination of customer&rsquo;s agreement with Canonical</h2>
     <ol class="p-list">
       <li class="p-list__item">
-        <p>At the end of customer&rsquo;s agreement with Canonical, customer has the choice of discontinuing the Services and managing the Cloud itself. In such case, subject to agreement of appropriate licence terms, Canonical will hand over the administrative
-          control of Landscape and the Nagios monitoring tool to customer and customer can continue to monitor it.</p>
+        <p>At the end of customer&rsquo;s agreement with Canonical, customer has the choice of discontinuing the Services and managing the Cloud itself. In such case, subject to agreement of appropriate licence terms, Canonical will hand over the administrative control of Landscape and the Nagios monitoring tool to customer and customer can continue to monitor it.</p>
         <p>Should customer choose to discontinue the Services, customer will choose one of the following options:</p>
         <ul>
-          <li class="p-list__item">Canonical will transfer the ownership of the hosts to customer. In this case, customer assumes the responsibility of paying the Cloud service
-            provider (if any) for any use of such services after the transfer. Unless otherwise licensed, the licence for the LDS Product terminates at such time.</li>
-          <li class="p-list__item">If the servers are within the premise of customer&rsquo;s data center, Canonical will hand over all control of the hosts and management software to customer. Unless otherwise licensed, the licence for the LDS Product shall terminate at such
-            time.
+          <li class="p-list__item">Canonical will transfer the ownership of the hosts to customer. In this case, customer assumes the responsibility of paying the Cloud service provider (if any) for any use of such services after the transfer. Unless otherwise licensed, the licence for the LDS Product terminates at such time.</li>
+          <li class="p-list__item">If the servers are within the premise of customer&rsquo;s data center, Canonical will hand over all control of the hosts and management software to customer. Unless otherwise licensed, the licence for the LDS Product shall terminate at such time.
           </li>
           <li class="p-list__item">Optional training is offered to customer at the recommended list price for such service prior to the transfer of the Cloud or at any mutually agreeable time.</li>
         </ul>
@@ -401,4 +377,6 @@
     </ol>
   </div>
 </div>
+</div>
+
 {% endblock content %}
