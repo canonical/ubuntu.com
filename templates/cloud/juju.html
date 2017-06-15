@@ -1,4 +1,4 @@
-{% extends "cloud/base_cloud-v1.html" %}
+{% extends "cloud/base_cloud.html" %}
 
 {% block title %}Juju | Cloud{% endblock %}
 
@@ -218,7 +218,7 @@
   </div>
 </section>
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_cloud_juju_charm_store" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_juju_charm_store" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
 
 {% endblock content %}
 

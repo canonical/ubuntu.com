@@ -1,4 +1,4 @@
-{% extends "support/base_support-v1.html" %}
+{% extends "support/base_support.html" %}
 
 {% block title %}Ubuntu 12.04 LTS Extended Security Maintenance{% endblock %}
 
@@ -19,7 +19,7 @@
   </div>
 </div>
 
-{% include "shared-v1/_call-sales.html" %}
+{% include "shared/_call-sales.html" %}
 
 <div class="p-strip is-deep is-bordered">
   <div class="row">
@@ -100,7 +100,7 @@
 </div>
 
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

@@ -1,4 +1,4 @@
-{% extends "server/base_server-v1.html" %}
+{% extends "server/base_server.html" %}
 {% block title %}Canonical Livepatch Service | Server{% endblock %}
 {% block meta_description %}The Canonical Livepatch Service for Ubuntu 16.04 servers reduces planned or unplanned downtime whilst keeping on top of compliance and security.{% endblock %}
 
@@ -138,6 +138,6 @@
   </div>
 </div>
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_server_download" second_item="_server_contact_us" third_item="_cloud_further_reading" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_server_download" second_item="_server_contact_us" third_item="_cloud_further_reading" %}
 
 {% endblock content %}

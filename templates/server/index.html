@@ -1,4 +1,4 @@
-{% extends "server/base_server-v1.html" %}
+{% extends "server/base_server.html" %}
 {% block title %}Ubuntu Server - for scale out workloads{% endblock %}
 {% block meta_description %}Secure, fast and economically scalable, Ubuntu helps you make the most of your infrastructure. Whether you want to deploy a cloud or a web farm, Ubuntu Server supports the most popular hardware and software.{% endblock %}
 {% block extra_body_class %}server-home{% endblock %}
@@ -153,7 +153,7 @@
   </div>
 </div>
 
-{% include "shared-v1/_release_schedule.html" %}
+{% include "shared/_release_schedule.html" %}
 
 <div class="p-strip is-deep is-bordered">
   <div class="row p-divider">
@@ -396,6 +396,6 @@
   </div>
   </div>
 
-  {% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_server_download" second_item="_server_contact_us" third_item="_cloud_further_reading" %}
+  {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_server_download" second_item="_server_contact_us" third_item="_cloud_further_reading" %}
 
   {% endblock content %}

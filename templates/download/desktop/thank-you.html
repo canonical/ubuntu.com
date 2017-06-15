@@ -1,4 +1,4 @@
-{% extends "download/_base_download-v1.html" %}
+{% extends "download/_base_download.html" %}
 {% load versioned_static  %}
 
 {% block title %}
@@ -74,7 +74,7 @@ Thank you for your contribution
   </div>
 </div>
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html" with first_item="_download_verify_your_download" second_item="_download_desktop_guide" third_item="_download_helping_hands" %}
+{% include "shared/contextual_footers/_contextual_footer.html" with first_item="_download_verify_your_download" second_item="_download_desktop_guide" third_item="_download_helping_hands" %}
 
 
 {% endblock content %}

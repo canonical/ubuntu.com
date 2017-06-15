@@ -1,4 +1,4 @@
-{% extends "support/base_support-v1.html" %}
+{% extends "support/base_support.html" %}
 
 {% block title %}Community support{% endblock %}
 
@@ -45,7 +45,7 @@
   </div>
 </div>
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

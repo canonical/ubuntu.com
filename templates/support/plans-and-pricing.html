@@ -1,4 +1,4 @@
-{% extends "support/base_support-v1.html" %}
+{% extends "support/base_support.html" %}
 
 {% block title %}Plans and pricing | Support{% endblock %}
 {% block extra_body_class %}support-plans-and-pricing has-background{% endblock %}
@@ -18,7 +18,7 @@
   </div>
 </section>
 
-{% include "shared-v1/_systems-management-tool.html" %}
+{% include "shared/_systems-management-tool.html" %}
 
 <section class="p-strip--light is-deep is-bordered" id="ua">
   <div class="row">
@@ -185,14 +185,14 @@
   </div>
   <div class="row">
     <div class="col-10">
-      {% include "shared-v1/_ubuntu_advantage_server.html" %}
+      {% include "shared/_ubuntu_advantage_server.html" %}
     </div>
   </div>
 </section>
 <section class="p-strip--x-light is-deep is-bordered">
   <div class="row">
     <div class="col-10">
-      {% include "shared-v1/_ubuntu_advantage_cloud_virtual_guests.html" %}
+      {% include "shared/_ubuntu_advantage_cloud_virtual_guests.html" %}
     </div>
   </div>
 </section>
@@ -324,7 +324,7 @@
   </div>
 </section>
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

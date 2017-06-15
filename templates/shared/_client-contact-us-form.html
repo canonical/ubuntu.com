@@ -1,73 +1,83 @@
-        <div class="eight-col">
-            <h1>{{h1}}</h1>
-            <p>{{intro_text}}</p>
-        </div>
-        <div class="eight-col">
-            <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm">
-                <fieldset>
-                    <h3>About you</h3>
-                    <ul class="no-bullets">
-                        <li class="mktFormReq mktField">
-                            <label for="FirstName" class="mktoLabel">First name:</label>
-                            <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" />
-                        </li>
-                        <li class="mktFormReq mktField">
-                            <label for="LastName" class="mktoLabel">Last name:</label>
-                            <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" />
-                        </li>
-                        <li class="mktFormReq mktField">
-                            <label for="Email" class="mktoLabel">Email address:</label>
-                            <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
-                        </li>
-                        <li class="mktFormReq mktField">
-                            <label for="Phone" class="mktoLabel">Phone number:</label>
-                            <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" />
-                        </li>
-                        {% include "shared/forms/_country.html" %}
-                        {% include "shared/forms/_state.html" %}
-                    </ul>
-                </fieldset>
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-8">
+      <h1>{{h1}}</h1>
+      <p>{{intro_text}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm">
+        <fieldset>
+          <h3>About you</h3>
+          <ul class="p-list">
+            <li class="mktFormReq mktField p-list__item">
+              <label for="FirstName" class="mktoLabel">First name:</label>
+              <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" />
+            </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="LastName" class="mktoLabel">Last name:</label>
+              <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" />
+            </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Email" class="mktoLabel">Email address:</label>
+              <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
+            </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Phone" class="mktoLabel">Phone number:</label>
+              <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" />
+            </li>
+            {% include "shared/forms/_country.html" %} {% include "shared/forms/_state.html" %}
+          </ul>
+        </fieldset>
 
-                <fieldset>
-                    <h3>About your company</h3>
-                    <ul class="no-bullets">
-                        <li class="mktFormReq mktField">
-                            <label for="Company" class="mktoLabel">Company:</label>
-                            <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired" />
-                        </li>
-                        <li class="mktFormReq mktField">
-                            <label for="Title" class="mktoLabel">Job title:</label>
-                            <input required id="Title" name="Title" maxlength="255" type="text" class="mktoField mktoRequired" />
-                        </li>
-                    </ul>
-                </fieldset>
+        <fieldset>
+          <h3>About your company</h3>
+          <ul class="p-list">
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Company" class="mktoLabel">Company:</label>
+              <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired" />
+            </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Title" class="mktoLabel">Job title:</label>
+              <input required id="Title" name="Title" maxlength="255" type="text" class="mktoField mktoRequired" />
+            </li>
 
-                <fieldset>
-                    <h3>Your comments</h3>
-                    <ul class="no-bullets">
-                        <li class="mktFormReq mktField">
-                            <label for="Comments_from_lead__c" class="mktoLabel">What would you like to talk to us about?</label>
-                            <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" class="mktoField mktoRequired" maxlength="2000"></textarea>
-                        </li>
-                        <li class="mktField">
-                            <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="NewsletterOpt-In" type="checkbox" />
-                            <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I would like to receive occasional news from Canonical by email.</label>
-                        </li>
-                        <li>All information provided will be handled in accordance with the Canonical <a href="https://www.ubuntu.com/legal" target="_blank">privacy policy</a>.</li>
-                        <li class="mktField">
-                            <button type="submit" class="mktoButton"  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'iot contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button></span>
-                        </li>
-                    </ul>
-                    <input type="hidden" name="formid" class="mktoField" value="{{formid}}" />
-                    <input type="hidden" name="lpId" class="mktoField" value="{{lpId}}" />
-                    <input type="hidden" name="subId" class="mktoField" value="30" />
-                    <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335" />
-                    <input type="hidden" name="lpurl" class="mktoField" value="https://pages.ubuntu.com/things-contact-us.html?cr={creative}&amp;kw={keyword}" />
-                    <input type="hidden" name="cr" class="mktoField" value="" />
-                    <input type="hidden" name="kw" class="mktoField" value="" />
-                    <input type="hidden" name="q" class="mktoField" value="" />
-                    <input type="hidden" name="returnURL" value="{{returnURL}}" />
-                    <input type="hidden" name="retURL" value="{{returnURL}}" />
-                </fieldset>
-            </form>
-        </div>
+          </ul>
+        </fieldset>
+
+        <fieldset>
+          <h3>Your comments</h3>
+          <ul class="p-list">
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Comments_from_lead__c" class="mktoLabel">What would you like to talk to us about?</label>
+              <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" class="mktoField mktoRequired" maxlength="2000"></textarea>
+            </li>
+            <li class="mktField p-list__item">
+              <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="NewsletterOpt-In" type="checkbox" />
+              <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I would like to receive occasional news from Canonical by email.</label>
+            </li>
+            <li class="p-list__item">All information provided will be handled in accordance with the Canonical <a href="https://www.ubuntu.com/legal" target="_blank">privacy policy</a>.</li>
+            <li class="mktField p-list__item">
+              <button type="submit" class="mktoButton p-button--brand" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'iot contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button>
+            </li>
+          </ul>
+          <input type="hidden" name="formid" class="mktoField" value="{{formid}}" />
+          <input type="hidden" name="lpId" class="mktoField" value="{{lpId}}" />
+          <input type="hidden" name="subId" class="mktoField" value="30" />
+          <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335" />
+          <input type="hidden" name="lpurl" class="mktoField" value="https://pages.ubuntu.com/things-contact-us.html?cr={creative}&amp;kw={keyword}" />
+          <input type="hidden" name="cr" class="mktoField" value="" />
+          <input type="hidden" name="kw" class="mktoField" value="" />
+          <input type="hidden" name="q" class="mktoField" value="" />
+          <input type="hidden" name="returnURL" value="{{returnURL}}" />
+          <input type="hidden" name="retURL" value="{{returnURL}}" />
+        </fieldset>
+      </form>
+    </div>
+    <div class="col-4">
+      {% if side1 %}{% include side1 %}{% endif %}
+      {% if side2 %}{% include side2 %}{% endif %}
+    </div>
+  </div>
+</section>
