@@ -284,24 +284,8 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered">
-  <div class="row">
-    <h2>Latest cloud news from Insights</h2>
-    <div class="u-equal-height p-divider">
-      <div id="insights-cloud-feed" class="col-6 p-divider__block">
-        <ul class="p-list">
-          {% get_rss_feed "https://insights.ubuntu.com/topic/Cloud/feed/" limit=4 as cloud_feed %} {% autoescape off %} {% for item in cloud_feed %}
-          <li>
-            <h3 class="p-heading--five"><a href="{{ item.link }}" class="p-link--external">{{ item.title }}</a></h3>
-            <p>{{ item.description|force_escape|truncate_chars:100 }}</p>
-          </li>
-          {% endfor %} {% endautoescape %}
-        </ul>
-      </div>
-      {% include "cloud/shared/_events_overview.html" %}
-    </div>
-  </div>
-</section>
+
+{% include "shared-v1/_insights_news_strip.html"  with rss_spotlight_url="https://insights.ubuntu.com/tag/spotlight/feed/?topic=cloud" rss_news_url="https://insights.ubuntu.com/feed?topic=cloud" strip_classes="p-strip--light is-deep is-bordered" gtm_event_label="ubuntu.com cloud overview" %}
 
 <section class="p-strip--x-light">
   <div class="row">

@@ -57,7 +57,6 @@
 @include ubuntu-p-gaming;
 
 // import section specific patterns and overrides
-@import 'v1_section/v1_cloud';
 @import 'v1_section/v1_homepage';
 
 // Takeovers and takeunders
@@ -320,5 +319,14 @@ sup {
 
   @media (min-width: $breakpoint-large ) {
     width: 100%;
+  }
+}
+
+/// XXX responsive margin
+.u-less-margin--bottom {
+  margin-bottom: .5rem;
+
+  @media (min-width: $breakpoint-medium ) {
+    margin-bottom: 1rem;
   }
 }

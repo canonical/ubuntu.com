@@ -1,0 +1,48 @@
+{# example include- include "shared-v1/_insights_news_strip.html"  with rss_spotlight_url="https://insights.ubuntu.com/tag/spotlight/feed" rss_news_url="https://insights.ubuntu.com/feed" strip_classes="" gtm_event_label="ubuntu.com homepage" #}
+
+
+{% get_rss_feed rss_spotlight_url limit=1 as spotlight_feed %}
+
+{% if spotlight_feed %}
+  {% get_rss_feed rss_news_url limit=3 exclude_items_in=spotlight_feed as insights_feed %}
+{% else %}
+  {% get_rss_feed rss_news_url limit=4 as insights_feed %}
+{% endif %}
+
+<section class="{% if strip_classes %}{{strip_classes}}{% else %}p-strip is-deep is-bordered{% endif%}">
+  <div class="row {% if spotlight_feed %}p-divider{% endif %}">
+    <div class="{% if spotlight_feed %}col-9 p-divider__block{% else %}col-12{% endif %}">
+      {# insights heading #}
+      <h2 class="p-link--external p-heading--insights__title">
+        <a href="https://insights.ubuntu.com/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'clicks insights feed link', 'eventLabel' : '{{ gtm_event_label }}', 'eventValue' : undefined });">
+          Latest news from Insights
+        </a>
+      </h2>
+
+      {# insights news items #}
+      <div class="row">
+        {% for item in insights_feed %}
+          <div class="col-3">
+            <h3 class="p-heading--four u-less-margin--bottom"><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : '{{ gtm_event_label }} news link', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title }}</a></h3>
+            <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    {# spotlight heading #}
+    {% if spotlight_feed %}
+      <div class="col-3 p-divider__block">
+        <h2 class="p-link--external p-heading--insights__title">
+          <a href="https://insights.ubuntu.com/tag/spotlight/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : '{{ gtm_event_label }} spotlight feed link', 'eventLabel' : '{{ gtm_event_label }}', 'eventValue' : undefined });">
+            Spotlight
+          </a>
+        </h2>
+        {% for item in spotlight_feed %}
+          <h3 class="p-heading--four u-less-margin--bottom"><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : '{{ gtm_event_label }} spotlight article', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title }}</a></h3>
+          <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
