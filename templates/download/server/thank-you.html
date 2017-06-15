@@ -1,4 +1,4 @@
-{% extends "download/_base_download-v1.html" %}
+{% extends "download/_base_download.html" %}
 {% load versioned_static  %}
 
 {% block title %}
@@ -123,7 +123,7 @@ Thanks for downloading Ubuntu Server
 </div>
 </div>
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_download_server_installation" second_item="_download_server_guide" third_item="_download_verify_your_download" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_server_installation" second_item="_download_server_guide" third_item="_download_verify_your_download" %}
 
 {% endblock content %}
 {% block footer_extra %}

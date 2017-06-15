@@ -1,4 +1,4 @@
-{% extends "cloud/base_cloud-v1.html" %}
+{% extends "cloud/base_cloud.html" %}
 {% block title %}Public cloud | Cloud{% endblock %}
 {% block meta_description %}Ubuntu is the most popular guest OS on both public and private clouds, thanks to its security, versatility and continually updated features.{% endblock meta_description %}
 
@@ -81,7 +81,7 @@
     </div>
     </div>
 
-    {% include "cloud/shared/_guest-list-v1.html" %}
+    {% include "cloud/shared/_guest-list.html" %}
 
 <div class="row">
     <div class="col-8">
@@ -90,6 +90,6 @@
   </div>
 </section>
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_cloud_autopilot" second_item="_cloud_newsletter" third_item="_cloud_further_reading" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_autopilot" second_item="_cloud_newsletter" third_item="_cloud_further_reading" %}
 
 {% endblock content %}

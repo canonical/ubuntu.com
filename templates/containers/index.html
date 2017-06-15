@@ -1,4 +1,4 @@
-{% extends "containers/base_containers-v1.html" %}
+{% extends "containers/base_containers.html" %}
 {% block title %}Containers{% endblock %}
 {% block meta_description %}Whether you’re building your own OpenStack cloud, want a hosted private cloud or want to use Ubuntu in the public cloud, we offer all the training, software, tools, services and support you need.{% endblock meta_description %}
 {% block extra_body_class %}containers-home{% endblock %}
@@ -164,6 +164,6 @@
   </div>
 </div>
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_containers_juju" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_containers_juju" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
 
 {% endblock content %}

@@ -1,4 +1,4 @@
-{% extends "cloud/base_cloud-v1.html" %}
+{% extends "cloud/base_cloud.html" %}
 {% load versioned_static  %}
 {% block title %}BootStack - your managed cloud | Ubuntu{% endblock %}
 {% block meta_description %}With BootStack, Canonical will build, support and manage your cloud for only $15 per host per day.{% endblock meta_description %}
@@ -234,7 +234,7 @@
   </div>
 </section>
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_cloud_autopilot" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_autopilot" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
 {% endblock content %}
 
 {% block footer_extra %}

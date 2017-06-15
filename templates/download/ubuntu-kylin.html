@@ -1,4 +1,4 @@
-{% extends "download/_base_download-v1.html" %}
+{% extends "download/_base_download.html" %}
 {% block title %}Download Ubuntu Kylin | Download{% endblock %}
 
 
@@ -46,6 +46,6 @@
     </div>
   </div>
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_download_kylin_bittorrent" second_item="_download_kylin_community" third_item="_download_helping_hands" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_kylin_bittorrent" second_item="_download_kylin_community" third_item="_download_helping_hands" %}
 
 {% endblock content %}

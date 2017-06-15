@@ -1,4 +1,4 @@
-{% extends "internet-of-things/base_things-v1.html" %}
+{% extends "internet-of-things/base_things.html" %}
 {% block title %}Contact us | Ubuntu for the Internet of Things{% endblock %}
 
 
@@ -6,19 +6,19 @@
 
   {% if product == 'digital-signage' %}
 
-    {% include "shared-v1/_client-contact-us-form.html" with h1="Contact us about digital signage" intro_text="If you are thinking about building a digital signage product on Ubuntu, please fill in your details below and a member of our team will get in touch."  formid="1422" lpId="2166"  returnURL="http://ubuntu.com/internet-of-things/thank-you?product=digital-signage"  %}
+    {% include "shared/_client-contact-us-form.html" with h1="Contact us about digital signage" intro_text="If you are thinking about building a digital signage product on Ubuntu, please fill in your details below and a member of our team will get in touch."  formid="1422" lpId="2166"  returnURL="http://ubuntu.com/internet-of-things/thank-you?product=digital-signage"  %}
 
   {% elif product == 'gateways' %}
 
-    {% include "shared-v1/_client-contact-us-form.html" with h1="Contact us about gateways"  intro_text="If you would like to know more about Ubuntu for edge gateways please fill in your details below and a member of our team will get in touch."  formid="1663" lpId="3143"  returnURL="http://ubuntu.com/internet-of-things/thank-you?product=gateways"  %}
+    {% include "shared/_client-contact-us-form.html" with h1="Contact us about gateways"  intro_text="If you would like to know more about Ubuntu for edge gateways please fill in your details below and a member of our team will get in touch."  formid="1663" lpId="3143"  returnURL="http://ubuntu.com/internet-of-things/thank-you?product=gateways"  %}
 
   {% elif product == 'robotics' %}
 
-    {% include "shared-v1/_client-contact-us-form.html" with h1="Contact us about robotics"  intro_text="If you would like to know more about Ubuntu for Robotics please fill in your details below and a member of our team will get in touch."  formid="1650" lpId="2838"  returnURL="http://ubuntu.com/internet-of-things/thank-you?product=robotics"  %}
+    {% include "shared/_client-contact-us-form.html" with h1="Contact us about robotics"  intro_text="If you would like to know more about Ubuntu for Robotics please fill in your details below and a member of our team will get in touch."  formid="1650" lpId="2838"  returnURL="http://ubuntu.com/internet-of-things/thank-you?product=robotics"  %}
 
   {% else %}
 
-    {% include "shared-v1/_client-contact-us-form.html" with h1="Contact us" intro_text="If you are thinking about using Ubuntu Core to power your Internet of Things devices, please fill in your details below and a member of our team will get in touch."  formid="1266" lpId="2551"  returnURL="http://ubuntu.com/internet-of-things/thank-you?product=iot"  %}
+    {% include "shared/_client-contact-us-form.html" with h1="Contact us" intro_text="If you are thinking about using Ubuntu Core to power your Internet of Things devices, please fill in your details below and a member of our team will get in touch."  formid="1266" lpId="2551"  returnURL="http://ubuntu.com/internet-of-things/thank-you?product=iot"  %}
 
   {% endif %}
 

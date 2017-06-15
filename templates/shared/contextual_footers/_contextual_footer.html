@@ -1,21 +1,15 @@
-<div class="contextual-footer clearfix">
-    <hr class="contextual-footer__hort-divider" />
-    <div class="strip-inner-wrapper">
-        <div class="twelve-col contextual-footer__content-container equal-height--vertical-divider no-margin-bottom">
-            {% if first_item %}
-                <div class="equal-height--vertical-divider__item{% if not third_item %} six-col{% else %} four-col{% endif %} contextual-footer__feature--first {{ first_item_class|default:''}}">
-                    {% with "shared/contextual_footers/"|add:first_item|add:".html" as item_file %} {% include item_file %} {% endwith %}
-                </div>
-            {% endif %}
-            {% if second_item %}
-                <div class="equal-height--vertical-divider__item{% if not third_item %} six-col last-col{% else %} four-col{% endif %} contextual-footer__feature {{ second_item_class|default:''}}">
-                    {% with "shared/contextual_footers/"|add:second_item|add:".html" as item_file %} {% include item_file %} {% endwith %}
-                </div>{% endif %}
-            {% if third_item %}
-                <div class="equal-height--vertical-divider__item four-col contextual-footer__feature {{ third_item_class|default:''}} last-col">
-                    {% with "shared/contextual_footers/"|add:third_item|add:".html" as item_file %} {% include item_file %} {% endwith %}
-                </div>
-            {% endif %}
-        </div>
+<div class="p-strip--x-light p-contextual-footer">
+  <div class="row">
+    <div class="p-divider">
+      {% if first_item %}
+        {% with "shared/contextual_footers/"|add:first_item|add:".html" as item_file %} {% include item_file %} {% endwith %}
+      {% endif %}
+      {% if second_item %}
+        {% with "shared/contextual_footers/"|add:second_item|add:".html" as item_file %} {% include item_file %} {% endwith %}
+      {% endif %}
+      {% if third_item %}
+        {% with "shared/contextual_footers/"|add:third_item|add:".html" as item_file %} {% include item_file %} {% endwith %}
+      {% endif %}
     </div>
+  </div>
 </div>

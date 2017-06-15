@@ -1,4 +1,4 @@
-{% extends "server/base_server-v1.html" %}
+{% extends "server/base_server.html" %}
 {% block title %}Server management{% endblock %}
 {% block extra_body_class %}server-server-management{% endblock %}
 
@@ -57,7 +57,7 @@
   </div>
   <div class="row">
     <div class="col-10">
-      {% include "shared-v1/_ubuntu_advantage_server.html" %}
+      {% include "shared/_ubuntu_advantage_server.html" %}
     </div>
   </div>
 </div>
@@ -65,7 +65,7 @@
 <div class="p-strip--light is-deep is-bordered" style="padding-top: 2rem;">
   <div class="row">
     <div class="col-10">
-      {% include "shared-v1/_ubuntu_advantage_cloud_virtual_guests.html" %}
+      {% include "shared/_ubuntu_advantage_cloud_virtual_guests.html" %}
       <p><a href="/support/contact-us">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
     </div>
   </div>
@@ -119,8 +119,8 @@
   </div>
 </div>
 
-{% include "shared-v1/_ubuntu_advantage_community.html" %}
+{% include "shared/_ubuntu_advantage_community.html" %}
 
-{% include "shared-v1/contextual_footers/_contextual_footer.html"  with first_item="_server_download" second_item="_server_contact_us" third_item="_cloud_further_reading" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_server_download" second_item="_server_contact_us" third_item="_cloud_further_reading" %}
 
 {% endblock content %}

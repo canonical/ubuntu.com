@@ -1,9 +1,9 @@
-{% extends "containers/base_containers-v1.html" %}
+{% extends "containers/base_containers.html" %}
 {% block title %}Contact us | Containers {% endblock %}
 
 
 {% block content %}
-    {% include "shared-v1/_cloud-contact-us-form.html" with  h1="Contact us about containers" intro_text="Fill in your details below and a member of our sales team will be in touch." formid='1964'  lpId='3828' returnURL='https://www.ubuntu.com/containers/thank-you' %}
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about containers" intro_text="Fill in your details below and a member of our sales team will be in touch." formid='1964'  lpId='3828' returnURL='https://www.ubuntu.com/containers/thank-you' %}
 {% endblock content %}
 
 {% block footer_extra %}

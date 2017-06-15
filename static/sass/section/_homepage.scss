@@ -1,1264 +1,225 @@
-/*
+// homepage patterns
+.homepage {
+  .p-ubuntu-intro {
 
-  Project:    Ubuntu homepage
-  Author:     Web Team at Canonical Ltd
-  Last edited by:
-  Last edited on:
-
-    CONTENTS:
-  -----------------------------------------------------------------
-  body.homepage - general homepage styles
-  body.homepage-default - default fall-back design - currently 12.10
-
--------------------------------------------------------------- */
-
-body.homepage {
-
-  .lang-switch {
-    float: right;
-    margin-right: 20px;
-    margin-top: 20px;
-    z-index: 100;
-  }
-
-  .nav-secondary {
-    display: none;
-  }
-
-  .row-hero {
-    padding-bottom: 0;
-  }
-
-  .row {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .inner-wrapper .box li img {
-    vertical-align: middle;
-  }
-
-  #main-content {
-    background: none;
-    box-shadow: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  #main-content .box-hero {
-    border-radius: 4px;
-    border: 0;
-    margin: 0 0 20px;
-    padding: 0;
-  }
-}
-
-/* body.homepage-default
--------------------------------------------------------------- */
-body.homepage-default {
-  .row-hero div div {
-    padding-bottom: $gutter-width;
-    padding-top: 2 * $gutter-width;
-    text-align: center;
-  }
-
-  .row-hero p {
-    font-size: 1.125em;
-  }
-} /* end body.default */
-
-/* Medium / Tablet viewport
--------------------------------------------------------------- */
-.lang-switch {
-  margin-bottom: -40px;
-  z-index: 999;
-  position: relative;
-}
-
-/* body.homepage
--------------------------------------------------------------- */
-body.homepage {
-  .cookie-policy .wrapper {
-    width: auto;
-  }
-
-  .row-aux {
-    a {
-      //display: block;
+    @media only screen and (min-width : $breakpoint-medium + 1) {
+      clear: both;
+      display: flex;
+      margin-bottom: .625rem;
     }
 
-    h2 {
-      font-size: 1.3125em;
+    &__list {
+      text-align: center;
+      float: left;
+      width: 100%;
+
+      @media only screen and (min-width : $breakpoint-medium + 1) {
+        margin: 0;
+        padding-bottom: 0;
+      }
     }
-  }
 
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    .number-one-for-cloud {
+    &__list-item {
+      display: inline-block;
+      float: left;
+      margin-right: 0;
+      text-align: center;
       position: relative;
-    }
-  }
+      width: 50%;
 
-  @media only screen and (min-width : $breakpoint-large) {
-    .cookie-policy .wrapper {
-      width: $breakpoint-large;
-    }
-  }
-}
+      &:first-of-type .p-ubuntu-intro__link:before,
+      &:last-of-type .p-ubuntu-intro__link:after {
+        background: 0;
+      }
 
 
-@media only screen and (min-width : $breakpoint-large) {
-  .homepage {
-    header.banner {
-      margin-bottom: 5px;
-    }
-  }
-}
-
-.lang-switch-wrapper {
-  padding-bottom: 0;
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    .five-col {
-      padding-top: 0;
-    }
-
-    #main-content h1 {
-      margin-top: 0;
-      font-size: 2.1em;
-    }
-  }
-
-  @media only screen and (min-width : $breakpoint-large) {
-    .five-col {
-      padding-top: 0;
-    }
-
-    #main-content h1 {
-      margin-top: 0;
-      font-size: 2.5em;
-    }
-  }
-}
-
-// row--intro / ubuntu-intro
-$full-size: 1020px;
-
-.row--intro {
-  @media only screen and (min-width : 769px) {
-    padding-top: inherit;
-  }
-}
-
-.ubuntu-intro {
-  @media only screen and (min-width : 769px) {
-    clear: both;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    margin-bottom: 10px;
-  }
-
-  &__list {
-    @media only screen and (min-width : $full-size) {
-      position: relative;
-    }
-
-    &:before {
       @media only screen and (max-width : $breakpoint-medium) {
-        display: none;
+        width: 32%;
       }
 
-      @media only screen and (min-width : $full-size) {
-        background-image: url('#{$asset-server-url}e5e0fe8e-image-intro-dots-grey.svg');
-        background-position:  right center;
-        background-repeat: repeat-x;
-        background-size: 10px;
-        content: "";
-        display: block;
-        height: 20px;
-        position: absolute;
-        top: 65px;
-        width: 20px;
+      @media only screen and (max-width : 667px) and (orientation : landscape) {
+        width: 20%;
+      }
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        width: 7.5625rem;
+      }
+
+      @media only screen and (min-width : $breakpoint-large) {
+        width: 10.25rem;
       }
     }
-  }
 
-  &__before,
-  &__after  {
-    @media only screen and (min-width : 769px) {
-      -webkit-flex-grow: 1;
-      -moz-flex-grow: 1;
-      flex-grow: 1;
-      height: 150px;
-    }
-
-    @media only screen and (min-width : $full-size) {
-      background: url('#{$asset-server-url}e5e0fe8e-image-intro-dots-grey.svg') repeat-x right center;
-      background-size: 11px;
-    }
-  }
-
-  &__after {
-    background-position: left center;
-    margin-left: -20px;
-  }
-}
-
-
-
-.ubuntu-intro__list {
-  text-align: center;
-  float: left;
-  width: 100%;
-
-  @media only screen and (min-width : 769px) {
-    margin: 0;
-    padding-bottom: 0;
-  }
-}
-
-.ubuntu-intro__list-item {
-  display: inline-block;
-  float: left;
-  margin-right: 0;
-  text-align: center;
-  position: relative;
-  width: 50%;
-
-  @media only screen and (max-width : $breakpoint-medium) {
-    width: 32%;
-  }
-
-  @media only screen and (max-width : 667px) and (orientation : landscape) {
-    width: 20%;
-  }
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    text-indent: -999em;
-    width: 121px;
-  }
-
-  @media only screen and (min-width : $full-size) {
-    width: 164px;
-  }
-}
-
-.ubuntu-intro__link {
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: 96px;
-  color: $cool-grey;
-  display: block;
-  line-height: 1.3;
-  overflow: visible;
-  padding-top: 115px;
-  text-align: center;
-  text-decoration: none;
-  position: relative;
-  width: 100%;
-
-  &:hover {
-    @media only screen and (min-width : $breakpoint-medium) {
-      display: block;
-      text-decoration: none;
-      text-indent: 0;
-    }
-  }
-
-  @media only screen and (min-width: $full-size) {
-    &:before,
-    &:after {
-      display: block;
-      background: url('#{$asset-server-url}e5e0fe8e-image-intro-dots-grey.svg') repeat-x right center;
-      background-size: 10px;
-      content: "";
-      position: absolute;
-      top: 60px;
-    }
-
-    &:before {
-      height: 30px;
-      left: 0;
-      width: 60px;
-      background-size: 18px;
+    &__link {
+      background-position: center center;
       background-repeat: no-repeat;
-    }
+      background-size: 6rem;
+      color: $color-mid-dark;
+      display: block;
+      line-height: 1.3;
+      overflow: visible;
+      padding-top: 7.1875rem;
+      text-align: center;
+      text-decoration: none;
+      position: relative;
+      width: 100%;
 
-    &:after {
-      height: 30px;
-      right: 0;
-      width: 65px;
-    }
-  }
-
-  @media only screen and (min-width : 769px) {
-    padding-top: 130px;
-  }
-
-  &--cloud {
-    background-image: url('#{$asset-server-url}23137566-cloud.svg');
-
-    &:before {
-      width: 37px;
-    }
-
-    &:after {
-      right: -24px;
-      width: 50px;
-    }
-  }
-
-  &--server {
-    background-image: url('#{$asset-server-url}daeaa851-server.svg');
-    background-size: 80px;
-
-    &:before {
-      width: 41px;
-    }
-
-    &:after {
-      right: -26px;
-      width: 61px;
-    }
-  }
-
-  &--desktop {
-    background-image: url('#{$asset-server-url}d1978b1b-laptop.svg');
-
-    &:before {
-      width: 38px;
-    }
-
-    &:after {
-      right: -25px;
-      width: 55px;
-    }
-  }
-
-  &--phone {
-    background-image: url('#{$asset-server-url}c2a5e744-phone.svg');
-    background-size: 50px;
-
-    &:before {
-      width: 58px;
-    }
-
-    &:after {
-      right: 20px;
-      width: 31px;
-    }
-  }
-
-  &--containers {
-    background-image: url('#{$asset-server-url}dead5f08-containers.svg');
-    background-size: 80px;
-
-    &:before {
-      width: 43px;
-    }
-
-    &:after {
-      right: -20px;
-      width: 50px;
-    }
-  }
-
-  &--iot {
-    background-image: url('#{$asset-server-url}91c70f10-iot.svg');
-    background-size: 85px;
-
-    &:before {
-      width: 42px;
-    }
-
-    &:after {
-      right: 20px;
-      width: 15px;
-    }
-  }
-
-}
-
-@media only screen and (min-width : 769px) {
-  .row--devices__content {
-   margin-top: 100px;
-  }
-}
-
-@media only screen and (max-width : $breakpoint-medium) {
-  .row--devices {
-    min-height: 0;
-  }
-}
-
-body.homepage .row--ubuntu-news {
-  background-color: #fff;
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    margin-bottom: 0px;
-    padding-top: 60px;
-  }
-
-  @media only screen and (min-width : $breakpoint-large) {
-    padding-top: 70px;
-  }
-
-  a {
-    position: relative;
-    z-index: 2;
-  }
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    .row--ubuntu-news__title {
-      background: url('#{$asset-server-url}e1bba201-external-link-cool-grey.svg') left center no-repeat;
-      background-size: 16px;
-      padding-left: 22px;
-      font-size: 1em;
-      text-transform: uppercase;
-      margin-bottom: 30px;
-      margin-top: 20px;
-
-      a {
-        color: $cool-grey;
-
-        &:hover {
+      &:hover {
+        @media only screen and (min-width : $breakpoint-medium) {
+          display: block;
           text-decoration: none;
         }
-
-      }
-    }
-
-    li.three-col {
-      width: 22.8938%;
-    }
-
-    li:last-child {
-      margin: 0;
-    }
-  }
-}
-
-body.homepage .row--iot {
-  background-position: 50% 50%;
-  background-repeat:  no-repeat;
-  overflow: hidden;
-  background: #fff;
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    padding: 150px 0;
-  }
-
-  .row--iot__image {
-    background-size: 700px auto;
-    background-image: url('#{$asset-server-url}2f56d557-image-iot.jpg?q=80');
-    background-repeat: no-repeat;
-    height: 500px;
-    left: 40px;
-    position: absolute;
-    top: -100px;
-    width: 700px;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-    top: -163px;
-
-    }
-  }
-
-  @media only screen and (max-width : 767px) {
-    .row--iot__image {
-      background: none;
-      display: none;
-    }
-  }
-}
-
-// row--cloud-products
-body.homepage .row--cloud-products {
-  background-color: $white;
-  background-image: url('#{$asset-server-url}f8ab7c6a-cloud_section_bundle_mobile.svg');
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  min-height: 360px;
-  overflow: hidden;
-  position: relative;
-
-  @media only screen and (min-width : 500px) {
-    min-height: 520px;
-  }
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    background-image: none;
-    min-height: 340px;
-
-    .four-col {
-      padding-top: 45px;
-      z-index: 1; //account for overlapping content and absolutely positioned image
-    }
-  }
-
-  @media only screen and (min-width : $breakpoint-large) {
-    min-height: 460px;
-  }
-
-  .strip-inner-wrapper {
-    position: relative;
-  }
-
-  &__image {
-    @media only screen and (min-width : $breakpoint-medium) {
-      position: absolute;
-      top: -40px;
-      left: -280px;
-      width: 700px;
-    }
-
-    @media only screen and (min-width : $breakpoint-large) {
-      top: -100px;
-      left: -400px;
-      width: 933px;
-    }
-  }
-}
-
-body.homepage .row--devices {
-  overflow: hidden;
-  z-index: 999;
-}
-
-body.homepage .row--devices__inner {
-  background:none;
-  min-height: 460px;
-  position: relative;
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    min-height: 280px;
-  }
-
-  @media only screen and (min-width : 769px) {
-    background-size: auto 660px;
-    background-position: 15% 60px;
-    min-height: 590px;
-    padding-bottom: 60px;
-    padding-top: 40px;
-  }
-}
-
-// import the devices animation sass
-@import '_morph.scss';
-
-#devices {
-  margin: 180px auto 0;
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    margin-top: 20px;
-  }
-}
-
-/// Featured row, for takeunders
-body.homepage .row-featured {
-  padding-left: 0;
-  padding-right: 0;
-  margin-top: -20px;
-  overflow: hidden;
-  z-index: 1; //fixes overlap issues with previous row image
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    margin: -100px 0 0;
-  }
-
-  @media only screen and (min-width : $breakpoint-large) {
-    margin: -100px 0 -60px 0;
-  }
-}
-.featured {
-  float: none;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 40px;
-  padding-bottom: 40px;
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    margin-bottom: -20px;
-    float: left;
-    width: 50%;
-  }
-  @media only screen and (min-width : $breakpoint-large) {
-    padding-right: 0;
-    padding-left: 0;
-    margin-bottom: -40px;
-  }
-}
-.equal-height .equal-height__item.featured {
-  flex-direction: row;
-}
-.featured--left {
-  @extend .featured;
-  background-color: #63105c;
-  position: relative;
-
-  &::before {
-    position: absolute;
-    display: none;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      display: block;
-    }
-
-    left: -3000px;
-    margin-top: -40px;
-    content: "";
-    width: 3000px;
-    flex: auto;
-    height: 100%;
-    background-color: #63105c;
-  }
-}
-.featured--right {
-  @extend .featured;
-  background-color: $dark-aubergine;
-  position: relative;
-
-  &::after {
-    position: absolute;
-    display: none;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      display: block;
-    }
-
-    right: -3000px;
-    margin-top: -40px;
-    content: "";
-    width: 3000px;
-    flex: auto;
-    height: 100%;
-    background-color: #2C001E;
-  }
-}
-.featured__content {
-  color: white;
-}
-.featured__content--subtle {
-  opacity: 0.17;
-}
-
-.takeunder-juju {
-  background-color: #f5f5f5;
-
-  @media only screen and (min-width : $breakpoint-medium) {
-    background-image: url('#{$asset-server-url}f552b31a-juju-16-04-takeunder.png');
-  }
-
-  background-repeat: no-repeat;
-  background-size: 36%;
-  background-position: 0 50%;
-
-  &::before {
-    background: #f5f5f5;
-  }
-}
-
-// homepage features
-$loulou: #63105c; // http://chir.ag/projects/name-that-color/#63105c
-
-// openstack feature
-$shark: #181c21; // http://chir.ag/projects/name-that-color/#181C21
-
-// ============================ Takeovers ============================
-// cloud default, don not remove
-body.homepage-cloud-default,
-body.homepage-cloud-default--2 {
-  @media only screen and (min-width : $breakpoint-medium) {
-    h1 {
-      padding-top: 90px;
-    }
-  }
-
-  @media only screen and (min-width : $breakpoint-large) {
-    .row-popular-cloud {
-      padding-top: 80px;
-      padding-top: 80px;
-    }
-
-    h1 {
-      padding-top: 105px;
-    }
-  } // @media only screen and (min-width : $breakpoint-large)
-
-
-}
-
-// Override for the A/B test
-  body.homepage-cloud-default--2 {
-    .strip.no-border {
-      border-bottom: 1px dotted $warm-grey !important;
-    }
-  }// body.homepage-cloud-default
-
-body.homepage-bootstack-generic {
-  header.banner {
-    margin-bottom: 0;
-  }
-
-  #main-content {
-    margin-top: 0;
-
-    .row-hero {
-      background-color: rgba(255,255,255,0.6);
-      padding-top: 20px;
-      padding-bottom: 0;
-      margin-top: 0;
-    }
-
-    .row-aux {
-      background-color: transparent;
-    }
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      h1 {
-        padding-top: 45px;
       }
 
-      .row-hero {
-        padding-top: 100px;
-        padding-bottom: 75px;
-      }
-    }
+      @media only screen and (min-width: $breakpoint-large) {
+        &:before,
+        &:after {
+          display: block;
+          background: url('#{$assets-path}e5e0fe8e-image-intro-dots-grey.svg') repeat-x right center;
+          background-size: .625rem;
+          content: "";
+          position: absolute;
+          top: 3.75rem;
+        }
 
-    @media only screen and (min-width : $breakpoint-large) {
-      h1 {
-        padding-top: 55px;
+        &:before {
+          height: 5.875rem;
+          left: 0;
+          width: 3.75rem;
+          background-size: 1.125rem;
+          background-repeat: no-repeat;
+        }
+
+        &:after {
+          height: 5.875rem;
+          right: 0;
+          width: 4rem;
+        }
       }
 
-      .row-hero {
-        padding-top: 60px;
-        padding-bottom: 45px;
+      @media only screen and (min-width : $breakpoint-medium + 1) {
+        padding-top: 11.875rem;
+      }
+
+      &--cloud {
+        background-image: url('#{$assets-path}23137566-cloud.svg');
+
+        &:before {
+          width: 2.3125rem;
+        }
+
+        &:after {
+          right: -$sp-large;
+          width: 3.125rem;
+        }
+      }
+
+      &--server {
+        background-image: url('#{$assets-path}daeaa851-server.svg');
+        background-size: 5rem;
+
+        &:before {
+          width: $sp-xx-large;
+        }
+
+        &:after {
+          right: -1.625rem;
+          width: 3.8125rem;
+        }
+      }
+
+      &--desktop {
+        background-image: url('#{$assets-path}d1978b1b-laptop.svg');
+
+        &:before {
+          width: 2.375rem;
+        }
+
+        &:after {
+          right: -$sp-large;
+          width: 3.4375rem;
+        }
+      }
+
+      &--phone {
+        background-image: url('#{$assets-path}c2a5e744-phone.svg');
+        background-size: 3.125rem;
+
+        &:before {
+          width: 3.625rem;
+        }
+
+        &:after {
+          right: 1.25rem;
+          width: 1.9375rem;
+        }
+      }
+
+      &--containers {
+        background-image: url('#{$assets-path}dead5f08-containers.svg');
+        background-size: 5rem;
+
+        &:before {
+          width: 2.6875rem;
+        }
+
+        &:after {
+          right: -1.25rem;
+          width: 3.125rem;
+        }
+      }
+
+      &--iot {
+        background-image: url('#{$assets-path}91c70f10-iot.svg');
+        background-size: 5.3125rem;
+
+        &:before {
+          width: 2.625rem;
+        }
+
+        &:after {
+          right: 1.25rem;
+          width: .9375rem;
+        }
       }
     }
   }
-}
 
-// generic maas takeover
-body.homepage-maas-generic-takeover {
-  .banner {
-    margin-bottom: 0;
-    box-shadow: none;
-  }
-
-  #main-content {
-    margin-top: 0;
-
-    .row-hero {
-      background: url('https://assets.ubuntu.com/v1/8ce3e107-hero-1.jpg?w=1600&q=40') 0 12% no-repeat;
-      background-size: cover;
-      color: #fff;
-      margin-top: 0;
-      min-height: 255px;
-      padding-top: 40px;
-      transition-duration: 1s;
+  /// Featured row, for takeunders
+  .p-takeunder {
+    &--left,
+    &--right {
+      border-radius: .125rem;
+      color: $color-x-light;
+      padding: $sp-x-large;
 
       @media only screen and (min-width : $breakpoint-medium) {
-        min-height: 400px;
-        padding-top: 40px;
-      }
-
-      @media only screen and (min-width : $breakpoint-large) {
-        min-height: 455px;
-        padding-top: 60px;
+        padding: $sp-x-large 0;
       }
     }
 
-    .row-hero__logo {
-      margin-bottom: 30px;
-      max-width: 220px;
-    }
-  }
-}
-
-// kubernetes takeover
-body.homepage-kubernetes-takeover {
-  header.banner {
-    border-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  #main-content {
-    .row-hero {
-      background-image: url('#{$asset-server-url}f5e7d881-Kubernetes_backgd_mobile.png');
-      background-color: $light-grey;
-      background-size: cover;
-      background-repeat: no-repeat;
-      margin-top: 0;
-
-      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-        background-image: url('#{$asset-server-url}32d31c25-Kubernetes_backgd_mobile_720.png');
-        background-position: right 40px;
-        background-size: 100%;
-      }
-
+    &--left {
+      margin-left: -1 rem;
       @media only screen and (min-width : $breakpoint-medium) {
-        background-image: url('#{$asset-server-url}c0df5df2-Kubernetes_backgd_desktop-1.png');
-        background-size: 126% auto;
-        background-position: 70% -45px;
-        min-height: 400px;
-      }
-
-      @media only screen and (min-width : $breakpoint-large) {
-        background-position: 74% -68px;
-        background-size: auto;
-        min-height: 580px;
-      }
-
-      &__heading {
-        margin-top: 20px;
-
-        @media only screen and (min-width : $breakpoint-medium) {
-          margin-top: 60px;
-        }
-
-        @media only screen and (min-width : $breakpoint-large) {
-          margin-top: 100px;
-        }
-      }
-
-      &__image {
-        margin-top: 10px;
-        margin-bottom: 20px;
-
-        @media only screen and (min-width : $breakpoint-medium) {
-          margin-top: 50px;
-        }
-
-        @media only screen and (min-width : $breakpoint-large) {
-          margin-top: 60px;
-        }
-      }
-
-      .button--primary {
-        margin-top: 340px;
-
-        @media only screen and (min-width : $breakpoint-medium) {
-          margin-top: 20px;
-        }
+        padding: $sp-medium;
       }
     }
-  }
-}
 
-@mixin dots($top, $delay, $direction) {
-  &:after {
-    opacity: 0;
-    animation-name: reveal;
-    animation-duration: .2s;
-    animation-fill-mode: forwards;
-    animation-delay: $delay;
-    content: '';
-    background-image: url('#{$asset-server-url}d526f638-dots.svg');
-    display: block;
-    position: absolute;
-    @if $direction == 'right' {
-      right: -120px;
-    } @else {
-      left: 20px;
-    }
-    top: $top;
-    width: 100px;
-    height: 10px;
-  }
-}
-
-body.homepage-core {
-  header.banner {
-    border-bottom: none;
-    box-shadow: none;
-    margin-bottom: 0;
-  }
-
-  .row-hero {
-    background-image: none;
-    margin-top: 0;
-    padding-top: 20px;
-    padding-bottom: 20px;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      padding-top: 80px;
-      padding-bottom: 80px;
-    }
-
-    &__cta {
+    &--right {
+      margin-right: -1 rem;
       @media only screen and (min-width : $breakpoint-medium) {
-        margin-top: 10px;
+        padding: $sp-medium;
       }
-      @media only screen and (min-width : $breakpoint-large) {
-        margin-top: 20px;
-      }
+    }
+
+    a:link,
+    a:visited {
+      color: $color-x-light;
     }
   }
-}
-
-body.homepage-advantage {
-  header.banner {
-    border: 0;
-    box-shadow: none;
-    margin-bottom: 0;
-  }
-
-  .row-hero {
-    background-color: $dark-aubergine;
-    background-image: none;
-    margin-top: 0;
-    padding-top: 20px;
-    padding-bottom: 20px;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url('#{$asset-server-url}f4cb93a3-Yakkety_Yak-Wallpaper_aubergine.jpg');
-      background-size: cover;
-      padding-top: 80px;
-      padding-bottom: 80px;
-    }
-
-    &__cta {
-      @media only screen and (min-width : $breakpoint-medium) {
-        margin-top: 10px;
-      }
-      @media only screen and (min-width : $breakpoint-large) {
-        margin-top: 20px;
-      }
-    }
-
-    a {
-      color: #fff;
-    }
-  }
-}
-
-body.homepage-containers-ebook {
-  header.banner {
-    border-bottom: none;
-    box-shadow: none;
-    margin-bottom: 0;
-  }
-
-  .row-hero {
-    background-color: $dark-aubergine;
-    background-image: none;
-    margin-top: 0;
-    padding-top: 20px;
-    padding-bottom: 20px;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      background-image: url('#{$asset-server-url}f4cb93a3-Yakkety_Yak-Wallpaper_aubergine.jpg');
-      background-size: cover;
-      padding-top: 80px;
-      padding-bottom: 80px;
-    }
-
-    a {
-      color: #fff;
-    }
-
-    &__image {
-      width: 411px;
-    }
-  }
-}
-
-body.homepage-1704 {
-  header.banner {
-    border-bottom: none;
-    box-shadow: none;
-    margin-bottom: 0;
-  }
-
-  .row-hero {
-    border: 0;
-    box-sizing: border-box;
-    color: $white;
-    display: block;
-    margin: 0;
-    padding: 0 0 30px;
-    overflow: hidden;
-
-    @media only screen and (min-width : $breakpoint-medium) {
-      padding: 20px 20px 0;
-    }
-
-    @media only screen and (min-width : $breakpoint-large) {
-      padding-top: 40px;
-    }
-
-    .countdown-start {
-      align-items: center;
-      position: absolute;
-      display: flex;
-      justify-content: center;
-      top: 0;
-      left: 0;
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        margin: 0 auto;
-        width: 100%;
-      }
-    }
-
-    .countdown {
-      align-items: center;
-      background-image: url('#{$asset-server-url}12bdc8c9-Laptop.svg');
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: auto 100%;
-      display: flex;
-      justify-content: center;
-      min-height: 200px;
-      margin: 20px auto 30px;
-      position: relative;
-      text-align: center;
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        background-size: 100% auto;
-        min-height: 278px;
-        margin: 0 auto;
-        width: 100%;
-      }
-
-      .laptop-final {
-        background-image: url('#{$asset-server-url}3a1cd19a-laptop-17-04-final-edited.svg');
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: auto 100%;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        animation: fadein 5.555555s ease-in forwards;
-
-        @media only screen and (min-width : $breakpoint-medium) {
-          background-size: 100% auto;
-        }
-      }
-
-      @mixin countdown-list {
-        height: 4rem;
-        overflow: hidden;
-        padding: 0;
-        position: relative;
-        top: -6px;
-        width: 4rem;
-
-
-        @media only screen and (min-width : $breakpoint-medium) {
-          height: 4.5rem;
-          top: -4px;
-          width: 4.5rem;
-        }
-
-        @media only screen and (min-width : $breakpoint-large) {
-          height: 6rem;
-          top: -12px;
-          width: 6rem;
-        }
-      }
-
-      &__list--years {
-        @include countdown-list;
-      }
-
-      &__list--months {
-        @include countdown-list;
-        margin-left: 10px;
-
-        @media only screen and (min-width : $breakpoint-large) {
-          margin-left: 20px;
-        }
-      }
-
-      @mixin transition {
-        $total: 26;
-        $start: 2;
-        $step: .2;
-        $initial-delay: 1;
-        @for $i from $start through $total {
-          $diff: $i / $total;
-          $add: $step * cos($diff);
-          $delay: ($i * $add) + $initial-delay;
-          &:nth-child(#{$i}) {
-            animation: fadein .1s #{$delay}s ease-in-out forwards;
-          }
-        }
-      }
-
-      @function pow($number, $exp) {
-        $value: 1;
-        @if $exp > 0 {
-          @for $i from 1 through $exp {
-            $value: $value * $number;
-          }
-        }
-        @else if $exp < 0 {
-          @for $i from 1 through -$exp {
-            $value: $value / $number;
-          }
-        }
-        @return $value;
-      }
-
-      @function rad($angle) {
-        $unit: unit($angle);
-        $unitless: $angle / ($angle * 0 + 1);
-        // If the angle has 'deg' as unit, convert to radians.
-        @if $unit == deg {
-          $unitless: $unitless / 180 * pi();
-        }
-        @return $unitless;
-      }
-
-      @function fact($number) {
-        $value: 1;
-        @if $number > 0 {
-          @for $i from 1 through $number {
-            $value: $value * $i;
-          }
-        }
-        @return $value;
-      }
-
-      @function cos($angle) {
-        $cos: 0;
-        $angle: rad($angle);
-        // Iterate a bunch of times.
-        @for $i from 0 through 10 {
-          $cos: $cos + pow(-1, $i) * pow($angle, 2 * $i) / fact(2 * $i);
-        }
-        @return $cos;
-      }
-
-      &__item {
-        @include transition;
-        align-items: center;
-        background: $white;
-        border-radius: 4px;
-        color: $color-brand;
-        display: flex;
-        font-size: 280%;
-        height: 100%;
-        justify-content: center;
-        left: 0;
-        margin: 0;
-        opacity: 0;
-        padding: 0;
-        position: absolute;
-        text-align: center;
-        top: 0;
-        vertical-align: middle;
-        width: 100%;
-
-        @media only screen and (min-width : $breakpoint-medium) {
-          font-size: 350%;
-        }
-
-        @media only screen and (min-width : $breakpoint-large) {
-          font-size: 450%;
-        }
-
-        &.start {
-          opacity: 1;
-        }
-      }
-    }
-
-    &__inner {
-      background-image: url('#{$asset-server-url}ab1a7e82-background.png');
-      background-size: cover;
-      transition-duration: 1s;
-      padding: 0 20px;
-      margin: 0;
-
-      @media only screen and (min-width : $breakpoint-large) {
-        max-width: 1084px;
-        margin: 0 auto;
-        padding: 0 50px 0;
-      }
-    }
-
-    .equal-height__align-vertically {
-      align-items: flex-start;
-    }
-
-    &__heading {
-      text-align: left;
-    }
-
-    &__content {
-      @media only screen and (min-width : $breakpoint-medium) {
-        min-height: 380px;
-      }
-
-      @media only screen and (min-width : $breakpoint-large) {
-        min-height: 580px;
-      }
-    }
-
-  }
-}
-
-body.homepage-maas-may-2017 {
-
-  .banner {
-    margin-bottom: 0;
-    box-shadow: none;
-    border-bottom: 0;
-  }
-
-  #main-content {
-    margin-top: 0;
-
-    .row-hero {
-      background-color: #333;
-      background-size: cover;
-      background-position: left top;
-      color: #fff;
-      margin-top: 0;
-      min-height: 255px;
-      padding-top: 40px;
-
-      .intro {
-        margin-bottom: 1.75rem;
-      }
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        > div div {
-          min-height: 400px;
-          align-items: flex-start;
-          margin-bottom: 0;
-        }
-      }
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        background-position: 75% 0%;
-        padding: 60px 0 40px;
-      }
-
-      @media only screen and (min-width : $breakpoint-large) {
-        background-image: url('#{$asset-server-url}a328d904-MAAS-background-desktop-large-screen.png');
-        background-position: 77% 0%;
-        padding: 100px 0;
-      }
-
-      @media only screen and (min-width : 1600px) {
-        background-position: 85% 0;
-      }
-
-      &__image-for-small {
-        padding: 30px 0 50px;
-      }
-
-      a {
-        color: #fff;
-      }
+  .p-navigation {
+    @media only screen and (max-width : $breakpoint-medium) {
+      border: 0;
     }
   }
 }
