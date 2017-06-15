@@ -3,14 +3,14 @@ from copy import deepcopy
 
 
 def _remove_hidden(pages):
-    pages = deepcopy(pages)
+    filtered_pages = []
 
     # Filter out hidden pages
     for child in pages:
-        if child.get('hidden'):
-            pages.remove(child)
+        if not child.get('hidden'):
+            filtered_pages.append(child)
 
-    return pages
+    return filtered_pages
 
 
 def navigation(request):
@@ -42,6 +42,7 @@ def navigation(request):
                     breadcrumbs['children'] = _remove_hidden(
                         nav_section.get('children', [])
                     )
+                break
             else:
                 for grandchild in child.get('children', []):
                     if grandchild['path'] == path:
@@ -58,6 +59,7 @@ def navigation(request):
                             breadcrumbs['grandchildren'] = _remove_hidden(
                                 child.get('children', [])
                             )
+                        break
 
     return {
         'nav_sections': nav_sections,
