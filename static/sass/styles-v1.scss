@@ -318,3 +318,12 @@ sup {
     width: 100%;
   }
 }
+
+/// XXX responsive margin
+.u-less-margin--bottom {
+  margin-bottom: .5rem;
+
+  @media (min-width: $breakpoint-medium ) {
+    margin-bottom: 1rem;
+  }
+}

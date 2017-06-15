@@ -10,51 +10,8 @@
 
 {% include "takeovers/_kubernetes_webinar.html" %}
 
-{% get_rss_feed "https://insights.ubuntu.com/tag/spotlight/feed" limit=1 as spotlight_feed %}
 
-{% if spotlight_feed %}
-  {% get_rss_feed "https://insights.ubuntu.com/feed" limit=3 exclude_items_in=spotlight_feed as insights_feed %}
-{% else %}
-  {% get_rss_feed "https://insights.ubuntu.com/feed" limit=4 as insights_feed %}
-{% endif %}
-
-<section class="p-strip is-deep is-bordered">
-  <div class="row {% if spotlight_feed %}p-divider{% endif %}">
-    <div class="{% if spotlight_feed %}col-9 p-divider__block{% else %}col-12{% endif %}">
-      {# insights heading #}
-      <h2 class="p-link--external p-heading--insights__title">
-        <a href="https://insights.ubuntu.com/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'clicks insights feed link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">
-          Latest news from Insights
-        </a>
-      </h2>
-
-      {# insights news items #}
-      <div class="row">
-        {% for item in insights_feed %}
-          <div class="col-3">
-            <h3 class="p-heading--four"><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'ubuntu.com homepage news link', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title }}</a></h3>
-            <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-
-    {# spotlight heading #}
-    {% if spotlight_feed %}
-      <div class="col-3 p-divider__block">
-        <h2 class="p-link--external p-heading--insights__title">
-          <a href="https://insights.ubuntu.com/tag/spotlight/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'ubuntu.com homepage spotlight feed link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">
-            Spotlight
-          </a>
-        </h2>
-        {% for item in spotlight_feed %}
-          <h3 class="p-heading--four"><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'ubuntu.com homepage spotlight article', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title }}</a></h3>
-          <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
-        {% endfor %}
-      </div>
-    {% endif %}
-  </div>
-</section>
+{% include "shared-v1/_insights_news_strip.html"  with rss_spotlight_url="https://insights.ubuntu.com/tag/spotlight/feed" rss_news_url="https://insights.ubuntu.com/feed" strip_classes="" gtm_event_label="ubuntu.com homepage" %}
 
 <section class="p-strip--light is-bordered">
   <div class="row u-align--center">
