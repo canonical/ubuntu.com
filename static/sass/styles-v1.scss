@@ -32,6 +32,8 @@
 @import 'v1_pattern_matrix';
 @import 'v1_pattern_contextual-footer';
 @import 'v1_pattern_pie_chart';
+@import 'v1_pattern_strip-photos';
+@import 'v1_pattern_gaming';
 
 @include ubuntu-p-site-search;
 @include ubuntu-p-navigation;
@@ -51,11 +53,12 @@
 @include ubuntu-p-contextual-footer;
 @include ubuntu-p-pie-chart;
 @include ubuntu-p-sun-animation;
+@include ubuntu-p-strip-photos;
+@include ubuntu-p-gaming;
 
 // import section specific patterns and overrides
 @import 'v1_section/v1_cloud';
 @import 'v1_section/v1_homepage';
-@import 'v1_section/v1_desktop';
 
 // Takeovers and takeunders
 @import 'takeovers/kubernetes-webinar';
