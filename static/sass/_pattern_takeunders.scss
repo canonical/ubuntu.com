@@ -1,0 +1,39 @@
+/// homepage takeunders
+@mixin ubuntu-p-takeunders {
+  .p-takeunder {
+    &--left,
+    &--right {
+      border-radius: .125rem;
+      color: $color-x-light;
+      padding: $sp-x-large;
+
+      @media only screen and (min-width : $breakpoint-medium) {
+        padding: $sp-x-large 0;
+      }
+    }
+
+    &--left {
+      margin-left: -1 rem;
+      @media only screen and (min-width : $breakpoint-medium) {
+        padding: $sp-medium;
+      }
+    }
+
+    &--right {
+      margin-right: -1 rem;
+      @media only screen and (min-width : $breakpoint-medium) {
+        padding: $sp-medium;
+      }
+    }
+
+    a:link,
+    a:visited {
+      color: $color-x-light;
+    }
+  }
+  .p-navigation {
+    @media only screen and (max-width : $breakpoint-medium) {
+      border: 0;
+    }
+  }
+}
