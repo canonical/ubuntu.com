@@ -1,5 +1,5 @@
-// homepage patterns
-.homepage {
+// intro row on the homepage
+@mixin ubuntu-p-ubuntu-intro {
   .p-ubuntu-intro {
 
     @media only screen and (min-width : $breakpoint-medium + 1) {
@@ -64,10 +64,14 @@
       position: relative;
       width: 100%;
 
+      &:visited {
+        color: $color-mid-dark;
+      }
+
       &:hover {
         @media only screen and (min-width : $breakpoint-medium) {
           display: block;
-          text-decoration: none;
+          text-decoration: underline;
         }
       }
 
@@ -182,44 +186,6 @@
           width: .9375rem;
         }
       }
-    }
-  }
-
-  /// Featured row, for takeunders
-  .p-takeunder {
-    &--left,
-    &--right {
-      border-radius: .125rem;
-      color: $color-x-light;
-      padding: $sp-x-large;
-
-      @media only screen and (min-width : $breakpoint-medium) {
-        padding: $sp-x-large 0;
-      }
-    }
-
-    &--left {
-      margin-left: -1 rem;
-      @media only screen and (min-width : $breakpoint-medium) {
-        padding: $sp-medium;
-      }
-    }
-
-    &--right {
-      margin-right: -1 rem;
-      @media only screen and (min-width : $breakpoint-medium) {
-        padding: $sp-medium;
-      }
-    }
-
-    a:link,
-    a:visited {
-      color: $color-x-light;
-    }
-  }
-  .p-navigation {
-    @media only screen and (max-width : $breakpoint-medium) {
-      border: 0;
     }
   }
 }

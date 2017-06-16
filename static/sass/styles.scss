@@ -23,7 +23,7 @@
 @import 'pattern_lists';
 @import 'pattern_card';
 @import 'pattern_link';
-@import 'contribution';
+@import 'pattern_contribution';
 @import 'pattern_inline-images';
 @import 'pattern_testimonials';
 @import 'pattern_hero';
@@ -32,6 +32,10 @@
 @import 'pattern_matrix';
 @import 'pattern_contextual-footer';
 @import 'pattern_pie_chart';
+@import 'pattern_gaming';
+@import 'pattern_strip-photos';
+@import 'pattern_ubuntu_intro';
+@import 'pattern_takeunders';
 
 @include ubuntu-p-site-search;
 @include ubuntu-p-navigation;
@@ -51,11 +55,10 @@
 @include ubuntu-p-contextual-footer;
 @include ubuntu-p-pie-chart;
 @include ubuntu-p-sun-animation;
-
-// import section specific patterns and overrides
-@import 'section/cloud';
-@import 'section/homepage';
-@import 'section/desktop';
+@include ubuntu-p-gaming;
+@include ubuntu-p-strip-photos;
+@include ubuntu-p-ubuntu-intro;
+@include ubuntu-p-takeunders;
 
 // Takeovers and takeunders
 @import 'takeovers/kubernetes-webinar';
