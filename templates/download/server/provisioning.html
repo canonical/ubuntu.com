@@ -4,324 +4,329 @@
 
 {% block meta_description %}{% endblock meta_description %}
 
-
 {% block content %}
-
-<div class="row row-grey no-border">
-    <div class="strip-inner-wrapper">
-        <h1>Get Metal as a Service</h1>
-        <div class="ten-col">
-            <p class="intro">Metal as a Service (MAAS) gives you automated server provisioning and easy network setup for your physical servers for amazing data centre operational efficiency &mdash; on premise, open source and supported.</p>
-        </div>
-        <div class="box box-highlight clearfix equal-height--vertical-divider">
-            <div class="equal-height--vertical-divider__item six-col">
-                <h2>Install MAAS on your&nbsp;hardware</h2>
-                <p>Follow the instructions below to download, configure and install MAAS.</p>
-            </div>
-            <div class="equal-height--vertical-divider__item six-col last-col no-margin-bottom download-button">
-                <h3>Requirements</h3>
-                <ul class="list-ticks--compact">
-                    <li>You will need one small server for MAAS and at least one server which can be managed with a BMC.</li>
-                    <li>It is recommended to have the MAAS server provide DHCP and DNS on a network the managed machines are connected to.</li>
-                </ul>
-            </div>
-        </div>
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h1>Get Metal as a Service</h1>
     </div>
-</div>
-
-<div class="row row--ebook no-border">
-    <div class="strip-inner-wrapper">
-        <div class="six-col append-one">
-            <h2>Before you start, you’ll want this&nbsp;eBook</h2>
-            <div class="twelve-col not-for-small">
-              <img src="{{ ASSET_SERVER_URL }}5e6b2dce-MAAS-ebook-web.svg" alt="" width="440" />
-            </div>
-            <h3>Server Provisioning: What Network Admins and IT Pros Need to Know</h3>
-            <p>This document is designed to help system administrators and DevOps focused organisations to understand bare metal server provisioning, understand its value proposition, and learn about how leading companies are using server provisioning solutions within their hyperscale environments.</p>
-            <p>Canonical&rsquo;s MAAS helps organisations to take full advantage of existing hardware investments by maximising hardware efficiency, and a pathway to leverage the performance and security of hardware based solutions with the economics and efficiencies of the cloud.</p>
-        </div>
-        <div class="five-col last-col">
-
-            <!-- MARKETO FORM -->
-            <script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
-            <script src="https://assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
-
-            <form action="https://pages.ubuntu.com/index.php/leadCapture/save?utm_source=ubuntu.com&utm_medium=Download-provisioning&utm_campaign=MAAS_ebook" method="post" id="mktoForm_1862">
-                <fieldset>
-                    <ul class="no-bullets">
-
-                        <li class="mktFormReq mktField">
-                            <label for="FirstName" class="mktoLabel ">First name:</label>
-                            <input required="" id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField   mktoRequired">
-                        </li>
-
-                        <li class="mktFormReq mktField">
-                            <label for="LastName" class="mktoLabel ">Last name:</label>
-                            <input required="" id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired">
-                        </li>
-
-                        <li class="mktFormReq mktField">
-                            <label for="JobRole" class="mktoLabel ">Job role:</label>
-                            <select id="JobRole" name="JobRole" required class="mktoField mktoRequired">
-                                <option disabled selected value>Select...</option>
-                                <option value="CEO/Owner">CEO/Owner</option>
-                                <option value="VP/Director">VP/Director</option>
-                                <option value="Manager">Manager</option>
-                                <option value="IT Administrator">IT Administrator</option>
-                                <option value="Developer">Developer</option>
-                                <option value="Student">Student</option>
-                                <option value="Ubuntu Enthusiast">Ubuntu Enthusiast</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </li>
-
-                        <li class="mktFormReq mktField">
-                            <label for="Company" class="mktoLabel ">Company name:</label>
-                            <input required="" id="Company" name="Company" maxlength="255" type="text" class="mktoField   mktoRequired">
-                        </li>
-
-                        <li class="mktFormReq mktField">
-                            <label for="Email" class="mktoLabel ">Email:</label>
-                            <input required="" id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired">
-                        </li>
-
-                        <!-- country -->
-                        {% include "shared/forms/_country.html" %}
-                        <!-- state/province -->
-                        {% include "shared/forms/_state.html" %}
-
-                        <li class="mktFormReq mktField">
-                            <label for="Phone" class="mktoLabel ">Phone number:</label>
-                            <input required="" id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired">
-                        </li>
-
-                        <li class="mktField">
-                            <input class="mktoField" value="yes" id="NewsletterOpt-In" name="NewsletterOpt-In" type="checkbox">
-                            <label class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>
-                        </li>
-
-                        <li class="mktField">
-                            <button type="submit" class="mktoButton" onsubmit="backgroundSubmitHandler();">Download the eBook</button>
-                            <input type="hidden" name="formid" class="mktoField " value="1862">
-                            <input type="hidden" name="formVid" class="mktoField " value="1862">
-                            <input type="hidden" name="lpId" class="mktoField" value="3635">
-                            <input type="hidden" name="subId" class="mktoField " value="30">
-                            <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335">
-                            <input type="hidden" name="lpurl" class="mktoField" value="https://pages.ubuntu.com/LP-MAAS_eBook.html?cr={creative}&amp;kw={keyword}">
-                            <input type="hidden" name="cr" class="mktoField " value="">
-                            <input type="hidden" name="kw" class="mktoField " value="">
-                            <input type="hidden" name="q" class="mktoField " value="">
-                        </li>
-                        <li>All information provided will be handled in accordance with the Canonical <a href="/legal">privacy policy</a>.</li>
-                    </ul>
-                </fieldset>
-
-                <input type="hidden" name="returnURL" value="https://www.ubuntu.com/download/server/provisioning#instructions">
-                <input type="hidden" name="retURL" value="https://www.ubuntu.com/download/server/provisioning#instructions">
-            </form>
-            <!-- /MARKETO FORM -->
-            <!-- dependencies -->
-            <script src="{{ ASSET_SERVER_URL }}ec520d10-XMLHttpRequest.min.js"></script>
-            <script src="{{ ASSET_SERVER_URL }}4176b39e-serialize.js"></script>
-            <script src="{{ ASSET_SERVER_URL }}6b7597df-event-listener-polyfill.js"></script>
-            <!-- script -->
-            <script>
-            $("#mktoForm_1862").validate({
-                errorElement: "span",
-                errorClass: "mktFormMsg mktError",
-                onkeyup: false,
-                onclick: false,
-                onblur: false
-            });
-
-            /**
-            * Given a form element, extract its data and its "action" target URL
-            * and submit the form using Ajax
-            */
-            backgroundSubmit = function (formElement, submitCallback) {
-                var request = new XMLHttpRequest();
-                var submitUrl = formElement.getAttribute('action');
-                var formData = serialize(formElement)
-
-                request.open("POST", submitUrl, true);
-
-                //Send the proper header information along with the request
-                request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-                // When request has finished, call the callback function
-                if (submitCallback) {
-                    request.addEventListener(
-                        'readystatechange',
-                        function() {
-                            if (this.readyState == 4) {
-                                // Pass context and arguments on to submitCallback
-                                submitCallback.apply(this, arguments);
-                            }
-                        }
-                    );
-                }
-
-                // Send off the POST request
-                request.send(formData);
-            }
-
-            /**
-            * After submit has happened
-            * start download and send the user to the instructions page
-            */
-            afterSubmit = function() {
-                // Now start the download
-                downloadFrame = document.createElement("iframe");
-                downloadFrame.setAttribute("src", "{{ ASSET_SERVER_URL }}05f610df-eBook_MAAS.pdf.zip");
-                downloadFrame.style.width = 0+"px";
-                downloadFrame.style.height = 0+"px";
-                document.body.insertBefore(downloadFrame, document.body.childNodes[0]);
-                // And redirect to the instructions page
-                window.setTimeout(
-                    function () {window.location.href = "/{{ url|default:'download/server/provisioning'}}#instructions";},
-                    1000
-                );
-            }
-
-            /**
-            * Handler for a form submit event
-            * to disable the normal submit, and instead use backgroundSubmit
-            */
-
-            backgroundSubmitHandlerClosure = function($) {
-                return function (submitEvent) {
-                    // Prevent normal submit
-                    submitEvent.preventDefault ? submitEvent.preventDefault() : submitEvent.returnValue = false;
-                    // Check form is valid
-                    if ($(marketoForm).valid()) {
-                        // Change the submit location
-                        marketoForm.action = "https://app-sjg.marketo.com/index.php/leadCapture/save2"
-                        // Submit the form in the background
-                        backgroundSubmit(marketoForm, afterSubmit);
-                    }
-                }
-            }
-
-            // Get the form
-            marketoForm = document.getElementById('mktoForm_1862');
-
-            // Attach the submit handler to the form
-            marketoForm.addEventListener(
-                'submit',
-                backgroundSubmitHandlerClosure(jQuery)
-            )
-            </script>
-
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-10">
+      <p>Metal as a Service (MAAS) gives you automated server provisioning and easy network setup for your physical servers for amazing data centre operational efficiency &mdash; on premise, open source and supported.</p>
     </div>
-</div>
-
-<div id="instructions" class="row row-install-autopilot no-border">
-    <div class="strip-inner-wrapper">
-        <h2>Install MAAS in 6 easy steps</h2>
-        <ol class="list-stepped--spaced download-help">
-            <li class="list-stepped__item">
-                <div class="five-col">
-                    <h3 class="list-stepped__title">Install Ubuntu Server</h3>
-                </div>
-                <div class="seven-col last-col list-stepped__box right">
-                    <p><a href="http://www.ubuntu.com/download/server">Download Ubuntu Server 16.04 LTS</a> and follow the step-by-step installation instructions on your MAAS server.</p>
-                </div>
-            </li>
-            <li class="list-stepped__item">
-                <div class="five-col">
-                    <h3 class="list-stepped__title">Install MAAS</h3>
-                </div>
-                <div class="seven-col last-col list-stepped__box right">
-                    <p>From the command line type the commands below and follow the step-by-step instructions:</p>
-                    <p class="command-line">
-                        <input class="command-line__input" value="sudo apt-get update" readonly="readonly">
-                        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
-                    </p>
-                    <p class="command-line">
-                        <input class="command-line__input" value="sudo apt-get install maas" readonly="readonly">
-                        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
-                    </p>
-                </div>
-            </li>
-            <li class="list-stepped__item">
-                <div class="five-col">
-                    <h3 class="list-stepped__title">Create admin user</h3>
-                </div>
-                <div class="seven-col last-col list-stepped__box right">
-                    <p>Create your admin credentials by typing:</p>
-                    <p class="command-line">
-                        <input class="command-line__input" value="sudo maas createadmin" readonly="readonly">
-                        <button class="js-copy-to-clipboard command-line__copy-button">Copy to clipboard</button>
-                    </p>
-                    <p>Login to the MAAS UI at http://&lt;your.maas.ip&gt;:5240/MAAS/</p>
-                </div>
-            </li>
-
-            <li class="list-stepped__item">
-                <div class="five-col">
-                    <h3 class="list-stepped__title">Turn on DHCP</h3>
-                </div>
-                <div class="seven-col last-col list-stepped__box right">
-                    <p>Go to the “Networks” tab, and select the VLAN for which you want to enable DHCP. On the “Take action” button select “Provide DHCP”.</p>
-                    <ul>
-                        <li>Set the Rack controller that will manage DHCP.</li>
-                        <li>Select the subnet where to create the DHCP dynamic range on.</li>
-                        <li>Fill in details for the dynamic range.</li>
-                    </ul>
-                    <img src="{{ ASSET_SERVER_URL }}ab018774-vlan-details.png" alt="Screenshot of Networks tab" />
-                </div>
-            </li>
-
-            <li class="list-stepped__item">
-                <div class="five-col">
-                    <h3 class="list-stepped__title">Import images</h3>
-                </div>
-                <div class="seven-col last-col list-stepped__box right">
-                    <p>Go to the “Images” tab and choose the OS releases and architectures you want to install dynamically.</p>
-                    <img src="{{ ASSET_SERVER_URL }}e4a4fc29-boot-images.png" alt="Screenshot of Images tab" >
-                </div>
-            </li>
-            <li class="list-stepped__item">
-                <div class="five-col">
-                    <h3 class="list-stepped__title">Enlist and commission servers</h3>
-                </div>
-                <div class="seven-col last-col list-stepped__box right">
-                    <p>Now you are ready to enlist and commission machines.</p>
-
-                    <ul>
-                        <li>Set all the servers to PXE boot.</li>
-                        <li>Boot each machine once. You should see these machines appear in MAAS.</li>
-                        <li>If your machines do not have a IPMI based BMC, proceed to edit them and enter their BMC details.</li>
-                        <li>Select all the machines and “Commission” them using the “Take action” button.</li>
-                        <li>When machines have a “Ready” status you can start deploying.</li>
-                    </ul>
-                    <img src="{{ ASSET_SERVER_URL }}cdc79a2b-node-listing.png" alt="Screenshot of Machines node list" />
-                </div>
-            </li>
-        </ol>
+  </div>
+  <div class="row">
+    <div class="col-12 p-card--highlighted">
+      <div class="u-equal-height p-divider">
+        <div class="col-6 p-divider__block">
+          <h2>Install MAAS on your&nbsp;hardware</h2>
+          <p>Follow the instructions below to download, configure and install MAAS.</p>
+        </div>
+        <div class="col-6 p-divider__block">
+          <h3>Requirements</h3>
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">You will need one small server for MAAS and at least one server which can be managed with a BMC.</li>
+            <li class="p-list__item is-ticked">It is recommended to have the MAAS server provide DHCP and DNS on a network the managed machines are connected to.</li>
+          </ul>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+</section>
 
-<div class="row row-white no-border">
-    <div class="strip-inner-wrapper equal-height">
-        <div class="five-col append-one equal-height__item">
-            <h3>Technical documentation</h3>
-            <p>For those looking to self-support MAAS we provide <a href="https://docs.ubuntu.com/maas/2.1/en/" class="external">extensive documentation</a> covering:</p>
-            <ul>
-                <li>What MAAS offers</li>
-                <li>How MAAS works</li>
-                <li>Key components and colocation of all services</li>
-                <li>Installation methods</li>
-                <li>Minimum requirements</li>
+<section class="p-strip--accent is-deep">
+  <div class="row">
+    <div class="col-12">
+      <h2>Before you start, you’ll want this&nbsp;eBook</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-7 suffix-1">
+      <img class="u-hidden--small" src="{{ ASSET_SERVER_URL }}5e6b2dce-MAAS-ebook-web.svg" alt="" width="440" />
+      <h3>Server Provisioning: What Network Admins and IT Pros Need to Know</h3>
+      <p>This document is designed to help system administrators and DevOps focused organisations to understand bare metal server provisioning, understand its value proposition, and learn about how leading companies are using server provisioning solutions within their hyperscale environments.</p>
+      <p>Canonical&rsquo;s MAAS helps organisations to take full advantage of existing hardware investments by maximising hardware efficiency, and a pathway to leverage the performance and security of hardware based solutions with the economics and efficiencies of the cloud.</p>
+    </div>
+
+    <div class="col-5">
+      <!-- MARKETO FORM -->
+      <form action="https://pages.ubuntu.com/index.php/leadCapture/save?utm_source=ubuntu.com&utm_medium=Download-provisioning&utm_campaign=MAAS_ebook" method="post" id="mktoForm_1862">
+        <fieldset>
+          <ul class="p-list">
+
+            <li class="mktFormReq mktField p-list__item">
+              <label for="FirstName" class="mktoLabel ">First name:</label>
+              <input required="" id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField   mktoRequired">
+            </li>
+
+            <li class="mktFormReq mktField p-list__item">
+              <label for="LastName" class="mktoLabel ">Last name:</label>
+              <input required="" id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired">
+            </li>
+
+            <li class="mktFormReq mktField p-list__item">
+              <label for="JobRole" class="mktoLabel ">Job role:</label>
+              <select id="JobRole" name="JobRole" required class="mktoField mktoRequired">
+                <option disabled selected value>Select...</option>
+                <option value="CEO/Owner">CEO/Owner</option>
+                <option value="VP/Director">VP/Director</option>
+                <option value="Manager">Manager</option>
+                <option value="IT Administrator">IT Administrator</option>
+                <option value="Developer">Developer</option>
+                <option value="Student">Student</option>
+                <option value="Ubuntu Enthusiast">Ubuntu Enthusiast</option>
+                <option value="Other">Other</option>
+              </select>
+            </li>
+
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Company" class="mktoLabel ">Company name:</label>
+              <input required="" id="Company" name="Company" maxlength="255" type="text" class="mktoField   mktoRequired">
+            </li>
+
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Email" class="mktoLabel ">Email:</label>
+              <input required="" id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired">
+            </li>
+
+            <!-- country -->
+            {% include "shared/forms/_country.html" %}
+            <!-- state/province -->
+            {% include "shared/forms/_state.html" %}
+
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Phone" class="mktoLabel ">Phone number:</label>
+              <input required="" id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired">
+            </li>
+
+            <li class="mktField p-list__item">
+              <input class="mktoField" value="yes" id="NewsletterOpt-In" name="NewsletterOpt-In" type="checkbox">
+              <label class="mktoLabel mktoHasWidth" for="NewsletterOpt-In"><small>I would like to receive occasional news from Canonical by email.</small></label>
+            </li>
+
+            <li class="mktField p-list__item">
+              <button type="submit" class="mktoButton p-button--brand" onsubmit="backgroundSubmitHandler();">Download the eBook</button>
+              <input type="hidden" name="formid" class="mktoField " value="1862">
+              <input type="hidden" name="formVid" class="mktoField " value="1862">
+              <input type="hidden" name="lpId" class="mktoField" value="3635">
+              <input type="hidden" name="subId" class="mktoField " value="30">
+              <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335">
+              <input type="hidden" name="lpurl" class="mktoField" value="https://pages.ubuntu.com/LP-MAAS_eBook.html?cr={creative}&amp;kw={keyword}">
+              <input type="hidden" name="cr" class="mktoField " value="">
+              <input type="hidden" name="kw" class="mktoField " value="">
+              <input type="hidden" name="q" class="mktoField " value="">
+            </li>
+            <li>All information provided will be handled in accordance with the Canonical <a href="/legal">privacy policy</a>.</li>
+          </ul>
+        </fieldset>
+
+        <input type="hidden" name="returnURL" value="https://www.ubuntu.com/download/server/provisioning#instructions">
+        <input type="hidden" name="retURL" value="https://www.ubuntu.com/download/server/provisioning#instructions">
+      </form>
+      <!-- /MARKETO FORM -->
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-deep is-bordered" id="instructions">
+  <div class="row">
+    <div class="col-12">
+      <h2>Install MAAS in 6 easy steps</h2>
+      <ol class="p-stepped-list--detailed">
+
+        <li class="p-list-step__item col-12">
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">1</span>Install Ubuntu Server</h3>
+          <div class="p-list-step__content">
+            <p><a href="/download/server">Download Ubuntu Server 16.04 LTS</a> and follow the step-by-step installation instructions on your MAAS server.</p>
+          </div>
+        </li>
+
+        <li class="p-list-step__item col-12">
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">2</span>Install MAAS</h3>
+          <div class="p-list-step__content">
+            <p>From the command line type the commands below and follow the step-by-step instructions:</p>
+            <p class="p-code-snippet">
+              <input class="p-code-snippet__input" value="sudo apt-get update" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </p>
+            <p class="p-code-snippet">
+              <input class="p-code-snippet__input" value="sudo apt-get install maas" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </p>
+          </div>
+        </li>
+
+        <li class="p-list-step__item col-12">
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">3</span>Create admin user</h3>
+          <div class="p-list-step__content">
+            <p>Create your admin credentials by typing:</p>
+            <p class="p-code-snippet">
+              <input class="p-code-snippet__input" value="sudo maas createadmin" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </p>
+            <p>Login to the MAAS UI at http://&lt;your.maas.ip&gt;:5240/MAAS/</p>
+          </div>
+        </li>
+
+        <li class="p-list-step__item col-12">
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">4</span>Turn on DHCP</h3>
+          <div class="p-list-step__content">
+            <p>Go to the “Networks” tab, and select the VLAN for which you want to enable DHCP. On the “Take action” button select “Provide DHCP”.</p>
+            <ul class="p-list">
+              <li class="p-list__item">Set the Rack controller that will manage DHCP.</li>
+              <li class="p-list__item">Select the subnet where to create the DHCP dynamic range on.</li>
+              <li class="p-list__item">Fill in details for the dynamic range.</li>
             </ul>
-        </div>
-        <div class="six-col align-center not-for-small equal-height__item equal-height__align-vertically">
-            <img src="{{ ASSET_SERVER_URL }}75f86e11-pictogram-articles-orange-hex.svg" alt="">
-        </div>
-    </div>
-</div>
+            <img src="{{ ASSET_SERVER_URL }}ab018774-vlan-details.png" alt="Screenshot of Networks tab" />
+          </div>
+        </li>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_maas_experts"  second_item="_maas-juju" third_item="_maas-autopilot" %}
+        <li class="p-list-step__item col-12">
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">3</span>Import images</h3>
+          <div class="p-list-step__content">
+            <p>Go to the “Images” tab and choose the OS releases and architectures you want to install dynamically.</p>
+            <img src="{{ ASSET_SERVER_URL }}e4a4fc29-boot-images.png" alt="Screenshot of Images tab">
+          </div>
+        </li>
+
+        <li class="p-list-step__item col-12">
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">6</span>Enlist and commission servers</h3>
+          <div class="p-list-step__content">
+            <p>Now you are ready to enlist and commission machines.</p>
+            <ul class="p-list">
+              <li class="p-list__item">Set all the servers to PXE boot.</li>
+              <li class="p-list__item">Boot each machine once. You should see these machines appear in MAAS.</li>
+              <li class="p-list__item">If your machines do not have a IPMI based BMC, proceed to edit them and enter their BMC details.</li>
+              <li class="p-list__item">Select all the machines and “Commission” them using the “Take action” button.</li>
+              <li class="p-list__item">When machines have a “Ready” status you can start deploying.</li>
+            </ul>
+            <img src="{{ ASSET_SERVER_URL }}cdc79a2b-node-listing.png" alt="Screenshot of Machines node list" />
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <h2>Technical documentation</h2>
+      <p>For those looking to self-support MAAS we provide <a href="https://docs.ubuntu.com/maas/2.1/en/" class="p-link--external">extensive documentation</a> covering:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">What MAAS offers</li>
+        <li class="p-list__item is-ticked">How MAAS works</li>
+        <li class="p-list__item is-ticked">Key components and colocation of all services</li>
+        <li class="p-list__item is-ticked">Installation methods</li>
+        <li class="p-list__item is-ticked">Minimum requirements</li>
+      </ul>
+    </div>
+    <div class="col-6 align-center u-hidden--small u-align--center u-vertically-center">
+      <img src="{{ ASSET_SERVER_URL }}75f86e11-pictogram-articles-orange-hex.svg" alt="">
+    </div>
+  </div>
+</section>
+
+{% include "shared/contextual_footers/_contextual_footer.html" with first_item="_maas_experts" second_item="_maas-juju" third_item="_maas-autopilot" %}
 
 {% endblock content %}
+
+{% block footer_extra %}
+<!-- marketo form dependencies -->
+<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
+<script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
+<script src="{{ ASSET_SERVER_URL }}ec520d10-XMLHttpRequest.min.js"></script>
+<script src="{{ ASSET_SERVER_URL }}4176b39e-serialize.js"></script>
+<script src="{{ ASSET_SERVER_URL }}6b7597df-event-listener-polyfill.js"></script>
+<!-- script -->
+<script>
+$("#mktoForm_1862").validate({
+  errorElement: "span",
+  errorClass: "mktFormMsg mktError",
+  onkeyup: false,
+  onclick: false,
+  onblur: false
+});
+
+/**
+* Given a form element, extract its data and its "action" target URL
+* and submit the form using Ajax
+*/
+backgroundSubmit = function(formElement, submitCallback) {
+  var request = new XMLHttpRequest();
+  var submitUrl = formElement.getAttribute('action');
+  var formData = serialize(formElement)
+
+  request.open("POST", submitUrl, true);
+
+  //Send the proper header information along with the request
+  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  // When request has finished, call the callback function
+  if (submitCallback) {
+    request.addEventListener(
+      'readystatechange',
+      function() {
+        if (this.readyState == 4) {
+          // Pass context and arguments on to submitCallback
+          submitCallback.apply(this, arguments);
+        }
+      }
+    );
+  }
+
+  // Send off the POST request
+  request.send(formData);
+}
+
+/**
+* After submit has happened
+* start download and send the user to the instructions page
+*/
+afterSubmit = function() {
+  // Now start the download
+  downloadFrame = document.createElement("iframe");
+  downloadFrame.setAttribute("src", "{{ ASSET_SERVER_URL }}05f610df-eBook_MAAS.pdf.zip");
+  downloadFrame.style.width = 0 + "px";
+  downloadFrame.style.height = 0 + "px";
+  document.body.insertBefore(downloadFrame, document.body.childNodes[0]);
+  // And redirect to the instructions page
+  window.setTimeout(
+    function() {
+      window.location.href = "/{{ url|default:'download/server/provisioning'}}#instructions";
+    },
+    1000
+  );
+}
+
+/**
+* Handler for a form submit event
+* to disable the normal submit, and instead use backgroundSubmit
+*/
+
+backgroundSubmitHandlerClosure = function($) {
+  return function(submitEvent) {
+    // Prevent normal submit
+    submitEvent.preventDefault ? submitEvent.preventDefault() : submitEvent.returnValue = false;
+    // Check form is valid
+    if ($(marketoForm).valid()) {
+      // Change the submit location
+      marketoForm.action = "https://app-sjg.marketo.com/index.php/leadCapture/save2"
+      // Submit the form in the background
+      backgroundSubmit(marketoForm, afterSubmit);
+    }
+  }
+}
+
+// Get the form
+marketoForm = document.getElementById('mktoForm_1862');
+
+// Attach the submit handler to the form
+marketoForm.addEventListener(
+  'submit',
+  backgroundSubmitHandlerClosure(jQuery)
+)
+</script>
+
+{% endblock footer_extra %}
