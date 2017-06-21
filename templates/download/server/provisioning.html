@@ -1,5 +1,10 @@
-{% extends "download/_base_download.html" %} {% block title %}Get MAAS to run your physical cloud | Download | Ubuntu{% endblock %} {% block meta_description %}{% endblock meta_description %} {% block content %}
+{% extends "download/_base_download.html" %}
 
+{% block title %}Get MAAS to run your physical cloud | Download | Ubuntu{% endblock %}
+
+{% block meta_description %}{% endblock meta_description %}
+
+{% block content %}
 <section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-12">
@@ -26,6 +31,8 @@
           </ul>
         </div>
       </div>
+    </div>
+  </div>
 </section>
 
 <section class="p-strip--accent is-deep">
@@ -38,34 +45,29 @@
     <div class="col-7 suffix-1">
       <img class="u-hidden--small" src="{{ ASSET_SERVER_URL }}5e6b2dce-MAAS-ebook-web.svg" alt="" width="440" />
       <h3>Server Provisioning: What Network Admins and IT Pros Need to Know</h3>
-      <p>This document is designed to help system administrators and DevOps focused organisations to understand bare metal server provisioning, understand its value proposition, and learn about how leading companies are using server provisioning solutions
-        within their hyperscale environments.</p>
-      <p>Canonical&rsquo;s MAAS helps organisations to take full advantage of existing hardware investments by maximising hardware efficiency, and a pathway to leverage the performance and security of hardware based solutions with the economics and efficiencies
-        of the cloud.</p>
+      <p>This document is designed to help system administrators and DevOps focused organisations to understand bare metal server provisioning, understand its value proposition, and learn about how leading companies are using server provisioning solutions within their hyperscale environments.</p>
+      <p>Canonical&rsquo;s MAAS helps organisations to take full advantage of existing hardware investments by maximising hardware efficiency, and a pathway to leverage the performance and security of hardware based solutions with the economics and efficiencies of the cloud.</p>
     </div>
 
+    <div class="col-5">
+      <!-- MARKETO FORM -->
+      <form action="https://pages.ubuntu.com/index.php/leadCapture/save?utm_source=ubuntu.com&utm_medium=Download-provisioning&utm_campaign=MAAS_ebook" method="post" id="mktoForm_1862">
+        <fieldset>
+          <ul class="p-list">
 
-    <!-- MARKETO FORM -->
-    <script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
-    <script src="https://assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="FirstName" class="mktoLabel ">First name:</label>
+              <input required="" id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField   mktoRequired">
+            </li>
 
-    <form action="https://pages.ubuntu.com/index.php/leadCapture/save?utm_source=ubuntu.com&utm_medium=Download-provisioning&utm_campaign=MAAS_ebook" method="post" id="mktoForm_1862">
-      <fieldset>
-        <ul class="p-list">
+            <li class="mktFormReq mktField p-list__item">
+              <label for="LastName" class="mktoLabel ">Last name:</label>
+              <input required="" id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired">
+            </li>
 
-          <li class="mktFormReq mktField p-list__item">
-            <label for="FirstName" class="mktoLabel ">First name:</label>
-            <input required="" id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField   mktoRequired">
-          </li>
-
-          <li class="mktFormReq mktField p-list__item">
-            <label for="LastName" class="mktoLabel ">Last name:</label>
-            <input required="" id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired">
-          </li>
-
-          <li class="mktFormReq mktField p-list__item">
-            <label for="JobRole" class="mktoLabel ">Job role:</label>
-            <select id="JobRole" name="JobRole" required class="mktoField mktoRequired">
+            <li class="mktFormReq mktField p-list__item">
+              <label for="JobRole" class="mktoLabel ">Job role:</label>
+              <select id="JobRole" name="JobRole" required class="mktoField mktoRequired">
                 <option disabled selected value>Select...</option>
                 <option value="CEO/Owner">CEO/Owner</option>
                 <option value="VP/Director">VP/Director</option>
@@ -76,54 +78,54 @@
                 <option value="Ubuntu Enthusiast">Ubuntu Enthusiast</option>
                 <option value="Other">Other</option>
               </select>
-          </li>
+            </li>
 
-          <li class="mktFormReq mktField p-list__item">
-            <label for="Company" class="mktoLabel ">Company name:</label>
-            <input required="" id="Company" name="Company" maxlength="255" type="text" class="mktoField   mktoRequired">
-          </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Company" class="mktoLabel ">Company name:</label>
+              <input required="" id="Company" name="Company" maxlength="255" type="text" class="mktoField   mktoRequired">
+            </li>
 
-          <li class="mktFormReq mktField p-list__item">
-            <label for="Email" class="mktoLabel ">Email:</label>
-            <input required="" id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired">
-          </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Email" class="mktoLabel ">Email:</label>
+              <input required="" id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired">
+            </li>
 
-          <!-- country -->
-          {% include "shared/forms/_country.html" %}
-          <!-- state/province -->
-          {% include "shared/forms/_state.html" %}
+            <!-- country -->
+            {% include "shared/forms/_country.html" %}
+            <!-- state/province -->
+            {% include "shared/forms/_state.html" %}
 
-          <li class="mktFormReq mktField p-list__item">
-            <label for="Phone" class="mktoLabel ">Phone number:</label>
-            <input required="" id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired">
-          </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Phone" class="mktoLabel ">Phone number:</label>
+              <input required="" id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired">
+            </li>
 
-          <li class="mktField p-list__item">
-            <input class="mktoField" value="yes" id="NewsletterOpt-In" name="NewsletterOpt-In" type="checkbox">
-            <label class="mktoLabel mktoHasWidth" for="NewsletterOpt-In"><small>I would like to receive occasional news from Canonical by email.</small></label>
-          </li>
+            <li class="mktField p-list__item">
+              <input class="mktoField" value="yes" id="NewsletterOpt-In" name="NewsletterOpt-In" type="checkbox">
+              <label class="mktoLabel mktoHasWidth" for="NewsletterOpt-In"><small>I would like to receive occasional news from Canonical by email.</small></label>
+            </li>
 
-          <li class="mktField p-list__item">
-            <button type="submit" class="mktoButton p-button--brand" onsubmit="backgroundSubmitHandler();">Download the eBook</button>
-            <input type="hidden" name="formid" class="mktoField " value="1862">
-            <input type="hidden" name="formVid" class="mktoField " value="1862">
-            <input type="hidden" name="lpId" class="mktoField" value="3635">
-            <input type="hidden" name="subId" class="mktoField " value="30">
-            <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335">
-            <input type="hidden" name="lpurl" class="mktoField" value="https://pages.ubuntu.com/LP-MAAS_eBook.html?cr={creative}&amp;kw={keyword}">
-            <input type="hidden" name="cr" class="mktoField " value="">
-            <input type="hidden" name="kw" class="mktoField " value="">
-            <input type="hidden" name="q" class="mktoField " value="">
-          </li>
-          <li>All information provided will be handled in accordance with the Canonical <a href="/legal">privacy policy</a>.</li>
-        </ul>
-      </fieldset>
+            <li class="mktField p-list__item">
+              <button type="submit" class="mktoButton p-button--brand" onsubmit="backgroundSubmitHandler();">Download the eBook</button>
+              <input type="hidden" name="formid" class="mktoField " value="1862">
+              <input type="hidden" name="formVid" class="mktoField " value="1862">
+              <input type="hidden" name="lpId" class="mktoField" value="3635">
+              <input type="hidden" name="subId" class="mktoField " value="30">
+              <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335">
+              <input type="hidden" name="lpurl" class="mktoField" value="https://pages.ubuntu.com/LP-MAAS_eBook.html?cr={creative}&amp;kw={keyword}">
+              <input type="hidden" name="cr" class="mktoField " value="">
+              <input type="hidden" name="kw" class="mktoField " value="">
+              <input type="hidden" name="q" class="mktoField " value="">
+            </li>
+            <li>All information provided will be handled in accordance with the Canonical <a href="/legal">privacy policy</a>.</li>
+          </ul>
+        </fieldset>
 
-      <input type="hidden" name="returnURL" value="https://www.ubuntu.com/download/server/provisioning#instructions">
-      <input type="hidden" name="retURL" value="https://www.ubuntu.com/download/server/provisioning#instructions">
-    </form>
-    <!-- /MARKETO FORM -->
-  </div>
+        <input type="hidden" name="returnURL" value="https://www.ubuntu.com/download/server/provisioning#instructions">
+        <input type="hidden" name="retURL" value="https://www.ubuntu.com/download/server/provisioning#instructions">
+      </form>
+      <!-- /MARKETO FORM -->
+    </div>
   </div>
 </section>
 
@@ -134,14 +136,14 @@
       <ol class="p-stepped-list--detailed">
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-stepped-list__title"><span class="p-list-step__bullet">1</span>Install Ubuntu Server</h3>
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">1</span>Install Ubuntu Server</h3>
           <div class="p-list-step__content">
             <p><a href="/download/server">Download Ubuntu Server 16.04 LTS</a> and follow the step-by-step installation instructions on your MAAS server.</p>
           </div>
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-stepped-list__title"><span class="p-list-step__bullet">2</span>Install MAAS</h3>
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">2</span>Install MAAS</h3>
           <div class="p-list-step__content">
             <p>From the command line type the commands below and follow the step-by-step instructions:</p>
             <p class="p-code-snippet">
@@ -156,7 +158,7 @@
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-stepped-list__title"><span class="p-list-step__bullet">3</span>Create admin user</h3>
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">3</span>Create admin user</h3>
           <div class="p-list-step__content">
             <p>Create your admin credentials by typing:</p>
             <p class="p-code-snippet">
@@ -168,7 +170,7 @@
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-stepped-list__title"><span class="p-list-step__bullet">4</span>Turn on DHCP</h3>
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">4</span>Turn on DHCP</h3>
           <div class="p-list-step__content">
             <p>Go to the “Networks” tab, and select the VLAN for which you want to enable DHCP. On the “Take action” button select “Provide DHCP”.</p>
             <ul class="p-list">
@@ -181,7 +183,7 @@
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-stepped-list__title"><span class="p-list-step__bullet">3</span>Import images</h3>
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">3</span>Import images</h3>
           <div class="p-list-step__content">
             <p>Go to the “Images” tab and choose the OS releases and architectures you want to install dynamically.</p>
             <img src="{{ ASSET_SERVER_URL }}e4a4fc29-boot-images.png" alt="Screenshot of Images tab">
@@ -189,7 +191,7 @@
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-stepped-list__title"><span class="p-list-step__bullet">6</span>Enlist and commission servers</h3>
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">6</span>Enlist and commission servers</h3>
           <div class="p-list-step__content">
             <p>Now you are ready to enlist and commission machines.</p>
             <ul class="p-list">
@@ -226,102 +228,105 @@
   </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html" with first_item="_maas_experts" second_item="_maas-juju" third_item="_maas-autopilot" %} {% endblock content %}
+{% include "shared/contextual_footers/_contextual_footer.html" with first_item="_maas_experts" second_item="_maas-juju" third_item="_maas-autopilot" %}
 
+{% endblock content %}
 
 {% block footer_extra %}
-<!-- dependencies -->
+<!-- marketo form dependencies -->
+<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
+<script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
 <script src="{{ ASSET_SERVER_URL }}ec520d10-XMLHttpRequest.min.js"></script>
 <script src="{{ ASSET_SERVER_URL }}4176b39e-serialize.js"></script>
 <script src="{{ ASSET_SERVER_URL }}6b7597df-event-listener-polyfill.js"></script>
 <!-- script -->
 <script>
-  $("#mktoForm_1862").validate({
-    errorElement: "span",
-    errorClass: "mktFormMsg mktError",
-    onkeyup: false,
-    onclick: false,
-    onblur: false
-  });
+$("#mktoForm_1862").validate({
+  errorElement: "span",
+  errorClass: "mktFormMsg mktError",
+  onkeyup: false,
+  onclick: false,
+  onblur: false
+});
 
-  /**
-   * Given a form element, extract its data and its "action" target URL
-   * and submit the form using Ajax
-   */
-  backgroundSubmit = function(formElement, submitCallback) {
-    var request = new XMLHttpRequest();
-    var submitUrl = formElement.getAttribute('action');
-    var formData = serialize(formElement)
+/**
+* Given a form element, extract its data and its "action" target URL
+* and submit the form using Ajax
+*/
+backgroundSubmit = function(formElement, submitCallback) {
+  var request = new XMLHttpRequest();
+  var submitUrl = formElement.getAttribute('action');
+  var formData = serialize(formElement)
 
-    request.open("POST", submitUrl, true);
+  request.open("POST", submitUrl, true);
 
-    //Send the proper header information along with the request
-    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  //Send the proper header information along with the request
+  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-    // When request has finished, call the callback function
-    if (submitCallback) {
-      request.addEventListener(
-        'readystatechange',
-        function() {
-          if (this.readyState == 4) {
-            // Pass context and arguments on to submitCallback
-            submitCallback.apply(this, arguments);
-          }
-        }
-      );
-    }
-
-    // Send off the POST request
-    request.send(formData);
-  }
-
-  /**
-   * After submit has happened
-   * start download and send the user to the instructions page
-   */
-  afterSubmit = function() {
-    // Now start the download
-    downloadFrame = document.createElement("iframe");
-    downloadFrame.setAttribute("src", "{{ ASSET_SERVER_URL }}05f610df-eBook_MAAS.pdf.zip");
-    downloadFrame.style.width = 0 + "px";
-    downloadFrame.style.height = 0 + "px";
-    document.body.insertBefore(downloadFrame, document.body.childNodes[0]);
-    // And redirect to the instructions page
-    window.setTimeout(
+  // When request has finished, call the callback function
+  if (submitCallback) {
+    request.addEventListener(
+      'readystatechange',
       function() {
-        window.location.href = "/{{ url|default:'download/server/provisioning'}}#instructions";
-      },
-      1000
+        if (this.readyState == 4) {
+          // Pass context and arguments on to submitCallback
+          submitCallback.apply(this, arguments);
+        }
+      }
     );
   }
 
-  /**
-   * Handler for a form submit event
-   * to disable the normal submit, and instead use backgroundSubmit
-   */
+  // Send off the POST request
+  request.send(formData);
+}
 
-  backgroundSubmitHandlerClosure = function($) {
-    return function(submitEvent) {
-      // Prevent normal submit
-      submitEvent.preventDefault ? submitEvent.preventDefault() : submitEvent.returnValue = false;
-      // Check form is valid
-      if ($(marketoForm).valid()) {
-        // Change the submit location
-        marketoForm.action = "https://app-sjg.marketo.com/index.php/leadCapture/save2"
-        // Submit the form in the background
-        backgroundSubmit(marketoForm, afterSubmit);
-      }
+/**
+* After submit has happened
+* start download and send the user to the instructions page
+*/
+afterSubmit = function() {
+  // Now start the download
+  downloadFrame = document.createElement("iframe");
+  downloadFrame.setAttribute("src", "{{ ASSET_SERVER_URL }}05f610df-eBook_MAAS.pdf.zip");
+  downloadFrame.style.width = 0 + "px";
+  downloadFrame.style.height = 0 + "px";
+  document.body.insertBefore(downloadFrame, document.body.childNodes[0]);
+  // And redirect to the instructions page
+  window.setTimeout(
+    function() {
+      window.location.href = "/{{ url|default:'download/server/provisioning'}}#instructions";
+    },
+    1000
+  );
+}
+
+/**
+* Handler for a form submit event
+* to disable the normal submit, and instead use backgroundSubmit
+*/
+
+backgroundSubmitHandlerClosure = function($) {
+  return function(submitEvent) {
+    // Prevent normal submit
+    submitEvent.preventDefault ? submitEvent.preventDefault() : submitEvent.returnValue = false;
+    // Check form is valid
+    if ($(marketoForm).valid()) {
+      // Change the submit location
+      marketoForm.action = "https://app-sjg.marketo.com/index.php/leadCapture/save2"
+      // Submit the form in the background
+      backgroundSubmit(marketoForm, afterSubmit);
     }
   }
+}
 
-  // Get the form
-  marketoForm = document.getElementById('mktoForm_1862');
+// Get the form
+marketoForm = document.getElementById('mktoForm_1862');
 
-  // Attach the submit handler to the form
-  marketoForm.addEventListener(
-    'submit',
-    backgroundSubmitHandlerClosure(jQuery)
-  )
+// Attach the submit handler to the form
+marketoForm.addEventListener(
+  'submit',
+  backgroundSubmitHandlerClosure(jQuery)
+)
 </script>
 
-{% endblock %}
+{% endblock footer_extra %}
