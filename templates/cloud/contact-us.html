@@ -2,25 +2,35 @@
 {% block title %}Contact us | Ubuntu Cloud{% endblock %}
 
 {% block content %}
-  <section class="row row-hero no-border no-margin-bottom no-padding-bottom strip-light">
-    <div class="strip-inner-wrapper">
-      {% if product == 'cloud-training' %}
-        {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about our training courses" intro_text="Fill in your details below and a member of our training team will be in touch." formid="1263" lpId="2163" returnURL="https://www.ubuntu.com/cloud/thank-you?product=cloud-training" %}
-      {% elif product == 'cloud-training-classroom' %}
-        {% include "shared/_cloud-contact-us-form.html" with  h1="Register for Ubuntu OpenStack Training" intro_text="If you are interested in the Ubuntu OpenStack training, please fill out the form below and we’ll get back to you with available dates and locations." formid="1261" lpId="2161" returnURL="https://www.ubuntu.com/cloud/thank-you?product=cloud-training-classroom" %}
-      {% elif product == 'cloud-training-onsite' %}
-        {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about our training courses" intro_text="Fill in your details below and a member of our training team will be in touch." formid="1223" lpId="1973" returnURL="https://www.ubuntu.com/cloud/thank-you?product=cloud-training-onsite" %}
-      {% elif product == 'cloud-training-server-admin' %}
-        {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about our Ubuntu Server Administration training courses" intro_text="Fill in your details below and a member of our training team will be in touch." formid="1448" lpId="2661" returnURL="https://www.ubuntu.com/cloud/thank-you?product=cloud-training-server-admin" %}
-      {% elif product == 'storage' %}
-        {% include "shared/_cloud-contact-us-form.html" with  h1="Ubuntu Advantage Storage" intro_text="Let Canonical help you build your own software-defined storage network." formid="1233" lpId="2001" returnURL="https://www.ubuntu.com/cloud/thank-you?product=storage" %}
-      {% elif product == 'managed-cloud' %}
-        {% include "shared/_cloud-contact-us-form.html" with  h1="Schedule a demo" intro_text="Fill in your details below and a member of our BootStack team will be in touch." formid="1128" lpId="1646" returnURL="https://www.ubuntu.com/cloud/thank-you?product=managed-cloud" %}
-      {% else %}
-        {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about the cloud" intro_text="Fill in your details below and a member of our cloud sales team will be in touch." formid='1251'  lpId='2086' returnURL='https://www.ubuntu.com/cloud/thank-you' %}
-      {% endif %}
-    </div>
-  </section>
+  {% if product == 'cloud-training' %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about our training courses" intro_text="Fill in your details below and a member of our training team will be in touch." formid="1263" lpId="2163" returnURL="https://www.ubuntu.com/cloud/thank-you?product=cloud-training" %}
+
+  {% elif product == 'cloud-training-classroom' %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Register for Ubuntu OpenStack Training" intro_text="If you are interested in the Ubuntu OpenStack training, please fill out the form below and we’ll get back to you with available dates and locations." formid="1261" lpId="2161" returnURL="https://www.ubuntu.com/cloud/thank-you?product=cloud-training-classroom" %}
+
+  {% elif product == 'cloud-training-onsite' %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about our training courses" intro_text="Fill in your details below and a member of our training team will be in touch." formid="1223" lpId="1973" returnURL="https://www.ubuntu.com/cloud/thank-you?product=cloud-training-onsite" %}
+
+  {% elif product == 'cloud-training-server-admin' %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about our Ubuntu Server Administration training courses" intro_text="Fill in your details below and a member of our training team will be in touch." formid="1448" lpId="2661" returnURL="https://www.ubuntu.com/cloud/thank-you?product=cloud-training-server-admin" %}
+
+  {% elif product == 'storage' %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Ubuntu Advantage Storage" intro_text="Let Canonical help you build your own software-defined storage network." formid="1233" lpId="2001" returnURL="https://www.ubuntu.com/cloud/thank-you?product=storage" %}
+
+  {% elif product == 'managed-cloud' %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Schedule a demo" intro_text="Fill in your details below and a member of our BootStack team will be in touch." formid="1128" lpId="1646" returnURL="https://www.ubuntu.com/cloud/thank-you?product=managed-cloud" %}
+
+  {% else %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about the cloud" intro_text="Fill in your details below and a member of our cloud sales team will be in touch." formid='1251'  lpId='2086' returnURL='https://www.ubuntu.com/cloud/thank-you' %}
+
+  {% endif %}
 {% endblock content %}
 
 {% block footer_extra %}
