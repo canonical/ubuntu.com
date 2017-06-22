@@ -1,14 +1,34 @@
 {% extends "server/base_server.html" %}
 {% block title %}Contact us | Ubuntu Server{% endblock %}
-{% block meta_description %}Contact Canonical about Ubuntu Server{% endblock %}
+{% block meta_description %}Contact us about Ubuntu Server about Ubuntu Server{% endblock %}
 
 
 {% block content %}
-<div class="p-strip">
-  <div class="row">
-    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact Canonical"   intro_text="Considering Ubuntu Server for your business?"  formid="1254"   lpId="2152"  returnURL="https://www.ubuntu.com/server/thank-you"  %}
-  </div>
- </section>
+  {% if product == 'server-overview' %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about Ubuntu Server"   intro_text="Fill in your details below and a member of our sales team will be in touch."  formid="1254"   lpId="2152"  returnURL="https://www.ubuntu.com/server/thank-you"  %}
+
+  {% elif product == 'server-hyperscale' %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about Ubuntu Server for hyperscale"   intro_text="Fill in your details below and a member of our sales team will be in touch."  formid="1254"   lpId="2152"  returnURL="https://www.ubuntu.com/server/thank-you"  %}
+
+  {% elif product == 'server-management' %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about Ubuntu Advantage support"   intro_text="Fill in your details below and a member of our sales team will be in touch."  formid="1254"   lpId="2152"  returnURL="https://www.ubuntu.com/server/thank-you"  %}
+
+  {% elif product == 'server-maas' or product == 'contextual-footer-server-maas' %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about MAAS and server provisioning"   intro_text="Fill in your details below and a member of our sales team will be in touch."  formid="1254"   lpId="2152"  returnURL="https://www.ubuntu.com/server/thank-you"  %}
+
+  {% elif product == 'contextual-footer-maas' %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about MAAS and server provisioning"   intro_text="Fill in your details below and a member of our sales team will be in touch."  formid="1254"   lpId="2152"  returnURL="https://www.ubuntu.com/server/thank-you"  %}
+
+  {% else %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about Ubuntu Server"   intro_text="Fill in your details below and a member of our sales team will be in touch."  formid="1254"   lpId="2152"  returnURL="https://www.ubuntu.com/server/thank-you"  %}
+
+{% endif %}
 
 {% endblock content %}
 
