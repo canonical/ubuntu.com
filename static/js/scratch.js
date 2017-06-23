@@ -11,6 +11,12 @@ core.cookiePolicy = function() {
         var cookieNode = range.createContextualFragment('<div class="p-notification p-notification--floating cookie-policy"><p class="p-notification--floating__content">We use cookies to improve your experience. By your continued use of this site you accept such use.<br /> To change your settings please <a href="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy#cookies">see our policy</a>. <a href="?cp=close" class="p-notification--floating__close js-close">Close</a></p></div>');
         document.body.insertBefore(cookieNode, document.body.lastChild);
         document.querySelector('footer.p-footer').classList.add('has-cookie');
+        window.setTimeout(function() {
+          state('close');
+        }, 10000);
+        window.addEventListener('unload', function() {
+          state('close');
+        });
         document.querySelector('.cookie-policy .js-close').addEventListener('click', function(e) {
           e.preventDefault();
           state('close');
