@@ -11,7 +11,7 @@
 @include vanilla-brochure-theme;
 
 // vendor
-@import '../components/canonical-global-nav/src/sass/main';
+@import 'vendors/global-nav/build';
 
 // import site specific patterns and overrides
 @import 'pattern_site_search';
@@ -94,6 +94,21 @@
 @media (min-width: $breakpoint-medium ) {
   .p-navigation:target .p-navigation__toggle--close {
     display: none !important; // specificity
+  }
+}
+
+// global nav spills onto two lines at $breakpoint-medium
+// https://github.com/canonical-webteam/global-nav/issues/14
+@media only screen and (max-width: 770px) {
+  #nav-global ul .more {
+    min-width: 55px;
+  }
+}
+
+// global menu has too much top spacing
+#nav-global ul ul {
+  @media (min-width: $breakpoint-medium ) {
+    top: 15px;
   }
 }
 
