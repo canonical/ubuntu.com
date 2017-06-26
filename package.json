@@ -7,7 +7,7 @@
     "test": "sass-lint static/**/*.scss --verbose --no-exit",
     "build": "node-sass --include-path node_modules static/sass --output static/css",
     "watch": "node-sass --include-path node_modules --source-map true --watch static/sass --output static/css",
-    "clean": "rm -rf node_modules yarn-error.log static/css cache.sqlite"
+    "clean": "rm -rf node_modules yarn-error.log static/css static/components cache.sqlite"
   },
   "keywords": [
     "website",
