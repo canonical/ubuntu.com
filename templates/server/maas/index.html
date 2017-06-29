@@ -1,0 +1,177 @@
+{% extends "templates/_product.html" %}
+
+{% block title %}MAAS | Server{% endblock %}
+{% block meta_description %}MAAS - Metal as a Service offers cloud style provisioning for bare metal{% endblock meta_description %}
+
+{% block hero %}
+  <img src="{{ ASSET_SERVER_URL }}0228cce3-product-page-maas-logo.svg" alt="MAAS" class="u-padding-bottom" width="250" />
+  <h1>Transform your physical infrastructure into a cloud</h1>
+  <p>MAAS is a server provisioning tool which offers complete automation of your physical servers for amazing data centre operational efficiency. On premises, open source and supported.</p>
+  <p><a href="/download/server/provisioning" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Try MAAS', 'eventLabel' : 'Try MAAS - Top CTA' : undefined });" class="p-button--brand">Try MAAS</a>&#8195;<a href="/server/maas/contact-us" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact sales', 'eventLabel' : 'Contact sales - Top CTA' : undefined });" class="p-button--neutral">Contact sales</a></p>
+{% endblock %}
+
+{% block value_proposition_1 %}
+  <h3>Deploy faster</h3>
+  <p>Zero-touch deployment of Ubuntu, Windows and other Linux distributions across your entire infrastructure. </p>
+{% endblock %}
+
+{% block value_proposition_2 %}
+  <h3>Discover devices automatically</h3>
+  <p>Automatic discovery, registration and configuration of every device on the network. </p>
+{% endblock %}
+
+{% block value_proposition_3 %}
+  <h3>Use with your existing DevOps tools</h3>
+  <p>Integration with devops automation tools like Conjure-up, Juju, Chef, Puppet, SALT, Ansible and more.</p>
+{% endblock %}
+
+{% block get_started_1 %}
+  <p><a href="/download/server/provisioning"><img src="{{ ASSET_SERVER_URL }}adcc0253-import-icon.svg" alt="" style="max-height: 47px;" /></a></p>
+  <h4 class="u-no-margin--bottom"><a href="https://www.ubuntu.com/download/server/provisioning"  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Install', 'eventLabel' : 'Install - get started' : undefined });">Install&nbsp;&rsaquo;</a></h4>
+{% endblock %}
+
+{% block get_started_2 %}
+  <p><a href="https://docs.ubuntu.com/maas/2.1/en/"><img src="{{ ASSET_SERVER_URL }}df54bb6a-document-open-icon.svg" alt="" style="max-height: 47px;" /></a></p>
+  <h4 class="u-no-margin--bottom"><a href="https://docs.ubuntu.com/maas/2.1/en/" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Read the docs', 'eventLabel' : 'Read the docs - get started' : undefined });">Read the docs</a></h4>
+{% endblock %}
+
+{% block get_started_3 %}
+  <p><a href="https://maas.io/"><img src="{{ ASSET_SERVER_URL }}5913cd4c-visit-site-icon.svg" alt="" style="max-height: 47px;" /></a></p>
+  <h4 class="u-no-margin--bottom"><a href="https://maas.io/" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Visit site', 'eventLabel' : 'Visit site - get started' : undefined });">Visit site</a></h4>
+{% endblock %}
+
+{% block video_title %}Introducing MAAS: get the power of&nbsp;metal at the speed of&nbsp;cloud{% endblock %}
+
+{% block video_url %}https://www.youtube.com/embed/eHfaiKlUYsM{% endblock %}
+
+{% block features %}
+  <li class="p-list__item is-ticked">Dynamic hardware resource management with Intel RSD</li>
+  <li class="p-list__item is-ticked">Manage the machine&rsquo;s storage with RAID, bcache, LVM and more</li>
+  <li class="p-list__item is-ticked">Full chassis convergence, including Cisco UCS, HP Moonshot and more</li>
+  <li class="p-list__item is-ticked">Configure the machine&rsquo;s network interfaces with bridges, VLANs, bonds and more</li>
+  <li class="p-list__item is-ticked">Observes and catalogs every IP address on the network (IPAM)</li>
+  <li class="p-list__item is-ticked">Monitors and tracks critical services to ensure proper operations.</li>
+  <li class="p-list__item is-ticked">Built-in highly available DHCP and DNS.</li>
+  <li class="p-list__item is-ticked">REST API, Web UI and CLI</li>
+{% endblock %}
+
+{% block reassurance_title %}Learn about MAAS{% endblock %}
+
+{% block reassurance_1 %}
+  <div class="p-heading-icon u-no-margin--bottom">
+    <div class="p-heading-icon__header u-no-margin--bottom">
+      <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}75902002-news-feed-strip-stock_ebook.svg" alt="" style="max-width: 30px;" />
+      <h3 class="p-heading-icon__title p-heading--muted" style="color: #666;">Ebook</h3>
+    </div>
+  </div>
+  <h2 class="p-heading--four"><a class="p-link--external" href="https://pages.ubuntu.com/eBook-MAAS.html?utm_source=maas_page&utm_medium=Banner&utm_campaign=MAAS_ebook&" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Server provisioning', 'eventLabel' : 'Download the eBook - What you need to know about server provisioning', 'eventValue' : undefined });">What you need to know about server provisioning</a></h2>
+{% endblock %}
+
+{% block reassurance_2 %}
+  <div class="p-heading-icon u-no-margin--bottom">
+    <div class="p-heading-icon__header u-no-margin--bottom">
+      <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}26797d10-newsfeed-stripvideo-icon.svg" alt="" style="max-width: 30px;" />
+      <h3 class="p-heading-icon__title p-heading--muted" style="color: #666;">Video</h3>
+    </div>
+  </div>
+  <h2 class="p-heading--four"><a class="p-link--external" href="https://pages.ubuntu.com/install-maas.html?utm_source=maas_page&utm_medium=Banner&utm_campaign=MAAS_videos&" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Server provisioning', 'eventLabel' : 'Learn how to install MAAS on your server', 'eventValue' : undefined });">Learn how to install MAAS on your server</a></h2>
+{% endblock %}
+
+{% block reassurance_3 %}
+  <div class="p-heading-icon u-no-margin--bottom">
+    <div class="p-heading-icon__header u-no-margin--bottom">
+      <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}26797d10-newsfeed-stripvideo-icon.svg" alt="" style="max-width: 30px;" />
+      <h3 class="p-heading-icon__title p-heading--muted" style="color: #666;">Webinar</h3>
+    </div>
+  </div>
+  <h2 class="p-heading--four"><a class="p-link--external" href="https://pages.ubuntu.com/Register_Cloud-Ready_Servers_in_minutes.html?utm_source=maas_page&utm_medium=Banner&utm_campaign=MAAS_webinar&" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Server provisioning', 'eventLabel' : 'Get cloud-ready servers in minutes with MAAS ', 'eventValue' : undefined });">Get cloud-ready servers in minutes with MAAS </a></h2>
+{% endblock %}
+
+
+{% block logos %}
+  <li class="p-inline-images__item">
+    <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}477b9b52-microsoft-logo.svg" alt="Microsoft" />
+  </li>
+  <li class="p-inline-images__item">
+    <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}d0b7aa28-logo-deutsche-telekom.png" alt="Deutsche Telekom" />
+  </li>
+  <li class="p-inline-images__item">
+    <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}df4150e2-nec-logo.svg" alt="NEC" />
+  </li>
+  <li class="p-inline-images__item">
+    <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}3218bf54-Verizon_2015_logo_-vector.svg" alt="Verizon" />
+  </li>
+  <li class="p-inline-images__item">
+    <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}73135672-ntt-logo.svg" alt="NTT" />
+  </li>
+  <li class="p-inline-images__item">
+    <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}071c255b-AT%26T_logo.svg" alt="AT&amp;T" />
+  </li>
+  <li class="p-inline-images__item">
+    <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}b3315d88-walmart.svg" alt="Walmart" />
+  </li>
+  <li class="p-inline-images__item">
+    <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}fa970014-box-svg.svg" alt="Box" />
+  </li>
+  <li class="p-inline-images__item">
+    <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}ee46f563-Best_Buy_Logo.svg" alt="Best Buy" />
+  </li>
+{% endblock %}
+
+{% block pricing %}
+<h3>MAAS</h3>
+<p class="p-heading--two">FREE</p>
+<div class="p-card__footer">
+  <ul class="p-list">
+    <li class="p-list__item is-ticked">Available for Ubuntu and CentOS</li>
+  </ul>
+  <p><a href="https://maas.io/install" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Try MAAS', 'eventLabel' : 'Try MAAS - pricing' : undefined });">Try MAAS</a></p>
+</div>
+{% endblock %}
+
+{% block support_intro %}
+  <h2>Ubuntu Advantage support</h2>
+  <p>The Standard and Advanced plans for MAAS are supported under the Ubuntu Advantage service program. Ubuntu Advantage is the commercial support package from Canonical.</p>
+  <p>As well as MAAS, Ubuntu Advantage includes:</p>
+  <ul class="p-list">
+    <li class="p-list__item is-ticked">Landscape &mdash; systems management tool</li>
+    <li class="p-list__item is-ticked">Customer care portal</li>
+    <li class="p-list__item is-ticked">Exclusive access to the Canonical Knowledge Base</li>
+  </ul>
+{% endblock %}
+
+{% block support_option_1 %}
+  <h3>Standard</h3>
+  <p><span class="p-heading--two">$5</span> per server per month</p>
+  <div class="p-card__footer">
+    <ul class="p-list">
+      <li class="p-list__item is-ticked">Available for Ubuntu, CentOS, Windows, RHEL, SUSE and custom images</li>
+      <li class="p-list__item is-ticked">8am - 6pm phone and web support on weekdays</li>
+    </ul>
+  </div>
+{% endblock %}
+
+{% block support_option_2 %}
+  <h3>Advanced</h3>
+  <p><span class="p-heading--two">$10</span> per server per month</p>
+  <div class="p-card__footer">
+    <ul class="p-list">
+      <li class="p-list__item is-ticked">Available for Ubuntu, CentOS, Windows, RHEL, SUSE and custom images</li>
+      <li class="p-list__item is-ticked">24 hour phone and web support everyday</li>
+    </ul>
+  </div>
+{% endblock %}
+
+{% block support_cta %}
+  <p><a href="https://buy.ubuntu.com/" class="p-button--brand" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Try MAAS', 'eventLabel' : 'Visit the store - support cta' : undefined });">Visit the store</a></p>
+  <p><a href="/support" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Learn more about Ubuntu Advantage', 'eventLabel' : 'Learn more about Ubuntu Advantage- support cta' : undefined });">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+{% endblock %}
+
+{% block final-call%}
+  <h2>MAAS is an open source bare-metal server provisioning tool, try it now.</h2>
+  <p><a href="/download/server/provisioning" class="p-button--brand" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Try MAAS', 'eventLabel' : 'Try MAAS - Bottom CTA' : undefined });">Install MAAS</a>&#8195;<a href="/server/maas/contact-us" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact sales', 'eventLabel' : 'Contact sales - Bottom CTA' : undefined });">Contact sales</a></p>
+{% endblock %}
+
+{% block contextual_footer %}
+  {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_maas-faq" second_item="_maas-juju" third_item="_maas-autopilot" %}
+{% endblock %}

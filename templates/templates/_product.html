@@ -1,0 +1,133 @@
+{% extends "templates/base.html" %}
+{% block outer_content %}
+  {% block content %}
+    <section class="p-strip--image is-dark is-deep" style="background-image: url('{{ ASSET_SERVER_URL }}a328d904-MAAS-background-desktop-large-screen.png'); background-size: 100% 100%;">
+      <div class="row">
+        <div class="col-8">
+          {% block hero %}{% endblock %}
+        </div>
+      </div>
+    </section>
+
+    <section class="p-strip--x-light is-bordered">
+      <div class="row p-divider u-equal-height">
+        <div class="col-4 p-divider__block">
+          {% block value_proposition_1 %}{% endblock %}
+        </div>
+        <div class="col-4 p-divider__block">
+          {% block value_proposition_2 %}{% endblock %}
+        </div>
+        <div class="col-4 p-divider__block">
+          {% block value_proposition_3 %}{% endblock %}
+        </div>
+      </div>
+    </section>
+
+    <section class="p-strip--light is-bordered">
+      <div class="row">
+        <h2>Get started</h2>
+      </div>
+      <div class="row">
+        <div class="col-4 p-card u-align--center">
+          {% block get_started_1 %}{% endblock %}
+        </div>
+        <div class="col-4 p-card u-align--center">
+          {% block get_started_2 %}{% endblock %}
+        </div>
+        <div class="col-4 p-card u-align--center">
+          {% block get_started_3 %}{% endblock %}
+        </div>
+      </div>
+    </section>
+
+    <section class="p-strip--x-light is-bordered">
+      <div class="row">
+        <div class="col-12">
+          <h2>{% block video_title %}{% endblock %}</h2>
+          <div class="u-embedded-media">
+            <iframe class="u-embedded-media__element" width="453" height="255" src="{% block video_url %}{% endblock %}" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="p-strip--x-light is-bordered">
+      <div class="row">
+        <h3>Features</h3>
+        <ul class="p-list is-split">
+          {% block features %}{% endblock %}
+        </ul>
+      </div>
+    </section>
+
+    <section class="p-strip--light is-deep is-bordered">
+      <div class="row">
+        <h2>{% block reassurance_title %}{% endblock %}</h2>
+        <div class="row p-divider">
+          <div class="col-4 p-divider__block">
+            {% block reassurance_1 %}{% endblock %}
+          </div>
+          <div class="col-4 p-divider__block">
+            {% block reassurance_2 %}{% endblock %}
+          </div>
+          <div class="col-4 p-divider__block">
+            {% block reassurance_3 %}{% endblock %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-strip--x-light is-bordered">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="p-heading--muted u-align--center">MAAS is trusted by</h2>
+          <ul class="p-inline-images">
+            {% block logos %}{% endblock %}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-strip--grey is-bordered">
+      <div class="row">
+        <h2>Pricing</h2>
+      </div>
+      <div class="row u-equal-height">
+        <div class="col-6 p-card">
+          {% block pricing %}{% endblock %}
+        </div>
+      </div>
+    </section>
+
+    <section class="p-strip--x-light is-bordered">
+      <div class="row">
+        <div class="col-8">
+          {% block support_intro %}{% endblock %}
+        </div>
+      </div>
+      <div class="row u-equal-height">
+        <div class="col-6 p-card">
+          {% block support_option_1 %}{% endblock %}
+        </div>
+        <div class="col-6 p-card">
+          {% block support_option_2 %}{% endblock %}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8">
+          {% block support_cta %}{% endblock %}
+        </div>
+      </div>
+    </section>
+
+    <section class="p-strip--light">
+      <div class="row">
+        <div class="col-8">
+          {% block final-call%}{% endblock %}
+        </div>
+      </div>
+    </section>
+
+    {% block contextual_footer %}{% endblock %}
+
+  {% endblock %}
+{% endblock %}
