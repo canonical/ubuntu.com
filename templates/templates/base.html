@@ -124,6 +124,7 @@
               <li class="p-breadcrumbs__item">
                 <a class="p-breadcrumbs__link" href="{{ breadcrumbs.section.path }}">{{ breadcrumbs.section.title }}</a>
 
+                {% if breadcrumbs.children %}
                 <ul class="nav-secondary__menu p-inline-list">
                   {% for child in breadcrumbs.children %}
                     <li class="{% if breadcrumbs.grandchildren %}p-breadcrumbs__item{% else %}p-inline-list__item{% endif %}">
@@ -131,19 +132,20 @@
                         class="{% if breadcrumbs.grandchildren %}p-breadcrumbs__link{% else %}p-inline-list__link{% endif %} {% if child.active %}is-active{% endif %}"
                         href="{{ child.path }}"
                       >{{ child.title }}</a>
-                    </li>
-                  {% endfor %}
-                </ul>
 
-                {% if breadcrumbs.grandchildren %}
-                  <ul class="nav-tertiary__menu p-inline-list">
-                    {% for grandchild in breadcrumbs.grandchildren %}
-                      <li class="p-inline-list__item">
-                        <a class="p-inline-list__link {% if grandchild.active %}is-active{% endif %}" href="{{ grandchild.path }}">{{ grandchild.title }}</a>
-                      </li>
+                      {% if breadcrumbs.grandchildren %}
+                        <ul class="nav-tertiary__menu p-inline-list">
+                          {% for grandchild in breadcrumbs.grandchildren %}
+                            <li class="p-inline-list__item">
+                              <a class="p-inline-list__link {% if grandchild.active %}is-active{% endif %}" href="{{ grandchild.path }}">{{ grandchild.title }}</a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}{# end if breadcrumbs.grandchildren #}
+                    </li>
                     {% endfor %}
                   </ul>
-                {% endif %}
+                  {% endif %}{# end if breadcrumbs.children #}
               </li>
             </ul>
           </div>
