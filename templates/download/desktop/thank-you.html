@@ -90,11 +90,7 @@ Thank you for your contribution
   var architecture = '{{ architecture }}';
 
   // Mirrors for this country
-  var mirrors = {
-    {
-      mirror_list | safe
-    }
-  };
+  var mirrors = {{ mirror_list|safe }};
 
   if (version && architecture && architecture != 'amd64+mac') {
     dataLayer.push({
