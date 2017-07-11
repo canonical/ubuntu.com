@@ -65,22 +65,6 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered">
-  <div class="row">
-    <h2 class="p-heading--muted u-align--center">A selection of our cloud partners</h2>
-    <ul id="cloud-partners" class="p-inline-images">
-      {% get_json_feed "http://partners.ubuntu.com/partners.json?programme__name=Certified%20Public%20Cloud&programme__name=Charm%20Partner%20Programme&programme__name=OpenStack&featured=true" limit=10 as cloud_partners %} {% for partner in cloud_partners %}
-      <li class="p-inline-images__item">
-        <img class="p-inline-images__image" src="{{ partner.logo }}" alt="{{ partner.name }}" />
-      </li>
-      {% endfor %}
-    </ul>
-    <div class="col-12">
-      <p class="u-align--center"><a href="http://partners.ubuntu.com/find-a-partner?programme=openstack&amp;programme=charm-partner-programme&amp;programme=certified-public-cloud" class="p-link--external">See all our cloud partners</a></p>
-    </div>
-  </div>
-</section>
-
 <section class="p-strip--light">
   <div class="row">
     <div class="col-4 u-align--center">
