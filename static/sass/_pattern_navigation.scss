@@ -90,6 +90,14 @@
     padding: 0;
   }
 
+  .p-breadcrumbs {
+
+    // medium size - avoid overflow
+    @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
+      width: 90%;
+    }
+  }
+
   // .nav-secondary override
   .nav-secondary {
 
@@ -99,6 +107,7 @@
 
     @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
       border-top: 1px solid $color-mid-light;
+      white-space: nowrap;
     }
 
     &__row {
@@ -172,6 +181,7 @@
 
       @media (min-width: $breakpoint-medium) {
         margin-left: $sp-large;
+        vertical-align: top;
       }
     }
 
@@ -189,6 +199,7 @@
       background: $color-light;
       border-bottom: 1px solid $color-mid-light;
       padding: $sp-x-small 0 $sp-small;
+      white-space: nowrap;
 
       .p-breadcrumbs__item {
         margin-bottom: 0;
@@ -292,7 +303,6 @@
   }
 
   // tertiary navigation
-
   .p-breadcrumbs__link {
 
     & + .second-level-nav,
@@ -314,6 +324,8 @@
   }
 
   .nav-tertiary__menu {
+    white-space: normal;
+    width: 85%;
 
     .p-inline-list__item {
       font-size: .875rem;
@@ -321,7 +333,7 @@
 
     @media (max-width: $breakpoint-medium - 1) {
       .p-inline-list__item {
-        padding: 0 $sp-x-small;
+        padding: 0 $sp-x-small 0 0;
       }
     }
 
