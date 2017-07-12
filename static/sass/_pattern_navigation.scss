@@ -90,6 +90,14 @@
     padding: 0;
   }
 
+  .p-breadcrumbs {
+
+    // medium size - avoid overflow
+    @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
+      width: 90%;
+    }
+  }
+
   // .nav-secondary override
   .nav-secondary {
 
@@ -295,7 +303,6 @@
   }
 
   // tertiary navigation
-
   .p-breadcrumbs__link {
 
     & + .second-level-nav,
