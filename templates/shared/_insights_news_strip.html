@@ -21,12 +21,16 @@
 
       {# insights news items #}
       <div class="row">
-        {% for item in insights_feed %}
-          <div class="col-3">
-            <h3 class="p-heading--four u-less-margin--bottom"><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : '{{ gtm_event_label }} news link', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title }}</a></h3>
-            <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
-          </div>
-        {% endfor %}
+        {% if insights_feed is False %}
+          Feed error.
+        {% else %}
+          {% for item in insights_feed %}
+            <div class="col-3">
+              <h3 class="p-heading--four u-less-margin--bottom"><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : '{{ gtm_event_label }} news link', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title }}</a></h3>
+              <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
+            </div>
+          {% endfor %}
+        {% endif %}
       </div>
     </div>
 

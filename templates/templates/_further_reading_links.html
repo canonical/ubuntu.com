@@ -5,7 +5,11 @@
 {% endif %}
 
 <ul class='p-list'>
-{% for item in feed %}
+{% if feed is False %}
+  Feed error.
+{% else %}
+  {% for item in feed %}
     <li class="p-list__item"><a href="{{item.link}}">{{item.title}}&nbsp;&rsaquo;</a></li>
-{% endfor %}
+  {% endfor %}
+{% endif %}
 </ul>
