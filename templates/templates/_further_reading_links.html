@@ -4,8 +4,14 @@
     {% get_rss_feed "https://insights.ubuntu.com/feed/" limit=5 as feed %}
 {% endif %}
 
-<ul class='p-list'>
-{% for item in feed %}
-    <li class="p-list__item"><a href="{{item.link}}">{{item.title}}&nbsp;&rsaquo;</a></li>
-{% endfor %}
-</ul>
+{% if feed is False %}
+  <div class="p-notification--negative">
+    <p class="p-notification__response"><span class="p-notification__status">Error:</span>The live news feed failed to load. Please <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new" class="external">report this bug</a> and our team will fix the problem as soon as&nbsp;possible.</p>
+  </div>
+{% else %}
+  <ul class='p-list'>
+    {% for item in feed %}
+      <li class="p-list__item"><a href="{{item.link}}">{{item.title}}&nbsp;&rsaquo;</a></li>
+    {% endfor %}
+  </ul>
+{% endif %}

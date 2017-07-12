@@ -6,9 +6,15 @@ register = template.Library()
 
 @register.simple_tag
 def get_json_feed(feed_url, **kwargs):
-    return get_json_feed_content(feed_url, **kwargs)
+    try:
+        return get_json_feed_content(feed_url, **kwargs)
+    except:
+        return False
 
 
 @register.simple_tag
 def get_rss_feed(feed_url, **kwargs):
-    return get_rss_feed_content(feed_url, **kwargs)
+    try:
+        return get_rss_feed_content(feed_url, **kwargs)
+    except:
+        return False
