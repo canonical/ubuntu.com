@@ -1,8 +1,8 @@
 {% extends "cloud/base_cloud.html" %}
 
-{% block title %}OpenStack | Cloud{% endblock %}
+{% block title %}Ubuntu OpenStack | Cloud{% endblock %}
 
-{% block meta_description %}OpenStack is the fastest and best-supported route to creating an OpenStack cloud.{% endblock meta_description %}
+{% block meta_description %}Ubuntu OpenStack is the fastest, easiest and most robust way to build your cloud - and it includes a suite of tools to help you build and manage it.{% endblock meta_description %}
 
 
 {% block content %}
@@ -12,10 +12,10 @@
     <div class="col-7 suffix-1">
       <h1>OpenStack</h1>
       <ul class="p-list">
-        <li class="p-list__item is-ticked">OpenStack is the leading open cloud&nbsp;platform</li>
-        <li class="p-list__item is-ticked">Ubuntu is the world&rsquo;s most popular operating system for&nbsp;OpenStack</li>
-        <li class="p-list__item is-ticked">Ubuntu OpenStack is the world’s most stable and manageable&nbsp;cloud</li>
-        <li class="p-list__item is-ticked">Try or build your own cloud, engage us to build and manage it or commission a completely bespoke cloud&nbsp;solution</li>
+        <li class="p-list__item is-ticked">Companies such as AT&amp;T, Bloomberg, Paypal, eBay, Sky and Walmart build OpenStack with Canonical on Ubuntu</li>
+        <li class="p-list__item is-ticked">Upgrading OpenStack is easy with Canonical&rsquo;s implementation</li>
+        <li class="p-list__item is-ticked">BootStack is Canonical&rsquo;s fully managed OpenStack on your hardware, in your data center</li>
+        <li class="p-list__item is-ticked">Ubuntu is the most widely deployed Linux for OpenStack</li>
       </ul>
       <p><a href="/download/cloud" class="p-button--brand" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Cloud openstack', 'eventLabel' : 'Install OpenStack ', 'eventValue' : undefined });">Install OpenStack</a></p>
 
@@ -34,30 +34,35 @@
   </div>
   <div class="row">
     <div class="u-equal-height">
-      <div class=" col-6 p-card">
-        <h3 class="p-card__title">Get started on a single machine</h3>
-        <p class="p-card__content">Conjure-up&rsquo;s ability to easily and quickly deploy real-world OpenStack on a single laptop using LXD containers is ideal for first-time users or developers.</p>
-        <p class="p-card__content"><a href="/download/cloud/conjure-up" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Cloud openstack', 'eventLabel' : 'Try conjure-up', 'eventValue' : undefined });">Try conjure-up&nbsp;&rsaquo;</a></p>
+      <div class="col-6 p-card">
+        <h3 class="p-card__title">Fully managed OpenStack on premises, by Canonical</h3>
+        <p class="p-card__content">Canonical&rsquo;s Bootstack team will design, build and operate a production OpenStack cloud on your premises from only $15 per server per day. When your team is ready, we&rsquo;ll transfer control of your cloud to them.</p>
+        <p class="p-card__content">This is the recommended way to get to production quickly, enabling you to ramp your workloads efficiently and move beyond legacy virtualisation.</p>
+        <p class="p-card__content"><a href="/cloud/managed-cloud" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Cloud openstack', 'eventLabel' : 'Get BootStack', 'eventValue' : undefined });">Get your BootStack engagement&nbsp;&rsaquo;</a></p>
       </div>
       <div class="col-6 p-card">
-        <h3 class="p-card__title">Build your own production grade cloud</h3>
-        <p class="p-card__content">Canonical&rsquo;s OpenStack Autopilot is a fully automated tool for easy OpenStack deployment, management and operations.</p>
-        <p class="p-card__content"><a href="/download/cloud/autopilot" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Cloud openstack', 'eventLabel' : 'Use Autopilot', 'eventValue' : undefined });">Use Autopilot&nbsp;&rsaquo;
-        </a></p>
+        <h3 class="p-card__title">Consulting, Training and Enterprise Support</h3>
+        <p class="p-card__content"><strong>We will build you an OpenStack in three weeks</strong></p>
+        <p class="p-card__content">Canonical offers training, consulting and support. Our engineers will build your production OpenStack cloud,  working alongside your team.</p>
+        <p class="p-card__content">Tailor that OpenStack to your requirements with optional consulting services around networking, storage, hypervisors and cloud architecture.</p>
+        <p class="p-card__content"><a href="/cloud/contact-us?product=openstack">Contact us about Foundation Cloud Build&nbsp;&rsaquo;</a></p>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="u-equal-height">
-      <div class="col-6 p-card">
-        <h3 class="p-card__title">Buy a managed cloud</h3>
-        <p class="p-card__content">With Bootstack, we will set up and operate an OpenStack cloud for you on your premises from only $15 per server per&nbsp;day.</p>
-        <p class="p-card__content"><a href="/cloud/managed-cloud" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Cloud openstack', 'eventLabel' : 'Get BootStack', 'eventValue' : undefined });">Get BootStack&nbsp;&rsaquo;</a></p>
+      <div class=" col-6 p-card">
+        <h3 class="p-card__title">Developer OpenStack &mdash; single or multiple machine</h3>
+        <p class="p-card__content">Use Canonical&rsquo;s conjure-up installer with LXD containers to deploy a simulated multi-node OpenStack that is fast and lightweight. Ideal for first-time users or developers who want to see the various components of OpenStack in action.</p>
+        <p class="p-card__content">Use it with MAAS (&lsquo;Metal as a Service&rsquo;) to deploy across many servers and scale it to many racks.</p>
+        <p class="p-card__content"><a href="/download/cloud/conjure-up" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Cloud openstack', 'eventLabel' : 'Try conjure-up', 'eventValue' : undefined });">Install with  conjure-up&nbsp;&rsaquo;</a></p>
       </div>
       <div class="col-6 p-card">
-        <h3 class="p-card__title">Get a customised cloud</h3>
-        <p class="p-card__content">Our engineers can tailor OpenStack to support your specific requirements and cloud applications.</p>
-        <p class="p-card__content"><a href="/cloud/contact-us?product=openstack">Contact us&nbsp;&rsaquo;</a></p>
+        <h3 class="p-card__title">Self-install a reference architecture OpenStack</h3>
+        <p class="p-card__content">Canonical&rsquo;s OpenStack Autopilot  is a fully automated deployment, management and operations tool for the hyper-converged OpenStack reference architecture. It is recommended for larger production deployments on homogenous hardware.</p>
+        <p class="p-card__content">Some customisation is possible through manual placement of administrative, compute, network or storage services.</p>
+        <p class="p-card__content"><a href="/download/cloud/autopilot" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Cloud openstack', 'eventLabel' : 'Use Autopilot', 'eventValue' : undefined });">Install with the OpenStack Autopilot&nbsp;&rsaquo;
+        </a></p>
       </div>
     </div>
   </div>
@@ -70,10 +75,10 @@
 <section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-8">
-      <h2>Install OpenStack on a single machine with conjure-up</h2>
-      <p>Want to try out Ubuntu OpenStack for the first time or develop &lsquo;cloud native&rsquo; software on a single machine? Start with conjure-up.</p>
-      <p>Conjure-up is a command line tool exclusive to Ubuntu 16.04 that enables developers to easily deploy real-world, multi-node OpenStack on a single machine using LXD containers.</p>
-      <p><a href="/download/cloud/conjure-up" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Cloud openstack', 'eventLabel' : 'Use conjure-up button', 'eventValue' : undefined });">Use conjure-up</a></p>
+      <h2>Conjure-up OpenStack</h2>
+      <p>Canonical&rsquo;s conjure-up is an installer for complex topologies of interconnected software, like OpenStack and Kubernetes, or Hadoop. It works on Amazon, Azure, Google Cloud, Oracle Cloud, Rackspace and private infrastructure - bare metal, LXD containers, VMware or OpenStack.</p>
+      <p>Want to try out Ubuntu OpenStack or Kubernetes for the first time? Start with conjure-up. Conjure-up is an open source command line tool written in Python. It uses &lsquo;spells&rsquo; which describe the applications to deploy &mdash; modify, create and publish your own spells easily to share your reference architecture inside the organisation.</p>
+      <p><a href="/download/cloud/conjure-up" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Cloud openstack', 'eventLabel' : 'Use conjure-up button', 'eventValue' : undefined });">Install with conjure-up</a></p>
     </div>
   </div>
 </section>
@@ -81,17 +86,17 @@
 <section class="p-strip u-image-position">
   <div class="row">
     <div class="col-6">
-      <h2>Build a production cloud with&nbsp;Autopilot</h2>
-      <p>Canonical&rsquo;s production cloud installer &mdash; OpenStack Autopilot &mdash; is&nbsp;the best way to build a clustered OpenStack cloud.</p>
+      <h2>Build your own cloud with Canonical&rsquo;s OpenStack Autopilot</h2>
+      <p>The OpenStack Autopilot is the easiest way to build the reference architecture OpenStack cloud.</p>
       <ul class="p-list">
-        <li class="p-list__item is-ticked">Fully automated install and operations</li>
-        <li class="p-list__item is-ticked">Choice of storage and SDN technologies</li>
-        <li class="p-list__item is-ticked">Highest performance cloud architecture</li>
-        <li class="p-list__item is-ticked">Add hardware at any time to scale up</li>
-        <li class="p-list__item is-ticked">Works on all major vendor servers</li>
-        <li class="p-list__item is-ticked">Free to all Ubuntu Advantage customers</li>
-        <li class="p-list__item is-ticked">From 5 servers upwards, your cloud grows on demand</li>
-        <li class="p-list__item is-ticked">Automatically builds for high availability</li>
+        <li class="p-list__item is-ticked">Deploys OpenStack Ocata</li>
+        <li class="p-list__item is-ticked">Fully automated install</li>
+        <li class="p-list__item is-ticked">High performance cloud architecture</li>
+        <li class="p-list__item is-ticked">Add more hardware later to scale up</li>
+        <li class="p-list__item is-ticked">Initial 10 nodes free</li>
+        <li class="p-list__item is-ticked">Free for Ubuntu Advantage enterprise support customers</li>
+        <li class="p-list__item is-ticked">Starts at five servers</li>
+        <li class="p-list__item is-ticked">Automatic high availability given sufficient servers</li>
       </ul>
       <p><a href="/download/cloud/autopilot" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Cloud openstack', 'eventLabel' : 'Use Autopilot button', 'eventValue' : undefined });">Use Autopilot</a></p>
     </div>
@@ -105,12 +110,12 @@
   <div class="row">
     <div class="u-equal-height">
       <div class="col-7 ">
-        <h2>Buy a BootStack managed cloud</h2>
-        <p>BootStack gives you a private OpenStack cloud managed by Canonical. It runs on your hardware, in the datacenter of your choice with our experts responsible for design, deployment and 24x7 support.</p>
+        <h2>BootStack &mdash; fully managed OpenStack on premise</h2>
+        <p>BootStack a private OpenStack cloud managed remotely by Canonical.  This is the fastest way to get to production. It runs on your hardware, in the datacenter of your choice with our experts responsible for deployment and 24/7 support.</p>
         <ul class="p-list">
           <li class="p-list__item is-ticked">Built to your specifications</li>
-          <li class="p-list__item is-ticked">Your choice of certified hardware</li>
-          <li class="p-list__item is-ticked">Retain complete control of every tool and every machine</li>
+          <li class="p-list__item is-ticked">Your choice of Ubuntu- certified server and network hardware</li>
+          <li class="p-list__item is-ticked">Monitor every machine with your existing dashboards</li>
           <li class="p-list__item is-ticked">Guaranteed availability backed by a clear SLA</li>
           <li class="p-list__item is-ticked">Transfer operations anytime you want</li>
         </ul>
@@ -126,23 +131,22 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
-      <h2>Get a customised cloud</h2>
+      <h2>Consulting and Build: Production OpenStack in 3 weeks</h2>
     </div>
   </div>
   <div class="row">
     <div class="col-7">
-      <p>Engage us to tailor OpenStack to your requirements, with the exact components you want and the precise configuration you need to support all your cloud applications and workloads.</p>
+      <p>Engage us for a Foundation Cloud Build to get a full production OpenStack cloud up and running in 3 weeks using the reference architecture. With model driven operations and upgrades to future OpenStack releases guaranteed, the OpenStack cloud from Canonical is the fast track to efficient cloud success. Optional consulting available to tailor the architecture to your specific requirements.</p>
       <ul class="p-list is-split">
         <li class="p-list__item is-ticked">SLAs and support services</li>
         <li class="p-list__item is-ticked">On-site engineering and support</li>
-        <li class="p-list__item is-ticked">Reference architecture design</li>
-        <li class="p-list__item is-ticked">OpenStack feature development</li>
-        <li class="p-list__item is-ticked">Variable service placement</li>
-        <li class="p-list__item is-ticked">Automated deployment scripts</li>
-        <li class="p-list__item is-ticked">Repeatable deployment</li>
-        <li class="p-list__item is-ticked">Hardware selection support</li>
+        <li class="p-list__item is-ticked">Reference architecture available</li>
+        <li class="p-list__item is-ticked">OpenStack feature development as needed</li>
+        <li class="p-list__item is-ticked">Customized architecture service placement</li>
+        <li class="p-list__item is-ticked">Repeatable automated deployment</li>
+        <li class="p-list__item is-ticked">Hardware guidance</li>
       </ul>
-      <p><a href="/cloud/contact-us?product=openstack">Contact us about your custom engineering needs&nbsp;&rsaquo;</a></p>
+      <p><a href="/cloud/contact-us?product=openstack">Contact us about about Foundation Cloud&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-5 prefix-1">
       <blockquote class="p-pull-quote">
