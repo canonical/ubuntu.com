@@ -204,6 +204,41 @@
   </div>
 </div>
 
+
+<div class="p-strip--x-light is-deep is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="p-heading--muted u-align--center">A selection of our hardware partners</h2>
+      <ul class="p-inline-images">
+        {% get_json_feed "http://partners.ubuntu.com/partners.json?programme__name=Desktop&featured=true" limit=10 as hardware_partners %}
+        {% for partner in hardware_partners %}
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ partner.logo }}" alt="{{ partner.name }}" />
+        </li>
+        {% endfor %}
+      </ul>
+      <p class="u-align--center"><a class="p-link--external" href="https://certification.ubuntu.com">View all certified hardware partners</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip--x-light is-deep">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="p-heading--muted u-align--center">A selection of our software partners</h2>
+      <ul class="p-inline-images">
+        {% get_json_feed "http://partners.ubuntu.com/partners.json?programme__name=OpenStack&service-offered=softwarecontent-publisher" limit=10 as software_partners %}
+        {% for partner in software_partners %}
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ partner.logo }}" alt="{{ partner.name }}" />
+        </li>
+        {% endfor %}
+      </ul>
+      <p class="u-align--center"><a class="p-link--external" href="/partners/certified-software">View all certified software partners</a></p>
+    </div>
+  </div>
+</div>
+
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_server_download" second_item="_server_contact_us" third_item="_cloud_further_reading" %}
 
 {% endblock content %}

@@ -126,6 +126,22 @@
   </div>
 </div>
 
+<div class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="p-heading--muted u-align--center">Partnering with industry leaders</h2>
+      <ul class="p-inline-images">
+        {% get_json_feed "http://partners.ubuntu.com/partners.json?technology__name=Containers" limit=10 as container_partners %}
+        {% for partner in container_partners %}
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ partner.logo }}" alt="{{ partner.name }}" title="{{ partner.name }}" />
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
 <div class="p-strip--light is-deep">
   <div class="row">
     <div class="u-equal-height">

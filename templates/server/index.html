@@ -224,6 +224,23 @@
   </div>
 </div>
 
+<div class="p-strip is-deep is-bordered" style="padding-top: 2rem;">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="p-heading--muted u-align--center">A selection of our public cloud partners</h2>
+      <ul id="public-cloud-partners" class="p-inline-images">
+        {% get_json_feed "http://partners.ubuntu.com/partners.json?programme=certified-public-cloud&featured=true" limit=10 as public_cloud_partners %}
+        {% for partner in public_cloud_partners %}
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ partner.logo }}" alt="{{ partner.name }}" />
+        </li>
+        {% endfor %}
+      </ul>
+      <p class="u-align--center"><a href="http://partners.ubuntu.com/find-a-partner?programme=certified-public-cloud" class="p-link--external">See all of our public cloud partners</a></p>
+    </div>
+  </div>
+</div>
+
 <div class="p-strip is-deep" style="padding-bottom: 2rem;">
   <div class="row">
     <div class="col-8">
@@ -231,6 +248,23 @@
       <h3>Speed and simplicity, on bare metal or in the cloud</h3>
       <p>With its new rapid deployment tools, Ubuntu significantly speeds up the installation of server instances on bare metal. And our service orchestration tool, Juju, makes deploying big data services surprisingly simple &mdash; on bare metal or in the cloud. That&rsquo;s why vendors like 10gen, Cloudera, Couchbase, DataStax, Hortonworks, LexisNexis and Map-R partner with us.</p>
       <p><a href="/cloud">Learn more about Ubuntu Cloud&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip is-deep is-bordered" style="padding-top: 2rem;">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="p-heading--muted u-align--center">A selection of our big data partners</h2>
+      <ul id="big-data-partners" class="p-inline-images no-margin dynamic-logos">
+        {% get_json_feed "http://partners.ubuntu.com/partners.json?service_offered__name=Big+data" limit=10 as big_data_partners %}
+        {% for partner in big_data_partners %}
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ partner.logo }}" alt="{{ partner.name }}" />
+        </li>
+        {% endfor %}
+      </ul>
+      <p class="u-align--center"><a href="http://partners.ubuntu.com/find-a-partner?service-offered=big-data" class="p-link--external">See all of our big data partners</a></p>
     </div>
   </div>
 </div>
