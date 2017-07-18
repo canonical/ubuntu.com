@@ -1,6 +1,6 @@
 {% extends "base_index.html" %}
 
-{% block takeover_body_class %}homepage-kubernetes-webinar{% endblock takeover_body_class %}
+{% block takeover_body_class %}homepage-iot-business{% endblock takeover_body_class %}
 
 {% block head_extra %}
   <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
@@ -8,7 +8,7 @@
 
 {% block takeover_content %}
 
-{% include "takeovers/_kubernetes_webinar.html" %}
+{% include "takeovers/_iot-business.html" %}
 
 
 {% include "shared/_insights_news_strip.html"  with rss_spotlight_url="https://insights.ubuntu.com/tag/spotlight/feed" rss_news_url="https://insights.ubuntu.com/feed" strip_classes="" gtm_event_label="ubuntu.com homepage" %}
@@ -96,7 +96,7 @@
 <section class="p-strip">
   <div class="row">
     <div class="u-equal-height">
-      {% include "takeovers/takeunders/_iot-02-2017.html" %}
+      {% include "takeovers/takeunders/_kubernetes.html" %}
       {% include "takeovers/takeunders/_stuck-stack.html" %}
     </div>
   </div>
