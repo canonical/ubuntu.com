@@ -227,15 +227,7 @@
 <div class="p-strip is-deep is-bordered" style="padding-top: 2rem;">
   <div class="row">
     <div class="col-12">
-      <h2 class="p-heading--muted u-align--center">A selection of our public cloud partners</h2>
-      <ul id="public-cloud-partners" class="p-inline-images">
-        {% get_json_feed "http://partners.ubuntu.com/partners.json?programme=certified-public-cloud&featured=true" limit=10 as public_cloud_partners %}
-        {% for partner in public_cloud_partners %}
-        <li class="p-inline-images__item">
-          <img class="p-inline-images__logo" src="{{ partner.logo }}" alt="{{ partner.name }}" />
-        </li>
-        {% endfor %}
-      </ul>
+      {% include "shared/_partner-logos.html" with title="A selection of our public cloud partners" json_feed_url="http://partners.ubuntu.com/partners.json?programme=certified-public-cloud&featured=true" feed_item_limit=10 %}
       <p class="u-align--center"><a href="http://partners.ubuntu.com/find-a-partner?programme=certified-public-cloud" class="p-link--external">See all of our public cloud partners</a></p>
     </div>
   </div>
@@ -255,15 +247,7 @@
 <div class="p-strip is-deep is-bordered" style="padding-top: 2rem;">
   <div class="row">
     <div class="col-12">
-      <h2 class="p-heading--muted u-align--center">A selection of our big data partners</h2>
-      <ul id="big-data-partners" class="p-inline-images no-margin dynamic-logos">
-        {% get_json_feed "http://partners.ubuntu.com/partners.json?service_offered__name=Big+data" limit=10 as big_data_partners %}
-        {% for partner in big_data_partners %}
-        <li class="p-inline-images__item">
-          <img class="p-inline-images__logo" src="{{ partner.logo }}" alt="{{ partner.name }}" />
-        </li>
-        {% endfor %}
-      </ul>
+      {% include "shared/_partner-logos.html" with title="A selection of our big data partners" json_feed_url="http://partners.ubuntu.com/partners.json?service_offered__name=Big+data" feed_item_limit=10 %}
       <p class="u-align--center"><a href="http://partners.ubuntu.com/find-a-partner?service-offered=big-data" class="p-link--external">See all of our big data partners</a></p>
     </div>
   </div>

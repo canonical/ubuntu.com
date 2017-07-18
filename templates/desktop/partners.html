@@ -23,15 +23,7 @@
 <section class="p-strip is-deep is-bordered">
   <div class="row">
     <div class="col-12">
-      <h2 class="p-heading--muted u-align--center">A selection of our desktop partners</h2>
-      <ul id="hardware-partners" class="p-inline-images">
-        {% get_json_feed "http://partners.ubuntu.com/partners.json?programme__name=Desktop&featured=true" limit=10 as desktop_partners %}
-        {% for partner in desktop_partners %}
-        <li class="p-inline-images__item">
-          <img class="p-inline-images__logo" src="{{ partner.logo }}" alt="{{ partner.name }}" />
-        </li>
-        {% endfor %}
-      </ul>
+      {% include "shared/_partner-logos.html" with title="A selection of our desktop partners" json_feed_url="http://partners.ubuntu.com/partners.json?programme__name=Desktop&featured=true" feed_item_limit=10 %}
       <p class="u-align--center"><a href="http://partners.ubuntu.com/find-a-partner?service-offered=hardware-manufacturer" class="p-link--external">See all of our desktop partners</a></p>
     </div>
   </div>

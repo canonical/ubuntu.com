@@ -1,0 +1,18 @@
+
+
+{% get_json_feed json_feed_url limit=feed_item_limit as partners %}
+
+{% if partners is False %}
+  <div class="p-notification--negative">
+    <p class="p-notification__response"><span class="p-notification__status">Error:</span>Our partner logos failed to load. Please <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new" class="external">report this bug</a> and our team will fix the problem as soon as possible.</p>
+  </div>
+{% else %}
+  {% if title %}<h2 class="p-heading--muted u-align--center">{{title}}</h2>{% endif %}
+  <ul id="cloud-partners" class="p-inline-images">
+    {% for partner in partners %}
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ partner.logo }}" alt="{{ partner.name }}" />
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
