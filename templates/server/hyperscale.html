@@ -204,6 +204,25 @@
   </div>
 </div>
 
+
+<div class="p-strip--x-light is-deep is-bordered">
+  <div class="row">
+    <div class="col-12">
+      {% include "shared/_partner-logos.html" with title="A selection of our hardware partners" json_feed_url="http://partners.ubuntu.com/partners.json?programme__name=Desktop&featured=true" feed_item_limit=10 %}
+      <p class="u-align--center"><a class="p-link--external" href="https://certification.ubuntu.com">View all certified hardware partners</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip--x-light is-deep">
+  <div class="row">
+    <div class="col-12">
+      {% include "shared/_partner-logos.html" with title="A selection of our software partners" json_feed_url="http://partners.ubuntu.com/partners.json?programme__name=OpenStack&service-offered=softwarecontent-publisher" feed_item_limit=10 %}
+      <p class="u-align--center"><a class="p-link--external" href="/partners/certified-software">View all certified software partners</a></p>
+    </div>
+  </div>
+</div>
+
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_server_download" second_item="_server_contact_us" third_item="_cloud_further_reading" %}
 
 {% endblock content %}
