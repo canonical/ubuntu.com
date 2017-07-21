@@ -7,7 +7,7 @@
   <div class="row" id="service-description">
     <div class="col-8">
       <h1>Ubuntu Advantage service&nbsp;description</h1>
-      <p>Valid since 23 May 2017</p>
+      <p>Valid since 21 July 2017</p>
       <h2 id="service-description-overview">1. Overview</h2>
       <ol class="p-list">
         <li class="p-list__item"><span class="number">1.1</span> This document defines the following service offerings. Canonical will provide only those services, as defined in this document, which are covered by the customer&#39;s contract.</li>
@@ -25,6 +25,7 @@
             <li class="p-list__item">Ubuntu Advantage for Docker</li>
             <li class="p-list__item">The Canonical Distribution of Kubernetes</li>
             <li class="p-list__item">Extended Security Maintenance</li>
+            <li class="p-list__item">Canonical Livepatch Service</li>
           </ul>
         </li>
         <li class="p-list__item"><span class="number">1.3</span> Add on service offerings:
@@ -60,14 +61,7 @@
             <li class="p-list__item"><span class="number">2.4.1</span> The kernel provided initially in the release of a long-term support (LTS) version of Ubuntu is supported for the entire lifecycle of the LTS.</li>
             <li class="p-list__item"><span class="number">2.4.2</span> Hardware enablement (HWE) kernels provide support for newer hardware in an LTS release and are released in conjunction with the non-LTS Ubuntu releases. HWE kernels are supported until the next LTS point release.</li>
             <li class="p-list__item"><span class="number">2.4.3</span> More information about kernel support can be found at <a href="/info/release-end-of-life">www.ubuntu.com/info/release-end-of-life</a></li>
-            <li class="p-list__item" id="2-4-4"><span class="number">2.4.4</span> Kernel livepatching
-              <ul>
-                <li class="p-list__item">The customer is entitled to a licence to use Canonical&#39;s kernel livepatch daemon, access to available kernel livepatches, and support for livepatches on all systems covered by Ubuntu Advantage, for which the livepatching features are available.</li>
-                <li class="p-list__item">Canonical provides livepatches for High and Critical kernel CVEs. Note that some CVEs may be ineligible for livepatching due to technical limitations within the livepatching system.</li>
-                <li class="p-list__item">Canonical can not provide kernel support bug fixes as kernel livepatches.</li>
-                <li class="p-list__item">Kernel livepatching is available for generic and low latency 64-bit Intel/AMD 4.4 kernels on Ubuntu 16.04.</li>
-              </ul>
-            </li>
+            <li class="p-list__item" id="2-4-4"><span class="number">2.4.4</span>2.4.4 Access to Canonical Livepatch Service is included with all support offerings, unless otherwise noted.</li>
           </ol>
         </li>
         <li id="support-scope-landscape"><span class="number">2.5</span> Landscape
@@ -159,7 +153,7 @@
           </thead>
           <tbody>
             <tr>
-              <td>Ubuntu Advantage Server Essential<br /> Ubuntu Advantage Desktop Standard</td>
+              <td>Ubuntu Advantage Desktop Standard</td>
               <td>Monday &dash; Friday 09:00 &dash; 17:00</td>
             </tr>
             <tr>
@@ -187,7 +181,7 @@
           </thead>
           <tbody>
             <tr>
-              <td>Ubuntu Advantage Server Essential<br /> Ubuntu Advantage Desktop Standard</td>
+              <td>Ubuntu Advantage Desktop Standard</td>
               <td>1 business day</td>
               <td>1 business day</td>
               <td>2 business day</td>
@@ -312,11 +306,12 @@ process as specified by Canonical as part of the Foundation OpenStack Build.</li
 </thead>
 <tbody>
 <tr>
-<td>8x5 ticket support for the default packages in the Ubuntu Server image (see <a href="#response-times">Section 3</a>)</td>
+<td>24x7 self-service customer care portal and knowledge base (see <a href="#ua-support-scope">Section 2</a>)</td>
 <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
 <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
 <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
 </tr>
+<tr>
 <tr>
 <td>Landscape Management (see <a href="#support-scope-landscape">Section 2.5</a>)</td>
 <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
@@ -325,7 +320,7 @@ process as specified by Canonical as part of the Foundation OpenStack Build.</li
 </tr>
 <tr>
 <td>Ubuntu Legal Assurance programme (see <a href="#assurance">Section 5</a>)</td>
-<td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
+<td class="u-align--center">&nbsp;</td>
 <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
 <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
 </tr>
@@ -369,19 +364,17 @@ process as specified by Canonical as part of the Foundation OpenStack Build.</li
 </table>
 </div>
 <h4 id="service-offering-definitions">Essential</h4>
-<p>Service includes:</p>
+<p>Service additionally includes:</p>
 <ul>
-<li class="p-list__item">Support for the packages found in the server/cloud image manifest.</li>
-<li class="p-list__item">Extended Security Maintenance for customers who have purchased a minimum of 100 Ubuntu Advantage Essential supported nodes.</li>
+<li class="p-list__item">Extended Security Maintenance for Ubuntu.</li>
 </ul>
 <p>Service excludes:</p>
 <ul>
-<li class="p-list__item">Support for packages not found in the server/cloud image manifest.</li>
-<li class="p-list__item">Support for issues other than bugs found in packages provided by the server/cloud image.</li>
-<li class="p-list__item">Access to telephone support.</li>
+<li class="p-list__item">Support beyond that of Canonical&rsquo;s Knowledge Base.</li>
+<li class="p-list__item">Ubuntu Assurance programme.</li>
 </ul>
 <h4 id="lxd-guest-support">Standard</h4>
-<p>Service includes:</p>
+<p>Service additionally includes:</p>
 <ul>
 <li class="p-list__item">Ubuntu Advantage Virtual Guest Standard support for an unlimited number of Ubuntu LXD guests.</li>
 <li class="p-list__item">Extended Security Maintenance for Ubuntu</li>
@@ -392,7 +385,7 @@ process as specified by Canonical as part of the Foundation OpenStack Build.</li
 <li class="p-list__item">Access to the Landscape systems management tool for Ubuntu LXD guests, except where covered by Landscape Seats or Landscape on-premises.</li>
 </ul>
 <h4 id="kvm-guest-support">Advanced</h4>
-<p>Service includes:</p>
+<p>Service additionally includes:</p>
 <ul>
 <li class="p-list__item">Ubuntu Advantage Virtual Guest Advanced support for an unlimited number of Ubuntu LXD and Ubuntu KVM guests.</li>
 <li class="p-list__item">Licence to use FIPS HMAC Checksum packages (if and when available) on the systems covered under Ubuntu Advantage Server Advanced.</li>
@@ -462,6 +455,7 @@ Service excludes:
 <li class="p-list__item">Support for workloads, packages and service components other than those required to run a MAAS deployment.</li>
 <li class="p-list__item">Support for the nodes deployed using MAAS.</li>
 <li class="p-list__item">Support for design and implementation details of a MAAS deployment.</li>
+<li class="p-list__item">Access to Canonical Livepatch Service for machines deployed with MAAS.</li>
 </ul>
 <p>Supported versions of MAAS:</p>
 <ul>
@@ -484,6 +478,7 @@ Service excludes:
 <li class="p-list__item">Support for versions of the kernel other than those that are provided with the BCOS software.</li>
 <li class="p-list__item">Support for the physical hardware. Hardware support is provided by the vendor.</li>
 <li class="p-list__item">Landscape SaaS and Landscape on-premises</li>
+<li class="p-list__item">Access to Canonical Livepatch Service.</li>
 </ul>
 <h3 id="ua-desktop">Ubuntu Advantage Desktop</h3>
 <p>Services exclude:</p>
@@ -495,6 +490,7 @@ Service excludes:
 <li class="p-list__item">Peripherals which are not certified to work with Ubuntu</li>
 <li class="p-list__item">Support for non-desktop packages</li>
 <li class="p-list__item">Community flavours of Ubuntu</li>
+<li class="p-list__item">Support for architectures other than x86_64</li>
 </ul>
 <h4 id="ua-desktop-standard">Standard</h4>
 <p>Service includes:</p>
@@ -557,6 +553,11 @@ the Upgrade process.</li>
 <li class="p-list__item">Security fixes for CVEs that are not High or Critical</li>
 </ul>
 <p>Extended Security Maintenance does not guarantee secure software or fixes to all High or Critical CVEs.</p>
+<h3>Canonical Livepatch Service</h3>
+<p>Canonical Livepatch Service includes a license to use Canonical&rsquo;s kernel livepatch daemon, access to available kernel livepatches, and support for livepatches on all systems covered by Livepatch for which the livepatching features are available.</p>
+<p>Canonical provides livepatches for High and Critical kernel CVEs. Note that some CVEs may be ineligible for livepatching due to technical limitations within the livepatching system.</p>
+<p>Canonical can not provide kernel support bug fixes as kernel livepatches.</p>
+<p>Kernel livepatching is available for generic and low latency 64-bit Intel/AMD 4.4 kernels on Ubuntu 14.04 and Ubuntu 16.04.</p>
 <h3 id="ua-landscape-seats">Landscape Seats</h3>
 <p>Definitions:</p>
 <ul>
