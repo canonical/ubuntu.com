@@ -51,7 +51,7 @@
 @include ubuntu-p-hero;
 @include ubuntu-p-pull-quote;
 @include ubuntu-u-full-width;
-//@include ubuntu-p-matrix;
+@include ubuntu-p-matrix;
 @include ubuntu-p-contextual-footer;
 @include ubuntu-p-pie-chart;
 @include ubuntu-p-sun-animation;
@@ -146,16 +146,9 @@
 
 // brand submit buttons bg override
 // https://github.com/vanilla-framework/vanilla-framework/issues/1080
-
+.p-button--brand,
 .p-button--brand[type=submit]{
-  background-color: $color-brand;
-  border-color: $color-brand;
-
-  &:hover,
-  &:active {
-    background-color: darken($color-brand, 10%);
-    border-color: darken($color-brand, 10%);
-  }
+  @extend .p-button--positive;
 }
 
 /// XXX remove abbr `text-decoration: underline dotted;`
