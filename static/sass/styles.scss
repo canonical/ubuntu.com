@@ -313,3 +313,9 @@ sup {
     margin-bottom: 1rem;
   }
 }
+
+/// XXX Give card headers an underlined option
+/// This will need replacing when the latest vanilla card changes land
+.p-card__header--bordered {
+  border-bottom: 1px solid $color-mid-light;;
+}

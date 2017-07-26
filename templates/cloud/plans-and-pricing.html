@@ -13,24 +13,55 @@
   </div>
 </section>
 
-<section class="p-strip is-deep is-bordered">
+<section class="p-strip is-bordered">
   <div class="row">
-    <div class="col-7">
-      <h2>Landscape: Server management</h2>
-      <p>Landscape allows you to manage thousands of Ubuntu machines as easily as one, making the administration of Ubuntu desktops, servers and cloud instances more cost-effective. It&rsquo;s easy to set up, easy to use and it requires no special hardware.
-        It features:
-      </p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Management at scale</li>
-        <li class="p-list__item is-ticked">Deploy or rollback security updates</li>
-        <li class="p-list__item is-ticked">Compliance reports</li>
-        <li class="p-list__item is-ticked">Role-based access</li>
-        <li class="p-list__item is-ticked">Informative monitoring</li>
-      </ul>
-      <p><a class="p-link--external" href="https://landscape.canonical.com/">Learn more about Landscape</a></p>
+    <div class="col-8">
+      <h2>Cloud tools</h2>
+      <p>Ubuntu provides tools to help you create, scale and manage your cloud.</p>
     </div>
-    <div class="col-5 p-hero__item u-hidden--small">
-      <img class="p-hero__image" src="{{ ASSET_SERVER_URL }}65274d19-landscape-screenshot.png?op=region&amp;rect=0,0,1324,450&amp;w=500" alt="screenshot of Landscape" />
+  </div>
+  <div class="row">
+    <div class="col-10">
+      <table class="audience-enterprise ua-table">
+        <thead>
+          <tr>
+            <th>&nbsp;</th>
+            <th>Price</th>
+            <th>Support</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><a href="/server/maas">MAAS</a></th>
+            <td>FREE</td>
+            <td>From $5 per server per month</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/cloud/juju">Juju</a></th>
+            <td>FREE</td>
+            <td>Find out more at jujucharms.com </td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/cloud/openstack">Ubuntu OpenStack</a></th>
+            <td>FREE</td>
+            <td>From $1,500 per year</td>
+          </tr>
+          <tr>
+            <th scope="row"><a href="/support">Landscape</a></th>
+            <td>
+              Free up to ten machines (on-premises)<br />
+              or<br />
+              $100 free credit for 60 days (SaaS)
+            </td>
+            <td>
+              SaaS included as part of Ubuntu Advantage<br />
+              $2,000 per year - Landscape on-premises<br />
+              or<br />
+              $0.01 per machine hour (SaaS) without support
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
@@ -50,23 +81,8 @@
       <p>Build your own cloud using Ubuntu OpenStack with Canonical tools or tooling of your choice. Priced per node per year with alternate packages that offer a choice of SLAs based on your requirements.</p>
     </div>
   </div>
-  <div class="row">
-    <div class="col-10">
-      {% include "shared/_ubuntu_advantage_cloud_per_node.html" %}
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <h3>Metered</h3>
-      <p>Pay only for resources you consume. Build your own cloud using Ubuntu OpenStack with Canonical tooling using a Canonical&#39;s OpenStack reference architecture. Ubuntu Advantage is delivered as a price per guest VM per hour and per gigabyte of storage
-        used per month.</p>
-      <p>The metered model is also available as a fully managed service: BootStack. This model suits customers seeking to manage cost based on utilisation of their cloud in a similar to that of public cloud providers such as Amazon EC2 and Azure.</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-10">
-      {% include "shared/_ubuntu_advantage_cloud_metered.html" %}
-    </div>
+  <div class="u-vertically-spaced">
+    {% include "shared/_ubuntu_advantage_cloud_per_node.html" %}
   </div>
   <div class="row">
     <div class="col-8">
@@ -91,7 +107,7 @@
   <div class="row">
     <div class="col-8">
       <h2>OpenStack Autopilot</h2>
-      <p>The quickest and easiest way to install and manage Ubuntu OpenStack is to use Canonical&#39;s OpenStack Autopilot. You can try OpenStack Autopilot for free, but you need to purchase Ubuntu Advantage and Landscape On Premises when you use more than 10 machines.</p>
+      <p>The quickest and easiest way to install and manage Ubuntu OpenStack is to use Canonical&rsquo;s OpenStack Autopilot. You can try OpenStack Autopilot for free, but you need to purchase Ubuntu Advantage and Landscape on-premises when you use more than 10 machines.</p>
     </div>
   </div>
   <div class="row">
@@ -126,19 +142,7 @@
   <div class="row">
     <div class="col-8">
       <h2>BootStack fully managed OpenStack Cloud</h2>
-      <p>Let us build, operate and support your OpenStack Cloud.</p>
-      <table>
-        <tbody>
-          <tr>
-            <th scope="row">Cost per server per day</th>
-            <td>$15</td>
-          </tr>
-          <tr>
-            <th scope="row">Cost per fully managed VM per hour</th>
-            <td>$0.05</td>
-          </tr>
-        </tbody>
-      </table>
+      <p>Let us build, operate and support your OpenStack Cloud. Available as a cost per server per day or per VM per hour.</p>
       <p><a href="/cloud/contact-us?product=cloud-plans-and-pricing">Schedule a BootStack demo&nbsp;&rsaquo;</a></p>
     </div>
   </div>
@@ -168,50 +172,6 @@
   <div class="row">
     <div class="col-12">
       {% include "cloud/shared/_guest-list.html" %}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row">
-    <div class="col-8">
-      <h2>Cloud tools</h2>
-      <p>Ubuntu provides tools to help you create, scale and manage your cloud.</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-10">
-      <table class="audience-enterprise ua-table">
-        <thead>
-          <tr>
-            <th scope="col">&nbsp;</th>
-            <th scope="col" colspan="2" class="u-align--center">Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row"><a href="/server/maas">MAAS</a></th>
-            <td colspan="2" class="u-align--center">FREE</td>
-          </tr>
-          <tr>
-            <th scope="row"><a href="/cloud/juju">Juju</a></th>
-            <td colspan="2" class="u-align--center">FREE</td>
-          </tr>
-          <tr>
-            <th scope="row"><a href="/cloud/openstack">Ubuntu OpenStack</a></th>
-            <td colspan="2" class="u-align--center">FREE</td>
-          </tr>
-          <tr>
-            <th scope="row"><a href="/support">Landscape</a></th>
-            <td class="u-align--center"><span class="p-heading--muted">SaaS</span><br />1¢ per machine per hour</td>
-            <td class="u-align--center"><span class="p-heading--muted">On-premises</span><br />Free up to ten machines</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td class="u-align--center" colspan="2">Or, comes as part of <a href="/support/plans-and-pricing">Ubuntu Advantage</a> subscription</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </section>
