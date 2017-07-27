@@ -67,7 +67,7 @@ function drawChart() {
     })
     .attr('dy', '0');
   labels.append('tspan')
-    .text(function (d) {return '(' + d.count + '%)'})
+    .text(function (d) {return '' + d.count + '%'})
     .attr('x', function(d) { return d.left - 44 / 2; })
     .attr('dy', '20');
 }
