@@ -56,4 +56,14 @@
       }
     }
   }
+
+  /// XXX Underline card header
+  /// Temporary fix until vanilla-brochure-theme is updated to 1.0.9
+  .p-card__header {
+    border-bottom: 1px solid $color-mid-light;
+
+    &.no-border {
+      border: none;
+    }
+  }
 }
