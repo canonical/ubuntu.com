@@ -146,9 +146,15 @@
 
 // brand submit buttons bg override
 // https://github.com/vanilla-framework/vanilla-framework/issues/1080
-.p-button--brand,
 .p-button--brand[type=submit]{
-  @extend .p-button--positive;
+  background-color: $color-brand;
+  border-color: $color-brand;
+
+  &:hover,
+  &:active {
+    background-color: darken($color-brand, 10%);
+    border-color: darken($color-brand, 10%);
+  }
 }
 
 /// XXX remove abbr `text-decoration: underline dotted;`
