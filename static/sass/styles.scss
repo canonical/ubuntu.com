@@ -317,8 +317,7 @@ sup {
 // Navigation prototype
 @media (min-width: $breakpoint-medium) {
   .global-nav {
-    background-color: $color-dark;
-    border-bottom: 2px solid $color-brand;
+    background-color: #333;
     box-shadow: none;
 
     &__link:link,
@@ -329,7 +328,7 @@ sup {
 
   .p-navigation {
     background-color: $color-x-light;
-    border-bottom: 1px solid $color-mid-light;
+    border-bottom: 2px solid $color-brand;
 
     &__links &__link a {
       color: $color-dark;
@@ -338,10 +337,10 @@ sup {
     }
 
     & &__links > &__link:hover {
-      background-color: $color-brand;
+      background-color: $color-mid-light;
 
       a {
-        color: $color-x-light;
+        color: $color-dark;
         text-decoration: none;
       }
     }
@@ -354,9 +353,8 @@ sup {
       border-color: $color-mid-light;
 
       > a.is-active {
-        border-bottom: 2px solid $color-brand;
-        background-color: $color-x-light;
-        color: $color-dark;
+        background-color: $color-brand;
+        color: $color-x-light;
       }
     }
   }
