@@ -1,0 +1,21 @@
+{% extends "templates/one-column.html" %}
+{% block title %}404: Page not found{% endblock %}
+{% block extra_body_class %}error-page error404{% endblock %}
+
+{% block content %}
+<div class="p-strip is-deep">
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-6 u-vertically-center u-align--center">
+        <img src="{{ ASSET_SERVER_URL }}bcdcf2c8-image-404.svg?w=365" alt="Error owl" width="365" />
+      </div>
+      <div class="col-6 u-vertically-center">
+        <div>
+          <h1>410: Page deleted</h1>
+          <p class="p-heading--four">{{ message }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
