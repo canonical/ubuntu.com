@@ -1,12 +1,15 @@
 # Third party modules
 from django.conf.urls import url
 from django_yaml_redirects import load_redirects
+from canonicalwebteam import yaml_deleted_paths
 from ubuntudesign.gsa.views import SearchView
 
 # Local code
 from .views import UbuntuTemplateFinder, DownloadView
 
+
 urlpatterns = load_redirects()
+urlpatterns += yaml_deleted_paths.create_views()
 urlpatterns += [
     url(
         r'^(?P<template>download/(desktop|server|cloud)/thank-you)$',
