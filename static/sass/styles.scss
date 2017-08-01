@@ -313,3 +313,80 @@ sup {
     margin-bottom: 1rem;
   }
 }
+
+// Navigation prototype
+@media (min-width: $breakpoint-medium) {
+  .global-nav {
+    background-color: $color-dark;
+    border-bottom: 2px solid $color-brand;
+    box-shadow: none;
+
+    &__link:link,
+    &__link:visited {
+      color: $color-x-light;
+    }
+  }
+
+  .p-navigation {
+    background-color: $color-x-light;
+    border-bottom: 1px solid $color-mid-light;
+
+    &__links &__link a {
+      color: $color-dark;
+      font-weight: 300;
+      border-bottom: 2px solid transparent;
+    }
+
+    & &__links > &__link:hover {
+      background-color: $color-brand;
+
+      a {
+        color: $color-x-light;
+        text-decoration: none;
+      }
+    }
+
+    & &__links {
+      margin-left: 20px;
+    }
+
+    & &__links &__link {
+      border-color: $color-mid-light;
+
+      > a.is-active {
+        border-bottom: 2px solid $color-brand;
+        background-color: $color-x-light;
+        color: $color-dark;
+      }
+    }
+  }
+
+  .nav-secondary,
+  .nav-tertiary {
+    background-color: $color-x-light;
+    padding: .75rem 0 1rem;
+
+    a {
+      color: $color-mid-dark;
+    }
+
+    a.is-active {
+      color: $color-dark;
+      font-weight: 400;
+    }
+  }
+
+  .p-site-search {
+    &__form &__input[type='search'] {
+      background-color: $color-light;
+      border: 1px solid $color-mid-light;
+      border-radius: 2px;
+      color: $color-dark;
+
+      &::-webkit-input-placeholder {
+        color: $color-mid-dark;
+      }
+    }
+  }
+}
+
