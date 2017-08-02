@@ -317,13 +317,11 @@ sup {
 // Navigation prototype
 @media (min-width: $breakpoint-medium) {
   .global-nav {
-    background-color: #333;
-    border-bottom: 2px solid $color-brand;
+    background-color: $color-light;
     box-shadow: none;
 
     &__link:link,
     &__link:visited {
-      color: $color-x-light;
 
       &:hover {
         font-weight: 400;
@@ -336,41 +334,36 @@ sup {
   }
 
   .p-navigation {
-    background-color: $color-light;
-    border-bottom: 1px solid $color-mid-light;
+    background-color: #333;
 
     & &__links &__link > a {
-      color: $color-dark;
+      color: $color-x-light;
       font-weight: 300;
       border-bottom: 2px solid transparent;
-      padding: .75rem;
+      padding: .85rem .75rem .65rem;
     }
 
     & &__links > &__link:hover {
-      background-color: $color-mid-light;
+      background-color: $color-dark;
 
       a {
-        color: $color-dark;
+        color: $color-x-light;
         text-decoration: none;
       }
     }
 
     & &__links &__link {
-      border-color: $color-mid-light;
+      border-color: $color-mid-dark;
 
       > a.is-active {
         border-bottom: 2px solid $color-brand;
-        background-color: $color-x-light;
-
-        &:hover {
-          background-color: $color-mid-light;
-        }
+        background-color: #333;
       }
     }
 
     & &__logo {
       background-color: $color-brand;
-      padding: .75rem .75rem .75rem 1rem;
+      padding: .55rem .75rem 0.4rem 1rem;
       margin: 0;
     }
   }
@@ -378,6 +371,7 @@ sup {
   .nav-secondary,
   .nav-tertiary {
     background-color: $color-light;
+    border-bottom: 2px solid $color-brand;
     padding: .65rem 0 .8rem;
 
     a {
