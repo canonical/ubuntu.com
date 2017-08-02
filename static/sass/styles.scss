@@ -317,24 +317,33 @@ sup {
 // Navigation prototype
 @media (min-width: $breakpoint-medium) {
   .global-nav {
-    background-color: $color-dark;
+    background-color: #333;
     border-bottom: 2px solid $color-brand;
     box-shadow: none;
 
     &__link:link,
     &__link:visited {
       color: $color-x-light;
+
+      &:hover {
+        font-weight: 400;
+      }
+    }
+
+    &__wrapper {
+      width: 997px;
     }
   }
 
   .p-navigation {
-    background-color: $color-x-light;
+    background-color: $color-light;
     border-bottom: 1px solid $color-mid-light;
 
-    &__links &__link a {
+    & &__links &__link > a {
       color: $color-dark;
       font-weight: 300;
       border-bottom: 2px solid transparent;
+      padding: .75rem;
     }
 
     & &__links > &__link:hover {
@@ -368,8 +377,8 @@ sup {
 
   .nav-secondary,
   .nav-tertiary {
-    background-color: $color-x-light;
-    padding: .75rem 0 1rem;
+    background-color: $color-light;
+    padding: .65rem 0 .8rem;
 
     a {
       color: $color-mid-dark;
@@ -382,6 +391,10 @@ sup {
   }
 
   .p-site-search {
+    &__form {
+      top: .35rem;
+    }
+
     &__form &__input[type='search'] {
       background-color: $color-light;
       border: 1px solid $color-mid-light;
