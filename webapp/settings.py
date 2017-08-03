@@ -30,7 +30,6 @@ DEBUG = os.environ.get('DJANGO_DEBUG', 'false').lower() == 'true'
 
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
 ROOT_URLCONF = 'webapp.urls'
 WSGI_APPLICATION = 'webapp.wsgi.application'
 LANGUAGE_CODE = 'en-us'
@@ -71,7 +70,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'builtins': [
-                'webapp.templatetags.feeds',
+                'canonicalwebteam.get_feeds.templatetags',
                 'webapp.templatetags.utils',
             ],
             'context_processors': [
