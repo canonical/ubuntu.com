@@ -311,7 +311,6 @@ sup {
 @media (min-width: $breakpoint-medium) {
   .global-nav {
     background-color: #333;
-    border-bottom: 2px solid $color-brand;
     box-shadow: none;
 
     &__link:link,
@@ -333,9 +332,20 @@ sup {
     }
   }
 
+  .homepage {
+    .global-nav {
+      border-bottom: 2px solid $color-brand;
+    }
+
+    .p-navigation {
+      border-bottom: 2px solid transparent;
+    }
+  }
+
   .p-navigation {
     background-color: $color-light;
     border-bottom: 1px solid $color-mid-light;
+    border-bottom: 2px solid $color-brand;
 
     & &__links &__link > a {
       color: $color-dark;
