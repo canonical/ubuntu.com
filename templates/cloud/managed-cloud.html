@@ -5,19 +5,17 @@
 
 {% block content %}
 
-<section class="p-strip is-bordered is-deep">
+<section class="p-strip--accent is-deep">
   <div class="row">
     <div class="u-equal-height">
       <div class="col-8">
         <h1 class="p-heading--two">Fully managed OpenStack, by Canonical</h1>
-        <p class="p-heading--four">Build, operate and transfer Ubuntu OpenStack</p>
-        <p>The fastest path to production OpenStack. BootStack lets you focus on your business while Canonical takes care of your private OpenStack cloud.</p>
+        <p>BootStack is the fastest path to a production private OpenStack cloud. Focus on your business while Canonical takes care of building and running your OpenStack cloud.</p>
         <ul class="p-list">
-          <li class="p-list__item is-ticked">We design, build and operate your OpenStack cloud</li>
-          <li class="p-list__item is-ticked">On your servers, at your location</li>
-          <li class="p-list__item is-ticked">24/7 on-premises managed OpenStack</li>
-          <li class="p-list__item is-ticked">Built within 3 weeks using a proven reference architecture</li>
+          <li class="p-list__item is-ticked">Runs on your servers, at your location, but managed by Canonical, 24/7</li>
+          <li class="p-list__item is-ticked">Built using a proven reference architecture, get up and running within 3 weeks</li>
           <li class="p-list__item is-ticked">Customise the architecture in iterations based on workloads</li>
+          <li class="p-list__item is-ticked">Built within 3 weeks using a proven reference architecture</li>
           <li class="p-list__item is-ticked">Get an SLA for the cloud and focus on your business applications</li>
           <li class="p-list__item is-ticked">Your team has access to all machines at all times</li>
           <li class="p-list__item is-ticked">Integrate with your monitoring systems</li>
@@ -32,7 +30,7 @@
   </div>
 </section>
 
-<section class="p-strip--accent is-deep is-bordered">
+<section class="p-strip is-deep is-bordered">
   <div class="row">
     <div class="col-12">
       <h2>Economics, performance and reliability</h2>
@@ -59,16 +57,45 @@
   </div>
 </section>
 
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-12 u-padding-bottom--x-large">
+      <h2>Resources</h2>
+    </div>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <img style="border: 1px solid #ccc;" src="{{ ASSET_SERVER_URL }}c8eb3c73-cloud-econonmics-webinar.png?w=300" alt="">
+      <h3 class="p-heading--four">The business case</h3>
+      <p>Why private clouds make financial sense for long-term capacity</p>
+      <p><a class="p-link--external" href="https://pages.ubuntu.com/QTS_webinar.html" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Managed cloud', 'eventLabel' : 'Watch the webinar Learn why Private Open Cloud Makes Financial Sense', 'eventValue' : undefined });">Watch the webinar<span hidden=""> Learn why private open cloud makes financial sense</span></a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <img src="{{ ASSET_SERVER_URL }}5b16e994-webinar-2.png?w=300" alt="">
+      <h3 class="p-heading--four">Windows on OpenStack</h3>
+      <p>Rapidly deploy Windows workloads on your managed OpenStack</p>
+      <p><a class="p-link--external" href="https://pages.ubuntu.com/Cloudbase-webinar.html" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Managed cloud', 'eventLabel' : 'Watch the webinar Run Windows workloads on BootStack', 'eventValue' : undefined });">Watch the webinar<span hidden=""> Run Windows workloads on BootStack</span></a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <img src="{{ ASSET_SERVER_URL }}04e03cfe-wwebinar-3.png?h=142" alt="">
+      <h3 class="p-heading--four">Supermicro BootStack</h3>
+      <p>A hyper-converged BootStack for maximum efficiency on Supermicro</p>
+      <p><a class="p-link--external" href="https://pages.ubuntu.com/Supermicro_webinar.html" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Managed cloud', 'eventLabel' : 'Watch the webinar Build a hyperconverged cloud with BootStack and Supermicro', 'eventValue' : undefined });">Watch the webinar<span hidden=""> Build a hyperconverged cloud with BootStack and Supermicro</span></a></p>
+    </div>
+  </div>
+</section>
+
+
 <section class="p-strip--light is-deep is-bordered">
   <div class="row">
     <div class="u-equal-height">
+      <div class="col-9">
+        <h2>Canonical secures the OpenStack&nbsp;majority</h2>
+        <p class="col-9">Canonical, a founding member of OpenStack, provides security updates for most production OpenStack clouds worldwide.</p>
+        <p class="col-9">The leading OpenStack and public cloud experts choose Ubuntu &mdash; that&rsaquo;s why you should talk to us about efficient OpenStack operations at scale.</p>
+      </div>
       <div class="col-4">
         {% include "cloud/shared/_openstack-pie-chart.html" %}
-      </div>
-      <div class="col-8 prefix-1">
-        <h2>Canonical secures the OpenStack&nbsp;majority</h2>
-        <p>Canonical, a founding member of OpenStack, provides security updates for most production OpenStack clouds worldwide.</p>
-        <p>The leading OpenStack and public cloud experts choose Ubuntu &mdash; that&rsaquo;s why you should talk to us about efficient OpenStack operations at scale.</p>
       </div>
     </div>
   </div>
@@ -88,8 +115,8 @@
       <h3>The right location for a workload should be driven by economics, not habit</h3>
     </div>
   </div>
-  <div class="row">
-    <div class="col-6">
+  <div class="row u-equal-height">
+    <div class="col-6 p-card">
       <h4>Your managed cloud</h4>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Controlled density and performance</li>
@@ -100,7 +127,7 @@
         <li class="p-list__item is-ticked">Existing network</li>
       </ul>
     </div>
-    <div class="col-6">
+    <div class="col-6 p-card">
       <h4>AWS, Azure, Google, Oracle, Rackspace, SoftLayer</h4>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Elasticity for highly variable load</li>
@@ -152,7 +179,7 @@
   </div>
 </section>
 
-<section class="p-strip is-deep">
+<section class="p-strip--light is-deep">
   <div class="row">
     <div class="col-12">
       <h2>Your data centre&hellip;</h2>
@@ -203,7 +230,7 @@
   </div>
 </section>
 
-<section class="p-strip is-deep u-no-margin--top u-no-padding--top is-bordered">
+<section class="p-strip--light is-deep u-no-margin--top u-no-padding--top is-bordered">
   <div class="row">
     <div class="col-12">
       <h2>&hellip;meets our OpenStack expertise</h2>
@@ -299,35 +326,7 @@
   </div>
 </section>
 
-<section class="p-strip--light is-deep is-bordered">
-  <div class="row">
-    <div class="col-12 u-padding-bottom--x-large">
-      <h2>Resources</h2>
-    </div>
-  </div>
-  <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <img style="border: 1px solid #ccc;" src="{{ ASSET_SERVER_URL }}c8eb3c73-cloud-econonmics-webinar.png?w=300" alt="">
-      <h3 class="p-heading--four">The business case</h3>
-      <p>Why private clouds make financial sense for long-term capacity</p>
-      <p><a class="p-link--external" href="https://pages.ubuntu.com/QTS_webinar.html" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Managed cloud', 'eventLabel' : 'Watch the webinar Learn why Private Open Cloud Makes Financial Sense', 'eventValue' : undefined });">Watch the webinar<span hidden=""> Learn why private open cloud makes financial sense</span></a></p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <img src="{{ ASSET_SERVER_URL }}5b16e994-webinar-2.png?w=300" alt="">
-      <h3 class="p-heading--four">Windows on OpenStack</h3>
-      <p>Rapidly deploy Windows workloads on your managed OpenStack</p>
-      <p><a class="p-link--external" href="https://pages.ubuntu.com/Cloudbase-webinar.html" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Managed cloud', 'eventLabel' : 'Watch the webinar Run Windows workloads on BootStack', 'eventValue' : undefined });">Watch the webinar<span hidden=""> Run Windows workloads on BootStack</span></a></p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <img src="{{ ASSET_SERVER_URL }}04e03cfe-wwebinar-3.png?h=142" alt="">
-      <h3 class="p-heading--four">Supermicro BootStack</h3>
-      <p>A hyper-converged BootStack for maximum efficiency on Supermicro</p>
-      <p><a class="p-link--external" href="https://pages.ubuntu.com/Supermicro_webinar.html" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Managed cloud', 'eventLabel' : 'Watch the webinar Build a hyperconverged cloud with BootStack and Supermicro', 'eventValue' : undefined });">Watch the webinar<span hidden=""> Build a hyperconverged cloud with BootStack and Supermicro</span></a></p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
     <div class="col-12 u-padding-bottom--x-large">
       <h2>Shape it to your needs</h2>
@@ -351,7 +350,7 @@
     </div>
   </div>
 </section>
-<section class="p-strip--light is-deep u-no-margin--top u-no-padding--top">
+<section class="p-strip is-deep u-no-margin--top u-no-padding--top">
   <div class="row p-divider">
     <div class="col-4 p-divider__block">
       <h3 class="p-heading--four">Enable containers</h3>
@@ -367,7 +366,7 @@
     </div>
   </div>
 </section>
-<section class="p-strip--light is-shallow u-no-padding--top">
+<section class="p-strip is-shallow u-no-padding--top">
   <div class="row">
     <div class="col-12">
       <p><a href="/cloud/contact-us?product=cloud-managed-cloud" class="p-button--brand">Let&rsquo;s discuss your requirements</a></p>
