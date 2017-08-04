@@ -146,16 +146,9 @@
 
 // brand submit buttons bg override
 // https://github.com/vanilla-framework/vanilla-framework/issues/1080
-
+.p-button--brand,
 .p-button--brand[type=submit]{
-  background-color: $color-brand;
-  border-color: $color-brand;
-
-  &:hover,
-  &:active {
-    background-color: darken($color-brand, 10%);
-    border-color: darken($color-brand, 10%);
-  }
+  @extend .p-button--positive;
 }
 
 /// XXX remove abbr `text-decoration: underline dotted;`
@@ -324,6 +317,11 @@ sup {
     &__link:visited {
 
       &:hover {
+        font-weight: 400;
+      }
+
+      &.is-active {
+        border-top: 3px solid transparent;
         font-weight: 400;
       }
     }
