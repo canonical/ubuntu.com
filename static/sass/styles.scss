@@ -313,3 +313,10 @@ sup {
     margin-bottom: 1rem;
   }
 }
+
+/// XXX Override for p-strip--image to hide the background at small viewports
+.u-no-background--small {
+  @media (max-width: $breakpoint-medium) {
+    background-image: none !important;
+  }
+}

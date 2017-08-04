@@ -26,6 +26,10 @@
 
     {% include "shared/_cloud-contact-us-form.html" with  h1="Schedule a demo" intro_text="Fill in your details below and a member of our BootStack team will be in touch." formid="1128" lpId="1646" returnURL="https://www.ubuntu.com/cloud/thank-you?product=cloud-managed-cloud" %}
 
+  {% elif product == 'foundation-cloud' %}
+
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Talk to us" intro_text="Fill in your details below and a member of our Foundation Cloud Build team will be in touch." formid='1251'  lpId='2086' returnURL='https://www.ubuntu.com/cloud/thank-you?product=foundation-cloud' %}
+
   {% elif product == 'cloud' or product == 'contextual-footer-cloud' %}
 
     {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about the cloud" intro_text="Fill in your details below and a member of our cloud sales team will be in touch." formid='1251'  lpId='2086' returnURL='https://www.ubuntu.com/cloud/thank-you' %}
