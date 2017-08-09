@@ -25,6 +25,8 @@ INSTALLED_APPS = [
 WHITENOISE_MAX_AGE = 31557600
 WHITENOISE_ALLOW_ALL_ORIGINS = False
 
+FEED_TIMEOUT = 2
+
 ALLOWED_HOSTS = ['*']
 DEBUG = os.environ.get('DJANGO_DEBUG', 'false').lower() == 'true'
 
