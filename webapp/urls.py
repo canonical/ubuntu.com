@@ -1,14 +1,14 @@
 # Third party modules
 from django.conf.urls import url
+from django_yaml_redirects import load_redirects
 from canonicalwebteam import yaml_deleted_paths
-from canonicalwebteam import yaml_redirects
 from ubuntudesign.gsa.views import SearchView
 
 # Local code
 from .views import UbuntuTemplateFinder, DownloadView
 
 
-urlpatterns = yaml_redirects.create_views()
+urlpatterns = load_redirects()
 urlpatterns += yaml_deleted_paths.create_views()
 urlpatterns += [
     url(
