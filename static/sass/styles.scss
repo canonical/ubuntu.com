@@ -317,5 +317,14 @@ sup {
 .u-no-background--small {
   @media (max-width: $breakpoint-medium) {
     background-image: none !important;
+
+/// XXX Muted icon headers
+.p-heading-icon {
+  &__img--small {
+    max-width: 30px;
+  }
+
+  &__title--muted {
+    color: #666;
   }
 }
