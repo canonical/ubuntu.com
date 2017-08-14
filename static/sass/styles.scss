@@ -146,7 +146,6 @@
 
 // brand submit buttons bg override
 // https://github.com/vanilla-framework/vanilla-framework/issues/1080
-
 .p-button--brand[type=submit]{
   background-color: $color-brand;
   border-color: $color-brand;
@@ -318,5 +317,16 @@ sup {
 .u-no-background--small {
   @media (max-width: $breakpoint-medium) {
     background-image: none !important;
+  }
+}
+
+/// XXX Muted icon headers
+.p-heading-icon {
+  &__img--small {
+    max-width: 30px;
+  }
+
+  &__title--muted {
+    color: #666;
   }
 }
