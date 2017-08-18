@@ -30,6 +30,11 @@ FEED_TIMEOUT = 2
 ALLOWED_HOSTS = ['*']
 DEBUG = os.environ.get('DJANGO_DEBUG', 'false').lower() == 'true'
 
+CUSTOM_HEADERS = {
+    'X-commit-ID': os.getenv('COMMIT_ID'),
+    'X-k8s-pod': os.getenv('K8S_POD_NAME')
+}
+
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ROOT_URLCONF = 'webapp.urls'
@@ -54,6 +59,7 @@ SEARCH_SERVER_URL = 'http://10.22.112.8/search'
 SEARCH_TIMEOUT = 10
 
 MIDDLEWARE_CLASSES = [
+    'canonicalwebteam.custom_response_headers.Middleware',
     'unslashed.middleware.RemoveSlashMiddleware',
 ]
 
