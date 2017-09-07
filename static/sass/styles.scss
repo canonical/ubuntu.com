@@ -310,15 +310,15 @@ sup {
 // Navigation prototype
 @media (min-width: $breakpoint-medium) {
   .global-nav {
-    background-color: #333;
+    background-color: $color-light;
     box-shadow: none;
 
     &__link:link,
     &__link:visited {
-      color: $color-mid-light;
+      color: $color-mid-dark;
 
       &:hover {
-        color: $color-x-light;
+        color: $color-x-dark;
       }
 
       &.is-active {
@@ -339,18 +339,18 @@ sup {
   }
 
   .p-navigation {
-    background-color: $color-light;
+    background-color: $color-dark;
     border-bottom: 1px solid $color-mid-light;
 
     & &__links &__link > a {
-      color: $color-dark;
+      color: $color-x-light;
       font-weight: 300;
       border-bottom: 2px solid transparent;
       padding: .8125rem 1rem .75rem;
     }
 
     & &__links > &__link:hover {
-      background-color: $color-mid-light;
+      background-color: $color-mid-dark;
 
       a {
         text-decoration: none;
@@ -361,9 +361,9 @@ sup {
       border: 0;
 
       > a.is-active {
-        background: transparent;
+        background: $color-mid-dark;
         border-bottom: 2px solid $color-brand;
-        color: $color-dark;
+        color: $color-x-light;
       }
     }
 
