@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 //settings
-@import '_settings_colors';
+@import 'settings_colors';
 
 // custom mixins
 @import 'mixins/full-width-breakout';
@@ -59,6 +59,9 @@
 @include ubuntu-p-strip-photos;
 @include ubuntu-p-ubuntu-intro;
 @include ubuntu-p-takeunders;
+
+@import 'takeovers/enterprise-kubernetes';
+@include p-takeover-enterprise-kubernetes;
 
 // **************************
 // Bug fixes

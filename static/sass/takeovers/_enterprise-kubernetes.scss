@@ -1,0 +1,18 @@
+@mixin p-takeover-enterprise-kubernetes {
+  $color-kubernetes: #326ce5;
+
+  .p-takeover--enterprise-kubernetes {
+    background-color: $color-kubernetes;
+
+    @media (min-width: $breakpoint-medium) {
+      background-image: url('#{$assets-path}fea46439-backgroundx2.png?w=984');
+      background-size: cover;
+      margin: $sp-x-large;
+      width: auto;
+    }
+
+    @media (min-width: 1200px) {
+      background-image: url('#{$assets-path}fea46439-backgroundx2.png?w=2000');
+    }
+  }
+}
