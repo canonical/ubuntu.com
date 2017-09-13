@@ -1,16 +1,13 @@
 {% extends "download/_base_download.html" %}
-{% block title %}Build OpenStack with conjure-up | Download{% endblock %}
-{% block extra_body_class %}download-cloud-conjure-up{% endblock %}
-{% block meta_description %}Want to deploy OpenStack on a single machine? Use Conjure-up. It’s the easy and free.{% endblock %}
-
-
+{% block title %}Try OpenStack with conjure-up | Download{% endblock %}
+{% block meta_description %}Want to deploy OpenStack on a single machine? Use Conjure-up. It’s easy and free.{% endblock %}
 
 {% block content %}
 
-<div class="p-strip--light no-border">
+<div class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-12">
-      <h1>Try OpenStack on a single machine</h1>
+      <h1>Try OpenStack on a single machine using conjure-up</h1>
       <div class="p-card--highlighted">
         <div class="u-equal-height p-divider">
           <div class="col-6 p-divider__block">
@@ -20,7 +17,7 @@
           <div class="col-6 p-divider__block">
             <h3>Requirements</h3>
             <ul class="p-list">
-              <li class="p-list__item is-ticked">Laptop, desktop or virtual machine with 16Gb RAM and Ubuntu 16.04 LTS installed</li>
+              <li class="p-list__item is-ticked">Laptop, desktop or virtual machine with 16GB RAM and Ubuntu 16.04 LTS installed</li>
               <li class="p-list__item is-ticked">An hour of your time</li>
             </ul>
           </div>
@@ -30,9 +27,7 @@
   </div>
 </div>
 
-{% include "download/shared/_get_ebook.html"%}
-
-<div class="p-strip--light is-bordered">
+<div class="p-strip is-bordered">
   <div class="row">
     <div class="col-12">
       <h2>Watch the conjure-up walkthrough</h2>
@@ -83,25 +78,23 @@
   </div>
 </div>
 
-<div class="p-strip">
-  <div class="row">
-    <div class="u-equal-height">
-      <div class="col-4 u-align--center u-vertically-center u-hidden--small">
-        <img src="{{ ASSET_SERVER_URL}}acfcc851-picto-cloud-orange.svg" width="200" alt="cloud image" />
+<div class="p-strip is-bordered">
+    <div class="row u-equal-height">
+      <div class="col-4 u-vertically-center u-align--center u-hidden--small">
+        <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="200" alt="" />
       </div>
       <div class="col-7 prefix-1 u-vertically-center">
         <div class="row">
           <div class="col-12">
-            <h2>Ready to build your own production cloud?</h2>
-            <p>OpenStack Autopilot is a fully automated tool for easy OpenStack deployment, management and operations.</p>
-            <p><a href="/download/cloud/autopilot" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Download cloud conjure-up', 'eventLabel' : 'Use OpenStack Autopilot', 'eventValue' : undefined });">Use OpenStack Autopilot&nbsp;&rsaquo;</a></p>
+            <h2>Need more help?</h2>
+            <p>Let our cloud experts help you take the next step.</p>
+            <p><a href="/cloud/contact-us?product=cloud-openstack">Contact us&nbsp;&rsaquo;</a></p>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_cloud_bootstack" second_item="_download_cloud_buy_landscape" third_item="_download_documentation" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_download_cloud_buy_landscape" third_item="_download_documentation" %}
 
 {% endblock content %}
