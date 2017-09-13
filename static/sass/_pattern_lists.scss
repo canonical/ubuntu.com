@@ -1,8 +1,8 @@
 // Site specific list styling
 @mixin list-link {
   display: block;
-  height: $sp-x-large;
   fill: $color-mid-dark;
+  height: $sp-x-large;
   width: $sp-x-large;
 }
 
@@ -20,7 +20,7 @@
 
 @mixin ubuntu-p-is-ticked {
   .is-ticked {
-    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMTRweCIgaGVpZ2h0PSIxNHB4IiB2aWV3Qm94PSItMjkwIDQxMy45IDE0IDE0IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IC0yOTAgNDEzLjkgMTQgMTQ7IiB4bWw6c3BhY2U9InByZXNlcnZlIj48c3R5bGUgdHlwZT0idGV4dC9jc3MiPi5zdDB7b3BhY2l0eTowLjI7ZmlsbDojMzA4MUZGO2VuYWJsZS1iYWNrZ3JvdW5kOm5ldyAgICA7fS5zdDF7b3BhY2l0eTowLjg7ZmlsbDojMzA4MUZGO2VuYWJsZS1iYWNrZ3JvdW5kOm5ldyAgICA7fS5zdDJ7b3BhY2l0eTowLjM7ZmlsbDojMzA4MUZGO2VuYWJsZS1iYWNrZ3JvdW5kOm5ldyAgICA7fS5zdDN7b3BhY2l0eTowLjU7ZmlsbDojMzA4MUZGO2VuYWJsZS1iYWNrZ3JvdW5kOm5ldyAgICA7fS5zdDR7ZmlsbDojRTk1NDIwO30uc3Q1e2ZpbGw6I0ZGRkZGRjt9LnN0NntkaXNwbGF5Om5vbmU7fTwvc3R5bGU+PHN5bWJvbCAgaWQ9IkdyaWRfMV8iIHZpZXdCb3g9Ii00OTIgLTIwMDAgOTg0IDQwMDAiPjxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iNDkyLC0yMDAwIC00OTIsLTIwMDAgLTQ5MiwyMDAwIDQ5MiwyMDAwICIvPjxwb2x5Z29uIGNsYXNzPSJzdDEiIHBvaW50cz0iLTQ1MiwtMjAwMCAtNDkyLC0yMDAwIC00OTIsMjAwMCAtNDUyLDIwMDAgIi8+PHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSI0OTIsLTIwMDAgNDUyLC0yMDAwIDQ1MiwyMDAwIDQ5MiwyMDAwICIvPjxwb2x5Z29uIGNsYXNzPSJzdDIiIHBvaW50cz0iLTM5NSwtMjAwMCAtNDUyLC0yMDAwIC00NTIsMjAwMCAtMzk1LDIwMDAgIi8+PHBvbHlnb24gY2xhc3M9InN0MyIgcG9pbnRzPSItMzE4LC0yMDAwIC0zNzUsLTIwMDAgLTM3NSwyMDAwIC0zMTgsMjAwMCAiLz48cG9seWdvbiBjbGFzcz0ic3QyIiBwb2ludHM9Ii0yNDEsLTIwMDAgLTI5OCwtMjAwMCAtMjk4LDIwMDAgLTI0MSwyMDAwICIvPjxwb2x5Z29uIGNsYXNzPSJzdDMiIHBvaW50cz0iLTE2NCwtMjAwMCAtMjIxLC0yMDAwIC0yMjEsMjAwMCAtMTY0LDIwMDAgIi8+PHBvbHlnb24gY2xhc3M9InN0MiIgcG9pbnRzPSItODcsLTIwMDAgLTE0NCwtMjAwMCAtMTQ0LDIwMDAgLTg3LDIwMDAgIi8+PHBvbHlnb24gY2xhc3M9InN0MyIgcG9pbnRzPSItMTAsLTIwMDAgLTY3LC0yMDAwIC02NywyMDAwIC0xMCwyMDAwICIvPjxwb2x5Z29uIGNsYXNzPSJzdDIiIHBvaW50cz0iNjcsLTIwMDAgMTAsLTIwMDAgMTAsMjAwMCA2NywyMDAwICIvPjxwb2x5Z29uIGNsYXNzPSJzdDMiIHBvaW50cz0iMTQ0LC0yMDAwIDg3LC0yMDAwIDg3LDIwMDAgMTQ0LDIwMDAgIi8+PHBvbHlnb24gY2xhc3M9InN0MiIgcG9pbnRzPSIyMjEsLTIwMDAgMTY0LC0yMDAwIDE2NCwyMDAwIDIyMSwyMDAwICIvPjxwb2x5Z29uIGNsYXNzPSJzdDMiIHBvaW50cz0iMjk4LC0yMDAwIDI0MSwtMjAwMCAyNDEsMjAwMCAyOTgsMjAwMCAiLz48cG9seWdvbiBjbGFzcz0ic3QyIiBwb2ludHM9IjM3NSwtMjAwMCAzMTgsLTIwMDAgMzE4LDIwMDAgMzc1LDIwMDAgIi8+PHBvbHlnb24gY2xhc3M9InN0MyIgcG9pbnRzPSI0NTIsLTIwMDAgMzk1LC0yMDAwIDM5NSwyMDAwIDQ1MiwyMDAwICIvPjwvc3ltYm9sPjxnIGlkPSJCSyI+PC9nPjxnIGlkPSJDb21wIj48Y2lyY2xlIGNsYXNzPSJzdDQiIGN4PSItMjgzIiBjeT0iNDIwLjkiIHI9IjciLz48cG9seWdvbiBjbGFzcz0ic3Q1IiBwb2ludHM9Ii0yODMuOSw0MjQuNyAtMjg3LjYsNDIyIC0yODYuNCw0MjAuNCAtMjg0LjEsNDIyLjEgLTI3OS43LDQxNy43IC0yNzguMyw0MTkuMSAiLz48L2c+PGcgaWQ9IkdyaWQiIGNsYXNzPSJzdDYiPjx1c2UgeGxpbms6aHJlZj0iI0dyaWRfMV8iICB3aWR0aD0iOTg0IiBoZWlnaHQ9IjQwMDAiIGlkPSJYTUxJRF83XyIgeD0iLTQ5MiIgeT0iLTIwMDAiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIC0xIDg5IDExMTAuODkpIiBzdHlsZT0iZGlzcGxheTppbmxpbmU7b3ZlcmZsb3c6dmlzaWJsZTsiLz48L2c+PC9zdmc+);
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMTRweCIgaGVpZ2h0PSIxNHB4IiB2aWV3Qm94PSItMjkwIDQxMy45IDE0IDE0IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IC0yOTAgNDEzLjkgMTQgMTQ7IiB4bWw6c3BhY2U9InByZXNlcnZlIj48c3R5bGUgdHlwZT0idGV4dC9jc3MiPi5zdDB7b3BhY2l0eTowLjI7ZmlsbDojMzA4MUZGO2VuYWJsZS1iYWNrZ3JvdW5kOm5ldyAgICA7fS5zdDF7b3BhY2l0eTowLjg7ZmlsbDojMzA4MUZGO2VuYWJsZS1iYWNrZ3JvdW5kOm5ldyAgICA7fS5zdDJ7b3BhY2l0eTowLjM7ZmlsbDojMzA4MUZGO2VuYWJsZS1iYWNrZ3JvdW5kOm5ldyAgICA7fS5zdDN7b3BhY2l0eTowLjU7ZmlsbDojMzA4MUZGO2VuYWJsZS1iYWNrZ3JvdW5kOm5ldyAgICA7fS5zdDR7ZmlsbDojRTk1NDIwO30uc3Q1e2ZpbGw6I0ZGRkZGRjt9LnN0NntkaXNwbGF5Om5vbmU7fTwvc3R5bGU+PHN5bWJvbCAgaWQ9IkdyaWRfMV8iIHZpZXdCb3g9Ii00OTIgLTIwMDAgOTg0IDQwMDAiPjxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iNDkyLC0yMDAwIC00OTIsLTIwMDAgLTQ5MiwyMDAwIDQ5MiwyMDAwICIvPjxwb2x5Z29uIGNsYXNzPSJzdDEiIHBvaW50cz0iLTQ1MiwtMjAwMCAtNDkyLC0yMDAwIC00OTIsMjAwMCAtNDUyLDIwMDAgIi8+PHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSI0OTIsLTIwMDAgNDUyLC0yMDAwIDQ1MiwyMDAwIDQ5MiwyMDAwICIvPjxwb2x5Z29uIGNsYXNzPSJzdDIiIHBvaW50cz0iLTM5NSwtMjAwMCAtNDUyLC0yMDAwIC00NTIsMjAwMCAtMzk1LDIwMDAgIi8+PHBvbHlnb24gY2xhc3M9InN0MyIgcG9pbnRzPSItMzE4LC0yMDAwIC0zNzUsLTIwMDAgLTM3NSwyMDAwIC0zMTgsMjAwMCAiLz48cG9seWdvbiBjbGFzcz0ic3QyIiBwb2ludHM9Ii0yNDEsLTIwMDAgLTI5OCwtMjAwMCAtMjk4LDIwMDAgLTI0MSwyMDAwICIvPjxwb2x5Z29uIGNsYXNzPSJzdDMiIHBvaW50cz0iLTE2NCwtMjAwMCAtMjIxLC0yMDAwIC0yMjEsMjAwMCAtMTY0LDIwMDAgIi8+PHBvbHlnb24gY2xhc3M9InN0MiIgcG9pbnRzPSItODcsLTIwMDAgLTE0NCwtMjAwMCAtMTQ0LDIwMDAgLTg3LDIwMDAgIi8+PHBvbHlnb24gY2xhc3M9InN0MyIgcG9pbnRzPSItMTAsLTIwMDAgLTY3LC0yMDAwIC02NywyMDAwIC0xMCwyMDAwICIvPjxwb2x5Z29uIGNsYXNzPSJzdDIiIHBvaW50cz0iNjcsLTIwMDAgMTAsLTIwMDAgMTAsMjAwMCA2NywyMDAwICIvPjxwb2x5Z29uIGNsYXNzPSJzdDMiIHBvaW50cz0iMTQ0LC0yMDAwIDg3LC0yMDAwIDg3LDIwMDAgMTQ0LDIwMDAgIi8+PHBvbHlnb24gY2xhc3M9InN0MiIgcG9pbnRzPSIyMjEsLTIwMDAgMTY0LC0yMDAwIDE2NCwyMDAwIDIyMSwyMDAwICIvPjxwb2x5Z29uIGNsYXNzPSJzdDMiIHBvaW50cz0iMjk4LC0yMDAwIDI0MSwtMjAwMCAyNDEsMjAwMCAyOTgsMjAwMCAiLz48cG9seWdvbiBjbGFzcz0ic3QyIiBwb2ludHM9IjM3NSwtMjAwMCAzMTgsLTIwMDAgMzE4LDIwMDAgMzc1LDIwMDAgIi8+PHBvbHlnb24gY2xhc3M9InN0MyIgcG9pbnRzPSI0NTIsLTIwMDAgMzk1LC0yMDAwIDM5NSwyMDAwIDQ1MiwyMDAwICIvPjwvc3ltYm9sPjxnIGlkPSJCSyI+PC9nPjxnIGlkPSJDb21wIj48Y2lyY2xlIGNsYXNzPSJzdDQiIGN4PSItMjgzIiBjeT0iNDIwLjkiIHI9IjciLz48cG9seWdvbiBjbGFzcz0ic3Q1IiBwb2ludHM9Ii0yODMuOSw0MjQuNyAtMjg3LjYsNDIyIC0yODYuNCw0MjAuNCAtMjg0LjEsNDIyLjEgLTI3OS43LDQxNy43IC0yNzguMyw0MTkuMSAiLz48L2c+PGcgaWQ9IkdyaWQiIGNsYXNzPSJzdDYiPjx1c2UgeGxpbms6aHJlZj0iI0dyaWRfMV8iICB3aWR0aD0iOTg0IiBoZWlnaHQ9IjQwMDAiIGlkPSJYTUxJRF83XyIgeD0iLTQ5MiIgeT0iLTIwMDAiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIC0xIDg5IDExMTAuODkpIiBzdHlsZT0iZGlzcGxheTppbmxpbmU7b3ZlcmZsb3c6dmlzaWJsZTsiLz48L2c+PC9zdmc+');
   }
 }
 
@@ -37,10 +37,6 @@
     .p-inline-list__item {
       @include vf-inline-list-item;
       float: left;
-    }
-
-    .p-inline-list_icon {
-      @include list-link;
     }
 
     .p-inline-list__link {
@@ -135,8 +131,8 @@
         flex-wrap: wrap;
 
         .p-list__item {
-          width: calc(33.33% - .75rem);
           margin-right: 1rem;
+          width: calc(33.33% - .75rem);
 
           &:nth-child(3n+3) {
             margin-right: 0;
@@ -162,8 +158,8 @@
         flex-wrap: wrap;
 
         .p-list__item {
-          width: calc(25% - .5rem);
           margin-right: .5rem;
+          width: calc(25% - .5rem);
 
           &:nth-child(4n+4) {
             margin-right: 0;
@@ -180,8 +176,8 @@
 
 @mixin ubuntu-p-nested-counter-lists {
   .p-nested-counter-list {
-    list-style-type: none;
     counter-reset: item;
+    list-style-type: none;
     margin-left: 0;
     padding-left: 0;
 
@@ -192,17 +188,17 @@
 
     &__item {
       counter-increment: item;
-      padding-left: $sp-xx-small;
       padding-bottom: $sp-small;
+      padding-left: $sp-xx-small;
 
-      &:before {
+      &::before {
         content: counters(item, ".") ". ";
       }
 
       & & {
         padding-left: 0;
 
-        &:before {
+        &::before {
           content: counters(item, ".") " ";
         }
       }
