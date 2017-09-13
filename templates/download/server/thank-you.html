@@ -17,13 +17,20 @@ Thanks for downloading Ubuntu Server
     <div class="col-8">
       <h1>Thank you for downloading Ubuntu Server</h1>
       {% if version and architecture %}
-      <p>Your download should start automatically. If it doesn&rsquo;t, <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-server-{{ architecture }}.iso">download now</a>.</p>
+      <p>Your download should start automatically. If it doesn&rsquo;t,
+        <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-server-{{ architecture }}.iso">
+          download now</a>.
+      </p>
       {% else %}
-      <p>You didn't pick a version or architecture, please <a href="/download/server/">select again</a>.</p>
+      <p>
+        You didn&rsquo;t pick a version or architecture, please
+        <a href="/download/server/">select again</a>.
+      </p>
       {% endif %}
     </div>
     <div class="col-4 u-vertically-center u-align--center">
-      <img src="{{ ASSET_SERVER_URL }}52d53696-picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
+      <img src="{{ ASSET_SERVER_URL }}52d53696-picto-thankyou-midaubergine.svg"
+        alt="smile" width="200" height="200" />
     </div>
   </div>
 </div>
@@ -32,25 +39,35 @@ Thanks for downloading Ubuntu Server
   <div class="row">
     <div class="col-8">
       <h2>Your next steps with Ubuntu Server</h2>
-      <p>Use Ubuntu&rsquo;s tools to help you provision and manage your servers.</p>
+      <p>
+        Use Ubuntu&rsquo;s tools to help you provision and manage your servers.
+      </p>
     </div>
   </div>
 
   <div class="row">
     <div class="col-6 u-hidden--small">
-      <img src="{{ ASSET_SERVER_URL }}b89de9f4-feature.png" alt="Landscape load management" />
+      <img src="{{ ASSET_SERVER_URL }}b89de9f4-feature.png"
+        alt="Landscape load management" />
     </div>
     <div class="col-6">
       <h3>Server management with Landscape</h3>
       <ul class="p-list">
         <li class="p-list__item is-ticked">
-          Landscape is the leading management tool to deploy, monitor and manage your Ubuntu servers
+          <p>Landscape is the leading management tool to deploy, monitor and
+          manage your Ubuntu servers</p>
         </li>
         <li class="p-list__item is-ticked">
-          It features Autopilot, the fastest way to build an OpenStack cloud
+          <p>
+            Landscape supports livepatch so you can apply kernel patches and
+            security updates without having to reboot
+          </p>
         </li>
         <li class="p-list__item is-ticked">
-          Landscape is also available as part of Ubuntu Advantage, Canonical&rsquo;s world-class support service
+          <p>
+            Landscape is also available as part of Ubuntu Advantage,
+            Canonical&rsquo;s world-class support service
+          </p>
         </li>
       </ul>
       <p>
@@ -123,7 +140,7 @@ Thanks for downloading Ubuntu Server
 </div>
 </div>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_server_installation" second_item="_download_server_guide" third_item="_download_verify_your_download" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_verify_your_download" second_item="_download_server_guide" third_item="_download_helping_hands" %}
 
 {% endblock content %}
 {% block footer_extra %}
