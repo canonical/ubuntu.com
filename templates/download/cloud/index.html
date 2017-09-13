@@ -1,6 +1,6 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Build OpenStack with conjure-up or Autopilot| Download{% endblock %}
+{% block title %}Build OpenStack with conjure-up | Download{% endblock %}
 {% block extra_body_class %}download-cloud-home{% endblock %}
 
 
@@ -9,7 +9,10 @@
   <div class="row">
     <div class="col-10">
       <h1>Get OpenStack</h1>
-      <p>Try out OpenStack on a single machine or start building a production cloud on a cluster: you choose.</p>
+      <p>
+        Try out OpenStack on a single machine or start building a production
+        cloud on a cluster: you choose.
+      </p>
     </div>
   </div>
   <div class="row">
@@ -18,32 +21,63 @@
         <div class="col-6 p-divider__block">
           <p class="p-heading--five">Single machine</p>
           <h2>Try OpenStack on a single&nbsp;machine</h2>
-          <p class="p-card__content">Conjure-up is an ideal tool for people who want to build an OpenStack cloud on a single machine using LXD containers. This will let you see what a production setup will look like.</p>
-          <p class="p-card__content"><a class="p-button--brand is-wide" href="/download/cloud/conjure-up">Try conjure-up on single machine</a></p>
+          <p class="p-card__content">
+            Conjure-up is an ideal tool for people who want to build an
+            OpenStack cloud on a single machine in minutes.  Using LXD
+            containers, this OpenStack deployment perfectly models a
+            production cluster on real machines.
+          </p>
+          <p class="p-card__content">
+            <a href="/download/cloud/conjure-up">
+              conjure-up openstack on localhost&nbsp;&rsaquo;
+            </a>
+          </p>
         </div>
         <div class="col-6">
           <p class="p-heading--five">Cluster</p>
           <h2>Build your own production&nbsp;cloud</h2>
-          <p class="p-card__content">Canonical&rsquo;s OpenStack Autopilot handles every aspect of your production cloud across multiple physical machines through installation, expansion and everyday operations.</p>
-          <p class="p-card__content"><a class="p-button--brand is-wide" href="/download/cloud/autopilot">Build a production cloud with Autopilot</a></p>
+          <p class="p-card__content">
+            The same conjure-up utility also deploys your production OpenStack
+            cloud across a rack of physical servers using
+            <a href="https://www.ubuntu.com/server/maas">MAAS</a> and the
+            underlying model enables you to operate OpenStack efficiently at
+            scale.
+          </p>
+          <p class="p-card__content">
+            <a href="/download/cloud/autopilot">
+              conjure-up openstack on a cluster of physical
+              machines&nbsp;&rsaquo;
+            </a>
+          </p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+{% include "download/shared/_get_ebook.html"%}
+
 <div class="p-strip is-bordered">
   <div class="row u-equal-height">
     <div class="col-4 u-vertically-center u-align--center u-hidden--small">
-      <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="200" alt="" />
+      <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg"
+        width="200" alt="" />
     </div>
     <div class="col-7 prefix-1 u-vertically-center">
       <div class="row">
         <div class="col-12">
           <h2>Need more help?</h2>
           <p>Let our cloud experts help you take the next step.</p>
-          <p><a href="/cloud/contact-us?product=cloud-overview" class="p-button--neutral">Contact us</a></p>
-          <p>Already a Landscape Dedicated Server customer? Upgrading is simple, see the instructions in the <a href="https://help.landscape.canonical.com/LDS/ReleaseNotes" class="p-link--external">release notes</a>.</p>
+          <p>
+            <a href="/cloud/contact-us?product=cloud-overview"
+              class="p-button--neutral">Contact us</a>
+          </p>
+          <p>
+            Already a Landscape Dedicated Server customer? Upgrading is simple,
+            see the instructions in the
+            <a href="https://help.landscape.canonical.com/LDS/ReleaseNotes"
+              class="p-link--external">release notes</a>.
+          </p>
         </div>
       </div>
     </div>
