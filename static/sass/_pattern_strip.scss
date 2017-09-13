@@ -51,7 +51,7 @@
 
 @mixin ubuntu-p-strip--accent {
   %strip--accent {
-    @include strip;
+    @include vf-strip;
     background-color: $color-accent;
     color: determine-text-color($color-accent);
   }

@@ -35,7 +35,7 @@
     padding-left: 0;
 
     .p-inline-list__item {
-      @include inline-list-item;
+      @include vf-inline-list-item;
       float: left;
     }
 
@@ -85,7 +85,7 @@
     padding-left: 0;
 
     .p-inline-list__item {
-      @include inline-list-item;
+      @include vf-inline-list-item;
     }
   }
 }
@@ -97,7 +97,7 @@
     padding-left: 0;
 
     .p-inline-list__item {
-      @include inline-list-item;
+      @include vf-inline-list-item;
       position: relative;
 
       &::after {
@@ -237,5 +237,4 @@
       margin: 0;
     }
   }
-
 }
