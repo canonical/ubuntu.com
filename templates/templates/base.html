@@ -119,7 +119,7 @@
       <nav class="p-breadcrumbs nav-secondary clearfix">
         <div class="row nav-secondary__row">
           <div class="col-12 u-no-margin--bottom">
-            <ul class="p-breadcrumbs">
+            <ul class="p-breadcrumbs u-no-margin--bottom">
               <li class="p-breadcrumbs__item">
                 <a class="p-breadcrumbs__link" href="{{ breadcrumbs.section.path }}">{{ breadcrumbs.section.title }}</a>
 
@@ -152,7 +152,7 @@
       </nav>
     {% endif %}
 
-    <div class="wrapper">
+    <div class="wrapper u-no-margin--top">
       <div id="main-content" class="inner-wrapper">
         {% block content_head %}{% endblock %}
         {% block content_container %}

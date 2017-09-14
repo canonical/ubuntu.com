@@ -13,6 +13,7 @@
 @import '../components/canonical-global-nav/src/sass/main';
 
 // import site specific patterns and overrides
+@import 'pattern_buttons';
 @import 'pattern_site_search';
 @import 'pattern_sun-animation';
 @import 'pattern_navigation';
@@ -36,6 +37,7 @@
 @import 'pattern_ubuntu_intro';
 @import 'pattern_takeunders';
 
+@include ubuntu-p-buttons;
 @include ubuntu-p-site-search;
 @include ubuntu-p-navigation;
 @include ubuntu-p-strip;
@@ -253,16 +255,6 @@ ul.p-list  ul.p-list {
   padding: .65rem .4rem;
 }
 
-// XXX add margin bottom to code snippets
-.p-code-snippet,
-pre {
-  margin-bottom: $sp-large;
-
-  p + & {
-    margin-top: -$sp-small;
-  }
-}
-
 // XXX orange quotes in pull quotes
 .p-pull-quote > p:first-of-type::before,
 .p-pull-quote--accent > p:first-of-type::before,
@@ -331,4 +323,10 @@ sup {
   &__title--muted {
     color: #666;
   }
+}
+
+// XXX Ant: 13.09.17 - Can be removed when this issue has been resolved.
+// https://github.com/vanilla-framework/vanilla-framework/issues/1337
+.p-list.is-split .p-list__item:last-of-type {
+  border-bottom: 0;
 }

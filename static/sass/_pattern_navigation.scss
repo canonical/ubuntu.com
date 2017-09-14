@@ -132,24 +132,24 @@
 
       .p-breadcrumbs {
         @include full-width-breakout;
-        overflow-x: hidden;
         border-bottom: 1px solid $color-mid-light;
+        overflow-x: hidden;
 
         &__item {
-          position: relative;
           left: 50%;
+          margin-left: 0;
+          position: relative;
           transform: translate(-50%, 0);
           width: 100%;
-          margin-left: 0;
         }
 
         &__link {
           border-bottom: 1px solid $color-mid-light;
-          width: 100%;
-          display: inline-block;
-          padding: $sp-x-small;
-          margin-bottom: $sp-x-small;
           color: $color-dark;
+          display: inline-block;
+          margin-bottom: $sp-x-small;
+          padding: $sp-x-small;
+          width: 100%;
         }
       }
 
@@ -177,6 +177,7 @@
 
     &__menu {
       display: inline-block;
+      margin-top: 0;
       position: relative;
 
       @media (min-width: $breakpoint-medium) {
