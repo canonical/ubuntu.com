@@ -1,48 +1,9 @@
 @mixin ubuntu-p-strip {
-  @include ubuntu-p-strip-modifiers;
-  @include ubuntu-p-strip--grey;
-  @include ubuntu-p-strip--x-light;
+  @include ubuntu-p-strip;
 }
 
-@mixin ubuntu-p-strip-modifiers {
-  .p-strip,
-  .p-strip--grey,
-  .p-strip--accent,
-  .p-strip--light,
-  .p-strip--dark,
-  .p-strip--x-light {
-    padding: 3.75rem 0;
-
-    &.is-shallow {
-      padding: 2.5rem 0;
-    }
-
-    &.is-x-shallow {
-      padding: 1.5rem 0;
-    }
-
-    &.is-deep {
-      padding: 2.5rem 0;
-
-      @media (min-width: $breakpoint-medium) {
-        padding: 6.25rem 0;
-      }
-    }
-
-    &.is-bordered {
-      border-bottom: 1px dotted $color-mid-dark;
-    }
-  }
-}
-
-@mixin ubuntu-p-strip--grey {
-  .p-strip--grey {
-    background-color: $color-light;
-  }
-}
-
-@mixin ubuntu-p-strip--x-light {
-  .p-strip--x-light {
-    background-color: $color-x-light;
+@mixin ubuntu-p-strip {
+  [class^='p-strip'].is-x-shallow {
+    padding: 1.5rem 0;
   }
 }

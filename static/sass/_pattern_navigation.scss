@@ -6,21 +6,28 @@
 
   .p-navigation {
     background-color: $color-brand;
-    margin-bottom: 0;
     font-weight: 400;
+    margin-bottom: 0;
 
     @media (max-width: $breakpoint-medium) {
-      font-weight: 300;
       border-bottom: 1px solid $color-light;
+      font-weight: 300;
+    }
+
+    & &__toggle--open,
+    & &__toggle--close {
+      @media (max-width: $breakpoint-medium) {
+        top: .75rem;
+      }
     }
 
     &__logo {
-      padding: 0;
       margin: 0;
+      padding: 0;
 
       @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
-        padding-left: 0;
         margin-left: 0;
+        padding-left: 0;
       }
     }
 
@@ -43,8 +50,8 @@
         position: relative;
 
         @media (min-width: $breakpoint-medium) {
-          border-right: 0;
           border-color: $color-brand-light;
+          border-right: 0;
         }
 
         &:hover {
@@ -52,9 +59,8 @@
         }
 
         @media (max-width: $breakpoint-medium - 1) {
-          width: 50%;
           float: left;
-          padding: $sp-x-small $sp-small;
+          width: 50%;
 
           &:nth-child(2n) {
             border-left: 0;
@@ -86,7 +92,7 @@
   }
 
   .p-navigation .p-navigation__logo {
-    margin: $sp-small $sp-small 0 1rem;
+    margin: $sp-small $sp-small $sp-x-small 1rem;
     padding: 0;
   }
 
@@ -157,10 +163,10 @@
         width: 100%;
 
         .p-inline-list__item {
-          width: 50%;
           float: left;
           margin-right: 0;
           padding-left: $sp-xx-small;
+          width: 50%;
 
           .is-active {
             font-weight: bold;
@@ -168,9 +174,9 @@
         }
 
         .p-inline-list__link {
-          padding: $sp-x-small;
           color: $color-x-dark;
           display: inline-block;
+          padding: $sp-x-small;
         }
       }
     }
@@ -207,9 +213,9 @@
       }
 
       &__menu::before {
+        color: $color-mid-dark;
         content: '\203A';
         font-weight: 400;
-        color: $color-mid-dark;
         left: -$sp-small;
         position: absolute;
         top: 0;
@@ -223,9 +229,9 @@
             position: relative;
 
             &::before {
+              color: $color-mid-dark;
               content: '\203A';
               font-weight: 400;
-              color: $color-mid-dark;
               left: -$sp-x-small;
               position: absolute;
               top: 0;
@@ -249,7 +255,7 @@
 
   @media (min-width: $breakpoint-medium + 1) {
     .p-navigation__link:hover .hover-menu {
-      display:block;
+      display: block;
 
       .p-inline-list__item {
         display: block;
@@ -270,17 +276,17 @@
   }
 
   .hover-menu {
-    box-shadow: 0 2px 2px -1px $color-mid-light;
-    border-radius: 10px;
     background: $color-light;
     border: 1px solid $color-mid-light;
+    border-radius: 10px;
+    box-shadow: 0 2px 2px -1px $color-mid-light;
     display: none;
     float: none;
+    left: 0;
     margin: 0;
     padding: $sp-x-small 0 $sp-medium;
     position: absolute;
-    top: 40px;
-    left: 0;
+    top: 58px;
     width: 200px;
     z-index: 1;
 
@@ -290,8 +296,8 @@
     }
 
     li {
-      padding: $sp-x-small $sp-small 0 0;
       font-size: .875rem;
+      padding: $sp-x-small $sp-small 0 $sp-small;
 
       &:last-child {
         padding-bottom: 0;
@@ -309,8 +315,8 @@
     & + .second-level-nav,
     & + .second-level-nav & {
       display: inline-block;
-      padding-left: 0;
       margin-bottom: 0;
+      padding-left: 0;
 
       @media (max-width: $breakpoint-medium - 1) {
         width: 100%;
@@ -319,8 +325,8 @@
 
     .second-level-nav & {
       border-bottom: 0;
-      padding-top: 0;
       padding-bottom: 0;
+      padding-top: 0;
     }
   }
 
@@ -339,8 +345,8 @@
     }
 
     @media (min-width: $breakpoint-medium) {
-      margin-left: 1.5rem;
       display: inline-block;
+      margin-left: 1.5rem;
 
       .p-inline-list__item {
         margin-right: .75rem;

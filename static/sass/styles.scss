@@ -64,7 +64,6 @@
 @import 'takeovers/enterprise-kubernetes';
 @include p-takeover-enterprise-kubernetes;
 
-// **************************
 // Bug fixes
 // Each of the the rules below are bug fixes which need to be addressed further upstream
 // either at theme level or in Vanilla Framework directly.
@@ -72,25 +71,6 @@
 // Before any feature branch is merged, these bugs should be raised in their
 // respective repos and referenced here, accompanied with a breif description of
 // the bug
-// **************************
-
-// at exactly $breakpoint-medium, there is not a clean switch between mobile/desktop nav styles
-// https://github.com/vanilla-framework/vanilla-framework/issues/1038
-.p-navigation__links .p-navigation__link {
-  @media (min-width: $breakpoint-medium) {
-    background: none;
-    border-left: 1px solid $color-brand-light;
-    border-bottom: none;
-
-    &:last-child {
-      border-right: none;
-    }
-
-    a {
-      color: $color-light;
-    }
-  }
-}
 
 @media (min-width: $breakpoint-medium ) {
   .p-navigation:target .p-navigation__toggle--close {
@@ -104,29 +84,16 @@
   padding: $sp-x-small $sp-small;
 }
 
-
-/// XXX Brand button color fix
-/// .p-button--brand is blue when visited
-.p-button--brand {
-  color: $color-x-light;
-
-  &:link,
-  &:visited,
-  &:active,
-  &:hover {
-    color: $color-x-light;
-  }
-}
-
-/// XXX Vertically spaced - add vertical margins to an element
-/// An attempt to solve some of the vertical spacing issues
+// XXX Vertically spaced - add vertical margins to an element
+// An attempt to solve some of the vertical spacing issues
 .u-vertically-spaced {
   padding-bottom: $sp-medium;
   padding-top: $sp-medium;
 }
 
-/// XXX Utility to add bottom padding
-/// Proposal for inlcusion in vanilla: https://github.com/vanilla-framework/vanilla-framework/issues/1091
+// XXX Utility to add bottom padding
+// Proposal for inlcusion in vanilla:
+// https://github.com/vanilla-framework/vanilla-framework/issues/1091
 .u-padding-bottom {
 
   @media (min-width: $breakpoint-medium) {
@@ -148,19 +115,6 @@
   }
 }
 
-// brand submit buttons bg override
-// https://github.com/vanilla-framework/vanilla-framework/issues/1080
-.p-button--brand[type=submit]{
-  background-color: $color-brand;
-  border-color: $color-brand;
-
-  &:hover,
-  &:active {
-    background-color: darken($color-brand, 10%);
-    border-color: darken($color-brand, 10%);
-  }
-}
-
 /// XXX remove abbr `text-decoration: underline dotted;`
 /// add to :hover
 /// from [normalize.css](https://github.com/necolas/normalize.css/blob/master/normalize.css)
@@ -172,39 +126,12 @@ abbr[title] {
   }
 }
 
-// Add spacing for nested lists in body copy
-// This is a change to be made upstream in vanilla-framework
-// https://github.com/vanilla-framework/vanilla-framework/issues/960
-li:not(.p-breadcrumbs__item) {
-  ol, ul, .p-list {
-    margin-top: $sp-medium;
-    padding-left: $sp-medium;
-  }
-}
-
 // overflow tables
 .table__wrapper {
+  margin: $sp-xx-large 0;
   overflow-x: auto;
   overflow-y: hidden;
-  margin: $sp-xx-large 0;
   width: 100;
-}
-
-// consecutive fieldsets do not having adequate bottom spacing
-// https://github.com/vanilla-framework/vanilla-framework/issues/1081
-fieldset {
-
-  & + & {
-    margin-top: $sp-large;
-  }
-}
-
-// XXX Muted heading theme
-// https://github.com/vanilla-framework/vanilla-brochure-theme/issues/66
-.p-heading--muted {
-  color: $color-dark;
-  font-size: 0.875rem;
-  text-transform: uppercase;
 }
 
 .p-heading--insights__title {
@@ -219,40 +146,30 @@ fieldset {
   }
 }
 
-/// XXX fix .p-heading-icon making the icon go to the top
-.p-heading-icon__img {
-  align-self: flex-start;
-}
-
 // XXX Applies suru background to the site
 // Candidate for moving to the vanilla-brochure-theme
-body.has-background {
+.has-background {
   background-color: $color-light;
-  background-image: url(#{$assets-path}f8a323a7-image-background-paper.png?w=768);
+  background-image: url('#{$assets-path}f8a323a7-image-background-paper.png?w=768');
   background-position: center top;
   background-repeat: repeat-y;
 
   @media (min-width: $breakpoint-medium ) {
-    background-image: url(#{$assets-path}f8a323a7-image-background-paper.png);
+    background-image: url('#{$assets-path}f8a323a7-image-background-paper.png');
   }
 }
 
 /// XXX fix nested bullets to use default styles
-ul.p-list  ul.p-list {
+.p-list .p-list {
   list-style-type: circle;
 
-  ul.p-list {
+  .p-list {
     list-style-type: disc;
   }
 }
 
-.p-list-step__content ul.p-list {
+.p-list-step__content .p-list {
   list-style-type: disc;
-}
-
-/// XXX fix two-digit padding in .p-list-step__bullet
-.p-list-step__bullet {
-  padding: .65rem .4rem;
 }
 
 // XXX orange quotes in pull quotes
@@ -275,13 +192,6 @@ ul.p-list  ul.p-list {
     max-height: 172px;
     max-width: 142px;
   }
-}
-
-// XXX sup is too high in Vanilla
-// bug - https://github.com/vanilla-framework/vanilla-framework/issues/1109
-sup {
-  font-size: .75em;
-  vertical-align: baseline;
 }
 
 // XXX responsive image utility
@@ -321,7 +231,7 @@ sup {
   }
 
   &__title--muted {
-    color: #666;
+    color: $color-mid-dark;
   }
 }
 
