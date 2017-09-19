@@ -6,172 +6,205 @@
 {% block meta_description %}A summary of all our support offerings. Ubuntu offers the best economics of any commercially supported Linux solution and the best community support.{% endblock %}
 
 {% block content %}
-<section class="p-strip is-deep is-bordered">
-  <div class="row u-equal-height">
-    <div class="col-7">
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-6">
       <h1>Plans and pricing</h1>
-      <p>Ubuntu offers the best economics of any commercially supported Linux solution and the best community support. Canonical offers everything you need from fully managed clouds to training and support. We aim to be as easy and economical as possible to work with and that includes flexible pricing.</p>
-    </div>
-    <div class="col-5 u-align--center u-vertically-center u-hidden--small">
-      <img src="{{ ASSET_SERVER_URL }}544a9eb7-image-ubuntuadvantage.svg" alt="" width="378" height="180" />
+      <p>Ubuntu is always free to download, install, run, and upgrade.  Free community support is available in the following ways Ubuntu Security Notices, AskUbuntu, UbuntuForums, Launchpad, PlanetUbuntu, IRC and through Mailing Lists.</p>
+      <p>For enterprises with production workloads Canonical offers the following suite of Ubuntu Advantage tools, services and support packages.</p>
     </div>
   </div>
 </section>
 
-{% include "shared/_systems-management-tool.html" %}
-
-<section class="p-strip--light is-deep is-bordered" id="ua">
+<section class="p-strip--light is-bordered">
   <div class="row">
+<<<<<<< 2d179958a1818007ebc3171bc741974ceccd0246
     <div class="col-8">
       <h2>Ubuntu Advantage</h2>
       <p>Ubuntu Advantage is the professional package of tooling, technology and expertise from Canonical, helping organisations around the world to manage their Ubuntu deployments. It includes access to Landscape, the systems management tool for using Ubuntu at scale, as well as 24x7 telephone and web support and the option of dedicated Canonical support engineers. Ubuntu Advantage tiers are based on the size of your deployment and the support levels you need.</p>
       <p><a href="https://buy.ubuntu.com" class="p-button--neutral"><span class="p-link--external">Visit the Ubuntu Advantage store</span></a></p>
       <p class="u-padding-bottom--x-large"><a href="/support/contact-us?product=support-plans-and-pricing">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-  <div class="row u-equal-height">
+=======
     <div class="col-4 p-card">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header">
-          <img src="{{ ASSET_SERVER_URL }}dfd42685-picto-cloud-darkaubergine.svg" alt="" class="p-heading-icon__img" />
-          <h3 class="p-heading-icon__title">Virtual servers</h3>
-        </div>
+      <h3>Ubuntu Support</h3>
+      <div class="p-card__footer">
+        <p>From $75 per year *</p>
       </div>
-      <footer class="p-card__footer">
-        <p class="p-card__title">From <span class="ua-price">$250</span> per year</p>
-      </footer>
-      <footer class="p-card__footer">
-        <p><a href="#ubuntu-advantage-for-cloud">Learn more&nbsp;&rsaquo;</a></p>
-      </footer>
-    </div>
-    <div class="col-4 p-card">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header">
-          <img src="{{ ASSET_SERVER_URL }}c3499461-picto-server-warmgrey.svg" alt="" class="p-heading-icon__img" />
-          <h3 class="p-heading-icon__title">Servers</h3>
-        </div>
+      <div class="p-card__footer">
+        <a href="#ua-support">Learn more&nbsp;&rsaquo;</a>
       </div>
-      <footer class="p-card__footer">
-        <p class="p-card__title">From <span class="ua-price">$750</span> per year</p>
-      </footer>
-      <footer class="p-card__footer">
-        <p><a href="#ubuntu-advantage-for-server">Learn more&nbsp;&rsaquo;</a></p>
-      </footer>
     </div>
-    <div class="col-4 p-card">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header">
-          <img src="{{ ASSET_SERVER_URL }}cb9ee959-picto-desktop-orange.svg" alt="" class="p-heading-icon__img" />
-          <h3 class="p-heading-icon__title">Desktops</h3>
-        </div>
-      </div>
-      <footer class="p-card__footer">
-        <p class="p-card__title">From <span class="ua-price">$150</span> per year</p>
-      </footer>
-      <footer class="p-card__footer">
-        <p><a href="#ubuntu-advantage-for-desktop">Learn more&nbsp;&rsaquo;</a></p>
-      </footer>
-    </div>
-  </div>
-</section>
 
-<section class="p-strip is-deep u-no-padding--bottom" id="ubuntu-advantage-for-cloud">
+    <div class="col-4 p-card">
+      <h3>MAAS</h3>
+      <div class="p-card__footer">
+        <p>From $5 per month *</p>
+      </div>
+      <div class="p-card__footer">
+        <a href="#maas">Learn more&nbsp;&rsaquo;</a>
+      </div>
+    </div>
+
+    <div class="col-4 p-card">
+      <h3>OpenStack</h3>
+      <div class="p-card__footer">
+        <p>From $4 per day *</p>
+      </div>
+      <div class="p-card__footer">
+        <a href="#openstack">Learn more&nbsp;&rsaquo;</a>
+      </div>
+>>>>>>> Complete update of /support/plans-and-pricing page with all tables split out into separate, reusable includes
+    </div>
+  </div>
+
   <div class="row">
-    <div class="col-7">
-      <div class="p-heading-icon__header">
-        <img src="{{ ASSET_SERVER_URL }}dfd42685-picto-cloud-darkaubergine.svg" class="p-heading-icon__img" alt="" />
-        <h2 class="p-heading-icon__title">Ubuntu Advantage for clouds</h2>
+    <div class="col-4 p-card">
+      <h3>Kubernetes</h3>
+      <div class="p-card__footer">
+        <p>From $0.02 per hour *</p>
       </div>
-      <p>Ubuntu Advantage offers support service and management tools to keep your business productive in the cloud.</p>
-      <p><a href="/cloud/plans-and-pricing">Learn more&nbsp;&rsaquo;</a></p>
+      <div class="p-card__footer">
+        <a href="#kubernetes">Learn more&nbsp;&rsaquo;</a>
+      </div>
     </div>
+
+    <div class="col-4 p-card">
+      <h3>Storage</h3>
+      <div class="p-card__footer">
+        <p>From $0.01 per month *</p>
+      </div>
+      <div class="p-card__footer">
+        <a href="#storage">Learn more&nbsp;&rsaquo;</a>
+      </div>
+    </div>
+
+    <div class="col-4 p-card">
+      <h3>Consulting packages</h3>
+      <div class="p-card__footer">
+        <p>From $150 per year *</p>
+      </div>
+      <div class="p-card__footer">
+        <a href="#consulting">Learn more&nbsp;&rsaquo;</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <p>*Minimum spend applies</p>
   </div>
 </section>
 
+<<<<<<< 2d179958a1818007ebc3171bc741974ceccd0246
+<section class="p-strip is-deep u-no-padding--bottom" id="ubuntu-advantage-for-cloud">
+=======
+<section class="p-strip--x-light is-bordered" id="ua-support">
+>>>>>>> Complete update of /support/plans-and-pricing page with all tables split out into separate, reusable includes
+  <div class="row">
+    <div class="col-8">
+      <h2>Ubuntu Advantage</h2>
+      <p>Ubuntu Advantage is the professional package of tools, technology and expertise from Canonical, helping organisations around the world get the most out of their Ubuntu deployments. It includes access to:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Extended Security Maintenance: critical security updates after Ubuntu end-of-life</li>
+        <li class="p-list__item is-ticked">Landscape: the systems management tool for using Ubuntu at scale</li>
+        <li class="p-list__item is-ticked">Livepatch: automatic kernel security hotfixes without rebooting</li>
+        <li class="p-list__item is-ticked">Knowledge Base: a private archive of expert-written articles and tutorials</li>
+        <li class="p-list__item is-ticked">Support: phone and web-based support at multiple service levels</li>
+      </ul>
+      <p><a href="http://buy.ubuntu.com" class="p-link--external">Visit the Ubuntu Advantage store</a></p>
+      <p><a href="/support/contact-us?product=support-pricing">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+
+  <div class="row" style="overflow-x: auto;">
+    <div class="col-10">
+      <h3>Ubuntu Advantage for desktops</h3>
+      {% include "shared/pricing/_ua-desktop-support.html" %}
+    </div>
+  </div>
+
+  <div class="row" style="overflow-x: auto;">
+    <div class="col-10">
+      <h3>Ubuntu Advantage for servers</h3>
+      {% include "shared/pricing/_ua-server-support.html" %}
+    </div>
+  </div>
+
+  {% include "shared/pricing/_ua-server-support-add-ons.html" %}
+</section>
+
+<<<<<<< 2d179958a1818007ebc3171bc741974ceccd0246
 <section class="p-strip is-deep u-no-padding--bottom" id="ua-cloud-per-node">
   <div class="row">
     <div class="col-12">
       <h3>Per node</h3>
       <p class="u-padding-bottom--x-large">Includes up to 3 terabytes per node.</p>
       {% include "shared/_ubuntu_advantage_cloud_per_node.html" %}
+=======
+<section class="p-strip--light is-bordered" id="maas">
+  <div class="row">
+    <div class="col-8">
+      <h2>Enterprise support for MAAS</h2>
+      <p>MAAS is freely available, open source software from Canonical. Many enterprises depend on MAAS to automate and optimize provisioning for production hardware.  Canonical offers Standard and Advanced support plans priced per-machine-per-month or, for large volume and public clouds with dynamic scale, we offer per-region pricing with flexible node ranges.</p>
+>>>>>>> Complete update of /support/plans-and-pricing page with all tables split out into separate, reusable includes
     </div>
   </div>
-</section>
 
+<<<<<<< 2d179958a1818007ebc3171bc741974ceccd0246
 <section class="p-strip is-deep u-no-padding--bottom" id="ua-cloud-metered">
+=======
+>>>>>>> Complete update of /support/plans-and-pricing page with all tables split out into separate, reusable includes
   <div class="row">
-    <div class="col-10">
-      <h3>Metered</h3>
-      <p>Pay only for resources consumed.</p>
-      {% include "shared/_ubuntu_advantage_cloud_metered.html" %}
+    <div class="col-10" style="overflow-x: auto;">
+      {% include "shared/pricing/_maas-support.html" %}
     </div>
+  </div>
+
+  <div class="row">
+    <p><a href="/download/server/provisioning">Install MAAS&nbsp;&rsaquo;</a></p>
+    <p><a href="/server/maas/contact-us">Contact us&nbsp;&rsaquo;</a></p>
   </div>
 </section>
 
+<<<<<<< 2d179958a1818007ebc3171bc741974ceccd0246
 <section class="p-strip is-deep u-no-padding--bottom">
+=======
+<section class="p-strip--x-light is-bordered" id="openstack">
+>>>>>>> Complete update of /support/plans-and-pricing page with all tables split out into separate, reusable includes
   <div class="row">
-    <div class="col-10">
-      <h3>Service provider</h3>
-      <p>For large volume and public clouds.</p>
-      {% include "shared/_ubuntu_advantage_cloud_service_provider.html" %}
+    <div class="col-8">
+      <h2>Enterprise support for OpenStack</h2>
+      <p>Canonical provides support services, management tools, and the Cloud Archive which keeps thousands of businesses productive with their own local OpenStack clouds.  For large volume and public clouds with dynamic scale, we’re pleased to offer per-region pricing with flexible node ranges.</p>
+      <p><a href="/cloud/plans-and-pricing">Learn more&nbsp;&rsaquo;</a></p>
     </div>
   </div>
+  {% include "shared/pricing/_openstack-support.html" %}
 </section>
 
+<<<<<<< 2d179958a1818007ebc3171bc741974ceccd0246
 <section class="p-strip is-deep is-bordered" id="ua-sla-cloud">
+=======
+<section class="p-strip--light is-bordered" id="consulting">
+  <div class="row">
+    <div class="col-8">
+      <h2>OpenStack consulting packages</h2>
+      <p>Canonical delivers turnkey OpenStack software solutions, on-site, through its field consulting team. Two plans are offered: the Foundation Cloud, which is based on our award-winning reference architecture, and Foundation Plus, which packs in a complete set of enterprise features and  architectural flexibility.</p>
+    </div>
+  </div>
+>>>>>>> Complete update of /support/plans-and-pricing page with all tables split out into separate, reusable includes
   <div class="row">
     <div class="col-10">
-      <h3>Service-level agreement for all cloud plans</h3>
-      <table class="audience-enterprise ua-table">
-        <thead>
-          <tr>
-            <th class="pricing-features-column">&nbsp;</th>
-            <th>Standard</th>
-            <th>Advanced</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>Hours of support</th>
-            <td>10x5</td>
-            <td>24x7</td>
-          </tr>
-          <tr>
-            <th>Number of cases</th>
-            <td>Unlimited</td>
-            <td>Unlimited</td>
-          </tr>
-          <tr>
-            <th>Support channels</th>
-            <td>Phone and web</td>
-            <td>Phone and web</td>
-          </tr>
-          <tr>
-            <th>Severity 1 response time</th>
-            <td>2 business hours</td>
-            <td>1 hour</td>
-          </tr>
-          <tr>
-            <th>Severity 2 response time</th>
-            <td>4 business hours</td>
-            <td>4 business hours</td>
-          </tr>
-          <tr>
-            <th>Severity 3 response time</th>
-            <td>1 business day</td>
-            <td>4 business hours</td>
-          </tr>
-          <tr>
-            <th>Severity 4 response time</th>
-            <td>2 business days</td>
-            <td>1 business day</td>
-          </tr>
-        </tbody>
-      </table>
+      {% include "shared/pricing/_openstack-consulting.html" %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <p>For more information about Foundation Cloud Build or if you are not sure which one is right for you, <a href="/cloud/contact-us?product=foundation-cloud">contact us&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
 
+<<<<<<< 2d179958a1818007ebc3171bc741974ceccd0246
 <section class="p-strip is-deep u-no-padding--bottom" id="ubuntu-advantage-for-server">
   <div class="row">
     <div class="col-7">
@@ -181,123 +214,76 @@
       </div>
       <p>Whether it&rsquo;s for basic server workloads or high-availability clustering, Ubuntu Advantage has you covered.</p>
       <p class="u-padding-bottom--x-large"><a href="/server/management">Learn more&nbsp;&rsaquo;</a></p>
+=======
+<section class="p-strip--x-light is-bordered" id="kubernetes">
+  <div class="row">
+    <div class="col-8">
+      <h2>Enterprise support for Kubernetes</h2>
+      <p>Scale-out container management is top of mind for savvy cloud architects around the world.  Ubuntu is, by far, the world&rsaquo;s leading platform for container-based workflows.  Canonical provides enterprise-caliber support for Kubernetes.</p>
+      <p>For more information about Kubernetes support, <a href="/containers/contact-us">contact us&nbsp;&rsaquo;</a></p>
+>>>>>>> Complete update of /support/plans-and-pricing page with all tables split out into separate, reusable includes
     </div>
   </div>
   <div class="row">
-    <div class="col-10">
-      {% include "shared/_ubuntu_advantage_server.html" %}
+    <div class="col-10" style="overflow-x: auto;">
+      {% include "shared/pricing/_kubernetes-enterprise-support.html" %}
     </div>
   </div>
 </section>
+<<<<<<< 2d179958a1818007ebc3171bc741974ceccd0246
 <section class="p-strip is-deep is-bordered">
+=======
+
+<section class="p-strip--light is-bordered">
+>>>>>>> Complete update of /support/plans-and-pricing page with all tables split out into separate, reusable includes
   <div class="row">
-    <div class="col-10">
-      {% include "shared/_ubuntu_advantage_cloud_virtual_guests.html" %}
+    <div class="col-8">
+      <h2>Kubernetes consulting packages</h2>
     </div>
   </div>
+  {% include "shared/pricing/_kubernetes-consulting.html" %}
 </section>
 
+<<<<<<< 2d179958a1818007ebc3171bc741974ceccd0246
 <section class="p-strip is-deep is-bordered" id="ubuntu-advantage-for-desktop">
+=======
+<section class="p-strip--x-light is-bordered" id="storage">
+>>>>>>> Complete update of /support/plans-and-pricing page with all tables split out into separate, reusable includes
   <div class="row">
-    <div class="col-7">
-      <div class="p-heading-icon__header">
-        <img src="{{ ASSET_SERVER_URL }}cb9ee959-picto-desktop-orange.svg" class="p-heading-icon__img" alt="" />
-        <h2 class="p-heading-icon__title">Ubuntu Advantage desktop</h2>
-      </div>
-      <p>From basic office tasks to complex development work, Ubuntu Advantage gives your organisation all the support you need to deploy and manage Ubuntu.</p>
-      <p>Minimum order: 50 desktops</p>
-      <p><a href="/desktop/enterprise">Learn more&nbsp;&rsaquo;</a></p>
+    <div class="col-8">
+      <h2>Enterprise support for Ceph and Swift Storage</h2>
+      <p>Ubuntu Advantage Storage from Canonical embeds the proven open source software‐defined storage (SDS) technologies of Ceph and Swift into a 24x7 supported software solution with a unique usage-based pricing model.</p>
     </div>
   </div>
+
   <div class="row">
     <div class="col-10">
-      <table class="audience-enterprise ua-table">
-        <thead>
-          <tr>
-            <th class="pricing-features-column">&nbsp;</th>
-            <th class="u-align--center">Features</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>Landscape SAAS edition</th>
-            <td class="u-align--center"><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
-          </tr>
-          <tr>
-            <th>Landscape on-premises server</th>
-            <td class="u-align--center">Optional</td>
-          </tr>
-          <tr>
-            <th>Ubuntu Legal Assurance programme</th>
-            <td class="u-align--center"><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
-          </tr>
-          <tr>
-            <th>Knowledge Base</th>
-            <td class="u-align--center"><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
-          </tr>
-          <tr>
-            <th>Basic installation and applications</th>
-            <td class="u-align--center"><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
-          </tr>
-          <tr>
-            <th>Installation, applications and systems administration support</th>
-            <td class="u-align--center"><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="Yes" /></td>
-          </tr>
-          <tr>
-            <th>Dedicated Service Engineer</th>
-            <td class="u-align--center">Optional</td>
-          </tr>
-          <tr>
-            <th>Price per desktop per year minimum order: 50 desktops</th>
-            <td class="u-align--center">$150</td>
-          </tr>
-        </tbody>
-      </table>
-      <p><a href="https://buy.ubuntu.com/collections/ubuntu-advantage-for-desktop" class="p-buttonp-button--neutral"><span  class="p-link--external">Buy Ubuntu Advantage desktop</span></a></p>
+      {% include "shared/pricing/_storage-support.html" %}
     </div>
   </div>
 </section>
 
+<<<<<<< 2d179958a1818007ebc3171bc741974ceccd0246
 {% include "shared/_pricing_landscape_on-premises.html" %}
 
 <section class="p-strip is-deep" id="community-support">
+=======
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>Landscape Enterprise Systems Management</h2>
+      <p>Reduce your team&rsaquo;s efforts on day-to-day management with Landscape, the most cost-effective tool to support and monitor large and growing networks of desktops, servers and clouds.</p>
+    </div>
+  </div>
+>>>>>>> Complete update of /support/plans-and-pricing page with all tables split out into separate, reusable includes
   <div class="row">
     <div class="col-10">
-      <h2>Community support</h2>
-      <table>
-        <thead>
-          <tr>
-            <th class="pricing-features-column">&nbsp;</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th><a class="p-link--external"href="https://ubuntuforums.org/">Ubuntu forums</a></th>
-            <td>Free</td>
-          </tr>
-          <tr>
-            <th><a class="p-link--external"href="https://help.ubuntu.com">Ubuntu documentation</a></th>
-            <td>Free</td>
-          </tr>
-          <tr>
-            <th><a class="p-link--external"href="https://help.ubuntu.com/community/CommunityHelpWiki">Community help wiki</a></th>
-            <td>Free</td>
-          </tr>
-          <tr>
-            <th><a class="p-link--external" href="https://answers.launchpad.net/ubuntu">Launchpad technical answer system</a></th>
-            <td>Free</td>
-          </tr>
-          <tr>
-            <th><a class="p-link--external" href="https://askubuntu.com">Ask Ubuntu</a></th>
-            <td>Free</td>
-          </tr>
-          <tr>
-            <th><a class="p-link--external" href="https://wiki.ubuntu.com/IRC/ChannelList">IRC</a></th>
-            <td>Free</td>
-          </tr>
-        </tbody>
-      </table>
+      {% include "shared/pricing/_landscape.html" %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <p><a href="https://landscape.canonical.com" class="p-link--external">Learn more about Landscape</a></p>
     </div>
   </div>
 </section>
