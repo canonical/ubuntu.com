@@ -1,4 +1,4 @@
-{% if level_1 == "tablet" or level_1 == "phone" or level_1 == "download" or level_1 == "server" or level_1 == "cloud" or level_1 == "desktop" or level_1 == "support" or level_1 == "containers" %}<div class="p-strip is-bordered is-deep">{% endif %}
+<div class="p-strip is-bordered is-deep">
   <div class="row">
     <div class="u-equal-height">
       <div class="col-7">
@@ -10,5 +10,7 @@
       </div>
     </div>
   </div>
-{% if level_1 == "tablet" or level_1 == "phone" or level_1 == "download" or level_1 == "server" or level_1 == "cloud" or level_1 == "desktop" or level_1 == "support" or level_1 == "containers" %}</div>{% endif %}
+</div>
+{% if level_1 == "cloud" or level_1 == "server" or level_1 == "containers" or level_1 == "support" %}
 {% include "shared/_thank_you_footer.html" %}
+{% endif %}
