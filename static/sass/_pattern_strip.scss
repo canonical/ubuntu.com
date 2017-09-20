@@ -1,89 +1,9 @@
 @mixin ubuntu-p-strip {
-  @include ubuntu-p-strip-modifiers;
-  @include ubuntu-p-strip--grey;
-  @include ubuntu-p-strip--accent;
-  @include ubuntu-p-strip--x-light;
+  @include ubuntu-p-strip;
 }
 
-@mixin ubuntu-p-strip-modifiers {
-  .p-strip,
-  .p-strip--grey,
-  .p-strip--accent,
-  .p-strip--suru-accent,
-  .p-strip--light,
-  .p-strip--dark,
-  .p-strip--x-light {
-    padding: 3.75rem 0;
-
-    &.is-shallow {
-      padding: 2.5rem 0;
-    }
-
-    &.is-x-shallow {
-      padding: 1.5rem 0;
-    }
-
-    &.is-deep {
-      padding: 2.5rem 0;
-
-      @media (min-width: $breakpoint-medium) {
-        padding: 6.25rem 0;
-      }
-    }
-
-    &.is-bordered {
-      border-bottom: 1px dotted $color-mid-dark;
-    }
-  }
-}
-
-@mixin ubuntu-p-strip--grey {
-  .p-strip--grey {
-    background-color: $color-light;
-  }
-}
-
-@mixin ubuntu-p-strip--x-light {
-  .p-strip--x-light {
-    background-color: $color-x-light;
-  }
-}
-
-@mixin ubuntu-p-strip--accent {
-  %strip--accent {
-    @include strip;
-    background-color: $color-accent;
-    color: determine-text-color($color-accent);
-  }
-
-// XXX many of these might have to go up to vbt
-// - the svg icon in .p-link--external.p-link--inverted should be $color-light https://github.com/vanilla-framework/vanilla-framework/issues/1112
-// - fieldset should be dark with .p-strip--dark/accent (vbt) https://github.com/vanilla-framework/vanilla-framework/issues/1113
-  .p-strip--accent,
-  .p-strip--dark {
-    @extend %strip--accent;
-
-    .p-link--external {
-      background-image: url('#{$assets-path}0d55fd52-external-link-white.svg');
-      background-position: 100% top;
-      background-repeat: no-repeat;
-      background-size: .7rem .7rem;
-      padding-right: .9rem;
-    }
-
-    fieldset {
-      background-color: $color-accent;
-      border-color: $color-accent;
-    }
-  }
-
-  .p-strip--suru-accent {
-    @extend %strip--accent;
-
-    @media (min-width: $breakpoint-medium) {
-      background-image: url('#{$assets-path}728c5851-Yakkety_Yak-Wallpaper_8192x4608_aubergine_wider.jpg');
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
+@mixin ubuntu-p-strip {
+  [class^='p-strip'].is-x-shallow {
+    padding: 1.5rem 0;
   }
 }

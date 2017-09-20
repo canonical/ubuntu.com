@@ -44,8 +44,8 @@
       @extend %quotes;
       content: close-quote;
       position: relative;
-      top: $sp-x-small;
       right: -$sp-x-small;
+      top: $sp-x-small;
     }
   }
 
@@ -87,11 +87,11 @@
 
     &__quote--large {
       @extend %quote;
-      font-size: 1.375rem;
       flex: 1;
+      font-size: 1.375rem;
       padding-bottom: $sp-medium;
 
-      @media only screen and (min-width : $breakpoint-medium + 1) {
+      @media only screen and (min-width: $breakpoint-medium + 1) {
         font-size: 1$sp-x-small;
       }
     }
@@ -107,7 +107,7 @@
       display: inline-block;
       max-width: 6.25rem;
 
-      @media only screen and (max-width : $breakpoint-medium) {
+      @media only screen and (max-width: $breakpoint-medium) {
         display: block;
         margin: $sp-x-small auto 0;
         width: 4.375rem;

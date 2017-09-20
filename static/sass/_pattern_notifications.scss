@@ -6,11 +6,10 @@
 @mixin p-notifications-floating  {
   .p-notification--floating {
     @include vf-notifications-default;
-
     bottom: 0;
     left: $sp-small;
-    right: $sp-small;
     position: fixed;
+    right: $sp-small;
     width: auto;
     z-index: 2;
 
@@ -21,9 +20,9 @@
     }
 
     &__content {
-      text-align: left;
       margin-bottom: 0;
       padding-right: $sp-large;
+      text-align: left;
     }
 
     &__close {

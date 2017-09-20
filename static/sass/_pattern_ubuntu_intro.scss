@@ -2,18 +2,18 @@
 @mixin ubuntu-p-ubuntu-intro {
   .p-ubuntu-intro {
 
-    @media only screen and (min-width : $breakpoint-medium + 1) {
+    @media only screen and (min-width: $breakpoint-medium + 1) {
       clear: both;
       display: flex;
       margin-bottom: .625rem;
     }
 
     &__list {
-      text-align: center;
       float: left;
+      text-align: center;
       width: 100%;
 
-      @media only screen and (min-width : $breakpoint-medium + 1) {
+      @media only screen and (min-width: $breakpoint-medium + 1) {
         margin: 0;
         padding-bottom: 0;
       }
@@ -21,31 +21,31 @@
 
     &__list-item {
       display: inline-block;
-      float: left;
       margin-right: 0;
-      text-align: center;
+      margin-top: 0;
       position: relative;
+      text-align: center;
       width: 50%;
 
-      &:first-of-type .p-ubuntu-intro__link:before,
-      &:last-of-type .p-ubuntu-intro__link:after {
+      &:first-of-type .p-ubuntu-intro__link::before,
+      &:last-of-type .p-ubuntu-intro__link::after {
         background: 0;
       }
 
 
-      @media only screen and (max-width : $breakpoint-medium) {
+      @media only screen and (max-width: $breakpoint-medium) {
         width: 32%;
       }
 
-      @media only screen and (max-width : 667px) and (orientation : landscape) {
+      @media only screen and (max-width: 667px) and (orientation: landscape) {
         width: 20%;
       }
 
-      @media only screen and (min-width : $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-medium) {
         width: 7.5625rem;
       }
 
-      @media only screen and (min-width : $breakpoint-large) {
+      @media only screen and (min-width: $breakpoint-large) {
         width: 10.25rem;
       }
     }
@@ -59,9 +59,9 @@
       line-height: 1.3;
       overflow: visible;
       padding-top: 7.1875rem;
+      position: relative;
       text-align: center;
       text-decoration: none;
-      position: relative;
       width: 100%;
 
       &:visited {
@@ -69,50 +69,50 @@
       }
 
       &:hover {
-        @media only screen and (min-width : $breakpoint-medium) {
+        @media only screen and (min-width: $breakpoint-medium) {
           display: block;
           text-decoration: underline;
         }
       }
 
       @media only screen and (min-width: $breakpoint-large) {
-        &:before,
-        &:after {
-          display: block;
+        &::before,
+        &::after {
           background: url('#{$assets-path}e5e0fe8e-image-intro-dots-grey.svg') repeat-x right center;
           background-size: .625rem;
           content: "";
+          display: block;
           position: absolute;
           top: 3.75rem;
         }
 
-        &:before {
+        &::before {
+          background-repeat: no-repeat;
+          background-size: 1.125rem;
           height: 5.875rem;
           left: 0;
           width: 3.75rem;
-          background-size: 1.125rem;
-          background-repeat: no-repeat;
         }
 
-        &:after {
+        &::after {
           height: 5.875rem;
           right: 0;
           width: 4rem;
         }
       }
 
-      @media only screen and (min-width : $breakpoint-medium + 1) {
+      @media only screen and (min-width: $breakpoint-medium + 1) {
         padding-top: 11.875rem;
       }
 
       &--cloud {
         background-image: url('#{$assets-path}23137566-cloud.svg');
 
-        &:before {
+        &::before {
           width: 2.3125rem;
         }
 
-        &:after {
+        &::after {
           right: -$sp-large;
           width: 3.125rem;
         }
@@ -122,11 +122,11 @@
         background-image: url('#{$assets-path}daeaa851-server.svg');
         background-size: 5rem;
 
-        &:before {
+        &::before {
           width: $sp-xx-large;
         }
 
-        &:after {
+        &::after {
           right: -1.625rem;
           width: 3.8125rem;
         }
@@ -135,11 +135,11 @@
       &--desktop {
         background-image: url('#{$assets-path}d1978b1b-laptop.svg');
 
-        &:before {
+        &::before {
           width: 2.375rem;
         }
 
-        &:after {
+        &::after {
           right: -$sp-large;
           width: 3.4375rem;
         }
@@ -149,11 +149,11 @@
         background-image: url('#{$assets-path}c2a5e744-phone.svg');
         background-size: 3.125rem;
 
-        &:before {
+        &::before {
           width: 3.625rem;
         }
 
-        &:after {
+        &::after {
           right: 1.25rem;
           width: 1.9375rem;
         }
@@ -163,11 +163,11 @@
         background-image: url('#{$assets-path}dead5f08-containers.svg');
         background-size: 5rem;
 
-        &:before {
+        &::before {
           width: 2.6875rem;
         }
 
-        &:after {
+        &::after {
           right: -1.25rem;
           width: 3.125rem;
         }
@@ -177,11 +177,11 @@
         background-image: url('#{$assets-path}91c70f10-iot.svg');
         background-size: 5.3125rem;
 
-        &:before {
+        &::before {
           width: 2.625rem;
         }
 
-        &:after {
+        &::after {
           right: 1.25rem;
           width: .9375rem;
         }

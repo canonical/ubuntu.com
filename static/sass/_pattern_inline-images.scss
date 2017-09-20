@@ -1,23 +1,4 @@
-// XXX Extension of the inline images to add logo support
-// This should be proposed up to vanilla-brochure-theme once approved
 @mixin ubuntu-p-inline-images {
-  @include vf-p-inline-images;
-
-  .p-inline-images {
-    margin-left: 0;
-    padding-left: 0;
-
-    // XXX Inline images padding fix
-    // This temp fix can be removed when this issue is closed: https://github.com/vanilla-framework/vanilla-framework/issues/1084
-    &__item {
-      margin: 1.875rem;
-    }
-
-    &__item--compact {
-      margin: $sp-medium;
-    }
-  }
-
   // XXX Extension of the inline images to add logo support
   // This should be proposed up to vanilla-brochure-theme once approved
   .p-inline-images__logo {
@@ -25,7 +6,7 @@
     max-width: 7rem;
     width: auto;
 
-    @media only screen and (min-width : $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-medium) {
       max-height: 5.5rem;
       max-width: 9rem;
     }

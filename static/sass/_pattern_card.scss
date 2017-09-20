@@ -22,7 +22,6 @@
     color: $color-mid-dark;
     font-size: $sp-medium;
     line-height: 1.5;
-    margin: 0;
     padding: 0 0 0 $sp-large;
     text-transform: uppercase;
 
@@ -36,35 +35,6 @@
     > a:active {
       color: $color-brand;
       text-decoration: underline;
-    }
-  }
-
-  // XXX issue with colors for cards in a strip--accent
-  .p-strip--accent {
-    .p-card--highlighted {
-      color: $color-mid-dark;
-
-      a:link,
-      a:visited {
-        color: $color-brand;
-      }
-
-      a:hover,
-      a:active {
-        color: $color-brand;
-        text-decoration: underline;
-      }
-    }
-  }
-
-  /// XXX Underline card header
-  /// Temporary fix until vanilla-brochure-theme is updated to 1.0.9
-  .p-card__header {
-    border-bottom: 1px solid $color-mid-light;
-    margin: 0 0 $sp-x-small;
-
-    &.no-border {
-      border: none;
     }
   }
 }
