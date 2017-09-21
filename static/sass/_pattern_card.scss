@@ -1,5 +1,11 @@
 @mixin ubuntu-p-card {
 
+  .p-card__footer {
+    border-top: 1px solid $color-mid-light;
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+
   .p-card--ubuntu-upgrade {
     @extend .p-card;
     padding: 1.333rem 0;
