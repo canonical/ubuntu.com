@@ -6,16 +6,19 @@
 
 {% block content %}
 <section class="p-strip is-bordered">
-  <div class="row">
+  <div class="row u-equal-height u-vertically-center">
     <div class="col-8">
       <h1>Kubernetes for the enterprise</h1>
       <p>This is pure Kubernetes tested across the widest range of clouds with modern metrics and monitoring, brought to you by the people who deliver Ubuntu.</p>
-      <p><a href="https://tutorials.ubuntu.com/tutorial/install-kubernetes-with-conjure-up?_ga=2.25375934.2035833349.1504518498-2070601899.1473694436" class="p-button--brand" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Try it now', 'eventLabel' : 'Try it now - Hero CTA' : undefined });"><span class="p-link--external">Try it now</span></a>&#8195;<a href="/containers/contact-us" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact sales', 'eventLabel' : 'Contact sales - Hero CTA' : undefined });">Talk to us about Kubernetes</a></p>
+      <p class="u-no-margin--top"><a href="https://tutorials.ubuntu.com/tutorial/install-kubernetes-with-conjure-up?_ga=2.25375934.2035833349.1504518498-2070601899.1473694436" class="p-button--brand" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Try it now', 'eventLabel' : 'Try it now - Hero CTA' : undefined });"><span class="p-link--external">Try it now</span></a>&#8195;<a href="/containers/contact-us" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact sales', 'eventLabel' : 'Contact sales - Hero CTA' : undefined });">Talk to us about Kubernetes</a></p>
+    </div>
+    <div class="col-4 u-align--center u-hidden--small">
+      <img src="{{ ASSET_SERVER_URL }}7c230fc3-kubernetes_certified_service_provider_logo.png?w=300" alt="Kubernetes Certified Service Provider" />
     </div>
   </div>
 </section>
 
-<section class="p-strip--x-light is-bordered">
+<section class="p-strip is-bordered">
   <div class="row p-divider u-equal-height">
     <div class="col-4 p-divider__block">
       <h3>Universal</h3>
@@ -34,16 +37,16 @@
 
 <section class="p-strip--light is-bordered">
   <div class="row">
-    <h2>Get started</h2>
+    <h2 class="u-padding-bottom--x-large">Get started</h2>
   </div>
   <div class="row">
     <div class="col-4 p-card u-align--center">
       <p><a href="/download/server/provisioning"><img src="{{ ASSET_SERVER_URL }}adcc0253-import-icon.svg" alt="" style="max-height: 47px;" /></a></p>
-      <h4 class="u-no-margin--bottom"><a href="https://tutorials.ubuntu.com/tutorial/install-kubernetes-with-conjure-up?backURL=%2F#0"  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Installation tutorial', 'eventLabel' : 'Installation tutorial - get started' : undefined });" class="p-link--external">Installation tutorial</a></h4>
+      <h4><a href="https://tutorials.ubuntu.com/tutorial/install-kubernetes-with-conjure-up?backURL=%2F#0"  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Installation tutorial', 'eventLabel' : 'Installation tutorial - get started' : undefined });" class="p-link--external">Installation tutorial</a></h4>
     </div>
     <div class="col-4 p-card u-align--center">
       <p><a href="https://docs.ubuntu.com/maas/2.1/en/"><img src="{{ ASSET_SERVER_URL }}df54bb6a-document-open-icon.svg" alt="" style="max-height: 47px;" /></a></p>
-      <h4 class="u-no-margin--bottom"><a href="https://kubernetes.io/docs/getting-started-guides/ubuntu/#official-ubuntu-guides" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Read the docs', 'eventLabel' : 'Read the docs - get started' : undefined });">Read the docs</a></h4>
+      <h4><a href="https://kubernetes.io/docs/getting-started-guides/ubuntu/#official-ubuntu-guides" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Read the docs', 'eventLabel' : 'Read the docs - get started' : undefined });">Read the docs</a></h4>
     </div>
     <div class="col-4 p-card u-align--center">
       <p><a href="https://maas.io/"><img src="{{ ASSET_SERVER_URL }}cd7a3a3c-white-paper-icon.svg" alt="" style="max-height: 47px;" /></a></p>
@@ -52,7 +55,7 @@
   </div>
 </section>
 
-<section class="p-strip--x-light is-bordered">
+<section class="p-strip is-bordered">
   <div class="row">
     <div class="col-12">
       <h2>Try Kubernetes</h2>
@@ -86,40 +89,58 @@
     <div class="col-12">
       <ul class="p-matrix is-trisected">
         <li class="p-matrix__item">
-          <h3 class="p-matrix__title p-heading--five">Cloud Neutral</h3>
-          <p class="p-matrix__desc">Deploy and operate consistently on AWS, Azure, Google, Oracle, Rackspace, SoftLayer, or private VMware, OpenStack or bare metal.</p>
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--five">Cloud Neutral</h3>
+            <p class="p-matrix__desc">Deploy and operate consistently on AWS, Azure, Google, Oracle, Rackspace, SoftLayer, or private VMware, OpenStack or bare metal.</p>
+          </div>
         </li>
         <li class="p-matrix__item">
-          <h3 class="p-matrix__title p-heading--five">Fresh</h3>
-          <p class="p-matrix__desc">Canonical enables upgrades to each new stable release as well as edge builds, so you can migrate to the latest version as soon as you want.</p>
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--five">Fresh</h3>
+            <p class="p-matrix__desc">Canonical enables upgrades to each new stable release as well as edge builds, so you can migrate to the latest version as soon as you want.</p>
+          </div>
+          </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--five">Secure</h3>
+            <p class="p-matrix__desc">Every component of Canonical K8s receives security maintenance automatically, and all components communicate with TLS encryption.</p>
+          </div>
         </li>
         <li class="p-matrix__item">
-          <h3 class="p-matrix__title p-heading--five">Secure</h3>
-          <p class="p-matrix__desc">Every component of Canonical K8s receives security maintenance automatically, and all components communicate with TLS encryption.</p>
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--five">Supported</h3>
+            <p class="p-matrix__desc">Enterprise support is provided by Canonical, options cover a range of SLA’s and choice of physical / virtual / cloud. We support the full stack from kernel to k8s.</p>
+          </div>
+          </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--five">Extensible</h3>
+            <p class="p-matrix__desc">Canonical Kubernetes enables easy integration of custom monitoring, storage, networking, and container runtimes. We offer consulting for deeper customisation.</p>
+          </div>
         </li>
         <li class="p-matrix__item">
-          <h3 class="p-matrix__title p-heading--five">Supported</h3>
-          <p class="p-matrix__desc">Enterprise support is provided by Canonical, options cover a range of SLA’s and choice of physical / virtual / cloud. We support the full stack from kernel to k8s.</p>
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--five">Fully managed</h3>
+            <p class="p-matrix__desc">At your option, Canonical’s remote operations team can build and operate Kubernetes. We will transfer control of the cluster to your ops team any time you want to take over.</p>
+          </div>
         </li>
         <li class="p-matrix__item">
-          <h3 class="p-matrix__title p-heading--five">Extensible</h3>
-          <p class="p-matrix__desc">Canonical Kubernetes enables easy integration of custom monitoring, storage, networking, and container runtimes. We offer consulting for deeper customisation.</p>
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--five">GPU and CUDA ready</h3>
+            <p class="p-matrix__desc">Automatically detect and configure GPGPU resources for accelerated machine learning, AI, transcoding and HPC workloads on K8s.</p>
+          </div>
         </li>
         <li class="p-matrix__item">
-          <h3 class="p-matrix__title p-heading--five">Fully managed</h3>
-          <p class="p-matrix__desc">At your option, Canonical’s remote operations team can build and operate Kubernetes. We will transfer control of the cluster to your ops team any time you want to take over.</p>
-        </li>
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--five">Converged</h3>
+            <p class="p-matrix__desc">Storage, networking and compute are overlaid in our hyper-converged reference architecture, ensuring the efficient use resources and high availability failover.</p>
+          </div>
+          </li>
         <li class="p-matrix__item">
-          <h3 class="p-matrix__title p-heading--five">GPU and CUDA ready</h3>
-          <p class="p-matrix__desc">Automatically detect and configure GPGPU resources for accelerated machine learning, AI, transcoding and HPC workloads on K8s.</p>
-        </li>
-        <li class="p-matrix__item">
-          <h3 class="p-matrix__title p-heading--five">Converged</h3>
-          <p class="p-matrix__desc">Storage, networking and compute are overlaid in our hyper-converged reference architecture, ensuring the efficient use resources and high availability failover.</p>
-        </li>
-        <li class="p-matrix__item">
-          <h3 class="p-matrix__title p-heading--five">Compliant</h3>
-          <p class="p-matrix__desc">Canonical Kubernetes has consistently been the leader in K8s test suite performance and API standards compliance &mdash; the reference k8s implementation.</p>
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--five">Compliant</h3>
+            <p class="p-matrix__desc">Canonical Kubernetes has consistently been the leader in K8s test suite performance and API standards compliance &mdash; the reference k8s implementation.</p>
+          </div>
         </li>
       </ul>
     </div>
@@ -205,14 +226,14 @@
   </div>
   <div class="row">
     <div class="col-8">
-      <p>Canonical has two Kubernetes offerings: Kubernetes Explorer and Kubernetes Discoverer, but every Kubernetes we build is future-proof with automated upgrades to newer versions on demand.</p>
+      <p class="u-padding-bottom--large">Canonical has two Kubernetes offerings: Kubernetes Explorer and Kubernetes Discoverer, but every Kubernetes we build is future-proof with automated upgrades to newer versions on demand.</p>
     </div>
   </div>
   <div class="row u-equal-height">
     <div class="p-card col-6">
       <div class="p-card__header">
         <h3 class="p-heading--five">Kubernetes Explorer</h3>
-        <p class="p-heading--two">$15,000 <span class="p-heading--six">one off fee</span></p>
+        <p class="p-heading--two u-padding-bottom">$15,000 <span class="p-heading--six">one off fee</span></p>
       </div>
       <p>Get up and running quickly with minimal setup, predefined architecture and on-site training.</p>
       <p>What&rsquo;s included:</p>
@@ -228,7 +249,7 @@
     <div class="p-card col-6">
       <div class="p-card__header">
         <h3 class="p-heading--five">Kubernetes Discoverer</h3>
-        <p class="p-heading--two">$35,000 <span class="p-heading--six">one off fee</span></p>
+        <p class="p-heading--two u-padding-bottom">$35,000 <span class="p-heading--six">one off fee</span></p>
       </div>
       <p>Get a customized architecture to fit your  requirements, including bare-metal environments or custom integrations, with many optional add ons.</p>
       <p>What&rsquo;s included:</p>
@@ -243,11 +264,13 @@
     </div>
   </div>
   <div class="row">
-    <p><small>* Ongoing <a href="#support-packages">enterprise support</a> for Kubernetes after 30 days is optional.</small></p>
-    <h3>Optional add-ons</h3>
+    <div class="col-12">
+      <p class="u-padding-bottom--x-large"><small>* Ongoing <a href="#support-packages">enterprise support</a> for Kubernetes after 30 days is optional.</small></p>
+    </div>
   </div>
   <div class="row">
     <div class="col-12">
+      <h3>Optional add-ons</h3>
       <table>
         <tr>
           <td>Workload analysis (Artificial Intelligence, Machine Learning, Blockchain, <br />CI/CD, Serverless, Transcoding)</td>
@@ -278,9 +301,9 @@
           <td>+$1,500/day</td>
         </tr>
       </table>
+      <p><a href="/containers/contact-us?product=containers-kubernetes-foundation" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Contact us - consulting packages CTA' : undefined });">Contact us</a>&#8195;<a href="https://assets.ubuntu.com/v1/Enterprise-Canonical-Kubernetes.pdf" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Try it now', 'eventLabel' : 'Download the datasheet - consulting packages CTA' : undefined });">Download the datasheet</a></p>
     </div>
   </div>
-
   <div class="row">
     <p><a href="/containers/contact-us?product=containers-kubernetes-foundation" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Contact us - consulting packages CTA' : undefined });">Contact us</a>&#8195;<a href="{{ ASSET_SERVER_URL }}b35eca50-Enterprise-Kubernetes-datasheet.pdf" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Try it now', 'eventLabel' : 'Download the datasheet - consulting packages CTA' : undefined });">Download the datasheet</a></p>
   </div>
@@ -396,7 +419,7 @@
   <div class="row">
     <div class="col-8">
       <h2>Test drive the Canonical Distribution of Kubernetes today!</h2>
-      <p><a href="https://tutorials.ubuntu.com/tutorial/install-kubernetes-with-conjure-up?_ga=2.25375934.2035833349.1504518498-2070601899.1473694436" class="p-button--brand" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Try it now', 'eventLabel' : 'Try it now - Bottom CTA' : undefined });"><span class="p-link--external">Try it now</span></a>&#8195;<a href="/containers/contact-us" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact sales', 'eventLabel' : 'Contact sales - Bottom CTA' : undefined });">Talk to us about Kubernetes</a></p>
+      <p class="u-no-margin--top"><a href="https://tutorials.ubuntu.com/tutorial/install-kubernetes-with-conjure-up?_ga=2.25375934.2035833349.1504518498-2070601899.1473694436" class="p-button--brand" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Try it now', 'eventLabel' : 'Try it now - Bottom CTA' : undefined });"><span class="p-link--external">Try it now</span></a>&#8195;<a href="/containers/contact-us" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact sales', 'eventLabel' : 'Contact sales - Bottom CTA' : undefined });">Talk to us about Kubernetes</a></p>
     </div>
   </div>
 </section>

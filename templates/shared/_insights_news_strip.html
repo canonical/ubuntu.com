@@ -37,7 +37,7 @@
         </h2>
 
         {# insights news items #}
-        <div class="row">
+        <div>
           {% for item in insights_feed %}
             <div class="col-3">
               <h3 class="p-heading--four u-less-margin--bottom"><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : '{{ gtm_event_label }} news link', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title }}</a></h3>

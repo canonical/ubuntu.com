@@ -9,14 +9,16 @@
 <div class="p-strip is-deep">
   <div class="row">
     <div class="col-9">
-      <h1>Help shape the future of Ubuntu</h1>
-      <p>Tell us what is most important to you, or <a href="/download/desktop/thank-you?version={{ version }}&amp;architecture={{ architecture }}">you can continue to the download&nbsp;&rsaquo;</a></p>
-      <noscript>
-        <p>Contributions require JavaScript. Please enable JavaScript if you want to contribute.</p>
-        {% if start_download %}
-        <p><a href="/download/desktop/thank-you?version={{ version }}&amp;architecture={{ architecture }}">Take me to the download&nbsp;&rsaquo;</a></p>
-        {% endif %}
-      </noscript>
+      <div>
+        <h1>Help shape the future of Ubuntu</h1>
+        <p>Tell us what is most important to you, or <a href="/download/desktop/thank-you?version={{ version }}&amp;architecture={{ architecture }}">you can continue to the download&nbsp;&rsaquo;</a></p>
+        <noscript>
+          <p>Contributions require JavaScript. Please enable JavaScript if you want to contribute.</p>
+          {% if start_download %}
+          <p><a href="/download/desktop/thank-you?version={{ version }}&amp;architecture={{ architecture }}">Take me to the download&nbsp;&rsaquo;</a></p>
+          {% endif %}
+        </noscript>
+      </div>
     </div>
   </div>
 

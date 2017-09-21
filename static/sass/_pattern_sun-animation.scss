@@ -1,17 +1,21 @@
-/// sun like animation on cloud overview
-/* Contribute page */
+// Sun like animation on cloud overview
 @mixin ubuntu-p-sun-animation {
   $animation-viewport: 900px;
 
   .cloud-tools {
     display: none;
-    @media only screen and (min-width : $animation-viewport) {
+
+    @media only screen and (min-width: $animation-viewport) {
       display: block;
       left: 0;
       position: absolute;
       top: -130px;
       width: 100%;
       z-index: 1;
+
+      * {
+        margin-top: 0;
+      }
 
       &__container {
         background: url('#{$assets-path}79729d72-products-hero-background.png') -100px 0 no-repeat;
@@ -20,13 +24,14 @@
         right: 20px;
         top: -10px;
         width: 506px;
-        @media only screen and (min-width : $breakpoint-large) {
+
+        @media only screen and (min-width: $breakpoint-large) {
           right: 0;
         }
       }
 
       &__item {
-        animation: scaleInPop 0.2s forwards, fadeIn 0.2s linear forwards;
+        animation: scaleInPop .2s forwards, fadeIn .2s linear forwards;
         background: url('#{$assets-path}73006c5b-products-hero-phone.svg') no-repeat;
         background-size: 66px 66px;
         height: 66px;
@@ -36,7 +41,7 @@
         width: 66px;
 
         &--line {
-          animation: fadeIn 0.3s linear forwards;
+          animation: fadeIn .3s linear forwards;
           content: ' ';
           display: block;
           position: absolute;
@@ -133,7 +138,7 @@
         }
 
         &--seven {
-          animation: scaleIn 0.3s forwards, fadeIn 0.6s linear forwards, rotateIn 3.0s ease-out forwards;
+          animation: scaleIn .3s forwards, fadeIn .6s linear forwards, rotateIn 3s ease-out forwards;
           animation-delay: 1s;
           background: url('#{$assets-path}c4f35e06-partners-hero-ubuntu.svg') no-repeat;
           left: 220px;
