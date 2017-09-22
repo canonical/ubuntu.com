@@ -13,135 +13,97 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip--light is-deep is-bordered">
+  <div class="row u-equal-height u-padding-bottom">
+    <div class="col-4 p-card">
+      <h3>OpenStack</h3>
+      <div class="p-card__footer">
+        <p class="p-heading--five">From $4 per day <span style="font-size: 1rem;">*</span></p>
+      </div>
+      <div class="p-card__footer">
+        <a href="#openstack">Learn more&nbsp;&rsaquo;</a>
+      </div>
+    </div>
+    <div class="col-4 p-card">
+      <h3>Consulting packages</h3>
+      <div class="p-card__footer">
+        <p class="p-heading--five">From $150 per year <span style="font-size: 1rem;">*</span></p>
+      </div>
+      <div class="p-card__footer">
+        <a href="#consulting">Learn more&nbsp;&rsaquo;</a>
+      </div>
+    </div>
+    <div class="col-4 p-card">
+      <h3>Storage</h3>
+      <div class="p-card__footer">
+        <p class="p-heading--five">From $0.01 per month <span style="font-size: 1rem;">*</span></p>
+      </div>
+      <div class="p-card__footer">
+        <a href="#storage">Learn more&nbsp;&rsaquo;</a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <p><small>* Minimum spend applies</small></p>
+    </div>
+  </div>
+</section>
+
+
+<section class="p-strip--x-light is-deep is-bordered" id="openstack">
   <div class="row">
     <div class="col-8">
-      <h2>Cloud tools</h2>
-      <p>Ubuntu provides tools to help you create, scale and manage your cloud.</p>
+      <h2>Enterprise support for OpenStack</h2>
+      <p>Canonical provides support services, management tools, and the Cloud Archive which keeps thousands of businesses productive with their own local OpenStack clouds.  For large volume and public clouds with dynamic scale, we’re pleased to offer per-region pricing with flexible node ranges.</p>
+    </div>
+  </div>
+  {% include "shared/pricing/_openstack-support.html" %}
+  <div class="row">
+    <div class="col-8">
+      <p><a href="/support/contact-us?product=cloud-plans-and-pricing">Buy Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-deep is-bordered" id="consulting">
+  <div class="row">
+    <div class="col-8">
+      <h2>OpenStack consulting packages</h2>
+      <p>Canonical delivers turnkey OpenStack software solutions, on-site, through its field consulting team. Two plans are offered: the Foundation Cloud, which is based on our award-winning reference architecture, and Foundation Plus, which packs in a complete set of enterprise features and  architectural flexibility.</p>
     </div>
   </div>
   <div class="row">
     <div class="col-10">
-      <table class="audience-enterprise ua-table">
-        <thead>
-          <tr>
-            <th>&nbsp;</th>
-            <th>Price</th>
-            <th>Support</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row"><a href="/server/maas">MAAS</a></th>
-            <td>FREE</td>
-            <td>From $5 per server per month</td>
-          </tr>
-          <tr>
-            <th scope="row"><a href="/cloud/juju">Juju</a></th>
-            <td>FREE</td>
-            <td>Find out more at <a href="https://jujucharms.com" class="p-link--external">jujucharms.com</a> </td>
-          </tr>
-          <tr>
-            <th scope="row"><a href="/cloud/openstack">Ubuntu OpenStack</a></th>
-            <td>FREE</td>
-            <td>From $1,500 per year</td>
-          </tr>
-          <tr>
-            <th scope="row"><a href="/server/management">Landscape</a></th>
-            <td>
-              Free up to ten machines (on-premises)<br />
-              or<br />
-              $100 free credit for 60 days (SaaS)
-            </td>
-            <td>
-              SaaS included as part of Ubuntu Advantage<br />
-              $2,000 per year &mdash; Landscape on-premises<br />
-              or<br />
-              $0.01 per machine hour (SaaS) without support
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      {% include "shared/pricing/_openstack-consulting.html" %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <p>For more information about Foundation Cloud Build or if you are not sure which one is right for you, <a href="/cloud/contact-us?product=foundation-cloud">contact us&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip is-deep is-bordered" id="landscape-on-premises">
   <div class="row">
     <div class="col-8">
-      <h2>Foundation Cloud Build</h2>
-      <p class="u-padding-bottom--large">There are two packages available. For most organisations, Foundation Cloud Build will deliver solid cloud infrastructure that just works. For organisations that require greater flexibility in implementation or specific storage technologies, Foundation Cloud Plus offers more options.</p>
+      <h2>Landscape on-premises server</h2>
+      <p>If you&rsquo;d prefer a server on premises running behind your firewall, Landscape can be installed on private hardware. This is functionally identical to the SaaS, but you control the hardware. Requires all the desktops, servers and nodes it manages
+        to have either an Ubuntu Advantage or Landscape seat.</p>
     </div>
-  </div>
-  <div class="row u-equal-height">
-    <div class="p-card col-4">
-      <div class="p-card__header">
-        <h3 class="p-heading--five">Foundation Cloud Build</h3>
-        <p class="p-heading--two">$75,000 <span class="p-heading--six">one-off fee</span></p>
+    <div class="row">
+      <div class="col-10">
+        {% include "shared/pricing/_landscape.html" %}
       </div>
-      <p class="p-card__content">Consultants build an OpenStack cloud infrastructure in your datacentre.</p>
     </div>
-    <div class="p-card col-4">
-      <div class="p-card__header">
-        <h3 class="p-heading--five">Foundation Cloud Plus</h3>
-        <p class="p-heading--two">$150,000 <span class="p-heading--six">one-off fee</span></p>
+    <div class="row">
+      <div class="col-8">
+        <p><a href="https://landscape.canonical.com/signup" class="p-button--neutral"><span class="p-link--external">Get a $100 credit for Landscape</span></a></p>
       </div>
-      <p class="p-card__content">Consultants build an OpenStack cloud infrastructure in your datacentre with some customisations that you define.</p>
-    </div>
-    <div class="p-card col-4">
-      <div class="p-card__header">
-        <h3 class="p-heading--five">Add-ons</h3>
-        <p class="p-heading--two">From $25,000</p>
-      </div>
-      <p class="p-card__content">Such as:</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Additional hypervisors</li>
-        <li class="p-list__item is-ticked">Complex networking</li>
-        <li class="p-list__item is-ticked">Disaster recovery integration</li>
-      </ul>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <p><a href="/cloud/foundation-cloud">Learn more about Foundation Cloud Build&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
-
-<section class="p-strip is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>Ubuntu Advantage for OpenStack</h2>
-      <p>Ubuntu Advantage for OpenStack plans are delivered through Ubuntu Advantage, a professional package of integrated management tooling and enterprise class support. It includes access to Landscape, the systems management tool for using Ubuntu at scale,
-        as well as 24x7 telephone support, online support library and legal assurance.</p>
-      <p>Ubuntu Advantage for OpenStack is available in three flexible packages, to help you to scale your business in the most cost-effective way.</p>
-      <h3>Per node</h3>
-      <p>Build your own cloud using Ubuntu OpenStack with Canonical tools or tooling of your choice. Priced per node per year with alternate packages that offer a choice of SLAs based on your requirements.</p>
-    </div>
-  </div>
-  <div class="u-vertically-spaced u-padding-bottom--x-large">
-    {% include "shared/_ubuntu_advantage_cloud_per_node.html" %}
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <h3>Service provider</h3>
-      <p class="u-padding-bottom--large">For large volume and public clouds, build your own cloud using Ubuntu OpenStack with Canonical tooling using Canonical&#39;s OpenStack reference architecture. Ubuntu Advantage is priced per OpenStack region. Different packages offer a choice of
-        SLAs based on customer needs and the number of nodes per region. This model suits customers seeking to cap the cost of OpenStack deployment at scale.</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-10">
-      {% include "shared/_ubuntu_advantage_cloud_service_provider.html" %}
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <p><a href="/management/contact-us?product=cloud-plans-and-pricing">Buy Ubuntu Advantage&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-</section>
-
-{% include "shared/_pricing_landscape_on-premises.html" %}
 
 <section class="p-strip is-bordered" id="bootstack-fully-managed-cloud">
   <div class="row">
@@ -167,7 +129,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>Ubuntu on public clouds</h2>
@@ -181,6 +143,31 @@
   </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_autopilot" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
+<section class="p-strip--light is-deep is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Enterprise support for Ceph and Swift Storage</h2>
+      <p>Ubuntu Advantage Storage from Canonical embeds the proven open source software‐defined storage (SDS) technologies of Ceph and Swift into a 24x7 supported software solution with a unique usage-based pricing model.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-10">
+      {% include "shared/pricing/_storage-support.html" %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div>
+        <p><a href="/containers/contact-us?product=cloud-storage" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Contact us - cloud storage CTA' : undefined });">Contact us</a></p>
+        <p><a href="https://insights.ubuntu.com/2015/05/18/ubuntu-advantage-storage-factsheet/?_ga=2.122490379.1666167933.1504515501-463981611.1499434659" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Try it now', 'eventLabel' : 'Download the datasheet - cloud storage CTA' : undefined });">Download the datasheet</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
 
 {% endblock content %}
