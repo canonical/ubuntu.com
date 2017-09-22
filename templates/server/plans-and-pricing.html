@@ -1,6 +1,6 @@
 {% extends "server/base_server.html" %}
-{% block title %}Server management{% endblock %}
-{% block extra_body_class %}server-server-management{% endblock %}
+{% block title %}Server plans and pricing{% endblock %}
+{% block extra_body_class %}server-plans-and-pricing{% endblock %}
 
 
 {% block content %}
@@ -8,7 +8,7 @@
   <div class="row">
     <div class="u-equal-height">
       <div class="col-6">
-        <h1>Server management</h1>
+        <h1>Server plans and pricing</h1>
         <p>Get peace of mind with cost-effective systems management and professional support from Canonical, the Ubuntu experts.</p>
         <p><a href="https://buy.ubuntu.com/collections/ubuntu-advantage-for-servers" class="p-button--brand"><span class="p-link--external">Buy Ubuntu Advantage online</span></a></p>
         <p><a href="https://landscape.canonical.com" class="p-link--external">Learn more about Landscape</a></p>
@@ -23,11 +23,11 @@
 <div class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-12">
-      <h2>Two ways to support and manage Ubuntu</h2>
+      <h2>Three ways to support and manage Ubuntu</h2>
     </div>
   </div>
   <div class="row p-divider">
-    <div class="col-6 p-divider__block">
+    <div class="col-4 p-divider__block">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
           <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}682e5989-picto-support-midaubergine.svg">
@@ -36,7 +36,7 @@
         <p>Ubuntu Advantage is the commercial support package from Canonical, offering efficient systems administration software, fast problem resolution and access to experts when you need them.</p>
       </div>
     </div>
-    <div class="col-6 p-divider__block">
+    <div class="col-4 p-divider__block">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
           <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}70b5df6e-landscape-logo.svg">
@@ -45,31 +45,41 @@
         <p>Landscape is the systems management tool that allows you to manage thousands of Ubuntu machines as easily as one, making the administration of Ubuntu more cost-effective.</p>
       </div>
     </div>
-  </div>
-</div>
-
-<div class="p-strip--light is-deep" style="padding-bottom: 2rem;">
-  <div class="row">
-    <div class="col-12">
-      <h2>Ubuntu Advantage for servers</h2>
-      <p class="u-padding-bottom">Choose the right level of cover to meet your needs.</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-10">
-      {% include "shared/_ubuntu_advantage_server.html" %}
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header">
+          <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}5f3d3c45-maas-logo-cropped.svg">
+          <h3 class="p-heading-icon__title">MAAS</h3>
+        </div>
+        <p>MAAS is a server provisioning tool which offers complete automation of your physical servers for amazing data centre operational efficiency. On premises, open source and supported.</p>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="p-strip--light is-deep is-bordered" style="padding-top: 2rem;">
+<section class="p-strip--x-light is-deep u-no-padding--bottom" id="ua-support">
   <div class="row">
-    <div class="col-10">
-      {% include "shared/_ubuntu_advantage_cloud_virtual_guests.html" %}
-      <p><a href="/support/contact-us?product=server-management">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+    <div class="col-8">
+      {% include "shared/pricing/_ua-overview.html" %}
+      <p><a href="http://buy.ubuntu.com" class="p-button"><span class="p-link--external">Visit the Ubuntu Advantage store</span></a></p>
+      <p><a href="/server/contact-us?product=server-management">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
     </div>
   </div>
-</div>
+</section>
+
+<section class="p-strip--x-light is-shallow">
+  <div class="row" style="overflow-x: auto;">
+    <div class="col-10">
+      <h3>Ubuntu Advantage for servers</h3>
+      {% include "shared/pricing/_ua-server-support.html" %}
+    </div>
+  </div>
+</section>
+
+
+<section class="p-strip--x-light is-deep u-no-padding--top is-bordered">
+  {% include "shared/pricing/_ua-server-support-add-ons.html" %}
+</section>
 
 <div class="p-strip is-bordered p-hero">
   <div class="row">
@@ -118,6 +128,21 @@
     </div>
   </div>
 </div>
+
+<section class="p-strip is-deep is-bordered" id="maas">
+  <div class="row">
+    <div class="col-8">
+      <h2>Enterprise support for MAAS</h2>
+      <p>MAAS is freely available, open source software from Canonical. Many enterprises depend on MAAS to automate and optimize provisioning for production hardware.  Canonical offers Standard and Advanced support plans priced per-machine-per-month or, for large volume and public clouds with dynamic scale, we offer per-region pricing with flexible node ranges.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-10" style="overflow-x: auto;">
+      {% include "shared/pricing/_maas-support.html" %}
+    </div>
+  </div>
+</section>
 
 {% include "shared/_ubuntu_advantage_community.html" %}
 
