@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "sass-lint static/**/*.scss --verbose --no-exit",
-    "build": "node-sass --include-path node_modules static/sass --output static/css",
-    "watch": "node-sass --include-path node_modules --source-map true --watch static/sass --output static/css",
+    "build": "node-sass --include-path node_modules static/sass --output static/css && postcss --use autoprefixer --replace static/css/styles.css && postcss static/css/styles.css --use cssnano > static/css/styles.min.css",
+    "watch": "watch -p 'static/sass/*.scss' -c 'yarn run build'",
     "clean": "rm -rf node_modules yarn-error.log static/css *.log *.sqlite _site/ build/ .jekyll-metadata static/components"
   },
   "keywords": [
@@ -18,6 +18,9 @@
   "devDependencies": {
     "node-sass": "^4.5.3",
     "sass-lint": "^1.10.2",
-    "vanilla-framework": "1.5.1"
+    "vanilla-framework": "1.5.1",
+    "postcss-cli": "^4.1.0",
+    "cssnano": "^3.10.0",
+    "watch-cli": "^0.2.2"
   }
 }
