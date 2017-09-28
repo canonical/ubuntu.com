@@ -72,6 +72,7 @@
         @media only screen and (min-width: $breakpoint-medium) {
           display: block;
           text-decoration: underline;
+          color: $color-brand;
         }
       }
 
@@ -116,6 +117,10 @@
           right: -$sp-large;
           width: 3.125rem;
         }
+
+        &:hover {
+          background-image: url('#{$assets-path}75a8a35a-cloud_orange.svg');
+        }
       }
 
       &--server {
@@ -130,6 +135,10 @@
           right: -1.625rem;
           width: 3.8125rem;
         }
+
+        &:hover {
+          background-image: url('#{$assets-path}caeb0945-server_orange.svg');
+        }
       }
 
       &--desktop {
@@ -142,6 +151,10 @@
         &::after {
           right: -$sp-large;
           width: 3.4375rem;
+        }
+
+        &:hover {
+          background-image: url('#{$assets-path}1ec79043-laptop_orange.svg');
         }
       }
 
@@ -171,6 +184,10 @@
           right: -1.25rem;
           width: 3.125rem;
         }
+
+        &:hover {
+          background-image: url('#{$assets-path}b013c6c2-containers_orange.svg');
+        }
       }
 
       &--iot {
@@ -184,6 +201,10 @@
         &::after {
           right: 1.25rem;
           width: .9375rem;
+        }
+
+        &:hover {
+          background-image: url('#{$assets-path}263e7c5d-iot_orange.svg');
         }
       }
     }
