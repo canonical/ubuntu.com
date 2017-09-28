@@ -6,7 +6,7 @@
   "scripts": {
     "test": "sass-lint static/**/*.scss --verbose --no-exit",
     "build": "node-sass --include-path node_modules static/sass --output static/css && postcss --use autoprefixer --replace static/css/styles.css && postcss static/css/styles.css --use cssnano > static/css/styles.min.css",
-    "watch": "watch -p '_sass/*.scss' -c 'yarn run build'",
+    "watch": "watch -p 'static/sass/*.scss' -c 'yarn run build'",
     "clean": "rm -rf node_modules yarn-error.log static/css *.log *.sqlite _site/ build/ .jekyll-metadata static/components"
   },
   "keywords": [
