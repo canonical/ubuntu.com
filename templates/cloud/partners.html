@@ -143,12 +143,6 @@
         </div>
         <div class="twelve-col">
             <ul id="cloud-partners" class="inline-logos no-margin dynamic-logos">
-              {% get_json_feed "http://partners.ubuntu.com/partners.json?programme__name=Certified%20Public%20Cloud&programme__name=Charm%20Partner%20Programme&programme__name=OpenStack&featured=true" limit=10 as cloud_partners %}
-              {% for partner in cloud_partners %}
-                <li class="inline-logos__item">
-                  <img class="inline-logos__image" src="{{ partner.logo }}" alt="{{ partner.name }}" />
-                </li>
-              {% endfor %}
             </ul>
         </div>
         <div class="twelve-col">

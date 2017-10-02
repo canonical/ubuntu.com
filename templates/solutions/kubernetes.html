@@ -44,12 +44,6 @@
     <div class="twelve-col">
         <h2 class="muted-heading">Partnering with industry leaders</h2>
         <ul class="inline-logos no-margin dynamic-logos">
-          {% get_json_feed "http://partners.ubuntu.com/partners.json?technology__name=Containers" limit=10 as container_partners %}
-          {% for partner in container_partners %}
-            <li class="inline-logos__item">
-              <img class="inline-logos__image" src="{{ partner.logo }}" alt="{{ partner.name }}" title="{{ partner.name }}" />
-            </li>
-          {% endfor %}
         </ul>
     </div>
   </div>
