@@ -2,6 +2,27 @@
 @mixin ubuntu-p-ubuntu-intro {
   .p-ubuntu-intro {
 
+    // Intro strip icons
+    $cloud-icon-grey: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='UTF-8' standalone='no'?%3E%3Csvg xmlns='http://www.w3.org/2000/svg' height='73px' width='107px' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 107 73'%3E%3C!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch --%3E%3Ctitle%3Epath4154%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Homepage-final' fill-rule='evenodd' fill='none'%3E%3Cg id='Final-homepage' stroke='%23666' stroke-width='1.9' transform='translate(-278 -1401)'%3E%3Cg id='Sections-strip' transform='translate(0 1123)'%3E%3Cg id='illustration' transform='translate(279 255)'%3E%3Cg id='ilustration'%3E%3Cpath id='path4154' transform='translate(52.5 59.186) scale(-1 1) translate(-52.5 -59.186)' d='m44.564 24c8.393 0.012 16.089 4.639 19.986 12.027 2.565-2.271 5.88-3.529 9.316-3.534 7.755 0 14.041 6.247 14.041 13.953-0.001 1.223-0.165 2.441-0.486 3.621 10.272 2.321 17.569 11.39 17.579 21.859 0 12.397-10.113 22.446-22.587 22.446h-59.826c-12.474 0-22.587-10.049-22.587-22.446 0.0085465-12.246 9.8921-22.224 22.213-22.427-0.149-1.011-0.228-2.031-0.236-3.053 0-12.396 10.112-22.446 22.587-22.446z'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
+    $cloud-icon-brand: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='UTF-8' standalone='no'?%3E%3Csvg xmlns='http://www.w3.org/2000/svg' height='73px' width='107px' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 107 73'%3E%3C!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch --%3E%3Ctitle%3Epath4154%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Homepage-final' fill-rule='evenodd' fill='none'%3E%3Cg id='Final-homepage' stroke='#{$color-brand}' stroke-width='1.9' transform='translate(-278 -1401)'%3E%3Cg id='Sections-strip' transform='translate(0 1123)'%3E%3Cg id='illustration' transform='translate(279 255)'%3E%3Cg id='ilustration'%3E%3Cpath id='path4154' transform='translate(52.5 59.186) scale(-1 1) translate(-52.5 -59.186)' d='m44.564 24c8.393 0.012 16.089 4.639 19.986 12.027 2.565-2.271 5.88-3.529 9.316-3.534 7.755 0 14.041 6.247 14.041 13.953-0.001 1.223-0.165 2.441-0.486 3.621 10.272 2.321 17.569 11.39 17.579 21.859 0 12.397-10.113 22.446-22.587 22.446h-59.826c-12.474 0-22.587-10.049-22.587-22.446 0.0085465-12.246 9.8921-22.224 22.213-22.427-0.149-1.011-0.228-2.031-0.236-3.053 0-12.396 10.112-22.446 22.587-22.446z'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
+    $server-icon-grey: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='UTF-8' standalone='no'?%3E%3Csvg xmlns='http://www.w3.org/2000/svg' height='76px' width='76px' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 76 76'%3E%3C!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch --%3E%3Ctitle%3Eserver%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Homepage-final' fill-rule='evenodd' fill='none'%3E%3Cg id='Final-homepage' transform='translate(-458 -1401)'%3E%3Cg id='Sections-strip' transform='translate(0 1123)'%3E%3Cg id='illustration' transform='translate(279 255)'%3E%3Cg id='ilustration'%3E%3Cg id='server' transform='translate(179 23)'%3E%3Cg id='Group' fill='%23666' transform='translate(38.025 33.078) rotate(-90) translate(-32.5 -38)'%3E%3Cpath id='Rectangle' fill-rule='nonzero' d='m64.6 1.9l-1.9-1.9v1.9h1.9zm0 72.149l-1.9 1.9v-1.9h1.9zm-13.3-72.149v-1.9l13.3-1.1683e-13v75.949h-13.3v-1.9h11.4v-72.149h-11.4zm13.3 72.149l-1.9 1.9v-1.9h1.9zm-1.9-74.049l1.9 1.9h-1.9v-1.9zm0 1.9h-11.4v-1.9l13.3-1.1683e-13v75.949h-13.3v-1.9h11.4v-72.149z'/%3E%3Cpath id='Rectangle' fill-rule='nonzero' d='m1.9 74.049h19.95v-72.149h-19.95v72.149zm-1.9-74.049l23.75-1.6864e-14v75.949h-23.75v-75.949z'/%3E%3Crect id='Rectangle-2' y='57.911' x='30.4' height='11.392' width='3.8'/%3E%3Crect id='Rectangle-2' y='57.911' x='10.45' height='11.392' width='3.8'/%3E%3Crect id='Rectangle-2' y='57.911' x='50.35' height='11.392' width='3.8'/%3E%3Cpath id='Rectangle' fill-rule='nonzero' d='m41.8 1.9h1.9l-1.9-1.9v1.9zm1.9 72.149l-1.9 1.9v-1.9h1.9zm-1.9-72.149h-11.4v-1.9l13.3-1.8596e-15v75.949h-13.3v-1.9h11.4v-72.149zm0 72.149h1.9l-1.9 1.9v-1.9zm0-74.049l1.9 1.9h-1.9v-1.9zm0 74.049v-72.149h-11.4v-1.9l13.3-1.8596e-15v75.949h-13.3v-1.9h11.4z'/%3E%3C/g%3E%3Cpath id='Path-2' stroke='%23666' stroke-width='1.9' d='m38 64.608v7.266'/%3E%3Cpath id='Path-2' stroke='%23666' stroke-width='1.9' d='m75.843 72.203h-75.843'/%3E%3Cellipse id='Oval' rx='3.8' ry='3.7975' cy='72.203' cx='38' fill='%23666'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
+    $server-icon-brand: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='UTF-8' standalone='no'?%3E%3Csvg xmlns='http://www.w3.org/2000/svg' height='76px' width='76px' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 76 76'%3E%3C!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch --%3E%3Ctitle%3Eserver%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Homepage-final' fill-rule='evenodd' fill='none'%3E%3Cg id='Final-homepage' transform='translate(-458 -1401)'%3E%3Cg id='Sections-strip' transform='translate(0 1123)'%3E%3Cg id='illustration' transform='translate(279 255)'%3E%3Cg id='ilustration'%3E%3Cg id='server' transform='translate(179 23)'%3E%3Cg id='Group' fill='#{$color-brand}' transform='translate(38.025 33.078) rotate(-90) translate(-32.5 -38)'%3E%3Cpath id='Rectangle' fill-rule='nonzero' d='m64.6 1.9l-1.9-1.9v1.9h1.9zm0 72.149l-1.9 1.9v-1.9h1.9zm-13.3-72.149v-1.9l13.3-1.1683e-13v75.949h-13.3v-1.9h11.4v-72.149h-11.4zm13.3 72.149l-1.9 1.9v-1.9h1.9zm-1.9-74.049l1.9 1.9h-1.9v-1.9zm0 1.9h-11.4v-1.9l13.3-1.1683e-13v75.949h-13.3v-1.9h11.4v-72.149z'/%3E%3Cpath id='Rectangle' fill-rule='nonzero' d='m1.9 74.049h19.95v-72.149h-19.95v72.149zm-1.9-74.049l23.75-1.6864e-14v75.949h-23.75v-75.949z'/%3E%3Crect id='Rectangle-2' y='57.911' x='30.4' height='11.392' width='3.8'/%3E%3Crect id='Rectangle-2' y='57.911' x='10.45' height='11.392' width='3.8'/%3E%3Crect id='Rectangle-2' y='57.911' x='50.35' height='11.392' width='3.8'/%3E%3Cpath id='Rectangle' fill-rule='nonzero' d='m41.8 1.9h1.9l-1.9-1.9v1.9zm1.9 72.149l-1.9 1.9v-1.9h1.9zm-1.9-72.149h-11.4v-1.9l13.3-1.8596e-15v75.949h-13.3v-1.9h11.4v-72.149zm0 72.149h1.9l-1.9 1.9v-1.9zm0-74.049l1.9 1.9h-1.9v-1.9zm0 74.049v-72.149h-11.4v-1.9l13.3-1.8596e-15v75.949h-13.3v-1.9h11.4z'/%3E%3C/g%3E%3Cpath id='Path-2' stroke='#{$color-brand}' stroke-width='1.9' d='m38 64.608v7.266'/%3E%3Cpath id='Path-2' stroke='#{$color-brand}' stroke-width='1.9' d='m75.843 72.203h-75.843'/%3E%3Cellipse id='Oval' rx='3.8' ry='3.7975' cy='72.203' cx='38' fill='#{$color-brand}'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
+    $container-icon-grey: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='UTF-8' standalone='no'?%3E%3Csvg xmlns='http://www.w3.org/2000/svg' height='95px' width='83px' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 83 95'%3E%3C!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch --%3E%3Ctitle%3Econtainers%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Homepage-final' fill-rule='evenodd' fill='none'%3E%3Cg id='Final-homepage' stroke='%23666' stroke-width='1.9' transform='translate(-622 -1391)'%3E%3Cg id='Sections-strip' transform='translate(0 1123)'%3E%3Cg id='illustration' transform='translate(279 255)'%3E%3Cg id='ilustration'%3E%3Cg id='containers' transform='translate(324)'%3E%3Cpath id='Rectangle-4' transform='translate(60.5 60.5) rotate(45) translate(-60.5 -60.5)' d='m27.541 29.334c0.156-0.725 0.871-1.441 1.588-1.597l43.966-9.579c0.722-0.158 1.731 0.138 2.259 0.663l26.826 26.828c0.52 0.522 0.82 1.536 0.66 2.254l-9.549 43.99c-0.161 0.722-0.869 1.438-1.585 1.591l-43.805 9.356c-0.719 0.16-1.725-0.14-2.25-0.67l-26.828-26.822c-0.523-0.522-0.821-1.531-0.665-2.26l9.383-43.754z'/%3E%3Cpath id='Rectangle-4' transform='translate(60.499 60.501) rotate(45) translate(-60.499 -60.501)' d='m34.229 35.983c0.156-0.725 0.864-1.439 1.589-1.598l34.428-7.5c0.722-0.158 1.738 0.141 2.253 0.659l20.958 20.953c0.521 0.522 0.815 1.527 0.662 2.254l-7.488 34.45c-0.154 0.722-0.862 1.431-1.597 1.591l-34.278 7.327c-0.725 0.154-1.739-0.147-2.258-0.668l-20.953-20.951c-0.522-0.522-0.821-1.525-0.664-2.26l7.348-34.257z'/%3E%3Cpath id='Rectangle-4' transform='translate(60.832 60.834) rotate(45) translate(-60.832 -60.834)' d='m40.994 42.693c0.154-0.719 0.861-1.428 1.587-1.587l25.265-5.504c0.722-0.158 1.738 0.139 2.26 0.663l15.295 15.296c0.522 0.523 0.823 1.532 0.662 2.257l-5.488 25.285c-0.154 0.722-0.863 1.43-1.585 1.584l-25.175 5.382c-0.719 0.153-1.727-0.147-2.252-0.669l-15.295-15.295c-0.524-0.528-0.825-1.531-0.67-2.253l5.396-25.159z'/%3E%3Cpolyline id='Path-5' points='20.771 40.697 60.523 62.939 60.226 105.69'/%3E%3Cpath id='Path-5' transform='translate(80.498 51.568) rotate(180) translate(-80.498 -51.568)' d='m100.32 40.28l-39.646 22.577 39.646-22.577z'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
+    $container-icon-brand: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='UTF-8' standalone='no'?%3E%3Csvg xmlns='http://www.w3.org/2000/svg' height='95px' width='83px' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 83 95'%3E%3C!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch --%3E%3Ctitle%3Econtainers%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Homepage-final' fill-rule='evenodd' fill='none'%3E%3Cg id='Final-homepage' stroke='#{$color-brand}' stroke-width='1.9' transform='translate(-622 -1391)'%3E%3Cg id='Sections-strip' transform='translate(0 1123)'%3E%3Cg id='illustration' transform='translate(279 255)'%3E%3Cg id='ilustration'%3E%3Cg id='containers' transform='translate(324)'%3E%3Cpath id='Rectangle-4' transform='translate(60.5 60.5) rotate(45) translate(-60.5 -60.5)' d='m27.541 29.334c0.156-0.725 0.871-1.441 1.588-1.597l43.966-9.579c0.722-0.158 1.731 0.138 2.259 0.663l26.826 26.828c0.52 0.522 0.82 1.536 0.66 2.254l-9.549 43.99c-0.161 0.722-0.869 1.438-1.585 1.591l-43.805 9.356c-0.719 0.16-1.725-0.14-2.25-0.67l-26.828-26.822c-0.523-0.522-0.821-1.531-0.665-2.26l9.383-43.754z'/%3E%3Cpath id='Rectangle-4' transform='translate(60.499 60.501) rotate(45) translate(-60.499 -60.501)' d='m34.229 35.983c0.156-0.725 0.864-1.439 1.589-1.598l34.428-7.5c0.722-0.158 1.738 0.141 2.253 0.659l20.958 20.953c0.521 0.522 0.815 1.527 0.662 2.254l-7.488 34.45c-0.154 0.722-0.862 1.431-1.597 1.591l-34.278 7.327c-0.725 0.154-1.739-0.147-2.258-0.668l-20.953-20.951c-0.522-0.522-0.821-1.525-0.664-2.26l7.348-34.257z'/%3E%3Cpath id='Rectangle-4' transform='translate(60.832 60.834) rotate(45) translate(-60.832 -60.834)' d='m40.994 42.693c0.154-0.719 0.861-1.428 1.587-1.587l25.265-5.504c0.722-0.158 1.738 0.139 2.26 0.663l15.295 15.296c0.522 0.523 0.823 1.532 0.662 2.257l-5.488 25.285c-0.154 0.722-0.863 1.43-1.585 1.584l-25.175 5.382c-0.719 0.153-1.727-0.147-2.252-0.669l-15.295-15.295c-0.524-0.528-0.825-1.531-0.67-2.253l5.396-25.159z'/%3E%3Cpolyline id='Path-5' points='20.771 40.697 60.523 62.939 60.226 105.69'/%3E%3Cpath id='Path-5' transform='translate(80.498 51.568) rotate(180) translate(-80.498 -51.568)' d='m100.32 40.28l-39.646 22.577 39.646-22.577z'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
+    $laptop-icon-grey: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='UTF-8' standalone='no'?%3E%3Csvg xmlns='http://www.w3.org/2000/svg' height='74px' width='98px' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 98 74'%3E%3C!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch --%3E%3Ctitle%3Elaptop%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Homepage-final' fill-rule='evenodd' fill='none'%3E%3Cg id='Final-homepage' transform='translate(-783 -1405)'%3E%3Cg id='Sections-strip' transform='translate(0 1123)'%3E%3Cg id='illustration' transform='translate(279 255)'%3E%3Cg id='ilustration'%3E%3Cg id='laptop' transform='translate(503 10)'%3E%3Cg id='svg4874'%3E%3Cg id='layer1' transform='translate(.86580 .49946)'%3E%3Cg id='g4845' transform='translate(49.441 50.542) scale(-1 1) rotate(-90) translate(-50 -49)'%3E%3Cg id='g4778' transform='translate(49.627 49) scale(-1 1) translate(-49.5 -49)'%3E%3Cg id='g4780' transform='translate(49.033 49) scale(-1 1) translate(-49 -49)'%3E%3Crect id='rect4782' transform='translate(48.541 48.802) scale(-1 1) translate(-48.541 -48.802)' height='96.873' width='96.97' y='.36550' x='.056378'/%3E%3Cpath id='path4297' stroke='%23666' stroke-width='1.9' d='m21.326 2.3841v93.845h50.505c10.101 0 9.983-3.948 10.101-14.127v-65.591c-0.118-10.178 0-14.127-10.101-14.127l-50.505 0.0001z'/%3E%3Cpath id='Combined-Shape' fill-rule='nonzero' fill='%23666' d='m16.781 43.235v-42.411c-8.0758-0.00023-7.0667 2.0192-7.0667 12.116v72.699c0 10.097-1.0091 12.116 7.0667 12.116v-42.849h-2.851v-11.671h2.851z'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
+    $laptop-icon-brand: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='UTF-8' standalone='no'?%3E%3Csvg xmlns='http://www.w3.org/2000/svg' height='74px' width='98px' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 98 74'%3E%3C!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch --%3E%3Ctitle%3Elaptop%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Homepage-final' fill-rule='evenodd' fill='none'%3E%3Cg id='Final-homepage' transform='translate(-783 -1405)'%3E%3Cg id='Sections-strip' transform='translate(0 1123)'%3E%3Cg id='illustration' transform='translate(279 255)'%3E%3Cg id='ilustration'%3E%3Cg id='laptop' transform='translate(503 10)'%3E%3Cg id='svg4874'%3E%3Cg id='layer1' transform='translate(.86580 .49946)'%3E%3Cg id='g4845' transform='translate(49.441 50.542) scale(-1 1) rotate(-90) translate(-50 -49)'%3E%3Cg id='g4778' transform='translate(49.627 49) scale(-1 1) translate(-49.5 -49)'%3E%3Cg id='g4780' transform='translate(49.033 49) scale(-1 1) translate(-49 -49)'%3E%3Crect id='rect4782' transform='translate(48.541 48.802) scale(-1 1) translate(-48.541 -48.802)' height='96.873' width='96.97' y='.36550' x='.056378'/%3E%3Cpath id='path4297' stroke='#{$color-brand}' stroke-width='1.9' d='m21.326 2.3841v93.845h50.505c10.101 0 9.983-3.948 10.101-14.127v-65.591c-0.118-10.178 0-14.127-10.101-14.127l-50.505 0.0001z'/%3E%3Cpath id='Combined-Shape' fill-rule='nonzero' fill='#{$color-brand}' d='m16.781 43.235v-42.411c-8.0758-0.00023-7.0667 2.0192-7.0667 12.116v72.699c0 10.097-1.0091 12.116 7.0667 12.116v-42.849h-2.851v-11.671h2.851z'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
+    $iot-icon-grey: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='UTF-8' standalone='no'?%3E%3Csvg xmlns='http://www.w3.org/2000/svg' height='86px' width='86px' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 86 86'%3E%3C!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch --%3E%3Ctitle%3Eiot%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Homepage-final' fill-rule='evenodd' fill='none'%3E%3Cg id='Final-homepage' transform='translate(-955 -1395)'%3E%3Cg id='Sections-strip' transform='translate(0 1123)'%3E%3Cg id='illustration' transform='translate(279 255)'%3E%3Cg id='ilustration'%3E%3Cg id='iot' transform='translate(719 60.5) scale(-1 1) translate(-50 -50.5)'%3E%3Crect id='rect4782' transform='translate(50.002 50.357) scale(-1 1) translate(-50.002 -50.357)' height='99.959' width='99.921' y='.37715' x='.041906'/%3E%3Cpath id='path4270' stroke='%23666' stroke-width='1.9' d='m38.473 31.614c-7.206 0-7.122 2.821-7.206 10.092v17.301c0.084 7.271 0 10.092 7.206 10.092h23.059c7.206 0 7.122-2.821 7.206-10.092v-17.301c-0.084-7.271 0-10.092-7.206-10.092h-23.059z'/%3E%3Cpath id='path4211' stroke='%23666' stroke-width='1.9' d='m68.737 50.357h8.327'/%3E%3Cpath id='path4213' stroke='%23666' stroke-width='1.9' d='m68.737 60.769h8.327'/%3E%3Cpath id='path4215' stroke='%23666' stroke-width='1.9' d='m68.737 39.944h8.327'/%3E%3Cpath id='path4217' stroke='%23666' stroke-width='1.9' d='m22.94 50.357h8.327'/%3E%3Cpath id='path4219' stroke='%23666' stroke-width='1.9' d='m22.94 60.769h8.327'/%3E%3Cpath id='path4221' stroke='%23666' stroke-width='1.9' d='m22.94 39.944h8.327'/%3E%3Cpath id='path4223' stroke='%23666' stroke-width='1.9' d='m50.002 31.614v-8.33'/%3E%3Cpath id='path4225' stroke='%23666' stroke-width='1.9' d='m60.411 31.614v-8.33'/%3E%3Cpath id='path4227' stroke='%23666' stroke-width='1.9' d='m39.594 31.614v-8.33'/%3E%3Cpath id='path4229' stroke='%23666' stroke-width='1.9' d='m50.002 77.429v-8.33'/%3E%3Cpath id='path4231' stroke='%23666' stroke-width='1.9' d='m60.411 77.429v-8.33'/%3E%3Cpath id='path4233' stroke='%23666' stroke-width='1.9' d='m39.594 77.429v-8.33'/%3E%3Cellipse id='path4214' ry='41.666' rx='41.617' cy='50.357' transform='translate(50.002 50.357) scale(-1 1) rotate(-90) translate(-50.002 -50.357)' stroke='%23666' cx='50.002' stroke-width='1.9'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
+    $iot-icon-brand: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='UTF-8' standalone='no'?%3E%3Csvg xmlns='http://www.w3.org/2000/svg' height='86px' width='86px' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 86 86'%3E%3C!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch --%3E%3Ctitle%3Eiot%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Homepage-final' fill-rule='evenodd' fill='none'%3E%3Cg id='Final-homepage' transform='translate(-955 -1395)'%3E%3Cg id='Sections-strip' transform='translate(0 1123)'%3E%3Cg id='illustration' transform='translate(279 255)'%3E%3Cg id='ilustration'%3E%3Cg id='iot' transform='translate(719 60.5) scale(-1 1) translate(-50 -50.5)'%3E%3Crect id='rect4782' transform='translate(50.002 50.357) scale(-1 1) translate(-50.002 -50.357)' height='99.959' width='99.921' y='.37715' x='.041906'/%3E%3Cpath id='path4270' stroke='#{$color-brand}' stroke-width='1.9' d='m38.473 31.614c-7.206 0-7.122 2.821-7.206 10.092v17.301c0.084 7.271 0 10.092 7.206 10.092h23.059c7.206 0 7.122-2.821 7.206-10.092v-17.301c-0.084-7.271 0-10.092-7.206-10.092h-23.059z'/%3E%3Cpath id='path4211' stroke='#{$color-brand}' stroke-width='1.9' d='m68.737 50.357h8.327'/%3E%3Cpath id='path4213' stroke='#{$color-brand}' stroke-width='1.9' d='m68.737 60.769h8.327'/%3E%3Cpath id='path4215' stroke='#{$color-brand}' stroke-width='1.9' d='m68.737 39.944h8.327'/%3E%3Cpath id='path4217' stroke='#{$color-brand}' stroke-width='1.9' d='m22.94 50.357h8.327'/%3E%3Cpath id='path4219' stroke='#{$color-brand}' stroke-width='1.9' d='m22.94 60.769h8.327'/%3E%3Cpath id='path4221' stroke='#{$color-brand}' stroke-width='1.9' d='m22.94 39.944h8.327'/%3E%3Cpath id='path4223' stroke='#{$color-brand}' stroke-width='1.9' d='m50.002 31.614v-8.33'/%3E%3Cpath id='path4225' stroke='#{$color-brand}' stroke-width='1.9' d='m60.411 31.614v-8.33'/%3E%3Cpath id='path4227' stroke='#{$color-brand}' stroke-width='1.9' d='m39.594 31.614v-8.33'/%3E%3Cpath id='path4229' stroke='#{$color-brand}' stroke-width='1.9' d='m50.002 77.429v-8.33'/%3E%3Cpath id='path4231' stroke='#{$color-brand}' stroke-width='1.9' d='m60.411 77.429v-8.33'/%3E%3Cpath id='path4233' stroke='#{$color-brand}' stroke-width='1.9' d='m39.594 77.429v-8.33'/%3E%3Cellipse id='path4214' ry='41.666' rx='41.617' cy='50.357' transform='translate(50.002 50.357) scale(-1 1) rotate(-90) translate(-50.002 -50.357)' stroke='#{$color-brand}' cx='50.002' stroke-width='1.9'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
     @media only screen and (min-width: $breakpoint-medium + 1) {
       clear: both;
       display: flex;
@@ -72,6 +93,7 @@
         @media only screen and (min-width: $breakpoint-medium) {
           display: block;
           text-decoration: underline;
+          color: $color-brand;
         }
       }
 
@@ -106,7 +128,7 @@
       }
 
       &--cloud {
-        background-image: url('#{$assets-path}23137566-cloud.svg');
+        background-image: $cloud-icon-grey;
 
         &::before {
           width: 2.3125rem;
@@ -116,10 +138,15 @@
           right: -$sp-large;
           width: 3.125rem;
         }
+
+        &:hover {
+          background-image: $cloud-icon-brand;
+        }
+
       }
 
       &--server {
-        background-image: url('#{$assets-path}daeaa851-server.svg');
+        background-image: $server-icon-grey;
         background-size: 5rem;
 
         &::before {
@@ -130,10 +157,14 @@
           right: -1.625rem;
           width: 3.8125rem;
         }
+
+        &:hover {
+          background-image: $server-icon-brand;
+        }
       }
 
       &--desktop {
-        background-image: url('#{$assets-path}d1978b1b-laptop.svg');
+        background-image: $laptop-icon-grey;
 
         &::before {
           width: 2.375rem;
@@ -142,6 +173,10 @@
         &::after {
           right: -$sp-large;
           width: 3.4375rem;
+        }
+
+        &:hover {
+          background-image: $laptop-icon-brand;
         }
       }
 
@@ -160,7 +195,7 @@
       }
 
       &--containers {
-        background-image: url('#{$assets-path}dead5f08-containers.svg');
+        background-image: $container-icon-grey;
         background-size: 5rem;
 
         &::before {
@@ -171,10 +206,14 @@
           right: -1.25rem;
           width: 3.125rem;
         }
+
+        &:hover {
+          background-image: $container-icon-brand;
+        }
       }
 
       &--iot {
-        background-image: url('#{$assets-path}91c70f10-iot.svg');
+        background-image: $iot-icon-grey;
         background-size: 5.3125rem;
 
         &::before {
@@ -184,6 +223,10 @@
         &::after {
           right: 1.25rem;
           width: .9375rem;
+        }
+
+        &:hover {
+          background-image: $iot-icon-brand
         }
       }
     }
