@@ -217,12 +217,6 @@
         <div class="twelve-col">
             <h2 class="muted-heading">A selection of our public cloud partners</h2>
             <ul id="public-cloud-partners" class="inline-logos no-margin dynamic-logos">
-              {% get_json_feed "http://partners.ubuntu.com/partners.json?programme=certified-public-cloud&featured=true" limit=10 as public_cloud_partners %}
-              {% for partner in public_cloud_partners %}
-                <li class="inline-logos__item">
-                  <img class="inline-logos__image" src="{{ partner.logo }}" alt="{{ partner.name }}" />
-                </li>
-              {% endfor %}
             </ul>
             <p class="align-center"><a href="http://partners.ubuntu.com/find-a-partner?programme=certified-public-cloud" class="external">See all of our public cloud partners</a></p>
         </div>
@@ -245,12 +239,6 @@
         <div class="twelve-col">
             <h2 class="muted-heading">A selection of our big data partners</h2>
             <ul id="big-data-partners" class="inline-logos no-margin dynamic-logos">
-              {% get_json_feed "http://partners.ubuntu.com/partners.json?service_offered__name=Big+data" limit=10 as big_data_partners %}
-              {% for partner in big_data_partners %}
-                <li class="inline-logos__item">
-                  <img class="inline-logos__image" src="{{ partner.logo }}" alt="{{ partner.name }}" />
-                </li>
-              {% endfor %}
             </ul>
             <p class="align-center"><a href="http://partners.ubuntu.com/find-a-partner?service-offered=big-data" class="external">See all of our big data partners</a></p>
         </div>

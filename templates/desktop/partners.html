@@ -29,12 +29,6 @@
         <div class="twelve-col">
             <h2 class="muted-heading">A selection of our desktop partners</h2>
             <ul id="hardware-partners" class="inline-logos no-margin dynamic-logos">
-              {% get_json_feed "http://partners.ubuntu.com/partners.json?programme__name=Desktop&featured=true" limit=10 as desktop_partners %}
-              {% for partner in desktop_partners %}
-                <li class="inline-logos__item">
-                  <img class="inline-logos__image" src="{{ partner.logo }}" alt="{{ partner.name }}" />
-                </li>
-              {% endfor %}
             </ul>
             <p class="align-center"><a href="http://partners.ubuntu.com/find-a-partner?service-offered=hardware-manufacturer" class="external">See all of our desktop partners</a></p>
         </div>
