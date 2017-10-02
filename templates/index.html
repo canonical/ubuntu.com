@@ -11,6 +11,8 @@
 {% include "takeovers/_livepatch.html" %}
 
 
+
+
 {% get_rss_feed "https://insights.ubuntu.com/tag/spotlight/feed" limit=1 as spotlight_feed %}
 {% if spotlight_feed %}
     {% get_rss_feed "https://insights.ubuntu.com/feed" limit=3 exclude_items_in=spotlight_feed as insights_feed %}
