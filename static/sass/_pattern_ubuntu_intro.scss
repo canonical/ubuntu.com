@@ -33,9 +33,12 @@
       float: left;
       text-align: center;
       width: 100%;
+      padding-left: 0;
+      margin-left: 0;
 
       @media only screen and (min-width: $breakpoint-medium + 1) {
         margin: 0;
+        padding-left: 1rem;
         padding-bottom: 0;
       }
     }
@@ -53,13 +56,16 @@
         background: 0;
       }
 
+      @media only screen and (max-width: 667px) and (orientation: landscape) {
+        width: 20%;
+      }
 
       @media only screen and (max-width: $breakpoint-medium) {
         width: 32%;
       }
 
-      @media only screen and (max-width: 667px) and (orientation: landscape) {
-        width: 20%;
+      @media only screen and (max-width: $breakpoint-small) {
+        width: 45%;
       }
 
       @media only screen and (min-width: $breakpoint-medium) {
