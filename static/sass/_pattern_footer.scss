@@ -32,6 +32,19 @@
       @media only screen and (min-width: $breakpoint-medium) {
         border: 0;
       }
+
+      &.u-clearfix {
+        @media only screen and (max-width: $breakpoint-medium - 1) {
+          padding-bottom: 0;
+        }
+      }
+
+      &-col.col-2 {
+        @media only screen and (max-width: $breakpoint-medium - 1) {
+          margin-top: 0;
+        }
+      }
+
     }
 
     &__divider {
@@ -54,6 +67,10 @@
       display: block;
       margin-bottom: 0;
 
+      @media only screen and (max-width: $breakpoint-medium - 1px) {
+        margin-top: 0;
+      }
+
       + .p-footer__item {
         @media only screen and (min-width: $breakpoint-medium) {
           margin-top: $sp-large;
@@ -69,7 +86,7 @@
       background-size: 13px 13px;
       border-top: 1px solid $color-mid-light;
       font-size: .8125rem;
-      padding: $sp-small 0;
+      padding: $sp-medium 0;
 
       @media only screen and (min-width: $breakpoint-medium) {
         background: none;
@@ -164,12 +181,16 @@
       li {
         margin-bottom: 0;
 
+        @media only screen and (max-width: $breakpoint-medium) {
+          margin-top: 0;
+        }
+
         a {
           border-top: 1px solid $color-mid-light;
           color: $color-dark;
           display: block;
           font-size: .8125rem;
-          padding: $sp-small $sp-small $sp-small $sp-medium;
+          padding: $sp-medium $sp-small $sp-medium;
 
           @media only screen and (min-width: $breakpoint-medium) {
             border: 0;
@@ -189,6 +210,10 @@
 
     @media only screen and (min-width: $breakpoint-medium) {
       padding: 0;
+    }
+
+    @media only screen and (max-width: $breakpoint-medium - 1px) {
+      margin-top: 0;
     }
 
     a:hover {
