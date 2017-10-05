@@ -9,8 +9,9 @@ RUN pip3 install --upgrade pip
 RUN pip3 install gunicorn
 
 # Set git commit ID
-ARG commit_id
-ENV COMMIT_ID=$commit_id
+ARG COMMIT_ID
+ENV COMMIT_ID=$COMMIT_ID
+RUN test -n "${COMMIT_ID}"
 
 # Import code, install code dependencies
 WORKDIR /srv
