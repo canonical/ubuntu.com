@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
 import os
+import socket
 import yaml
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -31,8 +32,8 @@ ALLOWED_HOSTS = ['*']
 DEBUG = os.environ.get('DJANGO_DEBUG', 'false').lower() == 'true'
 
 CUSTOM_HEADERS = {
-    'X-commit-ID': os.getenv('COMMIT_ID'),
-    'X-k8s-pod': os.getenv('K8S_POD_NAME')
+    'X-Commit-ID': os.getenv('COMMIT_ID'),
+    'X-Hostname': socket.gethostname()
 }
 
 USE_X_FORWARDED_HOST = True
