@@ -19,7 +19,7 @@
 
   .p-site-search {
     float: right;
-    margin: $sp-small 0;
+    margin: .875rem 0;
     position: absolute;
     right: $sp-large * 3;
 
@@ -67,6 +67,11 @@
       border: 0;
       box-shadow: none;
       margin-top: 0;
+
+      @media (max-width: $breakpoint-medium - 1) {
+        border-bottom: 1px solid #cdcdcd;
+      }
+      
     }
 
     &__button {
