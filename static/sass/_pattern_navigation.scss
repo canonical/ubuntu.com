@@ -17,7 +17,7 @@
     & &__toggle--open,
     & &__toggle--close {
       @media (max-width: $breakpoint-medium) {
-        top: .75rem;
+        top: .875rem;
       }
     }
 
@@ -69,6 +69,14 @@
           &:last-of-type,
           &:nth-last-child(2) {
             border-bottom: 1px solid $color-mid-light;
+          }
+
+          > a {
+            padding: $sp-small $sp-medium;
+
+            &.is-active {
+              background-color: $color-mid-light;
+            }
           }
         }
 
@@ -154,7 +162,7 @@
           color: $color-dark;
           display: inline-block;
           margin-bottom: $sp-x-small;
-          padding: $sp-x-small;
+          padding: $sp-small $sp-medium;
           width: 100%;
         }
       }
@@ -165,7 +173,8 @@
         .p-inline-list__item {
           float: left;
           margin-right: 0;
-          padding-left: $sp-xx-small;
+          margin-top: 0;
+          padding-left: $sp-x-small;
           width: 50%;
 
           .is-active {
