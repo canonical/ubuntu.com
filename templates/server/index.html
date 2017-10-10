@@ -29,15 +29,15 @@
     <div class="col-12">
       <h2>What&rsquo;s new in {{lts_release_full}}</h2>
       <ul class="p-list is-split">
-        <li class="p-list__item is-ticked">Supported for five years by Canonical</li>
-        <li class="p-list__item is-ticked">Install Ubuntu Core Snaps</li>
-        <li class="p-list__item is-ticked">ZFS stable, feature-rich file system with snapshot capabilities</li>
-        <li class="p-list__item is-ticked">First production release of DPDK &ndash; line speed kernel networking</li>
-        <li class="p-list__item is-ticked">Certification on AWS, Microsoft Azure, Joyent, IBM and HP Cloud</li>
-        <li class="p-list__item is-ticked">Linux 4.4 kernel and systemd service manager</li>
+        <li class="p-list__item is-ticked">Supported by Canonical until 2021</li>
         <li class="p-list__item is-ticked">Runs on all major architectures &ndash; x86, x86-64, ARM v7, ARM64, POWER8 and IBM s390x (LinuxONE)</li>
+        <li class="p-list__item is-ticked">Supports ZFS, the next-generation volume management/ file system ideal for servers and containers</li>
         <li class="p-list__item is-ticked">LXD Linux container hypervisor enhancements including QoS and resource controls (CPU, memory, block I/O, storage quota)</li>
-        <li class="p-list__item is-ticked">Updates to Tomcat (v8), Postgresql (v9.5), Docker v(1.10), Puppet (v3.8.5), Qemu (v2.5), Libvirt (v1.3.1), LXC (v2.0), and MySQL (v5.6)</li>
+        <li class="p-list__item is-ticked">Install snaps for simple application installation and release management</li>
+        <li class="p-list__item is-ticked">First production release of DPDK - line speed kernel networking</li>
+        <li class="p-list__item is-ticked">Linux 4.4 kernel and systemd service manager</li>
+        <li class="p-list__item is-ticked">Certification as a guest on AWS, Microsoft Azure, Joyent, IBM, RackSpace and Google</li>
+        <li class="p-list__item is-ticked">Updates to Tomcat (v8), Postgresql (v9.5), Docker v(1.10), Puppet (v3.8.5), Qemu (v2.5), Libvirt (v1.3.1), LXC (v2.0), and MySQL (v5.6) and more</li>
       </ul>
       <p><a class="p-link--external"
         href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes">Read more in the release notes
@@ -60,6 +60,7 @@
           <ul class="p-list is-split">
             <li class="p-list__item is-ticked">Management at scale</li>
             <li class="p-list__item is-ticked">Deploy or rollback security updates</li>
+            <li class="p-list__item is-ticked">Kernel livepatching</li>
             <li class="p-list__item is-ticked">Compliance reporting</li>
             <li class="p-list__item is-ticked">Role-based access</li>
             <li class="p-list__item is-ticked">Informative monitoring</li>
@@ -163,7 +164,7 @@
           <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}60bd6cf1-picto-juju.svg" alt="Juju logo" width="100" height="100" />
           <h3 class="p-heading-icon__title">Juju &mdash; application modeling</h3>
         </div>
-        <p>With the option of a command line or browser-based interface, Juju enables you to deploy entire workloads in just a few clicks. It works on public clouds like AWS and HP Cloud, private clouds built on OpenStack and even directly on bare metal, via MAAS.</p>
+        <p>With the option of a command line or browser-based interface, Juju enables you to design and deploy entire workloads in just a few clicks. It works on public clouds like AWS and Microsoft Azure, private clouds built on OpenStack and even directly on bare metal, via MAAS.</p>
         <p><a href="/cloud/juju">Learn more about Juju&nbsp;&rsaquo;</a></p>
       </div>
     </div>
@@ -173,7 +174,7 @@
           <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}261ad7cb-picto-maas.svg" alt="Maas logo" width="100" height="100" />
           <h3 class="p-heading-icon__title">MAAS &mdash; bare metal provisioning</h3>
         </div>
-        <p>MAAS is a time-saving provisioning system that makes it quick and easy to set up the physical hardware on which to deploy complex services, like Ubuntu&rsquo;s OpenStack cloud infrastructure. Just plug in your servers, connect them to the network and let MAAS do the rest. </p>
+        <p>MAAS is a time-saving provisioning system which makes it quick and easy to set up the physical hardware to deploy complex services, like Ubuntu&rsquo;s OpenStack cloud infrastructure. Just plug in your servers, connect them to the network and let MAAS do the rest.</p>
         <p><a href="/server/maas">Learn more about MAAS&nbsp;&rsaquo;</a></p>
       </div>
     </div>
@@ -217,7 +218,7 @@
     <div class="col-8">
       <h2 id="deploy-anywhere">Deploys anywhere</h2>
       <h3>Choose from the most popular public clouds</h3>
-      <p>Use Ubuntu Server in the public cloud. Ubuntu cloud guest offers all the benefits of Ubuntu Server, specially tailored for public cloud infrastructures and without any licence restrictions.</p>
+      <p>Use Ubuntu Server in the public cloud and get all the benefits of Ubuntu Server, specially tailored for public cloud infrastructures and without any licence restrictions.</p>
       <p>Ubuntu is the most widely used developer platform for open&dash;source cloud building, the reference operating system for OpenStack, and the most popular cloud guest operating system on private and public clouds globally.</p>
       <p><a href="/cloud/public-cloud/guest">Learn more about Ubuntu Cloud&nbsp;&rsaquo;</a></p>
     </div>
@@ -257,8 +258,8 @@
   <div class="row">
     <div class="col-6">
       <h2 id="the-fast-track-to-virtualisation">The fast track to virtualisation and containers</h2>
-      <p>Ready to boost efficiencies and reduce costs? Virtualise your servers with Ubuntu Server, KVM and LXD. When you use a secure, lean version of Ubuntu as a guest operating system for your application, you can create virtual machines and machine containers in seconds. KVM, LXD, Xen, VMware, Vagrant, VirtualBox, and Docker are all first class experiences with Ubuntu Server. KVM virtualisation is now also available in Ubuntu Server for ARM and IBM POWER8.</p>
-      <p>Canonical supports an open ecosystem of operating system intercompatibility. By providing choice, users of Ubuntu for both servers and clouds are empowered to succeed with any workload. We encourage others to do the same and offer support for all (currently supported) versions of Ubuntu Server running on other virtualisation platforms, including KVM on other commercially available Linux distributions, VMware vSphere, and Microsoft Hyper&#8209;V.</p>
+      <p>Ready to boost efficiencies and reduce costs? Virtualise your servers with Ubuntu Server, KVM and LXD. When you use a secure, lean version of Ubuntu as a guest operating system for your application, you can create virtual machines and machine containers in seconds. KVM, LXD, Xen, VMware, Vagrant, VirtualBox, and Docker are all first class experiences with Ubuntu Server. Ubuntu Server now supports KVM on ARM and IBM POWER8 architectures.</p>
+      <p>Canonical believes in choice - that's why we support an open ecosystem of operating system intercompatibility. By providing choice, users of Ubuntu for both servers and clouds are empowered to succeed with any workload. We encourage others to do the same and offer support for all (currently supported) versions of Ubuntu Server running on other virtualisation platforms, including KVM on other commercially available Linux distributions, VMware vSphere, and Microsoft Hyper&#8209;V.</p>
     </div>
     <div class="col-6">
       <table>
