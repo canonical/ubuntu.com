@@ -1,0 +1,27 @@
+@mixin p-takeover-1710-release {
+  .p-takeover--1710-release {
+    width: auto;
+    background-color: $color-accent-background;
+    margin: $sp-small;
+    background-image: url('#{$assets-path}ab1a7e82-background.png');
+    background-size: cover;
+
+    @media (min-width: $breakpoint-medium) {
+      margin: $sp-medium;
+      height: auto;
+    }
+
+    @media (min-width: 1200px) {
+      margin: $sp-x-large;
+      background-image: url('#{$assets-path}88633fdf-takeover.16.10.background.desktop.png');
+    }
+  }
+
+  .flavour-text {
+    font-weight: 400;
+  }
+
+  .laptop-image--small {
+    padding: 10% 0;
+  }
+}
