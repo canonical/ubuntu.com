@@ -3,17 +3,18 @@
     width: auto;
     background-color: $color-accent-background;
     margin: $sp-small;
-    background-image: url('#{$assets-path}57435eba-17.10-takeover-wallpaper.png');
+    background-image: url('#{$assets-path}f609071d-17.10_aardvark_wp_4096x2304.png?w=768');
     background-size: cover;
 
     @media (min-width: $breakpoint-medium) {
       margin: $sp-medium;
       height: auto;
+      background-image: url('#{$assets-path}f609071d-17.10_aardvark_wp_4096x2304.png?w=984')
     }
 
     @media (min-width: 1200px) {
       margin: $sp-x-large;
-      background-image: url('#{$assets-path}57435eba-17.10-takeover-wallpaper.png');
+      background-image: url('#{$assets-path}f609071d-17.10_aardvark_wp_4096x2304.png?w=2000');
     }
   }
 
