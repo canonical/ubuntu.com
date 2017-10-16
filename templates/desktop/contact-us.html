@@ -4,9 +4,14 @@
 {% block meta_description %}Fast, easy and quick to deploy, switching to Ubuntu has never been easier{% endblock %}
 
 {% block content %}
+  {% if product == 'desktop-education' %}
+    {% include "shared/_client-contact-us-form.html" with h1="Contact us"  intro_text="Considering Ubuntu for your school or university? Are you interested in cost-effective systems management and professional support?" formid="1253" lpId="1409"  returnURL="https://www.ubuntu.com/desktop/thank-you" side1="shared/forms/_desktop_help.html" side2="shared/forms/_desktop_ua-shop.html" %}
 
-{% include "shared/_client-contact-us-form.html" with h1="Contact us"  intro_text="Considering Ubuntu for your organisation? Are you interested in cost-effective systems management and professional support?" formid="1253" lpId="1409"  returnURL="https://www.ubuntu.com/desktop/thank-you" side1="shared/forms/_desktop_help.html" side2="shared/forms/_desktop_ua-shop.html" %}
+  {% else %}
 
+    {% include "shared/_client-contact-us-form.html" with h1="Contact us"  intro_text="Considering Ubuntu for your organisation? Are you interested in cost-effective systems management and professional support?" formid="1253" lpId="1409"  returnURL="https://www.ubuntu.com/desktop/thank-you" side1="shared/forms/_desktop_help.html" side2="shared/forms/_desktop_ua-shop.html" %}
+
+  {% endif %}
 {% endblock content %}
 {% block footer_extra %}
 <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
