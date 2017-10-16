@@ -3,7 +3,7 @@
     width: auto;
     background-color: $color-accent-background;
     margin: $sp-small;
-    background-image: url('#{$assets-path}ab1a7e82-background.png');
+    background-image: url('#{$assets-path}57435eba-17.10-takeover-wallpaper.png');
     background-size: cover;
 
     @media (min-width: $breakpoint-medium) {
@@ -13,7 +13,13 @@
 
     @media (min-width: 1200px) {
       margin: $sp-x-large;
-      background-image: url('#{$assets-path}88633fdf-takeover.16.10.background.desktop.png');
+      background-image: url('#{$assets-path}57435eba-17.10-takeover-wallpaper.png');
+    }
+  }
+
+  .takeover-title {
+    @media (max-width: $breakpoint-medium - 1) {
+      font-size: 2.5rem;
     }
   }
 
