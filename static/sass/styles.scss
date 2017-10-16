@@ -184,15 +184,6 @@ abbr[title] {
   }
 }
 
-/// XXX responsive bottom margin
-.u-less-margin--bottom {
-  margin-bottom: .5rem;
-
-  @media (min-width: $breakpoint-medium ) {
-    margin-bottom: 1rem;
-  }
-}
-
 /// XXX Override for p-strip--image to hide the background at small viewports
 .u-no-background--small {
   @media (max-width: $breakpoint-medium) {
