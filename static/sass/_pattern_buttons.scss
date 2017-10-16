@@ -2,4 +2,11 @@
   [class*='p-button'].is-wide {
     width: 100%;
   }
+
+  // XXX Ant: 16.10.17 - Can be removed when the following issue is resolved:
+  // https://github.com/vanilla-framework/vanilla-framework/issues/1378
+  [class^='p-strip'] .p-button--brand .p-link--external,
+  .p-strip--accent .p-link--external {
+    color: $color-x-light;
+  }
 }

@@ -93,22 +93,6 @@
   padding-top: $sp-medium;
 }
 
-// XXX Utility to add bottom padding
-// Proposal for inlcusion in vanilla:
-// https://github.com/vanilla-framework/vanilla-framework/issues/1091
-.u-padding-bottom {
-
-  padding-bottom: $sp-medium;
-
-  &--large {
-    padding-bottom: $sp-large;
-  }
-
-  &--x-large {
-    padding-bottom: $sp-x-large;
-  }
-}
-
 /// XXX remove abbr `text-decoration: underline dotted;`
 /// add to :hover
 /// from [normalize.css](https://github.com/necolas/normalize.css/blob/master/normalize.css)
@@ -202,15 +186,6 @@ abbr[title] {
   }
 }
 
-/// XXX responsive bottom margin
-.u-less-margin--bottom {
-  margin-bottom: .5rem;
-
-  @media (min-width: $breakpoint-medium ) {
-    margin-bottom: 1rem;
-  }
-}
-
 /// XXX Override for p-strip--image to hide the background at small viewports
 .u-no-background--small {
   @media (max-width: $breakpoint-medium) {
@@ -233,4 +208,12 @@ abbr[title] {
 // https://github.com/vanilla-framework/vanilla-framework/issues/1337
 .p-list.is-split .p-list__item:last-of-type {
   border-bottom: 0;
+}
+
+// XXX Ant: 16.10.17 - Can be removed when this issue has been resolved.
+// https://github.com/vanilla-framework/vanilla-framework/issues/1379
+.u-image-position {
+  @media (min-width: $breakpoint-medium) {
+    overflow: hidden;
+  }
 }
