@@ -1,20 +1,20 @@
 @mixin p-takeover-1710-release {
   .p-takeover--1710-release {
-    width: auto;
     background-color: $color-accent-background;
-    margin: $sp-small;
     background-image: url('#{$assets-path}f609071d-17.10_aardvark_wp_4096x2304.png?w=768');
     background-size: cover;
+    margin: $sp-small;
+    width: auto;
 
     @media (min-width: $breakpoint-medium) {
-      margin: $sp-medium;
+      background-image: url('#{$assets-path}f609071d-17.10_aardvark_wp_4096x2304.png?w=984');
       height: auto;
-      background-image: url('#{$assets-path}f609071d-17.10_aardvark_wp_4096x2304.png?w=984')
+      margin: $sp-medium;
     }
 
     @media (min-width: 1200px) {
-      margin: $sp-x-large;
       background-image: url('#{$assets-path}f609071d-17.10_aardvark_wp_4096x2304.png?w=2000');
+      margin: $sp-x-large;
     }
   }
 
