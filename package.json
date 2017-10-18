@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "sass-lint static/**/*.scss --verbose --no-exit",
-    "build": "node-sass --include-path node_modules static/sass --output static/css && postcss --use autoprefixer --replace static/css/styles.css && postcss static/css/styles.css --use cssnano > static/css/styles.min.css",
-    "watch": "watch -p 'static/sass/*.scss' -c 'yarn run build'",
-    "clean": "rm -rf node_modules yarn-error.log static/css *.log *.sqlite _site/ build/ .jekyll-metadata"
+    "build": "node-sass --include-path node_modules static/sass --output static/css && postcss --use autoprefixer --replace static/css/**/*.css && postcss --use cssnano --dir static/css/minified static/css/**/*.css",
+    "watch": "watch -p 'static/sass/**/*.scss' -c 'yarn run build'",
+    "clean": "rm -rf node_modules yarn-error.log css static/css *.log *.sqlite _site/ build/ .jekyll-metadata .bundle"
   },
   "keywords": [
     "website",
@@ -16,12 +16,16 @@
   "author": "Canonical webteam",
   "license": "LGPL v3",
   "devDependencies": {
-    "cssnano": "^3.10.0",
-    "node-sass": "^4.5.3",
     "postcss-cli": "^4.1.0",
-    "sass-lint": "^1.10.2",
     "vanilla-framework": "1.6.x",
-    "watch-cli": "^0.2.2",
     "global-nav": "^0.1.3"
+  },
+  "dependencies": {
+    "watch-cli": "^0.2.2",
+    "sass-lint": "^1.10.2",
+    "postcss-cli": "^4.1.0",
+    "node-sass": "^4.5.3",
+    "cssnano": "^3.10.0",
+    "autoprefixer": "^6.3.1"
   }
 }
