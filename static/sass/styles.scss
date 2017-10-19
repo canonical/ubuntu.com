@@ -63,8 +63,11 @@
 @include ubuntu-p-takeunders;
 @include ubuntu-p-tables;
 
-@import 'takeovers/enterprise-kubernetes';
-@include p-takeover-enterprise-kubernetes;
+@import 'takeovers/1710-release';
+@include p-takeover-1710-release;
+
+@import 'takeovers/1710-release';
+@include p-takeover-1710-release;
 
 // Bug fixes
 // Each of the the rules below are bug fixes which need to be addressed further upstream
@@ -216,4 +219,10 @@ abbr[title] {
   @media (min-width: $breakpoint-medium) {
     overflow: hidden;
   }
+}
+
+// XXX Karl: 19.10.17
+// VF 1.6.0 is missing this
+.p-link--external::after {
+  -webkit-mask-size: cover;
 }
