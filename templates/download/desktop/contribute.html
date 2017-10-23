@@ -119,7 +119,7 @@
           <input type="hidden" name="cancel_return" value="http://{{ http_host }}/download/desktop/thank-you?version={{ version }}&amp;architecture={{ architecture }}">
 
           <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
-          <button type="submit" class="contribute__submit p-button--brand" tabindex="9">Pay with PayPal</button> {% if start_download %}
+          <button type="submit" class="contribute__submit p-button--positive" tabindex="9">Pay with PayPal</button> {% if start_download %}
           <a href="/download/desktop/thank-you?version={{ version }}&amp;architecture={{ architecture }}" class="contribute__skip" tabindex="11">Not now, take me to the download&nbsp;&rsaquo;</a> {% endif %}
         </div>
       </form>
@@ -253,10 +253,10 @@
 
     if (skip) {
       if (total == 0) {
-        skip.classList.add('p-button--brand');
+        skip.classList.add('p-button--positive');
         submit.classList.add('u-hidden');
       } else {
-        skip.classList.remove('p-button--brand');
+        skip.classList.remove('p-button--positive');
         submit.classList.remove('u-hidden');
       }
     } else {
