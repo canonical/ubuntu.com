@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<div class="p-strip--image is-deep is-dark" style="background-image:url('https://assets.ubuntu.com/v1/728c5851-Yakkety_Yak-Wallpaper_8192x4608_aubergine_wider.jpg');">
+<section class="p-strip--image is-deep is-dark" style="background-image:url('https://assets.ubuntu.com/v1/728c5851-Yakkety_Yak-Wallpaper_8192x4608_aubergine_wider.jpg');">
   <div class="row u-equal-height">
     <div class="col-8">
       <h1>Ubuntu 12.04 ESM</h1>
@@ -17,29 +17,43 @@
       <img src="{{ ASSET_SERVER_URL }}9e59756d-shield-ESM.svg" width="150" alt="" />
     </div>
   </div>
-</div>
+</section>
 
 {% include "shared/_call-sales.html" %}
 
-<div class="p-strip is-deep is-bordered">
+<section class="p-strip is-deep is-bordered">
   <div class="row">
-    <div class="col-8 suffix-1">
+    <div class="col-8">
       <h2>Benefits of ESM</h2>
       <p>All Ubuntu 12.04 LTS users are encouraged to upgrade to Ubuntu 16.04 LTS. But for those who cannot upgrade immediately, Ubuntu 12.04 ESM updates will help ensure the on-going security and integrity of their LTS systems.</p>
       <p>Canonical&rsquo;s Ubuntu security team provide fixes on high and critical CVEs (common vulnerabilities and exposures) for the most commonly used server packages in the Ubuntu main archive. ESM provides the essential continuation of the security updates that Ubuntu 12.04 LTS users have always received via a secure, private archive.</p>
-      <p><a href="https://wiki.ubuntu.com/SecurityTeam/ESM/12.04" class="p-link--external">Learn which server packages are maintained</a></p>
-    </div>
-    <div class="col-4 p-card--highlighted">
-      <h3 class="p-card__title">Ubuntu 12.04 ESM FAQ</h3>
-      <p class="p-card__content">Answers to your most frequently asked questions about Ubuntu 12.04 ESM.</p>
-      <footer class="p-card__footer">
-        <a href="https://insights.ubuntu.com/2017/04/11/faqs-ensuring-the-ongoing-security-compliance-of-ubuntu/" title="Read the Ubuntu 12.04 ESM FAQs" class="p-link--external">Read the FAQs</a>
-      </footer>
     </div>
   </div>
-</div>
+</section>
 
-<div class="p-strip--light is-deep is-bordered">
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-10">
+      <h2>Resources</h2>
+    </div>
+  </div>
+  <div class="row p-divider u-equal-height u-vertically-spaced">
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four"><a href="https://pages.ubuntu.com/Cloud_CS_ITstrategen.html" class="p-link--external">ITstrategen case study</a></h4>
+      <p>Learn how ITstrategen keeps legacy applications secure with ESM.</p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four"><a href="https://insights.ubuntu.com/2017/04/11/faqs-ensuring-the-ongoing-security-compliance-of-ubuntu/" class="p-link--external">Ubuntu 12.04 ESM FAQs</a></h4>
+      <p>Answers to your most frequently asked questions about Ubuntu 12.04 ESM.</p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four"><a href="https://wiki.ubuntu.com/SecurityTeam/ESM/12.04" class="p-link--external">Ubuntu 12.04 ESM &mdash; what&rsquo;s&nbsp;covered?</a></h4>
+      <p>Learn which server packages are maintained.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-deep is-bordered">
   <div class="row">
     <div class="col-10">
       <h2>Three ways to get ESM through Ubuntu Advantage</h2>
@@ -48,7 +62,7 @@
   <div class="row p-divider u-equal-height u-vertically-spaced">
     <div class="col-4 p-divider__block">
       <h4>Buy direct from the store</h4>
-      <p>Users interested in Ubuntu 12.04 ESM updates can purchase Ubuntu Advantage from our online store.</a>.</p>
+      <p>Users interested in Ubuntu 12.04 ESM updates can purchase Ubuntu Advantage from our online store.</p>
       <p><a href="https://buy.ubuntu.com/" class="p-link--external">Purchase at buy.ubuntu.com</a></p>
     </div>
     <div class="col-4 p-divider__block">
@@ -67,9 +81,9 @@
       <p><a href="/support/contact-us?product=server-esm">Any questions, contact us&nbsp;&rsaquo;</a></p>
     </div>
   </div>
-</div>
+</section>
 
-<div class="p-strip is-deep is-bordered">
+<section class="p-strip is-deep is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>How to enable ESM on your system</h2>
@@ -84,9 +98,9 @@
       </p>
     </div>
   </div>
-</div>
+</section>
 
-<div class="p-strip--light is-deep">
+<section class="p-strip--light is-deep">
   <div class="row">
     <div class="col-3 u-hidden--small">
       <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="140" alt="" />
@@ -97,8 +111,7 @@
       <p>Or <a href="https://buy.ubuntu.com" class="p-link--external">visit the Ubuntu Advantage store</a></p>
     </div>
   </div>
-</div>
-
+</section>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
 
