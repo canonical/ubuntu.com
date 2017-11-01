@@ -127,7 +127,6 @@
 
     @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
       border-top: 1px solid $color-mid-light;
-      white-space: nowrap;
     }
 
     &__row {
@@ -197,7 +196,7 @@
     }
 
     &__menu {
-      display: inline-block;
+      display: inline;
       margin-top: 0;
       position: relative;
 
@@ -221,7 +220,6 @@
       background: $color-light;
       border-bottom: 1px solid $color-mid-light;
       padding: $sp-x-small 0 $sp-small;
-      white-space: nowrap;
 
       .p-breadcrumbs__item {
         margin-bottom: 0;
@@ -231,9 +229,8 @@
         color: $color-mid-dark;
         content: '\203A';
         font-weight: 400;
-        left: -$sp-small;
+        left: -$sp-medium;
         position: absolute;
-        top: 0;
       }
 
       .p-breadcrumbs__link {
