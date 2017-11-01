@@ -1,0 +1,8 @@
+@mixin global-u-focus($color: $global-focus, $width: 1px, $offset: 2px) {
+  &:focus,
+  &:active {
+    outline: $width solid $color;
+    outline-offset: $offset;
+  }
+}
+
