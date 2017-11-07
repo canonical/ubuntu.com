@@ -1,0 +1,34 @@
+@mixin p-takeover-ues {
+  .p-takeover--ues {
+    background-color: $color-brand;
+    background-image: url('#{$assets-path}f609071d-17.10_aardvark_wp_4096x2304.png?w=768');
+    background-size: cover;
+    margin: $sp-small;
+    width: auto;
+
+    @media (min-width: $breakpoint-medium) {
+      background-image: url('#{$assets-path}f609071d-17.10_aardvark_wp_4096x2304.png?w=984');
+      height: auto;
+      margin: $sp-medium;
+    }
+
+    @media (min-width: 1200px) {
+      background-image: url('#{$assets-path}f609071d-17.10_aardvark_wp_4096x2304.png?w=2000');
+      margin: $sp-x-large;
+    }
+  }
+
+  .takeover-title {
+    @media (max-width: $breakpoint-medium - 1) {
+      font-size: 2.5rem;
+    }
+  }
+
+  .intro-text {
+    font-size: 1.25rem;
+  }
+
+  .laptop-image--small {
+    padding: 10% 0;
+  }
+}
