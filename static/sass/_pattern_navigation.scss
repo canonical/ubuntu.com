@@ -127,6 +127,7 @@
 
     @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
       border-top: 1px solid $color-mid-light;
+      white-space: nowrap;
     }
 
     &__row {
@@ -196,7 +197,7 @@
     }
 
     &__menu {
-      display: inline;
+      display: inline-block;
       margin-top: 0;
       position: relative;
 
