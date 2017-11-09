@@ -127,6 +127,7 @@
 
     @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
       border-top: 1px solid $color-mid-light;
+      white-space: nowrap;
     }
 
     &__row {
@@ -196,7 +197,7 @@
     }
 
     &__menu {
-      display: inline;
+      display: inline-block;
       margin-top: 0;
       position: relative;
 
@@ -220,6 +221,7 @@
       background: $color-light;
       border-bottom: 1px solid $color-mid-light;
       padding: $sp-x-small 0 $sp-small;
+      white-space: nowrap;
 
       .p-breadcrumbs__item {
         margin-bottom: 0;
@@ -346,8 +348,15 @@
     white-space: normal;
     width: 85%;
 
-    .p-inline-list__item {
-      font-size: .875rem;
+    .p-inline-list {
+
+      &__item {
+        font-size: .875rem;
+      }
+
+      &__link {
+        padding-left: $sp-medium;
+      }
     }
 
     @media (max-width: $breakpoint-medium - 1) {
