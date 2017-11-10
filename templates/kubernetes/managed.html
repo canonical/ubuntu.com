@@ -1,0 +1,166 @@
+{% extends "kubernetes/base_kubernetes.html" %}
+{% block title %}Managed Kubernetes | Kubernetes{% endblock %}
+{% block meta_description %}With managed kubernetes, Canonical will build, support and manage your cluster for only $4 per node per day.{% endblock meta_description %}
+{% block extra_body_class %}kubernetes{% endblock %}
+
+
+{% block content %}
+
+  <section class="p-strip--accent is-deep">
+    <div class="row u-equal-height u-vertically-center">
+      <div class="col-7">
+        <h1>Managed Kubernetes</h1>
+        <p>Focus on your business while Canonical takes care of building and running your Kubernetes infrastructure.
+        Canonical will set-up and operate your Kubernetes cluster for you, with in-house experts on-hand at all times to stand-up and scale your cluster. And, when you&rsquo;re ready, we will hand over operational control.</p>
+        <ul>
+          <li>Fully managed Kubernetes on your bare metal, VMWare, OpenStack or any public cloud</li>
+          <li>Built in two weeks using a proven reference architecture with our <a class="p-link--inverted" href="/kubernetes">Kubernetes consulting packages</a></li>
+          <li>Customise the architecture in iterations based on workloads</li>
+          <li>Enterprise class SLA for the infrastructure, upgrades included</li>
+          <li>Monitoring and log management integration</li>
+          <li>When you&rsquo;re ready, we will hand over the keys</li>
+        </ul>
+        <p><a href="/containers/contact-us?product=containers-managed-kubernetes" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Schedule a Kubernetes demo', 'eventLabel' : 'Schedule a Kubernetes demo - Top CTA' : undefined });" class="p-button--positive">Schedule a Kubernetes demo</a></p>
+      </div>
+      <div class="col-5 u-align--center u-hidden--small">
+        <img src="{{ ASSET_SERVER_URL }}35b71a5e-K8s-cloud.svg" alt="Kubernetes Managed Service Provider" />
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip--light is-bordered">
+    <div class="row p-divider u-equal-height">
+      <div class="col-4 p-divider__block">
+        <h2 class="p-heading--three">Predictable costs</h2>
+        <p>Predictable capital expenditures (CAPEX) and predictable operating expenses (OPEX) means the benefits of long-term density accrue to your bottom line directly.</p>
+      </div>
+      <div class="col-4 p-divider__block">
+        <h2 class="p-heading--three">Built to last</h2>
+        <p>Every K8s cluster built by Canonical is always automatically upgradable to newer versions. Absolutely no snowflakes!</p>
+      </div>
+      <div class="col-4 p-divider__block">
+        <h2 class="p-heading--three">24 hours a day, everyday</h2>
+        <p>Our world-class customer success team provides a fully managed service all the time so you can focus on your business,  while we focus on your workloads.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip is-bordered">
+    <div class="row">
+      <h2>Getting started with Canonical Distribution of Kubernetes</h2>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="u-embedded-media">
+          <iframe class="u-embedded-media__element" width="453" height="255" src="https://player.vimeo.com/video/190300823?byline=0&portrait=0" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip--light is-bordered">
+    <div class="row">
+      <h2>Managed Kubernetes in 3 steps</h2>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <ol class="p-list-step">
+          <li class="p-list-step__item">
+            <h3 class="p-list-step__title">
+              <span class="p-list-step__bullet">1</span>
+              We build your cluster
+            </h3>
+            <p>Together, we design your Kubernetes cluster based on your workloads, hardware, technology, scale, roadmap, applications and monitoring system.</p>
+          </li>
+
+          <li class="p-list-step__item">
+            <h3 class="p-list-step__title">
+              <span class="p-list-step__bullet">2</span>
+              We operate your Kubernetes cluster
+            </h3>
+            <p>We take full responsibility for the management and 24 hour availability of your Kubernetes. Your SLA covers uptime, your hardware and software are monitored and you can scale on demand with upgrades included.</p>
+          </li>
+
+          <li class="p-list-step__item">
+            <h3 class="p-list-step__title">
+              <span class="p-list-step__bullet">3</span>
+              We transfer control
+            </h3>
+            <p>On request, we’ll give you the keys. We offer training and a handover process with on-site dedicated operations engineers to ensure a smooth handover.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip is-bordered">
+    <div class="row">
+      <h2>Features</h2>
+      <div class="col-8">
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">As Kubernetes evolves, your private cloud can be upgraded  on request   without down-time.</li>
+          <li class="p-list__item is-ticked">When you want to scale your cluster, just call to let us know there are additional machines in   the DC or virtualisation environment and we’ll expand your Kubernetes with zero down time.</li>
+          <li class="p-list__item is-ticked">Architectural flexibility: Canonical works with the widest range of SDN’s and SDS, including   Calico, Weave, Flannel, Ceph and NFS.</li>
+          <li class="p-list__item is-ticked">As the publisher of Ubuntu, Canonical full stack support all the way down to the kernel.</li>
+          <li class="p-list__item is-ticked">Real-time login integration with your existing monitoring suite and your corporate Active  Directory or LDAP infrastructure means better security and happier users.</li>
+          <li class="p-list__item is-ticked">Your guaranteed Service Level Agreement in underpinned by our expertise and our operations are certified, with regular independent audits.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip--light is-deep is-bordered">
+    <div class="row">
+      <div class="row p-divider">
+        <div class="col-4 p-divider__block">
+          <div class="p-heading-icon u-no-margin--bottom">
+            <div class="p-heading-icon__header u-no-margin--bottom">
+              <img class="p-heading-icon__img p-heading-icon__img--small" src="{{ ASSET_SERVER_URL }}75902002-news-feed-strip-stock_ebook.svg" alt="" />
+              <h3 class="p-heading-icon__title p-heading-icon__title--muted p-muted-heading">Datasheet</h3>
+            </div>
+          </div>
+          <h2 class="p-heading--four"><a class="p-link--external" href="https://assets.ubuntu.com/v1/b35eca50-Enterprise-Kubernetes-datasheet.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Kubernetes for the enterprise', 'eventLabel' : 'Resources - Kubernetes for the enterprise', 'eventValue' : undefined });">Kubernetes for the enterprise</a></h2>
+        </div>
+        <div class="col-4 p-divider__block">
+          <div class="p-heading-icon u-no-margin--bottom">
+            <div class="p-heading-icon__header u-no-margin--bottom">
+              <img class="p-heading-icon__img p-heading-icon__img--small" src="{{ ASSET_SERVER_URL }}26797d10-newsfeed-stripvideo-icon.svg" alt="" />
+              <h3 class="p-heading-icon__title p-heading-icon__title--muted p-muted-heading">Webinar</h3>
+            </div>
+          </div>
+          <h2 class="p-heading--four"><a class="p-link--external" href="https://pages.ubuntu.com/03.UpgradingK8sclusters_LPOn-demandwebinar.html?utm_source=ubuntu.com&utm_medium=website&utm_campaign=On-demand%20webinar%20--%20Painless%20Kubernetes%20upgrades" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Painless Kubernetes upgrades', 'eventLabel' : 'Resources - Painless Kubernetes upgrades', 'eventValue' : undefined });">Painless Kubernetes upgrades</a></h2>
+        </div>
+        <div class="col-4 p-divider__block">
+          <div class="p-heading-icon u-no-margin--bottom">
+            <div class="p-heading-icon__header u-no-margin--bottom">
+              <img class="p-heading-icon__img p-heading-icon__img--small" src="{{ ASSET_SERVER_URL }}75902002-news-feed-strip-stock_ebook.svg" alt="" />
+              <h3 class="p-heading-icon__title p-heading-icon__title--muted p-muted-heading">Whitepaper</h3>
+            </div>
+          </div>
+          <h2 class="p-heading--four"><a class="p-link--external" href="https://pages.ubuntu.com/container-whitepaper.html" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'The no-nonsense way to accelerate your business with containers', 'eventLabel' : 'Resources - The no-nonsense way to accelerate your business with containers ', 'eventValue' : undefined });">The no-nonsense way to accelerate your business with containers</a></h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip is-bordered">
+    <div class="row">
+      <div class="col-8">
+        <h2>Pricing</h2>
+        {% include "shared/pricing/_kubernetes-managed.html" %}
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip--light">
+    <div class="row">
+      <div class="col-8">
+        <p>Talk to Canonical&rsquo;s remote operations team about building and operating your Kubernetes cluster today.</p>
+        <p><a href="/containers/contact-us?product=containers-managed-kubernetes" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Schedule a Kubernetes demo', 'eventLabel' : 'Schedule a Kubernetes demo - Bottom CTA' : undefined });">Schedule a Kubernetes demo</a></p>
+      </div>
+    </div>
+  </section>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_containers_juju" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
+
+{% endblock content %}
