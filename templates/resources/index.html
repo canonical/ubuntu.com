@@ -20,12 +20,19 @@
     <h2>Case studies</h2>
     {% if case_studies is False %}
     <div class="p-notification--negative">
-      <p class="p-notification__response"><span class="p-notification__status">Error:</span>The live news feed failed to load. Please <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new" class="external">report this bug</a> and our team will fix the problem as soon as&nbsp;possible.</p>
+      <p class="p-notification__response"><span class="p-notification__status">Error:</span>The live news feed failed to load. Please <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new" class="p-link--external">report this bug</a> and our team will fix the problem as soon as&nbsp;possible.</p>
     </div>
     {% else %}
+    {% if case_studies|length is 0 %}
+    <div class="p-notification--information">
+      <p class="p-notification__response">
+        <span class="p-notification__status">Information:</span> There were no results found for this category
+      </p>
+    </div>
+    {% endif %}
     <ul class='p-list'>
       {% for item in case_studies %}
-        <li class="p-list__item"><a href="{{item.link}}">{{item.title.rendered | safe}}&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="{{item.link}}" class="p-link--external">{{item.title.rendered | safe}}</a></li>
       {% endfor %}
     </ul>
     {% endif %}
@@ -38,12 +45,19 @@
     <h2>Webinars</h2>
     {% if webinars is False %}
     <div class="p-notification--negative">
-      <p class="p-notification__response"><span class="p-notification__status">Error:</span>The live news feed failed to load. Please <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new" class="external">report this bug</a> and our team will fix the problem as soon as&nbsp;possible.</p>
+      <p class="p-notification__response"><span class="p-notification__status">Error:</span>The live news feed failed to load. Please <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new" class="p-link--external">report this bug</a> and our team will fix the problem as soon as&nbsp;possible.</p>
     </div>
     {% else %}
+    {% if webinars|length is 0 %}
+    <div class="p-notification--information">
+      <p class="p-notification__response">
+        <span class="p-notification__status">Information:</span> There were no results found for this category
+      </p>
+    </div>
+    {% endif %}
     <ul class='p-list'>
       {% for item in webinars %}
-        <li class="p-list__item"><a href="{{item.link}}">{{item.title.rendered | safe}}&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="{{item.link}}" class="p-link--external">{{item.title.rendered | safe}}</a></li>
       {% endfor %}
     </ul>
     {% endif %}
@@ -56,12 +70,19 @@
     <h2>White papers</h2>
     {% if white_papers is False %}
     <div class="p-notification--negative">
-      <p class="p-notification__response"><span class="p-notification__status">Error:</span>The live news feed failed to load. Please <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new" class="external">report this bug</a> and our team will fix the problem as soon as&nbsp;possible.</p>
+      <p class="p-notification__response"><span class="p-notification__status">Error:</span>The live news feed failed to load. Please <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new" class="p-link--external">report this bug</a> and our team will fix the problem as soon as&nbsp;possible.</p>
     </div>
     {% else %}
+    {% if white_papers|length is 0 %}
+    <div class="p-notification--information">
+      <p class="p-notification__response">
+        <span class="p-notification__status">Information:</span> There were no results found for this category
+      </p>
+    </div>
+    {% endif %}
     <ul class='p-list'>
       {% for item in white_papers %}
-        <li class="p-list__item"><a href="{{item.link}}">{{item.title.rendered | safe}}&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="{{item.link}}" class="p-link--external">{{item.title.rendered | safe}}</a></li>
       {% endfor %}
     </ul>
     {% endif %}
@@ -74,12 +95,19 @@
     <h2>Tutorials</h2>
     {% if tutorials is False %}
     <div class="p-notification--negative">
-      <p class="p-notification__response"><span class="p-notification__status">Error:</span>The live news feed failed to load. Please <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new" class="external">report this bug</a> and our team will fix the problem as soon as&nbsp;possible.</p>
+      <p class="p-notification__response"><span class="p-notification__status">Error:</span>The live news feed failed to load. Please <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new" class="p-link--external">report this bug</a> and our team will fix the problem as soon as&nbsp;possible.</p>
     </div>
     {% else %}
+    {% if tutorials|length is 0 %}
+    <div class="p-notification--information">
+      <p class="p-notification__response">
+        <span class="p-notification__status">Information:</span> There were no results found for this category
+      </p>
+    </div>
+    {% endif %}
     <ul class='p-list'>
       {% for item in tutorials %}
-        <li class="p-list__item"><a href="{{item.link}}">{{item.title.rendered | safe}}&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="{{item.link}}" class="p-link--external">{{item.title.rendered | safe}}</a></li>
       {% endfor %}
     </ul>
     {% endif %}
