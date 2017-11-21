@@ -19,16 +19,16 @@
         <h2>Ubuntu Server</h2>
         <ul class="p-list">
           <li class="p-list__item"><a href="http://cdimage.ubuntu.com/releases/14.04.5/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER8 server', 'eventLabel' : '14.04.5', 'eventValue' : undefined });">14.04.5&nbsp;&rsaquo;</a></li>
-          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/releases/{{lts_release}}/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER8 server', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">{{lts_release_full_with_point}}&nbsp;&rsaquo;</a></li>
-          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/releases/{{latest_release_full}}/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER8 server', 'eventLabel' : '{{latest_release_full}}', 'eventValue' : undefined });">{{latest_release_full}}&nbsp;&rsaquo;</a></li>
+          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/releases/{{lts_release}}/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER8 server', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">{{lts_release_full_with_point}} {{lts_release_eol}}&nbsp;&rsaquo;</a></li>
+          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/releases/{{latest_release_full}}/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER8 server', 'eventLabel' : '{{latest_release_full}}', 'eventValue' : undefined });">{{latest_release_full}} {{lts_release_eol}}&nbsp;&rsaquo;</a></li>
         </ul>
       </div>
       <div class="col-6">
         <h2>Netboot image</h2>
         <ul class="p-list">
           <li class="p-list__item"><a href="http://cdimage.ubuntu.com/netboot/14.04.5/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER8 netboot', 'eventLabel' : '14.04.5', 'eventValue' : undefined });">14.04.5&nbsp;&rsaquo;</a></li>
-          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/netboot/{{lts_release}}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER8 netboot', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">{{lts_release_full_with_point}}&nbsp;&rsaquo;</a></li>
-          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/netboot/{{latest_release_full}}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER8 netboot', 'eventLabel' : '{{latest_release_full}}', 'eventValue' : undefined });">{{latest_release_full}}&nbsp;&rsaquo;</a></li>
+          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/netboot/{{lts_release}}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER8 netboot', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">{{lts_release_full_with_point}} {{lts_release_eol}}&nbsp;&rsaquo;</a></li>
+          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/netboot/{{latest_release_full}}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER8 netboot', 'eventLabel' : '{{latest_release_full}}', 'eventValue' : undefined });">{{latest_release_full}} {{lts_release_eol}}&nbsp;&rsaquo;</a></li>
         </ul>
       </div>
     </div>
@@ -42,13 +42,13 @@
       <p>Ubuntu 14.04 brings with it, for the first time, support for IBM POWER8 including our MAAS provisioning, Juju cloud orchestration, Landscape systems management and Ubuntu OpenStack. Ubuntu 14.04.4 adds CAPI and PowerNV support.</p>
     </div>
     <div class="col-4 p-divider__block">
-      <h3>Ubuntu {{lts_release_full}} for IBM POWER8</h3>
+      <h3>Ubuntu {{lts_release_full}} {{lts_release_eol}} for IBM POWER8</h3>
       <p>Ubuntu {{lts_release_no_point}} continues to enable rapid innovation for POWER8 including support for new POWER8 models, memory and PCI Hotplug, Docker 1.9.1, many performance and availability enhancements. Includes the only commercially available Linux to provide initial support for support the OpenPOWER Foundation’s industry leading NVLink technology.</p>
     </div>
     <div class="col-4 p-divider__block">
       <h3>Ubuntu {{latest_release_full}} for IBM POWER8</h3>
       <p>
-        The Ubuntu {{latest_release_full}} standard release builds on top of Ubuntu {{lts_release_full}}, further enabling rapid innovation for POWER8.
+        The Ubuntu {{latest_release_full}} standard release builds on top of Ubuntu {{lts_release_full}} {{lts_release_eol}}, further enabling rapid innovation for POWER8.
       </p>
     </div>
   </div>
