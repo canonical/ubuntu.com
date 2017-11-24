@@ -29,7 +29,7 @@
           <a href="?topic=desktop" class="p-tabs__link" role="tab" aria-controls="section2"{% if slug == 'desktop' %} aria-selected="true"{% endif %}>Desktop</a>
         </li>
         <li class="p-tabs__item" role="presentation">
-          <a href="?topic=internet-of-things" class="p-tabs__link" role="tab" aria-controls="section3"{% if slug == 'internet-of-things' %} aria-selected="true"{% endif %}>IoT</a>
+          <a href="?topic=internet-of-things" class="p-tabs__link" role="tab" aria-controls="section3"{% if slug == 'internet-of-things' %} aria-selected="true"{% endif %}>Internet of things</a>
         </li>
       </ul>
     </nav>
@@ -51,17 +51,29 @@
   </div>
   {% endif %}
 
-  {% for item in items %}
-    {% if forloop.counter0|divisibleby:3 %}
-    {% if not forloop.counter0 is 0 %}
+  {% for group_slug, resources in items.items %}
+    <div class="row">
+      <h2>{{ resources.group_name }}</h2>
     </div>
-    {% endif %}
+
     <div class="row u-equal-height">
-    {% endif %}
+    {% for resource in resources.items %}
       <div class="p-card col-4">
-        <h3 class="p-header--four"><a href="{{item.link}}">{{item.title.rendered | safe}}</a></h3>
-        {{item.excerpt.rendered | safe}}
+        {% if resource.featuredmedia %}
+          <a href="{{resource.link}}">
+            <img src="{{resource.featuredmedia.source_url}}" alt="{{resource.featuredmedia.alt_text}}" />
+          </a>
+        {% endif %}
+        <h3 class="p-header--four"><a href="{{resource.link}}">{{resource.title.rendered | safe}}</a></h3>
+        {{resource.excerpt.rendered | safe}}
       </div>
+
+      {% if forloop.counter|divisibleby:3 %}
+        </div>
+        <div class="row u-equal-height">
+      {% endif %}
+    {% endfor %}
+    </div>
   {% endfor %}
   </div>
 </section>
