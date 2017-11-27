@@ -41,6 +41,11 @@ class ResourcesView(TemplateView):
         'desktop': {'id': 1479, 'name': 'Desktop'},
         'internet-of-things': {'id': 1666, 'name': 'Internet of things'},
     }
+    CATEGORIES = {
+        'case-studies': {'id': 1172, 'name': 'case studies'},
+        'videos': {'id': 1509, 'name': 'videos'},
+        'webinars': {'id': 1187, 'name': 'webinars'},
+    }
 
     def _get_categories_by_slug(self, slugs=[]):
         if slugs:
@@ -69,20 +74,55 @@ class ResourcesView(TemplateView):
 
     def _get_resources(self):
         topic = self.request.GET.get('topic')
+        content = self.request.GET.get('content')
         feed_items = {}
-        if topic:
-            category_id = str(self.GROUPS[topic]['id'])
-            api_url = (
-                '{api_url}/posts?_embed&group={category_id}&{resource_filter}'
-            )
-            api_url = api_url.format(
-                api_url=self.API_URL,
-                category_id=category_id,
-                resource_filter=self.RESOURCE_FILTER,
-            )
-            feed_items[topic] = {}
-            feed_items[topic]['items'] = get_json_feed_content(api_url)
-            feed_items[topic]['group_name'] = self.GROUPS[topic]['name']
+        if topic or content:
+            if not content:
+                category_id = str(self.GROUPS[topic]['id'])
+                api_url = (
+                    '{api_url}/posts?_embed'
+                    '&group={category_id}&{resource_filter}'
+                )
+                api_url = api_url.format(
+                    api_url=self.API_URL,
+                    category_id=category_id,
+                    resource_filter=self.RESOURCE_FILTER,
+                )
+                feed_items[topic] = {}
+                feed_items[topic]['items'] = get_json_feed_content(api_url)
+                feed_items[topic]['group_name'] = self.GROUPS[topic]['name']
+            elif not topic:
+                content_id = str(self.CATEGORIES[content]['id'])
+                api_url = (
+                    '{api_url}/posts?_embed&categories={content_id}'
+                )
+                api_url = api_url.format(
+                    api_url=self.API_URL,
+                    content_id=content_id,
+                )
+                feed_items[content] = {}
+                feed_items[content]['items'] = get_json_feed_content(api_url)
+                feed_items[content]['group_name'] = 'All {name}'.format(
+                    name=self.CATEGORIES[content]['name']
+                )
+            else:
+                category_id = str(self.GROUPS[topic]['id'])
+                content_id = str(self.CATEGORIES[content]['id'])
+                api_url = (
+                    '{api_url}/posts?_embed'
+                    '&group={category_id}&categories={content_id}'
+                )
+                api_url = api_url.format(
+                    api_url=self.API_URL,
+                    category_id=category_id,
+                    content_id=content_id,
+                )
+                feed_items[topic] = {}
+                feed_items[topic]['items'] = get_json_feed_content(api_url)
+                feed_items[topic]['group_name'] = '{topic} {content}'.format(
+                    topic=self.GROUPS[topic]['name'],
+                    content=self.CATEGORIES[content]['name'],
+                )
         else:
             for group_name, group in self.GROUPS.items():
                 api_url = '{api_url}/posts?category={group_id}'.format(
@@ -105,7 +145,8 @@ class ResourcesView(TemplateView):
         # Get any existing context
         context = super(ResourcesView, self).get_context_data(**kwargs)
         context['items'] = self._get_resources()
-        context['slug'] = self.request.GET.get('topic')
+        context['topic_slug'] = self.request.GET.get('topic')
+        context['content_slug'] = self.request.GET.get('content')
         return context
 
 
