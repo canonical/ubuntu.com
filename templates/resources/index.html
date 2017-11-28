@@ -14,25 +14,51 @@
 
 <section class="p-strip is-shallow">
   <div class="row">
-    <nav class="p-tabs">
+    <nav class="p-tabs col-8">
       <ul class="p-tabs__list" role="tablist">
         <li class="p-tabs__item" role="presentation">
           <span class="p-tabs__link">Topic:</span>
         </li>
         <li class="p-tabs__item" role="presentation">
-          <a href="?" class="p-tabs__link" role="tab" aria-controls="section1"{% if slug == 'all' or slug == None %} aria-selected="true"{% endif %}>All</a>
+          <a href="?{% if content_slug %}content={{ content_slug }}{% endif %}" class="p-tabs__link" role="tab" aria-controls="section1"{% if topic_slug == 'all' or topic_slug == None %} aria-selected="true"{% endif %}>All</a>
         </li>
         <li class="p-tabs__item" role="presentation">
-          <a href="?topic=cloud-and-server" class="p-tabs__link" role="tab" aria-controls="section1"{% if slug == 'cloud-and-server' %} aria-selected="true"{% endif %}>Cloud and server</a>
+          <a href="?topic=cloud-and-server{% if content_slug %}&content={{ content_slug }}{% endif %}" class="p-tabs__link" role="tab" aria-controls="section1"{% if topic_slug == 'cloud-and-server' %} aria-selected="true"{% endif %}>Cloud and server</a>
         </li>
         <li class="p-tabs__item" role="presentation">
-          <a href="?topic=desktop" class="p-tabs__link" role="tab" aria-controls="section2"{% if slug == 'desktop' %} aria-selected="true"{% endif %}>Desktop</a>
+          <a href="?topic=desktop{% if content_slug %}&content={{ content_slug }}{% endif %}" class="p-tabs__link" role="tab" aria-controls="section2"{% if topic_slug == 'desktop' %} aria-selected="true"{% endif %}>Desktop</a>
         </li>
         <li class="p-tabs__item" role="presentation">
-          <a href="?topic=internet-of-things" class="p-tabs__link" role="tab" aria-controls="section3"{% if slug == 'internet-of-things' %} aria-selected="true"{% endif %}>Internet of things</a>
+          <a href="?topic=internet-of-things{% if content_slug %}&content={{ content_slug }}{% endif %}" class="p-tabs__link" role="tab" aria-controls="section2"{% if topic_slug == 'internet-of-things' %} aria-selected="true"{% endif %}>Internet of things</a>
         </li>
       </ul>
     </nav>
+    <div class="col-4">
+      <form action="?foo=bar" method="get" class="p-form p-form--inline">
+        <div class="p-form__group">
+          <label for="full-name-inline" aria-label="Filter the resources by type" class="p-form__label">Filter:</label>
+          <select class="js-submit-on-change p-form__control" name="content" aria-label="Filter by content type">
+              <option value="">All content types</option>
+              <option value="case-studies" {% if content_slug == 'case-studies' %}selected{% endif %}>Case studies</option>
+              <option value="videos" {% if content_slug == 'videos' %}selected{% endif %}>Videos</option>
+              <option value="webinars" {% if content_slug == 'webinars' %}selected{% endif %}>Webinars</option>
+            </select>
+          <input type="submit" value="Send Request" class="u-hide">
+          {% if topic_slug %}
+            <input type="hidden" name="topic" value="{{ topic_slug }}">
+          {% endif %}
+        </div>
+      </form>
+      <script>
+        var select = document.querySelector('.js-submit-on-change');
+        select.addEventListener('change', function(e) {
+          var form = this.closest('form');
+          if (form) {
+            form.submit();
+          }
+        });
+      </script>
+    </div>
   </div>
 
   {% if items is False %}
