@@ -47,7 +47,7 @@
     <!-- replace no-js -->
     <script>
       var html = document.documentElement
-      html.className = html.className.replace(/\bno-js\b/, 'js')
+      html.classList.replace("no-js", "js");
     </script>
 
     {% block head_extra %}{% endblock %}
