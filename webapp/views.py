@@ -125,9 +125,13 @@ class ResourcesView(TemplateView):
                 )
         else:
             for group_name, group in self.GROUPS.items():
-                api_url = '{api_url}/posts?group={group_id}'.format(
+                api_url = (
+                    '{api_url}/posts'
+                    '?group={group_id}&{resource_filter}'
+                ).format(
                     api_url=self.API_URL,
                     group_id=group['id'],
+                    resource_filter=self.RESOURCE_FILTER,
                 )
                 feed_items[group_name] = {}
                 feed_items[group_name]['items'] = get_json_feed_content(
