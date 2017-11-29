@@ -125,7 +125,7 @@ class ResourcesView(TemplateView):
                 )
         else:
             for group_name, group in self.GROUPS.items():
-                api_url = '{api_url}/posts?category={group_id}'.format(
+                api_url = '{api_url}/posts?group={group_id}'.format(
                     api_url=self.API_URL,
                     group_id=group['id'],
                 )
