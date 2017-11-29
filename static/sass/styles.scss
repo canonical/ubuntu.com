@@ -220,3 +220,25 @@ abbr[title] {
 .p-link--external::after {
   -webkit-mask-size: cover;
 }
+
+// XXX Ant: 27.10.17
+select {
+  background-position-y: center;
+  min-height: 0;
+  padding-right: 2rem;
+}
+
+
+// XXX Ant: 27.10.17 - Can be removed when this issue has been resolved.
+// https://github.com/vanilla-framework/vanilla-framework/issues/1458
+.p-tabs {
+  &__item:last-of-type {
+    @media (max-width: $breakpoint-small) {
+      padding-right: 4rem;
+    }
+  }
+
+  &::before {
+    width: 70px;
+  }
+}
