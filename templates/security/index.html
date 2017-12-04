@@ -21,12 +21,10 @@
     <div class="col-4 p-divider__block">
       <h2 class="p-heading--three">Secure out of the box</h2>
       <p>All Canonical products are built with unrivalled security in mind &mdash; and tested to ensure they deliver it. Your Ubuntu software is secure from the moment you install it, and will remain so as Canonical ensures security updates are always available on Ubuntu first.</p>
-      <p><a class="p-link--external" href="https://usn.ubuntu.com/usn/">Security notices</a></p>
     </div>
     <div class="col-4 p-divider__block">
       <h2 class="p-heading--three">Secure by process</h2>
       <p>Canonical&rsquo;s team of security experts react fast to threats constantly reviewing and fixing vulnerabilities. They also develop security features and best practices that are rolled into all Canonical products.</p>
-      <p><a class="p-link--external" href="https://insights.ubuntu.com/tag/security">Security news</a></p>
     </div>
     <div class="col-4 p-divider__block">
       <h2 class="p-heading--three">Certified compliance</h2>
@@ -36,11 +34,34 @@
   </div>
 </section>
 
-<section class="p-strip--light is-deep is-bordered">
+<section class="p-strip--light is-bordered">
   <div class="row">
-    <div class="col-12">
-      <h2>Canonical puts security at the heart of Ubuntu</h2>
+    <h2>Find out more</h2>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4 p-card u-align--center">
+      <p><a href="https://insights.ubuntu.com/tag/security"><img src="{{ ASSET_SERVER_URL }}df54bb6a-document-open-icon.svg" alt="" style="max-height: 47px;" /></a></p>
+      <h3 class="p-heading--four u-no-margin--bottom"><a class="p-link--external" href="https://usn.ubuntu.com/usn/"  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Security notices', 'eventLabel' : 'Security notices - find out more' : undefined });">Security notices</a></h3>
     </div>
+    <div class="col-4 p-card u-align--center">
+      <p><a href="https://insights.ubuntu.com/tag/security"><img src="{{ ASSET_SERVER_URL }}df54bb6a-document-open-icon.svg" alt="" style="max-height: 47px;" /></a></p>
+      <h3 class="p-heading--four u-no-margin--bottom"><a href="https://insights.ubuntu.com/tag/security" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Security news', 'eventLabel' : 'Security news - find out more' : undefined });">Security news</a></h3>
+    </div>
+    <div class="col-4 p-card u-align--center">
+      <p><a href="https://insights.ubuntu.com/tag/security"><img src="{{ ASSET_SERVER_URL }}df54bb6a-document-open-icon.svg" alt="" style="max-height: 47px;" /></a></p>
+      <h3 class="p-heading--four u-no-margin--bottom"><a href="https://wiki.ubuntu.com/Security/Features" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Security hardening features', 'eventLabel' : 'Security hardening features - find out more' : undefined });">Security hardening features</a></h3>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+      <div class='p-heading-icon'>
+        <div class='p-heading-icon__header u-no-margin--bottom'>
+          <img class='p-heading-icon__img' src='{{ ASSET_SERVER_URL }}53616a73-pictogram-heart-orange.svg' alt='' />
+          <h2 class="p-heading-icon__title">Canonical puts security at the heart of Ubuntu</h>
+        </div>
+      </div>
   </div>
   <div class="row">
     <div class="col-12">
@@ -140,18 +161,21 @@
   </div>
 </section>
 
-<section class="p-strip is-deep u-image-position is-bordered">
+<section class="p-strip--light is-deep u-image-position is-bordered">
   <div class="row">
-    <div class="col-8">
+    <div class="col-7">
       <h2>Find out why the UK Government puts Ubuntu in first place for security</h2>
       <p><abbr title="Communications-Electronics Security Group">CESG</abbr>, the security arm of the UK government rated Ubuntu as the most secure operating system of the 11 they tested.</p>
       <p>For the first time, both a <abbr title="Defence Industry Security Association">DISA</abbr> approved <abbr title="Security Technical Implementation Guide">STIG</abbr> and a <abbr title="Center for Internet Security">CIS</abbr> Benchmark are available for Ubuntu 16.04 LTS. This is in addition to the CIS Benchmark already available for 14.04 LTS.</p>
       <a class="p-button--positive" href="https://insights.ubuntu.com/2014/01/10/ubuntu-scores-highest-in-uk-gov-security-assessment/?_ga=2.112079751.2078786262.1509620345-1171504626.1506072082" class="p-link--external">Read the <span class="u-off-screen">UK Gov Report Summary </span>case study</a>
     </div>
+    <div class="col-5">
+      <img class="u-image-position--top u-hidden--small u-hidden--medium u-no-margin--top" alt="" src="{{ ASSET_SERVER_URL }}58f24048-image-ubuntu-openstack-medals.png" />
+    </div>
   </div>
 </section>
 
-<section class="p-strip--light is-deep is-bordered">
+<section class="p-strip is-deep is-bordered">
   <div class="row p-divider">
     <div class="col-4 p-divider__block" id="ubuntu-com_security_left">
       <!-- rtp section start -->
@@ -189,51 +213,41 @@
   </div>
 </section>
 
-<section class="p-strip is-deep is-bordered">
+<section class="p-strip--light is-deep is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>Helping you manage security</h2>
       <p>Every Long Term Support (LTS) release of Ubuntu comes with five years of free security and maintenance updates. Canonical also offers a number of additional products and services to help manage the security of your Ubuntu systems.</p>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <ul class="p-matrix is-split">
-        <li class="p-matrix__item">
-          <div>
-            <h3 class="p-matrix__title">Critical security fixes with zero downtime</h3>
-            <p class="p-matrix__desc">The Canonical Livepatch Service lets you apply kernel fixes in seconds, without restarting your Ubuntu 16.04 LTS and Ubuntu 14.04 LTS systems. Fewer reboots removes the operational burden associated planned downtimes for upgrades. It also means improved service availability and systems that are more compliant and secure.</p>
-            <p><a href="/server/livepatch">Learn more about Canonical&rsquo;s Livepatch Service&nbsp;&rsaquo;</a></p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div>
-            <h3 class="p-matrix__title">Be compliant and FIPS certified</h3>
-            <p class="p-matrix__desc">FIPS (Federal Information Processing Standard) is a US Government standard for ensuring compliance and security that mandates tougher encryption keys and only allows approved cryptographic functions.</p>
-            <p class="p-matrix__desc">Ubuntu 16.04 LTS has achieved FIPS certification for the OpenSSL, Kernel Crypto API, OpenSSH (Server, Client), and Strongswan modules. FIPS certified versions of these modules are available to Ubuntu Advantage Advanced customers.</p>
-            <p><a class="p-link--external" href="https://wiki.ubuntu.com/Security/Certification">Learn more about FIPS certified modules</a></p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div>
-            <h3 class="p-matrix__title">Manage security updates with Landscape</h3>
-            <p class="p-matrix__desc">Landscape is the leading management tool to deploy, monitor and manage your Ubuntu servers and desktops. Landscape gives the ability to centrally view and manage the security updates that have been applied to their systems and, critically, the security updates which have not yet been applied.</p>
-            <p><a class="p-link--external" href="https://landscape.canonical.com">Get Landscape</a></p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div>
-            <h3 class="p-matrix__title">Extend your Ubuntu 12.04 LTS security maintenance</h3>
-            <p class="p-matrix__desc">Following the end-of-life of Ubuntu 12.04 LTS in April 2017, Canonical began offering Ubuntu 12.04 ESM (Extended Security Maintenance), to Ubuntu Advantage customers to provide important security fixes for the kernel and essential user space packages. These updates are delivered via a secure, private archive exclusively available to Ubuntu Advantage customers.</p>
-            <p><a class="p-link--external" href="https://pages.ubuntu.com/01.Howtoupgradefrom12.04webinar_LPOn-demandwebinar.html?utm_source=insights&amp;utm_medium=blog&amp;utm_campaign=On-demand%20webinar%20--%20How%20to%20ensure%20the%20ongoing%20security%20compliance%20of%2012.04&amp;">Watch our security compliance webinar now</a></p>
-          </div>
-        </li>
-      </ul>
+  <div class="row u-equal-height">
+    <div class="col-6 p-card">
+      <h3>Critical security fixes with zero downtime</h3>
+      <p>The Canonical Livepatch Service lets you apply kernel fixes in seconds, without restarting your Ubuntu 16.04 LTS and Ubuntu 14.04 LTS systems. Fewer reboots removes the operational burden associated planned downtimes for upgrades. It also means improved service availability and systems that are more compliant and secure.</p>
+      <p><a href="/server/livepatch">Learn more about Canonical&rsquo;s Livepatch Service&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-6 p-card">
+      <h3>Be compliant and FIPS certified</h3>
+      <p>FIPS (Federal Information Processing Standard) is a US Government standard for ensuring compliance and security that mandates tougher encryption keys and only allows approved cryptographic functions.</p>
+      <p>Ubuntu 16.04 LTS has achieved FIPS certification for the OpenSSL, Kernel Crypto API, OpenSSH (Server, Client), and Strongswan modules. FIPS certified versions of these modules are available to Ubuntu Advantage Advanced customers.</p>
+      <p><a class="p-link--external" href="https://wiki.ubuntu.com/Security/Certification">Learn more about FIPS certified modules</a></p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6 p-card">
+      <h3>Manage security updates with Landscape</h3>
+      <p>Landscape is the leading management tool to deploy, monitor and manage your Ubuntu servers and desktops. Landscape gives the ability to centrally view and manage the security updates that have been applied to their systems and, critically, the security updates which have not yet been applied.</p>
+      <p><a class="p-link--external" href="https://landscape.canonical.com">Get Landscape</a></p>
+    </div>
+    <div class="col-6 p-card">
+      <h3>Extend your Ubuntu 12.04 LTS security maintenance</h3>
+      <p>Following the end-of-life of Ubuntu 12.04 LTS in April 2017, Canonical began offering Ubuntu 12.04 ESM (Extended Security Maintenance), to Ubuntu Advantage customers to provide important security fixes for the kernel and essential user space packages. These updates are delivered via a secure, private archive exclusively available to Ubuntu Advantage customers.</p>
+      <p><a class="p-link--external" href="https://pages.ubuntu.com/01.Howtoupgradefrom12.04webinar_LPOn-demandwebinar.html?utm_source=insights&amp;utm_medium=blog&amp;utm_campaign=On-demand%20webinar%20--%20How%20to%20ensure%20the%20ongoing%20security%20compliance%20of%2012.04&amp;">Watch our security compliance webinar now</a></p>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light is-deep" id="ua-support">
+<section class="p-strip is-deep" id="ua-support">
   <div class="row">
     <div class="col-8">
       <h2>Ubuntu Advantage</h2>
@@ -247,7 +261,7 @@
         <li class="p-list__item is-ticked">Knowledge Base: a private archive of expert-written articles and tutorials</li>
         <li class="p-list__item is-ticked">Support: phone and web-based support at multiple service levels</li>
       </ul>
-      <p><a href="http://buy.ubuntu.com" class="p-button p-link--external">Visit the Ubuntu Advantage store</a></p>
+      <p><a href="http://buy.ubuntu.com" class="p-button--positive"><span class="p-link--external">Visit the Ubuntu Advantage store</span></a></p>
       <p><a href="/support/contact-us">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
     </div>
   </div>
