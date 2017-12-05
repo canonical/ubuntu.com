@@ -7,7 +7,7 @@
   .p-navigation {
     // XXX Ant: Change the threshold so the links are white.
     // https://github.com/vanilla-framework/vanilla-framework/issues/1373
-    @include navigation-pattern(
+    @include vf-navigation-pattern(
       $background-color: $color-navigation-background,
       $border-color: if(lightness($color-navigation-background) > 70, $color-mid-light, transparent),
       $text-color: if(lightness($color-navigation-background) > 70, $color-dark, $color-light)
@@ -139,7 +139,6 @@
 
   .nav-secondary,
   .nav-tertiary {
-
     .p-inline-list__link,
     .p-breadcrumbs__link {
       font-size: .875rem;
@@ -345,7 +344,6 @@
   }
 
   .nav-tertiary__menu {
-    white-space: normal;
     width: 85%;
 
     .p-inline-list {
@@ -380,5 +378,9 @@
         margin-right: 1.5rem;
       }
     }
+  }
+
+  .nav-secondary .p-inline-list__item {
+    white-space: normal;
   }
 }

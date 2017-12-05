@@ -10,24 +10,9 @@
 
 if (!core) { var core = {}; }
 
-core.svgFallback = function() {
-	if (typeof Modernizr === "object") {
-        var isIE = window.navigator.userAgent.indexOf("MSIE ");
-        if (!Modernizr.svg || !Modernizr.backgroundsize || isIE !== -1) {
-			var svgs = document.querySelectorAll("img[src$='.svg']")
-            svgs.forEach(function(node) {
-                var src = node.src;
-                if (src.indexOf('assets.ubuntu.com/v1/') > -1) {
-					// Support for the newer asset server
-					node.src = src + '?fmt=png';
-				} else {
-					// Old asset manager and locally assets
-					node.src = src.match(/.*\/(.+?)\./)[0] + 'png';
-				}
-			});
-		}
-	}
-};
+core.supportsSvg = function() {
+    return document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1");
+}};
 
 core.mobileNav = function () {
     var header = document.querySelector('header.banner');
@@ -68,5 +53,5 @@ core.mobileNav = function () {
     }
 };
 
-core.svgFallback();
+core.supportsSvg();
 core.mobileNav();

@@ -1,0 +1,112 @@
+{% extends "templates/one-column.html" %}
+
+{% block meta_description %}Resources from across Ubuntu and Canonical combined into a single portal{% endblock %}
+
+{% block title %}Resources{% endblock %}
+
+{% block content %}
+
+<section class="p-strip--accent is-shallow">
+  <div class="row">
+    <h1>Resources</h1>
+  </div>
+</section>
+
+<section class="p-strip is-shallow u-no-padding--top u-no-padding--bottom">
+  <nav class="p-tabs col-12">
+    <div class="row">
+      <ul class="p-tabs__list u-no-padding--left" role="tablist">
+        <li class="p-tabs__item" role="presentation">
+          <span class="p-tabs__link">Topic:</span>
+        </li>
+        <li class="p-tabs__item" role="presentation">
+          <a href="?{% if content_slug %}content={{ content_slug }}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Navigation', 'eventLabel' : 'All', 'eventValue' : undefined });" class="p-tabs__link" role="tab" aria-controls="section1"{% if topic_slug == 'all' or topic_slug == None %} aria-selected="true"{% endif %}>All</a>
+        </li>
+        <li class="p-tabs__item" role="presentation">
+          <a href="?topic=cloud-and-server{% if content_slug %}&content={{ content_slug }}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Navigation', 'eventLabel' : 'Cloud and server', 'eventValue' : undefined });" class="p-tabs__link" role="tab" aria-controls="section1"{% if topic_slug == 'cloud-and-server' %} aria-selected="true"{% endif %}>Cloud and server</a>
+        </li>
+        <li class="p-tabs__item" role="presentation">
+          <a href="?topic=desktop{% if content_slug %}&content={{ content_slug }}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Navigation', 'eventLabel' : 'Desktop', 'eventValue' : undefined });" class="p-tabs__link" role="tab" aria-controls="section2"{% if topic_slug == 'desktop' %} aria-selected="true"{% endif %}>Desktop</a>
+        </li>
+        <li class="p-tabs__item" role="presentation">
+          <a href="?topic=internet-of-things{% if content_slug %}&content={{ content_slug }}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Navigation', 'eventLabel' : 'Internet of things', 'eventValue' : undefined });" class="p-tabs__link" role="tab" aria-controls="section2"{% if topic_slug == 'internet-of-things' %} aria-selected="true"{% endif %}>Internet of things</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</section>
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-12 u-align--right">
+      <form action="?foo=bar" method="get" class="p-form p-form--inline">
+        <div class="p-form__group">
+          <label for="full-name-inline" aria-label="Filter the resources by type" class="p-form__label">Filter:</label>
+          <select class="js-submit-on-change p-form__control" name="content" aria-label="Filter by content type">
+              <option value="">All content types</option>
+              <option value="case-studies" {% if content_slug == 'case-studies' %}selected{% endif %}>Case studies</option>
+              <option value="videos" {% if content_slug == 'videos' %}selected{% endif %}>Videos</option>
+              <option value="webinars" {% if content_slug == 'webinars' %}selected{% endif %}>Webinars</option>
+            </select>
+          <input type="submit" value="Send Request" class="u-hide">
+          {% if topic_slug %}
+            <input type="hidden" name="topic" value="{{ topic_slug }}">
+          {% endif %}
+        </div>
+      </form>
+      <script>
+        var select = document.querySelector('.js-submit-on-change');
+        select.addEventListener('change', function(e) {
+          var form = this.closest('form');
+          if (form) {
+            form.submit();
+          }
+        });
+      </script>
+    </div>
+  </div>
+
+  {% if items is False %}
+  <div class="row">
+    <div class="p-notification--negative">
+      <p class="p-notification__response"><span class="p-notification__status">Error:</span>The live news feed failed to load. Please <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new" class="p-link--external">report this bug</a> and our team will fix the problem as soon as&nbsp;possible.</p>
+    </div>
+  </div>
+  {% elif items|length is 0 %}
+  <div class="row">
+    <div class="p-notification--information">
+      <p class="p-notification__response">
+        <span class="p-notification__status">Information:</span> There were no results found for this category
+      </p>
+    </div>
+  </div>
+  {% endif %}
+
+  {% for group_slug, resources in items.items %}
+    <div class="row">
+      <h2>{{ resources.group_name }}</h2>
+    </div>
+
+    <div class="row u-equal-height">
+    {% for resource in resources.items %}
+      <div class="p-card col-4">
+        {% if resource.featuredmedia %}
+          <a href="{{resource.link}}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Clicked resource', 'eventLabel' : '{{resource.title.rendered}}', 'eventValue' : undefined });" >
+            <img src="{{resource.featuredmedia.source_url}}" alt="{{resource.featuredmedia.alt_text}}" />
+          </a>
+        {% endif %}
+        <h3 class="p-header--four"><a href="{{resource.link}}">{{resource.title.rendered | safe}}</a></h3>
+        {{resource.excerpt.rendered | safe}}
+      </div>
+
+      {% if forloop.counter|divisibleby:3 %}
+        </div>
+        <div class="row u-equal-height">
+      {% endif %}
+    {% endfor %}
+    </div>
+  {% endfor %}
+  </div>
+</section>
+
+{% endblock content %}

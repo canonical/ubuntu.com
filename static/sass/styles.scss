@@ -201,12 +201,6 @@ abbr[title] {
   }
 }
 
-// XXX Ant: 13.09.17 - Can be removed when this issue has been resolved.
-// https://github.com/vanilla-framework/vanilla-framework/issues/1337
-.p-list.is-split .p-list__item:last-of-type {
-  border-bottom: 0;
-}
-
 // XXX Ant: 16.10.17 - Can be removed when this issue has been resolved.
 // https://github.com/vanilla-framework/vanilla-framework/issues/1379
 .u-image-position {
@@ -219,4 +213,52 @@ abbr[title] {
 // VF 1.6.0 is missing this
 .p-link--external::after {
   -webkit-mask-size: cover;
+}
+
+// XXX Ant: 27.10.17
+select {
+  background-position-y: center;
+  min-height: 0;
+  padding-right: 2rem;
+}
+
+
+// XXX Ant: 27.10.17 - Can be removed when this issue has been resolved.
+// https://github.com/vanilla-framework/vanilla-framework/issues/1458
+.p-tabs {
+  &__item:last-of-type {
+    @media (max-width: $breakpoint-small) {
+      padding-right: 4rem;
+    }
+  }
+
+  &::before {
+    width: 70px;
+  }
+}
+
+// XXX Ant: 04.12.17 This can be removed when this is fixed
+// https://github.com/vanilla-framework/vanilla-framework/issues/1478
+.u-align--center {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    max-width: none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  &.u-align--center {
+    max-width: none;
+  }
 }
