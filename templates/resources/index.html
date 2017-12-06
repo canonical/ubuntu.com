@@ -9,6 +9,13 @@
 <section class="p-strip--accent is-shallow">
   <div class="row">
     <h1>Resources</h1>
+    <form action="/resources" method="get" class="p-form p-form--inline p-form--search">
+      <div class="p-form__group">
+        <label for="search-input" class="u-off-screen">Search resources</label>
+        <input id="search-input" type="search" name="search" value="{{ search_slug }}" class="p-form__control"/>
+      </div>
+      <button type="submit" alt="search" class="p-button--positive u-align--left">Search resources</button>
+    </form>
   </div>
 </section>
 
@@ -39,7 +46,7 @@
 <section class="p-strip is-shallow">
   <header class="row">
     <div class="col-12 u-align--right">
-      <form action="?foo=bar" method="get" class="p-form p-form--inline">
+      <form action="/" method="get" class="p-form p-form--inline">
         <div class="p-form__group">
           <label for="full-name-inline" aria-label="Filter the resources by type" class="p-form__label">Filter:</label>
           <select class="js-submit-on-change p-form__control" name="content" aria-label="Filter by content type">
