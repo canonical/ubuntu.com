@@ -29,8 +29,7 @@ body {
 a,
 blockquote,
 table,
-pre
- {
+pre {
     page-break-inside:avoid
 }
 
@@ -40,8 +39,7 @@ h3,
 h4,
 h5,
 h6,
-img,
- {
+img {
   page-break-after:avoid;
   page-break-inside:avoid
 }
@@ -62,17 +60,12 @@ a {
   text-align: left;
 }
 
-
 a[href^=http]:after {
   content:" <" attr(href) "> ";
 }
 
 a:after > img {
   content: "";
-}
-
-a:not(:local-link):after {
-   content:" <" attr(href) "> ";
 }
 
 header,
