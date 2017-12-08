@@ -115,7 +115,7 @@ class ResourcesView(TemplateView):
         content = self.request.GET.get('content')
         page = int(self.request.GET.get('page', 1))
         offset = (page - 1) * self.PER_PAGE
-        search = self.request.GET.get('search')
+        search = self.request.GET.get('q')
         feed_items = {}
         posts_length = 0
         if search:
@@ -249,7 +249,7 @@ class ResourcesView(TemplateView):
         context['topic_slug'] = self.request.GET.get('topic')
         context['content_slug'] = self.request.GET.get('content')
         context['page_index'] = int(self.request.GET.get('page', 1))
-        context['search_slug'] = self.request.GET.get('search', '')
+        context['search_slug'] = self.request.GET.get('q', '')
         return context
 
 
