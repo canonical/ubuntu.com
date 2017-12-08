@@ -58,8 +58,8 @@
   <div class="row">
       <div class='p-heading-icon'>
         <div class='p-heading-icon__header u-no-margin--bottom'>
+          <img class='p-heading-icon__img' src='{{ ASSET_SERVER_URL }}53616a73-pictogram-heart-orange.svg' alt='' />
           <h2 class="p-heading-icon__title">Canonical puts security at the heart of Ubuntu</h2>
-          <img class='p-heading-icon__img' src='{{ ASSET_SERVER_URL }}53616a73-pictogram-heart-orange.svg' alt='' style="margin-left: 20px;margin-top: 0;" />
         </div>
       </div>
   </div>
@@ -280,8 +280,14 @@
     <div class="col-8">
       <h2>Talk to a member of our team</h2>
       <p class="p-heading--five">We can recommend a security solution that best suits the needs of your&nbsp;organisation.</p>
-      <p style="margin-top: 2rem;"><a href="/support/contact-us" class="p-button">Contact us</a></p>
-      <p><a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/290073">Watch the Ubuntu security webinar</a></p>
+      <ul class="p-inline-list">
+        <li class="p-inline-list__item">
+          <a href="/support/contact-us" class="p-button">Contact us</a>
+        </li>
+        <li class="p-inline-list__item">
+          <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/290073">Watch the Ubuntu security webinar</a>
+        </li>
+      </ul>
     </div>
     <div class="col-4 prefix-1 suffix-1 u-vertically-center">
       <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" class="u-hide--small" alt="" />
