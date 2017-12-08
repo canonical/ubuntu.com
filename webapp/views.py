@@ -2,12 +2,17 @@ import json
 import os
 import re
 
-from feedparser import parse
-from django.views.generic.base import TemplateView
-from django_template_finder_view import TemplateFinder
 from canonicalwebteam.get_feeds import (
     get_json_feed_content
 )
+from copy import copy
+from django.views.generic.base import TemplateView
+from django_template_finder_view import TemplateFinder
+from feedparser import parse
+try:
+    from urllib.parse import urlencode
+except ImportError:
+    from urllib import urlencode
 
 
 class UbuntuTemplateFinder(TemplateFinder):
@@ -36,6 +41,7 @@ class ResourcesView(TemplateView):
     INSIGHTS_URL = 'https://insights.ubuntu.com'
     API_URL = INSIGHTS_URL + '/wp-json/wp/v2'
     RESOURCE_FILTER = 'categories=1172,1509,1187'
+    PER_PAGE = 9
     GROUPS = {
         'cloud-and-server': {'id': 1706, 'name': 'Cloud and server'},
         'desktop': {'id': 1479, 'name': 'Desktop'},
@@ -72,73 +78,138 @@ class ResourcesView(TemplateView):
             resource = self._embed_resource_data(resource)
         return resources
 
+    def _generate_pagination_queries(self, index, posts_length):
+        previous_payload = copy(self.request.GET)
+        previous_index = index - 1
+        previous_payload['page'] = previous_index
+        previous_link = '?{query}'.format(
+            query=urlencode(previous_payload),
+        )
+        previous_enable = True
+        if (index == 1):
+            previous_enable = False
+
+        next_payload = copy(self.request.GET)
+        next_index = index + 1
+        next_payload['page'] = next_index
+        next_link = '?{query}'.format(
+            query=urlencode(next_payload),
+        )
+        next_enable = True
+        if (posts_length <= self.PER_PAGE):
+            next_enable = False
+
+        return {
+            'next_link': next_link,
+            'previous_link': previous_link,
+            'next_index': next_index,
+            'previous_index': previous_index,
+            'previous_enable': previous_enable,
+            'next_enable': next_enable
+        }
+
     def _get_resources(self):
         topic = self.request.GET.get('topic')
         content = self.request.GET.get('content')
+        page = int(self.request.GET.get('page', 1))
+        offset = (page - 1) * self.PER_PAGE
         feed_items = {}
         if topic or content:
             if not content:
                 category_id = str(self.GROUPS[topic]['id'])
                 api_url = (
                     '{api_url}/posts?_embed'
-                    '&group={category_id}&{resource_filter}'
-                )
-                api_url = api_url.format(
+                    '&group={category_id}'
+                    '&{resource_filter}'
+                    '&per_page={per_page}'
+                    '&offset={offset}'
+                ).format(
                     api_url=self.API_URL,
                     category_id=category_id,
                     resource_filter=self.RESOURCE_FILTER,
+                    per_page=self.PER_PAGE + 1,
+                    offset=offset,
                 )
-                feed_items[topic] = {}
-                feed_items[topic]['items'] = get_json_feed_content(api_url)
-                feed_items[topic]['group_name'] = self.GROUPS[topic]['name']
+                posts = get_json_feed_content(api_url)
+                posts_length = len(posts)
+                name = self.GROUPS[topic]['name']
+                feed_items['posts'] = {}
+                feed_items['posts'][topic] = {}
+                feed_items['posts'][topic]['posts'] = posts[:self.PER_PAGE]
+                feed_items['posts'][topic]['group_name'] = name
             elif not topic:
                 content_id = str(self.CATEGORIES[content]['id'])
                 api_url = (
-                    '{api_url}/posts?_embed&categories={content_id}'
-                )
-                api_url = api_url.format(
+                    '{api_url}/posts?_embed'
+                    '&categories={content_id}'
+                    '&per_page={per_page}'
+                    '&offset={offset}'
+                ).format(
                     api_url=self.API_URL,
                     content_id=content_id,
+                    per_page=self.PER_PAGE + 1,
+                    offset=offset,
                 )
-                feed_items[content] = {}
-                feed_items[content]['items'] = get_json_feed_content(api_url)
-                feed_items[content]['group_name'] = 'All {name}'.format(
+                posts = get_json_feed_content(api_url)
+                posts_length = len(posts)
+                title = 'All {name}'.format(
                     name=self.CATEGORIES[content]['name']
                 )
+                feed_items['posts'] = {}
+                feed_items['posts'][content] = {}
+                feed_items['posts'][content]['posts'] = posts[:self.PER_PAGE]
+                feed_items['posts'][content]['group_name'] = title
             else:
                 category_id = str(self.GROUPS[topic]['id'])
                 content_id = str(self.CATEGORIES[content]['id'])
                 api_url = (
                     '{api_url}/posts?_embed'
-                    '&group={category_id}&categories={content_id}'
-                )
-                api_url = api_url.format(
+                    '&group={category_id}'
+                    '&categories={content_id}'
+                    '&per_page={per_page}'
+                    '&offset={offset}'
+                ).format(
                     api_url=self.API_URL,
                     category_id=category_id,
                     content_id=content_id,
+                    per_page=self.PER_PAGE + 1,
+                    offset=offset,
                 )
-                feed_items[topic] = {}
-                feed_items[topic]['items'] = get_json_feed_content(api_url)
-                feed_items[topic]['group_name'] = '{topic} {content}'.format(
+                posts = get_json_feed_content(api_url)
+                posts_length = len(posts)
+                title = '{topic} {content}'.format(
                     topic=self.GROUPS[topic]['name'],
                     content=self.CATEGORIES[content]['name'],
                 )
+                feed_items['posts'] = {}
+                feed_items['posts'][topic] = {}
+                feed_items['posts'][topic]['posts'] = posts[:self.PER_PAGE]
+                feed_items['posts'][topic]['group_name'] = title
+
         else:
             for group_name, group in self.GROUPS.items():
                 api_url = (
                     '{api_url}/posts'
-                    '?group={group_id}&{resource_filter}'
+                    '?group={group_id}'
+                    '&{resource_filter}'
                 ).format(
                     api_url=self.API_URL,
                     group_id=group['id'],
                     resource_filter=self.RESOURCE_FILTER,
                 )
-                feed_items[group_name] = {}
-                feed_items[group_name]['items'] = get_json_feed_content(
-                    api_url,
-                    limit=3,
-                )
-                feed_items[group_name]['group_name'] = group['name']
+                posts = get_json_feed_content(api_url, limit=3)
+                posts_length = len(posts)
+                if 'posts' not in feed_items.keys():
+                    feed_items['posts'] = {}
+
+                feed_items['posts'][group_name] = {}
+                feed_items['posts'][group_name]['posts'] = posts
+                feed_items['posts'][group_name]['group_name'] = group['name']
+
+        feed_items['pagination'] = self._generate_pagination_queries(
+            page,
+            posts_length
+        )
         return feed_items
 
     def get_context_data(self, **kwargs):
@@ -148,9 +219,10 @@ class ResourcesView(TemplateView):
 
         # Get any existing context
         context = super(ResourcesView, self).get_context_data(**kwargs)
-        context['items'] = self._get_resources()
+        context.update(self._get_resources())
         context['topic_slug'] = self.request.GET.get('topic')
         context['content_slug'] = self.request.GET.get('content')
+        context['page_index'] = int(self.request.GET.get('page', 1))
         return context
 
 

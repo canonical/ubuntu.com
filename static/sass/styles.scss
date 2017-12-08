@@ -262,3 +262,26 @@ p {
     max-width: none;
   }
 }
+
+// XXX Ant: 06.12.17 This can be removed when this is fixed
+// https://github.com/vanilla-framework/vanilla-framework/issues/1484
+
+.p-pagination {
+  &__previous {
+    text-align: left !important;
+
+    &:only-child {
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &__next {
+    &:only-child {
+      &::before {
+        display: none;
+      }
+    }
+  }
+}

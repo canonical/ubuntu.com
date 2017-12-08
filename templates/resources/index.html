@@ -37,7 +37,7 @@
 </section>
 
 <section class="p-strip is-shallow">
-  <div class="row">
+  <header class="row">
     <div class="col-12 u-align--right">
       <form action="?foo=bar" method="get" class="p-form p-form--inline">
         <div class="p-form__group">
@@ -64,15 +64,15 @@
         });
       </script>
     </div>
-  </div>
+  </header>
 
-  {% if items is False %}
+  {% if posts is False %}
   <div class="row">
     <div class="p-notification--negative">
       <p class="p-notification__response"><span class="p-notification__status">Error:</span>The live news feed failed to load. Please <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new" class="p-link--external">report this bug</a> and our team will fix the problem as soon as&nbsp;possible.</p>
     </div>
   </div>
-  {% elif items|length is 0 %}
+  {% elif posts|length is 0 %}
   <div class="row">
     <div class="p-notification--information">
       <p class="p-notification__response">
@@ -82,13 +82,12 @@
   </div>
   {% endif %}
 
-  {% for group_slug, resources in items.items %}
+  {% for group_slug, resources in posts.items %}
     <div class="row">
       <h2>{{ resources.group_name }}</h2>
     </div>
-
     <div class="row u-equal-height">
-    {% for resource in resources.items %}
+    {% for resource in resources.posts %}
       <div class="p-card col-4">
         {% if resource.featuredmedia %}
           <a href="{{resource.link}}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Clicked resource', 'eventLabel' : '{{resource.title.rendered}}', 'eventValue' : undefined });" >
@@ -106,6 +105,20 @@
     {% endfor %}
     </div>
   {% endfor %}
+    <footer class="p-pagination">
+      {% if pagination.previous_enable %}
+      <a class="p-pagination__link p-pagination__previous" href="{{ pagination.previous_link }}">
+        <span class="p-pagination__label">Previous</span>
+        <span class="p-pagination__title">Go to page {{ pagination.previous_index }}</span>
+      </a>
+      {% endif %}
+      {% if pagination.next_enable %}
+      <a class="p-pagination__link p-pagination__next" href="{{ pagination.next_link }}">
+        <span class="p-pagination__label">Next</span>
+        <span class="p-pagination__title">Go to page {{ pagination.next_index }}</span>
+      </a>
+      {% endif %}
+    </footer>
   </div>
 </section>
 
