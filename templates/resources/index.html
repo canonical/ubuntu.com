@@ -6,16 +6,20 @@
 
 {% block content %}
 
-<section class="p-strip--accent is-shallow">
+<section class="p-strip--accent is-dark is-shallow">
   <div class="row">
-    <h1>Resources</h1>
-    <form action="/resources" method="get" class="p-form p-form--inline p-form--search">
-      <div class="p-form__group">
-        <label for="search-input" class="u-off-screen">Search resources</label>
-        <input id="search-input" type="search" name="q" value="{{ search_slug }}" class="p-form__control"/>
-      </div>
-      <button type="submit" alt="search" class="p-button--positive u-align--left">Search resources</button>
-    </form>
+    <div class="col-6">
+      <h1>Resources</h1>
+    </div>
+    <div class="col-6 u-align--right">
+      <form action="/resources" method="get" class="p-form p-form--inline p-form--search" style="margin-top: .75rem;">
+        <div class="p-form__group">
+          <label for="search-input" class="u-off-screen">Search resources</label>
+          <input id="search-input" type="search" name="q" value="{{ search_slug }}" class="p-form__control"/>
+        </div>
+        <button type="submit" alt="search" class="p-button--neutral u-align--left">Search resources</button>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -24,7 +28,7 @@
     <div class="row">
       <ul class="p-tabs__list u-no-padding--left" role="tablist">
         <li class="p-tabs__item" role="presentation">
-          <span class="p-tabs__link">Topic:</span>
+          <span class="p-tabs__label">Topic:</span>
         </li>
         <li class="p-tabs__item" role="presentation">
           <a href="?{% if content_slug %}content={{ content_slug }}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Navigation', 'eventLabel' : 'All', 'eventValue' : undefined });" class="p-tabs__link" role="tab" aria-controls="section1"{% if topic_slug == 'all' or topic_slug == None %} aria-selected="true"{% endif %}>All</a>
