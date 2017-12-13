@@ -5,6 +5,7 @@ import re
 from canonicalwebteam.get_feeds import (
     get_json_feed_content
 )
+from collections import OrderedDict
 from copy import copy
 from django.views.generic.base import TemplateView
 from django_template_finder_view import TemplateFinder
@@ -42,11 +43,11 @@ class ResourcesView(TemplateView):
     API_URL = INSIGHTS_URL + '/wp-json/wp/v2'
     RESOURCE_FILTER = 'categories=1172,1509,1187'
     PER_PAGE = 9
-    GROUPS = {
-        'cloud-and-server': {'id': 1706, 'name': 'Cloud and server'},
-        'desktop': {'id': 1479, 'name': 'Desktop'},
-        'internet-of-things': {'id': 1666, 'name': 'Internet of things'},
-    }
+    GROUPS = OrderedDict((
+        ('cloud-and-server', {'id': 1706, 'name': 'Cloud and server'}),
+        ('internet-of-things', {'id': 1666, 'name': 'Internet of things'}),
+        ('desktop', {'id': 1479, 'name': 'Desktop'}),
+    ))
     CATEGORIES = {
         'case-studies': {'id': 1172, 'name': 'case studies'},
         'videos': {'id': 1509, 'name': 'videos'},
@@ -200,7 +201,7 @@ class ResourcesView(TemplateView):
                 posts = get_json_feed_content(api_url, limit=3)
                 posts_length = len(posts)
                 if 'posts' not in feed_items.keys():
-                    feed_items['posts'] = {}
+                    feed_items['posts'] = OrderedDict()
 
                 feed_items['posts'][group_name] = {}
                 feed_items['posts'][group_name]['posts'] = posts
