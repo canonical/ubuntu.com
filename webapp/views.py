@@ -52,6 +52,7 @@ class ResourcesView(TemplateView):
         'case-studies': {'id': 1172, 'name': 'case studies'},
         'videos': {'id': 1509, 'name': 'videos'},
         'webinars': {'id': 1187, 'name': 'webinars'},
+        'whitepapers': {'id': 1485, 'name': 'whitepapers'},
     }
 
     def _get_categories_by_slug(self, slugs=[]):
@@ -115,6 +116,7 @@ class ResourcesView(TemplateView):
         page = int(self.request.GET.get('page', 1))
         offset = (page - 1) * self.PER_PAGE
         feed_items = {}
+        posts_length = 0
         if topic or content:
             if not content:
                 category_id = str(self.GROUPS[topic]['id'])
@@ -199,14 +201,16 @@ class ResourcesView(TemplateView):
                     resource_filter=self.RESOURCE_FILTER,
                 )
                 posts = get_json_feed_content(api_url, limit=3)
-                posts_length = len(posts)
-                if 'posts' not in feed_items.keys():
-                    feed_items['posts'] = OrderedDict()
+                if posts:
+                    posts_length = len(posts)
+                    if 'posts' not in feed_items.keys():
+                        feed_items['posts'] = OrderedDict()
+                    name = group['name']
+                    feed_items['posts'][group_name] = {}
+                    feed_items['posts'][group_name]['posts'] = posts
+                    feed_items['posts'][group_name]['group_name'] = name
 
-                feed_items['posts'][group_name] = {}
-                feed_items['posts'][group_name]['posts'] = posts
-                feed_items['posts'][group_name]['group_name'] = group['name']
-
+        feed_items['posts_length'] = posts_length
         feed_items['pagination'] = self._generate_pagination_queries(
             page,
             posts_length
