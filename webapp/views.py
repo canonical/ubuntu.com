@@ -122,8 +122,7 @@ class ResourcesView(TemplateView):
             api_url = (
                 '{api_url}/posts?_embed'
                 '&search={search}&{resource_filter}'
-            )
-            api_url = api_url.format(
+            ).format(
                 api_url=self.API_URL,
                 search=search,
                 resource_filter=self.RESOURCE_FILTER,
