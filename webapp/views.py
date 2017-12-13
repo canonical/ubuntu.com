@@ -205,10 +205,10 @@ class ResourcesView(TemplateView):
                     posts_length = len(posts)
                     if 'posts' not in feed_items.keys():
                         feed_items['posts'] = OrderedDict()
-
+                    name = group['name']
                     feed_items['posts'][group_name] = {}
                     feed_items['posts'][group_name]['posts'] = posts
-                    feed_items['posts'][group_name]['group_name'] = group['name']
+                    feed_items['posts'][group_name]['group_name'] = name
 
         feed_items['posts_length'] = posts_length
         feed_items['pagination'] = self._generate_pagination_queries(
