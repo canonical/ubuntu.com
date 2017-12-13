@@ -209,6 +209,7 @@ class ResourcesView(TemplateView):
                     feed_items['posts'][group_name]['posts'] = posts
                     feed_items['posts'][group_name]['group_name'] = group['name']
 
+        feed_items['posts_length'] = posts_length
         feed_items['pagination'] = self._generate_pagination_queries(
             page,
             posts_length
