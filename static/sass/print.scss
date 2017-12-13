@@ -29,7 +29,9 @@ body {
 a,
 blockquote,
 table,
-pre {
+pre,
+[class^="p-strip"],
+[class*=" p-strip"] {
     page-break-inside:avoid
 }
 
@@ -71,6 +73,17 @@ a:after > img {
 header,
 nav,
 footer,
-.p-top {
+#mobile_invitation_container,
+.p-top,
+.u-hide--small,
+.p-heading-icon__img,
+.p-contextual-footer {
   display: none;
+}
+
+// make sure logos to display too large
+.p-inline-images__logo,
+.p-inline-images__item > img {
+  max-height: 5.5rem;
+  max-width: 9rem;
 }
