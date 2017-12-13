@@ -120,14 +120,14 @@ class ResourcesView(TemplateView):
         posts_length = 0
         if search:
             api_url = (
-                    '{api_url}/posts?_embed'
-                    '&search={search}&{resource_filter}'
-                )
+                '{api_url}/posts?_embed'
+                '&search={search}&{resource_filter}'
+            )
             api_url = api_url.format(
-                    api_url=self.API_URL,
-                    search=search,
-                    resource_filter=self.RESOURCE_FILTER,
-                )
+                api_url=self.API_URL,
+                search=search,
+                resource_filter=self.RESOURCE_FILTER,
+            )
             group_name = 'search'
             feed_items[group_name] = {}
             feed_items[group_name]['items'] = get_json_feed_content(
