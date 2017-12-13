@@ -116,6 +116,7 @@ class ResourcesView(TemplateView):
         page = int(self.request.GET.get('page', 1))
         offset = (page - 1) * self.PER_PAGE
         feed_items = {}
+        posts_length = 0
         if topic or content:
             if not content:
                 category_id = str(self.GROUPS[topic]['id'])
