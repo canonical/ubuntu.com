@@ -209,7 +209,6 @@ class ResourcesView(TemplateView):
                 posts = self._normalise_resources(
                     get_json_feed_content(api_url, limit=3)
                 )
-                print
                 if posts:
                     posts_length = len(posts)
                     if 'posts' not in feed_items.keys():
