@@ -1,3 +1,6 @@
+
+if (!core) { var core = {}; }
+
 // The cookie policy injection and interaction
 core.cookiePolicy = function() {
   if (getCookie('_cookies_accepted') !== 'true'){
