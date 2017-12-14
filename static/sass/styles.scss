@@ -285,3 +285,31 @@ p {
     }
   }
 }
+
+// XXX Ant: 11.12.17 This can be removed when this is fixed
+// https://github.com/vanilla-framework/vanilla-framework/issues/1491
+.is-dark .p-button--base {
+  @include vf-animation(
+    $property: all,
+    $duration: fast,
+    $easing: in
+  );
+  color: $color-x-light;
+
+  &:hover {
+    color: $color-dark;
+  }
+}
+
+// XXX Ant: 11.12.17 This can be removed when this is fixed
+// https://github.com/vanilla-framework/vanilla-framework/issues/1492
+.p-tabs {
+  &__label {
+    @extend .p-tabs__link;
+    padding-left: 0;
+
+    &:hover {
+      border-bottom: 0;
+    }
+  }
+}
