@@ -133,7 +133,9 @@ class ResourcesView(TemplateView):
                     per_page=self.PER_PAGE + 1,
                     offset=offset,
                 )
-                posts = get_json_feed_content(api_url)
+                posts = self._normalise_resources(
+                    get_json_feed_content(api_url)
+                )
                 posts_length = len(posts)
                 name = self.GROUPS[topic]['name']
                 feed_items['posts'] = {}
@@ -153,7 +155,9 @@ class ResourcesView(TemplateView):
                     per_page=self.PER_PAGE + 1,
                     offset=offset,
                 )
-                posts = get_json_feed_content(api_url)
+                posts = self._normalise_resources(
+                    get_json_feed_content(api_url)
+                )
                 posts_length = len(posts)
                 title = 'All {name}'.format(
                     name=self.CATEGORIES[content]['name']
@@ -178,7 +182,9 @@ class ResourcesView(TemplateView):
                     per_page=self.PER_PAGE + 1,
                     offset=offset,
                 )
-                posts = get_json_feed_content(api_url)
+                posts = self._normalise_resources(
+                    get_json_feed_content(api_url)
+                )
                 posts_length = len(posts)
                 title = '{topic} {content}'.format(
                     topic=self.GROUPS[topic]['name'],
@@ -200,7 +206,9 @@ class ResourcesView(TemplateView):
                     group_id=group['id'],
                     resource_filter=self.RESOURCE_FILTER,
                 )
-                posts = get_json_feed_content(api_url, limit=3)
+                posts = self._normalise_resources(
+                    get_json_feed_content(api_url, limit=3)
+                )
                 if posts:
                     posts_length = len(posts)
                     if 'posts' not in feed_items.keys():
