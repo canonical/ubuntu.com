@@ -198,8 +198,8 @@ class ResourcesView(TemplateView):
         else:
             for group_name, group in self.GROUPS.items():
                 api_url = (
-                    '{api_url}/posts'
-                    '?group={group_id}'
+                    '{api_url}/posts?_embed'
+                    '&group={group_id}'
                     '&{resource_filter}'
                 ).format(
                     api_url=self.API_URL,
