@@ -128,14 +128,15 @@ class ResourcesView(TemplateView):
                 resource_filter=self.RESOURCE_FILTER,
             )
             group_name = 'search'
-            feed_items[group_name] = {}
-            feed_items[group_name]['items'] = get_json_feed_content(
+            feed_items['posts'] = {}
+            feed_items['posts'][group_name] = {}
+            feed_items['posts'][group_name]['posts'] = get_json_feed_content(
                 api_url,
             )
             group_title = 'Search results for "{search}"'.format(
                 search=search,
             )
-            feed_items[group_name]['group_name'] = group_title
+            feed_items['posts'][group_name]['group_name'] = group_title
             return feed_items
         if topic or content:
             if not content:
