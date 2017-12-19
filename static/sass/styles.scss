@@ -313,3 +313,8 @@ p {
     }
   }
 }
+
+// XXX Lyubo: 19.12.17 This can be removed when the utility class if this is approved as a vanilla utility
+.u-measure--p {
+  @include p-max-width;
+}
