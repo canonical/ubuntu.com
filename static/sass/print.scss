@@ -94,3 +94,21 @@ footer,
     max-width: 9rem;
   }
 }
+
+// print legal pages nicely
+.p-list--ordered-legal {
+  counter-reset: item;
+  list-style-type: none;
+
+  & > .p-list__item:before {
+    content: counters(item, ".") ". ";
+    counter-increment: item;
+    font-weight: 400;
+  }
+
+  & > .p-list__item > h2,
+  & > .p-list__item > h3,
+  & > .p-list__item > h4 {
+    display: inline;
+  }
+}
