@@ -16,6 +16,10 @@
 
     {% include "shared/_client-contact-us-form.html" with h1="Contact us about robotics"  intro_text="If you would like to know more about Ubuntu for Robotics please fill in your details below and a member of our team will get in touch."  formid="1650" lpId="2838"  returnURL="http://ubuntu.com/internet-of-things/thank-you?product=robotics"  %}
 
+    {% elif product == 'appstore' %}
+
+      {% include "shared/_client-contact-us-form.html" with h1="Contact us about app stores"  intro_text="If you would like to know more about Ubuntu for your IoT app store, please fill in your details below and a member of our team will get in touch."  formid="2639" lpId="5811"  returnURL="http://ubuntu.com/internet-of-things/thank-you?product=appstore"  %}
+
   {% else %}
 
     {% include "shared/_client-contact-us-form.html" with h1="Contact us" intro_text="If you are thinking about using Ubuntu Core to power your Internet of Things devices, please fill in your details below and a member of our team will get in touch."  formid="1266" lpId="2551"  returnURL="http://ubuntu.com/internet-of-things/thank-you?product=iot"  %}
