@@ -1,14 +1,14 @@
 {% extends "download/_base_download.html" %}
 {% block title %}Build OpenStack with conjure-up | Download{% endblock %}
-{% block meta_description %}Want to build your own production cloud? Use conjure-up. It’s easy and free.{% endblock %}
+{% block meta_description %}Want to build your own production private cloud? Use conjure-up. It’s easy and free.{% endblock %}
 {% block extra_body_class %}download-build-openstack{% endblock %}
 
 
 {% block content %}
 <div class="p-strip--light is-deep">
   <div class="row">
-    <div class="col-10">
-      <h1>Build your own production cloud</h1>
+    <div class="col-11">
+      <h1>Build your own production private cloud</h1>
     </div>
   </div>
   <div class="row">
@@ -19,12 +19,13 @@
           <p>Thanks to MAAS, the bare metal provisioning and management tool, conjure-up can talk to a cluster of servers.</p>
         </div>
         <div class="col-6 p-divider__block">
-          <h3>Requirements</h3>
+          <h3>Minimum requirements<sup>*</sup></h3>
           <p>4 x Intel x64 servers each with:</p>
           <ul class="p-list">
             <li class="p-list__item is-ticked">8GB RAM</li>
             <li class="p-list__item is-ticked">Management card/BMC with IPMI onboard</li>
           </ul>
+          <p><sup>*</sup> <small>Note: for production clouds 12 nodes are required,  including 3 nodes for High Availability MAAS-based infrastructure.</small></p>
         </div>
       </div>
     </div>
