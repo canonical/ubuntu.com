@@ -61,7 +61,12 @@
   </div>
 </section>
 
-<section class="p-strip--light is-bordered is-deep">
+<section class="p-strip has-background is-bordered is-deep">
+  <div class="row">
+    <div class="col-8">
+      <h2>Features</h2>
+    </div>
+  </div>
   <div class="row u-equal-height">
     <div class="col-4 p-card">
       <h4>Manage your store</h4>
@@ -92,13 +97,18 @@
 </section>
 
 <section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-8">
+      <h2>Learn more about IoT app stores</h2>
+    </div>
+  </div>
   <div class="row p-divider">
     <div class="col-4 p-divider__block" id="ubuntu-com_appstore_left">
       <!-- rtp section start -->
       <div class='p-heading-icon u-no-margin--bottom'>
         <div class='p-heading-icon__header u-no-margin--bottom'>
           <img class='p-heading-icon__img' src='{{ ASSET_SERVER_URL }}cd7a3a3c-white-paper-icon.svg' alt='' style='max-width: 30px;' />
-          <h3 class='p-heading-icon__title p-heading--muted' style='color: #666;'>White paper</h3>
+          <h3 class='p-heading-icon__title p-muted-heading' style='color: #666;'>White paper</h3>
         </div>
       </div>
       <h2 class='p-heading--four'>
@@ -111,7 +121,7 @@
       <div class='p-heading-icon u-no-margin--bottom'>
         <div class='p-heading-icon__header u-no-margin--bottom'>
           <img class='p-heading-icon__img' src='{{ ASSET_SERVER_URL }}26797d10-newsfeed-stripvideo-icon.svg' alt='' style='max-width: 30px;' />
-          <h3 class='p-heading-icon__title p-heading--muted' style='color: #666;'>Webinar</h3>
+          <h3 class='p-heading-icon__title p-muted-heading' style='color: #666;'>Webinar</h3>
         </div>
       </div>
       <h2 class='p-heading--four'>
@@ -124,7 +134,7 @@
       <div class='p-heading-icon u-no-margin--bottom'>
         <div class='p-heading-icon__header u-no-margin--bottom'>
           <img class='p-heading-icon__img' src='{{ ASSET_SERVER_URL }}5cf7bd32-news-feed-strip-case-study.svg' alt='' style='max-width: 30px;' />
-          <h3 class='p-heading-icon__title p-heading--muted' style='color: #666;'>Case study</h3>
+          <h3 class='p-heading-icon__title p-muted-heading' style='color: #666;'>Case study</h3>
         </div>
       </div>
       <h2 class='p-heading--four'>
@@ -139,7 +149,8 @@
   <div class="row">
     <div class="col-12">
       <blockquote class="p-pull-quote--accent">
-        <p>"This new app store is much more than an easy way for Orange Pi owners to find and install great applications. The store offers Orange Pi developers a powerful set of tools to go much faster from development to production with CI integration, cross-platform building and beta distribution."</p>
+        <p>This new app store is much more than an easy way for Orange Pi owners to find and install great applications.</p>
+        <p>The store offers Orange Pi developers a powerful set of tools to go much faster from development to production with CI integration, cross-platform building and beta distribution.</p>
         <cite class="p-pull-quote__citation">Steven Zhao, the CEO of Xunlong / Orange Pi</cite>
       </blockquote>
     </div>
@@ -152,22 +163,24 @@
       <h2 class="p-muted-heading u-align--center">Used by</h2>
       <ul class="p-inline-images">
         <li class="p-inline-images__item">
-          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}5ddba83a-logo-dell.svg" alt="Dell" style="max-width:90px;">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}5ddba83a-logo-dell.svg" alt="Dell" >
         </li>
         <li class="p-inline-images__item">
-          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}b883ac0a-Domotz-d-logo.png" width="242" alt="Domotz" style="max-width:130px;">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}b883ac0a-Domotz-d-logo.png" alt="Domotz" >
         </li>
         <li class="p-inline-images__item">
-          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}212523c5-guh.jpg" alt="Guh" style="max-width:100px;">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}212523c5-guh.jpg" alt="Guh" >
         </li>
         <li class="p-inline-images__item">
-          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}7bfc32bf-screenly-stacked.png" alt="Screenly">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}8cef16f3-screenly-logo-square.png" alt="Screenly">
         </li>
+      </ul>
+      <ul class="p-inline-images">
         <li class="p-inline-images__item">
           <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}55cfce66-orange-pi-logo.png" alt="Orange Pi">
         </li>
         <li class="p-inline-images__item">
-          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}9e32d80b-partner-logo-lime-microsystems.png" alt="Lime Micro" style="max-width:90px;">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}e083039f-lime-logo-square.png" alt="Lime Micro" style="max-height: 8.5rem;">
         </li>
       </ul>
     </div>
@@ -187,7 +200,6 @@
           <li class="p-list__item is-ticked">Enterprise proxy functionalities</li>
           <li class="p-list__item is-ticked">Own app ecosystem control and management</li>
         </ul>
-        <p><a class="p-button" href="/support">Learn more about support from Canonical</a></p>
       </div>
       <div class="col-5 u-align--right u-vertically-center u-hide--small">
         <img src="{{ ASSET_SERVER_URL }}11da76f5-image-management.svg" style="width: 80%;" alt="" width="288" height="155" />
@@ -199,21 +211,17 @@
 <section class="p-strip--accent is-dark">
   <div class="row u-equal-height">
     <div class="col-8">
-      <p class="p-heading--three">Sign up for a free consultation to discuss how an app store could get you started on your IoT monetization and security journey?</p>
-      <ul class="p-inline-list" style="margin-top: 2rem;">
-        <li class="p-inline-list__item">
-          <a class="p-button--positive" href="/internet-of-things/contact-us?product=appstore" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Telcos - Top CTA' });">Contact us to get started</a>
-        </li>
-        <li class="p-inline-list__item">
-          <a href="https://www.brighttalk.com/webcast/6793/290087" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Webinar', 'eventLabel' : 'Watch the Path To IoT Revenue webinar', 'eventValue' : undefined });"><span class="p-link--external p-link--inverted">Watch the webinar to find out more</span></a>
-        </li>
-      </ul>
+      <p class="p-heading--three">If you’re looking for ways to distribute and manage software on your IoT devices, sign up for a free consultation.</p>
+      <p style="margin-top: 2rem;">
+        <a class="p-button--positive" href="/internet-of-things/contact-us?product=appstore" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Telcos - Top CTA' });">Contact us</a>
+      </p>
     </div>
     <div class="col-4 prefix-1 suffix-1 u-vertically-center">
       <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" class="u-hide--small" alt="">
     </div>
   </div>
 </section>
+
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_iot_newsletter_signup" third_item="_iot_further_reading" %}
 
