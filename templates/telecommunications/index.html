@@ -5,7 +5,7 @@
 {% block title %}Ubuntu solutions for telecommunications{% endblock %}
 
 {% block content %}
-<section class="p-strip--image is-dark is-deep" style="background-image: url('https://assets.ubuntu.com/v1/ebdfffbf-Aubergine_suru_background.png'); background-position: 77% 0%;">
+<section class="p-strip--image is-dark is-deep" style="background-image: url('{{ ASSET_SERVER_URL }}ebdfffbf-Aubergine_suru_background.png'); background-position: 77% 0%;">
   <div class="row">
     <div class="col-8">
       <h1>Ubuntu for telcos</h1>
@@ -91,8 +91,8 @@
   <div class="row">
     <div class="col-12">
       <blockquote class="p-pull-quote--accent">
-        <p>We&rsquo;re reinventing how we scale by becoming simpler and modular, similar to how applications have evolved in cloud data centers. Open source and OpenStack innovations represent a unique opportunity to meet these requirements and Canonical&rsquo;s cloud and open source expertise make them a good choice for AT&T.</p>
-        <cite class="p-pull-quote__citation">Toby Ford, Assistant Vice President of Cloud Technology, Strategy and Planning at AT&T</cite>
+        <p>We&rsquo;re reinventing how we scale by becoming simpler and modular, similar to how applications have evolved in cloud data centers. Open source and OpenStack innovations represent a unique opportunity to meet these requirements and Canonical&rsquo;s cloud and open source expertise make them a good choice for AT&amp;T.</p>
+        <cite class="p-pull-quote__citation">Toby Ford, Assistant Vice President of Cloud Technology, Strategy and Planning at AT&amp;T</cite>
       </blockquote>
     </div>
   </div>
@@ -219,7 +219,7 @@
           </li>
       </div>
       <div class="col-4 prefix-1 suffix-1 u-vertically-center">
-      <img src="https://assets.ubuntu.com/v1/1f1d581a-picto-quote-orange.svg" class="u-hide--small" alt="">
+      <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" class="u-hide--small" alt="">
     </div>
   </div>
 </section>
