@@ -43,4 +43,43 @@
       text-decoration: underline;
     }
   }
+
+  %resources-card-header {
+    color: $color-x-light;
+    padding: 1rem;
+  }
+
+  .p-card--resources {
+    @extend .p-card--highlighted;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    > .p-card__footer {
+      margin: auto 1rem 0 1rem;
+      padding: 1rem .5rem;
+    }
+
+    > a, p, h3 {
+      margin-top: 1rem;
+      padding: 0 1rem 1rem 1rem;
+    }
+  }
+
+  .p-card__header {
+    &--cloud-and-server {
+      @extend %resources-card-header;
+      background: #2b939c;
+    }
+
+    &--desktop {
+      @extend %resources-card-header;
+      background: #66a2c1;
+    }
+
+    &--internet-of-things {
+      @extend %resources-card-header;
+      background: #b0709d;
+    }
+  }
 }
