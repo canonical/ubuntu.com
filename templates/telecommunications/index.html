@@ -5,22 +5,25 @@
 {% block title %}Ubuntu solutions for telecommunications{% endblock %}
 
 {% block content %}
-<section class="p-strip--image is-dark is-deep" style="background-image: url('https://assets.ubuntu.com/v1/ebdfffbf-Aubergine_suru_background.png'); background-position: 77% 0%;">
+<section class="p-strip--image is-dark is-deep" style="background-image: url('{{ ASSET_SERVER_URL }}ebdfffbf-Aubergine_suru_background.png'); background-position: 77% 0%;">
   <div class="row">
     <div class="col-8">
       <h1>Ubuntu for telcos</h1>
       <p>As an established leader in cloud computing, Canonical lets you apply the webscale savings and best practice  that are necessary to succeed in the telco world. By using established open source software to automate the deployment and operation of NFVI and IoT solutions, we can help you become even more agile while reducing your costs and time to market.</p>
       <ul class="p-inline-list">
-          <li class="p-inline-list__item">
-            <a class="p-button--positive" href="https://www.brighttalk.com/webcast/6793/290067" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Watch Cloud to Edge webinar', 'eventLabel' : 'Watch Cloud to Edge webinar', 'eventValue' : undefined });" ><span class="p-link--external">Watch Cloud to Edge webinar</span></a>
-          </li>
-          <li class="p-inline-list__item">
-            <a href="/cloud/contact-us" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Telcos - Top CTA' });" class="p-button--neutral">Contact us</a>
-          </li>
-        </ul>
-      </p>
-    </div>
+        <li class="p-inline-list__item">
+          <a class="p-button--positive" href="https://www.brighttalk.com/webcast/6793/290067" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Watch Cloud to Edge webinar', 'eventLabel' : 'Watch Cloud to Edge webinar', 'eventValue' : undefined });" ><span class="p-link--external">Watch the 'Cloud to Edge' webinar</span></a>
+        </li>
+        <li class="p-inline-list__item">
+          <a href="/cloud/contact-us" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Telcos - Top CTA' });" class="p-button--neutral">Contact us</a>
+        </li>
+      </ul>
+    </p>
   </div>
+  <div class="col-4">
+    <img src="{{ ASSET_SERVER_URL }}49b9302b-network-equipment-white.svg?w=200" width="200" alt="">
+  </div>
+</div>
 </section>
 
 <section class="p-strip is-deep is-bordered">
@@ -54,44 +57,38 @@
 </section>
 
 <section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>The complete cloud automation toolset</h2>
-      <p>Operational discipline &mdash; built on automation and repeatability &mdash; has long been crucial to the profitability of CSPs. Canonical applies the same principles to the way clouds are built and run.  From design to deployment and operations, every aspect is managed with Canonical&rsquo;s proven automation toolset, including provisioning tool MAAS, management tool Landscape, and application modeling tool Juju.</p>
-      <ul class="p-list">
+  <div class="row u-equal-height">
+    <div class="col-6 p-card--highlighted">
+      <h2 class="p-card__title">The complete cloud automation toolset</h2>
+      <p class="p-card__content">Operational discipline &mdash; built on automation and repeatability &mdash; has long been crucial to the profitability of CSPs. Canonical applies the same principles to the way clouds are built and run.  From design to deployment and operations, every aspect is managed with Canonical&rsquo;s proven automation toolset, the: provisioning tool MAAS, management tool Landscape, and application modeling tool Juju.</p>
+      <ul class="p-card__content p-list">
         <li><a href="/cloud/juju">Find out more about Juju&nbsp;&rsaquo;</a></li>
         <li><a href="/server/maas">Find out more about MAAS&nbsp;&rsaquo;</a></li>
       </ul>
     </div>
-  </div>
-</section>
-
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>NFVI cloud build</h2>
-      <p>Canonical&rsquo;s Foundation Cloud Build for telcos is a pre-tested, pre-integrated OpenStack cloud built using a proven reference architecture and tailored to the needs of CSPs. Think of it as a fixed price, NFV-ready cloud, deployed by Canonical on your premises in just a few weeks.</p>
-      <p><a href="/cloud/foundation-cloud">Find out more<span class="u-off-screen"> about NFVI cloud build</span>&nbsp;&rsaquo;</a></p>
+    <div class="col-6 p-card--highlighted">
+      <h2 class="p-card__title">NFVI cloud build</h2>
+      <div class="p-card__content">
+        <p>Canonical&rsquo;s Foundation Cloud Build for telcos is a pre-tested, pre-integrated OpenStack cloud built using a proven reference architecture and tailored to the needs of CSPs.</p>
+        <p>Think of it as a fixed price, NFV-ready cloud, deployed by Canonical on your premises in just a few weeks.</p>
+        <p><a href="/cloud/foundation-cloud">Find out more<span class="u-off-screen"> about NFVI cloud build</span>&nbsp;&rsaquo;</a></p>
+      </div>
     </div>
   </div>
-</section>
-
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>A telco-grade managed cloud</h2>
-      <p>A number of telcos rely on Canonical&rsquo;s fully managed cloud service. Get Telco Grade SLAs and predictable operational costs for your OpenStack cloud, on your servers at your locations. We build, operate, scale and upgrade your cloud, while you concentrate on building your applications in flexible and agile environments.</p>
-      <p><a href="/cloud/managed-cloud">Find out more<span class="u-off-screen"> about Canonical&rsquo;s managed cloud</span>&nbsp;&rsaquo;</a></p>
+  <div class="row u-equal-height">
+    <div class="col-6 p-card--highlighted">
+      <h2 class="p-card__title">A telco-grade managed cloud</h2>
+      <div class="p-card__content">
+        <p>A number of telcos rely on Canonical&rsquo;s fully managed cloud service. Get Telco Grade SLAs and predictable operational costs for your OpenStack cloud, on your servers at your locations. We build, operate, scale and upgrade your cloud, while you concentrate on building your applications in flexible and agile environments.</p>
+        <p><a href="/cloud/managed-cloud">Find out more<span class="u-off-screen"> about Canonical&rsquo;s managed cloud</span>&nbsp;&rsaquo;</a></p>
+      </div>
     </div>
-  </div>
-</section>
-
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>Smart edge: Internet of Things, switches and <abbr title="Customer-Premises Equipment">CPE</abbr>s</h2>
-      <p>Ubuntu is the Operating System of choice for the smart edge. From software-defined top of the rack switch to enterprise CPE, from home IoT gateways to digital signage, Canonical offers secure OS and app store solutions to maximise post sales revenue from all your smart devices.</p>
-      <p><a href="/internet-of-things">Find out more<span class="u-off-screen"> about smart edge</span>&nbsp;&rsaquo;</a></p>
+    <div class="col-6 p-card--highlighted">
+      <h2 class="p-card__title">Smart edge: Internet of Things, switches and <abbr title="Customer-Premises Equipment">CPE</abbr>s</h2>
+      <div class="p-card__content">
+        <p>Ubuntu is the Operating System of choice for the smart edge. From software-defined top of the rack switch to enterprise CPE, from home IoT gateways to digital signage, Canonical offers secure OS and app store solutions to maximise post sales revenue from all your smart devices.</p>
+        <p><a href="/internet-of-things">Find out more<span class="u-off-screen"> about smart edge</span>&nbsp;&rsaquo;</a></p>
+      </div>
     </div>
   </div>
 </section>
@@ -100,8 +97,8 @@
   <div class="row">
     <div class="col-12">
       <blockquote class="p-pull-quote--accent">
-        <p>We&rsquo;re reinventing how we scale by becoming simpler and modular, similar to how applications have evolved in cloud data centers. Open source and OpenStack innovations represent a unique opportunity to meet these requirements and Canonical&rsquo;s cloud and open source expertise make them a good choice for AT&T.</p>
-        <cite class="p-pull-quote__citation">Toby Ford, Assistant Vice President of Cloud Technology, Strategy and Planning at AT&T</cite>
+        <p>We&rsquo;re reinventing how we scale by becoming simpler and modular, similar to how applications have evolved in cloud data centers. Open source and OpenStack innovations represent a unique opportunity to meet these requirements and Canonical&rsquo;s cloud and open source expertise make them a good choice for AT&amp;T.</p>
+        <cite class="p-pull-quote__citation">Toby Ford, Assistant Vice President of Cloud Technology, Strategy and Planning at AT&amp;T</cite>
       </blockquote>
     </div>
   </div>
@@ -110,27 +107,27 @@
 <section class="p-strip is-bordered">
   <div class="row">
     <div class="col-12">
-        <h2 class="p-muted-heading u-align--center">A selection of our telecommunications clients</h2>
-        <ul class="p-inline-images">
-          <li class="p-inline-images__item">
-            <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}25de1877-Tele2.svg" alt="Tele2" style="max-width:90px;" />
-          </li>
-          <li class="p-inline-images__item">
-            <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}03a06060-logo-deutschetelekom.svg" width="242" alt="Deutshe Telekom" style="max-width:130px;" />
-          </li>
-          <li class="p-inline-images__item">
-            <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}b6e008be-Colt-Logo.svg" alt="Colt" style="max-width:100px;" />
-          </li>
-          <li class="p-inline-images__item">
-            <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}481063cd-pccw.svg" alt="PCCW" />
-          </li>
-          <li class="p-inline-images__item">
-            <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}071c255b-AT%26T_logo.svg" alt="AT&T" />
-          </li>
-          <li class="p-inline-images__item">
-            <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}9ca791fd-Sky_Logo_seit_Dezember_2015.png" alt="Sky" style="max-width:90px;" />
-          </li>
-        </ul>
+      <h2 class="p-muted-heading u-align--center">A selection of our telecommunications clients</h2>
+      <ul class="p-inline-images">
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}25de1877-Tele2.svg" alt="Tele2" style="max-width:90px;" />
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}03a06060-logo-deutschetelekom.svg" width="242" alt="Deutshe Telekom" style="max-width:130px;" />
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}b6e008be-Colt-Logo.svg" alt="Colt" style="max-width:100px;" />
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}481063cd-pccw.svg" alt="PCCW" />
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}071c255b-AT%26T_logo.svg" alt="AT&T" />
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}9ca791fd-Sky_Logo_seit_Dezember_2015.png" alt="Sky" style="max-width:90px;" />
+        </li>
+      </ul>
     </div>
   </div>
 </section>
@@ -138,51 +135,56 @@
 <section class="p-strip is-bordered">
   <div class="row">
     <div class="col-12">
-        <h2 class="p-muted-heading u-align--center">A selection of the telco programs we are part of</h2>
-        <ul class="p-inline-images">
-          <li class="p-inline-images__item">
-            <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}d10b4578-etsi.svg" alt="ETSI" />
-          </li>
-          <li class="p-inline-images__item">
-            <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}4a8b06e9-onap_logo.png" alt="ONAP" />
-          </li>
-          <li class="p-inline-images__item">
-            <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}f15a069c-opnfv_logo_wp.png" alt="OPNFV" />
-          </li>
-          <li class="p-inline-images__item">
-            <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}88982890-OSM-logo.png" alt="Open Source MANO" />
-          </li>
-          <li class="p-inline-images__item">
-            <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}5ac9bab5-logo_cord-1.png" alt="CORD" />
-          </li>
-          <li class="p-inline-images__item">
-            <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}9e564bf9-open-baton.png" alt="Open Baton" />
-          </li>
-          <li class="p-inline-images__item">
-            <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}9635c8f7-opencompute-logo-green.png" alt="Open Compute" />
-          </li>
-          <li class="p-inline-images__item">
-            <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}eeae998a-telecominfraproject-logo.svg" alt="Telecom Infra Project" />
-          </li>
-          <li class="p-inline-images__item">
-            <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}061ffe4a-onf-logo.jpg" alt="ONF" />
-          </li>
-        </ul>
+      <h2 class="p-muted-heading u-align--center">A selection of the telco programs we are part of</h2>
+      <ul class="p-inline-images">
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}d10b4578-etsi.svg" alt="ETSI" />
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}4a8b06e9-onap_logo.png" alt="ONAP" />
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}f15a069c-opnfv_logo_wp.png" alt="OPNFV" />
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}88982890-OSM-logo.png" alt="Open Source MANO" />
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}5ac9bab5-logo_cord-1.png" alt="CORD" />
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}9e564bf9-open-baton.png" alt="Open Baton" />
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}9635c8f7-opencompute-logo-green.png" alt="Open Compute" />
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}eeae998a-telecominfraproject-logo.svg" alt="Telecom Infra Project" />
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}061ffe4a-onf-logo.jpg" alt="ONF" />
+        </li>
+      </ul>
     </div>
   </div>
 </section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="p-heading--three">Learn about Ubuntu in the telecommunications sector</h2>
+    </div>
+  </div>
   <div class="row p-divider">
     <div class="col-4 p-divider__block" id="ubuntu-com_telco_left">
       <!-- rtp section start -->
       <div class='p-heading-icon u-no-margin--bottom'>
         <div class='p-heading-icon__header u-no-margin--bottom'>
           <img class='p-heading-icon__img' src='{{ ASSET_SERVER_URL }}cd7a3a3c-white-paper-icon.svg' alt='' style='max-width: 30px;' />
-          <h4 class='p-heading-icon__title p-heading-icon__title--muted p-muted-heading'>White paper</h4>
+          <h4 class='p-heading-icon__title p-heading-icon__title--muted p-muted-heading'>Whitepaper</h4>
         </div>
       </div>
-      <h3 class='p-heading--four u-no-margin--top'><a class='p-link--external' href='https://insights.ubuntu.com/2016/06/15/special-report-low-latency-and-real-time-kernels-for-telco-and-nfv/' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External link', 'eventAction' : 'Telco - left', 'eventLabel' : 'White paper - Read our report on low latency and real-time kernels for telco and NFV', 'eventValue' : '1' });'>Read our report on low latency and real-time kernels for telco and NFV</a></h3>
+      <h3 class='p-heading--four u-no-margin--top'><a class='p-link--external' href='https://insights.ubuntu.com/2016/06/15/special-report-low-latency-and-real-time-kernels-for-telco-and-nfv/' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External link', 'eventAction' : 'Telco - left', 'eventLabel' : 'Whitepaper - Read our report on low latency and real-time kernels for telco and NFV', 'eventValue' : '1' });'>Read our report on low latency and real-time kernels for telco and NFV</a></h3>
       <!-- rtp section end -->
     </div>
     <div class="col-4 p-divider__block" id="ubuntu-com_telco_center">
@@ -210,18 +212,22 @@
   </div>
 </section>
 
-<section class="p-strip">
-  <div class="row">
-      <div class="col-10">
-        <p class="p-heading--four">Find out how Canonical helps apply the webscale savings and best practices that are necessary for success in the telco world.</p>
-        <ul class="p-inline-list">
-          <li class="p-inline-list__item">
-            <a href="https://www.brighttalk.com/webcast/6793/290067" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Footer CTA', 'eventLabel' : 'Watch Cloud to Edge webinar' });"><span class="p-link--external">Watch Cloud to Edge webinar</span></a>
-          </li>
-          <li class="p-inline-list__item">
-            <a href="/cloud/contact-us" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Footer CTA', 'eventLabel' : 'Contact us' });">Contact us</a>
-          </li>
-      </div>
+<section class="p-strip--accent">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h4>Find out how Canonical helps you to apply the webscale savings and best practice for success in the telco world.</h4>
+      <ul class="p-inline-list">
+        <li class="p-inline-list__item">
+          <a href="https://www.brighttalk.com/webcast/6793/290067" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Footer CTA', 'eventLabel' : 'Watch Cloud to Edge webinar' });"><span class="p-link--external">Watch the 'Cloud to Edge' webinar</span></a>
+        </li>
+        <li class="p-inline-list__item">
+          <a href="/cloud/contact-us" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Footer CTA', 'eventLabel' : 'Contact us' });">Contact us</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-4 prefix-1 suffix-1 u-vertically-center">
+      <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" class="u-hide--small" alt="">
+    </div>
   </div>
 </section>
 
