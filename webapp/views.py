@@ -215,7 +215,6 @@ class ResourcesView(TemplateView):
                 feed_items['posts'][topic] = {}
                 feed_items['posts'][topic]['posts'] = posts[:self.PER_PAGE]
                 feed_items['posts'][topic]['group_name'] = title
-
         else:
             for group_name, group in self.GROUPS.items():
                 api_url = (
@@ -238,7 +237,10 @@ class ResourcesView(TemplateView):
                     feed_items['posts'][group_name] = {}
                     feed_items['posts'][group_name]['posts'] = posts
                     feed_items['posts'][group_name]['group_name'] = name
-
+        group = self.GROUPS[topic]['name']
+        ctype = self.CATEGORIES[content]['name']
+        feed_items['posts'][topic]['group'] = group
+        feed_items['posts'][topic]['ctype'] = 'ctype'
         feed_items['posts_length'] = posts_length
         feed_items['pagination'] = self._generate_pagination_queries(
             page,
