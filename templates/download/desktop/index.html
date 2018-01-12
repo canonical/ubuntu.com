@@ -49,13 +49,13 @@
       <div class="u-equal-height p-divider">
         <div class="col-8 p-divider__block">
           <p class="p-card__content">The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{latest_release}} comes with nine months, until {{latest_release_eol}}, of security and maintenance updates.</p>
-          <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu {{latest_release}} release notes</a></p>
-          <p class="p-card__content"><a href="/desktop/1710">Find out more about {{latest_release}}&nbsp;&rsaquo;</a></p>
+          <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu {{latest_release_full}} release notes</a></p>
+          <p class="p-card__content"><a href="/desktop/1710">Find out more about {{latest_release_full}}&nbsp;&rsaquo;</a></p>
           <p class="p-card__content">Recommended system requirements are the same as for Ubuntu {{lts_release_full_with_point}}.</p>
         </div>
         <div class="col-4">
           <p class="p-card__content">
-            The download of Ubuntu 17.10 is currently discouraged due to <a href="https://wiki.ubuntu.com/ArtfulAardvark/ReleaseNotes#Known_issues" class="p-link--external">a BIOS issue on certain laptops</a>. Once fixed this download will be enabled again.
+            <a class="p-button--positive is-wide js-latest-download" href="/download/desktop/thank-you/?version={{latest_release}}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{latest_release_full}}', 'eventValue' : undefined });">Download</a>
             <script>
               // Contributions only work with JavaScript
               // So if we have JavaScript, send them to /contribute
