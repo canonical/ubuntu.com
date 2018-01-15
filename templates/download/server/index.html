@@ -15,10 +15,10 @@
       <div class="u-equal-height p-divider">
         <div class="col-8 p-divider__block">
           <p class="p-card__content">The long-term support version of Ubuntu Server, including the {{lts_openstack_version}} release of OpenStack and support guaranteed until {{lts_release_eol}} &mdash; 64-bit only.</p>
-          <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu Server {{lts_release_full_with_point}} release notes</a></p>
+          <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu Server {{ lts_release }} release notes</a></p>
         </div>
         <div class="col-4">
-          <p class="p-card__content"><a href="/download/server/thank-you?version={{lts_release}}&amp;architecture=amd64" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{lts_release_full}}', 'eventValue' : undefined });">Download</a></p>
+          <p class="p-card__content"><a href="/download/server/thank-you?version={{ lts_release_with_point }}&amp;architecture=amd64" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{ lts_release_full }}', 'eventValue' : undefined });">Download</a></p>
           <p><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
         </div>
       </div>
@@ -26,15 +26,15 @@
   </div>
   <div class="row">
     <div class="col-12 p-card--highlighted">
-      <h2>Ubuntu Server {{latest_release}}</h2>
+      <h2>Ubuntu Server {{ latest_release_with_point }}</h2>
       <div class="u-equal-height p-divider">
         <div class="col-8 p-divider__block">
           <p class="p-card__content">The latest version of Ubuntu Server, including the {{latest_openstack_version}} release of OpenStack and nine months, until {{latest_release_eol}}, of security and maintenance updates.</p>
-          <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu Server {{latest_release}} release notes</a></p>
+          <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu Server {{ latest_release }} release notes</a></p>
         </div>
         <div class="col-4">
           <p class="p-card__content">
-            <a class="p-button--positive is-wide" href="/download/server/thank-you?version={{latest_release}}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{latest_release_full}}', 'eventValue' : undefined });">Download</a></p>
+            <a class="p-button--positive is-wide" href="/download/server/thank-you?version={{ latest_release_with_point }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{ latest_release }}', 'eventValue' : undefined });">Download</a></p>
           <p class="p-card__content"><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
         </div>
       </div>
