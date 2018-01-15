@@ -60,10 +60,10 @@ class ResourcesView(TemplateView):
         'whitepapers': {'id': 1485, 'name': 'Whitepapers'},
     }
     CATEGORIESBYID = {
-        1172: {'slug': 'case-studies', 'name': 'Case studies'},
-        1509: {'slug': 'videos', 'name': 'Videos'},
-        1187: {'slug': 'webinars', 'name': 'Webinars'},
-        1485: {'slug': 'whitepapers', 'name': 'Whitepapers'},
+        1172: {'slug': 'case-studies', 'name': 'Case Study'},
+        1509: {'slug': 'videos', 'name': 'Video'},
+        1187: {'slug': 'webinars', 'name': 'Webinar'},
+        1485: {'slug': 'whitepapers', 'name': 'Whitepaper'},
     }
 
     def _get_categories_by_slug(self, slugs=[]):

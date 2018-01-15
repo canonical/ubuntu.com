@@ -45,8 +45,8 @@
   }
 
   %resources-card-header {
-    color: $color-x-light;
-    padding: $sp-medium;
+    border-radius: 2px;
+    padding: .875rem $sp-medium;
   }
 
   .p-card--resources {
@@ -55,48 +55,55 @@
     flex-direction: column;
     padding: 0;
 
+    > .p-card__content {
+      border-top: 1px dotted $color-mid-light;
+      flex-shrink: 0;
+      margin: 0 $sp-x-small;
+      padding: $sp-x-small;
+
+      > h3, p {
+        margin: $sp-x-small 0;
+      }
+
+      > a {
+        display: block;
+        margin: $sp-x-small 0 $sp-medium 0;
+        min-height: 11rem;
+
+        @media only screen and (min-width: $breakpoint-medium) {
+          margin: $sp-x-small 0;
+        }
+      }
+    }
+
     > .p-card__footer {
+      border-top: 1px dotted $color-mid-light;
       font-size: .875rem;
       margin: auto $sp-x-small 0;
       max-width: inherit;
       padding: $sp-medium $sp-x-small;
-    }
-
-    > a {
-      margin-top: $sp-medium;
-      padding: 0 $sp-medium;
-    }
-
-    > h3 {
-      margin-top: $sp-medium;
-      padding: 0 $sp-medium $sp-medium $sp-medium;
-    }
-
-    > p {
-      margin-top: 0;
-      padding: 0 $sp-medium $sp-medium $sp-medium;
     }
   }
 
   .p-card__header {
     &--cloud-and-server {
       @extend %resources-card-header;
-      background: #2b939c;
+      border-top: 3px solid #2b939c;
     }
 
     &--desktop {
       @extend %resources-card-header;
-      background: #66a2c1;
+      border-top: 3px solid #66a2c1;
     }
 
     &--internet-of-things {
       @extend %resources-card-header;
-      background: #b0709d;
+      border-top: 3px solid #b0709d;
     }
 
     &--canonical-announcements {
       @extend %resources-card-header;
-      background: #ff8936;
+      border-top: 3px solid #ff8936;
     }
   }
 }

@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<section class="p-strip">
+<section class="p-strip is-shallow">
   <div class="row">
     <div class="col-6">
       <h1>Ubuntu resources</h1>
@@ -79,7 +79,7 @@
   </form>
 </div>
 
-<section class="p-strip is-shallow u-no-padding--top" style="margin-bottom: 2rem;">
+<section class="p-strip is-shallow u-no-padding--top">
   {% if posts is False %}
   <div class="row">
     <div class="p-notification--negative">
@@ -92,23 +92,29 @@
     <div class="row u-equal-height">
     {% for resource in resources.posts %}
       <div class="p-card--resources col-4">
-          {% if topic %}
-          <header class="p-card__header--{{ topic.slug }} p-muted-heading">
+        {% if topic %}
+        <header class="p-card__header--{{ topic.slug }}">
+          <h4 class="p-muted-heading">
             {{ topic.name }}
-          {% else %}
-          <header class="p-card__header--{{ resource.group.slug }} p-muted-heading">
+          </h4>
+        {% else %}
+        <header class="p-card__header--{{ resource.group.slug }}">
+          <h4 class="p-muted-heading">
             {{ resource.group.name }}
-          {% endif %}
+          </h4>  
+        {% endif %}
         </header>
-        {% if resource.featuredmedia.source_url %}
-        <a href="{{resource.link}}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Clicked resource', 'eventLabel' : '{{resource.title.rendered}}', 'eventValue' : undefined });" >
-          <img src="{{resource.featuredmedia.source_url}}" alt="{{resource.featuredmedia.alt_text}}" />
-        </a>
-        {% endif %}
-        <h3 class="p-heading--four"><a href="{{resource.link}}">{{resource.title.rendered | safe}}</a></h3>
-        {% if not resource.featuredmedia.source_url %}
-        {{resource.excerpt.rendered | truncatewords:25 | safe}}
-        {% endif %}
+        <div class="p-card__content">
+          {% if resource.featuredmedia.source_url %}
+          <a href="{{resource.link}}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Clicked resource', 'eventLabel' : '{{resource.title.rendered}}', 'eventValue' : undefined });" >
+            <img src="{{resource.featuredmedia.source_url}}" alt="{{resource.featuredmedia.alt_text}}" />
+          </a>
+          {% endif %}
+          <h3 class="p-heading--four"><a href="{{resource.link}}">{{resource.title.rendered | safe}}</a></h3>
+          {% if not resource.featuredmedia.source_url %}
+            {{resource.excerpt.rendered | truncatewords:25 | safe}}
+          {% endif %}
+        </div>
         <p class="p-card__footer">{{ resource.category.name }}</p>
       </div>
 
