@@ -29,7 +29,7 @@
       <li class="p-tabs__item" role="presentation">
         <a href="?topic=desktop{% if content_slug %}&content={{ content_slug }}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Navigation', 'eventLabel' : 'Desktop', 'eventValue' : undefined });" class="p-tabs__link" role="tab" aria-controls="section2"{% if topic_slug == 'desktop' %} aria-selected="true"{% endif %}>Desktop</a>
       </li>
-      <li class="p-tabs__item--select u-hide--small">
+      <li class="p-tabs__item--select">
         <form action="" method="get" class="p-form p-form--inline">
           <div class="p-form__group">
             <label for="full-name-inline" aria-label="Filter the resources by type" class="p-form__label">Filter:</label>
@@ -60,7 +60,7 @@
   </nav>
 </section>
 
-<div class="row u-hide--medium u-hide--large">
+<div class="row u-hide--medium u-hide--large" style="margin-bottom: 2rem;">
   <form action="" method="get" class="p-form p-form--inline">
     <div class="p-form__group">
       <label for="full-name-inline" aria-label="Filter the resources by type" class="p-form__label">Filter:</label>
@@ -92,8 +92,13 @@
     <div class="row u-equal-height">
     {% for resource in resources.posts %}
       <div class="p-card--resources col-4">
-        <header class="p-card__header--{{ group_slug }} p-muted-heading">
-          {{ resource.gtype }}
+          {% if topic %}
+          <header class="p-card__header--{{ topic.slug }} p-muted-heading">
+            {{ topic.name }}
+          {% else %}
+          <header class="p-card__header--{{ resource.group.slug }} p-muted-heading">
+            {{ resource.group.name }}
+          {% endif %}
         </header>
         {% if resource.featuredmedia.source_url %}
         <a href="{{resource.link}}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Clicked resource', 'eventLabel' : '{{resource.title.rendered}}', 'eventValue' : undefined });" >
@@ -102,9 +107,9 @@
         {% endif %}
         <h3 class="p-heading--four"><a href="{{resource.link}}">{{resource.title.rendered | safe}}</a></h3>
         {% if not resource.featuredmedia.source_url %}
-        {{resource.excerpt.rendered | safe}}
+        {{resource.excerpt.rendered | truncatewords:25 | safe}}
         {% endif %}
-        <p class="p-card__footer p-muted-heading">{{ resource.ctype }}</p>
+        <p class="p-card__footer">{{ resource.category.name }}</p>
       </div>
 
       {% if forloop.counter|divisibleby:3 %}

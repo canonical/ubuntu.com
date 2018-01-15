@@ -46,7 +46,7 @@
 
   %resources-card-header {
     color: $color-x-light;
-    padding: 1rem;
+    padding: $sp-medium;
   }
 
   .p-card--resources {
@@ -56,13 +56,25 @@
     padding: 0;
 
     > .p-card__footer {
-      margin: auto 1rem 0 1rem;
-      padding: 1rem .5rem;
+      font-size: .875rem;
+      margin: auto $sp-x-small 0;
+      max-width: inherit;
+      padding: $sp-medium $sp-x-small;
     }
 
-    > a, p, h3 {
-      margin-top: 1rem;
-      padding: 0 1rem 1rem 1rem;
+    > a {
+      margin-top: $sp-medium;
+      padding: 0 $sp-medium;
+    }
+
+    > h3 {
+      margin-top: $sp-medium;
+      padding: 0 $sp-medium $sp-medium $sp-medium;
+    }
+
+    > p {
+      margin-top: 0;
+      padding: 0 $sp-medium $sp-medium $sp-medium;
     }
   }
 
@@ -80,6 +92,11 @@
     &--internet-of-things {
       @extend %resources-card-header;
       background: #b0709d;
+    }
+
+    &--canonical-announcements {
+      @extend %resources-card-header;
+      background: #ff8936;
     }
   }
 }
