@@ -41,18 +41,29 @@ class ResourcesView(TemplateView):
 
     INSIGHTS_URL = 'https://insights.ubuntu.com'
     API_URL = INSIGHTS_URL + '/wp-json/wp/v2'
-    RESOURCE_FILTER = 'categories=1172,1509,1187'
+    RESOURCE_FILTER = 'categories=1172,1509,1187,1485'
     PER_PAGE = 9
     GROUPS = OrderedDict((
         ('cloud-and-server', {'id': 1706, 'name': 'Cloud and server'}),
         ('internet-of-things', {'id': 1666, 'name': 'Internet of things'}),
         ('desktop', {'id': 1479, 'name': 'Desktop'}),
     ))
+    GROUPBYID = {
+        1706: {'slug': 'cloud-and-server', 'name': 'Cloud and server'},
+        1666: {'slug': 'internet-of-things', 'name': 'Internet of things'},
+        1479: {'slug': 'desktop', 'name': 'Desktop'},
+    }
     CATEGORIES = {
-        'case-studies': {'id': 1172, 'name': 'case studies'},
-        'videos': {'id': 1509, 'name': 'videos'},
-        'webinars': {'id': 1187, 'name': 'webinars'},
-        'whitepapers': {'id': 1485, 'name': 'whitepapers'},
+        'case-studies': {'id': 1172, 'name': 'Case studies'},
+        'videos': {'id': 1509, 'name': 'Videos'},
+        'webinars': {'id': 1187, 'name': 'Webinars'},
+        'whitepapers': {'id': 1485, 'name': 'Whitepapers'},
+    }
+    CATEGORIESBYID = {
+        1172: {'slug': 'case-studies', 'name': 'Case Study'},
+        1509: {'slug': 'videos', 'name': 'Video'},
+        1187: {'slug': 'webinars', 'name': 'Webinar'},
+        1485: {'slug': 'whitepapers', 'name': 'Whitepaper'},
     }
 
     def _get_categories_by_slug(self, slugs=[]):
@@ -78,6 +89,25 @@ class ResourcesView(TemplateView):
     def _normalise_resources(self, resources):
         for resource in resources:
             resource = self._embed_resource_data(resource)
+            for groups in resource['group']:
+                if groups in self.GROUPBYID:
+                    group_id = groups
+                    break
+            for categories in resource['categories']:
+                if categories in self.CATEGORIESBYID:
+                    category_id = categories
+                    break
+
+            group = {
+                'name': self.GROUPBYID[group_id]['name'],
+                'slug': self.GROUPBYID[group_id]['slug'],
+                }
+            category = {
+                'name': self.CATEGORIESBYID[category_id]['name'],
+                'slug': self.CATEGORIESBYID[category_id]['slug'],
+                }
+            resource['group'] = group
+            resource['category'] = category
         return resources
 
     def _generate_pagination_queries(self, index, posts_length):
@@ -159,6 +189,8 @@ class ResourcesView(TemplateView):
                 )
                 posts_length = len(posts)
                 name = self.GROUPS[topic]['name']
+                slug = topic
+                feed_items['topic'] = {'name': name, 'slug': slug}
                 feed_items['posts'] = {}
                 feed_items['posts'][topic] = {}
                 feed_items['posts'][topic]['posts'] = posts[:self.PER_PAGE]
@@ -211,34 +243,36 @@ class ResourcesView(TemplateView):
                     topic=self.GROUPS[topic]['name'],
                     content=self.CATEGORIES[content]['name'],
                 )
+                name = self.GROUPS[topic]['name']
+                slug = topic
+                feed_items['topic'] = {'name': name, 'slug': slug}
                 feed_items['posts'] = {}
                 feed_items['posts'][topic] = {}
                 feed_items['posts'][topic]['posts'] = posts[:self.PER_PAGE]
                 feed_items['posts'][topic]['group_name'] = title
-
         else:
-            for group_name, group in self.GROUPS.items():
-                api_url = (
-                    '{api_url}/posts?_embed'
-                    '&group={group_id}'
-                    '&{resource_filter}'
-                ).format(
-                    api_url=self.API_URL,
-                    group_id=group['id'],
-                    resource_filter=self.RESOURCE_FILTER,
-                )
-                posts = self._normalise_resources(
-                    get_json_feed_content(api_url, limit=3)
-                )
-                if posts:
-                    posts_length = len(posts)
-                    if 'posts' not in feed_items.keys():
-                        feed_items['posts'] = OrderedDict()
-                    name = group['name']
-                    feed_items['posts'][group_name] = {}
-                    feed_items['posts'][group_name]['posts'] = posts
-                    feed_items['posts'][group_name]['group_name'] = name
-
+            api_url = (
+                '{api_url}/posts?_embed'
+                '&{resource_filter}'
+                '&per_page={per_page}'
+                '&offset={offset}'
+            ).format(
+                api_url=self.API_URL,
+                resource_filter=self.RESOURCE_FILTER,
+                per_page=self.PER_PAGE + 1,
+                offset=offset,
+            )
+            posts = self._normalise_resources(
+                get_json_feed_content(api_url)
+            )
+            if posts:
+                posts_length = len(posts)
+                if 'posts' not in feed_items.keys():
+                    feed_items['posts'] = OrderedDict()
+                topic = 'All topics'
+                feed_items['posts'][topic] = {}
+                feed_items['posts'][topic]['posts'] = posts[:self.PER_PAGE]
+                feed_items['posts'][topic]['group_name'] = topic
         feed_items['posts_length'] = posts_length
         feed_items['pagination'] = self._generate_pagination_queries(
             page,

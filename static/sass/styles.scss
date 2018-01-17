@@ -37,6 +37,7 @@
 @import 'pattern_ubuntu_intro';
 @import 'pattern_takeunders';
 @import 'pattern_table';
+@import 'pattern_tabs';
 
 @include ubuntu-p-buttons;
 @include ubuntu-p-site-search;
@@ -62,6 +63,7 @@
 @include ubuntu-p-ubuntu-intro;
 @include ubuntu-p-takeunders;
 @include ubuntu-p-tables;
+@include ubuntu-p-tabs;
 
 // Bug fixes
 // Each of the the rules below are bug fixes which need to be addressed further upstream
@@ -301,20 +303,11 @@ p {
   }
 }
 
-// XXX Ant: 11.12.17 This can be removed when this is fixed
-// https://github.com/vanilla-framework/vanilla-framework/issues/1492
-.p-tabs {
-  &__label {
-    @extend .p-tabs__link;
-    padding-left: 0;
-
-    &:hover {
-      border-bottom: 0;
-    }
-  }
-}
-
-// XXX Lyubo: 19.12.17 This can be removed when the utility class if this is approved as a vanilla utility
-.u-measure--p {
-  @include p-max-width;
+// XXX Caleb: 15.01.18 Autoprefixer issue
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-position: right $sp-x-small center;
+  background-size: $sp-medium;
+  padding-right: $sp-xxx-large;
 }
