@@ -243,6 +243,9 @@ class ResourcesView(TemplateView):
                     topic=self.GROUPS[topic]['name'],
                     content=self.CATEGORIES[content]['name'],
                 )
+                name = self.GROUPS[topic]['name']
+                slug = topic
+                feed_items['topic'] = {'name': name, 'slug': slug}
                 feed_items['posts'] = {}
                 feed_items['posts'][topic] = {}
                 feed_items['posts'][topic]['posts'] = posts[:self.PER_PAGE]
