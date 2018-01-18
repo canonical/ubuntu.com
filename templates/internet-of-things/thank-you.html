@@ -6,7 +6,7 @@
 {% if product == 'newsletter' %}
   {% include "shared/_thank_you.html" with thanks_context="subscribing!" thanks_message="You will now begin receiving our devices newsletter. You may unsubscribe any time by clicking the link in the email." %}
 
-{% elif %}
+{% elif product == 'appstore' %}
   {% include "shared/_thank_you.html" with thanks_context="your interest in IoT app stores!" thanks_message="A member of our team will follow up with you shortly." %}
 
 {% else %}
