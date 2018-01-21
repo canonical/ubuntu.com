@@ -1,0 +1,135 @@
+@mixin p-takeover-upm {
+  $anim-circle: fade-in 0.5s ease-out;
+  $anim-line: line 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  $anim-logo: 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  $interval: 0.15s;
+  $start-delay: 0.8s;
+
+  @keyframes fade-in {
+    0% {opacity: 0}
+    100% {opacity: 1}
+  }
+
+  @keyframes lxd-logo {
+    0% {opacity: 0; transform: translate(41px) scale(0)}
+    50% {opacity: 1; transform: translate(41px) scale(1.1)}
+    100% {opacity: 1; transform: translate(41px) scale(1)}
+  }
+
+  @keyframes openstack-logo {
+    0% {opacity: 0; transform: translate(262px) scale(0)}
+    50% {opacity: 1; transform: translate(262px) scale(1.1)}
+    100% {opacity: 1; transform: translate(262px) scale(1)}
+  }
+
+  @keyframes snappy-logo {
+    0% {opacity: 0; transform: translate(151px, 276px) scale(0)}
+    50% {opacity: 1; transform: translate(151px, 276px) scale(1.1)}
+    100% {opacity: 1; transform: translate(151px, 276px) scale(1)}
+  }
+
+  @keyframes juju-logo {
+    0% {opacity: 0; transform: translate(327px, 117px) scale(0)}
+    50% {opacity: 1; transform: translate(327px, 117px) scale(1.1)}
+    100% {opacity: 1; transform: translate(327px, 117px) scale(1)}
+  }
+
+  @keyframes line {
+    0% {opacity: 0; transform: scale(0)}
+    100% {opacity: 1; transform: scale(1)}
+  }
+
+  .upm-svg {
+    max-width: 400px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .upm-lxd-logo {
+    animation: lxd-logo $anim-logo ($start-delay + ($interval * 2)) 1 forwards;
+    opacity: 0;
+    transform-origin: 32px 32px;
+    transform: scale(0);
+  }
+
+  .upm-openstack-logo {
+    animation: openstack-logo $anim-logo ($start-delay + ($interval * 4)) 1 forwards;
+    opacity: 0;
+    transform-origin: 32px 32px;
+    transform: scale(0);
+  }
+
+  .upm-juju-logo {
+    animation: juju-logo $anim-logo ($start-delay + ($interval * 5)) 1 forwards;
+    opacity: 0;
+    transform-origin: 32px 32px;
+    transform: scale(0);
+  }
+
+  .upm-snappy-logo {
+    animation: snappy-logo $anim-logo ($start-delay + ($interval * 7)) 1 forwards;
+    opacity: 0;
+    transform-origin: 32px 32px;
+    transform: scale(0);
+  }
+
+  @for $i from 1 through 8 {
+    .upm-line-#{$i} {
+      animation: $anim-line ($start-delay + ($interval * $i)) 1 forwards;
+      opacity: 0;
+      transform: scale(0);
+    }
+  }
+
+  .upm-line-1 {
+    transform-origin: 130px 90px;
+  }
+
+  .upm-line-2 {
+    transform-origin: 185px 68px;
+  }
+
+  .upm-line-3 {
+    transform-origin: 240px 90px;
+  }
+
+  .upm-line-4 {
+    transform-origin: 263px 146px;
+  }
+
+  .upm-line-5 {
+    transform-origin: 255px 190px;
+  }
+
+  .upm-line-6 {
+    transform-origin: 185px 225px;
+  }
+
+  .upm-line-7 {
+    transform-origin: 130px 205px;
+  }
+
+  .upm-line-8 {
+    transform-origin: 100px 160px;
+  }
+
+  .upm-circle-1 {
+    animation: $anim-circle ($start-delay + ($interval * 3)) 1 forwards;
+    opacity: 0;
+  }
+
+  .upm-circle-2 {
+    animation: $anim-circle ($start-delay + ($interval * 6)) 1 forwards;
+    opacity: 0;
+  }
+
+  .upm-circle-3 {
+    animation: $anim-circle ($start-delay + ($interval * 8)) 1 forwards;
+    opacity: 0;
+  }
+
+  .upm-circle-4 {
+    animation: $anim-circle ($start-delay + ($interval * 9)) 1 forwards;
+    opacity: 0;
+  }
+}
