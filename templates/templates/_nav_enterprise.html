@@ -12,7 +12,15 @@
         .enterprise-tab.is-open {
           display: block;
         }
-
+        .enterprise-tab h5 {
+          font-size: 1.1rem;
+        }
+        .enterprise-tab h4 {
+          font-size: 1.2rem;
+        }
+        .enterprise-tab p, .enterprise-tab li {
+          font-size: 0.85rem;
+        }
         </style>
         <div class="row p-divider">
           <div class="col-4 p-divider__block">
@@ -54,9 +62,9 @@
 
           </div>
           <div class="col-4 p-divider__block">
-            <a href="" class="close-tab__link" onClick="document.getElementsByClassName('enterprise-tab')[0].classList.toggle('is-open')">close</a>
+            <p class="u-float-right" style="margin-top: -1rem;"><a href="#" onClick="document.getElementsByClassName('enterprise-tab')[0].classList.toggle('is-open')">(x) close</a></p>
 
-            <h5>Resources</h5>
+            <h5 style="margin-top: 0;">Resources</h5>
 
             <ul class="p-inline-list--middot">
               <li class="p-inline-list__item"><a href="https://www.brighttalk.com/search?q=Canonical">Webinars</a></li>
