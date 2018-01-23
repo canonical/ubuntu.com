@@ -145,7 +145,6 @@
       </div>
     {% endblock header_banner %}
     </header>
-    {% include "templates/_nav_enterprise.html" %}
 
     {% if breadcrumbs %}
       <nav class="p-breadcrumbs nav-secondary clearfix">
@@ -183,6 +182,9 @@
         </div>
       </nav>
     {% endif %}
+
+    {% include "templates/_nav_enterprise.html" %}
+
 
     <div class="wrapper u-no-margin--top">
       <div id="main-content" class="inner-wrapper">
