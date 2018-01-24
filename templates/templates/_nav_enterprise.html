@@ -1,24 +1,25 @@
-<div class="enterprise-tab">
+<div class="p-tab--enterprise u-no-margin--top">
   <div class="wrapper">
     <div class="row">
       <div class="strip-inner-wrapper">
         <style>
-        .enterprise-tab {
+        .p-tab--enterprise {
           background-color: #f7f7f7;
           color: #111111;
           display: none;
           padding: 2rem 0;
+          border-bottom: 3px solid #111;
         }
-        .enterprise-tab.is-open {
+        .p-tab--enterprise.is-open {
           display: block;
         }
-        .enterprise-tab h5 {
+        .p-tab--enterprise h5 {
           font-size: 1.1rem;
         }
-        .enterprise-tab h4 {
+        .p-tab--enterprise h4 {
           font-size: 1.2rem;
         }
-        .enterprise-tab p, .enterprise-tab li {
+        .p-tab--enterprise p, .p-tab--enterprise li {
           font-size: 0.85rem;
         }
         </style>
@@ -62,7 +63,7 @@
 
           </div>
           <div class="col-4 p-divider__block">
-            <p class="u-float-right" style="margin-top: -1rem;"><a href="#" onClick="document.getElementsByClassName('enterprise-tab')[0].classList.toggle('is-open')">(x) close</a></p>
+            <p class="u-float-right" style="margin-top: -1rem;"><a href="#" onClick="document.getElementsByClassName('p-tab--enterprise')[0].classList.toggle('is-open')">(x) close</a></p>
 
             <h5 style="margin-top: 0;">Resources</h5>
 
@@ -117,17 +118,11 @@
             </ul>
 
             <h4>Downloads</h4>
-
-            <h5><a href="https://www.ubuntu.com/download/server">Ubuntu Server</a></h5>
-
+            <h5><a href="https://www.ubuntu.com/download/server">Server</a></h5>
             <p>Most popular server Linux in the cloud and data centre</p>
-
             <h5><a href="https://developer.ubuntu.com/core/get-started">Ubuntu Core for IoT</a></h5>
-
             <p>Tiny and transactional Ubuntu for IoT and cloud</p>
-
-            <h5><a href="https://www.ubuntu.com/download/desktop">Ubuntu for desktop</a></h5>
-
+            <h5><a href="https://www.ubuntu.com/download/desktop">Desktop</a></h5>
             <p>Safe, secure and easy to use desktop</p>
 
             </div>
