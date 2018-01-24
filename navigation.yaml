@@ -5,12 +5,42 @@ cloud:
   children:
     - title: Overview
       path: /cloud
-    - title: OpenStack
+    - title: Public cloud
+      path: /cloud/public-cloud
+    - title: Juju
+      path: /cloud/juju
+    - title: Storage
+      path: /cloud/storage
+    - title: Partners
+      path: /cloud/partners
+    - title: Financial services
+      path: /financial-services
+    - title: Telcos
+      path: /telecommunications
+    - title: Security
+      path: /security
+
+    - title: Thank you
+      path: /cloud/newsletter-thank-you
+      hidden: True
+    - title: Contact us
+      path: /cloud/contact-us
+      hidden: True
+
+      children:
+        - title: Thank you
+          path: /cloud/thank-you
+          hidden: True
+
+openstack:
+  title: Openstack
+  path: /openstack
+
+  children:
+    - title: Overview
       path: /openstack
     - title: Managed cloud
       path: /cloud/managed-cloud
-    - title: Public cloud
-      path: /cloud/public-cloud
     - title: Juju
       path: /cloud/juju
     - title: Storage
@@ -21,12 +51,6 @@ cloud:
       path: /cloud/foundation-cloud
     - title: Training
       path: /cloud/training
-    - title: Financial services
-      path: /financial-services
-    - title: Telcos
-      path: /telecommunications
-    - title: Security
-      path: /security
 
     - title: Thank you
       path: /cloud/newsletter-thank-you
