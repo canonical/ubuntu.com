@@ -92,39 +92,28 @@
           <ul class="p-navigation__links">
             <li class="p-navigation__link">
               <a
-              class="nav_enterprise__more {% if section.active %}is-active{% endif %}" onClick="document.getElementsByClassName('enterprise-tab')[0].classList.toggle('is-open')"
+              class="nav_enterprise__more" onClick="document.getElementsByClassName('p-tab--enterprise')[0].classList.toggle('is-open');document.getElementsByClassName('p-tab--developer')[0].classList.remove('is-open');document.getElementsByClassName('p-tab--community')[0].classList.remove('is-open');document.getElementsByClassName('p-tab--download')[0].classList.remove('is-open');"
               href="#"
               >Enterprise</a>
             </li>
             <li class="p-navigation__link">
               <a
-              class="{% if section.active %}is-active{% endif %}"
-              href="{{ section.path }}"
+              class="nav_developer__more" onClick="document.getElementsByClassName('p-tab--enterprise')[0].classList.remove('is-open');document.getElementsByClassName('p-tab--developer')[0].classList.toggle('is-open');document.getElementsByClassName('p-tab--community')[0].classList.remove('is-open');document.getElementsByClassName('p-tab--download')[0].classList.remove('is-open');"
+              href="#"
               >Developer</a>
             </li>
             <li class="p-navigation__link">
               <a
-              class="{% if section.active %}is-active{% endif %}"
-              href="{{ section.path }}"
+              class="nav_community__more" onClick="document.getElementsByClassName('p-tab--enterprise')[0].classList.remove('is-open');document.getElementsByClassName('p-tab--developer')[0].classList.remove('is-open');document.getElementsByClassName('p-tab--community')[0].classList.toggle('is-open');document.getElementsByClassName('p-tab--download')[0].classList.remove('is-open');"
+              href="#"
               >Community</a>
             </li>
             <li class="p-navigation__link">
               <a
-              class="{% if section.active %}is-active{% endif %}"
-              href="{{ section.path }}"
+              class="nav_download__more" onClick="document.getElementsByClassName('p-tab--enterprise')[0].classList.remove('is-open');document.getElementsByClassName('p-tab--developer')[0].classList.remove('is-open');document.getElementsByClassName('p-tab--community')[0].classList.remove('is-open');document.getElementsByClassName('p-tab--download')[0].classList.toggle('is-open');"
+              href="#"
               >Download</a>
             </li>
-{% comment %}
-            {% include 'templates/_menu_section.html' with section=nav_sections.cloud %}
-            {% include 'templates/_menu_section.html' with section=nav_sections.server %}
-            {% include 'templates/_menu_section.html' with section=nav_sections.containers %}
-            {% include 'templates/_menu_section.html' with section=nav_sections.desktop %}
-            {% include 'templates/_menu_section.html' with section=nav_sections.core %}
-            {% include 'templates/_menu_section.html' with section=nav_sections.iot %}
-            {% include 'templates/_menu_section.html' with section=nav_sections.support %}
-            {% include 'templates/_menu_section.html' with section=nav_sections.resources %}
-            {% include 'templates/_menu_section.html' with section=nav_sections.download %}
-{% endcomment %}
           </ul>
           <form class="p-search-box is--dark" action="/search" id="google-appliance-search-form">
             <label for="search-input" class="u-off-screen">Search</label>
@@ -174,8 +163,34 @@
     </nav>
     {% endif %}
 
-    {% include "templates/_nav_enterprise.html" %}
+    {% if breadcrumbs %}{# background:  linear-gradient(90deg, #f7f7f7 19.75rem, #666666 19.75rem); #}
+    <nav class="p-navigation" style="background-color: #f7f7f7;">
+      <div class="row p-navigation__row">
+        <div class="p-navigation__logo">
+          <a style="color: #111;" class="p-navigation__link" href="{{ breadcrumbs.section.path }}">{{ breadcrumbs.section.title }}</a>
+        </div>
 
+        {% if breadcrumbs.children %}
+        <nav class="p-navigation__nav">
+          <ul class="p-navigation__links">
+            {% for child in breadcrumbs.children %}
+            <li class="p-navigation__link" style="border-color: #cdcdcd">
+              <a style="color: #111" href="{{ child.path }}">{{ child.title }}</a>
+
+              {% if breadcrumbs.grandchildren %}
+              {% for grandchild in breadcrumbs.grandchildren %}
+              <li class="p-navigation__link" style="border-color: #cdcdcd">
+                <a style="color: #111" class="p-inline-list__link {% if grandchild.active %}is-active{% endif %}" href="{{ grandchild.path }}">{{ grandchild.title }}</a>
+              </li>
+              {% endfor %}
+              {% endif %}{# end if breadcrumbs.grandchildren #}
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}{# end if breadcrumbs.children #}
+      </div>
+    </nav>
+    {% endif %}{# end if breadcrumbs #}
 
     <div class="wrapper u-no-margin--top">
       <div id="main-content" class="inner-wrapper">
