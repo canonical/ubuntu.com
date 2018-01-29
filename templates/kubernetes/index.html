@@ -1,7 +1,6 @@
 {% extends "kubernetes/base_kubernetes.html" %}
 {% block title %}Kubernetes{% endblock %}
 {% block meta_description %}The Canonical Distribution of Kubernetes delivers a ‘pure K8s’ experience, tested across a wide range of clouds and integrated with modern metrics and monitoring.{% endblock meta_description %}
-{% block extra_body_class %}kubernetes{% endblock %}
 
 
 {% block content %}
@@ -12,7 +11,7 @@
       <p>This is pure Kubernetes tested across the widest range of clouds with modern metrics and monitoring, brought to you by the people who deliver Ubuntu.</p>
       <p class="u-no-margin--top"><a href="https://tutorials.ubuntu.com/tutorial/install-kubernetes-with-conjure-up?_ga=2.25375934.2035833349.1504518498-2070601899.1473694436" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Try it now', 'eventLabel' : 'Try it now - Hero CTA' : undefined });"><span class="p-link--external">Try it now</span></a>&#8195;<a href="/containers/contact-us" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact sales', 'eventLabel' : 'Contact sales - Hero CTA' : undefined });">Contact sales</a></p>
     </div>
-    <div class="col-4 u-align--center u-hidden--small">
+    <div class="col-4 u-align--center u-hide--small">
       <img src="{{ ASSET_SERVER_URL }}7c230fc3-kubernetes_certified_service_provider_logo.png?w=300" alt="Kubernetes Certified Service Provider" />
     </div>
   </div>
@@ -31,6 +30,32 @@
     <div class="col-4 p-divider__block">
       <h3>Fault Tolerant</h3>
       <p>High availability, zero downtime upgrades, guaranteed.</p>
+    </div>
+  </div>
+</section>
+
+<section id="partnerships-rancher" class="p-strip--accent">
+  <div class="row  u-vertically-center">
+    <div class="col-6">
+      <h2>Cloud Native Platform</h3>
+      <p>Canonical, in partnership with Rancher Labs, delivers the Cloud Native Platform. The Cloud Native Platform is a turn-key application delivery platform, built on Ubuntu, Kubernetes, and Rancher.  Maximise developer velocity integrated CI/CD, and ease the path from development into production with enterprise-caliber container management.</p>
+      <p><a class="p-link--external p-button--positive" href="https://www.brighttalk.com/webcast/6793/292819" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Watch webinar', 'eventLabel' : 'Watch webinar' : undefined });">Watch webinar</a></p>
+    </div>
+    <div class="col-6 prefix-1 u-align--center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}85700cb3-rancher_cloud_partnerships_visual.svg" alt="Rancher Labs logo" />
+    </div>
+  </div>
+</section>
+
+<section id="partnerships-google-gke" class="p-strip is-bordered">
+  <div class="row u-vertically-center">
+    <div class="col-4  u-hide--small u-align--center">
+      <img src="{{ ASSET_SERVER_URL }}ba70dd8a-gce.png?h=160" alt="Google Container Engine logo" />
+    </div>
+    <div class="col-8">
+      <h2>Google&nbsp;GKE</h2>
+      <p>Google and Canonical together enable smooth hybrid operations between Google&rsquo;s Container Engine (GKE) service with Ubuntu worker nodes, and Canonical&rsquo;s Distribution of Kubernetes &reg;. Choose Canonical&rsquo;s Kubernetes to be sure your container workloads can migrate to GKE thanks to our kernel-to-k8s&nbsp;alignment.</p>
+      <p><a href="https://cloud.google.com/kubernetes-engine/docs/node-images#ubuntu" class="p-link--external">Try GKE with Ubuntu now</a></p>
     </div>
   </div>
 </section>
@@ -71,7 +96,7 @@
   <div class="row u-equal-height u-vertically-center">
     <div class="col-8">
       <h2>In partnership with Google GKE</h2>
-      <p>Google and Canonical together enable smooth hybrid operations between Google&rsquo;s Container Engine (GKE) service with Ubuntu worker nodes, and Canonical&rsquo;s Distribution of Kubernetes&reg;. Choose Canonical&rsquo;s Kubernetes to be sure your container workloads can migrate to GKE thanks to our kernel-to-k8s alignment.</p>
+      <p>Google and Canonical together enable smooth hybrid operations between Google&rsquo;s Container Engine (GKE) service with Ubuntu worker nodes, and Canonical&rsquo;s Distribution of Kubernetes&reg;<a href="#fn1" id="r1">*</a>. Choose Canonical&rsquo;s Kubernetes to be sure your container workloads can migrate to GKE thanks to our kernel-to-k8s alignment.</p>
       <p><a href="https://cloud.google.com/container-engine/docs/node-images#ubuntu_beta" class="p-link--external">Try GKE with Ubuntu now</a></p>
     </div>
     <div class="col-4">
@@ -183,7 +208,7 @@
 <section class="p-strip is-bordered">
   <div class="row">
     <div class="col-12">
-      <h2 class="p-muted-heading u-align--center">Certified on public clouds and on premises</h2>
+      <h2 class="p-muted-heading u-align--center">On public clouds and on premises</h2>
       <ul class="p-inline-images">
         <li class="p-inline-images__item">
           <img class="p-inline-images__logos" src="{{ ASSET_SERVER_URL }}4f54c31c-Google-Cloud-Platform.png" alt="Google Cloud Platform" />
@@ -248,12 +273,18 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>Test drive the Canonical Distribution of Kubernetes<sup>&reg;</sup> today!</h2>
       <p class="u-no-margin--top"><a href="https://tutorials.ubuntu.com/tutorial/install-kubernetes-with-conjure-up?_ga=2.25375934.2035833349.1504518498-2070601899.1473694436" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Try it now', 'eventLabel' : 'Try it now - Bottom CTA' : undefined });"><span class="p-link--external">Try it now</span></a>&#8195;<a href="/containers/contact-us" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact sales', 'eventLabel' : 'Contact sales - Bottom CTA' : undefined });">Contact sales</a></p>
     </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <p id="fn1" class="note"><a href="#r1">*</a> Kubernetes&reg; is a registered trademark of The Linux Foundation in the United States and other countries, and is used pursuant to a license from The Linux Foundation</p>
   </div>
 </section>
 

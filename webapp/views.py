@@ -2,12 +2,18 @@ import json
 import os
 import re
 
-from feedparser import parse
-from django.views.generic.base import TemplateView
-from django_template_finder_view import TemplateFinder
 from canonicalwebteam.get_feeds import (
     get_json_feed_content
 )
+from collections import OrderedDict
+from copy import copy
+from django.views.generic.base import TemplateView
+from django_template_finder_view import TemplateFinder
+from feedparser import parse
+try:
+    from urllib.parse import urlencode
+except ImportError:
+    from urllib import urlencode
 
 
 class UbuntuTemplateFinder(TemplateFinder):
@@ -35,16 +41,29 @@ class ResourcesView(TemplateView):
 
     INSIGHTS_URL = 'https://insights.ubuntu.com'
     API_URL = INSIGHTS_URL + '/wp-json/wp/v2'
-    RESOURCE_FILTER = 'categories=1172,1509,1187'
-    GROUPS = {
-        'cloud-and-server': {'id': 1706, 'name': 'Cloud and server'},
-        'desktop': {'id': 1479, 'name': 'Desktop'},
-        'internet-of-things': {'id': 1666, 'name': 'Internet of things'},
+    RESOURCE_FILTER = 'categories=1172,1509,1187,1485'
+    PER_PAGE = 9
+    GROUPS = OrderedDict((
+        ('cloud-and-server', {'id': 1706, 'name': 'Cloud and server'}),
+        ('internet-of-things', {'id': 1666, 'name': 'Internet of things'}),
+        ('desktop', {'id': 1479, 'name': 'Desktop'}),
+    ))
+    GROUPBYID = {
+        1706: {'slug': 'cloud-and-server', 'name': 'Cloud and server'},
+        1666: {'slug': 'internet-of-things', 'name': 'Internet of things'},
+        1479: {'slug': 'desktop', 'name': 'Desktop'},
     }
     CATEGORIES = {
-        'case-studies': {'id': 1172, 'name': 'case studies'},
-        'videos': {'id': 1509, 'name': 'videos'},
-        'webinars': {'id': 1187, 'name': 'webinars'},
+        'case-studies': {'id': 1172, 'name': 'Case studies'},
+        'videos': {'id': 1509, 'name': 'Videos'},
+        'webinars': {'id': 1187, 'name': 'Webinars'},
+        'whitepapers': {'id': 1485, 'name': 'Whitepapers'},
+    }
+    CATEGORIESBYID = {
+        1172: {'slug': 'case-studies', 'name': 'Case Study'},
+        1509: {'slug': 'videos', 'name': 'Video'},
+        1187: {'slug': 'webinars', 'name': 'Webinar'},
+        1485: {'slug': 'whitepapers', 'name': 'Whitepaper'},
     }
 
     def _get_categories_by_slug(self, slugs=[]):
@@ -70,75 +89,195 @@ class ResourcesView(TemplateView):
     def _normalise_resources(self, resources):
         for resource in resources:
             resource = self._embed_resource_data(resource)
+            for groups in resource['group']:
+                if groups in self.GROUPBYID:
+                    group_id = groups
+                    break
+            for categories in resource['categories']:
+                if categories in self.CATEGORIESBYID:
+                    category_id = categories
+                    break
+
+            group = {
+                'name': self.GROUPBYID[group_id]['name'],
+                'slug': self.GROUPBYID[group_id]['slug'],
+                }
+            category = {
+                'name': self.CATEGORIESBYID[category_id]['name'],
+                'slug': self.CATEGORIESBYID[category_id]['slug'],
+                }
+            resource['group'] = group
+            resource['category'] = category
         return resources
+
+    def _generate_pagination_queries(self, index, posts_length):
+        previous_payload = copy(self.request.GET)
+        previous_index = index - 1
+        previous_payload['page'] = previous_index
+        previous_link = '?{query}'.format(
+            query=urlencode(previous_payload),
+        )
+        previous_enable = True
+        if (index == 1):
+            previous_enable = False
+
+        next_payload = copy(self.request.GET)
+        next_index = index + 1
+        next_payload['page'] = next_index
+        next_link = '?{query}'.format(
+            query=urlencode(next_payload),
+        )
+        next_enable = True
+        if (posts_length <= self.PER_PAGE):
+            next_enable = False
+
+        return {
+            'next_link': next_link,
+            'previous_link': previous_link,
+            'next_index': next_index,
+            'previous_index': previous_index,
+            'previous_enable': previous_enable,
+            'next_enable': next_enable
+        }
 
     def _get_resources(self):
         topic = self.request.GET.get('topic')
         content = self.request.GET.get('content')
+        page = int(self.request.GET.get('page', 1))
+        offset = (page - 1) * self.PER_PAGE
+        search = self.request.GET.get('q')
         feed_items = {}
+        posts_length = 0
+        if search:
+            api_url = (
+                '{api_url}/posts?_embed'
+                '&search={search}&{resource_filter}'
+            ).format(
+                api_url=self.API_URL,
+                search=search,
+                resource_filter=self.RESOURCE_FILTER,
+            )
+            group_name = 'search'
+            feed_items['posts'] = {}
+            feed_items['posts'][group_name] = {}
+            feed_items['posts'][group_name]['posts'] = get_json_feed_content(
+                api_url,
+            )
+            group_title = 'Search results for "{search}"'.format(
+                search=search,
+            )
+            feed_items['posts'][group_name]['group_name'] = group_title
+            return feed_items
         if topic or content:
             if not content:
                 category_id = str(self.GROUPS[topic]['id'])
                 api_url = (
                     '{api_url}/posts?_embed'
-                    '&group={category_id}&{resource_filter}'
-                )
-                api_url = api_url.format(
+                    '&group={category_id}'
+                    '&{resource_filter}'
+                    '&per_page={per_page}'
+                    '&offset={offset}'
+                ).format(
                     api_url=self.API_URL,
                     category_id=category_id,
                     resource_filter=self.RESOURCE_FILTER,
+                    per_page=self.PER_PAGE + 1,
+                    offset=offset,
                 )
-                feed_items[topic] = {}
-                feed_items[topic]['items'] = get_json_feed_content(api_url)
-                feed_items[topic]['group_name'] = self.GROUPS[topic]['name']
+                posts = self._normalise_resources(
+                    get_json_feed_content(api_url)
+                )
+                posts_length = len(posts)
+                name = self.GROUPS[topic]['name']
+                slug = topic
+                feed_items['topic'] = {'name': name, 'slug': slug}
+                feed_items['posts'] = {}
+                feed_items['posts'][topic] = {}
+                feed_items['posts'][topic]['posts'] = posts[:self.PER_PAGE]
+                feed_items['posts'][topic]['group_name'] = name
             elif not topic:
                 content_id = str(self.CATEGORIES[content]['id'])
                 api_url = (
-                    '{api_url}/posts?_embed&categories={content_id}'
-                )
-                api_url = api_url.format(
+                    '{api_url}/posts?_embed'
+                    '&categories={content_id}'
+                    '&per_page={per_page}'
+                    '&offset={offset}'
+                ).format(
                     api_url=self.API_URL,
                     content_id=content_id,
+                    per_page=self.PER_PAGE + 1,
+                    offset=offset,
                 )
-                feed_items[content] = {}
-                feed_items[content]['items'] = get_json_feed_content(api_url)
-                feed_items[content]['group_name'] = 'All {name}'.format(
+                posts = self._normalise_resources(
+                    get_json_feed_content(api_url)
+                )
+                posts_length = len(posts)
+                title = 'All {name}'.format(
                     name=self.CATEGORIES[content]['name']
                 )
+                feed_items['posts'] = {}
+                feed_items['posts'][content] = {}
+                feed_items['posts'][content]['posts'] = posts[:self.PER_PAGE]
+                feed_items['posts'][content]['group_name'] = title
             else:
                 category_id = str(self.GROUPS[topic]['id'])
                 content_id = str(self.CATEGORIES[content]['id'])
                 api_url = (
                     '{api_url}/posts?_embed'
-                    '&group={category_id}&categories={content_id}'
-                )
-                api_url = api_url.format(
+                    '&group={category_id}'
+                    '&categories={content_id}'
+                    '&per_page={per_page}'
+                    '&offset={offset}'
+                ).format(
                     api_url=self.API_URL,
                     category_id=category_id,
                     content_id=content_id,
+                    per_page=self.PER_PAGE + 1,
+                    offset=offset,
                 )
-                feed_items[topic] = {}
-                feed_items[topic]['items'] = get_json_feed_content(api_url)
-                feed_items[topic]['group_name'] = '{topic} {content}'.format(
+                posts = self._normalise_resources(
+                    get_json_feed_content(api_url)
+                )
+                posts_length = len(posts)
+                title = '{topic} {content}'.format(
                     topic=self.GROUPS[topic]['name'],
                     content=self.CATEGORIES[content]['name'],
                 )
+                name = self.GROUPS[topic]['name']
+                slug = topic
+                feed_items['topic'] = {'name': name, 'slug': slug}
+                feed_items['posts'] = {}
+                feed_items['posts'][topic] = {}
+                feed_items['posts'][topic]['posts'] = posts[:self.PER_PAGE]
+                feed_items['posts'][topic]['group_name'] = title
         else:
-            for group_name, group in self.GROUPS.items():
-                api_url = (
-                    '{api_url}/posts'
-                    '?group={group_id}&{resource_filter}'
-                ).format(
-                    api_url=self.API_URL,
-                    group_id=group['id'],
-                    resource_filter=self.RESOURCE_FILTER,
-                )
-                feed_items[group_name] = {}
-                feed_items[group_name]['items'] = get_json_feed_content(
-                    api_url,
-                    limit=3,
-                )
-                feed_items[group_name]['group_name'] = group['name']
+            api_url = (
+                '{api_url}/posts?_embed'
+                '&{resource_filter}'
+                '&per_page={per_page}'
+                '&offset={offset}'
+            ).format(
+                api_url=self.API_URL,
+                resource_filter=self.RESOURCE_FILTER,
+                per_page=self.PER_PAGE + 1,
+                offset=offset,
+            )
+            posts = self._normalise_resources(
+                get_json_feed_content(api_url)
+            )
+            if posts:
+                posts_length = len(posts)
+                if 'posts' not in feed_items.keys():
+                    feed_items['posts'] = OrderedDict()
+                topic = 'All topics'
+                feed_items['posts'][topic] = {}
+                feed_items['posts'][topic]['posts'] = posts[:self.PER_PAGE]
+                feed_items['posts'][topic]['group_name'] = topic
+        feed_items['posts_length'] = posts_length
+        feed_items['pagination'] = self._generate_pagination_queries(
+            page,
+            posts_length
+        )
         return feed_items
 
     def get_context_data(self, **kwargs):
@@ -148,9 +287,11 @@ class ResourcesView(TemplateView):
 
         # Get any existing context
         context = super(ResourcesView, self).get_context_data(**kwargs)
-        context['items'] = self._get_resources()
+        context.update(self._get_resources())
         context['topic_slug'] = self.request.GET.get('topic')
         context['content_slug'] = self.request.GET.get('content')
+        context['page_index'] = int(self.request.GET.get('page', 1))
+        context['search_slug'] = self.request.GET.get('q', '')
         return context
 
 

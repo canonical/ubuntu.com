@@ -12,6 +12,7 @@
   @include ubuntu-p-is-quartered;
   @include ubuntu-p-nested-counter-lists;
   @include ubuntu-p-inline-definition-list;
+  @include ubuntu-p-ordered-legal-list;
 }
 
 @mixin ubuntu-p-inline-list-icons {
@@ -168,6 +169,25 @@
 
     &__item {
       margin: 0;
+    }
+  }
+}
+
+@mixin ubuntu-p-ordered-legal-list {
+  .p-list--ordered-legal {
+    counter-reset: item;
+    list-style-type: none;
+
+    & > .p-list__item:before {
+      content: counters(item, ".") ". ";
+      counter-increment: item;
+      font-weight: 400;
+    }
+
+    & > .p-list__item > h2,
+    & > .p-list__item > h3,
+    & > .p-list__item > h4 {
+      display: inline;
     }
   }
 }

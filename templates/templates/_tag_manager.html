@@ -1,9 +1,11 @@
+{% comment %}
+{# add this when running google optomize on the site #}
         <!-- Google Optimize page-hiding -->
         <style>.async-hide { opacity: 0 !important} </style>
         <script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
         h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
         (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
-        })(window,document.documentElement,'async-hide','dataLayer',4000,
+        })(window,document.documentElement,'async-hide','dataLayer',1000,
         {'GTM-TNDW25H':true});</script>
         <!-- End Google Optimize page-hiding -->
 
@@ -21,7 +23,8 @@
         'pages.ubuntu.com', 'tutorials.ubuntu.com', 'docs.ubuntu.com']);
         </script>
         <!-- End Google Analytics and Google Optimize -->
-
+{# /add this when running google optomize on the site #}
+{% endcomment %}
         <!-- Google Tag Manager -->
         <script>
           dataLayer = [];

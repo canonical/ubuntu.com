@@ -5,6 +5,10 @@
 
 {% if product == 'newsletter' %}
   {% include "shared/_thank_you.html" with thanks_context="subscribing!" thanks_message="You will now begin receiving our devices newsletter. You may unsubscribe any time by clicking the link in the email." %}
+
+{% elif product == 'appstore' %}
+  {% include "shared/_thank_you.html" with thanks_context="your interest in IoT app stores!" thanks_message="A member of our team will follow up with you shortly." %}
+
 {% else %}
   {% include "shared/_thank_you.html" with thanks_context="your interest in Ubuntu for IoT" thanks_message="A member of our team will follow up with you shortly. In the meantime, explore <a href='http://snapcraft.io' class='p-link--external'>snapcraft.io</a>, where vendors and the open source community collaborate to deliver great software, securely, to a wide range of devices and cloud." %}
 {% endif %}
