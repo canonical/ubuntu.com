@@ -6,14 +6,17 @@
 
 {% block content %}
 
-<section class="p-strip is-deep is-bordered">
+<section class="p-strip--image is-dark u-no-background--small is-deep" style="background-image: url('{{ ASSET_SERVER_URL }}bd1d8c1d-juju-suru-blue-background.png'); background-size: 100% 100%;  background-color: #002835;">
   <div class="row">
-    <div class="col-6">
-      <h1><img src="{{ ASSET_SERVER_URL }}7e21b535-logo-juju.svg" width="131" height="54" alt="Juju" /></h1>
+    <div class="col-7">
+      <img src="{{ ASSET_SERVER_URL }}9afc1e35-juju_white-orange_hex.svg" width="175" alt="Juju" />
+      <h1>Operate big software at&nbsp;scale on any cloud</h1>
       <p>Model, configure and manage services with Juju and deploy to all major public and private clouds with only a few commands. Hundreds of preconfigured services available in the Juju store.</p>
       <p><a class="p-button--positive" href="https://jujucharms.com/">Get started</a></p>
     </div>
   </div>
+</section>
+<section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-12" style="margin-top: 3rem;">
       <div class="u-embedded-media">
