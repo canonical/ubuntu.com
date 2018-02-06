@@ -384,4 +384,48 @@
   .nav-secondary .p-inline-list__item {
     white-space: normal;
   }
+
+  // new tabs
+  @mixin p-tab {
+    background-color: $color-x-light;
+    color: $color-dark;
+    display: none;
+    padding: 2rem 0;
+    border-bottom: 3px solid $color-dark;
+
+    &__col-resources {
+      background-color: $color-light;
+      margin: -1rem -1rem -1rem 1rem;
+      padding: 1rem;
+    }
+
+    &.is-open {
+      display: block;
+    }
+
+    h5 {
+      font-size: 1.1rem;
+    }
+
+    h4 {
+      font-size: 1.2rem;
+    }
+
+    p,
+    li {
+      font-size: 0.85rem;
+    }
+  }
+  .p-tab--enterprise {
+    @include p-tab;
+  }
+  .p-tab--community {
+    @include p-tab;
+  }
+  .p-tab--developer {
+    @include p-tab;
+  }
+  .p-tab--download {
+    @include p-tab;
+  }
 }
