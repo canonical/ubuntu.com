@@ -2,28 +2,13 @@
   <div class="wrapper">
     <div class="row">
       <div class="strip-inner-wrapper">
-        <style>
-        .p-tab--download {
-          background-color: #f7f7f7;
-          border-bottom: 2px solid #111;
-          color: #111111;
-          display: none;
-          padding: 2rem 0;
-        }
-        .p-tab--download.is-open {
-          display: block;
-        }
-        .p-tab--download h5 {
-          font-size: 1.1rem;
-        }
-        .p-tab--download h4 {
-          font-size: 1.2rem;
-        }
-        .p-tab--download p, .p-tab--download li {
-          font-size: 0.85rem;
-        }
-        </style>
-        <h4>Downloads</h4>
+
+        <div class="row">
+          <div class="col-12">
+            <p class="u-float-left" style="margin-top: -1rem;"><a href="#" onClick="document.getElementsByClassName('p-tab--download')[0].classList.toggle('is-open')">(x) close</a></p>
+          </div>
+        </div>
+
         <div class="row p-divider">
           <div class="col-4 p-divider__block">
 
@@ -58,9 +43,8 @@
 
           </div>
           <div class="col-4 p-divider__block">
-            <p class="u-float-right" style="margin-top: -1rem;"><a href="#" onClick="document.getElementsByClassName('p-tab--download')[0].classList.toggle('is-open')">(x) close</a></p>
 
-            <h5 style="margin-top: 0;"><a href="https://developer.ubuntu.com/core/get-started" alt=''>Ubuntu Core for IoT</a></h5>
+            <h5><a href="https://developer.ubuntu.com/core/get-started" alt=''>Ubuntu Core for IoT</a></h5>
             <p>Are you a developer who wants to try snappy Ubuntu Core? The new, transactionally updated Ubuntu for clouds and devices.</p>
             <ul class='p-inline-list--middot'>
               <li class='p-inline-list__item'><a class='p-link--soft' href='https://developer.ubuntu.com/core/get-started/raspberry-pi-2-3' alt=''>Raspberry Pi 2 or 3</a></li>
