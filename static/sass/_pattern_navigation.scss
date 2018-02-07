@@ -15,6 +15,18 @@
     font-weight: 400;
     margin-bottom: 0;
 
+    &:target {
+      @media (max-width: $breakpoint-medium) {
+        .p-navigation__nav {
+          background-color: $color-navigation-background;
+        }
+
+        .p-navigation__row {
+          background-color: $color-x-light;
+        }
+      }
+    }
+
     @media (max-width: $breakpoint-medium) {
       border-bottom: 1px solid $color-light;
       font-weight: 300;
