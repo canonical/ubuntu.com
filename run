@@ -57,7 +57,7 @@ RUN_DEBUG=true
 
 # Other variables
 run_serve_docker_opts="${CANONICAL_WEBTEAM_RUN_SERVE_DOCKER_OPTS:-}"
-module_volumes=()
+module_volumes=""
 
 ##
 # Check docker is installed correctly
@@ -134,7 +134,7 @@ while [[ -n "${1:-}" ]] && [[ "${1:0:1}" == "-" ]]; do
         --no-debug) RUN_DEBUG=false ;;
         -m|--node-module)
             if [ -z "${2:-}" ]; then invalid "Missing module name. Usage: --node-module <path-to-module>."; fi
-            module_volumes+=("--volume" "${2}":"`pwd`/node_modules/$(basename ${2})")
+            module_volumes="${module_volumes} --volume=${2}:`pwd`/node_modules/$(basename ${2})"
             shift
         ;;
         -h|--help) echo "$USAGE"; exit ;;
@@ -181,6 +181,7 @@ docker_run () {
         --env COMMIT_ID=${commit_id} `# Pass through the commit ID` \
         ${env_file}                  `# Pass environment variables into the container, if file exists`  \
         ${http_proxy}                `# Include HTTP proxy if needed`  \
+        ${module_volumes}            `# Add module volumes`  \
         ${tty}                       `# Attach a pseudo-terminal, if relevant`  \
         ${docker_run_options}        `# Extra options`  \
         ${dev_image} $@              `# Run command in the image`
