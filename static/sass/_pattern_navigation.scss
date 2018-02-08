@@ -88,6 +88,12 @@
             }
           }
 
+          &:nth-child(2n+1) {
+            &:nth-last-child(2), &:nth-last-child(3), &:nth-last-child(4) {
+              border-bottom: 1px solid $color-mid-light;
+            }
+          }
+
           &:last-of-type {
             border-bottom: 1px solid $color-mid-light;
             border-top: 0;
