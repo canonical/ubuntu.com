@@ -82,6 +82,10 @@
 
           &:nth-child(2n) {
             border-left: 0;
+
+            &:nth-last-child(2), &:nth-last-child(3) {
+              border-bottom: 1px solid $color-mid-light;
+            }
           }
 
           &:last-of-type {
