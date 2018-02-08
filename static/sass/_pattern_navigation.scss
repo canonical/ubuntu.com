@@ -92,6 +92,10 @@
             &:nth-last-child(2), &:nth-last-child(3), &:nth-last-child(4) {
               border-bottom: 1px solid $color-mid-light;
             }
+
+            &:nth-last-child(2) {
+              border-top: 0;
+            }
           }
 
           &:last-of-type {
