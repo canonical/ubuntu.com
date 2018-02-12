@@ -64,6 +64,20 @@ MIDDLEWARE_CLASSES = [
     'unslashed.middleware.RemoveSlashMiddleware',
 ]
 
+# Prometheus
+if not DEBUG:
+    INSTALLED_APPS.append('django_prometheus')
+    MIDDLEWARE_CLASSES.insert(
+        0,
+        'django_prometheus.middleware.PrometheusBeforeMiddleware'
+    )
+    MIDDLEWARE_CLASSES.append(
+        'django_prometheus.middleware.PrometheusAfterMiddleware'
+    )
+    # Run the prometheus exporters on a range of ports
+    PROMETHEUS_METRICS_EXPORT_PORT_RANGE = range(9090, 9099)
+
+
 STATICFILES_FINDERS = [
     'django_static_root_finder.finders.StaticRootFinder'
 ]
