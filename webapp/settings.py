@@ -75,7 +75,7 @@ if not DEBUG:
         'django_prometheus.middleware.PrometheusAfterMiddleware'
     )
     # Run the prometheus exporters on a range of ports
-    PROMETHEUS_METRICS_EXPORT_PORT_RANGE = range(9090, 9099)
+    PROMETHEUS_METRICS_EXPORT_PORT_RANGE = range(9990, 9999)
 
 
 STATICFILES_FINDERS = [
