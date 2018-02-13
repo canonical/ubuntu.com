@@ -1,0 +1,205 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Install Ubuntu on the Intel Joule{% endblock %}}
+
+{% block content %}
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-10">
+      <div>
+        <h1>Install Ubuntu on the Intel<sup>&reg;</sup> Joule</h1>
+        <p>There are two install options for the Intel Joule: Ubuntu Core or Ubuntu Desktop.</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 p-card">
+      <div class="u-equal-height p-divider">
+        <div class="col-6 p-divider__block">
+          <h2>Install Ubuntu Core</h2>
+          <p>We will walk you through the steps of flashing Ubuntu Core on an Intel Joule. At the end of this process, you will have a board ready for production or testing snaps.</p>
+        </div>
+        <div class="col-6 p-divider__block">
+          <h3>Minimum requirements</h3>
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">An Ubuntu SSO account with an SSH key</li>
+            <li class="p-list__item is-ticked">An Intel<sup>&reg;</sup> Joule board with BIOS updated to <a class="p-link--external" href="https://downloadmirror.intel.com/26206/eng/joule-firmware-2017-02-19-193-public.zip">version #193</a> (<a class="p-link--external" href="https://software.intel.com/en-us/flashing-the-bios-on-joule">update instructions</a>)</li>
+            <li class="p-list__item is-ticked">2 USB 2.0 or 3.0 flash drives (2GB minimum)</li>
+            <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
+            <li class="p-list__item is-ticked">A Mini HDMI to HDMI cable</li>
+            <li class="p-list__item is-ticked">A USB keyboard and a mouse</li>
+            <li class="p-list__item is-ticked">A USB Hub with space for 4 devices</li>
+            <li class="p-list__item is-ticked">An 802.11 a/b/g/n WiFi network with Internet access</li>
+            <li class="p-list__item is-ticked">An Ubuntu {{lts_release_full_with_point}} image</li>
+            <li class="p-list__item is-ticked">An Ubuntu Core image</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "download/shared/_get-ebook-security.html"%}
+
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2>Installation instructions</h2>
+      <ol class="p-stepped-list--detailed">
+        {% include "./_setup-ubuntu-sso.html" with number=1 %}
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">2</span>
+            Download Ubuntu Core
+          </h3>
+          <div class="p-list-step__content">
+            <p>Get the correct Ubuntu Core image for your board:</p>
+            <ul class="u-no-margin--left">
+              <li><a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/16/stable/20170323/ubuntu-core-16-joule.img.xz">Ubuntu Core 16 image for Intel Joule</a></li>
+              <li>You can verify the integrity of the file using the <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/16/stable/20170323/SHA256SUMS">SHA256SUM</a> and <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/16/stable/20170323/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">3</span>
+            Flash the USB drives
+          </h3>
+          <div class="p-list-step__content">
+            <ol class="u-no-margin--left">
+              <li>Download and copy the <a href="http://www.ubuntu.com/download/desktop">Ubuntu {{lts_release_full_with_point}}</a> image on the first USB flash drive by following the live USB Ubuntu Desktop tutorial for <a href="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-ubuntu">Ubuntu</a>, <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows">Windows</a>, or  <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-macos">Mac OS X</a></li>
+              <li>Download the Ubuntu Core image for Intel Joule and copy the file on the second USB drive.</li>
+            </ol>
+          </div>
+        </li>
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">4</span>
+            Install Ubuntu Core
+          </h3>
+          <div class="p-list-step__content">
+            <ol class="u-no-margin--left">
+              <li>Connect your USB hub, keyboard, mouse, monitor to the Joule.</li>
+              <li>Insert the first USB flash drive, containing Ubuntu {{lts_release_full_with_point}}.</li>
+              <li>Power-up the Joule board, boot-up the device from USB and select “Try Ubuntu without installing” in the first boot menu.</li>
+              <li>Once the system is ready, insert the second USB flash drive.</li>
+              <li>
+                <p>Open a terminal and run the following command, where &lt;disk label&gt; is the name of the second USB flash drive:</p>
+                <pre><code>xzcat /media/ubuntu/&lt;disk label&gt;/ubuntu-core-16-joule.img.xz | sudo dd of=/dev/mmcblk0 bs=32M status=progress; sync</code></pre>
+              </li>
+              <li>Remove all USB flash drives and reboot the system, it will reboot from the internal memory now containing Ubuntu Core.</li>
+            </ol>
+          </div>
+        </li>
+        {% include "./_first-boot-setup.html" with number=4 %}
+        {% include "./_login.html" with number=5 %}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-12 p-card">
+      <div class="u-equal-height p-divider">
+        <div class="col-6 p-divider__block">
+          <h2>Install Ubuntu Desktop</h2>
+          <p>As an alternative to Ubuntu Core, you can install Ubuntu {{lts_release_full_with_point}}, where you can use your favourite development tools to create and run snaps.</p>
+        </div>
+        <div class="col-6 p-divider__block">
+          <h3>Minimum requirements</h3>
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">An Ubuntu SSO account with an SSH key</li>
+            <li class="p-list__item is-ticked">An Intel<sup>&reg;</sup> Joule board with BIOS updated to <a class="p-link--external" href="https://downloadmirror.intel.com/26206/eng/joule-firmware-2017-02-19-193-public.zip">version #193</a> (<a class="p-link--external" href="https://software.intel.com/en-us/flashing-the-bios-on-joule">update instructions</a>)</li>
+            <li class="p-list__item is-ticked">2 USB 2.0 or 3.0 flash drives (2GB minimum)</li>
+            <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
+            <li class="p-list__item is-ticked">A Mini HDMI to HDMI cable</li>
+            <li class="p-list__item is-ticked">A USB keyboard and a mouse</li>
+            <li class="p-list__item is-ticked">A USB Hub with space for 4 devices</li>
+            <li class="p-list__item is-ticked">An 802.11 a/b/g/n WiFi network with Internet access</li>
+            <li class="p-list__item is-ticked">An Ubuntu {{lts_release_full_with_point}} image</li>
+            <li class="p-list__item is-ticked">An Ubuntu Core image</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2>Installation instructions</h2>
+      <ol class="p-stepped-list--detailed">
+        {% include "./_setup-ubuntu-sso.html" with number=1 %}
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">2</span>
+            Download Ubuntu Desktop
+          </h3>
+          <div class="p-list-step__content">
+            <p>Get the correct Ubuntu Desktop image for your board:</p>
+            <ul class="u-no-margin--left">
+              <li><a class="p-link--external" href="http://people.canonical.com/~platform/snappy/tuchuck/desktop-final/tuchuck-xenial-desktop-iso-20170317-0.iso">Intel Joule - Ubuntu Desktop 16.04 LTS image</a></li>
+              <li>MD5SUM: 07e4895b2921117288ff611c6f5fea28</li>
+            </ul>
+            <p>Download and copy the image on an USB flash drive by following the <a class="p-link--external" href="https://developer.ubuntu.com/core/get-started/installation-medias">installation media instructions</a>.</p>
+          </div>
+        </li>
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">3</span>
+            Flash the USB drive with Ubuntu Desktop
+          </h3>
+          <div class="p-list-step__content">
+            <p>Download and copy the image on an USB flash drive by following the <a class="p-link--external" href="https://developer.ubuntu.com/core/get-started/installation-medias">installation media instructions</a>.</p>
+          </div>
+        </li>
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">4</span>
+            Install Ubuntu Desktop
+          </h3>
+          <div class="p-list-step__content">
+            <p>Booting the board from the USB flash drive will start the Ubuntu installer.</p>
+            <ol class="u-no-margin--left">
+              <li>Boot the system from the USB flash drive.</li>
+              <li>The system will automatically execute the first stage of installation, including eMMC storage partitioning and image installation. After installation is complete, a prompt dialog will be shown and you will need to restart the system.</li>
+              <li>Boot the system on the eMMC storage and finish the install configuration.</li>
+              <li>Follow the instructions and enter appropriate options for language, WiFi, location (timezone), and keyboard layout.</li>
+              <li>Pick a hostname, user account and password.</li>
+              <li>Wait for the configuration to finish. If you connected to a WiFi network at step 4, it will take several minutes to download and apply additional updates. You can now reboot the system.</li>
+              <li>Ubuntu is installed. Use your account and password to log in.</li>
+            </ol>
+          </div>
+        </li>
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">5</span>
+            Change the default audio output
+          </h3>
+          <div class="p-list-step__content">
+            <p>In the current release, the analog audio port on mezzanine board is chosen as the default audio output. To use HDMI audio, you need to modify the Joule sound configuration file: <code>/etc/modprobe.d/joule-snd.conf</code></p>
+            <h4>Edit configuration</h4>
+            <ol class="u-no-margin--left">
+              <li>
+                <p>Open an editor to modify the configuration file:</p>
+                <pre><code>sudo nano /etc/modprobe.d/joule-snd.conf</pre></code>
+              </li>
+              <li>To use HDMI audio, uncomment the line <code>#blacklist snd_sock_skl</code> and comment the line <code>softdep snd_hda_intel pre: snd_sock_skl</code>. You can revert these changes if you want to change your sound output back to defaults.</li>
+              <li>Reboot the system to apply the new setting.</li>
+            </ol>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+{% include "./_boot-tips-strip.html" %}
+
+{% include "./_install-snaps-strip.html" with strip="p-strip--light" %}
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_core_learn_more" second_item="_core_contribute" third_item="_iot_further_reading" %}
+
+{% endblock content %}
