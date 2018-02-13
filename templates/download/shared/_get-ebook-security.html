@@ -387,12 +387,7 @@
       * start download and send the user to the instructions page
       */
       afterSubmit = function() {
-        // Now start the download
-        downloadFrame = document.createElement("iframe");
-        downloadFrame.setAttribute("src", "https://pages.ubuntu.com/rs/066-EOV-335/images/IoTSecurityWhitepaper-FinalReport.pdf");
-        downloadFrame.style.width = 0 + "px";
-        downloadFrame.style.height = 0 + "px";
-        document.body.insertBefore(downloadFrame, document.body.childNodes[0]);
+        window.location.href = "https://pages.ubuntu.com/rs/066-EOV-335/images/IoTSecurityWhitepaper-FinalReport.pdf";
       }
 
       /**
