@@ -1,0 +1,93 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Install Ubuntu Core on the Orange Pi Zero{% endblock %}}
+
+{% block content %}
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-10">
+      <div>
+        <h1>Install Ubuntu Core on the Orange Pi Zero</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 p-card">
+      <div class="u-equal-height p-divider">
+        <div class="col-6 p-divider__block">
+          <h2>Install Ubuntu Core</h2>
+          <p>We will walk you through the steps of flashing Ubuntu Core on an Orange Pi Zero. At the end of this process, you will have a board ready for production or testing snaps.</p>
+        </div>
+        <div class="col-6 p-divider__block">
+          <h3>Minimum requirements</h3>
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">An Ubuntu SSO account with an SSH key</li>
+            <li class="p-list__item is-ticked">An Orange Pi Zero</li>
+            <li class="p-list__item is-ticked">A microSD card</li>
+            <li class="p-list__item is-ticked">A USB to TTL Serial Cable</li>
+            <li class="p-list__item is-ticked">An Ethernet cable (for first setup)</li>
+            <li class="p-list__item is-ticked">A 5V power supply rated at 2 amps and a cable with a micro USB plug</li>
+            <li class="p-list__item is-ticked"><code>screen</code> installed on your host computer (<code>sudo apt install screen</code>)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "download/shared/_get-ebook-security.html"%}
+
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2>Installation instructions</h2>
+      <ol class="p-stepped-list--detailed">
+        {% include "./_setup-ubuntu-sso.html" with number=1 %}
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">2</span>
+            Download Ubuntu Core
+          </h3>
+          <div class="p-list-step__content">
+            <p>Get the correct Ubuntu Core image for your board:</p>
+            <ul class="u-no-margin--left">
+              <li><a class="p-link--external" href="http://www.orangepi.org/downloadresources/orangepizero/2017-08-18/orangepizero_97899291e57c7a56ec9073f.html">Ubuntu Core 16 for Orange Pi Zero</a></li>
+            </ul>
+          </div>
+        </li>
+        {% include "./_flash-image.html" with card="microSD card" number=3 %}
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">4</span>
+            Install Ubuntu Core
+          </h3>
+          <div class="p-list-step__content">
+            <ol class="u-no-margin--left">
+              <li>Insert the SD card into the board.</li>
+              <li>Connect the Ethernet cable to the board and to the network.</li>
+              <li>Connect the TTL end of the TTL to USB cable, to the three pins next to the Ethernet port. On this diagram, they are identified by the label "Debug serial port". The pin layout is, from the outside to the inside:
+                <ul>
+                  <li><code>GND</code> (black wire)</li>
+                  <li><code>RX</code> (white wire)</li>
+                  <li><code>TX</code> (green wire)</li>
+                </ul>
+              </li>
+              <li>Connect the USB end of the cable into your host computer, open a terminal and run <code>sudo screen /dev/ttyUSB0 115200</code> to open a listening connection to the board.</li>
+              <li>Power on the board. The terminal on your host computer should display the boot sequence. If not, please ensure the TTL to USB cable is correctly connected.</li>
+            </ol>
+          </div>
+        </li>
+        {% include "./_first-boot-setup.html" with number=5 %}
+        {% include "./_login.html" with number=6 %}
+      </ol>
+    </div>
+  </div>
+</section>
+
+{% include "./_boot-tips-strip.html" with strip="p-strip--light" %}
+
+{% include "./_install-snaps-strip.html" %}
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_core_learn_more" second_item="_core_contribute" third_item="_iot_further_reading" %}
+
+{% endblock content %}
