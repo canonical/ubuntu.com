@@ -70,6 +70,7 @@
         @media (min-width: $breakpoint-medium) {
           border-color: $color-brand-light;
           border-right: 0;
+          font-size: 1.2rem;
         }
 
         &:hover {
@@ -419,12 +420,6 @@
     padding: 2rem 0;
     border-bottom: 3px solid $color-dark;
 
-    &__col-resources {
-      background-color: $color-light;
-      margin: -1rem -1rem -1rem 1rem;
-      padding: 1rem;
-    }
-
     &.is-open {
       display: block;
     }
@@ -440,6 +435,17 @@
     p,
     li {
       font-size: 0.85rem;
+    }
+
+    &__col-resources {
+      background-color: $color-light;
+      margin: -1rem -1rem -1rem 1rem;
+      padding: 1rem;
+
+      p,
+      li {
+        font-size: .75rem;
+      }
     }
   }
   .p-tab--enterprise {
