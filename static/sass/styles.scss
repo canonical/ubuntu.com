@@ -2,6 +2,7 @@
 
 //settings
 @import 'settings_colors';
+@import 'global-settings';
 
 // custom mixins
 @import 'mixins/full-width-breakout';
@@ -74,12 +75,6 @@
 // Before any feature branch is merged, these bugs should be raised in their
 // respective repos and referenced here, accompanied with a breif description of
 // the bug
-
-@media (min-width: $breakpoint-medium ) {
-  .p-navigation:target .p-navigation__toggle--close {
-    display: none !important; // specificity
-  }
-}
 
 /// XXX Compact button style
 /// This should be considered for inclusion in vanilla-framework
