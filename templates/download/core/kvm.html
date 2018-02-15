@@ -1,0 +1,128 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Install Ubuntu Core on KVM{% endblock %}}
+
+{% block content %}
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-10">
+      <div>
+        <h1>Install Ubuntu on KVM</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 p-card">
+      <div class="u-equal-height p-divider">
+        <div class="col-6 p-divider__block">
+          <h2>Install Ubuntu Core</h2>
+          <p>We will walk you through the steps of installing Ubuntu Core on your Linux desktop in a virtual machine.</p>
+        </div>
+        <div class="col-6 p-divider__block">
+          <h3>Minimum requirements</h3>
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">An Ubuntu SSO account with an SSH key</li>
+            <li class="p-list__item is-ticked">A computer running Ubuntu Desktop</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "download/shared/_get-ebook-security.html"%}
+
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2>Installation instructions</h2>
+      <ol class="p-stepped-list--detailed">
+        {% include "./_setup-ubuntu-sso.html" with number=1 %}
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">2</span>
+            Download Ubuntu Core
+          </h3>
+          <div class="p-list-step__content">
+            <ul class="u-no-margin--left">
+              <li>Download the <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/16/stable/current/ubuntu-core-16-amd64.img.xz">Ubuntu Core image for amd64</a></li>
+              <li>You can verify the integrity of the files using the <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/16/stable/current/SHA256SUMS">SHA256SUM</a> and <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/16/stable/current/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.</li>
+              <li>
+                <p>Uncompress the image with the following command:</p>
+                <pre><code>unxz ubuntu-core-16-amd64.img.xz</code></pre>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">3</span>
+            Install KVM
+          </h3>
+          <div class="p-list-step__content">
+            <ol class="u-no-margin--left">
+              <li>
+                <p>Install the qemu-kvm package with the following command:</p>
+                <pre><code>sudo apt install qemu-kvm</code></pre>
+              </li>
+              <li>
+                <p>Then, run the kvm-ok command to check KVM status and your hardware:</p>
+                <pre><code>kvm-ok</code></pre>
+              </li>
+              <li>
+                <p>The message should say:</p>
+                <pre><code>INFO: /dev/kvm exists
+KVM acceleration can be used</code></pre>
+                <p>This is the best outcome — it means that Ubuntu Core will run fast on your system, taking advantage of hardware acceleration in your CPU.</p>
+            </li>
+            </ol>
+          </div>
+        </li>
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">4</span>
+            Launch KVM
+          </h3>
+          <div class="p-list-step__content">
+            <p>You can now launch a virtual machine with KVM, using the following command:</p>
+            <pre><code>kvm -smp 2 -m 1500 -netdev user,id=mynet0,hostfwd=tcp::8022-:22,hostfwd=tcp::8090-:80 -device virtio-net-pci,netdev=mynet0 -vga qxl -drive file=ubuntu-core-16-amd64.img,format=raw</code></pre>
+            <p>
+              Note: this command sets up port redirections:
+              <ul>
+                <li><code>localhost:8022</code> is redirecting to port <code>22</code> of the virtual machine for accessing it through SSH</li>
+                <li><code>localhost:8090</code> is redirecting to its port <code>80</code></li>
+              </ul>
+            </p>
+            <p>
+              Note: this command is required for graphics such as mir-kiosk:
+              <ul>
+                <li><code>-vga qxl</code> sets the paravirtual graphics driver qxl</li>
+              </ul>
+            </p>
+            <p>You should now see a window, with your Ubuntu Core virtual machine booting inside it.</p>
+          </div>
+        </li>
+        {% include "./_first-boot-setup.html" with number=5 %}
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">6</span>
+            Login
+          </h3>
+          <div class="p-list-step__content">
+            <p>Once setup is done, you can login with SSH into Ubuntu Core, using the following command:</p>
+            <pre><code>ssh -p 8022 &lt;Ubuntu SSO user name&gt;@localhost</code></pre>
+            <p>Your user name is your Ubuntu SSO user name, it has been reminded to you at the end of the account configuration step.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+{% include "./_boot-tips-strip.html" with strip="p-strip--light" %}
+
+{% include "./_install-snaps-strip.html" with board="virtual machine"%}
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_core_learn_more" second_item="_core_contribute" third_item="_iot_further_reading" %}
+
+{% endblock content %}
