@@ -1,0 +1,145 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Install Ubuntu on the Raspberry Pi Compute Module 3{% endblock %}}
+
+{% block content %}
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-10">
+      <div>
+        <h1>Install Ubuntu on the Raspberry Pi Compute Module 3</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 p-card">
+      <div class="u-equal-height p-divider">
+        <div class="col-6 p-divider__block">
+          <h2>Install Ubuntu Core</h2>
+          <p>We will walk you through the steps of flashing Ubuntu Core on a Compute Module 3. At the end of this process, you will have a board ready for production or testing snaps.</p>
+        </div>
+        <div class="col-6 p-divider__block">
+          <h3>Minimum requirements</h3>
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">An Ubuntu SSO account with an SSH key</li>
+            <li class="p-list__item is-ticked">A Compute Module 3</li>
+            <li class="p-list__item is-ticked">A Compute Module IO board</li>
+            <li class="p-list__item is-ticked">A microSD card</li>
+            <li class="p-list__item is-ticked">An Ubuntu Core image</li>
+            <li class="p-list__item is-ticked">Two micro USB to USB cables (one for power, one to setup the CM from the host)</li>
+            <li class="p-list__item is-ticked">An HDMI cable and a display</li>
+            <li class="p-list__item is-ticked">A USB keyboard</li>
+            <li class="p-list__item is-ticked">A USB to RJ45 adaptor or a WiFi dongle</li>
+            <li class="p-list__item is-ticked">A USB hub to attach the keyboard and the RJ45 adaptor/WiFi dongle (note that the keyboard and display can be replaced with a serial cable connected directly to pins of the IO board)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "download/shared/_get-ebook-security.html"%}
+
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2>Installation instructions</h2>
+      <ol class="p-stepped-list--detailed">
+        {% include "./_setup-ubuntu-sso.html" with number=1 %}
+        <li class="p-list-step__item" id="step2">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">2</span>
+            Download Ubuntu Core
+          </h3>
+          <div class="p-list-step__content">
+            <p>Get the correct Ubuntu Core image for your board:</p>
+            <ul class="u-no-margin--left">
+              <li><a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/16/stable/current/ubuntu-core-16-cm3.img.xz">Ubuntu Core 16 image for Compute Module 3</a></li>
+              <li>You can verify the integrity of the files using the <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/16/stable/current/SHA256SUMS">SHA256SUM</a> and <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/16/stable/current/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">3</span>
+            Setup USBboot on your host system
+          </h3>
+          <div class="p-list-step__content">
+            <p>On the host system: Ubuntu Desktop 16.04 or above:</p>
+            <ol>
+              <li>
+                <p>In a terminal, download the USBboot tool you will use to setup the board, and install its build dependencies:</p>
+                <pre><code>git clone --depth=1 https://github.com/raspberrypi/usbboot.git
+sudo apt install libusb-1.0-0-dev</code></pre>
+              </li>
+              <li>
+                <p>Then <code>cd</code into the USBboot directory, build with <code>make</code> and start the resulting binary as root:</p>
+                <pre><code>cd usbboot
+make
+sudo ./rpiboot</code></pre>
+              </li>
+              <li>Once started, it will wait for the Compute Module to be attached to the machine.</li>
+            </ol>
+          </div>
+        </li>
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">4</span>
+            Setup the Compute Module IO board
+          </h3>
+          <div class="p-list-step__content">
+            <p>On the Compute Module IO board:</p>
+            <ol>
+              <li>Position the Compute Module on the IO board.</li>
+              <li>Attach the USB hub, RJ45 adaptor, keyboard and monitor (HDMI) to the board.</li>
+              <li>
+                <p>Ensure the <code>J4</code> switch (<code>USB SLAVE BOOT ENABLE</code>) on the IO board is in the EN position.</p>
+                <p><img class="p-image--bordered" src="{{ ASSET_SERVER_URL }}55329e6f-CM3_J4.JPG?w=300" alt="J4"></p>
+              </li>
+              <li>
+                <p>With the first micro USB to USB cable, plug the hose machine into the IO Board USB slave port (<code>J15</code>).</p>
+                <p><img class="p-image--bordered" src="{{ ASSET_SERVER_URL }}2073d0aa-CM3_J15.JPG?w=300" alt="J15"></p>
+              </li>
+              <li>With the second micro USB to USB cable, power on the IO board.</li>
+            </ol>
+          </div>
+        </li>
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">5</span>
+            Flash the board from your host system
+          </h3>
+          <div class="p-list-step__content">
+            <p>On your host system:</p>
+            <ol>
+              <li>The USBboot tool should have recognized the attached Compute Module and mounted the EMMC partition as a new device.</li>
+              <li>Identify the device by opening the "Disks" application:
+                <ul>
+                  <li>Locate the EMMC partition of the Compute Module in the left pane.</li>
+                  <li>Note down its "Device" address on the right pane.</li>
+                  <li>If the partition is mounted, unmount it by clicking the square icon below the partition diagram or the eject icon in a file manager</li>
+                </ul>
+              </li>
+              <li>Download the <a href="#step2">Ubuntu Core image</a>. When this is done you should have an <code>ubuntu-core-16-cm3.img.xz</code> file in your <code>~/Downloads</code> directory</li>
+              <li>
+                <p>Flash Ubuntu Core on the EMMC partition with:</p>
+                <pre><code>xzcat ~/Downloads/&lt;image file .xz&gt; | sudo dd of=&lt;device address&gt; bs=32M; sync</code></pre>
+              </li>
+              <li>This process will take some time. After completion, you can reboot your Compute Module IO board and follow the first boot process with the display, keyboard and RJ45/WiFI dongle attached to it.</li>
+            </ol>
+          </div>
+        </li>
+        {% include "./_first-boot-setup.html" with number=6 %}
+        {% include "./_login.html" with number=7 %}
+      </ol>
+    </div>
+  </div>
+</section>
+
+{% include "./_boot-tips-strip.html" with strip="p-strip--light" %}
+
+{% include "./_install-snaps-strip.html" %}
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_core_learn_more" second_item="_core_contribute" third_item="_iot_further_reading" %}
+
+{% endblock content %}
