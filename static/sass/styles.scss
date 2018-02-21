@@ -12,7 +12,9 @@
 @import 'vanilla-framework/scss/build';
 
 // vendor
-@import '../global-nav/src/sass/main';
+// @import '../global-nav/src/sass/main';
+@import 'pattern_global-nav';
+@include global-nav;
 
 // import site specific patterns and overrides
 @import 'pattern_buttons';
