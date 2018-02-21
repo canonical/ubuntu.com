@@ -1,0 +1,27 @@
+<nav class="global-nav" style="background-color: #333">
+  <div class="global-nav__wrapper">
+    <button class="global-nav__title" aria-expanded="false" aria-controls="global-navigation">      Ubuntu websites    </button>
+
+    <a href="https://www.ubuntu.com">
+      <img src="{{ ASSET_SERVER_URL}}3c7954dd-logo-canonical-white.svg"  style="    padding: 0;
+    align-items: center;
+    display: flex;
+    float: left;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    height: 16px;
+    margin: 8px 0px 0px -8px;"  alt="Canonical" />
+    </a>
+
+
+    <ul class="global-nav__list" style="float:right;" id="global-navigation" aria-hidden="true">
+      <li class="global-nav__list-item--more">
+        <a style="color: #fff;" class="global-nav__link" href="#" onClick="document.getElementsByClassName('global_tab')[0].classList.toggle('is-open')">Products <span class="global-nav__more-chevron" style="left: 4.1rem;">›</span> </a>
+      </li>
+      <li class="global-nav__list-item"><a style="color: #fff;" href="https://www.canonical.com" class="global-nav__link">Company</a></li>
+      <li class="global-nav__list-item"><a style="color: #fff;"  href="https://login.ubuntu.com" class="global-nav__link">Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+{% include "templates/_nav_global.html" %}
