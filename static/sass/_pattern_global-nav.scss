@@ -1,0 +1,75 @@
+@mixin global-nav {
+  .global-nav {
+    align-items: center;
+    background: $color-accent-background;
+    display: flex;
+    height: 2rem;
+    margin-top: 0;
+    position: relative;
+
+    &__logo {
+      margin-left: 1.25rem;
+    }
+
+    &__links {
+      font-size: 0.875rem;
+      margin: 0 .875rem 0 auto;
+    }
+
+    &__link {
+      display: inline;
+      margin: 0 .5rem;
+    }
+
+    &__dropdown-link {
+      display: inline;
+      margin-right: 1.5rem;
+      position: relative;
+
+      &::after {
+        @include vf-icon-chevron(vf-url-friendly-color($color-x-light));
+        background-repeat: no-repeat;
+        background-size: 100%;
+        content: "";
+        height: .25rem;
+        position: absolute;
+        right: -.85em;
+        top: .45em;
+        width: .65rem;
+      }
+
+      &.is-selected {
+        text-decoration: underline;
+
+        &::after {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    &__dropdown-content {
+      margin-top: 0;
+      position: absolute;
+      top: 2rem;
+      width: 100%;
+      z-index: 3;
+    }
+
+    .p-link {
+      color: $color-x-light;
+
+      &:visited,
+      &:hover {
+        color: $color-x-light;
+      }
+    }
+
+    .p-matrix__img {
+      max-height: 2rem;
+    }
+
+    .row {
+      max-width: 1440px;
+    }
+  }
+}
