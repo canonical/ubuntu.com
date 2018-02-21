@@ -68,6 +68,8 @@
     </noscript>
     <!-- end google tag manager -->
 
+    {% include "templates/global-nav.html" %}
+
     {% include "templates/_navigation.html" %}
 
     <div class="wrapper u-no-margin--top">
@@ -85,7 +87,6 @@
     {% include "shared/_polyfill.html" %}
     <script>
 
-    var ANIMATION_TIME = 333;
     var navDropdowns = document.querySelectorAll('.p-navigation__dropdown-link');
 
     navDropdowns.forEach(function(dropdown) {
@@ -106,12 +107,18 @@
       });
     });
 
+    var globalNavDropdown = document.getElementsByClassName('global-nav__dropdown-link')[0];
+    var globalNavContent = document.getElementsByClassName('global-nav__dropdown-content')[0];
+
+    globalNavDropdown.addEventListener('click', function(event) {
+      globalNavDropdown.classList.toggle('is-selected');
+      globalNavContent.classList.toggle('u-hide');
+    });
+
     </script>
     <script src="{% versioned_static 'js/core.js' %}"></script>
-    {% comment %}
-    <script src="{% versioned_static 'global-nav/build/js/global.js' %}"></script>
-    <script>ubuntu.globalNav.setup();</script>
-    {% endcomment %}
+    <!-- <script src="{% versioned_static 'global-nav/build/js/global.js' %}"></script>
+    <script>ubuntu.globalNav.setup();</script> -->
     <script src="{% versioned_static 'js/scratch.js' %}"></script>
     <script src="{{ ASSET_SERVER_URL }}f5bf3854-respond.min.js"></script>
     {% block footer_extra %}{% endblock %}
