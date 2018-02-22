@@ -5,103 +5,99 @@
 
   .p-navigation {
     border-bottom: 0;
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    z-index: 2;
 
-    .p-navigation__logo {
-      background: $color-brand;
-      margin: 0;
-      height: 3rem;
-      padding: 0 1.25rem;
-      width: 100%;
+    &__wrapper {
+      display: flex;
     }
 
-    .p-navigation__nav {
+    &__search {
+      align-items: center;
       border-bottom: 1px solid $color-mid-light;
-      position: absolute;
-      top: 3rem;
-      width: 100%;
-      z-index: 1;
+      display: inline-flex;
+      flex-grow: 1;
+      margin: 0;
 
-      > .p-search-box {
+      .p-search-box {
         @media only screen and (min-width: $breakpoint-navigation-threshold) {
-          height: 2.25rem;
+          height: 2rem;
           margin: 0 1rem 0 auto;
-          width: 15rem;
+          width: 12.5rem;
         }
-      }
 
-      @media only screen and (min-width: $breakpoint-navigation-threshold) {
-        border-bottom: 0;
-        position: static;
+        &__button {
+          padding: 0 0.5rem;
+          width: 2rem;
+        }
+
+        &__reset {
+          right: 2rem;
+        }
       }
     }
 
-    .p-navigation__links {
-      border-right-color: $color-mid-dark !important;
+    .p-navigation {
+      &__logo {
+        background: $color-brand;
+        margin: 0;
+        height: 3rem;
+        padding: 0 1.25rem;
+      }
 
-      .p-navigation__dropdown-link {
-        @extend .p-navigation__link;
-        background-color: $color-navigation-background;
-        border-left-color: $color-mid-dark;
-        position: relative;
+      &__nav {
+        border-bottom: 0;
+        width: 100%;
+        z-index: 2;
+      }
 
-        &:first-of-type {
-          border-left: 0;
-        }
+      &__links {
 
-        &:hover {
-          background-color: $color-mid-dark;
-        }
+        > .p-navigation__dropdown-link {
+          @extend .p-navigation__link;
+          background-color: $color-navigation-background;
+          position: relative;
 
-        &::after {
-          @include vf-icon-chevron(vf-url-friendly-color($color-x-light));
-          background-repeat: no-repeat;
-          background-size: 100%;
-          content: "";
-          height: .25rem;
-          position: absolute;
-          right: .75em;
-          top: 1.35em;
-          width: .65rem;
-        }
+          &:first-of-type {
+            border-left: 0;
+          }
 
-        > a {
-          color: $color-x-light;
-          height: 3rem;
-          padding-right: 1.75rem;
-        }
+          &:hover {
+            background-color: $color-light;
+          }
 
-        &.is-selected {
           &::after {
-            transform: rotate(180deg);
+            @include vf-icon-chevron(vf-url-friendly-color($color-dark));
+            background-repeat: no-repeat;
+            background-size: 100%;
+            content: "";
+            height: .25rem;
+            position: absolute;
+            right: .75em;
+            top: 1.5em;
+            width: .65rem;
           }
 
           > a {
-            border-bottom-color: $color-brand;
+            border-bottom: 1px solid $color-mid-light;
+            font-size: 1.125rem;
+            padding: .675rem 1.75rem .575rem 1.25rem;
           }
 
-          + .p-navigation__dropdown-link {
-            border-top: 0;
+          &.is-selected {
+            &::after {
+              transform: rotate(180deg);
+            }
+
+            > a {
+              border-bottom-color: transparent;
+            }
           }
         }
       }
-
-      @media only screen and (min-width: $breakpoint-navigation-threshold) {
-        margin-right: 1rem;
-      }
-    }
-
-    .row {
-      padding: 0 20px;
     }
   }
 
   .resource-col {
     background-color: $color-light;
-    font-size: .875rem;
     padding: 1rem;
 
     .p-list__item {
@@ -113,9 +109,9 @@
     @extend .p-strip;
     background-color: $color-x-light;
     box-shadow: 0 1px 5px 1px transparentize($color-dark, .8);
-    color: $color-dark;
     position: absolute;
     top: 3rem;
+    z-index: 1;
   }
 
   .p-navigation-secondary {
@@ -132,7 +128,7 @@
       line-height: 1;
       padding-left: 1.25rem;
       min-height: 2.25rem;
-      min-width: 10.625rem;
+      min-width: 9.1875rem;
     }
 
     > a {
