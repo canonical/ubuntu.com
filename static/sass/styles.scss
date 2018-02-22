@@ -2,6 +2,7 @@
 
 //settings
 @import 'settings_colors';
+@import 'global-settings';
 
 // custom mixins
 @import 'mixins/full-width-breakout';
@@ -10,7 +11,9 @@
 @import 'vanilla-framework/scss/build';
 
 // vendor
-@import '../global-nav/src/sass/main';
+// @import '../global-nav/src/sass/main';
+@import 'pattern_global-nav';
+@include global-nav;
 
 // import site specific patterns and overrides
 @import 'pattern_buttons';
@@ -74,12 +77,6 @@
 // Before any feature branch is merged, these bugs should be raised in their
 // respective repos and referenced here, accompanied with a breif description of
 // the bug
-
-@media (min-width: $breakpoint-medium ) {
-  .p-navigation:target .p-navigation__toggle--close {
-    display: none !important; // specificity
-  }
-}
 
 /// XXX Compact button style
 /// This should be considered for inclusion in vanilla-framework
@@ -312,4 +309,25 @@ select {
   background-position: right $sp-x-small center;
   background-size: $sp-medium;
   padding-right: $sp-xxx-large;
+}
+
+// XXX Caleb: Temporary code block spacing fix until issue is resolved in Vanilla
+// https://github.com/vanilla-framework/vanilla-framework/issues/1385
+p + pre {
+  margin-top: $sp-medium;
+}
+
+// XXX Caleb 06/02/2018 Modifier to Matrix pattern so images can be large
+.p-matrix {
+  &__img {
+    &-container {
+      min-height: 5rem;
+      padding: .5rem 0 1rem 0;
+    }
+
+    &--large {
+      @extend .p-matrix__img; // sass-lint:disable-line placeholder-in-extend
+      max-width: 100%;
+    }
+  }
 }

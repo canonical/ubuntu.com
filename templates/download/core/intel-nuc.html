@@ -1,0 +1,215 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Install Ubuntu on the Intel&reg; NUC{% endblock %}}
+
+{% block content %}
+<section class="p-strip--light is-bordered" id="core">
+  <div class="row">
+    <div class="col-10">
+      <div>
+        <h1>Install Ubuntu on the Intel<sup>&reg;</sup> NUC</h1>
+        <p>There are two install options for the Intel NUC: <a href="#core">Ubuntu Core</a> or <a href="#desktop">Ubuntu Desktop</a>.</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 p-card">
+      <div class="u-equal-height p-divider">
+        <div class="col-6 p-divider__block">
+          <h2>Install Ubuntu Core</h2>
+          <p>We will walk you through the steps of flashing Ubuntu Core on an Intel NUC. At the end of this process, you will have a board ready for production or testing snaps.</p>
+        </div>
+        <div class="col-6 p-divider__block">
+          <h3>Minimum requirements</h3>
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">An Ubuntu SSO account with an SSH key</li>
+            <li class="p-list__item is-ticked">An Intel NUC with BIOS updated to the latest version (<a class="p-link--external" href="http://www.intel.com/content/www/us/en/support/boards-and-kits/000005850.html">update instructions</a>)</li>
+            <li class="p-list__item is-ticked">2 USB 2.0 or 3.0 flash drives (2GB minimum)</li>
+            <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
+            <li class="p-list__item is-ticked">A Mini HDMI to HDMI cable</li>
+            <li class="p-list__item is-ticked">A USB keyboard and a mouse</li>
+            <li class="p-list__item is-ticked">A monitor with VGA or HDMI interface</li>
+            <li class="p-list__item is-ticked">A VGA or HDMI cable</li>
+            <li class="p-list__item is-ticked">A network connection with Internet access</li>
+            <li class="p-list__item is-ticked">An Ubuntu Desktop 16.04.3 LTS image</li>
+            <li class="p-list__item is-ticked">An Ubuntu Core image</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "download/shared/_get-ebook-security.html"%}
+
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2>Installation instructions</h2>
+      <ol class="p-stepped-list--detailed">
+        {% include "./_setup-ubuntu-sso.html" with number=1 %}
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">2</span>
+            Download Ubuntu Core
+          </h3>
+          <div class="p-list-step__content">
+            <p>Get the correct Ubuntu Core image for your board:</p>
+            <ul class="u-no-margin--left">
+              <li><a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/16/stable/current/ubuntu-core-16-amd64.img.xz">Ubuntu Core 16 image for Intel NUC</a></li>
+              <li>Once downloaded, you can verify the integrity of the file by following <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-how-to-verify-ubuntu">this tutorial</a>, using the <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/16/stable/current/SHA256SUMS">SHA256SUM</a> and <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/16/stable/current/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">3</span>
+            Flash the USB drives
+          </h3>
+          <div class="p-list-step__content">
+            <ol class="u-no-margin--left">
+              <li>Download and copy the <a href="http://www.ubuntu.com/download/desktop">Ubuntu Desktop 16.04.3 LTS</a> image on the first USB flash drive by following the live USB Ubuntu Desktop tutorial for <a href="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-ubuntu">Ubuntu</a>, <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows">Windows</a>, or  <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-macos">Mac OS X</a></li>
+              <li>Copy the Ubuntu Core image for Intel NUC on the second USB flash drive</li>
+            </ol>
+          </div>
+        </li>
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">4</span>
+            Install Ubuntu Core
+          </h3>
+          <div class="p-list-step__content">
+            <ol class="u-no-margin--left">
+              <li>Connect your USB hub, keyboard, mouse, monitor to the Joule.</li>
+              <li>Insert the first USB flash drive, containing Ubuntu Desktop 16.04.1 LTS.</li>
+              <li>Connect the USB hub, keyboard, mouse and the monitor to the NUC.</li>
+              <li>Insert the Live USB Ubuntu Desktop flash drive in the NUC.</li>
+            </ol>
+          </div>
+        </li>
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">4</span>
+            Boot from the Live USB flash drive
+          </h3>
+          <div class="p-list-step__content">
+            <ol class="u-no-margin--left">
+              <li>Start the NUC and push F10 to enter the boot menu.</li>
+              <li>Select the USB flash drive as a boot option.</li>
+              <li>Select "Try Ubuntu without installing”.</li>
+            </ol>
+          </div>
+        </li>
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">4</span>
+            Flash Ubuntu Core
+          </h3>
+          <div class="p-list-step__content">
+            <ol class="u-no-margin--left">
+              <li>Once the system is ready, insert the second USB flash drive containing the Ubuntu Core image file.</li>
+              <li>
+                <p>Open a terminal and type the following command to check for directories mounted on the internal storage:</p>
+                <pre><code>mount | grep mmcblk</code></pre>
+              </li>
+              <li>If there is any directory mounted on the internal eMMC storage, unmount it. For instance, if you see an occurence of <code>/dev/mmcblk0p3</code> on <code>/media/ubuntu/writable type ext4 (rw,relatime,data=ordered)</code>, run <code>sudo umount /media/ubuntu/writabl</code>.</li>
+              <li>Run the following command, where <code>&lt;disk label&gt;</code> is the label of the second USB flash drive:
+                  <pre><code>xzcat /media/ubuntu/&lt;disk label&gt;/ubuntu-core-16-amd64.img.xz | sudo dd of=/dev/mmcblk0 bs=32M status=progress; sync</code></pre>
+              </li>
+              <li>Reboot the system and remove the flash drives when prompted, it will then reboot from the internal memory where Ubuntu Core has been flashed.</li>
+            </ol>
+          </div>
+        </li>
+        {% include "./_first-boot-setup.html" with number=7 %}
+        {% include "./_login.html" with number=8 %}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered" id="desktop">
+  <div class="row">
+    <div class="col-12 p-card">
+      <div class="u-equal-height p-divider">
+        <div class="col-6 p-divider__block">
+          <h2>Install Ubuntu Desktop</h2>
+          <p>As an alternative to Ubuntu Core, you can install Ubuntu Desktop 16.04 LTS, where you can use your favourite development tools to create and run snaps.</p>
+        </div>
+        <div class="col-6 p-divider__block">
+          <h3>Minimum requirements</h3>
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">An Ubuntu SSO account with an SSH key</li>
+            <li class="p-list__item is-ticked">An Intel NUC with BIOS updated to the latest version (<a class="p-link--external" href="http://www.intel.com/content/www/us/en/support/boards-and-kits/000005850.html">update instructions</a>)</li>
+            <li class="p-list__item is-ticked">1 USB 2.0 or 3.0 flash drive (2GB minimum)</li>
+            <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
+            <li class="p-list__item is-ticked">A Mini HDMI to HDMI cable</li>
+            <li class="p-list__item is-ticked">A USB keyboard and a mouse</li>
+            <li class="p-list__item is-ticked">A monitor with VGA or HDMI interface</li>
+            <li class="p-list__item is-ticked">A VGA or HDMI cable</li>
+            <li class="p-list__item is-ticked">A network connection with Internet access</li>
+            <li class="p-list__item is-ticked">An Ubuntu Desktop 16.04.3 LTS image</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2>Installation instructions</h2>
+      <ol class="p-stepped-list--detailed">
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">1</span>
+            Download Ubuntu Desktop
+          </h3>
+          <div class="p-list-step__content">
+            <p>Get the correct Ubuntu Core image for your board:</p>
+            <ul class="u-no-margin--left">
+              <li><a class="p-link--external" href="http://people.canonical.com/~platform/snappy/nuc/ubuntu-server-16.04.1-20160817-0.iso">Intel NUC - Ubuntu Desktop 16.04 LTS image</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">2</span>
+            Flash the USB stick with Ubuntu Core
+          </h3>
+          <div class="p-list-step__content">
+            <p>Download and copy the image on an USB flash drive by following the <a class="p-link--external" href="https://developer.ubuntu.com/core/get-started/installation-medias">installation media instructions</a>.</p>
+          </div>
+        </li>
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">3</span>
+            Install Ubuntu Desktop
+          </h3>
+          <div class="p-list-step__content">
+            <p>Booting the board from the USB flash drive will start the Ubuntu installer.</p>
+            <ol class="u-no-margin--left">
+              <li>Insert the USB flash drive in the NUC.</li>
+              <li>Start the NUC and push F10 to enter the boot menu.</li>
+              <li>Select the USB flash drive as a boot option.</li>
+              <li>The system will automatically execute the first stage of installation, including eMMC storage partitioning and image installation. After installation is complete, a prompt dialog will be shown and you will need to restart the system.</li>
+              <li>Boot the system on the eMMC storage and finish the install configuration.</li>
+              <li>Follow the instructions and enter appropriate options for language, WiFi, location (timezone), and keyboard layout.</li>
+              <li>Pick a hostname, user account and password.</li>
+              <li>Wait for the configuration to finish. If you connected to a WiFi network at step 4, it will take several minutes to download and apply additional updates. You can now reboot the system.</li>
+              <li>Ubuntu is installed. Use your account and password to log in.</li>
+            </ol>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+{% include "./_boot-tips-strip.html" with strip="p-strip--light" %}
+
+{% include "./_install-snaps-strip.html" %}
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_core_learn_more" second_item="_core_contribute" third_item="_iot_further_reading" %}
+
+{% endblock content %}

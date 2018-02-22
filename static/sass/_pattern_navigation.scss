@@ -1,463 +1,165 @@
 @mixin ubuntu-p-navigation {
-
   html {
     overflow-x: hidden !important; // prevent horizontal overflow full width breakout
   }
 
   .p-navigation {
-    // XXX Ant: Change the threshold so the links are white.
-    // https://github.com/vanilla-framework/vanilla-framework/issues/1373
-    @include vf-navigation-pattern(
-      $background-color: $color-navigation-background,
-      $border-color: if(lightness($color-navigation-background) > 70, $color-mid-light, transparent),
-      $text-color: if(lightness($color-navigation-background) > 70, $color-dark, $color-light)
-    );
-    font-weight: 400;
-    margin-bottom: 0;
+    border-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    z-index: 2;
 
-    &:target {
-      @media (max-width: $breakpoint-medium) {
-        .p-navigation__nav {
-          background-color: $color-navigation-background;
-        }
-
-        .p-navigation__row {
-          background-color: $color-x-light;
-        }
-      }
-    }
-
-    @media (max-width: $breakpoint-medium) {
-      border-bottom: 1px solid $color-light;
-      font-weight: 300;
-    }
-
-    & &__toggle--open,
-    & &__toggle--close {
-      @media (max-width: $breakpoint-medium) {
-        top: .875rem;
-      }
-    }
-
-    &__logo {
+    .p-navigation__logo {
+      background: $color-brand;
       margin: 0;
-      padding: 0;
-
-      @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
-        margin-left: 0;
-        padding-left: 0;
-      }
+      height: 3rem;
+      padding: 0 1.25rem;
+      width: 100%;
     }
 
-    &__row {
-      @media (min-width: $breakpoint-large) {
-        position: relative;
+    .p-navigation__nav {
+      border-bottom: 1px solid $color-mid-light;
+      position: absolute;
+      top: 3rem;
+      width: 100%;
+      z-index: 1;
+
+      > .p-search-box {
+        @media only screen and (min-width: $breakpoint-navigation-threshold) {
+          height: 2.25rem;
+          margin: 0 1rem 0 auto;
+          width: 15rem;
+        }
+      }
+
+      @media only screen and (min-width: $breakpoint-navigation-threshold) {
+        border-bottom: 0;
+        position: static;
       }
     }
 
     .p-navigation__links {
+      border-right-color: $color-mid-dark !important;
 
-      &:last-of-type {
-        border-right: 1px solid $color-brand-light;
-      }
-
-      .p-navigation__link {
-        border-right: 1px solid $color-mid-light;
-        font-size: .875rem;
-        padding: 0;
+      .p-navigation__dropdown-link {
+        @extend .p-navigation__link;
+        background-color: $color-navigation-background;
+        border-left-color: $color-mid-dark;
         position: relative;
 
-        @media (min-width: $breakpoint-medium) {
-          border-color: $color-brand-light;
-          border-right: 0;
-          font-size: 1.2rem;
+        &:first-of-type {
+          border-left: 0;
         }
 
         &:hover {
-          cursor: pointer;
+          background-color: $color-mid-dark;
         }
 
-        @media (max-width: $breakpoint-medium - 1) {
-          float: left;
-          width: 50%;
+        &::after {
+          @include vf-icon-chevron(vf-url-friendly-color($color-x-light));
+          background-repeat: no-repeat;
+          background-size: 100%;
+          content: "";
+          height: .25rem;
+          position: absolute;
+          right: .75em;
+          top: 1.35em;
+          width: .65rem;
+        }
 
-          &:nth-child(2n) {
-            border-left: 0;
+        > a {
+          color: $color-x-light;
+          height: 3rem;
+          padding-right: 1.75rem;
+        }
 
-            &:nth-last-child(2), &:nth-last-child(3) {
-              border-bottom: 1px solid $color-mid-light;
-            }
+        &.is-selected {
+          &::after {
+            transform: rotate(180deg);
           }
 
-          &:nth-child(2n+1) {
-            &:nth-last-child(2), &:nth-last-child(3), &:nth-last-child(4) {
-              border-bottom: 1px solid $color-mid-light;
-            }
-
-            &:nth-last-child(2) {
-              border-top: 0;
-            }
+          > a {
+            border-bottom-color: $color-brand;
           }
 
-          &:last-of-type {
-            border-bottom: 1px solid $color-mid-light;
+          + .p-navigation__dropdown-link {
             border-top: 0;
           }
-
-          > a {
-            padding: $sp-small $sp-medium;
-
-            &.is-active {
-              background-color: $color-mid-light;
-            }
-          }
-        }
-
-        @media (min-width: $breakpoint-medium) {
-
-          > a {
-            display: inline-block;
-            padding: $sp-medium $sp-small;
-
-            &.is-active {
-              background-color: $color-brand-dark;
-            }
-          }
-
-          &:hover {
-            background-color: $color-brand-light;
-          }
-        }
-      }
-    }
-  }
-
-  .p-navigation .p-navigation__logo {
-    margin: $sp-small $sp-small $sp-x-small 1rem;
-    padding: 0;
-    width: 12rem;
-  }
-
-  .p-breadcrumbs {
-
-    // medium size - avoid overflow
-    @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
-      width: 90%;
-    }
-  }
-
-  // .nav-secondary override
-  .nav-secondary {
-
-    .p-inline-list__link {
-      display: inline-block;
-    }
-
-    @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
-      border-top: 1px solid $color-mid-light;
-      white-space: nowrap;
-    }
-
-    &__row {
-      @media (min-width: $breakpoint-medium) {
-        padding: 0 $sp-small;
-      }
-    }
-  }
-
-  .nav-secondary,
-  .nav-tertiary {
-    .p-inline-list__link,
-    .p-breadcrumbs__link {
-      font-size: .875rem;
-      font-weight: 300;
-    }
-
-    // small screen view only
-    @media (max-width: $breakpoint-medium - 1) {
-      background: $color-x-light;
-
-      .p-breadcrumbs {
-        @include full-width-breakout;
-        border-bottom: 1px solid $color-mid-light;
-        overflow-x: hidden;
-
-        &__item {
-          left: 50%;
-          margin-left: 0;
-          position: relative;
-          transform: translate(-50%, 0);
-          width: 100%;
-        }
-
-        &__link {
-          border-bottom: 1px solid $color-mid-light;
-          color: $color-dark;
-          display: inline-block;
-          margin-bottom: $sp-x-small;
-          padding: $sp-small $sp-medium;
-          width: 100%;
         }
       }
 
-      &__menu {
-        width: 100%;
-
-        .p-inline-list__item {
-          float: left;
-          margin-right: 0;
-          margin-top: 0;
-          padding-left: $sp-x-small;
-          width: 50%;
-
-          .is-active {
-            font-weight: bold;
-          }
-        }
-
-        .p-inline-list__link {
-          color: $color-x-dark;
-          display: inline-block;
-          padding: $sp-x-small;
-        }
+      @media only screen and (min-width: $breakpoint-navigation-threshold) {
+        margin-right: 1rem;
       }
     }
 
-    &__menu {
-      display: inline-block;
+    .row {
+      padding: 0 20px;
+    }
+  }
+
+  .resource-col {
+    background-color: $color-light;
+    font-size: .875rem;
+    padding: 1rem;
+
+    .p-list__item {
       margin-top: 0;
-      position: relative;
-
-      @media (min-width: $breakpoint-medium) {
-        margin-left: $sp-large;
-        vertical-align: top;
-      }
-    }
-
-    a {
-      color: $color-dark;
-
-      &.is-active {
-        color: $color-brand;
-      }
-    }
-
-    // large screen view
-    @media (min-width: $breakpoint-medium) {
-      @include full-width-breakout;
-      background: $color-light;
-      border-bottom: 1px solid $color-mid-light;
-      padding: $sp-x-small 0 $sp-small;
-      white-space: nowrap;
-
-      .p-breadcrumbs__item {
-        margin-bottom: 0;
-      }
-
-      &__menu::before {
-        color: $color-mid-dark;
-        content: '\203A';
-        font-weight: 400;
-        left: -$sp-medium;
-        position: absolute;
-      }
-
-      .p-breadcrumbs__link {
-        color: $color-mid-dark;
-
-        @media (min-width: $breakpoint-medium) {
-          + .second-level-nav {
-            position: relative;
-
-            &::before {
-              color: $color-mid-dark;
-              content: '\203A';
-              font-weight: 400;
-              left: -$sp-x-small;
-              position: absolute;
-              top: 0;
-            }
-          }
-        }
-      }
-    }
-
-    @media (min-width: $breakpoint-large) {
-      &__row {
-        padding: 0 $sp-small;
-      }
-    }
-
-    .p-navigation__row {
-      padding-left: $sp-x-small;
-      padding-right: $sp-x-small;
     }
   }
 
-  @media (min-width: $breakpoint-medium + 1) {
-    .p-navigation__link:hover .hover-menu {
-      display: block;
-
-      .p-inline-list__item {
-        display: block;
-      }
-    }
-
-    .p-navigation .p-navigation__nav ul li:hover ul::after {
-      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QYODgYVPPJJpQAAAT9JREFUKM+dkD9IAnEUx7+/IkVxFaxoKYxIWhqKwJw0JAJ315Yac8+1tUFo6HCp34XRdRp11z+J4BzckqShPzdEQ5G/EhPO6V5Tcg3G0QcePHjvffjygB4oXAIApFMxyPlcWM7nwulU7NfMNQqXGABsZNcCCpcKtapBtapBCpcK2fXlAAAcy3vMlUxTdgEAO9ubybPiPjWFoE6nQ5ZlUfNDULl0RAdSPuncddL30+gnCgOAlngLaocyn4nG9fmFJXj9fhARAMDr82MuEcfk7LSuFQu8DTvovO1SuTxlAKCqPFO5Ov/6FIIsy/qzROOdrst6S1V5xunomo0LrT4yOh4JDg6BMXfvIdvGs/mExutLPZpYnAIAdmNUVuwBbI1NRODxePEf2u0WHu9u4ev3rTLTfKBQaNh1qp5piWCa9/gGBheo3r6AmYcAAAAASUVORK5CYII=') $sp-large bottom no-repeat;
-      content: '';
-      display: block;
-      height: $sp-x-small;
-      left: 0;
-      position: absolute;
-      top: -$sp-x-small;
-      width: 200px;
-      z-index: 999;
-    }
-  }
-
-  .hover-menu {
-    background: $color-light;
-    border: 1px solid $color-mid-light;
-    border-radius: 10px;
-    box-shadow: 0 2px 2px -1px $color-mid-light;
-    display: none;
-    float: none;
-    left: 0;
-    margin: 0;
-    padding: $sp-x-small 0 $sp-medium;
+  .p-strip--navigation {
+    @extend .p-strip;
+    background-color: $color-x-light;
+    box-shadow: 0 1px 5px 1px transparentize($color-dark, .8);
+    color: $color-dark;
     position: absolute;
-    top: 58px;
-    width: 200px;
-    z-index: 1;
-
-    &::before {
-      //Remove the chevron
-      display: none;
-    }
-
-    li {
-      font-size: .875rem;
-      padding: $sp-x-small $sp-small 0 $sp-small;
-
-      &:last-child {
-        padding-bottom: 0;
-      }
-    }
-
-    a {
-      color: $color-dark !important; // specificity
-    }
+    top: 3rem;
   }
 
-  // tertiary navigation
-  .p-breadcrumbs__link {
+  .p-navigation-secondary {
+    background: $color-light;
+    border-bottom: 1px solid $color-mid-light;
+    display: flex;
+    margin-top: 0;
+    width: 100%;
 
-    & + .second-level-nav,
-    & + .second-level-nav & {
-      display: inline-block;
-      margin-bottom: 0;
-      padding-left: 0;
-
-      @media (max-width: $breakpoint-medium - 1) {
-        width: 100%;
-      }
+    &__banner {
+      background: $color-brand;
+      color: $color-x-light;
+      font-size: 1.25rem;
+      line-height: 1;
+      padding-left: 1.25rem;
+      min-height: 2.25rem;
+      min-width: 10.625rem;
     }
 
-    .second-level-nav & {
-      border-bottom: 0;
-      padding-bottom: 0;
-      padding-top: 0;
+    > a {
+      text-decoration: none;
     }
-  }
-
-  .nav-tertiary__menu {
-    width: 85%;
 
     .p-inline-list {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 0 0 1.25em;
+      width: auto;
 
       &__item {
+        color: $color-dark;
         font-size: .875rem;
-      }
+        margin-top: 0;
 
-      &__link {
-        padding-left: $sp-medium;
-      }
-    }
+        .p-link--active {
+          color: $color-brand;
 
-    @media (max-width: $breakpoint-medium - 1) {
-      .p-inline-list__item {
-        padding: 0 $sp-x-small 0 0;
-      }
-    }
-
-    @media (min-width: $breakpoint-medium) {
-      display: inline-block;
-      margin-left: 1.5rem;
-
-      .p-inline-list__item {
-        margin-right: .75rem;
+          &:hover {
+            color: $color-brand;
+            text-decoration: underline;
+          }
+        }
       }
     }
-
-    @media (min-width: $breakpoint-large) {
-
-      .p-inline-list__item {
-        margin-right: 1.5rem;
-      }
-    }
-  }
-
-  .nav-secondary .p-inline-list__item {
-    white-space: normal;
-  }
-
-  // new tabs
-  @mixin p-tab {
-    background-color: $color-x-light;
-    color: $color-dark;
-    display: none;
-    padding: 2rem 0;
-    border-bottom: 3px solid $color-dark;
-
-    &.is-open {
-      display: block;
-    }
-
-    h5 {
-      font-size: 1.1rem;
-    }
-
-    h4 {
-      font-size: 1.2rem;
-    }
-
-    p,
-    li {
-      font-size: 0.85rem;
-    }
-
-    &__col-resources {
-      background-color: $color-light;
-      margin: -1rem -1rem -1rem 1rem;
-      padding: 1rem;
-
-      p,
-      li {
-        font-size: .75rem;
-      }
-    }
-  }
-  .p-tab--enterprise {
-    @include p-tab;
-  }
-  .p-tab--community {
-    @include p-tab;
-  }
-  .p-tab--developer {
-    @include p-tab;
-  }
-  .p-tab--download {
-    @include p-tab;
   }
 }
