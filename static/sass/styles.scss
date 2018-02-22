@@ -331,3 +331,8 @@ p + pre {
     }
   }
 }
+
+// XXX Caleb: 26.02.18 Fix middot list wrapping issue
+.p-inline-list--middot > .p-inline-list__item {
+  white-space: nowrap;
+}
