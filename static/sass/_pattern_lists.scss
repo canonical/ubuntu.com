@@ -194,9 +194,18 @@
     & > li > p,
     & > li > ol,
     & > li > ul,
+    & > li + h3,
+    & > li + h4,
+    & > li + h5
     .table__wrapper {
       margin-left: $sp-medium;
       padding-left: $sp-medium;
+    }
+
+    & > li.p-list__item > h3,
+    & > li.p-list__item > h4,
+    & > li.p-list__item > h5 {
+      display: inline-block;
     }
 
     & > li > ol > li.p-list__item:before {
