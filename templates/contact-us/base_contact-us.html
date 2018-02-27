@@ -1,0 +1,8 @@
+{% extends "templates/base.html" %}
+
+{% block meta_description %}Get in touch with Canonical sales and support on the phone or online for all your Ubuntu questions.{% endblock %}
+
+{% block outer_content %}
+  {% block content %}{% endblock %}
+  {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_generic_download" third_item="_further_reading" %}
+{% endblock %}

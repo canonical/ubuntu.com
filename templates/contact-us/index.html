@@ -1,0 +1,76 @@
+{% extends "contact-us/base_contact-us.html" %}
+
+{% block title %}Contact Canonical{% endblock %}
+{% block content %}
+
+<section class="p-strip is-bordered is-deep">
+  <div class="row">
+    <div class="col-8">
+      <h1>Contact Canonical</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 suffix-1">
+      <h2>Sales enquiries</h2>
+      {% include "shared/_call-sales-long.html" %}
+
+      <h2>Online</h2>
+      <p>
+        <a href="/contact-us/form?product=generic-contact-us">Ask us</a> about our products, support, training or consulting and we will get in touch with you within one working day.
+      </p>
+      <p>
+        If you have suggestions or corrections for ubuntu.com or canonical.com, email us at <a href="mailto:webmaster@ubuntu.com">webmaster@ubuntu.com</a>.
+      </p>
+    </div>
+    <div class="col-6">
+      <h2>Technical assistance</h2>
+      <p>
+        If you are looking for help with Ubuntu, <a href="/support">our support team</a> can help.
+      </p>
+
+      <h2>Press enquiries</h2>
+      <p>
+        Journalists or analysts seeking press information should email <a href="mailto:pr@canonical.com">pr@canonical.com</a>. We regret we cannot respond to non-media or analyst enquiries.
+      </p>
+
+      <h2>Legal enquiries</h2>
+      <p>
+        Please note that we cannot provide you with legal advice. For any other queries, please contact us on <a href="mailto:legal@canonical.com">legal@canonical.com</a>.
+      </p>
+
+      <h2>Trademark enquiries</h2>
+      <p>
+        To request an Ubuntu trademark licence, or to make any other trademark enquiry, please <a href="/legal/terms-and-policies/contact-us">submit an enquiry</a>. A member of our trademarks team will be in touch with you shortly.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-6 suffix-1" itemscope itemtype="https://schema.org/Organization">
+      <h2>Canonical address</h2>
+      <p>
+        If you want to speak to someone right away, you can call or write to Canonical. The London-based office is a good place to start.
+      </p>
+      <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+        <ul class="p-list">
+          <li itemprop="name"><strong>Canonical Group Limited</strong></li>
+          <li itemprop="streetAddress">5th Floor, Blue Fin Building</li>
+          <li itemprop="streetAddress">110 Southwark Street</li>
+          <li itemprop="postalCode">SE1 0SU</li>
+          <li itemprop="addressLocality">London, United Kingdom</li>
+        </ul>
+      </div>
+      <ul class="p-list">
+        <li><strong>Main switchboard number:</strong><span itemprop="telephone"> <a href="tel:+44 20 7630 2400">+44 20 7630 2400</a></span></li>
+        <li><strong>Main fax number:</strong><span itemprop="faxNumber"> <a href="tel:+44 20 7630 2401">+44 20 7630 2401</a></span></li>
+      </ul>
+    </div>
+    <div class="col-6 u-vertically-center u-align--center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}60d9b81e-picto-canonical.svg" alt="" class="" width="200"/>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
