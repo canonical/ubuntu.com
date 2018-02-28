@@ -1,11 +1,10 @@
-{% extends "download/_base_download.html" %}
-{% block title %}Build OpenStack with conjure-up | Download{% endblock %}
+{% extends "openstack/base_openstack.html" %}
+{% block title %}Build OpenStack with conjure-up| OpenStack | Ubuntu{% endblock %}
 {% block meta_description %}Want to build your own production private cloud? Use conjure-up. It’s easy and free.{% endblock %}
 
 
-
 {% block content %}
-<div class="p-strip--light is-deep">
+<div class="p-strip--light is-deep is-bordered">
   <div class="row">
     <div class="col-11">
       <h1>Build your own production private cloud</h1>
@@ -31,8 +30,6 @@
     </div>
   </div>
 </div>
-
-{% include "download/shared/_get_ebook.html"%}
 
 <div class="p-strip is-deep is-bordered" id="instructions">
   <div class="row">
@@ -201,7 +198,7 @@
   </div>
 </div>
 
-<div class="p-strip">
+<div class="p-strip--light is-deep is-bordered">
   <div class="row">
     <div class="u-equal-height">
       <div class="col-4 u-align--center u-hide--small u-vertically-center">
@@ -212,8 +209,7 @@
           <div class="col-12">
             <h2>Need more help?</h2>
             <p>Let our cloud experts help you take the next step.</p>
-            <p><a href="/cloud/contact-us?product=cloud-build-openstack">Contact us&nbsp;&rsaquo;</a></p>
-            <p>Already a Landscape Dedicated Server customer? Upgrading is simple, see the instructions in the <a href="https://help.landscape.canonical.com/LDS/ReleaseNotes" class="p-link--external">release notes</a>.</p>
+            <p><a class="p-button--positive" href="/openstack/contact-us?product=openstack-install-build">Contact us</a></p>
           </div>
         </div>
       </div>
@@ -221,7 +217,9 @@
   </div>
 </div>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_download_cloud_buy_landscape" third_item="_download_documentation" %}
+{% include "download/shared/_get_ebook.html"%}
+
+{% include "shared/contextual_footers/_contextual_footer.html" with first_item="_cloud_bootstack" second_item="_download_cloud_buy_landscape" third_item="_download_documentation" %}
 
 
 {% endblock content %}
