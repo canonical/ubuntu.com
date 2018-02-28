@@ -1,13 +1,13 @@
-{% extends "download/_base_download.html" %}
-{% block title %}Try OpenStack with conjure-up | Download{% endblock %}
+{% extends "openstack/base_openstack.html" %}
+{% block title %}Try OpenStack with conjure-up | OpenStack | Ubuntu{% endblock %}
 {% block meta_description %}Want to deploy OpenStack on a single machine? Use Conjure-up. It’s easy and free.{% endblock %}
 
 {% block content %}
 
-<div class="p-strip--light is-bordered">
+<div class="p-strip--light is-deep is-bordered">
   <div class="row">
     <div class="col-12">
-      <h1>Try OpenStack on a single machine using conjure-up</h1>
+      <h1>Try OpenStack on a single machine</h1>
       <div class="p-card--highlighted">
         <div class="u-equal-height p-divider">
           <div class="col-6 p-divider__block">
@@ -27,9 +27,7 @@
   </div>
 </div>
 
-{% include "download/shared/_get_ebook.html"%}
-
-<div class="p-strip--light is-bordered">
+<div class="p-strip is-bordered">
   <div class="row">
     <div class="col-12">
       <h2>Watch the conjure-up walkthrough</h2>
@@ -111,22 +109,24 @@
 </div>
 
 <div class="p-strip is-bordered">
-    <div class="row u-equal-height">
-      <div class="col-4 u-vertically-center u-align--center u-hide--small">
-        <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="200" alt="" />
-      </div>
-      <div class="col-7 prefix-1 u-vertically-center">
-        <div class="row">
-          <div class="col-12">
-            <h2>Need more help?</h2>
-            <p>Let our cloud experts help you take the next step.</p>
-            <p><a href="/cloud/contact-us?product=cloud-openstack">Contact us&nbsp;&rsaquo;</a></p>
-          </div>
+  <div class="row u-equal-height">
+    <div class="col-4 u-vertically-center u-align--center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="200" alt="" />
+    </div>
+    <div class="col-7 prefix-1 u-vertically-center">
+      <div class="row">
+        <div class="col-12">
+          <h2>Need more help?</h2>
+          <p>Let our cloud experts help you take the next step.</p>
+          <p><a class="p-button--positive" href="/openstack/contact-us?product=openstack-install-try">Contact us</a></p>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_download_cloud_buy_landscape" third_item="_download_documentation" %}
+{% include "download/shared/_get_ebook.html"%}
+
+{% include "shared/contextual_footers/_contextual_footer.html" with first_item="_cloud_bootstack" second_item="_download_cloud_buy_landscape" third_item="_download_documentation" %}
 
 {% endblock content %}
