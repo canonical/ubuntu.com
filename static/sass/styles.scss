@@ -2,6 +2,7 @@
 
 //settings
 @import 'settings_colors';
+@import 'global-settings';
 
 // custom mixins
 @import 'mixins/full-width-breakout';
@@ -10,7 +11,9 @@
 @import 'vanilla-framework/scss/build';
 
 // vendor
-@import '../global-nav/src/sass/main';
+// @import '../global-nav/src/sass/main';
+@import 'pattern_global-nav';
+@include global-nav;
 
 // import site specific patterns and overrides
 @import 'pattern_buttons';
@@ -74,12 +77,6 @@
 // Before any feature branch is merged, these bugs should be raised in their
 // respective repos and referenced here, accompanied with a breif description of
 // the bug
-
-@media (min-width: $breakpoint-medium ) {
-  .p-navigation:target .p-navigation__toggle--close {
-    display: none !important; // specificity
-  }
-}
 
 /// XXX Compact button style
 /// This should be considered for inclusion in vanilla-framework
@@ -333,4 +330,9 @@ p + pre {
       max-width: 100%;
     }
   }
+}
+
+// XXX Caleb: 26.02.18 Fix middot list wrapping issue
+.p-inline-list--middot > .p-inline-list__item {
+  white-space: nowrap;
 }
