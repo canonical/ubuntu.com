@@ -1,76 +1,78 @@
-<div class="p-strip--navigation is-bordered is-shallow u-hide" id="download-tab-content">
-  <div class="row p-divider">
-    <div class="col-6 p-divider__block">
-      <h4><a class="p-link--soft" href='/download/desktop' alt=''>Ubuntu Desktop&nbsp;&rsaquo;</a></h4>
-      <p>Download Ubuntu desktop and replace your current operating system whether it’s Windows or Mac OS, or, run Ubuntu alongside it.</p>
-      <a class='p-button--positive' href='/download/desktop/contribute?version=16.04.3&architecture=amd64' alt=''>16.04 LTS</a>
-      <a class='p-button--neutral u-no-margin--top' href='/download/desktop/contribute?version=17.10&architecture=amd64' alt=''>17.10</a>
-      <ul class='p-inline-list--middot' style="margin-top: 1rem;">
-        <li class='p-inline-list__item'><a class='p-link' href='http://cdimage.ubuntu.com/daily-live/current/' alt=''>
-          <small>18.04 (dev edge)</small>
-        </a></li>
-        <li class='p-inline-list__item'><a class='p-link' href='/download/alternative-downloads' alt=''>
-          <small>Alternative downloads</small>
-        </a></li>
-      </ul>
-      <h4><a class="p-link--soft" href='/download/server' alt=''>Ubuntu Server&nbsp;&rsaquo;</a></h4>
-      <p>The most popular server Linux in the cloud and data centre, you can rely on Ubuntu Server and its five years of guaranteed free upgrades.</p>
-      <a class='p-button--positive' href='/download/server/thank-you?version=16.04.3&architecture=amd64' alt=''>16.04 LTS</a>
-      <a class='p-button--neutral' href='/download/server/thank-you?version=17.10.1&architecture=amd64' alt=''>17.10</a>
-      <ul class='p-inline-list--middot' style="margin-top: 1rem;">
-        <li class='p-inline-list__item'><a class='p-link' href='http://cdimage.ubuntu.com/daily-live/current/' alt=''>
-          <small>18.04 (dev edge)</small>
-        </a></li>
-        <li class='p-inline-list__item'><a class='p-link' href='/download/server/arm' alt=''>
-          <small>ARM</small>
-        </a></li>
-        <li class='p-inline-list__item'><a class='p-link' href='/download/server/power8' alt=''>
-          <small>Power8</small>
-        </a></li>
-        <li class='p-inline-list__item'><a class='p-link' href='/download/server/linuxone' alt=''>
-          <small>LinuxONE</small>
-        </a></li>
-        <li class='p-inline-list__item'><a class='p-link' href='/download/alternative-downloads' alt=''>
-          <small>Alternative downloads</small>
-        </a></li>
-      </ul>
-    </div>
-    <div class="col-6 p-divider__block">
-      <h4><a class="p-link--soft" href="/download/core" alt=''>Ubuntu for IoT&nbsp;&rsaquo;</a></h4>
-      <p>Are you a developer who wants to try snappy Ubuntu Core? The new, transactionally updated Ubuntu for clouds and devices.</p>
-      <ul class='p-inline-list--middot' style="margin-top: 1rem;">
-        <li class='p-inline-list__item'><a class='p-link' href='/download/core/raspberry-pi-2-3' alt=''>
-          <small>Raspberry Pi 2 or 3</small>
-        </a></li>
-        <li class='p-inline-list__item'><a class='p-link' href='/download/core/raspberry-pi-compute-module-3' alt=''>
-          <small>Raspberry Pi Compute Module 3</small>
-        </a></li>
-        <li class='p-inline-list__item'><a class='p-link' href='/download/core/intel-nuc' alt=''>
-          <small>Intel NUC</small>
-        </a></li>
-        <li class='p-inline-list__item'><a class='p-link' href='/download/core/kvm' alt=''>
-          <small>KVM</small>
-        </a></li>
-        <li class='p-inline-list__item'><a class='p-link' href='/download/core/intel-joule' alt=''>
-          <small>Intel Joule</small>
-        </a></li>
-        <li class='p-inline-list__item'><a class='p-link' href='/download/core/qualcomm-dragonboard-410c' alt=''>
-          <small>Qualcomm Dragonboard 410c</small>
-        </a></li>
-        <li class='p-inline-list__item'><a class='p-link' href='/download/core/samsung-artik-5-10' alt=''>
-          <small>Samsung Artik 5 or 10</small>
-        </a></li>
-      </ul>
-      <h4><a class="p-link--soft" href="/download/cloud" alt=''>Ubuntu Cloud&nbsp;&rsaquo;</a></h4>
-      <p>Try out OpenStack on a single machine or start building a production cloud on a cluster: you choose.</p>
-      <ul class='p-inline-list--middot' style="margin-top: 1rem;">
-        <li class='p-inline-list__item'><a class='p-link' href='#' alt=''>
-          <small>Try OpenStack</small>
-        </a></li>
-        <li class='p-inline-list__item'><a class='p-link' href='#' alt=''>
-          <small>Deploy OpenStack</small>
-        </a></li>
-      </ul>
+<div class="dropdown-window u-no-margin--top is-closed">
+  <div class="p-strip is-bordered is-shallow u-invisible" id="download-tab-content" style="transition: opacity .5s ease-out;">
+    <div class="row p-divider">
+      <div class="col-6 p-divider__block">
+        <h4><a class="p-link--soft" href='/download/desktop' alt=''>Ubuntu Desktop&nbsp;&rsaquo;</a></h4>
+        <p>Download Ubuntu desktop and replace your current operating system whether it’s Windows or Mac OS, or, run Ubuntu alongside it.</p>
+        <a class='p-button--positive' href='/download/desktop/contribute?version=16.04.3&architecture=amd64' alt=''>16.04 LTS</a>
+        <a class='p-button--neutral u-no-margin--top' href='/download/desktop/contribute?version=17.10&architecture=amd64' alt=''>17.10</a>
+        <ul class='p-inline-list--middot' style="margin-top: 1rem;">
+          <li class='p-inline-list__item'><a class='p-link' href='http://cdimage.ubuntu.com/daily-live/current/' alt=''>
+            <small>18.04 (dev edge)</small>
+          </a></li>
+          <li class='p-inline-list__item'><a class='p-link' href='/download/alternative-downloads' alt=''>
+            <small>Alternative downloads</small>
+          </a></li>
+        </ul>
+        <h4><a class="p-link--soft" href='/download/desktop' alt=''>Ubuntu Server&nbsp;&rsaquo;</a></h4>
+        <p>The most popular server Linux in the cloud and data centre, you can rely on Ubuntu Server and its five years of guaranteed free upgrades.</p>
+        <a class='p-button--positive' href='/download/server/thank-you?version=16.04.3&architecture=amd64' alt=''>16.04 LTS</a>
+        <a class='p-button--neutral' href='/download/server/thank-you?version=17.10.1&architecture=amd64' alt=''>17.10</a>
+        <ul class='p-inline-list--middot' style="margin-top: 1rem;">
+          <li class='p-inline-list__item'><a class='p-link' href='http://cdimage.ubuntu.com/daily-live/current/' alt=''>
+            <small>18.04 (dev edge)</small>
+          </a></li>
+          <li class='p-inline-list__item'><a class='p-link' href='/download/server/arm' alt=''>
+            <small>ARM</small>
+          </a></li>
+          <li class='p-inline-list__item'><a class='p-link' href='/download/server/power8' alt=''>
+            <small>Power8</small>
+          </a></li>
+          <li class='p-inline-list__item'><a class='p-link' href='/download/server/linuxone' alt=''>
+            <small>LinuxONE</small>
+          </a></li>
+          <li class='p-inline-list__item'><a class='p-link' href='/download/alternative-downloads' alt=''>
+            <small>Alternative downloads</small>
+          </a></li>
+        </ul>
+      </div>
+      <div class="col-6 p-divider__block">
+        <h4><a class="p-link--soft" href="/download/core" alt=''>Ubuntu for IoT&nbsp;&rsaquo;</a></h4>
+        <p>Are you a developer who wants to try snappy Ubuntu Core? The new, transactionally updated Ubuntu for clouds and devices.</p>
+        <ul class='p-inline-list--middot' style="margin-top: 1rem;">
+          <li class='p-inline-list__item'><a class='p-link' href='/download/core/raspberry-pi-2-3' alt=''>
+            <small>Raspberry Pi 2 or 3</small>
+          </a></li>
+          <li class='p-inline-list__item'><a class='p-link' href='/download/core/raspberry-pi-compute-module-3' alt=''>
+            <small>Raspberry Pi Compute Module 3</small>
+          </a></li>
+          <li class='p-inline-list__item'><a class='p-link' href='/download/core/intel-nuc' alt=''>
+            <small>Intel NUC</small>
+          </a></li>
+          <li class='p-inline-list__item'><a class='p-link' href='/download/core/kvm' alt=''>
+            <small>KVM</small>
+          </a></li>
+          <li class='p-inline-list__item'><a class='p-link' href='/download/core/intel-joule' alt=''>
+            <small>Intel Joule</small>
+          </a></li>
+          <li class='p-inline-list__item'><a class='p-link' href='/download/core/qualcomm-dragonboard-410c' alt=''>
+            <small>Qualcomm Dragonboard 410c</small>
+          </a></li>
+          <li class='p-inline-list__item'><a class='p-link' href='/download/core/samsung-artik-5-10' alt=''>
+            <small>Samsung Artik 5 or 10</small>
+          </a></li>
+        </ul>
+        <h4><a class="p-link--soft" href="/download/core" alt=''>Ubuntu Cloud&nbsp;&rsaquo;</a></h4>
+        <p>Try out OpenStack on a single machine or start building a production cloud on a cluster: you choose.</p>
+        <ul class='p-inline-list--middot' style="margin-top: 1rem;">
+          <li class='p-inline-list__item'><a class='p-link' href='#' alt=''>
+            <small>Try OpenStack</small>
+          </a></li>
+          <li class='p-inline-list__item'><a class='p-link' href='#' alt=''>
+            <small>Deploy OpenStack</small>
+          </a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

@@ -12,6 +12,7 @@
 
     &__search {
       align-items: center;
+      background: $color-x-light;
       border-bottom: 1px solid $color-mid-light;
       display: inline-flex;
       flex-grow: 1;
@@ -36,6 +37,10 @@
     }
 
     .p-navigation {
+      &__banner {
+        z-index: 2;
+      }
+      
       &__logo {
         background: $color-brand;
         margin: 0;
@@ -109,9 +114,45 @@
     @extend .p-strip;
     background-color: $color-x-light;
     box-shadow: 0 1px 5px 1px transparentize($color-dark, .8);
+    opacity: 1;
     position: absolute;
     top: 3rem;
+    transition: all .333s cubic-bezier(.215, .61, .355, 1);
+    visibility: visible;
     z-index: 1;
+  }
+
+  .dropdown-window {
+    background-color: $color-x-light;
+    box-shadow: 0 1px 5px 1px transparentize($color-dark, .8);
+    overflow-y: hidden;
+    position: absolute;
+    transition: max-height 1s cubic-bezier(0.4, 0.0, 0.2, 1);
+    top: 3rem;
+    width: 100%;
+    z-index: 1;
+
+    &.is-closed {
+      box-shadow: none;
+      max-height: 0;
+      transition-duration: 750ms;
+      transition-timing-function: cubic-bezier(0, 0, .2, 1);
+    }
+  }
+
+  .u-invisible {
+    opacity: 0;
+  }
+
+  .u-hide--animate1 {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .u-hide--animate2 {
+    opacity: 0;
+    transform: translateY(-2rem);
+    visibility: hidden;
   }
 
   .p-navigation-secondary {
