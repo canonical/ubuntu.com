@@ -5,6 +5,8 @@ cloud:
   children:
     - title: Overview
       path: /cloud
+    - title: Managed cloud
+      path: /cloud/managed-cloud
     - title: Public cloud
       path: /public-cloud
     - title: Juju
@@ -39,30 +41,14 @@ openstack:
   children:
     - title: Overview
       path: /openstack
-    - title: Managed cloud
-      path: /cloud/managed-cloud
-    - title: Juju
-      path: /cloud/juju
-    - title: Storage
-      path: /cloud/storage
-    - title: Partners
-      path: /cloud/partners
-    - title: Foundation Cloud Build
-      path: /cloud/foundation-cloud
-    - title: Training
-      path: /cloud/training
-
-    - title: Thank you
-      path: /cloud/newsletter-thank-you
-      hidden: True
-    - title: Contact us
-      path: /cloud/contact-us
-      hidden: True
+    - title: Install
+      path: /openstack/install
 
       children:
-        - title: Thank you
-          path: /cloud/thank-you
-          hidden: True
+        - title: Build OpenStack
+          path: /openstack/install/try-openstack
+        - title: Try OpenStack
+          path: /openstack/install/build-openstack
 
 server:
   title: Server
