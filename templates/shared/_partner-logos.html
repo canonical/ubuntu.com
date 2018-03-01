@@ -11,7 +11,7 @@
   <ul id="cloud-partners" class="p-inline-images">
     {% for partner in partners %}
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="{{ partner.logo }}" alt="{{ partner.name }}" />
+        {% if partner.partner_website %}<a href="{{ partner.partner_website }}">{% endif %}<img class="p-inline-images__logo" src="{{ partner.logo }}" alt="{{ partner.name }}" />{% if partner.partner_website %}</a>{% endif %}
       </li>
     {% endfor %}
   </ul>
