@@ -32,7 +32,11 @@
     width: auto;
 
     &[src*="svg"] {
-      width: 100%;
+      max-width: 7rem;
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        max-width: 9rem;
+      }
     }
 
     @media only screen and (min-width: $breakpoint-medium) {
