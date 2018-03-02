@@ -1,809 +1,213 @@
-{% extends "legal/_base_legal.html" %}
-
-{% block title %}Ubuntu Advantage service description{% endblock %}
-
-{% block content %}
+{% extends "legal/_base_legal.html" %} {% block title %}Ubuntu Advantage service description{% endblock %} {% block content %}
 <div class="p-strip is-deep">
   <div class="row" id="service-description">
     <div class="col-8">
+
       <h1>Ubuntu Advantage service&nbsp;description</h1>
-      <p>Valid since 6 November 2017</p>
-      <h2 id="service-description-overview">1. Overview</h2>
-      <ol class="p-list">
-        <li class="p-list__item"><span class="number">1.1</span> This document defines the following service offerings. Canonical will provide only those services, as defined in this document, which are covered by the customer&#39;s contract.</li>
-        <li class="p-list__item"><span class="number">1.2</span> Primary service offerings:
-          <ul>
-            <li class="p-list__item">Ubuntu Advantage OpenStack</li>
-            <li class="p-list__item">Ubuntu Advantage OpenStack Cloud Region</li>
-            <li class="p-list__item">Ubuntu Advantage Server (Essential/Standard/Advanced)</li>
-            <li class="p-list__item">Ubuntu Advantage Virtual Guest (Essential/Standard/Advanced)</li>
-            <li class="p-list__item">Ubuntu Advantage Ceph Storage</li>
-            <li class="p-list__item">Ubuntu Advantage Swift Storage</li>
-            <li class="p-list__item">Ubuntu Advantage MAAS (Standard/Advanced)</li>
-            <li class="p-list__item">Ubuntu Advantage Switch (Standard/Advanced)</li>
-            <li class="p-list__item">Ubuntu Advantage Desktop (Standard/Advanced)</li>
-            <li class="p-list__item">Ubuntu Advantage for Docker</li>
-            <li class="p-list__item">Ubuntu Advantage Kubernetes (Standard/Advanced)</li>
-            <li class="p-list__item">Extended Security Maintenance</li>
-            <li class="p-list__item">Canonical Livepatch Service</li>
-            <li class="p-list__item">FIPS for Ubuntu</li>
-          </ul>
-        </li>
-        <li class="p-list__item"><span class="number">1.3</span> Add on service offerings:
-          <ul>
-            <li class="p-list__item">Landscape Seats</li>
-            <li class="p-list__item">Technical Account Manager</li>
-            <li class="p-list__item">Dedicated Technical Account Manager</li>
-            <li class="p-list__item">Landscape on-premises</li>
-          </ul>
-        </li>
-      </ol>
-      <h2 id="ua-support-scope">2. Support scope</h2>
-      <p>Each service offering includes access to Canonical's knowledge base and the support described below within the scope and subject to the exceptions detailed in the <a href="#appendix-1">support scope documentation</a>.</p>
-      <ol class="p-list">
-        <li id="support-scope-releases"><span class="number">2.1</span> Releases
-          <ul>
-            <li class="p-list__item">Canonical will provide support for installation, configuration, maintenance, and management of any standard release of Ubuntu when installed using official sources and within its product life cycle. The life cycle for each version of Ubuntu are specified here: <a href="/info/release-end-of-life">www.ubuntu.com/info/release-end-of-life</a>.</li>
-          </ul>
-        </li>
-        <li id="support-scope-hardware"><span class="number">2.2</span> Hardware
-          <ul>
-            <li class="p-list__item">Ubuntu Certified hardware has passed our extensive testing and review process. More information about the Ubuntu certification process and a list of certified hardware can be found on the Ubuntu Certification page: <a href="https://certification.ubuntu.com">www.ubuntu.com/certification</a>. The services apply only with respect to the customer&#39;s hardware which has been certified. In the event the customer requests the services with respect to hardware which is not certified, Canonical will use reasonable efforts to provide support services, but may not adhere to the obligations described in this service description.</li>
-          </ul>
-        </li>
-        <li id="support-scope-packages"><span class="number">2.3</span> Packages
-          <ol class="p-list" style="margin-left: 2rem;">
-            <li class="p-list__item"><span class="number">2.3.1</span> The services apply only to packages found in the Ubuntu Main Repository and Canonical-owned packages in the Universe Repository except (i) the "proposed" and "backports" repository pockets, and (ii) the exclusions noted in the applicable support scope documentation.<br /> The supported packages from the Universe Repository include, but may not be limited to, Juju packages, MAAS packages, the nova-conductor package, and their dependencies to the extent used in connection with those packages.</li>
-            <li class="p-list__item"><span class="number">2.3.2</span> Canonical will not provide support for any packages that have been modified from the version in the Ubuntu archives.</li>
-          </ol>
-        </li>
-        <li id="support-scope-kernels"><span class="number">2.4</span> Kernels
-          <ol class="p-list" style="margin-left: 2rem;">
-            <li class="p-list__item"><span class="number">2.4.1</span> The kernel provided initially in the release of a long-term support (LTS) version of Ubuntu is supported for the entire lifecycle of the LTS.</li>
-            <li class="p-list__item"><span class="number">2.4.2</span> Hardware enablement (HWE) kernels provide support for newer hardware in an LTS release and are released in conjunction with the non-LTS Ubuntu releases. HWE kernels are supported until the next LTS point release.</li>
-            <li class="p-list__item"><span class="number">2.4.3</span> More information about kernel support can be found at <a href="/info/release-end-of-life">www.ubuntu.com/info/release-end-of-life</a></li>
-            <li class="p-list__item" id="2-4-4"><span class="number">2.4.4</span> Access to Canonical Livepatch Service is included with all support offerings, unless otherwise noted.</li>
-          </ol>
-        </li>
-        <li id="support-scope-landscape"><span class="number">2.5</span> Landscape
-          <ol class="p-list" style="margin-left: 2rem;">
-            <li class="p-list__item"><span class="number">2.5.1</span> All Landscape products, including Landscape on-premises (when purchased) are fully supported.</li>
-            <li class="p-list__item"><span class="number">2.5.2</span> Access to the Landscape SaaS systems management tool is included with all support offerings, unless otherwise noted.</li>
-          </ol>
-        </li>
-      </ol>
-    </div>
+      <p>
+        Valid since 2 March 2018
+      </p>
 
-    <nav class="col-4 u-hide--small p-card">
-      <h3>Contents</h3>
-      <ol class="p-nested-counter-list">
-        <li class="p-nested-counter-list__item"><a href="#service-description-overview">Overview&nbsp;&rsaquo;</a></li>
-        <li class="p-nested-counter-list__item">
-          <a href="#ua-support-scope">Support scope&nbsp;&rsaquo;</a>
-          <ol class="p-nested-counter-list">
-            <li class="p-nested-counter-list__item"><a href="#support-scope-releases">Releases&nbsp;&rsaquo;</a></li>
-            <li class="p-nested-counter-list__item"><a href="#support-scope-hardware">Hardware&nbsp;&rsaquo;</a></li>
-            <li class="p-nested-counter-list__item"><a href="#support-scope-packages">Packages&nbsp;&rsaquo;</a></li>
-            <li class="p-nested-counter-list__item"><a href="#support-scope-kernels">Kernels&nbsp;&rsaquo;</a></li>
-            <li class="p-nested-counter-list__item"><a href="#support-scope-landscape">Landscape&nbsp;&rsaquo;</a></li>
-          </ol>
-        </li>
-        <li class="p-nested-counter-list__item"><a href="#response-times">Response times&nbsp;&rsaquo;</a></li>
-        <li class="p-nested-counter-list__item"><a href="#support-process">Support process&nbsp;&rsaquo;</a></li>
-        <li class="p-nested-counter-list__item"><a href="#assurance">Assurance&nbsp;&rsaquo;</a></li>
-      </ol>
+      <ol class="p-list--ordered-legal">
 
-      <h3 class="p-heading--four"><a href="#appendix-1">Appendix 1 - Support scope&nbsp;&rsaquo;</a></h3>
-      <ol class="p-list">
-        <li class="p-list__item"><a href="#ua-openstack">Ubuntu Advantage OpenStack&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#ua-advantage-openstack-cloud-region">Ubuntu Advantage OpenStack Cloud Region&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#ua-server">Ubuntu Advantage Server&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#ua-virtual-guest">Ubuntu Advantage Virtual Guest&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#ua-ceph-storage">Ubuntu Advantage Ceph Storage&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#ua-swift-storage">Ubuntu Advantage Swift Storage&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#ua-maas">Ubuntu Advantage MAAS&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#ua-switch">Ubuntu Advantage Switch&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#ua-desktop">Ubuntu Advantage Desktop&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#ua-docker">Ubuntu Advantage for Docker&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#ua-kubernetes">Ubuntu Advantage Kubernetes&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#ua-fips">FIPS for Ubuntu&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#ua-esm">Extended Security Maintenance&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#ua-livepatch">Canonical Livepatch Service&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#ua-landscape-seats">Landscape Seats&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#tam">Technical Account Manager&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#dedicated-services-engineer">Dedicated Technical Account Manager&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#landscape-on-premises">Landscape on-premises&nbsp;&rsaquo;</a></li>
-      </ol>
-
-      <h3 class="p-heading--four"><a href="#appendix-2">Appendix 2 - Support process&nbsp;&rsaquo;</a></h3>
-      <ol class="p-list">
-        <li class="p-list__item"><a href="#ua-support-service-initiation">Service initiation&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#ua-support-submitting-support-requests">Submitting support requests&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#ua-support-severity-levels">Support severity levels&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#ua-support-hotfixes">Hotfixes&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#ua-support-languages">Support languages&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#ua-support-remote-sessions">Remote sessions&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#ua-support-regions">Support regions&nbsp;&rsaquo;</a></li>
-      </ol>
-      <h3 class="p-heading--four"><a href="#appendix-3">Appendix 3 - Management escalation&nbsp;&rsaquo;</a></h3>
-    </nav>
-    <nav class="col-4 p-card">
-      <h3>Japanese translation</h3>
-      <ul class="p-list">
-        <li class="p-list__item"><a href="/legal/ubuntu-advantage/service-description-ja">UA 略式サービス契約&nbsp;›</a></li>
-      </ul>
-    </nav>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <h2 id="response-times">3. Response times</h2>
-      <ol class="p-list">
-        <li class="p-list__item"><span class="number">3.1</span> Canonical will use reasonable efforts to respond to support requests made by the customer within the response times set forth below based on the applicable service and severity level.</li>
-        <li class="p-list__item"><span class="number">3.2</span> &ldquo;Business hours&rdquo; are defined as 08:00 - 18:00 Monday - Friday local to the customer’s headquarters unless another location is agreed. All times exclude public holidays.</li>
-      </ol>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <div class="table__wrapper">
-        <table>
-          <caption>Table of response times</caption>
-          <thead>
-            <tr>
-              <td>&nbsp;</td>
-              <th>Standard</th>
-              <th>Advanced</th>
-            </tr>
-            <tr>
-              <th>Severity Level 1</th>
-              <td>2 business hours</td>
-              <td>1 hour</td>
-            </tr>
-            <tr>
-              <th>Severity Level 2</th>
-              <td>4 business hours</td>
-              <td>4 business hours</td>
-            </tr>
-            <tr>
-              <th>Severity Level 3</th>
-              <td>10 business hours</td>
-              <td>6 business hours</td>
-            </tr>
-            <tr>
-              <th>Severity Level 4</th>
-              <td>20 business hours</td>
-              <td>10 business hours</td>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <h2 id="support-process">4. Support process</h2>
-      <p>Canonical will use reasonable efforts to resolve support cases, but Canonical does not guarantee a work-around, resolution or resolution time.</p>
-      <ol class="p-list">
-        <li class="p-list__item"><span class="number">4.1</span> Canonical will provide the services <a href="#appendix-2">following the support process</a>.</li>
-        <li class="p-list__item"><span class="number">4.2</span> The customer may escalate support issues <a href="#appendix-3">following the escalation process</a>.</li>
-      </ol>
-      <h2 id="assurance">5. Assurance</h2>
-      <ol class="p-list">
-        <li class="p-list__item"><span class="number">5.1</span> The customer is entitled to participate in the Ubuntu Assurance Programme, subject to its terms and conditions. Canonical may update the Assurance Programme and its terms periodically. The current Ubuntu Assurance Programme and its IP indemnification terms are available at our Ubuntu Assurance page: <a href="/legal/ubuntu-advantage/assurance">www.ubuntu.com/legal/ubuntu-advantage/assurance</a>.</li>
-      </ol>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8" id="appendix-1">
-      <h2 id="ua-appendix-1_support-scope">Appendix 1 - Support scope</h2>
-      <h3 id="ua-openstack">Ubuntu Advantage OpenStack</h3>
-      <p>Definitions:</p>
-      <ul>
-        <li class="p-list__item">"OpenStack" means the cloud computing software known as "OpenStack" as distributed by Canonical with Ubuntu.</li>
-        <li class="p-list__item">"OpenStack Packages" means packages relative to OpenStack present in the Ubuntu Main repository of the Ubuntu Archive, including updates to those packages delivered in the Ubuntu Cloud Archive. This includes Charms listed at <a href="https://wiki.ubuntu.com/OpenStack/OpenStackCharms">https://wiki.ubuntu.com/OpenStack/OpenStackCharms</a></li>
-        <li class="p-list__item">"Region" means a discrete OpenStack environment with dedicated API endpoints that typically shares only the Identity (Keystone) service with other Regions. An OpenStack Region must be contained within a single datacenter.</li>
-        <li class="p-list__item">"Public Cloud" means a cloud environment in which third parties are able to create and manage guest instances.</li>
-        <li class="p-list__item">"Cloud Guest" means an instance of Ubuntu Server not running in a Public Cloud.</li>
-        <li class="p-list__item">"Full Stack Support" means addressing problems pertaining to user and operations-level OpenStack functionality, performance and availability.</li>
-        <li class="p-list__item">"Bug-fix Support" means support for valid code bugs in OpenStack Packages only. This does not include troubleshooting of issues to determine if a bug is present.</li>
-        <li class="p-list__item">"Valid Customizations" means configurations made through Horizon or the OpenStack API of the OpenStack Packages. For the avoidance of doubt, valid customizations do not include architectural changes that are not expressly executed or authorized by Canonical. Configuration options set during a Foundation OpenStack Build should be considered critical to the health of the Cloud. Any changes to these may render the cloud unsupported. Request for changes should be validated by Canonical to ensure continued support.</li>
-      </ul>
-      <p>Supported versions of OpenStack:</p>
-      <ul>
-        <li class="p-list__item">The version of OpenStack provided initially in the release of a Long Term Support (LTS) version of Ubuntu is supported for the entire lifecycle of that Ubuntu version.</li>
-        <li class="p-list__item">Releases of OpenStack released after an LTS version of Ubuntu are available in the Ubuntu Cloud Archive. Each OpenStack release in the Ubuntu Cloud Archive is supported on an Ubuntu LTS version for a minimum of 18 months from the release date of the Ubuntu version that included the applicable OpenStack version.</li>
-        <li class="p-list__item">The OpenStack release support schedule is available here <a href="http://www.ubuntu.com/info/release-end-of-life">http://www.ubuntu.com/info/release-end-of-life</a>.</li>
-      </ul>
-      <p>Support of OpenStack</p>
-      <ul>
-        <li class="p-list__item">OpenStack support is provided at the Advanced response times.</li>
-        <li class="p-list__item">OpenStack support requires each Region to consist of 12 or more supported nodes. All nodes that participate in the OpenStack environment must be covered under an active support agreement.</li>
-        <li class="p-list__item">In addition to the hardware requirements laid out in <a href="#support-scope-hardware">Section 2.2</a>, hardware must meet the <a href="https://assets.ubuntu.com/v1/22beff77-Foundation+Cloud+Build+Hardware+Requirements.pdf">minimum criteria for Ubuntu OpenStack.</a></li>
-        <li class="p-list__item">Full Stack Support of an OpenStack Cloud is only available when deployed via a Foundation OpenStack Build engagement.</li>
         <li class="p-list__item">
-          <ul>
-            <li class="p-list__item">Canonical will provide support for the charms deployed via a Foundation OpenStack Build.</li>
-            <li class="p-list__item">For any deployments done under contract with Canonical, which results in customization of any Charms, customization will be valid for 90 days after the official release of the Charm which includes the customizations.</li>
-            <li class="p-list__item">Support is included for all packages required to run OpenStack as deployed via the Foundation OpenStack Build engagement.</li>
-            <li class="p-list__item">Upgrades of OpenStack components as part of the regular Ubuntu LTS maintenance cycle are supported.</li>
-            <li class="p-list__item">Upgrades between versions of OpenStack (for instance, from OpenStack Mitaka to Newton) or versions of Ubuntu (for instance, from Ubuntu 14.04 LTS to Ubuntu 16.04 LTS), Juju and MAAS are supported as long as the upgrade is performed following a documented process as specified by Canonical as part of the Foundation OpenStack Build.</li>
-            <li class="p-list__item">Addition of new cloud nodes and replacement of existing nodes with new nodes of equivalent capacity are both supported.</li>
-            <li class="p-list__item">Full Stack Support excludes customizations which are not considered Valid Customizations.</li>
-            <li class="p-list__item">Ubuntu Advantage Virtual Guest Advanced services for Cloud Guests.</li>
-          </ul>
+
+          <h2 id="service-description-overview">Overview</h2>
+          <ol class="p-list--ordered-legal">
+            <li class="p-list__item">This document defines the following service offerings. Canonical will provide only those services, as defined in this document, which are covered by the customer&#39;s contract.</li>
+            <li class="p-list__item">
+              <h3>Primary service offerings:</h3>
+              <ul>
+                <li class="p-list__item">Ubuntu Advantage OpenStack</li>
+                <li class="p-list__item">Ubuntu Advantage OpenStack Cloud Region</li>
+                <li class="p-list__item">Ubuntu Advantage Server (Essential/Standard/Advanced)</li>
+                <li class="p-list__item">Ubuntu Advantage Virtual Guest (Essential/Standard/Advanced)</li>
+                <li class="p-list__item">Ubuntu Advantage Ceph Storage</li>
+                <li class="p-list__item">Ubuntu Advantage Swift Storage</li>
+                <li class="p-list__item">Ubuntu Advantage MAAS (Standard/Advanced)</li>
+                <li class="p-list__item">Ubuntu Advantage Switch (Standard/Advanced)</li>
+                <li class="p-list__item">Ubuntu Advantage Desktop (Standard/Advanced)</li>
+                <li class="p-list__item">Ubuntu Advantage for Docker</li>
+                <li class="p-list__item">Ubuntu Advantage Kubernetes (Standard/Advanced)</li>
+                <li class="p-list__item">Extended Security Maintenance</li>
+                <li class="p-list__item">Canonical Livepatch Service</li>
+                <li class="p-list__item">FIPS for Ubuntu</li>
+              </ul>
+            </li>
+            <li class="p-list__item">Add on service offerings:
+              <ul>
+                <li class="p-list__item">Landscape Seats</li>
+                <li class="p-list__item">Technical Account Manager</li>
+                <li class="p-list__item">Dedicated Technical Account Manager</li>
+                <li class="p-list__item">Dedicated Support Engineer</li>
+                <li class="p-list__item">Landscape on-premises</li>
+              </ul>
+            </li>
+          </ol>
         </li>
-        <li class="p-list__item">OpenStack clouds not deployed through a Foundation OpenStack Build are limited to Bug-fix Support.</li>
-      </ul>
-      <p>OpenStack support does not include support beyond Bug-fix Support during the deployment or configuration of an OpenStack cloud.</p>
-      <p>Charms</p>
-      <ul>
-        <li class="p-list__item">Each charm version is supported for one year from the release date.</li>
-        <li class="p-list__item">Canonical will not provide support for any charms that have been modified from the supported version found in in the page at <a href="https://wiki.ubuntu.com/OpenStack/OpenStackCharms">https://wiki.ubuntu.com/OpenStack/OpenStackCharms</a>.</li>
-      </ul>
-      <p>Support for Ceph or Swift deployments of up to a total of 3 TB of usable storage per deployed node. This allowance can be used for Ubuntu Advantage Ceph, Ubuntu Advantage Swift or a combination of these.</p>
-      <p>Licence to use available Canonical provided Microsoft-certified drivers in Windows Guest instances.</p>
-      <p>Service excludes:</p>
-      <ul>
-        <li class="p-list__item">Support for workloads other than those required to run an OpenStack deployment.</li>
-        <li class="p-list__item">Support for guest instances other than Cloud Guests.</li>
-      </ul>
-      <h3 id="ua-advantage-openstack-cloud-region">Ubuntu Advantage OpenStack Cloud Region</h3>
-      <p>Ubuntu Advantage OpenStack Cloud Region is the same as Ubuntu Advantage OpenStack, except as follows:</p>
-      <ul>
-        <li class="p-list__item">Support is limited to a single region and a maximum number of nodes based upon the size of the Ubuntu Advantage OpenStack Cloud Region purchased.</li>
-        <li class="p-list__item">Landscape on-premises is included</li>
-      </ul>
-      <p>Service excludes:</p>
-      <ul>
-        <li class="p-list__item">Support for OpenStack projects or additional technologies not deployed via a Foundation OpenStack Build.</li>
-      </ul>
-      <h3 id="ua-server">Ubuntu Advantage Server</h3>
-      <p>The scope of each particular offering (Essential, Standard, or Advanced) is defined below. The following items are not covered under any Ubuntu Advantage Server offerings.</p>
-      <ul>
-        <li class="p-list__item">Ceph</li>
-        <li class="p-list__item">Swift</li>
-        <li class="p-list__item">OpenStack</li>
-      </ul>
-      <h4>Summary of service offerings</h4>
-      <div class="table__wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Features</th>
-              <th scope="col">Essential&emsp;</th>
-              <th scope="col">Standard&emsp;</th>
-              <th scope="col">Advanced</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>24x7 self-service customer care portal and knowledge base (see <a href="#ua-support-scope">Section 2</a>)</td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg"  /></td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            </tr>
-            <tr>
-              <td>Landscape Management (see <a href="#support-scope-landscape">Section 2.5</a>)</td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            </tr>
-            <tr>
-              <td>Kernel livepatching (per Section <a href="#2-4-4">2.4.4</a> of this Service Description)</td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            </tr>
-            <tr>
-              <td>Extended Security Maintenance (<a href="#service-offering-definitions">as defined in this section</a>)</td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            </tr>
-            <tr>
-              <td>Ubuntu Legal Assurance programme (see <a href="#assurance">Section 5</a>)</td>
-              <td class="u-align--center">&nbsp;</td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            </tr>
-            <tr>
-              <td>10x5 phone and ticket support for all packages in Ubuntu main (see <a href="#response-times">Section 3</a>), except as defined in <a href="#lxd-guest-support">this section</a></td>
-              <td></td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            </tr>
-            <tr>
-              <td>Unlimited <a href="#lxd-guest-support">Ubuntu LXD guest support</a></td>
-              <td></td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            </tr>
-            <tr>
-              <td>24x7 phone and ticket support for all packages in Ubuntu main (see <a href="#response-times">Section 3</a>) and Canonical-maintained packages in backports and universe, except as defined in <a href="#kvm-guest-support">this section</a></td>
-              <td></td>
-              <td></td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            </tr>
-            <tr>
-              <td>Unlimited <a href="#kvm-guest-support">Ubuntu KVM guest support</a></td>
-              <td></td>
-              <td></td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            </tr>
-            <tr>
-              <td><a href="#kvm-guest-support">FIPS</a>-certified cryptographic modules</a></td>
-              <td></td>
-              <td></td>
-              <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <h4 id="service-offering-definitions">Essential</h4>
-      <p>Service additionally includes:</p>
-      <ul>
-        <li class="p-list__item">Extended Security Maintenance for Ubuntu.</li>
-      </ul>
-      <p>Service excludes:</p>
-      <ul>
-        <li class="p-list__item">Support beyond that of Canonical&rsquo;s Knowledge Base.</li>
-        <li class="p-list__item">Ubuntu Assurance programme.</li>
-      </ul>
-      <h4 id="lxd-guest-support">Standard</h4>
-      <p>Service additionally includes:</p>
-      <ul>
-        <li class="p-list__item">Ubuntu Advantage Virtual Guest Standard support for an unlimited number of Ubuntu LXD guests.</li>
-        <li class="p-list__item">Extended Security Maintenance for Ubuntu</li>
-      </ul>
-      <p>Service excludes:</p>
-      <ul>
-        <li class="p-list__item">Support for KVM-related packages and KVM guests.</li>
-        <li class="p-list__item">Access to the Landscape systems management tool for Ubuntu LXD guests, except where covered by Landscape Seats or Landscape on-premises.</li>
-      </ul>
-      <h4 id="kvm-guest-support">Advanced</h4>
-      <p>Service additionally includes:</p>
-      <ul>
-        <li class="p-list__item">Ubuntu Advantage Virtual Guest Advanced support for an unlimited number of Ubuntu LXD and Ubuntu KVM guests.</li>
-        <li class="p-list__item">FIPS for Ubuntu.</li>
-        <li class="p-list__item">Extended Security Maintenance for Ubuntu</li>
-      </ul>
-      <p>Service excludes:</p>
-      <ul>
-        <li class="p-list__item">Access to the Landscape systems management tool for Ubuntu LXD or Ubuntu KVM guests, except where covered by Landscape Seats or Landscape on-premises.</li>
-      </ul>
-      <h3 id="ua-virtual-guest">Ubuntu Advantage Virtual Guest</h3>
-      <p>Services are provided for Ubuntu Server when installed and running as a guest in a virtualized environment (1) in an Ubuntu Certified Public Cloud partner&rsquo;s environment or (2) on a physical host, provided the guest is running on one of the following hypervisors (Only underlying technology is listed. These can be provided via a cloud like OpenStack. If hypervisor vendor provides a specific list of supported Ubuntu versions only those will be eligible for the Ubuntu Advantage Virtual Guest service.):</p>
-      <ul>
-        <li>KVM | Qemu | Bochs</li>
-        <li>VMWare</li>
-        <li>LXD | LXC</li>
-        <li>Xen</li>
-        <li>Hyper-V</li>
-        <li>VirtualBox</li>
-        <li>z/VM</li>
-        <li>Docker</li>
-      </ul>
-      <p>Certified Public Cloud partners can be found in the Ubuntu partner listing: <a href="https://partners.ubuntu.com/find-a-partner">partners.ubuntu.com/find-a-partner</a></p>
-      <p>Service additionally includes:</p>
-      <ul>
-        <li class="p-list__item">Extended Security Maintenance for Ubuntu</li>
-      </ul>
-      <p>Service excludes:</p>
-      <ul>
-        <li class="p-list__item">Hypervisor support</li>
-        <li class="p-list__item">Providing native images for a chosen hypervisor</li>
-        <li class="p-list__item">Running virtual guests within virtual guests (usually called nested)</li>
-        <li class="p-list__item">Additional exclusions match those of the applicable Ubuntu Advantage Server service offering.</li>
-      </ul>
-      <h3 id="ua-ceph-storage">Ubuntu Advantage Ceph Storage</h3>
-      <p>Definitions:</p>
-      <ul>
-        <li class="p-list__item">"Cluster" means a single Ceph installation in a single physical data center.</li>
-      </ul>
-      <p>Support is measured by the total amount of data stored in Ceph across all storage pools, measured in gigabytes. This excludes free space and all replication and erasure coding overhead.</p>
-      <p>Customers who have purchased Ubuntu Advantage Ceph Storage for an unlimited amount of storage are limited to support in a single Cluster.</p>
-      <p>Ceph support is provided at the Advanced response times.</p>
-      <p>Service additionally includes:</p>
-      <ul>
-        <li class="p-list__item">Support for all packages required to run a Ceph deployment.</li>
-        <li class="p-list__item">Support for all servers necessary to meet the storage and replication requirements. This includes auxiliary (non-storage) nodes such as Ceph monitors.</li>
-      </ul>
-      <p>Service excludes:</p>
-      <ul>
-        <li class="p-list__item">Support for workloads other than those required to run a Ceph deployment.</li>
-      </ul>
-      <h3 id="ua-swift-storage">Ubuntu Advantage Swift Storage</h3>
-      <p>Definitions:</p>
-      <ul>
-        <li class="p-list__item">"Cluster" means a single Swift installation in a single physical data center.</li>
-      </ul>
-      <p>Support is measured by the total amount of data stored in Swift across all storage pools, measured in gigabytes. This excludes free space and all replication and erasure coding overhead.</p>
-      <p>Customers who have purchased Ubuntu Advantage Swift Storage for an unlimited amount of storage are limited to support in a single Cluster.</p>
-      <p>Swift support is provided at the Advanced response times.</p>
-      <p>Service additionally includes:</p>
-      <ul>
-        <li class="p-list__item">Support for all packages required to run a Swift deployment.</li>
-        <li class="p-list__item">Support for all servers necessary to meet the storage and replication requirements. This includes auxiliary (non-storage) nodes such as Swift monitors.</li>
-      </ul>
-      <p>Service excludes:</p>
-      <ul>
-        <li class="p-list__item">Support for workloads other than those required to run a Swift deployment.</li>
-      </ul>
-      <h3 id="ua-maas">Ubuntu Advantage MAAS</h3>
-      <p>Service includes:</p>
-      <ul>
-        <li class="p-list__item">Support for all servers required to host the MAAS environment following a documented MAAS deployment architecture.</li>
-        <li class="p-list__item">Support for all packages required to run MAAS.</li>
-        <li class="p-list__item">Support for the ability to boot machines using operating system images provided by Canonical.</li>
-        <li class="p-list__item">Support for the tooling required to convert certified operating system images not provided by Canonical into MAAS images.</li>
-        <li class="p-list__item">Licence to use MAAS Custom Imaging tools.</li>
-      </ul>
-      <p>Service excludes:</p>
-      <ul>
-        <li class="p-list__item">Support for workloads, packages and service components other than those required to run a MAAS deployment.</li>
-        <li class="p-list__item">Support for the nodes deployed using MAAS.</li>
-        <li class="p-list__item">Support for design and implementation details of a MAAS deployment.</li>
-        <li class="p-list__item">Access to Canonical Livepatch Service for machines deployed with MAAS.</li>
-      </ul>
-      <p>Supported versions of MAAS:</p>
-      <ul>
-        <li class="p-list__item">Versions of MAAS are supported on an LTS version of Ubuntu for a period of one year from the date it is released in the Ubuntu archives.</li>
-      </ul>
-      <h4>Standard</h4>
-      <p>Service excludes:<p>
-      <ul>
-        <li>Support for MAAS deployed in a High-Availability configuration.</li>
-      </ul>
-      <h4>Advanced</h4>
-      <p>Service additionally includes:</p>
-      <ul>
-        <li>Support for the tooling required to properly implement a standard Highly-Available MAAS configuration.</li>
-        <li>Support for MAAS deployed in a Highly-Available configuration.</li>
-      </ul>
-      <h3 id="ua-switch">Ubuntu Advantage Switch</h3>
-      <p>Definitions:</p>
-      <ul>
-        <li class="p-list__item">"Whitebox Switch" means an x86 Broadcom ASIC-based switch made by an ODM manufacturer for vendors to label and sell.</li>
-        <li class="p-list__item">"BCOS" - An Ubuntu optimized version of a full featured Layer 2 and Layer 3 networking software from a Whitebox Switch.</li>
-      </ul>
-      <p>Services include:</p>
-      <ul>
-        <li class="p-list__item">Support for the specific version of Ubuntu required to run BCOS.</li>
-        <li class="p-list__item">Support for the BCOS software.</li>
-      </ul>
-      <p>Services exclude:</p>
-      <ul>
-        <li class="p-list__item">Support for workloads other than those required to run BCOS.</li>
-        <li class="p-list__item">Support for versions of the kernel other than those that are provided with the BCOS software.</li>
-        <li class="p-list__item">Support for the physical hardware. Hardware support is provided by the vendor.</li>
-        <li class="p-list__item">Landscape SaaS and Landscape on-premises</li>
-        <li class="p-list__item">Access to Canonical Livepatch Service.</li>
-      </ul>
-      <h3 id="ua-desktop">Ubuntu Advantage Desktop</h3>
-      <p>Services exclude:</p>
-      <ul>
-        <li class="p-list__item">Virtual machines</li>
-        <li class="p-list__item">Machine containers</li>
-        <li class="p-list__item">Application containers</li>
-        <li class="p-list__item">Dual-booting (cohabitating with other operating systems)</li>
-        <li class="p-list__item">Peripherals which are not certified to work with Ubuntu</li>
-        <li class="p-list__item">Support for non-desktop packages</li>
-        <li class="p-list__item">Community flavours of Ubuntu</li>
-        <li class="p-list__item">Support for architectures other than x86_64</li>
-      </ul>
-      <h4 id="ua-desktop-standard">Standard</h4>
-      <p>Service includes:</p>
-      <ul>
-        <li class="p-list__item">Basic network authentication and connectivity using sssd, winbind, network-manager, and network-manager related plugins in the Ubuntu Main repository</li>
-      </ul>
-      <p>Service excludes:</p>
-      <ul>
-        <li class="p-list__item">Developer tools</li>
-        <li class="p-list__item">Support for packages not in the base Ubuntu desktop image</li>
-      </ul>
-      <h4 id="ua-desktop-advanced">Advanced</h4>
-      <p>Service includes:</p>
-      <ul>
-        <li class="p-list__item">Desktop provisioning with Canonical tools</li>
-      </ul>
-      <h3 id="ua-docker">Ubuntu Advantage for Docker</h3>
-      <p>Definitions:</p>
-      <ul>
-        <li class="p-list__item">"Docker" means the software known as Docker Enterprise Edition Basic as published by Docker, Inc.</li>
-      </ul>
-      <p>Docker support is provided at the Advanced response times.</p>
-      <p>Service includes:</p>
-      <ul>
-        <li class="p-list__item">Support for the host machine running Ubuntu.</li>
-        <li class="p-list__item">Support for all packages required to run Docker as found in the Docker package archives.</li>
-        <li class="p-list__item">Support for an unlimited number of Docker containers.</li>
-        <li class="p-list__item">Ubuntu Advantage Virtual Guest Advanced services for Docker containers running Ubuntu and installed from official sources.</li>
-      </ul>
-      <p>Service excludes:</p>
-      <ul>
-        <li class="p-list__item">Support for workloads other than those required to run Docker on the host machine.</li>
-        <li class="p-list__item">Landscape seats for Docker containers.</li>
-      </ul>
-      <p>Releases of Docker are supported as defined on Docker&rsquo;s website at: <a href="https://success.docker.com/Policies/Maintenance_Lifecycle">https://success.docker.com/Policies/Maintenance_Lifecycle</a></p>
-      <h3 id="ua-kubernetes">Ubuntu Advantage Kubernetes</h3>
-      <p>Definitions:</p>
-      <ul>
-        <li class="p-list__item">"Canonical Distribution of Kubernetes" means Kubernetes deployed using Juju and the official Canonical-Kubernetes bundle on bare metal, cloud guests, or virtual machines.</li>
-        <li class="p-list__item">"Deployment" means the process of deploying the Canonical Distribution of Kubernetes. A deployment is considered successful once Juju reports all applications in a "started" state.</li>
-        <li class="p-list__item">"Upgrade" means the process of upgrading Kubernetes between versions. An upgrade is considered successful once Juju reports all applications in a "started" state. Canonical will provide support for valid bugs encountered during the Upgrade process.</li>
-        <li class="p-list__item">"Support" means break-fix support and answering basic questions about Kubernetes. Deployment and Upgrade assistance, as well as configuration and optimization of Kubernetes fall outside the scope of support.</li>
-      </ul>
-      <p>Minimum deployment of the Canonical Distribution of Kubernetes is the base configuration of the Canonical-Kubernetes bundle. Support must be purchased for all nodes in the supported Kubernetes environment.</p>
-      <p>Supported versions of Kubernetes include the current stable version of Kubernetes and the most recent previous version as listed:</p>
-      <ul>
-        <li class="p-list__item"><a href="https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions">https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions</a></li>
-      </ul>
-      <p>Support is limited to the software packages and Charms necessary for running the Canonical Distribution of Kubernetes.</p>
-      <p>For any deployment of the Canonical Distribution of Kubernetes carried out by Canonical while under contract for this deployment, which result in the customization of any Charms, the customization will be supported for 90 days after the official release of the Charm which includes the customizations.</p>
-      <h4>Standard</h4>
-      <p>Service excludes:</p>
-      <ul>
-        <li>Support for Kubernetes deployed in a High-Availability configuration.</li>
-      </ul>
-      <h4>Advanced</h4>
-      <p>Service additionally includes:</p>
-      <ul>
-        <li>Support for Kubernetes deployed in a Highly-Available configuration.</li>
-      </ul>
-      <h3 id="ua-esm">Extended Security Maintenance</h3>
-      <p>Extended Security Maintenance includes available High and Critical CVE fixes for a number of server packages in the Ubuntu Main Repository through 28 April 2019. A complete list of packages included in Extended Security Maintenance can be found at: <a href="https://wiki.ubuntu.com/SecurityTeam/ESM/12.04#Maintained_Packages">https://wiki.ubuntu.com/SecurityTeam/ESM/12.04#Maintained_Packages</a></p>
-      <p>Extended Security Maintenance is included for 64-bit x86 AMD/Intel installations.</p>
-      <p>Service excludes:</p>
-      <ul>
-        <li class="p-list__item">Bug fixes for packages in the end of life release, unless a bug was created by an Extended Security Maintenance security update.</li>
-        <li class="p-list__item">Security fixes for packages not found in the Maintained Packages list.</li>
-        <li class="p-list__item">Security fixes for CVEs that are not High or Critical</li>
-      </ul>
-      <p>Extended Security Maintenance does not guarantee secure software or fixes to all High or Critical CVEs.</p>
-      <h3 id="ua-livepatch">Canonical Livepatch Service</h3>
-      <p>Canonical Livepatch Service includes a license to use Canonical&rsquo;s kernel livepatch daemon, access to available kernel livepatches, and support for livepatches on all systems covered by Livepatch for which the livepatching features are available.</p>
-      <p>Canonical provides livepatches for High and Critical kernel CVEs. Note that some CVEs may be ineligible for livepatching due to technical limitations within the livepatching system.</p>
-      <p>Canonical can not provide kernel support bug fixes as kernel livepatches.</p>
-      <p>Kernel livepatching is available for generic and low latency 64-bit Intel/AMD 4.4 kernels on Ubuntu 14.04 and Ubuntu 16.04.</p>
-      <h3 id="ua-fips">FIPS for Ubuntu</h3>
-      <p>Access to packages (when available) sufficient for compliance with the FIPS 140-2 Level 1 standard when used with Ubuntu on certain Supermicro AMD64, IBM POWER8, and IBM Z hardware.</p>
-      <p>Licences to such packages, to the extent not already licensed under open source software licences.</p>
-      <h3 id="ua-landscape-seats">Landscape Seats</h3>
-      <p>Definitions:</p>
-      <ul>
-        <li class="p-list__item">"Seats" means the ability to register Virtual Machines in Landscape SaaS or Landscape on-premises.</li>
-        <li class="p-list__item">"Virtual Machines" means Ubuntu Server installed and running in a virtualized environment.</li>
-      </ul>
-      <p>Service includes:</p>
-      <ul>
-        <li class="p-list__item">Seats running on systems covered by the Ubuntu Advantage service.</li>
-      </ul>
-      <p>Service excludes:</p>
-      <ul>
-        <li class="p-list__item">Support beyond that of the packages required to install and run the Landscape Client.</li>
-      </ul>
-      <h3 id="tam">Technical Account Manager</h3>
-      <p>Definitions:</p>
-      <ul>
-        <li class="p-list__item">"TAM" means a Canonical support engineer who works remotely to personally collaborate with the customer&#39;s staff and management.</li>
-      </ul>
-      <p>Canonical will enhance its support offering by providing a TAM, who will perform the following services for up to 10 hours per week during the term of service:</p>
-      <ul>
-        <li class="p-list__item">Provide support and best-practice advice on platform and configurations covered by the applicable Ubuntu Advantage services.</li>
-        <li class="p-list__item">Participate in review calls every other week at mutually agreed times addressing the customer&#39;s operational issues.</li>
-        <li class="p-list__item">Organise multi-vendor issue coordination through TSANet or Canonical&#39;s direct partnerships where applicable. When the root cause is identified, the TAM will work with the vendor for that sub-system, working to resolve the case through their normal support process.</li>
-      </ul>
-      <p>Canonical will hold a quarterly service review meeting with the customer to assess service performance and determine areas of improvement.</p>
-      <p>The TAM will visit the customer&#39;s site annually for on-site technical review.</p>
-      <p>The TAM is available to respond to support cases during the TAM&#39;s working hours. Outside of such hours, support will be provided per the Ubuntu Advantage Support Process.</p>
-      <h3 id="dedicated-services-engineer">Dedicated Technical Account Manager</h3>
-      <p>Definitions:</p>
-      <ul>
-        <li class="p-list__item">"DTAM" means a Canonical support engineer dedicated to work full-time remotely for a single customer.</li>
-      </ul>
-      <p>Canonical will enhance its support offering by providing a DTAM, who will perform the following services during local business hours for up to 40 hours per week (subject to Canonical leave policies) during the term of service:</p>
-      <ul>
-        <li class="p-list__item">Provide support and best-practice advice on platform and configurations covered by the applicable Ubuntu Advantage services.</li>
-        <li class="p-list__item">Act as the primary point of contact for all support requests originating from the customer department for which the DTAM is responsible.</li>
-        <li class="p-list__item">Manage support escalations and prioritization in accordance with Canonical&#39;s standard support response definitions and customer needs.</li>
-        <li class="p-list__item">Participate in regular review calls addressing the customer&#39;s operational issues.</li>
-        <li class="p-list__item">Organise multi-vendor issue coordination through TSANet or Canonical&#39;s direct partnerships where applicable. When the root cause is identified, the DTAM will work with the vendor for that sub-system, working to resolve the case through their normal support process.</li>
-        <li class="p-list__item">Attend applicable Canonical internal training and development activities (in-person and remote).</li>
-      </ul>
-      <p>Canonical will hold a quarterly service review meeting with the customer to assess service performance and determine areas of improvement.</p>
-      <p>The DTAM is available to respond to support cases during the DTAM&#39;s working hours. Outside of business hours, support will be provided per the Ubuntu Advantage Support Process.</p>
-      <p>If a DTAM is on leave for longer than five consecutive business days, Canonical will assign a temporary remote DTAM to cover the leave period. Canonical will coordinate with the customer with respect to foreseeable DTAM leave.</p>
-      <h3 id="landscape-on-premises">Landscape on-premises</h3>
-      <p>Definitions:</p>
-      <ul>
-        <li class="p-list__item">"Landscape on-premises" means Canonical&#39;s Landscape system management software installed on the customer&#39;s hardware.</li>
-      </ul>
-      <p>Landscape on-premises support is provided at the Advanced response times.</p>
-      <p>Service includes:</p>
-      <ul>
-        <li class="p-list__item">Licence to download and install a single instance of Landscape on-premises.</li>
-        <li class="p-list__item">Ability to use Landscape on-premises management and monitoring services for machines (whether physical or virtual) for which the customer has purchased Ubuntu Advantage services.</li>
-      </ul>
-      <p>Deployment methods:</p>
-      <ul>
-        <li class="p-list__item">When installed using the "Quickstart" install method, support is included for the machine on which Landscape on-premises is installed.</li>
-        <li class="p-list__item">When installed using a manual install method, support is included for up to two servers on which Landscape on-premises is installed.</li>
-        <li class="p-list__item">When deployed using Juju, the "dense deployment" method will be supported.</li>
-      </ul>
-      <p>Service excludes:</p>
-      <ul>
-        <li class="p-list__item">Support beyond that of the Landscape on-premises packages.</li>
-      </ul>
-      <p>Supported versions of Landscape on-premises:</p>
-      <ul>
-        <li class="p-list__item">Each release of Landscape on-premises will be supported for 1 year from its release date.</li>
-      </ul>
-      <!-- / Appendix 1 -->
-    </div>
-  </div>
 
-  <div class="row" id="appendix-2">
-    <div class="col-8">
-      <h2 id="ua-support-process">Appendix 2 - Ubuntu Advantage Support&nbsp;Process</h2>
-      <h3 id="ua-support-service-initiation">1. Service initiation</h3>
-      <ol class="p-list">
-        <li class="p-list__item"><span class="number">1.1</span> Upon commencement of the services, Canonical will provide access for a single technical representative to Landscape, the support portal and the online knowledge base.</li>
-        <li class="p-list__item"><span class="number">1.2</span> The customer -- through their initial technical representative -- may select their chosen technical representatives to interface with Canonical based on the number of systems under support as represented in the table below. These technical representatives will hold credentials to the support portal and will act as primary points of contact for support requests.</li>
-      </ol>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <div class="table__wrapper">
-        <table>
-          <caption>Table of machines under support</caption>
-          <thead>
-            <tr>
-              <th>Number of machines under Ubuntu Advantage support</th>
-              <th>Technical representatives</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1-20</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <td>21-50</td>
-              <td>3</td>
-            </tr>
-            <tr>
-              <td>51-250</td>
-              <td>6</td>
-            </tr>
-            <tr>
-              <td>251-1000</td>
-              <td>9</td>
-            </tr>
-            <tr>
-              <td>1001-5000</td>
-              <td>12</td>
-            </tr>
-            <tr>
-              <td>5001+</td>
-              <td>15</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <ol class="p-list">
-        <li class="p-list__item"><span class="number">1.3</span> The customer may change their specified technical representatives at any time by submitting a support request via the support portal.</li>
-      </ol>
-      <h3 id="ua-support-submitting-support-requests">2. Submitting support requests</h3>
-      <ol class="p-list">
-        <li class="p-list__item"><span class="number">2.1</span> The customer may open a support request once the customer account has been provisioned within the support portal.</li>
-        <li class="p-list__item"><span class="number">2.2</span> The customer may submit support cases through the support portal or by contacting the support team by telephone, unless otherwise noted.</li>
-        <li class="p-list__item"><span class="number">2.3</span> A support case should consist of a single discrete problem, issue, or request.</li>
-        <li class="p-list__item"><span class="number">2.4</span> Cases are assigned a ticket number and responded to automatically. All correspondence not entered directly into the case, including emails and telephone calls, will be logged into the case with a timestamp for quality assurance.</li>
-        <li id="ua-support-submitting-support-requests-2-5"><span class="number">2.5</span> When reporting a case, the customer should provide an impact statement to help Canonical determine the appropriate severity level. Customers with multiple concurrent support cases may be asked to prioritize cases according to severity of business impact.</li>
-        <li class="p-list__item"><span class="number">2.6</span> The customer is expected to provide all information requested by Canonical as we work to resolve the case.</li>
-        <li class="p-list__item"><span class="number">2.7</span> Canonical will keep a record of each case within the support portal enabling the customer to track and respond to all current cases and allowing for review of historical cases.</li>
-      </ol>
-      <h3 id="ua-support-severity-levels">3. Support severity levels</h3>
-      <ol class="p-list">
-        <li class="p-list__item"><span class="number">3.1</span> Once a support request is opened, a Canonical Support Engineer will validate the case information and determine the severity level, working with the customer to assess the urgency of the case.</li>
-        <li class="p-list__item"><span class="number">3.2</span> Response times will be as set forth in the Service Description for the applicable service offering.</li>
-        <li class="p-list__item"><span class="number">3.3</span> When setting the severity level, Canonical&#39;s Support Team will use the definitions as stated below:</li>
-      </ol>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <h4 class="p-heading--five">Severity Level 1 &mdash; Core functionality not available</h4>
-      <p>Canonical will use continuous effort according to the service level purchased, through appropriate support engineer(s) and/or development engineer(s), to provide a work-around or permanent solution. As soon as core functionality is available, the severity level will be lowered to the new appropriate severity level.</p>
-      <h4 class="p-heading--five">Severity Level 2 &mdash; Core functionality severely degraded</h4>
-      <p>Canonical will provide concerted efforts during the applicable business hours to provide the customer with a work-around or permanent solution. As soon as core functionality is no longer severely degraded, the severity level will be lowered to level 3.</p>
-      <h4 class="p-heading--five">Severity Level 3 &mdash; Standard support request</h4>
-      <p>Canonical will use reasonable efforts during the applicable business hours to provide the customer with a work-around or permanent solution as soon as possible, balanced against higher severity level cases. If a work-around is provided, Canonical&#39;s support engineers will continue to work on developing a permanent resolution to the case.</p>
-      <h4 class="p-heading--five">Severity Level 4 &mdash; Non-urgent request</h4>
-      <p>Level 4 requests include cosmetic issues, informational requests, feature requests, and similar matters. Canonical does not provide a timeline or guarantee for inclusion of any feature requests. Canonical will review each level 4 case and determine whether it is a product enhancement to be considered for a future release, an issue to be fixed in the current release or an issue to be fixed in a future release. Canonical will review and respond to information requests with a reasonable level of effort during coverage hours. Canonical may close cases representing level 4 issues after responding if Canonical believes it is appropriate to do so.</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <h3 id="ua-support-hotfixes">4. Hotfixes</h3>
-      <p>To temporarily resolve critical support cases, Canonical may provide a version of the affected software (e.g. package) that applies a patch. Such versions are referred to as &#8220;hotfixes&#8221;. Hotfixes provided by Canonical are valid until 90 days after the corresponding patch has been incorporated into a release of the software in the Ubuntu Archives. However, if a patch is rejected by the applicable upstream project, the hotfix will be no longer be supported and the case will remain open.</p>
+        <li class="p-list__item">
 
-      <h3 id="ua-support-languages">5. Languages</h3>
-      <p>Canonical will provide support in English. Other languages may be available at certain times.</p>
-      <h3 id="ua-support-remote-sessions">6. Remote sessions</h3>
-      <ol class="p-list">
-        <li class="p-list__item"><span class="number">6.1</span> Canonical may offer to access the customer&#39;s supported system using a remote access service. In such case, Canonical will determine which remote access service to use.</li>
+          <h2 id="ua-support-scope">Support scope</h2>
+          <p>
+            Each service offering includes access to Canonical's knowledge base and the support described below within the scope and subject to the exceptions detailed in the <a href="#appendix-1">support scope documentation</a>.
+          </p>
+          <ol class="p-list--ordered-legal">
+            <li class="p-list__item" id="support-scope-releases">
+              <h3>Releases</h3>
+              <ul>
+                <li class="p-list__item">Canonical will provide support for installation, configuration, maintenance, and management of any standard release of Ubuntu when installed using official sources and within its product life cycle. The life cycle for each version of Ubuntu are specified here: <a href="/info/release-end-of-life">www.ubuntu.com/info/release-end-of-life</a>.</li>
+              </ul>
+            </li>
+            <li class="p-list__item" id="support-scope-hardware">
+              <h3>Hardware</h3>
+              <ul>
+                <li class="p-list__item">Ubuntu Certified hardware has passed our extensive testing and review process. More information about the Ubuntu certification process and a list of certified hardware can be found on the Ubuntu Certification page: <a href="https://certification.ubuntu.com">www.ubuntu.com/certification</a>.  The services apply only with respect to the customer&#39;s hardware which has been certified. In the event the customer requests the services with respect to hardware which is not certified, Canonical will use reasonable efforts to provide support services, but may not adhere to the obligations described in this service description.</li>
+              </ul>
+            </li>
+            <li class="p-list__item" id="support-scope-packages">
+              <h3>Packages</h3>
+              <ol class="p-list--ordered-legal">
+                <li class="p-list__item">The services apply only to packages found in the Ubuntu Main Repository and Canonical-owned packages in the Universe Repository except (i) the "proposed" and "backports" repository pockets, and (ii) the exclusions noted in the applicable support scope documentation.<br /> The supported packages from the Universe Repository include, but may not be limited to, Juju packages, MAAS packages, the nova-conductor package, and their dependencies to the extent used in connection with those packages.</li>
+                <li class="p-list__item">Canonical will not provide support for any packages that have been modified from the version in the Ubuntu archives.</li>
+              </ol>
+            </li>
+            <li class="p-list__item" id="support-scope-kernels">
+              <h3>Kernels</h3>
+              <ol class="p-list--ordered-legal">
+                <li class="p-list__item">The kernel provided initially in the release of a long-term support (LTS) version of Ubuntu is supported for the entire lifecycle of the LTS.</li>
+                <li class="p-list__item">Hardware enablement (HWE) kernels provide support for newer hardware in an LTS release and are released in conjunction with the non-LTS Ubuntu releases. HWE kernels are supported until the next LTS point release.</li>
+                <li class="p-list__item">More information about kernel support can be found at <a href="/info/release-end-of-life">www.ubuntu.com/info/release-end-of-life</a></li>
+                <li class="p-list__item" id="2-4-4">Access to Canonical Livepatch Service is included with all support offerings, unless otherwise noted.</li>
+              </ol>
+            </li>
+            <li class="p-list__item" id="support-scope-landscape">
+              <h3>Landscape</h3>
+              <ol class="p-list--ordered-legal">
+                <li class="p-list__item">All Landscape products, including Landscape on-premises (when purchased) are fully supported.</li>
+                <li class="p-list__item">Access to the Landscape SaaS systems management tool is included with all support offerings, unless otherwise noted.</li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+
+        <li class="p-list__item">
+
+          <h2 id="response-times">Response times</h2>
+          <ol class="p-list--ordered-legal">
+            <li class="p-list__item">Canonical will use reasonable efforts to respond to support requests made by the customer within the response times set forth below based on the applicable service and severity level.</li>
+            <li class="p-list__item">&ldquo;Business hours&rdquo; are defined as 08:00 - 18:00 Monday - Friday local to the customer’s headquarters unless another location is agreed. All times exclude public holidays.</li>
+          </ol>
+
+          <div class="table__wrapper">
+            <table>
+              <caption>Table of response times</caption>
+              <thead>
+                <tr>
+                  <td>&nbsp;</td>
+                  <th>Standard</th>
+                  <th>Advanced</th>
+                </tr>
+                <tr>
+                  <th>Severity Level 1</th>
+                  <td>2 business hours</td>
+                  <td>1 hour</td>
+                </tr>
+                <tr>
+                  <th>Severity Level 2</th>
+                  <td>4 business hours</td>
+                  <td>4 business hours</td>
+                </tr>
+                <tr>
+                  <th>Severity Level 3</th>
+                  <td>10 business hours</td>
+                  <td>6 business hours</td>
+                </tr>
+                <tr>
+                  <th>Severity Level 4</th>
+                  <td>20 business hours</td>
+                  <td>10 business hours</td>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </li>
+
+        {% include "legal/shared/_severity-levels.html" %}
+
+        <li class="p-list__item">
+
+          <h2 id="support-process">Support process</h2>
+          <p>
+            Canonical will use reasonable efforts to resolve support cases, but Canonical does not guarantee a work-around, resolution or resolution time.
+          </p>
+          <ol class="p-list--ordered-legal">
+            <li class="p-list__item">Canonical will provide the services <a href="#appendix-2">following the support process</a>.</li>
+            <li class="p-list__item">The customer may escalate support issues <a href="#appendix-3">following the escalation process</a>.</li>
+          </ol>
+        </li>
+
+        <li class="p-list__item">
+
+          <h2 id="assurance">Assurance</h2>
+          <ol class="p-list--ordered-legal">
+            <li class="p-list__item">The customer is entitled to participate in the Ubuntu Assurance Programme, subject to its terms and conditions. Canonical may update the Assurance Programme and its terms periodically. The current Ubuntu Assurance Programme and its IP indemnification terms are available at our Ubuntu Assurance page: <a href="/legal/ubuntu-advantage/assurance">www.ubuntu.com/legal/ubuntu-advantage/assurance</a>.</li>
+          </ol>
+        </li>
+
       </ol>
-      <h3 id="ua-support-regions">7. Support regions</h3>
-      <p>Canonical may provide services from any location, including but not limited to the following countries:</p>
-      <ul>
-        <li class="p-list__item">Australia</li>
-        <li class="p-list__item">Brazil</li>
-        <li class="p-list__item">Bulgaria</li>
-        <li class="p-list__item">Canada</li>
-        <li class="p-list__item">Chile</li>
-        <li class="p-list__item">China</li>
-        <li class="p-list__item">Croatia</li>
-        <li class="p-list__item">Finland</li>
-        <li class="p-list__item">France</li>
-        <li class="p-list__item">Germany</li>
-        <li class="p-list__item">Hungary</li>
-        <li class="p-list__item">Ireland</li>
-        <li class="p-list__item">Italy</li>
-        <li class="p-list__item">Japan</li>
-        <li class="p-list__item">Mexico</li>
-        <li class="p-list__item">New Zealand</li>
-        <li class="p-list__item">Norway</li>
-        <li class="p-list__item">Poland</li>
-        <li class="p-list__item">South Korea</li>
-        <li class="p-list__item">Spain</li>
-        <li class="p-list__item">Sweden</li>
-        <li class="p-list__item">Taiwan</li>
-        <li class="p-list__item">Turkey</li>
-        <li class="p-list__item">United Kingdom</li>
-        <li class="p-list__item">United States of America</li>
-      </ul>
+
     </div>
-    <!-- / Appendix 2 -->
+    <div class="col-4">
+      <nav class="u-hide--small p-card">
+
+        <h3>Contents</h3>
+        <ol class="p-nested-counter-list">
+          <li class="p-nested-counter-list__item"><a href="#service-description-overview">Overview&nbsp;&rsaquo;</a></li>
+          <li class="p-nested-counter-list__item">
+            <a href="#appendix-support-scope-support-scope">Support scope&nbsp;&rsaquo;</a>
+            <ol class="p-nested-counter-list">
+              <li class="p-nested-counter-list__item"><a href="#support-scope-releases">Releases&nbsp;&rsaquo;</a></li>
+              <li class="p-nested-counter-list__item"><a href="#support-scope-hardware">Hardware&nbsp;&rsaquo;</a></li>
+              <li class="p-nested-counter-list__item"><a href="#support-scope-packages">Packages&nbsp;&rsaquo;</a></li>
+              <li class="p-nested-counter-list__item"><a href="#support-scope-kernels">Kernels&nbsp;&rsaquo;</a></li>
+              <li class="p-nested-counter-list__item"><a href="#support-scope-landscape">Landscape&nbsp;&rsaquo;</a></li>
+            </ol>
+          </li>
+          <li class="p-nested-counter-list__item"><a href="#response-times">Response times&nbsp;&rsaquo;</a></li>
+          <li class="p-nested-counter-list__item"><a href="#support-process">Support process&nbsp;&rsaquo;</a></li>
+          <li class="p-nested-counter-list__item"><a href="#assurance">Assurance&nbsp;&rsaquo;</a></li>
+        </ol>
+
+        {% include "legal/shared/_appendix-support-scope_toc.html" with number="1" %}
+
+        {% include "legal/shared/_appendix-support-process_toc.html" with number="2" %}
+
+        {% include "legal/shared/_appendix-management-escalation_toc.html" with number="3" %}
+
+      </nav>
+      <nav class="p-card">
+
+        <h3>Japanese translation</h3>
+        <ul class="p-list">
+          <li class="p-list__item"><a href="/legal/ubuntu-advantage/service-description-ja">UA 略式サービス契約&nbsp;›</a></li>
+        </ul>
+      </nav>
+    </div>
   </div>
   <div class="row">
-    <div class="col-8">
-      <div class="p-top"><a href="#service-description" class="p-top__link">Back to top</a></div>
-    </div>
-  </div>
-  <div class="row" id="appendix-3">
-    <div class="col-8">
-      <h2 id="ua-escalation">Appendix 3 - Ubuntu Advantage Management Escalation</h2>
-      <p>In the event of an unsatisfactory service of any kind, there are several ways to escalate this situation to Canonical management.</p>
-      <h3>Feedback at end of case</h3>
-      <p>When a case is closed, a survey will be emailed to the case owner concerning overall experience with  Canonical&#39;s support. All surveys are reviewed by management.</p>
-      <h3>Ask for a Peer Review</h3>
-      <p>As a normal business practice, Canonical performs peer reviews on a percentage of all cases. Customers can specifically request a peer review on a case within the case comments or by calling the phone number listed in the support portal. An impartial engineer will be assigned to review the case and provide feedback.</p>
-      <h3>Management escalation</h3>
-      <p>Non-urgent needs:</p>
-      <ul>
-        <li class="p-list__item">Please request a management escalation within the case itself. A manager will be contacted to review the case and post a response within 1 business day.</li>
-      </ul>
-      <p>Urgent needs</p>
-      <ul>
-        <li class="p-list__item">You may escalate to Canonical&#39;s Support &amp; Technical Services Manager by emailing <a href="mailto:%73%75%70%70%6F%72%74%2D%6D%61%6E%61%67%65%72%40%63%61%6E%6F%6E%69%63%61%6C%2E%63%6F%6D">support-manager {at} canonical {dot} com</a>.</li>
-        <li class="p-list__item">If you require further escalation, you may email Canonical&#39;s Support &amp; Technical Services Director at <a href="mailto:%6F%70%65%72%61%74%69%6F%6E%73%2D%64%69%72%65%63%74%6F%72%40%63%61%6E%6F%6E%69%63%61%6C%2E%63%6F%6D">operations-director {at} canonical {dot} com</a>.</li>
-      </ul>
-    </div>
-    <!-- / Appendix 3 -->
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <p><a href="#service-description" class="p-top__link">Back to top</a></p>
+    <div class="col-9 p-top">
+      <p>
+        <a href="#" class="p-top__link">Back to top</a>
+      </p>
     </div>
   </div>
 </div>
+
+{% include "legal/shared/_appendix-support-scope.html" with number="1" %}
+{% include "legal/shared/_appendix-support-process.html" with number="2" %}
+{% include "legal/shared/_appendix-management-escalation.html" with number="3" %}
 
 {% endblock content %}

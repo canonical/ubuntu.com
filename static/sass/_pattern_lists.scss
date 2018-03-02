@@ -78,7 +78,7 @@
         flex-wrap: wrap;
 
         .p-list__item {
-          margin-right: 1rem;
+          margin-right: $sp-medium;
           width: calc(33.33% - .75rem);
 
           &:nth-child(3n+3) {
@@ -161,9 +161,9 @@
     &__title {
       border: 0;
       float: left;
-      font-size: 1rem;
+      font-size: $sp-medium;
       font-weight: 400;
-      margin: 0 1rem 0 0;
+      margin: 0 $sp-medium 0 0;
       padding: 0;
     }
 
@@ -174,19 +174,56 @@
 }
 
 @mixin ubuntu-p-ordered-legal-list {
+  div > .p-list--ordered-legal {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
   .p-list--ordered-legal {
     counter-reset: item;
     list-style-type: none;
 
-    & > .p-list__item:before {
+    & > .p-list__item::before {
       content: counters(item, ".") ". ";
       counter-increment: item;
-      font-weight: 400;
+      font-weight: 300;
+      font-size: 2.25rem;
+      line-height: 1.167;
     }
 
-    & > .p-list__item > h2,
+    & p {
+      max-width: inherit;
+    }
+
+    & > li > p,
+    & > li > ol,
+    & > li > ul,
+    & > li + h3,
+    & > li > h4,
+    & > li + h5,
+    & > li > .table__wrapper {
+      margin-left: $sp-medium;
+      padding-left: $sp-medium;
+    }
+
+    & > .p-list__item > h4:first-child {
+      margin-left: 0;
+      padding-left: 0;
+    }
+
     & > .p-list__item > h3,
-    & > .p-list__item > h4 {
+    & > .p-list__item > h4,
+    & > .p-list__item > h5 {
+      display: inline-block;
+    }
+
+    & > li > ol > .p-list__item::before {
+      font-size: 1.2rem;
+    }
+
+    & > .p-list__item > h2:first-child,
+    & > .p-list__item > h3:first-child,
+    & > .p-list__item > h4:first-child {
       display: inline;
     }
   }
