@@ -5,7 +5,7 @@
 
       <h1>Ubuntu Advantage service&nbsp;description</h1>
       <p>
-        Valid since 26 February 2018
+        Valid since 2 March 2018
       </p>
 
       <ol class="p-list--ordered-legal">
@@ -15,7 +15,8 @@
           <h2 id="service-description-overview">Overview</h2>
           <ol class="p-list--ordered-legal">
             <li class="p-list__item">This document defines the following service offerings. Canonical will provide only those services, as defined in this document, which are covered by the customer&#39;s contract.</li>
-            <li class="p-list__item">Primary service offerings:
+            <li class="p-list__item">
+              <h3>Primary service offerings:</h3>
               <ul>
                 <li class="p-list__item">Ubuntu Advantage OpenStack</li>
                 <li class="p-list__item">Ubuntu Advantage OpenStack Cloud Region</li>
@@ -52,23 +53,27 @@
             Each service offering includes access to Canonical's knowledge base and the support described below within the scope and subject to the exceptions detailed in the <a href="#appendix-1">support scope documentation</a>.
           </p>
           <ol class="p-list--ordered-legal">
-            <li class="p-list__item" id="support-scope-releases">Releases
+            <li class="p-list__item" id="support-scope-releases">
+              <h3>Releases</h3>
               <ul>
                 <li class="p-list__item">Canonical will provide support for installation, configuration, maintenance, and management of any standard release of Ubuntu when installed using official sources and within its product life cycle. The life cycle for each version of Ubuntu are specified here: <a href="/info/release-end-of-life">www.ubuntu.com/info/release-end-of-life</a>.</li>
               </ul>
             </li>
-            <li class="p-list__item" id="support-scope-hardware">Hardware
+            <li class="p-list__item" id="support-scope-hardware">
+              <h3>Hardware</h3>
               <ul>
                 <li class="p-list__item">Ubuntu Certified hardware has passed our extensive testing and review process. More information about the Ubuntu certification process and a list of certified hardware can be found on the Ubuntu Certification page: <a href="https://certification.ubuntu.com">www.ubuntu.com/certification</a>.  The services apply only with respect to the customer&#39;s hardware which has been certified. In the event the customer requests the services with respect to hardware which is not certified, Canonical will use reasonable efforts to provide support services, but may not adhere to the obligations described in this service description.</li>
               </ul>
             </li>
-            <li class="p-list__item" id="support-scope-packages">Packages
+            <li class="p-list__item" id="support-scope-packages">
+              <h3>Packages</h3>
               <ol class="p-list--ordered-legal" style="margin-left: 2rem;">
                 <li class="p-list__item">The services apply only to packages found in the Ubuntu Main Repository and Canonical-owned packages in the Universe Repository except (i) the "proposed" and "backports" repository pockets, and (ii) the exclusions noted in the applicable support scope documentation.<br /> The supported packages from the Universe Repository include, but may not be limited to, Juju packages, MAAS packages, the nova-conductor package, and their dependencies to the extent used in connection with those packages.</li>
                 <li class="p-list__item">Canonical will not provide support for any packages that have been modified from the version in the Ubuntu archives.</li>
               </ol>
             </li>
-            <li class="p-list__item" id="support-scope-kernels">Kernels
+            <li class="p-list__item" id="support-scope-kernels">
+              <h3>Kernels</h3>
               <ol class="p-list--ordered-legal" style="margin-left: 2rem;">
                 <li class="p-list__item">The kernel provided initially in the release of a long-term support (LTS) version of Ubuntu is supported for the entire lifecycle of the LTS.</li>
                 <li class="p-list__item">Hardware enablement (HWE) kernels provide support for newer hardware in an LTS release and are released in conjunction with the non-LTS Ubuntu releases. HWE kernels are supported until the next LTS point release.</li>
@@ -76,7 +81,8 @@
                 <li class="p-list__item" id="2-4-4">Access to Canonical Livepatch Service is included with all support offerings, unless otherwise noted.</li>
               </ol>
             </li>
-            <li class="p-list__item" id="support-scope-landscape">Landscape
+            <li class="p-list__item" id="support-scope-landscape">
+              <h3>Landscape</h3>
               <ol class="p-list--ordered-legal" style="margin-left: 2rem;">
                 <li class="p-list__item">All Landscape products, including Landscape on-premises (when purchased) are fully supported.</li>
                 <li class="p-list__item">Access to the Landscape SaaS systems management tool is included with all support offerings, unless otherwise noted.</li>
@@ -175,42 +181,12 @@
           <li class="p-nested-counter-list__item"><a href="#assurance">Assurance&nbsp;&rsaquo;</a></li>
         </ol>
 
+        {% include "legal/shared/_appendix-support-scope_toc.html" with number="1" %}
 
-        <h3 class="p-heading--four"><a href="#appendix-support-scope">Appendix 1 - Support scope&nbsp;&rsaquo;</a></h3>
-        <ol class="p-nested-counter-list">
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-scope-openstack">Ubuntu Advantage OpenStack&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-scope-advantage-openstack-cloud-region">Ubuntu Advantage OpenStack Cloud Region&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-scope-server">Ubuntu Advantage Server&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-scope-virtual-guest">Ubuntu Advantage Virtual Guest&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-scope-ceph-storage">Ubuntu Advantage Ceph Storage&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-scope-swift-storage">Ubuntu Advantage Swift Storage&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-scope-maas">Ubuntu Advantage MAAS&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-scope-switch">Ubuntu Advantage Switch&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-scope-desktop">Ubuntu Advantage Desktop&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-scope-docker">Ubuntu Advantage for Docker&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-scope-kubernetes">Ubuntu Advantage Kubernetes&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-scope-fips">FIPS for Ubuntu&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-scope-esm">Extended Security Maintenance&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-scope-livepatch">Canonical Livepatch Service&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-scope-landscape-seats">Landscape Seats&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#tam">Technical Account Manager&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#dedicated-services-engineer">Dedicated Technical Account Manager&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#landscape-on-premises">Landscape on-premises&nbsp;&rsaquo;</a></li>
-        </ol>
+        {% include "legal/shared/_appendix-support-process_toc.html" with number="2" %}
 
+        {% include "legal/shared/_appendix-management-escalation_toc.html" with number="3" %}
 
-        <h3 class="p-heading--four"><a href="#appendix-support-process">Appendix 2 - Support process&nbsp;&rsaquo;</a></h3>
-        <ol class="p-nested-counter-list">
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-service-initiation">Service initiation&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-submitting-support-requests">Submitting support requests&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-severity-levels">Support severity levels&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-hotfixes">Hotfixes&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-languages">Support languages&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-remote-sessions">Remote sessions&nbsp;&rsaquo;</a></li>
-          <li class="p-nested-counter-list__item"><a href="#appendix-support-regions">Support regions&nbsp;&rsaquo;</a></li>
-        </ol>
-
-        <h3 class="p-heading--four"><a href="#appendix-management-escalation">Appendix 3 - Management escalation&nbsp;&rsaquo;</a></h3>
       </nav>
       <nav class="p-card">
 
@@ -231,6 +207,7 @@
 </div>
 
 {% include "legal/shared/_appendix-support-scope.html" with number="1" %}
-{% include "legal/shared/_appendix-support-process.html" with number="2" %} {% include "legal/shared/_appendix-management-escalation.html" with number="3" %}
+{% include "legal/shared/_appendix-support-process.html" with number="2" %}
+{% include "legal/shared/_appendix-management-escalation.html" with number="3" %}
 
 {% endblock content %}

@@ -175,15 +175,15 @@
 
 @mixin ubuntu-p-ordered-legal-list {
   div > .p-list--ordered-legal {
-      margin-left: 0;
-      padding-left: 0;
+    margin-left: 0;
+    padding-left: 0;
   }
 
   .p-list--ordered-legal {
     counter-reset: item;
     list-style-type: none;
 
-    & > .p-list__item:before {
+    & > .p-list__item::before {
       content: counters(item, ".") ". ";
       counter-increment: item;
       font-weight: 300;
@@ -191,30 +191,39 @@
       line-height: 1.167;
     }
 
+    & p {
+      max-width: inherit;
+    }
+
     & > li > p,
     & > li > ol,
     & > li > ul,
     & > li + h3,
-    & > li + h4,
-    & > li + h5
-    .table__wrapper {
+    & > li > h4,
+    & > li + h5,
+    & > li > .table__wrapper {
       margin-left: $sp-medium;
       padding-left: $sp-medium;
     }
 
-    & > li.p-list__item > h3,
-    & > li.p-list__item > h4,
-    & > li.p-list__item > h5 {
+    & > .p-list__item > h4:first-child {
+      margin-left: 0;
+      padding-left: 0;
+    }
+
+    & > .p-list__item > h3,
+    & > .p-list__item > h4,
+    & > .p-list__item > h5 {
       display: inline-block;
     }
 
-    & > li > ol > li.p-list__item:before {
+    & > li > ol > .p-list__item::before {
       font-size: 1.2rem;
     }
 
-    & > .p-list__item > h2,
-    & > .p-list__item > h3,
-    & > .p-list__item > h4 {
+    & > .p-list__item > h2:first-child,
+    & > .p-list__item > h3:first-child,
+    & > .p-list__item > h4:first-child {
       display: inline;
     }
   }
