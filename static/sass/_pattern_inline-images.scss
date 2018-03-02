@@ -5,6 +5,14 @@
     margin-left: 0;
     padding-left: 0;
 
+    // XXX Peter Mahnke 2018-03-01
+    // Extension of the inline images to add logo support
+    // This should be proposed up to vanilla-brochure-theme once approved
+    // see https://github.com/vanilla-framework/vanilla-framework/issues/1605
+    &__item {
+      overflow: visible;
+    }
+
     &__item--compact {
       margin: $sp-medium;
     }
@@ -15,16 +23,16 @@
     }
   }
 
-  // XXX Extension of the inline images to add logo support
+  // XXX Peter Mahnke 2018-03-01
+  // Extension of the inline images to add logo support
   // This should be proposed up to vanilla-brochure-theme once approved
+  // see https://github.com/vanilla-framework/vanilla-framework/issues/1605
   .p-inline-images__logo {
     max-height: $sp-xxx-large;
-    max-width: 7rem;
-    width: 100%;
+    width: auto;
 
     @media only screen and (min-width: $breakpoint-medium) {
       max-height: 5.5rem;
-      max-width: 9rem;
     }
   }
 }
