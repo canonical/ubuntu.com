@@ -1,6 +1,6 @@
-{% extends "cloud/base_cloud.html" %}
+{% extends "openstack/_base_openstack.html" %}
 {% load versioned_static  %}
-{% block title %}BootStack - your managed cloud | Ubuntu{% endblock %}
+{% block title %}BootStack - your managed cloud | OpenStack{% endblock %}
 {% block meta_description %}With BootStack, Canonical will build, support and manage your cloud for only $15 per host per day.{% endblock meta_description %}
 
 {% block content %}
@@ -21,7 +21,7 @@
           <li class="p-list__item is-ticked">When you&rsquo;re ready, we will hand over the keys</li>
         </ul>
         <p>
-          <a href="{{ ASSET_SERVER_URL }}3465457b-Bootstack_datasheet.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Read the datasheet', 'eventLabel' : 'Bootstack datasheet - Top CTA' : undefined });" class="p-button--positive">Read the datasheet</a>&#8195;<a href="/cloud/contact-us?product=cloud-managed-cloud" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Talk to us', 'eventLabel' : 'Bootstack - Top CTA' : undefined });" class="p-button--neutral">Talk to us</a>
+          <a href="{{ ASSET_SERVER_URL }}3465457b-Bootstack_datasheet.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Read the datasheet', 'eventLabel' : 'Bootstack datasheet - Top CTA', 'eventValue' : undefined });" class="p-button--positive">Read the datasheet</a>&#8195;<a href="/cloud/contact-us?product=cloud-managed-cloud" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Talk to us', 'eventLabel' : 'Bootstack - Top CTA', 'eventValue' : undefined });" class="p-button--neutral">Talk to us</a>
         </p>
 
       </div>
@@ -104,7 +104,7 @@
         <p>The leading OpenStack and public cloud experts choose Ubuntu &mdash; that&rsquo;s why you should talk to us about efficient OpenStack operations at scale.</p>
       </div>
       <div class="col-4 prefix-1">
-        {% include "cloud/shared/_openstack-pie-chart.html" %}
+        {% include "openstack/shared/_openstack-pie-chart.html" %}
       </div>
     </div>
   </div>
