@@ -31,6 +31,10 @@
     max-height: $sp-xxx-large;
     width: auto;
 
+    &[src*="svg"] {
+      width: 100%;
+    }
+
     @media only screen and (min-width: $breakpoint-medium) {
       max-height: 5.5rem;
     }
