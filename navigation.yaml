@@ -16,8 +16,6 @@ openstack:
 
     - title: Managed cloud
       path: /openstack/managed-cloud
-    - title: Public cloud
-      path: /public-cloud
     - title: Juju
       path: /juju
     - title: Storage
@@ -42,6 +40,14 @@ openstack:
         - title: Thank you
           path: /openstack/thank-you
           hidden: True
+
+public-cloud:
+  title: Public cloud
+  path: /public-cloud
+
+  children:
+    - title: Overview
+      path: /public-cloud
 
 server:
   title: Server
