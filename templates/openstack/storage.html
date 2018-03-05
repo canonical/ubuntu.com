@@ -1,5 +1,6 @@
-{% extends "cloud/base_cloud.html" %}
-{% block title %}Ubuntu Advantage Storage | Cloud{% endblock %}
+{% extends "openstack/_base_openstack.html" %}
+
+{% block title %}Ubuntu Advantage Storage | OpenStack{% endblock %}
 {% block meta_description %}Ubuntu Advantage Storage from Canonical embeds the proven software-defined storage (SDS) technologies of Ceph, NexentaEdge, Swift and SwiftStack, into a 24x7-supported software solution with a unique metered pricing model.{% endblock meta_description %}
 
 {% block content %}
@@ -10,7 +11,7 @@
       <div class="col-6">
         <h1>Ubuntu&nbsp;Advantage&nbsp;Storage</h1>
         <p>Ubuntu Advantage Storage from Canonical embeds the proven software&dash;defined storage (<abbr title="Software&dash;defined storage">SDS</abbr>) technologies of Ceph, NexentaEdge, Swift and SwiftStack, into a 24x7&dash;supported software solution with a unique metered pricing model.</p>
-        <p><a class="p-button--positive" href="/cloud/contact-us?product=cloud-storage">Request a demo</a></p>
+        <p><a class="p-button--positive" href="/openstack/contact-us?product=cloud-storage">Request a demo</a></p>
       </div>
       <div class="col-6 prefix-1 u-align--center u-vertically-center u-hide--small">
         <img class="hero-image" width="100%" src="{{ ASSET_SERVER_URL }}c2d50399-storage.svg" alt="Lots of server pictos in a cloud" />
@@ -36,7 +37,7 @@
 
       <div class="col-4">
         <div class="p-card--highlighted  u-float--right">
-          <h2 class="p-card__title"><a href="https://insights.ubuntu.com/2015/05/18/ubuntu-advantage-storage-faqs/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'resource', 'eventAction' : 'Ubuntu Storage FAQ', 'eventLabel' : 'from ubuntu.com/cloud/storage', 'eventValue' : undefined });">Ubuntu Advantage Storage FAQs&nbsp;&rsaquo;</a></h2>
+          <h2 class="p-card__title"><a href="https://insights.ubuntu.com/2015/05/18/ubuntu-advantage-storage-faqs/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'resource', 'eventAction' : 'Ubuntu Storage FAQ', 'eventLabel' : 'from ubuntu.com/openstack/storage', 'eventValue' : undefined });">Ubuntu Advantage Storage FAQs&nbsp;&rsaquo;</a></h2>
           <p class="p-card__content">Answers to your most frequently asked questions about Ubuntu Advantage Storage.</p>
           <p class="p-card__category">FAQ</p>
         </div>
@@ -101,7 +102,7 @@
                 <p>Legacy storage solutions are often priced per&dash;node or according to total disk capacity. This can lead to a penalty for good practices such as high durability&nbsp;replication.</p>
                 <p>Ubuntu Advantage Storage is different. Our pricing is based on the amount of data you record in your storage pool, regardless of how it is written or how much disk space is used.</p>
                 <p>Ubuntu Advantage Storage means you don&rsquo;t have to pay for replicas or empty space.</p>
-                <p><a href="/cloud/contact-us?product=cloud-storage">Find out how much you can save&nbsp;&rsaquo;</a></p>
+                <p><a href="/openstack/contact-us?product=cloud-storage">Find out how much you can save&nbsp;&rsaquo;</a></p>
               </div>
               <div class="col-6 u-align--center">
                 <img src="{{ ASSET_SERVER_URL }}d8555ed7-storage-diagram-jy.png" alt="" />
@@ -120,7 +121,7 @@
                   <li class="p-list__item is-ticked">World&dash;class support from Canonical, experts in large&dash;scale, multi&dash;site&dash;replicated deployments.</li>
                   <li class="p-list__item is-ticked">Built with Ubuntu {{ lts_release_full }} with five years of support for every component in the stack.</li>
                 </ul>
-                <p><a class="p-button--neutral" href="/cloud/contact-us?product=cloud-storage">Request a demo</a></p>
+                <p><a class="p-button--neutral" href="/openstack/contact-us?product=cloud-storage">Request a demo</a></p>
               </div>
             </div>
           </section>

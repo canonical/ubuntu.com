@@ -1,7 +1,6 @@
-{% extends "openstack/base_openstack.html" %}
+{% extends "openstack/_base_openstack.html" %}
 
 {% block title %}OpenStack on Ubuntu is your scalable private cloud, by Canonical{% endblock %}
-
 {% block meta_description %}Ubuntu OpenStack is the fastest, easiest and most robust way to build your cloud - and it includes a suite of tools to help you build and manage it.{% endblock meta_description %}
 
 {% block content %}
@@ -21,70 +20,160 @@
         <li class="p-list__item is-ticked">BootStack is a fully managed OpenStack cloud, on your hardware, in your data center, by Canonical</li>
         <li class="p-list__item is-ticked">Foundation Cloud Build includes set-up, design, architecture and training in one package by Canonical</li>
       </ul>
-      <p><a href="/download/cloud" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Openstack', 'eventLabel' : 'Install OpenStack ', 'eventValue' : undefined });">Install OpenStack</a></p>
+      <p><a href="/openstack/install" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Openstack', 'eventLabel' : 'Install OpenStack ', 'eventValue' : undefined });">Install OpenStack</a></p>
 
     </div>
     <div class="col-4">
-      {% include "cloud/shared/_openstack-pie-chart.html" %}
+      {% include "openstack/shared/_openstack-pie-chart.html" %}
     </div>
   </div>
 </section>
 
 <section class="p-strip--light is-deep is-bordered">
   <div class="row">
-    <div class="col-12">
-      <h2>Three ways to get OpenStack on Ubuntu</h2>
+    <div class="col-6">
+      <h2>All things OpenStack</h2>
+      <p>Ubuntu is the platform of choice for most production OpenStack clouds, with Canonical providing consulting, training, support and fully managed cloud services for many of the world&rsquo;s leading companies.</p>
+    </div>
+    <div class="col-6 u-vertically-center">
+      <img src="{{ ASSET_SERVER_URL }}314085ad-openstack.svg" alt="" class="u-align--center u-hide--small" width="400">
     </div>
   </div>
   <div class="row">
-    <div class="u-equal-height">
-      <div class="col-4 p-card">
-        <h3 class="p-card__title">Fully managed OpenStack cloud</h3>
-        <p class="p-card__content">Canonical will design, build and operate a production OpenStack cloud on your premises from $15 per server per day. We&rsquo;ll train and transfer control to your team on request.</p>
-        <p class="p-card__content">This is the recommended way to get to production fast, enabling you to ramp your workloads efficiently and focus on cloud consumption not infrastructure.</p>
-        <p class="p-card__content"><a href="/cloud/managed-cloud" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Openstack', 'eventLabel' : 'Get your BootStack engagement', 'eventValue' : undefined });">Get your BootStack engagement&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-4 p-card">
-        <h3 class="p-card__title">OpenStack delivered to you in 3 weeks</h3>
-        <p class="p-card__content">Tailor your reference  OpenStack cloud to your requirements and then our engineers will build your, working alongside your team.</p>
-        <p class="p-card__content">Canonical offers training and long-term enterprise support plus optional consulting services for networking, storage, monitoring and cloud architecture.</p>
-        <p class="p-card__content"><a href="/cloud/foundation-cloud" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Openstack', 'eventLabel' : 'Learn more about Foundation Cloud Build', 'eventValue' : undefined });">Learn more about Foundation Cloud Build&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-4 p-card">
-        <h3 class="p-card__title">Install manually &ndash; single or multi-node</h3>
-        <p class="p-card__content">Use Canonical&rsquo;s conjure-up to deploy a multi-node OpenStack. With LXD containers, it all fits on your laptop, in VMware or even a public cloud. Ideal for first-time users or developers who want to study the components of OpenStack in action. Use it with MAAS (&lsquo;Metal as a Service&rsquo;) to deploy across many servers and scale it to many racks.</p>
-        <p class="p-card__content"><a href="/download/cloud" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Cloud openstack', 'eventLabel' : 'Install OpenStack manually', 'eventValue' : undefined });">Install OpenStack manually&nbsp;&rsaquo;</a></p>
-      </div>
+    <div class="col-12">
+      <ul class="p-matrix is-trisected">
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--five">Fully managed cloud service</h3>
+            <div class="p-matrix__desc">
+              <p>Let us take full operational control of your cloud remotely with our BootStack service &mdash; the fastest path to a private production OpenStack cloud.</p>
+              <p><a href="/openstack/managed-cloud">Learn more about BootStack&nbsp;&rsaquo;</a></p>
+            </div>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--five">Consulting packages</h3>
+            <div class="p-matrix__desc">
+              <p>With Foundation Cloud Build, we will build you a fixed-price cloud on your premises, with a proven reference architecture in 3 weeks.</p>
+              <p><a href="/openstack/foundation-cloud">Learn more about our consulting packages&nbsp;&rsaquo;</a></p>
+            </div>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--five">Install now</h3>
+            <div class="p-matrix__desc">
+              <p>Spin up OpenStack or Kubernetes with conjure-up on a single laptop or on many racks.</p>
+              <p><a href="/openstack/install">Download&nbsp;&rsaquo;</a></p>
+            </div>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--five">Automate physical servers</h3>
+            <div class="p-matrix__desc">
+              <p>Turn your data center into a physical cloud with MAAS bare-metal provisioning. On premises, open source and supported.</p>
+              <p><a href="/server/maas">Learn more about MAAS&nbsp;&rsaquo;</a></p>
+            </div>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--five">Use Ubuntu on certified public clouds</h3>
+            <div class="p-matrix__desc">
+              <p>Ubuntu is the leading cloud guest OS, running most workloads in public clouds today.</p>
+              <p><a href="/download/server">Get started with Ubuntu server&nbsp;&rsaquo;</a></p>
+            </div>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--five">Model and deploy with Juju</h3>
+            <div class="p-matrix__desc">
+              <p>Hundreds of services and pre-configured applications available for single‐command deployment to any cloud.</p>
+              <p><a href="/juju">Get started with Juju&nbsp;&rsaquo;</a></p>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
 
 <section class="p-strip is-bordered">
-  {% include "cloud/shared/_openstack_clients.html" %}
+  {% include "openstack/shared/_openstack_clients.html" %}
 </section>
 
-<section class="p-strip--light is-deep">
+<section class="p-strip--light is-deep is-bordered">
   {% include "shared/_resources_openstack.html"%}
 </section>
 
-<section class="p-strip--accent is-deep">
+<section class="p-strip is-deep is-bordered">
   <div class="row">
-    <div class="u-equal-height">
-      <div class="col-7">
-        <h2>BootStack &mdash; fully managed OpenStack on premises</h2>
-        <p>BootStack a private OpenStack cloud managed remotely by Canonical.  This is the fastest way to get to production. It runs on your hardware, in the datacenter of your choice with our experts responsible for deployment and 24/7 support.</p>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Built to your specifications</li>
-          <li class="p-list__item is-ticked">Your choice of Ubuntu- certified server and network hardware</li>
-          <li class="p-list__item is-ticked">Monitor every machine with your existing dashboards</li>
-          <li class="p-list__item is-ticked">Guaranteed availability backed by a clear SLA</li>
-          <li class="p-list__item is-ticked">Transfer operations anytime you want</li>
-        </ul>
-        <p><a href="/cloud/managed-cloud" class="p-link--inverted">Learn more about BootStack&nbsp;&rsaquo;</a></p>
+    <div class="col-8">
+      <h2>Install OpenStack now</h2>
+      <p>Use <a href="https://conjure-up.io/" class="p-link--external">conjure-up</a> to quickly deploy OpenStack on a single laptop using LXD containers, ideal for first-time users or developers. You can use the same tool with <a href="https://maas.io/" class="p-link--external">MAAS</a> to operate on racks of bare metal, or OpenStack, or VMware.</p>
+      <p><a href="/openstack/install">Install OpenStack&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="u-embedded-media">
+        <iframe class="u-embedded-media__element" src="https://player.vimeo.com/video/202448226?color=ffffff&amp;title=0&amp;byline=0&amp;portrait=0" frameborder="0" allowfullscreen></iframe>
       </div>
-      <div class="col-5 u-vertically-center u-align--center u-hide--small">
-        <img src="{{ ASSET_SERVER_URL }}466046c7-illustration-cloud-bootstack.svg?w=320" alt="" class="u-hidden—small" width="320" />
-      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-deep is-bordered">
+  <div class="row">
+    <div class="col-6">
+      <h2>Fully managed OpenStack cloud</h2>
+      <p>Canonical operates many private OpenStack clouds on behalf of customers, enabling them to get the benefits of OpenStack on premise while focusing their staff on their business workloads. BootStack is a “build, operate and transfer” service that allows you to take control of your own cloud at any time. The fastest path to production OpenStack, with the most widely used OS for cloud computing.</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Jointly shape the architecture to meet your requirements</li>
+        <li class="p-list__item is-ticked">We build OpenStack in your data center of choice, and operate it to an SLA</li>
+        <li class="p-list__item is-ticked">When your team is ready to take on OpenStack, we’ll hand over the keys</li>
+      </ul>
+      <p><a href="/openstack/managed-cloud">Let Canonical build, operate and transfer your OpenStack&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-6">
+      <ul class="p-inline-images">
+        <li class="p-inline-images__item p-inline-images__item--smaller">
+          <img src="{{ ASSET_SERVER_URL }}01ed776c-veritas.svg" alt="Veritas" />
+        </li>
+        <li class="p-inline-images__item p-inline-images__item--smaller">
+          <img src="{{ ASSET_SERVER_URL }}66bc9135-logo-lexisnexis.png" alt="Lexis Nexis" />
+        </li>
+        <li class="p-inline-images__item p-inline-images__item--smaller">
+          <img src="{{ ASSET_SERVER_URL }}25de1877-Tele2.svg" alt="Tele2" />
+        </li>
+        <li class="p-inline-images__item p-inline-images__item--smaller">
+          <img src="{{ ASSET_SERVER_URL }}d0b7aa28-logo-deutsche-telekom.png" alt="Deutsche Telekom" />
+        </li>
+        <li class="p-inline-images__item p-inline-images__item--smaller">
+          <img src="{{ ASSET_SERVER_URL }}481063cd-pccw.svg" alt="PCCW logo" />
+        </li>
+        <li class="p-inline-images__item p-inline-images__item--smaller">
+          <img src="{{ ASSET_SERVER_URL }}97a050d0-Groupe_Cogeco_logo.svg" alt="Cogeco Datacenters" />
+        </li>
+        <li class="p-inline-images__item p-inline-images__item--smaller">
+          <img src="{{ ASSET_SERVER_URL }}2353fc84-fibernet.svg" alt="Fibernet" />
+        </li>
+        <li class="p-inline-images__item p-inline-images__item--smaller">
+          <img src="{{ ASSET_SERVER_URL }}d56d0b96-Biznet-Gio.png" alt="Biznet Gio" />
+        </li>
+        <li class="p-inline-images__item p-inline-images__item--smaller">
+          <img src="{{ ASSET_SERVER_URL }}ff4e18ac-mimedia_logo_lrg.png" alt="Mimedia" />
+        </li>
+        <li class="p-inline-images__item p-inline-images__item--smaller">
+          <img src="{{ ASSET_SERVER_URL }}507a0979-Voidbridge.jpg" alt="Voidbridge" />
+        </li>
+        <li class="p-inline-images__item p-inline-images__item--smaller">
+          <img src="{{ ASSET_SERVER_URL }}2e38f398-uct.svg" alt="UCT" />
+        </li>
+      </ul>
     </div>
   </div>
 </section>
@@ -107,8 +196,8 @@
         <li class="p-list__item is-ticked">Repeatable automated deployment</li>
         <li class="p-list__item is-ticked">Hardware guidance</li>
       </ul>
-      <p><a href="/cloud/contact-us?product=openstack" class="p-button--positive">Contact us for custom OpenStack engineering</a></p>
-      <p><a href="/cloud/foundation-cloud">Learn more about Foundation Cloud Build&nbsp;&rsaquo;</a></p>
+      <p><a href="/openstack/contact-us?product=foundation-cloud" class="p-button--positive">Contact us for custom OpenStack engineering</a></p>
+      <p><a href="/openstack/foundation-cloud">Learn more about Foundation Cloud Build&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-5 prefix-1">
       <blockquote class="p-pull-quote">
@@ -119,17 +208,6 @@
   </div>
 </section>
 
-<section class="p-strip--light is-deep">
-  <div class="row">
-    <div class="col-8">
-      <h2>conjure-up OpenStack</h2>
-      <p>Canonical&rsquo;s <a href="http://conjure-up.io/" class="p-link--external">conjure-up</a> is an installer for complex topologies of interconnected software, like OpenStack and Kubernetes, or Hadoop. It works on Amazon, Azure, Google Cloud, Oracle Cloud, Rackspace and private infrastructure &mdash; bare metal, LXD containers, VMware or OpenStack.</p>
-      <p>Want to try out Ubuntu OpenStack or Kubernetes for the first time? Start with conjure-up. conjure-up is an open source command line tool written in Python. It uses &lsquo;spells&rsquo; which describe the applications to deploy &mdash; modify, create and publish your own spells easily to share your reference architecture inside the organisation.</p>
-      <p><a href="/download/cloud/conjure-up" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Openstack', 'eventLabel' : 'Install with conjure-up', 'eventValue' : undefined });">Install with conjure-up&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-</section>
-
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_cloud_buy_landscape" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_ubuntu_advantage" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
 
 {% endblock content %}

@@ -1,6 +1,6 @@
-{% extends "cloud/base_cloud.html" %}
+{% extends "openstack/_base_openstack.html" %}
 {% load versioned_static  %}
-{% block title %}BootStack - your managed cloud | Ubuntu{% endblock %}
+{% block title %}BootStack - your managed cloud | OpenStack{% endblock %}
 {% block meta_description %}With BootStack, Canonical will build, support and manage your cloud for only $15 per host per day.{% endblock meta_description %}
 
 {% block content %}
@@ -21,7 +21,7 @@
           <li class="p-list__item is-ticked">When you&rsquo;re ready, we will hand over the keys</li>
         </ul>
         <p>
-          <a href="{{ ASSET_SERVER_URL }}3465457b-Bootstack_datasheet.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Read the datasheet', 'eventLabel' : 'Bootstack datasheet - Top CTA' : undefined });" class="p-button--positive">Read the datasheet</a>&#8195;<a href="/cloud/contact-us?product=cloud-managed-cloud" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Talk to us', 'eventLabel' : 'Bootstack - Top CTA' : undefined });" class="p-button--neutral">Talk to us</a>
+          <a href="{{ ASSET_SERVER_URL }}3465457b-Bootstack_datasheet.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Read the datasheet', 'eventLabel' : 'Bootstack datasheet - Top CTA', 'eventValue' : undefined });" class="p-button--positive">Read the datasheet</a>&#8195;<a href="/openstack/contact-us?product=cloud-managed-cloud" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Talk to us', 'eventLabel' : 'Bootstack - Top CTA', 'eventValue' : undefined });" class="p-button--neutral">Talk to us</a>
         </p>
 
       </div>
@@ -104,7 +104,7 @@
         <p>The leading OpenStack and public cloud experts choose Ubuntu &mdash; that&rsquo;s why you should talk to us about efficient OpenStack operations at scale.</p>
       </div>
       <div class="col-4 prefix-1">
-        {% include "cloud/shared/_openstack-pie-chart.html" %}
+        {% include "openstack/shared/_openstack-pie-chart.html" %}
       </div>
     </div>
   </div>
@@ -309,7 +309,7 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <p><a href="/cloud/contact-us?product=cloud-managed-cloud" class="p-button--positive">Schedule a demo</a></p>
+      <p><a href="/openstack/contact-us?product=cloud-managed-cloud" class="p-button--positive">Schedule a demo</a></p>
     </div>
   </div>
 </section>
@@ -330,7 +330,7 @@
                 <span class="p-list-step__bullet">1</span>
                 We <strong>build</strong> your cloud
               </h3>
-              <p>Together, we <a href="/cloud/foundation-cloud">design your OpenStack cloud</a> based on your hardware, scale, roadmap, applications and monitoring system. This happens on your site, in your datacentre or hosted at a third-party facility.</p>
+              <p>Together, we <a href="/openstack/foundation-cloud">design your OpenStack cloud</a> based on your hardware, scale, roadmap, applications and monitoring system. This happens on your site, in your datacentre or hosted at a third-party facility.</p>
             </div>
             <div class="col-6 u-align--center u-hide--small">
               <img src="{{ ASSET_SERVER_URL }}4287c2b2-transfer.svg" alt="" width="134">
@@ -366,7 +366,7 @@
           </div>
         </li>
       </ol>
-      <p><a href="/cloud/contact-us?product=cloud-managed-cloud" class="p-button--positive">Free quote and architecture assessment</a></p>
+      <p><a href="/openstack/contact-us?product=cloud-managed-cloud" class="p-button--positive">Free quote and architecture assessment</a></p>
     </div>
   </div>
 </section>
@@ -385,12 +385,12 @@
     <div class="col-4 p-divider__block">
       <h3 class="p-heading--four">Build services</h3>
       <p>We can build your cloud. Get started fast with our OpenStack reference architecture or a custom design to optimise your workloads.</p>
-      <p><a href="/cloud/foundation-cloud">OpenStack build service&nbsp;&rsaquo;</a></p>
+      <p><a href="/openstack/foundation-cloud">OpenStack build service&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 p-divider__block">
       <h3 class="p-heading--four">Fully managed Kubernetes</h3>
       <p>Canonical will <a href="">build, operate and transfer a Kubernetes cluster</a> for you, on bare metal, OpenStack, VMware or public cloud.</p>
-      <p><a href="/cloud/kubernetes">Canonical Kubernetes&nbsp;&rsaquo;</a></p>
+      <p><a href="/kubernetes">Canonical Kubernetes&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
@@ -406,14 +406,14 @@
     </div>
     <div class="col-4 p-divider__block">
       <h3 class="p-heading--four">Custom integration</h3>
-      <p>Integrate your OpenStack with existing storage SANs, network and SDN controllers, authentication systems like LDAP or Active Directory, and monitoring systems using our <a href="/cloud/foundation-cloud">professional services and consulting</a> teams.</p>
+      <p>Integrate your OpenStack with existing storage SANs, network and SDN controllers, authentication systems like LDAP or Active Directory, and monitoring systems using our <a href="/openstack/foundation-cloud">professional services and consulting</a> teams.</p>
     </div>
   </div>
 </section>
 <section class="p-strip is-shallow u-no-padding--top">
   <div class="row">
     <div class="col-12">
-      <p><a href="/cloud/contact-us?product=cloud-managed-cloud" class="p-button--positive">Let&rsquo;s discuss your requirements</a></p>
+      <p><a href="/openstack/contact-us?product=cloud-managed-cloud" class="p-button--positive">Let&rsquo;s discuss your requirements</a></p>
     </div>
   </div>
 </section>
