@@ -1,7 +1,7 @@
 {% if limit %}
-    {% get_rss_feed "https://insights.ubuntu.com/feed/" limit=limit as feed %}
+    {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts" limit=limit as feed %}
 {% else %}
-    {% get_rss_feed "https://insights.ubuntu.com/feed/" limit=5 as feed %}
+    {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts" limit=5 as feed %}
 {% endif %}
 
 {% if feed is False %}
@@ -11,7 +11,7 @@
 {% else %}
   <ul class='p-list'>
     {% for item in feed %}
-      <li class="p-list__item"><a href="{{item.link}}">{{item.title}}&nbsp;&rsaquo;</a></li>
+      <li class="p-list__item"><a href="{{item.link|replace_admin}}">{{item.title.rendered|safe}}&nbsp;&rsaquo;</a></li>
     {% endfor %}
   </ul>
 {% endif %}
