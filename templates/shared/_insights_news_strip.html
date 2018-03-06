@@ -1,12 +1,12 @@
-{# example include- include "shared/_insights_news_strip.html"  with rss_spotlight_url="https://insights.ubuntu.com/tag/spotlight/feed" rss_news_url="https://insights.ubuntu.com/feed" strip_classes="" gtm_event_label="ubuntu.com homepage" #}
+{# example include- include "shared/_insights_news_strip.html" with rss_spotlight_url="https://insights.ubuntu.com/tag/spotlight/feed" rss_news_url="https://insights.ubuntu.com/feed" strip_classes="" gtm_event_label="ubuntu.com homepage" #}
 
 
-{% get_rss_feed rss_spotlight_url limit=1 as spotlight_feed %}
+{% get_json_feed rss_spotlight_url limit=1 as spotlight_feed %}
 
 {% if spotlight_feed %}
-  {% get_rss_feed rss_news_url limit=3 exclude_items_in=spotlight_feed as insights_feed %}
+  {% get_json_feed rss_news_url limit=3 as insights_feed %}
 {% else %}
-  {% get_rss_feed rss_news_url limit=4 as insights_feed %}
+  {% get_json_feed rss_news_url limit=4 as insights_feed %}
 {% endif %}
 
 {% if insights_feed is False %}
@@ -40,8 +40,8 @@
         <div>
           {% for item in insights_feed %}
             <div class="col-3">
-              <h3 class="p-heading--four"><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : '{{ gtm_event_label }} news link', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title }}</a></h3>
-              <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
+              <h3 class="p-heading--four"><a href="{{ item.link|replace_admin }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : '{{ gtm_event_label }} news link', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title.rendered|safe }}</a></h3>
+              <p><time pubdate datetime="{{ item.date }}">{{ item.date|format_date }}</time></p>
             </div>
           {% endfor %}
         </div>
@@ -57,8 +57,8 @@
           </h2>
           {% for item in spotlight_feed %}
           <div>
-            <h3 class="p-heading--four"><a href="{{ item.link }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : '{{ gtm_event_label }} spotlight article', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title }}</a></h3>
-            <p><time pubdate datetime="{{ item.updated }}">{{ item.updated_datetime|date:"j F Y" }}</time></p>
+            <h3 class="p-heading--four"><a href="{{ item.link|replace_admin }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : '{{ gtm_event_label }} spotlight article', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title.rendered|safe }}</a></h3>
+            <p><time pubdate datetime="{{ item.date }}">{{ item.date|format_date }}</time></p>
           </div>
           {% endfor %}
         </div>
