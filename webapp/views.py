@@ -39,7 +39,7 @@ class UbuntuTemplateFinder(TemplateFinder):
 class ResourcesView(TemplateView):
     template_name = 'resources/index.html'
 
-    INSIGHTS_URL = 'https://insights.ubuntu.com'
+    INSIGHTS_URL = 'https://admin.insights.ubuntu.com'
     API_URL = INSIGHTS_URL + '/wp-json/wp/v2'
     RESOURCE_FILTER = 'categories=1172,1509,1187,1485'
     PER_PAGE = 9
