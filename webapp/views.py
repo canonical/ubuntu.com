@@ -89,25 +89,21 @@ class ResourcesView(TemplateView):
     def _normalise_resources(self, resources):
         for resource in resources:
             resource = self._embed_resource_data(resource)
-            for groups in resource['group']:
-                if groups in self.GROUPBYID:
-                    group_id = groups
+            for group in resource['group']:
+                if group in self.GROUPBYID:
+                    resource['group'] = {
+                        'name': self.GROUPBYID[group]['name'],
+                        'slug': self.GROUPBYID[group]['slug'],
+                    }
                     break
-            for categories in resource['categories']:
-                if categories in self.CATEGORIESBYID:
-                    category_id = categories
+            for category in resource['categories']:
+                if category in self.CATEGORIESBYID:
+                    resource['category'] = {
+                        'name': self.CATEGORIESBYID[category]['name'],
+                        'slug': self.CATEGORIESBYID[category]['slug'],
+                    }
                     break
 
-            group = {
-                'name': self.GROUPBYID[group_id]['name'],
-                'slug': self.GROUPBYID[group_id]['slug'],
-                }
-            category = {
-                'name': self.CATEGORIESBYID[category_id]['name'],
-                'slug': self.CATEGORIESBYID[category_id]['slug'],
-                }
-            resource['group'] = group
-            resource['category'] = category
         return resources
 
     def _generate_pagination_queries(self, index, posts_length):
@@ -184,9 +180,12 @@ class ResourcesView(TemplateView):
                     per_page=self.PER_PAGE + 1,
                     offset=offset,
                 )
-                posts = self._normalise_resources(
-                    get_json_feed_content(api_url)
-                )
+                feed_content = get_json_feed_content(api_url)
+
+                if feed_content is False:
+                    raise IOError('Failed to get feed: ' + api_url)
+
+                posts = self._normalise_resources(feed_content)
                 posts_length = len(posts)
                 name = self.GROUPS[topic]['name']
                 slug = topic
@@ -208,9 +207,12 @@ class ResourcesView(TemplateView):
                     per_page=self.PER_PAGE + 1,
                     offset=offset,
                 )
-                posts = self._normalise_resources(
-                    get_json_feed_content(api_url)
-                )
+                feed_content = get_json_feed_content(api_url)
+
+                if feed_content is False:
+                    raise IOError('Failed to get feed: ' + api_url)
+
+                posts = self._normalise_resources(feed_content)
                 posts_length = len(posts)
                 title = 'All {name}'.format(
                     name=self.CATEGORIES[content]['name']
@@ -235,9 +237,12 @@ class ResourcesView(TemplateView):
                     per_page=self.PER_PAGE + 1,
                     offset=offset,
                 )
-                posts = self._normalise_resources(
-                    get_json_feed_content(api_url)
-                )
+                feed_content = get_json_feed_content(api_url)
+
+                if feed_content is False:
+                    raise IOError('Failed to get feed: ' + api_url)
+
+                posts = self._normalise_resources(feed_content)
                 posts_length = len(posts)
                 title = '{topic} {content}'.format(
                     topic=self.GROUPS[topic]['name'],
@@ -262,9 +267,13 @@ class ResourcesView(TemplateView):
                 per_page=self.PER_PAGE + 1,
                 offset=offset,
             )
-            posts = self._normalise_resources(
-                get_json_feed_content(api_url)
-            )
+            feed_content = get_json_feed_content(api_url)
+
+            if feed_content is False:
+                raise IOError('Failed to get feed: ' + api_url)
+
+            posts = self._normalise_resources(feed_content)
+
             if posts:
                 posts_length = len(posts)
                 if 'posts' not in feed_items.keys():
@@ -287,12 +296,22 @@ class ResourcesView(TemplateView):
 
         # Get any existing context
         context = super(ResourcesView, self).get_context_data(**kwargs)
-        context.update(self._get_resources())
+        try:
+            context.update(self._get_resources())
+        except IOError:
+            context['posts'] = False
+
         context['topic_slug'] = self.request.GET.get('topic')
         context['content_slug'] = self.request.GET.get('content')
         context['page_index'] = int(self.request.GET.get('page', 1))
         context['search_slug'] = self.request.GET.get('q', '')
         return context
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        status = 503 if context.get('posts') is False else 200
+
+        return self.render_to_response(context, status=status)
 
 
 class DownloadView(UbuntuTemplateFinder):
