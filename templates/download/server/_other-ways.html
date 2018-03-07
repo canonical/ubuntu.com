@@ -14,7 +14,7 @@
           <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}8a199d55-picto-articles-warmgrey.svg" />
           <h3 class="p-heading-icon__title" style="font-size: 1.5rem;">Further OpenStack reading</h3>
         </div>
-          {% include "templates/_further_reading_links.html" with feed="https://insights.ubuntu.com/tag/openstack/feed" limit=3 %}
+          {% include "templates/_further_reading_links.html" with insights_news_url="https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?tags=1327&per_page=3" %}
           {% else %}
           {% include "download/shared/_buy_a_usb.html" %}
           {% endif %}
