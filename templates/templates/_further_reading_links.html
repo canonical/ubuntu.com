@@ -1,8 +1,4 @@
-{% if limit %}
-    {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts" limit=limit as feed %}
-{% else %}
-    {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts" limit=5 as feed %}
-{% endif %}
+{% get_json_feed insights_news_url as feed %}
 
 {% if feed is False %}
   <div class="p-notification--negative">
