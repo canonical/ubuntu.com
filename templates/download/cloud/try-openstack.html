@@ -17,7 +17,7 @@
           <div class="col-6 p-divider__block">
             <h3>Requirements</h3>
             <ul class="p-list">
-              <li class="p-list__item is-ticked">Laptop, desktop or virtual machine with 16GB RAM, Ubuntu 16.04 LTS and <a href="/containers/lxd" title="More information about LXD">LXD</a> installed</li>
+              <li class="p-list__item is-ticked">Laptop, desktop or virtual machine with 16GB RAM, Ubuntu 16.04 LTS, snapd and <a href="/containers/lxd" title="More information about LXD">LXD</a> installed</li>
               <li class="p-list__item is-ticked">An hour of your time</li>
             </ul>
           </div>
@@ -29,7 +29,7 @@
 
 {% include "download/shared/_get_ebook.html"%}
 
-<div class="p-strip is-bordered">
+<div class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-12">
       <h2>Watch the conjure-up walkthrough</h2>
@@ -40,7 +40,7 @@
   </div>
 </div>
 
-<div id="instructions" class="p-strip--light is-deep is-bordered">
+<div id="instructions" class="p-strip is-deep is-bordered">
   <div class="row">
     <h2>Installation instructions</h2>
     <ol class="p-stepped-list--detailed">
@@ -57,6 +57,36 @@
             <input aria-label="code snippet" class="p-code-snippet__input" value="conjure-up" readonly="readonly">
             <button class="p-code-snippet__action">Copy to clipboard</button>
           </p>
+
+          <div class="p-notification--caution">
+            <div class="p-notification__response">
+              <p>
+                <span class="p-notification__status">Note:</span>
+              </p>
+              <p>
+                If above commands fail you’ll want to make sure snapd is installed on your system as it is not available in releases before Ubuntu 16.04 LTS or in the daily images from cdimage.ubuntu.com:
+              </p>
+              <p class="p-code-snippet">
+                <input aria-label="code snippet" class="p-code-snippet__input" value="sudo apt update && sudo apt upgrade" readonly="readonly">
+                <button class="p-code-snippet__action">Copy to clipboard</button>
+              </p>
+              <p class="p-code-snippet">
+                <input aria-label="code snippet" class="p-code-snippet__input" value="sudo apt install snapd" readonly="readonly">
+                <button class="p-code-snippet__action">Copy to clipboard</button>
+              </p>
+              <p>
+                Then relogin or run:
+              </p>
+              <p class="p-code-snippet">
+                <input aria-label="code snippet" class="p-code-snippet__input" value="source /etc/profile.d/apps-bin-path.sh" readonly="readonly">
+                <button class="p-code-snippet__action">Copy to clipboard</button>
+              </p>
+              <p>
+                Now you can try installing conjure-up again.
+              </p>
+            </div>
+          </div>
+
         </div>
       </li>
       <li class="p-list-step__item col-12">
