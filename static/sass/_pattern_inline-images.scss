@@ -33,10 +33,11 @@
 
     &[src*="svg"] {
       max-width: 7rem;
-      width: fit-content;
+      min-width: 3rem;
 
       @media only screen and (min-width: $breakpoint-medium) {
         max-width: 9rem;
+        min-width: 5rem;
       }
     }
 
