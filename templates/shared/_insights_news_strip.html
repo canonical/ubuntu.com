@@ -1,66 +1,55 @@
+{% if topic_id %}
+  {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?sticky=true&per_page=1&topic="|add:topic_id as spotlight_articles %}
 
-{% get_json_feed insights_spotlight_url limit=1 as spotlight_feed %}
-
-{% if spotlight_feed %}
-  {% get_json_feed insights_news_url limit=3 as insights_feed %}
+  {% if spotlight_articles %}
+    {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?sticky=false&per_page=3&topic="|add:topic_id as articles %}
+  {% else %}
+    {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?sticky=false&per_page=4&topic="|add:topic_id as articles %}
+  {% endif %}
 {% else %}
-  {% get_json_feed insights_news_url limit=4 as insights_feed %}
+  {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?sticky=true&per_page=1" as spotlight_articles %}
+
+  {% if spotlight_articles %}
+    {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?sticky=false&per_page=3" as articles %}
+  {% else %}
+    {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?sticky=false&per_page=4" as articles %}
+  {% endif %}
 {% endif %}
 
-{% if insights_feed is False %}
-  <section class="p-strip is-deep is-bordered">
-    <div class="row">
-      <div class="col-8">
-        <h2 class="p-link--external p-heading--insights__title">
-          <a href="https://insights.ubuntu.com/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'clicks insights feed link - feed error', 'eventLabel' : '{{ gtm_event_label }}', 'eventValue' : undefined });">
-            Latest news from Insights
-          </a>
-        </h2>
-        <div class="p-notification--negative">
-          <p class="p-notification__response"><span class="p-notification__status">Error:</span>The live news feed failed to load. Please <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new" class="external">report this bug</a> and our team will fix the problem as soon as possible.</p>
-        </div>
-        <p>The latest Ubuntu news is available on the <a href="https://insights.ubuntu.com/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'clicks insights feed message link - feed error', 'eventLabel' : '{{ gtm_event_label }}', 'eventValue' : undefined });" class="p-link--external">Insights website</a>.</p>
-      </div>
-    </div>
-  </section>
-{% else %}
-  <section class="{% if strip_classes %}{{strip_classes}}{% else %}p-strip is-deep is-bordered{% endif%}">
-    <div class="row {% if spotlight_feed %}p-divider{% endif %}">
-      <div class="{% if spotlight_feed %}col-9 p-divider__block{% else %}col-12{% endif %}">
-        {# insights heading #}
-        <h2 class="p-link--external p-heading--insights__title">
-          <a href="https://insights.ubuntu.com/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'clicks insights feed link', 'eventLabel' : '{{ gtm_event_label }}', 'eventValue' : undefined });">
-            Latest news from Insights
-          </a>
-        </h2>
+<div class="row {% if spotlight_articles %}p-divider{% endif %}">
+  <div class="{% if spotlight_articles %}col-9 p-divider__block{% else %}col-12{% endif %}">
+    {# insights heading #}
+    <h2 class="p-link--external p-heading--insights__title">
+      <a href="https://insights.ubuntu.com/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'clicks insights feed link', 'eventLabel' : '{{ gtm_event_label }}', 'eventValue' : undefined });">
+        Latest news from Insights
+      </a>
+    </h2>
 
-        {# insights news items #}
-        <div>
-          {% for item in insights_feed %}
-            <div class="col-3">
-              <h3 class="p-heading--four"><a href="{{ item.link|replace_admin }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : '{{ gtm_event_label }} news link', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title.rendered|safe }}</a></h3>
-              <p><time pubdate datetime="{{ item.date }}">{{ item.date|format_date }}</time></p>
-            </div>
-          {% endfor %}
+    {# insights news items #}
+    <div>
+      {% for article in articles %}
+        <div class="col-3">
+          <h3 class="p-heading--four"><a href="{{ article.link|replace_admin }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : '{{ gtm_event_label }} news link', 'eventLabel' : '{{ article.title|escapejs }}', 'eventValue' : '{{ article.link }}' });">{{ article.title.rendered|safe }}</a></h3>
+          <p><time pubdate datetime="{{ article.date }}">{{ article.date|format_date }}</time></p>
         </div>
-      </div>
-
-      {# spotlight heading #}
-      {% if spotlight_feed %}
-        <div class="col-3 p-divider__block">
-          <h2 class="p-link--external p-heading--insights__title">
-            <a href="https://insights.ubuntu.com/tag/spotlight/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : '{{ gtm_event_label }} spotlight feed link', 'eventLabel' : '{{ gtm_event_label }}', 'eventValue' : undefined });">
-              Spotlight
-            </a>
-          </h2>
-          {% for item in spotlight_feed %}
-          <div>
-            <h3 class="p-heading--four"><a href="{{ item.link|replace_admin }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : '{{ gtm_event_label }} spotlight article', 'eventLabel' : '{{ item.title|escapejs }}', 'eventValue' : '{{ item.link }}' });">{{ item.title.rendered|safe }}</a></h3>
-            <p><time pubdate datetime="{{ item.date }}">{{ item.date|format_date }}</time></p>
-          </div>
-          {% endfor %}
-        </div>
-      {% endif %}
+      {% endfor %}
     </div>
-  </section>
-{% endif %}
+  </div>
+
+  {# spotlight heading #}
+  {% if spotlight_articles %}
+    <div class="col-3 p-divider__block">
+      <h2 class="p-link--external p-heading--insights__title">
+        <a href="https://insights.ubuntu.com/tag/spotlight/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : '{{ gtm_event_label }} spotlight feed link', 'eventLabel' : '{{ gtm_event_label }}', 'eventValue' : undefined });">
+          Spotlight
+        </a>
+      </h2>
+      {% for article in spotlight_articles %}
+      <div>
+        <h3 class="p-heading--four"><a href="{{ article.link|replace_admin }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : '{{ gtm_event_label }} spotlight article', 'eventLabel' : '{{ article.title|escapejs }}', 'eventValue' : '{{ article.link }}' });">{{ article.title.rendered|safe }}</a></h3>
+        <p><time pubdate datetime="{{ article.date }}">{{ article.date|format_date }}</time></p>
+      </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
