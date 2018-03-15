@@ -380,7 +380,9 @@
   </div>
 </section>
 
-{% include "shared/_insights_news_strip.html" with insights_spotlight_url="https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?topic=1477&sticky=true&per_page=1" insights_news_url="https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?topic=1477&sticky=false&per_page=5" strip_classes="p-strip--light is-deep is-bordered" gtm_event_label="ubuntu.com cloud overview" %}
+<section class="p-strip--light is-deep is-bordered">
+  {% include "shared/_insights_news_strip.html" with topic_id="1477" gtm_event_label="ubuntu.com cloud overview" %}
+</section>
 
 <section class="p-strip">
   <div class="row">

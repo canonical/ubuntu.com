@@ -9,7 +9,9 @@
 
 {% include "takeovers/_iot-business.html" %}
 
-{% include "shared/_insights_news_strip.html" with insights_spotlight_url="https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?sticky=true&per_page=1" insights_news_url="https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?sticky=false&per_page=4" strip_classes="" gtm_event_label="ubuntu.com homepage" %}
+<section class="p-strip is-deep is-bordered">
+  {% include "shared/_insights_news_strip.html" with gtm_event_label="ubuntu.com homepage" %}
+</section>
 
 <section class="p-strip--light is-bordered">
   <div class="row u-align--center">
