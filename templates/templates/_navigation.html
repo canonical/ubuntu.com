@@ -29,7 +29,7 @@
       </div>
     </nav>
   </div>
-  <div class="dropdown-window u-hide--fade" {% if breadcrumbs %}style="top: 2.25rem"{% endif %}>
+  <div class="dropdown-window fade-animation" {% if breadcrumbs %}style="top: 2.25rem"{% endif %}>
   {% include "templates/_navigation-enterprise.html" %}
   {% include "templates/_navigation-developer.html" %}
   {% include "templates/_navigation-community.html" %}
@@ -38,9 +38,9 @@
 {% endblock header_banner %}
 </header>
 {% if breadcrumbs %}
-<nav class="p-navigation-secondary">
+<nav class="p-navigation__secondary">
   <a href="{{ breadcrumbs.section.path }}">
-    <h5 class="p-navigation-secondary__banner">
+    <h5 class="p-navigation__secondary-banner">
       {{ breadcrumbs.section.title }}
     </h5>
   </a>
