@@ -4,14 +4,19 @@
   .p-takeover--kubernetes-month {
     background-color: $color-kubernetes;
     background-image: url('#{$assets-path}7836831c-Takeover-small-screen.jpg?w=375');
-    background-size: cover;
+    background-size: none;
+    background-position: bottom center;
 
     @media (min-width: $breakpoint-small) {
-      background-image: url('#{$assets-path}06c85daf-FINAL+-+Takeover-large-screen.jpg');
+      background-image: url('#{$assets-path}94206a69-Takeover-large-screen.jpg?w=1280');
     }
 
     @media (min-width: 1200px) {
-      background-image: url('#{$assets-path}06c85daf-FINAL+-+Takeover-large-screen.jpg?w=1440');
+      background-image: url('#{$assets-path}94206a69-Takeover-large-screen.jpg');
+    }
+
+    @media (min-width: 1600px) {
+      background-size: cover;
     }
   }
 
