@@ -29,10 +29,12 @@
       </div>
     </nav>
   </div>
+  <div class="dropdown-window u-hide--fade" {% if breadcrumbs %}style="top: 2.25rem"{% endif %}>
   {% include "templates/_navigation-enterprise.html" %}
   {% include "templates/_navigation-developer.html" %}
   {% include "templates/_navigation-community.html" %}
   {% include "templates/_navigation-download.html" %}
+  </div>
 {% endblock header_banner %}
 </header>
 {% if breadcrumbs %}
