@@ -12,6 +12,7 @@
 
     &__search {
       align-items: center;
+      background: $color-x-light;
       border-bottom: 1px solid $color-mid-light;
       display: inline-flex;
       flex-grow: 1;
@@ -36,6 +37,10 @@
     }
 
     .p-navigation {
+      &__banner {
+        z-index: 2;
+      }
+
       &__logo {
         background: $color-brand;
         margin: 0;
@@ -109,16 +114,28 @@
     @extend .p-strip;
     background-color: $color-x-light;
     box-shadow: 0 1px 5px 1px transparentize($color-dark, .8);
+    opacity: 1;
     position: absolute;
     top: 3rem;
+    transition: all .333s cubic-bezier(.215, .61, .355, 1);
+    visibility: visible;
     z-index: 1;
   }
 
+  .u-hide--fade {
+    opacity: 0;
+    transform: translateY(-2rem);
+    visibility: hidden;
+  }
+
   .p-navigation-secondary {
+    background-color: $color-x-light;
     border-bottom: 1px solid $color-mid-light;
     display: flex;
     margin-top: 0;
+    position: relative;
     width: 100%;
+    z-index: 2;
 
     &__banner {
       background: $color-brand;

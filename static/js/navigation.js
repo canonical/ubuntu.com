@@ -9,10 +9,10 @@ navDropdowns.forEach(function(dropdown) {
 
       if (dropdown === clickedDropdown) {
         dropdown.classList.toggle('is-selected');
-        dropdownContent.classList.toggle('u-hide');
+        dropdownContent.classList.toggle('u-hide--fade');
       } else {
         dropdown.classList.remove('is-selected');
-        dropdownContent.classList.add('u-hide');
+        dropdownContent.classList.add('u-hide--fade');
       }
     });
   });
