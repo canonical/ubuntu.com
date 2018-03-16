@@ -1,0 +1,28 @@
+@mixin p-takeover-kubernetes-month {
+  $color-kubernetes: #326ce5;
+
+  .p-takeover--kubernetes-month {
+    background-color: $color-kubernetes;
+    background-image: url('#{$assets-path}7836831c-Takeover-small-screen.jpg?w=375');
+    background-size: none;
+    background-position: bottom center;
+
+    @media (min-width: $breakpoint-small) {
+      background-image: url('#{$assets-path}94206a69-Takeover-large-screen.jpg?w=1280');
+    }
+
+    @media (min-width: 1200px) {
+      background-image: url('#{$assets-path}94206a69-Takeover-large-screen.jpg');
+    }
+
+    @media (min-width: 1600px) {
+      background-size: cover;
+    }
+  }
+
+  .p-takeover--kubernetes-logo {
+    width: 264px;
+    height: 257px;
+  }
+}
+
