@@ -1,12 +1,12 @@
 var navDropdowns = document.querySelectorAll('.p-navigation__dropdown-link');
-var dropdownWindow = document.getElementsByClassName('dropdown-window')[0];
+var dropdownWindow = document.querySelector('.dropdown-window');
 
 navDropdowns.forEach(function(dropdown) {
   dropdown.addEventListener('click', function(event) {
     var clickedDropdown = this;
 
-    if (dropdownWindow.classList.contains('u-hide--fade')) {
-      dropdownWindow.classList.remove('u-hide--fade');
+    if (dropdownWindow.classList.contains('fade-animation')) {
+      dropdownWindow.classList.remove('fade-animation');
     }
 
     navDropdowns.forEach(function(dropdown) {
@@ -15,26 +15,23 @@ navDropdowns.forEach(function(dropdown) {
       if (dropdown === clickedDropdown) {
         if (dropdown.classList.contains('is-selected')) {
           dropdown.classList.remove('is-selected');
-          dropdownWindow.classList.add('u-hide--fade');
-          dropdownContent.classList.add('u-hide--fade');
-          dropdownContent.style = "visibility: hidden;"
+          dropdownWindow.classList.add('fade-animation');
+          dropdownContent.classList.add('fade-animation');
         } else {
-          dropdownContent.style = "display: block; visibility: visible;"
           dropdown.classList.add('is-selected');
-          dropdownContent.classList.remove('u-hide--fade');
+          dropdownContent.classList.remove('fade-animation', 'u-hide');
         }
       } else {
         dropdown.classList.remove('is-selected');
-        dropdownContent.classList.add('u-hide--fade');
-        dropdownContent.style = "display: none;"
+        dropdownContent.classList.add('fade-animation', 'u-hide');
       }
     });
   });
 });
 
-var globalNav = document.getElementsByClassName('global-nav')[0];
-var globalNavDropdown = document.getElementsByClassName('global-nav__dropdown-link')[0];
-var globalNavContent = document.getElementsByClassName('global-nav__dropdown-content')[0];
+var globalNav = document.querySelector('.global-nav');
+var globalNavDropdown = document.querySelector('.global-nav__dropdown-link');
+var globalNavContent = document.querySelector('.global-nav__dropdown-content');
 
 globalNavDropdown.addEventListener('click', function(event) {
   event.stopPropagation();
