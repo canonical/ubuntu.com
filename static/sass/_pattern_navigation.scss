@@ -110,22 +110,26 @@
     }
   }
 
-  .p-strip--navigation {
+  .dropdown-window {
     @extend .p-strip;
     background-color: $color-x-light;
+    border-bottom: 1px solid $color-mid-light;
     box-shadow: 0 1px 5px 1px transparentize($color-dark, .8);
     opacity: 1;
-    position: absolute;
-    top: 3rem;
-    transition: all .333s cubic-bezier(.215, .61, .355, 1);
-    visibility: visible;
+    padding: 2.5rem 0;
+    position: relative;
+    transition: all .25s cubic-bezier(.215, .61, .355, 1);
     z-index: 1;
+
+    .row {
+      margin-top: 0;
+    }
   }
 
   .u-hide--fade {
     opacity: 0;
-    transform: translateY(-2rem);
-    visibility: hidden;
+    transform: translateY(-1rem);
+    transition-duration: .25s;
   }
 
   .p-navigation-secondary {
