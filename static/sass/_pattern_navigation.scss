@@ -5,6 +5,13 @@
 
   .p-navigation {
     border-bottom: 0;
+    top: 0;
+    transition: top .333s cubic-bezier(.215, .61, .355, 1);
+    z-index: 2;
+
+    &.is-sticky {
+      position: sticky;
+    }
 
     &__wrapper {
       display: flex;
@@ -38,14 +45,19 @@
 
     &__secondary {
       background-color: $color-x-light;
-      border-bottom: 1px solid $color-mid-light;
       display: flex;
       margin-top: 0;
       position: relative;
       width: 100%;
       z-index: 2;
 
+      &.is-sticky {
+        position: sticky;
+        top: 0;
+      }
+
       > a {
+        border-bottom: 1px solid $color-brand;
         text-decoration: none;
       }
 
@@ -53,14 +65,18 @@
         &__secondary {
           @extend .p-inline-list;
           align-items: center;
+          border-bottom: 1px solid $color-mid-light;
           display: flex;
           flex-wrap: wrap;
-          margin: 0 0 0 1.25em;
-          width: auto;
+          margin: 0;
+          padding-left: 1.25rem;
+          width: 100%;
         }
   
         &__tertiary {
           @extend .breadcrumbs__secondary;
+          border-bottom: 0;
+          padding-left: 0;
           margin-left: 1.75em;
           position: relative;
   
@@ -177,7 +193,7 @@
     @extend .p-strip;
     background-color: $color-x-light;
     border-bottom: 1px solid $color-mid-light;
-    box-shadow: 0 1px 5px 1px transparentize($color-dark, .8);
+    margin-bottom: 2rem;
     padding: 2.5rem 0;
     position: relative;
     transition: all .25s cubic-bezier(.215, .61, .355, 1);
@@ -193,5 +209,14 @@
     transform: translateY(-1rem);
     transition-duration: .25s;
     visibility: hidden;
+  }
+
+  .nav-up {
+    top: -5.5rem;
+    transition: top .333s cubic-bezier(.55, .055, .675, .19);
+  }
+
+  .nav-down {
+    position: sticky;
   }
 }
