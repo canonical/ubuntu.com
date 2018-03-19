@@ -101,16 +101,16 @@
         <header class="p-card__header--{{ resource.group.slug }}">
           <h4 class="p-muted-heading">
             {{ resource.group.name }}
-          </h4>  
+          </h4>
         {% endif %}
         </header>
         <div class="p-card__content">
           {% if resource.featuredmedia.source_url %}
-          <a href="{{resource.link}}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Clicked resource', 'eventLabel' : '{{resource.title.rendered}}', 'eventValue' : undefined });" >
+          <a href="{{resource.link|replace_admin}}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Clicked resource', 'eventLabel' : '{{resource.title.rendered}}', 'eventValue' : undefined });" >
             <img src="{{resource.featuredmedia.source_url}}" alt="{{resource.featuredmedia.alt_text}}" />
           </a>
           {% endif %}
-          <h3 class="p-heading--four"><a href="{{resource.link}}">{{resource.title.rendered | safe}}</a></h3>
+          <h3 class="p-heading--four"><a href="{{resource.link|replace_admin}}">{{resource.title.rendered | safe}}</a></h3>
           {% if not resource.featuredmedia.source_url %}
             {{resource.excerpt.rendered | truncatewords:25 | safe}}
           {% endif %}
