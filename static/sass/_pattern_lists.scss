@@ -155,20 +155,18 @@
 
 @mixin ubuntu-p-inline-definition-list {
   .p-inline-definition-list {
-    margin: 0;
-    padding: 0;
-
     &__title {
       border: 0;
       float: left;
-      font-size: $sp-medium;
-      font-weight: 400;
       margin: 0 $sp-medium 0 0;
-      padding: 0;
     }
 
     &__item {
       margin: 0;
+    }
+
+    + p {
+      margin-top: $sp-medium;
     }
   }
 }
