@@ -29,15 +29,18 @@
     <div class="col-12">
       <h2>What&rsquo;s new in {{lts_release_full}}</h2>
       <ul class="p-list is-split">
-        <li class="p-list__item is-ticked">Supported by Canonical until 2021</li>
+        <li class="p-list__item is-ticked">Supported by Canonical until 2023</li>
         <li class="p-list__item is-ticked">Runs on all major architectures &ndash; x86, x86-64, ARM v7, ARM64, POWER8 and IBM s390x (LinuxONE)</li>
+        <li class="p-list__item is-ticked">New ubuntu-minimal images that are smaller and boot faster</li>
+        <li class="p-list__item is-ticked">Fast and accurate time synchronization with chrony</li>
+        <li class="p-list__item is-ticked">A new, default server installer ISO with a new interface and faster install</li>
         <li class="p-list__item is-ticked">Supports ZFS, the next-generation volume management/ file system ideal for servers and containers</li>
-        <li class="p-list__item is-ticked">LXD Linux container hypervisor enhancements including QoS and resource controls (CPU, memory, block I/O, storage quota)</li>
+        <li class="p-list__item is-ticked">LXD 3.0 - Linux containers including clustering, Qos, and resource controls (CPU, memory, block I/O/ graphics, and storage quota)</li>
+        <li class="p-list__item is-ticked">Updates to LXD (v3.0), DPDK (v17.11.1), Postgresql (v10.3), Libvirt (v4.0), NGINX (v1.13), Qemu (v2.11.1), Docker (v17.03), Puppet (v4.10), MySQL (v5.7), PHP (v7.2), and more</li>
         <li class="p-list__item is-ticked">Install snaps for simple application installation and release management</li>
-        <li class="p-list__item is-ticked">First production release of DPDK - line speed kernel networking</li>
-        <li class="p-list__item is-ticked">Linux 4.4 kernel and systemd service manager</li>
+        <li class="p-list__item is-ticked">Linux 4.15 kernel</li>
         <li class="p-list__item is-ticked">Certification as a guest on AWS, Microsoft Azure, Joyent, IBM, Google Cloud Platform and Rackspace</li>
-        <li class="p-list__item is-ticked">Updates to Tomcat (v8), Postgresql (v9.5), Docker v(1.10), Puppet (v3.8.5), Qemu (v2.5), Libvirt (v1.3.1), LXC (v2.0), and MySQL (v5.6) and more</li>
+        <li class="p-list__item is-ticked">Easily configure networking through netplan.io</li>
       </ul>
       <p><a class="p-link--external"
         href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes">Read more in the release notes
@@ -59,8 +62,7 @@
         <div class="p-list">
           <ul class="p-list is-split">
             <li class="p-list__item is-ticked">Management at scale</li>
-            <li class="p-list__item is-ticked">Deploy or rollback security updates</li>
-            <li class="p-list__item is-ticked">Kernel livepatching</li>
+            <li class="p-list__item is-ticked">Deploy security updates</li>
             <li class="p-list__item is-ticked">Compliance reporting</li>
             <li class="p-list__item is-ticked">Role-based access</li>
             <li class="p-list__item is-ticked">Informative monitoring</li>
@@ -185,7 +187,7 @@
           <h3 class="p-heading-icon__title">LXD &mdash; system containers</h3>
         </div>
         <p>LXD, the Linux container hypervisor, merges the speed and density of containers with the manageability and security of traditional virtual machines. Economics are directly tied to density, and no other virtualisation technology is as fast or dense as LXD.</p>
-        <p><a href="/cloud/lxd">Learn more about LXD&nbsp;&rsaquo;</a></p>
+        <p><a href="/containers/lxd">Learn more about LXD&nbsp;&rsaquo;</a></p>
       </div>
     </div>
   </div>
@@ -220,7 +222,7 @@
       <h3>Choose from the most popular public clouds</h3>
       <p>Use Ubuntu Server in the public cloud and get all the benefits of Ubuntu Server, specially tailored for public cloud infrastructures and without any licence restrictions.</p>
       <p>Ubuntu is the most widely used developer platform for open&dash;source cloud building, the reference operating system for OpenStack, and the most popular cloud guest operating system on private and public clouds globally.</p>
-      <p><a href="/cloud/public-cloud/guest">Learn more about Ubuntu Cloud&nbsp;&rsaquo;</a></p>
+      <p><a href="/cloud/public-cloud">Learn more about Ubuntu Cloud&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </div>
@@ -372,7 +374,7 @@
         <h2 id="a-thriving-community">A thriving community</h2>
         <p>Exchange expertise and ideas with thousands of other IT professionals</p>
         <p>Want to talk to other Ubuntu users straightaway? Share ideas and get advice and help from our large, active community of IT professionals. As a community, we set high standards for friendliness and tolerance, we welcome your questions and contributions!</p>
-        <p><a class="p-link--external" href="http://community.ubuntu.com">Join the community</a></p>
+        <p><a class="p-link--external" href="/community">Join the community</a></p>
       </div>
       <div class="col-3 u-vertically-center u-align--center">
         <img src="{{ ASSET_SERVER_URL }}039628d5-picto-community-orange.svg" class="u-hide--small" alt="" width="136" height="136" />
