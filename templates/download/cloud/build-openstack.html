@@ -52,19 +52,19 @@
           <h3 class="p-list-step__title"><span class="p-list-step__bullet">2</span>Install MAAS</h3>
           <div class="p-list-step__content">
             <p>To install MAAS, start off on your Ubuntu Server 16.04 LTS machine and type the command below following the step-by-step instructions:</p>
-            <p class="p-code-snippet">
+            <div class="p-code-snippet">
               <input class="p-code-snippet__input" value="sudo apt update" readonly="readonly">
               <button class="p-code-snippet__action">Copy to clipboard</button>
-            </p>
-            <p class="p-code-snippet">
+            </div>
+            <div class="p-code-snippet">
               <input class="p-code-snippet__input" value="sudo apt install maas" readonly="readonly">
               <button class="p-code-snippet__action">Copy to clipboard</button>
-            </p>
+            </div>
             <p>Create your admin credentials and optionally import your SSH key by typing:</p>
-            <p class="p-code-snippet">
+            <div class="p-code-snippet">
               <input class="p-code-snippet__input" value="sudo maas createadmin" readonly="readonly">
               <button class="p-code-snippet__action">Copy to clipboard</button>
-            </p>
+            </div>
             <p>Login to the MAAS UI at <code>http://&lt;maas.ip&gt;/MAAS/</code></p>
             <p>Fill in the details on the welcome page and import images for Ubuntu 14.04 LTS and 16.04 LTS. Importing images may take a while, but you can click &ldquo;continue&rdquo; as soon as it&rsquo;s started</p>
             <p>If you haven&rsquo;t imported your SSH key before, now is your chance to import one from Launchpad, GitHub or you can also upload it directly</p>
@@ -111,14 +111,14 @@
           <h3 class="p-list-step__title"><span class="p-list-step__bullet">6</span>Install and launch conjure-up</h3>
           <div class="p-list-step__content">
             <p>On the MAAS server, in a terminal window, install the conjure-up snap:</p>
-            <p class="p-code-snippet">
+            <div class="p-code-snippet">
               <input class="p-code-snippet__input" value="sudo snap install conjure-up --classic" readonly="readonly">
               <button class="p-code-snippet__action">Copy to clipboard</button>
-            </p>
-            <p class="p-code-snippet">
+            </div>
+            <div class="p-code-snippet">
               <input class="p-code-snippet__input" value="conjure-up" readonly="readonly">
               <button class="p-code-snippet__action">Copy to clipboard</button>
-            </p>
+            </div>
             <p>If successful you should see a screen as below:</p>
             <p>
               <a href="{{ ASSET_SERVER_URL }}b4a8693c-build-openstack-with-conjure-up-1.png">
