@@ -3,16 +3,4 @@
     @extend .p-tabs__list;
     display: flex;
   }
-
-  .p-tabs__item--select {
-    @extend .p-tabs__item;
-    margin: 3px 0 3px auto;
-
-    @media screen and (max-width: $breakpoint-medium - 1) {
-      height: 0;
-      margin: 0;
-      visibility: hidden;
-      width: 0;
-    }
-  }
 }
