@@ -1,0 +1,22 @@
+@mixin ubuntu-p-heading-icon {
+  .p-heading-icon--muted {
+
+    .p-heading-icon__header {
+      margin-bottom: map-get($sp-after, small) - map-get($nudges, nudge--small);
+    }
+
+    .p-heading-icon__title {
+      @extend %muted-heading;
+      align-items: center;
+      display: flex;
+      line-height: 1.875rem;
+      margin-bottom: 0;
+    }
+  }
+
+  .p-heading-icon__img--small {
+    align-self: center;
+    height: auto;
+    max-width: 2rem;
+  }
+}
