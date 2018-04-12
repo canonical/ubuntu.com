@@ -26,6 +26,7 @@
 @import 'pattern_contribution';
 @import 'pattern_inline-images';
 @import 'pattern_testimonials';
+@import 'pattern_heading-icon';
 @import 'pattern_hero';
 @import 'pattern_pull_quotes';
 @import 'utility_full-width';
@@ -52,6 +53,7 @@
 @include ubuntu-p-contribute;
 @include ubuntu-p-inline-images;
 @include ubuntu-p-testimonials;
+@include ubuntu-p-heading-icon;
 @include ubuntu-p-hero;
 @include ubuntu-p-pull-quote;
 @include ubuntu-u-full-width;
@@ -114,8 +116,7 @@ abbr[title] {
 }
 
 .p-heading--insights__title {
-  color: $color-dark;
-  font-size: $sp-medium;
+  @extend %vf-heading-5;
   font-weight: 300;
   text-transform: uppercase;
 
@@ -183,17 +184,6 @@ abbr[title] {
 .u-no-background--small {
   @media (max-width: $breakpoint-medium) {
     background-image: none !important;
-  }
-}
-
-/// XXX Muted icon headers
-.p-heading-icon {
-  &__img--small {
-    max-width: 30px;
-  }
-
-  &__title--muted {
-    color: $color-mid-dark;
   }
 }
 
