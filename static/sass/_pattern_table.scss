@@ -1,4 +1,11 @@
 @mixin ubuntu-p-tables {
+  // To be fixed upstream in the Vanilla 1.7.0 beta
+  thead th,
+  thead td {
+    padding-top: $sp-small;
+    vertical-align: middle;
+  }
+
   .p-table {
     &__cell--highlight {
       background: $color-x-light;
