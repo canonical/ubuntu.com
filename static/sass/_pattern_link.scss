@@ -10,21 +10,21 @@
   }
 
   h1,
-  h2,
-  h3,
-  h4 {
+  h2 {
     &.p-link--external {
       @extend %external-link-heading;
-      background-position: left;
+      background-position: left calc(100% - .25em);
     }
   }
 
+  h3,
+  h4,
   h5,
   h6,
   .p-heading--insights__title {
     &.p-link--external {
       @extend %external-link-heading;
-      background-position: left .75em;
+      background-position: left calc(100% - .33em);
     }
   }
 
