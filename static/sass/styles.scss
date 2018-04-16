@@ -278,18 +278,3 @@ select {
 p + pre {
   margin-top: $sp-medium;
 }
-
-// XXX Caleb 06/02/2018 Modifier to Matrix pattern so images can be large
-.p-matrix {
-  &__img {
-    &-container {
-      min-height: 5rem;
-      padding: .5rem 0 1rem 0;
-    }
-
-    &--large {
-      @extend .p-matrix__img; // sass-lint:disable-line placeholder-in-extend
-      max-width: 100%;
-    }
-  }
-}
