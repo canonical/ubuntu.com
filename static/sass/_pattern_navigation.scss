@@ -151,7 +151,7 @@
 
           > a {
             border-bottom: 1px solid $color-mid-light;
-            color: $color-mid-light;
+            color: $color-light;
             font-size: 1.125rem;
             padding: .675rem 1.75rem .575rem 1.25rem;
           }
@@ -174,18 +174,15 @@
 
   .navigation-col {
     // on dropdowns - the nav lists
-    color: $color-dark;
 
     h4 {
       font-size: $sp-medium;
       font-weight: 400;
-      line-height: $sp-medium;
       margin-top: $sp-medium;
     }
 
     p {
       font-size: $sp-medium-small;
-      line-height: $sp-medium;
     }
 
     ul {
@@ -193,7 +190,6 @@
 
       > .p-list__item {
         font-size: $sp-medium-small;
-        line-height: $sp-medium;
         margin-top: $sp-xx-small;
       }
     }
@@ -201,22 +197,18 @@
 
   .resource-col {
     background-color: $color-light;
-    color: $color-dark;
     padding: 1rem;
 
     h4 {
-      line-height: $sp-medium;
       margin-top: $sp-medium;
     }
 
     p {
       font-size: $sp-medium-small;
-      line-height: $sp-medium;
     }
 
     .p-list__item {
       font-size: $sp-medium-small;
-      line-height: $sp-medium;
       margin-top: 0;
     }
   }
@@ -226,6 +218,8 @@
     background-color: $color-x-light;
     border-bottom: 1px solid $color-mid-light;
     box-shadow: 0 1px 5px 1px transparentize($color-dark, .8);
+    color: $color-dark;
+    line-height: $sp-medium-large;
     padding: 2.5rem 0;
     position: relative;
     transition: all .25s cubic-bezier(.215, .61, .355, 1);
