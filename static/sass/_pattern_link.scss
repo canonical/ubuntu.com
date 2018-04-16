@@ -1,18 +1,30 @@
 @mixin ubuntu-p-link {
+  %external-link-heading {
+    background: url('#{$assets-path}e1bba201-external-link-cool-grey.svg') no-repeat;
+    background-size: .85em;
+    padding-left: 1em;
+
+    &::after {
+      display: none;
+    }
+  }
+
   h1,
   h2,
   h3,
-  h4,
-  h5,
-  h6 {
+  h4 {
     &.p-link--external {
-      background: url('#{$assets-path}e1bba201-external-link-cool-grey.svg') left .75em no-repeat;
-      background-size: .85em;
-      padding-left: 1em;
+      @extend %external-link-heading;
+      background-position: left;
+    }
+  }
 
-      &::after {
-        display: none;
-      }
+  h5,
+  h6,
+  .p-heading--insights__title {
+    &.p-link--external {
+      @extend %external-link-heading;
+      background-position: left .75em;
     }
   }
 
