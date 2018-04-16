@@ -1,31 +1,21 @@
 {% extends "openstack/_base_openstack.html" %}
-{% block title %}Try OpenStack with conjure-up | OpenStack | Ubuntu{% endblock %}
-{% block meta_description %}Want to deploy OpenStack on a single machine? Use Conjure-up. It’s easy and free.{% endblock %}
+{% block title %}Developer | OpenStack | Ubuntu{% endblock %}
+{% block meta_description %}Want to develop on OpenStack. Use conjure-up to install it on your laptop with LXD.{% endblock %}
 
 {% block content %}
-
-<div class="p-strip--light is-deep is-bordered">
+<section class="p-strip--light is-deep is-bordered">
   <div class="row">
-    <div class="col-12">
-      <h1>Try OpenStack on a single machine</h1>
-      <div class="p-card--highlighted">
-        <div class="u-equal-height p-divider">
-          <div class="col-6 p-divider__block">
-            <h2>OpenStack with conjure-up</h2>
-            <p>Conjure-up&rsquo;s ability to easily and quickly deploy real-world OpenStack on a single laptop using LXD containers is ideal for first-time users or developers.</p>
-          </div>
-          <div class="col-6 p-divider__block">
-            <h3>Requirements</h3>
-            <ul class="p-list">
-              <li class="p-list__item is-ticked">Laptop, desktop or virtual machine with 16GB RAM, Ubuntu 16.04 LTS, snapd and <a href="/containers/lxd" title="More information about LXD">LXD</a> installed</li>
-              <li class="p-list__item is-ticked">An hour of your time</li>
-            </ul>
-          </div>
-        </div>
+    <div class="col-6">
+      <div>
+        <h1>Developer OpenStack</h1>
+        <p>Install OpenStack on a single machine with Conjure-up. It deploys a real-world OpenStack on a single machine using LXD, that perfectly models a production cluster on real machines.</p>
       </div>
     </div>
+    <div class="col-6">
+      <img src="{{ ASSET_SERVER_URL }}95212c08-OpenStack_Logo_2016.svg" alt="" class="u-align--center u-vertically-center u-hide--small" width="275" />
+    </div>
   </div>
-</div>
+</section>
 
 <div class="p-strip is-bordered">
   <div class="row">
@@ -42,8 +32,19 @@
   <div class="row">
     <h2>Installation instructions</h2>
     <ol class="p-stepped-list--detailed">
+
       <li class="p-list-step__item col-12">
-        <h3 class="p-list-step__title"><span class="p-list-step__bullet">1</span>Install and start conjure-up</h3>
+        <h3 class="p-list-step__title"><span class="p-list-step__bullet">1</span>Minimum requirements</h3>
+        <div class="p-list-step__content">
+          <ul class="p-list">
+            <li class="p-list__item">Laptop, desktop or virtual machine with 16GB RAM, Ubuntu 16.04 LTS, snapd and <a href="/containers/lxd" title="More information about LXD">LXD</a> installed</li>
+            <li class="p-list__item">An hour of your time</li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="p-list-step__item col-12">
+        <h3 class="p-list-step__title"><span class="p-list-step__bullet">2</span>Install and start conjure-up</h3>
         <div class="p-list-step__content">
           <p>Getting OpenStack running on your computer is easy with conjure-up.</p>
           <p>From the command line type the commands below and follow the step-by-step instructions:</p>
@@ -86,14 +87,14 @@
         </div>
       </li>
       <li class="p-list-step__item col-12">
-        <h3 class="p-list-step__title"><span class="p-list-step__bullet">2</span>Select the ‘OpenStack with NovaLXD’ spell</h3>
+        <h3 class="p-list-step__title"><span class="p-list-step__bullet">3</span>Select the ‘OpenStack with NovaLXD’ spell</h3>
         <div class="p-list-step__content">
           <img src="{{ ASSET_SERVER_URL }}23a02e6d-conjure-up-install-openstack.png?w=444" width="444" alt="screenshot of the conjure-up interface with the 'OpenStack with NovaLXD' option selected" />
           <p>Then follow the rest of the on-screen instructions.</p>
         </div>
       </li>
       <li class="p-list-step__item col-12">
-        <h3 class="p-list-step__title"><span class="p-list-step__bullet">3</span>Follow the on-screen instructions</h3>
+        <h3 class="p-list-step__title"><span class="p-list-step__bullet">4</span>Follow the on-screen instructions</h3>
         <div class="p-list-step__content">
           <p>Configure OpenStack with conjure-up and, when it is completed, go to <code>http://&lt;openstack ip&gt;/horizon</code> and login with the default username &ldquo;admin&rdquo; and password &ldquo;openstack&rdquo;.</p>
           <img src="{{ ASSET_SERVER_URL }}6f24640b-conjure-up-openstack-horizon.png?w=444" width="444" alt="screenshot of the conjure-up interface with the 'OpenStack with NovaLXD' option selected" />

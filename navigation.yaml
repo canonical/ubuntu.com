@@ -5,25 +5,18 @@ openstack:
   children:
     - title: Overview
       path: /openstack
+    - title: Consulting
+      path: /openstack/consulting
+    - title: Managed
+      path: /openstack/managed
+    - title: Developer
+      path: /openstack/developer
     - title: Install
       path: /openstack/install
-
-      children:
-        - title: Try OpenStack
-          path: /openstack/install/try-openstack
-        - title: Build OpenStack
-          path: /openstack/install/build-openstack
-
-    - title: Managed cloud
-      path: /openstack/managed-cloud
-    - title: Juju
-      path: /juju
     - title: Storage
       path: /openstack/storage
     - title: Partners
       path: /openstack/partners
-    - title: Foundation cloud build
-      path: /openstack/foundation-cloud
     - title: Training
       path: /openstack/training
     - title: Thank you
@@ -404,6 +397,14 @@ licensing:
   children:
     - title: Overview
       path: /licensing
+
+juju:
+  title: Juju
+  path: /juju
+
+  children:
+    - title: Overview
+      path: /juju
 
 community:
   title: Community
