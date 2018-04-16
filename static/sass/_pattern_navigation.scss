@@ -12,7 +12,7 @@
 
     &__search {
       align-items: center;
-      background: #333;
+      background: $color-navigation-primary;
       border-bottom: 1px solid $color-mid-light;
       display: inline-flex;
       flex-grow: 1;
@@ -125,7 +125,7 @@
 
         > .p-navigation__dropdown-link {
           @extend .p-navigation__link;
-          background-color: #333; //$color-navigation-background;
+          background-color: $color-navigation-primary;
           border-left: 1px solid $color-mid-dark;
           position: relative;
 
