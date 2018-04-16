@@ -136,20 +136,21 @@
     </div>
   {% endif %}
 
-    <footer class="p-pagination">
+  <div class="row">
+    <div class="p-pagination">
       {% if pagination.previous_enable %}
-      <a class="p-pagination__link p-pagination__previous" href="{{ pagination.previous_link }}">
+      <a class="p-pagination__link--previous" href="{{ pagination.previous_link }}">
         <span class="p-pagination__label">Previous</span>
         <span class="p-pagination__title">Go to page {{ pagination.previous_index }}</span>
       </a>
       {% endif %}
       {% if pagination.next_enable %}
-      <a class="p-pagination__link p-pagination__next" href="{{ pagination.next_link }}">
+      <a class="p-pagination__link--next" href="{{ pagination.next_link }}">
         <span class="p-pagination__label">Next</span>
         <span class="p-pagination__title">Go to page {{ pagination.next_index }}</span>
       </a>
       {% endif %}
-    </footer>
+    </div>
   </div>
 </section>
 
