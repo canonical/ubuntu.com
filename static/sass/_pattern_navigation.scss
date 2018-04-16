@@ -12,7 +12,7 @@
 
     &__search {
       align-items: center;
-      background: $color-navigation-primary;
+      background: $color-navigation-background;
       border-bottom: 1px solid $color-mid-light;
       display: inline-flex;
       flex-grow: 1;
@@ -125,7 +125,7 @@
 
         > .p-navigation__dropdown-link {
           @extend .p-navigation__link;
-          background-color: $color-navigation-primary;
+          background-color: $color-navigation-background;
           border-left: 1px solid $color-mid-dark;
           position: relative;
 
@@ -134,7 +134,7 @@
           }
 
           &:hover {
-            background-color: $color-mid-light;
+            background-color: $color-mid-dark;
           }
 
           &::after {
