@@ -7,20 +7,24 @@
 {% block content %}
 <section class="p-strip is-deep is-bordered">
   <div class="row">
-    <div class="u-equal-height u-vertically-center">
-      <div class="col-7">
+    <div class="u-equal-height">
+      <div class="col-6">
         <h1>Ubuntu for partners</h1>
-        <p>We partner with the world&rsquo;s leading hardware manufacturers and silicon vendors to help deliver an extensive range of Ubuntu certified desktops, notebooks and servers. Becoming a partner means you work with our engineering and certification teams to guarantee the compatibility and optimised performance of all your hardware for the life of the OS.</p>
+        <p>We partner with the world’s leading hardware manufacturers and silicon vendors to help deliver an extensive range of Ubuntu certified desktops, notebooks and servers. Becoming a partner means you work with our engineering and certification teams to guarantee the compatibility and optimised performance of all your hardware for the life of the OS.</p>
         <p><a href="https://partners.ubuntu.com/find-a-partner?service-offered=hardware-manufacturer" class="p-link--external">Learn more about our desktop partners</a></p>
       </div>
-      <div class="col-5 u-align--center">
-        <div class="u-vertically-center">
-          <img src="{{ ASSET_SERVER_URL }}52d4cc16-Nvidia_Logo_Horizontal.svg" class="u-hide--small" width="150" alt="" />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <img src="{{ ASSET_SERVER_URL }}5e92614c-amd-logo.svg" class="u-hide--small u-no-margin--top" alt="" />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <img src="{{ ASSET_SERVER_URL }}5ddba83a-logo-dell.svg" class="u-hide--small u-no-margin--top" width="100" alt="" />
-        </div>
+      <div class="col-6 u-hide--small u-vertically-center">
+        <ul class="p-inline-images">
+          <li class="p-inline-images__item u-no-margin--right">
+            <img src="{{ ASSET_SERVER_URL }}52d4cc16-Nvidia_Logo_Horizontal.svg" alt="" class="p-inline-images__logo" width="150">
+          </li>
+          <li class="p-inline-images__item u-no-margin--right">
+            <img src="{{ ASSET_SERVER_URL }}5e92614c-amd-logo.svg" alt="" class="p-inline-images__logo">
+          </li>
+          <li class="p-inline-images__item u-no-margin--right">
+            <img src="{{ ASSET_SERVER_URL }}5ddba83a-logo-dell.svg" alt="" class="p-inline-images__logo" width="100">
+          </li>
+        </ul>
       </div>
     </div>
   </div>
