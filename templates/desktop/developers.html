@@ -13,8 +13,8 @@
         <p><a href="/download/desktop/" class="p-button--positive">Get Ubuntu now</a></p>
       </div>
       <div class="col-6 u-vertically-center u-hide--small">
-        <img class="u-visible--large u-hide--medium u-image-position--top" src="{{ ASSET_SERVER_URL }}2e62cdb4-desktop-developer-hero.png?w=600" alt="" style="top: 105px; left: 50%;" />
-        <img class="u-visible--medium u-hide--large" src="{{ ASSET_SERVER_URL }}2e62cdb4-desktop-developer-hero.png?w=600" alt="" style="top: 105px; right: 40px;" />
+        <img class="u-visible--large u-hide--medium u-image-position--top" src="{{ ASSET_SERVER_URL }}79439f53-Dell_XPS_Laptop_Front-Developer.png?w=600" alt="" style="top: 105px; left: 50%;" />
+        <img class="u-visible--medium u-hide--large" src="{{ ASSET_SERVER_URL }}79439f53-Dell_XPS_Laptop_Front-Developer.png?w=600" alt="" style="top: 105px; right: 40px;" />
       </div>
       </div>
     </div>
@@ -62,11 +62,15 @@
     <div class="row">
       <div class="col-12">
         <ul class="p-list--divided is-split">
-          <li class="p-list__item is-ticked">Easy install of 35 different development environments with <a class="p-link--external" href="https://wiki.ubuntu.com/ubuntu-make">Ubuntu Make</a>.</li>
-          <li class="p-list__item is-ticked">LibreOffice 5.1 with improvements to menu and sidebars and support for remote servers</li>
-          <li class="p-list__item is-ticked">Python 3.5, Golang 1.6, Unity 7.3.2, Gtk 3.16.7, Compiz 0.9.12.1 and qt 5.4.2 updates</li>
-          <li class="p-list__item is-ticked">Firefox 45, Thunderbird 38.6 and Chromium 48 updates</li>
-          <li class="p-list__item is-ticked">Linux 4.4 kernel</li>
+          <li class="p-list__item is-ticked">Linux 4.15 kernel</li>
+          <li class="p-list__item is-ticked">Core applications packaged as snaps</li>
+          <li class="p-list__item is-ticked">Apps available in store including Spotify, Skype and VLC</li>
+          <li class="p-list__item is-ticked">Latest versions of the popular browsers</li>
+          <li class="p-list__item is-ticked">LibreOffice 6</li>
+          <li class="p-list__item is-ticked">Minimal installation - only essential packages are included reducing disk footprint making it easier to configure your desktop just how you want it</li>
+          <li class="p-list__item is-ticked">Microsoft Hyper-V makes running virtualised guests on Windows easier, faster, and better integrated</li>
+          <li class="p-list__item is-ticked">GNOME Shell 3.28 replaces Unity 7 as the default desktop environment</li>
+          <li class="p-list__item is-ticked">Print without printer-specific drivers on AirPrint, IPP everywhere, Mopria and Wifi Direct printers</li>
         </ul>
         <p><a class="p-link--external" href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes">Read the full release notes</a></p>
       </div>
@@ -74,35 +78,65 @@
   </section>
 
   <section class="p-strip is-bordered">
-    <div class="row">
-      <div class="col-8">
-        <h2>What&rsquo;s new in Ubuntu {{ latest_release }}?</h2>
-        <p class="eight-col">Ubuntu {{ latest_release }} brings a new desktop environment to Ubuntu with a redesigned interface. It has been designed to get you up and running quickly and to help keep you focused on the task at hand.</p>
+    <div class="row u-vertically-center">
+      <div class="col-6">
+        <h2>All the tools developers need</h2>
+        <p>Whether your team uses Python, Ruby, Node.js or Java, no operating system is easier to set up than Ubuntu. Everything your developers need is just a <code>snap</code> or an <code>apt</code> away.</p>
+        <p>Want to get your app published for Ubuntu? Snapcraft can help you reach all users of current Ubuntu versions and other popular distributions.</p>
+        <p><a href="https://snapcraft.io">Learn more about publishing with Snapcraft&nbsp;&rsaquo;</a></p>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <ul class="p-list--divided is-split">
-          <li class="p-list__item is-ticked">LibreOffice 5.4</li>
-          <li class="p-list__item is-ticked">Print without printer-specific drivers on AirPrint, IPP everywhere, Mopria and Wifi Direct printers</li>
-          <li class="p-list__item is-ticked">Linux 4.13 kernel</li>
-          <li class="p-list__item is-ticked">A new suite of GNOME desktop applications, running the bang up to date 3.26 release.  As well as the latest browsers, an email client</li>
-        </ul>
-        <p><a class="p-link--external" href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes">Read the full release notes</a></p>
+      <div class="col-6 u-hide--small">
+        <div class="row u-align--bottom">
+          <div class="col-2">
+            <div class="u-text-center">
+              <img src="{{ ASSET_SERVER_URL }}12e0af6f-Python.svg" alt="Python">
+              <p class="u-no-margin--top">Python</p>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="u-text-center">
+              <img src="{{ ASSET_SERVER_URL }}e8047933-Ruby.svg" alt="Ruby">
+              <p class="u-no-margin--top">Ruby</p>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="u-text-center">
+              <img src="{{ ASSET_SERVER_URL }}f27e31ec-PHP-logo.svg" alt="PHP">
+              <p class="u-no-margin--top">PHP</p>
+            </div>
+          </div>
+        </div>
+        <div class="row u-align--bottom">
+          <div class="col-2">
+            <div class="u-text-center">
+              <img src="{{ ASSET_SERVER_URL }}3a6cdcc9-logo-go.svg" alt="Go">
+              <p class="u-no-margin--top">Go</p>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="u-text-center">
+              <img src="{{ ASSET_SERVER_URL }}66ca2eb6-JavaScript.svg" alt="JavaScript">
+              <p class="u-no-margin--top">JavaScript</p>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="u-text-center">
+              <img src="{{ ASSET_SERVER_URL }}3f8a707b-Java.svg" alt="Java">
+              <p class="u-no-margin--top">Java</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="p-strip--light is-bordered">
     <div class="row">
-      <div class="col-6">
-        <h2>All the tools developers need</h2>
-        <p>Whether your team uses Python, Ruby, Node.js or Java, no operating system is easier to set up than Ubuntu. Everything your developers need is just a <code>snap</code> or an <code>apt</code> away.</p>
-        <p>Want to try your hand at developing for Ubuntu? Join our worldwide app developer community.</p>
-        <p><a class="p-link--external" href="https://developer.ubuntu.com">Learn more about developing for Ubuntu</a></p>
-      </div>
-      <div class="col-6 u-hide--small">
-        <img src="{{ ASSET_SERVER_URL }}fdaec05b-desktop-developer-tools.jpg" alt="" />
+      <div class="col-10">
+        <blockquote class="p-pull-quote">
+          <p>We want to be able to deliver the same high-quality experience on Linux as we do on other platforms. Snaps allow us to do just that, by giving us the ability to push the latest features straight to our users, no matter what device or distribution they happen to use.</p>
+          <cite class="p-pull-quote__citation">Jonáš Tajrych, Senior Software Engineer at Skype at Microsoft</cite>
+        </blockquote>
       </div>
     </div>
   </section>
@@ -111,15 +145,38 @@
     <div class="row">
       <div class="u-equal-height">
         <div class="col-7 suffix-1">
-          <h2>Snaps are the new apps</h2>
-          <p>Ubuntu {{ lts_release_full }} introduces snaps: a new application packaging format.</p>
-          <p>Snaps are Ubuntu applications that are packaged alongside all their dependencies, making them much more robust. And they couldn’t be easier to write. You can use the language of your choice, be it Python, Go, C, C++, Node JS or even .NET, then package your snap from source using Snapcraft, a new open source tool. Which means practically no learning curve. </p>
-          <p>Snaps let you deliver updates unmodified, at your own pace. So whether you’re building for mobile, the desktop or the Internet of Things, there’s no faster, easier or more dependable way of getting your code to market.</p>
+          <h2>Package, distribute, and update apps with Snapcraft</h2>
+          <p>Snaps are applications packaged with all their dependencies to run on all popular Linux distributions from a single build. They update automatically and roll back gracefully. Whether you’re building for desktop, cloud, or the Internet of Things, publishing as a snap will keep users up to date and make system configuration issues less likely, freeing you to code more and debug less.</p>
+          <p>Snapcraft, the open source tool to publish snaps, picks up from your existing build artefacts or language of choice, be it Python, Go, C/C++, Node.js, or even .NET. With 20 minutes you can have your first app built and released in the Snap Store.</p>
           <p><a class="p-link--external" href="https://snapcraft.io/">Find out more about snaps</a></p>
         </div>
         <div class="col-5 u-vertically-center">
           <img class="u-hide--small" src="{{ ASSET_SERVER_URL }}bb7f0c54-snaps-hero%403x.png?w=400" alt="Snap icons">
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip--light is-bordered">
+    <div class="row">
+      <div class="col-12">
+        <h2>Get started with Snaps</h2>
+        <p>The easiest way to build and publish a snap is with snapcraft,<br>
+          which supports building from source and from existing packages.</p>
+      </div>
+    </div>
+    <div class="row u-equal-height">
+      <div class="col-4 p-card u-align--center u-no-margin--bottom">
+        <p class="p-card__icon"><img src="{{ ASSET_SERVER_URL }}adcc0253-import-icon.svg" alt="" style="height: 32px;"></p>
+        <h3 class="p-card__title p-heading--four"><a href="https://docs.snapcraft.io/core/install">Installation instructions&nbsp;&rsaquo;</a></h3>
+      </div>
+      <div class="col-4 p-card u-align--center u-no-margin--bottom">
+        <p class="p-card__icon"><img src="{{ ASSET_SERVER_URL }}b7891235-snap-comands-icon.svg" alt="" style="height: 32px;"></p>
+        <h3 class="p-card__title p-heading--four"><a href="https://docs.snapcraft.io/core/usage">Use snap commands&nbsp;&rsaquo;</a></h3>
+      </div>
+      <div class="col-4 p-card u-align--center u-no-margin--bottom">
+        <p class="p-card__icon"><img src="{{ ASSET_SERVER_URL }}d3fc3f10-manage.svg" alt="" style="height: 32px;"></p>
+        <h3 class="p-card__title p-heading--four"><a href="https://docs.snapcraft.io/build-snaps/">Build your first snap&nbsp;&rsaquo;</a></h3>
       </div>
     </div>
   </section>
@@ -132,7 +189,7 @@
         <p><a class="p-link--external" href="https://certification.ubuntu.com/desktop">See all Ubuntu certified PCs</a></p>
       </div>
       <div class="col-5 u-vertically-center">
-        <img src="{{ ASSET_SERVER_URL }}7d0573d2-desktop-developer-developers.jpg" alt="Developer laptop" />
+        <img src="{{ ASSET_SERVER_URL }}89abf289-Dell_XPS_Laptop_Left-Developer.png" alt="Developer laptop" />
       </div>
     </div>
   </div>
@@ -153,17 +210,17 @@
   <section class="p-strip is-bordered">
     <div class="row">
       <div class="u-equal-height u-vertically-center">
-      <div class="col-6">
+        <div class="col-6 suffix-1">
+          <img src="{{ ASSET_SERVER_URL }}bda34a6e-wordpress-apache-mysql-bundle-trans.svg" width="442" height="394" alt="" />
+        </div>
+        <div class="col-6">
           <h2>Deployment made easy</h2>
           <p>When it comes to speed and simplicity of deployment, nothing touches Ubuntu.</p>
           <p>Taking a service developed on the desktop and running it on a server or in the cloud just works. Ubuntu also has developed Juju, a service orchestration tool, that simplifies the often-cumbersome handover between development and ops teams &mdash; and it speeds the process up dramatically.</p>
           <p><a href="/cloud/juju">More about Juju&nbsp;&rsaquo;</a></p>
         </div>
-      <div class="col-6 prefix-1">
-        <img src="{{ ASSET_SERVER_URL }}bda34a6e-wordpress-apache-mysql-bundle-trans.svg" width="442" height="394" alt="" />
       </div>
     </div>
-  </div>
   </section>
 
   <section class="p-strip">
