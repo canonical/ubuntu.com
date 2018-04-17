@@ -7,8 +7,11 @@
 <div class="p-strip--image is-deep is-dark js-livestream__intro" style="background-position: center center; background-image:url('{{ ASSET_SERVER_URL }}ecdbd3cb-robotics.jpg?w=984')">
   <div class="row">
     <div class="col-6 p-card--overlay">
-      <h1>Robots and drones,<br />rocking&nbsp;Ubuntu&nbsp;Core</h1>
-      <p>Autonomous, secure, and remotely upgradeable, the new wave of robots and drones feature amazing apps for advanced industrial intelligence.</p>
+      <h1>Smart Robots run Ubuntu</h1>
+      <p>Autonomous, secure, and upgradeable, Ubuntu powers a new wave of apps on robots and drones with machine learning and AI for advanced industrial applications and intelligence.</p>
+      <div class="p-fluid-video">
+        <iframe class="p-fluid-video__iframe" src="https://player.vimeo.com/video/187699139" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 </div>
@@ -16,7 +19,7 @@
 <div class="p-strip">
   <div class="row">
     <div class="col-12">
-      {% include "shared/_partner-logos.html" with title="Join the robotics trailblazers on Ubuntu" json_feed_url="http://partners.ubuntu.com/partners.json?technology__name=Robotics" feed_item_limit=10 %}
+      {% include "shared/_partner-logos.html" with title="Join the trailblazers" json_feed_url="http://partners.ubuntu.com/partners.json?technology__name=Robotics" feed_item_limit=10 %}
       <p class="u-align--center"><a href="http://partners.ubuntu.com/find-a-partner?technology=robotics" class="p-link--external">See all of our robotics partners</a></p>
     </div>
   </div>
@@ -109,10 +112,14 @@
 
 <div class="p-strip is-deep">
   <div class="row">
-    <div class="col-12">
+    <div class="col-6">
       <h2>Ubuntu runs on the robotic platforms that matter</h2>
       <p>Want to run Ubuntu Core on your hardware or write apps for an IoT device?</p>
-      <p><a class="p-link--external" href="https://developer.ubuntu.com/en/snappy/">Learn more</a></p>
+    </div>
+    <div class="col-6">
+      <div class="u-align--center">
+        <img src="{{ ASSET_SERVER_URL }}ca3c9d42-DARwIN-OP-Open-Source-Humanoid-Robot-Steps-Into-the-Spotlight-2.jpg?h=320" alt="">
+      </div>
     </div>
   </div>
   <div class="row">
@@ -120,36 +127,36 @@
       <ul class="p-matrix is-trisected">
         <li class="p-matrix__item">
           <div class="u-align--center">
-            <p><img style="padding-bottom: 2em;" src="{{ ASSET_SERVER_URL }}fe88db03-parrot-logo.png?w=200" width="200" alt="Parrot" /></p>
-            <p><img style="max-height: 100px;" src="{{ ASSET_SERVER_URL }}cd8709de-parrot_slamdunk.png?w=200" alt="" /></p>
+            <img style="padding-bottom: 2em;" src="{{ ASSET_SERVER_URL }}fe88db03-parrot-logo.png?h=50" alt="Parrot" />
           </div>
         </li>
         <li class="p-matrix__item">
           <div class="u-align--center">
-            <p><img style="padding-bottom: 2em;" src="{{ ASSET_SERVER_URL }}3cf238fd-Qualcomm-Logo.svg?w=200" width="200" alt="" /></p>
-            <p><img style="max-height: 100px;" src="{{ ASSET_SERVER_URL }}e140ca06-DragonBoard-UpdatedImages-front.png?w=250" alt="" /></p>
+            <img style="padding-bottom: 2em;" src="{{ ASSET_SERVER_URL }}3cf238fd-Qualcomm-Logo.svg?h=25" alt="Qualcomm" />
           </div>
         </li>
         <li class="p-matrix__item">
           <div class="u-align--center">
-            <p><img style="padding-bottom: 2em;" src="{{ ASSET_SERVER_URL }}52d4cc16-Nvidia_Logo_Horizontal.svg?w=200" width="200" alt="nVidia" /></p>
-            <p><img style="margin-top: -10px;" src="{{ ASSET_SERVER_URL }}4b594e6e-nvidia-tegra-k1.png?w=150" alt="" /></p>
+            <img style="padding-bottom: 2em;" src="{{ ASSET_SERVER_URL }}52d4cc16-Nvidia_Logo_Horizontal.svg?h=30" alt="nVidia" />
           </div>
         </li>
         <li class="p-matrix__item">
           <div class="u-align--center">
-            <p><img style="padding-bottom: 2em;" src="{{ ASSET_SERVER_URL }}255f733c-robotis_logo.png?w=200" width="200" alt="Robotis" /></p>
-            <p><img style="max-height: 100px;" src="{{ ASSET_SERVER_URL }}98fb3266-robotis_robots.png?w=200" alt="" /></p>
+            <img style="padding-bottom: 2em;" src="{{ ASSET_SERVER_URL }}255f733c-robotis_logo.png?h=40" alt="Robotis" />
           </div>
         </li>
         <li class="p-matrix__item">
           <div class="u-align--center">
-            <p><img style="padding-bottom: 2em;" src="{{ ASSET_SERVER_URL }}ba366bb7-aerolion-logo.png?h=50" alt="Aerolion" /></p>
-            <p><img style="max-height: 100px;" src="{{ ASSET_SERVER_URL }}3dbccdce-Aerolion_drone.png?w=250" alt="" /></p>
+            <img style="padding-bottom: 2em;" src="{{ ASSET_SERVER_URL }}ba366bb7-aerolion-logo.png?h=40" alt="Aerolion" />
           </div>
         </li>
         <li class="p-matrix__item u-hide--small">&nbsp;</li>
       </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <p><a class="p-link--external" href="https://developer.ubuntu.com/en/snappy/">Learn more about Ubuntu core on robotic platforms</a></p>
     </div>
   </div>
 </div>
@@ -161,7 +168,7 @@
         <img src="{{ ASSET_SERVER_URL }}04927a56-robot_2px-white.svg" alt="robots are cool ;-)" class="u-hide--small" />
       </div>
       <div class="col-9">
-        <h2>Will your next robot run on Ubuntu?</h2>
+        <h2>Contact us to find out more</h2>
         <p><a href="/internet-of-things/contact-us?product=robotics" class="p-button--positive">Contact us</a></p>
       </div>
     </div>
