@@ -199,43 +199,51 @@ download:
       path: /download
     - title: Cloud
       path: /download/cloud
-
       children:
         - title: Try OpenStack
           path: /download/cloud/try-openstack
         - title: Build OpenStack
           path: /download/cloud/build-openstack
 
-    - title: Core
-      path: /download/core
+    - title: IoT
+      path: /download/iot
 
       children:
         - title: Raspberry Pi 2 or 3
-          path: /download/core/raspberry-pi-2-3
+          path: /download/iot/raspberry-pi-2-3
           hidden: True
         - title: Raspberry Pi Compute Module 3
-          path: /download/core/raspberry-pi-compute-module-3
+          path: /download/iot/raspberry-pi-compute-module-3
           hidden: True
         - title: Orange Pi Zero
-          path: /download/core/orange-pi-zero
+          path: /download/iot/orange-pi-zero
           hidden: True
         - title: Qualcomm Dragonboard 410c
-          path: /download/core/qualcomm-dragonboard-410c
+          path: /download/iot/qualcomm-dragonboard-410c
           hidden: True
         - title: Intel NUC
-          path: /download/core/intel-nuc
+          path: /download/iot/intel-nuc
+          hidden: True
+        - title: Intel NUC Desktop
+          path: /download/iot/intel-nuc-desktop
           hidden: True
         - title: Intel Joule
-          path: /download/core/intel-joule
+          path: /download/iot/intel-joule
+          hidden: True
+        - title: Intel Joule Desktop
+          path: /download/iot/intel-joule-desktop
           hidden: True
         - title: Samsung Artik 5 or 10
-          path: /download/core/samsung-artik-5-10
+          path: /download/iot/samsung-artik-5-10
+          hidden: True
+        - title: Samsung Artik 5 or 10 Server
+          path: /download/iot/samsung-artik-5-10-server
           hidden: True
         - title: KVM
-          path: /download/core/kvm
+          path: /download/iot/kvm
           hidden: True
         - title: UP Squared IoT Grove
-          path: /download/core/up-squared-iot-grove
+          path: /download/iot/up-squared-iot-grove-server
           hidden: True
 
     - title: Server
@@ -415,21 +423,15 @@ community:
   children:
     - title: Overview
       path: /community
-
     - title: Canonical
       path: /community/canonical
-
     - title: Code of Conduct
       path: /community/code-of-conduct
-
     - title: Debian
       path: /community/debian
-
     - title: Diversity
       path: /community/diversity
-
     - title: Governance
       path: /community/governance
-
     - title: Mission
       path: /community/mission
