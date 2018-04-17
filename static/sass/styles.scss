@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 //settings
+@import 'global-settings';
 @import 'settings_colors';
 
 // custom mixins
@@ -14,7 +15,6 @@
 
 // import site specific patterns and overrides
 @import 'pattern_buttons';
-@import 'pattern_site_search';
 @import 'pattern_sun-animation';
 @import 'pattern_navigation';
 @import 'pattern_strip';
@@ -42,7 +42,6 @@
 @import 'takeovers/1804-release';
 
 @include ubuntu-p-buttons;
-@include ubuntu-p-site-search;
 @include ubuntu-p-navigation;
 @include ubuntu-p-strip;
 @include ubuntu-p-notification;
@@ -76,12 +75,6 @@
 // Before any feature branch is merged, these bugs should be raised in their
 // respective repos and referenced here, accompanied with a breif description of
 // the bug
-
-@media (min-width: $breakpoint-medium ) {
-  .p-navigation:target .p-navigation__toggle--close {
-    display: none !important; // specificity
-  }
-}
 
 /// XXX Compact button style
 /// This should be considered for inclusion in vanilla-framework
