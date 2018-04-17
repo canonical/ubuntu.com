@@ -7,7 +7,7 @@
     {% if section.children %}
       {% for child in section.children %}
         {% if not child.hidden %}
-          <li><a href="{{ child.path }}">{{ child.title }}</a></li>
+          <li class="hover-menu__item"><a href="{{ child.path }}">{{ child.title }}</a></li>
         {% endif %}
       {% endfor %}
     {% endif %}
