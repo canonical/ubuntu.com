@@ -21,11 +21,11 @@
 <div class="p-strip is-bordered">
   <div class="row">
     <div class="col-8">
-      <h2>Network installer</h2>
+      <h2 id="network-installer">Network installer</h2>
       <p>The network installer lets you install Ubuntu over a network. It includes the minimal set of packages needed to start and the rest of the packages are downloaded over the network. Since only current packages are downloaded, there is no need to upgrade packages immediately after installation.</p>
       <p>The network installer is ideal if you have a computer that cannot run the graphical installer, for example, because it does not meet the minimum requirements for the live CD/DVD, or because the computer requires extra configuration before a graphical desktop can be used. The network installer is also useful if you want to install Ubuntu on a large number of computers at once.</p>
       <ul class="p-list">
-        <li class="p-list__item is-ticked"><a class="download-network p-link--external" href="http://cdimage.ubuntu.com/netboot/{{ latest_release }}/">Download the network installer for {{ latest_release }}</a></li>
+        <li class="p-list__item is-ticked"><a class="download-network p-link--external" href="http://cdimage.ubuntu.com/netboot/{{ latest_release }}/">Download the network installer for {{ lts_release_full_with_point }}</a></li>
         <li class="p-list__item is-ticked"><a class="download-network p-link--external" href="http://cdimage.ubuntu.com/netboot/16.04/">Download the network installer for 16.04 LTS</a></li>
         <li class="p-list__item is-ticked"><a class="download-network p-link--external" href="http://cdimage.ubuntu.com/netboot/14.04/">Download the network installer for 14.04 LTS</a></li>
       </ul>
@@ -36,27 +36,26 @@
 <div class="p-strip is-bordered">
   <div class="row">
     <div class="col-8">
-      <h2>BitTorrent</h2>
+      <h2 id="bittorrent">BitTorrent</h2>
       <p>BitTorrent is a peer-to-peer download network that sometimes enables higher download speeds and more reliable downloads of large files. You will need to install a BitTorrent client on your computer in order to enable this download method.</p>
     </div>
   </div>
 
   <div class="row">
     <div class="col-4">
-      <h3 class="p-link--external"><span>Ubuntu {{ latest_release_with_point }}</span></h3>
-      <ul class="p-list--divided">
-        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{ latest_release }}/ubuntu-{{ latest_release_with_point }}-desktop-amd64.iso.torrent">Ubuntu {{ latest_release_with_point }} Desktop (64-bit)</a></li>
-        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{ latest_release }}/ubuntu-{{ latest_release_with_point }}-server-amd64.iso.torrent">Ubuntu {{ latest_release_with_point }} Server (64-bit)</a></li>
-        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{ latest_release }}/ubuntu-{{ latest_release_with_point }}-server-i386.iso.torrent">Ubuntu {{ latest_release_with_point }} Server (32-bit)</a></li>
-      </ul>
-    </div>
-    <div class="col-4">
       <h3 class="p-link--external"><span>Ubuntu {{lts_release_full_with_point}}</span></h3>
       <ul class="p-list--divided">
         <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{ lts_release }}/ubuntu-{{ lts_release_with_point }}-desktop-amd64.iso.torrent">Ubuntu {{ lts_release_with_point }} Desktop (64-bit)</a></li>
-        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{ lts_release }}/ubuntu-{{ lts_release_with_point }}-desktop-i386.iso.torrent">Ubuntu {{ lts_release_with_point }} Desktop (32-bit)</a></li>
         <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{ lts_release }}/ubuntu-{{ lts_release_with_point }}-server-amd64.iso.torrent">Ubuntu {{ lts_release_with_point }} Server (64-bit)</a></li>
-        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{ lts_release }}/ubuntu-{{ lts_release_with_point }}-server-i386.iso.torrent">Ubuntu {{ lts_release_with_point }} Server (32-bit)</a></li>
+      </ul>
+    </div>
+    <div class="col-4">
+      <h3 class="p-link--external"><span>Ubuntu 16.04 LTS</span></h3>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a class="download-lts" href="http://releases.ubuntu.com/16.04/ubuntu-16.04-desktop-amd64.iso.torrent">Ubuntu 16.04 Desktop (64-bit)</a></li>
+        <li class="p-list__item"><a class="download-lts" href="http://releases.ubuntu.com/16.04/ubuntu-16.04-desktop-i386.iso.torrent">Ubuntu 16.04 Desktop (32-bit)</a></li>
+        <li class="p-list__item"><a class="download-lts" href="http://releases.ubuntu.com/16.04/ubuntu-16.04-server-amd64.iso.torrent">Ubuntu 16.04 Server (64-bit)</a></li>
+        <li class="p-list__item"><a class="download-lts" href="http://releases.ubuntu.com/16.04/ubuntu-16.04-server-i386.iso.torrent">Ubuntu 16.04 Server (32-bit)</a></li>
       </ul>
     </div>
     <div class="col-4">
@@ -74,43 +73,22 @@
 <div class="p-strip is-bordered">
   <div class="row">
     <div class="col-8">
-      <h2>Other images</h2>
+      <h2 id="other-images-and-mirrors">Other images and mirrors</h2>
       <p>For other versions of the Ubuntu installer please select your nearest mirror; however, we recommend you use  the <a href="/download">standard installer</a> as all other packages are available in Ubuntu Software Centre.</p>
-      <h3 class="p-link--external"><span>Select the nearest mirror</span></h3>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-12">
-      <ul class="p-list--divided is-trisected">
-        <li class="p-list__item"><a  href="http://mirror.waia.asn.au/ubuntu-releases/">Australia</a></li>
-        <li class="p-list__item"><a href="http://ftp.funet.fi/pub/Linux/INSTALL/Ubuntu/dvd-releases/releases">Finland</a></li>
-        <li class="p-list__item"><a href="ftp://ftp.free.fr/mirrors/ftp.ubuntu.com/releases/">France</a></li>
-        <li class="p-list__item"><a href="http://de.releases.ubuntu.com/">Germany</a></li>
-        <li class="p-list__item"><a href="http://ftp.ntua.gr/pub/linux/ubuntu-releases-dvd">Greece</a></li>
-        <li class="p-list__item"><a href="http://ftp.heanet.ie/pub/ubuntu-cdimage/releases">Ireland</a></li>
-        <li class="p-list__item"><a href="http://nl.archive.ubuntu.com/ubuntu-cdimages">Netherlands</a></li>
-        <li class="p-list__item"><a href="http://mirror.yandex.ru/ubuntu-cdimage/releases">Russian Federation</a></li>
-        <li class="p-list__item"><a href="http://ubuntu.cica.es/releases/">Spain</a></li>
-        <li class="p-list__item"><a href="http://ftp.acc.umu.se/mirror/cdimage.ubuntu.com/releases">Sweden</a></li>
-        <li class="p-list__item"><a href="http://tw.archive.ubuntu.com/ubuntu-cd/">Taiwan</a></li>
-        <li class="p-list__item"><a href="http://www.mirrorservice.org/sites/cdimage.ubuntu.com/cdimage/releases">United Kingdom</a></li>
-        <li class="p-list__item"><a href="http://mirror.pnl.gov/releases/">United States</a></li>
-      </ul>
-    </div>
-  </div>
   <div class="row">
     <div class="col-12">
       <p><a href="https://launchpad.net/ubuntu/+cdmirrors" class="p-link--external">See all Ubuntu mirrors</a></p>
     </div>
   </div>
 </div>
-</div>
 
 <div class="p-strip">
   <div class="row">
     <div class="col-8">
-      <h2>Past releases and other flavours</h2>
+      <h2 id="past-releases-and-other-flavours">Past releases and other flavours</h2>
       <p>Looking for an older release of Ubuntu? Whether you need an obsolete release or a previous LTS point release with its original stack, you can find them in past releases.</p>
       <p><a class="p-link--external" href="http://releases.ubuntu.com/">Past releases</a></p>
     </div>
