@@ -1,83 +1,18 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Install Ubuntu Core on the Samsung Artik 5 or 10{% endblock %}}
+{% block title %}Install Ubuntu Server on the Samsung Artik 5 or 10{% endblock %}}
 
 {% block content %}
-<section class="p-strip--light is-bordered" id="core">
+<section class="p-strip--light is-bordered">
   <div class="row">
-    <div class="col-10">
+    <div class="col-8">
       <div>
-        <h1>Install Ubuntu on the Samsung Artik 5 or 10</h1>
-        <p>There are two install options for the Samsung Artik: <a href="#core">Ubuntu Core</a> or <a href="#server">Ubuntu Server</a>.</p>
+        <h1>Install Ubuntu Server on the Samsung Artik 5 or 10</h1>
+        <p>There are two install options for the Samsung Artik: <a href="samsung-artik-5-10">Ubuntu Core</a> or <a href="#server">Ubuntu Server</a>. This page is for Ubuntu Server.</p>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 p-card">
-      <div class="u-equal-height p-divider">
-        <div class="col-6 p-divider__block">
-          <h2>Install Ubuntu Core</h2>
-          <p>We will walk you through the steps of flashing Ubuntu Core on a Samsung Artik 5 or 10. At the end of this process, you will have a board ready for production or testing snaps.</p>
-        </div>
-        <div class="col-6 p-divider__block">
-          <h3>Minimum requirements</h3>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">An Ubuntu SSO account with an SSH key</li>
-            <li class="p-list__item is-ticked">A Samsung Artik 5 or 10</li>
-            <li class="p-list__item is-ticked">An SD card</li>
-            <li class="p-list__item is-ticked">An Ubuntu Core image</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-deep is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h2>Installation instructions</h2>
-      <ol class="p-stepped-list--detailed">
-        {% include "./_setup-ubuntu-sso.html" with number=1 %}
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
-            <span class="p-list-step__bullet">2</span>
-            Download Ubuntu Core
-          </h3>
-          <div class="p-list-step__content">
-            <p>Get the correct Ubuntu Core image for your board:</p>
-            <ul class="u-no-margin--left">
-              <li><a class="p-link--external" href="http://people.canonical.com/~platform/snappy/artik/uc-series16-final-image/artik5.img.xz">Ubuntu Core 16 image for Samsung Artik 5</a></li>
-              <li><a class="p-link--external" href="http://people.canonical.com/~platform/snappy/artik/uc-series16-final-image/artik10.img.xz">Ubuntu Core 16 image for Samsung Artik 10</a></li>
-              <li>You can verify the integrity of the file using the <a class="p-link--external" href="http://people.canonical.com/~platform/snappy/artik/uc-series16-final-image/md5sum">MD5sum</a> file.</li>
-            </ul>
-          </div>
-        </li>
-        {% include "./_flash-image.html" with card="SD card" number=3 %}
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
-            <span class="p-list-step__bullet">4</span>
-            Install Ubuntu Core
-          </h3>
-          <div class="p-list-step__content">
-            <ol class="u-no-margin--left">
-              <li>Prepare your Artik to boot from the SD card, by setting the "SW2" switches to <code>1:on</code> and <code>2:on</code></li>
-              <li>Insert the SD card</li>
-              <li>Connect the 5V power supply to the board, then use the power button on the board to switch it on</li>
-            </ol>
-          </div>
-        </li>
-        {% include "./_first-boot-setup.html" with number=5 %}
-        {% include "./_login.html" with number=6 %}
-      </ol>
-    </div>
-  </div>
-</section>
-
-{% include "download/shared/_get-ebook-security.html" %}
-
-<section class="p-strip--light is-bordered" id="server">
-  <div class="row">
+  <div class="row" id="server">
     <div class="col-12 p-card">
       <div class="u-equal-height p-divider">
         <div class="col-6 p-divider__block">
@@ -153,6 +88,8 @@
 {% include "./_boot-tips-strip.html" with strip="p-strip--light" %}
 
 {% include "./_install-snaps-strip.html" %}
+
+{% include "download/shared/_get-ebook-security.html" %}
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_core_learn_more" second_item="_core_contribute" third_item="_iot_further_reading" %}
 
