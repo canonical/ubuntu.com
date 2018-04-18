@@ -1,0 +1,267 @@
+/// download-desktop-contribution page
+/* Contribute page */
+
+// Styling Cross-Browser Compatible Range Inputs with Sass
+// Based off Darlan Rob's solution:
+// https://github.com/darlanrod/input-range-sass
+
+// Default settings
+$range-thumb-radius: 4px !default;
+$range-thumb-height: 18px !default;
+$range-thumb-width: 18px !default;
+$range-thumb-shadow-size: 0 !default;
+$range-thumb-shadow-blur: 3px !default;
+$range-thumb-shadow-color: rgba(0,0,0,0.4) !default;
+$range-thumb-border-width: 0 !default;
+$range-thumb-border-color: transparent !default;
+$range-track-height: 4px !default;
+$range-track-radius: 2px !default;
+
+@mixin ubuntu-p-contribute {
+  @include ubuntu-p-contribute_details;
+}
+
+@mixin ubuntu-p-contribute_range-track {
+  height: $range-track-height;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+@mixin ubuntu-p-contribute_range-thumb {
+  box-shadow: $range-thumb-shadow-size $range-thumb-shadow-size $range-thumb-shadow-blur $range-thumb-shadow-color, 0 0 $range-thumb-shadow-size lighten($range-thumb-shadow-color, 5%);
+  border: $range-thumb-border-width solid $range-thumb-border-color;
+  height: $range-thumb-height;
+  width: $range-thumb-width;
+  border-radius: $range-thumb-radius;
+  background: $color-x-light;
+  cursor: pointer;
+}
+
+@mixin ubuntu-p-contribute_details {
+
+  .contribute {
+    .no-js & {
+      display: none;
+    }
+
+    &__heading {
+        margin-bottom: .5rem;
+    }
+
+    &__description {
+       margin-bottom: 0;
+     }
+
+    &__options {
+      background-color: $color-light;
+      padding: 20px;
+      border-radius: 5px;
+    }
+
+    &__option-amount {
+      font-size: 16px;
+      display: flex;
+      margin-top: 0.5em;
+      margin-bottom: 1em;
+    }
+
+    &__option-currency {
+      display: inline-block;
+      color: $color-mid-light;
+      padding: 5px;
+      order: 2;
+    }
+
+    &__option-value {
+      margin-top: 0;
+      order: 3;
+      padding: 4px;
+      width: 55px;
+    }
+
+    &__option-slider {
+      order: 1;
+      flex-grow: 1;
+      margin-right: 16px;
+      background-color: transparent;
+    }
+
+    &__equivalent {
+      max-width: 350px;
+
+      p {
+        margin-bottom: 0;
+      }
+
+      &-image {
+        margin-right: 20px;
+        margin-bottom: 20px;
+
+        @media only screen and (min-width: $breakpoint-medium) {
+          float: left;
+        }
+      }
+
+      &__equivalent-price {
+        color: $color-mid-light;
+      }
+    }
+
+    &__summary {
+      margin-top: 40px;
+      margin-bottom: 20px;
+
+      .no-js & {
+        display: none;
+      }
+    }
+
+    &__total {
+      float: right;
+
+      &-heading {
+        margin-top: -0.3em;
+        margin-bottom: 0;
+      }
+
+      &-currency {
+        color: $color-mid-light;
+      }
+    }
+
+    &__finalise {
+      padding-top: 20px;
+    }
+
+    &__submit {
+      float: right;
+      margin: 0 0 .5rem 1rem;
+      width: auto;
+
+      &[disabled] {
+        opacity: .3;
+      }
+      &.hidden {
+        display: none;
+      }
+    }
+
+    &__skip.button--primary {
+      float: right;
+      text-indent: -1000px;
+      position: relative;
+      width: 15.3em;
+
+      &::after {top: 0;
+        left: 0;
+        content: "Download Ubuntu Desktop";
+        display: inline-block;
+        color: $color-x-light;
+        position: absolute;
+        text-indent: 0;
+        padding: 11px 24px;
+      }
+    }
+  }
+
+  // Overrides
+  input[type=number].contribute__option-value {
+    @extend .contribute__option-value;
+  }
+
+  form fieldset.contribute__options {
+    @extend .contribute__options;
+  }
+
+  .contribute button.contribute__submit {
+    @extend .contribute__submit;
+  }
+
+  // Styling Cross-Browser Compatible Range Inputs with Sass
+  // Based off Darlan Rob's solution:
+  // https://github.com/darlanrod/input-range-sass
+
+  // Default settings
+  $range-thumb-radius: 4px !default;
+  $range-thumb-height: 18px !default;
+  $range-thumb-width: 18px !default;
+  $range-thumb-shadow-size: 0 !default;
+  $range-thumb-shadow-blur: 3px !default;
+  $range-thumb-shadow-color: rgba(0,0,0,0.4) !default;
+  $range-thumb-border-width: 0 !default;
+  $range-thumb-border-color: transparent !default;
+  $range-track-height: 4px !default;
+  $range-track-radius: 2px !default;
+
+  %input-range {
+    -webkit-appearance: none;
+    margin: $range-thumb-height / 2 0;
+    background-color: transparent;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::-webkit-slider-runnable-track {
+      @include  ubuntu-p-contribute_range-track;
+      background: $color-brand;
+      border-radius: $range-track-radius;
+    }
+
+    &::-webkit-slider-thumb {
+      @include  ubuntu-p-contribute_range-thumb;
+      -webkit-appearance: none;
+      margin-top: $range-track-height / 2 - $range-thumb-height / 2;
+    }
+
+    &:focus::-webkit-slider-runnable-track {
+      background: lighten($color-brand, 0);
+    }
+
+    &::-moz-range-track {
+      @include  ubuntu-p-contribute_range-track;
+      background: $color-brand;
+      border-radius: $range-track-radius;
+    }
+
+    &::-moz-range-thumb {
+      @include  ubuntu-p-contribute_range-thumb;
+    }
+
+    &::-ms-track {
+      @include  ubuntu-p-contribute_range-track;
+      background: transparent;
+      border-color: transparent;
+      border-width: $range-thumb-width 0;
+      color: transparent;
+    }
+
+    &::-ms-fill-lower {
+      background: darken($color-brand, 0);
+      border-radius: $range-track-radius * 2;
+    }
+
+    &::-ms-fill-upper {
+      background: $color-brand;
+      border-radius: $range-track-radius * 2;
+    }
+
+    &::-ms-thumb {
+      @include  ubuntu-p-contribute_range-thumb;
+    }
+
+    &:focus::-ms-fill-lower {
+      background: $color-brand;
+    }
+
+    &:focus::-ms-fill-upper {
+      background: lighten($color-brand, 0);
+    }
+  }
+
+  // Style all range input boxes with ubuntu fancy styles
+  [type=range] {
+    @extend %input-range;
+  }
+
+}
