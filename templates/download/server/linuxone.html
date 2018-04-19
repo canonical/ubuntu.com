@@ -1,6 +1,6 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Ubuntu for IBM LinuxONE and z&nbsp;Systems | Download{% endblock %}
+{% block title %}Ubuntu Server for IBM Z and LinuxONE | Download{% endblock %}
 
 {% block meta_description %}Ubuntu for IBM LinuxONE brings the Ubuntu Server and Ubuntu Server for cloud with the OpenStack ecosystem to IBM LinuxONE.{% endblock meta_description %}
 
@@ -9,7 +9,7 @@
 <div class="p-strip is-deep">
   <div class="row">
     <div class="col-12">
-      <h1>Ubuntu for IBM LinuxONE and z&nbsp;Systems</h1>
+      <h1>Ubuntu Server for IBM Z and LinuxONE</h1>
     </div>
   </div>
 
@@ -17,14 +17,106 @@
     <div class="col-12 p-card--highlighted">
       <h2>Ubuntu Server {{lts_release_full}}</h2>
       <div class="u-equal-height p-divider">
-        <div class="col-8 p-divider__block">
-          <p class="p-card__content">IBM LinuxONE and z&nbsp;Systems leverage open technology solutions to meet the demands of the new application economy. They combine the best of open source to offer IBM&rsquo;s enterprise customers unprecedented performance, security and resiliency. Ubuntu {{lts_release_full}} was released for general availability (GA) in April and can now be downloaded by all IBM LinuxOne and z Systems customers.</p>
-          <p class="p-card__content">Ubuntu {{lts_release_full}} for IBM LinuxONE and z&nbsp;Systems is priced at $19,500 per drawer per year, covering unlimited usage of Ubuntu within that drawer, 24x7 Ubuntu Advantage Advanced support services and regular security and reliability fixes from Canonical.</p>
-          <p class="p-card__content">For questions about Ubuntu Advantage for LinuxONE and z Systems, please call us <tel href="+442036565291">+44&nbsp;(0)&nbsp;203&nbsp;656&nbsp;5291</tel> or email us at <a href="mailto:ibm@ubuntu.com">ibm@ubuntu.com</a>.</p>
+        <div class="col-6 p-divider__block">
+          <p class="p-card__content">IBM Z and LinuxONE leverage open technology solutions to meet the demands of the new application economy. They combine the best of open source to offer IBM&rsquo;s enterprise customers unprecedented performance, flexibility, security and resiliency.</p>
+          <p class="p-card__content">Ubuntu {{lts_release_full}} for IBM Z and LinuxONE is priced at $19,500 per drawer per year, covering unlimited usage of Ubuntu within that drawer, 24x7 Ubuntu Advantage Advanced support services and regular security and reliability fixes from Canonical.</p>
+          <p class="p-card__content">For questions about Ubuntu Advantage for IBM Z and LinuxONE, please call us <tel href="+442036565291">+44&nbsp;(0)&nbsp;203&nbsp;656&nbsp;5291</tel> or email us at <a href="mailto:ibm@ubuntu.com">ibm@ubuntu.com</a>.</p>
         </div>
-        <div class="col-4 p-divider__block">
-          <p><a href="/download/server/thank-you-linuxone" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'LinuxONE server', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">Download and accept terms</a></p>
-          <p class="p-card__content">Your use of Ubuntu on z&nbsp;Systems and LinuxONE in production constitutes <a href="/legal/short-terms">acceptance of these terms</a>.</p>
+        <div class="col-6 p-divider__block">
+
+          <!-- MARKETO FORM -->
+          <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
+          <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
+
+          <form class="p-form u-no-margin--top" action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1400">
+            <fieldset>
+              <ul class="p-list">
+                <li class="mktFormReq mktField p-list__item">
+                  <label for="FirstName" class="mktoLabel">First name: <span>*</span></label>
+                  <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField   mktoRequired">
+                </li>
+                <li class="mktFormReq mktField p-list__item">
+                  <label for="LastName" class="mktoLabel">Last name: <span>*</span></label>
+                  <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField   mktoRequired">
+                </li>
+                <li class="mktFormReq mktField p-list__item">
+                  <label for="Company" class="mktoLabel">Company name: <span>*</span></label>
+                  <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField   mktoRequired">
+                </li>
+                <li class="mktFormReq mktField p-list__item">
+                  <label for="Email" class="mktoLabel">Email address: <span>*</span></label>
+                  <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired">
+                </li>
+                <li class="mktFormReq mktField p-list__item">
+                  <label for="Phone" class="mktoLabel">Phone number: <span>*</span></label>
+                  <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired">
+                </li>
+                <li class="mktField p-list__item">
+                  <label for="NumUbuntuServers__c" class="mktoLabel">Number of drawers you are purchasing support for:</label>
+                  <select id="NumUbuntuServers__c" name="NumUbuntuServers__c" class="mktoField"><option value="">Select...</option>
+                    <option value="zBC12" disabled>zBC12</option>
+                    <option value="zBC12 - 1 drawer (up to 13 cores)"> - 1 drawer (up to 13 cores)</option>
+                    <option value="zEC12" disabled>zEC12</option>
+                    <option value="zEC12 - 1 drawer (up to 20 cores)"> - 1 drawer (up to 20 cores)</option>
+                    <option value="zEC12 - 2 drawers (up to 43 cores)"> - 2 drawers (up to 43 cores)</option>
+                    <option value="zEC12 - 3 drawers (up to 66 cores)"> - 3 drawers (up to 66 cores)</option>
+                    <option value="zEC12 - 4 drawers (up to 10 cores)"> - 4 drawers (up to 10 cores)</option>
+                    <option value="Z13s/Rockhopper" disabled> Z13s/Rockhopper</option>
+                    <option value="Z13s/Rockhopper - 1 drawer (up to 20 cores)"> - 1 drawer (up to 20 cores)</option>
+                    <option value="Z13/Emperor" disabled>Z13/Emperor</option>
+                    <option value="Z13/Emperor - 1 drawer (up to 30 cores)"> - 1 drawer (up to 30 cores)</option>
+                    <option value="Z13/Emperor - 2 drawers (up to 63 cores)"> - 2 drawers (up to 63 cores)</option>
+                    <option value="Z13/Emperor - 3 drawers (up to 96 cores)"> - 3 drawers (up to 96 cores)</option>
+                    <option value="Z13/Emperor - 4 drawer (up to 141 cores)"> - 4 drawer (up to 141 cores)</option></select>
+                </li>
+                <li class="mktField p-list__item">
+                  <label for="Comments_from_Contact__c" class="mktoLabel">Serial number(s)</label>
+                  <textarea id="Comments_from_Contact__c" name="Comments_from_Contact__c" rows="2" class="mktoField " maxlength="2000"></textarea>
+                </li>
+                <li class="mktField p-list__item">
+                  <label for="purchaseordernumber" class="mktoLabel">Purchase order number:</label>
+                  <input id="purchaseordernumber" name="purchaseordernumber" maxlength="255" type="text" class="mktoField ">
+                </li>
+                <li class="mktField p-list__item">
+                  <input class="mktoField" value="yes" id="NewsletterOpt-In" name="NewsletterOpt-In" type="checkbox"> <label class="mktoLabel mktoHasWidth" for="NewsletterOpt-In">I would like to receive occasional news from Canonical by email.</label>
+                </li>
+                <li class="mktField p-list__item">
+                  <input name="Optin_cloud_nuture" id="Optin_cloud_nuture" type="checkbox" value="yes" class="mktoField"> <label for="Optin_cloud_nuture" class="mktoLabel">I would like to receive eBooks and White Papers by Canonical.</label>
+                </li>
+                <li>All information provided will be handled in accordance with the Canonical <a href="https://www.ubuntu.com/legal" target="_blank">privacy policy</a>. Your use of Ubuntu on IBM Z and LinuxONE in production constitutes <a href="/legal/short-terms">acceptance of these terms</a>.</li>
+                <li class="mktField p-list__item">
+                  <button onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'LinuxONE server', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });" type="submit" class="mktoButton p-button--positive is-wide">Accept terms and download</button>
+                  <input type="hidden" name="formid" class="mktoField " value="1400"><input type="hidden" name="lpId" class="mktoField " value="2469"><input type="hidden"
+                    name="subId" class="mktoField " value="30"><input type="hidden" name="munchkinId" class="mktoField " value="066-EOV-335"><input type="hidden" name="lpurl" class="mktoField " value="https://pages.ubuntu.com/download-LinuxONE.html?cr={creative}&amp;kw={keyword}">
+                  <input
+                    type="hidden" name="cr" class="mktoField " value=""><input type="hidden" name="kw" class="mktoField " value=""><input type="hidden" name="q" class="mktoField " value="">
+                </li>
+              </ul>
+            </fieldset>
+            <input type="hidden" name="returnURL" value="https://www.ubuntu.com/download/server/thank-you-linuxone" />
+            <input type="hidden" name="retURL" value="https://www.ubuntu.com/download/server/thank-you-linuxone" />
+          </form>
+          <script>
+            $("#mktoForm_1400").validate({
+              errorElement: "span",
+              errorClass: "mktFormMsg mktError",
+              onkeyup: false,
+              onclick: false,
+              onblur: false
+            });
+            $(function() {
+              $("#comments").hide()
+            });
+            $('#Ubuntu_User__c').on('change', function() {
+              var selection = $(this).val();
+              if (selection == 'Commercially only') {
+                $('#comments').show();
+              } else {
+                $('#comments').hide();
+              }
+            });
+          </script>
+          <!-- /MARKETO FORM -->
         </div>
       </div>
     </div>
