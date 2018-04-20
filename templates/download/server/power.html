@@ -1,0 +1,69 @@
+{% extends "download/_base_download.html" %}
+{% block title %}Ubuntu for POWER | Download{% endblock %}
+{% block meta_description %}Ubuntu for POWER brings the Ubuntu Server and Ubuntu ecosystem to POWER.{% endblock meta_description %}
+
+
+{% block content %}
+<div class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-10">
+      <div>
+        <h1>Ubuntu Server for IBM POWER</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="p-card--highlighted u-equal-height">
+      <div class="col-6">
+        <h2>Ubuntu Server</h2>
+        <ul class="p-list">
+          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/releases/{{ latest_release_with_point }}/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ latest_release }}', 'eventValue' : undefined });">{{ latest_release_with_point }} LTS&nbsp;&rsaquo;</a></li>
+          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/releases/16.04.2/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '16.04.2', 'eventValue' : undefined });">16.04.2 LTS&nbsp;&rsaquo;</a></li>
+          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/releases/14.04.5/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '14.04.5', 'eventValue' : undefined });">14.04.5&nbsp;&rsaquo;</a></li>
+        </ul>
+      </div>
+      <div class="col-6">
+        <h2>Netboot image</h2>
+        <ul class="p-list">
+          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/netboot/{{ latest_release }}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER netboot', 'eventLabel' : '{{ latest_release }}', 'eventValue' : undefined });">{{ latest_release_with_point }} LTS&nbsp;&rsaquo;</a></li>
+          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/netboot/16.04.2/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER netboot', 'eventLabel' : '16.04.2', 'eventValue' : undefined });">16.04.2 LTS&nbsp;&rsaquo;</a></li>
+          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/netboot/14.04.5/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER netboot', 'eventLabel' : '14.04.5', 'eventValue' : undefined });">14.04.5&nbsp;&rsaquo;</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip is-bordered">
+  <div class="row u-equal-height p-divider">
+    <div class="col-4 p-divider__block">
+      <h3>Ubuntu {{ latest_release }} LTS for IBM POWER</h3>
+      <p>Ubuntu {{ latest_release }} LTS adds support for Openstack Queens, LXD 3.0 with clustering and resource quotas, netplan.io, Chrony, and fresh package updates throughout the distribution.  Ubuntu 18.04 is the first release to support Power9.</p>
+      <p><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes">Ubuntu Server {{ latest_release }} LTS release notes&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3>Ubuntu 16.04 LTS for IBM POWER8</h3>
+      <p>Ubuntu 16.04 continues to enable rapid innovation for POWER8 including support for new POWER8 models, memory and PCI Hotplug, Docker 1.9.1, many performance and availability enhancements. Includes the only commercially available Linux to provide initial support for support the OpenPOWER Foundation’s industry leading NVLink technology.</p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3>Ubuntu 14.04 for IBM POWER8</h3>
+      <p>Ubuntu 14.04 brings with it, for the first time, support for IBM POWER8 including our MAAS provisioning, Juju cloud orchestration, Landscape systems management and Ubuntu OpenStack.  Ubuntu 14.04.4 adds CAPI and PowerNV support.</p>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>Ready to deploy now</h2>
+      <p>Ubuntu Server for POWER brings Ubuntu Server and Ubuntu Server for cloud to POWER, opening the door to the entire OpenStack ecosystem and the scale-out and cloud markets. Power is optimised for workloads in the mobile, social, cloud, Big Data, analytics and machine learning spaces. With its unique deployment toolset (including Juju and MAAS), Ubuntu makes the management of those workloads trivial.</p>
+    </div>
+    <div class="col-4 u-align--center u-vertically-center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}c3499461-picto-server-warmgrey.svg" alt="" width="200" height="200" />
+    </div>
+  </div>
+</div>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_server_installation" second_item="_download_server_guide" third_item="_download_helping_hands" %}
+
+{% endblock content %}
