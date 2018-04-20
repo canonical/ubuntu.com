@@ -215,18 +215,23 @@
 
   .dropdown-window {
     @extend .p-strip;
-    background-color: $color-x-light;
-    border-bottom: 1px solid $color-mid-light;
-    box-shadow: 0 1px 5px 1px transparentize($color-dark, .8);
-    color: $color-dark;
-    line-height: $sp-medium-large;
-    padding: 2.5rem 0;
-    position: relative;
-    transition: all .25s cubic-bezier(.215, .61, .355, 1);
-    z-index: 1;
+    display: none;
 
-    .row {
-      margin-top: 0;
+    @media only screen and (min-width: $breakpoint-navigation-threshold) {
+      display: block;
+      background-color: $color-x-light;
+      border-bottom: 1px solid $color-mid-light;
+      box-shadow: 0 1px 5px 1px transparentize($color-dark, .8);
+      color: $color-dark;
+      line-height: $sp-medium-large;
+      padding: 2.5rem 0;
+      position: relative;
+      transition: all .25s cubic-bezier(.215, .61, .355, 1);
+      z-index: 1;
+
+      .row {
+        margin-top: 0;
+      }
     }
   }
 
@@ -235,5 +240,16 @@
     transform: translateY(-1rem);
     transition-duration: .25s;
     visibility: hidden;
+
+    .u-visible-nav & {
+      opacity: 1;
+      transform: none;
+      visibility: visible;
+    }
   }
+}
+
+.u-visible-nav {
+  padding-top: $sp-large;
+  padding-bottom: $sp-large;
 }
