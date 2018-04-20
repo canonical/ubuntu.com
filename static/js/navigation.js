@@ -3,29 +3,36 @@ var dropdownWindow = document.querySelector('.dropdown-window');
 
 navDropdowns.forEach(function(dropdown) {
   dropdown.addEventListener('click', function(event) {
+    event.preventDefault();
+
     var clickedDropdown = this;
+    var navigationThresholdBreakpoint = 900;
 
-    if (dropdownWindow.classList.contains('fade-animation')) {
-      dropdownWindow.classList.remove('fade-animation');
-    }
-
-    navDropdowns.forEach(function(dropdown) {
-      var dropdownContent = document.getElementById(dropdown.id + "-content");
-
-      if (dropdown === clickedDropdown) {
-        if (dropdown.classList.contains('is-selected')) {
-          dropdown.classList.remove('is-selected');
-          dropdownWindow.classList.add('fade-animation');
-          dropdownContent.classList.add('fade-animation');
-        } else {
-          dropdown.classList.add('is-selected');
-          dropdownContent.classList.remove('fade-animation', 'u-hide');
-        }
-      } else {
-        dropdown.classList.remove('is-selected');
-        dropdownContent.classList.add('fade-animation', 'u-hide');
+    if (window.innerWidth >= navigationThresholdBreakpoint) {
+      if (dropdownWindow.classList.contains('fade-animation')) {
+        dropdownWindow.classList.remove('fade-animation');
       }
-    });
+
+      navDropdowns.forEach(function(dropdown) {
+        var dropdownContent = document.getElementById(dropdown.id + "-content");
+
+        if (dropdown === clickedDropdown) {
+          if (dropdown.classList.contains('is-selected')) {
+            dropdown.classList.remove('is-selected');
+            dropdownWindow.classList.add('fade-animation');
+            dropdownContent.classList.add('fade-animation');
+          } else {
+            dropdown.classList.add('is-selected');
+            dropdownContent.classList.remove('fade-animation', 'u-hide');
+          }
+        } else {
+          dropdown.classList.remove('is-selected');
+          dropdownContent.classList.add('fade-animation', 'u-hide');
+        }
+      });
+    } else {
+      window.location.href = this.querySelector('a').getAttribute('href');
+    }
   });
 });
 
