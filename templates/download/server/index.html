@@ -15,6 +15,7 @@
       <div class="u-equal-height p-divider">
         <div class="col-8 p-divider__block">
           <p class="p-card__content">The long-term support version of Ubuntu Server, including the {{lts_openstack_version}} release of OpenStack and support guaranteed until {{lts_release_eol}} &mdash; 64-bit only.</p>
+          <p class="p-card__content">This release uses our new installer, Subiquity.  If you require advanced networking and storage features, please use the old installer, found on the <a href="/download/alternative-downloads">alternative downloads</a> page, until they are supported.</p>
           <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu Server {{ lts_release }} LTS release notes</a></p>
         </div>
         <div class="col-4">
@@ -31,39 +32,14 @@
   <div class="row">
     <div class="col-8">
       <div>
-        <h2>Your next steps with Ubuntu Server</h2>
-        <p>Use Ubuntu&rsquo;s tools to help you provision and manage your servers</p>
+        <h2>Server provisioning with MAAS</h2>
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Metal as a Service (MAAS) offers cloud style provisioning for physical servers</li>
+          <li class="p-list__item is-ticked">Designed for building data centres with complex networks</li>
+          <li class="p-list__item is-ticked">Supports Windows, Ubuntu, CentOS, RHEL and SUSE</li>
+        </ul>
+        <p><a href="https://maas.io" class="p-link--external">Get MAAS</a></p>
       </div>
-    </div>
-  </div>
-
-  <div class="row u-equal-height">
-    <div class="col-6 p-card">
-      <h3>Server management with Landscape</h3>
-      <ul class="p-list--divided">
-        <li class="p-list__item">
-          Landscape is the leading management tool to deploy, monitor and manage your Ubuntu servers
-        </li>
-        <li class="p-list__item">
-          Landscape is also available as part of Ubuntu Advantage, Canonical&rsquo;s world-class support service
-        </li>
-      </ul>
-      <p><a href="https://landscape.canonical.com/"><span class="p-link--external">Get Landscape</span></a></p>
-    </div>
-    <div class="col-6 p-card">
-      <h3>Server provisioning with MAAS</h3>
-      <ul class="p-list--divided">
-        <li class="p-list__item">
-          Metal as a Service (MAAS) offers cloud style provisioning for physical servers
-        </li>
-        <li class="p-list__item">
-          Designed for building data centres with complex networks
-        </li>
-        <li class="p-list__item">
-          Supports Windows, Ubuntu, CentOS, RHEL and SUSE
-        </li>
-      </ul>
-      <p><a href="https://maas.io/"><span class="p-link--external">Get MAAS</span></a></p>
     </div>
   </div>
 </section>
@@ -94,7 +70,7 @@
   <div class="row u-equal-height">
     <div class="col-4 p-card">
       <h3 class="p-card__title">Ubuntu Server for ARM</h3>
-      <p class="p-card__content">Optimised for hyperscale deployments and certified on a number of ARM chipsets, Ubuntu Server for ARM includes the 64-bit ARMv8 platforms.</p>
+      <p class="p-card__content">Optimised for hyperscale deployments and certified on a number of ARM chipsets, including HP, Cavium, Applied Micro and Marvell &mdash; Ubuntu Server for ARM includes the 64-bit ARMv8 platforms.</p>
       <p class="p-card__content"><a href="/download/server/arm">Get Ubuntu Server for ARM&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 p-card">
