@@ -9,7 +9,7 @@
     <div class="u-equal-height">
       <div class="col-7">
         <h1>The LXD container hypervisor</h1>
-        <h2>10x the density of ESX, 25% faster, zero latency</h2>
+        <h2>25% faster than ESX. 10 times the density with zero latency</h2>
         <p>Move your Linux VMs straight to containers, easily, without modifying the apps or administration processes. Canonical&rsquo;s LXD is a pure-container hypervisor that runs unmodified Linux guest operating systems with VM-style operations at incredible speed and density.</p>
         <p><a href="/containers/contact-us?product=containers-lxd">Talk to us about your container strategy&nbsp;&rsaquo;</a></p>
       </div>
@@ -26,7 +26,9 @@
   <div class="row">
     <div class="col-8">
       <h2>Why use LXD?</h2>
-      <p>LXD takes the speed and latency of containers and brings them to the hypervisor world. A&nbsp;LXD container gives you full &lsquo;machine&rsquo; system functionality, not just a single process.  You can run Docker and RunC inside LXD to mix container types. But mostly, LXD is a &ldquo;really fast hypervisor&rdquo; that lets you operate exactly the way you currently operate, only at container speeds. You also get:</p>
+      <p>LXD is a “really fast hypervisor” that lets you operate exactly the way you currently operate, only at container speeds. LXD takes the speed and latency of containers and brings them to the hypervisor world.</p>
+      <p>A LXD container gives you full ‘machine’ system functionality, not just a single process. You can run Docker and RunC inside LXD to mix container types.</p>
+      <p>LXD brings you:</p>
     </div>
   </div>
 
@@ -78,7 +80,13 @@
     <div class="u-equal-height">
       <div class="col-6 p-card">
         <h3 class="p-card__title">Your first step to containers is easy</h3>
-        <p class="p-card__content">LXD containers are just like traditional physical and virtual machines.  You can log in remotely, manage the guest OS the standard way, install applications, secure them, and operate them with the same tools, but gain the raw performance and density of containers.  LXD guests launch in seconds and you can run hundreds on a single server. Connect them separately and securely to networks, copy between hosts and drive all of this through a clean REST API.</p>
+        <p class="p-card__content">
+          LXD containers are just like traditional physical and virtual machines.  You can log in remotely, manage the guest OS the standard way, install applications, secure them, and operate them with the same tools, but gain the raw performance and density of containers.
+
+          <br/><br/>
+
+          LXD guests launch in seconds and you can run hundreds on a single server. Connect them separately and securely to networks, copy between hosts and drive all of this through a clean RESTful API.
+        </p>
       </div>
       <div class="col-6 p-card">
         <h3 class="p-card__title">Like a virtual machine, only faster</h3>
@@ -110,7 +118,7 @@
   </div>
 </div>
 
-<div class="p-strip--light is-bordered">
+<div class="p-strip is-bordered">
   <div class="row">
     <div class="col-12">
       <h2>Getting started with LXD</h2>
@@ -122,7 +130,7 @@
         <li class="p-list-step__item col-8">
           <h3 class="p-list-step__title">
             <span class="p-list-step__bullet">1</span>
-            Activate LXD<br />(on Ubuntu 16.04 LTS or greater)
+            Activate LXD
           </h3>
           <div class="p-list-step__content">
             <div class="p-code-snippet">
@@ -130,6 +138,13 @@
               <button class="p-code-snippet__action">Copy to clipboard</button>
             </div>
             <p style="margin-top: 1rem;">You can generally hit Enter to accept the default answers to the questions, and once you&rsquo;re setup you can start to launch machines.</p>
+
+            <div class="p-notification--caution">
+              <div class="p-notification__response">
+                <p><span class="p-notification__status">Note:</span></p>
+                <p>LXD is on Ubuntu 16.04 LTS Server or greater by default. On Ubuntu Desktop LXD will need to be installed</p>
+              </div>
+            </div>
           </div>
         </li>
         <li class="p-list-step__item col-8">
@@ -155,7 +170,7 @@
               <input class="p-code-snippet__input" value="lxc list" readonly="readonly">
               <button class="p-code-snippet__action">Copy to clipboard</button>
             </div>
-            <p style="margin-top: 1rem;"><img src="{{ ASSET_SERVER_URL }}51651853-lxc-list.png?w=444" width="444" alt="" /></p>
+            <p style="margin-top: 1rem;"><img src="{{ ASSET_SERVER_URL }}0a62a3d3-screenshot_LXD_containers.jpg?w=888" width="444" alt="" /></p>
           </div>
         </li>
         <li class="p-list-step__item col-8">
@@ -176,6 +191,7 @@
     <div class="row">
       <div class="col-8">
         <p><a class="p-link--external" href="https://linuxcontainers.org/lxd/getting-started-cli/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Read more on linuxcontainers.org', 'eventLabel' : 'linuxcontainers.org', 'eventValue' : undefined });">Read more on linuxcontainers.org</a></p>
+        <p><a href="https://linuxcontainers.org/lxd/try-it/" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'LXD', 'eventLabel' : 'Try the LXD interactive tutorial', 'eventValue' : undefined });">Try the LXD interactive tutorial</a></p>
       </div>
     </div>
   </div>
@@ -186,7 +202,7 @@
     <div class="p-divider">
       <div class="col-6 p-divider__block">
         <h3>Is LXD a real Linux hypervisor?</h3>
-        <p>Yes: LXD containers give you the experience of virtual machines with the security of a hypervisor, but much, much faster. Without all the overhead, you get the full performance of your host environment. On bare metal, LXD containers are as fast as the native OS. In the cloud, you get subdivider machines without subpar performance.</p>
+        <p>Yes: LXD containers give you the experience of virtual machines with the security of a hypervisor, but much, much faster. Without all the overhead, you get the full performance of your host environment. On bare metal, LXD containers are as fast as the native OS. In the cloud, you get subdivided machines without subpar performance.</p>
         <p>You can live-migrate LXD containers from machine to machine. We&rsquo;re working with silicon companies to ensure hardware-assisted security and isolation for containers, like virtual machines. Additionally, you can bind storage or network interfaces to the containers, just like virtual machines.</p>
       </div>
       <div class="col-6 p-divider__block">
@@ -205,7 +221,7 @@
         <h2>How does our LXD support offering work?</h2>
         <p>Enterprise support for LXD is provided by Canonical through Ubuntu Advantage.</p>
         <p>We also offer consulting services and customisation for larger organisations to integrate LXD with existing infrastructure.</p>
-        <p>To discuss your requirement connect with a member of the Canonical team.</p>
+        <p>To discuss your requirements connect with a member of the Canonical team.</p>
         <p><a href="/support">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
         <p><a href="/containers/contact-us?product=containers-lxd">Contact us&nbsp;&rsaquo;</a></p>
       </div>

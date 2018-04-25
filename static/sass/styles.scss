@@ -38,7 +38,7 @@
 @import 'pattern_takeunders';
 @import 'pattern_table';
 @import 'pattern_tabs';
-@import 'takeovers/kubernetes-month';
+@import 'takeovers/1804-release';
 
 @include ubuntu-p-buttons;
 @include ubuntu-p-site-search;
@@ -65,7 +65,7 @@
 @include ubuntu-p-takeunders;
 @include ubuntu-p-tables;
 @include ubuntu-p-tabs;
-@include p-takeover-kubernetes-month;
+@include p-takeover-1804-release;
 
 // Bug fixes
 // Each of the the rules below are bug fixes which need to be addressed further upstream
@@ -332,5 +332,27 @@ p + pre {
       @extend .p-matrix__img; // sass-lint:disable-line placeholder-in-extend
       max-width: 100%;
     }
+  }
+}
+
+.u-align--bottom {
+  display: flex;
+  align-items: flex-end !important;
+}
+
+.p-card__icon {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  height: 2rem;
+}
+
+.p-strip--security {
+  @extend .p-strip;
+
+  @media only screen and (min-width: $breakpoint-medium) {
+    background-image: url(https://assets.ubuntu.com/v1/8717cb84-padlock-chain-icon-angular.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left 70% top;
   }
 }

@@ -1,0 +1,62 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}
+Thanks for downloading Ubuntu Server for IBM Z and LinuxONE
+{% endblock %}
+
+
+
+{% block head_extra %}
+  <meta http-equiv="refresh" content="3;url=http://cdimage.ubuntu.com/releases/{{lts_release}}/release/ubuntu-{{lts_release_with_point}}-server-s390x.iso">
+{% endblock %}
+
+{% block content %}
+
+<div class="p-strip--light is-deep is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h1>Thanks for downloading Ubuntu for LinuxONE and z&nbsp;Systems</h1>
+      <p>Thank you for downloading Ubuntu {{lts_release_full_with_point}} for IBM Z and LinuxONE. Your ISO download should start automatically.</p>
+      <p>If it doesn&rsquo;t, or for alternative options <a class="p-link--external" href="http://cdimage.ubuntu.com/releases/18.04/release">visit the download page</a>.</p>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip is-shallow">
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header">
+          <img class="p-heading-icon__img" alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}0838729a-picto-bookmark-warmgrey.svg" width="113" height="113" />
+          <h3 class="p-heading-icon__title">Forrester Research eBook</h3>
+        </div>
+      </div>
+      <p>Get more from the cloud with the right platform approach.</p>
+      <p><a href="https://pages.ubuntu.com/Forrester_TAP_Report_2016.html" class="p-link--external">Download eBook</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header">
+          <img class="p-heading-icon__img" alt="ubuntu one" src="{{ ASSET_SERVER_URL }}8a199d55-picto-articles-warmgrey.svg" width="113" height="113" />
+          <h3 class="p-heading-icon__title">IDC Analyst White Paper</h3>
+        </div>
+      </div>
+      <p>Learn more about next generation applications on Ubuntu for LinuxONE/z.</p>
+      <p><a href="http://www-01.ibm.com/marketing/iwm/dre/signup?source=stg-web&S_PKG=ov47989&S_TACT=C47305CW" class="p-link--external">Download whitepaper</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header">
+          <img class="p-heading-icon__img" alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}87cb77c7-picto-desktop-warmgrey.svg" width="113" height="113" />
+          <h3 class="p-heading-icon__title">IBM Systems Magazine Webinar</h3>
+        </div>
+      </div>
+      <p>Discover the Cloud and scale out world of Ubuntu on IBM.</p>
+      <p><a href="https://ibmsystemsmag.webex.com/ibmsystemsmag/lsr.php?RCID=8a447682b6dd0bffe57723fc5238d202" class="p-link--external">Watch webinar on-demand</a></p>
+    </div>
+  </div>
+</div>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_server_installation" second_item="_download_server_guide" third_item="_download_helping_hands" %}
+
+{% endblock content %}

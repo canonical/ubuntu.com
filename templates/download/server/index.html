@@ -15,70 +15,30 @@
       <div class="u-equal-height p-divider">
         <div class="col-8 p-divider__block">
           <p class="p-card__content">The long-term support version of Ubuntu Server, including the {{lts_openstack_version}} release of OpenStack and support guaranteed until {{lts_release_eol}} &mdash; 64-bit only.</p>
-          <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu Server {{ lts_release }} release notes</a></p>
+          <p class="p-card__content">This release uses our new installer, Subiquity.  If you require advanced networking and storage features, such as RAID and LVM, please use the traditional installer found on the <a href="/download/alternative-downloads">alternative downloads</a> page.</p>
+          <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu Server {{ lts_release }} LTS release notes</a></p>
         </div>
         <div class="col-4">
           <p class="p-card__content"><a href="/download/server/thank-you?version={{ lts_release_with_point }}&amp;architecture=amd64" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{ lts_release_full }}', 'eventValue' : undefined });">Download</a></p>
-          <p><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
+          <p><small>For other versions of Ubuntu including torrents, the network installer, a list of local mirrors, and past releases <a href="/download/alternative-downloads">see our alternative downloads&nbsp;&rsaquo;</a></small></p>
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 p-card--highlighted">
-      <h2>Ubuntu Server {{ latest_release_with_point }}</h2>
-      <div class="u-equal-height p-divider">
-        <div class="col-8 p-divider__block">
-          <p class="p-card__content">The latest version of Ubuntu Server, including the {{latest_openstack_version}} release of OpenStack and nine months, until {{latest_release_eol}}, of security and maintenance updates.</p>
-          <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu Server {{ latest_release }} release notes</a></p>
-        </div>
-        <div class="col-4">
-          <p class="p-card__content">
-            <a class="p-button--positive is-wide" href="/download/server/thank-you?version={{ latest_release_with_point }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{ latest_release }}', 'eventValue' : undefined });">Download</a></p>
-          <p class="p-card__content"><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+ </section>
 
 <section class="p-strip--light is-shallow is-bordered">
   <div class="row">
     <div class="col-8">
       <div>
-        <h2>Your next steps with Ubuntu Server</h2>
-        <p>Use Ubuntu&rsquo;s tools to help you provision and manage your servers</p>
+        <h2>Server provisioning with MAAS</h2>
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Metal as a Service (MAAS) offers cloud style provisioning for physical servers</li>
+          <li class="p-list__item is-ticked">Designed for building data centres with complex networks</li>
+          <li class="p-list__item is-ticked">Supports Windows, Ubuntu, CentOS, RHEL and SUSE</li>
+        </ul>
+        <p><a href="https://maas.io" class="p-link--external">Get MAAS</a></p>
       </div>
-    </div>
-  </div>
-
-  <div class="row u-equal-height">
-    <div class="col-6 p-card">
-      <h3>Server management with Landscape</h3>
-      <ul class="p-list--divided">
-        <li class="p-list__item">
-          Landscape is the leading management tool to deploy, monitor and manage your Ubuntu servers
-        </li>
-        <li class="p-list__item">
-          Landscape is also available as part of Ubuntu Advantage, Canonical&rsquo;s world-class support service
-        </li>
-      </ul>
-      <p><a href="https://landscape.canonical.com/"><span class="p-link--external">Get Landscape</span></a></p>
-    </div>
-    <div class="col-6 p-card">
-      <h3>Server provisioning with MAAS</h3>
-      <ul class="p-list--divided">
-        <li class="p-list__item">
-          Metal as a Service (MAAS) offers cloud style provisioning for physical servers
-        </li>
-        <li class="p-list__item">
-          Designed for building data centres with complex networks
-        </li>
-        <li class="p-list__item">
-          Supports Windows, Ubuntu, CentOS, RHEL and SUSE
-        </li>
-      </ul>
-      <p><a href="https://maas.io/"><span class="p-link--external">Get MAAS</span></a></p>
     </div>
   </div>
 </section>
@@ -89,12 +49,12 @@
       <h2>Ubuntu Server {{ lts_release_full_with_point }} for OpenStack</h2>
       <ul class="p-list is-split">
         <li class="p-list__item is-ticked">Supported for five years by Canonical</li>
+        <li class="p-list__item is-ticked">Updated to the OpenStack {{lts_openstack_version}} release, including Designate, more flexible Ceph deployments and improved monitoring.</li>
+        <li class="p-list__item is-ticked">Nova LXD driver - deploy OpenStack instances as system containers, dramatically increasing per-node density</li>
+        <li class="p-list__item is-ticked">Juju OpenStack bundle -  automated deployment of OpenStack into LXD system containers</li>
         <li class="p-list__item is-ticked">ZFS support for LXD OpenStack hosts</li>
-        <li class="p-list__item is-ticked">Nova LXD driver &ndash; deploy OpenStack instances as system containers, dramatically increasing per-node density</li>
-        <li class="p-list__item is-ticked">Juju OpenStack bundle &ndash; automated deployment of OpenStack into LXD system containers</li>
         <li class="p-list__item is-ticked">Certified by Microsoft to host Windows Server 2012 and Windows Server 2008 R2 as guests, under its Server Virtualisation Validation Program (SVVP)</li>
-        <li class="p-list__item is-ticked">Updated to the Mitaka release, including automated installation, queuing/notification and the integration of database-as-a-service</li>
-        <li class="p-list__item is-ticked">OpenStack software, Juju, MAAS, LXD on IBM LinuxONE mainframe</li>
+        <li class="p-list__item is-ticked">Multi platform support OpenStack, Juju, MAAS, LXD on IBM LinuxONE mainframe, IBM Power 8 and ARM64</li>
       </ul>
     </div>
   </div>
@@ -109,51 +69,18 @@
   <div class="row u-equal-height">
     <div class="col-4 p-card">
       <h3 class="p-card__title">Ubuntu Server for ARM</h3>
-      <p class="p-card__content">Optimised for hyperscale deployments and certified on a number of ARM chipsets, Ubuntu Server for ARM includes the 64-bit ARMv8 platforms.</p>
+      <p class="p-card__content">Optimised for hyperscale deployments and certified on a number of ARM chipsets, including HP, Cavium, Applied Micro and Marvell &mdash; Ubuntu Server for ARM includes the 64-bit ARMv8 platforms.</p>
       <p class="p-card__content"><a href="/download/server/arm">Get Ubuntu Server for ARM&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 p-card">
-      <h3 class="p-card__title">Ubuntu for POWER8</h3>
-      <p class="p-card__content">Ubuntu is now available on the IBM POWER8 platform, bringing the entire Ubuntu and OpenStack ecosystem to IBM POWER8</p>
-      <p class="p-card__content"><a href="/download/server/power8">Get Ubuntu for POWER8&nbsp;&rsaquo;</a></p>
+      <h3 class="p-card__title">Ubuntu for POWER</h3>
+      <p class="p-card__content">Ubuntu is available on the IBM POWER platform, bringing the entire Ubuntu and OpenStack ecosystem to IBM POWER.</p>
+      <p class="p-card__content"><a href="/download/server/power">Get Ubuntu for POWER&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 p-card">
       <h3 class="p-card__title">Ubuntu for IBM Z</h3>
       <p class="p-card__content">IBM Z and LinuxONE leverage open technology solutions to meet the demands of the new application economy. Ubuntu is now available, with Juju and Ubuntu OpenStack.</p>
-      <p class="p-card__content"><a href="/download/server/linuxone">Get Ubuntu for IBM Z&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light is-shallow">
-  <div class="row">
-    <div class="col-10">
-      <h2>Get the version you need</h2>
-    </div>
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-4 p-divider__block">
-      {% include "download/shared/_buy_a_usb.html" %}
-    </div>
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header">
-          <img class="p-heading-icon__img" alt="download icon" src="{{ ASSET_SERVER_URL }}be3876ec-picto-download-warmgrey.svg" />
-          <h3 class="p-heading-icon__title">Find alternative downloads</h3>
-        </div>
-      </div>
-      <p>Ubuntu is available via BitTorrent links and regional mirrors. You can also use the network installer.</p>
-      <p><a href="/download/alternative-downloads">Alternative downloads&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header">
-          <img class="p-heading-icon__img" alt="server icon" src="{{ ASSET_SERVER_URL }}c3499461-picto-server-warmgrey.svg" />
-          <h3 class="p-heading-icon__title">Download a previous release</h3>
-        </div>
-      </div>
-      <p>Looking for a previous LTS point release with its original stack? Older versions of Ubuntu remain available.</p>
-      <p><a href="http://releases.ubuntu.com" class="p-link--external">Previous releases</a></p>
+      <p class="p-card__content"><a href="/download/server/s390x">Get Ubuntu for IBM Z&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
