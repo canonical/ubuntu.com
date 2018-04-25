@@ -1,3 +1,5 @@
+*Note - filling in this form will file an issue against the www.ubuntu.com website, not against Ubuntu itself, for Ubuntu bugs, please [go here](https://help.ubuntu.com/community/ReportingBugs)*
+
 ## Summary
 
 [please describe the issue]

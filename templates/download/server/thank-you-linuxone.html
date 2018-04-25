@@ -1,0 +1,46 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Thank you | Ubuntu Server for IBM X and LinuxONE{% endblock %}
+
+{% block head_extra %}
+  <meta http-equiv="refresh" content="3;url=http://cdimage.ubuntu.com/releases/{{lts_release}}/release/ubuntu-{{lts_release_with_point}}-server-s390x.iso">
+{% endblock %}
+
+{% block content %}
+<div class="p-strip is-deep is-bordered">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h1>Thank you for downloading</h1>
+      <p>Thank you for downloading Ubuntu {{lts_release_full_with_point}} for IBM Z and LinuxONE. Your ISO download should start automatically.</p>
+      <p>If it doesn&rsquo;t, or for alternative options <a href="http://cdimage.ubuntu.com/releases/{{lts_release}}/release">visit the download page</a>.</p>
+    </div>
+    <div class="col-4 u-vertically-center u-align--center">
+      <img src="{{ ASSET_SERVER_URL }}52d53696-picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
+    </div>
+  </div>
+</div>
+
+{% include "shared/_thank_you_footer.html" %}
+
+{% endblock content %}
+{% block footer_extra %}
+<!-- Google Code for Services Canonical - contact us Conversion Page -->
+<script>
+/* <![CDATA[ */
+var google_conversion_id = 1012391776;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "utP4CMDOwQMQ4L7f4gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+    <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/1012391776/?value=0&amp;label=utP4CMDOwQMQ4L7f4gM&amp;guid=ON&amp;script=0"/>
+    </div>
+</noscript>
+{{ marketo }}
+{% endblock footer_extra %}
