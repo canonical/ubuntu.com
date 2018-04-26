@@ -9,7 +9,7 @@ Thanks for downloading Ubuntu Server
 
 {% block content %}
 <noscript>
-  <meta http-equiv="refresh" content="3;url=http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-server-{{ architecture }}.iso">
+  <meta http-equiv="refresh" content="3;url=http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-{{ architecture }}.iso">
 </noscript>
 
 <div class="p-strip is-deep is-bordered">
@@ -18,7 +18,7 @@ Thanks for downloading Ubuntu Server
       <h1>Thank you for downloading Ubuntu Server</h1>
       {% if version and architecture %}
       <p>Your download should start automatically. If it doesn&rsquo;t,
-        <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-server-{{ architecture }}.iso">
+        <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-{{ architecture }}.iso">
           download now</a>.
       </p>
       {% else %}
@@ -175,7 +175,7 @@ function startDownload(mirrors, version, architecture, defaultLocation) {
   if (selectedMirror && selectedMirror.link) {
     downloadLocation = selectedMirror.link;
   }
-  var downloadLink = downloadLocation + version + '/ubuntu-' + version + '-server-' + architecture + '.iso';
+  var downloadLink = downloadLocation + version + '/ubuntu-' + version + '-live-server-' + architecture + '.iso';
 
   // Start download
   delayStartDownload(downloadLink, 3000);
