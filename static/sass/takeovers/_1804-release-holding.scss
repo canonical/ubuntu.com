@@ -1,21 +1,19 @@
-$bg-image-1804: 'c4995f19-18.04_beaver_wp_8192x4608_no-BB_AW.jpg';
+$bg-image-1804: '1d2ab6ba-suru-background.png';
 
 @mixin p-takeover-1804-holding-release {
   .p-takeover--1804-release {
-    background-color: $color-brand;
-    background-image: url('#{$assets-path}#{$bg-image-1804}?w=768');
-    background-size: cover;
-    color: $color-light;
+    background-color: $color-light;
+    background-position: bottom right;
+    background-repeat: no-repeat;
 
     @media (min-width: $breakpoint-medium) {
-      background-image: url('#{$assets-path}#{$bg-image-1804}?w=984');
-    }
-
-    @media (min-width: 1200px) {
-      background-image: url('#{$assets-path}#{$bg-image-1804}?w=2000');
+      background-image: url('#{$assets-path}#{$bg-image-1804}');
     }
 
     .p-takeover__body {
+      padding-top: $sp-large;
+      padding-bottom: $sp-large;
+
       @media (min-width: $breakpoint-medium) {
         padding-top: $sp-x-large * 1.5;
         padding-bottom: $sp-x-large * 3;
