@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 //settings
-@import 'global-settings';
 @import 'settings_colors';
 @import 'global-settings';
 
@@ -78,6 +77,11 @@
 // Before any feature branch is merged, these bugs should be raised in their
 // respective repos and referenced here, accompanied with a breif description of
 // the bug
+
+///XXX Redefine row width as vanilla is missing !default on the $grid-max-width var.
+.row {
+  max-width: 68rem;
+}
 
 /// XXX Compact button style
 /// This should be considered for inclusion in vanilla-framework
@@ -296,8 +300,9 @@ p + pre {
     background-position: left 70% top;
   }
 
-  // XXX Caleb: 26.02.18 Fix middot list wrapping issue
-  .p-inline-list--middot > .p-inline-list__item {
-    white-space: nowrap;
-  }
+}
+
+// XXX Caleb: 26.02.18 Fix middot list wrapping issue
+.p-inline-list--middot > .p-inline-list__item {
+  white-space: nowrap;
 }
