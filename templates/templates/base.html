@@ -2,7 +2,7 @@
 <!doctype html>
 
 {# Release versions - update as appropriate #}
-{% with latest_release_name="BionicBeaver" latest_release='18.04' latest_release_with_point="18.04" latest_release_eol='April 2023' lts_release_name="BionicBeaver" lts_release="18.04" lts_release_full='18.04 LTS' lts_release_with_point="18.04" lts_release_full_with_point='18.04 <abbr title="Long-term support">LTS</abbr>' lts_release_eol='April 2023' lts_openstack_version="Queens" latest_openstack_version="Queens" %}
+{% with latest_release_name="ArtfulAardvark" latest_release='17.10' latest_release_with_point="17.10.1" latest_release_eol='July 2018' lts_release_name="XenialXerus" lts_release="16.04" lts_release_full='16.04 LTS' lts_release_with_point="16.04.4" lts_release_full_with_point='16.04.4 <abbr title="Long-term support">LTS</abbr>' lts_release_eol='April 2021' lts_openstack_version="Mitaka" latest_openstack_version="Pike" %}
 
 <!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en" dir="ltr"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en" dir="ltr"> <![endif]-->
@@ -96,3 +96,81 @@
 </html>
 
 {% endwith %}
+
+<script>
+    var VF_ENV = "DEV";
+    if (VF_ENV === "DEV") {
+        fragmentFromString = function fragmentFromString(strHTML) {
+            var temp = document.createElement('template');
+            temp.innerHTML = strHTML;
+            return temp.content;
+        }
+        class baselineGrid {
+            constructor() {
+                this.target = document.body,
+                this.baselineHeight = 8;
+                this.baselineContainerClassName = "u-baseline-container";
+                this.baselineRowClassName = "u-baseline";
+                this.toggleGridClass = "u-hide";
+                this.showGrid = false;
+            }
+            addBaselineGridToggle() {
+                var controls = fragmentFromString('<div class="controls"><button id="switch-on" class="p-switch js-baseline-toggle" type="button" role="switch" aria-checked="false" aria-labelledby="switch-on-label"><span>On</span><span>Off</span></button></div>');
+                this.target.appendChild(controls);
+            }
+            appendBaselineRow(parent) {
+                var baseline = document.createElement('div');
+                baseline.classList.add(this.baselineRowClassName);
+                parent.appendChild(baseline);
+            }
+            baselineCount() {
+                return Math.floor(document.documentElement.scrollHeight / this.baselineHeight);
+            }
+            create() {
+                var baselineContainer = document.createElement('div'),
+                    fragment = document.createDocumentFragment(),
+                    documentHeight = document.documentElement.scrollHeight,
+                    baselineCount = this.baselineCount(documentHeight);
+
+                baselineContainer.classList.add(this.baselineContainerClassName);
+
+                if (!this.showGrid) {
+                    baselineContainer.classList.add(this.toggleGridClass);
+                }
+                for (var i = 0; i < baselineCount; i++) {
+                    this.appendBaselineRow(baselineContainer);
+                }
+                fragment.appendChild(baselineContainer);
+                this.target.appendChild(fragment);
+                this.baselineContainer = document.querySelector('.u-baseline-container');
+            }
+            initGridToggle(switchBtn) {
+                var toggle = document.querySelector(switchBtn),
+                    that = this;
+
+                toggle.addEventListener('click', function (event) {
+                    if (!that.showGrid) {
+                        this.setAttribute('aria-checked', true);
+                        that.baselineContainer.classList.remove(that.toggleGridClass);
+                    } else {
+                        this.setAttribute('aria-checked', false);
+                        that.baselineContainer.classList.add(that.toggleGridClass);
+                    }
+                    that.showGrid = !that.showGrid;
+                });
+            }
+            update() {
+                this.baselineContainer.remove();
+                this.create();
+            }
+        }
+
+        var bg = new baselineGrid();
+        document.addEventListener('DOMContentLoaded', () => {
+            bg.create();
+            bg.addBaselineGridToggle();
+            bg.initGridToggle('.p-switch.js-baseline-toggle');
+        });
+        window.addEventListener('resize', () => { bg.update(); });
+    }
+</script>
