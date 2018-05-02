@@ -260,13 +260,17 @@
   }
 
   &.bordered {
-    // line-height: map-get($line-heights, default-text);
-    & .p-list__item:not(:first-child) {
-      @extend %pseudo-border--top;
-      margin-bottom: 0;
+    display: block;
+    & .p-list__item {
+      margin-bottom: .25rem;
+      padding-top: .25rem;
 
-      &::after {
-        background-color: $color-rule--light;
+      &:not(:first-child) {
+        @extend %pseudo-border--top;
+
+        &::after {
+          background-color: $color-rule--light;
+        }
       }
     }
   }
