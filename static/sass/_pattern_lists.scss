@@ -263,7 +263,10 @@
     display: block;
     & .p-list__item {
       margin-bottom: .25rem;
-      padding-top: .25rem;
+
+      &:not(:first-child) {
+        padding-top: .25rem;
+      }
 
       &:not(:first-child) {
         @extend %pseudo-border--top;
