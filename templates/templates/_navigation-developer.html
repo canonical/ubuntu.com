@@ -1,50 +1,81 @@
-<div class="dropdown-window__content fade-animation u-hide" id="developer-tab-content">
-  <div class="dropdown-window__summary-strip">
+<div class="fade-animation u-hide" id="developer-tab-content">
+  <div class="dropdown-window__content">
+    <div class="dropdown-window__summary-strip">
+      <div class="row">
+        <p class="dropdown-window__summary">Dive into the docs for <a href="https://help.ubuntu.com/" title="Visit Ubuntu help - external site">Ubuntu desktop and server</a>, <a href="https://docs.ubuntu.com/" title="Visit the Ubuntu Docs - external site">MAAS, Juju, Snapcraft and Ubuntu Core</a>, or use our step-by-step <a href="https://tutorials.ubuntu.com/" title="Visit the Ubuntu Tutorials - external site">Ubuntu Tutorials</a> to try anything from installing Ubuntu to deploying OpenStack and Kubernetes.</p>
+        <hr>
+      </div>
+    </div>
     <div class="row">
-      <small class="dropdown-window__summary">Dive into the docs for <a href="https://help.ubuntu.com/" title="Visit Ubuntu help - external site">Ubuntu desktop and server</a>, <a href="https://docs.ubuntu.com/" title="Visit the Ubuntu Docs - external site">MAAS, Juju, Snapcraft and Ubuntu Core</a>, or use our step-by-step <a href="https://tutorials.ubuntu.com/" title="Visit the Ubuntu Tutorials - external site">Ubuntu Tutorials</a> to try anything from installing Ubuntu to deploying OpenStack and Kubernetes.</small>
-      <hr>
+      <div class="col-6">
+        <h4 class="is-dense">Platforms</h4>
+        <p class="p-p--small">Ubuntu is the <a href="/desktop">workstation</a> OS of choice for developers and devops, enabling frictionless deployment from dev to test and production, on <a href="/server">server</a>, <a href="/openstack"></a> and <a href="/internet-of-things">connected devices</a>.</p>
+        <p class="p-p--small">Build devices and apps for the <a href="/download/core">Internet of Things</a> with robust security, app stores and reliable updates. <a href="/core">Ubuntu Core</a> is a tiny, transactional edition of Ubuntu that supports <a href="https://snapcraft.io/" title="Visit Snapcraft - external site">snap packages</a> and powers connected devices from <a href="/internet-of-things/gateways">gateways</a> and <a href="/internet-of-things#switches">switches</a> to <a href="/internet-of-things/robotics#cars">self-driving cars</a>, <a href="/internet-of-things/robotics#drones">drones</a>, <a href="/internet-of-things/robotics#robots">robots</a> and <a href="/internet-of-things/robotics#industrial">industrial systems</a>.</p>
+        <p class="p-p--small">Ubuntu is the leading <a href="http://cloud-images.ubuntu.com/" title="Visit the cloud guest OS - external site">cloud guest OS</a>, running most workloads in <a href="/cloud/public-cloud">public clouds</a> today, with a particular strength in <a href="/containers">containers</a> and <a href="#machine-learning">machine learning</a>.</p>
+        <p class="p-p--small">Use our step-by-step <a href="https://tutorials.ubuntu.com" title="Visit the Ubuntu Tutorials - external site">Ubuntu Tutorials</a> to do everything from installing Ubuntu to setting up various services and tools.</p>
+        <p class="p-p--small">Or your can read the docs, for <a href="http://help.ubuntu.com" title="Visit the desktop and server - external site">desktop and server</a> or <a href="https://docs.ubuntu.com/" title="Visit the MAAS, Juju, Snapcraft and Ubuntu Core - external site">MAAS, Juju, Snapcraft and Ubuntu Core</a> docs.</p>
+      </div>
+      <div class="col-6">
+        <h4 class="is-dense">Tools</h4>
+        <p class="p-p--small">Package, distribute, and update any app for Linux with <a href="https://snapcraft.io/" title="Visit the Snaps - external site">snapcraft</a>. Snaps are containerised software packages that auto-update and are safe to run.</p>
+        <p class="p-p--small">Operate your complex software stacks like Hadoop, Spark and Kubernetes, on all major clouds, bare metal and VMware with <a href="https://jujucharms.com/" title="Visit Juju Charms - external site">Juju</a>, the open source model-driven operations tool.</p>
+        <p class="p-p--small">Dynamically customize cloud instances and LXD containers with user data and <a href="https://cloud-init.io/" title="Visit cloud-init - external site">cloud-init</a>, supporting all major operating systems.</p>
+        <p class="p-p--small">Deploy the Canonical Distribution of Kubernetes or OpenStack on a single machine or a whole cluster, with <a href="https://conjure-up.io/" title="Visit Conjure-up - external site">conjure-up</a>.</p>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-4 navigation-col">
-      <h4>Platforms</h4>
-      <small class="p-small">Ubuntu is the <a href="/desktop">workstation</a> OS of choice for developers and devops, enabling frictionless deployment from dev to test and production, on <a href="/server">server</a>, <a href="/openstack"></a> and <a href="/internet-of-things">connected devices</a>.</small>
-      <small class="p-small">Build devices and apps for the <a href="/download/core">Internet of Things</a> with robust security, app stores and reliable updates. <a href="/core">Ubuntu Core</a> is a tiny, transactional edition of Ubuntu that supports <a href="https://snapcraft.io/" title="Visit Snapcraft - external site">snap packages</a> and powers connected devices from <a href="/internet-of-things/gateways">gateways</a> and <a href="/internet-of-things#switches">switches</a> to <a href="/internet-of-things/robotics#cars">self-driving cars</a>, <a href="/internet-of-things/robotics#drones">drones</a>, <a href="/internet-of-things/robotics#robots">robots</a> and <a href="/internet-of-things/robotics#industrial">industrial systems</a>.</small>
-      <small class="p-small">Ubuntu is the leading <a href="http://cloud-images.ubuntu.com/" title="Visit the cloud guest OS - external site">cloud guest OS</a>, running most workloads in <a href="/cloud/public-cloud">public clouds</a> today, with a particular strength in <a href="/containers">containers</a> and <a href="#machine-learning">machine learning</a>.</small>
-      <small class="p-small">Use our step-by-step <a href="https://tutorials.ubuntu.com" title="Visit the Ubuntu Tutorials - external site">Ubuntu Tutorials</a> to do everything from installing Ubuntu to setting up various services and tools.</small>
-      <small class="p-small">Or your can read the docs, for <a href="http://help.ubuntu.com" title="Visit the desktop and server - external site">desktop and server</a> or <a href="https://docs.ubuntu.com/" title="Visit the MAAS, Juju, Snapcraft and Ubuntu Core - external site">MAAS, Juju, Snapcraft and Ubuntu Core</a> docs.</small>
-    </div>
-    <div class="col-4 navigation-col">
-      <h4>Tools</h4>
-      <small class="p-small">Package, distribute, and update any app for Linux with <a href="https://snapcraft.io/" title="Visit the Snaps - external site">snapcraft</a>. Snaps are containerised software packages that auto-update and are safe to run.</small>
-      <small class="p-small">Operate your complex software stacks like Hadoop, Spark and Kubernetes, on all major clouds, bare metal and VMware with <a href="https://jujucharms.com/" title="Visit Juju Charms - external site">Juju</a>, the open source model-driven operations tool.</small>
-      <small class="p-small">Dynamically customize cloud instances and LXD containers with user data and <a href="https://cloud-init.io/" title="Visit cloud-init - external site">cloud-init</a>, supporting all major operating systems.</small>
-      <small class="p-small">Deploy the Canonical Distribution of Kubernetes or OpenStack on a single machine or a whole cluster, with <a href="https://conjure-up.io/" title="Visit Conjure-up - external site">conjure-up</a>.</small>
-    </div>
-    <div class="col-4 resource-col">
-      <h4 class="p-muted-heading"><strong>Resources</strong></h4>
-      <small class="p-small"><a class="p-link--strong" href="https://tutorials.ubuntu.com" title="Visit the Ubuntu Tutorials - external site">Ubuntu Tutorials&nbsp;&rsaquo;</a><br>
-      Step-by-step tutorials for developers</small>
-      <small class="p-small"><a class="p-link--strong" href="https://docs.ubuntu.com" title="Visit the Ubuntu Docs - external site">Ubuntu Docs&nbsp;&rsaquo;</a><br>
-      The home of Ubuntu documentation</small>
-      <small class="p-small"><a class="p-link--strong" href="https://insights.ubuntu.com" title="Visit the Insights blog - external site">Insights blog&nbsp;&rsaquo;</a><br>
-      Stay up to date with the latest Ubuntu news stories and resources</small>
-      <small class="p-small"><a class="p-link--strong" href="https://community.ubuntu.com/t/ask-ubuntu/21/1" title="Visit the Ask Ubuntu - external site">Ask Ubuntu&nbsp;&rsaquo;</a><br>
-      Share your technical know-how with others by answering questions</small>
-      <small class="p-small"><a class="p-link--strong" href="/download">Download Ubuntu&nbsp;&rsaquo;</a><br>
-      Ubuntu is completely free to download, use and share</small>
-
-      <ul class="p-list--small is-split">
-        <li class="p-list__item"><a href="https://www.brighttalk.com/search?q=Canonical" title="Visit the Webinars - external site">Webinars</a></li>
-        <li class="p-list__item"><a href="https://tutorials.ubuntu.com/" title="Visit the Tutorials - external site">Tutorials</a></li>
-        <li class="p-list__item"><a href="https://www.youtube.com/user/celebrateubuntu" title="Visit the Videos - external site">Videos</a></li>
-        <li class="p-list__item"><a href="https://insights.ubuntu.com/category/case-studies" title="Visit the Case studies - external site">Case studies</a></li>
-        <li class="p-list__item"><a href="https://insights.ubuntu.com/category/white-papers" title="Visit the White papers - external site">White papers</a></li>
-        <li class="p-list__item"><a href="https://docs.ubuntu.com" title="Visit the Docs - external site">Docs</a></li>
-        <li class="p-list__item"><a href="/cloud/training">Training</a></li>
-        <li class="p-list__item"><a href="https://insights.ubuntu.com" title="Visit the Blog - external site">Blog</a></li>
-        <li class="p-list__item"><a href="https://insights.ubuntu.com/press-centre/" title="Visit the Press Centre - external site">Press centre</a></li>
-      </ul>
+  <div class="dropdown-window__content--light">
+    <div class="row">
+      <div class="col-2">
+        <h4 class="p-muted-heading">Resources</h4>
+      </div>
+      </div>
+    <!-- <div class="row"><hr></div> -->
+    <div class="row">
+      <div class="col-3">
+        <p class="p-p--small">
+          <a class="p-link--strong" href="https://tutorials.ubuntu.com" title="Visit the Ubuntu Tutorials - external site">Ubuntu Tutorials&nbsp;&rsaquo;</a>
+          <br>
+            Step-by-step tutorials for developers
+        </p>
+        <p class="p-p--small">
+          <a class="p-link--strong" href="https://docs.ubuntu.com" title="Visit the Ubuntu Docs - external site">Ubuntu Docs&nbsp;&rsaquo;</a>
+          <br>
+            The home of Ubuntu documentation
+        </p>
+      </div>
+      <div class="col-3">
+        <p class="p-p--small">
+          <a class="p-link--strong" href="https://insights.ubuntu.com" title="Visit the Insights blog - external site">Insights blog&nbsp;&rsaquo;</a>
+          <br>
+            Stay up to date with the latest Ubuntu news stories and resources
+        </p>
+        <p class="p-p--small">
+          <a class="p-link--strong" href="https://community.ubuntu.com/t/ask-ubuntu/21/1" title="Visit the Ask Ubuntu - external site">Ask Ubuntu&nbsp;&rsaquo;</a>
+          <br>
+            Share your technical know-how with others by answering questions
+        </p>
+      </div>
+      <div class="col-3">
+        <p class="p-p--small">
+          <a class="p-link--strong" href="/download">Download Ubuntu&nbsp;&rsaquo;</a>
+          <br>
+            Ubuntu is completely free to download, use and share
+        </p>
+      </div>
+      <div class="col-3">
+        <ul class="p-inline-list--middot">
+          <li class="p-inline-list__item"><a href="https://www.brighttalk.com/search?q=Canonical" title="Visit the Webinars - external site">Webinars</a></li>
+          <li class="p-inline-list__item"><a href="https://tutorials.ubuntu.com/" title="Visit the Tutorials - external site">Tutorials</a></li>
+          <li class="p-inline-list__item"><a href="https://www.youtube.com/user/celebrateubuntu" title="Visit the Videos - external site">Videos</a></li>
+          <li class="p-inline-list__item"><a href="https://insights.ubuntu.com/category/case-studies" title="Visit the Case studies - external site">Case studies</a></li>
+          <li class="p-inline-list__item"><a href="https://insights.ubuntu.com/category/white-papers" title="Visit the White papers - external site">White papers</a></li>
+          <li class="p-inline-list__item"><a href="https://docs.ubuntu.com" title="Visit the Docs - external site">Docs</a></li>
+          <li class="p-inline-list__item"><a href="/cloud/training">Training</a></li>
+          <li class="p-inline-list__item"><a href="https://insights.ubuntu.com" title="Visit the Blog - external site">Blog</a></li>
+          <li class="p-inline-list__item"><a href="https://insights.ubuntu.com/press-centre/" title="Visit the Press Centre - external site">Press centre</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

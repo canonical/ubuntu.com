@@ -1,36 +1,9 @@
-$nudge--small: .55rem;
-
-%small-text-fixed {
-  font-size: 1rem / pow($ms-ratio, 1);
-  line-height: map-get($line-heights, small);
-  margin-bottom: map-get($sp-after, small) + map-get($line-heights, default-text) - map-get($line-heights, small) - $nudge--small;
-  padding-top: $nudge--small;
-}
-
-%smallest-text {
-  font-size: 1rem / pow($ms-ratio, 2);
-  line-height: 1rem;
-  margin-bottom: .75rem;
-  padding-top: 0.75rem;
-}
-
 @mixin ubuntu-p-navigation {
   $ubuntu-logo-svg-width: 81 * $px; // width in rems
   $circle-of-friends-compensation: .25rem; // padding compensation to create visually equal margins;
   $ubuntu-logo-width--desktop: $ubuntu-logo-svg-width + 2 * $grid-margin-width;
   $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
-
-  %logo-padding {
-    @media only screen and (max-width: $breakpoint-navigation-threshold) {
-      padding-left: $grid-margin-width;
-      padding-right: $grid-margin-width - $circle-of-friends-compensation;
-    }
-
-    @media only screen and (min-width: $breakpoint-navigation-threshold) {
-      padding-left: $sph-intra;
-      padding-right: $sph-intra - $circle-of-friends-compensation;
-    }
-  }
+  $p-small-lh-diff: map-get($line-heights, default-text) - map-get($line-heights, small);
 
   // html {
   //   overflow-x: hidden !important; // prevent horizontal overflow full width breakout
@@ -41,7 +14,6 @@ $nudge--small: .55rem;
     z-index: 3;
 
     &__dropdown-link {
-      @extend .p-navigation__link;
       position: relative;
 
       &::after {
@@ -73,9 +45,6 @@ $nudge--small: .55rem;
           }
 
           &::after {
-            // height: 100%;
-            // z-index: -1;
-            // background-color: $color-x-light;
             background-color: transparent;
           }
         }
@@ -87,7 +56,8 @@ $nudge--small: .55rem;
       max-width: $ubuntu-logo-svg-width;
     }
 
-    & &__logo {
+
+    &__logo {
       background: $color-brand;
       margin: 0;
 
@@ -102,14 +72,37 @@ $nudge--small: .55rem;
       }
     }
 
+    .p-navigation__link {
+      position: relative;
+
+      &::after {
+        @extend %pseudo-border--bottom;
+        background-color: #252525;
+        opacity: .2;
+      }
+    }
+
     & &__nav {
       border-bottom: 0;
       width: 100%;
     }
 
     & &__link-anchor {
+      display: block;
       color: $color-light;
-      padding-right: 2rem;
+
+      @media (max-width: $breakpoint-navigation-threshold) {
+        padding: $spv-intra--expanded 2rem $spv-intra--expanded $grid-margin-width;
+      }
+
+      @media (min-width: $breakpoint-navigation-threshold + 1) {
+        padding: $spv-intra--expanded 2rem $spv-intra--expanded $sph-intra;
+      }
+
+      &:hover {
+        background-color: darken($color-navigation-background, 3%);
+      }
+
     }
 
     & &__row {
@@ -155,7 +148,7 @@ $nudge--small: .55rem;
       &__banner {
         display: inline-block;
         float: left;
-        background-color: transparentize($color-brand, .05);
+        background-color: $color-brand;
 
         &:hover {
           text-decoration: none;
@@ -164,19 +157,18 @@ $nudge--small: .55rem;
 
       &__logo {
         @extend %paragraph;
-        @extend %logo-padding;
         color: $color-x-light;
         margin-bottom: $sp-unit * 2 - map-get($nudges, nudge--p);
 
 
         @media only screen and (max-width: $breakpoint-navigation-threshold) {
-          min-width: $ubuntu-logo-svg-width + 2 * $grid-margin-width - $circle-of-friends-compensation;
+          width: $ubuntu-logo-svg-width + 2 * $grid-margin-width - $circle-of-friends-compensation;
           padding-left: $grid-margin-width;
           padding-right: $grid-margin-width - $circle-of-friends-compensation;
         }
 
         @media only screen and (min-width: $breakpoint-navigation-threshold) {
-          min-width: $ubuntu-logo-svg-width + 2 * $sph-intra - $circle-of-friends-compensation;
+          width: $ubuntu-logo-svg-width + 2 * $sph-intra - $circle-of-friends-compensation;
           padding-left: $sph-intra;
           padding-right: $sph-intra - $circle-of-friends-compensation;
         }
@@ -217,7 +209,7 @@ $nudge--small: .55rem;
         &__link {
           font-size: 1rem / pow($ms-ratio, 1); //XXX: move font-sizes to map in vanilla so it can be changed globally
           // line-height: map-get($line-heights, small);
-          padding-bottom: map-get($sp-after, small) + map-get($line-heights, default-text) - map-get($line-heights, small) - $nudge--small;
+          padding-bottom: map-get($sp-after, small) + $p-small-lh-diff - $nudge--small;
           padding-left: $spv-intra--expanded;
           padding-right: $spv-intra--expanded;
           padding-top: $nudge--small;
@@ -234,16 +226,14 @@ $nudge--small: .55rem;
     background-color: $color-x-light;
     box-shadow: 0 1px 32px 1px transparentize($color-dark, .8);
     flex-direction: column;
-    // padding-bottom: $spv-inter--scaleable;
-    // padding-top: $spv-inter--regular;
     position: absolute;
     width: 100%;
-    transition: all .25s; // cubic-bezier(.215, .61, .355, 1);
+    transition: all .25s;
     z-index: 2;
 
-    a {
-      text-decoration: none;
-    }
+    // a {
+    //   text-decoration: none;
+    // }
 
     .row {
       display: block;
@@ -253,11 +243,6 @@ $nudge--small: .55rem;
 
     hr {
       margin-bottom: - $px;
-    }
-
-    %p-strip--very-shallow {
-      padding-bottom: $spv-inter--condensed;
-      padding-top: $spv-inter--condensed;
     }
 
     &__content {
@@ -282,42 +267,14 @@ $nudge--small: .55rem;
 
     & .p-inline-list__item {
       @extend %small-text-fixed;
-      display: inline-block;
+      // display: inline-block;
       list-style-type: none;
     }
 
     &__summary {
       @include p-max-width--long;
       @extend %small-text-fixed;
-      display: inline-block;
-      margin-bottom: map-get($sp-after, small) * 2 + map-get($line-heights, default-text) - map-get($line-heights, small) - $nudge--small;
-    }
-  }
-
-  .p-heading--navigation {
-    @extend %vf-heading-4;
-    padding-top: .55rem;
-    margin-bottom: 1 * $sp-unit - map-get($nudges, nudge--h4);
-
-    &.is-dense {
-      margin-bottom: - $sp-unit - map-get($nudges, nudge--h4);
-    }
-  }
-
-  .p-small,
-  small {
-    @extend %small-text-fixed;
-
-    & + & {
-      margin-top: -$sp-unit;
-    }
-
-    .p-heading--navigation + & {
-      margin-top: -$sp-unit * 1;
-    }
-
-    &.is-dense {
-      margin-bottom: map-get($sp-after, small) + map-get($line-heights, default-text) - map-get($line-heights, small) - $nudge--small - $sp-unit;
+      margin-bottom: map-get($sp-after, small) * 2 + $p-small-lh-diff - $nudge--small;
     }
   }
 
@@ -331,51 +288,6 @@ $nudge--small: .55rem;
       opacity: 1;
       transform: none;
       visibility: visible;
-    }
-  }
-}
-
-
-// XXX: move to vanilla
-
-%bg--light {
-  background-color: $color-light;
-  color: $color-dark;
-}
-
-.bg--light {
-  @extend %bg--light;
-}
-
-.p-text-list--small {
-  @extend %small-text-fixed;
-  margin-bottom: $spv-inter--scaleable - $nudge--small + 0 * $sp-unit;
-  margin-left: 0;
-  padding-left: 0;
-
-  .p-heading--navigation + & {
-    margin-top: -$sp-unit * 1;
-  }
-
-  &.is-dense {
-    margin-bottom: $spv-inter--scaleable - $sp-unit - $nudge--small;
-  }
-
-  & .p-list__item {
-    list-style-type: none;
-    padding-left: 0;
-    position: relative;
-  }
-
-  &.bordered {
-    & .p-list__item:not(:first-child) {
-      @extend %pseudo-border--top;
-      line-height: map-get($line-heights, default-text);
-      margin-bottom: 0;
-
-      &::after {
-        background-color: $color-rule--light;
-      }
     }
   }
 }
@@ -394,31 +306,3 @@ h2,
   line-height: 3rem;
 }
 
-h4, .p-heading--four {
-  padding-top: .55rem;
-}
-
-.p-card--navigation {
-  @extend %p-card;
-  background-color: $color-light;
-  border: 0;
-  border-radius: $border-radius;
-}
-
-.dropdown-window .p-muted-heading {
-  @extend %smallest-text;
-  color: $color-dark;
-  letter-spacing: .02rem;
-  font-weight: 300 !important;
-}
-
-// small text has bigger padding top, so requires this to be factored into the dot position top
-.p-inline-list--middot {
-  margin-bottom: .5rem;
-  .p-inline-list__item {
-    &::after {
-      right: -.65em;
-      top: calc(.4em + .65rem);
-    }
-  }
-}
