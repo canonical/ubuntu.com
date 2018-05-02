@@ -1,0 +1,84 @@
+// placeholders that need to be moved to vanilla
+
+$nudge--small: .55rem;
+$p-small-lh-diff: map-get($line-heights, default-text) - map-get($line-heights, small);
+
+%small-text-fixed {
+  font-size: 1rem / pow($ms-ratio, 1);
+  line-height: map-get($line-heights, small);
+  margin-bottom: map-get($sp-after, small) * 2 + $p-small-lh-diff - $nudge--small;
+  padding-top: $nudge--small;
+}
+
+%small-text--vertically-condensed {
+  font-size: 1rem / pow($ms-ratio, 1);
+  line-height: map-get($line-heights, small);
+  margin-bottom: map-get($sp-after, small) + $p-small-lh-diff - $nudge--small;
+  // margin-bottom: map-get($sp-after, small) + $p-small-lh-diff - $nudge--small - $sp-unit;
+  padding-top: $nudge--small;
+}
+
+%smallest-text {
+  font-size: 1rem / pow($ms-ratio, 2);
+  line-height: 1rem;
+  margin-bottom: .25rem;
+  padding-top: 0.5rem;
+}
+
+h4,
+.p-heading--four {
+  padding-top: .55rem; // needs to be fixed in vanilla
+
+  &.is-dense {
+    margin-bottom: 1 * $sp-unit - map-get($nudges, nudge--h4);
+  }
+}
+
+.p-muted-heading--small {
+  @extend %smallest-text;
+  text-transform: uppercase;
+}
+
+.p-p--small {
+  &:not(.is-v-condensed) {
+    @extend %small-text-fixed;
+  }
+
+  &.is-v-condensed {
+    @extend %small-text--vertically-condensed;
+  }
+
+  & + & {
+    margin-top: -$p-small-lh-diff;
+  }
+
+  // .p-heading--navigation + & {
+  //   margin-top: -$sp-unit * 1;
+  // }
+}
+
+%p-strip--very-shallow {
+  padding-top: $spv-inter--condensed;
+
+  &:not(:last-child) {
+    padding-bottom: $spv-inter--regular;
+  }
+
+  &:last-child {
+    padding-bottom: $spv-inter--shallow-scaleable;
+  }
+}
+
+
+%bg--light {
+  background-color: $color-light;
+  color: $color-dark;
+}
+
+.bg--light {
+  @extend %bg--light;
+}
+
+.hr--subtle {
+  opacity: .33;
+}
