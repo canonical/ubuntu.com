@@ -52,6 +52,10 @@ h4,
     margin-top: -$p-small-lh-diff;
   }
 
+  .p-text-list--small + & {
+      margin-top: - map-get($line-heights, small);
+  }
+
   // .p-heading--navigation + & {
   //   margin-top: -$sp-unit * 1;
   // }
@@ -81,4 +85,8 @@ h4,
 
 .hr--subtle {
   opacity: .33;
+}
+
+.u-float--right {
+  float: right;
 }
