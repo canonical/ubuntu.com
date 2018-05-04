@@ -1,8 +1,4 @@
 @mixin ubuntu-p-navigation {
-  $ubuntu-logo-svg-width: 81 * $px; // width in rems
-  $circle-of-friends-compensation: .25rem; // padding compensation to create visually equal margins;
-  $ubuntu-logo-width--desktop: $ubuntu-logo-svg-width + 2 * $grid-margin-width;
-  $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
   $p-small-lh-diff: map-get($line-heights, default-text) - map-get($line-heights, small);
 
   // html {
@@ -78,7 +74,7 @@
       &::after {
         @extend %pseudo-border--bottom;
         background-color: #252525;
-        opacity: .2;
+        opacity: .3;
       }
     }
 
@@ -302,3 +298,9 @@ h2,
   line-height: 3rem;
 }
 
+.p-card--navigation {
+  @extend %p-card;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+}
