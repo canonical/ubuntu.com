@@ -1,3 +1,7 @@
+$ubuntu-logo-svg-width: 81 * $px; // width in rems
+$circle-of-friends-compensation: .25rem; // padding compensation to create visually equal margins;
+$ubuntu-logo-width--desktop: $ubuntu-logo-svg-width + 2 * $grid-margin-width;
+$ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
 @mixin global-nav {
   .global-nav {
     align-items: center;
@@ -6,10 +10,19 @@
     position: relative;
 
     &__logo {
-      margin: auto $sph-intra auto $grid-margin-width;
+      margin: 0;
+      display: block;
+      background: #111;
+
+      @media only screen and (max-width: $breakpoint-navigation-threshold) {
+        padding-left: $grid-margin-width;
+        padding: .45rem $grid-margin-width - $circle-of-friends-compensation .45rem $grid-margin-width;
+        width: $ubuntu-logo-svg-width + 2 * $grid-margin-width - $circle-of-friends-compensation;
+      }
 
       @media only screen and (min-width: $breakpoint-navigation-threshold) {
-        margin-left: 0;
+        padding: .45rem $sph-intra - $circle-of-friends-compensation .45rem $sph-intra;
+        width: $ubuntu-logo-width--desktop + 2 * $sph-intra - $circle-of-friends-compensation;
       }
     }
 
