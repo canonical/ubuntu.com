@@ -306,3 +306,46 @@ p + pre {
 .p-inline-list--middot > .p-inline-list__item {
   white-space: nowrap;
 }
+
+@media (max-width: $breakpoint-medium) {
+  h1, .p-heading--one, .p-media-object--large .p-media-object__title {
+    font-size: 2.22819rem;
+    line-height: 3rem;
+    margin-bottom: 1.8rem;
+    padding-top: 0.2rem;
+  }
+
+  h2, .p-heading--two {
+    font-size: 1.83274rem;
+    line-height: 2.5rem;
+    margin-bottom: 1.4rem;
+    padding-top: 0.1rem;
+  }
+
+  h3, .p-navigation--sidebar .p-navigation__logo, .p-heading--three, .p-list-step > li::before, .p-stepped-list--detailed > li::before, .p-pull-quote > p {
+    font-size: 1.49271rem;
+    line-height: 2rem;
+    margin-bottom: 1.5rem;
+    padding-top: 0;
+  }
+
+  h4, .p-heading--four, .p-matrix__title, .p-media-object__title, .p-modal__title {
+    font-size: 1.22176rem;
+    line-height: 1.5rem;
+    margin-bottom: 0.7rem;
+    padding-top: 0.3rem;
+  }
+
+  h3 + p, .p-heading--three + p, h4 + p, .p-heading--four + p {
+    margin-top: -.5rem;
+  }
+
+  .p-list-step > li::before, .p-stepped-list--detailed > li::before {
+    margin-top: 0;
+    width: 2rem;
+  }
+
+  .p-matrix__desc {
+    margin-top: -.5rem;
+  }
+}

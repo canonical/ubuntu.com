@@ -386,6 +386,10 @@ h1,
   & + h2,
   & + .p-heading--two {
     margin-top: -2.5rem;
+
+    @media (max-width: 768px) {
+      margin-top: -1.5rem;
+    }
   }
 }
 
@@ -394,9 +398,9 @@ h2,
   line-height: 3rem;
 }
 
-h4, .p-heading--four {
-  padding-top: .55rem;
-}
+// h4, .p-heading--four {
+//   padding-top: .55rem;
+// }
 
 .p-card--navigation {
   @extend %p-card;
