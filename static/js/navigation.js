@@ -37,7 +37,7 @@ navDropdowns.forEach(function(dropdown) {
 });
 
 var globalNav = document.querySelector('.global-nav');
-var globalNavDropdown = document.querySelector('.global-nav__dropdown-link');
+var globalNavDropdown = document.querySelector('.global-nav__link--dropdown');
 var globalNavContent = document.querySelector('.global-nav__dropdown-content');
 
 globalNavDropdown.addEventListener('click', function(event) {
