@@ -2,7 +2,7 @@
 from django.conf.urls import include, url
 from django_yaml_redirects import load_redirects
 from canonicalwebteam import yaml_deleted_paths
-from ubuntudesign.gsa.views import SearchView
+from canonicalwebteam.gsa.views import SearchView
 
 # Local code
 from .views import UbuntuTemplateFinder, DownloadView, ResourcesView
