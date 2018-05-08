@@ -229,7 +229,9 @@
 
 // small text has bigger padding top, so requires this to be factored into the dot position top
 .p-inline-list--middot {
-  margin-bottom: .25rem;
+  &.is-dense {
+    margin-bottom: $spv-inter--scaleable  - $nudge--small;
+  }
 
   .p-inline-list__item {
     &::after {
@@ -249,9 +251,9 @@
     margin-top: - $sp-unit * 1;
   }
 
-  // &.is-dense {
-    // margin-bottom: $spv-inter--scaleable - $sp-unit - $nudge--small;
-  // }
+  &.is-dense {
+    margin-bottom: $spv-inter--scaleable  - $nudge--small;
+  }
 
   & .p-list__item {
     list-style-type: none;
@@ -259,7 +261,7 @@
     position: relative;
   }
 
-  &.bordered {
+  &.is-bordered {
     display: block;
     & .p-list__item {
       margin-bottom: .25rem;

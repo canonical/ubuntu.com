@@ -1,13 +1,17 @@
 @mixin ubuntu-p-navigation {
-  $p-small-lh-diff: map-get($line-heights, default-text) - map-get($line-heights, small);
-
-  // html {
-  //   overflow-x: hidden !important; // prevent horizontal overflow full width breakout
-  // }
+  html {
+    overflow-x: hidden !important; // prevent horizontal overflow full width breakout
+  }
 
   .p-navigation {
+    background-color: $nav-bg-color;
     flex-direction: column;
     z-index: 3;
+
+    &::after { // disable rule under nav
+      background-color: none;
+      height: 0;
+    }
 
     &__dropdown-link {
       position: relative;
@@ -23,12 +27,13 @@
         position: absolute;
         right: 0;
         top: 0;
+        transition: transform .1s;
         width: 2rem;
       }
 
       &.is-selected {
         &::after {
-          transform: rotate(180deg);
+          transform: rotate(-180deg);
           @include vf-icon-chevron(vf-url-friendly-color($color-dark));
         }
 
@@ -36,12 +41,18 @@
           background-color: $color-x-light;
           color: $color-dark;
 
-          &:hover {
-            background-color: $color-x-light;
-          }
-
           &::after {
             background-color: transparent;
+          }
+
+          &:focus,
+          &:visited {
+            background-color: $color-x-light;
+            color: $color-dark;
+          }
+
+          &:hover {
+            background-color: $color-x-light;
           }
         }
       }
@@ -51,7 +62,6 @@
       max-height: 1.5rem;
       max-width: $ubuntu-logo-svg-width;
     }
-
 
     &__logo {
       background: $color-brand;
@@ -66,17 +76,18 @@
         padding-left: $sph-intra;
         padding-right: $sph-intra - $circle-of-friends-compensation;
       }
-    }
 
-    .p-navigation__link {
-      position: relative;
+      .p-navigation__link {
+        position: relative;
 
-      &::after {
-        @extend %pseudo-border--bottom;
-        background-color: #252525;
-        opacity: .3;
+        &::after {
+          @extend %pseudo-border--bottom;
+          background-color: $color-light;
+          opacity: .3;
+        }
       }
     }
+
 
     & &__nav {
       border-bottom: 0;
@@ -95,8 +106,15 @@
         padding: $spv-intra--expanded 2rem $spv-intra--expanded $sph-intra;
       }
 
+      &:focus,
+      &:visited {
+        background-color: $nav-bg-color;
+        color: $color-light;
+      }
+
       &:hover {
-        background-color: darken($color-navigation-background, 3%);
+        background-color: darken($nav-bg-color, 3%);
+        color: $color-x-light;
       }
 
     }
@@ -155,7 +173,6 @@
         @extend %paragraph;
         color: $color-x-light;
         margin-bottom: $sp-unit * 2 - map-get($nudges, nudge--p);
-
 
         @media only screen and (max-width: $breakpoint-navigation-threshold) {
           width: $ubuntu-logo-svg-width + 2 * $grid-margin-width - $circle-of-friends-compensation;
@@ -227,18 +244,9 @@
     transition: all .25s;
     z-index: 2;
 
-    // a {
-    //   text-decoration: none;
-    // }
-
     .row {
-      display: block;
       padding-left: $grid-margin-width;
       padding-right: $grid-margin-width;
-    }
-
-    hr {
-      margin-bottom: - $px;
     }
 
     &__content {
@@ -299,8 +307,28 @@ h2,
 }
 
 .p-card--navigation {
+  // @extend %is-bordered;
+  @extend %has-highlight;
+  @extend %has-round-corners;
   @extend %p-card;
+  box-shadow: 0px 1px 3px 1px transparentize($color-dark, .85);
   display: flex;
   flex-direction: column;
-  margin-bottom: 0;
+  margin-bottom: $spv-inter--condensed-scaleable;
+  padding: $spv-intra--scaleable - $px;
+  transition: all .2s;
+
+  &:hover {
+    box-shadow: 0px 3px 16px 1px transparentize($color-dark, .8);
+  }
+}
+
+.p-card--light {
+  @extend %has-round-corners;
+  @extend %bg--light;
+  @extend %p-card;
+  flex-direction: column;
+  margin-bottom: $spv-inter--condensed-scaleable;
+  padding: $spv-intra--scaleable - $px;
+  transition: all .2s;
 }
