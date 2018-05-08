@@ -27,10 +27,14 @@ $p-small-lh-diff: map-get($line-heights, default-text) - map-get($line-heights, 
 
 h4,
 .p-heading--four {
-  padding-top: .55rem; // needs to be fixed in vanilla
+  // padding-top: .55rem; // needs to be fixed in vanilla
 
   &.is-dense {
     margin-bottom: 1 * $sp-unit - map-get($nudges, nudge--h4);
+  }
+
+  &.is-x-dense {
+    margin-bottom: 0 * $sp-unit - map-get($nudges, nudge--h4);
   }
 }
 
@@ -83,8 +87,12 @@ h4,
   @extend %bg--light;
 }
 
-.hr--subtle {
-  opacity: .33;
+.p-hr--subtle {
+  opacity: .5;
+}
+
+.p-hr--dense {
+  margin-bottom: - $px;
 }
 
 .u-float--right {
