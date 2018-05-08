@@ -3,22 +3,25 @@
 $nudge--small: .55rem;
 $p-small-lh-diff: map-get($line-heights, default-text) - map-get($line-heights, small);
 
-%small-text-fixed {
+%small-text-base {
   font-size: 1rem / pow($ms-ratio, 1);
   line-height: map-get($line-heights, small);
-  margin-bottom: map-get($sp-after, small) * 2 + $p-small-lh-diff - $nudge--small;
   padding-top: $nudge--small;
+
+}
+
+%small-text-fixed {
+  @extend %small-text-base;
+  margin-bottom: map-get($sp-after, small) * 2 + $p-small-lh-diff - $nudge--small;
 }
 
 %small-text--vertically-condensed {
-  font-size: 1rem / pow($ms-ratio, 1);
-  line-height: map-get($line-heights, small);
+  @extend %small-text-base;
   margin-bottom: map-get($sp-after, small) + $p-small-lh-diff - $nudge--small;
-  // margin-bottom: map-get($sp-after, small) + $p-small-lh-diff - $nudge--small - $sp-unit;
-  padding-top: $nudge--small;
 }
 
 %smallest-text {
+  //Smallest text, used for smaller mutrd headinggs that sit next to .p-p--small
   font-size: 1rem / pow($ms-ratio, 2);
   line-height: 1rem;
   margin-bottom: .25rem;
