@@ -3,6 +3,17 @@
     overflow-x: hidden !important; // prevent horizontal overflow full width breakout
   }
 
+  %row-no-margins-on-mobile {
+    @media (max-width: $breakpoint-navigation-threshold) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    @media (min-width: $breakpoint-navigation-threshold + 1) {
+      padding-left: $grid-margin-width;
+      padding-right: $grid-margin-width;
+    }
+  }
+
   .p-navigation {
     background-color: $nav-bg-color;
     flex-direction: column;
@@ -80,15 +91,8 @@
 
       .p-navigation__link {
         position: relative;
-
-        &::after {
-          @extend %pseudo-border--bottom;
-          background-color: $color-light;
-          opacity: .3;
-        }
       }
     }
-
 
     & &__nav {
       border-bottom: 0;
@@ -121,8 +125,7 @@
     }
 
     & &__row {
-      padding-left: $grid-margin-width;
-      padding-right: $grid-margin-width;
+      @extend %row-no-margins-on-mobile;
     }
 
     &__search {
@@ -174,6 +177,22 @@
         @extend %paragraph;
         color: $color-x-light;
         margin-bottom: $sp-unit * 2 - map-get($nudges, nudge--p);
+        position: relative;
+
+        &::after {
+          // white separator inside lockup
+          @extend %pseudo-border--top;
+          background-color: $color-light;
+          opacity: .3;
+          @media only screen and (max-width: $breakpoint-navigation-threshold) {
+            left: $grid-margin-width;
+            right: $grid-margin-width - $circle-of-friends-compensation;
+          }
+          @media only screen and (min-width: $breakpoint-navigation-threshold) {
+            left: $sph-intra;
+            right: $sph-intra - $circle-of-friends-compensation;
+          }
+        }
 
         @media only screen and (max-width: $breakpoint-navigation-threshold) {
           width: $ubuntu-logo-svg-width + 2 * $grid-margin-width - $circle-of-friends-compensation;
@@ -232,6 +251,10 @@
             color: $color-brand;
           }
         }
+      }
+
+      .row {
+        @extend %row-no-margins-on-mobile;
       }
     }
   }
