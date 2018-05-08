@@ -4,10 +4,10 @@ $ubuntu-logo-width--desktop: $ubuntu-logo-svg-width + 2 * $grid-margin-width;
 //$ubuntu-logo-padding--desktop: 1.5rem;
 $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
 $p-small-lh-diff: map-get($line-heights, default-text) - map-get($line-heights, small);
-
-$global-nav-bg-color: #444; //matches Mark's document //lighten($color-dark, 8%);
+$contrast-ratio: 5%;
+$global-nav-bg-color: #262626; //matches Mark's document //lighten($color-dark, 8%);
 $global-nav-dropdown-bg-color: $global-nav-bg-color; //lighten($color-dark, 13.55%); //#333
-$nav-bg-color: #666;
+$nav-bg-color: lighten($global-nav-bg-color, $contrast-ratio);
 $color-rule--light: transparentize($color-mid-light, .5);
 
 @mixin global-nav {

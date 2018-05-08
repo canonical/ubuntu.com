@@ -8,6 +8,7 @@
       padding-left: 0;
       padding-right: 0;
     }
+
     @media (min-width: $breakpoint-navigation-threshold + 1) {
       padding-left: $grid-margin-width;
       padding-right: $grid-margin-width;
@@ -188,6 +189,7 @@
             left: $grid-margin-width;
             right: $grid-margin-width - $circle-of-friends-compensation;
           }
+
           @media only screen and (min-width: $breakpoint-navigation-threshold) {
             left: $sph-intra;
             right: $sph-intra - $circle-of-friends-compensation;
