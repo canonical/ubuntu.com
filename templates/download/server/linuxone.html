@@ -1,0 +1,36 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Ubuntu for IBM LinuxONE and z&nbsp;Systems | Download{% endblock %}
+
+{% block meta_description %}Ubuntu for IBM LinuxONE brings the Ubuntu Server and Ubuntu Server for cloud with the OpenStack ecosystem to IBM LinuxONE.{% endblock meta_description %}
+
+
+{% block content %}
+<div class="p-strip is-deep">
+  <div class="row">
+    <div class="col-12">
+      <h1>Ubuntu for IBM LinuxONE and z&nbsp;Systems</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 p-card--highlighted">
+      <h2>Ubuntu Server {{lts_release_full}}</h2>
+      <div class="u-equal-height p-divider">
+        <div class="col-8 p-divider__block">
+          <p class="p-card__content">IBM LinuxONE and z&nbsp;Systems leverage open technology solutions to meet the demands of the new application economy. They combine the best of open source to offer IBM&rsquo;s enterprise customers unprecedented performance, security and resiliency. Ubuntu {{lts_release_full}} was released for general availability (GA) in April and can now be downloaded by all IBM LinuxOne and z Systems customers.</p>
+          <p class="p-card__content">Ubuntu {{lts_release_full}} for IBM LinuxONE and z&nbsp;Systems is priced at $19,500 per drawer per year, covering unlimited usage of Ubuntu within that drawer, 24x7 Ubuntu Advantage Advanced support services and regular security and reliability fixes from Canonical.</p>
+          <p class="p-card__content">For questions about Ubuntu Advantage for LinuxONE and z Systems, please call us <tel href="+442036565291">+44&nbsp;(0)&nbsp;203&nbsp;656&nbsp;5291</tel> or email us at <a href="mailto:ibm@ubuntu.com">ibm@ubuntu.com</a>.</p>
+        </div>
+        <div class="col-4 p-divider__block">
+          <p><a href="/download/server/thank-you-linuxone" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'LinuxONE server', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">Download and accept terms</a></p>
+          <p class="p-card__content">Your use of Ubuntu on z&nbsp;Systems and LinuxONE in production constitutes <a href="/legal/service-terms">acceptance of these terms</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_server_installation" second_item="_download_server_guide" third_item="_download_helping_hands" %}
+
+{% endblock content %}
