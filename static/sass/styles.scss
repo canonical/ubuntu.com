@@ -81,6 +81,12 @@
 ///XXX Redefine row width as vanilla is missing !default on the $grid-max-width var.
 .row {
   max-width: 68rem;
+
+  // XXX Required for mobile nav to fit everything in
+  @media (max-width: $breakpoint-mobile-small - 1) {
+    padding-left: $grid-margin-width / 1.5 !important;
+    padding-right: $grid-margin-width / 1.5 !important;
+  }
 }
 
 /// XXX Compact button style
