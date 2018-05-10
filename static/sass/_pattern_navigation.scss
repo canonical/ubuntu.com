@@ -20,9 +20,18 @@
     flex-direction: column;
     z-index: 3;
 
+    @media (max-width: $breakpoint-navigation-threshold - 1) {
+      position: sticky;
+      top: -1px;
+    }
+
     &::after { // disable rule under nav
       background-color: none;
       height: 0;
+    }
+
+    &__banner {
+      background-color: $color-brand;
     }
 
     &__dropdown-link {
@@ -80,6 +89,11 @@
       background: $color-brand;
       margin: 0;
 
+      @media (max-width: $breakpoint-mobile-small - 1) {
+        padding-left: $grid-margin-width / 1.5 !important;
+        padding-right: 0 !important;
+      }
+
       @media only screen and (max-width: $breakpoint-navigation-threshold) {
         padding-left: $grid-margin-width;
         padding-right: $grid-margin-width - $circle-of-friends-compensation;
@@ -127,6 +141,12 @@
 
     & &__row {
       @extend %row-no-margins-on-mobile;
+
+      &.row,
+      .p-nav__secondary & {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
     }
 
     &__search {
@@ -168,6 +188,7 @@
         display: inline-block;
         float: left;
         background-color: $color-brand;
+        font-weight: 300;
 
         &:hover {
           text-decoration: none;
@@ -175,10 +196,23 @@
       }
 
       &__logo {
+        display: flex;
+        align-items: center;
         @extend %paragraph;
         color: $color-x-light;
         margin-bottom: $sp-unit * 2 - map-get($nudges, nudge--p);
         position: relative;
+
+        @media (max-width: $breakpoint-navigation-threshold - 1) {
+          padding-left: $sp-small !important;
+          padding-right: 0 !important;
+        }
+
+        a {
+          border-left: 1px solid rgba(247, 247, 247, .3);
+          color: $color-light !important;
+          padding-left: $sp-small;
+        }
 
         &::after {
           // white separator inside lockup
@@ -194,12 +228,6 @@
             left: $sph-intra;
             right: $sph-intra - $circle-of-friends-compensation;
           }
-        }
-
-        @media only screen and (max-width: $breakpoint-navigation-threshold) {
-          width: $ubuntu-logo-svg-width + 2 * $grid-margin-width - $circle-of-friends-compensation;
-          padding-left: $grid-margin-width;
-          padding-right: $grid-margin-width - $circle-of-friends-compensation;
         }
 
         @media only screen and (min-width: $breakpoint-navigation-threshold) {
@@ -239,6 +267,10 @@
           display: inline-flex;
           list-style: none;
 
+          @media (max-width: $breakpoint-mobile-small - 1) {
+            width: 50%;
+          }
+
         }
 
         &__link {
@@ -249,6 +281,11 @@
           padding-right: $spv-intra--expanded;
           padding-top: $nudge--small;
 
+          @media (max-width: $breakpoint-mobile-small - 1) {
+            padding-left: 0;
+            padding-right: 0;
+          }
+
           &.p-link--active {
             color: $color-brand;
           }
@@ -257,6 +294,57 @@
 
       .row {
         @extend %row-no-margins-on-mobile;
+      }
+    }
+
+    &__toggle--open,
+    &__toggle--close {
+      font-size: .875rem;
+      color: $color-light !important;
+
+      @media (max-width: $breakpoint-mobile-small - 1) {
+        margin-right: $grid-margin-width / 1.5 !important;
+      }
+    }
+
+    &__links {
+      @media (max-width: $breakpoint-mobile-small - 1) {
+        font-size: .875rem;
+      }
+
+      @media (max-width: $breakpoint-navigation-threshold) {
+        display: flex;
+        justify-content: center;
+        order: 2;
+      }
+    }
+
+    &__dropdown-link {
+      &::after {
+        @media (max-width: $breakpoint-navigation-threshold) {
+          display: none;
+        }
+      }
+    }
+
+    &__search {
+      @media (max-width: $breakpoint-navigation-threshold) {
+        order: 1;
+        margin-top: $sp-medium !important;
+      }
+    }
+
+    &__link-anchor {
+      @media (max-width: $breakpoint-mobile-small - 1) {
+        padding-left: $grid-margin-width / 4 !important;
+        padding-right: $grid-margin-width / 4 !important;
+      }
+    }
+
+    .p-search-box {
+      @media (max-width: $breakpoint-mobile-small - 1) {
+        margin-left: $grid-margin-width / 1.5 !important;
+        margin-right: $grid-margin-width / 1.5 !important;
       }
     }
   }
