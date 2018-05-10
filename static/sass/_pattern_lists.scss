@@ -226,3 +226,57 @@
     }
   }
 }
+
+// small text has bigger padding top, so requires this to be factored into the dot position top
+.p-inline-list--middot {
+  &.is-dense {
+    margin-bottom: $spv-inter--scaleable  - $nudge--small;
+  }
+
+  .p-inline-list__item {
+    &::after {
+      // right: -.65em;
+      top: calc(.4em + .55rem);
+    }
+  }
+}
+
+.p-text-list--small {
+  @extend %small-text-fixed;
+  margin-bottom: $spv-inter--scaleable - $nudge--small + 1 * $sp-unit;
+  margin-left: 0;
+  padding-left: 0;
+
+  .p-p--small + & {
+    margin-top: - $sp-unit * 1;
+  }
+
+  &.is-dense {
+    margin-bottom: $spv-inter--scaleable  - $nudge--small;
+  }
+
+  & .p-list__item {
+    list-style-type: none;
+    padding-left: 0;
+    position: relative;
+  }
+
+  &.is-bordered {
+    display: block;
+    & .p-list__item {
+      margin-bottom: .25rem;
+
+      &:not(:first-child) {
+        padding-top: .25rem;
+      }
+
+      &:not(:first-child) {
+        @extend %pseudo-border--top;
+
+        &::after {
+          background-color: $color-rule--light;
+        }
+      }
+    }
+  }
+}

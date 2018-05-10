@@ -1,79 +1,147 @@
+$ubuntu-logo-svg-width: 81 * $px; // width in rems
+$circle-of-friends-compensation: 0rem; // padding compensation to create visually equal margins;
+$ubuntu-logo-width--desktop: $ubuntu-logo-svg-width + 2 * $grid-margin-width;
+//$ubuntu-logo-padding--desktop: 1.5rem;
+$ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
+$p-small-lh-diff: map-get($line-heights, default-text) - map-get($line-heights, small);
+
+$global-nav-bg-color: #444; //matches Mark's document //lighten($color-dark, 8%);
+$global-nav-dropdown-bg-color: $global-nav-bg-color; //lighten($color-dark, 13.55%); //#333
+$nav-bg-color: #666;
+$color-rule--light: transparentize($color-mid-light, .5);
+
 @mixin global-nav {
+  $global-nav-chevron-height: 4 * $px;
+  $global-nav-chevron-width: 10 * $px;
+  $global-nav-height: 1.5rem;
+  $canonical-logo-height: 10 * $px; // height of svg in rem so it can be used in calulations
+  $canonical-logo-padding-bottom: ($global-nav-height - $canonical-logo-height) * .5;
+  $canonical-logo-padding-top: ($global-nav-height - $canonical-logo-height) * .5;
+
   .global-nav {
     align-items: center;
-    background: lighten($color-dark, 8%);
+    background: $global-nav-bg-color;
     display: flex;
     position: relative;
-
-    &__logo {
-      margin: auto $sph-intra auto $grid-margin-width;
-
-      @media only screen and (min-width: $breakpoint-navigation-threshold) {
-        margin-left: 0;
-      }
-    }
-
-    &__links {
-      font-size: 0.875rem;
-      margin: 0 0 0 auto;
-    }
-
-    &__link {
-      display: inline;
-      margin: 0 0 0 $sph-intra--condensed;
-    }
 
     &__row {
       display: flex;
       padding-left: $grid-margin-width;
       padding-right: $grid-margin-width;
+      z-index: 5;
     }
 
-    &__dropdown-link {
-      display: inline;
-      margin-right: 1.5rem;
+    &__logo {
+      margin: 0;
+      display: block;
+      line-height: 0;
+    }
+
+    &__logo-anchor {
+      display: inline-block;
+      line-height: 0;
+      @media only screen and (max-width: $breakpoint-navigation-threshold) {
+        padding-left: $grid-margin-width;
+        padding: $canonical-logo-padding-top $grid-margin-width - $circle-of-friends-compensation $canonical-logo-padding-bottom $grid-margin-width;
+        width: $ubuntu-logo-svg-width + 2 * $grid-margin-width - $circle-of-friends-compensation;
+      }
+
+      @media only screen and (min-width: $breakpoint-navigation-threshold) {
+        padding: $canonical-logo-padding-top $sph-intra - $circle-of-friends-compensation $canonical-logo-padding-bottom $sph-intra;
+        width: $ubuntu-logo-svg-width + 2 * $sph-intra - $circle-of-friends-compensation;
+      }
+    }
+
+    &__links {
+      list-style: none;
+      margin: 0 0 0 auto;
+    }
+
+    &__link--dropdown,
+    &__link {
+      display: inline-block;
       position: relative;
-
-      &::after {
-        @include vf-icon-chevron(vf-url-friendly-color($color-x-light));
-        background-repeat: no-repeat;
-        background-size: 100%;
-        content: "";
-        height: .25rem;
-        position: absolute;
-        right: -.85em;
-        top: .45em;
-        width: .65rem;
-      }
-
-      &.is-selected {
-        text-decoration: underline;
-
-        &::after {
-          transform: rotate(180deg);
-        }
-      }
+      margin-right: 0;
     }
 
-    &__dropdown-content {
-      margin-top: 0;
-      position: absolute;
-      top: 2rem;
-      width: 100%;
-      z-index: 3;
-    }
-
-    .p-link {
+    &__link-anchor {
       color: $color-x-light;
+      display: inline-block;
+      font-size: 1rem / pow($ms-ratio, 1);
+      line-height: map-get($line-heights, small);
+      margin-bottom: 0;
+      padding: $p-small-lh-diff * .5 $sph-intra--condensed $p-small-lh-diff * .5 $sph-intra--condensed;
+      transition: all .25s;
+
+      .global-nav__link--dropdown & {
+        padding-right: $sph-intra--condensed * 2 + $global-nav-chevron-width;
+      }
 
       &:visited,
       &:hover {
         color: $color-x-light;
+        // background-color: $global-nav-dropdown-bg-color;
+        text-decoration: none;
+      }
+
+      .global-nav__link--dropdown &::after {
+        @include vf-icon-chevron(vf-url-friendly-color($color-x-light));
+        background-repeat: no-repeat;
+        background-size: 100%;
+        content: "";
+        height: $global-nav-chevron-height;
+        position: absolute;
+        right: $sph-intra--condensed; //pading-right - width / 2;
+        top: ($global-nav-height - $global-nav-chevron-height) * .55;
+        width: $global-nav-chevron-width;
+      }
+
+      .global-nav__link--dropdown.is-selected & {
+        background: $global-nav-dropdown-bg-color;
+
+         &::after {
+          transform: rotate(180deg);
+        }
+      }
+
+    }
+
+    &__dropdown-content {
+      box-shadow: 0 1px 32px 1px transparentize($color-dark, .8);
+      margin-top: 0;
+      position: absolute;
+      top: 1.5rem;
+      transition: transform .25s;
+      width: 100%;
+      z-index: 4;
+
+      &.u-hide {
+        transform: translateY(-1rem);
+      }
+
+      & .p-strip--dark {
+        background-color: $global-nav-dropdown-bg-color;
+      }
+
+      .p-link {
+        //colors links in matrix
+        color: $color-x-light;
+
+        &:visited,
+        &:hover {
+          color: $color-x-light;
+        }
       }
     }
 
-    .p-matrix__img {
-      max-height: 2rem;
+    .p-matrix__item {
+        border-color: $color-mid-dark;
+    }
+    .p-matrix__img img {
+      max-height: map-get($icon-sizes, thumb--card);
+    }
+    .p-matrix__img + .p-matrix__content > *::before {
+      width: map-get($icon-sizes, thumb--card);
     }
   }
 }

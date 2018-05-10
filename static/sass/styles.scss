@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 //settings
-@import 'settings_colors';
 @import 'global-settings';
+@import 'settings_colors';
 
 // custom mixins
 @import 'mixins/full-width-breakout';
@@ -13,8 +13,8 @@
 // vendor
 // @import '../global-nav/src/sass/main';
 @import 'pattern_global-nav';
+@import 'vanilla-placeholders';
 @include global-nav;
-
 // import site specific patterns and overrides
 @import 'pattern_buttons';
 @import 'pattern_sun-animation';
