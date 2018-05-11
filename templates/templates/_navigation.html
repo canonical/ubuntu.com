@@ -8,7 +8,7 @@
           </a>
 
           {% if breadcrumbs %}
-          <h5 class="p-navigation--secondary__logo u-hide--large">
+          <h5 class="p-navigation--secondary__logo u-hide--nav-threshold-up">
             <a class="p-navigation--secondary__banner" href="{{ breadcrumbs.section.path }}">
               {{ breadcrumbs.section.title }}
             </a>
@@ -48,7 +48,7 @@
   {% if breadcrumbs %}
   <nav class="p-navigation--secondary">
     <div class="row">
-      <a class="p-navigation--secondary__banner u-hide--small u-hide--medium" href="{{ breadcrumbs.section.path }}">
+      <a class="p-navigation--secondary__banner u-hide--nav-threshold-down" href="{{ breadcrumbs.section.path }}">
         <h5 class="p-navigation--secondary__logo">
           {{ breadcrumbs.section.title }}
         </h5>
