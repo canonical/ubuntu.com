@@ -32,10 +32,10 @@
   {% endblock header_banner %}
   </header>
   <div class="dropdown-window fade-animation" {% if breadcrumbs %}{% endif %}>
-    {% include "templates/_navigation-enterprise.html" %}
-    {% include "templates/_navigation-developer.html" %}
-    {% include "templates/_navigation-community.html" %}
-    {% include "templates/_navigation-download.html" %}
+    {% include "templates/_navigation-enterprise-h.html" %}
+    {% include "templates/_navigation-developer-h.html" %}
+    {% include "templates/_navigation-community-h.html" %}
+    {% include "templates/_navigation-download-h.html" %}
   </div>
   {% if breadcrumbs %}
   <nav class="p-navigation--secondary">
@@ -70,4 +70,3 @@
     </div>
   </nav>
   {% endif %}
-  
