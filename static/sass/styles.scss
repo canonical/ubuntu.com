@@ -11,10 +11,10 @@
 @import 'vanilla-framework/scss/build';
 
 // vendor
-// @import '../global-nav/src/sass/main';
+@import '../global-nav/src/sass/main';
 @import 'pattern_global-nav';
 @import 'vanilla-placeholders';
-@include global-nav;
+// @include global-nav;
 // import site specific patterns and overrides
 @import 'pattern_buttons';
 @import 'pattern_sun-animation';
@@ -83,7 +83,7 @@
   max-width: 68rem;
 
   // XXX Required for mobile nav to fit everything in
-  @media (max-width: $breakpoint-mobile-small - 1) {
+  @media (max-width: $breakpoint-x-small - 1) {
     padding-left: $grid-margin-width / 1.5 !important;
     padding-right: $grid-margin-width / 1.5 !important;
   }
