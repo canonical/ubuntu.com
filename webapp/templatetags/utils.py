@@ -25,3 +25,7 @@ def format_date(date):
 @register.filter
 def replace_admin(url):
     return url.replace("admin.insights.ubuntu.com", "insights.ubuntu.com")
+
+@register.filter
+def add_beta(url):
+    return url.replace("www.ubuntu.com", "beta.ubuntu.com")
