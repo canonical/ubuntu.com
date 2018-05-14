@@ -52,36 +52,9 @@
             <input aria-label="code snippet" class="p-code-snippet__input" value="sudo snap install conjure-up --classic" readonly="readonly">
             <button class="p-code-snippet__action">Copy to clipboard</button>
           </div>
-<<<<<<< a6b13a8d288adba717329bc1ad214c4016ec605a
-        </li>
-
-        <li class="p-list-step__item col-12">
-<<<<<<< d89f27136c922ebb882f5d246bc8020a72558093:templates/openstack/install/build-openstack.html
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">5</span>Register your hardware with MAAS</h3>
-=======
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">6</span>Register your hardware with<br /> MAAS</h3>
->>>>>>> Updated OpenStack section:templates/openstack/developer.html
-          <div class="p-list-step__content">
-            <p>Now you need to enlist and commission machines:</p>
-            <ul class="p-list">
-              <li class="p-list__item">Ensure all machines are set to PXE boot, if possible disable all other boot options, including local disk, in the BIOS</li>
-              <li class="p-list__item">Power the machines on. They will all appear in the &ldquo;Nodes&rdquo; tab of MAAS after a while</li>
-              <li class="p-list__item">Edit each machine, filling in the power type and other parameters, if they are not correct already</li>
-              <li class="p-list__item">Select all the machines and, using the &ldquo;Take action&rdquo; dropdown, &ldquo;Commission&rdquo; them</li>
-              <li class="p-list__item">Wait until all machines have a &ldquo;Ready&rdquo; status</li>
-              <li class="p-list__item">Verify the networking by going to the details page for the node(s) that have multiple NICs and check that the second NIC (the non-PXE one):
-                <ul class="p-list">
-                  <li class="p-list__item">Is connected to the subnet</li>
-                  <li class="p-list__item">Has the &ldquo;IP address&rdquo; field set to &ldquo;unconfigured&rdquo;</li>
-                </ul>
-              </li>
-              <li class="p-list__item">The first NIC should be the same except the IP address field will be set to &ldquo;Auto assign&rdquo;</li>
-            </ul>
-=======
           <div class="p-code-snippet">
             <input aria-label="code snippet" class="p-code-snippet__input" value="conjure-up" readonly="readonly">
             <button class="p-code-snippet__action">Copy to clipboard</button>
->>>>>>> Un-mixed up develop and install pages
           </div>
           <div class="p-notification--caution">
             <div class="p-notification__response">
