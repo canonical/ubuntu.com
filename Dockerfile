@@ -19,6 +19,6 @@ ADD . .
 RUN pip3 install -r requirements.txt
 
 # Setup commands to run server
-ENTRYPOINT ["gunicorn", "webapp.wsgi", "--access-logfile", "-", "--error-logfile", "-", "--bind"]
+ENTRYPOINT ["talisker.gunicorn", "webapp.wsgi", "--access-logfile", "-", "--error-logfile", "-", "--bind"]
 CMD ["0.0.0.0:80"]
 
