@@ -479,14 +479,15 @@ h2,
 }
 
 .p-logomark {
-  // max-height: map-get($icon-sizes, heading-icon--small);
-  display: block;
-  margin-bottom: $spv-intra;
-  max-height: 3 * $sp-unit;
+    display: inline-block;
+    max-height: 2 * $sp-unit;
+    margin-right: $sph-intra--condensed;
+    position: relative;
+    top: .1rem;
 }
 
 .p-button--small {
   @extend %small-text;
-  padding-top: $sp-unit/2 + map-get($nudges, nudge--small);
-  padding-top: $sp-unit/2 + map-get($nudges, nudge--small);
+  padding-top: $sp-unit * .5 + map-get($nudges, nudge--small);
+  padding-top: $sp-unit * .5 + map-get($nudges, nudge--small);
 }
