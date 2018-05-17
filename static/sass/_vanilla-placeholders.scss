@@ -12,7 +12,7 @@ $p-small-lh-diff: map-get($line-heights, default-text) - map-get($line-heights, 
 
 %small-text-fixed {
   @extend %small-text-base;
-  margin-bottom: map-get($sp-after, small) * 2 + $p-small-lh-diff - $nudge--small;
+  // margin-bottom: map-get($sp-after, small) * 2 + $p-small-lh-diff - $nudge--small;
 }
 
 %small-text--vertically-condensed {
