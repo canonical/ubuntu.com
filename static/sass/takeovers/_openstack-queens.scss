@@ -1,0 +1,69 @@
+@mixin p-takeover-openstack-queens {
+  .p-takeover--openstack-queens {
+    position: relative;
+    background-color: $color-light;
+
+    @media (min-width: $breakpoint-medium) {
+      &::before,
+      &::after {
+        position: absolute;
+        top: 0;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+
+      &::before {
+        left: 0;
+        background-image: url('https://assets.ubuntu.com/v1/d3edfcd5-left.png');
+        background-position: top left;
+      }
+
+      &::after {
+        right: 0;
+        background-image: url('https://assets.ubuntu.com/v1/17508275-right.png');
+        background-position: top right;
+      }
+    }
+  }
+
+  .p-takeover__body {
+    position: relative;
+    z-index: 1;
+    padding-top: $sp-x-large;
+    padding-bottom: $sp-x-large;
+
+    @media (min-width: $breakpoint-medium) {
+      padding-top: $sp-x-large * 2;
+      padding-bottom: $sp-x-large * 2;
+    }
+  }
+
+  .p-takeover__title {
+    font-weight: 100;
+  }
+
+  .p-takeover__image {
+    display: block;
+    width: 210px;
+    height: 101px;
+    margin: $sp-x-large auto 0;
+
+    @media (min-width: $breakpoint-medium) {
+      width: 222px;
+      height: 107px;
+      margin-top: 0;
+    }
+  }
+
+  .p-takeover__cta {
+    margin-top: $sp-x-large;
+  }
+
+  .p-heading--four {
+    font-size: 20px;
+    max-width: 100% !important;
+  }
+}
