@@ -1,0 +1,86 @@
+  {% extends "engage/base_engage.html" %}
+
+  {% block meta_description %}Ready to make the migration from proprietary virtualisation to OpenStack?{% endblock %}
+
+{% block title %}From VMWare To Canonical OpenStack{% endblock %}
+
+{% block content %}
+<section class="p-strip--image is-dark is-deep" style="background-image: url('https://assets.ubuntu.com/v1/78c2eae0-image-server-room.jpg'); background-position: 77% 0%;">
+  <div class="row">
+    <div class="col-8">
+      <div class="p-card--overlay">
+        <h1>From VMWare To Canonical OpenStack</h1>
+        <p>Ready to make the migration from proprietary virtualisation to OpenStack?</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+
+    <h2>Your flexible cloud</h2>
+    <ul class="p-list is-split">
+      <li class="p-list__item is-ticked"><strong>Predictable costs:</strong> Operational costs, software license costs, and hardware costs are drastically cut. With OpenStack, you get the efficiency of the public cloud on your own terms.</li>
+      <li class="p-list__item is-ticked"><strong>Rely on a community of experts:</strong> Thanks to an open design, architecture and development, OpenStack benefits from world-class APIs and developer tools with best practices built-in. </li>
+      <li class="p-list__item is-ticked"><strong>Be more agile:</strong> OpenStack gives you the flexibility to match developer workflows and needs, it effectively turns your IS into a services marketplace. </li>
+      <li class="p-list__item is-ticked"><strong>Hybrid and multi-cloud:</strong> OpenStack integrates seamlessly with other platforms and cloud providers, including federated identity management across clouds. </li>
+    </ul>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-12">
+    <h2>Built by the cloud experts</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <p>As the number one platform for OpenStack and public cloud, Canonical provides consulting, training, enterprise support and remote operations, to help you focus on what matters most: your applications.
+      </p><p>Whether you need a fully managed cloud or an infrastructure prepared for your future and existing workloads, we create the cloud and you stay in control.</p>
+    </div>
+    <div class="col-6">
+      <h3 class="p-muted-heading u-align--center">They trust us with their OpenStack</h3>
+      <ul class="p-inline-images">
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}4ef05fb7-bestbuy.jpg" alt="BestBuy" style="max-width:90px;" />
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}b1fecbf0-logo-att-horizontal.png" width="242" alt="ATT" style="max-width:130px;" />
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}b7693339-logo-bloomberg.svg" alt="Bloomberg" style="max-width:100px;" />
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}1ccb6d93-logo-deutschetelekom.svg" alt="Deutsche Telekom" />
+        </li>
+      </ul>    
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-12">
+        <h4>Watch the cost analysis and migration demo:</h4>
+      </div>
+      <div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 299913, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>
+    </div>
+</section>
+
+<section class="p-strip--accent">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h4>We can get you started with OpenStack.</h4>
+      <ul class="p-inline-list">
+        <li class="p-inline-list__item">
+          <a href="/cloud/contact-us?product=openstack" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Footer CTA', 'eventLabel' : 'Contact us' });">Contact a cloud expert</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-4 prefix-1 suffix-1 u-vertically-center">
+      <img src="{{ ASSET_SERVER_URL }}466046c7-illustration-cloud-bootstack.svg?w=320" class="u-hide--small" alt="">
+    </div>
+  </div>
+</section>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_newsletter" third_item="_telco_further_reading" %}
+{% endblock content %}
