@@ -440,11 +440,20 @@ h2,
 }
 
 .p-card--navigation {
+  // @extend %is-bordered;
+  @extend %has-highlight;
+  @extend %has-round-corners;
   @extend %p-card;
+  // box-shadow: 0px 1px 3px 1px transparentize($color-dark, .85);
   display: flex;
   flex-direction: column;
-  margin-bottom: 0;
-  padding: 0;
+  margin-bottom: $spv-inter--condensed-scaleable;
+  padding: $spv-intra--scaleable - $px;
+  transition: all .2s;
+
+  // &:hover {
+    // box-shadow: 0px 3px 16px 1px transparentize($color-dark, .8);
+  // }
 }
 
 .p-card--light {
@@ -467,19 +476,4 @@ h2,
   @media (min-width: $breakpoint-navigation-threshold) {
     display: none !important;
   }
-}
-
-.p-logomark {
-    display: inline-block;
-    max-height: 3 * $sp-unit;
-    margin-right: $sph-intra--condensed;
-    margin-bottom: $spv-intra--scaleable;
-    position: relative;
-    top: .1rem;
-}
-
-.p-button--small {
-  @extend %small-text;
-  padding-top: $sp-unit * .5 + map-get($nudges, nudge--small);
-  padding-top: $sp-unit * .5 + map-get($nudges, nudge--small);
 }
