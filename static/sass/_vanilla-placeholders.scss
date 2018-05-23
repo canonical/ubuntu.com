@@ -12,7 +12,6 @@ $p-small-lh-diff: map-get($line-heights, default-text) - map-get($line-heights, 
 
 %small-text-fixed {
   @extend %small-text-base;
-  // margin-bottom: map-get($sp-after, small) * 2 + $p-small-lh-diff - $nudge--small;
 }
 
 %small-text--vertically-condensed {
@@ -30,8 +29,6 @@ $p-small-lh-diff: map-get($line-heights, default-text) - map-get($line-heights, 
 
 h4,
 .p-heading--four {
-  // padding-top: .55rem; // needs to be fixed in vanilla
-
   &.is-dense {
     margin-bottom: 1 * $sp-unit - map-get($nudges, nudge--h4);
   }
@@ -62,10 +59,6 @@ h4,
   .p-text-list--small + & {
       margin-top: - map-get($line-heights, small);
   }
-
-  // .p-heading--navigation + & {
-  //   margin-top: -$sp-unit * 1;
-  // }
 }
 
 %p-strip--very-shallow {
