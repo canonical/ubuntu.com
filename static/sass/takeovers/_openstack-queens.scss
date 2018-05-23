@@ -62,8 +62,12 @@
     margin-top: $sp-x-large;
   }
 
-  .p-heading--four {
-    font-size: 20px;
+  .p-takeover__text {
+    font-size: 1rem;
     max-width: 100% !important;
+
+    @media (min-width: $breakpoint-medium) {
+      font-size: 1.25rem;
+    }
   }
 }
