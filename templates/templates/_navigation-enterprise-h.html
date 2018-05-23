@@ -2,37 +2,75 @@
   <div class="dropdown-window__content u-no-padding--bottom">
     <div class="dropdown-window__summary-strip">
       <div class="row">
-        <p class="dropdown-window__summary">Ubuntu is the leading Linux for cloud, containers, machine learning and scale-out workloads.
+        <p class="dropdown-window__summary">
+          Ubuntu is the enterprise platform for public and private cloud, containers and AI/ML, with full enterprise support, long term security maintenance and optimised public cloud images.
         </p>
-        <hr>
+        <hr class="p-hr--dense">
       </div>
     </div>
+    <div class="p-strip is-x-shallow">
+      <div class="row u-equal-height">
+        <!-- OpenStack Solutions -->
+        <div class="tablet-col-2 col-4 p-card--navigation">
+          <img class="p-logomark" src="https://assets.ubuntu.com/v1/6a983826-Openstack+Logo.svg" alt="openstack logo"/>
+          <h4 class="p-heading-four is-dense">
+            <a href="/openstack">OpenStack Solutions&nbsp;&rsaquo;</a>
+          </h4>
+          <p class="p-p--small">
+            Canonical is the leading provider of managed OpenStack solutions. We help design, build and operate your cloud, and train your team to take over.
+          </p>
+          <a href="/openstack" class="p-button--small p-button--positive u-align--bottom u-align-text--left">
+            Get OpenStack
+          </a>
+        </div>
+        <!-- Kubernetes Solutions -->
+        <div class="tablet-col-2 col-4 p-card--navigation">
+          <img class="p-logomark" src="https://assets.ubuntu.com/v1/dba11aee-kubernetes.svg" alt="kubernetes logo"/>
+          <h4 class="p-heading-four is-dense">
+            <a href="/kubernetes">Kubernetes Solutions&nbsp;&rsaquo;</a>
+          </h4>
+          <p class="p-p--small">
+            Canonical delivers the leading Kubernetes distribution and provides workshops, training, deployment and consulting services. On VMware, cloud, OpenStack and bare metal.
+          </p>
+          <a href="kubernetes" class="p-button--small p-button--positive u-align--bottom u-align-text--left">
+            Get Kubernetes
+          </a>
+        </div>
+        <!-- Enterprise Support -->
+        <div class="tablet-col-2 col-4 p-card--navigation">
+          <img class="p-logomark" src="https://assets.ubuntu.com/v1/3c1de878-canonical-logo.png" alt="canonical logo">
+          <h4 class="p-heading-four is-dense">
+            <a href="/support">Enterprise Support&nbsp;&rsaquo;</a>
+          </h4>
+          <p class="p-p--small">
+            Canonical provides 24/7 enterprise support, security, and break-fix engineering for Ubuntu, OpenStack, Docker and Kubernetes. Enterprise Linux done right.
+          </p>
+          <a href="/support" class="p-button--small p-button--positive u-align--bottom u-align-text--left">
+            Get support
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="row"><hr></div>
     <div class="row">
-      <!-- OpenStack Solutions -->
+      <!-- OpenStack cloud -->
       <div class="col-3">
-        <h4 class="p-heading-four is-dense">
-          <a href="/openstack">OpenStack Solutions&nbsp;&rsaquo;</a>
+        <h4 class="p-muted-heading">
+          <a href="/openstack">OpenStack&nbsp;&rsaquo;</a>
         </h4>
-        <p class="p-p--small">
-          Canonical is the leading provider of managed OpenStack. We’ll build, operate, train your team, in your data center, on your preferred hardware.
-        </p>
-        <ul class="p-text-list--small is-dense is-bordered">
+        <ul class="p-text-list--small">
           <li class="p-list__item"><a href="/openstack">Build private clouds</a></li>
-          <li class="p-list__item"><a href="/openstack/managed">Fully managed options</a></li>
+          <li class="p-list__item"><a href="/openstack/managed">Fully managed OpenStack</a></li>
           <li class="p-list__item"><a href="/openstack/training">Transfer and training</a></li>
           <li class="p-list__item"><a href="/openstack/consulting">Integration</a></li>
           <li class="p-list__item"><a href="/support/plans-and-pricing#openstack">Support</a></li>
         </ul>
       </div>
-      <!-- Kubernetes Solutions -->
       <div class="col-3">
-        <h4 class="p-heading-four is-dense">
-          <a href="/kubernetes">Kubernetes Solutions&nbsp;&rsaquo;</a>
+        <h4 class="p-muted-heading">
+          <a href="/openstack">Kubernetes&nbsp;&rsaquo;</a>
         </h4>
-        <p class="p-p--small">
-          Canonical delivers the leading Kubernetes distribution and provides workshops, training, deployment and consulting services.
-        </p>
-        <ul class="p-text-list--small is-dense is-bordered">
+        <ul class="p-text-list--small">
           <li class="p-list__item"><a href="/kubernetes">Bare metal, VMware, cloud</a></li>
           <li class="p-list__item"><a href="/kubernetes">Upgrades, day 2 operations</a></li>
           <li class="p-list__item"><a href="/kubernetes">GPGPU support for ML</a></li>
@@ -41,15 +79,11 @@
           <li class="p-list__item"><a href="/kubernetes/managed">Fully managed options</a></li>
         </ul>
       </div>
-      <!-- Enterprise Support -->
       <div class="col-3">
-        <h4 class="p-heading-four is-dense">
-          <a href="/support">Enterprise Support&nbsp;&rsaquo;</a>
+        <h4 class="p-muted-heading">
+          <a href="/openstack">Enterprise support&nbsp;&rsaquo;</a>
         </h4>
-        <p class="p-p--small">
-          Canonical provides 24/7 enterprise support for Ubuntu, OpenStack, Docker and Kubernetes &mdash; in your data centre or on the cloud.
-        </p>
-        <ul class="p-text-list--small is-dense is-bordered">
+        <ul class="p-text-list--small">
           <li class="p-list__item"><a href="/server/livepatch">Kernel Live Patch</a></li>
           <li class="p-list__item"><a href="/support/esm">Extended Security</a></li>
           <li class="p-list__item"><a href="/support">Optimised Windows VMs</a></li>
@@ -59,11 +93,8 @@
       </div>
       <!-- Internet of Things -->
       <div class="col-3">
-        <h4 class="p-heading-four is-dense"><a href="/internet-of-things">Internet of Things&nbsp;&rsaquo;</a></h4>
-        <p class="p-p--small">
-          Ubuntu Core is a tiny, transactional version of Ubuntu that runs Snaps, a new breed of super-secure, remotely upgradeable apps.
-        </p>
-        <ul class="p-text-list--small is-bordered">
+        <h4 class="p-muted-heading"><a href="/internet-of-things">Internet of Things&nbsp;&rsaquo;</a></h4>
+        <ul class="p-text-list--small">
           <li class="p-list__item"><a href="/core">Small and highly secure OS</a></li>
           <li class="p-list__item"><a href="/download/iot">Runs on a wide range of boards</a></li>
           <li class="p-list__item"><a href="https://snapcraft.io" title="Visit Snapcraft - external site">Snaps are secure and upgradeable</a></li>
@@ -75,20 +106,18 @@
     <div class="row">
       <!-- Public cloud -->
       <div class="col-3">
-        <h4 class="p-heading-four is-dense">
+        <h4 class="p-muted-heading">
           <a href="/cloud/public-cloud">Public cloud&nbsp;&rsaquo;</a>
         </h4>
-        <p class="p-p--small">The leading cloud and container guest OS with optimised images for all the major public clouds and kubernetes.</p>
-        <ul class="p-text-list--small is-dense is-bordered">
+        <ul class="p-text-list--small">
           <li class="p-list__item"><a href="/download/cloud">Use Ubuntu on AWS, Azure, Google, Oracle and IBM clouds</a></li>
           <li class="p-list__item"><a href="/cloud/public-cloud">Use Ubuntu on Google Kubernetes and Azure Kubernetes</a></li>
         </ul>
       </div>
       <!-- Containers -->
       <div class="col-3">
-        <h4 class="p-heading-four is-dense"><a href="/containers" title="Visit the containers pages">Containers&nbsp;&rsaquo;</a></h4>
-        <p class="p-p--small">Ubuntu is the base OS for both Google and Azure Kubernetes. Perfect with Docker and LXD for legacy apps.</p>
-        <ul class="p-text-list--small is-bordered">
+        <h4 class="p-muted-heading"><a href="/containers" title="Visit the containers pages">Containers&nbsp;&rsaquo;</a></h4>
+        <ul class="p-text-list--small">
           <li class="p-list__item"><a href="/kubernetes">Install and operate Kubernetes</a></li>
           <li class="p-list__item"><a href="https://linuxcontainers.org/" title="Visit the LXD - external site">LXD for legacy apps in containers</a></li>
           <li class="p-list__item"><a href="/containers/docker-ubuntu">Run the Docker Engine on Ubuntu</a></li>
@@ -97,24 +126,18 @@
       </div>
       <!-- data centre -->
       <div class="col-3">
-        <h4 class="p-heading-four is-dense"><a href="/server">Data centre&nbsp;&rsaquo;</a></h4>
-        <p class="p-p--small">
-          Ubuntu Server is the world&#39;s most widely used server Linux. Canonical has tooling to setup, manage and run the most Ubuntu at scale.
-        </p>
-        <ul class="p-text-list--small is-bordered">
+        <h4 class="p-muted-heading"><a href="/server">Data centre&nbsp;&rsaquo;</a></h4>
+        <ul class="p-text-list--small">
           <li class="p-list__item"><a href="https://maas.io" title="Visit Metal as a Service - external site">Provision servers with Metal as a Service (MAAS)</a></li>
           <li class="p-list__item"><a href="https://jujucharms.com" title="Visit jujucharms.com - external site">Juju manages multi-cloud deployment and operations</a></li>
         </ul>
       </div>
       <!-- machine learning -->
       <div class="col-3">
-        <h4 class="p-heading-four is-dense">Machine Learning</h4>
-        <p class="p-p--small">
-          Use Ubuntu to optimise your ML, AI and inferencing.
-        </p>
-        <ul class="p-text-list--small is-bordered">
-          <li class="p-list__item"><a href="https://www.tensorflow.org/" title="Visit TensorFlow - external site">Google TensorFlow and Kubeflow</a></li>
-          <li class="p-list__item"><a href="https://developer.nvidia.com/deep-learning-software" title="Visit Nvidia developer - external site">Nvidia’s ML stack</a></li>
+        <h4 class="p-muted-heading"><a href="/ai">Machine Learning</a></h4>
+        <ul class="p-text-list--small">
+          <li class="p-list__item"><a href="ai/kubeflow" title="Visit TensorFlow - external site">Google TensorFlow and Kubeflow</a></li>
+          <li class="p-list__item"><a href="/ai/nvidia" title="Visit Nvidia developer - external site">Nvidia’s ML stack</a></li>
           <li class="p-list__item"><a href="https://aws.amazon.com/machine-learning/" title="Visit AWS Machine Learning - external site">AWS ML toolchain on Ubuntu</a></li>
           <li class="p-list__item"><a href="https://developer.nvidia.com/nvidia-nsight-tegra" title="Visit Nvidia Tegra page - external site">Edge devices like Tegra running AI models</a></li>
         </ul>
