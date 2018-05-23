@@ -322,8 +322,9 @@ legal:
       path: /legal
     - title: Terms and policies
       path: /legal/terms-and-policies
-    - title: Legal Notice - System Information
-      path: /legal/system-information
+      children:
+        - title: Legal Notice - System Information
+          path: /legal/terms-and-policies/systems-information-notice
     - title: Data privacy enquiry
       path: /legal/data-privacy-enquiry
 
