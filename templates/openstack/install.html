@@ -5,14 +5,16 @@
 {% block content %}
 <section class="p-strip--light is-deep is-bordered">
   <div class="row">
-    <div class="col-6">
-      <div>
-        <h1>Install OpenStack yourself</h1>
-        <p>Deploy your production Ubuntu OpenStack cloud across a rack of physical servers. You&rsquo;ll use <a class="p-link--external" href="https://maas.io/">MAAS</a> for physical server provisioning and <a class="p-link--external" href="https://conjure-up.io/">conjure-up</a> to guide you through the process. Model-driven operations simplify running OpenStack at scale.</p>
+    <div class="u-equal-height">
+      <div class="col-8">
+        <div>
+          <h1>Install OpenStack yourself</h1>
+          <p>Deploy your production Ubuntu OpenStack cloud across a rack of physical servers. You&rsquo;ll use <a class="p-link--external" href="https://maas.io/">MAAS</a> for physical server provisioning and <a class="p-link--external" href="https://conjure-up.io/">conjure-up</a> to guide you through the process. Model-driven operations simplify running OpenStack at scale.</p>
+        </div>
       </div>
-    </div>
-    <div class="col-6">
-      <img src="{{ ASSET_SERVER_URL }}95212c08-OpenStack_Logo_2016.svg" alt="" class="u-align--center u-vertically-center u-hide--small" width="275" />
+      <div class="col-4 u-vertically-center u-align--center u-hide--small">
+        <img src="{{ ASSET_SERVER_URL }}95212c08-OpenStack_Logo_2016.svg" alt="" width="275" />
+      </div>
     </div>
   </div>
 </section>
@@ -85,13 +87,13 @@
         <li class="p-list-step__item col-12">
           <h3 class="p-list-step__title"><span class="p-list-step__bullet">6</span>Register your hardware with<br /> MAAS</h3>
           <div class="p-list-step__content">
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;Ensure all machines are set to PXE boot. We suggest you disable all other boot options, including local disk, in the BIOS</p>
+            <p>Ensure all machines are set to PXE boot. We suggest you disable all other boot options, including local disk, in the BIOS</p>
             <p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;Power the machines on. They will all appear in the “Nodes” tab of MAAS after a while</p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;Edit each machine, filling in the power type and other parameters, if they are not correct already</p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;Select all the machines and, using the “Take action” dropdown, “Commission” them</p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;Wait until all machines have a “Ready” status</p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;Verify the networking by going to the details page for the node(s) that have multiple NICs and check that the second NIC (the non-PXE one):</p>
+            <p>Power the machines on. They will all appear in the “Nodes” tab of MAAS after a while</p>
+            <p>Edit each machine, filling in the power type and other parameters, if they are not correct already</p>
+            <p>Select all the machines and, using the “Take action” dropdown, “Commission” them</p>
+            <p>Wait until all machines have a “Ready” status</p>
+            <p>Verify the networking by going to the details page for the node(s) that have multiple NICs and check that the second NIC (the non-PXE one):</p>
             <ul>
               <li>Is connected to the subnet</li>
               <li>Has the “IP address” field set to “unconfigured”</li>
@@ -101,9 +103,9 @@
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">7</span>Install conjure-up</h3>
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">7</span>Install and launch conjure-up</h3>
           <div class="p-list-step__content">
-            <p>On the MAAS server, in a terminal window, install the conjure-up snap:</p>
+            <p>On the MAAS server, in a terminal window, install conjure-up:</p>
             <div class="p-code-snippet">
               <input class="p-code-snippet__input" value="sudo snap install conjure-up --classic" readonly="readonly">
               <button class="p-code-snippet__action">Copy to clipboard</button>
@@ -152,7 +154,7 @@
         <li class="p-list-step__item col-12">
           <h3 class="p-list-step__title"><span class="p-list-step__bullet">10</span>Add MAAS endpoint and credentials</h3>
           <div class="p-list-step__content">
-            <p>The MAAS API endpoint will be of the form: <code>http://&lt;maas.ip&gt;/MAAS/</code>.</p>
+            <p>The MAAS REST API endpoint will be of the form: <code>http://&lt;maas.ip&gt;/MAAS/</code>.</p>
             <p>The api key is found under the MAAS &lsquo;admin&rsquo; acouunt page as shown below.</p>
             <p>
               <a href="{{ ASSET_SERVER_URL }}eda1968c-build-openstack-with-conjure-up-4.png">
@@ -186,7 +188,7 @@
               </a>
             </p>
             <p>OpenStack deploying</p>
-            <p>To learn more about conjure-up visit <a href="http://conjure-up.io/">conjure-up.io</a>.</p>
+            <p>To learn more about conjure-up visit <a class="p-link--external" href="http://conjure-up.io/">conjure-up.io</a>.</p>
           </div>
         </li>
       </ol>
