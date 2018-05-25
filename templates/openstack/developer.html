@@ -5,16 +5,20 @@
 {% block content %}
 <section class="p-strip--light is-deep is-bordered">
   <div class="row">
-    <div class="col-6">
-      <div>
-        <h1>Single-node Developer OpenStack cluster</h1>
+    <div class="col-12">
+      <h1>Single-node Developer OpenStack cluster</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-8">
         <p>Install a full OpenStack cluster on a single machine.This guide uses <a class="p-link--external" href="https://linuxcontainers.org/">LXD</a>, the Linux Container Daemon, to create multiple machine containers for the various OpenStack services, mimicking a real production distributed Openstack cluster.</p>
         <p>Follow these step-by-step instructions.</p>
         <p><strong>conjure-up</strong> requires a minimum version of LXD of <strong>3.0.0</strong>. Additionally, LXD should be configured prior to running.</p>
       </div>
-    </div>
-    <div class="col-6">
-      <img src="{{ ASSET_SERVER_URL }}95212c08-OpenStack_Logo_2016.svg" alt="" class="u-align--center u-vertically-center u-hide--small" width="275" />
+      <div class="col-4 u-align--center u-vertically-center u-hide--small">
+        <img src="{{ ASSET_SERVER_URL }}95212c08-OpenStack_Logo_2016.svg" alt="" width="275" />
+      </div>
     </div>
   </div>
 </section>
@@ -89,7 +93,7 @@
             <input aria-label="code snippet" class="p-code-snippet__input" value="conjure-up" readonly="readonly">
             <button class="p-code-snippet__action">Copy to clipboard</button>
           </div>
-          <p>You will see a menu of ‘spells’ which are descriptions of distributed software systems that conjure-up can deploy for you. Choose ‘OpenStack with LXD’.</p>
+          <p>You will see a menu of 'spells' which are descriptions of distributed software systems that conjure-up can deploy for you. Choose ‘OpenStack with LXD’.</p>
           <img src="{{ ASSET_SERVER_URL }}23a02e6d-conjure-up-install-openstack.png?w=444" width="444" alt="screenshot of the conjure-up interface with the 'OpenStack with NovaLXD' option selected" />
         </div>
       </li>
