@@ -4,19 +4,13 @@
 
 {% block content %}
 <section class="p-strip--light is-deep is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h1>Install OpenStack yourself</h1>
+  <div class="row u-equal-height">
+    <div class="col-8">
+        <h1>Install OpenStack yourself</h1>
+      <p>Deploy your production Ubuntu OpenStack cloud across a rack of physical servers. You&rsquo;ll use <a class="p-link--external" href="https://maas.io/">MAAS</a> for physical server provisioning and <a class="p-link--external" href="https://conjure-up.io/">conjure-up</a> to guide you through the process. Model-driven operations simplify running OpenStack at scale.</p>
     </div>
-  </div>
-  <div class="row">
-    <div class="u-equal-height">
-      <div class="col-8">
-        <p>Deploy your production Ubuntu OpenStack cloud across a rack of physical servers. You&rsquo;ll use <a class="p-link--external" href="https://maas.io/">MAAS</a> for physical server provisioning and <a class="p-link--external" href="https://conjure-up.io/">conjure-up</a> to guide you through the process. Model-driven operations simplify running OpenStack at scale.</p>
-      </div>
-      <div class="col-4 u-vertically-center u-align--center u-hide--small">
-        <img src="{{ ASSET_SERVER_URL }}95212c08-OpenStack_Logo_2016.svg" alt="" width="275" />
-      </div>
+    <div class="col-4 u-vertically-center u-align--center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}95212c08-OpenStack_Logo_2016.svg" alt="" width="275" />
     </div>
   </div>
 </section>
@@ -157,7 +151,7 @@
           <h3 class="p-list-step__title"><span class="p-list-step__bullet">10</span>Add MAAS endpoint and credentials</h3>
           <div class="p-list-step__content">
             <p>The MAAS REST API endpoint will be of the form: <code>http://&lt;maas.ip&gt;/MAAS/</code>.</p>
-            <p>The api key is found under the MAAS &lsquo;admin&rsquo; acouunt page as shown below.</p>
+            <p>The api key is found under the MAAS &lsquo;admin&rsquo; account page as shown below.</p>
             <p>
               <a href="{{ ASSET_SERVER_URL }}eda1968c-build-openstack-with-conjure-up-4.png">
                 <img src="{{ ASSET_SERVER_URL }}eda1968c-build-openstack-with-conjure-up-4.png?w=424" alt="conjure-up's wizard asking for your MAAS credentials" />
