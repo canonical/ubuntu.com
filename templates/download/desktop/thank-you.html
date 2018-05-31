@@ -26,14 +26,19 @@ Thank you for your contribution
 <div class="p-strip is-deep is-bordered">
   <div class="row">
     <div class="col-12">
-      <h1>Thank you for downloading Ubuntu Desktop</h1>
-      <p>Your download should start automatically. If it doesn&rsquo;t,
-        {% if architecture == 'amd64+mac' %}
-        <a href="http://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso">download now</a>.
-        {% else %}
-        <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download now</a>.
-        {% endif %}
-      </p>
+      {% if start_download %}
+        <h1>Thank you for downloading Ubuntu Desktop</h1>
+        <p>Your download should start automatically. If it doesn&rsquo;t,
+          {% if architecture == 'amd64+mac' %}
+          <a href="http://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso">download now</a>.
+          {% else %}
+          <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download now</a>.
+          {% endif %}
+        </p>
+      {% else %}
+        <h1>Thank you for your contribution</h1>
+        <p>It will help further the open source development of Ubuntu.</p>
+      {% endif %}
     </div>
   </div>
   <div class="row">
@@ -42,7 +47,6 @@ Thank you for your contribution
         <h2>Help shape the future of Ubuntu</h2>
         <noscript>
           <p>Contributions require JavaScript. Please enable JavaScript if you want to contribute.</p>
-          <p><a href="/download/desktop/thank-you?version={{ version }}&amp;architecture={{ architecture }}">Take me to the download&nbsp;&rsaquo;</a></p>
         </noscript>
       </div>
     </div>
@@ -141,12 +145,11 @@ Thank you for your contribution
           <input type="hidden" name="no_shipping" value="1">
           <input type="hidden" name="rm" value="1">
 
-          <input type="hidden" name="return" value="http://{{ http_host }}/download/desktop/thank-you?version={{ version }}&amp;architecture={{ architecture }}">
-          <input type="hidden" name="cancel_return" value="http://{{ http_host }}/download/desktop/thank-you?version={{ version }}&amp;architecture={{ architecture }}">
+          <input type="hidden" name="return" value="http://{{ http_host }}/download/desktop/thank-you">
+          <input type="hidden" name="cancel_return" value="http://{{ http_host }}/download/desktop/thank-you">
 
           <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
-          <button type="submit" class="contribute__submit p-button--positive" tabindex="9">Pay with PayPal</button> {% if start_download %}
-          <a href="/download/desktop/thank-you?version={{ version }}&amp;architecture={{ architecture }}" class="contribute__skip" tabindex="11">Not now, take me to the download&nbsp;&rsaquo;</a> {% endif %}
+          <button type="submit" class="contribute__submit p-button--positive" tabindex="9">Pay with PayPal</button>
         </div>
       </form>
     </div>
