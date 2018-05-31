@@ -28,14 +28,7 @@
         </div>
         <div class="col-4">
           <p class="p-card__content">
-            <a class="p-button--positive is-wide js-lts-download" href="/download/desktop/thank-you?version={{lts_release_with_point}}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">Download</a>
-            <script>
-              // Contributions only work with JavaScript
-              // So if we have JavaScript, send them to /contribute
-              var downloadLink = document.querySelector('.js-lts-download');
-              var contributeUrl = downloadLink.href.replace('/thank-you', '/contribute');
-              downloadLink.href = contributeUrl;
-            </script>
+            <a class="p-button--positive is-wide" href="/download/desktop/thank-you?version={{lts_release_with_point}}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">Download</a>
           </p>
           <p><small>For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors, and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</small></p>
         </div>
