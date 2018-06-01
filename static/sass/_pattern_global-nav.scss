@@ -61,7 +61,7 @@ $color-rule--light: transparentize($color-mid-light, .5);
       line-height: 0;
       @media only screen and (max-width: $breakpoint-navigation-threshold) {
         display: block;
-        padding: $canonical-logo-padding-top $grid-margin-width - $circle-of-friends-compensation $canonical-logo-padding-bottom .6rem;
+        padding: $canonical-logo-padding-top $grid-margin-width - $circle-of-friends-compensation $canonical-logo-padding-bottom 0;
         width: $ubuntu-logo-svg-width + 2 * $grid-margin-width - $circle-of-friends-compensation;
       }
 
@@ -94,6 +94,10 @@ $color-rule--light: transparentize($color-mid-light, .5);
 
       .global-nav__link--dropdown & {
         padding-right: $sph-intra--condensed * 2 + $global-nav-chevron-width;
+
+        @media only screen and (max-width: $breakpoint-navigation-threshold) {
+          padding-left: 0;
+        }
       }
 
       &:visited,
@@ -144,6 +148,7 @@ $color-rule--light: transparentize($color-mid-light, .5);
 
         .p-matrix__item {
           position: relative;
+          width: 100%;
         }
 
         .p-matrix__img {
