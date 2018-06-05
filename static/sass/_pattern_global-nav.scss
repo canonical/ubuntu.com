@@ -183,6 +183,10 @@ $color-rule--light: transparentize($color-mid-light, .5);
           color: $color-x-light;
         }
       }
+
+      .p-muted-heading {
+        color: $color-light;
+      }
     }
 
     .p-matrix__item {
@@ -193,6 +197,11 @@ $color-rule--light: transparentize($color-mid-light, .5);
     }
     .p-matrix__img + .p-matrix__content > *::before {
       width: map-get($icon-sizes, thumb--card);
+    }
+
+    .is-bordered:before {
+      background-color: $color-mid-dark;
+      margin-bottom: $sp-x-large;
     }
   }
 }
