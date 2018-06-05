@@ -199,6 +199,10 @@ $color-rule--light: transparentize($color-mid-light, .5);
       width: map-get($icon-sizes, thumb--card);
     }
 
+    .p-matrix__content {
+      width: 100%;
+    }
+
     .is-bordered:before {
       background-color: $color-mid-dark;
       margin-bottom: $sp-x-large;
