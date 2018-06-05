@@ -13,8 +13,7 @@ $color-rule--light: transparentize($color-mid-light, .5);
 @mixin global-nav {
   $global-nav-chevron-height: 4 * $px;
   $global-nav-chevron-width: 10 * $px;
-  $global-nav-height: 1.5rem;
-  $global-nav-height-mobile: 3rem;
+  $global-nav-height: 2rem;
   $canonical-logo-height: 10 * $px; // height of svg in rem so it can be used in calulations
   $canonical-logo-padding-bottom: ($global-nav-height - $canonical-logo-height) * .5;
   $canonical-logo-padding-top: ($global-nav-height - $canonical-logo-height) * .5;
@@ -89,7 +88,7 @@ $color-rule--light: transparentize($color-mid-light, .5);
       font-size: 1rem / pow($ms-ratio, 1);
       line-height: map-get($line-heights, small);
       margin-bottom: 0;
-      padding: $p-small-lh-diff * .5 $sph-intra--condensed $p-small-lh-diff * .5 $sph-intra--condensed;
+      padding: $p-small-lh-diff * 1.5 $sph-intra--condensed;
       transition: all .25s;
 
       .global-nav__link--dropdown & {
