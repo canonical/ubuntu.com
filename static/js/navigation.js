@@ -5,10 +5,8 @@ var closeMenuLink = document.querySelector('.p-navigation__toggle--close');
 var navigationThresholdBreakpoint = 900;
 
 navDropdowns.forEach(function(dropdown) {
-  dropdown.addEventListener('click', function(event) {
-    event.preventDefault();
-
-    var clickedDropdown = this;
+  dropdown.addEventListener('mouseenter', function() {
+    var selectedDropdown = this;
 
     dropdownWindow.classList.remove('fade-animation');
     dropdownWindowOverlay.classList.remove('fade-animation');
@@ -16,18 +14,22 @@ navDropdowns.forEach(function(dropdown) {
     navDropdowns.forEach(function(dropdown) {
       var dropdownContent = document.getElementById(dropdown.id + "-content");
 
-      if (dropdown === clickedDropdown) {
-        if (dropdown.classList.contains('is-selected')) {
-          closeMenu(dropdown, dropdownContent);
-        } else {
-          dropdown.classList.add('is-selected');
-          dropdownContent.classList.remove('fade-animation', 'u-hide');
-        }
+      if (dropdown === selectedDropdown) {
+        dropdown.classList.add('is-selected');
+        dropdownContent.classList.remove('fade-animation', 'u-hide');
       } else {
         dropdown.classList.remove('is-selected');
         dropdownContent.classList.add('fade-animation', 'u-hide');
       }
     });
+  });
+
+  dropdown.addEventListener('mouseleave', function(event) {
+    var selectedDropdown = this;
+
+    dropdownContent =  document.getElementById(dropdown.id + "-content");
+
+    closeMenu(dropdown, dropdownContent);
   });
 });
 
@@ -57,16 +59,6 @@ document.addEventListener('click', function(event) {
 });
 
 closeMenuLink.addEventListener('click', function(event) {
-  navDropdowns.forEach(function(dropdown) {
-    var dropdownContent = document.getElementById(dropdown.id + "-content");
-
-    if (dropdown.classList.contains('is-selected')) {
-      closeMenu(dropdown, dropdownContent);
-    }
-  });
-});
-
-dropdownWindowOverlay.addEventListener('click', function(event) {
   navDropdowns.forEach(function(dropdown) {
     var dropdownContent = document.getElementById(dropdown.id + "-content");
 
