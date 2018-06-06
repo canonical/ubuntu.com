@@ -17,8 +17,8 @@
 {% endif %}
 
 <div class="row {% if spotlight_articles %}p-divider{% endif %}">
-  <div class="{% if spotlight_articles %}col-9 p-divider__block{% else %}col-12{% endif %}">
-    {# blog heading #}
+  <div class="col-12">
+    {# insights heading #}
     <h2 class="p-link--external p-heading--insights__title">
       <a href="https://blog.ubuntu.com/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : '{{ gtm_event_label }}', 'eventValue' : undefined });">
         Latest news from our blog
@@ -33,6 +33,18 @@
           <p><time pubdate datetime="{{ article.date }}">{{ article.date|format_date }}</time></p>
         </div>
       {% endfor %}
+
+      {# spotlight heading #}
+      {% if spotlight_articles %}
+        <div class="col-3 p-divider__block">
+          {% for article in spotlight_articles %}
+          <div>
+            <h3 class="p-heading--four"><a href="{{ article.link|replace_admin }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : '{{ gtm_event_label }} spotlight article', 'eventLabel' : '{{ article.title|escapejs }}', 'eventValue' : '{{ article.link }}' });">{{ article.title.rendered|safe }}</a></h3>
+            <p><time pubdate datetime="{{ article.date }}">{{ article.date|format_date }}</time></p>
+          </div>
+          {% endfor %}
+        </div>
+      {% endif %}
     </div>
   </div>
 
