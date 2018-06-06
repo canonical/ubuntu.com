@@ -10,13 +10,8 @@ navDropdowns.forEach(function(dropdown) {
 
     var clickedDropdown = this;
 
-    if (dropdownWindow.classList.contains('fade-animation')) {
-      dropdownWindow.classList.remove('fade-animation');
-    }
-
-    if (dropdownWindowOverlay.classList.contains('fade-animation')) {
-      dropdownWindowOverlay.classList.remove('fade-animation');
-    }
+    dropdownWindow.classList.remove('fade-animation');
+    dropdownWindowOverlay.classList.remove('fade-animation');
 
     navDropdowns.forEach(function(dropdown) {
       var dropdownContent = document.getElementById(dropdown.id + "-content");
