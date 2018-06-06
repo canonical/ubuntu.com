@@ -20,7 +20,7 @@
   <div class="{% if spotlight_articles %}col-9 p-divider__block{% else %}col-12{% endif %}">
     {# insights heading #}
     <h2 class="p-link--external p-heading--insights__title">
-      <a href="https://blog.ubuntu.com/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : 'clicks blog feed link', 'eventLabel' : '{{ gtm_event_label }}', 'eventValue' : undefined });">
+      <a href="https://blog.ubuntu.com/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : '{{ gtm_event_label }}', 'eventValue' : undefined });">
         Latest news
       </a>
     </h2>
@@ -29,7 +29,7 @@
     <div>
       {% for article in articles %}
         <div class="col-3">
-          <h3 class="p-heading--four"><a href="{{ article.link|replace_admin }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'insights', 'eventAction' : '{{ gtm_event_label }} news link', 'eventLabel' : '{{ article.title|escapejs }}', 'eventValue' : '{{ article.link }}' });">{{ article.title.rendered|safe }}</a></h3>
+          <h3 class="p-heading--four"><a href="{{ article.link|replace_admin }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : '{{ gtm_event_label }} news link', 'eventLabel' : '{{ article.title|escapejs }}', 'eventValue' : '{{ article.link }}' });">{{ article.title.rendered|safe }}</a></h3>
           <p><time pubdate datetime="{{ article.date }}">{{ article.date|format_date }}</time></p>
         </div>
       {% endfor %}
