@@ -439,6 +439,10 @@ h2,
 }
 
 
+
+
+
+
 .dropdown-window {
   overflow: hidden;
   transition: transform .5s ease-in-out;
@@ -458,6 +462,11 @@ h2,
   &:hover {
     .dropdown-window {
       transform: scaleY(1);
+    }
+
+    .dropdown-window-overlay {
+      opacity: 1;
+      pointer-events: all;
     }
 
     .dropdown-window__content {
@@ -486,4 +495,17 @@ h2,
   &:visited {
     color: darken($color-link, 10%);
   }
+}
+
+.dropdown-window-overlay {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(17,17,17, .4);
+  position: fixed;
+  z-index: -1;
+  transition: opacity .6s ease-in-out;
+  pointer-events: none;
 }
