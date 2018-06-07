@@ -20,11 +20,6 @@
     flex-direction: column;
     z-index: 3;
 
-    @media (max-width: $breakpoint-navigation-threshold - 1) {
-      position: sticky;
-      top: 0;
-    }
-
     &::after { // disable rule under nav
       background-color: none;
       height: 0;
@@ -38,18 +33,20 @@
       position: relative;
 
       &::after {
-        @include vf-icon-chevron(vf-url-friendly-color($color-mid-light));
-        background-repeat: no-repeat;
-        background-size: .75rem;
-        background-position: top 52% right 50%;
-        content: "";
-        height: 100%;
-        pointer-events: none;
-        position: absolute;
-        right: 0;
-        top: 0;
-        transition: transform .1s;
-        width: 2rem;
+        @media only screen and (min-width: $breakpoint-navigation-threshold) {
+          @include vf-icon-chevron(vf-url-friendly-color($color-mid-light));
+          background-repeat: no-repeat;
+          background-size: .75rem;
+          background-position: top 52% right 50%;
+          content: "";
+          height: 100%;
+          pointer-events: none;
+          position: absolute;
+          right: 0;
+          top: 0;
+          transition: transform .1s;
+          width: 2rem;
+        }
       }
     }
 
