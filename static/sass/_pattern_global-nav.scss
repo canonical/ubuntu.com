@@ -29,6 +29,7 @@ $color-rule--light: transparentize($color-mid-light, .5);
     background: $global-nav-bg-color;
     display: flex;
     position: relative;
+    z-index: 10;
 
     @media (max-width: $breakpoint-navigation-threshold - 1) {
       position: absolute;
@@ -137,6 +138,10 @@ $color-rule--light: transparentize($color-mid-light, .5);
       width: 100%;
       z-index: 4;
       font-size: .875rem;
+
+      .p-matrix__item {
+        display: block;
+      }
 
       @media (max-width: $breakpoint-navigation-threshold - 1) {
         top: 3rem;
