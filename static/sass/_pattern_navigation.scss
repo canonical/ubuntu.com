@@ -342,6 +342,11 @@
     width: 100%;
     transition: all .25s;
     z-index: 2;
+    overflow: hidden;
+    transition: transform .5s ease-in-out;
+    transform: scaleY(0);
+    transform-origin: top;
+    left: 0;
 
     .row {
       max-width: $grid-max-width;
@@ -358,6 +363,8 @@
       @extend %p-strip--very-shallow;
       background-color: $color-x-light;
       color: $color-dark;
+      opacity: 0;
+      transition: opacity .75s ease-in;
 
       &:last-child {
         padding-bottom: $spv-inter--shallow-scaleable;
@@ -434,24 +441,6 @@ h2,
   @extend %small-text;
   padding-top: $sp-unit * .5 + map-get($nudges, nudge--small);
   padding-top: $sp-unit * .5 + map-get($nudges, nudge--small);
-}
-
-
-
-
-
-
-.dropdown-window {
-  overflow: hidden;
-  transition: transform .5s ease-in-out;
-  transform: scaleY(0);
-  transform-origin: top;
-  left: 0;
-}
-
-.dropdown-window__content {
-  opacity: 0;
-  transition: opacity .75s ease-in;
 }
 
 .p-navigation__dropdown-link {
