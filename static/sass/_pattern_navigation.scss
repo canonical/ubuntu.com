@@ -351,6 +351,11 @@
     .row {
       padding-left: $grid-margin-width;
       padding-right: $grid-margin-width;
+
+      .row {
+        padding-left: 0;
+        padding-right: 0;
+      }
     }
 
     &__content {
