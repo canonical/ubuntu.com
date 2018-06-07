@@ -85,6 +85,7 @@
       &:hover,
       &:visited {
         color: $color-x-light;
+        text-decoration: none;
       }
     }
 
@@ -363,8 +364,6 @@
       @extend %p-strip--very-shallow;
       background-color: $color-x-light;
       color: $color-dark;
-      opacity: 0;
-      transition: opacity .75s ease-in;
 
       &:last-child {
         padding-bottom: $spv-inter--shallow-scaleable;
@@ -445,6 +444,11 @@ h2,
 
 .p-navigation__dropdown-link {
   color: $color-x-light;
+
+  .dropdown-window__content {
+    opacity: 0;
+    transition: opacity .5s ease-in;
+  }
 
   &.is-hovered {
     .dropdown-window {
