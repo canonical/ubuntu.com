@@ -4,35 +4,6 @@ var dropdownWindowOverlay = document.querySelector('.dropdown-window-overlay');
 var closeMenuLink = document.querySelector('.p-navigation__toggle--close');
 var navigationThresholdBreakpoint = 900;
 
-navDropdowns.forEach(function(dropdown) {
-  dropdown.addEventListener('mouseenter', function() {
-    var selectedDropdown = this;
-
-    dropdownWindow.classList.remove('fade-animation');
-    dropdownWindowOverlay.classList.remove('fade-animation');
-
-    navDropdowns.forEach(function(dropdown) {
-      var dropdownContent = document.getElementById(dropdown.id + "-content");
-
-      if (dropdown === selectedDropdown) {
-        dropdown.classList.add('is-selected');
-        dropdownContent.classList.remove('fade-animation', 'u-hide');
-      } else {
-        dropdown.classList.remove('is-selected');
-        dropdownContent.classList.add('fade-animation', 'u-hide');
-      }
-    });
-  });
-
-  dropdown.addEventListener('mouseleave', function(event) {
-    var selectedDropdown = this;
-
-    dropdownContent =  document.getElementById(dropdown.id + "-content");
-
-    // closeMenu(dropdown, dropdownContent);
-  });
-});
-
 var globalNav = document.querySelector('.global-nav');
 var globalNavDropdown = document.querySelector('.global-nav__link--dropdown');
 var globalNavContent = document.querySelector('.global-nav__dropdown-content');
