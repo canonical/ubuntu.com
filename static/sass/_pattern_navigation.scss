@@ -377,19 +377,6 @@
       margin-bottom: map-get($sp-after, small) * 2 + $p-small-lh-diff - $nudge--small;
     }
   }
-
-  .fade-animation {
-    opacity: 0;
-    transform: translateY(-1rem);
-    transition-duration: .5s;
-    visibility: hidden;
-
-    .u-visible-nav & {
-      opacity: 1;
-      transform: none;
-      visibility: visible;
-    }
-  }
 }
 
 // XXX: move these to vanilla
@@ -465,20 +452,38 @@ h2,
   transition: opacity .6s ease-in-out;
 }
 
-.p-navigation__dropdown-link:hover .p-navigation__link-anchor {
-  background-color: $color-x-light;
-  color: $color-dark;
+.p-navigation__dropdown-link {
+  color: $color-x-light;
 
-  &::after {
-    transform: rotate(-180deg);
-    @include vf-icon-chevron(vf-url-friendly-color($color-dark));
+  &:hover {
+    .dropdown-window {
+      transform: scaleY(1);
+    }
+
+    .dropdown-window__content {
+      opacity: 1;
+    }
+
+    .p-navigation__link-anchor {
+      background-color: $color-x-light;
+      color: $color-dark !important;
+
+      &::after {
+        transform: rotate(-180deg);
+        @include vf-icon-chevron(vf-url-friendly-color($color-dark));
+      }
+    }
   }
 }
 
-.p-navigation__dropdown-link:hover .dropdown-window {
-  transform: scaleY(1);
+.p-navigation__link-anchor {
+  color: $color-x-light !important;
 }
 
-.p-navigation__dropdown-link:hover .dropdown-window__content {
-  opacity: 1;
+.dropdown-window a {
+  color: $color-link;
+
+  &:visited {
+    color: darken($color-link, 10%);
+  }
 }
