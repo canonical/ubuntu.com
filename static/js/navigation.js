@@ -29,7 +29,7 @@ navDropdowns.forEach(function(dropdown) {
 
     dropdownContent =  document.getElementById(dropdown.id + "-content");
 
-    closeMenu(dropdown, dropdownContent);
+    // closeMenu(dropdown, dropdownContent);
   });
 });
 
