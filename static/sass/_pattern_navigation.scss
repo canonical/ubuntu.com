@@ -344,8 +344,9 @@
     z-index: 2;
 
     .row {
-      padding-left: $grid-margin-width;
-      padding-right: $grid-margin-width;
+      max-width: $grid-max-width;
+      margin-left: auto;
+      margin-right: auto;
 
       .row {
         padding-left: 0;
@@ -450,7 +451,7 @@ h2,
 
 .dropdown-window__content {
   opacity: 0;
-  transition: opacity .6s ease-in-out;
+  transition: opacity .6s ease-in;
 }
 
 .p-navigation__dropdown-link {
@@ -459,11 +460,6 @@ h2,
   &.is-hovered {
     .dropdown-window {
       transform: scaleY(1);
-    }
-
-    .dropdown-window-overlay {
-      opacity: 1;
-      pointer-events: all;
     }
 
     .dropdown-window__content {
@@ -489,6 +485,11 @@ h2,
 .dropdown-window a {
   color: $color-link;
 
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
   &:visited {
     color: darken($color-link, 10%);
   }
@@ -505,4 +506,9 @@ h2,
   z-index: -1;
   transition: opacity .6s ease-in-out;
   pointer-events: none;
+
+  &.is-visible {
+    opacity: 1;
+    pointer-events: all;
+  }
 }

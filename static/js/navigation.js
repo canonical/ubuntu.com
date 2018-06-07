@@ -1,13 +1,15 @@
 var navDropdowns = document.querySelectorAll('.p-navigation__dropdown-link');
-var dropdownWindowOverlay = document.querySelectorAll('.dropdown-window-overlay');
+var dropdownWindowOverlay = document.querySelector('.dropdown-window-overlay');
 var navigationThresholdBreakpoint = 900;
 
 function showMenu(e) {
   e.currentTarget.classList.add('is-hovered');
+  dropdownWindowOverlay.classList.add('is-visible');
 }
 
 function hideMenu(e) {
   e.currentTarget.classList.remove('is-hovered');
+  dropdownWindowOverlay.classList.remove('is-visible');
 }
 
 function toggleMenu(e) {
@@ -15,9 +17,21 @@ function toggleMenu(e) {
 
   if (e.currentTarget.classList.contains('is-hovered')) {
     e.currentTarget.classList.remove('is-hovered');
+    dropdownWindowOverlay.classList.remove('is-visible');
   } else {
     e.currentTarget.classList.add('is-hovered');
+    dropdownWindowOverlay.classList.add('is-visible');
   }
+}
+
+function closeAllMenus() {
+  var menus = document.querySelectorAll('.is-hovered');
+
+  menus.forEach(function(menu) {
+    menu.classList.remove('is-hovered');
+  });
+
+  dropdownWindowOverlay.classList.remove('is-visible');
 }
 
 function setupDropdowns() {
@@ -26,20 +40,15 @@ function setupDropdowns() {
       dropdown.removeEventListener('mouseenter', showMenu);
       dropdown.removeEventListener('mouseleave', hideMenu);
       dropdown.addEventListener('click', toggleMenu);
+      dropdownWindowOverlay.addEventListener('click', closeAllMenus);
     } else {
       dropdown.removeEventListener('click', toggleMenu);
+      dropdownWindowOverlay.removeEventListener('click', closeAllMenus);
       dropdown.addEventListener('mouseenter', showMenu);
       dropdown.addEventListener('mouseleave', hideMenu);
     }
   });
 }
-
-dropdownWindowOverlay.forEach(function(overlay) {
-  overlay.addEventListener('click', function(e) {
-    e.stopPropagation();
-    document.querySelector('.is-hovered').classList.remove('is-hovered');
-  });
-});
 
 setupDropdowns();
 
