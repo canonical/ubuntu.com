@@ -5,15 +5,18 @@
 {% block title %}Busting the myth of private cloud economics{% endblock %}
 
 {% block content %}
-<section class="p-strip--image is-dark is-deep" style="background: url('https://assets.ubuntu.com/v1/13fdbc5b-graph.png') right bottom no-repeat, linear-gradient(-36deg, #94310F 0%, rgba(233,84,32,0.90) 100%);">
-  <div class="row">
+<section class="p-strip is-deep p-takeover--private-cloud-economics">
+  <div class="row u-equal-height">
     <div class="col-8">
-        <h1>Busting the myth of private cloud economics</h1>
+      <h1 class="p-takeover__title">Busting the myth of private cloud economics</h1>
+      <p class="u-hide--medium u-hide--large">
+        <img class="p-takeover__image" src="{{ ASSET_SERVER_URL }}c54da84b-451-Research-NEG.png" alt="">
+      </p>
+    </div>
+    <div class="col-4 u-hide--small u-align-center u-vertically-center">
+      <img class="p-takeover__image" src="{{ ASSET_SERVER_URL }}c54da84b-451-Research-NEG.png" alt="">
+    </div>
   </div>
-  <div class="col-4">
-    <img src="https://assets.ubuntu.com/v1/c54da84b-451-Research-NEG.png" alt="451 Research cloud pricing">
-  </div>
-</div>
 </section>
 
 <section class="p-strip is-bordered">
@@ -23,7 +26,7 @@
       <p>The new report from 451 Research found Canonical’s managed private cloud to be cheaper than 25 of the public cloud providers included in the Cloud Price benchmark.</p>
       <p>Canonical’s managed private cloud, BootStack, was also priced competitively against other hosted private cloud providers, having the second lowest total cost for managed compute, block and object storage in the Cloud Price Index.</p>
       <p>One of the significant issues with private cloud infrastructure is the up-front cost of consulting and integration required. Canonical addresses this with a fixed-price, highly automated but flexible OpenStack deployment process that greatly reduces the number of people required for both deployment and ongoing operations.</p>
-      <img src="https://assets.ubuntu.com/v1/cfb75828-Untitled_crop.png" alt="cloud pricing comparison">
+      <img src="{{ ASSET_SERVER_URL }}cfb75828-Untitled_crop.png" alt="cloud pricing comparison">
       <p>To find out more please download the report for further insights.</p>
     </div>
     <div class="col-5">
