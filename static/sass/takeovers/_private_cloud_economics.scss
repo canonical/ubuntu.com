@@ -1,0 +1,26 @@
+@mixin p-takeover-private-cloud-economics {
+  .p-takeover--private-cloud-economics {
+    background-image: linear-gradient(-36deg, #94310F 0%, rgba(233,84,32,0.90) 100%);
+    background-color: $color-brand;
+
+    @media (min-width: $breakpoint-medium) {
+      background-image: url('https://assets.ubuntu.com/v1/13fdbc5b-graph.png'), linear-gradient(36deg, #94310F 0%, rgba(233,84,32,0.90) 100%);
+      background-repeat: no-repeat;
+      background-position: right bottom;
+    }
+  }
+
+  .p-takeover__title {
+    font-weight: 100;
+    color: $color-x-light;
+  }
+
+  .p-takeover__text {
+    font-size: 1rem;
+    color: $color-x-light;
+
+    @media (min-width: $breakpoint-medium) {
+      font-size: 1.25rem;
+    }
+  }
+}
