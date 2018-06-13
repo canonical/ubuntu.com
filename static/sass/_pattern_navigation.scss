@@ -384,7 +384,7 @@
     flex-direction: column;
     position: absolute;
     width: 100%;
-    transition: all .25s;
+    transition: all .75s;
     z-index: 2;
 
     .row {
@@ -415,9 +415,12 @@
     }
   }
 
+  .slide-animation {
+    transform: translateY(-100%);
+  }
+
   .fade-animation {
     opacity: 0;
-    transform: translateY(-100%);
     transition-duration: .75s;
     visibility: hidden;
 
