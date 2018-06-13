@@ -10,7 +10,7 @@ navDropdowns.forEach(function(dropdown) {
 
     var clickedDropdown = this;
 
-    dropdownWindow.classList.remove('fade-animation');
+    dropdownWindow.classList.remove('slide-animation');
     dropdownWindowOverlay.classList.remove('fade-animation');
 
     navDropdowns.forEach(function(dropdown) {
@@ -78,7 +78,7 @@ dropdownWindowOverlay.addEventListener('click', function(event) {
 
 function closeMenu(dropdown, dropdownContent) {
   dropdown.classList.remove('is-selected');
-  dropdownWindow.classList.add('fade-animation');
+  dropdownWindow.classList.add('slide-animation');
   dropdownWindowOverlay.classList.add('fade-animation');
   dropdownContent.classList.add('fade-animation');
 }
