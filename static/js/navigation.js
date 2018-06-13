@@ -34,16 +34,21 @@ navDropdowns.forEach(function(dropdown) {
 var globalNav = document.querySelector('.global-nav');
 var globalNavDropdown = document.querySelector('.global-nav__link--dropdown');
 var globalNavContent = document.querySelector('.global-nav__dropdown-content');
+var globalNavOverlay = document.querySelector('.global-nav__dropdown-overlay');
 
-globalNavDropdown.addEventListener('click', function(event) {
+globalNavDropdown.addEventListener('click', toggleGlobalNavContent);
+globalNavOverlay.addEventListener('click', toggleGlobalNavContent);
+
+function toggleGlobalNavContent(event) {
   event.stopPropagation();
   globalNavDropdown.classList.toggle('is-selected');
-  globalNavContent.classList.toggle('u-hide');
+  globalNavContent.classList.toggle('show-global-nav-content');
+  globalNavOverlay.classList.toggle('is-visible');
 
   if (window.innerWidth < navigationThresholdBreakpoint) {
     window.scrollTo(0, globalNav.offsetTop);
   }
-});
+}
 
 document.addEventListener('click', function(event) {
   if (globalNavDropdown.classList.contains('is-selected')) {
