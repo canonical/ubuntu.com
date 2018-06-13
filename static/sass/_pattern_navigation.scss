@@ -20,11 +20,6 @@
     flex-direction: column;
     z-index: 3;
 
-    @media (max-width: $breakpoint-navigation-threshold - 1) {
-      position: sticky;
-      top: 0;
-    }
-
     &::after { // disable rule under nav
       background-color: none;
       height: 0;
@@ -34,48 +29,23 @@
       background-color: $color-brand;
     }
 
-    &__dropdown-link {
+    &__link-anchor {
       position: relative;
 
       &::after {
-        @include vf-icon-chevron(vf-url-friendly-color($color-mid-light));
-        background-repeat: no-repeat;
-        background-size: .75rem;
-        background-position: top 52% right 50%;
-        content: "";
-        height: 100%;
-        pointer-events: none;
-        position: absolute;
-        right: 0;
-        top: 0;
-        transition: transform .1s;
-        width: 2rem;
-      }
-
-      &.is-selected {
-        &::after {
-          transform: rotate(-180deg);
-          @include vf-icon-chevron(vf-url-friendly-color($color-dark));
-        }
-
-        .p-navigation__link-anchor {
-          background-color: $color-x-light;
-          color: $color-dark;
-
-          &::after {
-            background-color: transparent;
-          }
-
-          &:focus,
-          &:visited {
-            background-color: $color-x-light;
-            color: $color-dark;
-          }
-
-          &:hover {
-            background-color: $color-x-light;
-            color: $color-dark;
-          }
+        @media only screen and (min-width: $breakpoint-navigation-threshold) {
+          @include vf-icon-chevron(vf-url-friendly-color($color-mid-light));
+          background-repeat: no-repeat;
+          background-size: .75rem;
+          background-position: top 52% right 50%;
+          content: "";
+          height: 100%;
+          pointer-events: none;
+          position: absolute;
+          right: 0;
+          top: 0;
+          transition: transform .1s;
+          width: 2rem;
         }
       }
     }
@@ -109,6 +79,16 @@
       }
     }
 
+    .p-button--positive {
+      color: $color-x-light;
+
+      &:hover,
+      &:visited {
+        color: $color-x-light;
+        text-decoration: none;
+      }
+    }
+
     & &__nav {
       border-bottom: 0;
       width: 100%;
@@ -125,18 +105,6 @@
       @media (min-width: $breakpoint-navigation-threshold + 1) {
         padding: $spv-intra--expanded 2rem $spv-intra--expanded $sph-intra;
       }
-
-      &:focus,
-      &:visited {
-        background-color: $nav-bg-color;
-        color: $color-light;
-      }
-
-      &:hover {
-        background-color: darken($nav-bg-color, 3%);
-        color: $color-x-light;
-      }
-
     }
 
     & &__row {
@@ -191,7 +159,6 @@
       }
 
       &__banner {
-        display: inline-block;
         float: left;
         background-color: $color-brand;
         font-weight: 300;
@@ -370,16 +337,27 @@
 
   .dropdown-window {
     background-color: $color-x-light;
-    box-shadow: 0 1px 32px 1px transparentize($color-dark, .8);
+    box-shadow: 0 3px 3px 1px transparentize($color-dark, .8);
     flex-direction: column;
     position: absolute;
     width: 100%;
     transition: all .25s;
     z-index: 2;
+    overflow: hidden;
+    transition: transform .5s ease-in-out;
+    transform: scaleY(0);
+    transform-origin: top;
+    left: 0;
 
     .row {
-      padding-left: $grid-margin-width;
-      padding-right: $grid-margin-width;
+      max-width: $grid-max-width;
+      margin-left: auto;
+      margin-right: auto;
+
+      .row {
+        padding-left: 0;
+        padding-right: 0;
+      }
     }
 
     &__content {
@@ -392,15 +370,8 @@
       }
     }
 
-    &__content--light {
-      @extend %p-strip--very-shallow;
-      @extend %bg--light;
-      color: $color-dark;
-    }
-
     & .p-inline-list__item {
       @extend %small-text-fixed;
-      // display: inline-block;
       list-style-type: none;
     }
 
@@ -408,19 +379,6 @@
       @include p-max-width--long;
       @extend %small-text-fixed;
       margin-bottom: map-get($sp-after, small) * 2 + $p-small-lh-diff - $nudge--small;
-    }
-  }
-
-  .fade-animation {
-    opacity: 0;
-    transform: translateY(-1rem);
-    transition-duration: .25s;
-    visibility: hidden;
-
-    .u-visible-nav & {
-      opacity: 1;
-      transform: none;
-      visibility: visible;
     }
   }
 }
@@ -482,4 +440,68 @@ h2,
   @extend %small-text;
   padding-top: $sp-unit * .5 + map-get($nudges, nudge--small);
   padding-top: $sp-unit * .5 + map-get($nudges, nudge--small);
+}
+
+.p-navigation__dropdown-link {
+  color: $color-x-light;
+
+  .dropdown-window__content {
+    opacity: 0;
+    transition: opacity .5s ease-in;
+  }
+
+  &.is-hovered {
+    .dropdown-window {
+      transform: scaleY(1);
+    }
+
+    .dropdown-window__content {
+      opacity: 1;
+    }
+
+    .p-navigation__link-anchor {
+      background-color: $color-x-light;
+      color: $color-dark !important;
+
+      &::after {
+        transform: rotate(-180deg);
+        @include vf-icon-chevron(vf-url-friendly-color($color-dark));
+      }
+    }
+  }
+}
+
+.p-navigation__link-anchor {
+  color: $color-x-light !important;
+}
+
+.dropdown-window a {
+  color: $color-link;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  &:visited {
+    color: darken($color-link, 10%);
+  }
+}
+
+.dropdown-window-overlay {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(17,17,17, .4);
+  position: fixed;
+  z-index: -1;
+  transition: opacity .6s ease-in-out;
+  pointer-events: none;
+
+  &.is-visible {
+    opacity: 1;
+    pointer-events: all;
+  }
 }

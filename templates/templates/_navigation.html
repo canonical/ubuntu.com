@@ -22,11 +22,32 @@
         <span class="u-off-screen">
           <a href="#main-content">Jump to main content</a>
         </span>
+        <div class="dropdown-window-overlay"></div>
         <ul class="p-navigation__links">
-          <li class="p-navigation__dropdown-link" role="menuitem" id="enterprise-tab"><a class="p-navigation__link-anchor" href="#enterprise-tab-content">Enterprise</a></li>
-          <li class="p-navigation__dropdown-link" role="menuitem" id="developer-tab"><a class="p-navigation__link-anchor" href="#developer-tab-content">Developer</a></li>
-          <li class="p-navigation__dropdown-link" role="menuitem" id="community-tab"><a class="p-navigation__link-anchor" href="#community-tab-content">Community</a></li>
-          <li class="p-navigation__dropdown-link" role="menuitem" id="download-tab"><a class="p-navigation__link-anchor" href="#download-tab-content">Download</a></li>
+          <li class="p-navigation__dropdown-link" role="menuitem" id="enterprise-tab">
+            <a class="p-navigation__link-anchor" href="#enterprise-tab-content">Enterprise</a>
+            <div class="dropdown-window">
+              {% include "templates/_navigation-enterprise-h.html" %}
+            </div>
+          </li>
+          <li class="p-navigation__dropdown-link" role="menuitem" id="developer-tab">
+            <a class="p-navigation__link-anchor" href="#developer-tab-content">Developer</a>
+            <div class="dropdown-window">
+              {% include "templates/_navigation-developer-h.html" %}
+            </div>
+          </li>
+          <li class="p-navigation__dropdown-link" role="menuitem" id="community-tab">
+            <a class="p-navigation__link-anchor" href="#community-tab-content">Community</a>
+            <div class="dropdown-window">
+              {% include "templates/_navigation-community-h.html" %}
+            </div>
+          </li>
+          <li class="p-navigation__dropdown-link" role="menuitem" id="download-tab">
+            <a class="p-navigation__link-anchor" href="#download-tab-content">Download</a>
+            <div class="dropdown-window">
+              {% include "templates/_navigation-download-h.html" %}
+            </div>
+          </li>
         </ul>
         <div class="p-navigation__search" role="menuitem">
           <form action="/search" class="p-search-box" id="google-appliance-search-form">
@@ -39,12 +60,7 @@
     </div>
   {% endblock header_banner %}
   </header>
-  <div class="dropdown-window fade-animation" {% if breadcrumbs %}{% endif %}>
-    {% include "templates/_navigation-enterprise-h.html" %}
-    {% include "templates/_navigation-developer-h.html" %}
-    {% include "templates/_navigation-community-h.html" %}
-    {% include "templates/_navigation-download-h.html" %}
-  </div>
+
   {% if breadcrumbs %}
   <nav class="p-navigation--secondary">
     <div class="row">
