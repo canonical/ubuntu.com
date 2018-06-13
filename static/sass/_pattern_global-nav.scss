@@ -14,9 +14,16 @@ $color-rule--light: transparentize($color-mid-light, .5);
   $global-nav-chevron-height: 4 * $px;
   $global-nav-chevron-width: 10 * $px;
   $global-nav-height: 1.5rem;
+  $global-nav-height-mobile: 3rem;
   $canonical-logo-height: 10 * $px; // height of svg in rem so it can be used in calulations
   $canonical-logo-padding-bottom: ($global-nav-height - $canonical-logo-height) * .5;
   $canonical-logo-padding-top: ($global-nav-height - $canonical-logo-height) * .5;
+
+  body {
+    @media (max-width: $breakpoint-navigation-threshold - 1) {
+      padding-bottom: $global-nav-height-mobile;
+    }
+  }
 
   .global-nav {
     align-items: center;
@@ -24,11 +31,23 @@ $color-rule--light: transparentize($color-mid-light, .5);
     display: flex;
     position: relative;
 
+    @media (max-width: $breakpoint-navigation-threshold - 1) {
+      position: absolute;
+      top: auto;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
     &__row {
       display: flex;
       padding-left: $grid-margin-width;
       padding-right: $grid-margin-width;
       z-index: 5;
+
+      @media (max-width: $breakpoint-navigation-threshold - 1) {
+        display: block;
+      }
     }
 
     &__logo {
@@ -41,8 +60,8 @@ $color-rule--light: transparentize($color-mid-light, .5);
       display: inline-block;
       line-height: 0;
       @media only screen and (max-width: $breakpoint-navigation-threshold) {
-        padding-left: $grid-margin-width;
-        padding: $canonical-logo-padding-top $grid-margin-width - $circle-of-friends-compensation $canonical-logo-padding-bottom $grid-margin-width;
+        display: block;
+        padding: $canonical-logo-padding-top $grid-margin-width - $circle-of-friends-compensation $canonical-logo-padding-bottom 0;
         width: $ubuntu-logo-svg-width + 2 * $grid-margin-width - $circle-of-friends-compensation;
       }
 
@@ -75,6 +94,10 @@ $color-rule--light: transparentize($color-mid-light, .5);
 
       .global-nav__link--dropdown & {
         padding-right: $sph-intra--condensed * 2 + $global-nav-chevron-width;
+
+        @media only screen and (max-width: $breakpoint-navigation-threshold) {
+          padding-left: 0;
+        }
       }
 
       &:visited,
@@ -114,6 +137,34 @@ $color-rule--light: transparentize($color-mid-light, .5);
       transition: transform .25s;
       width: 100%;
       z-index: 4;
+
+      @media (max-width: $breakpoint-navigation-threshold - 1) {
+        top: 3rem;
+
+        .p-matrix {
+          display: block !important;
+          margin-bottom: 0;
+        }
+
+        .p-matrix__item {
+          position: relative;
+          width: 100%;
+        }
+
+        .p-matrix__img {
+          top: .7rem;
+        }
+
+        .p-matrix__title {
+          position: relative;
+          top: .3rem;
+          margin-bottom: 0 !important;
+        }
+
+        .p-matrix__desc {
+          display: none !important;
+        }
+      }
 
       &.u-hide {
         transform: translateY(-1rem);

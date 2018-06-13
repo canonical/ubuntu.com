@@ -1,13 +1,13 @@
 var navDropdowns = document.querySelectorAll('.p-navigation__dropdown-link');
 var dropdownWindow = document.querySelector('.dropdown-window');
 var closeMenuLink = document.querySelector('.p-navigation__toggle--close');
+var navigationThresholdBreakpoint = 900;
 
 navDropdowns.forEach(function(dropdown) {
   dropdown.addEventListener('click', function(event) {
     event.preventDefault();
 
     var clickedDropdown = this;
-    var navigationThresholdBreakpoint = 900;
 
     if (dropdownWindow.classList.contains('fade-animation')) {
       dropdownWindow.classList.remove('fade-animation');
@@ -39,6 +39,10 @@ globalNavDropdown.addEventListener('click', function(event) {
   event.stopPropagation();
   globalNavDropdown.classList.toggle('is-selected');
   globalNavContent.classList.toggle('u-hide');
+
+  if (window.innerWidth < navigationThresholdBreakpoint) {
+    window.scrollTo(0, globalNav.offsetTop);
+  }
 });
 
 document.addEventListener('click', function(event) {
