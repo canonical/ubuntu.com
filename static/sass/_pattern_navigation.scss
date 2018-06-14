@@ -387,6 +387,10 @@
     transition: all .75s;
     z-index: 2;
 
+    &.slide-animation {
+      box-shadow: none;
+    }
+
     .row {
       padding-left: $grid-margin-width;
       padding-right: $grid-margin-width;
