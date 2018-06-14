@@ -1,5 +1,6 @@
 var navDropdowns = document.querySelectorAll('.p-navigation__dropdown-link');
 var dropdownWindow = document.querySelector('.dropdown-window');
+var dropdownWindowOverlay = document.querySelector('.dropdown-window-overlay');
 var closeMenuLink = document.querySelector('.p-navigation__toggle--close');
 var navigationThresholdBreakpoint = 900;
 
@@ -9,9 +10,8 @@ navDropdowns.forEach(function(dropdown) {
 
     var clickedDropdown = this;
 
-    if (dropdownWindow.classList.contains('fade-animation')) {
-      dropdownWindow.classList.remove('fade-animation');
-    }
+    dropdownWindow.classList.remove('slide-animation');
+    dropdownWindowOverlay.classList.remove('fade-animation');
 
     navDropdowns.forEach(function(dropdown) {
       var dropdownContent = document.getElementById(dropdown.id + "-content");
@@ -66,8 +66,19 @@ closeMenuLink.addEventListener('click', function(event) {
   });
 });
 
+dropdownWindowOverlay.addEventListener('click', function(event) {
+  navDropdowns.forEach(function(dropdown) {
+    var dropdownContent = document.getElementById(dropdown.id + "-content");
+
+    if (dropdown.classList.contains('is-selected')) {
+      closeMenu(dropdown, dropdownContent);
+    }
+  });
+});
+
 function closeMenu(dropdown, dropdownContent) {
   dropdown.classList.remove('is-selected');
-  dropdownWindow.classList.add('fade-animation');
+  dropdownWindow.classList.add('slide-animation');
+  dropdownWindowOverlay.classList.add('fade-animation');
   dropdownContent.classList.add('fade-animation');
 }

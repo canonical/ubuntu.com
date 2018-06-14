@@ -13,7 +13,7 @@ $color-rule--light: transparentize($color-mid-light, .5);
 @mixin global-nav {
   $global-nav-chevron-height: 4 * $px;
   $global-nav-chevron-width: 10 * $px;
-  $global-nav-height: 1.5rem;
+  $global-nav-height: 2rem;
   $global-nav-height-mobile: 3rem;
   $canonical-logo-height: 10 * $px; // height of svg in rem so it can be used in calulations
   $canonical-logo-padding-bottom: ($global-nav-height - $canonical-logo-height) * .5;
@@ -30,6 +30,7 @@ $color-rule--light: transparentize($color-mid-light, .5);
     background: $global-nav-bg-color;
     display: flex;
     position: relative;
+    z-index: 10;
 
     @media (max-width: $breakpoint-navigation-threshold - 1) {
       position: absolute;
@@ -89,7 +90,7 @@ $color-rule--light: transparentize($color-mid-light, .5);
       font-size: 1rem / pow($ms-ratio, 1);
       line-height: map-get($line-heights, small);
       margin-bottom: 0;
-      padding: $p-small-lh-diff * .5 $sph-intra--condensed $p-small-lh-diff * .5 $sph-intra--condensed;
+      padding: $p-small-lh-diff * 1.5 $sph-intra--condensed;
       transition: all .25s;
 
       .global-nav__link--dropdown & {
@@ -133,10 +134,15 @@ $color-rule--light: transparentize($color-mid-light, .5);
       box-shadow: 0 1px 32px 1px transparentize($color-dark, .8);
       margin-top: 0;
       position: absolute;
-      top: 1.5rem;
+      top: 2rem;
       transition: transform .25s;
       width: 100%;
       z-index: 4;
+      font-size: .875rem;
+
+      .p-matrix__item {
+        display: block;
+      }
 
       @media (max-width: $breakpoint-navigation-threshold - 1) {
         top: 3rem;
@@ -183,6 +189,10 @@ $color-rule--light: transparentize($color-mid-light, .5);
           color: $color-x-light;
         }
       }
+
+      .p-muted-heading {
+        color: $color-light;
+      }
     }
 
     .p-matrix__item {
@@ -193,6 +203,15 @@ $color-rule--light: transparentize($color-mid-light, .5);
     }
     .p-matrix__img + .p-matrix__content > *::before {
       width: map-get($icon-sizes, thumb--card);
+    }
+
+    .p-matrix__content {
+      width: 100%;
+    }
+
+    .is-bordered:before {
+      background-color: $color-mid-dark;
+      margin-bottom: $sp-x-large;
     }
   }
 }
