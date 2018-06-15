@@ -1,0 +1,54 @@
+@mixin ubuntu-p-feedback {
+  .p-feedback {
+    @media (min-width: $breakpoint-medium) {
+      min-width: 520px;
+    }
+  }
+
+  .p-feedback__icon {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    color: #808080;
+
+    &:hover,
+    &:focus {
+      color: $color-brand;
+    }
+  }
+
+  .p-feedback__button {
+    position: fixed;
+    bottom: 4rem;
+    right: 0;
+    width: auto;
+    margin: 0;
+    background-color: #333;
+    color: $color-x-light;
+    border-color: #333;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    @media (min-width: $breakpoint-small) {
+      bottom: 0;
+      right: 17rem;
+      border-top-right-radius: 2px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &:hover,
+    &:active {
+      background-color: #333;
+      color: $color-x-light;
+      border-color: #333;
+    }
+  }
+
+  .p-modal--feedback {
+    @extend .p-modal;
+    position: fixed;
+    z-index: 10;
+  }
+}
