@@ -25,8 +25,11 @@ class UbuntuTemplateFinder(TemplateFinder):
         # Get any existing context
         context = super(UbuntuTemplateFinder, self).get_context_data(**kwargs)
 
-        # Add product query param to context
+        # Add common URL query params to context
         context['product'] = self.request.GET.get('product')
+        context['utm_source'] = self.request.GET.get('utm_source')
+        context['utm_campaign'] = self.request.GET.get('utm_campaign')
+        context['utm_medium'] = self.request.GET.get('utm_medium')
 
         # Add level_* context variables
         clean_path = self.request.path.strip('/')
