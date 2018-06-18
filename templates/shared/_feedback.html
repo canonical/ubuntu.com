@@ -87,6 +87,14 @@
     feedbackModalDialog.addEventListener('click', function(e) {
       e.stopPropagation();
     });
+
+    document.addEventListener('keyup', function(e) {
+      var escKeyCode = 27;
+
+      if (e.keyCode === escKeyCode) {
+        closeModal();
+      }
+    });
   }
 
   feedbackModalActions();
