@@ -46,8 +46,6 @@ server:
   children:
     - title: Overview
       path: /server
-    - title: Server provisioning
-      path: /server/maas
     - title: Hyperscale
       path: /server/hyperscale
     - title: Livepatch
@@ -69,14 +67,10 @@ containers:
   children:
     - title: Overview
       path: /containers
-    - title: LXD
-      path: /containers/lxd
     - title: Kubernetes
       path: /kubernetes
     - title: Managed Kubernetes
       path: /kubernetes/managed
-    - title: Docker Engine
-      path: /containers/docker-ubuntu
 
     - title: Contact us
       path: /containers/contact-us
@@ -383,14 +377,6 @@ licensing:
   children:
     - title: Overview
       path: /licensing
-
-juju:
-  title: Juju
-  path: /juju
-
-  children:
-    - title: Overview
-      path: /juju
 
 community:
   title: Community
