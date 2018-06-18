@@ -15,6 +15,18 @@ $color-rule--light: transparentize($color-mid-light, .5);
   @include ubuntu-p-nested-counter-lists;
   @include ubuntu-p-inline-definition-list;
   @include ubuntu-p-ordered-legal-list;
+  @include ubuntu-p-list-step;
+}
+
+@mixin ubuntu-p-list-step {
+  @media (min-width: $breakpoint-medium) {
+    .p-list-step {
+      &__content {
+        padding-top: 1rem;
+        margin-bottom: 2rem;
+      }
+    }
+  }
 }
 
 @mixin ubuntu-p-inline-list-icons {
