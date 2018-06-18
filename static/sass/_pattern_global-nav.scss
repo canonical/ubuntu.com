@@ -45,6 +45,7 @@ $color-rule--light: transparentize($color-mid-light, .5);
       padding-left: $grid-margin-width;
       padding-right: $grid-margin-width;
       z-index: 5;
+      background-color: $global-nav-bg-color;
 
       @media (max-width: $breakpoint-navigation-threshold - 1) {
         display: block;
@@ -212,6 +213,35 @@ $color-rule--light: transparentize($color-mid-light, .5);
     .is-bordered:before {
       background-color: $color-mid-dark;
       margin-bottom: $sp-x-large;
+    }
+  }
+
+  .global-nav__dropdown-content {
+    transform: translateY(-100%);
+    transition: transform .75s ease-in-out;
+  }
+
+  .show-global-nav-content {
+    transform: translateY(0);
+  }
+
+  @media (min-width: $breakpoint-navigation-threshold) {
+    .global-nav__dropdown-overlay {
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: rgba(17,17,17, .4);
+      position: fixed;
+      z-index: 1;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .75s ease-in-out;
+
+      &.is-visible {
+        opacity: 1;
+        pointer-events: all;
+      }
     }
   }
 }
