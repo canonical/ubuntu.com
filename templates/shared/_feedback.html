@@ -1,5 +1,5 @@
 <div class="p-modal--feedback js-feedback-modal u-hide" id="modal" aria-hidden="true">
-  <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
+  <div class="p-modal__dialog js-modal-dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
     <header class="p-modal__header">
       <h2 class="p-modal__title" id="modal-title">User feedback</h2>
       <button class="p-modal__close js-modal-close" aria-label="Close active modal">Close</button>
@@ -42,6 +42,7 @@
     var feedbackQuestion = document.querySelector('.js-feedback-question');
     var feedbackResult = document.querySelector('.js-feedback-result');
     var feedbackModal = document.querySelector('.js-feedback-modal');
+    var feedbackModalDialog = feedbackModal.querySelector('.js-modal-dialog');
     var feedbackModalCloseButton = feedbackModal.querySelector('.js-modal-close');
     var feedbackModalOpenButton = document.querySelector('.js-feedback-button');
 
@@ -78,6 +79,14 @@
 
     feedbackModalOpenButton.addEventListener('click', openModal);
     feedbackModalCloseButton.addEventListener('click', closeModal);
+
+    feedbackModal.addEventListener('click', function(e) {
+      closeModal();
+    });
+
+    feedbackModalDialog.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
   }
 
   feedbackModalActions();
