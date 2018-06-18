@@ -11,10 +11,11 @@
     height: 2rem;
     cursor: pointer;
     color: #808080;
-    cursor: pointer;
   }
 
   .p-feedback__icon--positive {
+    @extend .p-feedback__icon;
+
     &:hover,
     &:focus {
       color: $color-positive;
@@ -22,6 +23,8 @@
   }
 
   .p-feedback__icon--neutral {
+    @extend .p-feedback__icon;
+
     &:hover,
     &:focus {
       color: $color-caution;
@@ -29,6 +32,8 @@
   }
 
   .p-feedback__icon--negative {
+    @extend .p-feedback__icon;
+
     &:hover,
     &:focus {
       color: $color-negative;
