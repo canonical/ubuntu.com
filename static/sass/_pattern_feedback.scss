@@ -11,10 +11,26 @@
     height: 2rem;
     cursor: pointer;
     color: #808080;
+  }
 
+  .p-feedback__icon--positive {
     &:hover,
     &:focus {
-      color: $color-brand;
+      color: $color-positive;
+    }
+  }
+
+  .p-feedback__icon--neutral {
+    &:hover,
+    &:focus {
+      color: $color-caution;
+    }
+  }
+
+  .p-feedback__icon--negative {
+    &:hover,
+    &:focus {
+      color: $color-negative;
     }
   }
 
