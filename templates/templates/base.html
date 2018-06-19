@@ -91,6 +91,8 @@
     <script src="{% versioned_static 'js/scratch.js' %}"></script>
     <script src="{{ ASSET_SERVER_URL }}f5bf3854-respond.min.js"></script>
     {% block footer_extra %}{% endblock %}
+
+    {% include "shared/_feedback.html" %}
   </body>
 </html>
 
