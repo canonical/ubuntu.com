@@ -136,7 +136,6 @@
         background-color: darken($nav-bg-color, 3%);
         color: $color-x-light;
       }
-
     }
 
     & &__row {
@@ -144,6 +143,7 @@
 
       &.row {
         @media (max-width: $breakpoint-x-small) {
+          display: block;
           padding-left: 0 !important;
           padding-right: 0 !important;
         }
