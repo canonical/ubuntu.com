@@ -67,6 +67,7 @@ globalNavDropdowns.forEach(function(dropdown) {
           }
         });
         targetMenu.classList.remove('u-hide');
+        closeMainMenu();
       }
     } else {
       currentLink.classList.add('is-selected');
@@ -78,6 +79,7 @@ globalNavDropdowns.forEach(function(dropdown) {
         }
       });
       targetMenu.classList.remove('u-hide');
+      closeMainMenu();
     }
   });
 });
@@ -138,4 +140,20 @@ if (window.location.hash) {
   var tabContent = document.getElementById(tabId + '-content');
 
   document.getElementById(tabId).click();
+}
+
+function closeMainMenu() {
+  var navigationLinks = document.querySelectorAll('.p-navigation__dropdown-link');
+
+  navigationLinks.forEach(function(navLink) {
+    navLink.classList.remove('is-selected');
+  });
+
+  if (!dropdownWindowOverlay.classList.contains('fade-animation')) {
+    dropdownWindowOverlay.classList.add('fade-animation');
+  }
+
+  if (!dropdownWindow.classList.contains('slide-animation')) {
+    dropdownWindow.classList.add('slide-animation');
+  }
 }
