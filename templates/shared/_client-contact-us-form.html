@@ -1,3 +1,4 @@
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <section class="p-strip is-deep">
   <div class="row">
     <div class="col-8">
@@ -56,10 +57,11 @@
               <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" class="mktoField mktoRequired" maxlength="2000"></textarea>
             </li>
             <li class="mktField p-list__item">
-              <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="NewsletterOpt-In" type="checkbox" />
-              <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I would like to receive occasional news from Canonical by email.</label>
+              <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+              <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
             </li>
-            <li class="p-list__item">All information provided will be handled in accordance with the Canonical <a href="https://www.ubuntu.com/legal" target="_blank">privacy policy</a>.</li>
+            <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/dataprivacy/contact">Canonical&rsquo;s Privacy Notice</a> and <a href="/legal/terms-and-policies/privacy-policy">Privacy Policy</a>.</li>
+            <li class="p-list__item"><div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"></div></li>
             <li class="mktField p-list__item">
               <button type="submit" class="mktoButton p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'iot contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button>
             </li>
@@ -74,6 +76,7 @@
           <input type="hidden" name="q" class="mktoField" value="" />
           <input type="hidden" name="returnURL" value="{{returnURL}}" />
           <input type="hidden" name="retURL" value="{{returnURL}}" />
+          <input type="hidden" name="Consent_to_Processing__c" value="yes" />
         </fieldset>
       </form>
     </div>

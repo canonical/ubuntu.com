@@ -7,7 +7,8 @@
     "test": "sass-lint static/**/*.scss --verbose --no-exit",
     "build": "node-sass --include-path node_modules static/sass --output static/css && postcss --use autoprefixer --replace 'static/css/**/*.css' && postcss --use cssnano --dir static/minified 'static/css/**/*.css'",
     "watch": "watch -p 'static/sass/**/*.scss' -p 'node_modules/vanilla-framework/scss/*.scss' -c 'yarn run build'",
-    "clean": "rm -rf node_modules yarn-error.log css static/css *.log *.sqlite _site/ build/ .jekyll-metadata .bundle"
+    "clean": "rm -rf node_modules yarn-error.log css static/css *.log *.sqlite _site/ build/ .jekyll-metadata .bundle",
+    "serve": "./manage.py runserver 0.0.0.0:$PORT"
   },
   "keywords": [
     "website",
@@ -16,8 +17,8 @@
   "author": "Canonical webteam",
   "license": "LGPL v3",
   "devDependencies": {
-    "global-nav": "^0.2.2",
     "postcss-cli": "^4.1.0",
+    "global-nav": "^0.2.3",
     "vanilla-framework": "1.7.0-beta-2.1"
   },
   "dependencies": {
