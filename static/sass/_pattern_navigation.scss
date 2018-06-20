@@ -404,6 +404,12 @@
       &:last-child {
         padding-bottom: $spv-inter--shallow-scaleable;
       }
+
+      @media (max-width: $breakpoint-x-small - 1) {
+        .p-inline-list--middot.is-x-dense {
+          margin-bottom: .3rem;
+        }
+      }
     }
 
     & .p-inline-list__item {
@@ -483,6 +489,7 @@ h2,
 .p-logomark {
     display: inline-block;
     max-height: 4 * $sp-unit;
+    max-width: 4 * $sp-unit;
     margin-right: $sph-intra--condensed;
     margin-bottom: $spv-intra--scaleable;
     position: relative;
