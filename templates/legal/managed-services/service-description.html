@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-9">
       <h1>Managed Services description</h1>
-      <p>Valid since 13 April 2018</p>
+      <p>Valid since 13 June 2018</p>
       <ol class="p-list--ordered-legal">
         <li class="p-list__item">
           <h2 id="overview">Overview</h2>
@@ -23,8 +23,10 @@
                 <li class="p-list__item">“Cloud” means the deployment of the OpenStack cloud computing environment to be managed by Canonical.</li>
                 <li class="p-list__item">“Cluster” means the deployment of the Kubernetes computing environment to be managed by Canonical.</li>
                 <li class="p-list__item">“Container Instance” means a container instance running in the Cluster.</li>
-                <li class="p-list__item">“Environment” means a Cloud or Cluster, as applicable to the particular service offering.</li>
                 <li class="p-list__item">“Guest Instance” means a virtual machine instance running in the Cloud.</li>
+                <li class="p-list__item">“Environment” means a Cloud or Cluster, as applicable to the particular service offering.</li>
+                <li class="p-list__item">“Public Cloud” means an Environment in which third parties (i.e. neither Canonical nor the Customer) are able to create and manage Guest or Container Instances.</li>
+                <li class="p-list__item">“Cloud Guest” means a Guest Instance or Container Instance of Ubuntu Server not running in a Public Cloud.</li>
                 <li class="p-list__item">“Kubernetes” means the container orchestration software known as “Kubernetes” as distributed by Canonical.</li>
                 <li class="p-list__item">“OpenStack” means the cloud computing software known as “OpenStack” as distributed by Canonical with Ubuntu.</li>
               </ul>
@@ -72,8 +74,7 @@
                 </li>
                 <li class="p-list__item">
                   Environment size
-                  <p>Canonical will add or remove nodes from the Environment as requested by the customer through a support ticket, provided that the Environment does not go under the minimum size requirement. All Environment nodes must be covered under the BootStack service,
-                    so additional fees may apply.</p>
+                  <p>Canonical will add or remove nodes from the Environment as requested by the customer through a support ticket, provided that the Environment does not go under the minimum size requirement. All Environment nodes must be covered under the service, so additional fees may apply.</p>
                 </li>
                 <li class="p-list__item">
                   Ubuntu, OpenStack and Kubernetes upgrades
@@ -85,10 +86,10 @@
                   <ul>
                     <li class="p-list__item">Relating to Guest Instances or Container Instances:
                       <ul>
-                        <li class="p-list__item">Managing the operating system or applications running within a Guest Instance or Container Instances.</li>
-                        <li class="p-list__item">Monitoring of Guest Instances.</li>
+                        <li class="p-list__item">Managing the operating system or applications running within Guest Instances or Container Instances.</li>
+                        <li class="p-list__item">Monitoring of Guest Instances or Container Instances.</li>
                         <li class="p-list__item">Backup or recovery of customer generated data (e.g. any applications or databases running) within Guest Instances or Container Instances.</li>
-                        <li class="p-list__item">Support for the ability to run Guest Instances using images other than those provided by Canonical. (Support for Ubuntu Guest Instances can be purchased as part of Ubuntu Advantage as an add on service.)</li>
+                        <li class="p-list__item">Support for the ability to run Guest Instances using images other than those provided by Canonical.</li>
                       </ul>
                       <li class="p-list__item">Architectural changes to the Environment.</li>
                       <li class="p-list__item">Alternative scheduling of updates or upgrades.</li>
@@ -100,10 +101,16 @@
                 </li>
               </ol>
             </li>
+            <li class="p-list__item" id="support-for-guests">
+              Support for Guests
+              <p>
+                Cloud Guests running in the Environment are eligible for Ubuntu Advantage Virtual Guest Advanced support subject to the exclusions listed in 2.2.6.
+              </p>
+            </li>
             <li class="p-list__item" id="service-conclusion">
               Service conclusion
               <p>
-                At the end of the BootStack service term, Canonical will initiate an operational transfer.
+                At the end of the service term, Canonical will initiate an operational transfer.
               </p>
               <p>
                 Operational transfer includes:
