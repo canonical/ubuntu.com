@@ -1,0 +1,283 @@
+{% extends "containers/base_containers.html" %}
+{% block title %}The LXD pure-container hypervisor | Containers{% endblock %}
+{% block meta_description %}The LXD page - overview and support offerings.{% endblock %}
+
+
+{% block content %}
+<div class="p-strip is-deep">
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-7">
+        <h1>The LXD container hypervisor</h1>
+        <h2>25% faster than ESX. 10 times the density with zero latency</h2>
+        <p>Move your Linux VMs straight to containers, easily, without modifying the apps or administration processes. Canonical&rsquo;s LXD is a pure-container hypervisor that runs unmodified Linux guest operating systems with VM-style operations at incredible speed and density.</p>
+        <p><a href="/containers/contact-us?product=containers-lxd">Talk to us about your container strategy&nbsp;&rsaquo;</a></p>
+      </div>
+      <div class="col-5 u-align--center u-vertically-center">
+        <img src="{{ ASSET_SERVER_URL }}425efe3a-lxd.svg" width="260" alt="LXD" />
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include "containers/shared/_whitepaper.html" %}
+
+<div class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Why use LXD?</h2>
+      <p>LXD is a “really fast hypervisor” that lets you operate exactly the way you currently operate, only at container speeds. LXD takes the speed and latency of containers and brings them to the hypervisor world.</p>
+      <p>A LXD container gives you full ‘machine’ system functionality, not just a single process. You can run Docker and RunC inside LXD to mix container types.</p>
+      <p>LXD brings you:</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <ul class="p-list--divided is-split">
+        <li class="p-list__item is-ticked">Bare-metal performance for guests</li>
+        <li class="p-list__item is-ticked">Easy sharing of hardware resources</li>
+        <li class="p-list__item is-ticked">Easy monitoring of guest processes</li>
+        <li class="p-list__item is-ticked">Very precise quality-of-service and quotas</li>
+        <li class="p-list__item is-ticked">Snapshots</li>
+        <li class="p-list__item is-ticked">Support for ARM, POWER, X86 and Z</li>
+        <li class="p-list__item is-ticked">RESTful API and simple CLI</li>
+        <li class="p-list__item is-ticked">Rapid provisioning, instant guest boot</li>
+        <li class="p-list__item is-ticked">Remote image services</li>
+        <li class="p-list__item is-ticked">Secure by default, with AppArmor, user namespaces, SECCOMP</li>
+        <li class="p-list__item is-ticked">Extensible storage and networking</li>
+        <li class="p-list__item is-ticked">Performance and concurrency from Golang</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip is-bordered">
+  <div class="row">
+    <h2 class="p-muted-heading u-align--center">Supported guest operating systems</h2>
+    <ul class="p-inline-images p-inline-images--large no-margin">
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}417d2a99-alpinelinux-logo.svg" alt="Alpine-Linux logo" />
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}e0b23092-archlinux.svg" alt="Archlinux logo" />
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}31bd1765-centos.svg" alt="CentOS logo" />
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}6947a9e3-redhat.svg" alt="Redhat logo" />
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}2eafb62e-openlogo.svg" alt="Debian logo" width="150" />
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}1a53bedd-fedora.svg" alt="Fedora logo" />
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}a27eaf1d-gentoolinux-logo.svg" alt="Gentoo-linux logo" />
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}583f0880-opensuse.png" alt="Opensuse logo" />
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}08646a72-logo-oracle.svg" alt="Oracle-linux logo" />
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}82351fa0-plamolinux-logo.jpg" alt="Plamo logo" />
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}ae435e9e-sabayon-logo.svg" alt="Sabayon logo" />
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}9f61b97f-logo-ubuntu.svg" alt="Ubuntu logo" />
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}e5202df6-ubuntu-core_black-orange_hex+copy.svg" alt="Ubuntu-core logo" />
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-6 p-card">
+        <h3 class="p-card__title">Your first step to containers is easy</h3>
+        <p class="p-card__content">
+          LXD containers are just like traditional physical and virtual machines.  You can log in remotely, manage the guest OS the standard way, install applications, secure them, and operate them with the same tools, but gain the raw performance and density of containers.
+
+          <br/><br/>
+
+          LXD guests launch in seconds and you can run hundreds on a single server. Connect them separately and securely to networks, copy between hosts and drive all of this through a clean RESTful API.
+        </p>
+      </div>
+      <div class="col-6 p-card">
+        <h3 class="p-card__title">Like a virtual machine, only faster</h3>
+        <p class="p-card__content">LXD is the next‐generation hypervisor for Linux at scale. LXD is designed to &ldquo;lift and shift&rdquo; Linux VMs to containers without modifying the app or operations. Nearly all applications can be installed in LXD containers with no need to touch the application to make it run because LXD&rsquo;s machine containers operate just like VMs.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="p-muted-heading u-align--center">LXD is in use at</h2>
+      <ul class="p-inline-images no-margin dynamic-logos">
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}b3315d88-walmart.svg" alt="Walmart logo" />
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}6819c967-logo-ebay-01.svg" alt="Ebay logo" width="100" />
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}d2a87c83-PayPal.png" alt="PayPal logo" width="120" />
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}c2c171b0-Box_%28Company_logo%29.png" alt="Box logo" style="width: 80px;" />
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2>Getting started with LXD</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <ol class="p-stepped-list--detailed">
+        <li class="p-list-step__item col-8">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">1</span>
+            Activate LXD
+          </h3>
+          <div class="p-list-step__content">
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="sudo lxd init" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <p style="margin-top: 1rem;">You can generally hit Enter to accept the default answers to the questions, and once you&rsquo;re setup you can start to launch machines.</p>
+
+            <div class="p-notification--caution">
+              <div class="p-notification__response">
+                <p><span class="p-notification__status">Note:</span></p>
+                <p>LXD is on Ubuntu 16.04 LTS Server or greater by default. On other systems it can be installed with <code>snap install lxd</code>.</p>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="p-list-step__item col-8">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">2</span>
+            Create your first container
+          </h3>
+          <div class="p-list-step__content">
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="lxc launch ubuntu: first-machine" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <p style="margin-top: 1rem;">This will fetch the base Ubuntu guest OS, then launch an instance of that called &rsquo;first-machine&rsquo;</p>
+          </div>
+        </li>
+        <li class="p-list-step__item col-8">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">3</span>
+            See your machine running
+          </h3>
+          <div class="p-list-step__content">
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="lxc list" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <p style="margin-top: 1rem;"><img src="{{ ASSET_SERVER_URL }}0a62a3d3-screenshot_LXD_containers.jpg?w=888" width="444" alt="" /></p>
+          </div>
+        </li>
+        <li class="p-list-step__item col-8">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">4</span>
+            Jump into that container
+          </h3>
+          <div class="p-list-step__content">
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="lxc exec first-machine bash" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <p style="margin-top: 1rem;">Type &lsquo;exit&rsquo; to quit the container and return to your host. Launch more containers and see how quickly they start. Install SSH and log into them remotely, they behave just like real machines.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <p><a class="p-link--external" href="https://linuxcontainers.org/lxd/getting-started-cli/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Read more on linuxcontainers.org', 'eventLabel' : 'linuxcontainers.org', 'eventValue' : undefined });">Read more on linuxcontainers.org</a></p>
+        <p><a href="https://linuxcontainers.org/lxd/try-it/" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'LXD', 'eventLabel' : 'Try the LXD interactive tutorial', 'eventValue' : undefined });">Try the LXD interactive tutorial</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="p-divider">
+      <div class="col-6 p-divider__block">
+        <h3>Is LXD a real Linux hypervisor?</h3>
+        <p>Yes: LXD containers give you the experience of virtual machines with the security of a hypervisor, but much, much faster. Without all the overhead, you get the full performance of your host environment. On bare metal, LXD containers are as fast as the native OS. In the cloud, you get subdivided machines without subpar performance.</p>
+        <p>You can live-migrate LXD containers from machine to machine. We&rsquo;re working with silicon companies to ensure hardware-assisted security and isolation for containers, like virtual machines. Additionally, you can bind storage or network interfaces to the containers, just like virtual machines.</p>
+      </div>
+      <div class="col-6 p-divider__block">
+        <h3>Ultra-fast OpenStack with LXD</h3>
+        <p>The combination of LXD and OpenStack makes for a very happy system administrator in a Linux-oriented private cloud. All the agility of OpenStack, all the performance of your metal with no virt overhead.</p>
+        <p>The nova-lxd  driver allows OpenStack instances to be scheduled as Linux containers. Images are booted from OpenStack&rsquo;s image service, Glance, and instances communicate over Neutron&rsquo;s networking functionality just like KVM based VMs.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip is-bordered">
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-8">
+        <h2>How does our LXD support offering work?</h2>
+        <p>Enterprise support for LXD is provided by Canonical through Ubuntu Advantage.</p>
+        <p>We also offer consulting services and customisation for larger organisations to integrate LXD with existing infrastructure.</p>
+        <p>To discuss your requirements connect with a member of the Canonical team.</p>
+        <p><a href="/support">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+        <p><a href="/containers/contact-us?product=containers-lxd">Contact us&nbsp;&rsaquo;</a></p>
+      </div>
+      <div class="col-3 prefix-1 u-vertically-center u-hide--small">
+        <img src="https://assets.ubuntu.com/v1/9f035e4a-picto-support-orange.svg" width="200" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip--light">
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-8">
+        <h2>How does LXD compare to Docker?</h2>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Docker and LXD are complementary, use them both, use them together!</li>
+          <li class="p-list__item is-ticked">LXD gives you a classic virtual machine experience with all your administrative processes running, from sshd to syslog, so LXD feels just like a normal system</li>
+          <li class="p-list__item is-ticked">Docker instances typically contain one and only one process or application</li>
+          <li class="p-list__item is-ticked">LXD usage is often driven by operations where it makes any infrastructure-as-a-service cloud instances much faster</li>
+          <li class="p-list__item is-ticked">Docker usage is usually driven by developers and forms the basis for platform-as-a-service (PaaS) clouds, making those PaaS application instances faster and more portable</li>
+          <li class="p-list__item is-ticked">Docker can run alongside LXD with both instances working together.  Moreover, Docker can run inside of LXD with zero performance impact</li>
+        </ul>
+        <p><a class="p-link--external" href="http://insights.ubuntu.com/2016/11/30/docker-and-canonical-partner-on-cs-docker-engine-for-ubuntu-users">Find out more about our partnership with Docker</a></p>
+      </div>
+      <div class="col-3 prefix-1 u-vertically-center u-align--center">
+        <img src="https://assets.ubuntu.com/v1/fe637cb5-docker.svg" alt="" />
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_containers_juju" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
+
+{% endblock content %}
