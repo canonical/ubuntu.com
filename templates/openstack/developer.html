@@ -1,0 +1,131 @@
+{% extends "openstack/_base_openstack.html" %}
+{% block title %}Developer | OpenStack | Ubuntu{% endblock %}
+{% block meta_description %}Step-by-step instructions to deploy a full OpenStack cluster on your workstation using LXD machine containers for service isolation.{% endblock %}
+
+{% block content %}
+<section class="p-strip--light is-deep is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h1>Single-node Developer OpenStack cluster</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-8">
+        <p>Install a full OpenStack cluster on a single machine.This guide uses <a class="p-link--external" href="https://linuxcontainers.org/">LXD</a>, the Linux Container Daemon, to create multiple machine containers for the various OpenStack services, mimicking a real production distributed Openstack cluster.</p>
+        <p>Follow these step-by-step instructions.</p>
+        <p><strong>conjure-up</strong> requires a minimum version of LXD of <strong>3.0.0</strong>. Additionally, LXD should be configured prior to running.</p>
+      </div>
+      <div class="col-4 u-align--center u-vertically-center u-hide--small">
+        <img src="{{ ASSET_SERVER_URL }}95212c08-OpenStack_Logo_2016.svg" alt="" width="275" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2>Watch the deployment walkthrough</h2>
+      <div class="u-embedded-media">
+        <iframe class="u-embedded-media__element" src="https://player.vimeo.com/video/202195588?color=ffffff&title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="instructions" class="p-strip is-deep is-bordered">
+  <div class="row">
+    <h2>Installation instructions</h2>
+    <ol class="p-stepped-list--detailed">
+
+      <li class="p-list-step__item col-12">
+        <h3 class="p-list-step__title"><span class="p-list-step__bullet">1</span>Minimum requirements</h3>
+        <div class="p-list-step__content">
+          <ul class="p-list">
+            <li class="p-list__item">Single machine with 16GB RAM running Ubuntu 16.04 LTS or later</li>
+            <li class="p-list__item">Approximately one hour to complete the process</li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="p-list-step__item col-12">
+        <h3 class="p-list-step__title"><span class="p-list-step__bullet">2</span>Install conjure-up</h3>
+        <div class="p-list-step__content">
+          <p><code>conjure-up</code> provides a text-based wizard to walk you through the process of setting up OpenStack. It can be used with full bare-metal clusters, or on your workstation with LXD. We’ll be using LXD to create a set of container machines for the OpenStack services.</p>
+          <p>Follow these step-by-step instructions.</p>
+          <p>To install LXD run the following:</p>
+          <div class="p-code-snippet">
+            <input aria-label="code snippet" class="p-code-snippet__input" value="sudo snap install conjure-up --classic" readonly="readonly">
+            <button class="p-code-snippet__action">Copy to clipboard</button>
+          </div>
+          <div class="p-notification--caution">
+            <div class="p-notification__response">
+              <p>
+                <span class="p-notification__status">Note:</span>
+              </p>
+              <p>If you need to enable snap packages for installation of lxd of conjure-up then:</p>
+              <p class="p-code-snippet">
+                <input aria-label="code snippet" class="p-code-snippet__input" value="sudo apt update && sudo apt upgrade" readonly="readonly">
+                <button class="p-code-snippet__action">Copy to clipboard</button>
+              </p>
+              <p class="p-code-snippet">
+                <input aria-label="code snippet" class="p-code-snippet__input" value="sudo apt install snapd" readonly="readonly">
+                <button class="p-code-snippet__action">Copy to clipboard</button>
+              </p>
+              <p>Now logout and login, or run:</p>
+              <p class="p-code-snippet">
+                <input aria-label="code snippet" class="p-code-snippet__input" value="source /etc/profile.d/apps-bin-path.sh" readonly="readonly">
+                <button class="p-code-snippet__action">Copy to clipboard</button>
+              </p>
+              <p>
+                Now you can try installing conjure-up again.
+              </p>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="p-list-step__item col-12">
+        <h3 class="p-list-step__title"><span class="p-list-step__bullet">3</span>Deploy OpenStack</h3>
+        <div class="p-list-step__content">
+          <p>Now you are ready to start the OpenStack deployment process on your workstation.</p>
+          <div class="p-code-snippet">
+            <input aria-label="code snippet" class="p-code-snippet__input" value="conjure-up" readonly="readonly">
+            <button class="p-code-snippet__action">Copy to clipboard</button>
+          </div>
+          <p>You will see a menu of 'spells' which are descriptions of distributed software systems that conjure-up can deploy for you. Choose ‘OpenStack with LXD’.</p>
+          <img src="{{ ASSET_SERVER_URL }}23a02e6d-conjure-up-install-openstack.png?w=444" width="444" alt="screenshot of the conjure-up interface with the 'OpenStack with NovaLXD' option selected" />
+        </div>
+      </li>
+      <li class="p-list-step__item col-12">
+        <h3 class="p-list-step__title"><span class="p-list-step__bullet">4</span>Follow the on-screen instructions</h3>
+        <div class="p-list-step__content">
+          <p>Complete installation of OpenStack with conjure-up and, when it is completed, go to the URL displayed in the summary screen and login with the provided credentials.</p>
+          <img src="{{ ASSET_SERVER_URL }}6f24640b-conjure-up-openstack-horizon.png?w=444" width="444" alt="screenshot of the conjure-up interface with the 'OpenStack with NovaLXD' option selected" />
+        </div>
+      </li>
+    </ol>
+    <div class="col-8">
+      <p>To learn more about conjure-up visit <a href="http://conjure-up.io/" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Download cloud conjure-up', 'eventLabel' : 'conjure-up.io', 'eventValue' : undefined });">conjure-up.io</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-4 u-vertically-center u-align--center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="200" alt="" />
+    </div>
+    <div class="col-7 prefix-1 u-vertically-center">
+      <div class="row">
+        <div class="col-12">
+          <h2>Need more help?</h2>
+          <p>Let our cloud experts help you take the next step.</p>
+          <p><a class="p-button--positive" href="/openstack/contact-us?product=openstack-install-try">Contact us</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

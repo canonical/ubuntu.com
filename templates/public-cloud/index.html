@@ -1,0 +1,118 @@
+{% extends "public-cloud/_base_public-cloud.html" %}
+{% block title %}Public cloud{% endblock %}
+{% block meta_description %}Ubuntu is the most popular guest OS on both public and private clouds, thanks to its security, versatility and continually updated features.{% endblock meta_description %}
+
+{% block content %}
+<section class="p-strip--light is-deep is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Ubuntu on public clouds</h2>
+      <p>The most popular operating system across public clouds is Ubuntu, because we work closely with major cloud operators to optimise the kernel and system for their infrastructure, speed up security updates and minimise the cost of network or storage for users by default.</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Canonical guarantees the consistency, security and performance of Ubuntu on public clouds</li>
+        <li class="p-list__item is-ticked">Enterprise-grade commercial support is available</li>
+        <li class="p-list__item is-ticked">Twice as popular on the Amazon cloud as all other operating systems combined <a href="#fn1" id="r1">*</a></li>
+      </ul>
+      <p>
+        <a href="/support" class="p-button--positive">Get support</a>&emsp;<a class="p-button--neutral" href="/download/cloud">Start using Ubuntu today</a>
+      </p>
+    </div>
+    <div class="col-4 u-hide--small u-vertically-center">
+      {% include "openstack/shared/_openstack-aws-pie-chart.html" %}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-12">
+      {% include "shared/_partner-logos.html" with title="A selection of our certified public cloud partners" json_feed_url="https://partners.ubuntu.com/partners.json?programme__name=Certified%20Public%20Cloud&featured=true" feed_item_limit=10 %}
+      <p class="u-align--center"><a class="p-link--external" href="https://partners.ubuntu.com/find-a-partner?programme=certified-public-cloud ">View all certified public cloud partners</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--accent is-deep">
+  <div class="row">
+    <div class="col-8">
+      <h2>Why use Ubuntu Server in the cloud?</h2>
+      <p>
+        <ul class="p-list">
+            <li class="p-list__item is-ticked">Proven for enterprise-scale workloads on all leading public clouds</li>
+            <li class="p-list__item is-ticked">Free from licence fees, regardless of how many images you run</li>
+            <li class="p-list__item is-ticked">Enterprise-grade support and management tools available direct from Canonical</li>
+            <li class="p-list__item is-ticked">Maintenance and security updates guaranteed for five years with Ubuntu LTS</li>
+        </ul>
+      </p>
+    </div>
+    <div class="p-card--resources col-4">
+      <header class="p-card__header--cloud-and-server">
+        <h4 class="p-muted-heading">Cloud and server</h4>
+      </header>
+      <div class="p-card__content">
+        <h3 class="p-heading--four">
+          <a href="https://insights.ubuntu.com/2017/06/22/certified-ubuntu-cloud-guest-the-best-of-ubuntu-on-the-best-clouds/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'resource', 'eventAction' : 'Ubuntu cloud guest', 'eventLabel' : 'from ubuntu.com/public-cloud', 'eventValue' : undefined });">
+            Ubuntu cloud guest
+          </a>
+        </h3>
+        <p>Understand why certified Ubuntu images are essential for anyone that requires the highest level of security and reliability.</p>
+      </div>
+      <p class="p-card__footer">Whitepaper</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row p-divider">
+    <div class="col-6 p-divider__block">
+      <h2 class="p-heading--three">Fast service deployment with&nbsp;Juju</h2>
+      <p class="u-hide--small u-align--center"><img src="{{ ASSET_SERVER_URL }}86c8c01f-charms_juju.svg?h=211" alt="Grid of juju charm icons including wordpress, hadoop, django, MySQL, MongoDB and OpenStack" height="190" /></p>
+      <p>Juju is the fastest way to deploy and scale out your workloads on the leading public clouds. With Juju charm bundles, you can launch an entire cloud environment with one click, or just one command using the CLI. Use Juju to  deploy your entire application infrastructure, all in one.</p>
+      <p><a class="p-link--external" href="https://jujucharms.com/">Learn more about Juju</a></p>
+    </div>
+    <div class="col-6 p-divider__block">
+      <h2 class="p-heading--three">The best management and&nbsp;support</h2>
+      <p class="u-hide--small u-align--center"><img src="{{ ASSET_SERVER_URL }}434e177d-cloud-landscape-chart.jpg?h=190" alt="Landscape managing 913 machines screenshot" height="211" /></p>
+      <p>The Ubuntu Advantage support service has flexible Ubuntu Virtual Guest options, designed for virtualised enterprise workloads on Ubuntu-certified public clouds. Thanks to Landscape, efficient management of all your Ubuntu instances is only a few clicks away. And with the Canonical Livepatch Service, you can apply critical kernel patches without rebooting.</p>
+      <p><a href="/support">Find out all about support&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="u-equal-height u-vertically-center">
+    <div class="col-5">
+      <h2>Developers&rsquo; favourite</h2>
+      <p>Ubuntu is the most popular Linux distribution for development and deployment. If your developers already use Ubuntu, moving to the cloud is even easier. </p>
+      <p><a href="/desktop/developers">Learn more about Ubuntu for developers&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-7 u-hide--small u-align--center">
+      <img src="{{ ASSET_SERVER_URL }}79439f53-Dell_XPS_Laptop_Front-Developer.png?w=1080" alt="" width="540" />
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-deep is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Ready to get started?</h2>
+      <p>Ubuntu Server {{lts_release_full}} is a free download that includes five years worth of  security and maintenance updates, guaranteed. Using an Ubuntu partner cloud ensures access to the latest certified Ubuntu cloud images. To run Ubuntu as guest on participating public clouds, the simplest way is to use the image maintained on their server.</p>
+      <p>
+        <a class="p-button--positive" href="/download/cloud">Start using Ubuntu today</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <p id="fn1" class="note">
+      <a href="#r1">*</a> <a href="http://www.zdnet.com/article/ubuntu-linux-continues-to-rule-the-cloud/" class="p-link--external">zdnet.com</a>, 27 August 2015
+    </p>
+  </div>
+</section>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_newsletter" third_item="_cloud_further_reading" %}
+
+{% endblock content %}

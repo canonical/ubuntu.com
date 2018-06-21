@@ -1,412 +1,496 @@
 @mixin ubuntu-p-navigation {
-
   html {
     overflow-x: hidden !important; // prevent horizontal overflow full width breakout
   }
 
+  %row-no-margins-on-mobile {
+    @media (max-width: $breakpoint-navigation-threshold) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    @media (min-width: $breakpoint-navigation-threshold + 1) {
+      padding-left: $grid-margin-width;
+      padding-right: $grid-margin-width;
+    }
+  }
+
   .p-navigation {
-    // XXX Ant: Change the threshold so the links are white.
-    // https://github.com/vanilla-framework/vanilla-framework/issues/1373
-    @include vf-navigation-pattern(
-      $background-color: $color-navigation-background,
-      $border-color: if(lightness($color-navigation-background) > 70, $color-mid-light, transparent),
-      $text-color: if(lightness($color-navigation-background) > 70, $color-dark, $color-light)
-    );
-    font-weight: 400;
-    margin-bottom: 0;
+    background-color: $nav-bg-color;
+    flex-direction: column;
+    z-index: 3;
 
-    &:target {
-      @media (max-width: $breakpoint-medium) {
-        .p-navigation__nav {
-          background-color: $color-navigation-background;
+    @media (max-width: $breakpoint-navigation-threshold - 1) {
+      position: sticky;
+      top: 0;
+    }
+
+    &::after { // disable rule under nav
+      background-color: none;
+      height: 0;
+    }
+
+    &__banner {
+      background-color: $color-brand;
+    }
+
+    &__dropdown-link {
+      position: relative;
+
+      &::after {
+        @include vf-icon-chevron(vf-url-friendly-color($color-mid-light));
+        background-repeat: no-repeat;
+        background-size: .75rem;
+        background-position: top 52% right 50%;
+        content: "";
+        height: 100%;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+
+        top: 0;
+        transition: transform .1s;
+        width: 2rem;
+      }
+
+      &.is-selected {
+        &::after {
+          transform: rotate(-180deg);
+          @include vf-icon-chevron(vf-url-friendly-color($color-dark));
         }
 
-        .p-navigation__row {
+        .p-navigation__link-anchor {
           background-color: $color-x-light;
-        }
-      }
-    }
+          color: $color-dark;
 
-    @media (max-width: $breakpoint-medium) {
-      border-bottom: 1px solid $color-light;
-      font-weight: 300;
-    }
-
-    & &__toggle--open,
-    & &__toggle--close {
-      @media (max-width: $breakpoint-medium) {
-        top: .875rem;
-      }
-    }
-
-    &__logo {
-      margin: 0;
-      padding: 0;
-
-      @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
-        margin-left: 0;
-        padding-left: 0;
-      }
-    }
-
-    &__row {
-      @media (min-width: $breakpoint-large) {
-        position: relative;
-      }
-    }
-
-    .p-navigation__links {
-
-      &:last-of-type {
-        border-right: 1px solid $color-brand-light;
-      }
-
-      .p-navigation__link {
-        border-right: 1px solid $color-mid-light;
-        font-size: .875rem;
-        padding: 0;
-        position: relative;
-
-        @media (min-width: $breakpoint-medium) {
-          border-color: $color-brand-light;
-          border-right: 0;
-        }
-
-        &:hover {
-          cursor: pointer;
-        }
-
-        @media (max-width: $breakpoint-medium - 1) {
-          float: left;
-          width: 50%;
-
-          &:nth-child(2n) {
-            border-left: 0;
-
-            &:nth-last-child(2), &:nth-last-child(3) {
-              border-bottom: 1px solid $color-mid-light;
-            }
+          &::after {
+            background-color: transparent;
           }
 
-          &:nth-child(2n+1) {
-            &:nth-last-child(2), &:nth-last-child(3), &:nth-last-child(4) {
-              border-bottom: 1px solid $color-mid-light;
-            }
-
-            &:nth-last-child(2) {
-              border-top: 0;
-            }
-          }
-
-          &:last-of-type {
-            border-bottom: 1px solid $color-mid-light;
-            border-top: 0;
-          }
-
-          > a {
-            padding: $sp-small $sp-medium;
-
-            &.is-active {
-              background-color: $color-mid-light;
-            }
-          }
-        }
-
-        @media (min-width: $breakpoint-medium) {
-
-          > a {
-            display: inline-block;
-            padding: $sp-medium $sp-small;
-
-            &.is-active {
-              background-color: $color-brand-dark;
-            }
+          &:focus,
+          &:visited {
+            background-color: $color-x-light;
+            color: $color-dark;
           }
 
           &:hover {
-            background-color: $color-brand-light;
+            background-color: $color-x-light;
+            color: $color-dark;
           }
         }
       }
     }
-  }
 
-  .p-navigation .p-navigation__logo {
-    margin: $sp-small $sp-small $sp-x-small 1rem;
-    padding: 0;
-  }
-
-  .p-breadcrumbs {
-
-    // medium size - avoid overflow
-    @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
-      width: 90%;
-    }
-  }
-
-  // .nav-secondary override
-  .nav-secondary {
-
-    .p-inline-list__link {
-      display: inline-block;
+    &__image {
+      max-height: 1.5rem;
+      max-width: $ubuntu-logo-svg-width;
     }
 
-    @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
-      border-top: 1px solid $color-mid-light;
-      white-space: nowrap;
-    }
+    &__logo {
+      background: $color-brand;
+      margin: 0;
 
-    &__row {
-      @media (min-width: $breakpoint-medium) {
-        padding: 0 $sp-small;
+      @media (max-width: $breakpoint-x-small - 1) {
+        padding-left: $grid-margin-width / 1.5 !important;
+        padding-right: 0 !important;
+      }
+
+      @media only screen and (max-width: $breakpoint-navigation-threshold) {
+        padding-left: $grid-margin-width;
+        padding-right: $grid-margin-width - $circle-of-friends-compensation;
+      }
+
+      @media only screen and (min-width: $breakpoint-navigation-threshold) {
+        padding-left: $sph-intra;
+        padding-right: $sph-intra - $circle-of-friends-compensation;
+      }
+
+      .p-navigation__link {
+        position: relative;
       }
     }
-  }
 
-  .nav-secondary,
-  .nav-tertiary {
-    .p-inline-list__link,
-    .p-breadcrumbs__link {
-      font-size: .875rem;
-      font-weight: 300;
+    & &__nav {
+      border-bottom: 0;
+      width: 100%;
     }
 
-    // small screen view only
-    @media (max-width: $breakpoint-medium - 1) {
-      background: $color-x-light;
+    & &__link-anchor {
+      display: block;
+      color: $color-light;
 
-      .p-breadcrumbs {
-        @include full-width-breakout;
-        border-bottom: 1px solid $color-mid-light;
-        overflow-x: hidden;
+      @media (max-width: $breakpoint-navigation-threshold) {
+        padding: $spv-intra--expanded $grid-margin-width $spv-intra--expanded $grid-margin-width;
+      }
+
+      @media (min-width: $breakpoint-navigation-threshold + 1) {
+        padding: $spv-intra--expanded 2rem $spv-intra--expanded $sph-intra;
+      }
+
+      &:focus,
+      &:visited {
+        background-color: $nav-bg-color;
+        color: $color-light;
+      }
+
+      &:hover {
+        background-color: darken($nav-bg-color, 3%);
+        color: $color-x-light;
+      }
+
+    }
+
+    & &__row {
+      @extend %row-no-margins-on-mobile;
+
+      &.row {
+        @media (max-width: $breakpoint-x-small) {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+      }
+    }
+
+    &__search {
+      align-items: center;
+      display: inline-flex;
+      flex-grow: 1;
+      margin: 0;
+
+      .p-search-box {
+        @media only screen and (min-width: $breakpoint-navigation-threshold) {
+          margin-right: 0;
+          max-width: 12rem;
+        }
+
+        &__button {
+          padding: 0 0.5rem;
+          width: 2rem;
+        }
+
+        &__reset {
+          right: 2rem;
+        }
+
+        &__input {
+          border-radius: $border-radius;
+        }
+      }
+    }
+
+    &--secondary {
+      background-color: $color-light;
+      display: flex;
+      margin-top: 0;
+      position: relative;
+      width: 100%;
+      z-index: 1;
+
+      @media (max-width: $breakpoint-x-small - 1) {
+        padding-top: $sp-small / 2;
+        padding-bottom: $sp-medium;
+      }
+
+      &__banner {
+        display: inline-block;
+        float: left;
+        background-color: $color-brand;
+        font-weight: 300;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+
+      &__logo {
+        display: flex;
+        align-items: center;
+        @extend %paragraph;
+        color: $color-x-light;
+        margin-bottom: $sp-unit * 2 - map-get($nudges, nudge--p);
+        position: relative;
+
+        @media (max-width: $breakpoint-navigation-threshold - 1) {
+          padding-left: $sp-small !important;
+          padding-right: 0 !important;
+        }
+
+        a {
+          border-left: 1px solid rgba(247, 247, 247, .3);
+          color: $color-light !important;
+          padding-left: $sp-small;
+
+          @media (max-width: $breakpoint-navigation-threshold - 1) {
+            position: relative;
+            top: 1px;
+          }
+        }
+
+        &::after {
+          // white separator inside lockup
+          @extend %pseudo-border--top;
+          display: none;
+
+          @media only screen and (min-width: $breakpoint-navigation-threshold) {
+            display: block;
+            background-color: $color-light;
+            opacity: .3;
+            left: $sph-intra;
+            right: $sph-intra - $circle-of-friends-compensation;
+          }
+        }
+
+        @media only screen and (min-width: $breakpoint-navigation-threshold) {
+          width: $ubuntu-logo-svg-width + 2 * $sph-intra - $circle-of-friends-compensation;
+          padding-left: $sph-intra;
+          padding-right: $sph-intra - $circle-of-friends-compensation;
+        }
+      }
+
+      .breadcrumbs {
+        &--secondary {
+          @extend .p-inline-list;
+          display: flex;
+          flex-wrap: wrap;
+          margin-bottom: 0;
+          width: auto;
+        }
+
+        &__tertiary {
+          @extend .breadcrumbs--secondary;
+          margin-left: 1.75em;
+          position: relative;
+
+          &::before {
+            color: $color-mid-dark;
+            content: '\203A';
+            font-size: 1rem;
+            font-weight: 400;
+            left: -.9em;
+            position: absolute;
+            top: -0.15em;
+          }
+        }
 
         &__item {
-          left: 50%;
-          margin-left: 0;
-          position: relative;
-          transform: translate(-50%, 0);
-          width: 100%;
+          color: $color-dark;
+          display: inline-flex;
+          list-style: none;
+
+          @media (max-width: $breakpoint-x-small - 1) {
+            width: 50%;
+
+            .breadcrumbs__link {
+              padding-bottom: 0;
+            }
+          }
+
         }
 
         &__link {
-          border-bottom: 1px solid $color-mid-light;
-          color: $color-dark;
-          display: inline-block;
-          margin-bottom: $sp-x-small;
-          padding: $sp-small $sp-medium;
-          width: 100%;
-        }
-      }
+          font-size: 1rem / pow($ms-ratio, 1); //XXX: move font-sizes to map in vanilla so it can be changed globally
+          // line-height: map-get($line-heights, small);
+          padding-bottom: map-get($sp-after, small) + $p-small-lh-diff - $nudge--small;
+          padding-left: $spv-intra--expanded;
+          padding-right: $spv-intra--expanded;
+          padding-top: $nudge--small;
 
-      &__menu {
-        width: 100%;
-
-        .p-inline-list__item {
-          float: left;
-          margin-right: 0;
-          margin-top: 0;
-          padding-left: $sp-x-small;
-          width: 50%;
-
-          .is-active {
-            font-weight: bold;
+          @media (max-width: $breakpoint-x-small - 1) {
+            padding-left: 0;
+            padding-right: 0;
           }
-        }
 
-        .p-inline-list__link {
-          color: $color-x-dark;
-          display: inline-block;
-          padding: $sp-x-small;
-        }
-      }
-    }
-
-    &__menu {
-      display: inline-block;
-      margin-top: 0;
-      position: relative;
-
-      @media (min-width: $breakpoint-medium) {
-        margin-left: $sp-large;
-        vertical-align: top;
-      }
-    }
-
-    a {
-      color: $color-dark;
-
-      &.is-active {
-        color: $color-brand;
-      }
-    }
-
-    // large screen view
-    @media (min-width: $breakpoint-medium) {
-      @include full-width-breakout;
-      background: $color-light;
-      border-bottom: 1px solid $color-mid-light;
-      padding: $sp-x-small 0 $sp-small;
-      white-space: nowrap;
-
-      .p-breadcrumbs__item {
-        margin-bottom: 0;
-      }
-
-      &__menu::before {
-        color: $color-mid-dark;
-        content: '\203A';
-        font-weight: 400;
-        left: -$sp-medium;
-        position: absolute;
-      }
-
-      .p-breadcrumbs__link {
-        color: $color-mid-dark;
-
-        @media (min-width: $breakpoint-medium) {
-          + .second-level-nav {
-            position: relative;
-
-            &::before {
-              color: $color-mid-dark;
-              content: '\203A';
-              font-weight: 400;
-              left: -$sp-x-small;
-              position: absolute;
-              top: 0;
-            }
+          &.p-link--active {
+            color: $color-brand;
           }
         }
       }
-    }
 
-    @media (min-width: $breakpoint-large) {
-      &__row {
-        padding: 0 $sp-small;
+      .row {
+        @extend %row-no-margins-on-mobile;
       }
     }
 
-    .p-navigation__row {
-      padding-left: $sp-x-small;
-      padding-right: $sp-x-small;
-    }
-  }
-
-  @media (min-width: $breakpoint-medium + 1) {
-    .p-navigation__link:hover .hover-menu {
-      display: block;
-
-      .p-inline-list__item {
-        display: block;
-      }
-    }
-
-    .p-navigation .p-navigation__nav ul li:hover ul::after {
-      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QYODgYVPPJJpQAAAT9JREFUKM+dkD9IAnEUx7+/IkVxFaxoKYxIWhqKwJw0JAJ315Yac8+1tUFo6HCp34XRdRp11z+J4BzckqShPzdEQ5G/EhPO6V5Tcg3G0QcePHjvffjygB4oXAIApFMxyPlcWM7nwulU7NfMNQqXGABsZNcCCpcKtapBtapBCpcK2fXlAAAcy3vMlUxTdgEAO9ubybPiPjWFoE6nQ5ZlUfNDULl0RAdSPuncddL30+gnCgOAlngLaocyn4nG9fmFJXj9fhARAMDr82MuEcfk7LSuFQu8DTvovO1SuTxlAKCqPFO5Ov/6FIIsy/qzROOdrst6S1V5xunomo0LrT4yOh4JDg6BMXfvIdvGs/mExutLPZpYnAIAdmNUVuwBbI1NRODxePEf2u0WHu9u4ev3rTLTfKBQaNh1qp5piWCa9/gGBheo3r6AmYcAAAAASUVORK5CYII=') $sp-large bottom no-repeat;
-      content: '';
-      display: block;
-      height: $sp-x-small;
-      left: 0;
-      position: absolute;
-      top: -$sp-x-small;
-      width: 200px;
-      z-index: 999;
-    }
-  }
-
-  .hover-menu {
-    background: $color-light;
-    border: 1px solid $color-mid-light;
-    border-radius: 10px;
-    box-shadow: 0 2px 2px -1px $color-mid-light;
-    display: none;
-    float: none;
-    left: 0;
-    margin: 0;
-    padding: $sp-x-small 0 $sp-medium;
-    position: absolute;
-    top: 58px;
-    width: 200px;
-    z-index: 10;
-
-    &::before {
-      //Remove the chevron
-      display: none;
-    }
-
-    li {
+    &__toggle--open,
+    &__toggle--close {
       font-size: .875rem;
-      padding: $sp-x-small $sp-small 0 $sp-small;
+      color: $color-light !important;
 
-      &:last-child {
-        padding-bottom: 0;
+      @media (max-width: $breakpoint-x-small - 1) {
+        margin-right: $grid-margin-width / 1.5 !important;
       }
     }
 
-    a {
-      color: $color-dark !important; // specificity
-    }
-  }
-
-  // tertiary navigation
-  .p-breadcrumbs__link {
-
-    & + .second-level-nav,
-    & + .second-level-nav & {
-      display: inline-block;
-      margin-bottom: 0;
-      padding-left: 0;
-
-      @media (max-width: $breakpoint-medium - 1) {
-        width: 100%;
-      }
-    }
-
-    .second-level-nav & {
-      border-bottom: 0;
-      padding-bottom: 0;
-      padding-top: 0;
-    }
-  }
-
-  .nav-tertiary__menu {
-    width: 85%;
-
-    .p-inline-list {
-
-      &__item {
+    &__links {
+      @media (max-width: $breakpoint-x-small - 1) {
         font-size: .875rem;
       }
 
-      &__link {
-        padding-left: $sp-medium;
+      @media (max-width: $breakpoint-navigation-threshold) {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        order: 2;
+
+        .p-navigation__dropdown-link {
+          flex: 1;
+          text-align: center;
+        }
       }
     }
 
-    @media (max-width: $breakpoint-medium - 1) {
-      .p-inline-list__item {
-        padding: 0 $sp-x-small 0 0;
+    &__dropdown-link {
+      &::after {
+        @media (max-width: $breakpoint-navigation-threshold) {
+          display: none;
+        }
       }
     }
 
-    @media (min-width: $breakpoint-medium) {
-      display: inline-block;
-      margin-left: 1.5rem;
-
-      .p-inline-list__item {
-        margin-right: .75rem;
+    &__search {
+      @media (max-width: $breakpoint-navigation-threshold) {
+        order: 1;
+        margin-top: $sp-medium !important;
       }
     }
 
-    @media (min-width: $breakpoint-large) {
+    &__link-anchor {
+      @media (max-width: $breakpoint-x-small - 1) {
+        padding-left: $grid-margin-width / 4 !important;
+        padding-right: $grid-margin-width / 4 !important;
+      }
+    }
 
-      .p-inline-list__item {
-        margin-right: 1.5rem;
+    .p-search-box {
+      @media (max-width: $breakpoint-x-small - 1) {
+        margin-left: $grid-margin-width / 1.5 !important;
+        margin-right: $grid-margin-width / 1.5 !important;
       }
     }
   }
 
-  .nav-secondary .p-inline-list__item {
-    white-space: normal;
+  .dropdown-window-overlay {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background-color: rgba(17,17,17, .4);
+    position: fixed;
+    z-index: 1;
   }
+
+  .dropdown-window {
+    background-color: $color-x-light;
+    box-shadow: 0 1px 32px 1px transparentize($color-dark, .8);
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    transition: all .75s;
+    z-index: 2;
+
+    &.slide-animation {
+      box-shadow: none;
+    }
+
+    .row {
+      padding-left: $grid-margin-width;
+      padding-right: $grid-margin-width;
+    }
+
+    &__content {
+      @extend %p-strip--very-shallow;
+      background-color: $color-x-light;
+      color: $color-dark;
+
+      &:last-child {
+        padding-bottom: $spv-inter--shallow-scaleable;
+      }
+    }
+
+    & .p-inline-list__item {
+      @extend %small-text-fixed;
+      // display: inline-block;
+      list-style-type: none;
+    }
+
+    &__summary {
+      @include p-max-width--long;
+      @extend %small-text-fixed;
+      margin-bottom: map-get($sp-after, small) * 2 + $p-small-lh-diff - $nudge--small;
+    }
+  }
+
+  .slide-animation {
+    transform: translateY(-100%);
+  }
+
+  .fade-animation {
+    opacity: 0;
+    transition-duration: .75s;
+    visibility: hidden;
+
+    .u-visible-nav & {
+      opacity: 1;
+      transform: none;
+      visibility: visible;
+    }
+  }
+}
+
+// XXX: move these to vanilla
+h1,
+.p-heading--one {
+  & + h2,
+  & + .p-heading--two {
+    margin-top: -2.5rem;
+  }
+}
+
+h2,
+.p-heading--two {
+  line-height: 3rem;
+}
+
+.p-card--navigation {
+  @extend %p-card;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.p-card--light {
+  @extend %has-round-corners;
+  @extend %bg--light;
+  @extend %p-card;
+  flex-direction: column;
+  margin-bottom: $spv-inter--condensed-scaleable;
+  padding: $spv-intra--scaleable - $px;
+  transition: all .2s;
+}
+
+.u-hide--nav-threshold-down {
+  @media (max-width: $breakpoint-navigation-threshold - 1) {
+    display: none !important;
+  }
+}
+
+.u-hide--nav-threshold-up {
+  @media (min-width: $breakpoint-navigation-threshold) {
+    display: none !important;
+  }
+}
+
+.p-logomark {
+    display: inline-block;
+    max-height: 4 * $sp-unit;
+    margin-right: $sph-intra--condensed;
+    margin-bottom: $spv-intra--scaleable;
+    position: relative;
+    top: .1rem;
+}
+
+.p-button--small {
+  @extend %small-text;
+  padding-top: $sp-unit * .5 + map-get($nudges, nudge--small);
+  padding-top: $sp-unit * .5 + map-get($nudges, nudge--small);
 }

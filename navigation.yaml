@@ -1,44 +1,43 @@
-cloud:
-  title: Cloud
-  path: /cloud
+openstack:
+  title: Openstack
+  path: /openstack
 
   children:
     - title: Overview
-      path: /cloud
-    - title: OpenStack
       path: /openstack
-    - title: Managed cloud
-      path: /cloud/managed-cloud
-    - title: Public cloud
-      path: /cloud/public-cloud
-    - title: Juju
-      path: /cloud/juju
+    - title: Consulting
+      path: /openstack/consulting
+    - title: Managed
+      path: /openstack/managed
+    - title: Developer
+      path: /openstack/developer
+    - title: Install
+      path: /openstack/install
     - title: Storage
-      path: /cloud/storage
+      path: /openstack/storage
     - title: Partners
-      path: /cloud/partners
-    - title: Foundation Cloud Build
-      path: /cloud/foundation-cloud
+      path: /openstack/partners
     - title: Training
-      path: /cloud/training
-    - title: Financial services
-      path: /financial-services
-    - title: Telcos
-      path: /telecommunications
-    - title: Security
-      path: /security
-
+      path: /openstack/training
     - title: Thank you
-      path: /cloud/newsletter-thank-you
+      path: /openstack/newsletter-thank-you
       hidden: True
     - title: Contact us
-      path: /cloud/contact-us
+      path: /openstack/contact-us
       hidden: True
 
       children:
         - title: Thank you
-          path: /cloud/thank-you
+          path: /openstack/thank-you
           hidden: True
+
+publiccloud:
+  title: Public cloud
+  path: /public-cloud
+
+  children:
+    - title: Overview
+      path: /public-cloud
 
 server:
   title: Server
@@ -47,15 +46,6 @@ server:
   children:
     - title: Overview
       path: /server
-    - title: Server provisioning
-      path: /server/maas
-      children:
-        - title: Contact us
-          path: /server/maas/contact-us
-          hidden: True
-        - title: Thank you
-          path: /server/maas/thank-you
-          hidden: True
     - title: Hyperscale
       path: /server/hyperscale
     - title: Livepatch
@@ -77,14 +67,10 @@ containers:
   children:
     - title: Overview
       path: /containers
-    - title: LXD
-      path: /containers/lxd
     - title: Kubernetes
       path: /kubernetes
     - title: Managed Kubernetes
       path: /kubernetes/managed
-    - title: Docker Engine
-      path: /containers/docker-ubuntu
 
     - title: Contact us
       path: /containers/contact-us
@@ -197,12 +183,6 @@ download:
       path: /download
     - title: Cloud
       path: /download/cloud
-      children:
-        - title: Try OpenStack
-          path: /download/cloud/try-openstack
-        - title: Build OpenStack
-          path: /download/cloud/build-openstack
-
     - title: IoT
       path: /download/iot
 
@@ -277,14 +257,6 @@ download:
     - title: Ubuntu flavours
       path: /download/ubuntu-flavours
 
-about:
-  title: About
-  path: /about
-
-  children:
-    - title: Overview
-      path: /about
-
 contact-us:
   title: Contact Canonical
   path: /contact-us
@@ -301,14 +273,6 @@ contact-us:
         - title: Thank you
           path: /contact-us/form/thank-you
           hidden: True
-
-eol:
-  title: Ubuntu release end of life
-  path: /info/release-end-of-life
-
-  children:
-    - title: Overview
-      path: /info/release-end-of-life
 
 legal:
   title: Legal

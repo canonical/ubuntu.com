@@ -1,5 +1,5 @@
 <div class="p-strip">
-  {% if level_2 != 'cloud' %}
+  {% if level_1 != 'openstack' %}
   <div class="row">
     <div class="col-12">
       <h2 >Get the version you need</h2>
@@ -8,7 +8,7 @@
   {% endif %}
   <div class="row p-divider">
     <div class="col-6 p-divider__block">
-      {% if level_2 == 'cloud' %}
+      {% if level_1 == 'openstack' %}
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
           <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}8a199d55-picto-articles-warmgrey.svg" />
@@ -20,14 +20,14 @@
           {% endif %}
       </div>
     </div>
-    <div class="col-6 p-divider__block last-col">
+    <div class="col-6 p-divider__block">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
           <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}be3876ec-picto-download-warmgrey.svg" />
           <h3 class="p-heading-icon__title"  style="font-size: 1.5rem;">Run Ubuntu in the public cloud</h3>
         </div>
           <p>Optimised Ubuntu images are already available on most major clouds. They are also available for download.</p>
-          <p><a href="https://cloud-images.ubuntu.com">Download standard Ubuntu Server cloud images&nbsp;&rsaquo;</a></p>
+          <p><a href="/download/cloud">Download standard Ubuntu Server cloud images&nbsp;&rsaquo;</a></p>
       </div>
     </div>
   </div>

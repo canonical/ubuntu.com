@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 //settings
+@import 'global-settings';
 @import 'settings_colors';
 
 // custom mixins
@@ -10,11 +11,12 @@
 @import 'vanilla-framework/scss/build';
 
 // vendor
-@import '../global-nav/src/sass/main';
-
+// @import '../global-nav/src/sass/main';
+@import 'pattern_global-nav';
+@import 'vanilla-placeholders';
+@include global-nav;
 // import site specific patterns and overrides
 @import 'pattern_buttons';
-@import 'pattern_site_search';
 @import 'pattern_sun-animation';
 @import 'pattern_navigation';
 @import 'pattern_strip';
@@ -26,6 +28,7 @@
 @import 'pattern_contribution';
 @import 'pattern_inline-images';
 @import 'pattern_testimonials';
+@import 'pattern_heading-icon';
 @import 'pattern_hero';
 @import 'pattern_pull_quotes';
 @import 'utility_full-width';
@@ -39,9 +42,9 @@
 @import 'pattern_table';
 @import 'pattern_tabs';
 @import 'takeovers/private_cloud_economics';
+@import 'pattern_feedback';
 
 @include ubuntu-p-buttons;
-@include ubuntu-p-site-search;
 @include ubuntu-p-navigation;
 @include ubuntu-p-strip;
 @include ubuntu-p-notification;
@@ -52,6 +55,7 @@
 @include ubuntu-p-contribute;
 @include ubuntu-p-inline-images;
 @include ubuntu-p-testimonials;
+@include ubuntu-p-heading-icon;
 @include ubuntu-p-hero;
 @include ubuntu-p-pull-quote;
 @include ubuntu-u-full-width;
@@ -66,6 +70,7 @@
 @include ubuntu-p-tables;
 @include ubuntu-p-tabs;
 @include p-takeover-private-cloud-economics;
+@include ubuntu-p-feedback;
 
 // Bug fixes
 // Each of the the rules below are bug fixes which need to be addressed further upstream
@@ -75,9 +80,19 @@
 // respective repos and referenced here, accompanied with a breif description of
 // the bug
 
-@media (min-width: $breakpoint-medium ) {
-  .p-navigation:target .p-navigation__toggle--close {
-    display: none !important; // specificity
+///XXX Redefine row width as vanilla is missing !default on the $grid-max-width var.
+.row {
+  max-width: 68rem;
+
+  // XXX Required for mobile nav to fit everything in
+  @media (max-width: $breakpoint-x-small - 1) {
+    padding-left: $grid-margin-width / 1.5 !important;
+    padding-right: $grid-margin-width / 1.5 !important;
+
+    .row {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
   }
 }
 
@@ -114,8 +129,7 @@ abbr[title] {
 }
 
 .p-heading--insights__title {
-  color: $color-dark;
-  font-size: $sp-medium;
+  @extend %vf-heading-5;
   font-weight: 300;
   text-transform: uppercase;
 
@@ -151,14 +165,6 @@ abbr[title] {
   list-style-type: disc;
 }
 
-// XXX orange quotes in pull quotes
-.p-pull-quote > p:first-of-type::before,
-.p-pull-quote--accent > p:first-of-type::before,
-.p-pull-quote > p:last-of-type::after,
-.p-pull-quote--accent > p:last-of-type::after {
-  color: $color-brand;
-}
-
 // XXX add to grahams section page when live
 // flex to flow charm list around
 .p-list-flex {
@@ -191,17 +197,6 @@ abbr[title] {
 .u-no-background--small {
   @media (max-width: $breakpoint-medium) {
     background-image: none !important;
-  }
-}
-
-/// XXX Muted icon headers
-.p-heading-icon {
-  &__img--small {
-    max-width: 30px;
-  }
-
-  &__title--muted {
-    color: $color-mid-dark;
   }
 }
 
@@ -267,29 +262,6 @@ p {
   }
 }
 
-// XXX Ant: 06.12.17 This can be removed when this is fixed
-// https://github.com/vanilla-framework/vanilla-framework/issues/1484
-
-.p-pagination {
-  &__previous {
-    text-align: left !important;
-
-    &:only-child {
-      &::after {
-        display: none;
-      }
-    }
-  }
-
-  &__next {
-    &:only-child {
-      &::before {
-        display: none;
-      }
-    }
-  }
-}
-
 // XXX Ant: 11.12.17 This can be removed when this is fixed
 // https://github.com/vanilla-framework/vanilla-framework/issues/1491
 .is-dark .p-button--base {
@@ -320,21 +292,6 @@ p + pre {
   margin-top: $sp-medium;
 }
 
-// XXX Caleb 06/02/2018 Modifier to Matrix pattern so images can be large
-.p-matrix {
-  &__img {
-    &-container {
-      min-height: 5rem;
-      padding: .5rem 0 1rem 0;
-    }
-
-    &--large {
-      @extend .p-matrix__img; // sass-lint:disable-line placeholder-in-extend
-      max-width: 100%;
-    }
-  }
-}
-
 .u-align--bottom {
   display: flex;
   align-items: flex-end !important;
@@ -355,4 +312,10 @@ p + pre {
     background-size: contain;
     background-position: left 70% top;
   }
+
+}
+
+// XXX Caleb: 26.02.18 Fix middot list wrapping issue
+.p-inline-list--middot > .p-inline-list__item {
+  white-space: nowrap;
 }
