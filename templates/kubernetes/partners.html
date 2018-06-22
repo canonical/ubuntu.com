@@ -4,13 +4,14 @@
 
 {% block content %}
 <section class="p-strip is-deep is-bordered">
-  <div class="row">
-    <h1>Canonical Kubernetes Partners</h1>
-  </div>
-  <div class="row">
+  <div class="row u-equal-height">
     <div class="col-8">
+      <h1>Canonical Kubernetes partners</h1>
       <p>It takes an open ecosystem to solve the diverse challenges of private cloud infrastructure across every sector and in every region. Our partners ensure that you have the widest range of capabilities available for automated integration in your Kubernetes on OpenStack cloud, and that you can get insight and support locally.</p>
       <p><a href="/openstack/partners">See our private cloud partner page&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 u-vertically-center">
+      <img src="{{ ASSET_SERVER_URL }}1c786630-image-cloud.svg" alt="">
     </div>
   </div>
 </section>
@@ -19,43 +20,60 @@
   <div class="row">
     <h2>Technology and product partners</h2>
   </div>
-  <div class="row u-equal-height u-vertically-spaced">
+  <div class="row u-vertically-spaced">
     <div class="col-8">
       <h3>Rancher Labs</h3>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-8">
       <p>Rancher provides a turn-key application delivery platform, built on Ubuntu and the Canonical Distribution of Kubernetes (CDK). Maximise developer velocity, integrate CI/CD, and ease the path from development into production with enterprise-calibre container management. Canonical delivers a cloud native platform in partnership with Rancher Labs.</p>
       <p><a class="p-button--neutral" href="https://www.brighttalk.com/webcast/6793/292819">Watch a webinar</a></p>
     </div>
-    <div class="col-4 u-vertically-center u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}8f442c65-rancher-logo-horiz-color.svg" alt="">
+    <div class="col-4 u-vertically-center u-align--center u-hide--small">
+      <img style="max-width: 210px;" src="{{ ASSET_SERVER_URL }}8f878ba0-rancher-logo-stacked-color.svg" alt="">
     </div>
   </div>
-  <div class="row u-equal-height u-vertically-spaced">
-    <div class="col-4 u-vertically-center u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}ba70dd8a-gce.png" alt="">
-    </div>
+  <div class="row u-vertically-spaced">
     <div class="col-8">
       <h3>In partnership with Google GKE</h3>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-8">
       <p>Google and Canonical together enable smooth hybrid operations between Google&rsquo;s Container Engine (GKE) service with Ubuntu worker nodes, and Canonical’s Distribution of Kubernetes®*. Choose Canonical&rsquo;s Kubernetes to be sure your container workloads can migrate to GKE thanks to our kernel-to-k8s alignment.</p>
       <p><a class="p-button--neutral" href="https://cloud.google.com/kubernetes-engine/docs/concepts/node-images#ubuntu">Try GKE with Ubuntu now</a></p>
     </div>
+    <div class="col-4 u-vertically-center u-align--center u-hide--small">
+      <img style="max-width: 250px;" src="{{ ASSET_SERVER_URL }}ba70dd8a-gce.png" alt="">
+    </div>
   </div>
-  <div class="row u-equal-height u-vertically-spaced">
+  <div class="row u-vertically-spaced">
     <div class="col-8">
       <h3>JFrog Artifactory</h3>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-8">
       <p>JFrog Artifactory is the enterprise-ready Kubernetes registry fully integrated with both Rancher and the Canonical Distribution of Kubernetes (CDK). Long known to developers, Artifactory provides the governance, audit capability and artifact management. Canonical partners with JFrog to integrate CDK with a single point and click installation using conjure-up.</p>
       <p><a class="p-button--neutral" href="https://blog.ubuntu.com/2018/04/12/jfrog-artifactory-and-canonicals-distribution-of-kubernetes">Watch the webinar</a></p>
     </div>
-    <div class="col-4 u-vertically-center u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}45012d4e-jfrog.png" alt="">
+    <div class="col-4 u-vertically-center u-align--center u-hide--small">
+      <img style="max-width: 170px;" src="{{ ASSET_SERVER_URL }}45012d4e-jfrog.png" alt="">
     </div>
   </div>
 </section>
 
 <section class="p-strip">
-  <div class="row">
-    <h2>Become a cloud partner</h2>
-    <p>To learn more about becoming a Canonical Kubernetes partner, please contact us today.</p>
-    <p><a class="p-button--neutral" href="/partners/contact-us">Get in touch</a> or <a href="https://partners.ubuntu.com/partnering-with-us">learn more about partnering with us&nbsp;&rsauo;</a></p>
+  <div class="row u-equal-height">
+    <div class="col-4 u-align--center">
+      <img src="{{ ASSET_SERVER_URL }}2cc56cf9-picto-partner-midaubergine.svg" width="160" height="160" alt="">
+    </div>
+    <div class="col-8">
+      <h2>Become a cloud partner</h2>
+      <p>To learn more about becoming a Canonical Kubernetes partner, please contact us today.</p>
+      <p><a class="p-button--neutral" href="/partners/contact-us">Get in touch</a> or <a href="https://partners.ubuntu.com/partnering-with-us">learn more about partnering with us&nbsp;&rsauo;</a></p>
+    </div>
   </div>
 </section>
 
