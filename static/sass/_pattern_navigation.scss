@@ -137,7 +137,6 @@
         background-color: darken($nav-bg-color, 3%);
         color: $color-x-light;
       }
-
     }
 
     & &__row {
@@ -145,6 +144,7 @@
 
       &.row {
         @media (max-width: $breakpoint-x-small) {
+          display: block;
           padding-left: 0 !important;
           padding-right: 0 !important;
         }
@@ -402,7 +402,13 @@
       color: $color-dark;
 
       &:last-child {
-        padding-bottom: $spv-inter--shallow-scaleable;
+        padding-bottom: $spv-inter--shallow-scaleable / 1.5;
+      }
+
+      @media (max-width: $breakpoint-x-small - 1) {
+        .p-inline-list--middot.is-x-dense {
+          margin-bottom: .3rem;
+        }
       }
     }
 
@@ -483,6 +489,7 @@ h2,
 .p-logomark {
     display: inline-block;
     max-height: 4 * $sp-unit;
+    max-width: 4 * $sp-unit;
     margin-right: $sph-intra--condensed;
     margin-bottom: $spv-intra--scaleable;
     position: relative;
