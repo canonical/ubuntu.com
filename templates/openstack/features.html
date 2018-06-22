@@ -14,9 +14,9 @@
     </div>
     <div class="row">
       <div class="col-8">
-        <p class="p-muted-heading" style="margin-bottom: 1.5rem; border-left: 3px solid #e95420; padding-left: 1rem;">No snowflakes</p>
+        <p class="p-heading--five u-sv2">No snowflakes</p>
         <p>Canonical&rsquo;s OpenStack on Ubuntu gives you the flexibility to place your OpenStack services exactly where you want them, while sharing all the operational code with a large community.</p>
-        <p>No forks. No hacks. No snowflakes.</p>
+        <p class="p-heading--five">No forks. No hacks. No snowflakes.</p>
         <p><a href="/openstack/contact-us" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact Us for OpenStack insights', 'eventLabel' : 'Contact Us for OpenStack insights - Top CTA', 'eventValue' : undefined });" class="p-button--positive">Contact Us for OpenStack insights</a></p>
       </div>
     </div>
@@ -30,7 +30,7 @@
         </header>
         <p>With SR-IOV for line-rate VNFs and CI/CD for dynamic cloud operations, our <a href="/telecommunications">telco reference architecture</a> for OpenStack meets both regulatory and operational requirements for highly automated telco infrastructure.</p>
         <p>Move beyond single-VNF clouds or NEP-specific clouds, and create a general platform for cost-effective network operations across vendors.</p>
-        <p><a href="https://blog.ubuntu.com/2017/12/02/cloud-to-edge-building-the-software-defined-telco-infrastructure" class="p-button--positive">Watch the webinar</a></p>
+        <p><a href="https://blog.ubuntu.com/2017/12/02/cloud-to-edge-building-the-software-defined-telco-infrastructure">Watch the Cloud to Edge webinar&nbsp;&rsaquo;</a></p>
       </article>
       <article class="col-6 p-card">
         <header class="p-card__header">
@@ -39,7 +39,7 @@
         <p>Isolate critical services for <a href="/security">high security OpenStack</a> with simplified audit and compliance assessments.</p>
         <p>Building and operating OpenStack for financial services enables us to address EU and US regulatory requirements.</p>
         <p>Private cloud infrastructure on Ubuntu is part of the fintech revolution, from blockchain to digital transformation.</p>
-        <p><a href="/financial-services" class="p-button--positive">Learn more</a></p>
+        <p><a href="/financial-services">Learn more about Ubuntu and financial services&nbsp;&rsaquo;</a></p>
       </article>
     </div>
     <div class="row u-equal-height">
@@ -49,7 +49,7 @@
         </header>
         <p>Hyper-converged storage and compute ensure maximum cost effectiveness for large-scale media processing, transcoding, digital workflows and storage.</p>
         <p>Kubernetes on top provides a high-performance workload operations regime with direct access to underlying media content.</p>
-        <p><a href="https://blog.ubuntu.com/2017/03/27/job-concurrency-in-kubernetes-lxd-cpu-pinning-to-the-rescue" class="p-button--positive">Learn more</a></p>
+        <p><a href="https://blog.ubuntu.com/2017/03/27/job-concurrency-in-kubernetes-lxd-cpu-pinning-to-the-rescue">Read about job concurrency in Kubernetes&nbsp;&rsaquo;</a></p>
       </article>
       <article class="col-6 p-card">
         <header class="p-card__header">
@@ -58,7 +58,7 @@
         <p>GPGPU acceleration of AI and machine learning workloads on OpenStack requires careful configuration of the underlying hardware and host OS. Canonical&rsquo;s Ubuntu is the leading platform for public cloud GPGPU instances and Canonical offers private cloud expertise to match.</p>
         <p>Build a GPGPU cluster and share it with multiple tenants using Canonical OpenStack &mdash; then operate Kubernetes on top for HPC and high-throughput AI / ML data science.</p>
         <p>Private cloud infrastructure on Ubuntu is part of the fintech revolution, from blockchain to digital transformation.</p>
-        <p><a href="/ai" class="p-button--positive">Learn more</a></p>
+        <p><a href="/ai">Learn about developing AI models with Ubuntu&nbsp;&rsaquo;</a></p>
       </article>
     </div>
   </section>
@@ -67,8 +67,16 @@
     <div class="row">
       <div class="col-8">
         <h2>VMware migration</h2>
-        <p>Migrate your existing VMs to Canonical OpenStack &mdash; quickly and cost-effectively. Canonical provides workload analysis and migration services. Not every workload is best run on a cloud, but 80-90% of enterprise workloads can move to OpenStack easily, and are much more cost-effective to run there.</p>
+      </div>
+    </div>
+    <div class="row u-equal-height">
+      <div class="col-8">
+        <p class="p-heading--four">Migrate your existing VMs to Canonical OpenStack &mdash; quickly and cost-effectively.</p>
+        <p>Canonical provides workload analysis and migration services. Not every workload is best run on a cloud, but 80-90% of enterprise workloads can move to OpenStack easily, and are much more cost-effective to run there.</p>
         <p>The main driver for most OpenStack cloud deployments is the cost benefit of a leaner and more open IAAS. Canonical OpenStack also offers a range of cloud services, and compatibility with multi-cloud operations tools. While legacy virtualisation continues to be important, the future is cloud APIs and container-based operations, which Canonical OpenStack delivers.</p>
+      </div>
+      <div class="col-4 u-hide--small u-align--center u-vertically-center">
+        <img src="{{ ASSET_SERVER_URL }}e96658e8-transfer_4px.svg" alt="" />
       </div>
     </div>
   </section>
@@ -82,21 +90,18 @@
       </div>
     </div>
   </section>
-  <section class="p-strip is-bordered u-no-padding--top">
-    <div class="row u-equal-height">
-      <div class="col-3 u-hide--small u-vertically-center">
-        <img src="{{ ASSET_SERVER_URL }}492c3237-Yahoo_Japan_Logo.png" alt="" />
-      </div>
+  <section class="p-strip u-no-padding--top">
+    <div class="row">
       <div class="col-9">
         <h3>Model-driven operations deliver true open source automation</h3>
         <p>In traditional automation environments like Ansible, Chef and Puppet, your architectural choices are hard-coded in the configuration management system. That means two different companies who need two different architectures cannot really share ops code. Every environment becomes its own unique snowflake. That&rsquo;s expensive.</p>
-        <p>With Canonical&rsquo;s approach to OpenStack:</p>
-        <ul class="p-list--divided">
-          <li class="p-list__item">Operational code is shared across different architectures</li>
-          <li class="p-list__item">Upgrades are guaranteed for every OpenStack version</li>
-          <li class="p-list__item">Security improves for every deployment at the same time</li>
-          <li class="p-list__item">Third-party integrations are shared as soon as they are ready</li>
-          <li class="p-list__item">Daily operations are fully automated</li>
+        <p class="p-heading--five">With Canonical&rsquo;s approach to OpenStack:</p>
+        <ul class="p-list--divided is-split">
+          <li class="p-list__item is-ticked">Operational code is shared across different architectures</li>
+          <li class="p-list__item is-ticked">Upgrades are guaranteed for every OpenStack version</li>
+          <li class="p-list__item is-ticked">Security improves for every deployment at the same time</li>
+          <li class="p-list__item is-ticked">Third-party integrations are shared as soon as they are ready</li>
+          <li class="p-list__item is-ticked">Daily operations are fully automated</li>
         </ul>
         <p>You don&rsquo;t need to hire a large team that follows every aspect of OpenStack development. Just focus on high-level operations and your business workloads.</p>
         <p><a href="https://pages.ubuntu.com/stuckstack_webinar_upgrades_register.html" class="p-link--external">Watch our OpenStack Upgrade webinar</a></p>
@@ -104,17 +109,17 @@
     </div>
   </section>
 
-  <section class="p-strip is-bordered">
+  <section class="p-strip is-bordered u-no-padding--top">
     <div class="row">
       <div class="col-8">
         <h3>Total automation of bare metal infrastructure</h3>
         <p>Running private clouds means taking responsibility for physical infrastructure. Ubuntu OpenStack uses MAAS, the leading open source software-defined-data-center system and open source IPAM, to automate commissioning, allocation, provisioning and secure recycling of every server in the DC.</p>
       </div>
     </div>
-    <div class="row u-equal-height">
+    <div class="row">
       <div class="col-9">
-        <h4>MAAS enables multi-vendor and multi-OS data center operations:</h4>
-        <ul class="p-list">
+        <h4 class="p-heading--five">MAAS enables multi-vendor and multi-OS data center operations:</h4>
+        <ul class="p-list--divided is-split">
           <li class="p-list__item is-ticked">IPMI Board and Chassis Management Controllers</li>
           <li class="p-list__item is-ticked">HP, Dell, Supermicro, Quanta, Lenovo and others</li>
           <li class="p-list__item is-ticked">Cisco UCS, Open Compute Foundation, Intel RSD</li>
@@ -134,9 +139,6 @@
         <p>Open source, with contributions from many companies. MAAS is used for bare metal operations in high performance computing, finance, gaming, telco edge and core, and many other sectors.</p>
         <p><a href="https://maas.io" class="p-button--positive"><span class="p-link--external">Discover MAAS</span></a></p>
       </div>
-      <div class="col-3 u-hide--small u-align--center u-vertically-center">
-        <img src="{{ ASSET_SERVER_URL }}c26cade5-1024px-BNP_Paribas.svg1_.png" alt="" />
-      </div>
     </div>
   </section>
 
@@ -147,10 +149,7 @@
         <p>Canonical leads the world in containerising the OpenStack control plane, enabling ultra-efficient placement of OpenStack services alongside guest compute and storage, reducing the overhead of your OpenStack cloud.</p>
       </div>
     </div>
-    <div class="row u-equal-height">
-      <div class="col-4 u-vertically-center u-align--center u-hide--small">
-        <img src="{{ ASSET_SERVER_URL }}d424d305-Tesco_Logo.svg" alt="" />
-      </div>
+    <div class="row">
       <div class="col-8">
         <ul class="p-list--divided">
           <li class="p-list__item"><strong>A containerised control plane</strong> means that OpenStack services are deployed in containers rather than dedicated machines, which reduces the number of machines required in smaller cloud environments and puts more of the machinery to work for guests and tenants.</li>
@@ -158,10 +157,6 @@
           <li class="p-list__item"><strong>Isolated service</strong> architectures use dedicated machines for specific OpenStack functions, such as messaging, databases and API services, providing simpler guarantees of service levels in cloud functions and simpler security and compliance and audits.</li>
           <li class="p-list__item"><strong>VIP-HA</strong> architectures enable almost instant failover of critical front-end API services but require those services to reside on a single physical network segment. <strong>DNS-HA</strong> methodologies use short-lived TTL DNS record updates to redirect users to backup API endpoints in the event of failure, with some delays to service recovery but more flexibility of placement and routing for large-scale environments.</li>
         </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8">
         <p>Our consulting and design services will help you choose the right mix of these capabilities for the particular stage and scale of your private cloud journey; having built hundreds of private clouds, we’re well placed to advise on the tradeoffs and steer you to the right architecture. Perhaps most importantly, though, we can evolve OpenStack deployments over a series of iterations as your needs change, which keeps your options open.</p>
       </div>
     </div>
@@ -178,21 +173,22 @@
     <div class="row">
       <div class="col-8">
         <p>Understanding compute price/performance in a cloud environment is non-trivial. Multiple factors shape cloud performance and efficiency - from your choice of architecture, networking, storage and ultimately the hardware you build it on. Canonical has built enough clouds to provide deep insights into your architecture for utilisation and performance.</p>
-        <ul class="p-list--divided">
-          <li class="p-list__item">How to select boards and CPUs for total throughput</li>
-          <li class="p-list__item">Assess RAM, disk and network performance impacts</li>
-          <li class="p-list__item">Integrate GPGPU, FPGA and other accelerators</li>
-          <li class="p-list__item">Offload functions to specialised NIC and storage systems</li>
-          <li class="p-list__item">Assess and raise the level of server utilisation</li>
-          <li class="p-list__item">Balance compute load in the cloud</li>
-          <li class="p-list__item">Optimise for specific workloads</li>
-          <li class="p-list__item">Assess overcommit ratios</li>
-          <li class="p-list__item">Specify instance types</li>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <ul class="p-list is-split">
+          <li class="p-list__item is-ticked">How to select boards and CPUs for total throughput</li>
+          <li class="p-list__item is-ticked">Assess RAM, disk and network performance impacts</li>
+          <li class="p-list__item is-ticked">Integrate GPGPU, FPGA and other accelerators</li>
+          <li class="p-list__item is-ticked">Offload functions to specialised NIC and storage systems</li>
+          <li class="p-list__item is-ticked">Assess and raise the level of server utilisation</li>
+          <li class="p-list__item is-ticked">Balance compute load in the cloud</li>
+          <li class="p-list__item is-ticked">Optimise for specific workloads</li>
+          <li class="p-list__item is-ticked">Assess overcommit ratios</li>
+          <li class="p-list__item is-ticked">Specify instance types</li>
         </ul>
         <p>Economics are the ultimate measure of effectiveness in the modern compute substrate; your private cloud has to be as efficient as your public clouds or it won’t attract internal workloads.</p>
-      </div>
-      <div class="col-4 u-hide--small">
-        <img src="{{ ASSET_SERVER_URL }}f9832168-AstraZeneca.png" alt="" />
       </div>
     </div>
   </section>
@@ -203,7 +199,11 @@
         <h3>Kubernetes fits perfectly on top of OpenStack, and VMware and MAAS Bare Metal</h3>
         <p>There’s no doubt that Kubernetes is the new standard operational layer for every multi-cloud business. Canonical enables K8s on demand for your devops teams - on OpenStack, on VMware, on public clouds, and on bare metal clusters with MAAS.</p>
         <p>Deliver ‘Containers as a Service’ across the enterprise with Canonical’s Distribution of Kubernetes (CDK) which enables each project to spin up a standardised K8s of arbitrary scale, on demand, with centralised operational control.</p>
-        <ul class="p-list">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <ul class="p-list is-split">
           <li class="p-list__item is-ticked">Multi-cloud workload portability thanks to Ubuntu</li>
           <li class="p-list__item is-ticked">Same Ubuntu OS and kernel as Google, Azure, AWS k8s offerings</li>
           <li class="p-list__item is-ticked">PCI device passthrough for GPGPU, FPGA and SR-IOV workloads</li>
@@ -232,15 +232,15 @@
     <div class="row">
       <div class="col-6">
         <p>Storage performance and economics are tricky to balance in a cloud environment. Canonical will help you architect your storage across the cluster to balance price and performance, ensuring the right mix of resilience, latency, iops and integrity for your particular deployment.</p>
-        <ul class="p-list--divided">
-          <li class="p-list__item">Mix of local direct-attach and network storage</li>
-          <li class="p-list__item">Distributed software-defined storage vs SAN assessment</li>
-          <li class="p-list__item">Performance tuning for local and network storage</li>
-          <li class="p-list__item">Understanding storage compression</li>
-          <li class="p-list__item">Understanding storage resilience</li>
-          <li class="p-list__item">Third-party storage solutions available for integration</li>
-          <li class="p-list__item">Object stores and other higher-level storage constructs</li>
-          <li class="p-list__item">Hierarchical storage configurations</li>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Mix of local direct-attach and network storage</li>
+          <li class="p-list__item is-ticked">Distributed software-defined storage vs SAN assessment</li>
+          <li class="p-list__item is-ticked">Performance tuning for local and network storage</li>
+          <li class="p-list__item is-ticked">Understanding storage compression</li>
+          <li class="p-list__item is-ticked">Understanding storage resilience</li>
+          <li class="p-list__item is-ticked">Third-party storage solutions available for integration</li>
+          <li class="p-list__item is-ticked">Object stores and other higher-level storage constructs</li>
+          <li class="p-list__item is-ticked">Hierarchical storage configurations</li>
         </ul>
         <p><a href="/openstack/storage" class="p-button--positive">Discover Ubuntu Advantage Storage</a></p>
       </div>
@@ -275,6 +275,23 @@
     </div>
     <div class="row">
       <div class="col-6">
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Impact of switch architecture choices on cloud performance</li>
+          <li class="p-list__item is-ticked">Latency measurement across distributed clusters</li>
+          <li class="p-list__item is-ticked">SR-IOV and function off-loading on cloud NICs</li>
+          <li class="p-list__item is-ticked">NFV implications of particular hardware selections</li>
+          <li class="p-list__item is-ticked">Underlay networking architecture design</li>
+          <li class="p-list__item is-ticked">Underlay network security design implications</li>
+          <li class="p-list__item is-ticked">IPAM and DNS for underlay networks</li>
+          <li class="p-list__item is-ticked">Tenant network router options and optimisation</li>
+          <li class="p-list__item is-ticked">VLAN, OVS and Tungsten Fabric tenant networking</li>
+          <li class="p-list__item is-ticked">Cisco ACI, Juniper Contrail and other proprietary SDN options</li>
+          <li class="p-list__item is-ticked">Company firewall operations for private clouds</li>
+          <li class="p-list__item is-ticked">BGP route propagation from OpenStack tenants</li>
+          <li class="p-list__item is-ticked">MPLS integration for telco environments</li>
+        </ul>
+      </div>
+      <div class="col-6">
         <ul class="p-inline-images">
           <li class="p-inline-images__item">
             <img src="{{ ASSET_SERVER_URL }}4d6054f9-logo-cisco.svg" alt="Cisco">
@@ -293,23 +310,6 @@
           </li>
         </ul>
       </div>
-      <div class="col-6">
-        <ul class="p-list--divided">
-          <li class="p-list__item">Impact of switch architecture choices on cloud performance</li>
-          <li class="p-list__item">Latency measurement across distributed clusters</li>
-          <li class="p-list__item">SR-IOV and function off-loading on cloud NICs</li>
-          <li class="p-list__item">NFV implications of particular hardware selections</li>
-          <li class="p-list__item">Underlay networking architecture design</li>
-          <li class="p-list__item">Underlay network security design implications</li>
-          <li class="p-list__item">IPAM and DNS for underlay networks</li>
-          <li class="p-list__item">Tenant network router options and optimisation</li>
-          <li class="p-list__item">VLAN, OVS and Tungsten Fabric tenant networking</li>
-          <li class="p-list__item">Cisco ACI, Juniper Contrail and other proprietary SDN options</li>
-          <li class="p-list__item">Company firewall operations for private clouds</li>
-          <li class="p-list__item">BGP route propagation from OpenStack tenants</li>
-          <li class="p-list__item">MPLS integration for telco environments</li>
-        </ul>
-      </div>
     </div>
   </section>
 
@@ -322,12 +322,12 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <img src="https://assets.ubuntu.com/v1/9f6916dd-k8s-prometheus-light.png" alt="" />
+        <img src="{{ ASSET_SERVER_URL }}9f6916dd-k8s-prometheus-light.png" alt="" />
       </div>
     </div>
     <div class="row">
       <div class="col-8">
-        <p>These dashboards can be customised or integrated into existing monitoring systems at your business.</p>
+        <h6>These dashboards can be customised or integrated into existing monitoring systems at your business.</h6>
         <p><a href="/openstack/contact-us" class="p-button--positive">Contact Canonical about OpenStack</a></p>
       </div>
     </div>
