@@ -22,6 +22,10 @@ navDropdowns.forEach(function(dropdown) {
         } else {
           dropdown.classList.add('is-selected');
           dropdownContent.classList.remove('fade-animation', 'u-hide');
+
+          if (window.history.pushState) {
+            window.history.pushState(null, null, '#' + dropdown.id);
+          }
         }
       } else {
         dropdown.classList.remove('is-selected');
@@ -86,4 +90,14 @@ function closeMenu(dropdown, dropdownContent) {
   dropdownWindow.classList.add('slide-animation');
   dropdownWindowOverlay.classList.add('fade-animation');
   dropdownContent.classList.add('fade-animation');
+  if (window.history.pushState) {
+    window.history.pushState(null, null, window.location.href.split('#')[0]);
+  }
+}
+
+if (window.location.hash) {
+  var tabId = window.location.hash.split('#')[1];
+  var tabContent = document.getElementById(tabId + '-content');
+
+  document.getElementById(tabId).click();
 }
