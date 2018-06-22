@@ -4,99 +4,108 @@
 {% block meta_description %}Ubuntu OpenStack is the fastest, easiest and most robust way to build your cloud - and it includes a suite of tools to help you build and manage it.{% endblock meta_description %}
 
 {% block content %}
-<section class="p-strip is-deep is-bordered">
+<section class="p-strip--light is-deep is-bordered">
   <div class="row">
-    <div class="col-7">
-      <h1>The number one OpenStack</h1>
+    <div class="col-8">
+      <h1>OpenStack, Delivered</h1>
+      <p>Canonical designs, builds, operates and supports OpenStack private clouds on Ubuntu. We understand the importance of certainty, stability, performance and economic efficiency for private cloud infrastructure.</p>
+    </div>
+    <div class="col-4">
+      <img src="{{ ASSET_SERVER_URL }}c5838368-openstack-cloud.png" alt="" />
     </div>
   </div>
   <div class="row">
-    <div class="col-7 suffix-1">
-      <p>As the number one platform for OpenStack and also the number one  platform for public clouds, Canonical provides consulting, training, enterprise support and remote operations, to help you focus on what matters most &mdash; your applications, not the infrastructure.</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Ubuntu is the most widely used Linux distribution for OpenStack</li>
-        <li class="p-list__item is-ticked">AT&amp;T, Bloomberg, Paypal, eBay, Sky and Walmart build OpenStack with Canonical on Ubuntu</li>
-        <li class="p-list__item is-ticked">Ongoing operations like upgrading OpenStack are simplified with Canonical&rsquo;s reference architecture</li>
-        <li class="p-list__item is-ticked">BootStack is a fully managed OpenStack cloud, on your hardware, in your data center, by Canonical</li>
-        <li class="p-list__item is-ticked">Foundation Cloud Build includes set-up, design, architecture and training in one package by Canonical</li>
-      </ul>
-      <p><a href="/openstack/install" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Openstack', 'eventLabel' : 'Install OpenStack ', 'eventValue' : undefined });">Install OpenStack</a></p>
-
+    <div class="col-8">
+      <p>Choose your OpenStack package:</p>
     </div>
-    <div class="col-4">
-      {% include "openstack/shared/_openstack-pie-chart.html" %}
+  </div>
+    {% include "shared/pricing/_openstack-consulting.html" %}
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Migrate from VMware to OpenStack with Canonical</h2>
+      <p>Fully open source and automated infrastructure as a service delivers dramatic cost and agility improvements for private data centers. Canonical manages the complexity to deliver OpenStack on rails &mdash; automated operations, flexible architectures and the world&rsquo;s most popular cloud operating system, Ubuntu.</p>
+    </div>
+    <div class="col-4 u-vertically-center">
+      <img src="{{ ASSET_SERVER_URL }}86914194-halfcostgraph.svg" alt="" width="250px" />
+    </div>
+  </div>
+</section>
+<section class="p-strip u-no-padding--top is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">Save 50% over VMware with fully managed OpenStack</li>
+        <li class="p-list__item is-ticked">Cloud infrastructure provides developer self-service agility</li>
+        <li class="p-list__item is-ticked">Architecture flexibility supports wide range of sector needs</li>
+        <li class="p-list__item is-ticked">Ubuntu is the infrastructure leader for large-scale Linux operations</li>
+        <li class="p-list__item is-ticked">Workload analysis, migration plan and automation</li>
+        <li class="p-list__item is-ticked">GPGPU and FPGA pass-through for workload acceleration</li>
+        <li class="p-list__item is-ticked">Integrated Kubernetes offering for modern application ops</li>
+        <li class="p-list__item is-ticked">Optimised KVM for high performance and security</li>
+        <li class="p-list__item is-ticked">Scale from one to hundreds of racks</li>
+      </ul>
+      <p><a href="/engage/vmware-to-openstack">Move from VMware to OpenStack&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light is-deep is-bordered">
+<section class="p-strip is-bordered">
   <div class="row">
-    <div class="col-6">
-      <h2>All things OpenStack</h2>
-      <p>Ubuntu is the platform of choice for most production OpenStack clouds, with Canonical providing consulting, training, support and fully managed cloud services for many of the world&rsquo;s leading companies.</p>
+    <div class="col-10">
+      <h2 style="max-width: none;">Home is where the multi-cloud operation starts</h2>
     </div>
-    <div class="col-6 u-vertically-center">
-      <img src="{{ ASSET_SERVER_URL }}314085ad-openstack.svg" alt="" class="u-align--center u-hide--small" width="400">
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-5 u-vertically-center u-hide--small">
+      <div>
+        <div class="u-align--center u-sv2">
+          <img src="{{ ASSET_SERVER_URL }}95212c08-OpenStack_Logo_2016.svg" alt="" width="220px" />
+        </div>
+        <cite>Canonical drives down the cost of OpenStack with fully managed private cloud services.</cite>
+      </div>
+    </div>
+    <div class="col-7">
+      <p>Your multi-cloud strategy depends on having competing public clouds and a cost-effective private cloud. Ubuntu is an essential ingredient of any successful multi-cloud strategy.</p>
+      <p>Our deep relationships with all major public cloud vendors ensure that Ubuntu is the most optimised OS on all public clouds. Ubuntu is also the number one operating system used for OpenStack deployments. That makes it a perfect platform for multi-cloud operations.</p>
+      <p>Analysts found that Canonical delivers the <a href="/engage/cloud-economics">most efficient infrastructure as a service on-premise</a>. This, together with neutral public cloud expertise, makes us the right partner for the move to cloud computing. We provide consulting, training, support and fully managed private cloud services for many of the world’s leading companies.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-7">
+      <h2>Fully managed OpenStack &ndash; maintain your business focus</h2>
     </div>
   </div>
   <div class="row">
+    <div class="col-7">
+      <p>Canonical operates many private OpenStack clouds on behalf of customers, enabling them to get the benefits of OpenStack while focusing their team on business workloads rather than infrastructure.</p>
+      <p>This is the fast way to validate the economic case for OpenStack; you don&rsquo;t need new staff or skills, just allocate the hardware and engage Canonical manage the OpenStack. Once you have established devops engagement with your cloud, and once you have proven the economics of private cloud, you can invest in the skills and time to operate it yourself.</p>
+      <p>BootStack is a &rsquo;build, operate, transfer, support&lsquo; service that allows you to take control of your own cloud at any time. All Openstack and operational components deployed are open source.</p>
+    </div>
+    <div class="col-5 u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}450d7c2f-openstack-hero.svg" alt="" />
+    </div>
+  </div>
+</section>
+<section class="p-strip--light is-bordered u-no-padding--top">
+  <div class="row">
     <div class="col-12">
-      <ul class="p-matrix is-trisected">
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title p-heading--five">Fully managed cloud service</h3>
-            <div class="p-matrix__desc">
-              <p>Let us take full operational control of your cloud remotely with our BootStack service &mdash; the fastest path to a private production OpenStack cloud.</p>
-              <p><a href="/openstack/managed">Learn more about BootStack&nbsp;&rsaquo;</a></p>
-            </div>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title p-heading--five">Consulting packages</h3>
-            <div class="p-matrix__desc">
-              <p>With Foundation Cloud Build, we will build you a fixed-price cloud on your premises, with a proven reference architecture in 3 weeks.</p>
-              <p><a href="/openstack/consulting">Learn more about our consulting packages&nbsp;&rsaquo;</a></p>
-            </div>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title p-heading--five">Install now</h3>
-            <div class="p-matrix__desc">
-              <p>Spin up OpenStack or Kubernetes with conjure-up on a single laptop or on many racks.</p>
-              <p><a href="/openstack/install">Download&nbsp;&rsaquo;</a></p>
-            </div>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title p-heading--five">Automate physical servers</h3>
-            <div class="p-matrix__desc">
-              <p>Turn your data center into a physical cloud with MAAS bare-metal provisioning. On premises, open source and supported.</p>
-              <p><a class="p-link--external" href="https://maas.io/">Learn more about MAAS</a></p>
-            </div>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title p-heading--five">Use Ubuntu on certified public clouds</h3>
-            <div class="p-matrix__desc">
-              <p>Ubuntu is the leading cloud guest OS, running most workloads in public clouds today.</p>
-              <p><a href="/download/server">Get started with Ubuntu server&nbsp;&rsaquo;</a></p>
-            </div>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title p-heading--five">Model and deploy with Juju</h3>
-            <div class="p-matrix__desc">
-              <p>Hundreds of services and pre-configured applications available for single‐command deployment to any cloud.</p>
-              <p><a class="p-link--external" href="https://jujucharms.com/">Get started with Juju</a></p>
-            </div>
-          </div>
-        </li>
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">Jointly shape the architecture</li>
+        <li class="p-list__item is-ticked">We help you plan your cloud hardware requirements</li>
+        <li class="p-list__item is-ticked">We build OpenStack in your data center</li>
+        <li class="p-list__item is-ticked">We operate the cloud to an SLA</li>
+        <li class="p-list__item is-ticked">Transparent audit, logging, monitoring and management</li>
+        <li class="p-list__item is-ticked">When your team is ready, we&rsquo;ll hand over the keys</li>
       </ul>
+      <p><a href="/openstack/managed">Build, operate, transfer and support for OpenStack&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
@@ -105,95 +114,60 @@
   {% include "openstack/shared/_openstack_clients.html" %}
 </section>
 
-<section class="p-strip--light is-deep is-bordered">
-  {% include "shared/_resources_openstack.html"%}
-</section>
-
-<section class="p-strip is-deep is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>Install OpenStack now</h2>
-      <p>Use <a href="https://conjure-up.io/" class="p-link--external">conjure-up</a> to quickly deploy OpenStack on a single laptop using LXD containers, ideal for first-time users or developers. You can use the same tool with <a href="https://maas.io/" class="p-link--external">MAAS</a> to operate on racks of bare metal, or OpenStack, or VMware.</p>
-      <p><a href="/openstack/install">Install OpenStack&nbsp;&rsaquo;</a></p>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-7 suffix-1">
+      <h2>Real architectural flexibility, no snowflakes allowed</h2>
+      <p>Every business is different, and every sector faces unique constraints. That creates real reasons to have your own OpenStack architecture. At the same time, reinventing all of the operations for a large open source codebase makes no sense. Canonical encodes operations in a way that is shared across all our customers, while retaining the ability to craft the architecture that’s right for a particular deployment. This is why Canonical can consistently and repeatedly beat the competition on delivery and flexibility for OpenStack, and why Canonical leads on day-2 operations such as upgrades and scaling for the private cloud.</p>
+    </div>
+    <div class="col-5 u-vertically-center">
+        <object wmode="transparent" class="bundle-card__bundle-image" type="image/svg+xml" data="https://api.jujucharms.com/charmstore/v5/bundle/openstack-base-55/diagram.svg" width="100%"></object>
     </div>
   </div>
+</section>
+<section class="p-strip is-bordered u-no-padding--top">
   <div class="row">
     <div class="col-12">
-      <div class="u-embedded-media">
-        <iframe class="u-embedded-media__element" src="https://player.vimeo.com/video/202448226?color=ffffff&amp;title=0&amp;byline=0&amp;portrait=0" frameborder="0" allowfullscreen></iframe>
-      </div>
+      <h3 class="p-heading--four">Canonical&rsquo;s OpenStack is uniquely flexible and enjoys the widest ecosystem support of any OpenStack offering</h3>
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">Flexible placement of services across the cluster</li>
+        <li class="p-list__item is-ticked">Multiple high availability strategies for different scenarios</li>
+        <li class="p-list__item is-ticked">Operations such as upgrades are independent of architecture</li>
+        <li class="p-list__item is-ticked">Common operations code across all customer deployments</li>
+        <li class="p-list__item is-ticked">Containerised control plan or isolated services, your choice</li>
+        <li class="p-list__item is-ticked">Optional hyper-converged storage and compute</li>
+        <li class="p-list__item is-ticked">Fully automated, repeatable deployment and operations</li>
+        <li class="p-list__item is-ticked">Direct attach and ceph storage built-in</li>
+        <li class="p-list__item is-ticked">SAN, Nexenta, Pure Storage and StorPool third-party options</li>
+        <li class="p-list__item is-ticked">VLAN, OVS, and TungstenFabric open source SDNs</li>
+        <li class="p-list__item is-ticked">Juniper Contrail and Cisco ACI available as third-party options</li>
+        <li class="p-list__item is-ticked">CI/CD for cloud infrastructure operations</li>
+        <li class="p-list__item is-ticked">Wide range of certified hardware</li>
+        <li class="p-list__item is-ticked">Hardware recommendations for efficient procurement</li>
+        <li class="p-list__item is-ticked">Training, consulting and operations capabilities and services</li>
+        <li class="p-list__item is-ticked">Ubuntu Advantage &mdash; Enterprise Support</li>
+      </ul>
+      <p><a href="/openstack/features/" class="p-button--positive">Learn about Canonical OpenStack features</a></p>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light is-deep is-bordered">
-  <div class="row">
-    <div class="col-6">
-      <h2>Fully managed OpenStack cloud</h2>
-      <p>Canonical operates many private OpenStack clouds on behalf of customers, enabling them to get the benefits of OpenStack on premise while focusing their staff on their business workloads. BootStack is a “build, operate and transfer” service that allows you to take control of your own cloud at any time. The fastest path to production OpenStack, with the most widely used OS for cloud computing.</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Jointly shape the architecture to meet your requirements</li>
-        <li class="p-list__item is-ticked">We build OpenStack in your data center of choice, and operate it to an SLA</li>
-        <li class="p-list__item is-ticked">When your team is ready to take on OpenStack, we’ll hand over the keys</li>
-      </ul>
-      <p><a href="/openstack/managed">Let Canonical build, operate and transfer your OpenStack&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-6">
-      <ul class="p-inline-images">
-        <li class="p-inline-images__item p-inline-images__item--smaller">
-          <img src="{{ ASSET_SERVER_URL }}01ed776c-veritas.svg" alt="Veritas" />
-        </li>
-        <li class="p-inline-images__item p-inline-images__item--smaller">
-          <img src="{{ ASSET_SERVER_URL }}66bc9135-logo-lexisnexis.png" alt="Lexis Nexis" />
-        </li>
-        <li class="p-inline-images__item p-inline-images__item--smaller">
-          <img src="{{ ASSET_SERVER_URL }}25de1877-Tele2.svg" alt="Tele2" />
-        </li>
-        <li class="p-inline-images__item p-inline-images__item--smaller">
-          <img src="{{ ASSET_SERVER_URL }}d0b7aa28-logo-deutsche-telekom.png" alt="Deutsche Telekom" />
-        </li>
-        <li class="p-inline-images__item p-inline-images__item--smaller">
-          <img src="{{ ASSET_SERVER_URL }}481063cd-pccw.svg" alt="PCCW logo" />
-        </li>
-        <li class="p-inline-images__item p-inline-images__item--smaller">
-          <img src="{{ ASSET_SERVER_URL }}97a050d0-Groupe_Cogeco_logo.svg" alt="Cogeco Datacenters" />
-        </li>
-        <li class="p-inline-images__item p-inline-images__item--smaller">
-          <img src="{{ ASSET_SERVER_URL }}2353fc84-fibernet.svg" alt="Fibernet" />
-        </li>
-        <li class="p-inline-images__item p-inline-images__item--smaller">
-          <img src="{{ ASSET_SERVER_URL }}d56d0b96-Biznet-Gio.png" alt="Biznet Gio" />
-        </li>
-        <li class="p-inline-images__item p-inline-images__item--smaller">
-          <img src="{{ ASSET_SERVER_URL }}ff4e18ac-mimedia_logo_lrg.png" alt="Mimedia" />
-        </li>
-        <li class="p-inline-images__item p-inline-images__item--smaller">
-          <img src="{{ ASSET_SERVER_URL }}507a0979-Voidbridge.jpg" alt="Voidbridge" />
-        </li>
-        <li class="p-inline-images__item p-inline-images__item--smaller">
-          <img src="{{ ASSET_SERVER_URL }}2e38f398-uct.svg" alt="UCT" />
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-deep is-bordered">
+<section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-7">
-      <h2>We build you a production OpenStack in 3 weeks</h2>
+      <h2>We deliver OpenStack in 2 weeks</h2>
     </div>
   </div>
   <div class="row">
     <div class="col-7">
-      <p>With our Foundation Cloud Build service you can get a full production OpenStack cloud up and running in 3 weeks using the reference architecture. With model driven operations and upgrades to future OpenStack releases guaranteed, the OpenStack cloud from Canonical is the fast track to efficient cloud success. Optional consulting available to tailor the architecture to your specific requirements.</p>
+      <p>Canonical&rsquo;s Cloud Build service delivers production OpenStack clouds with an efficient reference architecture in 2 weeks on site. Featuring a containerised control plane, optional hyper-converged architecture, model driven operations and upgrades to future OpenStack releases guaranteed, the OpenStack cloud from Canonical is the fast track to private cloud success. Optional consulting available to tailor the architecture to your specific requirements.</p>
       <ul class="p-list is-split">
         <li class="p-list__item is-ticked">SLAs and support services</li>
         <li class="p-list__item is-ticked">On-site engineering and support</li>
         <li class="p-list__item is-ticked">Reference architecture available</li>
         <li class="p-list__item is-ticked">OpenStack feature development as needed</li>
         <li class="p-list__item is-ticked">Customised architecture service placement</li>
-        <li class="p-list__item is-ticked">Repeatable automated deployment</li>
+        <li class="p-list__item is-ticked">Repeatable, automated deployment</li>
         <li class="p-list__item is-ticked">Hardware guidance</li>
       </ul>
       <p><a href="/openstack/contact-us?product=foundation-cloud" class="p-button--positive">Contact us for custom OpenStack engineering</a></p>
@@ -202,12 +176,48 @@
     <div class="col-5 prefix-1">
       <blockquote class="p-pull-quote">
         <p>The support has been fabulous. The whole team stepped up and helped us work through issues.</p>
-        <cite class="p-pull-quote__citation">Director of Web Engineering at Best Buy Corp</cite>
+        <cite class="p-pull-quote__citation">Director of Web Engineering, Best Buy Corp</cite>
       </blockquote>
     </div>
   </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_ubuntu_advantage" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>The number one cloud and container operating system, by far</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-7 suffix-1">
+      <p>Ubuntu is the #1 platform for OpenStack and the #1 platform for public cloud operations on AWS, Azure and Google Cloud, too.</p>
+      <p>Canonical delivers OpenStack on rails, with consulting, training, enterprise support and managed operations to help you focus on what matters most &mdash; your applications, not the infrastructure.</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">We are a Founding Member of OpenStack</li>
+        <li class="p-list__item is-ticked">The most widely used distribution of OpenStack</li>
+        <li class="p-list__item is-ticked">The largest OpenStack operators consistently pick us</li>
+        <li class="p-list__item is-ticked">AT&amp;T, Bloomberg, Paypal, eBay, Walmart and many more build OpenStack with Canonical on Ubuntu</li>
+        <li class="p-list__item is-ticked">The Intel reference platform for telco OpenStack</li>
+        <li class="p-list__item is-ticked">Operations like upgrading OpenStack are included</li>
+        <li class="p-list__item is-ticked">Canonical&rsquo;s reference architecture optimises utilisation</li>
+        <li class="p-list__item is-ticked">Design, architecture, support, operations and training in one package by Canonical</li>
+        <li class="p-list__item is-ticked">Dell, HP, Lenovo, Supermicro, Quanta servers</li>
+        <li class="p-list__item is-ticked">Multi-cloud AWS, Azure, Google, IBM, Oracle, OpenStack</li>
+        <li class="p-list__item is-ticked">Container friendly kernel makes Ubuntu #1 for kubernetes, docker and linux system containers</li>
+      </ul>
+      <p><a href="/openstack/features" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Openstack', 'eventLabel' : 'Features of Canonical OpenStack on Ubuntu', 'eventValue' : undefined });">Features of Canonical OpenStack on Ubuntu</a></p>
+    </div>
+    <div class="col-4">
+      {% include "openstack/shared/_openstack-pie-chart.html" %}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-deep is-bordered">
+  {% include "shared/_resources_openstack.html"%}
+</section>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_fully_managed_openstack_cloud" second_item="_consulting_packages" third_item="_install_openstack_now" %}
 
 {% endblock content %}
