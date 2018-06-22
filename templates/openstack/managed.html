@@ -6,36 +6,40 @@
 {% block content %}
 
 <section class="p-strip--light is-deep is-bordered">
-  <div class="row">
+  <div class="row u-equal-height">
     <div class="col-8">
       <h1>Fully managed OpenStack private cloud. Half the cost of VMware.</h1>
     </div>
+    <div class="col-4 u-vertically-center u-align--center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}95212c08-OpenStack_Logo_2016.svg" alt="OpenStack logo" style="max-width: 240px;" />
+    </div>
   </div>
   <div class="row">
-    <div class="u-equal-height">
-      <div class="col-8">
-        <p class="u-no-max-width">BootStack, the fully managed private cloud service from Canonical, is the fastest and most cost-effective path to a private OpenStack cloud.</p>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Half the cost of owning and operating VMware at scale</li>
-          <li class="p-list__item is-ticked">Fully managed cloud on your servers, at your location</li>
-          <li class="p-list__item is-ticked">Built in two weeks using a proven reference architecture</li>
-          <li class="p-list__item is-ticked">Customise the architecture in iterations based on workload</li>
-          <li class="p-list__item is-ticked">VMware workload analysis and migration services</li>
-          <li class="p-list__item is-ticked">Enterprise SLA for your cloud API services</li>
-          <li class="p-list__item is-ticked">Your team has access to all machines at all times</li>
-          <li class="p-list__item is-ticked">Modern monitoring and log management</li>
-          <li class="p-list__item is-ticked">We will hand over the keys when you are ready</li>
-        </ul>
-        <p>Focus on your business while Canonical takes care of your first OpenStack.</p>
-        <p>
-          <a href="/openstack/contact-us?product=cloud-managed-cloud" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Talk to us', 'eventLabel' : 'Bootstack - Top CTA', 'eventValue' : undefined });" class="p-button--neutral">Talk to us</a>
-          &#8195;
-          <a href="{{ ASSET_SERVER_URL }}3465457b-Bootstack_datasheet.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Read the datasheet', 'eventLabel' : 'Bootstack datasheet - Top CTA', 'eventValue' : undefined });" class="p-button--positive">Read the BootStack datasheet</a>
-        </p>
-      </div>
-      <div class="col-4 u-vertically-center u-align--center u-hide--small">
-        <img src="{{ ASSET_SERVER_URL }}95212c08-OpenStack_Logo_2016.svg" alt="OpenStack logo" style="max-width: 240px;" />
-      </div>
+    <div class="col-8">
+      <p class="u-no-max-width">BootStack, the fully managed private cloud service from Canonical, is the fastest and most cost-effective path to a private OpenStack cloud.</p>
+    </div>
+  </div>
+  <div class="row">
+    <ul class="p-list is-split">
+      <li class="p-list__item is-ticked">Half the cost of owning and operating VMware at scale</li>
+      <li class="p-list__item is-ticked">Fully managed cloud on your servers, at your location</li>
+      <li class="p-list__item is-ticked">Built in two weeks using a proven reference architecture</li>
+      <li class="p-list__item is-ticked">Customise the architecture in iterations based on workload</li>
+      <li class="p-list__item is-ticked">VMware workload analysis and migration services</li>
+      <li class="p-list__item is-ticked">Enterprise SLA for your cloud API services</li>
+      <li class="p-list__item is-ticked">Your team has access to all machines at all times</li>
+      <li class="p-list__item is-ticked">Modern monitoring and log management</li>
+      <li class="p-list__item is-ticked">We will hand over the keys when you are ready</li>
+    </ul>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <p>Focus on your business while Canonical takes care of your first OpenStack.</p>
+      <p>
+        <a href="/openstack/contact-us?product=cloud-managed-cloud" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Talk to us', 'eventLabel' : 'Bootstack - Top CTA', 'eventValue' : undefined });" class="p-button--neutral">Talk to us</a>
+        &#8195;
+        <a href="{{ ASSET_SERVER_URL }}3465457b-Bootstack_datasheet.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Read the datasheet', 'eventLabel' : 'Bootstack datasheet - Top CTA', 'eventValue' : undefined });" class="p-button--positive">Read the BootStack datasheet</a>
+      </p>
     </div>
   </div>
 </section>
@@ -91,12 +95,14 @@
       </div>
       <div class="col-4 u-vertically-center">
         <div class="p-card--highlighted">
-          <h3 class="p-card__title p-heading--four"><a href="/engage/cloud-economics?utm_source=blog&utm_campaign=FY19_Cloud_Openstack_Ebook_451">Busting the myth of private cloud economics&nbsp;&rsaquo;</a></h3>
-          <div class="p-card__content">
-            <p><img src="{{ ASSET_SERVER_URL }}a6517959-451-research-vector-logo.svg" alt=""></p>
+          <div class="p-card__header u-no-margin--bottom">
+            <p class="p-muted-heading">Independent report</p>
+          </div>
+          <div class="p-card__content u-no-margin--top">
+            <p class="u-align--center" style="margin-top: 2rem; margin-bottom: 2rem;"><img style="max-width: 195px;" src="{{ ASSET_SERVER_URL }}a6517959-451-research-vector-logo.svg" alt=""></p>
+            <h3 class="p-card__title p-heading--four u-no-padding--top"><a href="/engage/cloud-economics?utm_source=blog&utm_campaign=FY19_Cloud_Openstack_Ebook_451">Busting the myth of private cloud economics&nbsp;&rsaquo;</a></h3>
             <p>451 Research, highlights savings gained from using BootStack</p>
           </div>
-          <p class="p-card__category">Independent report</p>
         </div>
       </div>
     </div>
@@ -106,7 +112,7 @@
 
 <section class="p-strip is-deep is-bordered">
   <div class="row">
-    <h2>Resources</h2>
+    <h3>Resources</h3>
     <div class="p-divider">
       <div class="col-4 p-divider__block">
         <div class="p-heading-icon--muted">
@@ -173,7 +179,7 @@
     <h3>Complementary value propositions</h3>
   </div>
   <div class="row u-equal-height">
-    <div class="col-6 p-card">
+    <div class="col-4 p-card">
       <h4>Fully managed OpenStack</h4>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Controlled density and performance</li>
@@ -184,7 +190,7 @@
         <li class="p-list__item is-ticked">Existing footprint</li>
       </ul>
     </div>
-    <div class="col-6 p-card">
+    <div class="col-4 p-card">
       <h4>Public cloud</h4>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Elasticity for highly variable load</li>
@@ -275,7 +281,7 @@
   </div>
 </section>
 
-<section class="p-strip--light is-deep">
+<section class="p-strip--light is-deep is-bordered">
   <div class="row">
     <div class="col-12">
       <h2>Refresh your data centre with fully managed OpenStack</h2>
@@ -344,7 +350,7 @@
   </div>
 </section>
 
-<section class="p-strip--light is-deep u-no-margin--top u-no-padding--top is-bordered">
+<section class="p-strip--light is-deep is-bordered">
   <div class="row">
     <div class="col-12">
       <h2>Count on Canonical’s OpenStack expertise</h2>
@@ -400,7 +406,7 @@
   </div>
 </section>
 
-<section class="p-strip strip-light is-bordered">
+<section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-12">
       <h2>Build, Operate, Transfer and Support</h2>
@@ -411,7 +417,7 @@
     <div class="col-12">
       <ol class="p-list-step">
         <li class="p-list-step__item">
-          <div class="row">
+          <div class="row u-equal-height">
             <div class="col-6">
               <h3 class="p-list-step__title">
                 <span class="p-list-step__bullet">1</span>
@@ -421,13 +427,13 @@
               <p>We’ll guide you through the hardware specification process to maximise the efficiency of your capex, and we’ll tailor the architecture of your cloud to meet your workload, security, regulatory and integration requirements.</p>
               <p>Then we build your cloud. It takes no more than two weeks. We do this at your office and in your preferred data center.</p>
             </div>
-            <div class="col-6 u-align--center u-hide--small">
+            <div class="col-6 u-align--center u-vertically-center u-hide--small">
               <img src="{{ ASSET_SERVER_URL }}4287c2b2-transfer.svg" alt="" width="134">
             </div>
           </div>
         </li>
         <li class="p-list-step__item">
-          <div class="row">
+          <div class="row u-equal-height">
             <div class="col-6">
               <h3 class="p-list-step__title">
                 <span class="p-list-step__bullet">2</span>
@@ -438,13 +444,13 @@
               <p>Canonical will tend to the infrastructure so that you can tend to your business workloads. The most important thing for a new private cloud is engagement with development and operations teams, to build confidence in the private cloud for application hosting.</p>
               <p>This period will prove the business case for your OpenStack and ensure high service levels during the critical early stages of your journey, so you can evaluate OpenStack without making a large commitment to skills in a complex and unfamiliar technology.</p>
             </div>
-            <div class="col-6 u-align--center u-hide--small">
+            <div class="col-6 u-align--center u-vertically-center u-hide--small">
               <img src="{{ ASSET_SERVER_URL }}43798107-Laptop_4px.svg" alt="" width="134" />
             </div>
           </div>
         </li>
         <li class="p-list-step__item">
-          <div class="row">
+          <div class="row u-equal-height">
             <div class="col-6">
               <h3 class="p-list-step__title">
                 <span class="p-list-step__bullet">3</span>
@@ -455,7 +461,7 @@
               <p>But if you do want to take control, you have full visibility from the very beginning on every aspect of cloud management, performance tuning, log aggregation and monitoring.</p>
               <p>There’s no better way to learn OpenStack than to run a cloud shoulder to shoulder with Canonical.</p>
             </div>
-            <div class="col-6 u-align--center u-hide--small">
+            <div class="col-6 u-align--center u-vertically-center u-hide--small">
               <img style="margin-left: -2rem;" src="{{ ASSET_SERVER_URL }}e96658e8-transfer_4px.svg" alt="" width="160" />
             </div>
           </div>
@@ -477,7 +483,7 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
     <div class="col-12">
       <h2>Shape it to your needs</h2>
