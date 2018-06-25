@@ -1,0 +1,15 @@
+{% extends "ai/base_ai.html" %}
+{% block title %}AI and Machine Learning on Ubuntu{% endblock %}
+{% block meta_description %}Ubuntu is the operating system used for most machine learning production and engineering. The widest range of AI/ML frameworks and the easiest hardware GPGPU acceleration setup make Ubuntu the first choice for companies exploring AI algorithms and analytics. Canonical provides a full range of AI/ML solutions and services, from training to Kubernetes-based ML workflow operations and integration.{% endblock %}
+
+<section class="p-strip is-deep">
+  <div class="row">
+    <h1>End-to-end AI/ML workflow on Ubuntu</h1>
+    <p>Ubuntu is the ideal platform to power your Artificial Intelligence ambitions &mdash; from developer workstations, to racks, to clouds and to the edge with smart connected IoT. Canonical&rsquo;s Kubeflow supports the most popular tools for machine learning &mdash; starting with JupyterHub and Tensorflow &mdash; in a standardised workflow running on Kubernetes.</p>
+    <p><a href="/ai/install">Get started by installing Kubeflow&nbsp;&rsaquo;</a></p>
+  </div>
+</section>
+
+{% block content %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_containers_juju" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
+{% endblock content %}
