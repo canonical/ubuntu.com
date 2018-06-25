@@ -2,14 +2,246 @@
 {% block title %}AI and Machine Learning on Ubuntu{% endblock %}
 {% block meta_description %}Ubuntu is the operating system used for most machine learning production and engineering. The widest range of AI/ML frameworks and the easiest hardware GPGPU acceleration setup make Ubuntu the first choice for companies exploring AI algorithms and analytics. Canonical provides a full range of AI/ML solutions and services, from training to Kubernetes-based ML workflow operations and integration.{% endblock %}
 
-<section class="p-strip is-deep">
-  <div class="row">
-    <h1>End-to-end AI/ML workflow on Ubuntu</h1>
-    <p>Ubuntu is the ideal platform to power your Artificial Intelligence ambitions &mdash; from developer workstations, to racks, to clouds and to the edge with smart connected IoT. Canonical&rsquo;s Kubeflow supports the most popular tools for machine learning &mdash; starting with JupyterHub and Tensorflow &mdash; in a standardised workflow running on Kubernetes.</p>
-    <p><a href="/ai/install">Get started by installing Kubeflow&nbsp;&rsaquo;</a></p>
+
+{% block content %}
+<section class="p-strip--light is-deep is-bordered">
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <h1>End-to-end AI / ML workflow on Ubuntu</h1>
+      <p>Ubuntu is the ideal platform to power your Artificial Intelligence ambitions &mdash; from developer workstations, to racks, to clouds and to the edge with smart connected IoT. Canonical&rsquo;s Kubeflow supports the most popular tools for machine learning &mdash; starting with JupyterHub and Tensorflow &mdash; in a standardised workflow running on Kubernetes.</p>
+      <p>
+        <a class="p-button--positive" href="/ai/install">Get started by installing Kubeflow</a>
+        &#8195;
+        <a class="p-button--neutral" href="/ai/contact-us?product=ai-index">Call the experts</a>
+      </p>
+    </div>
+    <div class="col-6 u-hide--small u-vertically-center">
+      <img src="{{ ASSET_SERVER_URL }}7d33e0a1-AI+illustration+hero.svg" alt="">
+    </div>
   </div>
 </section>
 
-{% block content %}
+<section class="p-strip">
+  <div class="row">
+    <h2>Kubeflow &mdash; AI on Kubernetes &mdash; Anywhere</h2>
+    <p>Google and Canonical collaborate on Kubeflow, a standardised machine learning solution for on-premise and on-cloud training. Leveraging Ubuntu, you benefit from perfect multi-cloud portability of AI/ML workloads.</p>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6 p-card">
+      <h3 class="p-card__title">Workstation AI</h3>
+      <hr>
+      <p>Ubuntu-certified workstations from Dell and HP with nVidia, microk8s and Kubeflow</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Accelerate data science</li>
+        <li class="p-list__item is-ticked">Lightest footprint</li>
+        <li class="p-list__item is-ticked">Laptop to workstation</li>
+        <li class="p-list__item is-ticked">GPGPU optional</li>
+        <li class="p-list__item is-ticked">Develop and test AI</li>
+      </ul>
+    </div>
+    <div class="col-6 p-card">
+      <h3 class="p-card__title">Bare Metal AI</h3>
+      <hr>
+      <p>Kubernetes on bare metal with nVidia GPGPU acceleration</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Highest performance</li>
+        <li class="p-list__item is-ticked">On-premise with local data</li>
+        <li class="p-list__item is-ticked">Hardware recommendations</li>
+        <li class="p-list__item is-ticked">Fully managed options</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6 p-card">
+      <h3 class="p-card__title">Google Cloud AI</h3>
+      <hr>
+      <p>GKE on Ubuntu with nVidia GPGPU acceleration</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Effectively infinite scale</li>
+        <li class="p-list__item is-ticked">Portable workloads</li>
+        <li class="p-list__item is-ticked">Fastest cloud ML</li>
+      </ul>
+    </div>
+    <div class="col-6 p-card">
+      <h3 class="p-card__title">Canonical Cloud AI</h3>
+      <hr>
+      <p>Kubeflow on Kubernetes on Openstack with nVidia GPGPU acceleration</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Maximize benefits of OpenStack</li>
+        <li class="p-list__item is-ticked">On-premise with local data</li>
+        <li class="p-list__item is-ticked">Hardware recommendations</li>
+        <li class="p-list__item is-ticked">Fully managed options</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <p>Kubeflow brings together all the most popular tools for machine learning, starting with JupyterHub and Tensorflow, in a standardised workflow running on Kubernetes. Optimised on a wide range of hardware and cloud infrastructure, Kubeflow lets your data scientists focus on the pieces that matter to the business.</p>
+      <p>It is an extensible framework, which allows you to leverage the tools of your choice. Start with Tensorflow and JupyterHub or bring your own frameworks and tools. Combined with Kubeflow’s automation, this will accelerate your machine learning activities &mdash; from model development to model training to model sharing.</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip u-no-padding--top is-bordered">
+  <div class="row">
+    <div class="u-align--center u-vertically-center">
+      <img style="max-width: 120px;" src="{{ ASSET_SERVER_URL }}b1f04506-Kubeflow-Logo-RGB.svg" alt="">
+      &#8195;in partnership with&#8195;
+      <img style="max-width: 80px; position: relative; top: 1px;" src="{{ ASSET_SERVER_URL }}bc4d28f8-Google_2015_logo.svg" alt="">
+    </div>
+    <blockquote class="p-pull-quote">
+      <p>if you&rsquo;re a data scientist, it means you get to focus on JUST what matters to you &mdash; solving data problems</p>
+      <cite class="p-pull-quote__citation">David Aronchick, Google Product Manager for Kubeflow</cite>
+    </blockquote>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <p>Initiated by Google on Ubuntu for perfect portability of AI workloads from your workstation, to your data center rack on Canonical&rsquo;s bare-metal k8s or Canonical&rsquo;s OpenStack virtualization, to Google&rsquo;s Cloud Kubernetes service GKE which also runs on Ubuntu. Simple.</p>
+      <p>Canonical&rsquo;s Kubeflow and Kubernetes on bare-metal servers, with nVidia GPGPUs, provides an ultra high-performance machine learning cluster. Deployment, support, and optional remote management and remote operations make it the best way to accelerate your data science and machine learning.</p>
+      <p><a href="/ai/install">Install Kubeflow&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <h2>Consulting to get started, Managed Ops to keep you focused</h2>
+    <p>Turn on the taps with a workshop to understand the full stack of machine learning. Build a full pipeline from developer stations to your data center, to the public cloud. Canonical works with the leading companies to ensure you have the widest range of choices. First, start with one of our standard bare-metal Kubernetes service packages (Discoverer or Pioneer) and then select the AI Add-on to unlock the benefits of AI on Kubernetes.</p>
+    <p><a href="/kubernetes">Learn more about our Kubernetes packages&nbsp;&rsaquo;</a></p>
+    <h3>AI add-on for Kubernetes Discoverer and Pioneer</h3>
+    <p><span class="p-heading--four">$40,000</span> one off fee</p>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4 p-card">
+      <h3 class="p-card__title">Workshop</h3>
+      <hr>
+      <p>One day on Kubeflow, including  Tensorflow and JupyterHub, covering everything your business needs to know to have a full on-prem off-prem AI/ML game plan.</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">On site or remote options</li>
+        <li class="p-list__item is-ticked">Hands-on K8s and Kubeflow</li>
+        <li class="p-list__item is-ticked">Full pipeline view</li>
+        <li class="p-list__item is-ticked">ML / Data science assessment</li>
+      </ul>
+      <p><a class="p-button--positive" href="/ai/contact-us?product=ai-index-workshop">Contact us</a></p>
+    </div>
+    <div class="col-4 p-card">
+      <h3 class="p-card__title">ML / Data science assessment</h3>
+      <hr>
+      <p>Canonical will leverage its network of data science partners to deliver an AI assessment as part of the workshop with options for ongoing engagement post-deployment.</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Understand AI Lifecycle</li>
+        <li class="p-list__item is-ticked">Preliminary AI Discovery</li>
+        <li class="p-list__item is-ticked">Development Assessment</li>
+        <li class="p-list__item is-ticked">Deploy and Operate Analysis</li>
+        <li class="p-list__item is-ticked">Finalize Initial AI Strategy</li>
+      </ul>
+      <p><a class="p-button--positive" href="/ai/contact-us?product=ai-index-assessment">Contact us</a></p>
+    </div>
+    <div class="col-4 p-card">
+      <h3 class="p-card__title">Full remote management</h3>
+      <hr>
+      <p>Focus on your data pipelines and let Canonical handle all the operations from bare metal up to Kubeflow.</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Fixed monthly cost</li>
+        <li class="p-list__item is-ticked">On-Prem / On-Cloud</li>
+        <li class="p-list__item is-ticked">Regulatory compliance</li>
+        <li class="p-list__item is-ticked">Hardware acceleration</li>
+        <li class="p-list__item is-ticked">Monitoring, management</li>
+        <li class="p-list__item is-ticked">Build, Operate, Transfer</li>
+      </ul>
+      <p><a class="p-button--positive" href="/ai/contact-us?product=ai-index-managed">Contact us</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <h2>IoT and Edge AI</h2>
+    <h3>Train in the cloud. Act at the edge.</h3>
+    <p>Cameras, music systems, cars, even firewalls and CPE are becoming smarter. From natural language processing to image recognition, from real-time high-speed autonomous navigation to network intrusion detection. Ubuntu gives you a seamless operational framework for development, training and inference all the way out to the edge.</p>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <h2 class="p-muted-heading u-align--center">Leaders in artificial intelligence choose Ubuntu</h2>
+    <ul class="p-inline-images">
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logos" src="{{ ASSET_SERVER_URL }}bac02008-Amazon.com-Logo.svg" alt="Amazon">
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logos" src="{{ ASSET_SERVER_URL }}bc4d28f8-Google_2015_logo.svg" alt="Google">
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logos" src="{{ ASSET_SERVER_URL }}3528a12f-logo-microsoft-160.png" alt="Microsoft">
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logos" src="{{ ASSET_SERVER_URL }}1095d3bc-Tesla_logo_silver.png" alt="Tesla">
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logos" src="{{ ASSET_SERVER_URL }}0be38ed7-OpenAI_Logo.svg" alt="OpenAI">
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logos" src="{{ ASSET_SERVER_URL }}ee23142d-logo-ibm-large.png" alt="IBM">
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logos" src="{{ ASSET_SERVER_URL }}79974738-facebook-1.svg" alt="Facebook">
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>nVidia and Canonical accelerate AI everywhere</h2>
+      <p>nVidia and Canonical collaborate to ensure that AI hardware acceleration is available on every public cloud, on premise and in IoT devices.</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Nvidia DGX servers optimised for machine learning come with Ubuntu and support from Canonical included</li>
+        <li class="p-list__item is-ticked">Nvidia Kubernetes extensions for hardware acceleration are enabled in the Canonical Distribution of Kubernetes</li>
+        <li class="p-list__item is-ticked">Nvidia Tegra and Drive PX2 ship with Ubuntu for Edge AI</li>
+      </ul>
+      <p><a class="p-button--positive" href="/ai/nvidia">Learn more</a></p>
+    </div>
+  </div>
+</section>
+<section class="p-strip is-bordered">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <blockquote class="p-pull-quote">
+        <p>Organizations are increasingly looking to accelerate their deep learning and AI implementations. In addition to using Ubuntu on our DGX systems, we have been working with Canonical to offer Kubernetes on NVIDIA GPUs as a scalable and portable solution for multi-cloud deep learning training and inference workloads.</p>
+        <cite class="p-pull-quote__citation">Duncan Poole, Director of Platform Alliances at NVIDIA</cite>
+      </blockquote>
+    </div>
+    <div class="col-4 u-vertically-center u-align--center">
+      <p><img style="max-width: 200px;" src="{{ ASSET_SERVER_URL }}cb6924a9-Nvidia_image_logo.svg" alt=""></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <h1>Partner with us</h1>
+    <p>It takes an open ecosystem to solve the diverse challenges of AI infrastructure across every sector and in every region. Our partners ensure that you have the widest range of capabilities available for automated integration in your cloud, and that you can get insight and support locally.</p>
+    <p>To learn more about our partners or becoming a Canonical AI partner, please contact us today.</p>
+    <p><a class="p-button--positive" href="/partners/contact-us">Get in touch</a> or <a class="p-link--external" href="https://partners.ubuntu.com/partnering-with-us">learn more about partnering with us</a>
+  </div>
+</section>
+<section class="p-strip u-no-padding--top">
+  <div class="row u-equal-height">
+    <div class="col-6 p-card">
+      <h3 class="p-card__title">Talk to us</h3>
+      <hr>
+      <p>Let our AI and Machine learning  experts help you get started in the right direction  with consulting, training or outsourced operations.</p>
+      <p><a href="/ai/contact-us?product=ai-index">Contact us&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-6 p-card">
+      <h3 class="p-card__title">Test drive Kubeflow today!</h3>
+      <hr>
+      <p>Get started quickly and easily.</p>
+      <p><a class="p-button--positive" href="/ai/install">Try it now</a></p>
+    </div>
+  </div>
+</section>
+
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_containers_juju" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
 {% endblock content %}
