@@ -1,82 +1,230 @@
 <div class="fade-animation u-hide" id="developer-tab-content">
   <div class="dropdown-window__content">
-    <div class="dropdown-window__summary-strip">
-      <div class="row">
-        <p class="dropdown-window__summary">Dive into the docs for <a href="https://help.ubuntu.com/" title="Visit Ubuntu help - external site">Ubuntu desktop and server</a>, <a href="https://docs.ubuntu.com/" title="Visit the Ubuntu Docs - external site">MAAS, Juju, Snapcraft and Ubuntu Core</a>, or use our step-by-step <a href="https://tutorials.ubuntu.com/" title="Visit the Ubuntu Tutorials - external site">Ubuntu Tutorials</a> to try anything from installing Ubuntu to deploying OpenStack and Kubernetes.</p>
-        <hr>
+    <div class="p-strip is-x-shallow u-hide--small u-no-padding--bottom">
+      <div class="row u-equal-height">
+        <div class="tablet-col-2 col-3 p-card--navigation">
+          <h4 class="is-dense">
+            <a href="/desktop/developers">Development workflow&nbsp;&rsaquo;</a>
+          </h4>
+          <p class="p-p--small">All the tools a developer needs, whether you code in Python, Javascript, Atom, Android Studio, or whether you deploy to AWS or to Heroku, you&rsquo;ll find the latest versions of thousands of tools and libraries.</p>
+          <p><a class="p-button--positive" href="/desktop/developers">Develop with Ubuntu</a></p>
+        </div>
+        <div class="tablet-col-2 col-3 p-card--navigation">
+          <h4 class="is-dense">
+            <a href="https://snapcraft.io/">App publishing&nbsp;&rsaquo;</a>
+          </h4>
+          <p class="p-p--small">Broaden your audience to millions of Linux systems with a single publication. Snaps are containerised software packages that auto-update and are safe to run.</p>
+          <p><a class="p-button--positive" href="https://snapcraft.io/">Publish with Snapcraft</a></p>
+        </div>
+        <div class="tablet-col-2 col-3 p-card--navigation">
+          <h4 class="is-dense">
+            <a href="/ai">AI &amp; Machine Learning&nbsp;&rsaquo;</a>
+          </h4>
+          <p class="p-p--small">Get the most out of your hardware running AI/ML models. Ubuntu is the tested platform for Tensorflow, Caffe2, PyTorch, and other popular frameworks.</p>
+          <p><a class="p-button--positive" href="/ai">Develop and test with AI</a></p>
+        </div>
+        <div class="tablet-col-2 col-3 p-card--navigation">
+          <h4 class="is-dense">
+            <a href="https://jujucharms.com/">Operations at scale&nbsp;&rsaquo;</a>
+          </h4>
+          <p class="p-p--small">Operate your complex software stacks like Hadoop, Spark and Kubernetes, on all major clouds, bare metal and VMware with Juju, the open source model-driven operations tool.</p>
+          <p><a class="p-button--positive" href="https://jujucharms.com/">Get started with Juju</a></p>
+        </div>
       </div>
     </div>
+    <div class="row u-hide--small"><hr></div>
     <div class="row">
-      <div class="col-6">
-        <h4 class="is-dense">Platforms</h4>
-        <p class="p-p--small">Ubuntu is the <a href="/desktop">workstation</a> OS of choice for developers and devops, enabling frictionless deployment from dev to test and production, on <a href="/server">server</a>, <a href="/openstack"></a> and <a href="/internet-of-things">connected devices</a>.</p>
-        <p class="p-p--small">Build devices and apps for the <a href="/download/core">Internet of Things</a> with robust security, app stores and reliable updates. <a href="/core">Ubuntu Core</a> is a tiny, transactional edition of Ubuntu that supports <a href="https://snapcraft.io/" title="Visit Snapcraft - external site">snap packages</a> and powers connected devices from <a href="/internet-of-things/gateways">gateways</a> and <a href="/internet-of-things#switches">switches</a> to <a href="/internet-of-things/robotics#cars">self-driving cars</a>, <a href="/internet-of-things/robotics#drones">drones</a>, <a href="/internet-of-things/robotics#robots">robots</a> and <a href="/internet-of-things/robotics#industrial">industrial systems</a>.</p>
-        <p class="p-p--small">Ubuntu is the leading <a href="http://cloud-images.ubuntu.com/" title="Visit the cloud guest OS - external site">cloud guest OS</a>, running most workloads in <a href="/cloud/public-cloud">public clouds</a> today, with a particular strength in <a href="/containers">containers</a> and <a href="#machine-learning">machine learning</a>.</p>
-        <p class="p-p--small">Use our step-by-step <a href="https://tutorials.ubuntu.com" title="Visit the Ubuntu Tutorials - external site">Ubuntu Tutorials</a> to do everything from installing Ubuntu to setting up various services and tools.</p>
-        <p class="p-p--small">Or your can read the docs, for <a href="http://help.ubuntu.com" title="Visit the desktop and server - external site">desktop and server</a> or <a href="https://docs.ubuntu.com/" title="Visit the MAAS, Juju, Snapcraft and Ubuntu Core - external site">MAAS, Juju, Snapcraft and Ubuntu Core</a> docs.</p>
+      <div class="col-3">
+        <h4 class="p-muted-heading">Desktop</h4>
+        <ul class="p-text-list--small is-bordered">
+          <li class="p-list__item">
+            <a href="/desktop">The developer&rsquo;s favourite OS</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/server">Deploy to servers</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/internet-of-things">Deploy to connected devices</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/download/desktop">Download 18.04 LTS for desktop</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/download/server">Download 18.04 LTS for server</a>
+          </li>
+        </ul>
       </div>
-      <div class="col-6">
-        <h4 class="is-dense">Tools</h4>
-        <p class="p-p--small">Package, distribute, and update any app for Linux with <a href="https://snapcraft.io/" title="Visit the Snaps - external site">snapcraft</a>. Snaps are containerised software packages that auto-update and are safe to run.</p>
-        <p class="p-p--small">Operate your complex software stacks like Hadoop, Spark and Kubernetes, on all major clouds, bare metal and VMware with <a href="https://jujucharms.com/" title="Visit Juju Charms - external site">Juju</a>, the open source model-driven operations tool.</p>
-        <p class="p-p--small">Dynamically customize cloud instances and LXD containers with user data and <a href="https://cloud-init.io/" title="Visit cloud-init - external site">cloud-init</a>, supporting all major operating systems.</p>
-        <p class="p-p--small">Deploy the Canonical Distribution of Kubernetes or OpenStack on a single machine or a whole cluster, with <a href="https://conjure-up.io/" title="Visit Conjure-up - external site">conjure-up</a>.</p>
+      <div class="col-3">
+        <h4 class="p-muted-heading">Internet of Things</h4>
+        <ul class="p-text-list--small is-bordered">
+          <li class="p-list__item">
+            <a href="/core">Ubuntu Core, the tiny transactional edition of Ubuntu</a>
+          </li>
+          <li class="p-list__item">
+            <a href="https://snapcraft.io/">Tools to grow your app ecosystem</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/internet-of-things">Powering robots, gateways, digital signage and more</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/download/iot">Download Ubuntu Core</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-3">
+        <h4 class="p-muted-heading">Containers</h4>
+        <ul class="p-text-list--small is-bordered">
+          <li class="p-list__item">
+            <a href="/kubernetes">Canonical Distribution of Kubernetes</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/containers/lxd">LXD is Canonical&rsquo;s pure-container hypervisor</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/kubernetes/install">Try building a private Kubernetes</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-3">
+        <h4 class="p-muted-heading">Cloud</h4>
+        <ul class="p-text-list--small is-bordered">
+          <li class="p-list__item">
+            <a href="/download/cloud">Ubuntu is the leading cloud guest OS</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/public-cloud">Enterprise-scale workloads on all leading public clouds</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/ai">The leading cloud platform for machine learning and AI</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/openstack/install">Try building an OpenStack private cloud</a>
+          </li>
+        </ul>
       </div>
     </div>
-  </div>
-  <div class="dropdown-window__content">
+    <div class="row"><hr></div>
     <div class="row">
-      <hr>
+      <div class="col-3">
+        <h4 class="p-muted-heading--small">Download</h4>
+      </div>
+      <div class="col-9">
+        <ul class="p-inline-list--middot is-x-dense">
+          <li class="p-inline-list__item">
+            <a href="/download/desktop">Ubuntu Desktop</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="/server">Ubuntu Server</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="/download/iot">IoT</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="/download/cloud">Cloud</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="/download/alternative-downloads">Alternative downloads</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="/download/flavours">Flavours</a>
+          </li>
+        </ul>
+      </div>
     </div>
+    <div class="row"><hr class="p-hr--subtle p-hr--dense"></div>
     <div class="row">
-      <div class="col-2">
+      <div class="col-3">
         <h4 class="p-muted-heading--small">Resources</h4>
       </div>
+      <div class="col-9">
+        <ul class="p-inline-list--middot is-x-dense">
+          <li class="p-inline-list__item">
+            <a href="https://docs.ubuntu.com/">Docs</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="https://ubuntuforums.org/">Forum</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="https://tutorials.ubuntu.com/">Tutorials</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="https://www.youtube.com/user/celebrateubuntu">Videos</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="https://www.brighttalk.com/search?q=Canonical">Webinars</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="https://blog.ubuntu.com/category/white-papers">Whitepapers</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="https://blog.ubuntu.com/">Blog</a>
+          </li>
+        </ul>
       </div>
-    <!-- <div class="row"><hr></div> -->
+    </div>
+    <div class="row"><hr class="p-hr--subtle p-hr--dense"></div>
     <div class="row">
       <div class="col-3">
-        <p class="p-p--small">
-          <a class="p-link--strong" href="https://tutorials.ubuntu.com" title="Visit the Ubuntu Tutorials - external site">Ubuntu Tutorials&nbsp;&rsaquo;</a>
-          <br>
-            Step-by-step tutorials for developers
-        </p>
-        <p class="p-p--small">
-          <a class="p-link--strong" href="https://docs.ubuntu.com" title="Visit the Ubuntu Docs - external site">Ubuntu Docs&nbsp;&rsaquo;</a>
-          <br>
-            The home of Ubuntu documentation
-        </p>
+        <h4 class="p-muted-heading--small">Support</h4>
       </div>
-      <div class="col-3">
-        <p class="p-p--small">
-          <a class="p-link--strong" href="https://blog.ubuntu.com" title="Visit the Ubuntu blog - external site">Ubuntu blog&nbsp;&rsaquo;</a>
-          <br>
-            Stay up to date with the latest Ubuntu news stories and resources
-        </p>
-        <p class="p-p--small">
-          <a class="p-link--strong" href="https://community.ubuntu.com/t/ask-ubuntu/21/1" title="Visit the Ask Ubuntu - external site">Ask Ubuntu&nbsp;&rsaquo;</a>
-          <br>
-            Share your technical know-how with others by answering questions
-        </p>
+      <div class="col-9">
+        <ul class="p-inline-list--middot is-x-dense">
+          <li class="p-inline-list__item">
+            <a href="/support/community-support">Community support</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="https://docs.ubuntu.com/">Read the docs</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="https://askubuntu.com/">Ask Ubuntu</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="https://wiki.ubuntu.com/IRC/ChannelList?_ga=2.50601504.869536527.1529264789-765379582.1510062947">IRC Channels</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="https://help.ubuntu.com/community/CommunityHelpWiki">Help</a>
+          </li>
+        </ul>
       </div>
+    </div>
+    <div class="row"><hr class="p-hr--subtle p-hr--dense"></div>
+    <div class="row">
       <div class="col-3">
-        <p class="p-p--small">
-          <a class="p-link--strong" href="/download">Download Ubuntu&nbsp;&rsaquo;</a>
-          <br>
-            Ubuntu is completely free to download, use and share
-        </p>
+        <h4 class="p-muted-heading--small">Security</h4>
       </div>
+      <div class="col-9">
+        <ul class="p-inline-list--middot is-x-dense">
+          <li class="p-inline-list__item">
+            <a href="/usn">Security notices</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="/support/esm">Extended Security Maintenance</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="/security">Security</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row"><hr class="p-hr--subtle p-hr--dense"></div>
+    <div class="row">
       <div class="col-3">
-        <ul class="p-inline-list--middot">
-          <li class="p-inline-list__item"><a href="https://www.brighttalk.com/search?q=Canonical" title="Visit the Webinars - external site">Webinars</a></li>
-          <li class="p-inline-list__item"><a href="https://tutorials.ubuntu.com/" title="Visit the Tutorials - external site">Tutorials</a></li>
-          <li class="p-inline-list__item"><a href="https://www.youtube.com/user/celebrateubuntu" title="Visit the Videos - external site">Videos</a></li>
-          <li class="p-inline-list__item"><a href="https://insights.ubuntu.com/category/case-studies" title="Visit the Case studies - external site">Case studies</a></li>
-          <li class="p-inline-list__item"><a href="https://insights.ubuntu.com/category/white-papers" title="Visit the White papers - external site">White papers</a></li>
-          <li class="p-inline-list__item"><a href="https://docs.ubuntu.com" title="Visit the Docs - external site">Docs</a></li>
-          <li class="p-inline-list__item"><a href="/cloud/training">Training</a></li>
-          <li class="p-inline-list__item"><a href="https://insights.ubuntu.com" title="Visit the Blog - external site">Blog</a></li>
-          <li class="p-inline-list__item"><a href="https://insights.ubuntu.com/press-centre/" title="Visit the Press Centre - external site">Press centre</a></li>
+        <h4 class="p-muted-heading--small">Tools</h4>
+      </div>
+      <div class="col-9">
+        <ul class="p-inline-list--middot is-x-dense">
+          <li class="p-inline-list__item">
+            <a href="https://cloud-init.io/">cloud-init</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="https://conjure-up.io/">conjure-up</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="https://jujucharms.com/">Juju</a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="https://snapcraft.io/">Snapcraft</a>
+          </li>
         </ul>
       </div>
     </div>
