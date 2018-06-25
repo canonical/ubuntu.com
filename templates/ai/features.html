@@ -1,0 +1,158 @@
+{% extends "ai/base_ai.html" %}
+{% block title %}Canonical&rsquo;s AI and ML features{% endblock %}
+{% block meta_description %}Canonical Kubeflow on Ubuntu includes software-defined networking and storage options, architectural flexibility, and shared community-driven ops code independent of architecture.{% endblock meta_description %}
+
+{% block content %}
+
+<section class="p-strip is-bordered">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h1>Canonical&rsquo;s AI and ML features</h1>
+      <p class="p-heading--three">Architectural freedom. Fully automated operations. Accelerated Deep Learning</p>
+      <p>Canonical&rsquo;s Kubeflow on Ubuntu gives you the flexibility to place your AI, ML and DL services exactly where you want them while sharing operational code with a large community.</p>
+      <p><a href="/ai/contact-us?product=ai-features">Contact us about Kubeflow&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 prefix-1 u-vertically-center u-align--center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}da5a7c9e-Kubeflow-Logo.svg?w=300" alt="Kubeflow" />
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row u-equal-height">
+    <div class="p-card col-6">
+      <div class="p-card__header">
+        <h3>Private cloud and HPC architecture</h3>
+      </div>
+      <p>GPGPU acceleration of AI and machine learning workloads requires careful configuration of the underlying hardware and host OS. Canonical&rsquo;s Ubuntu is the leading platform for public cloud GPGPU instances and Canonical offers private cloud expertise to match.</p>
+      <p>Build a GPGPU cluster and share it with multiple tenants using Canonical OpenStack - then operate Kubernetes on top for HPC and high-throughput AI / ML data science.</p>
+    </div>
+    <div class="p-card col-6">
+      <div class="p-card__header">
+        <h3>Just learning AI? Start with Kaggle</h3>
+      </div>
+      <p>Kaggle competitions are a great way to start learning about AI and develop your skills. For beginners, consider starting with one of the following previous competitions:</p>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a href="https://www.kaggle.com/c/titanic" class="p-link--external">Binary classification with &lsquo;Titanic: Machine Learning from Disaster&rsquo;</a></li>
+        <li class="p-list__item"><a href="https://www.kaggle.com/c/forest-cover-type-prediction" class="p-link--external">Multi-class classification with &lsquo;Forest Cover Type Prediction&rsquo;</a></li>
+        <li class="p-list__item"><a href="https://www.kaggle.com/c/bike-sharing-demand" class="p-link--external">Binary classification with &lsquo;Titanic: Machine Learning from Disaster&rsquo;</a></li>
+      <p><a href="https://www.kaggle.com/competitions" class="p-link--external">Visit kaggle.com for more competitions</a></p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="p-card col-6">
+      <div class="p-card__header">
+        <h3>Effective decision making</h3>
+      </div>
+      <p>With deep learning on vast amounts of data, make quicker and more effective decisions. Over time, the machine algorithms learn to distinguish what data is important what isn&rsquo;t. Insight extracted from AI will allow you to optimize your processes.</p>
+    </div>
+    <div class="p-card col-6">
+      <div class="p-card__header">
+        <h3>Improve SLA with operational predictions</h3>
+      </div>
+      <p>Using real-time telemetry data from the infrastructure in your data center, from hardware to software assets, leverage AI to help predict when components will fail or need to be regenerated. This can help you uphold impressive service availability metrics.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>Kubeflow</h2>
+      <p>Kubeflow helps you build composable, portable, and scalable machine learning stacks. With Kubeflow you can speed up the AI tools and framework installation process, particularly leveraging GPGPUs from Nvidia.</p>
+      <p>Without Kubeflow, building production-ready machine learning stacks can involve a lot of infrastructure and devops work &mdash; mixing components and solutions, wiring them together, and managing them. This complexity can be a barrier to adopting machine learning, and it can significantly delay achieving the business benefits you are hoping to receive. And then you want to launch something production worthy; start all over again.</p>
+      <p>Kubeflow solves these challenges by pulling together a handful of technologies and components that let you get a stack up and running quickly. You can accelerate that roadmap and benefit from community and/or corporate support.</p>
+      <p><a href="https://github.com/kubeflow/kubeflow" class="p-link--external">Visit Kubeflow on GitHub</a></p>
+    </div>
+  </div>
+  <div class="row u-equal-height u-vertically-center">
+    <div class="col-8">
+      <h2>Tensorflow&trade;</h2>
+      <p>TensorFlow is an open source software library for high performance numerical computation. Its flexible architecture allows easy deployment of computation across a variety of platforms (CPUs, GPUs, TPUs), and from desktops to clusters of servers to mobile and edge devices. Originally developed by researchers and engineers from the Google Brain team within Google&rsquo;s AI organization, it comes with strong support for machine learning and deep learning and the flexible numerical computation core is used across many other scientific domains.</p>
+      <p><a href="https://www.tensorflow.org/" class="p-link--external">Learn more about Tensorflow</a>
+    </div>
+    <div class="col-4 u-hide--small">
+      <p><img src="{{ ASSET_SERVER_URL }}710ddd41-mnist_tensorboard.png" alt="" /></p>
+      <cite>TensorFlow comes with visualization technology &mdash; TensorBoard. It features graphs, histograms, and helps with visualizing learning.</cite>
+    </div>
+  </div>
+</section>
+<section class="p-strip u-no-padding--top is-bordered u-image-position">
+  <div class="row">
+    <div class="col-8">
+      <h2>JupyterHub</h2>
+      <p>With <a href="https://jupyterhub.readthedocs.io/" class="p-link--external">JupyterHub</a> you can create a multi-user Hub which spawns, manages, and proxies multiple instances of the single-user <a href="https://jupyter-notebook.readthedocs.io/" class="p-link--external">Jupyter notebook</a> server.</p>
+      <p>Project Jupyter created JupyterHub to support many users. The Hub can offer notebook servers to a class of students, a corporate data science workgroup, a scientific research project, or a high performance computing group.</p>
+      <p><a href="https://jupyter.org/" class="p-link--external">Learn more about the Jupyter project</a></p>
+    </div>
+    <div class="col-4 u-hide--small">
+      <p><img src="{{ ASSET_SERVER_URL }}3df02300-jupyterpreview.png?w=400" alt="" class="u-image-position--bottom"/></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Operations automation</h2>
+      <p>The real challenge of Kubeflow is everyday operations automation, year after year, while Kubeflow continues to evolve rapidly. This includes the everyday automation of the stack under Kubeflow. Canonical solves this problem with model-driven operations that decouple your architectural choices from the operations codebase that supports upgrades, scaling, integration and security.</p>
+      <h3>Total automation of gpgpu enabled infrastructure</h3>
+      <p>Eliminate the extra steps needed to take advantage of your gpgpu&rsquo;s by leveraging Canonical&rsquo;s Kubeflow. With drivers tailored to your chipset, you&rsquo;ll get the most out of your investment, and speed up your deep learning initiatives.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Artificial Intelligence infrastructure architecture</h2>
+      <p class="u-sv3">To get the most out of Canonical&rsquo;s Kubeflow, you&rsquo;ll want to run it on an effective supporting stack. Minimally, leveraging the Canonical Distribution of Kubernetes (CDK) gives you the benefits of perfect portability between your private data-center and the public cloud.  CDK on Canonical Openstack unlocks further benefits, as described below.</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="p-card--highlighted col-6">
+      <div class="p-card__header">
+        <h3>Compute</h3>
+      </div>
+      <p>Every ounce of performance matters. If you&rsquo;re building a private cloud you want the maximum performance for your workloads, the maximum utilisation in your data center, and the maximum economic efficiency. Canonical delivers all three.</p>
+    </div>
+    <div class="p-card--highlighted col-6">
+      <div class="p-card__header">
+        <h3>Storage</h3>
+      </div>
+      <p>Storage performance and economics are tricky to balance in a cloud environment. Canonical will help you architect your storage across the cluster to balance price and performance, ensuring the right mix of resilience, latency, iops and integrity for your particular deployment.</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="p-card--highlighted col-6">
+      <div class="p-card__header">
+        <h3>Networking</h3>
+      </div>
+      <p>Network performance is critical for speeding up large deep learning exercises. The major factor in perceived cloud performance is aggregate network throughput and latency across the underlying cluster. Canonical&rsquo;s work with hyperscale public clouds ensures that we have deep insight into the dynamics of cloud network performance and security best practices for large-scale multi-tenanted operations. Our work with telco groups for NFV and edge clouds ensures that we can work well in complex environments where latency and security are critical.</p>
+    </div>
+    <div class="p-card--highlighted col-6">
+      <div class="p-card__header">
+        <h3>Operational Dashboards</h3>
+      </div>
+      <p>Operations in highly coherent large-scale distributed clusters require a new level of operational monitoring and observability. Canonical delivers a standardised set of open source log aggregation and systems monitoring dashboards with every cloud, using Prometheus, the Elastic Search and Kibana stack (ELK), and Nagios.</p>
+    </div>
+  </div>
+  <div class="row">
+    <p><a href="/openstack/features">Learn more about OpenStack&rsquo;s features&nbsp;&rsaquo;</a></p>
+  </p>
+</section>
+
+<section class="p-strip--image is-dark is-deep" style="background-image: url('https://assets.ubuntu.com/v1/9f6916dd-k8s-prometheus-light.png');">
+  <div class="row">
+    <div class="col-12 prefix-8">
+      <div class="p-card--overlay">
+        <h3>Operational Dashboards</h3>
+        <p>These dashboards can be customised or integrated into existing monitoring systems at your business.</p>
+        <p><a href="/ai/contact-us" class="p-button--positive">Contact Canonical about OpenStack</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_ubuntu_advantage" third_item="_cloud_further_reading" %}
+
+{% endblock content %}
