@@ -96,12 +96,12 @@
         <h3>Model-driven operations deliver true open source automation</h3>
         <p>In traditional automation environments like Ansible, Chef and Puppet, your architectural choices are hard-coded in the configuration management system. That means two different companies who need two different architectures cannot really share ops code. Every environment becomes its own unique snowflake. That&rsquo;s expensive.</p>
         <p class="p-heading--five">With Canonical&rsquo;s approach to OpenStack:</p>
-        <ul class="p-list--divided">
+        <ul class="p-list--divided is-split">
           <li class="p-list__item is-ticked">Operational code is shared across different architectures</li>
+          <li class="p-list__item is-ticked">Daily operations are fully automated</li>
           <li class="p-list__item is-ticked">Upgrades are guaranteed for every OpenStack version</li>
           <li class="p-list__item is-ticked">Security improves for every deployment at the same time</li>
           <li class="p-list__item is-ticked">Third-party integrations are shared as soon as they are ready</li>
-          <li class="p-list__item is-ticked">Daily operations are fully automated</li>
         </ul>
         <p>You don&rsquo;t need to hire a large team that follows every aspect of OpenStack development. Just focus on high-level operations and your business workloads.</p>
         <p><a href="https://pages.ubuntu.com/stuckstack_webinar_upgrades_register.html" class="p-link--external">Watch our OpenStack Upgrade webinar</a></p>
@@ -151,11 +151,11 @@
     </div>
     <div class="row">
       <div class="col-8">
-        <ul class="p-list--divided">
-          <li class="p-list__item"><strong>A containerised control plane</strong> means that OpenStack services are deployed in containers rather than dedicated machines, which reduces the number of machines required in smaller cloud environments and puts more of the machinery to work for guests and tenants.</li>
-          <li class="p-list__item"><strong>Hyper-converged</strong> architectures put storage, guest VMs and OpenStack services on every node in the cluster, using modern kernel QOS (quality of service) capabilities to defend the performance of critical services while reducing the number of overhead nodes required to service the cloud.</li>
-          <li class="p-list__item"><strong>Isolated service</strong> architectures use dedicated machines for specific OpenStack functions, such as messaging, databases and API services, providing simpler guarantees of service levels in cloud functions and simpler security and compliance and audits.</li>
-          <li class="p-list__item"><strong>VIP-HA</strong> architectures enable almost instant failover of critical front-end API services but require those services to reside on a single physical network segment. <strong>DNS-HA</strong> methodologies use short-lived TTL DNS record updates to redirect users to backup API endpoints in the event of failure, with some delays to service recovery but more flexibility of placement and routing for large-scale environments.</li>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked"><strong>A containerised control plane</strong> means that OpenStack services are deployed in containers rather than dedicated machines, which reduces the number of machines required in smaller cloud environments and puts more of the machinery to work for guests and tenants.</li>
+          <li class="p-list__item is-ticked"><strong>Hyper-converged</strong> architectures put storage, guest VMs and OpenStack services on every node in the cluster, using modern kernel QOS (quality of service) capabilities to defend the performance of critical services while reducing the number of overhead nodes required to service the cloud.</li>
+          <li class="p-list__item is-ticked"><strong>Isolated service</strong> architectures use dedicated machines for specific OpenStack functions, such as messaging, databases and API services, providing simpler guarantees of service levels in cloud functions and simpler security and compliance and audits.</li>
+          <li class="p-list__item is-ticked"><strong>VIP-HA</strong> architectures enable almost instant failover of critical front-end API services but require those services to reside on a single physical network segment. <strong>DNS-HA</strong> methodologies use short-lived TTL DNS record updates to redirect users to backup API endpoints in the event of failure, with some delays to service recovery but more flexibility of placement and routing for large-scale environments.</li>
         </ul>
       </div>
     </div>
@@ -262,19 +262,19 @@
       </div>
       <div class="col-5">
         <ul class="p-inline-images">
-          <li class="p-inline-images__item">
+          <li class="p-inline-images__item p-inline-images__item--smaller">
             <img src="{{ ASSET_SERVER_URL }}82bf0621-logo-ceph-160.png" alt="Ceph">
           </li>
-          <li class="p-inline-images__item">
+          <li class="p-inline-images__item p-inline-images__item--smaller">
             <img src="{{ ASSET_SERVER_URL }}4f1e16bf-image-swift.svg" alt="Swift">
           </li>
-          <li class="p-inline-images__item">
+          <li class="p-inline-images__item p-inline-images__item--smaller">
             <img src="{{ ASSET_SERVER_URL }}836420d5-Nexenta-logo-600-dpi.png" alt="Nexenta">
           </li>
-          <li class="p-inline-images__item">
+          <li class="p-inline-images__item p-inline-images__item--smaller">
             <img src="{{ ASSET_SERVER_URL }}973c4256-storpool.svg" alt="Storpool">
           </li>
-          <li class="p-inline-images__item">
+          <li class="p-inline-images__item p-inline-images__item--smaller">
             <img src="{{ ASSET_SERVER_URL }}1702709d-quobyte.png" alt="Quobyte">
           </li>
         </ul>
