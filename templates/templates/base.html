@@ -85,9 +85,6 @@
     {% include "shared/_polyfill.html" %}
     <script src="{% versioned_static 'js/navigation.js' %}"></script>
     <script src="{% versioned_static 'js/core.js' %}"></script>
-    <!-- hide common global nav
-    <script src="{% versioned_static 'global-nav/build/js/global.js' %}"></script>
-    <script>ubuntu.globalNav.setup();</script> -->
     <script src="{% versioned_static 'js/scratch.js' %}"></script>
     <script src="{{ ASSET_SERVER_URL }}f5bf3854-respond.min.js"></script>
     {% block footer_extra %}{% endblock %}
