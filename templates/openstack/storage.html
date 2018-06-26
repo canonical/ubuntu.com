@@ -1,7 +1,7 @@
 {% extends "openstack/_base_openstack.html" %}
 
 {% block title %}Ubuntu Advantage Storage | OpenStack{% endblock %}
-{% block meta_description %}Ubuntu Advantage Storage from Canonical embeds the proven software-defined storage (SDS) technologies of Ceph, NexentaEdge, Swift and SwiftStack, into a 24x7-supported software solution with a unique metered pricing model.{% endblock meta_description %}
+{% block meta_description %}Canonical includes proven software-defined storage - Ceph, NexentaEdge, Swift and SwiftStack, in a 24x7 supported OpenStack with pay-for-what-you-use metered pricing options.{% endblock meta_description %}
 
 {% block content %}
 
@@ -9,9 +9,8 @@
   <div class="row">
     <div class="u-equal-height">
       <div class="col-7">
-        <h1>Ubuntu Advantage Storage</h1>
-        <p>Ubuntu Advantage Storage from Canonical embeds the proven software&dash;defined storage (<abbr title="Software&dash;defined storage">SDS</abbr>) technologies of Ceph, NexentaEdge, Swift and SwiftStack, into a 24x7&dash;supported software solution with a unique metered pricing model.</p>
-        <p><a class="p-button--positive" href="/openstack/contact-us?product=ubuntu-advantage-storage">Request a demo</a></p>
+        <h1>Software-Defined Storage for OpenStack</h1>
+        <p>The Ubuntu Advantage Storage support package from Canonical embeds proven software-defined storage (SDS) technologies into a 24x7-supported software solution with a fixed or metered pricing model.</p>
       </div>
       <div class="col-5 u-align--center u-vertically-center u-hide--small">
         <img class="hero-image" width="100%" src="{{ ASSET_SERVER_URL }}c2d50399-storage.svg" alt="Lots of server pictos in a cloud" />
@@ -23,25 +22,31 @@
 <section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-12">
-      <h2>The challenge</h2>
+      <h2>The enterprise storage challenge</h2>
+      <p>The rate of enterprise data creation growth is exponential. As structured and unstructured data fills disks, compliance burdens increase, and data retention policies lengthen, every organisation must find cost-effective ways to grow their storage capabilities.</p>
     </div>
   </div>
   <div class="row">
-    <div class=" u-equal-height">
+    <div class="u-equal-height">
       <div class="col-7 suffix-1">
-        <p>The pace of data creation is exploding. As structured and unstructured data fills disks and data retention policies lengthen, every organisation must find cost&dash;effective ways to grow their storage infrastructure.</p>
-        <p>Traditionally enterprise storage needs have been met with appliance&dash;like <abbr title="Storage Area Network">SAN</abbr> (Storage Area Network) and <abbr title="Network Attached Storage">NAS</abbr> (Network Attached Storage) solutions. However, they are often expensive to purchase, expand and upgrade.</p>
-        <p>Designed from the ground up for petabyte&dash;scale deployments, Ubuntu Advantage Storage now offers a proven software-defined storage (<abbr title="software&dash;defined storage">SDS</abbr>) alternative at the lowest per gigabyte price.</p>
-        <p><a class="p-link--external" href="https://insights.ubuntu.com/2015/05/18/ubuntu-advantage-storage-factsheet/">Read the Ubuntu Advantage Storage factsheet</a></p>
+        <p>Public clouds have pioneered the approach of network-hosted software-defined storage architectures, delivering very reliable and efficient storage at low cost. Traditional enterprise SAN (Storage Area Network) and NAS (Network Attached Storage) solutions are now considered expensive to purchase, expand and upgrade.</p>
+        <p>The data center is following, and software-defined storage based on commodity servers and disks with Ubuntu has become the new norm for high-growth low-cost block storage, object stores and data lakes. Open source Ceph, Swift and HDFS enable massive enterprise operations with total costs in line with the underlying bulk commodity disk prices.</p>
+        <p>Ubuntu Advantage Storage is the proven enterprise software-defined storage offering at the lowest per gigabyte price.</p>
+        <p><a class="p-link--external" href="https://blog.ubuntu.com/2015/05/18/ubuntu-advantage-storage-factsheet">Read the Ubuntu Advantage Storage factsheet</a></p>
       </div>
 
       <div class="col-4">
         <div class="p-card--highlighted  u-float--right">
-          <h2 class="p-card__title"><a href="https://insights.ubuntu.com/2015/05/18/ubuntu-advantage-storage-faqs/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'resource', 'eventAction' : 'Ubuntu Storage FAQ', 'eventLabel' : 'from ubuntu.com/openstack/storage', 'eventValue' : undefined });">Ubuntu Advantage Storage FAQs&nbsp;&rsaquo;</a></h2>
+          <h2 class="p-card__title"><a href="https://blog.ubuntu.com/2015/05/18/ubuntu-advantage-storage-faqs" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'resource', 'eventAction' : 'Ubuntu Storage FAQ', 'eventLabel' : 'from ubuntu.com/openstack/storage', 'eventValue' : undefined });">Ubuntu Advantage Storage FAQs&nbsp;&rsaquo;</a></h2>
           <p class="p-card__content">Answers to your most frequently asked questions about Ubuntu Advantage Storage.</p>
           <p class="p-card__category">FAQ</p>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <p>Designed from the ground up for petabyte-scale deployments, Canonical’s software-defined storage solutions include all-open-source components with highly automated operations to drive down the cost of ownership. We specifically offer pricing models that match either your capex budget or consumption-oriented pay-for-what-you-use engagements that mirror public cloud pricing models at on-prem costs.</p>
     </div>
   </div>
 </section>
@@ -50,8 +55,8 @@
   <div class="row">
     <div class="col-8">
       <h2>Storage options</h2>
-      <p>With Ubuntu Advantage Storage you chose between four leading open source Software&dash;defined storage technologies.</p>
-      <p>All these technologies are available within our fully&dash;supported reference architectures, deployed on Ubuntu {{ lts_release_full }} alongside our award&dash;winning cloud tools.</p>
+      <p>With Ubuntu Advantage Storage you choose between four leading open source software-defined storage technologies.</p>
+      <p>All these technologies are available within our fully-supported reference architectures, deployed on Ubuntu {{ lts_release_full }} alongside our award-winning cloud tools.</p>
     </div>
   </div>
   <div class="row">
@@ -61,7 +66,7 @@
           <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}4f1e16bf-image-swift.svg" alt="Swift icon">
           <div class="p-matrix__content">
             <h3 class="p-matrix__title">Swift</h3>
-            <p class="p-matrix__desc">The high performance S3‐compatible object store developed and shipped with OpenStack, ideal for storing unstructured data.</p>
+            <p class="p-matrix__desc">The high performance S3-compatible object store developed and shipped with OpenStack, ideal for storing unstructured data.</p>
             </div>
           </li>
           <li class="p-matrix__item">
@@ -75,7 +80,7 @@
               <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}888cd4eb-nexenta-logo.png?w=160" alt="NexentaEdge icon">
               <div class="p-matrix__content">
                 <h3 class="p-matrix__title">NexentaEdge</h3>
-                <p class="p-matrix__desc">Block and object storage offering inline de‐duplication &amp; compression, low latency block services, instant snapshots, and enterprise grade, end‐to‐end data integrity.</p>
+                <p class="p-matrix__desc">Block and object storage offering inline de-duplication and compression, low latency block services, instant snapshots, and enterprise grade, end-to-end data integrity.</p>
                 </div>
               </li>
               <li class="p-matrix__item">
@@ -99,7 +104,7 @@
           <div class="row">
             <div class="u-equal-height">
               <div class="col-6">
-                <p>Legacy storage solutions are often priced per&dash;node or according to total disk capacity. This can lead to a penalty for good practices such as high durability&nbsp;replication.</p>
+                <p>Legacy storage solutions are often priced per-node or according to total disk capacity. This can lead to a penalty for good practices such as high durability&nbsp;replication.</p>
                 <p>Ubuntu Advantage Storage is different. Our pricing is based on the amount of data you record in your storage pool, regardless of how it is written or how much disk space is used.</p>
                 <p>Ubuntu Advantage Storage means you don&rsquo;t have to pay for replicas or empty space.</p>
                 <p><a href="/openstack/contact-us?product=ubuntu-advantage-storage">Find out how much you can save&nbsp;&rsaquo;</a></p>
@@ -117,8 +122,8 @@
                 <ul class="p-list is-split">
                   <li class="p-list__item is-ticked">Plan, build and grow your production-grade <abbr title="Software&dash;defined storage">SDS</abbr> infrastructure on commodity hardware using proven open source solutions.</li>
                   <li class="p-list__item is-ticked">Deploy and scale an Ubuntu Advantage Storage cluster in hours, not weeks, using Juju and MAAS.</li>
-                  <li class="p-list__item is-ticked">Pay only for the data you store &mdash; no cost penalty for increased replication or high&dash;durability erasure coding or early build out of capacity.</li>
-                  <li class="p-list__item is-ticked">World&dash;class support from Canonical, experts in large&dash;scale, multi&dash;site&dash;replicated deployments.</li>
+                  <li class="p-list__item is-ticked">Pay only for the data you store &mdash; no cost penalty for increased replication or high-durability erasure coding or early build out of capacity.</li>
+                  <li class="p-list__item is-ticked">World-class support from Canonical, experts in large-scale, multi-site-replicated deployments.</li>
                   <li class="p-list__item is-ticked">Built with Ubuntu {{ lts_release_full }} with five years of support for every component in the stack.</li>
                 </ul>
                 <p><a class="p-button--neutral" href="/openstack/contact-us?product=ubuntu-advantage-storage">Request a demo</a></p>
