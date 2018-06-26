@@ -3,22 +3,22 @@
 
 {% block content %}
 
-{% if product == 'cloud-training' %}
+{% if product == 'openstack-training' %}
   {% include "shared/_thank_you.html" with thanks_context="enquiring about our training courses" %}
-{% elif product == 'cloud-training-classroom' %}
+{% elif product == 'openstack-training-classroom' %}
   {% include "shared/_thank_you.html" with thanks_context="enquiring about our classroom training courses" %}
-{% elif product == 'cloud-training-onsite' %}
+{% elif product == 'openstack-training-onsite' %}
   {% include "shared/_thank_you.html" with thanks_context="enquiring about our on-site training courses" %}
-{% elif product == 'cloud-training-server-admin' %}
+{% elif product == 'openstack-training-server-admin' %}
   {% include "shared/_thank_you.html" with thanks_context="enquiring about our server admin training courses" %}
-{% elif product == 'storage' %}
+{% elif product == 'ubuntu-advantage-storage' %}
   {% include "shared/_thank_you.html" with thanks_context="enquiring about Ubuntu Advantage Storage" %}
-{% elif product == 'managed-cloud' %}
-  {% include "shared/_thank_you.html" with thanks_context="enquiring about BootStack" %}
+{% elif product == 'openstack-managed-cloud' or product == 'openstack-managed-cloud-demo' %}
+  {% include "shared/_thank_you.html" with thanks_context="enquiring about a BootStack managed cloud" %}
 {% elif product == 'foundation-cloud' %}
   {% include "shared/_thank_you.html" with thanks_context="enquiring about Foundation Cloud Build" %}
 {% else %}
-  {% include "shared/_thank_you.html" with thanks_context="enquiring about the Cloud" %}
+  {% include "shared/_thank_you.html" with thanks_context="enquiring about OpenStack" %}
 {% endif %}
 
 {% endblock content %}
