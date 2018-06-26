@@ -9,13 +9,15 @@
   {% elif product == 'ai-index-assessment' %}
     {% include "shared/_thank_you.html" with thanks_context="enquiring about our ML / Data Science assessment" %}
   {% elif product == 'ai-index-managed' %}
-    {% include "shared/_thank_you.html" with thanks_context="enquiring about our managed AI services" %}
+    {% include "shared/_thank_you.html" with thanks_context="enquiring about our AI managed services" %}
   {% elif product == 'ai-install' %}
     {% include "shared/_thank_you.html" with thanks_context="enquiring about installing Kubeflow" %}
   {% elif product == 'ai-consulting' %}
     {% include "shared/_thank_you.html" with thanks_context="enquiring about Canonical consulting" %}
-  {% else %}
+  {% elif product == 'ai-features' %}
     {% include "shared/_thank_you.html" with thanks_context="enquiring about AI on Canonical" %}
+  {% else %}
+    {% include "shared/_thank_you.html" with thanks_context="enquiring about AI" %}
   {% endif %}
 {% endblock content %}
 
