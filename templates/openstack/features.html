@@ -96,7 +96,7 @@
         <h3>Model-driven operations deliver true open source automation</h3>
         <p>In traditional automation environments like Ansible, Chef and Puppet, your architectural choices are hard-coded in the configuration management system. That means two different companies who need two different architectures cannot really share ops code. Every environment becomes its own unique snowflake. That&rsquo;s expensive.</p>
         <p class="p-heading--five">With Canonical&rsquo;s approach to OpenStack:</p>
-        <ul class="p-list--divided is-split">
+        <ul class="p-list--divided">
           <li class="p-list__item is-ticked">Operational code is shared across different architectures</li>
           <li class="p-list__item is-ticked">Upgrades are guaranteed for every OpenStack version</li>
           <li class="p-list__item is-ticked">Security improves for every deployment at the same time</li>
@@ -157,7 +157,23 @@
           <li class="p-list__item"><strong>Isolated service</strong> architectures use dedicated machines for specific OpenStack functions, such as messaging, databases and API services, providing simpler guarantees of service levels in cloud functions and simpler security and compliance and audits.</li>
           <li class="p-list__item"><strong>VIP-HA</strong> architectures enable almost instant failover of critical front-end API services but require those services to reside on a single physical network segment. <strong>DNS-HA</strong> methodologies use short-lived TTL DNS record updates to redirect users to backup API endpoints in the event of failure, with some delays to service recovery but more flexibility of placement and routing for large-scale environments.</li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip is-bordered">
+    <div class="row">
+      <div class="col-8">
+        <h2>Consultancy service</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">
         <p>Our consulting and design services will help you choose the right mix of these capabilities for the particular stage and scale of your private cloud journey; having built hundreds of private clouds, we’re well placed to advise on the tradeoffs and steer you to the right architecture. Perhaps most importantly, though, we can evolve OpenStack deployments over a series of iterations as your needs change, which keeps your options open.</p>
+        <p><a href="/openstack/consulting">Learn more our consulting services&nbsp;&rsaquo;</a></p>
+      </div>
+      <div class="col-4 prefix-1 u-hide--small">
+        <img src="{{ ASSET_SERVER_URL }}4287c2b2-transfer.svg" alt="" />
       </div>
     </div>
   </section>
@@ -225,14 +241,14 @@
 
   <section class="p-strip is-bordered">
     <div class="row">
-      <div class="col-6">
+      <div class="col-7">
         <h2>Storage</h2>
       </div>
     </div>
     <div class="row">
-      <div class="col-6">
+      <div class="col-7">
         <p>Storage performance and economics are tricky to balance in a cloud environment. Canonical will help you architect your storage across the cluster to balance price and performance, ensuring the right mix of resilience, latency, iops and integrity for your particular deployment.</p>
-        <ul class="p-list">
+        <ul class="p-list is-split">
           <li class="p-list__item is-ticked">Mix of local direct-attach and network storage</li>
           <li class="p-list__item is-ticked">Distributed software-defined storage vs SAN assessment</li>
           <li class="p-list__item is-ticked">Performance tuning for local and network storage</li>
@@ -244,7 +260,7 @@
         </ul>
         <p><a href="/openstack/storage" class="p-button--positive">Discover Ubuntu Advantage Storage</a></p>
       </div>
-      <div class="col-6">
+      <div class="col-5">
         <ul class="p-inline-images">
           <li class="p-inline-images__item">
             <img src="{{ ASSET_SERVER_URL }}82bf0621-logo-ceph-160.png" alt="Ceph">
