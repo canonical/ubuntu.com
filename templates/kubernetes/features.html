@@ -4,13 +4,16 @@
 
 {% block content %}
 
-<section class="p-strip is-deep is-bordered">
-  <div class="row">
+<section class="p-strip--light is-bordered">
+  <div class="row u-equal-height u-vertically-center">
     <div class="col-8">
       <h1>Canonical Distribution of Kubernetes features</h1>
       <p class="p-heading--four">Architectural freedom. Fully automated operations. Extensible Kubernetes for all.</p>
       <p>The Canonical Distribution of Kubernetes on Ubuntu gives you the flexibility to place your services exactly where you want them while sharing operational code with a large community.</p>
       <p><a class="p-button--positive" href="/kubernetes/contact-us?product=kubernetes-features">Talk to us</a></p>
+    </div>
+    <div class="col-4 u-align--center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}96d35aa4-certified-kubernetes-logo.svg?w=300" alt="Kubernetes Certified Service Provider" />
     </div>
   </div>
 </section>
@@ -137,21 +140,18 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip is-bordered">
   <div class="row">
     <h2>Logging and Monitoring</h2>
     <p>Operations in highly coherent large-scale distributed clusters require a new level of operational monitoring and observability. Canonical delivers a standardised set of open source log aggregation and systems monitoring dashboards with every cloud, using Prometheus, the Elastic Search and Kibana stack (ELK), and Nagios.</p>
+    <div><img src="{{ ASSET_SERVER_URL }}9f6916dd-k8s-prometheus-light.png" alt=""></div>
+    <p>These dashboards can be customised or integrated into existing monitoring systems at your business.</p>
   </div>
 </section>
-
-<section class="p-strip--image is-dark is-deep" style="background-image: url('{{ ASSET_SERVER_URL }}9f6916dd-k8s-prometheus-light.png'); background-position: center;">
+<section class="p-strip--light">
   <div class="row">
-    <div class="col-12 prefix-8">
-      <div class="p-card--overlay p-card--highlighted">
-        <p>These dashboards can be customised or integrated into existing monitoring systems at your business.</p>
-        <p><a href="/kubernetes/contact-us" class="p-button--positive">Contact Canonical about Kubernetes</a></p>
-      </div>
-    </div>
+    <p>Find out how the Canonical Distribution of Kubernetes can give you the flexibility to share operational code with a large community whilst placing your services exactly where you want them.</p>
+    <p><a href="/kubernetes/contact-us" class="p-button--positive">Contact Canonical about Kubernetes</a></p>
   </div>
 </section>
 
