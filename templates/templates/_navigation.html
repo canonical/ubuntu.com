@@ -46,7 +46,7 @@
     {% include "templates/_navigation-community-h.html" %}
     {% include "templates/_navigation-download-h.html" %}
   </div>
-  {% if breadcrumbs %}
+  {% if breadcrumbs and breadcrumbs.children and breadcrumbs.children|length > 1 or breadcrumbs.grandchildren %}
   <nav class="p-navigation--secondary">
     <div class="row">
       <a class="p-navigation--secondary__banner u-hide--nav-threshold-down" href="{{ breadcrumbs.section.path }}">
@@ -58,9 +58,11 @@
       <ul class="breadcrumbs--secondary col-12">
         {% for child in breadcrumbs.children %}
         <li class="breadcrumbs__item">
+          {% if child.title != 'Overview' %}
           <a class="breadcrumbs__link {% if child.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ child.path }}">
             {{ child.title }}
           </a>
+          {% endif %}
           {% if breadcrumbs.grandchildren %}
           <ul class="breadcrumbs__tertiary">
             {% for grandchild in breadcrumbs.grandchildren %}

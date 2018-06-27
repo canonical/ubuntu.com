@@ -6,17 +6,20 @@
     <nav id="main-navigation" class="p-footer__nav u-clearfix">
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
-          {% include 'templates/_footer_item.html' with section=nav_sections.openstack %} {% include 'templates/_footer_item.html' with section=nav_sections.juju %} {% include 'templates/_footer_item.html' with section=nav_sections.publiccloud %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.openstack %} {% include 'templates/_footer_item.html' with section=nav_sections.publiccloud %}
         </ul>
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
-          {% include 'templates/_footer_item.html' with section=nav_sections.server %} {% include 'templates/_footer_item.html' with section=nav_sections.containers %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.kubernetes %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.containers %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.ai %}
         </ul>
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
           {% include 'templates/_footer_item.html' with section=nav_sections.desktop %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.server %}
         </ul>
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
