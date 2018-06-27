@@ -25,14 +25,14 @@
       <hr>
       <p>The Canonical Distribution of Kubernetes (CDK) provides a well integrated, turn-key Kubernetes platform that is optimized for your cloud &mdash; private or public. It is open, extensible, and secure.</p>
       <p>Get started now and take advantage of our rapidly growing ecosystem of technology partners like Rancher Labs, JFrog and others. CDK is the best foundation for your cloud native platform!</p>
-      <p><a class="p-button--neutral" href="/kubernetes/install">Get started</a></p>
+      <p><a class="p-button--positive" href="/kubernetes/install">Get started</a></p>
     </div>
     <div class="col-6 p-card">
       <h3 class="p-card__title">AI / ML and HPC Architecture</h3>
       <hr>
       <p>GPGPU acceleration of AI and machine learning workloads on Kubernetes requires careful configuration of the underlying hardware and host OS. Canonical’s Ubuntu is the leading platform for public cloud GPGPU instances and Canonical offers private cloud expertise to match.</p>
       <p>Build a GPGPU cluster and operate Kubernetes on top for HPC and high-throughput AI / ML data science.</p>
-      <p><a class="p-button--neutral" href="/ai">Learn more</a></p>
+      <p><a class="p-button--positive" href="/ai">Learn more</a></p>
     </div>
   </div>
   <div class="row u-equal-height">
@@ -41,13 +41,13 @@
       <hr>
       <p>Developers demand the latest features as Kubernetes evolves rapidly in the open source community. On Bare-Metal, VMs or as a service &mdash; CDK will keep your kubernetes cluster up to date</p>
       <p>Using Snaps, point releases of Kubernetes are automatically installed. And whenever there is a new major version, juju charms make upgrading CDK easy.</p>
-      <p><a class="p-button--neutral" href="/kubernetes/install">Install CDK now</a></p>
+      <p><a class="p-button--positive" href="/kubernetes/install">Install CDK now</a></p>
     </div>
     <div class="col-6 p-card">
       <h3 class="p-card__title">Managed Kubernetes</h3>
       <hr>
       <p>Predictable OpEx for organizations looking to disaggregate Kubernetes adoption from operational readiness. Canonical provides managed service for Kubernetes at great economics.</p>
-      <p><a class="p-button--neutral" href="/kubernetes/managed">Learn more</a></p>
+      <p><a class="p-button--positive" href="/kubernetes/managed">Learn more</a></p>
     </div>
   </div>
 </section>
@@ -63,22 +63,24 @@
     </div>
   </div>
   <div class="row">
+    <ul class="p-list is-split">
+      <li class="p-list__item is-ticked">Multi-cloud workload portability thanks to Ubuntu</li>
+      <li class="p-list__item is-ticked">Same Ubuntu OS and kernel as Google, Azure, AWS k8s offerings</li>
+      <li class="p-list__item is-ticked">PCI device passthrough for GPGPU, FPGA and SR-IOV workloads</li>
+      <li class="p-list__item is-ticked">AI and machine learning optimisations with nVidia and Google</li>
+      <li class="p-list__item is-ticked">Flavours to match public cloud k8s on Google, Azure, AWS</li>
+      <li class="p-list__item is-ticked">Standard upstream Kubernetes, CNCF builds available</li>
+      <li class="p-list__item is-ticked">Portfolio of third-party certified solutions for CI/CD</li>
+      <li class="p-list__item is-ticked">Day-2 operations encapsulated and included</li>
+      <li class="p-list__item is-ticked">Upgrades guaranteed between K8s releases</li>
+      <li class="p-list__item is-ticked">Security updates by Canonical just like Ubuntu</li>
+      <li class="p-list__item is-ticked">Full OCI compatibility with docker and containerd runtimes</li>
+      <li class="p-list__item is-ticked">Prometheus and ELK logging and monitoring included</li>
+      <li class="p-list__item is-ticked">Extensible, third-party ecosystem for storage, networking</li>
+    </ul>
+  </div>
+  <div class="row">
     <div class="col-8">
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Multi-cloud workload portability thanks to Ubuntu</li>
-        <li class="p-list__item is-ticked">Same Ubuntu OS and kernel as Google, Azure, AWS k8s offerings</li>
-        <li class="p-list__item is-ticked">PCI device passthrough for GPGPU, FPGA and SR-IOV workloads</li>
-        <li class="p-list__item is-ticked">AI and machine learning optimisations with nVidia and Google</li>
-        <li class="p-list__item is-ticked">Flavours to match public cloud k8s on Google, Azure, AWS</li>
-        <li class="p-list__item is-ticked">Standard upstream Kubernetes, CNCF builds available</li>
-        <li class="p-list__item is-ticked">Portfolio of third-party certified solutions for CI/CD</li>
-        <li class="p-list__item is-ticked">Day-2 operations encapsulated and included</li>
-        <li class="p-list__item is-ticked">Upgrades guaranteed between K8s releases</li>
-        <li class="p-list__item is-ticked">Security updates by Canonical just like Ubuntu</li>
-        <li class="p-list__item is-ticked">Full OCI compatibility with docker and containerd runtimes</li>
-        <li class="p-list__item is-ticked">Prometheus and ELK logging and monitoring included</li>
-        <li class="p-list__item is-ticked">Extensible, third-party ecosystem for storage, networking</li>
-      </ul>
       <p>In partnership with Google, Canonical delivers the perfect K8s for AI and machine learning with Kubeflow.</p>
       <p><a href="/ai/kubeflow">Learn more about Kubeflow&nbsp;&rsaquo;</a></p>
     </div>
@@ -100,6 +102,11 @@
   <div class="row">
     <div class="col-8">
       <p>Kubernetes uses Container Network Interface (CNI) as an interface between network providers and Kubernetes networking. CNI is a library definition and a set of tools, under the umbrella of the Cloud Native Computing Foundation project.</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h3>CNI plugins</h3>
       <p>Canonical&rsquo;s Distribution of Kubernetes comes pre-packaged with several tested CNI plugins like Calico and Flannel. Our distribution of Kubernetes is open and extensible &mdash; bring your favorite CNI plugin and extend CDK.</p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Secure network connectivity for containers and virtual machine</li>
@@ -111,16 +118,20 @@
         <li class="p-list__item is-ticked">Fine-grained control over communications between containers, virtual machine workloads, and bare metal host endpoints.</li>
         <li class="p-list__item is-ticked">Production  scale</li>
       </ul>
-      <p>For assistance with your private cloud network underlay &mdash; the network that provides connectivity between your physical or virtual hosts &mdash; leverage Canonical&rsquo;s work with hyperscale public clouds, with deep insight into the dynamics of cloud network performance and security best practices for large-scale multi-tenanted operations.</p>
-      <p><a href="/openstack">Learn more about OpenStack&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 u-vertically-center u-align--center">
       <img src="{{ ASSET_SERVER_URL }}a6fdc787-logo.png" alt="">
     </div>
   </div>
+  <div class="row">
+    <div class="col-8">
+      <p>For assistance with your private cloud network underlay &mdash; the network that provides connectivity between your physical or virtual hosts &mdash; leverage Canonical&rsquo;s work with hyperscale public clouds, with deep insight into the dynamics of cloud network performance and security best practices for large-scale multi-tenanted operations.</p>
+      <p><a href="/openstack">Learn more about OpenStack&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
 </section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip--light is-bordered">
   <div class="row">
     <h1>Storage</h1>
   </div>
