@@ -90,7 +90,7 @@
           <div class="p-list-step__content">
             <p>Connect the both NICs of the servers to the same network switch.</p>
             <p>Identify the smallest server, if they are not identical. You will use this for <a href="https://maas.io/" class="p-link--external">MAAS</a>, the &lsquo;Metal as a Service&rsquo; provisioning system which will drive automated installation of the OS on the rest of the cluster.</p>
-            <p><a href="http://releases.ubuntu.com/16.04/" class="p-link--external">Install Ubuntu Server 16.04 LTS</a> on the MAAS server. Give it an IP address on the /24 and static default route to the gateway router, so it can see the Internet. You might want to bond the two NICs for resilience and/or bandwidth aggregation.</p>
+            <p><a href="/download/server" class="p-link--external">Install Ubuntu Server 18.04 LTS</a> on the MAAS server. Give it an IP address on the /24 and static default route to the gateway router, so it can see the Internet. You might want to bond the two NICs for resilience and/or bandwidth aggregation.</p>
           </div>
         </li>
 
@@ -219,20 +219,17 @@
             </p>
             <p>Next, you will have the opportunity to configure the individual OpenStack services.</p>
             <p>
-              <a href="{{ ASSET_SERVER_URL }}ab7797a1-build-openstack-with-conjure-up-6.png">
-                <img src="{{ ASSET_SERVER_URL }}ab7797a1-build-openstack-with-conjure-up-6.png?w=424" alt="Review and configure applications screen on conjure-up" />
+              <a href="{{ ASSET_SERVER_URL }}a98f3370-a1-build-openstack-with-conjure-up-6.png">
+                <img src="{{ ASSET_SERVER_URL }}a98f3370-a1-build-openstack-with-conjure-up-6.png?w=424" alt="Review and configure applications screen on conjure-up" />
               </a>
             </p>
           </div>
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">11</span>Deploy OpenStack</h3>
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">11</span>Configure and deploy the OpenStack services</h3>
           <div class="p-list-step__content">
-            <p><strong>Configure:</strong> this will give you the opportunity to change the config of the various OpenStack services.</p>
-            <p><strong>Architect:</strong> Choose where to place a service. You do not have to place services manually, as conjure-up can do so automatically.</p>
-            <p><strong>Deploy:</strong> Deploy the service.</p>
-            <p>Once satisfied with the config and architecture you can deploy all remain applications.</p>
+            <p>Choose <strong>Configure</strong> to change the default configuration of any component. When all components are configured to your liking, choose <strong>Deploy</strong>.</p>
             <p>
               <a href="{{ ASSET_SERVER_URL }}85a136cd-build-openstack-with-conjure-up-7.png">
                 <img src="{{ ASSET_SERVER_URL }}85a136cd-build-openstack-with-conjure-up-7.png?w=424" alt="conjure-up's status screens, showing a number of applications status" />
@@ -255,7 +252,7 @@
   <div class="row">
     <div class="col-6">
       <p class="p-heading--four">Single-node OpenStack installation instructions</p>
-      <p>This instructions use LXD, the Linux Container Daemon, to create multiple machine containers on your machine for the various OpenStack services, mimicking a real Openstack cluster.</p>
+      <p>These instructions use LXD, the Linux Container Daemon, to create multiple machine containers on your machine for the various OpenStack services, mimicking a real Openstack cluster.</p>
       <p>For extra guidance, there is also a video about how to run OpenStack on a single machine.</p>
     </div>
     <div class="col-6">
