@@ -46,7 +46,7 @@
     {% include "templates/_navigation-community-h.html" %}
     {% include "templates/_navigation-download-h.html" %}
   </div>
-  {% if breadcrumbs %}
+  {% if breadcrumbs and breadcrumbs.children and breadcrumbs.children|length > 1 or breadcrumbs.grandchildren %}
   <nav class="p-navigation--secondary">
     <div class="row">
       <a class="p-navigation--secondary__banner u-hide--nav-threshold-down" href="{{ breadcrumbs.section.path }}">
@@ -58,21 +58,22 @@
       <ul class="breadcrumbs--secondary col-12">
         {% for child in breadcrumbs.children %}
         <li class="breadcrumbs__item">
+          {% if child.title != 'Overview' %}
           <a class="breadcrumbs__link {% if child.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ child.path }}">
             {{ child.title }}
           </a>
-          {% if breadcrumbs.grandchildren %}
-          <ul class="breadcrumbs__tertiary">
-            {% for grandchild in breadcrumbs.grandchildren %}
-            <li class="breadcrumbs__item">
-              <a class="{% if grandchild.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ grandchild.path }}">
-                {{ grandchild.title }}
-              </a>
-            </li>
-            {% endfor %}
-          </ul>
-          {% endif %}
         </li>
+        {% endif %}
+        {% if breadcrumbs.grandchildren %}
+        <li class="breadcrumbs__item"><span class="breadcrumbs__chevron">&rsaquo;</span></li>
+        {% for grandchild in breadcrumbs.grandchildren %}
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link {% if grandchild.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ grandchild.path }}">
+            {{ grandchild.title }}
+          </a>
+        </li>
+        {% endfor %}
+      {% endif %}
         {% endfor %}
       </ul>
       {% endif %}

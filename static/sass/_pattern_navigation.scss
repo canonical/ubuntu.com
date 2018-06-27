@@ -256,22 +256,6 @@
           width: auto;
         }
 
-        &__tertiary {
-          @extend .breadcrumbs--secondary;
-          margin-left: 1.75em;
-          position: relative;
-
-          &::before {
-            color: $color-mid-dark;
-            content: '\203A';
-            font-size: 1rem;
-            font-weight: 400;
-            left: -.9em;
-            position: absolute;
-            top: -0.15em;
-          }
-        }
-
         &__item {
           color: $color-dark;
           display: inline-flex;
@@ -284,7 +268,11 @@
               padding-bottom: 0;
             }
           }
+        }
 
+        &__chevron {
+          font-size: 0.875rem;
+          padding: 0.55rem 0 0.2rem 0;
         }
 
         &__link {
@@ -298,6 +286,10 @@
           @media (max-width: $breakpoint-x-small - 1) {
             padding-left: 0;
             padding-right: 0;
+          }
+
+          &:first-child {
+              padding-left: 1rem;
           }
 
           &.p-link--active {

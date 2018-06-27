@@ -1,5 +1,5 @@
 openstack:
-  title: Openstack
+  title: OpenStack
   path: /openstack
 
   children:
@@ -15,12 +15,10 @@ openstack:
       path: /openstack/training
     - title: Storage
       path: /openstack/storage
-    - title: Developer
-      path: /openstack/developer
-    - title: Partners
-      path: /openstack/partners
     - title: Install
       path: /openstack/install
+    - title: Partners
+      path: /openstack/partners
     - title: Thank you
       path: /openstack/newsletter-thank-you
       hidden: True
@@ -69,15 +67,6 @@ containers:
   children:
     - title: Overview
       path: /containers
-    - title: Kubernetes
-      path: /kubernetes
-    - title: Managed Kubernetes
-      path: /kubernetes/managed
-    - title: Install Kubernetes
-      path: /kubernetes/install
-    - title: Kubernetes partners
-      path: /kubernetes/partners
-
     - title: Contact us
       path: /containers/contact-us
       hidden: True
@@ -85,6 +74,53 @@ containers:
       children:
         - title: Thank you
           path: /containers/thank-you
+          hidden: True
+
+kubernetes:
+  title: Kubernetes
+  path: /kubernetes
+
+  children:
+    - title: Overview
+      path: /kubernetes
+    - title: Features
+      path: /kubernetes/features
+    - title: Managed
+      path: /kubernetes/managed
+    - title: Install
+      path: /kubernetes/install
+    - title: Partners
+      path: /kubernetes/partners
+
+    - title: Contact us
+      path: /kubernetes/contact-us
+      hidden: True
+
+      children:
+        - title: Thank you
+          path: /kubernetes/thank-you
+          hidden: True
+
+
+ai:
+  title: AI
+  path: /ai
+
+  children:
+    - title: Overview
+      path: /ai
+    - title: Features
+      path: /ai/features
+    - title: Install
+      path: /ai/install
+
+    - title: Contact us
+      path: /ai/contact-us
+      hidden: True
+
+      children:
+        - title: Thank you
+          path: /ai/thank-you
           hidden: True
 
 desktop:
@@ -96,11 +132,11 @@ desktop:
       path: /desktop
     - title: Features
       path: /desktop/features
-    - title: For organisations
+    - title: Organisations
       path: /desktop/organisations
-    - title: For developers
+    - title: Developers
       path: /desktop/developers
-    - title: For partners
+    - title: Partners
       path: /desktop/partners
 
     - title: Contact us
@@ -381,6 +417,14 @@ resources:
   children:
     - title: Overview
       path: /resources
+
+security:
+  title: Security
+  path: /security
+
+  children:
+    - title: Overview
+      path: /security      
 
 licensing:
   title: Licensing
