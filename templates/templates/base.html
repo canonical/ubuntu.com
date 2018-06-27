@@ -90,6 +90,23 @@
     {% block footer_extra %}{% endblock %}
 
     {% include "shared/_feedback.html" %}
+
+    <!-- Overrides for livechat button -->
+    <style>
+      #livechat-compacy-container {
+        right: 0 !important;
+        height: 2rem !important;
+        background-color: $color-brand !important;
+      }
+
+      @media (min-width: 620px) {
+        #livechat-comact-container {
+          right: 180px !important;
+        }
+      }
+    </style>
+    <!-- DO NOT LEAVE THIS IN THE CODEBASE -->
+    <!-- <div id="livechat-compact-container" style="position: fixed;bottom: 0px;right: 15px;width: 250px;height: 53px;overflow: hidden;visibility: visible;z-index: 2147483639;background: transparent;border: 0px;transition: transform 0.2s ease-in-out;backface-visibility: hidden;opacity: 1;transform: translateY(0%);color: black;"><iframe src="about:blank" id="livechat-compact-view" style="position: relative;top: 20px;left: 0;width: 100%;border: 0;padding: 0;margin: 0;float: none;background: none" scrolling="no" frameborder="0" allowtransparency="true" title="LiveChat Minimized Widget"></iframe><a id="livechat-badge" href="#" onclick="LC_API.show_full_view({source:'minimized click'});return false" style="position: absolute;display: block;visibility: hidden;height: 16px;padding: 0 4px;line-height: 16px;background: #f00;color: #fff;font-size: 10px;text-decoration: none;font-family: 'Lucida Grande', 'Lucida Sans Unicode', Arial, Verdana, sans-serif;border-radius: 3px;box-shadow: 0 -1px 0px #f00, -1px 0 0px #f00, 1px 0 0px #f00, 0 1px 0px #f00, 0 0 2px #000;border-top: 1px solid #f99;width: 16px;border-radius: 50%;box-shadow: none;border-top: 0;padding: 0;text-align: center;font-family: 'Lato', sans-serif;top: 12px;left: 20px"></a></div> -->
   </body>
 </html>
 
