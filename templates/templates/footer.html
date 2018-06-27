@@ -6,13 +6,12 @@
     <nav id="main-navigation" class="p-footer__nav u-clearfix">
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
-          {% include 'templates/_footer_item.html' with section=nav_sections.openstack %} {% include 'templates/_footer_item.html' with section=nav_sections.publiccloud %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.openstack %}
         </ul>
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
           {% include 'templates/_footer_item.html' with section=nav_sections.kubernetes %}
-          {% include 'templates/_footer_item.html' with section=nav_sections.containers %}
           {% include 'templates/_footer_item.html' with section=nav_sections.ai %}
         </ul>
       </div>
@@ -24,17 +23,36 @@
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
-          {% include 'templates/_footer_item.html' with section=nav_sections.core %} {% include 'templates/_footer_item.html' with section=nav_sections.iot %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.iot %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.support %}
         </ul>
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
-          {% include 'templates/_footer_item.html' with section=nav_sections.support %} {% include 'templates/_footer_item.html' with section=nav_sections.resources %}
+
+          {% include 'templates/_footer_item.html' with section=nav_sections.download %}
         </ul>
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom last-col">
         <ul class="p-footer__links">
-          {% include 'templates/_footer_item.html' with section=nav_sections.download %}
+          <li class="p-footer__item">
+            <h2 class="p-footer__title">
+              <a href="#" class="p-link--soft">Sectors</a>
+            </h2>
+            <ul class="second-level-nav">
+              <li><a href="/telecommunications">Telco</a></li>
+              <li><a href="/financial-services">Finance</a></li>
+              <li><a href="/internet-of-things/digital-signage">Signage</a></li>
+              <li><a href="/internet-of-things/robotics">Robotics</a></li>
+              <li><a href="/internet-of-things/gateways">Gateways</a></li>
+              <li><a href="/desktop/organisations">Organisations</a></li>
+            </ul>
+          </li>
+          <li>&nbsp;</li>
+          {% include 'templates/_footer_item.html' with section=nav_sections.publiccloud %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.containers %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.core %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.resources %}
         </ul>
       </div>
     </nav>

@@ -62,19 +62,18 @@
           <a class="breadcrumbs__link {% if child.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ child.path }}">
             {{ child.title }}
           </a>
-          {% endif %}
-          {% if breadcrumbs.grandchildren %}
-          <ul class="breadcrumbs__tertiary">
-            {% for grandchild in breadcrumbs.grandchildren %}
-            <li class="breadcrumbs__item">
-              <a class="{% if grandchild.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ grandchild.path }}">
-                {{ grandchild.title }}
-              </a>
-            </li>
-            {% endfor %}
-          </ul>
-          {% endif %}
         </li>
+        {% endif %}
+        {% if breadcrumbs.grandchildren %}
+        <li class="breadcrumbs__item"><span class="breadcrumbs__chevron">&rsaquo;</span></li>
+        {% for grandchild in breadcrumbs.grandchildren %}
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link {% if grandchild.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ grandchild.path }}">
+            {{ grandchild.title }}
+          </a>
+        </li>
+        {% endfor %}
+      {% endif %}
         {% endfor %}
       </ul>
       {% endif %}
