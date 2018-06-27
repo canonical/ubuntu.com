@@ -3,7 +3,7 @@
 {% block meta_description %}A step-by-step installation guide to Ubuntu OpenStack on bare metal servers.{% endblock %}
 
 {% block content %}
-<section class="p-strip--light is-deep is-bordered">
+<section class="p-strip is-deep is-bordered">
   <div class="row">
     <div class="col-12">
       <h1>Install OpenStack yourself</h1>
@@ -29,8 +29,8 @@
       <p>These instructions cover two scenarios &mdash; developers who have a beefy workstation and want to setup a simulated OpenStack cluster on that workstation, and real cloud deployments, on a bare metal server cluster.</p>
     </div>
   </div>
-  <div class="row p-divider">
-    <div class="col-6 p-divider__block">
+  <div class="row u-equal-height">
+    <div class="col-6 p-card">
       <h3>Cluster deployment</h3>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Bare metal servers</li>
@@ -43,7 +43,7 @@
       <p>This is a starting point for your production cloud. You&rsquo;ll step through the deployment of OpenStack services across machines in the cluster. A simple HA configuration is supported. For more sophisticated architectures, ongoing operations insight, alternative approaches to HA, or specialized telco, compliance, regulatory or HPC requirements, <a href="/openstack/contact-us">contact Canonical</a> for consulting and support.</p>
       <p><a href="#cluster-deployment">Deploy OpenStack on cluster&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-6 p-divider__block">
+    <div class="col-6 p-card">
       <h3>Workstation deployment</h3>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Single machine needed</li>
@@ -246,7 +246,7 @@
   </div>
 </div>
 
-<div class="p-strip" id="workstation-deployment">
+<div class="p-strip--light" id="workstation-deployment">
   <div class="row">
     <div class="col-8">
       <h2>Workstation deployment</h2>
@@ -267,7 +267,7 @@
   </div>
 </div>
 
-<div id="instructions" class="p-strip u-no-padding--top is-bordered">
+<div id="instructions" class="p-strip--light u-no-padding--top is-bordered">
   <div class="row">
     <h2>Installation instructions</h2>
     <ol class="p-stepped-list--detailed">
@@ -323,7 +323,7 @@ Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:</
 
           <div class="p-notification--caution">
             <div class="p-notification__response">
-              <p>
+              <p class="u-no-padding--top">
                 <span class="p-notification__status">Note:</span>
               </p>
               <p>If you need to enable snap packages for installation of lxd of conjure-up then:</p>
@@ -382,7 +382,7 @@ Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:</
   </div>
 </div>
 
-<div class="p-strip--light is-deep">
+<div class="p-strip is-deep">
   <div class="row">
     <div class="u-equal-height">
       <div class="col-4 u-align--center u-hide--small u-vertically-center">
