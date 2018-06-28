@@ -268,4 +268,12 @@ $color-rule--light: transparentize($color-mid-light, .5);
   .global-nav--mobile .p-footer__title {
     border-color: #666;
   }
+
+  .global-nav .p-matrix__content .p-link--inverted {
+
+    @media (max-width: $breakpoint-navigation-threshold + 1) {
+      display: inline-block;
+      line-height: 32px;
+    }
+  }
 }
