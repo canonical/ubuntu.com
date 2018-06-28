@@ -276,4 +276,12 @@ $color-rule--light: transparentize($color-mid-light, .5);
       line-height: 32px;
     }
   }
+
+  .u-mobile-heading {
+
+    @media (max-width: $breakpoint-navigation-threshold + 1) {
+      margin-bottom: 1rem;
+      font-size: 13px;
+    }
+  }
 }
