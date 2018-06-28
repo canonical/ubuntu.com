@@ -112,7 +112,6 @@ document.addEventListener('click', function(event) {
 
       if (!clickInsideGlobal) {
         globalNavDropdown.classList.remove('is-selected');
-        globalNavContent.classList.add('u-hide');
       }
     }
   });
@@ -150,9 +149,12 @@ function closeMenu(dropdown, dropdownContent) {
 
 if (window.location.hash) {
   var tabId = window.location.hash.split('#')[1];
+  var tab = document.getElementById(tabId);
   var tabContent = document.getElementById(tabId + '-content');
 
-  document.getElementById(tabId).click();
+  if (tab) {
+    document.getElementById(tabId).click();
+  }
 }
 
 function closeMainMenu() {
