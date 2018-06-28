@@ -170,3 +170,16 @@ function closeMainMenu() {
     dropdownWindow.classList.add('slide-animation');
   }
 }
+
+
+function mobileGlobalNav() {
+  var footerTitlesA = document.querySelectorAll('.global-nav--mobile .p-footer__title');
+  footerTitlesA.forEach(function(node) {
+    node.addEventListener('click', function(e) {
+      e.target.classList.toggle('active');
+    });
+  });
+};
+
+mobileGlobalNav();
+

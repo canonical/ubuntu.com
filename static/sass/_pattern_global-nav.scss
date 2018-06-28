@@ -255,4 +255,17 @@ $color-rule--light: transparentize($color-mid-light, .5);
     columns: 2;
     column-gap: 2rem;
   }
+
+  .global-nav__dropdown-content {
+    padding-top: $sp-large;
+    background-color: $global-nav-bg-color;
+
+    @media (min-width: $breakpoint-navigation-threshold) {
+      padding-top: 0;
+    }
+  }
+
+  .global-nav--mobile .p-footer__title {
+    border-color: #666;
+  }
 }

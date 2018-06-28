@@ -37,7 +37,7 @@
         <div class="row">
           <ul class="p-matrix u-no-margin--bottom">
             <li class="p-matrix__item">
-              <img class="p-logomark" src="{{ ASSET_SERVER_URL }}c5cb0f8e-picto-ubuntu.svg" alt="">
+              <img class="p-logomark u-hide--small" src="{{ ASSET_SERVER_URL }}c5cb0f8e-picto-ubuntu.svg" alt="">
               <div class="p-matrix__content">
                 <h4 class="p-matrix__title">Ubuntu Advantage</h4>
                 <p class="p-matrix__desc u-sv1">Enterprise support service to manage and add value to your Ubuntu deployment</p>
@@ -52,7 +52,7 @@
               </div>
             </li>
             <li class="p-matrix__item">
-              <img class="p-logomark" src="{{ ASSET_SERVER_URL }}4964d639-landscape-logo.svg" alt="">
+              <img class="p-logomark u-hide--small" src="{{ ASSET_SERVER_URL }}4964d639-landscape-logo.svg" alt="">
               <div class="p-matrix__content">
                 <h4 class="p-matrix__title">Landscape</h4>
                 <p class="p-matrix__desc u-sv1">Manage, deploy, and monitor your Ubuntu servers</p>
@@ -64,7 +64,7 @@
               </div>
             </li>
             <li class="p-matrix__item">
-              <img class="p-logomark" src="{{ ASSET_SERVER_URL }}3c1de878-canonical-logo.png" alt="">
+              <img class="p-logomark u-hide--small" src="{{ ASSET_SERVER_URL }}3c1de878-canonical-logo.png" alt="">
               <div class="p-matrix__content">
                 <h4 class="p-matrix__title">Livepatch</h4>
                 <p class="p-matrix__desc u-sv1">Apply critical kernel security fixes without rebooting</p>
@@ -79,7 +79,7 @@
               </div>
             </li>
             <li class="p-matrix__item">
-              <img class="p-logomark" src="{{ ASSET_SERVER_URL }}6b318257-launchpad-icon.png" alt="">
+              <img class="p-logomark u-hide--small" src="{{ ASSET_SERVER_URL }}6b318257-launchpad-icon.png" alt="">
               <div class="p-matrix__content">
                 <h4 class="p-matrix__title">Launchpad.net</h4>
                 <p class="p-matrix__desc u-sv1">The software collaboration platform behind Ubuntu</p>
@@ -91,7 +91,7 @@
               </div>
             </li>
             <li class="p-matrix__item">
-              <img class="p-logomark" src="{{ ASSET_SERVER_URL }}82dc2022-snapcraft-primary-icon.svg" alt="">
+              <img class="p-logomark u-hide--small" src="{{ ASSET_SERVER_URL }}82dc2022-snapcraft-primary-icon.svg" alt="">
               <div class="p-matrix__content">
                 <h4 class="p-matrix__title">Snapcraft.io</h4>
                 <p class="p-matrix__desc u-sv1">Manage your snaps and snap store(s)</p>
@@ -103,11 +103,11 @@
               </div>
             </li>
             <li class="p-matrix__item">
-              <img class="p-logomark" src="{{ ASSET_SERVER_URL }}31c507a5-logo-juju-icon.svg" alt="">
+              <img class="p-logomark u-hide--small" src="{{ ASSET_SERVER_URL }}31c507a5-logo-juju-icon.svg" alt="">
               <div class="p-matrix__content">
                 <h4 class="p-matrix__title">JAAS</h4>
                 <p class="p-matrix__desc u-sv1">Deploy, configure, scale and operate your software on public and private clouds</p>
-                <ul class="p-inline-list u-no-margin--bottom">
+                <ul class="p-inline-list">
                   <li class="p-inline-list__item">
                     <a class="p-link--inverted" href="https://jujucharms.com/login/">Login&nbsp;&rsaquo;</a>
                   </li>
@@ -119,12 +119,69 @@
       </div>
     </div>
     <div class="u-hide global-nav__dropdown-content" id="canonical-products">
-      <div class="p-strip--dark is-shallow">
+
+      <!-- MOBILE VERSION -->
+      <div class="p-strip--dark is-shallow u-hide--medium u-hide--large global-nav--mobile">
         <div class="row">
+          <h5 class="p-muted-heading p-footer__title">Products</h5>
+          <ul class="p-list is-split second-level-nav">
+            <li class="p-list__item"><a class="p-link" href="https://www.ubuntu.com/">Ubuntu</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://maas.io/">MAAS</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://landscape.canonical.com/">Landscape</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://jujucharms.com/">Juju</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://linuxcontainers.org/">LXD</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://snapcraft.io/">Snaps</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://www.ubuntu.com/openstack">OpenStack</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://www.ubuntu.com/kubernetes">Kubernetes</a></li>
+          </ul>
+        </div>
+        <div class="row">
+          <h5 class="p-muted-heading p-footer__title">Other websites</h5>
+          <ul class="p-list is-split second-level-nav">
+            <li class="p-list__item"><a class="p-link" href="http://www.ubuntu.com/support">Enterprise Support</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://wiki.ubuntu.com/Mir">Mir</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://cloud-images.ubuntu.com/">Image Service</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://conjure-up.io/">Conjure-up</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://cloud-init.io/">Cloud-init</a></li>
+            <li class="p-list__item"><a class="p-link" href="http://www.netplan.io/">Netplan</a></li>
+          </ul>
+        </div>
+        <div class="row">
+          <h5 class="p-muted-heading p-footer__title">Resources</h5>
+          <ul class="p-list is-split second-level-nav">
+            <li class="p-list__item"><a class="p-link" href="https://www.brighttalk.com/search?q=Canonical" title="Visit the Webinars - external site">Webinars</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://tutorials.ubuntu.com/" title="Visit the Tutorials - external site">Tutorials</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://www.youtube.com/user/celebrateubuntu" title="Visit the Videos - external site">Videos</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://insights.ubuntu.com/category/case-studies" title="Visit the Case studies - external site">Case studies</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://insights.ubuntu.com/category/white-papers" title="Visit the White papers - external site">White papers</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://docs.ubuntu.com" title="Visit the Docs - external site">Docs</a></li>
+            <li class="p-list__item"><a class="p-link" href="/cloud/training">Training</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://insights.ubuntu.com" title="Visit the Blog - external site">Blog</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://developer.ubuntu.com">Developer</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://www.ubuntu.com/download/cloud">Install</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://www.ubuntu.com/download">Download</a></li>
+          </ul>
+        </div>
+        <div class="row">
+          <h5 class="p-muted-heading p-footer__title">About</h5>
+          <ul class="p-list is-split second-level-nav">
+            <li class="p-list__item"><a class="p-link" href="https://www.ubuntu.com">Ubuntu</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://www.canonical.com">Canonical</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://insights.ubuntu.com/press-centre">Press centre</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://partners.ubuntu.com">Partners</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://shop.canonical.com/">Merchandise</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://www.ubuntu.com/about/contact-us">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- DESKTOP VERSION -->
+      <div class="p-strip--dark is-shallow u-hide--small">
+        <div class="row u-hide--small">
           <ul class="p-matrix">
             <li class="p-matrix__item">
               <a href="https://www.ubuntu.com">
-                <img class="p-logomark u-hide--small" src="{{ ASSET_SERVER_URL }}c5cb0f8e-picto-ubuntu.svg" alt="icon">
+                <img class="p-logomark" src="{{ ASSET_SERVER_URL }}c5cb0f8e-picto-ubuntu.svg" alt="icon">
               </a>
               <div class="p-matrix__content">
                 <h4 class="p-matrix__title"><a class="p-link" href="https://www.ubuntu.com/">Ubuntu&nbsp;&rsaquo;</a></h4>
@@ -133,7 +190,7 @@
             </li>
             <li class="p-matrix__item">
               <a href="https://maas.io">
-                <img class="p-logomark u-hide--small" src="{{ ASSET_SERVER_URL }}0de4fcd5-logo-maas-icon.svg" alt="icon">
+                <img class="p-logomark" src="{{ ASSET_SERVER_URL }}0de4fcd5-logo-maas-icon.svg" alt="icon">
               </a>
               <div class="p-matrix__content">
                 <h4 class="p-matrix__title"><a class="p-link" href="https://maas.io/">MAAS&nbsp;&rsaquo;</a></h4>
@@ -142,7 +199,7 @@
             </li>
             <li class="p-matrix__item">
               <a href="https://landscape.canonical.com">
-                <img class="p-logomark u-hide--small" src="{{ ASSET_SERVER_URL }}4964d639-landscape-logo.svg" alt="icon">
+                <img class="p-logomark" src="{{ ASSET_SERVER_URL }}4964d639-landscape-logo.svg" alt="icon">
               </a>
               <div class="p-matrix__content">
                 <h4 class="p-matrix__title"><a class="p-link" href="https://landscape.canonical.com/">Landscape&nbsp;&rsaquo;</a></h4>
@@ -151,7 +208,7 @@
             </li>
             <li class="p-matrix__item">
               <a href="https://jujucharms.com">
-                <img class="p-logomark u-hide--small" src="{{ ASSET_SERVER_URL }}31c507a5-logo-juju-icon.svg" alt="icon">
+                <img class="p-logomark" src="{{ ASSET_SERVER_URL }}31c507a5-logo-juju-icon.svg" alt="icon">
               </a>
               <div class="p-matrix__content">
                 <h4 class="p-matrix__title"><a class="p-link" href="https://jujucharms.com/">Juju&nbsp;&rsaquo;</a></h4>
@@ -160,7 +217,7 @@
             </li>
             <li class="p-matrix__item">
               <a href="https://linuxcontainers.org">
-                <img class="p-logomark u-hide--small" src="{{ ASSET_SERVER_URL }}425efe3a-lxd.svg" alt="icon">
+                <img class="p-logomark" src="{{ ASSET_SERVER_URL }}425efe3a-lxd.svg" alt="icon">
               </a>
               <div class="p-matrix__content">
                 <h4 class="p-matrix__title"><a class="p-link" href="https://linuxcontainers.org/">LXD&nbsp;&rsaquo;</a></h4>
@@ -169,7 +226,7 @@
             </li>
             <li class="p-matrix__item">
               <a href="https://snapcraft.io">
-                <img class="p-logomark u-hide--small" src="{{ ASSET_SERVER_URL }}82dc2022-snapcraft-primary-icon.svg" alt="icon">
+                <img class="p-logomark" src="{{ ASSET_SERVER_URL }}82dc2022-snapcraft-primary-icon.svg" alt="icon">
               </a>
               <div class="p-matrix__content">
                 <h4 class="p-matrix__title"><a class="p-link" href="https://snapcraft.io/">Snaps&nbsp;&rsaquo;</a></h4>
@@ -178,7 +235,7 @@
             </li>
             <li class="p-matrix__item">
               <a href="https://www.ubuntu.com/openstack">
-                <img class="p-logomark u-hide--small" src="{{ ASSET_SERVER_URL }}a7916513-picto-openstack.svg" alt="icon">
+                <img class="p-logomark" src="{{ ASSET_SERVER_URL }}a7916513-picto-openstack.svg" alt="icon">
               </a>
               <div class="p-matrix__content">
                 <h4 class="p-matrix__title"><a class="p-link" href="https://www.ubuntu.com/openstack">OpenStack&nbsp;&rsaquo;</a></h4>
@@ -187,7 +244,7 @@
             </li>
             <li class="p-matrix__item">
               <a href="https://www.ubuntu.com/kubernetes">
-                <img class="p-logomark u-hide--small" src="{{ ASSET_SERVER_URL }}b81a45e4-kubernetes.svg" alt="icon">
+                <img class="p-logomark" src="{{ ASSET_SERVER_URL }}b81a45e4-kubernetes.svg" alt="icon">
               </a>
               <div class="p-matrix__content">
                 <h4 class="p-matrix__title"><a class="p-link" href="https://www.ubuntu.com/kubernetes">Kubernetes&nbsp;&rsaquo;</a></h4>
@@ -200,28 +257,28 @@
           </ul>
         </div>
       </div>
-      <div class="p-strip--dark is-shallow">
+      <div class="p-strip--dark is-shallow u-hide--small">
         <div class="row is-bordered">
           <div class="col-9">
             <h5 class="p-muted-heading">Other websites</h5>
             <div class="row">
               <div class="col-3">
                 <h5><a class="p-link" href="http://www.ubuntu.com/support">Enterprise Support&nbsp;&rsaquo;</a></h5>
-                <p class="u-hide--small">Canonical supports Ubuntu for clouds, data centers and devices</p>
+                <p>Canonical supports Ubuntu for clouds, data centers and devices</p>
                 <h5><a class="p-link" href="https://wiki.ubuntu.com/Mir">Mir&nbsp;&rsaquo;</a></h5>
-                <p class="u-hide--small">Ultra-fast and light Wayland compositor for secure device display management</p>
+                <p>Ultra-fast and light Wayland compositor for secure device display management</p>
               </div>
               <div class="col-3">
                 <h5><a class="p-link" href="https://cloud-images.ubuntu.com/">Image Service&nbsp;&rsaquo;</a></h5>
-                <p class="u-hide--small">A stream of hardened custom Ubuntu images on AWS, Google, KVM, VMware, MAAS, LXD</p>
+                <p>A stream of hardened custom Ubuntu images on AWS, Google, KVM, VMware, MAAS, LXD</p>
                 <h5><a class="p-link" href="https://conjure-up.io/">Conjure-up&nbsp;&rsaquo;</a></h5>
-                <p class="u-hide--small">Summon up a big-software stack as a “spell” using conjure-up to get you a fully installed and usable stack</p>
+                <p>Summon up a big-software stack as a “spell” using conjure-up to get you a fully installed and usable stack</p>
               </div>
               <div class="col-3">
                 <h5><a class="p-link" href="https://cloud-init.io/">Cloud-init&nbsp;&rsaquo;</a></h5>
-                <p class="u-hide--small">Apply user data to your instances automatically</p>
+                <p>Apply user data to your instances automatically</p>
                 <h5><a class="p-link" href="http://www.netplan.io/">Netplan&nbsp;&rsaquo;</a></h5>
-                <p class="u-hide--small">Easily configure your networks using Netplan, a YAML network configuration abstraction for various backends</p>
+                <p>Easily configure your networks using Netplan, a YAML network configuration abstraction for various backends</p>
               </div>
             </div>
           </div>
@@ -241,7 +298,7 @@
               <li class="p-list__item"><a class="p-link" href="https://www.ubuntu.com/download">Download</a></li>
             </ul>
             <h5 class="p-muted-heading">About</h5>
-            <ul class="p-list is-split">
+            <ul class="p-list is-split u-no-margin--bottom">
               <li class="p-list__item"><a class="p-link" href="https://www.ubuntu.com">Ubuntu</a></li>
               <li class="p-list__item"><a class="p-link" href="https://www.canonical.com">Canonical</a></li>
               <li class="p-list__item"><a class="p-link" href="https://insights.ubuntu.com/press-centre">Press centre</a></li>
