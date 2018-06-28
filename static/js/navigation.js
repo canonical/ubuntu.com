@@ -50,6 +50,11 @@ globalNavDropdowns.forEach(function(dropdown) {
     var targetMenuLink = dropdown.querySelector('.global-nav__link-anchor');
     var targetMenuId = targetMenuLink.getAttribute('href');
     var targetMenu = document.querySelector(targetMenuId);
+    var isMobile = window.innerWidth < navigationThresholdBreakpoint;
+
+    function scrollGlobalNavToTop() {
+      window.scrollTo(0, globalNav.offsetTop);
+    }
 
     if (globalNavContent.classList.contains('show-global-nav-content')) {
       if (dropdown.classList.contains('is-selected')) {
@@ -68,6 +73,10 @@ globalNavDropdowns.forEach(function(dropdown) {
         });
         targetMenu.classList.remove('u-hide');
         closeMainMenu();
+
+        if (isMobile) {
+          scrollGlobalNavToTop();
+        }
       }
     } else {
       currentLink.classList.add('is-selected');
@@ -80,6 +89,10 @@ globalNavDropdowns.forEach(function(dropdown) {
       });
       targetMenu.classList.remove('u-hide');
       closeMainMenu();
+
+      if (isMobile) {
+        scrollGlobalNavToTop();
+      }
     }
   });
 });
