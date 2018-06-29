@@ -137,8 +137,6 @@ function closeMenu(dropdown, dropdownContent) {
 
 if (window.location.hash) {
   var tabId = window.location.hash.split('#')[1];
-  var tabContent = document.getElementById(tabId + '-content');
-
   document.getElementById(tabId).click();
 }
 
