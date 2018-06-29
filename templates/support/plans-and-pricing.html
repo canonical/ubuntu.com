@@ -124,7 +124,7 @@
   </div>
 </section>
 
-<section class="p-strip--light is-deep">
+<section class="p-strip--light is-deep u-no-padding--bottom">
   {% include "shared/pricing/_ua-server-support-add-ons.html" %}
 </section>
 
@@ -147,13 +147,13 @@
   <div class="row">
     <div class="col-12">
       <h2>OpenStack</h2>
-      <p>Canonical provides support services, management tools, and the Cloud Archive which keeps thousands of businesses productive with their own local OpenStack clouds.  For large volume and public clouds with dynamic scale, we&rsquo;re pleased to offer per-region pricing with flexible node ranges.</p>
+      <p>Canonical provides support services, management tools, and the Cloud Archive which keeps thousands of businesses productive with their own local OpenStack clouds.</p>
     </div>
   </div>
   {% include "shared/pricing/_openstack-support.html" %}
   <div class="row">
     <div class="col-12">
-      <p><a href="https://buy.ubuntu.com/" class="p-link--external">Buy Ubuntu Advantage</a></p>
+      <p><a href="/openstack/contact-us">Get in touch&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
@@ -161,18 +161,14 @@
 <section class="p-strip--light is-deep is-bordered" id="consulting">
   <div class="row">
     <div class="col-12">
-      <h2>OpenStack consulting packages</h2>
+      <h2>OpenStack services packages</h2>
       <p>Canonical delivers turnkey OpenStack software solutions, on-site, through its field consulting team. Two plans are offered: the Foundation Cloud, which is based on our award-winning reference architecture, and Foundation Plus, which packs in a complete set of enterprise features and  architectural flexibility.</p>
     </div>
   </div>
+    {% include "shared/pricing/_openstack-consulting.html" %}
   <div class="row">
     <div class="col-12">
-      {% include "shared/pricing/_openstack-consulting.html" %}
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <p>For more information about Foundation Cloud Build or if you are not sure which one is right for you, <a href="/cloud/contact-us?product=foundation-cloud">contact us&nbsp;&rsaquo;</a></p>
+      <p>For more information about Foundation Cloud Build or if you are not sure which one is right for you, <a href="/openstack/contact-us?product=foundation-cloud">contact us&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
@@ -193,10 +189,27 @@
 <section class="p-strip--light is-deep is-bordered">
   <div class="row">
     <div class="col-12">
-      <h2 class="u-no-margin--bottom">Kubernetes consulting packages</h2>
+      <h2 class="u-no-margin--bottom">Kubernetes services packages</h2>
     </div>
   </div>
   {% include "shared/pricing/_kubernetes-consulting.html" %}
+
+  <div class="row">
+    <div class="col-12">
+      <h3>AI/ML Add-on for Discoverer and Discoverer Plus</h3>
+      <p>Turn on the taps with a workshop to understand the full stack of machine learning. Build a full pipeline from developer stations to your data center, to the public cloud. Canonical works with the leading companies to ensure you have the widest range of choices.</p>
+    </div>
+  </div>
+
+  {% include "shared/pricing/_kubernetes-consulting-add-ons.html" %}
+
+  <div class="row">
+    <div class="col-12">
+      <div>
+        <p><a href="https://assets.ubuntu.com/v1/Enterprise-Canonical-Kubernetes.pdf" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Try it now', 'eventLabel' : 'Download the datasheet - cloud storage CTA' : undefined });">Download the datasheet</a></p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="p-strip--light is-deep is-bordered" id="storage">
