@@ -67,15 +67,17 @@
 {% include "containers/shared/_whitepaper.html" %}
 
 <div class="p-strip">
-  <div class="row">
-    <div class="col-2">
-      <img src="{{ ASSET_SERVER_URL }}9b153e96-lxd.svg" alt="LXD logo">
-    </div>
-    <div class="col-9">
+  <div class="row u-equal-height">
+    <div class="col-7 suffix-1">
       <h3>VM-style containers for legacy applications with LXD</h3>
       <p>LXD containers behave like regular VMs, so traditional applications can be installed there unmodified.</p>
     </div>
+    <div class="col-5 prefix-1 suffix-1 u-hide--small u-vertically-center">
+      <img src="{{ ASSET_SERVER_URL }}9b153e96-lxd.svg" alt="LXD logo">
+    </div>
   </div>
+</div>
+<div class="p-strip u-no-padding--top is-bordered">
   <div class="row p-divider">
     <div class="col-4 p-divider__block">
       <h3 class="p-heading--four">Lift-and-shift existing VM workloads</h3>
