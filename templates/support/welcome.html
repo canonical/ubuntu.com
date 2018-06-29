@@ -1,0 +1,97 @@
+{% extends "support/base_support.html" %}
+
+{% block title %}Welcome | Support{% endblock %}
+
+{% block content %}
+
+<section class="p-strip--accent is-bordered is-deep">
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-8">
+        <h1>Welcome to Ubuntu Advantage support</h1>
+        <p>Thank you and welcome to the Ubuntu Advantage support subscription. We ask that you follow the below steps to get started.</p>
+        <p>If you have any questions please do not hesitate to contact the Canonical team through the support portal, or if having issues setting up an account, at support@canonical.com.</p>
+        </p>
+      </div>
+      <div class="col-4 u-vertically-center u-align--center u-hide--small">
+        <img src="https://cdn.shopify.com/s/files/1/1010/7962/t/2/assets/canonical-image.png" alt="Ubuntu Advantage" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered is-shallow">
+    <div class="row">
+        <ol class="p-stepped-list--detailed">
+                <li class="p-list-step__item col-8">
+                  <h3 class="p-list-step__title">
+                    <span class="p-list-step__bullet">1</span>
+                    Read the service description
+                  </h3>
+                  <div class="p-list-step__content"><p>Read and bookmark the service description of your subscription, as it will be a helpful reference of the scope and coverage of your support service.</p>
+                  <p class="u-align--right"><a href="/legal/ubuntu-advantage/service-description"><button>Read the service description</button></a></p>
+                  </div>
+                </li>
+              
+                <li class="p-list-step__item col-8">
+                  <h3 class="p-list-step__title">
+                    <span class="p-list-step__bullet">2</span>
+                    Set up your account
+                  </h3>
+                  <div class="p-list-step__content"><p>Create an Ubuntu One account in order to access Canonical's online support portal and Landscape systems management tool. To create an account:</p>
+                        <ul><li>Visit <a href="https://login.ubuntu.com">https://login.ubuntu.com</a></li>
+                        <li>Use your current, full business email address for your login (e.g. yourname@yourcompany.com)</li>
+                        </ul>
+                        
+                        <p>If you already have an Ubuntu One account, please verify your preferred email address by replying to your subscription welcome email from support@canonical.com.</p>
+                        
+                        <p>If you have any issues or questions creating your Ubuntu One account, please visit <a href="http://ubunt.eu/create-sso">http://ubunt.eu/create-sso</a> or email <a href="mailto:support@canonical.com">support@canonical.com</a>.</p>
+                        <p class="u-align--right"><a href="https://login.ubuntu.com"><button>Set up your account</button></a></p>  
+                      </div>
+                </li>
+              
+                <li class="p-list-step__item col-8">
+                  <h3 class="p-list-step__title">
+                    <span class="p-list-step__bullet">3</span>
+                    Access the support portal
+                  </h3>
+                  <div class="p-list-step__content"><p>Once your Ubuntu One account is set up, you can access the customer support portal by visiting <a href="https://support.canonical.com">https://support.canonical.com</a>. It is recommended to bookmark this link to simplify your access to the portal.</p>
+                    <p>Within the Ubuntu Advantage support portal, you can access the following features and resources:</p>
+                      <ul class="p-list--divided">
+                        <li class="p-list__item is-ticked">Contact form to submit cases, easily accessible from the portal home page and ‘Contact Us’ navigation button</li>
+                        <li class="p-list__item is-ticked">Case status page to review and update all open and/or closed cases</li>
+                        <li class="p-list__item is-ticked">Landscape access, Canonical’s single-interface management tool</li>
+                        <li class="p-list__item is-ticked">Extensive Knowledge Base, with technical reference articles and answers</li>
+                      </ul>
+                      <p class="u-align--right"><a href="https://support.canonical.com"><button>Access the support portal</button></a></p>  
+                    </div>
+                </li>
+              
+              </ol>
+              </div>
+</section>
+
+<section class="p-strip--light is-bordered is-shallow">
+  <div class="row">
+    <h3>An issue during setup?</h3>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4 p-card u-align--center">
+      <p><a href="https://support.canonical.com/ua/s/contactsupport" ><img src="https://assets.ubuntu.com/v1/df54bb6a-document-open-icon.svg" alt="" style="max-height: 47px;"></a></p>
+      <h3 class="p-heading--four u-no-margin--bottom"><a class="p-link--external" href="https://support.canonical.com/ua/s/contactsupport" >I want to submit a case</a></h3>
+      <p>If you have an Ubuntu One account set up, please submit a support case.</p>
+    </div>
+    <div class="col-4 p-card u-align--center">
+      <p><a href="mailto:support@canonical.com"><img src="https://assets.ubuntu.com/v1/df54bb6a-document-open-icon.svg" alt="" style="max-height: 47px;"></a></p>
+      <h3 class="p-heading--four u-no-margin--bottom"><a class="p-link--external" href="mailto:support@canonical.com">I have a question about my support</a></h3>
+      <p>Please let us know if you do not have an Ubuntu One account due to account issues and have a question for our support team.</p>
+    </div>
+    <div class="col-4 p-card u-align--center">
+      <p><a href="mailto:sales@canonical.com" title="Contact us to get started"><img src="https://assets.ubuntu.com/v1/df54bb6a-document-open-icon.svg" alt="" style="max-height: 47px;"></a></p>
+      <h3 class="p-heading--four u-no-margin--bottom"><a class="p-link--external" href="mailto:support@canonical.com">I have a question about my account</a></h3>
+      <p>Please let us know if you have a question about your Ubuntu Advantage subscription account with Canonical.</p>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
