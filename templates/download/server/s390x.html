@@ -1,15 +1,15 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Ubuntu Server for IBM Z and LinuxONE | Download{% endblock %}
+{% block title %}Ubuntu Server for IBM LinuxONE and z Systems | Download{% endblock %}
 
-{% block meta_description %}Ubuntu for IBM LinuxONE brings the Ubuntu Server and Ubuntu Server for cloud with the OpenStack ecosystem to IBM LinuxONE.{% endblock meta_description %}
+{% block meta_description %}Ubuntu for IBM Z and z Systems brings the Ubuntu Server and Ubuntu Server for cloud with the OpenStack, KVM and LXD ecosystem to IBM’s premium platform.{% endblock meta_description %}
 
 
 {% block content %}
 <div class="p-strip is-deep">
   <div class="row">
     <div class="col-12">
-      <h1>Ubuntu Server for IBM Z and LinuxONE</h1>
+      <h1>Ubuntu Server for IBM LinuxONE and z Systems</h1>
     </div>
   </div>
 
@@ -29,7 +29,7 @@
         <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
 
         <form class="p-form u-no-margin--top" action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1400">
-          <fieldset>
+          <fieldset style="border: 1px solid #c0c0c0;">
             <ul class="p-list">
               <li class="mktFormReq mktField p-list__item">
                 <label for="FirstName" class="mktoLabel">First name: <span>*</span></label>
@@ -83,7 +83,7 @@
               <li class="mktField p-list__item">
                 <input name="Optin_cloud_nuture" id="Optin_cloud_nuture" type="checkbox" value="yes" class="mktoField"> <label for="Optin_cloud_nuture" class="mktoLabel">I would like to receive eBooks and White Papers by Canonical.</label>
               </li>
-              <li>All information provided will be handled in accordance with the Canonical <a href="https://www.ubuntu.com/legal" target="_blank">privacy policy</a>. Your use of Ubuntu on IBM Z and LinuxONE in production constitutes <a href="/legal/short-terms">acceptance of these terms</a>.</li>
+              <li><p>All information provided will be handled in accordance with the Canonical <a href="https://www.ubuntu.com/legal" target="_blank">privacy policy</a>. Your use of Ubuntu on IBM Z and LinuxONE in production constitutes <a href="/legal/short-terms">acceptance of these terms</a>.</p></li>
               <li class="mktField p-list__item">
                 <button onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'LinuxONE server', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });" type="submit" class="mktoButton p-button--positive is-wide">Accept terms and download</button>
                 <input type="hidden" name="formid" class="mktoField " value="1400"><input type="hidden" name="lpId" class="mktoField " value="2469"><input type="hidden"
