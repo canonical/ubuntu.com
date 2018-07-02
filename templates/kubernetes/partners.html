@@ -1,0 +1,67 @@
+{% extends "kubernetes/base_kubernetes.html" %}
+{% block title %}Canonical Kubernetes Partners{% endblock %}
+{% block meta_description %}Canonical Kubernetes partners provide regional consulting and operations, hosting, and third party technology for storage, networking, monitoring and chargeback to the Ubuntu Kubernetes and OpenStack ecosystem.{% endblock meta_description %}
+
+{% block content %}
+<section class="p-strip is-deep is-bordered">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h1>Canonical Kubernetes partners</h1>
+      <p>It takes an open ecosystem to solve the diverse challenges of private cloud infrastructure across every sector and in every region. Our partners ensure that you have the widest range of capabilities available for automated integration in your Kubernetes on OpenStack cloud, and that you can get insight and support locally.</p>
+      <p><a href="/openstack/partners">See our private cloud partner page&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 u-vertically-center">
+      <img src="{{ ASSET_SERVER_URL }}1c786630-image-cloud.svg" alt="">
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <h2>Technology and product partners</h2>
+  </div>
+  <div class="row u-vertically-spaced u-equal-height">
+    <div class="col-8">
+      <h3>Rancher Labs</h3>
+      <p>Rancher provides a turn-key application delivery platform, built on Ubuntu and the Canonical Distribution of Kubernetes (CDK). Maximise developer velocity, integrate CI/CD, and ease the path from development into production with enterprise-calibre container management. Canonical delivers a cloud native platform in partnership with Rancher Labs.</p>
+      <p><a class="p-button--positive" href="https://www.brighttalk.com/webcast/6793/292819">Watch the Introduction webinar</a></p>
+    </div>
+    <div class="col-4 u-vertically-center u-align--center u-hide--small">
+      <img style="max-width: 210px;" src="{{ ASSET_SERVER_URL }}8f878ba0-rancher-logo-stacked-color.svg" alt="">
+    </div>
+  </div>
+  <div class="row u-vertically-spaced u-equal-height">
+    <div class="col-8">
+      <h3>In partnership with Google GKE</h3>
+      <p>Google and Canonical together enable smooth hybrid operations between Google&rsquo;s Container Engine (GKE) service with Ubuntu worker nodes, and Canonical’s Distribution of Kubernetes®*. Choose Canonical&rsquo;s Kubernetes to be sure your container workloads can migrate to GKE thanks to our kernel-to-k8s alignment.</p>
+      <p><a class="p-button--positive" href="https://cloud.google.com/kubernetes-engine/docs/concepts/node-images#ubuntu">Try GKE with Ubuntu now</a></p>
+    </div>
+    <div class="col-4 u-vertically-center u-align--center u-hide--small">
+      <img style="max-width: 250px;" src="{{ ASSET_SERVER_URL }}ba70dd8a-gce.png" alt="">
+    </div>
+  </div>
+  <div class="row u-vertically-spaced u-equal-height">
+    <div class="col-8">
+      <h3>JFrog Artifactory</h3>
+      <p>JFrog Artifactory is the enterprise-ready Kubernetes registry fully integrated with both Rancher and the Canonical Distribution of Kubernetes (CDK). Long known to developers, Artifactory provides the governance, audit capability and artifact management. Canonical partners with JFrog to integrate CDK with a single point and click installation using conjure-up.</p>
+      <p><a class="p-button--positive" href="https://www.brighttalk.com/webcast/6793/308887">Watch the JFrog Artifactory webinar</a></p>
+    </div>
+    <div class="col-4 u-vertically-center u-align--center u-hide--small">
+      <img style="max-width: 170px;" src="{{ ASSET_SERVER_URL }}45012d4e-jfrog.png" alt="">
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>Become a cloud partner</h2>
+      <p>To learn more about becoming a Canonical Kubernetes partner, please contact us today.</p>
+      <p><a class="p-button--positive" href="/partners/contact-us">Get in touch</a> or <a href="https://partners.ubuntu.com/contact-us">learn more about partnering with us&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_containers_juju" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
+
+{% endblock content %}

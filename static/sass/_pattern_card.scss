@@ -46,6 +46,10 @@
   %resources-card-header {
     border-radius: 2px;
     padding: .875rem $sp-medium;
+
+    > .p-muted-heading {
+      margin-bottom: 0;
+    }
   }
 
   .p-card--resources {
@@ -104,5 +108,19 @@
       @extend %resources-card-header;
       border-top: 3px solid #ff8936;
     }
+  }
+
+  .p-card__image-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 10rem;
+  }
+
+  .p-card__heading {
+    @extend .p-heading--two;
+    margin-top: 0 !important;
+    margin-bottom: 1.1rem;
+    padding-top: 0 !important;
   }
 }

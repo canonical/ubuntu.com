@@ -56,7 +56,7 @@
       {% if results.items %}<ul class="p-list">{% endif %}
         {% for item in results.items %}
         <li class="p-list__item">
-          <span class="p-heading--five"><a href="{{ item.url }}" class="title-main">{{ item.title | safe}}</a></span><br />
+          <span class="p-heading--four"><a href="{{ item.url }}" class="title-main">{{ item.title | safe}}</a></span><br />
           <small><a href="{{ item.url }}">{{ item.url }}</a></small><br />
           {{ item.summary | safe }}</p>
         </li>

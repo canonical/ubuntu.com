@@ -4,6 +4,9 @@
 {% block canonical_url %}https://www.ubuntu.com/server/contact-us{% endblock %}
 
 {% block content %}
-{% include "shared/_thank_you.html" with thanks_context="your interest in Ubuntu Server" %}
-
+  {% if product == 'server-maas' %}
+    {% include "shared/_thank_you.html" with thanks_context="enquiring about MAAS" %}
+  {% else %}
+    {% include "shared/_thank_you.html" with thanks_context="your interest in Ubuntu Server" %}
+  {% endif %}
 {% endblock content %}

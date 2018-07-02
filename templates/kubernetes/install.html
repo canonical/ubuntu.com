@@ -1,0 +1,150 @@
+{% extends "kubernetes/base_kubernetes.html" %}
+{% block title %}Install Canonical Kubernetes{% endblock %}
+{% block meta_description %}A step-by-step installation guide to Kubernetes on your software defined infrastructure.{% endblock meta_description %}
+
+{% block content %}
+
+<section class="p-strip is-bordered">
+  <div class="row u-equal-height u-vertically-center">
+    <div class="col-8">
+      <h1>Install Kubernetes yourself</h1>
+      <p>Canonical has developed multiple installation paths to get you up and running with Kubernetes based on your needs.</p>
+    </div>
+    <div class="col-4 u-align--center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}96d35aa4-certified-kubernetes-logo.svg?w=300" alt="Kubernetes Certified Service Provider" />
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <h2>Three ways to install Kubernetes</h2>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4 p-card">
+      <div class="p-card__header">
+        <h3>Try it locally</h3>
+      </div>
+      <p>For a simple all-in-one installation on your local machine in under 60 seconds, <a class="p-link--external" href="https://microk8s.io/">try microk8s</a>.</p>
+    </div>
+    <div class="col-4 p-card">
+      <div class="p-card__header">
+        <h3>Deploy to your cluster</h3>
+      </div>
+      <p>For a guided cluster installation on any cloud or data center from the CLI, try <a class="p-link--external" href="https://conjure-up.io/">conjure-up kubernetes</a>.</p>
+    </div>
+    <div class="col-4 p-card">
+      <div class="p-card__header">
+        <h3>Install with Juju</h3>
+      </div>
+      <p>Try <a class="p-link--external" href="https://jujucharms.com/kubernetes">Juju&rsquo;s</a> drag and drop, browser based tool or for a detailed walk through of a CLI-based installation, go to Juju charm <a class="p-link--external" href="https://jujucharms.com/canonical-kubernetes/bundle">bundle for Kubernetes</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <h2 style="max-width: none">Getting Started with The Canonical Distribution of Kubernetes</h2>
+  </div>
+  <div class="row">
+    <div class="u-embedded-media">
+      <iframe class="u-embedded-media__element" width="453" height="255" src="https://player.vimeo.com/video/190300823?byline=0&portrait=0" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <h2>Install on a public cloud</h2>
+    <p>There are two ways to install Kubernetes in your software defined infrastructure on any major public cloud with conjure-up or Juju.</p>
+    <ul class="p-list">
+      <li class="p-list__item">
+        <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/install-kubernetes-with-conjure-up">Install Kubernetes with conjure-up</a>
+      </li>
+      <li class="p-list__item">
+        <a class="p-link--external" href="https://jujucharms.com/kubernetes">Install and manage Kubernetes with Juju</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Install on your local machine</h2>
+      <p>Canonical has developed microk8s, a simple, streamlined mechanism to get Kubernetes setup on any desktop. Microk8s is quick to install and has a small footprint suitable for local development and testing.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="p-code-snippet">
+        <input class="p-code-snippet__input" value="snap install microk8s --classic --beta" readonly="readonly">
+        <button class="p-code-snippet__action">Copy to clipboard</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <ul class="p-list">
+      <li class="p-list__item">
+        <a class="p-link--external" href="https://microk8s.io/">Visit microk8s.io</a>
+      </li>
+      <li class="p-list__item">
+        <a class="p-link--external" href="https://github.com/juju-solutions/microk8s">Find the project on github</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Install on a physical cluster</h2>
+      <p>Deploy on an OpenStack cloud using MAAS to provision the physical servers and conjure-up to install OpenStack and Kubernetes.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="p-code-snippet">
+        <input class="p-code-snippet__input" value="sudo snap install conjure-up --classic" readonly="readonly">
+        <button class="p-code-snippet__action">Copy to clipboard</button>
+      </div>
+      <div class="p-code-snippet">
+        <input class="p-code-snippet__input" value="conjure-up kubernetes" readonly="readonly">
+        <button class="p-code-snippet__action">Copy to clipboard</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <ul class="p-list">
+      <li class="p-list__item">
+        <a class="p-link--external" href="https://conjure-up.io/">Use conjure-up to install OpenStack or Kubernetes</a>
+      </li>
+      <li class="p-list__item">
+        <a class="p-link--external" href="https://maas.io/">Find out more about MAAS</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-4 u-vertically-center u-align--center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="200" alt="" />
+    </div>
+    <div class="col-7 prefix-1 u-vertically-center">
+      <div class="row">
+        <div class="col-12">
+          <h2>Need more help?</h2>
+          <p>Let our cloud experts help you take the next step.</p>
+          <p><a class="p-button--positive" href="/kubernetes/contact-us?product=kubernetes-install">Contact us</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "kubernetes/_get_ebook.html" %}
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_ubuntu_advantage" third_item="_cloud_further_reading" %}
+
+{% endblock content %}
