@@ -166,6 +166,7 @@ addGAEvents('#community-content', 'www.ubuntu.com-nav-1-community');
 addGAEvents('#download-content', 'www.ubuntu.com-nav-1-download');
 addGAEvents('.p-navigation--secondary', 'www.ubuntu.com-nav-2');
 addGAEvents('.p-footer__nav', 'www.ubuntu.com-nav-footer');
+addGAEvents('.p-footer--secondary', 'www.ubuntu.com-nav-footer-2');
 addGAEvents('.p-contextual-footer', 'www.ubuntu.com-nav-contextual-footer');
 
 function addGAEvents(target, category){
