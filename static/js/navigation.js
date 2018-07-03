@@ -50,6 +50,11 @@ globalNavDropdowns.forEach(function(dropdown) {
     var targetMenuLink = dropdown.querySelector('.global-nav__link-anchor');
     var targetMenuId = targetMenuLink.getAttribute('href');
     var targetMenu = document.querySelector(targetMenuId);
+    var isMobile = window.innerWidth < navigationThresholdBreakpoint;
+
+    function scrollGlobalNavToTop() {
+      window.scrollTo(0, globalNav.offsetTop);
+    }
 
     if (globalNavContent.classList.contains('show-global-nav-content')) {
       if (dropdown.classList.contains('is-selected')) {
@@ -68,6 +73,10 @@ globalNavDropdowns.forEach(function(dropdown) {
         });
         targetMenu.classList.remove('u-hide');
         closeMainMenu();
+
+        if (isMobile) {
+          scrollGlobalNavToTop();
+        }
       }
     } else {
       currentLink.classList.add('is-selected');
@@ -80,6 +89,10 @@ globalNavDropdowns.forEach(function(dropdown) {
       });
       targetMenu.classList.remove('u-hide');
       closeMainMenu();
+
+      if (isMobile) {
+        scrollGlobalNavToTop();
+      }
     }
   });
 });
@@ -99,7 +112,6 @@ document.addEventListener('click', function(event) {
 
       if (!clickInsideGlobal) {
         globalNavDropdown.classList.remove('is-selected');
-        globalNavContent.classList.add('u-hide');
       }
     }
   });
@@ -137,7 +149,12 @@ function closeMenu(dropdown, dropdownContent) {
 
 if (window.location.hash) {
   var tabId = window.location.hash.split('#')[1];
-  document.getElementById(tabId).click();
+  var tab = document.getElementById(tabId);
+  var tabContent = document.getElementById(tabId + '-content');
+
+  if (tab) {
+    document.getElementById(tabId).click();
+  }
 }
 
 function closeMainMenu() {
@@ -155,3 +172,16 @@ function closeMainMenu() {
     dropdownWindow.classList.add('slide-animation');
   }
 }
+
+
+function mobileGlobalNav() {
+  var footerTitlesA = document.querySelectorAll('.global-nav--mobile .p-footer__title');
+  footerTitlesA.forEach(function(node) {
+    node.addEventListener('click', function(e) {
+      e.target.classList.toggle('active');
+    });
+  });
+};
+
+mobileGlobalNav();
+
