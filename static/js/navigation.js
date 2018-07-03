@@ -155,3 +155,27 @@ function closeMainMenu() {
     dropdownWindow.classList.add('slide-animation');
   }
 }
+
+addGAEvents('#canonical-products', 'www.ubuntu.com-nav-0-products');
+addGAEvents('#canonical-login', 'www.ubuntu.com-nav-0-login');
+addGAEvents('#enterprise-content', 'www.ubuntu.com-nav-1-enterprise');
+addGAEvents('#developer-content', 'www.ubuntu.com-nav-1-developer');
+addGAEvents('#community-content', 'www.ubuntu.com-nav-1-community');
+addGAEvents('#download-content', 'www.ubuntu.com-nav-1-download');
+addGAEvents('.p-navigation--secondary', 'www.ubuntu.com-nav-2');
+addGAEvents('.p-footer__nav', 'www.ubuntu.com-nav-footer');
+addGAEvents('.p-contextual-footer', 'www.ubuntu.com-nav-contextual-footer');
+
+function addGAEvents(target, category){
+  document.querySelector(target).querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function(event){
+      dataLayer.push({
+        'event' : 'GAEvent',
+        'eventCategory' : category,
+        'eventAction' : 'from:'+window.location.pathname+' to:'+a.href.replace('https://www.ubuntu.com', '').split("?")[0],
+        'eventLabel' : a.text,
+        'eventValue' : undefined
+      });
+    });
+  });
+}
