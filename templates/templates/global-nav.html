@@ -1,7 +1,9 @@
 <div class="global-nav__dropdown-overlay"></div>
 <div class="global-nav">
   <div class="global-nav__row row">
-    <div class="global-nav__logo"><a class="global-nav__logo-anchor" href="https://www.canonical.com"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Comp" xml:space="preserve" height="10px" viewBox="0 0 480 65" width="74px" version="1.1" y="0px" x="0px">
+    <div class="global-nav__logo">
+      <a class="global-nav__logo-anchor" href="https://www.canonical.com">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Comp" xml:space="preserve" height="10px" viewBox="0 0 480 65" width="74px" version="1.1" y="0px" x="0px">
           <g fill="#fff">
             <path d="m28.216 63.831c-4.213 0-8.049-0.692-11.511-2.077s-6.435-3.419-8.914-6.102c-2.482-2.683-4.401-5.957-5.756-9.824-1.357-3.864-2.035-8.308-2.035-13.328s0.75-9.477 2.25-13.372c1.499-3.894 3.548-7.169 6.145-9.823 2.596-2.653 5.596-4.674 9.001-6.059 3.404-1.383 7.011-2.076 10.819-2.076 2.596 0 4.919 0.172 6.967 0.519 2.048 0.346 3.822 0.75 5.323 1.211 1.499 0.462 2.711 0.924 3.635 1.385 0.923 0.462 1.558 0.808 1.905 1.038l-2.511 6.925c-0.519-0.347-1.269-0.721-2.25-1.125-0.982-0.403-2.12-0.807-3.419-1.212-1.299-0.402-2.726-0.735-4.284-0.995-1.557-0.259-3.202-0.389-4.933-0.389-2.943 0-5.626 0.549-8.049 1.645-2.424 1.097-4.501 2.683-6.232 4.76-1.731 2.078-3.072 4.602-4.024 7.573-0.952 2.972-1.428 6.305-1.428 9.996 0 3.579 0.418 6.838 1.255 9.781 0.835 2.943 2.105 5.467 3.808 7.573 1.701 2.107 3.808 3.736 6.318 4.89 2.511 1.155 5.466 1.731 8.872 1.731 3.808 0 6.967-0.404 9.477-1.212 2.511-0.807 4.399-1.528 5.669-2.164l2.164 6.924c-0.404 0.289-1.125 0.649-2.164 1.082s-2.337 0.853-3.895 1.254c-1.557 0.404-3.375 0.75-5.453 1.04-2.077 0.287-4.327 0.431-6.75 0.431z"/>
             <path d="m81.529 2.554c2.077 4.328 4.068 8.698 5.972 13.112s3.822 9.044 5.755 13.891 3.908 9.969 5.929 15.363c2.019 5.396 4.182 11.267 6.491 17.613h-9.174c-0.982-2.596-1.904-5.163-2.77-7.702s-1.761-5.106-2.683-7.703h-27.18l-5.453 15.406h-8.742c2.307-6.346 4.471-12.217 6.491-17.613 2.019-5.394 3.995-10.515 5.929-15.363 1.933-4.847 3.851-9.477 5.755-13.891 1.904-4.415 3.895-8.785 5.972-13.112l7.704-0.001zm-4.067 9.607c-2.02 4.328-3.937 8.828-5.756 13.502-1.817 4.673-3.621 9.551-5.409 14.627h22.33c-1.847-5.019-3.678-9.881-5.496-14.584-1.818-4.702-3.709-9.218-5.669-13.545z"/>
@@ -14,7 +16,9 @@
             <path d="m203.74 52.45c-11.018 0-19.95-8.929-19.95-19.95 0-11.019 8.932-19.949 19.95-19.949 11.019 0 19.95 8.931 19.95 19.949 0 11.021-8.93 19.95-19.95 19.95z"/>
             <path d="m235.07 32.501c0 17.303-14.028 31.33-31.331 31.33-17.304 0-31.331-14.028-31.331-31.33 0-17.304 14.026-31.331 31.331-31.331 17.3 0 31.33 14.027 31.33 31.331zm-31.33-23.71c-13.095 0-23.709 10.616-23.709 23.71 0 13.096 10.614 23.709 23.709 23.709s23.709-10.613 23.709-23.709c0-13.095-10.62-23.71-23.71-23.71z"/>
           </g>
-        </svg></a></div>
+        </svg>
+      </a>
+    </div>
     <ul class="global-nav__links p-inline-list">
       <li class="global-nav__link--dropdown p-inline-list__item">
         <a class="global-nav__link-anchor" href="#canonical-products">Products</a>
@@ -28,12 +32,12 @@
     <div class="u-hide global-nav__dropdown-content" id="canonical-login">
       <div class="p-strip--dark is-shallow">
         <div class="row">
-          <h5 class="p-muted-heading">Customer portals</h5>
+          <h5 class="p-muted-heading u-mobile-heading">Customer portals</h5>
         </div>
         <div class="row">
           <ul class="p-matrix u-no-margin--bottom">
             <li class="p-matrix__item">
-              <img class="p-logomark" src="{{ ASSET_SERVER_URL }}c5cb0f8e-picto-ubuntu.svg" alt="">
+              <img class="p-logomark u-hide--small" src="{{ ASSET_SERVER_URL }}c5cb0f8e-picto-ubuntu.svg" alt="">
               <div class="p-matrix__content">
                 <h4 class="p-matrix__title">Ubuntu Advantage</h4>
                 <p class="p-matrix__desc u-sv1">Enterprise support service to manage and add value to your Ubuntu deployment</p>
@@ -48,7 +52,7 @@
               </div>
             </li>
             <li class="p-matrix__item">
-              <img class="p-logomark" src="{{ ASSET_SERVER_URL }}4964d639-landscape-logo.svg" alt="">
+              <img class="p-logomark u-hide--small" src="{{ ASSET_SERVER_URL }}4964d639-landscape-logo.svg" alt="">
               <div class="p-matrix__content">
                 <h4 class="p-matrix__title">Landscape</h4>
                 <p class="p-matrix__desc u-sv1">Manage, deploy, and monitor your Ubuntu servers</p>
@@ -60,7 +64,7 @@
               </div>
             </li>
             <li class="p-matrix__item">
-              <img class="p-logomark" src="{{ ASSET_SERVER_URL }}3c1de878-canonical-logo.png" alt="">
+              <img class="p-logomark u-hide--small" src="{{ ASSET_SERVER_URL }}3c1de878-canonical-logo.png" alt="">
               <div class="p-matrix__content">
                 <h4 class="p-matrix__title">Livepatch</h4>
                 <p class="p-matrix__desc u-sv1">Apply critical kernel security fixes without rebooting</p>
@@ -75,7 +79,7 @@
               </div>
             </li>
             <li class="p-matrix__item">
-              <img class="p-logomark" src="{{ ASSET_SERVER_URL }}6b318257-launchpad-icon.png" alt="">
+              <img class="p-logomark u-hide--small" src="{{ ASSET_SERVER_URL }}6b318257-launchpad-icon.png" alt="">
               <div class="p-matrix__content">
                 <h4 class="p-matrix__title">Launchpad.net</h4>
                 <p class="p-matrix__desc u-sv1">The software collaboration platform behind Ubuntu</p>
@@ -87,7 +91,7 @@
               </div>
             </li>
             <li class="p-matrix__item">
-              <img class="p-logomark" src="{{ ASSET_SERVER_URL }}82dc2022-snapcraft-primary-icon.svg" alt="">
+              <img class="p-logomark u-hide--small" src="{{ ASSET_SERVER_URL }}82dc2022-snapcraft-primary-icon.svg" alt="">
               <div class="p-matrix__content">
                 <h4 class="p-matrix__title">Snapcraft.io</h4>
                 <p class="p-matrix__desc u-sv1">Manage your snaps and snap store(s)</p>
@@ -99,11 +103,11 @@
               </div>
             </li>
             <li class="p-matrix__item">
-              <img class="p-logomark" src="{{ ASSET_SERVER_URL }}31c507a5-logo-juju-icon.svg" alt="">
+              <img class="p-logomark u-hide--small" src="{{ ASSET_SERVER_URL }}31c507a5-logo-juju-icon.svg" alt="">
               <div class="p-matrix__content">
                 <h4 class="p-matrix__title">JAAS</h4>
                 <p class="p-matrix__desc u-sv1">Deploy, configure, scale and operate your software on public and private clouds</p>
-                <ul class="p-inline-list u-no-margin--bottom">
+                <ul class="p-inline-list">
                   <li class="p-inline-list__item">
                     <a class="p-link--inverted" href="https://jujucharms.com/login/">Login&nbsp;&rsaquo;</a>
                   </li>
@@ -115,8 +119,65 @@
       </div>
     </div>
     <div class="u-hide global-nav__dropdown-content" id="canonical-products">
-      <div class="p-strip--dark is-shallow">
+
+      <!-- MOBILE VERSION -->
+      <div class="p-strip--dark is-shallow u-hide--medium u-hide--large global-nav--mobile">
         <div class="row">
+          <h5 class="p-muted-heading p-footer__title">Products</h5>
+          <ul class="p-list is-split second-level-nav">
+            <li class="p-list__item"><a class="p-link" href="https://www.ubuntu.com/">Ubuntu</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://maas.io/">MAAS</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://landscape.canonical.com/">Landscape</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://jujucharms.com/">Juju</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://linuxcontainers.org/">LXD</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://snapcraft.io/">Snaps</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://www.ubuntu.com/openstack">OpenStack</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://www.ubuntu.com/kubernetes">Kubernetes</a></li>
+          </ul>
+        </div>
+        <div class="row">
+          <h5 class="p-muted-heading p-footer__title">Other websites</h5>
+          <ul class="p-list is-split second-level-nav">
+            <li class="p-list__item"><a class="p-link" href="http://www.ubuntu.com/support">Enterprise Support</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://wiki.ubuntu.com/Mir">Mir</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://cloud-images.ubuntu.com/">Image Service</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://conjure-up.io/">Conjure-up</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://cloud-init.io/">Cloud-init</a></li>
+            <li class="p-list__item"><a class="p-link" href="http://www.netplan.io/">Netplan</a></li>
+          </ul>
+        </div>
+        <div class="row">
+          <h5 class="p-muted-heading p-footer__title">Resources</h5>
+          <ul class="p-list is-split second-level-nav">
+            <li class="p-list__item"><a class="p-link" href="https://www.brighttalk.com/search?q=Canonical" title="Visit the Webinars - external site">Webinars</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://tutorials.ubuntu.com/" title="Visit the Tutorials - external site">Tutorials</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://www.youtube.com/user/celebrateubuntu" title="Visit the Videos - external site">Videos</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://blog.ubuntu.com/archives?category=case-studies" title="Visit the Case studies - external site">Case studies</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://blog.ubuntu.com/archives?category=white-papers" title="Visit the White papers - external site">White papers</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://docs.ubuntu.com" title="Visit the Docs - external site">Docs</a></li>
+            <li class="p-list__item"><a class="p-link" href="/cloud/training">Training</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://insights.ubuntu.com" title="Visit the Blog - external site">Blog</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://developer.ubuntu.com">Developer</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://www.ubuntu.com/download/cloud">Install</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://www.ubuntu.com/download">Download</a></li>
+          </ul>
+        </div>
+        <div class="row">
+          <h5 class="p-muted-heading p-footer__title">About</h5>
+          <ul class="p-list is-split second-level-nav">
+            <li class="p-list__item"><a class="p-link" href="https://www.ubuntu.com">Ubuntu</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://www.canonical.com">Canonical</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://insights.ubuntu.com/press-centre">Press centre</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://partners.ubuntu.com">Partners</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://shop.canonical.com/">Merchandise</a></li>
+            <li class="p-list__item"><a class="p-link" href="https://www.ubuntu.com/about/contact-us">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- DESKTOP VERSION -->
+      <div class="p-strip--dark is-shallow u-hide--small">
+        <div class="row u-hide--small">
           <ul class="p-matrix">
             <li class="p-matrix__item">
               <a href="https://www.ubuntu.com">
@@ -190,13 +251,13 @@
                 <p class="p-matrix__desc">Canonical works with Google GKE and Azure AKS for app portability between private and public infra</p>
               </div>
             </li>
-            <li class="p-matrix__item">
+            <li class="p-matrix__item u-hide--small">
               &nbsp;
             </li>
           </ul>
         </div>
       </div>
-      <div class="p-strip--dark is-shallow">
+      <div class="p-strip--dark is-shallow u-hide--small">
         <div class="row is-bordered">
           <div class="col-9">
             <h5 class="p-muted-heading">Other websites</h5>
@@ -227,8 +288,8 @@
               <li class="p-list__item"><a class="p-link" href="https://www.brighttalk.com/search?q=Canonical" title="Visit the Webinars - external site">Webinars</a></li>
               <li class="p-list__item"><a class="p-link" href="https://tutorials.ubuntu.com/" title="Visit the Tutorials - external site">Tutorials</a></li>
               <li class="p-list__item"><a class="p-link" href="https://www.youtube.com/user/celebrateubuntu" title="Visit the Videos - external site">Videos</a></li>
-              <li class="p-list__item"><a class="p-link" href="https://insights.ubuntu.com/category/case-studies" title="Visit the Case studies - external site">Case studies</a></li>
-              <li class="p-list__item"><a class="p-link" href="https://insights.ubuntu.com/category/white-papers" title="Visit the White papers - external site">White papers</a></li>
+              <li class="p-list__item"><a class="p-link" href="https://blog.ubuntu.com/archives?category=case-studies" title="Visit the Case studies - external site">Case studies</a></li>
+              <li class="p-list__item"><a class="p-link" href="https://blog.ubuntu.com/archives?category=white-papers" title="Visit the White papers - external site">White papers</a></li>
               <li class="p-list__item"><a class="p-link" href="https://docs.ubuntu.com" title="Visit the Docs - external site">Docs</a></li>
               <li class="p-list__item"><a class="p-link" href="/cloud/training">Training</a></li>
               <li class="p-list__item"><a class="p-link" href="https://insights.ubuntu.com" title="Visit the Blog - external site">Blog</a></li>
@@ -237,7 +298,7 @@
               <li class="p-list__item"><a class="p-link" href="https://www.ubuntu.com/download">Download</a></li>
             </ul>
             <h5 class="p-muted-heading">About</h5>
-            <ul class="p-list is-split">
+            <ul class="p-list is-split u-no-margin--bottom">
               <li class="p-list__item"><a class="p-link" href="https://www.ubuntu.com">Ubuntu</a></li>
               <li class="p-list__item"><a class="p-link" href="https://www.canonical.com">Canonical</a></li>
               <li class="p-list__item"><a class="p-link" href="https://insights.ubuntu.com/press-centre">Press centre</a></li>

@@ -1,8 +1,7 @@
 {% extends "server/base_server.html" %}
+
 {% block title %}Ubuntu Server - for scale out workloads{% endblock %}
 {% block meta_description %}Secure, fast and economically scalable, Ubuntu helps you make the most of your infrastructure. Whether you want to deploy a cloud or a web farm, Ubuntu Server supports the most popular hardware and software.{% endblock %}
-
-
 
 {% block content %}
 <div class="p-strip is-deep is-bordered">
@@ -59,7 +58,6 @@
       <div class="col-8">
         <h2>Landscape: Server management</h2>
         <p>Landscape allows you to manage thousands of Ubuntu machines as easily as one, making the administration of Ubuntu desktops, servers and cloud instances more cost-effective. It&rsquo;s easy to set up, easy to use and it requires no special hardware.</p>
-        <div class="p-list">
           <ul class="p-list is-split">
             <li class="p-list__item is-ticked">Management at scale</li>
             <li class="p-list__item is-ticked">Deploy security updates</li>
@@ -67,7 +65,6 @@
             <li class="p-list__item is-ticked">Role-based access</li>
             <li class="p-list__item is-ticked">Informative monitoring</li>
           </ul>
-        </div>
         <p><a href="https://landscape.canonical.com/" class="p-button--neutral"><span class="p-link--external">Learn more about Landscape</span></a></p>
       </div>
     </div>
@@ -82,7 +79,7 @@
         <p>In addition to x86 and ARM servers, Ubuntu is supported on the Power architecture. For the enterprise datacentre, this means you can now build your infrastructure on any hardware you choose.</p>
       </div>
       <div class="col-4 u-vertically-center u-align--center">
-        <img src="{{ ASSET_SERVER_URL }}683950fd-logo-ibm.svg" alt="IBM logo" width="200" />
+        <img class="u-hide--small" src="{{ ASSET_SERVER_URL }}683950fd-logo-ibm.svg" alt="IBM logo" width="200" />
       </div>
     </div>
   </div>
@@ -151,7 +148,7 @@
           <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}64493bba-logo-openbravo.png" alt="Openbravo" />
         </li>
       </ul>
-      <p class="u-align--center u-vertically-spaced"><a href="/partners/certified-software">View all certified software&nbsp;&rsaquo;</a></p>
+      <p class="u-align--center u-vertically-spaced"><a href="https://partners.ubuntu.com/programmes/software">View all certified software&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </div>
@@ -309,13 +306,6 @@
             <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
           </tr>
           <tr>
-            <td scope="row">OpenSUSE</td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-          </tr>
-          <tr>
             <td scope="row">Debian</td>
             <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
             <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
@@ -358,9 +348,6 @@
         </li>
         <li class="p-inline-images__item">
           <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}eda6b94a-redhat-logo.svg" width="140" alt="Redhat logo">
-        </li>
-        <li class="p-inline-images__item">
-          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}6697a21a-suse-logo.png" width="100" alt="Suse logo">
         </li>
       </ul>
     </div>

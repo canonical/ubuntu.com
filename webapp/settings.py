@@ -99,6 +99,7 @@ TEMPLATES = [
             'context_processors': [
                 'django_asset_server_url.asset_server_url',
                 'webapp.context_processors.navigation',
+                'django.template.context_processors.request',
             ],
         },
     },
