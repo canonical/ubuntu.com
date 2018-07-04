@@ -285,12 +285,12 @@ $color-rule--light: transparentize($color-mid-light, .5);
     & .p-list__item {
       margin-bottom: .25rem;
 
-      &:not(:first-child) {
-        padding-top: .25rem;
+      &:not(:last-child) {
+        padding-bottom: .25rem;
       }
 
-      &:not(:first-child) {
-        @extend %pseudo-border--top;
+      &:not(:last-child) {
+        @extend %pseudo-border--bottom;
 
         &::after {
           background-color: $color-rule--light;
