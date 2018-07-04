@@ -173,6 +173,36 @@ function closeMainMenu() {
   }
 }
 
+var origin = window.location.pathname;
+
+addGAEvents('#canonical-products', 'www.ubuntu.com-nav-0-products');
+addGAEvents('#canonical-login', 'www.ubuntu.com-nav-0-login');
+addGAEvents('#enterprise-content', 'www.ubuntu.com-nav-1-enterprise');
+addGAEvents('#developer-content', 'www.ubuntu.com-nav-1-developer');
+addGAEvents('#community-content', 'www.ubuntu.com-nav-1-community');
+addGAEvents('#download-content', 'www.ubuntu.com-nav-1-download');
+addGAEvents('.p-navigation--secondary', 'www.ubuntu.com-nav-2');
+addGAEvents('.p-footer__nav', 'www.ubuntu.com-nav-footer');
+addGAEvents('.p-footer--secondary', 'www.ubuntu.com-nav-footer-2');
+addGAEvents('.p-contextual-footer', 'www.ubuntu.com-nav-contextual-footer');
+
+function addGAEvents(target, category){
+  var t = document.querySelector(target);
+  if (t) {
+    t.querySelectorAll('a').forEach(function(a) {
+      var destination = a.href.replace('https://www.ubuntu.com', '').split("?")[0];
+      a.addEventListener('click', function(event){
+        dataLayer.push({
+          'event' : 'GAEvent',
+          'eventCategory' : category,
+          'eventAction' : `from:${origin} to:${destination}`,
+          'eventLabel' : a.text,
+          'eventValue' : undefined
+        });
+      });
+    });
+  }
+}
 
 function mobileGlobalNav() {
   var footerTitlesA = document.querySelectorAll('.global-nav--mobile .p-footer__title');
@@ -184,4 +214,3 @@ function mobileGlobalNav() {
 };
 
 mobileGlobalNav();
-
