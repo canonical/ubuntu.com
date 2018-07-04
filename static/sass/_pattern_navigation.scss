@@ -275,6 +275,14 @@
           padding: 0.55rem 0 0.2rem 0;
         }
 
+        &__space {
+          display: none;
+
+          @media (max-width: $breakpoint-small - 1) {
+            display: block;
+          }
+        }
+
         &__link {
           font-size: 1rem / pow($ms-ratio, 1); //XXX: move font-sizes to map in vanilla so it can be changed globally
           // line-height: map-get($line-heights, small);

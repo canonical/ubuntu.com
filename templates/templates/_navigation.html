@@ -59,7 +59,7 @@
         {% for child in breadcrumbs.children %}
         <li class="breadcrumbs__item">
           <a class="breadcrumbs__link {% if child.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ child.path }}">
-            {% if child.title == 'Overview' %}{{ breadcrumbs.section.title }}  <li class="breadcrumbs__item"><span class="u-show--small">&nbsp;</span></li>{% else %}{{ child.title }}{% endif %}
+            {% if child.title == 'Overview' %}{{ breadcrumbs.section.title }}  </a><li class="breadcrumbs__item breadcrumbs__space"><a href="#">&nbsp;</li>{% else %}{{ child.title }}{% endif %}
           </a>
         </li>
         {% if breadcrumbs.grandchildren %}
