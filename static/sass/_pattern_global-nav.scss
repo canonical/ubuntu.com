@@ -195,6 +195,7 @@ $color-rule--light: transparentize($color-mid-light, .5);
 
     .p-matrix__item {
         border-color: $color-mid-dark;
+        border-right: 0 !important;
     }
     .p-matrix__img img {
       max-height: map-get($icon-sizes, thumb--card);
