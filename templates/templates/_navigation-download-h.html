@@ -1,69 +1,71 @@
 <div class="fade-animation u-hide" id="download-content">
-  <div class="dropdown-window__content">
-    <div class="row">
-      <div class="col-3">
-        <h4 class="p-heading-four is-dense"><a class="p-link--soft" href='/download/desktop'>Ubuntu Desktop&nbsp;&rsaquo;</a></h4>
-        <p class="p-p--small">Download Ubuntu desktop and replace your current operating system whether it’s Windows or Mac OS, or, run Ubuntu alongside it.</p>
-        <a class="p-button--positive p-button--small u-align-text--left" href="/download/desktop/thank-you?version={{lts_release_with_point}}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">{{ lts_release_full }}</a>
-      </div>
-      <div class="col-3">
-        <h4 class="p-heading-four is-dense"><a class="p-link--soft" href='/download/server' >Ubuntu Server&nbsp;&rsaquo;</a></h4>
-        <p class="p-p--small">The most popular server Linux in the cloud and data centre, you can rely on Ubuntu Server and its five years of guaranteed free upgrades.</p>
-        <a href="/download/server/thank-you?version={{ lts_release_with_point }}&amp;architecture=amd64" class="p-button--positive p-button--small u-align-text--left" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{ lts_release_full }}', 'eventValue' : undefined });">{{ lts_release_full }}</a>
-        <ul class='p-text-list--small is-bordered' >
-          <li class="p-list__item"><a href="/download/alternative-downloads#alternate-ubuntu-server-installer">Use the traditional installer</a></li>
-          <li class='p-list__item'><a class='p-link' href='/download/server/arm'>
-            ARM
-          </a></li>
-          <li class='p-list__item'><a class='p-link' href='/download/server/power8'>
-            IBM Power
-          </a></li>
-          <li class='p-list__item'><a class='p-link' href='/download/server/linuxone'>
-            s390x
-          </a></li>
-        </ul>
-      </div>
-      <div class="col-3">
-        <h4 class="p-heading-four is-dense"><a class="p-link--soft" href="/download/iot" >Ubuntu for IoT&nbsp;&rsaquo;</a></h4>
-        <p class="p-p--small">Are you a developer who wants to try snappy Ubuntu Core or classic Ubuntu on an IoT board?</p>
-        <ul class='p-text-list--small is-bordered'>
-          <li class='p-list__item'><a class='p-link' href='/download/iot/raspberry-pi-2-3'>
-            Raspberry Pi 2 or 3
-          </a></li>
-          <li class='p-list__item'><a class='p-link' href='/download/iot/raspberry-pi-compute-module-3'>
-            Raspberry Pi Compute Module 3
-          </a></li>
-          <li class='p-list__item'><a class='p-link' href='/download/iot/intel-nuc'>
-            Intel NUC
-          </a></li>
-          <li class='p-list__item'><a class='p-link' href='/download/iot/kvm'>
-            KVM
-          </a></li>
-          <li class='p-list__item'><a class='p-link' href='/download/iot/intel-joule'>
-            Intel Joule
-          </a></li>
-          <li class='p-list__item'><a class='p-link' href='/download/iot/qualcomm-dragonboard-410c'>
-            Qualcomm Dragonboard 410c
-          </a></li>
-          <li class='p-list__item'><a class='p-link' href='/download/iot/samsung-artik-5-10'>
-            Samsung Artik 5 or 10
-          </a></li>
-          <li class='p-list__item'><a class='p-link' href='/download/iot/up-squared-iot-grove-server'>
-            UP<sup>2</sup> IoT Grove
-          </a></li>
-        </ul>
-      </div>
-      <div class="col-3">
-        <h4 class="p-heading-four is-dense"><a class="p-link--soft" href="/download/cloud" >Ubuntu Cloud&nbsp;&rsaquo;</a></h4>
-        <p class="p-p--small">Use Ubuntu optimised and certified server images on most major clouds.</p>
-        <ul class='p-text-list--small is-bordered'>
-          <li class='p-list__item'><a class='p-link' href='/download/cloud'>
-            Get started on Amazon AWS, Microsoft Azure, Google Cloud Platform and more&#8230;</a>
-          </a></li>
-          <li class='p-list__item'><a class='p-link' href='http://cloud-images.ubuntu.com/' title='Visit cloud-images - external site'>
-            Download cloud images for local development and testing
-          </a></li>
-        </ul>
+  <div class="dropdown-window__content u-no-padding--top u-no-padding--bottom">
+    <div class="p-strip is-x-shallow u-no-padding--bottom">
+      <div class="row">
+        <div class="col-3">
+          <h4 class="p-heading-four is-dense"><a class="p-link--soft" href='/download/desktop'>Ubuntu Desktop&nbsp;&rsaquo;</a></h4>
+          <p class="p-p--small">Download Ubuntu desktop and replace your current operating system whether it’s Windows or Mac OS, or, run Ubuntu alongside it.</p>
+          <a class="p-button--positive p-button--small u-align-text--left" href="/download/desktop/thank-you?version={{lts_release_with_point}}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">{{ lts_release_full }}</a>
+        </div>
+        <div class="col-3">
+          <h4 class="p-heading-four is-dense"><a class="p-link--soft" href='/download/server' >Ubuntu Server&nbsp;&rsaquo;</a></h4>
+          <p class="p-p--small">The most popular server Linux in the cloud and data centre, you can rely on Ubuntu Server and its five years of guaranteed free upgrades.</p>
+          <a href="/download/server/thank-you?version={{ lts_release_with_point }}&amp;architecture=amd64" class="p-button--positive p-button--small u-align-text--left" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{ lts_release_full }}', 'eventValue' : undefined });">{{ lts_release_full }}</a>
+          <ul class='p-text-list--small is-bordered' >
+            <li class="p-list__item"><a href="/download/alternative-downloads#alternate-ubuntu-server-installer">Use the traditional installer</a></li>
+            <li class='p-list__item'><a class='p-link' href='/download/server/arm'>
+              ARM
+            </a></li>
+            <li class='p-list__item'><a class='p-link' href='/download/server/power8'>
+              IBM Power
+            </a></li>
+            <li class='p-list__item'><a class='p-link' href='/download/server/linuxone'>
+              s390x
+            </a></li>
+          </ul>
+        </div>
+        <div class="col-3">
+          <h4 class="p-heading-four is-dense"><a class="p-link--soft" href="/download/iot" >Ubuntu for IoT&nbsp;&rsaquo;</a></h4>
+          <p class="p-p--small">Are you a developer who wants to try snappy Ubuntu Core or classic Ubuntu on an IoT board?</p>
+          <ul class='p-text-list--small is-bordered'>
+            <li class='p-list__item'><a class='p-link' href='/download/iot/raspberry-pi-2-3'>
+              Raspberry Pi 2 or 3
+            </a></li>
+            <li class='p-list__item'><a class='p-link' href='/download/iot/raspberry-pi-compute-module-3'>
+              Raspberry Pi Compute Module 3
+            </a></li>
+            <li class='p-list__item'><a class='p-link' href='/download/iot/intel-nuc'>
+              Intel NUC
+            </a></li>
+            <li class='p-list__item'><a class='p-link' href='/download/iot/kvm'>
+              KVM
+            </a></li>
+            <li class='p-list__item'><a class='p-link' href='/download/iot/intel-joule'>
+              Intel Joule
+            </a></li>
+            <li class='p-list__item'><a class='p-link' href='/download/iot/qualcomm-dragonboard-410c'>
+              Qualcomm Dragonboard 410c
+            </a></li>
+            <li class='p-list__item'><a class='p-link' href='/download/iot/samsung-artik-5-10'>
+              Samsung Artik 5 or 10
+            </a></li>
+            <li class='p-list__item'><a class='p-link' href='/download/iot/up-squared-iot-grove-server'>
+              UP<sup>2</sup> IoT Grove
+            </a></li>
+          </ul>
+        </div>
+        <div class="col-3">
+          <h4 class="p-heading-four is-dense"><a class="p-link--soft" href="/download/cloud" >Ubuntu Cloud&nbsp;&rsaquo;</a></h4>
+          <p class="p-p--small">Use Ubuntu optimised and certified server images on most major clouds.</p>
+          <ul class='p-text-list--small is-bordered'>
+            <li class='p-list__item'><a class='p-link' href='/download/cloud'>
+              Get started on Amazon AWS, Microsoft Azure, Google Cloud Platform and more&#8230;</a>
+            </a></li>
+            <li class='p-list__item'><a class='p-link' href='http://cloud-images.ubuntu.com/' title='Visit cloud-images - external site'>
+              Download cloud images for local development and testing
+            </a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
