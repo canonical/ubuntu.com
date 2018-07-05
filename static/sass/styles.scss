@@ -323,8 +323,21 @@ p + pre {
 
 // XXX Peter: adding border back for fieldsets
 fieldset {
-  border: 1px solid $color-light;
-  border-radius: $sp-xx-small;
+  border: 1px solid $color-mid-light;
+  border-bottom-width: 0;
+  border-radius: $sp-xx-small $sp-xx-small 0 0;
+}
+
+fieldset + fieldset {
+  border-top-width: 0 !important;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+fieldset:last-child {
+  border-bottom-width: 1px !important;
+  border-bottom-left-radius: $sp-xx-small !important;
+  border-bottom-right-radius: $sp-xx-small !important;
 }
 
 // XXX Steve: Overriding default Vanilla style :(
