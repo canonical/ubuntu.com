@@ -46,15 +46,6 @@
             {% endif %}
           </div>
         </form>
-        <script>
-        var select = document.querySelector('.js-submit-on-change');
-        select.addEventListener('change', function(e) {
-          var form = this.closest('form');
-          if (form) {
-            form.submit();
-          }
-        });
-        </script>
       </li>
     </ul>
   </nav>
@@ -153,5 +144,17 @@
     </div>
   </div>
 </section>
+
+<script>
+  var selects = document.querySelectorAll('.js-submit-on-change');
+  selects.forEach(function(select) {
+    select.addEventListener('change', function(e) {
+      var form = this.closest('form');
+      if (form) {
+        form.submit();
+      }
+    });
+  });
+</script>
 
 {% endblock content %}
