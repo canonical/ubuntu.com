@@ -212,6 +212,60 @@
   {% include "shared/_resources_openstack.html"%}
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_fully_managed_openstack_cloud" second_item="_consulting_packages" third_item="_install_openstack_now" %}
+<section class="p-strip is-bordered">
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">Fully managed private OpenStack cloud</h3>
+      <p>Start your private cloud journey with a low-risk managed OpenStack by Canonical. We help you design, deliver and operate your cloud, enabling you to focus on your apps while proving the business case for OpenStack.</p>
+      <p><a href="/openstack/managed">Learn about BootStackLearn about BootStack&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">Consulting packages</h3>
+      <p>We offer workshops, application requirements assessment, hardware recommendations and our 2-week on-rails Foundation Cloud Build, a fixed-price OpenStack deployment service.</p>
+      <p><a href="/openstack/consulting">Learn about our OpenStack consulting services&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">Install now</h3>
+      <p>Deploy OpenStack on a single laptop or across many racks using Ubuntu, the most widely used cloud OS. Canonical is the most popular provider of OpenStack globally.</p>
+      <p><a href="/openstack/install">Deploy OpenStack on Ubuntu&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">Automate server provisioning</h3>
+      <p>Turn your data center into a physical cloud with MAAS bare-metal provisioning. Open source IPAM and SDDC with enterprise support.</p>
+      <p><a class="p-link--external" href="https://maas.io">Learn about MAAS</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">Use Ubuntu on all major public clouds</h3>
+      <p>Ubuntu is the leading enterprise cloud OS, running most workloads in public clouds today. From container hosts to AI and machine learning, Ubuntu is the choice of Silicon Valley and beyond.</p>
+      <p><a href="/download/cloud">Get started with Ubuntu server&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">Model-driven operations</h3>
+      <p>Simplify your multi-cloud operations with Juju, an open source model driven operations system. Share operations code as open source, dramatically reducing the cost of complexity.</p>
+      <p><a class="p-link--external" href="https://jujucharms.com">Get started with Juju</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <h2>Install Ubuntu OpenStack yourself &mdash; developer edition or production cluster</h2>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <p>OpenStack developers looking to dig into the heart of a complex running OpenStack can <a href="/openstack/install#workstation-deployment">follow our workstation install instructions</a> for a single-node OpenStack deployment in multiple containers. For production environments, the same operational stack can be used at scale to <a href="/openstack/install#cluster-deployment">deploy a full OpenStack cluster</a> on bare metal servers. This Ubuntu reference OpenStack architecture uses <a class="p-link--external" href="https://maas.io">MAAS</a> and <a class="p-link--external" href="https://linuxcontainers.org/">Linux Containers</a> to operate efficiently on racks of bare metal.</p>
+    </div>
+    <div class="col-6">
+      <p class="p-heading--four">Watch a Canonical Openstack deployment on Ubuntu</p>
+      <div class="u-embedded-media">
+        <iframe class="u-embedded-media__element" src="https://player.vimeo.com/video/202448226?color=ffffff&amp;title=0&amp;byline=0&amp;portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_ubuntu_advantage" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
 
 {% endblock content %}
