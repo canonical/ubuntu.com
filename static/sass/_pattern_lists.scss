@@ -290,7 +290,7 @@ $color-rule--light: transparentize($color-mid-light, .5);
       }
 
       &:not(:last-child) {
-        @extend %pseudo-border--bottom;
+        @extend %vf-pseudo-border--bottom;
 
         &::after {
           background-color: $color-rule--light;
