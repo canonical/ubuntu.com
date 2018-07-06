@@ -220,7 +220,7 @@ $color-rule--light: transparentize($color-mid-light, .5);
 
     @media (min-width: $breakpoint-navigation-threshold) {
       transform: translateY(-100%);
-      transition: transform .75s ease-in-out;
+      transition: transform .5s ease-in-out;
     }
   }
 
@@ -243,7 +243,7 @@ $color-rule--light: transparentize($color-mid-light, .5);
       z-index: 1;
       opacity: 0;
       pointer-events: none;
-      transition: opacity .75s ease-in-out;
+      transition: opacity .5s ease-in-out;
 
       &.is-visible {
         opacity: 1;
