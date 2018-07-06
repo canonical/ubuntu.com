@@ -228,7 +228,7 @@
 
         &::after {
           // white separator inside lockup
-          @extend %pseudo-border--top;
+          @extend %vf-pseudo-border--top;
           display: none;
 
           @media only screen and (min-width: $breakpoint-navigation-threshold) {
@@ -457,7 +457,7 @@ h2,
 }
 
 .p-card--navigation {
-  @extend %p-card;
+  @include vf-p-card;
   display: flex;
   flex-direction: column;
   margin-bottom: 0;
@@ -465,9 +465,9 @@ h2,
 }
 
 .p-card--light {
-  @extend %has-round-corners;
+  @extend %vf-has-round-corners;
   @extend %bg--light;
-  @extend %p-card;
+  @include vf-p-card;
   flex-direction: column;
   margin-bottom: $spv-inter--condensed-scaleable;
   padding: $spv-intra--scaleable - $px;

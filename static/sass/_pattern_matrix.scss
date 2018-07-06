@@ -67,15 +67,4 @@
       margin-top: 0;
     }
   }
-
-  // XXX Steve: 04.06.18 - fixes layout issue when matrix images have a link
-  // Issue: https://github.com/vanilla-framework/vanilla-framework/issues/1908
-  .p-matrix__img--link {
-    @extend .p-matrix__img;
-    z-index: 1;
-
-    img {
-      display: block;
-    }
-  }
 }
