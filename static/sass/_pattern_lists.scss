@@ -256,6 +256,10 @@ $color-rule--light: transparentize($color-mid-light, .5);
     &::after {
       right: -.65em;
       top: .75rem;
+
+      @media only screen and (max-width: $breakpoint-medium - 1) {
+        display: none;
+      }
     }
   }
 }
