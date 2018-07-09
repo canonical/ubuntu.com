@@ -29,7 +29,7 @@
 
     <title>{% block title %}{% endblock %} | Ubuntu</title>
 
-    <link rel="canonical" href="{% block canonical_url %}{{ request.build_absolute_uri }}{% endblock %}">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}" />
     <link rel="icon" type="image/png" href="{{ ASSET_SERVER_URL }}cb22ba5d-favicon-16x16.png" sizes="16x16" />
     <link rel="icon" type="image/png" href="{{ ASSET_SERVER_URL }}49a1a858-favicon-32x32.png" sizes="32x32" />
 
