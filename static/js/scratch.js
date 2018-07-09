@@ -137,9 +137,11 @@ core.siteSearch = function(){
 
   siteSearchToggle = document.querySelector('.search-toggle__link');
   siteSearchForm  = document.querySelector('.p-site-search__form');
+  siteSearchInput  = document.querySelector('.p-site-search__input');
 
   siteSearchToggle.addEventListener('click', function(e) {
     siteSearchForm.classList.toggle('u-visible');
+    siteSearchInput.focus();
     e.preventDefault();
   });
 };
