@@ -250,6 +250,13 @@ $color-rule--light: transparentize($color-mid-light, .5);
 
   &.is-x-dense {
     margin-bottom: $sp-unit - $nudge--small;
+
+    .p-inline-list__item {
+      &::after {
+        top: 1rem;
+        right: -.7rem;
+      }
+    }
   }
 
   .p-inline-list__item {
