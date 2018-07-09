@@ -342,3 +342,9 @@ fieldset:last-child {
 .p-heading--six {
   font-style: normal;
 }
+
+// XXX Steve: Pull quote colour override
+.p-pull-quote p:first-of-type::before,
+.p-pull-quote p:last-of-type::after {
+  color: $color-brand;
+}
