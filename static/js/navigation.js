@@ -151,9 +151,11 @@ if (window.location.hash) {
   var tabId = window.location.hash.split('#')[1];
   var tab = document.getElementById(tabId);
   var tabContent = document.getElementById(tabId + '-content');
+  var navButton = document.querySelector('.p-navigation__toggle--open');
 
   if (tab) {
     document.getElementById(tabId).click();
+    navButton.click();
   }
 }
 
