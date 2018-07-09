@@ -153,8 +153,11 @@ if (window.location.hash) {
   var navButton = document.querySelector('.p-navigation__toggle--open');
 
   if (tab) {
-    document.getElementById(tabId).click();
     navButton.click();
+    // Hack so this fires at the end of the event loop after previous click
+    setTimeout(function() {
+      document.getElementById(tabId).click();
+    }, 0);
   }
 }
 
