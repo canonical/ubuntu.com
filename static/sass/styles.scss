@@ -30,7 +30,6 @@
 @import 'pattern_testimonials';
 @import 'pattern_heading-icon';
 @import 'pattern_hero';
-@import 'pattern_pull_quotes';
 @import 'utility_full-width';
 @import 'pattern_matrix';
 @import 'pattern_contextual-footer';
@@ -57,7 +56,6 @@
 @include ubuntu-p-testimonials;
 @include ubuntu-p-heading-icon;
 @include ubuntu-p-hero;
-@include ubuntu-p-pull-quote;
 @include ubuntu-u-full-width;
 @include ubuntu-p-matrix;
 @include ubuntu-p-contextual-footer;
@@ -343,4 +341,10 @@ fieldset:last-child {
 // XXX Steve: Overriding default Vanilla style :(
 .p-heading--six {
   font-style: normal;
+}
+
+// XXX Steve: Pull quote colour override
+.p-pull-quote p:first-of-type::before,
+.p-pull-quote p:last-of-type::after {
+  color: $color-brand;
 }
