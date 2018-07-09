@@ -20,11 +20,6 @@
     flex-direction: column;
     z-index: 3;
 
-    @media (max-width: $breakpoint-navigation-threshold - 1) {
-      position: sticky;
-      top: 0;
-    }
-
     &::after { // disable rule under nav
       background-color: none;
       height: 0;
