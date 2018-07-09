@@ -116,6 +116,7 @@
     }
 
     & &__link-anchor {
+      @include vf-animation(all, brisk, in);
       display: block;
       color: $color-light;
 
@@ -379,12 +380,12 @@
   }
 
   .dropdown-window {
+    @include vf-animation(all, brisk, in);
     background-color: $color-x-light;
     box-shadow: 0 1px 32px 1px transparentize($color-dark, .8);
     flex-direction: column;
     position: absolute;
     width: 100%;
-    transition: all .75s;
     z-index: 2;
 
     &.slide-animation {
@@ -414,7 +415,6 @@
 
     & .p-inline-list__item {
       @extend %small-text-fixed;
-      // display: inline-block;
       list-style-type: none;
     }
 
@@ -430,8 +430,6 @@
   }
 
   .fade-animation {
-    opacity: 0;
-    transition-duration: .75s;
     visibility: hidden;
 
     .u-visible-nav & {
