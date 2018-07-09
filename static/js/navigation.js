@@ -21,7 +21,7 @@ navDropdowns.forEach(function(dropdown) {
           closeMenu(dropdown, dropdownContent);
         } else {
           dropdown.classList.add('is-selected');
-          dropdownContent.classList.remove('fade-animation', 'u-hide');
+          dropdownContent.classList.remove('u-hide');
 
           if (window.history.pushState) {
             window.history.pushState(null, null, '#' + dropdown.id);
@@ -29,7 +29,7 @@ navDropdowns.forEach(function(dropdown) {
         }
       } else {
         dropdown.classList.remove('is-selected');
-        dropdownContent.classList.add('fade-animation', 'u-hide');
+        dropdownContent.classList.add('u-hide');
       }
     });
   });
@@ -141,7 +141,6 @@ function closeMenu(dropdown, dropdownContent) {
   dropdown.classList.remove('is-selected');
   dropdownWindow.classList.add('slide-animation');
   dropdownWindowOverlay.classList.add('fade-animation');
-  dropdownContent.classList.add('fade-animation');
   if (window.history.pushState) {
     window.history.pushState(null, null, window.location.href.split('#')[0]);
   }
