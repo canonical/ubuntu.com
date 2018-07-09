@@ -220,8 +220,8 @@ $color-rule--light: transparentize($color-mid-light, .5);
     transform: translateY(0);
 
     @media (min-width: $breakpoint-navigation-threshold) {
+      @include vf-animation(transform, brisk, in);
       transform: translateY(-100%);
-      transition: transform .5s ease-in-out;
       height: auto;
     }
   }
