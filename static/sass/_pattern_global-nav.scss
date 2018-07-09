@@ -133,7 +133,7 @@ $color-rule--light: transparentize($color-mid-light, .5);
       margin-top: 0;
       position: absolute;
       top: 2rem;
-      transition: transform .25s;
+      transition: transform .25s ease-in-out;
       width: 100%;
       z-index: 4;
       font-size: .875rem;
@@ -217,10 +217,12 @@ $color-rule--light: transparentize($color-mid-light, .5);
   .global-nav__dropdown {
     overflow: hidden;
     height: 0;
+    transform: translateY(0);
 
     @media (min-width: $breakpoint-navigation-threshold) {
       transform: translateY(-100%);
       transition: transform .5s ease-in-out;
+      height: auto;
     }
   }
 
