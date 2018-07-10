@@ -1,6 +1,12 @@
 @mixin ubuntu-p-card {
 
   .p-card__footer {
+    border-top: 1px solid $color-mid-light;
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+
+  .p-card__footer--light {
     border: 1px solid $color-mid-light;
     border-top: 0;
     border-radius: 0 0 $border-radius $border-radius;
