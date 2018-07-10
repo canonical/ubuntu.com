@@ -82,32 +82,30 @@
   {% for group_slug, resources in posts.items %}
     <div class="row u-equal-height">
     {% for resource in resources.posts %}
-      <div class="p-card--resources col-4">
-        {% if topic %}
-        <header class="p-card__header--{{ topic.slug }}">
-          <h4 class="p-muted-heading">
-            {{ topic.name }}
-          </h4>
-        {% else %}
-        <header class="p-card__header--{{ resource.group.slug }}">
-          <h4 class="p-muted-heading">
-            {{ resource.group.name }}
-          </h4>
+      {% if topic %}
+      <article class="col-4">
+        <h4 class="p-muted-heading">
+          {{ topic.name }}
+        </h4>
+      {% else %}
+      <article class="p-card--{{ resource.group.slug }} col-4" style="display: flex; flex-direction: column;">
+        <h4 class="p-muted-heading">
+          {{ resource.group.name }}
+        </h4>
+      {% endif %}
+        <hr class="u-sv1">
+        {% if resource.featuredmedia.source_url %}
+        <a href="{{resource.link|replace_admin}}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Clicked resource', 'eventLabel' : '{{resource.title.rendered}}', 'eventValue' : undefined });" >
+          <img src="{{resource.featuredmedia.source_url}}" alt="{{resource.featuredmedia.alt_text}}" />
+        </a>
         {% endif %}
-        </header>
-        <div class="p-card__content">
-          {% if resource.featuredmedia.source_url %}
-          <a href="{{resource.link|replace_admin}}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Clicked resource', 'eventLabel' : '{{resource.title.rendered}}', 'eventValue' : undefined });" >
-            <img src="{{resource.featuredmedia.source_url}}" alt="{{resource.featuredmedia.alt_text}}" />
-          </a>
-          {% endif %}
-          <h3 class="p-heading--four"><a href="{{resource.link|replace_admin}}">{{resource.title.rendered | safe}}</a></h3>
-          {% if not resource.featuredmedia.source_url %}
-            {{resource.excerpt.rendered | truncatewords:25 | safe}}
-          {% endif %}
-        </div>
-        <p class="p-card__footer">{{ resource.category.name }}</p>
-      </div>
+        <h3 class="p-heading--four"><a href="{{resource.link|replace_admin}}">{{resource.title.rendered | safe}}</a></h3>
+        {% if not resource.featuredmedia.source_url %}
+          {{resource.excerpt.rendered | truncatewords:25 | safe}}
+        {% endif %}
+        <hr class="u-sv1" style="margin-top: auto;">
+        <p class="u-no-margin--bottom"><small>{{ resource.category.name }}</small></p>
+      </article>
 
       {% if forloop.counter|divisibleby:3 %}
         </div>
