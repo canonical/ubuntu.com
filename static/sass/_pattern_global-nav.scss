@@ -138,21 +138,41 @@ $color-rule--light: transparentize($color-mid-light, .5);
       z-index: 4;
       font-size: .875rem;
 
+      .p-matrix {
+        @media (max-width: $breakpoint-small - 1) {
+          display: block;
+        }
+
+        @media (min-width: $breakpoint-small) {
+          display: flex;
+        }
+      }
+
       .p-matrix__item {
         display: block;
+
+        @media (max-width: $breakpoint-small - 1) {
+          width: 100%;
+        }
+
+        @media (min-width: $breakpoint-small) and (max-width: $breakpoint-navigation-threshold) {
+          width: 50%;
+
+          &:nth-child(2n+1) {
+            padding-left: 0;
+          }
+        }
       }
 
       @media (max-width: $breakpoint-navigation-threshold - 1) {
         top: 3rem;
 
         .p-matrix {
-          display: block !important;
           margin-bottom: 0;
         }
 
         .p-matrix__item {
           position: relative;
-          width: 100%;
         }
 
         .p-matrix__img {
