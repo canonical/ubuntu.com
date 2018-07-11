@@ -494,3 +494,21 @@ h2,
   padding-top: $sp-unit * .5 + map-get($nudges, nudge--small);
   padding-top: $sp-unit * .5 + map-get($nudges, nudge--small);
 }
+
+.dropdown-window .tablet-col-3 {
+  @media (max-width: $breakpoint-navigation-threshold - 1) {
+    position: relative;
+
+    &:nth-child(2n + 1) {
+      margin-left: 0 !important;
+    }
+  }
+}
+
+.dropdown-window .u-equal-height {
+  display: flex;
+
+  @media (max-width: $breakpoint-navigation-threshold - 1) {
+    flex-wrap: wrap;
+  }
+}
