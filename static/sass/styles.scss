@@ -356,3 +356,11 @@ p + pre {
     background-position: left 70% top;
   }
 }
+
+.u-indent {
+  padding-left: 1rem;
+
+  @media (min-width: $breakpoint-medium) {
+    padding-left: 2rem;
+  }
+}
