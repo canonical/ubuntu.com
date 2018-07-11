@@ -16,17 +16,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'no_secret')
 
-# Google custom search settings
-# https://cse.google.co.uk/cse/setup/basic?cx=009048213575199080868:i3zoqdwqk8o
-SEARCH_API_URL = "https://www.googleapis.com/customsearch/v1"
-SEARCH_API_KEY = os.environ.get('SEARCH_API_KEY')
-SEARCH_CACHE_EXPIRY_SECONDS = 600  # 10 minutes
-CUSTOM_SEARCH_ID = "009048213575199080868:i3zoqdwqk8o"
-
-if not SEARCH_API_KEY and os.path.isfile('.search-api-key'):
-    with open('.search-api-key') as keyfile:
-        SEARCH_API_KEY = keyfile.read().strip()
-
 # See https://docs.djangoproject.com/en/dev/ref/contrib/
 INSTALLED_APPS = [
     'canonicalwebteam',

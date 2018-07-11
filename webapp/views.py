@@ -9,65 +9,11 @@ from collections import OrderedDict
 from copy import copy
 from django.views.generic.base import TemplateView
 from django_template_finder_view import TemplateFinder
-from django.conf import settings
-from django.shortcuts import render
 from feedparser import parse
-from canonicalwebteam.http import CachedSession
-
 try:
     from urllib.parse import urlencode
 except ImportError:
     from urllib import urlencode
-
-
-# Search service
-if settings.SEARCH_API_KEY:
-    search_session = CachedSession(
-        expire_after=settings.SEARCH_CACHE_EXPIRY_SECONDS
-    )
-
-
-def search(request):
-    """
-    Get search results from Google Custom Search
-    """
-
-    query = request.GET.get('q')
-    num = int(request.GET.get('num', '10'))
-    start = int(request.GET.get('start', '1'))
-
-    context = {
-        'query': query,
-        'start': start,
-        'num': num
-    }
-
-    if query:
-        if not settings.SEARCH_API_KEY:
-            raise Exception('Unable to search: No API key provided')
-
-        results = search_session.get(
-            settings.SEARCH_API_URL,
-            params={
-                'key': settings.SEARCH_API_KEY,
-                'cx': settings.CUSTOM_SEARCH_ID,
-                'q': query,
-                'start': start,
-                'num': num
-            }
-        ).json()
-
-        if 'items' in results:
-            for item in results['items']:
-                item['htmlSnippet'] = item['htmlSnippet'].replace('<br>\n', '')
-
-        context['query'] = query
-        context['estimatedTotal'] = int(
-            results['searchInformation']['totalResults']
-        )
-        context['results'] = results
-
-    return render(request, 'search.html', context)
 
 
 class UbuntuTemplateFinder(TemplateFinder):
