@@ -16,7 +16,7 @@
 </section>
 <section class="p-strip is-shallow u-no-padding--top" style="overflow-y: hidden;">
   <nav class="p-tabs col-12">
-    <ul class="p-tabs__list--resources" role="tablist">
+    <ul class="p-tabs__list" role="tablist">
       <li class="p-tabs__item" role="presentation">
         <a href="?{% if content_slug %}content={{ content_slug }}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Navigation', 'eventLabel' : 'All', 'eventValue' : undefined });" class="p-tabs__link" role="tab" aria-controls="section1"{% if topic_slug == 'all' or topic_slug == None %} aria-selected="true"{% endif %}>All topics</a>
       </li>
