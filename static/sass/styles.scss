@@ -343,6 +343,13 @@ fieldset:last-child {
   font-style: normal;
 }
 
+// XXX Luke: Overriding the override, because it's still required
+// and I don't have time to go through and update all p-heading--six classes to be
+// a variation. Sorry.
+.p-heading--six-original {
+  font-style: italic;
+}
+
 // XXX Steve: Pull quote colour override
 .p-pull-quote p:first-of-type::before,
 .p-pull-quote p:last-of-type::after {
