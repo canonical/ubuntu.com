@@ -15,6 +15,7 @@
 @import 'pattern_global-nav';
 @import 'vanilla-placeholders';
 @include global-nav;
+
 // import site specific patterns and overrides
 @import 'pattern_buttons';
 @import 'pattern_navigation';
@@ -64,44 +65,11 @@
 // respective repos and referenced here, accompanied with a breif description of
 // the bug
 
-///XXX Redefine row width as vanilla is missing !default on the $grid-max-width var.
-.row {
-  max-width: 68rem;
-
-  // XXX Required for mobile nav to fit everything in
-  @media (max-width: $breakpoint-x-small - 1) {
-    padding-left: $grid-margin-width / 1.5 !important;
-    padding-right: $grid-margin-width / 1.5 !important;
-
-    .row {
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-    }
-  }
-}
-
-/// XXX Compact button style
-/// This should be considered for inclusion in vanilla-framework
-.p-button--neutral.is-compact {
-  padding: $sp-x-small $sp-small;
-}
-
 // XXX Vertically spaced - add vertical margins to an element
 // An attempt to solve some of the vertical spacing issues
 .u-vertically-spaced {
   padding-bottom: $sp-medium;
   padding-top: $sp-medium;
-}
-
-/// XXX remove abbr `text-decoration: underline dotted;`
-/// add to :hover
-/// from [normalize.css](https://github.com/necolas/normalize.css/blob/master/normalize.css)
-abbr[title] {
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline dotted;
-  }
 }
 
 // overflow tables
@@ -110,17 +78,6 @@ abbr[title] {
   overflow-x: auto;
   overflow-y: hidden;
   width: 100;
-}
-
-.p-heading--insights__title {
-  @extend %vf-heading-5;
-  font-weight: 300;
-  text-transform: uppercase;
-
-  a:link,
-  a:visited {
-    color: $color-dark;
-  }
 }
 
 // XXX Applies suru background to the site
@@ -145,34 +102,6 @@ abbr[title] {
   }
 }
 
-// XXX add to grahams section page when live
-// flex to flow charm list around
-.p-list-flex {
-  display: flex;
-  flex-wrap: wrap;
-
-  &__item {
-    margin-bottom: 16px;
-    margin-right: 18px;
-    max-height: 172px;
-    max-width: 142px;
-  }
-}
-
-// XXX responsive image utility
-// S - 65%, M - 90%, L - 100%
-.u-responsive-image {
-  width: 65%;
-
-  @media (min-width: $breakpoint-medium ) {
-    width: 90%;
-  }
-
-  @media (min-width: $breakpoint-large ) {
-    width: 100%;
-  }
-}
-
 /// XXX Override for p-strip--image to hide the background at small viewports
 .u-no-background--small {
   @media (max-width: $breakpoint-medium) {
@@ -180,66 +109,10 @@ abbr[title] {
   }
 }
 
-// XXX Ant: 16.10.17 - Can be removed when this issue has been resolved.
-// https://github.com/vanilla-framework/vanilla-framework/issues/1379
-.u-image-position {
-  @media (min-width: $breakpoint-medium) {
-    overflow: hidden;
-  }
-}
-
 // XXX Karl: 19.10.17
 // VF 1.6.0 is missing this
 .p-link--external::after {
   -webkit-mask-size: cover;
-}
-
-// XXX Ant: 27.10.17
-select {
-  background-position-y: center;
-  min-height: 0;
-  padding-right: 2rem;
-}
-
-
-// XXX Ant: 27.10.17 - Can be removed when this issue has been resolved.
-// https://github.com/vanilla-framework/vanilla-framework/issues/1458
-.p-tabs {
-  &__item:last-of-type {
-    @media (max-width: $breakpoint-small) {
-      padding-right: 4rem;
-    }
-  }
-
-  &::before {
-    width: 70px;
-  }
-}
-
-// XXX Ant: 04.12.17 This can be removed when this is fixed
-// https://github.com/vanilla-framework/vanilla-framework/issues/1478
-.u-align--center {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
-    max-width: none;
-  }
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  &.u-align--center {
-    max-width: none;
-  }
 }
 
 // XXX Ant: 11.12.17 This can be removed when this is fixed
@@ -266,17 +139,6 @@ select {
   padding-right: $sp-xxx-large;
 }
 
-// XXX Caleb: Temporary code block spacing fix until issue is resolved in Vanilla
-// https://github.com/vanilla-framework/vanilla-framework/issues/1385
-p + pre {
-  margin-top: $sp-medium;
-}
-
-.u-align--bottom {
-  display: flex;
-  align-items: flex-end !important;
-}
-
 .p-card__icon {
   display: inline-block;
   margin-bottom: 1.25rem;
@@ -292,7 +154,6 @@ p + pre {
     background-size: contain;
     background-position: left 70% top;
   }
-
 }
 
 // XXX Caleb: 26.02.18 Fix middot list wrapping issue
