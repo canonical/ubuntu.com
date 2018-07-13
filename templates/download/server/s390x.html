@@ -1,25 +1,28 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Ubuntu Server for IBM Z and LinuxONE | Download{% endblock %}
+{% block title %}Ubuntu Server LTS for IBM Z and LinuxONE | Download{% endblock %}
 
 {% block meta_description %}Ubuntu for IBM LinuxONE brings the Ubuntu Server and Ubuntu Server for cloud with the OpenStack ecosystem to IBM LinuxONE.{% endblock meta_description %}
 
+{% block head_extra%}
+  <meta name="robots" content="noindex" />
+{% endblock %}
 
 {% block content %}
 <div class="p-strip is-deep">
   <div class="row">
     <div class="col-12">
-      <h1>Ubuntu Server for IBM Z and LinuxONE</h1>
+      <h1>Ubuntu Server LTS for IBM Z and LinuxONE</h1>
     </div>
   </div>
 
   <div class="row">
     <div class="col-12 p-card--highlighted">
-      <h2>Ubuntu Server {{lts_release_full}}</h2>
+      <h2>Ubuntu Server</h2>
       <div class="u-equal-height p-divider">
         <div class="col-6 p-divider__block">
-          <p class="p-card__content">IBM Z and LinuxONE systems leverage open technology solutions to meet the demands of the new application economy. They combine the best of open source to offer IBM&rsquo;s enterprise customers unprecedented performance, flexibility, security and resiliency. Ubuntu {{lts_release_full}} was released for general availability (GA) in April and can now be downloaded by all IBM Z and LinuxONE system customers.</p>
-          <p class="p-card__content">Ubuntu {{lts_release_full}} for IBM Z and LinuxONE is priced at $19,500 per drawer per year, covering unlimited usage of Ubuntu within that drawer, 24x7 Ubuntu Advantage Advanced support services and regular security and reliability fixes from Canonical.</p>
+          <p class="p-card__content">IBM Z and LinuxONE systems leverage open technology solutions to meet the demands of the new application economy. They combine the best of open source to offer IBMM&rsquo;s enterprise customers unprecedented performance, flexibility, security and resiliency. Ubuntu Server LTS are released every two years in April and can now be downloaded by all IBM Z and LinuxONE system customers.</p>
+          <p class="p-card__content">Ubuntu Server for IBM Z and LinuxONE is priced at $19,500 per drawer per year, covering unlimited usage of Ubuntu within that drawer, 24x7 Ubuntu Advantage Advanced support services and regular security and reliability fixes from Canonical.</p>
           <p class="p-card__content">Your use of Ubuntu on IBM Z and LinuxONE in production constitutes <a href="/legal/short-terms">acceptance of these terms</a>.</p>
           <p class="p-card__content">For questions about Ubuntu Advantage for IBM Z and LinuxONE, please call us <tel href="+442036565291">+44&nbsp;(0)&nbsp;203&nbsp;656&nbsp;5291</tel> or email us at <a href="mailto:ibm@ubuntu.com">ibm@ubuntu.com</a>.</p>
         </div>
@@ -56,19 +59,27 @@
                   <label for="NumUbuntuServers__c" class="mktoLabel">Number of drawers you are purchasing support for:</label>
                   <select id="NumUbuntuServers__c" name="NumUbuntuServers__c" class="mktoField"><option value="">Select...</option>
                     <option value="zBC12" disabled>zBC12</option>
-                    <option value="zBC12 - 1 drawer (up to 13 cores)"> - 1 drawer (up to 13 cores)</option>
+                    <option value="zBC12 - 1 drawer (up to 13 cores)"> - 1/2 drawer (up to 13 cores)</option>
                     <option value="zEC12" disabled>zEC12</option>
                     <option value="zEC12 - 1 drawer (up to 20 cores)"> - 1 drawer (up to 20 cores)</option>
                     <option value="zEC12 - 2 drawers (up to 43 cores)"> - 2 drawers (up to 43 cores)</option>
                     <option value="zEC12 - 3 drawers (up to 66 cores)"> - 3 drawers (up to 66 cores)</option>
-                    <option value="zEC12 - 4 drawers (up to 10 cores)"> - 4 drawers (up to 10 cores)</option>
-                    <option value="Z13s/Rockhopper" disabled> Z13s/Rockhopper</option>
-                    <option value="Z13s/Rockhopper - 1 drawer (up to 20 cores)"> - 1 drawer (up to 20 cores)</option>
-                    <option value="Z13/Emperor" disabled>Z13/Emperor</option>
-                    <option value="Z13/Emperor - 1 drawer (up to 30 cores)"> - 1 drawer (up to 30 cores)</option>
-                    <option value="Z13/Emperor - 2 drawers (up to 63 cores)"> - 2 drawers (up to 63 cores)</option>
-                    <option value="Z13/Emperor - 3 drawers (up to 96 cores)"> - 3 drawers (up to 96 cores)</option>
-                    <option value="Z13/Emperor - 4 drawer (up to 141 cores)"> - 4 drawer (up to 141 cores)</option></select>
+                    <option value="zEC12 - 4 drawers (up to 101 cores)"> - 4 drawers (up to 101 cores)</option>
+                    <option value="z13s/Rockhopper" disabled> z13s/Rockhopper</option>
+                    <option value="z13s/Rockhopper - 1 drawer (up to 20 cores)"> - 1 drawer (up to 20 cores)</option>
+                    <option value="z13/Emperor" disabled>z13/Emperor</option>
+                    <option value="z13/Emperor - 1 drawer (up to 30 cores)"> - 1 drawer (up to 30 cores)</option>
+                    <option value="z13/Emperor - 2 drawers (up to 63 cores)"> - 2 drawers (up to 63 cores)</option>
+                    <option value="z13/Emperor - 3 drawers (up to 96 cores)"> - 3 drawers (up to 96 cores)</option>
+                    <option value="z13/Emperor - 4 drawer (up to 141 cores)"> - 4 drawer (up to 141 cores)</option>
+                    <option value="z14/Emperor II" disabled>z14/Emperor II</option>
+                    <option value="1 drawer (up to 33 cores)">1 drawer (up to 33 cores)</option>
+                    <option value="2 drawers (up to 69 cores)">2 drawers (up to 69 cores)</option>
+                    <option value="3 drawers (up to 105 cores)">3 drawers (up to 105 cores)</option>
+                    <option value="4 drawer (up to 170 cores)">4 drawer (up to 170 cores)</option>
+                    <option value="z14 ZR1/Rockhopper II" disabled>z14 ZR1/Rockhopper II</option>
+                    <option value="1/2 drawer (up to 30 cores)">1/2 drawer (up to 30 cores)</option>
+                  </select>
                 </li>
                 <li class="mktField p-list__item">
                   <label for="Comments_from_Contact__c" class="mktoLabel">Serial number(s)</label>
