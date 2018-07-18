@@ -19,11 +19,7 @@
 <div class="row {% if spotlight_articles %}p-divider{% endif %}">
   <div class="col-12">
     {# insights heading #}
-    <h2 class="p-link--external p-heading--insights__title">
-      <a href="https://blog.ubuntu.com/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : '{{ gtm_event_label }}', 'eventValue' : undefined });">
-        Latest news from our blog
-      </a>
-    </h2>
+    <h3>Latest news from our blog</h3>
 
     {# blog news items #}
     <div>
@@ -46,5 +42,13 @@
         </div>
       {% endif %}
     </div>
+  </div>
+</div>
+<div class="u-sv2"></div>
+<div class="row">
+  <div class="col-12 u-align--center">
+    <a href="https://blog.ubuntu.com/" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : '{{ gtm_event_label }}', 'eventValue' : undefined });">
+      View more from our blog
+    </a>
   </div>
 </div>

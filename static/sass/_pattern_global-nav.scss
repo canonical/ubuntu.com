@@ -7,7 +7,6 @@ $contrast-ratio: 5%;
 $global-nav-bg-color: #262626; //matches Mark's document //lighten($color-dark, 8%);
 $global-nav-dropdown-bg-color: $global-nav-bg-color; //lighten($color-dark, 13.55%); //#333
 $nav-bg-color: lighten($global-nav-bg-color, $contrast-ratio);
-$color-rule--light: transparentize($color-mid-light, .5);
 
 @mixin global-nav {
   $global-nav-chevron-height: 4 * $px;
