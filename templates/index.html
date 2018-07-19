@@ -12,16 +12,19 @@
 
 <script>
   if (window.localStorage && window.sessionStorage) {
+    var primaryTakeover = document.querySelector('.js-primary-takeover');
+    var secondaryTakeover = document.querySelector('.js-secondary-takeover');
+
     if (localStorage.getItem('TAKEOVER_SEEN')) {
       if (!sessionStorage.getItem('TAKEOVER_SEEN')) {
-        var primaryTakeover = document.querySelector('.js-primary-takeover');
-        var secondaryTakeover = document.querySelector('.js-secondary-takeover');
-        primaryTakeover.classList.add('u-hide');
         secondaryTakeover.classList.remove('u-hide');
+      } else {
+        primaryTakeover.classList.remove('u-hide');
       }
     } else {
       localStorage.setItem('TAKEOVER_SEEN', true);
       sessionStorage.setItem('TAKEOVER_SEEN', true);
+      primaryTakeover.classList.remove('u-hide');
     }
   }
 </script>
