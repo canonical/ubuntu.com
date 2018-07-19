@@ -3,9 +3,9 @@
   transform: translateX(-3rem);
   animation-name: fadeLeft;
   animation-delay: .25s;
-  animation-duration: 1.5s;
+  animation-duration: map-get($animation-duration, sleepy);
   animation-fill-mode: forwards;
-  animation-timing-function: map-get($animation-easing, 'brisk');
+  animation-timing-function: map-get($animation-easing, brisk);
 }
 
 @mixin fade-up {
@@ -13,9 +13,9 @@
   transform: translateY(3rem);
   animation-name: fadeUp;
   animation-delay: .25s;
-  animation-duration: 1.5s;
+  animation-duration: map-get($animation-duration, sleepy);
   animation-fill-mode: forwards;
-  animation-timing-function: map-get($animation-easing, 'brisk');
+  animation-timing-function: map-get($animation-easing, brisk);
 }
 
 @mixin u-animations {
