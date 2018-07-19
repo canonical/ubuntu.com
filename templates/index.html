@@ -7,7 +7,24 @@
 
 {% block takeover_content %}
 
+{% include "takeovers/_rigado_webinar.html" %}
 {% include "takeovers/_private_cloud_economics.html" %}
+
+<script>
+  if (window.localStorage && window.sessionStorage) {
+    if (localStorage.getItem('TAKEOVER_SEEN')) {
+      if (!sessionStorage.getItem('TAKEOVER_SEEN')) {
+        var primaryTakeover = document.querySelector('.js-primary-takeover');
+        var secondaryTakeover = document.querySelector('.js-secondary-takeover');
+        primaryTakeover.classList.add('u-hide');
+        secondaryTakeover.classList.remove('u-hide');
+      }
+    } else {
+      localStorage.setItem('TAKEOVER_SEEN', true);
+      sessionStorage.setItem('TAKEOVER_SEEN', true);
+    }
+  }
+</script>
 
 <section class="p-strip is-deep is-bordered">
   {% include "shared/_insights_news_strip.html" with gtm_event_label="ubuntu.com homepage" %}
