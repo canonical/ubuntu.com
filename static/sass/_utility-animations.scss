@@ -1,0 +1,77 @@
+@mixin fade-left {
+  opacity: 0;
+  transform: translateX(-3rem);
+  animation-name: fadeLeft;
+  animation-delay: .25s;
+  animation-duration: map-get($animation-duration, sleepy);
+  animation-fill-mode: forwards;
+  animation-timing-function: map-get($animation-easing, brisk);
+}
+
+@mixin fade-up {
+  opacity: 0;
+  transform: translateY(3rem);
+  animation-name: fadeUp;
+  animation-delay: .25s;
+  animation-duration: map-get($animation-duration, sleepy);
+  animation-fill-mode: forwards;
+  animation-timing-function: map-get($animation-easing, brisk);
+}
+
+@mixin u-animations {
+  .u-fade-left {
+    @include fade-left;
+  }
+
+  .u-fade-left--small {
+    @media (max-width: $breakpoint-small - 1) {
+      @include fade-left;
+    }
+  }
+
+  .u-fade-left--medium {
+    @media (min-width: $breakpoint-medium) {
+      @include fade-left;
+    }
+  }
+
+  .u-fade-up {
+    @include fade-up;
+  }
+
+  .u-fade-up--small {
+    @media (max-width: $breakpoint-small - 1) {
+      @include fade-up;
+    }
+  }
+
+  .u-fade-up--medium {
+    @media (min-width: $breakpoint-medium) {
+      @include fade-up;
+    }
+  }
+}
+
+@keyframes fadeLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-3rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
