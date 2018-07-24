@@ -1,61 +1,47 @@
-/* Document elements */
+/* DOM elements */
 var navDropdowns = document.querySelectorAll('.p-navigation__dropdown-link');
 var dropdownWindow = document.querySelector('.dropdown-window');
 var dropdownWindowOverlay = document.querySelector('.dropdown-window-overlay');
 var closeMenuLink = document.querySelector('.p-navigation__toggle--close');
 
-navDropdowns.forEach(function(dropdown) {
-  dropdown.addEventListener('click', function(event) {
-    event.preventDefault();
+var toggleDropdown = function(event) {
+  event.preventDefault();
 
-    var clickedDropdown = this;
+  var clickedDropdown = this;
 
-    dropdownWindow.classList.remove('slide-animation');
-    dropdownWindowOverlay.classList.remove('fade-animation');
+  dropdownWindow.classList.remove('slide-animation');
+  dropdownWindowOverlay.classList.remove('fade-animation');
 
-    navDropdowns.forEach(function(dropdown) {
-      var dropdownContent = document.getElementById(dropdown.id + "-content");
+  navDropdowns.forEach(function(dropdown) {
+    var dropdownContent = document.getElementById(dropdown.id + "-content");
 
-      if (dropdown === clickedDropdown) {
-        if (dropdown.classList.contains('is-selected')) {
-          closeMenu(dropdown, dropdownContent);
-        } else {
-          dropdown.classList.add('is-selected');
-          dropdownContent.classList.remove('u-hide');
-
-          if (window.history.pushState) {
-            window.history.pushState(null, null, '#' + dropdown.id);
-          }
-        }
+    if (dropdown === clickedDropdown) {
+      if (dropdown.classList.contains('is-selected')) {
+        closeDropdown(dropdown);
       } else {
-        dropdown.classList.remove('is-selected');
-        dropdownContent.classList.add('u-hide');
+        dropdown.classList.add('is-selected');
+        dropdownContent.classList.remove('u-hide');
+
+        if (window.history.pushState) {
+          window.history.pushState(null, null, '#' + dropdown.id);
+        }
       }
-    });
-  });
-});
-
-closeMenuLink.addEventListener('click', function() {
-  navDropdowns.forEach(function(dropdown) {
-    var dropdownContent = document.getElementById(dropdown.id + "-content");
-
-    if (dropdown.classList.contains('is-selected')) {
-      closeMenu(dropdown, dropdownContent);
+    } else {
+      dropdown.classList.remove('is-selected');
+      dropdownContent.classList.add('u-hide');
     }
   });
-});
+}
 
-dropdownWindowOverlay.addEventListener('click', function() {
+var closeNavigation = function() {
   navDropdowns.forEach(function(dropdown) {
-    var dropdownContent = document.getElementById(dropdown.id + "-content");
-
     if (dropdown.classList.contains('is-selected')) {
-      closeMenu(dropdown, dropdownContent);
+      closeDropdown(dropdown);
     }
   });
-});
+}
 
-function closeMenu(dropdown) {
+function closeDropdown(dropdown) {
   dropdown.classList.remove('is-selected');
   dropdownWindow.classList.add('slide-animation');
   dropdownWindowOverlay.classList.add('fade-animation');
@@ -64,6 +50,14 @@ function closeMenu(dropdown) {
   }
 }
 
+/* Apply event listeners to DOM elements */
+navDropdowns.forEach(function(dropdown) {
+  dropdown.addEventListener('click', toggleDropdown);
+});
+closeMenuLink.addEventListener('click', closeNavigation);
+dropdownWindowOverlay.addEventListener('click', closeNavigation);
+
+/* Open primary nav on relevant dropdown when browser back button pressed */
 if (window.location.hash) {
   var tabId = window.location.hash.split('#')[1];
   var tab = document.getElementById(tabId);

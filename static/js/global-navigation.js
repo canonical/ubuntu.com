@@ -1,7 +1,7 @@
 /* Constants */
 var NAV_BREAKPOINT = 900;
 
-/* Document elements */
+/* DOM elements */
 var globalNav = document.querySelector('.global-nav');
 var globalNavDropdowns = document.querySelectorAll('.global-nav__link--dropdown');
 var globalNavContent = document.querySelector('.global-nav__dropdown');
