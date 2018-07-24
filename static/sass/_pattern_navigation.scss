@@ -16,8 +16,10 @@
   }
 
   .p-navigation {
+    @include vf-animation(top);
     background-color: $nav-bg-color;
     flex-direction: column;
+    position: sticky;
     z-index: 3;
 
     &::after { // disable rule under nav
@@ -361,6 +363,16 @@
       @media (max-width: $breakpoint-x-small - 1) {
         margin-left: $grid-margin-width / 1.5 !important;
         margin-right: $grid-margin-width / 1.5 !important;
+      }
+    }
+
+    @media (min-width: $breakpoint-navigation-threshold) {
+      &.is-down {
+        top: 0;
+      }
+  
+      &.is-up {
+        top: -3rem;
       }
     }
   }
