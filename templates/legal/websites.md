@@ -1,5 +1,5 @@
 ---
-Canonical websites
+title: Canonical websites
 ---
 
 - [blog.ubuntu.com](https://blog.ubuntu.com)
