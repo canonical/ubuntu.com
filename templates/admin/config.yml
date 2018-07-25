@@ -9,7 +9,7 @@ media_folder: 'static'
 collections:
   - name: "legal" # Used in routes, e.g. /admin/collections/blog
     label: "Legal" # Used in the UI
-    folder: "legal" # The path to the folder where the documents are stored
+    folder: "templates/legal" # The path to the folder where the documents are stored
     create: false # Allow users to create new documents in this collection
     fields: # The fields for each document, usually in front matter
       - {label: "Title", name: "title", widget: "string"}
