@@ -9,10 +9,10 @@ media_folder: 'static'
 collections:
   - name: "legal" # Used in routes, e.g. /admin/collections/blog
     label: "Legal" # Used in the UI
-    delete: false
     files:
       - name: "websites"
         label: "Websites"
+        delete: false
         file: "templates/legal/websites.md"
         fields: # The fields for each document, usually in front matter
           - {label: "Title", name: "title", widget: "string"}
