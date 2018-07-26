@@ -1,0 +1,30 @@
+@mixin p-takeover-ai-webinar {
+  .p-takeover--ai-webinar {
+    background-image: linear-gradient(45deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%);
+    background-color: #171717;
+
+    .p-takeover__title {
+      font-weight: 100;
+      color: $color-x-light;
+    }
+
+    .p-takeover__text {
+      color: $color-x-light;
+      font-size: 1.30612rem;
+      line-height: 2rem;
+      margin-bottom: 1.7rem;
+
+      @media (max-width: $breakpoint-medium) {
+        font-size: 1.22176rem;
+        line-height: 1.5rem;
+      }
+    }
+
+    .p-takeover__image {
+      @media (max-width: $breakpoint-medium) {
+        margin-bottom: 1.5rem;
+        width: 300px;
+      }
+    }
+  }
+}
