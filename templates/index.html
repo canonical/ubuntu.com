@@ -16,6 +16,7 @@
     var secondaryTakeover = document.querySelector('.js-secondary-takeover');
 
     if (localStorage.getItem('TAKEOVER_SEEN')) {
+      localStorage.removeItem('TAKEOVER_SEEN');
       if (!sessionStorage.getItem('TAKEOVER_SEEN')) {
         secondaryTakeover.classList.remove('u-hide');
       } else {
