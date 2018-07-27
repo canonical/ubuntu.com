@@ -94,6 +94,7 @@ function controlNavPosition() {
 setInterval(function() {
   if (didScroll) {
     controlNavPosition();
+    controlGlobalNavPosition();
     didScroll = false;
   }
 }, SCROLL_LISTENER_INTERVAL);

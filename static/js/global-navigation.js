@@ -65,13 +65,7 @@ globalNavDropdowns.forEach(function(dropdown) {
   });
 });
 
-globalNavOverlay.addEventListener('click', function() {
-  globalNavContent.classList.remove('show-global-nav-content');
-  globalNavOverlay.classList.remove('is-visible');
-  globalNavDropdowns.forEach(function(dropdown) {
-    dropdown.classList.remove('is-selected');
-  });
-});
+globalNavOverlay.addEventListener('click', closeGlobalNav);
 
 document.addEventListener('click', function(event) {
   globalNavDropdowns.forEach(function(globalNavDropdown) {
@@ -84,6 +78,14 @@ document.addEventListener('click', function(event) {
     }
   });
 });
+
+function closeGlobalNav() {
+  globalNavContent.classList.remove('show-global-nav-content');
+  globalNavOverlay.classList.remove('is-visible');
+  globalNavDropdowns.forEach(function(dropdown) {
+    dropdown.classList.remove('is-selected');
+  });
+}
 
 function closeMainMenu() {
   var navigationLinks = document.querySelectorAll('.p-navigation__dropdown-link');
@@ -98,6 +100,19 @@ function closeMainMenu() {
 
   if (!dropdownWindow.classList.contains('slide-animation')) {
     dropdownWindow.classList.add('slide-animation');
+  }
+}
+
+function controlGlobalNavPosition() {
+  var globalNavDropdown = document.querySelector('.global-nav__dropdown');
+
+  if (globalNavDropdown.classList.contains('show-global-nav-content')) {
+    var scrollPos = window.scrollY;
+    var globalNavHeight = globalNavDropdown.clientHeight;
+
+    if (scrollPos > globalNavHeight) {
+      closeGlobalNav();
+    }
   }
 }
 
