@@ -19,7 +19,6 @@
     @include vf-animation(top);
     background-color: $nav-bg-color;
     flex-direction: column;
-    position: sticky;
     z-index: 3;
 
     &::after { // disable rule under nav
@@ -367,15 +366,8 @@
     }
 
     @media (min-width: $breakpoint-navigation-threshold) {
-      &.is-down {
-        top: 0;
-      }
-  
-      &.is-up {
-        @supports (position: sticky) {
-          top: -3rem; // Workaround for IE11 hiding nav completely
-        }
-      }
+      position: sticky;
+      top: 0;
     }
   }
 
