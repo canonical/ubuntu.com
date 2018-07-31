@@ -8,6 +8,7 @@ before_install:
 
 install:
   - npm install
+  - cp -r node_modules/global-nav static/global-nav
   - node_modules/.bin/node-sass --include-path node_modules static/sass --output static/css
   - pip install --upgrade pip
   - pip install -r requirements.txt
