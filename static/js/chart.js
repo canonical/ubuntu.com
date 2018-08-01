@@ -196,7 +196,7 @@ function createChart(chartSelector, taskTypes, taskStatus, tasks) {
     top: 20,
     right: 40,
     bottom: 20,
-    left: 180
+    left: 150
   };
   var rowHeight = 32;
   var timeDomainStart = d3.time.year.offset(tasks[0].startDate, -1);
@@ -219,12 +219,13 @@ function createChart(chartSelector, taskTypes, taskStatus, tasks) {
     .axis()
     .scale(x)
     .orient("bottom")
-    .ticks(d3.time.years, 1);;
+    .ticks(d3.time.years, 1);
 
   var yAxis = d3.svg
     .axis()
     .scale(y)
-    .orient("left")
+    .orient("right")
+    .tickPadding(-margin.left)
     .tickSize(0);
 
   sortTasks(tasks);
