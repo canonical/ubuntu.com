@@ -193,7 +193,7 @@ function formatKeyLabel(key) {
  */
 function createChart(chartSelector, taskTypes, taskStatus, tasks) {
   var margin = {
-    top: 20,
+    top: 0,
     right: 40,
     bottom: 20,
     left: 150
