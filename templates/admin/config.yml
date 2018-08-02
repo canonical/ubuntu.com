@@ -23,6 +23,7 @@ collections:
         file: "templates/legal/terms-and-policies/intellectual-property-policy/index.md"
         fields: # The fields for each document, usually in front matter
           - {label: "Title", name: "title", widget: "string"}
+          - {label: "Sidebar templates", name: "sidebar-templates", widget: "list"}
           - {label: "Body", name: "body", widget: "markdown"}
 
 publish_mode: editorial_workflow
