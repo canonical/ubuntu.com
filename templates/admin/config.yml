@@ -17,5 +17,12 @@ collections:
         fields: # The fields for each document, usually in front matter
           - {label: "Title", name: "title", widget: "string"}
           - {label: "Body", name: "body", widget: "markdown"}
+      - name: "intellectual-property-policy"
+        label: "Intellectual property policy"
+        delete: false
+        file: "templates/legal/terms-and-policies/intellectual-property/index.md"
+        fields: # The fields for each document, usually in front matter
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Body", name: "body", widget: "markdown"}
 
 publish_mode: editorial_workflow
