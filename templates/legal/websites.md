@@ -1,5 +1,5 @@
 ---
-title: Canonical websites Markdown
+title: Canonical websites
 ---
 * [blog.ubuntu.](https://blog.ubuntu.com)
 * [cdimages.ubuntu.com](http://cdimages.ubuntu.com)
