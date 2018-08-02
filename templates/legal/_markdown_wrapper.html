@@ -1,0 +1,20 @@
+{% extends "legal/_base_legal.html" %}
+
+{% block content %}
+    <div class="p-strip is-deep">
+      {% block previous_row %}
+      {% endblock %}
+
+      <div class="row">
+        <div class="col-8">
+          <h1>{{ title }}</h1>
+          {{ html_content | safe }}
+        </div>
+        {% for sidebar_template in sidebar_templates %}
+        <div class="col-4 p-card">
+          {% include sidebar_template %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+{% endblock content %}

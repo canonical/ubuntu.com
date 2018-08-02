@@ -2,6 +2,10 @@ import json
 import os
 import re
 
+import frontmatter
+import mistune
+from django.template import loader
+from django.http import Http404
 from canonicalwebteam.get_feeds import (
     get_json_feed_content
 )
@@ -37,6 +41,49 @@ class UbuntuTemplateFinder(TemplateFinder):
             context["level_" + str(index + 1)] = path
 
         return context
+
+
+class LegalView(TemplateFinder):
+    def _template(self, url_path):
+        template_path = super().return_template(template_path=url_path)
+
+        if self.__template_exists__(template_path):
+            return loader.get_template(template_path)
+        elif self.__template_exists__(url_path + '.md'):
+            return loader.get_template(url_path + '.md')
+        elif self.__template_exists__(url_path + '/index.md'):
+            return loader.get_template(url_path + '/index.md')
+        else:
+            return None
+
+    def get_context_data(self, **kwargs):
+        url_path = self.request.path.strip('/')
+        context = super().get_context_data(**kwargs)
+
+        template = self._template(url_path)
+
+        if template.template.name.endswith('.md'):
+            markdown = frontmatter.loads(template.render())
+
+            context.update(markdown.metadata)
+            context['html_content'] = mistune.markdown(markdown.content)
+
+        return context
+
+    def dispatch(self, request, *args, **kwargs):
+        clean_path = self.request.path.strip('/')
+        template = self._template(clean_path)
+
+        if not template:
+            raise Http404("Can't find page for: %s" % clean_path)
+
+        if template.template.name.endswith('.md'):
+            self.template_name = 'legal/_markdown_wrapper.html'
+            return TemplateView.dispatch(self, request, *args, **kwargs)
+        else:
+            return super().dispatch(
+                request, *args, **kwargs
+            )
 
 
 class ResourcesView(TemplateView):
