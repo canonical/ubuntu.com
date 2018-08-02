@@ -69,17 +69,6 @@ class ResourcesView(TemplateView):
         1485: {'slug': 'whitepapers', 'name': 'Whitepaper'},
     }
 
-    def _get_categories_by_slug(self, slugs=[]):
-        if slugs:
-            if isinstance(slugs, list):
-                slugs = ','.join(slugs)
-        api_url = '{api_url}/posts?category={slug}'.format(
-            api_url=self.API_URL,
-            slug=slugs,
-        )
-        response = get_json_feed_content(api_url)
-        return response
-
     def _embed_resource_data(self, resource):
         if '_embedded' not in resource:
             return resource
