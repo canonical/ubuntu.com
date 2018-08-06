@@ -31,7 +31,7 @@
               <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" />
             </li>
             <!-- country -->
-            {% include "shared/forms/_country.html" %}
+            {% include "shared/forms/_country.html" with country='Land' %}
             <!-- state/province -->
             {% include "shared/forms/_state.html" %}
           </ul>
@@ -93,7 +93,7 @@
         <h3 class="p-card__title">Any questions? Call us</h3>
           {% include "shared/_call-sales-long.html" %}
       </div>
-      <div class="p-card" />
+      <div class="p-card">
         <h3 class="p-card__title">Need help with Ubuntu?</h3>
         <p>If you are just looking for some free support for yourself, you can try:</p>
         <ul class="p-list--divided">
