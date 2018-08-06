@@ -34,6 +34,10 @@
 
     {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about the cloud" intro_text="Fill in your details below and a member of our cloud sales team will be in touch." formid='1251'  lpId='2086' returnURL='https://www.ubuntu.com/cloud/thank-you' %}
 
+  {% elif product == 'openstack-german' %}
+
+    {% include "shared/_cloud-contact-us-form-german.html" with formid='1251'  lpId='2086' returnURL='https://www.ubuntu.com/cloud/thank-you' %}
+
   {% else %}
 
     {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about the cloud" intro_text="Fill in your details below and a member of our cloud sales team will be in touch." formid='1251'  lpId='2086' returnURL='https://www.ubuntu.com/cloud/thank-you' %}

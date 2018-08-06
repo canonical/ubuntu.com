@@ -1,0 +1,106 @@
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <div>
+        <h1>Sprechen Sie uns zu allen Cloud-Fragen an!</h1>
+        <p class="p-heading--four">Nennen Sie uns Ihre Kontaktdaten und wir melden uns bei Ihnen.</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm">
+        <fieldset>
+          <h3>Über Sie</h3>
+          <ul class="p-list">
+            <li class="mktFormReq mktField p-list__item">
+              <label for="FirstName" class="mktoLabel">Vorname:</label>
+              <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" />
+            </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="LastName" class="mktoLabel">Nachname:</label>
+              <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" />
+            </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Email" class="mktoLabel">Email-Adresse:</label>
+              <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
+            </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Phone" class="mktoLabel">Telefonnummer:</label>
+              <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" />
+            </li>
+            <!-- country -->
+            {% include "shared/forms/_country.html" %}
+            <!-- state/province -->
+            {% include "shared/forms/_state.html" %}
+          </ul>
+        </fieldset>
+        <fieldset>
+          <h3>Über Ihr Unternehmen</h3>
+          <ul class="p-list">
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Company" class="mktoLabel">Name des Unternehmens:</label>
+              <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired" />
+            </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Title" class="mktoLabel">Ihre Position/Verantwortungsbereich:</label>
+              <input required id="Title" name="Title" maxlength="255" type="text" class="mktoField mktoRequired" />
+            </li>
+          </ul>
+        </fieldset>
+        <fieldset>
+          <h3>Anmerkungen</h3>
+          <ul class="p-list">
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Comments_from_lead__c" class="mktoLabel">Worüber möchten Sie mit uns sprechen?</label>
+              <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="4" class="mktoField mktoRequired" maxlength="2000"></textarea>
+            </li>
+          </ul>
+        </fieldset>
+        <fieldset>
+          <ul class="p-list">
+            <li class="mktField p-list__item">
+              <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+              <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">Ich stimme zu, Informationen über Produkte und Services von Canonical zu erhalten.</label>
+            </li>
+            <li class="p-list__item">
+              Mit der Absendung dieses Formulars bestätige ich, dass ich <a href="/legal/dataprivacy/contact">Canonicals Datenschutzerklärung</a> und <a href="/legal/terms-and-policies/privacy-policy">richtlinie zur Kenntnis</a> genommen habe.
+            </li>
+            <li class="p-list__item"><div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"></div></li>
+            <li class="mktField p-list__item">
+              <button type="submit" class="mktoButton p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'cloud contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Absenden</button>
+            </li>
+          </ul>
+          <!-- hidden fields -->
+          <input type="hidden" name="formid" class="mktoField" value="{{formid}}" />
+          <input type="hidden" name="lpId" class="mktoField" value="{{lpId}}" />
+          <input type="hidden" name="subId" class="mktoField" value="30" />
+          <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335" />
+          <input type="hidden" name="lpurl" class="mktoField" value="https://pages.ubuntu.com/Cloud-contact-us.html?cr={creative}&amp;kw={keyword}" />
+          <input type="hidden" name="cr" class="mktoField" value="" />
+          <input type="hidden" name="kw" class="mktoField" value="" />
+          <input type="hidden" name="q" class="mktoField" value="" />
+          <input type="hidden" name="returnURL" value="{{returnURL}}" />
+          <input type="hidden" name="retURL" value="{{returnURL}}" />
+          <input type="hidden" name="Consent_to_Processing__c" value="yes" />
+        </fieldset>
+      </form>
+    </div>
+
+    <div class="col-4">
+      <div class="p-card">
+        <h3 class="p-card__title">Any questions? Call us</h3>
+          {% include "shared/_call-sales-long.html" %}
+      </div>
+      <div class="p-card" />
+        <h3 class="p-card__title">Need help with Ubuntu?</h3>
+        <p>If you are just looking for some free support for yourself, you can try:</p>
+        <ul class="p-list--divided">
+          <li class="p-list__item"><a class="p-link--external" href="http://askubuntu.com/">Ask Ubuntu</a></li>
+          <li class="p-list__item"><a class="p-link--external" href="http://ubuntuforums.org/">The Ubuntu forum</a></li>
+          <li class="p-list__item"><a class="p-link--external" href="https://help.ubuntu.com/">Help docs</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
