@@ -1,9 +1,9 @@
 {% extends "templates/one-column.html" %}
 {% load versioned_static  %}
 
-{% block meta_description %}When an Ubuntu release reaches its end of life it receives no further maintenance updates, including critical security upgrades. It is highly recommended that you upgrade to a recent version of Ubuntu at this point.{% endblock %}
+{% block meta_description %}Overview of the Ubuntu release cycle - maintenance, support and security coverage, lifetime, upgrade paths, kernel versions and the range of editions and images published by Canonical.{% endblock %}
 
-{% block title %}Release end of life{% endblock %}
+{% block title %}Ubuntu release cycle{% endblock %}
 
 {% block content %}
 
@@ -11,29 +11,28 @@
   <div class="row">
     <div class="u-equal-height">
       <div class="col-7">
-        <h1>Ubuntu release end of life</h1>
-        <p>When an Ubuntu release reaches its &ldquo;end of life&rdquo; it receives no further maintenance updates, including critical security upgrades. We highly recommend that you upgrade to a recent version of Ubuntu at this point.</p>
-        <p>This command will print the exact status of your system.</p>
-        <div class="p-code-snippet">
-          <input class="p-code-snippet__input" value="ubuntu-support-status" readonly="readonly">
-          <button class="p-code-snippet__action">Copy to clipboard</button>
-        </div>
-        <p>For information on previous and upcoming releases and please see the <a href="https://wiki.ubuntu.com/Releases" class="p-link--external">Ubuntu Releases wiki</a> for more details.</p>
+        <h1>The Ubuntu lifecycle and release cadence</h1>
+        <p>Canonical publishes new releases of Ubuntu on a regular cadence, enabling the community, businesses and developers to plan their roadmaps with certainty of access to newer open source upstream capabilities.</p>
       </div>
       <div class="col-5 u-vertically-center u-align--center u-hide--small">
-        <img src="{{ ASSET_SERVER_URL }}ed348358-logo-cof.svg" width="200" alt="ubuntu logo" />
+        <img src="{{ ASSET_SERVER_URL }}ed348358-logo-cof.svg" width="200" alt="ubuntu logo">
       </div>
     </div>
   </div>
 </section>
 
+<section class="p-strip--light is-bordered">
+  <div class="row">
+      <h2>Version numbers are YY.MM</h2>
+      <p>Releases of Ubuntu get a development codename (‘Breezy Badger’) and are versioned by the year and month of delivery - for example Ubuntu 17.10 was released in October 2017.</p>
+  </div>
+</section>
+
 <section class="p-strip is-bordered">
   <div class="row">
-    <div class="col-7">
-      <h2>Ubuntu Server and desktop release end of life</h2>
-      <p>Standard Ubuntu releases are supported for 9 months and Ubuntu LTS (long-term support) releases are supported for five years on both the desktop and the server. During that time, there will be security fixes and other critical updates. The Ubuntu
-        support lifecycle is as follows:</p>
-    </div>
+    <h2>Long Term Support and Interim Releases</h2>
+    <p>LTS or ‘Long Term Support’ releases are published every two years in April. LTS releases are the ‘enterprise grade’ releases of Ubuntu, and they are much more heavily used (something like 95% of all Ubuntu installations are LTS releases). For example, 12.04 LTS, 14.04 LTS, 16.04 LTS and 18.04 LTS have successively taken the lead position on all public clouds as the most popular OS images.</p>
+    <p>Every six months between LTS versions, Canonical publishes an interim release of Ubuntu - 17.10 was an example. These are production quality releases and are supported for their lifespan (which is sufficient to carry you through to the next version) but they do not receive the long term commitment of LTS releases.</p>
   </div>
   <div class="row">
     <div class="col-10">
@@ -132,18 +131,111 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-6">
-      <p><a href="/download ">Download the latest version of Ubuntu&nbsp;&rsaquo;</a></p>
+    <p>Interim releases will introduce new capabilities from Canonical and upstream open source projects, they serve as a proving ground for these new capabilities. Many developers run interim releases because they provide newer compilers or access to newer kernels and newer libraries, and they are often used inside rapid devops processes like CI/CD pipelines where the lifespan of an artifact is likely to be less than the support period of the interim release. Interim releases receive full security maintenance for ‘main’ during their lifespan.</p>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered ">
+  <div class="row">
+    <h2>Release components - debs, snaps, images, containers</h2>
+    <p>A release of Ubuntu is made through several different channels. What you consume will depend on where you are and what your interests happen to be.</p>
+    <p>The heart of Ubuntu is a collection of ‘deb’ packages which are tested and integrated so that they work well as a set. Debs are optimised for highly structured dependency management, enabling you to combine debs very richly while ensuring that the necessary software dependencies for each deb (themselves delivered as debs) are installed on your machine.</p>
+    <p>Ubuntu also supports ‘snap’ packages which are more suited for third-party applications and tools which evolve at their own speed, independently of Ubuntu. If you want to install a high-profile app like Skype or a toolchain like the latest version of Golang, you probably want the snap because it will give you fresher versions and more control of the specific major versions you want to track.</p>
+    <p>Snaps each pick a ‘base’ which might be Ubuntu16 or Ubuntu18 (corresponding to the set of minimal debs in Ubuntu 16.04 LTS or Ubuntu 18.04 LTS but can now also include other versions of Linux too. Nevertheless, the choice of base does not impact on your ability to use a snap, it’s a choice of the publisher and should be invisible to you as a user or developer.</p>
+    <p>A snap can be strictly confined, which means that it operates in a secure box with only pre-defined points of access to the rest of the system. For third-party applications, this means that you will have a very high level of confidence that the app can only see appropriate data that you have provided to it. Snaps can also be ‘classic’ which means that they behave more like debs, and can see everything on your system. You should make sure you have a high level of confidence in the publisher of any classic snap you install, since a compromise or bad faith behaviour in that code is not confined to the app itself.</p>
+    <p>It is also common to consume Ubuntu as an image on a public cloud, or as a container. Ubuntu is published by Canonical on all major public clouds, and the latest image for each LTS version will always include security updates rolled up to at most two weeks ago. You may benefit from installing newer updates than that, but the base image you boot on the cloud should always be the current one from Canonical to ensure that it is broadly up to date and the number of updates needed for full security is minimal.</p>
+    <p>Canonical also publishes a set of images and containers that you can download for use with VMware or other local hypervisors and private cloud technologies. These include standard Ubuntu images on the Docker Hub, and standard images for use with LXD and MAAS. These images are also kept up to date, with publication of rolled up security updated images on a regular cadence, and you should automate your use of the latest images to ensure consistent security coverage for your users.</p>
+  </div>
+</section>
+
+<section class="p-strip is-bordered ">
+  <div class="row">
+    <h2>Editions, Classic and Core</h2>
+    <p>Each release of Ubuntu will include a Minimal Edition which has the fewest possible packages installed, a Server Edition which has a standard set of out-of-the-box usability conveniences, and a Desktop Edition which has the default GUI experience pre-installed. There are also multiple flavours of desktop Ubuntu corresponding to a number of desktop GUI preferences. All of these images are considered ‘Classic’ Ubuntu because they use debs as their base and may add snaps for specific packages or applications.</p>
+    <p>The Ubuntu Core image is an all-snap edition of Ubuntu. It is unusual in that the base operating system itself is delivered as a snap; that makes it suitable for embedded appliances where all the possible apps that might need to be installed are available as strictly confined snaps. Ubuntu Core is an appliance or embedded oriented edition of Ubuntu, not particularly comfortable for humans but highly reliable and secure for large-scale appliance deployments such as IoT and CPE in the telco world.</p>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered ">
+  <div class="row">
+    <h2>Maintenance and security updates</h2>
+    <p>The debs in Ubuntu are categorised by whether they are considered part of the base system (‘main’ and ‘restricted’ are in the base and ‘universe’ and ‘multiverse’ are not) and whether they are open source (‘main’ and ‘universe’ are, ‘restricted’ and ‘multiverse’ are not).</p>
+  </div>
+  <div class="row">
+    <div class="col-10">
+      <table style="margin-top: 1rem;">
+        <thead>
+          <tr>
+            <th>&nbsp;</th>
+            <th scope="col">Base Packages</th>
+            <th scope="col">Extended Packages</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Open Source</strong></td>
+            <td>main</td>
+            <td>universe</td>
+          </tr>
+          <tr>
+            <td><strong>Not Open Source</strong></td>
+            <td>restricted</td>
+            <td>multiverse</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <p>The base system receives a commitment to public maintenance for the period where it is the current LTS or interim release and for a period thereafter.</p>
+    <p>Customers of Canonical often ask for an extended security maintenance commitment, either to ‘main’ for a longer period of time, or to ‘universe’ software packages during the initial maintenance period of the LTS. This is known as '<a href="/support/esm">Extended Security Maintenance</a>' or ESM and is available for LTS releases since Ubuntu 12.04 LTS.</p>
+  </div>
+  <div class="row">
+    <div class="col-10">
+      <table style="margin-top: 1rem;">
+        <thead>
+          <tr>
+            <th>LTS security maintenance</th>
+            <th scope="col">5 years initial period</th>
+            <th scope="col">Further 3 years</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>main</strong></td>
+            <td>public</td>
+            <td>ESM</td>
+          </tr>
+          <tr>
+            <td><strong>universe</strong></td>
+            <td>ESM</td>
+            <td>ESM</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <p>When an Ubuntu release reaches the end of its public maintenance commitment you should either add ESM for ongoing security updates, or upgrade to a newer release of Ubuntu, or both if the machine is using packages outside the base and needs the security coverage for those.</p>
+      <p>This command will print the exact status of your system:</p>
+      <div class="p-code-snippet" style="margin-top: .5rem;">
+        <input class="p-code-snippet__input" value="ubuntu-support-status" readonly="readonly">
+        <button class="p-code-snippet__action">Copy to clipboard</button>
+      </div>
+      <p>The <a class="p-link--external" href="https://wiki.ubuntu.com/Releases">Ubuntu Releases wiki</a> has current information on previous and upcoming versions.</p>
     </div>
   </div>
 </section>
 
 <section class="p-strip is-bordered ">
   <div class="row">
-    <div class="col-8">
-      <h2>Kernel release end of life</h2>
-      <p>The Ubuntu LTS enablement stacks provide newer kernel and X support for existing Ubuntu LTS releases. These can be installed manually, or are automatically shipped if installing from 12.04.2/14.04.2 and newer release media. These newer enablement stacks are meant for desktop and server, and even recommended for cloud or virtual images. The Ubuntu kernel support lifecycle is as follows:</p>
-    </div>
+    <h2>Ubuntu kernel release cycle</h2>
+    <p>Canonical maintains multiple kernel packages for each LTS version of Ubuntu, which serve different purposes. Several of the kernel packages address the need for kernels with specific performance priorities, for example the low-latency kernel package. Others are focused on optimisation for a particular hypervisor, for example the kernel packages which are named after public clouds. You are recommended to use the <a class="p-link--external" href="https://wiki.ubuntu.com/Kernel">detailed Ubuntu kernel guide</a> to select the best Ubuntu kernel for your application.</p>
+    <p>In general, all of the LTS kernel packages will use the same base version of the Linux kernel, for example Ubuntu 18.04 LTS kernels typically used the 4.15 upstream Linux kernel as a base. Some cloud-specific kernels may use a newer version in order to benefit from improved mechanisms in performance or security that are material to that cloud. These kernels are all supported for the full life of their underlying LTS release.</p>
+    <p>In addition, the kernel versions from the subsequent four releases are made available on the latest LTS release of Ubuntu. So Ubuntu 16.04 LTS received the kernels from Ubuntu 16.10, 17.04, 17.10 and 18.04 LTS. These kernels use newer upstream versions and as a result offer an easy path to newer features and newer classes of hardware for many users of Ubuntu. Note however that these kernels ‘roll’ which means that they jump every six months until the next LTS. Large scale deployments that adopt these ‘hardware enablement’ or HWE kernels should manage those transitions explicitly. These newer HWE kernels are accompanied by a collection of userspace tools closely tied to the kernel and hardware, specifically X display enablement on newer graphics cards.</p>
+    <p>These can be installed manually, or are automatically shipped if installing from 12.04.2/14.04.2 and newer release media. These newer enablement stacks are meant for desktop and server and even recommended for cloud or virtual images.</p>
+    <p>The Ubuntu kernel support lifecycle is as follows:</p>
   </div>
   <div class="row">
     <div class="col-10">
@@ -289,17 +381,18 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-8">
-      <p>For more information on previous and upcoming kernel releases please see the <a href="https://wiki.ubuntu.com/Kernel/LTSEnablementStack " class="p-link--external ">Ubuntu LTS Enablement Stack wiki page</a>.</p>
-    </div>
+    <p>For more information on previous and upcoming kernel releases please see the <a href="https://wiki.ubuntu.com/Kernel/LTSEnablementStack " class="p-link--external ">Ubuntu LTS Enablement Stack wiki page</a>.</p>
   </div>
 </section>
 
-<section class="p-strip ">
+<section class="p-strip--light">
   <div class="row">
     <div class="col-8">
-      <h2>Ubuntu OpenStack release end of life</h2>
-      <p>Canonical&rsquo;s Ubuntu Cloud archive allows users the ability to install newer releases of <a href="/openstack " class="p-link--external ">Ubuntu OpenStack</a> on an Ubuntu Server as they become available up through the next Ubuntu LTS release. The Ubuntu OpenStack support lifecycle is as follows:</p>
+      <h2>Ubuntu OpenStack release cycle</h2>
+      <p>Canonical’s Cloud Archive allows users the ability to install newer releases of Ubuntu <a href="https://wiki.ubuntu.com/OpenStack" class="p-link--external">OpenStack</a> on an Ubuntu server as they become available. A given LTS release of Ubuntu will have the current release of OpenStack packaged in its release archives. The next four releases of OpenStack will then be published in the Cloud Archive for that LTS.</p>
+      <p>That means that it is possible to upgrade OpenStack four times on the same Ubuntu LTS release base operating system (upgrading the OpenStack without upgrading the operating system), and then one has the same OpenStack version that is included with the subsequent LTS release, and can choose to upgrade the operating system without upgrading the openstack version.</p>
+      <p>The middle OpenStack release (one year after the LTS release and one year before the next LTS release) is maintained for an extended period. Many customers therefore opt to make annual upgrades to their OpenStack rather than tracking each six-monthly release. The actual upgrade is fully supported using Canonical OpenStack tools and operator guides, and involves hopping through the six-monthly versions for database upgrade purposes, but the next effect is an annual upgrade to a version that is fully supportable.</p>
+      <p>The Ubuntu OpenStack support lifecycle can be represented this way:</p>
     </div>
   </div>
   <div class="row">
@@ -446,9 +539,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-8">
-      <p>For more information on previous and upcoming Ubuntu OpenStack releases please see the <a href="https://wiki.ubuntu.com/OpenStack/CloudArchive " class="p-link--external ">Ubuntu Cloud Archive wiki page</a>.</p>
-    </div>
+    <p>For more information on previous and upcoming Ubuntu OpenStack releases please see the <a href="https://wiki.ubuntu.com/OpenStack/CloudArchive " class="p-link--external ">Ubuntu Cloud Archive wiki page</a>.</p>
   </div>
 </section>
 
