@@ -1,7 +1,6 @@
 var navDropdowns = document.querySelectorAll('.p-navigation__dropdown-link');
 var dropdownWindow = document.querySelector('.dropdown-window');
 var dropdownWindowOverlay = document.querySelector('.dropdown-window-overlay');
-var closeMenuLink = document.querySelector('.p-navigation__toggle--close');
 var navigationThresholdBreakpoint = 900;
 
 navDropdowns.forEach(function(dropdown) {
@@ -117,16 +116,6 @@ document.addEventListener('click', function(event) {
   });
 });
 
-closeMenuLink.addEventListener('click', function(event) {
-  navDropdowns.forEach(function(dropdown) {
-    var dropdownContent = document.getElementById(dropdown.id + "-content");
-
-    if (dropdown.classList.contains('is-selected')) {
-      closeMenu(dropdown, dropdownContent);
-    }
-  });
-});
-
 dropdownWindowOverlay.addEventListener('click', function(event) {
   navDropdowns.forEach(function(dropdown) {
     var dropdownContent = document.getElementById(dropdown.id + "-content");
@@ -150,11 +139,8 @@ if (window.location.hash) {
   var tabId = window.location.hash.split('#')[1];
   var tab = document.getElementById(tabId);
   var tabContent = document.getElementById(tabId + '-content');
-  var navButton = document.querySelector('.p-navigation__toggle--open');
 
   if (tab) {
-    navButton.click();
-    // Hack so this fires at the end of the event loop after previous click
     setTimeout(function() {
       document.getElementById(tabId).click();
     }, 0);
