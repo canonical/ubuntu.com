@@ -2,5 +2,5 @@
 
 set -e
 
-talisker.gunicorn.gevent webapp.wsgi --reload --log-level debug --timeout 9999 --access-logfile - --worker-class gevent --error-logfile - --bind $1
+talisker.gunicorn.gevent webapp.wsgi --reload --log-level debug --timeout 9999 --access-logfile - --workers 3 --worker-class gevent --error-logfile - --bind $1
 
