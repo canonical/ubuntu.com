@@ -182,7 +182,7 @@ function addGANavEvents(target, category){
   var t = document.querySelector(target);
   if (t) {
     t.querySelectorAll('a').forEach(function(a) {
-      var destination = a.href.replace('https://www.ubuntu.com', '').split("?")[0];
+      var destination = a.href.replace('https://www.ubuntu.com', '');
       a.addEventListener('click', function(event){
         dataLayer.push({
           'event' : 'GAEvent',
@@ -202,7 +202,7 @@ function addGAContentEvents(target){
   var t = document.querySelector(target);
   if (t) {
     t.querySelectorAll('a').forEach(function(a) {
-      var destination = a.href.replace('https://www.ubuntu.com', '').split("?")[0];
+      var destination = a.href.replace('https://www.ubuntu.com', '');
       if (a.className.includes('p-button--positive')) {
         var category = 'www.ubuntu.com-content-cta-0';
       } else if (a.className.includes('p-button')) {
