@@ -1,11 +1,7 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}
-Thanks for downloading Ubuntu for LinuxONE and z Systems
-{% endblock %}
-
+{% block title %}Thanks for downloading Ubuntu for LinuxONE and z Systems{% endblock %}
 {% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
-
 {% block head_extra %}
   <meta http-equiv="refresh" content="3;url=http://cdimage.ubuntu.com/releases/{{lts_release}}/release/ubuntu-{{lts_release_with_point}}-server-s390x.iso">
 {% endblock %}
@@ -19,7 +15,7 @@ Thanks for downloading Ubuntu for LinuxONE and z Systems
       <p>Thank you for downloading Ubuntu {{lts_release_full_with_point}} for IBM LinuxONE and z Systems. Your ISO download should start automatically.</p>
       <p>If it doesn&rsquo;t, or for alternative options <a href="http://cdimage.ubuntu.com/releases/xenial/release">visit the download page</a>.</p>
       <p>Ubuntu {{lts_release_full_with_point}} for IBM LinuxONE and z Systems is priced at $19,500 per drawer per year, covering unlimited usage of Ubuntu within that drawer, 24x7 Ubuntu Advantage Advanced support services and regular security and reliability fixes from Canonical.</p>
-      <p>Your use of Ubuntu on z Systems and LinuxONE in production constitutes <a href="https://www.ubuntu.com/legal/service-terms">acceptance of these terms</a>.</p>
+      <p>Your use of Ubuntu on z Systems and LinuxONE in production constitutes <a href="/legal/service-terms">acceptance of these terms</a>.</p>
       <p>For questions about Ubuntu Advantage for LinuxONE and z Systems, please call us +44 (0) 203 656 5291 or email us at <a href="mailto:ibm@ubuntu.com">ibm@ubuntu.com</a>.</p>
     </div>
     <div class="col-6 p-card">
@@ -94,8 +90,8 @@ Thanks for downloading Ubuntu for LinuxONE and z Systems
             </li>
           </ul>
         </fieldset>
-        <input type="hidden" name="returnURL" value="https://www.ubuntu.com/download/server/linuxone-signup-thank-you" />
-        <input type="hidden" name="retURL" value="https://www.ubuntu.com/download/server/linuxone-signup-thank-you" />
+        <input type="hidden" name="returnURL" value="https://mongoose.ubuntu.com/download/server/linuxone-signup-thank-you" />
+        <input type="hidden" name="retURL" value="https://mongoose.ubuntu.com/download/server/linuxone-signup-thank-you" />
       </form>
       <script>
         $("#mktoForm_1400").validate({

@@ -1,0 +1,115 @@
+{% extends "ai/base_ai.html" %}
+
+{% block title %}Install Kubeflow yourself{% endblock %}
+{% block meta_description %}A step-by-step installation guide to Ubuntu OpenStack with Kubernetes and Kubeflow on bare metal servers.{% endblock %}
+
+{% block content %}
+<section class="p-strip--light is-deep is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h1>Install Kubeflow yourself</h1>
+      <p>Canonical continues to innovate and develop best practices for supporting developers and operators.</p>
+    </div>
+    <div class="col-4 prefix-1 u-align--center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}dba11aee-kubernetes.svg?w=275" alt="" width="275" />
+    </div>
+  </div>
+</section>
+
+<div class="p-strip is-deep is-bordered" id="instructions">
+  <div class="row">
+    <div class="col-12">
+      <h2>Deploy Kubeflow to Kubernetes</h2>
+      <ol class="p-stepped-list--detailed">
+
+        <li class="p-list-step__item col-12">
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">1</span>Install Kubernetes</h3>
+          <div class="p-list-step__content">
+            <p>Kubeflow runs on top of Kubernetes, and Canonical Kubernetes is the best foundation for Kubeflow.</p>
+            <p>Visit our <a href="/kubernetes/install">Kubernetes install</a> page and follow the instructions to install the Kubernetes as you want.</p>
+          </div>
+        </li>
+
+        <li class="p-list-step__item col-12">
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">2</span>Install microk8s</h3>
+          <div class="p-list-step__content">
+            <p>Get the bash script that will install microk8s</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="wget https://assets.ubuntu.com/v1/b783a95d-install-kubeflow-pre-micro.sh -O install-kubeflow-pre-micro.sh" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <p>Set permissions so the script can run</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="chmod a+x install-kubeflow-pre-micro.sh" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <p>Run the script as root</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="sudo ./install-kubeflow-pre-micro.sh" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+          </div>
+        </li>
+
+        <li class="p-list-step__item col-12">
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">3</span>Set environment variables</h3>
+          <div class="p-list-step__content">
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="export KUBECONFIG=/snap/microk8s/current/client.config" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="export GITHUB_TOKEN=${YOUR_GITHUB_TOKEN}" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+          </div>
+        </li>
+
+        <li class="p-list-step__item col-12">
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">4</span>Install Kubeflow</h3>
+          <div class="p-list-step__content">
+            <p>Get the bash script that will install microk8s</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="wget https://assets.ubuntu.com/v1/58a9e137-install-kubeflow.sh -O install-kubeflow.sh" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <p>Set permissions so the script can run</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="chmod a+x install-kubeflow.sh" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <p>Run the script as root</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="sudo ./install-kubeflow.sh" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip--light is-deep">
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-4 u-align--center u-hide--small u-vertically-center">
+        <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="200" alt="" />
+      </div>
+      <div class="col-7 prefix-1 u-vertically-center">
+        <div class="row">
+          <div class="col-12">
+            <h2>Need more help?</h2>
+            <p>Let our Kubernetes experts help you take the next step.</p>
+            <p><a class="p-button--positive" href="/ai/contact-us?product=ai-install">Contact us</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_ubuntu_advantage" third_item="_cloud_further_reading" %}
+
+
+{% endblock content %}

@@ -59,8 +59,8 @@
           </ul>
         </fieldset>
 
-        <input type="hidden" name="returnURL" value="https://www.ubuntu.com/download/cloud#instructions" />
-        <input type="hidden" name="retURL" value="https://www.ubuntu.com/download/cloud#instructions" />
+        <input type="hidden" name="returnURL" value="{{ return_url }}" />
+        <input type="hidden" name="retURL" value="{{ return_url }}" />
         <input type="hidden" name="Consent_to_Processing__c" value="yes" />
       </form>
       <!-- /MARKETO FORM -->
@@ -127,7 +127,7 @@
     // And redirect to the instructions page
     window.setTimeout(
       function() {
-        window.location.href = "/{{ url|default:'download/cloud'}}#instructions";
+        window.location.href = "/{{ url|default:'download/server/thank-you'}}#instructions";
       },
       1000
     );

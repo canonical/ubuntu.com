@@ -1,9 +1,5 @@
-// List Grid
 @mixin ubuntu-p-matrix {
-  @include vf-p-matrix;
-
   .p-matrix {
-
     &.is-split {
       .p-matrix__item {
         @media (min-width: $breakpoint-small) {
@@ -30,32 +26,9 @@
       }
     }
 
-    &.is-quartered {
-      .p-matrix__item {
-        @media (min-width: $breakpoint-small) {
-          width: calc(25% - .666666rem);
-
-          &:nth-child(-n+4) {
-            border-top: 0;
-          }
-
-          &:nth-child(n) {
-            border-bottom: 1px dotted $color-mid-dark;
-            border-right: 1px dotted $color-mid-dark;
-            padding: $sp-medium;
-          }
-
-          &:nth-child(4n+1):nth-last-child(-n+4),
-          &:nth-child(4n+1):nth-last-child(-n+4) ~ li {
-            border-bottom: 0;
-          }
-
-          &:nth-child(4n) {
-            border-right: 0;
-            padding-right: 0;
-          }
-        }
-      }
+    &__img-container {
+      min-height: 5rem;
+      padding: .5rem 0 1rem 0;
     }
   }
 }

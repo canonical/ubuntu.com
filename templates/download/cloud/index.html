@@ -1,88 +1,133 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Build OpenStack with conjure-up | Download{% endblock %}
-
-
+{% block title %}Use Ubuntu in public clouds | Download{% endblock %}
+{% block meta_description %}How to use Ubuntu in the public cloud and where to find our customised cloud images for development.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1kp7QQXst1EbCjZjzWZP3YZwfmG0EIXLfQoRUVaMEZng/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<div class="p-strip is-deep is-bordered">
+<section class="p-strip--image u-no-background--small is-deep is-bordered" style="background-image: url('{{ ASSET_SERVER_URL}}1d2ab6ba-suru-background.png'); background-size: 100% 100%;">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <div>
+        <h1>Optimised Ubuntu on&nbsp;public&nbsp;clouds</h1>
+        <p>Ubuntu builds optimised and certified server images for partners like Amazon AWS, Microsoft Azure, Google Cloud Platform, Oracle, Rackspace and IBM Cloud. In addition, Canonical offers Ubuntu Advantage, enterprise-grade commercial support, on these images.</p>
+      </div>
+    </div>
+    <div class="col-4 u-align--center u-vertically-center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}1c786630-image-cloud.svg" alt="Ubuntu cloud">
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-deep is-bordered">
   <div class="row">
     <div class="col-10">
-      <div>
-        <h1>Get OpenStack</h1>
-        <p>
-          Try out OpenStack on a single machine or start building a production
-          cloud on a cluster: you choose.
-        </p>
-      </div>
+      <h2>Use Ubuntu in the cloud</h2>
+      <p>Here are some shortcuts to get you up and running with Ubuntu on various public clouds. You can also use our <a href="https://cloud-images.ubuntu.com/locator/" class="p-link--external">Ubuntu Cloud image finder</a> to search for the ids of specific Ubuntu images on various public clouds by location, architecture, release and more.</p>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 p-card--highlighted p-divider u-equal-height">
-      <div class="col-6 p-divider__block">
-        <p class="p-heading--five">Single machine</p>
-        <h2>Try OpenStack on a single&nbsp;machine</h2>
-        <p class="p-card__content">
-          Conjure-up is an ideal tool for people who want to build an
-          OpenStack cloud on a single machine in minutes.  Using LXD
-          containers, this OpenStack deployment perfectly models a
-          production cluster on real machines.
-        </p>
-        <p class="p-card__content">
-          <a href="/download/cloud/try-openstack">
-            Install OpenStack on a localhost&nbsp;&rsaquo;
-          </a>
-        </p>
-      </div>
-      <div class="col-6">
-        <p class="p-heading--five">Cluster</p>
-        <h2>Build your own production&nbsp;cloud</h2>
-        <p class="p-card__content">
-          The same conjure-up utility also deploys your production OpenStack
-          cloud across a rack of physical servers using
-          <a href="https://www.ubuntu.com/server/maas">MAAS</a> and the
-          underlying model enables you to operate OpenStack efficiently at
-          scale.
-        </p>
-        <p class="p-card__content">
-          <a href="/download/cloud/build-openstack">
-            Deploy OpenStack on a cluster of physical machines&nbsp;&rsaquo;
-          </a>
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="p-strip is-bordered">
   <div class="row u-equal-height">
-    <div class="col-4 u-vertically-center u-align--center u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg"
-        width="200" alt="" />
-    </div>
-    <div class="col-7 prefix-1 u-vertically-center">
-      <div class="row">
-        <div class="col-12">
-          <h2>Need more help?</h2>
-          <p>Let our cloud experts help you take the next step.</p>
-          <p>
-            <a href="/cloud/contact-us?product=cloud-overview"
-              class="p-button--neutral">Contact us</a>
-          </p>
-          <p>
-            Already a Landscape Dedicated Server customer? Upgrading is simple,
-            see the instructions in the
-            <a href="https://help.landscape.canonical.com/LDS/ReleaseNotes"
-              class="p-link--external">release notes</a>.
-          </p>
-        </div>
+    <div class="p-card--highlighted col-4">
+      <header class="p-card__header">
+        <h4>Google Cloud Platform</h4>
+      </header>
+      <div class="p-card__content">
+        <a class="u-align--center u-vertically-center" style="min-height:10rem;display: flex;" href="https://console.cloud.google.com/launcher/browse?q=ubuntu&filter=category:os&filter=price:free">
+          <img src="{{ ASSET_SERVER_URL }}410984a3-Google-cloud-platform-stacked.svg" alt="" style="align-self: center;max-height: 10rem;">
+        </a>
+        <p>Google Cloud Platform lets you build and host applications and websites, store data, and analyze data on Google’s scalable infrastructure.</p>
       </div>
+      <ul class="p-list">
+        <li class="p-list__item u-no-margin--top"><a href="https://cloud.google.com/sdk/docs/quickstart-debian-ubuntu" class="p-link--external">Guide to using GCP</a></li>
+        <li class="p-list__item"><a href="https://console.cloud.google.com/launcher/browse?q=ubuntu&filter=category:os&filter=price:free" class="p-link--external">Get started on GCP</a></li>
+      </ul>
+    </div>
+    <div class="p-card--highlighted col-4">
+      <header class="p-card__header">
+        <h4>Amazon Web Services</h4>
+      </header>
+      <div class="p-card__content">
+        <a class="u-align--center u-vertically-center" style="min-height:10rem;display: flex;" href="https://console.cloud.google.com/launcher/browse?q=ubuntu&filter=category:os&filter=price:free">
+          <img src="{{ ASSET_SERVER_URL }}39002345-AmazonWebservices_Logo.svg" alt="" style="align-self: center;max-height: 10rem; max-width:10rem;">
+        </a>
+        <p>Amazon Web Services offers reliable, scalable, and inexpensive cloud computing services.</p>
+      </div>
+      <ul class="p-list">
+        <li class="p-list__item u-no-margin--top"><a href="https://help.ubuntu.com/community/EC2StartersGuide" class="p-link--external">Ubuntu's guide to using EC2</a></li>
+        <li class="p-list__item"><a href="http://cloud-images.ubuntu.com/locator/ec2/" class="p-link--external">Amazon EC2 AMI Locator</a></li>
+      </ul>
+    </div>
+    <div class="p-card--highlighted col-4">
+      <header class="p-card__header">
+        <h4>Microsoft Azure</h4>
+      </header>
+      <div class="p-card__content">
+        <a class="u-align--center u-vertically-center" style="min-height:10rem;display: flex;" href="https://console.cloud.google.com/launcher/browse?q=ubuntu&filter=category:os&filter=price:free">
+          <img src="{{ ASSET_SERVER_URL }}208cd3a7-azure-logo-blue-on-white.svg" alt="" style="align-self: center;max-height: 10rem; max-width:12rem;">
+        </a>
+        <p>Microsoft Azure is an open, flexible, enterprise-grade cloud computing platform.</p>
+      </div>
+      <ul class="p-list">
+        <li class="p-list__item u-no-margin--top"><a href="https://docs.microsoft.com/en-us/azure/virtual-machines/linux/" class="p-link--external">Guide to using Microsoft Azure</a></li>
+        <li class="p-list__item"><a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Canonical.UbuntuServer" class="p-link--external">Launch Ubuntu on Azure</a></li>
+      </ul>
     </div>
   </div>
-</div>
+  <div class="row u-equal-height">
+    <div class="p-card col-4">
+      <header class="p-card__header">
+        <h4>IBM Cloud</h4>
+      </header>
+      <div class="p-card__content">
+        <a class="u-align--center u-vertically-center" style="min-height:10rem;display: flex;" href="https://www.ibm.com/cloud/">
+          <img src="{{ ASSET_SERVER_URL }}5e91ff73-ibm-cloud-logo.svg" alt="" style="align-self: center;max-height: 10rem; max-width:12rem;">
+        </a>
+      </div>
+      <ul class="p-list">
+        <li class="p-list__item u-no-margin--top"><a href="https://www.ibm.com/cloud/" class="p-link--external">Get started on IBM Cloud</a></li>
+      </ul>
+    </div>
+    <div class="p-card col-4">
+      <header class="p-card__header">
+        <h4>Rackspace</h4>
+      </header>
+      <div class="p-card__content">
+        <a class="u-align--center u-vertically-center" style="min-height:10rem;display: flex;" href="https://www.rackspace.com/managed-hosting">
+          <img src="{{ ASSET_SERVER_URL }}ff936628-rackspace.svg" alt="" style="align-self: center;max-height: 10rem; max-width:12rem;">
+        </a>
+      </div>
+      <ul class="p-list">
+        <li class="p-list__item u-no-margin--top"><a href="https://www.rackspace.com/managed-hosting" class="p-link--external">Get started on Rackspace</a></li>
+      </ul>
+    </div>
+    <div class="p-card col-4">
+      <header class="p-card__header">
+        <h4>Oracle</h4>
+      </header>
+      <div class="p-card__content">
+        <a class="u-align--center u-vertically-center" style="min-height:10rem;display: flex;" href="https://docs.oracle.com/en/cloud/get-started/index.html">
+          <img src="{{ ASSET_SERVER_URL }}08646a72-logo-oracle.svg" alt="" style="align-self: center;max-height: 10rem; max-width:12rem;">
+        </a>
+      </div>
+      <ul class="p-list">
+        <li class="p-list__item u-no-margin--top"><a href="https://docs.oracle.com/en/cloud/get-started/index.html" class="p-link--external">Guide to using Oracle Cloud</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-{% include "download/server/_other-ways.html" %}
+<section class="p-strip--light is-deep is-bordered">
+  <div class="row u-equal-height">
+    <div class="col-6 u-vertically-center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}2e62cdb4-desktop-developer-hero.png?w=600" alt="Ubuntu cloud">
+    </div>
+    <div class="col-6">
+      <h2>Develop with Ubuntu cloud images</h2>
+      <p>If you want to modify the standard images, develop locally with a specific public cloud image, or use an image on your private cloud, you can download them from  <a class="p-link--external" href="http://cloud-images.ubuntu.com/">cloud-images.ubuntu.com</a>.</p>
+    </div>
+  </div>
+</section>
 
-{% include "shared/contextual_footers/_contextual_footer.html" with first_item="_download_cloud_bootstack" second_item="_download_cloud_buy_landscape" third_item="_download_documentation" %}
+{% include "shared/contextual_footers/_contextual_footer.html" with first_item="_download_cloud_ubuntu_advantage" second_item="_cloud_newsletter" third_item="_download_helping_hands" %}
 
 {% endblock content %}

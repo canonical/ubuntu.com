@@ -1,0 +1,74 @@
+{% extends "openstack/_base_openstack.html" %}
+
+{% block title %}Partners | OpenStack{% endblock %}
+{% block meta_description %}Canonical partners with a wide range of cloud vendors, offering engineering assistance, support and ongoing quality assurance to the ecosystem that is fast developing around Ubuntu and OpenStack.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1J2AxzOkFgkXyV7C7VO7ZJ0urzbEtrqRYCRt1SL64f3I/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-7">
+      <h1>Partners</h1>
+      <p>The cloud world is evolving rapidly and Ubuntu is at the centre, with world&dash;class partners and a suite of OpenStack partner programmes.</p>
+    </div>
+    <div class="col-5 u-align--center">
+      <img src="{{ ASSET_SERVER_URL }}1c786630-image-cloud.svg" alt="Ubuntu in a cloud" />
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row u-equal-height ">
+    <div class="col-4 u-hide--small u-vertically-center">
+      <img src="{{ ASSET_SERVER_URL }}e2ac88af-juju_black-orange_hex.svg" alt="Juju" />
+    </div>
+    <div class="col-8 prefix-1">
+      <h2>Charm partner programme</h2>
+      <p>Canonical&rsquo;s Charm partner programme helps you leverage the power of Juju, the ground-breaking service modelling tool, by helping you create Juju charms for your products. Charms encapsulate all the important configuration information, defining
+        how your services will be deployed and how they will work with other services.</p>
+      <p><a href="http://partners.ubuntu.com/partner-programmes/software#charm-partner-programme">Learn more about the Charm partner programme&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 u-visible--small u-hide--medium u-hide--large u-align--center">
+      <img src="{{ ASSET_SERVER_URL }}e2ac88af-juju_black-orange_hex.svg" width="171" height="171" alt="Juju" />
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>World leading public cloud partners</h2>
+      <p>If you operate a public cloud or you&rsquo;re considering launching one, the Ubuntu certified public cloud programme lets you make certified, secure and up to date Ubuntu images available to your users, along with the opportunity to sell management,
+        monitoring and commercial support from Canonical &mdash; all of which represent additional revenue opportunities.</p>
+      <p><a href="http://partners.ubuntu.com/partner-programmes/public-cloud">Learn more about the Ubuntu certified public cloud programme&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 suffix-1 prefix-1">
+      <img src="{{ ASSET_SERVER_URL }}69dadbd3-logo-premiercloudpartner.svg" alt="" />
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    {% include "shared/_partner-logos.html" with title="A selection of our cloud partners" json_feed_url="http://partners.ubuntu.com/partners.json?programme__name=Certified%20Public%20Cloud&programme__name=Charm%20Partner%20Programme&programme__name=OpenStack&featured=true" feed_item_limit=10 %}
+    <div class="col-12">
+      <p class="u-align--center"><a href="http://partners.ubuntu.com/find-a-partner?programme=openstack&amp;programme=charm-partner-programme&amp;programme=certified-public-cloud" class="p-link--external">See all our cloud partners</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>Become a cloud partner</h2>
+      <p>To learn more about becoming a charm, Ubuntu certified public cloud or Ubuntu OpenStack partner, please contact us today.</p>
+      <p><a href="http://partners.ubuntu.com/contact-us" class="p-button--positive">Get in touch</a></p>
+      <p>or <a href="http://partners.ubuntu.com/partnering-with-us" class="p-link--external">learn more about partnering with us</a></p>
+    </div>
+  </div>
+</section>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
+
+{% endblock content %}

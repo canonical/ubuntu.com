@@ -1,6 +1,8 @@
 {% extends "internet-of-things/base_things.html" %}
+
 {% block title %}White label app store for IOT | Ubuntu for the Internet of Things {% endblock %}
 {% block meta_description %}For cloud based and enterprise IoT app stores, control, manage and monetise software deployments on your connected Linux devices.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1CKwmPDDtXOIgw-jSZFwzP-qLMc_rS_dUACpHQXlg0fA/edit{% endblock meta_copydoc %}
 
 {% block content %}
 
@@ -70,7 +72,8 @@
   <div class="row u-equal-height">
     <div class="col-4 p-card">
       <h4>Manage your store</h4>
-      <ul class="p-list p-card__footer">
+      <hr class="u-sv1">
+      <ul class="p-list">
         <li class="p-list__item is-ticked">Your own software repository to manage software updates across your device fleet</li>
         <li class="p-list__item is-ticked">Create a public app store or a private repository depending on device</li>
         <li class="p-list__item is-ticked">Use the store inheritance feature to create reseller models and rich app ecosystems</li>
@@ -78,7 +81,8 @@
     </div>
     <div class="col-4 p-card">
       <h4>Manage your users</h4>
-      <ul class="p-list p-card__footer">
+      <hr class="u-sv1">
+      <ul class="p-list">
         <li class="p-list__item is-ticked">Make your software stack visible or invisible to users as you choose</li>
         <li class="p-list__item is-ticked">Only allow software downloads you have selected and tested</li>
         <li class="p-list__item is-ticked">Monetise your device post-sales by offering paid apps and services</li>
@@ -86,7 +90,8 @@
     </div>
     <div class="col-4 p-card">
       <h4>Manage your developers</h4>
-      <ul class="p-list p-card__footer">
+      <hr class="u-sv1">
+      <ul class="p-list">
         <li class="p-list__item is-ticked">You have the ability to restrict developer access to the store - both internally and externally</li>
         <li class="p-list__item is-ticked">Enforce protocols for apps submission for internal and external developers</li>
         <li class="p-list__item is-ticked">Give your developers the best tools for software production and distribution</li>
@@ -105,10 +110,10 @@
   <div class="row p-divider">
     <div class="col-4 p-divider__block" id="ubuntu-com_appstore_left">
       <!-- rtp section start -->
-      <div class='p-heading-icon u-no-margin--bottom'>
-        <div class='p-heading-icon__header u-no-margin--bottom'>
-          <img class='p-heading-icon__img' src='{{ ASSET_SERVER_URL }}cd7a3a3c-white-paper-icon.svg' alt='' style='max-width: 30px;' />
-          <h3 class='p-heading-icon__title p-muted-heading' style='color: #666;'>White paper</h3>
+      <div class='p-heading-icon--muted'>
+        <div class='p-heading-icon__header'>
+          <img class='p-heading-icon__img p-heading-icon__img--small' src='{{ ASSET_SERVER_URL }}cd7a3a3c-white-paper-icon.svg' alt='' />
+          <h3 class='p-heading-icon__title'>White paper</h3>
         </div>
       </div>
       <h2 class='p-heading--four'>
@@ -118,10 +123,10 @@
     </div>
     <div class="col-4 p-divider__block" id="ubuntu-com_appstore_center">
       <!-- rtp section start -->
-      <div class='p-heading-icon u-no-margin--bottom'>
-        <div class='p-heading-icon__header u-no-margin--bottom'>
-          <img class='p-heading-icon__img' src='{{ ASSET_SERVER_URL }}26797d10-newsfeed-stripvideo-icon.svg' alt='' style='max-width: 30px;' />
-          <h3 class='p-heading-icon__title p-muted-heading' style='color: #666;'>Webinar</h3>
+      <div class='p-heading-icon--muted'>
+        <div class='p-heading-icon__header'>
+          <img class='p-heading-icon__img p-heading-icon__img--small' src='{{ ASSET_SERVER_URL }}26797d10-newsfeed-stripvideo-icon.svg' alt='' />
+          <h3 class='p-heading-icon__title'>Webinar</h3>
         </div>
       </div>
       <h2 class='p-heading--four'>
@@ -131,10 +136,10 @@
     </div>
     <div class="col-4 p-divider__block" id="ubuntu-com_appstore_right">
       <!-- rtp section start -->
-      <div class='p-heading-icon u-no-margin--bottom'>
-        <div class='p-heading-icon__header u-no-margin--bottom'>
-          <img class='p-heading-icon__img' src='{{ ASSET_SERVER_URL }}5cf7bd32-news-feed-strip-case-study.svg' alt='' style='max-width: 30px;' />
-          <h3 class='p-heading-icon__title p-muted-heading' style='color: #666;'>Case study</h3>
+      <div class='p-heading-icon--muted'>
+        <div class='p-heading-icon__header'>
+          <img class='p-heading-icon__img p-heading-icon__img--small' src='{{ ASSET_SERVER_URL }}5cf7bd32-news-feed-strip-case-study.svg' alt='' />
+          <h3 class='p-heading-icon__title'>Case study</h3>
         </div>
       </div>
       <h2 class='p-heading--four'>
@@ -148,7 +153,7 @@
 <section class="p-strip--accent is-deep">
   <div class="row">
     <div class="col-12">
-      <blockquote class="p-pull-quote--accent">
+      <blockquote class="p-pull-quote">
         <p>This new app store is much more than an easy way for Orange Pi owners to find and install great applications.</p>
         <p>The store offers Orange Pi developers a powerful set of tools to go much faster from development to production with CI integration, cross-platform building and beta distribution.</p>
         <cite class="p-pull-quote__citation">Steven Zhao, the CEO of Xunlong / Orange Pi</cite>

@@ -1,6 +1,7 @@
 {% extends "download/_base_download.html" %}
 
 {% block title %}Get Ubuntu | Download{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1kp7QQXst1EbCjZjzWZP3YZwfmG0EIXLfQoRUVaMEZng/edit{% endblock meta_copydoc %}
 
 {% block content %}
 <div class="p-strip is-shallow">
@@ -12,18 +13,14 @@
 </div>
 
 <div class="p-strip u-no-padding--top u-no-padding--bottom">
+
   <div class="row">
     <div class="col-12">
-      <div class="p-card--ubuntu-upgrade u-no-padding--bottom u-no-margin--bottom">
-        <div class="row u-no-margin--top">
-          <div class="col-12">
-            <h2 class="p-card__title"><a href="/download/desktop">Ubuntu Desktop&nbsp;&rsaquo;</a></h2>
-            <p class="p-card__content">Download Ubuntu desktop and replace your current operating system whether it&rsquo;s Windows or Mac OS, or, run Ubuntu alongside it.</p>
-          </div>
-        </div>
-        <footer class="p-card--ubuntu-upgrade__footer">
-          <strong>Do you want to upgrade?</strong> <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-upgrading-ubuntu-desktop">Follow our simple guide</a>
-        </footer>
+      <div class="p-card">
+        <h2 class="p-card__title"><a href="/download/desktop">Ubuntu Desktop&nbsp;&rsaquo;</a></h2>
+        <p class="p-card__content">Download Ubuntu desktop and replace your current operating system whether it&rsquo;s Windows or Mac OS, or, run Ubuntu alongside it.</p>
+        <hr class="u-sv1">
+        <p class="u-no-margin--bottom"><strong>Do you want to upgrade?</strong> <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-upgrading-ubuntu-desktop">Follow our simple guide</a>
       </div>
     </div>
   </div>
