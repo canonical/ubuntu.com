@@ -1,0 +1,17 @@
+@mixin ubuntu-p-sticky-nav {
+  .p-sticky-nav {
+    background-color: $color-light;
+    border-bottom: 1px solid $color-mid-light;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  
+    .p-tabs__list {
+      margin-bottom: 0;
+  
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
