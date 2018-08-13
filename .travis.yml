@@ -19,4 +19,4 @@ before_script:
 
 script:
   - flake8 webapp
-  - sleep 2 && linkchecker --threads 2 --ignore-url /usn --ignore-url /resources --no-warnings http://127.0.0.1:8000
+  - sleep 2 && linkchecker --threads 2 --ignore-url /usn --ignore-url /resources --ignore-url /search --no-warnings http://127.0.0.1:8000
