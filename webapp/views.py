@@ -27,6 +27,32 @@ if settings.SEARCH_API_KEY:
     )
 
 
+def _get_search_results(query, start, num):
+    """
+    Query the Google Custom Search API for search results
+    """
+
+    if not settings.SEARCH_API_KEY:
+        raise Exception('Unable to search: No API key provided')
+
+    results = search_session.get(
+        settings.SEARCH_API_URL,
+        params={
+            'key': settings.SEARCH_API_KEY,
+            'cx': settings.CUSTOM_SEARCH_ID,
+            'q': query,
+            'start': start,
+            'num': num
+        }
+    ).json()
+
+    if 'items' in results:
+        for item in results['items']:
+            item['htmlSnippet'] = item['htmlSnippet'].replace('<br>\n', '')
+
+    return results
+
+
 def search(request):
     """
     Get search results from Google Custom Search
@@ -43,29 +69,14 @@ def search(request):
     }
 
     if query:
-        if not settings.SEARCH_API_KEY:
-            raise Exception('Unable to search: No API key provided')
+        context['results'] = _get_search_results(query, start, num)
 
-        results = search_session.get(
-            settings.SEARCH_API_URL,
-            params={
-                'key': settings.SEARCH_API_KEY,
-                'cx': settings.CUSTOM_SEARCH_ID,
-                'q': query,
-                'start': start,
-                'num': num
-            }
-        ).json()
-
-        if 'items' in results:
-            for item in results['items']:
-                item['htmlSnippet'] = item['htmlSnippet'].replace('<br>\n', '')
-
-        context['query'] = query
-        context['estimatedTotal'] = int(
-            results['searchInformation']['totalResults']
-        )
-        context['results'] = results
+        if 'searchInformation' in context['results']:
+            context['estimatedTotal'] = int(
+                context['results']['searchInformation']['totalResults']
+            )
+        else:
+            context['estimatedTotal'] = None
 
     return render(request, 'search.html', context)
 
