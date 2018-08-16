@@ -371,8 +371,10 @@
     height: 100%;
     top: 0;
     background-color: rgba(17,17,17, .4);
+    opacity: 1;
     position: fixed;
     z-index: 1;
+    transition: opacity .5s ease-in-out;
   }
 
   .dropdown-window {
@@ -426,12 +428,11 @@
   }
 
   .fade-animation {
-    visibility: hidden;
+    opacity: 0;
 
     .u-visible-nav & {
       opacity: 1;
       transform: none;
-      visibility: visible;
     }
   }
 }
