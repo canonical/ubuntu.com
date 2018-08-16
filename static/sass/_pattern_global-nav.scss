@@ -265,11 +265,11 @@ $nav-bg-color: lighten($global-nav-bg-color, $contrast-ratio);
       position: fixed;
       pointer-events: none;
       transition: opacity .5s ease-in-out;
-      z-index: 5;
 
       &.is-visible {
         opacity: 1;
         pointer-events: all;
+        z-index: 5;
       }
     }
   }
