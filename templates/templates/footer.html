@@ -6,32 +6,53 @@
     <nav id="main-navigation" class="p-footer__nav u-clearfix">
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
-          {% include 'templates/_footer_item.html' with section=nav_sections.cloud %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.openstack %}
         </ul>
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
-          {% include 'templates/_footer_item.html' with section=nav_sections.server %} {% include 'templates/_footer_item.html' with section=nav_sections.containers %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.kubernetes %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.ai %}
         </ul>
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
           {% include 'templates/_footer_item.html' with section=nav_sections.desktop %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.server %}
         </ul>
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
-          {% include 'templates/_footer_item.html' with section=nav_sections.core %} {% include 'templates/_footer_item.html' with section=nav_sections.iot %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.iot %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.support %}
         </ul>
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
-          {% include 'templates/_footer_item.html' with section=nav_sections.support %} {% include 'templates/_footer_item.html' with section=nav_sections.resources %}
+
+          {% include 'templates/_footer_item.html' with section=nav_sections.download %}
         </ul>
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom last-col">
         <ul class="p-footer__links">
-          {% include 'templates/_footer_item.html' with section=nav_sections.download %}
+          <li class="p-footer__item p-footer__item--spaced">
+            <h2 class="p-footer__title">
+              <a href="#" class="p-link--soft">Sectors</a>
+            </h2>
+            <ul class="second-level-nav">
+              <li><a href="/telecommunications">Telco</a></li>
+              <li><a href="/financial-services">Finance</a></li>
+              <li><a href="/internet-of-things/digital-signage">Signage</a></li>
+              <li><a href="/internet-of-things/robotics">Robotics</a></li>
+              <li><a href="/internet-of-things/gateways">Gateways</a></li>
+              <li><a href="/desktop/organisations">Organisations</a></li>
+            </ul>
+          </li>
+          {% include 'templates/_footer_item.html' with section=nav_sections.security %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.publiccloud %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.containers %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.core %}
+          {% include 'templates/_footer_item.html' with section=nav_sections.resources %}
         </ul>
       </div>
     </nav>
@@ -41,9 +62,9 @@
         <nav>
           <ul class="p-inline-list">
             <li class="u-hide--small p-inline-list__item">
-              <a class="p-button--neutral is-compact" href="/contact-us"><small>Contact us</small></a>
+              <a class="p-button--neutral" href="/contact-us"><small>Contact us</small></a>
             </li>
-            <li class="u-hide--medium is-compact u-hide--large p-inline-list__item">
+            <li class="u-hide--medium u-hide--large p-inline-list__item">
               <a class="p-link--soft" href="/contact-us"><small>Contact us</small></a>
             </li>
             <li class="p-inline-list__item">
@@ -56,7 +77,7 @@
               <a class="p-link--soft" href="http://www.canonical.com/careers"><small>Careers</small></a>
             </li>
             <li class="p-inline-list__item">
-              <a class="p-link--soft" href="https://insights.ubuntu.com/press-centre/"><small>Press centre</small></a>
+              <a class="p-link--soft" href="https://blog.ubuntu.com/press-centre"><small>Press centre</small></a>
             </li>
           </ul>
         </nav>

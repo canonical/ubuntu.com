@@ -1,0 +1,36 @@
+{% extends "ai/base_ai.html" %}
+
+{% block title %}Contact us | Artificial Intellegence {% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/185NqOTBSWuVIAppRIT0K7hcQzTHm6Rk7XyZXcjNTFQM/edit{% endblock meta_copydoc %}
+
+{% block content %}
+  {% if product == 'ai-index-workshop' %}
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about our AI workshop" intro_text="Fill in your details below and a member of our sales team will be in touch." formid='3231'  lpId='6279' returnURL='https://mongoose.ubuntu.com/ai/thank-you?product=ai-index-workshop' %}
+  {% elif product == 'ai-index-assessment' %}
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about our ML / Data Science assessment" intro_text="Fill in your details below and a member of our sales team will be in touch." formid='3231'  lpId='6279' returnURL='https://mongoose.ubuntu.com/ai/thank-you?product=ai-managed' %}
+  {% elif product == 'ai-index-managed' %}
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about our managed AI services" intro_text="Fill in your details below and a member of our sales team will be in touch." formid='3231'  lpId='6279' returnURL='https://mongoose.ubuntu.com/ai/thank-you?product=ai-managed' %}
+  {% elif product == 'ai-install' %}
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about installing Kubeflow" intro_text="Fill in your details below and a member of our sales team will be in touch." formid='3231'  lpId='6279' returnURL='https://mongoose.ubuntu.com/ai/thank-you?product=ai-managed' %}
+  {% elif product == 'ai-consulting' %}
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about Canonical consulting" intro_text="Fill in your details below and a member of our sales team will be in touch." formid='3231'  lpId='6279' returnURL='https://mongoose.ubuntu.com/ai/thank-you?product=ai-managed' %}
+    {% elif product == 'ai-features' %}
+      {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about AI on Canonical" intro_text="Fill in your details below and a member of our sales team will be in touch." formid='3231'  lpId='6279' returnURL='https://mongoose.ubuntu.com/ai/thank-you?product=ai-features' %}
+  {% else %}
+    {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about Artificial Intelligence" intro_text="Fill in your details below and a member of our sales team will be in touch." formid='3231'  lpId='6279' returnURL='https://mongoose.ubuntu.com/ai/thank-you?product=ai-managed' %}
+  {% endif %}
+{% endblock content %}
+
+{% block footer_extra %}
+<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
+<script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
+<script>
+  $("#mktoForm").validate({
+    errorElement: "span",
+    errorClass: "mktFormMsg mktError",
+    onkeyup: false,
+    onclick: false,
+    onblur: false
+  });
+</script>
+{% endblock footer_extra %}

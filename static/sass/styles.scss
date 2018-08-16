@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 //settings
+@import 'global-settings';
 @import 'settings_colors';
 
 // custom mixins
@@ -10,25 +11,21 @@
 @import 'vanilla-framework/scss/build';
 
 // vendor
-@import '../global-nav/src/sass/main';
+// @import '../global-nav/src/sass/main';
+@import 'pattern_global-nav';
+@import 'vanilla-placeholders';
+@include global-nav;
 
 // import site specific patterns and overrides
 @import 'pattern_buttons';
-@import 'pattern_site_search';
-@import 'pattern_sun-animation';
 @import 'pattern_navigation';
 @import 'pattern_strip';
 @import 'pattern_notifications';
 @import 'pattern_footer';
 @import 'pattern_lists';
 @import 'pattern_card';
-@import 'pattern_link';
-@import 'pattern_contribution';
 @import 'pattern_inline-images';
-@import 'pattern_testimonials';
-@import 'pattern_hero';
-@import 'pattern_pull_quotes';
-@import 'utility_full-width';
+@import 'pattern_heading-icon';
 @import 'pattern_matrix';
 @import 'pattern_contextual-footer';
 @import 'pattern_pie_chart';
@@ -37,38 +34,32 @@
 @import 'pattern_ubuntu_intro';
 @import 'pattern_takeunders';
 @import 'pattern_table';
-@import 'pattern_tabs';
-@import 'takeovers/ai-webinar';
+@import 'pattern_feedback';
 @import 'takeovers/rigado-webinar';
+@import 'takeovers/ai-webinar';
 @import 'utility-animations';
+@import 'pattern_chart';
 
 @include ubuntu-p-buttons;
-@include ubuntu-p-site-search;
 @include ubuntu-p-navigation;
 @include ubuntu-p-strip;
 @include ubuntu-p-notification;
 @include ubuntu-p-footer;
 @include ubuntu-p-lists;
 @include ubuntu-p-card;
-@include ubuntu-p-link;
-@include ubuntu-p-contribute;
 @include ubuntu-p-inline-images;
-@include ubuntu-p-testimonials;
-@include ubuntu-p-hero;
-@include ubuntu-p-pull-quote;
-@include ubuntu-u-full-width;
+@include ubuntu-p-heading-icon;
 @include ubuntu-p-matrix;
 @include ubuntu-p-contextual-footer;
 @include ubuntu-p-pie-chart;
-@include ubuntu-p-sun-animation;
 @include ubuntu-p-gaming;
 @include ubuntu-p-strip-photos;
 @include ubuntu-p-ubuntu-intro;
 @include ubuntu-p-takeunders;
 @include ubuntu-p-tables;
-@include ubuntu-p-tabs;
-@include p-takeover-ai-webinar;
+@include ubuntu-p-feedback;
 @include p-takeover-rigado-webinar;
+@include p-takeover-ai-webinar;
 @include u-animations;
 
 // Bug fixes
@@ -79,34 +70,11 @@
 // respective repos and referenced here, accompanied with a breif description of
 // the bug
 
-@media (min-width: $breakpoint-medium ) {
-  .p-navigation:target .p-navigation__toggle--close {
-    display: none !important; // specificity
-  }
-}
-
-/// XXX Compact button style
-/// This should be considered for inclusion in vanilla-framework
-.p-button--neutral.is-compact {
-  padding: $sp-x-small $sp-small;
-}
-
 // XXX Vertically spaced - add vertical margins to an element
 // An attempt to solve some of the vertical spacing issues
 .u-vertically-spaced {
   padding-bottom: $sp-medium;
   padding-top: $sp-medium;
-}
-
-/// XXX remove abbr `text-decoration: underline dotted;`
-/// add to :hover
-/// from [normalize.css](https://github.com/necolas/normalize.css/blob/master/normalize.css)
-abbr[title] {
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline dotted;
-  }
 }
 
 // overflow tables
@@ -115,18 +83,6 @@ abbr[title] {
   overflow-x: auto;
   overflow-y: hidden;
   width: 100;
-}
-
-.p-heading--insights__title {
-  color: $color-dark;
-  font-size: $sp-medium;
-  font-weight: 300;
-  text-transform: uppercase;
-
-  a:link,
-  a:visited {
-    color: $color-dark;
-  }
 }
 
 // XXX Applies suru background to the site
@@ -151,46 +107,6 @@ abbr[title] {
   }
 }
 
-.p-list-step__content .p-list {
-  list-style-type: disc;
-}
-
-// XXX orange quotes in pull quotes
-.p-pull-quote > p:first-of-type::before,
-.p-pull-quote--accent > p:first-of-type::before,
-.p-pull-quote > p:last-of-type::after,
-.p-pull-quote--accent > p:last-of-type::after {
-  color: $color-brand;
-}
-
-// XXX add to grahams section page when live
-// flex to flow charm list around
-.p-list-flex {
-  display: flex;
-  flex-wrap: wrap;
-
-  &__item {
-    margin-bottom: 16px;
-    margin-right: 18px;
-    max-height: 172px;
-    max-width: 142px;
-  }
-}
-
-// XXX responsive image utility
-// S - 65%, M - 90%, L - 100%
-.u-responsive-image {
-  width: 65%;
-
-  @media (min-width: $breakpoint-medium ) {
-    width: 90%;
-  }
-
-  @media (min-width: $breakpoint-large ) {
-    width: 100%;
-  }
-}
-
 /// XXX Override for p-strip--image to hide the background at small viewports
 .u-no-background--small {
   @media (max-width: $breakpoint-medium) {
@@ -198,100 +114,10 @@ abbr[title] {
   }
 }
 
-/// XXX Muted icon headers
-.p-heading-icon {
-  &__img--small {
-    max-width: 30px;
-  }
-
-  &__title--muted {
-    color: $color-mid-dark;
-  }
-}
-
-// XXX Ant: 16.10.17 - Can be removed when this issue has been resolved.
-// https://github.com/vanilla-framework/vanilla-framework/issues/1379
-.u-image-position {
-  @media (min-width: $breakpoint-medium) {
-    overflow: hidden;
-  }
-}
-
 // XXX Karl: 19.10.17
 // VF 1.6.0 is missing this
 .p-link--external::after {
   -webkit-mask-size: cover;
-}
-
-// XXX Ant: 27.10.17
-select {
-  background-position-y: center;
-  min-height: 0;
-  padding-right: 2rem;
-}
-
-
-// XXX Ant: 27.10.17 - Can be removed when this issue has been resolved.
-// https://github.com/vanilla-framework/vanilla-framework/issues/1458
-.p-tabs {
-  &__item:last-of-type {
-    @media (max-width: $breakpoint-small) {
-      padding-right: 4rem;
-    }
-  }
-
-  &::before {
-    width: 70px;
-  }
-}
-
-// XXX Ant: 04.12.17 This can be removed when this is fixed
-// https://github.com/vanilla-framework/vanilla-framework/issues/1478
-.u-align--center {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
-    max-width: none;
-  }
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  &.u-align--center {
-    max-width: none;
-  }
-}
-
-// XXX Ant: 06.12.17 This can be removed when this is fixed
-// https://github.com/vanilla-framework/vanilla-framework/issues/1484
-
-.p-pagination {
-  &__previous {
-    text-align: left !important;
-
-    &:only-child {
-      &::after {
-        display: none;
-      }
-    }
-  }
-
-  &__next {
-    &:only-child {
-      &::before {
-        display: none;
-      }
-    }
-  }
 }
 
 // XXX Ant: 11.12.17 This can be removed when this is fixed
@@ -318,32 +144,6 @@ select {
   padding-right: $sp-xxx-large;
 }
 
-// XXX Caleb: Temporary code block spacing fix until issue is resolved in Vanilla
-// https://github.com/vanilla-framework/vanilla-framework/issues/1385
-p + pre {
-  margin-top: $sp-medium;
-}
-
-// XXX Caleb 06/02/2018 Modifier to Matrix pattern so images can be large
-.p-matrix {
-  &__img {
-    &-container {
-      min-height: 5rem;
-      padding: .5rem 0 1rem 0;
-    }
-
-    &--large {
-      @extend .p-matrix__img; // sass-lint:disable-line placeholder-in-extend
-      max-width: 100%;
-    }
-  }
-}
-
-.u-align--bottom {
-  display: flex;
-  align-items: flex-end !important;
-}
-
 .p-card__icon {
   display: inline-block;
   margin-bottom: 1.25rem;
@@ -358,5 +158,79 @@ p + pre {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: left 70% top;
+  }
+}
+
+// XXX Caleb: 26.02.18 Fix middot list wrapping issue
+.p-inline-list--middot > .p-inline-list__item {
+  white-space: nowrap;
+}
+
+// XXX Steve: 21.06.18 https://github.com/vanilla-framework/vanilla-framework/issues/1794
+.u-no-max-width {
+  max-width: none !important;
+}
+
+// XXX Peter: adding border back for fieldsets
+fieldset {
+  border: 1px solid $color-mid-light;
+  border-bottom-width: 0;
+  border-radius: $sp-xx-small $sp-xx-small 0 0;
+}
+
+fieldset + fieldset {
+  border-top-width: 0 !important;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+fieldset:last-child {
+  border-bottom-width: 1px !important;
+  border-bottom-left-radius: $sp-xx-small !important;
+  border-bottom-right-radius: $sp-xx-small !important;
+}
+
+// XXX Steve: Overriding default Vanilla style :(
+.p-heading--six {
+  font-style: normal;
+}
+
+// XXX Steve: Pull quote colour override
+.p-pull-quote p:first-of-type::before,
+.p-pull-quote p:last-of-type::after {
+  color: $color-brand;
+}
+
+h1.u-align--center,
+h2.u-align--center,
+h3.u-align--center,
+h4.u-align--center,
+h5.u-align--center,
+h6.u-align--center,
+p.u-align--center {
+  max-width: none;
+}
+
+/// XXX Caleb: Inline images hotfix - can be removed once updated to Vanilla 1.8.x
+.p-inline-images {
+  &__item {
+    margin: 1rem;
+    max-height: inherit;
+    max-width: inherit;
+
+    @media only screen and (min-width: $breakpoint-medium) {
+      margin: 1.875rem;
+    }
+  }
+
+  img {
+    max-height: map-get($icon-sizes, thumb--small);
+    max-width: 7rem;
+    width: auto;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      max-height: 5.5rem;
+      max-width: 9rem;
+    }
   }
 }

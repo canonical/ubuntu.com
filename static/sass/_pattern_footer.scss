@@ -29,6 +29,10 @@
     &__nav {
       border-bottom: 1px solid $color-mid-light;
 
+      @media only screen and (max-width: $breakpoint-medium - 1) {
+        margin-top: 0 !important;
+      }
+
       @media only screen and (min-width: $breakpoint-medium) {
         border: 0;
       }
@@ -53,6 +57,7 @@
       border-bottom: 1px solid $color-mid-light;
       border-collapse: separate;
       margin-top: 2rem;
+      height: 0;
 
       @media only screen and (max-width: $breakpoint-medium - 1px) {
         display: none;
@@ -235,6 +240,16 @@
 
   // social icons in footer
   .p-inline-list-icons {
+    @media (max-width: $breakpoint-medium) {
+      padding-left: 0;
+      margin-left: 0;
+      margin-top: 1rem;
+
+      .p-inline-list__item {
+        display: inline-block;
+      }
+    }
+
     @media only screen and (min-width: $breakpoint-medium) {
       float: right;
       padding-left: 0;
@@ -242,6 +257,12 @@
 
     @media only screen and (min-width: $breakpoint-large) {
       margin-top: $sp-x-small;
+    }
+  }
+
+  .p-footer__item--spaced {
+    @media only screen and (min-width: $breakpoint-medium) {
+      margin-bottom: $sp-large;
     }
   }
 }

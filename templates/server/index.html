@@ -2,6 +2,7 @@
 
 {% block title %}Ubuntu Server - for scale out workloads{% endblock %}
 {% block meta_description %}Secure, fast and economically scalable, Ubuntu helps you make the most of your infrastructure. Whether you want to deploy a cloud or a web farm, Ubuntu Server supports the most popular hardware and software.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1vxLhtbjgPs9PCNEhr7fbhEoErCPMXYFfU4UTKH7Kbq4/edit{% endblock meta_copydoc %}
 
 {% block content %}
 <div class="p-strip is-deep is-bordered">
@@ -58,7 +59,6 @@
       <div class="col-8">
         <h2>Landscape: Server management</h2>
         <p>Landscape allows you to manage thousands of Ubuntu machines as easily as one, making the administration of Ubuntu desktops, servers and cloud instances more cost-effective. It&rsquo;s easy to set up, easy to use and it requires no special hardware.</p>
-        <div class="p-list">
           <ul class="p-list is-split">
             <li class="p-list__item is-ticked">Management at scale</li>
             <li class="p-list__item is-ticked">Deploy security updates</li>
@@ -66,7 +66,6 @@
             <li class="p-list__item is-ticked">Role-based access</li>
             <li class="p-list__item is-ticked">Informative monitoring</li>
           </ul>
-        </div>
         <p><a href="https://landscape.canonical.com/" class="p-button--neutral"><span class="p-link--external">Learn more about Landscape</span></a></p>
       </div>
     </div>
@@ -81,7 +80,7 @@
         <p>In addition to x86 and ARM servers, Ubuntu is supported on the Power architecture. For the enterprise datacentre, this means you can now build your infrastructure on any hardware you choose.</p>
       </div>
       <div class="col-4 u-vertically-center u-align--center">
-        <img src="{{ ASSET_SERVER_URL }}683950fd-logo-ibm.svg" alt="IBM logo" width="200" />
+        <img class="u-hide--small" src="{{ ASSET_SERVER_URL }}683950fd-logo-ibm.svg" alt="IBM logo" width="200" />
       </div>
     </div>
   </div>
@@ -150,7 +149,7 @@
           <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}64493bba-logo-openbravo.png" alt="Openbravo" />
         </li>
       </ul>
-      <p class="u-align--center u-vertically-spaced"><a href="/partners/certified-software">View all certified software&nbsp;&rsaquo;</a></p>
+      <p class="u-align--center u-vertically-spaced"><a href="https://partners.ubuntu.com/programmes/software">View all certified software&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </div>
@@ -166,7 +165,7 @@
           <h3 class="p-heading-icon__title">Juju &mdash; application modeling</h3>
         </div>
         <p>With the option of a command line or browser-based interface, Juju enables you to design and deploy entire workloads in just a few clicks. It works on public clouds like AWS and Microsoft Azure, private clouds built on OpenStack and even directly on bare metal, via MAAS.</p>
-        <p><a href="/cloud/juju">Learn more about Juju&nbsp;&rsaquo;</a></p>
+        <p><a class="p-link--external" href="https://jujucharms.com/">Learn more about Juju</a></p>
       </div>
     </div>
     <div class="col-4 p-divider__block">
@@ -176,7 +175,7 @@
           <h3 class="p-heading-icon__title">MAAS &mdash; bare metal provisioning</h3>
         </div>
         <p>MAAS is a time-saving provisioning system which makes it quick and easy to set up the physical hardware to deploy complex services, like Ubuntu&rsquo;s OpenStack cloud infrastructure. Just plug in your servers, connect them to the network and let MAAS do the rest.</p>
-        <p><a href="/server/maas">Learn more about MAAS&nbsp;&rsaquo;</a></p>
+        <p><a class="p-link--external" href="https://maas.io/">Learn more about MAAS</a></p>
       </div>
     </div>
     <div class="col-4 p-divider__block">
@@ -186,7 +185,7 @@
           <h3 class="p-heading-icon__title">LXD &mdash; system containers</h3>
         </div>
         <p>LXD, the Linux container hypervisor, merges the speed and density of containers with the manageability and security of traditional virtual machines. Economics are directly tied to density, and no other virtualisation technology is as fast or dense as LXD.</p>
-        <p><a href="/containers/lxd">Learn more about LXD&nbsp;&rsaquo;</a></p>
+        <p><a class="p-link--external" href="https://linuxcontainers.org/">Learn more about LXD</a></p>
       </div>
     </div>
   </div>
@@ -257,8 +256,10 @@
 
 <div class="p-strip is-bordered">
   <div class="row">
+    <h2 id="the-fast-track-to-virtualisation">The fast track to virtualisation and containers</h2>
+  </div>
+  <div class="row">
     <div class="col-6">
-      <h2 id="the-fast-track-to-virtualisation">The fast track to virtualisation and containers</h2>
       <p>Ready to boost efficiencies and reduce costs? Virtualise your servers with Ubuntu Server, KVM and LXD. When you use a secure, lean version of Ubuntu as a guest operating system for your application, you can create virtual machines and machine containers in seconds. KVM, LXD, Xen, VMware, Vagrant, VirtualBox, and Docker are all first class experiences with Ubuntu Server. Ubuntu Server now supports KVM on ARM and IBM POWER8 architectures.</p>
       <p>Canonical believes in choice &mdash; that's why we support an open ecosystem of operating system intercompatibility. By providing choice, users of Ubuntu for both servers and clouds are empowered to succeed with any workload. We encourage others to do the same and offer support for all (currently supported) versions of Ubuntu Server running on other virtualisation platforms, including KVM on other commercially available Linux distributions, VMware vSphere, and Microsoft Hyper&#8209;V.</p>
     </div>

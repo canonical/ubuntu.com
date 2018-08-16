@@ -1,18 +1,12 @@
-// Site specific list styling
-@mixin list-link {
-  display: block;
-  fill: $color-mid-dark;
-  height: $sp-x-large;
-  width: $sp-x-large;
-}
-
 @mixin ubuntu-p-lists {
   @include ubuntu-p-inline-list-icons;
   @include ubuntu-p-is-trisected;
-  @include ubuntu-p-is-quartered;
   @include ubuntu-p-nested-counter-lists;
   @include ubuntu-p-inline-definition-list;
+  @include ubuntu-p-list-step;
   @include ubuntu-p-ordered-legal-list;
+  @include ubuntu-p-inline-list-middot;
+  @include ubuntu-p-list-small;
 }
 
 @mixin ubuntu-p-inline-list-icons {
@@ -21,19 +15,17 @@
   $color-linkedin:  #0274b3;
   $color-facebook:  #3b5898;
 
+  %list-link {
+    display: block;
+    fill: $color-mid-dark;
+    height: $sp-x-large;
+    width: $sp-x-large;
+  }
+
   .p-inline-list-icons {
-    margin-left: 0;
-    padding-left: 0;
-
-    .p-inline-list__item {
-      @include vf-inline-list-item;
-      float: left;
-      margin-top: 0;
-    }
-
     .p-inline-list__link {
       &--twitter {
-        @include list-link;
+        @extend %list-link;
 
         &:hover .twitter-icon {
           fill: $color-twitter;
@@ -41,7 +33,7 @@
       }
 
       &--google {
-        @include list-link;
+        @extend %list-link;
 
         &:hover .google-plus {
           fill: $color-google;
@@ -49,7 +41,7 @@
       }
 
       &--facebook {
-        @include list-link;
+        @extend %list-link;
 
         &:hover .facebook-icon {
           fill: $color-facebook;
@@ -57,7 +49,7 @@
       }
 
       &--linkedin {
-        @include list-link;
+        @extend %list-link;
 
         &:hover .linkedin-icon {
           fill: $color-linkedin;
@@ -68,9 +60,7 @@
 }
 
 @mixin ubuntu-p-is-trisected {
-
   [class*='p-list'] {
-
     &.is-trisected {
 
       @media (min-width: $breakpoint-medium) {
@@ -82,33 +72,6 @@
           width: calc(33.33% - .75rem);
 
           &:nth-child(3n+3) {
-            margin-right: 0;
-          }
-
-          &:nth-last-child(0) {
-            border-bottom: 0;
-          }
-        }
-      }
-    }
-  }
-}
-
-@mixin ubuntu-p-is-quartered {
-
-  [class*='p-list'] {
-
-    &.is-quartered {
-
-      @media (min-width: $breakpoint-medium) {
-        display: flex;
-        flex-wrap: wrap;
-
-        .p-list__item {
-          margin-right: .5rem;
-          width: calc(25% - .5rem);
-
-          &:nth-child(4n+4) {
             margin-right: 0;
           }
 
@@ -153,22 +116,32 @@
   }
 }
 
+// XXX Ant - 11 July 2018
+// This block can be removed when the following issue is resolved:
+// https://github.com/vanilla-framework/vanilla-framework/issues/1916
 @mixin ubuntu-p-inline-definition-list {
   .p-inline-definition-list {
-    margin: 0;
-    padding: 0;
+    margin-bottom: $sp-medium;
 
     &__title {
       border: 0;
       float: left;
-      font-size: $sp-medium;
-      font-weight: 400;
       margin: 0 $sp-medium 0 0;
-      padding: 0;
     }
 
     &__item {
       margin: 0;
+    }
+  }
+}
+
+// XXX Ant - 11 July 2018
+// This block can be removed when the following issue is resolved:
+// https://github.com/vanilla-framework/vanilla-framework/issues/1917
+@mixin ubuntu-p-list-step {
+  .p-stepped-list--detailed .p-list-step {
+    &__item {
+      margin-top: 1rem;
     }
   }
 }
@@ -225,6 +198,77 @@
     & > .p-list__item > h3:first-child,
     & > .p-list__item > h4:first-child {
       display: inline;
+    }
+  }
+}
+
+// small text has bigger padding top, so requires this to be factored into
+// the dot position top
+@mixin ubuntu-p-inline-list-middot {
+  .p-inline-list--middot {
+    &.is-x-dense {
+      margin-bottom: $sp-unit - $nudge--small;
+
+      .p-inline-list__item {
+        &::after {
+          top: 1rem;
+          right: -.65rem;
+        }
+      }
+    }
+
+    .p-inline-list__item {
+      &::after {
+        right: -.65em;
+        top: .75rem;
+
+        @media only screen and (max-width: $breakpoint-medium - 1) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@mixin ubuntu-p-list-small {
+  .p-text-list--small {
+    @extend %small-text-fixed;
+    margin-bottom: $spv-inter--scaleable - $nudge--small + 1 * $sp-unit;
+    margin-left: 0;
+    padding-left: 0;
+
+    .p-p--small + & {
+      margin-top: - $sp-unit * 1;
+    }
+
+    &.is-dense {
+      margin-bottom: $spv-inter--scaleable  - $nudge--small;
+    }
+
+    & .p-list__item {
+      list-style-type: none;
+      padding-left: 0;
+      padding-top: 0;
+      position: relative;
+    }
+
+    &.is-bordered {
+      display: block;
+      & .p-list__item {
+        margin-bottom: .25rem;
+
+        &:not(:last-child) {
+          padding-bottom: .25rem;
+        }
+
+        &:not(:last-child) {
+          @extend %vf-pseudo-border--bottom;
+
+          &::after {
+            background-color: transparentize($color-mid-light, .5);
+          }
+        }
+      }
     }
   }
 }

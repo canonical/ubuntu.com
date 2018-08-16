@@ -1,20 +1,16 @@
 {% extends "support/base_support.html" %}
 
 {% block title %}Plans and pricing | Support{% endblock %}
-
-
 {% block meta_description %}A summary of all our support offerings. Ubuntu offers the best economics of any commercially supported Linux solution and the best community support.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1R7FRZbfx_5YHFeZUD93HgT8RW4OCbbK4blOulB4D6EE/edit{% endblock meta_copydoc %}
 
 {% block content %}
 
 <section class="p-strip is-deep is-bordered">
   <div class="row">
-    <div class="col-6">
-      <h1>Plans and pricing</h1>
-      <p>Ubuntu is always free to download, install, run, and upgrade. Free community support is available from <a href="https://usn.ubuntu.com/usn/">Ubuntu Security Notices</a>, <a href="http://askubuntu.com">AskUbuntu</a>, <a href="http://ubuntuforums.org">UbuntuForums</a>, <a href="http://launchpad.net/ubuntu">Launchpad</a>, <a href="http://planet.ubuntu.com">PlanetUbuntu</a>, <a href="https://wiki.ubuntu.com/IRC/ChannelList">IRC</a> and through <a href="https://lists.ubuntu.com">Mailing Lists</a>.</p>
-      <p>For enterprises with production workloads Canonical offers the following suite of Ubuntu Advantage tools, services and support packages.</p>
-      <p><a href="/support/contact-us?product=support-pricing" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Learn more', 'eventLabel' : 'Get in touch - Top CTA' : undefined });" class="p-button--positive">Get in touch</a></p>
-    </div>
+    <h1>Plans and pricing</h1>
+    <p>For enterprises with production workloads Canonical offers the following suite of Ubuntu Advantage tools, services and support packages.</p>
+    <p><a href="/support/contact-us?product=support-pricing" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Learn more', 'eventLabel' : 'Get in touch - Top CTA' : undefined });" class="p-button--positive">Get in touch</a></p>
   </div>
 </section>
 
@@ -23,7 +19,7 @@
     <div class="col-4 p-card">
       <h3>Server</h3>
       <div class="p-card__footer">
-        <p class="p-heading--five">From $75 per year <sup><a href="#fn-pnp-1">*</a></sup></p>
+        <p class="p-heading--four">From $75 per year <sup><a href="#fn-pnp-1">*</a></sup></p>
       </div>
       <div class="p-card__footer">
         <a href="#ua-support">Learn more&nbsp;&rsaquo;</a>
@@ -33,7 +29,7 @@
     <div class="col-4 p-card">
       <h3>MAAS</h3>
       <div class="p-card__footer">
-        <p class="p-heading--five">From $5 per month <sup><a href="#fn-pnp-1">*</a></sup></p>
+        <p class="p-heading--four">From $5 per month <sup><a href="#fn-pnp-1">*</a></sup></p>
       </div>
       <div class="p-card__footer">
         <a href="#maas">Learn more&nbsp;&rsaquo;</a>
@@ -43,7 +39,7 @@
     <div class="col-4 p-card">
       <h3>OpenStack</h3>
       <div class="p-card__footer">
-        <p class="p-heading--five">From $4 per day <sup><a href="#fn-pnp-1">*</a></sup></p>
+        <p class="p-heading--four">From $4 per day <sup><a href="#fn-pnp-1">*</a></sup></p>
       </div>
       <div class="p-card__footer">
         <a href="#openstack">Learn more&nbsp;&rsaquo;</a>
@@ -55,7 +51,7 @@
     <div class="col-4 p-card">
       <h3>Kubernetes</h3>
       <div class="p-card__footer">
-        <p class="p-heading--five">From $0.02 per hour <sup><a href="#fn-pnp-1">*</a></sup></p>
+        <p class="p-heading--four">From $0.02 per hour <sup><a href="#fn-pnp-1">*</a></sup></p>
       </div>
       <div class="p-card__footer">
         <a href="#kubernetes">Learn more&nbsp;&rsaquo;</a>
@@ -65,7 +61,7 @@
     <div class="col-4 p-card">
       <h3>Storage</h3>
       <div class="p-card__footer">
-        <p class="p-heading--five">From $0.01 per month <sup><a href="#fn-pnp-1">*</a></sup></p>
+        <p class="p-heading--four">From $0.01 per month <sup><a href="#fn-pnp-1">*</a></sup></p>
       </div>
       <div class="p-card__footer">
         <a href="#storage">Learn more&nbsp;&rsaquo;</a>
@@ -75,7 +71,7 @@
     <div class="col-4 p-card">
       <h3>Consulting packages</h3>
       <div class="p-card__footer">
-        <p class="p-heading--five">From $2,500 per day <sup><a href="#fn-pnp-1">*</a></sup></p>
+        <p class="p-heading--four">From $2,500 per day <sup><a href="#fn-pnp-1">*</a></sup></p>
       </div>
       <div class="p-card__footer">
         <a href="#consulting">Learn more&nbsp;&rsaquo;</a>
@@ -92,7 +88,7 @@
 
 <section class="p-strip--light is-deep u-no-padding--bottom" id="ua-support">
   <div class="row">
-    <div class="col-8">
+    <div class="col-12">
       <h2>Ubuntu Advantage</h2>
       <p>Ubuntu Advantage is the professional package of tools, technology and expertise from Canonical, helping organisations around the world get the most out of their Ubuntu deployments. It includes access to:</p>
       <ul class="p-list">
@@ -110,8 +106,8 @@
 
 <section class="p-strip--light is-shallow">
   <div class="row" style="overflow-x: auto;">
-    <div class="col-10">
-      <h2>For servers</h2>
+    <div class="col-12">
+      <h2 id="server">For servers</h2>
       {% include "shared/pricing/_ua-server-support.html" %}
     </div>
   </div>
@@ -119,8 +115,8 @@
 
 <section class="p-strip--light is-shallow u-no-padding--bottom">
   <div class="row" style="overflow-x: auto;">
-    <div class="col-10">
-      <h2>For desktops</h2>
+    <div class="col-12">
+      <h2 id="desktop">For desktops</h2>
       {% include "shared/pricing/_ua-desktop-support.html" %}
     </div>
   </div>
@@ -132,14 +128,14 @@
 
 <section class="p-strip--light is-deep is-bordered" id="maas">
   <div class="row">
-    <div class="col-8">
+    <div class="col-12">
       <h2>MAAS</h2>
-      <p>MAAS is freely available, open source software from Canonical. Many enterprises depend on MAAS to automate and optimize provisioning for production hardware.  Canonical offers Standard and Advanced support plans priced per-machine-per-month or, for large volume and public clouds with dynamic scale, we offer per-region pricing with flexible node ranges.</p>
+      <p>MAAS is open source data center automation provisioning, DNS, DHCP and IPAM software from Canonical. Many enterprises depend on MAAS to automate and optimize provisioning for server clusters. Canonical offers Standard and Advanced support plans priced per-machine-per-month or, for large volume and public clouds with dynamic scale, we offer per-region pricing with flexible node ranges.</p>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-10" style="overflow-x: auto;">
+    <div class="col-12" style="overflow-x: auto;">
       {% include "shared/pricing/_maas-support.html" %}
     </div>
   </div>
@@ -147,37 +143,37 @@
 
 <section class="p-strip--light is-deep is-bordered" id="openstack">
   <div class="row">
-    <div class="col-8">
+    <div class="col-12">
       <h2>OpenStack</h2>
       <p>Canonical provides support services, management tools, and the Cloud Archive which keeps thousands of businesses productive with their own local OpenStack clouds.</p>
     </div>
   </div>
   {% include "shared/pricing/_openstack-support.html" %}
   <div class="row">
-    <div class="col-8">
-      <p><a href="/cloud/contact-us" class="p-link--external">Get in touch&nbsp;&rsaquo;</a></p>
+    <div class="col-12">
+      <p><a href="/openstack/contact-us">Get in touch&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
 
 <section class="p-strip--light is-deep is-bordered" id="consulting">
   <div class="row">
-    <div class="col-8">
+    <div class="col-12">
       <h2>OpenStack services packages</h2>
       <p>Canonical delivers turnkey OpenStack software solutions, on-site, through its field consulting team. Two plans are offered: the Foundation Cloud, which is based on our award-winning reference architecture, and Foundation Plus, which packs in a complete set of enterprise features and  architectural flexibility.</p>
     </div>
   </div>
     {% include "shared/pricing/_openstack-consulting.html" %}
   <div class="row">
-    <div class="col-8">
-      <p>For more information about Foundation Cloud Build or if you are not sure which one is right for you, <a href="/cloud/contact-us?product=foundation-cloud">contact us&nbsp;&rsaquo;</a></p>
+    <div class="col-12">
+      <p>For more information about Foundation Cloud Build or if you are not sure which one is right for you, <a href="/openstack/contact-us?product=foundation-cloud">contact us&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
 
 <section class="p-strip--light is-deep is-bordered" id="kubernetes">
   <div class="row">
-    <div class="col-8">
+    <div class="col-12">
       <h2>Kubernetes</h2>
       <p>Scale-out container management is top of mind for savvy cloud architects around the world.  Ubuntu is, by far, the world&rsquo;s leading platform for container-based workflows.  Canonical provides enterprise-caliber support for Kubernetes.</p>
       <p>For more information about Kubernetes support, <a href="/containers/contact-us">contact us&nbsp;&rsaquo;</a></p>
@@ -190,7 +186,7 @@
 
 <section class="p-strip--light is-deep is-bordered">
   <div class="row">
-    <div class="col-8">
+    <div class="col-12">
       <h2 class="u-no-margin--bottom">Kubernetes services packages</h2>
     </div>
   </div>
@@ -216,7 +212,7 @@
 
 <section class="p-strip--light is-deep is-bordered" id="storage">
   <div class="row">
-    <div class="col-8">
+    <div class="col-12">
       <h2>Ceph and Swift Storage</h2>
       <p>Ubuntu Advantage Storage from Canonical embeds the proven open source software‐defined storage (SDS) technologies of Ceph and Swift into a 24x7 supported software solution with a unique usage-based pricing model.</p>
     </div>
@@ -232,7 +228,7 @@
 <div class="row">
   <div class="col-12">
     <div>
-      <p><a href="/cloud/contact-us?product=cloud-storage" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Contact us - cloud storage CTA' : undefined });">Contact us</a></p>
+      <p><a href="/cloud/contact-us?product=ubuntu-advantage-storage" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Contact us - cloud storage CTA' : undefined });">Contact us</a></p>
       <p><a href="https://insights.ubuntu.com/2015/05/18/ubuntu-advantage-storage-factsheet/?_ga=2.122490379.1666167933.1504515501-463981611.1499434659" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Try it now', 'eventLabel' : 'Download the datasheet - cloud storage CTA' : undefined });">Download the datasheet</a></p>
     </div>
   </div>
@@ -241,7 +237,7 @@
 
 <section class="p-strip--light is-deep">
   <div class="row">
-    <div class="col-8">
+    <div class="col-12">
       <h2>Landscape Enterprise Systems Management</h2>
       <p>Reduce your team&rsquo;s efforts on day-to-day management with Landscape, the most cost-effective tool to support and monitor large and growing networks of desktops, servers and clouds.</p>
     </div>
@@ -252,7 +248,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-8">
+    <div class="col-12">
       <p><a href="https://landscape.canonical.com" class="p-link--external">Learn more about Landscape</a></p>
     </div>
   </div>

@@ -1,18 +1,17 @@
 {% extends "containers/base_containers.html" %}
+
 {% block title %}Containers{% endblock %}
-{% block meta_description %}Whether you’re building your own OpenStack cloud, want a hosted private cloud or want to use Ubuntu in the public cloud, we offer all the training, software, tools, services and support you need.{% endblock meta_description %}
-
-
+{% block meta_description %}Containers run best on Ubuntu because it has more modern Linux kernels and the latest tooling for the fast-moving Docker, K8s and LXD communities. Optimised on all major clouds.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1OtyfNeA--EJgpgvDzqcbJ8jqa6d9H5H9xyxHNxcKXvc/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<div class="p-strip is-deep">
+<div class="p-strip is-deep is-bordered">
   <div class="row">
     <div class="u-equal-height">
       <div class="col-7">
-        <h1>Containers</h1>
-        <h2>Ubuntu is the number one platform for containers</h2>
-        <p>From LXD to Kubernetes to Docker, Canonical has partnered with industry leaders to offer a full range of technologies. We help enterprises run containers at scale, on public, private and bare metal clouds.<p>
-          <p><a href="/containers/contact-us?product=containers-overview">Talk to us about your container strategy&nbsp;&rsaquo;</a></p>
+        <h1>Why is Ubuntu the #1 OS for Containers?</h1>
+        <p>From Docker to Kubernetes, the experts choose Ubuntu for container operations. The single most important driver of quality, security and performance is the kernel version, and Canonical ensures that Ubuntu always has the very latest kernels with the latest security capabilities. That’s why the world’s biggest cloud operators and the world’s most sophisticated IT operations have chosen Ubuntu for containers.<p>
+        <p><a href="/containers/contact-us?product=containers-overview">Talk to us about your container strategy&nbsp;&rsaquo;</a></p>
         </div>
         <div class="col-5 u-align--center u-hide--small">
           <img class="u-float--right" src="{{ ASSET_SERVER_URL }}a9aff224-Containers-illustration.svg" width="350" alt="" />
@@ -22,106 +21,37 @@
   </div>
 </div>
 
-{% include "containers/shared/_whitepaper.html" %}
-
-<div class="p-strip--light is-bordered is-deep">
-  <div class="row">
-    <div class="col-12">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header">
-          <img src="{{ ASSET_SERVER_URL }}425efe3a-lxd.svg?w=80" alt="LXD logo" width="80" class="p-heading-icon__img" />
-          <h2 class="p-heading-icon__title">LXD, the pure-container hypervisor</h2>
-        </div>
-      </div>
+<div class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-5 suffix-1 u-hide--small u-vertically-center">
+      <img src="{{ ASSET_SERVER_URL }}dba11aee-kubernetes.svg?w=275" alt="" width="275" />
     </div>
-
-    <div class="row p-divider">
-      <div class="col-4 p-divider__block">
-        <h3 class="p-heading--four">Lift-and-shift existing VM workloads</h3>
-        <p>Move your existing Linux VMs straight to containers, easily, without modifying the apps or your operations. LXD&rsquo;s machine containers operate just like virtual machines.</p>
-      </div>
-      <div class="col-4 p-divider__block">
-        <h3 class="p-heading--four">25% faster than legacy VMs</h3>
-        <p>Use VM-style commands to run your applications in an unmodified Linux operating system, at incredible speed, with zero latency.</p>
-      </div>
-      <div class="col-4 p-divider__block">
-        <h3 class="p-heading--four">10x the density of ESX</h3>
-        <p>LXD&rsquo;s pure-container approach to Linux virtualisation offers dramatic density advantages over VMware ESX and Linux KVM for private and public cloud infrastructure.</p>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-8 u-vertically-spaced">
-        <p><a href="/containers/lxd">Learn more about LXD&nbsp;&rsaquo;</a></p>
-      </div>
+    <div class="col-7">
+      <h2>Kubernetes &mdash; the multi-cloud operations layer for next-gen apps</h2>
+      <p class="p-heading--four">Kubernetes on Ubuntu supports VMware, Openstack, bare metal and every public cloud.</h2>
+      <p>The new wave of cloud-native applications are being designed for Kubernetes operations. With high performance auto-scaling, healing, service meshes and built-in primitives for CI/CD, K8s is the most significant change in IT operations since the emergence of public cloud in 2009.</p>
+      <p><a href="">Learn more about Kubernetes on Ubuntu&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </div>
-
-<div class="p-strip is-bordered is-deep">
-  <div class="row">
-    <div class="col-12">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header">
-          <img src="{{ ASSET_SERVER_URL }}24e41fc3-kubernetes_logo.svg" alt="Kubernetes logo" class="p-heading-icon__img" />
-          <h2 class="p-heading-icon__title">The Canonical Distribution of Kubernetes<sup>&reg;<a href="#fn1" id="r1">*</a></sup></h2>
-        </div>
-      </div>
-    </div>
-  </div>
-
+<div class="p-strip--light u-no-padding--top is-bordered">
   <div class="row p-divider">
     <div class="col-4 p-divider__block">
-      <h3 class="p-heading--four">Elasticity built-in</h3>
+      <h3 class="p-heading-four">Elastic</h3>
       <p>Looking for a container orchestration system to help build your microservice-based app? Our Kubernetes distribution is simple and naturally elastic.</p>
     </div>
     <div class="col-4 p-divider__block">
-      <h3 class="p-heading--four">Cost-effective at scale</h3>
-      <p>Modelled using Juju, Canonical's Kubernetes distribution includes all operational scripting and tooling needed to manage a long-lived cluster, including upgrades and elastic scaling.</p>
+      <h3 class="p-heading-four">Cost-effective</h3>
+      <p>Canonical’s Kubernetes distribution includes all operational scripting and tooling needed to manage a long-lived cluster, including upgrades and scaling. Build it right for the long term on day one.</p>
     </div>
     <div class="col-4 p-divider__block">
-      <h3 class="p-heading--four">Analytics on tap</h3>
-      <p>Our Kubernetes distribution can be easily integrated with Prometheus for monitoring, Ceph for storage and Elastic Stack including Kibana for analysis and visualisations.</p>
+      <h3 class="p-heading-four">Carrier-grade</h3>
+      <p>Our production Kubernetes deployments include Prometheus for monitoring, Ceph for storage and Elastic Stack including Kibana for analysis and visualisations.</p>
     </div>
   </div>
-
   <div class="row">
-    <div class="col-8 u-vertically-spaced">
-      <p><a href="/containers/kubernetes">Learn more about the Canonical Distribution of Kubernetes&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-</div>
-
-<div class="p-strip--light is-deep is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header">
-          <img src="{{ ASSET_SERVER_URL }}1eb617a5-docker_logo.svg" alt="Docker logo" class="p-heading-icon__img" />
-          <h2 class="p-heading-icon__title">Docker Engine on Ubuntu</h2>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--four">Enterprise ready Docker</h3>
-      <p>We work closely with Docker Inc. to deliver an integrated Commercially Supported Docker Engine offering on Ubuntu.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--four">Reliable updates</h3>
-      <p>The Docker Engine images are published as snap package which update automatically and transactionally.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--four">Single vendor solution</h3>
-      <p>Canonical provides Level 1 and Level 2 technical support for the CS Docker Engine and are backed by Docker Inc. for Level 3 support.</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-8 u-vertically-spaced">
-      <p><a href="/containers/docker-ubuntu">Learn more about Docker Engine on Ubuntu&nbsp;&rsaquo;</a></p>
+    <div class="col-8">
+      <p><a href="/containers/kubernetes">Learn more about Kubernetes on Ubuntu&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </div>
@@ -134,7 +64,43 @@
   </div>
 </div>
 
-<div class="p-strip--light is-deep">
+{% include "containers/shared/_whitepaper.html" %}
+
+<div class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-5 suffix-1 u-hide--small u-vertically-center">
+      <img src="{{ ASSET_SERVER_URL }}9b153e96-lxd.svg" alt="LXD logo" width="275px">
+    </div>
+    <div class="col-7 suffix-1">
+      <h2>VM-style containers for legacy applications with LXD</h2>
+      <p>LXD containers behave like regular VMs, so traditional applications can be installed there unmodified.</p>
+    </div>
+  </div>
+</div>
+<div class="p-strip u-no-padding--top is-bordered">
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">Lift-and-shift existing VM workloads</h3>
+      <p>Move your existing Linux VMs straight to containers, easily, without modifying the apps or your operations. LXD’s machine containers operate just like virtual machines.</p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">25% faster than legacy VMs</h3>
+      <p>Use VM-style commands to run your applications in an unmodified Linux operating system, at incredible speed, with zero latency.</p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">10x the density of ESX</h3>
+      <p>LXD’s pure-container approach to Linux virtualisation offers dramatic density advantages over VMware ESX and Linux KVM for private and public cloud infrastructure.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-8">
+      <p><a class="p-link--external" href="https://linuxcontainers.org/">Learn more about LXD</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip--light is-deep is-bordered">
   <div class="row">
     <div class="u-equal-height">
       <div class="col-7 equal-height__align-vertically">
@@ -146,11 +112,10 @@
           <li class="p-list__item is-ticked">IP assurance for your Ubuntu environment</li>
           <li class="p-list__item is-ticked">Kernel livepatching to ensure you have the latest kernel security&nbsp;updates</li>
         </ul>
-        <p><a href="https://buy.ubuntu.com/" class="p-button--positive"><span class="p-link--external">Visit the Ubuntu Advantage store</span></a></p>
-        <p>Or <a href="/containers/contact-us?product=containers-overview">contact us&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-5 u-align--right u-vertically-center u-hide--small">
-        <img src="{{ ASSET_SERVER_URL }}11da76f5-image-management.svg" style="width: 80%;" width="288" height="155" />
+        <ul class="p-inline-list">
+          <li class="p-inline-list__item"><a href="https://buy.ubuntu.com/" class="p-button--positive"><span class="p-link--external">Visit the Ubuntu Advantage store</span></a></li>
+          <li class="p-inline-list__item">or <a href="/containers/contact-us?product=containers-overview">contact us&nbsp;&rsaquo;</a></li>
+          </ul>
       </div>
     </div>
   </div>

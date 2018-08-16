@@ -54,87 +54,102 @@ Thank you for your contribution
 
   <div class="row">
     <div class="col-9 p-card--highlighted">
-      <form class="contribute" id="contributions-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <fieldset class="contribute__options noscript">
+      <form action="https://www.paypal.com/cgi-bin/webscr" id="contributions-form" method="post" target="_top">
+        <fieldset class="contribute__options" style="border-bottom-width: 1px; margin-bottom: 2rem;">
+
           <section id="ubuntu-desktop">
             <label for="amount-desktop">
-            <p class="p-heading--five contribute__heading">Ubuntu Desktop</p>
-            <p class="contribute__description">Make the desktop even more amazing.</p>
-          </label>
-
-            <div class="contribute__option-amount">
-              <span class="contribute__option-currency">$</span>
-              <input type="number" min="0" max="125" id="amount-desktop" name="amount_1" value="3" tabindex="1" class="contribute__option-value">
+              <p class="p-heading--five">Ubuntu Desktop</p>
+              <p>Make the desktop even more amazing.</p>
+            </label>
+            <div class="p-slider__wrapper">
+              <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-desktop" type="range">
+              <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-desktop-input" name="amount_1" value="3" tabindex="1" type="number">
               <input type="hidden" name="item_name_1" value="Ubuntu Desktop">
             </div>
           </section>
-          <section id="ubuntu-for-cloud">
-            <label for="amount_cloud" class="contribute__option-label">
-              <p class="p-heading--five contribute__heading">Ubuntu for cloud computing</p>
-              <p class="contribute__description">I want Ubuntu running my cloud and as a guest in my cloud of choice.</p>
-            </label>
 
-            <div class="contribute__option-amount">
-              <span class="contribute__option-currency">$</span>
-              <input type="number" min="0" max="125" id="amount_cloud" name="amount_2" value="3" class="contribute__option-value" tabindex="2">
+          <hr class="u-sv3">
+
+          <section id="ubuntu-for-cloud">
+            <label for="amount-cloud">
+              <p class="p-heading--five">Ubuntu for cloud computing</p>
+              <p>I want Ubuntu running my cloud and as a guest in my cloud of choice.</p>
+            </label>
+            <div class="p-slider__wrapper">
+              <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-cloud" type="range">
+              <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-cloud-input" name="amount_2" value="3" tabindex="2" type="number">
               <input type="hidden" name="item_name_2" value="Ubuntu for cloud computing">
             </div>
           </section>
-          <section id="ubuntu-for-things">
-            <label for="amount_things">
-              <p class="p-heading--five contribute__heading">Ubuntu for things</p>
-              <p class="contribute__description">I want a secure, upgradeable Internet of Things, powered by Ubuntu.</p>
-            </label>
 
-            <div class="contribute__option-amount">
-              <span class="contribute__option-currency">$</span>
-              <input type="number" min="0" max="125" id="amount_things" name="amount_3" value="3" class="contribute__option-value" tabindex="3">
+          <hr class="u-sv3">
+
+          <section id="ubuntu-for-things">
+            <label for="amount-things">
+              <p class="p-heading--five">Ubuntu for things</p>
+              <p>I want a secure, upgradeable Internet of Things, powered by Ubuntu.</p>
+            </label>
+            <div class="p-slider__wrapper">
+              <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-things" type="range">
+              <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-things-input" name="amount_3" value="3" tabindex="3" type="number">
               <input type="hidden" name="item_name_3" value="Ubuntu for things">
             </div>
           </section>
+
+          <hr class="u-sv3">
+
           <section id="community-projects">
-            <label for="amount_community">
-              <p class="p-heading--five contribute__heading">Community projects</p>
-              <p class="contribute__description">I support LoCo teams,  UbuCons and other events, upstream projects and all the good work the community does.</p>
+            <label for="amount-community">
+              <p class="p-heading--five">Community projects</p>
+              <p>I support LoCo teams, UbuCons and other events, upstream projects and all the good work the community does.</p>
             </label>
-
-            <div class="contribute__option-amount">
-              <span class="contribute__option-currency">$</span>
-                <input type="number" min="0" max="125" id="amount_community" name="amount_4" value="3" class="contribute__option-value" tabindex="4">
-                <input type="hidden" name="item_name_4" value="Community projects">
-              </div>
+            <div class="p-slider__wrapper">
+              <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-community" type="range">
+              <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-community-input" name="amount_4" value="3" tabindex="4" type="number">
+              <input type="hidden" name="item_name_4" value="Community projects">
+            </div>
           </section>
-          <section id="tip-to-canonical">
-            <label for="amount_canonical">
-              <p class="p-heading--five contribute__heading">Tip to Canonical</p>
-              <p class="contribute__description">Hats off for making Ubuntu possible. Keep it up.</p>
-            </label>
 
-            <div class="contribute__option-amount">
-              <span class="contribute__option-currency">$</span>
-              <input type="number" min="0" max="125" id="amount_canonical" name="amount_5" value="3" class="contribute__option-value" tabindex="5">
+          <hr class="u-sv3">
+
+          <section id="tip-to-canonical">
+            <label for="amount-canonical">
+              <p class="p-heading--five">Tip to Canonical</p>
+              <p>Hats off for making Ubuntu possible. Keep it up.</p>
+            </label>
+            <div class="p-slider__wrapper">
+              <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-canonical" type="range">
+              <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-canonical-input" name="amount_5" value="3" tabindex="5" type="number">
               <input type="hidden" name="item_name_5" value="Tip to Canonical">
             </div>
           </section>
         </fieldset>
-        <div class="contribute__summary">
-          <div class="contribute__total">
-            <p class="contribute__total-heading">Your contribution</p>
-            <p class="contribute__total-price">
-              <span class="contribute__total-currency p-heading--four">&#36;</span>
-              <span class="contribute__total-amount p-heading--four">16</span>
-            </p>
+
+        <div class="row">
+          <div class="col-6">
+            <div class="p-media-object u-no-margin--bottom">
+              <img alt="T-shirt" src="{{ ASSET_SERVER_URL }}b26d26e5-t-shirt.png" class="p-media-object__image js-equivalent-image">
+              <div class="p-media-object__details">
+                <h3 class="p-media-object__title">The same price as</h3>
+                <p class="p-media-object__content js-equivalent-description">Peace, Love and Linux t-shirt</p>
+                <p class="p-media-object__content">$<span class="js-equivalent-value">20</span></p>
+              </div>
+            </div>
           </div>
 
-          <div class="contribute__equivalent">
-            <img class="contribute__equivalent-image" alt="T-shirt" src="{{ ASSET_SERVER_URL }}b26d26e5-t-shirt.png">
-            <p>The same price as</p>
-            <p class="contribute__equivalent-description">Peace, Love and Linux t-shirt</p>
-            <p class="contribute__equivalent-price">$<span class="contribute__equivalent-value">20</span></p>
+          <div class="col-3 u-align--right">
+            <h5>Your contribution</h5>
+            <p class="p-heading--four">
+              &#36;
+              <span class="js-total-amount">16</span>
+            </p>
           </div>
         </div>
-        <hr />
-        <div class="contribute__finalise">
+
+        <hr class="u-sv3">
+
+        <div class="u-align--right">
           <input type="hidden" name="cmd" value="_cart">
           <input type="hidden" name="business" value="donations@ubuntu.com">
           <input type="hidden" name="lc" value="GB">
@@ -149,20 +164,14 @@ Thank you for your contribution
           <input type="hidden" name="cancel_return" value="http://{{ http_host }}/download/desktop/thank-you">
 
           <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
-          <button type="submit" class="contribute__submit p-button--positive" tabindex="9">Pay with PayPal</button>
+          <button type="submit" class="js-contribute-submit p-button--positive u-no-margin--bottom" tabindex="9">Contribute with PayPal</button>
         </div>
       </form>
     </div>
   </div>
 </div>
 
-<script src="{% versioned_static 'js/forms.js' %}"></script>
 <script>
-  forms.addSliders(
-    '.contribute__option-value', // Selector for number elements
-    'contribute__option-slider' // Class for sliders
-  );
-
   /**
     * Select an equivalent item for a certain contribution amount
     */
@@ -266,9 +275,9 @@ Thank you for your contribution
   }
 
   var updateEquivalentItem = function(item, imageSelector, descriptionSelector, valueSelector) {
-    var image = document.querySelector('.contribute__equivalent-image');
-    var description = document.querySelector('.contribute__equivalent-description');
-    var value = document.querySelector('.contribute__equivalent-value');
+    var image = document.querySelector('.js-equivalent-image');
+    var description = document.querySelector('.js-equivalent-description');
+    var value = document.querySelector('.js-equivalent-value');
 
     image.src = '{{ ASSET_SERVER_URL }}' + item['imageFile'];
     image.alt = item['description'];
@@ -277,33 +286,25 @@ Thank you for your contribution
   }
 
   var toggleSubmit = function(total) {
-    var submit = document.querySelector('.contribute__submit');
-    var skip = document.querySelector('.contribute__skip');
+    var submit = document.querySelector('.js-contribute-submit');
 
-    if (skip) {
-      if (total == 0) {
-        skip.classList.add('p-button--positive');
-        submit.classList.add('u-hidden');
-      } else {
-        skip.classList.remove('p-button--positive');
-        submit.classList.remove('u-hidden');
-      }
+    if (total == 0) {
+      submit.disabled.disabled = true;
     } else {
-      // Disable if total is zero
-      submit.disabled = total == 0;
+      submit.classList.disabled = false;
     }
   }
 
   var updateSummary = function() {
     // Get the total amount of all the contribution items selected
     var total = 0;
-    document.querySelectorAll('.contribute__option-value').forEach(
+    document.querySelectorAll('.p-slider__input').forEach(
       function(valueElement) {
         total += parseInt(valueElement.value || 0);
       }
     );
     var item = chooseEquivalentItem(total);
-    document.querySelector('.contribute__total-amount').innerText = total;
+    document.querySelector('.js-total-amount').innerText = total;
     updateEquivalentItem(item);
     toggleSubmit(total);
   }
@@ -327,13 +328,13 @@ Thank you for your contribution
 
     // preparing GA submission. step 1 _addTrans
     var orderId = generateRandomId();
-    var total = document.querySelector('.contribute__total-amount').innerText;
+    var total = document.querySelector('.js-total-amount').innerText;
     var transactionProducts = [];
 
     // add the individual items
-    document.querySelectorAll('.contribute__option-amount').forEach(function(amountElement) {
-      var name = amountElement.parentNode.id;
-      var value = amountElement.querySelector('[type=number]').value || 0;
+    document.querySelectorAll('.p-slider__input').forEach(function(amountElement) {
+      var name = amountElement.parentNode.parentNode.id;
+      var value = amountElement.value || 0;
       if (value > 0) {
         transactionProducts.push({
           'sku': name,
@@ -365,7 +366,7 @@ Thank you for your contribution
   /**
     * Reset fields back to 0, if missing values
     */
-  document.querySelectorAll('.contribute__option-value').forEach(
+  document.querySelectorAll('.p-slider__input').forEach(
     function(valueElement) {
       valueElement.addEventListener(
         'blur',
@@ -382,6 +383,61 @@ Thank you for your contribution
   optionsArea.addEventListener('change', updateSummary);
   optionsArea.addEventListener('input', updateSummary);
   updateSummary();
+</script>
+
+<script>
+  (function() {
+
+    function equaliseValues(receive, give) {
+      receive.value = give.value;
+      give.value = receive.value;
+    }
+
+    // Fix for Chrome and Safari as they don't support CSS slider progress
+    function renderSlider(slider, progressColour, emptyColour) {
+      if (browser === 'Chrome' || browser === 'Safari') {
+        var value = (slider.value - slider.min) / (slider.max - slider.min);
+        slider.style.backgroundImage = '-webkit-gradient(linear, left top, right top, color-stop('
+        + value + ', ' + progressColour + '), color-stop(' + value + ', ' + emptyColour + '))';
+      }
+    }
+
+    var browser;
+    /Edge/i.test(navigator.userAgent) ? browser = 'Edge' :
+    /Chrome/i.test(navigator.userAgent) ? browser = 'Chrome' :
+    /Safari/i.test(navigator.userAgent) ? browser = 'Safari' :
+    /NET/i.test(navigator.userAgent) ? browser = 'IE' :
+    browser = 'Other';
+    var progressColour = '#335280';
+    var emptyColour = '#fff';
+    var sliders = Array.prototype.slice.call(document.querySelectorAll('.p-slider'));
+
+    sliders.forEach(function(slider) {
+      var input = document.getElementById(slider.id + '-input');
+      renderSlider(slider, progressColour, emptyColour);
+
+      if (input) {
+        equaliseValues(input, slider);
+        input.oninput = function() {
+          if (!input.value) input.value = 0;
+          equaliseValues(slider, input);
+          renderSlider(slider, progressColour, emptyColour);
+        }
+      }
+
+      // Fix for IE as it doesn't support 'oninput'
+      if (browser === 'IE') {
+        slider.onchange = function() {
+          if (input) equaliseValues(input, slider)
+        }
+      } else {
+        slider.oninput = function() {
+          if (input) equaliseValues(input, slider);
+          renderSlider(slider, progressColour, emptyColour);
+        }
+      }
+    });
+  })();
 </script>
 
 <div class="p-strip--light is-shallow">

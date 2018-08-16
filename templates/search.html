@@ -37,6 +37,33 @@
       </div>
     </div>
   </div>
+</div>
+
+{# search results #}
+<div class="p-strip">
+  <div class="row">
+    <div class="col-12">
+
+      {% if query %}
+      {% if error %}
+      <label for="search-input" role="error" >
+        Failed to retrieve search results ({{ error }}). If you have time, please <a href="https://github.com/ubuntudesign/www.ubuntu.com/issues/new">file a bug</a>.
+      </label>
+      {% else %}
+      {% if results.items %}
+      <p><strong>Results {{ results.start }} to {{ results.end }} of {{ results.total }}</strong></p>
+
+      {% if results.items %}<ul class="p-list">{% endif %}
+        {% for item in results.items %}
+        <li class="p-list__item">
+          <span class="p-heading--four"><a href="{{ item.url }}" class="title-main">{{ item.title | safe}}</a></span><br />
+          <small><a href="{{ item.url }}">{{ item.url }}</a></small><br />
+          {{ item.summary | safe }}</p>
+        </li>
+        {% endfor %}
+        {% if results.items %}
+      </ul>
+      {% endif %}
 
   {# no results page #}
   {% if results and estimatedTotal == 0 %}
