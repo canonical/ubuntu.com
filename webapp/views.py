@@ -13,6 +13,7 @@ from django.conf import settings
 from django.shortcuts import render
 from feedparser import parse
 from canonicalwebteam.http import CachedSession
+import traceback
 
 try:
     from urllib.parse import urlencode
@@ -25,6 +26,32 @@ if settings.SEARCH_API_KEY:
     search_session = CachedSession(
         expire_after=settings.SEARCH_CACHE_EXPIRY_SECONDS
     )
+
+
+def _get_search_results(query, start, num):
+    """
+    Query the Google Custom Search API for search results
+    """
+
+    if not settings.SEARCH_API_KEY:
+        raise Exception('Unable to search: No API key provided')
+
+    results = search_session.get(
+        settings.SEARCH_API_URL,
+        params={
+            'key': settings.SEARCH_API_KEY,
+            'cx': settings.CUSTOM_SEARCH_ID,
+            'q': query,
+            'start': start,
+            'num': num
+        }
+    ).json()
+
+    if 'items' in results:
+        for item in results['items']:
+            item['htmlSnippet'] = item['htmlSnippet'].replace('<br>\n', '')
+
+    return results
 
 
 def search(request):
@@ -43,29 +70,28 @@ def search(request):
     }
 
     if query:
-        if not settings.SEARCH_API_KEY:
-            raise Exception('Unable to search: No API key provided')
+        try:
+            context['results'] = _get_search_results(query, start, num)
 
-        results = search_session.get(
-            settings.SEARCH_API_URL,
-            params={
-                'key': settings.SEARCH_API_KEY,
-                'cx': settings.CUSTOM_SEARCH_ID,
-                'q': query,
-                'start': start,
-                'num': num
-            }
-        ).json()
+            if 'searchInformation' in context['results']:
+                context['estimatedTotal'] = int(
+                    context['results']['searchInformation']['totalResults']
+                )
+            else:
+                context['estimatedTotal'] = None
+        except Exception as search_error:
+            traceback.print_exc()
 
-        if 'items' in results:
-            for item in results['items']:
-                item['htmlSnippet'] = item['htmlSnippet'].replace('<br>\n', '')
-
-        context['query'] = query
-        context['estimatedTotal'] = int(
-            results['searchInformation']['totalResults']
-        )
-        context['results'] = results
+            return render(
+                request, '500.html',
+                {
+                    'message': (
+                        search_error.__class__.__name__ + ': ' +
+                        str(search_error)
+                    )
+                },
+                status=500
+            )
 
     return render(request, 'search.html', context)
 

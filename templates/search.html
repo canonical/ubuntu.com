@@ -9,10 +9,10 @@
     <div class="row">
       <div class="col-12">
         {% if query %}
-          {% if estimatedTotal > 0 %}
-            <h1 class="p-heading--two">Search results for "{{ query }}"</h1>
+          {% if estimatedTotal == 0 %}
+            <h1 class="p-heading--two">Sorry we couldn't find "{{ query }}"</h1>
           {% else %}
-             <h1 class="p-heading--two">Sorry we couldn't find "{{ query }}"</h1>
+            <h1 class="p-heading--two">Search results for "{{ query }}"</h1>
           {% endif %}
         {% else %}
           <h1>Search Ubuntu and Canonical sites</h1>
@@ -66,44 +66,43 @@
       {% endif %}
 
   {# no results page #}
-  {% if results and estimatedTotal == 0 %}
-    <div class="p-strip">
-      <div class="row">
-        <div class="col-6">
-          <h3>Why not try widening your search?</h3>
-          <p>You can do this by:</p>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">Adding alternative words or phrases</li>
-            <li class="p-list__item is-ticked">Using individual words instead of phrases</li>
-            <li class="p-list__item is-ticked">Trying a different spelling</li>
-          </ul>
-        </div>
-        <div class="col-6">
-          <h3>Still no luck?</h3>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked"><a href="/">Visit the Ubuntu homepage</a></li>
-            <li class="p-list__item is-ticked"><a href="/desktop/contact-us?product=search-page">Contact us</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  {% endif %}
-
-  {# search results #}
-  {% if results and estimatedTotal > 0 %}
-    {% for item in results.items %}
-      <div class="p-strip is-shallow">
+  {% if results %}
+    {% if estimatedTotal == 0 %}
+      <div class="p-strip">
         <div class="row">
-          <div class="col-12">
-            <h5><a href="{{ item.link }}" class="title-main">{{ item.htmlTitle | safe}}</a></h5>
-            <p>
-              {{ item.htmlSnippet | safe }}
-            </p>
-            <small><a href="{{ item.link }}">{{ item.htmlFormattedUrl | safe }}</a></small>
-	  </div>
-	</div>
+          <div class="col-6">
+            <h3>Why not try widening your search?</h3>
+            <p>You can do this by:</p>
+            <ul class="p-list">
+              <li class="p-list__item is-ticked">Adding alternative words or phrases</li>
+              <li class="p-list__item is-ticked">Using individual words instead of phrases</li>
+              <li class="p-list__item is-ticked">Trying a different spelling</li>
+            </ul>
+          </div>
+          <div class="col-6">
+            <h3>Still no luck?</h3>
+            <ul class="p-list">
+              <li class="p-list__item is-ticked"><a href="/">Visit the Ubuntu homepage</a></li>
+              <li class="p-list__item is-ticked"><a href="/desktop/contact-us?product=search-page">Contact us</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
-    {% endfor %}
+    {% else %}
+      {% for item in results.items %}
+        <div class="p-strip is-shallow">
+          <div class="row">
+            <div class="col-12">
+              <h5><a href="{{ item.link }}" class="title-main">{{ item.htmlTitle | safe}}</a></h5>
+              <p>
+                {{ item.htmlSnippet | safe }}
+              </p>
+              <small><a href="{{ item.link }}">{{ item.htmlFormattedUrl | safe }}</a></small>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
   {% endif %}
 
   {# pagination #}
