@@ -5,6 +5,14 @@
     position: sticky;
     top: 0;
     z-index: 1;
+
+    .p-tabs__link:hover::before {
+      background-color: $color-brand;
+    }
+
+    .p-tabs__link.is-selected {
+      @include vf-highlight-bar($color-brand, bottom, true);
+    }
   
     .p-tabs__list {
       margin-bottom: 0;
