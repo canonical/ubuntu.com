@@ -1,4 +1,5 @@
 {% extends "desktop/base_desktop.html" %}
+{% load versioned_static  %}
 
 {% block title %}User statistics{% endblock %}
 {% block meta_description %}The Ubuntu user report showcases the data collected from users installing or upgrading to Ubuntu 18.04 LTS.{% endblock %}
@@ -6,7 +7,7 @@
 
 {% block content %}
 
-<section id="user-report" class="p-strip--image u-no-background--small is-deep is-bordered" style="background-image: url('{{ ASSET_SERVER_URL }}1d2ab6ba-suru-background.png'); background-size: 100% 100%;">
+<section class="p-strip--image u-no-background--small is-deep is-bordered" style="background-image: url('{{ ASSET_SERVER_URL }}1d2ab6ba-suru-background.png'); background-size: 100% 100%;">
   <div class="row">
     <div class="col-6">
       <h1>Ubuntu user statistics</h1>
@@ -20,18 +21,18 @@
 <nav class="p-tabs p-sticky-nav">
   <ul class="p-tabs__list" role="tablist">
     <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link" href="#user-report">User report</a>
+      <a class="p-tabs__link js-user-report-tab" href="#user-report">User report</a>
     </li>
     <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link" href="#desktop-specs">Desktop specs</a>
+      <a class="p-tabs__link js-specs-tab" href="#desktop-specs">Desktop specs</a>
     </li>
     <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link" href="#configuration">Configuration</a>
+      <a class="p-tabs__link js-config-tab" href="#configuration">Configuration</a>
     </li>
   </ul>
 </nav>
 
-<section class="p-strip is-shallow is-bordered">
+<section id="user-report" class="p-strip is-shallow is-bordered">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-6">
       <h2 class="p-heading--four">How many users opted in?</h2>
@@ -393,5 +394,7 @@
 </section>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_desktop_contact_us" second_item="_support" third_item="_desktop_further_reading" %}
+
+<script src="{% versioned_static 'js/desktop-statistics.js' %}"></script>
 
 {% endblock content %}
