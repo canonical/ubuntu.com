@@ -1,0 +1,54 @@
+{% extends "engage/base_engage.html" %}
+
+{% block meta_description %}Ready to make the migration from proprietary virtualisation to OpenStack?{% endblock %}
+
+{% block title %}AI, ML and Ubuntu: Everything you need to know{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1YVPlQYT3jvxb6Yp5OShSiUsmKBPOYOm_fNLJHNsQ6tQ/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip p-takeover--ai-webinar">
+  <div class="row u-equal-height">
+    <div class="col-9">
+      <h1 class="p-takeover__title">Artificial intelligence, machine learning and Ubuntu</h1>
+      <p class="p-takeover__text">Webinar live on Aug 22 -
+        <a href="#register-section">Register now&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-6">
+      <h2>What you’ll learn</h2>
+      <ul>
+        <li>The key concepts in Machine Learning</li>
+        <li>How AI applications and their development are reshaping company’s IT</li>
+        <li>How enterprises are applying devops practices to their ML infrastructure and workflows</li>
+        <li>How Canonical’s AI / ML portfolio from Ubuntu to the Canonical Distribution of Kubernetes and and how to get started
+          quickly with your project</li>
+      </ul>
+      <h3>Other questions answered</h3>
+      <ul>
+        <li>What do Kubeflow, Tensorflow, Jupyter, and GPGPUs do?</li>
+        <li>What’s the difference between AI, ML and DL?</li>
+        <li>What is an AI model? How do you train it? How do you develop / improve it? How do you execute it?</li>
+      </ul>
+    </div>
+    <div class="col-6">
+      <img src="{{ ASSET_SERVER_URL }}1793c307-slide-preview.png" alt="AI, ML and Ubuntu webinar - slides preview">
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2 id="register-section">Register for the webinar</h2>
+    </div>
+    <div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 330440, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>
+  </div>
+</section>
+
+{% endblock content %}
