@@ -167,21 +167,29 @@
               <input required  id="Phone" name="Phone" maxlength="255" class="mktoField mktoTelField  mktoRequired"  type="tel" aria-label="Phone Number">
             </li>
             <li  class="mktField">
+              <label for="utm_campaign" class="u-hide">utm_campaign</label>
               <input name="utm_campaign" class="mktoField  mktoFormCol"  value="{{utm_campaign}}" type="hidden">
             </li>
             <li  class="mktField">
+              <label for="utm_medium" class="u-hide">utm_medium</label>
               <input name="utm_medium" class="mktoField  mktoFormCol"  value="{{utm_medium}}" type="hidden">
             </li>
-            <li  class="mktField">
+          <li  class="mktField">
+              <label for="utm_source" class="u-hide">utm_source</label>
               <input name="utm_source" class="mktoField  mktoFormCol"  value="{{utm_source}}" type="hidden">
             </li>
             <li  class="mktField">
+              <label for="canonicalUpdatesOptIn" class="u-hide">canonicalUpdatesOptIn</label>
               <input name="canonicalUpdatesOptIn" id="canonicalUpdatesOptIn" value="yes" class="mktoField" type="checkbox"><label for="canonicalUpdatesOptIn" class="mktoLabel " >I agree to receive information about Canonical’s products and services.</label>
             </li>
             <li  class="mktField">
-              <p>In submitting this form, I confirm that I have read and agree to <a href="https://www.ubuntu.com/legal/dataprivacy" target="_blank" class="mchNoDecorate">Canonical's Privacy Policy</a><input name="RichText" type="hidden"></p>
+              <p>In submitting this form, I confirm that I have read and agree to <a href="https://www.ubuntu.com/legal/dataprivacy" target="_blank" class="mchNoDecorate">Canonical's Privacy Policy</a>
+                <label for="RichText" class="u-hide">RichText</label>
+                <input name="RichText" type="hidden">
+              </p>
             </li>
             <li  class="mktField">
+              <label for="Consent_to_Processing__c" class="u-hide">RichText</label>
               <input name="Consent_to_Processing__c" class="mktoField  mktoFormCol"  value="Yes" type="hidden">
             </li>
             <li  class="mktField">
@@ -189,7 +197,9 @@
             </li>
           </ul>
         </fieldset>
+        <label for="returnURL" class="u-hide">returnURL</label>
         <input type="hidden" name="returnURL" value="https://pages.ubuntu.com/CS_Fingbox_TY.html" />
+        <label for="retURL" class="u-hide">retURL</label>
         <input type="hidden" name="retURL" value="https://pages.ubuntu.com/CS_Fingbox_TY.html" />
       </form>
       <script>
