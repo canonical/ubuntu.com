@@ -1,0 +1,230 @@
+{% extends "engage/base_engage.html" %}
+
+{% block meta_description %}Whitepaper: How device manufacturers can go from building single function devices with little to no software strategy to building devices defined by software and software business models, powered by app stores and ecosystems of 3rd party ISVs.{% endblock %}
+
+{% block title %}Establishing a software defined IoT business model{% endblock %}
+
+{% block content %}
+<section class="p-strip p-takeover is-deep">
+  <div class="row u-equal-height">
+    <div class="col-8 suffix-2">
+      <h1 class="p-takeover__title">Establishing a software defined IoT business model</h1>
+      <p class="u-hide--medium u-hide--large u-align--center">
+        <img class="p-takeover__image" src="{{ ASSET_SERVER_URL }}6d4f864b-Piggy+Bank+icon.svg" alt="">
+      </p>
+    </div>
+    <div class="col-4 u-hide--small u-vertically-center">
+      <svg width="160px" height="160px" viewBox="0 0 160 160" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <title>Piggy Bank</title>
+        <g class="p-takeover__image" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g transform="translate(-913.000000, -244.000000)" fill-rule="nonzero">
+            <g transform="translate(913.000000, 244.000000)">
+              <g class="p-takeover__image-circle" fill="#F7F7F7">
+                <path d="M80,160 C124.235294,160 160,124.235294 160,80 C160,35.7647059 124.235294,0 80,0 C35.7647059,0 0,35.7647059 0,80 C0,124.235294 35.7647059,160 80,160" id="Shape" opacity="0.95"></path>
+                <path d="M160,80 C159.657366,79.9883765 159.271054,79.9883765 158.841064,80 L156.682617,80 C131.456828,80 104.95813,80 77.1865234,80 C57.1688016,80 37.2137235,80 17.3212891,80 L3.45800781,80 L0.198608398,80 C0,124.235294 35.7647059,160 80,160 C124.235294,160 160,124.235294 160,80 Z" id="Shape"></path>
+              </g>
+              <circle class="p-takeover__image-coin" fill="#47909D" cx="83.5" cy="38.5" r="14.5"></circle>
+              <g class="p-takeover__image-pig" transform="translate(19.000000, 43.000000)">
+                <path d="M64.245294,0.636363636 C55.4666569,0.636363636 47.2483584,2.52120446 40.1507369,5.72543386 L24.2744783,0.636363636 L24.2744783,15.5266061 C22.5934627,16.8459947 14.7487232,22.8774853 10.8263534,30.2283646 L0.74025974,30.2283646 L0.74025974,37.5792438 C0.74025974,45.6840593 1.86093682,46.6264797 6.71720414,51.1500977 C11.0131329,55.1082634 17.3636364,60.3858177 25.7687144,64.7209516 C26.8893915,69.2445696 28.1968481,73.5797035 29.8778637,77.5378692 C32.4927769,84.8887484 33.613454,85.6426847 41.0846345,85.6426847 L48.3690355,85.6426847 L48.3690355,77.5378692 L48.3690355,72.8257672 C53.4120823,74.1451557 58.6419087,74.8990921 64.245294,74.8990921 C69.8486794,74.8990921 75.2652853,74.1451557 80.1215526,72.8257672 L80.1215526,85.8311688 L87.4059536,85.8311688 C94.6903546,85.8311688 95.2506931,84.8887484 98.9862834,78.4802896 C104.402889,69.0560855 110.193054,57.9355247 111.68729,44.5531548 C114.675762,43.9877026 117.103896,41.1604413 117.103896,37.9562119 C117.103896,37.9562119 117.103896,37.7677278 117.103896,37.7677278 C116.917117,34.3750144 114.488983,31.7362372 111.313731,31.359269 C107.204582,13.8302494 87.7795126,0.636363636 64.245294,0.636363636" fill="#A2C8CE"></path>
+                <path d="M24.1168831,21.4155844 C26.1370851,21.4155844 27.7532468,23.4483343 27.7532468,26.0909091 C27.7532468,28.7334839 26.1370851,30.7662338 24.1168831,30.7662338 C22.0966811,30.7662338 20.4805195,28.7334839 20.4805195,26.0909091 C20.4805195,23.4483343 22.0966811,21.4155844 24.1168831,21.4155844" id="eye" fill="#47909D"></path>
+                <path d="M79.6610898,44.7546091 C76.1493637,44.9310063 72.2679823,45.4601981 68.5714286,46.5185818 L69.495567,49.8701299 C83.5424712,45.9893899 97.7742031,49.8701299 97.7742031,49.8701299 L98.6983415,46.5185818 C98.8831692,46.5185818 90.3810956,44.2254173 79.6610898,44.7546091" class="p-takeover__image-slot" fill="#47909D"></path>
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  .p-takeover {
+    background-image: linear-gradient(27deg, #2E0123 0%, #730846 39%, #E9541F 100%);
+    background-color: #2E0123;
+  }
+
+  .p-takeover__title {
+    font-weight: 100;
+    color: #ffffff;
+  }
+
+  .p-takeover__text {
+    font-size: 1rem;
+    color: #ffffff;
+  }
+
+  .p-takeover__image {
+    width: 235px;
+    height: 179px;
+  }
+
+  .u-adjust-kerning {
+    letter-spacing: -4px;
+  }
+
+  @media (min-width: 768px) {
+    .p-takeover {
+      background-image: url('https://assets.ubuntu.com/v1/b0d877ff-suru-left-side.svg'), url('https://assets.ubuntu.com/v1/d3b283b9-suru-right-side.svg'), linear-gradient(27deg, #2E0123 0%, #730846 39%, #E9541F 100%);
+      background-color: #2E0123;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: bottom left, bottom right;
+    }
+
+    .p-takeover .p-takeover__text {
+      font-size: 1.25rem;
+    }
+
+    .p-takeover__image {
+      width: 268px;
+      height: 204px;
+    }
+
+    .p-takeover__image-slot {
+      transform: translate(-20px,-45px);
+    }
+
+    .p-takeover__image-coin {
+      transform: translateY(-100px);
+      animation: fall .8s cubic-bezier(0.95, 0.05, 0.795, 0.035) 3;
+    }
+
+    .p-takeover__image-pig {
+      transform: translate(19px, 43px) scaleY(1);
+      transform-origin: 50%;
+      animation: bounce .8s cubic-bezier(0.95, 0.05, 0.795, 0.035) .55s 3;
+    }
+
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-60px);
+        fill: #A2C8CE;
+      }
+      100% {
+        transform: translateY(10px);
+        fill: #47909D;
+      }
+    }
+
+    @keyframes bounce {
+      25% {
+        transform: translate(19px, 43px) scaleY(1);
+      }
+      35% {
+        transform: translate(19px, 43px) scaleY(.85);
+      }
+      45% {
+        transform: translate(19px, 43px) scaleY(1);
+      }
+    }
+  }
+</style>
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-7">
+      <p>The opportunity to capitalise on the internet of things is significant for many companies, but that doesn’t mean that it is a straightforward journey to success. Companies need to analyse their current business practices and evaluate where benefits can be gained - and for some this could be changing their business model in its entirety.</p>
+      <blockquote class="p-pull-quote"><p>Making money from IoT requires a business model transition</p></blockquote>
+      <p>Device manufacturers are a prime example of this. With hardware commoditisation forcing their margins downwards and low cost competitors applying increasing pressure, manufacturers need to build a sustainable business that brings in continuous revenue beyond the initial device sale. By devising a software led strategy,  device manufacturers can transition to new business models underpinned by IoT app stores and ecosystems of 3rd party ISVs (independent software vendors).</p>
+      <h3>Whitepaper highlights:</h3>
+      <ul class="p-list">
+          <li class="p-list__item is-ticked">The drivers for device manufacturers to re-evaluate their existing business models</li>
+          <li class="p-list__item is-ticked">The opportunities opened to them by adopting an IoT led, software defined business model to achieve ongoing revenue</li>
+          <li class="p-list__item is-ticked">The steps required to move them through this transition and examples of businesses who have successfully achieved this already</li>
+      </ul>
+    </div>
+    <div class="col-5">
+      <!-- MARKETO FORM -->
+      <script src="//assets.ubuntu.com/v1/37b1db88-jquery.min.js"></script>
+      <script  src="//assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
+      <script src="//assets.ubuntu.com/v1/6ce35d3e-jquery-ui.min.js"></script>‌​
+      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_3256" style="margin-top: -1rem;">
+        <fieldset class="u-no-padding--top" style="border-bottom-width: 1px;">
+          <ul class="p-list">
+            <li  class="mktFormReq mktField p-list__item">
+              <label for="FirstName" class="mktoLabel" >First Name:</label>
+              <input required  id="FirstName" name="FirstName" maxlength="255" class="mktoField   mktoRequired"  type="text" aria-label="First Name">
+            </li>
+            <li  class="mktFormReq mktField">
+              <label for="LastName" class="mktoLabel " >Last Name:</label>
+              <input required  id="LastName" name="LastName" maxlength="255" class="mktoField   mktoRequired"  type="text" aria-label="Last Name">
+            </li>
+            <li  class="mktFormReq mktField">
+              <label for="Email" class="mktoLabel " >Work email:</label>
+              <input required  id="Email" name="Email" maxlength="255" class="mktoField mktoEmailField  mktoRequired"  type="email" aria-label="Email">
+            </li>
+            <li  class="mktFormReq mktField">
+              <label for="Company" class="mktoLabel " >Company Name:</label>
+              <input required  id="Company" name="Company" maxlength="255" class="mktoField   mktoRequired"  type="text" aria-label="Company Name">
+            </li>
+            <li  class="mktFormReq mktField">
+              <label for="Title" class="mktoLabel " >Job Title:</label>
+              <input required  id="Title" name="Title" maxlength="255" class="mktoField   mktoRequired"  type="text" aria-label="Job Title">
+            </li>
+            <li  class="mktFormReq mktField">
+              <label for="Phone" class="mktoLabel " >Phone Number:</label>
+              <input required  id="Phone" name="Phone" maxlength="255" class="mktoField mktoTelField  mktoRequired"  type="tel" aria-label="Phone Number">
+            </li>
+            <li  class="mktField">
+              <input name="utm_campaign" aria-label="utm_campaign" class="mktoField  mktoFormCol"  value="{{utm_campaign}}" type="hidden">
+            </li>
+            <li  class="mktField">
+              <input name="utm_medium" aria-label="utm_medium" class="mktoField  mktoFormCol"  value="{{utm_medium}}" type="hidden">
+            </li>
+          <li  class="mktField">
+              <input name="utm_source" aria-label="utm_source" class="mktoField  mktoFormCol"  value="{{utm_source}}" type="hidden">
+            </li>
+            <li  class="mktField">
+              <input name="canonicalUpdatesOptIn" aria-label="canonicalUpdatesOptIn" id="canonicalUpdatesOptIn" value="yes" class="mktoField" type="checkbox"><label for="canonicalUpdatesOptIn" class="mktoLabel " >I agree to receive information about Canonical’s products and services.</label>
+            </li>
+            <li  class="mktField">
+              <p>In submitting this form, I confirm that I have read and agree to <a href="https://www.ubuntu.com/legal/dataprivacy" target="_blank" class="mchNoDecorate">Canonical's Privacy Policy</a>
+                <input name="RichText" aria-label="RichText" type="hidden">
+              </p>
+            </li>
+            <li  class="mktField">
+              <input name="Consent_to_Processing__c" aria-label="Consent" class="mktoField  mktoFormCol"  value="Yes" type="hidden">
+            </li>
+            <li  class="mktField">
+              <button type="submit" class="mktoButton u-no-margin--bottom">Download the whitepaper</button>
+              <input name="formid" aria-label="formid" class="mktoField" value="3256" type="hidden">
+              <input name="lpId" aria-label="lpId" class="mktoField " value="" type="hidden">
+              <input name="subId" aria-label="subId" class="mktoField " value="" type="hidden">
+              <input name="munchkinId" aria-label="munchkinId" class="mktoField " value="" type="hidden">
+              <input name="lpurl" aria-label="lpurl" class="mktoField " value="" type="hidden">
+              <input name="cr" aria-label="cr" class="mktoField " value="" type="hidden">
+              <input name="kw" aria-label="kw" class="mktoField " value="" type="hidden">
+              <input name="q" aria-label="q" class="mktoField " value="" type="hidden">
+            </li>
+          </ul>
+        </fieldset>
+        <input type="hidden" name="returnURL" aria-label="returnURL" value="https://pages.ubuntu.com/CS_Fingbox_TY.html" />
+        <input type="hidden" name="retURL" aria-label="retURL" value="https://pages.ubuntu.com/CS_Fingbox_TY.html" />
+      </form>
+      <script>
+      $("#mktoForm_3256").validate({
+          errorElement: "span",
+          errorClass: "mktFormMsg mktError",
+          onkeyup: false,
+          onclick: false,
+          onblur: false
+      });
+
+      $(function(){$("#comments").hide()});
+
+      $('#Ubuntu_User__c').on('change',function(){
+        var selection = $(this).val();
+        if(selection == 'Commercially only') {
+            $('#comments').show();
+        } else {
+            $('#comments').hide();
+        }
+      });
+    </script>
+    <script src="//assets.ubuntu.com/v1/f97fa297-stateCountry.js"></script>
+    <!-- /MARKETO FORM -->
+    </div>
+  </div>
+</section>
+{% endblock content %}
