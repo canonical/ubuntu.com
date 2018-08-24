@@ -7,28 +7,7 @@
 
 {% block takeover_content %}
 
-{% include "takeovers/_ai_webinar.html" %}
-{% include "takeovers/_rigado_webinar.html" %}
-
-<script>
-  if (window.localStorage && window.sessionStorage) {
-    var primaryTakeover = document.querySelector('.js-primary-takeover');
-    var secondaryTakeover = document.querySelector('.js-secondary-takeover');
-
-    if (localStorage.getItem('TAKEOVER_SEEN')) {
-      localStorage.removeItem('TAKEOVER_SEEN');
-      if (!sessionStorage.getItem('TAKEOVER_SEEN')) {
-        secondaryTakeover.classList.remove('u-hide');
-      } else {
-        primaryTakeover.classList.remove('u-hide');
-      }
-    } else {
-      localStorage.setItem('TAKEOVER_SEEN', true);
-      sessionStorage.setItem('TAKEOVER_SEEN', true);
-      primaryTakeover.classList.remove('u-hide');
-    }
-  }
-</script>
+{% include "takeovers/_tackling_iot.html" %}
 
 <section class="p-strip is-deep is-bordered">
   {% include "shared/_insights_news_strip.html" with gtm_event_label="ubuntu.com homepage" %}
