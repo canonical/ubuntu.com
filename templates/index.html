@@ -7,15 +7,18 @@
 
 {% block takeover_content %}
 
-{% include "takeovers/_tackling_iot.html" %}
+{% include "takeovers/_tackling_iot.html" with nojs_fallback=True %}
 {% include "takeovers/_ai_webinar.html" %}
 {% include "takeovers/_rigado_webinar.html" %}
 
 <script>
   if (window.localStorage && window.sessionStorage) {
-    var takeovers = document.getElementsByClassName('takeover');
+    var takeovers = document.getElementsByClassName('js-takeover');
+    for (t = 0; t < takeovers.length; ++t) {
+      takeovers[t].classList.add('u-hide');
+    }
     if (!localStorage.getItem('TAKEOVER')) {
-      var i = 0;
+      var i = Math.floor(Math.random() * takeovers.length);
       localStorage.setItem('TAKEOVER', i);
     } else {
       var i = parseInt(localStorage.getItem('TAKEOVER')) + 1;
