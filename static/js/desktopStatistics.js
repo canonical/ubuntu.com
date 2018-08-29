@@ -31,3 +31,19 @@ function manipulateData(dataset, sortType, truncPoint) {
 
   return dataset.slice(0, truncPoint);
 }
+
+function showMaxDatum(target, dataset) {
+  var maxDatum = manipulateData(dataset, 'descending', 1)[0];
+  var percentage = calcPercentage(dataset, maxDatum.value)
+  var roundedPercentage = round(percentage, 1);
+
+  document.querySelector(target).innerHTML = (
+    '<h3 style="margin:0">' + roundedPercentage + '%</h3>' +
+    '<h4>' + maxDatum.label + '</h4>'
+  );
+}
+
+showMaxDatum('#os-architecture', dummyData.osArchitecture.dataset);
+showMaxDatum('#display-server', dummyData.displayServer.dataset);
+showMaxDatum('#one-screen', dummyData.numberScreens.dataset);
+showMaxDatum('#one-gpu', dummyData.numberGPUs.dataset);
