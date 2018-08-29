@@ -13,4 +13,22 @@
       }
     }
   }
+
+  .p-progress-chart {
+    background: $color-x-light;
+    border: 1px solid $color-mid-light;
+    box-shadow: 0 1px 5px 1px rgba(17, 17, 17, 0.2);
+
+    .p-progress-chart__bar {
+      opacity: .8;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .p-progress-chart__text {
+      font-size: 2.91029rem;
+    }
+  }
 }
