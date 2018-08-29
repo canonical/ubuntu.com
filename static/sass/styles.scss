@@ -234,3 +234,11 @@ p.u-align--center {
     }
   }
 }
+
+/// XXX Caleb: abbr hotfix - to be fixed in Vanilla
+// https://github.com/vanilla-framework/vanilla-framework/issues/1962
+abbr[title] {
+  border-bottom: .1em dotted;
+  cursor: help;
+  text-decoration: none;
+}
