@@ -1,0 +1,16 @@
+@mixin ubuntu-p-desktop-statistics {
+  .p-mobile-flex-col {
+    @media only screen and (max-width: $breakpoint-medium) {
+      display: flex;
+      flex-direction: column;
+
+      & > [class*="col-"]:first-child {
+        order: 1;
+      }
+
+      & > [class*="col-"]:nth-child(2) {
+        order: 0;
+      }
+    }
+  }
+}

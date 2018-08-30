@@ -46,7 +46,7 @@
   </div>
 </section>
 <section class="p-strip--light is-shallow is-bordered">
-  <div class="row u-equal-height u-vertically-center">
+  <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
     <div class="col-6 u-align--center">
       <div id="real-or-virtual">
         <img src="https://via.placeholder.com/250x250?text=Pie chart" alt="">
@@ -72,7 +72,7 @@
   </div>
 </section>
 <section class="p-strip--light is-shallow is-bordered">
-  <div class="row u-equal-height u-vertically-center">
+  <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
     <div class="col-6 u-align--center">
       <div id="where-are-users">
         <img src="https://via.placeholder.com/500x320?text=Map" alt="">
@@ -119,10 +119,7 @@
       <header class="p-card__header">
         <h3 class="p-heading--four">OS architecture</h3>
       </header>
-      <div class="p-card__center-content">
-        <h3 id="os-architecture" class="u-no-margin--bottom">99%</h3>
-        <h4>amd64</h4>
-      </div>
+      <div id="os-architecture" class="p-card__center-content"></div>
       <p class="u-no-margin--bottom">OS architecture is responsible for running programs and providing secure access to the machine's hardware.</p>
     </div>
     <div class="col-4 p-card--flex">
@@ -140,10 +137,7 @@
       <header class="p-card__header">
         <h3 class="p-heading--four">Display server</h3>
       </header>
-      <div class="p-card__center-content">
-        <h3 id="display-server" class="u-no-margin--bottom">99%</h3>
-        <h4>X11</h4>
-      </div>
+      <div id="display-server" class="p-card__center-content"></div>
       <p class="u-no-margin--bottom">The display server controls the input and output of its clients to and from the rest of the operating system and the hardware.</p>
     </div>
   </div>
@@ -155,19 +149,13 @@
   <div class="row u-equal-height">
     <div class="col-6 prefix-2">
       <div class="p-card--flex">
-        <div class="p-card__center-content">
-          <h3 id="one-screen" class="u-no-margin--bottom">99%</h3>
-          <h4>Have one screen</h4>
-        </div>
+        <div id="one-screen" class="p-card__center-content"></div>
         <p class="u-no-margin--bottom">This was detected on install so many users may have connected screens after the installing Ubuntu.</p>
       </div>
     </div>
     <div class="col-6 suffix-2">
       <div class="p-card--flex">
-        <div class="p-card__center-content">
-          <h3 id="one-gpu" class="u-no-margin--bottom">87%</h3>
-          <h4>Have one GPU</h4>
-        </div>
+        <div id="one-gpu" class="p-card__center-content"></div>
         <p class="u-no-margin--bottom">Graphical Processing Unit (GPU) is used to generate videos and images for displaying on screen.</p>
       </div>
     </div>
@@ -215,7 +203,7 @@
     <h4>Number of CPUs</h4>
   </div>
   <div class="row u-equal-height u-vertically-center">
-    <div class="col-6 u-align--center">
+    <div class="col-6 p-mobile-flex-col u-align--center">
       <div id="number-of-cpus">
         <img src="https://via.placeholder.com/500x320?text=Bar chart" alt="">
       </div>
@@ -248,7 +236,7 @@
     <h4>Physical disk</h4>
   </div>
   <div class="row u-equal-height u-vertically-center">
-    <div class="col-6 u-align--center">
+    <div class="col-6 p-mobile-flex-col u-align--center">
       <div id="physical-disk">
         <img src="https://via.placeholder.com/500x320?text=Bar chart" alt="">
       </div>
@@ -307,7 +295,7 @@
   </div>
 </section>
 <section class="p-strip--light is-shallow is-bordered">
-  <div class="row u-equal-height u-vertically-center">
+  <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
     <div class="col-6 u-align--center">
       <div id="restrict-add-on">
         <img src="https://via.placeholder.com/250x250?text=Bar chart" alt="">
@@ -331,7 +319,7 @@
   </div>
 </section>
 <section class="p-strip--light is-shallow is-bordered">
-  <div class="row u-equal-height u-vertically-center">
+  <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
     <div class="col-6 u-align--center">
       <div id="minimal-install">
         <img src="https://via.placeholder.com/250x250?text=Bar chart" alt="">
@@ -393,6 +381,9 @@
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_desktop_contact_us" second_item="_support" third_item="_desktop_further_reading" %}
 
-<script src="{% versioned_static 'js/desktop-statistics.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+<script src="{% versioned_static 'js/stickyNav.js' %}"></script>
+<script src="{% versioned_static 'js/dummyData.js' %}"></script>
+<script src="{% versioned_static 'js/desktopStatistics.js' %}"></script>
 
 {% endblock content %}
