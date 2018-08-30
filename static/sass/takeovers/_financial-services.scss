@@ -1,0 +1,72 @@
+@mixin p-takeover-financial-services {
+  @keyframes fade-left {
+    0% {opacity: 0; transform: translateX(30%);}
+    100% {opacity: 1; transform: translateX(0);}
+  }
+
+  @keyframes fade-right {
+    0% {opacity: 0; transform: translateX(-10%);}
+    100% {opacity: 1; transform: translateX(0);}
+  }
+
+  .p-takeover--financial-services {
+    background-image: linear-gradient(45deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%);
+    background-color: #171717;
+
+    .p-takeover__title {
+      font-weight: 100;
+      color: $color-x-light;
+    }
+
+    .p-takeover__text {
+      @extend %vf-heading-4;
+      color: $color-x-light;
+      margin-bottom: 1.7rem;
+    }
+
+    .p-takeover__col {
+      @media (max-width: $breakpoint-medium) {
+        margin: 0 3rem;
+      }
+    }
+
+    .p-takeover__image-container {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      position: relative;
+
+      @media (max-width: $breakpoint-medium) {
+        margin-bottom: 3.5rem;
+        max-width: 300px;
+      }
+    }
+
+    .financial-cloud {
+      width: 100%;
+      z-index: 2;
+    }
+
+    .light-grey-cloud {
+      animation: fade-right 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) .75s 1 forwards;
+      bottom: -12%;
+      left: -18%;
+      opacity: 0;
+      position: absolute;
+      transform: translateX(-10%);
+      width: 66%;
+      z-index: 1;
+    }
+
+    .aubergine-cloud {
+      animation: fade-left 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) .5s 1 forwards;
+      bottom: -20%;
+      opacity: 0;
+      position: absolute;
+      transform: translateX(30%);
+      right: -20%;
+      width: 50%;
+      z-index: 3;
+    }
+  }
+}
