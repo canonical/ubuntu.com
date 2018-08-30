@@ -1,0 +1,17 @@
+@mixin p-takeover-vmware-to-os {
+  .p-takeover--vmware-to-os {
+    background-color: $color-light;
+
+    @media (min-width: $breakpoint-medium) {
+      background-image: url('#{$assets-path}d3edfcd5-left.png'), url('#{$assets-path}17508275-right.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: bottom left, bottom right;
+    }
+
+    .p-takeover__title {
+      color: $color-dark;
+      font-weight: 100;
+    }
+  }
+}
