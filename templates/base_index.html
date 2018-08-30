@@ -9,8 +9,128 @@
   {% block content %}
     {% block takeover_content %}
     {% endblock takeover_content %}
-      {% block footer_content %}
-        {# include "ubuntu/takeovers/_footer_homepage.html" #}
-       {% endblock footer_content %}
-   {% endblock content %}
+
+    <section class="p-strip is-deep is-bordered">
+      {% include "shared/_insights_news_strip.html" with gtm_event_label="ubuntu.com homepage" %}
+    </section>
+
+    <section class="p-strip--light is-bordered">
+      <div class="row u-align--center">
+        <div class="col-12">
+          <h2 class="p-heading--three u-no-max-width">
+            Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things
+          </h2>
+        </div>
+        <div class="p-ubuntu-intro u-align--center">
+          <div class="p-ubuntu-intro__content">
+            <ul class="p-ubuntu-intro__list no-bullets inline">
+              <li class="p-ubuntu-intro__list-item"><a class="p-ubuntu-intro__link p-ubuntu-intro__link--cloud" href="/cloud">Cloud</a></li>
+              <li class="p-ubuntu-intro__list-item"><a class="p-ubuntu-intro__link p-ubuntu-intro__link--server" href="/server">Server</a></li>
+              <li class="p-ubuntu-intro__list-item"><a class="p-ubuntu-intro__link p-ubuntu-intro__link--containers" href="/containers">Containers</a></li>
+              <li class="p-ubuntu-intro__list-item"><a class="p-ubuntu-intro__link p-ubuntu-intro__link--desktop" href="/desktop">Desktop</a></li>
+              <li class="p-ubuntu-intro__list-item"><a class="p-ubuntu-intro__link p-ubuntu-intro__link--iot" href="/internet-of-things">IoT</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {# strip cloud #}
+    <section class="p-strip is-deep u-image-position is-bordered u-vertically-center">
+      <div class="row">
+        <div class="col-7">
+          <img src="{{ ASSET_SERVER_URL }}0bfbd13b-cloud_section_bundle.svg?h=460" class="u-image-position--top u-hide--small" alt="" style="height: 100%; right: 47%;" />
+        </div>
+        <div class="col-5">
+          <h3><a href="/openstack/managed">The world’s most popular operating system across public clouds and OpenStack clouds&nbsp;&rsaquo;</a></h3>
+          <p>Find out more about Ubuntu’s cloud building software, tools and service packages.</p>
+        </div>
+      </div>
+    </section>
+
+    {# strip iot #}
+    <section class="p-strip--light is-deep is-bordered">
+      <div class="row">
+        <div class="u-equal-height u-vertically-center">
+          <div class="col-5 suffix-1">
+            <h3><a href="/internet-of-things">The fastest way to go from development to production in IoT&nbsp;&rsaquo;</a></h3>
+            <p>Learn about how Ubuntu Core and snaps can help you build your connected devices.</p>
+          </div>
+          <div class="col-7 u-align--center">
+            <img class="u-hide--small" src="{{ ASSET_SERVER_URL }}808a4e5b-iot.png?h=300" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {# strip containers #}
+    <section class="p-strip is-deep is-bordered">
+      <div class="row">
+        <div class="u-equal-height u-vertically-center">
+          <div class="col-7">
+            <img src="{{ ASSET_SERVER_URL }}668136e7-containers.svg" class="u-hide--small" style="height: 85%;" alt="" />
+          </div>
+          <div class="col-5 suffix-1">
+            <h3><a href="/containers">The number one platform for containers&nbsp;&rsaquo;</a></h3>
+            <p>From LXD to Kubernetes to Docker, Ubuntu can run your containers at scale.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {# strip desktop #}
+    <section class="p-strip--light is-deep is-bordered">
+      <div class="row">
+        <div class="u-equal-height u-vertically-center">
+          <div class="col-5 suffix-1">
+            <h3><a href="/desktop">Fast, secure and simple, Ubuntu powers millions of PCs worldwide&nbsp;&rsaquo;</a></h3>
+            <p>Download the latest version of Ubuntu, for desktop PCs and laptops.</p>
+          </div>
+          <div class="col-7 u-align--center">
+            <img class="u-hide--small" src="{{ ASSET_SERVER_URL }}c6504e94-Dell_XPS_Laptop_Front-Desktop.png?h=350" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {# strip takeunders #}
+    <section class="p-strip">
+      <div class="row u-equal-height">
+        {% include "takeovers/takeunders/_ubuntu-product-month.html" %}
+        {% include "takeovers/takeunders/_openstack-ebook.html" %}
+      </div>
+    </section>
+
+    {% comment %}
+    <style type="text/css">
+    /* background image for the event feature */
+    /* get original using this //maps.googleapis.com/maps/api/staticmap?center=Tokyo%2C+Japan&zoom=14&scale=2&size=1200x320&maptype=satellite but with the location details from the insights event */
+    /*.featured--event:before { background-image: url('{{ ASSET_SERVER_URL }}62b7ce67-pasadena.png?fmt=jpg&q=20'); }*/
+    </style>
+    {% endcomment %}
+
+    {% block footer_content %}
+      {# include "ubuntu/takeovers/_footer_homepage.html" #}
+    {% endblock footer_content %}
+
+    <script>
+      if (window.localStorage && window.sessionStorage) {
+        var takeovers = document.getElementsByClassName('js-takeover');
+        for (t = 0; t < takeovers.length; ++t) {
+          takeovers[t].classList.add('u-hide');
+        }
+        if (!localStorage.getItem('TAKEOVER')) {
+          var i = Math.floor(Math.random() * takeovers.length);
+          localStorage.setItem('TAKEOVER', i);
+        } else {
+          var i = parseInt(localStorage.getItem('TAKEOVER')) + 1;
+          if (i >= takeovers.length) {
+            i = 0;
+          }
+        }
+        localStorage.setItem('TAKEOVER', i);
+        takeovers[i].classList.remove('u-hide');
+      }
+    </script>
+  {% endblock content %}
 {% endblock outer_content %}
