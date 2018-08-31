@@ -8,13 +8,13 @@
   <div class="row">
     <div class="col-9">
       <h1>Managed Services description</h1>
-      <p>Valid since 29 August 2018</p>
+      <p>Valid since 13 June 2018</p>
       <ol class="p-list--ordered-legal">
         <li class="p-list__item">
           <h2 id="overview">Overview</h2>
           <ol class="p-list--ordered-legal">
             <li class="p-list__item">This document defines the following Canonical service offerings:
-              <ul class="u-sv3">
+              <ul>
                 <li class="p-list__item">BootStack, a service in which Canonical manages and operates an OpenStack cloud computing environment.</li>
                 <li class="p-list__item">Managed Kubernetes, a service in which Canonical manages and operates a Kubernetes computing environment.</li>
               </ul>
@@ -26,7 +26,7 @@
                 <li class="p-list__item">“Container Instance” means a container instance running in the Cluster.</li>
                 <li class="p-list__item">“Guest Instance” means a virtual machine instance running in the Cloud.</li>
                 <li class="p-list__item">“Environment” means a Cloud or Cluster, as applicable to the particular service offering.</li>
-                <li class="p-list__item">“Public Cloud” means an Environment in which third parties (i.e. beyond just Canonical and the customer) are able to create and manage Guest or Container Instances.</li>
+                <li class="p-list__item">“Public Cloud” means an Environment in which third parties (i.e. neither Canonical nor the Customer) are able to create and manage Guest or Container Instances.</li>
                 <li class="p-list__item">“Cloud Guest” means a Guest Instance or Container Instance of Ubuntu Server not running in a Public Cloud.</li>
                 <li class="p-list__item">“Kubernetes” means the container orchestration software known as “Kubernetes” as distributed by Canonical.</li>
                 <li class="p-list__item">“OpenStack” means the cloud computing software known as “OpenStack” as distributed by Canonical with Ubuntu.</li>
@@ -44,11 +44,11 @@
             </li>
             <li class="p-list__item" id="operate">
               Operate
-              <ol class="p-list--ordered-legal u-sv3">
+              <ol class="p-list--ordered-legal">
                 <li class="p-list__item">
                   General
                   <p>Canonical will remotely operate, monitor, and manage the  Environment. Examples include:</p>
-                  <ul class="u-sv3">
+                  <ul>
                     <li class="p-list__item">Backing up and restoring of the management infrastructure suite</li>
                     <li class="p-list__item">Hardware and software failure monitoring and alerting</li>
                     <li class="p-list__item">Capacity and performance reporting</li>
@@ -57,7 +57,7 @@
                 <li class="p-list__item">
                   Patching and updates
                   <p>Canonical will install applicable (e.g. security) patches and updates from the Ubuntu Cloud Archive to:</p>
-                  <ul class="u-sv3">
+                  <ul>
                     <li class="p-list__item">The Ubuntu operating system</li>
                     <li class="p-list__item">OpenStack or Kubernetes and its dependencies</li>
                     <li class="p-list__item">OpenStack or Kubernetes Charms</li>
@@ -66,13 +66,12 @@
                 </li>
                 <li class="p-list__item">
                   Administrative access
-                  <p>Canonical will provide the customer with access to the following applications and/or services:</p>
-                  <ul class="u-sv3">
+                  <p>Canonical will provide customer with access to the following applications and/or services:</p>
+                  <ul>
                     <li class="p-list__item">The OpenStack or Kubernetes dashboard, API and CLI</li>
                     <li class="p-list__item">Landscape (restricted to read only access)</li>
                     <li class="p-list__item">Monitoring and logging system (restricted to read only access)</li>
                   </ul>
-                  <p>Only Canonical will have login access to Environment nodes.</p>
                 </li>
                 <li class="p-list__item">
                   Environment size
@@ -80,8 +79,7 @@
                 </li>
                 <li class="p-list__item">
                   Ubuntu, OpenStack and Kubernetes upgrades
-                  <p>Canonical will ensure the customer’s Environment remains on a supported version of Ubuntu and OpenStack or Kubernetes. In most cases, Canonical will upgrade only to LTS releases where applicable, or to a specific release as agreed with the customer. Support lifecycles for Ubuntu and OpenStack can be found at: <a href="/about/release-cycle">www.ubuntu.com/about/release-cycle</a></p>
-                  <p>Supported versions of Kubernetes include the current stable minor release and the two most recent minor releases in the stable release channel. Additional information can be found at: <a href="https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions" class="p-link--external">https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions</a></p>
+                  <p>Canonical will ensure the customer’s Environment remains on a supported version of Ubuntu and OpenStack or Kubernetes. In most cases, Canonical will upgrade only to LTS releases where applicable, or to a specific release as agreed with the customer . Support lifecycles can be found at: <a href="/info/release-end-of-life">www.ubuntu.com/info/release-end-of-life</a></p>
                 </li>
                 <li class="p-list__item">
                   Out of scope
@@ -200,12 +198,8 @@
       </ol>
     </div>
     <nav class="col-3 p-card">
-      <h3>Older version</h3>
-      <ul class="p-list">
-        <li class="p-list__item"><a href="/legal/managed-services/2015-07-01-service-description">1 July 2015&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="/legal/managed-services/2018-02-15-service-description">15 February 2018&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="/legal/managed-services/2018-07-13-service-description">13 June 2018&nbsp;&rsaquo;</a></li>
-      </ul>
+      <h3>Latest version</h3>
+      <p>This is a previous version of this document, please refer to the <a href="/legal/managed-services/service-description">latest version</a>.</p>
     </nav>
   </div>
   <div class="row">
