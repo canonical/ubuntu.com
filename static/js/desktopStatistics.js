@@ -80,7 +80,23 @@ function showMaxDatum(target, dataset) {
   );
 }
 
-showMaxDatum('#os-architecture', dummyData.osArchitecture.dataset);
-showMaxDatum('#display-server', dummyData.displayServer.dataset);
-showMaxDatum('#one-screen', dummyData.numberScreens.dataset);
-showMaxDatum('#one-gpu', dummyData.numberGPUs.dataset);
+function clearCharts() {
+  var charts = document.querySelectorAll('.p-bar-chart, .p-pie-chart, .p-fill-chart');
+  charts.forEach(function(chart) {
+    chart.innerHTML = '';
+  });
+}
+
+function buildCharts() {
+  showMaxDatum('#os-architecture', dummyData.osArchitecture.dataset);
+  showMaxDatum('#display-server', dummyData.displayServer.dataset);
+  showMaxDatum('#one-screen', dummyData.numberScreens.dataset);
+  showMaxDatum('#one-gpu', dummyData.numberGPUs.dataset);
+}
+
+window.addEventListener('resize', debounce(function() {
+  clearCharts();
+  buildCharts();
+}, 250));
+
+buildCharts();
