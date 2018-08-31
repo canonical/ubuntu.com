@@ -156,25 +156,25 @@ var dummyData = {
     ]
   },
   physicalDisk: {
-    title: 'Physical disk',
+    title: 'Physical disk (GB)',
     dataset: [
       {
-        label: '<30GB',
+        label: '<30',
         value: 255,
       }, {
-        label: '30-99GB',
+        label: '30-99',
         value: 154,
       }, {
-        label: '100-249GB',
+        label: '100-249',
         value: 211,
       }, {
-        label: '250-499GB',
+        label: '250-499',
         value: 168,
       }, {
-        label: '500-999GB',
+        label: '500-999',
         value: 93,
       }, {
-        label: '>1TB',
+        label: '1TB+',
         value: 19,
       },
     ]
@@ -255,25 +255,25 @@ var dummyData = {
     ]
   },
   partitionSize: {
-    title: 'Size of partitions',
+    title: 'Size of partitions (GB)',
     dataset: [
       {
-        label: '<1GB',
+        label: '<1',
         value: 35,
       }, {
-        label: '1-19GB',
+        label: '1-19',
         value: 17,
       }, {
-        label: '20-49GB',
+        label: '20-49',
         value: 14,
       }, {
-        label: '50-99GB',
+        label: '50-99',
         value: 13,
       }, {
-        label: '100-249GB',
+        label: '100-249',
         value: 25,
       }, {
-        label: '250-999GB',
+        label: '250-999',
         value: 20,
       }, {
         label: '1TB+',

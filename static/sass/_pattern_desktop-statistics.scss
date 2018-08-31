@@ -13,4 +13,20 @@
       }
     }
   }
+
+  .p-bar-chart {
+    width: 100%;
+
+    .p-bar-chart__bar {
+      opacity: .8;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .tick text {
+      font-size: .625rem;
+    }
+  }
 }
