@@ -44,6 +44,31 @@ function manipulateData(data, options) {
   }
 }
 
+function wrapText(text, width) {
+  text.each(function() {
+    var text = d3.select(this);
+    var words = text.text().split(/\s+/).reverse();
+    var word;
+    var line = [];
+    var lineNumber = 0;
+    var lineHeight = 1.1;
+    var y = text.attr("y");
+    var dy = parseFloat(text.attr("dy"));
+    var tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+
+    while (word = words.pop()) {
+      line.push(word);
+      tspan.text(line.join(" "));
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop();
+        tspan.text(line.join(" "));
+        line = [word];
+        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+      }
+    }
+  });
+}
+
 function showMaxDatum(target, dataset) {
   var maxDatum = manipulateData(dataset, 'descending', 1)[0];
   var percentage = calcPercentage(dataset, maxDatum.value)
