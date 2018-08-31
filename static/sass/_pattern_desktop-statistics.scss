@@ -13,4 +13,24 @@
       }
     }
   }
+
+  .p-pie-chart {
+    .p-pie-chart__wedge {
+      path {
+        opacity: .8;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    text {
+      font-size: 1.2rem;
+
+      @media only screen and (max-width: $breakpoint-medium) {
+        font-size: 1rem;
+      }
+    }
+  }
 }
