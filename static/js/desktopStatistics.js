@@ -10,26 +10,25 @@ function calcPercentage(dataset, datum) {
   return percentage;
 }
 
-function manipulateData(dataset, sortType, truncPoint) {
-  // Set parameter defaults
-  var sortType = typeof sortType !== 'undefined' ? sortType : 'descending';
-  var truncPoint = typeof truncPoint !== 'undefined' ? truncPoint : dataset.length;
+function manipulateData(data, options) {
+  // Set option defaults
+  options = options || {};
+  var truncPoint = options.hasOwnProperty('truncPoint') ? options.truncPoint : data.length;
+  var sort = options.hasOwnProperty('sort') ? options.sort : undefined;
+  var sortedData = data.slice();
 
-  if (sortType === 'descending') {
-    var sortedData = dataset.sort(function(a, b) {
-      return d3.descending(a.value, b.value);
-    });
+  switch (sort) {
+    case 'descending':
+      sortedData.sort(function(a, b) { return d3.descending(a.value, b.value) });
+      return sortedData.slice(0, truncPoint);
 
-    return sortedData.slice(0, truncPoint);
-  } else if (sortType === 'ascending') {
-    var sortedData = dataset.sort(function(a, b) {
-      return d3.ascending(a.value, b.value);
-    });
+    case 'ascending':
+      sortedData.sort(function(a, b) { return d3.ascending(a.value, b.value) });
+      return sortedData.slice(sortedData.length - truncPoint, sortedData.length);
 
-    return sortedData.slice(sortedData.length - truncPoint, sortedData.length);
+    default: 
+      return sortedData.slice(0, truncPoint);
   }
-
-  return dataset.slice(0, truncPoint);
 }
 
 function showMaxDatum(target, dataset) {
