@@ -300,54 +300,104 @@ var dummyData = {
     ]
   },
   defaultSettings: {
-    dataset: [
-      {
-        show: true,
-        value: 310,
-      }, {
-        value: 690,
-      },
-    ]
+    datasets: {
+      hardware: [
+        {
+          show: true,
+          value: 318,
+        }, {
+          value: 682,
+        },
+      ],
+      virtual: [
+        {
+          show: true,
+          value: 589,
+        }, {
+          value: 411,
+        },
+      ],
+    },
   },
   restrictAddOn: {
-    dataset: [
-      {
-        show: true,
-        value: 600,
-      }, {
-        value: 400,
-      },
-    ]
+    datasets: {
+      hardware: [
+        {
+          show: true,
+          value: 591,
+        }, {
+          value: 409,
+        },
+      ],
+      virtual: [
+        {
+          show: true,
+          value: 273,
+        }, {
+          value: 727,
+        },
+      ],
+    },
   },
   autoLogin: {
-    dataset: [
-      {
-        show: true,
-        value: 290,
-      }, {
-        value: 710,
-      },
-    ]
+    datasets: {
+      hardware: [
+        {
+          show: true,
+          value: 294,
+        }, {
+          value: 706,
+        },
+      ],
+      virtual: [
+        {
+          show: true,
+          value: 287,
+        }, {
+          value: 713,
+        },
+      ],
+    },
   },
   minimalInstall: {
-    dataset: [
-      {
-        show: true,
-        value: 130,
-      }, {
-        value: 870,
-      },
-    ]
+    datasets: {
+      hardware: [
+        {
+          show: true,
+          value: 134,
+        }, {
+          value: 866,
+        },
+      ],
+      virtual: [
+        {
+          show: true,
+          value: 141,
+        }, {
+          value: 859,
+        },
+      ],
+    },
   },
   updateAtInstall: {
-    dataset: [
-      {
-        show: true,
-        value: 920,
-      }, {
-        value: 80,
-      },
-    ]
+    datasets: {
+      hardware: [
+        {
+          show: true,
+          value: 919,
+        }, {
+          value: 81,
+        },
+      ],
+      virtual: [
+        {
+          show: true,
+          value: 911,
+        }, {
+          value: 89,
+        },
+      ],
+    },
   },
   languageList: {
     title: 'What language do they use?',
