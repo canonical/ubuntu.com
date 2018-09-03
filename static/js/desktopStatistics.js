@@ -181,8 +181,15 @@ function createHorizontalBarChart(selector, dataset, options) {
     .call(d3.axisLeft(y))
     .selectAll(".tick text")
     .attr("text-anchor", "left")
-    .attr("transform", "translate(-10,0)")
-    .call(wrapText, margin.left);
+    .call(wrapText, margin.left)
+    .attr("transform", function() {
+      var marginRight = 10;
+      var fontSize = window.getComputedStyle(this).fontSize;
+      var textHeight = this.getBBox().height - 1;
+      var yPos = (-textHeight / 2) + (parseInt(fontSize, 10) / 2);
+
+      return "translate(-" + marginRight + "," + yPos + ")";
+    });
 
   // Generate bars
   g.selectAll(".p-bar-chart__bar")
@@ -242,7 +249,7 @@ function buildCharts() {
   createHorizontalBarChart(
     '#language-list-chart',
     dummyData.languageList.dataset,
-    { sort: 'ascending', truncPoint: 10, margin: { top: 20, right: 20, bottom: 20, left: 60 } }
+    { sort: 'ascending', truncPoint: 10, margin: { top: 20, right: 20, bottom: 20, left: 70 } }
   );
 
   if (window.innerWidth >= breakpoint) {
