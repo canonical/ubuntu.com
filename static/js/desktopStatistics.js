@@ -80,8 +80,66 @@ function showMaxDatum(target, dataset) {
   );
 }
 
+function createProgressChart(selector, dataset, options) {
+  // Set option defaults
+  options = options || {};
+  var parentWidth = document.querySelector(selector).parentNode.clientWidth;
+  var color = options.hasOwnProperty('color') ? options.color : '#ed764d';
+  var size = options.hasOwnProperty('size') ? options.size : 300;
+
+  // Create copy of dataset
+  var data = dataset.slice();
+
+  // Orientate svg
+  size = Math.min(size, parentWidth);
+  var height = size;
+  var width = size;
+  var svg = d3.select(selector)
+    .attr('height', height)
+    .attr('width', width)
+    .attr('class', 'p-progress-chart');
+  var g = svg.append("g");
+
+  // Set axis domains and range
+  var x = d3.scaleBand()
+    .rangeRound([0, width]);
+
+  var y = d3.scaleLinear()
+    .rangeRound([height, 0])
+    .domain([0, 100]);
+
+  // Generate bar
+  g.selectAll(".p-progress-chart__bar")
+    .data(dataset)
+    .enter()
+    .append("rect")
+    .attr("class", "p-progress-chart__bar")
+    .attr('fill', color)
+    .attr("y", function(d) { return y(calcPercentage(data, d.value)) })
+    .attr("width", x.bandwidth())
+    .attr("height", function(d) {
+      if (d.show) return height - y(calcPercentage(data, d.value))
+    });
+
+  // Append percentage over top of graph
+  svg
+    .append("text")
+    .attr("class", "p-progress-chart__text")
+    .attr("transform", function() {
+      return "translate(" + height / 2 + "," + ((width + 20) / 2) + ")";
+    })
+    .attr("text-anchor", "middle")
+    .text(function() {
+      var value = round(d3.max(data, function(d) {
+        if (d.show) return calcPercentage(data, d.value)
+      }), 1);
+
+      return value + '%';
+    });
+}
+
 function clearCharts() {
-  var charts = document.querySelectorAll('.p-bar-chart, .p-pie-chart, .p-fill-chart');
+  var charts = document.querySelectorAll('.p-bar-chart, .p-pie-chart, .p-progress-chart');
   charts.forEach(function(chart) {
     chart.innerHTML = '';
   });
@@ -92,6 +150,17 @@ function buildCharts() {
   showMaxDatum('#display-server', dummyData.displayServer.dataset);
   showMaxDatum('#one-screen', dummyData.numberScreens.dataset);
   showMaxDatum('#one-gpu', dummyData.numberGPUs.dataset);
+
+  createProgressChart('#default-settings-hw', dummyData.defaultSettings.datasets.hardware);
+  createProgressChart('#restrict-add-on-hw', dummyData.restrictAddOn.datasets.hardware);
+  createProgressChart('#auto-login-hw', dummyData.autoLogin.datasets.hardware);
+  createProgressChart('#minimal-install-hw', dummyData.minimalInstall.datasets.hardware);
+  createProgressChart('#update-at-install-hw', dummyData.updateAtInstall.datasets.hardware);
+  createProgressChart('#default-settings-vm', dummyData.defaultSettings.datasets.virtual, { color: '#925375' });
+  createProgressChart('#restrict-add-on-vm', dummyData.restrictAddOn.datasets.virtual, { color: '#925375' });
+  createProgressChart('#auto-login-vm', dummyData.autoLogin.datasets.virtual, { color: '#925375' });
+  createProgressChart('#minimal-install-vm', dummyData.minimalInstall.datasets.virtual, { color: '#925375' });
+  createProgressChart('#update-at-install-vm', dummyData.updateAtInstall.datasets.virtual, { color: '#925375' });
 }
 
 window.addEventListener('resize', debounce(function() {
