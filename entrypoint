@@ -2,9 +2,13 @@
 
 set -e
 
-if ${DJANGO_DEBUG}; then
-    talisker.gunicorn.gevent --reload --log-level debug --timeout 9999 --worker-class gevent --bind $1 webapp.wsgi
-else
-    talisker.gunicorn.gevent --worker-class gevent webapp.wsgi --name talisker-`hostname`
+RUN_COMMAND="talisker.gunicorn.gevent webapp.wsgi --bind $1 --worker-class gevent --name talisker-`hostname`"
+
+if [ "${DJANGO_DEBUG}" = true ] || [ "${DJANGO_DEBUG}" = 1 ]; then
+    echo ""
+    echo "= Running talisker with development settings ="
+    echo ""
+    RUN_COMMAND="${RUN_COMMAND} --reload --log-level debug --timeout 9999"
 fi
 
+${RUN_COMMAND}
