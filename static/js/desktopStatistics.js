@@ -130,9 +130,9 @@ function createProgressChart(selector, dataset, options) {
     })
     .attr("text-anchor", "middle")
     .text(function() {
-      var value = Math.ceil(d3.max(data, function(d) {
+      var value = round(d3.max(data, function(d) {
         if (d.show) return calcPercentage(data, d.value)
-      }));
+      }), 1);
 
       return value + '%';
     });
@@ -151,11 +151,16 @@ function buildCharts() {
   showMaxDatum('#one-screen', dummyData.numberScreens.dataset);
   showMaxDatum('#one-gpu', dummyData.numberGPUs.dataset);
 
-  createProgressChart('#default-settings', dummyData.defaultSettings.dataset);
-  createProgressChart('#restrict-add-on', dummyData.restrictAddOn.dataset);
-  createProgressChart('#auto-login', dummyData.autoLogin.dataset);
-  createProgressChart('#minimal-install', dummyData.minimalInstall.dataset);
-  createProgressChart('#update-at-install', dummyData.updateAtInstall.dataset);
+  createProgressChart('#default-settings-hw', dummyData.defaultSettings.datasets.hardware);
+  createProgressChart('#restrict-add-on-hw', dummyData.restrictAddOn.datasets.hardware);
+  createProgressChart('#auto-login-hw', dummyData.autoLogin.datasets.hardware);
+  createProgressChart('#minimal-install-hw', dummyData.minimalInstall.datasets.hardware);
+  createProgressChart('#update-at-install-hw', dummyData.updateAtInstall.datasets.hardware);
+  createProgressChart('#default-settings-vm', dummyData.defaultSettings.datasets.virtual, { color: '#925375' });
+  createProgressChart('#restrict-add-on-vm', dummyData.restrictAddOn.datasets.virtual, { color: '#925375' });
+  createProgressChart('#auto-login-vm', dummyData.autoLogin.datasets.virtual, { color: '#925375' });
+  createProgressChart('#minimal-install-vm', dummyData.minimalInstall.datasets.virtual, { color: '#925375' });
+  createProgressChart('#update-at-install-vm', dummyData.updateAtInstall.datasets.virtual, { color: '#925375' });
 }
 
 window.addEventListener('resize', debounce(function() {
