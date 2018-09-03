@@ -96,7 +96,7 @@ function createBarChart(selector, dataset, options) {
 
   // Orientate svg and give it class name
   var svg = d3.select(selector).attr("class", "p-bar-chart");
-  var width = document.querySelector(selector).clientWidth - margin.right - margin.left;
+  var width = document.querySelector(selector).getBoundingClientRect().width - margin.right - margin.left;
   var height = +svg.attr("height") - margin.top - margin.bottom;
   var g = svg.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -155,7 +155,7 @@ function createHorizontalBarChart(selector, dataset, options) {
 
   // Orientate svg and give it class name
   var svg = d3.select(selector).attr("class", "p-bar-chart");
-  var width = document.querySelector(selector).clientWidth - margin.right - margin.left;
+  var width = document.querySelector(selector).getBoundingClientRect().width - margin.right - margin.left;
   var height = +svg.attr("height") - margin.top - margin.bottom;
   var g = svg.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
