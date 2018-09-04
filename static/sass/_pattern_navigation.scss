@@ -18,7 +18,7 @@
   .p-navigation {
     background-color: $nav-bg-color;
     flex-direction: column;
-    z-index: 3;
+    z-index: 10;
 
     &::after { // disable rule under nav
       background-color: none;
@@ -181,7 +181,7 @@
       margin-top: 0;
       position: relative;
       width: 100%;
-      z-index: 1;
+      z-index: 5;
 
       @media (max-width: $breakpoint-x-small - 1) {
         padding-top: $sp-small / 2;
@@ -373,7 +373,7 @@
     background-color: rgba(17,17,17, .4);
     opacity: 1;
     position: fixed;
-    z-index: 1;
+    z-index: 3;
     transition: opacity .5s ease-in-out;
   }
 
@@ -384,7 +384,7 @@
     flex-direction: column;
     position: absolute;
     width: 100%;
-    z-index: 2;
+    z-index: 4;
 
     &.slide-animation {
       box-shadow: none;
