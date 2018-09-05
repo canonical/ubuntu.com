@@ -114,7 +114,7 @@ var kernelReleases = [
     startDate: new Date('2017-04-01T00:00:00'),
     endDate: new Date('2019-07-01T00:00:00'),
     taskName: 'Ubuntu 12.01.0 LTS (v3.2)',
-    status: 'EXTENDED_SUPPORT_FOR_CUSTOMERS'
+    status: 'EXTENDED_SUPPORT_MAINTENANCE_FOR_CUSTOMERS'
   },
   {
     startDate: new Date('2012-07-01T00:00:00'),
@@ -126,7 +126,7 @@ var kernelReleases = [
     startDate: new Date('2017-04-01T00:00:00'),
     endDate: new Date('2019-07-01T00:00:00'),
     taskName: 'Ubuntu 12.04.1 LTS (v3.2)',
-    status: 'EXTENDED_SUPPORT_FOR_CUSTOMERS'
+    status: 'EXTENDED_SUPPORT_MAINTENANCE_FOR_CUSTOMERS'
   },
   {
     startDate: new Date('2014-04-01T00:00:00'),
@@ -144,7 +144,7 @@ var kernelReleases = [
     startDate: new Date('2017-04-01T00:00:00'),
     endDate: new Date('2019-07-01T00:00:00'),
     taskName: 'Ubuntu 12.04.5 LTS (v3.13)',
-    status: 'EXTENDED_SUPPORT_FOR_CUSTOMERS'
+    status: 'EXTENDED_SUPPORT_MAINTENANCE_FOR_CUSTOMERS'
   },
   {
     startDate: new Date('2014-07-01T00:00:00'),
@@ -174,13 +174,13 @@ var kernelReleases = [
     startDate: new Date('2017-10-01T00:00:00'),
     endDate: new Date('2018-10-01T00:00:00'),
     taskName: 'Ubuntu 17.10 (v4.13)',
-    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
+    status: 'STANDARD_RELEASE'
   },
   {
     startDate: new Date('2018-01-01T00:00:00'),
     endDate: new Date('2018-10-01T00:00:00'),
     taskName: 'Ubuntu 16.04.4 LTS (v4.13)',
-    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
+    status: 'STANDARD_RELEASE'
   },
   {
     startDate: new Date('2018-04-01T00:00:00'),
@@ -204,7 +204,7 @@ var kernelReleases = [
     startDate: new Date('2018-10-01T00:00:00'),
     endDate: new Date('2019-10-01T00:00:00'),
     taskName: 'Ubuntu 18.10',
-    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
+    status: 'STANDARD_RELEASE'
   },
   {
     startDate: new Date('2019-01-01T00:00:00'),
@@ -216,7 +216,7 @@ var kernelReleases = [
     startDate: new Date('2019-04-01T00:00:00'),
     endDate: new Date('2020-04-01T00:00:00'),
     taskName: 'Ubuntu 19.04',
-    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
+    status: 'STANDARD_RELEASE'
   },
   {
     startDate: new Date('2019-07-01T00:00:00'),
@@ -228,7 +228,7 @@ var kernelReleases = [
     startDate: new Date('2019-10-01T00:00:00'),
     endDate: new Date('2020-10-01T00:00:00'),
     taskName: 'Ubuntu 19.10',
-    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
+    status: 'STANDARD_RELEASE'
   },
   {
     startDate: new Date('2020-01-01T00:00:00'),
@@ -261,25 +261,25 @@ var openStackReleases = [
     startDate: new Date('2014-04-01T00:00:00'),
     endDate: new Date('2019-04-01T00:00:00'),
     taskName: 'OpenStack Icehouse',
-    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
+    status: 'STANDARD_RELEASE'
   },
   {
     startDate: new Date('2015-04-01T00:00:00'),
     endDate: new Date('2016-10-01T00:00:00'),
     taskName: 'OpenStack Kilo',
-    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
+    status: 'STANDARD_RELEASE'
   },
   {
     startDate: new Date('2016-10-01T00:00:00'),
     endDate: new Date('2018-04-01T00:00:00'),
     taskName: 'OpenStack Kilo',
-    status: 'EXTENDED_SUPPORT_FOR_CUSTOMERS'
+    status: 'EXTENDED_SUPPORT_MAINTENANCE_FOR_CUSTOMERS'
   },
   {
     startDate: new Date('2016-04-01T00:00:00'),
     endDate: new Date('2019-04-01T00:00:00'),
     taskName: 'OpenStack Mitaka',
-    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
+    status: 'STANDARD_RELEASE'
   },
   {
     startDate: new Date('2016-04-01T00:00:00'),
@@ -291,31 +291,31 @@ var openStackReleases = [
     startDate: new Date('2016-10-01T00:00:00'),
     endDate: new Date('2018-04-01T00:00:00'),
     taskName: 'OpenStack Newton',
-    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
+    status: 'STANDARD_RELEASE'
   },
   {
     startDate: new Date('2017-04-01T00:00:00'),
     endDate: new Date('2018-10-01T00:00:00'),
     taskName: 'OpenStack Ocata',
-    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
+    status: 'STANDARD_RELEASE'
   },
   {
     startDate: new Date('2018-10-01T00:00:00'),
     endDate: new Date('2020-04-01T00:00:00'),
     taskName: 'OpenStack Ocata',
-    status: 'EXTENDED_SUPPORT_FOR_CUSTOMERS'
+    status: 'EXTENDED_SUPPORT_MAINTENANCE_FOR_CUSTOMERS'
   },
   {
     startDate: new Date('2017-10-01T00:00:00'),
     endDate: new Date('2019-04-01T00:00:00'),
     taskName: 'OpenStack Pike',
-    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
+    status: 'STANDARD_RELEASE'
   },
   {
     startDate: new Date('2018-04-01T00:00:00'),
     endDate: new Date('2021-04-01T00:00:00'),
     taskName: 'OpenStack Queens',
-    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
+    status: 'STANDARD_RELEASE'
   },
   {
     startDate: new Date('2018-04-01T00:00:00'),
@@ -327,7 +327,7 @@ var openStackReleases = [
     startDate: new Date('2018-10-01T00:00:00'),
     endDate: new Date('2020-04-01T00:00:00'),
     taskName: 'OpenStack Rocky',
-    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
+    status: 'STANDARD_RELEASE'
   }
 ];
 
@@ -340,14 +340,14 @@ var desktopServerStatus = {
 
 var kernelStatus = {
   UBUNTU_LTS_RELEASE_SUPPORT: 'chart__bar--orange',
-  MATCHING_OPENSTACK_RELEASE_SUPPORT: 'chart__bar--grey',
-  EXTENDED_SUPPORT_FOR_CUSTOMERS: 'chart__bar--aubergine'
+  STANDARD_RELEASE: 'chart__bar--grey',
+  EXTENDED_SUPPORT_MAINTENANCE_FOR_CUSTOMERS: 'chart__bar--aubergine'
 };
 
 var openStackStatus = {
   UBUNTU_LTS_RELEASE_SUPPORT: 'chart__bar--orange',
-  MATCHING_OPENSTACK_RELEASE_SUPPORT: 'chart__bar--grey',
-  EXTENDED_SUPPORT_FOR_CUSTOMERS: 'chart__bar--aubergine'
+  STANDARD_RELEASE: 'chart__bar--grey',
+  EXTENDED_SUPPORT_MAINTENANCE_FOR_CUSTOMERS: 'chart__bar--aubergine'
 };
 
 var desktopServerReleaseNames = [
