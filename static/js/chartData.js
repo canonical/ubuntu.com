@@ -432,7 +432,7 @@ var kernelReleaseNames = [
   'Ubuntu 12.04.5 LTS (v3.13)',
   'Ubuntu 14.04.0 LTS (v3.13)',
   'Ubuntu 12.04.1 LTS (v3.2)',
-  'Ubuntu 12.01.0 LTS (v3.2)'
+  'Ubuntu 12.04.0 LTS (v3.2)'
 ];
 
 var openStackReleaseNames = [
