@@ -28,7 +28,7 @@ if settings.SEARCH_API_KEY:
     )
 
 
-def _get_search_results(query, start, num):
+def _get_search_results(query, start, num, site=None):
     """
     Query the Google Custom Search API for search results
     """
@@ -42,6 +42,7 @@ def _get_search_results(query, start, num):
             'key': settings.SEARCH_API_KEY,
             'cx': settings.CUSTOM_SEARCH_ID,
             'q': query,
+            'siteSearch': site,
             'start': start,
             'num': num
         }
@@ -60,18 +61,20 @@ def search(request):
     """
 
     query = request.GET.get('q')
+    site = request.GET.get('siteSearch') or request.GET.get('domain')
     num = int(request.GET.get('num', '10'))
     start = int(request.GET.get('start', '1'))
 
     context = {
         'query': query,
         'start': start,
+        'siteSearch': site,
         'num': num
     }
 
     if query:
         try:
-            context['results'] = _get_search_results(query, start, num)
+            context['results'] = _get_search_results(query, start, num, site)
 
             if 'searchInformation' in context['results']:
                 context['estimatedTotal'] = int(
