@@ -10,7 +10,7 @@
   <div class="row u-equal-height u-vertically-center">
     <div class="col-8">
       <h1>Install Kubernetes yourself</h1>
-      <p>Canonical has developed multiple installation paths to get you up and running with Kubernetes based on your needs.</p>
+      <p>Ubuntu is the standard platform for Kubernetes &mdash; from development to production, on bare metal, on public cloud, on VMware and on OpenStack. All major clouds offer Ubuntu as the worker node for their Kubernetes SAAS offerings.</p>
     </div>
     <div class="col-4 u-align--center u-hide--small">
       <img src="{{ ASSET_SERVER_URL }}96d35aa4-certified-kubernetes-logo.svg?w=300" alt="Kubernetes Certified Service Provider" />
@@ -20,33 +20,47 @@
 
 <section class="p-strip--light is-bordered">
   <div class="row">
-    <h2>Three ways to install Kubernetes</h2>
+    <h2>Three ways to get Kubernetes on Ubuntu</h2>
   </div>
   <div class="row u-equal-height">
     <div class="col-4 p-card">
       <div class="p-card__header">
-        <h3>Try it locally</h3>
+        <h3>Workstation</h3>
       </div>
-      <p>For a simple all-in-one installation on your local machine in under 60 seconds, <a class="p-link--external" href="https://microk8s.io/">try microk8s</a>.</p>
+      <p>Microk8s is a single-package install that brings up a standard workstation K8s in under 60 seconds.</p>
+      <p>
+        <a class="p-button--positive" href="https://microk8s.io/">
+          <span class="p-link--external">Install now</span>
+        </a></p>
     </div>
     <div class="col-4 p-card">
       <div class="p-card__header">
-        <h3>Deploy to your cluster</h3>
+        <h3>Create your own cluster</h3>
       </div>
-      <p>For a guided cluster installation on any cloud or data center from the CLI, try <a class="p-link--external" href="https://conjure-up.io/">conjure-up kubernetes</a>.</p>
+      <p>The standard guided cluster installation with Ubuntu on any cloud or data centre from the CLI, try <code>conjure-up kubernetes</code>.</p>
+      <p>
+        <a class="p-button--neutral" href="https://conjure-up.io/">
+          <span class="p-link--external">Deploy k8s</span>
+        </a>
+      </p>
     </div>
     <div class="col-4 p-card">
       <div class="p-card__header">
-        <h3>Install with Juju</h3>
+        <h3>Public cloud CAAS</h3>
       </div>
-      <p>Try <a class="p-link--external" href="https://jujucharms.com/kubernetes">Juju&rsquo;s</a> drag and drop, browser based tool or for a detailed walk through of a CLI-based installation, go to Juju charm <a class="p-link--external" href="https://jujucharms.com/canonical-kubernetes/bundle">bundle for Kubernetes</a>.</p>
+      <p>Leading public clouds offer Ubuntu K8s worker nodes for hybrid Kubernetes operations.</p>
+      <ul class="p-list">
+        <li class="p-list__item"><a class="p-link--external" href="https://azure.microsoft.com/en-us/services/kubernetes-service/">Azure AKS</a></li>
+        <li class="p-list__item"><a class="p-link--external" href="https://cloud.google.com/kubernetes-engine/docs/concepts/node-images#ubuntu">Google GKE</a></li>
+        <li class="p-list__item"><a class="p-link--external" href="https://www.ibm.com/cloud/container-service">IBM Kubernetes Service</a></li>
+      </ul>
     </div>
   </div>
 </section>
 
 <section class="p-strip is-bordered">
   <div class="row">
-    <h2 style="max-width: none">Getting Started with The Canonical Distribution of Kubernetes</h2>
+    <h2 style="max-width: none">Getting started with Ubuntu Kubernetes</h2>
   </div>
   <div class="row">
     <div class="u-embedded-media">
@@ -57,24 +71,20 @@
 
 <section class="p-strip--light is-bordered">
   <div class="row">
-    <h2>Install on a public cloud</h2>
-    <p>There are two ways to install Kubernetes in your software defined infrastructure on any major public cloud with conjure-up or Juju.</p>
-    <ul class="p-list">
-      <li class="p-list__item">
-        <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/install-kubernetes-with-conjure-up">Install Kubernetes with conjure-up</a>
-      </li>
-      <li class="p-list__item">
-        <a class="p-link--external" href="https://jujucharms.com/kubernetes">Install and manage Kubernetes with Juju</a>
-      </li>
-    </ul>
+    <h2>Full cluster deployment instructions</h2>
+    <p>The standard Ubuntu Kubernetes installation process creates a high-availability cluster of physical or virtual machines. It works on AWS, Azure, Google Cloud, VMware, OpenStack, and Metal-as-a-Service (MAAS). There is an optional logging, monitoring and alerting capability which uses the ELK stack to organise logs from the entire cluster. Support for various storage, networking and container runtime plugins is standard.</p>
+    <p>
+      <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/install-kubernetes-with-conjure-up">Install Ubuntu Kubernetes</a>
+    </p>
   </div>
 </section>
 
 <section class="p-strip is-bordered">
   <div class="row">
     <div class="col-8">
-      <h2>Install on your local machine</h2>
-      <p>Canonical has developed microk8s, a simple, streamlined mechanism to get Kubernetes setup on any desktop. Microk8s is quick to install and has a small footprint suitable for local development and testing.</p>
+      <h2>Workstation installation instructions</h2>
+      <p>Developers often don’t need high availability, and would rather get a fast, local install of K8s which can be started or stopped on demand, for test and development iterations.</p>
+      <p>Microk8s is a simple, streamlined single-package install of Kubernetes that works for all classes of device - you can use it on your laptop, or a server, or a cloud VM. It will give you a full upstream install that is single-node only, but it’s a perfect way to get K8s for development or for edge/gateway environments. Microk8s is quick to install and has a small footprint. </p>
     </div>
   </div>
   <div class="row">
@@ -88,10 +98,10 @@
   <div class="row">
     <ul class="p-list">
       <li class="p-list__item">
-        <a class="p-link--external" href="https://microk8s.io/">Visit microk8s.io</a>
+        <a class="p-link--external" href="https://microk8s.io/">Visit microk8s.io for docs and community</a>
       </li>
       <li class="p-list__item">
-        <a class="p-link--external" href="https://github.com/juju-solutions/microk8s">Find the project on github</a>
+        <a class="p-link--external" href="https://github.com/ubuntu/microk8s">Find the code on github</a>
       </li>
     </ul>
   </div>
@@ -111,13 +121,16 @@
         <button class="p-code-snippet__action">Copy to clipboard</button>
       </div>
       <div class="p-code-snippet">
-        <input class="p-code-snippet__input" value="conjure-up kubernetes" readonly="readonly">
+        <input class="p-code-snippet__input" value="conjure-up canonical-kubernetes" readonly="readonly">
         <button class="p-code-snippet__action">Copy to clipboard</button>
       </div>
     </div>
   </div>
   <div class="row">
     <ul class="p-list">
+      <li class="p-list__item">
+        <a class="p-link--external" href="https://docs.conjure-up.io/stable/en/walkthrough">conjure-up kubernetes walk-through</a>
+      </li>
       <li class="p-list__item">
         <a class="p-link--external" href="https://conjure-up.io/">Use conjure-up to install OpenStack or Kubernetes</a>
       </li>
