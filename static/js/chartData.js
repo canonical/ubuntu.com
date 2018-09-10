@@ -253,6 +253,12 @@ var kernelReleases = [
 var openStackReleases = [
   {
     startDate: new Date('2014-04-01T00:00:00'),
+    endDate: new Date('2017-04-01T00:00:00'),
+    taskName: 'OpenStack Icehouse',
+    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
+  },
+  {
+    startDate: new Date('2014-04-01T00:00:00'),
     endDate: new Date('2019-04-01T00:00:00'),
     taskName: 'Ubuntu 14.04 LTS',
     status: 'UBUNTU_LTS_RELEASE_SUPPORT'
@@ -260,7 +266,13 @@ var openStackReleases = [
   {
     startDate: new Date('2014-04-01T00:00:00'),
     endDate: new Date('2019-04-01T00:00:00'),
-    taskName: 'OpenStack Icehouse',
+    taskName: 'OpenStack Icehouse LTS',
+    status: 'UBUNTU_LTS_RELEASE_SUPPORT'
+  },
+  {
+    startDate: new Date('2014-10-01T00:00:00'),
+    endDate: new Date('2016-04-01T00:00:00'),
+    taskName: 'OpenStack Juno',
     status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
   },
   {
@@ -274,6 +286,12 @@ var openStackReleases = [
     endDate: new Date('2018-04-01T00:00:00'),
     taskName: 'OpenStack Kilo',
     status: 'EXTENDED_SUPPORT_FOR_CUSTOMERS'
+  },
+  {
+    startDate: new Date('2015-10-01T00:00:00'),
+    endDate: new Date('2017-04-01T00:00:00'),
+    taskName: 'OpenStack Liberty',
+    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
   },
   {
     startDate: new Date('2016-04-01T00:00:00'),
@@ -290,8 +308,8 @@ var openStackReleases = [
   {
     startDate: new Date('2016-04-01T00:00:00'),
     endDate: new Date('2021-04-01T00:00:00'),
-    taskName: 'OpenStack Mitaka',
-    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
+    taskName: 'OpenStack Mitaka LTS',
+    status: 'UBUNTU_LTS_RELEASE_SUPPORT'
   },
   {
     startDate: new Date('2016-10-01T00:00:00'),
@@ -332,8 +350,8 @@ var openStackReleases = [
   {
     startDate: new Date('2018-04-01T00:00:00'),
     endDate: new Date('2023-04-01T00:00:00'),
-    taskName: 'OpenStack Queens',
-    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
+    taskName: 'OpenStack Queens LTS',
+    status: 'UBUNTU_LTS_RELEASE_SUPPORT'
   },
   {
     startDate: new Date('2018-08-01T00:00:00'),
@@ -374,8 +392,8 @@ var openStackReleases = [
   {
     startDate: new Date('2020-04-01T00:00:00'),
     endDate: new Date('2025-04-01T00:00:00'),
-    taskName: 'OpenStack U',
-    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
+    taskName: 'OpenStack U LTS',
+    status: 'UBUNTU_LTS_RELEASE_SUPPORT'
   },
 ];
 
@@ -436,19 +454,25 @@ var kernelReleaseNames = [
 ];
 
 var openStackReleaseNames = [
+  'OpenStack U LTS',
   'Ubuntu 20.04 LTS',
   'OpenStack U',
   'OpenStack T',
   'OpenStack Stein',
   'OpenStack Rocky',
+  'OpenStack Queens LTS',
   'Ubuntu 18.04 LTS',
   'OpenStack Queens',
   'OpenStack Pike',
   'OpenStack Ocata',
   'OpenStack Newton',
+  'OpenStack Mitaka LTS',
   'Ubuntu 16.04 LTS',
   'OpenStack Mitaka',
+  'OpenStack Liberty',
   'OpenStack Kilo',
-  'OpenStack Icehouse',
-  'Ubuntu 14.04 LTS'
+  'OpenStack Juno',
+  'OpenStack Icehouse LTS',
+  'Ubuntu 14.04 LTS',
+  'OpenStack Icehouse'
 ];
