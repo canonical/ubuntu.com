@@ -270,12 +270,6 @@ var openStackReleases = [
     status: 'UBUNTU_LTS_RELEASE_SUPPORT'
   },
   {
-    startDate: new Date('2014-10-01T00:00:00'),
-    endDate: new Date('2016-04-01T00:00:00'),
-    taskName: 'OpenStack Juno',
-    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
-  },
-  {
     startDate: new Date('2015-04-01T00:00:00'),
     endDate: new Date('2016-10-01T00:00:00'),
     taskName: 'OpenStack Kilo',
@@ -286,12 +280,6 @@ var openStackReleases = [
     endDate: new Date('2018-04-01T00:00:00'),
     taskName: 'OpenStack Kilo',
     status: 'EXTENDED_SUPPORT_FOR_CUSTOMERS'
-  },
-  {
-    startDate: new Date('2015-10-01T00:00:00'),
-    endDate: new Date('2017-04-01T00:00:00'),
-    taskName: 'OpenStack Liberty',
-    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
   },
   {
     startDate: new Date('2016-04-01T00:00:00'),
