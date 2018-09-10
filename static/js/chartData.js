@@ -457,9 +457,7 @@ var openStackReleaseNames = [
   'OpenStack Mitaka LTS',
   'Ubuntu 16.04 LTS',
   'OpenStack Mitaka',
-  'OpenStack Liberty',
   'OpenStack Kilo',
-  'OpenStack Juno',
   'OpenStack Icehouse LTS',
   'Ubuntu 14.04 LTS',
   'OpenStack Icehouse'
