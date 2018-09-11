@@ -1,6 +1,6 @@
 {% extends "templates/one-column.html" %}
 {% load versioned_static  %}
-
+{% block meta_copydoc %}https://docs.google.com/document/d/1-l3B7AoyDoETaL80UhlfEWCVKmMWPdy3zoF5LpsGcYQ{% endblock meta_copydoc %}
 {% block meta_description %}Overview of the Ubuntu release cycle - maintenance, support and security coverage, lifetime, upgrade paths, kernel versions and the range of editions and images published by Canonical.{% endblock %}
 
 {% block title %}Ubuntu release cycle{% endblock %}
@@ -43,6 +43,7 @@
             <td>&nbsp;</td>
             <th scope="col">Released</th>
             <th scope="col">End of Life</th>
+            <th scope="col">Extended security maintenance</th>
           </tr>
         </thead>
         <tbody>
@@ -50,81 +51,97 @@
             <td><strong>Ubuntu 22.04 LTS</strong></td>
             <td>April 2022</td>
             <td>April 2027</td>
+            <td>&nbsp;</td>
           </tr>
           <tr>
             <td>Ubuntu 21.10</td>
             <td>October 2021</td>
             <td>July 2022</td>
+            <td>&nbsp;</td>
           </tr>
           <tr>
             <td>Ubuntu 21.04</td>
             <td>April 2021</td>
             <td>January 2022</td>
+            <td>&nbsp;</td>
           </tr>
           <tr>
             <td>Ubuntu 20.10</td>
             <td>October 2020</td>
             <td>July 2021</td>
+            <td>&nbsp;</td>
           </tr>
           <tr>
             <td><strong>Ubuntu 20.04 LTS</strong></td>
             <td>April 2020</td>
             <td>April 2025</td>
+            <td>&nbsp;</td>
           </tr>
           <tr>
             <td>Ubuntu 19.10</td>
             <td>October 2019</td>
             <td>July 2020</td>
+            <td>&nbsp;</td>
           </tr>
           <tr>
             <td>Ubuntu 19.04</td>
             <td>April 2019</td>
             <td>January 2020</td>
+            <td>&nbsp;</td>
           </tr>
           <tr>
             <td>Ubuntu 18.10</td>
             <td>October 2018</td>
             <td>July 2019</td>
+            <td>&nbsp;</td>
           </tr>
           <tr>
             <td><strong>Ubuntu 18.04 LTS</strong></td>
             <td>April 2018</td>
             <td>April 2023</td>
+            <td>&nbsp;</td>
           </tr>
           <tr>
             <td>Ubuntu 17.10</td>
             <td>October 2017</td>
             <td>July 2018</td>
+            <td>&nbsp;</td>
           </tr>
           <tr>
             <td>Ubuntu 17.04</td>
             <td>April 2017</td>
             <td>January 2018</td>
+            <td>&nbsp;</td>
           </tr>
           <tr>
             <td>Ubuntu 16.10</td>
             <td>October 2016</td>
             <td>June 2017</td>
+            <td>&nbsp;</td>
           </tr>
           <tr>
             <td><strong>Ubuntu 16.04 LTS</strong></td>
             <td>April 2016</td>
             <td>April 2021</td>
+            <td>&nbsp;</td>
           </tr>
           <tr>
             <td><strong>Ubuntu 14.04 LTS</strong></td>
             <td>April 2014</td>
             <td>April 2019</td>
+            <td>&nbsp;</td>
           </tr>
           <tr>
             <td><strong>Ubuntu 12.04 LTS</strong></td>
             <td>April 2012</td>
             <td>April 2017</td>
+            <td>April 2020</td>
           </tr>
           <tr>
             <td><strong>Ubuntu 10.04 LTS</strong></td>
             <td>April 2010</td>
             <td>April 2015</td>
+            <td>&nbsp;</td>
           </tr>
         </tbody>
       </table>
@@ -246,7 +263,7 @@
             <th>Release</th>
             <th>Released</th>
             <th>End of life</th>
-            <th>Extended customer support</th>
+            <th>Extended security maintenance</th>
           </tr>
         </thead>
         <tbody>
@@ -356,7 +373,7 @@
             <td><strong>Ubuntu 12.04.5 LTS (v3.13)</strong></td>
             <td>August 2014</td>
             <td>April 2017</td>
-            <td>April 2019</td>
+            <td>April 2020</td>
           </tr>
           <tr>
             <td><strong>Ubuntu 14.04.0 LTS (v3.13)</strong></td>
@@ -368,13 +385,13 @@
             <td><strong>Ubuntu 12.04.1 LTS (v3.2)</strong></td>
             <td>August 2012</td>
             <td>April 2017</td>
-            <td>April 2019</td>
+            <td>April 2020</td>
           </tr>
           <tr>
             <td><strong>Ubuntu 12.04.0 LTS (v3.2)</strong></td>
             <td>April 2012</td>
             <td>April 2017</td>
-            <td>April 2019</td>
+            <td>April 2020</td>
           </tr>
         </tbody>
       </table>
@@ -390,7 +407,7 @@
     <div class="col-8">
       <h2>Ubuntu OpenStack release cycle</h2>
       <p>Canonical’s Cloud Archive allows users the ability to install newer releases of Ubuntu <a href="https://wiki.ubuntu.com/OpenStack" class="p-link--external">OpenStack</a> on an Ubuntu server as they become available. A given LTS release of Ubuntu will have the current release of OpenStack packaged in its release archives. The next four releases of OpenStack will then be published in the Cloud Archive for that LTS.</p>
-      <p>That means that it is possible to upgrade OpenStack four times on the same Ubuntu LTS release base operating system (upgrading the OpenStack without upgrading the operating system), and then one has the same OpenStack version that is included with the subsequent LTS release, and can choose to upgrade the operating system without upgrading the openstack version.</p>
+      <p>That means that it is possible to upgrade OpenStack four times on the same Ubuntu LTS release base operating system (upgrading the OpenStack without upgrading the operating system), and then one has the same OpenStack version that is included with the subsequent LTS release, and can choose to upgrade the operating system without upgrading the OpenStack version.</p>
       <p>The middle OpenStack release (one year after the LTS release and one year before the next LTS release) is maintained for an extended period. Many customers therefore opt to make annual upgrades to their OpenStack rather than tracking each six-monthly release. The actual upgrade is fully supported using Canonical OpenStack tools and operator guides, and involves hopping through the six-monthly versions for database upgrade purposes, but the next effect is an annual upgrade to a version that is fully supportable.</p>
       <p>The Ubuntu OpenStack support lifecycle can be represented this way:</p>
     </div>
@@ -409,13 +426,43 @@
         </thead>
         <tbody>
           <tr>
+            <td>OpenStack U LTS</td>
+            <td>April 2020</td>
+            <td>April 2025</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04 LTS</strong></td>
+            <td>April 2020</td>
+            <td>April 2025</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>OpenStack U</td>
+            <td>Feburary 2020</td>
+            <td>April 2023</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>OpenStack T</td>
+            <td>August 2019</td>
+            <td>February 2021</td>
+            <td>&nbsp;</td>
+          </tr>
+	        <tr>
+            <td>OpenStack Stein</td>
+            <td>April 2019</td>
+            <td>October 2020</td>
+            <td>April 2022</td>
+          </tr>
+          <tr>
             <td>OpenStack Rocky</td>
             <td>August 2018</td>
             <td>February 2020</td>
             <td>&nbsp;</td>
           </tr>
           <tr>
-            <td>OpenStack Queens</td>
+            <td>OpenStack Queens LTS</td>
             <td>April 2018</td>
             <td>April 2023</td>
             <td>&nbsp;</td>
@@ -428,7 +475,7 @@
           </tr>
           <tr>
             <td>OpenStack Queens</td>
-            <td>February 2018</td>
+            <td>March 2018</td>
             <td>April 2021</td>
             <td>&nbsp;</td>
           </tr>
@@ -451,7 +498,7 @@
             <td>&nbsp;</td>
           </tr>
           <tr>
-            <td>OpenStack Mitaka</td>
+            <td>OpenStack Mitaka LTS</td>
             <td>April 2016</td>
             <td>April 2021</td>
             <td>&nbsp;</td>
@@ -487,7 +534,7 @@
             <td>&nbsp;</td>
           </tr>
           <tr>
-            <td>OpenStack Icehouse</td>
+            <td>OpenStack Icehouse LTS</td>
             <td>April 2014</td>
             <td>April 2019</td>
             <td>&nbsp;</td>
@@ -539,7 +586,7 @@
     </div>
   </div>
   <div class="row">
-    <p>For more information on previous and upcoming Ubuntu OpenStack releases please see the <a href="https://wiki.ubuntu.com/OpenStack/CloudArchive " class="p-link--external ">Ubuntu Cloud Archive wiki page</a>.</p>
+    <p>For more information on previous and upcoming Ubuntu OpenStack releases please see the <a href="https://wiki.ubuntu.com/OpenStack/CloudArchive " class="p-link--external ">Ubuntu Cloud Archive wiki page</a>.</p
   </div>
 </section>
 

@@ -177,6 +177,8 @@ function buildChartKey(chartSelector, taskStatus) {
 function formatKeyLabel(key) {
   var keyLowerCase = key.toLowerCase().replace(/_/g, ' ');
   var formattedKey = keyLowerCase.charAt(0).toUpperCase() + keyLowerCase.substr(1);
+  formattedKey = formattedKey.replace(' lts ', ' LTS ');
+  formattedKey = formattedKey.replace(' openstack ', ' OpenStack ');
 
   return formattedKey;
 }
