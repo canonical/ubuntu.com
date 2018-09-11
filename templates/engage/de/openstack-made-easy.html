@@ -1,0 +1,140 @@
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Mit den richtigen Tools wird OpenStack ganz einfach.{% endblock %}
+{% block meta_description %}Dieses eBook vermittelt Ihnen ein besseres Verständnis dafür, weshalb Installation und Betrieb von OpenStack komplex erscheinen können und wie OpenStack von Canonical Sie beim Aufbau einer modernen, skalierbaren, reproduzierbaren und erschwinglichen Private Cloud Infrastruktur unterstützt.{% endblock %}
+
+{% block content %}
+
+<section class="p-strip is-deep p-takeover--private-cloud-economics">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h1 class="p-takeover__title">OpenStack problemlos installieren und skalieren</h1>
+      <p class="u-hide--medium u-hide--large u-align--center">
+        <img class="p-takeover__image" src="https://assets.ubuntu.com/v1/35515576-openstack-cloud.svg" alt="">
+      </p>
+    </div>
+    <div class="col-3 u-hide--small u-align--left">
+      <img class="p-takeover__image" src="https://assets.ubuntu.com/v1/35515576-openstack-cloud.svg" alt="" class="u-hide--small">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-7 p-takeover__text">
+      <p>Mit den richtigen Tools wird OpenStack ganz einfach.</p>
+      <p style="font-size:16px;">Der zunehmende Einsatz Multi-Host Microservices-basierter Big Software anstelle von traditioneller,
+        monolithischer Software erfordert grundlegend neue Perspektiven und Herangehensweisen an die Installation und Integration
+        sowie den Betrieb.</p>
+      <p style="font-size:16px;">Dieses eBook vermittelt Ihnen ein besseres Verständnis dafür, weshalb Installation und Betrieb
+        von OpenStack komplex erscheinen können und wie OpenStack von Canonical Sie beim Aufbau einer modernen, skalierbaren,
+        reproduzierbaren und erschwinglichen Private Cloud Infrastruktur unterstützt.</p>
+      <p style="font-size:16px;">Möchten Sie jetzt mit einem Kundenberater sprechen? Rufen Sie uns unter +49 615 1274 6816
+        (DE) oder +44 207 093 5161 (UK) an oder senden Sie uns eine Email an sales@ubuntu.com.</p>
+      <h3 class="p-muted-heading u-align--center">Wir erstellen Clouds für die führenden Unternehmen der Welt</h3>
+      <ul class="p-inline-images">
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}4ef05fb7-bestbuy.jpg" alt="BestBuy" style="max-width:90px;"/>
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}b1fecbf0-logo-att-horizontal.png" width="242" alt="ATT" style="max-width:130px;"/>
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}b7693339-logo-bloomberg.svg" alt="Bloomberg" style="max-width:100px;"/>
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}1ccb6d93-logo-deutschetelekom.svg" alt="Deutsche Telekom" />
+        </li>
+      </ul>
+    </div>
+    <div class="col-5">
+      <!-- MARKETO FORM -->
+      <script src="{{ ASSET_SERVER_URL }}37b1db88-jquery.min.js"></script>
+      <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
+      <script src="{{ ASSET_SERVER_URL }}6ce35d3e-jquery-ui.min.js"></script>‌​
+      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_3266" style="margin-top:-1em;">
+        <fieldset class="u-no-padding--top" style="border-bottom-width: 1px;">
+          <ul class="p-list u-no-margin--bottom">
+            <li class="mktFormReq mktField p-list__item">
+              <label for="FirstName" class="mktoLabel ">Vorname:</label>
+              <input required id="FirstName" name="FirstName" maxlength="255" class="mktoField   mktoRequired" type="text" aria-label="First Name">
+            </li>
+            <li class="mktFormReq mktField">
+              <label for="LastName" class="mktoLabel ">Nachname:</label>
+              <input required id="LastName" name="LastName" maxlength="255" class="mktoField   mktoRequired" type="text" aria-label="Last Name">
+            </li>
+            <li class="mktFormReq mktField">
+              <label for="Email" class="mktoLabel ">Email beruflich:</label>
+              <input required id="Email" name="Email" maxlength="255" class="mktoField mktoEmailField  mktoRequired" type="email" aria-label="Email">
+            </li>
+            <li class="mktFormReq mktField">
+              <label for="Company" class="mktoLabel ">Name des Unternehmens:</label>
+              <input required id="Company" name="Company" maxlength="255" class="mktoField   mktoRequired" type="text" aria-label="Company Name">
+            </li>
+            <li class="mktFormReq mktField">
+              <label for="Title" class="mktoLabel ">Tätigkeitsbezeichnung:</label>
+              <input required id="Title" name="Title" maxlength="255" class="mktoField   mktoRequired" type="text" aria-label="Job Title">
+            </li>
+            <li class="mktFormReq mktField">
+              <label for="Phone" class="mktoLabel ">Telefonnummer:</label>
+              <input required id="Phone" name="Phone" maxlength="255" class="mktoField mktoTelField  mktoRequired" type="tel" aria-label="Phone Number">
+            </li>
+            <li class="mktField">
+              <input name="utm_campaign" class="mktoField mktoFormCol" value="{{utm_campaign}}" type="hidden" aria-label="utm_campaign">
+            </li>
+            <li class="mktField">
+              <input name="utm_medium" class="mktoField mktoFormCol" value="{{utm_medium}}" type="hidden" aria-label="utm_medium">
+            </li>
+            <li class="mktField">
+              <input name="utm_source" class="mktoField mktoFormCol" value="{{utm_source}}" type="hidden" aria-label="utm_source">
+            </li>
+            <li class="mktField">
+              <input name="canonicalUpdatesOptIn" id="canonicalUpdatesOptIn" value="yes" class="mktoField" type="checkbox">
+              <label for="canonicalUpdatesOptIn" class="mktoLabel">Ich erkläre mich damit einverstanden, Informationen zu Produkten und Services von Canoncical zu erhalten.</label>
+            </li>
+            <li class="mktField">
+              <p>Mit der Absendung dieses Formulars bestätige ich, dass ich die <a href="/legal/dataprivacy" target="_blank" class="mchNoDecorate">Datenschutzrichtlinie von Canonical</a> gelesen habe und ihr zustimme.</p>
+              <input name="RichText" type="hidden" aria-label="RichText">
+            </li>
+            <li class="mktField">
+              <input name="Consent_to_Processing__c" class="mktoField  mktoFormCol" value="Yes" type="hidden" aria-label="Consent_to_Processing__c">
+            </li>
+            <li class="mktField">
+              <button type="submit" class="mktoButton">eBook herunterladen</button>
+              <input name="formid" class="mktoField" value="3232" type="hidden" aria-label="formid">
+              <input name="lpId" class="mktoField " value="" type="hidden" aria-label="lpId">
+              <input name="subId" class="mktoField " value="" type="hidden" aria-label="subId">
+              <input name="munchkinId" class="mktoField " value="" type="hidden" aria-label="munchkinId">
+              <input name="lpurl" class="mktoField " value="" type="hidden" aria-label="lpurl">
+              <input name="cr" class="mktoField " value="" type="hidden" aria-label="cr">
+              <input name="kw" class="mktoField " value="" type="hidden" aria-label="kw">
+              <input name="q" class="mktoField " value="" type="hidden" aria-label="q">
+            </li>
+          </ul>
+        </fieldset>
+        <input type="hidden" name="returnURL" value="https://pages.ubuntu.com/openstack-made-easy-de-TY.html" aria-label="returnURL">
+        <input type="hidden" name="retURL" value="https://pages.ubuntu.com/openstack-made-easy-de-TY.html" aria-label="retURL">
+      </form>
+      <script>
+        $("#mktoForm_3266").validate({
+          errorElement: "span",
+          errorClass: "mktFormMsg mktError",
+          onkeyup: false,
+          onclick: false,
+          onblur: false
+        });
+        $(function () { $("#comments").hide() });
+        $('#Ubuntu_User__c').on('change', function () {
+          var selection = $(this).val();
+          if (selection == 'Commercially only') {
+            $('#comments').show();
+          } else {
+            $('#comments').hide();
+          }
+        });
+      </script>
+      <script src="{{ ASSET_SERVER_URL }}f97fa297-stateCountry.js"></script>
+
+      <!-- /MARKETO FORM -->
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

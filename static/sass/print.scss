@@ -74,15 +74,17 @@ header,
 nav,
 footer,
 #livechat-compact-view,
+.u-hide,
 .p-top,
 .u-hide--small,
 .p-heading-icon__img,
 .p-contextual-footer,
 .p-navigation,
-.dropdown-window,
-.dropdown-window__overlay,
+.global-nav__dropdown-overlay,
 .global-nav,
-.global-nav__dropdown-overlay {
+.dropdown-window,
+.dropdown-window-overlay,
+.p-navigation--secondary {
   display: none;
 }
 
@@ -116,4 +118,10 @@ footer,
   & > .p-list__item > h4 {
     display: inline;
   }
+}
+
+// xxx until added to vanilla-framework
+// https://github.com/vanilla-framework/vanilla-framework/issues/1982
+.u-no-print {
+  display: none !important
 }
