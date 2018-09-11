@@ -11,8 +11,10 @@
         {% if query %}
           {% if estimatedTotal == 0 %}
             <h1 class="p-heading--two">Sorry we couldn't find "{{ query }}"</h1>
+            {% if siteSearch %}<h3>on <a href="https://{{ siteSearch }}">{{ siteSearch }}</a></h3>{% endif %}
           {% else %}
             <h1 class="p-heading--two">Search results for "{{ query }}"</h1>
+            {% if siteSearch %}<h3>on <a href="https://{{ siteSearch }}">{{ siteSearch }}</a></h3>{% endif %}
           {% endif %}
         {% else %}
           <h1>Search Ubuntu and Canonical sites</h1>

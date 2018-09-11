@@ -5,23 +5,22 @@
 {% block title %}Von VMware zu Canonical OpenStack{% endblock %}
 
 {% block content %}
-<section class="p-strip--image is-dark is-deep" style="background-image: url('https://assets.ubuntu.com/v1/78c2eae0-image-server-room.jpg'); background-position: 77% 0%;">
-  <div class="row">
-    <div class="col-6">
-      <div class="p-card--overlay">
-        <h1>Von VMware zu Canonical OpenStack</h1>
-        <p>Sind Sie bereit für die Migration von proprietärer Virtualisierung auf OpenStack?</p>
+<section class="p-strip p-takeover--vmware-to-os">
+  <div class="row u-equal-height">
+    <div class="col-9">
+        <h1 class="p-takeover__title">Von VMware zu Canonical OpenStack</h1>
+        <p class="p-takeover__text">
+            <a href="#register-section">Hier klicken um teilzunehmen&nbsp;&rsaquo;</a></p>
     </div>
   </div>
-</div>
 </section>
 
 <section class="p-strip is-bordered">
   <div class="row">
     <div class="col-12">
-      <h2>Sehen Sie sich unser Demonstrationsvideo zu Kosten und Migration an!</h2>
+      <h2 id="register-section">Sehen Sie sich unser Demonstrationsvideo zu Kosten und Migration an!</h2>
     </div>
-    <div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 17086, "language": "de-de", "commId" : 331348, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>
+    <div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 17086, "language": "de-de", "commId" : 331348, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>
   </div></section>
 
 <section class="p-strip--light is-bordered">
@@ -44,31 +43,31 @@
   </div>
 </section>
 
+<section class="p-strip is-bordered">
+    <div class="row">
+        <h3 class="p-muted-heading u-align--center">Folgende unternehmen vertrauen uns ihr OpenStack an:</h3>
+        <ul class="p-inline-images">
+          <li class="p-inline-images__item">
+            <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}4ef05fb7-bestbuy.jpg" alt="BestBuy" style="max-width:90px;" />
+          </li>
+          <li class="p-inline-images__item">
+            <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}b1fecbf0-logo-att-horizontal.png" width="242" alt="ATT" style="max-width:130px;" />
+          </li>
+          <li class="p-inline-images__item">
+            <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}b7693339-logo-bloomberg.svg" alt="Bloomberg" style="max-width:100px;" />
+          </li>
+          <li class="p-inline-images__item">
+            <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}1ccb6d93-logo-deutschetelekom.svg" alt="Deutsche Telekom" />
+          </li>
+        </ul>    
+      </div>
+    </section>
+
 <section class="p-strip--light is-deep is-bordered">
   <div class="row">
     <h2>Von den Cloud-Experten konzipiert und installiert</h2>
     <p>Als führende Plattform für OpenStack und Public Cloud bietet Canonical OpenStack Consulting, Training, Enterprise Support und Remote Operations. Damit können Sie sich auf das konzentrieren, was wirklich zählt: Ihre Anwendungen.</p>
     <p>Gleichgültig, ob Sie eine umfassend gemanagte Cloud oder eine Infrastruktur benötigen, die Ihre derzeitigen und künftigen Workloads bewältigen kann: Wir erstellen die Cloud und Sie behalten die Kontrolle.</p>
-  </div>
-</section>
-
-<section class="p-strip is-bordered">
-<div class="row">
-    <h3 class="p-muted-heading u-align--center">Folgende unternehmen vertrauen uns ihr OpenStack an:</h3>
-    <ul class="p-inline-images">
-      <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}4ef05fb7-bestbuy.jpg" alt="BestBuy" style="max-width:90px;" />
-      </li>
-      <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}b1fecbf0-logo-att-horizontal.png" width="242" alt="ATT" style="max-width:130px;" />
-      </li>
-      <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}b7693339-logo-bloomberg.svg" alt="Bloomberg" style="max-width:100px;" />
-      </li>
-      <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}1ccb6d93-logo-deutschetelekom.svg" alt="Deutsche Telekom" />
-      </li>
-    </ul>    
   </div>
 </section>
 

@@ -20,12 +20,14 @@
   <div class="col-9 p-divider__block">
     <h3>Latest news from our blog</h3>
     <div class="row">
-      {% for article in articles %}
-        <div class="col-3">
-          <h4><a href="{{ article.link|replace_admin }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : '{{ gtm_event_label }} news link', 'eventLabel' : '{{ article.title|escapejs }}', 'eventValue' : '{{ article.link }}' });">{{ article.title.rendered|safe }}</a></h4>
-          <p class="u-no-padding--top"><em><time pubdate datetime="{{ article.date }}">{{ article.date|format_date }}</time></em></p>
-        </div>
-      {% endfor %}
+      {% if articles %}
+        {% for article in articles %}
+          <div class="col-3">
+            <h4><a href="{{ article.link|replace_admin }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : '{{ gtm_event_label }} news link', 'eventLabel' : '{{ article.title|escapejs }}', 'eventValue' : '{{ article.link }}' });">{{ article.title.rendered|safe }}</a></h4>
+            <p class="u-no-padding--top"><em><time pubdate datetime="{{ article.date }}">{{ article.date|format_date }}</time></em></p>
+          </div>
+        {% endfor %}
+      {% endif %}
     </div>
   </div>
 
