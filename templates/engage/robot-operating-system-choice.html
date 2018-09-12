@@ -1,0 +1,59 @@
+{% extends "engage/base_engage.html" %}
+
+{% block meta_description %}The choice of operating system for a robot affects long-term production performance. Securing a long term, stable and profitable lifespan for your robot requires the right OS. {% endblock %}
+
+{% block title %}Key considerations when choosing a robot’s operating system{% endblock %}
+
+{% block content %}
+<section class="p-strip p-takeover--ai-webinar">
+  <div class="row">
+    <div class="col-9">
+      <h1 class="p-takeover__title">Key considerations when choosing a robot’s operating system</h1>
+    </div>
+  </div>
+</section>
+
+<style>
+
+  .p-pull-quote p{
+    font-size:1.26rem;
+  }
+
+  .p-pull-quote__citation{
+    font-size:1.2rem;
+  }
+
+</style>
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-7">
+        <p>Whether it be down to technological advances, rising market demand or just the ‘cool’ factor, the increase in robotics is happening and across numerous industries from healthcare, industrial to retail. </p>
+
+        <div class="col-12 u-equal-height">
+          <div class="col-2">
+            <img src="{{ ASSET_SERVER_URL }}5f75154f-bot.png" alt="Robot with a display">
+          </div>
+          <div class="col-9 u-vertically-center">
+            <blockquote class="p-pull-quote">
+              <p>Worldwide robotic spending, encompassing hardware, software and related services, is set to reach US$230.7bn by 2021.</p>
+              <cite class="p-pull-quote__citation">IDC - <a href="https://www.idc.com/getdoc.jsp?containerId=prUS42880417">2017</a></cite>
+              </blockquote>
+          </div>
+        </div>
+        <p>Any robotics manufacturer needs to consider how their operating system (OS) will influence both the speed and efficiency of development and then how that performs in production to provide a stable yet supportable product in the long run. These considerations are even more important in such a fast moving and competitive market.</p>
+        <h3>Whitepaper highlights:</h3>
+        <ul class="p-list">
+            <li class="p-list__item is-ticked">How to maximise and leverage the skills of your existing engineers to accelerate your development process</li>
+            <li class="p-list__item is-ticked">Ensure a smooth integration with your other infrastructure and hardware to enhance compatibility and reduce friction</li>
+            <li class="p-list__item is-ticked">Secure a long term, stable and profitable lifespan for your robot</li>
+        </ul>
+
+
+    </div>
+    <div class="col-5">
+    {% include "../shared/forms/_landing_page_default.html" with id="3261" returnURL="https://pages.ubuntu.com/OSconsideration_TY.html" %}
+    </div>
+  </div>
+</section>
+{% endblock content %}
