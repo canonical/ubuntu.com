@@ -1,4 +1,4 @@
-<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <section class="p-strip is-deep">
   <div class="row">
     <div class="col-8">
@@ -61,23 +61,25 @@
               <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
             </li>
             <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/dataprivacy/contact">Canonical&rsquo;s Privacy Notice</a> and <a href="/legal/terms-and-policies/privacy-policy">Privacy Policy</a>.</li>
-            <li class="p-list__item"><div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"></div></li>
+            <li class="p-list__item">
+              <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"></div>
+            </li>
             <li class="mktField p-list__item">
               <button type="submit" class="mktoButton p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'iot contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button>
             </li>
           </ul>
-          <input type="hidden" name="formValidation" aria-label="validation" value="" />
-          <input type="hidden" name="formid" class="mktoField" value="{{formid}}" />
-          <input type="hidden" name="lpId" class="mktoField" value="{{lpId}}" />
-          <input type="hidden" name="subId" class="mktoField" value="30" />
-          <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335" />
-          <input type="hidden" name="lpurl" class="mktoField" value="https://pages.ubuntu.com/things-contact-us.html?cr={creative}&amp;kw={keyword}" />
-          <input type="hidden" name="cr" class="mktoField" value="" />
-          <input type="hidden" name="kw" class="mktoField" value="" />
-          <input type="hidden" name="q" class="mktoField" value="" />
-          <input type="hidden" name="returnURL" value="{{returnURL}}" />
-          <input type="hidden" name="retURL" value="{{returnURL}}" />
-          <input type="hidden" name="Consent_to_Processing__c" value="yes" />
+          <input type="hidden" aria-hidden="true" name="formValidation" value="" />
+          <input type="hidden" aria-hidden="true" name="formid" class="mktoField" value="{{formid}}" />
+          <input type="hidden" aria-hidden="true" name="lpId" class="mktoField" value="{{lpId}}" />
+          <input type="hidden" aria-hidden="true" name="subId" class="mktoField" value="30" />
+          <input type="hidden" aria-hidden="true" name="munchkinId" class="mktoField" value="066-EOV-335" />
+          <input type="hidden" aria-hidden="true" name="lpurl" class="mktoField" value="https://pages.ubuntu.com/things-contact-us.html?cr={creative}&amp;kw={keyword}" />
+          <input type="hidden" aria-hidden="true" name="cr" class="mktoField" value="" />
+          <input type="hidden" aria-hidden="true" name="kw" class="mktoField" value="" />
+          <input type="hidden" aria-hidden="true" name="q" class="mktoField" value="" />
+          <input type="hidden" aria-hidden="true" name="returnURL" value="{{returnURL}}" />
+          <input type="hidden" aria-hidden="true" name="retURL" value="{{returnURL}}" />
+          <input type="hidden" aria-hidden="true" name="Consent_to_Processing__c" value="yes" />
         </fieldset>
       </form>
     </div>
