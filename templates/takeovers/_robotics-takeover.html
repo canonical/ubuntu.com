@@ -8,8 +8,8 @@
       </div>
     </div>
     <div class="col-6 u-align--center u-vertically-center">
-      <div class="u-align-text--center">
-        <img class="financial-cloud" src="{{ ASSET_SERVER_URL }}da1043ab-robot.svg" alt="">
+      <div class="u-align-text--center u-sv3">
+        <img class="p-takeover__image" src="{{ ASSET_SERVER_URL }}da1043ab-robot.svg" alt="">
       </div>
       <div class="u-hide--medium u-hide--large">
         <a href="/engage/robotics?utm_source=takeover" class="p-button--positive u-no-margin--bottom">Download whitepaper</a>
@@ -19,9 +19,18 @@
 </section>
 
 <style>
+
   .p-takeover--robotics {
-    background-image: linear-gradient(-44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%);
     background-color: #262626;
+  }
+
+  @media (min-width: 768px) {
+    .p-takeover--robotics {
+      background-image: url('https://assets.ubuntu.com/v1/a9f785e5-circuits-together.svg'), linear-gradient(-44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%);
+      background-color: #262626;
+      background-size: cover;
+      padding: 8rem 0 !important;
+    }
   }
 
   .p-takeover--robotics .p-takeover__title {
@@ -34,5 +43,24 @@
     font-size: 1rem;
     color: #ffffff;
     margin-bottom: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .p-takeover--robotics .p-takeover__image {
+      transform: translatey(0px);
+      animation: float 6s ease-in-out infinite;
+    }
+  }
+
+  @keyframes float {
+    0% {
+      transform: translatey(0px);
+    }
+    50% {
+      transform: translatey(-20px);
+    }
+    100% {
+      transform: translatey(0px);
+    }
   }
 </style>
