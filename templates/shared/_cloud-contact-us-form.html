@@ -1,4 +1,4 @@
-<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
@@ -70,7 +70,7 @@
           </ul>
           <ul class="p-list">
             <li class="p-list__item">
-              <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"></div>
+              <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
             </li>
           </ul>
           <ul class="p-list">
@@ -79,17 +79,18 @@
             </li>
           </ul>
           <!-- hidden fields -->
-          <input type="hidden" name="formid" class="mktoField" value="{{formid}}" />
-          <input type="hidden" name="lpId" class="mktoField" value="{{lpId}}" />
-          <input type="hidden" name="subId" class="mktoField" value="30" />
-          <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335" />
-          <input type="hidden" name="lpurl" class="mktoField" value="https://pages.ubuntu.com/Cloud-contact-us.html?cr={creative}&amp;kw={keyword}" />
-          <input type="hidden" name="cr" class="mktoField" value="" />
-          <input type="hidden" name="kw" class="mktoField" value="" />
-          <input type="hidden" name="q" class="mktoField" value="" />
-          <input type="hidden" name="returnURL" value="{{returnURL}}" />
-          <input type="hidden" name="retURL" value="{{returnURL}}" />
-          <input type="hidden" name="Consent_to_Processing__c" value="yes" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formValidation" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" class="mktoField" value="{{formid}}" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpId" class="mktoField" value="{{lpId}}" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="subId" class="mktoField" value="30" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="munchkinId" class="mktoField" value="066-EOV-335" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpurl" class="mktoField" value="https://pages.ubuntu.com/Cloud-contact-us.html?cr={creative}&amp;kw={keyword}" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="cr" class="mktoField" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="kw" class="mktoField" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="q" class="mktoField" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="{{returnURL}}" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="retURL" value="{{returnURL}}" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
         </fieldset>
       </form>
     </div>
