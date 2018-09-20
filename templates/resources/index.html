@@ -95,7 +95,18 @@
         <hr class="u-sv1">
         {% if resource.featuredmedia.source_url %}
         <a href="{{resource.link|replace_admin}}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Clicked resource', 'eventLabel' : '{{resource.title.rendered}}', 'eventValue' : undefined });" >
-          <img src="{{resource.featuredmedia.source_url}}" alt="{{resource.featuredmedia.alt_text}}" />
+          <img
+            src="https://res.cloudinary.com/canonical/image/fetch/w_460/{{resource.featuredmedia.source_url}}"
+            srcset="https://res.cloudinary.com/canonical/image/fetch/w_460/{{resource.featuredmedia.source_url}} 460w,
+            https://res.cloudinary.com/canonical/image/fetch/w_620/{{resource.featuredmedia.source_url}} 620w,
+            https://res.cloudinary.com/canonical/image/fetch/w_875/{{resource.featuredmedia.source_url}} 875w"
+            sizes="(min-width: 1031px) 460px,
+            (max-width: 1030px) and (min-width: 876px) 460px,
+            (max-width: 875px) and (min-width: 621px) 875px,
+            (max-width: 620px) and (min-width: 461px) 620px,
+            (max-width: 460px) 460px"
+            alt="{{resource.featuredmedia.alt_text}}"
+          />
         </a>
         {% endif %}
         <h3 class="p-heading--four"><a href="{{resource.link|replace_admin}}">{{resource.title.rendered | safe}}</a></h3>
