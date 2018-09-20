@@ -4,7 +4,11 @@
   "description": "Django website for ubuntu.com",
   "main": "index.js",
   "scripts": {
-    "test": "sass-lint static/**/*.scss --verbose --no-exit",
+    "test": "yarn run lint-scss && yarn run lint-py && yarn run test-py",
+    "lint-py": "flake8 --exclude '*env*,node_modules'",
+    "lint-scss": "sass-lint static/**/*.scss --verbose --no-exit",
+    "test-py": "python3 manage.py test",
+    "test-links": "python3 manage.py runserver && sleep 2 && linkchecker --threads 2 --ignore-url /usn --ignore-url /resources --ignore-url /search --no-warnings http://127.0.0.1:8000",
     "build": "node-sass --include-path node_modules static/sass --source-map true --output static/css && postcss --use autoprefixer --replace 'static/css/**/*.css' && postcss --use cssnano --dir static/minified 'static/css/**/*.css'",
     "watch": "watch -p 'static/sass/**/*.scss' -p 'node_modules/vanilla-framework/scss/*.scss' -c 'yarn run build'",
     "clean": "rm -rf node_modules yarn-error.log css static/css *.log *.sqlite _site/ build/ .jekyll-metadata .bundle",

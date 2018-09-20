@@ -34,6 +34,7 @@ def get_title_from_html(list_of_html_strings):
             title = string.rstrip(title, "</title>;\r\n")
     return title
 
+
 os.chdir(template_dir)
 html_files = os.popen('find . -name "*.html"').readlines()
 cleaned = map(clean_path, html_files)
