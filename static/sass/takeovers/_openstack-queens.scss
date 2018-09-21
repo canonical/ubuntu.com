@@ -17,13 +17,13 @@
 
       &::before {
         left: 0;
-        background-image: url('https://assets.ubuntu.com/v1/d3edfcd5-left.png');
+        background-image: url('#{$assets-path}d3edfcd5-left.png');
         background-position: top left;
       }
 
       &::after {
         right: 0;
-        background-image: url('https://assets.ubuntu.com/v1/17508275-right.png');
+        background-image: url('#{$assets-path}17508275-right.png');
         background-position: top right;
       }
     }

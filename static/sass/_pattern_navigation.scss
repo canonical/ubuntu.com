@@ -50,8 +50,8 @@
 
       &.is-selected {
         &::after {
-          transform: rotate(-180deg);
           @include vf-icon-chevron(vf-url-friendly-color($color-dark));
+          transform: rotate(-180deg);
         }
 
         .p-navigation__link-anchor {
@@ -161,7 +161,7 @@
         }
 
         &__button {
-          padding: 0 0.5rem;
+          padding: 0 .5rem;
           width: 2rem;
         }
 
@@ -200,9 +200,9 @@
       }
 
       &__logo {
+        @extend %paragraph;
         display: flex;
         align-items: center;
-        @extend %paragraph;
         color: $color-x-light;
         margin-bottom: $sp-unit * 2 - map-get($nudges, nudge--p);
         position: relative;
@@ -268,8 +268,8 @@
         }
 
         &__chevron {
-          font-size: 0.875rem;
-          padding: 0.55rem 0 0.2rem 0;
+          font-size: .875rem;
+          padding: .55rem 0 .2rem 0;
         }
 
         &__space {
@@ -294,7 +294,7 @@
           }
 
           &:first-child {
-              padding-left: 1rem;
+            padding-left: 1rem;
           }
 
           &.p-link--active {
@@ -370,7 +370,7 @@
     width: 100%;
     height: 100%;
     top: 0;
-    background-color: rgba(17,17,17, .4);
+    background-color: rgba(17, 17, 17, .4);
     opacity: 1;
     position: fixed;
     z-index: 3;
@@ -417,8 +417,8 @@
     }
 
     &__summary {
-      @include p-max-width--long;
       @extend %small-text-fixed;
+      @include p-max-width--long;
       margin-bottom: map-get($sp-after, small) * 2 + $p-small-lh-diff - $nudge--small;
     }
   }
@@ -484,17 +484,16 @@ h2,
 }
 
 .p-logomark {
-    display: inline-block;
-    max-height: 4 * $sp-unit;
-    max-width: 4 * $sp-unit;
-    margin-right: $sph-intra--condensed;
-    margin-bottom: $spv-intra--scaleable;
-    position: relative;
-    top: .1rem;
+  display: inline-block;
+  max-height: 4 * $sp-unit;
+  max-width: 4 * $sp-unit;
+  margin-right: $sph-intra--condensed;
+  margin-bottom: $spv-intra--scaleable;
+  position: relative;
+  top: .1rem;
 }
 
 .p-button--small {
   @extend %small-text;
-  padding-top: $sp-unit * .5 + map-get($nudges, nudge--small);
   padding-top: $sp-unit * .5 + map-get($nudges, nudge--small);
 }
