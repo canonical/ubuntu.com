@@ -1,0 +1,69 @@
+version: 2
+
+defaults: &defaults
+  docker:
+    - image: canonicalwebteam/dev
+
+jobs:
+  linkchecker:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Install Linkchecker
+          command: apt-get install -y linkchecker
+      - run:
+          name: Yarn install
+          command: yarn install
+      - run:
+          name: Yarn build
+          command: yarn build
+      - run:
+          name: Install dependencies
+          command: pip3 install -r requirements.txt
+      - run:
+          name: Start development server
+          command: python3 manage.py runserver
+          background: true
+      - run:
+          name: Wait for development server
+          command: sleep 5
+      - run:
+          name: Run Linkchecker
+          command: linkchecker --threads 2 --ignore-url /usn --ignore-url /resources --ignore-url /search --no-warnings http://127.0.0.1:8000
+  python-tests:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: pip3 install -r requirements.txt
+      - run:
+          name: Run python tests
+          command: yarn test-py
+  python-lint:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Lint python code
+          command: yarn lint-py
+  scss-lint:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: yarn
+      - run:
+          name: Lint sass
+          command: yarn lint-scss
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - linkchecker
+      - scss-lint
+      - python-lint
+      - python-tests

@@ -156,7 +156,7 @@ select {
   @extend .p-strip;
 
   @media only screen and (min-width: $breakpoint-medium) {
-    background-image: url(https://assets.ubuntu.com/v1/8717cb84-padlock-chain-icon-angular.png);
+    background-image: url("#{$assets-path}8717cb84-padlock-chain-icon-angular.png");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: left 70% top;
@@ -203,6 +203,7 @@ fieldset:last-child {
   color: $color-brand;
 }
 
+// sass-lint:disable-block no-qualifying-elements
 h1.u-align--center,
 h2.u-align--center,
 h3.u-align--center,

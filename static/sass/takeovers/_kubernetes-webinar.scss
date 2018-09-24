@@ -1,10 +1,10 @@
 .homepage-kubernetes-webinar {
-  $color-kubernetes: #326CE5;
+  $color-kubernetes: #326ce5;
 
   .p-takeover {
     background-color: $color-kubernetes;
 
-    @media (min-width : $breakpoint-medium) {
+    @media (min-width: $breakpoint-medium) {
       background-image: url('#{$assets-path}d78fd77e-kubernetes-patter-for-takeover.svg');
       background-position: 60% 50%;
       background-size: 1300px;
@@ -12,7 +12,7 @@
       width: auto;
     }
 
-    @media (min-width : 1200px) {
+    @media (min-width: 1200px) {
       background-position: 50% 50%;
       background-size: 1866px;
     }

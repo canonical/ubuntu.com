@@ -24,7 +24,7 @@ $p-small-lh-diff: map-get($line-heights, default-text) - map-get($line-heights, 
   font-size: 1rem / pow($ms-ratio, 2);
   line-height: 1rem;
   margin-bottom: .25rem;
-  padding-top: 0.5rem;
+  padding-top: .5rem;
 }
 
 h4,
@@ -57,7 +57,7 @@ h4,
   }
 
   .p-text-list--small + & {
-      margin-top: - map-get($line-heights, small);
+    margin-top: - map-get($line-heights, small);
   }
 }
 

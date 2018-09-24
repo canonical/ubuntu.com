@@ -1,6 +1,5 @@
-/**
- * Print Stylesheet
-*/
+// Print Stylesheet
+
 @charset "UTF-8";
 
 // import vanilla-framework
@@ -9,7 +8,7 @@
 //settings
 @import 'settings_colors';
 
-#main-content {
+#main-content { // sass-lint:disable-line no-ids
   float: none;
   margin: 0;
   width: 100%;
@@ -32,7 +31,7 @@ table,
 pre,
 [class^="p-strip"],
 [class*=" p-strip"] {
-    page-break-inside:avoid
+  page-break-inside: avoid;
 }
 
 h1,
@@ -42,14 +41,14 @@ h4,
 h5,
 h6,
 img {
-  page-break-after:avoid;
-  page-break-inside:avoid
+  page-break-after: avoid;
+  page-break-inside: avoid;
 }
 
 ul,
 ol,
 dl {
-  page-break-before:avoid
+  page-break-before: avoid;
 }
 
 a:link,
@@ -62,18 +61,18 @@ a {
   text-align: left;
 }
 
-a[href^=http]:after {
-  content:" <" attr(href) "> ";
+a[href^='http']::after {
+  content: " <" attr(href) "> ";
 }
 
-a:after > img {
+a::after > img {
   content: "";
 }
 
 header,
 nav,
 footer,
-#livechat-compact-view,
+#livechat-compact-view, // sass-lint:disable-line no-ids
 .u-hide,
 .p-top,
 .u-hide--small,
@@ -107,7 +106,7 @@ footer,
   counter-reset: item;
   list-style-type: none;
 
-  & > .p-list__item:before {
+  & > .p-list__item::before {
     content: counters(item, ".") ". ";
     counter-increment: item;
     font-weight: 400;
@@ -123,5 +122,5 @@ footer,
 // xxx until added to vanilla-framework
 // https://github.com/vanilla-framework/vanilla-framework/issues/1982
 .u-no-print {
-  display: none !important
+  display: none !important;
 }

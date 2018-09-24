@@ -1,5 +1,5 @@
 $ubuntu-logo-svg-width: 81 * $px; // width in rems
-$circle-of-friends-compensation: 0rem; // padding compensation to create visually equal margins;
+$circle-of-friends-compensation: 0; // padding compensation to create visually equal margins;
 $ubuntu-logo-width--desktop: $ubuntu-logo-svg-width + 2 * $grid-margin-width;
 $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
 $p-small-lh-diff: map-get($line-heights, default-text) - map-get($line-heights, small);
@@ -121,7 +121,7 @@ $nav-bg-color: lighten($global-nav-bg-color, $contrast-ratio);
       .global-nav__link--dropdown.is-selected & {
         background: $global-nav-dropdown-bg-color;
 
-         &::after {
+        &::after {
           transform: rotate(180deg);
         }
       }
@@ -213,12 +213,14 @@ $nav-bg-color: lighten($global-nav-bg-color, $contrast-ratio);
     }
 
     .p-matrix__item {
-        border-color: $color-mid-dark;
-        border-right: 0 !important;
+      border-color: $color-mid-dark;
+      border-right: 0 !important;
     }
+
     .p-matrix__img img {
       max-height: map-get($icon-sizes, thumb--card);
     }
+
     .p-matrix__img + .p-matrix__content > *::before {
       width: map-get($icon-sizes, thumb--card);
     }
@@ -227,7 +229,7 @@ $nav-bg-color: lighten($global-nav-bg-color, $contrast-ratio);
       width: 100%;
     }
 
-    .is-bordered:before {
+    .is-bordered::before {
       background-color: $color-mid-dark;
       margin-bottom: $sp-x-large;
     }
@@ -261,7 +263,7 @@ $nav-bg-color: lighten($global-nav-bg-color, $contrast-ratio);
       height: 100%;
       top: 0;
       left: 0;
-      background-color: rgba(17,17,17, .4);
+      background-color: rgba(17, 17, 17, .4);
       position: fixed;
       pointer-events: none;
       transition: opacity .5s ease-in-out;

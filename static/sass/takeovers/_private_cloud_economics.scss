@@ -1,10 +1,10 @@
 @mixin p-takeover-private-cloud-economics {
   .p-takeover--private-cloud-economics {
-    background-image: linear-gradient(-36deg, #111111 0%, rgba(38,38,38,0.90) 100%);
+    background-image: linear-gradient(-36deg, #111 0%, rgba(38, 38, 38, .9) 100%);
     background-color: #0d5777;
 
     @media (min-width: $breakpoint-medium) {
-      background-image: url('https://assets.ubuntu.com/v1/13fdbc5b-graph.png'), linear-gradient(-36deg, #111111 0%, rgba(38,38,38,0.90) 100%);
+      background-image: url('#{$assets-path}13fdbc5b-graph.png'), linear-gradient(-36deg, #111 0%, rgba(38, 38, 38, .9) 100%);
       background-repeat: no-repeat;
       background-position: right bottom;
     }
