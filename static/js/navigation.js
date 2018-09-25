@@ -163,7 +163,7 @@ function closeMainMenu() {
   }
 }
 
-var origin = window.location.href;
+var origin = window.location.pathname;
 
 addGANavEvents('.global-nav__row', 'www.ubuntu.com-nav-0');
 addGANavEvents('#canonical-products', 'www.ubuntu.com-nav-0-products');
@@ -182,11 +182,12 @@ function addGANavEvents(target, category){
   var t = document.querySelector(target);
   if (t) {
     t.querySelectorAll('a').forEach(function(a) {
-      a.addEventListener('click', function(){
+      var destination = a.href.replace('https://www.ubuntu.com', '');
+      a.addEventListener('click', function(event){
         dataLayer.push({
           'event' : 'GAEvent',
           'eventCategory' : category,
-          'eventAction' : `from:${origin} to:${a.href}`,
+          'eventAction' : `from:${origin} to:${destination}`,
           'eventLabel' : a.text,
           'eventValue' : undefined
         });
@@ -201,6 +202,7 @@ function addGAContentEvents(target){
   var t = document.querySelector(target);
   if (t) {
     t.querySelectorAll('a').forEach(function(a) {
+      var destination = a.href.replace('https://www.ubuntu.com', '');
       if (a.className.includes('p-button--positive')) {
         var category = 'www.ubuntu.com-content-cta-0';
       } else if (a.className.includes('p-button')) {
@@ -208,35 +210,15 @@ function addGAContentEvents(target){
       } else {
         var category = 'www.ubuntu.com-content-link';
       }
-      if (!a.href.startsWith("#")){
-        a.addEventListener('click', function(){
+      if (!destination.startsWith("#")){
+        a.addEventListener('click', function(event){
           dataLayer.push({
             'event' : 'GAEvent',
             'eventCategory' : category,
-            'eventAction' : `from:${origin} to:${a.href}`,
+            'eventAction' : `from:${origin} to:${destination}`,
             'eventLabel' : a.text,
             'eventValue' : undefined
           });
-        });
-      }
-    });
-  }
-}
-
-addGAImpressionEvents('.js-takeover')
-
-function addGAImpressionEvents(target){
-  var t = document.querySelectorAll(target);
-  if (t) {
-    t.forEach(function(section) {
-      if (! section.className.includes('u-hide')){
-        var a = section.querySelector("a");
-        dataLayer.push({
-          'event' : 'NonInteractiveGAEvent',
-          'eventCategory' : "www.ubuntu.com-impression",
-          'eventAction' : `from:${origin} to:${a.href}`,
-          'eventLabel' : a.text,
-          'eventValue' : undefined,
         });
       }
     });
