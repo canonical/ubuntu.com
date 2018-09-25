@@ -132,5 +132,18 @@
         takeovers[i].classList.remove('u-hide');
       }
     </script>
+    <script>
+        
+        var detectLanguage = function () {
+            var lang = window.navigator.languages ? window.navigator.languages[0] : null; lang = lang || window.navigator.language ||
+            window.navigator.browserLanguage || window.navigator.userLanguage;
+
+            if (lang && lang.length) {
+                console.log(lang);
+            }
+        };
+        
+        detectLanguage();
+    </script>
   {% endblock content %}
 {% endblock outer_content %}
