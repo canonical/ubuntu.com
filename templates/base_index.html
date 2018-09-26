@@ -130,9 +130,10 @@
             takeovers[t].classList.add('u-hide');
         }
         var browserLanguage = detectLanguage();
-        var languageClass = (browserLanguage && browserLanguage === 'de') ? 'lang-de' : 'lang-all';
-        var takeoversFiltered = document.getElementsByClassName('js-takeover ' + languageClass);
-
+        var languageClass = (browserLanguage && browserLanguage === 'de') ? 'de' : 'en';
+        var query = 'section[lang="'+languageClass+'"]';
+        var takeoversFiltered = document.querySelectorAll(query);
+        
         if (!localStorage.getItem('TAKEOVER')) {
           var i = Math.floor(Math.random() * takeoversFiltered.length);
           localStorage.setItem('TAKEOVER', i);
