@@ -3,8 +3,9 @@
 {% block head_extra %}
 {% endblock %}
 
-{% block takeover_content %}
-  {% include "takeovers/_robotics-takeover.html" with nojs_fallback=True %}
-  {% include "takeovers/_multicloud-operations.html" %}
-  {% include "takeovers/_financial-services.html" %}
+{% block takeover_content %} 
+    {% include "takeovers/_robotics-takeover.html" with nojs_fallback=True %} 
+    {% include "takeovers/_multicloud-operations.html" %} 
+    {% include "takeovers/_financial-services.html" %}
+    {% include "takeovers/_de-vmware-to-os.html" with nojs_fallback=True %}
 {% endblock takeover_content %}
