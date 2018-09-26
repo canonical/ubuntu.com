@@ -1,0 +1,78 @@
+<div class="p-strip--light is-deep {% if not default == 'true' %}u-hide{% endif %}">
+    <div class="row">
+      <div class="col-12">
+        <h2>Before you start, you&rsquo;ll want this&nbsp;eBook</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-7">
+        <p class="u-hide--small"><img src="{{ ASSET_SERVER_URL }}5e6b2dce-MAAS-ebook-web.svg" alt="" width="400px"></p>
+        <h3>Server provisioning: what Network Admins and IT pros need to know</h3>
+        <p>This document is designed to help system administrators and DevOps focused organisations to understand bare metal server provisioning, understand its value proposition, and learn about how leading companies are using server provisioning solutions within their hyperscale environments.</p>
+        <p>Canonical’s MAAS helps organisations to take full advantage of existing hardware investments by maximising hardware efficiency, and a pathway to leverage the performance and security of hardware based solutions with the economics and efficiencies of the cloud.</p>
+      </div>
+      <div class="col-5">
+        <!-- MARKETO FORM -->
+        <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
+        <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
+
+        <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1862-2" class="marketo-form">
+          <fieldset style="background-color: #ffffff; border-bottom-width: 1px;">
+            <ul class="p-list">
+              <li class="mktFormReq mktField p-list__item">
+                <label for="2-FirstName" class="mktoLabel">First name:</label>
+                <input required id="2-FirstName" name="FirstName" maxlength="255" type="text" class="mktoField   mktoRequired">
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="2-LastName" class="mktoLabel">Last name:</label>
+                <input required id="2-LastName" name="LastName" maxlength="255" type="text" class="mktoField   mktoRequired">
+              </li>
+
+              <li class="mktFormReq mktField p-list__item">
+                <label for="2-Company" class="mktoLabel">Company name:</label>
+                <input required id="2-Company" name="Company" maxlength="255" type="text" class="mktoField   mktoRequired">
+              </li>
+
+              <li class="mktFormReq mktField p-list__item">
+                <label for="2-Email" class="mktoLabel">Email:</label>
+                <input required id="2-Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired">
+              </li>
+
+              {% include "shared/forms/_country.html" %}
+
+              <li class="mktFormReq mktField p-list__item">
+                <label for="2-Phone" class="mktoLabel">Phone number:</label>
+                <input required id="2-Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired">
+              </li>
+
+              <li class="mktField p-list__item u-sv3">
+                <input class="mktoField" value="yes" id="2-canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                <label class="mktoLabel mktoHasWidth" for="2-canonicalUpdatesOptIn"><small>I would like to receive occasional news from Canonical by email.</small></label>
+              </li>
+
+              <li class="mktField p-list__item">
+                <button type="submit" class="p-button--positive mktoButton" aria-label="Submit" onsubmit="backgroundSubmitHandlerClosure();">Download the eBook</button>
+                <input type="hidden" name="formid" class="mktoField " value="1862" aria-label="">
+                <input type="hidden" name="formVid" class="mktoField " value="1862" aria-label="">
+                <input type="hidden" name="lpId" class="mktoField " value="3635" aria-label="">
+                <input type="hidden" name="subId" class="mktoField " value="30" aria-label="">
+                <input type="hidden" name="munchkinId" class="mktoField " value="066-EOV-335" aria-label="">
+                <input type="hidden" name="lpurl" class="mktoField " value="https://pages.ubuntu.com/LP-MAAS_eBook.html?cr={creative}&amp;kw={keyword}" aria-label="">
+                <input type="hidden" name="cr" class="mktoField " value="" aria-label="">
+                <input type="hidden" name="kw" class="mktoField " value="" aria-label="">
+                <input type="hidden" name="q" class="mktoField " value="" aria-label="">
+              </li>
+              <li>All information provided will be handled in accordance with the Canonical <a href="/legal">privacy policy</a>.</li>
+            </ul>
+          </fieldset>
+
+          <input type="hidden" name="returnURL" value="{{ return_url }}" aria-label="" />
+          <input type="hidden" name="retURL" value="{{ return_url }}" aria-label="" />
+          <input type="hidden" name="Consent_to_Processing__c" value="yes" aria-label="" />
+        </form>
+        <!-- /MARKETO FORM -->
+
+      </div>
+    </div>
+  </div>
+
