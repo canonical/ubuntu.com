@@ -9,7 +9,7 @@
     "lint-scss": "sass-lint 'static/**/*.scss' --verbose --no-exit",
     "test-py": "python3 manage.py test",
     "test-links": "python3 manage.py runserver && sleep 2 && linkchecker --threads 2 --ignore-url /usn --ignore-url /resources --ignore-url /search --no-warnings http://127.0.0.1:8000",
-    "build": "node-sass --include-path node_modules static/sass --source-map true --output static/css && postcss --use autoprefixer --replace 'static/css/**/*.css' && postcss --use cssnano --dir static/minified 'static/css/**/*.css'",
+    "build": "cp node_modules/global-nav/dist/index.js static/js/global-nav.js && node-sass --include-path node_modules static/sass --source-map true --output static/css && postcss --use autoprefixer --replace 'static/css/**/*.css' && postcss --use cssnano --dir static/minified 'static/css/**/*.css'",
     "watch": "watch -p 'static/sass/**/*.scss' -p 'node_modules/vanilla-framework/scss/*.scss' -c 'yarn run build'",
     "clean": "rm -rf node_modules yarn-error.log css static/css *.log *.sqlite _site/ build/ .jekyll-metadata .bundle",
     "serve": "./entrypoint 0.0.0.0:${PORT}"
@@ -27,6 +27,7 @@
   "dependencies": {
     "autoprefixer": "^6.3.1",
     "cssnano": "^3.10.0",
+    "global-nav": "^1.1.1",
     "node-sass": "^4.5.3",
     "postcss-cli": "^4.1.0",
     "sass-lint": "^1.10.2",
