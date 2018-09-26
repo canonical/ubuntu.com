@@ -9,7 +9,6 @@
   {% block content %}
     {% block takeover_content %}
     {% endblock takeover_content %}
-
     <section class="p-strip is-deep is-bordered">
       {% include "shared/_insights_news_strip.html" with gtm_event_label="ubuntu.com homepage" %}
     </section>
@@ -112,38 +111,40 @@
     {% block footer_content %}
       {# include "ubuntu/takeovers/_footer_homepage.html" #}
     {% endblock footer_content %}
-
     <script>
-      if (window.localStorage && window.sessionStorage) {
-        var takeovers = document.getElementsByClassName('js-takeover');
-        for (t = 0; t < takeovers.length; ++t) {
-          takeovers[t].classList.add('u-hide');
-        }
-        if (!localStorage.getItem('TAKEOVER')) {
-          var i = Math.floor(Math.random() * takeovers.length);
-          localStorage.setItem('TAKEOVER', i);
-        } else {
-          var i = parseInt(localStorage.getItem('TAKEOVER')) + 1;
-          if (i >= takeovers.length) {
-            i = 0;
-          }
-        }
-        localStorage.setItem('TAKEOVER', i);
-        takeovers[i].classList.remove('u-hide');
-      }
-    </script>
-    <script>
-        
         var detectLanguage = function () {
             var lang = window.navigator.languages ? window.navigator.languages[0] : null; lang = lang || window.navigator.language ||
             window.navigator.browserLanguage || window.navigator.userLanguage;
 
             if (lang && lang.length) {
-                console.log(lang);
+                return lang;
+            } else {
+                return null
             }
         };
-        
-        detectLanguage();
+    </script>
+    <script>
+      if (window.localStorage && window.sessionStorage) {
+        var takeovers = document.getElementsByClassName('js-takeover');
+        for (t = 0; t < takeovers.length; ++t) {
+            takeovers[t].classList.add('u-hide');
+        }
+        var browserLanguage = detectLanguage();
+        var languageClass = (browserLanguage && browserLanguage === 'de') ? 'lang-de' : 'lang-all';
+        var takeoversFiltered = document.getElementsByClassName('js-takeover ' + languageClass);
+
+        if (!localStorage.getItem('TAKEOVER')) {
+          var i = Math.floor(Math.random() * takeoversFiltered.length);
+          localStorage.setItem('TAKEOVER', i);
+        } else {
+          var i = parseInt(localStorage.getItem('TAKEOVER')) + 1;
+          if (i >= takeoversFiltered.length) {
+            i = 0;
+          }
+        }
+        localStorage.setItem('TAKEOVER', i);
+        takeoversFiltered[i].classList.remove('u-hide');
+      }
     </script>
   {% endblock content %}
 {% endblock outer_content %}
