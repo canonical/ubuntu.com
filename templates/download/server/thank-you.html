@@ -34,9 +34,9 @@
   </div>
 </div>
 
-{% include "download/shared/_get_ebook_v1.html" with return_url="/download/server/thank-you" default="true" %}
-{% include "download/shared/_get_ebook_v2.html" with return_url="/download/server/thank-you" %}
-{% include "download/shared/_get_ebook_v3.html" with return_url="/download/server/thank-you" %}
+{% include "download/shared/_get_ebook_v1.html" with return_url="https://www.ubuntu.com/download/server/thank-you" default="true" %}
+{% include "download/shared/_get_ebook_v2.html" with return_url="https://www.ubuntu.com/download/server/thank-you" %}
+{% include "download/shared/_get_ebook_v3.html" with return_url="https://www.ubuntu.com/download/server/thank-you" %}
 
 <!-- dependencies -->
 <script src="{{ ASSET_SERVER_URL }}ec520d10-XMLHttpRequest.min.js"></script>
@@ -44,13 +44,6 @@
 <script src="{{ ASSET_SERVER_URL }}6b7597df-event-listener-polyfill.js"></script>
 <!-- script -->
 <script>
-  $("#mktoForm_1862").validate({
-    errorElement: "span",
-    errorClass: "mktFormMsg mktError",
-    onkeyup: false,
-    onclick: false,
-    onblur: false
-  });
 
   /**
    * Given a form element, extract its data and its "action" target URL
@@ -109,9 +102,12 @@
    */
 
   backgroundSubmitHandlerClosure = function($) {
+
     return function(submitEvent) {
       // Prevent normal submit
       submitEvent.preventDefault ? submitEvent.preventDefault() : submitEvent.returnValue = false;
+
+      marketoForm = document.getElementById(submitEvent.target.id);
       // Check form is valid
       if ($(marketoForm).valid()) {
         // Change the submit location
@@ -122,14 +118,13 @@
     }
   }
 
-  // Get the form
-  marketoForm = document.getElementById('mktoForm_1862');
-
   // Attach the submit handler to the form
-  marketoForm.addEventListener(
-    'submit',
-    backgroundSubmitHandlerClosure(jQuery)
-  )
+  document.querySelectorAll('.marketo-form').forEach(function(form) {
+    form.addEventListener(
+      'submit',
+      backgroundSubmitHandlerClosure(jQuery)
+    )
+  });
 </script>
 
 <div class="p-strip is-shallow">
