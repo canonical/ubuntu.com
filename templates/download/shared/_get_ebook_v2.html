@@ -5,8 +5,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-7 suffix-1">
-        <p class="u-hide--small"><img src="{{ ASSET_SERVER_URL }}1c9fa9e0-MAAS-ebook-web_orange.svg" alt="" width="400px"></p>
+      <div class="col-7">
+        <p class="u-hide--small"><img src="{{ ASSET_SERVER_URL }}5e6b2dce-MAAS-ebook-web.svg" alt="" width="400px"></p>
         <h3>Server provisioning: what Network Admins and IT pros need to know</h3>
         <p>This document is designed to help system administrators and DevOps focused organisations to understand bare metal server provisioning, understand its value proposition, and learn about how leading companies are using server provisioning solutions within their hyperscale environments.</p>
         <p>Canonical’s MAAS helps organisations to take full advantage of existing hardware investments by maximising hardware efficiency, and a pathway to leverage the performance and security of hardware based solutions with the economics and efficiencies of the cloud.</p>
@@ -16,7 +16,7 @@
         <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
         <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
 
-        <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1460">
+        <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1862">
           <fieldset style="background-color: #ffffff; border-bottom-width: 1px;">
             <ul class="p-list">
               <li class="mktFormReq mktField p-list__item">
@@ -51,18 +51,24 @@
               </li>
 
               <li class="mktField p-list__item">
-                <button type="submit" class="p-button--positive mktoButton" onsubmit="backgroundSubmitHandler();">Download the eBook</button><input type="hidden" name="formid" class="mktoField " value="1460"><input type="hidden" name="formVid" class="mktoField "
-                  value="1460"><input type="hidden" name="lpId" class="mktoField " value="2707"><input type="hidden" name="subId" class="mktoField " value="30"><input type="hidden" name="munchkinId" class="mktoField " value="066-EOV-335"><input type="hidden"
-                  name="lpurl" class="mktoField " value="https://pages.ubuntu.com/Form---autopilot-cloud-ebook_autopilot-cloud-ebook-landing-page.html?cr={creative}&amp;kw={keyword}"><input type="hidden" name="cr" class="mktoField " value=""><input type="hidden"
-                  name="kw" class="mktoField " value=""><input type="hidden" name="q" class="mktoField " value="">
+                <button type="submit" class="p-button--positive mktoButton" aria-label="Submit" onsubmit="backgroundSubmitHandler();">Download the eBook</button>
+                <input type="hidden" name="formid" class="mktoField " value="1862" aria-label="">
+                <input type="hidden" name="formVid" class="mktoField " value="1862" aria-label="">
+                <input type="hidden" name="lpId" class="mktoField " value="3635" aria-label="">
+                <input type="hidden" name="subId" class="mktoField " value="30" aria-label="">
+                <input type="hidden" name="munchkinId" class="mktoField " value="066-EOV-335" aria-label="">
+                <input type="hidden" name="lpurl" class="mktoField " value="https://pages.ubuntu.com/LP-MAAS_eBook.html?cr={creative}&amp;kw={keyword}" aria-label="">
+                <input type="hidden" name="cr" class="mktoField " value="" aria-label="">
+                <input type="hidden" name="kw" class="mktoField " value="" aria-label="">
+                <input type="hidden" name="q" class="mktoField " value="" aria-label="">
               </li>
               <li>All information provided will be handled in accordance with the Canonical <a href="/legal">privacy policy</a>.</li>
             </ul>
           </fieldset>
 
-          <input type="hidden" name="returnURL" value="{{ return_url }}" />
-          <input type="hidden" name="retURL" value="{{ return_url }}" />
-          <input type="hidden" name="Consent_to_Processing__c" value="yes" />
+          <input type="hidden" name="returnURL" value="{{ return_url }}" aria-label="" />
+          <input type="hidden" name="retURL" value="{{ return_url }}" aria-label="" />
+          <input type="hidden" name="Consent_to_Processing__c" value="yes" aria-label="" />
         </form>
         <!-- /MARKETO FORM -->
 
@@ -75,7 +81,7 @@
   <script src="{{ ASSET_SERVER_URL }}6b7597df-event-listener-polyfill.js"></script>
   <!-- script -->
   <script>
-    $("#mktoForm_1460").validate({
+    $("#mktoForm_1862").validate({
       errorElement: "span",
       errorClass: "mktFormMsg mktError",
       onkeyup: false,
@@ -154,7 +160,7 @@
     }
 
     // Get the form
-    marketoForm = document.getElementById('mktoForm_1460');
+    marketoForm = document.getElementById('mktoForm_1862');
 
     // Attach the submit handler to the form
     marketoForm.addEventListener(
