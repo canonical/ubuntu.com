@@ -11,10 +11,10 @@
   <meta http-equiv="refresh" content="3;url=http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-{{ architecture }}.iso">
 </noscript>
 
-<div class="p-strip is-deep is-bordered">
+<div class="p-strip is-deep">
   <div class="row u-equal-height">
     <div class="col-8">
-      <h1>Thank you for downloading Ubuntu Server</h1>
+      <h1 style="font-weight: 100;">Thank you for downloading Ubuntu Server</h1>
       {% if version and architecture %}
       <p>Your download should start automatically. If it doesn&rsquo;t,
         <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-{{ architecture }}.iso">
@@ -28,13 +28,104 @@
       {% endif %}
     </div>
     <div class="col-4 u-vertically-center u-align--center">
-      <img src="{{ ASSET_SERVER_URL }}52d53696-picto-thankyou-midaubergine.svg"
+      <img src="{{ ASSET_SERVER_URL }}cbae9a60-thank_you_orange_cmyk.svg"
         alt="smile" width="200" height="200" />
     </div>
   </div>
 </div>
 
-{% include "download/shared/_get_ebook.html"  with return_url="https://www.ubuntu.com/server/thank-you" %}
+{% include "download/shared/_get_ebook_v1.html" with return_url="https://www.ubuntu.com/download/server/thank-you" default="true" %}
+{% include "download/shared/_get_ebook_v2.html" with return_url="https://www.ubuntu.com/download/server/thank-you" %}
+{% include "download/shared/_get_ebook_v3.html" with return_url="https://www.ubuntu.com/download/server/thank-you" %}
+
+<!-- dependencies -->
+<script src="{{ ASSET_SERVER_URL }}ec520d10-XMLHttpRequest.min.js"></script>
+<script src="{{ ASSET_SERVER_URL }}4176b39e-serialize.js"></script>
+<script src="{{ ASSET_SERVER_URL }}6b7597df-event-listener-polyfill.js"></script>
+<!-- script -->
+<script>
+
+  /**
+   * Given a form element, extract its data and its "action" target URL
+   * and submit the form using Ajax
+   */
+  backgroundSubmit = function(formElement, submitCallback) {
+    var request = new XMLHttpRequest();
+    var submitUrl = formElement.getAttribute('action');
+    var formData = serialize(formElement)
+
+    request.open("POST", submitUrl, true);
+
+    //Send the proper header information along with the request
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    // When request has finished, call the callback function
+    if (submitCallback) {
+      request.addEventListener(
+        'readystatechange',
+        function() {
+          if (this.readyState == 4) {
+            // Pass context and arguments on to submitCallback
+            submitCallback.apply(this, arguments);
+          }
+        }
+      );
+    }
+
+    // Send off the POST request
+    request.send(formData);
+  }
+
+  /**
+   * After submit has happened
+   * start download and send the user to the instructions page
+   */
+  afterSubmit = function() {
+    // Now start the download
+    downloadFrame = document.createElement("iframe");
+    downloadFrame.setAttribute("src", "{{ ASSET_SERVER_URL }}05f610df-eBook_MAAS.pdf.zip");
+    downloadFrame.style.width = 0 + "px";
+    downloadFrame.style.height = 0 + "px";
+    document.body.insertBefore(downloadFrame, document.body.childNodes[0]);
+    // And redirect to the instructions page
+    window.setTimeout(
+      function() {
+        window.location.href = "/{{ url|default:'download/server/thank-you'}}#instructions";
+      },
+      1000
+    );
+  }
+
+  /**
+   * Handler for a form submit event
+   * to disable the normal submit, and instead use backgroundSubmit
+   */
+
+  backgroundSubmitHandlerClosure = function($) {
+
+    return function(submitEvent) {
+      // Prevent normal submit
+      submitEvent.preventDefault ? submitEvent.preventDefault() : submitEvent.returnValue = false;
+
+      marketoForm = document.getElementById(submitEvent.target.id);
+      // Check form is valid
+      if ($(marketoForm).valid()) {
+        // Change the submit location
+        marketoForm.action = "https://app-sjg.marketo.com/index.php/leadCapture/save2"
+        // Submit the form in the background
+        backgroundSubmit(marketoForm, afterSubmit);
+      }
+    }
+  }
+
+  // Attach the submit handler to the form
+  document.querySelectorAll('.marketo-form').forEach(function(form) {
+    form.addEventListener(
+      'submit',
+      backgroundSubmitHandlerClosure(jQuery)
+    )
+  });
+</script>
 
 <div class="p-strip is-shallow">
   <div class="row">
@@ -93,7 +184,7 @@
         <li class="p-list__item is-ticked">
           Designed for building data centres with complex networks
         </li>
-        <li class="p-list__item is-ticked">Supports Windows, Ubuntu, CentOS and RHEL</li>
+        <li class="p-list__item is-ticked">Supports Windows, Ubuntu, CentOS, RHEL and SUSE</li>
       </ul>
       <p>
         <a href="https://maas.io/" class="p-button--neutral">
@@ -108,36 +199,27 @@
 </div>
 
 <div class="p-strip--light is-shallow">
-  <div class="row u-equal-height">
-    <div class="col-4 p-card--highlighted">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header">
-          <img class="p-heading-icon__img" alt="ubuntu one" src="{{ ASSET_SERVER_URL }}2a8cf960-picto-startfirst-warmgrey.svg" />
-          <h3 class="p-heading-icon__title">Installation guides</h3>
-        </div>
+  <div class="row u-equal-height p-divider">
+    <div class="col-4 p-divider__block">
+      <div>
+        <h3>Installation guides</h3>
       </div>
-      <p class="p-card__content">If you need some help installing Ubuntu, please check out our step-by-step guides.</p>
-      <p class="p-card__content"><a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-server">Installation instructions for Ubuntu Server</a></p>
+      <p>If you need some help installing Ubuntu, please check out our step-by-step guides.</p>
+      <p><a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-server">Installation instructions for Ubuntu Server</a></p>
     </div>
-    <div class="col-4 p-card--highlighted">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header">
-          <img class="p-heading-icon__img" alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}03c5463a-picto-business-warmgrey.svg" />
-          <h3 class="p-heading-icon__title">Ubuntu Advantage</h3>
-        </div>
+    <div class="col-4 p-divider__block">
+      <div>
+        <h3>Ubuntu Advantage</h3>
       </div>
-      <p class="p-card__content">Commercial support agreements to suit your business needs.</p>
-      <p class="p-card__content"><a href="/support/plans-and-pricing">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+      <p>Commercial support agreements to suit your business needs.</p>
+      <p><a href="/support/plans-and-pricing">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-4 p-card--highlighted">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header">
-          <img class="p-heading-icon__img" alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}422b612c-picto-forum-warmgrey.svg" />
-          <h3 class="p-heading-icon__title">Ask Ubuntu</h3>
-        </div>
+    <div class="col-4 p-divider__block">
+      <div>
+        <h3>Ask Ubuntu</h3>
       </div>
-      <p class="p-card__content">Need help? Ask your questions here.</p>
-      <p class="p-card__content"><a href="https://askubuntu.com/questions/tagged/server" class="p-link--external">Get help</a></p>
+      <p>Need help? Ask your questions here.</p>
+      <p><a href="https://askubuntu.com/questions/tagged/server" class="p-link--external">Get help</a></p>
     </div>
   </div>
 </div>
