@@ -113,7 +113,8 @@
     {% endblock footer_content %}
     <script>
         var detectLanguage = function () {
-            var lang = window.navigator.languages ? window.navigator.languages[0] : null; lang = lang || window.navigator.language ||
+            var lang = window.navigator.languages ? window.navigator.languages[0] : null; 
+            lang = lang || window.navigator.language ||
             window.navigator.browserLanguage || window.navigator.userLanguage;
 
             if (lang && lang.length) {
@@ -130,10 +131,13 @@
             takeovers[t].classList.add('u-hide');
         }
         var browserLanguage = detectLanguage();
-        var languageClass = (browserLanguage && browserLanguage === 'de') ? 'de' : 'en';
-        var query = 'section[lang="'+languageClass+'"]';
-        var takeoversFiltered = document.querySelectorAll(query);
-        
+        var languageClass = browserLanguage || 'en';
+        languageClass = languageClass.split('-')[0];
+        var defaultTakeovers = document.querySelectorAll('.js-takeover[lang="en"]');
+        var query = '.js-takeover[lang="'+languageClass+'"]';
+        var takeoversFiltered = (document.querySelectorAll(query));
+        takeoversFiltered = (takeoversFiltered.length) ? takeoversFiltered : defaultTakeovers;
+         
         if (!localStorage.getItem('TAKEOVER')) {
           var i = Math.floor(Math.random() * takeoversFiltered.length);
           localStorage.setItem('TAKEOVER', i);
