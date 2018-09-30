@@ -112,32 +112,39 @@
       {# include "ubuntu/takeovers/_footer_homepage.html" #}
     {% endblock footer_content %}
     <script>
-        var detectLanguage = function () {
-            var lang = window.navigator.languages ? window.navigator.languages[0] : null; 
-            lang = lang || window.navigator.language ||
-            window.navigator.browserLanguage || window.navigator.userLanguage;
+      // detect the user's browser's language setting
+      var detectLanguage = function () {
+        var lang = window.navigator.languages ? window.navigator.languages[0] : null;
+        lang = lang || window.navigator.language ||
+        window.navigator.browserLanguage || window.navigator.userLanguage;
 
-            if (lang && lang.length) {
-                return lang;
-            } else {
-                return null
-            }
-        };
+        if (lang && lang.length) {
+          return lang;
+        } else {
+          return null
+        }
+      };
     </script>
     <script>
       if (window.localStorage && window.sessionStorage) {
         var takeovers = document.getElementsByClassName('js-takeover');
         for (t = 0; t < takeovers.length; ++t) {
+            // hide all takeovers
             takeovers[t].classList.add('u-hide');
         }
+        // get the users language and remove any extra detail suffix (e.g. -gb)
         var browserLanguage = detectLanguage();
         var languageClass = browserLanguage || 'en';
         languageClass = languageClass.split('-')[0];
-        var defaultTakeovers = document.querySelectorAll('.js-takeover[lang="en"]');
-        var query = '.js-takeover[lang="'+languageClass+'"]';
+
+        // set the default takeovers to english
+        var defaultTakeovers = document.querySelectorAll('.js-takeover[data-lang="en"]');
+
+        // find any takeovers that match the users language
+        var query = '.js-takeover[data-lang*="'+languageClass+'"]';
         var takeoversFiltered = (document.querySelectorAll(query));
         takeoversFiltered = (takeoversFiltered.length) ? takeoversFiltered : defaultTakeovers;
-         
+
         if (!localStorage.getItem('TAKEOVER')) {
           var i = Math.floor(Math.random() * takeoversFiltered.length);
           localStorage.setItem('TAKEOVER', i);
