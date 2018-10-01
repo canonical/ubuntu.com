@@ -304,24 +304,65 @@
   </div>
 </section>
 <section class="p-strip--light is-bordered">
-  <div class="row">
-    <h3>How long to get Ubuntu running?</h3>
-  </div>
-  <div class="row">
-    <div id="how-long-to-get-running">
-      <img src="https://via.placeholder.com/1040x400?text=Area chart" alt="">
+    <div class="row u-equal-height u-vertically-center">
+        <div class="col">
+            <h3>How long to get Ubuntu running?</h3>
+        </div>
     </div>
-  </div>
+    <div class="row">
+        <div class="col-4 u-align--left">
+            <span>Average time to install</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3 u-align--center">
+            <svg id="how-long-running-hw"></svg>
+        </div>
+        <div class="col-3 u-align--center">
+            <svg id="how-long-running-vm"></svg>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 u-align--center p-form--background">     
+            <form class="p-form p-form--inline ">
+                <div class="p-form__group">
+                    <div class="p-form__control u-clearfix">
+                        <input name="install-time" id="average-install" value="installing" type="radio" checked>
+                    </div>
+                    <label for="average-install">Installing</label>
+                </div>
+                <div class="p-form__group p-form-validation is-error">
+                    <div class="p-form__control u-clearfix">
+                        <input name="install-time" id="average-upgrade" value="upgrading" type="radio">
+                    </div>
+                    <label for="average-upgrade">Upgrading</label>
+                </div>
+            </form>
+        </div>
+    </div>
 </section>
 <section class="p-strip is-bordered">
-  <div class="row">
+    <div class="row u-equal-height u-vertically-center">
+        <div class="col-6">
+            <h3>Average Time spent configuring Ubuntu</h3>
+        </div>
+        <div class="col-3 u-align--center">
+            <svg id="configure-hw"></svg>
+        </div>
+        <div class="col-3 u-align--center">
+            <svg id="configure-vm"></svg>
+        </div>
+    </div>
+</section>
+<section class="p-strip is-bordered">
+    <div class="row">
+        <div class="col-5 prefix-1">
+          <img class="p-image--bordered" src="{{ ASSET_SERVER_URL }}f3f53a95-ubuntu-18.04-survey-metrics.png" alt="User survey report">
+        </div>
     <div class="col-6">
       <h3>Want to know more?</h3>
       <p>Find out what Will Cooke, Engineering Director for Desktop, had to say about the methodology behind these metrics.</p>
       <a class="p-link--external" href="https://blog.ubuntu.com/2018/06/22/a-first-look-at-desktop-metrics">Read on</a>
-    </div>
-    <div class="col-5 prefix-1">
-      <img class="p-image--bordered" src="{{ ASSET_SERVER_URL }}f3f53a95-ubuntu-18.04-survey-metrics.png" alt="User survey report">
     </div>
   </div>
 </section>

@@ -23,6 +23,34 @@ function calcPercentage(dataset, datum) {
   return percentage;
 }
 
+function formatTime(localData) {
+    return d3.max(localData, function(d) {
+        if (d.show) {
+            return Math.floor(d.value/1000) + ':' + Math.round((d.value % 1000) * 0.1 ) + 's';
+        }
+    });
+}
+
+function formatPercentage(localData) {
+    var localValue = round(d3.max(localData, function(d) {
+        if (d.show) return calcPercentage(localData, d.value)
+      }), 1);
+    return localValue + '%';
+}
+
+function setChartLabel(format, localData) {
+    var labelText = '';
+    switch (format) {
+        case 'time':
+            labelText = formatTime(localData);
+            break;
+        default:
+            labelText = formatPercentage(localData);
+            break;
+    }
+    return labelText;
+}
+
 function manipulateData(data, options) {
   // Set option defaults
   options = options || {};
@@ -230,9 +258,10 @@ function createProgressChart(selector, dataset, options) {
   var parentWidth = document.querySelector(selector).parentNode.clientWidth;
   var color = options.hasOwnProperty('color') ? options.color : '#ed764d';
   var size = options.hasOwnProperty('size') ? options.size : 300;
-
+  var format = options.hasOwnProperty('format') ? options.format : 'percent';
   // Create copy of dataset
   var data = dataset.slice();
+  var label = setChartLabel(format, data);
 
   // Orientate svg
   size = Math.min(size, parentWidth);
@@ -274,11 +303,7 @@ function createProgressChart(selector, dataset, options) {
     })
     .attr("text-anchor", "middle")
     .text(function() {
-      var value = round(d3.max(data, function(d) {
-        if (d.show) return calcPercentage(data, d.value)
-      }), 1);
-
-      return value + '%';
+      return label;
     });
 }
 
@@ -377,11 +402,15 @@ function buildCharts() {
   createProgressChart('#auto-login-hw', dummyData.autoLogin.datasets.hardware);
   createProgressChart('#minimal-install-hw', dummyData.minimalInstall.datasets.hardware);
   createProgressChart('#update-at-install-hw', dummyData.updateAtInstall.datasets.hardware);
+  createProgressChart('#how-long-running-hw', dummyData.howLongRunning.datasets.hardware, { format: 'time'});
+  createProgressChart('#configure-hw', dummyData.configure.datasets.hardware, { format: 'time'});
   createProgressChart('#default-settings-vm', dummyData.defaultSettings.datasets.virtual, { color: '#925375' });
   createProgressChart('#restrict-add-on-vm', dummyData.restrictAddOn.datasets.virtual, { color: '#925375' });
   createProgressChart('#auto-login-vm', dummyData.autoLogin.datasets.virtual, { color: '#925375' });
   createProgressChart('#minimal-install-vm', dummyData.minimalInstall.datasets.virtual, { color: '#925375' });
   createProgressChart('#update-at-install-vm', dummyData.updateAtInstall.datasets.virtual, { color: '#925375' });
+  createProgressChart('#how-long-running-vm', dummyData.howLongRunning.datasets.virtual, { color: '#925375', format: 'time' });
+  createProgressChart('#configure-vm', dummyData.configure.datasets.virtual, { color: '#925375', format: 'time'});
 
   if (window.innerWidth >= breakpoint) {
     createBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
