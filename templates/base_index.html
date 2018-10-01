@@ -137,8 +137,13 @@
         var languageClass = browserLanguage || 'en';
         languageClass = languageClass.split('-')[0];
 
-        // set the default takeovers to english
-        var defaultTakeovers = document.querySelectorAll('.js-takeover[data-lang="en"]');
+        // set the default takeover or if use the first one
+        var defaultTakeovers = document.querySelectorAll(
+          '.js-takeover[data-default="true"]'
+        );
+        if (!defaultTakeovers) {
+          defaultTakeovers = takeovers[0];
+        }
 
         // find any takeovers that match the users language
         var query = '.js-takeover[data-lang*="'+languageClass+'"]';
