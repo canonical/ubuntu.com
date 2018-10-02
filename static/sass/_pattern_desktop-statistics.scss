@@ -4,11 +4,11 @@
       display: flex;
       flex-direction: column;
 
-      & > [class*="col-"]:first-child {
+      &>[class*="col-"]:first-child {
         order: 1;
       }
 
-      & > [class*="col-"]:nth-child(2) {
+      &>[class*="col-"]:nth-child(2) {
         order: 0;
       }
     }
@@ -64,6 +64,24 @@
 
       @media only screen and (max-width: $breakpoint-medium) {
         font-size: 1rem;
+      }
+    }
+  }
+
+  .p-form__container {
+    &.p-form__container--background {
+      background: $color-x-light;
+    }
+  }
+
+  .p-strip--light {
+    .p-strip__row {
+      >.p-strip__row--item {
+        padding: $spv-intra--condensed;
+        
+        &.col-6 {
+          background: $color-x-light;
+        }
       }
     }
   }

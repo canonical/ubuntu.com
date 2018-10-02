@@ -68,9 +68,10 @@
 <section class="p-strip--light is-shallow is-bordered">
   <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
     <div class="col-6 u-align--center">
-      <div id="where-are-users">
-        <img src="https://via.placeholder.com/500x320?text=Map" alt="">
-      </div>
+        <!-- <div id="where-are-users">
+          <img src="https://via.placeholder.com/500x320?text=Map" alt=""> 
+        </div>-->
+        <svg id="where-are-users" height="250" width="500"></svg>
     </div>
     <div class="col-6">
       <h2 class="p-heading--four">Where are Ubuntu users?</h2>
@@ -309,9 +310,9 @@
             <h3>How long to get Ubuntu running?</h3>
         </div>
     </div>
-    <div class="row">
-        <div class="col-4 u-align--left">
-            <span>Average time to install</span>
+    <div class="row p-strip__row">
+        <div class="col-6 u-align--left p-strip__row--item">
+            <span><strong>Average time to install</strong></span>
         </div>
     </div>
     <div class="row">
@@ -323,7 +324,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-6 u-align--center p-form--background">     
+        <div class="col-6 u-align--center p-form__container p-form__container--background">     
             <form class="p-form p-form--inline ">
                 <div class="p-form__group">
                     <div class="p-form__control u-clearfix">
@@ -384,6 +385,13 @@
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_desktop_contact_us" second_item="_support" third_item="_desktop_further_reading" %}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-geo/1.9.1/d3-geo.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-array/1.2.2/d3-array.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-geo-projection/2.4.0/d3-geo-projection.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-dsv/1.0.8/d3-dsv.min.js"></script>
+<script src="https://d3js.org/d3-fetch.v1.min.js"></script>
+<script src="https://unpkg.com/topojson-client@3"></script>
 <script src="{% versioned_static 'js/stickyNav.js' %}"></script>
 <script src="{% versioned_static 'js/dummyData.js' %}"></script>
 <script src="{% versioned_static 'js/desktopStatistics.js' %}"></script>
