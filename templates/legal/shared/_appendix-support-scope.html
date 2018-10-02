@@ -45,7 +45,7 @@
             <li class="p-list__item">Upgrades between versions of OpenStack (for instance, from OpenStack Mitaka to Newton) or versions of Ubuntu (for instance, from Ubuntu 14.04 LTS to Ubuntu 16.04 LTS), Juju and MAAS are supported as long as the upgrade is performed following a documented process as specified by Canonical as part of the Foundation OpenStack Build.</li>
             <li class="p-list__item">Addition of new cloud nodes and replacement of existing nodes with new nodes of equivalent capacity are both supported.</li>
             <li class="p-list__item">Full Stack Support excludes customizations which are not considered Valid Customizations.</li>
-            <li class="p-list__item">Ubuntu Advantage Virtual Guest Advanced services for Cloud Guests.</li>
+            <li class="p-list__item">Ubuntu Advantage Virtual Guest Advanced and Ubuntu Advantage Kubernetes services for Cloud Guests.</li>
           </ul>
         </li>
         <li class="p-list__item">OpenStack clouds not deployed through a Foundation OpenStack Build are limited to Bug-fix Support.</li>
@@ -418,8 +418,12 @@
         <li class="p-list__item"><a class=" p-link--external" href="https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions">https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions</a></li>
       </ul>
       <p>
-        Support is limited to the software packages and Charms necessary for running the Canonical Distribution of Kubernetes.
+        Support is limited to:
       </p>
+      <ul>
+	      <li class="p-list__item">the software packages and Charms necessary for running the Canonical Distribution of Kubernetes.</li>
+	      <li class="p-list__item">the software packages available from <a class="p-link--external" href="https://apt.kubernetes.io">apt.kubernetes.io</a>  and Kubernetes clusters deployed using kubeadm.</li>
+      </ul>
       <p>
         For any deployment of the Canonical Distribution of Kubernetes carried out by Canonical while under contract for this deployment, which result in the customization of any Charms, the customization will be supported for 90 days after the official
         release of the Charm which includes the customizations.
