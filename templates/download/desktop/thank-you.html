@@ -23,39 +23,38 @@ Thank you for your contribution
 {% endif %}
 {% endif %}
 
-<div class="p-strip is-deep is-bordered">
+<div class="p-strip is-bordered">
   <div class="row">
-    <div class="col-12">
+    <div class="col-8">
       {% if start_download %}
-        <h1>Thank you for downloading Ubuntu Desktop</h1>
-        <p>Your download should start automatically. If it doesn&rsquo;t,
-          {% if architecture == 'amd64+mac' %}
-          <a href="http://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso">download now</a>.
-          {% else %}
-          <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download now</a>.
-          {% endif %}
-        </p>
+      <h1 style="font-weight: 100;">Thank you for downloading Ubuntu Desktop</h1>
+      <p>Your download should start automatically. If it doesn&rsquo;t,
+        {% if architecture == 'amd64+mac' %}
+        <a href="http://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso">download now</a>.
+        {% else %}
+        <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download now</a>.
+        {% endif %}
+      </p>
       {% else %}
-        <h1>Thank you for your contribution</h1>
-        <p>It will help further the open source development of Ubuntu.</p>
+      <h1>Thank you for your contribution</h1>
+      <p>It will help further the open source development of Ubuntu.</p>
       {% endif %}
     </div>
-  </div>
-  <div class="row">
-    <div class="col-9">
-      <div>
-        <h2>Help shape the future of Ubuntu</h2>
-        <noscript>
-          <p>Contributions require JavaScript. Please enable JavaScript if you want to contribute.</p>
-        </noscript>
-      </div>
+    <div class="col-4 u-align--center">
+      <img src="{{ ASSET_SERVER_URL }}cbae9a60-thank_you_orange_cmyk.svg" alt="" />
     </div>
   </div>
+</div>
 
+<div class="p-strip--light is-bordered">
   <div class="row">
-    <div class="col-9 p-card--highlighted">
+    <div class="col-8 suffix-1">
+      <h2>Help shape the future of Ubuntu</h2>
+      <noscript>
+        <p>Contributions require JavaScript. Please enable JavaScript if you want to contribute.</p>
+      </noscript>
       <form action="https://www.paypal.com/cgi-bin/webscr" id="contributions-form" method="post" target="_top">
-        <fieldset class="contribute__options" style="border-bottom-width: 1px; margin-bottom: 2rem;">
+        <fieldset class="p-card">
 
           <section id="ubuntu-desktop">
             <label for="amount-desktop">
@@ -165,92 +164,177 @@ Thank you for your contribution
 
           <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
           <button type="submit" class="js-contribute-submit p-button--positive u-no-margin--bottom" tabindex="9">Contribute with PayPal</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="p-card">
+        <header class="p-card__header">
+          <h5 class="p-muted-heading">Newsletter signup</h5>
+        </header>
+        <h3 class="p-card--title">Select topics you&rsquo;re interested in</h3>
+        <form action="https://pages.canonical.com/index.php/leadCapture/save" method="post" id="mktoForm_1212" novalidate="novalidate" onsubmit="ga('send', 'Newsletter', 'Signup', 'New homepage newsletter signup');">
+          <div class="p-card--content contribute__options">
+            <ul class="p-list">
+              <li class="p-list__item u-no-margin--top u-clearfix">
+                <label>
+                  <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" type="checkbox" id="insightscloudserver" name="insightscloudserver" value="Cloud and server" />
+                  <label for="insightscloudserver">Cloud and server</label>
+                </label>
+              </li>
+              <li class="p-list__item u-no-margin--top u-clearfix">
+                <label>
+                  <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" type="checkbox" id="insightsdesktop" name="insightsdesktop" value="Desktop" />
+                  <label for="insightsdesktop">Desktop</label>
+                </label>
+              </li>
+              <li class="p-list__item u-no-margin--top u-clearfix">
+                <label>
+                  <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" type="checkbox" id="insightsiot" name="insightsiot" value="Internet of Things" />
+                  <label for="insightsiot">Internet of Things</label>
+                </label>
+              </li>
+              <li class="p-list__item u-no-margin--top u-clearfix">
+                <label>
+                  <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" id="insightstutorials" name="insightstutorials" value="Tutorials" type="checkbox">
+                  <label for="insightstutorials">Tutorials</label>
+                </label>
+              </li>
+            </ul>
+            <div class="mktFormReq mktField u-margin-medium--top">
+              <label>
+                <span class="u-no-margin--top">Work email: <span>*</span></span>
+                <input required  id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired" />
+              </label>
+            </div>
+            <div class="mktField mktLblRight u-margin-medium--top">
+              <span class="mktInput mktLblRight">
+                  <input class="u-no-margin--top mktFormCheckbox" name="canonicalUpdatesOptIn" id="canonicalUpdatesOptIn" value="Receive updates" type="checkbox" />
+                  <label for="canonicalUpdatesOptIn" class="p-form__label u-no-margin--top">
+                    <small>I agree to receive information about Canonical’s products and services.</small>
+                  </label>
+                  <span class="mktFormMsg"></span>
+              </span>
+            </div>
+            <p class="u-margin-medium--top">
+              <small>In submitting this form, I confirm that I have read and agree to <a href="/legal/dataprivacy/newsletter">Canonical’s Privacy Notice</a> and <a href="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy">Privacy Policy</a>.</small>
+            </p>
+            <div class="u-margin-medium--top">
+              <span class="mktoButtonWrap p-card--content">
+                <button type="submit">Subscribe now</button>
+              </span>
+              <input type="hidden" name="Consent_to_Processing__c" value="yes" />
+              <input value="1959" class="mktoField mktoFieldDescriptor" name="lpId" type="hidden">
+              <input value="30" class="mktoField mktoFieldDescriptor" name="subId" type="hidden">
+              <input name="lpurl" value="https://pages.canonical.com/Insights-Subscription_Insights-Subscription-test.html?cr={creative}&amp;kw={keyword}" type="hidden">
+              <input value="1212" class="mktoField mktoFieldDescriptor" name="formid" type="hidden">
+              <input type="hidden" name="ret" value="http://{{request.host}}{{request.path}}?newsletter=true" />
+              <input value="066-EOV-335" class="mktoField mktoFieldDescriptor" name="munchkinId" type="hidden">
+              <input name="kw" value="" type="hidden">
+              <input name="cr" value="" type="hidden">
+              <input name="searchstr" value="" type="hidden">
+              <input name="_mkt_disp" value="return" type="hidden">
+              <input name="_mkt_trk" value="id:066-EOV-335&amp;token:_mch-ubuntu.com-1473266321199-95160" type="hidden">
+            </div>
+          </form>
         </div>
-      </form>
+        <script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
+        <script src="https://assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
+        <script>
+          $("#mktoForm_1212").validate({
+            errorPlacement: function(error, element) {
+              error.appendTo( element.parent().addClass( "p-form-validation is-error" ));
+              error.appendTo( element.addClass( "p-form-validation__input" ));
+            },
+            errorElement: "span",
+            errorClass: "p-form-validation__message"
+          });
+        </script>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
   /**
-    * Select an equivalent item for a certain contribution amount
-    */
+  * Select an equivalent item for a certain contribution amount
+  */
   var chooseEquivalentItem = function(totalAmount) {
     var items = [{
-        imageFile: '86981cf1-skull.png',
-        price: 0,
-        description: 'Nothing. Use Ubuntu for free.'
-      },
-      {
-        imageFile: '0617b159-ace-of-spades.png',
-        price: 1,
-        description: 'the Ace of Spades download'
-      },
-      {
-        imageFile: 'b52102d9-mocca.png',
-        price: 2,
-        description: 'grande extra shot mocha latta chino'
-      },
-      {
-        imageFile: '0ca1e249-pint-of-ale.png',
-        price: 5,
-        description: 'pint of Micro-brew Nevada Pale Ale'
-      },
-      {
-        imageFile: 'bd982caa-happy-meal.png',
-        price: 7,
-        description: 'A Royale with Cheese '
-      },
-      {
-        imageFile: 'e474c36d-cinema-ticket.png',
-        price: 10,
-        description: 'a night at the movies. By yourself.'
-      },
-      {
-        imageFile: '274c40d3-king-kong.png',
-        price: 15,
-        description: 'King Kong versus Godzilla on DVD'
-      },
-      {
-        imageFile: 'b26d26e5-t-shirt.png',
-        price: 20,
-        description: 'Peace, Love and Linux t-shirt (shirt not included)'
-      },
-      {
-        imageFile: '86f3bcab-frying-pan.png',
-        price: 30,
-        description: 'stainless steel copper-bottom frying pan'
-      },
-      {
-        imageFile: '733a3650-sega-controller.png',
-        price: 50,
-        description: 'vintage SNES game bundle'
-      },
-      {
-        imageFile: 'd6d7d638-levi-501.png',
-        price: 60,
-        description: 'pair of vintage acid wash Levi 501s'
-      },
-      {
-        imageFile: '76f933b2-drum-kit.png',
-        price: 100,
-        description: 'pair of LP Matador bongo drums'
-      },
-      {
-        imageFile: 'ae1705f2-emu-chicks.png',
-        price: 200,
-        description: 'pair of sexed Emu chicks'
-      },
-      {
-        imageFile: '4cbbd365-ldn-nyc-flight.png',
-        price: 500,
-        description: 'flight from New York to London (one way)'
-      },
-      {
-        imageFile: '7a47693f-camel.png',
-        price: 1000,
-        description: 'an eight year-old dromedary camel'
-      }
+      imageFile: '86981cf1-skull.png',
+      price: 0,
+      description: 'Nothing. Use Ubuntu for free.'
+    },
+    {
+      imageFile: '0617b159-ace-of-spades.png',
+      price: 1,
+      description: 'the Ace of Spades download'
+    },
+    {
+      imageFile: 'b52102d9-mocca.png',
+      price: 2,
+      description: 'grande extra shot mocha latta chino'
+    },
+    {
+      imageFile: '0ca1e249-pint-of-ale.png',
+      price: 5,
+      description: 'pint of Micro-brew Nevada Pale Ale'
+    },
+    {
+      imageFile: 'bd982caa-happy-meal.png',
+      price: 7,
+      description: 'A Royale with Cheese '
+    },
+    {
+      imageFile: 'e474c36d-cinema-ticket.png',
+      price: 10,
+      description: 'a night at the movies. By yourself.'
+    },
+    {
+      imageFile: '274c40d3-king-kong.png',
+      price: 15,
+      description: 'King Kong versus Godzilla on DVD'
+    },
+    {
+      imageFile: 'b26d26e5-t-shirt.png',
+      price: 20,
+      description: 'Peace, Love and Linux t-shirt (shirt not included)'
+    },
+    {
+      imageFile: '86f3bcab-frying-pan.png',
+      price: 30,
+      description: 'stainless steel copper-bottom frying pan'
+    },
+    {
+      imageFile: '733a3650-sega-controller.png',
+      price: 50,
+      description: 'vintage SNES game bundle'
+    },
+    {
+      imageFile: 'd6d7d638-levi-501.png',
+      price: 60,
+      description: 'pair of vintage acid wash Levi 501s'
+    },
+    {
+      imageFile: '76f933b2-drum-kit.png',
+      price: 100,
+      description: 'pair of LP Matador bongo drums'
+    },
+    {
+      imageFile: 'ae1705f2-emu-chicks.png',
+      price: 200,
+      description: 'pair of sexed Emu chicks'
+    },
+    {
+      imageFile: '4cbbd365-ldn-nyc-flight.png',
+      price: 500,
+      description: 'flight from New York to London (one way)'
+    },
+    {
+      imageFile: '7a47693f-camel.png',
+      price: 1000,
+      description: 'an eight year-old dromedary camel'
+    }
     ];
 
     var matchingItem = false;
@@ -258,8 +342,8 @@ Thank you for your contribution
     items.forEach(
       function(item, itemIndex) {
         if (
-          item['price'] == totalAmount ||
-          (item['price'] > totalAmount && items[itemIndex - 1]['price'] < totalAmount)
+        item['price'] == totalAmount ||
+        (item['price'] > totalAmount && items[itemIndex - 1]['price'] < totalAmount)
         ) {
           matchingItem = items[itemIndex];
         }
@@ -310,8 +394,8 @@ Thank you for your contribution
   }
 
   /**
-    * Generate a random ID including the datestamp for uniqueness
-    */
+  * Generate a random ID including the datestamp for uniqueness
+  */
   function generateRandomId() {
     // really crude unique ID
     var date = new Date();
@@ -320,9 +404,9 @@ Thank you for your contribution
   }
 
   /**
-    * Send form values to Google Analytics
-    * Also send which header has been shown
-    */
+  * Send form values to Google Analytics
+  * Also send which header has been shown
+  */
   function sendContributionFormAnalytics(submitEvent) {
     form = submitEvent.target;
 
@@ -364,8 +448,8 @@ Thank you for your contribution
   );
 
   /**
-    * Reset fields back to 0, if missing values
-    */
+  * Reset fields back to 0, if missing values
+  */
   document.querySelectorAll('.p-slider__input').forEach(
     function(valueElement) {
       valueElement.addEventListener(
@@ -514,22 +598,22 @@ Thank you for your contribution
   }
 
   /**
-   * Kick off a download link
-   * after a certain delay in milliseconds
-   */
+  * Kick off a download link
+  * after a certain delay in milliseconds
+  */
   function delayStartDownload(downloadLink, delay) {
     window.setTimeout(
-      function() {
-        window.location.href = downloadLink;
-      },
-      delay
+    function() {
+      window.location.href = downloadLink;
+    },
+    delay
     )
   }
 
   /**
-   * Choose randomly from a given list of mirrors
-   * Weight the choice by the bandwidth of each mirror
-   */
+  * Choose randomly from a given list of mirrors
+  * Weight the choice by the bandwidth of each mirror
+  */
   function chooseRandomMirror(mirrors) {
     var selectedMirror = null;
 
