@@ -114,47 +114,67 @@
 </section>
 
 <style>
-.u-overlay {
-  will-change: opacity;
-  mix-blend-mode: overlay;
-}
 
-.cuttlefish {
-  transform: translateX(-10vw);
-}
+  .p-takeover--1810 {
+    position: relative;
+  }
 
-#bubbles,
-#bubbles2 {
-  transform: translateX(20vw);
-}
 
-g#bubbles path {
-  transform: rotate(45deg);
-  opacity: 0;
-  will-change: transform, opacity;
-  animation: up 6s infinite linear;
-  mix-blend-mode: none;
-  fill: white;
-}
+  .p-takeover--1810 .u-overlay {
+    will-change: opacity;
+    mix-blend-mode: overlay;
+  }
 
-g#bubbles2 path {
-  transform: rotate(45deg);
-  opacity: 0;
-  will-change: transform, opacity;
-  animation: up 6s 3s infinite linear;
-  mix-blend-mode: none;
-}
+  .p-takeover--1810 .cuttlefish {
+    transform: translateX(-10vw);
+  }
 
-@keyframes up {
-  0% {
+  @media (max-width: 874px) {
+    .p-takeover--1810 .cuttlefish {
+      position: absolute;
+      bottom: -2rem;
+      width: 120%;
+      left: calc(50% - 50%);
+    }
+
+    .p-takeover--1810 .p-button--neutral {
+      margin-top: 16rem;
+    }
+  }
+
+
+  .p-takeover--1810 #bubbles,
+  .p-takeover--1810 #bubbles2 {
+    transform: translateX(20vw);
+  }
+
+  .p-takeover--1810 g#bubbles path {
+    transform: rotate(45deg);
     opacity: 0;
+    will-change: transform, opacity;
+    animation: float 6s infinite linear;
+    mix-blend-mode: none;
+    fill: white;
   }
-  10%, 90% {
-    opacity: 1;
+
+  .p-takeover--1810 g#bubbles2 path {
+    transform: rotate(45deg);
+    opacity: 0;
+    will-change: transform, opacity;
+    animation: float 6s 3s infinite linear;
+    mix-blend-mode: none;
   }
-  100% {
-    opacity: 1;
-    transform: translateY(-404px);
+
+  @keyframes float {
+    0% {
+      opacity: 0;
+    }
+    10%, 90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-404px);
+    }
   }
-}
 </style>
