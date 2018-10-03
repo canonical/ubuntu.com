@@ -79,6 +79,24 @@ function manipulateData(data, options) {
   }
 }
 
+function colorShade(usageRange, colors) {
+    var index = 0;
+    if (usageRange <= 1) {
+        index = 0;
+    } else if (usageRange > 1 && usageRange <= 5) {
+        index = 1;
+    } else if (usageRange > 5 && usageRange <= 10) {
+        index = 2;
+    } else if (usageRange > 10 && usageRange <= 15) {
+        index = 3;
+    } else if (usageRange > 15 && usageRange <= 30) {
+        index = 4;
+    } else if (usageRange > 30){
+        index = 5;
+    }
+    return colors[index];
+}
+
 function wrapText(text, width) {
   text.each(function () {
     var text = d3.select(this);
@@ -421,61 +439,52 @@ function createPieChart(selector, dataset, options) {
     });
 }
 
-function createMap(selector, options) {
+function createMap(selector, options, mapData) {
   var options = options || {};
   var width = document.querySelector(selector).clientWidth;
   var height = document.querySelector(selector).clientHeight;
-  /* function render(world) {
-    var projection = d3.geoNaturalEarth1()
-      .scale(width * 0.2)
-      .translate([(width / 2), ((height) / 2)])
-      .precision(.1);
-
-    // rotate not to split Asia
-    projection.rotate([-10, 0]);
-    var geoPath = d3.geoPath().projection(projection);
-    var svg = d3.select(selector)
-      .attr('height', height)
-      .attr('width', width)
-      .attr('class', 'p-map');
-    var g = svg.append('g');
-    g.selectAll('path').data(world)
-      .enter()
-      .append('path')
-      .attr('class', 'statistics-territories__country')
-      .attr('style', function (countryData) {
-        // some data set is > than a value use a particular color
-      })
-      .attr('d', geoPath).append('.statistics-territories__country')
-      .datum(topojson.mesh(world, world.objects.countries, function (a, b) {
-        return a !== b;
-      }));
-  } */
 
   function render(world) {
+    //   Snapdata = country mapped to ids in objects
+    // Get the countries and ids 
     var svg = d3.select(selector);
     var g = svg.append('g');
+    var offset = width * 0.2;
     var projection = d3.geoNaturalEarth1()
         .scale(width * 0.15)
-        .translate([width/2, height/2])
+        .translate([width / 2, (height + offset) / 2])
         .precision(.1)
-        .rotate([-50, 0]);
+        .rotate([-10, 0]);
     var geoPath = d3.geoPath().projection(projection);
     var countries = topojson.feature(world, world.objects.countries).features;
-    console.log(countries);
     g.selectAll('path')
         .data(countries)
         .enter()
         .append('path')
-        .attr('fill', '#d36A4F')
+        .attr('fill', function (country) {
+            if (country) {
+                // Return the ubuntu usage stats for the country
+                var countryStat = options.countryStats.find(function(ctryStat) {
+                    return parseInt(country.id, 10) === parseInt(ctryStat.id, 10);
+                });
+
+                if (countryStat) {
+                    var countryRatio = (countryStat.users * 100/ countryStat.total);
+                    var shade =  colorShade(countryRatio, options.legend.colors);
+                    return shade;
+                }
+                return "#0000FF";
+            }
+
+        })
         .attr('d', geoPath);
   }
 
-  d3.json('/static/js/world-110m.v1.json')
+  d3.json(mapData)
     .then(render)
-    .catch(function(error){
+    .catch(function (error) {
       throw new Error(error);
-  });
+    });
 }
 
 function clearCharts() {
@@ -494,7 +503,8 @@ function buildCharts() {
   showMaxDatum('#one-gpu', dummyData.numberGPUs.dataset);
 
   createPieChart('#opt-in', dummyData.optIn.dataset, {
-    size: 300
+    size: 300,
+    donutRadius: 100
   });
   createPieChart('#real-or-virtual', dummyData.realOrVirtual.dataset, {
     size: 300
@@ -525,7 +535,7 @@ function buildCharts() {
       }
     }
   );
-  createMap('#where-are-users');
+  createMap('#where-are-users', dummyData.whereUsersAre.datasets, '/static/js/world-110m.v1.json');
   createProgressChart('#default-settings-hw', dummyData.defaultSettings.datasets.hardware);
   createProgressChart('#restrict-add-on-hw', dummyData.restrictAddOn.datasets.hardware);
   createProgressChart('#auto-login-hw', dummyData.autoLogin.datasets.hardware);
