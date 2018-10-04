@@ -1,0 +1,70 @@
+@mixin ubuntu-p-desktop-statistics {
+  .p-mobile-flex-col {
+    @media only screen and (max-width: $breakpoint-medium) {
+      display: flex;
+      flex-direction: column;
+
+      & > [class*="col-"]:first-child {
+        order: 1;
+      }
+
+      & > [class*="col-"]:nth-child(2) {
+        order: 0;
+      }
+    }
+  }
+
+  .p-bar-chart {
+    width: 100%;
+
+    .p-bar-chart__bar {
+      opacity: .8;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .tick text {
+      font-size: .625rem;
+    }
+  }
+
+  .p-progress-chart {
+    background: $color-x-light;
+    border: 1px solid $color-mid-light;
+    box-shadow: 0 1px 5px 1px rgba(17, 17, 17, 0.2);
+
+    .p-progress-chart__bar {
+      opacity: .8;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .p-progress-chart__text {
+      font-size: 2.91029rem;
+    }
+  }
+
+  .p-pie-chart {
+    .p-pie-chart__wedge {
+      path {
+        opacity: .8;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    text {
+      font-size: 1.2rem;
+
+      @media only screen and (max-width: $breakpoint-medium) {
+        font-size: 1rem;
+      }
+    }
+  }
+}

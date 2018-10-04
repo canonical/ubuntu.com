@@ -18,4 +18,19 @@
     @extend %p-card--highlighted;
     @include vf-highlight-bar(#ff8936);
   }
+
+  .p-card--flex {
+    @extend %p-card--highlighted;
+    display: flex;
+    flex-direction: column;
+
+    .p-card__center-content {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-grow: 10;
+      margin: 1rem 0;
+    }
+  }
 }

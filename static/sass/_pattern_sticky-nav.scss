@@ -1,0 +1,27 @@
+@mixin ubuntu-p-sticky-nav {
+  .p-sticky-nav {
+    background-color: $color-light;
+    border-bottom: 1px solid $color-mid-light;
+    box-shadow: 0 3px 5px -1px rgba(17, 17, 17, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
+    .p-tabs__link:hover::before {
+      background-color: $color-brand;
+    }
+
+    .p-tabs__link.is-selected {
+      @include vf-highlight-bar($color-brand, bottom, true);
+    }
+  
+    .p-tabs__list {
+      margin-bottom: 0;
+      overflow: auto;
+  
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
