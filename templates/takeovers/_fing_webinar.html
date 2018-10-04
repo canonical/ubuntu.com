@@ -1,0 +1,46 @@
+<section data-lang="en" lang="en-gb" class="p-strip is-deep p-takeover--fing-webinar js-takeover {% if  default %}u-hide{% endif %}" {% if default %}data-default="true"{% endif %}>
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <h1 class="p-takeover__title">Future-proofing Fingbox the home network monitoring device</h1>
+      <p class="p-takeover__text">Learn how Fing uses Ubuntu Core and Snaps to speed development, save budget and resources and ensure a future-proofed product.</p>
+      <img class="p-takeover__image u-hide--medium u-hide--large" alt="Fing's Fingbox" src="{{ ASSET_SERVER_URL }}3811386c-fingbox_w-shadow.png" />
+      <p class="p-button--neutral"><a href="https://www.brighttalk.com/webcast/6793/336519" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : 'fing webinar takeover', 'eventLabel' : 'Future-proofing Fingbox the IoT home network monitoring device', 'eventValue' : undefined });" style="color: #000;">Register for the webinar</a></p>
+    </div>
+    <div class="col-6 u-align--center u-vertically-center">
+      <img class="u-hide--small" alt="Fing's Fingbox" src="{{ ASSET_SERVER_URL }}3811386c-fingbox_w-shadow.png" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .p-takeover--fing-webinar {
+    background-color: #006BA1;
+    background-image:  linear-gradient(32deg, #006ba1 0%,#009eee 84%,#08acff 100%);
+  }
+
+  .p-takeover--fing-webinar .p-takeover__title {
+    font-weight: 100;
+    color: #fff;
+  }
+
+  .p-takeover--fing-webinar .p-takeover__text {
+    color: #fff;
+    margin-bottom: 1.7rem;
+  }
+
+  .p-takeover--fing-webinar .p-takeover__image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: 768px) {
+    .p-takeover--fing-webinar {
+
+      background-image: url('{{ ASSET_SERVER_URL }}5175ed7b-fingbox-left-overlay.svg'), url('{{ ASSET_SERVER_URL }}1ce949ac-fingbox-right-overlay.svg'), linear-gradient(32deg, #006ba1 0%,#009eee 84%,#08acff 100%);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: bottom left, bottom right;
+    }
+  }
+</style>
