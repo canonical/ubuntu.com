@@ -9,7 +9,6 @@
   {% block content %}
     {% block takeover_content %}
     {% endblock takeover_content %}
-
     <section class="p-strip is-deep is-bordered">
       {% include "shared/_insights_news_strip.html" with gtm_event_label="ubuntu.com homepage" %}
     </section>
@@ -112,24 +111,56 @@
     {% block footer_content %}
       {# include "ubuntu/takeovers/_footer_homepage.html" #}
     {% endblock footer_content %}
+    <script>
+      // detect the user's browser's language setting
+      var detectLanguage = function () {
+        var lang = window.navigator.languages ? window.navigator.languages[0] : null;
+        lang = lang || window.navigator.language ||
+        window.navigator.browserLanguage || window.navigator.userLanguage;
 
+        if (lang && lang.length) {
+          return lang;
+        } else {
+          return null
+        }
+      };
+    </script>
     <script>
       if (window.localStorage && window.sessionStorage) {
         var takeovers = document.getElementsByClassName('js-takeover');
         for (t = 0; t < takeovers.length; ++t) {
-          takeovers[t].classList.add('u-hide');
+            // hide all takeovers
+            takeovers[t].classList.add('u-hide');
         }
+        // get the users language and remove any extra detail suffix (e.g. -gb)
+        var browserLanguage = detectLanguage();
+        var languageClass = browserLanguage || 'en';
+        languageClass = languageClass.split('-')[0];
+
+        // set the default takeover or if use the first one
+        var defaultTakeovers = document.querySelectorAll(
+          '.js-takeover[data-default="true"]'
+        );
+        if (!defaultTakeovers) {
+          defaultTakeovers = takeovers[0];
+        }
+
+        // find any takeovers that match the users language
+        var query = '.js-takeover[data-lang*="'+languageClass+'"]';
+        var takeoversFiltered = (document.querySelectorAll(query));
+        takeoversFiltered = (takeoversFiltered.length) ? takeoversFiltered : defaultTakeovers;
+
         if (!localStorage.getItem('TAKEOVER')) {
-          var i = Math.floor(Math.random() * takeovers.length);
+          var i = Math.floor(Math.random() * takeoversFiltered.length);
           localStorage.setItem('TAKEOVER', i);
         } else {
           var i = parseInt(localStorage.getItem('TAKEOVER')) + 1;
-          if (i >= takeovers.length) {
+          if (i >= takeoversFiltered.length) {
             i = 0;
           }
         }
         localStorage.setItem('TAKEOVER', i);
-        takeovers[i].classList.remove('u-hide');
+        takeoversFiltered[i].classList.remove('u-hide');
       }
     </script>
   {% endblock content %}
