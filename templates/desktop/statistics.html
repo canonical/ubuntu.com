@@ -33,38 +33,63 @@
 </nav>
 
 <section id="user-report" class="p-strip is-shallow is-bordered">
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-6">
-      <h2 class="p-heading--four">How many users opted in?</h2>
-      <p>We appreciate the trust that has been given to us with handling this data and we aim to use the results to focus our development efforts on where it matters most to users.</p>
-    </div>
-    <div class="col-6 u-align--center">
-      <svg id="opt-in"></svg>
-    </div>
+  <div class="row">
+      <div class="col-12">
+        <h2>User Report</h2>
+      </div>
   </div>
-</section>
-<section class="p-strip--light is-shallow is-bordered">
-  <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
-    <div class="col-6 u-align--center">
-      <svg id="real-or-virtual"></svg>
+  <div class="row u-equal-height u-vertically-center p-divider">
+    <div class="col-6 p-divider__block">
+        <div class="col-12">
+          <h2 class="p-heading--four">How many users opted in?</h2>
+          <p>We appreciate the trust that has been given to us with handling this data and we aim to use the results to focus our development efforts on where it matters most to users.</p>
+        </div>
+        <div class="col-12 u-align--center">
+          <svg id="opt-in"></svg>
+        </div>
+      </div>
+      <div class="col-6 p-divider__block">
+          <div class="col-12">
+            <h2 class="p-heading--four">Real or virtual machines?</h2>
+            <p>Some machines could not be determined as either real or virtual, that data is not included in this report.</p>
+          </div>
+          <div class="col-12 u-align--center">
+            <svg id="real-or-virtual"></svg>
+          </div>
+      </div>
     </div>
-    <div class="col-6">
-      <h2 class="p-heading--four">Real or virtual machines?</h2>
-      <p>Some machines could not be determined as either real or virtual, that data is not included in this report.</p>
-    </div>
-  </div>
-</section>
+  </section>
+  <section class="p-strip--light is-shallow is-bordered">
+      <div class="row p-mobile-flex-col u-equal-height u-vertically-center p-divider">
+        <div class="col-6 p-divider-block">
+          <div class="col-12">
+              <h3 class="p-heading--four">Clean install or upgrade?</h3>
+              <p>Users setting up a virtual machine are much more likely to perform a clean install rather than upgrading Ubuntu.</p>
+            </div>
+        </div>
+        <div class="col-6 u-align--center p-divider-block">
+          <div class="col-12">
+            <svg id="install-or-upgrade-physical" height="100"></svg>
+            <svg id="install-or-upgrade-vm" height="100"></svg>
+          </div>
+        </div>
+      </div>
+    </section>
 <section class="p-strip is-shallow is-bordered">
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-6">
-      <h2 class="p-heading--four">Clean install or upgrade?</h2>
-      <p>Users setting up a virtual machine are much more likely to perform a clean install rather than upgrading Ubuntu.</p>
+  <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
+    <div class="col-4 u-align--left u-no-padding u-no-margin">
+      <div class="col-12">
+          <h3 class="p-heading--four">Where are Ubuntu users?</h3>
+          <p>Location is derived from the user setting the timezone and location in the installer and not from an identifiable IP address.</p>
+        </div>
     </div>
-    <div class="col-6 u-align--center">
-      <svg id="install-or-upgrade" height="250"></svg>
+    <div class="col-8 u-no-padding u-no-margin">
+      <div class="col-12">
+        <svg id="where-are-users" height="250" width="500"></svg>
+      </div>
     </div>
   </div>
-</section>
+</section>  
 <section class="p-strip--light is-shallow is-bordered">
   <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
     <div class="col-6 u-align--center p-where-user-are">

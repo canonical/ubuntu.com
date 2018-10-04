@@ -384,9 +384,25 @@ function createPieChart(selector, dataset, options) {
   var donutRadius = options.hasOwnProperty('donutRadius') ? options.donutRadius : 15;
   var size = options.hasOwnProperty('size') ? options.size : parentWidth;
   var ordinalColors = d3.scaleOrdinal(colors);
-
+  var labelKey = options.hasOwnProperty('centreLabel') ?  options.centreLabel.title : undefined;
   // Create copy of dataset and manipulate according to options
   var data = dataset.slice();
+
+
+  var centreText = undefined;
+  if (labelKey) {
+    // Sum all the data
+    var sum = d3.sum(data, function(d) {
+      return d.value;
+    });
+
+    labelData = data.find(function(d) {
+      return d.label.toUpperCase() === labelKey.toUpperCase();
+    });
+
+    centreText = (labelData && labelData.value) ? ((labelData.value/sum)*100) + '%' : undefined;
+  }
+  
   data = manipulateData(data, {
     sort: sort,
     truncPoint: truncPoint
@@ -427,16 +443,17 @@ function createPieChart(selector, dataset, options) {
     })
     .attr('d', arc);
 
-  // Add labels to centroid of segments
+  // Add labels to centre
   arcs.append("text")
-    .attr("transform", function (d) {
-      return "translate(" + arc.centroid(d) + ")";
-    })
-    .attr("text-anchor", "middle")
-    .attr("class", "p-pie-chart__text")
-    .text(function (d) {
-      if (d.data.show !== false) return d.data.label
-    });
+    .text(centreText)
+    .attr('text-anchor', 'middle')
+    .attr('dy', -5)
+    .attr('class', 'p-heading--two');
+  arcs.append("text")
+    .text((labelKey) ? labelKey.toLowerCase() : '')
+    .attr('dy', 30)
+    .attr('text-anchor', 'middle')
+    .attr('class', 'p-pie-chart__text');
 }
 
 function createMap(selector, options, mapData) {
@@ -503,17 +520,46 @@ function buildCharts() {
   showMaxDatum('#one-gpu', dummyData.numberGPUs.dataset);
 
   createPieChart('#opt-in', dummyData.optIn.dataset, {
-    size: 300,
-    donutRadius: 100
+    size: 184,
+    donutRadius: 76,
+    centreLabel: { title: 'Opt-In'}
   });
   createPieChart('#real-or-virtual', dummyData.realOrVirtual.dataset, {
-    size: 300
+    size: 184,
+    donutRadius: 76
   });
   createPieChart('#firmware', dummyData.firmware.dataset, {
-    size: 200
+    size: 184,
+    donutRadius: 76
   });
 
-  createBarChart('#install-or-upgrade', dummyData.installOrUpgrade.dataset);
+  // createBarChart('#install-or-upgrade', dummyData.installOrUpgrade.dataset);
+  createHorizontalBarChart(
+    '#install-or-upgrade-physical',
+    dummyData.installOrUpgrade.dataset, {
+      sort: 'ascending',
+      truncPoint: 10,
+      margin: {
+        top: 20,
+        right: 20,
+        bottom: 20,
+        left: 70
+      }
+    }
+  );
+  createHorizontalBarChart(
+    '#install-or-upgrade-vm',
+    dummyData.installOrUpgrade.dataset, {
+      sort: 'ascending',
+      truncPoint: 10,
+      margin: {
+        top: 20,
+        right: 20,
+        bottom: 20,
+        left: 70
+      }
+    }
+  );
   createBarChart('#number-of-cpus', dummyData.cpus.dataset);
   createBarChart('#size-of-ram', dummyData.ram.dataset);
   createBarChart('#pixel-density', dummyData.pixelDensity.dataset);

@@ -20,7 +20,7 @@ var dummyData = {
     }, {
       label: 'VM',
       value: 40,
-    }, ],
+    }]
   },
   firmware: {
     title: 'Firmware',
