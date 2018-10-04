@@ -1,4 +1,4 @@
-<section data-lang="en" lang="en-gb" class="p-strip is-deep p-takeover--fing-webinar js-takeover {% if  default %}u-hide{% endif %}" {% if default %}data-default="true"{% endif %}>
+<section data-lang="en" lang="en-gb" class="p-strip is-dark is-deep p-takeover--fing-webinar js-takeover {% if  default %}u-hide{% endif %}" {% if default %}data-default="true"{% endif %}>
   <div class="row u-equal-height">
     <div class="col-6">
       <h1 class="p-takeover__title">Future-proofing Fingbox the home network monitoring device</h1>
@@ -6,8 +6,8 @@
       <img class="p-takeover__image u-hide--medium u-hide--large" alt="Fing's Fingbox" src="{{ ASSET_SERVER_URL }}3811386c-fingbox_w-shadow.png" />
       <p class="p-button--neutral"><a href="https://www.brighttalk.com/webcast/6793/336519" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : 'fing webinar takeover', 'eventLabel' : 'Future-proofing Fingbox the IoT home network monitoring device', 'eventValue' : undefined });" style="color: #000;">Register for the webinar</a></p>
     </div>
-    <div class="col-6 u-align--center u-vertically-center">
-      <img class="u-hide--small" alt="Fing's Fingbox" src="{{ ASSET_SERVER_URL }}3811386c-fingbox_w-shadow.png" />
+    <div class="col-6 u-align--center" style="margin-bottom: 0; margin-top: auto;">
+      <img class="u-hide--small" style="animation: bounce 0.8s ease 1.5s 1;;" alt="Fing's Fingbox" src="{{ ASSET_SERVER_URL }}3811386c-fingbox_w-shadow.png" />
     </div>
   </div>
 </section>
@@ -41,6 +41,30 @@
       background-repeat: no-repeat;
       background-size: contain;
       background-position: bottom left, bottom right;
+    }
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: translateY(0px);
+    }
+    17% {
+      transform: translateY(15px);
+    }
+    34% {
+      transform: translateY(0px);
+    }
+    51% {
+      transform: translateY(7px);
+    }
+    68% {
+      transform: translateY(0px);
+    }
+    85% {
+      transform: translateY(3px);
+    }
+    100% {
+      transform: translateY(0px);
     }
   }
 </style>
