@@ -1,0 +1,115 @@
+{% extends "openstack/_base_openstack.html" %}
+
+{% block title %}What is Openstack | OpenStack{% endblock %}
+{% block meta_description %}OpenStack is an open source cloud computing platform that allows businesses to control large pools of compute, storage and networking in a data centre.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/15xrgIq_KUwHaCyFoI7-yS_JmBbsoyXJ4GpRMFAa7_is/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h1>What is OpenStack?</h1>
+      <p>OpenStack is an open source cloud computing platform that allows businesses to control large pools of compute, storage and networking in a data centre.</p>
+      <p>The fact that OpenStack is open source means that anyone that chooses to use it, can access the source code, make changes, and share these with the community. One of the key benefits of this model is that the source code can then be checked by a much larger set of people than proprietary code, which is restricted to its owners.</p>
+      <p>Governed by the OpenStack Foundation, there are more than 34,000 individual contributors and over 550 companies that participate in the project. </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+    <div class="row">
+      <div class="col-8">
+        <h2>Companies involved in OpenStack</h2>
+        <p>OpenStack was originally launched in July 2010 by Rackspace and NASA as an open source initiative that combined NASA’s Nebula platform and Rackspace’s Cloud Files platform.</p>
+        <p>Today, hundreds of companies contribute to OpenStack code, with many more playing a part in the broader community.</p>
+      </div>
+    </div>
+</section>
+
+<section class="p-strip u-no-padding--top u-no-padding--bottom">
+  <div class="col-12"> 
+    <ul class="row"> 
+      <h3 class="p-muted-heading">Influential contributors to openStack</h3>
+      <li class="col-2 mobile-col-2 tablet-col-2"> 
+        <img src="{{ ASSET_SERVER_URL }}403148e0-2018-logo-canonical.svg" alt="Canonical"> 
+      </li> 
+      <li class="col-2 mobile-col-2 tablet-col-2"> 
+        <img src="{{ ASSET_SERVER_URL }}9b1fe97b-2018-logo-IBM.svg" alt="IBM"> 
+      </li> 
+      <li class="col-2 mobile-col-2 tablet-col-2"> 
+        <img src="{{ ASSET_SERVER_URL }}64277a51-2018-logo-redhat.svg" alt="RedHat">
+      </li> 
+      <li class="col-2 mobile-col-2 tablet-col-2"> 
+        <img src="{{ ASSET_SERVER_URL }}7dd7bfaf-2018-logo-huawei.svg" alt="Huawei">
+      </li> 
+      <li class="col-2 mobile-col-2 tablet-col-2"> 
+        <img src="{{ ASSET_SERVER_URL }}c4c720c6-suse.png?w=145" alt="SUSE"> 
+      </li> 
+      <li class="col-2 mobile-col-2 tablet-col-2"> 
+        <img src="{{ ASSET_SERVER_URL }}a1e6f331-2018-logo-rackspace.svg" alt="Rackspace"> 
+      </li>
+    </ul> 
+  </div>
+</section>
+
+<section class ="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>What makes up OpenStack?</h2>
+      <p>At its most basic, OpenStack is comprised of storage, compute, and networking projects, such as the following core examples...</p>
+    </div>
+  <div>
+  <div class="row u-equal-height">
+    <article class="col-6 p-card">
+      <header class="p-card__header">
+        <h3 class="p-card__image p-heading--four">Nova</h3>
+      </header>
+      <p>Nova is the primary compute engine of OpenStack, used for deploying and managing virtual machine and instances for computing tasks. Nova supports a wide range of hypervisors; KVM, XenServer®, VMware ESXi, and Microsoft Hyper-V. Linux Containers such as LXC are also supported.</p>
+    </article>
+    <article class="col-6 p-card">
+      <header class="p-card__header">
+        <h3 class="p-card__image p-heading--four">Swift</h3>
+      </header>
+      <p>Swift is a storage system for objects and files. Swift works in a different way to the traditional method of referring to files by their disc drive location, instead it is possible for developers to refer to a unique identifier that refers to the file of piece of information, letting OpenStack decide where this information is stored.</p>
+      <p>One of the main benefits of this is the ease of use it creates for scaling. By removing the need for developers to worry about the capacity on a single system behind the software. Another added advantage is that the system takes care of ensuring that the data is backed up, rather than relying upon the developer to do so.</p>
+    </article>
+  </div>
+  <div class="row u-equal-height">
+    <article class="col-6 p-card">
+      <header class="p-card__header">
+        <h3 class="p-card__image p-heading--four">Cinder</h3>
+      </header>
+      <p>Cinder is a block storage component that provisions and manages block devices (Cinder volumes). Users are able to request and consume storage resources through a self-service application programming interface (API).</p>
+      <p>Fully integrated with Nova, Cinder supports integration with a wide range of storage platforms.</p>
+    </article>
+    <article class="col-6 p-card">
+      <header class="p-card__header">
+        <h3 class="p-card__image p-heading--four">Neutron</h3>
+      </header>
+      <p>Neutron is the networking element of OpenStack that provides ‘networking as a service’ capabilities. The software defined networking (SDN) replaced the original networking technology of choice called Quantum.</p>
+      <p>Support for multiple network models such as: Flat, VLAN, VXLAN, static IPs, and DHCP is included in Neutron, whilst it can also take advantage of SDN platforms such as OpenFlow to use advanced networking capabilities.</p>
+    </article>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Who uses OpenStack?</h2>
+      <p>There are thousands of users of OpenStack across a broad range of industries. Particularly favoured for its security, scalability, resilience.</p>
+      <p>In addition to CERN, the UK Civil Service, and numerous universities around the world, OpenStack has become a popular choice for telecommunication companies such as ATT, Verizon, and China Mobile.</p>
+      <p>Use cases are also growing in the media area with SkyTV and DirecTV having already adopted.</p>
+      <p>Financial services have been a keen adopter, with BBVA, Banco Santander, Commonwealth Bank, and China UnionPay just some that have adopted.</p>
+      <p>Further adoption has been seen in healthcare, manufacturing, and retail.</p>
+
+      <h2>How to install OpenStack</h2>
+      <p>The OpenStack system consists of several key services that are separately installed. These services work together depending on your cloud needs and include the Compute, Identity, Networking, Image, Block Storage, Object Storage, Telemetry, Orchestration, and Database services. You can install any of these projects separately and configure them stand-alone or as connected entities</p>
+      <p>Find out more about <a href="/openstack">Canonical’s OpenStack services and products&nbsp;›</a></p>
+      <p>Browse <a href="https://www.openstack.org/software/project-navigator/openstack-components#openstack-services">the list of Openstack Services&nbsp;›</a></p>
+    </div>
+  </div>
+</section>
+    
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_ubuntu_advantage" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
+
+{% endblock content %}
