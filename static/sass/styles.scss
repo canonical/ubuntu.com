@@ -10,11 +10,7 @@
 // import vanilla-framework
 @import 'vanilla-framework/scss/build';
 
-// vendor
-// @import '../global-nav/src/sass/main';
-@import 'pattern_global-nav';
 @import 'vanilla-placeholders';
-@include global-nav;
 
 // import site specific patterns and overrides
 @import 'pattern_buttons';
@@ -244,4 +240,10 @@ abbr[title] {
   border-bottom: .1em dotted;
   cursor: help;
   text-decoration: none;
+}
+
+
+// Hack to change the global navigation styling to match the local header
+.global-nav .global-nav__header-logo-anchor {
+  padding: .6875rem 1rem !important;
 }
