@@ -36,7 +36,7 @@ var dummyData = {
     title: 'OS Architecture',
     dataset: [{
       label: 'amd64',
-      value: 100000,
+      value: 10,
     }, {
       label: 'i386',
       value: 10,
@@ -46,7 +46,7 @@ var dummyData = {
     title: 'Display Server',
     dataset: [{
       label: 'X11',
-      value: 100000,
+      value: 100,
     }, {
       label: 'Wayland',
       value: 10,

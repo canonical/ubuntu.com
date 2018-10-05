@@ -80,21 +80,21 @@ function manipulateData(data, options) {
 }
 
 function colorShade(usageRange, colors) {
-    var index = 0;
-    if (usageRange <= 1) {
-        index = 0;
-    } else if (usageRange > 1 && usageRange <= 5) {
-        index = 1;
-    } else if (usageRange > 5 && usageRange <= 10) {
-        index = 2;
-    } else if (usageRange > 10 && usageRange <= 15) {
-        index = 3;
-    } else if (usageRange > 15 && usageRange <= 30) {
-        index = 4;
-    } else if (usageRange > 30){
-        index = 5;
-    }
-    return colors[index];
+  var index = 0;
+  if (usageRange <= 1) {
+    index = 0;
+  } else if (usageRange > 1 && usageRange <= 5) {
+    index = 1;
+  } else if (usageRange > 5 && usageRange <= 10) {
+    index = 2;
+  } else if (usageRange > 10 && usageRange <= 15) {
+    index = 3;
+  } else if (usageRange > 15 && usageRange <= 30) {
+    index = 4;
+  } else if (usageRange > 30) {
+    index = 5;
+  }
+  return colors[index];
 }
 
 function wrapText(text, width) {
@@ -384,7 +384,7 @@ function createPieChart(selector, dataset, options) {
   var donutRadius = options.hasOwnProperty('donutRadius') ? options.donutRadius : 15;
   var size = options.hasOwnProperty('size') ? options.size : parentWidth;
   var ordinalColors = d3.scaleOrdinal(colors);
-  var labelKey = options.hasOwnProperty('centreLabel') ?  options.centreLabel.title : undefined;
+  var labelKey = options.hasOwnProperty('centreLabel') ? options.centreLabel.title : undefined;
   // Create copy of dataset and manipulate according to options
   var data = dataset.slice();
 
@@ -392,17 +392,17 @@ function createPieChart(selector, dataset, options) {
   var centreText = undefined;
   if (labelKey) {
     // Sum all the data
-    var sum = d3.sum(data, function(d) {
+    var sum = d3.sum(data, function (d) {
       return d.value;
     });
 
-    labelData = data.find(function(d) {
+    labelData = data.find(function (d) {
       return d.label.toUpperCase() === labelKey.toUpperCase();
     });
 
-    centreText = (labelData && labelData.value) ? ((labelData.value/sum)*100) + '%' : undefined;
+    centreText = (labelData && labelData.value) ? ((labelData.value / sum) * 100) + '%' : undefined;
   }
-  
+
   data = manipulateData(data, {
     sort: sort,
     truncPoint: truncPoint
@@ -468,33 +468,33 @@ function createMap(selector, options, mapData) {
     var g = svg.append('g');
     var offset = width * 0.2;
     var projection = d3.geoNaturalEarth1()
-        .scale(width * 0.15)
-        .translate([width / 2, (height + offset) / 2])
-        .precision(.1)
-        .rotate([-10, 0]);
+      .scale(width * 0.15)
+      .translate([width / 2, (height + offset) / 2])
+      .precision(.1)
+      .rotate([-10, 0]);
     var geoPath = d3.geoPath().projection(projection);
     var countries = topojson.feature(world, world.objects.countries).features;
     g.selectAll('path')
-        .data(countries)
-        .enter()
-        .append('path')
-        .attr('fill', function (country) {
-            if (country) {
-                // Return the ubuntu usage stats for the country
-                var countryStat = options.countryStats.find(function(ctryStat) {
-                    return parseInt(country.id, 10) === parseInt(ctryStat.id, 10);
-                });
+      .data(countries)
+      .enter()
+      .append('path')
+      .attr('fill', function (country) {
+        if (country) {
+          // Return the ubuntu usage stats for the country
+          var countryStat = options.countryStats.find(function (ctryStat) {
+            return parseInt(country.id, 10) === parseInt(ctryStat.id, 10);
+          });
 
-                if (countryStat) {
-                    var countryRatio = (countryStat.users * 100/ countryStat.total);
-                    var shade =  colorShade(countryRatio, options.legend.colors);
-                    return shade;
-                }
-                return "#0000FF";
-            }
+          if (countryStat) {
+            var countryRatio = (countryStat.users * 100 / countryStat.total);
+            var shade = colorShade(countryRatio, options.legend.colors);
+            return shade;
+          }
+          return "#0000FF";
+        }
 
-        })
-        .attr('d', geoPath);
+      })
+      .attr('d', geoPath);
   }
 
   d3.json(mapData)
@@ -514,23 +514,36 @@ function clearCharts() {
 function buildCharts() {
   var breakpoint = 875;
 
-  showMaxDatum('#os-architecture', dummyData.osArchitecture.dataset);
-  showMaxDatum('#display-server', dummyData.displayServer.dataset);
-  showMaxDatum('#one-screen', dummyData.numberScreens.dataset);
-  showMaxDatum('#one-gpu', dummyData.numberGPUs.dataset);
+  // showMaxDatum('#os-architecture', dummyData.osArchitecture.dataset);
+  // showMaxDatum('#display-server', dummyData.displayServer.dataset);
+  // showMaxDatum('#one-screen', dummyData.numberScreens.dataset);
+  // showMaxDatum('#one-gpu', dummyData.numberGPUs.dataset);
 
   createPieChart('#opt-in', dummyData.optIn.dataset, {
     size: 184,
     donutRadius: 76,
-    centreLabel: { title: 'Opt-In'}
+    centreLabel: {
+      title: 'Opt-In'
+    }
   });
   createPieChart('#real-or-virtual', dummyData.realOrVirtual.dataset, {
     size: 184,
     donutRadius: 76
   });
-  createPieChart('#firmware', dummyData.firmware.dataset, {
+
+  createPieChart('#os-architecture', dummyData.osArchitecture.dataset, {
     size: 184,
-    donutRadius: 76
+    donutRadius: 76,
+    centreLabel: {
+      title: 'Os Architecture'
+    }
+  });
+  createPieChart('#display-server', dummyData.displayServer.dataset, {
+    size: 184,
+    donutRadius: 76,
+    centreLabel: {
+      title: 'Display Server'
+    }
   });
 
   // createBarChart('#install-or-upgrade', dummyData.installOrUpgrade.dataset);
@@ -565,10 +578,9 @@ function buildCharts() {
   createBarChart('#pixel-density', dummyData.pixelDensity.dataset);
   createBarChart('#partition-number', dummyData.partitionNum.dataset);
 
-  createOrderedList('#language-list', dummyData.languageList.dataset, {
-    truncPoint: 10
-  });
-  createHorizontalBarChart(
+  createBarChart('#language-list-chart', dummyData.languageList.dataset);
+
+  /* createHorizontalBarChart(
     '#language-list-chart',
     dummyData.languageList.dataset, {
       sort: 'ascending',
@@ -580,19 +592,19 @@ function buildCharts() {
         left: 70
       }
     }
-  );
+  ); */
   createMap('#where-are-users', dummyData.whereUsersAre.datasets, '/static/js/world-110m.v1.json');
   createProgressChart('#default-settings-hw', dummyData.defaultSettings.datasets.hardware);
   createProgressChart('#restrict-add-on-hw', dummyData.restrictAddOn.datasets.hardware);
   createProgressChart('#auto-login-hw', dummyData.autoLogin.datasets.hardware);
   createProgressChart('#minimal-install-hw', dummyData.minimalInstall.datasets.hardware);
   createProgressChart('#update-at-install-hw', dummyData.updateAtInstall.datasets.hardware);
-  createProgressChart('#how-long-running-hw', dummyData.howLongRunning.datasets.hardware, {
+  /* createProgressChart('#how-long-running-hw', dummyData.howLongRunning.datasets.hardware, {
     format: 'time'
-  });
-  createProgressChart('#configure-hw', dummyData.configure.datasets.hardware, {
+  }); */
+  /* createProgressChart('#configure-hw', dummyData.configure.datasets.hardware, {
     format: 'time'
-  });
+  }); */
   createProgressChart('#default-settings-vm', dummyData.defaultSettings.datasets.virtual, {
     color: '#925375'
   });
@@ -602,26 +614,28 @@ function buildCharts() {
   createProgressChart('#auto-login-vm', dummyData.autoLogin.datasets.virtual, {
     color: '#925375'
   });
-  createProgressChart('#minimal-install-vm', dummyData.minimalInstall.datasets.virtual, {
+ /*  createProgressChart('#minimal-install-vm', dummyData.minimalInstall.datasets.virtual, {
     color: '#925375'
-  });
+  }); */
   createProgressChart('#update-at-install-vm', dummyData.updateAtInstall.datasets.virtual, {
     color: '#925375'
   });
-  createProgressChart('#how-long-running-vm', dummyData.howLongRunning.datasets.virtual, {
+  /* createProgressChart('#how-long-running-vm', dummyData.howLongRunning.datasets.virtual, {
     color: '#925375',
     format: 'time'
-  });
-  createProgressChart('#configure-vm', dummyData.configure.datasets.virtual, {
+  }); */
+  /* createProgressChart('#configure-vm', dummyData.configure.datasets.virtual, {
     color: '#925375',
     format: 'time'
-  });
+  }); */
 
   if (window.innerWidth >= breakpoint) {
-    createBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
+    // createBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
+    createHorizontalBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
     createBarChart('#physical-disk', dummyData.physicalDisk.dataset);
     createBarChart('#partition-type', dummyData.partitionType.dataset);
-    createBarChart('#partition-size', dummyData.partitionSize.dataset);
+    createHorizontalBarChart('#partition-size', dummyData.partitionSize.dataset);
+    // createBarChart('#partition-size', dummyData.partitionSize.dataset);
   } else {
     createHorizontalBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
     createHorizontalBarChart('#physical-disk', dummyData.physicalDisk.dataset);
