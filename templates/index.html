@@ -18,12 +18,9 @@
       section lang="en" data-lang="en" class="p-strip is-deep p-takeover--robotics js-takeover {% if not default %}u-hide{% endif %}" {% if default %}data-default="true"{% endif %}
 
   - Also, add a 'with default=True' below for one takeover to be the default
-  
+
   #}
 
 {% block takeover_content %}
-    {% include "takeovers/_robotics-takeover.html" with default=True %}
-    {% include "takeovers/_multicloud-operations.html" %}
-    {% include "takeovers/_financial-services.html" %}
-    {% include "takeovers/_de-vmware-to-os.html" %}
+    {% include "takeovers/_1810-takeover.html" with default=True %}
 {% endblock takeover_content %}
