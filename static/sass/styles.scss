@@ -1,45 +1,45 @@
 @charset "UTF-8";
 
 //settings
-@import 'global-settings';
-@import 'settings_colors';
+@import "global-settings";
+@import "settings_colors";
 
 // custom mixins
-@import 'mixins/full-width-breakout';
+@import "mixins/full-width-breakout";
 
 // import vanilla-framework
-@import 'vanilla-framework/scss/build';
+@import "vanilla-framework/scss/build";
 
 // vendor
 // @import '../global-nav/src/sass/main';
-@import 'pattern_global-nav';
-@import 'vanilla-placeholders';
+@import "pattern_global-nav";
+@import "vanilla-placeholders";
 @include global-nav;
 
 // import site specific patterns and overrides
-@import 'pattern_buttons';
-@import 'pattern_navigation';
-@import 'pattern_strip';
-@import 'pattern_notifications';
-@import 'pattern_footer';
-@import 'pattern_lists';
-@import 'pattern_card';
-@import 'pattern_inline-images';
-@import 'pattern_heading-icon';
-@import 'pattern_matrix';
-@import 'pattern_contextual-footer';
-@import 'pattern_pie_chart';
-@import 'pattern_gaming';
-@import 'pattern_strip-photos';
-@import 'pattern_ubuntu_intro';
-@import 'pattern_takeunders';
-@import 'pattern_table';
-@import 'pattern_feedback';
-@import 'takeovers/ai-webinar';
-@import 'takeovers/vmware-to-os';
-@import 'takeovers/financial-services';
-@import 'utility-animations';
-@import 'pattern_chart';
+@import "pattern_buttons";
+@import "pattern_navigation";
+@import "pattern_strip";
+@import "pattern_notifications";
+@import "pattern_footer";
+@import "pattern_lists";
+@import "pattern_card";
+@import "pattern_inline-images";
+@import "pattern_heading-icon";
+@import "pattern_matrix";
+@import "pattern_contextual-footer";
+@import "pattern_pie_chart";
+@import "pattern_gaming";
+@import "pattern_strip-photos";
+@import "pattern_ubuntu_intro";
+@import "pattern_takeunders";
+@import "pattern_table";
+@import "pattern_feedback";
+@import "takeovers/ai-webinar";
+@import "takeovers/vmware-to-os";
+@import "takeovers/financial-services";
+@import "utility-animations";
+@import "pattern_chart";
 
 @include ubuntu-p-buttons;
 @include ubuntu-p-navigation;
@@ -91,12 +91,12 @@
 // Candidate for moving to the vanilla-brochure-theme
 .has-background {
   background-color: $color-light;
-  background-image: url('#{$assets-path}f8a323a7-image-background-paper.png?w=768');
+  background-image: url("#{$assets-path}f8a323a7-image-background-paper.png?w=768");
   background-position: center top;
   background-repeat: repeat-y;
 
-  @media (min-width: $breakpoint-medium ) {
-    background-image: url('#{$assets-path}f8a323a7-image-background-paper.png');
+  @media (min-width: $breakpoint-medium) {
+    background-image: url("#{$assets-path}f8a323a7-image-background-paper.png");
   }
 }
 
@@ -125,11 +125,7 @@
 // XXX Ant: 11.12.17 This can be removed when this is fixed
 // https://github.com/vanilla-framework/vanilla-framework/issues/1491
 .is-dark .p-button--base {
-  @include vf-animation(
-    $property: all,
-    $duration: fast,
-    $easing: in
-  );
+  @include vf-animation($property: all, $duration: fast, $easing: in);
   color: $color-x-light;
 
   &:hover {
@@ -176,7 +172,6 @@ select {
 // XXX Peter: adding border back for fieldsets
 fieldset {
   border: 1px solid $color-mid-light;
-  border-bottom-width: 0;
   border-radius: $sp-xx-small $sp-xx-small 0 0;
 }
 
@@ -241,7 +236,7 @@ p.u-align--center {
 /// XXX Caleb: abbr hotfix - to be fixed in Vanilla
 // https://github.com/vanilla-framework/vanilla-framework/issues/1962
 abbr[title] {
-  border-bottom: .1em dotted;
+  border-bottom: 0.1em dotted;
   cursor: help;
   text-decoration: none;
 }

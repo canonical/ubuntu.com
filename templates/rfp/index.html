@@ -1,0 +1,235 @@
+{% extends "rfp/_base_rfp.html" %}
+
+{% block title %}Have a cloud RFP? Ask Canonical to join.{% endblock %}
+
+{% block meta_description %}Canonical the company behind Ubuntu have a track record in delivering cost-effective, managed multi-cloud.{% endblock %}
+
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1OA_Eg1200fHpt7YYkE4qubiWfxL_U5fnlA0OObRe2n8/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--image is-dark is-deep" style="background-image: url('{{ ASSET_SERVER_URL }}78c2eae0-image-server-room.jpg'
+); background-position: 77% 0%;">
+<div class="row">
+  <div class="col-7">
+    <div class="p-card--overlay">
+      <h1>Have you embarked on your cloud or container procurement journey?</h1>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-6">
+      <h2>We can help you with your Request for Information (RFI)</h2>
+      <p>If you are about to release an RFI,  RFP or RFQ -- please add Canonical, the company behind Ubuntu, to your list of vendors to solicit OpenStack and Kubernetes solutions. We can guide you to ask the right questions to find the optimal vendor solution for your specific needs.</p>
+
+      {% include "openstack/shared/_openstack_clients.html" with heading="A selection of Canonical's customers" size="smaller" %}
+
+    </div>
+    <div class="col-6">
+
+      <!-- MARKETO FORM -->
+      <script src="//assets.ubuntu.com/v1/37b1db88-jquery.min.js"></script>
+      <script  src="//assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
+      <script src="//assets.ubuntu.com/v1/6ce35d3e-jquery-ui.min.js"></script>‌​
+
+      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_3285">
+        <fieldset>
+          <ul class="p-list">
+
+            <li class="mktFormReq mktField p-list__item">
+              <label for="FirstName" class="mktoLabel ">First name:</label>
+              <input required="" id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField   mktoRequired">
+            </li>
+
+            <li class="mktFormReq mktField p-list__item">
+              <label for="LastName" class="mktoLabel ">Last name:</label>
+              <input required="" id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired">
+            </li>
+
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Company" class="mktoLabel ">Company:</label>
+              <input required="" id="Company" name="Company" maxlength="255" type="text" class="mktoField   mktoRequired">
+            </li>
+
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Email" class="mktoLabel ">Email:</label>
+              <input required="" id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired">
+            </li>
+
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Title" class="mktoLabel ">Title:</label>
+              <input required="" id="Title" name="Title" maxlength="255" type="text" class="mktoField mktoTelField  mktoRequired">
+            </li>
+
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Phone" class="mktoLabel ">Phone number:</label>
+              <input required="" id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired">
+            </li>
+
+            <li  class="p-list__item mktFormReq mktField">
+              <!-- country -->
+              {% include "shared/forms/_country.html" %}
+              <!-- state/province -->
+              {% include "shared/forms/_state.html" %}
+            </li>
+
+
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Comments_from_lead__c" class="mktoLabel">Your message:</label>
+              <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="4" class="mktoField mktoRequired" maxlength="2000"></textarea>
+            </li>
+
+            <li class="mktField p-list__item">
+              <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+              <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
+            </li>
+
+            <li class="p-list__item">
+              In submitting this form, I confirm that I have read and agree to <a href="/legal/dataprivacy/contact">Canonical&rsquo;s Privacy Notice</a> and <a href="/legal/terms-and-policies/privacy-policy">Privacy Policy</a>.
+            </li>
+
+            <li  class="mktField">
+              <input type="hidden" name="Consent_to_Processing__c" class="mktoField  mktoFormCol" value="Yes" >
+            </li>
+
+            <li  class="mktField">
+              <button type="submit" class="mktoButton">Submit request</button>
+            </li>
+
+          </ul>
+        </fieldset>
+
+        <input type="hidden" name="lpId" value="6404" />
+        <input type="hidden" name="subId" value="30" />
+        <input type="hidden" name="lpurl" value="//pages.ubuntu.com/Contact_Us_Ubuntu_RFI_Contact-us-form.html?cr={creative}&kw={keyword}" />
+        <input type="hidden" name="formid" value="3285" />
+        <input type="hidden" name="ret" value="https://www.ubuntu.com/openstack/thank-you" />
+        <input type="hidden" name="munchkinId" value="066-EOV-335"/>
+        <input type="hidden" name="kw" value=""/>
+        <input type="hidden" name="cr" value=""/>
+        <input type="hidden" name="searchstr" value=""/>
+        <input type="hidden" name="_mkt_disp" value="return"/>
+        <input type="hidden" name="_mkt_trk" value=""/>
+      </form>
+      <script>
+      $("#mktoForm_3285").validate({
+        errorElement: "span",
+        errorClass: "mktFormMsg mktError",
+        onkeyup: false,
+        onclick: false,
+        onblur: false
+      });
+
+      $(function(){$("#comments").hide()});
+
+      $('#Ubuntu_User__c').on('change',function(){
+
+        var selection = $(this).val();
+        if(selection == 'Commercially only') {
+          $('#comments').show();
+        } else {
+          $('#comments').hide();
+        }
+      });
+
+    </script>
+    <script  src="//assets.ubuntu.com/v1/f97fa297-stateCountry.js"></script>
+    <!-- /MARKETO FORM -->
+
+  </div>
+</div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2>How can Canonical help?</h2>
+      <ul class="p-matrix u-clearfix">
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">OpenStack</h3>
+            <p class="p-matrix__desc">
+              Ubuntu is the leading platform for OpenStack worldwide with more deployments at scale than all other platforms combined.
+            </p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">Kubernetes</h3>
+            <p class="p-matrix__desc">
+              Canonical's Distribution of Kubernetes is certified as one of the launch distributions under the Kubernetes Conformance program. Canonical is also one of 11 Kubernetes <a class="p-link__external" href="https://www.cncf.io/certification/kcsp/">Certified Service Providers</a>.
+            </p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">Fully Managed services</h3>
+            <p class="p-matrix__desc">
+              Canonical has successfully completed the MSP Alliance’s MSP/Cloud Verify Program (MSPCV) certification process, the oldest certification program for cloud computing and managed services providers.
+            </p>
+          </div>
+        </li>
+
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">Enterprise</h3>
+            <p class="p-matrix__desc">
+              Canonical has over 800 paying customers, and Ubuntu remains by far the most popular base for OpenStack deployments according to the OpenStack Foundation bi-annual survey.
+            </p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">Telco</h3>
+            <p class="p-matrix__desc">
+              Canonical is an active contributor to ETSI Open Source MANO (OSM), OpenStack Foundation, OpenStack Telco Working Group (TWG), Open Platform for NFV (OPNFV), Telecom Infra Project (TIP), Central Office Re-architected as a Datacenter (CORD™),  and ETSI NFV ISG.
+            </p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">Financial services</h3>
+            <p class="p-matrix__desc">
+              Marquee financial institutions the world over trust Canonical OpenStack and the Canonical Distribution of Kubernetes (CDK) for secure private and public cloud infrastructure services to host their mission-critical applications.
+            </p>
+          </div>
+        </li>
+
+
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">Multi-cloud </h3>
+            <p class="p-matrix__desc">
+              Private or public; VMWare or bare metal; from the data centre to the edge - Canonical can design the cloud infrastructure suited to your needs. With as little as 2 weeks to build a private cloud and a cloud management service, you could start your efficient multi-cloud journey now.
+            </p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">AI</h3>
+            <p class="p-matrix__desc">
+              100% of AI development frameworks are based on Ubuntu, making it the ideal platform for AI for development and production. Canonical supports a large choice of certified hardware from workstation to server and edge, as well as a full AI stack with Kubeflow and Tensorflow.
+            </p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">Edge</h3>
+            <p class="p-matrix__desc">
+              From industrial gateways to GPU powered Edge cloud Canonical can support a wide variety of edge computing scenarios. With the widest hardware support from Intel to ARM and NVIDIA, Ubuntu is suited to a variety of edge applications: Robotics, AI, Blockchain, 5G, and more.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+
+
+{% endblock content %}
