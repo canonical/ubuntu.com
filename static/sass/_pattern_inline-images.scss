@@ -6,6 +6,28 @@
       margin: $sp-medium;
       max-width: 7.25rem;
     }
+    &--smaller {
+      &__item {
+        margin: 1rem;
+        max-height: inherit;
+        max-width: inherit;
+
+        @media only screen and (min-width: $breakpoint-medium) {
+          margin: 1.875rem;
+        }
+      }
+
+      img {
+        max-height: map-get($icon-sizes, thumb--small);
+        max-width: 5rem;
+        width: auto;
+
+        @media screen and (min-width: $breakpoint-medium) {
+          max-height: 3.5rem;
+          max-width: 7rem;
+        }
+      }
+    }
   }
 
   // XXX Peter Mahnke 2018-03-01

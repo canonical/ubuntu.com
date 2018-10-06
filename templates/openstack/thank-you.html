@@ -21,6 +21,8 @@
   {% include "shared/_thank_you.html" with thanks_context="enquiring about a BootStack managed cloud" %}
 {% elif product == 'foundation-cloud' %}
   {% include "shared/_thank_you.html" with thanks_context="enquiring about Foundation Cloud Build" %}
+{% elif product == 'rfp' %}
+  {% include "shared/_thank_you.html" with thanks_context="enquiring about your RFP" %}
 {% else %}
   {% include "shared/_thank_you.html" with thanks_context="enquiring about OpenStack" %}
 {% endif %}
