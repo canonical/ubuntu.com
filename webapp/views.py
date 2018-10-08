@@ -102,7 +102,7 @@ def search(request):
 class UbuntuTemplateFinder(TemplateFinder):
     def get_context_data(self, **kwargs):
         """
-        Get context data fromt the database for the given page
+        Get context data from the database for the given page
         """
 
         # Get any existing context
@@ -116,9 +116,9 @@ class UbuntuTemplateFinder(TemplateFinder):
 
         # Add level_* context variables
         clean_path = self.request.path.strip('/')
+
         for index, path, in enumerate(clean_path.split('/')):
             context["level_" + str(index + 1)] = path
-
         return context
 
 

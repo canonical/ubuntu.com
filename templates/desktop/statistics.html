@@ -12,11 +12,8 @@
     <div class="col-6">
       <h1>Ubuntu user statistics</h1>
       <p>This report is generated from basic, non-identifiable system data that was provided by users when installing Ubuntu 18.04 LTS.</p>
+      </div>
     </div>
-    <div class="col-6 u-vertically-center u-align--center u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}ed348358-logo-cof.svg" width="200" alt="ubuntu logo">
-    </div>
-  </div>
 </section>
 <nav class="p-tabs p-sticky-nav">
   <ul class="p-tabs__list" role="tablist">
@@ -32,134 +29,123 @@
   </ul>
 </nav>
 
-<section id="user-report" class="p-strip is-shallow is-bordered">
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-6">
+<section id="user-report" class="p-strip is-bordered">
+  <div class="row">
+      <div class="col-12">
+        <h2>User Report</h2>
+      </div>
+  </div>
+  <div class="row u-equal-height u-vertically-center p-divider">
+    <div class="col-6 p-divider__block">
       <h2 class="p-heading--four">How many users opted in?</h2>
       <p>We appreciate the trust that has been given to us with handling this data and we aim to use the results to focus our development efforts on where it matters most to users.</p>
-    </div>
-    <div class="col-6 u-align--center">
       <svg id="opt-in"></svg>
     </div>
-  </div>
-</section>
-<section class="p-strip--light is-shallow is-bordered">
-  <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
-    <div class="col-6 u-align--center">
-      <svg id="real-or-virtual"></svg>
-    </div>
-    <div class="col-6">
+    <div class="col-6 p-divider__block">
       <h2 class="p-heading--four">Real or virtual machines?</h2>
       <p>Some machines could not be determined as either real or virtual, that data is not included in this report.</p>
-    </div>
-  </div>
-</section>
-<section class="p-strip is-shallow is-bordered">
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-6">
-      <h2 class="p-heading--four">Clean install or upgrade?</h2>
-      <p>Users setting up a virtual machine are much more likely to perform a clean install rather than upgrading Ubuntu.</p>
-    </div>
-    <div class="col-6 u-align--center">
-      <svg id="install-or-upgrade" height="250"></svg>
+      <svg id="real-or-virtual"></svg>
     </div>
   </div>
 </section>
 <section class="p-strip--light is-shallow is-bordered">
-  <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
-    <div class="col-6 u-align--center">
-      <div id="where-are-users">
-        <img src="https://via.placeholder.com/500x320?text=Map" alt="">
-      </div>
+  <div class="row p-mobile-flex-col u-equal-height u-vertically-center p-divider">
+    <div class="col-6 p-divider-block">
+      <h3 class="p-heading--four">Clean install or upgrade?</h3>
+      <p>Users setting up a virtual machine are much more likely to perform a clean install rather than upgrading Ubuntu.</p>
     </div>
-    <div class="col-6">
+    <div class="col-6 u-align--center p-divider-block">
+      <svg id="install-or-upgrade-physical" height="100"></svg>
+      <svg id="install-or-upgrade-vm" height="100"></svg>
+    </div>
+  </div>
+</section>  
+<section class="p-strip is-shallow is-bordered">
+  <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
+    <div class="col-4">
       <h2 class="p-heading--four">Where are Ubuntu users?</h2>
       <p>Location is derived from the user setting the timezone and location in the installer and not from an identifiable IP address.</p>
     </div>
+    <div class="col-8 u-align--left p-where-user-are">
+      <svg id="where-are-users" height="250" width="500"></svg>
+    </div>
   </div>
 </section>
-<section class="p-strip is-shallow is-bordered">
+<section class="p-strip--light is-bordered">
   <div class="row u-equal-height u-vertically-center">
-    <div class="col-5">
+    <div class="col-6">
       <h2 class="p-heading--four">What language do they use?</h2>
-      <div id="language-list"></div>
     </div>
-    <div class="col-7 u-align--center">
-      <svg id="language-list-chart" height="500"></svg>
+  </div>
+  <div class="row">
+    <div class="col-12 u-align--center">
+      <svg id="language-list-chart" height="250"></svg>
     </div>
   </div>
 </section>
-
-<section id="desktop-specs" class="p-strip--image u-no-background--small is-bordered" style="background-image: url('{{ ASSET_SERVER_URL }}1d2ab6ba-suru-background.png'); background-size: 100% 100%;">
+<section id="desktop-specs" class="p-strip--image is-bordered">
   <div class="row">
     <h2>Desktop specs</h2>
     <p>This data was collected from user’s machines.</p>
   </div>
-  <div class="row u-equal-height">
-    <div class="col-4 p-card--flex">
-      <header class="p-card__header">
-        <h3 class="p-heading--four">OS architecture</h3>
-      </header>
-      <div id="os-architecture" class="p-card__center-content"></div>
-      <p class="u-no-margin--bottom">OS architecture is responsible for running programs and providing secure access to the machine's hardware.</p>
-    </div>
-    <div class="col-4 p-card--flex">
-      <header class="p-card__header">
-        <h3 class="p-heading--four">Firmware</h3>
-      </header>
-      <div class="p-card__center-content">
-        <svg id="firmware"></svg>
-      </div>
-      <p class="u-no-margin--bottom">Firmware initialises hardware components and the operating system at start up.</p>
-    </div>
-    <div class="col-4 p-card--flex">
-      <header class="p-card__header">
-        <h3 class="p-heading--four">Display server</h3>
-      </header>
-      <div id="display-server" class="p-card__center-content"></div>
-      <p class="u-no-margin--bottom">The display server controls the input and output of its clients to and from the rest of the operating system and the hardware.</p>
-    </div>
-  </div>
-</section>
-<section class="p-strip is-shallow is-bordered">
-  <div class="row">
-    <h3>What graphics setup do users have?</h2>
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-6 prefix-2">
-      <div class="p-card--flex">
-        <div id="one-screen" class="p-card__center-content"></div>
-        <p class="u-no-margin--bottom">This was detected on install so many users may have connected screens after the installing Ubuntu.</p>
+  <div class="row u-equal-height u-vertically-center p-divider">
+    <div class="col-6 p-divider__block">
+      <h2 class="p-heading--four">OS architecture</h2>
+      <p>OS architecture is responsible for running programs and providing secure access to the machine's hardware.</p>
+      <div class="u-align--center">
+        <svg id="os-architecture"></svg>
       </div>
     </div>
-    <div class="col-6 suffix-2">
-      <div class="p-card--flex">
-        <div id="one-gpu" class="p-card__center-content"></div>
-        <p class="u-no-margin--bottom">Graphical Processing Unit (GPU) is used to generate videos and images for displaying on screen.</p>
+    <div class="col-6 p-divider__block">
+      <h2 class="p-heading--four">Display server</h2>
+      <p>The display server controls the input and output of its clients to and from the rest of the operating system and the hardware.</p>
+      <div class="u-align--center">
+        <svg id="display-server"></svg>
       </div>
     </div>
   </div>
 </section>
-<section class="p-strip--light">
+<section class="p-strip--light is-bordered">
+  <div class="row u-equal-height u-vertically-center">
+    <div class="col-6">
+      <img src="https://via.placeholder.com/350x150" alt="placeholder image for chart"/>
+    </div>
+    <div class="col-6">
+      <h3 class="p-heading--four">Firmware</h3>
+      <p>The display server controls the input and output of its clients to and from the rest of the operating system and the hardware.</p>
+    </div>
+  </div>
+</section>
+<section id="user-report" class="p-strip is-shallow is-bordered">
   <div class="row">
-    <h3>Popular screen sizes</h2>
+    <div class="col-6">
+      <h3>What graphics setup do users have?</h3>
+      <p>*Data for graphics setup only applies to physical machines</p>
+    </div>
+  </div>
+  <div class="row u-equal-height u-vertically-center p-divider">
+    <div class="col-6 p-divider__block">
+      <img src="https://via.placeholder.com/350x150" alt="placeholder image for chart"/>
+      <p>*On install. This was detected on install so many users may have connected screens after the installing Ubuntu.</p>
+    </div>
+    <div class="col-6 p-divider__block">
+      <img src="https://via.placeholder.com/350x150" alt="placeholder image for chart"/>
+      <p>Graphical Process Unit (GPU) is used to generate videos and images for displaying on screen</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <h3>Popular screen sizes</h3>
     <p>This data set shows the 15 most popular screen sizes.</p>
   </div>
   <div class="row u-equal-height">
-    <svg id="popular-screen-sizes" height="320"></svg>
-  </div>
-</section>
-<section class="p-strip--light is-bordered u-no-padding--top">
-  <div class="row u-equal-height">
-    <div class="col-6">
+    <div class="col-6 suffix-1">
+      <svg id="popular-screen-sizes" height="320"></svg>
+    </div>
+    <div class="col-6 prefix-1">
       <h4>Pixel density</h4>
       <svg id="pixel-density" height="320"></svg>
-    </div>
-    <div class="col-6">
-      <h4>Relative pixel size</h4>
-      <div id="relative-pixel-size">
-        <img src="https://via.placeholder.com/500x320?text=Graphic" alt="">
-      </div>
     </div>
   </div>
 </section>
@@ -167,79 +153,65 @@
   <div class="row">
     <h3>What CPU and memory do users have?</h3>
   </div>
-  <div class="row">
-    <h4>Number of CPUs</h4>
-  </div>
-  <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
-    <div class="col-6 u-align--center">
+  <div class="row p-mobile-flex-col u-equal-height p-divider">
+    <div class="col-6 p-divider__block">
+      <h4>Number of CPUs</h4>
       <svg id="number-of-cpus" height="320"></svg>
-    </div>
-    <div class="col-6">
       <p>The Central Processing Unit (CPU) carries out the basic algorithmic, logical, control, and input/output functions. Having multiple CPUs allows a computer to perform more tasks in parallel.</p>
+    </div>
+    <div class="col-6 p-divider__block">
+      <h4>Size of RAM (GB)</h4>
+      <svg id="size-of-ram" height="320"></svg>
+      <p>The more memory, the more power the computer has to carry out functions. Some users reported having RAM upwards of 96GB!</p>
     </div>
   </div>
 </section>
 <section class="p-strip--light is-bordered">
   <div class="row">
-    <h4>Size of RAM (GB)</h4>
-  </div>
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-6">
-      <p>The more memory, the more power the computer has to carry out functions. Some users reported having RAM upwards of 96GB!</p>
-    </div>
-    <div class="col-6 u-align--center">
-      <svg id="size-of-ram" height="320"></svg>
-    </div>
-  </div>
-</section>
-<section class="p-strip">
-  <div class="row">
     <h3>What physical disks do people have?</h3>
-  </div>
-  <div class="row">
     <h4>Physical disk (GB)</h4>
   </div>
   <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
+      <div class="col-6">
+        <p>Physical disks denote how much data can be stored on a computer. For this report the total disk size is inferred from the number and size of partitions of a disk.</p>
+      </div>
     <div class="col-6 u-align--center">
-      <svg id="physical-disk" height="320"></svg>
-    </div>
-    <div class="col-6">
-      <p>Physical disks denote how much data can be stored on a computer. For this report the total disk size is inferred from the number and size of partitions of a disk.</p>
+      <svg id="physical-disk" height="200"></svg>
     </div>
   </div>
-</section>
-<section class="p-strip is-bordered u-no-padding--top">
   <div class="row">
+    <hr />
     <h4>Partition type</h4>
+    <p>There are a number of ways to partition a disk when installing Ubuntu depending on what the user wants to do.</p>
   </div>
   <div class="row">
-    <p>There are a number of ways to partition a disk when installing Ubuntu depending on what the user wants to do.</p>
-    <div class="u-align--center">
-      <svg id="partition-type" height="320"></svg>
+    <div class="col-12">
+      <svg id="partition-type" height="200"></svg>
     </div>
   </div>
-</section>
-<section class="p-strip--light is-bordered">
-  <div class="row u-equal-height">
-    <div class="col-6">
+  <div class="row">
+    <hr />
+  </div>
+  <div class="row p-divider">
+    <div class="col-6 p-divider__block">
       <h4>Size of partitions (GB)</h4>
-      <svg id="partition-size" height="320"></svg>
+      <svg id="partition-size" height="200"></svg>
     </div>
-    <div class="col-6">
+    <div class="col-6  p-divider__block">
       <h4>Number of partitions</h4>
-      <svg id="partition-number" height="320"></svg>
+      <svg id="partition-number" height="200"></svg>
     </div>
   </div>
 </section>
-
-<section id="configuration" class="p-strip--image u-no-background--small is-bordered" style="background-image: url('{{ ASSET_SERVER_URL }}1d2ab6ba-suru-background.png'); background-size: 100% 100%;">
+<section id="configuration" class="p-strip--image is-bordered">
   <div class="row">
     <h2>Configuring Ubuntu</h2>
     <p>Users configure Ubuntu in many different ways, we recorded some key points and this will help inform the design of future releases.</p>
   </div>
-</section>
-<section class="p-strip is-shallow is-bordered">
-  <div class="row u-equal-height u-vertically-center">
+  <div class="row">
+    <hr />
+  </div>
+  <div class="row u-vertically-center">
     <div class="col-6">
       <h3 class="p-heading--four">Users who installed Ubuntu using the default settings</h3>
     </div>
@@ -250,47 +222,53 @@
       <svg id="default-settings-vm"></svg>
     </div>
   </div>
-</section>
-<section class="p-strip--light is-shallow is-bordered">
+  <div class="row">
+    <hr />
+  </div>
   <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
+    <div class="col-6">
+      <h3 class="p-heading--four">Users who opted out of at least one add-on</h3>
+    </div>
     <div class="col-3 u-align--center">
       <svg id="restrict-add-on-hw"></svg>
     </div>
     <div class="col-3 u-align--center">
       <svg id="restrict-add-on-vm"></svg>
     </div>
-    <div class="col-6">
-      <h3 class="p-heading--four">Users who opted out of at least one add-on</h3>
+  </div>
+  <div class="row">
+    <hr />
+  </div>
+  <div class="row">
+    <div class="row u-equal-height u-vertically-center">
+      <div class="col-6">
+        <h3 class="p-heading--four">Users who auto-login on start-up</h3>
+      </div>
+      <div class="col-3 u-align--center">
+        <svg id="auto-login-hw"></svg>
+      </div>
+      <div class="col-3 u-align--center">
+        <svg id="auto-login-vm"></svg>
+      </div>
     </div>
   </div>
-</section>
-<section class="p-strip is-shallow is-bordered">
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-6">
-      <h3 class="p-heading--four">Users who auto-login on start-up</h3>
-    </div>
-    <div class="col-3 u-align--center">
-      <svg id="auto-login-hw"></svg>
-    </div>
-    <div class="col-3 u-align--center">
-      <svg id="auto-login-vm"></svg>
-    </div>
+  <div class="row">
+    <hr />
   </div>
-</section>
-<section class="p-strip--light is-shallow is-bordered">
   <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
+    <div class="col-6">
+      <h3 class="p-heading--four">Users who opted for the Minimal Install; a stripped down Ubuntu that contains a few basic applications</h3>
+    </div>
     <div class="col-3 u-align--center">
       <svg id="minimal-install-hw"></svg>
     </div>
     <div class="col-3 u-align--center">
       <svg id="minimal-install-vm"></svg>
     </div>
-    <div class="col-6">
-      <h3 class="p-heading--four">Users who opted for the Minimal Install; a stripped down Ubuntu that contains a few basic applications</h3>
-    </div>
   </div>
-</section>
-<section class="p-strip is-shallow is-bordered">
+  <div class="row">
+    <hr />
+  </div>
   <div class="row u-equal-height u-vertically-center">
     <div class="col-6">
       <h3 class="p-heading--four">Users who chose to download and update software whilst installing Ubuntu</h3>
@@ -303,25 +281,15 @@
     </div>
   </div>
 </section>
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <h3>How long to get Ubuntu running?</h3>
-  </div>
-  <div class="row">
-    <div id="how-long-to-get-running">
-      <img src="https://via.placeholder.com/1040x400?text=Area chart" alt="">
-    </div>
-  </div>
-</section>
 <section class="p-strip is-bordered">
-  <div class="row">
+    <div class="row">
+        <div class="col-5 prefix-1">
+          <img class="p-image--bordered" src="{{ ASSET_SERVER_URL }}f3f53a95-ubuntu-18.04-survey-metrics.png" alt="User survey report">
+        </div>
     <div class="col-6">
       <h3>Want to know more?</h3>
       <p>Find out what Will Cooke, Engineering Director for Desktop, had to say about the methodology behind these metrics.</p>
       <a class="p-link--external" href="https://blog.ubuntu.com/2018/06/22/a-first-look-at-desktop-metrics">Read on</a>
-    </div>
-    <div class="col-5 prefix-1">
-      <img class="p-image--bordered" src="{{ ASSET_SERVER_URL }}f3f53a95-ubuntu-18.04-survey-metrics.png" alt="User survey report">
     </div>
   </div>
 </section>
@@ -343,8 +311,16 @@
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_desktop_contact_us" second_item="_support" third_item="_desktop_further_reading" %}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-geo/1.9.1/d3-geo.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-array/1.2.2/d3-array.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-geo-projection/2.4.0/d3-geo-projection.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-dsv/1.0.8/d3-dsv.min.js"></script>
+<script src="https://d3js.org/d3-fetch.v1.min.js"></script>
+<script src="https://unpkg.com/topojson-client@3"></script>
 <script src="{% versioned_static 'js/stickyNav.js' %}"></script>
 <script src="{% versioned_static 'js/dummyData.js' %}"></script>
 <script src="{% versioned_static 'js/desktopStatistics.js' %}"></script>
+<script src="{% versioned_static 'js/chartLegend.js' %}"></script>
 
 {% endblock content %}
