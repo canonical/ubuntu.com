@@ -12,11 +12,8 @@
     <div class="col-6">
       <h1>Ubuntu user statistics</h1>
       <p>This report is generated from basic, non-identifiable system data that was provided by users when installing Ubuntu 18.04 LTS.</p>
+      </div>
     </div>
-    <div class="col-6 u-vertically-center u-align--center u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}ed348358-logo-cof.svg" width="200" alt="ubuntu logo">
-    </div>
-  </div>
 </section>
 <nav class="p-tabs p-sticky-nav">
   <ul class="p-tabs__list" role="tablist">
@@ -32,7 +29,7 @@
   </ul>
 </nav>
 
-<section id="user-report" class="p-strip is-shallow is-bordered">
+<section id="user-report" class="p-strip is-bordered">
   <div class="row">
       <div class="col-12">
         <h2>User Report</h2>
@@ -62,16 +59,12 @@
 <section class="p-strip--light is-shallow is-bordered">
   <div class="row p-mobile-flex-col u-equal-height u-vertically-center p-divider">
     <div class="col-6 p-divider-block">
-      <div class="col-12">
-          <h3 class="p-heading--four">Clean install or upgrade?</h3>
-          <p>Users setting up a virtual machine are much more likely to perform a clean install rather than upgrading Ubuntu.</p>
-        </div>
+      <h3 class="p-heading--four">Clean install or upgrade?</h3>
+      <p>Users setting up a virtual machine are much more likely to perform a clean install rather than upgrading Ubuntu.</p>
     </div>
     <div class="col-6 u-align--center p-divider-block">
-      <div class="col-12">
-        <svg id="install-or-upgrade-physical" height="100"></svg>
-        <svg id="install-or-upgrade-vm" height="100"></svg>
-      </div>
+      <svg id="install-or-upgrade-physical" height="100"></svg>
+      <svg id="install-or-upgrade-vm" height="100"></svg>
     </div>
   </div>
 </section>  
@@ -105,20 +98,16 @@
   </div>
   <div class="row u-equal-height u-vertically-center p-divider">
     <div class="col-6 p-divider__block">
-      <div class="col-12">
-        <h2 class="p-heading--four">OS architecture</h2>
-        <p>OS architecture is responsible for running programs and providing secure access to the machine's hardware.</p>
-      </div>
-      <div class="col-12 u-align--center">
+      <h2 class="p-heading--four">OS architecture</h2>
+      <p>OS architecture is responsible for running programs and providing secure access to the machine's hardware.</p>
+      <div class="u-align--center">
         <svg id="os-architecture"></svg>
       </div>
     </div>
     <div class="col-6 p-divider__block">
-      <div class="col-12">
-        <h2 class="p-heading--four">Display server</h2>
-        <p>The display server controls the input and output of its clients to and from the rest of the operating system and the hardware.</p>
-      </div>
-      <div class="col-12 u-align--center">
+      <h2 class="p-heading--four">Display server</h2>
+      <p>The display server controls the input and output of its clients to and from the rest of the operating system and the hardware.</p>
+      <div class="u-align--center">
         <svg id="display-server"></svg>
       </div>
     </div>
@@ -127,11 +116,11 @@
 <section class="p-strip--light is-bordered">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-6">
-      <img src="https://via.placeholder.com/350x150" />
+      <img src="https://via.placeholder.com/350x150" alt="placeholder image for chart"/>
     </div>
     <div class="col-6">
-        <h3 class="p-heading--four">Firmware</h3>
-        <p>The display server controls the input and output of its clients to and from the rest of the operating system and the hardware.</p>
+      <h3 class="p-heading--four">Firmware</h3>
+      <p>The display server controls the input and output of its clients to and from the rest of the operating system and the hardware.</p>
     </div>
   </div>
 </section>
@@ -144,34 +133,18 @@
   </div>
   <div class="row u-equal-height u-vertically-center p-divider">
     <div class="col-6 p-divider__block">
-      <div class="row">
-        <div class="col-12 u-align--center">
-          <img src="https://via.placeholder.com/350x150" />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <p>*On install. This was detected on install so many users may have connected screens after the installing Ubuntu.</p>
-        </div>
-      </div>
+      <img src="https://via.placeholder.com/350x150" alt="placeholder image for chart"/>
+      <p>*On install. This was detected on install so many users may have connected screens after the installing Ubuntu.</p>
     </div>
     <div class="col-6 p-divider__block">
-      <div class="row">
-        <div class="col-12 u-align--center">
-          <img src="https://via.placeholder.com/350x150" />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <p>Graphical Process Unit (GPU) is used to generate videos and images for displaying on screen</p>
-        </div>
-      </div>
+      <img src="https://via.placeholder.com/350x150" alt="placeholder image for chart"/>
+      <p>Graphical Process Unit (GPU) is used to generate videos and images for displaying on screen</p>
     </div>
   </div>
 </section>
-<section class="p-strip--light">
+<section class="p-strip--light is-bordered">
   <div class="row">
-    <h3>Popular screen sizes</h2>
+    <h3>Popular screen sizes</h3>
     <p>This data set shows the 15 most popular screen sizes.</p>
   </div>
   <div class="row u-equal-height">
@@ -192,25 +165,19 @@
   <div class="row p-mobile-flex-col u-equal-height p-divider">
     <div class="col-6 p-divider__block">
       <h4>Number of CPUs</h4>
-      <div class="row">
-        <svg id="number-of-cpus" height="320"></svg>
-        <p>The Central Processing Unit (CPU) carries out the basic algorithmic, logical, control, and input/output functions. Having multiple CPUs allows a computer to perform more tasks in parallel.</p>
-      </div>
+      <svg id="number-of-cpus" height="320"></svg>
+      <p>The Central Processing Unit (CPU) carries out the basic algorithmic, logical, control, and input/output functions. Having multiple CPUs allows a computer to perform more tasks in parallel.</p>
     </div>
     <div class="col-6 p-divider__block">
       <h4>Size of RAM (GB)</h4>
-      <div class="row">
-        <svg id="size-of-ram" height="320"></svg>
-        <p>The more memory, the more power the computer has to carry out functions. Some users reported having RAM upwards of 96GB!</p>
-      </div>
+      <svg id="size-of-ram" height="320"></svg>
+      <p>The more memory, the more power the computer has to carry out functions. Some users reported having RAM upwards of 96GB!</p>
     </div>
   </div>
 </section>
 <section class="p-strip--light is-bordered">
   <div class="row">
     <h3>What physical disks do people have?</h3>
-  </div>
-  <div class="row">
     <h4>Physical disk (GB)</h4>
   </div>
   <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
@@ -221,10 +188,9 @@
       <svg id="physical-disk" height="200"></svg>
     </div>
   </div>
-  <div class="row is-bordered">
-    <h4>Partition type</h4>
-  </div>
   <div class="row">
+    <hr />
+    <h4>Partition type</h4>
     <p>There are a number of ways to partition a disk when installing Ubuntu depending on what the user wants to do.</p>
   </div>
   <div class="row">
@@ -232,12 +198,15 @@
       <svg id="partition-type" height="200"></svg>
     </div>
   </div>
-  <div class="row is-bordered">
-    <div class="col-6">
+  <div class="row">
+    <hr />
+  </div>
+  <div class="row p-divider">
+    <div class="col-6 p-divider__block">
       <h4>Size of partitions (GB)</h4>
       <svg id="partition-size" height="200"></svg>
     </div>
-    <div class="col-6">
+    <div class="col-6  p-divider__block">
       <h4>Number of partitions</h4>
       <svg id="partition-number" height="200"></svg>
     </div>
