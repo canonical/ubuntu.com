@@ -115,7 +115,8 @@
 // XXX Karl: 19.10.17
 // VF 1.6.0 is missing this
 .p-link--external::after {
-  -webkit-mask-size: cover;
+  -webkit-mask-size: cover; // sass-lint:disable-line no-vendor-prefixes
+  mask-size: cover;
 }
 
 // XXX Ant: 11.12.17 This can be removed when this is fixed
@@ -135,8 +136,8 @@
 
 // XXX Caleb: 15.01.18 Autoprefixer issue
 select {
-  -moz-appearance: none;
-  -webkit-appearance: none;
+  -moz-appearance: none; // sass-lint:disable-line no-vendor-prefixes
+  -webkit-appearance: none; // sass-lint:disable-line no-vendor-prefixes
   background-position: right $sp-x-small center;
   background-size: $sp-medium;
   padding-right: $sp-xxx-large;
@@ -144,18 +145,18 @@ select {
 
 .p-card__icon {
   display: inline-block;
-  margin-bottom: 1.25rem;
   height: 2rem;
+  margin-bottom: 1.25rem;
 }
 
 .p-strip--security {
-  @extend .p-strip;
+  @extend %vf-strip;
 
   @media only screen and (min-width: $breakpoint-medium) {
     background-image: url("#{$assets-path}8717cb84-padlock-chain-icon-angular.png");
+    background-position: left 70% top;
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: left 70% top;
   }
 }
 
@@ -177,15 +178,15 @@ fieldset {
 }
 
 fieldset + fieldset {
-  border-top-width: 0 !important;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  border-top-width: 0 !important;
 }
 
 fieldset:last-child {
-  border-bottom-width: 1px !important;
   border-bottom-left-radius: $sp-xx-small !important;
   border-bottom-right-radius: $sp-xx-small !important;
+  border-bottom-width: 1px !important;
 }
 
 // XXX Steve: Overriding default Vanilla style :(

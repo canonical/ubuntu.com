@@ -31,15 +31,15 @@
 
     &__list {
       float: left;
+      margin-left: 0;
+      padding-left: 0;
       text-align: center;
       width: 100%;
-      padding-left: 0;
-      margin-left: 0;
 
       @media only screen and (min-width: $breakpoint-medium + 1) {
         margin: 0;
-        padding-left: 1rem;
         padding-bottom: 0;
+        padding-left: 1rem;
       }
     }
 
@@ -97,9 +97,9 @@
 
       &:hover {
         @media only screen and (min-width: $breakpoint-medium) {
+          color: $color-brand;
           display: block;
           text-decoration: underline;
-          color: $color-brand;
         }
       }
 

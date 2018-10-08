@@ -18,11 +18,11 @@ $bg-image-1804: 'c4995f19-18.04_beaver_wp_8192x4608_no-BB_AW.jpg';
     .p-takeover__body {
       @media (min-width: $breakpoint-medium) {
         background-image: url('#{$assets-path}99cee55b-beaver.svg');
-        background-size: contain;
         background-position: right bottom;
         background-repeat: no-repeat;
-        padding-top: $sp-x-large * 1.5;
+        background-size: contain;
         padding-bottom: $sp-x-large * 4;
+        padding-top: $sp-x-large * 1.5;
       }
     }
 
@@ -31,8 +31,8 @@ $bg-image-1804: 'c4995f19-18.04_beaver_wp_8192x4608_no-BB_AW.jpg';
     }
 
     .p-takeover__image {
-      margin-top: $sp-x-large;
       margin-bottom: $sp-x-large;
+      margin-top: $sp-x-large;
     }
   }
 }
