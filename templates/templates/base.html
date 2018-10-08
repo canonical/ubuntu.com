@@ -71,7 +71,6 @@
       <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K92JCQ" height="0" width="0" style="display:none;visibility:hidden"></iframe>
     </noscript>
     <!-- end google tag manager -->
-    {% include "templates/global-nav.html" %}
     {% include "templates/_navigation.html" %}
 
     <div class="wrapper u-no-margin--top">
@@ -103,6 +102,9 @@
         }
       }
     </style>
+
+    <script src="/static/js/global-nav.js"></script>
+    <script>canonicalGlobalNav.createNav();</script>
   </body>
 </html>
 

@@ -1,3 +1,7 @@
+$ubuntu-logo-svg-width: 81 * $px; // width in rems
+$ubuntu-logo-width--desktop: $ubuntu-logo-svg-width + 2 * $grid-margin-width;
+$ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
+
 @mixin ubuntu-p-navigation {
   html {
     overflow-x: hidden !important; // prevent horizontal overflow full width breakout
