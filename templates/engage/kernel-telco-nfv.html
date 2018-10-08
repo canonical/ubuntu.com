@@ -1,0 +1,59 @@
+{% extends "engage/base_engage.html" %}
+
+{% block meta_description %}Which kernel provides the most balanced operational efficiency? A detailed analysis comparing real-time kernel assumptions against test results designed to reflect telco and NFV workloads.{% endblock %}
+
+{% block title %}Low latency and real-time kernels for telco and NFV{% endblock %}
+
+{% block content %}
+<section class="p-strip p-hero--nfv-kernel js-takeover">
+  <div class="row u-equal-height">
+    <div class="col-7 p-card--overlay">
+      <h1 class="p-hero__title">Low latency and real-time kernels for telco and NFV</h1>
+    </div>
+  </div>
+</section>
+
+<style>
+  .p-hero--nfv-kernel {
+    background-color: #262626;
+  }
+
+  @media {
+    .p-hero--nfv-kernel {
+      background-image: url('https://assets.ubuntu.com/v1/5c423b52-Screenshot+from+2018-10-08+10-14-13.png');
+      background-color: #262626;
+      background-size: cover;
+      background-position: center center;
+    }
+  }
+
+  .p-hero--nfv-kernel .p-hero__title {
+    font-weight: 100;
+    margin-bottom: 1rem;
+  }
+
+</style>
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-7">
+      <h3>About the whitepaper</h3>
+        <p>Network Functions Virtualisation (NFV) has taken root in the production environments of telecoms operators. The individual components of NFV, known as Virtualised Networks Functions (VNFs), are critically tied to a general purpose operating system, as opposed to being integrated into application-specific devices.</p>
+
+        <p>This union makes performance and support of core operating system components, like the kernel, the foundational metrics of success. This special report will demonstrate that Ubuntu 18.04 LTS offers the necessary, proven reliability, while also offering supported kernel choices that enhance the efficiency of VNF operations and functions.
+        </p>
+        <h3>Whitepaper highlights:</h3>
+        <ul class="p-list">
+            <li class="p-list__item is-ticked">A detailed analysis comparing real-time kernel assumptions against test results designed to reflect telco and NFV workloads (architectures, networking, FS, VM, compute...)</li>
+            <li class="p-list__item is-ticked">A results comparison of the Ubuntu 18.04 LTS generic kernel 4.15.0-22-generic, the Ubuntu low-latency kernel 4.15.0-22-low-latency and an Ubuntu Linux kernel patched to be fully preemptive 4.16.0-rt4-PREEMPT_RT_FULL as well as preemptive with low-latency</li>
+            <li class="p-list__item is-ticked">Which of the compared kernels provide the most balanced operational efficiency</li>
+        </ul>
+
+
+    </div>
+    <div class="col-5">
+    {% include "../shared/forms/_landing_page_default.html" with id="3291" returnURL="https://pages.ubuntu.com/Kernel_Whitepaper_ty.html" %}
+    </div>
+  </div>
+</section>
+{% endblock content %}
