@@ -514,11 +514,6 @@ function clearCharts() {
 function buildCharts() {
   var breakpoint = 875;
 
-  // showMaxDatum('#os-architecture', dummyData.osArchitecture.dataset);
-  // showMaxDatum('#display-server', dummyData.displayServer.dataset);
-  // showMaxDatum('#one-screen', dummyData.numberScreens.dataset);
-  // showMaxDatum('#one-gpu', dummyData.numberGPUs.dataset);
-
   createPieChart('#opt-in', dummyData.optIn.dataset, {
     size: 184,
     donutRadius: 76,
@@ -546,7 +541,6 @@ function buildCharts() {
     }
   });
 
-  // createBarChart('#install-or-upgrade', dummyData.installOrUpgrade.dataset);
   createHorizontalBarChart(
     '#install-or-upgrade-physical',
     dummyData.installOrUpgrade.dataset, {
@@ -579,32 +573,13 @@ function buildCharts() {
   createBarChart('#partition-number', dummyData.partitionNum.dataset);
 
   createBarChart('#language-list-chart', dummyData.languageList.dataset);
-
-  /* createHorizontalBarChart(
-    '#language-list-chart',
-    dummyData.languageList.dataset, {
-      sort: 'ascending',
-      truncPoint: 10,
-      margin: {
-        top: 20,
-        right: 20,
-        bottom: 20,
-        left: 70
-      }
-    }
-  ); */
   createMap('#where-are-users', dummyData.whereUsersAre.datasets, '/static/js/world-110m.v1.json');
   createProgressChart('#default-settings-hw', dummyData.defaultSettings.datasets.hardware);
   createProgressChart('#restrict-add-on-hw', dummyData.restrictAddOn.datasets.hardware);
   createProgressChart('#auto-login-hw', dummyData.autoLogin.datasets.hardware);
   createProgressChart('#minimal-install-hw', dummyData.minimalInstall.datasets.hardware);
   createProgressChart('#update-at-install-hw', dummyData.updateAtInstall.datasets.hardware);
-  /* createProgressChart('#how-long-running-hw', dummyData.howLongRunning.datasets.hardware, {
-    format: 'time'
-  }); */
-  /* createProgressChart('#configure-hw', dummyData.configure.datasets.hardware, {
-    format: 'time'
-  }); */
+  
   createProgressChart('#default-settings-vm', dummyData.defaultSettings.datasets.virtual, {
     color: '#925375'
   });
@@ -614,28 +589,15 @@ function buildCharts() {
   createProgressChart('#auto-login-vm', dummyData.autoLogin.datasets.virtual, {
     color: '#925375'
   });
- /*  createProgressChart('#minimal-install-vm', dummyData.minimalInstall.datasets.virtual, {
-    color: '#925375'
-  }); */
   createProgressChart('#update-at-install-vm', dummyData.updateAtInstall.datasets.virtual, {
     color: '#925375'
   });
-  /* createProgressChart('#how-long-running-vm', dummyData.howLongRunning.datasets.virtual, {
-    color: '#925375',
-    format: 'time'
-  }); */
-  /* createProgressChart('#configure-vm', dummyData.configure.datasets.virtual, {
-    color: '#925375',
-    format: 'time'
-  }); */
 
   if (window.innerWidth >= breakpoint) {
-    // createBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
     createHorizontalBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
     createBarChart('#physical-disk', dummyData.physicalDisk.dataset);
     createBarChart('#partition-type', dummyData.partitionType.dataset);
     createHorizontalBarChart('#partition-size', dummyData.partitionSize.dataset);
-    // createBarChart('#partition-size', dummyData.partitionSize.dataset);
   } else {
     createHorizontalBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
     createHorizontalBarChart('#physical-disk', dummyData.physicalDisk.dataset);
