@@ -6,16 +6,17 @@
 {#
   TAKEOVER INSTRUCTIONS
 
-  - A takeover can belong to more than one language group and therefore
-    you can build a queue of them to rotate based on the user's language
-    settings. For example data-lang="de" will be for german only, while
-    data-lang="en,de" will be for english and german.
-  - Additionally, you should add a lang="en-gb" or lang="de" for the
-    takeovers to allow for automatic translation
+  - A takeover can belong to all, one or more than one language group.
+    You can build a queue of them to rotate based on the user's language
+    settings. For ones that should appear for all languages, use
+    data-lang="all".  For example data-lang="de" will be for german only,
+    while data-lang="en,de" will be for english and german.
+  - Additionally, you should add a lang tag (eg lang="en" or lang="de")
+    for the takeovers to allow for automatic translation
 
     EXAMPLE SECTION TAG
 
-      section lang="en" data-lang="en" class="p-strip is-deep p-takeover--robotics js-takeover {% if not default %}u-hide{% endif %}" {% if default %}data-default="true"{% endif %}
+      section lang="en" data-lang="all" class="p-strip is-deep p-takeover--robotics js-takeover {% if not default %}u-hide{% endif %}" {% if default %}data-default="true"{% endif %}
 
   - Also, add a 'with default=True' below for one takeover to be the default
 
