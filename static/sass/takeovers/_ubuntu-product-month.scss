@@ -99,29 +99,29 @@
   .upm-lxd-logo {
     animation: lxd-logo $anim-logo ($start-delay + ($interval * 2)) 1 forwards;
     opacity: 0;
-    transform-origin: 32px 32px;
     transform: scale(0);
+    transform-origin: 32px 32px;
   }
 
   .upm-openstack-logo {
     animation: openstack-logo $anim-logo ($start-delay + ($interval * 4)) 1 forwards;
     opacity: 0;
-    transform-origin: 32px 32px;
     transform: scale(0);
+    transform-origin: 32px 32px;
   }
 
   .upm-juju-logo {
     animation: juju-logo $anim-logo ($start-delay + ($interval * 5)) 1 forwards;
     opacity: 0;
+    transform: scale (0);
     transform-origin: 32px 32px;
-    transform: scale(0);
   }
 
   .upm-snappy-logo {
     animation: snappy-logo $anim-logo ($start-delay + ($interval * 7)) 1 forwards;
     opacity: 0;
-    transform-origin: 32px 32px;
     transform: scale(0);
+    transform-origin: 32px 32px;
   }
 
   @for $i from 1 through 8 {

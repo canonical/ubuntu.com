@@ -160,8 +160,8 @@
     & > .p-list__item::before {
       content: counters(item, ".") ". ";
       counter-increment: item;
-      font-weight: 300;
       font-size: 2.25rem;
+      font-weight: 300;
       line-height: 1.167;
     }
 
@@ -213,8 +213,8 @@
       // sass-lint:disable-block nesting-depth
       .p-inline-list__item {
         &::after {
-          top: 1rem;
           right: -.65rem;
+          top: 1rem;
         }
       }
     }

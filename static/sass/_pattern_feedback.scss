@@ -5,15 +5,17 @@
     }
   }
 
-  .p-feedback__icon {
-    display: inline-block;
-    width: 2rem;
-    height: 2rem;
-    cursor: pointer;
-    color: #808080;
+  %p-feedback-icon {
+    $feedback-icon-color: #808080;
+
     border: 0;
-    padding: 0;
+    color: $feedback-icon-color;
+    cursor: pointer;
+    display: inline-block;
+    height: 2rem;
     margin: 0;
+    padding: 0;
+    width: 2rem;
 
     &:hover,
     &:active {
@@ -21,8 +23,12 @@
     }
   }
 
+  .p-feedback__icon {
+    @extend %p-feedback-icon;
+  }
+
   .p-feedback__icon--positive {
-    @extend .p-feedback__icon;
+    @extend %p-feedback-icon;
 
     &:hover,
     &:focus {
@@ -31,7 +37,7 @@
   }
 
   .p-feedback__icon--neutral {
-    @extend .p-feedback__icon;
+    @extend %p-feedback-icon;
 
     &:hover,
     &:focus {
@@ -40,7 +46,7 @@
   }
 
   .p-feedback__icon--negative {
-    @extend .p-feedback__icon;
+    @extend %p-feedback-icon;
 
     &:hover,
     &:focus {
@@ -49,35 +55,36 @@
   }
 
   .p-feedback__button {
-    position: fixed;
+    $feedback-button-background: #333;
+    background-color: $feedback-button-background;
+    border-bottom-right-radius: 0;
+    border-color: $feedback-button-background;
+    border-top-right-radius: 0;
     bottom: 4rem;
+    color: $color-x-light;
+    margin: 0;
+    position: fixed;
     right: 0;
     width: auto;
-    margin: 0;
-    background-color: #333;
-    color: $color-x-light;
-    border-color: #333;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
 
     @media (min-width: $breakpoint-small) {
-      bottom: 0;
-      right: 1rem;
-      border-top-right-radius: 2px;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
+      border-top-right-radius: 2px;
+      bottom: 0;
+      right: 1rem;
     }
 
     &:hover,
     &:active {
-      background-color: #333;
+      background-color: $feedback-button-background;
+      border-color: $feedback-button-background;
       color: $color-x-light;
-      border-color: #333;
     }
   }
 
   .p-modal--feedback {
-    @extend .p-modal;
+    @extend .p-modal; // sass-lint:disable-line placeholder-in-extend
     position: fixed;
     z-index: 10;
   }

@@ -24,12 +24,14 @@
   }
 
   .p-takeover--financial-services {
-    background-image: linear-gradient(45deg, #171717 0%, #181818 9%, #262626 34%, #2d2d2d 67%, #383838 88%, #2e2e2e 100%, #393939 100%);
-    background-color: #171717;
+    $financial-services-background: #171717;
+
+    background-color: $financial-services-background;
+    background-image: linear-gradient(45deg, $financial-services-background 0%, #181818 9%, #262626 34%, #2d2d2d 67%, #383838 88%, #2e2e2e 100%, #393939 100%); // sass-lint:disable-line no-color-literals
 
     .p-takeover__title {
-      font-weight: 100;
       color: $color-x-light;
+      font-weight: 100;
     }
 
     .p-takeover__text {
@@ -77,8 +79,8 @@
       bottom: -20%;
       opacity: 0;
       position: absolute;
-      transform: translateX(30%);
       right: -20%;
+      transform: translateX(30%);
       width: 50%;
       z-index: 3;
     }

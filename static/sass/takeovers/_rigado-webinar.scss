@@ -1,24 +1,30 @@
 @mixin p-takeover-rigado-webinar {
+  $rigado-background: #2a5a77;
+  $rigado-background-gradient-1: #407389;
+  $rigado-background-gradient-2: #4a7e8f;
+  $rigado-background-gradient-3: #568b98;
+  $rigado-background-gradient-4: #568b98;
+
   .p-takeover--rigado-webinar {
-    background-image: linear-gradient(-32deg, #2a5a77 0%, #2a5a77 9%, #407389 33%, #4a7e8f 69%, #568b98 90%, #47919e 100%);
-    background-color: #2a5a77;
+    background-color: $rigado-background;
+    background-image: linear-gradient(-32deg, $rigado-background 0%, $rigado-background 9%, $rigado-background-gradient-1 33%, $rigado-background-gradient-2 69%, $rigado-background-gradient-3 90%, $rigado-background-gradient-4 100%);
 
     @media (min-width: $breakpoint-medium) {
-      background-image: url('#{$assets-path}ca263eff-left-side-suru-rigado-takeover.png'), url('#{$assets-path}58d3e923-right-side-suru-rigado-takeover.png'), linear-gradient(-32deg, #2a5a77 0%, #2a5a77 9%, #407389 33%, #4a7e8f 69%, #568b98 90%, #47919e 100%);
-      background-color: #2a5a77;
+      background-color: $rigado-background;
+      background-image: url('#{$assets-path}ca263eff-left-side-suru-rigado-takeover.png'), url('#{$assets-path}58d3e923-right-side-suru-rigado-takeover.png'), linear-gradient(-32deg, $rigado-background 0%, $rigado-background 9%, $rigado-background-gradient-1 33%, $rigado-background-gradient-2 69%, $rigado-background-gradient-3 90%, $rigado-background-gradient-4 100%);
+      background-position: bottom left, bottom right;
       background-repeat: no-repeat;
       background-size: contain;
-      background-position: bottom left, bottom right;
     }
 
     .p-takeover__title {
-      font-weight: 100;
       color: $color-x-light;
+      font-weight: 100;
     }
 
     .p-takeover__text {
-      font-size: 1rem;
       color: $color-x-light;
+      font-size: 1rem;
 
       @media (min-width: $breakpoint-medium) {
         font-size: 1.25rem;
@@ -26,12 +32,12 @@
     }
 
     .p-takeover__image {
-      width: 235px;
       height: 179px;
+      width: 235px;
 
       @media (min-width: $breakpoint-medium) {
-        width: 268px;
         height: 204px;
+        width: 268px;
       }
     }
   }

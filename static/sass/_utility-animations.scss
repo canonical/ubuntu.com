@@ -1,21 +1,21 @@
 @mixin fade-left {
-  opacity: 0;
-  transform: translateX(-3rem);
-  animation-name: fadeLeft;
   animation-delay: .25s;
   animation-duration: map-get($animation-duration, sleepy);
   animation-fill-mode: forwards;
+  animation-name: fadeLeft;
   animation-timing-function: map-get($animation-easing, brisk);
+  opacity: 0;
+  transform: translateX(-3rem);
 }
 
 @mixin fade-up {
-  opacity: 0;
-  transform: translateY(3rem);
-  animation-name: fadeUp;
   animation-delay: .25s;
   animation-duration: map-get($animation-duration, sleepy);
   animation-fill-mode: forwards;
+  animation-name: fadeUp;
   animation-timing-function: map-get($animation-easing, brisk);
+  opacity: 0;
+  transform: translateY(3rem);
 }
 
 @mixin u-animations {
