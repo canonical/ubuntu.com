@@ -63,8 +63,10 @@
       <svg id="install-or-upgrade-vm" height="100"></svg>
       <div class="install-or-upgrade-legend">
         <ul class="p-inline-list">
-          <li class="p-inline-list__item"><span class="legend clean-install"></span>Clean Install</li>
-          <li class="p-inline-list__item"><span class="legend upgrades"></span>Upgrades</li>
+          <li class="p-inline-list__item u-no-margin"><span class="legend clean-install"></span></li>
+          <li class="p-inline-list__item">Clean Install</li>
+          <li class="p-inline-list__item u-no-margin"><span class="legend upgrades"></span></li>
+          <li class="p-inline-list__item">Upgrades</li>
         </ul>
       </div>
     </div>
@@ -331,6 +333,5 @@
 <script src="{% versioned_static 'js/stickyNav.js' %}"></script>
 <script src="{% versioned_static 'js/dummyData.js' %}"></script>
 <script src="{% versioned_static 'js/desktopStatistics.js' %}"></script>
-<script src="{% versioned_static 'js/chartLegend.js' %}"></script>
 
 {% endblock content %}

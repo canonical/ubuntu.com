@@ -223,7 +223,7 @@ function createHorizontalBarChart(selector, dataset, options) {
     bottom: 20,
     left: 60
   };
-  var colors = options.hasOwnProperty('colors') ? options.colors : ['#ed764d', '#ccc', '#925375'];
+  var colors = options.hasOwnProperty('colors') ? options.colors : ['#ed764d', '#925375', '#ccc' ];
   var ordinalColors = d3.scaleOrdinal(colors);
   var chartTitle = options.hasOwnProperty('title') ? options.title : '';
 
@@ -288,22 +288,24 @@ function createHorizontalBarChart(selector, dataset, options) {
     });
   
     // Add text to the left Axis
-  g.selectAll("text.left-axis")
-    .data(data)
-    .enter()
-    .append("text")
-    .attr("class", "left-axis")
-    .attr("x", function (d) {
-      return - (x(calcPercentage(data, d.value)) + 20);
-    })
-    .attr("y", function (d) {
-      return (y(d.label) + (y.bandwidth() / 2) + 5) - ((y.bandwidth()));
-    })
-    .attr("class", "label")
-    .text(function (d, i) {
-      if (i % 2 === 0)
-        return chartTitle;
-    });
+    if (chartTitle) {
+      g.selectAll("text.left-axis")
+        .data(data)
+        .enter()
+        .append("text")
+        .attr("class", "left-axis")
+        .attr("x", function (d) {
+          return - (x(calcPercentage(data, d.value)) + 20);
+        })
+        .attr("y", function (d) {
+          return (y(d.label) + (y.bandwidth() / 2) + 5) - ((y.bandwidth()));
+        })
+        .attr("class", "label")
+        .text(function (d, i) {
+          if (i % 2 === 0)
+            return chartTitle;
+        });
+    }
 }
 
 function createOrderedList(target, dataset, options) {
