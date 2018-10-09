@@ -39,12 +39,16 @@
     <div class="col-6 p-divider__block">
       <h2 class="p-heading--four">How many users opted in?</h2>
       <p>We appreciate the trust that has been given to us with handling this data and we aim to use the results to focus our development efforts on where it matters most to users.</p>
-      <svg id="opt-in"></svg>
+      <div class="u-align--center">
+        <svg id="opt-in"></svg>
+      </div>
     </div>
     <div class="col-6 p-divider__block">
       <h2 class="p-heading--four">Real or virtual machines?</h2>
       <p>Some machines could not be determined as either real or virtual, that data is not included in this report.</p>
-      <svg id="real-or-virtual"></svg>
+      <div class="u-align--center">
+        <svg id="real-or-virtual"></svg>
+      </div>
     </div>
   </div>
 </section>
@@ -54,9 +58,15 @@
       <h3 class="p-heading--four">Clean install or upgrade?</h3>
       <p>Users setting up a virtual machine are much more likely to perform a clean install rather than upgrading Ubuntu.</p>
     </div>
-    <div class="col-6 u-align--center p-divider-block">
-      <svg id="install-or-upgrade-physical" height="100"></svg>
+    <div class="col-6 p-divider-block">
+      <svg id="install-or-upgrade-physical" height="100" viewport="0 0"></svg>
       <svg id="install-or-upgrade-vm" height="100"></svg>
+      <div class="install-or-upgrade-legend">
+        <ul class="p-inline-list">
+          <li class="p-inline-list__item"><span class="legend clean-install"></span>Clean Install</li>
+          <li class="p-inline-list__item"><span class="legend upgrades"></span>Upgrades</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>  
@@ -283,7 +293,7 @@
 </section>
 <section class="p-strip is-bordered">
     <div class="row">
-        <div class="col-5 prefix-1">
+        <div class="col-6 prefix-1">
           <img class="p-image--bordered" src="{{ ASSET_SERVER_URL }}f3f53a95-ubuntu-18.04-survey-metrics.png" alt="User survey report">
         </div>
     <div class="col-6">

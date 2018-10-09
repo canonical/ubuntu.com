@@ -85,4 +85,23 @@
       }
     }
   }
+
+  .install-or-upgrade-legend {
+    height: 40px;
+
+    .legend {
+      margin-right: 20px;
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+
+      &.clean-install{
+        border-color: #ed764d;
+      }
+
+      &.upgrades {
+        background: #925375;
+      }
+    }
+  }
 }
