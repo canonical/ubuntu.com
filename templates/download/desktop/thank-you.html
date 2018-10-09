@@ -49,123 +49,99 @@ Thank you for your contribution
 <div class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-8 suffix-1">
-      <h2>Help shape the future of Ubuntu</h2>
+      <h2 class="p-heading--three">Help shape the future of Ubuntu</h2>
       <noscript>
         <p>Contributions require JavaScript. Please enable JavaScript if you want to contribute.</p>
       </noscript>
-      <form action="https://www.paypal.com/cgi-bin/webscr" id="contributions-form" method="post" target="_top">
-        <fieldset class="p-card">
-
-          <section id="ubuntu-desktop">
-            <label for="amount-desktop">
-              <p class="p-heading--five">Ubuntu Desktop</p>
-              <p>Make the desktop even more amazing.</p>
-            </label>
-            <div class="p-slider__wrapper">
-              <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-desktop" type="range">
-              <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-desktop-input" name="amount_1" value="3" tabindex="1" type="number">
-              <input type="hidden" name="item_name_1" value="Ubuntu Desktop">
-            </div>
-          </section>
-
-          <hr class="u-sv3">
-
-          <section id="ubuntu-for-cloud">
-            <label for="amount-cloud">
-              <p class="p-heading--five">Ubuntu for cloud computing</p>
-              <p>I want Ubuntu running my cloud and as a guest in my cloud of choice.</p>
-            </label>
-            <div class="p-slider__wrapper">
-              <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-cloud" type="range">
-              <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-cloud-input" name="amount_2" value="3" tabindex="2" type="number">
-              <input type="hidden" name="item_name_2" value="Ubuntu for cloud computing">
-            </div>
-          </section>
-
-          <hr class="u-sv3">
-
-          <section id="ubuntu-for-things">
-            <label for="amount-things">
-              <p class="p-heading--five">Ubuntu for things</p>
-              <p>I want a secure, upgradeable Internet of Things, powered by Ubuntu.</p>
-            </label>
-            <div class="p-slider__wrapper">
-              <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-things" type="range">
-              <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-things-input" name="amount_3" value="3" tabindex="3" type="number">
-              <input type="hidden" name="item_name_3" value="Ubuntu for things">
-            </div>
-          </section>
-
-          <hr class="u-sv3">
-
-          <section id="community-projects">
-            <label for="amount-community">
-              <p class="p-heading--five">Community projects</p>
-              <p>I support LoCo teams, UbuCons and other events, upstream projects and all the good work the community does.</p>
-            </label>
-            <div class="p-slider__wrapper">
-              <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-community" type="range">
-              <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-community-input" name="amount_4" value="3" tabindex="4" type="number">
-              <input type="hidden" name="item_name_4" value="Community projects">
-            </div>
-          </section>
-
-          <hr class="u-sv3">
-
-          <section id="tip-to-canonical">
-            <label for="amount-canonical">
-              <p class="p-heading--five">Tip to Canonical</p>
-              <p>Hats off for making Ubuntu possible. Keep it up.</p>
-            </label>
-            <div class="p-slider__wrapper">
-              <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-canonical" type="range">
-              <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-canonical-input" name="amount_5" value="3" tabindex="5" type="number">
-              <input type="hidden" name="item_name_5" value="Tip to Canonical">
-            </div>
-          </section>
-        </fieldset>
-
-        <div class="row">
-          <div class="col-6">
-            <div class="p-media-object u-no-margin--bottom">
-              <img alt="T-shirt" src="{{ ASSET_SERVER_URL }}b26d26e5-t-shirt.png" class="p-media-object__image js-equivalent-image">
-              <div class="p-media-object__details">
-                <h3 class="p-media-object__title">The same price as</h3>
-                <p class="p-media-object__content js-equivalent-description">Peace, Love and Linux t-shirt</p>
-                <p class="p-media-object__content">$<span class="js-equivalent-value">20</span></p>
-              </div>
-            </div>
+      <form class="p-card contribute__options" action="https://www.paypal.com/cgi-bin/webscr" id="contributions-form" method="post" target="_top">
+        <section id="ubuntu-desktop" class="u-sv3">
+          <label for="amount-desktop">
+            <p class="p-heading--four">Ubuntu Desktop</p>
+          </label>
+          <div class="p-slider__wrapper">
+            <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-desktop" type="range">
+            <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-desktop-input" name="amount_1" value="3" tabindex="1" type="number">
+            <input type="hidden" name="item_name_1" value="Ubuntu Desktop">
           </div>
+        </section>
 
-          <div class="col-3 u-align--right">
-            <h5>Your contribution</h5>
-            <p class="p-heading--four">
-              &#36;
-              <span class="js-total-amount">16</span>
-            </p>
+        <section id="ubuntu-for-cloud" class="u-sv3">
+          <label for="amount-cloud">
+            <p class="p-heading--four">Ubuntu for cloud computing</p>
+          </label>
+          <div class="p-slider__wrapper">
+            <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-cloud" type="range">
+            <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-cloud-input" name="amount_2" value="3" tabindex="2" type="number">
+            <input type="hidden" name="item_name_2" value="Ubuntu for cloud computing">
+          </div>
+        </section>
+
+        <section id="ubuntu-for-things" class="u-sv3">
+          <label for="amount-things">
+            <p class="p-heading--four">Ubuntu for things</p>
+          </label>
+          <div class="p-slider__wrapper">
+            <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-things" type="range">
+            <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-things-input" name="amount_3" value="3" tabindex="3" type="number">
+            <input type="hidden" name="item_name_3" value="Ubuntu for things">
+          </div>
+        </section>
+
+        <section id="community-projects" class="u-sv3">
+          <label for="amount-community">
+            <p class="p-heading--four">Community projects</p>
+          </label>
+          <div class="p-slider__wrapper">
+            <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-community" type="range">
+            <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-community-input" name="amount_4" value="3" tabindex="4" type="number">
+            <input type="hidden" name="item_name_4" value="Community projects">
+          </div>
+        </section>
+
+        <section id="tip-to-canonical" class="u-sv3">
+          <label for="amount-canonical">
+            <p class="p-heading--four">Tip to Canonical</p>
+          </label>
+          <div class="p-slider__wrapper">
+            <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-canonical" type="range">
+            <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-canonical-input" name="amount_5" value="3" tabindex="5" type="number">
+            <input type="hidden" name="item_name_5" value="Tip to Canonical">
+          </div>
+        </section>
+
+        <div class="p-media-object u-no-margin--bottom u-sv3 u-vertically-center">
+          <img alt="T-shirt" src="{{ ASSET_SERVER_URL }}b26d26e5-t-shirt.png" class="p-media-object__image js-equivalent-image">
+          <div class="p-media-object__details">
+            <h3 class="p-media-object__title">The same price as</h3>
+            <p class="p-media-object__content u-no-margin--bottom js-equivalent-description">Peace, Love and Linux t-shirt</p>
           </div>
         </div>
 
-        <hr class="u-sv3">
+        <hr class="u-sv3" />
 
-        <div class="u-align--right">
-          <input type="hidden" name="cmd" value="_cart">
-          <input type="hidden" name="business" value="donations@ubuntu.com">
-          <input type="hidden" name="lc" value="GB">
-          <input type="hidden" name="upload" value="1">
-          <input type="hidden" name="currency_code" value="USD">
-          <input type="hidden" name="button_subtype" value="services">
-          <input type="hidden" name="no_note" value="1">
-          <input type="hidden" name="no_shipping" value="1">
-          <input type="hidden" name="rm" value="1">
+        <div class="row">
+          <div class="col-4">
+            <p>Your contribution &nbsp;<span class="p-card" style="padding: .5rem;">&#36;<span class="js-total-amount">16</span></span></p>
+          </div>
+          <div class="u-align--right">
+            <input type="hidden" name="cmd" value="_cart">
+            <input type="hidden" name="business" value="donations@ubuntu.com">
+            <input type="hidden" name="lc" value="GB">
+            <input type="hidden" name="upload" value="1">
+            <input type="hidden" name="currency_code" value="USD">
+            <input type="hidden" name="button_subtype" value="services">
+            <input type="hidden" name="no_note" value="1">
+            <input type="hidden" name="no_shipping" value="1">
+            <input type="hidden" name="rm" value="1">
 
-          <input type="hidden" name="return" value="http://{{ http_host }}/download/desktop/thank-you">
-          <input type="hidden" name="cancel_return" value="http://{{ http_host }}/download/desktop/thank-you">
+            <input type="hidden" name="return" value="http://{{ http_host }}/download/desktop/thank-you">
+            <input type="hidden" name="cancel_return" value="http://{{ http_host }}/download/desktop/thank-you">
 
-          <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
-          <button type="submit" class="js-contribute-submit p-button--positive u-no-margin--bottom" tabindex="9">Contribute with PayPal</button>
-        </form>
-      </div>
+            <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
+            <button type="submit" class="js-contribute-submit p-button--positive u-no-margin--bottom" tabindex="9">Contribute with PayPal</button>
+          </div>
+        </div>
+      </form>
     </div>
     <div class="col-4">
       <div class="p-card">
@@ -174,7 +150,7 @@ Thank you for your contribution
         </header>
         <h3 class="p-card--title">Select topics you&rsquo;re interested in</h3>
         <form action="https://pages.canonical.com/index.php/leadCapture/save" method="post" id="mktoForm_1212" novalidate="novalidate" onsubmit="ga('send', 'Newsletter', 'Signup', 'New homepage newsletter signup');">
-          <div class="p-card--content contribute__options">
+          <div class="p-card--content">
             <ul class="p-list">
               <li class="p-list__item u-no-margin--top u-clearfix">
                 <label>
@@ -221,7 +197,7 @@ Thank you for your contribution
             </p>
             <div class="u-margin-medium--top">
               <span class="mktoButtonWrap p-card--content">
-                <button type="submit">Subscribe now</button>
+                <button type="submit" class="u-no-margin--bottom">Subscribe now</button>
               </span>
               <input type="hidden" name="Consent_to_Processing__c" value="yes" />
               <input value="1959" class="mktoField mktoFieldDescriptor" name="lpId" type="hidden">
@@ -361,12 +337,10 @@ Thank you for your contribution
   var updateEquivalentItem = function(item, imageSelector, descriptionSelector, valueSelector) {
     var image = document.querySelector('.js-equivalent-image');
     var description = document.querySelector('.js-equivalent-description');
-    var value = document.querySelector('.js-equivalent-value');
 
     image.src = '{{ ASSET_SERVER_URL }}' + item['imageFile'];
     image.alt = item['description'];
     description.innerText = item['description'];
-    value.innerText = item['price'];
   }
 
   var toggleSubmit = function(total) {
