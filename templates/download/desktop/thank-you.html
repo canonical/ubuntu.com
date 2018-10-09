@@ -23,6 +23,18 @@ Thank you for your contribution
 {% endif %}
 {% endif %}
 
+{% if request.GET.newsletter == 'true' %}
+<div class="p-strip is-shallow u-no-padding--bottom">
+  <div class="row">
+    <div class="p-notification--positive">
+      <p class="p-notification__response">
+        <span class="p-notification__status">Success:</span> Thank you for subscribing! You will begin receiving emails as new content is posted. You may unsubscribe any time by clicking the link in the email.
+      </p>
+    </div>
+  </div>
+</div>
+{% endif %}
+
 <div class="p-strip is-bordered">
   <div class="row">
     <div class="col-8">
@@ -204,7 +216,7 @@ Thank you for your contribution
               <input value="30" class="mktoField mktoFieldDescriptor" name="subId" type="hidden">
               <input name="lpurl" value="https://pages.canonical.com/Insights-Subscription_Insights-Subscription-test.html?cr={creative}&amp;kw={keyword}" type="hidden">
               <input value="1212" class="mktoField mktoFieldDescriptor" name="formid" type="hidden">
-              <input type="hidden" name="ret" value="http://{{request.host}}{{request.path}}?newsletter=true" />
+              <input type="hidden" name="ret" value="http://{{ http_host }}/download/desktop/thank-you?newsletter=true" />
               <input value="066-EOV-335" class="mktoField mktoFieldDescriptor" name="munchkinId" type="hidden">
               <input name="kw" value="" type="hidden">
               <input name="cr" value="" type="hidden">
