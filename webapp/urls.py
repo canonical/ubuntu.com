@@ -1,6 +1,6 @@
 # Third party modules
 from django.conf.urls import include, url
-from canonicalwebteam.yaml_responses.django import (
+from canonicalwebteam.yaml_responses.django_helpers import (
     create_deleted_views,
     create_redirect_views,
 )
