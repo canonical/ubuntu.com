@@ -14,6 +14,15 @@
     "clean": "rm -rf node_modules yarn-error.log css static/css *.log *.sqlite _site/ build/ .jekyll-metadata .bundle",
     "serve": "./entrypoint 0.0.0.0:${PORT}"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.scss": "yarn run lint-scss",
+    "*.py": "yarn run lint-py"
+  },
   "keywords": [
     "website",
     "ubuntu"
@@ -28,6 +37,8 @@
     "autoprefixer": "^6.3.1",
     "cssnano": "^3.10.0",
     "global-nav": "^1.1.1",
+    "husky": "^1.1.1",
+    "lint-staged": "^7.3.0",
     "node-sass": "^4.5.3",
     "postcss-cli": "^4.1.0",
     "sass-lint": "^1.10.2",
