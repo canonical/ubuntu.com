@@ -85,13 +85,13 @@ function colorShade(usageRange, colors) {
     index = 0;
   } else if (usageRange > 1 && usageRange <= 5) {
     index = 1;
-  } else if (usageRange > 5 && usageRange <= 10) {
+  } else if (usageRange > 5 && usageRange <= 20) {
     index = 2;
-  } else if (usageRange > 10 && usageRange <= 15) {
+  } else if (usageRange > 20 && usageRange <= 35) {
     index = 3;
-  } else if (usageRange > 15 && usageRange <= 30) {
+  } else if (usageRange > 35 && usageRange <= 50) {
     index = 4;
-  } else if (usageRange > 30) {
+  } else if (usageRange > 50) {
     index = 5;
   }
   return colors[index];
@@ -265,9 +265,9 @@ function createHorizontalBarChart(selector, dataset, options) {
     .attr("x", -3)
     .attr("y", function (d, i) {
       if (i > 0) {
-        return y(d.label) - 16; 
+        return y(d.label) - 16;
       } else {
-        return y(d.label); 
+        return y(d.label);
       }
     })
     .attr("height", "16px")
@@ -295,7 +295,7 @@ function createHorizontalBarChart(selector, dataset, options) {
     .text(function (d) {
       return Math.floor(calcPercentage(data, d.value), 1) + "%";
     });
-  
+
     // Add text to the left Axis
     if (chartTitle) {
       g.selectAll("text.left-axis")
@@ -483,15 +483,14 @@ function createMap(selector, options, mapData) {
 
   function render(world) {
     //   Snapdata = country mapped to ids in objects
-    // Get the countries and ids 
+    // Get the countries and ids
     var svg = d3.select(selector);
     var g = svg.append('g');
-    var offset = width * 0.2;
+    var offset = width * 0.1;
     var projection = d3.geoNaturalEarth1()
-      .scale(width * 0.15)
-      .translate([width / 2, (height + offset) / 2])
-      .precision(.1)
-      .rotate([-10, 0]);
+      .scale(width * 0.2)
+      .translate([(width / 2), ((height + offset) / 2) ])
+      .precision(.1);
     var geoPath = d3.geoPath().projection(projection);
     var countries = topojson.feature(world, world.objects.countries).features;
     g.selectAll('path')
@@ -510,7 +509,7 @@ function createMap(selector, options, mapData) {
             var shade = colorShade(countryRatio, options.legend.colors);
             return shade;
           }
-          return "#0000FF";
+          return "#fed6ca";
         }
 
       })
