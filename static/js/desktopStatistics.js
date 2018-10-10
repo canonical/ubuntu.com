@@ -537,6 +537,14 @@ function buildCharts() {
     size: 184,
     donutRadius: 76
   });
+  createPieChart('#firmware-hw', dummyData.firmware.dataset.hardware, {
+    size: 184,
+    donutRadius: 76,
+    centreLabel: {
+      title: 'Physical'
+    }
+  });
+
 
   createPieChart('#os-architecture', dummyData.osArchitecture.dataset, {
     size: 184,
