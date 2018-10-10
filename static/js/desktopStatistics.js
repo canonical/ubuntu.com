@@ -225,7 +225,7 @@ function createHorizontalBarChart(selector, dataset, options) {
   };
   var colors = options.hasOwnProperty('colors') ? options.colors : ['#ed764d', '#925375', '#ccc' ];
   var ordinalColors = d3.scaleOrdinal(colors);
-  var chartTitle = options.hasOwnProperty('title') ? options.title : '';
+  var chartTitle = options.hasOwnProperty('title') ? options.title : undefined;
 
   // Create copy of dataset and manipulate according to options
   var data = dataset.slice().reverse();
@@ -276,6 +276,7 @@ function createHorizontalBarChart(selector, dataset, options) {
     .data(data)
     .enter()
     .append("text")
+    .style("font-size", "12px")
     .attr("x", function (d) {
       return x(calcPercentage(data, d.value));
     })
@@ -295,7 +296,7 @@ function createHorizontalBarChart(selector, dataset, options) {
         .append("text")
         .attr("class", "left-axis")
         .attr("x", function (d) {
-          return - (x(calcPercentage(data, d.value)) + 20);
+          return -70;
         })
         .attr("y", function (d) {
           return (y(d.label) + (y.bandwidth() / 2) + 5) - ((y.bandwidth()));
