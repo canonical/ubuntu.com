@@ -412,7 +412,7 @@ function createPieChart(selector, dataset, options) {
       return d.label.toUpperCase() === labelKey.toUpperCase();
     });
 
-    centreText = (labelData && labelData.value) ? ((labelData.value / sum) * 100) + '%' : undefined;
+    centreText = (labelData && labelData.value) ? Math.floor((labelData.value / sum) * 100) + '%' : '';
   }
 
   data = manipulateData(data, {
@@ -462,7 +462,7 @@ function createPieChart(selector, dataset, options) {
     .attr('dy', -5)
     .attr('class', 'p-heading--two');
   arcs.append("text")
-    .text((labelKey) ? labelKey.toLowerCase() : '')
+    .text((labelKey) ? labelKey : '')
     .attr('dy', 30)
     .attr('text-anchor', 'middle')
     .attr('class', 'p-pie-chart__text');
@@ -588,23 +588,81 @@ function buildCharts() {
 
   createBarChart('#language-list-chart', dummyData.languageList.dataset);
   createMap('#where-are-users', dummyData.whereUsersAre.datasets, '/static/js/world-110m.v1.json');
-  createProgressChart('#default-settings-hw', dummyData.defaultSettings.datasets.hardware);
-  createProgressChart('#restrict-add-on-hw', dummyData.restrictAddOn.datasets.hardware);
-  createProgressChart('#auto-login-hw', dummyData.autoLogin.datasets.hardware);
-  createProgressChart('#minimal-install-hw', dummyData.minimalInstall.datasets.hardware);
-  createProgressChart('#update-at-install-hw', dummyData.updateAtInstall.datasets.hardware);
+  createPieChart('#default-settings-hw', dummyData.defaultSettings.datasets.hardware, {
+    size: 184,
+    donutRadius: 76,
+    centreLabel: {
+      title: 'Physical'
+    }
+  });
+  createPieChart('#restrict-add-on-hw', dummyData.restrictAddOn.datasets.hardware, {
+    size: 184,
+    donutRadius: 76,
+    centreLabel: {
+      title: 'Physical'
+    }
+  });
+  createPieChart('#auto-login-hw', dummyData.autoLogin.datasets.hardware, {
+    size: 184,
+    donutRadius: 76,
+    centreLabel: {
+      title: 'Physical'
+    }
+  });
+  createPieChart('#minimal-install-hw', dummyData.minimalInstall.datasets.hardware, {
+    size: 184,
+    donutRadius: 76,
+    centreLabel: {
+      title: 'Physical'
+    }
+  });
+  createPieChart('#update-at-install-hw', dummyData.updateAtInstall.datasets.hardware, {
+    size: 184,
+    donutRadius: 76,
+    centreLabel: {
+      title: 'Physical'
+    }
+  });
 
-  createProgressChart('#default-settings-vm', dummyData.defaultSettings.datasets.virtual, {
-    color: '#925375'
+  createPieChart('#default-settings-vm', dummyData.defaultSettings.datasets.virtual, {
+    colors: ['#925375','#ccc','#ed764d'],
+    size: 184,
+    donutRadius: 76,
+    centreLabel: {
+      title: 'Virtual'
+    }
   });
-  createProgressChart('#restrict-add-on-vm', dummyData.restrictAddOn.datasets.virtual, {
-    color: '#925375'
+  createPieChart('#restrict-add-on-vm', dummyData.restrictAddOn.datasets.virtual, {
+    colors: ['#925375','#ccc','#ed764d'],
+    size: 184,
+    donutRadius: 76,
+    centreLabel: {
+      title: 'Virtual'
+    }
   });
-  createProgressChart('#auto-login-vm', dummyData.autoLogin.datasets.virtual, {
-    color: '#925375'
+  createPieChart('#auto-login-vm', dummyData.autoLogin.datasets.virtual, {
+    colors: ['#925375','#ccc','#ed764d'],
+    size: 184,
+    donutRadius: 76,
+    centreLabel: {
+      title: 'Virtual'
+    }
   });
-  createProgressChart('#update-at-install-vm', dummyData.updateAtInstall.datasets.virtual, {
-    color: '#925375'
+  createPieChart('#minimal-install-vm', dummyData.minimalInstall.datasets.virtual, {
+    colors: ['#925375','#ccc','#ed764d'],
+    size: 184,
+    donutRadius: 76,
+    centreLabel: {
+      title: 'Virtual'
+    }
+  });
+  createPieChart('#update-at-install-vm', dummyData.updateAtInstall.datasets.virtual, {
+    colors: ['#925375','#ccc','#ed764d'],
+    size: 184,
+    donutRadius: 76,
+    centreLabel: {
+      title: 'Virtual'
+    }
   });
 
   if (window.innerWidth >= breakpoint) {

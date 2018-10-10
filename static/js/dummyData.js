@@ -268,14 +268,17 @@ var dummyData = {
     }, ]
   },
   defaultSettings: {
+    title: 'Default Settings',
     datasets: {
       hardware: [{
+        label: 'Physical',
         show: true,
         value: 318,
       }, {
         value: 682,
       }, ],
       virtual: [{
+        label: 'Virtual',
         show: true,
         value: 589,
       }, {
@@ -284,14 +287,17 @@ var dummyData = {
     },
   },
   restrictAddOn: {
+    title: 'Default Settings',
     datasets: {
       hardware: [{
+        label: 'Physical',
         show: true,
         value: 591,
       }, {
         value: 409,
       }, ],
       virtual: [{
+        label: 'Virtual',
         show: true,
         value: 273,
       }, {
@@ -302,12 +308,14 @@ var dummyData = {
   autoLogin: {
     datasets: {
       hardware: [{
+        label: 'Physical',
         show: true,
         value: 294,
       }, {
         value: 706,
       }, ],
       virtual: [{
+        label: 'Virtual',
         show: true,
         value: 287,
       }, {
@@ -316,14 +324,17 @@ var dummyData = {
     },
   },
   minimalInstall: {
+    title: 'Minimal Install',
     datasets: {
       hardware: [{
+        label: 'Physical',
         show: true,
         value: 134,
       }, {
         value: 866,
       }, ],
       virtual: [{
+        label: 'Virtual',
         show: true,
         value: 141,
       }, {
@@ -332,14 +343,17 @@ var dummyData = {
     },
   },
   updateAtInstall: {
+    title: 'Users Who Installed Ubuntu While Upgrading',
     datasets: {
       hardware: [{
+        label: 'Physical',
         show: true,
         value: 919,
       }, {
         value: 81,
       }, ],
       virtual: [{
+        label: 'Virtual',
         show: true,
         value: 911,
       }, {
