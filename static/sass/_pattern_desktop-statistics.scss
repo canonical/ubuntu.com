@@ -1,4 +1,7 @@
 @mixin ubuntu-p-desktop-statistics {
+  $burnt-sienna: #ED764D;
+  $cannon-pink: #925375;
+  
   .p-mobile-flex-col {
     @media only screen and (max-width: $breakpoint-medium) {
       display: flex;
@@ -90,19 +93,19 @@
     height: 40px;
 
     .legend {
-      position: relative;
-      top: 4px;
+      border-radius: 50%;
       display: inline-block;
       height: 16px;
+      position: relative;
+      top: 4px;
       width: 16px;
-      border-radius: 50%;
 
       &.clean-install{
-        border: 4px solid #ed764d;
+        border: 5px solid $burnt-sienna;
       }
 
       &.upgrades {
-        border: 4px solid#925375;
+        border: 5px solid $cannon-pink;
       }
     }
   }
