@@ -244,7 +244,7 @@ function createHorizontalBarChart(selector, dataset, options) {
   // Set axis domains and range
   var y = d3.scaleBand()
     .range([height, 0])
-    .padding(0.4)
+    .padding(0.5)
     .domain(data.map(function (d) { return d.label; }));
 
   var x = d3.scaleLinear()
@@ -263,10 +263,14 @@ function createHorizontalBarChart(selector, dataset, options) {
       return ordinalColors(i);
     })
     .attr("x", -3)
-    .attr("y", function (d) {
-      return y(d.label)
+    .attr("y", function (d, i) {
+      if (i > 0) {
+        return y(d.label) - 16; 
+      } else {
+        return y(d.label); 
+      }
     })
-    .attr("height", y.bandwidth())
+    .attr("height", "16px")
     .attr("width", function (d) {
       return x(calcPercentage(data, d.value));
     });
@@ -280,8 +284,12 @@ function createHorizontalBarChart(selector, dataset, options) {
     .attr("x", function (d) {
       return x(calcPercentage(data, d.value));
     })
-    .attr("y", function (d) {
-      return y(d.label) + (y.bandwidth() / 2) + 5;
+    .attr("y", function (d, i) {
+      if (i > 0) {
+        return y(d.label) + (y.bandwidth() / 2) - 10;
+      } else {
+        return y(d.label) + (y.bandwidth() / 2) + 10;
+      }
     })
     .attr("class", "label")
     .text(function (d) {
