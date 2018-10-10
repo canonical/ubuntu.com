@@ -609,6 +609,10 @@ function buildCharts() {
     centreLabel: {
       title: 'Physical'
     }
+<<<<<<< HEAD
+  });
+  createPieChart('#auto-login-hw', dummyData.autoLogin.datasets.hardware, {
+=======
   });
   createPieChart('#auto-login-hw', dummyData.autoLogin.datasets.hardware, {
     size: 184,
@@ -618,12 +622,23 @@ function buildCharts() {
     }
   });
   createPieChart('#minimal-install-hw', dummyData.minimalInstall.datasets.hardware, {
+>>>>>>> Changed charts to piecharts
     size: 184,
     donutRadius: 76,
     centreLabel: {
       title: 'Physical'
     }
   });
+<<<<<<< HEAD
+  createPieChart('#minimal-install-hw', dummyData.minimalInstall.datasets.hardware, {
+    size: 184,
+    donutRadius: 76,
+    centreLabel: {
+      title: 'Physical'
+    }
+  });
+=======
+>>>>>>> Changed charts to piecharts
   createPieChart('#update-at-install-hw', dummyData.updateAtInstall.datasets.hardware, {
     size: 184,
     donutRadius: 76,
