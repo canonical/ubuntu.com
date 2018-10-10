@@ -542,14 +542,14 @@ function buildCharts() {
     size: 184,
     donutRadius: 76,
     centreLabel: {
-      title: 'Os Architecture'
+      title: 'amd64'
     }
   });
   createPieChart('#display-server', dummyData.displayServer.dataset, {
     size: 184,
     donutRadius: 76,
     centreLabel: {
-      title: 'Display Server'
+      title: 'X11'
     }
   });
 
