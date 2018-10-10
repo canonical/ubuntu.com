@@ -18,10 +18,10 @@
     width: 100%;
 
     .p-bar-chart__bar {
-      opacity: .8;
+      opacity: 1;
 
       &:hover {
-        opacity: 1;
+        opacity: .8;
       }
     }
 
@@ -36,10 +36,10 @@
     box-shadow: 0 1px 5px 1px rgba(17, 17, 17, 0.2);
 
     .p-progress-chart__bar {
-      opacity: .8;
+      opacity: 1;
 
       &:hover {
-        opacity: 1;
+        opacity: .8;
       }
     }
 
@@ -51,10 +51,10 @@
   .p-pie-chart {
     .p-pie-chart__wedge {
       path {
-        opacity: .8;
+        opacity: 1;
 
         &:hover {
-          opacity: 1;
+          opacity: .8;
         }
       }
     }
@@ -82,6 +82,27 @@
         &.col-6 {
           background: $color-x-light;
         }
+      }
+    }
+  }
+
+  .install-or-upgrade-legend {
+    height: 40px;
+
+    .legend {
+      position: relative;
+      top: 4px;
+      display: inline-block;
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+
+      &.clean-install{
+        border: 4px solid #ed764d;
+      }
+
+      &.upgrades {
+        border: 4px solid#925375;
       }
     }
   }
