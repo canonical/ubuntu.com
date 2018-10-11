@@ -89,10 +89,14 @@
     }
   }
 
-  .install-or-upgrade-legend {
+  .legend {
     height: 40px;
 
-    .legend {
+    &.legend__block--margin-top {
+      padding-top: 20px;
+    }
+
+    .legend__block {
       display: inline-block;
       position: relative;
       border-radius: 50%;
@@ -100,11 +104,11 @@
       height: 20px;
       top: 4px;
 
-      &.clean-install{
+      &.legend__block-scheme--burnt-sienna{
         border: 5px solid $burnt-sienna;
       }
 
-      &.upgrades {
+      &.legend__block-scheme--cannon-pink {
         border: 5px solid $cannon-pink;
       }
     }

@@ -537,7 +537,8 @@ function buildCharts() {
     size: 184,
     donutRadius: 76
   });
-  createPieChart('#firmware-hw', dummyData.firmware.dataset.hardware, {
+  createPieChart('#firmware-hw', dummyData.firmware.datasets.hardware, {
+    colors: ['#925375','#ed764d', '#ccc'],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -634,6 +635,14 @@ function buildCharts() {
 
   createPieChart('#default-settings-vm', dummyData.defaultSettings.datasets.virtual, {
     colors: ['#925375','#ccc','#ed764d'],
+    size: 184,
+    donutRadius: 76,
+    centreLabel: {
+      title: 'Virtual'
+    }
+  });
+  createPieChart('#firmware-vm', dummyData.firmware.datasets.virtual, {
+    colors: ['#925375','#ed764d', '#ccc'],
     size: 184,
     donutRadius: 76,
     centreLabel: {
