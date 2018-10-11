@@ -178,7 +178,7 @@ function createBarChart(selector, dataset, options) {
 
   // Generate axes
   g.append("g")
-    .attr("transform", "translate(0," + height + ")")
+    .attr("transform", "translate(0," + height +  ")")
     .call(d3.axisBottom(x))
     .selectAll(".tick text")
     .attr("text-anchor", "middle")
@@ -206,10 +206,31 @@ function createBarChart(selector, dataset, options) {
     .attr("y", function (d) {
       return y(calcPercentage(data, d.value))
     })
-    .attr("width", x.bandwidth())
+    .attr("width", x.bandwidth() - 24 )
     .attr("height", function (d) {
       return height - y(calcPercentage(data, d.value))
     });
+  
+    // Add text to the top of the bar
+    g.selectAll("text")
+      .data(data)
+      .enter()
+      .append("text")
+      .style("font-size", "12px")
+      .attr("x", function (d) {
+        return x(calcPercentage(data, d.value));
+      })
+      .attr("y", function (d, i) {
+        if (i > 0) {
+          return y(d.label) + (y.bandwidth() / 2) - 10;
+        } else {
+          return y(d.label) + (y.bandwidth() / 2) + 10;
+        }
+      })
+      .attr("class", "label")
+      .text(function (d) {
+        return Math.floor(calcPercentage(data, d.value), 1) + "%";
+      });
 }
 
 function createHorizontalBarChart(selector, dataset, options) {
