@@ -177,19 +177,19 @@ function createBarChart(selector, dataset, options) {
     }))]);
 
   // Generate axes
-  g.append("g")
-    .attr("transform", "translate(0," + height +  ")")
-    .call(d3.axisBottom(x))
-    .selectAll(".tick text")
-    .attr("text-anchor", "middle")
-    .call(wrapText, x.bandwidth());
+  // g.append("g")
+  //   .attr("transform", "translate(0," + height +  ")")
+  //   .call(d3.axisBottom(x))
+  //   .selectAll(".tick text")
+  //   .attr("text-anchor", "middle")
+  //   .call(wrapText, x.bandwidth());
 
-  g.append("g")
-    .call(d3.axisLeft(y)
-      .tickFormat(function (d) {
-        return d + '%'
-      })
-      .ticks(numTicks));
+  // g.append("g")
+  //   .call(d3.axisLeft(y)
+  //     .tickFormat(function (d) {
+  //       return d + '%'
+  //     })
+  //     .ticks(numTicks));
 
   // Generate bars
   g.selectAll(".p-bar-chart__bar")
@@ -218,19 +218,33 @@ function createBarChart(selector, dataset, options) {
       .append("text")
       .style("font-size", "12px")
       .attr("x", function (d) {
-        return x(calcPercentage(data, d.value));
+        return x(d.label) + (x.bandwidth() / 2) - 24;
       })
-      .attr("y", function (d, i) {
-        if (i > 0) {
-          return y(d.label) + (y.bandwidth() / 2) - 10;
-        } else {
-          return y(d.label) + (y.bandwidth() / 2) + 10;
-        }
+      .attr("dy", "-4px") // add padding to top of bar
+      .attr("y", function (d) {
+        return y(calcPercentage(data, d.value));
       })
       .attr("class", "label")
       .text(function (d) {
         return Math.floor(calcPercentage(data, d.value), 1) + "%";
       });
+      
+    // Add text to the bottom of the bar
+    g.selectAll("text.y-axis")
+        .data(data)
+        .enter()
+        .append("text")
+        .attr("class", "y-axis")
+        .attr("x", function (d) {
+          return x(d.label) + (x.bandwidth() / 2) - 24;
+        })
+        .attr("y", function (d) {
+          return height + margin.top ;
+        })
+        .attr("class", "label")
+        .text(function (d) {
+            return d.label;
+        });
 }
 
 function createHorizontalBarChart(selector, dataset, options) {
