@@ -104,10 +104,11 @@ function wrapText(text, width) {
     var word;
     var line = [];
     var lineNumber = 0;
-    var lineHeight = 1.1;
+    var lineHeight = 1.5;
     var y = text.attr("y");
     var dy = parseFloat(text.attr("dy"));
-    var tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+    var tspan = text.text(null).style("font-size", "12px")
+    .append("tspan").attr("x", -12).attr("y", y).attr("dy", dy + "em");
 
     while (word = words.pop()) {
       line.push(word);
@@ -116,7 +117,7 @@ function wrapText(text, width) {
         line.pop();
         tspan.text(line.join(" "));
         line = [word];
-        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+        tspan = text.append("tspan").attr("x", -12).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
       }
     }
   });
@@ -177,19 +178,15 @@ function createBarChart(selector, dataset, options) {
     }))]);
 
   // Generate axes
-  // g.append("g")
-  //   .attr("transform", "translate(0," + height +  ")")
-  //   .call(d3.axisBottom(x))
-  //   .selectAll(".tick text")
-  //   .attr("text-anchor", "middle")
-  //   .call(wrapText, x.bandwidth());
-
-  // g.append("g")
-  //   .call(d3.axisLeft(y)
-  //     .tickFormat(function (d) {
-  //       return d + '%'
-  //     })
-  //     .ticks(numTicks));
+  g.append("g")
+    .attr("transform", "translate(0," + height +  ")")
+    .call(d3.axisBottom(x).tickSize(0).tickPadding(16))
+    .selectAll(".tick text")
+    .attr("text-anchor", "middle")
+    .call(wrapText, x.bandwidth());
+    
+  // remove the x axis lines at the bottom
+  g.selectAll(".domain").remove();
 
   // Generate bars
   g.selectAll(".p-bar-chart__bar")
@@ -212,11 +209,12 @@ function createBarChart(selector, dataset, options) {
     });
   
     // Add text to the top of the bar
-    g.selectAll("text")
+    g.append("g")
+      .selectAll("text")
       .data(data)
       .enter()
       .append("text")
-      .style("font-size", "12px")
+      .style("font-size", "16px")
       .attr("x", function (d) {
         return x(d.label) + (x.bandwidth() / 2) - 24;
       })
@@ -228,23 +226,6 @@ function createBarChart(selector, dataset, options) {
       .text(function (d) {
         return Math.floor(calcPercentage(data, d.value), 1) + "%";
       });
-      
-    // Add text to the bottom of the bar
-    g.selectAll("text.y-axis")
-        .data(data)
-        .enter()
-        .append("text")
-        .attr("class", "y-axis")
-        .attr("x", function (d) {
-          return x(d.label) + (x.bandwidth() / 2) - 24;
-        })
-        .attr("y", function (d) {
-          return height + margin.top ;
-        })
-        .attr("class", "label")
-        .text(function (d) {
-            return d.label;
-        });
 }
 
 function createHorizontalBarChart(selector, dataset, options) {
