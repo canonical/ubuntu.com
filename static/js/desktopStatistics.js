@@ -107,8 +107,8 @@ function wrapText(text, width) {
     var lineHeight = 1.5;
     var y = text.attr("y");
     var dy = parseFloat(text.attr("dy"));
-    var tspan = text.text(null).style("font-size", "12px")
-    .append("tspan").attr("x", -12).attr("y", y).attr("dy", dy + "em");
+    var tspan = text.text(null).style("font-size", "14px")
+    .append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
 
     while (word = words.pop()) {
       line.push(word);
@@ -117,7 +117,7 @@ function wrapText(text, width) {
         line.pop();
         tspan.text(line.join(" "));
         line = [word];
-        tspan = text.append("tspan").attr("x", -12).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+        tspan = text.append("tspan").attr("x", 0).attr("y", y - 6).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
       }
     }
   });
@@ -142,9 +142,9 @@ function createBarChart(selector, dataset, options) {
   var numTicks = options.hasOwnProperty('ticks') ? options.ticks : 5;
   var margin = options.hasOwnProperty('margin') ? options.margin : {
     top: 20,
-    right: 5,
+    right: 0,
     bottom: 50,
-    left: 40
+    left: 0
   };
   var colors = options.hasOwnProperty('colors') ? options.colors : ['#ed764d', '#ccc', '#925375'];
   var ordinalColors = d3.scaleOrdinal(colors);
@@ -180,7 +180,7 @@ function createBarChart(selector, dataset, options) {
   // Generate axes
   g.append("g")
     .attr("transform", "translate(0," + height +  ")")
-    .call(d3.axisBottom(x).tickSize(0).tickPadding(16))
+    .call(d3.axisBottom(x).tickSize(0).tickPadding(3))
     .selectAll(".tick text")
     .attr("text-anchor", "middle")
     .call(wrapText, x.bandwidth());
@@ -203,7 +203,7 @@ function createBarChart(selector, dataset, options) {
     .attr("y", function (d) {
       return y(calcPercentage(data, d.value))
     })
-    .attr("width", x.bandwidth() - 24 )
+    .attr("width", x.bandwidth() )
     .attr("height", function (d) {
       return height - y(calcPercentage(data, d.value))
     });
@@ -214,9 +214,9 @@ function createBarChart(selector, dataset, options) {
       .data(data)
       .enter()
       .append("text")
-      .style("font-size", "16px")
+      .style("font-size", "14px")
       .attr("x", function (d) {
-        return x(d.label) + (x.bandwidth() / 2) - 24;
+        return x(d.label) + (x.bandwidth() / 2) -  12;
       })
       .attr("dy", "-4px") // add padding to top of bar
       .attr("y", function (d) {
