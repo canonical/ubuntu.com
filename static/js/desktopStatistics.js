@@ -108,7 +108,7 @@ function wrapText(text, width) {
     var y = text.attr("y");
     var dy = parseFloat(text.attr("dy"));
     var tspan = text.text(null).style("font-size", "14px")
-    .append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+    .append("tspan").attr("x", -12).attr("y", y).attr("dy", dy + "em");
 
     while (word = words.pop()) {
       line.push(word);
@@ -117,7 +117,7 @@ function wrapText(text, width) {
         line.pop();
         tspan.text(line.join(" "));
         line = [word];
-        tspan = text.append("tspan").attr("x", 0).attr("y", y - 6).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+        tspan = text.append("tspan").attr("x", -12).attr("y", y - 6).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
       }
     }
   });
@@ -139,7 +139,6 @@ function createBarChart(selector, dataset, options) {
   options = options || {};
   var sort = options.hasOwnProperty('sort') ? options.sort : undefined;
   var truncPoint = options.hasOwnProperty('truncPoint') ? options.truncPoint : undefined;
-  var numTicks = options.hasOwnProperty('ticks') ? options.ticks : 5;
   var margin = options.hasOwnProperty('margin') ? options.margin : {
     top: 20,
     right: 0,
@@ -180,7 +179,7 @@ function createBarChart(selector, dataset, options) {
   // Generate axes
   g.append("g")
     .attr("transform", "translate(0," + height +  ")")
-    .call(d3.axisBottom(x).tickSize(0).tickPadding(3))
+    .call(d3.axisBottom(x).tickSize(0).tickPadding(10))
     .selectAll(".tick text")
     .attr("text-anchor", "middle")
     .call(wrapText, x.bandwidth());
@@ -203,7 +202,7 @@ function createBarChart(selector, dataset, options) {
     .attr("y", function (d) {
       return y(calcPercentage(data, d.value))
     })
-    .attr("width", x.bandwidth() )
+    .attr("width", x.bandwidth() - 24 )
     .attr("height", function (d) {
       return height - y(calcPercentage(data, d.value))
     });
@@ -214,11 +213,11 @@ function createBarChart(selector, dataset, options) {
       .data(data)
       .enter()
       .append("text")
-      .style("font-size", "14px")
+      .style("font-size", "16px")
       .attr("x", function (d) {
-        return x(d.label) + (x.bandwidth() / 2) -  12;
+        return x(d.label) + (x.bandwidth() / 2) - 24;
       })
-      .attr("dy", "-4px") // add padding to top of bar
+      .attr("dy", "-10px") // add padding to top of bar
       .attr("y", function (d) {
         return y(calcPercentage(data, d.value));
       })
