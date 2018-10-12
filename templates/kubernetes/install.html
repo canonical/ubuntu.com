@@ -69,13 +69,17 @@
   </div>
 </section>
 
-<section class="p-strip--light is-bordered">
+{% include "kubernetes/_get_ebook.html" %}
+
+<section class="p-strip is-bordered">
   <div class="row">
-    <h2>Full cluster deployment instructions</h2>
-    <p>The standard Ubuntu Kubernetes installation process creates a high-availability cluster of physical or virtual machines. It works on AWS, Azure, Google Cloud, VMware, OpenStack, and Metal-as-a-Service (MAAS). There is an optional logging, monitoring and alerting capability which uses the ELK stack to organise logs from the entire cluster. Support for various storage, networking and container runtime plugins is standard.</p>
-    <p>
-      <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/install-kubernetes-with-conjure-up">Install Ubuntu Kubernetes</a>
-    </p>
+    <div class="col-8">
+      <h2>Full cluster deployment instructions</h2>
+      <p>The standard Ubuntu Kubernetes installation process creates a high-availability cluster of physical or virtual machines. It works on AWS, Azure, Google Cloud, VMware, OpenStack, and Metal-as-a-Service (MAAS). There is an optional logging, monitoring and alerting capability which uses the ELK stack to organise logs from the entire cluster. Support for various storage, networking and container runtime plugins is standard.</p>
+      <p>
+        <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/install-kubernetes-with-conjure-up">Install Ubuntu Kubernetes</a>
+      </p>
+    </div>
   </div>
 </section>
 
@@ -107,7 +111,7 @@
   </div>
 </section>
 
-<section class="p-strip--light is-bordered">
+<section class="p-strip is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>Install on a physical cluster</h2>
@@ -157,8 +161,6 @@
     </div>
   </div>
 </section>
-
-{% include "kubernetes/_get_ebook.html" %}
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_ubuntu_advantage" third_item="_cloud_further_reading" %}
 
