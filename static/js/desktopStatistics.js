@@ -145,7 +145,7 @@ function createBarChart(selector, dataset, options) {
     bottom: 50,
     left: 0
   };
-  var colors = options.hasOwnProperty('colors') ? options.colors : ['#ed764d', '#ccc', '#925375'];
+  var colors = options.hasOwnProperty('colors') ? options.colors : ['#ed764d', '#925375'];
   var ordinalColors = d3.scaleOrdinal(colors);
 
   // Create copy of dataset and manipulate according to options
