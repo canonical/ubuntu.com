@@ -81,7 +81,7 @@
     .p-strip__row {
       >.p-strip__row--item {
         padding: $spv-intra--condensed;
-        
+
         &.col-6 {
           background: $color-x-light;
         }
@@ -107,6 +107,12 @@
       &.upgrades {
         border: 5px solid $cannon-pink;
       }
+    }
+  }
+
+  #where-are-users { // sass-lint:disable-line no-ids
+    @media only screen and (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
+      transform: scale(.7);
     }
   }
 }

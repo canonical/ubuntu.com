@@ -444,11 +444,11 @@ var dummyData = {
       legend: {
         colors: [
           '#FFFFFF',
-          '#D3D3D3',
-          '#C0C0C0',
-          '#808080',
-          '#696969',
-          '#000000'
+          '#F7C3B1',
+          '#F5B29B',
+          '#F29879',
+          '#ED764D',
+          '#E95420'
         ]
       },
       countryStats: [{

@@ -281,9 +281,9 @@ function createHorizontalBarChart(selector, dataset, options) {
     .attr("x", -3)
     .attr("y", function (d, i) {
       if (i > 0) {
-        return y(d.label) - 16; 
+        return y(d.label) - 16;
       } else {
-        return y(d.label); 
+        return y(d.label);
       }
     })
     .attr("height", "16px")
@@ -311,7 +311,7 @@ function createHorizontalBarChart(selector, dataset, options) {
     .text(function (d) {
       return Math.floor(calcPercentage(data, d.value), 1) + "%";
     });
-  
+
     // Add text to the left Axis
     if (chartTitle) {
       g.selectAll("text.left-axis")
@@ -494,20 +494,20 @@ function createPieChart(selector, dataset, options) {
 
 function createMap(selector, options, mapData) {
   var options = options || {};
-  var width = document.querySelector(selector).clientWidth;
-  var height = document.querySelector(selector).clientHeight;
+  var element = document.querySelector(selector).getBoundingClientRect();
+  var width = element.width;
+  var height = element.height;
 
   function render(world) {
     //   Snapdata = country mapped to ids in objects
-    // Get the countries and ids 
+    // Get the countries and ids
     var svg = d3.select(selector);
     var g = svg.append('g');
-    var offset = width * 0.2;
+    var offset = width * 0.1;
     var projection = d3.geoNaturalEarth1()
-      .scale(width * 0.15)
-      .translate([width / 2, (height + offset) / 2])
-      .precision(.1)
-      .rotate([-10, 0]);
+      .scale(width * 0.2)
+      .translate([(width / 2), ((height + offset) / 2) ])
+      .precision(.1);
     var geoPath = d3.geoPath().projection(projection);
     var countries = topojson.feature(world, world.objects.countries).features;
     g.selectAll('path')
@@ -526,7 +526,7 @@ function createMap(selector, options, mapData) {
             var shade = colorShade(countryRatio, options.legend.colors);
             return shade;
           }
-          return "#0000FF";
+          return "#fed6ca";
         }
 
       })
