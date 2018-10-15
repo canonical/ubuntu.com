@@ -709,22 +709,20 @@ function buildCharts() {
     }
   });
 
-  createHorizontalBarChart('#partition-size', dummyData.partitionSize.dataset, dummyData.partitionType.dataset, {
-    margin: {
-      top: 20,
-      right: 20,
-      bottom: 20,
-      left: 100
-    }
-  });
+  createBarChart('#partition-type', dummyData.partitionType.dataset);
+  createHorizontalBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
+  createBarChart('#physical-disk', dummyData.physicalDisk.dataset);
 
   if (window.innerWidth >= breakpoint) {
-    createHorizontalBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
-    createBarChart('#physical-disk', dummyData.physicalDisk.dataset);
-    createBarChart('#partition-type', dummyData.partitionType.dataset);
+    createHorizontalBarChart('#partition-size', dummyData.partitionSize.dataset, dummyData.partitionType.dataset, {
+      margin: {
+        top: 20,
+        right: 20,
+        bottom: 20,
+        left: 100
+      }
+    });
   } else {
-    createHorizontalBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
-    createHorizontalBarChart('#physical-disk', dummyData.physicalDisk.dataset);
     createHorizontalBarChart('#partition-size', dummyData.partitionSize.dataset);
   }
 }
