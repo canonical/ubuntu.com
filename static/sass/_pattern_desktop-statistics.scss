@@ -92,19 +92,23 @@
   .legend {
     height: 40px;
 
-    .legend {
-      border-radius: 50%;
-      display: inline-block;
-      height: 16px;
-      position: relative;
-      top: 4px;
-      width: 16px;
+    &.legend__block--margin-top {
+      padding-top: 20px;
+    }
 
-      &.clean-install{
+    .legend__block {
+      display: inline-block;
+      position: relative;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      top: 4px;
+
+      &.legend__block-scheme--burnt-sienna{
         border: 5px solid $burnt-sienna;
       }
 
-      &.upgrades {
+      &.legend__block-scheme--cannon-pink {
         border: 5px solid $cannon-pink;
       }
     }
