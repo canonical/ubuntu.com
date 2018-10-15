@@ -85,13 +85,13 @@ function colorShade(usageRange, colors) {
     index = 0;
   } else if (usageRange > 1 && usageRange <= 5) {
     index = 1;
-  } else if (usageRange > 5 && usageRange <= 20) {
+  } else if (usageRange > 5 && usageRange <= 10) {
     index = 2;
-  } else if (usageRange > 20 && usageRange <= 35) {
+  } else if (usageRange > 10 && usageRange <= 15) {
     index = 3;
-  } else if (usageRange > 35 && usageRange <= 50) {
+  } else if (usageRange > 15 && usageRange <= 30) {
     index = 4;
-  } else if (usageRange > 50) {
+  } else if (usageRange > 30) {
     index = 5;
   }
   return colors[index];
