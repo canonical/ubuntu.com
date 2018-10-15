@@ -1,7 +1,7 @@
 @mixin ubuntu-p-desktop-statistics {
   $burnt-sienna: #ED764D;
   $cannon-pink: #925375;
-  
+
   .p-mobile-flex-col {
     @media only screen and (max-width: $breakpoint-medium) {
       display: flex;
@@ -26,10 +26,20 @@
       &:hover {
         opacity: .8;
       }
+
+    }
+
+    .label {
+      font-weight: 400;
     }
 
     .tick text {
       font-size: .625rem;
+    }
+
+    .left-axis {
+      font-size: .875rem;
+      text-align: right;
     }
   }
 
