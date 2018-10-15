@@ -7,7 +7,7 @@ var dummyData = {
     }, {
       label: 'Opt-out',
       value: 70,
-    }, ],
+    },],
   },
   realOrVirtual: {
     title: 'Real or Virtual Machine?',
@@ -24,13 +24,22 @@ var dummyData = {
   },
   firmware: {
     title: 'Firmware',
-    dataset: [{
-      label: 'BIOS',
-      value: 150,
-    }, {
-      label: 'EFI',
-      value: 72,
-    }, ],
+    datasets: {
+      hardware: [{
+        label: 'Physical',
+        show: true,
+        value: 150,
+      }, {
+        value: 72,
+      },],
+      virtual: [{
+        label: 'Virtual',
+        show: true,
+        value: 100
+      }, {
+        value: 30
+      }]
+    }
   },
   osArchitecture: {
     title: 'OS Architecture',
@@ -40,7 +49,7 @@ var dummyData = {
     }, {
       label: 'i386',
       value: 10,
-    }, ],
+    },],
   },
   displayServer: {
     title: 'Display Server',
@@ -50,7 +59,7 @@ var dummyData = {
     }, {
       label: 'Wayland',
       value: 10,
-    }, ],
+    },],
   },
   numberScreens: {
     title: 'Number of screens',
@@ -63,7 +72,7 @@ var dummyData = {
     }, {
       label: 'Three screens',
       value: 4,
-    }, ],
+    },],
   },
   numberGPUs: {
     title: 'Number of GPUs',
@@ -76,7 +85,7 @@ var dummyData = {
     }, {
       label: 'Three GPUs',
       value: 6,
-    }, ],
+    },],
   },
   installOrUpgrade: {
     title: 'Clean install or upgrade?',
@@ -86,7 +95,7 @@ var dummyData = {
     }, {
       label: 'Upgrade',
       value: 123456,
-    }, ],
+    },],
   },
   screenSizes: {
     title: 'Popular screen sizes',
@@ -157,7 +166,7 @@ var dummyData = {
     }, {
       label: '1TB+',
       value: 19,
-    }, ]
+    },]
   },
   cpus: {
     title: 'Number of CPUs',
@@ -170,7 +179,7 @@ var dummyData = {
     }, {
       label: '8+',
       value: 93,
-    }, ]
+    },]
   },
   ram: {
     title: 'Size of RAM (GB)',
@@ -186,7 +195,7 @@ var dummyData = {
     }, {
       label: '32+',
       value: 61,
-    }, ]
+    },]
   },
   pixelDensity: {
     title: 'Pixel density',
@@ -199,7 +208,7 @@ var dummyData = {
     }, {
       label: '240+',
       value: 14,
-    }, ]
+    },]
   },
   partitionType: {
     title: 'Partition type',
@@ -224,7 +233,7 @@ var dummyData = {
     }, {
       label: 'Upgrade',
       value: 3,
-    }, ]
+    },]
   },
   partitionSize: {
     title: 'Size of partitions (GB)',
@@ -249,7 +258,7 @@ var dummyData = {
     }, {
       label: '1TB+',
       value: 15,
-    }, ]
+    },]
   },
   partitionNum: {
     title: 'Number of partitions',
@@ -265,7 +274,7 @@ var dummyData = {
     }, {
       label: '4+',
       value: 5,
-    }, ]
+    },]
   },
   defaultSettings: {
     title: 'Default Settings',
@@ -276,14 +285,14 @@ var dummyData = {
         value: 318,
       }, {
         value: 682,
-      }, ],
+      },],
       virtual: [{
         label: 'Virtual',
         show: true,
         value: 589,
       }, {
         value: 411,
-      }, ],
+      },],
     },
   },
   restrictAddOn: {
@@ -295,14 +304,14 @@ var dummyData = {
         value: 591,
       }, {
         value: 409,
-      }, ],
+      },],
       virtual: [{
         label: 'Virtual',
         show: true,
         value: 273,
       }, {
         value: 727,
-      }, ],
+      },],
     },
   },
   autoLogin: {
@@ -313,14 +322,14 @@ var dummyData = {
         value: 294,
       }, {
         value: 706,
-      }, ],
+      },],
       virtual: [{
         label: 'Virtual',
         show: true,
         value: 287,
       }, {
         value: 713,
-      }, ],
+      },],
     },
   },
   minimalInstall: {
@@ -332,14 +341,14 @@ var dummyData = {
         value: 134,
       }, {
         value: 866,
-      }, ],
+      },],
       virtual: [{
         label: 'Virtual',
         show: true,
         value: 141,
       }, {
         value: 859,
-      }, ],
+      },],
     },
   },
   updateAtInstall: {
@@ -351,14 +360,14 @@ var dummyData = {
         value: 919,
       }, {
         value: 81,
-      }, ],
+      },],
       virtual: [{
         label: 'Virtual',
         show: true,
         value: 911,
       }, {
         value: 89,
-      }, ],
+      },],
     },
   },
   languageList: {
@@ -405,7 +414,7 @@ var dummyData = {
     }, {
       label: 'Japanese',
       value: 200,
-    }, ],
+    },],
   },
   howLongRunning: {
     datasets: {
@@ -414,13 +423,13 @@ var dummyData = {
         value: 19455,
       }, {
         value: 18880,
-      }, ],
+      },],
       virtual: [{
         show: true,
         value: 19662,
       }, {
         value: 19450,
-      }, ],
+      },],
     },
   },
   configure: {
@@ -430,13 +439,13 @@ var dummyData = {
         value: 20433,
       }, {
         value: 18880,
-      }, ],
+      },],
       virtual: [{
         show: true,
         value: 34566,
       }, {
         value: 19450,
-      }, ],
+      },],
     },
   },
   whereUsersAre: {
@@ -452,160 +461,160 @@ var dummyData = {
         ]
       },
       countryStats: [{
-          id: 4,
-          users: 1000,
-          total: 1000
-        },
-        {
-          id: 8,
-          users: 1000,
-          total: 4000
-        },
-        {
-          id: 24,
-          users: 100,
-          total: 100
-        },
-        {
-          id: 32,
-          users: 1000,
-          total: 5000
-        },
-        {
-          id: 36,
-          users: 2000,
-          total: 5000
-        },
-        {
-          id: 56,
-          users: 3000,
-          total: 5000
-        },
-        {
-          id: 76,
-          users: 4000,
-          total: 5000
-        },
-        {
-          id: 170,
-          users: 5000,
-          total: 25000
-        },
-        {
-          id: 188,
-          users: 1000,
-          total: 66790
-        },
-        {
-          id: 208,
-          users: 4456,
-          total: 4700
-        },
-        {
-          id: 818,
-          users: 3555,
-          total: 4000
-        },
-        {
-          id: 276,
-          users: 679304,
-          total: 4567812
-        },
-        {
-          id: 352,
-          users: 3545,
-          total: 883093
-        },
-        {
-          id: 392,
-          users: 3456,
-          total: 23734
-        },
-        {
-          id: 410,
-          users: 674848,
-          total: 1534690
-        },
-        {
-          id: 484,
-          users: 67890,
-          total: 15260
-        },
-        {
-          id: 504,
-          users: 3456,
-          total: 2300
-        },
-        {
-          id: 566,
-          users: 34567,
-          total: 230000
-        },
-        {
-          id: 591,
-          users: 345,
-          total: 2300
-        },
-        {
-          id: 604,
-          users: 67,
-          total: 2300
-        },
-        {
-          id: 616,
-          users: 56789,
-          total: 456000
-        },
-        {
-          id: 620,
-          users: 5543,
-          total: 40000
-        },
-        {
-          id: 643,
-          users: 7659,
-          total: 2300
-        },
-        {
-          id: 710,
-          users: 67,
-          total: 5000
-        },
-        {
-          id: 716,
-          users: 67,
-          total: 400
-        },
-        {
-          id: 724,
-          users: 67,
-          total: 456
-        },
-        {
-          id: 752,
-          users: 678,
-          total: 2300
-        },
-        {
-          id: 784,
-          users: 56748456,
-          total: 5000
-        },
-        {
-          id: 788,
-          users: 78,
-          total: 5000
-        },
-        {
-          id: 858,
-          users: 879,
-          total: 5000
-        },
-        {
-          id: 894,
-          users: 879,
-          total: 3490
-        }
+        id: 4,
+        users: 1000,
+        total: 1000
+      },
+      {
+        id: 8,
+        users: 1000,
+        total: 4000
+      },
+      {
+        id: 24,
+        users: 100,
+        total: 100
+      },
+      {
+        id: 32,
+        users: 1000,
+        total: 5000
+      },
+      {
+        id: 36,
+        users: 2000,
+        total: 5000
+      },
+      {
+        id: 56,
+        users: 3000,
+        total: 5000
+      },
+      {
+        id: 76,
+        users: 4000,
+        total: 5000
+      },
+      {
+        id: 170,
+        users: 5000,
+        total: 25000
+      },
+      {
+        id: 188,
+        users: 1000,
+        total: 66790
+      },
+      {
+        id: 208,
+        users: 4456,
+        total: 4700
+      },
+      {
+        id: 818,
+        users: 3555,
+        total: 4000
+      },
+      {
+        id: 276,
+        users: 679304,
+        total: 4567812
+      },
+      {
+        id: 352,
+        users: 3545,
+        total: 883093
+      },
+      {
+        id: 392,
+        users: 3456,
+        total: 23734
+      },
+      {
+        id: 410,
+        users: 674848,
+        total: 1534690
+      },
+      {
+        id: 484,
+        users: 67890,
+        total: 15260
+      },
+      {
+        id: 504,
+        users: 3456,
+        total: 2300
+      },
+      {
+        id: 566,
+        users: 34567,
+        total: 230000
+      },
+      {
+        id: 591,
+        users: 345,
+        total: 2300
+      },
+      {
+        id: 604,
+        users: 67,
+        total: 2300
+      },
+      {
+        id: 616,
+        users: 56789,
+        total: 456000
+      },
+      {
+        id: 620,
+        users: 5543,
+        total: 40000
+      },
+      {
+        id: 643,
+        users: 7659,
+        total: 2300
+      },
+      {
+        id: 710,
+        users: 67,
+        total: 5000
+      },
+      {
+        id: 716,
+        users: 67,
+        total: 400
+      },
+      {
+        id: 724,
+        users: 67,
+        total: 456
+      },
+      {
+        id: 752,
+        users: 678,
+        total: 2300
+      },
+      {
+        id: 784,
+        users: 56748456,
+        total: 5000
+      },
+      {
+        id: 788,
+        users: 78,
+        total: 5000
+      },
+      {
+        id: 858,
+        users: 879,
+        total: 5000
+      },
+      {
+        id: 894,
+        users: 879,
+        total: 3490
+      }
       ]
     }
   }

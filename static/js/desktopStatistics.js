@@ -421,12 +421,12 @@ function createPieChart(selector, dataset, options) {
   var size = options.hasOwnProperty('size') ? options.size : parentWidth;
   var ordinalColors = d3.scaleOrdinal(colors);
   var labelKey = options.hasOwnProperty('centreLabel') ? options.centreLabel.title : undefined;
+  var noStats = options.hasOwnProperty('noStats') ? options.noStats : false;
+  var centreText = undefined;
   // Create copy of dataset and manipulate according to options
   var data = dataset.slice();
 
-
-  var centreText = undefined;
-  if (labelKey) {
+  if (labelKey && !noStats) {
     // Sum all the data
     var sum = d3.sum(data, function (d) {
       return d.value;
@@ -481,13 +481,13 @@ function createPieChart(selector, dataset, options) {
 
   // Add labels to centre
   arcs.append("text")
-    .text(centreText)
+    .text((centreText) ? centreText : '')
     .attr('text-anchor', 'middle')
-    .attr('dy', -5)
+    .attr('dy', (centreText) ? -5 : 0)
     .attr('class', 'p-heading--two');
   arcs.append("text")
     .text((labelKey) ? labelKey : '')
-    .attr('dy', 30)
+    .attr('dy', (centreText) ? 30 : 0)
     .attr('text-anchor', 'middle')
     .attr('class', 'p-pie-chart__text');
 }
@@ -561,22 +561,17 @@ function buildCharts() {
     size: 184,
     donutRadius: 76
   });
-  createPieChart('#what-graphics-one-screen', dummyData.numberScreens.dataset, {
-    colors: ['#ed764d', '#ccc' ],
+  createPieChart('#firmware-hw', dummyData.firmware.datasets.hardware, {
+    colors: ['#925375','#ed764d', '#ccc'],
     size: 184,
     donutRadius: 76,
     centreLabel: {
-      title: 'One Screen'
-    }
+      title: 'Physical'
+    },
+    noStats: true
   });
-  createPieChart('#what-graphics-one-gpu', dummyData.numberGPUs.dataset, {
-    colors: ['#925375', '#ccc' ],
-    size: 184,
-    donutRadius: 76,
-    centreLabel: {
-      title: 'One GPU'
-    }
-  });
+
+
   createPieChart('#os-architecture', dummyData.osArchitecture.dataset, {
     size: 184,
     donutRadius: 76,
@@ -670,6 +665,15 @@ function buildCharts() {
     centreLabel: {
       title: 'Virtual'
     }
+  });
+  createPieChart('#firmware-vm', dummyData.firmware.datasets.virtual, {
+    colors: ['#925375','#ed764d', '#ccc'],
+    size: 184,
+    donutRadius: 76,
+    centreLabel: {
+      title: 'Virtual'
+    },
+    noStats: true
   });
   createPieChart('#restrict-add-on-vm', dummyData.restrictAddOn.datasets.virtual, {
     colors: ['#925375','#ccc','#ed764d'],
