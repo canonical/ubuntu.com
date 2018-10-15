@@ -726,7 +726,7 @@ function buildCharts() {
       colors: ['#ed764d', '#925375'],
       yTextOffset: 5,
       margin: {
-        top: 10,
+        top: 5,
         right: 20,
         bottom: 20,
         left: 150
