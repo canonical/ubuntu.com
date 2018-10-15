@@ -430,11 +430,11 @@ var dummyData = {
       legend: {
         colors: [
           '#FFFFFF',
-          '#fed6ca',
-          '#eeb2a0',
-          '#eb987a',
-          '#e26e47',
-          '#772953'
+          '#F7C3B1',
+          '#F5B29B',
+          '#F29879',
+          '#ED764D',
+          '#E95420'
         ]
       },
       countryStats: [{
