@@ -1,6 +1,12 @@
 @mixin ubuntu-p-buttons {
   // For download buttons what need full width
-  [class*='p-button'].is-wide {
+  [class*="p-button"].is-wide {
     width: 100%;
+  }
+
+  .p-button--wide {
+    @media only screen and (min-width: $breakpoint-small) {
+      width: 33%;
+    }
   }
 }
