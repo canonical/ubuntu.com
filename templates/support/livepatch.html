@@ -1,4 +1,4 @@
-{% extends "server/base_server.html" %}
+{% extends "support/base_support.html" %}
 
 {% block title %}Canonical Livepatch Service{% endblock %}
 {% block meta_description %}Automatic updates for Ubuntu 14.04, 16.04, and 18.04 LTS, reducing downtime whilst keeping on top of compliance and security.{% endblock %}
@@ -32,15 +32,18 @@
   <div class="row">
     <div class="col-10">
       <p class="u-no-max-width">
-        <a class="p-button--positive" style="width: 33%;"  href="https://auth.livepatch.canonical.com/"><span class="p-link--external">Free for up to 3 machines</span></a> All you need is an Ubuntu One account.
+        <a class="p-button--positive" style="width: 33%;"  href="https://auth.livepatch.canonical.com/"><span class="p-link--external">Free for up to 3 machines</span></a>
+        <span style="padding-left: 2rem;">All you need is an Ubuntu One account.</span>
       </p>
       <p class="u-no-max-width">
-        <a class="p-button--positive" style="width: 33%;"  href="https://"><span class="p-link--external">AWS Marketplace</span></a> Part of Ubuntu Advantage for AWS.</p>
+        <a class="p-button--positive" style="width: 33%;"  href="https://aws.amazon.com/marketplace/seller-profile?id=565feec9-3d43-413e-9760-c651546613f2"><span class="p-link--external">AWS Marketplace</span></a> <span style="padding-left: 2rem;">Part of Ubuntu Advantage for AWS.</span></p>
       <p class="u-no-max-width">
-        <a class="p-button--positive" style="width: 33%;"  href="https://"><span class="p-link--external">Azure Marketplace</span></a> Part of Ubuntu Advantage for Azure.
+        <a class="p-button--positive" style="width: 33%;"  href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Canonical.UbuntuAdvantageSupport?src=blogazure&tab=Overview"><span class="p-link--external">Azure Marketplace</span></a>
+        <span style="padding-left: 2rem;">Part of Ubuntu Advantage for Azure.</span>
       </p>
       <p class="u-no-max-width">
-        <a class="p-button--positive" style="width: 33%;"  href="https://buy.ubuntu.com"><span class="p-link--external">Buy direct</span></a> Part of Ubuntu Advantage for desktops or datacenters.
+        <a class="p-button--positive" style="width: 33%;"  href="https://buy.ubuntu.com"><span class="p-link--external">Buy direct</span></a>
+        <span style="padding-left: 2rem;">Part of Ubuntu Advantage for desktops or datacenters.</span>
       </p>
     </div>
   </div>
@@ -49,13 +52,15 @@
 <section class="p-strip--light">
   <div class="row">
     <h2 class="p-muted-heading u-align-text--center">Used by</h2>
-    <div class="col-12">
+    <div class="col-12 prefix-1">
       <ul class="row">
         <li class="col-2 mobile-col-2 tablet-col-2"><img src="{{ ASSET_SERVER_URL }}9ae8ff55-2018-logo-bloomberg.svg" alt="Bloomberg" /></li>
         <li class="col-2 mobile-col-2 tablet-col-2"><img src="{{ ASSET_SERVER_URL }}d8f890fb-logo-at%26t.svg" alt="AT&T" /></li>
         <li class="col-2 mobile-col-2 tablet-col-2"><img src="{{ ASSET_SERVER_URL }}ff209af1-2018-logo-walmart.svg" alt="Walmart" /></li>
         <li class="col-2 mobile-col-2 tablet-col-2"><img src="{{ ASSET_SERVER_URL }}d199354d-2018-logo-deutsche-telekom.svg" alt="Deutcshe Telecom" /></li>
         <li class="col-2 mobile-col-2 tablet-col-2"><img src="{{ ASSET_SERVER_URL }}675af314-2018-logo-eBay.svg" alt="eBay" /></li>
+      </ul>
+      <ul class="row u-align--center">
         <li class="col-2 mobile-col-2 tablet-col-2"><img src="{{ ASSET_SERVER_URL }}8a4d26de-2018-logo-cisco.svg" alt="Cisco" /></li>
         <li class="col-2 mobile-col-2 tablet-col-2"><img src="{{ ASSET_SERVER_URL }}94da9f2a-2018-logo-NTT.svg" alt="NTT" /></li>
         <li class="col-2 mobile-col-2 tablet-col-2"><img src="{{ ASSET_SERVER_URL }}dcde7628-2018-logo-best-buy.svg" alt="Best Buy" /></li>
@@ -67,7 +72,7 @@
 
 <section class="p-strip is-deep">
   <div class="row u-vertically-center">
-    <div class="col-3 suffic-1">
+    <div class="col-3 suffix-1">
       <img src="{{ ASSET_SERVER_URL }}0326ac7d-dena-logo.png" alt="Dena logo" />
     </div>
     <div class="col-8">
@@ -81,35 +86,11 @@
   </div>
 </section>
 
-
-<div class="p-strip is-deep is-bordered">
-  <div class="row">
-    <div class="u-height-equal p-divider">
-      <div class="col-4 p-divider__block">
-        <h3>Maximise service availability</h3>
-        <p>The Canonical Livepatch Service lets you apply kernel fixes in seconds, without restarting your system. Fewer reboots means improved service availability.</p>
-      </div>
-      <div class="col-4 p-divider__block">
-        <h3>Maintain security and compliance</h3>
-        <p>Finding a downtime window to address security vulnerabilities can be challenging. The Canonical Livepatch Service applies Linux kernel patches without rebooting, keeping your Ubuntu LTS system secure and compliant.</p>
-      </div>
-      <div class="col-4 p-divider__block">
-        <h3>Integrated service delivery</h3>
-        <p>Easily apply kernel livepatches through the Landscape system management tool or the CLI. The Canonical Livepatch Service is available as part of Ubuntu Advantage subscription.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="p-strip is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h2>How to enable the Canonical Livepatch Service</h2>
-    </div>
-  </div>
+<section class="p-strip--light">
   <div class="row">
     <div class="u-equal-height">
-      <div class="col-8 suffix-1">
+      <div class="col-7 suffix-1">
+        <h2>How to enable the Canonical Livepatch Service</h2>
         <ol class="p-list-step">
           <li class="p-list-step__item">
             <h3 class="p-list-step__title">
@@ -140,45 +121,36 @@
           </li>
         </ol>
       </div>
-      <div class="col-4">
-        <div class="p-card--highlighted">
-          <div class="p-card__header">
-            <p class="p-muted-heading">Datasheet</p>
+      <div class="col-5">
+        <div class="p-card">
+          <div class="p-heading-icon--muted">
+            <div class="p-heading-icon__header">
+              <img class="p-heading-icon__img p-heading-icon__img--small" src="{{ ASSET_SERVER_URL }}75902002-news-feed-strip-stock_ebook.svg" alt="" />
+              <h4 class="p-heading-icon__title">Datasheet</h4>
+            </div>
           </div>
-          <div class="p-card__content u-no-margin--top">
-            <h3 class="p-card__title p-heading--four"><a href="{{ ASSET_SERVER_URL }}ac3aa269-DS_Canonical_Livepatch_Service_screen-AW_08.17.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'resource', 'eventAction' : 'Livepatch datasheet', 'eventLabel' : 'from ubuntu.com/server/livepatch', 'eventValue' : undefined });">Livepatch overview&nbsp;&rsaquo;</a></h3>
-            <p>Download the datasheet for more technical details and FAQs on the Canonical Livepatch Service.</p>
-          </div>
+          <h3>Learn more about Livepatch</h3>
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">Detailed product overview</li>
+            <li class="p-list__item is-ticked">System requirements</li>
+            <li class="p-list__item is-ticked">Answers to frequently asked questions</li>
+          </ul>
+          <p>
+            <a class="p-button" href="{{ ASSET_SERVER_URL }}ac3aa269-DS_Canonical_Livepatch_Service_screen-AW_08.17.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'resource', 'eventAction' : 'Livepatch datasheet', 'eventLabel' : 'from ubuntu.com/server/livepatch', 'eventValue' : undefined });"><span class="p-link--external">Download the datasheet</span></a>
+          </p>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h2>Install in under a minute</h2>
-      <div class="u-embedded-media">
-        <iframe class="u-embedded-media__element" width="906" height="500" src="https://player.vimeo.com/video/225445183" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-      </div>
-      <p class="u-vertically-spaced"><a href="/livepatch" class="p-link--external">Sign up for the Canonical Livepatch Service</a></p>
-    </div>
-  </div>
-</div>
-
-{% include "shared/_case-study-itstrategen.html" %}
-
-<div class="p-strip--light">
+<div class="p-strip">
   <div class="row">
     <div class="u-height-equal">
       <div class="col-8">
-        <h2>Got a question?</h2>
-        <p>Exchange expertise and ideas with thousands of other IT professionals. Want to talk to other Ubuntu users straight away? Share ideas and get advice and help from our large, active community of IT professionals. As a community, we set high standards for friendliness and tolerance. We welcome your questions and contributions.</p>
-        <p><a href="https://community.ubuntu.com/t/community-support/709" class="p-link--external">Finding community support</a></p>
-      </div>
-      <div class="col-4 u-hide--small u-vertically-center u-align--center">
-        <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="150" alt="">
+        <h2>Get started with Livepatch today</h2>
+        <p>Livepatch is free to use on your own PC or server. To discuss whether Livepatch is right for your business, talk to our sales team.</p>
+        <p><a href="/support/contact-us" class="p-button">Contact us</a></p>
       </div>
     </div>
   </div>
