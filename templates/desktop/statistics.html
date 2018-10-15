@@ -52,16 +52,22 @@
     </div>
   </div>
 </section>
-<section class="p-strip--light is-shallow is-bordered">
+<section class="p-strip--light is-shallow">
   <div class="row p-mobile-flex-col u-equal-height u-vertically-center p-divider">
     <div class="col-6 p-divider-block">
-      <h3 class="p-heading--four">Clean install or upgrade?</h3>
+      <h3>Clean install or upgrade?</h3>
       <p>Users setting up a virtual machine are much more likely to perform a clean install rather than upgrading Ubuntu.</p>
     </div>
     <div class="col-6 p-divider-block">
+<<<<<<< HEAD
       <svg id="install-or-upgrade-physical" height="100"></svg>
       <svg id="install-or-upgrade-vm" height="100"></svg>
       <div class="legend">
+=======
+      <svg id="install-or-upgrade-physical" height="82"></svg>
+      <svg id="install-or-upgrade-vm" height="82"></svg>
+      <div class="install-or-upgrade-legend">
+>>>>>>> de55d54a76d6c10e6525ec1fb8df71c4d618cc73
         <ul class="p-inline-list">
           <li class="p-inline-list__item"><span class="legend__block legend__block-scheme--burnt-sienna"></span> Clean Install</li>
           <li class="p-inline-list__item"><span class="legend__block legend__block-scheme--cannon-pink"></span> Upgrades</li>
@@ -69,23 +75,21 @@
       </div>
     </div>
   </div>
-</section>  
-<section class="p-strip is-shallow is-bordered">
-  <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
+</section>
+<section class="p-strip">
+  <div class="row u-vertically-center">
     <div class="col-4">
-      <h2 class="p-heading--four">Where are Ubuntu users?</h2>
+      <h3>Where are Ubuntu users?</h3>
       <p>Location is derived from the user setting the timezone and location in the installer and not from an identifiable IP address.</p>
     </div>
-    <div class="col-8 u-align--left p-where-user-are">
-      <svg id="where-are-users" height="250" width="500"></svg>
+    <div class="col-8">
+      <svg id="where-are-users" height="324.5" width="649"></svg>
     </div>
   </div>
 </section>
 <section class="p-strip--light is-bordered">
   <div class="row u-equal-height u-vertically-center">
-    <div class="col-6">
-      <h2 class="p-heading--four">What language do they use?</h2>
-    </div>
+    <h3>What language do they use?</h3>
   </div>
   <div class="row">
     <div class="col-12 u-align--center">
@@ -100,15 +104,25 @@
   </div>
   <div class="row u-equal-height u-vertically-center p-divider">
     <div class="col-6 p-divider__block">
+<<<<<<< HEAD
       <h3 class="p-heading--four">OS architecture</h3>
       <div class="u-align--center">
+=======
+      <h3>OS architecture</h3>
+      <div class="u-align--center u-sv3">
+>>>>>>> de55d54a76d6c10e6525ec1fb8df71c4d618cc73
         <svg id="os-architecture"></svg>
       </div>
       <p>OS architecture is responsible for running programs and providing secure access to the machine's hardware.</p>
     </div>
     <div class="col-6 p-divider__block">
+<<<<<<< HEAD
       <h3 class="p-heading--four">Display server</h3>
       <div class="u-align--center">
+=======
+      <h3>Display server</h3>
+      <div class="u-align--center u-sv3">
+>>>>>>> de55d54a76d6c10e6525ec1fb8df71c4d618cc73
         <svg id="display-server"></svg>
       </div>
       <p>The display server controls the input and output of its clients to and from the rest of the operating system and the hardware.</p>
@@ -141,18 +155,22 @@
 </section>
 <section id="what-graphics" class="p-strip is-shallow is-bordered">
   <div class="row">
-    <div class="col-6">
+    <div class="col-6 u-sv3">
       <h3>What graphics setup do users have?</h3>
       <p>*Data for graphics setup only applies to physical machines</p>
     </div>
   </div>
-  <div class="row u-equal-height u-vertically-center p-divider">
+  <div class="row u-vertically-center p-divider">
     <div class="col-6 p-divider__block">
-      <img src="https://via.placeholder.com/350x150" alt="placeholder image for chart"/>
+      <div class="u-align--center u-sv3">
+        <svg id="what-graphics-one-screen"></svg>
+      </div>
       <p>*On install. This was detected on install so many users may have connected screens after the installing Ubuntu.</p>
     </div>
     <div class="col-6 p-divider__block">
-      <img src="https://via.placeholder.com/350x150" alt="placeholder image for chart"/>
+        <div class="u-align--center u-sv3">
+          <svg id="what-graphics-one-gpu"></svg>
+        </div>
       <p>Graphical Process Unit (GPU) is used to generate videos and images for displaying on screen</p>
     </div>
   </div>
@@ -226,17 +244,19 @@
     </div>
   </div>
 </section>
-<section id="configuration" class="p-strip--image is-bordered">
+<section id="configuration" class="p-strip">
   <div class="row">
     <h2>Configuring Ubuntu</h2>
     <p>Users configure Ubuntu in many different ways, we recorded some key points and this will help inform the design of future releases.</p>
   </div>
-  <div class="row">
-    <hr />
-  </div>
+</section>
+<div class="row">
+  <hr class="u-no-margin--bottom"/>
+</div>
+<section class="p-strip">
   <div class="row u-vertically-center">
     <div class="col-6">
-      <h3 class="p-heading--four">Users who installed Ubuntu using the default settings</h3>
+      <p class="p-heading--four">Users who installed Ubuntu using the default settings</p>
     </div>
     <div class="col-3 u-align--center">
       <svg id="default-settings-hw"></svg>
@@ -245,12 +265,14 @@
       <svg id="default-settings-vm"></svg>
     </div>
   </div>
-  <div class="row">
-    <hr />
-  </div>
+</section>
+<div class="row">
+  <hr class="u-no-margin--bottom"/>
+</div>
+<section class="p-strip">
   <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
     <div class="col-6">
-      <h3 class="p-heading--four">Users who opted out of at least one add-on</h3>
+      <p class="p-heading--four">Users who opted out of at least one add-on</p>
     </div>
     <div class="col-3 u-align--center">
       <svg id="restrict-add-on-hw"></svg>
@@ -259,13 +281,15 @@
       <svg id="restrict-add-on-vm"></svg>
     </div>
   </div>
-  <div class="row">
-    <hr />
-  </div>
+</section>
+<div class="row">
+  <hr class="u-no-margin--bottom"/>
+</div>
+<section class="p-strip">
   <div class="row">
     <div class="row u-equal-height u-vertically-center">
       <div class="col-6">
-        <h3 class="p-heading--four">Users who auto-login on start-up</h3>
+        <p class="p-heading--four">Users who auto-login on start-up</p>
       </div>
       <div class="col-3 u-align--center">
         <svg id="auto-login-hw"></svg>
@@ -275,12 +299,14 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <hr />
-  </div>
+</section>
+<div class="row">
+  <hr class="u-no-margin--bottom"/>
+</div>
+<section class="p-strip">
   <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
     <div class="col-6">
-      <h3 class="p-heading--four">Users who opted for the Minimal Install; a stripped down Ubuntu that contains a few basic applications</h3>
+      <p class="p-heading--four">Users who opted for the Minimal Install; a stripped down Ubuntu that contains a few basic applications</p>
     </div>
     <div class="col-3 u-align--center">
       <svg id="minimal-install-hw"></svg>
@@ -289,12 +315,14 @@
       <svg id="minimal-install-vm"></svg>
     </div>
   </div>
-  <div class="row">
-    <hr />
-  </div>
+</section>
+<div class="row">
+  <hr class="u-no-margin--bottom"/>
+</div>
+<section class="p-strip">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-6">
-      <h3 class="p-heading--four">Users who chose to download and update software whilst installing Ubuntu</h3>
+      <p class="p-heading--four">Users who chose to download and update software whilst installing Ubuntu</p>
     </div>
     <div class="col-3 u-align--center">
       <svg id="update-at-install-hw"></svg>
@@ -304,11 +332,14 @@
     </div>
   </div>
 </section>
+<div class="row">
+  <hr class="u-no-margin--bottom"/>
+</div>
 <section class="p-strip is-bordered">
     <div class="row">
-        <div class="col-6 prefix-1">
-          <img class="p-image--bordered" src="{{ ASSET_SERVER_URL }}f3f53a95-ubuntu-18.04-survey-metrics.png" alt="User survey report">
-        </div>
+      <div class="col-6 prefix-1">
+        <img class="p-image--bordered" src="{{ ASSET_SERVER_URL }}f3f53a95-ubuntu-18.04-survey-metrics.png" alt="User survey report">
+      </div>
     <div class="col-6">
       <h3>Want to know more?</h3>
       <p>Find out what Will Cooke, Engineering Director for Desktop, had to say about the methodology behind these metrics.</p>

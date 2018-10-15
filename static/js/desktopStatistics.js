@@ -104,10 +104,11 @@ function wrapText(text, width) {
     var word;
     var line = [];
     var lineNumber = 0;
-    var lineHeight = 1.1;
+    var lineHeight = 1.5;
     var y = text.attr("y");
     var dy = parseFloat(text.attr("dy"));
-    var tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+    var tspan = text.text(null).style("font-size", "12px")
+    .append("tspan").attr("x", -12).attr("y", y).attr("dy", dy + "em");
 
     while (word = words.pop()) {
       line.push(word);
@@ -116,7 +117,7 @@ function wrapText(text, width) {
         line.pop();
         tspan.text(line.join(" "));
         line = [word];
-        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+        tspan = text.append("tspan").attr("x", -12).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
       }
     }
   });
@@ -178,18 +179,14 @@ function createBarChart(selector, dataset, options) {
 
   // Generate axes
   g.append("g")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x))
+    .attr("transform", "translate(0," + height +  ")")
+    .call(d3.axisBottom(x).tickSize(0).tickPadding(16))
     .selectAll(".tick text")
     .attr("text-anchor", "middle")
     .call(wrapText, x.bandwidth());
-
-  g.append("g")
-    .call(d3.axisLeft(y)
-      .tickFormat(function (d) {
-        return d + '%'
-      })
-      .ticks(numTicks));
+    
+  // remove the x axis lines at the bottom
+  g.selectAll(".domain").remove();
 
   // Generate bars
   g.selectAll(".p-bar-chart__bar")
@@ -206,10 +203,29 @@ function createBarChart(selector, dataset, options) {
     .attr("y", function (d) {
       return y(calcPercentage(data, d.value))
     })
-    .attr("width", x.bandwidth())
+    .attr("width", x.bandwidth() - 24 )
     .attr("height", function (d) {
       return height - y(calcPercentage(data, d.value))
     });
+  
+    // Add text to the top of the bar
+    g.append("g")
+      .selectAll("text")
+      .data(data)
+      .enter()
+      .append("text")
+      .style("font-size", "16px")
+      .attr("x", function (d) {
+        return x(d.label) + (x.bandwidth() / 2) - 24;
+      })
+      .attr("dy", "-4px") // add padding to top of bar
+      .attr("y", function (d) {
+        return y(calcPercentage(data, d.value));
+      })
+      .attr("class", "label")
+      .text(function (d) {
+        return Math.floor(calcPercentage(data, d.value), 1) + "%";
+      });
 }
 
 function createHorizontalBarChart(selector, dataset, options) {
@@ -244,7 +260,7 @@ function createHorizontalBarChart(selector, dataset, options) {
   // Set axis domains and range
   var y = d3.scaleBand()
     .range([height, 0])
-    .padding(0.4)
+    .padding(0.5)
     .domain(data.map(function (d) { return d.label; }));
 
   var x = d3.scaleLinear()
@@ -263,10 +279,14 @@ function createHorizontalBarChart(selector, dataset, options) {
       return ordinalColors(i);
     })
     .attr("x", -3)
-    .attr("y", function (d) {
-      return y(d.label)
+    .attr("y", function (d, i) {
+      if (i > 0) {
+        return y(d.label) - 16;
+      } else {
+        return y(d.label);
+      }
     })
-    .attr("height", y.bandwidth())
+    .attr("height", "16px")
     .attr("width", function (d) {
       return x(calcPercentage(data, d.value));
     });
@@ -280,14 +300,18 @@ function createHorizontalBarChart(selector, dataset, options) {
     .attr("x", function (d) {
       return x(calcPercentage(data, d.value));
     })
-    .attr("y", function (d) {
-      return y(d.label) + (y.bandwidth() / 2) + 5;
+    .attr("y", function (d, i) {
+      if (i > 0) {
+        return y(d.label) + (y.bandwidth() / 2) - 10;
+      } else {
+        return y(d.label) + (y.bandwidth() / 2) + 10;
+      }
     })
     .attr("class", "label")
     .text(function (d) {
       return Math.floor(calcPercentage(data, d.value), 1) + "%";
     });
-  
+
     // Add text to the left Axis
     if (chartTitle) {
       g.selectAll("text.left-axis")
@@ -470,20 +494,20 @@ function createPieChart(selector, dataset, options) {
 
 function createMap(selector, options, mapData) {
   var options = options || {};
-  var width = document.querySelector(selector).clientWidth;
-  var height = document.querySelector(selector).clientHeight;
+  var element = document.querySelector(selector).getBoundingClientRect();
+  var width = element.width;
+  var height = element.height;
 
   function render(world) {
     //   Snapdata = country mapped to ids in objects
-    // Get the countries and ids 
+    // Get the countries and ids
     var svg = d3.select(selector);
     var g = svg.append('g');
-    var offset = width * 0.2;
+    var offset = width * 0.1;
     var projection = d3.geoNaturalEarth1()
-      .scale(width * 0.15)
-      .translate([width / 2, (height + offset) / 2])
-      .precision(.1)
-      .rotate([-10, 0]);
+      .scale(width * 0.2)
+      .translate([(width / 2), ((height + offset) / 2) ])
+      .precision(.1);
     var geoPath = d3.geoPath().projection(projection);
     var countries = topojson.feature(world, world.objects.countries).features;
     g.selectAll('path')
@@ -502,7 +526,7 @@ function createMap(selector, options, mapData) {
             var shade = colorShade(countryRatio, options.legend.colors);
             return shade;
           }
-          return "#0000FF";
+          return "#fed6ca";
         }
 
       })

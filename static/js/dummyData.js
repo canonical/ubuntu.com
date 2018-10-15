@@ -64,26 +64,26 @@ var dummyData = {
   numberScreens: {
     title: 'Number of screens',
     dataset: [{
-      label: 'Have one screen',
+      label: 'One screen',
       value: 180,
     }, {
-      label: 'Have two screens',
+      label: 'Two screens',
       value: 10,
     }, {
-      label: 'Have three screens',
+      label: 'Three screens',
       value: 4,
     },],
   },
   numberGPUs: {
     title: 'Number of GPUs',
     dataset: [{
-      label: 'Have one GPU',
+      label: 'One GPU',
       value: 170,
     }, {
-      label: 'Have two GPUs',
+      label: 'Two GPUs',
       value: 20,
     }, {
-      label: 'Have three GPUs',
+      label: 'Three GPUs',
       value: 6,
     },],
   },
@@ -453,11 +453,11 @@ var dummyData = {
       legend: {
         colors: [
           '#FFFFFF',
-          '#D3D3D3',
-          '#C0C0C0',
-          '#808080',
-          '#696969',
-          '#000000'
+          '#F7C3B1',
+          '#F5B29B',
+          '#F29879',
+          '#ED764D',
+          '#E95420'
         ]
       },
       countryStats: [{
