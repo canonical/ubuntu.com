@@ -397,12 +397,12 @@ function createPieChart(selector, dataset, options) {
   var size = options.hasOwnProperty('size') ? options.size : parentWidth;
   var ordinalColors = d3.scaleOrdinal(colors);
   var labelKey = options.hasOwnProperty('centreLabel') ? options.centreLabel.title : undefined;
+  var noStats = options.hasOwnProperty('noStats') ? options.noStats : false;
+  var centreText = undefined;
   // Create copy of dataset and manipulate according to options
   var data = dataset.slice();
 
-
-  var centreText = undefined;
-  if (labelKey) {
+  if (labelKey && !noStats) {
     // Sum all the data
     var sum = d3.sum(data, function (d) {
       return d.value;
@@ -457,13 +457,13 @@ function createPieChart(selector, dataset, options) {
 
   // Add labels to centre
   arcs.append("text")
-    .text(centreText)
+    .text((centreText) ? centreText : '')
     .attr('text-anchor', 'middle')
-    .attr('dy', -5)
+    .attr('dy', (centreText) ? -5 : 0)
     .attr('class', 'p-heading--two');
   arcs.append("text")
     .text((labelKey) ? labelKey : '')
-    .attr('dy', 30)
+    .attr('dy', (centreText) ? 30 : 0)
     .attr('text-anchor', 'middle')
     .attr('class', 'p-pie-chart__text');
 }
@@ -543,7 +543,8 @@ function buildCharts() {
     donutRadius: 76,
     centreLabel: {
       title: 'Physical'
-    }
+    },
+    noStats: true
   });
 
 
@@ -647,7 +648,8 @@ function buildCharts() {
     donutRadius: 76,
     centreLabel: {
       title: 'Virtual'
-    }
+    },
+    noStats: true
   });
   createPieChart('#restrict-add-on-vm', dummyData.restrictAddOn.datasets.virtual, {
     colors: ['#925375','#ccc','#ed764d'],
