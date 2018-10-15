@@ -478,8 +478,9 @@ function createPieChart(selector, dataset, options) {
 
 function createMap(selector, options, mapData) {
   var options = options || {};
-  var width = document.querySelector(selector).clientWidth;
-  var height = document.querySelector(selector).clientHeight;
+  var element = document.querySelector(selector).getBoundingClientRect();
+  var width = element.width;
+  var height = element.height;
 
   function render(world) {
     //   Snapdata = country mapped to ids in objects
