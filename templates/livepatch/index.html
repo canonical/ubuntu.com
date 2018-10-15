@@ -1,11 +1,11 @@
-{% extends "support/base_support.html" %}
+{% extends "livepatch/base_livepatch.html" %}
 
 {% block title %}Canonical Livepatch Service{% endblock %}
 {% block meta_description %}Automatic updates for Ubuntu 14.04, 16.04, and 18.04 LTS, reducing downtime whilst keeping on top of compliance and security.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1ObUSvkDcWOe01pmhh_Aryqxs87D8X2khbJbn3RgqZE0/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip is-deep">
+<section class="p-strip is-deep u-no-padding--bottom">
   <div class="row">
     <div class="col-6">
       <h1 style="font-weight: 100;">Canonical Livepatch Service</h1>
@@ -22,30 +22,66 @@
       </div>
     </div>
   </div>
+</section>
+<section class="p-strip is-deep">
   <div class="row">
     <div class="col-12">
-      <hr style="margin: 5rem 0;" />
+      <hr/>
     </div>
   </div>
+</section>
+
+<section class="p-strip u-no-padding--top">
   <div class="row">
     <div class="col-10">
       <h2>Subscribe to Livepatch</h2>
-      <p class="u-no-max-width">
-        <a class="p-button--positive p-button--wide"  href="https://auth.livepatch.canonical.com/"><span class="p-link--external">Free for up to 3 machines</span></a>
-        <span style="padding-left: 2rem;">All you need is an Ubuntu One account.</span>
-      </p>
-      <p class="u-no-max-width">
-        <a class="p-button--positive p-button--wide"  href="https://aws.amazon.com/marketplace/seller-profile?id=565feec9-3d43-413e-9760-c651546613f2"><span class="p-link--external">AWS Marketplace</span></a> <span style="padding-left: 2rem;">Part of Ubuntu Advantage for AWS.</span></p>
-      <p class="u-no-max-width">
-        <a class="p-button--positive p-button--wide"  href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Canonical.UbuntuAdvantageSupport?src=blogazure&tab=Overview"><span class="p-link--external">Azure Marketplace</span></a>
-        <span style="padding-left: 2rem;">Part of Ubuntu Advantage for Azure.</span>
-      </p>
-      <p class="u-no-max-width">
-        <a class="p-button--positive p-button--wide"  href="https://buy.ubuntu.com"><span class="p-link--external">Buy direct</span></a>
-        <span style="padding-left: 2rem;">Part of Ubuntu Advantage for desktops or datacenters.</span>
-      </p>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-4">
+      <p>
+        <a class="p-button--positive row"  href="https://auth.livepatch.canonical.com/"><span class="p-link--external">Free for up to 3 machines</span></a>
+      </p>
+    </div>
+    <div class="col-8">
+      <p>All you need is an Ubuntu One account.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4">
+      <p>
+        <a class="p-button--positive row"  href="https://aws.amazon.com/marketplace/seller-profile?id=565feec9-3d43-413e-9760-c651546613f2"><span class="p-link--external">AWS Marketplace</span></a>
+      </p>
+    </div>
+    <div class="col-8">
+      <p>Part of Ubuntu Advantage for AWS.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4">
+      <p>
+        <a class="p-button--positive row"  href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Canonical.UbuntuAdvantageSupport?src=blogazure&tab=Overview"><span class="p-link--external">Azure Marketplace</span></a>
+      </p>
+    </div>
+    <div class="col-8">
+      <p> Part of Ubuntu Advantage for Azure.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4">
+      <p>
+        <a class="p-button--positive row"  href="https://buy.ubuntu.com"><span class="p-link--external">Buy direct</span></a>
+      </p>
+    </div>
+    <div class="col-8">
+      <p>Part of Ubuntu Advantage for desktops or datacenters.</p>
+    </div>
+  </div>
+
 </section>
 
 <section class="p-strip--light">
@@ -70,8 +106,8 @@
 </section>
 
 <section class="p-strip is-deep">
-  <div class="row u-vertically-center">
-    <div class="col-3 suffix-1">
+  <div class="row u-equal-height">
+    <div class="col-3 suffix-1 u-vertically-center">
       <img src="{{ ASSET_SERVER_URL }}0326ac7d-dena-logo.png" alt="Dena logo" />
     </div>
     <div class="col-8">
@@ -87,57 +123,55 @@
 
 <section class="p-strip--light">
   <div class="row">
-    <div class="u-equal-height">
-      <div class="col-7 suffix-1">
-        <h2>How to enable the Canonical Livepatch Service</h2>
-        <ol class="p-list-step">
-          <li class="p-list-step__item">
-            <h3 class="p-list-step__title">
-              <span class="p-list-step__bullet">1</span>
-              Generate your credentials
-            </h3>
-            <p>Via the <a href="https://auth.livepatch.canonical.com/">Canonical Livepatch portal</a>.</p>
-          </li>
-          <li class="p-list-step__item">
-            <h3 class="p-list-step__title">
-              <span class="p-list-step__bullet">2</span>
-              Install the livepatch daemon
-            </h3>
-            <div class="p-code-snippet">
-              <input class="p-code-snippet__input" value="sudo snap install canonical-livepatch" readonly="readonly">
-              <button class="p-code-snippet__action">Copy to clipboard</button>
-            </div>
-          </li>
-          <li class="p-list-step__item">
-            <h3 class="p-list-step__title">
-              <span class="p-list-step__bullet">3</span>
-              Enable it on your system
-            </h3>
-            <div class="p-code-snippet">
-              <input class="p-code-snippet__input" value="sudo canonical-livepatch enable [TOKEN]" readonly="readonly">
-              <button class="p-code-snippet__action">Copy to clipboard</button>
-            </div>
-          </li>
-        </ol>
-      </div>
-      <div class="col-5">
-        <div class="p-card">
-          <div class="p-heading-icon--muted">
-            <div class="p-heading-icon__header">
-              <img class="p-heading-icon__img p-heading-icon__img--small" src="{{ ASSET_SERVER_URL }}75902002-news-feed-strip-stock_ebook.svg" alt="" />
-              <h4 class="p-heading-icon__title">Datasheet</h4>
-            </div>
+    <div class="col-7 suffix-1">
+      <h2>How to enable the Canonical Livepatch Service</h2>
+      <ol class="p-list-step">
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">1</span>
+            Generate your credentials
+          </h3>
+          <p>Via the <a href="https://auth.livepatch.canonical.com/">Canonical Livepatch portal</a>.</p>
+        </li>
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">2</span>
+            Install the livepatch daemon
+          </h3>
+          <div class="p-code-snippet">
+            <input class="p-code-snippet__input" value="sudo snap install canonical-livepatch" readonly="readonly">
+            <button class="p-code-snippet__action">Copy to clipboard</button>
           </div>
-          <h3>Learn more about Livepatch</h3>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">Detailed product overview</li>
-            <li class="p-list__item is-ticked">System requirements</li>
-            <li class="p-list__item is-ticked">Answers to frequently asked questions</li>
-          </ul>
-          <p>
-            <a class="p-button" href="{{ ASSET_SERVER_URL }}ac3aa269-DS_Canonical_Livepatch_Service_screen-AW_08.17.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'resource', 'eventAction' : 'Livepatch datasheet', 'eventLabel' : 'from ubuntu.com/server/livepatch', 'eventValue' : undefined });"><span class="p-link--external">Download the datasheet</span></a>
-          </p>
+        </li>
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">3</span>
+            Enable it on your system
+          </h3>
+          <div class="p-code-snippet">
+            <input class="p-code-snippet__input" value="sudo canonical-livepatch enable [TOKEN]" readonly="readonly">
+            <button class="p-code-snippet__action">Copy to clipboard</button>
+          </div>
+        </li>
+      </ol>
+    </div>
+    <div class="col-5">
+      <div class="p-card">
+        <div class="p-heading-icon--muted">
+          <div class="p-heading-icon__header">
+            <img class="p-heading-icon__img p-heading-icon__img--small" src="{{ ASSET_SERVER_URL }}75902002-news-feed-strip-stock_ebook.svg" alt="" />
+            <h4 class="p-heading-icon__title">Datasheet</h4>
+          </div>
         </div>
+        <h3>Learn more about Livepatch</h3>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Detailed product overview</li>
+          <li class="p-list__item is-ticked">System requirements</li>
+          <li class="p-list__item is-ticked">Answers to frequently asked questions</li>
+        </ul>
+        <p>
+          <a class="p-button" href="{{ ASSET_SERVER_URL }}ac3aa269-DS_Canonical_Livepatch_Service_screen-AW_08.17.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'resource', 'eventAction' : 'Livepatch datasheet', 'eventLabel' : 'from ubuntu.com/livepatch', 'eventValue' : undefined });"><span class="p-link--external">Download the datasheet</span></a>
+        </p>
       </div>
     </div>
   </div>
@@ -149,7 +183,7 @@
       <div class="col-8">
         <h2>Get started with Livepatch today</h2>
         <p>Livepatch is free to use on your own PC or server. To discuss whether Livepatch is right for your business, talk to our sales team.</p>
-        <p><a href="/support/contact-us" class="p-button">Contact us</a></p>
+        <p class="u-no-margin--bottom"><a href="/support/contact-us" class="p-button u-no-margin--bottom">Contact us</a></p>
       </div>
     </div>
   </div>
