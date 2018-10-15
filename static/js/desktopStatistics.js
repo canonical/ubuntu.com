@@ -107,8 +107,8 @@ function wrapText(text, width) {
     var lineHeight = 1.5;
     var y = text.attr("y");
     var dy = parseFloat(text.attr("dy"));
-    var tspan = text.text(null).style("font-size", "12px")
-    .append("tspan").attr("x", -12).attr("y", y).attr("dy", dy + "em");
+    var tspan = text.text(null).style("font-size", "14px")
+      .append("tspan").attr("x", -12).attr("y", y).attr("dy", dy + "em");
 
     while (word = words.pop()) {
       line.push(word);
@@ -117,7 +117,7 @@ function wrapText(text, width) {
         line.pop();
         tspan.text(line.join(" "));
         line = [word];
-        tspan = text.append("tspan").attr("x", -12).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+        tspan = text.append("tspan").attr("x", -12).attr("y", y - 6).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
       }
     }
   });
@@ -139,14 +139,13 @@ function createBarChart(selector, dataset, options) {
   options = options || {};
   var sort = options.hasOwnProperty('sort') ? options.sort : undefined;
   var truncPoint = options.hasOwnProperty('truncPoint') ? options.truncPoint : undefined;
-  var numTicks = options.hasOwnProperty('ticks') ? options.ticks : 5;
   var margin = options.hasOwnProperty('margin') ? options.margin : {
     top: 20,
-    right: 5,
+    right: 0,
     bottom: 50,
-    left: 40
+    left: 0
   };
-  var colors = options.hasOwnProperty('colors') ? options.colors : ['#ed764d', '#ccc', '#925375'];
+  var colors = options.hasOwnProperty('colors') ? options.colors : ['#ed764d', '#925375'];
   var ordinalColors = d3.scaleOrdinal(colors);
 
   // Create copy of dataset and manipulate according to options
@@ -179,12 +178,12 @@ function createBarChart(selector, dataset, options) {
 
   // Generate axes
   g.append("g")
-    .attr("transform", "translate(0," + height +  ")")
-    .call(d3.axisBottom(x).tickSize(0).tickPadding(16))
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x).tickSize(0).tickPadding(10))
     .selectAll(".tick text")
     .attr("text-anchor", "middle")
     .call(wrapText, x.bandwidth());
-    
+
   // remove the x axis lines at the bottom
   g.selectAll(".domain").remove();
 
@@ -203,29 +202,29 @@ function createBarChart(selector, dataset, options) {
     .attr("y", function (d) {
       return y(calcPercentage(data, d.value))
     })
-    .attr("width", x.bandwidth() - 24 )
+    .attr("width", x.bandwidth() - 24)
     .attr("height", function (d) {
       return height - y(calcPercentage(data, d.value))
     });
-  
-    // Add text to the top of the bar
-    g.append("g")
-      .selectAll("text")
-      .data(data)
-      .enter()
-      .append("text")
-      .style("font-size", "16px")
-      .attr("x", function (d) {
-        return x(d.label) + (x.bandwidth() / 2) - 24;
-      })
-      .attr("dy", "-4px") // add padding to top of bar
-      .attr("y", function (d) {
-        return y(calcPercentage(data, d.value));
-      })
-      .attr("class", "label")
-      .text(function (d) {
-        return Math.floor(calcPercentage(data, d.value), 1) + "%";
-      });
+
+  // Add text to the top of the bar
+  g.append("g")
+    .selectAll("text")
+    .data(data)
+    .enter()
+    .append("text")
+    .style("font-size", "16px")
+    .attr("x", function (d) {
+      return x(d.label) + (x.bandwidth() / 2) - 24;
+    })
+    .attr("dy", "-10px") // add padding to top of bar
+    .attr("y", function (d) {
+      return y(calcPercentage(data, d.value));
+    })
+    .attr("class", "label")
+    .text(function (d) {
+      return Math.floor(calcPercentage(data, d.value), 1) + "%";
+    });
 }
 
 function createHorizontalBarChart(selector, dataset, options) {
@@ -234,12 +233,12 @@ function createHorizontalBarChart(selector, dataset, options) {
   var sort = options.hasOwnProperty('sort') ? options.sort : undefined;
   var truncPoint = options.hasOwnProperty('truncPoint') ? options.truncPoint : undefined;
   var margin = options.hasOwnProperty('margin') ? options.margin : {
-    top: 20,
+    top: 5,
     right: 20,
     bottom: 20,
     left: 60
   };
-  var colors = options.hasOwnProperty('colors') ? options.colors : ['#ed764d', '#925375', '#ccc' ];
+  var colors = options.hasOwnProperty('colors') ? options.colors : ['#ed764d', '#925375', '#ccc'];
   var ordinalColors = d3.scaleOrdinal(colors);
   var chartTitle = options.hasOwnProperty('title') ? options.title : undefined;
 
@@ -280,10 +279,10 @@ function createHorizontalBarChart(selector, dataset, options) {
     })
     .attr("x", -3)
     .attr("y", function (d, i) {
-      if (i > 0) {
-        return y(d.label) - 16; 
+      if (chartTitle && i > 0) {
+        return y(d.label) - 16;
       } else {
-        return y(d.label); 
+        return y(d.label) - (margin.top / 2);
       }
     })
     .attr("height", "16px")
@@ -301,36 +300,58 @@ function createHorizontalBarChart(selector, dataset, options) {
       return x(calcPercentage(data, d.value));
     })
     .attr("y", function (d, i) {
-      if (i > 0) {
-        return y(d.label) + (y.bandwidth() / 2) - 10;
+      if (chartTitle) {
+        if (i > 0) {
+          return y(d.label) + (y.bandwidth() / 2) - 10;
+        } else {
+          return y(d.label) + (y.bandwidth() / 2) + 10;
+        }
       } else {
-        return y(d.label) + (y.bandwidth() / 2) + 10;
+        return y(d.label) + (y.bandwidth() / 2) + (margin.top / 2);
       }
     })
     .attr("class", "label")
     .text(function (d) {
       return Math.floor(calcPercentage(data, d.value), 1) + "%";
     });
-  
-    // Add text to the left Axis
-    if (chartTitle) {
-      g.selectAll("text.left-axis")
-        .data(data)
-        .enter()
-        .append("text")
-        .attr("class", "left-axis")
-        .attr("x", function (d) {
-          return -70;
-        })
-        .attr("y", function (d) {
-          return (y(d.label) + (y.bandwidth() / 2) + 5) - ((y.bandwidth()));
-        })
-        .attr("class", "label")
-        .text(function (d, i) {
-          if (i % 2 === 0)
-            return chartTitle;
-        });
-    }
+
+  if (chartTitle) {
+    // Add text to the left Axis but only one per group
+    g.selectAll("text.left-axis")
+      .data(data)
+      .enter()
+      .append("text")
+      .attr("class", "left-axis")
+      .attr("x", function (d) {
+        return -70;
+      })
+      .attr("y", function (d) {
+        return (y(d.label) + (y.bandwidth() / 2) + 5) - ((y.bandwidth()));
+      })
+      .attr("class", "label")
+      .text(function (d, i) {
+        if (i % 2 === 0)
+          return chartTitle;
+      });
+  } else {
+    // Generate the generic horizontal charts
+    // generate y axis text labels
+    g.append("g")
+      .call(d3.axisLeft(y).tickSize(0))
+      .selectAll(".tick text")
+      .attr("text-anchor", "left")
+      .call(wrapText, margin.left)
+      .attr("transform", function () {
+        var marginRight = 10;
+        var fontSize = window.getComputedStyle(this).fontSize;
+        var textHeight = this.getBBox().height - 1;
+        var yPos = (-textHeight / 2) + (parseInt(fontSize, 10) / 2);
+
+        return "translate(-" + marginRight + "," + yPos + ")";
+      });
+    // Remove the y axis border line
+    g.selectAll(".domain").remove();
+  }
 }
 
 function createOrderedList(target, dataset, options) {
@@ -624,8 +645,6 @@ function buildCharts() {
   createBarChart('#size-of-ram', dummyData.ram.dataset);
   createBarChart('#pixel-density', dummyData.pixelDensity.dataset);
   createBarChart('#partition-number', dummyData.partitionNum.dataset);
-
-  createBarChart('#language-list-chart', dummyData.languageList.dataset);
   createMap('#where-are-users', dummyData.whereUsersAre.datasets, '/static/js/world-110m.v1.json');
   createPieChart('#default-settings-hw', dummyData.defaultSettings.datasets.hardware, {
     size: 184,
@@ -664,7 +683,7 @@ function buildCharts() {
   });
 
   createPieChart('#default-settings-vm', dummyData.defaultSettings.datasets.virtual, {
-    colors: ['#925375','#ccc','#ed764d'],
+    colors: ['#925375', '#ccc', '#ed764d'],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -672,7 +691,7 @@ function buildCharts() {
     }
   });
   createPieChart('#restrict-add-on-vm', dummyData.restrictAddOn.datasets.virtual, {
-    colors: ['#925375','#ccc','#ed764d'],
+    colors: ['#925375', '#ccc', '#ed764d'],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -680,7 +699,7 @@ function buildCharts() {
     }
   });
   createPieChart('#auto-login-vm', dummyData.autoLogin.datasets.virtual, {
-    colors: ['#925375','#ccc','#ed764d'],
+    colors: ['#925375', '#ccc', '#ed764d'],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -688,7 +707,7 @@ function buildCharts() {
     }
   });
   createPieChart('#minimal-install-vm', dummyData.minimalInstall.datasets.virtual, {
-    colors: ['#925375','#ccc','#ed764d'],
+    colors: ['#925375', '#ccc', '#ed764d'],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -696,7 +715,7 @@ function buildCharts() {
     }
   });
   createPieChart('#update-at-install-vm', dummyData.updateAtInstall.datasets.virtual, {
-    colors: ['#925375','#ccc','#ed764d'],
+    colors: ['#925375', '#ccc', '#ed764d'],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -705,25 +724,57 @@ function buildCharts() {
   });
 
   if (window.innerWidth >= breakpoint) {
+    createBarChart('#language-list-chart', dummyData.languageList.dataset);
     createHorizontalBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
     createBarChart('#physical-disk', dummyData.physicalDisk.dataset);
     createBarChart('#partition-type', dummyData.partitionType.dataset);
-    createHorizontalBarChart('#partition-size', dummyData.partitionSize.dataset);
+    createHorizontalBarChart('#partition-size', dummyData.partitionSize.dataset, {
+      margin: {
+        top: 5,
+        right: 20,
+        bottom: 20,
+        left: 150
+      }
+    });
   } else {
+    createHorizontalBarChart('#language-list-chart', dummyData.languageList.dataset, {
+      colors: ['#ed764d', '#925375'],
+      yTextOffset: 5,
+      margin: {
+        top: 5,
+        right: 20,
+        bottom: 20,
+        left: 150
+      }
+    });
     createHorizontalBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
-    createHorizontalBarChart('#physical-disk', dummyData.physicalDisk.dataset);
+    createHorizontalBarChart('#physical-disk', dummyData.physicalDisk.dataset, {
+      margin: {
+        top: 10,
+        right: 20,
+        bottom: 20,
+        left: 100
+      }
+    });
     createHorizontalBarChart(
       '#partition-type',
       dummyData.partitionType.dataset, {
         margin: {
-          top: 20,
+          top: 5,
           right: 20,
           bottom: 20,
-          left: 100
+          left: 230
         }
       }
     );
-    createHorizontalBarChart('#partition-size', dummyData.partitionSize.dataset);
+    createHorizontalBarChart('#partition-size', dummyData.partitionSize.dataset, {
+      margin: {
+        top: 5,
+        right: 20,
+        bottom: 20,
+        left: 100
+      }
+    });
   }
 }
 

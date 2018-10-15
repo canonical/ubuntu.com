@@ -370,9 +370,6 @@ var dummyData = {
       label: 'Portuguese (Brazil)',
       value: 800,
     }, {
-      label: 'Turkish',
-      value: 60,
-    }, {
       label: 'French',
       value: 400,
     }, {
@@ -385,20 +382,11 @@ var dummyData = {
       label: 'Russian',
       value: 500,
     }, {
-      label: 'Dutch',
-      value: 70,
-    }, {
       label: 'Spanish',
       value: 900,
     }, {
-      label: 'Hungarian',
-      value: 80,
-    }, {
       label: 'German',
       value: 600,
-    }, {
-      label: 'Korean',
-      value: 90,
     }, {
       label: 'Polish',
       value: 100,
