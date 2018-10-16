@@ -620,7 +620,7 @@ function buildCharts() {
     }
   );
   createBarChart('#number-of-cpus', dummyData.cpus.dataset, {
-    colors: ['#ed764d', '#925375'],
+    colors: ['#E95420', '#772953' ],
     margin: {
       top: 20,
       right: 20,
@@ -629,7 +629,7 @@ function buildCharts() {
     }
   });
   createBarChart('#size-of-ram', dummyData.ram.dataset, {
-    colors: ['#ed764d', '#925375'],
+    colors: ['#E95420', '#772953' ],
     margin: {
       top: 20,
       right: 20,
