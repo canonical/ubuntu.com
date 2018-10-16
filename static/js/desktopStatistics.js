@@ -535,6 +535,23 @@ function clearCharts() {
 function buildCharts() {
   var breakpoint = 875;
 
+  createPieChart('#what-graphics-one-screen', dummyData.numberScreens.dataset, {
+    colors: ['#E95420', '#ccc' ],
+    size: 184,
+    donutRadius: 76,
+    centreLabel: {
+      title: 'One Screen'
+    }
+  });
+  createPieChart('#what-graphics-one-gpu', dummyData.numberGPUs.dataset, {
+    colors: ['#772953', '#ccc' ],
+    size: 184,
+    donutRadius: 76,
+    centreLabel: {
+      title: 'One GPU'
+    }
+  });
+
   createPieChart('#opt-in', dummyData.optIn.dataset, {
     size: 184,
     donutRadius: 76,
