@@ -28,16 +28,16 @@ var dummyData = {
       hardware: [{
         label: 'Physical',
         show: true,
-        value: 150,
+        value: 54.64
       }, {
-        value: 72,
+        value: 45.36,
       },],
       virtual: [{
         label: 'Virtual',
         show: true,
-        value: 100
+        value: 92.63,
       }, {
-        value: 30
+        value: 7.37
       }]
     }
   },
@@ -45,20 +45,29 @@ var dummyData = {
     title: 'OS Architecture',
     dataset: [{
       label: 'amd64',
-      value: 10,
+      value: 3500000,
     }, {
       label: 'i386',
+      value: 49500,
+    },{
+      label: 'arm64',
+      value: 1127,
+    },{
+      label: 'armhf',
+      value: 77,
+    },{
+      label: 'ppc64el',
       value: 10,
-    },],
+    }],
   },
   displayServer: {
     title: 'Display Server',
     dataset: [{
       label: 'X11',
-      value: 100,
+      value: 4000000,
     }, {
       label: 'Wayland',
-      value: 10,
+      value: 17000,
     },],
   },
   numberScreens: {
