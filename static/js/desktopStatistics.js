@@ -234,7 +234,7 @@ function createHorizontalBarChart(selector, dataset, options) {
   var truncPoint = options.hasOwnProperty('truncPoint') ? options.truncPoint : undefined;
   var margin = options.hasOwnProperty('margin') ? options.margin : {
     top: 20,
-    right: 20,
+    right: 30,
     bottom: 20,
     left: 60
   };
@@ -710,18 +710,23 @@ function buildCharts() {
   });
 
   createBarChart('#partition-type', dummyData.partitionType.dataset);
-  createHorizontalBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
+  createHorizontalBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset, {
+    margin: {
+      top: 20,
+      right: 20,
+      bottom: 20,
+      left: 100
+    }
+  });
   createBarChart('#physical-disk', dummyData.physicalDisk.dataset);
   
   createHorizontalBarChart('#partition-size', dummyData.partitionSize.dataset);
   if (window.innerWidth >= breakpoint) {
-    createHorizontalBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
     createBarChart('#physical-disk', dummyData.physicalDisk.dataset, {
       colors: ['#E95420', '#772953']
     });
     createBarChart('#partition-type', dummyData.partitionType.dataset);
   } else {
-    createHorizontalBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
     createHorizontalBarChart('#physical-disk', dummyData.physicalDisk.dataset);
     createHorizontalBarChart(
       '#partition-type',
