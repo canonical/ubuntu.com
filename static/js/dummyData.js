@@ -149,23 +149,14 @@ var dummyData = {
   physicalDisk: {
     title: 'Physical disk (GB)',
     dataset: [{
-      label: '<30',
-      value: 255,
+      label: '1-3',
+      value: 1876,
     }, {
-      label: '30-99',
-      value: 154,
+      label: '4-6',
+      value: 282,
     }, {
-      label: '100-249',
-      value: 211,
-    }, {
-      label: '250-499',
-      value: 168,
-    }, {
-      label: '500-999',
+      label: '8+',
       value: 93,
-    }, {
-      label: '1TB+',
-      value: 19,
     },]
   },
   cpus: {

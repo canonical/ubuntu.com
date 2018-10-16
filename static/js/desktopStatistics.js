@@ -710,7 +710,9 @@ function buildCharts() {
 
   if (window.innerWidth >= breakpoint) {
     createHorizontalBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
-    createBarChart('#physical-disk', dummyData.physicalDisk.dataset);
+    createBarChart('#physical-disk', dummyData.physicalDisk.dataset, {
+      colors: ['#E95420', '#772953']
+    });
     createBarChart('#partition-type', dummyData.partitionType.dataset);
     createHorizontalBarChart('#partition-size', dummyData.partitionSize.dataset);
   } else {
