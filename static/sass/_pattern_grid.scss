@@ -1,19 +1,46 @@
 @mixin ubuntu-p-grid {
-  .mobile-col-2:nth-of-type(2n+1) {
+  .mobile-col-2:nth-of-type(2n + 1) {
     @media (max-width: $breakpoint-small - 1px) {
       margin-left: 0;
     }
   }
 
-  .tablet-col-2:nth-of-type(3n+1) {
+  .tablet-col-2:nth-of-type(3n + 1) {
     @media (min-width: $breakpoint-small) and (max-width: $breakpoint-medium - 1px) {
       margin-left: 0;
     }
   }
 
-  .col-2:nth-of-type(6n+1) {
+  .col-2:nth-of-type(6n + 1) {
     @media (min-width: $breakpoint-large) {
       margin-left: 0;
+    }
+  }
+
+  // XXX Fix for inline image SVGs
+  .p-fluid-grid--centered {
+    justify-content: space-around;
+  }
+
+  .p-fluid-grid,
+  .p-fluid-grid--centered {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .p-logo-image {
+    align-items: center;
+    display: flex;
+  }
+
+  .p-fluid-grid__item--small {
+    min-width: 150px;
+    width: 21.875%;
+
+    @media screen and (min-width: 620px) {
+      width: 15.04854%;
     }
   }
 }
