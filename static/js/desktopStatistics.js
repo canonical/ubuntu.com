@@ -107,7 +107,7 @@ function wrapText(text, width) {
     var lineHeight = 1.5;
     var y = text.attr("y");
     var dy = parseFloat(text.attr("dy"));
-    var tspan = text.text(null).style("font-size", "12px")
+    var tspan = text.text(null).style("font-size", "16px")
     .append("tspan").attr("x", -12).attr("y", y).attr("dy", dy + "em");
 
     while (word = words.pop()) {
@@ -139,7 +139,6 @@ function createBarChart(selector, dataset, options) {
   options = options || {};
   var sort = options.hasOwnProperty('sort') ? options.sort : undefined;
   var truncPoint = options.hasOwnProperty('truncPoint') ? options.truncPoint : undefined;
-  var numTicks = options.hasOwnProperty('ticks') ? options.ticks : 5;
   var margin = options.hasOwnProperty('margin') ? options.margin : {
     top: 20,
     right: 5,
@@ -615,8 +614,24 @@ function buildCharts() {
       title: "VMs"
     }
   );
-  createBarChart('#number-of-cpus', dummyData.cpus.dataset);
-  createBarChart('#size-of-ram', dummyData.ram.dataset);
+  createBarChart('#number-of-cpus', dummyData.cpus.dataset, {
+    colors: ['#E95420', '#772953' ],
+    margin: {
+      top: 20,
+      right: 20,
+      bottom: 30,
+      left: -10
+    }
+  });
+  createBarChart('#size-of-ram', dummyData.ram.dataset, {
+    colors: ['#E95420', '#772953' ],
+    margin: {
+      top: 20,
+      right: 20,
+      bottom: 30,
+      left: -10
+    }
+  });
   createBarChart('#pixel-density', dummyData.pixelDensity.dataset);
   createBarChart('#partition-number', dummyData.partitionNum.dataset);
 
