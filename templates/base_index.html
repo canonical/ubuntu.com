@@ -146,8 +146,10 @@
         }
 
         // find any takeovers that match the users language
-        var query = '.js-takeover[data-lang*="'+languageClass+'"]';
-        var takeoversFiltered = (document.querySelectorAll(query));
+        var queryLang = ".js-takeover[data-lang*='"+languageClass+"']";
+        var queryAll = ".js-takeover[data-lang*='all']";
+        var takeoversFiltered = (document.querySelectorAll([queryLang,queryAll].join(',')));
+
         takeoversFiltered = (takeoversFiltered.length) ? takeoversFiltered : defaultTakeovers;
 
         if (!localStorage.getItem('TAKEOVER')) {

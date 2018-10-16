@@ -3,14 +3,14 @@
 
     &__container {
       @media only screen and (min-width: $breakpoint-medium) {
-        margin-top: 10.6rem;
         margin-bottom: 10.6rem;
+        margin-top: 10.6rem;
       }
     }
 
     &__credit {
       @media only screen and (min-width: $breakpoint-medium) {
-        background-color: rgba(0, 0, 0, .6);
+        background-color: rgba(0, 0, 0, .6); // sass-lint:disable-line no-color-literals
         bottom: 0;
         color: $color-light;
         margin-top: -$sp-xxx-large;

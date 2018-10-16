@@ -1,3 +1,7 @@
+$ubuntu-logo-svg-width: 81 * $px; // width in rems
+$ubuntu-logo-width--desktop: $ubuntu-logo-svg-width + 2 * $grid-margin-width;
+$ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
+
 @mixin ubuntu-p-navigation {
   html {
     overflow-x: hidden !important; // prevent horizontal overflow full width breakout
@@ -34,15 +38,14 @@
 
       &::after {
         @include vf-icon-chevron(vf-url-friendly-color($color-mid-light));
+        background-position: top 52% right 50%;
         background-repeat: no-repeat;
         background-size: .75rem;
-        background-position: top 52% right 50%;
         content: "";
         height: 100%;
         pointer-events: none;
         position: absolute;
         right: 0;
-
         top: 0;
         transition: transform .1s;
         width: 2rem;
@@ -113,8 +116,8 @@
 
     & &__link-anchor {
       @include vf-animation(all, brisk, in);
-      display: block;
       color: $color-light;
+      display: block;
 
       @media (max-width: $breakpoint-navigation-threshold) {
         padding: $spv-intra--expanded $grid-margin-width $spv-intra--expanded $grid-margin-width;
@@ -184,14 +187,13 @@
       z-index: 3;
 
       @media (max-width: $breakpoint-x-small - 1) {
-        padding-top: $sp-small / 2;
         padding-bottom: $sp-medium;
+        padding-top: $sp-small / 2;
       }
 
       &__banner {
-        display: inline-block;
-        float: left;
         background-color: $color-brand;
+        float: left;
         font-weight: 300;
 
         &:hover {
@@ -201,9 +203,9 @@
 
       &__logo {
         @extend %paragraph;
-        display: flex;
         align-items: center;
         color: $color-x-light;
+        display: flex;
         margin-bottom: $sp-unit * 2 - map-get($nudges, nudge--p);
         position: relative;
 
@@ -213,7 +215,7 @@
         }
 
         a {
-          border-left: 1px solid rgba(247, 247, 247, .3);
+          border-left: 1px solid rgba(247, 247, 247, .3); // sass-lint:disable-line no-color-literals
           color: $color-light !important;
           padding-left: $sp-small;
 
@@ -229,24 +231,24 @@
           display: none;
 
           @media only screen and (min-width: $breakpoint-navigation-threshold) {
-            display: block;
             background-color: $color-light;
-            opacity: .3;
+            display: block;
             left: $sph-intra;
+            opacity: .3;
             right: $sph-intra - $circle-of-friends-compensation;
           }
         }
 
         @media only screen and (min-width: $breakpoint-navigation-threshold) {
-          width: $ubuntu-logo-svg-width + 2 * $sph-intra - $circle-of-friends-compensation;
           padding-left: $sph-intra;
           padding-right: $sph-intra - $circle-of-friends-compensation;
+          width: $ubuntu-logo-svg-width + 2 * $sph-intra - $circle-of-friends-compensation;
         }
       }
 
       .breadcrumbs {
         &--secondary {
-          @extend .p-inline-list;
+          @extend .p-inline-list; // sass-lint:disable-line placeholder-in-extend
           display: flex;
           flex-wrap: wrap;
           margin-bottom: 0;
@@ -310,8 +312,8 @@
 
     &__toggle--open,
     &__toggle--close {
-      font-size: .875rem;
       color: $color-light !important;
+      font-size: .875rem;
 
       @media (max-width: $breakpoint-x-small - 1) {
         margin-right: $grid-margin-width / 1.5 !important;
@@ -324,9 +326,9 @@
       }
 
       @media (max-width: $breakpoint-navigation-threshold) {
+        align-items: stretch;
         display: flex;
         justify-content: center;
-        align-items: stretch;
         order: 2;
 
         .p-navigation__dropdown-link {
@@ -346,8 +348,8 @@
 
     &__search {
       @media (max-width: $breakpoint-navigation-threshold) {
-        order: 1;
         margin-top: $sp-medium !important;
+        order: 1;
       }
     }
 
@@ -367,14 +369,14 @@
   }
 
   .dropdown-window-overlay {
-    width: 100%;
+    background-color: rgba(17, 17, 17, .4); // sass-lint:disable-line no-color-literals
     height: 100%;
-    top: 0;
-    background-color: rgba(17, 17, 17, .4);
     opacity: 1;
     position: fixed;
-    z-index: 3;
+    top: 0;
     transition: opacity .5s ease-in-out;
+    width: 100%;
+    z-index: 3;
   }
 
   .dropdown-window {
@@ -468,7 +470,7 @@ h2,
   flex-direction: column;
   margin-bottom: $spv-inter--condensed-scaleable;
   padding: $spv-intra--scaleable - $px;
-  transition: all .2s;
+  transition: all .2s;  // sass-lint:disable-line no-transition-all
 }
 
 .u-hide--nav-threshold-down {
@@ -485,10 +487,10 @@ h2,
 
 .p-logomark {
   display: inline-block;
+  margin-bottom: $spv-intra--scaleable;
+  margin-right: $sph-intra--condensed;
   max-height: 4 * $sp-unit;
   max-width: 4 * $sp-unit;
-  margin-right: $sph-intra--condensed;
-  margin-bottom: $spv-intra--scaleable;
   position: relative;
   top: .1rem;
 }

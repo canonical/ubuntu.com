@@ -1,22 +1,25 @@
 @mixin p-takeover-private-cloud-economics {
+  $private-cloud-background: #0d5777;
+  $private-cloud-background-gradent: rgba(38, 38, 38, .9);
+
   .p-takeover--private-cloud-economics {
-    background-image: linear-gradient(-36deg, #111 0%, rgba(38, 38, 38, .9) 100%);
-    background-color: #0d5777;
+    background-color: $private-cloud-background;
+    background-image: linear-gradient(-36deg, $color-dark 0%, $private-cloud-background-gradent 100%);
 
     @media (min-width: $breakpoint-medium) {
-      background-image: url('#{$assets-path}13fdbc5b-graph.png'), linear-gradient(-36deg, #111 0%, rgba(38, 38, 38, .9) 100%);
-      background-repeat: no-repeat;
+      background-image: url('#{$assets-path}13fdbc5b-graph.png'), linear-gradient(-36deg, $color-dark 0%, $private-cloud-background-gradent 100%);
       background-position: right bottom;
+      background-repeat: no-repeat;
     }
 
     .p-takeover__title {
-      font-weight: 100;
       color: $color-x-light;
+      font-weight: 100;
     }
 
     .p-takeover__text {
-      font-size: 1rem;
       color: $color-x-light;
+      font-size: 1rem;
 
       @media (min-width: $breakpoint-medium) {
         font-size: 1.25rem;

@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-12">
-    <h2 class="p-muted-heading u-align--center">A selection of our OpenStack clients</h2>
-    <ul class="p-inline-images">
+    <h2 class="p-muted-heading u-align--center">{{ heading }}</h2>
+    <ul class="p-inline-images{% if size == 'smaller' %}--smaller{% endif %}">
       <li class="p-inline-images__item">
         <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}1ccb6d93-logo-deutschetelekom.svg" alt="Deutshe Telekom" />
       </li>

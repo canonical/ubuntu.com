@@ -1,20 +1,15 @@
 @charset "UTF-8";
 
 //settings
-@import 'global-settings';
-@import 'settings_colors';
+@import "global-settings";
+@import "settings_colors";
 
 // custom mixins
-@import 'mixins/full-width-breakout';
+@import "mixins/full-width-breakout";
 
 // import vanilla-framework
-@import 'vanilla-framework/scss/build';
-
-// vendor
-// @import '../global-nav/src/sass/main';
-@import 'pattern_global-nav';
+@import "vanilla-framework/scss/build";
 @import 'vanilla-placeholders';
-@include global-nav;
 
 // import site specific patterns and overrides
 @import 'pattern_buttons';
@@ -40,6 +35,7 @@
 @import 'takeovers/financial-services';
 @import 'utility-animations';
 @import 'pattern_chart';
+@import 'pattern_grid';
 
 @include ubuntu-p-buttons;
 @include ubuntu-p-navigation;
@@ -59,6 +55,7 @@
 @include ubuntu-p-takeunders;
 @include ubuntu-p-tables;
 @include ubuntu-p-feedback;
+@include ubuntu-p-grid;
 @include p-takeover-ai-webinar;
 @include p-takeover-vmware-to-os;
 @include p-takeover-financial-services;
@@ -91,12 +88,12 @@
 // Candidate for moving to the vanilla-brochure-theme
 .has-background {
   background-color: $color-light;
-  background-image: url('#{$assets-path}f8a323a7-image-background-paper.png?w=768');
+  background-image: url("#{$assets-path}f8a323a7-image-background-paper.png?w=768");
   background-position: center top;
   background-repeat: repeat-y;
 
-  @media (min-width: $breakpoint-medium ) {
-    background-image: url('#{$assets-path}f8a323a7-image-background-paper.png');
+  @media (min-width: $breakpoint-medium) {
+    background-image: url("#{$assets-path}f8a323a7-image-background-paper.png");
   }
 }
 
@@ -119,17 +116,14 @@
 // XXX Karl: 19.10.17
 // VF 1.6.0 is missing this
 .p-link--external::after {
-  -webkit-mask-size: cover;
+  -webkit-mask-size: cover; // sass-lint:disable-line no-vendor-prefixes
+  mask-size: cover;
 }
 
 // XXX Ant: 11.12.17 This can be removed when this is fixed
 // https://github.com/vanilla-framework/vanilla-framework/issues/1491
 .is-dark .p-button--base {
-  @include vf-animation(
-    $property: all,
-    $duration: fast,
-    $easing: in
-  );
+  @include vf-animation($property: all, $duration: fast, $easing: in);
   color: $color-x-light;
 
   &:hover {
@@ -139,8 +133,8 @@
 
 // XXX Caleb: 15.01.18 Autoprefixer issue
 select {
-  -moz-appearance: none;
-  -webkit-appearance: none;
+  -moz-appearance: none; // sass-lint:disable-line no-vendor-prefixes
+  -webkit-appearance: none; // sass-lint:disable-line no-vendor-prefixes
   background-position: right $sp-x-small center;
   background-size: $sp-medium;
   padding-right: $sp-xxx-large;
@@ -148,18 +142,18 @@ select {
 
 .p-card__icon {
   display: inline-block;
-  margin-bottom: 1.25rem;
   height: 2rem;
+  margin-bottom: 1.25rem;
 }
 
 .p-strip--security {
-  @extend .p-strip;
+  @extend %vf-strip;
 
   @media only screen and (min-width: $breakpoint-medium) {
     background-image: url("#{$assets-path}8717cb84-padlock-chain-icon-angular.png");
+    background-position: left 70% top;
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: left 70% top;
   }
 }
 
@@ -176,20 +170,19 @@ select {
 // XXX Peter: adding border back for fieldsets
 fieldset {
   border: 1px solid $color-mid-light;
-  border-bottom-width: 0;
   border-radius: $sp-xx-small $sp-xx-small 0 0;
 }
 
 fieldset + fieldset {
-  border-top-width: 0 !important;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  border-top-width: 0 !important;
 }
 
 fieldset:last-child {
-  border-bottom-width: 1px !important;
   border-bottom-left-radius: $sp-xx-small !important;
   border-bottom-right-radius: $sp-xx-small !important;
+  border-bottom-width: 1px !important;
 }
 
 // XXX Steve: Overriding default Vanilla style :(
@@ -244,4 +237,10 @@ abbr[title] {
   border-bottom: .1em dotted;
   cursor: help;
   text-decoration: none;
+}
+
+
+// Hack to change the global navigation styling to match the local header
+.global-nav .global-nav__header-logo-anchor {
+  padding: .6875rem 1rem !important;
 }

@@ -34,87 +34,6 @@ navDropdowns.forEach(function(dropdown) {
   });
 });
 
-var globalNav = document.querySelector('.global-nav');
-var globalNavDropdowns = document.querySelectorAll('.global-nav__link--dropdown');
-var globalNavContent = document.querySelector('.global-nav__dropdown');
-var globalNavOverlay = document.querySelector('.global-nav__dropdown-overlay');
-var globalNavDropdownMenus = document.querySelectorAll('.global-nav__dropdown-content');
-
-globalNavDropdowns.forEach(function(dropdown) {
-  dropdown.addEventListener('click', function(event) {
-    event.preventDefault();
-
-    var currentLink = this;
-
-    var targetMenuLink = dropdown.querySelector('.global-nav__link-anchor');
-    var targetMenuId = targetMenuLink.getAttribute('href');
-    var targetMenu = document.querySelector(targetMenuId);
-    var isMobile = window.innerWidth < navigationThresholdBreakpoint;
-
-    function scrollGlobalNavToTop() {
-      window.scrollTo(0, globalNav.offsetTop);
-    }
-
-    if (globalNavContent.classList.contains('show-global-nav-content')) {
-      if (dropdown.classList.contains('is-selected')) {
-        dropdown.classList.remove('is-selected');
-        globalNavContent.classList.remove('show-global-nav-content');
-        globalNavOverlay.classList.remove('is-visible');
-      } else {
-        globalNavDropdowns.forEach(function(dropdown) {
-          dropdown.classList.remove('is-selected');
-        });
-        dropdown.classList.add('is-selected');
-        globalNavDropdownMenus.forEach(function(menu) {
-          if (menu !== targetMenu) {
-            menu.classList.add('u-hide');
-          }
-        });
-        targetMenu.classList.remove('u-hide');
-        closeMainMenu();
-
-        if (isMobile) {
-          scrollGlobalNavToTop();
-        }
-      }
-    } else {
-      currentLink.classList.add('is-selected');
-      globalNavContent.classList.add('show-global-nav-content');
-      globalNavOverlay.classList.add('is-visible');
-      globalNavDropdownMenus.forEach(function(menu) {
-        if (menu !== targetMenu) {
-          menu.classList.add('u-hide');
-        }
-      });
-      targetMenu.classList.remove('u-hide');
-      closeMainMenu();
-
-      if (isMobile) {
-        scrollGlobalNavToTop();
-      }
-    }
-  });
-});
-
-globalNavOverlay.addEventListener('click', function() {
-  globalNavContent.classList.remove('show-global-nav-content');
-  globalNavOverlay.classList.remove('is-visible');
-  globalNavDropdowns.forEach(function(dropdown) {
-    dropdown.classList.remove('is-selected');
-  });
-});
-
-document.addEventListener('click', function(event) {
-  globalNavDropdowns.forEach(function(globalNavDropdown) {
-    if (globalNavDropdown.classList.contains('is-selected')) {
-      var clickInsideGlobal = globalNav.contains(event.target);
-
-      if (!clickInsideGlobal) {
-        globalNavDropdown.classList.remove('is-selected');
-      }
-    }
-  });
-});
 
 dropdownWindowOverlay.addEventListener('click', function(event) {
   navDropdowns.forEach(function(dropdown) {
@@ -163,9 +82,8 @@ function closeMainMenu() {
   }
 }
 
-var origin = window.location.pathname;
+var origin = window.location.href;
 
-addGANavEvents('.global-nav__row', 'www.ubuntu.com-nav-0');
 addGANavEvents('#canonical-products', 'www.ubuntu.com-nav-0-products');
 addGANavEvents('#canonical-login', 'www.ubuntu.com-nav-0-login');
 addGANavEvents('#navigation', 'www.ubuntu.com-nav-1');
@@ -182,12 +100,11 @@ function addGANavEvents(target, category){
   var t = document.querySelector(target);
   if (t) {
     t.querySelectorAll('a').forEach(function(a) {
-      var destination = a.href.replace('https://www.ubuntu.com', '');
-      a.addEventListener('click', function(event){
+      a.addEventListener('click', function(){
         dataLayer.push({
           'event' : 'GAEvent',
           'eventCategory' : category,
-          'eventAction' : `from:${origin} to:${destination}`,
+          'eventAction' : `from:${origin} to:${a.href}`,
           'eventLabel' : a.text,
           'eventValue' : undefined
         });
@@ -202,7 +119,6 @@ function addGAContentEvents(target){
   var t = document.querySelector(target);
   if (t) {
     t.querySelectorAll('a').forEach(function(a) {
-      var destination = a.href.replace('https://www.ubuntu.com', '');
       if (a.className.includes('p-button--positive')) {
         var category = 'www.ubuntu.com-content-cta-0';
       } else if (a.className.includes('p-button')) {
@@ -210,12 +126,12 @@ function addGAContentEvents(target){
       } else {
         var category = 'www.ubuntu.com-content-link';
       }
-      if (!destination.startsWith("#")){
-        a.addEventListener('click', function(event){
+      if (!a.href.startsWith("#")){
+        a.addEventListener('click', function(){
           dataLayer.push({
             'event' : 'GAEvent',
             'eventCategory' : category,
-            'eventAction' : `from:${origin} to:${destination}`,
+            'eventAction' : `from:${origin} to:${a.href}`,
             'eventLabel' : a.text,
             'eventValue' : undefined
           });
@@ -225,13 +141,22 @@ function addGAContentEvents(target){
   }
 }
 
-function mobileGlobalNav() {
-  var footerTitlesA = document.querySelectorAll('.global-nav--mobile .p-footer__title');
-  footerTitlesA.forEach(function(node) {
-    node.addEventListener('click', function(e) {
-      e.target.classList.toggle('active');
-    });
-  });
-};
+addGAImpressionEvents('.js-takeover')
 
-mobileGlobalNav();
+function addGAImpressionEvents(target){
+  var t = document.querySelectorAll(target);
+  if (t) {
+    t.forEach(function(section) {
+      if (! section.className.includes('u-hide')){
+        var a = section.querySelector("a");
+        dataLayer.push({
+          'event' : 'NonInteractiveGAEvent',
+          'eventCategory' : "www.ubuntu.com-impression",
+          'eventAction' : `from:${origin} to:${a.href}`,
+          'eventLabel' : a.text,
+          'eventValue' : undefined,
+        });
+      }
+    });
+  }
+}

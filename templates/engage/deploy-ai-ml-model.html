@@ -1,0 +1,48 @@
+{% extends "engage/base_engage.html" %}
+
+{% block meta_description %}An introduction to AI and ML workloads on Ubuntu workstations, servers and in the cloud on a Kubernetes stack.{% endblock %}
+
+{% block title %}How to build and deploy your first AI/ML model on Ubuntu{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1BMqxhCOJfT43Mj2MFNgdM0X0c0rUYmBQBLeYFTCKfKY/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip p-takeover--ai-webinar">
+  <div class="row u-equal-height">
+    <div class="col-9">
+      <h1 class="p-takeover__title">How to build and deploy your first AI/ML model on Ubuntu</h1>
+      <p class="p-takeover__text">
+        Webinar live on Oct 17 - <a href="#register-section" class="p-link--inverted">Register now&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-6">
+      <h2>What you’ll learn</h2>
+      <p>An end-to-end demo that will walk you through setting up a scalable model training environment, where you'll learn:</p>
+      <ul>
+        <li>How to get started with model training using a Kaggle experiment</li>
+        <li>How to deploy a machine learning stack: Kubeflow on top of a minimal Kubernetes (Microk8s)</li>
+        <li>How to train models locally and in the cloud, and move seamlessly between the two</li>
+      </ul>
+      <p>At the end of this demo, you’ll end up with a summary of commands to quickly and efficiently launch machine learning environments.</p>
+    </div>
+    <div class="col-6">
+      <img src="{{ ASSET_SERVER_URL }}7a231074-image947.png" alt="AI, ML and Ubuntu webinar - slides preview">
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-12">
+      <h2 id="register-section" class="p-takeover__title">Register now</h2>
+    </div>
+    <div class="jsBrightTALKEmbedWrapper" style="width:900px; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 336267, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>
+  </div>
+</section>
+
+{% endblock content %}

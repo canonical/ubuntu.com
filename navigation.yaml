@@ -5,6 +5,8 @@ openstack:
   children:
     - title: Overview
       path: /openstack
+    - title: What is OpenStack
+      path: /openstack/what-is-openstack
     - title: Features
       path: /openstack/features
     - title: Managed
@@ -55,9 +57,6 @@ server:
       path: /server
     - title: Hyperscale
       path: /server/hyperscale
-    - title: Livepatch
-      path: /server/livepatch
-
     - title: Contact us
       path: /server/contact-us
       hidden: True
@@ -212,7 +211,9 @@ support:
     - title: Plans and pricing
       path: /support/plans-and-pricing
     - title: ESM
-      path: /support/esm
+      path: /esm
+    - title: Livepatch
+      path: /livepatch
 
     - title: Contact us
       path: /support/contact-us
@@ -332,11 +333,6 @@ legal:
       path: /legal
     - title: Terms and policies
       path: /legal/terms-and-policies
-      children:
-        - title: Legal Notice - System Information
-          path: /legal/terms-and-policies/systems-information-notice
-    - title: Data privacy enquiry
-      path: /legal/data-privacy-enquiry
 
       children:
         - title: Terms and conditions
@@ -360,11 +356,15 @@ legal:
           path: /legal/terms-and-policies/livepatch-terms-of-service
         - title: JAAS terms
           path: /legal/terms-and-policies/jaas-beta-terms-of-service
-        - title: Data privacy
-          path: /legal/dataprivacy
-        - title: Trademarks
-          path: /legal/trademarks
+        - title: Legal Notice - System Information
+          path: /legal/terms-and-policies/systems-information-notice
 
+    - title: Data privacy
+      path: /legal/dataprivacy
+    - title: Data privacy enquiry
+      path: /legal/data-privacy-enquiry
+    - title: Trademarks
+      path: /legal/trademarks
     - title: Ubuntu Advantage
       path: /legal/ubuntu-advantage
 
@@ -468,7 +468,7 @@ engage:
   title: Engage
   path: /resources
 
-  children: 
+  children:
     - title: VMWare to OpenStack
       path: /engage/vmware-to-openstack
     - title: Deutsche Version
