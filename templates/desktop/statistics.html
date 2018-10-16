@@ -69,7 +69,7 @@
       </div>
     </div>
   </div>
-</section>  
+</section>
 <section class="p-strip is-shallow is-bordered">
   <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
     <div class="col-4">
@@ -172,7 +172,7 @@
     </div>
   </div>
 </section>
-<section class="p-strip is-bordered">
+<section class="p-strip">
   <div class="row">
     <h3>What CPU and memory do users have?</h3>
   </div>
@@ -189,40 +189,52 @@
     </div>
   </div>
 </section>
-<section class="p-strip--light is-bordered">
+<section class="p-strip--light">
   <div class="row">
     <h3>What physical disks do people have?</h3>
-    <h4>Physical disk (GB)</h4>
   </div>
   <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
-      <div class="col-6">
+    <div class="col-6">
+        <h4>Physical disk (GB)</h4>
         <p>Physical disks denote how much data can be stored on a computer. For this report the total disk size is inferred from the number and size of partitions of a disk.</p>
       </div>
     <div class="col-6 u-align--center">
       <svg id="physical-disk" height="200"></svg>
     </div>
   </div>
+</section>
+<section class="p-strip--light u-no-padding">
   <div class="row">
-    <hr />
-    <h4>Partition type</h4>
-    <p>There are a number of ways to partition a disk when installing Ubuntu depending on what the user wants to do.</p>
+    <hr class="u-no-margin--bottom" />
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-6">
+      <h4>Partition type</h4>
+      <p>There are a number of ways to partition a disk when installing Ubuntu depending on what the user wants to do.</p>
+    </div>
   </div>
   <div class="row">
     <div class="col-12">
-      <svg id="partition-type" height="200"></svg>
+      <svg id="partition-type" height="250"></svg>
     </div>
   </div>
+</section>
+<section class="p-strip--light u-no-padding">
   <div class="row">
-    <hr />
+    <hr class="u-no-margin--bottom" />
   </div>
+</section>
+<section class="p-strip--light">
   <div class="row p-divider">
     <div class="col-6 p-divider__block">
       <h4>Size of partitions (GB)</h4>
-      <svg id="partition-size" height="200"></svg>
+      <svg id="partition-size" height="300"></svg>
     </div>
     <div class="col-6  p-divider__block">
       <h4>Number of partitions</h4>
-      <svg id="partition-number" height="200"></svg>
+      <svg id="partition-number" height="300"></svg>
     </div>
   </div>
 </section>

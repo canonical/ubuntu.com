@@ -143,9 +143,9 @@ function createBarChart(selector, dataset, options) {
     top: 20,
     right: 5,
     bottom: 50,
-    left: 40
+    left: 0
   };
-  var colors = options.hasOwnProperty('colors') ? options.colors : ['#ed764d', '#ccc', '#925375'];
+  var colors = options.hasOwnProperty('colors') ? options.colors : ['#E95420', '#772953'];
   var ordinalColors = d3.scaleOrdinal(colors);
 
   // Create copy of dataset and manipulate according to options
@@ -183,7 +183,7 @@ function createBarChart(selector, dataset, options) {
     .selectAll(".tick text")
     .attr("text-anchor", "middle")
     .call(wrapText, x.bandwidth());
-    
+
   // remove the x axis lines at the bottom
   g.selectAll(".domain").remove();
 
@@ -206,7 +206,7 @@ function createBarChart(selector, dataset, options) {
     .attr("height", function (d) {
       return height - y(calcPercentage(data, d.value))
     });
-  
+
     // Add text to the top of the bar
     g.append("g")
       .selectAll("text")
@@ -217,7 +217,7 @@ function createBarChart(selector, dataset, options) {
       .attr("x", function (d) {
         return x(d.label) + (x.bandwidth() / 2) - 24;
       })
-      .attr("dy", "-4px") // add padding to top of bar
+      .attr("dy", "-10px") // add padding to top of bar
       .attr("y", function (d) {
         return y(calcPercentage(data, d.value));
       })
@@ -238,7 +238,7 @@ function createHorizontalBarChart(selector, dataset, options) {
     bottom: 20,
     left: 60
   };
-  var colors = options.hasOwnProperty('colors') ? options.colors : ['#ed764d', '#925375', '#ccc' ];
+  var colors = options.hasOwnProperty('colors') ? options.colors : ['#E95420', '#772953' ];
   var ordinalColors = d3.scaleOrdinal(colors);
   var chartTitle = options.hasOwnProperty('title') ? options.title : undefined;
 
@@ -279,11 +279,7 @@ function createHorizontalBarChart(selector, dataset, options) {
     })
     .attr("x", -3)
     .attr("y", function (d, i) {
-      if (i > 0) {
-        return y(d.label) - 16;
-      } else {
-        return y(d.label);
-      }
+      return y(d.label);
     })
     .attr("height", "16px")
     .attr("width", function (d) {
@@ -295,41 +291,31 @@ function createHorizontalBarChart(selector, dataset, options) {
     .data(data)
     .enter()
     .append("text")
-    .style("font-size", "12px")
+    .style("font-size", "14px")
     .attr("x", function (d) {
-      return x(calcPercentage(data, d.value));
+      return x(calcPercentage(data, d.value)) + 4;
     })
     .attr("y", function (d, i) {
-      if (i > 0) {
-        return y(d.label) + (y.bandwidth() / 2) - 10;
-      } else {
-        return y(d.label) + (y.bandwidth() / 2) + 10;
-      }
+      return y(d.label) + (y.bandwidth() / 2) + 4;
     })
     .attr("class", "label")
     .text(function (d) {
       return Math.floor(calcPercentage(data, d.value), 1) + "%";
     });
 
-    // Add text to the left Axis
-    if (chartTitle) {
-      g.selectAll("text.left-axis")
-        .data(data)
-        .enter()
-        .append("text")
-        .attr("class", "left-axis")
-        .attr("x", function (d) {
-          return -70;
-        })
-        .attr("y", function (d) {
-          return (y(d.label) + (y.bandwidth() / 2) + 5) - ((y.bandwidth()));
-        })
-        .attr("class", "label")
-        .text(function (d, i) {
-          if (i % 2 === 0)
-            return chartTitle;
-        });
-    }
+    g.selectAll("text.left-axis")
+      .data(data)
+      .enter()
+      .append("text")
+      .attr("text-anchor", "end")
+      .attr("class", "left-axis")
+      .attr("x", "-10")
+      .attr("y", function (d) {
+        return (y(d.label) + (y.bandwidth() / 2) + 5);
+      })
+      .text(function (d) {
+        return d.label;
+      });
 }
 
 function createOrderedList(target, dataset, options) {
@@ -723,25 +709,20 @@ function buildCharts() {
     }
   });
 
+  createBarChart('#partition-type', dummyData.partitionType.dataset);
+  createHorizontalBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
+  createBarChart('#physical-disk', dummyData.physicalDisk.dataset);
+
   if (window.innerWidth >= breakpoint) {
-    createHorizontalBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
-    createBarChart('#physical-disk', dummyData.physicalDisk.dataset);
-    createBarChart('#partition-type', dummyData.partitionType.dataset);
-    createHorizontalBarChart('#partition-size', dummyData.partitionSize.dataset);
-  } else {
-    createHorizontalBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
-    createHorizontalBarChart('#physical-disk', dummyData.physicalDisk.dataset);
-    createHorizontalBarChart(
-      '#partition-type',
-      dummyData.partitionType.dataset, {
-        margin: {
-          top: 20,
-          right: 20,
-          bottom: 20,
-          left: 100
-        }
+    createHorizontalBarChart('#partition-size', dummyData.partitionSize.dataset, dummyData.partitionType.dataset, {
+      margin: {
+        top: 20,
+        right: 20,
+        bottom: 20,
+        left: 100
       }
-    );
+    });
+  } else {
     createHorizontalBarChart('#partition-size', dummyData.partitionSize.dataset);
   }
 }
