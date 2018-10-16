@@ -143,7 +143,7 @@ function createBarChart(selector, dataset, options) {
     top: 20,
     right: 5,
     bottom: 50,
-    left: 40
+    left: 0
   };
   var colors = options.hasOwnProperty('colors') ? options.colors : ['#E95420', '#772953'];
   var ordinalColors = d3.scaleOrdinal(colors);
