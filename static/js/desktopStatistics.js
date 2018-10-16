@@ -146,7 +146,7 @@ function createBarChart(selector, dataset, options) {
     bottom: 50,
     left: 40
   };
-  var colors = options.hasOwnProperty('colors') ? options.colors : ['#ed764d', '#ccc', '#925375'];
+  var colors = options.hasOwnProperty('colors') ? options.colors : ['#E95420', '#CCC', '#772953'];
   var ordinalColors = d3.scaleOrdinal(colors);
 
   // Create copy of dataset and manipulate according to options
@@ -239,7 +239,7 @@ function createHorizontalBarChart(selector, dataset, options) {
     bottom: 20,
     left: 60
   };
-  var colors = options.hasOwnProperty('colors') ? options.colors : ['#ed764d', '#925375', '#ccc' ];
+  var colors = options.hasOwnProperty('colors') ? options.colors : ['#E95420', '#772953', '#CCC' ];
   var ordinalColors = d3.scaleOrdinal(colors);
   var chartTitle = options.hasOwnProperty('title') ? options.title : undefined;
 
@@ -357,7 +357,7 @@ function createProgressChart(selector, dataset, options) {
   // Set option defaults
   options = options || {};
   var parentWidth = document.querySelector(selector).parentNode.clientWidth;
-  var color = options.hasOwnProperty('color') ? options.color : '#ed764d';
+  var color = options.hasOwnProperty('color') ? options.color : '#E95420';
   var size = options.hasOwnProperty('size') ? options.size : 300;
   var format = options.hasOwnProperty('format') ? options.format : 'percent';
   // Create copy of dataset
@@ -416,7 +416,7 @@ function createPieChart(selector, dataset, options) {
   var parentWidth = document.querySelector(selector).parentNode.clientWidth;
   var sort = options.hasOwnProperty('sort') ? options.sort : undefined;
   var truncPoint = options.hasOwnProperty('truncPoint') ? options.truncPoint : undefined;
-  var colors = options.hasOwnProperty('colors') ? options.colors : ['#ed764d', '#ccc', '#925375'];
+  var colors = options.hasOwnProperty('colors') ? options.colors : ['#E95420', '#CCC', '#772953'];
   var donutRadius = options.hasOwnProperty('donutRadius') ? options.donutRadius : 15;
   var size = options.hasOwnProperty('size') ? options.size : parentWidth;
   var ordinalColors = d3.scaleOrdinal(colors);
@@ -562,7 +562,7 @@ function buildCharts() {
     donutRadius: 76
   });
   createPieChart('#firmware-hw', dummyData.firmware.datasets.hardware, {
-    colors: ['#925375','#ed764d', '#ccc'],
+    colors: ['#772953','#E95420', '#CCC'],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -659,7 +659,7 @@ function buildCharts() {
   });
 
   createPieChart('#default-settings-vm', dummyData.defaultSettings.datasets.virtual, {
-    colors: ['#925375','#ccc','#ed764d'],
+    colors: ['#772953','#ccc','#E95420'],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -667,7 +667,7 @@ function buildCharts() {
     }
   });
   createPieChart('#firmware-vm', dummyData.firmware.datasets.virtual, {
-    colors: ['#925375','#ed764d', '#ccc'],
+    colors: ['#772953','#E95420', '#CCC'],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -676,7 +676,7 @@ function buildCharts() {
     noStats: true
   });
   createPieChart('#restrict-add-on-vm', dummyData.restrictAddOn.datasets.virtual, {
-    colors: ['#925375','#ccc','#ed764d'],
+    colors: ['#772953','#CCC','#E95420'],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -684,7 +684,7 @@ function buildCharts() {
     }
   });
   createPieChart('#auto-login-vm', dummyData.autoLogin.datasets.virtual, {
-    colors: ['#925375','#ccc','#ed764d'],
+    colors: ['#772953','#CCC','#E95420'],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -692,7 +692,7 @@ function buildCharts() {
     }
   });
   createPieChart('#minimal-install-vm', dummyData.minimalInstall.datasets.virtual, {
-    colors: ['#925375','#ccc','#ed764d'],
+    colors: ['#772953','#CCC','#E95420'],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -700,7 +700,7 @@ function buildCharts() {
     }
   });
   createPieChart('#update-at-install-vm', dummyData.updateAtInstall.datasets.virtual, {
-    colors: ['#925375','#ccc','#ed764d'],
+    colors: ['#772953','#CCC','#E95420'],
     size: 184,
     donutRadius: 76,
     centreLabel: {

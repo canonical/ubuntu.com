@@ -3,23 +3,23 @@ var dummyData = {
     title: 'Opt in',
     dataset: [{
       label: 'Opt-in',
-      value: 130,
+      value: 131.26,
     }, {
       label: 'Opt-out',
-      value: 70,
+      value: 68.74,
     },],
   },
   realOrVirtual: {
     title: 'Real or Virtual Machine?',
     dataset: [{
       label: 'Physical',
-      value: 90,
+      value: 43.47,
     }, {
       label: 'Unknown',
-      value: 75,
+      value: 35.91,
     }, {
       label: 'VM',
-      value: 40,
+      value: 20.6,
     }]
   },
   firmware: {
