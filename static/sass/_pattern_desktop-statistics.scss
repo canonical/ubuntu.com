@@ -1,7 +1,7 @@
 @mixin ubuntu-p-desktop-statistics {
-  $burnt-sienna: #ED764D;
-  $cannon-pink: #925375;
-
+  $burnt-sienna: #E95420;
+  $cannon-pink: #772953;
+  
   .p-mobile-flex-col {
     @media only screen and (max-width: $breakpoint-medium) {
       display: flex;
@@ -120,6 +120,10 @@
 
       &.legend__block-scheme--cannon-pink {
         border: 5px solid $cannon-pink;
+      }
+
+      &.legend__block-scheme--mid-light {
+        border: 5px solid $color-mid-light;
       }
     }
   }
