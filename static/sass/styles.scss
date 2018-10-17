@@ -9,33 +9,32 @@
 
 // import vanilla-framework
 @import "vanilla-framework/scss/build";
-@import 'vanilla-placeholders';
+@import "vanilla-placeholders";
 
 // import site specific patterns and overrides
-@import 'pattern_buttons';
-@import 'pattern_navigation';
-@import 'pattern_strip';
-@import 'pattern_notifications';
-@import 'pattern_footer';
-@import 'pattern_lists';
-@import 'pattern_card';
-@import 'pattern_inline-images';
-@import 'pattern_heading-icon';
-@import 'pattern_matrix';
-@import 'pattern_contextual-footer';
-@import 'pattern_pie_chart';
-@import 'pattern_gaming';
-@import 'pattern_strip-photos';
-@import 'pattern_ubuntu_intro';
-@import 'pattern_takeunders';
-@import 'pattern_table';
-@import 'pattern_feedback';
-@import 'takeovers/ai-webinar';
-@import 'takeovers/vmware-to-os';
-@import 'takeovers/financial-services';
-@import 'utility-animations';
-@import 'pattern_chart';
-@import 'pattern_grid';
+@import "pattern_buttons";
+@import "pattern_navigation";
+@import "pattern_strip";
+@import "pattern_notifications";
+@import "pattern_footer";
+@import "pattern_lists";
+@import "pattern_card";
+@import "pattern_inline-images";
+@import "pattern_heading-icon";
+@import "pattern_matrix";
+@import "pattern_contextual-footer";
+@import "pattern_pie_chart";
+@import "pattern_gaming";
+@import "pattern_strip-photos";
+@import "pattern_ubuntu_intro";
+@import "pattern_takeunders";
+@import "pattern_table";
+@import "takeovers/ai-webinar";
+@import "takeovers/vmware-to-os";
+@import "takeovers/financial-services";
+@import "utility-animations";
+@import "pattern_chart";
+@import "pattern_grid";
 
 @include ubuntu-p-buttons;
 @include ubuntu-p-navigation;
@@ -54,7 +53,6 @@
 @include ubuntu-p-ubuntu-intro;
 @include ubuntu-p-takeunders;
 @include ubuntu-p-tables;
-@include ubuntu-p-feedback;
 @include ubuntu-p-grid;
 @include p-takeover-ai-webinar;
 @include p-takeover-vmware-to-os;
@@ -234,13 +232,12 @@ p.u-align--center {
 /// XXX Caleb: abbr hotfix - to be fixed in Vanilla
 // https://github.com/vanilla-framework/vanilla-framework/issues/1962
 abbr[title] {
-  border-bottom: .1em dotted;
+  border-bottom: 0.1em dotted;
   cursor: help;
   text-decoration: none;
 }
 
-
 // Hack to change the global navigation styling to match the local header
 .global-nav .global-nav__header-logo-anchor {
-  padding: .6875rem 1rem !important;
+  padding: 0.6875rem 1rem !important;
 }
