@@ -102,10 +102,10 @@ var dummyData = {
   installOrUpgrade: {
     title: 'Clean install or upgrade?',
     dataset: [{
-      label: 'Install',
+      label: 'Clean Install',
       value: 80,
     }, {
-      label: 'Upgrade',
+      label: 'Upgrades',
       value: 20,
     },],
   },
@@ -229,13 +229,13 @@ var dummyData = {
       value: 5410,
     }, {
       label: 'Logical Volume Manager (LVM)',
-      value: 387,
+      value: 350,
     }, {
       label: 'Encrypted LVM',
-      value: 331,
+      value: 300,
     }, {
       label: 'Upgrade',
-      value: 32,
+      value: 100,
     },]
   },
   partitionSize: {

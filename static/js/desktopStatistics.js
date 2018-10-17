@@ -624,31 +624,16 @@ function buildCharts() {
   });
 
   createHorizontalBarChart(
-    '#install-or-upgrade-physical',
-    dummyData.installOrUpgrade.dataset, {
-      sort: 'ascending',
-      truncPoint: 10,
-      margin: {
-        top: 20,
-        right: 40,
-        bottom: 20,
-        left: 70
-      },
-      title: "Physical"
-    }
-  );
-  createHorizontalBarChart(
     '#install-or-upgrade-vm',
     dummyData.installOrUpgrade.dataset, {
       sort: 'ascending',
       truncPoint: 10,
       margin: {
-        top: 20,
+        top: 5,
         right: 40,
         bottom: 20,
-        left: 70
-      },
-      title: "VMs"
+        left: 100
+      }
     }
   );
   createBarChart('#number-of-cpus', dummyData.cpus.dataset, {
