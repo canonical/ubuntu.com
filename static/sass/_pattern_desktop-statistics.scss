@@ -1,7 +1,7 @@
 @mixin ubuntu-p-desktop-statistics {
   $burnt-sienna: #E95420;
   $cannon-pink: #772953;
-  
+
   .p-mobile-flex-col {
     @media only screen and (max-width: $breakpoint-medium) {
       display: flex;
@@ -17,15 +17,15 @@
     }
   }
 
+  svg text {
+    font-family: Ubuntu !important;
+  }
+
   .p-bar-chart {
     width: 100%;
 
     .p-bar-chart__bar {
       opacity: 1;
-
-      &:hover {
-        opacity: .8;
-      }
 
     }
 
@@ -50,10 +50,6 @@
 
     .p-progress-chart__bar {
       opacity: 1;
-
-      &:hover {
-        opacity: .8;
-      }
     }
 
     .p-progress-chart__text {
@@ -65,10 +61,6 @@
     .p-pie-chart__wedge {
       path {
         opacity: 1;
-
-        &:hover {
-          opacity: .8;
-        }
       }
     }
 
