@@ -3,23 +3,23 @@ var dummyData = {
     title: 'Opt in',
     dataset: [{
       label: 'Opt-in',
-      value: 130,
+      value: 65.64,
     }, {
       label: 'Opt-out',
-      value: 70,
+      value: 33.36,
     },],
   },
   realOrVirtual: {
     title: 'Real or Virtual Machine?',
     dataset: [{
       label: 'Physical',
-      value: 90,
+      value: 43.47,
     }, {
       label: 'Unknown',
-      value: 75,
+      value: 35.91,
     }, {
       label: 'VM',
-      value: 40,
+      value: 20.6,
     }]
   },
   firmware: {
@@ -28,16 +28,16 @@ var dummyData = {
       hardware: [{
         label: 'Physical',
         show: true,
-        value: 150,
+        value: 54.64
       }, {
-        value: 72,
+        value: 45.36,
       },],
       virtual: [{
         label: 'Virtual',
         show: true,
-        value: 100
+        value: 92.63,
       }, {
-        value: 30
+        value: 7.37
       }]
     }
   },
@@ -45,235 +45,238 @@ var dummyData = {
     title: 'OS Architecture',
     dataset: [{
       label: 'amd64',
-      value: 10,
+      value: 3500000,
     }, {
       label: 'i386',
+      value: 49500,
+    },{
+      label: 'arm64',
+      value: 1127,
+    },{
+      label: 'armhf',
+      value: 77,
+    },{
+      label: 'ppc64el',
       value: 10,
-    },],
+    }],
   },
   displayServer: {
     title: 'Display Server',
     dataset: [{
       label: 'X11',
-      value: 100,
+      value: 4000000,
     }, {
       label: 'Wayland',
-      value: 10,
+      value: 17000,
     },],
   },
   numberScreens: {
     title: 'Number of screens',
     dataset: [{
       label: 'One screen',
-      value: 180,
+      value: 3300000,
     }, {
       label: 'Two screens',
-      value: 10,
+      value: 228000,
     }, {
       label: 'Three screens',
-      value: 4,
-    },],
+      value: 18000,
+    }, {
+      label: 'Four+ screens',
+      value: 1000,
+    }],
   },
   numberGPUs: {
     title: 'Number of GPUs',
     dataset: [{
       label: 'One GPU',
-      value: 170,
+      value: 2670000,
     }, {
       label: 'Two GPUs',
-      value: 20,
+      value: 162500,
     }, {
       label: 'Three GPUs',
-      value: 6,
-    },],
+      value: 5800,
+    }],
   },
   installOrUpgrade: {
     title: 'Clean install or upgrade?',
     dataset: [{
       label: 'Install',
-      value: 1000000,
+      value: 80,
     }, {
       label: 'Upgrade',
-      value: 123456,
+      value: 20,
     },],
   },
   screenSizes: {
     title: 'Popular screen sizes',
     dataset: [{
       label: '800x600',
-      value: 256,
+      value: 415150,
     }, {
       label: '1024x768',
-      value: 86,
+      value: 135510,
     }, {
       label: '1152x768',
-      value: 46,
+      value: 78970,
     }, {
       label: '1152x864',
-      value: 25,
+      value: 42850,
     }, {
       label: '1280x1024',
-      value: 80,
+      value: 127410,
     }, {
       label: '1280x800',
-      value: 50,
+      value: 81670,
     }, {
       label: '1360x768',
-      value: 36,
+      value: 57130,
     }, {
       label: '1366x768',
-      value: 582,
+      value: 912800,
     }, {
       label: '1440x900',
-      value: 65,
+      value: 105780,
     }, {
       label: '1600x900',
-      value: 103,
+      value: 162670,
     }, {
       label: '1680x1050',
-      value: 169,
+      value: 273930,
     }, {
       label: '1920x1080',
-      value: 672,
+      value: 1041230,
     }, {
       label: '1920x1200',
-      value: 42,
+      value: 64800,
     }, {
       label: '2560x1440',
-      value: 33,
+      value: 48800,
     }, {
       label: '3840x2160',
-      value: 32,
+      value: 47360,
     }]
   },
   physicalDisk: {
     title: 'Physical disk (GB)',
     dataset: [{
-      label: '<30',
-      value: 255,
+      label: '0 - 499',
+      value: 974065,
     }, {
-      label: '30-99',
-      value: 154,
+      label: '500 - 2000',
+      value: 161000,
     }, {
-      label: '100-249',
-      value: 211,
-    }, {
-      label: '250-499',
-      value: 168,
-    }, {
-      label: '500-999',
-      value: 93,
-    }, {
-      label: '1TB+',
-      value: 19,
+      label: '>2000',
+      value: 95000,
     },]
   },
   cpus: {
     title: 'Number of CPUs',
     dataset: [{
       label: '1-3',
-      value: 1876,
+      value: 2493900,
     }, {
       label: '4-6',
-      value: 282,
+      value: 1096000,
     }, {
-      label: '8+',
-      value: 93,
+      label: '7+',
+      value: 346000,
     },]
   },
   ram: {
     title: 'Size of RAM (GB)',
     dataset: [{
       label: '1-4',
-      value: 1199,
+      value: 1716700,
     }, {
       label: '5-8',
-      value: 681,
+      value: 1061000,
     }, {
       label: '12-24',
-      value: 305,
+      value: 463000,
     }, {
       label: '32+',
-      value: 61,
+      value: 93541,
     },]
   },
   pixelDensity: {
     title: 'Pixel density',
     dataset: [{
       label: '120',
-      value: 413,
+      value: 110120,
     }, {
       label: '160',
-      value: 68,
+      value: 180690,
     }, {
       label: '240+',
-      value: 14,
+      value: 37024,
     },]
   },
   partitionType: {
     title: 'Partition type',
     dataset: [{
       label: 'Erase existing and reinstall',
-      value: 40,
+      value: 826,
     }, {
       label: 'Manual',
-      value: 30,
+      value: 2144,
     }, {
       label: 'Install alongside',
-      value: 17,
+      value: 869,
     }, {
       label: 'Erase device and install',
-      value: 16,
+      value: 5410,
     }, {
       label: 'Logical Volume Manager (LVM)',
-      value: 8,
+      value: 387,
     }, {
       label: 'Encrypted LVM',
-      value: 6,
+      value: 331,
     }, {
       label: 'Upgrade',
-      value: 3,
+      value: 32,
     },]
   },
   partitionSize: {
     title: 'Size of partitions (GB)',
     dataset: [{
       label: '<1',
-      value: 35,
+      value: 1000000,
     }, {
       label: '1-19',
-      value: 17,
+      value: 815000,
     }, {
       label: '20-49',
-      value: 14,
+      value: 596000,
     }, {
       label: '50-99',
-      value: 13,
+      value: 406000,
     }, {
       label: '100-249',
-      value: 25,
+      value: 800000,
     }, {
       label: '250-999',
-      value: 20,
+      value: 518000,
     }, {
       label: '1TB+',
-      value: 15,
+      value: 317000,
     },]
   },
   partitionNum: {
     title: 'Number of partitions',
     dataset: [{
       label: '1',
-      value: 36,
+      value: 1300000,
     }, {
       label: '2',
-      value: 40,
+      value: 849000,
     }, {
       label: '3',
-      value: 18,
+      value: 331000,
     }, {
       label: '4+',
-      value: 5,
+      value: 100600,
     },]
   },
   defaultSettings: {
@@ -282,16 +285,16 @@ var dummyData = {
       hardware: [{
         label: 'Physical',
         show: true,
-        value: 318,
+        value: 3381,
       }, {
-        value: 682,
+        value: 6619,
       },],
       virtual: [{
         label: 'Virtual',
         show: true,
-        value: 589,
+        value: 6145,
       }, {
-        value: 411,
+        value: 3855,
       },],
     },
   },
@@ -301,16 +304,16 @@ var dummyData = {
       hardware: [{
         label: 'Physical',
         show: true,
-        value: 591,
+        value: 5685,
       }, {
-        value: 409,
+        value: 4315,
       },],
       virtual: [{
         label: 'Virtual',
         show: true,
-        value: 273,
+        value: 2470,
       }, {
-        value: 727,
+        value: 7530,
       },],
     },
   },
@@ -319,16 +322,16 @@ var dummyData = {
       hardware: [{
         label: 'Physical',
         show: true,
-        value: 294,
+        value: 2981,
       }, {
-        value: 706,
+        value: 7081,
       },],
       virtual: [{
         label: 'Virtual',
         show: true,
-        value: 287,
+        value: 2947,
       }, {
-        value: 713,
+        value: 7053,
       },],
     },
   },
@@ -338,16 +341,16 @@ var dummyData = {
       hardware: [{
         label: 'Physical',
         show: true,
-        value: 134,
+        value: 1274,
       }, {
-        value: 866,
+        value: 8726,
       },],
       virtual: [{
         label: 'Virtual',
         show: true,
-        value: 141,
+        value: 1359,
       }, {
-        value: 859,
+        value: 8641,
       },],
     },
   },
@@ -357,16 +360,16 @@ var dummyData = {
       hardware: [{
         label: 'Physical',
         show: true,
-        value: 919,
+        value: 9182,
       }, {
-        value: 81,
+        value: 818,
       },],
       virtual: [{
         label: 'Virtual',
         show: true,
-        value: 911,
+        value: 9187,
       }, {
-        value: 89,
+        value: 813,
       },],
     },
   },
@@ -374,43 +377,31 @@ var dummyData = {
     title: 'What language do they use?',
     dataset: [{
       label: 'Chinese (Simplified)',
-      value: 700,
+      value: 78000,
     }, {
       label: 'Portuguese (Brazil)',
-      value: 800,
-    }, {
-      label: 'Turkish',
-      value: 60,
+      value: 92000,
     }, {
       label: 'French',
-      value: 400,
+      value: 89000,
     }, {
       label: 'Italian',
-      value: 300,
+      value: 41000,
     }, {
       label: 'English',
-      value: 1000,
+      value: 1052000,
     }, {
       label: 'Russian',
-      value: 500,
-    }, {
-      label: 'Dutch',
-      value: 70,
+      value: 52000,
     }, {
       label: 'Spanish',
-      value: 900,
-    }, {
-      label: 'Hungarian',
-      value: 80,
+      value: 91000,
     }, {
       label: 'German',
-      value: 600,
-    }, {
-      label: 'Korean',
-      value: 90,
+      value: 73000,
     }, {
       label: 'Polish',
-      value: 100,
+      value: 23000,
     }, {
       label: 'Japanese',
       value: 200,

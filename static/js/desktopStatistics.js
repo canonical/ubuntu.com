@@ -234,7 +234,7 @@ function createHorizontalBarChart(selector, dataset, options) {
   var truncPoint = options.hasOwnProperty('truncPoint') ? options.truncPoint : undefined;
   var margin = options.hasOwnProperty('margin') ? options.margin : {
     top: 20,
-    right: 20,
+    right: 30,
     bottom: 20,
     left: 60
   };
@@ -401,7 +401,7 @@ function createPieChart(selector, dataset, options) {
   var parentWidth = document.querySelector(selector).parentNode.clientWidth;
   var sort = options.hasOwnProperty('sort') ? options.sort : undefined;
   var truncPoint = options.hasOwnProperty('truncPoint') ? options.truncPoint : undefined;
-  var colors = options.hasOwnProperty('colors') ? options.colors : ['#E95420', '#ccc', '#772953'];
+  var colors = options.hasOwnProperty('colors') ? options.colors : ['#E95420', '#CCC', '#772953'];
   var donutRadius = options.hasOwnProperty('donutRadius') ? options.donutRadius : 15;
   var size = options.hasOwnProperty('size') ? options.size : parentWidth;
   var ordinalColors = d3.scaleOrdinal(colors);
@@ -536,7 +536,7 @@ function buildCharts() {
   var breakpoint = 875;
 
   createPieChart('#what-graphics-one-screen', dummyData.numberScreens.dataset, {
-    colors: ['#E95420', '#ccc' ],
+    colors: ['#E95420', '#CCC' ],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -544,7 +544,7 @@ function buildCharts() {
     }
   });
   createPieChart('#what-graphics-one-gpu', dummyData.numberGPUs.dataset, {
-    colors: ['#772953', '#ccc' ],
+    colors: ['#772953', '#CCC' ],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -564,7 +564,7 @@ function buildCharts() {
     donutRadius: 76
   });
   createPieChart('#firmware-hw', dummyData.firmware.datasets.hardware, {
-    colors: ['#772953','#E95420', '#ccc'],
+    colors: ['#772953','#E95420', '#CCC'],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -638,7 +638,15 @@ function buildCharts() {
   createBarChart('#pixel-density', dummyData.pixelDensity.dataset);
   createBarChart('#partition-number', dummyData.partitionNum.dataset);
 
-  createBarChart('#language-list-chart', dummyData.languageList.dataset);
+  createBarChart('#language-list-chart', dummyData.languageList.dataset, {
+    sort:'descending',
+    margin: {
+      top: 40,
+      right: 10,
+      bottom: 60,
+      left: 10
+    }
+  });
   createMap('#where-are-users', dummyData.whereUsersAre.datasets, '/static/js/world-110m.v1.json');
   createPieChart('#default-settings-hw', dummyData.defaultSettings.datasets.hardware, {
     size: 184,
@@ -685,7 +693,7 @@ function buildCharts() {
     }
   });
   createPieChart('#firmware-vm', dummyData.firmware.datasets.virtual, {
-    colors: ['#772953','#E95420', '#ccc'],
+    colors: ['#772953','#E95420', '#CCC'],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -694,7 +702,7 @@ function buildCharts() {
     noStats: true
   });
   createPieChart('#restrict-add-on-vm', dummyData.restrictAddOn.datasets.virtual, {
-    colors: ['#772953','#ccc','#E95420'],
+    colors: ['#772953','#CCC','#E95420'],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -702,7 +710,7 @@ function buildCharts() {
     }
   });
   createPieChart('#auto-login-vm', dummyData.autoLogin.datasets.virtual, {
-    colors: ['#772953','#ccc','#E95420'],
+    colors: ['#772953','#CCC','#E95420'],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -710,7 +718,7 @@ function buildCharts() {
     }
   });
   createPieChart('#minimal-install-vm', dummyData.minimalInstall.datasets.virtual, {
-    colors: ['#772953','#ccc','#E95420'],
+    colors: ['#772953','#CCC','#E95420'],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -718,7 +726,7 @@ function buildCharts() {
     }
   });
   createPieChart('#update-at-install-vm', dummyData.updateAtInstall.datasets.virtual, {
-    colors: ['#772953','#ccc','#E95420'],
+    colors: ['#772953','#CCC','#E95420'],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -726,21 +734,43 @@ function buildCharts() {
     }
   });
 
-  createBarChart('#partition-type', dummyData.partitionType.dataset);
-  createHorizontalBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset);
-  createBarChart('#physical-disk', dummyData.physicalDisk.dataset);
-
+  createHorizontalBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset, {
+    margin: {
+      top: 20,
+      right: 30,
+      bottom: 20,
+      left: 100
+    }
+  });
+  
+  createHorizontalBarChart('#partition-size', dummyData.partitionSize.dataset);
   if (window.innerWidth >= breakpoint) {
-    createHorizontalBarChart('#partition-size', dummyData.partitionSize.dataset, dummyData.partitionType.dataset, {
+    createBarChart('#physical-disk', dummyData.physicalDisk.dataset, {
+      colors: ['#E95420', '#772953']
+    });
+    createBarChart('#partition-type', dummyData.partitionType.dataset, {
+      sort: 'descending',
       margin: {
         top: 20,
         right: 20,
-        bottom: 20,
-        left: 100
+        bottom: 70,
+        left: -5
       }
     });
   } else {
-    createHorizontalBarChart('#partition-size', dummyData.partitionSize.dataset);
+    createHorizontalBarChart('#physical-disk', dummyData.physicalDisk.dataset, {
+      colors: ['#E95420', '#772953']
+    });
+    createHorizontalBarChart(
+      '#partition-type',
+      dummyData.partitionType.dataset, {
+        margin: {
+          top: 20,
+          right: 20,
+          bottom: 20,
+          left: 100
+        }
+      });
   }
 }
 
