@@ -657,15 +657,6 @@ function buildCharts() {
   createBarChart('#pixel-density', dummyData.pixelDensity.dataset);
   createBarChart('#partition-number', dummyData.partitionNum.dataset);
 
-  createBarChart('#language-list-chart', dummyData.languageList.dataset, {
-    sort:'descending',
-    margin: {
-      top: 40,
-      right: 10,
-      bottom: 60,
-      left: 10
-    }
-  });
   createMap('#where-are-users', dummyData.whereUsersAre.datasets, '/static/js/world-110m.v1.json');
   createPieChart('#default-settings-hw', dummyData.defaultSettings.datasets.hardware, {
     size: 184,
@@ -764,6 +755,15 @@ function buildCharts() {
   
   createHorizontalBarChart('#partition-size', dummyData.partitionSize.dataset);
   if (window.innerWidth >= breakpoint) {
+    createBarChart('#language-list-chart', dummyData.languageList.dataset, {
+      sort:'descending',
+      margin: {
+        top: 40,
+        right: 10,
+        bottom: 60,
+        left: 10
+      }
+    });
     createBarChart('#physical-disk', dummyData.physicalDisk.dataset, {
       colors: ['#E95420', '#772953']
     });
@@ -785,11 +785,14 @@ function buildCharts() {
       dummyData.partitionType.dataset, {
         margin: {
           top: 20,
-          right: 20,
+          right: 40,
           bottom: 20,
-          left: 100
+          left: 200
         }
       });
+    createHorizontalBarChart('#language-list-chart', dummyData.languageList.dataset, {
+      sort:'ascending'
+    });
   }
 }
 
