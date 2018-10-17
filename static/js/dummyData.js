@@ -376,35 +376,35 @@ var dummyData = {
   languageList: {
     title: 'What language do they use?',
     dataset: [{
-      label: 'Chinese (Simplified)',
-      value: 78000,
+      label: 'Chinese',
+      value: 88228,
     }, {
-      label: 'Portuguese (Brazil)',
-      value: 92000,
+      label: 'Portuguese',
+      value: 101000,
     }, {
       label: 'French',
-      value: 89000,
+      value: 102110,
     }, {
       label: 'Italian',
-      value: 41000,
+      value: 42368,
     }, {
       label: 'English',
-      value: 1052000,
+      value: 1141671,
     }, {
       label: 'Russian',
-      value: 52000,
+      value: 62000,
     }, {
       label: 'Spanish',
-      value: 91000,
+      value: 150063,
     }, {
       label: 'German',
-      value: 73000,
+      value: 83292,
     }, {
       label: 'Polish',
-      value: 23000,
+      value: 24000,
     }, {
-      label: 'Japanese',
-      value: 200,
+      label: 'Others',
+      value: 110729,
     },],
   },
   howLongRunning: {
