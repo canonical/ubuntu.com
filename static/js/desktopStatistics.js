@@ -279,6 +279,13 @@ function createHorizontalBarChart(selector, dataset, options) {
     })
     .attr("x", -3)
     .attr("y", function (d, i) {
+      if (chartTitle) {
+        if (i > 0) {
+          return y(d.label) + (y.bandwidth() / 2) - 10;
+        } else {
+          return y(d.label) + (y.bandwidth() / 2);
+        }
+      }
       return y(d.label);
     })
     .attr("height", "16px")
@@ -296,6 +303,13 @@ function createHorizontalBarChart(selector, dataset, options) {
       return x(calcPercentage(data, d.value)) + 4;
     })
     .attr("y", function (d, i) {
+      if (chartTitle) {
+        if (i > 0) {
+          return y(d.label) + (y.bandwidth() / 2) + 4;
+        } else {
+          return y(d.label) + (y.bandwidth() / 2) + 12;
+        }
+      }
       return y(d.label) + (y.bandwidth() / 2) + 4;
     })
     .attr("class", "label")
@@ -303,19 +317,39 @@ function createHorizontalBarChart(selector, dataset, options) {
       return Math.floor(calcPercentage(data, d.value), 1) + "%";
     });
 
-    g.selectAll("text.left-axis")
-      .data(data)
-      .enter()
-      .append("text")
-      .attr("text-anchor", "end")
-      .attr("class", "left-axis")
-      .attr("x", "-10")
-      .attr("y", function (d) {
-        return (y(d.label) + (y.bandwidth() / 2) + 5);
-      })
-      .text(function (d) {
-        return d.label;
-      });
+    // Add text to the left Axis
+    if (chartTitle) {
+      g.selectAll("text.left-axis")
+        .data(data)
+        .enter()
+        .append("text")
+        .attr("class", "left-axis")
+        .attr("x", function (d) {
+          return -70;
+        })
+        .attr("y", function (d) {
+          return (y(d.label) + (y.bandwidth() / 2) + 5) - ((y.bandwidth()));
+        })
+        .attr("class", "label")
+        .text(function (d, i) {
+          if (i % 2 === 0)
+            return chartTitle;
+        });
+    } else {
+      g.selectAll("text.left-axis")
+        .data(data)
+        .enter()
+        .append("text")
+        .attr("text-anchor", "end")
+        .attr("class", "left-axis")
+        .attr("x", "-10")
+        .attr("y", function (d) {
+          return (y(d.label) + (y.bandwidth() / 2) + 4);
+        })
+        .text(function (d) {
+          return d.label;
+        });
+    }
 }
 
 function createOrderedList(target, dataset, options) {
@@ -590,31 +624,16 @@ function buildCharts() {
   });
 
   createHorizontalBarChart(
-    '#install-or-upgrade-physical',
-    dummyData.installOrUpgrade.dataset, {
-      sort: 'ascending',
-      truncPoint: 10,
-      margin: {
-        top: 20,
-        right: 20,
-        bottom: 20,
-        left: 70
-      },
-      title: "Physical"
-    }
-  );
-  createHorizontalBarChart(
     '#install-or-upgrade-vm',
     dummyData.installOrUpgrade.dataset, {
       sort: 'ascending',
       truncPoint: 10,
       margin: {
-        top: 20,
-        right: 20,
+        top: 5,
+        right: 40,
         bottom: 20,
-        left: 70
-      },
-      title: "VMs"
+        left: 100
+      }
     }
   );
   createBarChart('#number-of-cpus', dummyData.cpus.dataset, {
