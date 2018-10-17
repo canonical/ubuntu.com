@@ -536,7 +536,7 @@ function buildCharts() {
   var breakpoint = 875;
 
   createPieChart('#what-graphics-one-screen', dummyData.numberScreens.dataset, {
-    colors: ['#E95420', '#ccc' ],
+    colors: ['#E95420', '#CCC' ],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -544,7 +544,7 @@ function buildCharts() {
     }
   });
   createPieChart('#what-graphics-one-gpu', dummyData.numberGPUs.dataset, {
-    colors: ['#772953', '#ccc' ],
+    colors: ['#772953', '#CCC' ],
     size: 184,
     donutRadius: 76,
     centreLabel: {
@@ -638,7 +638,15 @@ function buildCharts() {
   createBarChart('#pixel-density', dummyData.pixelDensity.dataset);
   createBarChart('#partition-number', dummyData.partitionNum.dataset);
 
-  createBarChart('#language-list-chart', dummyData.languageList.dataset);
+  createBarChart('#language-list-chart', dummyData.languageList.dataset, {
+    sort:'descending',
+    margin: {
+      top: 40,
+      right: 10,
+      bottom: 60,
+      left: 10
+    }
+  });
   createMap('#where-are-users', dummyData.whereUsersAre.datasets, '/static/js/world-110m.v1.json');
   createPieChart('#default-settings-hw', dummyData.defaultSettings.datasets.hardware, {
     size: 184,
@@ -726,25 +734,33 @@ function buildCharts() {
     }
   });
 
-  createBarChart('#partition-type', dummyData.partitionType.dataset);
   createHorizontalBarChart('#popular-screen-sizes', dummyData.screenSizes.dataset, {
     margin: {
       top: 20,
-      right: 20,
+      right: 30,
       bottom: 20,
       left: 100
     }
   });
-  createBarChart('#physical-disk', dummyData.physicalDisk.dataset);
   
   createHorizontalBarChart('#partition-size', dummyData.partitionSize.dataset);
   if (window.innerWidth >= breakpoint) {
     createBarChart('#physical-disk', dummyData.physicalDisk.dataset, {
       colors: ['#E95420', '#772953']
     });
-    createBarChart('#partition-type', dummyData.partitionType.dataset);
+    createBarChart('#partition-type', dummyData.partitionType.dataset, {
+      sort: 'descending',
+      margin: {
+        top: 20,
+        right: 20,
+        bottom: 70,
+        left: -5
+      }
+    });
   } else {
-    createHorizontalBarChart('#physical-disk', dummyData.physicalDisk.dataset);
+    createHorizontalBarChart('#physical-disk', dummyData.physicalDisk.dataset, {
+      colors: ['#E95420', '#772953']
+    });
     createHorizontalBarChart(
       '#partition-type',
       dummyData.partitionType.dataset, {
