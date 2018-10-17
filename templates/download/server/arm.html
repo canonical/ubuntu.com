@@ -17,17 +17,21 @@
   <div class="row u-equal-height">
     <div class="col-6 p-card--highlighted is-divided">
       <h3 class="p-card__title">Ubuntu Server</h3>
-      <p class="p-card__content">This is the iso image of the Ubuntu Server installer.</p>
-      <p class="p-card__content"><a href="http://cdimage.ubuntu.com/releases/{{lts_release}}/release/ubuntu-{{lts_release_with_point}}-server-arm64.iso" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">Download Ubuntu {{lts_release_full_with_point}}</a></p>
-      <p class="p-card__content"><a href="http://cdimage.ubuntu.com/releases/{{latest_release}}/release/ubuntu-{{latest_release_with_point}}-server-arm64.iso" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{latest_release}}', 'eventValue' : undefined });">Download Ubuntu {{latest_release_with_point}}</a></p>
-      <p><a href="/download/alternative-downloads">Alternative and previous releases&nbsp;&rsaquo;</a></p>
+      <div class="p-card__content">
+        <p>This is the iso image of the Ubuntu Server installer.</p>
+        <p><a href="http://cdimage.ubuntu.com/releases/{{lts_release}}/release/ubuntu-{{lts_release_with_point}}-server-arm64.iso" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">Download Ubuntu {{lts_release_full_with_point}}</a></p>
+        <p><a href="http://cdimage.ubuntu.com/releases/{{latest_release}}/release/ubuntu-{{latest_release_with_point}}-server-arm64.iso" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{latest_release}}', 'eventValue' : undefined });">Download Ubuntu {{latest_release_with_point}}</a></p>
+        <p><a href="/download/alternative-downloads">Alternative and previous releases&nbsp;&rsaquo;</a></p>
+      </div>
     </div>
     <div class="col-6 p-card--highlighted is-divided">
       <h3 class="p-card__title">Ubuntu netboot</h3>
-      <p class="p-card__content">This installer lets you install Ubuntu over the network.</p>
-      <p class="p-card__content"><a href="http://cdimage.ubuntu.com/netboot/{{lts_release}}" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM netboot download', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">Download Ubuntu {{lts_release_full_with_point}}</a></p>
-      <p class="p-card__content"><a href="http://cdimage.ubuntu.com/netboot/{{latest_release}}" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM netboot download', 'eventLabel' : '{{latest_release}}', 'eventValue' : undefined });">Download Ubuntu {{latest_release_with_point}}</a></p>
-      <p><a href="https://help.ubuntu.com/community/Installation/Netboot">Learn about netboot images&nbsp;&rsaquo;</a></p>
+      <div class="p-card__content">
+        <p>This installer lets you install Ubuntu over the network.</p>
+        <p><a href="http://cdimage.ubuntu.com/netboot/{{lts_release}}" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM netboot download', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });">Download Ubuntu {{lts_release_full_with_point}}</a></p>
+        <p><a href="http://cdimage.ubuntu.com/netboot/{{latest_release}}" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM netboot download', 'eventLabel' : '{{latest_release}}', 'eventValue' : undefined });">Download Ubuntu {{latest_release_with_point}}</a></p>
+        <p><a href="https://help.ubuntu.com/community/Installation/Netboot">Learn about netboot images&nbsp;&rsaquo;</a></p>
+      </div>
     </div>
   </div>
 </div>
