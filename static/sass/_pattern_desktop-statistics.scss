@@ -3,6 +3,19 @@
   $burnt-sienna: #e95420;
   $cannon-pink: #772953;
 
+  .p-takeover--stats {
+    background-color: $color-light;
+  }
+
+  @media (min-width: 768px) {
+    .p-takeover--stats {
+      background-image: url('https://assets.ubuntu.com/v1/d3edfcd5-left.png'), url('https://assets.ubuntu.com/v1/17508275-right.png'); // sass-lint:disable-line no-url-protocols
+      background-position: bottom left, bottom right;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+
   .p-mobile-flex-col {
     @media only screen and (max-width: $breakpoint-medium) {
       display: flex;
@@ -102,21 +115,19 @@
     .legend__block {
       border-radius: 50%;
       display: inline-block;
-      height: 20px;
-      position: relative;
-      top: 4px;
-      width: 20px;
+      height: 16px;
+      width: 16px;
 
       &.legend__block-scheme--burnt-sienna {
-        border: 5px solid $burnt-sienna;
+        border: 4px solid $burnt-sienna;
       }
 
       &.legend__block-scheme--cannon-pink {
-        border: 5px solid $cannon-pink;
+        border: 4px solid $cannon-pink;
       }
 
       &.legend__block-scheme--mid-light {
-        border: 5px solid $color-mid-light;
+        border: 4px solid $color-mid-light;
       }
     }
   }
@@ -128,8 +139,9 @@
   }
 
   .p-sticky-nav {
-    background-color: $color-light;
+    background-color: $color-x-light;
     border-bottom: 1px solid $color-mid-light;
+    border-top: 1px solid $color-mid-light;
     position: sticky;
     top: 0;
     z-index: 1;
