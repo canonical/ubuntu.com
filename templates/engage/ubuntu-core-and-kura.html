@@ -1,0 +1,46 @@
+{% extends "engage/base_engage.html" %}
+
+{% block meta_description %}A combination of Ubuntu Core, snaps and Kura can solve the limitations that come with Linux distributions for IoT edge gateway devices.{% endblock %}
+
+{% block title %}Ubuntu Core and Kura: A framework for IoT gateways{% endblock %}
+
+{% block content %}
+<section class="p-strip u-no-margin--bottom u-no-padding--bottom">
+    <div class="row">
+      <div class="col-7">
+        <h1>Ubuntu Core and Kura:<br> A framework for IoT gateways</h1>
+        </div>
+        <div class="col-2 u-hide--small u-align--left">
+            <img src="{{ ASSET_SERVER_URL }}6f00f039-Edge+gateway.svg" alt="Ubuntu Core and Kura: A framework for IoT gateways" onclick="document.getElementById('FirstName').focus();">
+            </div>
+        </div>
+        </section>
+        <section class="p-strip is-shallow">
+
+  <div class="row">
+    <div class="col-7">
+        <div class="col-12">
+        <p>The Linux distribution model, whilst established and well understood for computing, has some limitations when it comes to IoT edge gateway devices.</p>
+        
+        <p>Due to often being located in remote or hard to access areas, there is a greater demand for a system that offers both high levels of robustness and security. Therefore, having a standard Linux distribution as the base is often not the optimal choice.</p>
+          
+        <p>The use of generalist Linux distributions will likely lead to problems and greater complexity, putting the success of these projects at risk.</p>
+          
+        <p>This problem can be solved with a combination of Ubuntu Core, snaps and Kura. 
+          </p>
+        </div>
+        <div class="col-12">
+        <h3>Whitepaper highlights:</h3>
+        <ul class="p-list">
+            <li class="p-list__item is-ticked">Learn how Ubuntu Core’s snap packages allow for transactional updates to each key component</li>
+            <li class="p-list__item is-ticked">Understand why Ubuntu Core, snaps and Kura are the best combination for IoT gateways</li>
+            <li class="p-list__item is-ticked">Learn how to deploy Kura on Ubuntu Core and the IoT gateway security benefits of this model</li>
+        </ul>
+        </div>
+    </div>
+    <div class="col-5">
+      {% include "../shared/forms/_landing_page_default.html" with id="3286" returnURL="https://pages.ubuntu.com/UbuntuCore_Whitepaper_ty.html" %}
+    </div>
+  </div>
+</section>
+{% endblock content %}
