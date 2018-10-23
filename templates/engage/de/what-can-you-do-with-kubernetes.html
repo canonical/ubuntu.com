@@ -1,0 +1,28 @@
+  {% extends "engage/base_engage.html" %}
+
+  {% block meta_description %}Ein umfassenden Überblick, Demos und Ideen für Kubernetes den praktischen Einsatz.{% endblock %}
+
+{% block title %}Wofür können Sie Kubernetes einsetzen?{% endblock %}
+
+{% block content %}
+<section class="p-strip p-takeover--vmware-to-os">
+  <div class="row u-equal-height">
+    <div class="col-9">
+        <h1 class="p-takeover__title">Wofür können Sie Kubernetes einsetzen?</h1>
+        <p class="p-takeover__text">
+            <a href="#register-section">Webinar ansehen&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2 id="register-section">Effizienz mit Kubernetes</h2>
+      <p>Vermutlich wissen Sie, dass Kubernetes eine großartige Technologie ist. Aber haben Sie schon darüber nachgedacht, wie Sie sie in Ihrem Unternehmen nutzen können? Wir liefern Ihnen einen umfassenden Überblick, Demos und Ideen für den praktischen Einsatz.</p> 
+    </div>
+    <div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 17086, "language": "de-de", "commId" : 339310, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>
+  </div></section>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_newsletter" third_item="_telco_further_reading" %}
+{% endblock content %}

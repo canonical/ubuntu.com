@@ -1,0 +1,52 @@
+{% extends "engage/base_engage.html" %}
+
+{% block meta_description %}Software keeps evolving and management complexity tends to increase with successive stack updates. Learn how using Juju can solve software management complexity and how it provides a familiar approach to managing any type of stack.{% endblock %}
+
+{% block title %}Keep up with evolving software{% endblock %}
+
+{% block content %}
+<section class="p-strip--image is-dark p-hero--evolving-software">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h1 class="p-hero__title">Keep up with evolving software</h1>
+      <p class="p-heading--four">Learn how Juju can help solve software management complexity.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .p-hero--evolving-software {
+    background-image: 
+      url('{{ ASSET_SERVER_URL }}30c32559-juju-k8s-bundle-folds.png'), 
+      linear-gradient(121deg, #022935 0%, #044F66 57%, #067597 100%);
+  }
+  .p-hero__title {
+    font-weight: 100;
+  }
+</style>
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-7">
+      <h3>About the whitepaper</h3>
+      <p>With developers increasingly moving towards microservices – and with the
+        growing prevalence of the cloud as the default platform – software has become
+        more complex than ever.</p>
+      <p>In the past, a stand-alone application was typically enough to solve a particular
+        problem or provide a service to end users. But today’s solutions increasingly
+        demand large bundles of interconnected microservices distributed across many
+        machines, and potentially operating systems, to fulfil a single function.
+      </p>
+      <h3>Whitepaper highlights:</h3>
+      <ul class="p-list">
+          <li class="p-list__item is-ticked">How constantly evolving softare impacts automation, testing, and onboarding, and how Juju solves these issues</li>
+          <li class="p-list__item is-ticked">How Juju lets operators focus on the software model, rather than machines and instances details</li>
+          <li class="p-list__item is-ticked">How upgrades and changes in configuration, scale and components are handled by Juju </li>
+      </ul>
+    </div>
+    <div class="col-5">
+    {% include "../shared/forms/_landing_page_default.html" with id="3287" returnURL="https://pages.ubuntu.com/Juju_Whitepaper_ty.html" %}
+    </div>
+  </div>
+</section>
+{% endblock content %}
