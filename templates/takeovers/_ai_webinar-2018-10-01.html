@@ -22,3 +22,140 @@
     </div>
   </div>
 </section>
+<style>
+  @keyframes dotted-circle {
+    0% {
+      opacity: 0;
+      transform: rotate(45deg);
+    }
+
+    100% {
+      opacity: 1;
+      transform: rotate(0deg);
+    }
+  }
+
+  @keyframes ubuntu-logo {
+    0% {
+      opacity: 0;
+      transform: rotate(90deg);
+    }
+
+    100% {
+      opacity: 1;
+      transform: rotate(0deg);
+    }
+  }
+
+  @keyframes pop-in {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    40% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .p-takeover--ai-webinar {
+    background-color: #171717 ;
+    background-image: linear-gradient(45deg, #171717 0%, #181818 9%, #262626 34%, #2d2d2d 67%, #383838 88%, #2e2e2e 100%, #393939 100%); /** sass-lint:disable-line no-color-literals **/
+  }
+
+  .p-takeover--ai-webinar .p-takeover__title {
+    color: #fff;
+    font-weight: 100;
+  }
+
+  .p-takeover--ai-webinar .p-takeover__text {
+    color: #fff;
+    font-size: 1.22176rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 1.5rem;
+    margin-bottom: 1.7rem;
+    margin-top: 0;
+    max-width: 25em;
+    padding-top: 0.3rem;
+  }
+
+  .p-takeover--ai-webinar .p-takeover__image-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  @media (max-width: 875px) {
+    .p-takeover--ai-webinar .p-takeover__image-container {
+      margin-bottom: 1.5rem;
+      max-width: 300px;
+    }
+  }
+
+  .p-takeover--ai-webinar .dotted-circle {
+    animation: dotted-circle 1.5s cubic-bezier(.215, .61, .355, 1) .5s 1 forwards;
+    opacity: 0;
+    transform: rotate(45deg);
+  }
+
+  .p-takeover--ai-webinar .ubuntu-logo {
+    align-self: center;
+    animation: ubuntu-logo 2s cubic-bezier(.215, .61, .355, 1) .5s 1 forwards;
+    opacity: 0;
+    position: absolute;
+    transform: rotate(90deg);
+    width: 32%;
+  }
+
+  .p-takeover--ai-webinar .cloud-picto {
+    animation: pop-in .35s cubic-bezier(.215, .61, .355, 1) 1 forwards;
+    opacity: 0;
+    position: absolute;
+    transform: scale(0);
+    animation-delay: 2.25s;
+    height: 15.5%;
+    left: 15%;
+    top: 82%;
+  }
+
+  .p-takeover--ai-webinar .desktop-picto {
+    animation: pop-in .35s cubic-bezier(.215, .61, .355, 1) 1 forwards;
+    opacity: 0;
+    position: absolute;
+    transform: scale(0);
+    animation-delay: 1.5s;
+    height: 16%;
+    left: -5%;
+    top: 23%;
+  }
+
+  .p-takeover--ai-webinar .iot-picto {
+    animation: pop-in .35s cubic-bezier(.215, .61, .355, 1) 1 forwards;
+    opacity: 0;
+    position: absolute;
+    transform: scale(0);
+    animation-delay: 2s;
+    height: 19%;
+    left: 86%;
+    top: 56%;
+  }
+
+  .p-takeover--ai-webinar .server-picto {
+    animation: pop-in .35s cubic-bezier(.215, .61, .355, 1) 1 forwards;
+    opacity: 0;
+    position: absolute;
+    transform: scale(0);
+    animation-delay: 1.75s;
+    height: 16%;
+    left: 65%;
+    top: 0;
+  }
+</style>
