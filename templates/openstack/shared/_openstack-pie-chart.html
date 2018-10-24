@@ -20,6 +20,16 @@ function drawChart() {
   var radius = Math.min(width, height) / 2;
   var donutWidth = width / 4;
   var color = d3.scale.category20b();
+  var tooltip = d3.select("#ubuntu-pie")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .style("background", "#f7f7f7")
+    .style("font-color", "#000")
+    .style("top", "40px")
+    .style("left", "40px")
+    .text("OpenStack survey");
   var svg = d3.select('#ubuntu-pie')
     .append('svg')
     .attr('width', width)
@@ -27,7 +37,14 @@ function drawChart() {
     .attr('viewBox', '0 0 ' + (width + 2) + ' ' + (height + 2))
     .append('g')
     .attr('transform', 'translate(' + (width / 2 + 1) +
-    ',' + (height / 2 + 1) + ')');
+    ',' + (height / 2 + 1) + ')')
+    .on("mouseover", function(d){
+      tooltip.text(); 
+      return tooltip.style("visibility", "visible");
+    })
+    .on("mouseout", function(){
+      return tooltip.style("visibility", "hidden");
+    });;
 
   var arc = d3.svg.arc()
     .innerRadius(radius - donutWidth)
