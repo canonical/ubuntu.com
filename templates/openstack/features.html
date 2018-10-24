@@ -1,23 +1,21 @@
 {% extends "openstack/_base_openstack.html" %}
 
 {% block title %}Features | OpenStack{% endblock %}
-{% block meta_description %}Canonical OpenStack on Ubuntu includes software-defined networking and storage options, architectural flexibility, and shared community-driven ops code independent of architecture.{% endblock meta_description %}
+{% block meta_description %}Canonical OpenStack on Ubuntu features includes software-defined networking and storage options, architectural flexibility, and shared community-driven ops code independent of architecture.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1odFXuFtN1GjuZvgd8tW48HB4J9PjZJtP3w6wY0xlmog/edit{% endblock meta_copydoc %}
 
 {% block content %}
   <section class="p-strip--image u-no-background--small is-deep is-bordered" style="background-image: url('{{ ASSET_SERVER_URL }}1d2ab6ba-suru-background.png'); background-size: 100% 100%;">
     <div class="row">
       <div class="col-12">
-        <h1>Flexible, open, fast and reliable</h1>
+        <h1>Fast, reliable and open source cloud</h1>
         <p class="p-heading--three" style="max-width: none;">Architectural freedom. Fully automated operations. Telco-grade OpenStack for all.</p>
       </div>
     </div>
     <div class="row">
       <div class="col-8">
-        <p class="p-heading--five u-sv2">No snowflakes</p>
         <p>Canonical&rsquo;s OpenStack on Ubuntu gives you the flexibility to place your OpenStack services exactly where you want them, while sharing all the operational code with a large community.</p>
-        <p class="p-heading--five">No forks. No hacks. No snowflakes.</p>
-        <p><a href="/openstack/contact-us" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact Us for OpenStack insights', 'eventLabel' : 'Contact Us for OpenStack insights - Top CTA', 'eventValue' : undefined });" class="p-button--positive">Contact Us for OpenStack insights</a></p>
+        <p><a href="/openstack/contact-us" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact Us for OpenStack insights', 'eventLabel' : 'Contact Us for OpenStack insights - Top CTA', 'eventValue' : undefined });" class="p-button--positive">Contact us for OpenStack insights</a></p>
       </div>
     </div>
   </section>
@@ -39,7 +37,7 @@
         <p>Isolate critical services for <a href="/security">high security OpenStack</a> with simplified audit and compliance assessments.</p>
         <p>Building and operating OpenStack for financial services enables us to address EU and US regulatory requirements.</p>
         <p>Private cloud infrastructure on Ubuntu is part of the fintech revolution, from blockchain to digital transformation.</p>
-        <p><a href="/financial-services">Learn more about Ubuntu and financial services&nbsp;&rsaquo;</a></p>
+        <p><a href="/engage/financial-services-month?utm_source=takeover">Learn more about Ubuntu and financial services&nbsp;&rsaquo;</a></p>
       </article>
     </div>
     <div class="row u-equal-height">
@@ -74,8 +72,12 @@
         <div>
           <p class="p-heading--four">Migrate your existing VMs to Canonical OpenStack &mdash; quickly and cost-effectively.</p>
         </div>
-        <p>Canonical provides workload analysis and migration services. Not every workload is best run on a cloud, but 80-90% of enterprise workloads can move to OpenStack easily, and are much more cost-effective to run there.</p>
-        <p>The main driver for most OpenStack cloud deployments is the cost benefit of a leaner and more open IAAS. Canonical OpenStack also offers a range of cloud services, and compatibility with multi-cloud operations tools. While legacy virtualisation continues to be important, the future is cloud APIs and container-based operations, which Canonical OpenStack delivers.</p>
+        <p>Canonical provides workload analysis and migration services. Not every workload is best run on a cloud, but 80-90% of enterprise workloads can 
+          <a href="https://www.ubuntu.com/engage/cloud-economics?utm_source=blog&utm_campaign=FY19_Cloud_Openstack_Ebook_451&_ga=2.68747158.669405606.1540199166-1817227349.1540199166">move to OpenStack easily, and are much more cost-effective to run there.</a>
+        </p>
+        <p>The main driver for most OpenStack cloud deployments is the cost benefit of a leaner and more open IAAS. Canonical OpenStack offers a range of cloud services, and compatibility with multi-cloud operations tools. While legacy virtualisation continues to be important, the future is cloud APIs and container-based operations,
+          <a href="/engage/multi-cloud-guide?utm_source=blog&utm_campaign=FY19_Cloud_Openstack_Whitepaper_Multicloud"> which Canonical OpenStack delivers.</a>
+        </p>
       </div>
       <div class="col-4 u-hide--small u-align--center u-vertically-center">
         <img src="{{ ASSET_SERVER_URL }}e96658e8-transfer_4px.svg" alt="" />
@@ -88,7 +90,7 @@
     <div class="row">
       <div class="col-8">
         <h2>Operations Automation</h2>
-        <p>The biggest challenge of OpenStack is everyday operations automation, year after year, while OpenStack continues to evolve rapidly. Canonical solves this problem with model-driven operations that decouple your architectural choices from the operations codebase that supports upgrades, scaling, integration and security.</p>
+        <p>Automating operations is one of the biggest OpenStack challenges. With the rapid evolution of OpenStack, operations automation is essential. Canonical solves this problem with model-driven operations that decouple your architectural choices from the operations codebase that supports: upgrades, scaling, integration and security.</p>
       </div>
     </div>
   </section>
@@ -114,13 +116,13 @@
   <section class="p-strip is-bordered u-no-padding--top">
     <div class="row">
       <div class="col-8">
-        <h3>Total automation of bare metal infrastructure</h3>
-        <p>Running private clouds means taking responsibility for physical infrastructure. Ubuntu OpenStack uses MAAS, the leading open source software-defined-data-center system and open source IPAM, to automate commissioning, allocation, provisioning and secure recycling of every server in the DC.</p>
+        <h3>Operating automation of bare metal infrastructure</h3>
+        <p>Running private clouds means taking responsibility for physical infrastructure. Ubuntu OpenStack uses MAAS, the leading open source software-defined-data-center system and open source IPAM, to automate commissioning, allocation, provisioning and secure recycling of every server in the data centre.</p>
       </div>
     </div>
     <div class="row">
       <div class="col-9">
-        <h4 class="p-heading--five">MAAS enables multi-vendor and multi-OS data center operations:</h4>
+        <h4 class="p-heading--five">MAAS enables multi-vendor and multi-OS data centre operations:</h4>
         <ul class="p-list--divided is-split">
           <li class="p-list__item is-ticked">IPMI Board and Chassis Management Controllers</li>
           <li class="p-list__item is-ticked">HP, Dell, Supermicro, Quanta, Lenovo and others</li>
@@ -148,7 +150,7 @@
     <div class="row">
       <div class="col-8">
         <h2>Hyper-converged, containerised or isolated services</h2>
-        <p>Canonical leads the world in containerising the OpenStack control plane, enabling ultra-efficient placement of OpenStack services alongside guest compute and storage, reducing the overhead of your OpenStack cloud.</p>
+        <p>Canonical leads the world in containerising the OpenStack control plane, enabling ultra-efficient placement of OpenStack services alongside guest compute and storage, reducing OpenStack cloud costs.</p>
       </div>
     </div>
     <div class="row">
@@ -166,12 +168,12 @@
   <section class="p-strip is-bordered">
     <div class="row">
       <div class="col-8">
-        <h2>Consultancy service</h2>
+        <h2>OpenStack Consulting</h2>
       </div>
     </div>
     <div class="row">
       <div class="col-8">
-        <p>Our consulting and design services will help you choose the right mix of these capabilities for the particular stage and scale of your private cloud journey; having built hundreds of private clouds, we’re well placed to advise on the tradeoffs and steer you to the right architecture. Perhaps most importantly, though, we can evolve OpenStack deployments over a series of iterations as your needs change, which keeps your options open.</p>
+        <p>Our Openstack consulting and design services will help you choose the right mix of these capabilities for the particular stage and scale of your private cloud journey; having built hundreds of private clouds, we’re well placed to advise on the tradeoffs and steer you to the right architecture. Perhaps most importantly, though, we can evolve OpenStack deployments over a series of iterations as your needs change, which keeps your options open.</p>
         <p><a href="/openstack/consulting">Learn more our consulting services&nbsp;&rsaquo;</a></p>
       </div>
       <div class="col-4 prefix-1 u-hide--small">
@@ -214,7 +216,7 @@
   <section class="p-strip--light is-bordered">
     <div class="row">
       <div class="col-8">
-        <h3>Kubernetes fits perfectly on top of OpenStack, and VMware and MAAS bare metal</h3>
+        <h3>Kubernetes fits perfectly on top of OpenStack, VMware and MAAS bare metal</h3>
         <p>There’s no doubt that Kubernetes is the new standard operational layer for every multi-cloud business. Canonical enables K8s on demand for your devops teams - on OpenStack, on VMware, on public clouds, and on bare metal clusters with MAAS.</p>
         <p>Deliver ‘Containers as a Service’ across the enterprise with Canonical’s Distribution of Kubernetes (CDK) which enables each project to spin up a standardised K8s of arbitrary scale, on demand, with centralised operational control.</p>
       </div>
@@ -288,7 +290,7 @@
     <div class="row">
       <div class="col-8">
         <h2>Networking</h2>
-        <p>The major factor in perceived cloud performance is aggregate network throughput and latency across the underlying cluster. Canonical’s work with hyperscale public clouds ensures that we have deep insight into the dynamics of cloud network performance and security best practices for large-scale multi-tenanted operations. Our work with telco groups for NFV and edge clouds ensures that we can work well in complex environments where latency and security are critical.</p>
+        <p>Aggregate network throughput and latency across the underlying layer is a major factor in cloud performance. Canonical’s work with hyperscale public clouds ensures that we have deep insight into the dynamics of cloud network performance and security best practices for large-scale multi-tenanted operations. Our work with telco groups for NFV and edge clouds ensures that we can work well in complex environments where latency and security are critical.</p>
       </div>
     </div>
     <div class="row">
