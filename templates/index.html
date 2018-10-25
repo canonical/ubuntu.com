@@ -23,10 +23,10 @@
   #}
 
 {% block takeover_content %}
-  {% include "takeovers/_1810-takeover.html" with default=True %}
-  {% include "takeovers/_juju-webinar-takeover.html" %}
-  {% include "takeovers/_ai_webinar-2018-10-01.html" %}
-  {% include "takeovers/_tackling_iot.html" %}
-  {% include "takeovers/_german_takeover_k8.html" %}
-  {% include "takeovers/_german_takeover_openstack_made_easy.html" %}
+  {% include "takeovers/_1810-takeover.html" with default=True locale="all" %}
+  {% include "takeovers/_juju-webinar-takeover.html" with locale="all" %}
+  {% include "takeovers/_ai_webinar-2018-10-01.html" with locale="all" %}
+  {% include "takeovers/_tackling_iot.html" with locale="all" %}
+  {% include "takeovers/_german_takeover_k8.html" with locale="de" %}
+  {% include "takeovers/_german_takeover_openstack_made_easy.html" with locale="de" %}
 {% endblock takeover_content %}
