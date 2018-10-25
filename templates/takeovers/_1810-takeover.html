@@ -1,4 +1,4 @@
-<section lang="en" data-lang="all" class="p-strip--image is-dark is-deep u-image-position js-takeover p-takeover--1810 {% if not default %}u-hide{% endif %}" style="background-image:url('https://assets.ubuntu.com/v1/0edc1ffc-Cosmic_Cuttlefish_WP_4096x2304.jpg'); background-position: bottom; overflow: hidden;" {% if default %}data-default="true"{% endif %}>
+<section lang="en" data-lang="{{ locale }}" class="p-strip--image is-dark is-deep u-image-position js-takeover p-takeover--1810 {% if not default %}u-hide{% endif %}" style="background-image:url('https://assets.ubuntu.com/v1/0edc1ffc-Cosmic_Cuttlefish_WP_4096x2304.jpg'); background-position: bottom; overflow: hidden;" {% if default %}data-default="true"{% endif %}>
   <div class="row">
     <div class="col-6" style="position: relative; z-index: 2;">
       <h1 style="font-weight: 100;">Ubuntu 18.10 is here</h1>
@@ -499,6 +499,7 @@
 
   .p-takeover--1810 {
     position: relative;
+    background: #7C113F;
   }
 
   .p-takeover--1810 .u-overlay {
