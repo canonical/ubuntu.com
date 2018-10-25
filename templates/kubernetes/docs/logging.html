@@ -1,0 +1,157 @@
+
+{% extends "engage/base_engage.html" %}
+
+{% block meta_description %}An introduction to AI and ML workloads on Ubuntu workstations, servers and in the cloud on a Kubernetes stack.{% endblock %}
+
+{% block title %}AI, ML and Ubuntu: Everything you need to know{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1YVPlQYT3jvxb6Yp5OShSiUsmKBPOYOm_fNLJHNsQ6tQ/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<div class="p-content__row">
+  <div class="edit-page">
+    <a href="https://github.com/juju-solutions/kubernetes-docs/blob/master/pages/k8s/logging.md" class=" p-link--external">Edit this page</a>
+  </div>
+
+  <h1 id="logging">Logging</h1>
+
+  <div class="p-notification--information">
+    <p class="p-notification__response">
+      <span class="p-notification__status">Note:</span>
+      This documentation assumes you are using version 2.4.0 or later of
+      <strong>Juju</strong> . If you are using an earlier version you should
+      check the  <a href="https://docs.jujucharms.com/stable/en/troubleshooting-logs" class=" p-link--external">
+      relevant <emphasis>Juju</emphasis> documentation </a> as some of the associated
+      commands have changed.
+    </p>
+  </div>
+
+    <p>Broadly, there are two types of logs you may be interested in. On cluster or
+      node level; for the applications you are running inside your cluster, and at an
+      infrastructure level, the applications which are responsible for running the
+      cluster itself. As the <strong>Canonical Distribution of Kubernetes<sup>®</sup></strong>
+      is pure Kubernetes, you can use any of the tools and techniques  to examine cluster
+      logs as <a href="https://kubernetes.io/docs/concepts/cluster-administration/logging/" class=" p-link--external">described in the Kubernetes documentation</a>.</p>
+
+      <p>For the infrastructure, your <strong>CDK</strong> deployment has centralised logging set up
+        as default. Each unit in your cluster automatically sends logging information
+        to the controller based on the current logging level.  You can use the <strong>Juju</strong>
+        command line to easily inspect these logs and to change the logging level, as
+        explained below.</p>
+
+        <h2 id="viewing-logs">Viewing logs</h2>
+
+        <p>To view the logs from the current controller and model, simply run:</p>
+
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>juju debug-log
+        </code></pre></div></div>
+
+        <p>The default behaviour is to show the last 10 entries and to tail the log (so
+          you will need to terminate the command with <code class="highlighter-rouge">Ctrl-C</code>).</p>
+
+          <p>The output is in the form:</p>
+
+          <p><code class="highlighter-rouge">&lt;entity&gt; &lt;timestamp&gt; &lt;log-level&gt; &lt;module&gt;[:&lt;line-no&gt;] &lt;message&gt;</code></p>
+
+          <p>For example, a typical line of output might read:</p>
+
+          <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unit-kubernetes-master-0: 18:04:11 INFO juju.cmd running jujud [2.4.2 gc go1.10]
+          </code></pre></div></div>
+
+          <p>The entity is the unit, machine or application the message originates from (in
+            this case <em>kubernetes-master/0</em>). It can be very useful to filter the output
+            based on the entity or log level, and the <code class="highlighter-rouge">debug-log</code> command has many options.
+            For a full description, run the command <code class="highlighter-rouge">juju help debug-log</code> or see the
+            <a href="https://docs.jujucharms.com/stable/en/troubleshooting-logs" class=" p-link--external"><strong>Juju</strong> documentation</a>. Some useful examples are outlined below.</p>
+
+            <h3 id="useful-examples">Useful examples</h3>
+
+            <p>View the last 100 entries and tail the log:</p>
+
+            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>juju debug-log <span class="nt">-n</span> 100
+            </code></pre></div></div>
+
+            <p>Show the last 20 entries and exit:</p>
+
+            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>juju debug-log <span class="nt">-n</span> 20 <span class="nt">--no-tail</span>
+            </code></pre></div></div>
+
+            <p>Replay the log from the very beginning, but filter to logs from kubernetes-worker/0:</p>
+
+            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>juju debug-log <span class="nt">--replay</span> <span class="nt">--include</span><span class="o">=</span>kubernetes-worker/0
+            </code></pre></div></div>
+
+            <h2 id="viewing-logs-on-a-machine">Viewing logs on a machine</h2>
+
+            <p>If it becomes necessary for any reason, it is also possible to view logs
+              directly on the running machine. A user with SSH access can connect to the
+              relevant machine and find the logs for all the units running on that machine in
+              the directory <code class="highlighter-rouge">/var/logs/juju</code>.  The <code class="highlighter-rouge">juju ssh</code> command can be used for this,
+              and you can connect to the relevant machine using a unit identifier. So for
+              example, to look at the logs on the machine running the first unit of
+              <code class="highlighter-rouge">kubernetes-worker</code> you can run the following:</p>
+
+              <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>juju ssh kubernetes-worker/0
+                <span class="nb">ls</span> /var/logs/juju/
+              </code></pre></div></div>
+              <p>Which should show something similar to:</p>
+
+              <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>machine-1.log  machine-lock.log  unit-flannel-1.log  unit-kubernetes-worker-0.log
+              </code></pre></div></div>
+
+              <p>Note that the logs from other units (in this case ‘flannel’) running on this
+                machine can also be found here.</p>
+
+                <h2 id="logging-level">Logging level</h2>
+
+                <p>You can check the current logging level by running the command:</p>
+
+                <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>juju model-config logging-config
+                </code></pre></div></div>
+                <p>This will result in output similar to:</p>
+
+                <pre><code class="language-no-highlight">&lt;root&gt;=WARNING;unit=DEBUG
+                </code></pre>
+                <p>…which is the default for any Juju model. This indicates that the <em>machine</em> log level is set to ‘WARNING’, and the <em>unit</em> logging level is set to ‘DEBUG’.  As all the software components of your kubernetes cluster run in units, these logs are likely to be useful for diagnosing issues with software.</p>
+
+                <p>The logging levels, from most verbose to least verbose, are as follows:</p>
+
+                <ul>
+                  <li>TRACE</li>
+                  <li>DEBUG</li>
+                  <li>INFO</li>
+                  <li>WARNING</li>
+                  <li>ERROR</li>
+                </ul>
+
+                <p>The logging level can be set like this:</p>
+
+                <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> juju model-config logging-config<span class="o">=</span><span class="s2">"&lt;root&gt;=WARNING;unit=TRACE"</span>
+                </code></pre></div></div>
+                <p>…which in this case sets the logging level for all units to TRACE</p>
+
+                <div class="p-notification--warning">
+                  <p class="p-notification__response">
+                    <span class="p-notification__status">Caution! :</span>
+                    It isn't a good idea to leave the logging level at 'TRACE' for any
+                    longer than you actually need to. Verbose logging not only consumes network
+                    bandwidth but also fills up the database on the controller.
+                  </p>
+                </div>
+
+                <h2 id="additional-information">Additional information</h2>
+
+                <p>As previously mentioned, you can see more detailed information on accessing the logs from your cluster in the <a href="https://docs.jujucharms.com/stable/en/troubleshooting-logs" class=" p-link--external"><strong>Juju</strong> documentation</a>, including the following:</p>
+
+                <ul>
+                  <li>Altering the agent logging setup</li>
+                  <li>Setting up remote logging</li>
+                  <li>More advanced filtering and additional examples</li>
+                </ul>
+
+                <!--LINKS -->
+
+
+              </div>
+
+{% endblock content %}
