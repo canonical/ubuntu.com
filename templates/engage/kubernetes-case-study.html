@@ -1,0 +1,38 @@
+{% extends "engage/base_engage.html" %}
+
+{% block meta_description %}Case study: Canonical's Distribution of Kubernetes (CDK) cut financial servies company, Allan Gray's, Kubernetes cluster deployment time from two months to two weeks, with enterprise Kubernetes support provided to ensure maximum availability.{% endblock %}
+{% block title %}Allan Gray unlocks unprecedented availability and productivity with CDK{% endblock %}
+
+{% block content %}
+<section class="p-strip--light p-takeover--stats is-deep">
+  <div class="row">
+    <div class="col-7">
+      <h1 style="font-weight: 100">Allan Gray unlocks unprecedented availability and productivity with CDK</h1>
+      </div>
+      <div class="prefix-1 col-5">
+          <img src="{{ ASSET_SERVER_URL }}071489b4-K8s+logo+mobile.svg" alt="Case study: Canonical Distrubution of Kubernetes" onclick="document.getElementById('FirstName').focus();">
+          </div>
+      </div>
+      </section>
+      <section class="p-strip is-shallow">
+
+      <div class="row">
+          <div class="col-7">
+        <p >Allan Gray, an investment banking company, originally managed their Kubernetes cluster in house, but soon realised lack of additional support and the resourcing associated with its management could pose issues.</p>
+        <p>To minimise risk and maximise revenues, Allan Gray turned to Canonical's Distrubution of Kubernetes to boost efficiency and availability.</p>
+        <h3>Case study highlights</h3>
+        <ul class="p-list">
+            <li class="p-list__item is-ticked">Allan Gray needed enterprise support for Kubernetes to ensure maximum availability for mission-critical systems</li>
+            <li class="p-list__item is-ticked">Canonical’s Distribution of Kubernetes (CDK) cut Kubernetes cluster deployment time from two months to two weeks</li>
+            <li class="p-list__item is-ticked">Canonical’s Ubuntu Advantage (UA) support saves Allan Gray two weeks of work per Kubernetes upgrade - freeing senior developers to focus on valuable DevOps work</li>
+          </ul>
+        <p>Download the case study to find out more.</p>
+    </div>
+
+  <div class="col-5">
+    {% include "../shared/forms/_landing_page_default.html" with id="3296" returnURL="https://pages.ubuntu.com/CStudy_AllanGray-TY.html" label="Download the case study" %}
+   </div>
+
+</div>
+</section>
+{% endblock content %}
