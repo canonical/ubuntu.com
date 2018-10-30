@@ -1,0 +1,32 @@
+<section lang="en" data-lang="{{ locale }}" class="p-strip--image is-deep js-takeover is-bordered p-takeover--kubernetes-solutions {% if not default %}u-hide{% endif %}"
+    {% if default %}data-default="true" {% endif %}>
+    <div class="row u-vertically-center">
+        <div class="col-7" itemscope="" itemtype="https://schema.org/Event">
+            <p class="p-muted-heading" style="font-size: 1rem;">Kubernetes for the enterprise</p>
+            <h1 class="u-no-padding--top" style="font-weight: 100"><span class="event-title" itemprop="name">The Canonical Distribution of Kubernetes
+                Pure upstream, ready for multi-cloud, AI/ML and Edge!                
+                </span></h1>
+            <p class="col-5 u-hide--large"><img src="{{ ASSET_SERVER_URL }}1db850da-K8s+logo.svg" alt="kubernetes"></p>
+            <p><a itemprop="url" href="https://www.ubuntu.com/kubernetes" class="p-button--positive">Find out more / Read more</a></p>
+        </div>
+        <div class="col-5 u-hide--small u-hide--medium">
+            <img src="{{ ASSET_SERVER_URL }}1db850da-K8s+logo.svg" alt="kubernetes">
+        </div>
+    </div>
+</section>
+
+<style>
+    .p-takeover--kubernetes-solutions {
+        background-color: #f7f7f7;
+    }
+
+    @media (min-width: 768px) {
+        .p-takeover--kubernetes-solutions {
+            background-image: url('{{ ASSET_SERVER_URL }}d3edfcd5-left.png'),
+            url('{{ ASSET_SERVER_URL }}17508275-right.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: bottom left, bottom right;
+        }
+    }
+</style>
