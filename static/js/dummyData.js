@@ -584,11 +584,11 @@ var dummyData = {
     datasets: {
       legend: {
         colors: [
-          "#F7C3B1",
-          "#F5B29B",
-          "#F29879",
-          "#ED764D",
-          "#E95420",
+          "#FAD8CB",
+          "#F5BEAB",
+          "#EEA78F",
+          "#E79173",
+          "#DF6F47",
           "#C33513"
         ]
       },
