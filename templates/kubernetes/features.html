@@ -1,7 +1,7 @@
 {% extends "kubernetes/base_kubernetes.html" %}
 
-{% block title %}Features of Canonical Kubernetes on Ubuntu{% endblock %}
-{% block meta_description %}Canonical OpenStack on Ubuntu includes software-defined networking and storage options, architectural flexibility, and shared community-driven ops code independent of architecture.{% endblock meta_description %}
+{% block title %}Features of Ubuntu Kubernetes{% endblock %}
+{% block meta_description %}Ubuntu K8s gives you the flexibility to place your services exactly where you want them while sharing operational code with a large community.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1mEOBW4pfsWJqTLm9Pn9myKtaslD-QB2RvUKcNQ52bXU/edit{% endblock meta_copydoc %}
 
 {% block content %}
@@ -9,9 +9,9 @@
 <section class="p-strip--light is-bordered">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-8">
-      <h1>Canonical Distribution of Kubernetes features</h1>
-      <p class="p-heading--four">Architectural freedom. Fully automated operations. Extensible Kubernetes for all.</p>
-      <p>The Canonical Distribution of Kubernetes on Ubuntu gives you the flexibility to place your services exactly where you want them while sharing operational code with a large community.</p>
+      <h1>Ubuntu Kubernetes features</h1>
+      <h4>Architectural freedom. Fully automated operations. Extensible Kubernetes for all.</h4>
+      <p>Kubernetes on Ubuntu gives you perfect portability of workloads across all infrastructures, from the datacentre to public clouds. Deep integration with infrastructure features such as <abbr title="Load Balancing as a Service">LBaaS</abbr>, storage, and networking means freedom and preservation of choice in infrastructure. With a strong focus on AI/ML and providing a cloud-native platform for the enterprise, Ubuntu is the platform of choice.</p>
       <p><a class="p-button--positive" href="/kubernetes/contact-us?product=kubernetes-features">Talk to us</a></p>
     </div>
     <div class="col-4 u-align--center u-hide--small">
@@ -26,13 +26,13 @@
       <h3 class="p-card__title">Cloud Native Platform</h3>
       <hr>
       <p>The Canonical Distribution of Kubernetes (CDK) provides a well integrated, turn-key Kubernetes platform that is optimized for your cloud &mdash; private or public. It is open, extensible, and secure.</p>
-      <p>Get started now and take advantage of our rapidly growing ecosystem of technology partners like Rancher Labs, JFrog and others. CDK is the best foundation for your cloud native platform!</p>
+      <p>Get started now and take advantage of our rapidly growing ecosystem of technology partners like Rancher Labs, JFrog and others. CDK is the best foundation for your cloud-native platform!</p>
       <p><a class="p-button--positive" href="/kubernetes/install">Get started</a></p>
     </div>
     <div class="col-6 p-card">
       <h3 class="p-card__title">AI / ML and HPC Architecture</h3>
       <hr>
-      <p>GPGPU acceleration of AI and machine learning workloads on Kubernetes requires careful configuration of the underlying hardware and host OS. Canonical’s Ubuntu is the leading platform for public cloud GPGPU instances and Canonical offers private cloud expertise to match.</p>
+      <p>GPGPU acceleration of AI and machine learning workloads on Kubernetes requires careful configuration of the underlying hardware and host OS. Ubuntu is the leading platform for public cloud GPGPU instances and Canonical offers private cloud expertise to match.</p>
       <p>Build a GPGPU cluster and operate Kubernetes on top for HPC and high-throughput AI / ML data science.</p>
       <p><a class="p-button--positive" href="/ai">Learn more</a></p>
     </div>
@@ -41,14 +41,14 @@
     <div class="col-6 p-card">
       <h3 class="p-card__title">Keeping Kubernetes current</h3>
       <hr>
-      <p>Developers demand the latest features as Kubernetes evolves rapidly in the open source community. On bare metal, VMs or as a service &mdash; CDK will keep your kubernetes cluster up to date</p>
+      <p>Developers demand the latest features as Kubernetes evolves rapidly in the open source community. On bare metal, VMs or as a service &mdash; CDK will keep your Kubernetes cluster up to date</p>
       <p>Using Snaps, point releases of Kubernetes are automatically installed. And whenever there is a new major version, juju charms make upgrading CDK easy.</p>
       <p><a class="p-button--positive" href="/kubernetes/install">Install CDK now</a></p>
     </div>
     <div class="col-6 p-card">
       <h3 class="p-card__title">Managed Kubernetes</h3>
       <hr>
-      <p>Predictable OpEx for organisations looking to disaggregate Kubernetes adoption from operational readiness. Canonical provides managed service for Kubernetes at great economics.</p>
+      <p>Predictable OpEx for organisations looking to disaggregate Kubernetes adoption from operational readiness. Canonical provides managed service for Kubernetes at great economics on-premise or on public clouds.</p>
       <p><a class="p-button--positive" href="/kubernetes/managed">Learn more</a></p>
     </div>
   </div>
@@ -67,7 +67,10 @@
   <div class="row">
     <ul class="p-list is-split">
       <li class="p-list__item is-ticked">Multi-cloud workload portability thanks to Ubuntu</li>
+      <li class="p-list__item is-ticked">Deep integration with virtual substrate features such as LBaaS, storage and networking across OpenStack, VMware, AWS, GCP and Azure</li>
       <li class="p-list__item is-ticked">Same Ubuntu OS and kernel as Google, Azure, AWS k8s offerings</li>
+      <li class="p-list__item is-ticked">Support for Charmed Kubernetes as well as K8s deployed using kubeadm</li>
+      <li class="p-list__item is-ticked">Support for CNCF Kubernetes binaries</li>
       <li class="p-list__item is-ticked">PCI device passthrough for GPGPU, FPGA and SR-IOV workloads</li>
       <li class="p-list__item is-ticked">AI and machine learning optimisations with nVidia and Google</li>
       <li class="p-list__item is-ticked">Flavours to match public cloud k8s on Google, Azure, AWS</li>
@@ -109,13 +112,13 @@
   <div class="row u-equal-height">
     <div class="col-8">
       <h3>CNI plugins</h3>
-      <p>Canonical&rsquo;s Distribution of Kubernetes comes pre-packaged with several tested CNI plugins like Calico and Flannel. Our distribution of Kubernetes is open and extensible &mdash; bring your favorite CNI plugin and extend CDK.</p>
+      <p>Canonical&rsquo;s Distribution of Kubernetes comes pre-packaged with several tested CNI plugins like Calico and Flannel. Our distribution of Kubernetes is open and extensible &mdash; bring your favourite CNI plugin and extend CDK.</p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Secure network connectivity for containers and virtual machine</li>
         <li class="p-list__item is-ticked">Flat layer 3 network without encapsulation</li>
         <li class="p-list__item is-ticked">Fully routable IP address</li>
         <li class="p-list__item is-ticked">Bare metal performance</li>
-        <li class="p-list__item is-ticked">IP-in-IP tunneling for overlay support</li>
+        <li class="p-list__item is-ticked">IP-in-IP tunnelling for overlay support</li>
         <li class="p-list__item is-ticked">Dynamic network security rules</li>
         <li class="p-list__item is-ticked">Fine-grained control over communications between containers, virtual machine workloads, and bare metal host endpoints.</li>
         <li class="p-list__item is-ticked">Production  scale</li>
@@ -145,7 +148,7 @@
         <li class="p-list__item is-ticked">Make storage available to containers wherever they&rsquo;re scheduled.</li>
         <li class="p-list__item is-ticked">Automatically delete the storage when no longer needed.</li>
       </ul>
-      <p>To improve the extensibility of the storage feature set and plugin ecosystem, Kubernetes has announced a new initiative &mdash; the Container Storage Interface (CSI) &mdash; which is currently in Beta. CSI enables storage plugins to be developed independent from the Kubernetes github tree, containerized, deployed via standard Kubernetes primitives, and consumed through the Kubernetes storage primitives users know and love (<code>PersistentVolumeClaims</code>, <code>PersistentVolumes</code>, <code>StorageClasses</code>). The next dot release of CDK will provide early access to CSI.</p>
+      <p>To improve the extensibility of the storage feature set and plugin ecosystem, Kubernetes has announced a new initiative &mdash; the Container Storage Interface (CSI) &mdash; which is currently in Beta. CSI enables storage plugins to be developed independent from the Kubernetes GitHub tree, containerized, deployed via standard Kubernetes primitives, and consumed through the Kubernetes storage primitives users know and love (<code>PersistentVolumeClaims</code>, <code>PersistentVolumes</code>, <code>StorageClasses</code>). The next dot release of CDK will provide early access to CSI.</p>
     </div>
     <div class="col-4 u-vertically-center u-align--center u-hide--small">
       <img src="{{ ASSET_SERVER_URL }}4bf27234-logo+%281%29.png" alt="">
