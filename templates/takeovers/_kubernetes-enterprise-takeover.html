@@ -1,15 +1,15 @@
-<section lang="en" data-lang="{{ locale }}" class="p-strip--image is-deep js-takeover is-bordered p-takeover--kubernetes-solutions {% if not default %}u-hide{% endif %}"
+<section lang="en" data-lang="{{ locale }}" class="p-strip--image is-deep is-dark js-takeover is-bordered p-takeover--kubernetes-solutions {% if not default %}u-hide{% endif %}"
     {% if default %}data-default="true" {% endif %}>
     <div class="row u-vertically-center">
         <div class="col-7" itemscope="" itemtype="https://schema.org/Event">
-            <p class="p-muted-heading" style="font-size: 1rem;">Kubernetes for the enterprise</p>
-            <h1 class="u-no-padding--top" style="font-weight: 100"><span class="event-title" itemprop="name">The Canonical Distribution of Kubernetes
+            <h1>Kubernetes for the enterprise</h1>
+            <p class="u-no-padding--top"><span class="event-title" itemprop="name">The Canonical Distribution of Kubernetes
                 Pure upstream, ready for multi-cloud, AI/ML and Edge!                
-                </span></h1>
-            <p class="col-5 u-hide--large"><img src="{{ ASSET_SERVER_URL }}1db850da-K8s+logo.svg" alt="kubernetes"></p>
+                </span></p>
+            <p class="col-5 u-hide--large .p-takeover--kubernetes-logo"><img src="{{ ASSET_SERVER_URL }}1db850da-K8s+logo.svg" alt="kubernetes"></p>
             <p><a itemprop="url" href="https://www.ubuntu.com/kubernetes" class="p-button--positive">Find out more / Read more</a></p>
         </div>
-        <div class="col-5 u-hide--small u-hide--medium">
+        <div class="col-5 u-hide--small u-hide--medium .p-takeover--kubernetes-logo">
             <img src="{{ ASSET_SERVER_URL }}1db850da-K8s+logo.svg" alt="kubernetes">
         </div>
     </div>
@@ -17,16 +17,32 @@
 
 <style>
     .p-takeover--kubernetes-solutions {
-        background-color: #f7f7f7;
+        background-color: #326ce5;
+        background-image: url('{{ ASSET_SERVER_URL }}7836831c-Takeover-small-screen.jpg?w=375');
+        background-position: bottom center;
+        background-size: none;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 620px) {
         .p-takeover--kubernetes-solutions {
-            background-image: url('{{ ASSET_SERVER_URL }}d3edfcd5-left.png'),
-            url('{{ ASSET_SERVER_URL }}17508275-right.png');
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: bottom left, bottom right;
+            background-image: url('{{ ASSET_SERVER_URL }}94206a69-Takeover-large-screen.jpg?w=1280');
         }
+    }
+
+    @media (min-width: 1200px) {
+        .p-takeover--kubernetes-solutions {
+            background-image: url('{{ ASSET_SERVER_URL }}94206a69-Takeover-large-screen.jpg');
+        }
+    }
+
+    @media (min-width: 1600px) {
+        .p-takeover--kubernetes-solutions {
+            background-size: cover;
+        }
+    }
+
+    .p-takeover--kubernetes-logo {
+        height: 257px;
+        width: 264px;
     }
 </style>
