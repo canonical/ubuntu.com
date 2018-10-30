@@ -7,12 +7,36 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1YVPlQYT3jvxb6Yp5OShSiUsmKBPOYOm_fNLJHNsQ6tQ/edit{% endblock meta_copydoc %}
 
 {% block content %}
+<style>
+  .p-takeover--ai-webinar {
+    background-color: #171717 ;
+    background-image: linear-gradient(45deg, #171717 0%, #181818 9%, #262626 34%, #2d2d2d 67%, #383838 88%, #2e2e2e 100%, #393939 100%); /** sass-lint:disable-line no-color-literals **/
+  }
+
+  .p-takeover--ai-webinar .p-takeover__title {
+    color: #fff;
+    font-weight: 100;
+  }
+
+  .p-takeover--ai-webinar .p-takeover__text {
+    color: #fff;
+    font-size: 1.22176rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 1.5rem;
+    margin-bottom: 1.7rem;
+    margin-top: 0;
+    max-width: 25em;
+    padding-top: 0.3rem;
+  }
+</style>
+
 <section class="p-strip p-takeover--ai-webinar">
   <div class="row u-equal-height">
     <div class="col-9">
       <h1 class="p-takeover__title">Artificial intelligence, machine learning and Ubuntu</h1>
       <p class="p-takeover__text">
-        <a href="#register-section">Watch the webinar&nbsp;&rsaquo;</a>
+        <a class="p-link--inverted" href="#register-section">Watch the webinar&nbsp;&rsaquo;</a>
       </p>
     </div>
   </div>

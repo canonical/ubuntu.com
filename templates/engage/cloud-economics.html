@@ -5,6 +5,34 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1NtRmAB4Pkphc8WTU8n4-b10knVqqFhMDc_FtGAwQ7nw/edit{% endblock meta_copydoc %}
 
 {% block content %}
+<style>
+  .p-takeover--private-cloud-economics {
+    background-color: #0d5777;
+    background-image: linear-gradient(-36deg, #111 0%, rgba(38, 38, 38, .9) 100%);
+  }
+
+  .p-takeover__title {
+    color: #fff;
+    font-weight: 100;
+  }
+
+  .p-takeover__text {
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  @media (min-width: 875px) {
+    .p-takeover--private-cloud-economics {
+      background-image: url('#{$assets-path}13fdbc5b-graph.png'), linear-gradient(-36deg, #111 0%, rgba(38, 38, 38, .9) 100%);
+      background-position: right bottom;
+      background-repeat: no-repeat;
+    }
+
+    .p-takeover__text {
+      font-size: 1.25rem;
+    }
+  }
+</style>
 <section class="p-strip is-deep p-takeover--private-cloud-economics">
   <div class="row u-equal-height">
     <div class="col-8">
