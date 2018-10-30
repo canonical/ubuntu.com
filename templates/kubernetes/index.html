@@ -20,7 +20,7 @@
 <section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-12">
-      <h2>Free to deploy, supported by Canonical</h2>
+      <h2>Upstream K8s options</h2>
     </div>
   </div>
 
@@ -42,20 +42,21 @@
     <div class="col-6 p-card">
       <div class="p-card__header">
         <h2 class="p-heading--four">Ubuntu K8s</h2>
-        <p><em>Recommended multi-cloud approach</em></p>
+        <p><em>Recommended multi-cloud clusters</em></p>
       </div>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Bare metal, VMware</li>
         <li class="p-list__item is-ticked"><span class="caps">AWS,</span> Azure, Google, Oracle, Rackspace, OpenStack</li>
         <li class="p-list__item is-ticked">Integrates public cloud <span class="caps">LBAAS, </span>storage, networking</li>
         <li class="p-list__item is-ticked">High availability built-in</li>
+        <li class="p-list__item is-ticked">Istio and registry built in</li>
         <li class="p-list__item is-ticked">Upgrades in place</li>
         <li class="p-list__item is-ticked">Automated scaling</li>
       </ul>
-      <p>Deploy, scale and upgrade K8s across multiple physical or virtual machines. Long-term support and operations automation. Integrates with Graylog, Prometheus, and Grafana.</p>
+      <p>Deploy, scale and upgrade K8s clusters across multiple physical or virtual machines. Long-term support and operations automation. Integrates with Graylog, Prometheus, and Grafana.</p>
 
       <p><a href="/kubernetes/install">Install instructions&nbsp;&rsaquo;</a></p>
-      <p><a href="{{ ASSET_SERVER_URL }}223eab1a-canonical-kubernetes-enterprise-2018-25-07.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Download the Services datasheet', 'eventLabel' : 'Download the Services datasheet' : undefined });">Kubernetes datasheet&nbsp;&rsaquo;</a></p>
+      <p><a href="{{ ASSET_SERVER_URL }}223eab1a-canonical-kubernetes-enterprise-2018-25-07.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Download the Services datasheet', 'eventLabel' : 'Download the Services datasheet' : undefined });">Managed K8s datasheet&nbsp;&rsaquo;</a></p>
     </div>
 
     <div class="col-6 p-card">
@@ -68,14 +69,22 @@
         <li class="p-list__item is-ticked">Experimental support for upgrades</li>
         <li class="p-list__item is-ticked">Often used for hand-built clusters with custom operations regimes.</li>
       </ul>
+      <p><a href="https://kubernetes.io/docs/setup/independent/install-kubeadm/" class="p-link--external">Install instructions</a></p>
       <p><a href="/kubernetes/contact-us?product=kubernetes-kubeadm">Get support for kubeadm&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
 
+<section class="p-strip is-bordered">
+  <div class="row">
+    <h2>Canonical Support for Kubernetes</h2>
+    <p>Enterprise support for Kubernetes on Ubuntu is provided by Canonical as part of <a href="/support">Ubuntu Advantage</a>. UA also includes long-term security maintenance, kernel live patching and mission-critical infrastructure support for the full stack, from kernel to container. Canonical supports K8s on Ubuntu on public clouds, VMware, OpenStack and bare metal.</p>
+  </div>
+</section>
+
 <section class="p-strip--light is-bordered">
   <div class="row">
-    <h2>Getting started with Kubernetes consulting packages</h2>
+    <h2>Get started with Kubernetes consulting packages</h2>
     <p>Canonical offers three consulting packages to help you establish your Kubernetes operations. We also offer long-term support and managed K8s.</p>
   </div>
   {% include 'shared/pricing/_kubernetes-consulting.html' %}
@@ -285,12 +294,6 @@
       <h2>Test drive the Ubuntu K8s today!</h2>
       <p class="u-no-margin--top"><a href="/kubernetes/install" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Try it now', 'eventLabel' : 'Try it now - Bottom CTA' : undefined });"><span class="p-link--external">Try it now</span></a>&#8195;<a href="/kubernetes/contact-us?product=kubernetes" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Contact us - Bottom CTA' : undefined });">Contact us</a></p>
     </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row">
-    <p id="fn1" class="note"><a href="#r1">*</a> Kubernetes&reg; is a registered trademark of The Linux Foundation in the United States and other countries and is used pursuant to a license from The Linux Foundation</p>
   </div>
 </section>
 
