@@ -1,0 +1,38 @@
+{% extends "engage/base_engage.html" %}
+
+{% block meta_description %}ITstrategen keeps legacy applications secure with Extended Security Maintenance (ESM), a feature of the Ubuntu Advantage support subscriptions from Canonical.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1TIg0rYTrAp7yeu41GFwuCaXgS4SR2rjJrAp7D6zDocQ/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip is-deep u-no-margin--bottom u-no-padding--bottom">
+  <div class="row">
+    <div class="col-7">
+      <h1 style="font-weight: 100">ITstrategen keeps legacy applications secure with Extended Security Maintenance</h1>
+      </div>
+      <div class="col-5 u-vertically-center u-align--center u-hide--small">
+          <img src="{{ ASSET_SERVER_URL }}9e59756d-shield-ESM.svg" alt="Case study: ITstrategen keeps legacy applications secure with Extended Security Maintenance" onclick="document.getElementById('FirstName').focus();">
+          </div>
+      </div>
+      </section>
+      <section class="p-strip is-shallow">
+
+      <div class="row">
+          <div class="col-7">
+        <p>Extended Security Maintenance (ESM) extends official support for the operating system, guaranteeing the continued security of ITstrategen’s servers and saving its clients from costly application updates.</p>
+        <p>As the five-year support window for Ubuntu 12.04 came to an end, some of ITstrategen’s customers still depended on servers running the now out of support operating system and without support, the security of those servers was at risk. To tackle this issue, ITstrategen decided to purchase Extended Security Maintenance (ESM) for Ubuntu 12.04, a service offered as part of their Ubuntu Advantage subscription.</p>
+        <h3>Case study highlights</h3>
+        <ul class="p-list">
+            <li class="p-list__item is-ticked">ESM saves ITstrategen’s customers from 6-figure application update costs</li>
+            <li class="p-list__item is-ticked">It eliminates need for time-consuming security workarounds</li>
+            <li class="p-list__item is-ticked">And boosts service quality and customer loyalty</li>
+          </ul>
+        <p>Download the case study to find out more.</p>
+    </div>
+
+  <div class="col-5">
+    {% include "../shared/forms/_landing_page_default.html" with id="2495" returnURL="https://pages.ubuntu.com/Cloud_CS_ITstrategen_TY.html" label="Download the case study" %}
+   </div>
+
+</div>
+</section>
+{% endblock content %}
