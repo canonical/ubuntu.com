@@ -1,0 +1,32 @@
+<section lang="en" data-lang="{{ locale }}" class="p-strip--image is-deep js-takeover is-bordered p-takeover--multicloud-operations {% if not default %}u-hide{% endif %}"
+    {% if default %}data-default="true" {% endif %}>
+    <div class="row u-vertically-center">
+        <div class="col-7">
+            <h1 style="font-weight: 100"> Solutions for cost-effective multicloud</h1>
+            <p class="u-no-padding--top">From optimised public cloud images to managed OpenStack and Kubernetes</p>
+            <p class="col-5 u-hide--large"><img src="{{ ASSET_SERVER_URL }}3899d03f-choosingacloud.svg" alt=""></p>
+            <p><a itemprop="url" href="https://www.ubuntu.com/engage/multi-cloud-guide"
+                    class="p-button--positive">Your guide to multicloud</a></p>
+            <p><a href="/kubernetes/contact-us?product=multicloud">Contact us&nbsp;&rsaquo;</a></p>
+        </div>
+        <div class="col-5 u-hide--small u-hide--medium">
+            <img src="{{ ASSET_SERVER_URL }}3899d03f-choosingacloud.svg" alt="">
+        </div>
+    </div>
+</section>
+
+<style>
+    .p-takeover--multicloud-operations {
+        background-color: #f7f7f7;
+    }
+
+    @media (min-width: 768px) {
+        .p-takeover--multicloud-operations {
+            background-image: url('{{ ASSET_SERVER_URL }}d3edfcd5-left.png'),
+            url('{{ ASSET_SERVER_URL }}17508275-right.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: bottom left, bottom right;
+        }
+    }
+</style>
