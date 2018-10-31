@@ -94,17 +94,17 @@ function manipulateData(data, options) {
 
 function colorShade(usageRange, colors) {
   var index = 0;
-  if (usageRange <= 0.01686802072) {
+  if (usageRange <= 0.003326016523) {
     index = 0;
-  } else if (usageRange > 0.01686802072 && usageRange <= 0.003326016523) {
+  } else if (usageRange > 0.003326016523 && usageRange <= 0.01686802072) {
     index = 1;
-  } else if (usageRange > 0.003326016523 && usageRange <= 0.09856266196) {
+  } else if (usageRange > 0.01686802072 && usageRange <= 0.09856266196) {
     index = 2;
   } else if (usageRange > 0.09856266196 && usageRange <= 0.427224264) {
     index = 3;
   } else if (usageRange > 0.427224264 && usageRange <= 6.826495406) {
     index = 4;
-  } else if (usageRange > 0.427224264) {
+  } else if (usageRange > 6.826495406) {
     index = 5;
   }
   return colors[index];
