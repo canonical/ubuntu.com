@@ -652,7 +652,7 @@ function createMap(selector, options, mapData) {
 
 function clearCharts() {
   var charts = document.querySelectorAll(
-    ".p-bar-chart, .p-pie-chart, .p-progress-chart"
+    ".p-bar-chart, .p-pie-chart, .p-progress-chart, .map-chart"
   );
   charts.forEach(function(chart) {
     chart.innerHTML = "";
