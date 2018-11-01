@@ -24,6 +24,7 @@
         width: 100%;
       }
     }
+
     &__nav {
       border-bottom: 1px solid $color-mid-light;
 
@@ -34,17 +35,20 @@
       @media only screen and (min-width: $breakpoint-medium) {
         border: 0;
       }
+
       &.u-clearfix {
         @media only screen and (max-width: $breakpoint-medium - 1) {
           padding-bottom: 0;
         }
       }
+
       &-col.col-2 {
         @media only screen and (max-width: $breakpoint-medium - 1) {
           margin-top: 0;
         }
       }
     }
+
     &__divider {
       @include full-width-breakout;
       border: 0;
@@ -77,6 +81,7 @@
         }
       }
     }
+
     &__title {
       @include footer-title;
       background-image: url("#{$assets-path}7bd1bd7b-arrow_down_9fa097.svg");
@@ -121,6 +126,7 @@
           display: block;
         }
       }
+
       &.active {
         background-image: url("#{$assets-path}43e2b367-arrow_up_9fa097.png");
 
@@ -132,6 +138,7 @@
           display: block;
         }
       }
+
       &.p-footer__title-text {
         @media only screen and (min-width: $breakpoint-small) {
           color: $color-dark;
@@ -147,6 +154,7 @@
         }
       }
     }
+
     &__container {
       @media only screen and (max-width: $breakpoint-medium - 1px) {
         padding-left: 0;
@@ -159,6 +167,7 @@
         color: $color-dark;
       }
     }
+
     .link-to-top {
       @include footer-title;
       background-image: url("#{$assets-path}e4a5a8c0-picto-upload-warmgrey.svg");
@@ -180,7 +189,9 @@
       a {
         color: $color-mid-dark;
       }
-    } // second level nav - HTML for this can't be changed as it's used in the main nav also
+    } 
+    
+    // second level nav - HTML for this can't be changed as it's used in the main nav also
     .second-level-nav {
       margin: 0;
       padding: 0;
@@ -195,12 +206,14 @@
           }
         }
       }
+
       li {
         margin-bottom: 0;
 
         @media only screen and (max-width: $breakpoint-medium) {
           margin-top: 0;
         }
+
         a {
           border-top: 1px solid $color-mid-light;
           color: $color-dark;
@@ -216,8 +229,10 @@
       }
     }
   }
+
   .p-footer--secondary {
     padding: $sp-large $sp-small 0;
+    
     &__content {
       margin-bottom: $sp-xx-small;
       max-width: inherit;
@@ -242,7 +257,9 @@
         display: inline-block;
       }
     }
-  } // social icons in footer
+  } 
+  
+  // social icons in footer
   .p-inline-list-icons {
     @media (max-width: $breakpoint-medium) {
       margin-left: 0;
