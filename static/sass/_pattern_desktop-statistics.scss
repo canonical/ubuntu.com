@@ -7,6 +7,29 @@
     background-color: $color-light;
   }
 
+  .p-scale {
+    background: linear-gradient(to right, #e95420 0%, #fed6ca 100%);
+    display: block;
+    height: 8px;
+    margin: 1rem auto;
+    position: relative;
+    width: 50%;
+
+    &::before {
+      content: "Most";
+      left: -3rem;
+      position: absolute;
+      top: -10px;
+    }
+
+    &::after {
+      content: "Least";
+      position: absolute;
+      right: -3rem;
+      top: -10px;
+    }
+  }
+
   @media (min-width: 768px) {
     .p-takeover--stats {
       background-image: url('https://assets.ubuntu.com/v1/d3edfcd5-left.png'), url('https://assets.ubuntu.com/v1/17508275-right.png'); // sass-lint:disable-line no-url-protocols
