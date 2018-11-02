@@ -1,0 +1,48 @@
+<section lang="en" data-lang="{{ locale }}" class="p-strip--image is-deep is-dark js-takeover is-bordered p-takeover--kubernetes-solutions {% if not default %}u-hide{% endif %}"
+    {% if default %}data-default="true" {% endif %}>
+    <div class="row u-vertically-center">
+        <div class="col-7" itemscope="" itemtype="https://schema.org/Event">
+            <h1>Kubernetes for the enterprise</h1>
+            <p class="u-no-padding--top"><span class="event-title" itemprop="name">The Canonical Distribution of Kubernetes
+                Pure upstream, ready for multi-cloud, AI/ML and Edge!                
+                </span></p>
+            <p class="col-5 u-hide--large u-hide--medium u-align--center"><img src="{{ ASSET_SERVER_URL }}1db850da-K8s+logo.svg" alt="kubernetes" class="p-takeover--kubernetes-logo"></p>
+            <p><a itemprop="url" href="https://www.ubuntu.com/kubernetes" class="p-button--neutral">Find out more</a></p>
+        </div>
+        <div class="col-5 u-hide--small u-align--center">
+            <img src="{{ ASSET_SERVER_URL }}1db850da-K8s+logo.svg" alt="kubernetes" class="p-takeover--kubernetes-logo">
+        </div>
+    </div>
+</section>
+
+<style>
+    .p-takeover--kubernetes-solutions {
+        background-color: #326ce5;
+        background-image: url('{{ ASSET_SERVER_URL }}7836831c-Takeover-small-screen.jpg?w=375');
+        background-position: bottom center;
+        background-size: none;
+    }
+
+    @media (min-width: 620px) {
+        .p-takeover--kubernetes-solutions {
+            background-image: url('{{ ASSET_SERVER_URL }}94206a69-Takeover-large-screen.jpg?w=1280');
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .p-takeover--kubernetes-solutions {
+            background-image: url('{{ ASSET_SERVER_URL }}94206a69-Takeover-large-screen.jpg');
+        }
+    }
+
+    @media (min-width: 1600px) {
+        .p-takeover--kubernetes-solutions {
+            background-size: cover;
+        }
+    }
+
+    .p-takeover--kubernetes-logo {
+        height: 257px;
+        width: 264px;
+    }
+</style>
