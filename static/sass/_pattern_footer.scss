@@ -1,5 +1,4 @@
 // Footer pattern styling
-
 @mixin footer-title {
   color: $color-mid-dark;
   cursor: pointer;
@@ -48,7 +47,6 @@
           margin-top: 0;
         }
       }
-
     }
 
     &__divider {
@@ -77,7 +75,7 @@
         margin-top: 0;
       }
 
-      + .p-footer__item {
+      +.p-footer__item {
         @media only screen and (min-width: $breakpoint-medium) {
           margin-top: $sp-large;
         }
@@ -120,10 +118,9 @@
 
       a::after {
         content: ''; // hide the default > */
-      }
+      } /// open and close the primary/secondary navs
 
-      /// open and close the primary/secondary navs
-      + .second-level-nav {
+      +.second-level-nav {
         display: none;
 
         @media only screen and (min-width: $breakpoint-medium) {
@@ -138,8 +135,23 @@
           background: none;
         }
 
-        + .second-level-nav {
+        +.second-level-nav {
           display: block;
+        }
+      }
+
+      &.p-footer__title-text {
+        @media only screen and (min-width: $breakpoint-small) {
+          color: $color-dark;
+          font-weight: 400;
+        }
+
+        @media only screen and (max-width: $breakpoint-small) {
+          padding-left: 0.25rem;
+
+          a {
+            color: $color-mid-dark;
+          }
         }
       }
     }
@@ -182,9 +194,22 @@
     }
 
     // second level nav - HTML for this can't be changed as it's used in the main nav also
+
     .second-level-nav {
       margin: 0;
       padding: 0;
+
+      &.second-level-nav-small {
+        @media only screen and (max-width: $breakpoint-small) {
+          margin-left: -0.7rem;
+
+          li {
+            a {
+              color: $color-mid-dark;
+            }
+          }
+        }
+      }
 
       li {
         margin-bottom: 0;
@@ -263,6 +288,12 @@
   .p-footer__item--spaced {
     @media only screen and (min-width: $breakpoint-medium) {
       margin-bottom: $sp-large;
+    }
+  }
+
+  .p-footer-list-single-child {
+    @media only screen and (max-width: $breakpoint-medium) {
+      margin-left: $sp-small;
     }
   }
 }
