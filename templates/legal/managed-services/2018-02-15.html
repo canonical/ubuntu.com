@@ -1,34 +1,27 @@
 {% extends "legal/_base_legal.html" %}
 
-{% block title %}Managed Services description{% endblock %}
+{% block title %}BootStack services description{% endblock %}
 {% block meta_copydoc %}https://drive.google.com/drive/folders/0B3hNyKyLEnE6clUxQndBME5uRXM{% endblock meta_copydoc %}
 
 {% block content %}
 <div class="p-strip">
   <div class="row">
     <div class="col-9">
-      <h1>Managed Services description</h1>
-      <p>Valid since 13 June 2018</p>
+      <h1>BootStack services description</h1>
+      <p>Valid since 15 February 2018</p>
       <ol class="p-list--ordered-legal">
         <li class="p-list__item">
           <h2 id="overview">Overview</h2>
           <ol class="p-list--ordered-legal">
             <li class="p-list__item">This document defines the following Canonical service offerings:
               <ul>
-                <li class="p-list__item">BootStack, a service in which Canonical manages and operates an OpenStack cloud computing environment.</li>
-                <li class="p-list__item">Managed Kubernetes, a service in which Canonical manages and operates a Kubernetes computing environment.</li>
+                <li class="p-list__item">BootStack OpenStack, a service in which Canonical manages and operates an OpenStack cloud computing environment.</li>
               </ul>
             </li>
             <li class="p-list__item">Definitions:
               <ul>
                 <li class="p-list__item">“Cloud” means the deployment of the OpenStack cloud computing environment to be managed by Canonical.</li>
-                <li class="p-list__item">“Cluster” means the deployment of the Kubernetes computing environment to be managed by Canonical.</li>
-                <li class="p-list__item">“Container Instance” means a container instance running in the Cluster.</li>
                 <li class="p-list__item">“Guest Instance” means a virtual machine instance running in the Cloud.</li>
-                <li class="p-list__item">“Environment” means a Cloud or Cluster, as applicable to the particular service offering.</li>
-                <li class="p-list__item">“Public Cloud” means an Environment in which third parties (i.e. neither Canonical nor the Customer) are able to create and manage Guest or Container Instances.</li>
-                <li class="p-list__item">“Cloud Guest” means a Guest Instance or Container Instance of Ubuntu Server not running in a Public Cloud.</li>
-                <li class="p-list__item">“Kubernetes” means the container orchestration software known as “Kubernetes” as distributed by Canonical.</li>
                 <li class="p-list__item">“OpenStack” means the cloud computing software known as “OpenStack” as distributed by Canonical with Ubuntu.</li>
               </ul>
             </li>
@@ -36,18 +29,18 @@
         </li>
         <li class="p-list__item">
           <h2 id="service-offering">Service offering</h2>
-          <p>The service offering includes access to Canonical’s knowledge base and the services as defined below.</p>
+          <p>The BootStack service offering includes access to Canonical’s knowledge base and the services as defined below.</p>
           <ol class="p-list--ordered-legal">
             <li class="p-list__item" id="service-initiation">
               Service initiation
-              <p>Following Canonical’s building and initializing of the  Environment (subject to separate service engagement), Canonical will re-deploy the Environment to reset credentials and validate the deployment process. Canonical will also provide documentation providing further detail on the working relationship with Canonical.</p>
+              <p>Following Canonical’s building and initializing of the Cloud (subject to separate service engagement), Canonical will re-deploy the Cloud to reset credentials and validate the deployment process. Canonical will also provide documentation providing further detail on the working relationship with Canonical.</p>
             </li>
             <li class="p-list__item" id="operate">
               Operate
               <ol class="p-list--ordered-legal">
                 <li class="p-list__item">
                   General
-                  <p>Canonical will remotely operate, monitor, and manage the  Environment. Examples include:</p>
+                  <p>Canonical will remotely operate, monitor, and manage the Cloud. Examples include:</p>
                   <ul>
                     <li class="p-list__item">Backing up and restoring of the management infrastructure suite</li>
                     <li class="p-list__item">Hardware and software failure monitoring and alerting</li>
@@ -59,59 +52,54 @@
                   <p>Canonical will install applicable (e.g. security) patches and updates from the Ubuntu Cloud Archive to:</p>
                   <ul>
                     <li class="p-list__item">The Ubuntu operating system</li>
-                    <li class="p-list__item">OpenStack or Kubernetes and its dependencies</li>
-                    <li class="p-list__item">OpenStack or Kubernetes Charms</li>
-                    <li class="p-list__item">Other software deployed as part of the  Environment</li>
+                    <li class="p-list__item">OpenStack and its dependencies</li>
+                    <li class="p-list__item">OpenStack Charms</li>
+                    <li class="p-list__item">Other software deployed as part of the Cloud</li>
                   </ul>
                 </li>
                 <li class="p-list__item">
                   Administrative access
                   <p>Canonical will provide customer with access to the following applications and/or services:</p>
                   <ul>
-                    <li class="p-list__item">The OpenStack or Kubernetes dashboard, API and CLI</li>
+                    <li class="p-list__item">The OpenStack dashboard, API and CLI</li>
                     <li class="p-list__item">Landscape (restricted to read only access)</li>
                     <li class="p-list__item">Monitoring and logging system (restricted to read only access)</li>
                   </ul>
                 </li>
                 <li class="p-list__item">
-                  Environment size
-                  <p>Canonical will add or remove nodes from the Environment as requested by the customer through a support ticket, provided that the Environment does not go under the minimum size requirement. All Environment nodes must be covered under the service, so additional fees may apply.</p>
+                  Cloud size
+                  <p>Canonical will add or remove nodes from the Cloud as requested by the customer through a support ticket, provided that the Cloud does not go under the minimum size requirement. All Cloud nodes must be covered under the BootStack service,
+                    so additional fees may apply.</p>
                 </li>
                 <li class="p-list__item">
-                  Ubuntu, OpenStack and Kubernetes upgrades
-                  <p>Canonical will ensure the customer’s Environment remains on a supported version of Ubuntu and OpenStack or Kubernetes. In most cases, Canonical will upgrade only to LTS releases where applicable, or to a specific release as agreed with the customer . Support lifecycles can be found at: <a href="/info/release-end-of-life">www.ubuntu.com/info/release-end-of-life</a></p>
+                  Ubuntu and OpenStack upgrades
+                  <p>Canonical will ensure the customer’s Cloud remains on a supported version of Ubuntu and OpenStack. In most cases, Canonical will upgrade only to LTS releases. Support lifecycles can be found at: <a href="/about/release-cycle">www.ubuntu.com/about/release-cycle</a></p>
                 </li>
                 <li class="p-list__item">
                   Out of scope
                   <p>Canonical is not responsible for the following:</p>
                   <ul>
-                    <li class="p-list__item">Relating to Guest Instances or Container Instances:
+                    <li class="p-list__item">Relating to Guest Instances:
                       <ul>
-                        <li class="p-list__item">Managing the operating system or applications running within Guest Instances or Container Instances.</li>
-                        <li class="p-list__item">Monitoring of Guest Instances or Container Instances.</li>
-                        <li class="p-list__item">Backup or recovery of customer generated data (e.g. any applications or databases running) within Guest Instances or Container Instances.</li>
-                        <li class="p-list__item">Support for the ability to run Guest Instances using images other than those provided by Canonical.</li>
+                        <li class="p-list__item">Managing the operating system or applications running within a Guest Instance.</li>
+                        <li class="p-list__item">Monitoring of Guest Instances.</li>
+                        <li class="p-list__item">Backup or recovery of customer generated data (e.g. any applications or databases running) within Guest Instances.</li>
+                        <li class="p-list__item">Support for the ability to run Guest Instances using images other than those provided by Canonical. (Support for Ubuntu Guest Instances can be purchased as part of Ubuntu Advantage as an add on service.)</li>
                       </ul>
-                      <li class="p-list__item">Architectural changes to the Environment.</li>
+                      <li class="p-list__item">Architectural changes to the Cloud.</li>
                       <li class="p-list__item">Alternative scheduling of updates or upgrades.</li>
                       <li class="p-list__item">Installation of packages or software other than those in the applicable Ubuntu Main Repository or updates those packages delivered in the Ubuntu Cloud Archive.</li>
-                      <li class="p-list__item">Extended Security Maintenance contract does not constitute a supported version of Ubuntu, OpenStack or Kubernetes.</li>
-                      <li class="p-list__item">Installation of additional components (e.g. LBaaS, VPNaaS, SDN or SDS) beyond the software installed as part of the building of the Environment</li>
+                      <li class="p-list__item">Extended Security Maintenance contract does not constitute a supported version of Ubuntu or OpenStack.</li>
+                      <li class="p-list__item">Installation of additional cloud components (e.g. LBaaS, VPNaaS, SDN or SDS)</li>
                     </li>
                   </ul>
                 </li>
               </ol>
             </li>
-            <li class="p-list__item" id="support-for-guests">
-              Support for Guests
-              <p>
-                Cloud Guests running in the Environment are eligible for Ubuntu Advantage Virtual Guest Advanced support subject to the exclusions listed in 2.2.6.
-              </p>
-            </li>
             <li class="p-list__item" id="service-conclusion">
               Service conclusion
               <p>
-                At the end of the service term, Canonical will initiate an operational transfer.
+                At the end of the BootStack service term, Canonical will initiate an operational transfer.
               </p>
               <p>
                 Operational transfer includes:
@@ -127,10 +115,10 @@
         <li class="p-list__item">
           <h2 id="customer-dependencies">Customer dependencies</h2>
           <ul>
-            <li class="p-list__item">Ensure there is continuous VPN access for Canonical support personnel to the Environment.</li>
-            <li class="p-list__item">Keep the utilization parameters per node below the maximum specified in the design document provided by Canonical when the Environment is delivered to the customer.</li>
-            <li class="p-list__item">Ensure the facility where the Environment is hosted complies with the minimum required measures to function, including but not limited to, connectivity, sufficient power supply, sufficient cooling system, and physical access control to the environment.</li>
-            <li class="p-list__item">Make at least 12 host nodes continuously available for the Cloud or 10 host nodes continuously available for the Cluster.</li>
+            <li class="p-list__item">Ensure there is continuous VPN access for Canonical support personnel to the Cloud.</li>
+            <li class="p-list__item">Keep the utilization parameters per node below the maximum specified in the design document provided by Canonical when the Cloud is delivered to the customer.</li>
+            <li class="p-list__item">Ensure the facility where the Cloud is hosted complies with the minimum required measures to function, including but not limited to, connectivity, sufficient power supply, sufficient cooling system, and physical access control to the environment.</li>
+            <li class="p-list__item">Make at least 12 host nodes continuously available for the Cloud.</li>
           </ul>
         </li>
 
@@ -159,7 +147,7 @@
                       <td style="text-align:right;">99.5%</td>
                     </tr>
                     <tr>
-                      <td>Control plane (OpenStack/Kubernetes API, Web UI and CLI)</td>
+                      <td>Control plane (OpenStack API, Web UI and CLI)</td>
                       <td style="text-align:right;">99.0%</td>
                     </tr>
                   </tbody>
@@ -199,7 +187,7 @@
     </div>
     <nav class="col-3 p-card">
       <h3>Latest version</h3>
-      <p>This is a previous version of this document, please refer to the <a href="/legal/managed-services-service-description">latest version</a>.</p>
+      <p>This is a previous version of this document, please refer to the <a href="/legal/managed-services-description">latest version</a>.</p>
     </nav>
   </div>
   <div class="row">
