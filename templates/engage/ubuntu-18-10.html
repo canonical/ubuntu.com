@@ -1,0 +1,54 @@
+{% extends "engage/base_engage.html" %}
+
+{% block meta_description %}An overview of the Ubuntu 18.10 release updates from the Canonical product team. Features of the 18.10 software release focus on multi-cloud deployments, AI software development, a new community desktop theme and richer snap desktop integration.  {% endblock %}
+
+{% block title %}What's New in Ubuntu 18.10{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1BMqxhCOJfT43Mj2MFNgdM0X0c0rUYmBQBLeYFTCKfKY/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--image is-dark p-takeover--1810--webinar">
+  <div class="row u-equal-height">
+    <div class="col-7">
+      <h1 style="font-weight: 100;">What's New in Ubuntu 18.10</h1>
+      <h4>Join Canonical product managers for a live panel discussion on the new features in Ubuntu 18.10</h4>
+      <p class="p-takeover__text">
+        Webinar live on Nov 7 - <a href="#register-section" class="p-link--inverted">Register now&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<style>
+  
+  .p-takeover--1810--webinar {
+    position: relative;
+    background-color: #5E2750;
+    background-image: linear-gradient(110deg, #5E2750 20%, #2C001E 46%, #2C001E 60%); 
+  }
+  
+  @media (max-width: 474px) {
+    .p-takeover--1810--webinar {
+      position: relative;
+      background-color: #5E2750;
+      background-image: linear-gradient(150deg, #5E2750 20%, #2C001E 46%, #2C001E 60%); 
+    }
+    
+    .p-takeover--1810--webinar .cuttlefish {
+      margin-top: -10px;
+      width: 100%;
+    }
+  }
+</style> 
+
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-12">
+      <h2 id="register-section" class="p-takeover__title">Learn about the latest Ubuntu release</h2>
+    </div>
+    <div class="jsBrightTALKEmbedWrapper" style="width:900px; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 339391, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>
+  </div>
+</section>
+
+{% endblock content %}
