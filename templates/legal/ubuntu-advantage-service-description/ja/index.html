@@ -8,1052 +8,945 @@
 <div class="p-strip">
   <div class="row" id="service-description" lang="ja">
     <div class="col-8">
+
       <h1>Ubuntu Advantage サービス記述書</h1>
-      <p>2018年2月26日より有効</p>
+      <p>2018年8月27日より有効</p>
 
-      <h2>1.概要</h2>
-      <ul class="p-list">
-        <li>1.1 この文書は、以下のサービスを定義します。Canonicalは本文書の定義に従い、お客様のご契約の対象となるサービスのみを提供します。</li>
-        <li>
-          <p>1.2 プライマリーサービス</p>
-          <ul>
-            <li>Ubuntu Advantage OpenStack</li>
-            <li>Ubuntu Advantage OpenStack Cloud Region</li>
-            <li>Ubuntu Advantage Server (Essential/Standard/Advanced)</li>
-            <li>Ubuntu Advantage Virtual Guest (Essential/Standard/Advanced)</li>
-            <li>Ubuntu Advantage Ceph Storage</li>
-            <li>Ubuntu Advantage Swift Storage</li>
-            <li>Ubuntu Advantage MAAS (Standard/Advanced)</li>
-            <li>Ubuntu Advantage Switch (Standard/Advanced)</li>
-            <li>Ubuntu Advantage Desktop (Standard/Advanced)</li>
-            <li>Ubuntu Advantage for Docker</li>
-            <li>Ubuntu Advantage Kubernetes (Standard/Advanced)</li>
-            <li>拡張セキュリティメンテナンス</li>
-            <li>Canonical Livepatchサービス</li>
-            <li>FIPS for Ubuntu</li>
-          </ul>
-        </li>
-        <li>
-          <p>1.3 アドオンサービス：</p>
-          <ul>
-            <li>Landscape Seats</li>
-            <li>テクニカルアカウントマネージャー (TAM)</li>
-            <li>専任テクニカルアカウントマネージャー (DTAM)</li>
-            <li>専任サポートエンジニア (DSE)</li>
-            <li>Landscape on-premises</li>
-          </ul>
-        </li>
-      </ul>
+      <ol class="p-list--ordered-legal">
 
-      <h2>2.サポート範囲</h2>
-      <p>各サービスには、Canonicalのナレッジベースへのアクセスおよび以下に説明するサポートの提供が含まれます。<a href="/legal/ubuntu-advantage-service-description#appendix-1">サポートの提供範</a>囲と例外については、サポート範囲文書に詳しく記載されており、その例外に従うことが条件となります。</p>
-      <ul class="p-list">
-        <li>
-          <p>2.1 リリース</p>
-          <ul>
-            <li>Canonicalは、公式のソースを使用して製品ライフサイクル中にインストールされたUbuntuのすべての標準リリースについて、インストール、設定、メンテナンスおよび管理のサポートを提供します。Ubuntuの各バージョンのライフサイクルは、こちらに記載されています。</li>
-            <li><a href="/about/release-cycle">www.ubuntu.com/about/release-cycle</a></li>
-          </ul>
-        </li>
-        <li>
-          <p>2.2 ハードウェア</p>
-          <ul>
-            <li>Ubuntu認定ハードウェアは、当社の広範囲にわたるテストに合格し、レビュープロセスを終了したものです。Ubuntuの認定プロセスに関するさらに詳しい情報、認定ハードウェアのリストは、こちらの「Ubuntu認定 (Ubuntu Certification)」のページでご覧いただけます。<a href="https://www.ubuntu.com/certification">www.ubuntu.com/certification</a>本サービスは、お客様のUbuntu認定ハードウェアのみに限って適用されます。お客様から、認定外のハードウェアに関するサービスの依頼を受けた場合、Canonicalでは相応の努力によりサポートサービスの提供に努めますが、本サービス記述書に記載された義務に沿わない場合があります。</li>
-          </ul>
-        </li>
-        <li>
-          <p>2.3 パッケージ</p>
-          <ul>
-            <li>2.3.1 本サービスは、Ubuntu Mainリポジトリ内で取得可能なパッケージおよびUniverseリポジトリ内のCanonical所有パッケージのみに適用されます。ただし、(i) 「proposed（提案中）」および「backports（バックポート）」リポジトリポケット内のパッケージ、ならびに (ii) 該当するサポート範囲文書に記載された例外を除きます。</li>
-            <li>Universeリポジトリ内のサポート対象パッケージには、Jujuパッケージ、MAASパッケージ、nova-conductorパッケージ、ならびにこれらに関連して使用される範囲の各依存パッケージが含まれますが、それらに限定されません。</li>
-            <li>2.3.2 Canonicalでは、 Ubuntuのアーカイブ内にあるバージョンから修正されたパッケージのサポートは一切提供しません。</li>
-          </ul>
-        </li>
-        <li>
-          <p>2.4 カーネル</p>
-          <ul>
-            <li>2.4.1 Ubuntuの長期サポートバージョン (LTS) のリリース時に当初提供されたカーネルは、そのLTSのライフサイクル全体を通してサポートされます。</li>
-            <li>2.4.2 ハードウェアイネーブルメント (HWE) カーネルにより、LTSリリース内でより新しいハードウェアに関するサポートを提供します。これは、UbuntuのLTS以外のリリースと連携してリリースされます。HWEカーネルは、次回のLTSポイントリリース時までサポート対象となります。</li>
-            <li>2.4.3 カーネルのサポートについてさらに詳しい情報は、こちらからご覧ください。</li>
-            <li><a href="/about/release-cycle">atwww.ubuntu.com/about/release-cycle</a></li>
-            <li>2.4.4 Canonical Livepatchサービスへのアクセスは、記載された例外を除き、全サポートサービスに含まれています。</li>
-          </ul>
-        </li>
-        <li>
-          <p>2.5 Landscape</p>
-          <ul>
-            <li>2.5.1 Landscape全製品は、Landscape on-premises（購入された場合）を含めて完全にサポートされます。</li>
-            <li>2.5.2 Landscape SaaSシステム管理ツールへのアクセスは、記載された例外を除き、全サポートサービスに含まれています。</li>
-          </ul>
-        </li>
-      </ul>
+        <li class="p-list__item">
+          <h2>概.要</h2>
 
-      <h2>3.応答時間</h2>
-      <ul class="p-list">
-        <li>3.1 Canonicalでは相応の努力により、お客様からのサポート依頼に対して、該当するサービスレベルおよび重大度レベルに基づき以下に規定した応答時間内に応答・対応するよう努めます。</li>
-        <li>3.2 「営業時間」とは、お客様の本社所在地の現地時間による月曜日から金曜日の午前8時～午後6時と定義します。ただし、別の所在地について合意する場合を除きます。すべての時間は、公休日を除きます。</li>
-      </ul>
-
-      <h4>応答時間表</h4>
-      <table class="p-table">
-        <thead>
-          <tr>
-            <th>&nbsp;</th>
-            <th><strong>Standard</strong></th>
-            <th><strong>Advanced</strong></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>重大度レベル1</td>
-            <td>2営業時間以内</td>
-            <td>1時間以内</td>
-          </tr>
-          <tr>
-            <td>重大度レベル2</td>
-            <td>4営業時間内</td>
-            <td>4営業時間以内</td>
-          </tr>
-          <tr>
-            <td>重大度レベル3</td>
-            <td>10営業時間以内</td>
-            <td>6営業時間以内</td>
-          </tr>
-          <tr>
-            <td>重大度レベル4</td>
-            <td>20営業時間以内</td>
-            <td>10営業時間以内</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h2>4.サポートプロセス</h2>
-      <p>Canonicalでは相応の努力を払ってサポートケースの解決に努めますが、問題の回避、解決または解決時間について保証するものではありません。</p>
-      <ul class="p-list">
-        <li>4.1 Canonicalは、以下の<a href="/legal/ubuntu-advantage-service-description#appendix-2">サポートプロセス</a>に従ってサービスを提供します。</li>
-        <li>4.2 お客様は、以下の<a href="/legal/ubuntu-advantage-service-description#appendix-3">エスカレーションプロセス</a>に従って、サポートの問題をエスカレーションすることができます。</li>
-      </ul>
-
-      <h2>5.保証</h2>
-      <ul class="p-list">
-        <li>5.1 お客様には、利用規約に従うことを条件として、Ubuntu保証プログラムに加入する資格があります。Canonicalでは、この保証プログラムとその規約を定期的に更新することがあります。現行のUbuntu保証プログラムおよびIP免責条項は、以下の「Ubuntu保証」のページでご覧いただけます。</li>
-        <li><a href="/legal/ubuntu-advantage-assurance">www.ubuntu.com/legal/ubuntu-advantage-assurance</a></li>
-      </ul>
-
-      <h2 id="appendix-1">付録1 - サポート範囲</h2>
-      <h3>Ubuntu Advantage OpenStack</h3>
-      <ul class="p-list">
-        <li>
-          <p>用語の定義：</p>
-          <ul>
-            <li>「OpenStack」とは、「OpenStack」として知られ、CanonicalがUbuntuと併せて提供する原状のクラウドコンピューティングソフトウェアを指します。</li>
-            <li>「OpenStackパッケージ」とは、Ubuntuアーカイブ内のUbuntu Mainリポジトリ内に現存するOpenStackに関連するパッケージを指し、そのパッケージのアップデートとしてUbuntuクラウドアーカイブ内で提供されるものを含みます。これには、以下のリストに記載されたチャームが含まれます。</li>
-            <li><a href="https://wiki.ubuntu.com/OpenStack/OpenStackCharms">https://wiki.ubuntu.com/OpenStack/OpenStackCharms</a></li>
-            <li>「リージョン」とは、専用APIエンドポイントがある個別のOpenStack環境を指し、通常はID (Keystone) サービスのみを他のリージョンと共有します。1つのOpenStackリージョンは、単一のデータセンターに収容しなければなりません。</li>
-            <li>「パブリッククラウド」とは、サードパーティがゲストインスタンスを作成および管理可能なクラウド環境を指します。</li>
-            <li>「クラウドゲスト」とは、Ubuntu サーバーのインスタンスで、パブリッククラウド上で稼働していないものを指します。</li>
-            <li>「フルスタック (Full Stack) サポート」とは、OpenStackのユーザーレベルおよび企業レベルの機能性、パフォーマンス、可用性に関する問題への対処を意味します。</li>
-            <li>「バグフィックスサポート」とは、OpenStackパッケージ内の正当なコードバグのみの限定サポートを意味します。これには、バグが存在するかどうかを判定するための問題のトラブルシューティングは含まれません。</li>
-            <li>「有効なカスタマイゼーション」とは、OpenStackパッケージのHorizonまたはOpenStack APIを使用して行われた設定を意味します。疑問の生じないよう付け加えると、有効なカスタマイゼーションには、Canonicalによる実施または許可が明確でないアーキテクチャ上の変更は含まれません。Foundation OpenStack Build中に設定された設定オプションは、クラウドの正常な稼働に最重要であるとお考えください。これに対する一切の変更は、クラウドのサポート停止につながる可能性があります。サポートを確実に継続するためには、変更の依頼をCanonicalが承認する必要があります。</li>
-          </ul>
-        </li>
-        <li>
-          <p>OpenStackのサポート対象バージョン：</p>
-          <ul>
-            <li>Ubuntuの長期サポートバージョン (LTS) のリリース時に当初提供されたOpenStackのバージョンは、そのLTSのライフサイクル全体を通してサポートされます。</li>
-            <li>UbuntuのLTSバージョンのリリース後にリリースされるOpenStackの各リリースは、Ubuntuクラウドアーカイブから入手できます。Ubuntuクラウドアーカイブ内のOpenStackの各リリースは、Ubuntu LTSの1バージョン上で、該当するOpenStackのバージョンを含むUbuntuバージョンのリリース日から最低18ヵ月間サポートされます。</li>
-            <li>OpenStackリリースのサポートスケジュールは、こちらでご覧いただけます。</li>
-            <li><a href="http://www.ubuntu.com/about/release-cycle">http://www.ubuntu.com/about/release-cycle</a></li>
-          </ul>
-        </li>
-        <li>
-          <p>OpenStackのサポート</p>
-          <ul>
-            <li>OpenStackのサポートは、Advanced対象の応答時間で提供します。</li>
-            <li>OpenStackのサポートを受けるには、各リージョンが12以上のサポート対象ノードで構成される必要があります。OpenStack環境内に配置されたすべてのノードは、有効なサポート契約の対象であることが必要です。</li>
-            <li>セクション2.2に規定するハードウェア要件に加え、ハードウェアはUbuntu OpenStack最低基準を満たしていることが必要です。</li>
-            <li>OpenStackクラウドの「フルスタック (Full Stack) サポート」は、Foundation</li>
-            <li>
-              <p>OpenStack Build委託によりデプロイされた場合に限って提供されます。</p>
-              <ul>
-                <li>Canonicalは、Foundation OpenStack Buildによりデプロイされたチャームのサポートを提供します。</li>
-                <li>Canonicalとの契約により実施したあらゆるデプロイメントについて、結果的にチャームがカスタマイズされた場合のカスタマイゼーションは、そのカスタマイゼーションが含まれるチャームの公式リリース後90日間有効です。</li>
-                <li>Foundation OpenStack Build委託によりデプロイされた原状でOpenStackを稼働するために必要なサポートは、すべてのパッケージに含まれています。</li>
-                <li>OpenStackのコンポーネントについて、Ubuntu LTSの定期メンテナンスサイクルの一環としてのアップグレードは、サポート対象です。</li>
-                <li>OpenStackのバージョン間のアップグレード（例：OpenStack MitakaからNewtonへ）またはUbuntu（例：Ubuntu 14.04 LTSからUbuntu 16.04 LTSへ）、JujuおよびMAASのバージョン間のアップグレードは、サポートされています。ただしそのアップグレードは、文書化されたプロセスに従ってCanonicalの指定どおり、Foundation</li> <li>OpenStack Buildの一環として行うことを条件とします。</li>
-                <li>新しいクラウドノードの追加、ならびに既存のノードと同等容量の新しいノードとの交換は、いずれもサポートされています。</li>
-                <li>フルスタックサポートは、有効なカスタマイゼーションと見なされないカスタマイゼーションを対象外とします。</li>
-                <li>クラウドゲスト用のUbuntu Advantage Virtual Guest Advanced サービス</li>
+          <ol class="p-list--ordered-legal">
+            <li class="p-list__item">この文書は、次の各サービスを定義します。Canonicalは本文書の定義に従い、お客様のご契約の対象となるサービスのみを提供します。</li>
+            <li class="p-list__item">
+              <h4>プライマリーサービス：</h4>
+              <ul class="p-list">
+                <li class="p-list__item">Ubuntu Advantage OpenStack</li>
+                <li class="p-list__item">Ubuntu Advantage Server (Essential/Standard/Advanced)</li>
+                <li class="p-list__item">Ubuntu Advantage Virtual Guest (Essential/Standard/Advanced)</li>
+                <li class="p-list__item">Ubuntu Advantage Ceph Storage</li>
+                <li class="p-list__item">Ubuntu Advantage Swift Storage</li>
+                <li class="p-list__item">Ubuntu Advantage MAAS (Standard/Advanced)</li>
+                <li class="p-list__item">Ubuntu Advantage Switch (Standard/Advanced)</li>
+                <li class="p-list__item">Ubuntu Advantage Desktop (Standard/Advanced)</li>
+                <li class="p-list__item">Ubuntu Advantage Kubernetes (Standard/Advanced)</li>
+                <li class="p-list__item">拡張セキュリティメンテナンス</li>
+                <li class="p-list__item">Canonical Livepatchサービス</li>
+                <li class="p-list__item">FIPS for Ubuntu</li>
               </ul>
             </li>
-            <li>OpenStackクラウドで、Foundation OpenStack Buildを通じてデプロイされなかっ</li>
-            <li>たものについては、バグフィックスサポートのみに限定して提供します。</li>
-          </ul>
+            <li class="p-list__item">
+              <h4>アドオンサービス：</h4>
+              <ul class="p-list">
+                <li class="p-list__item">Landscape Seats</li>
+                <li class="p-list__item">テクニカルアカウントマネージャー</li>
+                <li class="p-list__item">専任テクニカルアカウントマネージャー</li>
+                <li class="p-list__item">専任サポートエンジニア</li>
+                <li class="p-list__item">Landscape on Premises</li>
+                <li class="p-list__item">Livepatch on Premises</li>
+                <li class="p-list__item">Ubuntu Advantage Rancher</li>
+              </ul>
+            </li>
+          </ol>
         </li>
-        <li>OpenStackサポートには、OpenStackクラウドのデプロイ中または設定中のバグフィックスサポートを超えるサポートは含まれません。</li>
-        <li>
-          <p>チャーム</p>
-          <ul>
-            <li>チャームの各バージョンは、リリース日から1年間サポートされます。</li>
-            <li>Canonicalでは、<a href="https://wiki.ubuntu.com/OpenStack/OpenStackCharms">https://wiki.ubuntu.com/OpenStack/OpenStackCharms</a>のページに記載されたサポート対象バージョンの原状から改変されたチャームのサポートは一切提供しません。</li>
-          </ul>
+        <li class="p-list__item">
+          <h2>サ.ポートの範囲</h2>
+          <p>各サービスには、Canonicalのナレッジベースへのアクセスおよび以下に説明するサポートの提供が含まれており、support scope documentation（サポート範囲文書 ）に詳しく記載されているサポートの提供範囲と例外が適用される対象になります。</p>
+          <ol class="p-list--ordered-legal">
+            <li class="p-list__item">リリース
+              <ul class="p-list">
+                <li class="p-list__item">Canonicalは、公式のソースを使用して製品ライフサイクル中にインストールさ    れたUbuntuのすべての標準リリースについて、インストール、設定、メンテナンスおよび管理のサポートを提供します。Ubuntuの各バージョンのライフサイクルは、<a href="/about/release-cycle">www.ubuntu.com/about/release-cycle</a>に記載されています。</li>
+              </ul>
+            </li>
+            <li class="p-list__item">ハードウェア
+              <ul class="p-list">
+                <li class="p-list__item">Ubuntu認定ハードウェアは、当社の広範囲にわたるテストに合格し、レビュープロセスを終了したものです。Ubuntuの認定プロセスに関するさらに詳しい情報、認定ハードウェアのリストは、こちらの「Ubuntu認定 (Ubuntu Certification)」のページ<a href="https://www.ubuntu.com/certification">www.ubuntu.com/certification</a>でご覧いただけます。本サービスは、お客様のUbuntu認定ハードウェアのみに限って適用されます。お客様から、認定外のハードウェアに関するサービスの依頼を受けた場合、Canonicalでは相応の努力によりサポートサービスの提供に努めますが、本サービス記述書に記載された義務には沿わない場合があります。</li>
+              </ul>
+            </li>
+            <li class="p-list__item">パッケージ
+              <ol class="p-list--ordered-legal">
+                <li class="p-list__item">本サービスは、Ubuntu Mainリポジトリ内で取得可能なパッケージおよびUniverseリポジトリ内のCanonical所有パッケージのみに適用されます。ただし、(i) 「proposed（提案中）」および「backports（バックポート）」リポジトリポケット内のパッケージ、ならびに (ii) 該当するサポート範囲文書に記載された例外を除きます。</li>
+                <li class="p-list__item">Universeリポジトリ内のサポート対象パッケージには、Jujuパッケージ、MAASパッケージ、nova-conductorパッケージ、ならびにこれらに関連して使用される範囲の各依存パッケージが含まれますが、それらに限定されません。</li>
+                <li class="p-list__item">Canonicalは、Ubuntuアーカイブ内にあるバージョンから修正されたパッケージのサポートを一切提供しません。</li>
+              </ol>
+            </li>
+
+            <li class="p-list__item">カーネル
+              <ol class="p-list--ordered-legal">
+                <li class="p-list__item">Ubuntuの長期サポートバージョン（LTS）のリリース時に当初提供されたカーネルは、そのLTSのライフサイクル全体を通してサポートされます。</li>
+                <li class="p-list__item">ハードウェアイネーブルメント（HWE）カーネルにより、LTSリリース内でより新しいハードウェアに関するサポートを提供します。これは、UbuntuのLTS以外のリリースと連携してリリースされます。HWEカーネルは、次回のLTSポイントリリース時までサポート対象となります。</li>
+                <li class="p-list__item">カーネルのサポートについてさらに詳しい情報は、こちらからご覧ください。<a href="/about/release-cycle">https://www.ubuntu.com/about/release-cycle</a></li>
+                <li class="p-list__item">例外が明示されている場合を除き、Canonical Livepatchサービスへのアクセスは全サポートサービスに含まれています。</li>
+              </ol>
+            </li>
+            <li class="p-list__item">Landscape
+              <ol class="p-list--ordered-legal">
+                <li class="p-list__item">Landscape全製品は、Landscape on-premises（購入された場合）を含めて完全にサポートされます。</li>
+                <li class="p-list__item">例外が明示されている場合を除き、Landscape SaaSシステム管理ツールへのアクセスは全サポートサービスに含まれています。</li>
+              </ol>
+            </li>
+          </ol>
         </li>
-        <li>CephまたはSwiftのデプロイメントについて、デプロイされるノード1つにつき合計3TBまでの利用可能なストレージのサポート。この許容量は、Ubuntu Advantage Ceph、Ubuntu Advantage Swift、またはこれらの組み合わせに使用することができます。</li>
-        <li>Canonicalの提供する利用可能なMicrosoft認定ドライバをWindowsのゲストインスタンスで使用する許諾ライセンス</li>
-        <li>
-          <p>サービスに含まれないもの：</p>
-          <ul>
-            <li>OpenStackのデプロイメント実行に必要な作業負荷以外に関するサポート</li>
-            <li>クラウドゲスト以外のゲストインスタンスのサポート</li>
-          </ul>
+
+        <li class="p-list__item">
+          <h2>3.応.答時間</h2>
+          <ol class="p-list--ordered-legal">
+            <li class="p-list__item">Canonicalは該当するサービスレベルおよび重大度レベルに基づき、以下に規定した応答時間内にお客様からのサポート依頼に応答・対応するよう努めます。</li>
+            <li class="p-list__item">「営業時間」とは、お客様の本社所在地の現地時間による月曜日から金曜日の午前8時～午後6時と定義します。ただし、別の所在地について合意がある場合を除きます。すべての時間は、祝日を除きます。</li>
+          </ol>
+
+          <p>応答時間表</p>
+          <table class="p-table">
+            <thead>
+              <tr>
+                <th>&nbsp;</th>
+                <th scope="col">Standard</th>
+                <th scope="col">Advanced</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr>
+                <td scope="row">重大度レベル1</td>
+                <td>2営業時間</td>
+                <td>1時間</td>
+              </tr>
+              <tr>
+                <td scope="row">重大度レベル2</td>
+                <td>4営業時間</td>
+                <td>4営業時間</td>
+              </tr>
+              <tr>
+                <td scope="row">重大度レベル3</td>
+                <td>10営業時間</td>
+                <td>6営業時間</td>
+              </tr>
+              <tr>
+                <td scope="row">重大度レベル4</td>
+                <td>20営業時間</td>
+                <td>10営業時間</td>
+              </tr>
+            </tbody>
+          </table>
         </li>
+
+
+        <li class="p-list__item">
+          <h2>4.サ.ポートプロセス</h2>
+          <p>Canonicalでは相応の努力を払ってサポートケースの解決に努めますが、問題の回避、解決または解決時間について保証はできません。</p>
+          <ol class="p-list--ordered-legal">
+            <li class="p-list__item">Canonicalは、こちらのサポートプロセスに従ってサービスを提供します。</li>
+            <li class="p-list__item">お客様は、こちらのエスカレーションプロセスに従って、サポートの問題をエスカレーションすることができます。</li>
+          </ol>
+        </li>
+
+        <li class="p-list__item">
+          <h2>5.保.証</h2>
+          <ol class="p-list--ordered-legal">
+            <li class="p-list__item">お客様には、利用規約に従うことを条件として、Ubuntu保証プログラムに加入する資格があります。Canonicalは、この保証プログラムとその規約を定期的に更新することがあります。現行のUbuntu保証プログラムおよびIP免責条項は、以下の「Ubuntu保証」のページでご覧いただけます。<a href="/legal/ubuntu-advantage-assurance">www.ubuntu.com/legal/ubuntu-advantage-assurance</a></li>
+          </ol>
+        </li>
+      </ol>
+
+      <h2 id="appendix-1">付録1 &mdash; サポートの範囲</h2>
+      <h3>Ubuntu Advantage OpenStack</h3>
+      <h4>用語の定義：</h4>
+
+      <ul class="p-list">
+        <li class="p-list__item">「OpenStack」とは、CanonicalがUbuntuと併せて配布する、「OpenStack」と呼ばれるクラウドコンピューティングソフトウェアを指します。</li>
+        <li class="p-list__item">「OpenStackパッケージ」とは、Ubuntuアーカイブ内のUbuntu Mainリポジトリ内に現存するOpenStackに関連するパッケージを指し、そのパッケージのアップデートとしてUbuntuクラウドアーカイブ内で提供されるものを含みます。これには、<a href="https://wiki.ubuntu.com/OpenStack/OpenStackCharms">wiki.ubuntu.com/OpenStack/OpenStackCharms</a>にリストアップされたチャームが含まれます。</li>
+        <li class="p-list__item">「リージョン」とは、専用APIエンドポイントがある個別のOpenStack環境を指し、通常はID（Keystone）サービスのみを他のリージョンと共有します。1つのOpenStackリージョンは、単一のデータセンターに収容しなければなりません。</li>
+        <li class="p-list__item">「パブリッククラウド」とは、サードパーティによりゲストインスタンスの作成および管理が可能なクラウド環境を指します。</li>
+        <li class="p-list__item">「クラウドゲスト」とは、Ubuntuサーバーのインスタンスで、パブリッククラウド上で稼働していないものを指します。</li>
+        <li class="p-list__item">「フルスタック（Full Stack）サポート」とは、OpenStackのユーザーレベルおよび運用レベルの機能性、パフォーマンス、可用性に関する問題への対処を意味します。</li>
+        <li class="p-list__item">「バグフィックスサポート」とは、OpenStackパッケージ内の正当なコードバグに限定されたサポートを意味します。これには、バグが存在するかどうかを判定するために行う問題のトラブルシューティングは含まれません。</li>
+        <li class="p-list__item">「有効なカスタマイゼーション」とは、OpenStackパッケージのOpenStack APIやHorizonを使用して行われた設定を意味します。疑問の生じないよう付け加えると、有効なカスタマイゼーションには、Canonicalによる実施または許可が明確でないアーキテクチャ上の変更は含まれません。Foundation OpenStack Build中に設定された設定オプションは、クラウドの正常な稼働に最重要であるとお考えください。これに対する一切の変更は、クラウドのサポート停止につながる可能性があります。サポートを確実に継続するためには、変更の依頼をCanonicalが承認する必要があります。</li>
       </ul>
 
-      <h3>Ubuntu Advantage OpenStack クラウドリージョン</h3>
-      <p>Ubuntu Advantage OpenStack クラウドリージョンは、以下の点を除いてUbuntu</p>
+      <h4>OpenStackのサポート対象バージョン：</h4>
+
       <ul class="p-list">
-        <li>
-          <p>Advantage OpenStackと同一です。</p>
-          <ul>
-            <li>サポートは、単一のリージョンに限定され、購入されたUbuntu Advantage OpenStack クラウドリージョンのサイズに基づく最大ノード数が決められています。</li>
-            <li>Landscape on-premisesは含まれています。</li>
+        <li class="p-list__item">Ubuntuの長期サポートバージョン（LTS）のリリース時に当初提供されたOpenStackのバージョンは、そのUbuntuバージョンのライフサイクル全体を通してサポートされます。</li>
+        <li class="p-list__item">UbuntuのLTSバージョンのリリース後にリリースされたOpenStackの各リリースは、Ubuntuクラウドアーカイブから入手できます。Ubuntuクラウドアーカイブ内のOpenStackの各リリースは、Ubuntu LTSの該当バージョンを対象にして、該当するOpenStackのバージョンを含むUbuntuバージョンのリリース日から最低18ヵ月間サポートされます。</li>
+        <li class="p-list__item">OpenStackリリースのサポートスケジュールは、<a href="/about/release-cycle">www.ubuntu.com/about/release-cycle</a>でご覧いただけます。</li>
+      </ul>
+
+      <p>OpenStackのサポート</p>
+
+      <ul class="p-list">
+        <li class="p-list__item">OpenStackのサポートは、Advanced対象の応答時間で提供されます。</li>
+        <li class="p-list__item">OpenStackのサポートを受けるには、各リージョンが12以上のサポート対象ノードで構成されている必要があります。OpenStack環境内にあるすべてのノードが、有効なサポート契約の対象でなければなりません。</li>
+        <li class="p-list__item">セクション* 2.2に規定するハードウェア要件に加え、ハードウェアはUbuntu OpenStack最低基準を満たしていることが必要です。</li>
+        <li class="p-list__item">OpenStackクラウドの「フルスタック（Full Stack）サポート」は、Foundation OpenStack Build委託によりデプロイされた場合に限って提供されます。
+          <ul class="p-list">
+            <li class="p-list__item">Canonicalは、Foundation OpenStack Buildによりデプロイされたチャームのサポートを提供します。</li>
+            <li class="p-list__item">Canonicalとの契約により実施したあらゆるデプロイメントの結果としてチャームがカスタマイズされた場合、カスタマイゼーションは、そのカスタマイゼーションが含まれるチャームの公式リリース後90日間有効です。</li>
+            <li class="p-list__item">Foundation OpenStack Build委託によりデプロイされたOpenStackを稼働するために必要なサポートは、すべてのパッケージに含まれています。</li>
           </ul>
         </li>
-        <li>
-          <p>サービスに含まれないもの：</p>
-          <ul>
-            <li>OpenStackプロジェクトまたは追加テクノロジーで、Foundation OpenStack Buildによりデプロイされていないもののサポート</li>
+        <li class="p-list__item">Ubuntu LTSの定期メンテナンスサイクルの一環として行うOpenStackコンポーネントのアップグレードは、サポート対象です。
+          <ul class="p-list">
+            <li class="p-list__item">OpenStackのバージョン間のアップグレード（例：OpenStack MitakaからNewtonへ）またはUbuntu（例：Ubuntu 1* 4.04 LTSからUbuntu 1* 6.04 LTSへ）、JujuおよびMAASのバージョン間のアップグレードは、サポートされています。ただし、Foundation OpenStack Buildの一環としてCanonicalが指定する文書化されたプロセスに従ってアップグレードを行うことが条件です。</li>
+            <li class="p-list__item">新しいクラウドノードの追加、ならびに既存のノードと同等容量の新しいノードとの交換は、いずれもサポートされています。</li>
+            <li class="p-list__item">フルスタックサポートは、有効なカスタマイゼーションとみなされないカスタマイゼーションを対象外とします。</li>
+            <li class="p-list__item">クラウドゲスト用のUbuntu Advantage Virtual Guest Advanced サービス。</li>
           </ul>
         </li>
+        <li class="p-list__item">Foundation OpenStack Buildを通じてデプロイされなかったOpenStackクラウドについては、バグフィックスサポートのみを提供します。</li>
+        <li class="p-list__item">OpenStackサポートには、OpenStackクラウドのデプロイ中または設定中のバグフィックスサポートを超えるサポートは含まれません。</li>
+      </ul>
+
+      <p>チャーム</p>
+
+      <ul class="p-list">
+        <li class="p-list__item">チャームの各バージョンは、リリース日から1年間サポートされます。</li>
+        <li class="p-list__item">Canonicalは、<a href="https://wiki.ubuntu.com/OpenStack/OpenStackCharms">wiki.ubuntu.com/OpenStack/OpenStackCharms</a>のページに記載されているサポート対象バージョンから改変されたチャームのサポートは一切提供しません。</li>
+      </ul>
+      <p>OpenStackクラスタが利用できるCephまたはSwiftストレージを持つノード1つあたり12 TB利用できるストレージのサポート。この許容量は、Ubuntu Advantage Ceph、Ubuntu Advantage Swift、またはこれらの組み合わせで使用することができます。このノード数は、OpenStackクラスタがカバーするコンピュートノードの数を超過できません。</p>
+      <p>Canonicalが提供するMicrosoft認定ドライバをWindowsのゲストインスタンスで使用するライセンス。</p>
+      <h4>サービスに含まれないもの：</h4>
+      <ul>
+        <li class="p-list__item">OpenStackのデプロイメント実行に必要な作業負荷以外に関するサポート。</li>
+        <li class="p-list__item">クラウドゲスト以外のゲストインスタンスのサポート。</li>
       </ul>
 
       <h3>Ubuntu Advantage Server</h3>
-      <p>特定の各サービス範囲（Essential、Standard、Advanced）については、以下に定義し</p>
-      <p>ます。以下の項目は、どのUbuntu Advantageサーバーサービスにも含まれません。</p>
-      <ul>
-        <li>Ceph</li>
-        <li>Swift</li>
-        <li>OpenStack</li>
+
+      <p>具体的な各サービスの範囲（Essential、Standard、Advanced）は、下記に定義するとおりです。次の項目は、どのUbuntu Advantage Serverサービスにも含まれません：</p>
+      <ul class="p-list">
+        <li class="p-list__item">Ceph</li>
+        <li class="p-list__item">Swift</li>
+        <li class="p-list__item">OpenStack</li>
+        <li class="p-list__item">Kubernetes</li>
       </ul>
 
       <h4>サービス概要</h4>
-      <table class="p-table">
-        <thead>
-          <tr>
-            <th>機能</th>
-            <th>Essential</th>
-            <th>Standard</th>
-            <th>Advanced</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <p>年中無休のセルフサービスのカスタマーケアポータルおよびナレッジベース1</p>
-              <p><small>1 本サービス記述書のセクション2をご覧ください。</small></p>
-            </td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p>Landscapeマネージメント 1</p>
-              <p><small>1 本サービス記述書のセクション2.5をご覧ください。</small></p>
-            </td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p>カーネルライブパッチング1</p>
-              <p><small>1 本サービス記述書のセクション2.4.4によります。</small></p>
-            </td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p>拡張セキュリティメンテナンス1</p>
-              <p><small>1 本セクションで定義します。</small></p>
-            </td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p>Ubuntu 法務部による保証プログラム1 </p>
-              <p><small>1 本サービス記述書のセクション5によります。</small></p>
-            </td>
-            <td>&nbsp;</td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p>1日10時間、週5日の電話およびチケットサポート1　Ubuntuメインリポジトリ内の全パッケージが対象2</p>
-              <ul>
-                <li><small>1 本サービス記述書のセクション3をご覧ください。</small></li>
-                <li><small>2 ただし、本セクションで定義するものを除きます。</small></li>
-              </ul>
-            </td>
-            <td>&nbsp;</td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p>無制限のUbuntu LXDゲストサポート</p>
-              <p><small>1 以下をご覧ください。</small></p>
-            </td>
-            <td>&nbsp;</td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p>年中無休の電話およびチケットサポート：Ubuntuメインリポジトリ内の全パッケージ、ならびにCanonicalの管理するバックポートおよびUniverse内のパッケージが対象2</p>
-              <ul>
-                <li><small>1 本サービス記述書のセクション3によります</small></li>
-                <li><small>2 ただし、本セクションで定義するものを除きます。</small></li>
-              </ul>
-            </td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p>無制限のUbuntu KVMゲストサポート</p>
-              <p><small>1 以下をご覧ください。</small></p>
-            </td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p>FIPS認定暗号化モジュール</p>
-            </td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>
-              <img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="">
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h4>Essential</h4>
-      <ul class="p-list">
-        <li>
-          <p>追加サービスとして含まれるもの：</p>
-          <ul>
-            <li>Ubuntu用の拡張セキュリティメンテナンス</li>
-          </ul>
-        </li>
-        <li>
-          <p>サービスに含まれないもの：</p>
-          <ul>
-            <li>Canonicalのナレッジベースを超えるサポート</li>
-            <li>Ubuntu保証プログラム</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h4>Standard</h4>
-      <ul class="p-list">
-        <li>
-          <p>追加サービスとして含まれるもの：</p>
-          <ul>
-            <li>無制限の数のUbuntu LXDゲストに対するUbuntu</li> <li>Advantage Virtual Guest Standardサポート</li>
-            <li>Ubuntu用の拡張セキュリティメンテナンス</li>
-          </ul>
-        </li>
-        <li>
-          <p>サービスに含まれないもの：</p>
-          <ul>
-            <li>KVM関連パッケージおよびKVMゲストに関するサポート</li>
-            <li>Ubuntu LXDゲストのLandscapeシステム管理ツールへのアクセス。ただし、Landscape SeatsまたはLandscape on-premisesのサポート対象であるものを除く。</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h4>Advanced</h4>
-      <ul class="p-list">
-        <li>
-          <p>追加サービスとして含まれるもの：</p>
-          <ul>
-            <li>無制限の数のUbuntu LXDおよびUbuntu KVMゲストに対するUbuntu Advantage Virtual Guest Advancedサポート</li>
-            <li>Ubuntu 用のFIPS</li>
-            <li>Ubuntu用の拡張セキュリティメンテナンス</li>
-          </ul>
-        </li>
-        <li>
-          <p>サービスに含まれないもの：</p>
-          <ul>
-            <li>Ubuntu LXDおよびUbuntu KVMゲストのLandscapeシステム管理ツールへのアクセス。ただし、Landscape SeatsまたはLandscape on-premisesのサポート対象であるものを除く。</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h3>Ubuntu Advantage Virtual Guest（バーチャルゲスト）</h3>
-      <ul class="p-list">
-        <li>本サービスの提供は、仮想環境でゲストとしてインストールおよび稼働するUbuntu サーバーについて、その仮想環境が (1) Ubuntu認定パブリッククラウドパートナーの環境内にある、または (2) 物理ホスト上にあり、そのゲストが以下のハイパーバイザーのいずれかで稼働中であることを条件とします。</li>
-        <li>
-          <p>（基礎となるテクノロジーのみをリストアップしてあります。これらは、OpenStackの</p>
-          <ul>
-            <li>
-              <p>ようなクラウド経由で提供することが可能です。ハイパーバイザーのベンダーからUbuntuのサポート対象バージョンを特定するリストが提示された場合、そのバージョンのみがUbuntu Advantageバーチャルゲストサービスの利用に適格です。）</p>
-              <ul>
-                <li>KVM | Qemu | Bochs</li>
-                <li>VMWare</li>
-                <li>LXD | LXC</li>
-                <li>Xen</li>
-                <li>Hyper-V</li>
-                <li>VirtualBox</li>
-                <li>z/VM</li>
-                <li>Docker</li>
-              </ul>
-            </li>
-            <li>認定パブリッククラウドパートナーは、以下のUbuntuパートナーリストでご確認ください。<a href="https://partners.ubuntu.com/find-a-partner">partners.ubuntu.com/find-a-partner</a></li>
-          </ul>
-        </li>
-        <li>
-          <p>追加サービスとして含まれるもの：</p>
-          <ul>
-            <li>Ubuntu用の拡張セキュリティメンテナンス</li>
-          </ul>
-        </li>
-        <li>
-          <p>サービスに含まれないもの：</p>
-          <ul>
-            <li>ハイパーバイザーのサポート</li>
-            <li>選択されたハイパーバイザー用ネイティブイメージの提供</li>
-            <li>仮想ゲスト内での仮想ゲストの稼働（通常ネストと呼ばれます）</li>
-            <li>例外として追加されるものは、該当するUbuntu Advantageサーバーサービスの例外に対応する。</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h3>Ubuntu Advantage Ceph Storage（ストレージ）</h3>
-      <ul class="p-list">
-        <li>
-          <p>用語の定義：</p>
-          <ul>
-            <li>「クラスタ」とは、単一の物理的データセンター内のCephの単一のインストールを指します。</li>
-          </ul>
-        </li>
-        <li>サポートは、Ceph内の全ストレージプールにわたって保管されるデータの総量からギガバイトで計量します。これには、空きスペースならびに複製および消去コーディング用オーバーヘッドは含まれません。</li>
-        <li>Ubuntu Advantage Cephストレージのストレージ容量を無制限でご購入のお客様については、単一クラスタ内のサポートに限定されます。</li>
-        <li>Cephのサポートは、Advanced対象の応答時間で提供します。</li>
-        <li>
-          <p>追加サービスとして含まれるもの：</p>
-          <ul>
-            <li>Cephのデプロイメント実行に必要なすべてのパッケージのサポート</li>
-            <li>ストレージおよび複製の要件を満たすために必要な全サーバーのサポートこれには、Cephモニターなどの補助（ストレージ以外の）ノードが含まれる。</li>
-          </ul>
-        </li>
-        <li>
-          <p>サービスに含まれないもの：</p>
-          <ul>
-            <li>Cephのデプロイメント実行に必要な作業負荷以外に関するサポート</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h3>Ubuntu Advantage Swift Storage（ストレージ）</h3>
-      <ul class="p-list">
-        <li>
-          <p>用語の定義：</p>
-          <ul>
-            <li>「クラスタ」とは、単一の物理的データセンター内のSwiftの単一のインストールを指します。</li>
-          </ul>
-        </li>
-        <li>サポートは、Swift内の全ストレージプールにわたって保管されているデータの総量からギガバイトで計量します。これには、空きスペースならびに複製および消去コーディング用オーバーヘッドは含まれません。</li>
-        <li>Ubuntu Advantage Swift Storageのストレージ容量を無制限でご購入のお客様については、単一クラスタ内のサポートに限定されます。</li>
-        <li>Swiftのサポートは、Advanced対象の応答時間で提供します。</li>
-        <li>
-          <p>追加サービスとして含まれるもの：</p>
-          <ul>
-            <li>Swiftのデプロイメント実行に必要なすべてのパッケージのサポート</li>
-            <li>ストレージおよび複製の要件を満たすために必要な全サーバーのサポート。これには、Swiftモニターなどの補助（ストレージ以外の）ノードが含まれる。</li>
-          </ul>
-        </li>
-        <li>
-          <p>サービスに含まれないもの：</p>
-          <ul>
-            <li>Swiftのデプロイメント実行に必要な作業負荷以外に関するサポート</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h3>Ubuntu Advantage MAAS</h3>
-      <ul class="p-list">
-        <li>
-          <p>サービスに含まれるもの：</p>
-          <ul>
-            <li>文書化されたMAASデプロイメント用アーキテクチャに従い、MAAS環境をホストするために必要な全サーバーのサポート</li>
-            <li>MAASの実行に必要なすべてのパッケージのサポート</li>
-            <li>Canonicalの提供するオペレーティングシステムイメージを使用してマシンを起動する機能のサポート</li>
-            <li>Canonical以外が提供する認定オペレーティングシステムイメージをMAAS用イメージに変換するために必要なツールのサポート </li>
-            <li>MAASカスタマムイメージングツールの使用許諾ライセンス</li>
-          </ul>
-        </li>
-        <li>
-          <p>サービスに含まれないもの：</p>
-          <ul>
-            <li>MAASのデプロイメント実行に必要な作業負荷、パッケージおよびサービスコンポーネント以外に関するサポート</li>
-            <li>MAASを使用してデプロイされるノードのサポート</li>
-            <li>MAASデプロイメントの設計および実施の詳細に関するサポート</li>
-            <li>MAASでデプロイされたマシンのLandscape およびCanonical Livepatchサービスへのアクセス</li>
-          </ul>
-        </li>
-        <li>
-          <p>MAASのサポート対象バージョン：</p>
-          <ul>
-            <li>MAASの各バージョンは、Ubuntuアーカイブ内でリリースされた日から1年間、UbuntuのLTSバージョン上でサポートされます。</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h4>Standard</h4>
-      <ul class="p-list">
-        <li>
-          <p>追加サービスとして含まれるもの：</p>
-          <ul>
-            <li>高可用性設定でデプロイされたMAASのサポート</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h4>Advanced</h4>
-      <ul class="p-list">
-        <li>
-          <p>追加サービスとして含まれるもの：</p>
-          <ul>
-            <li>標準のMAAS高可用性設定を正しく実施するために必要なツールのサポート</li>
-            <li>高可用性設定でデプロイされたMAASのサポート</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h3>Ubuntu Advantage Switch（スイッチ）</h3>
-      <ul class="p-list">
-        <li>
-          <p>用語の定義：</p>
-          <ul>
-            <li>「ホワイトボックススイッチ」とは、ブロードコム社のASICをベースとするx86スイッチで、ODM製造業者が製造し、ベンダーがブランディングおよび販売するものを指します。</li>
-            <li>「BCOS」とは、ホワイトボックススイッチによるフル装備L2・L3ネットワーキングソフトウェアのUbuntu最適化バージョンを指します</li>
-          </ul>
-        </li>
-        <li>
-          <p>サービスに含まれるもの：</p>
-          <ul>
-            <li>BCOSの実行に必要なUbuntuの特定バージョンのサポート</li>
-            <li>BCOSソフトウェアのサポート</li>
-          </ul>
-        </li>
-        <li>
-          <p>サービスに含まれないもの：</p>
-          <ul>
-            <li>BCOSの実行に必要な作業負荷以外に関するサポート</li>
-            <li>BCOSソフトウェアと一緒に提供されなかったバージョンのカーネルのサポート</li>
-            <li>物理的ハードウェアのサポート。ハードウェアのサポートはベンダーが提供する。</li>
-            <li>Landscape SaaSおよびLandscape on-premises</li>
-            <li>Canonical Livepatchサービスへのアクセス</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h3>Ubuntu Advantage Desktop（デスクトップ）</h3>
-      <ul class="p-list">
-        <li>
-          <p>サービスに含まれないもの：</p>
-          <ul>
-            <li>仮想マシン</li>
-            <li>マシンコンテナ</li>
-            <li>アプリケーションコンテナ</li>
-            <li>デュアルブート（他のオペレーティングシステムとの共存）</li>
-            <li>Ubuntuによる動作保証のない周辺機器</li>
-            <li>デスクトップ以外のパッケージのサポート</li>
-            <li>Ubuntuのコミュニティフレーバー</li>
-            <li>X86_64以外のアーキテクチャに関するサポート</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h4>Standard</h4>
-      <ul class="p-list">
-        <li>
-          <p>サービスに含まれるもの：</p>
-          <ul>
-            <li>Ubuntu Mainリポジトリ内のsssd、winbind、ネットワークマネージャー、ネットワークマネージャー関連プラグインを使用する基本ネットワーク認証および接続</li>
-          </ul>
-        </li>
-        <li>
-          <p>サービスに含まれないもの：</p>
-          <ul>
-            <li>開発者用ツール</li>
-            <li>基礎となるUbuntuデスクトップイメージに含まれないパッケージのサポート</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h4>Advanced</h4>
-      <ul class="p-list">
-        <li>
-          <p>サービスに含まれるもの：</p>
-          <ul>
-            <li>Canonicalのツールによるデスクトップのプロビジョニング</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h3>Ubuntu Advantage for Docker</h3>
-      <ul class="p-list">
-        <li>
-          <p>用語の定義：</p>
-          <ul>
-            <li>「Docker」はDocker Enterprise Edition Basicとして知られ、ドッカー社の公表する原状のソフトウェアを指します。</li>
-          </ul>
-        </li>
-        <li>Dockerのサポートは、Advanced対象の応答時間で提供します。</li>
-        <li>
-          <p>サービスに含まれるもの：</p>
-          <ul>
-            <li>Ubuntuを稼働するホストマシンのサポート</li>
-            <li>Dockerパッケージアーカイブから取得可能な原状のDockerを稼働するために必要なすべてのパッケージのサポート</li>
-            <li>無制限の数のDockerコンテナのサポート</li>
-            <li>公式ソースからインストールされ、Ubuntuを稼働するDockerコンテナに関するUbuntu Advantage Virtual Guest</li> <li>Advancedサービス</li>
-          </ul>
-        </li>
-        <li>
-          <p>サービスに含まれないもの：</p>
-          <ul>
-            <li>ホストマシン上でDockerの実行に必要な作業負荷以外に関するサポート</li>
-            <li>DockerコンテナのLandscape Seats</li>
-          </ul>
-        </li>
-        <li>Dockerの各リリースは、以下のドッカー社ウェブサイトの定義に従ってサポートされています。</li>
-        <li><a href="https://success.docker.com/Policies/Maintenance_Lifecycle">https://success.docker.com/Policies/Maintenance_Lifecycle</a></li>
-      </ul>
-
-      <h3>Ubuntu Advantage Kubernetes</h3>
-      <ul class="p-list">
-        <li>
-          <p>用語の定義：</p>
-          <ul>
-            <li>「Canonical配布版Kubernetes」とは、JujuおよびCanonical-Kubernetes公式バンドルを使用して、ベアメタル、クラウドゲスト、または仮想マシン上でデプロイされたKubernetesを指します。</li>
-            <li>「デプロイメント」とは、「Canonical配布版Kubernetes」をデプロイするプロセスを指します。デプロイメントは、すべてのアプリケーションが「起動済 (started)」状態であるというJujuのレポートにより、正常に実行されたものと見なされます。</li>
-            <li>「アップグレード」とは、Kubernetesのバージョン間のアップグレードのプロセスを指します。アップグレードは、すべてのアプリケーションが「起動済 (started)」状態であるというJujuのレポートにより、正常に実行されたものと見なされます。Canonicalは、アップグレードのプロセス中に遭遇する正当なバグについて、サポートを提供します。</li>
-            <li>「サポート」とは、ブレークフィックスサポートおよびKubernetesに関する基本的な質問にお答えすることを指します。デプロイメントおよびアップグレードの支援、ならびにKubernetesの設定および最適化は、サポートの対象外です。</li>
-          </ul>
-        </li>
-        <li>Canonical配布版Kubernetesの最小限デプロイメントは、</li>
-        <li><a href="https://jujucharms.com/canonical-kubernetes/">https://jujucharms.com/canonical-kubernetes/</a> に記載されています。これは、</li>
-        <li>Canonical-Kubernetesバンドルの基本設定です。サポート対象となるKubernetes環境内のすべてのノードについて、サポートを購入する必要があります。</li>
-        <li>
-          <p>Kubernetesのサポート対象バージョンは、Kubernetesの現行安定バージョンならびに最新バージョンで、以下のページの記載どおりです。</p>
-          <ul>
-            <li><a href="https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions">https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions</a></li>
-          </ul>
-        </li>
-        <li>本サポートは、Canonical配布版Kubernetesを稼働するために必要なソフトウェアパッケージおよびチャームに限定されます。</li>
-        <li>Canonicalとの契約に従って実施したあらゆるCanonical配布版Kubernetesのデプロイメントについて、結果的にチャームがカスタマイズされた場合のカスタマイゼーションは、そのカスタマイゼーションを含むチャームの公式リリース後90日間有効です。</li>
-      </ul>
-
-      <h4>Standard</h4>
-      <ul class="p-list">
-        <li>
-          <p>サービスに含まれないもの：</p>
-          <ul>
-            <li>高可用性設定でデプロイされたKubernetesのサポート</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h4>Advanced</h4>
-      <ul class="p-list">
-        <li>
-          <p>追加サービスとして含まれるもの：</p>
-          <ul>
-            <li>高可用性設定でデプロイされたKubernetesのサポート</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h3>拡張セキュリティメンテナンス</h3>
-      <p>拡張セキュリティメンテナンスには、2019年4月28日までの期間、Ubuntu Mainリポジトリ内の複数のサーバーパッケージ用に利用可能な重大度レベル「高」および「クリティカル」のCVE用フィックスが含まれます。拡張セキュリティメンテナンスに含まれる全パッケージのリストは、以下のページでご覧いただけます。</p>
-      <p><a href="https://wiki.ubuntu.com/SecurityTeam/ESM/12.04#Maintained_Packages">https://wiki.ubuntu.com/SecurityTeam/ESM/12.04#Maintained_Packages</a></p>
-      <p>拡張セキュリティメンテナンスには、64-bit x86 AMD/Intelのインストールが含まれます。</p>
-      <ul class="p-list">
-        <li>
-          <p>サービスに含まれないもの：</p>
-          <ul>
-            <li>製品ライフサイクルの終了したリリースのパッケージ用バグフィックス。ただし、バグが拡張セキュリティメンテナンスのセキュリティアップデートによって生じた場合を例外とする。</li>
-            <li>メンテナンス対象パッケージリストに記載されていないパッケージ用のセキュリティフィックス</li>
-            <li>重大度レベルが「高」および「クリティカル」でないCVEのセキュリティフィックス</li>
-          </ul>
-        </li>
-      </ul>
-      <p>拡張セキュリティメンテナンスは、重大度レベルが「高」および「クリティカル」であるすべてのCVEについて安全なソフトウェアやフィックスを保証するものではありません。</p>
-
-      <h3>Canonical Livepatchサービス</h3>
-      <p>Canonical Livepatch サービスには、Canonicalのカーネルライブパッチデーモンの使用許諾ライセンス、利用可能なカーネルライブパッチへのアクセス、ライブパッチング機能が利用可能なすべてのシステム上のライブパッチでLivepatchの対象となるもののサポートが含まれます。</p>
-      <p>Canonicalは、重大度レベルが「高」および「クリティカル」なカーネルのCVEについてライブパッチを提供します。CVEの一部は、ライブパッチングシステム内の技術的限界により、ライブパッチングに適格でない可能性がありますのでご注意ください。</p>
-      <p>Canonicalでは、カーネルのサポート用バグフィックスをカーネルライブパッチとして提供することはできません。</p>
-      <p>カーネルライブパッチングは、Ubuntu14.04上およびUbuntu16.04上のgenericおよびlowlatancyの64-bit Intel/AMD 4.4カーネルに利用可能です。</p>
-      <ul class="p-list">
-        <li>
-          <p>FIPS for Ubuntu</p>
-          <ul>
-            <li>Supermicro AMD64、IBM POWER8およびIBM Zの特定のハードウェア上でUbuntuと一緒に使用する際にFIPS 140-2レベル1基準適合に充分なパッケージへのアクセス（利用可能な場合）。</li>
-            <li>そのようなパッケージのライセンスで、オープンソースソフトウェアライセンスによりライセンス許諾されていない範囲のもの。</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h3>Landscape Seats</h3>
-      <ul class="p-list">
-        <li>
-          <p>サービスに含まれるもの：</p>
-          <ul>
-            <li>物理的マシン、仮想マシンまたはコンテナ（ご購入により）をLandscape SaaSまたはLandscape on-premises上に登録する能力。登録可能なマシンの数は、ご購入いただく「Seats（シート）」の数</li>
-          </ul>
-        </li>
-        <li>
-          <p>サービスに含まれないもの：</p>
-          <ul>
-            <li>Landscapeクライアントのインストールおよび稼働に必要なパッケージのサポートを超えるサポート</li>
-          </ul>
-        </li>
-      </ul>
-
-      <h3>テクニカルアカウントマネージャー (TAM)</h3>
-      <ul class="p-list">
-        <li>
-          <p>用語の定義：</p>
-          <ul>
-            <li>「TAM」とはCanonicalのサポートエンジニアで、リモート方式で作業をする者、またはお客様のスタッフおよびマネージメントと直接共同して作業をする者を指します。</li>
-          </ul>
-        </li>
-        <li>
-          <p>CanonicalではTAMの提供によりサポートサービスを拡張し、サービス期間中に以下のサービスを週10時間まで行います。</p>
-          <ul>
-            <li>該当するUbuntu Advantageサービスの対象となるプラットフォームおよび設定について、サポートおよびベストプラクティスに関するアドバイスを提供する。</li>
-            <li>隔週で双方の同意する時刻にレビューコールに参加し、お客様のオペレーション上の問題に対応する。</li>
-            <li>複数のベンダーに関する問題の調整をTSANet経由で、またはCanonicalの直接的なパートナーシップ（該当する場合）によりオーガナイズ。根本原因が特定された場合、TAMはそのサブシステムのベンダーと共同して、そのベンダーの通常のサポートプロセスに従って問題の解決に努める。</li>
-          </ul>
-        </li>
-        <li>Canonicalは四半期ごとにお客様とサービスのレビューミーティングを行い、サービスパフォーマンスを評価し、改善するべき分野を判断します。</li>
-        <li>TAMはお客様の施設を年1回訪問し、実地テクニカルレビューを行います。</li>
-        <li>TAMはTAMの就業時間中、サポートケースに対応します。その時間外のサポートは、Ubuntu Advantageのサポートプロセスに従って提供されます。</li>
-      </ul>
-
-      <h3>専任テクニカルアカウントマネージャー (DTAM)</h3>
-      <ul class="p-list">
-        <li>
-          <p>用語の定義：</p>
-          <ul>
-            <li>「DTAM」とはCanonicalのサポートエンジニアで、単独のお客様のためにリモート方式でフルタイムの専任として仕事をする者を指します。</li>
-          </ul>
-        </li>
-        <li>
-          <p>CanonicalではDTAMの提供によりサポートサービスを拡張し、サービス期間中の現地営業時間中に以下のサービスを週40時間まで行います（Canonicalの休暇に関する方針に従うことを条件とします）。</p>
-          <ul>
-            <li>該当するUbuntu Advantageサービスの対象となるプラットフォームおよび設定について、サポートおよびベストプラクティスに関するアドバイスを提供する。</li>
-            <li>DTAMが責任を負うお客様の部署で発生するすべてのサポート依頼について、連絡担当者の役割を果たす。</li>
-            <li>Canonicalの標準サポート応答に関する定義とお客様のニーズに従い、サポートのエスカレーションおよび優先度の決定を管理する。</li>
-            <li>定期レビューコールに参加し、お客様のオペレーション上の問題に対応する。</li>
-            <li>複数のベンダーに関する問題の調整をTSANet経由で、またはCanonicalの直接的なパートナーシップ（該当する場合）によりオーガナイズ。根本原因が特定された場合、DTAMはそのサブシステムのベンダーと共同して、そのベンダーの通常のサポートプロセスに従って問題の解決に努める。</li>
-            <li>該当するCanonicalの社内トレーニングおよび能力開発活動に参加する（直接およびリモート方式）。</li>
-          </ul>
-        </li>
-        <li>Canonicalは四半期ごとにサービスのレビューミーティングをお客様と行い、サービスパフォーマンスを評価し、改善するべき分野を判断します。</li>
-        <li>DTAMはDTAMの就業時間中、サポートケースに対応します。営業時間外のサポートは、Ubuntu Advantageのサポートプロセスに従って提供されます。</li>
-        <li>DTAMの一人が連続5営業日以上の休暇を取る場合、Canonicalは一時的にリモート方式で作業する人材を休暇中の代理として指名します。Canonicalは、予測可能なDTAMの休暇についてお客様と調整します。</li>
-      </ul>
-
-      <h3>専任サポートエンジニア (DSE)</h3>
-      <ul class="p-list">
-        <li>
-          <p>用語の定義：</p>
-          <ul>
-            <li>「DSE」とはCanonicalのサポートエンジニアで、単独のお客様のためにリモート方式でフルタイムの専任として仕事をし、お客様のサポートチームの延長としてCanonicalのサービスをお客様の環境内に統合し、そこでサポートすることを主な課題とする者を指します。</li>
-          </ul>
-        </li>
-        <li>
-          <p>CanonicalではDSEの提供によりサポートサービスを拡張し、サービス期間中の現地営業時間中に以下のサービスを週40時間まで行います（Canonicalの休暇に関する方針に従うことを条件とします）。</p>
-          <ul>
-            <li>お客様のニーズを満たすため、必要に応じて実地で作業することができる。</li>
-            <li>お客様の環境内で利用され、Canonicalのサービスと統合する必要のある製品について理解し、最大の努力を払ってそれらの製品について支援を提供し、Canonicalのサービス利用を確実に成功に導く。</li>
-            <li>該当するUbuntu Advantageサービスの対象となるプラットフォームおよび設定について、サポートおよびベストプラクティスに関するアドバイスを提供する。</li>
-            <li>DSEが責任を負うお客様の部署で発生するすべてのサポート依頼について、連絡担当者の役割を果たす。</li>
-            <li>Canonicalの標準サポート応答に関する定義とお客様のニーズに従い、サポートのエスカレーションおよび優先度の決定を管理する。</li>
-            <li>定期レビューコールに参加し、お客様のオペレーション上の問題に対応する。</li>
-            <li>複数のベンダーに関する問題の調整をTSANet経由で、またはCanonicalの直接的なパートナーシップにより（該当する場合）体系化。根本原因が特定された場合、DSEはそのサブシステムのベンダーと共同で、そのベンダーの通常のサポートプロセスに従って問題の解決に努める。</li>
-            <li>該当するCanonicalの社内トレーニングおよび能力開発活動に参加する（直接およびリモート方式）。</li>
-          </ul>
-        </li>
-        <li>Canonicalは四半期ごとにお客様とサービスのレビューミーティングを行い、サービスパフォーマンスを評価し、改善するべき分野を判断します。</li>
-        <li>DSEはDSEの就業時間中、サポートケースに対応します。営業時間外のサポートは、Ubuntu Advantageのサポートプロセスに従って提供されます。</li>
-        <li>DSEの一人が連続5営業日以上の休暇を取る場合、Canonicalは一時的にリモート方式で作業する人材を休暇期間中の代理として指名します。Canonicalは、予測可能なDSEの休暇についてお客様と調整します。</li>
-      </ul>
-
-      <h3>Landscape on-premises</h3>
-      <ul class="p-list">
-        <li>
-          <p>用語の定義：</p>
-          <ul>
-            <li>「Landscape on-premises」とは、お客様のハードウェアにインストールされるCanonicalのLandscapeシステム管理ソフトウェアを指します。</li>
-          </ul>
-        </li>
-        <li>Landscape on-premisesのサポートは、Advanced対象の応答時間で提供します。</li>
-        <li>
-          <p>サービスに含まれるもの：</p>
-          <ul>
-            <li>Landscape on-premisesをダウンロードし、単一のインスタンスをインストールする許諾ライセンス</li>
-            <li>お客様が購入したUbuntu Advantageサービスの対象とするマシン（物理的マシンと仮想マシンのどちらも）用として、Landscape on-premisesのマシン管理サービスおよびモニターサービス機能</li>
-          </ul>
-        </li>
-        <li>
-          <p>デプロイ方法：</p>
-          <ul>
-            <li>「Quickstart（クイックスタート）」によるインストール方式でインストールした場合、Landscape on-premisesがインストールされているマシンのサポートが含まれます。</li>
-            <li>マニュアルによるインストール方式でインストールした場合、Landscape on-premisesがインストールされているマシン上の最大2台のサーバーのサポートが含まれます。</li>
-            <li>Jujuを使用してデプロイされた場合、「高密度デプロイメント」方式がサポートされます。</li>
-          </ul>
-        </li>
-        <li>
-          <p>サービスに含まれないもの：</p>
-          <ul>
-            <li>Landscape on-premisesパッケージのサポートを超えるサポート</li>
-          </ul>
-        </li>
-        <li>
-          <p>サポート対象バージョンのLandscape on-premises</p>
-          <ul>
-            <li>Landscape on-premisesの各リリースは、リリース日から1年間サポートされます。</li>
-          </ul>
-        </li>
-        <li><a href="/legal/ubuntu-advantage-service-description#service-description">上へ戻る</a></li>
-      </ul>
-
-      <h3 id="appendix-2">付録2 - Ubuntu Advantageサポートプロセス</h3>
-      <ul class="p-list">
-        <li>
-          <p>1.サービスの開始</p>
-          <ul>
-            <li>1.1 サービスの開始時に、Canonicalからお客様の技術担当者一名に対して、Landscape、サポート用ポータルおよびオンラインのナレッジベースへのアクセスを提供します。</li>
-            <li>1.2 お客様は当初の技術担当者を通じて、以下の表に記載するとおり、サポート対象システムの数に基づいてCanonicalとの連絡を担当する複数の技術担当者を選定することができます。これらの技術担当者は、サポート用ポータルへのログイン資格を受け、サポート請求について連絡担当者の役割を果たします。</li>
-          </ul>
-        </li>
-      </ul>
 
       <table class="p-table">
         <thead>
           <tr>
-            <th>Ubuntu Advantageサポート対象マシン数</th>
-            <th>技術担当者</th>
+            <th scope="col">機能</th>
+            <th scope="col">Essential</th>
+            <th scope="col">Standard</th>
+            <th scope="col">Advanced</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>1～20</td>
-            <td>2</td>
+            <td style="width: 50%;"><p>年中無休のセルフサービスのカスタマーケアポータルおよびナレッジベース<sup>1</sup></p><small><sup>1</sup> 本サービス記述書のセクション2をご覧ください。</small></td>
+            <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
+            <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
+            <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
           </tr>
           <tr>
-            <td>21~50</td>
-            <td>3</td>
+            <td><p>Landscapeマネージメント<sup>1</sup></p><small><sup>1</sup> 本サービス記述書のセクション* 2.5をご覧ください。</small></td>
+            <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
+            <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
+            <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
           </tr>
           <tr>
-            <td>51~250</td>
-            <td>6</td>
+            <td><p>カーネルライブパッチング<sup>1</sup></p><small><sup>1</sup> 本サービス記述書のセクション** 2.4.4によります。</small></td>
+            <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
+            <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
+            <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
           </tr>
           <tr>
-            <td>251~1000</td>
-            <td>9</td>
+            <td><p>拡張セキュリティメンテナンス<sup>1</sup></p><small><sup>1</sup> 本セクションで定義します。</small></td>
+            <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
+            <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
+            <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
           </tr>
           <tr>
-            <td>1001~5000</td>
-            <td>12</td>
+            <td><p>Ubuntu 法務部による保証プログラム<sup>1</sup></p><small><sup>1</sup> 本サービス記述書のセクション5によります。</small></td>
+            <td>&nbsp;</td>
+            <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
+            <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
           </tr>
           <tr>
-            <td>5001~</td>
-            <td>15</td>
+            <td><p>1日10時間、週5日の電話およびチケットサポート<sup>1</sup> Ubuntuメインリポジトリ内の全パッケージが対象<sup>2</sup> </p>
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <small><sup>1</sup> 本サービス記述書のセクション3をご覧ください。</small>
+                </li>
+                <li class="p-list__item">
+                  <small><sup>2</sup> 本セクションで定義するものを除きます。</small>
+                </li>
+              </ul>
+            </td>
+            <td>&nbsp;</td>
+            <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
+            <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
           </tr>
-        </tbody>
-      </table>
+          <tr>
+            <td>
+              <p>無制限のUbuntu LXDゲストサポート<sup>1</sup></p>
+              <small><sup>1</sup> 以下をご覧ください。</small>
+            </td>
+            <td>&nbsp;</td>
+            <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
+            <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
+          </tr>
+          <tr>
+            <td>
+              <p>年中無休の電話およびチケットサポート<sup>1</sup> Ubuntuメインリポジトリ内の全パッケージ、ならびにCanonicalが管理するバックポートおよびUniverse内のパッケージが対象<sup>2</sup></p>
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <small><sup>1</sup> 本サービス記述書のセクション3によります。</small>
+                </li>
+                <li class="p-list__item">
+                  <small><sup>2</sup> 本セクションで定義するものを除きます。</small>
+                </li>
+              </ul>
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
+          </tr>
+          <tr>
+            <td><p>無制限のUbuntu KVMゲストサポート<sup>1</sup></p>
+              <small><sup>1</sup> 以下をご覧ください。</small></td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
+            </tr>
+            <tr>
+              <td>FIPS認定暗号化モジュール</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
+            </tr>
+            <tr>
+              <td>コモンクライテリア</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
+            </tr>
+          </tbody>
+        </table>
 
-      <p>1.3 お客様は、サポート用ポータル経由でサポート依頼を提出することにより、指定したお客様の技術担当者をいつでも変更することができます</p>
+        <h4>Essential</h4>
 
-      <ul class="p-list">
-        <li>
-          <p>2.サポート依頼の提出</p>
-          <ul>
-            <li>2.1 お客様のアカウントがサポート用ポータル内に設定されると、お客様はサポート依頼を開始することができます。</li>
-            <li>2.2 お客様は、サポートポータル経由で、または電話でサポートチームに連絡することにより、サポートケースを提出することができます（別途注記のある場合を除きます）。</li>
-            <li>2.3 サポートケースは、単一の個別の問題、トラブルまたは依頼に関するものである必要があります。</li>
-            <li>2.4 サポートケースにはチケット番号を割り当て、自動的に応答します。直接サポートケースに入力されないすべての通信連絡は、Eメールや電話を含め、品質保証を目的とするタイムスタンプを添付してサポートケースに記録されます。</li>
-            <li>2.5 サポートケースを報告する場合、Canonicalが適切な重大度レベルを判定するため、お客様は重大度の詳細を報告する必要があります。同時発生した複数のサポートケースがあるお客様には、ビジネスに与える影響の重大度に従い、サポートケースの優先順位を決定するようお願いすることがあります。</li>
-            <li>2.6 お客様は、問題の解決に向けてCanonicalが作業中にお願いするすべての情報を提供するよう求められます。</li>
-            <li>2.7 お客様がすべての現行サポートケースを追跡しそれについて応答すること、ならびに過去のサポートケースの再検討ができるよう、Canonicalは各サポートケースの記録をサポート用ポータル内に保管します。</li>
-          </ul>
-        </li>
-        <li>
-          <p>3.サポートの重大度レベル</p>
-          <ul>
-            <li>3.1 サポート依頼を開始すると、Canonicalのサポートエンジニアがサポートケース情報を検証し、お客様と一緒にそのサポートケースの緊急性を評価し、重大度レベルを決定します。</li>
-            <li>3.2 応答時間は、該当するサービスに関するサービス記述書の記載どおりです。</li>
-            <li>3.3 重大度レベルの設定に際して、Canonicalのサポートチームは以下に記載する定義を使用します。</li>
-          </ul>
-        </li>
-      </ul>
+        <ul class="p-list">
+          <li class="p-list__item">追加サービスとして含まれるもの：
+            <ul>
+              <li class="p-list__item">Ubuntuの拡張セキュリティメンテナンス。</li>
+            </ul>
+          </li>
+          <li class="p-list__item">サービスに含まれないもの：
+            <ul class="p-list">
+              <li class="p-list__item">Canonicalのナレッジベースを超えるサポート。</li>
+              <li class="p-list__item">Ubuntu保証プログラム。</li>
+            </ul>
+          </li>
+        </ul>
 
-      <h4>重大度レベル1 — コア機能が利用できない</h4>
-      <p>Canonicalはご購入のサービスレベルに従い、適切なサポートエンジニアおよび／または開発エンジニアにより、問題の回避または恒久的解決の提供に向けて継続的に努力します。コア機能が利用可能となった時点で、重大度レベルは新たに適切なレベルに引き下げられます。</p>
+        <h4>Standard</h4>
+        <ul>
+          <li class="p-list__item">追加サービスとして含まれるもの：
+            <ul>
+              <li class="p-list__item">無制限の数のUbuntu LXDゲストが対象のUbuntu Advantage Virtual Guest Standardサポート。</li>
+              <li class="p-list__item">Ubuntu用の拡張セキュリティメンテナンス</li>
+            </ul>
+          </li>
 
-      <h4>重大度レベル2 — コア機能が大幅に低下している</h4>
-      <p>Canonicalは営業時間中、問題の回避または恒久的解決の提供に向けて一丸となって努力します。コア機能の大幅な低下が解消した時点で、重大度レベルはレベル3に引き下げられます。</p>
+          <li class="p-list__item">サービスに含まれないもの：
+            <ul>
+              <li class="p-list__item">KVM関連パッケージおよびKVMゲストに関するサポート。</li>
+              <li class="p-list__item">Ubuntu LXDゲストのLandscapeシステム管理ツールへのアクセス。ただし、Landscape SeatsまたはLandscape on-premisesのサポート対象であるものを除きます。</li>
+            </ul>
+          </li>
 
-      <h4>重大度レベル3 — 標準サポート依頼</h4>
-      <p>Canonicalは営業時間中、問題の回避または恒久的解決の提供を出来る限り早く行うため、より重大度レベルの高いサポートケースとバランスを取りながら相応の努力をします。問題が回避された場合、Canonicalのサポートエンジニアはそのサポートケースに対する恒久的解決の開発作業を続行します。</p>
+        </ul>
 
-      <h4>重大度レベル4 — 緊急を要さない依頼</h4>
-      <p>レベル4の依頼には、外観上の問題、情報請求、機能の要求および同様の事項が含まれます。Canonicalは一切の機能の要求に対してタイムラインを提示せず、またその機能を仕様に含めることを保証しません。Canonicalは、レベル4の各サポートケースを検討し、それが製品の拡張強化として将来のリリース用に検討するべき課題か、現行リリースで修正するべき問題か、将来のリリースで修正するべき問題かを決定します。Canonicalは、相応レベルの努力を払い、対象時間内に情報請求を検討の上応答します。Canonicalは重大度レベル4の問題を生じたサポートケースについて応答した後、Canonicalが適切であると判断する場合、そのサポートケースを終了することがあります。</p>
+        <h4>Advanced</h4>
 
-      <h3>4.ホットフィックス</h3>
-      <p>クリティカルなサポートケースを一時的に解決するため、Canonicalは影響を受けたソフトウェア（例：パッケージ）にパッチを適用したバージョンを提供することがあります。このようなバージョンは、「ホットフィックス」と呼ばれます。Canonicalから提供するホットフィックスは、それに対応するパッチがUbuntuアーカイブ内のソフトウェアのリリースに統合されてから90日間有効です。しかし、該当する上流プロジェクトがパッチを却下した場合、そのホットフィックスのサポートは打ち切られ、サポートケースは続行します。</p>
+        <ul>
+          <li class="p-list__item">追加サービスとして含まれるもの：
+            <ul>
+              <li class="p-list__item">無制限の数のUbuntu LXDおよびUbuntu KVMゲストが対象のUbuntu Advantage Virtual Guest Advancedサポート</li>
+              <li class="p-list__item">Ubuntu用のコモンクライテリア</li>
+              <li class="p-list__item">Ubuntu 用のFIPS</li>
+              <li class="p-list__item">Ubuntu用の拡張セキュリティメンテナンス</li>
+            </ul>
+          </li>
 
-      <h3>5.言語</h3>
-      <p>Canonicalはサポートを英語で提供しますが、他の言語が利用可能となる場合もあります。</p>
+          <li class="p-list__item">サービスに含まれないもの：
+            <ul>
+              <li class="p-list__item">Ubuntu LXDまたはUbuntu KVMゲストのLandscapeシステム管理ツールへのアクセス。ただし、Landscape SeatsまたはLandscape on-premisesのサポート対象であるものを除きます。</li>
+            </ul>
+          </li>
+        </ul>
 
-      <h3>6.リモートセッション</h3>
-      <p>6.1 Canonicalは、お客様のサポート対象システムへのリモートアクセスサービスによるアクセスを提案することがあります。このような場合、どのリモートアクセスサービスを使用するかについてはCanonicalが決定します。</p>
+        <h3>Ubuntu Advantage Virtual Guest（バーチャルゲスト）</h3>
 
-      <h3>7.サポート地域</h3>
-      <p>Canonicaは以下の各国を含めたあらゆる地域からサービスを提供する可能性がありますが、以下の国に限定されません。</p>
-      <ul>
-        <li>オーストラリア</li>
-        <li>オーストリア</li>
-        <li>ブラジル</li>
-        <li>ブルガリア</li>
-        <li>カナダ</li>
-        <li>チリ</li>
-        <li>中国</li>
-        <li>クロアチア</li>
-        <li>フィンランド</li>
-        <li>フランス</li>
-        <li>ドイツ</li>
-        <li>ハンガリー</li>
-        <li>アイルランド</li>
-        <li>イタリア</li>
-        <li>日本</li>
-        <li>メキシコ</li>
-        <li>ニュージーランド</li>
-        <li>ノルウェー</li>
-        <li>ポーランド</li>
-        <li>韓国</li>
-        <li>スペイン</li>
-        <li>スウェーデン</li>
-        <li>台湾</li>
-        <li>トルコ</li>
-        <li>イギリス</li>
-        <li>アメリカ</li>
-      </ul>
-      <p><a href="/legal/ubuntu-advantage-service-description#service-description">上へ戻る</a></p>
+        <p>バーチャルゲスト・サービスは該当するUbuntu Advantage Serverサポートのサービスと同じであり、以下に列挙する例外の適用対象になります。</p>
 
-      <h2 id="appendix-3">付録3 - Ubuntu Advantage マネージメントへのエスカレーション</h2>
-      <p>サービスの種類を問わずCanonicalのサービスにご満足いただけない場合、その状況をCanonicalのマネージメントにエスカレーションする方法がいくつかあります。</p>
+        <p>本サービスの提供は、仮想環境でゲストとしてインストールおよび稼働するUbuntuサーバーについて、その仮想環境が (1) Ubuntu認定パブリッククラウドパートナーの環境内にある、または (2) 物理ホスト上にあり、そのゲストが下記のハイパーバイザーのいずれかで稼働中であることを条件とします：</p>
 
-      <h3>サポートケース終了時のフィードバック</h3>
-      <p>サポートケースが終了すると、サポートケース責任者宛にCanonicalのサポート体験全般に関するアンケートをメール送信します。すべてのアンケート結果は、マネージメントがレビューします。</p>
+        <ul class="p-list">
+          <li class="p-list__item">（基礎となるテクノロジーのみをリストアップしてあります。これらは、OpenStackのようなクラウド経由で提供することが可能です。ハイパーバイザーのベンダーがUbuntuのサポート対象バージョンを明示するリストを提示した場合、そのバージョンのみがUbuntu Advantageバーチャルゲストサービスの利用に適格です）
+            <ul>
+              <li class="p-list__item">KVM | Qemu | Bochs</li>
+              <li class="p-list__item">VMWare</li>
+              <li class="p-list__item">Xen</li>
+              <li class="p-list__item">LXD | LXC</li>
+              <li class="p-list__item">Hyper-V</li>
+              <li class="p-list__item">VirtualBox</li>
+              <li class="p-list__item">z/VM</li>
+              <li class="p-list__item">Docker</li>
+            </ul>
+          </li>
 
-      <h3>ピアレビューの依頼</h3>
-      <p>通常のビジネス慣行として、Canonicalは全サポートケースの一定の割合について、ピアレビューを実施しています。ケースに関するコメントとして、またはサポート用ポータルに記載の電話番号宛に、特にピアレビューを依頼することができます。中立的な立場のエンジニアが割り当てられ、サポートケースを再検討してフィードバックを提供します。</p>
+          <li class="p-list__item">認定パブリッククラウドパートナーについては、こちらのUbuntuパートナーリストでご確認ください：<a href="https://partners.ubuntu.com/find-a-partner">partners.ubuntu.com/find-a-partner</a></li>
+        </ul>
 
-      <h3>マネージメントへのエスカレーション</h3>
-      <ul class="p-list">
-        <li>
-          <p>緊急以外のニーズについて：</p>
-          <ul>
-            <li>そのサポートケース内で、マネージメントへのエスカレーションをご依頼ください。マネージャーが連絡を受けてサポートケースを再検討し、1営業日以内に応答します</li>
-          </ul>
-        </li>
-        <li>
-          <p>緊急のニーズについて：</p>
-          <ul>
-            <li>Canonicalのサポート・テクニカルサービス担当マネージャーに対して、<a href="mailto:support-manager@canonical.com">support-manager@canonical.com</a> 宛のメールでエスカレーションすることができます。</li>
-            <li>さらにエスカレーションが必要な場合は、Canonialのサポート・テクニカルサービス担当ディレクターに対して、<a href="mailto:operations-director@canonical.com">operations-director@canonical.com</a> 宛のメールでご連絡ください。</li>
-          </ul>
-        </li>
-      </ul>
+        <h4>サービスに含まれないもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">ハイパーバイザーのサポート</li>
+          <li class="p-list__item">選択したハイパーバイザー用ネイティブイメージの提供</li>
+          <li class="p-list__item">仮想ゲスト内での仮想ゲストの稼働（通常ネストと呼ばれます）</li>
+          <li class="p-list__item">追加された例外は対象のUbuntu Advantage Serverサービスの例外と一致します。</li>
+        </ul>
+
+        <h3>Ubuntu Advantage Ceph Storage</h3>
+
+        <h4>用語の定義：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">「クラスタ」とは、単一の物理的データセンター内で一意の識別子が指定されたCephの単一のインストールを指します。</li>
+        </ul>
+        <p>サポートは、全ストレージプールにわたってCeph内に保管されたデータの総量からギガバイト単位で計量されます。これには、フリースペースならびに複製・消去コードのオーバーヘッドは含まれません。</p>
+
+        <p>容量が無制限のストレージのUbuntu Advantage Cephストレージをご購入のお客様については、単一クラスタ内のサポートに限定されます。</p>
+
+        <p>Cephのサポートは、Advanced対象の応答時間で提供されます。</p>
+
+        <h4>追加サービスとして含まれるもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">Cephのデプロイメント実行に必要なすべてのパッケージのサポート。</li>
+          <li class="p-list__item">ストレージおよび複製の要件を満たすために必要な全サーバーのサポート。これには、Cephモニターなどの補助（非ストレージ）ノードが含まれます。</li>
+        </ul>
+
+        <h4>サービスに含まれないもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">Cephのデプロイメント実行に必要な作業負荷以外に関するサポート。</li>
+        </ul>
+
+        <h3>Ubuntu Advantage Swift Storage</h3>
+
+        <h4>用語の定義：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">「クラスタ」とは、単一の物理的データセンター内で一意の識別子が指定されたSwiftの単一のインストールを指します。</li>
+        </ul>
+
+        <p>サポートは、全ストレージプールにわたってSwift内に保管されたデータの総量からギガバイト単位で計量されます。これには、フリースペースならびに複製・消去コードのオーバーヘッドは含まれません。</p>
+
+        <p>容量が無制限のストレージのUbuntu Advantage Swiftストレージをご購入のお客様については、単一クラスタ内のサポートに限定されます。</p>
+
+        <p>Swiftのサポートは、Advanced対象の応答時間で提供されます。</p>
+        <h4>追加サービスとして含まれるもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">Swiftのデプロイメント実行に必要なすべてのパッケージのサポート。</li>
+          <li class="p-list__item">ストレージおよび複製の要件を満たすために必要な全サーバーのサポート。これには、Swiftモニターなどの補助（非ストレージ）ノードが含まれます。</li>
+        </ul>
+
+        <h4>サービスに含まれないもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">Swiftのデプロイメント実行に必要な作業負荷以外に関するサポート。</li>
+        </ul>
+
+        <h3>Ubuntu Advantage MAAS</h3>
+
+        <h4>サービスに含まれるもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">文書化されたMAASデプロイメント用アーキテクチャに従い、MAAS環境をホストするために必要な全サーバーのサポート。</li>
+          <li class="p-list__item">MAASの実行に必要なすべてのパッケージのサポート。</li>
+          <li class="p-list__item">Canonicalが提供するオペレーティングシステムイメージを使用してマシンをブートする機能のサポート。</li>
+          <li class="p-list__item">Canonical以外が提供する認定オペレーティングシステムイメージをMAAS用イメージに変換するために必要なツールのサポート。</li>
+          <li class="p-list__item">MAASカスタマムイメージングツールの使用許諾ライセンス。</li>
+        </ul>
+
+        <h4>サービスに含まれないもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">MAASのデプロイメント実行に必要なもの以外の作業負荷、パッケージおよびサービスコンポーネントに関するサポート。</li>
+          <li class="p-list__item">MAASを使用してデプロイされるノードのサポート。</li>
+          <li class="p-list__item">MAASデプロイメントの具体的な設計および実装に関するサポート。</li>
+          <li class="p-list__item">MAASでデプロイされたマシンのLandscapeおよびCanonical Livepatchサービスへのアクセス。</li>
+        </ul>
+
+        <h4>MAASのサポート対象バージョン：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">MAASの各バージョンは、Ubuntuアーカイブ内でリリースされた日から1年間、そのUbuntuのLTSバージョンを対象にしてサポートされます。</li>
+        </ul>
+
+        <h3>Ubuntu Advantage Switch（スイッチ）</h3>
+
+        <h4>用語の定義：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">「ホワイトボックススイッチ」とは、ブロードコム社のASICをベースとするx86スイッチで、ODM製造業者が製造し、ベンダーがブランディングおよび販売するものを指します。</li>
+          <li class="p-list__item">「BCOS」とは、ホワイトボックススイッチによるフル装備L2・L3ネットワーキングソフトウェアの、Ubuntuに最適化されたバージョンを指します。</li>
+        </ul>
+
+        <h4>サービスに含まれるもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">BCOSの実行に必要なUbuntuの特定バージョンのサポート。</li>
+          <li class="p-list__item">BCOSソフトウェアのサポート。</li>
+        </ul>
+
+        <h4>サービスに含まれないもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">BCOSの実行に必要な作業負荷以外に関するサポート。</li>
+          <li class="p-list__item">BCOSソフトウェアと一緒に提供されなかったバージョンのカーネルのサポート。</li>
+          <li class="p-list__item">物理的ハードウェアのサポート。ハードウェアのサポートはベンダーが提供します。</li>
+          <li class="p-list__item">Landscape SaaSおよびLandscape on-premises。</li>
+          <li class="p-list__item">Canonical Livepatchサービスへのアクセス。</li>
+        </ul>
+
+        <h3>Ubuntu Advantage Desktop（デスクトップ）</h3>
+
+        <h4>サービスに含まれないもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">仮想マシン</li>
+          <li class="p-list__item">マシンコンテナ</li>
+          <li class="p-list__item">アプリケーションコンテナ</li>
+          <li class="p-list__item">デュアルブート（他のオペレーティングシステムとの共存）</li>
+          <li class="p-list__item">Ubuntuによる動作保証のない周辺機器</li>
+          <li class="p-list__item">デスクトップ以外のパッケージのサポート</li>
+          <li class="p-list__item">Ubuntuのコミュニティフレーバー</li>
+          <li class="p-list__item">X86_64以外のアーキテクチャに関するサポート</li>
+        </ul>
+
+        <h4>Standard</h4>
+
+        <h4>追加サービスとして含まれるもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">Ubuntu Mainリポジトリ内のsssd、winbind、ネットワークマネージャ、およびネットワークマネージャ関連プラグインを使用するBasicネットワーク認証と接続</li>
+        </ul>
+
+        <h4>サービスからさらに除外されるもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">開発者用ツール</li>
+          <li class="p-list__item">ベースのUbuntuデスクトップイメージに含まれないパッケージのサポート</li>
+        </ul>
+
+        <h4>Advanced</h4>
+
+        <h4>追加サービスとして含まれるもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">Canonicalのツールによるデスクトップのプロビジョニング</li>
+        </ul>
+
+        <h3>Ubuntu Advantage Kubernetes</h3>
+
+        <h4>用語の定義：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">「Canonical配布版Kubernetes」とは、JujuおよびCanonical-Kubernetes公式バンドルを使用して、ベアメタル、クラウドゲスト、または仮想マシン上にデプロイされたKubernetesを指します。</li>
+          <li class="p-list__item">「デプロイメント」とは、「Canonical配布版Kubernetes」をデプロイするプロセスを指します。すべてのアプリケーションが「起動済（started）」状態であるとJujuが報告した場合に、デプロイメントが正常に実行されたものと見なされます。</li>
+          <li class="p-list__item">「アップグレード」とは、Kubernetesのバージョン間のアップグレードプロセスを指します。すべてのアプリケーションが「起動済（started）」状態であるとJujuが報告した場合に、アップグレードが正常に実行されたものと見なされます。Canonicalは、アップグレードプロセス中に発生する正当なバグについて、サポートを提供します。</li>
+          <li class="p-list__item">「サポート」とは、ブレークフィックスサポートおよびKubernetesに関する基本的な質問にお答えすることを指します。デプロイメントおよびアップグレードの支援、ならびにKubernetesの設定および最適化はサポートの対象外です。</li>
+        </ul>
+
+        <p><a href="https://jujucharms.com/canonical-kubernetes/">jujucharms.com/canonical-kubernetes</a>に記載されている通り、Canonical配布版Kubernetesのデプロイ最小構成には、高可用性Juju制御プレーンと基本構成のCanonical-Kubernetesバンドルが含まれます。サポート対象となるKubernetes環境内のすべてのノードについては、サポートを購入する必要があります。</p>
+
+        <p>以下のページに記載されている通り、Kubernetesの現行の安定バージョン、ならびに安定リリースのチャネルに含まれる最新のマイナーリリース2件がKubernetesのサポート対象バージョンに含まれます。詳細情報についてはこちらをご覧ください：</p>
+
+        <ul class="p-list">
+          <li class="p-list__item"><a href="https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions">github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions</a></li>
+        </ul>
+
+        <p>本サポートは、Canonical配布版Kubernetesを稼働するために必要なソフトウェアパッケージおよびチャームに限定されます。</p>
+
+        <p>Canonicalとの契約に従って実施したあらゆるCanonical配布版Kubernetesのデプロイメントの結果としてチャームがカスタマイズされた場合、カスタマイゼーションは、そのカスタマイゼーションを含むチャームの公式リリース後90日間有効です。</p>
+
+        <h3>拡張セキュリティメンテナンス</h3>
+
+        <p>拡張セキュリティメンテナンスには、2020年4月28日までの期間に行われるUbuntu Mainリポジトリ内の一連のサーバーパッケージ用の重大度レベル「高」および「クリティカル」のCVE用フィックスが含まれます。拡張セキュリティメンテナンスに含まれるパッケージの全リストは、次のページでご覧いただけます：  <a href="https://wiki.ubuntu.com/SecurityTeam/ESM/12.04#Maintained_Packages">wiki.ubuntu.com/SecurityTeam/ESM/12.04#Maintained_Packages</a></p>
+
+        <p>64-bit x86 AMD/Intelインストレーション用の拡張セキュリティメンテナンスが含まれています。</p>
+
+        <h4>サービスに含まれないもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">製品ライフサイクルの終了したリリースのパッケージ用バグフィックス。ただし、拡張セキュリティメンテナンスのセキュリティアップデートによってバグが生じた場合は例外となります。</li>
+          <li class="p-list__item">メンテナンス対象パッケージリストに記載されていないパッケージ用のセキュリティフィックス。</li>
+          <li class="p-list__item">重大度レベルが「高」および「クリティカル」でないCVEのセキュリティフィックス</li>
+        </ul>
+
+        <p>拡張セキュリティメンテナンスは、重大度レベルが「高」および「クリティカル」であるすべてのCVEについてソフトウェアの安全性やフィックスの保証はしません。</p>
+
+        <h3>Canonical Livepatchサービス</h3>
+
+        <p>Canonical Livepatchサービスには、Canonicalのカーネルライブパッチデーモンの使用許諾ライセンス、利用可能なカーネルライブパッチへのアクセス、およびライブパッチング機能を利用できるあらゆるシステム上の、Livepatchの対象となるライブパッチのサポートが含まれます。</p>
+
+        <p>Canonicalは、重大度レベルが「高」および「クリティカル」なカーネルのCVEを対象にしてライブパッチを提供します。ライブパッチングシステム内の技術的限界により、ライブパッチングに適さないCVEもありますのでご注意ください。</p>
+
+        <p>Canonicalでは、カーネルのサポート用バグフィックスをカーネルライブパッチとして提供することはできません。</p>
+
+        <p>カーネルライブパッチングは、* 4.4カーネル以降のジェネリックおよび低遅延64-bit Intel/AMD * 4.4カーネルで利用できます。</p>
+
+        <p>ライブパッチングに利用できるのは、デフォルトのLTSカーネルだけです。最新のHWEカーネルから以前のLTSリリースへのバックポートもこれに含まれます。</p>
+
+        <h3>FIPS for Ubuntu</h3>
+
+        <p>Supermicro AMD64、IBM POWER8およびIBM Zの特定のハードウェア上でUbuntuと一緒に使用する際にFIPS 140-2レベル1基準に十分適合できるパッケージへのアクセス（利用可能な場合）。</p>
+
+        <p>そのようなパッケージのライセンスで、オープンソースソフトウェアライセンスによりライセンス許諾されていない範囲のもの。</p>
+
+        <h3>Ubuntuのコモンクライテリア</h3>
+
+        <p>Supermicro AMD64、IBM POWER8およびIBM Zの特定のハードウェア上でUbuntuと一緒に使用する際にコモンクライテリアEAL2基準に十分適合できるパッケージへのアクセス（利用可能な場合）。</p>
+
+        <p>そのようなパッケージのライセンスで、オープンソースソフトウェアライセンスによりライセンス許諾されていない範囲のもの。</p>
+
+        <h3>Landscape Seats</h3>
+
+        <h4>サービスに含まれるもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">物理マシン、仮想マシンまたはコンテナ（購入内容に応じて）をLandscape SaaSまたはLandscape on-premisesに登録する機能。ご購入いただく「Seats（シート）」の数が、登録可能なマシンの数になります。</li>
+        </ul>
+
+        <h4>サービスに含まれないもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">Landscapeクライアントのインストールおよび稼働に必要なパッケージのサポートを超えるサポート</li>
+        </ul>
+
+        <h3>テクニカルアカウントマネージャー</h3>
+
+        <h4>用語の定義：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">「TAM」とは、リモート方式によりお客様のスタッフおよびマネージメントと直接共同して作業をするCanonicalのサポートエンジニアを指します。</li>
+        </ul>
+
+        <p>CanonicalはTAMを提供することでサポートサービスを拡張し、サービス契約期間中に以下のサービスを週10時間まで行います：</p>
+
+        <ul class="p-list">
+          <li class="p-list__item">該当するUbuntu Advantageサービスの対象となるプラットフォームおよび設定について、サポートおよびベストプラクティスに関するアドバイスを提供します。</li>
+          <li class="p-list__item">レビュー依頼に応じ、隔週で双方の同意する時刻にお客様の運用上の問題に対応します。</li>
+          <li class="p-list__item">TSANet経由、またはCanonicalの直接的なパートナーシップ（該当する場合）による、複数ベンダーに関する問題の調整を準備します。根本原因が特定された場合、TAMはそのサブシステムのベンダーと共同して、そのベンダーの通常のサポートプロセスに従って問題の解決に努めます。</li>
+        </ul>
+
+        <p>Canonicalは四半期ごとにお客様とサービスのレビューミーティングを行い、サービスパフォーマンスを評価して改善が必要な領域を判断します。</p>
+
+        <p>TAMはお客様の施設を年1回訪問し、実地テクニカルレビューを行います。</p>
+
+        <p>TAMはTAMの就業時間中にサポートケースに対応します。その時間外のサポートは、Ubuntu Advantageのサポートプロセスに従って提供されます。</p>
+
+        <h3>専任テクニカルアカウントマネージャー</h3>
+
+        <h4>用語の定義：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">「DTAM」とは、お客様専属となり、リモート方式でフルタイムで作業を行うCanonicalのサポートエンジニアを指します。</li>
+        </ul>
+
+        <p>CanonicalはDTAMを提供することでサポートサービスを拡張し、サービス契約期間中の現地営業時間中に以下のサービスを週40時間まで行います（Canonicalの休暇に関する方針に従うことを条件とします）：</p>
+
+        <ul class="p-list">
+          <li class="p-list__item">該当するUbuntu Advantageサービスの対象となるプラットフォームおよび設定について、サポートおよびベストプラクティスに関するアドバイスを提供します。</li>
+          <li class="p-list__item">DTAMが責任を負うお客様の部署で発生するすべてのサポート依頼について、単一の連絡窓口になります。</li>
+          <li class="p-list__item">Canonicalの標準的なサポート対応の定義とお客様のニーズに従い、サポートのエスカレーションおよび優先度の決定を管理します。</li>
+          <li class="p-list__item">定期的にレビューの依頼に応じてお客様の運用上の問題に対応します。</li>
+          <li class="p-list__item">TSANet経由、またはCanonicalの直接的なパートナーシップ（該当する場合）による、複数ベンダーに関する問題の調整を準備します。根本原因が特定された場合、DTAMはそのサブシステムのベンダーと共同して、そのベンダーの通常のサポートプロセスに従って問題の解決に努めます。</li>
+          <li class="p-list__item">対象のCanonicalの社内トレーニングおよび能力開発活動に参加します（直接およびリモート方式）。</li>
+        </ul>
+
+        <p>Canonicalは四半期ごとにお客様とサービスのレビューミーティングを行い、サービスパフォーマンスを評価して改善が必要な領域を判断します。</p>
+
+        <p>DTAMはDTAMの就業時間中にサポートケースに対応します。営業時間外のサポートは、Ubuntu Advantageのサポートプロセスに従って提供されます。</p>
+
+        <p>DTAMの一人が連続5営業日を超える休暇を取る場合、Canonicalは休暇中の代理としてリモート方式で作業する担当者を一時的にご用意します。DTAMの休暇が予測可能な場合、Canonicalはお客様と調整を行います。</p>
+
+        <h3>専任サポートエンジニア</h3>
+
+        <h4>用語の定義：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">「DSE」とは、お客様専属となり、お客様のサポートチームの延長としてリモート方式でフルタイムで作業を行い、Canonicalのサービスをお客様の環境内に統合し、そこでサポートすることを主な課題とするCanonicalのサポートエンジニアを指します。</li>
+        </ul>
+
+        <p>CanonicalはDSEを提供することでサポートサービスを拡張し、サービス期間中の現地営業時間中に以下のサービスを週40時間まで行います（Canonicalの休暇に関する方針に従うことを条件とします）：</p>
+
+        <ul class="p-list">
+          <li class="p-list__item">お客様のニーズを満たすため、必要に応じて実地での作業に応じます。</li>
+          <li class="p-list__item">Canonicalのサービスと統合する必要のある、お客様の環境で利用中の製品について理解し、最大の努力を払ってそれらの製品について支援を提供し、Canonicalのサービス利用を確実に成功に導きます。</li>
+          <li class="p-list__item">該当するUbuntu Advantageサービスの対象となるプラットフォームおよび設定について、サポートおよびベストプラクティスに関するアドバイスを提供します。</li>
+          <li class="p-list__item">DSEが責任を負うお客様の部署で発生するすべてのサポート依頼について、単一の連絡窓口になります。</li>
+          <li class="p-list__item">Canonicalの標準的なサポート対応の定義とお客様のニーズに従い、サポートのエスカレーションおよび優先度の決定を管理します。</li>
+          <li class="p-list__item">定期的にレビューの依頼に応じてお客様の運用上の問題に対応します。</li>
+          <li class="p-list__item">TSANet経由、またはCanonicalの直接的なパートナーシップ（該当する場合）による、複数ベンダーに関する問題の調整を準備します。根本原因が特定された場合、DSEはそのサブシステムのベンダーと共同で、そのベンダーの通常のサポートプロセスに従って問題の解決に努めます。</li>
+          <li class="p-list__item">対象のCanonicalの社内トレーニングおよび能力開発活動に参加します（直接およびリモート方式）。</li>
+        </ul>
+
+        <p>Canonicalは四半期ごとにお客様とサービスのレビューミーティングを行い、サービスパフォーマンスを評価して改善が必要な領域を判断します。</p>
+
+        <p>DSEはDSEの就業時間中にサポートケースに対応します。営業時間外のサポートは、Ubuntu Advantageのサポートプロセスに従って提供されます。</p>
+
+        <p>DSEの一人が連続5営業日を超える休暇を取る場合、Canonicalは休暇中の代理としてリモート方式で作業する担当者を一時的にご用意します。DSEの休暇が予測可能な場合、Canonicalはお客様と調整を行います。</p>
+
+        <h3>Landscape on Premises</h3>
+
+        <h4>用語の定義：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">「Landscape on Premises」とは、お客様のハードウェアにインストールするCanonicalのLandscapeシステム管理ソフトウェアを指します。</li>
+          <li class="p-list__item">Landscape on Premisesのサポートは、Advanced対象の応答時間で提供されます。</li>
+        </ul>
+
+        <h4>サービスに含まれるもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">Landscape on Premisesをダウンロードし、単一のインスタンスをインストールする許諾ライセンス。</li>
+          <li class="p-list__item">お客様が購入したUbuntu Advantageサービスの対象となるマシン（物理マシンと仮想マシンのどちらも）用に、Landscape on Premisesのマシン管理サービスおよび監視サービスを使用できる機能。</li>
+        </ul>
+
+        <h4>デプロイ方法：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">「Quickstart（クイックスタート）」によるインストール方式でインストールした場合、Landscape on Premisesをインストールしたマシンのサポートが含まれます。</li>
+          <li class="p-list__item">手動によるインストール方式でインストールした場合、Landscape on Premisesをインストールしたマシン上のサーバー最大2台のサポートが含まれます。</li>
+          <li class="p-list__item">Jujuを使用してデプロイした場合、「高密度デプロイメント」方式がサポートされます。</li>
+        </ul>
+
+        <h4>サービスに含まれないもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">Landscape on Premisesパッケージのサポートを超えるサポート</li>
+        </ul>
+
+        <p>Landscape on Premisesのサポート対象バージョン</p>
+
+        <ul class="p-list">
+          <li class="p-list__item">Landscape on Premisesの各リリースは、リリース日から1年間サポートされます。</li>
+        </ul>
+
+        <h3>Livepatch on Premises</h3>
+
+        <h4>用語の定義：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">「Livepatch on Premises」とは、お客様のハードウェアにインストールするCanonicalのライブパッチ・リポジトリ・ソフトウェアを指します。</li>
+        </ul>
+
+        <p>Livepatch on Premisesのサポートは、Advanced対象の応答時間で提供されます。</p>
+
+        <h4>サービスに含まれるもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">Livepatch on Premisesをダウンロードし、単一のインスタンスをインストールする許諾ライセンス。</li>
+        </ul>
+
+        <h4>サービスに含まれないもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">Livepatch on Premisesパッケージのサポートを超えるサポート</li>
+          <li class="p-list__item">ライブパッチをコンシュームするマシンを登録するための許諾ライセンス。</li>
+        </ul>
+
+        <p>Livepatch on Premisesのサポート対象バージョン：</p>
+
+        <ul class="p-list">
+          <li class="p-list__item">Livepatch on Premisesの各リリースは、リリース日から1年間サポートされます。</li>
+        </ul>
+
+        <h3>Ubuntu Advantage Rancher</h3>
+
+        <h4>用語の定義：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">「ランチャー」とは、Rancher Labs社がRancherとして公開しているソフトウェアを指します。</li>
+        </ul>
+
+        <h4>サービスに含まれるもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">Canonical配布版Kubernetesを管理する際に、Rancher Labs社が<a href="https://rancher.com/support-maintenance-terms/">rancher.com/support-maintenance-terms/</a>で公開している互換性仕様およびサポートのライフサイクルに準拠した形でRancher h2. 2.&#215;.を使用できるよう、ブレークフィックスサポートを行い、基本的な質問にお答えします。</li>
+        </ul>
+
+        <h4>サービスに含まれないもの：</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">Rancher 1.&#215;.からRancher h2. 2.&#215;.への作業負荷の移行</li>
+          <li class="p-list__item">Rancherで使用するサードパーティ製アドオンに関するサポートと基本的な質問への対応</li>
+          <li class="p-list__item">Rancherのインストール</li>
+        </ul>
+
+        <h2 id="appendix-2">付録2 - Ubuntu Advantage サポートプロセス</h2>
+
+        <ol class="p-list--ordered-legal">
+          <li class="p-list__item"><h4>サ.ービスの開始</h4>
+            <ol class="p-list--ordered-legal">
+              <li class="p-list__item">Canonicalはサービスの利用開始時に、お客様の技術担当者一名に対して、Landscape、サポートポータルおよびオンラインのナレッジベースへのアクセスを提供します。</li>
+              <li class="p-list__item">以下の表に記載する通り、お客様はサポート対象システムの数に応じて、当初の技術担当者を通じてCanonicalとやり取りする複数の技術担当者を選定することができます。これらの技術担当者はサポートポータルへのログイン資格を持ち、サポート請求に関する主な連絡窓口になります。
+                <table>
+                  <thead>
+                    <tr>
+                      <td scope="col">Ubuntu Advantageサポート対象マシン数</td>
+                      <td scope="col">技術担当者</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1～20</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>21～50</td>
+                      <td>3</td>
+                    </tr>
+                    <tr>
+                      <td>51～250</td>
+                      <td>6</td>
+                    </tr>
+                    <tr>
+                      <td>251～1000</td>
+                      <td>9</td>
+                    </tr>
+                    <tr>
+                      <td>1001～5000</td>
+                      <td>12</td>
+                    </tr>
+                    <tr>
+                      <td>5001～</td>
+                      <td>15</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </li>
+              <li class="p-list__item">お客様はサポートポータル経由でサポート依頼を提出することにより、指定されたお客様の技術担当者をいつでも変更することができます。</li>
+            </ol>
+          </li>
+
+          <li class="p-list__item">
+            <h4>サ.ポート依頼の提出</h4>
+            <ol class="p-list--ordered-legal">
+              <li class="p-list__item">サポートポータル内でお客様のアカウントが用意されたら、お客様がサポート依頼を開始できるようになります。</li>
+              <li class="p-list__item">明示されている例外を除き、お客様はサポートポータル経由で、または電話でサポートチームに連絡することにより、サポートケースを送信することができます。</li>
+              <li class="p-list__item">A サポートケースは単一の独立した問題、不具合、あるいはリクエストでなければなりません。</li>
+              <li class="p-list__item">サポートケースにはチケット番号が割り当てられ、自動的に返答が行われます。メールや電話など、直接サポートケースに入力されないすべてのやり取りが、品質保証を目的としてタイムスタンプが付いた形でサポートケースに記録されます。</li>
+              <li class="p-list__item">Canonicalが適切な重大度レベルを判定できるよう、お客様が問題を報告する際は、影響の程度をお伝えいただく必要があります。同時発生した複数のサポートケースがあるお客様には、ビジネスに与える影響の大きさに基づいてサポートケースの優先順位を決定していただく場合があります。</li>
+              <li class="p-list__item">問題解決に向けて作業を行う間、Canonicalが求めるすべての情報をお客様に提供していただく必要があります。</li>
+              <li class="p-list__item">お客様がすべての現行サポートケースを追跡しそれに対応できるよう、また過去のサポートケースの再検討ができるよう、Canonicalは各サポートケースをサポートポータル内に記録します。</li>
+            </ol>
+          </li>
+          <li class="p-list__item">
+            <h4>ホ.ットフィックス</h4>
+            <p>クリティカルなサポートケースを一時的に解決するため、Canonicalは影響を受けたソフトウェア（例：パッケージ）にパッチを適用したバージョンを提供することがあります。このようなバージョンは「ホットフィックス」と呼ばれます。Canonicalが提供するホットフィックスは、Ubuntuアーカイブ内のソフトウェアのリリースにパッチが統合されてから90日間有効です。しかし、対象のアップストリーム・プロジェクトがパッチを却下した場合、そのホットフィックスのサポートは打ち切られてサポートケースが継続することになります。</p>
+          </li>
+          <li class="p-list__item">
+            <h4>言.語</h4>
+            <p>Canonicalはサポートを英語で提供します。ただし、他の言語が利用可能となる場合もあります。</p>
+          </li>
+          <li class="p-list__item">
+            <h4>リ.モートセッション</h4>
+            <p>Canonicalは、リモートアクセスサービスを使ってお客様のサポート対象システムにアクセスすることを提案する場合があります。このような場合、どのリモートアクセスサービスを使用するかはCanonicalが決定します。</p>
+          </li>
+          <li class="p-list__item">
+            <h4>サ.ポート地域</h4>
+            <p>Canonicaはあらゆる場所でサービスを提供することがあります。それには以下の国が含まれますが、これらの国にサポートはこれに限定されません：</p>
+            <ul class="p-list">
+              <li class="p-list__item">オーストラリア</li>
+              <li class="p-list__item">オーストリア</li>
+              <li class="p-list__item">ブラジル</li>
+              <li class="p-list__item">ブルガリア</li>
+              <li class="p-list__item">カナダ</li>
+              <li class="p-list__item">チリ</li>
+              <li class="p-list__item">中国</li>
+              <li class="p-list__item">クロアチア</li>
+              <li class="p-list__item">フィンランド</li>
+              <li class="p-list__item">フランス</li>
+              <li class="p-list__item">ドイツ</li>
+              <li class="p-list__item">ハンガリー</li>
+              <li class="p-list__item">アイルランド</li>
+              <li class="p-list__item">イタリア</li>
+              <li class="p-list__item">日本</li>
+              <li class="p-list__item">メキシコ</li>
+              <li class="p-list__item">ニュージーランド</li>
+              <li class="p-list__item">ノルウェイ</li>
+              <li class="p-list__item">ポーランド</li>
+              <li class="p-list__item">韓国</li>
+              <li class="p-list__item">スペイン</li>
+              <li class="p-list__item">スウェーデン</li>
+              <li class="p-list__item">スイス</li>
+              <li class="p-list__item">台湾</li>
+              <li class="p-list__item">トルコ</li>
+              <li class="p-list__item">英国</li>
+              <li class="p-list__item">米国</li>
+            </ul>
+          </li>
+        </ol>
+
+
+        <h2 id="appendix-3">付録3 - マネージメントへのエスカレーション</h2>
+        <p>サービスの種類を問わず、Canonicalのサービスにご満足いただけない場合は、その状況をCanonicalのマネージメントにエスカレーションする方法がいくつかあります。</p>
+        <ol class="p-list--ordered-legal">
+          <li class="p-list__item"><h4>サポートケース終了時のフィードバック</h4>
+            <p>サポートケースが終了すると、Canonicalのサポート体験全般に関するアンケートをサポートケースの責任者宛にメール送信します。すべてのアンケート結果をマネージメントがレビューします。</p>
+          </li>
+          <li class="p-list__item"><h4>ピアレビューの依頼</h4>
+            <p>通常のビジネス慣行として、Canonicalは一定の割合のサポートケースに対してピアレビューを実施しています。お客様はケースに関するコメントとして、またはサポートポータルに記載された電話番号を使って、明示的にピアレビューを依頼することができます。中立的な立場のエンジニアが割り当てられ、サポートケースを再検討してフィードバックを行います。</p>
+          </li>
+          <li class="p-list__item"><h4>マネージメントへのエスカレーション</h4>
+            <p>緊急時以外のニーズについて：</p>
+            <ul class="p-list">
+              <li class="p-list__item">そのサポートケース内で、マネージメントへのエスカレーションをご依頼ください。マネージャーが連絡を受けてサポートケースを再検討し、1営業日以内に応答します。</li>
+            </ul>
+          </li>
+          <li class="p-list__item"><h4>緊急のニーズについて：</h4>
+            <ul class="p-list">
+              <li class="p-list__item"><a href="mailto:support-manager@canonical.com">support-manager@canonical.com</a>宛のメールで、Canonicalのサポートおよびテクニカルサービス担当マネージャーにエスカレーションすることができます。</li>
+              <li class="p-list__item">さらにエスカレーションが必要な場合は、<a href="mailto:operations-director@canonical.com">operations-director@canonical.com</a>宛のメールでCanonialのサポートおよびテクニカルサービス担当ディレクターにお問い合わせください。</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+      <nav class="col-4 p-card">
+        <h3>追加情報</h3>
+        <ul class="p-list">
+          <li class="p-list__item">
+            <a href="#appendix-1">
+              付録1 - サポート範囲&nbsp;&rsaquo;
+            </a>
+          </li>
+          <li class="p-list__item">
+            <a href="#appendix-2">
+              付録2 - サポートプロセス&nbsp;&rsaquo;
+            </a>
+          </li>
+          <li class="p-list__item">
+            <a href="#appendix-3">
+              付録3 - マネージメントへのエスカレーション&nbsp;&rsaquo;
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
-    <nav class="col-4 p-card">
-      <h3>追加情報</h3>
-      <ul class="p-list">
-        <li class="p-list__item">
-          <a href="#appendix-1">
-            付録1 - サポート範囲&nbsp;&rsaquo;
-          </a>
-        </li>
-        <li class="p-list__item">
-          <a href="#appendix-2">
-            付録2 - サポートプロセス&nbsp;&rsaquo;
-          </a>
-        </li>
-        <li class="p-list__item">
-          <a href="#appendix-3">
-            付録3 - マネージメントへのエスカレーション&nbsp;&rsaquo;
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <div class="row">
+      <div class="col-9">
+        <div class="p-top">
+          <a href="#" class="p-top__link">Back to top</a>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-
-{% endblock content %}
+  {% endblock content %}
