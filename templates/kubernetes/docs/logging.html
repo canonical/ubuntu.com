@@ -9,9 +9,6 @@
 
 {% block content %}
 <div class="p-content__row">
-  <div class="edit-page">
-    <a href="https://github.com/juju-solutions/kubernetes-docs/blob/master/pages/k8s/logging.md" class=" p-link--external">Edit this page</a>
-  </div>
 
   <h1 id="logging">Logging</h1>
 
@@ -43,8 +40,7 @@
 
         <p>To view the logs from the current controller and model, simply run:</p>
 
-        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>juju debug-log
-        </code></pre></div></div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>juju debug-log</code></pre></div></div>
 
         <p>The default behaviour is to show the last 10 entries and to tail the log (so
           you will need to terminate the command with <code class="highlighter-rouge">Ctrl-C</code>).</p>
@@ -55,8 +51,7 @@
 
           <p>For example, a typical line of output might read:</p>
 
-          <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unit-kubernetes-master-0: 18:04:11 INFO juju.cmd running jujud [2.4.2 gc go1.10]
-          </code></pre></div></div>
+          <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unit-kubernetes-master-0: 18:04:11 INFO juju.cmd running jujud [2.4.2 gc go1.10]</code></pre></div></div>
 
           <p>The entity is the unit, machine or application the message originates from (in
             this case <em>kubernetes-master/0</em>). It can be very useful to filter the output
@@ -68,18 +63,15 @@
 
             <p>View the last 100 entries and tail the log:</p>
 
-            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>juju debug-log <span class="nt">-n</span> 100
-            </code></pre></div></div>
+            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>juju debug-log <span class="nt">-n</span> 100</code></pre></div></div>
 
             <p>Show the last 20 entries and exit:</p>
 
-            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>juju debug-log <span class="nt">-n</span> 20 <span class="nt">--no-tail</span>
-            </code></pre></div></div>
+            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>juju debug-log <span class="nt">-n</span> 20 <span class="nt">--no-tail</span></code></pre></div></div>
 
             <p>Replay the log from the very beginning, but filter to logs from kubernetes-worker/0:</p>
 
-            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>juju debug-log <span class="nt">--replay</span> <span class="nt">--include</span><span class="o">=</span>kubernetes-worker/0
-            </code></pre></div></div>
+            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>juju debug-log <span class="nt">--replay</span> <span class="nt">--include</span><span class="o">=</span>kubernetes-worker/0</code></pre></div></div>
 
             <h2 id="viewing-logs-on-a-machine">Viewing logs on a machine</h2>
 
@@ -92,12 +84,10 @@
               <code class="highlighter-rouge">kubernetes-worker</code> you can run the following:</p>
 
               <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>juju ssh kubernetes-worker/0
-                <span class="nb">ls</span> /var/logs/juju/
-              </code></pre></div></div>
+                <span class="nb">ls</span> /var/logs/juju/</code></pre></div></div>
               <p>Which should show something similar to:</p>
 
-              <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>machine-1.log  machine-lock.log  unit-flannel-1.log  unit-kubernetes-worker-0.log
-              </code></pre></div></div>
+              <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>machine-1.log  machine-lock.log  unit-flannel-1.log  unit-kubernetes-worker-0.log</code></pre></div></div>
 
               <p>Note that the logs from other units (in this case ‘flannel’) running on this
                 machine can also be found here.</p>
@@ -106,12 +96,10 @@
 
                 <p>You can check the current logging level by running the command:</p>
 
-                <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>juju model-config logging-config
-                </code></pre></div></div>
+                <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>juju model-config logging-config</code></pre></div></div>
                 <p>This will result in output similar to:</p>
 
-                <pre><code class="language-no-highlight">&lt;root&gt;=WARNING;unit=DEBUG
-                </code></pre>
+                <pre><code class="language-no-highlight">&lt;root&gt;=WARNING;unit=DEBUG</code></pre>
                 <p>…which is the default for any Juju model. This indicates that the <em>machine</em> log level is set to ‘WARNING’, and the <em>unit</em> logging level is set to ‘DEBUG’.  As all the software components of your kubernetes cluster run in units, these logs are likely to be useful for diagnosing issues with software.</p>
 
                 <p>The logging levels, from most verbose to least verbose, are as follows:</p>
@@ -126,8 +114,7 @@
 
                 <p>The logging level can be set like this:</p>
 
-                <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> juju model-config logging-config<span class="o">=</span><span class="s2">"&lt;root&gt;=WARNING;unit=TRACE"</span>
-                </code></pre></div></div>
+                <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> juju model-config logging-config<span class="o">=</span><span class="s2">"&lt;root&gt;=WARNING;unit=TRACE"</span></code></pre></div></div>
                 <p>…which in this case sets the logging level for all units to TRACE</p>
 
                 <div class="p-notification--warning">

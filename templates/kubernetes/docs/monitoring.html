@@ -1,0 +1,124 @@
+{% extends "kubernetes/docs/base_docs.html" %}
+
+{% block meta_description %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block title %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+
+{% block content %}
+<h1 id="monitoring">Monitoring</h1>
+<p>The <strong>Canonical Distribution of Kubernetes</strong><sup>®</sup> includes the standard <strong>Kubernetes</strong> dashboard for monitoring your cluster. However, it is often advisable to have a monitoring solution which will run whether the cluster itself is running or not. It may also be useful to integrate monitoring into existing setups.</p>
+<p><strong>Prometheus</strong> is the recommended way to monitor your deployment - instructions are provided below. There are also instructions for setting up other monitoring solutions, or connecting to existing monitoring setups.</p>
+<h2 id="monitoring-with-prometheus">Monitoring with Prometheus</h2>
+<p>The recommended way to monitor your cluster is to use a combination of <strong>Prometheus</strong>, <strong>Grafana</strong> and <strong>Telegraf</strong>. The fastest, easiest way to install and configure this is via <strong>conjure-up</strong> when installing the <strong>Canonical Distribution of Kubernetes</strong><sup>®</sup>, by selecting the box next to Prometheus from the <code>Add-on</code> menu. You can then log in to the dashboard as <a href="#retrieve-credentials-and-login">described below</a>. See the <a href="./quickstart.html">quickstart guide</a> for more details on installing <strong>CDK</strong> with <strong>conjure-up</strong>.</p>
+<p>If you have already installed your cluster, you will be able to add and configure the extra applications using <strong>Juju</strong> as described here:</p>
+<h3 id="install-the-required-applications">Install the required applications</h3>
+<p>The following commands will add the required applications:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> deploy grafana --series=xenial
+<span class="ex">juju</span> deploy prometheus --series=xenial
+<span class="ex">juju</span> deploy telegraf --series=xenial
+<span class="ex">juju</span> expose grafana</code></pre></div>
+<h3 id="add-relations">Add relations</h3>
+<p>Relationships need to be established between the applications and the units running the cluster:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-relation prometheus:grafana-source grafana:grafana-source
+<span class="ex">juju</span> add-relation telegraf:prometheus-client prometheus:target
+<span class="ex">juju</span> add-relation kubernetes-master:juju-info telegraf:juju-info
+<span class="ex">juju</span> add-relation kubernetes-worker:juju-info telegraf:juju-info</code></pre></div>
+<h3 id="adding-a-scraper-for-prometheus">Adding a scraper for Prometheus</h3>
+<p>Prometheus will also need an appropriate scraper to collect metrics relevant to the cluster. A useful default is installed when using <strong>conjure-up</strong> (the template for this can be <a href="https://raw.githubusercontent.com/conjure-up/spells/master/canonical-kubernetes/addons/prometheus/steps/01_install-prometheus/prometheus-scrape-k8s.yaml">downloaded here</a>), but you can also configure it manually by following the steps outlined here:</p>
+<ul>
+<li><p>Download the scraper file</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">curl</span> -O  https://raw.githubusercontent.com/conjure-up/spells/master/canonical-kubernetes/addons/prometheus/steps/01_install-prometheus/prometheus-scrape-k8s.yaml</code></pre></div>
+This is the template, but it needs some specific information for your cluster.</li>
+<li>Get the relevant address and password from your cluster <code>bash api=$(juju run  --unit kubeapi-load-balancer/0 'network-get website --format yaml --ingress-address' | head -1) pass=$(juju run --unit kubernetes-master/0 'grep &quot;password:&quot; /home/ubuntu/config' | awk '{ print $2 }')</code> This will fetch the relevant info and store in temporary environment variables for convenience.</li>
+<li>Substitute in the variables <code>bash  sed -e 's/K8S_PASSWORD/'&quot;$pass&quot;'/' -e 's/K8S_API_ENDPOINT/'&quot;$api&quot;'/' &lt;prometheus-scrape-k8s.yaml  &gt; myscraper.yaml</code></li>
+<li><p>Configure Prometheus to use this scraper <code>bash  juju config prometheus scrape-jobs=&quot;$(&lt;myscraper.yaml)&quot;</code></p></li>
+</ul>
+<h3 id="add-the-dashboards">Add the dashboards</h3>
+<p>As with the scraper, there is a <a href="https://raw.githubusercontent.com/conjure-up/spells/master/canonical-kubernetes/addons/prometheus/steps/01_install-prometheus/grafana-k8s.json">sample dashboard available for download here</a>. You can download and configure <strong>grafana</strong> to use it by following these steps:</p>
+<ul>
+<li><p>Download the sample dashboard configuration</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">curl</span> -O https://raw.githubusercontent.com/conjure-up/spells/master/canonical-kubernetes/addons/prometheus/steps/01_install-prometheus/grafana-k8s.json</code></pre></div></li>
+<li><p>Upload this to <strong>grafana</strong></p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> run-action --wait grafana/0 import-dashboard  dashboard=<span class="st">&quot;</span><span class="va">$(</span><span class="ex">base64</span> grafana-k8s.json<span class="va">)</span><span class="st">&quot;</span></code></pre></div>
+<p>There is also a default Telegraf dashboard. If you wish to install this, it can be done in a similar way:</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">curl</span> -O https://raw.githubusercontent.com/conjure-up/spells/master/canonical-kubernetes/addons/prometheus/steps/01_install-prometheus/grafana-telegraf.json
+<span class="ex">juju</span> run-action --wait grafana/0 import-dashboard  dashboard=<span class="st">&quot;</span><span class="va">$(</span><span class="ex">base64</span> grafana-telegraf.json<span class="va">)</span><span class="st">&quot;</span></code></pre></div>
+<h3 id="retrieve-credentials-and-login">Retrieve credentials and login</h3>
+<p>To open the dashboard in your browser you will need to know the IP address for <strong>grafana</strong> and the admin password. These can be retrieved with the following commands:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> status --format yaml grafana/0 <span class="kw">|</span> <span class="fu">grep</span> public-address   </code></pre></div>
+<p>Will return the accessible IP address for the dashboard.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> run-action --wait grafana/0 get-admin-password</code></pre></div>
+<p>Will return the password for the user 'admin'</p>
+<p>You can now navigate to the website at <code>http://&lt;your-ip&gt;:3000</code> and login with the username <code>admin</code> and the password you just retrieved.</p>
+<p>Once logged in, check out the cluster metric dashboard by clicking the <code>Home</code> drop-down box and selecting <code>Kubernetes Metrics (via Prometheus)</code>:</p>
+<div class="figure">
+<img src="https://assets.ubuntu.com/v1/e6934269-grafana-1.png" alt="grafana dashboard image" />
+<p class="caption">grafana dashboard image</p>
+</div>
+<p>You can also check out the system metrics of the cluster by switching the drop-down box to `Node Metrics (via Telegraf):</p>
+<div class="figure">
+<img src="https://assets.ubuntu.com/v1/45b87639-grafana-2.png" alt="grafana dashboard image" />
+<p class="caption">grafana dashboard image</p>
+</div>
+<h2 id="monitoring-with-nagios">Monitoring with Nagios</h2>
+<p><strong>Nagios</strong> (<a href="https://www.nagios.org/" class="uri">https://www.nagios.org/</a>) is widely used for monitoring networks, servers and applications. Using the Nagios Remote Plugin Executor (NRPE) on each node, it can monitor your cluster with machine-level detail.</p>
+<p>To start, deploy the latest version of the Nagios and NRPE Juju charms:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> deploy nagios --series=xenial
+<span class="ex">juju</span> deploy nrpe --series=xenial
+<span class="ex">juju</span> expose nagios</code></pre></div>
+<p>Connect <strong>Nagios</strong> to NRPE:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-relation nagios nrpe</code></pre></div>
+<p>Now add relations to NRPE for all the applications you wish to monitor, for example kubernetes-master, kubernetes-worker, etcd, easyrsa, and kubeapi-load-balancer.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-relation nrpe kubernetes-master
+<span class="ex">juju</span> add-relation nrpe kubernetes-worker
+<span class="ex">juju</span> add-relation nrpe etcd
+<span class="ex">juju</span> add-relation nrpe easyrsa
+<span class="ex">juju</span> add-relation nrpe kubeapi-load-balancer</code></pre></div>
+<p>To connect to the Nagios server, you will need its IP address:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> status --format yaml nagios/0 <span class="kw">|</span> <span class="fu">grep</span> public-address</code></pre></div>
+<p>The default username is <code>nagiosadmin</code>. The password is randomly generated at install time, and can be retrieved by running:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> ssh nagios/0 sudo cat /var/lib/juju/nagios.passwd</code></pre></div>
+<div class="figure">
+<img src="https://assets.ubuntu.com/v1/4b109895-CDK-nagios.png" alt="nagios dashboard image" />
+<p class="caption">nagios dashboard image</p>
+</div>
+<h3 id="using-an-existing-nagios-service">Using an existing Nagios service</h3>
+<p>If you already have an existing <strong>Nagios</strong> installation, the <code>nrpe-external-master</code> charm can be used instead.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> deploy nrpe-external-master --series=xenial
+<span class="ex">juju</span> configure nrpe-external-master nagios_master= <span class="op">&lt;</span>ip-address-of-nagios<span class="op">&gt;</span></code></pre></div>
+<p>Once configured, add relations to <code>nrpe-external-master</code> as outlined above.</p>
+<h2 id="monitoring-with-elasticsearch">Monitoring with <strong>Elasticsearch</strong></h2>
+<p>Elasticsearch (<a href="https://www.elastic.co/" class="uri">https://www.elastic.co/</a>) is a popular monitoring application which can be used in conjunction with <strong>CDK</strong>.</p>
+<h3 id="deploy-the-required-applications">Deploy the required applications</h3>
+<p>Use Juju to deploy the required applications:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> deploy elasticsearch --series=xenial --constraints mem=4G
+<span class="ex">juju</span> deploy kibana --series=xenial
+<span class="ex">juju</span> deploy filebeat --series=xenial
+<span class="ex">juju</span> deploy topbeat --series=xenial
+<span class="ex">juju</span> expose kibana</code></pre></div>
+<h3 id="add-relations-1">Add relations</h3>
+<p>You now need to relate the elasticsearch applications together, and connect the <code>topbeat</code> and <code>filebeat</code> applications to the applications you want to monitor:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-relation elasticsearch kibana
+<span class="ex">juju</span> add-relation elasticsearch topbeat
+<span class="ex">juju</span> add-relation elasticsearch filebeat
+
+<span class="ex">juju</span> add-relation  topbeat kubernetes-master
+<span class="ex">juju</span> add-relation filebeat kubernetes-master
+<span class="ex">juju</span> add-relation topbeat kubernetes-worker
+<span class="ex">juju</span> add-relation filebeat kubernetes-worker
+<span class="ex">juju</span> add-relation topbeat kubeapi-load-balancer
+<span class="ex">juju</span> add-relation filebeat kubeapi-load-balancer
+<span class="ex">juju</span> add-relation topbeat etcd
+<span class="ex">juju</span> add-relation filebeat etcd</code></pre></div>
+<h3 id="initialise-the-dashboard">Initialise the dashboard</h3>
+<p>A sample dashboard is included in kabana for monitoring the beat services. You can deploy it by running the following:</p>
+<pre><code>juju run-action --wait kibana/0 load-dashboard dashboard=beats</code></pre>
+<p>You can find the dashboard at the public IP address of your <strong>kibana</strong> application</p>
+<pre><code>juju status kibana --format yaml| grep public-address</code></pre>
+<!-- IMAGES -->
+<!-- LINKS -->
+
+{% endblock content %}

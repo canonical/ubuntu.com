@@ -1,0 +1,83 @@
+{% extends "kubernetes/docs/base_docs.html" %}
+
+{% block meta_description %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block title %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+
+{% block content %}
+<h1 id="how-to-add-ceph-storage">How to add <strong>Ceph</strong> storage</h1>
+<p>Many things you will want to use your Kubernetes cluster for will require some form of available storage. Storage is quite a large topic -- this guide will focus on just adding some quick storage using <strong>Ceph</strong>, so you can get up and running quickly.</p>
+<h2 id="what-youll-need">What you'll need</h2>
+<ul>
+<li>A <strong>CDK</strong> environment set up and running. See the [quickstart][quickstart] if you haven't .</li>
+<li>An existing <strong>Ceph</strong> cluster or the ability to create one.</li>
+</ul>
+<h2 id="deploying-ceph">Deploying Ceph</h2>
+<p>Setting up a Ceph cluster is easy with Juju. For this example we will deploy three ceph monitor nodes:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"> <span class="ex">juju</span> deploy -n 3 ceph-mon
+ <span class="kw">```</span>
+
+ <span class="ex">...and</span> then we<span class="st">&#39;ll add three storage nodes. For the storage nodes, we will also</span>
+<span class="st"> specify some actual  storage for these nodes to use by using `-- storage`. In</span>
+<span class="st"> this case the Juju charm uses labels for different types of storage:</span></code></pre></div>
+<p>juju deploy -n 3 ceph-osd --storage osd-devices=32G,2 --storage osd-journals=8G,1 ```</p>
+<p>This will deploy a storage node, and attach two 32GB devices for storage and 8GB for journalling. As we have asked for 3 machines, this means a total of 192GB of storage and 24GB of journal space. The storage comes from whatever the default storage class is for the cloud (e.g., on AWS this will be EBS volumes).</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-relation ceph-osd ceph-mon</code></pre></div>
+<div class="p-notification--information">
+<p class="p-notification__response">
+<pre><code>&lt;span class=&quot;p-notification__status&quot;&gt;Note:&lt;/span&gt;</code></pre>
+For more on how Juju makes use of storage, please see the relevant <a href="https://docs.jujucharms.com/stable/en/charms-storage"> Juju documentation</a>
+</p>
+</div>
+<h2 id="relating-to-cdk">Relating to CDK</h2>
+<p>Making <strong>CDK</strong> aware of your <strong>Ceph</strong> cluster just requires a <strong>Juju</strong> relation.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-relation ceph-mon kubernetes-master</code></pre></div>
+<p>Note that the <strong>Ceph</strong> CSI containers require privileged access:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> config kubernetes-master allow-privileged=true</code></pre></div>
+<p>And finally, you need the pools that are defined in the storage class:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> run-action ceph-mon/0 create-pool name=xfs-pool --wait</code></pre></div>
+<pre><code>unit-ceph-mon-0:
+  id: c12f0688-f31b-4956-8314-abacd2d6516f
+  status: completed
+  timing:
+    completed: 2018-08-20 20:49:34 +0000 UTC
+    enqueued: 2018-08-20 20:49:31 +0000 UTC
+    started: 2018-08-20 20:49:31 +0000 UTC
+  unit: ceph-mon/0</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> run-action ceph-mon/0 create-pool name=ext4-pool --wait</code></pre></div>
+<pre><code>unit-ceph-mon-0:
+  id: 4e82d93d-546f-441c-89e1-d36152c082f2
+  status: completed
+  timing:
+    completed: 2018-08-20 20:49:45 +0000 UTC
+    enqueued: 2018-08-20 20:49:41 +0000 UTC
+    started: 2018-08-20 20:49:43 +0000 UTC
+  unit: ceph-mon/0</code></pre>
+<h2 id="verifying-things-are-working">Verifying things are working</h2>
+<p>Now you can look at your <strong>CDK</strong> cluster to verify things are working. Running:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">kubectl</span> get sc,po</code></pre></div>
+<p>... should return output similar to:</p>
+<pre class="no-highlight"><code>NAME                                             PROVISIONER     AGE
+storageclass.storage.k8s.io/ceph-ext4            csi-rbdplugin    7m
+storageclass.storage.k8s.io/ceph-xfs (default)   csi-rbdplugin    7m
+
+NAME                                                   READY     STATUS    RESTARTS   AGE
+pod/csi-rbdplugin-attacher-0                           1/1       Running   0          7m
+pod/csi-rbdplugin-cnh9k                                2/2       Running   0          7m
+pod/csi-rbdplugin-lr66m                                2/2       Running   0          7m
+pod/csi-rbdplugin-mnn94                                2/2       Running   0          7m
+pod/csi-rbdplugin-provisioner-0                        1/1       Running   0          7m</code></pre>
+<p>If you have installed <strong>Helm</strong>, you can then add a chart to verify the persistent volume is automatically created for you.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">helm</span> install stable/phpbb
+<span class="ex">kubectl</span> get pvc</code></pre></div>
+<p>Which should return something similar to:</p>
+<pre class="ǹo-highlight"><code>NAME                            STATUS    VOLUME                 CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+calling-wombat-phpbb-apache     Bound     pvc-b1d04079a4bd11e8   1Gi        RWO            ceph-xfs       34s
+calling-wombat-phpbb-phpbb      Bound     pvc-b1d1131da4bd11e8   8Gi        RWO            ceph-xfs       34s
+data-calling-wombat-mariadb-0   Bound     pvc-b1df7ac9a4bd11e8   8Gi        RWO            ceph-xfs       34s</code></pre>
+<h2 id="conclusion">Conclusion</h2>
+<p>Now you have a <strong>Ceph</strong> cluster talking to your <strong>Kubernetes</strong> cluster. From here you can install any of the things that require storage out of the box.</p>
+
+{% endblock content %}

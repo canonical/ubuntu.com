@@ -1,0 +1,50 @@
+{% extends "kubernetes/docs/base_docs.html" %}
+
+{% block meta_description %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block title %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+
+{% block content %}
+<h1 id="backups">Backups</h1>
+<p>The state of your <strong>Kubernetes</strong> cluster is kept in the <strong>etcd</strong> datastore. This page shows how to backup and restore the etcd included in the <strong>Canonical Distribution of Kubernetes <sup>®</sup></strong>.</p>
+<p>Backing up application specific data, normally stored in a persistent volume, is not currently supported by native Kubernetes. Various third party solutions are available - please refer to their own documentation for details.</p>
+<p>## Creating an <strong>etcd</strong> snapshot</p>
+<div class="p-notification--warning">
+<p class="p-notification__response">
+<span class="p-notification__status">Warning:</span> Snapshots can only be restored on the <strong>same version of etcd</strong>.
+</p>
+</div>
+<p><strong>etcd</strong> is a distributed key/value store. To create a snapshot, all that is required is to run the <code>snapshot</code> action on one of the units running <strong>etcd</strong>:</p>
+<p><code>bash  juju run-action etcd/0 snapshot keys-version=v3 --wait</code></p>
+<p>By specifying <code>--wait</code>, the console will wait to return the result of running the action, which in this case includes the path and filename of the generated snapshot file. For example:</p>
+<p><code>bash  unit-etcd-0:   id: 3d6a505e-07d7-4697-8471-60156f87b1b4   results:     copy:       cmd: juju scp etcd/0:/home/ubuntu/etcd-snapshots/etcd-snapshot-2018-09-26-18.04.02.tar.gz         .     snapshot:       path: /home/ubuntu/etcd-snapshots/etcd-snapshot-2018-09-26-18.04.02.tar.gz       sha256: e85ae4d49b6a889de2063031379ab320cc8f09b6e328cdff2fb9179fc641eee9       size: 68K       version: |-         etcdctl version: 3.2.10         API version: 2   status: completed   timing:     completed: 2018-09-26 18:04:04 +0000 UTC     enqueued: 2018-09-26 18:04:04 +0000 UTC     started: 2018-09-26 18:04:03 +0000 UTC   unit: etcd/0</code></p>
+<p>This path/filename relates to the unit where the action was run. As we will likely want to use the snapshot on a different unit, we should fetch the snapshot to the local machine. The command to perform this is also helpfully supplied in the <code>copy</code> section of the output (see above):</p>
+<p><code>bash   juju scp etcd/0:/home/ubuntu/etcd-snapshots/etcd-snapshot-2018-09-26-18.04.02.tar.gz .</code></p>
+<p>It is also wise to check the sha256 checksum of the file you have copied against the value in the previous output:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">sha256sum</span> etcd-snapshot-2018-09-26-18.04.02.tar.gz</code></pre></div>
+<h2 id="restoring-a-snapshot">Restoring a snapshot</h2>
+<div class="p-notification--warning">
+<p class="p-notification__response">
+<span class="p-notification__status">Warning:</span> Restoring a snapshot should not be performed when there is more than one unit of <strong>etcd</strong> running.
+</p>
+</div>
+<p>As restoring only works when there is a single unit of <strong>etcd</strong>, it is usual to deploy a new instance of the application first.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> deploy etcd new-etcd --series=bionic</code></pre></div>
+<p>The <code>--series</code> option is included here to illustrate how to specify which series the new unit should be running on.</p>
+<p>Next we upload and identify the snapshot file to this new unit:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> attach newer-etcd snapshot=./etcd-snapshot-2018-09-26-18.04.02.tar.gz</code></pre></div>
+<p>Then run the restore action:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> run-action new-etcd/0 restore --wait</code></pre></div>
+<p>Once the restore action has finished, you should see output confirming that the operation is <code>completed</code>. The new etcd application will need to be connected to the rest of the deployment:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-relation new-etcd kubernetes-master
+<span class="ex">juju</span> add-relation new-etcd flannel</code></pre></div>
+<p>To restore the cluster capabilities of etcd, you can now add more units:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-unit new-etcd -n 2</code></pre></div>
+<p>Once the deployment has settled and all <code>new-etcd</code> units report ready, verify the cluster health with:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"> <span class="ex">juju</span> run-action new-etcd/0 health --wait</code></pre></div>
+<p>which should return something similar to:</p>
+<p><code>bash unit-new-etcd-0:   id: 27fe2081-6513-4968-869d-6c2c092210a1   results:     result-map:       message: |-         member 3c149609bfcf7692 is healthy: got healthy result from https://172.31.18.7:2379         cluster is healthy   status: completed   timing:     completed: 2018-10-26 15:16:33 +0000 UTC     enqueued: 2018-10-26 15:16:32 +0000 UTC     started: 2018-10-26 15:16:33 +0000 UTC   unit: new-etcd/0</code></p>
+
+{% endblock content %}

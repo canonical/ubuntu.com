@@ -1,0 +1,148 @@
+{% extends "kubernetes/docs/base_docs.html" %}
+
+{% block meta_description %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block title %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+
+{% block content %}
+<h2>
+Quick Start
+</h2>
+<p>
+The Canonical Distribution of Kubernetes<sup>®</sup> delivers a ‘pure K8s’ experience, tested across a wide range of clouds and integrated with modern metrics and monitoring. It works across all major public clouds and private infrastructure, enabling your teams to operate Kubernetes clusters on demand, anywhere.
+</p>
+<p>
+With this quick start guide and some tools from Canonical, you'll have a Kubernetes cluster running on the cloud of your choice in minutes!
+</p>
+<h2 id="what-youll-need">What you'll need</h2>
+<ul>
+<li>An Ubuntu 18.04 LTS or 16.04 LTS environment to run the commands (or another operating system which supports <code>snapd</code> - see the <a href="https://docs.snapcraft.io/core/install">snapd documentation</a>)</li>
+<li>Account credentials for one of the following public clouds:
+<ul>
+<li><a href="https://aws.amazon.com">Amazon Web Services</a>, including AWS-China and AWS-gov</li>
+<li><a href="https://www.cloudsigma.com">CloudSigma</a></li>
+<li><a href="https://cloud.google.com/">Google Cloud platform</a> (See additional <a href="/kubernetes/docs/googlecloud.html">notes for Google cloud</a>)</li>
+<li><a href="https://www.joyent.com/">Joyent</a></li>
+<li><a href="https://azure.microsoft.com/">Microsoft Azure</a>, including Azure-China</li>
+<li><a href="https://cloud.oracle.com/home">Oracle Cloud</a></li>
+<li><a href="https://www.rackspace.com/cloud/">Rackspace</a></li>
+</ul></li>
+</ul>
+<div class="p-notification--positive">
+<p class="p-notification__response">
+<span class="p-notification__status">Note:</span> If you don't meet these requirements, there are additional ways of installing the <emphasis>Canonical Distribution of Kubernetes<sup>®</sup></emphasis>, inluding additional OS support and an entirely local deploy. Please see the more general <a href="/kubernetes/docs/install"> Installing CDK</a> page for details.
+</p>
+</div>
+<h2 id="install-the-tools">Install the tools</h2>
+<p>The recommended way to install the <strong>Canonical Distribution of Kubernetes®</strong> is with the tools <a href="https://jujucharms.com"> Juju</a>, an application modelling tool, and <a href="https://conjure-up.io"> conjure-up</a>, a guided installer for complex applications.</p>
+<p>From the command line, run the following:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> snap install conjure-up --classic</code></pre></div>
+<div class="p-notification--information">
+  <p class="p-notification__response">
+    <span class="p-notification__status">Information:</span> the use of 'sudo' may not be required on some versions of Linux)
+  </p>
+</div>
+<p>This command will install both <strong>conjure-up</strong> and <strong>Juju</strong> via snap packages.</p>
+<h2 id="run-conjure-up">Run <strong>conjure-up</strong></h2>
+<p>To start deploying Kubernetes, simply run:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">conjure-up</span></code></pre></div>
+<p>This will start an interactive, guided deployment of the components of the <strong>Canonical Distribution of Kubernetes</strong> <sup>®</sup>.</p>
+<p><strong>conjure-up</strong> can be used to deploy many different applications, with a set of processing scripts known as <em>spells</em>. Use the arrow keys to select &quot;<strong>Canonical Distribution of Kubernetes</strong>&quot; and press <code>Enter</code></p>
+<div class="figure">
+<img src="https://assets.ubuntu.com/v1/37d476e5-CDK-choose.png" alt="conjure-up menu" />
+</div>
+<p>The next screen shows a selection of add-ons which can be installed at the same time as Kubernetes.</p>
+<div class="figure">
+<img src="https://assets.ubuntu.com/v1/a3e45c9d-CDK-add-on.png" alt="conjure-up menu" />
+</div>
+<p>You may want to come back and give some of these a try, but for now, just use the <code>Tab</code> key to move down the list and select the <code>Continue</code> button on the interface, and press <code>Enter</code>.</p>
+<h3 id="choose-a-cloud">Choose a cloud</h3>
+<p>The next step is to choose the cloud you wish to deploy to.</p>
+<div class="figure">
+<img src="https://assets.ubuntu.com/v1/a4efde88-CDK-cloud.png" alt="conjure-up menu" />
+</div>
+<p>Select the public cloud you wish to use and continue.</p>
+<p>Depending on your cloud, you will also likely see a screen to select the region to use. This maps to the known regions of the cloud you chose. Select an appropriate region and continue.</p>
+<h3 id="add-credentials">Add credentials</h3>
+<p>If you have run through this install previously or you have already set up credentials with <strong>Juju</strong>, you will be given the option of using these previously stored credentials or adding new ones.</p>
+<p>If you haven't previously stored credentials, you will instead be prompted to enter them now:</p>
+<div class="figure">
+<img src="https://assets.ubuntu.com/v1/f915816f-CDK-credential.png" alt="conjure-up menu" />
+</div>
+<p>Simply paste in the required fields and use <code>Tab</code>, <code>cursor keys</code> and <code>Enter</code> to navigate.</p>
+<div class="p-notification--positive">
+<p class="p-notification__response">
+<span class="p-notification__status">Note:</span> There are many different types of credentials, and copying and pasting them accurately can be tricky. If you have any authentication difficulty, it may be easier to add credentials using Juju, (<a href="https://docs.jujucharms.com/stable/en/credentials" > follow this link for documentation</a>)
+</p>
+</div>
+<h3 id="create-a-controller">Create a controller</h3>
+<p>Juju uses a central <em>controller</em> instance to manage the applications it deploys in separate <em>models</em>. You always need at least one controller, but if you have already created one for previous installs in this cloud (even if they weren't for Kubernetes), you can reuse that controller.</p>
+<div class="figure">
+<img src="https://assets.ubuntu.com/v1/f65cdeb8-CDK-controller.png" alt="conjure-up controller menu" />
+</div>
+<p>Assuming that this is your first time with <strong>conjure-up</strong> and <strong>Juju</strong>, select <code>Deploy New Self-Hosted Controller</code> and continue.</p>
+<h3 id="configure-your-deployment">Configure your deployment</h3>
+<p>The next few <strong>conjure-up</strong> screens deal with configuring and customising your install. These are usually additional steps which <strong>conjure-up</strong> can perform before, during or after the actual deployment to set up Kubernetes for quick and easy use.</p>
+<p>Depending on your chosen cloud, the first choice is which network plugin to use:</p>
+<div class="figure">
+<img src="https://assets.ubuntu.com/v1/cd3e83d6-CDK-network.png" alt="conjure-up controller menu" />
+</div>
+<p>Use the cursor keys to navigate and <code>space</code> to select either <strong>flannel</strong> <em>or</em> <strong>calico</strong>. If you don't have an opinion about which style of networking you need, just leave the default choice and select <code>next</code>. Some clouds do not currently support Calico, in which case this option will not appear.</p>
+<p>You will now be asked for your <strong>sudo</strong> password. This is so <strong>conjure-up</strong> can download and install the latest version of <code>kubectl</code> (the command line tool for managing Kubernetes) and configure it to work with your new cluster.</p>
+<p>The next screen will show the applications to be deployed. See the <a href="/kubernetes/docs/overview.html">overview</a> if you need a better understanding of what these components do.</p>
+<div class="figure">
+<img src="https://assets.ubuntu.com/v1/421cf437-CDK-applications.png" alt="conjure-up controller menu" />
+</div>
+<p>By default, this setup will deploy two Kubernetes master nodes and three workers, which can be changed by entering the configuration screen for these components and selecting new values. Note that it will also be possible to increase the number of nodes later, so it isn't necessary to determine how many workers you'll need in advance -- you can just select <code>Continue</code>.</p>
+<h3 id="deploying">Deploying</h3>
+<p>Now <strong>conjure-up</strong> will start the set up by creating a Juju controller, and you will see the following screen:</p>
+<div class="figure">
+<img src="https://assets.ubuntu.com/v1/112fa567-CDK-juju.png" alt="conjure-up controller menu" />
+</div>
+<p>As mentioned previously, a Juju controller is a cloud instance which Juju uses to monitor and manage any other nodes and applications it deploys across any number of different models. You will typically only need one Juju controller per cloud, and you will be able to deploy multiple separate models containing additional Kubernetes clusters or other big software applications.</p>
+<p>Once the controller has been created, Juju will then create a model and instances within that model to contain the applications which make up the <strong>Canonical Distribution of Kubernetes</strong>. For a few minutes, <strong>conjure-up</strong> will display a status screen, reporting on the progress of the install. You will see the individual status messages change as the instances are created, software is installed on them, and then this software is configured to work with the other elements of the deployment.</p>
+<div class="figure">
+<img src="https://assets.ubuntu.com/v1/92511391-CDK-waiting.png" alt="conjure-up controller menu" />
+</div>
+<p>The actual time this takes will depend on a number of factors, including which cloud you are using, but it should be complete in around five minutes. When the installed software is up an running, <strong>conjure-up</strong> will display a final screen indicating that the cluster is up and running and giving details of the running services and their addresses. It should also indicate that the <code>kubectl</code> software has been installed on your local machine.</p>
+<div class="figure">
+<img src="https://assets.ubuntu.com/v1/bbe1b9f4-CDK-final.png" alt="conjure-up status" />
+</div>
+<p>Congratulations! You now have a cluster up and running with the <strong>Canonical Distribution of Kubernetes</strong> <sup>®</sup></p>
+<p>You can now check the status of the cluster yourself by running the command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">kubectl</span> cluster-info</code></pre></div>
+<p>The output should look similar to this:</p>
+<div class="figure">
+<img src="https://assets.ubuntu.com/v1/d5519ed3-CDK-clusterinfo.png" alt="cli output" />
+</div>
+<p>This shows the relevant IP addresses for operating your cluster.</p>
+<h3 id="access-the-dashboard">Access the dashboard</h3>
+<p>To check that everything is actually working, you may want to log in to the Kubernetes Dashboard at the IP address given in the above output. The default username is 'admin' and the password can be retrieved using the command:</p>
+<p><pre><code>bash kubectl config view | grep password</code></pre></p>
+<div class="p-notification--positive">
+<p class="p-notification__response">
+<span class="p-notification__status">Note:</span> If you have set up more than one cluster, each will have a different password and you will need to look at the full output from <code>kubectl config view</code> to determine which one to use.
+</p>
+</div>
+<p>Open a browser at the address for the Dashboard and log in. You will see an additional authentication screen:</p>
+<div class="figure">
+<img src="https://assets.ubuntu.com/v1/d89b1290-CDK-007.png" alt="dashboard image" />
+</div>
+<p>For now you can just choose 'Skip' to get to the Dashboard, but for future administration, you should set up <em>role based access control</em>(<a href="/kubernetes/docs/rbac.html">RBAC</a>).</p>
+<div class="figure">
+<img src="https://assets.ubuntu.com/v1/37ee63d6-CDK-008.png" alt="dashboard image" />
+</div>
+<h2 id="next-steps">Next steps</h2>
+<p>Now that you have your cluster, you can put it to work! Here are a few recommended starting points:</p>
+<ul>
+<li><a href="/kubernetes/docs/storage.html">Add persistent storage&nbsp;&rsaquo;</a></li>
+<li><a href="/kubernetes/docs/howto-helm.html">Install an application with Helm&nbsp;&rsaquo;</a></li>
+<li><a href="/kubernetes/docs/howto-juju.html">Manage your cluster with <strong>Juju</strong>&nbsp;&rsaquo;</a></li>
+</ul>
+<p><small>Kubernetes<sup>®</sup> is a registered trademark of The Linux Foundation in the United States and other countries, and is used pursuant to a license from The Linux Foundation. </small></p>
+<!--IMAGES-->
+<!-- LINKS -->
+
+{% endblock content %}

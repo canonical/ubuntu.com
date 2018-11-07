@@ -1,0 +1,78 @@
+{% extends "kubernetes/docs/base_docs.html" %}
+
+{% block meta_description %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block title %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+
+{% block content %}
+<h1 id="validation-and-e2e-tests">Validation and e2e tests</h1>
+<p>End-to-end (e2e) tests for <strong>Kubernetes</strong> provide a mechanism to test the behaviour of the system. This is a useful indicator that the cluster is performing properly, as well as a good validation of any code changes.</p>
+<p>For the <strong>Canonical Distribution of Kubernetes<sup>®</sup></strong>, these tests are encapsulated in an additional <strong>Juju</strong> charm which can be added to your cluster. Actual testing is then run through the charm's actions.</p>
+<div class="p-notification--caution">
+<p class="p-notification__response">
+<span class="p-notification__status">Caution</span></code></pre>
+Your cluster will need to have at least two running worker units for the <code>e2e</code> test to run properly.
+</p>
+</div>
+<h2 id="deploying-the-kubernetes-e2e-charm">Deploying the <code>kubernetes-e2e</code> charm</h2>
+<p>Add the charm to your cluster:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> deploy cs:~containers/kubernetes-e2e --constraints mem=4G --channel edge</code></pre></div>
+<p>We also need to configure the charm to select the appropriate version of tests. This relates to the installed version of Kubernetes. You can check which version your cluster is set to by running:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> config kubernetes-master channel</code></pre></div>
+<p>The output will be in the form of 'version.number/risk', e.g '1.12/stable'. You should set the <code>kubernetes-e2e</code> channel to the same value.</p>
+<pre><code>juju config kubernetes-e2e channel=1.12/stable</code></pre>
+<p>Finally we relate the charm to <code>easyrsa</code> and <code>kubernetes-master</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> config kubernetes-master allow-privileged=true
+<span class="ex">juju</span> config kubernetes-worker allow-privileged=true
+<span class="ex">juju</span> add-relation kubernetes-e2e easyrsa
+<span class="ex">juju</span> add-relation kubernetes-e2e:kubernetes-master kubernetes-master:kube-api-endpoint
+<span class="ex">juju</span> add-relation kubernetes-e2e:kube-control kubernetes-master:kube-control</code></pre></div>
+<p>It may take some moments for these relations to establish. Once the connections are made, the charm will update its status to &quot;Ready to test.&quot;</p>
+<h2 id="running-the-default-tests">Running the default tests</h2>
+<p>The tests are configured as a <strong>Juju</strong> <em>action</em>. To run the default tests:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> run-action kubernetes-e2e/0 test</code></pre></div>
+<p>The command will return with a uuid for that specific test run. See the section on <a href="#test-output">Test output</a> below for details.</p>
+<h2 id="running-specific-tests">Running specific tests</h2>
+<p>The complete set of <strong>Kubernetes</strong> e2e tests is more fully described in the <a href="https://github.com/kubernetes/community/blob/master/contributors/devel/e2e-tests.md#kinds-of-tests">upstream Kubernetes documentation</a>. In some cases you may wish to omit particular groups of tests. This is possible by applying a regular expression defining the tests to omit when initiating the action.</p>
+<p>By default, the standard tests marked <code>[Flaky]</code> or <code>[Serial]</code> are skipped. To also omit the tests marked as <code>[Slow]</code>, you could run:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> run-action kubernetes-e2e/0 test skip=<span class="st">&#39;\[(Flaky|Slow|Serial)\]&#39;</span></code></pre></div>
+<p>Note that the brackets for the regex need to be escaped as shown.</p>
+<p>Running this command will return a uuid for that specific test run, as with the default case.</p>
+<h2 id="test-output">Test output</h2>
+<p>You can check on the current status of the test by running:</p>
+<pre><code>juju show-action-status 8f8ec748-6ca7-4bbb-86f8-f37e44ba46f9</code></pre>
+<p>where <code>8f8ec748-6ca7-4bbb-86f8-f37e44ba46f9</code> is the uuid of the action returned when we initiated the test. This will return YAML output indicating the current status, which can be either <code>running</code>, <code>completed</code> or <code>failed</code>.</p>
+<p><code>no-highlight actions: - action: test   completed at: n/a   id: 8f8ec748-6ca7-4bbb-86f8-f37e44ba46f9   status: running   unit: e2e/0</code></p>
+<p>Once completed, you can see more detail on the timing by running:</p>
+<p><code>bash   juju show-action-status  8f8ec748-6ca7-4bbb-86f8-f37e44ba46f9</code></p>
+<p>Which will return output similar to:</p>
+<pre class="no-highlight"><code>results:
+  junit: /home/ubuntu/8f8ec748-6ca7-4bbb-86f8-f37e44ba46f9-junit.tar.gz
+  log: /home/ubuntu/8f8ec748-6ca7-4bbb-86f8-f37e44ba46f9.log.tar.gz
+status: completed
+timing:
+  completed: 2018-10-06 18:33:15 +0000 UTC
+  enqueued: 2018-10-06 18:25:30 +0000 UTC
+  started: 2018-10-06 18:25:30 +0000 UTC</code></pre>
+<p>If the tests fail, or you want to look through the detail of each test, you can examine the detailed log.</p>
+<h2 id="viewing-test-logs">Viewing test logs</h2>
+<p>The test logfile is stored as a file on the test instance. The filename corresponds to the uuid of the action which created it, with a '.log' extension, and it is stored in the <code>/home/ubuntu/</code> directory of the machine where the tests are running. A compressed version is also stored with the extension <code>.log.tar.gz</code></p>
+<p>This log can be copied to your local machine for easier viewing:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> scp kubernetes-e2e/0:4ceed33a-d96d-465a-8f31-20d63442e51b.log  .</code></pre></div>
+<p>Note that the captured test logfile uses ANSI output, and is best viewed with <code>cat</code>, <code>tail</code> or a similar command which can handle this type of output. Alternatively, you can strip the ANSI parts of the output:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="va">fn=</span><span class="op">&lt;</span><span class="ex">your</span> log file name<span class="op">&gt;</span>
+<span class="bu">echo</span> -ne <span class="va">$(</span><span class="fu">cat</span> <span class="va">$fn</span> <span class="kw">|</span> <span class="fu">sed</span>  <span class="st">&#39;s/$/\\n/&#39;</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&#39;s/\x1B\[[0-9]*\w//g&#39;</span><span class="va">)</span></code></pre></div>
+<div class="p-notification--caution">
+<p class="p-notification__response">
+<span class="p-notification__status">Caution:</span></code></pre>
+If you are running regular tests in this way, it is advisable to remove the generated logs from the test unit. The uncompressed logs in particular can be very large and quickly fill up storage.
+</p>
+</div>
+<h2 id="upgrading-the-e2e-tests">Upgrading the e2e tests</h2>
+<p>When an update is available, the <code>kubernetes-e2e</code> charm can be upgraded with the command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> upgrade-charm kubernetes-e2e</code></pre></div>
+<!--LINKS -->
+
+{% endblock content %}

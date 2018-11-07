@@ -1,0 +1,62 @@
+{% extends "kubernetes/docs/base_docs.html" %}
+
+{% block meta_description %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block title %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+
+{% block content %}
+<h1 id="released">1.12 Released</h1>
+<h2 id="release-notes">1.12 Release Notes</h2>
+<ul>
+<li>Added support for Ubuntu 18.04 (Bionic)</li>
+</ul>
+<p>New deployments will get Ubuntu 18.04 machines by default. We will also continue to support CDK on Ubuntu 16.04 (Xenial) machines for existing deployments.</p>
+<ul>
+<li>Added kube-proxy to kubernetes-master</li>
+</ul>
+<p>The kubernetes-master charm now installs and runs kube-proxy along with the other master services. This makes it possible for the master services to reach Service IPs within the cluster, making it easier to enable certain integrations that depend on this functionality (e.g. Keystone).</p>
+<p>For operators of offline deployments, please note that this change may require you to attach a kube-proxy resource to kubernetes-master.</p>
+<ul>
+<li>New kubernetes-worker charm config: kubelet-extra-config</li>
+</ul>
+<p>In Kubernetes 1.10, a new KubeletConfiguration file was introduced, and many of Kubelet's command line options were moved there and marked as deprecated. In order to accomodate this change, we've introduced a new charm config to kubernetes-worker: <code>kubelet-extra-config</code>.</p>
+<p>This config can be used to override KubeletConfiguration values provided by the charm, and is usable on any Canonical cluster running Kubernetes 1.10+.</p>
+<p>The value for this config must be a YAML mapping that can be safely merged with a KubeletConfiguration file. For example:</p>
+<pre><code>juju config kubernetes-worker kubelet-extra-config=&quot;{evictionHard: {memory.available: 200Mi}}&quot;</code></pre>
+<p>For more information about KubeletConfiguration, see upstream docs: <a href="https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/">https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/</a></p>
+<ul>
+<li>Added support for Dynamic Kubelet Configuration</li>
+</ul>
+<p>While we recommend <code>kubelet-extra-config</code> as a more robust and approachable way to configure Kubelet, we've also made it possible to configure kubelet using the Dynamic Kubelet Configuration feature that comes with Kubernetes 1.11+. You can read about that here: <a href="https://kubernetes.io/docs/tasks/administer-cluster/reconfigure-kubelet/">https://kubernetes.io/docs/tasks/administer-cluster/reconfigure-kubelet/</a></p>
+<ul>
+<li>New etcd charm config: bind_to_all_interfaces (<a href="https://github.com/juju-solutions/layer-etcd/pull/137">PR</a>)</li>
+</ul>
+<p>Default <code>true</code>, which retains the old behavior of binding to 0.0.0.0. Setting this to <code>false</code> makes etcd bind only to the addresses it expects traffic on, as determined by the configuration of <a href="https://docs.jujucharms.com/2.4/en/charms-deploying-advanced#deploying-to-network-spaces">Juju endpoint bindings</a>.</p>
+<p>Special thanks to <span class="citation">[@rmescandon]</span>(<a href="https://github.com/rmescandon">https://github.com/rmescandon</a>) for this contribution!</p>
+<ul>
+<li>Updated proxy configuration</li>
+</ul>
+<p>For operators who currently use the <code>http-proxy</code>, <code>https-proxy</code> and <code>no-proxy</code> Juju model configs, we recommend using the newer <code>juju-http-proxy</code>, <code>juju-https-proxy</code> and <code>juju-no-proxy</code> model configs instead. See the <a href="https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Proxy-configuration">Proxy configuration</a> page for details.</p>
+<h2 id="fixes">Fixes</h2>
+<ul>
+<li>Fixed kube-dns constantly restarting on 18.04 (<a href="https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/655">Issue</a>)</li>
+<li>Fixed LXD machines not working on 18.04 (<a href="https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/654">Issue</a>)</li>
+<li>Fixed kubernetes-worker unable to restart services after kubernetes-master leader is removed (<a href="https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/627">Issue</a>)</li>
+<li>Fixed kubeapi-load-balancer default timeout might be too low (<a href="https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/650">Issue</a>)</li>
+<li>Fixed unable to deploy on NVidia hardware (<a href="https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/664">Issue</a>)</li>
+</ul>
+<h2 id="known-issues">Known issues</h2>
+<ul>
+<li>any remaining major issues currently being worked on</li>
+<li>for the next release</li>
+<li>if any</li>
+</ul>
+<h2 id="contact-us">Contact Us</h2>
+<ul>
+<li>Issues: <a href="https://github.com/juju-solutions/bundle-canonical-kubernetes/issues">https://github.com/juju-solutions/bundle-canonical-kubernetes/issues</a></li>
+<li>IRC: #juju on freenode.net</li>
+</ul>
+
+{% endblock content %}

@@ -1,0 +1,72 @@
+{% extends "kubernetes/docs/base_docs.html" %}
+
+{% block meta_description %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block title %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+
+{% block content %}
+<h1 id="decommissioning">Decommissioning</h1>
+<p>Decommissioning a cluster requires only a few commands, but beware that it will irretrievably destroy the cluster, its workloads and any information that was stored within. Before proceeding, it is important to verify that you:</p>
+<ul>
+<li>Have the correct details for the cluster you wish to decommission</li>
+<li>Have retrieved any valuable data from the cluster</li>
+</ul>
+<h2 id="destroying-the-model">Destroying the model</h2>
+<p>It is always preferable to use a new <strong>Juju</strong> <em>model</em> for each <strong>Kubernetes</strong> cluster. Removing the model is then a simple operation.</p>
+<p>It is useful to list all the current models to make sure you are about to destroy the correct one:</p>
+<pre><code>bash  juju models</code></pre>
+<p>This will list all the models running on the current controller, for example:</p>
+<pre><code>
+<p>Model Cloud/Region Status Machines Cores Access Last connection controller aws/us-east-1 available 1 4 admin just now default aws/us-east-1 available 0 - admin 8 hours ago k8s-devel aws/us-east-1 available 9 24 admin 3 hours ago k8s-production aws/us-east-1 available 12 28 admin 5 minutes ago k8s-testing aws/us-east-1 available 9 24 admin 2 hours ago</p></pre></code>
+<p>To proceed, use the <code>juju destroy-model</code> command to target the model you wish to remove. For example:</p>
+<pre><code><span class="ex">juju</span> destroy-model k8s-testing</code></pre>
+
+<p>You will see a warning, and be required to confirm the action. **Juju** will
+ then continue to free up the resources, giving feedback on the process. It may
+ take some minutes to complete depending on the size of the deployed model and
+ the nature of the cloud it is running on.</p>
+
+ <div class="p-notification--negative">
+    <p class="p-notification__response">
+      <span class="p-notification__status">WARNING</span>! This command will destroy the "k8s-testing" model.
+This includes all machines, applications, data and other resources.</p></div>
+
+<pre><code><span class="ex">Continue</span> [y/N]? y
+ <span class="ex">Destroying</span> model
+ <span class="ex">Waiting</span> on model to be removed, 7 machine(s), <span class="ex">4</span> application(s)<span class="ex">...</span>
+ <span class="ex">Waiting</span> on model to be removed, 6 machine(s)<span class="ex">...</span>
+ <span class="ex">...</span>
+ <span class="ex">Waiting</span> on model to be removed, 3 machine(s)<span class="ex">...</span>
+ <span class="ex">Waiting</span> on model to be removed...
+ <span class="ex">Model</span> destroyed.</code></pre>
+<p>You should confirm that the cloud instances have been terminated with the relevant cloud console/utilities.</p>
+<h2 id="destroying-a-controller">Destroying a controller</h2>
+<p>If there are no longer any cluster models attached to the controller, you may wish to remove the controller instance as well. This is performed with a similar command:</p>
+<pre><code>bash  juju destroy-controller &lt;controller-name&gt;</code></pre>
+<p>As previously, there is a confirmation step to make sure you wish to remove the controller.</p>
+<p>The command will return an error if there are populated models still attached to the controller.</p>
+<h2 id="removingediting-kube-config">Removing/editing Kube config</h2>
+<p>If you have permanently removed clusters, it is also advisable to remove their entries in the <strong>Kubernetes</strong> configuration file (or remove the file entirely if you have removed all the clusters).</p>
+<p>By default the file is located at <code>~/.kube/config</code>. It is a YAML format file, and each cluster block looks similar to this:</p>
+    <pre style="max-width: 700px;"><code><span class="kw">-</span> <span class="fu">cluster:</span>
+    <span class="fu">certificate-authority-data:</span><span class="at"> LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURPekNDQWlPZ0F3SUJBZ0lKQU9HTm9PM1pNb3RGTUEwR0NTcUdTSWIzRFFFQkN3VUFNQmd4RmpBVUJnTlYKQkFNTURUTTBMakkwTkM0eE9USXVORGt3SGhjTk1UZ3hNREF4TURnek5qVTFXaGNOTWpnd09USTRNRGd6TmpVMQpXakFZTVJZd0ZBWURWUVFEREEwek5DNHlORFF1TVRreUxqUTVNSUlCSWpBTkJna3Foa2lHOXcwQkFRRUZBQU9DCkFROEFNSUlCQ2dLQ0FRRUE4YThJVytCUTM5c0p3OENyR0c5MmlYSUlWczNQOElEVVJvOTMyVFVYcG05UWkwSUgKeVF0a2N1WEVpREhlbUgwK1RORHRmaFZ4cm9BRjQrVEczR3JWZXc0YzgrZE0zNWJMY0lMRkl1L1UydlR4NkRXbgpDa2lwblhJVlc1QUxXa1hqRUh3NTUvWnk3S0F2SjVjS0h5WnhMYzY1ZFZqVjJYNkQxRHhJRXh0c2dDVnB2R1gvCmRpK1ppZlJXeFIwR0l5SkM3b29VaEVjcitvQVpMOFc2YklUMUlwcklXUGQ1eWhJck10MmpmaE42NWVkV1hjYkoKNERQeEpIOVlDNFFqSC84OHNJdWVJMWo4S1NYQjdwbUJxMzJHYXZuaFp3K2M5bG1KSlE5WjNZM2dla3lBUlZDRQpwUUU5T3BYR01QOCtCdng4QXdrQW9obE83RE1xQTlMaTl3QXExUUlEQVFBQm80R0hNSUdFTUIwR0ExVWREZ1FXCkJCUXRaa3paWmxKSmZKMGZtbWNPZU9pR0VBL3d1REJJQmdOVkhTTUVRVEEvZ0JRdFprelpabEpKZkowZm1tY08KZU9pR0VBL3d1S0VjcEJvd0dERVdNQlFHQTFVRUF3d05NelF1TWpRMExqRTVNaTQwT1lJSkFPR05vTzNaTW90RgpNQXdHQTFVZEV3UUZNQU1CQWY4d0N3WURWUjBQQkFRREFnRUdNQTBHQ1NxR1NJYjNEUUVCQ3dVQUE0SUJBUUJnCjVndFpyY0FLUlFSYUJFZDFiVm5vRXpoZkxld2RXU2RYaEZGRXB6bjlzdG05VGdVM2ZLREJ0NktUY3JKN2hqQWQKMUlUbUc1L2ExaUlDM29qQ2d3c1o3cnFmRlhkRGQzcVZGdjJySmZEN2ljeGV2c0NjWTdiS1hlYy9QdVgxQmxlMwo1amRjSWRkZnhqZ1M3K2dibCtQcGowbm9OR0c5MUgydWtBWTlaei9FUHdZckhuV1V1V1o5Z3JTZlVGam1ZMTNWCjkxZmF0S2R2dlU1blFPUXdkdThPVHlFRGk2blA4ckN4bEJjRW1hN3hkM3c5djI0NUlaRnd5QTJBMlR6emFJM04KYm0vMVNyL2tTNlZCSi9sZ2s3ampxRWFicmpFakluMlU4aGkzRkluRnBkZkZlUXhBaW5JcUx5dGRzeXY5aFZVbQpKQ3luNW8yaGVjSTFsaDU3RFRtYQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t</span>
+    <span class="fu">server:</span><span class="at"> https://54.229.190.254:443</span>
+  <span class="fu">name:</span><span class="at"> conjure-canonical-kubern-fc3</span>
+<span class="fu">contexts:</span>
+<span class="kw">-</span> <span class="fu">context:</span>
+    <span class="fu">cluster:</span><span class="at"> conjure-canonical-kubern-fc3</span>
+    <span class="fu">user:</span><span class="at"> conjure-canonical-kubern-fc3</span>
+  <span class="fu">name:</span><span class="at"> conjure-canonical-kubern-fc3</span>
+<span class="fu">current-context:</span><span class="at"> conjure-canonical-kubern-fc3</span>
+<span class="fu">kind:</span><span class="at"> Config</span>
+<span class="fu">preferences:</span><span class="at"> </span><span class="kw">{}</span>
+<span class="fu">users:</span>
+<span class="kw">-</span> <span class="fu">name:</span><span class="at"> conjure-canonical-kubern-fc3</span>
+  <span class="fu">user:</span>
+    <span class="fu">password:</span><span class="at"> sZVKhY7bZK8oG7vLkkOssNhTzKZlBmcG</span>
+    <span class="fu">username:</span><span class="at"> admin</span></code></pre>
+
+
+{% endblock content %}

@@ -1,0 +1,46 @@
+{% extends "kubernetes/docs/base_docs.html" %}
+
+{% block meta_description %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block title %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+
+{% block content %}
+<h1 id="upgrade-notes">Upgrade notes</h1>
+<p>This page is intended to deal with specific, special circumstances you may encounter when upgrading between versions of the <strong>Canonical Distribution of Kubernetes<sup>®</sup>.</strong> The notes are organised according to the upgrade path below, but also be aware that any upgrade that spans more than one minor version may need to beware of notes in any of the intervening steps.</p>
+<h2 id="upgrading-from-1.9.x-to-1.10.x">Upgrading from 1.9.x to 1.10.x</h2>
+<p>This upgrade includes a transistion between major versions of <strong>etcd</strong>, from 2.3 to 3.x. Between these releases, <strong>etcd</strong> changed the way it accesses storage, so it is necessary to reconfigure this. There is more detailed information on the change and the upgrade proceedure in the <a href="https://github.com/etcd-io/etcd/blob/master/Documentation/upgrades/upgrade_3_0.md">upstream <strong>etcd</strong> documentation</a>.</p>
+<p>!!! Warning: This upgrade <strong>must</strong> be completed before attempting to upgrade the running cluster.</p>
+<p>To make this upgrade more convenient for users of <strong>CDK</strong>, a script has been prepared to manage the transition. The script can be <a href="https://raw.githubusercontent.com/juju-solutions/cdk-etcd-2to3/master/migrate">examined here</a>.</p>
+<p>To use the script to update <strong>etcd</strong>, follow these steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>Download the script with the command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">curl</span> -O https://raw.githubusercontent.com/juju-solutions/cdk-etcd-2to3/master/migrate</code></pre></div></li>
+<li><p>Make the script executable:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">chmod</span> +x migrate</code></pre></div></li>
+<li><p>Execute the script:</p>
+<pre><code>./migrate</code></pre></li>
+<li><p>The script should update <strong>etcd</strong> and you will see output similar to the following:
+  <code>no-highlight
+      · Waiting for etcd units to be active and idle...
+      · Acquiring configured version of etcd...
+      · Upgrading etcd to version 3.0/stable from 2.3/stable.
+      · Waiting for etcd upgrade to 3.0/stable............................................................
+      · Waiting for etcd units to be active and idle....................................................
+      · Waiting for etcd cluster convergence...
+      · Stopping all Kubernetes api servers...
+      · Waiting for etcd cluster convergence...
+      · Stopping etcd...
+      · Migrating etcd/0...
+      · Migrating etcd/1...
+      · Migrating etcd/2...
+      · Starting etcd...
+      · Configuring storage-backend to etcd3...
+      · Waiting for all Kubernetes api servers to restart.......
+      · Done.</code></p></li>
+</ol>
+<p>You can now proceed with the rest of the upgrade.</p>
+<!--LINKS-->
+
+{% endblock content %}

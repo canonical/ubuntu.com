@@ -1,0 +1,62 @@
+{% extends "kubernetes/docs/base_docs.html" %}
+
+{% block meta_description %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block title %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+
+{% block content %}
+<h1 id="scaling">Scaling</h1>
+<p>The <strong>Canonical Distribution of Kubernetes<sup>®</sup></strong> has been designed to be flexible enough to efficiently run your workloads. Various components of <strong>CDK</strong> can be horizontally scaled to meet demand or to increase reliability, as detailed below.</p>
+<h2 id="kubernetes-master">kubernetes-master</h2>
+<p>The kubernetes-master nodes act as the control plane for the cluster. <strong>CDK</strong> was designed with separate master nodes so that these nodes can be scaled independently of the worker units, to give better efficiency and flexibility.</p>
+<p>Additional units can be added like so:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-unit kubernetes-master</code></pre></div>
+<p>To add multiple units, you can also specify a numerical value</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-unit kubernetes-master -n 3</code></pre></div>
+<h2 id="kubernetes-worker">kubernetes-worker</h2>
+<p>As the <strong>Kubernetes</strong> worker nodes handle the actual workloads, they usually run on machines with more resources. The resource profile of units is maintained by <strong>Juju</strong> using <a href="https://docs.jujucharms.com/stable/en/reference-constraints">constraints</a>.</p>
+<p>You can check the current constraints with the command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> get-constraints kubernetes-worker</code></pre></div>
+<p>Which will return the current settings, for example:</p>
+<pre class="no-highlight"><code>cores=4 mem=4096M root-disk=16384M</code></pre>
+<p>To create an additional kubernetes-worker unit with this resource profile, you can simply run:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-unit kubernetes-worker</code></pre></div>
+<p>To add multiple units, you can specify a number (for example 2):</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-unit kubernetes-worker -n 2</code></pre></div>
+<p>To add additional units with specific new resource constraints, these may also be specified in the command. For example:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-unit kubernetes-worker -n 2 --constraints <span class="st">&quot;mem=6G cores=2&quot;</span></code></pre></div>
+<p>... will cause two new kubernetes-worker units to be added, with at least 2 cores, 6G of memory and 16G of storage (as the existing application constraints are inherited).</p>
+<p>To change the constraints for all <em>future</em> units of kubernetes-worker, you can set different constraints like so:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> set-constraints kubernetes-worker cores=2 mem=6G root-disk=16G</code></pre></div>
+<p>Note that in this case, any constraints you supply will <strong><em>replace all the exisiting constraints</em></strong>, so in this example, we also include the existing <code>root-disk</code> requirement.</p>
+<div class="p-notification--information">
+<p class="p-notification__response">
+<span class="p-notification__status">Note:</span></code></pre>
+Constraints are designed to supply the <i>minimum</i> of what is requested. This can result in the actual instances far exceeding these values, depending on the backing cloud.
+</p>
+</div>
+<h3 id="scaling-down-kubernetes-worker">Scaling down kubernetes-worker</h3>
+<p>Should workloads reduce, it is also possible to scale down the number of worker nodes. In order to do this safely, the node to be removed can be paused.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> run-action kubernetes-worker/3 pause --wait</code></pre></div>
+<p>Pausing the worker will indicate to <strong>Kubernetes</strong> that it is out of service. Any workloads will be migrated to alternative worker units. You can verify this with the command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">kubectl</span> get pod -o wide</code></pre></div>
+<p>The individual unit (in this example, number 3) can then be safely removed:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> remove-unit kubernetes-worker/3</code></pre></div>
+<p>Note that due to the numbering system used by <strong>Juju</strong>, if you subsequently add additional units of this application, the numbers of any previously deleted units <em>will_not</em> be re-used.</p>
+<h2 id="etcd">etcd</h2>
+<p>The <strong>Canonical Distribution of Kubernetes<sup>®</sup></strong> installs a three machine cluster for etcd, which provides tolerence for a single failure. Should you wish to extend the fault tolerance, you can add additional units of etcd.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-unit etcd -n 2</code></pre></div>
+<p>The recommended cluster-size for etcd is three, five or seven machines. Adding large numbers of additional units has a negative effect on performance due to synchronising data.</p>
+<h2 id="juju-high-availability">Juju high availability</h2>
+<p>On a default deployment of the <strong>Canonical Distribution of Kubernetes<sup>®</sup></strong>, there is only one controller instance, which isn't desirable for critical applications. It is possible to scale out the controller itself to prevent a single point of failure.</p>
+<p><strong>Juju</strong> supports a high availability mode to run multiple controllers with an automatic failover.</p>
+<p>A single command will automatically create and maintain high availability for <strong>Juju</strong>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> enable-ha</code></pre></div>
+<p>You can verify the additional machines have been added by listing the machines in the controller model:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> machines -m controller</code></pre></div>
+<p>For a more detailed guide, please refer to the <a href="https://docs.jujucharms.com/stable/en/controllers-ha">Juju high availability documentation</a>.</p>
+<!-- LINKS -->
+
+{% endblock content %}

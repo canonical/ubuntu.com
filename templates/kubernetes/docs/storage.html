@@ -1,0 +1,122 @@
+{% extends "kubernetes/docs/base_docs.html" %}
+
+{% block meta_description %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block title %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+
+{% block content %}
+<h1 id="storage">Storage</h1>
+<p>On-disk files in a container are ephemeral and can't be shared with other members of a pod. For some applications, this is not an issue, but for many persistent storage is required.</p>
+<p>The <strong>Canonical Distribution of Kubernetes</strong><sup>®</sup> makes it easy to add and configure different types of persistent storage for your <strong>Kubernetes</strong> cluster, as outlined below. For more detail on the concept of storage volumes in <strong>Kubernetes</strong>, please see the <a href="https://kubernetes.io/docs/concepts/storage/">Kubernetes documentation</a>.</p>
+<h2 id="ceph-storage">Ceph storage</h2>
+<p><strong>CDK</strong> can make use of <a href="https://ceph.com/">Ceph</a> to provide persistent storage volumes. The following sections assume you have already deployed a <strong>CDK</strong> cluster and you have internet access to the <strong>Juju</strong> Charm Store.</p>
+<h3 id="deploy-ceph">Deploy Ceph</h3>
+<p>Check that the current <strong>Juju</strong> model is the one where you wish to deploy <strong>Ceph</strong></p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> switch</code></pre></div>
+<p>Begin by adding a minimum number of <strong>Ceph</strong> monitor nodes:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"> <span class="ex">juju</span> deploy -n 3 ceph-mon
+ <span class="kw">```</span>
+
+ <span class="ex">For</span> the storage nodes we will also need to specify storage volumes for the
+ <span class="ex">backing</span> cloud to add. This is done by using the <span class="kw">`</span><span class="ex">--storage</span><span class="kw">`</span> <span class="ex">option.</span> The
+ [<span class="kw">`</span>ceph-osd<span class="kw">`</span> <span class="ex">charm</span>][ceph-charm] defines two useful types of storage,
+ <span class="kw">`</span>osd-devices<span class="kw">`</span> <span class="kw">for</span> <span class="ex">the</span> volumes which will be formatted and used to provide
+ <span class="ex">storage</span>, and <span class="kw">`</span>osd-journals<span class="kw">`</span> <span class="kw">for</span> <span class="ex">storage</span> used for journalling.
+
+ <span class="ex">The</span> format for the <span class="kw">`</span>--storage<span class="kw">`</span> <span class="ex">option</span> is <span class="kw">`</span><span class="op">&lt;</span>storage pool<span class="op">&gt;</span>,<span class="op">&lt;</span>size<span class="op">&gt;</span>,<span class="op">&lt;</span>number<span class="op">&gt;</span><span class="kw">`</span><span class="bu">.</span> <span class="ex">The</span>
+ <span class="ex">storage</span> pools available are dependent on and defined by the backing cloud.
+ <span class="ex">However</span>, by omitting the storage type, the default pool for that cloud will be
+ <span class="ex">chosen</span> (E.g. for AWS, the default pool is EBS storage)<span class="ex">.</span>
+
+
+<span class="ex">So</span>, for example, to deploy three <span class="kw">`</span>ceph-osd<span class="kw">`</span> <span class="ex">storage</span> nodes, using the default
+<span class="ex">storage</span> pool, with 2x 32G volumes of storage per node, and one 8G journal, we
+<span class="ex">would</span> use the command:</code></pre></div>
+<p>juju deploy -n 3 ceph-osd --storage osd-devices=32G,2 --storage osd-journals=8G,1 ```</p>
+<div class="p-notification--positive">
+<p class="p-notification__response">
+<span class="p-notification__status">Note:</span> For a more detailed explanation of Juju's storage pools and options, please see the relevant <a href="https://docs.jujucharms.com/stable/en/charms-storage"> Juju documentation</a>.
+</p>
+</div>
+<p>Note that actually deploying these charms with storage may take some time, but you can continue</p>
+<p>The <code>ceph-osd</code> and <code>ceph-mon</code> deployments should then be connected:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-relation ceph-osd ceph-mon</code></pre></div>
+<h3 id="relate-to-cdk">Relate to CDK</h3>
+<p>Making <strong>CDK</strong> aware of your <strong>Ceph</strong> cluster just requires a <strong>Juju</strong> relation.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-relation ceph-mon kubernetes-master</code></pre></div>
+<p>Note that the <strong>Ceph</strong> CSI containers require privileged access:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> config kubernetes-master allow-privileged=true</code></pre></div>
+<h3 id="create-storage-pools">Create storage pools</h3>
+<p>Finally, the pools that are defined in the storage class can be created:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> run-action ceph-mon/0 create-pool name=xfs-pool --wait</code></pre></div>
+<pre><code>unit-ceph-mon-0:
+  id: c12f0688-f31b-4956-8314-abacd2d6516f
+  status: completed
+  timing:
+    completed: 2018-08-20 20:49:34 +0000 UTC
+    enqueued: 2018-08-20 20:49:31 +0000 UTC
+    started: 2018-08-20 20:49:31 +0000 UTC
+  unit: ceph-mon/0</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> run-action ceph-mon/0 create-pool name=ext4-pool --wait</code></pre></div>
+<pre><code>unit-ceph-mon-0:
+  id: 4e82d93d-546f-441c-89e1-d36152c082f2
+  status: completed
+  timing:
+    completed: 2018-08-20 20:49:45 +0000 UTC
+    enqueued: 2018-08-20 20:49:41 +0000 UTC
+    started: 2018-08-20 20:49:43 +0000 UTC
+  unit: ceph-mon/0</code></pre>
+<h3 id="verification">Verification</h3>
+<p>Now you can look at your <strong>CDK</strong> cluster to verify things are working. Running:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">kubectl</span> get sc,po</code></pre></div>
+<p>... should return output similar to:</p>
+<pre class="no-highlight"><code>NAME                                             PROVISIONER     AGE
+storageclass.storage.k8s.io/ceph-ext4            csi-rbdplugin    7m
+storageclass.storage.k8s.io/ceph-xfs (default)   csi-rbdplugin    7m
+
+NAME                                                   READY     STATUS    RESTARTS   AGE
+pod/csi-rbdplugin-attacher-0                           1/1       Running   0          7m
+pod/csi-rbdplugin-cnh9k                                2/2       Running   0          7m
+pod/csi-rbdplugin-lr66m                                2/2       Running   0          7m
+pod/csi-rbdplugin-mnn94                                2/2       Running   0          7m
+pod/csi-rbdplugin-provisioner-0                        1/1       Running   0          7m</code></pre>
+<h3 id="scaling-out">Scaling out</h3>
+<p>To check existing storage allocation, use the command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> storage</code></pre></div>
+<p>If extra storage is required, it is possible to add extra <code>ceph-osd</code> units as desired:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-unit ceph-osd -n 2</code></pre></div>
+<p>Once again, it is necessary to attach appropriate storage volumes as before. In this case though, the storage needs to be added on a per-unit basis.</p>
+<p>Confirm the running units of <code>ceph-osd</code></p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> status ceph-osd</code></pre></div>
+<p>Add additional storage to existing or new units with the <code>add-storage</code> command. For example, to add two volumes of 32G to the unit <code>ceph-osd/2</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-storage ceph-osd/2 --storage osd-devices=32G,2</code></pre></div>
+<h3 id="using-a-separate-juju-model">Using a separate <strong>Juju</strong> model</h3>
+<p>In some circumstances it can be useful to locate the persistent storage in a different <strong>Juju</strong> model, for example to have one set of storage used by different clusters. The only change required is in adding relations between <strong>Ceph</strong> and CDK.</p>
+<p>For more information on how to achieve this, please see the <a href="https://docs.jujucharms.com/stable/en/models-cmr">Juju documentation</a> on cross-model relations.</p>
+<h2 id="nfs">NFS</h2>
+<p>It is possible to add simple storage for <strong>Kubernetes</strong> using NFS. In this case, the storage is implemented on the root disk of units running the <code>nfs</code> charm.</p>
+<h3 id="deploy-nfs">Deploy NFS</h3>
+<p>Make use of <strong>Juju</strong> constraints to allocate an instance with the required amount of storage. For example, for 200G of storage:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> deploy nfs --constraints root-disk=200G</code></pre></div>
+<h3 id="relate-to-cdk-1">Relate to CDK</h3>
+<p>The NFS units can be related directly to the <strong>Kubernetes</strong> workers:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"> <span class="ex">juju</span> add-relation nfs kubernetes-worker</code></pre></div>
+<h3 id="verification-1">Verification</h3>
+<p>Now you can look at your <strong>CDK</strong> cluster to verify things are working. Running:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">kubectl</span> get sc,po</code></pre></div>
+<p>... should return output similar to:</p>
+<pre class="no-highlight"><code>NAME                                            PROVISIONER      AGE
+storageclass.storage.k8s.io/default (default)   fuseim.pri/ifs   3m
+
+NAME                                                   READY     STATUS    RESTARTS   AGE
+pod/nfs-client-provisioner-778dcffbc8-2725b            1/1       Running   0          3m
+</code></pre>
+<h3 id="scaling-out-1">Scaling out</h3>
+<p>If extra storage is required, it is possible to add extra <code>nfs</code> units as desired. For example, to add three new units, each with 100G of storage:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-unit nfs  -n 3 --constraints root-disk=100G</code></pre></div>
+<p>There is no requirement that these additional units should have the same amount of storage space as previously.</p>
+<!-- LINKS -->
+
+{% endblock content %}

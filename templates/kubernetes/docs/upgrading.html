@@ -1,0 +1,167 @@
+{% extends "kubernetes/docs/base_docs.html" %}
+
+{% block meta_description %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block title %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+
+{% block content %}
+<h1 id="upgrading">Upgrading</h1>
+<p>It is recommended that you keep your <strong>Kubernetes</strong> deployment updated to the latest available stable version. You should also update the other applications which make up the <strong>Canonical Distribution of Kubernetes<sup>®</sup>.</strong> Keeping up to date ensures you have the latest bug-fixes and security patches for smooth operation of your cluster.</p>
+<p>New minor versions of <strong>Kubernetes</strong> are set to release once per quarter. You can check the latest release version on the<br />
+<a href="https://github.com/kubernetes/kubernetes/releases">Kubernetes release page on GitHub</a>. The <strong>CDK</strong> is kept in close sync with upstream Kubernetes: updated versions will be released within a week of a new upstream version of <strong>Kubernetes</strong>.</p>
+<div class="p-notification--information">
+<p class="p-notification__response">
+<span class="p-notification__status">Note:</span></code></pre>
+<strong>Kubernetes</strong> will automatically handle patch releases. This means that the cluster will perform an unattended automatic upgrade between patch versions, e.g. 1.10.7 to 1.10.8. Attended upgrades are only required when you wish to upgrade a minor version, e.g. 1.9.x to 1.10.x.
+</p>
+</div>
+<p>You can see which version of each application is currently deployed by running</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> status</code></pre></div>
+<p>The 'App' section of the output lists each application and its version number. Note that this is the version of the upstream application deployed. The version of the Juju charm is indicated under the column titled 'Rev'. The charms may be updated in between new versions of the application.</p>
+<div class="figure">
+<img src="https://assets.ubuntu.com/v1/6691d706-CDK-010.png" alt="juju output" />
+<p class="caption">juju output</p>
+</div>
+<h2 id="before-you-begin">Before you begin</h2>
+<p>As with all upgrades, there is a possibility that there may be unforeseen difficulties. It is <strong>highly recommended that you make a backup</strong> of any important data, including any running workloads. For more details on creating backups, see the separate <a href="./backups.html">documentation on backups</a>.</p>
+<p>You should also make sure:</p>
+<ul>
+<li>The machine from which you will perform the backup has sufficient internet access to retrieve updated software</li>
+<li>Your cluster is running normally</li>
+<li>You read the <a href="/kubernetes/docs/upgrade-notes">Upgrade notes</a> to see if any caveats apply to the versions you are upgrading to/from</li>
+<li>You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster</li>
+</ul>
+<h2 id="infrastructure-updates">Infrastructure updates</h2>
+<p>The applications which run alongside the core Kubernetes components can be upgraded at any time. These applications are widely used and may frequently receive upgrades outside of the cycle of new releases of Kubernetes.</p>
+<p>This includes:</p>
+<ul>
+<li>easyrsa<br />
+</li>
+<li>etcd<br />
+</li>
+<li>flannel</li>
+</ul>
+<p>Note that this may include other applications which you may have installed, such as Elasticsearch, Prometheus, Nagios, Helm, etc.</p>
+<h3 id="upgrading-etcd">Upgrading <strong>etcd</strong></h3>
+<p>As <strong>etcd</strong> manages critical data for the cluster, it is advisable to create a snapshot of this data before running an upgrade. This is covered in more detail in the<br />
+<a href="/kubernetes/docs/backups">documentation on backups</a>, but the basic steps are:</p>
+<ul>
+<li><strong>Run the snapshot action on the charm:</strong> <code>bash  juju run-action etcd/0 snapshot --wait</code> You should see confirmation of the snapshot being created, and the location of the file <em>on the <strong>etcd</strong> unit</em></li>
+<li><p><strong>Fetch a local copy of the snapshot</strong> Knowing the path to the snapshot file from the output of the above command, you can download a local copy:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> scp etcd/0:/home/ubuntu/etcd-snapshots/<span class="op">&lt;</span>filename<span class="op">&gt;</span>.tar.gz .</code></pre></div>
+<p>You can now upgrade <strong>etcd</strong>:</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> upgrade-charm etcd</code></pre></div>
+<h3 id="upgrading-additional-components">Upgrading additional components</h3>
+<p>The other infrastructure applications can be upgraded by running the <code>upgrade-charm</code> command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> upgrade-charm flannel
+<span class="ex">juju</span> upgrade-charm easyrsa</code></pre></div>
+<p>Any other infrastructure charms can be upgraded in a similar way.</p>
+<div class="p-notification--caution">
+<p class="p-notification__response">
+<span class="p-notification__status">Note:</span></code></pre>
+Some services may be briefly interrupted during the upgrade process. Upgrading <strong>flannel</strong> will cause a small amount of network downtime. Upgrading <strong>easyrsa</strong> will not cause any downtime. The behaviour of other components you have added to your cluster may vary - check individual documentation for these charms for more information on upgrades.
+</p>
+</div>
+<h2 id="upgrading-kubernetes">Upgrading Kubernetes</h2>
+<p>Before you upgrade the <strong>Kubernetes</strong> components, you should be aware of the exact release you wish to upgrade to.</p>
+<p>The <strong>Kubernetes</strong> charms use <strong>snap</strong> <em>channels</em> to manage the version of <strong>Kubernetes</strong> to use. Channels are explained in more detail in the <a href="https://docs.snapcraft.io/reference/channels">official snap documentation</a>, but in terms of <strong>Kubernetes</strong> all you need to know are the major and minor version numbers and the 'risk-level':</p>
+<table>
+<thead>
+<tr class="header">
+<th>Risk level</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>stable</td>
+<td>The latest stable released version of Kubernetes</td>
+</tr>
+<tr class="even">
+<td>candidate</td>
+<td>Release candidate versions of Kubernetes</td>
+</tr>
+<tr class="odd">
+<td>beta</td>
+<td>Latest alpha/beta of Kubernetes for the specified release</td>
+</tr>
+<tr class="even">
+<td>edge</td>
+<td>Nightly builds of the specified release of Kubernetes</td>
+</tr>
+</tbody>
+</table>
+<p>For most use cases, it is strongly recommended to use the 'stable' version of charms.</p>
+<h3 id="upgrading-the-kube-api-loadbalancer">Upgrading the <strong>kube-api-loadbalancer</strong></h3>
+<p>A core part of <strong>CDK</strong> is the kubeapi-load-balancer component. A mismatch of versions could have an effect on API availability and access controls. To ensure API service continuity this upgrade should precede any upgrades to the <strong>Kubernetes</strong> master and worker units.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> upgrade-charm kubeapi-load-balancer</code></pre></div>
+<h3 id="upgrading-the-kubernetes-master-units">Upgrading the <strong>kubernetes-master</strong> units</h3>
+<p>To start upgrading the Kubernetes master units, first upgrade the charm:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> upgrade-charm kubernetes-master</code></pre></div>
+<p>Once the charm has been upgraded, it can be configured to select the desired <strong>Kubernetes</strong> channel, which takes the form <code>Major.Minor/risk-level</code>. This is then passed as a configuration option to the charm. So, for example, to select the stable 1.10 version of <strong>Kubernetes</strong>, you would enter:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> config kubernetes-master channel=1.10/stable</code></pre></div>
+<p>If you wanted to try a release candidate for 1.12, the channel would be <code>1.12/candidate</code>.</p>
+<div class="p-notification--caution">
+<p class="p-notification__response">
+<span class="p-notification__status">Note:</span></code></pre>
+Once the configuration has been changed, the charms will be put into a <code>blocked</code> state. You must continue the upgrade process, even if you revert the configuration to the currently active version of Kubernetes.
+</p>
+</div>
+<p>Once the desired version has been configured, the upgrades should be performed. This is done by running the <code>upgrade</code> action on each master unit in the cluster:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> run-action kubernetes-master/0 upgrade
+<span class="ex">juju</span> run-action kubernetes-master/1 upgrade</code></pre></div>
+<p>If you have more master units in your cluster, you should continue and run this process on every one of them.</p>
+<p>You can check the progress of the upgrade by running:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> status <span class="kw">|</span> <span class="fu">grep</span> master</code></pre></div>
+<p>Ensure that all the master units have upgraded and are reporting normal status before continuing to upgrade the worker units.</p>
+<h3 id="upgrading-the-kubernetes-worker-units">Upgrading the <strong>kubernetes-worker</strong> units</h3>
+<p>For a running cluster, there are two different ways to proceed:</p>
+<ul>
+<li><a href="https://martinfowler.com/bliki/BlueGreenDeployment.html">Blue-green</a> upgrade - This requires more resources, but should ensure a safe, zero-downtime transition of workloads to an updated cluster</li>
+<li>In-place upgrade - this simply upgrades the workers in situ, which may involve some service interruption but doesn't require extra resources</li>
+</ul>
+<p>Both methods are outlined below. The blue-green method is recommended for production systems.</p>
+<h4 id="blue-green-upgrade">Blue-green upgrade</h4>
+<p>To begin, upgrade the kubernetes-worker charm itself:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> upgrade-charm kubernetes-worker</code></pre></div>
+<p>Next, run the command to configure the workers for the version of Kubernetes you wish to run (as you did previously for the master units). For example:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> config kubernetes-worker channel=1.12/stable</code></pre></div>
+<p>Now add additional units of the kubernetes-worker. You should add as many units as you are replacing. For example, to add three additional units:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-unit kubernetes-worker -n 3</code></pre></div>
+<p>This will create new units to migrate the existing workload to. As you configured the version prior to adding the units, they will be using the newly-selected version of <strong>Kubernetes</strong>.</p>
+<p>Now we can pause the existing workers, which will cause the workloads to migrate to the new units recently added. A worker unit is paused by running the corresponding action on that unit:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> run-action kubernetes-worker/0 pause
+<span class="ex">juju</span> run-action kubernetes-worker/1 pause
+<span class="ex">juju</span> run-action kubernetes-worker/2 pause
+<span class="ex">...</span></code></pre></div>
+<p>Continue until all the 'old' units have been paused. You can check on the workload status by running the command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">kubectl</span> get pod -o wide</code></pre></div>
+<p>Once the workloads are running on the new units, it is safe to remove the old units:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> remove-unit kubernetes-worker/0</code></pre></div>
+<p>Removing these units from the model will also release the underlying machines/instances they were running on, so no further clean up is required.</p>
+<div class="p-notification--information">
+<p class="p-notification__response">
+<span class="p-notification__status">Note:</span></code></pre>
+A variation on this method is to add, pause, remove and recycle units one at a time. This reduces the resource overhead to a single extra instance.
+</p>
+</div>
+<h4 id="in-place-upgrade">In-place upgrade</h4>
+<p>To proceed with an in-place upgrade, first upgrade the charm itself:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> upgrade-charm kubernetes-worker</code></pre></div>
+<p>Next, run the command to configure the workers for the version of <strong>Kubernetes</strong> you wish to run (as you did previously for the master units). For example:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> config kubernetes-worker channel=1.12/stable</code></pre></div>
+<p>All the units can now be upgraded by running the <code>upgrade</code> action on each one:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> run-action kubernetes-worker/0 upgrade
+<span class="ex">juju</span> run-action kubernetes-worker/1 upgrade
+<span class="ex">...</span></code></pre></div>
+<h2 id="verify-your-upgrade">Verify your upgrade</h2>
+<p>The output from:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> status</code></pre></div>
+<p>.. should now indicate the selected version of <strong>Kubernetes</strong> is running.</p>
+<p>It is recommended that you run a <a href="/kubernetes/docs/validation">cluster validation</a> to ensure that the cluster upgrade has successfully completed.</p>
+<p><!--LINKS--></p>
+
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends "kubernetes/docs/base_docs.html" %}
+
+{% block meta_description %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block title %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
+
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+
+{% block content %}
+<h1 id="overview">Overview</h1>
+<p>
+Deliver ‘Containers as a Service’ across the enterprise with the <strong>Canonical Distribution of Kubernetes<sup>®</sup> </strong> (<strong>CDK</strong>) , enabling each project to spin up a standardised K8s of arbitrary scale, on demand, with centralised operational control. <strong>CDK</strong> provides a well integrated, turn-key <strong>Kubernetes<sup>®</sup></strong> platform that is open, extensible, and secure.
+</p>
+<div class="p-notification"><p class="p-notification__response">For more information on the features and benefits of <strong>CDK</strong>, including details on the <a href="https://www.ubuntu.com/kubernetes/managed"> <strong>Managed Kubernetes</strong></a> service, please see the <a href=" https://www.ubuntu.com/kubernetes">main website</a>.</p></div>
+<h2 id="components">Components</h2>
+<p><strong>CDK</strong> is built around a number of applications, bundled together and deployed using <a href="https://jujucharms.com"><strong>Juju</strong></a>, the open source modelling tool for deploying and operating software in the cloud.</p>
+<h3 id="storage">Storage</h3>
+<p><strong>CDK</strong> comes with a powerful volume plugin system that enables many different types of storage systems to:</p>
+<ul>
+<li>Automatically create storage when required.</li>
+<li>Make storage available to containers wherever they’re scheduled.</li>
+<li>Automatically delete the storage when no longer needed.</li>
+</ul>
+<h3 id="networking">Networking</h3>
+<p><strong>Kubernetes</strong> uses Container Network Interface (CNI) as an interface between network providers and <strong>Kubernetes</strong> networking. <strong>CDK</strong> comes pre-packaged with several tested CNI plugins like Calico and Flannel.</p>
+<h3 id="logging-and-monitoring">Logging and monitoring</h3>
+<p>Operations in large-scale distributed clusters require a new level of operational monitoring and observability. Canonical delivers a standardised set of open source log aggregation and systems monitoring dashboards with every cloud, using <strong>Prometheus</strong>, the <strong>Elasticsearch</strong> and <strong>Kibana</strong> stack (ELK), and <strong>Nagios</strong>.</p>
+<h3 id="cloud-integration">Cloud integration</h3>
+<p>Depending on your choice of cloud, <strong>CDK</strong> will also install an integration application. This enables <strong>CDK</strong> to seamlessly access cloud resources and components without additional configuration or hassle.</p>
+<!-- LINKS -->
+
+{% endblock content %}
