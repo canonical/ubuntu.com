@@ -1,0 +1,14 @@
+{% extends "templates/base.html" %}
+
+{% block meta_copydoc %}https://drive.google.com/drive/folders/1FyMcu6vqGnyQMdWLRjvxJVWm8gHgslk4{% endblock meta_copydoc %}
+
+{% block outer_content %}
+  <div class="l-documentation">
+    <div class="l-documentation__sidebar">
+    {% include "kubernetes/docs/shared/_side-navigation.html" %}
+    </div>
+    <div class="l-documentation__content">
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+{% endblock %}
