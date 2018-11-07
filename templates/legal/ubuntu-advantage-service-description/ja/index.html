@@ -177,7 +177,9 @@
       <ul class="p-list">
         <li class="p-list__item">OpenStackのサポートは、Advanced対象の応答時間で提供されます。</li>
         <li class="p-list__item">OpenStackのサポートを受けるには、各リージョンが12以上のサポート対象ノードで構成されている必要があります。OpenStack環境内にあるすべてのノードが、有効なサポート契約の対象でなければなりません。</li>
-        <li class="p-list__item">セクション* 2.2に規定するハードウェア要件に加え、ハードウェアはUbuntu OpenStack最低基準を満たしていることが必要です。</li>
+        <li class="p-list__item">セクション
+          <p>に規定するハードウェア要件に加え、ハードウェアはUbuntu OpenStack最低基準を満たしていることが必要です。</p>
+        </li>
         <li class="p-list__item">OpenStackクラウドの「フルスタック（Full Stack）サポート」は、Foundation OpenStack Build委託によりデプロイされた場合に限って提供されます。
           <ul class="p-list">
             <li class="p-list__item">Canonicalは、Foundation OpenStack Buildによりデプロイされたチャームのサポートを提供します。</li>
@@ -187,7 +189,7 @@
         </li>
         <li class="p-list__item">Ubuntu LTSの定期メンテナンスサイクルの一環として行うOpenStackコンポーネントのアップグレードは、サポート対象です。
           <ul class="p-list">
-            <li class="p-list__item">OpenStackのバージョン間のアップグレード（例：OpenStack MitakaからNewtonへ）またはUbuntu（例：Ubuntu 1* 4.04 LTSからUbuntu 1* 6.04 LTSへ）、JujuおよびMAASのバージョン間のアップグレードは、サポートされています。ただし、Foundation OpenStack Buildの一環としてCanonicalが指定する文書化されたプロセスに従ってアップグレードを行うことが条件です。</li>
+            <li class="p-list__item">OpenStackのバージョン間のアップグレード（例：OpenStack MitakaからNewtonへ）またはUbuntu（例：Ubuntu 14.04 LTSからUbuntu 16.04 LTSへ）、JujuおよびMAASのバージョン間のアップグレードは、サポートされています。ただし、Foundation OpenStack Buildの一環としてCanonicalが指定する文書化されたプロセスに従ってアップグレードを行うことが条件です。</li>
             <li class="p-list__item">新しいクラウドノードの追加、ならびに既存のノードと同等容量の新しいノードとの交換は、いずれもサポートされています。</li>
             <li class="p-list__item">フルスタックサポートは、有効なカスタマイゼーションとみなされないカスタマイゼーションを対象外とします。</li>
             <li class="p-list__item">クラウドゲスト用のUbuntu Advantage Virtual Guest Advanced サービス。</li>
@@ -240,13 +242,13 @@
             <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
           </tr>
           <tr>
-            <td><p>Landscapeマネージメント<sup>1</sup></p><small><sup>1</sup> 本サービス記述書のセクション* 2.5をご覧ください。</small></td>
+            <td><p>Landscapeマネージメント<sup>1</sup></p><small><sup>1</sup> 本サービス記述書のセクション 2.5をご覧ください。</small></td>
             <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
             <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
             <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
           </tr>
           <tr>
-            <td><p>カーネルライブパッチング<sup>1</sup></p><small><sup>1</sup> 本サービス記述書のセクション** 2.4.4によります。</small></td>
+            <td><p>カーネルライブパッチング<sup>1</sup></p><small><sup>1</sup> 本サービス記述書のセクション 2.4.4によります。</small></td>
             <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
             <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
             <td><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" alt="" /></td>
@@ -530,29 +532,33 @@
           <li class="p-list__item">X86_64以外のアーキテクチャに関するサポート</li>
         </ul>
 
-        <h4>Standard</h4>
+        <ol class="p-list--ordered-legal">
+          <li class="p-list__item">
+            <h4>Standard</h4>
 
-        <h4>追加サービスとして含まれるもの：</h4>
+            <h4>追加サービスとして含まれるもの：</h4>
 
-        <ul class="p-list">
-          <li class="p-list__item">Ubuntu Mainリポジトリ内のsssd、winbind、ネットワークマネージャ、およびネットワークマネージャ関連プラグインを使用するBasicネットワーク認証と接続</li>
-        </ul>
+            <ul class="p-list">
+              <li class="p-list__item">Ubuntu Mainリポジトリ内のsssd、winbind、ネットワークマネージャ、およびネットワークマネージャ関連プラグインを使用するBasicネットワーク認証と接続</li>
+            </ul>
 
-        <h4>サービスからさらに除外されるもの：</h4>
+            <h4>サービスからさらに除外されるもの：</h4>
 
-        <ul class="p-list">
-          <li class="p-list__item">開発者用ツール</li>
-          <li class="p-list__item">ベースのUbuntuデスクトップイメージに含まれないパッケージのサポート</li>
-        </ul>
+            <ul class="p-list">
+              <li class="p-list__item">開発者用ツール</li>
+              <li class="p-list__item">ベースのUbuntuデスクトップイメージに含まれないパッケージのサポート</li>
+            </ul>
+          </li>
+          <li class="p-list__item">
+            <h4>Advanced</h4>
 
-        <h4>Advanced</h4>
+            <h4>追加サービスとして含まれるもの：</h4>
 
-        <h4>追加サービスとして含まれるもの：</h4>
-
-        <ul class="p-list">
-          <li class="p-list__item">Canonicalのツールによるデスクトップのプロビジョニング</li>
-        </ul>
-
+            <ul class="p-list">
+              <li class="p-list__item">Canonicalのツールによるデスクトップのプロビジョニング</li>
+            </ul>
+          </li>
+        </ol>
         <h3>Ubuntu Advantage Kubernetes</h3>
 
         <h4>用語の定義：</h4>
@@ -600,7 +606,7 @@
 
         <p>Canonicalでは、カーネルのサポート用バグフィックスをカーネルライブパッチとして提供することはできません。</p>
 
-        <p>カーネルライブパッチングは、* 4.4カーネル以降のジェネリックおよび低遅延64-bit Intel/AMD * 4.4カーネルで利用できます。</p>
+        <p>カーネルライブパッチングは、 4.4カーネル以降のジェネリックおよび低遅延64-bit Intel/AMD 4.4カーネルで利用できます。</p>
 
         <p>ライブパッチングに利用できるのは、デフォルトのLTSカーネルだけです。最新のHWEカーネルから以前のLTSリリースへのバックポートもこれに含まれます。</p>
 
@@ -780,13 +786,13 @@
         <h4>サービスに含まれるもの：</h4>
 
         <ul class="p-list">
-          <li class="p-list__item">Canonical配布版Kubernetesを管理する際に、Rancher Labs社が<a href="https://rancher.com/support-maintenance-terms/">rancher.com/support-maintenance-terms/</a>で公開している互換性仕様およびサポートのライフサイクルに準拠した形でRancher h2. 2.&#215;.を使用できるよう、ブレークフィックスサポートを行い、基本的な質問にお答えします。</li>
+          <li class="p-list__item">Canonical配布版Kubernetesを管理する際に、Rancher Labs社が<a href="https://rancher.com/support-maintenance-terms/">rancher.com/support-maintenance-terms/</a>で公開している互換性仕様およびサポートのライフサイクルに準拠した形でRancher 2.x.を使用できるよう、ブレークフィックスサポートを行い、基本的な質問にお答えします。</li>
         </ul>
 
         <h4>サービスに含まれないもの：</h4>
 
         <ul class="p-list">
-          <li class="p-list__item">Rancher 1.&#215;.からRancher h2. 2.&#215;.への作業負荷の移行</li>
+          <li class="p-list__item">Rancher 1.x.からRancher h2. 2.x.への作業負荷の移行</li>
           <li class="p-list__item">Rancherで使用するサードパーティ製アドオンに関するサポートと基本的な質問への対応</li>
           <li class="p-list__item">Rancherのインストール</li>
         </ul>
@@ -796,7 +802,7 @@
         <ol class="p-list--ordered-legal">
           <li class="p-list__item"><h4>サ.ービスの開始</h4>
             <ol class="p-list--ordered-legal">
-              <li class="p-list__item">Canonicalはサービスの利用開始時に、お客様の技術担当者一名に対して、Landscape、サポートポータルおよびオンラインのナレッジベースへのアクセスを提供します。</li>
+              <li class="p-list__item">Canonicalはサービスの利用開始時に、お客様の技術担者一名に対して、Landscape、サポートポータルおよびオンラインのナレッジベースへのアクセスを提供します。</li>
               <li class="p-list__item">以下の表に記載する通り、お客様はサポート対象システムの数に応じて、当初の技術担当者を通じてCanonicalとやり取りする複数の技術担当者を選定することができます。これらの技術担当者はサポートポータルへのログイン資格を持ち、サポート請求に関する主な連絡窓口になります。
                 <table>
                   <thead>
