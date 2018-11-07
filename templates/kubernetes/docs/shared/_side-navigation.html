@@ -1,4 +1,4 @@
-<aside class="p-sidebar" id="navigation">
+<aside class="p-sidebar" id="docs-navigation">
   <div class="p-sidebar__banner u-hide--medium u-hide--large">
     <i class="p-sidebar__toggle p-icon--menu"></i>
   </div>
@@ -8,7 +8,7 @@
         <li class="p-sidebar-nav__item first-level">
           <strong>About</strong>
           <ul class="p-sidebar-nav__list">
-            <li class="p-sidebar-nav__item"><a class="p-link--soft is-active" href="/kubernetes/docs/index">Home</a></li>
+            <li class="p-sidebar-nav__item"><a class="p-link--soft" href="/kubernetes/docs/index">Home</a></li>
             <li class="p-sidebar-nav__item"><a class="p-link--soft" href="/kubernetes/docs/overview">Overview</a></li>
             <li class="p-sidebar-nav__item"><a class="p-link--soft" href="/kubernetes/docs/news">News</a></li>
           </ul>
@@ -44,3 +44,15 @@
     </nav>
   </div>
 </aside>
+
+<script>
+  var navigation = document.getElementById('docs-navigation');
+  var links = navigation.getElementsByTagName('a');
+  var currentPage = window.location.pathname;
+  for (var i = 0; i < links.length; i++) {
+    var link = links[i];
+    if (link.getAttribute('href') === currentPage) {
+      link.classList.add('is-active');
+    }
+  };
+</script>
