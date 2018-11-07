@@ -1,0 +1,63 @@
+@mixin layout-documentation {
+  @include pattern-sidebar-nav;
+
+  .l-documentation {
+    @include row;
+    display: flex;
+
+    &__sidebar {
+      border-right: 0.0625rem solid $color-mid-light;
+      flex: 0 0 18rem;
+    }
+
+    &__content {
+      flex: 5;
+      padding-left: 5%;
+      margin-top: 2rem;
+    }
+  }
+}
+
+@mixin pattern-sidebar-nav {
+  .p-sidebar-nav {
+    margin-top: 2rem;
+
+    &__list {
+      @extend .p-list;
+      margin-bottom: $spv-intra;
+      margin-top: -$spv-intra--condensed;
+    }
+
+    &__item {
+      list-style: none;
+      padding-bottom: $spv-intra--condensed / 2;
+      padding-top: $spv-intra--condensed / 2;
+
+      &:first-of-type {
+        padding-top: $spv-intra;
+      }
+
+      &:last-of-type {
+        padding-bottom: $spv-intra + $spv-intra--condensed;
+      }
+
+      .is-active {
+        position: relative;
+
+        &::before {
+          background-color: $color-mid-light;
+          bottom: -$spv-intra--condensed;
+          content: '';
+          left: -$sph-intra;
+          position: absolute;
+          top: -$spv-intra--condensed;
+          width: $bar-thickness;
+        }
+      }
+    }
+
+    &__item > &__list {
+      padding-left: $sph-intra;
+    }
+  }
+}
