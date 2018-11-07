@@ -10,7 +10,7 @@
 <h1 id="upgrading">Upgrading</h1>
 <p>It is recommended that you keep your <strong>Kubernetes</strong> deployment updated to the latest available stable version. You should also update the other applications which make up the <strong>Canonical Distribution of Kubernetes<sup>®</sup>.</strong> Keeping up to date ensures you have the latest bug-fixes and security patches for smooth operation of your cluster.</p>
 <p>New minor versions of <strong>Kubernetes</strong> are set to release once per quarter. You can check the latest release version on the<br />
-<a href="https://github.com/kubernetes/kubernetes/releases">Kubernetes release page on GitHub</a>. The <strong>CDK</strong> is kept in close sync with upstream Kubernetes: updated versions will be released within a week of a new upstream version of <strong>Kubernetes</strong>.</p>
+<a class="p-link--external" href="https://github.com/kubernetes/kubernetes/releases">Kubernetes release page on GitHub</a>. The <strong>CDK</strong> is kept in close sync with upstream Kubernetes: updated versions will be released within a week of a new upstream version of <strong>Kubernetes</strong>.</p>
 <div class="p-notification--information">
 <p class="p-notification__response">
 <span class="p-notification__status">Note:</span></code></pre>
@@ -67,7 +67,7 @@ Some services may be briefly interrupted during the upgrade process. Upgrading <
 </div>
 <h2 id="upgrading-kubernetes">Upgrading Kubernetes</h2>
 <p>Before you upgrade the <strong>Kubernetes</strong> components, you should be aware of the exact release you wish to upgrade to.</p>
-<p>The <strong>Kubernetes</strong> charms use <strong>snap</strong> <em>channels</em> to manage the version of <strong>Kubernetes</strong> to use. Channels are explained in more detail in the <a href="https://docs.snapcraft.io/reference/channels">official snap documentation</a>, but in terms of <strong>Kubernetes</strong> all you need to know are the major and minor version numbers and the 'risk-level':</p>
+<p>The <strong>Kubernetes</strong> charms use <strong>snap</strong> <em>channels</em> to manage the version of <strong>Kubernetes</strong> to use. Channels are explained in more detail in the <a class="p-link--external" href="https://docs.snapcraft.io/reference/channels">official snap documentation</a>, but in terms of <strong>Kubernetes</strong> all you need to know are the major and minor version numbers and the 'risk-level':</p>
 <table>
 <thead>
 <tr class="header">
@@ -120,7 +120,7 @@ Once the configuration has been changed, the charms will be put into a <code>blo
 <h3 id="upgrading-the-kubernetes-worker-units">Upgrading the <strong>kubernetes-worker</strong> units</h3>
 <p>For a running cluster, there are two different ways to proceed:</p>
 <ul>
-<li><a href="https://martinfowler.com/bliki/BlueGreenDeployment.html">Blue-green</a> upgrade - This requires more resources, but should ensure a safe, zero-downtime transition of workloads to an updated cluster</li>
+<li><a class="p-link--external" href="https://martinfowler.com/bliki/BlueGreenDeployment.html">Blue-green</a> upgrade - This requires more resources, but should ensure a safe, zero-downtime transition of workloads to an updated cluster</li>
 <li>In-place upgrade - this simply upgrades the workers in situ, which may involve some service interruption but doesn't require extra resources</li>
 </ul>
 <p>Both methods are outlined below. The blue-green method is recommended for production systems.</p>

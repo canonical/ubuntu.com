@@ -26,7 +26,7 @@
 <span class="ex">juju</span> add-relation kubernetes-master:juju-info telegraf:juju-info
 <span class="ex">juju</span> add-relation kubernetes-worker:juju-info telegraf:juju-info</code></pre></div>
 <h3 id="adding-a-scraper-for-prometheus">Adding a scraper for Prometheus</h3>
-<p>Prometheus will also need an appropriate scraper to collect metrics relevant to the cluster. A useful default is installed when using <strong>conjure-up</strong> (the template for this can be <a href="https://raw.githubusercontent.com/conjure-up/spells/master/canonical-kubernetes/addons/prometheus/steps/01_install-prometheus/prometheus-scrape-k8s.yaml">downloaded here</a>), but you can also configure it manually by following the steps outlined here:</p>
+<p>Prometheus will also need an appropriate scraper to collect metrics relevant to the cluster. A useful default is installed when using <strong>conjure-up</strong> (the template for this can be <a class="p-link--external" href="https://raw.githubusercontent.com/conjure-up/spells/master/canonical-kubernetes/addons/prometheus/steps/01_install-prometheus/prometheus-scrape-k8s.yaml">downloaded here</a>), but you can also configure it manually by following the steps outlined here:</p>
 <ul>
 <li><p>Download the scraper file</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">curl</span> -O  https://raw.githubusercontent.com/conjure-up/spells/master/canonical-kubernetes/addons/prometheus/steps/01_install-prometheus/prometheus-scrape-k8s.yaml</code></pre></div>
@@ -36,7 +36,7 @@ This is the template, but it needs some specific information for your cluster.</
 <li><p>Configure Prometheus to use this scraper <code>bash  juju config prometheus scrape-jobs=&quot;$(&lt;myscraper.yaml)&quot;</code></p></li>
 </ul>
 <h3 id="add-the-dashboards">Add the dashboards</h3>
-<p>As with the scraper, there is a <a href="https://raw.githubusercontent.com/conjure-up/spells/master/canonical-kubernetes/addons/prometheus/steps/01_install-prometheus/grafana-k8s.json">sample dashboard available for download here</a>. You can download and configure <strong>grafana</strong> to use it by following these steps:</p>
+<p>As with the scraper, there is a <a class="p-link--external" href="https://raw.githubusercontent.com/conjure-up/spells/master/canonical-kubernetes/addons/prometheus/steps/01_install-prometheus/grafana-k8s.json">sample dashboard available for download here</a>. You can download and configure <strong>grafana</strong> to use it by following these steps:</p>
 <ul>
 <li><p>Download the sample dashboard configuration</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">curl</span> -O https://raw.githubusercontent.com/conjure-up/spells/master/canonical-kubernetes/addons/prometheus/steps/01_install-prometheus/grafana-k8s.json</code></pre></div></li>
@@ -64,7 +64,7 @@ This is the template, but it needs some specific information for your cluster.</
 <p class="caption">grafana dashboard image</p>
 </div>
 <h2 id="monitoring-with-nagios">Monitoring with Nagios</h2>
-<p><strong>Nagios</strong> (<a href="https://www.nagios.org/" class="uri">https://www.nagios.org/</a>) is widely used for monitoring networks, servers and applications. Using the Nagios Remote Plugin Executor (NRPE) on each node, it can monitor your cluster with machine-level detail.</p>
+<p><strong>Nagios</strong> (<a class="p-link--external" href="https://www.nagios.org/" class="uri">https://www.nagios.org/</a>) is widely used for monitoring networks, servers and applications. Using the Nagios Remote Plugin Executor (NRPE) on each node, it can monitor your cluster with machine-level detail.</p>
 <p>To start, deploy the latest version of the Nagios and NRPE Juju charms:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> deploy nagios --series=xenial
 <span class="ex">juju</span> deploy nrpe --series=xenial
@@ -91,7 +91,7 @@ This is the template, but it needs some specific information for your cluster.</
 <span class="ex">juju</span> configure nrpe-external-master nagios_master= <span class="op">&lt;</span>ip-address-of-nagios<span class="op">&gt;</span></code></pre></div>
 <p>Once configured, add relations to <code>nrpe-external-master</code> as outlined above.</p>
 <h2 id="monitoring-with-elasticsearch">Monitoring with <strong>Elasticsearch</strong></h2>
-<p>Elasticsearch (<a href="https://www.elastic.co/" class="uri">https://www.elastic.co/</a>) is a popular monitoring application which can be used in conjunction with <strong>CDK</strong>.</p>
+<p>Elasticsearch (<a class="p-link--external" href="https://www.elastic.co/" class="uri">https://www.elastic.co/</a>) is a popular monitoring application which can be used in conjunction with <strong>CDK</strong>.</p>
 <h3 id="deploy-the-required-applications">Deploy the required applications</h3>
 <p>Use Juju to deploy the required applications:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> deploy elasticsearch --series=xenial --constraints mem=4G

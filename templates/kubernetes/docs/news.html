@@ -25,27 +25,27 @@
 <p>This config can be used to override KubeletConfiguration values provided by the charm, and is usable on any Canonical cluster running Kubernetes 1.10+.</p>
 <p>The value for this config must be a YAML mapping that can be safely merged with a KubeletConfiguration file. For example:</p>
 <pre><code>juju config kubernetes-worker kubelet-extra-config=&quot;{evictionHard: {memory.available: 200Mi}}&quot;</code></pre>
-<p>For more information about KubeletConfiguration, see upstream docs: <a href="https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/">https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/</a></p>
+<p>For more information about KubeletConfiguration, see upstream docs: <a class="p-link--external" href="https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/">https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/</a></p>
 <ul>
 <li>Added support for Dynamic Kubelet Configuration</li>
 </ul>
-<p>While we recommend <code>kubelet-extra-config</code> as a more robust and approachable way to configure Kubelet, we've also made it possible to configure kubelet using the Dynamic Kubelet Configuration feature that comes with Kubernetes 1.11+. You can read about that here: <a href="https://kubernetes.io/docs/tasks/administer-cluster/reconfigure-kubelet/">https://kubernetes.io/docs/tasks/administer-cluster/reconfigure-kubelet/</a></p>
+<p>While we recommend <code>kubelet-extra-config</code> as a more robust and approachable way to configure Kubelet, we've also made it possible to configure kubelet using the Dynamic Kubelet Configuration feature that comes with Kubernetes 1.11+. You can read about that here: <a class="p-link--external" href="https://kubernetes.io/docs/tasks/administer-cluster/reconfigure-kubelet/">https://kubernetes.io/docs/tasks/administer-cluster/reconfigure-kubelet/</a></p>
 <ul>
-<li>New etcd charm config: bind_to_all_interfaces (<a href="https://github.com/juju-solutions/layer-etcd/pull/137">PR</a>)</li>
+<li>New etcd charm config: bind_to_all_interfaces (<a class="p-link--external" href="https://github.com/juju-solutions/layer-etcd/pull/137">PR</a>)</li>
 </ul>
-<p>Default <code>true</code>, which retains the old behavior of binding to 0.0.0.0. Setting this to <code>false</code> makes etcd bind only to the addresses it expects traffic on, as determined by the configuration of <a href="https://docs.jujucharms.com/2.4/en/charms-deploying-advanced#deploying-to-network-spaces">Juju endpoint bindings</a>.</p>
-<p>Special thanks to <span class="citation">[@rmescandon]</span>(<a href="https://github.com/rmescandon">https://github.com/rmescandon</a>) for this contribution!</p>
+<p>Default <code>true</code>, which retains the old behavior of binding to 0.0.0.0. Setting this to <code>false</code> makes etcd bind only to the addresses it expects traffic on, as determined by the configuration of <a class="p-link--external" href="https://docs.jujucharms.com/2.4/en/charms-deploying-advanced#deploying-to-network-spaces">Juju endpoint bindings</a>.</p>
+<p>Special thanks to <span class="citation">[@rmescandon]</span>(<a class="p-link--external" href="https://github.com/rmescandon">https://github.com/rmescandon</a>) for this contribution!</p>
 <ul>
 <li>Updated proxy configuration</li>
 </ul>
-<p>For operators who currently use the <code>http-proxy</code>, <code>https-proxy</code> and <code>no-proxy</code> Juju model configs, we recommend using the newer <code>juju-http-proxy</code>, <code>juju-https-proxy</code> and <code>juju-no-proxy</code> model configs instead. See the <a href="https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Proxy-configuration">Proxy configuration</a> page for details.</p>
+<p>For operators who currently use the <code>http-proxy</code>, <code>https-proxy</code> and <code>no-proxy</code> Juju model configs, we recommend using the newer <code>juju-http-proxy</code>, <code>juju-https-proxy</code> and <code>juju-no-proxy</code> model configs instead. See the <a class="p-link--external" href="https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Proxy-configuration">Proxy configuration</a> page for details.</p>
 <h2 id="fixes">Fixes</h2>
 <ul>
-<li>Fixed kube-dns constantly restarting on 18.04 (<a href="https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/655">Issue</a>)</li>
-<li>Fixed LXD machines not working on 18.04 (<a href="https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/654">Issue</a>)</li>
-<li>Fixed kubernetes-worker unable to restart services after kubernetes-master leader is removed (<a href="https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/627">Issue</a>)</li>
-<li>Fixed kubeapi-load-balancer default timeout might be too low (<a href="https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/650">Issue</a>)</li>
-<li>Fixed unable to deploy on NVidia hardware (<a href="https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/664">Issue</a>)</li>
+<li>Fixed kube-dns constantly restarting on 18.04 (<a class="p-link--external" href="https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/655">Issue</a>)</li>
+<li>Fixed LXD machines not working on 18.04 (<a class="p-link--external" href="https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/654">Issue</a>)</li>
+<li>Fixed kubernetes-worker unable to restart services after kubernetes-master leader is removed (<a class="p-link--external" href="https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/627">Issue</a>)</li>
+<li>Fixed kubeapi-load-balancer default timeout might be too low (<a class="p-link--external" href="https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/650">Issue</a>)</li>
+<li>Fixed unable to deploy on NVidia hardware (<a class="p-link--external" href="https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/664">Issue</a>)</li>
 </ul>
 <h2 id="known-issues">Known issues</h2>
 <ul>
@@ -55,7 +55,7 @@
 </ul>
 <h2 id="contact-us">Contact Us</h2>
 <ul>
-<li>Issues: <a href="https://github.com/juju-solutions/bundle-canonical-kubernetes/issues">https://github.com/juju-solutions/bundle-canonical-kubernetes/issues</a></li>
+<li>Issues: <a class="p-link--external" href="https://github.com/juju-solutions/bundle-canonical-kubernetes/issues">https://github.com/juju-solutions/bundle-canonical-kubernetes/issues</a></li>
 <li>IRC: #juju on freenode.net</li>
 </ul>
 

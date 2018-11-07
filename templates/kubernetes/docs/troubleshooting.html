@@ -71,8 +71,8 @@ Machine  State    DNS             Inst id              Series  AZ          Messa
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> ssh easyrsa/0</code></pre></div>
 <p>This will automatically ssh you to the easyrsa unit.</p>
 <h2 id="collecting-debug-information">Collecting debug information</h2>
-<p>Sometimes it is useful to collect all the information from a cluster to share with a developer to identify problems. This is best accomplished with <a href="https://github.com/juju-solutions/cdk-field-agent">CDK Field Agent</a>.</p>
-<p>Download and execute the collect.py script from <a href="https://github.com/juju-solutions/cdk-field-agent">CDK Field Agent</a> on a box that has a Juju client configured with the current controller and model pointing at the CDK deployment of interest.</p>
+<p>Sometimes it is useful to collect all the information from a cluster to share with a developer to identify problems. This is best accomplished with <a class="p-link--external" href="https://github.com/juju-solutions/cdk-field-agent">CDK Field Agent</a>.</p>
+<p>Download and execute the collect.py script from <a class="p-link--external" href="https://github.com/juju-solutions/cdk-field-agent">CDK Field Agent</a> on a box that has a Juju client configured with the current controller and model pointing at the CDK deployment of interest.</p>
 <p>Running the script will generate a tarball of system information and includes basic information such as systemctl status, Juju logs, charm unit data, etc. Additional application-specific information may be included as well.</p>
 <h2 id="common-problems">Common Problems</h2>
 <h3 id="load-balancer-interfering-with-helm">Load Balancer interfering with Helm</h3>

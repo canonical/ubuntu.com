@@ -10,9 +10,9 @@
 <h1 id="upgrade-notes">Upgrade notes</h1>
 <p>This page is intended to deal with specific, special circumstances you may encounter when upgrading between versions of the <strong>Canonical Distribution of Kubernetes<sup>®</sup>.</strong> The notes are organised according to the upgrade path below, but also be aware that any upgrade that spans more than one minor version may need to beware of notes in any of the intervening steps.</p>
 <h2 id="upgrading-from-1.9.x-to-1.10.x">Upgrading from 1.9.x to 1.10.x</h2>
-<p>This upgrade includes a transistion between major versions of <strong>etcd</strong>, from 2.3 to 3.x. Between these releases, <strong>etcd</strong> changed the way it accesses storage, so it is necessary to reconfigure this. There is more detailed information on the change and the upgrade proceedure in the <a href="https://github.com/etcd-io/etcd/blob/master/Documentation/upgrades/upgrade_3_0.md">upstream <strong>etcd</strong> documentation</a>.</p>
+<p>This upgrade includes a transistion between major versions of <strong>etcd</strong>, from 2.3 to 3.x. Between these releases, <strong>etcd</strong> changed the way it accesses storage, so it is necessary to reconfigure this. There is more detailed information on the change and the upgrade proceedure in the <a class="p-link--external" href="https://github.com/etcd-io/etcd/blob/master/Documentation/upgrades/upgrade_3_0.md">upstream <strong>etcd</strong> documentation</a>.</p>
 <p>!!! Warning: This upgrade <strong>must</strong> be completed before attempting to upgrade the running cluster.</p>
-<p>To make this upgrade more convenient for users of <strong>CDK</strong>, a script has been prepared to manage the transition. The script can be <a href="https://raw.githubusercontent.com/juju-solutions/cdk-etcd-2to3/master/migrate">examined here</a>.</p>
+<p>To make this upgrade more convenient for users of <strong>CDK</strong>, a script has been prepared to manage the transition. The script can be <a class="p-link--external" href="https://raw.githubusercontent.com/juju-solutions/cdk-etcd-2to3/master/migrate">examined here</a>.</p>
 <p>To use the script to update <strong>etcd</strong>, follow these steps:</p>
 <ol style="list-style-type: decimal">
 <li><p>Download the script with the command:</p>

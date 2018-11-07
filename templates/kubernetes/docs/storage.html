@@ -9,9 +9,9 @@
 {% block content %}
 <h1 id="storage">Storage</h1>
 <p>On-disk files in a container are ephemeral and can't be shared with other members of a pod. For some applications, this is not an issue, but for many persistent storage is required.</p>
-<p>The <strong>Canonical Distribution of Kubernetes</strong><sup>®</sup> makes it easy to add and configure different types of persistent storage for your <strong>Kubernetes</strong> cluster, as outlined below. For more detail on the concept of storage volumes in <strong>Kubernetes</strong>, please see the <a href="https://kubernetes.io/docs/concepts/storage/">Kubernetes documentation</a>.</p>
+<p>The <strong>Canonical Distribution of Kubernetes</strong><sup>®</sup> makes it easy to add and configure different types of persistent storage for your <strong>Kubernetes</strong> cluster, as outlined below. For more detail on the concept of storage volumes in <strong>Kubernetes</strong>, please see the <a class="p-link--external" href="https://kubernetes.io/docs/concepts/storage/">Kubernetes documentation</a>.</p>
 <h2 id="ceph-storage">Ceph storage</h2>
-<p><strong>CDK</strong> can make use of <a href="https://ceph.com/">Ceph</a> to provide persistent storage volumes. The following sections assume you have already deployed a <strong>CDK</strong> cluster and you have internet access to the <strong>Juju</strong> Charm Store.</p>
+<p><strong>CDK</strong> can make use of <a class="p-link--external" href="https://ceph.com/">Ceph</a> to provide persistent storage volumes. The following sections assume you have already deployed a <strong>CDK</strong> cluster and you have internet access to the <strong>Juju</strong> Charm Store.</p>
 <h3 id="deploy-ceph">Deploy Ceph</h3>
 <p>Check that the current <strong>Juju</strong> model is the one where you wish to deploy <strong>Ceph</strong></p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> switch</code></pre></div>
@@ -37,7 +37,7 @@
 <p>juju deploy -n 3 ceph-osd --storage osd-devices=32G,2 --storage osd-journals=8G,1 ```</p>
 <div class="p-notification--positive">
 <p class="p-notification__response">
-<span class="p-notification__status">Note:</span> For a more detailed explanation of Juju's storage pools and options, please see the relevant <a href="https://docs.jujucharms.com/stable/en/charms-storage"> Juju documentation</a>.
+<span class="p-notification__status">Note:</span> For a more detailed explanation of Juju's storage pools and options, please see the relevant <a class="p-link--external" href="https://docs.jujucharms.com/stable/en/charms-storage"> Juju documentation</a>.
 </p>
 </div>
 <p>Note that actually deploying these charms with storage may take some time, but you can continue</p>
@@ -94,7 +94,7 @@ pod/csi-rbdplugin-provisioner-0                        1/1       Running   0    
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-storage ceph-osd/2 --storage osd-devices=32G,2</code></pre></div>
 <h3 id="using-a-separate-juju-model">Using a separate <strong>Juju</strong> model</h3>
 <p>In some circumstances it can be useful to locate the persistent storage in a different <strong>Juju</strong> model, for example to have one set of storage used by different clusters. The only change required is in adding relations between <strong>Ceph</strong> and CDK.</p>
-<p>For more information on how to achieve this, please see the <a href="https://docs.jujucharms.com/stable/en/models-cmr">Juju documentation</a> on cross-model relations.</p>
+<p>For more information on how to achieve this, please see the <a class="p-link--external" href="https://docs.jujucharms.com/stable/en/models-cmr">Juju documentation</a> on cross-model relations.</p>
 <h2 id="nfs">NFS</h2>
 <p>It is possible to add simple storage for <strong>Kubernetes</strong> using NFS. In this case, the storage is implemented on the root disk of units running the <code>nfs</code> charm.</p>
 <h3 id="deploy-nfs">Deploy NFS</h3>

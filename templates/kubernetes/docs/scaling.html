@@ -16,7 +16,7 @@
 <p>To add multiple units, you can also specify a numerical value</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-unit kubernetes-master -n 3</code></pre></div>
 <h2 id="kubernetes-worker">kubernetes-worker</h2>
-<p>As the <strong>Kubernetes</strong> worker nodes handle the actual workloads, they usually run on machines with more resources. The resource profile of units is maintained by <strong>Juju</strong> using <a href="https://docs.jujucharms.com/stable/en/reference-constraints">constraints</a>.</p>
+<p>As the <strong>Kubernetes</strong> worker nodes handle the actual workloads, they usually run on machines with more resources. The resource profile of units is maintained by <strong>Juju</strong> using <a class="p-link--external" href="https://docs.jujucharms.com/stable/en/reference-constraints">constraints</a>.</p>
 <p>You can check the current constraints with the command:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> get-constraints kubernetes-worker</code></pre></div>
 <p>Which will return the current settings, for example:</p>
@@ -56,7 +56,7 @@ Constraints are designed to supply the <i>minimum</i> of what is requested. This
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> enable-ha</code></pre></div>
 <p>You can verify the additional machines have been added by listing the machines in the controller model:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> machines -m controller</code></pre></div>
-<p>For a more detailed guide, please refer to the <a href="https://docs.jujucharms.com/stable/en/controllers-ha">Juju high availability documentation</a>.</p>
+<p>For a more detailed guide, please refer to the <a class="p-link--external" href="https://docs.jujucharms.com/stable/en/controllers-ha">Juju high availability documentation</a>.</p>
 <!-- LINKS -->
 
 {% endblock content %}
