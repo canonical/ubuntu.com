@@ -46,6 +46,7 @@
 </aside>
 
 <script>
+  // Select the active navigation item
   var navigation = document.getElementById('docs-navigation');
   var links = navigation.getElementsByTagName('a');
   var currentPage = window.location.pathname;
@@ -55,4 +56,16 @@
       link.classList.add('is-active');
     }
   };
+</script>
+
+<script>
+  // Toggle mobile sidebar nav
+  var toggle = document.querySelector('.p-sidebar__toggle');
+  var sidebarContent = document.querySelector('.p-sidebar__content');
+
+  toggle.addEventListener('click', function(e) {
+    toggle.classList.toggle('p-icon--menu');
+    toggle.classList.toggle('p-icon--close');
+    sidebarContent.classList.toggle('u-hide--small');
+  });
 </script>

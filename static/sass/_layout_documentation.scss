@@ -5,22 +5,35 @@
     @include row;
     display: flex;
 
+    @media (max-width: $breakpoint-medium) {
+      flex-direction: column;
+    }
+
     &__sidebar {
-      border-right: 0.0625rem solid $color-mid-light;
+      border-right: 1px solid $color-mid-light;
       flex: 0 0 18rem;
+
+      @media (max-width: $breakpoint-medium) {
+        border-bottom: 1px solid $color-mid-light;
+        border-right: 0;
+        flex: 1;
+        flex-direction: column;
+      }
     }
 
     &__content {
       flex: 5;
-      padding-left: 5%;
       margin-top: 2rem;
+      padding-left: 5%;
     }
   }
 }
 
 @mixin pattern-sidebar-nav {
   .p-sidebar-nav {
-    margin-top: 2rem;
+    @media (min-width: $breakpoint-medium) {
+      margin-top: 2rem;
+    }
 
     &__list {
       @extend .p-list;
@@ -59,5 +72,15 @@
     &__item > &__list {
       padding-left: $sph-intra;
     }
+  }
+
+  .p-sidebar__banner {
+    text-align: right;
+  }
+
+  .p-sidebar__toggle {
+    background-size: 1rem;
+    cursor: pointer;
+    padding: 2rem;
   }
 }
