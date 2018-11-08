@@ -16,18 +16,15 @@
 </ul>
 <h2 id="deploying-ceph">Deploying Ceph</h2>
 <p>Setting up a Ceph cluster is easy with Juju. For this example we will deploy three ceph monitor nodes:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"> <span class="ex">juju</span> deploy -n 3 ceph-mon
- <span class="kw">```</span>
+<pre><code><span class="ex">juju</span> deploy -n 3 ceph-mon</code></pre>
 
- <span class="ex">...and</span> then we<span class="st">&#39;ll add three storage nodes. For the storage nodes, we will also</span>
-<span class="st"> specify some actual  storage for these nodes to use by using `-- storage`. In</span>
-<span class="st"> this case the Juju charm uses labels for different types of storage:</span></code></pre></div>
-<p>juju deploy -n 3 ceph-osd --storage osd-devices=32G,2 --storage osd-journals=8G,1 ```</p>
+ <p>...and</span> then we<span class="st">&#39;ll add three storage nodes. For the storage nodes, we will also specify some actual  storage for these nodes to use by using <code>-- storage</code>. In this case the Juju charm uses labels for different types of storage:</p>
+<pre><code>juju deploy -n 3 ceph-osd --storage osd-devices=32G,2 --storage osd-journals=8G,1</code></pre>
 <p>This will deploy a storage node, and attach two 32GB devices for storage and 8GB for journalling. As we have asked for 3 machines, this means a total of 192GB of storage and 24GB of journal space. The storage comes from whatever the default storage class is for the cloud (e.g., on AWS this will be EBS volumes).</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">juju</span> add-relation ceph-osd ceph-mon</code></pre></div>
+<pre><code><span class="ex">juju</span> add-relation ceph-osd ceph-mon</code></pre>
 <div class="p-notification--information">
 <p class="p-notification__response">
-<pre><code>&lt;span class=&quot;p-notification__status&quot;&gt;Note:&lt;/span&gt;</code></pre>
+<span class="p-notification__status">Note:</span>
 For more on how Juju makes use of storage, please see the relevant <a class="p-link--external" href="https://docs.jujucharms.com/stable/en/charms-storage"> Juju documentation</a>
 </p>
 </div>
