@@ -74,7 +74,7 @@
     <div class="col-12">
       <ol class="p-stepped-list--detailed">
         <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">1</span>Minimum requirements<sup>*</sup></h3>
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">1</span>Minimum requirements</h3>
           <div class="p-list-step__content">
             <p>4 x Intel, POWER or ARM servers each with:</p>
             <ul class="p-list">
@@ -274,7 +274,7 @@
         <h3 class="p-list-step__title"><span class="p-list-step__bullet">1</span>Minimum requirements</h3>
         <div class="p-list-step__content">
           <ul class="p-list">
-            <li class="p-list__item">Single machine with 16GB RAM running Ubuntu 16.04 LTS or later</li>
+            <li class="p-list__item">Single machine with 16GB RAM running Ubuntu 16.04 LTS or later and at least 40GB of free disk space</li>
             <li class="p-list__item">Approximately one hour to complete the process</li>
           </ul>
         </div>
@@ -287,16 +287,19 @@
           <p>Follow these step-by-step instructions.</p>
           <p><strong>conjure-up</strong> requires a minimum version of LXD of <strong>3.0.0</strong>. Additionally, LXD should be configured prior to running.</p>
           <p>To install LXD run the following:</p>
+          <p>
+            <a href="https://snapcraft.io/">Snaps</a> are the recommended installation method for LXD, If you need to enable snap packages:
+          </p>
           <div class="p-code-snippet">
             <input aria-label="code snippet" class="p-code-snippet__input" value="sudo snap install lxd" readonly="readonly">
             <button class="p-code-snippet__action">Copy to clipboard</button>
           </div>
+          <p>For the best experience, it is recommended to migrate from the <strong>deb</strong> LXD packaging. This will move all container specific data to the snap version and clean up the unused debian packages.  So, if you already had the the lxd package installed, run lxd.migrate. When prompted, uninstall the old LXD version so that only the snap version is available.</p>
           <div class="p-code-snippet">
             <input aria-label="code snippet" class="p-code-snippet__input" value="sudo lxd.migrate" readonly="readonly">
             <button class="p-code-snippet__action">Copy to clipboard</button>
           </div>
-          <p><a href="https://snapcraft.io/">Snaps</a> are the recommended installation method for LXD. For the best experience, it is recommended to migrate from the <strong>deb</strong> LXD packaging. This will move all container specific data to the snap version and clean up the unused debian packages. When prompted, uninstall the old LXD version so that only the snap version is available.</p>
-          <p>After running lxd.migrate, it is necessary to configure a network bridge and add a storage pool. While mostly default options can be used, it is important that the storage pool is created and named &ldquo;default&rdquo; and that the network bridge is created and named &ldquo;lxdbr0&rdquo;.</p>
+          <p>Now that lxd has been installed it needs to be initialised to set up, among other things, a network bridge and a storage pool. While mostly default options can be used, check the table below and ensure your answers match.</p>
           <pre><code>$ sudo lxd init
 Would you like to use LXD clustering? (yes/no) [default=no]:
 Do you want to configure a new storage pool? (yes/no) [default=yes]:
@@ -304,46 +307,21 @@ Name of the new storage pool [default=default]:
 Name of the storage backend to use (btrfs, ceph, dir, lvm, zfs) [default=zfs]:
 Create a new ZFS pool? (yes/no) [default=yes]:
 Would you like to use an existing block device? (yes/no) [default=no]:
-Size in GB of the new loop device (1GB minimum) [default=100GB]:
+Size in GB of the new loop device (1GB minimum) [default=40GB]:
 Would you like to connect to a MAAS server? (yes/no) [default=no]:
 Would you like to create a new local network bridge? (yes/no) [default=yes]:
 What should the new bridge be called? [default=lxdbr0]:
 What IPv4 address should be used? (CIDR subnet notation, "auto"; or "none") [default=auto]: 10.8.8.1/24
-Would you like LXD to NAT IPv4 traffic on your bridge? [default=yes]:
+What IPv6 address should be used? [default=none]:
 What IPv6 address should be used? (CIDR subnet notation, "auto" or "none") [default=auto]: none
 Would you like LXD to be available over the network? (yes/no) [default=no]:
 Would you like stale cached images to be updated automatically? (yes/no) [default=yes]
-Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:</pre></code>
+Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:</code></pre>
             <p>Then install conjure-up:</p>
             <div class="p-code-snippet">
               <input aria-label="code snippet" class="p-code-snippet__input" value="sudo snap install conjure-up --classic" readonly="readonly">
               <button class="p-code-snippet__action">Copy to clipboard</button>
             </div>
-
-          <div class="p-notification--caution">
-            <div class="p-notification__response">
-              <p class="u-no-padding--top">
-                <span class="p-notification__status">Note:</span>
-              </p>
-              <p>If you need to enable snap packages for installation of lxd of conjure-up then:</p>
-              <p class="p-code-snippet">
-                <input aria-label="code snippet" class="p-code-snippet__input" value="sudo apt update && sudo apt upgrade" readonly="readonly">
-                <button class="p-code-snippet__action">Copy to clipboard</button>
-              </p>
-              <p class="p-code-snippet">
-                <input aria-label="code snippet" class="p-code-snippet__input" value="sudo apt install snapd" readonly="readonly">
-                <button class="p-code-snippet__action">Copy to clipboard</button>
-              </p>
-              <p>Now logout and login, or run:</p>
-              <p class="p-code-snippet">
-                <input aria-label="code snippet" class="p-code-snippet__input" value="source /etc/profile.d/apps-bin-path.sh" readonly="readonly">
-                <button class="p-code-snippet__action">Copy to clipboard</button>
-              </p>
-              <p>
-                  Now you can resume the snap install conjure-up step.
-              </p>
-            </div>
-          </div>
         </div>
       </li>
       <li class="p-list-step__item col-12">
@@ -354,16 +332,16 @@ Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:</
             <input aria-label="code snippet" class="p-code-snippet__input" value="conjure-up" readonly="readonly">
             <button class="p-code-snippet__action">Copy to clipboard</button>
           </div>
-          <p>You will see a menu of 'spells' which are descriptions of distributed software systems that conjure-up can deploy for you. Choose &lsquo;OpenStack with LXD&rsquo;.</p>
+          <p>You will see a menu of 'spells' which are descriptions of distributed software systems that conjure-up can deploy for you. Choose &lsquo;OpenStack with NovaLXD&rsquo;.</p>
           <img src="{{ ASSET_SERVER_URL }}23a02e6d-conjure-up-install-openstack.png?w=444" width="444" alt="screenshot of the conjure-up interface with the 'OpenStack with NovaLXD' option selected" />
         </div>
       </li>
       <li class="p-list-step__item col-12">
         <h3 class="p-list-step__title"><span class="p-list-step__bullet">4</span>Follow the on-screen instructions</h3>
         <div class="p-list-step__content">
-          <p>Complete the installation of OpenStack using conjure-up. You will be prompted for:</p>
+          <p>The conjure-up wizard will now prompt you for:</p>
           <ol>
-            <li>A selection from a list of recommended spells &mdash; Here we&rsquo;re using &ldquo;OpenStack with NovaLXD&rdquo;.</li>
+            <li>A selection from a list of recommended spells &mdash; Here we&rsquo;re using &ldquo;OpenStack with Nova-LXD&rdquo;.</li>
             <li>A cloud for the deployment &mdash; Here we&rsquo;re going to &ldquo;Configure a New Cloud&rdquo; to live on &ldquo;localhost&rdquo;.</li>
             <li>A network bridge and storage pool &mdash; Here we&rsquo;ll use &ldquo;lxdbr0&rdquo; and &ldquo;default&rdquo; as created prior to installing conjure-up in Step 2 of this guide.</li>
             <li>An SSH public key path &mdash; Here we&rsquo;ll use the default location of &ldquo;<code>~/.ssh/id_rsa.pub</code>&rdquo;.</li>
@@ -372,6 +350,31 @@ Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:</
           <p>When ready, hit &ldquo;Deploy&rdquo;, and conjure-up will begin the deployment. This will take on the order of one hour to run to completion.</p>
           <p>When the deployment is completed, go to the URL displayed in the summary screen and login with the provided credentials.</p>
           <img src="{{ ASSET_SERVER_URL }}6f24640b-conjure-up-openstack-horizon.png?w=444" width="444" alt="screenshot of the conjure-up interface with the 'OpenStack with NovaLXD' option selected" />
+          <p>Make sure that create New Volume is set to "no" when creating an instance.</p>
+        </div>
+      </li>
+      <li class="p-list-step__item col-12">
+        <h3 class="p-list-step__title"><span class="p-list-step__bullet">5</span>Launch an instance</h3>
+        <div class="p-list-step__content">
+          <p>Conjure-up will have created the basic building blocks for launching an instance . To launch an instance on the new cloud using the Openstack Dashboard, Horizon:</p>
+          <ol>
+            <li>Projects -&gt; Compute -&gt; Instances -&gt; Launch Instance</li>
+            <li>Details:
+              <ol type="a">
+                <li>Instance name: <strong>test</strong></li>
+              </ol>
+            </li>
+            <li>Source: 
+              <ol type="a">
+                <li>Select Boot Source: <strong>Image</strong></li>
+                <li>Create New Volume: <strong>No</strong></li>
+                <li>Available: <strong>bionic-lxd &#x2b06;</strong></li>
+              </ol>
+            </li>
+            <li>Flavor: <strong>m1.tiny &#x2b06;</strong></li>
+            <li>Networks: <strong>internal &#x2b06;</strong></li>
+            <li>Launch instance</li>
+          </ol>
         </div>
       </li>
     </ol>
