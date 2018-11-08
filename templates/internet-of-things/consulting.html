@@ -1,0 +1,56 @@
+{% extends "internet-of-things/base_things.html" %}
+
+{% block title %}Consulting | Ubuntu for the Internet of Things {% endblock %}
+{% block meta_description %}Ubuntu Core is the perfect robust, reliable and secure OS host for the edge gateways and it&rsquo;s deployment.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1np8qOhHa0qwsw6hW16OchIEWyes9wdYGuia7Wft9xfQ/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-7 suffix-1">
+        <h1>IoT device consulting, design and delivery</h1>
+        <h4>Getting your devices deployed safely and securely is our business.</h4>
+        <button class="p-button--positive">Talk to our IoT experts about your requirements</button>
+        <p><a href="https://assets.ubuntu.com/v1/72fe0b54-canonical-foundation-cloud-build-datasheet-20180713.pdf" class="p-link--external">Read our consulting datasheet</a></p>
+        <div class="col-7 u-hide--medium u-hide--large u-align--center" style="padding-top: 1em;">
+          <img class="row-hero__image" src="{{ ASSET_SERVER_URL }}b181a602-iot_edge_gateways_infographic.svg" width="300" alt="" />
+        </div>
+      </div>
+      <div class="u-vertically-center col-5 u-align--center u-hide--small">
+        <img class="row-hero__image" src="{{ ASSET_SERVER_URL }}b181a602-iot_edge_gateways_infographic.svg" alt="" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+    <div class="row">
+        <h2>From design to deployment - IoT delivery on rails</h2>
+      </div>
+    <div class="row">
+      <h3 class="p-heading--four">What's available with [consultancy package name]</h3>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <h4>Heading 2</h4>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">[Text describing consultancy features]</li>
+          <li class="p-list__item is-ticked">[Text describing consultancy features]</li>
+          <li class="p-list__item is-ticked">[Text describing consultancy features]</li>
+          <li class="p-list__item is-ticked">[Text describing consultancy features]</li>
+        </ul>
+      </div>
+      <div class="col-6">
+        <h4>Heading 2</h4>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">[Text describing consultancy features]</li>
+          <li class="p-list__item is-ticked">[Text describing consultancy features]</li>
+          <li class="p-list__item is-ticked">[Text describing consultancy features]</li>
+          <li class="p-list__item is-ticked">[Text describing consultancy features]</li>
+        </ul>
+      </div>
+    </div>
+</section>
+{% include "shared/contextual_footers/_contextual_footer.html" with first_item="_iot_developers" second_item="_iot_newsletter_signup" third_item="_iot_further_reading" %} {% endblock content %}
