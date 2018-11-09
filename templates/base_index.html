@@ -7,8 +7,11 @@
 
 {% block outer_content %}
   {% block content %}
-    {% block takeover_content %}
-    {% endblock takeover_content %}
+    <template id="takeovers" class="u-hide">
+      {% block takeover_content %}
+      {% endblock takeover_content %}
+    </template>
+
     <section class="p-strip--accent is-shallow is-dark">
       <div class="row">
         <div class="col-12">
