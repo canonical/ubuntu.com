@@ -149,44 +149,63 @@
         }
       };
     </script>
+
     <script>
       if (window.localStorage && window.sessionStorage) {
-        var takeovers = document.getElementsByClassName('js-takeover');
-        for (t = 0; t < takeovers.length; ++t) {
-            // hide all takeovers
-            takeovers[t].classList.add('u-hide');
-        }
+        /**
+         * Choose a takeover
+         * ===
+         * 
+         * From the list of provided takeovers in the #takeovers template,
+         * choose one (that matches the client's language), and replace the
+         * base template with it.
+         */
+
+        var baseTakeover = document.querySelector('section#takeover');  // The base takeover element
+        var takeovers = document.querySelector('template#takeovers');  // The list of current takeovers to choose from
+
+        // For browsers that support <template> (all but IE), grab the template's ".content"
+        takeovers = 'content' in takeovers ? takeovers.content: takeovers;
+
         // get the users language and remove any extra detail suffix (e.g. -gb)
         var browserLanguage = detectLanguage();
         var languageClass = browserLanguage || 'en';
         languageClass = languageClass.split('-')[0];
 
-        // set the default takeover or if use the first one
-        var defaultTakeovers = document.querySelectorAll(
-          '.js-takeover[data-default="true"]'
-        );
-        if (!defaultTakeovers) {
-          defaultTakeovers = takeovers[0];
-        }
-
         // find any takeovers that match the users language
         var queryLang = ".js-takeover[data-lang*='"+languageClass+"']";
         var queryAll = ".js-takeover[data-lang*='all']";
-        var takeoversFiltered = (document.querySelectorAll([queryLang,queryAll].join(',')));
+        var takeoversFiltered = (takeovers.querySelectorAll([queryLang,queryAll].join(',')));
 
-        takeoversFiltered = (takeoversFiltered.length) ? takeoversFiltered : defaultTakeovers;
+        // If we have any takeovers
+        if (takeoversFiltered) {
+          var selectedIndex = null;
 
-        if (!localStorage.getItem('TAKEOVER')) {
-          var i = Math.floor(Math.random() * takeoversFiltered.length);
-          localStorage.setItem('TAKEOVER', i);
-        } else {
-          var i = parseInt(localStorage.getItem('TAKEOVER')) + 1;
-          if (i >= takeoversFiltered.length) {
-            i = 0;
+          if (
+            localStorage.getItem('selected_takeover_index') !== null &&
+            parseInt(localStorage.getItem('selected_takeover_index')) < takeoversFiltered.length
+          ) {
+            // If we previously chose a takeover, use that one
+            selectedIndex = parseInt(localStorage.getItem('selected_takeover_index'))
+          } else {
+            // Otherwise, randomly choose one of the takeovers and store it for next time
+            var selectedIndex = Math.floor(Math.random() * takeoversFiltered.length);
+            localStorage.setItem('selected_takeover_index', selectedIndex)
           }
+
+          // Get the takeover element
+          var selectedTakeover = takeoversFiltered[selectedIndex]
+
+          if (! document.body.contains(selectedTakeover)) {
+            // If it's not in the current document (as in, it's in a template) import it
+            // Note: This is for all browser *except* IE, which doesn't support <template>s
+            selectedTakeover = document.importNode(selectedTakeover, true);
+          }
+
+          // Replace the base takeover with the new one
+          // Note: We can't use Node.replaceWith (which would be nice), as it's not supported in IE
+          baseTakeover.parentNode.replaceChild(selectedTakeover, baseTakeover)
         }
-        localStorage.setItem('TAKEOVER', i);
-        takeoversFiltered[i].classList.remove('u-hide');
       }
     </script>
   {% endblock content %}
