@@ -1,0 +1,133 @@
+{% extends "engage/base_engage.html" %}
+
+{% block meta_description %}The choice of operating system for a robot affects long-term production performance.
+Securing a long term, stable and profitable lifespan for your robot requires the right OS. {% endblock %}
+
+{% block title %}Book a meeting with the Ubuntu team{% endblock %}
+
+{% block content %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h1>Book a meeting <br class="u-hide--small">with the Ubuntu team</h1>
+      <p>As the leading OpenStack and Kubernetes OS, we'd love to discuss your multi-cloud use cases and how we can
+        increase efficiency and reduce costs for you. </p>
+      <p class="p-heading--three">We are at the <a href="https://blog.ubuntu.com/2018/10/29/openstack-summit-berlin">OpenStack Summit Berlin</a>, from November 13 to 15, Booth B10.</p>
+      <p>Just fill in the meeting request below and a member of our team will be in touch within one working day.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_3299">
+        <fieldset>
+          <h3>About you</h3>
+          <ul class="p-list">
+            <li class="mktFormReq mktField p-list__item">
+              <label for="FirstName" class="mktoLabel">First name:</label>
+              <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" />
+            </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="LastName" class="mktoLabel">Last name:</label>
+              <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" />
+            </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Email" class="mktoLabel">Email address:</label>
+              <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
+            </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Phone" class="mktoLabel">Phone number:</label>
+              <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" />
+            </li>
+          </ul>
+        </fieldset>
+        <fieldset>
+          <h3>About your company</h3>
+          <ul class="p-list">
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Company" class="mktoLabel">Company name:</label>
+              <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired" />
+            </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Title" class="mktoLabel">Job title:</label>
+              <input required id="Title" name="Title" maxlength="255" type="text" class="mktoField mktoRequired" />
+            </li>
+          </ul>
+        </fieldset>
+        <fieldset>
+          <h3>The meeting</h3>
+          <ul class="p-list">
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Comments_from_lead__c" class="mktoLabel">What would you like to talk to us about? In doubt, just come by Booth B10.</label>
+              <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="4" class="mktoField mktoRequired"
+                maxlength="2000"></textarea>
+            </li>
+          </ul>
+        </fieldset>
+        <fieldset>
+          <ul class="p-list">
+            <li class="mktField p-list__item">
+              <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+              <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about
+                Canonical’s products and services.</label>
+            </li>
+            <li class="p-list__item">
+              In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical&rsquo;s
+                Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
+            </li>
+          </ul>
+          <ul class="p-list">
+            <li class="p-list__item">
+              <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
+            </li>
+          </ul>
+          <ul class="p-list u-no-margin--bottom">
+            <li class="mktField p-list__item">
+              <button type="submit" class="mktoButton p-button--positive">Request a meeting</button>
+            </li>
+          </ul>
+          <!-- hidden fields -->
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" value="{{utm_source}}" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" value="{{utm_medium}}" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" value="{{utm_campaign}}" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formValidation" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" class="mktoField" value="3299" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="munchkinId" class="mktoField" value="066-EOV-335" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="cr" class="mktoField" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpId" class="mktoField" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="subId" class="mktoField" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpurl" class="mktoField" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="kw" class="mktoField" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="q" class="mktoField" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="https://www.ubuntu.com/contact-us/form/thank-you" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="retURL" value="https://www.ubuntu.com/contact-us/form/thank-you" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
+        </fieldset>
+      </form>
+    </div>
+
+
+    <div class="col-4">
+      <div class="p-card">
+        <h3 class="p-card__title">Any questions? Call us</h3>
+        {% include "shared/_call-sales-long.html" %}
+      </div>
+    </div>
+  </div>
+
+
+    <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
+    <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
+    <script>
+      $("#mktoForm_3299").validate({
+        errorElement: "span",
+        errorClass: "mktFormMsg mktError",
+        onkeyup: false,
+        onclick: false,
+        onblur: false
+      });
+    </script>
+
+</section>
+{% endblock content %}
