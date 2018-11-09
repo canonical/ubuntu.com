@@ -1,4 +1,4 @@
-<section lang="en" data-lang="{{ locale }}" class="p-strip--image is-dark is-deep u-image-position js-takeover p-takeover--1810--webinar {% if not default %}u-hide{% endif %}" {% if default %}data-default="true"{% endif %}>
+<section data-lang="{{ locale }}" class="p-strip--image is-dark is-deep u-image-position js-takeover p-takeover--1810--webinar">
     <div class="row u-vertically-center">
       <div class="col-6" >
         <h1 style="font-weight: 100;">What’s new in <br/>Ubuntu 18.10</h1>
@@ -79,26 +79,25 @@
       <p class="u-hide--large  u-hide--medium"><a href="https://www.brighttalk.com/webcast/6793/339391" class="p-button--neutral">Watch the webinar now</a></p>
       </div>
     </div>
+
+    <style>
+        .p-takeover--1810--webinar {
+          position: relative;
+          background-color: #5E2750;
+          background-image: linear-gradient(110deg, #5E2750 20%, #2C001E 46%, #2C001E 60%); 
+        }
+        
+        @media (max-width: 874px) {
+          .p-takeover--1810--webinar {
+            position: relative;
+            background-color: #5E2750;
+            background-image: linear-gradient(150deg, #5E2750 20%, #2C001E 46%, #2C001E 60%); 
+          }
+          
+          .p-takeover--1810--webinar .cuttlefish {
+            margin-top: -10px;
+            width: 100%;
+          }
+        }
+      </style>
   </section>
-  
-  <style>
-  
-    .p-takeover--1810--webinar {
-      position: relative;
-      background-color: #5E2750;
-      background-image: linear-gradient(110deg, #5E2750 20%, #2C001E 46%, #2C001E 60%); 
-    }
-    
-    @media (max-width: 874px) {
-      .p-takeover--1810--webinar {
-        position: relative;
-        background-color: #5E2750;
-        background-image: linear-gradient(150deg, #5E2750 20%, #2C001E 46%, #2C001E 60%); 
-      }
-      
-      .p-takeover--1810--webinar .cuttlefish {
-        margin-top: -10px;
-        width: 100%;
-      }
-    }
-  </style>
