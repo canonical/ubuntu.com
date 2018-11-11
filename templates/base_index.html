@@ -139,15 +139,16 @@
       if (window.localStorage && window.sessionStorage) {
         var takeovers = document.getElementsByClassName('js-takeover');
         for (t = 0; t < takeovers.length; ++t) {
-            // hide all takeovers
-            takeovers[t].classList.add('u-hide');
+          // hide all takeovers
+          takeovers[t].classList.add('u-hide');
         }
+
         // get the users language and remove any extra detail suffix (e.g. -gb)
         var browserLanguage = detectLanguage();
         var languageClass = browserLanguage || 'en';
         languageClass = languageClass.split('-')[0];
 
-        // set the default takeover or if use the first one
+        // set the default takeover or not if use the first one
         var defaultTakeovers = document.querySelectorAll(
           '.js-takeover[data-default="true"]'
         );
@@ -173,6 +174,11 @@
         }
         localStorage.setItem('TAKEOVER', i);
         takeoversFiltered[i].classList.remove('u-hide');
+        var images = takeoversFiltered[i].getElementsByTagName('img');
+        for(var i = 0 ; i < images.length; i++) {
+          images[i].src = images[i].getAttribute('data-src');
+          images[i].alt = images[i].getAttribute('data-alt');
+        } 
       }
     </script>
   {% endblock content %}
