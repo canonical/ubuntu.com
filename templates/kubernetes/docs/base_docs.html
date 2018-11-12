@@ -5,7 +5,41 @@
 {% block outer_content %}
   <div class="l-documentation">
     <div class="l-documentation__sidebar">
-    {% include "kubernetes/docs/shared/_side-navigation.html" %}
+      <aside class="p-sidebar" id="docs-navigation">
+        <div class="p-sidebar__banner u-hide--medium u-hide--large">
+          <i class="p-sidebar__toggle p-icon--menu"></i>
+        </div>
+        <div class="p-sidebar__content u-hide--small">
+          <nav class="p-sidebar-nav">
+            {% include "kubernetes/docs/shared/_side-navigation.html" %}
+          </nav>
+        </div>
+      </aside>
+
+      <script>
+      // Select the active navigation item
+      var navigation = document.getElementById('docs-navigation');
+      var links = navigation.getElementsByTagName('a');
+      var currentPage = window.location.pathname;
+      for (var i = 0; i < links.length; i++) {
+        var link = links[i];
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('is-active');
+        }
+      };
+      </script>
+
+      <script>
+      // Toggle mobile sidebar nav
+      var toggle = document.querySelector('.p-sidebar__toggle');
+      var sidebarContent = document.querySelector('.p-sidebar__content');
+
+      toggle.addEventListener('click', function(e) {
+        toggle.classList.toggle('p-icon--menu');
+        toggle.classList.toggle('p-icon--close');
+        sidebarContent.classList.toggle('u-hide--small');
+      });
+      </script>
     </div>
     <div class="l-documentation__content">
       {% block content %}{% endblock %}
