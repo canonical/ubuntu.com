@@ -7,18 +7,31 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/13_pUMdikqm7zgff5YY2FJwJ6NLQpiUoMqmZp7Osq6gU/edit{% endblock meta_copydoc %}
 
 {% block content %}
-
-<section class="p-strip--image is-dark p-takeover--compliance-webinar">
+<section class="p-strip--image is-dark p-takeover--compliance">
   <div class="row u-equal-height">
-    <div class="col-7">
-      <h1 style="font-weight: 100;">Securing the enterprise</h1>
-      <h4>Learn how Ubuntu’s trusted security and compliance solutions are at the forefront of solving regulatory issues across a wide range of industries.</h4>
-      <p class="p-takeover__text">
-        Webinar live on Nov 28 - <a href="#register-section" class="p-link--inverted">Register now&nbsp;&rsaquo;</a></p>
-    </div>
+    <div class="row u-vertically-center">
+      <div class="col-6 u-fade-left--medium">
+          <h1 style="font-weight: 100">Securing the enterprise</h1>
+          <p class="u-no-padding--top  u-sv3">Learn how Ubuntu’s trusted security and compliance solutions are at the forefront of solving regulatory issues across a wide range of industries.</p>
+          <p class="u-hide--large u-hide--medium u-align--center"><img src="{{ ASSET_SERVER_URL }}2217d1c8-Security.svg" alt="Compliance Webinar" class="p-compliance-icon u-fade-up"></p>
+            <p class="p-takeover__text">
+              Webinar live on Nov 28 - <a href="#register-section" class="p-link--inverted">Register now&nbsp;&rsaquo;</a></p>
+      </div>
+      <div class="col-5 u-hide--small prefix-1">
+        <img src="{{ ASSET_SERVER_URL }}2217d1c8-Security.svg" alt="Compliance Webinar" class="p-compliance-icon u-fade-up">
+      </div>
   </div>
 </section>
 
+<style>
+  .p-takeover--compliance {
+    background-image: linear-gradient(44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%);
+  }
+  .p-compliance-icon {
+    height: 154px;
+    width: 154px;
+  }
+</style>
 
 <section class="p-strip">
   <div class="row">
