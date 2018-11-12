@@ -1,0 +1,33 @@
+{% extends "engage/base_engage.html" %}
+
+{% block meta_description %}This webinar discusses how Ubuntu’s trusted security and compliance solutions solve regulatory issues across a range of industries, including government, financial services and healthcare.{% endblock %}
+
+{% block title %}Securing the enterprise: how Ubuntu is at the forefront of security & compliance{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/13_pUMdikqm7zgff5YY2FJwJ6NLQpiUoMqmZp7Osq6gU/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--image is-dark p-takeover--compliance-webinar">
+  <div class="row u-equal-height">
+    <div class="col-7">
+      <h1 style="font-weight: 100;">Securing the enterprise</h1>
+      <h4>Learn how Ubuntu’s trusted security and compliance solutions are at the forefront of solving regulatory issues across a wide range of industries.</h4>
+      <p class="p-takeover__text">
+        Webinar live on Nov 28 - <a href="#register-section" class="p-link--inverted">Register now&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-12">
+      <h2 id="register-section" class="p-takeover__title">Ubuntu security and compliance solutions</h2>
+    </div>
+    <div class="jsBrightTALKEmbedWrapper" style="width:900px; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 340102, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>
+  </div>
+</section>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_security_further_reading" second_item="_cloud_newsletter" third_item="_security_esm" %}
+{% endblock content %}
