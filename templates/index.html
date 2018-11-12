@@ -4,26 +4,25 @@
 {% endblock %}
 
 {#
-  TAKEOVER INSTRUCTIONS
+  # Creating takeovers
 
-  - A takeover can belong to all, one or more than one language group.
-    You can build a queue of them to rotate based on the user's language
-    settings. For ones that should appear for all languages, use
-    data-lang="all".  For example data-lang="de" will be for german only,
-    while data-lang="en,de" will be for english and german.
-  - Additionally, you should add a lang tag (eg lang="en" or lang="de")
-    for the takeovers to allow for automatic translation
+  A takeover can belong to all or one language parent group. You can build a queue
+  of them to rotate based on the user's language settings.
+  
+  To designate a takeover to display for a specific language parent group, specify
+  the "lang" attribute on the <section> container. For takeovers that should appear
+  for all languages, simply omit the "lang" attribute.
 
-    EXAMPLE SECTION TAG
+  NB: Only specify parent language groups (e.g. "en", "de"), *not* derivatives (e.g. "en-GB").
 
-      section lang="en" data-lang="all" class="p-strip is-deep p-takeover--robotics js-takeover {% if not default %}u-hide{% endif %}" {% if default %}data-default="true"{% endif %}
+  ## Examples
 
-  - Also, add a 'with default=True' below for one takeover to be the default
-
-  #}
+    <section class="p-strip js-takeover"></section> <!-- For all languages -->
+    <section lang="de" class="p-strip js-takeover"></section> <!-- For german languages only -->
+#}
 
 {% block takeover_content %}
-  {% include "takeovers/_german_takeover_k8.html" with locale="de" %}
-  {% include "takeovers/_german_takeover_openstack_made_easy.html" with locale="de" %}
-  {% include "takeovers/_1810-webinar-takeover.html" with locale="all" %}
+  {% include "takeovers/_german_takeover_k8.html" %}
+  {% include "takeovers/_german_takeover_openstack_made_easy.html" %}
+  {% include "takeovers/_1810-webinar-takeover.html" %}
 {% endblock takeover_content %}
