@@ -135,22 +135,24 @@
     {% block footer_content %}
       {# include "ubuntu/takeovers/_footer_homepage.html" #}
     {% endblock footer_content %}
-    <script>
-      // detect the user's browser's language setting
-      var detectLanguage = function () {
-        var lang = window.navigator.languages ? window.navigator.languages[0] : null;
-        lang = lang || window.navigator.language ||
-        window.navigator.browserLanguage || window.navigator.userLanguage;
 
-        if (lang && lang.length) {
-          return lang;
-        } else {
-          return null
+    <script>
+      function getPrimaryParentLanguage() {
+        /**
+         * Get the primary parent language
+         * 
+         * Get the user's default language, and if it's a sub-language,
+         * infer the parent language - e.g. for "en-GB", infer "en"
+         */
+        var language = navigator.language || navigator.userLanguage || navigator.browserLanguage || navigator.systemLanguage;
+
+        if (language.indexOf('-') !== -1 ) {
+          language = language.split('-')[0];
         }
-      };
-    </script>
 
-    <script>
+        return language
+      };
+
       if (window.localStorage && window.sessionStorage) {
         /**
          * Choose a takeover
@@ -161,40 +163,42 @@
          * base template with it.
          */
 
-        var baseTakeover = document.querySelector('section#takeover');  // The base takeover element
-        var takeovers = document.querySelector('template#takeovers');  // The list of current takeovers to choose from
+        var baseTakeover = document.getElementById('takeover');  // The base takeover element
+        var takeovers = document.getElementById('takeovers');  // The list of current takeovers to choose from
 
         // For browsers that support <template> (all but IE), grab the template's ".content"
         takeovers = 'content' in takeovers ? takeovers.content: takeovers;
 
+        // First, select takeovers that don't specify a language
+        var takeoverSelectors = [".js-takeover:not([lang])"]
+
         // get the users language and remove any extra detail suffix (e.g. -gb)
-        var browserLanguage = detectLanguage();
-        var languageClass = browserLanguage || 'en';
-        languageClass = languageClass.split('-')[0];
+        var language = getPrimaryParentLanguage();
 
-        // find any takeovers that match the users language
-        var queryLang = ".js-takeover[data-lang*='"+languageClass+"']";
-        var queryAll = ".js-takeover[data-lang*='all']";
-        var takeoversFiltered = (takeovers.querySelectorAll([queryLang,queryAll].join(',')));
+        // Add selectors to find takeovers for any of the user's languages
+        takeoverSelectors.push(".js-takeover[lang=" + language + "]");
+        takeoverSelectors.push(".js-takeover[data-lang-extra*=" + language + "]");
 
-        // If we have any takeovers
-        if (takeoversFiltered) {
+        // Get the selected takeovers
+        var selectedTakeovers = (takeovers.querySelectorAll(takeoverSelectors.join(',')));
+
+        if (selectedTakeovers) {
           var selectedIndex = null;
 
-          if (
-            localStorage.getItem('selected_takeover_index') !== null &&
-            parseInt(localStorage.getItem('selected_takeover_index')) < takeoversFiltered.length
-          ) {
-            // If we previously chose a takeover, use that one
-            selectedIndex = parseInt(localStorage.getItem('selected_takeover_index'))
+          if (localStorage.getItem('selected_takeover_index') !== null) {
+            // If we previously chose a takeover, increment the number to show the next takeover 
+            var nextIndex = parseInt(localStorage.getItem('selected_takeover_index')) + 1
+            selectedIndex = nextIndex < selectedTakeovers.length ? nextIndex : 0;
           } else {
             // Otherwise, randomly choose one of the takeovers and store it for next time
-            var selectedIndex = Math.floor(Math.random() * takeoversFiltered.length);
-            localStorage.setItem('selected_takeover_index', selectedIndex)
+            selectedIndex = Math.floor(Math.random() * selectedTakeovers.length);
           }
 
+          // Store the current takeover
+          localStorage.setItem('selected_takeover_index', selectedIndex)
+
           // Get the takeover element
-          var selectedTakeover = takeoversFiltered[selectedIndex]
+          var selectedTakeover = selectedTakeovers[selectedIndex]
 
           if (! document.body.contains(selectedTakeover)) {
             // If it's not in the current document (as in, it's in a template) import it
