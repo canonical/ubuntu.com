@@ -11,7 +11,7 @@
         </div>
         <div class="p-sidebar__content u-hide--small">
           <nav class="p-sidebar-nav">
-            {% include "kubernetes/docs/shared/_side-navigation.html" %}
+            {{ nav | safe }}
           </nav>
         </div>
       </aside>
@@ -42,7 +42,7 @@
       </script>
     </div>
     <div class="l-documentation__content">
-      {% block content %}{% endblock %}
+      {{ html_content | safe }}
     </div>
   </div>
 {% endblock %}

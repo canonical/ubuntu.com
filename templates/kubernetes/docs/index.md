@@ -1,12 +1,9 @@
-{% extends "kubernetes/docs/base_docs.html" %}
+---
+wrapper_template: base_docs.html
+markdown_includes:
+    nav: shared/_side-navigation.md
+---
 
-{% block meta_description %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
-
-{% block title %}Documentation for The Canonical Distribution of Kubernetes{% endblock %}
-
-{% block meta_copydoc %}{% endblock meta_copydoc %}
-
-{% block content %}
 <div class="p-strip is-shallow">
   <div class="p-content__row">
     <div class="p-content__row">
@@ -56,4 +53,3 @@
     </div>
   </div>
 </div>
-{% endblock content %}
