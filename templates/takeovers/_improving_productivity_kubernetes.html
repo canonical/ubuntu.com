@@ -18,14 +18,15 @@
       height: 240px;
     }
     
-    .p-improving-prod-takeover {
-      background: #173D8B;
-      background-image: linear-gradient(-74deg, #173D8B 8%, #326DE6 92%);
+    @media screen and (max-width: 874px) {
+      .p-improving-prod-takeover{
+        background-image: linear-gradient(74deg, #173D8B 0%, #326DE6 92%)
+      }
     }
 
-    @media screen and (min-width: 874px) {
-      .p-improving-prod-takeover{ 
-        background-image: url("{{ ASSET_SERVER_URL }}0bfde879-suru-left-side.png"), url("{{ ASSET_SERVER_URL }}4c072e93-suru-right-side.png");
+    @media screen and (min-width: 875px) {
+      .p-improving-prod-takeover{
+        background-image: url("{{ ASSET_SERVER_URL }}0bfde879-suru-left-side.png"), url("{{ ASSET_SERVER_URL }}4c072e93-suru-right-side.png"),linear-gradient(74deg, #173D8B 0%, #326DE6 92%);
         background-position: bottom left, bottom right;
         background-repeat: no-repeat;
         background-size: contain;
