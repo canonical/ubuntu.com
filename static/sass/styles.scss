@@ -116,17 +116,6 @@
   mask-size: cover;
 }
 
-// XXX Ant: 11.12.17 This can be removed when this is fixed
-// https://github.com/vanilla-framework/vanilla-framework/issues/1491
-.is-dark .p-button--base {
-  @include vf-animation($property: all, $duration: fast, $easing: in);
-  color: $color-x-light;
-
-  &:hover {
-    color: $color-dark;
-  }
-}
-
 // XXX Caleb: 15.01.18 Autoprefixer issue
 select {
   -moz-appearance: none; // sass-lint:disable-line no-vendor-prefixes
@@ -158,7 +147,8 @@ select {
   white-space: nowrap;
 }
 
-// XXX Steve: 21.06.18 https://github.com/vanilla-framework/vanilla-framework/issues/1794
+// XXX Steve: 21.06.18
+// https://github.com/vanilla-framework/vanilla-framework/issues/1794
 .u-no-max-width {
   max-width: none !important;
 }
@@ -203,30 +193,6 @@ p.u-align--center {
   max-width: none;
 }
 
-/// XXX Caleb: Inline images hotfix - can be removed once updated to Vanilla 1.8.x
-.p-inline-images {
-  &__item {
-    margin: 1rem;
-    max-height: inherit;
-    max-width: inherit;
-
-    @media only screen and (min-width: $breakpoint-medium) {
-      margin: 1.875rem;
-    }
-  }
-
-  img {
-    max-height: map-get($icon-sizes, thumb--small);
-    max-width: 7rem;
-    width: auto;
-
-    @media screen and (min-width: $breakpoint-medium) {
-      max-height: 5.5rem;
-      max-width: 9rem;
-    }
-  }
-}
-
 /// XXX Caleb: abbr hotfix - to be fixed in Vanilla
 // https://github.com/vanilla-framework/vanilla-framework/issues/1962
 abbr[title] {
@@ -238,4 +204,10 @@ abbr[title] {
 // Hack to change the global navigation styling to match the local header
 .global-nav .global-nav__header-logo-anchor {
   padding: 0.6875rem 1rem !important;
+}
+
+// XXX Ant: is-bordered hotfix - to be removed when the following is resolved:
+// https://github.com/vanilla-framework/vanilla-framework/issues/2045
+[class^="p-strip"].is-bordered {
+  margin-bottom: 0;
 }

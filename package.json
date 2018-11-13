@@ -9,7 +9,7 @@
     "lint-scss": "sass-lint 'static/sass/**/*.scss' --verbose --no-exit",
     "test-py": "python3 manage.py test",
     "test-links": "python3 manage.py runserver && sleep 2 && linkchecker --threads 2 --ignore-url /usn --ignore-url /resources --ignore-url /search --no-warnings http://127.0.0.1:8000",
-    "build": "cp node_modules/global-nav/dist/index.js static/js/global-nav.js && node-sass --include-path node_modules static/sass --source-map true --output static/css && postcss --use autoprefixer --replace 'static/css/**/*.css' && postcss --use cssnano --dir static/minified 'static/css/**/*.css'",
+    "build": "cp node_modules/global-nav/dist/index.js static/js/global-nav.js && node-sass --include-path node_modules static/sass --source-map true --output static/css && postcss --use autoprefixer --replace 'static/css/**/*.css' && postcss --map false --use cssnano --dir static/minified 'static/css/**/*.css'",
     "watch": "watch -p 'static/sass/**/*.scss' -p 'node_modules/vanilla-framework/scss/*.scss' -c 'yarn run build'",
     "clean": "rm -rf node_modules yarn-error.log css static/css *.log *.sqlite _site/ build/ .jekyll-metadata .bundle",
     "serve": "./entrypoint 0.0.0.0:${PORT}"
@@ -31,7 +31,7 @@
   "license": "LGPL v3",
   "devDependencies": {
     "postcss-cli": "^4.1.0",
-    "vanilla-framework": "1.7.1"
+    "vanilla-framework": "1.8.0"
   },
   "dependencies": {
     "autoprefixer": "^6.3.1",
