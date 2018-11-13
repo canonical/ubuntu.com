@@ -27,7 +27,7 @@ the <a href=" https://www.ubuntu.com/kubernetes">main website</a>.</p>
 
 </div>
 <div class="col-6 u-align--right">
-    <img style="border: 0" src="./images/k8s-bundle.png" width="350" height="350">
+    <img style="border: 0" src="https://assets.ubuntu.com/v1/b3b65bb0-k8s-bundle.png" width="350" height="350">
 </div>
 </div></div>
 

@@ -17,7 +17,7 @@ markdown_includes:
           <p><a href="/kubernetes/docs/overview">Find out more in the CDK overview&nbsp;›</a></p>
         </div>
         <div class="col-6 u-align--right">
-          <img style="border: 0" src="https://blog.juju.solutions/kubernetes-docs/images/k8s-bundle.png" alt="" width="350" height="350">
+          <img style="border: 0" src="https://assets.ubuntu.com/v1/b3b65bb0-k8s-bundle.png" alt="" width="350" height="350">
         </div>
       </div>
     </div>
