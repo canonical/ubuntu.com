@@ -1,5 +1,7 @@
 ---
 wrapper_template: base_docs.html
+context:
+    title: Quick start
 markdown_includes:
     nav: shared/_side-navigation.md
 ---
@@ -17,8 +19,6 @@ img {
 <div class="p-content__row">
     <div class="u-equal-height">
         <div class="col-6">
-
-<h2> Quick Start</h2>
 
 <p>The Canonical Distribution of Kubernetes<sup>&reg;</sup> delivers a ‘pure K8s’
 experience, tested across a wide range of clouds and integrated with modern

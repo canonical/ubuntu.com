@@ -1,10 +1,10 @@
 ---
 wrapper_template: base_docs.html
+context:
+    title: Upgrade notes
 markdown_includes:
     nav: shared/_side-navigation.md
 ---
-
-# Upgrade notes
 
 This page is intended to deal with specific, special circumstances you may
 encounter when upgrading between versions of  the **Canonical Distribution of

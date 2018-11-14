@@ -1,10 +1,10 @@
 ---
 wrapper_template: base_docs.html
+context:
+    title: How to add Ceph storage
 markdown_includes:
     nav: shared/_side-navigation.md
 ---
-
-# How to add **Ceph** storage
 
 Many things you will want to use your Kubernetes cluster for will require some
 form of available storage. Storage is quite a large topic -- this guide will

@@ -1,12 +1,14 @@
 ---
 wrapper_template: base_docs.html
+context:
+    title: News
 markdown_includes:
     nav: shared/_side-navigation.md
 ---
 
-# 1.12 Released
+## 1.12 Released
 
-## 1.12 Release Notes
+### 1.12 Release Notes
 
 - Added support for Ubuntu 18.04 (Bionic)
 
@@ -66,7 +68,7 @@ Juju model configs, we recommend using the newer `juju-http-proxy`,
 [Proxy configuration](https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Proxy-configuration)
 page for details.
 
-## Fixes
+### Fixes
 
 - Fixed kube-dns constantly restarting on 18.04 ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/655))
 - Fixed LXD machines not working on 18.04 ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/654))
@@ -74,13 +76,13 @@ page for details.
 - Fixed kubeapi-load-balancer default timeout might be too low ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/650))
 - Fixed unable to deploy on NVidia hardware ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/664))
 
-## Known issues
+### Known issues
 
  - any remaining major issues currently being worked on
  - for the next release
  - if any
 
-## Contact Us
+### Contact Us
 
 - Issues: https://github.com/juju-solutions/bundle-canonical-kubernetes/issues
 - IRC: #juju on freenode.net

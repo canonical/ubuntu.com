@@ -1,10 +1,10 @@
 ---
 wrapper_template: base_docs.html
+context:
+    title: Upgrading
 markdown_includes:
     nav: shared/_side-navigation.md
 ---
-
-# Upgrading
 
 It is recommended that you keep your **Kubernetes** deployment updated to the
 latest available stable version. You should also update the other applications

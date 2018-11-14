@@ -1,5 +1,7 @@
 ---
 wrapper_template: base_docs.html
+context:
+    title: Introduction
 markdown_includes:
     nav: shared/_side-navigation.md
 ---

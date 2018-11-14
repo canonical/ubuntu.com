@@ -1,10 +1,10 @@
 ---
 wrapper_template: base_docs.html
+context:
+    title: Installing to a Local machine
 markdown_includes:
     nav: shared/_side-navigation.md
 ---
-
-# Installing to a Local machine
 
 Installing the **Canonical Distribution of Kubernetes<sup>&reg;</sup> (CDK)**
 on a single  machine is possible for the purposes of testing and development.

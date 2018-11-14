@@ -1,10 +1,10 @@
 ---
 wrapper_template: base_docs.html
+context:
+    title: Backups
 markdown_includes:
     nav: shared/_side-navigation.md
 ---
-
-# Backups
 
 The state of your **Kubernetes** cluster is kept in the **etcd** datastore. This page
 shows how to backup and restore the etcd included in the **Canonical

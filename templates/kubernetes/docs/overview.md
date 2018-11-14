@@ -1,10 +1,10 @@
 ---
 wrapper_template: base_docs.html
+context:
+    title: Overview
 markdown_includes:
     nav: shared/_side-navigation.md
 ---
-
-# Overview
 
 <div class="p-content__row">
     <div class="u-equal-height">

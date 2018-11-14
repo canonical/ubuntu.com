@@ -1,10 +1,10 @@
 ---
 wrapper_template: base_docs.html
+context:
+    title: Monitoring
 markdown_includes:
     nav: shared/_side-navigation.md
 ---
-
-# Monitoring
 
 The **Canonical Distribution of Kubernetes**<sup>&reg;</sup> includes the
 standard **Kubernetes** dashboard for monitoring your cluster. However, it is

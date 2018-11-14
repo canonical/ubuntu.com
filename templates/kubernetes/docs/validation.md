@@ -1,11 +1,10 @@
 ---
 wrapper_template: base_docs.html
+context:
+    title: Validation and e2e tests
 markdown_includes:
     nav: shared/_side-navigation.md
 ---
-
-
-# Validation and e2e tests
 
 End-to-end (e2e) tests for **Kubernetes** provide a mechanism to test the behaviour
 of the system. This is a useful indicator that the cluster is performing properly, as well as

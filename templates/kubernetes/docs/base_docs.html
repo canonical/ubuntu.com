@@ -1,5 +1,7 @@
 {% extends "templates/base.html" %}
 
+{% block title %}{{ title }} | Canonical Distribution of Kubernetes documentation{% endblock title %}
+
 {% block meta_copydoc %}https://drive.google.com/drive/folders/1FyMcu6vqGnyQMdWLRjvxJVWm8gHgslk4{% endblock meta_copydoc %}
 
 {% block outer_content %}
@@ -42,7 +44,14 @@
       </script>
     </div>
     <div class="l-documentation__content">
-      {{ html_content | safe }}
+      {% if title %}
+      <div class="p-strip is-shallow is-bordered">
+        <h1 class="u-no-margin--bottom">{{ title }}</h1>
+      </div>
+      {% endif %}
+      <div class="p-strip is-shallow">
+        {{ html_content | safe }}
+      </div>
     </div>
   </div>
 {% endblock %}

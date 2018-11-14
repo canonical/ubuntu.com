@@ -1,10 +1,10 @@
 ---
 wrapper_template: base_docs.html
+context:
+    title: Logging
 markdown_includes:
     nav: shared/_side-navigation.md
 ---
-
-# Logging
 
 <div class="p-notification--information">
   <p class="p-notification__response">

@@ -1,10 +1,10 @@
 ---
 wrapper_template: base_docs.html
+context:
+    title: Scaling
 markdown_includes:
     nav: shared/_side-navigation.md
 ---
-
-# Scaling
 
 The **Canonical Distribution of Kubernetes<sup>&reg;</sup>** has been designed
 to be flexible enough to efficiently run your workloads. Various components of

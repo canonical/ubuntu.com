@@ -1,10 +1,10 @@
 ---
 wrapper_template: base_docs.html
+context:
+    title: Storage
 markdown_includes:
     nav: shared/_side-navigation.md
 ---
-
-# Storage
 
 On-disk files in a container are ephemeral and can't be shared with other
 members of a pod. For some applications, this is not an issue, but for many

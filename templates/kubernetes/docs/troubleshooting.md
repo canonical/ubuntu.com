@@ -1,10 +1,11 @@
 ---
 wrapper_template: base_docs.html
+context:
+    title: Troubleshooting
 markdown_includes:
     nav: shared/_side-navigation.md
 ---
 
-# Troubleshooting
 This document covers how to troubleshoot the deployment of a Kubernetes cluster,
 it will not cover debugging of workloads inside Kubernetes.
 

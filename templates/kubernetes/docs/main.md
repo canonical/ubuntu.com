@@ -1,10 +1,10 @@
 ---
 wrapper_template: base_docs.html
+context:
+    title: Introducing
 markdown_includes:
     nav: shared/_side-navigation.md
 ---
-
-# Introducing the Canonical Distribution of Kubernetes<sup>&reg;</sup>
 
 The Canonical Distribution of Kubernetes<sup>&reg;</sup> (**CDK**),  is pure Kubernetes tested across the widest range of clouds with modern metrics and monitoring, brought to you by the people who deliver Ubuntu.
 
