@@ -10,7 +10,7 @@
     *   [Monitoring](/kubernetes/docs/monitoring)
     *   [Upgrading](/kubernetes/docs/upgrading)
     *   [Storage](/kubernetes/docs/storage)
-    *   [Scaling](/kubernetes/docs/storage)
+    *   [Scaling](/kubernetes/docs/scaling)
     *   [Validation](/kubernetes/docs/validation)
     *   [Decommissioning](/kubernetes/docs/decommissioning)
     *   [Troubleshooting](/kubernetes/docs/troubleshooting)
