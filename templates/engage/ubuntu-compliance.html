@@ -1,0 +1,45 @@
+{% extends "engage/base_engage.html" %}
+
+{% block meta_description %}This webinar discusses how Ubuntu’s trusted security and compliance solutions solve regulatory issues across a range of industries, including government, financial services and healthcare.{% endblock %}
+
+{% block title %}Securing the enterprise: how Ubuntu is at the forefront of security and compliance{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/13_pUMdikqm7zgff5YY2FJwJ6NLQpiUoMqmZp7Osq6gU/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--image is-dark p-takeover--compliance">
+    <div class="row u-vertically-center">
+      <div class="col-6 u-fade-left--medium">
+          <h1 style="font-weight: 100">Securing the enterprise</h1>
+          <p class="u-no-padding--top  u-sv3">Learn how Ubuntu’s trusted security and compliance solutions are at the forefront of solving regulatory issues across a wide range of industries.</p>
+          <p class="u-hide--large u-hide--medium u-align--center"><img src="{{ ASSET_SERVER_URL }}2217d1c8-Security.svg" alt="Compliance Webinar" class="p-compliance-icon u-fade-up"></p>
+            <p class="p-takeover__text">
+              Webinar live on 28 November 2018 - <a href="#register-section" class="p-link--inverted">Register now&nbsp;&rsaquo;</a></p>
+      </div>
+      <div class="col-6 u-align--center u-hide--small prefix-1 u-vertically-center">
+        <img src="{{ ASSET_SERVER_URL }}2217d1c8-Security.svg" alt="Compliance Webinar" class="p-compliance-icon u-fade-up">
+      </div>
+  </div>
+</section>
+
+<style>
+  .p-takeover--compliance {
+    background-image: linear-gradient(44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%);
+  }
+  .p-compliance-icon {
+    height: 154px;
+    width: 154px;
+  }
+</style>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-12">
+      <h2 id="register-section" class="p-takeover__title">Ubuntu security and compliance solutions</h2>
+    </div>
+    <div class="jsBrightTALKEmbedWrapper" style="width:900px; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 340102, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>
+  </div>
+</section>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_security_further_reading" second_item="_cloud_newsletter" third_item="_security_esm" %}
+{% endblock content %}
