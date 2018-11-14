@@ -211,7 +211,7 @@ juju status kibana --format yaml| grep public-address
 
 <!-- LINKS -->
 
-[quickstart]: quickstart
+[quickstart]: /kubernetes/docs/quickstart
 [nagios]: https://www.nagios.org/
 [elastic]: https://www.elastic.co/
 [download-scraper]: https://raw.githubusercontent.com/conjure-up/spells/master/canonical-kubernetes/addons/prometheus/steps/01_install-prometheus/prometheus-scrape-k8s.yaml

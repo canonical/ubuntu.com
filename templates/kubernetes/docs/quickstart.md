@@ -174,7 +174,7 @@ Now that you have your cluster, you can put it to work! Here are a few recommend
 [jujucharms-com]: https://jujucharms.com
 [conjure-up-io]: https://conjure-up.io
 [install]: /kubernetes/install
-[overview]: overview
+[overview]: /kubernetes/docs/overview
 [snapd-docs]: https://docs.snapcraft.io/core/install
 [cloud-aws]: https://aws.amazon.com
 [cloud-cloudsigma]: https://www.cloudsigma.com
@@ -183,7 +183,7 @@ Now that you have your cluster, you can put it to work! Here are a few recommend
 [cloud-rackspace]: https://www.rackspace.com/cloud/
 [cloud-azure]: https://azure.microsoft.com/
 [cloud-joyent]: https://www.joyent.com/
-[how-login]: howto-login
-[how-helm]: howto-helm
-[how-juju]: howto-juju
-[storage]: storage
+[how-login]: /kubernetes/docs/howto-login
+[how-helm]: /kubernetes/docs/howto-helm
+[how-juju]: /kubernetes/docs/howto-juju
+[storage]: /kubernetes/docs/storage

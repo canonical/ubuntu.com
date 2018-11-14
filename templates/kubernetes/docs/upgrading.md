@@ -250,8 +250,8 @@ It is recommended that you run a [cluster validation][validation] to ensure that
  <!--LINKS-->
 
 [k8s-release]: https://github.com/kubernetes/kubernetes/releases
-[backups]: backups
-[notes]: upgrade-notes
+[backups]: /kubernetes/docs/backups
+[notes]: /kubernetes/docs/upgrade-notes
 [snap-channels]: https://docs.snapcraft.io/reference/channels
 [blue-green]: https://martinfowler.com/bliki/BlueGreenDeployment.html
-[validation]: validation
+[validation]: /kubernetes/docs/validation

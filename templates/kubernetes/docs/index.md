@@ -11,15 +11,15 @@ The Canonical Distribution of Kubernetes<sup>&reg;</sup> (CDK), is pure Kubernet
 
 Google, Microsoft, and many other institutions run Kubernetes on Ubuntu because we focus on the latest container capabilities in modern kernels. That’s why it’s the top choice for enterprise Kubernetes, too.
 
-[Find out more in the CDK overview&nbsp;&rsaquo;](overview)
+[Find out more in the CDK overview&nbsp;&rsaquo;](/kubernetes/docs/overview)
 
 ## Getting started
 
-[Getting started with the Canonical Distribution of Kubernetes<sup>&reg;</sup>&nbsp;&rsaquo;](quickstart)
+[Getting started with the Canonical Distribution of Kubernetes<sup>&reg;</sup>&nbsp;&rsaquo;](/kubernetes/docs/quickstart)
 
 ## What's new
 
-- [Version 1.12 released&nbsp;&rsaquo;](news)
+- [Version 1.12 released&nbsp;&rsaquo;](/kubernetes/docs/news)
 
 ## Tutorials
 

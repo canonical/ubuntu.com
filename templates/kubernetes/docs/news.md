@@ -19,4 +19,4 @@ The kubernetes-master charm now installs and runs kube-proxy along with the othe
 
 For operators of offline deployments, please note that this change may require you to attach a kube-proxy resource to kubernetes-master.
 
-[More details&nbsp;&rsaquo;](release-notes)
+[More details&nbsp;&rsaquo;](/kubernetes/docs/release-notes)
