@@ -5,6 +5,26 @@
     @include row;
     display: flex;
 
+    .p-notification,
+    .p-notification--caution,
+    .p-notification--floating .p-notification,
+    .p-notification--information,
+    .p-notification--negative,
+    .p-notification--positive {
+      margin-left: 0.1rem;
+      margin-right: 0.1rem;
+    }
+
+    pre {
+      overflow-x: auto;
+      width: 700px;
+    }
+
+    pre,
+    code {
+      white-space: pre;
+    }
+
     @media (max-width: $breakpoint-medium) {
       flex-direction: column;
     }
@@ -70,7 +90,7 @@
         &::before {
           background-color: $color-mid-light;
           bottom: -0.25rem;
-          content: '';
+          content: "";
           left: -1rem;
           position: absolute;
           top: -0.25rem;

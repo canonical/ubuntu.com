@@ -1,92 +1,81 @@
 ---
-wrapper_template: base_docs.html
-context:
-    title: Decommissioning
+wrapper_template: "base_docs.html"
 markdown_includes:
-    nav: shared/_side-navigation.md
+  nav: "shared/_side-navigation.md"
+context:
+  title: "Decommissioning"
+  description: Decommissioning a cluster requires only a few commands, but beware that it will irretrievably destroy the cluster.
 ---
 
 Decommissioning a cluster requires only a few commands, but beware that it will irretrievably destroy the cluster, its workloads and any information that was stored within. Before proceeding, it is important to verify that you:
 
- - Have the correct details for the cluster you wish to decommission
- - Have retrieved any valuable data from the cluster
+- Have the correct details for the cluster you wish to decommission
+- Have retrieved any valuable data from the cluster
 
 ## Destroying the model
 
- It is always preferable to use a new **Juju** _model_ for each **Kubernetes** cluster.  Removing the model is then a simple operation.
+It is always preferable to use a new **Juju** _model_ for each **Kubernetes** cluster. Removing the model is then a simple operation.
 
- It is useful to list all the current models to make sure you are about to destroy the correct one:
+It is useful to list all the current models to make sure you are about to destroy the correct one:
 
- ```bash
- juju models
- ```
+```bash
+juju models
+```
 
- This will list all the models running on the current controller, for example:
+This will list all the models running on the current controller, for example:
 
- ```no-highlight
- Controller: k8s-controller
+```no-highlight
+Controller: k8s-controller
 
- Model           Cloud/Region   Status     Machines  Cores  Access  Last connection
- controller      aws/us-east-1  available         1         4          admin   just now
- default           aws/us-east-1  available         0         -           admin   8 hours ago
- k8s-devel       aws/us-east-1  available         9        24        admin   3 hours ago
- k8s-production  aws/us-east-1  available         12     28  admin   5 minutes ago
+Model           Cloud/Region   Status     Machines  Cores  Access  Last connection
+controller      aws/us-east-1  available         1         4          admin   just now
+default           aws/us-east-1  available         0         -           admin   8 hours ago
+k8s-devel       aws/us-east-1  available         9        24        admin   3 hours ago
+k8s-production  aws/us-east-1  available         12     28  admin   5 minutes ago
 k8s-testing      aws/us-east-1  available         9        24        admin   2 hours ago
 ```
 
-To proceed, use the `juju destroy-model` command to target the model you wish
-to remove. For example:
+To proceed, use the `juju destroy-model` command to target the model you wish to remove. For example:
 
 ```bash
  juju destroy-model k8s-testing
- ```
-
- You will see a warning, and be required to confirm the action. **Juju** will
- then continue to free up the resources, giving feedback on the process. It may
- take some minutes to complete depending on the size of the deployed model and
- the nature of the cloud it is running on.
-
- ```no-highlight
- WARNING! This command will destroy the "k8s-testing" model.
- This includes all machines, applications, data and other resources.
-
- Continue [y/N]? y
- Destroying model
- Waiting on model to be removed, 7 machine(s), 4 application(s)...
- Waiting on model to be removed, 6 machine(s)...
- ...
- Waiting on model to be removed, 3 machine(s)...
- Waiting on model to be removed...
- Model destroyed.
 ```
 
-You should confirm that the cloud instances have been terminated with the
-relevant cloud console/utilities.
+You will see a warning, and be required to confirm the action. **Juju** will then continue to free up the resources, giving feedback on the process. It may take some minutes to complete depending on the size of the deployed model and the nature of the cloud it is running on.
 
+```no-highlight
+WARNING! This command will destroy the "k8s-testing" model.
+This includes all machines, applications, data and other resources.
+
+Continue [y/N]? y
+Destroying model
+Waiting on model to be removed, 7 machine(s), 4 application(s)...
+Waiting on model to be removed, 6 machine(s)...
+...
+Waiting on model to be removed, 3 machine(s)...
+Waiting on model to be removed...
+Model destroyed.
+```
+
+You should confirm that the cloud instances have been terminated with the relevant cloud console/utilities.
 
 ## Destroying a controller
 
- If there are no longer any cluster models attached to the controller, you may wish to
- remove the controller instance as well. This is performed with a similar command:
+If there are no longer any cluster models attached to the controller, you may wish to remove the controller instance as well. This is performed with a similar command:
 
- ```bash
- juju destroy-controller <controller-name>
- ```
+```bash
+juju destroy-controller <controller-name>
+```
 
-As previously, there is a confirmation step to make sure you wish to remove the
-controller.
+As previously, there is a confirmation step to make sure you wish to remove the controller.
 
-The command will return an error if there are populated models still attached
-to the controller.
+The command will return an error if there are populated models still attached to the controller.
 
 ## Removing/editing Kube config
 
-If you have permanently removed clusters, it is also advisable to remove their
-entries in the **Kubernetes** configuration file (or remove the file entirely
-if you have removed all the clusters).
+If you have permanently removed clusters, it is also advisable to remove their entries in the **Kubernetes** configuration file (or remove the file entirely if you have removed all the clusters).
 
-By default the file is located at `~/.kube/config`.  It is a YAML format file, and each cluster
-block looks similar to this:
+By default the file is located at `~/.kube/config`. It is a YAML format file, and each cluster block looks similar to this:
 
 ```yaml
 - cluster:
