@@ -91,4 +91,4 @@ You can now proceed using the main installer. Follow the [install instructions][
 [lxd-install]: https://linuxcontainers.org/lxd/getting-started-cli/
 [conjure-up-install]: https://docs.conjure-up.io/devel/en/user-manual#installing-conjure-up
 [conjure-lxd]: https://docs.conjure-up.io/stable/en/user-manual#users-of-lxd
-[quickstart]: /kubernetes-docs/quickstart.html
+[quickstart]: /kubernetes/docs/quickstart
