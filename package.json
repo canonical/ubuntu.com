@@ -20,6 +20,7 @@
     }
   },
   "lint-staged": {
+    "*.scss": "./run exec yarn run lint-scss",
     "*.py": "./run exec yarn run lint-py"
   },
   "keywords": [
