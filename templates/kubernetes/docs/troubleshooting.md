@@ -180,7 +180,7 @@ juju show-status kubernetes-master --format json | jq --raw-output '.application
 54.210.100.102
 ```
 
-### 1. Update the kubeconfig file
+### 3. Update the kubeconfig file
 
 Identify the kubeconfig file or section used for this cluster, and edit the server configuration.
 
@@ -188,7 +188,7 @@ By default, it will look like `https://54.213.123.123:443`. Replace it with the 
 
 Note that the default port used by CDK for the Kubernetes Master API is 6443 while the port exposed by the load balancer is 443.
 
-### 2. Start helm again!
+### 4. Start helm again!
 
 ```bash
 helm install <chart> --debug
