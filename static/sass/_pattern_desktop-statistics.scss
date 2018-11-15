@@ -2,13 +2,14 @@
 @mixin ubuntu-p-desktop-statistics {
   $burnt-sienna: #e95420;
   $cannon-pink: #772953;
+  $givry: #fad8cb;
 
   .p-takeover--stats {
     background-color: $color-light;
   }
 
   .p-scale {
-    background: linear-gradient(to right, #e95420 0%, #fad8cb 100%);
+    background: linear-gradient(to right, $burnt-sienna 0%, $givry 100%);
     display: block;
     height: 8px;
     margin: 1rem 3rem;
@@ -161,6 +162,21 @@
     @media only screen and (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
       transform: scale(.7);
     }
+  }
+
+  .p-strip-scroll--wrapper__svg {
+    overflow-x: auto;
+  }
+
+  @media only screen and (min-width: $breakpoint-large) {
+    .p-strip-scroll--wrapper__svg {
+      overflow: hidden;
+    }
+  }
+
+  .p-tooltip__message--padding {
+    min-width: 0;
+    padding: $sp-small;
   }
 
   .p-sticky-nav {

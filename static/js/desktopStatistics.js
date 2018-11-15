@@ -603,17 +603,29 @@ function createPieChart(selector, dataset, options) {
     .attr("class", "p-pie-chart__text");
 }
 
-function createMap(selector, options, mapData) {
+function createMap(selector, options, mapData, countryNamesAndIds) {
   var options = options || {};
   var element = document.querySelector(selector).getBoundingClientRect();
   var width = element.width;
   var height = element.height;
 
-  function render(world) {
+  function render(countryNamesData, world) {
     //   Snapdata = country mapped to ids in objects
     // Get the countries and ids
-    var svg = d3.select(selector);
+    d3.select(selector).html("");
+    var svg = d3.select(selector)
+      .append("svg")
+      .attr("class", "p-map-chart")
+      .attr("width", width)
+      .attr("height", height);
+
     var g = svg.append("g");
+    var tooltip = d3.select(selector).append("div")
+                    .attr("class", "p-tooltip");
+    var tooltipMessage = tooltip.append("div")
+                          .attr("class", "p-tooltip__message p-tooltip__message--padding")
+                          .style("display", "block")
+                          .attr("role", "tooltip");
     var offset = width * 0.1;
     var projection = d3
       .geoNaturalEarth1()
@@ -640,19 +652,72 @@ function createMap(selector, options, mapData) {
           return "#fed6ca";
         }
       })
-      .attr("d", geoPath);
+      .attr("stroke", "#FFFFFF")
+      .attr("stroke-width", "0.25px")
+      .attr("d", geoPath)
+      .attr("id", function(d) {
+        return d.id;
+      })
+      .attr("title", function(d) {
+        return d.properties.name;
+      })
+      .on("mousemove", function(country) {
+        var position = d3.mouse(g.node());
+        // Check that country id starts with a zero trim the leading zeros
+        country.id = (country.id.charAt(0) === "0") ? country.id.substr(1) : country.id;
+        var countryName = countryNamesData.find(function (ctryName) {
+          return ctryName.id === country.id;
+        })
+        var countryStat = options.countryStats.find(function(ctryStat) {
+          return parseInt(country.id, 10) === parseInt(ctryStat.id, 10);
+        });
+        if (countryName) {
+          var tooltipLocation = ""; 
+          var rightOffset = width - 100;
+          // Check where the top and left axis start from for each tooltip and reposition the tooltip message
+          if (position[0] < 150 ) 
+          {
+            tooltipLocation = "p-tooltip p-tooltip--right";
+          } else if (position[1] < 50 && position[0] < 150 ) {
+            tooltipLocation = "p-tooltip p-tooltip--bottom-right";
+          } else if (position[1] < 50 ) {
+            tooltipLocation = "p-tooltip p-tooltip--bottom-center";
+          } else if (position[0] > rightOffset) {
+            tooltipLocation =  "p-tooltip p-tooltip--left";
+          } else {
+            tooltipLocation = "p-tooltip p-tooltip--top-center";
+          }
+          tooltip
+            .attr("class", tooltipLocation)
+            .style("top", position[1] + "px")
+            .style("left", position[0] + "px")
+            .style("display", "block")
+            .style("position", "absolute")
+            .style("opacity", "1");
+          var noOfUsers =  (countryStat.users.toFixed(1) < 1) ? "< 0.1" : countryStat.users.toFixed(1);
+          tooltipMessage.html(`<span>${countryName.name}:</span><span>&nbsp; ${noOfUsers}%</span>`);
+        } 
+      })
+      .on("mouseout", function() {
+        tooltip.style("display", "none");
+      });
   }
 
-  d3.json(mapData)
-    .then(render)
-    .catch(function(error) {
-      throw new Error(error);
-    });
+  d3.tsv(countryNamesAndIds).then(function(countryNamesData) {
+    d3.json(mapData)
+      .then(function(world) {
+        return render(countryNamesData, world);
+      }).catch(function(error) {
+        throw new Error(error);
+      });
+  }).catch(function(error) {
+    throw new Error(error);
+  });
 }
 
 function clearCharts() {
   var charts = document.querySelectorAll(
-    ".p-bar-chart, .p-pie-chart, .p-progress-chart, .map-chart"
+    ".p-bar-chart, .p-pie-chart, .p-progress-chart"
   );
   charts.forEach(function(chart) {
     chart.innerHTML = "";
@@ -753,7 +818,8 @@ function buildCharts() {
   createMap(
     "#where-are-users",
     dummyData.whereUsersAre.datasets,
-    "/static/js/world-110m.v1.json"
+    "/static/js/world-110m.v1.json",
+    "/static/js/world-110m-country-names.tsv"
   );
   createPieChart(
     "#default-settings-hw",
