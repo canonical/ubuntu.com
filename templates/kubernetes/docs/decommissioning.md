@@ -24,15 +24,15 @@ juju models
 
 This will list all the models running on the current controller, for example:
 
-```no-highlight
+```
 Controller: k8s-controller
 
 Model           Cloud/Region   Status     Machines  Cores  Access  Last connection
-controller      aws/us-east-1  available         1         4          admin   just now
-default           aws/us-east-1  available         0         -           admin   8 hours ago
-k8s-devel       aws/us-east-1  available         9        24        admin   3 hours ago
-k8s-production  aws/us-east-1  available         12     28  admin   5 minutes ago
-k8s-testing      aws/us-east-1  available         9        24        admin   2 hours ago
+controller      aws/us-east-1  available   1          4     admin   just now
+default         aws/us-east-1  available   0          -     admin   8 hours ago
+k8s-devel       aws/us-east-1  available   9         24     admin   3 hours ago
+k8s-production  aws/us-east-1  available  12         28     admin   5 minutes ago
+k8s-testing     aws/us-east-1  available   9         24     admin   2 hours ago
 ```
 
 To proceed, use the `juju destroy-model` command to target the model you wish to remove. For example:
@@ -79,7 +79,30 @@ By default the file is located at `~/.kube/config`. It is a YAML format file, an
 
 ```yaml
 - cluster:
-    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURPekNDQWlPZ0F3SUJBZ0lKQU9HTm9PM1pNb3RGTUEwR0NTcUdTSWIzRFFFQkN3VUFNQmd4RmpBVUJnTlYKQkFNTURUTTBMakkwTkM0eE9USXVORGt3SGhjTk1UZ3hNREF4TURnek5qVTFXaGNOTWpnd09USTRNRGd6TmpVMQpXakFZTVJZd0ZBWURWUVFEREEwek5DNHlORFF1TVRreUxqUTVNSUlCSWpBTkJna3Foa2lHOXcwQkFRRUZBQU9DCkFROEFNSUlCQ2dLQ0FRRUE4YThJVytCUTM5c0p3OENyR0c5MmlYSUlWczNQOElEVVJvOTMyVFVYcG05UWkwSUgKeVF0a2N1WEVpREhlbUgwK1RORHRmaFZ4cm9BRjQrVEczR3JWZXc0YzgrZE0zNWJMY0lMRkl1L1UydlR4NkRXbgpDa2lwblhJVlc1QUxXa1hqRUh3NTUvWnk3S0F2SjVjS0h5WnhMYzY1ZFZqVjJYNkQxRHhJRXh0c2dDVnB2R1gvCmRpK1ppZlJXeFIwR0l5SkM3b29VaEVjcitvQVpMOFc2YklUMUlwcklXUGQ1eWhJck10MmpmaE42NWVkV1hjYkoKNERQeEpIOVlDNFFqSC84OHNJdWVJMWo4S1NYQjdwbUJxMzJHYXZuaFp3K2M5bG1KSlE5WjNZM2dla3lBUlZDRQpwUUU5T3BYR01QOCtCdng4QXdrQW9obE83RE1xQTlMaTl3QXExUUlEQVFBQm80R0hNSUdFTUIwR0ExVWREZ1FXCkJCUXRaa3paWmxKSmZKMGZtbWNPZU9pR0VBL3d1REJJQmdOVkhTTUVRVEEvZ0JRdFprelpabEpKZkowZm1tY08KZU9pR0VBL3d1S0VjcEJvd0dERVdNQlFHQTFVRUF3d05NelF1TWpRMExqRTVNaTQwT1lJSkFPR05vTzNaTW90RgpNQXdHQTFVZEV3UUZNQU1CQWY4d0N3WURWUjBQQkFRREFnRUdNQTBHQ1NxR1NJYjNEUUVCQ3dVQUE0SUJBUUJnCjVndFpyY0FLUlFSYUJFZDFiVm5vRXpoZkxld2RXU2RYaEZGRXB6bjlzdG05VGdVM2ZLREJ0NktUY3JKN2hqQWQKMUlUbUc1L2ExaUlDM29qQ2d3c1o3cnFmRlhkRGQzcVZGdjJySmZEN2ljeGV2c0NjWTdiS1hlYy9QdVgxQmxlMwo1amRjSWRkZnhqZ1M3K2dibCtQcGowbm9OR0c5MUgydWtBWTlaei9FUHdZckhuV1V1V1o5Z3JTZlVGam1ZMTNWCjkxZmF0S2R2dlU1blFPUXdkdThPVHlFRGk2blA4ckN4bEJjRW1hN3hkM3c5djI0NUlaRnd5QTJBMlR6emFJM04KYm0vMVNyL2tTNlZCSi9sZ2s3ampxRWFicmpFakluMlU4aGkzRkluRnBkZkZlUXhBaW5JcUx5dGRzeXY5aFZVbQpKQ3luNW8yaGVjSTFsaDU3RFRtYQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t
+    certificate-authority-data:
+       LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURPekNDQWlPZ0F3SUJBZ0lKQU9HTm9
+       PM1pNb3RGTUEwR0NTcUdTSWIzRFFFQkN3VUFNQmd4RmpBVUJnTlYKQkFNTURUTTBMakkwTk
+       M0eE9USXVORGt3SGhjTk1UZ3hNREF4TURnek5qVTFXaGNOTWpnd09USTRNRGd6TmpVMQpXa
+       kFZTVJZd0ZBWURWUVFEREEwek5DNHlORFF1TVRreUxqUTVNSUlCSWpBTkJna3Foa2lHOXcw
+       QkFRRUZBQU9DCkFROEFNSUlCQ2dLQ0FRRUE4YThJVytCUTM5c0p3OENyR0c5MmlYSUlWczN
+       QOElEVVJvOTMyVFVYcG05UWkwSUgKeVF0a2N1WEVpREhlbUgwK1RORHRmaFZ4cm9BRjQrVE
+       czR3JWZXc0YzgrZE0zNWJMY0lMRkl1L1UydlR4NkRXbgpDa2lwblhJVlc1QUxXa1hqRUh3N
+       TUvWnk3S0F2SjVjS0h5WnhMYzY1ZFZqVjJYNkQxRHhJRXh0c2dDVnB2R1gvCmRpK1ppZlJX
+       eFIwR0l5SkM3b29VaEVjcitvQVpMOFc2YklUMUlwcklXUGQ1eWhJck10MmpmaE42NWVkV1h
+       jYkoKNERQeEpIOVlDNFFqSC84OHNJdWVJMWo4S1NYQjdwbUJxMzJHYXZuaFp3K2M5bG1KSl
+       E5WjNZM2dla3lBUlZDRQpwUUU5T3BYR01QOCtCdng4QXdrQW9obE83RE1xQTlMaTl3QXExU
+       UlEQVFBQm80R0hNSUdFTUIwR0ExVWREZ1FXCkJCUXRaa3paWmxKSmZKMGZtbWNPZU9pR0VB
+       L3d1REJJQmdOVkhTTUVRVEEvZ0JRdFprelpabEpKZkowZm1tY08KZU9pR0VBL3d1S0VjcEJ
+       vd0dERVdNQlFHQTFVRUF3d05NelF1TWpRMExqRTVNaTQwT1lJSkFPR05vTzNaTW90RgpNQX
+       dHQTFVZEV3UUZNQU1CQWY4d0N3WURWUjBQQkFRREFnRUdNQTBHQ1NxR1NJYjNEUUVCQ3dVQ
+       UE0SUJBUUJnCjVndFpyY0FLUlFSYUJFZDFiVm5vRXpoZkxld2RXU2RYaEZGRXB6bjlzdG05
+       VGdVM2ZLREJ0NktUY3JKN2hqQWQKMUlUbUc1L2ExaUlDM29qQ2d3c1o3cnFmRlhkRGQzcVZ
+       GdjJySmZEN2ljeGV2c0NjWTdiS1hlYy9QdVgxQmxlMwo1amRjSWRkZnhqZ1M3K2dibCtQcG
+       owbm9OR0c5MUgydWtBWTlaei9FUHdZckhuV1V1V1o5Z3JTZlVGam1ZMTNWCjkxZmF0S2R2d
+       lU1blFPUXdkdThPVHlFRGk2blA4ckN4bEJjRW1hN3hkM3c5djI0NUlaRnd5QTJBMlR6emFJ
+       M04KYm0vMVNyL2tTNlZCSi9sZ2s3ampxRWFicmpFakluMlU4aGkzRkluRnBkZkZlUXhBaW5
+       JcUx5dGRzeXY5aFZVbQpKQ3luNW8yaGVjSTFsaDU3RFRtYQotLS0tLUVORCBDRVJUSUZJQ0
+       FURS0tLS0t
     server: https://54.229.190.254:443
   name: conjure-canonical-kubern-fc3
 contexts:

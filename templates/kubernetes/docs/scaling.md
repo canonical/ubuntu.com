@@ -96,7 +96,7 @@ The individual unit (in this example, number 3) can then be safely removed:
 juju remove-unit kubernetes-worker/3
 ```
 
-Note that due to the numbering system used by **Juju**, if you subsequently add additional units of this application, the numbers of any previously deleted units _will_not_ be re-used.
+Note that due to the numbering system used by **Juju**, if you subsequently add additional units of this application, the numbers of any previously deleted units _will not_ be re-used.
 
 ## etcd
 

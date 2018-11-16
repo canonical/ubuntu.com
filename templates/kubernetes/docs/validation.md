@@ -58,7 +58,7 @@ The tests are configured as a **Juju** _action_. To run the default tests:
 juju run-action kubernetes-e2e/0 test
 ```
 
-The command will return with a uuid for that specific test run. See the section on [Test output](#test-output) below for details.
+The command will return with a uuid for that specific test run. See the section on _Test output_ below for details.
 
 ## Running specific tests
 

@@ -13,7 +13,7 @@ This document covers how to troubleshoot the deployment of a Kubernetes cluster,
 
 Using `juju status` can give you some insight as to what's happening in a cluster:
 
-```no-highlight
+```command-line
 Model                         Controller          Cloud/Region   Version  SLA          Timestamp
 conjure-canonical-kubern-ade  conjure-up-aws-91c  aws/eu-west-1  2.4.5    unsupported  08:38:09+01:00
 

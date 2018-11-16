@@ -64,10 +64,9 @@ As **etcd** manages critical data for the cluster, it is advisable to create a s
   Knowing the path to the snapshot file from the output of the above command, you can download a local copy:
   `bash juju scp etcd/0:/home/ubuntu/etcd-snapshots/<filename>.tar.gz .`
   You can now upgrade **etcd**:
-
-```bash
-juju upgrade-charm etcd
-```
+  ```bash
+  juju upgrade-charm etcd
+  ```
 
 ### Upgrading additional components
 

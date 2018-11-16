@@ -14,11 +14,9 @@ This documentation assumes you are using version 2.4.0 or later of <strong>Juju<
   </p>
 </div>
 
-Broadly, there are two types of logs you may be interested in. On cluster or node level; for the applications you are running inside your cluster, and at an infrastructure level, the applications which are responsible for running the cluster itself. As the **Canonical Distribution of Kubernetes<sup>&reg;</sup>**
-is pure Kubernetes, you can use any of the tools and techniques to examine cluster logs as [described in the Kubernetes documentation][k8-logs].
+Broadly, there are two types of logs you may be interested in. On cluster or node level; for the applications you are running inside your cluster, and at an infrastructure level, the applications which are responsible for running the cluster itself. As the **Canonical Distribution of Kubernetes<sup>&reg;</sup>** is pure Kubernetes, you can use any of the tools and techniques to examine cluster logs as [described in the Kubernetes documentation][k8-logs].
 
-For the infrastructure, your **CDK** deployment has centralised logging set up as default. Each unit in your cluster automatically sends logging information to the controller based on the current logging level. You can use the **Juju**
-command line to easily inspect these logs and to change the logging level, as explained below.
+For the infrastructure, your CDK deployment has centralised logging set up as default. Each unit in your cluster automatically sends logging information to the controller based on the current logging level. You can use the **Juju** command line to easily inspect these logs and to change the logging level, as explained below.
 
 ## Viewing logs
 
@@ -41,6 +39,7 @@ unit-kubernetes-master-0: 18:04:11 INFO juju.cmd running jujud [2.4.2 gc go1.10]
 ```
 
 The entity is the unit, machine or application the message originates from (in this case _kubernetes-master/0_). It can be very useful to filter the output based on the entity or log level, and the `debug-log` command has many options.
+
 For a full description, run the command `juju help debug-log` or see the [**Juju** documentation][juju-logging]. Some useful examples are outlined below.
 
 ### Useful examples
@@ -65,8 +64,7 @@ juju debug-log --replay --include=kubernetes-worker/0
 
 ## Viewing logs on a machine
 
-If it becomes necessary for any reason, it is also possible to view logs directly on the running machine. A user with SSH access can connect to the relevant machine and find the logs for all the units running on that machine in the directory `/var/logs/juju`. The `juju ssh` command can be used for this,
-and you can connect to the relevant machine using a unit identifier. So for example, to look at the logs on the machine running the first unit of `kubernetes-worker` you can run the following:
+If it becomes necessary for any reason, it is also possible to view logs directly on the running machine. A user with SSH access can connect to the relevant machine and find the logs for all the units running on that machine in the directory `/var/logs/juju`. The `juju ssh` command can be used for this, and you can connect to the relevant machine using a unit identifier. So for example, to look at the logs on the machine running the first unit of `kubernetes-worker` you can run the following:
 
 ```bash
 juju ssh kubernetes-worker/0
@@ -113,10 +111,10 @@ The logging level can be set like this:
 
 ...which in this case sets the logging level for all units to TRACE
 
-<div class="p-notification--warning">
+<div class="p-notification--caution">
   <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Caution! :</span>
-It isn't a good idea to leave the logging level at 'TRACE' for any longer than you actually need to. Verbose logging not only consumes network bandwidth but also fills up the database on the controller.
+    <span class="p-notification__status">Caution!</span>
+    It isn't a good idea to leave the logging level at 'TRACE' for any longer than you actually need to. Verbose logging not only consumes network bandwidth but also fills up the database on the controller.
   </p>
 </div>
 

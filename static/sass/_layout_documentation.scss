@@ -11,18 +11,22 @@
     .p-notification--information,
     .p-notification--negative,
     .p-notification--positive {
-      margin-left: 0.1rem;
-      margin-right: 0.1rem;
+      margin: 2rem 0.1rem;
     }
 
     pre {
+      max-width: 700px;
       overflow-x: auto;
-      width: max-width;
+      width: 95vmax;
     }
 
     pre,
     code {
       white-space: pre;
+    }
+
+    img {
+      margin: 2rem 0 2rem 0;
     }
 
     @media (max-width: $breakpoint-medium) {
