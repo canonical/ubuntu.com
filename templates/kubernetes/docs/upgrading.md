@@ -51,22 +51,29 @@ This includes:
 
 Note that this may include other applications which you may have installed, such as Elasticsearch, Prometheus, Nagios, Helm, etc.
 
-### Upgrading **etcd**
+### Upgrading etcd
 
 As **etcd** manages critical data for the cluster, it is advisable to create a snapshot of this data before running an upgrade. This is covered in more detail in the [documentation on backups][backups], but the basic steps are:
 
-- **Run the snapshot action on the charm:**
-  ```bash
-  juju run-action etcd/0 snapshot --wait
-  ```
-  You should see confirmation of the snapshot being created, and the location of the file _on the **etcd** unit_
-- **Fetch a local copy of the snapshot**
-  Knowing the path to the snapshot file from the output of the above command, you can download a local copy:
-  `bash juju scp etcd/0:/home/ubuntu/etcd-snapshots/<filename>.tar.gz .`
-  You can now upgrade **etcd**:
-  ```bash
-  juju upgrade-charm etcd
-  ```
+#### 1. Run the snapshot action on the charm
+
+```bash
+juju run-action etcd/0 snapshot --wait
+```
+
+You should see confirmation of the snapshot being created, and the location of the file _on the **etcd** unit_
+
+#### 2. Fetch a local copy of the snapshot
+
+Knowing the path to the snapshot file from the output of the above command, you can download a local copy:
+
+`bash juju scp etcd/0:/home/ubuntu/etcd-snapshots/<filename>.tar.gz .`
+
+You can now upgrade **etcd**:
+
+```bash
+juju upgrade-charm etcd
+```
 
 ### Upgrading additional components
 
@@ -101,7 +108,7 @@ The **Kubernetes** charms use **snap** _channels_ to manage the version of **Kub
 
 For most use cases, it is strongly recommended to use the 'stable' version of charms.
 
-### Upgrading the **kube-api-loadbalancer**
+### Upgrading the kube-api-loadbalancer
 
 A core part of **CDK** is the kubeapi-load-balancer component. A mismatch of versions could have an effect on API availability and access controls. To ensure API service continuity this upgrade should precede any upgrades to the **Kubernetes** master and worker units.
 
@@ -109,7 +116,7 @@ A core part of **CDK** is the kubeapi-load-balancer component. A mismatch of ver
 juju upgrade-charm kubeapi-load-balancer
 ```
 
-### Upgrading the **kubernetes-master** units
+### Upgrading the kubernetes-master units
 
 To start upgrading the Kubernetes master units, first upgrade the charm:
 
@@ -151,7 +158,7 @@ juju status | grep master
 
 Ensure that all the master units have upgraded and are reporting normal status before continuing to upgrade the worker units.
 
-### Upgrading the **kubernetes-worker** units
+### Upgrading the kubernetes-worker units
 
 For a running cluster, there are two different ways to proceed:
 

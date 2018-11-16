@@ -154,7 +154,7 @@ Add additional storage to existing or new units with the `add-storage` command. 
 juju add-storage ceph-osd/2 --storage osd-devices=32G,2
 ```
 
-### Using a separate **Juju** model
+### Using a separate Juju model
 
 In some circumstances it can be useful to locate the persistent storage in a different **Juju** model, for example to have one set of storage used by different clusters. The only change required is in adding relations between **Ceph** and CDK.
 

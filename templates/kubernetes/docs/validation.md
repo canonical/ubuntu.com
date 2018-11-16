@@ -18,7 +18,7 @@ Your cluster will need to have at least two running worker units for the `e2e` t
   </p>
 </div>
 
-## Deploying the `kubernetes-e2e` charm
+## Deploying the kubernetes-e2e charm
 
 Add the charm to your cluster:
 
