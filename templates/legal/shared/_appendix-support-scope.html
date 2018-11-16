@@ -45,7 +45,7 @@
             <li class="p-list__item">Upgrades between versions of OpenStack (for instance, from OpenStack Mitaka to Newton) or versions of Ubuntu (for instance, from Ubuntu 14.04 LTS to Ubuntu 16.04 LTS), Juju and MAAS are supported as long as the upgrade is performed following a documented process as specified by Canonical as part of the Foundation OpenStack Build.</li>
             <li class="p-list__item">Addition of new cloud nodes and replacement of existing nodes with new nodes of equivalent capacity are both supported.</li>
             <li class="p-list__item">Full Stack Support excludes customizations which are not considered Valid Customizations.</li>
-            <li class="p-list__item">Ubuntu Advantage Virtual Guest Advanced and Ubuntu Advantage Kubernetes services for Cloud Guests.</li>
+            <li class="p-list__item">Ubuntu Advantage Virtual Guest Advanced and Ubuntu Advantage Kubernetes Advanced services for Cloud Guests.</li>
           </ul>
         </li>
         <li class="p-list__item">OpenStack clouds not deployed through a Foundation OpenStack Build are limited to Bug-fix Support.</li>
@@ -146,7 +146,7 @@
               <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
             </tr>
             <tr>
-              <td>Unlimited <a href="#kvm-guest-support">Ubuntu KVM guest support</a></td>
+              <td>Unlimited <a href="#kvm-guest-support">Ubuntu guest support</a></td>
               <td></td>
               <td></td>
               <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
@@ -203,7 +203,7 @@
         Service additionally includes:
       </p>
       <ul>
-        <li class="p-list__item">Ubuntu Advantage Virtual Guest Advanced support for an unlimited number of Ubuntu LXD and Ubuntu KVM guests</li>
+        <li class="p-list__item">Ubuntu Advantage Virtual Guest Advanced support for an unlimited number of Ubuntu LXD, Ubuntu KVM, and Ubuntu ESXi guests</li>
         <li class="p-list__item">Common Criteria for Ubuntu</li>
         <li class="p-list__item">FIPS for Ubuntu</li>
         <li class="p-list__item">Extended Security Maintenance for Ubuntu</li>
@@ -212,7 +212,7 @@
         Service excludes:
       </p>
       <ul>
-        <li class="p-list__item">Access to the Landscape systems management tool for Ubuntu LXD or Ubuntu KVM guests, except where covered by Landscape seats or Landscape on-premises.</li>
+        <li class="p-list__item">Access to the Landscape systems management tool for Ubuntu guests, except where covered by Landscape seats or Landscape on-premises.</li>
       </ul>
 
       <h2 id="appendix-support-scope-virtual-guest">Ubuntu Advantage Virtual Guest</h2>
@@ -242,7 +242,6 @@
       <ul>
         <li class="p-list__item">Hypervisor support</li>
         <li class="p-list__item">Providing native images for a chosen hypervisor</li>
-        <li class="p-list__item">Running virtual guests within virtual guests (usually called nested)</li>
         <li class="p-list__item">Additional exclusions match those of the applicable Ubuntu Advantage Server service offering.</li>
       </ul>
 
@@ -389,14 +388,6 @@
         <li class="p-list__item">Support for packages not in the base Ubuntu desktop image</li>
       </ul>
 
-      <h3 id="appendix-support-scope-desktop-advanced">Advanced</h3>
-      <p>
-        Service additionally includes:
-      </p>
-      <ul>
-        <li class="p-list__item">Desktop provisioning with Canonical tools</li>
-      </ul>
-
       <h2 id="appendix-support-scope-kubernetes">Ubuntu Advantage Kubernetes</h2>
       <p>
         Definitions:
@@ -475,7 +466,7 @@
 
       <h2 id="appendix-support-scope-common-criteria">Common Criteria for Ubuntu</h2>
       <p>
-        Access to packages (when available) sufficient for compliance with the Common Criteria EAL2 standard when used with Ubuntu on certain Supermicro AMD64, IBM POWER8, and IBM Z hardware.
+        Access to packages and scripts (when available) sufficient for compliance with the Common Criteria EAL2 standard when used with Ubuntu on certain Supermicro AMD64, IBM POWER8, and IBM Z hardware.
       </p>
       <p>
         Licences to such packages, to the extent not already licensed under open source software licences.
