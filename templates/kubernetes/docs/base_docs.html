@@ -1,0 +1,63 @@
+{% extends "templates/base.html" %}
+{% load versioned_static  %}
+
+{% block title %}{{ title }} | Canonical Distribution of Kubernetes documentation{% endblock title %}
+
+{% block meta_copydoc %}https://drive.google.com/drive/folders/1FyMcu6vqGnyQMdWLRjvxJVWm8gHgslk4{% endblock meta_copydoc %}
+
+{% block outer_content %}
+  <div class="l-documentation">
+    <div class="l-documentation__sidebar">
+      <aside class="p-sidebar" id="docs-navigation">
+        <div class="p-sidebar__banner u-hide--medium u-hide--large">
+          <i class="p-sidebar__toggle p-icon--menu"></i>
+        </div>
+        <div class="p-sidebar__content u-hide--small">
+          <nav class="p-sidebar-nav">
+            {{ nav | safe }}
+          </nav>
+        </div>
+      </aside>
+
+      <script>
+      // Select the active navigation item
+      var navigation = document.getElementById('docs-navigation');
+      var links = navigation.getElementsByTagName('a');
+      var currentPage = window.location.pathname;
+      for (var i = 0; i < links.length; i++) {
+        var link = links[i];
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('is-active');
+        }
+      };
+      </script>
+
+      <script>
+      // Toggle mobile sidebar nav
+      var toggle = document.querySelector('.p-sidebar__toggle');
+      var sidebarContent = document.querySelector('.p-sidebar__content');
+
+      toggle.addEventListener('click', function(e) {
+        toggle.classList.toggle('p-icon--menu');
+        toggle.classList.toggle('p-icon--close');
+        sidebarContent.classList.toggle('u-hide--small');
+      });
+      </script>
+    </div>
+    <div class="l-documentation__content">
+      {% if title %}
+      <div class="p-strip is-shallow is-bordered">
+        <h1 class="u-no-margin--bottom">{{ title }}</h1>
+      </div>
+      {% endif %}
+      <div class="p-strip is-shallow">
+        {{ html_content | safe }}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer_extra %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% versioned_static 'minified/prism.css' %}" />
+<script src="{% versioned_static 'js/prism.js' %}" async></script>
+{% endblock footer_extra %}

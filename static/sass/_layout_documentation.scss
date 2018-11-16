@@ -1,0 +1,125 @@
+@mixin layout-documentation {
+  @include pattern-sidebar-nav;
+
+  .l-documentation {
+    @include row;
+    display: flex;
+
+    .p-notification,
+    .p-notification--caution,
+    .p-notification--floating .p-notification,
+    .p-notification--information,
+    .p-notification--negative,
+    .p-notification--positive {
+      margin: 2rem 0.1rem;
+    }
+
+    pre {
+      max-width: 700px;
+      overflow-x: auto;
+      width: 95vmax;
+    }
+
+    pre,
+    code {
+      white-space: pre;
+    }
+
+    img {
+      margin: 2rem 0 2rem 0;
+    }
+
+    h2,
+    h3,
+    h4 {
+      padding-top: 1.55rem;
+    }
+
+    @media (max-width: $breakpoint-medium) {
+      flex-direction: column;
+    }
+
+    &__sidebar {
+      border-right: 1px solid $color-mid-light;
+      flex: 0 0 18rem;
+
+      @media (max-width: $breakpoint-medium) {
+        border-bottom: 1px solid $color-mid-light;
+        border-right: 0;
+        flex: 1;
+        flex-direction: column;
+      }
+    }
+
+    &__content {
+      flex: 5;
+
+      @media (min-width: $breakpoint-medium) {
+        margin: 2rem 0;
+        padding-left: 5%;
+      }
+    }
+  }
+}
+
+@mixin pattern-sidebar-nav {
+  .p-sidebar-nav {
+    @media (min-width: $breakpoint-medium) {
+      margin-top: 2rem;
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 2;
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      margin-bottom: 0.625rem;
+      margin-left: 0;
+      padding-left: 1rem;
+    }
+
+    li {
+      padding-bottom: 0.125rem;
+      padding-top: 0.125rem;
+
+      a,
+      a:visited {
+        color: $color-x-dark;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: $color-link;
+        text-decoration: underline;
+      }
+
+      .is-active {
+        position: relative;
+
+        &::before {
+          background-color: $color-mid-light;
+          bottom: -0.25rem;
+          content: "";
+          left: -1rem;
+          position: absolute;
+          top: -0.25rem;
+          width: 0.1875rem;
+        }
+      }
+    }
+  }
+
+  .p-sidebar__banner {
+    text-align: right;
+  }
+
+  .p-sidebar__toggle {
+    background-size: 1rem;
+    cursor: pointer;
+    padding: 2rem;
+  }
+}
