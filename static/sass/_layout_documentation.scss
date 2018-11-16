@@ -53,8 +53,11 @@
 
     &__content {
       flex: 5;
-      margin: 2rem 0;
-      padding-left: 5%;
+
+      @media (min-width: $breakpoint-medium) {
+        margin: 2rem 0;
+        padding-left: 5%;
+      }
     }
   }
 }
