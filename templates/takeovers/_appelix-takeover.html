@@ -1,0 +1,45 @@
+<section class="js-takeover p-takeover--appelix">
+  <div class="p-strip is-deep p-takeover--appelix-suru">
+    <div class="row u-vertically-center">
+      <div class="col-8">
+        <h1>Precision drone flights at the edge of innovation</h1>
+        <h4>Discover how Apellix has designed revolutionary software to solve industrial IoT challenges.</h4>
+        <p class="u-no-margin--bottom u-hide--small">
+          <a href="https://www.brighttalk.com/webcast/6793/338628" class="p-button--neutral u-no-margin--bottom">
+            <span class="p-link--external">Register for the webinar</span>
+          </a>
+        </p>
+      </div>
+      <div class="col-4">
+        <div class="u-align--center u-sv3">
+          <img src="https://assets.ubuntu.com/v1/f42b7e29-drone.svg" alt="" />
+        </div>
+        <p class="u-hide--large u-hide--medium">
+          <a href="https://www.brighttalk.com/webcast/6793/338628" class="p-button--neutral">
+            <span class="p-link--external">Register for the webinar</span>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <style>
+      .p-takeover--appelix {
+        background-color: #9AAF55;
+        background-image: linear-gradient(-46deg, #82A08D 0%, #9AAF55 100%);
+      }
+
+      @media (min-width: 874px) {
+        .p-takeover--appelix-suru {
+          background-blend-mode: multiply;
+          background-color: #9AAF55;
+          background-image: url("{{ ASSET_SERVER_URL }}2eb4cbf6-left.svg"),
+            url("{{ ASSET_SERVER_URL }}53ca89d2-right+1.svg"),
+            url("{{ ASSET_SERVER_URL }}35352e1c-right+2.svg");
+          background-position: bottom left, bottom right, bottom right;
+          background-repeat: no-repeat;
+          background-size: contain;
+        }
+      }
+    </style>
+</section>

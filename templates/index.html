@@ -8,7 +8,7 @@
 
   A takeover can belong to all or one language parent group. You can build a queue
   of them to rotate based on the user's language settings.
-  
+
   To designate a takeover to display for a specific language parent group, specify
   the "lang" attribute on the <section> container. For takeovers that should appear
   for all languages, simply omit the "lang" attribute.
@@ -22,6 +22,7 @@
 #}
 
 {% block takeover_content %}
+  {% include "takeovers/_appelix-takeover.html" %}
   {% include "takeovers/_1810-webinar-takeover.html" %}
   {% include "takeovers/_improving_productivity_kubernetes.html" %}
   {% include "takeovers/_compliance-webinar.html" %}
