@@ -12,7 +12,7 @@
       </div>
       <div class="col-4">
         <div class="u-align--center u-sv3">
-          <img src="https://assets.ubuntu.com/v1/f42b7e29-drone.svg" alt="" />
+          <img src="https://assets.ubuntu.com/v1/f42b7e29-drone.svg" class="p-takeover__image" alt="" />
         </div>
         <p class="u-hide--large u-hide--medium">
           <a href="https://www.brighttalk.com/webcast/6793/338628" class="p-button--neutral">
@@ -32,13 +32,28 @@
       @media (min-width: 874px) {
         .p-takeover--appelix-suru {
           background-blend-mode: multiply;
-          background-color: #9AAF55;
           background-image: url("{{ ASSET_SERVER_URL }}2eb4cbf6-left.svg"),
-            url("{{ ASSET_SERVER_URL }}53ca89d2-right+1.svg"),
-            url("{{ ASSET_SERVER_URL }}35352e1c-right+2.svg");
-          background-position: bottom left, bottom right, bottom right;
+          url("{{ ASSET_SERVER_URL }}53ca89d2-right+1.svg"),
+          url("{{ ASSET_SERVER_URL }}35352e1c-right+2.svg"),
+          linear-gradient(74deg, #82A08D 0%, #9AAF55 92%);
+          background-position: bottom left, bottom right, top right;
           background-repeat: no-repeat;
-          background-size: contain;
+        }
+      }
+
+      .p-takeover--appelix .p-takeover__image {
+        animation: drone-in 1.5s ease .3s 1;
+      }
+
+      @keyframes drone-in {
+        0% {
+          transform: translatex(50vw) rotate(0deg) scale(1.1);
+        }
+        75% {
+         transform: translatex(1vw) rotate(150deg) scale(1.1);
+        }
+        100% {
+          transform: translatex(0px) rotate(180deg) scale(1);
         }
       }
     </style>
