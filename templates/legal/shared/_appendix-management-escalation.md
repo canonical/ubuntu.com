@@ -1,4 +1,4 @@
-# [Appendix {{number}} - Management Escalation](#appendix-management-escalation)
+# <a name="appendix-management-escalation">Appendix {{number}} - Management Escalation</a>
 
 In the event of an unsatisfactory service of any kind, there are several ways to escalate this situation to Canonical management.
 

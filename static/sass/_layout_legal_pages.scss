@@ -1,6 +1,4 @@
 @mixin layout_legal_pages {
-  @include pattern-sidebar-nav;
-
   .l-legal-pages {
     div > ol {
       margin-left: 0;
@@ -16,7 +14,7 @@
         counter-increment: item;
         font-size: 2.25rem;
         font-weight: 300;
-        line-height: 1.167;
+        line-height: 2;
       }
 
       & p {
@@ -30,8 +28,10 @@
       & > li > h4,
       & > li + h5,
       & > li > table {
+        margin-bottom: $spv-intra--condensed;
         margin-left: $sp-medium;
         padding-left: $sp-medium;
+        padding-top: $spv-intra;
       }
 
       & > li > h4:first-child {
