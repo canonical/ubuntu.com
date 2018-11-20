@@ -1,0 +1,59 @@
+@mixin layout_legal_pages {
+  @include pattern-sidebar-nav;
+
+  .l-legal-pages {
+    div > ol {
+      margin-left: 0;
+      padding-left: 0;
+    }
+
+    ol {
+      counter-reset: item;
+      list-style-type: none;
+
+      & > li::before {
+        content: counters(item, ".") ". ";
+        counter-increment: item;
+        font-size: 2.25rem;
+        font-weight: 300;
+        line-height: 1.167;
+      }
+
+      & p {
+        max-width: inherit;
+      }
+
+      & > li > p,
+      & > li > ol,
+      & > li > ul,
+      & > li + h3,
+      & > li > h4,
+      & > li + h5,
+      & > li > table {
+        margin-left: $sp-medium;
+        padding-left: $sp-medium;
+      }
+
+      & > li > h4:first-child {
+        margin-left: 0;
+        padding-left: 0;
+      }
+
+      & > li > h3,
+      & > li > h4,
+      & > li > h5 {
+        display: inline-block;
+      }
+
+      & > li > ol > li::before {
+        font-size: 1.2rem;
+      }
+
+      & > li > h2:first-child,
+      & > li > h3:first-child,
+      & > li > h4:first-child {
+        display: inline-block;
+      }
+    }
+  }
+}
