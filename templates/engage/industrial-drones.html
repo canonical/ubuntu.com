@@ -1,0 +1,62 @@
+{% extends "engage/base_engage.html" %}
+
+{% block meta_description %}This webinar discusses how Apellix uses Ubuntu to solve industrial IoT challenges with precision drones.{% endblock %}
+
+{% block title %}Precision drones on Ubuntu: flying at the edge of innovation{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1rhPmuqLVGRXUmPnDsaOvp09LvCkLBHieZh-sjEROf6g/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-takeover--appelix">
+  <div class="p-strip p-takeover--appelix-suru">
+    <div class="row u-vertically-center">
+      <div class="col-7">
+        <h1>Precision drones to solve industrial IoT challenges</h1>
+        <h4>How Apellix uses Ubuntu on drones to replace human workers in potentially dangerous scenarios.</h4>
+        <p class="p-takeover__text">
+              Webinar live on 5 December 2018 - <a href="#register-section" class="p-link">Register now&nbsp;&rsaquo;</a></p>
+      </div>
+      <div class="col-5 u-hide--small">
+        <div class="u-align--center u-sv3">
+          <img src="https://assets.ubuntu.com/v1/f42b7e29-drone.svg" class="p-takeover__image" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+      .p-takeover--appelix {
+        background-color: #9AAF55;
+        background-image: linear-gradient(-46deg, #82A08D 0%, #9AAF55 100%);
+      }
+      @media (min-width: 874px) {
+        .p-takeover--appelix-suru {
+          background-blend-mode: multiply;
+          background-image: url("{{ ASSET_SERVER_URL }}2eb4cbf6-left.svg"),
+          url("{{ ASSET_SERVER_URL }}53ca89d2-right+1.svg"),
+          url("{{ ASSET_SERVER_URL }}35352e1c-right+2.svg"),
+          linear-gradient(74deg, #82A08D 0%, #9AAF55 92%);
+          background-position: bottom left, bottom right, top right;
+          background-repeat: no-repeat;
+        }
+        </style>
+</section>
+
+<style>
+  .p-takeover--compliance {
+    background-image: linear-gradient(44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%);
+  }
+  .p-compliance-icon {
+    height: 154px;
+    width: 154px;
+  }
+</style>
+
+<section class="p-strip" id="register-section">
+  <div class="row">
+    <div class="jsBrightTALKEmbedWrapper" style="width:900px; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 338628, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>
+  </div>
+</section>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_further_reading" second_item="_iot_newsletter_signup" third_item="_iot_contact" %}
+{% endblock content %}
