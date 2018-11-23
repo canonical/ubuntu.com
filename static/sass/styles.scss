@@ -215,3 +215,20 @@ abbr[title] {
 [class^="p-strip"].is-bordered {
   margin-bottom: 0;
 }
+
+h2,
+.p-heading--two {
+  font-weight: 100;
+}
+
+html {
+  @media (min-width: $breakpoint-x-large) {
+    font-size: $fontsize-bigscreen;
+  }
+}
+
+.row,
+.global-nav__header-row.global-nav__row[style],
+.l-docs {
+    max-width: $width-base - $gutters_total!important;
+}
