@@ -1,0 +1,65 @@
+{% extends "engage/base_engage.html" %}
+
+{% block meta_description %}What's the most popular Linux OS? This whitepaper examines six key reasons why the developer community turn to Ubuntu.{% endblock %}
+
+{% block title %}Six reasons why developers choose Ubuntu Desktop{% endblock %}
+
+{% block meta_copydoc %}FIXME{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip is-shallow p-takeover--developer-desktop">
+  <div class="row u-equal-height">
+    <div class="col-7 u-vertically-center">
+      <h1 class="p-takeover__title">Six reasons why developers choose Ubuntu Desktop</h1>
+    </div>
+    <div class="col-5 u-vertically-center ">
+      <div class="u-align-text--center u-hide--small">
+        <img src="{{ ASSET_SERVER_URL }}a68a11b7-Dell+XPS+13-1804-1.png"/>
+      </div>
+      <p class="u-hide--medium u-hide--large ">
+        <a href="#the-form" class="p-button--positive">Download the whitepaper</a>
+      </p>
+    </div>
+  </div>
+
+  <style>
+    .p-takeover--developer-desktop {
+      background-image: linear-gradient(74deg, #2C3037 0%, #1E1E1E 100%);
+      background-color: #2C3037;
+      background-size: cover;
+    }
+
+    .p-takeover--developer-desktop .p-takeover__title {
+      font-weight: 100;
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+  </style>
+</section>
+
+
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-7">
+        <p>Used in more than 240 countries, by governments, enterprises, and consumers alike, Ubuntu Desktop is the number one Linux operating system (OS) in the world. Ubuntu Desktop is used by leading technology companies in no small part down to the popularity amongst software developers where it is an attractive platform for a diverse range of applications including robotics, artificial intelligence, full stack web development and embedded devices.</p>
+
+        <div class="u-align--center col-12 u-hide--small">
+              <img src="{{ ASSET_SERVER_URL }}9406095a-Screenshot+from+2018-11-23+12-29-32.png" style="height:230px;" alt="Developers use Ubuntu all around the world">
+        </div>
+        <p>But why is it so popular? This whitepaper examines six key reasons why the developer community turn to Ubuntu. From the rise of AI and machine learning to secure application packaging distribution through snaps, the use of Ubuntu by developers continues to increase.</p>
+        <h3>Whitepaper highlights</h3>
+        <ul class="p-list">
+            <li class="p-list__item is-ticked">Why the Ubuntu Desktop is the ideal platform to move through from development to production, whether for use in the cloud, server or IoT devices.</li>
+            <li class="p-list__item is-ticked">The extensive support and knowledge base available from the Ubuntu community, the wider Linux ecosystem and Canonical’s Ubuntu Advantage programme for enterprises. </li>
+            <li class="p-list__item is-ticked">How compatibility with a wide range of certified hardware and software enables a smooth, frictionless development process.</li>
+        </ul>
+
+
+    </div>
+    <div class="col-5" id="the-form">
+    {% include "../shared/forms/_landing_page_default.html" with id="FIXME" returnURL="FIXME" %}
+    </div>
+  </div>
+</section>
+{% endblock content %}
