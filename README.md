@@ -1,6 +1,6 @@
 # www.ubuntu.com codebase
 
-[![Build Status](https://travis-ci.org/canonical-websites/www.ubuntu.com.svg?branch=master)](https://travis-ci.org/ubuntudesign/www.ubuntu.com)
+[![CircleCI build status](https://circleci.com/gh/canonical-websites/www.ubuntu.com.svg?style=shield)](https://circleci.com/gh/canonical-websites/www.ubuntu.com)
 
 This is the codebase and content for [www.ubuntu.com](https://www.ubuntu.com), a simple databaseless informational website project based on [Django](https://www.djangoproject.com/).
 
