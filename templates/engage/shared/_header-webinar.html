@@ -1,0 +1,23 @@
+<section class="{% if class %}p-strip {{ class }}{% else %}p-strip--light{% endif %}">
+  <div class="row u-equal-height">
+    <div class="{% if image %}col-7{% else %}col-8{% endif %}">
+      <h1 style="font-weight: 100;">
+        {{ title }}
+      </h1>
+      {% if subtitle %}<h4>
+        {{ subtitle }}
+      </h4>{% endif %}
+      {% if date %}<p>
+        {{ date }}
+      </p>{% endif %}
+      <p>
+        <a href="{{ url }}" class="p-button--neutral">
+          {{ cta }}
+        </a>
+      </p>
+    </div>
+    {% if image %}<div class="col-5 u-align--center u-vertically-center">
+      <img src="{% if image != "http" %}{{ ASSET_SERVER_URL }}{% endif %}{{ image }}" alt="image for (( title ))" >
+    </div>{% endif %}
+  </div>
+</section>
