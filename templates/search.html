@@ -31,6 +31,9 @@
           <div class="col-10">
             <label for="search-input" class="u-off-screen">Search</label>
             <input name="q" id="search-input" type="search" {% if query %}value="{{ query }}"{% endif %} placeholder="e.g. juju" style="margin: 0;"/>
+            {% if siteSearch %}
+              <input name="siteSearch" type="hidden" value="{{ siteSearch }}" />
+            {% endif %}
           </div>
           <div class="col-2" style="height: 48px;">
             <button type="submit" alt="search" class="p-button--neutral u-align--left">Search</button>
