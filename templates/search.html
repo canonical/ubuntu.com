@@ -31,6 +31,9 @@
           <div class="col-10">
             <label for="search-input" class="u-off-screen">Search</label>
             <input name="q" id="search-input" type="search" {% if query %}value="{{ query }}"{% endif %} placeholder="e.g. juju" style="margin: 0;"/>
+            {% if siteSearch %}
+              <input name="siteSearch" type="hidden" value="{{ siteSearch }}" />
+            {% endif %}
           </div>
           <div class="col-2" style="height: 48px;">
             <button type="submit" alt="search" class="p-button--neutral u-align--left">Search</button>
@@ -85,13 +88,13 @@
     <div class="row">
       <div class="col-6 u-align--left">
         {% if results.queries.previousPage %}
-          <a href="/search?q={{ query }}&amp;num={{ num }}&amp;start={{ results.queries.previousPage.0.startIndex }}">&#8249;&nbsp;Previous</a>
+          <a href="/search?q={{ query }}&amp;num={{ num }}&amp;start={{ results.queries.previousPage.0.startIndex }}{% if siteSearch %}&amp;siteSearch={{ siteSearch }}{% endif %}">&#8249;&nbsp;Previous</a>
         {% endif %}
       </div>
 
       <div class="col-6 u-align--right">
         {% if results.queries.nextPage %}
-          <a href="/search?q={{ query }}&amp;num={{ num }}&amp;start={{ results.queries.nextPage.0.startIndex }}">Next&nbsp;&#8250;</a>
+          <a href="/search?q={{ query }}&amp;num={{ num }}&amp;start={{ results.queries.nextPage.0.startIndex }}{% if siteSearch %}&amp;siteSearch={{ siteSearch }}{% endif %}">Next&nbsp;&#8250;</a>
         {% endif %}
       </div>
     </div>
