@@ -4,7 +4,7 @@ markdown_includes:
   nav: "shared/_side-navigation.md"
 context:
   title: "News"
-  description: The latest news on the Canonical Distribution of Kubernetes.
+  description: The latest news on the Charmed Distribution of Kubernetes.
 ---
 
 ## 1.12 has been released

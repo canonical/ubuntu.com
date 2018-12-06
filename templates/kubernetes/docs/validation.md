@@ -9,7 +9,7 @@ context:
 
 End-to-end (e2e) tests for **Kubernetes** provide a mechanism to test the behaviour of the system. This is a useful indicator that the cluster is performing properly, as well as a good validation of any code changes.
 
-For the **Canonical Distribution of Kubernetes<sup>&reg;</sup>**, these tests are encapsulated in an additional **Juju** charm which can be added to your cluster. Actual testing is then run through the charm's actions.
+For the **Charmed Distribution of Kubernetes<sup>&reg;</sup>**, these tests are encapsulated in an additional **Juju** charm which can be added to your cluster. Actual testing is then run through the charm's actions.
 
 <div class="p-notification--caution">
   <p markdown="1" class="p-notification__response">
