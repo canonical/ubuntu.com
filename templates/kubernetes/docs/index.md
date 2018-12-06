@@ -4,10 +4,10 @@ markdown_includes:
   nav: "shared/_side-navigation.md"
 context:
   title: "Kubernetes documentation"
-  description: Documentation for the Canonical Distribution of Kubernetes.
+  description: Documentation for the Charmed Distribution of Kubernetes.
 ---
 
-The Canonical Distribution of Kubernetes<sup>&reg;</sup> (CDK), is pure Kubernetes tested across the widest range of clouds with modern metrics and monitoring, brought to you by the people who deliver Ubuntu.
+The Charmed Distribution of Kubernetes<sup>&reg;</sup> (CDK), is pure Kubernetes tested across the widest range of clouds with modern metrics and monitoring, brought to you by the people who deliver Ubuntu.
 
 Google, Microsoft, and many other institutions run Kubernetes on Ubuntu because we focus on the latest container capabilities in modern kernels. That’s why it’s the top choice for enterprise Kubernetes, too.
 

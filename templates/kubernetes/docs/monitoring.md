@@ -7,13 +7,13 @@ context:
   description: How to create monitoring solution that runs whether the cluster itself is running or not. It may also be useful to integrate monitoring into existing setups.
 ---
 
-The Canonical Distribution of Kubernetes<sup>&reg;</sup> includes the standard Kubernetes dashboard for monitoring your cluster. However, it is often advisable to have a monitoring solution which will run whether the cluster itself is running or not. It may also be useful to integrate monitoring into existing setups.
+The Charmed Distribution of Kubernetes<sup>&reg;</sup> includes the standard Kubernetes dashboard for monitoring your cluster. However, it is often advisable to have a monitoring solution which will run whether the cluster itself is running or not. It may also be useful to integrate monitoring into existing setups.
 
 Prometheus is the recommended way to monitor your deployment - instructions are provided below. There are also instructions for setting up other monitoring solutions, or connecting to existing monitoring setups.
 
 ## Monitoring with Prometheus
 
-The recommended way to monitor your cluster is to use a combination of Prometheus, Grafana and Telegraf. The fastest, easiest way to install and configure this is via conjure-up when installing the Canonical Distribution of Kubernetes<sup>&reg;</sup>, by selecting the box next to Prometheus from the `Add-on` menu. You can then log in to the dashboard as [described below](#retrieve-credentials-and-login). See the [quickstart guide][quickstart] for more details on installing CDK with conjure-up.
+The recommended way to monitor your cluster is to use a combination of Prometheus, Grafana and Telegraf. The fastest, easiest way to install and configure this is via conjure-up when installing the Charmed Distribution of Kubernetes<sup>&reg;</sup>, by selecting the box next to Prometheus from the `Add-on` menu. You can then log in to the dashboard as [described below](#retrieve-credentials-and-login). See the [quickstart guide][quickstart] for more details on installing CDK with conjure-up.
 
 If you have already installed your cluster, you will be able to add and configure the extra applications using Juju as described here:
 
