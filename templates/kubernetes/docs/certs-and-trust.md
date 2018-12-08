@@ -13,8 +13,6 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-# Securing communications with PKI
-
 The components of **Canonical Distribution of Kubernetes<sup>&reg;</sup> (CDK)**
 need to be able to communicate securely over the network. This is accomplished
 using [TLS][] and [public-key encryption][PKI] with a [chain of trust][] up
@@ -95,7 +93,7 @@ rejected by clients if presented by a service they are connecting to.
 
 **CDK** can use a CA provided by any charm which [provides a tls-certificates
 endpoint][provides-tls]. The two current recommendations are
-[EasyRSA](#easyrsa) and [Vault](#vault).
+**EasyRSA** and **Vault**.
 
 ## EasyRSA
 
