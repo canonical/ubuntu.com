@@ -86,7 +86,7 @@ can be used to provide additional names to be added to the SANs list.
 
 In order to provide for two-way security, some services require that clients
 identify themselves via a [client certificate][]. These are more or less the
-same as server certificates, but are presented by a client to the service
+same as server certificates but are presented by a client to the service
 they are connecting to so that the service can validate that client's identity.
 Client certificates can _only_ be used to identify a client and will be
 rejected by clients if presented by a service they are connecting to.
