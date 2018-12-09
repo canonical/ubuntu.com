@@ -13,7 +13,7 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-The components of **Canonical Distribution of Kubernetes<sup>&reg;</sup> (CDK)**
+The components of **Charmed Distribution of Kubernetes<sup>&reg;</sup> (CDK)**
 need to be able to communicate securely over the network. This is accomplished
 using [TLS][] and [public-key encryption][PKI] with a [chain of trust][] up
 to a shared root [Certificate Authority (CA)][CA]. However, when the cluster
