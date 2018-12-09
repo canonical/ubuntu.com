@@ -22,7 +22,7 @@ details.
 
 ## Deploy
 
-The registry is deployed as a stand alone application. Many deployment
+The registry is deployed as a stand-alone application. Many deployment
 scenarios are described in the charm readme. The most common scenario for
 **Kubernetes** integration is to configure a registry with TLS and basic
 (htpasswd) authentication enabled.
