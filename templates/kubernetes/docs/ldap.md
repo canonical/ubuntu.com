@@ -200,7 +200,7 @@ The [default policy may be downloaded][policy] for easy editing.
 ## Troubleshooting
 
 As with any application configuration, it is easy to make simple mistakes when entering
-different values or editing config files. If you are having problems, please [read the troubleshooting guide][trouble] for specific tips and information on configuring Keystone/LDAP
+different values or editing config files. If you are having problems, please [read the troubleshooting guide][trouble] for specific tips and information on configuring Keystone/LDAP.
 
 <!--LINKS-->
 [install]: /kubernetes/docs/quickstart
