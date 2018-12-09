@@ -27,7 +27,7 @@ scenarios are described in the charm readme. The most common scenario for
 **Kubernetes** integration is to configure a registry with TLS and basic
 (htpasswd) authentication enabled.
 
-If needed, consult the [quickstart guide][quickstart] guide to install
+If needed, consult the [quickstart guide][quickstart] to install
 the **Charmed Distribution of Kubernetes**<sup>&reg;</sup>. Then deploy
 and configure `docker-registry` as follows:
 
