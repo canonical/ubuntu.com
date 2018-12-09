@@ -28,7 +28,7 @@ scenarios are described in the charm readme. The most common scenario for
 (htpasswd) authentication enabled.
 
 If needed, consult the [quickstart guide][quickstart] guide to install
-the **Canonical Distribution of Kubernetes**<sup>&reg;</sup>. Then deploy
+the **Charmed Distribution of Kubernetes**<sup>&reg;</sup>. Then deploy
 and configure `docker-registry` as follows:
 
 ```bash
