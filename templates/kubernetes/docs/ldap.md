@@ -127,7 +127,7 @@ Repeat the process for `k8s-viewers` and `k8s-users` if desired. These values
 match with the `keystone-policy` configuration option on the kubernetes-master
 charm.
 
-## Create project for Kubernetes
+## Create a project for Kubernetes
 
 As with the roles, the project name must match the value in the
 `keystone-policy` configuration option on the kubernetes-master charm.
