@@ -66,7 +66,7 @@ Login Succeeded
 relating `docker-registry` and `kubernetes-worker`, appropriate certificates
 are added to `/etc/docker/certs.d` on all workers.
 
-Verify basic authentication is working _from_a_Kubernetes_worker_:
+Verify basic authentication is working from a Kubernetes worker:
 
 ```bash
 juju run --unit kubernetes-worker/0 "docker login -u admin -p password $REGISTRY"
