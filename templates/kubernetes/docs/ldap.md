@@ -172,7 +172,7 @@ juju config keystone-ldap domain-name="myorganisationname"
 The Keystone charm will automatically create a domain to support the backend
 once deployed.
 
-For more detailed explanation of the configuration and other options, please see the
+For a more detailed explanation of the configuration and other options, please see the
 [documentation for the ldap-keystone charm][docs-ldap-keystone]
 
 ## Authorisation
