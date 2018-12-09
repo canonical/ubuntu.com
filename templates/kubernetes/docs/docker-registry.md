@@ -83,7 +83,7 @@ Minimally, Kubernetes 1.1x requires the following:
 - quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.16.1
 - k8s.gcr.io/defaultbackend-amd64:1.5
 
-**CDK** supports optional addons that include the **Kubernetes** dashboard, 
+**CDK** supports optional add-ons that include the **Kubernetes** dashboard, 
 **Heapster**, **kube-dns**, etc. Enabling these addons will require the
 following additional images:
 
