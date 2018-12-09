@@ -39,7 +39,7 @@ Note: These instructions assume you are working with the `Queens` release of
 
 Keystone should be deployed using **Juju**. This is easily achieved by using a bundle,
 which will deploy and relate, Keystone, the OpenStack dashboard and a suitable
-database. An example bundle is available for [download here][keystone-bundle].
+database. An example bundle is [available for download][keystone-bundle].
 
 Deploy the bundle with the following command:
 
