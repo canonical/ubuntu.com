@@ -195,7 +195,7 @@ juju config kubernetes-master enable-keystone-authorization=true
 juju config kubernetes-master keystone-policy=$(cat policy.yaml)
 ```
 
-The default policy may be [downloaded here][policy] for easy editing.
+The [default policy may be downloaded][policy] for easy editing.
 
 ## Troubleshooting
 
