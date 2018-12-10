@@ -16,7 +16,7 @@ toc: False
 The standard deployment of the
 **Charmed Distribution of Kubernetes<sup>&reg;</sup> (CDK)** includes a single
 instance of the kube-api-loadbalancer.  For many use cases this is perfectly adequate,
-but in a production environment you should be keen to eliminate any single point of
+but in a production environment, you should be keen to eliminate any single point of
 failure.
 
 The recommended way to provide a failover for the kube-api-loadbalancer is by using
