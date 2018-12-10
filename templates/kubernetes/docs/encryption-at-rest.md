@@ -44,7 +44,7 @@ relations:
   - ['vault:secrets', 'kubernetes-master:vault-kv']
 ```
 
-To deploy **CDK** with this overlay([download][cdk-vault-overlay]), save it as, e.g.,
+To deploy **CDK** with this overlay - [download it][cdk-vault-overlay]), save it as, e.g.,
 `cdk-vault-overlay.yaml`, and deploy with:
 
 ```
