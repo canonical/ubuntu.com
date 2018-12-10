@@ -105,7 +105,7 @@ You can determine the web address for the OpenStack dashboard by running:
 juju status openstack-dashboard
 ```
 
-Open the address in a webbrowser and login with the token obtained previously.
+Open the address in a web browser and log in with the token obtained previously.
 
 ## Create the domain for Kubernetes
 You should now be able to access the OpenStack Dashboard and create a new domain.
