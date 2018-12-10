@@ -142,7 +142,7 @@ juju config kubernetes-worker \
 ```
 
 Unlike individual configurable images on `kubernetes-worker` units, images
-used by **CDK** addons are controlled by a `kubernetes-master` config option. Push
+used by **CDK** add-ons are controlled by a `kubernetes-master` config option. Push
 the desired addon images listed above (`kubernetes-dashboard`, `heapster`, etc)
 and configure `kubernetes-master` to use the registry for installation:
 
