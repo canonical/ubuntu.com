@@ -84,7 +84,7 @@ Minimally, Kubernetes 1.1x requires the following:
 - k8s.gcr.io/defaultbackend-amd64:1.5
 
 **CDK** supports optional add-ons that include the **Kubernetes** dashboard, 
-**Heapster**, **kube-dns**, etc. Enabling these addons will require the
+**Heapster**, **kube-dns**, etc. Enabling these add-ons will require the
 following additional images:
 
 - cdkbot/addon-resizer-amd64:1.8.1
