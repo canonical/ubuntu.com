@@ -22,7 +22,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
   .p-navigation {
     background-color: $nav-bg-color;
     flex-direction: column;
-    z-index: 10;
+    z-index: 40;
 
     &::after { // disable rule under nav
       background-color: none;
@@ -184,7 +184,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
       margin-top: 0;
       position: relative;
       width: 100%;
-      z-index: 3;
+      z-index: 38;
 
       @media (max-width: $breakpoint-x-small - 1) {
         padding-bottom: $sp-medium;
@@ -376,7 +376,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
     top: 0;
     transition: opacity .5s ease-in-out;
     width: 100%;
-    z-index: 3;
+    z-index: 38;
   }
 
   .dropdown-window {
@@ -386,7 +386,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
     flex-direction: column;
     position: absolute;
     width: 100%;
-    z-index: 4;
+    z-index: 39;
 
     &.slide-animation {
       box-shadow: none;
