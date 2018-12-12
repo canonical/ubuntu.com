@@ -6,16 +6,16 @@
 
 {% block content %}
 <div class="p-strip--image p-banner-core-hero is-deep is-dark is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h1>Make Secure Devices with Ubuntu Core</h1>
+  <div class="row u-vertically-center">
+    <div class="col-7">
+      <h1>Make secure devices with Ubuntu Core</h1>
       <!-- small screen version -->
-      <img class="u-visible--small u-hide--medium u-hide--large" src="{{ ASSET_SERVER_URL }}75fa4e17-core_white-orange_st_hex.svg" width="300" alt="" style="margin: 4rem 0;"/>
-      <p>Ubuntu Core is a tiny, transactional version of Ubuntu for IoT devices and large container deployments. It runs a new breed of super-secure, remotely upgradeable Linux app packages known as snaps &dash; and it&rsquo;s trusted by leading IoT players, from chipset vendors to device makers and system integrators.</p>
+      <img class="u-visible--small u-hide--medium u-hide--large" src="{{ ASSET_SERVER_URL }}7b563def-core_white-orange_st_hex.svg" width="150" alt="" style="margin: 4rem 0;"/>
+      <h4>Everything you love about Ubuntu, locked down for security. Helping you make safer things - because we’re all connected.</h4>
     </div>
-    <div class="col-4 u-hide--small">
+    <div class="col-5 u-align--center u-hide--small">
       <!-- medium and large screen version -->
-      <img src="{{ ASSET_SERVER_URL }}75fa4e17-core_white-orange_st_hex.svg" width="500" alt="" />
+      <img src="{{ ASSET_SERVER_URL }}7b563def-core_white-orange_st_hex.svg" width="156" alt="" />
     </div>
   </div>
 </div>
@@ -27,14 +27,17 @@
       <h5 class="p-muted-heading u-no-max-width">Get straight to market with our device partners</h5>
     </div>
   </div>
+  <ul class="row">
+    <li class="prefix-4 col-6 mobile-col-6 tablet-col-6"><img class="" src="{{ ASSET_SERVER_URL }}94ea495b-2018-logo-Intel.svg" alt="Intel logo" /></li>
+    <li class="col-2 mobile-col-2 tablet-col-2"><img src="{{ ASSET_SERVER_URL }}b1767848-2018-logo-raspberry-pi.svg" alt="Raspberry PI logo" /></li>
+  </ul>
+  <ul class="row">
+    <li class="prefix-4 col-6 mobile-col-6 tablet-col-6"><img src="{{ ASSET_SERVER_URL }}0970d532-2018-logo-dell.svg" alt="Dell logo" /></li>
+    <li class="col-2 mobile-col-2 tablet-col-2"><img src="{{ ASSET_SERVER_URL }}45fd87b5-2018-logo-rigado.svg" alt="Rigado logo" /></li>
+  </ul>
   <div class="row">
     <div class="col-12 u-align--center">
-      <ul class="p-inline-images">
-        <li class="p-inline-images__item"><img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}94ea495b-2018-logo-Intel.svg" alt="Intel logo" /></li>
-        <li class="p-inline-images__item"><img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}45fd87b5-2018-logo-rigado.svg" alt="Rigado logo" /></li>
-        <li class="p-inline-images__item"><img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}0970d532-2018-logo-dell.svg" alt="Dell logo" /></li>
-        <li class="p-inline-images__item"><img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}b1767848-2018-logo-raspberry-pi.svg" alt="Raspberry PI logo" /></li>
-      </ul>
+      <p class="u-no-max-width">Canonical and partners speed your device development.</p>
       <p class="u-no-max-width"><a class="p-button--positive" href="/core/contact-us?product=core-overview">Get to market faster</a></p>
     </div>
   </div>
@@ -42,15 +45,12 @@
 
 <!-- start of generated content -->
 
-<section class='p-strip--image p-banner-core' style='min-height: 344px;'>
+<section class='p-strip--image p-banner-core' >
   <div class='row u-vertically-center'>
     <div class='col-8'>
-      <h2>Security First</h2>
+      <h2>Security first</h2>
       <h4>Security is our job from the moment you power it on.</h4>
       <p>We redesigned the entire system from first boot to create the most secure embedded Linux for devices and connected things.</p>
-    </div>
-    <div class="col-4 u-align--center">
-      <img src="{{ ASSET_SERVER_URL }}2217d1c8-Security.svg" alt="" width="150" />
     </div>
   </div>
 </section>
@@ -92,25 +92,26 @@
       </li>
     </ul>
   </div>
-  <div class="row" style="margin-top: 2rem;">
+  <div class="row u-hide--small">
+    <hr style="margin: 3rem 0;" />
+  </div>
+  <div class="row u-margin--core">
     <div class="col-6">
       <h4>Minimal core, minimal risk, minimal bugs</h4>
-      <p>Fewer packages to attack, fewer bugs to fix, fewer forced changes. We reduced the OS to reduce the attack surface. That leaves more disk for your IoT applications and data.</p>
+      <p class='p-heading--five'>Decide which updates go to your devices.</p>
+      <p>As a device manufacturer or a snap publisher, you decide which updates are certified and delivered to your devices. Digital signatures certify compatibility for precise update control.</p>
     </div>
-    <div class="col-6 u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/2fa512a3-GRAPHIC_os_image_size.svg?w=200" alt="OS image size comparison" style="">
+    <div class="col-6 u-hide--small u-align--center">
+      <img src="https://assets.ubuntu.com/v1/2fa512a3-GRAPHIC_os_image_size.svg?w=335" alt="OS image size comparison">
     </div>
   </div>
 </section>
 
-<section class='p-strip--image p-banner-core' style='min-height: 344px;'>
+<section class='p-strip--image is-deep p-banner-core'>
   <div class='row u-vertically-center'>
     <div class='col-8'>
-      <h2>Built for Business</h2>
+      <h2>Built for business</h2>
       <h4 class='u-no-margin--bottom'>Bring your applications, we take care of the rest.</h4>
-    </div>
-    <div class="col-4 u-align--center">
-      <img src="{{ ASSET_SERVER_URL }}5af1e749-pictogram_business01.svg" alt="" width="150" />
     </div>
   </div>
 </section>
@@ -125,13 +126,11 @@
           <p>As a device manufacturer or a snap publisher, you decide which updates are certified and delivered to your devices. Digital signatures certify compatibility for precise update control.</p>
         </div>
       </li>
-
       <li class='p-matrix__item'>
         <div class='p-matrix__content'>
           <h4>App store included</h4>
           <p class='p-heading--five'>Your own app store. Your own software portfolio.</p>
           <p>Every device built with Ubuntu Core has a secure app store. Use the global store for access to all the standard apps, or curate your own collection.</p>
-          <p><a href="/internet-of-things/appstore">See what an app store can do for you&nbsp;&rsaquo;</a></p>
         </div>
       </li>
       <li class='p-matrix__item'>
@@ -139,9 +138,9 @@
           <h4>Enterprise management</h4>
           <p class='p-heading--five'>Absolute control over every device in the building.</p>
           <p>Enterprises gain complete audit and control over every piece of software on every single device on the network. Regardless of manufacturer.</p>
+          <p>You know exactly which kernel version and which OS version is running. You decide when updates happen. You decide which versions, too.</p>
         </div>
       </li>
-
       <li class='p-matrix__item'>
         <div class='p-matrix__content'>
           <h4>License compliance</h4>
@@ -159,28 +158,29 @@
       <li class='p-matrix__item'>&nbsp;</li>
     </ul>
   </div>
-  <div class="row" style="margin-top: 2rem;">
+  <div class="row u-hide--small">
+    <hr  style="margin: 3rem 0;"/>
+  </div>
+  <div class="row u-vertically-center">
     <div class="col-6">
       <h4>Software ecosystem, ready to go</h4>
       <p class='p-heading--five'>Thousands of applications built to work across devices.</p>
       <p>A standard platform helps publishers support multiple devices without recompiling. And everybody wants to support Ubuntu - it’s the most widely deployed Linux in the world.</p>
-      <p><a class="p-link--external" href="https://snapcraft.io/store">Visit the Snap Store</a></p>
+      <p><a class="p-button--neutral" href="https://snapcraft.io/store"><span class="p-link--external">Visit the Snap Store</span></a></p>
+      <p><a href="/internet-of-things/appstore">Get your own app store&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-6">
-      <img src="https://assets.ubuntu.com/v1/4f462928-original.jpg" alt="Learn how to publish in the universal Linux App Store in London" style="">
+    <div class="col-6 u-align--center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}26e55529-snapstore.png?w=477" alt="">
     </div>
   </div>
 </section>
 
-<section class='p-strip--image p-banner-core' style='min-height: 344px;'>
+<section class='p-strip--image p-banner-core'>
   <div class='row u-vertically-center'>
     <div class='col-8'>
       <h2>Developers love Ubuntu</h2>
       <h4>Your business is software defined. Keep developers happy and productive to attract the best talent.</h4>
       <p>Happy developers create amazing products. Amazing products attract more great developers. 8/10 Linux developers choose Ubuntu.</p>
-    </div>
-    <div class="col-4 u-align--center">
-      <img src="{{ ASSET_SERVER_URL }}343bfd72-pictogram_favorite01.svg" alt="" width="150" />
     </div>
   </div>
 </section>
@@ -190,25 +190,9 @@
     <ul class='p-matrix is-split u-clearfix'>
       <li class='p-matrix__item'>
         <div class='p-matrix__content'>
-          <h4>One platform from workstation to device</h4>
-          <p class='p-heading--five'>Bring your apps from Ubuntu Server to Ubuntu Core.</p>
-          <p>Snaps run on Ubuntu Server, Desktop and Core. One platform, one process. Your developer workstation, your build farm, your cloud and servers all use snaps. Your appliances too - with extra security.</p>
-          <p><a class="p-link--external" href="https://snapcraft.io/">Build your IoT application with Snapcraft</a></p>
-        </div>
-      </li>
-      <li class='p-matrix__item'>
-        <div class='p-matrix__content'>
           <h4>Embedded Linux is easy on Ubuntu</h4>
           <p class='p-heading--five'>We handle the board. You handle the apps.</p>
           <p>No bad BSPs. No maintenance nightmares. No integration delays. Just develop on Ubuntu. Embedded, but not as you knew it.</p>
-        </div>
-      </li>
-      <li class='p-matrix__item'>
-        <div class='p-matrix__content'>
-          <h4>Deploy to devices as fast as the cloud</h4>
-          <p class='p-heading--five'>Publish direct to devices and watch updates in real time. Bring continuous deployment right to the edge.</p>
-          <p>Put your devices on rails for rapid iteration with continuous deployment pipelines, beta testing and canary updates. Featuring Travis integration and a multi-architecture build service.</p>
-          <p><a class="p-link--external" href="https://snapcraft.io/build">Get started at build.snapcraft.io</a></p>
         </div>
       </li>
       <li class='p-matrix__item'>
@@ -218,27 +202,38 @@
           <p>Ride the open source wave, or build your own community. Open source projects default to Ubuntu, so building is easy.</p>
         </div>
       </li>
+      <li class='p-matrix__item'>
+        <div class='p-matrix__content'>
+          <h4>Deploy to devices as fast as the cloud</h4>
+          <p class='p-heading--five'>Publish direct to devices and watch updates in real time. Bring continuous deployment right to the edge.</p>
+          <p>Put your devices on rails for rapid iteration with continuous deployment pipelines, beta testing and canary updates. Featuring Travis integration and a multi-architecture build service.</p>
+        </div>
+      </li>
+      <li class='p-matrix__item'>&nbsp;</li>
     </ul>
   </div>
-  <div class="row" style="margin-top: 2rem;">
+  <div class="row u-hide--small">
+    <hr  style="margin: 3rem 0;"/>
+  </div>
+  <div class="row u-vertically-center">
     <div class="col-6">
-      <h4>Learn how to publish in the universal Linux App Store in London</h4>
-      <p>An evening workshop with Ubuntu engineers at Canonical's head offices in London. Make your apps accessible to an audience of millions.</p>
+      <h4>One platform from workstation to device</h4>
+      <p class='p-heading--five'>Bring your apps from Ubuntu Server to Ubuntu Core.</p>
+      <p>Snaps run on Ubuntu Server, Desktop and Core. One platform, one process. Your developer workstation, your build farm, your cloud and servers all use snaps. Your appliances too - with extra security.</p>
+      <p><a class="p-button--neutral" href="https://snapcraft.io/"><span class="p-link--external">Build your IoT application with Snapcraft</span></a></p>
+      <p><a class="p-link--external" href="https://snapcraft.io/build">CI/CD with snapcraft</a></p>
     </div>
-    <div class="col-6">
-      <img src="https://assets.ubuntu.com/v1/4f462928-original.jpg" alt="Learn how to publish in the universal Linux App Store in London" style="">
+    <div class="col-6 u-align--center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}2964e9eb-snapcraft-logo--web.svg" width="334" alt="">
     </div>
   </div>
 </section>
 
-<section class='p-strip--image p-banner-core' style='min-height: 344px;'>
+<section class='p-strip--image p-banner-core'>
   <div class='row u-vertically-center'>
     <div class='col-8'>
       <h2>Incredible reliability</h2>
       <h4 class='u-no-margin--bottom'>Every application update has a backup plan. Every device has a backup kernel and OS. Because every device matters.</h4>
-    </div>
-    <div class="col-4 u-align--center">
-      <img src="{{ ASSET_SERVER_URL }}659a0a6e-pictogram_upgrade01a.svg" alt="" width="150" />
     </div>
   </div>
 </section>
@@ -271,27 +266,14 @@
       <li class='p-matrix__item'>&nbsp;</li>
     </ul>
   </div>
-  <div class="row" style="margin-top: 2rem;">
-    <div class="col-6">
-      <h4>Learn how to publish in the universal Linux App Store in London</h4>
-      <p>An evening workshop with Ubuntu engineers at Canonical's head offices in London. Make your apps accessible to an audience of millions.</p>
-    </div>
-    <div class="col-6">
-      <img src="https://assets.ubuntu.com/v1/4f462928-original.jpg" alt="Learn how to publish in the universal Linux App Store in London" style="">
-    </div>
-  </div>
-
 </section>
 
-<section class='p-strip--image p-banner-core' style='min-height: 344px;'>
+<section class='p-strip--image p-banner-core'>
   <div class='row u-vertically-center'>
     <div class='col-8'>
       <h2>Reduce the cost of Linux</h2>
       <h4>Use Ubuntu Core free. Pay only for extra services.</h4>
       <p>The reference images of Ubuntu Core are free to redistribute. Engage Canonical for enablement and custom service levels. We’ll get you to market faster.</p>
-    </div>
-    <div class="col-4 u-align--center">
-      <img src="{{ ASSET_SERVER_URL }}51610b4b-pictogram_rating01.svg" alt="" width="150" />
     </div>
   </div>
 </section>
@@ -299,13 +281,6 @@
 <section class='p-strip is-bordered'>
   <div class='row'>
     <ul class='p-matrix is-split u-clearfix'>
-      <li class='p-matrix__item'>
-        <div class='p-matrix__content'>
-          <h4>Bandwidth matters for billions of devices</h4>
-          <p class='p-heading--five'>Delta updates reduce traffic to the edge.</p>
-          <p>Shipping apps and updates adds up to a lot of traffic. Control costs with automatic compression and delta composition.</p>
-        </div>
-      </li>
       <li class='p-matrix__item'>
         <div class='p-matrix__content'>
           <h4>Off-the-shelf board support by Canonical</h4>
@@ -316,29 +291,34 @@
       </li>
       <li class='p-matrix__item'>
         <div class='p-matrix__content'>
-          <h4>Right-size your silicon</h4>
-          <p class='p-heading--five'>Finish your apps, then choose your chips.</p>
-          <p>A standard platform means you can develop your software and polish your industrial design first, then choose the right size chips for your experience based on real code and data.</p>
-          <p>Get the best deal when you’re ready to ship.</p>
-          <p><a href="/core/contact-us?product=core-overview" class="p-button--positive">Contact us</a></p>
-        </div>
-      </li>
-      <li class='p-matrix__item'>
-        <div class='p-matrix__content'>
           <h4>Choice of ARM or x86</h4>
           <p class='p-heading--five'>Ubuntu runs the same. Your apps build the same.</p>
           <p>We support both 32-bit and 64-bit apps on both architectures. If it doesn’t compile and run the same, we’ll fix it. Open up your supply chain.</p>
         </div>
       </li>
+      <li class='p-matrix__item'>
+        <div class='p-matrix__content'>
+          <h4>Bandwidth matters for billions of devices</h4>
+          <p class='p-heading--five'>Delta updates reduce traffic to the edge.</p>
+          <p>Shipping and updating apps adds up to a lot of traffic. Control costs with automatic compression and delta composition.</p>
+        </div>
+      </li>
+      <li class='p-matrix__item'>&nbsp;</li>
     </ul>
   </div>
-  <div class="row" style="margin-top: 2rem;">
+  <div class="row u-hide--small">
+    <hr style="margin: 3rem 0;" />
+  </div>
+  <div class="row u-margin--core">
     <div class="col-6">
-      <h4>Learn how to publish in the universal Linux App Store in London</h4>
-      <p>An evening workshop with Ubuntu engineers at Canonical's head offices in London. Make your apps accessible to an audience of millions.</p>
+      <h4>Right-size your silicon</h4>
+      <p class='p-heading--five'>Finish your apps, then choose your chips.</p>
+      <p>A standard platform means you can develop your software and polish your industrial design first, then choose the right size chips for your experience based on real code and data.</p>
+      <p>Get the best deal when you’re ready to ship.</p>
+      <p><a href="/core/contact-us?product=core-overview" class="p-button--positive">Contact us</a></p>
     </div>
-    <div class="col-6">
-      <img src="https://assets.ubuntu.com/v1/4f462928-original.jpg" alt="Learn how to publish in the universal Linux App Store in London" style="">
+    <div class="col-6 u-align--center u-vertically-center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}9e173716-iot.svg" width="158" alt="">
     </div>
   </div>
 </section>
@@ -349,7 +329,7 @@
 <div class="p-strip is-deep is-bordered">
   <div class="row">
     <div class="col-12">
-      <h2>See how customers succeeded with Ubuntu Core</h2>
+      <h2>Further reading on Ubuntu Core</h2>
     </div>
   </div>
   <div class="row p-divider">
@@ -372,7 +352,7 @@
           <h4 class='p-heading-icon__title'>Whitepaper</h4>
         </div>
       </div>
-      <h3 class='p-heading--four'><a href='engage/ubuntu-core-and-kura' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - center', 'eventLabel' : 'Whitepaper - Ubuntu Core and Kura - a framework for IoT gateways, 'eventValue' : '1' });'><span hidden>Read the whitepaper </span>Ubuntu Core and Kura &mdash; a framework for IoT gateways</a></h3>
+      <h3 class='p-heading--four'><a href='engage/ubuntu-core-and-kura' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - center', 'eventLabel' : 'Whitepaper - Ubuntu Core and Kura - a framework for IoT gateways, 'eventValue' : '1' });'><span hidden>Read the whitepaper </span>Ubuntu Core and Kura &mdash; a framework for IoT gateways&nbsp;&rsaquo;</a></h3>
       <!-- rtp section center end -->
     </div>
     <div class="col-4 p-divider__block" id="ubuntu-com_iot-robotics_right">
@@ -383,84 +363,64 @@
           <h4 class='p-heading-icon__title'>Case study</h4>
         </div>
       </div>
-      <h3 class='p-heading--four'><a href='/engage/fingbox-case-study' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - right', 'eventLabel' : 'Case study - Fing snaps up 30,000 customers', 'eventValue' : '1' });'><span hidden>Read the case study </span>Fing snaps up 30,000 customers with a secure, future-proof IoT device</a></h3>
+      <h3 class='p-heading--four'><a href='/engage/fingbox-case-study' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - right', 'eventLabel' : 'Case study - Fing snaps up 30,000 customers', 'eventValue' : '1' });'><span hidden>Read the case study </span>Fing snaps up 30,000 customers with a secure, future-proof IoT device&nbsp;&rsaquo;</a></h3>
       <!-- rtp section right end -->
     </div>
   </div>
 </div>
 
-<div class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="u-equal-height">
-      <div class="col-2 u-vertically-align">
-        <img src="{{ ASSET_SERVER_URL }}0c16085c-network-equipment_2px.svg" alt="Ubuntu Core is cool ;-)" class="u-hide--small" />
-      </div>
-      <div class="col-9 u-vertically-align">
-        <h2>Want to make your own Ubuntu Core device?</h2>
-        <p><a href="http://docs.ubuntu.com/core/en/guides/build-device/image-building?from=corepage">Build a custom Ubuntu Core image&nbsp;&rsaquo;</a></p>
-      </div>
+<section class="p-strip--light is-bordered">
+  <div class="row p-divider">
+    <div class="col-6 p-divider__block">
+      <h3>Let&rsquo;s work together</h3>
+      <p>Talk to us about using Ubuntu Core for your next project.</p>
+      <p><a href="/core/contact-us?product=core-overview" class="p-button--positive">Get in touch</a></p>
+    </div>
+    <div class="col-6 p-divider__block">
+      <h3>Make your own Ubuntu Core device</h3>
+      <p>Walk through all the steps to build an image for a device.</p>
+      <p><a class="p-button--neutral" href="http://docs.ubuntu.com/core/en/guides/build-device/image-building?from=corepage"><span class="p-link--external">Build a custom Ubuntu Core image</span></a></p>
     </div>
   </div>
-</div>
-
-<div class="p-strip">
-  <div class="row">
-    <div class="u-equal-height">
-      <div class="col-8">
-        <h2>Let&rsquo;s work together</h2>
-        <p>Talk to us if you are thinking about using Ubuntu Core for your next project.</p>
-        <p><a href="/core/contact-us?product=core-overview" class="p-button--positive">Get in touch</a></p>
-      </div>
-      <div class="col-2 u-align--center u-vertically-align u-hide--small">
-        <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="140" alt="" />
-      </div>
-    </div>
-  </div>
-</div>
+</section>
 
 <style>
   .p-banner-core-hero {
-    background-blend-mode: multiply;
-    background-image: url('{{ ASSET_SERVER_URL }}13f3fdeb-suru-left.svg'),
-    url('{{ ASSET_SERVER_URL }}d15c2f0b-suru-right1.svg'),
-    url('{{ ASSET_SERVER_URL }}ef731339-suru-right2.svg'),
-    linear-gradient(-45deg, #222 0%, #444 100%);
+    background-blend-mode: overlay;
+    background-image: url("{{ ASSET_SERVER_URL }}c55b9357-suru-letf.png"),
+    url("{{ ASSET_SERVER_URL }}335c5ed7-suru+right.png"),
+    linear-gradient(225deg, #333333 0%, #111111 50%, #1D1D1D 100%);
     background-position: bottom left, bottom right, top right;
-    background-size: contain;
-  }
-
-  .p-banner-core-hero__image {
-    height: 60px;
-    width: 230px;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   @media only screen and (max-width: 460px) {
     .p-banner-core-hero {
       background: #333;
-      background: linear-gradient(45deg, #222 0%, #444 100%);
+      background-image: linear-gradient(225deg, #333333 0%, #111111 50%, #1D1D1D 100%);
     }
   }
 
 
   .p-banner-core {
     background-blend-mode: multiply;
-    background-image: url('{{ ASSET_SERVER_URL }}13f3fdeb-suru-left.svg'),
-    url('{{ ASSET_SERVER_URL }}d15c2f0b-suru-right1.svg'),
-    url('{{ ASSET_SERVER_URL }}ef731339-suru-right2.svg'),
-    linear-gradient(-45deg, #E4E4E4 0%, #FFFFFF 100%);
-    background-position: bottom left, bottom right, top right;
-    background-size: contain;
-  }
-
-  .p-banner-core__image {
-    height: 60px;
-    width: 230px;
+    background-color: #F7F7F7;
+    background-image: url('{{ ASSET_SERVER_URL }}071af59b-suru-left-lightgrey.svg'),
+    url('{{ ASSET_SERVER_URL }}7d893432-suru-right-lightgrey.svg');
+    background-position: bottom left, top right;
+    background-size: cover;
   }
 
   @media only screen and (max-width: 460px) {
     .p-banner-core {
-      background: #E4E4E4;
-      background: linear-gradient(45deg, #E4E4E4 0%, #FFFFFF 100%);
+      background: #F7F7F7;
+    }
+  }
+
+  @media only screen and (min-width 460px) {
+    .u-margin--core {
+      margin-top: 2rem;
     }
   }
 </style>
