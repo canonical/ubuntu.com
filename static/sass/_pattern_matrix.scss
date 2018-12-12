@@ -14,8 +14,10 @@
             padding: $sp-medium;
           }
 
-          &:nth-child(n+3) {
-            border-top: 1px solid $color-mid-light;
+          @media (min-width: $breakpoint-medium) {
+            &:nth-child(n+3) {
+              border-top: 1px solid $color-mid-light;
+            }
           }
 
           &:nth-child(2n) {
