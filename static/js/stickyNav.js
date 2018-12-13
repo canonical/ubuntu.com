@@ -1,50 +1,38 @@
-var SCROLL_LISTENER_INTERVAL = 150;
 var stickyNav = document.querySelector('.p-sticky-nav');
-var userReportTab = document.querySelector('.js-user-report-tab');
-var specsTab = document.querySelector('.js-specs-tab');
-var configTab = document.querySelector('.js-config-tab');
-var didScroll;
+var stickyTabs = stickyNav.querySelectorAll('.js-sticky-tab');
+var didScroll = true;
 
-function getSectionPos(tab) {
+function isTabActive(tab) {
   var sectionId = tab.href.split('#')[1];
   var section = document.getElementById(sectionId);
   var rect = section.getBoundingClientRect();
-  var stickyNavHeight = stickyNav.clientHeight;
-  return rect.top + window.scrollY - stickyNavHeight;
+  return (rect.top < stickyNav.clientHeight);
 }
 
-function controlActiveTab() {
-  var scrollPos = window.scrollY;
-  var userReportPos = getSectionPos(userReportTab);
-  var specsPos = getSectionPos(specsTab);
-  var configPos = getSectionPos(configTab);
-
-  if (scrollPos > configPos) {
-    userReportTab.classList.remove('is-selected');
-    specsTab.classList.remove('is-selected');
-    configTab.classList.add('is-selected');
-  } else if (scrollPos > specsPos) {
-    userReportTab.classList.remove('is-selected');
-    specsTab.classList.add('is-selected');
-    configTab.classList.remove('is-selected');
-  } else if (scrollPos > userReportPos) {
-    userReportTab.classList.add('is-selected');
-    specsTab.classList.remove('is-selected');
-    configTab.classList.remove('is-selected');
-  } else {
-    userReportTab.classList.remove('is-selected');
-    specsTab.classList.remove('is-selected');
-    configTab.classList.remove('is-selected');
-  }
+function render() {
+  stickyTabs.forEach(function(tab) {
+    if (isTabActive(tab)) {
+      unsetActiveTabs();
+      tab.classList.add('is-selected');
+    }
+  });
 }
 
-/* Set interval on how often to run scroll function */
-setInterval(function() {
+function unsetActiveTabs() {
+  stickyTabs.forEach(function(tab) {
+    tab.classList.remove('is-selected');
+  });
+}
+
+function tick() {
   if (didScroll) {
-    controlActiveTab();
+    render();
     didScroll = false;
   }
-}, SCROLL_LISTENER_INTERVAL);
+  requestAnimationFrame(tick);
+}
+
+requestAnimationFrame(tick);
 
 window.addEventListener('scroll', function() {
   didScroll = true;

@@ -1,11 +1,12 @@
 {% extends "core/base_core.html" %}
+{% load versioned_static %}
 
 {% block title %}Ubuntu Core{% endblock %}
 {% block meta_description %}Introducing Ubuntu Core, the smallest Ubuntu ever, the perfect host operating system for IoT devices and large-scale cloud container deployments{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1QoM0Yqx4JfDJ2G3OPt5bds-ximG1jASmU_PWX4iff3E/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<div class="p-strip--image p-banner-core-hero is-deep is-dark is-bordered">
+<section class="p-strip--image p-banner-core-hero is-deep is-dark is-bordered">
   <div class="row u-equal-height">
     <div class="col-7">
       <h1>Make secure devices with Ubuntu Core</h1>
@@ -18,7 +19,28 @@
       <img src="{{ ASSET_SERVER_URL }}7b563def-core_white-orange_st_hex.svg" width="156" alt="" />
     </div>
   </div>
-</div>
+</section>
+
+
+<nav class="p-tabs p-sticky-nav">
+  <ul class="p-tabs__list" role="tablist">
+    <li class="p-tabs__item" role="presentation">
+      <a class="p-tabs__link js-sticky-tab" href="#security-first">Security first</a>
+    </li>
+    <li class="p-tabs__item" role="presentation">
+      <a class="p-tabs__link js-sticky-tab" href="#built-for-business">Built for business</a>
+    </li>
+    <li class="p-tabs__item" role="presentation">
+      <a class="p-tabs__link js-sticky-tab" href="#developers-love-ubuntu">Developers love Ubuntu</a>
+    </li>
+    <li class="p-tabs__item" role="presentation">
+      <a class="p-tabs__link js-sticky-tab" href="#incredible-reliability">Incredible reliability</a>
+    </li>
+    <li class="p-tabs__item" role="presentation">
+      <a class="p-tabs__link js-sticky-tab" href="#reduce-the-cost">Reduce the cost of Linux</a>
+    </li>
+  </ul>
+</nav>
 
 <section class="p-strip is-deep">
   <div class="row">
@@ -44,7 +66,7 @@
 
 <!-- start of generated content -->
 
-<section class='p-strip--image p-banner-core' >
+<section class='p-strip--image p-banner-core' id="security-first" >
   <div class='row u-vertically-center'>
     <div class='col-8'>
       <h2>Security first</h2>
@@ -113,7 +135,7 @@
   </div>
 </section>
 
-<section class='p-strip--image is-deep p-banner-core'>
+<section class='p-strip--image is-deep p-banner-core' id="built-for-business">
   <div class='row u-vertically-center'>
     <div class='col-8'>
       <h2>Built for business</h2>
@@ -181,7 +203,7 @@
   </div>
 </section>
 
-<section class='p-strip--image p-banner-core'>
+<section class='p-strip--image p-banner-core' id="developers-love-ubuntu">
   <div class='row u-vertically-center'>
     <div class='col-8'>
       <h2>Developers love Ubuntu</h2>
@@ -235,7 +257,7 @@
   </div>
 </section>
 
-<section class='p-strip--image p-banner-core'>
+<section class='p-strip--image p-banner-core' id="incredible-reliability">
   <div class='row u-vertically-center'>
     <div class='col-8'>
       <h2>Incredible reliability</h2>
@@ -273,7 +295,7 @@
   </div>
 </section>
 
-<section class='p-strip--image p-banner-core'>
+<section class='p-strip--image p-banner-core' id="reduce-the-cost">
   <div class='row u-vertically-center'>
     <div class='col-8'>
       <h2>Reduce the cost of Linux</h2>
@@ -408,9 +430,7 @@
     }
   }
 
-
   .p-banner-core {
-    background-blend-mode: multiply;
     background-color: #ffffff;
     background-image:
       url('{{ ASSET_SERVER_URL }}071af59b-suru-left-lightgrey.svg'),
@@ -431,6 +451,7 @@
     }
   }
 </style>
+<script src="{% versioned_static 'js/stickyNav.js' %}"></script>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_core_learn_more" second_item="_core_contribute" third_item="_iot_further_reading" %}
 
