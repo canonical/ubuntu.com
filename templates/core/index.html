@@ -130,7 +130,7 @@
       </p>
     </div>
     <div class="col-6 u-hide--small u-align--center">
-      <img src="https://assets.ubuntu.com/v1/2fa512a3-GRAPHIC_os_image_size.svg?w=335" alt="OS image size comparison">
+      <img src="https://assets.ubuntu.com/v1/2fa512a3-GRAPHIC_os_image_size.svg" width="335" alt="OS image size comparison">
     </div>
   </div>
 </section>
@@ -198,7 +198,7 @@
       <p><a href="/internet-of-things/appstore">Get your own app store&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-6 u-align--center u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}26e55529-snapstore.png?w=477" alt="">
+      <img src="{{ ASSET_SERVER_URL }}26e55529-snapstore.png" width="477" alt="">
     </div>
   </div>
 </section>
@@ -431,12 +431,13 @@
   }
 
   .p-banner-core {
-    background-color: #ffffff;
+    background-color: #f7f7f7;
     background-image:
       url('{{ ASSET_SERVER_URL }}071af59b-suru-left-lightgrey.svg'),
       url('{{ ASSET_SERVER_URL }}7d893432-suru-right-lightgrey.svg');
     background-position: bottom left, top right;
-    background-size: cover;
+    background-size: contain;
+    background-blend-mode: multiply;
   }
 
   @media only screen and (max-width: 460px) {
