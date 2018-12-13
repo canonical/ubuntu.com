@@ -6,19 +6,63 @@
 
 {% block content %}
 <div class="p-strip--image p-banner-core-hero is-deep is-dark is-bordered">
-  <div class="row u-vertically-center">
+  <div class="row u-equal-height">
     <div class="col-7">
       <h1>Make secure devices with Ubuntu Core</h1>
       <!-- small screen version -->
       <img class="u-visible--small u-hide--medium u-hide--large" src="{{ ASSET_SERVER_URL }}7b563def-core_white-orange_st_hex.svg" width="150" alt="" style="margin: 4rem 0;"/>
       <h4>Everything you love about Ubuntu, locked down for security. Helping you make safer things - because we’re all connected.</h4>
     </div>
-    <div class="col-5 u-align--center u-hide--small">
+    <div class="col-5 u-align--center u-hide--small u-vertically-center">
       <!-- medium and large screen version -->
       <img src="{{ ASSET_SERVER_URL }}7b563def-core_white-orange_st_hex.svg" width="156" alt="" />
     </div>
   </div>
 </div>
+
+<style>
+  .p-banner-core-hero {
+    background-blend-mode: multiply;
+    background-color: #333333;
+    background-image:
+      url("{{ ASSET_SERVER_URL }}738ba272-suru-right-bottom.svg"),
+      url("{{ ASSET_SERVER_URL }}3c2f1118-suru-right-top.svg"),
+      linear-gradient(225deg, #333333 0%, #111111 50%, #1D1D1D 100%);
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-size: contain, cover;
+  }
+
+  @media only screen and (max-width: 460px) {
+    .p-banner-core-hero {
+      background-color: #333333;
+      background-image: linear-gradient(-225deg, #333333 0%, #111111 50%, #1D1D1D 100%);;
+    }
+  }
+
+
+  .p-banner-core {
+    background-blend-mode: multiply;
+    background-color: #F7F7F7;
+    background-image:
+      url('{{ ASSET_SERVER_URL }}071af59b-suru-left-lightgrey.svg'),
+      url('{{ ASSET_SERVER_URL }}7d893432-suru-right-lightgrey.svg');
+    background-position: bottom left, top right;
+    background-size: cover;
+  }
+
+  @media only screen and (max-width: 460px) {
+    .p-banner-core {
+      background: #F7F7F7;
+    }
+  }
+
+  @media only screen and (min-width 460px) {
+    .u-margin--core {
+      margin-top: 2rem;
+    }
+  }
+</style>
 
 {# logos #}
 <section class="p-strip is-deep">
@@ -352,7 +396,7 @@
           <h4 class='p-heading-icon__title'>Whitepaper</h4>
         </div>
       </div>
-      <h3 class='p-heading--four'><a href='engage/ubuntu-core-and-kura' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - center', 'eventLabel' : 'Whitepaper - Ubuntu Core and Kura - a framework for IoT gateways, 'eventValue' : '1' });'><span hidden>Read the whitepaper </span>Ubuntu Core and Kura &mdash; a framework for IoT gateways&nbsp;&rsaquo;</a></h3>
+      <h3 class='p-heading--four'><a href='engage/ubuntu-core-and-kura' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - center', 'eventLabel' : 'Whitepaper - Ubuntu Core and Kura - a framework for IoT gateways', 'eventValue' : '1' });'><span hidden>Read the whitepaper </span>Ubuntu Core and Kura &mdash; a framework for IoT gateways&nbsp;&rsaquo;</a></h3>
       <!-- rtp section center end -->
     </div>
     <div class="col-4 p-divider__block" id="ubuntu-com_iot-robotics_right">
@@ -383,47 +427,6 @@
     </div>
   </div>
 </section>
-
-<style>
-  .p-banner-core-hero {
-    background-blend-mode: overlay;
-    background-image: url("{{ ASSET_SERVER_URL }}c55b9357-suru-letf.png"),
-    url("{{ ASSET_SERVER_URL }}335c5ed7-suru+right.png"),
-    linear-gradient(225deg, #333333 0%, #111111 50%, #1D1D1D 100%);
-    background-position: bottom left, bottom right, top right;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-
-  @media only screen and (max-width: 460px) {
-    .p-banner-core-hero {
-      background: #333;
-      background-image: linear-gradient(225deg, #333333 0%, #111111 50%, #1D1D1D 100%);
-    }
-  }
-
-
-  .p-banner-core {
-    background-blend-mode: multiply;
-    background-color: #F7F7F7;
-    background-image: url('{{ ASSET_SERVER_URL }}071af59b-suru-left-lightgrey.svg'),
-    url('{{ ASSET_SERVER_URL }}7d893432-suru-right-lightgrey.svg');
-    background-position: bottom left, top right;
-    background-size: cover;
-  }
-
-  @media only screen and (max-width: 460px) {
-    .p-banner-core {
-      background: #F7F7F7;
-    }
-  }
-
-  @media only screen and (min-width 460px) {
-    .u-margin--core {
-      margin-top: 2rem;
-    }
-  }
-</style>
 
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_core_learn_more" second_item="_core_contribute" third_item="_iot_further_reading" %}
