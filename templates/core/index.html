@@ -41,24 +41,26 @@
   </ul>
 </nav>
 
-<section class="p-strip is-deep">
-  <div class="row">
+<section class="p-strip">
+  <div class="row u-sv3">
     <div class="col-12 u-align--center">
       <h5 class="p-muted-heading u-no-max-width">Get straight to market with our device partners</h5>
     </div>
   </div>
-  <div class="row p-divider u-sv3">
-    <div class="col-6 p-divider__block">
-      <ul class="u-equal-height u-no-margin--bottom">
-        <li class="col-3 u-vertically-center"><img src="{{ ASSET_SERVER_URL }}94ea495b-2018-logo-Intel.svg" alt="Intel logo" /></li>
-        <li class="col-3 u-vertically-center"><img src="{{ ASSET_SERVER_URL }}b1767848-2018-logo-raspberry-pi.svg" alt="Raspberry PI logo" /></li>
-      </ul>
-    </div>
-    <div class="col-6 p-divider__block">
-      <ul class="u-equal-height u-no-margin--bottom">
-        <li class="col-3 u-vertically-center"><img src="{{ ASSET_SERVER_URL }}0970d532-2018-logo-dell.svg" alt="Dell logo" /></li>
-        <li class="col-3 u-vertically-center"><img src="{{ ASSET_SERVER_URL }}45fd87b5-2018-logo-rigado.svg" alt="Rigado logo" /></li>
-      </ul>
+  <div class="u-sv3">
+    <div class="row p-divider">
+      <div class="col-6 p-divider__block">
+        <ul class="p-list u-equal-height u-no-margin--bottom">
+          <li class="p-list__item col-3 mobile-col-2 u-vertically-center"><img src="{{ ASSET_SERVER_URL }}94ea495b-2018-logo-Intel.svg" alt="Intel logo" /></li>
+          <li class="p-list__item col-3 mobile-col-2 u-vertically-center"><img src="{{ ASSET_SERVER_URL }}b1767848-2018-logo-raspberry-pi.svg" alt="Raspberry PI logo" /></li>
+        </ul>
+      </div>
+      <div class="col-6 p-divider__block">
+        <ul class="p-list u-equal-height u-no-margin--bottom">
+          <li class="p-list__item col-3 mobile-col-2 u-vertically-center"><img src="{{ ASSET_SERVER_URL }}0970d532-2018-logo-dell.svg" alt="Dell logo" /></li>
+          <li class="p-list__item col-3 mobile-col-2 u-vertically-center"><img src="{{ ASSET_SERVER_URL }}45fd87b5-2018-logo-rigado.svg" alt="Rigado logo" /></li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="row">
@@ -75,7 +77,7 @@
   <div class='row u-vertically-center'>
     <div class='col-8'>
       <h2>Security first</h2>
-      <h4>Security is our job from the moment you power it on.</h4>
+      <p class="p-heading--four">Security is our job from the moment you power it on.</p>
       <p>We redesigned the entire system from first boot to create the most secure embedded Linux for devices and connected things.</p>
     </div>
   </div>
@@ -144,7 +146,7 @@
   <div class='row u-vertically-center'>
     <div class='col-8'>
       <h2>Built for business</h2>
-      <h4 class='u-no-margin--bottom'>Bring your applications, we take care of the rest.</h4>
+      <p class='p-heading--four u-no-margin--bottom'>Bring your applications, we take care of the rest.</p>
     </div>
   </div>
 </section>
@@ -212,7 +214,7 @@
   <div class='row u-vertically-center'>
     <div class='col-8'>
       <h2>Developers love Ubuntu</h2>
-      <h4>Your business is software defined. Keep developers happy and productive to attract the best talent.</h4>
+      <p class="p-heading--four">Your business is software defined. Keep developers happy and productive to attract the best talent.</p>
       <p>Happy developers create amazing products. Amazing products attract more great developers. 8/10 Linux developers choose Ubuntu.</p>
     </div>
   </div>
@@ -266,7 +268,7 @@
   <div class='row u-vertically-center'>
     <div class='col-8'>
       <h2>Incredible reliability</h2>
-      <h4 class='u-no-margin--bottom'>Every application update has a backup plan. Every device has a backup kernel and OS. Because every device matters.</h4>
+      <p class='p-heading--four u-no-margin--bottom'>Every application update has a backup plan. Every device has a backup kernel and OS. Because every device matters.</p>
     </div>
   </div>
 </section>
@@ -304,7 +306,7 @@
   <div class='row u-vertically-center'>
     <div class='col-8'>
       <h2>Reduce the cost of Linux</h2>
-      <h4>Use Ubuntu Core for free. Pay only for extra services.</h4>
+      <p class="p-heading--four">Use Ubuntu Core for free. Pay only for extra services.</p>
       <p>The reference images of Ubuntu Core are free to redistribute. Engage Canonical for enablement and custom service levels. We’ll get you to market faster.</p>
     </div>
   </div>
@@ -361,7 +363,7 @@
 <div class="p-strip is-deep is-bordered">
   <div class="row">
     <div class="col-12">
-      <h2>Further reading on Ubuntu Core</h2>
+      <h3>Further reading on Ubuntu Core</h3>
     </div>
   </div>
   <div class="row p-divider">
@@ -404,12 +406,12 @@
 <section class="p-strip--light is-bordered">
   <div class="row p-divider">
     <div class="col-6 p-divider__block">
-      <h3>Let&rsquo;s work together</h3>
+      <h4>Let&rsquo;s work together</h4>
       <p>Talk to us about using Ubuntu Core for your next project.</p>
       <p><a href="/core/contact-us?product=core-overview" class="p-button--positive">Get in touch</a></p>
     </div>
     <div class="col-6 p-divider__block">
-      <h3>Make your own Ubuntu Core device</h3>
+      <h4>Make your own Ubuntu Core device</h4>
       <p>Walk through all the steps to build an image for a device.</p>
       <p><a class="p-button--neutral" href="http://docs.ubuntu.com/core/en/guides/build-device/image-building?from=corepage"><span class="p-link--external">Build a custom Ubuntu Core image</span></a></p>
     </div>
@@ -417,15 +419,17 @@
 </section>
 
 <style>
-  .p-banner-core-hero {
-    background-blend-mode: overlay;
-    background-image:
-      url("{{ ASSET_SERVER_URL }}738ba272-suru-right-bottom.svg"),
-      url("{{ ASSET_SERVER_URL }}3c2f1118-suru-right-top.svg"),
-      linear-gradient(225deg, #333333 0%, #111111 50%, #1D1D1D 100%);
-    background-position: bottom right;
-    background-repeat: no-repeat;
-    background-size: contain, cover;
+  @media only screen and (min-width: 461px) {
+    .p-banner-core-hero {
+      background-blend-mode: overlay;
+      background-image:
+        url("{{ ASSET_SERVER_URL }}738ba272-suru-right-bottom.svg"),
+        url("{{ ASSET_SERVER_URL }}3c2f1118-suru-right-top.svg"),
+        linear-gradient(225deg, #333333 0%, #111111 50%, #1D1D1D 100%);
+      background-position: bottom right;
+      background-repeat: no-repeat;
+      background-size: contain, cover;
+    }
   }
 
   @media only screen and (max-width: 460px) {
@@ -435,14 +439,16 @@
     }
   }
 
-  .p-banner-core {
-    background-color: #f7f7f7;
-    background-image:
-      url('{{ ASSET_SERVER_URL }}071af59b-suru-left-lightgrey.svg'),
-      url('{{ ASSET_SERVER_URL }}7d893432-suru-right-lightgrey.svg');
-    background-position: bottom left, top right;
-    background-size: contain;
-    background-blend-mode: multiply;
+  @media only screen and (min-width: 461px) {
+    .p-banner-core {
+      background-color: #f7f7f7;
+      background-image:
+        url('{{ ASSET_SERVER_URL }}071af59b-suru-left-lightgrey.svg'),
+        url('{{ ASSET_SERVER_URL }}7d893432-suru-right-lightgrey.svg');
+      background-position: bottom left, top right;
+      background-size: contain;
+      background-blend-mode: multiply;
+    }
   }
 
   @media only screen and (max-width: 460px) {
