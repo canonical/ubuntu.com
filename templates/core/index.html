@@ -20,50 +20,6 @@
   </div>
 </div>
 
-<style>
-  .p-banner-core-hero {
-    background-blend-mode: multiply;
-    background-image:
-      url("{{ ASSET_SERVER_URL }}738ba272-suru-right-bottom.svg"),
-      url("{{ ASSET_SERVER_URL }}3c2f1118-suru-right-top.svg"),
-      linear-gradient(225deg, #333333 0%, #111111 50%, #1D1D1D 100%);
-    background-position: bottom right;
-    background-repeat: no-repeat;
-    background-size: contain, cover;
-  }
-
-  @media only screen and (max-width: 460px) {
-    .p-banner-core-hero {
-      background-color: #333333;
-      background-image: linear-gradient(-225deg, #333333 0%, #111111 50%, #1D1D1D 100%);;
-    }
-  }
-
-
-  .p-banner-core {
-    background-blend-mode: multiply;
-    background-color: #F7F7F7;
-    background-image:
-      url('{{ ASSET_SERVER_URL }}071af59b-suru-left-lightgrey.svg'),
-      url('{{ ASSET_SERVER_URL }}7d893432-suru-right-lightgrey.svg');
-    background-position: bottom left, top right;
-    background-size: cover;
-  }
-
-  @media only screen and (max-width: 460px) {
-    .p-banner-core {
-      background: #F7F7F7;
-    }
-  }
-
-  @media only screen and (min-width 460px) {
-    .u-margin--core {
-      margin-top: 2rem;
-    }
-  }
-</style>
-
-{# logos #}
 <section class="p-strip is-deep">
   <div class="row">
     <div class="col-12 u-align--center">
@@ -146,6 +102,8 @@
       <p>Fewer packages to attack, fewer bugs to fix, fewer forced changes. We reduced the OS to reduce the attack surface. That leaves more disk for your IoT applications and data.</p>
       <p>
         <a class="p-button--positive" href="/core/contact-us?product=core-overview">Contact us</a>
+      </p>
+      <p>
         <a href="/download/iot/">Get Ubuntu Core&nbsp;&rsaquo;</a>
       </p>
     </div>
@@ -293,8 +251,7 @@
         <div class='p-matrix__content'>
           <h4>Transactional updates everywhere</h4>
           <p class='p-heading--five'>Bulletproof updates need a whole new approach. Preserve data and roll back on error. Automatically.</p>
-          <p>Your power supply may not be reliable. Your devices will be. Resilience to adversity saves money and reputations.</p>
-          <p>Bank on Ubuntu Core to deliver your updates safely.</p>
+          <p>Your power supply may not be reliable. Your devices will be. Resilience to adversity saves money and reputations. Bank on Ubuntu Core to deliver your updates safely.</p>
         </div>
       </li>
       <li class='p-matrix__item'>
@@ -432,6 +389,48 @@
   </div>
 </section>
 
+<style>
+  .p-banner-core-hero {
+    background-blend-mode: multiply;
+    background-image:
+      url("{{ ASSET_SERVER_URL }}738ba272-suru-right-bottom.svg"),
+      url("{{ ASSET_SERVER_URL }}3c2f1118-suru-right-top.svg"),
+      linear-gradient(225deg, #333333 0%, #111111 50%, #1D1D1D 100%);
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-size: contain, cover;
+  }
+
+  @media only screen and (max-width: 460px) {
+    .p-banner-core-hero {
+      background-color: #333333;
+      background-image: linear-gradient(-225deg, #333333 0%, #111111 50%, #1D1D1D 100%);;
+    }
+  }
+
+
+  .p-banner-core {
+    background-blend-mode: multiply;
+    background-color: #ffffff;
+    background-image:
+      url('{{ ASSET_SERVER_URL }}071af59b-suru-left-lightgrey.svg'),
+      url('{{ ASSET_SERVER_URL }}7d893432-suru-right-lightgrey.svg');
+    background-position: bottom left, top right;
+    background-size: cover;
+  }
+
+  @media only screen and (max-width: 460px) {
+    .p-banner-core {
+      background: #F7F7F7;
+    }
+  }
+
+  @media only screen and (min-width 460px) {
+    .u-margin--core {
+      margin-top: 2rem;
+    }
+  }
+</style>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_core_learn_more" second_item="_core_contribute" third_item="_iot_further_reading" %}
 
