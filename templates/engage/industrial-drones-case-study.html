@@ -1,0 +1,35 @@
+{% extends "engage/base_engage.html" %}
+
+{% block meta_description %}This case study presents how Apellix, an industrial drone company, engineers safer work environments with Ubuntu.{% endblock %}
+
+{% block title %}Apellix engineers safer work environments with Ubuntu powered aerial robotics{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1bqD9QKDj6ZfRkn-vbDrHHE_Zrk81cA5hFLRHZYFzzSA{% endblock meta_copydoc %}
+
+{% block content %}
+
+{% include "engage/shared/_header.html" with title="Apellix engineers safer work environments with Ubuntu powered aerial robotics" image="5fd2e1aa-apellix_im3.png" url="#the-form" cta="Download the case study" %}
+
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-7">
+            <div class="u-align--center col-12">
+              <img src="{{ ASSET_SERVER_URL }}5197cb86-apellix_im1.png" alt="Ubuntu industrial drone inspecting a ship">
+        </div>
+        <p>In 2016, 16% of all workplace deaths in the US were attributed to falls. Apellix, a Florida-based start up, who specialise in aerial robotics aims to reduce this number by using their drones in place of workers to complete tasks in elevated or dangerous environments. In tandem, these same aerial robotics can also reduce the costs of monotonous or time-consuming jobs to save money. </p>
+        <p>Data insights and efficiency enhancements are often seen as two of the biggest benefits that the internet of things can bring to organisations. However, the potential advantages of implementing IoT span far wider than business processes and analytics. As Apellix show, it is no exaggeration to state that IoT can save lives by replacing humans in certain scenarios, with technology.</p>
+        <p>Using US Navy Destroyer and Aircraft Carrier ships as one example, find out how Apellix have built a software-defined drone running Ubuntu to enable an autonomous and highly accurate way to overcome such issues.</p>
+        <h3>Case study highlights</h3>
+        <ul class="p-list">
+            <li class="p-list__item is-ticked">The industries and use cases from maritime, to energy, and infrastructure that aerial robotics can address to provide an alternative to putting workers at risk.</li>
+            <li class="p-list__item is-ticked">How Apellix, using a software-led approach, has facilitated new levels of accuracy and situational awareness beyond what a human could gauge.</li>
+            <li class="p-list__item is-ticked">How the use of Ubuntu on the aerial robotics and in the cloud has cut their development time in half.</li>
+        </ul>
+    </div>
+    <div class="col-5" id="the-form">
+    {% include "../shared/forms/_landing_page_default.html" with id="3314" returnURL="https://pages.ubuntu.com/CS_Apellix-TY.html" label="Download the case study" %}
+    </div>
+  </div>
+</section>
+{% endblock content %}
