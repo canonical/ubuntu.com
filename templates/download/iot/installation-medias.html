@@ -181,23 +181,21 @@
                     <span class="p-list-step__bullet">*</span>
                     In the results, identify your removable drive device address, it will probably look like an entry like the ones below:
                   </p>
-                    <pre>
-                      <code>
-                        /dev/disk0
-                        #:                       TYPE NAME                    SIZE       IDENTIFIER
-                        0:      GUID_partition_scheme                        *500.3 GB   disk0
-                      /dev/disk2
-                        #:                       TYPE NAME                    SIZE       IDENTIFIER
-                        0:                  Apple_HFS Macintosh HD           *428.8 GB   disk1
-                                                      Logical Volume on disk0s2
-                                                      E2E7C215-99E4-486D-B3CC-DAB8DF9E9C67
-                                                      Unlocked Encrypted
-                      /dev/disk3
-                        #:                       TYPE NAME                    SIZE       IDENTIFIER
-                        0:     FDisk_partition_scheme                        *7.9 GB     disk3
-                        1:                 DOS_FAT_32 NO NAME                 7.9 GB     disk3s1
-                    </code>
-                  </pre>
+                  <pre>
+<code>/dev/disk0
+#:                       TYPE NAME                    SIZE       IDENTIFIER
+0:      GUID_partition_scheme                        *500.3 GB   disk0
+/dev/disk2
+#:                       TYPE NAME                    SIZE       IDENTIFIER
+0:                  Apple_HFS Macintosh HD           *428.8 GB   disk1
+                              Logical Volume on disk0s2
+                              E2E7C215-99E4-486D-B3CC-DAB8DF9E9C67
+                              Unlocked Encrypted
+/dev/disk3
+#:                       TYPE NAME                    SIZE       IDENTIFIER
+0:     FDisk_partition_scheme                        *7.9 GB     disk3
+1:                 DOS_FAT_32 NO NAME                 7.9 GB     disk3s1
+</code></pre>
                   <p><strong>Note</strong> that your removable drive must be <code>DOS_FAT_32</code> formatted. In this example, <code>/dev/disk3</code> is the drive address of an 8GB SD card.</p>
                 </li>
                 <li class="p-list-step__item col-8">
@@ -222,12 +220,10 @@
                     <pre><code>sudo sh -c 'xzcat ~/Downloads/< image file > | sudo dd of=< drive address > bs=32m'< /drive ></code></pre>
                     <p>When finalised you will see the following message:</p>
                     <pre>
-                      <code>
-                        3719+1 records in
-                        3719+1 records out
-                        3899999744 bytes transferred in 642.512167 secs (6069924 bytes/sec)
-                      </code>
-                    </pre>
+<code>3719+1 records in
+3719+1 records out
+3899999744 bytes transferred in 642.512167 secs (6069924 bytes/sec)
+</code></pre>
                   </li>
                   <li class="p-list-step__item col-8">
                       <p class="p-list-step__title">
