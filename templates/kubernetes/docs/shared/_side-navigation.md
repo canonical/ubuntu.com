@@ -1,7 +1,6 @@
 - **About**
   - [Home](/kubernetes/docs)
   - [Overview](/kubernetes/docs/overview)
-  - [News](/kubernetes/docs/news)
 - **Install**
   - [Quickstart](/kubernetes/docs/quickstart)
   - [Local install](/kubernetes/docs/install-local)
