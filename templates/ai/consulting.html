@@ -1,0 +1,111 @@
+{% extends "openstack/_base_openstack.html" %}
+
+{% block title %}Consulting | AI{% endblock %}
+{% block meta_description %}Canonical and partners accelerates deployment of your artificial intelligence solutions.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1f83OSIHVQGMjF7b0pZUKFvoubMGqi_b-OYbSpyhveX4/edit{% endblock meta_copydoc %}
+
+{% block content %}
+  <section class="p-strip--light is-deep is-bordered">
+    <div class="row">
+      <div class="col-8">
+        <h1>AI consulting, design and delivery</h1>
+        <h4>Canonical and our partners accelerate the development, deployment and maintenance of your artificial intelligence solutions.</h4>
+        <p>Canonical brings the software infrastructure - Ubuntu, Kubernetes and Kubeflow - and our partners bring the data science and machine learning expertise. This combination can deliver tangible results in weeks. You will be able to automate and augment complex solutions while maximising productivity.</p>
+        <p>On-prem or in a public cloud, we can help you leverage AI in a multi-cloud world.</p>
+        <p>
+          <a href="/ai/contact-us?product=ai-consulting" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Engage Canonical exports', 'eventLabel' : 'Engage Canonical exports - Top CTA', 'eventValue' : undefined });" class="p-button--positive">Speak to the experts</a>
+          <a href="{{ ASSET_SERVER_URL }}72fe0b54-canonical-foundation-cloud-build-datasheet-20180713.pdf" class="p-button--neutral">Read our consulting datasheet</a>
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="p-strip is-bordered">
+        <div class="row u-equal-height">
+              <div class="col-8">
+                  <h4>Build composable, portable, and scalable machine learning stacks with Kubeflow</h4>
+                  <p>Learn how Canonical deployments help you introduce AI, ML and DL into your organisation</p>
+                  <p>
+                      <a href="/ai/features" class="p-button--neutral">Explore Kubeflow</a>
+                  </p>
+              </div>
+              <div class="col-4 u-align--center">
+                   <img src="{{ ASSET_SERVER_URL }}da5a7c9e-Kubeflow-Logo.svg" alt="Kubeflow" width="225px">
+              </div>
+        </div>
+    </section>
+  <section class="p-strip is-bordered">
+    <div class="row">
+        <h2>Develop your data science capabilities.<br>Our AI consulting partners can help.</h2>
+    </div>
+    <div class="row">
+      <h3>Unlock your data science potential</h3>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <p>Run by data scientists, Deepsense.ai helps form new approaches to business that increase revenue and decrease costs through staffing, back office and operational optimisation.</p>
+        <p><h5>The formula: How we work with partners</h5></p>
+        <ol>
+            <li>Engage our team of experts and data scientists</li>
+            <li>Analyse the data - crunch the numbers and create an algorithm</li>
+            <li>Deploy an efficient model</li>
+        </ol>
+        <p><h5>The methodology: Leveraging the past to predict the future</h5></p>
+        <ol>
+            <li>Predictive modelling using unstructured data</li>
+            <li>Visualise data using image recognition</li>
+            <li>Natural language processing analytics</li>
+        </ol>
+        <p><a href="/ai/contact-us?product=ai-consulting" class="p-button--positive">Let's talk about your project</a></p>
+    </div>
+      <div class="col-4 u-hide--small u-align--center u-vertically-center">
+        <figure class="u-no-margin">
+          <img src="{{ ASSET_SERVER_URL }}99d8f79e-deepsense.png" alt="Deepsense.ai">
+          <figcaption>Read more about <a href="https://wwww.deepsense.ai" class="p-link--external">Deepsense.ai</a></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+  <section class="p-strip is-bordered">
+        <div class="row u-equal-height">
+                <div class="col-4 u-vertically-center u-align--center u-hide--small u-hide--medium">
+                    <figure class="u-no-margin">
+                    <img src="{{ ASSET_SERVER_URL }}e9493ce3-Manceps_Logo_160.png" alt="">
+                    <figcaption>Read more about <a href="https://www.manceps.com" class="p-link--external">Manceps</a></figcaption>
+                </figure>
+                </div>
+                <div class="col-8">
+                    <h3>Blend machine learning with human ingenuity to support your business strategies.</h3>
+                    <p>The Manceps team of data scientists and machine learning engineers specialize in applying AI to solve enterprise-grade automation problems. Many of these AI technologies leverage tools that didn’t exist in the past, which allow Manceps to transform and accelerate your competitive advantages.</p>
+                    <p><h5>The Manceps formula</h5></p>
+                    <ol>
+                        <li>Discovery - Data, Requirements, Resources</li>
+                        <li>Assessment - Business Case, Strategic Path, Solutions</li>
+                        <li>Design - Algorithms, Data Pipeline, Model Pipeline</li>
+                        <li>Implementation - Software, Operations, Training</li>
+                    </ol>
+                    <p>This formula is used to build a strategy that will meet your business objectives, with considerations for cost, quality and timeline.</p>
+                    <p><a href="/ai/contact-us?product=ai-consulting" class="p-button--positive">Let's talk about your project</a></p>
+                </div>
+                </div>
+            </div>
+      </section>
+      <section class="p-strip--light is-bordered">
+          <div class="row">
+            <h2>Consulting and AI assessment pricing</h2>
+            <p>Get started with a workshop to understand the full stack of machine learning. Build a full pipeline from developer workstations to your data centre, to the public cloud.</p>
+            <p>First, start with one of our standard bare metal Kubernetes service packages (Discoverer or Discoverer Plus) and then select the AI Add-on to unlock the benefits of AI on Kubernetes.</p>
+            <p>
+                <a href="/kubernetes" class="p-button--neutral">View Kubernetes packages ›</a>
+                <a href="https://assets.ubuntu.com/v1/Enterprise-Canonical-Kubernetes.pdf">Download the datasheet</a>
+            </p>
+          </div>
+        </section>
+        <section class="p-strip--light is-bordered">
+                <div class="row">
+                        <h2>AI add-on for Kubernetes Discoverer and Discoverer Plus</h2>
+                        {% include "shared/pricing/_kubernetes-consulting-add-ons.html" %}
+                    </div>
+        </section>
+
+  {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_containers_juju" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
+{% endblock content %}
