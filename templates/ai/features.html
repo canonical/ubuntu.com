@@ -60,17 +60,15 @@
 
 <section class="p-strip is-bordered">
   <div class="row u-equal-height">
-    <div class="col-4 u-vertically-center u-align--center">
-      <div>
-        <p><img src="{{ ASSET_SERVER_URL }}da5a7c9e-Kubeflow-Logo.svg" alt=""></p>
-        <a class="p-link--external" href="https://github.com/kubeflow/kubeflow">Visit Kubeflow on GitHub</a>
-      </div>
+    <div class="col-4 u-vertically-center u-align--center u-hide--small u-hide--medium">
+      <img src="{{ ASSET_SERVER_URL }}da5a7c9e-Kubeflow-Logo.svg" alt="">
     </div>
     <div class="col-8">
       <h2>Kubeflow</h2>
       <p>Kubeflow helps you build composable, portable, and scalable machine learning stacks. With Kubeflow you can speed up the AI tools and framework installation process, particularly leveraging GPGPUs from Nvidia.</p>
       <p>Without Kubeflow, building production-ready machine learning stacks can involve a lot of infrastructure and devops work &mdash; mixing components and solutions, wiring them together, and managing them. This complexity can be a barrier to adopting machine learning, and it can significantly delay achieving the business benefits you are hoping to receive. And then you want to launch something production worthy; start all over again.</p>
       <p>Kubeflow solves these challenges by pulling together a handful of technologies and components that let you get a stack up and running quickly. You can accelerate that roadmap and benefit from community and/or corporate support.</p>
+      <p><a class="p-link--external" href="https://github.com/kubeflow/kubeflow">Visit Kubeflow on GitHub</a></p>
     </div>
   </div>
 </section>
@@ -81,7 +79,7 @@
   </div>
   <div class="row u-equal-height">
     <div class="col-8">
-      <p>TensorFlow is an open source software library for high performance numerical computation. Its flexible architecture allows easy deployment of computation across a variety of platforms (CPUs, GPUs, TPUs), and from desktops to clusters of servers to mobile and edge devices. Originally developed by researchers and engineers from the Google Brain team within Google&rsquo;s AI organization, it comes with strong support for machine learning and deep learning and the flexible numerical computation core is used across many other scientific domains.</p>
+      <p>TensorFlow is an open source software library for high-performance numerical computation. Its flexible architecture allows easy deployment of computation across a variety of platforms (CPUs, GPUs, TPUs), and from desktops to clusters of servers to mobile and edge devices. Originally developed by researchers and engineers from the Google Brain team within Google&rsquo;s AI organization, it comes with strong support for machine learning and deep learning and the flexible numerical computation core is used across many other scientific domains.</p>
       <p>TensorFlow comes with visualisation technology &mdash; TensorBoard. It features graphs, histograms, and helps with visualising learning.</p>
       <p><a href="https://www.tensorflow.org/" class="p-link--external">Learn more about Tensorflow</a>
     </div>
@@ -97,7 +95,7 @@
 <section class="p-strip is-bordered u-image-position">
   <div class="row">
     <div class="col-6 u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}3df02300-jupyterpreview.png" alt="" width="500" class="u-image-position--bottom"/>
+      <img src="{{ ASSET_SERVER_URL }}3df02300-jupyterpreview.png" alt="" style="width: 45vw; max-width: 500px;" class="u-image-position--bottom u-hide--small"/>
     </div>
     <div class="col-6">
       <h2>JupyterHub</h2>
@@ -123,7 +121,7 @@
   <div class="row">
     <div class="col-8">
       <h2>Artificial Intelligence infrastructure architecture</h2>
-      <p class="u-sv3">To get the most out of Kubeflow, you&rsquo;ll want to run it on an effective supporting stack. Minimally, leveraging the Canonical Distribution of Kubernetes (CDK) gives you the benefits of perfect portability between your private data-center and the public cloud.  CDK on Canonical Openstack unlocks further benefits, as described below.</p>
+      <p class="u-sv3">To get the most out of Kubeflow, you&rsquo;ll want to run it on an effective supporting stack. Minimally, leveraging the Charmed Distribution of Kubernetes (CDK) gives you the benefits of perfect portability between your private data-center and the public cloud.  CDK on Canonical Openstack unlocks further benefits, as described below.</p>
     </div>
   </div>
   <div class="row u-equal-height">
@@ -178,7 +176,8 @@
     <div class="col-8">
       <h2>Get the most from your workloads</h2>
       <p>Find out why Ubuntu is the standard for enterprise machine learning for Fortune 50 companies and for startups.</p>
-      <p><a href="/ai/contact-us?product=ai-features">Contact us for machine learning, deep learning and AI consulting&nbsp;&rsaquo;</a></p>
+      <p>For consulting on machine learning, deep learning and AI.</p>
+      <p><a class="p-button--positive" href="/ai/contact-us?product=ai-features">Contact us</a></p>
     </div>
   </div>
 </section>

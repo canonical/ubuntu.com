@@ -1,0 +1,81 @@
+{% extends "templates/base.html" %}
+
+{% block head_extra %}
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
+{% block title %}Heading help{% endblock %}
+{% block outer_content %}
+<section class="p-strip--light">
+  <div class="row">
+    <h1 class="u-no-margin--bottom">Engage heading include help</h1>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <p>These headers have several options with only one required field and can be used for case studies and webinars.  These include the title, a subtitle (optional), a date (optional), a cta with a url  (optional) and a class (optional).</p>
+
+    <h3>Everything - title, subtitle, date, cta and url, class</h3>
+
+    <h4>Include tag</h4>
+    <pre><code>&#123;% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10"  image="d9105909-Dell_XPS_Laptop_Left-Desktop.png?w=413" subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar" date="Webinar is live on 3 December 2018 at 8pm GMT" url="#register-section" cta="Watch the webinar" class="test-class" %}
+    </code></pre>
+    <h4>Output</h4>
+  </div>
+</section>
+{% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10"  image="d9105909-Dell_XPS_Laptop_Left-Desktop.png?w=413" subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar" date="Webinar is live on 3 December 2018 at 8pm GMT" url="#register-section" cta="Watch the webinar" class="test-class" %}
+<hr />
+
+<section class="p-strip">
+  <div class="row">
+    <h3>No date</h3>
+    <h4>Include tag</h4>
+    <pre><code>&#123;% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10"  image="d9105909-Dell_XPS_Laptop_Left-Desktop.png?w=413" subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar" url="#register-section" cta="Watch the webinar" %}
+    </code></pre>
+    <h4>Output</h4>
+  </div>
+</section>
+{% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10"  image="d9105909-Dell_XPS_Laptop_Left-Desktop.png?w=413" subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar" url="#register-section" cta="Watch the webinar" %}
+<hr />
+
+<section class="p-strip">
+  <div class="row">
+    <h3>No image, no class</h3>
+    <h4>Include tag</h4>
+    <pre><code>&#123;% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10"  subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar" date="Webinar is live on 3 December 2018 at 8pm GMT" url="#register-section" cta="Watch the webinar" %}
+    </code></pre>
+    <h4>Output</h4>
+  </div>
+</section>
+{% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10"  subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar" date="Webinar is live on 3 December 2018 at 8pm GMT" url="#register-section" cta="Watch the webinar"  %}
+<hr />
+
+<section class="p-strip">
+  <div class="row">
+    <h3>No subtitle, image or class</h3>
+    <h4>Include tag</h4>
+    <pre><code>&#123;% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10" url="#register-section" cta="Watch the webinar"  %&#125;</code></pre>
+</div>
+</section>
+{% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10" url="#register-section" cta="Watch the webinar"  %}
+<hr />
+
+<section class="p-strip">
+  <div class="row">
+    <h3>Minimal - no subtitle, image, class, or CTA and url</h3>
+    <h4>Include tag</h4>
+    <pre><code>&#123;% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10"  %&#125;</code></pre>
+</div>
+</section>
+{% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10" %}
+
+<style media="screen">
+  .test-class {
+    background-color: lightgreen;
+    background-image: url(https://1001freedownloads.s3.amazonaws.com/vector/thumb/74307/1370191282.png);
+    background-size: 5%;
+    background-blend-mode: overlay;
+   }
+</style>
+
+{% endblock outer_content %}

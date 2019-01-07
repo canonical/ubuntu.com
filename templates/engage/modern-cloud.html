@@ -1,0 +1,58 @@
+{% extends "engage/base_engage.html" %}
+
+{% block meta_description %}This webinar discusses how Trilio and Canonical help organisations transition to new, maintainable cloud architecture in just weeks.{% endblock %}
+
+{% block title %}Modernise your cloud{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1PfGUgAndvB_dYaCz3wL9vj4gN_O8k34rOgJ6o0DLb7o/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--image is-shallow u-image-position p-takeover-trilio">
+    <div class="row u-vertically-center">
+      <div class="col-8">
+        <h1>Modernise your cloud</h1>
+        <h4>Discover how Trilio and Canonical help organisations transition to new, maintainable cloud architecture in just weeks.</h4>
+        <p class="p-takeover__text">
+              Webinar live on 6 December 2018 - <a href="#register-section" class="p-link">Watch now&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 u-hide--small u-vertically-center">
+      <img src="{{ ASSET_SERVER_URL }}9f54e0b0-Trilio+Final+Logo_GRAY+GREEN.png" alt="Trilio" class="p-takeover-trilio__image" />
+    </div>
+  </div>
+
+  <style>
+    .p-takeover-trilio {
+      background-blend-mode: multiply;
+      background-image: url('{{ ASSET_SERVER_URL }}13f3fdeb-suru-left.svg'),
+      url('{{ ASSET_SERVER_URL }}d15c2f0b-suru-right1.svg'),
+      url('{{ ASSET_SERVER_URL }}ef731339-suru-right2.svg'),
+      linear-gradient(-45deg, #E4E4E4 0%, #FFFFFF 100%);
+      background-position: bottom left, bottom right, top right;
+      background-size: contain;
+    }
+    .p-takeover-trilio__image {
+      height: 60px;
+      width: 230px;
+    }
+    @media only screen and (max-width: 460px) {
+      .p-takeover-trilio {
+        background: #E4E4E4;
+        background: linear-gradient(45deg, #E4E4E4 0%, #FFFFFF 100%);
+      }
+    }
+    @media only screen and (max-width: 874px) {
+      p.u-align--center {
+        margin-top: 1.5rem !important;
+      }
+    }
+  </style>
+</section>
+
+<section class="p-strip" id="register-section">
+  <div class="row">
+    <div class="jsBrightTALKEmbedWrapper" style="width:900px; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 339724, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>
+  </div>
+</section>
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_further_reading" second_item="_cloud_newsletter" third_item="_cloud_contact_us" %}
+{% endblock content %}

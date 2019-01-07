@@ -624,7 +624,7 @@ function createMap(selector, options, mapData, countryNamesAndIds) {
                     .attr("class", "p-tooltip");
     var tooltipMessage = tooltip.append("div")
                           .attr("class", "p-tooltip__message p-tooltip__message--padding")
-                          .style("display", "block")
+                          .style("display", "none")
                           .attr("role", "tooltip");
     var offset = width * 0.1;
     var projection = d3
@@ -695,6 +695,9 @@ function createMap(selector, options, mapData, countryNamesAndIds) {
             .style("position", "absolute")
             .style("opacity", "1");
           var noOfUsers =  (countryStat.users.toFixed(1) < 1) ? "< 0.1" : countryStat.users.toFixed(1);
+          
+          // unhiding the tooltip message tom prevent tooltip from showing when no country has been hovered over
+          tooltipMessage.style("display", "block");
           tooltipMessage.html(`<span>${countryName.name}:</span><span>&nbsp; ${noOfUsers}%</span>`);
         } 
       })

@@ -1,7 +1,7 @@
 {% extends "kubernetes/base_kubernetes.html" %}
 
 {% block title %}Managed Kubernetes | Kubernetes{% endblock %}
-{% block meta_description %}Canonical is the leading managed private cloud provider. We will build, support and manage your Ubuntu Kubernetes private cloud for only $5-15 per server per day.{% endblock meta_description %}
+{% block meta_description %}Canonical is the leading managed private cloud provider. We will build, support and manage your Kubernetes private cloud for only $5-15 per server per day.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/15jzhasokjH5Ql9Za56ZxRknXNNhEXYdIFXXtLODGxns/edit#heading=h.q9m33avd7enn{% endblock meta_copydoc %}
 
 {% block content %}
@@ -159,19 +159,6 @@
     </div>
   </section>
 
-  <section class="p-strip is-bordered">
-    <div class="row">
-      <div class="col-8">
-        <h2>Security first &mdash; trusted by the OpenStack majority</h2>
-        <p>OpenStack can underpin your managed Kubernetes Private Cloud initiative. Canonical, a founding member of OpenStack, provides security updates for thousands of production OpenStack clouds worldwide. We offer multi-year maintenance for stable cloud deployments and upgrades for those who want to move to newer versions.</p>
-        <p>The OpenStack super-users who run the largest and most complex OpenStack deployments choose Ubuntu because of our quality and security. Canonical will help you meet telco, finance and government sector audit and compliance standards.</p>
-      </div>
-      <div class="col-4 prefix-1">
-        {% include "openstack/shared/_openstack-pie-chart.html" %}
-      </div>
-    </div>
-  </section>
-
   <section class="p-strip--light is-bordered">
     <div class="row">
       <div class="col-8">
@@ -194,11 +181,11 @@
       <div class="col-6">
         <h3>Multi-cloud ready</h3>
         <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Deep integration with cloud features such as <abbr title="Load Balancing as a Service">LBaaS</abbr>, storage and networking</li>
           <li class="p-list__item is-ticked">Elasticity for highly variable load</li>
           <li class="p-list__item is-ticked">Many regions for low latency</li>
           <li class="p-list__item is-ticked">OPEX as needed</li>
           <li class="p-list__item is-ticked">Network isolation</li>
-          <li class="p-list__item is-ticked">Potential for uneven cloud performance</li>
         </ul>
       </div>
     </div>
@@ -273,7 +260,7 @@
             <li class="p-matrix__item">
               <div class="p-matrix__content">
                 <h3 class="p-matrix__title p-heading--four">AI/ML ready</h3>
-                <p class="p-matrix__desc">Use proven software‐defined storage like Ceph, NexentaEdge, and Swift in your BootStack, or integrate your existing SAN.</p>
+                <p class="p-matrix__desc">Canonical OpenStack and Kubernetes are ready for your Machine Learning enabled applications. Trusted leaders in the industry, Ubuntu provides the best basis to run AI/ML frameworks.</p>
               </div>
             </li>
             <li class="p-matrix__item">
@@ -389,7 +376,7 @@
       <div class="col-6 p-card">
         <h3>Custom integration</h3>
         <p>Integrate your Kubernetes with existing storage SANs, network and SDN controllers, authentication systems like LDAP or Active Directory, and monitoring systems using our professional services and consulting teams.</p>
-        <p><a href="/openstack/consulting">Canonical Kubernetes services&nbsp;&rsaquo;</a></p>
+        <p><a href="/kubernetes">Canonical Kubernetes services&nbsp;&rsaquo;</a></p>
       </div>
     </div>
     <div class="row">

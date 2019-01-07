@@ -9,6 +9,8 @@
     {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about Kubernetes" intro_text="Fill in your details below and a member of our sales team will be in touch." formid='3230'  lpId='6274' returnURL='https://www.ubuntu.com/kubernetes/thank-you' %}
   {% elif product == 'kubernetes-managed' %}
       {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about Managed Kubernetes" intro_text="Fill in your details below and a member of our sales team will be in touch." formid='3230'  lpId='6274' returnURL='https://www.ubuntu.com/kubernetes/thank-you?product=kubernetes-managed' %}
+  {% elif product == 'kubernetes-kubeadm' %}
+      {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about kubeadm" intro_text="Fill in your details below and a member of our sales team will be in touch." formid='3230'  lpId='6274' returnURL='https://www.ubuntu.com/kubernetes/thank-you?product=kubernetes-kubeadm' %}
   {% elif product == 'multicloud' %}
       {% include "shared/_cloud-contact-us-form.html" with  h1="Contact us about multicloud" intro_text="Fill in your details below and a member of our sales team will be in touch." formid='3230'  lpId='6274' returnURL='https://www.ubuntu.com/kubernetes/thank-you?product=multicloud' %}
   {% elif product == 'kubernetes-install' %}

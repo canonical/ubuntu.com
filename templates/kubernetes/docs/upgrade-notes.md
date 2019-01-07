@@ -7,7 +7,7 @@ context:
   description: How to deal with specific, special circumstances you may encounter when upgrading between versions of Kubernetes.
 ---
 
-This page is intended to deal with specific, special circumstances you may encounter when upgrading between versions of the **Canonical Distribution of Kubernetes<sup>&reg;</sup>.** The notes are organised according to the upgrade path below, but also be aware that any upgrade that spans more than one minor version may need to beware of notes in any of the intervening steps.
+This page is intended to deal with specific, special circumstances you may encounter when upgrading between versions of the **Charmed Distribution of Kubernetes<sup>&reg;</sup>.** The notes are organised according to the upgrade path below, but also be aware that any upgrade that spans more than one minor version may need to beware of notes in any of the intervening steps.
 
 ## Upgrading from 1.9.x to 1.10.x
 

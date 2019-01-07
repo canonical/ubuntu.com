@@ -1,0 +1,46 @@
+<section class="p-strip--image is-deep u-image-position js-takeover p-takeover-trilio">
+  <div class="row u-equal-height">
+    <div class="col-8 suffix-1">
+      <h1>Modernise your cloud</h1>
+      <p class="p-heading--four u-no-margin--bottom u-no-max-width">Discover how Trilio and Canonical help organisations transition to new, maintainable
+        cloud architecture in just weeks.</p>
+      <p class="u-align--center u-hide--medium u-hide--large">
+        <img src="{{ ASSET_SERVER_URL }}9f54e0b0-Trilio+Final+Logo_GRAY+GREEN.png" alt="Trilio" class="p-takeover-trilio__image" />
+      </p>
+      <p class="u-no-margin--top u-no-margin--bottom"><a href="/engage/modern-cloud?utm_source=takeover&utm_campaign=FY19_Cloud_Openstack_WBN_Trilio"
+          class="p-button--positive">Watch the webinar now</a></p>
+    </div>
+    <div class="col-4 u-hide--small u-vertically-center">
+      <img src="{{ ASSET_SERVER_URL }}9f54e0b0-Trilio+Final+Logo_GRAY+GREEN.png" alt="Trilio" class="p-takeover-trilio__image" />
+    </div>
+  </div>
+  <style>
+    .p-takeover-trilio {
+      background-blend-mode: multiply;
+      background-image: url('{{ ASSET_SERVER_URL }}13f3fdeb-suru-left.svg'),
+      url('{{ ASSET_SERVER_URL }}d15c2f0b-suru-right1.svg'),
+      url('{{ ASSET_SERVER_URL }}ef731339-suru-right2.svg'),
+      linear-gradient(-45deg, #E4E4E4 0%, #FFFFFF 100%);
+      background-position: bottom left, bottom right, top right;
+      background-size: contain;
+    }
+
+    .p-takeover-trilio__image {
+      height: 60px;
+      width: 230px;
+    }
+
+    @media only screen and (max-width: 460px) {
+      .p-takeover-trilio {
+        background: #E4E4E4;
+        background: linear-gradient(45deg, #E4E4E4 0%, #FFFFFF 100%);
+      }
+    }
+
+    @media only screen and (max-width: 874px) {
+      p.u-align--center {
+        margin-top: 1.5rem !important;
+      }
+    }
+  </style>
+</section>
