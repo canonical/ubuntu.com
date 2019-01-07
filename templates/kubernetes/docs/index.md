@@ -23,7 +23,7 @@ Google, Microsoft, and many other institutions run Kubernetes on Ubuntu because 
     </div>
     <div class="col-4 p-divider__block">
       <h3>What's new</h3>
-      <p><a href="/kubernetes/docs/news">Version 1.12 released&nbsp;&rsaquo;</a></p>
+      <p><a href="/kubernetes/docs/release-notes">Version 1.13 released&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 p-divider__block">
       <h3>Tutorials</h3>
