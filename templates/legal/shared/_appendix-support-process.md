@@ -5,7 +5,8 @@
     1.  Upon commencement of the services, Canonical will provide access for a single technical representative to Landscape, the support portal and the online knowledge base.
     2.  The customer - through their initial technical representative - may select their chosen technical representatives to interface with Canonical based on the number of systems under support as represented in the table below. These technical representatives will hold credentials to the support portal and will act as primary points of contact for support requests.
 
-    Table of machines under support
+    <p style="text-align: center; margin: 1rem 0;">Table of machines under support</p>
+
     |Number of machines under Ubuntu Advantage support|Technical representatives|
     |----|----|
     |1-20|2|

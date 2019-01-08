@@ -82,7 +82,7 @@ Valid since 16 November 2018
     - Canonical will use reasonable efforts to respond to support requests made by the customer within the response times set forth below, based on the applicable service and severity level.
     - “Business hours” are defined as 08:00 - 18:00 Monday - Friday local to the customer’s headquarters unless another location is agreed. All times exclude public holidays.
 
-    Table of target initial response times
+    <p style="text-align: center; margin: 1rem 0;">Table of target initial response times</p>
 
     |                  | Standard          | Advanced/Managed Services |
     | ---------------- | ----------------- | ------------------------- |
