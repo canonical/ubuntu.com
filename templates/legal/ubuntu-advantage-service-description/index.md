@@ -9,7 +9,7 @@ context:
 
 Valid since 16 November 2018
 
-1.  <h2><a name="uasd-overview">Overview</a></h2>
+1.  <h2 id="uasd-overview">Overview</h2>
 
     1.  This document defines the following service offerings. Canonical will provide only those services, as defined in this document, which are covered by the customer's contract.
     2.  Primary service offerings:
@@ -34,28 +34,28 @@ Valid since 16 November 2018
         - Livepatch on Premises
         - Ubuntu Advantage Rancher
 
-2.  <h2><a name="uasd-support-scope">Support scope</a></h2>
+2.  <h2 id="uasd-support-scope">Support scope</h2>
 
     Each service offering includes access to Canonical's knowledge base and the support described below within the scope and subject to the exceptions detailed in the [support scope documentation](#appendix-support-scope).
 
-    1.  <h4><a name="uasd-support-scope-releases">Releases</a></h4>
+    1.  <h4 id="uasd-support-scope-releases">Releases</h4>
         - Canonical will provide support for installation, configuration, maintenance, and management of any standard release of Ubuntu when installed using official sources and within its product life cycle. The life cycle for each version of Ubuntu are specified here: [www.ubuntu.com/about/release-cycle](/about/release-cycle).
-    2.  <h4><a name="uasd-support-scope-hardware">Hardware</a></h4>
+    2.  <h4 id="uasd-support-scope-hardware">Hardware</h4>
         - Ubuntu Certified hardware has passed our extensive testing and review process. More information about the Ubuntu certification process and a list of certified hardware can be found on the Ubuntu Certification page: [certification.ubuntu.com](https://certification.ubuntu.com). The services apply only with respect to the customer's hardware which has been certified. In the event the customer requests the services with respect to hardware which is not certified, Canonical will use reasonable efforts to provide support services, but may not adhere to the obligations described in this service description.
-    3.  <h4><a name="uasd-support-scope-packages">Packages</a></h4>
+    3.  <h4 id="uasd-support-scope-packages">Packages</h4>
         1.  The services apply only to packages found in the Ubuntu Main Repository and Canonical-owned packages in the Universe Repository except (i) the "proposed" and "backports" repository pockets, and (ii) the exclusions noted in the applicable support scope documentation.  
             The supported packages from the Universe Repository include, but may not be limited to, Juju packages, MAAS packages, the nova-conductor package, and their dependencies to the extent used in connection with those packages.
         2.  Canonical will not provide support for any packages that have been modified from the version in the Ubuntu archives.
-    4.  <h4><a name="uasd-support-scope-kernels">Kernels</a></h4>
+    4.  <h4 id="uasd-support-scope-kernels">Kernels</h4>
         1.  The kernel provided initially in the release of a long-term support (LTS) version of Ubuntu is supported for the entire lifecycle of the LTS.
         2.  Hardware enablement (HWE) kernels provide support for newer hardware in an LTS release and are released in conjunction with the non-LTS Ubuntu releases. HWE kernels are supported until the next LTS point release.
         3.  More information about kernel support can be found at [www.ubuntu.com/about/release-cycle](/about/release-cycle)
         4.  Access to Canonical Livepatch Service is included with all support offerings, unless otherwise noted.
-    5.  <h4><a name="uasd-support-scope-landscape">Landscape</a></h4>
+    5.  <h4 id="uasd-support-scope-landscape">Landscape</h4>
         1.  All Landscape products, including Landscape on-premises (when purchased) are fully supported.
         2.  Access to the Landscape SaaS systems management tool is included with all support offerings, unless otherwise noted.
 
-3.  <h2><a name="uasd-severity-levels">Severity levels and target response times</a></h2>
+3.  <h2 id="uasd-severity-levels">Severity levels and target response times</h2>
 
     - Once a support request is opened, a Canonical Support Engineer will validate the case information and determine the severity level, working with the customer to assess the urgency of the case.
     - Response times will be as set forth in the Service Description for the applicable service offering.
@@ -91,14 +91,14 @@ Valid since 16 November 2018
     | Severity Level 3 | 10 business hours | 6 business hours          |
     | Severity Level 4 | 20 business hours | 10 business hours         |
 
-4.  <h2><a name="uasd-support-process">Support process</a></h2>
+4.  <h2 id="uasd-support-process">Support process</h2>
 
     Canonical will use reasonable efforts to resolve support cases, but Canonical does not guarantee a work-around, resolution or resolution time.
 
     1.  Canonical will provide the services [following the support process](#appendix-support-process).
     2.  The customer may escalate support issues [following the escalation process](#appendix-management-escalation).
 
-5.  <h2><a name="uasd-assurance">Assurance</a></h2>
+5.  <h2 id="uasd-assurance">Assurance</h2>
 
     1.  The customer is entitled to participate in the Ubuntu Assurance Programme, subject to its terms and conditions. Canonical may update the Assurance Programme and its terms periodically. The current Ubuntu Assurance Programme and its IP indemnification terms are available at our Ubuntu Assurance page: [www.ubuntu.com/legal/ubuntu-advantage-assurance](/legal/ubuntu-advantage-assurance).
 

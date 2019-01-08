@@ -1,6 +1,6 @@
-# <a name="appendix-support-scope">Appendix {{number}} - Support scope</a>
+<h1 id="appendix-support-scope">Appendix {{number}} - Support scope</h1>
 
-## <a name="appendix-support-scope-openstack">Ubuntu Advantage OpenStack</a>
+<h2 id="appendix-support-scope-openstack">Ubuntu Advantage OpenStack</h2>
 
 Definitions:
 
@@ -51,7 +51,7 @@ Service excludes:
 - Support for workloads other than those required to run an OpenStack deployment.
 - Support for guest instances other than Cloud Guests.
 
-## <a name="appendix-support-scope-server">Ubuntu Advantage Server</a>
+<h2 id="appendix-support-scope-server">Ubuntu Advantage Server</h2>
 
 The scope of each particular offering (Essential, Standard, or Advanced) is defined below. The following items are not covered under any Ubuntu Advantage Server offerings.
 
@@ -112,7 +112,7 @@ Service excludes:
 
 - Access to the Landscape systems management tool for Ubuntu guests, except where covered by Landscape seats or Landscape on-premises.
 
-## <a name="appendix-support-scope-virtual-guest">Ubuntu Advantage Virtual Guest</a>
+<h2 id="appendix-support-scope-virtual-guest">Ubuntu Advantage Virtual Guest</h2>
 
 Virtual Guest services match that of the applicable Ubuntu Advantage Server support offering, subject to the exceptions listed below.
 
@@ -135,7 +135,7 @@ Service excludes:
 - Providing native images for a chosen hypervisor
 - Additional exclusions match those of the applicable Ubuntu Advantage Server service offering.
 
-## <a name="appendix-support-scope-ceph-storage">Ubuntu Advantage Ceph Storage</a>
+<h2 id="appendix-support-scope-ceph-storage">Ubuntu Advantage Ceph Storage</h2>
 
 Definitions:
 
@@ -156,7 +156,7 @@ Service excludes:
 
 - Support for workloads other than those required to run a Ceph deployment.
 
-## <a name="appendix-support-scope-swift-storage">Ubuntu Advantage Swift Storage</a>
+<h2 id="appendix-support-scope-swift-storage">Ubuntu Advantage Swift Storage</h2>
 
 Definitions:
 
@@ -177,7 +177,7 @@ Service excludes:
 
 - Support for workloads other than those required to run a Swift deployment.
 
-## <a name="appendix-support-scope-maas">Ubuntu Advantage MAAS</a>
+<h2 id="appendix-support-scope-maas">Ubuntu Advantage MAAS</h2>
 
 Service includes:
 
@@ -198,7 +198,7 @@ Supported versions of MAAS:
 
 - Versions of MAAS are supported on an LTS version of Ubuntu for a period of one year from the date it is released in the Ubuntu archives.
 
-## <a name="appendix-support-scope-switch">Ubuntu Advantage Switch</a>
+<h2 id="appendix-support-scope-switch">Ubuntu Advantage Switch</h2>
 
 Definitions:
 
@@ -218,7 +218,7 @@ Services exclude:
 - Landscape SaaS and Landscape on-premises
 - Access to Canonical Livepatch Service.
 
-## <a name="appendix-support-scope-desktop">Ubuntu Advantage Desktop</a>
+<h2 id="appendix-support-scope-desktop">Ubuntu Advantage Desktop</h2>
 
 Services exclude:
 
@@ -242,7 +242,7 @@ Service additionally excludes:
 - Developer tools
 - Support for packages not in the base Ubuntu desktop image
 
-## <a name="appendix-support-scope-kubernetes">Ubuntu Advantage Kubernetes</a>
+<h2 id="appendix-support-scope-kubernetes">Ubuntu Advantage Kubernetes</h2>
 
 Definitions:
 
@@ -264,7 +264,7 @@ Support is limited to:
 
 For any deployment of the Canonical Distribution of Kubernetes carried out by Canonical while under contract for this deployment, which result in the customization of any Charms, the customization will be supported for 90 days after the official release of the Charm which includes the customizations.
 
-## <a name="appendix-support-scope-esm">Extended Security Maintenance</a>
+<h2 id="appendix-support-scope-esm">Extended Security Maintenance</h2>
 
 Extended Security Maintenance includes available High and Critical CVE fixes for a number of server packages in the Ubuntu Main Repository through 28 April 2020. A complete list of packages included in Extended Security Maintenance can be found at: [https://wiki.ubuntu.com/SecurityTeam/ESM/12.04#Maintained_Packages](https://wiki.ubuntu.com/SecurityTeam/ESM/12.04#Maintained_Packages)
 
@@ -278,7 +278,7 @@ Service excludes:
 
 Extended Security Maintenance does not guarantee secure software or fixes to all High or Critical CVEs.
 
-## <a name="appendix-support-scope-livepatch">Canonical Livepatch Service</a>
+<h2 id="appendix-support-scope-livepatch">Canonical Livepatch Service</h2>
 
 Canonical Livepatch Service includes a licence to use Canonical’s kernel livepatch daemon, access to available kernel livepatches, and support for livepatches on all systems covered by Livepatch for which the livepatching features are available.
 
@@ -290,19 +290,19 @@ Kernel livepatching is available for generic and low latency 64-bit Intel/AMD ke
 
 Only the default LTS kernel is available for livepatching. This includes its backport as the latest HWE kernel to the previous LTS release.
 
-## <a name="appendix-support-scope-fips">FIPS for Ubuntu</a>
+<h2 id="appendix-support-scope-fips">FIPS for Ubuntu</h2>
 
 Access to packages (when available) sufficient for compliance with the FIPS 140-2 Level 1 standard when used with Ubuntu on certain Supermicro AMD64, IBM POWER8, and IBM Z hardware.
 
 Licences to such packages, to the extent not already licensed under open source software licences.
 
-## <a name="appendix-support-scope-common-criteria">Common Criteria for Ubuntu</a>
+<h2 id="appendix-support-scope-common-criteria">Common Criteria for Ubuntu</h2>
 
 Access to packages and scripts (when available) sufficient for compliance with the Common Criteria EAL2 standard when used with Ubuntu on certain Supermicro AMD64, IBM POWER8, and IBM Z hardware.
 
 Licences to such packages, to the extent not already licensed under open source software licences.
 
-## <a name="appendix-support-scope-landscape-seats">Landscape Seats</a>
+<h2 id="appendix-support-scope-landscape-seats">Landscape Seats</h2>
 
 Service includes:
 
@@ -312,7 +312,7 @@ Service excludes:
 
 - Support beyond that of the packages required to install and run the Landscape Client.
 
-## <a name="appendix-support-scope-tam">Technical Account Manager</a>
+<h2 id="appendix-support-scope-tam">Technical Account Manager</h2>
 
 Definitions:
 
@@ -330,7 +330,7 @@ The TAM will visit the customer's site annually for on-site technical review.
 
 The TAM is available to respond to support cases during the TAM's working hours. Outside of such hours, support will be provided per the Ubuntu Advantage Support Process.
 
-## <a name="appendix-support-scope-dedicated-tam">Dedicated Technical Account Manager</a>
+<h2 id="appendix-support-scope-dedicated-tam">Dedicated Technical Account Manager</h2>
 
 Definitions:
 
@@ -351,7 +351,7 @@ The DTAM is available to respond to support cases during the DTAM's working hour
 
 If a DTAM is on leave for longer than five consecutive business days, Canonical will assign a temporary remote resource to cover the leave period. Canonical will coordinate with the customer with respect to foreseeable DTAM leave.
 
-## <a name="appendix-support-scope-dedicated-support-engineer">Dedicated Support Engineer</a>
+<h2 id="appendix-support-scope-dedicated-support-engineer">Dedicated Support Engineer</h2>
 
 Definitions:
 
@@ -374,7 +374,7 @@ The DSE is available to respond to support cases during the DSE's working hours.
 
 If a DSE is on leave for longer than five consecutive business days, Canonical will assign a temporary remote resource to cover the leave period. Canonical will coordinate with the customer with respect to foreseeable DSE leave.
 
-## <a name="appendix-support-scope-landscape-on-premises">Landscape on Premises</a>
+<h2 id="appendix-support-scope-landscape-on-premises">Landscape on Premises</h2>
 
 Definitions:
 
@@ -401,7 +401,7 @@ Supported versions of Landscape on Premises:
 
 - Each release of Landscape on Premises will be supported for 1 year from its release date.
 
-## <a name="appendix-support-scope-livepatch-on-premises">Livepatch on Premises</a>
+<h2 id="appendix-support-scope-livepatch-on-premises">Livepatch on Premises</h2>
 
 Definitions:
 
@@ -422,7 +422,7 @@ Supported versions of Livepatch on Premises:
 
 - Each release of Livepatch on Premises will be supported for 1 year from its release date.
 
-## <a name="appendix-support-scope-rancher">Ubuntu Advantage Rancher</a>
+<h2 id="appendix-support-scope-rancher">Ubuntu Advantage Rancher</h2>
 
 Definitions:
 
