@@ -7,7 +7,7 @@ context:
   description: Learn how various components of CDK can be horizontally scaled to meet demand or increase reliability.
 ---
 
-The **Canonical Distribution of Kubernetes<sup>&reg;</sup>** has been designed to be flexible enough to efficiently run your workloads. Various components of **CDK** can be horizontally scaled to meet demand or to increase reliability, as detailed below.
+The **Charmed Distribution of Kubernetes<sup>&reg;</sup>** has been designed to be flexible enough to efficiently run your workloads. Various components of **CDK** can be horizontally scaled to meet demand or to increase reliability, as detailed below.
 
 ## kubernetes-master
 
@@ -100,7 +100,7 @@ Note that due to the numbering system used by **Juju**, if you subsequently add 
 
 ## etcd
 
-The **Canonical Distribution of Kubernetes<sup>&reg;</sup>** installs a three machine cluster for etcd, which provides tolerence for a single failure. Should you wish to extend the fault tolerance, you can add additional units of etcd.
+The **Charmed Distribution of Kubernetes<sup>&reg;</sup>** installs a three machine cluster for etcd, which provides tolerence for a single failure. Should you wish to extend the fault tolerance, you can add additional units of etcd.
 
 ```bash
 juju add-unit etcd -n 2
@@ -110,8 +110,7 @@ The recommended cluster-size for etcd is three, five or seven machines. Adding l
 
 ## Juju high availability
 
-On a default deployment of the **Canonical Distribution of
-Kubernetes<sup>&reg;</sup>**, there is only one controller instance, which isn't desirable for critical applications. It is possible to scale out the controller itself to prevent a single point of failure.
+On a default deployment of the **Charmed Distribution of Kubernetes<sup>&reg;</sup>**, there is only one controller instance, which isn't desirable for critical applications. It is possible to scale out the controller itself to prevent a single point of failure.
 
 **Juju** supports a high availability mode to run multiple controllers with an automatic failover.
 

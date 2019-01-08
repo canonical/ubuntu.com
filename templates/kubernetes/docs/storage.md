@@ -9,7 +9,7 @@ context:
 
 On-disk files in a container are ephemeral and can't be shared with other members of a pod. For some applications, this is not an issue, but for many persistent storage is required.
 
-The **Canonical Distribution of Kubernetes**<sup>&reg;</sup> makes it easy to add and configure different types of persistent storage for your **Kubernetes** cluster, as outlined below. For more detail on the concept of storage volumes in **Kubernetes**, please see the [Kubernetes documentation][kubernetes-storage-docs].
+The **Charmed Distribution of Kubernetes**<sup>&reg;</sup> makes it easy to add and configure different types of persistent storage for your **Kubernetes** cluster, as outlined below. For more detail on the concept of storage volumes in **Kubernetes**, please see the [Kubernetes documentation][kubernetes-storage-docs].
 
 ## Ceph storage
 

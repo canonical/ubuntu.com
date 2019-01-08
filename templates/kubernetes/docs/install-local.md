@@ -4,10 +4,10 @@ markdown_includes:
   nav: "shared/_side-navigation.md"
 context:
   title: "Installing to a local machine"
-  description: How to install the Canonical Distribution of Kubernetes on a single machine for easy testing and development.
+  description: How to install the Charmed Distribution of Kubernetes on a single machine for easy testing and development.
 ---
 
-Installing the Canonical Distribution of Kubernetes<sup>&reg;</sup> (CDK)
+Installing the Charmed Distribution of Kubernetes<sup>&reg;</sup> (CDK)
 on a single machine is possible for the purposes of testing and development.
 
 Be aware that the full deployment of CDK has system requirements which may exceed a standard laptop or desktop machine. It is only recommended for a machine with 32GB RAM and 250GB of SSD storage.

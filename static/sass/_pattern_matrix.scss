@@ -1,6 +1,10 @@
 @mixin ubuntu-p-matrix {
   .p-matrix {
     &.is-split {
+      @media (max-width: $breakpoint-small) {
+        margin-bottom: 0;
+      }
+
       .p-matrix__item {
         @media (min-width: $breakpoint-small) {
           width: calc(50% - .666666rem);
@@ -10,18 +14,27 @@
           }
 
           &:nth-child(n+1) {
-            border-right: 1px dotted $color-mid-dark;
+            border-right: 1px solid $color-mid-light;
             padding: $sp-medium;
           }
 
-          &:nth-child(n+3) {
-            border-top: 1px dotted $color-mid-dark;
+          @media (min-width: $breakpoint-medium) {
+            &:nth-child(n+3) {
+              border-top: 1px solid $color-mid-light;
+            }
           }
 
           &:nth-child(2n) {
             border-right: 0;
             padding-right: 0;
           }
+
+          &:nth-child(2n-1) {
+            padding-left: 0;
+          }
+        }
+        @media (max-width: $breakpoint-small) {
+          border: 0;
         }
       }
     }
