@@ -1,4 +1,4 @@
-# <a name="appendix-support-process">Appendix {{number}} - Support Process</a>
+<h1 id="appendix-support-process">Appendix {{number}} - Support Process</h1>
 
 1.  <h2 id="appendix-support-process-service-initiation">Service initiation</h2>
 
