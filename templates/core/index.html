@@ -66,7 +66,7 @@
   <div class="row">
     <div class="col-12 u-align--center">
       <p class="u-no-max-width">Canonical and partners speed up your device development.</p>
-      <p class="u-no-max-width"><a class="p-button--positive" href="/core/contact-us?product=core-overview">Get to market faster</a></p>
+      <p class="u-no-max-width"><a class="p-button--positive js-invoke-model" href="/core/contact-us?product=core-overview">Get to market faster</a></p>
     </div>
   </div>
 </section>
@@ -153,7 +153,7 @@
       <p class='p-heading--five'>We check every snap for known weaknesses or risks.</p>
       <p>Ubuntu Core benefits from the automatic scanning of all snaps for vulnerable libraries and problematic code.</p>
       <p>
-        <a class="p-button--positive is-inline" href="/core/contact-us?product=core-overview" style="margin-left: 0;">Contact us</a>
+        <a class="p-button--positive is-inline js-invoke-model" href="/core/contact-us?product=core-overview" style="margin-left: 0;">Contact us</a>
         <a href="/download/iot/">Get Ubuntu Core&nbsp;&rsaquo;</a>
       </p>
     </div>
@@ -260,7 +260,7 @@ store for access to all the standard apps, or curate your own collection.</p>
       <h4>Mission critical support</h4>
       <p class='p-heading--five'>Every Ubuntu Core device qualifies for Canonical support.</p>
       <p>Your Ubuntu Advantage contract covers enterprise support for all these devices. Get to the heart of a problem faster, get fixes straight from the source.</p>
-      <p><a href="/core/contact-us?product=core-overview" class="p-button--positive">Contact us</a></p>
+      <p><a href="/core/contact-us?product=core-overview" class="p-button--positive js-invoke-model">Contact us</a></p>
     </div>
   </div>
 </section>
@@ -341,7 +341,7 @@ store for access to all the standard apps, or curate your own collection.</p>
       <h4>Harness all things open source</h4>
       <p class='p-heading--five'>From Github to Ubuntu Core in minutes.</p>
       <p>Ride the open source wave, or build your own community. Open source projects default to Ubuntu, so building is easy.</p>
-      <p><a href="/core/contact-us?product=core-overview" class="p-button--positive">Contact us</a></p>
+      <p><a href="/core/contact-us?product=core-overview" class="p-button--positive js-invoke-model">Contact us</a></p>
     </div>
   </div>
 </section>
@@ -393,7 +393,7 @@ store for access to all the standard apps, or curate your own collection.</p>
       <h4>Snapshots for application data</h4>
       <p class='p-heading--five'>Standard mechanisms for application data management.</p>
       <p>Every device has apps which keep track of critical data. We make sure you can manage the data which matters to you, consistently, across all your Ubuntu Core devices. Backup and restore anything, anywhere.</p>
-      <p><a href="/core/contact-us?product=core-overview" class="p-button--positive">Contact us</a></p>
+      <p><a href="/core/contact-us?product=core-overview" class="p-button--positive js-invoke-model">Contact us</a></p>
     </div>
     <div class="col-6 u-hide--small u-align--center">
       <img src="{{ ASSET_SERVER_URL }}486ace1b-4C-Snapshot.svg" width="175" alt="">
@@ -467,7 +467,7 @@ store for access to all the standard apps, or curate your own collection.</p>
       <h4>Choice of ARM or x86</h4>
       <p class='p-heading--five'>Ubuntu runs the same. Your apps build the same.</p>
       <p>We support both 32-bit and 64-bit apps on both architectures. If it doesn’t compile and run the same, we’ll fix it. Open up your supply chain.</p>
-      <p><a href="/core/contact-us?product=core-overview" class="p-button--positive">Contact us</a></p>
+      <p><a href="/core/contact-us?product=core-overview" class="p-button--positive js-invoke-model">Contact us</a></p>
     </div>
   </div>
 </section>
@@ -523,7 +523,7 @@ store for access to all the standard apps, or curate your own collection.</p>
     <div class="col-6 p-divider__block">
       <h4>Let&rsquo;s work together</h4>
       <p>Talk to us about using Ubuntu Core for your next project.</p>
-      <p><a href="/core/contact-us?product=core-overview" class="p-button--positive">Get in touch</a></p>
+      <p><a href="/core/contact-us?product=core-overview" class="p-button--positive js-invoke-model">Get in touch</a></p>
     </div>
     <div class="col-6 p-divider__block">
       <h4>Make your own Ubuntu Core device</h4>
@@ -579,6 +579,202 @@ store for access to all the standard apps, or curate your own collection.</p>
   }
 </style>
 <script src="{% versioned_static 'js/stickyNav.js' %}"></script>
+
+<div class="p-modal u-hide" id="contact-modal">
+  <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" style="min-width: 50vw;">
+    <header class="p-modal__header">
+      <h2 class="p-modal__title" id="modal-title">Get to market faster</h2>
+      <button class="p-modal__close" aria-label="Close active modal" onclick="showModal('modal')">Close</button>
+    </header>
+    <div class="js-pagination js-pagination--1">
+      <p id="modal-description">Canonical partners with silicon companies, board manufacturers and ODMs to help you bring smart devices to market faster. Tell us about your project so we can bring the right team to the conversation.</p>
+      <div class="p-pagination">
+        <a class="p-pagination__link--next" href="#next">
+          <span class="p-pagination__label">Next</span>
+          <span class="p-pagination__title">Target audience</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--2 u-hide">
+      <h3 class="p-heading--five">Target audience</h3>
+      <form>
+        <div class="u-sv3">
+          <input type="radio" id="radio-enterprise">
+          <label for="radio-enterprise">Enterprise</label>
+          <input type="radio" id="radio-consumer">
+          <label for="radio-consumer">Consumer</label>
+        </div>
+        <textarea id="textarea" rows="3" placeholder="Are there particular sectors which are important to you such as industrial, automotive, display, retail, home, office, data center, networking, robotics?"></textarea>
+      </form>
+      <div class="p-pagination">
+        <a class="p-pagination__link--previous" href="#previous">
+          <span class="p-pagination__label">Previous</span>
+          <span class="p-pagination__title">Get to market faster</span>
+        </a>
+        <a class="p-pagination__link--next" href="#next">
+          <span class="p-pagination__label">Next</span>
+          <span class="p-pagination__title">Key device capabilities and priorities</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--3 u-hide">
+      <h3 class="p-heading--five">Key device capabilities and priorities</h3>
+      <div class="row">
+        <div class="col-4">
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+        </div>
+        <div class="col-4">
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+        </div>
+        <div class="col-4">
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+        </div>
+      </div>
+      <div class="p-pagination">
+        <a class="p-pagination__link--previous" href="#previous">
+          <span class="p-pagination__label">Previous</span>
+          <span class="p-pagination__title">Target audience</span>
+        </a>
+        <a class="p-pagination__link--next" href="#next">
+          <span class="p-pagination__label">Next</span>
+          <span class="p-pagination__title">Platform preferences</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--4 u-hide">
+      <h3 class="p-heading--five">Platform preferences</h3>
+      <div class="row">
+        <div class="col-4">
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="text" id="exampleTextInput" placeholder="Placeholder text">
+        </div>
+        <div class="col-4">
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="text" id="exampleTextInput" placeholder="Placeholder text">
+        </div>
+        <div class="col-4">
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="checkbox" id="checkExample1">
+          <label for="checkExample1">Checkbox option 1</label>
+          <input type="text" id="exampleTextInput" placeholder="Placeholder text">
+        </div>
+      </div>
+      <div class="p-pagination">
+        <a class="p-pagination__link--previous" href="#previous">
+          <span class="p-pagination__label">Previous</span>
+          <span class="p-pagination__title">Key device capabilities and priorities</span>
+        </a>
+        <a class="p-pagination__link--next" href="#next">
+          <span class="p-pagination__label">Next</span>
+          <span class="p-pagination__title">How should we get in touch</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--5 u-hide">
+      <h3 class="p-heading--five">How should we get in touch?</h3>
+      <form>
+        <label for="exampleTextInput">Label</label>
+        <input type="text" id="exampleTextInput" placeholder="Placeholder text">
+        <label for="exampleTextInput">Label</label>
+        <input type="text" id="exampleTextInput" placeholder="Placeholder text">
+        <button type="submit">Let's discuss</button>
+      </form>
+      <div class="p-pagination">
+        <a class="p-pagination__link--previous" href="#previous">
+          <span class="p-pagination__label">Previous</span>
+          <span class="p-pagination__title">Key device capabilities and priorities</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var contactIndex = 1;
+  var contactModel = document.getElementById("contact-modal");
+  var contactButtons = document.querySelectorAll('.js-invoke-model');
+  var closeModel = document.querySelector('.p-modal__close');
+  var modelPaginationButtons = contactModel.querySelectorAll('.p-pagination a');
+  var paginationContent = contactModel.querySelectorAll('.js-pagination');
+
+  contactButtons.forEach(function(contactButton) {
+    contactButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      contactModel.classList.remove('u-hide');
+    });
+  });
+
+  if (closeModel) {
+    closeModel.addEventListener('click', function(e) {
+      e.preventDefault();
+      contactModel.classList.add('u-hide');
+    });
+  }
+
+  modelPaginationButtons.forEach(function(modelPaginationButton) {
+    modelPaginationButton.addEventListener('click', function(e) {
+      var button = e.target.closest('a');
+      if (button.classList.contains('p-pagination__link--previous')) {
+        contactIndex--;
+      } else {
+        contactIndex++;
+      }
+      console.log('.js-pagination--'+contactIndex);
+      var currentContent = contactModel.querySelector('.js-pagination--'+contactIndex);
+      paginationContent.forEach(function(content) {
+        content.classList.add('u-hide');
+      });
+      currentContent.classList.remove('u-hide');
+    });
+  });
+}());
+</script>
+
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_core_learn_more" second_item="_core_contribute" third_item="_iot_further_reading" %}
 
