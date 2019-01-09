@@ -1,0 +1,26 @@
+{% extends "templates/base.html" %}
+{% load versioned_static  %}
+{% block title %}{{ title }}{% endblock title %}
+{% block meta_description %}{{ description }}{% endblock meta_description %}
+
+{% block meta_copydoc %}https://drive.google.com/drive/folders/0B3hNyKyLEnE6clUxQndBME5uRXM{% endblock meta_copydoc %}
+
+{% block outer_content %}
+
+    {% block content %}
+    <div class="p-strip is-deep">
+      <div class="row" id="service-description">
+        <div class="col-8 l-legal-pages">
+{{ html_content | safe }}
+        </div>
+        <div class="col-4">
+          {% include "legal/shared/_uasd_toc.html" %}
+        </div>
+      </div>
+    </div>
+
+    {% endblock %}
+
+    {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_generic_download" third_item="_further_reading" %}
+
+{% endblock %}

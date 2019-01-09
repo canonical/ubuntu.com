@@ -60,8 +60,10 @@
 @include ubuntu-p-separator;
 
 // Layouts:
-@import "layout_documentation";
+@import "layout-documentation";
 @include layout-documentation;
+@import "layout-legal-pages";
+@include layout-legal-pages;
 
 // Bug fixes
 // Each of the the rules below are bug fixes which need to be addressed further upstream
