@@ -1,7 +1,7 @@
 ---
 wrapper_template: "../_base_legal_markdown.html"
 context:
-  title: "UASD with Markdown"
+  title: "Ubuntu Advantage service description"
   description: How to get Ceph deployed and related to Kubernetes in order to have a default storage class. This allows for easy storage allocation.
 ---
 
