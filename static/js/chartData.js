@@ -25,7 +25,7 @@ var serverAndDesktopReleases = [
   },
   {
     startDate: new Date('2017-04-01T00:00:00'),
-    endDate: new Date('2020-04-01T00:00:00'),
+    endDate: new Date('2019-04-01T00:00:00'),
     taskName: 'Ubuntu 12.04 LTS',
     status: 'EXTENDED_SECURITY_MAINTENANCE_FOR_CUSTOMERS'
   },
@@ -112,7 +112,7 @@ var kernelReleases = [
   },
   {
     startDate: new Date('2017-04-01T00:00:00'),
-    endDate: new Date('2020-04-01T00:00:00'),
+    endDate: new Date('2019-04-01T00:00:00'),
     taskName: 'Ubuntu 12.04.0 LTS (v3.2)',
     status: 'EXTENDED_SECURITY_MAINTENANCE_FOR_CUSTOMERS'
   },
@@ -124,7 +124,7 @@ var kernelReleases = [
   },
   {
     startDate: new Date('2017-04-01T00:00:00'),
-    endDate: new Date('2020-04-01T00:00:00'),
+    endDate: new Date('2019-04-01T00:00:00'),
     taskName: 'Ubuntu 12.04.1 LTS (v3.2)',
     status: 'EXTENDED_SECURITY_MAINTENANCE_FOR_CUSTOMERS'
   },
@@ -142,7 +142,7 @@ var kernelReleases = [
   },
   {
     startDate: new Date('2017-04-01T00:00:00'),
-    endDate: new Date('2020-04-01T00:00:00'),
+    endDate: new Date('2019-04-01T00:00:00'),
     taskName: 'Ubuntu 12.04.5 LTS (v3.13)',
     status: 'EXTENDED_SECURITY_MAINTENANCE_FOR_CUSTOMERS'
   },
