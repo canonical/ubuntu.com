@@ -3,7 +3,7 @@
 {% block title %}{{ title }}{% endblock title %}
 {% block meta_description %}{{ description }}{% endblock meta_description %}
 
-{% block meta_copydoc %}{{ copydoc }}{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://drive.google.com/drive/folders/0B3hNyKyLEnE6clUxQndBME5uRXM{% endblock meta_copydoc %}
 
 {% block outer_content %}
 
@@ -14,6 +14,7 @@
 {{ html_content | safe }}
         </div>
         <div class="col-4">
+          {% include "legal/shared/_uasd_toc.html" %}
         </div>
       </div>
     </div>
