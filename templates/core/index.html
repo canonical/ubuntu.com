@@ -741,7 +741,7 @@ store for access to all the standard apps, or curate your own collection.</p>
       <div class="row u-no-padding">
         <div class="u-equal-height">
           <div class="col-7">
-            <h1>Thank you for enquiring about Ubuntu core</h1>
+            <h3 class="p-heading--two">Thank you for enquiring about Ubuntu core</h3>
             <p class="p-heading--four">A member of our team will be in touch within one working day.</p>
           </div>
           <div class="col-5 u-vertically-center u-align--center u-hide--small">
@@ -749,9 +749,7 @@ store for access to all the standard apps, or curate your own collection.</p>
           </div>
         </div>
       </div>
-      <div class="pagination">
-        <a class="pagination__link--previous p-button--neutral" href="">Close</a>
-      </div>
+      <a class="js-close p-button--neutral" href="">Close</a>
     </div>
   </div>
 </div>
@@ -762,6 +760,7 @@ store for access to all the standard apps, or curate your own collection.</p>
   var contactModel = document.getElementById("contact-modal");
   var contactButtons = document.querySelectorAll('.js-invoke-model');
   var closeModel = document.querySelector('.p-modal__close');
+  var closeModelButton = document.querySelector('.js-close');
   var modelPaginationButtons = contactModel.querySelectorAll('.pagination a');
   var paginationContent = contactModel.querySelectorAll('.js-pagination');
   // var otherContainer = document.querySelectorAll();
@@ -769,14 +768,28 @@ store for access to all the standard apps, or curate your own collection.</p>
   contactButtons.forEach(function(contactButton) {
     contactButton.addEventListener('click', function(e) {
       e.preventDefault();
-      contactModel.classList.remove('u-hide');
+      open();
     });
   });
+
+  document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    if (evt.keyCode == 27) {
+      close();
+    }
+  };
 
   if (closeModel) {
     closeModel.addEventListener('click', function(e) {
       e.preventDefault();
-      contactModel.classList.add('u-hide');
+      close();
+    });
+  }
+
+  if (closeModelButton) {
+    closeModelButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      close();
     });
   }
 
@@ -785,24 +798,44 @@ store for access to all the standard apps, or curate your own collection.</p>
       e.preventDefault();
       var button = e.target.closest('a');
       if (button.classList.contains('pagination__link--previous')) {
-        contactIndex--;
+        setState(contactIndex - 1);
       } else {
-        contactIndex++;
+        setState(contactIndex + 1);
       }
-
-      if (contactIndex == 4) {
-        contactModel.classList.add('thank-you');
-      } else {
-        contactModel.classList.remove('thank-you');
-      }
-
-      var currentContent = contactModel.querySelector('.js-pagination--'+contactIndex);
-      paginationContent.forEach(function(content) {
-        content.classList.add('u-hide');
-      });
-      currentContent.classList.remove('u-hide');
     });
   });
+
+  function checkThankYou() {
+    if (contactIndex == 4) {
+      contactModel.classList.add('thank-you');
+    } else {
+      contactModel.classList.remove('thank-you');
+    }
+  }
+
+  function setState(index) {
+    contactIndex = index;
+    render();
+  }
+
+  function close() {
+    setState(1);
+    contactModel.classList.add('u-hide');
+  }
+
+  function open() {
+    contactModel.classList.remove('u-hide');
+  }
+
+  function render() {
+    checkThankYou();
+
+    var currentContent = contactModel.querySelector('.js-pagination--'+contactIndex);
+    paginationContent.forEach(function(content) {
+      content.classList.add('u-hide');
+    });
+    currentContent.classList.remove('u-hide');
+  }
 }());
 </script>
 
