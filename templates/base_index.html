@@ -140,7 +140,7 @@
       function getPrimaryParentLanguage() {
         /**
          * Get the primary parent language
-         * 
+         *
          * Get the user's default language, and if it's a sub-language,
          * infer the parent language - e.g. for "en-GB", infer "en"
          */
@@ -157,7 +157,7 @@
         /**
          * Choose a takeover
          * ===
-         * 
+         *
          * From the list of provided takeovers in the #takeovers template,
          * choose one (that matches the client's language), and replace the
          * base template with it.
@@ -186,7 +186,7 @@
           var selectedIndex = null;
 
           if (localStorage.getItem('selected_takeover_index') !== null) {
-            // If we previously chose a takeover, increment the number to show the next takeover 
+            // If we previously chose a takeover, increment the number to show the next takeover
             var nextIndex = parseInt(localStorage.getItem('selected_takeover_index')) + 1
             selectedIndex = nextIndex < selectedTakeovers.length ? nextIndex : 0;
           } else {

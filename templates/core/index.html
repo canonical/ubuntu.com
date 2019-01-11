@@ -581,13 +581,13 @@ store for access to all the standard apps, or curate your own collection.</p>
 <script src="{% versioned_static 'js/stickyNav.js' %}"></script>
 
 <div class="p-modal u-hide" id="contact-modal">
-  <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" style="min-width: 800px;">
+  <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
     <header class="p-modal__header">
       <h2 class="p-modal__title" id="modal-title">Let’s get your device to market faster</h2>
       <button class="p-modal__close" aria-label="Close active modal">Close</button>
     </header>
     <div class="js-pagination js-pagination--1">
-      <p id="modal-description">Canonical partners with silicon companies, board manufacturers and ODMs to help you bring smart devices to market faster. Tell us about your project so we can bring the right team to the conversation.</p>
+      <p id="modal-description" class="u-no-max-width u-no-margin--bottom">Canonical partners with silicon companies, board manufacturers and ODMs to help you bring smart devices to market faster. Tell us about your project so we can bring the right team to the conversation.</p>
       <h3 class="p-heading--five">Who’s your target audience?</h3>
       <div class="row u-no-padding">
         <div class="col-4 u-sv3">
@@ -599,36 +599,12 @@ store for access to all the standard apps, or curate your own collection.</p>
           <label for="radio-consumer">Consumer</label>
         </div>
       </div>
-      <h3 class="p-heading--five">What sector(s) are you important to you?</h3>
-      <div class="row u-no-padding">
-        <div class="col-4">
-          <input type="checkbox" id="sector-automotive">
-          <label for="sector-automotive">Automotive</label>
-          <input type="checkbox" id="sector-data-centre">
-          <label for="sector-data-centre">Data centre</label>
-          <input type="checkbox" id="sector-industrial">
-          <label for="sector-industrial">Industrial</label>
-        </div>
-        <div class="col-4">
-          <input type="checkbox" id="sector-networking">
-          <label for="sector-networking">Networking</label>
-          <input type="checkbox" id="sector-retail">
-          <label for="sector-retail">Retail</label>
-          <input type="checkbox" id="sector-robotics">
-          <label for="sector-robotics">Robotics</label>
-        </div>
-        <div class="col-4">
-          <input type="checkbox" id="sector-smart-displays">
-          <label for="sector-smart-displays">Smart displays</label>
-          <input type="checkbox" id="sector-smart-home">
-          <label for="sector-smart-home">Smart home</label>
-        </div>
+      <div class="u-sv3">
+        <h3 class="p-heading--five">What sector(s) are you important to you?</h3>
+        <textarea id="particular-sectors" aria-label="Are there particular sectors which are important to you" rows="3" placeholder="Are there particular sectors which are important to you such as industrial, automotive, display, retail, home, office, data center, networking, robotics?"></textarea>
       </div>
-      <textarea id="particular-sectors" aria-label="Are there particular sectors which are important to you" rows="3" placeholder="Are there particular sectors which are important to you such as industrial, automotive, display, retail, home, office, data center, networking, robotics?"></textarea>
-      <div class="p-pagination">
-        <a class="p-pagination__link--next" href="">
-          <span class="p-pagination__label">Next</span>
-        </a>
+      <div class="pagination">
+        <a class="p-button--positive pagination__link--next" href="">Next</a>
       </div>
     </div>
 
@@ -636,45 +612,45 @@ store for access to all the standard apps, or curate your own collection.</p>
       <h3 class="p-heading--five">What device capabilities are important to you?</h3>
       <div class="row u-no-padding">
         <div class="col-4 u-sv3">
-          <input type="radio" id="radio-security">
+          <input type="checkbox" id="radio-security">
           <label for="radio-security">Security</label>
-          <input type="radio" id="radio-over-the-air-updates">
+          <input type="checkbox" id="radio-over-the-air-updates">
           <label for="radio-over-the-air-updates">Over-the-air updates</label>
-          <input type="radio" id="radio-app-store">
+          <input type="checkbox" id="radio-app-store">
           <label for="radio-app-store">App Store</label>
-          <input type="radio" id="radio-10-year-certification">
+          <input type="checkbox" id="radio-10-year-certification">
           <label for="radio-10-year-certification">10-year certification</label>
-          <input type="radio" id="radio-real-time">
+          <input type="checkbox" id="radio-real-time">
           <label for="radio-real-time">Real-time</label>
-          <input type="radio" id="radio-AI-machine-learning">
+          <input type="checkbox" id="radio-AI-machine-learning">
           <label for="radio-AI-machine-learning">AI / machine learning</label>
         </div>
         <div class="col-4 u-sv3">
-          <input type="radio" id="radio-ci-cd">
+          <input type="checkbox" id="radio-ci-cd">
           <label for="radio-ci-cd">CI/CD</label>
-          <input type="radio" id="radio-board-enablement">
+          <input type="checkbox" id="radio-board-enablement">
           <label for="radio-board-enablement">Board enablement</label>
-          <input type="radio" id="radio-compliance">
+          <input type="checkbox" id="radio-compliance">
           <label for="radio-compliance">Compliance</label>
-          <input type="radio" id="radio-eal">
+          <input type="checkbox" id="radio-eal">
           <label for="radio-eal">EAL</label>
-          <input type="radio" id="radio-recovery-partition">
+          <input type="checkbox" id="radio-recovery-partition">
           <label for="radio-recovery-partition">Recovery partition</label>
-          <input type="radio" id="radio-ros">
+          <input type="checkbox" id="radio-ros">
           <label for="radio-ros">ROS</label>
         </div>
         <div class="col-4 u-sv3">
-          <input type="radio" id="radio-existing-apps">
+          <input type="checkbox" id="radio-existing-apps">
           <label for="radio-existing-apps">Existing apps</label>
-          <input type="radio" id="radio-management">
+          <input type="checkbox" id="radio-management">
           <label for="radio-management">Management</label>
-          <input type="radio" id="radio-factory-process">
+          <input type="checkbox" id="radio-factory-process">
           <label for="radio-app-store">Factory process</label>
-          <input type="radio" id="radio-boot-time">
+          <input type="checkbox" id="radio-boot-time">
           <label for="radio-boot-time">Boot time</label>
-          <input type="radio" id="radio-secure-boot">
+          <input type="checkbox" id="radio-secure-boot">
           <label for="radio-secure-boot">Secure boot</label>
-          <input type="radio" id="radio-battery-life">
+          <input type="checkbox" id="radio-battery-life">
           <label for="radio-battery-life">Battery life</label>
         </div>
       </div>
@@ -682,57 +658,65 @@ store for access to all the standard apps, or curate your own collection.</p>
       <div class="row u-no-padding">
         <div class="col-4">
           <p>Architecture</p>
-          <input type="radio" id="radio-intel">
+          <input type="checkbox" id="radio-intel">
           <label for="radio-intel">Intel</label>
-          <input type="radio" id="radio-ARM">
+          <input type="checkbox" id="radio-ARM">
           <label for="radio-ARM">ARM</label>
-          <input type="text" id="architecture-other" placeholder="Other" aria-label="Other architecture">
+          <div class="js-other-container">
+            <input type="checkbox" class="js-other-container__checkbox" id="checkbox-architecture-other">
+            <label for="checkbox-architecture-other">Other</label>
+            <input type="text" id="architecture-other" class="js-other-container__input" placeholder="Please specify" disabled="disabled" aria-label="Other architecture">
+          </div>
         </div>
         <div class="col-4">
           <p>Board</p>
-          <input type="radio" id="radio-undecided">
+          <input type="checkbox" id="radio-undecided">
           <label for="radio-undecided">Undecided</label>
-          <input type="radio" id="radio-raspberry-pi-cm">
+          <input type="checkbox" id="radio-raspberry-pi-cm">
           <label for="radio-raspberry-pi-cm">Raspberry Pi / CM</label>
-          <input type="radio" id="radio-intel-nuc">
+          <input type="checkbox" id="radio-intel-nuc">
           <label for="radio-intel-nuc">Intel Nuc</label>
-          <input type="radio" id="radio-iMX6">
+          <input type="checkbox" id="radio-iMX6">
           <label for="radio-iMX6">iMX6</label>
-          <input type="radio" id="radio-qualcomm">
+          <input type="checkbox" id="radio-qualcomm">
           <label for="radio-qualcomm">Qualcomm</label>
-          <input type="text" id="Board-other" placeholder="Other" aria-label="Other Board">
+          <div class="js-other-container">
+            <input type="checkbox" class="js-other-container__checkbox" id="checkbox-Board-other">
+            <label for="checkbox-Board-other">Other</label>
+            <input type="text" id="Board-other" class="js-other-container__input" placeholder="Please specify" disabled="disabled" aria-label="Other Board">
+          </div>
         </div>
         <div class="col-4">
           <p>ODM</p>
-          <input type="radio" id="radio-advantech">
+          <input type="checkbox" id="radio-advantech">
           <label for="radio-advantech">Advantech</label>
-          <input type="radio" id="radio-dell">
+          <input type="checkbox" id="radio-dell">
           <label for="radio-dell">Dell</label>
-          <input type="radio" id="radio-eurotech">
+          <input type="checkbox" id="radio-eurotech">
           <label for="radio-eurotech">Eurotech</label>
-          <input type="radio" id="radio-rigado">
+          <input type="checkbox" id="radio-rigado">
           <label for="radio-rigado">Rigado</label>
-          <input type="radio" id="radio-silver-spring-itron">
+          <input type="checkbox" id="radio-silver-spring-itron">
           <label for="radio-silver-spring-itron">Silver Spring / Itron</label>
-          <input type="radio" id="radio-undecided">
+          <input type="checkbox" id="radio-undecided">
           <label for="radio-undecided">Undecided</label>
-          <input type="text" id="ODM-other" placeholder="Other" aria-label="Other ODM">
+          <div class="js-other-container">
+            <input type="checkbox" class="js-other-container__checkbox" id="checkbox-ODM-other">
+            <label for="checkbox-ODM-other">Other</label>
+            <input type="text" id="ODM-other" class="js-other-container__input" placeholder="Please specify" disabled="disabled" aria-label="Other ODM">
+          </div>
         </div>
       </div>
-      <div class="p-pagination">
-        <a class="p-pagination__link--previous" href="">
-          <span class="p-pagination__label u-no-margin--bottom">Previous</span>
-        </a>
-        <a class="p-pagination__link--next" href="">
-          <span class="p-pagination__label u-no-margin--bottom">Next</span>
-        </a>
+      <div class="pagination">
+        <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
+        <a class="pagination__link--next p-button--positive" href="">Next</a>
       </div>
     </div>
 
     <div class="js-pagination js-pagination--3 u-hide">
       <h3 class="p-heading--five">How should we get in touch?</h3>
       <div class="row u-no-padding">
-        <div class="col-6">
+        <div class="col-6 u-sv3">
           <form>
             <label for="first-name">First Name:</label>
             <input type="text" id="first-name">
@@ -744,14 +728,29 @@ store for access to all the standard apps, or curate your own collection.</p>
             <input type="text" id="last-name">
             <label for="phone-number">Phone Number:</label>
             <input type="text" id="phone-number">
-            <button type="submit">Let's discuss</button>
           </form>
         </div>
       </div>
-      <div class="p-pagination">
-        <a class="p-pagination__link--previous" href="">
-          <span class="p-pagination__label u-no-margin--bottom">Previous</span>
-        </a>
+      <div class="pagination">
+        <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
+        <a class="pagination__link--next p-button--positive" href="">Let's discuss</a>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--4 u-hide">
+      <div class="row u-no-padding">
+        <div class="u-equal-height">
+          <div class="col-7">
+            <h1>Thank you for enquiring about Ubuntu core</h1>
+            <p class="p-heading--four">A member of our team will be in touch within one working day.</p>
+          </div>
+          <div class="col-5 u-vertically-center u-align--center u-hide--small">
+            <img src="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg" alt="smile" width="200" height="200">
+          </div>
+        </div>
+      </div>
+      <div class="pagination">
+        <a class="pagination__link--previous p-button--neutral" href="">Close</a>
       </div>
     </div>
   </div>
@@ -763,8 +762,9 @@ store for access to all the standard apps, or curate your own collection.</p>
   var contactModel = document.getElementById("contact-modal");
   var contactButtons = document.querySelectorAll('.js-invoke-model');
   var closeModel = document.querySelector('.p-modal__close');
-  var modelPaginationButtons = contactModel.querySelectorAll('.p-pagination a');
+  var modelPaginationButtons = contactModel.querySelectorAll('.pagination a');
   var paginationContent = contactModel.querySelectorAll('.js-pagination');
+  // var otherContainer = document.querySelectorAll();
 
   contactButtons.forEach(function(contactButton) {
     contactButton.addEventListener('click', function(e) {
@@ -784,11 +784,18 @@ store for access to all the standard apps, or curate your own collection.</p>
     modelPaginationButton.addEventListener('click', function(e) {
       e.preventDefault();
       var button = e.target.closest('a');
-      if (button.classList.contains('p-pagination__link--previous')) {
+      if (button.classList.contains('pagination__link--previous')) {
         contactIndex--;
       } else {
         contactIndex++;
       }
+
+      if (contactIndex == 4) {
+        contactModel.classList.add('thank-you');
+      } else {
+        contactModel.classList.remove('thank-you');
+      }
+
       var currentContent = contactModel.querySelector('.js-pagination--'+contactIndex);
       paginationContent.forEach(function(content) {
         content.classList.add('u-hide');

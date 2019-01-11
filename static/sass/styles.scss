@@ -218,9 +218,39 @@ abbr[title] {
   margin-bottom: 0;
 }
 
-.p-modal {
-  position: fixed;
-  z-index: 100;
+#contact-modal { // sass-lint:disable-line no-ids
+  &.p-modal {
+    position: fixed;
+    z-index: 100;
+
+    .p-modal__dialog {
+      margin-bottom: 0;
+
+      @media (min-width: $breakpoint-medium + 100px) {
+        max-width: $breakpoint-medium;
+        min-width: $breakpoint-medium;
+      }
+    }
+
+    .p-modal__header {
+      border-bottom: 1px solid $color-mid-light;
+      margin-bottom: $spv-intra--expanded;
+    }
+
+    .p-modal__title {
+      margin-bottom: $spv-intra;
+    }
+
+    &.thank-you {
+      .p-modal__title {
+        opacity: 0;
+      }
+
+      .p-modal__header {
+        border-bottom: 0;
+      }
+    }
+  }
 }
 
 .p-pagination__link--next::after,
