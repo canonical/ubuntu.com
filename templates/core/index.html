@@ -591,12 +591,12 @@ store for access to all the standard apps, or curate your own collection.</p>
       <h3 class="p-heading--five">Who’s your target audience?</h3>
       <div class="row u-no-padding">
         <div class="col-4 u-sv3">
-          <input type="radio" id="radio-enterprise" name="target-audience" value="Enterprise">
-          <label for="radio-enterprise">Enterprise</label>
+          <input type="radio" id="target-audience-enterprise" name="target-audience" value="Enterprise">
+          <label for="target-audience-enterprise">Enterprise</label>
         </div>
         <div class="col-4 u-sv3">
-          <input type="radio" id="radio-consumer" name="target-audience" value="Consumer">
-          <label for="radio-consumer">Consumer</label>
+          <input type="radio" id="target-audience-consumer" name="target-audience" value="Consumer">
+          <label for="target-audience-consumer">Consumer</label>
         </div>
       </div>
       <div class="u-sv3">
@@ -612,98 +612,98 @@ store for access to all the standard apps, or curate your own collection.</p>
       <h3 class="p-heading--five">What device capabilities are important to you?</h3>
       <div class="row u-no-padding">
         <div class="col-4 u-sv3">
-          <input type="checkbox" id="radio-security">
-          <label for="radio-security">Security</label>
-          <input type="checkbox" id="radio-over-the-air-updates">
-          <label for="radio-over-the-air-updates">Over-the-air updates</label>
-          <input type="checkbox" id="radio-app-store">
-          <label for="radio-app-store">App Store</label>
-          <input type="checkbox" id="radio-10-year-certification">
-          <label for="radio-10-year-certification">10-year certification</label>
-          <input type="checkbox" id="radio-real-time">
-          <label for="radio-real-time">Real-time</label>
-          <input type="checkbox" id="radio-AI-machine-learning">
-          <label for="radio-AI-machine-learning">AI / machine learning</label>
+          <input type="checkbox" id="capabilities-security">
+          <label for="capabilities-security">Security</label>
+          <input type="checkbox" id="capabilities-over-the-air-updates">
+          <label for="capabilities-over-the-air-updates">Over-the-air updates</label>
+          <input type="checkbox" id="capabilities-app-store">
+          <label for="capabilities-app-store">App Store</label>
+          <input type="checkbox" id="capabilities-10-year-certification">
+          <label for="capabilities-10-year-certification">10-year certification</label>
+          <input type="checkbox" id="capabilities-real-time">
+          <label for="capabilities-real-time">Real-time</label>
+          <input type="checkbox" id="capabilities-AI-machine-learning">
+          <label for="capabilities-AI-machine-learning">AI / machine learning</label>
         </div>
         <div class="col-4 u-sv3">
-          <input type="checkbox" id="radio-ci-cd">
-          <label for="radio-ci-cd">CI/CD</label>
-          <input type="checkbox" id="radio-board-enablement">
-          <label for="radio-board-enablement">Board enablement</label>
-          <input type="checkbox" id="radio-compliance">
-          <label for="radio-compliance">Compliance</label>
-          <input type="checkbox" id="radio-eal">
-          <label for="radio-eal">EAL</label>
-          <input type="checkbox" id="radio-recovery-partition">
-          <label for="radio-recovery-partition">Recovery partition</label>
-          <input type="checkbox" id="radio-ros">
-          <label for="radio-ros">ROS</label>
+          <input type="checkbox" id="capabilities-ci-cd">
+          <label for="capabilities-ci-cd">CI/CD</label>
+          <input type="checkbox" id="capabilities-board-enablement">
+          <label for="capabilities-board-enablement">Board enablement</label>
+          <input type="checkbox" id="capabilities-compliance">
+          <label for="capabilities-compliance">Compliance</label>
+          <input type="checkbox" id="capabilities-eal">
+          <label for="capabilities-eal">EAL</label>
+          <input type="checkbox" id="capabilities-recovery-partition">
+          <label for="capabilities-recovery-partition">Recovery partition</label>
+          <input type="checkbox" id="capabilities-ros">
+          <label for="capabilities-ros">ROS</label>
         </div>
         <div class="col-4 u-sv3">
-          <input type="checkbox" id="radio-existing-apps">
-          <label for="radio-existing-apps">Existing apps</label>
-          <input type="checkbox" id="radio-management">
-          <label for="radio-management">Management</label>
-          <input type="checkbox" id="radio-factory-process">
-          <label for="radio-app-store">Factory process</label>
-          <input type="checkbox" id="radio-boot-time">
-          <label for="radio-boot-time">Boot time</label>
-          <input type="checkbox" id="radio-secure-boot">
-          <label for="radio-secure-boot">Secure boot</label>
-          <input type="checkbox" id="radio-battery-life">
-          <label for="radio-battery-life">Battery life</label>
+          <input type="checkbox" id="capabilities-existing-apps">
+          <label for="capabilities-existing-apps">Existing apps</label>
+          <input type="checkbox" id="capabilities-management">
+          <label for="capabilities-management">Management</label>
+          <input type="checkbox" id="capabilities-factory-process">
+          <label for="capabilities-factory-process">Factory process</label>
+          <input type="checkbox" id="capabilities-boot-time">
+          <label for="capabilities-boot-time">Boot time</label>
+          <input type="checkbox" id="capabilities-secure-boot">
+          <label for="capabilities-secure-boot">Secure boot</label>
+          <input type="checkbox" id="capabilities-battery-life">
+          <label for="capabilities-battery-life">Battery life</label>
         </div>
       </div>
       <h3 class="p-heading--five">What are your platform preferences?</h3>
       <div class="row u-no-padding">
         <div class="col-4">
           <p>Architecture</p>
-          <input type="checkbox" id="radio-intel">
-          <label for="radio-intel">Intel</label>
-          <input type="checkbox" id="radio-ARM">
-          <label for="radio-ARM">ARM</label>
+          <input type="checkbox" id="architecture-intel">
+          <label for="architecture-intel">Intel</label>
+          <input type="checkbox" id="architecture-ARM">
+          <label for="architecture-ARM">ARM</label>
           <div class="js-other-container">
-            <input type="checkbox" class="js-other-container__checkbox" id="checkbox-architecture-other">
-            <label for="checkbox-architecture-other">Other</label>
-            <input type="text" id="architecture-other" class="js-other-container__input" placeholder="Please specify" disabled="disabled" aria-label="Other architecture">
+            <input type="checkbox" class="js-other-container__checkbox" id="architecture-other">
+            <label for="architecture-other">Other</label>
+            <input type="text" id="architecture-other-specified" class="js-other-container__input" placeholder="Please specify" disabled="disabled" aria-label="Other architecture">
           </div>
         </div>
         <div class="col-4">
           <p>Board</p>
-          <input type="checkbox" id="radio-undecided">
-          <label for="radio-undecided">Undecided</label>
-          <input type="checkbox" id="radio-raspberry-pi-cm">
-          <label for="radio-raspberry-pi-cm">Raspberry Pi / CM</label>
-          <input type="checkbox" id="radio-intel-nuc">
-          <label for="radio-intel-nuc">Intel Nuc</label>
-          <input type="checkbox" id="radio-iMX6">
-          <label for="radio-iMX6">iMX6</label>
-          <input type="checkbox" id="radio-qualcomm">
-          <label for="radio-qualcomm">Qualcomm</label>
+          <input type="checkbox" id="board-undecided">
+          <label for="board-undecided">Undecided</label>
+          <input type="checkbox" id="board-raspberry-pi-cm">
+          <label for="board-raspberry-pi-cm">Raspberry Pi / CM</label>
+          <input type="checkbox" id="board-intel-nuc">
+          <label for="board-intel-nuc">Intel Nuc</label>
+          <input type="checkbox" id="board-iMX6">
+          <label for="board-iMX6">iMX6</label>
+          <input type="checkbox" id="board-qualcomm">
+          <label for="board-qualcomm">Qualcomm</label>
           <div class="js-other-container">
-            <input type="checkbox" class="js-other-container__checkbox" id="checkbox-Board-other">
-            <label for="checkbox-Board-other">Other</label>
-            <input type="text" id="Board-other" class="js-other-container__input" placeholder="Please specify" disabled="disabled" aria-label="Other Board">
+            <input type="checkbox" class="js-other-container__checkbox" id="board-other">
+            <label for="board-other">Other</label>
+            <input type="text" id="board-other-specified" class="js-other-container__input" placeholder="Please specify" disabled="disabled" aria-label="Other Board">
           </div>
         </div>
         <div class="col-4">
           <p>ODM</p>
-          <input type="checkbox" id="radio-advantech">
-          <label for="radio-advantech">Advantech</label>
-          <input type="checkbox" id="radio-dell">
-          <label for="radio-dell">Dell</label>
-          <input type="checkbox" id="radio-eurotech">
-          <label for="radio-eurotech">Eurotech</label>
-          <input type="checkbox" id="radio-rigado">
-          <label for="radio-rigado">Rigado</label>
-          <input type="checkbox" id="radio-silver-spring-itron">
-          <label for="radio-silver-spring-itron">Silver Spring / Itron</label>
-          <input type="checkbox" id="radio-undecided">
-          <label for="radio-undecided">Undecided</label>
+          <input type="checkbox" id="odm-advantech">
+          <label for="odm-advantech">Advantech</label>
+          <input type="checkbox" id="odm-dell">
+          <label for="odm-dell">Dell</label>
+          <input type="checkbox" id="odm-eurotech">
+          <label for="odm-eurotech">Eurotech</label>
+          <input type="checkbox" id="odm-rigado">
+          <label for="odm-rigado">Rigado</label>
+          <input type="checkbox" id="odm-silver-spring-itron">
+          <label for="odm-silver-spring-itron">Silver Spring / Itron</label>
+          <input type="checkbox" id="odm-undecided">
+          <label for="odm-undecided">Undecided</label>
           <div class="js-other-container">
-            <input type="checkbox" class="js-other-container__checkbox" id="checkbox-ODM-other">
-            <label for="checkbox-ODM-other">Other</label>
-            <input type="text" id="ODM-other" class="js-other-container__input" placeholder="Please specify" disabled="disabled" aria-label="Other ODM">
+            <input type="checkbox" class="js-other-container__checkbox" id="odm-other">
+            <label for="odm-other">Other</label>
+            <input type="text" id="odm-other-specified" class="js-other-container__input" placeholder="Please specify" disabled="disabled" aria-label="Other ODM">
           </div>
         </div>
       </div>
