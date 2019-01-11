@@ -717,23 +717,78 @@ store for access to all the standard apps, or curate your own collection.</p>
       <h3 class="p-heading--five">How should we get in touch?</h3>
       <div class="row u-no-padding">
         <div class="col-6 u-sv3">
-          <form>
-            <label for="first-name">First Name:</label>
-            <input type="text" id="first-name">
-            <label for="last-name">Last Name:</label>
-            <input type="text" id="last-name">
-            <label for="company-name">Company Name:</label>
-            <input type="text" id="company-name">
-            <label for="job-title">Job Title:</label>
-            <input type="text" id="last-name">
-            <label for="phone-number">Phone Number:</label>
-            <input type="text" id="phone-number">
+          <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm">
+            <ul class="p-list">
+              <li class="mktFormReq mktField p-list__item">
+                <label for="FirstName" class="mktoLabel">First name:</label>
+                <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="LastName" class="mktoLabel">Last name:</label>
+                <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="Email" class="mktoLabel">Email address:</label>
+                <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="Phone" class="mktoLabel">Phone number:</label>
+                <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" />
+              </li>
+              {% include "shared/forms/_country.html" %} {% include "shared/forms/_state.html" %}
+              <li class="mktFormReq mktField p-list__item">
+                <label for="Company" class="mktoLabel">Company:</label>
+                <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="Title" class="mktoLabel">Job title:</label>
+                <input required id="Title" name="Title" maxlength="255" type="text" class="mktoField mktoRequired" />
+              </li>
+            </ul>
+
+            <div class="u-hide">
+              <h3>Your comments</h3>
+              <ul class="p-list">
+                <li class="mktFormReq mktField p-list__item">
+                  <label for="Comments_from_lead__c" class="mktoLabel">What would you like to talk to us about?</label>
+                  <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" class="mktoField mktoRequired" maxlength="2000"></textarea>
+                </li>
+                <li class="mktField p-list__item">
+                  <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+                  <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
+                </li>
+                <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical&rsquo;s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
+                <li class="p-list__item">
+                  <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
+                </li>
+                <li class="mktField p-list__item">
+                  <div class="pagination">
+                    <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
+                    <a class="pagination__link--next p-button--positive" href="">Let's discuss</a>
+                  </div>
+                  <button type="submit" class="mktoButton p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'iot contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button>
+                </li>
+              </ul>
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formValidation" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" class="mktoField" value="1266" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpId" class="mktoField" value="2166" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="subId" class="mktoField" value="30" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="munchkinId" class="mktoField" value="066-EOV-335" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpurl" class="mktoField" value="https://pages.ubuntu.com/things-contact-us.html?cr={creative}&amp;kw={keyword}" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="cr" class="mktoField" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="kw" class="mktoField" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="q" class="mktoField" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="https://www.ubuntu.com/core/thank-you" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="retURL" value="https://www.ubuntu.com/core/thank-you" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
+            </div>
+
+            <div class="pagination">
+              <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
+              <button type="submit" class="pagination__link--next p-button--positive mktoButton" onsubmit="backgroundSubmitHandlerClosure();" aria-label="Submit">Let's discuss</a>
+            </div>
           </form>
         </div>
-      </div>
-      <div class="pagination">
-        <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
-        <a class="pagination__link--next p-button--positive" href="">Let's discuss</a>
       </div>
     </div>
 
@@ -745,7 +800,7 @@ store for access to all the standard apps, or curate your own collection.</p>
             <p class="p-heading--four">A member of our team will be in touch within one working day.</p>
           </div>
           <div class="col-5 u-vertically-center u-align--center u-hide--small">
-            <img src="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg" alt="smile" width="200" height="200">
+            <img src="{{ ASSET_SERVER_URL }}cbae9a60-thank_you_orange_cmyk.svg" alt="smile" width="200" height="200">
           </div>
         </div>
       </div>
@@ -755,7 +810,7 @@ store for access to all the standard apps, or curate your own collection.</p>
 </div>
 
 <script>
-(function () {
+dynamicContactUs = function () {
   var contactIndex = 1;
   var contactModel = document.getElementById("contact-modal");
   var contactButtons = document.querySelectorAll('.js-invoke-model');
@@ -763,7 +818,10 @@ store for access to all the standard apps, or curate your own collection.</p>
   var closeModelButton = document.querySelector('.js-close');
   var modelPaginationButtons = contactModel.querySelectorAll('.pagination a');
   var paginationContent = contactModel.querySelectorAll('.js-pagination');
-  // var otherContainer = document.querySelectorAll();
+  var submitButton = contactModel.querySelector('button.pagination__link--next');
+  var inputs = contactModel.querySelectorAll('input, textarea');
+  var comment = contactModel.querySelector('#Comments_from_lead__c');
+  var otherContainers = document.querySelectorAll('.js-other-container');
 
   contactButtons.forEach(function(contactButton) {
     contactButton.addEventListener('click', function(e) {
@@ -792,6 +850,26 @@ store for access to all the standard apps, or curate your own collection.</p>
       close();
     });
   }
+
+  if (submitButton) {
+    submitButton.addEventListener('click', function(e) {
+      comment.value = createMessage();
+      setState(contactIndex + 1);
+    });
+  }
+
+  otherContainers.forEach(function(otherContainer) {
+    var checkbox = otherContainer.querySelector('.js-other-container__checkbox');
+    var input = otherContainer.querySelector('.js-other-container__input');
+    checkbox.addEventListener('change', function(e) {
+      if (e.target.checked) {
+        input.disabled = false;
+      } else {
+        input.disabled = true;
+        input.value = '';
+      }
+    });
+  });
 
   modelPaginationButtons.forEach(function(modelPaginationButton) {
     modelPaginationButton.addEventListener('click', function(e) {
@@ -836,10 +914,131 @@ store for access to all the standard apps, or curate your own collection.</p>
     });
     currentContent.classList.remove('u-hide');
   }
-}());
+
+  function createMessage() {
+    var message = '';
+    inputs.forEach(function(input) {
+      switch (input.type) {
+        case 'radio':
+          if (input.checked) {
+            message += input.id + ': ' + input.value + ' | ';
+          }
+        break;
+        case 'checkbox':
+          if (input.checked) {
+            message += input.id + ': ' + input.value + ' | ';
+          }
+        break;
+        case 'text':
+          if (!input.classList.contains('mktoField') && input.value !== '') {
+            message += input.id + ': ' + input.value + ' | ';
+          }
+        break;
+        case 'textarea':
+          if (!input.classList.contains('mktoField') && input.value !== '') {
+            message += input.id + ': ' + input.value + ' | ';
+          }
+        break;
+      }
+    });
+    return message;
+  }
+};
+
+dynamicContactUs();
 </script>
 
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_core_learn_more" second_item="_core_contribute" third_item="_iot_further_reading" %}
 
 {% endblock content %}
+
+{% block footer_extra %}
+<!-- marketo form dependencies -->
+<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
+<script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
+<script src="{{ ASSET_SERVER_URL }}ec520d10-XMLHttpRequest.min.js"></script>
+<script src="{{ ASSET_SERVER_URL }}4176b39e-serialize.js"></script>
+<script src="{{ ASSET_SERVER_URL }}6b7597df-event-listener-polyfill.js"></script>
+<!-- script -->
+<script>
+$("#mktoForm").validate({
+  errorElement: "span",
+  errorClass: "mktFormMsg mktError",
+  onkeyup: false,
+  onclick: false,
+  onblur: false
+});
+
+/**
+* Given a form element, extract its data and its "action" target URL
+* and submit the form using Ajax
+*/
+backgroundSubmit = function(formElement, submitCallback) {
+  var request = new XMLHttpRequest();
+  var submitUrl = formElement.getAttribute('action');
+  var formData = serialize(formElement)
+
+  request.open("POST", submitUrl, true);
+
+  //Send the proper header information along with the request
+  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  // When request has finished, call the callback function
+  if (submitCallback) {
+    request.addEventListener(
+      'readystatechange',
+      function() {
+        if (this.readyState == 4) {
+          // Pass context and arguments on to submitCallback
+          submitCallback.apply(this, arguments);
+        }
+      }
+    );
+  }
+
+  // Send off the POST request
+  request.send(formData);
+}
+
+/**
+* After submit has happened
+* start download and send the user to the instructions page
+*/
+afterSubmit = function() {
+  // $('.js-pagination--1').hide();
+  // $('.js-pagination--2').hide();
+  // $('.js-pagination--3').hide();
+  // $('.js-pagination--4').show();
+}
+
+/**
+* Handler for a form submit event
+* to disable the normal submit, and instead use backgroundSubmit
+*/
+
+backgroundSubmitHandlerClosure = function($) {
+  return function(submitEvent) {
+    // Prevent normal submit
+    submitEvent.preventDefault ? submitEvent.preventDefault() : submitEvent.returnValue = false;
+    // Check form is valid
+    if ($(marketoForm).valid()) {
+      // Change the submit location
+      marketoForm.action = "https://app-sjg.marketo.com/index.php/leadCapture/save2"
+      // Submit the form in the background
+      backgroundSubmit(marketoForm, afterSubmit);
+    }
+  }
+}
+
+// Get the form
+marketoForm = document.getElementById('mktoForm');
+
+// Attach the submit handler to the form
+marketoForm.addEventListener(
+  'submit',
+  backgroundSubmitHandlerClosure(jQuery)
+)
+</script>
+
+{% endblock footer_extra %}
