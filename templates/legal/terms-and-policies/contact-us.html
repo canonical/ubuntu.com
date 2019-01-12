@@ -410,21 +410,17 @@
         // skip non-formassembly.com forms
         return;
       }
-      if (wFORMS && wFORMS.getBehaviorInstance) {
-        var _bs = wFORMS.getBehaviorInstance(f, 'switch');
-        var _bc = wFORMS.getBehaviorInstance(f, 'calculation');
-      }
       for (var fieldName in values) {
         var fld = f.elements[fieldName];
         if (fld) {
           if (fld.tagName) {
-            if ((fld.tagName == 'INPUT' && (fld.type == 'text' || fld.type == 'hidden' || fld.type == 'password')) ||
+            if ((fld.tagName == 'input' && (fld.type == 'text' || fld.type == 'hidden' || fld.type == 'password')) ||
               (fld.tagName == 'TEXTAREA'));
             fld.value = unescape(values[fieldName]);
-            if (fld.tagName == 'INPUT' && fld.type == 'checkbox') {
+            if (fld.tagName == 'input' && fld.type == 'checkbox') {
               fld.checked = values[fieldName] ? true : false;
             }
-            if (fld.tagName == 'SELECT') {
+            if (fld.tagName == 'select') {
               fld.value = values[fieldName];
             }
             if (_bs) { // trigger switch behavior if appropriate.
