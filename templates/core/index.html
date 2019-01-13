@@ -716,33 +716,33 @@ store for access to all the standard apps, or curate your own collection.</p>
     <div class="js-pagination js-pagination--3 u-hide">
       <h3 class="p-heading--five">How should we get in touch?</h3>
       <div class="row u-no-padding">
-        <div class="col-6 u-sv3">
+        <div class="col-6">
           <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm">
             <ul class="p-list">
               <li class="mktFormReq mktField p-list__item">
                 <label for="FirstName" class="mktoLabel">First name:</label>
-                <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" />
+                <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
               </li>
               <li class="mktFormReq mktField p-list__item">
                 <label for="LastName" class="mktoLabel">Last name:</label>
-                <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" />
+                <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
               </li>
               <li class="mktFormReq mktField p-list__item">
                 <label for="Email" class="mktoLabel">Email address:</label>
-                <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
+                <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" required="required" />
               </li>
               <li class="mktFormReq mktField p-list__item">
                 <label for="Phone" class="mktoLabel">Phone number:</label>
-                <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" />
+                <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" required="required" />
               </li>
               {% include "shared/forms/_country.html" %} {% include "shared/forms/_state.html" %}
               <li class="mktFormReq mktField p-list__item">
                 <label for="Company" class="mktoLabel">Company:</label>
-                <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired" />
+                <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
               </li>
               <li class="mktFormReq mktField p-list__item">
                 <label for="Title" class="mktoLabel">Job title:</label>
-                <input required id="Title" name="Title" maxlength="255" type="text" class="mktoField mktoRequired" />
+                <input required id="Title" name="Title" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
               </li>
             </ul>
 
@@ -785,7 +785,7 @@ store for access to all the standard apps, or curate your own collection.</p>
 
             <div class="pagination">
               <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
-              <button type="submit" class="pagination__link--next p-button--positive mktoButton" onsubmit="backgroundSubmitHandlerClosure();" aria-label="Submit">Let's discuss</a>
+              <button type="submit" class="pagination__link--next p-button--positive mktoButton" aria-label="Submit">Let's discuss</a>
             </div>
           </form>
         </div>
@@ -851,13 +851,6 @@ dynamicContactUs = function () {
     });
   }
 
-  if (submitButton) {
-    submitButton.addEventListener('click', function(e) {
-      comment.value = createMessage();
-      setState(contactIndex + 1);
-    });
-  }
-
   otherContainers.forEach(function(otherContainer) {
     var checkbox = otherContainer.querySelector('.js-other-container__checkbox');
     var input = otherContainer.querySelector('.js-other-container__input');
@@ -913,6 +906,8 @@ dynamicContactUs = function () {
   function render() {
     checkThankYou();
 
+    comment.value = createMessage();
+
     var currentContent = contactModal.querySelector('.js-pagination--'+contactIndex);
     paginationContent.forEach(function(content) {
       content.classList.add('u-hide');
@@ -958,80 +953,15 @@ dynamicContactUs = function () {
 {% endblock content %}
 
 {% block footer_extra %}
-<!-- marketo form dependencies -->
 <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
 <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
-<script src="{{ ASSET_SERVER_URL }}ec520d10-XMLHttpRequest.min.js"></script>
-<script src="{{ ASSET_SERVER_URL }}4176b39e-serialize.js"></script>
-<script src="{{ ASSET_SERVER_URL }}6b7597df-event-listener-polyfill.js"></script>
-<!-- script -->
 <script>
-$("#mktoForm").validate({
-  errorElement: "span",
-  errorClass: "mktFormMsg mktError",
-  onkeyup: false,
-  onclick: false,
-  onblur: false
-});
-
-/**
-* Given a form element, extract its data and its "action" target URL
-* and submit the form using Ajax
-*/
-backgroundSubmit = function(formElement, submitCallback) {
-  var request = new XMLHttpRequest();
-  var submitUrl = formElement.getAttribute('action');
-  var formData = serialize(formElement)
-
-  request.open("POST", submitUrl, true);
-
-  //Send the proper header information along with the request
-  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-  // When request has finished, call the callback function
-  if (submitCallback) {
-    request.addEventListener(
-      'readystatechange',
-      function() {
-        if (this.readyState == 4) {
-          // Pass context and arguments on to submitCallback
-          submitCallback.apply(this, arguments);
-        }
-      }
-    );
-  }
-
-  // Send off the POST request
-  request.send(formData);
-}
-
-/**
-* Handler for a form submit event
-* to disable the normal submit, and instead use backgroundSubmit
-*/
-
-backgroundSubmitHandlerClosure = function($) {
-  return function(submitEvent) {
-    // Prevent normal submit
-    submitEvent.preventDefault ? submitEvent.preventDefault() : submitEvent.returnValue = false;
-    // Check form is valid
-    if ($(marketoForm).valid()) {
-      // Change the submit location
-      marketoForm.action = "https://app-sjg.marketo.com/index.php/leadCapture/save2"
-      // Submit the form in the background
-      backgroundSubmit(marketoForm);
-    }
-  }
-}
-
-// Get the form
-marketoForm = document.getElementById('mktoForm');
-
-// Attach the submit handler to the form
-marketoForm.addEventListener(
-  'submit',
-  backgroundSubmitHandlerClosure(jQuery)
-)
+  $("#mktoForm").validate({
+    errorElement: "span",
+    errorClass: "mktFormMsg mktError",
+    onkeyup: false,
+    onclick: false,
+    onblur: false
+  });
 </script>
-
 {% endblock footer_extra %}
