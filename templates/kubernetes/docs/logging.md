@@ -14,7 +14,7 @@ This documentation assumes you are using version 2.4.0 or later of <strong>Juju<
   </p>
 </div>
 
-Broadly, there are two types of logs you may be interested in. On cluster or node level; for the applications you are running inside your cluster, and at an infrastructure level, the applications which are responsible for running the cluster itself. As the **Canonical Distribution of Kubernetes<sup>&reg;</sup>** is pure Kubernetes, you can use any of the tools and techniques to examine cluster logs as [described in the Kubernetes documentation][k8-logs].
+Broadly, there are two types of logs you may be interested in. On cluster or node level; for the applications you are running inside your cluster, and at an infrastructure level, the applications which are responsible for running the cluster itself. As the **Charmed Distribution of Kubernetes<sup>&reg;</sup>** is pure Kubernetes, you can use any of the tools and techniques to examine cluster logs as [described in the Kubernetes documentation][k8-logs].
 
 For the infrastructure, your CDK deployment has centralised logging set up as default. Each unit in your cluster automatically sends logging information to the controller based on the current logging level. You can use the **Juju** command line to easily inspect these logs and to change the logging level, as explained below.
 

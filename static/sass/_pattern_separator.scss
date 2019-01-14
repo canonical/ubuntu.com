@@ -1,0 +1,9 @@
+@mixin ubuntu-p-separator {
+  .p-separator {
+    margin: $spv-inter--regular-scaleable 0;
+
+    @media (max-width: $breakpoint-medium) {
+      margin: $spv-inter--shallow-scaleable 0;
+    }
+  }
+}

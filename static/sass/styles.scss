@@ -34,6 +34,7 @@
 @import "pattern_chart";
 @import "pattern_grid";
 @import "pattern_desktop-statistics";
+@import "pattern_separator";
 
 @include ubuntu-p-buttons;
 @include ubuntu-p-navigation;
@@ -56,10 +57,13 @@
 @include ubuntu-p-desktop-statistics;
 @include p-takeover-financial-services;
 @include u-animations;
+@include ubuntu-p-separator;
 
 // Layouts:
-@import "layout_documentation";
+@import "layout-documentation";
 @include layout-documentation;
+@import "layout-legal-pages";
+@include layout-legal-pages;
 
 // Bug fixes
 // Each of the the rules below are bug fixes which need to be addressed further upstream
@@ -214,4 +218,39 @@ abbr[title] {
 // https://github.com/vanilla-framework/vanilla-framework/issues/2045
 [class^="p-strip"].is-bordered {
   margin-bottom: 0;
+}
+
+#contact-modal { // sass-lint:disable-line no-ids
+  &.p-modal {
+    position: fixed;
+    z-index: 100;
+
+    .p-modal__dialog {
+      margin-bottom: 0;
+
+      @media (min-width: $breakpoint-medium + 100px) {
+        max-width: $breakpoint-medium;
+        min-width: $breakpoint-medium;
+      }
+    }
+
+    .p-modal__header {
+      border-bottom: 1px solid $color-mid-light;
+      margin-bottom: $spv-intra--expanded;
+    }
+
+    .p-modal__title {
+      margin-bottom: $spv-intra;
+    }
+
+    &.thank-you {
+      .p-modal__title {
+        opacity: 0;
+      }
+
+      .p-modal__header {
+        border-bottom: 0;
+      }
+    }
+  }
 }

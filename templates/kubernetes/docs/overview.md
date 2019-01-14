@@ -4,10 +4,10 @@ markdown_includes:
   nav: "shared/_side-navigation.md"
 context:
   title: "Overview"
-  description: Understand how the Canonical Distribution of Kubernetes workloads.
+  description: Understand how the Charmed Distribution of Kubernetes workloads.
 ---
 
-Deliver ‘Containers as a Service’ across the enterprise with the **Canonical Distribution of Kubernetes<sup>&reg;</sup> (CDK)** , enabling each project to spin up a standardised K8s of arbitrary scale, on demand, with centralised operational control. **CDK** provides a well integrated, turn-key **Kubernetes<sup>&reg;</sup>** platform that is open, extensible, and secure.
+Deliver ‘Containers as a Service’ across the enterprise with the **Charmed Distribution of Kubernetes<sup>&reg;</sup> (CDK)** , enabling each project to spin up a standardised K8s of arbitrary scale, on demand, with centralised operational control. **CDK** provides a well integrated, turn-key **Kubernetes<sup>&reg;</sup>** platform that is open, extensible, and secure.
 
 For more information on the features and benefits of **CDK**, including details on the [Managed Kubernetes][managedk8s] service, please see the [Kubernetes section][k8s-u-c].
 

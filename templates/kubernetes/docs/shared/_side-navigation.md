@@ -1,7 +1,6 @@
 - **About**
   - [Home](/kubernetes/docs)
   - [Overview](/kubernetes/docs/overview)
-  - [News](/kubernetes/docs/news)
 - **Install**
   - [Quickstart](/kubernetes/docs/quickstart)
   - [Local install](/kubernetes/docs/install-local)
@@ -13,7 +12,13 @@
   - [Scaling](/kubernetes/docs/scaling)
   - [Validation](/kubernetes/docs/validation)
   - [Decommissioning](/kubernetes/docs/decommissioning)
+  - [Authentication with LDAP](/kubernetes/docs/ldap)
+  - [Using Vault as a CA](/kubernetes/docs/using-vault)
+  - [Encryption at rest](/kubernetes/docs/encryption-at-rest)
+  - [Private Docker Registry](/kubernetes/docs/docker-registry)
+  - [HA for kubeapi-load-balancer](/kubernetes/docs/keepalived)
   - [Troubleshooting](/kubernetes/docs/troubleshooting)
 - **Reference**
   - [Release notes](/kubernetes/docs/release-notes)
   - [Upgrade notes](/kubernetes/docs/upgrade-notes)
+  - [Certificates and Trust](/kubernetes/docs/certs-and-trust)

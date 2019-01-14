@@ -7,7 +7,7 @@ context:
   description: How to backup and restore the state of your Kubernetes cluster in the etcd datastore.
 ---
 
-The state of your **Kubernetes** cluster is kept in the **etcd** datastore. This page shows how to backup and restore the etcd included in the **Canonical Distribution of Kubernetes <sup>&reg;</sup>**.
+The state of your **Kubernetes** cluster is kept in the **etcd** datastore. This page shows how to backup and restore the etcd included in the **Charmed Distribution of Kubernetes <sup>&reg;</sup>**.
 
 Backing up application specific data, normally stored in a persistent volume, is not currently supported by native Kubernetes. Various third party solutions are available -
 please refer to their own documentation for details.

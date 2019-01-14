@@ -1,7 +1,7 @@
 {% extends "kubernetes/base_kubernetes.html" %}
 
-{% block title %}Kubernetes{% endblock %}
-{% block meta_description %}Ubuntu K8s delivers a pure kubernetes experience, tested across a wide range of clouds and integrated with modern metrics and monitoring.{% endblock meta_description %}
+{% block title %}Multi-cloud Kubernetes on Ubuntu{% endblock %}
+{% block meta_description %}Ubuntu and Canonical deliver a pure upstream K8s experience, tested across a wide range of multi-cloud architectures for optimum Kubernetes performance and integrated with modern metrics and monitoring.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1G-h1eWiBSKqG9oWB15Pup8VDe1axBUwQGvtkwJ9g8T0/edit{% endblock meta_copydoc %}
 
 {% block content %}
@@ -9,7 +9,7 @@
   <div class="row u-equal-height u-vertically-center">
     <div class="col-7">
       <h1>Multi-cloud Kubernetes<br />on Ubuntu</h1>
-      <p>Ubuntu is the reference platform for Kubernetes<sup>&reg;</sup> on all major public clouds, including official support in Google’s GKE, Microsoft’s AKS and Amazon’s EKS CAAS offerings. Choose from the options below for pure upstream Kubernetes tested across the widest range of clouds &mdash; from public clouds to private data centres, from bare metal to virtualized infrastructure.</p>
+      <p>Ubuntu is the reference platform for Kubernetes on all major public clouds, including official support in Google’s GKE, Microsoft’s AKS and Amazon’s EKS CAAS offerings. We deliver pure upstream Kubernetes tested across the widest range of clouds &mdash; from public clouds to private data centres, from bare metal to virtualized infrastructure.</p>
     </div>
     <div class="col-4 prefix-1 u-align--center u-hide--small">
       <img src="{{ ASSET_SERVER_URL }}dba11aee-kubernetes.svg?w=275" alt="" width="275" />
@@ -20,7 +20,7 @@
 <section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-12">
-      <h2>Upstream K8s options</h2>
+      <h2>Upstream K8s options supported by Canonical</h2>
     </div>
   </div>
 
@@ -28,46 +28,48 @@
     <div class="col-6 p-card">
       <div class="p-card__header">
         <h2 class="p-heading--four">MicroK8s</h2>
-        <p><em>Workstations and Appliances</em></p>
+        <p><em>Workstations and appliances</em></p>
       </div>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Single-package install</li>
-        <li class="p-list__item is-ticked">Tracks upstream releases</li>
-        <li class="p-list__item is-ticked">Istio, built-in registry</li>
-        <li class="p-list__item is-ticked">Local instance storage</li>
+        <li class="p-list__item is-ticked">Upstream release tracking</li>
+        <li class="p-list__item is-ticked">Istio support</li>
+        <li class="p-list__item is-ticked">GPGPU support</li>
+        <li class="p-list__item is-ticked">Local registry support</li>
+        <li class="p-list__item is-ticked">Host storage</li>
       </ul>
-      <p>Developers love microk8s as a fast, lean upstream K8s for rapid iteration. It&rsquo;s also popular as a secure and robust K8s for IoT and appliances.</p>
-      <p><a href="https://snapcraft.io/microk8s" class="p-link--external">Install instructions</a></p>
+      <p>Developers love MicroK8s as a fast, lean upstream K8s for rapid iteration. It&rsquo;s also popular as a secure and robust K8s for IoT and appliances.</p>
+      <p><a href="https://microk8s.io/" class="p-link--external">Learn more and install MicroK8s</a></p>
     </div>
     <div class="col-6 p-card">
       <div class="p-card__header">
-        <h2 class="p-heading--four">Ubuntu K8s</h2>
-        <p><em>Recommended multi-cloud clusters</em></p>
+        <h2 class="p-heading--four">Charmed Kubernetes</h2>
+        <p><em>Multi-cloud clusters</em></p>
       </div>
       <ul class="p-list">
-        <li class="p-list__item is-ticked">Bare metal, VMware</li>
-        <li class="p-list__item is-ticked"><span class="caps">AWS,</span> Azure, Google, Oracle, Rackspace, OpenStack</li>
-        <li class="p-list__item is-ticked">Integrates public cloud <span class="caps">LBAAS, </span>storage, networking</li>
-        <li class="p-list__item is-ticked">High availability built-in</li>
-        <li class="p-list__item is-ticked">Istio and registry built in</li>
-        <li class="p-list__item is-ticked">Upgrades in place</li>
+        <li class="p-list__item is-ticked">Bare metal, VMware infrastructure</li>
+        <li class="p-list__item is-ticked">AWS, Azure, Google, OpenStack, Oracle, Rackspace clouds</li>
+        <li class="p-list__item is-ticked">Public cloud LBAAS, storage, networking integrations</li>
+        <li class="p-list__item is-ticked">Built-in high availability</li>
+        <li class="p-list__item is-ticked">Built-in Istio registry</li>
+        <li class="p-list__item is-ticked">In place upgrades</li>
         <li class="p-list__item is-ticked">Automated scaling</li>
       </ul>
-      <p>Deploy, scale and upgrade K8s clusters across multiple physical or virtual machines. Long-term support and operations automation. Integrates with Graylog, Prometheus, and Grafana.</p>
+      <p>Deploy, scale and upgrade Kubernetes clusters across multiple physical or virtual machines with Ubuntu Kubernetes. Ubuntu Kubernetes includes long-term support, operations automation capabilities and Graylog, Prometheus and Grafana integration.</p>
 
       <p><a href="/kubernetes/install">Install instructions&nbsp;&rsaquo;</a></p>
-      <p><a href="{{ ASSET_SERVER_URL }}223eab1a-canonical-kubernetes-enterprise-2018-25-07.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Download the Services datasheet', 'eventLabel' : 'Download the Services datasheet' : undefined });">Managed K8s datasheet&nbsp;&rsaquo;</a></p>
+      <p><a href="/kubernetes/managed">Fully managed Kubernetes options&nbsp;&rsaquo;</a>
+      <p><a href="{{ ASSET_SERVER_URL }}223eab1a-canonical-kubernetes-enterprise-2018-25-07.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Download the Services datasheet', 'eventLabel' : 'Download the Services datasheet' : undefined });">Charmed Kubernetes datasheet&nbsp;&rsaquo;</a></p>
     </div>
 
     <div class="col-6 p-card">
       <div class="p-card__header">
-        <h2 class="p-heading--four">Kubeadm</h2>
-        <p><em>Manual cluster operations</em></p>
+        <h2 class="p-heading--four">kubeadm</h2>
+        <p><em>Manual operations</em></p>
       </div>
       <ul class="p-list">
-        <li class="p-list__item is-ticked">Works on a range of clouds</li>
-        <li class="p-list__item is-ticked">Experimental support for upgrades</li>
-        <li class="p-list__item is-ticked">Often used for hand-built clusters with custom operations regimes.</li>
+        <li class="p-list__item is-ticked">Experimental upgrade support</li>
+        <li class="p-list__item is-ticked">For hand-built clusters with custom operations regimes</li>
       </ul>
       <p><a href="https://kubernetes.io/docs/setup/independent/install-kubeadm/" class="p-link--external">Install instructions</a></p>
       <p><a href="/kubernetes/contact-us?product=kubernetes-kubeadm">Get support for kubeadm&nbsp;&rsaquo;</a></p>
@@ -78,165 +80,11 @@
 <section class="p-strip is-bordered">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-7">
-      <h2>Canonical Support for Kubernetes</h2>
-      <p>Enterprise support for Kubernetes on Ubuntu is provided by Canonical as part of <a href="/support">Ubuntu Advantage</a>. UA also includes long-term security maintenance, kernel live patching and mission-critical infrastructure support for the full stack, from kernel to container. Canonical supports K8s on Ubuntu on public clouds, VMware, OpenStack and bare metal.</p>
+      <h2>Enterprise support</h2>
+      <p>Enterprise support for Kubernetes on Ubuntu is provided by Canonical as part of an <a href="/support">Ubuntu Advantage</a> (<abbr title="Ubuntu Advantage">UA</abbr>) support subscription.. UA also includes long-term security maintenance, kernel live patching and mission-critical infrastructure support for the full stack, from kernel to container. Canonical supports K8s on Ubuntu on public clouds, VMware, OpenStack and bare metal.</p>
     </div>
     <div class="col-4 prefix-1 u-align--center u-hide--small">
       <img src="{{ ASSET_SERVER_URL }}ca4cff60-pictogram_support01b.svg" alt="" width="200" />
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <h2>Get started with Kubernetes consulting packages</h2>
-    <p>Canonical offers three consulting packages to help you establish your Kubernetes operations. We also offer long-term support and managed K8s.</p>
-  </div>
-  {% include 'shared/pricing/_kubernetes-consulting.html' %}
-</section>
-
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h3>AI/ML Add-on for Discoverer and Discoverer Plus</h3>
-      <p>Extend your K8s workshop to understand the full stack of machine learning tooling and operations. Build a full AI analytics pipeline from developer workstations to your data centre and the public cloud. GPGPU integration, public cloud optimisation and tools like Kubeflow and Tensorflow are covered. Workshop includes an assessment by an independent data scientist. Canonical works with the leading hardware, cloud and data science companies to ensure you have the widest range of choices for integration in your enterprise AI strategy.</p>
-    </div>
-  </div>
-
-  {% include "shared/pricing/_kubernetes-consulting-add-ons.html" %}
-
-  <div class="row">
-    <div class="col-12">
-      <p>
-        <a href="{{ ASSET_SERVER_URL }}223eab1a-canonical-kubernetes-enterprise-2018-25-07.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Download the Services datasheet', 'eventLabel' : 'Download the Services datasheet' : undefined });">
-          Download the Enterprise Kubernetes datasheet&nbsp;&rsaquo;
-        </a>
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-bordered">
-  <div class="row">
-    <h2>Ubuntu is the leading platform for Kubernetes</h2>
-    <p>Google, Microsoft, Amazon, Cisco, IBM and others run cloud Kubernetes services on Ubuntu because we focus on the latest container capabilities in modern kernels. That’s why Ubuntu is the top choice for on-premise enterprise Kubernetes, too, with microk8s, kubeadm and charmed Ubuntu Kubernetes all supported by Canonical.</p>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <ul class="p-matrix is-trisected">
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title p-heading--four">Multi-cloud</h3>
-            <p class="p-matrix__desc">Deploy and operate consistently on AWS, Azure, Google, Oracle, Rackspace, SoftLayer, or on private VMware and OpenStack</p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title p-heading--four">Fresh</h3>
-            <p class="p-matrix__desc">Canonical enables upgrades to each new stable upstream K8s release as well as edge builds, so you can migrate to the latest version as soon as you want.</p>
-          </div>
-          </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title p-heading--four">Secure</h3>
-            <p class="p-matrix__desc">Every component of Canonical&rsquo;s K8s distribution receives security maintenance, and all components communicate with TLS encryption</p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title p-heading--four">Supported</h3>
-            <p class="p-matrix__desc">K8s enterprise support by Canonical is included in standard Ubuntu support packages, with a range of SLA&rsquo;s and choice of physical / virtual / cloud. We support the full stack from kernel to k8s
-              </p>
-          </div>
-          </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title p-heading--four">Extensible</h3>
-            <p class="p-matrix__desc">Easy integration of standard open source logging, monitoring, alerting, storage, networking, and container runtimes. We offer consulting for deeper customisation</p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title p-heading--four">Fully managed</h3>
-            <p class="p-matrix__desc">At your request, Canonical’s remote operations team can build and operate Kubernetes for you, on premise or on your choice of public cloud. We will transfer control of the cluster to your ops team any time you want to take over</p>
-            <p class="p-matrix__desc"><a href="/kubernetes/managed">Learn more about managed kubernetes&nbsp;&rsaquo;</a></p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title p-heading--four">GPU and CUDA ready</h3>
-            <p class="p-matrix__desc">Automatically detect and configure GPGPU resources for accelerated machine learning, AI and transcoding workloads on K8s.</p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title p-heading--p-heading--four">Converged</h3>
-            <p class="p-matrix__desc">Storage, networking and compute are overlaid in our hyper-converged reference architecture, ensuring the efficient use of resources and high availability failover.</p>
-          </div>
-          </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title p-heading--four">Conformant</h3>
-            <p class="p-matrix__desc">Charmed Kubernetes has consistently been the leader in K8s test suite performance and API standards conformance</p>
-          </div>
-        </li>
-
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title p-heading--four">Resilient</h3>
-            <p class="p-matrix__desc">Charmed K8s deployments are high availability by design, with zero downtime upgrades in place</p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title p-heading--four">Bare Metal</h3>
-            <p class="p-matrix__desc">Deploy on bare metal servers for peak performance with high availability, GPGPU auto-detection and software-defined storage</p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title p-heading--four">Native</h3>
-            <p class="p-matrix__desc">Integrate with underlying public cloud SAAS for optimised LBAAS, storage, identity and other services</p>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light is-deep is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h3>Learn more about Kubernetes</h3>
-    </div>
-  </div>
-  <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          <img class="p-heading-icon__img p-heading-icon__img--small" src="{{ ASSET_SERVER_URL }}26797d10-newsfeed-stripvideo-icon.svg" alt="" />
-          <h4 class="p-heading-icon__title">Webinar</h4>
-        </div>
-      </div>
-      <h3 class="p-heading--four"><a class="p-link--external" href="https://insights.ubuntu.com/2017/06/09/webinar-how-to-get-started-with-your-kubernetes-strategy/?_ga=2.160429757.1298694829.1510572191-765379582.1510062947" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Kubernetes resource', 'eventLabel' : 'How to get started with your Kubernetes strategy', 'eventValue' : undefined });">How to get started with your Kubernetes strategy</a></h3>
-    </div>
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          <img class="p-heading-icon__img p-heading-icon__img--small" src="{{ ASSET_SERVER_URL }}26797d10-newsfeed-stripvideo-icon.svg" alt="" />
-          <h4 class="p-heading-icon__title">Webinar</h4>
-        </div>
-      </div>
-      <h3 class="p-heading--four"><a class="p-link--external" href="https://insights.ubuntu.com/2017/09/07/kubernetes-for-the-enterprise-1-2-3-go/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Kubernetes resource', 'eventLabel' : 'Kubernetes for the Enterprise: 1, 2, 3, Go!', 'eventValue' : undefined });">Kubernetes for the Enterprise: 1, 2, 3, Go!</a></h3>
-    </div>
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          <img class="p-heading-icon__img p-heading-icon__img--small" src="{{ ASSET_SERVER_URL }}cd7a3a3c-white-paper-icon.svg" alt="" />
-          <h4 class="p-heading-icon__title">Whitepaper</h4>
-        </div>
-      </div>
-      <h3 class="p-heading--four"><a class="p-link--external" href="https://insights.ubuntu.com/2017/02/27/the-no-nonsense-way-to-accelerate-your-business-with-containers/?_ga=2.164082367.1298694829.1510572191-765379582.1510062947" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Kubernetes resource', 'eventLabel' : 'The no-nonsense way to accelerate your business with containers', 'eventValue' : undefined });">The no-nonsense way to accelerate your business with containers</a></h3>
     </div>
   </div>
 </section>
@@ -275,7 +123,102 @@
         </li>
 
         <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}f1d885ce-Oracle-cloud.png" alt="Oracle Cloud">
+        </li>
+
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}4d6054f9-logo-cisco.svg" alt="Cisco">
+        </li>
+
+        <li class="p-inline-images__item">
           <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}4fabe174-local+host.svg" alt="Local host">
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <h2>The default platform for Kubernetes</h2>
+    <p>All leading cloud providers, such as Google, Microsoft, Amazon, Cisco and IBM run cloud Kubernetes services on Ubuntu because we focus on the latest container capabilities in modern kernels. This focus is why Ubuntu is also the top choice for on-premise enterprise Kubernetes, with MicroK8s, kubeadm and Charmed Kubernetes all supported by Canonical.</p>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <ul class="p-matrix is-trisected">
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--four">Multi-cloud ready</h3>
+            <p class="p-matrix__desc">Deploy and operate consistently on AWS, Azure, Google, Oracle, Rackspace, SoftLayer, or on private VMware and OpenStack clouds.</p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--four">Updates and upgrades</h3>
+            <p class="p-matrix__desc">Canonical enables upgrades to each new stable upstream K8s release as well as edge builds, so you can migrate to the latest version when needed.</p>
+          </div>
+          </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--four">Secure</h3>
+            <p class="p-matrix__desc">Every component of Canonical&rsquo;s Kubernetes distribution receives security maintenance, and all components communicate with TLS encryption.</p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--four">Supported</h3>
+            <p class="p-matrix__desc">Ubuntu Advantage K8s enterprise support includes a range of SLA’s and choice of physical, virtual and/or cloud. Canonical supports the full stack from kernel to K8s.</p>
+          </div>
+          </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--four">Extensible</h3>
+            <p class="p-matrix__desc">Easy integration of standard open source logging, monitoring, alerting, storage, networking and container runtimes. Consulting for deeper customisation is available.</p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--four">Fully managed</h3>
+            <p class="p-matrix__desc">At your request, Canonical’s remote operations team can build and operate Kubernetes for you, on premise or on your choice of public cloud. We will transfer control of the cluster to your ops team any time you want to take over</p>
+            <p class="p-matrix__desc"><a href="/kubernetes/managed">Learn more about managed kubernetes&nbsp;&rsaquo;</a></p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--four">GPU and CUDA ready</h3>
+            <p class="p-matrix__desc">Automatically detect and configure GPGPU resources for accelerated machine learning, AI and transcoding workloads on K8s.</p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--p-heading--four">Converged</h3>
+            <p class="p-matrix__desc">Storage, networking and compute are overlaid in our hyper-converged reference architecture, ensuring the efficient use of resources and high availability failover.</p>
+          </div>
+          </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--four">Conformant</h3>
+            <p class="p-matrix__desc">Charmed Kubernetes has consistently been the leader in K8s test suite performance and API standards conformance</p>
+          </div>
+        </li>
+
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--four">Resilient</h3>
+            <p class="p-matrix__desc">Charmed K8s deployments are high availability by design, with zero downtime upgrades in place</p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--four">Bare metal</h3>
+            <p class="p-matrix__desc">Deploy on bare metal servers for peak performance with high availability, GPGPU auto-detection and software-defined storage</p>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title p-heading--four">Native</h3>
+            <p class="p-matrix__desc">Integrate with underlying public cloud SAAS for optimised LBAAS, storage, identity and other services</p>
+          </div>
         </li>
       </ul>
     </div>
@@ -284,9 +227,38 @@
 
 <section class="p-strip--light is-bordered">
   <div class="row">
+    <h2>Get started with Kubernetes consulting packages</h2>
+    <p>Canonical provides consulting to help you establish your Kubernetes operations. We also offer long-term support and managed K8s.</p>
+  </div>
+  {% include 'shared/pricing/_kubernetes-consulting.html' %}
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h3>AI/ML add-on for Discoverer and Discoverer Plus</h3>
+      <p>Extend your Kubernetes training to cover machine learning. Build a full machine learning analytics pipeline from developer workstations to your data centre, the public cloud, and the edge. Training covers essential materials on GPGPU integration, public cloud optimisation, Kubeflow and Tensorflow. Workshop includes a readiness assessment by an independent data scientist of your current data suitability for AI/ML. Canonical works with the leading hardware, cloud and data science companies to ensure you have the widest range of choices for integration in your enterprise AI strategy.</p>
+    </div>
+  </div>
+
+  {% include "shared/pricing/_kubernetes-consulting-add-ons.html" %}
+
+  <div class="row">
+    <div class="col-12">
+      <p>
+        <a href="{{ ASSET_SERVER_URL }}223eab1a-canonical-kubernetes-enterprise-2018-25-07.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Download the Services datasheet', 'eventLabel' : 'Download the Services datasheet' : undefined });">
+          Download the Enterprise Kubernetes datasheet&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row">
     <div class="col-8">
-      <h2 id="support-packages">Enterprise support packages</h2>
-      <p>Canonical provides enterprise support for Kubernetes as part of its standard Ubuntu Advantage support offering for infrastructure.</p>
+      <h2 id="support-packages">Kubernetes enterprise support packages</h2>
+      <p>Canonical provides enterprise support for Kubernetes as part of its Ubuntu Advantage support offering for infrastructure.</p>
     </div>
   </div>
 
@@ -298,6 +270,43 @@
     <div class="col-8">
       <h2>Test drive Ubuntu K8s today!</h2>
       <p class="u-no-margin--top"><a href="/kubernetes/install" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Try it now', 'eventLabel' : 'Try it now - Bottom CTA' : undefined });"><span class="p-link--external">Try it now</span></a>&#8195;<a href="/kubernetes/contact-us?product=kubernetes" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Contact us - Bottom CTA' : undefined });">Contact us</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-deep is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h3>Learn more about Kubernetes</h3>
+    </div>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          <img class="p-heading-icon__img p-heading-icon__img--small" src="{{ ASSET_SERVER_URL }}26797d10-newsfeed-stripvideo-icon.svg" alt="" />
+          <h4 class="p-heading-icon__title">Webinar</h4>
+        </div>
+      </div>
+      <h3 class="p-heading--four"><a class="p-link--external" href="https://insights.ubuntu.com/2017/06/09/webinar-how-to-get-started-with-your-kubernetes-strategy/?_ga=2.160429757.1298694829.1510572191-765379582.1510062947" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Kubernetes resource', 'eventLabel' : 'How to get started with your Kubernetes strategy', 'eventValue' : undefined });">How to get started with your Kubernetes strategy</a></h3>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          <img class="p-heading-icon__img p-heading-icon__img--small" src="{{ ASSET_SERVER_URL }}26797d10-newsfeed-stripvideo-icon.svg" alt="" />
+          <h4 class="p-heading-icon__title">Webinar</h4>
+        </div>
+      </div>
+      <h3 class="p-heading--four"><a class="p-link--external" href="https://insights.ubuntu.com/2017/09/07/kubernetes-for-the-enterprise-1-2-3-go/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Kubernetes resource', 'eventLabel' : 'Kubernetes for the Enterprise: 1, 2, 3, Go!', 'eventValue' : undefined });">Kubernetes for the Enterprise: 1, 2, 3, Go!</a></h3>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          <img class="p-heading-icon__img p-heading-icon__img--small" src="{{ ASSET_SERVER_URL }}cd7a3a3c-white-paper-icon.svg" alt="" />
+          <h4 class="p-heading-icon__title">Whitepaper</h4>
+        </div>
+      </div>
+      <h3 class="p-heading--four"><a class="p-link--external" href="https://insights.ubuntu.com/2017/02/27/the-no-nonsense-way-to-accelerate-your-business-with-containers/?_ga=2.164082367.1298694829.1510572191-765379582.1510062947" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Kubernetes resource', 'eventLabel' : 'The no-nonsense way to accelerate your business with containers', 'eventValue' : undefined });">The no-nonsense way to accelerate your business with containers</a></h3>
     </div>
   </div>
 </section>

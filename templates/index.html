@@ -19,13 +19,13 @@
 
     <section class="p-strip js-takeover"></section> <!-- For all languages -->
     <section lang="de" class="p-strip js-takeover"></section> <!-- For german languages only -->
+    <section lang="fr" class="p-strip js-takeover"></section> <!-- For french languages only -->
 #}
 
 {% block takeover_content %}
-  {% include "takeovers/_spicule_takeover.html" %}
-  {% include "takeovers/_trilio_takeover.html" %}
-  {% include "takeovers/_appelix-takeover.html" %}
-  {% include "takeovers/_compliance-webinar.html" %}
+  {% include "takeovers/_microk8s-takeover.html" %}
+  {% include "takeovers/_desktop-developer-takeover.html" %}
   {% include "takeovers/_german_takeover_k8.html" %}
   {% include "takeovers/_german_takeover_openstack_made_easy.html" %}
+  {% include "takeovers/_french_takeover_openstack_made_easy.html" %}
 {% endblock takeover_content %}
