@@ -744,6 +744,14 @@ store for access to all the standard apps, or curate your own collection.</p>
                 <label for="Title" class="mktoLabel">Job title:</label>
                 <input required id="Title" name="Title" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
               </li>
+              <li class="mktField p-list__item">
+                <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+                <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
+              </li>
+              <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical&rsquo;s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
+              <li class="p-list__item">
+                <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
+              </li>
             </ul>
 
             <div class="u-hide">
@@ -752,21 +760,6 @@ store for access to all the standard apps, or curate your own collection.</p>
                 <li class="mktFormReq mktField p-list__item">
                   <label for="Comments_from_lead__c" class="mktoLabel">What would you like to talk to us about?</label>
                   <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" class="mktoField mktoRequired" maxlength="2000"></textarea>
-                </li>
-                <li class="mktField p-list__item">
-                  <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                  <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
-                </li>
-                <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical&rsquo;s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
-                <li class="p-list__item">
-                  <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
-                </li>
-                <li class="mktField p-list__item">
-                  <div class="pagination">
-                    <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
-                    <a class="pagination__link--next p-button--positive" href="">Let's discuss</a>
-                  </div>
-                  <button type="submit" class="mktoButton p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'iot contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button>
                 </li>
               </ul>
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formValidation" value="" />
