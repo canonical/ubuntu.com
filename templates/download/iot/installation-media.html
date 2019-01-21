@@ -62,14 +62,14 @@
                 <span class="p-list-step__bullet">*</span>
                 If the Ubuntu Core image file you have downloaded ends with an `.xz` file extension, run:
               </p>
-              <pre><code>xzcat ~/Downloads/ < image file .xz > | sudo dd of=<drive address> bs=32M</code></pre>
+              <pre><code>xzcat ~/Downloads/ &lt; image file .xz &gt; | sudo dd of=&lt; drive address &gt; bs=32M</code></pre>
           </li>
           <li class="p-list-step__item col-8">
               <p class="p-list-step__title">
                 <span class="p-list-step__bullet">*</span>
                 Else, run:
               </p>
-              <pre><code>sudo dd if=~/Downloads/< image file > of=< drive address > bs=32M</code></pre>
+              <pre><code>sudo dd if=~/Downloads/&lt; image file &gt; of=&lt; drive address &gt; bs=32M</code></pre>
           </li>
           <li class="p-list-step__item col-8">
               <p class="p-list-step__title">
@@ -203,21 +203,21 @@
                       <span class="p-list-step__bullet">*</span>
                       Unmount your SD card with the following command
                     </p>
-                    <pre><code>diskutil unmountDisk < drive address ></drive></code></pre>
+                    <pre><code>diskutil unmountDisk &lt; drive address &gt;</code></pre>
                   </li>
                 <li class="p-list-step__item col-8">
                     <p class="p-list-step__title">
                       <span class="p-list-step__bullet">*</span>
                       When successful, you should see a message similar to this one:
                     </p>
-                    <pre><code>Unmount of all volumes on < drive address > was successful</drive></code></pre>
+                    <pre><code>Unmount of all volumes on &lt; drive address &gt; was successful</code></pre>
                   </li>
                   <li class="p-list-step__item col-8">
                     <p class="p-list-step__title">
                       <span class="p-list-step__bullet">*</span>
                       You can now copy the image to the SD card, using the following command:
                     </p>
-                    <pre><code>sudo sh -c 'xzcat ~/Downloads/< image file > | sudo dd of=< drive address > bs=32m'< /drive ></code></pre>
+                    <pre><code>sudo sh -c 'xzcat ~/Downloads/&lt; image file &gt; | sudo dd of=&lt; drive address &gt; bs=32m'</code></pre>
                     <p>When finalised you will see the following message:</p>
                     <pre>
 <code>3719+1 records in
