@@ -64,41 +64,54 @@
       <p>All these technologies are available within our fully-supported reference architectures, deployed on Ubuntu {{ lts_release_full }} alongside our award-winning cloud tools.</p>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <ul class="p-matrix is-split">
-        <li class="p-matrix__item">
-          <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}4f1e16bf-image-swift.svg" alt="Swift icon">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title">Swift</h3>
-            <p class="p-matrix__desc">The high performance S3-compatible object store developed and shipped with OpenStack, ideal for storing unstructured data.</p>
-            </div>
-          </li>
-          <li class="p-matrix__item">
-            <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}6c2ee5b9-ceph-logo.png?w=160" alt="Ceph icon">
-            <div class="p-matrix__content">
-              <h3 class="p-matrix__title">Ceph</h3>
-              <p class="p-matrix__desc">A converged storage framework that has been designed to present object, block, and file storage from a single distributed computer cluster.</p>
-              </div>
-            </li>
-            <li class="p-matrix__item last-row">
-              <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}888cd4eb-nexenta-logo.png?w=160" alt="NexentaEdge icon">
-              <div class="p-matrix__content">
-                <h3 class="p-matrix__title">NexentaEdge</h3>
-                <p class="p-matrix__desc">Block and object storage offering inline de-duplication and compression, low latency block services, instant snapshots, and enterprise grade, end-to-end data integrity.</p>
-                </div>
-              </li>
-              <li class="p-matrix__item">
-                <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}d5950d6c-swiftstack.png?w=160" alt="SwiftStack icon">
-                <div class="p-matrix__content">
-                  <h3 class="p-matrix__title">SwiftStack</h3>
-                  <p class="p-matrix__desc">An object storage system built on OpenStack Swift, with an innovative storage controller for global management and NFS and SMB/CIFS file gateways.</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
+  <div class="row u-equal-height">
+    <div class="p-card col-6">
+      <div class="p-class__header">
+        <img src="{{ ASSET_SERVER_URL }}4f1e16bf-image-swift.svg" width="100" alt="Swift icon">
+      </div>
+      <hr class="u-sv2">
+      <div class="p-card__content">
+        <h3 class="p-card__title">Swift</h3>
+        <p class="p-card__desc">The high performance S3-compatible object store developed and shipped with OpenStack, ideal for storing unstructured data.</p>
+      </div>
+    </div>
+
+    <div class="p-card col-6">
+      <div class="p-class__header">
+        <img src="{{ ASSET_SERVER_URL }}6c2ee5b9-ceph-logo.png?w=100" alt="Ceph icon">
+      </div>
+      <hr class="u-sv2">
+      <div class="p-card__content">
+        <h3 class="p-card__title">Ceph</h3>
+        <p class="p-card__desc">A converged storage framework that has been designed to present object, block, and file storage from a single distributed computer cluster.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row u-equal-height">
+    <div class="p-card col-6">
+      <div class="p-class__header">
+        <img src="{{ ASSET_SERVER_URL }}888cd4eb-nexenta-logo.png?w=100" alt="NexentaEdge icon">
+      </div>
+      <hr class="u-sv2">
+      <div class="p-card__content">
+        <h3 class="p-card__title">NexentaEdge</h3>
+        <p class="p-card__desc">Block and object storage offering inline de-duplication and compression, low latency block services, instant snapshots, and enterprise grade, end-to-end data integrity.</p>
+      </div>
+    </div>
+
+    <div class="p-card col-6">
+      <div class="p-class__header">
+        <img src="{{ ASSET_SERVER_URL }}d5950d6c-swiftstack.png?w=100" alt="SwiftStack icon">
+      </div>
+      <hr class="u-sv2">
+      <div class="p-card__content">
+        <h3 class="p-card__title">SwiftStack</h3>
+        <p class="p-card__desc">An object storage system built on OpenStack Swift, with an innovative storage controller for global management and NFS and SMB/CIFS file gateways.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
         <section class="p-strip">
           <div class="row">
