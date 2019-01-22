@@ -1,0 +1,360 @@
+
+<div class="p-modal u-hide" id="contact-modal">
+  <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
+    <header class="p-modal__header">
+      <h2 class="p-modal__title" id="modal-title">Let’s get your device to market faster</h2>
+      <button class="p-modal__close" aria-label="Close active modal">Close</button>
+    </header>
+    <div class="js-pagination js-pagination--1">
+      <p id="modal-description" class="u-no-max-width u-no-margin--bottom">Canonical partners with silicon companies, board manufacturers and ODMs to help you bring smart devices to market faster. Tell us about your project so we can bring the right team to the conversation.</p>
+      <h3 class="p-heading--five">Who’s your target audience?</h3>
+      <div class="row u-no-padding">
+        <div class="col-4 u-sv3">
+          <input type="radio" id="target-audience-enterprise" name="target-audience" value="Enterprise">
+          <label for="target-audience-enterprise">Enterprise</label>
+        </div>
+        <div class="col-4 u-sv3">
+          <input type="radio" id="target-audience-consumer" name="target-audience" value="Consumer">
+          <label for="target-audience-consumer">Consumer</label>
+        </div>
+      </div>
+      <div class="u-sv3">
+        <h3 class="p-heading--five">What sector(s) are you important to you?</h3>
+        <textarea id="particular-sectors" aria-label="Are there particular sectors which are important to you" rows="3" placeholder="Are there particular sectors which are important to you such as industrial, automotive, display, retail, home, office, data center, networking, robotics?"></textarea>
+      </div>
+      <div class="pagination">
+        <a class="p-button--positive pagination__link--next" href="">Next</a>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--2 u-hide">
+      <h3 class="p-heading--five">What device capabilities are important to you?</h3>
+      <div class="row u-no-padding">
+        <div class="col-4 u-sv3">
+          <input type="checkbox" id="capabilities-security">
+          <label for="capabilities-security">Security</label>
+          <input type="checkbox" id="capabilities-over-the-air-updates">
+          <label for="capabilities-over-the-air-updates">Over-the-air updates</label>
+          <input type="checkbox" id="capabilities-app-store">
+          <label for="capabilities-app-store">App Store</label>
+          <input type="checkbox" id="capabilities-10-year-certification">
+          <label for="capabilities-10-year-certification">10-year certification</label>
+          <input type="checkbox" id="capabilities-real-time">
+          <label for="capabilities-real-time">Real-time</label>
+          <input type="checkbox" id="capabilities-AI-machine-learning">
+          <label for="capabilities-AI-machine-learning">AI / machine learning</label>
+        </div>
+        <div class="col-4 u-sv3">
+          <input type="checkbox" id="capabilities-ci-cd">
+          <label for="capabilities-ci-cd">CI/CD</label>
+          <input type="checkbox" id="capabilities-board-enablement">
+          <label for="capabilities-board-enablement">Board enablement</label>
+          <input type="checkbox" id="capabilities-compliance">
+          <label for="capabilities-compliance">Compliance</label>
+          <input type="checkbox" id="capabilities-eal">
+          <label for="capabilities-eal">EAL</label>
+          <input type="checkbox" id="capabilities-recovery-partition">
+          <label for="capabilities-recovery-partition">Recovery partition</label>
+          <input type="checkbox" id="capabilities-ros">
+          <label for="capabilities-ros">ROS</label>
+        </div>
+        <div class="col-4 u-sv3">
+          <input type="checkbox" id="capabilities-existing-apps">
+          <label for="capabilities-existing-apps">Existing apps</label>
+          <input type="checkbox" id="capabilities-management">
+          <label for="capabilities-management">Management</label>
+          <input type="checkbox" id="capabilities-factory-process">
+          <label for="capabilities-factory-process">Factory process</label>
+          <input type="checkbox" id="capabilities-boot-time">
+          <label for="capabilities-boot-time">Boot time</label>
+          <input type="checkbox" id="capabilities-secure-boot">
+          <label for="capabilities-secure-boot">Secure boot</label>
+          <input type="checkbox" id="capabilities-battery-life">
+          <label for="capabilities-battery-life">Battery life</label>
+        </div>
+      </div>
+      <h3 class="p-heading--five">What are your platform preferences?</h3>
+      <div class="row u-no-padding">
+        <div class="col-4">
+          <p>Architecture</p>
+          <input type="checkbox" id="architecture-intel">
+          <label for="architecture-intel">Intel</label>
+          <input type="checkbox" id="architecture-ARM">
+          <label for="architecture-ARM">ARM</label>
+          <div class="js-other-container">
+            <input type="checkbox" class="js-other-container__checkbox" id="architecture-other">
+            <label for="architecture-other">Other</label>
+            <input type="text" id="architecture-other-specified" class="js-other-container__input" placeholder="Please specify" disabled="disabled" aria-label="Other architecture">
+          </div>
+        </div>
+        <div class="col-4">
+          <p>Board</p>
+          <input type="checkbox" id="board-undecided">
+          <label for="board-undecided">Undecided</label>
+          <input type="checkbox" id="board-raspberry-pi-cm">
+          <label for="board-raspberry-pi-cm">Raspberry Pi / CM</label>
+          <input type="checkbox" id="board-intel-nuc">
+          <label for="board-intel-nuc">Intel Nuc</label>
+          <input type="checkbox" id="board-iMX6">
+          <label for="board-iMX6">iMX6</label>
+          <input type="checkbox" id="board-qualcomm">
+          <label for="board-qualcomm">Qualcomm</label>
+          <div class="js-other-container">
+            <input type="checkbox" class="js-other-container__checkbox" id="board-other">
+            <label for="board-other">Other</label>
+            <input type="text" id="board-other-specified" class="js-other-container__input" placeholder="Please specify" disabled="disabled" aria-label="Other Board">
+          </div>
+        </div>
+        <div class="col-4">
+          <p>ODM</p>
+          <input type="checkbox" id="odm-advantech">
+          <label for="odm-advantech">Advantech</label>
+          <input type="checkbox" id="odm-dell">
+          <label for="odm-dell">Dell</label>
+          <input type="checkbox" id="odm-eurotech">
+          <label for="odm-eurotech">Eurotech</label>
+          <input type="checkbox" id="odm-rigado">
+          <label for="odm-rigado">Rigado</label>
+          <input type="checkbox" id="odm-silver-spring-itron">
+          <label for="odm-silver-spring-itron">Silver Spring / Itron</label>
+          <input type="checkbox" id="odm-undecided">
+          <label for="odm-undecided">Undecided</label>
+          <div class="js-other-container">
+            <input type="checkbox" class="js-other-container__checkbox" id="odm-other">
+            <label for="odm-other">Other</label>
+            <input type="text" id="odm-other-specified" class="js-other-container__input" placeholder="Please specify" disabled="disabled" aria-label="Other ODM">
+          </div>
+        </div>
+      </div>
+      <div class="pagination">
+        <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
+        <a class="pagination__link--next p-button--positive" href="">Next</a>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--3 u-hide">
+      <h3 class="p-heading--five">How should we get in touch?</h3>
+      <div class="row u-no-padding">
+        <div class="col-6">
+          <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm">
+            <ul class="p-list">
+              <li class="mktFormReq mktField p-list__item">
+                <label for="FirstName" class="mktoLabel">First name:</label>
+                <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="LastName" class="mktoLabel">Last name:</label>
+                <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="Email" class="mktoLabel">Email address:</label>
+                <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" required="required" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="Phone" class="mktoLabel">Phone number:</label>
+                <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" required="required" />
+              </li>
+              {% include "shared/forms/_country.html" %} {% include "shared/forms/_state.html" %}
+              <li class="mktFormReq mktField p-list__item">
+                <label for="Company" class="mktoLabel">Company:</label>
+                <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="Title" class="mktoLabel">Job title:</label>
+                <input required id="Title" name="Title" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
+              </li>
+              <li class="mktField p-list__item">
+                <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+                <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
+              </li>
+              <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical&rsquo;s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
+              <li class="p-list__item">
+                <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
+              </li>
+            </ul>
+
+            <div class="u-hide">
+              <h3>Your comments</h3>
+              <ul class="p-list">
+                <li class="mktFormReq mktField p-list__item">
+                  <label for="Comments_from_lead__c" class="mktoLabel">What would you like to talk to us about?</label>
+                  <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" class="mktoField mktoRequired" maxlength="2000"></textarea>
+                </li>
+              </ul>
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formValidation" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" class="mktoField" value="{{ formid }}" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpId" class="mktoField" value="{{ lpId }}" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="subId" class="mktoField" value="30" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="munchkinId" class="mktoField" value="066-EOV-335" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpurl" class="mktoField" value="{{ lpurl }}?cr={creative}&amp;kw={keyword}" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="cr" class="mktoField" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="kw" class="mktoField" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="q" class="mktoField" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="{{ returnURL }}" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="retURL" value="{{ returnURL }}" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
+            </div>
+
+            <div class="pagination">
+              <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
+              <button type="submit" class="pagination__link--next p-button--positive mktoButton" aria-label="Submit">Let's discuss</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--4 u-hide">
+      <div class="row u-no-padding">
+        <div class="u-equal-height">
+          <div class="col-7">
+            <h3 class="p-heading--two">Thank you for enquiring about Ubuntu core</h3>
+            <p class="p-heading--four">A member of our team will be in touch within one working day.</p>
+          </div>
+          <div class="col-5 u-vertically-center u-align--center u-hide--small">
+            <img src="{{ ASSET_SERVER_URL }}cbae9a60-thank_you_orange_cmyk.svg" alt="smile" width="200" height="200">
+          </div>
+        </div>
+      </div>
+      <a class="js-close p-button--neutral" href="">Close</a>
+    </div>
+  </div>
+</div>
+
+<script>
+dynamicContactUs = function () {
+  var contactIndex = 1;
+  var contactModal = document.getElementById("contact-modal");
+  var contactButtons = document.querySelectorAll('.js-invoke-modal');
+  var closeModal = document.querySelector('.p-modal__close');
+  var closeModalButton = document.querySelector('.js-close');
+  var modalPaginationButtons = contactModal.querySelectorAll('.pagination a');
+  var paginationContent = contactModal.querySelectorAll('.js-pagination');
+  var submitButton = contactModal.querySelector('button.pagination__link--next');
+  var inputs = contactModal.querySelectorAll('input, textarea');
+  var comment = contactModal.querySelector('#Comments_from_lead__c');
+  var otherContainers = document.querySelectorAll('.js-other-container');
+
+  contactButtons.forEach(function(contactButton) {
+    contactButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      open();
+    });
+  });
+
+  document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    if (evt.keyCode == 27) {
+      close();
+    }
+  };
+
+  if (closeModal) {
+    closeModal.addEventListener('click', function(e) {
+      e.preventDefault();
+      close();
+    });
+  }
+
+  if (closeModalButton) {
+    closeModalButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      close();
+    });
+  }
+
+  otherContainers.forEach(function(otherContainer) {
+    var checkbox = otherContainer.querySelector('.js-other-container__checkbox');
+    var input = otherContainer.querySelector('.js-other-container__input');
+    checkbox.addEventListener('change', function(e) {
+      if (e.target.checked) {
+        input.disabled = false;
+      } else {
+        input.disabled = true;
+        input.value = '';
+      }
+    });
+  });
+
+  modalPaginationButtons.forEach(function(modalPaginationButton) {
+    modalPaginationButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      var button = e.target.closest('a');
+      if (button.classList.contains('pagination__link--previous')) {
+        setState(contactIndex - 1);
+      } else {
+        setState(contactIndex + 1);
+      }
+    });
+  });
+
+  // Hack for now but updates the styling based on the thank you panel
+  function checkThankYou() {
+    if (contactIndex == 4) {
+      contactModal.classList.add('thank-you');
+    } else {
+      contactModal.classList.remove('thank-you');
+    }
+  }
+
+  // Updates the index and renders the changes
+  function setState(index) {
+    contactIndex = index;
+    render();
+  }
+
+  // Close the modal and set the index back to the first stage
+  function close() {
+    setState(1);
+    contactModal.classList.add('u-hide');
+  }
+
+  // Open the contact us modal
+  function open() {
+    contactModal.classList.remove('u-hide');
+  }
+
+  // Update the content of the modal based on the current index
+  function render() {
+    checkThankYou();
+
+    comment.value = createMessage();
+
+    var currentContent = contactModal.querySelector('.js-pagination--'+contactIndex);
+    paginationContent.forEach(function(content) {
+      content.classList.add('u-hide');
+    });
+    currentContent.classList.remove('u-hide');
+  }
+
+  // Concatinate the options selected into a string
+  function createMessage() {
+    var message = '';
+    inputs.forEach(function(input) {
+      switch (input.type) {
+        case 'radio':
+          if (input.checked) {
+            message += input.id + ': ' + input.value + ' | ';
+          }
+        break;
+        case 'checkbox':
+          if (input.checked) {
+            message += input.id + ': ' + input.value + ' | ';
+          }
+        break;
+        case 'text':
+          if (!input.classList.contains('mktoField') && input.value !== '') {
+            message += input.id + ': ' + input.value + ' | ';
+          }
+        break;
+        case 'textarea':
+          if (!input.classList.contains('mktoField') && input.value !== '') {
+            message += input.id + ': ' + input.value + ' | ';
+          }
+        break;
+      }
+    });
+    return message;
+  }
+};
+</script>
