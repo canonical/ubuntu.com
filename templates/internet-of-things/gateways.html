@@ -171,7 +171,7 @@
     <div class="col-6 p-divider__block">
       <h2>Enterprise peace of mind</h2>
       <p>Canonical works with OEMs to deliver Ubuntu certified Edge Gateways. You can be sure Ubuntu Core will run out of the box with all the tools you require to manage and deploy software across all your devices.</p>
-      <p><a href="/internet-of-things/contact-us?product=gateways" class="p-button--positive">Contact us to find out&nbsp;more</a></p>
+      <p><a href="/internet-of-things/contact-us?product=gateways" class="p-button--positive js-invoke-modal">Contact us to find out&nbsp;more</a></p>
     </div>
     <div class="col-6 p-divider__block">
       <h2>Simple development and distribution for ISVs and SIs</h2>
@@ -180,5 +180,7 @@
     </div>
   </div>
 </section>
+
+{% include "shared/forms/_modal_form.html" with formid="1663" lpId="3143" returnURL="https://ubuntu.com/internet-of-things/thank-you?product=gateways" lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
 
 {% include "shared/contextual_footers/_contextual_footer.html" with first_item="_iot_developers" second_item="_iot_newsletter_signup" third_item="_iot_further_reading" %} {% endblock content %}

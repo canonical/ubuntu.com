@@ -118,7 +118,7 @@
     <div class="col-8">
       <h2>Partners and players</h2>
       <p>The Ubuntu Core app store makes it easy for systems integrators and device makers to find solutions, while enabling OEMs to generate revenues from their devices over the entire lifetime of their products.</p>
-      <p ><a class="p-button--neutral" href="/internet-of-things/contact-us?product=digital-signage" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Digital Signage Page - Partners and players', 'eventLabel' : 'Get in touch', 'eventValue' : undefined });">Get in touch</a></p>
+      <p ><a class="p-button--neutral js-invoke-modal" href="/internet-of-things/contact-us?product=digital-signage" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Digital Signage Page - Partners and players', 'eventLabel' : 'Get in touch', 'eventValue' : undefined });">Get in touch</a></p>
     </div>
   </div>
   <div class="row">
@@ -205,10 +205,12 @@
     <div class="col-11 prefix-3">
       <h2>Build your own digital signage solution</h2>
       <p>Ubuntu Core is entirely open source and supports a range of digital signage players. Just install it on a Raspberry Pi or NUC, download the app of your choice, create an account and you&rsquo;re ready to go.</p>
-      <p><a class="p-button--neutral" href="/internet-of-things/contact-us?product=digital-signage" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Digital Signage Page - Build your own', 'eventLabel' : 'Get in touch', 'eventValue' : undefined });">Get in touch</a></p>
+      <p><a class="p-button--neutral js-invoke-modal" href="/internet-of-things/contact-us?product=digital-signage" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Digital Signage Page - Build your own', 'eventLabel' : 'Get in touch', 'eventValue' : undefined });">Get in touch</a></p>
     </div>
   </div>
 </div>
+
+{% include "shared/forms/_modal_form.html" with formid="1422" lpId="2166" returnURL="https://ubuntu.com/internet-of-things/thank-you?product=digital-signage" lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_iot_newsletter_signup" third_item="_iot_further_reading" %}
 
