@@ -1,6 +1,6 @@
 # www.ubuntu.com codebase
 
-[![CircleCI build status](https://circleci.com/gh/canonical-websites/www.ubuntu.com.svg?style=shield)](https://circleci.com/gh/canonical-websites/www.ubuntu.com)
+[![CircleCI build status](https://circleci.com/gh/canonical-websites/www.ubuntu.com.svg?style=shield)](https://circleci.com/gh/canonical-websites/www.ubuntu.com) [![Django version](https://img.shields.io/badge/endpoint.svg?url=https%3A%2F%2Fdjango-from-requirements-txt-54rf3n1zxedi.runkit.sh%2F%3Fwebsite%3Dwww.ubuntu.com)](https://www.djangoproject.com/)
 
 This is the codebase and content for [www.ubuntu.com](https://www.ubuntu.com), a simple databaseless informational website project based on [Django](https://www.djangoproject.com/).
 
