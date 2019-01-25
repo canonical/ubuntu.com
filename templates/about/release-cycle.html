@@ -402,7 +402,7 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip--light  is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>Ubuntu OpenStack release cycle</h2>
@@ -590,6 +590,84 @@
   </div>
 </section>
 
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>Charmed Distribution of Kubernetes<sup>&reg;</sup> release cycle</h2>
+      <p>The release cycle of the Charmed Distribution of Kubernetes (CDK) is tightly
+         synchronised to the release of upstream Kubernetes<sup>&reg;</sup>.
+         The current release and two prior releases are supported, giving an effective
+         support period of nine months, subject to changes in the upstream release
+         cycle.</p>
+      <p>The CDK support lifecycle can be represented this way:</p>
+    </div>
+
+    <div class="row">
+      <div class="col-10" style="overflow: auto;">
+        <div class="u-hide--small" id="kubernetes-eol"></div>
+        <table class="u-hide--medium u-hide--large" style="width: auto;">
+          <thead>
+            <tr>
+              <th>Release</th>
+              <th>Released</th>
+              <th>End of life</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Kubernetes 1.5</td>
+              <td>December 2016</td>
+              <td>September 2017</td>
+            </tr>
+            <tr>
+              <td>Kubernetes 1.6</td>
+              <td>March 2017</td>
+              <td>December 2017</td>
+            </tr>
+            <tr>
+              <td>Kubernetes 1.7</td>
+              <td>June 2017</td>
+              <td>March 2018</td>
+            </tr>
+            <tr>
+              <td>Kubernetes 1.8</td>
+              <td>September 2017</td>
+              <td>July 2018</td>
+            </tr>
+            <tr>
+              <td>Kubernetes 1.9</td>
+              <td>December 2017</td>
+              <td>September 2018</td>
+            </tr>
+            <tr>
+              <td>Kubernetes 1.10</td>
+              <td>March 2018</td>
+              <td>December 2018</td>
+            </tr>
+            <tr>
+              <td>Kubernetes 1.11</td>
+              <td>July 2018</td>
+              <td>March 2019</td>
+            </tr>
+            <tr>
+              <td>Kubernetes 1.12</td>
+              <td>September 2018</td>
+              <td>July 2019</td>
+            </tr>
+            <tr>
+              <td>Kubernetes 1.13</td>
+              <td>December 2018</td>
+              <td>September 2019</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <p>For more information on previous and current releases of CDK, please see the <a href="https://www.ubuntu.com/kubernetes/docs/release-notes" class="p-link--external ">CDK release notes</a>.</p>
+    </div>
+  </section>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
 <script src="{% versioned_static 'js/chartData.js' %}"></script>
 <script src="{% versioned_static 'js/chart.js' %}"></script>
@@ -611,12 +689,14 @@ function buildCharts() {
   createChart('#server-desktop-eol', desktopServerReleaseNames, desktopServerStatus, serverAndDesktopReleases);
   createChart('#kernel-eol', kernelReleaseNames, kernelStatus, kernelReleases);
   createChart('#openstack-eol', openStackReleaseNames, openStackStatus, openStackReleases);
+  createChart('#kubernetes-eol', kubernetesReleaseNames, kubernetesStatus, kubernetesReleases);
 }
 
 function clearCharts() {
   document.querySelector('#server-desktop-eol').innerHTML = '';
   document.querySelector('#kernel-eol').innerHTML = '';
   document.querySelector('#openstack-eol').innerHTML = '';
+  document.querySelector('#kubernetes-eol').innerHTML = '';
 }
 
 var mediumBreakpoint = 768;
