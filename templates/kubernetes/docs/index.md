@@ -13,7 +13,7 @@ Google, Microsoft, and many other institutions run Kubernetes on Ubuntu because 
 
 [Find out more in the CDK overview&nbsp;&rsaquo;](/kubernetes/docs/overview)
 
-<img src="https://assets.ubuntu.com/v1/843c77b6-juju-at-a-glace.svg" alt="" style="margin-top: 1rem;">
+<img src="https://assets.ubuntu.com/v1/843c77b6-juju-at-a-glace.svg" width="608" alt="" style="margin-top: 1rem;">
 
 <div class="p-strip is-shallow">
   <div class="row p-divider">
