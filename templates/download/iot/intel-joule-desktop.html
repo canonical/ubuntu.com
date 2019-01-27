@@ -21,7 +21,6 @@
         <div class="col-6 p-divider__block">
           <h3>Minimum requirements</h3>
           <ul class="p-list">
-            <li class="p-list__item is-ticked">An Ubuntu SSO account with an SSH key</li>
             <li class="p-list__item is-ticked">An Intel<sup>&reg;</sup> Joule board with BIOS updated to <a class="p-link--external" href="https://downloadmirror.intel.com/26206/eng/joule-firmware-2017-02-19-193-public.zip">version #193</a> (<a class="p-link--external" href="https://software.intel.com/en-us/flashing-the-bios-on-joule">update instructions</a>)</li>
             <li class="p-list__item is-ticked">2 USB 2.0 or 3.0 flash drives (2GB minimum)</li>
             <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
@@ -43,7 +42,6 @@
     <div class="col-12">
       <h2>Installation instructions</h2>
       <ol class="p-stepped-list--detailed">
-        {% include "./_setup-ubuntu-sso.html" with number=1 %}
         <li class="p-list-step__item">
           <h3 class="p-list-step__title">
             <span class="p-list-step__bullet">2</span>
@@ -55,7 +53,6 @@
               <li><a class="p-link--external" href="http://people.canonical.com/~platform/snappy/tuchuck/desktop-final/tuchuck-xenial-desktop-iso-20170317-0.iso">Intel Joule - Ubuntu Desktop 16.04 LTS image</a></li>
               <li>MD5SUM: 07e4895b2921117288ff611c6f5fea28</li>
             </ul>
-            <p>Download and copy the image on an USB flash drive by following the <a class="p-link--external" href="https://developer.ubuntu.com/core/get-started/installation-medias">installation media instructions</a>.</p>
           </div>
         </li>
         <li class="p-list-step__item">
@@ -108,9 +105,17 @@
   </div>
 </section>
 
-{% include "./_boot-tips-strip.html" with strip="p-strip--light" %}
-
-{% include "./_install-snaps-strip.html" %}
+<section class={{strip|default:"p-strip"}}>
+  <div class="row u-equal-height">
+    <div class="col-4 u-hide--small u-align--center u-vertically-center">
+      <img src="{{ ASSET_SERVER_URL }}0c16085c-network-equipment_2px.svg" alt="" width="150">
+    </div>
+    <div class="col-8">
+      <h3>Install and develop snaps</h3>
+      <p>Your {{ board|default:"board" }} is now ready to have snaps installed — <a class="p-link--external" href="http://snapcraft.io/docs/core/usage">get started with the <code>snap</code> command</a></p>
+    </div>
+  </div>
+</section>
 
 {% include "download/shared/_get-ebook-security.html"%}
 
