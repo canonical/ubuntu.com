@@ -385,6 +385,64 @@ var openStackReleases = [
   },
 ];
 
+var kubernetesReleases = [
+  {
+    startDate: new Date('2016-12-12T00:00:00'),
+    endDate: new Date('2017-09-28T00:00:00'),
+    taskName: 'Kubernetes 1.5',
+    status: 'CDK_EXPIRED_SUPPORT'
+  },
+
+  {
+    startDate: new Date('2017-03-28T00:00:00'),
+    endDate: new Date('2017-12-15T00:00:00'),
+    taskName: 'Kubernetes 1.6',
+    status: 'CDK_EXPIRED_SUPPORT'
+  },
+  {
+    startDate: new Date('2017-06-30T00:00:00'),
+    endDate: new Date('2018-03-28T00:00:00'),
+    taskName: 'Kubernetes 1.7',
+    status: 'CDK_EXPIRED_SUPPORT'
+  },
+  {
+    startDate: new Date('2017-09-28T00:00:00'),
+    endDate: new Date('2018-07-03T00:00:00'),
+    taskName: 'Kubernetes 1.8',
+    status: 'CDK_EXPIRED_SUPPORT'
+  },
+  {
+    startDate: new Date('2017-12-15T00:00:00'),
+    endDate: new Date('2018-09-25T00:00:00'),
+    taskName: 'Kubernetes 1.9',
+    status: 'CDK_EXPIRED_SUPPORT'
+  },
+  {
+    startDate: new Date('2018-03-28T00:00:00'),
+    endDate: new Date('2018-12-18T00:00:00'),
+    taskName: 'Kubernetes 1.10',
+    status: 'CDK_EXPIRED_SUPPORT'
+  },
+  {
+    startDate: new Date('2018-07-03T00:00:00'),
+    endDate: new Date('2019-03-25T00:00:00'),
+    taskName: 'Kubernetes 1.11',
+    status: 'CDK_SUPPORT'
+  },
+  {
+    startDate: new Date('2018-09-25T00:00:00'),
+    endDate: new Date('2019-06-18T00:00:00'),
+    taskName: 'Kubernetes 1.12',
+    status: 'CDK_SUPPORT'
+  },
+  {
+    startDate: new Date('2018-12-18T00:00:00'),
+    endDate: new Date('2019-09-18T00:00:00'),
+    taskName: 'Kubernetes 1.13',
+    status: 'CDK_SUPPORT'
+  },
+];
+
 var desktopServerStatus = {
   HARDWARE_AND_MAINTENANCE_UPDATES: 'chart__bar--orange',
   MAINTENANCE_UPDATES: 'chart__bar--orange-light',
@@ -402,6 +460,11 @@ var openStackStatus = {
   UBUNTU_LTS_RELEASE_SUPPORT: 'chart__bar--orange',
   MATCHING_OPENSTACK_RELEASE_SUPPORT: 'chart__bar--grey',
   EXTENDED_SUPPORT_FOR_CUSTOMERS: 'chart__bar--aubergine'
+};
+
+var kubernetesStatus = {
+  CDK_SUPPORT: 'chart__bar--orange',
+  CDK_EXPIRED_SUPPORT: 'chart__bar--grey',
 };
 
 var desktopServerReleaseNames = [
@@ -461,4 +524,16 @@ var openStackReleaseNames = [
   'OpenStack Icehouse LTS',
   'Ubuntu 14.04 LTS',
   'OpenStack Icehouse'
+];
+
+var kubernetesReleaseNames = [
+  'Kubernetes 1.5',
+  'Kubernetes 1.6',
+  'Kubernetes 1.7',
+  'Kubernetes 1.8',
+  'Kubernetes 1.9',
+  'Kubernetes 1.10',
+  'Kubernetes 1.11',
+  'Kubernetes 1.12',
+  'Kubernetes 1.13'
 ];

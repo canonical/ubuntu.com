@@ -179,7 +179,7 @@ function formatKeyLabel(key) {
   var formattedKey = keyLowerCase.charAt(0).toUpperCase() + keyLowerCase.substr(1);
   formattedKey = formattedKey.replace(' lts ', ' LTS ');
   formattedKey = formattedKey.replace(' openstack ', ' OpenStack ');
-
+  formattedKey = formattedKey.replace('Cdk ', 'CDK ');
   return formattedKey;
 }
 
