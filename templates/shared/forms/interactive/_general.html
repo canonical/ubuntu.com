@@ -1,0 +1,263 @@
+{% load versioned_static  %}
+
+<div class="p-modal u-hide" id="contact-modal">
+  <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
+    <header class="p-modal__header">
+      <h2 class="p-modal__title" id="modal-title">The Ubuntu Experts</h2>
+      <button class="p-modal__close" aria-label="Close active modal">Close</button>
+    </header>
+    <div class="js-pagination js-pagination--1">
+      <p id="modal-description" class="u-no-max-width u-no-margin--bottom">Canonical certifies, secures and enables enterprise open source on Ubuntu. Tell us about your project so we bring the right team to the conversation.</p>
+      <h3 class="p-heading--five">How would you like to make use of Ubuntu?</h3>
+      <div class="row u-no-padding">
+        <div class="col-4 u-sv3">
+          <input type="checkbox" id="make-use-of-workstations">
+          <label for="make-use-of-workstations">Workstations</label>
+          <input type="checkbox" id="make-use-of-servers">
+          <label for="make-use-of-servers">Servers</label>
+          <input type="checkbox" id="make-use-of-public-cloud">
+          <label for="make-use-of-public-cloud">Public cloud</label>
+          <input type="checkbox" id="make-use-of-private-cloud">
+          <label for="make-use-of-private-cloud">Private cloud</label>
+          <input type="checkbox" id="make-use-appliances">
+          <label for="make-use-appliances">Appliances</label>
+        </div>
+        <div class="col-4 u-sv3">
+          <input type="checkbox" id="make-use-of-enterprise-infra">
+          <label for="make-use-of-enterprise-infra">Enterprise infra</label>
+          <input type="checkbox" id="make-use-of-enterprise-apps">
+          <label for="make-use-of-enterprise-apps">Enterprise apps</label>
+          <input type="checkbox" id="make-use-of-embedding">
+          <label for="make-use-of-embedding">Embedding</label>
+          <input type="checkbox" id="make-use-of-development">
+          <label for="make-use-of-development">Development</label>
+          <input type="checkbox" id="make-use-of-virtualization">
+          <label for="make-use-of-virtualization">Virtualization</label>
+        </div>
+        <div class="col-4 u-sv3">
+          <input type="checkbox" id="make-use-of-storage">
+          <label for="make-use-of-storage">Storage</label>
+          <input type="checkbox" id="make-use-of-networking">
+          <label for="make-use-of-networking">Networking</label>
+          <input type="checkbox" id="make-use-of-kubernetes">
+          <label for="make-use-of-kubernetes">Kubernetes</label>
+          <input type="checkbox" id="make-use-of-openstack">
+          <label for="make-use-of-openstack">OpenStack</label>
+          <input type="checkbox" id="make-use-of-kubeflow">
+          <label for="make-use-of-kubeflow">Kubeflow</label>
+        </div>
+      </div>
+      <h3 class="p-heading--five">In any particular sectors?</h3>
+      <div class="row u-no-padding">
+        <div class="col-4 u-sv3">
+          <input type="checkbox" id="particular-sectors-airlines">
+          <label for="particular-sectors-airlines">Airlines</label>
+          <input type="checkbox" id="particular-sectors-aerospace">
+          <label for="particular-sectors-aerospace">Aerospace</label>
+          <input type="checkbox" id="particular-sectors-agriculture">
+          <label for="particular-sectors-agriculture">Agriculture</label>
+          <input type="checkbox" id="particular-sectors-automotive">
+          <label for="particular-sectors-automotive">Automotive</label>
+          <input type="checkbox" id="particular-sectors-chemical">
+          <label for="particular-sectors-chemical">Chemical</label>
+          <input type="checkbox" id="particular-sectors-computer">
+          <label for="particular-sectors-computer">Computer</label>
+          <input type="checkbox" id="particular-sectors-construction">
+          <label for="particular-sectors-construction">Construction</label>
+          <input type="checkbox" id="particular-sectors-defense">
+          <label for="particular-sectors-defense">Defense</label>
+          <input type="checkbox" id="particular-sectors-education">
+          <label for="particular-sectors-education">Education</label>
+          <input type="checkbox" id="particular-sectors-electronics">
+          <label for="particular-sectors-electronics">Electronics</label>
+        </div>
+        <div class="col-4 u-sv3">
+          <input type="checkbox" id="particular-sectors-energy">
+          <label for="particular-sectors-energy">Energy</label>
+          <input type="checkbox" id="particular-sectors-entertainment">
+          <label for="particular-sectors-entertainment">Entertainment</label>
+          <input type="checkbox" id="particular-sectors-finance">
+          <label for="particular-sectors-finance">Finance</label>
+          <input type="checkbox" id="particular-sectors-food">
+          <label for="particular-sectors-food">Food</label>
+          <input type="checkbox" id="particular-sectors-government">
+          <label for="particular-sectors-government">Government</label>
+          <input type="checkbox" id="particular-sectors-healthcare">
+          <label for="particular-sectors-healthcare">Healthcare</label>
+          <input type="checkbox" id="particular-sectors-hospitality">
+          <label for="particular-sectors-hospitality">Hospitality</label>
+          <input type="checkbox" id="particular-sectors-information">
+          <label for="particular-sectors-information">Information</label>
+          <input type="checkbox" id="particular-sectors-logistics">
+          <label for="particular-sectors-logistics">Logistics</label>
+          <input type="checkbox" id="particular-sectors-manufacturing">
+          <label for="particular-sectors-manufacturing">Manufacturing</label>
+        </div>
+        <div class="col-4 u-sv3">
+          <input type="checkbox" id="particular-sectors-mining">
+          <label for="particular-sectors-mining">Mining</label>
+          <input type="checkbox" id="particular-sectors-pharmaceutical">
+          <label for="particular-sectors-pharmaceutical">Pharmaceutical</label>
+          <input type="checkbox" id="particular-sectors-software">
+          <label for="particular-sectors-software">Software</label>
+          <input type="checkbox" id="particular-sectors-telecomms">
+          <label for="particular-sectors-telecomms">Telecomms</label>
+          <input type="checkbox" id="particular-sectors-service-provider">
+          <label for="particular-sectors-service-provider">Service provider</label>
+          <input type="checkbox" id="particular-sectors-transport">
+          <label for="particular-sectors-transport">Transport</label>
+          <input type="checkbox" id="particular-sectors-water">
+          <label for="particular-sectors-water">Water</label>
+          <input type="checkbox" id="particular-sectors-other">
+          <label for="particular-sectors-other">Other</label>
+        </div>
+      </div>
+      <div class="u-sv3">
+        <h3 class="p-heading--five">Do you have sector-specific requirements?</h3>
+        <textarea id="sector-specific-requirements" name="sector-specific-requirements" aria-label="Do you have sector-specific requirements?" rows="3"></textarea>
+      </div>
+      <div class="pagination">
+        <a class="p-button--positive pagination__link--next" href="">Next</a>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--2 u-hide">
+      <h3 class="p-heading--five">What is important to you?</h3>
+      <div class="row u-no-padding">
+        <div class="col-4 u-sv3">
+          <input type="checkbox" id="important-to-you-security">
+          <label for="important-to-you-security">Security</label>
+          <input type="checkbox" id="important-to-you-regulatory-compliance">
+          <label for="important-to-you-regulatory-compliance">Regulatory compliance</label>
+          <input type="checkbox" id="important-to-you-eal">
+          <label for="important-to-you-eal">EAL</label>
+          <input type="checkbox" id="important-to-you-fips">
+          <label for="important-to-you-fips">FIPS</label>
+          <input type="checkbox" id="important-to-you-kernel-livepatch">
+          <label for="important-to-you-kernel-livepatch">Kernel livepatch</label>
+          <input type="checkbox" id="important-to-you-ai-ml">
+          <label for="important-to-you-ai-ml">AI/ML</label>
+        </div>
+        <div class="col-4 u-sv3">
+          <input type="checkbox" id="important-to-you-training">
+          <label for="important-to-you-training">Training</label>
+          <input type="checkbox" id="important-to-you-certification">
+          <label for="important-to-you-certification">Certification</label>
+          <input type="checkbox" id="important-to-you-support">
+          <label for="important-to-you-support">Support</label>
+          <input type="checkbox" id="important-to-you-performance">
+          <label for="important-to-you-performance">Performance</label>
+          <input type="checkbox" id="important-to-you-managed-services">
+          <label for="important-to-you-managed-services">Managed services</label>
+        </div>
+        <div class="col-4 u-sv3">
+          <input type="checkbox" id="important-to-you-10-year-updates">
+          <label for="important-to-you-10-year-updates">10-year updates</label>
+          <input type="checkbox" id="important-to-you-management">
+          <label for="important-to-you-management">Management</label>
+          <input type="checkbox" id="important-to-you-orchestration">
+          <label for="important-to-you-orchestration">Orchestration</label>
+          <input type="checkbox" id="important-to-you-operations">
+          <label for="important-to-you-operations">Operations</label>
+        </div>
+      </div>
+      <div class="u-sv3">
+        <h3 class="p-heading--five">Is there anything we should know about the project to bring the right people from our side?</h3>
+        <textarea id="right-people-from-our-side" name="right-people-from-our-side" aria-label="Is there anything we should know about the project to bring the right people from our side?" rows="3"></textarea>
+      </div>
+      <div class="pagination">
+        <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
+        <a class="pagination__link--next p-button--positive" href="">Next</a>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--3 u-hide">
+      <h3 class="p-heading--five">How should we get in touch?</h3>
+      <div class="row u-no-padding">
+        <div class="col-6">
+          <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm">
+            <ul class="p-list">
+              <li class="mktFormReq mktField p-list__item">
+                <label for="FirstName" class="mktoLabel">First name:</label>
+                <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="LastName" class="mktoLabel">Last name:</label>
+                <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="Email" class="mktoLabel">Email address:</label>
+                <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" required="required" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="Phone" class="mktoLabel">Phone number:</label>
+                <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" required="required" />
+              </li>
+              {% include "shared/forms/_country.html" %} {% include "shared/forms/_state.html" %}
+              <li class="mktFormReq mktField p-list__item">
+                <label for="Company" class="mktoLabel">Company:</label>
+                <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="Title" class="mktoLabel">Job title:</label>
+                <input required id="Title" name="Title" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
+              </li>
+              <li class="mktField p-list__item">
+                <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+                <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
+              </li>
+              <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical&rsquo;s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
+              <li class="p-list__item">
+                <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
+              </li>
+            </ul>
+
+            <div class="u-hide">
+              <h3>Your comments</h3>
+              <ul class="p-list">
+                <li class="mktFormReq mktField p-list__item">
+                  <label for="Comments_from_lead__c" class="mktoLabel">What would you like to talk to us about?</label>
+                  <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" class="mktoField mktoRequired" maxlength="2000"></textarea>
+                </li>
+              </ul>
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formValidation" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" class="mktoField" value="{{ formid }}" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpId" class="mktoField" value="{{ lpId }}" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="subId" class="mktoField" value="30" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="munchkinId" class="mktoField" value="066-EOV-335" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpurl" class="mktoField" value="{{ lpurl }}?cr={creative}&amp;kw={keyword}" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="cr" class="mktoField" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="kw" class="mktoField" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="q" class="mktoField" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="{{ returnURL }}" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="retURL" value="{{ returnURL }}" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
+            </div>
+
+            <div class="pagination">
+              <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
+              <button type="submit" class="pagination__link--next p-button--positive mktoButton" aria-label="Submit">Let's discuss</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--4 u-hide">
+      <div class="row u-no-padding">
+        <div class="u-equal-height">
+          <div class="col-7">
+            <h3 class="p-heading--two">Thank you for enquiring about Ubuntu core</h3>
+            <p class="p-heading--four">A member of our team will be in touch within one working day.</p>
+          </div>
+          <div class="col-5 u-vertically-center u-align--center u-hide--small">
+            <img src="{{ ASSET_SERVER_URL }}cbae9a60-thank_you_orange_cmyk.svg" alt="smile" width="200" height="200">
+          </div>
+        </div>
+      </div>
+      <a class="js-close p-button--neutral" href="">Close</a>
+    </div>
+  </div>
+</div>
+
+<script src="{% versioned_static 'js/dynamic-contact-form.js' %}"></script>
