@@ -6,18 +6,63 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1QoM0Yqx4JfDJ2G3OPt5bds-ximG1jASmU_PWX4iff3E/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip--image p-banner-core-hero is-deep is-dark">
-  <div class="row u-equal-height">
-    <div class="col-7">
-      <h1>Build secure IoT devices with Ubuntu Core</h1>
-      <!-- small screen version -->
-      <img class="u-visible--small u-hide--medium u-hide--large" src="{{ ASSET_SERVER_URL }}7b563def-core_white-orange_st_hex.svg" width="150" alt="" style="margin: 4rem 0;"/>
-      <h4>Everything you love about Ubuntu, locked down for security. Helping you make safer things - because we’re all connected.</h4>
+<section class="p-takeover">
+  <div class="p-strip--image is-dark is-deep p-takeover__suru">
+    <div class="row u-equal-height">
+      <div class="col-8">
+        <h1>An introduction to IoT app stores</h1>
+        <p class="p-heading--four">Curate your own customised store for a fully managed device software portfolio</p>
+        <p class="u-hide--small">
+          <a href="https://www.brighttalk.com/webcast/6793/346324?utm_source=Takeover&utm_medium=Takeover&utm_campaign=CY19_IOT_BrandStore_WBN_BrandStoreIntro" class="p-button--neutral u-no-margin--bottom">
+            <span class="p-link--external">Register for the webinar</span>
+          </a>
+        </p>
+      </div>
+      <div class="col-4">
+        <div class="u-align--center u-sv3 u-vertically-center">
+          <img src="{{ ASSET_SERVER_URL }}44fd30d7-Snap+Store+shopping+icon+darkhandle.svg" class="p-takeover__image" alt="" />
+        </div>
+        <p class="u-no-margin--bottom u-hide--large u-hide--medium">
+          <a href="https://www.brighttalk.com/webcast/6793/346324?utm_source=Takeover&utm_medium=Takeover&utm_campaign=CY19_IOT_BrandStore_WBN_BrandStoreIntro" class="p-button--neutral">
+            <span class="p-link--external">Register for the webinar</span>
+          </a>
+        </p>
+      </div>
     </div>
-    <div class="col-5 u-align--center u-hide--small u-vertically-center">
-      <!-- medium and large screen version -->
-      <img src="{{ ASSET_SERVER_URL }}7b563def-core_white-orange_st_hex.svg" width="156" alt="" />
-    </div>
+
+    <style>
+      .p-takeover {
+        background-blend-mode: color;
+        background-image: linear-gradient(134deg, #2D6162 0%, #83BFA1 100%);
+        background-color: #2D6162;
+      }
+
+      @media only screen and (min-width: 768px) {
+        .p-takeover__suru {
+          background-image: url('{{ ASSET_SERVER_URL }}9a0310e3-suru-right-snapstore.svg');
+          background-position: top right;
+          background-size: auto 100%;
+        }
+      }
+
+      .p-takeover .p-takeover__image {
+        height: 229px;
+        width: 200px;
+      }
+
+      @media only screen and (max-width: 768px) {
+        .p-takeover .p-takeover__image {
+          height: 180px;
+          width: 157px;
+        }
+      }
+
+      @media only screen and (min-width: 460px) and (max-width: 896px)  {
+        .p-takeover .u-align--center {
+          text-align: left !important;
+        }
+      }
+    </style>
   </div>
 </section>
 
