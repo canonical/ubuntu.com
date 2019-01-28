@@ -18,6 +18,10 @@
     });
   });
 
+  if (window.location.hash == '#get-in-touch') {
+    open();
+  }
+
   document.onkeydown = function(evt) {
     evt = evt || window.event;
     if (evt.keyCode == 27) {
