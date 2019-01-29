@@ -223,6 +223,10 @@ abbr[title] {
     position: fixed;
     z-index: 100;
 
+    input[type="checkbox"] + label {
+      margin-bottom: 0;
+    }
+
     .p-modal__dialog {
       margin-bottom: 0;
 
@@ -249,6 +253,11 @@ abbr[title] {
       .p-modal__header {
         border-bottom: 0;
       }
+    }
+
+    .pagination__link--next,
+    .pagination__link--previous {
+      margin-bottom: 0;
     }
   }
 }
