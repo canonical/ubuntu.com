@@ -6,20 +6,8 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1QoM0Yqx4JfDJ2G3OPt5bds-ximG1jASmU_PWX4iff3E/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip--image p-banner-core-hero is-deep is-dark">
-  <div class="row u-equal-height">
-    <div class="col-7">
-      <h1>Build secure IoT devices with Ubuntu Core</h1>
-      <!-- small screen version -->
-      <img class="u-visible--small u-hide--medium u-hide--large" src="{{ ASSET_SERVER_URL }}7b563def-core_white-orange_st_hex.svg" width="150" alt="" style="margin: 4rem 0;"/>
-      <h4>Everything you love about Ubuntu, locked down for security. Helping you make safer things - because we’re all connected.</h4>
-    </div>
-    <div class="col-5 u-align--center u-hide--small u-vertically-center">
-      <!-- medium and large screen version -->
-      <img src="{{ ASSET_SERVER_URL }}7b563def-core_white-orange_st_hex.svg" width="156" alt="" />
-    </div>
-  </div>
-</section>
+
+{% include "takeovers/_snapcraft-brand-store_takeover.html" %}
 
 <nav class="p-tabs p-sticky-nav">
   <ul class="p-tabs__list" role="tablist">
