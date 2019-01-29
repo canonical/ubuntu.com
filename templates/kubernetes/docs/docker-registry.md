@@ -33,12 +33,62 @@ and configure `docker-registry` as follows:
 
 ```bash
 juju deploy ~containers/docker-registry
-juju relate docker-registry easyrsa:client
-juju relate docker-registry kubernetes-worker:docker-registry
+juju add-relation docker-registry easyrsa:client
+juju add-relation docker-registry kubernetes-worker:docker-registry
 juju config docker-registry \
   auth-basic-user='admin' \
   auth-basic-password='password'
 ```
+
+### Custom Certificates
+
+Relating `docker-registry` to `easyrsa` above will generate new TLS data
+to support secure communication with the registry. Alternatively, custom
+TLS data may be provided as base64-encoded config options to the charm:
+
+```bash
+juju config docker-registry \
+  tls-ca-blob=$(base64 /path/to/ca) \
+  tls-cert-blob=$(base64 /path/to/cert) \
+  tls-key-blob=$(base64 /path/to/key)
+```
+
+### Proxied Registry
+
+Advanced networking or highly available deployment scenarios may require
+multiple `docker-registry` units to be deployed behind a proxy. In this case,
+the network information of the proxy will be shared with `kubernetes-worker`
+units when the registry is related.
+
+<div class="p-notification--information">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Note:</span>
+SSL pass-thru is not supported between `docker-registry` and `haproxy`.
+Any registry SSL configuration must be removed before creating the proxy
+relation. If SSL is desired in a proxied environment, the administrator must
+ensure certificates used by the proxy are configured on `kubernetes-worker`
+units.
+  </p>
+</div>
+
+The environment described in the `Deploy` section above can be adjusted to
+create a highly available registry as follows:
+
+```bash
+juju deploy haproxy
+juju add-unit docker-registry
+juju remove-relation docker-registry easyrsa:client
+juju add-relation docker-registry haproxy:reverseproxy
+```
+
+<div class="p-notification--information">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Note:</span>
+With multiple registry units deployed, the proxy relation allows for a
+highly available deployment. Load balancing across multiple registry units is
+not supported.
+  </p>
+</div>
 
 ## Verify
 
@@ -83,7 +133,7 @@ Minimally, Kubernetes 1.1x requires the following:
 - quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.16.1
 - k8s.gcr.io/defaultbackend-amd64:1.5
 
-**CDK** supports optional add-ons that include the **Kubernetes** dashboard, 
+**CDK** supports optional add-ons that include the **Kubernetes** dashboard,
 **Heapster**, **kube-dns**, etc. Enabling these add-ons will require the
 following additional images:
 
@@ -143,7 +193,7 @@ juju config kubernetes-worker \
 
 Unlike individual configurable images on `kubernetes-worker` units, images
 used by **CDK** add-ons are controlled by a `kubernetes-master` config option. Push
-the desired addon images listed above (`kubernetes-dashboard`, `heapster`, etc)
+the desired add-on images listed above (`kubernetes-dashboard`, `heapster`, etc)
 and configure `kubernetes-master` to use the registry for installation:
 
 ```bash

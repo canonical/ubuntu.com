@@ -5,6 +5,12 @@ markdown_includes:
 context:
   title: "Upgrading"
   description: How to upgrade your version of CDK.
+keywords: juju, upgrading, track, version
+tags: [operating]
+sidebar: k8smain-sidebar
+permalink: upgrading.html
+layout: [base, ubuntu-com]
+toc: False
 ---
 
 It is recommended that you keep your **Kubernetes** deployment updated to the latest available stable version. You should also update the other applications which make up the **Charmed Distribution of Kubernetes<sup>&reg;</sup>.** Keeping up to date ensures you have the latest bug-fixes and security patches for smooth operation of your cluster.
@@ -60,17 +66,13 @@ As **etcd** manages critical data for the cluster, it is advisable to create a s
 ```bash
 juju run-action etcd/0 snapshot --wait
 ```
-
 You should see confirmation of the snapshot being created, and the location of the file _on the **etcd** unit_
 
 #### 2. Fetch a local copy of the snapshot
 
 Knowing the path to the snapshot file from the output of the above command, you can download a local copy:
-
 `bash juju scp etcd/0:/home/ubuntu/etcd-snapshots/<filename>.tar.gz .`
-
 You can now upgrade **etcd**:
-
 ```bash
 juju upgrade-charm etcd
 ```
@@ -108,15 +110,17 @@ The **Kubernetes** charms use **snap** _channels_ to manage the version of **Kub
 
 For most use cases, it is strongly recommended to use the 'stable' version of charms.
 
-### Upgrading the kube-api-loadbalancer
+### Upgrading the **kube-api-loadbalancer**
 
-A core part of **CDK** is the kubeapi-load-balancer component. A mismatch of versions could have an effect on API availability and access controls. To ensure API service continuity this upgrade should precede any upgrades to the **Kubernetes** master and worker units.
+A core part of **CDK** is the kubeapi-load-balancer component. To ensure API service continuity this upgrade should precede any upgrades to the **Kubernetes** master and worker units.
 
 ```bash
 juju upgrade-charm kubeapi-load-balancer
 ```
 
-### Upgrading the kubernetes-master units
+The load balancer itself is based on NGINX, and the version reported by `juju status` is that of NGINX rather than Kubernetes. Unlike the other Kubernetes components, there is no need to set a specific channel or version for this charm. 
+
+### Upgrading the **kubernetes-master** units
 
 To start upgrading the Kubernetes master units, first upgrade the charm:
 
@@ -158,7 +162,14 @@ juju status | grep master
 
 Ensure that all the master units have upgraded and are reporting normal status before continuing to upgrade the worker units.
 
-### Upgrading the kubernetes-worker units
+### Upgrading the **kubernetes-worker** units
+
+<div class="p-notification--caution">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Caution:</span>
+    A <a href="https://github.com/kubernetes/kubernetes/issues/70044"> current bug in Kubernetes</a> could prevent the upgrade from properly deleting old pods. See the <a href="#known-issues"> Known issues section</a> at the bottom of this page.
+</p>
+</div>
 
 For a running cluster, there are two different ways to proceed:
 
@@ -252,6 +263,58 @@ juju status
 ... should now indicate the selected version of **Kubernetes** is running.
 
 It is recommended that you run a [cluster validation][validation] to ensure that the cluster upgrade has successfully completed.
+
+
+## Known Issues
+
+A [current bug](https://github.com/kubernetes/kubernetes/issues/70044) in Kubernetes could prevent the upgrade from properly deleting old pods. You can see such an issue here:
+
+```bash
+kubectl get po --all-namespaces
+```
+
+```
+NAMESPACE                         NAME                                                          READY   STATUS        RESTARTS   AGE
+default                           nginx-ingress-kubernetes-worker-controller-r8d2v              0/1     Terminating   0          17m
+ingress-nginx-kubernetes-worker   default-http-backend-kubernetes-worker-5d9bb77bc5-76c8w       1/1     Running       0          10m
+ingress-nginx-kubernetes-worker   nginx-ingress-controller-kubernetes-worker-5dcf47fc4c-q9mh6   1/1     Running       0          10m
+kube-system                       heapster-v1.6.0-beta.1-6db4b87d-phjvb                         4/4     Running       0          16m
+kube-system                       kube-dns-596fbb8fbd-bp8lz                                     3/3     Running       0          18m
+kube-system                       kubernetes-dashboard-67d4c89764-nwxss                         1/1     Running       0          18m
+kube-system                       metrics-server-v0.3.1-67bb5c8d7-x9nzx                         2/2     Running       0          17m
+kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvcm               2/2     Running       0          17m
+```
+
+In this case the  `nginx-ingress-kubernetes-worker-controller-r8d2v` has been stuck in the `Terminating` state for roughly 10 minutes. The workaround for such a problem is to force a deletion:
+
+```bash
+kubectl delete po/nginx-ingress-kubernetes-worker-controller-r8d2v --force --grace-period=0
+```
+
+This will result in output similar to the following:
+
+```
+warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
+pod "nginx-ingress-kubernetes-worker-controller-r8d2v" force deleted
+```
+
+You should verify that the pod has been sucessfully removed:
+
+```bash
+kubectl get po --all-namespaces
+```
+
+```
+NAMESPACE                         NAME                                                          READY   STATUS    RESTARTS   AGE
+ingress-nginx-kubernetes-worker   default-http-backend-kubernetes-worker-5d9bb77bc5-76c8w       1/1     Running   0          11m
+ingress-nginx-kubernetes-worker   nginx-ingress-controller-kubernetes-worker-5dcf47fc4c-q9mh6   1/1     Running   0          11m
+kube-system                       heapster-v1.6.0-beta.1-6db4b87d-phjvb                         4/4     Running   0          17m
+kube-system                       kube-dns-596fbb8fbd-bp8lz                                     3/3     Running   0          19m
+kube-system                       kubernetes-dashboard-67d4c89764-nwxss                         1/1     Running   0          19m
+kube-system                       metrics-server-v0.3.1-67bb5c8d7-x9nzx                         2/2     Running   0          18m
+kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvcm               2/2     Running   0          18m
+```
+
 
  <!--LINKS-->
 
