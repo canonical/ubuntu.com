@@ -228,7 +228,7 @@
   <div class="row u-equal-height">
     <div class="col-8">
       <p class="p-heading--three">Talk to us about how Canonical can help you build a secure, agile infrastructure designed for scale.</p>
-      <p><a href="/contact-us" class="p-button">Contact us</a></p>
+      <p><a href="/contact-us" class="p-button js-invoke-modal">Contact us</a></p>
     </div>
     <div class="col-4 prefix-1 suffix-1 u-vertically-center">
       <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="144" class="u-hide--small" alt="" />
@@ -237,3 +237,5 @@
 </section>
 
 {% endblock content %}
+
+{% include "shared/forms/interactive/_general.html" with lpId="2154" formid="1257" lpurl="https://pages.ubuntu.com/things-contact-us.html" returnURL="https://www.ubuntu.com/contact-us/form/thank-you" %}
