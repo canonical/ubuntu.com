@@ -86,19 +86,6 @@
   width: 100;
 }
 
-// XXX Applies suru background to the site
-// Candidate for moving to the vanilla-brochure-theme
-.has-background {
-  background-color: $color-light;
-  background-image: url("#{$assets-path}f8a323a7-image-background-paper.png?w=768");
-  background-position: center top;
-  background-repeat: repeat-y;
-
-  @media (min-width: $breakpoint-medium) {
-    background-image: url("#{$assets-path}f8a323a7-image-background-paper.png");
-  }
-}
-
 /// XXX fix nested bullets to use default styles
 .p-list .p-list {
   list-style-type: circle;
