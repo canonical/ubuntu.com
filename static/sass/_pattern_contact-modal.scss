@@ -38,9 +38,11 @@
         }
       }
 
-      .pagination__link--next,
-      .pagination__link--previous {
-        margin-bottom: 0;
+      @media only screen and (min-width: $breakpoint-medium) {
+        .pagination__link--next,
+        .pagination__link--previous {
+          margin-bottom: 0;
+        }
       }
     }
   }
