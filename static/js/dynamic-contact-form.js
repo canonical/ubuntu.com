@@ -39,6 +39,15 @@
     });
   }
 
+  if (contactModal) {
+    contactModal.addEventListener('click', function(e) {
+      if (e.target.id == 'contact-modal') {
+        e.preventDefault();
+        close();
+      }
+    });
+  }
+
   otherContainers.forEach(function(otherContainer) {
     var checkbox = otherContainer.querySelector('.js-other-container__checkbox');
     var input = otherContainer.querySelector('.js-other-container__input');

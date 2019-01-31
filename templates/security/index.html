@@ -270,7 +270,7 @@
         <li class="p-list__item is-ticked">Support: phone and web-based support at multiple service levels</li>
       </ul>
       <p><a href="https://buy.ubuntu.com" class="p-button--neutral"><span class="p-link--external">Visit the Ubuntu Advantage store</span></a></p>
-      <p><a href="/support/contact-us">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+      <p><a href="/support/contact-us" class="js-invoke-modal">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
@@ -282,7 +282,7 @@
       <p class="p-heading--four">We can recommend a security solution that best suits the needs of your&nbsp;organisation.</p>
       <ul class="p-inline-list">
         <li class="p-inline-list__item">
-          <a href="/support/contact-us" class="p-button">Contact us</a>
+          <a href="/support/contact-us" class="p-button js-invoke-modal">Contact us</a>
         </li>
         <li class="p-inline-list__item">
           <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/290073">Watch the Ubuntu security webinar</a>
@@ -295,6 +295,7 @@
   </div>
 </section>
 
+{% include "shared/forms/interactive/_general.html" with lpId="2154" formid="1257" lpurl="https://pages.ubuntu.com/things-contact-us.html" returnURL="https://www.ubuntu.com/contact-us/form/thank-you" %}
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_security_discussion" second_item="_security_esm" third_item="_security_further_reading" %}
 
 {% endblock content %}

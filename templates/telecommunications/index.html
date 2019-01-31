@@ -15,7 +15,7 @@
           <a class="p-button--positive" href="https://www.brighttalk.com/webcast/6793/290067" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Watch Cloud to Edge webinar', 'eventLabel' : 'Watch Cloud to Edge webinar', 'eventValue' : undefined });" ><span class="p-link--external">Watch the 'Cloud to Edge' webinar</span></a>
         </li>
         <li class="p-inline-list__item">
-          <a href="/cloud/contact-us" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Telcos - Top CTA' });" class="p-button--neutral">Contact us</a>
+          <a href="/cloud/contact-us" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Telcos - Top CTA' });" class="p-button--neutral js-invoke-modal">Contact us</a>
         </li>
       </ul>
     </p>
@@ -221,7 +221,7 @@
           <a href="https://www.brighttalk.com/webcast/6793/290067" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Footer CTA', 'eventLabel' : 'Watch Cloud to Edge webinar' });"><span class="p-link--external">Watch the 'Cloud to Edge' webinar</span></a>
         </li>
         <li class="p-inline-list__item">
-          <a href="/cloud/contact-us" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Footer CTA', 'eventLabel' : 'Contact us' });">Contact us</a>
+          <a href="/cloud/contact-us" class="p-button--neutral js-invoke-modal" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Footer CTA', 'eventLabel' : 'Contact us' });">Contact us</a>
         </li>
       </ul>
     </div>
@@ -231,5 +231,6 @@
   </div>
 </section>
 
+{% include "shared/forms/interactive/_general.html" with lpId="2154" formid="1257" lpurl="https://pages.ubuntu.com/things-contact-us.html" returnURL="https://www.ubuntu.com/contact-us/form/thank-you" %}
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_newsletter" third_item="_telco_further_reading" %}
 {% endblock content %}
