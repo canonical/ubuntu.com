@@ -75,6 +75,21 @@
         }
       });
     });
+  }
+
+  otherContainers.forEach(function(otherContainer) {
+    var checkbox = otherContainer.querySelector('.js-other-container__checkbox');
+    var input = otherContainer.querySelector('.js-other-container__input');
+    checkbox.addEventListener('change', function(e) {
+      if (e.target.checked) {
+        input.style.opacity = 1;
+        input.focus();
+      } else {
+        input.style.opacity = 0;
+        input.value = '';
+      }
+    });
+  });
 
     // Hack for now but updates the styling based on the thank you panel
     function checkThankYou() {
