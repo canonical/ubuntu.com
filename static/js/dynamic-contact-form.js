@@ -93,35 +93,23 @@
   function close() {
     setState(1);
     contactModal.classList.add('u-hide');
-    removeHash();
+    updateHash('');
   }
 
   // Open the contact us modal
   function open() {
     contactModal.classList.remove('u-hide');
-    addHash();
+    updateHash(triggeringHash);
   }
 
   // Removes the triggering hash
-  function removeHash() {
+  function updateHash(hash) {
     var location = window.location;
-    if (location.hash === triggeringHash) {
+    if (location.hash !== hash || hash === '') {
       if ("pushState" in history) {
-        history.pushState('', document.title, location.pathname + location.search);
+        history.pushState('', document.title, location.pathname + location.search + hash);
       } else {
-        location.hash = '';
-      }
-    }
-  }
-
-  // Adds the triggering hash
-  function addHash() {
-    var location = window.location;
-    if (location.hash !== triggeringHash) {
-      if ("pushState" in history) {
-        history.pushState('', document.title, location.pathname + location.search + triggeringHash);
-      } else {
-        location.hash = triggeringHash;
+        location.hash = hash;
       }
     }
   }
