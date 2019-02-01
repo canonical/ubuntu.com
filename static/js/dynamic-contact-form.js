@@ -1,4 +1,5 @@
 (function () {
+  var triggeringHash = '#get-in-touch';
   var contactIndex = 1;
   var contactModal = document.getElementById("contact-modal");
   var contactButtons = document.querySelectorAll('.js-invoke-modal');
@@ -17,10 +18,6 @@
       open();
     });
   });
-
-  if (window.location.hash == '#get-in-touch') {
-    open();
-  }
 
   document.onkeydown = function(evt) {
     evt = evt || window.event;
@@ -96,11 +93,37 @@
   function close() {
     setState(1);
     contactModal.classList.add('u-hide');
+    removeHash();
   }
 
   // Open the contact us modal
   function open() {
     contactModal.classList.remove('u-hide');
+    addHash();
+  }
+
+  // Removes the triggering hash
+  function removeHash() {
+    var location = window.location;
+    if (location.hash === triggeringHash) {
+      if ("pushState" in history) {
+        history.pushState('', document.title, location.pathname + location.search);
+      } else {
+        location.hash = '';
+      }
+    }
+  }
+
+  // Adds the triggering hash
+  function addHash() {
+    var location = window.location;
+    if (location.hash !== triggeringHash) {
+      if ("pushState" in history) {
+        history.pushState('', document.title, location.pathname + location.search + triggeringHash);
+      } else {
+        location.hash = triggeringHash;
+      }
+    }
   }
 
   // Update the content of the modal based on the current index
@@ -145,4 +168,18 @@
     });
     return message;
   }
+
+  // Opens the form when the initial hash matches the trigger
+  if (window.location.hash === triggeringHash) {
+    open();
+  }
+
+
+  // Listens for hash changes and opens the form if it matches the trigger
+  function locationHashChanged() {
+    if (window.location.hash === triggeringHash) {
+      open();
+    }
+  }
+  window.onhashchange = locationHashChanged;
 })()
