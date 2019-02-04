@@ -51,19 +51,6 @@
       });
     }
 
-    otherContainers.forEach(function(otherContainer) {
-      var checkbox = otherContainer.querySelector('.js-other-container__checkbox');
-      var input = otherContainer.querySelector('.js-other-container__input');
-      checkbox.addEventListener('change', function(e) {
-        if (e.target.checked) {
-          input.disabled = false;
-        } else {
-          input.disabled = true;
-          input.value = '';
-        }
-      });
-    });
-
     modalPaginationButtons.forEach(function(modalPaginationButton) {
       modalPaginationButton.addEventListener('click', function(e) {
         e.preventDefault();
@@ -72,6 +59,20 @@
           setState(contactIndex - 1);
         } else {
           setState(contactIndex + 1);
+        }
+      });
+    });
+
+    otherContainers.forEach(function(otherContainer) {
+      var checkbox = otherContainer.querySelector('.js-other-container__checkbox');
+      var input = otherContainer.querySelector('.js-other-container__input');
+      checkbox.addEventListener('change', function(e) {
+        if (e.target.checked) {
+          input.style.opacity = 1;
+          input.focus();
+        } else {
+          input.style.opacity = 0;
+          input.value = '';
         }
       });
     });

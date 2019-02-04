@@ -2,9 +2,9 @@
 
 <div class="p-modal u-hide" id="contact-modal">
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
-    <header class="p-modal__header">
+    <header class="p-modal__header" style="display: block;">
+      <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
       <h2 class="p-modal__title" id="modal-title">Let’s get your device to market faster</h2>
-      <button class="p-modal__close" aria-label="Close active modal">Close</button>
     </header>
     <div class="js-pagination js-pagination--1">
       <p id="modal-description" class="u-no-max-width u-no-margin--bottom">Canonical partners with silicon companies, board manufacturers and ODMs to help you bring smart devices to market faster. Tell us about your project so we can bring the right team to the conversation.</p>
@@ -85,7 +85,7 @@
           <div class="js-other-container">
             <input type="checkbox" class="js-other-container__checkbox" id="architecture-other">
             <label for="architecture-other">Other</label>
-            <input type="text" id="architecture-other-specified" class="js-other-container__input" placeholder="Please specify" disabled="disabled" aria-label="Other architecture">
+            <input type="text" id="architecture-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other architecture">
           </div>
         </div>
         <div class="col-4">
@@ -103,7 +103,7 @@
           <div class="js-other-container">
             <input type="checkbox" class="js-other-container__checkbox" id="board-other">
             <label for="board-other">Other</label>
-            <input type="text" id="board-other-specified" class="js-other-container__input" placeholder="Please specify" disabled="disabled" aria-label="Other Board">
+            <input type="text" id="board-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other Board">
           </div>
         </div>
         <div class="col-4">
@@ -123,7 +123,7 @@
           <div class="js-other-container">
             <input type="checkbox" class="js-other-container__checkbox" id="odm-other">
             <label for="odm-other">Other</label>
-            <input type="text" id="odm-other-specified" class="js-other-container__input" placeholder="Please specify" disabled="disabled" aria-label="Other ODM">
+            <input type="text" id="odm-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other ODM">
           </div>
         </div>
       </div>
@@ -150,19 +150,6 @@
               <li class="mktFormReq mktField p-list__item">
                 <label for="Email" class="mktoLabel">Email address:</label>
                 <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" required="required" />
-              </li>
-              <li class="mktFormReq mktField p-list__item">
-                <label for="Phone" class="mktoLabel">Phone number:</label>
-                <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" required="required" />
-              </li>
-              {% include "shared/forms/_country.html" %} {% include "shared/forms/_state.html" %}
-              <li class="mktFormReq mktField p-list__item">
-                <label for="Company" class="mktoLabel">Company:</label>
-                <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
-              </li>
-              <li class="mktFormReq mktField p-list__item">
-                <label for="Title" class="mktoLabel">Job title:</label>
-                <input required id="Title" name="Title" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
               </li>
               <li class="mktField p-list__item">
                 <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
