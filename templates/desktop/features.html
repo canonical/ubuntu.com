@@ -2,29 +2,29 @@
 
 {% block head_extra %}
 <style type="text/css">
-@-webkit-keyframes flash-sign {
-  22%, 28%, 98%, 100% {
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    opacity: 0;
+  @-webkit-keyframes flash-sign {
+    22%, 28%, 98%, 100% {
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+      opacity: 0;
+    }
+
+    27%, 99% {
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+      opacity: 1;
+    }
   }
 
-  27%, 99% {
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-    opacity: 1;
-  }
-}
+  @keyframes flash-sign {
+    22%, 28%, 98%, 100% {
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+      opacity: 0;
+    }
 
-@keyframes flash-sign {
-  22%, 28%, 98%, 100% {
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    opacity: 0;
+    27%, 99% {
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+      opacity: 1;
+    }
   }
-
-  27%, 99% {
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-    opacity: 1;
-  }
-}
 </style>
 {% endblock %}
 {% block title %}Desktop features{% endblock %}
@@ -76,7 +76,7 @@
         </li>
         <li class="p-matrix__item last-row">
           <a href="https://snapcraft.io/vlc">
-            <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}3c8c6a92-VLC_Icon.svg" width="48" alt="VLC icon" />
+            <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}33f5e395-vlc.svg" width="48" alt="VLC icon" />
           </a>
           <div class="p-matrix__content">
             <h3 class="p-matrix__title"><a href="https://snapcraft.io/vlc">VLC player</a></h3>
@@ -94,7 +94,7 @@
         </li>
         <li class="p-matrix__item">
           <a href="https://snapcraft.io/slack">
-            <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}5672e723-Slack_Mark.svg" width="48" alt="Slack icon" />
+            <img class="p-matrix__img" src="{{ ASSET_SERVER_URL }}5672e723-Slack_Mark.svg" width="48" alt="Slack">
           </a>
           <div class="p-matrix__content">
             <h3 class="p-matrix__title"><a href="https://snapcraft.io/slack">Slack</a></h3>
@@ -270,18 +270,18 @@
 {% endblock content %}
 {% block footer_extra %}
 <script>
-var photoRow = document.querySelector('.p-strip-photos');
-var caption = photoRow.querySelector('.p-strip-photos__credit');
-var credits = {'photo-1': 'Photo by community member Tomáš Kijas',
-'photo-2': 'Photo by community member Life Nomadic',
-'photo-3': 'Photo by community member Martin Wagner'};
-if (photoRow) {
-  var n = Math.floor((Math.random() * 3) + 1);
-  if (!credits['photo-' + n]) {
-    n = 1;
+  var photoRow = document.querySelector('.p-strip-photos');
+  var caption = photoRow.querySelector('.p-strip-photos__credit');
+  var credits = {'photo-1': 'Photo by community member Tomáš Kijas',
+  'photo-2': 'Photo by community member Life Nomadic',
+  'photo-3': 'Photo by community member Martin Wagner'};
+  if (photoRow) {
+    var n = Math.floor((Math.random() * 3) + 1);
+    if (!credits['photo-' + n]) {
+      n = 1;
+    }
+    photoRow.classList.add('photo-' + n);
+    caption.innerHTML = credits["photo-" + n];
   }
-  photoRow.classList.add('photo-' + n);
-  caption.innerHTML = credits["photo-" + n];
-}
 </script>
 {% endblock footer_extra %}
