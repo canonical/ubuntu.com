@@ -113,7 +113,7 @@
               </li>
               <li>If there is any directory mounted on the internal eMMC storage, unmount it. For instance, if you see an occurence of <code>/dev/mmcblk0p3</code> on <code>/media/ubuntu/writable type ext4 (rw,relatime,data=ordered)</code>, run <code>sudo umount /media/ubuntu/writabl</code>.</li>
               <li>Run the following command, where <code>&lt;disk label&gt;</code> is the label of the second USB flash drive:
-                  <pre><code>xzcat /media/ubuntu/&lt;disk label&gt;/ubuntu-core-16-amd64.img.xz | sudo dd of=/dev/mmcblk0 bs=32M status=progress; sync</code></pre>
+                  <pre><code>xzcat /media/ubuntu/&lt;disk label&gt;/ubuntu-core-18-amd64.img.xz | sudo dd of=/dev/mmcblk0 bs=32M status=progress; sync</code></pre>
               </li>
               <li>Reboot the system and remove the flash drives when prompted, it will then reboot from the internal memory where Ubuntu Core has been flashed.</li>
             </ol>
