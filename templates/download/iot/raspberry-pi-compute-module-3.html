@@ -53,8 +53,8 @@
           <div class="p-list-step__content">
             <p>Get the correct Ubuntu Core image for your board:</p>
             <ul class="u-no-margin--left">
-              <li><a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/16/stable/current/ubuntu-core-16-cm3.img.xz">Ubuntu Core 16 image for Compute Module 3</a></li>
-              <li>You can verify the integrity of the files using the <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/16/stable/current/SHA256SUMS">SHA256SUM</a> and <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/16/stable/current/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.</li>
+              <li><a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/18/stable/current/ubuntu-core-18-armhf+cm3.img.xz">Ubuntu Core 18 image for Compute Module 3</a></li>
+              <li>You can verify the integrity of the files using the <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/18/stable/current/SHA256SUMS">SHA256SUM</a> and <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/18/stable/current/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.</li>
             </ul>
           </div>
         </li>
@@ -96,7 +96,7 @@ sudo ./rpiboot</code></pre>
                 <p><img class="p-image--bordered" src="{{ ASSET_SERVER_URL }}55329e6f-CM3_J4.JPG?w=300" width="300" alt="J4"></p>
               </li>
               <li>
-                <p>With the first micro USB to USB cable, plug the hose machine into the IO Board USB slave port (<code>J15</code>).</p>
+                <p>With the first micro USB to USB cable, plug the host machine into the IO Board USB slave port (<code>J15</code>).</p>
                 <p><img class="p-image--bordered" src="{{ ASSET_SERVER_URL }}2073d0aa-CM3_J15.JPG?w=300" width="300" alt="J15"></p>
               </li>
               <li>With the second micro USB to USB cable, power on the IO board.</li>
@@ -119,7 +119,7 @@ sudo ./rpiboot</code></pre>
                   <li>If the partition is mounted, unmount it by clicking the square icon below the partition diagram or the eject icon in a file manager</li>
                 </ul>
               </li>
-              <li>Download the <a href="#step2">Ubuntu Core image</a>. When this is done you should have an <code>ubuntu-core-16-cm3.img.xz</code> file in your <code>~/Downloads</code> directory</li>
+              <li>Download the <a href="#step2">Ubuntu Core image</a>. When this is done you should have an <code>ubuntu-core-18-armhf+cm3.img.xz</code> file in your <code>~/Downloads</code> directory</li>
               <li>
                 <p>Flash Ubuntu Core on the EMMC partition with:</p>
                 <pre><code>xzcat ~/Downloads/&lt;image file .xz&gt; | sudo dd of=&lt;device address&gt; bs=32M; sync</code></pre>
