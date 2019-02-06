@@ -12,22 +12,22 @@ Please refer to Canonical's [Intellectual Property Rights Policy](/legal/intelle
 
 Canonical’s trademarks (registered in word and logo form) include:
 
-*   CANONICAL
-*   UBUNTU
-*   KUBUNTU
-*   EDUBUNTU
-*   XUBUNTU
-*   JUJU
-*   LANDSCAPE
 *   BAZAAR
 *   BOOTSTACK
+*   CANONICAL
+*   EDUBUNTU
 *   JAAS
+*   JUJU
+*   KUBUNTU
+*   LANDSCAPE
 *   LAUNCHPAD
 *   LUBUNTU
 *   LXD
 *   MAAS
 *   SNAPCRAFT
 *   SNAPPY
+*   UBUNTU
+*   XUBUNTU
 
 The absence of a name or logo from the list above does not constitute a waiver by Canonical of a Canonical trademark or other intellectual property rights concerning that name or logo.
 
