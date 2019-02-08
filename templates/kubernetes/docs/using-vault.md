@@ -122,8 +122,8 @@ More details can be found [in the guide][vault-guide-ha].
 [certs-doc]: /kubernetes/docs/certs-and-trust
 [encryption-doc]: /kubernetes/docs/encryption-at-rest
 [vault]: https://www.vaultproject.io
-[expose]: https://docs.jujucharms.com/stable/en/charms-exposing
-[hacluster]: https://jujucharms.com/stable/en/hacluster
+[expose]: https://docs.jujucharms.com/stable/en/charms-deploying#exposing-deployed-applications
+[hacluster]: https://jujucharms.com/hacluster/
 [vault-guide-csr]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-certificate-management.html
 [vault-guide-unseal]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html#initialize-and-unseal-vault
 [vault-guide-ha]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html#enabling-ha
