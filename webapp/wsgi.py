@@ -10,10 +10,8 @@ https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
 # Core
 import os
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "webapp.settings")
-
 # Modules
-from django.core.wsgi import get_wsgi_application  # noqa
-from whitenoise.django import DjangoWhiteNoise  # noqa
+from django.core.wsgi import get_wsgi_application
 
-application = DjangoWhiteNoise(get_wsgi_application())
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "webapp.settings")
+application = get_wsgi_application()
