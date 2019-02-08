@@ -36,8 +36,8 @@ bundles, then explains how the bundle can be customised.
 
 The following sections outline a standard installation of **CDK** using the stable release
 **Juju** bundles. The standard bundle includes all the components of Kubernetes, but you
-should also follow the [additional configuration](#additional_configuration) steps
-at the end for Kubernetes  to be able to interact with the cloud it is deployed on.
+should also follow the [additional configuration](#config) steps at the end for
+Kubernetes  to be able to interact with the cloud it is deployed on.
 
 ###  Install Juju
 
@@ -113,7 +113,7 @@ updated, including for testing and beta versions, so it isn't always the case
 that a higher revision number is 'better'. The revision numbers for the release
 versions of the **CDK** bundle are shown in the table below:
 
-<a  id="table" />
+<a  id="table"></a>
 
 | Kubernetes version | CDK bundle |
 | --- | --- |
@@ -133,7 +133,7 @@ Only the latest three versions of CDK are supported at any time.
   </p>
 </div>
 
-<a id="additional_configuration" />
+<a id="config" ></a>
 ### Additional configuration
 
 To allow Kubernetes to access resources and functionality of the underlying
@@ -194,8 +194,7 @@ file for each version of **CDK**.
 
 Both methods are described below.
 
-<a id="overlay" />
-
+<a id="overlay"></a>
 ### Using overlays
 
 A _bundle overlay_ is a fragment of valid YAML which is dynamically merged on
