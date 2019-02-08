@@ -4,6 +4,7 @@
 - **Install**
   - [Quickstart](/kubernetes/docs/quickstart)
   - [Local install](/kubernetes/docs/install-local)
+  - [Manual install](/kubernetes/docs/install-manual)
 - **Operations**
   - [Logging](/kubernetes/docs/logging)
   - [Monitoring](/kubernetes/docs/monitoring)
