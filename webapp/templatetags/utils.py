@@ -11,7 +11,7 @@ def truncate_chars(value, max_length):
     if length > max_length:
         truncated = value[:max_length]
         if not length == (max_length + 1) and value[max_length + 1] != " ":
-            truncated = truncated[:truncated.rfind(" ")]
+            truncated = truncated[: truncated.rfind(" ")]
         return truncated + "&hellip;"
     return value
 
