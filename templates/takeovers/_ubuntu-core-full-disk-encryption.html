@@ -62,19 +62,21 @@
 
     .p-takeover__image #outside-circle {
       stroke-linecap: round;
-      animation-name: progress;
-      animation-duration: 1s;
+      animation-name: progress, show;
+      animation-delay: 1s;
+      animation-duration: 1s, .1s;
       animation-fill-mode: forwards;
       animation-timing-function: ease-out;
       transform: rotate(-40deg) scale(6.65);
       transform-origin: 50% 50%;
       stroke-dasharray: 0 100;
+      opacity: 0;
     }
 
     .p-takeover__image #lock {
       animation-name: show;
-      animation-duration: .1s;
-      animation-delay: 1s;
+      animation-duration: .15s;
+      animation-delay: 2s;
       animation-fill-mode: forwards;
       opacity: 0;
     }
