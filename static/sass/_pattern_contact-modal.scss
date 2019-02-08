@@ -40,6 +40,16 @@
       }
 
       @media only screen and (min-width: $breakpoint-medium) {
+        .u-align {
+          padding-bottom: 70px;
+
+          &--bottom {
+            bottom: 0;
+            margin-top: 1rem;
+            position: absolute;
+          }
+        }
+
         .pagination__link--next,
         .pagination__link--previous {
           margin-bottom: 0;
