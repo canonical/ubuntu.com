@@ -65,7 +65,7 @@ juju add-credential
 
 
 The Juju documentation has more information on [adding credentials][credentials] and
-[configuring a controller][controller-config]
+[configuring a controller][controller-config].
 
 
 <!-- COMMENTED OUT UNTIL PAGE REFERRED TO IS ADDED
@@ -213,7 +213,7 @@ relations:
   - ['aws-integrator', 'kubernetes-worker']
   ```
 
-You can also [download the fragment here][asset-aws-overlay]
+You can also [download the fragment here][asset-aws-overlay].
 
 **Juju**'s bundle format, and valid YAML are discussed more fully in the
 [Juju documentation][juju-bundle]. In this example it merely adds a new application,
@@ -319,7 +319,7 @@ exactly the deployment you want is simply to save a running model as a bundle.
 This will preserve configuration, relations and the charms used in the
 deployment so a structural replica can be recreated.
 
-This can be done dimply by running the command:
+This can be done simply by running the command:
 
 ```bash
 juju export-bundle --filename mybundle.yaml
@@ -341,7 +341,7 @@ button near the top left of the screen.
 
 ![][image-gui]
 
-For more information on the Juju GUI, see the [Juju documentation][juju-gui]
+For more information on the Juju GUI, see the [Juju documentation][juju-gui].
 
 <!-- IMAGES -->
 
