@@ -62,6 +62,14 @@ public registries. Full instructions on using this feature are in the [documenta
 The keepalived charm can be used to run multiple kube-api-loadbalancers behind a
 virtual IP. For more details, please see the [documentation][docs-keepalived].
 
+- Nginx update
+
+Nginx was updated to v0.21.0, which brings a few changes of which to be aware. The first
+is that nginx is now in a namespace by itself, which is derived from the application name.
+By default this will be `ingress-nginx-kubernetes-worker`. The second change relates to
+custom configmaps. The name has changed to `nginx-configuration` and the configmap needs to
+reside in the same namespace as the nginx deployment.
+
 ## Fixes
 
  - Added post deployment script for jaas/jujushell ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/pull/697))
@@ -89,9 +97,9 @@ virtual IP. For more details, please see the [documentation][docs-keepalived].
  - Fixed an issue where the calico-node service failed to start ([Issue](https://github.com/juju-solutions/layer-canal/pull/24))
  - Fixed updating policy definitions during upgrade-charm on AWS integrator ([Issue](https://github.com/juju-solutions/charm-aws-integrator/pull/30))
  - Fixed parsing credentials config value ([Issue](https://github.com/juju-solutions/charm-azure-integrator/pull/18))
- - Fixed pvc stuck in pending ([Issue](https://github.com/juju-solutions/charm-azure-integrator/issues/16))
- - Fixed updating properties of the openstack integrator charm do not propagate automatically ([Issue](https://github.com/juju-solutions/charm-openstack-integrator/issues/10))
- - Fixed flannel error during install hook due to incorrect resource ([Issue](https://github.com/juju-solutions/charm-flannel/issues/52))
+ - Fixed pvc stuck in pending (azure-integrator)
+ - Fixed updating properties of the openstack integrator charm do not propagate automatically (openstack-integrator)
+ - Fixed flannel error during install hook due to incorrect resource (flannel)
  - Updated master and worker to handle upstream changes from OpenStack Integrator ([Issue](https://github.com/juju-solutions/kubernetes/pull/176))
  - Updated to CNI 0.7.4 ([Issue](https://github.com/juju-solutions/kubernetes/pull/194))
  - Updated to Flannel v0.10.0 ([Issue](https://github.com/juju-solutions/charm-flannel/pull/50))
