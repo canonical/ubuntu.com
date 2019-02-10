@@ -52,8 +52,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = False
 USE_L10N = False
 USE_TZ = False
-STATIC_URL = '/static/'
-STATIC_ROOT = "static"
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 APPEND_SLASH = False
 REMOVE_SLASH = True
 
@@ -67,6 +67,7 @@ SEARCH_SERVER_URL = 'http://10.22.112.8/search'
 SEARCH_TIMEOUT = 10
 
 MIDDLEWARE_CLASSES = [
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'canonicalwebteam.custom_response_headers.Middleware',
     'unslashed.middleware.RemoveSlashMiddleware',
 ]
