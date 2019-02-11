@@ -8,7 +8,7 @@ context:
 
 # Service terms
 
-These service terms (the **“Agreement”**) takes effect as of the date Customer signs an Order incorporating its terms or otherwise accepts its terms as part of a Registration Process (the **“Effective Date”**) between, Canonical Group Limited, a company registered in England (company number 6870835) whose registered office is at 5th Floor, Blue Fin Building, 110 Southwark Street, London SE1 0SU, United Kingdom (**“Canonical”**), and the customer identified in the Order (**“Customer”**).
+These service terms (the **“Agreement”**) take effect as of the date Customer signs an Order incorporating its terms or otherwise accepts its terms as part of a Registration Process (the **“Effective Date”**) between, Canonical Group Limited, a company registered in England (company number 6870835) whose registered office is at 5th Floor, Blue Fin Building, 110 Southwark Street, London SE1 0SU, United Kingdom (**“Canonical”**), and the customer identified in the Order (**“Customer”**).
 
 1. <h2>Interpretation</h2>
 
@@ -94,3 +94,7 @@ These service terms (the **“Agreement”**) takes effect as of the date Custom
     12.  Customer acknowledges that export laws and regulations of the United States and European territories may apply to materials delivered by Canonical under this Agreement. Customer agrees that such export control laws and regulations govern its use of materials and will comply with all such laws and regulations. Customer will not export, directly or indirectly, such materials in violation of these laws or regulations, or use them for any purpose prohibited by these laws.
 12. <h2>Governing law</h2>
     1.  This Agreement and any non-contractual obligations arising from this Agreement will be governed by and construed in accordance with the laws of England. The parties submit to the exclusive jurisdiction of the courts of England, except when a party seeks immediate injunctive relief (for example, in connection with a breach or impending breach of confidentiality obligations) that would not be reasonably effective unless obtained in the jurisdiction of the conduct at issue. The provisions of the United Nations Convention on Contracts for the International Sale of Goods will not apply to this Agreement.
+
+<div class="p-top">
+  <a href="#" class="p-top__link">Back to top</a>
+</div>
