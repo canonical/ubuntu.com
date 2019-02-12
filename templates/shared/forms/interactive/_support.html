@@ -2,44 +2,47 @@
 
 <div class="p-modal u-hide" id="contact-modal">
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
-    <header class="p-modal__header" style="display: block;">
+    <header class="p-modal__header" style="display: block; border-bottom: 0;">
       <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
+      <hr />
       <h2 class="p-modal__title" id="modal-title">Unleash open source in your business</h2>
     </header>
     <div class="js-pagination js-pagination--1">
-      <h3 class="p-heading--five">Where would you like to go faster?</h3>
-      <div class="row u-no-padding">
-        <div class="col-4 u-sv3">
-          <input type="checkbox" id="where-would-you-like-infrastructure">
-          <label for="where-would-you-like-infrastructure">Infrastructure</label>
-          <input type="checkbox" id="where-would-you-like-applications">
-          <label for="where-would-you-like-applications">Applications</label>
-          <input type="checkbox" id="where-would-you-like-development">
-          <label for="where-would-you-like-development">Development</label>
-          <input type="checkbox" id="where-would-you-like-operations">
-          <label for="where-would-you-like-operations">Operations</label>
-          <input type="checkbox" id="where-would-you-like-managed-services">
-          <label for="where-would-you-like-managed-services">Managed services</label>
-        </div>
-        <div class="col-4 u-sv3">
-          <input type="checkbox" id="where-would-you-like-multi-cloud">
-          <label for="where-would-you-like-multi-cloud">Multi cloud</label>
-          <input type="checkbox" id="where-would-you-like-on-premises">
-          <label for="where-would-you-like-on-premises">On premises</label>
-          <input type="checkbox" id="where-would-you-like-edge">
-          <label for="where-would-you-like-edge">Edge</label>
-          <input type="checkbox" id="where-would-you-like-hpc">
-          <label for="where-would-you-like-hpc">HPC</label>
-        </div>
-        <div class="col-4 u-sv3">
-          <input type="checkbox" id="where-would-you-like-servers">
-          <label for="where-would-you-like-servers">Servers</label>
-          <input type="checkbox" id="where-would-you-like-virtual-machines">
-          <label for="where-would-you-like-virtual-machines">Virtual machines</label>
-          <input type="checkbox" id="where-would-you-like-desktops">
-          <label for="where-would-you-like-desktops">Desktops</label>
-          <input type="checkbox" id="where-would-you-like-appliances">
-          <label for="where-would-you-like-appliances">Appliances</label>
+      <div class="js-formfield">
+        <h3 class="p-heading--five">Where would you like to go faster?</h3>
+        <div class="row u-no-padding">
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="where-would-you-like-infrastructure">
+            <label for="where-would-you-like-infrastructure">Infrastructure</label>
+            <input type="checkbox" id="where-would-you-like-applications">
+            <label for="where-would-you-like-applications">Applications</label>
+            <input type="checkbox" id="where-would-you-like-development">
+            <label for="where-would-you-like-development">Development</label>
+            <input type="checkbox" id="where-would-you-like-operations">
+            <label for="where-would-you-like-operations">Operations</label>
+            <input type="checkbox" id="where-would-you-like-managed-services">
+            <label for="where-would-you-like-managed-services">Managed services</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="where-would-you-like-multi-cloud">
+            <label for="where-would-you-like-multi-cloud">Multi cloud</label>
+            <input type="checkbox" id="where-would-you-like-on-premises">
+            <label for="where-would-you-like-on-premises">On premises</label>
+            <input type="checkbox" id="where-would-you-like-edge">
+            <label for="where-would-you-like-edge">Edge</label>
+            <input type="checkbox" id="where-would-you-like-hpc">
+            <label for="where-would-you-like-hpc">HPC</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="where-would-you-like-servers">
+            <label for="where-would-you-like-servers">Servers</label>
+            <input type="checkbox" id="where-would-you-like-virtual-machines">
+            <label for="where-would-you-like-virtual-machines">Virtual machines</label>
+            <input type="checkbox" id="where-would-you-like-desktops">
+            <label for="where-would-you-like-desktops">Desktops</label>
+            <input type="checkbox" id="where-would-you-like-appliances">
+            <label for="where-would-you-like-appliances">Appliances</label>
+          </div>
         </div>
       </div>
       <div class="pagination">
@@ -48,92 +51,94 @@
     </div>
 
     <div class="js-pagination js-pagination--2 u-hide">
-      <h3 class="p-heading--five">Should we bring a particular expert to the discussion?</h3>
-      <div class="row u-no-padding">
-        <div class="col-3 u-sv3">
-          <input type="checkbox" id="expert-to-the-discussion-Kubernetes">
-          <label for="expert-to-the-discussion-Kubernetes">Kubernetes</label>
-          <input type="checkbox" id="expert-to-the-discussion-Openstack">
-          <label for="expert-to-the-discussion-Openstack">Openstack</label>
-          <input type="checkbox" id="expert-to-the-discussion-Kernel">
-          <label for="expert-to-the-discussion-Kernel">Kernel</label>
-          <input type="checkbox" id="expert-to-the-discussion-DevSecOps">
-          <label for="expert-to-the-discussion-DevSecOps">DevSecOps</label>
-          <input type="checkbox" id="expert-to-the-discussion-High-availability">
-          <label for="expert-to-the-discussion-High-availability">High availability</label>
-          <input type="checkbox" id="expert-to-the-discussion-Service-catalog">
-          <label for="expert-to-the-discussion-Service-catalog">Service catalog</label>
-          <input type="checkbox" id="expert-to-the-discussion-Scale">
-          <label for="expert-to-the-discussion-Scale">Scale</label>
-          <input type="checkbox" id="expert-to-the-discussion-Performance">
-          <label for="expert-to-the-discussion-Performance">Performance</label>
-          <input type="checkbox" id="expert-to-the-discussion-VMware">
-          <label for="expert-to-the-discussion-VMware">VMware</label>
-          <input type="checkbox" id="expert-to-the-discussion-Docker">
-          <label for="expert-to-the-discussion-Docker">Docker</label>
-          <input type="checkbox" id="expert-to-the-discussion-Snaps">
-          <label for="expert-to-the-discussion-Snaps">Snaps</label>
-        </div>
-        <div class="col-3 u-sv3">
-          <input type="checkbox" id="expert-to-the-discussion-Storage">
-          <label for="expert-to-the-discussion-Storage">Storage</label>
-          <input type="checkbox" id="expert-to-the-discussion-Networking">
-          <label for="expert-to-the-discussion-Networking">Networking</label>
-          <input type="checkbox" id="expert-to-the-discussion-Databases">
-          <label for="expert-to-the-discussion-Databases">Databases</label>
-          <input type="checkbox" id="expert-to-the-discussion-Message-queues">
-          <label for="expert-to-the-discussion-Message-queues">Message queues</label>
-          <input type="checkbox" id="expert-to-the-discussion-Web-applications">
-          <label for="expert-to-the-discussion-Web-applications">Web applications</label>
-          <input type="checkbox" id="expert-to-the-discussion-Big-data">
-          <label for="expert-to-the-discussion-Big-data">Big data</label>
-          <input type="checkbox" id="expert-to-the-discussion-Event-streams">
-          <label for="expert-to-the-discussion-Event-streams">Event streams</label>
-          <input type="checkbox" id="expert-to-the-discussion-Logging">
-          <label for="expert-to-the-discussion-Logging">Logging</label>
-          <input type="checkbox" id="expert-to-the-discussion-Monitoring">
-          <label for="expert-to-the-discussion-Monitoring">Monitoring</label>
-          <input type="checkbox" id="expert-to-the-discussion-Alerting">
-          <label for="expert-to-the-discussion-Alerting">Alerting</label>
-        </div>
-        <div class="col-3 u-sv3">
-          <input type="checkbox" id="expert-to-the-discussion-AI-ML">
-          <label for="expert-to-the-discussion-AI-ML">AI / ML</label>
-          <input type="checkbox" id="expert-to-the-discussion-Tensorflow">
-          <label for="expert-to-the-discussion-Tensorflow">Tensorflow</label>
-          <input type="checkbox" id="expert-to-the-discussion-Kubeflow">
-          <label for="expert-to-the-discussion-Kubeflow">Kubeflow</label>
-          <input type="checkbox" id="expert-to-the-discussion-PyTorch">
-          <label for="expert-to-the-discussion-PyTorch">PyTorch</label>
-          <input type="checkbox" id="expert-to-the-discussion-NumPy">
-          <label for="expert-to-the-discussion-NumPy">NumPy</label>
-          <input type="checkbox" id="expert-to-the-discussion-ElasticSearch">
-          <label for="expert-to-the-discussion-ElasticSearch">ElasticSearch</label>
-          <input type="checkbox" id="expert-to-the-discussion-Kafka">
-          <label for="expert-to-the-discussion-Kafka">Kafka</label>
-          <input type="checkbox" id="expert-to-the-discussion-Graylog">
-          <label for="expert-to-the-discussion-Graylog">Graylog</label>
-          <input type="checkbox" id="expert-to-the-discussion-Ceph">
-          <label for="expert-to-the-discussion-Ceph">Ceph</label>
-        </div>
-        <div class="col-3 u-sv3">
-          <input type="checkbox" id="expert-to-the-discussion-Compliance">
-          <label for="expert-to-the-discussion-Compliance">Compliance</label>
-          <input type="checkbox" id="expert-to-the-discussion-Licensing">
-          <label for="expert-to-the-discussion-Licensing">Licensing</label>
-          <input type="checkbox" id="expert-to-the-discussion-PCI-DSS">
-          <label for="expert-to-the-discussion-PCI-DSS">PCI-DSS</label>
-          <input type="checkbox" id="expert-to-the-discussion-Outsourcing">
-          <label for="expert-to-the-discussion-Outsourcing">Outsourcing</label>
-          <input type="checkbox" id="expert-to-the-discussion-Orchestration">
-          <label for="expert-to-the-discussion-Orchestration">Orchestration</label>
-          <input type="checkbox" id="expert-to-the-discussion-Integration">
-          <label for="expert-to-the-discussion-Integration">Integration</label>
-          <input type="checkbox" id="expert-to-the-discussion-Packaging">
-          <label for="expert-to-the-discussion-Packaging">Packaging</label>
+      <div class="js-formfield">
+        <h3 class="p-heading--five">Should we bring a particular expert to the discussion?</h3>
+        <div class="row u-no-padding">
+          <div class="col-3 u-sv3">
+            <input type="checkbox" id="expert-to-the-discussion-Kubernetes">
+            <label for="expert-to-the-discussion-Kubernetes">Kubernetes</label>
+            <input type="checkbox" id="expert-to-the-discussion-Openstack">
+            <label for="expert-to-the-discussion-Openstack">Openstack</label>
+            <input type="checkbox" id="expert-to-the-discussion-Kernel">
+            <label for="expert-to-the-discussion-Kernel">Kernel</label>
+            <input type="checkbox" id="expert-to-the-discussion-DevSecOps">
+            <label for="expert-to-the-discussion-DevSecOps">DevSecOps</label>
+            <input type="checkbox" id="expert-to-the-discussion-High-availability">
+            <label for="expert-to-the-discussion-High-availability">High availability</label>
+            <input type="checkbox" id="expert-to-the-discussion-Service-catalog">
+            <label for="expert-to-the-discussion-Service-catalog">Service catalog</label>
+            <input type="checkbox" id="expert-to-the-discussion-Scale">
+            <label for="expert-to-the-discussion-Scale">Scale</label>
+            <input type="checkbox" id="expert-to-the-discussion-Performance">
+            <label for="expert-to-the-discussion-Performance">Performance</label>
+            <input type="checkbox" id="expert-to-the-discussion-VMware">
+            <label for="expert-to-the-discussion-VMware">VMware</label>
+            <input type="checkbox" id="expert-to-the-discussion-Docker">
+            <label for="expert-to-the-discussion-Docker">Docker</label>
+            <input type="checkbox" id="expert-to-the-discussion-Snaps">
+            <label for="expert-to-the-discussion-Snaps">Snaps</label>
+          </div>
+          <div class="col-3 u-sv3">
+            <input type="checkbox" id="expert-to-the-discussion-Storage">
+            <label for="expert-to-the-discussion-Storage">Storage</label>
+            <input type="checkbox" id="expert-to-the-discussion-Networking">
+            <label for="expert-to-the-discussion-Networking">Networking</label>
+            <input type="checkbox" id="expert-to-the-discussion-Databases">
+            <label for="expert-to-the-discussion-Databases">Databases</label>
+            <input type="checkbox" id="expert-to-the-discussion-Message-queues">
+            <label for="expert-to-the-discussion-Message-queues">Message queues</label>
+            <input type="checkbox" id="expert-to-the-discussion-Web-applications">
+            <label for="expert-to-the-discussion-Web-applications">Web applications</label>
+            <input type="checkbox" id="expert-to-the-discussion-Big-data">
+            <label for="expert-to-the-discussion-Big-data">Big data</label>
+            <input type="checkbox" id="expert-to-the-discussion-Event-streams">
+            <label for="expert-to-the-discussion-Event-streams">Event streams</label>
+            <input type="checkbox" id="expert-to-the-discussion-Logging">
+            <label for="expert-to-the-discussion-Logging">Logging</label>
+            <input type="checkbox" id="expert-to-the-discussion-Monitoring">
+            <label for="expert-to-the-discussion-Monitoring">Monitoring</label>
+            <input type="checkbox" id="expert-to-the-discussion-Alerting">
+            <label for="expert-to-the-discussion-Alerting">Alerting</label>
+          </div>
+          <div class="col-3 u-sv3">
+            <input type="checkbox" id="expert-to-the-discussion-AI-ML">
+            <label for="expert-to-the-discussion-AI-ML">AI / ML</label>
+            <input type="checkbox" id="expert-to-the-discussion-Tensorflow">
+            <label for="expert-to-the-discussion-Tensorflow">Tensorflow</label>
+            <input type="checkbox" id="expert-to-the-discussion-Kubeflow">
+            <label for="expert-to-the-discussion-Kubeflow">Kubeflow</label>
+            <input type="checkbox" id="expert-to-the-discussion-PyTorch">
+            <label for="expert-to-the-discussion-PyTorch">PyTorch</label>
+            <input type="checkbox" id="expert-to-the-discussion-NumPy">
+            <label for="expert-to-the-discussion-NumPy">NumPy</label>
+            <input type="checkbox" id="expert-to-the-discussion-ElasticSearch">
+            <label for="expert-to-the-discussion-ElasticSearch">ElasticSearch</label>
+            <input type="checkbox" id="expert-to-the-discussion-Kafka">
+            <label for="expert-to-the-discussion-Kafka">Kafka</label>
+            <input type="checkbox" id="expert-to-the-discussion-Graylog">
+            <label for="expert-to-the-discussion-Graylog">Graylog</label>
+            <input type="checkbox" id="expert-to-the-discussion-Ceph">
+            <label for="expert-to-the-discussion-Ceph">Ceph</label>
+          </div>
+          <div class="col-3 u-sv3">
+            <input type="checkbox" id="expert-to-the-discussion-Compliance">
+            <label for="expert-to-the-discussion-Compliance">Compliance</label>
+            <input type="checkbox" id="expert-to-the-discussion-Licensing">
+            <label for="expert-to-the-discussion-Licensing">Licensing</label>
+            <input type="checkbox" id="expert-to-the-discussion-PCI-DSS">
+            <label for="expert-to-the-discussion-PCI-DSS">PCI-DSS</label>
+            <input type="checkbox" id="expert-to-the-discussion-Outsourcing">
+            <label for="expert-to-the-discussion-Outsourcing">Outsourcing</label>
+            <input type="checkbox" id="expert-to-the-discussion-Orchestration">
+            <label for="expert-to-the-discussion-Orchestration">Orchestration</label>
+            <input type="checkbox" id="expert-to-the-discussion-Integration">
+            <label for="expert-to-the-discussion-Integration">Integration</label>
+            <input type="checkbox" id="expert-to-the-discussion-Packaging">
+            <label for="expert-to-the-discussion-Packaging">Packaging</label>
+          </div>
         </div>
       </div>
-      <div class="u-sv3">
+      <div class="u-sv3 js-formfield">
         <h3 class="p-heading--five">Tell us about your project or interest</h3>
         <textarea id="about-your-project-or-interest" name="sector-specific-requirements" aria-label="Tell us about your project or interest" rows="3"></textarea>
       </div>

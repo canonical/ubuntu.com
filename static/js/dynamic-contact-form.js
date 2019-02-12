@@ -146,30 +146,57 @@
     // Concatinate the options selected into a string
     function createMessage() {
       var message = '';
-      inputs.forEach(function(input) {
-        switch (input.type) {
-          case 'radio':
-            if (input.checked) {
-              message += input.id + ': ' + input.value + ' | ';
-            }
-          break;
-          case 'checkbox':
-            if (input.checked) {
-              message += input.id + ': ' + input.value + ' | ';
-            }
-          break;
-          case 'text':
-            if (!input.classList.contains('mktoField') && input.value !== '') {
-              message += input.id + ': ' + input.value + ' | ';
-            }
-          break;
-          case 'textarea':
-            if (!input.classList.contains('mktoField') && input.value !== '') {
-              message += input.id + ': ' + input.value + ' | ';
-            }
-          break;
-        }
+
+      var formFields = contactModal.querySelectorAll('.js-formfield');
+      formFields.forEach(function(formField) {
+        var comma = '';
+        var fieldTitle = formField.querySelector('.p-heading--five');
+        var inputs = formField.querySelectorAll('input, textarea');
+        message += fieldTitle.innerText + '\r\n';
+
+        inputs.forEach(function(input) {
+          switch (input.type) {
+            case 'radio':
+              if (input.checked) {
+                message += comma + input.value;
+                comma = ', ';
+              }
+            break;
+            case 'checkbox':
+              if (input.checked) {
+                var subSectionText = '';
+                var subSection = input.closest('[class*="col-"]').querySelector('.js-sub-section');
+                if (subSection) {
+                  subSectionText = subSection.innerText + ': ';
+                }
+
+                var label = formField.querySelector('label[for='+input.id+']');
+                if (label) {
+                  label = subSectionText + label.innerText;
+                } else {
+                  label = input.id;
+                }
+                message += comma + label;
+                comma = ', ';
+              }
+            break;
+            case 'text':
+              if (!input.classList.contains('mktoField') && input.value !== '') {
+                message += comma + input.value;
+                comma = ', ';
+              }
+            break;
+            case 'textarea':
+              if (!input.classList.contains('mktoField') && input.value !== '') {
+                message += comma + input.value;
+                comma = ', ';
+              }
+            break;
+          }
+        });
+        message += '\r\n\r\n';
       });
+
       return message;
     }
 
