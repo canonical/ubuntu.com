@@ -8,7 +8,7 @@
     var closeModalButton = document.querySelector('.js-close');
     var modalPaginationButtons = contactModal.querySelectorAll('.pagination a');
     var paginationContent = contactModal.querySelectorAll('.js-pagination');
-    var submitButton = contactModal.querySelector('button.pagination__link--next');
+    var submitButton = contactModal.querySelector('.mktoButton');
     var inputs = contactModal.querySelectorAll('input, textarea');
     var comment = contactModal.querySelector('#Comments_from_lead__c');
     var otherContainers = document.querySelectorAll('.js-other-container');
@@ -27,6 +27,12 @@
         close();
       }
     };
+
+    if (submitButton) {
+      closeModal.addEventListener('click', function(e) {
+        ga('send', 'event', 'interactive-forms', 'submitted', window.location.pathname);
+      });
+    }
 
     if (closeModal) {
       closeModal.addEventListener('click', function(e) {
@@ -55,10 +61,15 @@
       modalPaginationButton.addEventListener('click', function(e) {
         e.preventDefault();
         var button = e.target.closest('a');
+        var index = contactIndex;
         if (button.classList.contains('pagination__link--previous')) {
-          setState(contactIndex - 1);
+          index = index - 1;
+          setState(index);
+          ga('send', 'event', 'interactive-forms', 'goto:'+index, window.location.pathname);
         } else {
-          setState(contactIndex + 1);
+          index = index + 1;
+          setState(index);
+          ga('send', 'event', 'interactive-forms', 'goto:'+index, window.location.pathname);
         }
       });
     });
@@ -97,12 +108,14 @@
       setState(1);
       contactModal.classList.add('u-hide');
       updateHash('');
+      ga('send', 'event', 'interactive-forms', 'close', window.location.pathname);
     }
 
     // Open the contact us modal
     function open() {
       contactModal.classList.remove('u-hide');
       updateHash(triggeringHash);
+      ga('send', 'event', 'interactive-forms', 'open', window.location.pathname);
     }
 
     // Removes the triggering hash
