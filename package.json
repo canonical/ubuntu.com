@@ -1,8 +1,4 @@
 {
-  "name": "ubuntu-website",
-  "version": "0.0.1",
-  "description": "Django website for ubuntu.com",
-  "main": "index.js",
   "scripts": {
     "test": "yarn run lint-scss && yarn run lint-py && yarn run test-py",
     "lint-py": "flake8 webapp/ && black --check --line-length 79 webapp/",
