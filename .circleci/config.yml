@@ -37,7 +37,7 @@ jobs:
       - checkout
       - run:
           name: Lint python code
-          command: yarn lint-py
+          command: yarn lint-python
   lint-scss:
     <<: *defaults
     steps:
@@ -57,7 +57,7 @@ jobs:
           command: pip3 install -r requirements.txt
       - run:
           name: Run python tests
-          command: yarn test-py
+          command: yarn test-python
 
 workflows:
   version: 2
