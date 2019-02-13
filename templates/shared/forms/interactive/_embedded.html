@@ -2,128 +2,140 @@
 
 <div class="p-modal u-hide" id="contact-modal">
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
-    <header class="p-modal__header" style="display: block;">
+    <header class="p-modal__header" style="display: block; border-bottom: 0;">
       <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
+      <hr />
       <h2 class="p-modal__title" id="modal-title">Let’s get your device to market faster</h2>
     </header>
     <div class="js-pagination js-pagination--1">
       <p id="modal-description" class="u-no-max-width u-no-margin--bottom">Canonical partners with silicon companies, board manufacturers and ODMs to help you bring smart devices to market faster. Tell us about your project so we can bring the right team to the conversation.</p>
-      <h3 class="p-heading--five">Who’s your target audience?</h3>
-      <div class="row u-no-padding">
-        <div class="col-4 u-sv3">
-          <input type="radio" id="target-audience-enterprise" name="target-audience" value="Enterprise">
-          <label for="target-audience-enterprise">Enterprise</label>
-        </div>
-        <div class="col-4 u-sv3">
-          <input type="radio" id="target-audience-consumer" name="target-audience" value="Consumer">
-          <label for="target-audience-consumer">Consumer</label>
+
+      <div class="js-formfield">
+        <h3 class="p-heading--five">Who’s your target audience?</h3>
+        <div class="row u-no-padding">
+          <div class="col-4 u-sv3">
+            <input type="radio" id="target-audience-enterprise" name="target-audience" value="Enterprise">
+            <label for="target-audience-enterprise">Enterprise</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="radio" id="target-audience-consumer" name="target-audience" value="Consumer">
+            <label for="target-audience-consumer">Consumer</label>
+          </div>
         </div>
       </div>
-      <div class="u-sv3">
-        <h3 class="p-heading--five">What sector(s) are you important to you?</h3>
-        <textarea id="particular-sectors" aria-label="Are there particular sectors which are important to you" rows="3" placeholder="Anything extra you’d like to communicate about your needs or interests?"></textarea>
-      </div>
-      <div class="pagination">
-        <a class="p-button--positive pagination__link--next" href="">Next</a>
+      <div class="js-formfield">
+        <div class="u-sv3">
+          <h3 class="p-heading--five">What sector(s) are you important to you?</h3>
+          <textarea id="particular-sectors" aria-label="Are there particular sectors which are important to you" rows="3" placeholder="Anything extra you’d like to communicate about your needs or interests?"></textarea>
+        </div>
+        <div class="pagination">
+          <a class="p-button--positive pagination__link--next" href="">Next</a>
+        </div>
       </div>
     </div>
 
     <div class="js-pagination js-pagination--2 u-hide">
-      <h3 class="p-heading--five">What device capabilities are important to you?</h3>
-      <div class="row u-no-padding">
-        <div class="col-4 u-sv3">
-          <input type="checkbox" id="capabilities-security">
-          <label for="capabilities-security">Security</label>
-          <input type="checkbox" id="capabilities-over-the-air-updates">
-          <label for="capabilities-over-the-air-updates">Over-the-air updates</label>
-          <input type="checkbox" id="capabilities-app-store">
-          <label for="capabilities-app-store">App Store</label>
-          <input type="checkbox" id="capabilities-10-year-certification">
-          <label for="capabilities-10-year-certification">10-year certification</label>
-          <input type="checkbox" id="capabilities-real-time">
-          <label for="capabilities-real-time">Real-time</label>
-          <input type="checkbox" id="capabilities-AI-machine-learning">
-          <label for="capabilities-AI-machine-learning">AI / machine learning</label>
-        </div>
-        <div class="col-4 u-sv3">
-          <input type="checkbox" id="capabilities-ci-cd">
-          <label for="capabilities-ci-cd">CI/CD</label>
-          <input type="checkbox" id="capabilities-board-enablement">
-          <label for="capabilities-board-enablement">Board enablement</label>
-          <input type="checkbox" id="capabilities-compliance">
-          <label for="capabilities-compliance">Compliance</label>
-          <input type="checkbox" id="capabilities-eal">
-          <label for="capabilities-eal">EAL</label>
-          <input type="checkbox" id="capabilities-recovery-partition">
-          <label for="capabilities-recovery-partition">Recovery partition</label>
-          <input type="checkbox" id="capabilities-ros">
-          <label for="capabilities-ros">ROS</label>
-        </div>
-        <div class="col-4 u-sv3">
-          <input type="checkbox" id="capabilities-existing-apps">
-          <label for="capabilities-existing-apps">Existing apps</label>
-          <input type="checkbox" id="capabilities-management">
-          <label for="capabilities-management">Management</label>
-          <input type="checkbox" id="capabilities-factory-process">
-          <label for="capabilities-factory-process">Factory process</label>
-          <input type="checkbox" id="capabilities-boot-time">
-          <label for="capabilities-boot-time">Boot time</label>
-          <input type="checkbox" id="capabilities-secure-boot">
-          <label for="capabilities-secure-boot">Secure boot</label>
-          <input type="checkbox" id="capabilities-battery-life">
-          <label for="capabilities-battery-life">Battery life</label>
+
+      <div class="js-formfield">
+        <h3 class="p-heading--five">What device capabilities are important to you?</h3>
+        <div class="row u-no-padding">
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="capabilities-security">
+            <label for="capabilities-security">Security</label>
+            <input type="checkbox" id="capabilities-over-the-air-updates">
+            <label for="capabilities-over-the-air-updates">Over-the-air updates</label>
+            <input type="checkbox" id="capabilities-app-store">
+            <label for="capabilities-app-store">App Store</label>
+            <input type="checkbox" id="capabilities-10-year-certification">
+            <label for="capabilities-10-year-certification">10-year certification</label>
+            <input type="checkbox" id="capabilities-real-time">
+            <label for="capabilities-real-time">Real-time</label>
+            <input type="checkbox" id="capabilities-AI-machine-learning">
+            <label for="capabilities-AI-machine-learning">AI / machine learning</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="capabilities-ci-cd">
+            <label for="capabilities-ci-cd">CI/CD</label>
+            <input type="checkbox" id="capabilities-board-enablement">
+            <label for="capabilities-board-enablement">Board enablement</label>
+            <input type="checkbox" id="capabilities-compliance">
+            <label for="capabilities-compliance">Compliance</label>
+            <input type="checkbox" id="capabilities-eal">
+            <label for="capabilities-eal">EAL</label>
+            <input type="checkbox" id="capabilities-recovery-partition">
+            <label for="capabilities-recovery-partition">Recovery partition</label>
+            <input type="checkbox" id="capabilities-ros">
+            <label for="capabilities-ros">ROS</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="capabilities-existing-apps">
+            <label for="capabilities-existing-apps">Existing apps</label>
+            <input type="checkbox" id="capabilities-management">
+            <label for="capabilities-management">Management</label>
+            <input type="checkbox" id="capabilities-factory-process">
+            <label for="capabilities-factory-process">Factory process</label>
+            <input type="checkbox" id="capabilities-boot-time">
+            <label for="capabilities-boot-time">Boot time</label>
+            <input type="checkbox" id="capabilities-secure-boot">
+            <label for="capabilities-secure-boot">Secure boot</label>
+            <input type="checkbox" id="capabilities-battery-life">
+            <label for="capabilities-battery-life">Battery life</label>
+          </div>
         </div>
       </div>
-      <h3 class="p-heading--five">What are your platform preferences?</h3>
-      <div class="row u-no-padding">
-        <div class="col-4">
-          <p>Architecture</p>
-          <input type="checkbox" id="architecture-intel">
-          <label for="architecture-intel">Intel</label>
-          <input type="checkbox" id="architecture-ARM">
-          <label for="architecture-ARM">ARM</label>
-          <div class="js-other-container">
-            <input type="checkbox" class="js-other-container__checkbox" id="architecture-other">
-            <label for="architecture-other">Other</label>
-            <input type="text" id="architecture-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other architecture">
+
+      <div class="js-formfield">
+        <h3 class="p-heading--five">What are your platform preferences?</h3>
+        <div class="row u-no-padding">
+          <div class="col-4">
+            <p class="js-sub-section">Architecture</p>
+            <input type="checkbox" id="architecture-intel">
+            <label for="architecture-intel">Intel</label>
+            <input type="checkbox" id="architecture-ARM">
+            <label for="architecture-ARM">ARM</label>
+            <div class="js-other-container">
+              <input type="checkbox" class="js-other-container__checkbox" id="architecture-other">
+              <label for="architecture-other">Other</label>
+              <input type="text" id="architecture-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other architecture">
+            </div>
           </div>
-        </div>
-        <div class="col-4">
-          <p>Board</p>
-          <input type="checkbox" id="board-undecided">
-          <label for="board-undecided">Undecided</label>
-          <input type="checkbox" id="board-raspberry-pi-cm">
-          <label for="board-raspberry-pi-cm">Raspberry Pi / CM</label>
-          <input type="checkbox" id="board-intel-nuc">
-          <label for="board-intel-nuc">Intel Nuc</label>
-          <input type="checkbox" id="board-iMX6">
-          <label for="board-iMX6">iMX6</label>
-          <input type="checkbox" id="board-qualcomm">
-          <label for="board-qualcomm">Qualcomm</label>
-          <div class="js-other-container">
-            <input type="checkbox" class="js-other-container__checkbox" id="board-other">
-            <label for="board-other">Other</label>
-            <input type="text" id="board-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other Board">
+          <div class="col-4">
+            <p class="js-sub-section">Board</p>
+            <input type="checkbox" id="board-undecided">
+            <label for="board-undecided">Undecided</label>
+            <input type="checkbox" id="board-raspberry-pi-cm">
+            <label for="board-raspberry-pi-cm">Raspberry Pi / CM</label>
+            <input type="checkbox" id="board-intel-nuc">
+            <label for="board-intel-nuc">Intel Nuc</label>
+            <input type="checkbox" id="board-iMX6">
+            <label for="board-iMX6">iMX6</label>
+            <input type="checkbox" id="board-qualcomm">
+            <label for="board-qualcomm">Qualcomm</label>
+            <div class="js-other-container">
+              <input type="checkbox" class="js-other-container__checkbox" id="board-other">
+              <label for="board-other">Other</label>
+              <input type="text" id="board-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other Board">
+            </div>
           </div>
-        </div>
-        <div class="col-4">
-          <p>ODM</p>
-          <input type="checkbox" id="odm-advantech">
-          <label for="odm-advantech">Advantech</label>
-          <input type="checkbox" id="odm-dell">
-          <label for="odm-dell">Dell</label>
-          <input type="checkbox" id="odm-eurotech">
-          <label for="odm-eurotech">Eurotech</label>
-          <input type="checkbox" id="odm-rigado">
-          <label for="odm-rigado">Rigado</label>
-          <input type="checkbox" id="odm-silver-spring-itron">
-          <label for="odm-silver-spring-itron">Silver Spring / Itron</label>
-          <input type="checkbox" id="odm-undecided">
-          <label for="odm-undecided">Undecided</label>
-          <div class="js-other-container">
-            <input type="checkbox" class="js-other-container__checkbox" id="odm-other">
-            <label for="odm-other">Other</label>
-            <input type="text" id="odm-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other ODM">
+          <div class="col-4">
+            <p class="js-sub-section">ODM</p>
+            <input type="checkbox" id="odm-advantech">
+            <label for="odm-advantech">Advantech</label>
+            <input type="checkbox" id="odm-dell">
+            <label for="odm-dell">Dell</label>
+            <input type="checkbox" id="odm-eurotech">
+            <label for="odm-eurotech">Eurotech</label>
+            <input type="checkbox" id="odm-rigado">
+            <label for="odm-rigado">Rigado</label>
+            <input type="checkbox" id="odm-silver-spring-itron">
+            <label for="odm-silver-spring-itron">Silver Spring / Itron</label>
+            <input type="checkbox" id="odm-undecided">
+            <label for="odm-undecided">Undecided</label>
+            <div class="js-other-container">
+              <input type="checkbox" class="js-other-container__checkbox" id="odm-other">
+              <label for="odm-other">Other</label>
+              <input type="text" id="odm-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other ODM">
+            </div>
           </div>
         </div>
       </div>
