@@ -42,7 +42,7 @@ Commands
 ##
 
 # Define docker images versions
-dev_image="canonicalwebteam/dev:v1.6.2"
+dev_image="canonicalwebteam/dev:v1.6.3"
 if [ -n "${DOCKER_REGISTRY:-}" ]; then
     dev_image="${DOCKER_REGISTRY}/${dev_image}"
 fi
