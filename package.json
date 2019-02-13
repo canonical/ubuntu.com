@@ -1,13 +1,9 @@
 {
-  "name": "ubuntu-website",
-  "version": "0.0.1",
-  "description": "Django website for ubuntu.com",
-  "main": "index.js",
   "scripts": {
-    "test": "yarn run lint-scss && yarn run lint-py && yarn run test-py",
-    "lint-py": "flake8 webapp/ && black --check --line-length 79 webapp/",
+    "test": "yarn run lint-scss && yarn run lint-python && yarn run test-python",
+    "lint-python": "flake8 webapp/ && black --check --line-length 79 webapp/",
     "lint-scss": "sass-lint 'static/sass/**/*.scss' --verbose --no-exit -i static/sass/prism.scss",
-    "test-py": "python3 manage.py test",
+    "test-python": "python3 manage.py test",
     "test-links": "python3 manage.py runserver && sleep 2 && linkchecker --threads 2 --ignore-url /usn --ignore-url /resources --ignore-url /search --no-warnings http://127.0.0.1:8000",
     "build": "cp node_modules/global-nav/dist/index.js static/js/global-nav.js && node-sass --include-path node_modules static/sass --source-map true --output-style compressed --output static/css && postcss --use autoprefixer --replace 'static/css/**/*.css'",
     "watch": "watch -p 'static/sass/**/*.scss' -p 'node_modules/vanilla-framework/scss/*.scss' -c 'yarn run build'",
@@ -21,7 +17,7 @@
   },
   "lint-staged": {
     "*.scss": "./run exec yarn run lint-scss",
-    "*.py": "./run exec yarn run lint-py"
+    "*.py": "./run exec yarn run lint-python"
   },
   "keywords": [
     "website",
