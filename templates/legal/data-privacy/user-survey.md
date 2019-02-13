@@ -1,39 +1,40 @@
 ---
 wrapper_template: "../_base_legal_markdown.html"
 context:
-  title: "Privacy Notice – Snapcraft NPS Survey"
-  description: This Privacy Notice tells you about the information collected from you when you participate in the Snapcraft Net Promoter Score (NPS) survey.
-  copydoc: https://docs.google.com/document/d/1JODNGJQ0G-aSrycKTv4XOGmJVWw98Fqk2gLfHmQqgB4/edit
+  title: "Privacy Notice – User Survey"
+  description: This privacy notice tells you about the information collected from you when you take part in a user survey on a Canonical webpage, hosted by Usabilla.
+  copydoc: https://docs.google.com/document/d/1XKWK3VvJe0Z_soJqO3F0BrrXwlP9ZObYYKxA1hym7QU/edit
 ---
-<h4 class="p-muted-heading">Version - December 2018</h4>
+<h4 class="p-muted-heading">Version - February 2019</h4>
 <hr style="margin-bottom: 2rem;" />
 
-# Privacy Notice – Snapcraft NPS Survey  
+# Privacy Notice – User Survey  
 
-This Privacy Notice tells you about the information collected from you when you participate in the Snapcraft Net Promoter Score (NPS) survey. In collecting this information, we are acting as a data controller and, by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/data-privacy).
+This privacy notice tells you about the information collected from you when you take part in a user survey on a Canonical webpage, hosted by Usabilla. Usabilla is a third party software provider that enables live user feedback. In collecting this information, Usabilla are acting as a data controller and details of their terms can be found on their website here: [usabilla.com/terms/](https://usabilla.com/terms/)  and the Usabilla Privacy Notice. Usabilla will be sharing your data with us and by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/data-privacy).
 
 ## Who are we?
 
-We are Canonical Group Limited. Our address is 5th Floor Blue Fin Building, 110 Southwark Street, London, SE1 0SU. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of “Legal”.
+We are Canonical Group Limited. Our address is 5<sup>th</sup>, Floor Blue Fin Building, 110 Southwark Street, London, SE1 0SU. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of “Legal”.
 
 We are not required to have a data protection officer, so any enquiries about our use of your personal data should be addressed to the contact details above.
 
 ## What personal data do we collect?
 
-When submitting feedback via the Snapcraft NPS survey we may ask you for your name, your email address and related information.
+When you submit live feedback on the webpage, we may invite you to leave your email address and related information via Usabilla’s software platform. You may be shown different surveys depending on user features and usage. Usabilla will share this information with us.
 
 ## Why do we collect this information?
 
-We will use your information for internal user and product research purposes. We ask for your consent to do this and will only contact you for this purpose for as long as you continue to consent.
+We will use your information for user research. We ask for your consent to do this and will only contact you for this purpose for as long as you continue to consent. This may involve inviting you to talk to us about how you use Canonical products and to test new features.
 
 ## What do we do with your information?
 
 Your information is stored in our database and may be processed outside of the European Economic Area. It is shared with the third parties only as reasonably required for Canonical to process and store your data in accordance with this notice.
 
 Such countries do not have the same data protection laws as the United Kingdom and EEA. Where the European Commission has not given a formal decision that such countries provide an adequate level of data protection similar to those which apply to the United Kingdom and EEA, any transfer of your personal information will be subject to approved contract terms designed to help safeguard your privacy rights and give you remedies in the unlikely event of misuse of you personal information. If you would like further information please contact us (see “Your right to complain” below). We will not otherwise transfer your personal data outside of the EEA.
-How long do we keep your information for?
 
-We keep your information for as long as you continue to consent to participate in Snapcraft product research and thereafter for so long as reasonably required in accordance with our record retention policy.
+## How long do we keep your information for?
+
+We keep your information for as long as you continue to consent to participate in user research and thereafter for so long as reasonably required in accordance with our record retention policy.
 
 ## Your rights over your information
 
@@ -54,7 +55,7 @@ For further information on each of those rights, including the circumstances in 
 
 If you would like to exercise any of those rights, please:
 
-- email, call or write to us, please see “Your right to complain” section below;
+- email or write to us, please see “Your right to complain” section below;
 - let us have enough information to identify you;
 - let us have proof of your identity and address (a copy of your driving licence or passport and a recent utility or credit card bill); and
 - let us know the information to which your request relates.
@@ -90,8 +91,7 @@ If you have a complaint about our use of your information, you can contact the I
 <div style="margin:2rem;">
 Information Commissioner's Office<br />
 Wycliffe House<br />
-Water Lane<br />
-Wilmslow<br />
+Water Lane<br />Wilmslow<br />
 Cheshire<br />
 SK9 5AF<br />
 United Kingdom
