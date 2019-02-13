@@ -31,24 +31,17 @@ jobs:
       - run:
           name: Run Linkchecker
           command: linkchecker --threads 2 --ignore-url /usn --ignore-url /resources --ignore-url /search --no-warnings http://127.0.0.1:8000
-  python-tests:
+  lint-python:
     <<: *defaults
     steps:
       - checkout
       - run:
           name: Install dependencies
-          command: pip3 install -r requirements.txt
-      - run:
-          name: Run python tests
-          command: yarn test-py
-  python-lint:
-    <<: *defaults
-    steps:
-      - checkout
+          command: pip install flake8 black
       - run:
           name: Lint python code
           command: yarn lint-py
-  scss-lint:
+  lint-scss:
     <<: *defaults
     steps:
       - checkout
@@ -58,12 +51,22 @@ jobs:
       - run:
           name: Lint sass
           command: yarn lint-scss
+  test-python:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: pip3 install -r requirements.txt
+      - run:
+          name: Run python tests
+          command: yarn test-py
 
 workflows:
   version: 2
   build:
     jobs:
       - linkchecker
-      - scss-lint
-      - python-lint
-      - python-tests
+      - lint-scss
+      - lint-python
+      - test-python
