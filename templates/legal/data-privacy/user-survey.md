@@ -20,7 +20,7 @@ We are not required to have a data protection officer, so any enquiries about ou
 
 ## What personal data do we collect?
 
-When you submit live feedback on the webpage, we may invite you to leave your your email address and related information via Usabilla’s software platform. You may be shown different surveys depending on user features and usage. Usabilla will share this information with us.
+When you submit live feedback on the webpage, we may invite you to leave your email address and related information via Usabilla’s software platform. You may be shown different surveys depending on user features and usage. Usabilla will share this information with us.
 
 ## Why do we collect this information?
 
