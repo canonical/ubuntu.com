@@ -36,9 +36,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install dependencies
-          command: pip install flake8 black
-      - run:
           name: Lint python code
           command: yarn lint-py
   lint-scss:
