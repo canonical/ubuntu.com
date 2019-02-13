@@ -1,30 +1,30 @@
 ---
 wrapper_template: "../_base_legal_markdown.html"
 context:
-  title: "Privacy Notice – MAAS User Survey"
-  description: This privacy notice tells you about the information collected from you when you take part in a MAAS user survey on Canonical’s MAAS webpage, hosted by Usabilla.
+  title: "Privacy Notice – User Survey"
+  description: This privacy notice tells you about the information collected from you when you take part in a user survey on a Canonical webpage, hosted by Usabilla.
   copydoc: https://docs.google.com/document/d/1XKWK3VvJe0Z_soJqO3F0BrrXwlP9ZObYYKxA1hym7QU/edit
 ---
+<h4 class="p-muted-heading">Version - February 2019</h4>
+<hr style="margin-bottom: 2rem;" />
 
-# Privacy Notice – Snapcraft NPS Survey  
+# Privacy Notice – User Survey  
 
-Version -  December 2018
-
-This privacy notice tells you about the information collected from you when you take part in a MAAS user survey on Canonical’s MAAS webpage, hosted by Usabilla. Usabilla is a third party software provider that enables live user feedback. In collecting this information, Usabilla are acting as a data controller and details of their terms can be found on [their website](https://usabilla.com/terms/). Usabilla will be sharing your data with us and by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/data-privacy).
+This privacy notice tells you about the information collected from you when you take part in a user survey on a Canonical webpage, hosted by Usabilla. Usabilla is a third party software provider that enables live user feedback. In collecting this information, Usabilla are acting as a data controller and details of their terms can be found on their website here: [usabilla.com/terms/](https://usabilla.com/terms/)  and the Usabilla Privacy Notice. Usabilla will be sharing your data with us and by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/data-privacy).
 
 ## Who are we?
 
-We are Canonical Group Limited. Our address is 5th Floor Blue Fin Building, 110 Southwark Street, London, SE1 0SU. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of “Legal”.
+We are Canonical Group Limited. Our address is 5<sup>th</sup>, Floor Blue Fin Building, 110 Southwark Street, London, SE1 0SU. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of “Legal”.
 
 We are not required to have a data protection officer, so any enquiries about our use of your personal data should be addressed to the contact details above.
 
 ## What personal data do we collect?
 
-When you submit live feedback on the MAAS webpages, we invite you to leave your email address and related information via Usabilla’s software platform. You may be shown different surveys depending on user features and usage. Usabilla will share this information with us.
+When you submit live feedback on the webpage, we may invite you to leave your your email address and related information via Usabilla’s software platform. You may be shown different surveys depending on user features and usage. Usabilla will share this information with us.
 
 ## Why do we collect this information?
 
-We will use your information for MAAS user research. We ask for your consent to do this and will only contact you for this purpose for as long as you continue to consent. This may involve inviting you to talk to us about how you use MAAS and to test new MAAS features.
+We will use your information for user research. We ask for your consent to do this and will only contact you for this purpose for as long as you continue to consent. This may involve inviting you to talk to us about how you use Canonical products and to test new features.
 
 ## What do we do with your information?
 
@@ -34,7 +34,7 @@ Such countries do not have the same data protection laws as the United Kingdom a
 
 ## How long do we keep your information for?
 
-We keep your information for as long as you continue to consent to participate in MAAS user research and thereafter for so long as reasonably required in accordance with our record retention policy.
+We keep your information for as long as you continue to consent to participate in user research and thereafter for so long as reasonably required in accordance with our record retention policy.
 
 ## Your rights over your information
 
@@ -55,7 +55,7 @@ For further information on each of those rights, including the circumstances in 
 
 If you would like to exercise any of those rights, please:
 
-- email, call or write to us, please see “Your right to complain” section below;
+- email or write to us, please see “Your right to complain” section below;
 - let us have enough information to identify you;
 - let us have proof of your identity and address (a copy of your driving licence or passport and a recent utility or credit card bill); and
 - let us know the information to which your request relates.
@@ -76,18 +76,23 @@ This Privacy Notice will be reviewed from time to time. If we decide to change t
 
 We hope that we can resolve any query or concern you raise about our use of your information. You can contact us at any time. Any questions, comments and requests regarding this Privacy Notice or any other related matter are welcomed and should be addressed to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) or to the address below:
 
+<div style="margin:2rem;">
 Legal, Canonical<br />
 5th Floor, Blue Fin Building<br />
 110 Southwark Street<br />
-London, SE1 0SU
+London, SE1 0SU<br />
+United Kingdom
+</div>
 
 Alternatively, you can use the relevant contact us form.
 
 If you have a complaint about our use of your information, you can contact the Information Commissioner’s Office via their website at [ico.org.uk/make-a-complaint](https://ico.org.uk/make-a-complaint/) or write to them at:
 
+<div style="margin:2rem;">
 Information Commissioner's Office<br />
 Wycliffe House<br />
-Water Lane<br />
-Wilmslow<br />
+Water Lane<br />Wilmslow<br />
 Cheshire<br />
-SK9 5AF
+SK9 5AF<br />
+United Kingdom
+</div>

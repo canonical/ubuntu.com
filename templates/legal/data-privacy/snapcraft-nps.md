@@ -5,10 +5,10 @@ context:
   description: This Privacy Notice tells you about the information collected from you when you participate in the Snapcraft Net Promoter Score (NPS) survey.
   copydoc: https://docs.google.com/document/d/1JODNGJQ0G-aSrycKTv4XOGmJVWw98Fqk2gLfHmQqgB4/edit
 ---
+<h4 class="p-muted-heading">Version - December 2018</h4>
+<hr style="margin-bottom: 2rem;" />
 
 # Privacy Notice – Snapcraft NPS Survey  
-
-Version -  December 2018
 
 This Privacy Notice tells you about the information collected from you when you participate in the Snapcraft Net Promoter Score (NPS) survey. In collecting this information, we are acting as a data controller and, by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/data-privacy).
 
@@ -75,18 +75,24 @@ This Privacy Notice will be reviewed from time to time. If we decide to change t
 
 We hope that we can resolve any query or concern you raise about our use of your information. You can contact us at any time. Any questions, comments and requests regarding this Privacy Notice or any other related matter are welcomed and should be addressed to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) or to the address below:
 
+<div style="margin:2rem;">
 Legal, Canonical<br />
 5th Floor, Blue Fin Building<br />
 110 Southwark Street<br />
-London, SE1 0SU
+London, SE1 0SU<br />
+United Kingdom
+</div>
 
 Alternatively, you can use the relevant contact us form.
 
 If you have a complaint about our use of your information, you can contact the Information Commissioner’s Office via their website at [ico.org.uk/make-a-complaint](https://ico.org.uk/make-a-complaint/) or write to them at:
 
+<div style="margin:2rem;">
 Information Commissioner's Office<br />
 Wycliffe House<br />
 Water Lane<br />
 Wilmslow<br />
 Cheshire<br />
-SK9 5AF
+SK9 5AF<br />
+United Kingdom
+</div>
