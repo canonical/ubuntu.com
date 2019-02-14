@@ -161,7 +161,7 @@ var kernelReleases = [
   {
     startDate: new Date('2016-07-01T00:00:00'),
     endDate: new Date('2018-07-01T00:00:00'),
-    taskName: 'Ubuntu 14.04.5 LTS',
+    taskName: 'Ubuntu 14.04.5 LTS (v4.4)',
     status: 'UBUNTU_LTS_RELEASE_SUPPORT'
   },
   {
@@ -203,7 +203,7 @@ var kernelReleases = [
   {
     startDate: new Date('2018-10-01T00:00:00'),
     endDate: new Date('2019-10-01T00:00:00'),
-    taskName: 'Ubuntu 18.10',
+    taskName: 'Ubuntu 18.10 (v4.18)',
     status: 'STANDARD_RELEASE'
   },
   {
