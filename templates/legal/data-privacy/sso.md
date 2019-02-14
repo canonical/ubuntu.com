@@ -3,7 +3,7 @@ wrapper_template: "../_base_legal_markdown.html"
 context:
   title: "Privacy Notice – Single Sign On (SSO)"
   description: "This privacy notice tells you about the information collected from you when you register for a Single Sign On (SSO) account."
-  copydoc: https://docs.google.com/document/d/1lNercxxavqCCaFkLbQ-uHa9Mq6iZDMOSBDIUa48zDcU/edit
+  copydoc: https://docs.google.com/document/d/1nOk02AAjdOi2sW4rc1FOIO1n1BNzfU-iX88EKayXw-k/edit#heading=h.j5ctz6twab4
 ---
 <h4 class="p-muted-heading">Version - June 2018</h4>
 <hr style="margin-bottom: 2rem;" />
