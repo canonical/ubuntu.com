@@ -1,5 +1,5 @@
 ---
-wrapper_template: "../../_base_legal_markdown.html"
+wrapper_template: "../_base_legal_markdown.html"
 context:
   title: "Privacy notice - Webinar sign-up"
   description: "This privacy notice tells you about the information collected from you when you sign up to watch one of our webinars via the BrightTALK website."
