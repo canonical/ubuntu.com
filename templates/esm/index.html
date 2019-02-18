@@ -1,4 +1,5 @@
 {% extends "esm/base_esm.html" %}
+{% load versioned_static %}
 
 {% block title %}Ubuntu Extended Security Maintenance{% endblock %}
 {% block meta_description %}Extended Security Maintenance provides ongoing Linux security fixes for Ubuntu 12.04 LTS and Ubuntu 14.04 LTS releases for the Linux kernel and essential packages beyond the five-year security maintenance window for the most popular Linux OS.{% endblock meta_description %}
@@ -170,6 +171,8 @@ background-image: linear-gradient(-45deg, #5E2750 0%, #2C001E 100%);">
     </div>
   </div>
 </section>
+
+<script src="{% versioned_static 'js/stickyNav.js' %}"></script>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
 
