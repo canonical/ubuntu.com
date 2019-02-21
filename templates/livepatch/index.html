@@ -7,8 +7,12 @@
 {% block content %}
 <section class="p-strip is-deep is-bordered">
   <div class="row">
-    <div class="col-6">
+    <div class="col-7">
       <h1 style="font-weight: 100;">Canonical Livepatch Service</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
       <h2 class="p-heading--four">Apply critical kernel patches without rebooting.</h2>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Fixes are applied automatically, without restarting your system</li>
@@ -16,7 +20,7 @@
         <li class="p-list__item is-ticked">Included as part of all Ubuntu Advantage for Infrastructure support packages</li>
       </ul>
     </div>
-    <div class="col-6">
+    <div class="col-6 prefix-1">
       <div class="u-embedded-media">
         <iframe class="u-embedded-media__element" width="772" height="426" src="https://player.vimeo.com/video/225445183" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
       </div>
@@ -45,52 +49,34 @@
     <div class="col-10">
       <h2>Subscribe to Livepatch</h2>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-4">
-      <p>
-        <a class="p-button--positive row"  href="https://auth.livepatch.canonical.com/"><span class="p-link--external">Free for up to 3 machines</span></a>
-      </p>
-    </div>
-    <div class="col-8">
+  </div>    
+  <div class="row p-divider u-equal-height">
+    <div class="col-3 p-divider__block">
+      <h4>Free for 3 machines</h4>
       <p>All you need is an Ubuntu One account.</p>
+      <p> <a class="p-button--positive row"  href="https://auth.livepatch.canonical.com/"><span class="p-link--external">Get yours now</span></a></p>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-4">
-      <p>
-        <a class="p-button--positive row"  href="https://aws.amazon.com/marketplace/seller-profile?id=565feec9-3d43-413e-9760-c651546613f2"><span class="p-link--external">AWS Marketplace</span></a>
-      </p>
-    </div>
-    <div class="col-8">
+    <div class="col-3 p-divider__block">
+      <h4>On Amazon</h4>
       <p>Part of Ubuntu Advantage for AWS.</p>
+      <p> <a class="p-button--positive row"  href="https://aws.amazon.com/marketplace/seller-profile?id=565feec9-3d43-413e-9760-c651546613f2"><span class="p-link--external">Visit AWS Marketplace</span></a></p>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-4">
-      <p>
-        <a class="p-button--positive row"  href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Canonical.UbuntuAdvantageSupport?src=blogazure&tab=Overview"><span class="p-link--external">Azure Marketplace</span></a>
-      </p>
+    <div class="col-3 p-divider__block">
+      <h4>On Azure</h4>
+      <p>Part of Ubuntu Advantage for Azure.</p>
+      <p><a class="p-button--positive row"  href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Canonical.UbuntuAdvantageSupport?src=blogazure&tab=Overview"><span class="p-link--external">Visit Azure Marketplace</span></a></p>
     </div>
-    <div class="col-8">
-      <p> Part of Ubuntu Advantage for Azure.</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-4">
-      <p>
-        <a class="p-button--positive row"  href="https://buy.ubuntu.com"><span class="p-link--external">Buy direct</span></a>
-      </p>
-    </div>
-    <div class="col-8">
-      <p>Part of Ubuntu Advantage for data centres, servers and desktops.</p>
-    </div>
+    <div class="col-3 p-divider__block">
+      <h4>Buy online</h4>
+      <p>Buy as part of Ubuntu Advantage from Canonical.</p>
+      <p><a class="p-button--positive row"  href="https://buy.ubuntu.com"><span class="p-link--external">Visit buy.ubuntu.com</span></a></p>
+    </div>    
   </div>
 </section>
 
 <section class="p-strip--light is bordered">
   <div class="row">
-    <h2 class="p-muted-heading u-align-text--center">Used by</h2>
+    <h2 class="p-muted-heading u-align-text--center">Livepatch is used by</h2>
     <div class="prefix-1 suffix-1 p-fluid-grid--centered">
         <span class="p-logo-image p-fluid-grid__item--small u-align--center"><img src="{{ ASSET_SERVER_URL }}9ae8ff55-2018-logo-bloomberg.svg" width="145" alt="Bloomberg" /></span>
         <span class="p-logo-image p-fluid-grid__item--small u-align--center"><img src="{{ ASSET_SERVER_URL }}d8f890fb-logo-at%26t.svg" width="145" alt="AT&T" /></span>
@@ -107,8 +93,12 @@
 
 <section class="p-strip is-bordered">
   <div class="row">
-    <div class="col-7 suffix-1">
+    <div class="col-7">
       <h2>How to enable the Canonical Livepatch Service</h2>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-7 suffix-1">
       <ol class="p-list-step">
         <li class="p-list-step__item">
           <h3 class="p-list-step__title">
@@ -154,7 +144,7 @@
           <li class="p-list__item is-ticked">Answers to frequently asked questions</li>
         </ul>
         <p>
-          <a class="p-button" href="{{ ASSET_SERVER_URL }}ac3aa269-DS_Canonical_Livepatch_Service_screen-AW_08.17.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'resource', 'eventAction' : 'Livepatch datasheet', 'eventLabel' : 'from ubuntu.com/livepatch', 'eventValue' : undefined });"><span class="p-link--external">Download the datasheet</span></a>
+          <a class="p-link--external" href="{{ ASSET_SERVER_URL }}ac3aa269-DS_Canonical_Livepatch_Service_screen-AW_08.17.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'resource', 'eventAction' : 'Livepatch datasheet', 'eventLabel' : 'from ubuntu.com/livepatch', 'eventValue' : undefined });">Download the datasheet</a>
         </p>
       </div>
     </div>
@@ -166,7 +156,7 @@
     <div class="col-8">
       <h2>Get started with Livepatch today</h2>
       <p>Livepatch is free to use on your own PC or server. To discuss whether Livepatch is right for your business, talk to our team.</p>
-      <p class="u-no-margin--bottom"><a href="/support/contact-us" class="p-button u-no-margin--bottom js-invoke-modal">Contact us</a></p>
+      <p class="u-no-margin--bottom"><a href="/support/contact-us" class="p-button u-no-margin--bottom js-invoke-modal">Get in touch</a></p>
     </div>
     <div class="col-3 u-vertically-center u-align--center u-hide--small">
         <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="140" alt="" />
