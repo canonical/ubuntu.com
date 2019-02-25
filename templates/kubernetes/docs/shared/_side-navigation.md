@@ -23,4 +23,4 @@
   - [Release notes](/kubernetes/docs/release-notes)
   - [Upgrade notes](/kubernetes/docs/upgrade-notes)
   - [Certificates and Trust](/kubernetes/docs/certs-and-trust)
-  - [Help and Contacts](/kubernetes/docs/contact)
+  - [Get in touch](/kubernetes/docs/get-in-touch)
