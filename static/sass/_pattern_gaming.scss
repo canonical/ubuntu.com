@@ -18,7 +18,10 @@
     }
 
     &__flash {
+      // sass-lint:disable no-vendor-prefixes property-sort-order
+      -webkit-animation: flash-sign 10s infinite;
       animation: flash-sign 10s infinite;
+      // sass-lint:enable no-vendor-prefixes property-sort-order
       background-image: url('#{$assets-path}30d55ce9-borderlands-flash.jpg');
       background-repeat: no-repeat;
       background-size: cover;

@@ -1,6 +1,9 @@
 @mixin full-width-breakout {
+  // sass-lint:disable no-vendor-prefixes property-sort-order
   left: 50%;
   position: relative;
+  -webkit-transform: translate(-50%, 0);
   transform: translate(-50%, 0);
   width: 100vw;
+  // sass-lint:enable no-vendor-prefixes property-sort-order
 }

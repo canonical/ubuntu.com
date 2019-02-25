@@ -160,7 +160,10 @@
 
   #where-are-users { // sass-lint:disable-line no-ids
     @media only screen and (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
+      // sass-lint:disable no-vendor-prefixes property-sort-order
+      -webkit-transform: scale(.7);
       transform: scale(.7);
+      // sass-lint:enable no-vendor-prefixes property-sort-order
     }
   }
 
@@ -183,7 +186,10 @@
     background-color: $color-x-light;
     border-bottom: 1px solid $color-mid-light;
     border-top: 1px solid $color-mid-light;
+    // sass-lint:disable no-vendor-prefixes no-duplicate-properties
+    position: -webkit-sticky;
     position: sticky;
+    // sass-lint:enable no-vendor-prefixes no-duplicate-properties
     top: 0;
     z-index: 1;
 

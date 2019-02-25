@@ -47,14 +47,20 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
         position: absolute;
         right: 0;
         top: 0;
+        // sass-lint:disable no-vendor-prefixes no-duplicate-properties
+        transition: -webkit-transform .1s;
         transition: transform .1s;
+        // sass-lint:enable no-vendor-prefixes no-duplicate-properties
         width: 2rem;
       }
 
       &.is-selected {
         &::after {
           @include vf-icon-chevron(vf-url-friendly-color($color-dark));
+          // sass-lint:disable no-vendor-prefixes property-sort-order
+          -webkit-transform: rotate(-180deg);
           transform: rotate(-180deg);
+          // sass-lint:enable no-vendor-prefixes property-sort-order
         }
 
         .p-navigation__link-anchor {
@@ -426,7 +432,10 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
   }
 
   .slide-animation {
+    // sass-lint:disable no-vendor-prefixes property-sort-order
     transform: translateY(-101%);
+    -webkit-transform: translateY(-101%);
+    // sass-lint:enable no-vendor-prefixes property-sort-order
   }
 
   .fade-animation {
@@ -434,9 +443,12 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
     visibility: hidden;
 
     .u-visible-nav & {
+      // sass-lint:disable no-vendor-prefixes property-sort-order
       opacity: 1;
+      -webkit-transform: none;
       transform: none;
       visibility: visible;
+      // sass-lint:enable no-vendor-prefixes property-sort-order
     }
   }
 }

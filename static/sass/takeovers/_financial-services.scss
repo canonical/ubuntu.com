@@ -12,15 +12,19 @@
   }
 
   @keyframes fade-right {
+    // sass-lint:disable no-vendor-prefixes property-sort-order
     0% {
       opacity: 0;
+      -webkit-transform: translateX(-10%);
       transform: translateX(-10%);
     }
 
     100% {
       opacity: 1;
+      -webkit-transform: translateX(0);
       transform: translateX(0);
     }
+    // sass-lint:enable no-vendor-prefixes property-sort-order
   }
 
   .p-takeover--financial-services {
@@ -64,25 +68,33 @@
     }
 
     .light-grey-cloud {
+      // sass-lint:disable no-vendor-prefixes property-sort-order
+      -webkit-animation: fade-right 1.5s cubic-bezier(.215, .61, .355, 1) .75s 1 forwards;
       animation: fade-right 1.5s cubic-bezier(.215, .61, .355, 1) .75s 1 forwards;
       bottom: -12%;
       left: -18%;
       opacity: 0;
       position: absolute;
+      -webkit-transform: translateX(-10%);
       transform: translateX(-10%);
       width: 66%;
       z-index: 1;
+      // sass-lint:enable no-vendor-prefixes property-sort-order
     }
 
     .aubergine-cloud {
+      // sass-lint:disable no-vendor-prefixes property-sort-order
       animation: fade-left 1.25s cubic-bezier(.215, .61, .355, 1) .5s 1 forwards;
+      -webkit-animation: fade-left 1.25s cubic-bezier(.215, .61, .355, 1) .5s 1 forwards;
       bottom: -20%;
       opacity: 0;
       position: absolute;
       right: -20%;
+      -webkit-transform: translateX(30%);
       transform: translateX(30%);
       width: 50%;
       z-index: 3;
+      // sass-lint:enable no-vendor-prefixes property-sort-order
     }
   }
 }

@@ -1,21 +1,37 @@
 @mixin fade-left {
+  // sass-lint:disable no-vendor-prefixes property-sort-order
+  -webkit-animation-delay: .25s;
   animation-delay: .25s;
+  -webkit-animation-duration: map-get($animation-duration, sleepy);
   animation-duration: map-get($animation-duration, sleepy);
+  -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
+  -webkit-animation-name: fadeLeft;
   animation-name: fadeLeft;
+  -webkit-animation-timing-function: map-get($animation-easing, brisk);
   animation-timing-function: map-get($animation-easing, brisk);
   opacity: 0;
+  -webkit-transform: translateX(-3rem);
   transform: translateX(-3rem);
+  // sass-lint:enable no-vendor-prefixes property-sort-order
 }
 
 @mixin fade-up {
+  // sass-lint:disable no-vendor-prefixes property-sort-order
+  -webkit-animation-delay: .25s;
   animation-delay: .25s;
+  -webkit-animation-duration: map-get($animation-duration, sleepy);
   animation-duration: map-get($animation-duration, sleepy);
+  -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
+  -webkit-animation-name: fadeUp;
   animation-name: fadeUp;
+  -webkit-animation-timing-function: map-get($animation-easing, brisk);
   animation-timing-function: map-get($animation-easing, brisk);
   opacity: 0;
+  -webkit-transform: translateY(3rem);
   transform: translateY(3rem);
+  // sass-lint:enable no-vendor-prefixes property-sort-order
 }
 
 @mixin u-animations {
@@ -53,25 +69,33 @@
 }
 
 @keyframes fadeLeft {
+  // sass-lint:disable no-vendor-prefixes property-sort-order
   0% {
     opacity: 0;
+    -webkit-transform: translateX(-3rem);
     transform: translateX(-3rem);
   }
 
   100% {
     opacity: 1;
+    -webkit-transform: translateX(0);
     transform: translateX(0);
   }
+  // sass-lint:enable no-vendor-prefixes property-sort-order
 }
 
 @keyframes fadeUp {
+  // sass-lint:disable no-vendor-prefixes property-sort-order
   0% {
     opacity: 0;
+    -webkit-transform: translateY(3rem);
     transform: translateY(3rem);
   }
 
   100% {
     opacity: 1;
+    -webkit-transform: translateY(0);
     transform: translateY(0);
   }
+  // sass-lint:enable no-vendor-prefixes property-sort-order
 }
