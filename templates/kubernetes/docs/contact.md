@@ -31,7 +31,7 @@ Find us in **#cdk** on the [Kubernetes slack][slack].
 
 ## Documentation
 
-Visit the [documentation site][docs] for issues or comments about this documentation.
+Visit the [documentation repository][docs] for issues or comments about this documentation.
 
 ## Professional support
 
