@@ -1,60 +1,6 @@
 
 if (!core) { var core = {}; }
 
-// The cookie policy injection and interaction
-core.cookiePolicy = function() {
-  if (getCookie('_cookies_accepted') !== 'true'){
-    state('open');
-  }
-
-  function state(stateChange) {
-    switch(stateChange) {
-      case 'open':
-        var range = document.createRange();
-        var cookieNode = range.createContextualFragment('<div class="p-notification p-notification--floating cookie-policy"><p class="p-notification__response">We use cookies to improve your experience. By your continued use of this site you accept such use.<br /> This notice will disappear by itself. To change your settings please <a href="https://www.ubuntu.com/legal/privacy-policy#cookies">see our policy</a>.</p><button class="p-icon--close js-close">Close</button></div>');
-        document.body.insertBefore(cookieNode, document.body.lastChild);
-        document.querySelector('footer.p-footer').classList.add('has-cookie');
-        window.setTimeout(function() {
-          state('close');
-        }, 10000);
-        window.addEventListener('unload', function() {
-          state('close');
-        });
-        document.querySelector('.cookie-policy .js-close').addEventListener('click', function(e) {
-          e.preventDefault();
-          state('close');
-        });
-        break;
-      case 'close':
-        document.querySelector('.cookie-policy').style.display = 'none';
-        setCookie('_cookies_accepted', 'true', 3000);
-        break;
-    }
-  }
-
-  function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = 'expires=' + d.toUTCString();
-    document.cookie = cname + '=' + cvalue + '; ' + expires;
-  }
-
-  function getCookie(cname) {
-    var name = cname + '=';
-    var ca = document.cookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0)==' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) === 0) {
-        return c.substring(name.length,c.length);
-      }
-    }
-    return '';
-  }
-};
-
 // Toogles classes the active and open classes on the footer titles
 core.footerMobileNav = function() {
   var footerTitlesA = document.querySelectorAll('footer li h2');
@@ -127,7 +73,6 @@ core.swapContent = function(primaryContainerClass, secondaryContainerClass, show
   }
 };
 
-core.cookiePolicy();
 core.footerMobileNav();
 core.commandLine();
 
