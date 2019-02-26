@@ -1,4 +1,5 @@
 {% extends "support/base_support.html" %}
+{% load versioned_static %}
 
 {% block title %}Plans and pricing | Support{% endblock %}
 {% block meta_description %}A summary of all our support offerings. Ubuntu offers the best economics of any commercially supported Linux solution and the best community support.{% endblock %}
@@ -14,68 +15,22 @@
   </div>
 </section>
 
-<section class="p-strip--light is-deep is-bordered">
-  <div class="row">
-    <div class="col-4 p-card">
-      <h3>UA for Infrastructure</h3>
-      <div class="p-card__footer">
-        <p class="p-heading--four">From $225 per year <sup><a href="#fn-pnp-1">*</a></sup></p>
-      </div>
-      <div class="p-card__footer">
-        <a href="#ua-i-support">Learn more&nbsp;&rsaquo;</a>
-      </div>
-    </div>
-
-    <div class="col-4 p-card">
-      <h3>OpenStack packages</h3>
-      <div class="p-card__footer">
-        <p class="p-heading--four">From $75,000</p>
-      </div>
-      <div class="p-card__footer">
-        <a href="#openstack">Learn more&nbsp;&rsaquo;</a>
-      </div>
-    </div>
-
-    <div class="col-4 p-card">
-      <h3>Kubernetes packages</h3>
-      <div class="p-card__footer">
-        <p class="p-heading--four">From $19,500</p>
-      </div>
-      <div class="p-card__footer">
-        <a href="#kubernetes">Learn more&nbsp;&rsaquo;</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-
-    <div class="col-4 p-card">
-      <h3>MAAS</h3>
-      <div class="p-card__footer">
-        <p class="p-heading--four">From $5 per month <sup><a href="#fn-pnp-1">*</a></sup></p>
-      </div>
-      <div class="p-card__footer">
-        <a href="#maas">Learn more&nbsp;&rsaquo;</a>
-      </div>
-    </div>
-
-    <div class="col-4 p-card">
-      <h3>Storage</h3>
-      <div class="p-card__footer">
-        <p class="p-heading--four">From $0.01 per GB per month <sup><a href="#fn-pnp-1">*</a></sup></p>
-      </div>
-      <div class="p-card__footer">
-        <a href="#storage">Learn more&nbsp;&rsaquo;</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="row" id="fn-pnp-1">
-    <div class="col-12">
-      <p><small><sup>*</sup> Minimums apply</small></p>
-    </div>
-  </div>
-</section>
+<nav class="p-tabs p-sticky-nav">
+  <ul class="p-tabs__list" role="tablist">
+    <li class="p-tabs__item" role="presentation">
+      <a class="p-tabs__link js-sticky-tab" href="#ua-i-support">UA for Infrastructure</a>
+    </li>
+    <li class="p-tabs__item" role="presentation">
+      <a class="p-tabs__link js-sticky-tab" href="#maas">MAAS</a>
+    </li>
+    <li class="p-tabs__item" role="presentation">
+      <a class="p-tabs__link js-sticky-tab" href="#openstack">OpenStack</a>
+    </li>
+    <li class="p-tabs__item" role="presentation">
+      <a class="p-tabs__link js-sticky-tab" href="#kubernetes">Kubernetes</a>
+    </li>
+  </ul>
+</nav>
 
 <section class="p-strip--light is-deep u-no-padding--bottom" id="ua-i-support">
   <div class="row">
@@ -83,7 +38,7 @@
       <h2>Ubuntu Advantage for Infrastructure</h2>
       <p>Ubuntu Advantage for Infrastructure is the professional package of tools, technology and expertise from Canonical, helping organisations around the world get the most out of their Ubuntu deployments. It includes access to: </p>
       <ul class="p-list">
-        <li class="p-list__item is-ticked">Extended Security Maintenance (ESM): critical security updates after Ubuntu end-of-life</li>
+        <li class="p-list__item is-ticked">Extended Security Maintenance (ESM): critical security updates after Ubuntu End-of-life</li>
         <li class="p-list__item is-ticked">Landscape: the systems management tool for using Ubuntu at scale</li>
         <li class="p-list__item is-ticked">Livepatch: automatic kernel security hotfixes without rebooting</li>
         <li class="p-list__item is-ticked">Knowledge Base: a private archive of expert-written articles and tutorials</li>
@@ -122,9 +77,9 @@
   <div class="row" style="overflow-x: auto;">
     <div class="col-12">
       <h2 id="desktop">For desktops</h2>
-      {% include "shared/pricing/_ua-desktop-support.html" %}
     </div>
   </div>
+  {% include "shared/pricing/_ua-desktop-support.html" %}
 </section>
 
 <section class="p-strip--light is-deep is-bordered" id="maas">
@@ -134,12 +89,7 @@
       <p>MAAS is open source data center automation provisioning, DNS, DHCP and IPAM software from Canonical. Many enterprises depend on MAAS to automate and optimize provisioning for server clusters. Canonical offers Standard and Advanced support plans priced per-machine-per-month or, for large volume and public clouds with dynamic scale, we offer per-region pricing with flexible node ranges.</p>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-12" style="overflow-x: auto;">
-      {% include "shared/pricing/_maas-support.html" %}
-    </div>
-  </div>
+  {% include "shared/pricing/_maas-support.html" %}
 </section>
 
 <section class="p-strip--light is-deep is-bordered" id="openstack">
@@ -152,7 +102,7 @@
   {% include "shared/pricing/_openstack-packages.html" %}
   <div class="row">
     <div class="col-12">
-      <p>For more information about Foundation Cloud or if you are not sure which one is right for you, <a href="/openstack/contact-us?product=foundation-cloud" class="js-invoke-modal">contact us&nbsp;&rsaquo;</a></p>
+      <p>For more information about Cloud Build and Cloud Build Plus or if you are not sure which one is right for you, <a href="/openstack/contact-us?product=foundation-cloud" class="js-invoke-modal">contact us&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
@@ -191,17 +141,12 @@
       <p>Ubuntu Advantage for Infrastructure from Canonical embeds the proven open source software‐defined storage (SDS) technologies of Ceph and Swift into a 24x7 supported software solution with a unique usage-based pricing model. For customers going beyond the current storage allowance <a href="#fn-storage"><sup>*</sup></a> per node, the following pricing applies:</p>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-10">
-      {% include "shared/pricing/_storage-support.html" %}
-    </div>
-  </div>
+  {% include "shared/pricing/_storage-support.html" %}
 
   <div class="row">
     <div class="col-12">
       <div>
-        <p id="fn-storage"><small><sup>*</sup> for current allowance limits, see our <a href="/legal/ubuntu-advantage-service-description">service description</a>.</small></p>
+        <p id="fn-storage"><small><sup>*</sup> for current allowance limits, see our <a href="/legal/ubuntu-advantage-service-description#uasd-storage-support">service description</a>.</small></p>
         <p><a href="/cloud/contact-us?product=ubuntu-advantage-storage" class="p-button--neutral js-invoke-modal" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Contact us - cloud storage CTA' : undefined });">Contact us</a></p>
       </div>
     </div>
@@ -211,15 +156,11 @@
 <section class="p-strip--light is-deep">
   <div class="row">
     <div class="col-12">
-      <h2>Landscape Enterprise Systems Management</h2>
+      <h2>Landscape Enterprise Systems Management (on-premises)</h2>
       <p>Reduce your team&rsquo;s efforts on day-to-day management with Landscape, the most cost-effective tool to support and monitor large and growing networks of desktops, servers and clouds.</p>
     </div>
   </div>
-  <div class="row">
-    <div class="col-10">
-      {% include "shared/pricing/_landscape.html" %}
-    </div>
-  </div>
+  {% include "shared/pricing/_landscape.html" %}
   <div class="row">
     <div class="col-12">
       <p><a href="https://landscape.canonical.com" class="p-link--external">Learn more about Landscape</a></p>
@@ -229,6 +170,9 @@
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
 {% include "shared/forms/interactive/_support.html" with formid="1240"   lpId="2065"  returnURL="https://www.ubuntu.com/support/thank-you" lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
+
+<script src="{% versioned_static 'js/stickyNav.js' %}"></script>
+
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}
