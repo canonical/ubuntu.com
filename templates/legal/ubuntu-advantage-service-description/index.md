@@ -241,7 +241,7 @@ Add-ons constitute additional support services available separately on a per-Nod
         1. Migration of workloads between Trilio versions.
         2. Support for, or answering basic questions about, third party add-ons to Trilio.
         3. Installation of Trilio.
-3. <h4>Storage Support</h4>
+3. <h4 id="uasd-storage-support">Storage Support</h4>
     1. Ubuntu Advantage for Infrastructure includes an allowance for usable storage on a per-Node basis. See the “OpenStack & Kubernetes Support” section.
     2. If the Node is covered at another service level or the allowance is exceeded, additional Storage Support needs to be acquired.
     3. Storage Support is provided at the Advanced response times.
