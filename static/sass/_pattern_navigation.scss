@@ -433,8 +433,8 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
 
   .slide-animation {
     // sass-lint:disable no-vendor-prefixes property-sort-order
-    transform: translateY(-101%);
     -webkit-transform: translateY(-101%);
+    transform: translateY(-101%);
     // sass-lint:enable no-vendor-prefixes property-sort-order
   }
 
