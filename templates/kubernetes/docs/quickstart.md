@@ -5,6 +5,12 @@ markdown_includes:
 context:
   title: "Quick start"
   description: With this quick start guide and some tools from Canonical, you'll have a Kubernetes cluster running on the cloud of your choice in minutes!
+keywords: quickstart
+tags: [getting_started]
+sidebar: k8smain-sidebar
+permalink: quickstart.html
+layout: [base, ubuntu-com]
+toc: False
 ---
 
 The Charmed Distribution of Kubernetes<sup>&reg;</sup> delivers a ‘pure K8s’ experience, tested across a wide range of clouds and integrated with modern metrics and monitoring. It works across all major public clouds and private infrastructure, enabling your teams to operate Kubernetes clusters on demand, anywhere.
@@ -155,9 +161,9 @@ kubectl config view | grep password
 
 Open a browser at the address for the Dashboard and log in. You will see an additional authentication screen:
 
-![dashboard image](https://assets.ubuntu.com/v1/d89b1290-CDK-007.png)
+![dashboard image](https://assets.ubuntu.com/v1/80980265-dashboard_login.png)
 
-For now you can just choose 'Skip' to get to the Dashboard, but for future administration, you should set up _role based access control_.
+You will need to log in to the Dashboard with a valid user. The easiest thing to do is to select your kubeconfig file, but for future administration, you should set up _role based access control_.
 
 ![dashboard image](https://assets.ubuntu.com/v1/37ee63d6-CDK-008.png)
 
