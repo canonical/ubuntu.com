@@ -27,7 +27,7 @@
     </div>
 
     <div class="col-4 p-card">
-      <h3>OpenStack packages</h3>
+      <h3>OpenStack</h3>
       <div class="p-card__footer">
         <p class="p-heading--four">From $75,000</p>
       </div>
@@ -37,7 +37,7 @@
     </div>
 
     <div class="col-4 p-card">
-      <h3>Kubernetes packages</h3>
+      <h3>Kubernetes</h3>
       <div class="p-card__footer">
         <p class="p-heading--four">From $19,500</p>
       </div>
@@ -122,9 +122,9 @@
   <div class="row" style="overflow-x: auto;">
     <div class="col-12">
       <h2 id="desktop">For desktops</h2>
-      {% include "shared/pricing/_ua-desktop-support.html" %}
     </div>
   </div>
+  {% include "shared/pricing/_ua-desktop-support.html" %}
 </section>
 
 <section class="p-strip--light is-deep is-bordered" id="maas">
@@ -134,12 +134,7 @@
       <p>MAAS is open source data center automation provisioning, DNS, DHCP and IPAM software from Canonical. Many enterprises depend on MAAS to automate and optimize provisioning for server clusters. Canonical offers Standard and Advanced support plans priced per-machine-per-month or, for large volume and public clouds with dynamic scale, we offer per-region pricing with flexible node ranges.</p>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-12" style="overflow-x: auto;">
-      {% include "shared/pricing/_maas-support.html" %}
-    </div>
-  </div>
+  {% include "shared/pricing/_maas-support.html" %}
 </section>
 
 <section class="p-strip--light is-deep is-bordered" id="openstack">
@@ -152,7 +147,7 @@
   {% include "shared/pricing/_openstack-packages.html" %}
   <div class="row">
     <div class="col-12">
-      <p>For more information about Foundation Cloud or if you are not sure which one is right for you, <a href="/openstack/contact-us?product=foundation-cloud" class="js-invoke-modal">contact us&nbsp;&rsaquo;</a></p>
+      <p>For more information about Cloud Build and Cloud Build Plus or if you are not sure which one is right for you, <a href="/openstack/contact-us?product=foundation-cloud" class="js-invoke-modal">contact us&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
@@ -191,17 +186,12 @@
       <p>Ubuntu Advantage for Infrastructure from Canonical embeds the proven open source software‐defined storage (SDS) technologies of Ceph and Swift into a 24x7 supported software solution with a unique usage-based pricing model. For customers going beyond the current storage allowance <a href="#fn-storage"><sup>*</sup></a> per node, the following pricing applies:</p>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-10">
-      {% include "shared/pricing/_storage-support.html" %}
-    </div>
-  </div>
+  {% include "shared/pricing/_storage-support.html" %}
 
   <div class="row">
     <div class="col-12">
       <div>
-        <p id="fn-storage"><small><sup>*</sup> for current allowance limits, see our <a href="/legal/ubuntu-advantage-service-description">service description</a>.</small></p>
+        <p id="fn-storage"><small><sup>*</sup> for current allowance limits, see our <a href="/legal/ubuntu-advantage-service-description#uasd-storage-support">service description</a>.</small></p>
         <p><a href="/cloud/contact-us?product=ubuntu-advantage-storage" class="p-button--neutral js-invoke-modal" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Contact us - cloud storage CTA' : undefined });">Contact us</a></p>
       </div>
     </div>
@@ -211,15 +201,11 @@
 <section class="p-strip--light is-deep">
   <div class="row">
     <div class="col-12">
-      <h2>Landscape Enterprise Systems Management</h2>
+      <h2>Landscape Enterprise Systems Management (on-premises)</h2>
       <p>Reduce your team&rsquo;s efforts on day-to-day management with Landscape, the most cost-effective tool to support and monitor large and growing networks of desktops, servers and clouds.</p>
     </div>
   </div>
-  <div class="row">
-    <div class="col-10">
-      {% include "shared/pricing/_landscape.html" %}
-    </div>
-  </div>
+  {% include "shared/pricing/_landscape.html" %}
   <div class="row">
     <div class="col-12">
       <p><a href="https://landscape.canonical.com" class="p-link--external">Learn more about Landscape</a></p>
