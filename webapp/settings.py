@@ -110,8 +110,6 @@ TEMPLATES = [
     }
 ]
 
-ASSET_SERVER_URL = "https://assets.ubuntu.com/v1/"
-
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
