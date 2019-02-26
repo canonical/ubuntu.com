@@ -1,11 +1,7 @@
 {% load versioned_static  %}
 <!doctype html>
 
-<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en" dir="ltr"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en" dir="ltr"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie10 lt-ie9" lang="en" dir="ltr"> <![endif]-->
-<!--[if IE 9]>    <html class="no-js lt-ie10" lang="en" dir="ltr"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js{% block extra_html_class %}{% endblock %}" lang="en" dir="ltr"> <!--<![endif]-->
+<html class="no-js{% block extra_html_class %}{% endblock %}" lang="en" dir="ltr">
   <head>
 
     {% include "templates/_tag_manager.html" %}
@@ -19,10 +15,6 @@
     <meta name="google-site-verification" content="ddh2iq7ZuKf1LpkL_gtM_T7DkKDVD7ibq6Ceue4a_3M" />
     <meta name="theme-color" content="#E95420" />
 
-    <!--[if IE]>
-    <meta http-equiv="X-UA-Compatible" content="IE=8">
-    <![endif]-->
-
     <title>{% block title %}{% endblock %} | Ubuntu</title>
 
     <link rel="icon" type="image/png" href="{{ ASSET_SERVER_URL }}cb22ba5d-favicon-16x16.png" sizes="16x16" />
@@ -35,10 +27,7 @@
     <link type="text/plain" rel="author" href="{% versioned_static 'files/humans.txt' %}" />
 
     <!-- stylesheets -->
-
-    <!--[if !lte IE 9]> -->
     <link rel="stylesheet" type="text/css" media="screen" href="{% versioned_static 'css/styles.css' %}" />
-    <!-- <![endif]-->
 
     <link rel="stylesheet" type="text/css" media="print" href="{% versioned_static 'css/print.css' %}" />
 
