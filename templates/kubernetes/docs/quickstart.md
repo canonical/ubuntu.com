@@ -149,17 +149,17 @@ This shows the relevant IP addresses for operating your cluster.
 
 ### Access the dashboard
 
-To check that everything is actually working, you may want to log in to the Kubernetes Dashboard at the IP address given in the above output. The default username is 'admin' and the password can be retrieved using the command:
+To check that everything is actually working, you may want to log in to the Kubernetes Dashboard.
 
-```bash
-kubectl config view | grep password
+The recommended way to do this is to use the built-in proxy service, run with the following:
+
+```bash 
+kubectl proxy
 ```
 
-<div class="p-notification--positive"><p markdown="1" class="p-notification__response">
-<span class="p-notification__status">Note:</span> If you have set up more than one cluster, each will have a different password and you will need to look at the full output from `kubectl config view` to determine which one to use.
-</p></div>
+The URL for the dashboard will then be [http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/)
 
-Open a browser at the address for the Dashboard and log in. You will see an additional authentication screen:
+Open a browser at the address for the Dashboard. You will see an authentication screen:
 
 ![dashboard image](https://assets.ubuntu.com/v1/80980265-dashboard_login.png)
 
