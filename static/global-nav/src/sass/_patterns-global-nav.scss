@@ -1,0 +1,328 @@
+$global-asset-path: 'https://assets.ubuntu.com/v1/';
+$navigaiton-height: 1.875rem;
+@media only screen and (max-width: $global-breakpoint-medium) {
+  $navigaiton-height: 2.5rem;
+}
+
+@mixin global-p-nav {
+  body {
+    padding-top: $navigaiton-height;
+    position: relative;
+
+    @media only screen and (max-width: $global-breakpoint-medium) {
+      padding-bottom: $navigaiton-height;
+      padding-top: 0;
+    }
+  }
+
+  .global-nav {
+    background-color: $global-background;
+    box-shadow: 0 2px 2px transparentize($global-black, .8);
+    display: block;
+    height: $navigaiton-height;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 101;
+
+    @media only screen and (max-width: $global-breakpoint-medium) {
+      bottom: 0;
+      box-shadow: none;
+      height: $navigaiton-height;
+      top: auto;
+    }
+
+    &__wrapper {
+      background: none repeat scroll 0 0 transparent;
+      box-sizing: border-box;
+      margin: 0 auto;
+      position: relative;
+      text-align: left;
+      width: 100%;
+
+      @media only screen and (min-width: $global-breakpoint-medium) {
+        width: auto;
+        background-color: $global-white;
+      }
+
+      @media only screen and (min-width: $global-breakpoint-large) {
+        width: $global-breakpoint-large;
+      }
+    }
+
+    &__title {
+      display: none;
+
+      @media only screen and (max-width: $global-breakpoint-medium) {
+        background-image: url('#{$global-asset-path}c3ca35d3-arrow_down_dark.svg');
+        background-position: calc(100% - .625rem) 50%;
+        background-repeat: no-repeat;
+        background-size: .8125rem;
+        background-color: $global-background;
+        border-width: 1px 0;
+        border-style: solid;
+        border-color: $global-mid-grey;
+        border-radius: 0;
+        cursor: pointer;
+        color: $global-dark-grey;
+        display: block;
+        font-family: Ubuntu, Arial, 'libra sans', sans-serif;
+        font-size: .8125rem;
+        font-weight: 300;
+        line-height: 1.5;
+        margin: 0;
+        padding: .625rem 0 .625rem $navigaiton-height;
+        position: relative;
+        text-align: left;
+        width: 100%;
+
+        &:hover {
+          background-color: $global-background;
+        }
+
+        &:active,
+        &:focus {
+          @include global-u-focus;
+        }
+
+        &.is-revealed {
+          background-image: url('#{$global-asset-path}9ec2c354-icon-arrow-up.svg');
+        }
+
+        &::before {
+          background-image: url('#{$global-asset-path}eb41826c-external-link-dark.svg');
+          background-position: 0 3px;
+          background-repeat: no-repeat;
+          background-size: .875rem;
+          content: '';
+          height: 1.0625rem;
+          left: .625rem;
+          position: absolute;
+          width: .875rem;
+        }
+      }
+    }
+
+    &__list {
+      margin: 0;
+      padding-left: 0;
+      top: 0;
+
+      @media only screen and (max-width: $global-breakpoint-medium) {
+        display: none;
+
+        &.is-revealed {
+          display: block;
+
+          .global-nav__more {
+            display: block;
+            margin-top: 0;
+            padding-left: 0;
+          }
+        }
+      }
+    }
+
+    &__list-item {
+      display: block;
+      float: left;
+      height: $navigaiton-height;
+      margin: 0;
+      margin-top: -1px;
+      position: relative;
+      text-align: left;
+      top: 0;
+
+      @media only screen and (max-width: $global-breakpoint-medium) {
+        border-bottom: 1px solid $global-mid-grey;
+        border-left: 1px solid $global-mid-grey;
+        box-sizing: border-box;
+        display: inline;
+        float: left;
+        font-size: .8125rem;
+        height: auto;
+        line-height: 2;
+        margin: 0;
+        width: 50%;
+
+        &:nth-child(odd) {
+          border-left: 0;
+        }
+
+        &:last-of-type {
+          border-bottom: 0;
+        }
+      }
+
+      &--more {
+        @extend .global-nav__list-item;
+        border-left: 1px solid $global-transparent;
+        border-right: 1px solid $global-transparent;
+        min-width: 3.75rem;
+
+        @media only screen and (max-width: $global-breakpoint-medium) {
+          border: 0;
+          height: 0;
+          top: -1px;
+          width: 100%;
+
+          & > .global-nav__link {
+            display: none !important;
+          }
+        }
+
+        &.is-revealed {
+          background-color: $global-white;
+          border-left: 1px solid $global-grey;
+          border-right: 1px solid $global-grey;
+          min-width: 120px;
+        }
+
+        &.is-revealed {
+          .global-nav__more {
+            display: block;
+            margin: 0;
+            padding-left: 0;
+          }
+
+          .global-nav__more .global-nav__link:hover {
+            color: $global-orange;
+            text-decoration: none;
+          }
+
+          > .global-nav__link,
+          .global-nav__more-chevron {
+            color: $global-orange;
+            opacity: 1;
+          }
+        }
+      }
+
+      @media only screen and (min-width: $global-breakpoint-large) {
+        &:first-of-type .global-nav__link {
+          margin-left: 0;
+        }
+      }
+    }
+
+    &__more {
+      background-color: $global-white;
+      box-shadow: 0 2px 2px transparentize($global-black, .7);
+      display: none;
+      float: none;
+      margin-left: 0;
+      min-width: 7.5rem;
+      position: absolute;
+      top: $navigaiton-height;
+
+      @media only screen and (max-width: $global-breakpoint-medium) {
+        border-top: 1px solid $global-grey;
+        background-color: transparent;
+        min-width: none;
+        top: 0;
+        width: 100%;
+      }
+
+      .global-nav__link {
+        border-top: 0;
+        float: none;
+      }
+
+      .global-nav__list-item {
+        float: none;
+
+        @media only screen and (max-width: $global-breakpoint-medium) {
+          border-bottom: 1px solid $global-mid-grey;
+          border-left: 1px solid $global-mid-grey;
+          box-sizing: border-box;
+          display: inline;
+          float: left;
+          font-size: .8125rem;
+          line-height: 2;
+          margin: 0;
+          width: 50%;
+
+          &:nth-child(odd):nth-last-child(1) {
+            border-right: 1px solid $global-mid-grey;
+            width: calc(50% + 1px);
+          }
+
+          &:nth-last-child(1):not(:nth-child(even)) {
+            border-left: 0;
+          }
+
+          &:nth-last-child(1):nth-child(odd) {
+            border-bottom: 0;
+          }
+        }
+      }
+
+      .global-nav__list-item:first-of-type {
+        @media only screen and (min-width: $global-breakpoint-medium) {
+          .global-nav__link {
+            margin-left: .625rem;
+          }
+        }
+      }
+
+      &-chevron {
+        display: block;
+        height: 0;
+        left: 2.875rem;
+        line-height: 1;
+        position: relative;
+        top: -.625rem;
+        transform: rotate(90deg);
+        transform-origin: 0;
+      }
+    }
+
+    &__link {
+      &:link,
+      &:visited {
+        border-bottom: 0;
+        border-top: 3px solid $global-transparent;
+        color: $global-dark-grey;
+        display: block;
+        font-size: .8125rem;
+        font-weight: 300;
+        line-height: 1.6;
+        list-style-image: none;
+        margin-left: .625rem;
+        margin-right: .625rem;
+        padding-bottom: 4px;
+        padding-top: 3px;
+        position: relative;
+        text-decoration: none;
+        transition: opacity .25s ease-in-out;
+
+        @media only screen and (max-width: $global-breakpoint-medium) {
+          margin-bottom: 3px;
+          margin-left: 10px;
+        }
+      }
+
+      &.is-active {
+        color: $global-orange;
+        opacity: 1;
+        text-decoration: none;
+
+        @media only screen and (min-width: $global-breakpoint-medium) {
+          border-top: 3px solid $global-orange;
+        }
+      }
+
+      &:hover {
+        color: $global-orange;
+        text-decoration: none;
+      }
+
+      &:focus,
+      &:active {
+        @include global-u-focus;
+      }
+    }
+  }
+}
