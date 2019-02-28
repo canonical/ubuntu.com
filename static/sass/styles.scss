@@ -7,6 +7,9 @@
 // custom mixins
 @import "mixins/full-width-breakout";
 
+// import cookie policy
+@import "cookie-policy/build/css/cookie-policy";
+
 // import vanilla-framework
 @import "vanilla-framework/scss/build";
 @import "vanilla-placeholders";
@@ -15,7 +18,6 @@
 @import "pattern_buttons";
 @import "pattern_navigation";
 @import "pattern_strip";
-@import "pattern_notifications";
 @import "pattern_footer";
 @import "pattern_lists";
 @import "pattern_card";
@@ -39,7 +41,6 @@
 @include ubuntu-p-buttons;
 @include ubuntu-p-navigation;
 @include ubuntu-p-strip;
-@include ubuntu-p-notification;
 @include ubuntu-p-footer;
 @include ubuntu-p-lists;
 @include ubuntu-p-card;

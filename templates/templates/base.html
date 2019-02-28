@@ -101,6 +101,16 @@
 
     <script src="/static/js/global-nav.js"></script>
     <script>canonicalGlobalNav.createNav();</script>
+
+    <script src="/static/js/cookie-policy.js"></script>
+    <script>
+      var options = {
+        content:
+          'We use cookies to improve your experience. By your continued use of this site you accept such use.<br /> This notice will disappear by itself.',
+        duration: 10000
+      };
+      cpNs.cookiePolicy.setup(options);
+    </script>
   </body>
 </html>
 
