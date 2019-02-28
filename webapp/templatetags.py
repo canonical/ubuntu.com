@@ -1,8 +1,24 @@
-# -*- coding: utf-8 -*-
-from django import template
+# Packages
 import dateutil.parser
+from canonicalwebteam import image_template
+from django import template
+from django.utils.safestring import mark_safe
 
 register = template.Library()
+
+# Tags
+# ===
+
+
+@register.simple_tag
+def image(url, alt, width, height, **kwargs):
+    return mark_safe(
+        image_template(url, alt, width, height, attributes=kwargs)
+    )
+
+
+# Filters
+# ===
 
 
 @register.filter

@@ -99,7 +99,7 @@ TEMPLATES = [
         "OPTIONS": {
             "builtins": [
                 "canonicalwebteam.get_feeds.templatetags",
-                "webapp.templatetags.utils",
+                "webapp.templatetags",
             ],
             "context_processors": [
                 "django_asset_server_url.asset_server_url",
