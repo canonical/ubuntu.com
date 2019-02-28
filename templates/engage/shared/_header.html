@@ -19,8 +19,8 @@
       </p>{% endif %}
       </div>
     </div>
-    {% if image %}<div class="col-5 u-align--center u-vertically-center">
-      <img src="{% if image != "http" %}https://assets.ubuntu.com/v1/{% endif %}{{ image }}" alt="image for (( title ))" >
-    </div>{% endif %}
+    <div class="col-5 u-align--center u-vertically-center">
+      {% image url=image_url alt=image_alt width=image_width height=image_height %}
+    </div>
   </div>
 </section>
