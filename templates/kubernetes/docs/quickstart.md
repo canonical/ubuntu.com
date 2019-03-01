@@ -5,6 +5,12 @@ markdown_includes:
 context:
   title: "Quick start"
   description: With this quick start guide and some tools from Canonical, you'll have a Kubernetes cluster running on the cloud of your choice in minutes!
+keywords: quickstart
+tags: [getting_started]
+sidebar: k8smain-sidebar
+permalink: quickstart.html
+layout: [base, ubuntu-com]
+toc: False
 ---
 
 The Charmed Distribution of Kubernetes<sup>&reg;</sup> delivers a ‘pure K8s’ experience, tested across a wide range of clouds and integrated with modern metrics and monitoring. It works across all major public clouds and private infrastructure, enabling your teams to operate Kubernetes clusters on demand, anywhere.
@@ -143,21 +149,21 @@ This shows the relevant IP addresses for operating your cluster.
 
 ### Access the dashboard
 
-To check that everything is actually working, you may want to log in to the Kubernetes Dashboard at the IP address given in the above output. The default username is 'admin' and the password can be retrieved using the command:
+To check that everything is actually working, you may want to log in to the Kubernetes Dashboard.
 
-```bash
-kubectl config view | grep password
+The recommended way to do this is to use the built-in proxy service, run with the following:
+
+```bash 
+kubectl proxy
 ```
 
-<div class="p-notification--positive"><p markdown="1" class="p-notification__response">
-<span class="p-notification__status">Note:</span> If you have set up more than one cluster, each will have a different password and you will need to look at the full output from `kubectl config view` to determine which one to use.
-</p></div>
+The URL for the dashboard will then be [http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/)
 
-Open a browser at the address for the Dashboard and log in. You will see an additional authentication screen:
+Open a browser at the address for the Dashboard. You will see an authentication screen:
 
-![dashboard image](https://assets.ubuntu.com/v1/d89b1290-CDK-007.png)
+![dashboard image](https://assets.ubuntu.com/v1/80980265-dashboard_login.png)
 
-For now you can just choose 'Skip' to get to the Dashboard, but for future administration, you should set up _role based access control_.
+You will need to log in to the Dashboard with a valid user. The easiest thing to do is to select your kubeconfig file, but for future administration, you should set up _role based access control_.
 
 ![dashboard image](https://assets.ubuntu.com/v1/37ee63d6-CDK-008.png)
 
