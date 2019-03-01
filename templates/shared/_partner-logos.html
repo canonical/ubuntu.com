@@ -9,7 +9,29 @@
   <ul id="cloud-partners" class="p-inline-images">
     {% for partner in partners %}
       <li class="p-inline-images__item">
-        {% if partner.partner_website %}<a href="{{ partner.partner_website }}">{% endif %}<img class="p-inline-images__logo" src="{{ partner.logo }}" style="max-width: 144px;" width="144" alt="{{ partner.name }}" />{% if partner.partner_website %}</a>{% endif %}
+        {% if partner.partner_website %}
+          <a href="{{ partner.partner_website }}">
+        {% endif %}
+            <img
+              class="lazyload p-inline-images__logo"
+              data-src="https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto/{{ partner.logo }}"
+              style="max-width: 144px;"
+              width="144"
+              alt="{{ partner.name }} logo"
+            />
+
+            <noscript>
+              <img
+                class="p-inline-images__logo"
+                src="https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto/{{ partner.logo }}"
+                style="max-width: 144px;"
+                width="144"
+                alt="{{ partner.name }} logo"
+              />
+            </noscript>
+        {% if partner.partner_website %}
+          </a>
+        {% endif %}
       </li>
     {% endfor %}
   </ul>
