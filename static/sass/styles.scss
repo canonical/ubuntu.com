@@ -212,3 +212,8 @@ abbr[title] {
   height: auto !important;
   width: 100% !important;
 }
+
+// Fix for nojs images with lazysizes
+.no-js .lazyload {
+  display: none;
+}
