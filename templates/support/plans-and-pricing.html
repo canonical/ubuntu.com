@@ -10,41 +10,43 @@
 <section class="p-strip is-deep is-bordered">
   <div class="row">
     <h1>Plans and pricing</h1>
-    <p>For enterprises with production workloads Canonical offers the following suite of tools, services and support packages.</p>
-    <p><a href="/support/contact-us?product=support-pricing" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Learn more', 'eventLabel' : 'Get in touch - Top CTA' : undefined });" class="p-button--positive js-invoke-modal">Get in touch</a></p>
+    <p>For enterprises with production workloads, Canonical offers the following suite of tools, services and support packages.</p>
+    <p><a href="/support/contact-us?product=support-pricing" class="p-button--positive js-invoke-modal">Get in touch</a></p>
   </div>
 </section>
 
 <nav class="p-tabs p-sticky-nav">
   <ul class="p-tabs__list" role="tablist">
     <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#ua-i-support">UA for Infrastructure</a>
+      <a class="p-tabs__link js-sticky-tab" href="#ua-i-support">Physical and virtual infrastructure</a>
     </li>
     <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#maas">MAAS</a>
+      <a class="p-tabs__link js-sticky-tab" href="#consulting">Consulting and training</a>
     </li>
     <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#openstack">OpenStack</a>
+      <a class="p-tabs__link js-sticky-tab" href="#landscape">Landscape</a>
     </li>
     <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#kubernetes">Kubernetes</a>
+      <a class="p-tabs__link js-sticky-tab" href="#security">Security and compliance</a>
     </li>
   </ul>
 </nav>
 
 <section class="p-strip--light is-deep u-no-padding--bottom" id="ua-i-support">
   <div class="row">
-    <div class="col-12">
-      <h2>Ubuntu Advantage for Infrastructure</h2>
-      <p>Ubuntu Advantage for Infrastructure is the professional package of tools, technology and expertise from Canonical, helping organisations around the world get the most out of their Ubuntu deployments. It includes access to: </p>
+    <div class="col-8">
+      <h2>Ubuntu Advantage for Infrastructure (UA-I)</h2>
+      <p>Ubuntu Advantage for Infrastructure is a comprehensive subscription to Canonical technology and expertise, helping organisations around the world get the most out of their Ubuntu deployments. It includes access to:</p>
       <ul class="p-list">
-        <li class="p-list__item is-ticked">Extended Security Maintenance (ESM): critical security updates after Ubuntu End-of-life</li>
-        <li class="p-list__item is-ticked">Landscape: the systems management tool for using Ubuntu at scale</li>
-        <li class="p-list__item is-ticked">Livepatch: automatic kernel security hotfixes without rebooting</li>
-        <li class="p-list__item is-ticked">Knowledge Base: a private archive of expert-written articles and tutorials</li>
-        <li class="p-list__item is-ticked">Support: phone and web-based support at multiple service levels</li>
+        <li class="p-list__item is-ticked">Extended Security Maintenance (ESM) provides critical security updates after an LTS release transitions from the LTS Basic Security Maintenance</li>
+        <li class="p-list__item is-ticked">Landscape system management simplifies use of Ubuntu at scale</li>
+        <li class="p-list__item is-ticked">Livepatch enables automatic kernel security hotfixes without rebooting</li>
+        <li class="p-list__item is-ticked">Knowledge Base offers a private archive of expert-written articles and tutorials</li>
+        <li class="p-list__item is-ticked">Phone and web-based support at multiple service levels</li>
+        <li class="p-list__item is-ticked">FIPS certified modules to meet Common Criteria compliance</li>
+        <li class="p-list__item is-ticked">Ceph and Swift storage, backup and recovery capabilities</li>
       </ul>
-      <p><a href="http://buy.ubuntu.com" class="p-button"><span class="p-link--external">Visit the Ubuntu Advantage store</span></a></p>
+      {% comment %}<p><a href="http://buy.ubuntu.com" class="p-button"><span class="p-link--external">Visit the Ubuntu Advantage store</span></a></p>{% endcomment %}
       <p><a href="/support/contact-us?product=support-pricing" class="js-invoke-modal">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
     </div>
   </div>
@@ -53,19 +55,29 @@
 <section class="p-strip--light is-shallow">
   <div class="row">
     <div class="col-12">
-      <h3 id="ua-i-physical">Ubuntu Advantage for Infrastructure - Physical</h3>
+      <h3 id="ua-i-physical">Ubuntu Advantage for Infrastructure</h3>
     </div>
   </div>
-  {% include "shared/pricing/_ua-for-infrastructure-physical.html" %}
+
+  {% include "shared/pricing/_ua-for-infrastructure.html" %}
+
 </section>
 
 <section class="p-strip--light is-shallow">
   <div class="row">
     <div class="col-12">
-      <h3 id="ua-i-virtual">Ubuntu Advantage for Infrastructure - Virtual</h3>
+      <h3 id="ua-i-virtual">Managed service options</h3>
+      <p>With our managed service options, Canonical experts will operate OpenStack clouds and Kubernetes clusters, managing your physical and virtual infrastructure.</p>
     </div>
   </div>
-  {% include "shared/pricing/_ua-for-infrastructure-virtual.html" %}
+
+  {% include "shared/pricing/_ua-for-infrastructure-options.html" %}
+
+  <div class="row">
+    <div class="col-12">
+      <p><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Contact us&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
 </section>
 
 
@@ -76,30 +88,46 @@
 <section class="p-strip--light is-shallow is-bordered">
   <div class="row" style="overflow-x: auto;">
     <div class="col-12">
-      <h2 id="desktop">For desktops</h2>
+      <h2 id="desktop">Ubuntu Advantage for desktops</h2>
     </div>
   </div>
+
   {% include "shared/pricing/_ua-desktop-support.html" %}
+
+  <div class="row">
+    <div class="col-12">
+      <p><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Contact us&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
 </section>
 
 <section class="p-strip--light is-deep is-bordered" id="maas">
   <div class="row">
     <div class="col-12">
       <h2>MAAS</h2>
-      <p>MAAS is open source data center automation provisioning, DNS, DHCP and IPAM software from Canonical. Many enterprises depend on MAAS to automate and optimize provisioning for server clusters. Canonical offers Standard and Advanced support plans priced per-machine-per-month or, for large volume and public clouds with dynamic scale, we offer per-region pricing with flexible node ranges.</p>
+      <p>MAAS is open source data centre automation provisioning, DNS, DHCP, and IPAM software from Canonical. Many enterprises depend on MAAS to automate and optimise provisioning for server clusters. Canonical offers Standard and Advanced support plans priced per-machine per-month or, for large volume and public clouds with dynamic scaling, we offer per-region pricing with flexible node ranges. </p>
     </div>
   </div>
-  {% include "shared/pricing/_maas-support.html" %}
-</section>
 
-<section class="p-strip--light is-deep is-bordered" id="openstack">
+  {% include "shared/pricing/_maas-support.html" %}
+
   <div class="row">
     <div class="col-12">
-      <h2>OpenStack consulting and training packages</h2>
-      <p>Canonical delivers turnkey OpenStack software solutions, on-site, through its field consulting team. Foundation Cloud is based on our award-winning reference architecture. And Foundation Plus packs in a complete set of enterprise features and architectural flexibility.</p>
+      <p><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Contact us&nbsp;&rsaquo;</a></p>
     </div>
   </div>
+</section>
+
+<section class="p-strip--light is-deep is-bordered" id="consulting">
+  <div class="row">
+    <div class="col-12">
+      <h2>OpenStack consulting and training</h2>
+      <p>Canonical delivers turnkey OpenStack software solutions through its field consulting team.Cloud Build and Cloud Build Plus offers a complete set of enterprise features and architectural flexibility, all within a two-week delivery window.</p>
+    </div>
+  </div>
+
   {% include "shared/pricing/_openstack-packages.html" %}
+
   <div class="row">
     <div class="col-12">
       <p>For more information about Cloud Build and Cloud Build Plus or if you are not sure which one is right for you, <a href="/openstack/contact-us?product=foundation-cloud" class="js-invoke-modal">contact us&nbsp;&rsaquo;</a></p>
@@ -110,16 +138,17 @@
 <section class="p-strip--light is-deep is-bordered" id="kubernetes">
   <div class="row">
     <div class="col-12">
-      <h2>Kubernetes consulting and training packages</h2>
-      <p>Canonical works with the leading public clouds and institutions to optimise Kubernetes. We offer three consulting packages to help you establish your Kubernetes operations. Please note that some options will incur additional costs.</p>
+      <h2>Kubernetes consulting and training</h2>
+      <p>Working with the leading public clouds and institutions, Canonical offers several options to help you establish your Kubernetes operations.</p>
     </div>
   </div>
+
   {% include "shared/pricing/_kubernetes-consulting.html" %}
 
   <div class="row">
     <div class="col-12">
-      <h3>AI/ML Add-on for Discoverer and Discoverer Plus</h3>
-      <p>A workshop covering the full stack of machine learning, using Kubernetes for training and analytics. Build a full pipeline from your developer workstations to your data centre, and the public cloud.</p>
+      <h3>AI/ML add-on for Discoverer and Discoverer Plus</h3>
+      <p>A workshop covering the full stack of Machine Learning, using Kubernetes for training and analytics. Build a full pipeline from your developer workstations to your data centre and the public cloud.</p>
     </div>
   </div>
 
@@ -138,32 +167,72 @@
   <div class="row">
     <div class="col-12">
       <h2>Ceph and Swift Storage</h2>
-      <p>Ubuntu Advantage for Infrastructure from Canonical embeds the proven open source software‐defined storage (SDS) technologies of Ceph and Swift into a 24x7 supported software solution with a unique usage-based pricing model. For customers going beyond the current storage allowance <a href="#fn-storage"><sup>*</sup></a> per node, the following pricing applies:</p>
+      <p>UA-I embeds the proven open source Software‐defined Storage (SDS) technologies of Ceph and Swift into a 24/7 supported software solution with a unique usage-based pricing model.</p>
+      <p>For customers going beyond the current storage allowance <a href="#fn-storage"><sup>*</sup></a> per node, the following pricing applies:</p>
     </div>
   </div>
+
   {% include "shared/pricing/_storage-support.html" %}
 
   <div class="row">
     <div class="col-12">
       <div>
-        <p id="fn-storage"><small><sup>*</sup> for current allowance limits, see our <a href="/legal/ubuntu-advantage-service-description#uasd-storage-support">service description</a>.</small></p>
-        <p><a href="/cloud/contact-us?product=ubuntu-advantage-storage" class="p-button--neutral js-invoke-modal" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Contact us - cloud storage CTA' : undefined });">Contact us</a></p>
+        <p><a href="/cloud/contact-us?product=ubuntu-advantage-storage" class="p-button--neutral js-invoke-modal">Contact us</a></p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light is-deep">
+<section id="landscape" class="p-strip--light is-bordered is-deep">
   <div class="row">
     <div class="col-12">
-      <h2>Landscape Enterprise Systems Management (on-premises)</h2>
-      <p>Reduce your team&rsquo;s efforts on day-to-day management with Landscape, the most cost-effective tool to support and monitor large and growing networks of desktops, servers and clouds.</p>
+      <h2>Landscape: enterprise systems management on-premises</h2>
+      <p>Increase efficiency of day-to-day management with Landscape, the most cost-effective solution to support and monitor large and growing networks of desktops, servers and clouds.</p>
     </div>
   </div>
+
   {% include "shared/pricing/_landscape.html" %}
+
   <div class="row">
     <div class="col-12">
       <p><a href="https://landscape.canonical.com" class="p-link--external">Learn more about Landscape</a></p>
+    </div>
+  </div>
+</section>
+
+<section id="security" class="p-strip--light is-deep">
+  <div class="row">
+    <div class="col-12">
+      <h2>Security and compliance</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h3>Livepatch: live kernel patching on premises</h3>
+      <p>The Canonical Livepatch Service lets you apply critical kernel security fixes to your Ubuntu LTS systems without rebooting, reducing planned, and unplanned downtime.</p>
+    </div>
+  </div>
+
+  {% include "shared/pricing/_livepatch.html" %}
+
+  <div class="row">
+    <div class="col-12">
+      <p><a href="/livepatch">Learn more about Livepatch&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h3>FIPS for Ubuntu</h3>
+      <p>Certified FIPS 140-2 Level 1 Cryptographic packages<a href="#fn-fips"><sup>*</sup></a> are available for Ubuntu 16.04 LTS for Ubuntu Advantage for Infrastructure subscribers.</p>
+      <p id="fn-fips"><small><sup>*</sup> For details, see our <a href="/legal/ubuntu-advantage-service-description#uasd-fips">service description</a>.</small></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <p><a href="/support/contact-us?product=support-pricing" class="p-button--neutral js-invoke-modal">Contact us</a></p>
     </div>
   </div>
 </section>
