@@ -1,9 +1,5 @@
 @mixin layout-whitepapers {
-  $base-font-size: 22;
-
   .l-whitepapers {
-    font-size: $base-font-size * $px;
-
     .p-strip--hero {
       @extend %vf-strip;
       background-position: bottom;
@@ -27,26 +23,5 @@
         color: $color-accent-background;
       }
     }
-  }
-
-  // XXX: Ant - 07.03.19
-  // This HACK can be removed once the following issue is resolved:
-  // https://github.com/vanilla-framework/vanilla-framework/issues/2195
-  label,
-  dt,
-  cite,
-  dd,
-  p,
-  h5,
-  .p-heading--five,
-  h6,
-  .p-heading--six,
-  .p-footer__link,
-  .p-navigation--secondary__logo,
-  .p-navigation--sidebar
-  .p-navigation__tagline,
-  .p-breadcrumbs__item,
-  .p-notification__response {
-    line-height: ($base-font-size / 16) * 1.5rem;
   }
 }
