@@ -1,0 +1,50 @@
+@mixin layout-whitepapers {
+  .l-whitepapers {
+    font-size: 18px;
+
+    .p-strip--hero {
+      @extend %vf-strip;
+      background-position: bottom;
+      background-repeat: no-repeat;
+      background-size: cover;
+      padding-bottom: 12rem;
+      padding-top: 4rem;
+
+      h1 {
+        color: $color-accent-background;
+        margin-top: 4rem;
+      }
+    }
+
+    .u-text {
+      &--muted {
+        color: $color-mid-dark;
+      }
+
+      &--accent {
+        color: $color-accent-background;
+      }
+    }
+  }
+
+  // XXX: Ant - 07.03.19
+  // This HACK can be removed once the following issue is resolved:
+  // https://github.com/vanilla-framework/vanilla-framework/issues/2195
+  label,
+  dt,
+  cite,
+  dd,
+  p,
+  h5,
+  .p-heading--five,
+  h6,
+  .p-heading--six,
+  .p-footer__link,
+  .p-navigation--secondary__logo,
+  .p-navigation--sidebar
+  .p-navigation__tagline,
+  .p-breadcrumbs__item,
+  .p-notification__response {
+    line-height: 1.5;
+  }
+}
