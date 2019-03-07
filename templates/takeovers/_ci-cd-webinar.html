@@ -66,26 +66,18 @@
       width: 204px;
     }
 
-    .p-takeover__image #Shape-3 {
-      opacity: 1;
-      transform: translateY(5px);
-      animation-name: bubbleUp;
-      animation-duration: 2s;
-      animation-delay: .5s;
-      animation-iteration-count: 2;
-      animation-timing-function: ease-in-out;
-    }
-
+    .p-takeover__image #Shape-3,
     .p-takeover__image #Shape {
-      opacity: 1;
-      transform: translateY(5px);
+      opacity: 0;
       animation-name: bubbleUp;
-      animation-duration: 2s;
-      animation-delay: .25s;
-      animation-iteration-count: 2;
+      animation-duration: 4s;
       animation-timing-function: ease-in-out;
+      animation-fill-mode: forwards;
     }
 
+    .p-takeover__image #Shape-3 {
+      animation-delay: .25s;
+    }
 
     @media only screen and (min-width: 1030px) {
       .p-takeover {
@@ -106,16 +98,37 @@
 
     @keyframes bubbleUp {
       0% {
-        opacity: 1;
-        transform: translateY(5px);
+        opacity: 0;
       }
-      65% {
+      29% {
+        opacity: 0;
+      }
+      30% {
         opacity: 1;
-        transform: translateY(0);
+      }
+      49% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+      69% {
+        opacity: 0;
+      }
+      70% {
+        opacity: 1;
+      }
+      89% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 0;
+      }
+      99% {
+        opacity: 0;
       }
       100% {
-        opacity: 0;
-        transform: translateY(-5px);
+        opacity: 1;
       }
     }
 
