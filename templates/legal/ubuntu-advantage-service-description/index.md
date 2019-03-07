@@ -20,18 +20,18 @@ This document defines Canonical’s service offerings. Canonical will only provi
 
 |Benefit included|Essential|Standard|Advanced|
 |----------------|:---------:|:--------:|:--------:|
-|Self-service customer care portal and knowledge base|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|
-|Landscape Management|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|
-|Kernel Livepatch Service|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|
-|Extended Security Maintenance|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|
-|10x5 phone and ticket support for all packages in Ubuntu main and Canonical-maintained packages in backports and universe| |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|
-|Ubuntu Legal Assurance programme| |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|
-|Unlimited Ubuntu LXD guest support| |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|
-|24x7 phone and ticket support for all packages in Ubuntu main and Canonical-maintained packages in backports and universe| | |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|
-|OpenStack & Kubernetes Support| | |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|
-|Unlimited Ubuntu guest support| | |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|
-|FIPS-certified cryptographic modules| | |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|
-|Common Criteria| | |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick_orange.svg" width="16" height="16" alt="Yes" />|
+|Self-service customer care portal and knowledge base|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
+|Landscape Management|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
+|Kernel Livepatch Service|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
+|Extended Security Maintenance|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
+|10x5 phone and ticket support for all packages in Ubuntu main and Canonical-maintained packages in backports and universe| |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
+|Ubuntu Legal Assurance programme| |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
+|Unlimited Ubuntu LXD guest support| |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
+|24x7 phone and ticket support for all packages in Ubuntu main and Canonical-maintained packages in backports and universe| | |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
+|OpenStack & Kubernetes Support| | |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
+|Unlimited Ubuntu guest support| | |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
+|FIPS-certified cryptographic modules| | |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
+|Common Criteria| | |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
