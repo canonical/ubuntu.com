@@ -1,6 +1,8 @@
 @mixin layout-whitepapers {
+  $base-font-size: 22;
+
   .l-whitepapers {
-    font-size: 18px;
+    font-size: $base-font-size * $px;
 
     .p-strip--hero {
       @extend %vf-strip;
@@ -45,6 +47,6 @@
   .p-navigation__tagline,
   .p-breadcrumbs__item,
   .p-notification__response {
-    line-height: 1.5;
+    line-height: ($base-font-size / 16) * 1.5rem;
   }
 }
