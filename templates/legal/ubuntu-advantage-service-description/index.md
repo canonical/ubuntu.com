@@ -136,7 +136,7 @@ Canonical will provide the support set out in the section below:
             1. The software packages and Charms necessary for running the Charmed Distribution of Kubernetes.
             2. The software packages available from apt.kubernetes.io and Kubernetes clusters deployed using kubeadm.
             3. Bug-fix support in the supplied software artifacts by Canonical.
-4. <h4>FIPS-certified cryptographic modules</h4>
+4. <h4 id="uasd-fips">FIPS-certified cryptographic modules</h4>
     1. Access to FIPS compliant binaries are included in UA for Infrastructure Advanced or individually on a per node basis.
     2. Access to packages (when available) sufficient for compliance with the FIPS 140-2 Level 1 standard when used with Ubuntu on certain Intel x86_64, IBM POWER8 and IBM Z hardware.
     3. Licences to such packages, to the extent not already licensed under open source software licences.
