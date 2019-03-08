@@ -5,7 +5,7 @@ context:
      description: "How to get Ceph deployed and related to Kubernetes in order to have a default storage class. This allows for easy storage allocation."
      meta_copydoc: https://docs.google.com/document/d/1vQNdVmpsB3iQP7SnJHxT3A8rbD5jSAzTEoYUOepR-SM/edit#heading=h.z1fa5mflx2ob
 ---
-<h4 class="p-muted-heading">Valid since - February 2019</h4>
+<h4 class="p-muted-heading">Valid since - March 2019</h4>
 <hr style="margin-bottom: 2rem;" />
 
 # Ubuntu Advantage service description
