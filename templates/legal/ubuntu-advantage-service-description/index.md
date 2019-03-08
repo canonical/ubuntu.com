@@ -64,11 +64,11 @@ Access to the Landscape SaaS systems management tool is included with all suppor
         2. Security fixes for packages not found in the Maintained Packages list.
         3. Security fixes for CVE’s that are not High or Critical
      4. Extended Security Maintenance does not guarantee secure software or fixes to all High or Critical CVEs.
-5. FIPS-certified cryptographic modules
+5. <h4 id="uasd-fips">FIPS-certified cryptographic modules</h4>
      1. Access to FIPS compliant binaries are included in UA for Infrastructure Advanced or individually on a per node basis.
      2. Access to packages (when available) sufficient for compliance with the FIPS 140-2 Level 1 standard when used with Ubuntu on certain Intel x86_64, IBM POWER8 and IBM Z hardware.
      3. Licences to such packages, to the extent not already licensed under open source software licences.
-6. Common Criteria
+6. <h4>Common Criteria</h4>
      1. Access to packages and scripts (when available) sufficient for compliance with the Common Criteria EAL2 standard when used with Ubuntu on certain Intel x86_64, IBM POWER8 and IBM Z hardware.
      2. Licences to such packages, to the extent not already licensed under open source software licences.
 
