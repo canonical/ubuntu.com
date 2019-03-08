@@ -24,15 +24,21 @@ This document defines Canonical’s service offerings. Canonical will only provi
 |Landscape Management|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
 |Kernel Livepatch Service|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
 |Extended Security Maintenance|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
+
+|                |Essential|Standard|Advanced|
+|----------------|:---------:|:--------:|:--------:|
 |Service applies to all guests on host|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
-|10x5 phone and ticket support| |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
+|24x5 phone and ticket support| |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
 |Ubuntu Legal Assurance programme| |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
+
+|                |Essential|Standard|Advanced|
+|----------------|:---------:|:--------:|:--------:|
 |OpenStack & Kubernetes Support| |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
 |FIPS-certified cryptographic modules| |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
 |Common Criteria| |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
 |24x7 phone and ticket support| | |<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
 
-| |Essential|Standard|Advanced|
+|                |Essential|Standard|Advanced|
 |----------------|:---------:|:--------:|:--------:|
 |Severity Level 1 response time SLA||2 Business Hours|1 Hour|
 |Severity Level 2 response time SLA||4 Business Hours|4 Business Hours|
@@ -45,7 +51,7 @@ This document defines Canonical’s service offerings. Canonical will only provi
 
 As an Ubuntu Advantage Essential customer, you are entitled to the following benefits and services with respect to the hosts for which you purchase the Ubuntu Advantage Essential services, and the guests running on those hosts:
 
-1. <h4>Self-service customer care portal and knowledge base. </h4><br />
+1. <h4>Self-service customer care portal and knowledge base.</h4><br />
 Self-service access to the Canonical support portal which includes access to the knowledge base.
 2. <h4>Landscape Management. </h4><br />
 Access to the Landscape SaaS systems management tool is included with all support offerings, unless otherwise noted.
@@ -57,7 +63,7 @@ Access to the Landscape SaaS systems management tool is included with all suppor
     5. The Kernel Livepatch Service is available for generic and low latency 64-bit Intel/AMD kernels starting with the 4.4 kernel.
     6. Only the default LTS kernel is available for livepatching. This includes  its backport as the last HWE kernel to the previous LTS release.
 4. <h4>Extended Security Maintenance</h4>
-     1. Extended Security Maintenance provides available High and Critical CVE fixes for a number ofserver packages in the Ubuntu Main Repository. A complete list of packages included in Extended Security Maintenance for a given release can be found at: [https://wiki.ubuntu.com/SecurityTeam/ESM/](https://wiki.ubuntu.com/SecurityTeam/ESM/)
+     1. Extended Security Maintenance provides available High and Critical CVE fixes for a number of server packages in the Ubuntu Main Repository. A complete list of packages included in Extended Security Maintenance for a given release can be found at: [https://wiki.ubuntu.com/SecurityTeam/ESM/](https://wiki.ubuntu.com/SecurityTeam/ESM/)
      2. Extended Security Maintenance is only included for 64-bit x86 AMD/Intel installations.
      3. Extended Security Maintenance does not provide:
         1. Bug fixes for packages in the end of life release, unless a bug was created by an Extended Security Maintenance security update
