@@ -21,10 +21,10 @@
           <a href="#main-content">Jump to main content</a>
         </span>
         <ul class="p-navigation__links">
-          <li class="p-navigation__dropdown-link" role="menuitem" id="enterprise"><a class="p-navigation__link-anchor" href="#enterprise-content">Enterprise</a></li>
-          <li class="p-navigation__dropdown-link" role="menuitem" id="developer"><a class="p-navigation__link-anchor" href="#developer-content">Developer</a></li>
-          <li class="p-navigation__dropdown-link" role="menuitem" id="community"><a class="p-navigation__link-anchor" href="#community-content">Community</a></li>
-          <li class="p-navigation__dropdown-link" role="menuitem" id="download"><a class="p-navigation__link-anchor" href="#download-content">Download</a></li>
+          <li class="p-navigation__dropdown-link" role="menuitem" id="enterprise" onmouseover="fetchDropdown('templates/_navigation-enterprise-h.html', 'enterprise-content'); this.onmouseover = null;"><a class="p-navigation__link-anchor" href="#enterprise-content">Enterprise</a></li>
+          <li class="p-navigation__dropdown-link" role="menuitem" id="developer" onmouseover="fetchDropdown('templates/_navigation-developer-h.html', 'developer-content'); this.onmouseover = null;"><a class="p-navigation__link-anchor" href="#developer-content">Developer</a></li>
+          <li class="p-navigation__dropdown-link" role="menuitem" id="community" onmouseover="fetchDropdown('templates/_navigation-community-h.html', 'community-content'); this.onmouseover = null;"><a class="p-navigation__link-anchor" href="#community-content">Community</a></li>
+          <li class="p-navigation__dropdown-link" role="menuitem" id="download" onmouseover="fetchDropdown('templates/_navigation-download-h.html', 'download-content'); this.onmouseover = null;"><a class="p-navigation__link-anchor" href="#download-content">Download</a></li>
         </ul>
         <div class="p-navigation__search" role="menuitem">
           <form action="/search" class="p-search-box" id="google-appliance-search-form">
@@ -77,16 +77,16 @@
   {% endif %}
 
   <script>
-    (function () {
-      document.addEventListener('DOMContentLoaded', function() {
+//    (function () {
+//      document.addEventListener('DOMContentLoaded', function() {
 
-        fetchDropdown('templates/_navigation-enterprise-h.html', 'enterprise-content')
+//        fetchDropdown('templates/_navigation-enterprise-h.html', 'enterprise-content');
 
-        fetchDropdown('templates/_navigation-developer-h.html', 'developer-content')
+//        fetchDropdown('templates/_navigation-developer-h.html', 'developer-content');
 
-        fetchDropdown('templates/_navigation-community-h.html', 'community-content');
+//        fetchDropdown('templates/_navigation-community-h.html', 'community-content');
 
-        fetchDropdown('templates/_navigation-download-h.html', 'download-content')
+        //fetchDropdown('templates/_navigation-download-h.html', 'download-content');
 
         function fetchDropdown (url, id) {
           const div = document.getElementById(id);
@@ -101,6 +101,6 @@
             console.log('Request failed', error)
           })
         }
-      });
-    })()
+  //    });
+//    })()
   </script>
