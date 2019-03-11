@@ -39,10 +39,11 @@
   </header>
   <div class="dropdown-window-overlay fade-animation"></div>
   <div class="dropdown-window slide-animation">
-    {% include "templates/_navigation-enterprise-h.html" %}
-    {% include "templates/_navigation-developer-h.html" %}
-    {% include "templates/_navigation-community-h.html" %}
-    {% include "templates/_navigation-download-h.html" %}
+    <div class="u-hide" id="enterprise-content"></div>
+    <div class="u-hide" id="developer-content">
+  </div>
+    <div class="u-hide" id="community-content"></div>
+    <div class="u-hide" id="download-content"></div>
   </div>
   {% if breadcrumbs and breadcrumbs.children and breadcrumbs.children|length > 1 or breadcrumbs.grandchildren %}
   <nav class="p-navigation--secondary">
@@ -74,3 +75,32 @@
     </div>
   </nav>
   {% endif %}
+
+  <script>
+    (function () {
+      document.addEventListener('DOMContentLoaded', function() {
+
+        fetchDropdown('templates/_navigation-enterprise-h.html', 'enterprise-content')
+
+        fetchDropdown('templates/_navigation-developer-h.html', 'developer-content')
+
+        fetchDropdown('templates/_navigation-community-h.html', 'community-content');
+
+        fetchDropdown('templates/_navigation-download-h.html', 'download-content')
+
+        function fetchDropdown (url, id) {
+          const div = document.getElementById(id);
+          fetch(url)
+          .then(function(response) {
+            return response.text();
+          })
+          .then(function(text) {
+            div.innerHTML = text;
+          })
+          .catch(function(error) {
+            console.log('Request failed', error)
+          })
+        }
+      });
+    })()
+  </script>
