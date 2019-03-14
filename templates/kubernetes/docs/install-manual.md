@@ -389,8 +389,7 @@ For more information on the Juju GUI, see the [Juju documentation][juju-gui].
 [juju-docs]: https://docs.jujucharms.com/reference-install
 [controller-config]: https://docs.jujucharms.com/controllers-config
 [credentials]: https://docs.jujucharms.com/
-[quickstart]: /kubernetes/quickstart
-[clouds-lxd]: /kubernetes/clouds-lxd
+[quickstart]: /kubernetes/docs/quickstart
 [juju-bundle]: https://docs.jujucharms.com/stable/en/charms-bundles
 [juju-gui]: https://docs.jujucharms.com/stable/en/controllers-gui
 [juju-constraints]: https://docs.jujucharms.com/stable/en/reference-constraints
