@@ -13,7 +13,18 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-# CVE-2018-18264 - January 10, 2019
+# 1.13 Bugfix Release
+
+### February 21, 2019 - [canonical-kubernetes-435](https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-435/archive/bundle.yaml)
+
+## Fixes
+
+- Fixed docker does not start when docker_runtime is set to nvidia ([Issue](https://bugs.launchpad.net/charm-layer-docker/+bug/1816471))
+- Fixed snapd_refresh charm option conflict ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/657))
+
+# CVE-2018-18264
+
+### January 10, 2019
 
 ## What happened
 
