@@ -5,10 +5,9 @@
     "lint-scss": "sass-lint 'static/sass/**/*.scss' --verbose --no-exit -i static/sass/prism.scss",
     "test-python": "python3 manage.py test",
     "test-links": "python3 manage.py runserver && sleep 2 && linkchecker --threads 2 --ignore-url /usn --ignore-url /resources --ignore-url /search --no-warnings http://127.0.0.1:8000",
-    "copy-third-party-js": "cp node_modules/@canonical/global-nav/dist/index.js static/js/global-nav.js && cp node_modules/cookie-policy/build/js/cookie-policy.js static/js/cookie-policy.js",
     "build-css": "node-sass --include-path node_modules static/sass --source-map true --output-style compressed --output static/css && postcss --use autoprefixer --replace 'static/css/**/*.css' --no-map",
     "build-js-bundle": "webpack",
-    "build": "yarn run build-css && yarn run copy-third-party-js && yarn run build-js-bundle",
+    "build": "yarn run build-css && yarn run build-js-bundle",
     "watch": "watch -p 'static/sass/**/*.scss' -p 'node_modules/vanilla-framework/scss/*.scss' -c 'yarn run build'",
     "clean": "rm -rf node_modules yarn-error.log css static/css *.log *.sqlite _site/ build/ .jekyll-metadata .bundle static/js/build",
     "serve": "./entrypoint 0.0.0.0:${PORT}"
