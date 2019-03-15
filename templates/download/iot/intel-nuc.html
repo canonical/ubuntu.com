@@ -53,11 +53,9 @@
             Download Ubuntu Core
           </h3>
           <div class="p-list-step__content">
-            <p>Get the correct Ubuntu Core image for your board:</p>
-            <ul class="u-no-margin--left">
-              <li><a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/18/stable/current/ubuntu-core-18-amd64.img.xz">Ubuntu Core 18 image for Intel NUC</a></li>
-              <li>Once downloaded, you can verify the integrity of the file by following <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-how-to-verify-ubuntu">this tutorial</a>, using the <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/18/stable/current/SHA256SUMS">SHA256SUM</a> and <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/18/stable/current/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.</li>
-            </ul>
+            <p>Download the <a class="p-link--external" href="http://people.canonical.com/~chih/intel_dawson/dawson-uc18-m7-20190122-10.img.xz">Ubuntu Core 18 image for Intel Dawson Canyon and June Canyon NUC</a></p>
+            <p>This image is certified for the Dawson Canyon NUC models: NUC7i7DNHE, NUC7i7DNKE, NUC7i7DNBE, NUC7i5DNHE, NUC7i5DNKE, NUC7i5DNBE, NUC7i3DNHE, NUC7i3DNKE, and NUC7i3DNBE, and for the June Canyon NUC models: NUC7PJYH and NUC7CJYH</p>
+            <p>You can then verify the integrity of the download using the associated <a class="p-link--external" href="http://people.canonical.com/~chih/intel_dawson/dawson-uc18-m7-20190122-10.img.xz.md5sum">MD5SUM file</a> and the <code>md5sum</code> command on most Linux distributions.</p>
           </div>
         </li>
         <li class="p-list-step__item">
@@ -106,16 +104,12 @@
           </h3>
           <div class="p-list-step__content">
             <ol class="u-no-margin--left">
-              <li>Once the system is ready, insert the second USB flash drive containing the Ubuntu Core image file.</li>
-              <li>
-                <p>Open a terminal and type the following command to check for directories mounted on the internal storage:</p>
-                <pre><code>mount | grep mmcblk</code></pre>
-              </li>
-              <li>If there is any directory mounted on the internal eMMC storage, unmount it. For instance, if you see an occurence of <code>/dev/mmcblk0p3</code> on <code>/media/ubuntu/writable type ext4 (rw,relatime,data=ordered)</code>, run <code>sudo umount /media/ubuntu/writabl</code>.</li>
-              <li>Run the following command, where <code>&lt;disk label&gt;</code> is the label of the second USB flash drive:
-                  <pre><code>xzcat /media/ubuntu/&lt;disk label&gt;/ubuntu-core-18-amd64.img.xz | sudo dd of=/dev/mmcblk0 bs=32M status=progress; sync</code></pre>
-              </li>
-              <li>Reboot the system and remove the flash drives when prompted, it will then reboot from the internal memory where Ubuntu Core has been flashed.</li>
+              <li>Once the Ubuntu session has started, insert the second USB flash drive containing the Ubuntu Core image file.</li>
+              <li><p>Open a terminal and use the following command to find out the target disk device to install the Ubuntu Core image to:</p>
+              <pre><code>sudo fdisk -l</code></pre></li>
+              <li><p>Run the following command, where <code>&lt;disk label&gt;</code> is the label of the second USB flash drive:</p>
+              <pre><code>xzcat /media/ubuntu/&lt;disk label&gt;/dawson-uc18-m7-20190122-10.img.xz | sudo dd of=/dev/&lt;target disk device&gt; bs=32M status=progress; sync</code></pre></li>
+              <li>Reboot the system and remove the flash drives when prompted. It will then boot from the internal memory where Ubuntu Core has been flashed.</li>
             </ol>
           </div>
         </li>
