@@ -1,12 +1,16 @@
 
 module.exports = {
   entry: {
+    desktopStatistics: './static/js/desktopStatistics.js',
+    'dynamic-contact-form': './static/js/dynamic-contact-form.js',
+    forms: './static/js/forms.js',
     main: [
       './static/js/core.js',
       './static/js/navigation.js',
       './static/js/scratch.js'
     ],
-    forms: './static/js/forms.js'
+    'release-chart': './static/js/release-chart.js',
+    stickyNav: './static/js/stickyNav.js'
   },
   mode: process.env.ENVIRONMENT === "devel" ? "development" : "production",
   output: {
