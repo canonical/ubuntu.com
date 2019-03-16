@@ -13,6 +13,18 @@
       &--accent {
         color: $color-accent-background;
       }
+
+      ul {
+        list-style: none;
+
+        li {
+          color: $color-accent-background;
+          content: "•";
+          display: inline-block;
+          margin-left: -1rem;
+          width: 1rem;
+        }
+      }
     }
   }
 }
