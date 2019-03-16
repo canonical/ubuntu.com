@@ -1,0 +1,36 @@
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Optimising IoT bandwidth with delta updates{% endblock %}
+
+{% block meta_description %}Learn how snap deltas' over-the-air updates are efficient and effective.{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1BzilE80HtJ89mPXnhkaK0AYyYuPr8fnJPwnVUaMhJ9Y/edit#t{% endblock meta_copydoc %}
+
+{% block content %}
+{% include "engage/shared/_header.html" with title="Optimising IoT bandwidth with delta updates"  image="25302166-snapcraft-primary-icon--dark.svg" subtitle="Learn how snap deltas' over-the-air updates are efficient and effective." url="#register-section" cta="Watch the webinar" class="p-strip--light" %}
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-7">
+      <p>With more devices connecting to the internet than ever before, the demands on bandwidth increase in parallel. For any organisation deploying IoT devices in the field, consideration needs to be given to the amount and frequency of data that will be transmitted from the device to the cloud for both cost and latency reasons.</p>
+
+      <p>Organisations should consider an optimum mechanism in which to transfer data in the most resourceful and cost-effective way possible. The data in question isn't just that which drives new insight and value to businesses but also that which is needed to keep remote device operating systems up to date, secure and running the latest applications.</p>
+
+      <p>For that purpose, deploying software where only the delta change is updated rather than the whole application is a much more attractive option. Snaps, the universal Linux application packaging format, features exactly this attribute.</p>
+
+      <p>This whitepaper will explore snap deltas in more detail including how over-the-air (OTA) updates can be delivered efficiently to IoT devices and reduce bandwidth requirements while effectively deploying software updates.</p>
+
+      <h4>Highlights of this whitepaper include:</h4>
+
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Overview of snaps' automatic update feature, their release cadence and how this helps manage software updates on IoT devices.</li>
+      <li class="p-list__item is-ticked">Explanation of snap deltas downloads and uploads on IoT devices, desktop and the cloud.</li>
+      <li class="p-list__item is-ticked">Case studies of deployed IoT devices from Dell, Rigado and Fingbox demonstrating the significant bandwidth savings of their respective snaps.</li>
+      </ul>
+    </div>
+    <div class="col-5">
+      {% include "../shared/forms/_landing_page_default.html" with id="3344" returnURL="https://pages.ubuntu.com/Snap_deltas_TY.html" %}
+    </div>
+  </div>
+</section>
+{% endblock content %}
