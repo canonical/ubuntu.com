@@ -279,6 +279,6 @@ juju debug-log --replay --include aws-integrator/0
 [quickstart]: /kubernetes/docs/quickstart
 [storage]: /kubernetes/docs/storage
 [ebs-info]: https://aws.amazon.com/ebs/features/
-[cloudtrail]: console.aws.amazon.com/cloudtrail/
+[cloudtrail]: https://console.aws.amazon.com/cloudtrail/
 [bugs]: https://bugs.launchpad.net/charmed-kubernetes
 [aws-integrator-readme]: https://jujucharms.com/u/containers/aws-integrator/
