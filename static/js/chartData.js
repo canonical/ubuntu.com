@@ -1,4 +1,4 @@
-var serverAndDesktopReleases = [
+export var serverAndDesktopReleases = [
   {
     startDate: new Date('2010-04-01T00:00:00'),
     endDate: new Date('2012-07-01T00:00:00'),
@@ -103,7 +103,7 @@ var serverAndDesktopReleases = [
   }
 ];
 
-var kernelReleases = [
+export var kernelReleases = [
   {
     startDate: new Date('2012-04-01T00:00:00'),
     endDate: new Date('2017-04-01T00:00:00'),
@@ -250,7 +250,7 @@ var kernelReleases = [
   }
 ];
 
-var openStackReleases = [
+export var openStackReleases = [
   {
     startDate: new Date('2014-04-01T00:00:00'),
     endDate: new Date('2017-04-01T00:00:00'),
@@ -385,7 +385,7 @@ var openStackReleases = [
   },
 ];
 
-var kubernetesReleases = [
+export var kubernetesReleases = [
   {
     startDate: new Date('2016-12-12T00:00:00'),
     endDate: new Date('2017-09-28T00:00:00'),
@@ -443,31 +443,31 @@ var kubernetesReleases = [
   },
 ];
 
-var desktopServerStatus = {
+export var desktopServerStatus = {
   HARDWARE_AND_MAINTENANCE_UPDATES: 'chart__bar--orange',
   MAINTENANCE_UPDATES: 'chart__bar--orange-light',
   STANDARD_RELEASE: 'chart__bar--grey',
   EXTENDED_SECURITY_MAINTENANCE_FOR_CUSTOMERS: 'chart__bar--aubergine'
 };
 
-var kernelStatus = {
+export var kernelStatus = {
   UBUNTU_LTS_RELEASE_SUPPORT: 'chart__bar--orange',
   STANDARD_RELEASE: 'chart__bar--grey',
   EXTENDED_SECURITY_MAINTENANCE_FOR_CUSTOMERS: 'chart__bar--aubergine'
 };
 
-var openStackStatus = {
+export var openStackStatus = {
   UBUNTU_LTS_RELEASE_SUPPORT: 'chart__bar--orange',
   MATCHING_OPENSTACK_RELEASE_SUPPORT: 'chart__bar--grey',
   EXTENDED_SUPPORT_FOR_CUSTOMERS: 'chart__bar--aubergine'
 };
 
-var kubernetesStatus = {
+export var kubernetesStatus = {
   CDK_SUPPORT: 'chart__bar--orange',
   CDK_EXPIRED_SUPPORT: 'chart__bar--grey',
 };
 
-var desktopServerReleaseNames = [
+export var desktopServerReleaseNames = [
   'Ubuntu 20.04 LTS',
   'Ubuntu 19.10',
   'Ubuntu 19.04',
@@ -480,7 +480,7 @@ var desktopServerReleaseNames = [
   'Ubuntu 10.04 LTS'
 ];
 
-var kernelReleaseNames = [
+export var kernelReleaseNames = [
   'Ubuntu 18.04.5 LTS',
   'Ubuntu 20.04 LTS',
   'Ubuntu 18.04.4 LTS',
@@ -504,7 +504,7 @@ var kernelReleaseNames = [
   'Ubuntu 12.04.0 LTS (v3.2)'
 ];
 
-var openStackReleaseNames = [
+export var openStackReleaseNames = [
   'OpenStack U LTS',
   'Ubuntu 20.04 LTS',
   'OpenStack U',
@@ -526,7 +526,7 @@ var openStackReleaseNames = [
   'OpenStack Icehouse'
 ];
 
-var kubernetesReleaseNames = [
+export var kubernetesReleaseNames = [
   'Kubernetes 1.5',
   'Kubernetes 1.6',
   'Kubernetes 1.7',

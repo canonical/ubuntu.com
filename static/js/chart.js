@@ -193,7 +193,7 @@ function formatKeyLabel(key) {
  *
  * Builds chart using supplied selector and data
  */
-function createChart(chartSelector, taskTypes, taskStatus, tasks) {
+export function createChart(chartSelector, taskTypes, taskStatus, tasks) {
   var margin = {
     top: 0,
     right: 40,

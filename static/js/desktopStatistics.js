@@ -1,3 +1,5 @@
+import dummyData from './dummyData';
+
 function debounce(func, wait, immediate) {
   var timeout;
   return function() {
@@ -534,7 +536,7 @@ function createPieChart(selector, dataset, options) {
       return d.value;
     });
 
-    labelData = data.find(function(d) {
+    var labelData = data.find(function(d) {
       return d.label.toUpperCase() === labelKey.toUpperCase();
     });
 
@@ -672,10 +674,10 @@ function createMap(selector, options, mapData, countryNamesAndIds) {
           return parseInt(country.id, 10) === parseInt(ctryStat.id, 10);
         });
         if (countryName) {
-          var tooltipLocation = ""; 
+          var tooltipLocation = "";
           var rightOffset = width - 100;
           // Check where the top and left axis start from for each tooltip and reposition the tooltip message
-          if (position[0] < 150 ) 
+          if (position[0] < 150 )
           {
             tooltipLocation = "p-tooltip p-tooltip--right";
           } else if (position[1] < 50 && position[0] < 150 ) {
@@ -695,11 +697,11 @@ function createMap(selector, options, mapData, countryNamesAndIds) {
             .style("position", "absolute")
             .style("opacity", "1");
           var noOfUsers =  (countryStat.users.toFixed(1) < 1) ? "< 0.1" : countryStat.users.toFixed(1);
-          
+
           // unhiding the tooltip message tom prevent tooltip from showing when no country has been hovered over
           tooltipMessage.style("display", "block");
           tooltipMessage.html(`<span>${countryName.name}:</span><span>&nbsp; ${noOfUsers}%</span>`);
-        } 
+        }
       })
       .on("mouseout", function() {
         tooltip.style("display", "none");
