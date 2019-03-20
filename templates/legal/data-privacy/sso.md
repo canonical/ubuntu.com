@@ -8,7 +8,7 @@ context:
 <h4 class="p-muted-heading">Version - June 2018</h4>
 <hr style="margin-bottom: 2rem;" />
 
-# Privacy notice - Single Sign On (SSO)
+# Privacy Notice - Single Sign On (SSO)
 
 This privacy notice tells you about the information collected from you when you register for a Single Sign On (SSO) account. SSO is an identity provider service that creates, maintains and manages user identity information, providing authentication services for Canonical and other third party applications. In collecting this information, we are acting as a data controller and, by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/data-privacy).
 

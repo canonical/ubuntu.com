@@ -1,7 +1,7 @@
 ---
 wrapper_template: "../_base_legal_markdown.html"
 context:
-  title: "Privacy notice | Newsletter signup"
+  title: "Privacy Notice | Newsletter signup"
   description: "This privacy notice tells you about the information we collect from you when you sign up to receive our regular newsletter via our website."
   copydoc: https://docs.google.com/document/d/1Et7uuP82vYgk-sXTOeLLlKi0NzwCdDHkSlfLS7IClzo/edit
 ---
@@ -10,7 +10,7 @@ context:
 
 <hr style="margin-bottom: 2rem;" />
 
-# Privacy notice - Newsletter signup
+# Privacy Notice - Newsletter signup
 
 This privacy notice tells you about the information we collect from you when you sign up to receive our regular newsletter via our website. In collecting this information, we are acting as a data controller and, by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/data-privacy).
 
