@@ -1,14 +1,14 @@
 ---
 wrapper_template: "../_base_legal_markdown.html"
 context:
-  title: "Privacy Notice – Single Sign On (SSO)"
+  title: "Privacy notice – Single Sign On (SSO)"
   description: "This privacy notice tells you about the information collected from you when you register for a Single Sign On (SSO) account."
   copydoc: https://docs.google.com/document/d/1nOk02AAjdOi2sW4rc1FOIO1n1BNzfU-iX88EKayXw-k/edit#heading=h.j5ctz6twab4
 ---
 <h4 class="p-muted-heading">Version - June 2018</h4>
 <hr style="margin-bottom: 2rem;" />
 
-# Privacy Notice - Single Sign On (SSO)
+# Privacy notice - Single Sign On (SSO)
 
 This privacy notice tells you about the information collected from you when you register for a Single Sign On (SSO) account. SSO is an identity provider service that creates, maintains and manages user identity information, providing authentication services for Canonical and other third party applications. In collecting this information, we are acting as a data controller and, by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/data-privacy).
 

@@ -1,16 +1,16 @@
 ---
 wrapper_template: "../_base_legal_markdown.html"
 context:
-  title: "Privacy Notice – User Survey"
+  title: "Privacy notice – User Survey"
   description: "This privacy notice tells you about the information collected from you when you take part in a user survey on a Canonical webpage, hosted by Usabilla."
   copydoc: https://docs.google.com/document/d/1XKWK3VvJe0Z_soJqO3F0BrrXwlP9ZObYYKxA1hym7QU/edit
 ---
 <h4 class="p-muted-heading">Version - February 2019</h4>
 <hr style="margin-bottom: 2rem;" />
 
-# Privacy Notice – User Survey  
+# Privacy notice – User Survey  
 
-This privacy notice tells you about the information collected from you when you take part in a user survey on a Canonical webpage, hosted by Usabilla. Usabilla is a third party software provider that enables live user feedback. In collecting this information, Usabilla are acting as a data controller and details of their terms can be found on their website here: [usabilla.com/terms/](https://usabilla.com/terms/)  and the Usabilla Privacy Notice. Usabilla will be sharing your data with us and by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/data-privacy).
+This privacy notice tells you about the information collected from you when you take part in a user survey on a Canonical webpage, hosted by Usabilla. Usabilla is a third party software provider that enables live user feedback. In collecting this information, Usabilla are acting as a data controller and details of their terms can be found on their website here: [usabilla.com/terms/](https://usabilla.com/terms/)  and the Usabilla Privacy notice. Usabilla will be sharing your data with us and by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/data-privacy).
 
 ## Who are we?
 
@@ -41,7 +41,7 @@ We keep your information for as long as you continue to consent to participate i
 You have a number of important rights under data protection laws. In summary, those include rights to:
 
 - fair processing of information and transparency over how we use your personal information;
-- access to your personal information and to certain other supplementary information that this Privacy Notice is already designed to address;
+- access to your personal information and to certain other supplementary information that this Privacy notice is already designed to address;
 - require us to correct any mistakes in your information which we hold;
 - require the erasure of personal information concerning you in certain situations;
 - receive the personal information concerning you which you have provided to us, in a structured, commonly used and machine-readable format and have the right to transmit that data to a third party in certain situations;
@@ -68,13 +68,13 @@ We have appropriate security measures in place to prevent personal information f
 
 We also have procedures in place to deal with any suspected data security breach. We will notify you and any applicable regulator of a suspected data breach where we are legally required to do so.
 
-## Changes to this Privacy Notice
+## Changes to this Privacy notice
 
-This Privacy Notice will be reviewed from time to time. If we decide to change this Privacy Notice we will post the changes here. However, if we intend to make material changes to the way we use your personal information we will notify you before doing do. Any personal information held will be governed by our most current notice.
+This Privacy notice will be reviewed from time to time. If we decide to change this Privacy notice we will post the changes here. However, if we intend to make material changes to the way we use your personal information we will notify you before doing do. Any personal information held will be governed by our most current notice.
 
 ## Your right to complain
 
-We hope that we can resolve any query or concern you raise about our use of your information. You can contact us at any time. Any questions, comments and requests regarding this Privacy Notice or any other related matter are welcomed and should be addressed to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) or to the address below:
+We hope that we can resolve any query or concern you raise about our use of your information. You can contact us at any time. Any questions, comments and requests regarding this Privacy notice or any other related matter are welcomed and should be addressed to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) or to the address below:
 
 <div style="margin:2rem;">
 Legal, Canonical<br />

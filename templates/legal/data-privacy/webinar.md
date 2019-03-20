@@ -1,14 +1,14 @@
 ---
 wrapper_template: "../_base_legal_markdown.html"
 context:
-  title: "Privacy Notice - Webinar sign-up"
+  title: "Privacy notice - Webinar sign-up"
   description: "This privacy notice tells you about the information collected from you when you sign up to watch one of our webinars via the BrightTALK website."
   copydoc: https://docs.google.com/document/d/1wMKqustrdcGK-yzGGe9we6nyHDvLUPukQaPpMA5T6wk/edit
 ---
 <h4 class="p-muted-heading">Version - May 2018</h4>
 <hr style="margin-bottom: 2rem;" />
 
-# Privacy Notice – Webinars via BrightTALK
+# Privacy notice – Webinars via BrightTALK
 
 This privacy notice tells you about the information collected from you when you sign up to watch one of our webinars via the BrightTALK website. BrightTALK are a third party webinar platform provider and you may be directed to their website to register your details in order to watch a Canonical webinar. In collecting this information, BrightTALK are acting as a data controller and details of their privacy policy can be found here: [business.brighttalk.com/company/privacy-policy/](https://business.brighttalk.com/company/privacy-policy/). BrightTALK will be sharing your data with us and by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data.
 
