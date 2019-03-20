@@ -1,7 +1,7 @@
 ---
 wrapper_template: "../_base_legal_markdown.html"
 context:
-  title: "Privacy Notice – Single Sign On (SSO)"
+  title: "Privacy notice – Single Sign On (SSO)"
   description: "This privacy notice tells you about the information collected from you when you register for a Single Sign On (SSO) account."
   copydoc: https://docs.google.com/document/d/1nOk02AAjdOi2sW4rc1FOIO1n1BNzfU-iX88EKayXw-k/edit#heading=h.j5ctz6twab4
 ---
