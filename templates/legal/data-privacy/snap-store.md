@@ -8,7 +8,7 @@ context:
 <h4 class="p-muted-heading">Version - April 2018</h4>
 <hr style="margin-bottom: 2rem;" />
 
-# Partner Notice - Snap store
+# Privacy notice - Snap store
 
 This privacy notice tells you about the information we collect from you when you download and install and purchase snaps and software (“Software”) on Ubuntu Core and any compatible supported systems. In collecting this information, we are acting as a data controller and, by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/data-privacy).
 
