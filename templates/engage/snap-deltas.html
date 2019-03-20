@@ -7,7 +7,7 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1BzilE80HtJ89mPXnhkaK0AYyYuPr8fnJPwnVUaMhJ9Y/edit#t{% endblock meta_copydoc %}
 
 {% block content %}
-{% include "engage/shared/_header.html" with title="Optimising IoT bandwidth with delta updates"  image="25302166-snapcraft-primary-icon--dark.svg" subtitle="Learn how snap deltas' over-the-air updates are efficient and effective." url="#register-section" cta="Watch the webinar" class="p-strip--light" %}
+{% include "engage/shared/_header.html" with title="Optimising IoT bandwidth with delta updates"  image="b511e965-Delta+updates.svg" subtitle="Learn how snap deltas' over-the-air updates are efficient and effective." url="#register-section" cta="Watch the webinar" class="p-strip--image is-dark p-takeover--snap-deltas" %}
 
 <section class="p-strip is-shallow">
   <div class="row">
@@ -33,4 +33,18 @@
     </div>
   </div>
 </section>
+
+<style>
+  .p-takeover--snap-deltas {
+    background-blend-mode: color;
+    background-image: linear-gradient(-181deg, #106363 12%, #083333 100%);
+  }
+
+  @media only screen and (min-width: 768px) {
+    .p-takeover__suru {
+      background-image: url('{{ ASSET_SERVER_URL }}57c3b829-suru+-+snapcraft+-+left.svg');
+      background-size: auto 100% ;
+    }
+  }
+</style>
 {% endblock content %}
