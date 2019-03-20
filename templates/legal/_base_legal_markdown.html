@@ -9,6 +9,14 @@
 
     {% block content %}
     <div class="p-strip is-deep">
+{% if update_date %}
+      <div class="row">
+        <div class="col-12">
+          <h4 class="p-muted-heading">{{ update_date | safe }}</h4>
+          <hr style="margin-bottom: 2rem;" />
+        </div>
+      </div>
+{% endif %}
       <div class="row" id="service-description">
         <div class="col-8 l-legal-pages">
 {{ html_content | safe }}

@@ -5,6 +5,9 @@
   - [Quickstart](/kubernetes/docs/quickstart)
   - [Local install](/kubernetes/docs/install-local)
   - [Manual install](/kubernetes/docs/install-manual)
+- **Cloud Integration**
+  - [AWS integration](/kubernetes/docs/aws-integration)
+  - [GCP integration](/kubernetes/docs/gcp-integration)
 - **Operations**
   - [Logging](/kubernetes/docs/logging)
   - [Monitoring](/kubernetes/docs/monitoring)
@@ -22,5 +25,5 @@
 - **Reference**
   - [Release notes](/kubernetes/docs/release-notes)
   - [Upgrade notes](/kubernetes/docs/upgrade-notes)
-  - [Certificates and Trust](/kubernetes/docs/certs-and-trust)
+  - [Certificates and trust](/kubernetes/docs/certs-and-trust)
   - [Get in touch](/kubernetes/docs/get-in-touch)

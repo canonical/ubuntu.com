@@ -1,7 +1,7 @@
 ---
 wrapper_template: "../_base_legal_markdown.html"
 context:
-  title: "Privacy Notice – Online purchase"
+  title: "Privacy notice – Online purchase"
   description: "This privacy notice tells you about the information we collect from you when you purchase one or more of our products via our website."
   copydoc: https://docs.google.com/document/d/1ZSNnMiLJl6SGSV0D_cr6MJAwpkf6xzbKYJdTL9MxLHc/edit
 ---

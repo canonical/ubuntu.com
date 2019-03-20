@@ -116,6 +116,12 @@ kubernetes:
         - title: Manual install
           path: /kubernetes/docs/install-manual
           hidden: True
+        - title: GCP integration
+          path: /kubernetes/docs/gcp-integration
+          hidden: True
+        - title: AWS integration
+          path: /kubernetes/docs/aws-integration
+          hidden: True
         - title: Logging
           path: /kubernetes/docs/logging
           hidden: True
@@ -294,6 +300,9 @@ download:
       path: /download/iot
 
       children:
+        - title: Intel IEI TANK 870
+          path: /download/iot/intel-iei-tank-870
+          hidden: True
         - title: Raspberry Pi 2 or 3
           path: /download/iot/raspberry-pi-2-3
           hidden: True
@@ -402,22 +411,24 @@ legal:
         - title: Intellectual property - 14th May 2013
           path: /legal/intellectual-property-policy/2013-05-14
           hidden: True
-        - title: Online account terms
+        - title: Online accounts
           path: /legal/online-account-terms
         - title: U1 Terms of Service
           path: /legal/terms-of-service
         - title: Confidentiality agreement
           path: /legal/confidentiality-agreement
-        - title: Developer terms
+        - title: Developers
           path: /legal/developer-terms-and-conditions
-        - title: Launchpad terms
+        - title: Launchpad
           path: /legal/launchpad-terms-of-service
-        - title: Livepatch terms
+        - title: Livepatch
           path: /legal/livepatch-terms-of-service
-        - title: JAAS terms
+        - title: JAAS
           path: /legal/jaas-beta-terms-of-service
         - title: System Information
           path: /legal/systems-information-notice
+        - title: Partner Portal
+          path: /legal/partner-portal-terms
         - title: Ubuntu font
           path: /legal/font-licence
 
@@ -447,6 +458,8 @@ legal:
           path: /legal/data-privacy/snap-store
         - title: Snapcraft NPS
           path: /legal/data-privacy/snapcraft-nps
+        - title: Partner Portal
+          path: /legal/data-privacy/partner-portal
         - title: SSO
           path: /legal/data-privacy/sso
         - title: Contact us & enquiries
