@@ -1,4 +1,4 @@
-<section class="{% if class %}p-strip {{ class }}{% else %}p-strip--light{% endif %}">
+<section {% if lang %}lang="{{ lang }}"{% endif %} class="{% if class %}p-strip {{ class }}{% else %}p-strip--light{% endif %}">
   <div class="row u-equal-height">
     <div class="{% if image %}col-7{% else %}col-8{% endif %} u-vertically-center">
       <div>
