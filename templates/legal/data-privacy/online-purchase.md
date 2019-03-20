@@ -1,14 +1,14 @@
 ---
 wrapper_template: "../_base_legal_markdown.html"
 context:
-  title: "Privacy Notice – Online purchase"
+  title: "Privacy notice – Online purchase"
   description: "This privacy notice tells you about the information we collect from you when you purchase one or more of our products via our website."
   copydoc: https://docs.google.com/document/d/1ZSNnMiLJl6SGSV0D_cr6MJAwpkf6xzbKYJdTL9MxLHc/edit
 ---
 <h4 class="p-muted-heading">Version - April 2018</h4>
 <hr style="margin-bottom: 2rem;" />
 
-# Privacy Notice - Online purchase
+# Privacy notice - Online purchase
 
 This privacy notice tells you about the information we collect from you when you purchase one or more of our products via our website. In collecting this information, we are acting as a data controller and, by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/data-privacy).
 

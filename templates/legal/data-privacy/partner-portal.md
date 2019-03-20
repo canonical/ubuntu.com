@@ -1,7 +1,7 @@
 ---
 wrapper_template: "../_base_legal_markdown.html"
 context:
-  title: "Privacy Notice – Partner Portal"
+  title: "Privacy notice – Partner Portal"
   description: This privacy notice tells you about the information we collect from you when you access the Canonical Partner Portal.
   copydoc: https://docs.google.com/document/d/1yuh7dL3jjkj21sKJCUhm_z00PKzH4vssY339wbp4U-s/edit
 ---
@@ -9,7 +9,7 @@ context:
 <hr style="margin-bottom: 2rem;" />
 
 
-# Privacy Notice - Partner Portal
+# Privacy notice - Partner Portal
 
 This privacy notice tells you about the information we collect from you when you access the Canonical Partner Portal. In collecting this information, we are acting as a data controller and, by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/dataprivacy).
 
@@ -66,7 +66,7 @@ We keep your order information for so long as reasonably required in accordance 
 
 - You have a number of important rights under data protection laws free of charge. In summary, those include rights to:
 - fair processing of information and transparency over how we use your use personal information;
-- access to your personal information and to certain other supplementary 	information that this Privacy Notice is already designed to address;
+- access to your personal information and to certain other supplementary 	information that this Privacy notice is already designed to address;
 - require us to correct any mistakes in your information which we hold;
 - require the erasure of personal information concerning you in certain 	situations;
 - receive the personal information concerning you which you have provided to us, in a structured, commonly used and machine-readable format and have the right to transmit those data to a third party in certain situations;
@@ -116,13 +116,13 @@ We have appropriate security measures in place to prevent personal information f
 
 We also have procedures in place to deal with any suspected data security breach. We will notify you and any applicable regulator of a suspected data security breach where we are legally required to do so.
 
-## Changes to this Privacy Notice
+## Changes to this Privacy notice
 
-This Privacy Notice will be reviewed from time to time. If we decide to change this Privacy Notice we will post the changes here. However, if we intend to make material changes to the way we use your personal information we will notify you before doing so. Any personal information held will be governed by our most current notice.
+This Privacy notice will be reviewed from time to time. If we decide to change this Privacy notice we will post the changes here. However, if we intend to make material changes to the way we use your personal information we will notify you before doing so. Any personal information held will be governed by our most current notice.
 
 ## Your right to complain
 
-We hope that we can resolve any query or concern you raise about our use of your information. You can contact us any time. Any questions, comments and requests regarding this Privacy Notice or any other related matter are welcomed and should be addressed to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) or to the address below:
+We hope that we can resolve any query or concern you raise about our use of your information. You can contact us any time. Any questions, comments and requests regarding this Privacy notice or any other related matter are welcomed and should be addressed to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) or to the address below:
 
 <div style="margin:2rem;">
 Legal, Canonical<br />

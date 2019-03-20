@@ -1,14 +1,14 @@
 ---
 wrapper_template: "../_base_legal_markdown.html"
 context:
-  title: "Privacy Notice – Snap store"
+  title: "Privacy notice – Snap store"
   description: "This privacy notice tells you about the information we collect from you when you download and install and purchase snaps and software on Ubuntu Core and any compatible supported systems."
   copydoc: https://docs.google.com/document/d/1rEyCOZWoKKJRPIg5jhANfWVibZJ9QVfqj4MkeNIJp4M/edit
 ---
 <h4 class="p-muted-heading">Version - April 2018</h4>
 <hr style="margin-bottom: 2rem;" />
 
-# Privacy Notice - Snap store
+# Privacy notice - Snap store
 
 This privacy notice tells you about the information we collect from you when you download and install and purchase snaps and software (“Software”) on Ubuntu Core and any compatible supported systems. In collecting this information, we are acting as a data controller and, by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/data-privacy).
 

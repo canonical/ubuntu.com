@@ -1,14 +1,14 @@
 ---
 wrapper_template: "../_base_legal_markdown.html"
 context:
-  title: "Privacy Notice – Contact us and enquiries"
+  title: "Privacy notice – Contact us and enquiries"
   description: "This privacy notice tells you about the information we collect from you when you submit your information to us via an enquiry or contact us form on our website."
   copydoc: https://docs.google.com/document/d/1MSwPrKMFgcKKjnBfcudlnca0wa4I58vQdM8VroKSno0/edit#
 ---
 <h4 class="p-muted-heading">Version - April 2018</h4>
 <hr style="margin-bottom: 2rem;" />
 
-# Privacy Notice - Contact us and enquiries
+# Privacy notice - Contact us and enquiries
 
 This privacy notice tells you about the information we collect from you when you submit your information to us via an enquiry or contact us form on our website. In collecting this information, we are acting as a data controller and, by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/data-privacy).
 
