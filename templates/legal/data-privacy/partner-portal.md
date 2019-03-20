@@ -9,7 +9,7 @@ context:
 <hr style="margin-bottom: 2rem;" />
 
 
-# Privacy Notice - Partner Portal
+# Partner Notice - Partner Portal
 
 This privacy notice tells you about the information we collect from you when you access the Canonical Partner Portal. In collecting this information, we are acting as a data controller and, by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/dataprivacy).
 
