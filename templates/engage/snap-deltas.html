@@ -7,7 +7,8 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1BzilE80HtJ89mPXnhkaK0AYyYuPr8fnJPwnVUaMhJ9Y/edit#t{% endblock meta_copydoc %}
 
 {% block content %}
-{% include "engage/shared/_header.html" with title="Optimising IoT bandwidth with delta updates"  image="b511e965-Delta+updates.svg" subtitle="Learn how snap deltas' over-the-air updates are efficient and effective." url="#register-section" cta="Watch the webinar" class="p-strip--image is-dark p-takeover--snap-deltas" %}
+{% include "engage/shared/_header.html" with title="Optimising IoT bandwidth with delta updates"  image="b511e965-Delta+updates.svg" subtitle="Learn how snap deltas' over-the-air updates are efficient and effective." url="#register-section" cta="Read the whitepaper" class="p-strip--image is-dark p-takeover--snap-deltas" %}
+
 
 <section class="p-strip is-shallow">
   <div class="row">
@@ -28,7 +29,7 @@
       <li class="p-list__item is-ticked">Case studies of deployed IoT devices from Dell, Rigado and Fingbox demonstrating the significant bandwidth savings of their respective snaps.</li>
       </ul>
     </div>
-    <div class="col-5">
+    <div class="col-5" id="register-section">
       {% include "../shared/forms/_landing_page_default.html" with id="3344" returnURL="https://pages.ubuntu.com/Snap_deltas_TY.html" %}
     </div>
   </div>
