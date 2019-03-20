@@ -1,0 +1,29 @@
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Migrer de VMware à Openstack{% endblock %}
+
+{% block meta_description %}OpenStack est souvent présenté comme une alternative aux environnements de virtualisation propriétaires traditionnels.{% endblock %}
+
+{% block content %}
+<section class="p-strip p-takeover--vmware-to-os">
+  <div class="row u-equal-height">
+    <div class="col-9">
+        <h1 class="p-takeover__title">Migrer de VMware à Openstack</h1>
+        <p class="p-takeover__text">
+            <a href="#register-section">Regarder le webinaire&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2 id="register-section">Regardez notre vidéo de démonstration sur les coûts et la migration</h2>
+    </div>
+    <div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 17466, "language": "fr", "commId" : 352419, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>
+  </div>
+</section>
+
+
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_newsletter" third_item="_telco_further_reading" %}
+{% endblock content %}
