@@ -11,7 +11,7 @@
 
     .u-text {
       &--accent {
-        color: $color-accent-background;
+        color: $color-whitepaper-accent;
       }
 
       ul {
@@ -25,6 +25,21 @@
           width: 1rem;
         }
       }
+    }
+    .p-card {
+      border: 1px dotted $color-whitepaper-accent;
+    }
+
+    .p-pull-quote p:first-of-type::before,
+    .p-pull-quote p:last-of-type::after {
+      color: $color-whitepaper-accent;
+    }
+
+    .p-icon--facebook img,
+    .p-icon--twitter img,
+    .p-icon--linkedin img {
+      height: 32px;
+      width: 32px;
     }
   }
 }
