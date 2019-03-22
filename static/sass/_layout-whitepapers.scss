@@ -26,6 +26,7 @@
         }
       }
     }
+
     .p-card {
       border: 1px dotted $color-whitepaper-accent;
     }
@@ -42,9 +43,10 @@
       width: 32px;
     }
 
-    p,
-    li {
-      max-width: none !important;
+    .p-keyline {
+      @media only screen and (min-width: $breakpoint-medium) {
+        border-left: 1px solid $color-mid-x-light;
+     }
     }
   }
 }
