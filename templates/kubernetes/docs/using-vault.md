@@ -51,6 +51,8 @@ relations:
   - vault:certificates
 - - kubernetes-worker:certificates
   - vault:certificates
+- - kubeapi-load-balancer:certificates
+  - vault:certificates
 - - vault:shared-db
   - percona-cluster:shared-db
 ```
