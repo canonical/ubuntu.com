@@ -5,6 +5,12 @@ markdown_includes:
 context:
   title: "Decommissioning"
   description: Decommissioning a cluster requires only a few commands, but beware that it will irretrievably destroy the cluster.
+keywords: juju, decommissioning, destroy-model, destroy-controller, config
+tags: [operating]
+sidebar: k8smain-sidebar
+permalink: decommissioning.html
+layout: [base, ubuntu-com]
+toc: False
 ---
 
 Decommissioning a cluster requires only a few commands, but beware that it will irretrievably destroy the cluster, its workloads and any information that was stored within. Before proceeding, it is important to verify that you:
@@ -24,7 +30,7 @@ juju models
 
 This will list all the models running on the current controller, for example:
 
-```
+```no-highlight
 Controller: k8s-controller
 
 Model           Cloud/Region   Status     Machines  Cores  Access  Last connection
@@ -43,7 +49,7 @@ To proceed, use the `juju destroy-model` command to target the model you wish to
 
 You will see a warning, and be required to confirm the action. **Juju** will then continue to free up the resources, giving feedback on the process. It may take some minutes to complete depending on the size of the deployed model and the nature of the cloud it is running on.
 
-```no-highlight
+```
 WARNING! This command will destroy the "k8s-testing" model.
 This includes all machines, applications, data and other resources.
 
