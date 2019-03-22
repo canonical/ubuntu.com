@@ -51,11 +51,54 @@ The applications which run alongside the core Kubernetes components can be upgra
 
 This includes:
 
+- Docker
 - easyrsa
 - etcd
 - flannel
 
 Note that this may include other applications which you may have installed, such as Elasticsearch, Prometheus, Nagios, Helm, etc.
+
+<a id='upgrading-docker'> </a>
+
+### Upgrading Docker
+
+**CDK** will use the latest stable version of Docker when it is deployed. Since upgrading Docker
+can cause service disruption, there will be no automatic upgrades and instead this process must
+be triggered by the operator.
+
+Only the `kubernetes-master` and `kubernetes-worker` units require Docker. The charms for each
+include an action to trigger the upgrade.
+
+Before the upgrade, it is useful to list all the units effected:
+
+```bash 
+juju status kubernetes-* --format=short
+```
+
+...will return a list of the current `kubernetes-master` and `kubernetes-worker` units.
+
+Start with the `kubernetes-master` units and run the upgrade action on one unit at a time:
+
+```bash
+juju run-action kubernetes-master/0 upgrade-docker --wait
+```
+
+As Docker is restarted on the unit, pods will be terminated. Wait for them to respawn before
+moving on to the next unit:
+
+```bash
+juju run-action kubernetes-master/1 upgrade-docker --wait
+```
+
+Once all the `kubernetes-master` units have been upgraded and the pods have respawned, the
+same procedure can then be applied to the `kubernetes-worker` units.
+
+```bash 
+juju run-action kubernetes-worker/0 upgrade-docker --wait
+```
+
+As previously, wait between running the action on sucessive units to allow pods to migrate.
+
 
 ### Upgrading etcd
 
