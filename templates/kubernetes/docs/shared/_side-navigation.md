@@ -9,6 +9,7 @@
   - [AWS integration](/kubernetes/docs/aws-integration)
   - [GCP integration](/kubernetes/docs/gcp-integration)
 - **Operations**
+  - [Basic operations](/kubernetes/docs/operations)
   - [Logging](/kubernetes/docs/logging)
   - [Monitoring](/kubernetes/docs/monitoring)
   - [Upgrading](/kubernetes/docs/upgrading)

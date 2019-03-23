@@ -100,6 +100,13 @@ deploy the latest, stable bundle, run the command:
 juju deploy canonical-kubernetes
 ```
 
+To get the status of the deployment, run `juju status`. For constant updates,
+combine it with the `watch` command:
+
+```
+watch -c juju status --color
+```
+
 It is also possible to deploy a specific version of the bundle by including the
 revision number. For example, to deploy the **CDK** bundle for the Kubernetes 1.12
 release, you could run:
@@ -169,6 +176,12 @@ You can verify that kubectl is configured correctly and can see the cluster by r
 ```bash
 kubectl cluster-info
 ```
+
+You can now continue to operate your cluster. If you are new to CDK or Kubernetes, you
+should check out the [Basic operations documentation][operations], which will explain
+how to get familiar with your cluster. For further customisation options, including cloud
+integration, continue reading below first.
+
 
 ### Additional configuration
 
@@ -400,3 +413,4 @@ For more information on the Juju GUI, see the [Juju documentation][juju-gui].
 [kubectl]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
 [aws-docs]: /kubernetes/docs/aws-integration
 [gcp-docs]: /kubernetes/docs/gcp-integration
+[operations]: /kubernetes/docs/operations
