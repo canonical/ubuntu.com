@@ -125,7 +125,7 @@ Once logged in, check out the cluster metric dashboard by clicking the `Home` dr
 
 ![grafana dashboard image](https://assets.ubuntu.com/v1/e6934269-grafana-1.png)
 
-You can also check out the system metrics of the cluster by switching the drop-down box to `Node Metrics (via Telegraf)`:
+You can also check out the system metrics of the cluster by switching the drop-down box to `Node Metrics (via Telegraf):
 
 ![grafana dashboard image](https://assets.ubuntu.com/v1/45b87639-grafana-2.png)
 
@@ -237,5 +237,5 @@ juju status kibana --format yaml| grep public-address
 [quickstart]: /kubernetes/docs/quickstart
 [nagios]: https://www.nagios.org/
 [elastic]: https://www.elastic.co/
-[download-scraper]: https://raw.githubusercontent.com/conjure-up/spells/master/charmed-kubernetes/addons/prometheus/steps/01_install-prometheus/prometheus-scrape-k8s.yaml
+[download-scraper]: https://github.com/conjure-up/spells/blob/master/charmed-kubernetes/addons/prometheus/steps/01_install-prometheus/prometheus-scrape-k8s.yaml
 [download-dashboard]: https://raw.githubusercontent.com/conjure-up/spells/master/charmed-kubernetes/addons/prometheus/steps/01_install-prometheus/grafana-k8s.json

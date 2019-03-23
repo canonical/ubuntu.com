@@ -5,6 +5,12 @@ markdown_includes:
 context:
   title: "Validation"
   description: How to run end-to-end (e2e) tests for Kubernetes.
+keywords: juju, validation, e2e, debug-log
+tags: [operating]
+sidebar: k8smain-sidebar
+permalink: validation.html
+layout: [base, ubuntu-com]
+toc: False
 ---
 
 End-to-end (e2e) tests for **Kubernetes** provide a mechanism to test the behaviour of the system. This is a useful indicator that the cluster is performing properly, as well as a good validation of any code changes.
@@ -26,15 +32,18 @@ Add the charm to your cluster:
 juju deploy cs:~containers/kubernetes-e2e --constraints mem=4G --channel edge
 ```
 
-We also need to configure the charm to select the appropriate version of tests. This relates to the installed version of Kubernetes. You can check which version your cluster is set to by running:
+We also need to configure the charm to select the appropriate version of tests. This
+relates to the installed version of Kubernetes. You can check which version your cluster is
+set to by running:
 
 ```bash
 juju config kubernetes-master channel
 ```
 
-The output will be in the form of 'version.number/risk', e.g '1.12/stable'. You should set the `kubernetes-e2e` channel to the same value.
+The output will be in the form of 'version.number/risk', e.g '1.12/stable'. You should set
+the `kubernetes-e2e` channel to the same value.
 
-```bash
+```
 juju config kubernetes-e2e channel=1.12/stable
 ```
 
@@ -82,7 +91,7 @@ You can check on the current status of the test by running:
 juju show-action-status 8f8ec748-6ca7-4bbb-86f8-f37e44ba46f9
 ```
 
-... where `8f8ec748-6ca7-4bbb-86f8-f37e44ba46f9` is the uuid of the action returned when we initiated the test. This will return YAML output indicating the current status, which can be either `running`, `completed` or `failed`.
+where `8f8ec748-6ca7-4bbb-86f8-f37e44ba46f9` is the uuid of the action returned when we initiated the test. This will return YAML output indicating the current status, which can be either `running`, `completed` or `failed`.
 
 ```yaml
 actions:

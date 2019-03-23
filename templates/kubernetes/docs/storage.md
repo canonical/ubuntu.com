@@ -5,6 +5,12 @@ markdown_includes:
 context:
   title: "Storage"
   description: How to add and configure different types of persistent storage for your Kubernetes cluster.
+keywords: storage, ceph, nfs, pvc
+tags: [operating]
+sidebar: k8smain-sidebar
+permalink: storage.html
+layout: [base, ubuntu-com]
+toc: False
 ---
 
 On-disk files in a container are ephemeral and can't be shared with other members of a pod. For some applications, this is not an issue, but for many persistent storage is required.
@@ -56,24 +62,37 @@ juju add-relation ceph-osd ceph-mon
 
 ### Relate to CDK
 
-Making **CDK** aware of your **Ceph** cluster just requires a **Juju** relation.
+Making **CDK** aware of your **Ceph** cluster requires 2 **Juju** relations.
 
 ```bash
-juju add-relation ceph-mon kubernetes-master
-```
-
-Note that the **Ceph** CSI containers require privileged access:
-
-```bash
-juju config kubernetes-master allow-privileged=true
+juju add-relation ceph-mon:admin kubernetes-master
+juju add-relation ceph-mon:client kubernetes-master
 ```
 
 ### Create storage pools
 
-Finally, the pools that are defined in the storage class can be created:
+By default, the `kubernetes-master` charm will create the required pools defined
+in the storage class.  To view the default options, run:
 
 ```bash
-juju run-action ceph-mon/0 create-pool name=xfs-pool --wait
+juju list-actions ceph-mon --schema --format json | jq '.["create-pool"]'
+```
+
+If you're happy with this, you can skip the section.  Otherwise, if you want to
+change these, you can delete the pools:
+
+```bash
+juju run --unit ceph-mon/0 "ceph tell mon.\* injectargs '--mon-allow-pool-delete=true'"
+
+juju run-action ceph-mon/0 delete-pool pool-name=xfs-pool --wait
+juju run-action ceph-mon/0 delete-pool pool-name=ext4-pool --wait
+```
+
+Then recreate them, using the options listed from the `list-actions` command ran
+earlier.  For example:
+
+```bash
+juju run-action ceph-mon/0 create-pool name=xfs-pool replicas=6 --wait
 ```
 
 ```yaml
@@ -88,7 +107,7 @@ unit-ceph-mon-0:
 ```
 
 ```bash
-juju run-action ceph-mon/0 create-pool name=ext4-pool --wait
+juju run-action ceph-mon/0 create-pool name=ext4-pool replicas=6 --wait
 ```
 
 ```yaml

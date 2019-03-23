@@ -20,8 +20,15 @@
   - [Using Vault as a CA](/kubernetes/docs/using-vault)
   - [Encryption at rest](/kubernetes/docs/encryption-at-rest)
   - [Private Docker Registry](/kubernetes/docs/docker-registry)
-  - [HA for kubeapi-load-balancer](/kubernetes/docs/keepalived)
+  - [Using GPU workers](/kubernetes/docs/gpu-workers)
+  - [Audit Logging](/kubernetes/docs/audit-logging)
+  - [Using Tigera Secure EE](/kubernetes/docs/tigera-secure-ee)
   - [Troubleshooting](/kubernetes/docs/troubleshooting)
+- **High Availability**
+  - [Overview](/kubernetes/docs/high-availability)
+  - [keepalived](/kubernetes/docs/keepalived)
+  - [HAcluster](/kubernetes/docs/hacluster)
+  - [MetalLB](/kubernetes/docs/metallb)
 - **Reference**
   - [Release notes](/kubernetes/docs/release-notes)
   - [Upgrade notes](/kubernetes/docs/upgrade-notes)
