@@ -52,7 +52,7 @@ This document defines Canonical’s service offerings. Canonical will only provi
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
 
-<h2 id="uasd-subscriptionsl">Subscriptions</h2>
+<h2 id="uasd-subscriptions">Subscriptions</h2>
 
 As an Ubuntu Advantage for Infrastructure customer, you are entitled to the following benefits and services with respect to the machines attached to your subscription.
 
