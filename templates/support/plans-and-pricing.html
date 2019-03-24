@@ -2,7 +2,7 @@
 {% load versioned_static %}
 
 {% block title %}Plans and pricing | Support{% endblock %}
-{% block meta_description %}A summary of all our support offerings. Ubuntu offers the best economics of any commercially supported Linux solution and the best community support.{% endblock %}
+{% block meta_description %}Canonical provides infrastructure solutions - OpenStack and Kubernetes training, consulting and managed services, and enterprise-grade support with a single subscription for open source software and security.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1R7FRZbfx_5YHFeZUD93HgT8RW4OCbbK4blOulB4D6EE/edit{% endblock meta_copydoc %}
 
 {% block content %}
@@ -27,7 +27,7 @@
       <a class="p-tabs__link js-sticky-tab" href="#landscape">Landscape</a>
     </li>
     <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#security">Security and compliance</a>
+      <a class="p-tabs__link js-sticky-tab" href="#security">Livepatch on premises</a>
     </li>
   </ul>
 </nav>
@@ -38,7 +38,7 @@
       <h2>Ubuntu Advantage for Infrastructure (UA-I)</h2>
       <p>Ubuntu Advantage for Infrastructure is a comprehensive subscription to Canonical technology and expertise, helping organisations around the world get the most out of their Ubuntu deployments. It includes access to:</p>
       <ul class="p-list">
-        <li class="p-list__item is-ticked">Extended Security Maintenance (ESM) provides critical security updates after an LTS release transitions from the LTS Basic Security Maintenance</li>
+        <li class="p-list__item is-ticked">Extended Security Maintenance (ESM) provides critical security updates</li>
         <li class="p-list__item is-ticked">Landscape system management simplifies use of Ubuntu at scale</li>
         <li class="p-list__item is-ticked">Livepatch enables automatic kernel security hotfixes without rebooting</li>
         <li class="p-list__item is-ticked">Knowledge Base offers a private archive of expert-written articles and tutorials</li>
@@ -46,7 +46,7 @@
         <li class="p-list__item is-ticked">FIPS certified modules to meet Common Criteria compliance</li>
         <li class="p-list__item is-ticked">Ceph and Swift storage, backup and recovery capabilities</li>
       </ul>
-      <p><a href="/support/contact-us?product=support-pricing" class="js-invoke-modal">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+      <p><a href="/support/contact-us?product=support-pricing" class="p-button--positive js-invoke-modal">Get in touch</a></p>
     </div>
   </div>
 </section>
@@ -59,6 +59,12 @@
   </div>
 
   {% include "shared/pricing/_ua-for-infrastructure.html" %}
+
+  <div class="row">
+    <div class="col-10">
+      <p class="u-align--right u-no-max-width"><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Get in touch</a></p>
+    </div>
+  </div>
 
 </section>
 
@@ -73,8 +79,8 @@
   {% include "shared/pricing/_ua-for-infrastructure-options.html" %}
 
   <div class="row">
-    <div class="col-12">
-      <p><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Contact us</a></p>
+    <div class="col-10">
+      <p class="u-align--right u-no-max-width"><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Get in touch</a></p>
     </div>
   </div>
 </section>
@@ -82,6 +88,11 @@
 
 <section class="p-strip--light is-shallow is-bordered">
   {% include "shared/pricing/_ua-server-support-add-ons.html" %}
+  <div class="row">
+    <div class="col-10">
+      <p class="u-align--right u-no-max-width"><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Get in touch</a></p>
+    </div>
+  </div>
 </section>
 
 <section class="p-strip--light is-shallow is-bordered">
@@ -94,8 +105,8 @@
   {% include "shared/pricing/_ua-desktop-support.html" %}
 
   <div class="row">
-    <div class="col-12">
-      <p><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Contact us</a></p>
+    <div class="col-10">
+      <p class="u-align--right u-no-max-width"><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Get in touch</a></p>
     </div>
   </div>
 </section>
@@ -104,15 +115,15 @@
   <div class="row">
     <div class="col-12">
       <h2>MAAS</h2>
-      <p>MAAS is open source data centre automation provisioning, DNS, DHCP, and IPAM software from Canonical. Many enterprises depend on MAAS to automate and optimise provisioning for server clusters. Canonical offers Standard and Advanced support plans priced per-machine per-month or, for large volume and public clouds with dynamic scaling, we offer per-region pricing with flexible node ranges. </p>
+      <p>MAAS is open source data centre automation provisioning, DNS, DHCP, and IPAM software from Canonical. Many enterprises depend on MAAS to automate and optimise provisioning for server clusters. Canonical offers Standard and Advanced support plans priced per-machine per-month or, for large volume and public clouds with dynamic scaling, we offer per-region pricing with flexible node ranges.</p>
     </div>
   </div>
 
   {% include "shared/pricing/_maas-support.html" %}
 
   <div class="row">
-    <div class="col-12">
-      <p><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Contact us&nbsp;&rsaquo;</a></p>
+    <div class="col-10">
+      <p class="u-align--right u-no-max-width"><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Get in touch</a></p>
     </div>
   </div>
 </section>
@@ -129,7 +140,7 @@
 
   <div class="row">
     <div class="col-12">
-      <p>For more information about Cloud Build and Cloud Build Plus or if you are not sure which one is right for you, <a href="/openstack/contact-us?product=foundation-cloud" class="js-invoke-modal">contact us&nbsp;&rsaquo;</a></p>
+      <p><a href="/openstack/contact-us?product=foundation-cloud" class="p-button--positive js-invoke-modal">Get in touch</a></p>
     </div>
   </div>
 </section>
@@ -146,6 +157,12 @@
 
   <div class="row">
     <div class="col-12">
+      <p><a href="/openstack/contact-us?product=foundation-cloud" class="p-button--positive js-invoke-modal">Get in touch</a></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
       <h3>AI/ML add-on for Discoverer and Discoverer Plus</h3>
       <p>A workshop covering the full stack of Machine Learning, using Kubernetes for training and analytics. Build a full pipeline from your developer workstations to your data centre and the public cloud.</p>
     </div>
@@ -155,9 +172,8 @@
 
   <div class="row">
     <div class="col-12">
-      <div>
-        <p><a href="{{ ASSET_SERVER_URL }}223eab1a-canonical-kubernetes-enterprise-2018-25-07.pdf" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Try it now', 'eventLabel' : 'Download the datasheet - cloud storage CTA' : undefined });">Download the datasheet</a></p>
-      </div>
+      <p><a href="/openstack/contact-us?product=foundation-cloud" class="p-button--positive js-invoke-modal">Get in touch</a></p>
+      <p><a href="{{ ASSET_SERVER_URL }}223eab1a-canonical-kubernetes-enterprise-2018-25-07.pdf" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Try it now', 'eventLabel' : 'Download the datasheet - cloud storage CTA' : undefined });">Download the datasheet</a></p>
     </div>
   </div>
 </section>
@@ -175,9 +191,7 @@
 
   <div class="row">
     <div class="col-12">
-      <div>
-        <p><a href="/cloud/contact-us?product=ubuntu-advantage-storage" class="p-button--neutral js-invoke-modal">Contact us</a></p>
-      </div>
+      <p><a href="/cloud/contact-us?product=ubuntu-advantage-storage" class="p-button--positive js-invoke-modal">Get in touch</a></p>
     </div>
   </div>
 </section>
@@ -186,7 +200,7 @@
   <div class="row">
     <div class="col-12">
       <h2>Landscape: enterprise systems management on premises</h2>
-      <p>Increase efficiency of day-to-day management with Landscape, the most cost-effective solution to support and monitor large and growing networks of desktops, servers and clouds.</p>
+      <p>Increase efficiency of day-to-day management with Landscape, the most cost-effective solution to support and monitor large and growing networks of desktops, servers and clouds. Landscape is available as a service by Canonical or optionally as a dedicated instance.</p>
     </div>
   </div>
 
@@ -194,6 +208,7 @@
 
   <div class="row">
     <div class="col-12">
+      <p><a href="/cloud/contact-us?product=landscape" class="p-button--positive js-invoke-modal">Get in touch</a></p>
       <p><a href="https://landscape.canonical.com" class="p-link--external">Learn more about Landscape</a></p>
     </div>
   </div>
@@ -202,14 +217,8 @@
 <section id="security" class="p-strip--light is-deep">
   <div class="row">
     <div class="col-12">
-      <h2>Security and compliance</h2>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-12">
-      <h3>Livepatch: live kernel patching on premises</h3>
-      <p>The Canonical Livepatch Service lets you apply critical kernel security fixes to your Ubuntu LTS systems without rebooting, reducing planned, and unplanned downtime.</p>
+      <h2>Livepatch: live kernel patching on premises</h2>
+      <p>The Canonical Livepatch Service lets you apply critical kernel security fixes to your Ubuntu LTS systems without rebooting, reducing planned, and unplanned downtime. Customers can consume livepatches from Canonical as a service or optionally consume them from a dedicated server on premises.</p>
     </div>
   </div>
 
@@ -217,21 +226,8 @@
 
   <div class="row">
     <div class="col-12">
+      <p><a href="/cloud/contact-us?product=livepatch" class="p-button--positive js-invoke-modal">Get in touch</a></p>
       <p><a href="/livepatch">Learn more about Livepatch&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-12">
-      <h3>FIPS for Ubuntu</h3>
-      <p>Certified FIPS 140-2 Level 1 Cryptographic packages<a href="#fn-fips"><sup>*</sup></a> are available for Ubuntu 16.04 LTS for Ubuntu Advantage for Infrastructure subscribers.</p>
-      <p id="fn-fips"><small><sup>*</sup> For details, see our <a href="/legal/ubuntu-advantage-service-description#uasd-fips">service description</a>.</small></p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-12">
-      <p><a href="/support/contact-us?product=support-pricing" class="p-button--neutral js-invoke-modal">Contact us</a></p>
     </div>
   </div>
 </section>
