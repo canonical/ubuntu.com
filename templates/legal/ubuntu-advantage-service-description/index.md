@@ -142,35 +142,12 @@ When an Ubuntu Advantage subscription is attached to a physical host running a S
          1. Unless Full-Stack Support requirements are met, support is limited to:
             1. The software packages and [Charms](#charm) necessary for running the [Charmed Distribution of Kubernetes](#charmed-k8s).
             2. The software packages available from apt.kubernetes.io and Kubernetes clusters deployed using kubeadm.
-<<<<<<< HEAD
-            3. Bug-fix support in the supplied software artifacts by Canonical.
-<<<<<<< HEAD
-4. <h4 id="uasd-fips">FIPS-certified cryptographic modules</h4>
-    1. Access to FIPS compliant binaries are included in UA for Infrastructure Advanced or individually on a per node basis.
-    2. Access to packages (when available) sufficient for compliance with the FIPS 140-2 Level 1 standard when used with Ubuntu on certain Intel x86_64, IBM POWER8 and IBM Z hardware.
-    3. Licences to such packages, to the extent not already licensed under open source software licences.
-5. <h4>Common Criteria</h4>
-    1. Access to packages and scripts (when available) sufficient for compliance with the Common Criteria EAL2 standard when used with Ubuntu on certain Intel x86_64, IBM POWER8 and IBM Z hardware.
-    2. Licences to such packages, to the extent not already licensed under open source software licences.
-=======
-3. <h4>Ubuntu Legal Assurance programme</h4><br />
-The customer is entitled to participate in the Ubuntu Assurance Programme, subject to its terms and conditions. Canonical may update the Assurance Programme and its terms periodically. The current Ubuntu Assurance Programme and its IP indemnification terms are available at Canonical’s Ubuntu Assurance page: [https://www.ubuntu.com/legal/ubuntu-advantage/assurance](/legal/ubuntu-advantage/assurance)
-
-<div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
-=======
             3. [Bug-fix Support](#bug-fix-support) in the supplied software artifacts by Canonical.
    1. Ubuntu Legal Assurance programme. The customer is entitled to participate in the Ubuntu Assurance Programme, subject to its terms and conditions. Canonical may update the Assurance Programme and its terms periodically. The current Ubuntu Assurance Programme and its IP indemnification terms are available at Canonical’s Ubuntu Assurance page: [www.ubuntu.com/legal/ubuntu-advantage/assurance](/legal/ubuntu-advantage/assurance)
->>>>>>> Updated uasd page again
 
 
    <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
-<<<<<<< HEAD
-1. <h4>24x7 phone and ticket support</h4><br />
-Support is provided as for as in the “Ubuntu Advantage Standard” section above, but on a 24x7 basis.
->>>>>>> Update uasd page - ua4i
-=======
->>>>>>> Updated uasd page again
 
    <h2 id="uasd-managed-services">Managed Services</h2>
 
