@@ -6,13 +6,9 @@
 
 {% block content %}
 <section class="p-strip is-deep is-bordered">
-  <div class="row">
+  <div class="row u-vertically-center">
     <div class="col-7">
       <h1 style="font-weight: 100;">Canonical Livepatch Service</h1>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-6">
       <h2 class="p-heading--four">Apply critical kernel patches without rebooting.</h2>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Fixes are applied automatically, without restarting your system</li>
@@ -20,7 +16,7 @@
         <li class="p-list__item is-ticked">Included as part of all Ubuntu Advantage for Infrastructure support packages</li>
       </ul>
     </div>
-    <div class="col-6 prefix-1">
+    <div class="col-5">
       <div class="u-embedded-media">
         <iframe class="u-embedded-media__element" width="772" height="426" src="https://player.vimeo.com/video/225445183" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
       </div>
@@ -50,16 +46,22 @@
       <h2>Subscribe to Livepatch</h2>
     </div>
   </div>
-  <div class="row p-divider u-equal-height">
-    <div class="col-6 p-divider__block">
-      <h4>Free for 3 machines</h4>
-      <p>All you need is an Ubuntu One account.</p>
-      <p> <a class="p-button--positive row"  href="https://auth.livepatch.canonical.com/"><span class="p-link--external">Get yours now</span></a></p>
+  <div class="row u-equal-height">
+    <div class="col-6 p-card">
+      <h4 class="p-card__title">Free for 3 machines</h4>
+      <hr class="u-sv1">
+      <div class="p-card__content">
+        <p>All you need is an Ubuntu One account.</p>
+        <p> <a class="p-button--positive"  href="https://auth.livepatch.canonical.com/"><span class="p-link--external">Get yours now</span></a></p>
+      </div>
     </div>
-    <div class="col-6 p-divider__block">
-      <h4>Buy online</h4>
-      <p>Buy as part of Ubuntu Advantage from Canonical.</p>
-      <p><a class="p-button--positive row"  href="https://buy.ubuntu.com"><span class="p-link--external">Visit buy.ubuntu.com</span></a></p>
+    <div class="col-6 p-card">
+      <h4 class="p-card__title">Buy online</h4>
+      <hr class="u-sv1">
+      <div class="p-card__content">
+        <p>Buy as part of Ubuntu Advantage from Canonical.</p>
+        <p><a class="p-button--positive"  href="https://buy.ubuntu.com"><span class="p-link--external">Visit buy.ubuntu.com</span></a></p>
+      </div>
     </div>
   </div>
 </section>
