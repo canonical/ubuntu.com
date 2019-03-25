@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<section class="p-strip is-deep is-bordered">
+<section class="p-strip is-deep">
   <div class="row">
     <h1>Plans and pricing</h1>
     <p>For enterprises with production workloads, Canonical offers the following suite of tools, services and support packages.</p>
@@ -52,17 +52,11 @@
 </section>
 
 <section class="p-strip--light is-shallow">
-  <div class="row">
-    <div class="col-12">
-      <h3 id="ua-i-physical">Ubuntu Advantage for Infrastructure</h3>
-    </div>
-  </div>
-
   {% include "shared/pricing/_ua-for-infrastructure.html" %}
 
   <div class="row">
     <div class="col-10">
-      <p class="u-align--right u-no-max-width"><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Get in touch</a></p>
+      <p><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Get in touch</a></p>
     </div>
   </div>
 
@@ -80,7 +74,7 @@
 
   <div class="row">
     <div class="col-10">
-      <p class="u-align--right u-no-max-width"><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Get in touch</a></p>
+      <p><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Get in touch</a></p>
     </div>
   </div>
 </section>
@@ -90,7 +84,7 @@
   {% include "shared/pricing/_ua-server-support-add-ons.html" %}
   <div class="row">
     <div class="col-10">
-      <p class="u-align--right u-no-max-width"><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Get in touch</a></p>
+      <p><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Get in touch</a></p>
     </div>
   </div>
 </section>
@@ -98,7 +92,7 @@
 <section class="p-strip--light is-shallow is-bordered">
   <div class="row" style="overflow-x: auto;">
     <div class="col-12">
-      <h2 id="desktop">Ubuntu Advantage for desktops</h2>
+      <h3 id="desktop">Ubuntu Advantage for desktops</h3>
     </div>
   </div>
 
@@ -106,7 +100,7 @@
 
   <div class="row">
     <div class="col-10">
-      <p class="u-align--right u-no-max-width"><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Get in touch</a></p>
+      <p><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Get in touch</a></p>
     </div>
   </div>
 </section>
@@ -114,7 +108,7 @@
 <section class="p-strip--light is-deep is-bordered" id="maas">
   <div class="row">
     <div class="col-12">
-      <h2>MAAS</h2>
+      <h3>MAAS</h3>
       <p>MAAS is open source data centre automation provisioning, DNS, DHCP, and IPAM software from Canonical. Many enterprises depend on MAAS to automate and optimise provisioning for server clusters. Canonical offers Standard and Advanced support plans priced per-machine per-month or, for large volume and public clouds with dynamic scaling, we offer per-region pricing with flexible node ranges.</p>
     </div>
   </div>
@@ -123,12 +117,12 @@
 
   <div class="row">
     <div class="col-10">
-      <p class="u-align--right u-no-max-width"><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Get in touch</a></p>
+      <p><a href="/support/contact-us?product=support-pricing" class="p-button js-invoke-modal">Get in touch</a></p>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light is-deep is-bordered" id="consulting">
+<section class="p-strip is-deep is-bordered" id="consulting">
   <div class="row">
     <div class="col-12">
       <h2>OpenStack consulting and training</h2>
@@ -163,7 +157,7 @@
 
   <div class="row">
     <div class="col-12">
-      <h3>AI/ML add-on for Discoverer and Discoverer Plus</h3>
+      <h3 style="margin-top: 3rem;">AI/ML add-on for Discoverer and Discoverer Plus</h3>
       <p>A workshop covering the full stack of Machine Learning, using Kubernetes for training and analytics. Build a full pipeline from your developer workstations to your data centre and the public cloud.</p>
     </div>
   </div>
@@ -181,7 +175,7 @@
 <section class="p-strip--light is-deep is-bordered" id="storage">
   <div class="row">
     <div class="col-12">
-      <h2>Ceph and Swift Storage</h2>
+      <h3>Ceph and Swift Storage</h3>
       <p>UA-I embeds the proven open source Software‐defined Storage (SDS) technologies of Ceph and Swift into a 24/7 supported software solution with a unique usage-based pricing model.</p>
       <p>For customers going beyond the current storage allowance <a href="#fn-storage"><sup>*</sup></a> per node, the following pricing applies:</p>
     </div>
@@ -236,7 +230,6 @@
 {% include "shared/forms/interactive/_support.html" with formid="1240"   lpId="2065"  returnURL="https://www.ubuntu.com/support/thank-you" lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
 
 <script src="{% versioned_static 'js/stickyNav.js' %}"></script>
-
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}
