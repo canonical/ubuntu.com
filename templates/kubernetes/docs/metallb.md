@@ -31,13 +31,14 @@ traffic, but they will each receive 50% of the traffic even if one of the nodes 
 three pods and the other only has one pod running on it. It is recommended to use node
 anti-affinity to prevent Kubernetes pods from stacking on a single node. 
 
-MetalLB is not currently available as a Juju CaaS charm, so the best way to install
-it is with a helm chart:
+Currently, the best way to install MetalLB on CDK is with a helm chart:
 
 ```bash
 helm install --name metallb stable/metallb
 ```
 Further configuration can be performed by using a [MetalLB configmap][configmap].
+
+See also the [Helm with CDK documentation][helm] for using Helm with CDK
 
 <!-- LINKS -->
 
