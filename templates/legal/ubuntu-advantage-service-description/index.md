@@ -126,7 +126,7 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
      2. OpenStack support does not include support beyond [Bug-fix Support](#bug-fix-support) during the deployment or configuration of an OpenStack cloud.
      3. [Charms](#charm):
         1. Each Charm version is supported for one year from the release date.
-        2. Canonical will not provide support for any Charms that have been modified from the supported version found in the page at [wiki.ubuntu.com/OpenStack/OpenStackCharms](wiki.ubuntu.com/OpenStack/OpenStackCharms)
+        2. Canonical will not provide support for any Charms that have been modified from the supported version found in the page at [wiki.ubuntu.com/OpenStack/OpenStackCharms](https://wiki.ubuntu.com/OpenStack/OpenStackCharms)
      1. Canonical will provide support for 12 TB of usable storage per Node with Ceph or Swift storage exposed to the OpenStack cluster. This allowance can be used for Ceph, Swift, or a combination of these. If the number of these [Nodes](#Node) exceeds the number of compute Nodes in the covered OpenStack cluster, the supported Ceph and Swift storage will be limited to 12 TB per compute Node in the cluster.
      2. Ubuntu Advantage OpenStack includes a licence to use available Canonical provided Microsoft-certified drivers in Windows Guest instances.
      3. OpenStack support excludes:
