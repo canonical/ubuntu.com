@@ -24,7 +24,7 @@ connecting to existing monitoring setups.
 
 ## Monitoring with Prometheus
 
-The recommended way to monitor your cluster is to use a combination of **Prometheus**, **Grafana** and **Telegraf**. The fastest, easiest way to install and configure this is via **conjure-up** when installing the **Canonical Distribution of Kubernetes**<sup>&reg;</sup>, by selecting the box next to Prometheus from the `Add-on` menu. You can then log in to the dashboard as [described below](#retrieve-credentials-and-login). See the [quickstart guide][quickstart] for more details on installing **CDK** with **conjure-up**.
+The recommended way to monitor your cluster is to use a combination of **Prometheus**, **Grafana** and **Telegraf**. The fastest, easiest way to install and configure this is via **conjure-up** when installing the **Charmed Distribution of Kubernetes**<sup>&reg;</sup>, by selecting the box next to Prometheus from the `Add-on` menu. You can then log in to the dashboard as [described below](#retrieve-credentials-and-login). See the [quickstart guide][quickstart] for more details on installing **CDK** with **conjure-up**.
 
 If you have already installed your cluster, you will be able to add and configure the extra applications using **Juju** as described here:
 
@@ -33,9 +33,10 @@ If you have already installed your cluster, you will be able to add and configur
 The following commands will add the required applications:
 
 ```bash
-juju deploy grafana --series=xenial
-juju deploy prometheus --series=xenial
-juju deploy telegraf --series=xenial
+# Note: the prometheus2 charm is deployed as 'prometheus'
+juju deploy prometheus2 --series=bionic --constraints "mem=4G root-disk=16G" prometheus
+juju deploy grafana --series=bionic
+juju deploy telegraf --series=bionic
 juju expose grafana
 ```
 
@@ -58,7 +59,7 @@ Prometheus will also need an appropriate scraper to collect metrics relevant to 
 #### 1. Download the scraper file
 
 ```bash
-curl -O  https://raw.githubusercontent.com/conjure-up/spells/master/canonical-kubernetes/addons/prometheus/steps/01_install-prometheus/prometheus-scrape-k8s.yaml
+curl -O  https://raw.githubusercontent.com/conjure-up/spells/master/charmed-kubernetes/addons/prometheus/steps/01_install-prometheus/prometheus-scrape-k8s.yaml
 ```
 This is the template, but it needs some specific information for your cluster.
 
@@ -89,7 +90,7 @@ As with the scraper, there is a [sample dashboard available for download here][d
 #### 1. Download the sample dashboard configuration
 
 ```bash
-curl -O https://raw.githubusercontent.com/conjure-up/spells/master/canonical-kubernetes/addons/prometheus/steps/01_install-prometheus/grafana-k8s.json
+curl -O https://raw.githubusercontent.com/conjure-up/spells/master/charmed-kubernetes/addons/prometheus/steps/01_install-prometheus/grafana-k8s.json
 ```
 #### 2. Upload this to grafana
 
@@ -99,7 +100,7 @@ juju run-action --wait grafana/0 import-dashboard dashboard="$(base64 grafana-k8
 
 There is also a default Telegraf dashboard. If you wish to install this, it can be done in a similar way:
 ```bash
-curl -O https://raw.githubusercontent.com/conjure-up/spells/master/canonical-kubernetes/addons/prometheus/steps/01_install-prometheus/grafana-telegraf.json
+curl -O https://raw.githubusercontent.com/conjure-up/spells/master/charmed-kubernetes/addons/prometheus/steps/01_install-prometheus/grafana-telegraf.json
 juju run-action --wait grafana/0 import-dashboard  dashboard="$(base64 grafana-telegraf.json)"
 ```
 
@@ -136,8 +137,8 @@ You can also check out the system metrics of the cluster by switching the drop-d
 To start, deploy the latest version of the Nagios and NRPE Juju charms:
 
 ```bash
-juju deploy nagios --series=xenial
-juju deploy nrpe --series=xenial
+juju deploy nagios --series=bionic
+juju deploy nrpe --series=bionic
 juju expose nagios
 ```
 
@@ -173,14 +174,14 @@ juju ssh nagios/0 sudo cat /var/lib/juju/nagios.passwd
 
 ### Using an existing Nagios service
 
-If you already have an existing **Nagios** installation, the `nrpe-external-master` charm can be used instead.
+If you already have an existing **Nagios** installation, the `nrpe` charm can be configured to work with it.
 
 ```bash
-juju deploy nrpe-external-master --series=xenial
-juju configure nrpe-external-master nagios_master= <ip-address-of-nagios>
+juju config nrpe export_nagios_definitions=true
+juju config nrpe nagios_master=<ip-address-of-nagios>
 ```
 
-Once configured, add relations to `nrpe-external-master` as outlined above.
+See the [External Nagios][external-nagios] section of the NRPE charm readme for more information.
 
 ## Monitoring with **Elasticsearch**
 
@@ -192,29 +193,23 @@ can be used in conjunction with **CDK**.
 Use Juju to deploy the required applications:
 
 ```bash
-juju deploy elasticsearch --series=xenial --constraints mem=4G
+juju deploy elasticsearch --series=bionic --constraints "mem=4G root-disk=16G"
+juju deploy filebeat --series=bionic
 juju deploy kibana --series=xenial
-juju deploy filebeat --series=xenial
-juju deploy topbeat --series=xenial
 juju expose kibana
 ```
 
 ### Add relations
 
-You now need to relate the elasticsearch applications together, and connect the `topbeat` and `filebeat` applications to the applications you want to monitor:
+You now need to relate the elasticsearch applications together, and connect the `filebeat` application to the applications you want to monitor:
 
 ```bash
 juju add-relation elasticsearch kibana
-juju add-relation elasticsearch topbeat
 juju add-relation elasticsearch filebeat
 
-juju add-relation  topbeat kubernetes-master
 juju add-relation filebeat kubernetes-master
-juju add-relation topbeat kubernetes-worker
 juju add-relation filebeat kubernetes-worker
-juju add-relation topbeat kubeapi-load-balancer
 juju add-relation filebeat kubeapi-load-balancer
-juju add-relation topbeat etcd
 juju add-relation filebeat etcd
 ```
 
@@ -239,3 +234,4 @@ juju status kibana --format yaml| grep public-address
 [elastic]: https://www.elastic.co/
 [download-scraper]: https://github.com/conjure-up/spells/blob/master/charmed-kubernetes/addons/prometheus/steps/01_install-prometheus/prometheus-scrape-k8s.yaml
 [download-dashboard]: https://raw.githubusercontent.com/conjure-up/spells/master/charmed-kubernetes/addons/prometheus/steps/01_install-prometheus/grafana-k8s.json
+[external-nagios]: https://jujucharms.com/nrpe/
