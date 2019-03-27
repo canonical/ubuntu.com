@@ -1,5 +1,4 @@
 
-
 <!-- dependencies -->
 <script src="{{ ASSET_SERVER_URL }}ec520d10-XMLHttpRequest.min.js"></script>
 <script src="{{ ASSET_SERVER_URL }}4176b39e-serialize.js"></script>
@@ -45,11 +44,9 @@
   */
   afterSubmit = function() {
     // Now start the download
-    downloadFrame = document.createElement("iframe");
-    downloadFrame.setAttribute("src", "{{ ASSET_SERVER_URL }}05f610df-eBook_MAAS.pdf.zip");
-    downloadFrame.style.width = 0 + "px";
-    downloadFrame.style.height = 0 + "px";
-    document.body.insertBefore(downloadFrame, document.body.childNodes[0]);
+    setCookie('formFilled', 'true', 30);
+    revealText();
+
     // And redirect to the instructions page
     window.setTimeout(
     function() {
@@ -89,6 +86,30 @@
     )
   });
 
+  // hiding and showing content
+
+  // reveal text
+  function revealText () {
+    b = baffle(document.querySelectorAll('.u-obfuscate p', '.u-obfuscate li', '.u-obfuscate a'))
+    b.reveal(500);
+    var obfuscate = document.getElementsByClassName("u-obfuscate");
+    while (obfuscate[0]) {
+      obfuscate[0].classList.remove('u-obfuscate')
+    }
+    document.getElementsByClassName("signup-form")[0].classList.add("u-hide");
+    return;
+  }
+
+  // hide text
+  function hideText () {
+    // Start baffle to obfucast the text
+    let b = baffle(document.querySelectorAll('.u-obfuscate p', '.u-obfuscate li', '.u-obfuscate a'))
+    b.set({
+      characters: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    })
+    b.once();
+    return;
+  }
 
   // cookie stuff
   function setCookie(cname, cvalue, exdays) {
@@ -124,27 +145,16 @@
 
   window.onload = function(){
 
-    // Start baffle on any element(s).
-    let b = baffle(document.querySelectorAll('.u-obfuscate p', '.u-obfuscate li', '.u-obfuscate a'))
-    b.set({
-      characters: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    })
+    // Test if the person has filled in the form to be able to see the doc
+    var formTest = getCookie("formFilled");
+    if (formTest  === null) {
+      formTest = findGetParameter("formFilled");
+    }
 
-  var formTest = getCookie("formFilled");
-  if (formTest  === null) {
-    formTest = findGetParameter("formFilled");
-    alert('formTest |' + formTest + '|');
-  }
-
-  if (formTest) {
-    b.reveal();
-    var obfuscate = document.getElementsByClassName("u-obfuscate");
-    while (obfuscate[0]) {
-        obfuscate[0].classList.remove('u-obfuscate')
-      }
-    document.getElementsByClassName("signup-form")[0].classList.add("u-hide");
-  } else {
-    b.once();
-  }
-};
+    if (formTest) {
+      revealText();
+    } else {
+      hideText();
+    }
+  };
 </script>
