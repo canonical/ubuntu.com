@@ -1,4 +1,6 @@
 @mixin layout-whitepapers {
+  $color-shadow: rgba(0, 0, 0, .5);
+
   .l-whitepapers {
     .p-strip--hero {
       @extend %vf-strip;
@@ -46,7 +48,40 @@
     .p-keyline {
       @media only screen and (min-width: $breakpoint-medium) {
         border-left: 1px solid $color-mid-x-light;
-     }
+      }
+    }
+
+    .u-hidden-anchor:target {
+      position: relative;
+
+      h2,
+      h3 {
+        position: absolute;
+        top: -3rem;
+      }
+    }
+
+    .p-caption {
+      font-style: italic;
+      margin-bottom: 1.2rem;
+    }
+
+    .u-obfuscate {
+      p,
+      li,
+      h2,
+      h3,
+      h4,
+      cite,
+      figcaption {
+        color: transparent;
+        text-shadow: 0 0 5px $color-shadow;
+        user-select: none;
+      }
+
+      img {
+        filter: blur(8px);
+      }
     }
   }
 }
