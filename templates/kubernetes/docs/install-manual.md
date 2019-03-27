@@ -100,6 +100,13 @@ deploy the latest, stable bundle, run the command:
 juju deploy canonical-kubernetes
 ```
 
+To get the status of the deployment, run `juju status`. For constant updates,
+combine it with the `watch` command:
+
+```
+watch -c juju status --color
+```
+
 It is also possible to deploy a specific version of the bundle by including the
 revision number. For example, to deploy the **CDK** bundle for the Kubernetes 1.12
 release, you could run:
@@ -134,6 +141,48 @@ Only the latest three versions of CDK are supported at any time.
 </div>
 
 <a id="config" ></a>
+
+### Configure kubectl
+
+You will need **kubectl** to be able to use your Kubernetes cluster. If it is not already
+installed, it is easy to add via a snap package:
+
+```bash
+sudo snap install kubectl --classic
+```
+
+For other platforms and install methods, please see the
+[Kubernetes documentation][kubectl].
+
+The config file for accessing the newly deployed cluster is stored in the cluster itself. You
+should use the following command to retrieve it:
+
+```bash
+juju scp kubernetes-master/0:config ~/.kube/config
+```
+
+<div class="p-notification--caution">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Caution:</span>
+If you have multiple clusters you will need to manage the config file rather than just
+replacing it. See the <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/">
+Kubernetes documentation</a> for more information on managing multiple clusters.
+  </p>
+</div>
+
+
+You can verify that kubectl is configured correctly and can see the cluster by running:
+
+```bash
+kubectl cluster-info
+```
+
+You can now continue to operate your cluster. If you are new to CDK or Kubernetes, you
+should check out the [Basic operations documentation][operations], which will explain
+how to get familiar with your cluster. For further customisation options, including cloud
+integration, continue reading below first.
+
+
 ### Additional configuration
 
 To allow Kubernetes to access resources and functionality of the underlying
@@ -152,9 +201,9 @@ used:
 
 | Cloud     | Integrator charm   |  Juju deploy command  | Notes/docs  |
 |------------|----------------------|-------------------------------------------------|-----------------------------------------------------------|
-| AWS        | aws-integrator       | juju deploy cs:~containers/aws-integrator       | [docs](https://jujucharms.com/u/containers/aws-integrator/)       |
+| AWS        | aws-integrator       | juju deploy cs:~containers/aws-integrator       | [docs][aws-docs]      |
 | Azure      | azure-integrator     | juju deploy cs:~containers/azure-integrator     | [docs](https://jujucharms.com/u/containers/azure-integrator/)     |
-| Google     | gcp-integrator       | juju deploy cs:~containers/gcp-integrator       | [docs](https://jujucharms.com/u/containers/gcp-integrator/)       |
+| Google     | gcp-integrator       | juju deploy cs:~containers/gcp-integrator       | [docs][gcp-docs]      |
 | Local      | N/A                  | N/A                                             |                                                           |
 | OpenStack  | openstack-integrator | juju deploy cs:~containers/openstack-integrator | [docs](https://jujucharms.com/u/containers/openstack-integrator/) |
 | Rackspace  | openstack-integrator | juju deploy cs:~containers/openstack-integrator | [docs](https://jujucharms.com/u/containers/openstack-integrator/) |
@@ -354,7 +403,6 @@ For more information on the Juju GUI, see the [Juju documentation][juju-gui].
 [controller-config]: https://docs.jujucharms.com/controllers-config
 [credentials]: https://docs.jujucharms.com/
 [quickstart]: /kubernetes/docs/quickstart
-[clouds-lxd]: /kubernetes/docs/clouds-lxd
 [juju-bundle]: https://docs.jujucharms.com/stable/en/charms-bundles
 [juju-gui]: https://docs.jujucharms.com/stable/en/controllers-gui
 [juju-constraints]: https://docs.jujucharms.com/stable/en/reference-constraints
@@ -362,3 +410,7 @@ For more information on the Juju GUI, see the [Juju documentation][juju-gui].
 [latest-bundle-file]: https://api.jujucharms.com/charmstore/v5/~containers/canonical-kubernetes/archive/bundle.yaml
 [charm-kworker]: https://jujucharms.com/u/containers/kubernetes-worker/#configuration
 [snaps]: https://docs.snapcraft.io/snap-documentation
+[kubectl]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
+[aws-docs]: /kubernetes/docs/aws-integration
+[gcp-docs]: /kubernetes/docs/gcp-integration
+[operations]: /kubernetes/docs/operations

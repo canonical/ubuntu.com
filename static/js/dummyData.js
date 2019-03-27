@@ -1462,3 +1462,5 @@ var dummyData = {
     }
   }
 };
+
+export default dummyData;

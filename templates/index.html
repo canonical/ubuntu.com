@@ -11,7 +11,9 @@
 
   To designate a takeover to display for a specific language parent group, specify
   the "lang" attribute on the <section> container. For takeovers that should appear
-  for all languages, simply omit the "lang" attribute.
+  for all languages, simply omit the "lang" attribute. For takeovers you don't want to
+  be displayed in specific languages, you can use the "lang-skip" attribute
+  (eg. lang-skip="fr" or lang-skip="fr de").
 
   NB: Only specify parent language groups (e.g. "en", "de"), *not* derivatives (e.g. "en-GB").
 
@@ -23,11 +25,18 @@
 #}
 
 {% block takeover_content %}
-  {% include "takeovers/_14-04-esm.html" %}
-  {% include "takeovers/_ubuntu-core-full-disk-encryption.html" %}
-  {% include "takeovers/_fin-serv-whitepaper-takeover.html" %}
+  {# GERMAN #}
+  {% include "takeovers/_german_ai_webinar.html" %}
+  {% include "takeovers/_german-compliance-webinar.html" %}
   {% include "takeovers/_german_takeover_k8.html" %}
   {% include "takeovers/_german_takeover_openstack_made_easy.html" %}
+  {# FRENCH #}
   {% include "takeovers/_french_takeover_openstack_made_easy.html" %}
   {% include "takeovers/_french_14-04-esm.html" %}
+  {% include "takeovers/_french_vmware-to-os.html" %}
+  {# ALL #}
+  {% include "takeovers/_ci-cd-webinar.html" %}
+  {% include "takeovers/_14-04-esm.html" %}
+  {% include "takeovers/_snap-deltas-takeover.html" %}
+  {% include "takeovers/_fin-serv-whitepaper-takeover.html" %}
 {% endblock takeover_content %}

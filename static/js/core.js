@@ -8,6 +8,9 @@
  *
  */
 
+ import {createNav} from '@canonical/global-nav';
+ import cpNs from './cookie-proxy';
+
 if (!core) { var core = {}; }
 
 core.supportsSvg = function() {
@@ -55,3 +58,11 @@ core.mobileNav = function () {
 
 core.supportsSvg();
 core.mobileNav();
+createNav();
+
+var options = {
+  content:
+    'We use cookies to improve your experience. By your continued use of this site you accept such use.<br /> This notice will disappear by itself.',
+  duration: 10000
+};
+cpNs.cookiePolicy.setup(options);
