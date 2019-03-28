@@ -95,6 +95,21 @@
       </form>
     </div>
 
+    <script>
+      var marketoForm = document.querySelector('form#mktoForm');
+
+      marketoForm.addEventListener(
+        'submit',
+        function() {
+          var input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = "grecaptcharesponse";
+          input.value = grecaptcha.getResponse();
+          this.appendChild(input);
+        }
+      )
+    </script>
+
     <div class="col-4">
       <div class="p-card">
         <h3 class="p-card__title">Any questions? Call us</h3>
