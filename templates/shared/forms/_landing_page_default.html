@@ -55,6 +55,9 @@
         </p>
       </li>
       <li class="mktField">
+        <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
+      </li>
+      <li class="mktField">
         <input name="Consent_to_Processing__c" aria-label="Consent" class="mktoField  mktoFormCol" value="Yes" type="hidden">
       </li>
       <li class="mktField">
@@ -74,7 +77,7 @@
   <input type="hidden" name="retURL" aria-label="retURL" value="{{ returnURL }}" />
 </form>
 <script>
-  $("#mktoForm_{{ id }}").validate({
+  $("#mktoForm").validate({
     errorElement: "span",
     errorClass: "mktFormMsg mktError",
     onkeyup: false,
@@ -97,4 +100,5 @@
 
 </script>
 <script src="//assets.ubuntu.com/v1/f97fa297-stateCountry.js"></script>
+{% include "shared/forms/_recaptcha.html" %}
 <!-- /MARKETO FORM -->

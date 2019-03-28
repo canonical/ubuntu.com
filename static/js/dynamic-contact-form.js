@@ -157,40 +157,40 @@
         inputs.forEach(function(input) {
           switch (input.type) {
             case 'radio':
-              if (input.checked) {
-                message += comma + input.value;
-                comma = ', ';
-              }
+            if (input.checked) {
+              message += comma + input.value;
+              comma = ', ';
+            }
             break;
             case 'checkbox':
-              if (input.checked) {
-                var subSectionText = '';
-                var subSection = input.closest('[class*="col-"]').querySelector('.js-sub-section');
-                if (subSection) {
-                  subSectionText = subSection.innerText + ': ';
-                }
-
-                var label = formField.querySelector('label[for='+input.id+']');
-                if (label) {
-                  label = subSectionText + label.innerText;
-                } else {
-                  label = input.id;
-                }
-                message += comma + label;
-                comma = ', ';
+            if (input.checked) {
+              var subSectionText = '';
+              var subSection = input.closest('[class*="col-"]').querySelector('.js-sub-section');
+              if (subSection) {
+                subSectionText = subSection.innerText + ': ';
               }
+
+              var label = formField.querySelector('label[for='+input.id+']');
+              if (label) {
+                label = subSectionText + label.innerText;
+              } else {
+                label = input.id;
+              }
+              message += comma + label;
+              comma = ', ';
+            }
             break;
             case 'text':
-              if (!input.classList.contains('mktoField') && input.value !== '') {
-                message += comma + input.value;
-                comma = ', ';
-              }
+            if (!input.classList.contains('mktoField') && input.value !== '') {
+              message += comma + input.value;
+              comma = ', ';
+            }
             break;
             case 'textarea':
-              if (!input.classList.contains('mktoField') && input.value !== '') {
-                message += comma + input.value;
-                comma = ', ';
-              }
+            if (!input.classList.contains('mktoField') && input.value !== '') {
+              message += comma + input.value;
+              comma = ', ';
+            }
             break;
           }
         });
@@ -199,6 +199,19 @@
 
       return message;
     }
+
+    // move g-recaptcha-response to marketo field
+    var marketoForm = document.querySelector('form#mktoForm');
+    marketoForm.addEventListener(
+      'submit',
+      function() {
+        var input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = "grecaptcharesponse";
+        input.value = grecaptcha.getResponse();
+        this.appendChild(input);
+      }
+    )
 
     // Opens the form when the initial hash matches the trigger
     if (window.location.hash === triggeringHash) {
