@@ -1,9 +1,12 @@
 // Footer pattern styling
 @mixin footer-title {
   color: $color-mid-dark;
-  cursor: pointer;
   line-height: 1.5;
   margin-bottom: 0;
+
+  @media only screen and (max-width: $breakpoint-medium) {
+    cursor: pointer;
+  }
 }
 
 @mixin ubuntu-p-footer {
