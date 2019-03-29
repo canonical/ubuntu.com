@@ -16,34 +16,51 @@
       <h2>Ubuntu Server {{lts_release_with_point}} LTS</h2>
       <div class="u-equal-height p-divider">
         <div class="col-8 p-divider__block">
-          <p class="p-card__content">The long-term support version of Ubuntu Server, including the {{lts_openstack_version}} release of OpenStack and support guaranteed until {{lts_release_eol}} &mdash; 64-bit only.</p>
-          <p class="p-card__content">This release uses our new installer, Subiquity. If you need support for options not implemented in Subiquity, such as encrypted filesystem support, the traditional installer can be found on the <a href="/download/alternative-downloads#alternate-ubuntu-server-installer">alternative downloads</a> page.</p>
-          <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu Server {{ lts_release }} LTS release notes</a></p>
+          <p class="p-card__content">
+            The long-term support version of Ubuntu Server, including the {{lts_openstack_version}} release of OpenStack and support guaranteed until {{lts_release_eol}} &mdash; 64-bit only.
+          </p>
+          <p class="p-card__content">
+            This release uses our new installer, Subiquity. If you need support for options not implemented in Subiquity, such as encrypted filesystem support, the traditional installer can be found on the <a href="/download/alternative-downloads#alternate-ubuntu-server-installer">alternative downloads</a> page.
+          </p>
+          <p class="p-card__content">
+            <a href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu Server {{ lts_release }} LTS release notes</a>
+          </p>
         </div>
         <div class="col-4">
-          <p class="p-card__content"><a href="/download/server/thank-you?version={{ lts_release_with_point }}&amp;architecture=amd64" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{ lts_release_full }}', 'eventValue' : undefined });">Download</a></p>
-          <p><small>For other versions of Ubuntu including torrents, the network installer, a list of local mirrors, and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</small></p>
+          <p class="p-card__content">
+            <a href="/download/server/thank-you?version={{ lts_release_with_point }}&amp;architecture=amd64" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{ lts_release_full }}', 'eventValue' : undefined });">Download</a>
+          </p>
+          <p>
+            <small>For other versions of Ubuntu including torrents, the network installer, a list of local mirrors, and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</small>
+          </p>
         </div>
       </div>
     </div>
   </div>
   <div class="row">
-  <div class="col-12 p-card--highlighted">
+    <div class="col-12 p-card--highlighted">
       <h2>Ubuntu Server {{ latest_release_with_point }}</h2>
       <div class="u-equal-height p-divider">
         <div class="col-8 p-divider__block">
-          <p class="p-card__content">The latest version of Ubuntu Server, including nine months of security and maintenance updates, until {{latest_release_eol}}.</p>
-          <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu Server {{ latest_release }} release notes</a></p>
+          <p class="p-card__content">
+            The latest version of Ubuntu Server, including nine months of security and maintenance updates, until {{latest_release_eol}}.
+          </p>
+          <p class="p-card__content">
+            <a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu Server {{ latest_release }} release notes</a>
+          </p>
         </div>
         <div class="col-4">
           <p class="p-card__content">
-            <a class="p-button--positive is-wide" href="/download/server/thank-you?version={{ latest_release_with_point }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{ latest_release }}', 'eventValue' : undefined });">Download</a></p>
-            <p><small>For other versions of Ubuntu including torrents, the network installer, a list of local mirrors, and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</small></p>
+            <a class="p-button--positive is-wide" href="/download/server/thank-you?version={{ latest_release_with_point }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{ latest_release }}', 'eventValue' : undefined });">Download</a>
+          </p>
+          <p>
+            <small>For other versions of Ubuntu including torrents, the network installer, a list of local mirrors, and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</small>
+          </p>
         </div>
       </div>
     </div>
   </div>
- </section>
+</section>
 
 <section class="p-strip--light is-shallow is-bordered">
   <div class="row">
@@ -55,7 +72,9 @@
           <li class="p-list__item is-ticked">Designed for building data centres with complex networks</li>
           <li class="p-list__item is-ticked">Supports Windows, Ubuntu, CentOS and RHEL</li>
         </ul>
-        <p><a href="https://maas.io" class="p-link--external">Get MAAS</a></p>
+        <p>
+          <a href="https://maas.io" class="p-link--external">Get MAAS</a>
+        </p>
       </div>
     </div>
   </div>
@@ -87,18 +106,30 @@
   <div class="row u-equal-height">
     <div class="col-4 p-card">
       <h3 class="p-card__title">Ubuntu Server for ARM</h3>
-      <p class="p-card__content">Optimised for hyperscale deployments and certified on a number of ARM chipsets, including HP, Cavium, Applied Micro and Marvell &mdash; Ubuntu Server for ARM includes the 64-bit ARMv8 platforms.</p>
-      <p class="p-card__content"><a href="/download/server/arm">Get Ubuntu Server for ARM&nbsp;&rsaquo;</a></p>
+      <p class="p-card__content">
+        Optimised for hyperscale deployments and certified on a number of ARM chipsets, including HP, Cavium, Applied Micro and Marvell &mdash; Ubuntu Server for ARM includes the 64-bit ARMv8 platforms.
+      </p>
+      <p class="p-card__content">
+        <a href="/download/server/arm">Get Ubuntu Server for ARM&nbsp;&rsaquo;</a>
+      </p>
     </div>
     <div class="col-4 p-card">
       <h3 class="p-card__title">Ubuntu for POWER</h3>
-      <p class="p-card__content">Ubuntu is available on the IBM POWER platform, bringing the entire Ubuntu and OpenStack ecosystem to IBM POWER.</p>
-      <p class="p-card__content"><a href="/download/server/power">Get Ubuntu for POWER&nbsp;&rsaquo;</a></p>
+      <p class="p-card__content">
+        Ubuntu is available on the IBM POWER platform, bringing the entire Ubuntu and OpenStack ecosystem to IBM POWER.
+      </p>
+      <p class="p-card__content">
+        <a href="/download/server/power">Get Ubuntu for POWER&nbsp;&rsaquo;</a>
+      </p>
     </div>
     <div class="col-4 p-card">
       <h3 class="p-card__title">Ubuntu for IBM Z</h3>
-      <p class="p-card__content">IBM Z and LinuxONE leverage open technology solutions to meet the demands of the new application economy. Ubuntu is now available, with Juju and Ubuntu OpenStack.</p>
-      <p class="p-card__content"><a href="/download/server/s390x">Get Ubuntu for IBM Z&nbsp;&rsaquo;</a></p>
+      <p class="p-card__content">
+        IBM Z and LinuxONE leverage open technology solutions to meet the demands of the new application economy. Ubuntu is now available, with Juju and Ubuntu OpenStack.
+      </p>
+      <p class="p-card__content">
+        <a href="/download/server/s390x">Get Ubuntu for IBM Z&nbsp;&rsaquo;</a>
+      </p>
     </div>
   </div>
 </section>
