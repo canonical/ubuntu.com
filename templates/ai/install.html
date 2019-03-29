@@ -2,6 +2,7 @@
 
 {% block title %}Install Kubeflow yourself{% endblock %}
 {% block meta_description %}A step-by-step installation guide to Ubuntu OpenStack with Kubernetes and Kubeflow on bare metal servers.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1KVyyvZsDyrfoi5tK2m5SLWs9YuHg9hgqVz0c8cWHsf8/edit{% endblock meta_copydoc %}
 
 {% block content %}
 <section class="p-strip--light is-deep is-bordered">
@@ -20,6 +21,9 @@
   <div class="row">
     <div class="col-12">
       <h2>Deploy Kubeflow to Kubernetes</h2>
+      <p>
+        If you already have Ubuntu or linux, the following instructions are all you need. However, if you are on Windows or Mac, consider starting with Multipass. With <a class="p-link--external" href="https://github.com/CanonicalLtd/multipass">multipass</a> you can easily create an Ubuntu VM to work with.
+      </p>
       <ol class="p-stepped-list--detailed">
 
         <li class="p-list-step__item col-12">
@@ -27,62 +31,56 @@
           <div class="p-list-step__content">
             <p>Kubeflow runs on top of Kubernetes, and Canonical Kubernetes is the best foundation for Kubeflow.</p>
             <p>Visit our <a href="/kubernetes/install">Kubernetes install</a> page and follow the instructions to install the Kubernetes as you want.</p>
+            <p>The following step assumes you want to install <a class="p-link--external" href="https://microk8s.io/">microk8s</a> as your Kubernetes cluster.</p>
           </div>
         </li>
 
         <li class="p-list-step__item col-12">
           <h3 class="p-list-step__title"><span class="p-list-step__bullet">2</span>Install microk8s</h3>
           <div class="p-list-step__content">
-            <p>Get the bash script that will install microk8s</p>
+            <p>Clone the kubernetes-tools project</p>
             <div class="p-code-snippet">
-              <input class="p-code-snippet__input" value="wget https://assets.ubuntu.com/v1/b783a95d-install-kubeflow-pre-micro.sh -O install-kubeflow-pre-micro.sh" readonly="readonly">
-              <button class="p-code-snippet__action">Copy to clipboard</button>
-            </div>
-            <p>Set permissions so the script can run</p>
-            <div class="p-code-snippet">
-              <input class="p-code-snippet__input" value="chmod a+x install-kubeflow-pre-micro.sh" readonly="readonly">
+              <input class="p-code-snippet__input" value="git clone https://github.com/canonical-labs/kubernetes-tools" readonly="readonly">
               <button class="p-code-snippet__action">Copy to clipboard</button>
             </div>
             <p>Run the script as root</p>
             <div class="p-code-snippet">
-              <input class="p-code-snippet__input" value="sudo ./install-kubeflow-pre-micro.sh" readonly="readonly">
+              <input class="p-code-snippet__input" value="sudo kubernetes-tools/setup-microk8s.sh" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <p>If you have a GPU, run</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="microk8s.enable gpu" readonly="readonly">
               <button class="p-code-snippet__action">Copy to clipboard</button>
             </div>
           </div>
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">3</span>Set environment variables</h3>
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">3</span>Install Kubeflow</h3>
           <div class="p-list-step__content">
+            <p>Clone the kubeflow-tools project</p>
             <div class="p-code-snippet">
-              <input class="p-code-snippet__input" value="export KUBECONFIG=/snap/microk8s/current/client.config" readonly="readonly">
+              <input class="p-code-snippet__input" value="git clone https://github.com/canonical-labs/kubeflow-tools" readonly="readonly">
               <button class="p-code-snippet__action">Copy to clipboard</button>
             </div>
+            <p>Run the Kubeflow Install script</p>
             <div class="p-code-snippet">
-              <input class="p-code-snippet__input" value="export GITHUB_TOKEN=${YOUR_GITHUB_TOKEN}" readonly="readonly">
+              <input class="p-code-snippet__input" value="kubeflow-tools/install-kubeflow.sh" readonly="readonly">
               <button class="p-code-snippet__action">Copy to clipboard</button>
             </div>
           </div>
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">4</span>Install Kubeflow</h3>
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">4</span>Access Kubeflow</h3>
           <div class="p-list-step__content">
-            <p>Get the bash script that will install microk8s</p>
-            <div class="p-code-snippet">
-              <input class="p-code-snippet__input" value="wget https://assets.ubuntu.com/v1/58a9e137-install-kubeflow.sh -O install-kubeflow.sh" readonly="readonly">
-              <button class="p-code-snippet__action">Copy to clipboard</button>
-            </div>
-            <p>Set permissions so the script can run</p>
-            <div class="p-code-snippet">
-              <input class="p-code-snippet__input" value="chmod a+x install-kubeflow.sh" readonly="readonly">
-              <button class="p-code-snippet__action">Copy to clipboard</button>
-            </div>
-            <p>Run the script as root</p>
-            <div class="p-code-snippet">
-              <input class="p-code-snippet__input" value="sudo ./install-kubeflow.sh" readonly="readonly">
-              <button class="p-code-snippet__action">Copy to clipboard</button>
-            </div>
+            <p>If you installed Microk8s on your local host, then you can use localhost as the IP address in your browser. Otherwise, if you used Multipass as per the instructions above, you can get the IP address of the VM with either <code>multipass list</code> or <code>multipass info kubeflow</code>.</p>
+            <p>Point browser to either:</p>
+            <ul>
+              <li class="p-list__item"><code>http://&lt;kubeflow VM IP&gt;:&lt;Ambassador PORT&gt;</code></li>
+              <li class="p-list__item"><code>http://localhost:&lt;Ambassador PORT&gt;</code></li>
+            </ul>
           </div>
         </li>
       </ol>
