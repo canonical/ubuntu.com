@@ -5,11 +5,14 @@
   marketoForm.addEventListener(
     'submit',
     function() {
-      var input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = "grecaptcharesponse";
+      var input = marketoForm.querySelector('[name=grecaptcharesponse]')
+      if (! input) {
+        input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = "grecaptcharesponse";
+        this.appendChild(input);
+      }
       input.value = grecaptcha.getResponse();
-      this.appendChild(input);
     }
   )
 </script>
