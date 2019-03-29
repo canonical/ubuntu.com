@@ -36,7 +36,7 @@
       <script  src="//assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
       <script src="//assets.ubuntu.com/v1/6ce35d3e-jquery-ui.min.js"></script>‌​
 
-      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_3285">
+      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm">
         <fieldset>
           <ul class="p-list">
 
@@ -93,6 +93,9 @@
                 <input type="hidden" name="Consent_to_Processing__c" class="mktoField  mktoFormCol" value="Yes" >
               </p>
             </li>
+            <li class="p-list__item">
+              <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
+            </li>
             <li  class="mktField">
               <button type="submit" class="mktoButton">Submit request</button>
             </li>
@@ -135,6 +138,7 @@
 
     </script>
     <script  src="//assets.ubuntu.com/v1/f97fa297-stateCountry.js"></script>
+    {% include "shared/forms/_recaptcha.html" %}
     <!-- /MARKETO FORM -->
 
   </div>

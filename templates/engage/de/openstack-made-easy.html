@@ -49,7 +49,7 @@
       <script src="{{ ASSET_SERVER_URL }}37b1db88-jquery.min.js"></script>
       <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
       <script src="{{ ASSET_SERVER_URL }}6ce35d3e-jquery-ui.min.js"></script>‌​
-      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_3266" style="margin-top:-1em;">
+      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm" style="margin-top:-1em;">
         <fieldset class="u-no-padding--top" style="border-bottom-width: 1px;">
           <ul class="p-list u-no-margin--bottom">
             <li class="mktFormReq mktField p-list__item">
@@ -93,6 +93,9 @@
               <p>Mit der Absendung dieses Formulars bestätige ich, dass ich die <a href="/legal/data-privacy" target="_blank" class="mchNoDecorate">Datenschutzrichtlinie von Canonical</a> gelesen habe und ihr zustimme.</p>
               <input name="RichText" type="hidden" aria-label="RichText">
             </li>
+            <li class="p-list__item">
+              <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
+            </li>
             <li class="mktField">
               <input name="Consent_to_Processing__c" class="mktoField  mktoFormCol" value="Yes" type="hidden" aria-label="Consent_to_Processing__c">
             </li>
@@ -131,6 +134,7 @@
         });
       </script>
       <script src="{{ ASSET_SERVER_URL }}f97fa297-stateCountry.js"></script>
+      {% include "shared/forms/_recaptcha.html" %}
 
       <!-- /MARKETO FORM -->
     </div>

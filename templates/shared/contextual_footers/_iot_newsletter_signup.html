@@ -4,7 +4,7 @@
   <script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
   <script src="https://assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
 
-  <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1670">
+  <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm">
     <p>Receive regular updates from our IoT newsletter.</p>
     <ul class="p-list">
       <li class="mktFormReq mktField p-list__item">
@@ -16,6 +16,9 @@
           <input class="mktFormCheckbox" name="canonicalUpdatesOptIn" id="canonicalUpdatesOptIn" value="yes" type="checkbox" />
           <label class="contextual-footer__text--label" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>&nbsp;<span class="mktFormMsg"></span>
         </span>
+      </li>
+      <li class="p-list__item">
+        <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
       </li>
       <li class="p-list__item u-no-margin--top">
         In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/newsletter">Canonical&rsquo;s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
@@ -42,5 +45,6 @@
       onblur: false
     });
   </script>
+  {% include "shared/forms/_recaptcha.html" %}
   <!-- /MARKETO FORM -->
 </div>

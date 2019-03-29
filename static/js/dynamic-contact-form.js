@@ -200,19 +200,6 @@
       return message;
     }
 
-    // move g-recaptcha-response to marketo field
-    var marketoForm = document.querySelector('form#mktoForm');
-    marketoForm.addEventListener(
-      'submit',
-      function() {
-        var input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = "grecaptcharesponse";
-        input.value = grecaptcha.getResponse();
-        this.appendChild(input);
-      }
-    )
-
     // Opens the form when the initial hash matches the trigger
     if (window.location.hash === triggeringHash) {
       open();

@@ -22,7 +22,7 @@
       <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
       <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
 
-      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_2542" class="marketo-form">
+      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm" class="marketo-form">
           <ul class="p-list">
             <li class="mktFormReq mktField p-list__item">
               <label for="3-FirstName" class="mktoLabel">First name:</label>
@@ -54,7 +54,9 @@
               <input class="mktoField" value="yes" id="3-canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
               <label class="mktoLabel mktoHasWidth" for="3-canonicalUpdatesOptIn"><small>I would like to receive occasional news from Canonical by email.</small></label>
             </li>
-
+            <li class="p-list__item">
+              <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
+            </li>
             <li class="mktField p-list__item">
               <button type="submit" class="p-button--positive mktoButton" aria-label="Submit" onsubmit="backgroundSubmitHandlerClosure();">Get the whitepaper</button>
               <input type="hidden" name="formid" class="mktoField " value="2542" aria-label="">
@@ -68,6 +70,7 @@
         <input type="hidden" name="retURL" value="https://pages.ubuntu.com/ty-container-whitepaper.html" aria-label="" />
         <input type="hidden" name="Consent_to_Processing__c" value="yes" aria-label="" />
       </form>
+      {% include "shared/forms/_recaptcha.html" %}
       <!-- /MARKETO FORM -->
 
     </div>
