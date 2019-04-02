@@ -107,6 +107,19 @@ juju status openstack-dashboard
 
 Open the address in a web browser and log in with the token obtained previously.
 
+```bash
+https://<openstack_dashboard_ip>/horizon
+```
+
+If you just deployed Keystone and do not have any credentials set, it is useful
+to note that Keystone creates the domain `admin_domain` by default and has a user
+named `admin` with a randomly-generated password. You can find the admin password
+with:
+
+```bash
+juju run --unit keystone/0 leader-get admin_password
+```
+
 ## Create the domain for Kubernetes
 You should now be able to access the OpenStack Dashboard and create a new domain.
 
@@ -196,6 +209,24 @@ juju config kubernetes-master keystone-policy=$(cat policy.yaml)
 ```
 
 The [default policy may be downloaded][policy] for easy editing.
+
+
+## Custom Certificate Authority
+
+When using a custom certificate authority attached to Keystone, some additional configuration is
+required.
+
+ * Add CA to client machines that will run `kubectl`.
+
+```
+sudo cp custom_ca.crt /usr/local/share/ca-certificates
+sudo update-ca-certificates
+```
+ * Add CA to the kubernetes-master configuration
+
+```bash
+juju config kubernetes-master keystone-ssl-ca="$(base64 custom_ca.crt)"
+```
 
 ## Troubleshooting
 
