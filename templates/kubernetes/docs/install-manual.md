@@ -108,11 +108,11 @@ watch -c juju status --color
 ```
 
 It is also possible to deploy a specific version of the bundle by including the
-revision number. For example, to deploy the **CDK** bundle for the Kubernetes 1.12
+revision number. For example, to deploy the **CDK** bundle for the Kubernetes 1.13
 release, you could run:
 
 ```bash
-juju deploy cs:~containers/canonical-kubernetes-357
+juju deploy cs:~containers/canonical-kubernetes-435
 ```
 
 The revision numbers for bundles are generated automatically when the bundle is
@@ -124,7 +124,8 @@ versions of the **CDK** bundle are shown in the table below:
 
 | Kubernetes version | CDK bundle |
 | --- | --- |
-| 1.13.x         | [canonical-kubernetes-412](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-412/archive/bundle.yaml?channel=stable) |
+| 1.14.x         | [canonical-kubernetes-466](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-466/archive/bundle.yaml?channel=stable) |
+| 1.13.x         | [canonical-kubernetes-435](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-435/archive/bundle.yaml?channel=stable) |
 | 1.12.x         | [canonical-kubernetes-357](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-357/archive/bundle.yaml?channel=stable) |
 | 1.11.x         | [canonical-kubernetes-254](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-254/archive/bundle.yaml?channel=stable) |
 | 1.10.x         | [canonical-kubernetes-211](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-211/archive/bundle.yaml?channel=stable)  |
