@@ -81,12 +81,19 @@
 {% endif %}
 
 <script>
-  //    (function () {
-
-  var nav=document.querySelector('.js-show-nav');
+  var nav = document.querySelector('.js-show-nav');
+  var hash = window.location.hash;
   nav.classList.remove('u-hide');
 
-  function fetchDropdown (url, id) {
+  // If the page loads with a preselected hash load and open the menu
+  if (hash) {
+    var selected = nav.querySelector(hash);
+    if (selected) {
+      selected.onmouseover();
+    }
+  }
+
+  function fetchDropdown(url, id) {
     const div = document.getElementById(id);
     fetch(url)
     .then(function(response) {
@@ -99,5 +106,4 @@
       console.log('Request failed', error)
     })
   }
-  //    })()
 </script>
