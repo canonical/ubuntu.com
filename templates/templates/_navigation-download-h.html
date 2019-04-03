@@ -1,4 +1,7 @@
-<div class="u-hide" id="download-content">
+{# Release versions - update as appropriate #}
+{% with latest_release_name="CosmicCuttlefish" latest_release='18.10' latest_release_with_point="18.10" latest_release_eol='July 2019' lts_release_name="BionicBeaver" lts_release="18.04" lts_release_full='18.04 LTS' lts_release_with_point="18.04.2" lts_release_full_with_point='18.04.2 <abbr title="Long-term support">LTS</abbr>' lts_release_eol='April 2023' lts_openstack_version="Queens" latest_openstack_version="Rocky" previous_lts_release="16.04" previous_lts_release_full='16.04 LTS' previous_lts_release_with_point="16.04.6" previous_lts_release_full_with_point='16.04.6 <abbr title="Long-term support">LTS</abbr>' %}
+
+{% block content %}
   <div class="dropdown-window__content u-no-padding--top u-no-padding--bottom">
     <div class="p-strip is-x-shallow u-no-padding--bottom">
       <div class="row">
@@ -64,7 +67,7 @@
           <p class="p-p--small">Use Ubuntu optimised and certified server images on most major clouds.</p>
           <ul class='p-text-list--small is-bordered'>
             <li class='p-list__item'><a class='p-link' href='/download/cloud'>
-              Get started on Amazon AWS, Microsoft Azure, Google Cloud Platform and more&#8230;</a>
+              Get started on Amazon AWS, Microsoft Azure, Google Cloud Platform and more&#8230;
             </a></li>
             <li class='p-list__item'><a class='p-link' href='http://cloud-images.ubuntu.com/' title='Visit cloud-images - external site'>
               Download cloud images for local development and testing
@@ -121,4 +124,5 @@
       </div>
     </div>
   </div>
-</div>
+  {% endblock content %}
+{% endwith %}
