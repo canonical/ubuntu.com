@@ -7,7 +7,7 @@
 <!-- script -->
 <script>
 
-  var b = baffle(document.querySelectorAll('.u-obfuscate p', '.u-obfuscate li', '.u-obfuscate a'));
+  var b;
 
   /**
   * Given a form element, extract its data and its "action" target URL
@@ -80,7 +80,7 @@
 
   function revealContent() {
     // Reveal the obfuscated content
-    b.reveal(5000);
+    b.reveal(0);
 
     console.log('Revealing');
 
@@ -98,6 +98,7 @@
   }
 
   function hideContent() {
+    console.log('hide', b)
     // Baffle to obfucast the text
     b.set({characters: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'})
     b.once();
@@ -126,6 +127,7 @@
   }
 
   window.onload = function() {
+    b = baffle(document.querySelectorAll('.u-obfuscate p', '.u-obfuscate li', '.u-obfuscate a'));
     if (getCookie(getCookieName())) {
       revealContent();
     } else {
