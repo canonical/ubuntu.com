@@ -266,7 +266,7 @@ For any deployment of the Canonical Distribution of Kubernetes carried out by Ca
 
 <h2 id="appendix-support-scope-esm">Extended Security Maintenance</h2>
 
-Extended Security Maintenance includes available High and Critical CVE fixes for a number of server packages in the Ubuntu Main Repository through 28 April 2020. A complete list of packages included in Extended Security Maintenance can be found at: [https://wiki.ubuntu.com/SecurityTeam/ESM/12.04#Maintained_Packages](https://wiki.ubuntu.com/SecurityTeam/ESM/12.04#Maintained_Packages)
+Extended Security Maintenance includes available High and Critical CVE fixes for a number of server packages in the Ubuntu Main Repository. A complete list of packages included in Extended Security Maintenance can be found at: [https://wiki.ubuntu.com/SecurityTeam/ESM/12.04#Maintained_Packages](https://wiki.ubuntu.com/SecurityTeam/ESM/12.04#Maintained_Packages)
 
 Extended Security Maintenance is included for 64-bit x86 AMD/Intel installations.
 
