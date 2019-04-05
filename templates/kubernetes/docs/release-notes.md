@@ -13,6 +13,21 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+
+# 1.14 Bugfix release
+
+### April 4th, 2019 -
+[canonical-kubernetes-471][bundle]
+
+## Fixes
+
+- Fixed Ceph PV fails to mount in pod ([Issue](https://bugs.launchpad.net/cdk-addons/+bug/1820908))
+- Fixed Problems switching from kube-dns to CoreDNS ([Issue](https://bugs.launchpad.net/charm-kubernetes-master/+bug/1822001))
+- Fixed defaultbackend-s390x image ([Issue](https://github.com/juju-solutions/kubernetes/pull/229))
+- Fixed `keystone-ssl-ca` config description ([Issue](https://github.com/juju-solutions/kubernetes/pull/230))
+- Partial fix for using custom CA with Keystone ([Issue](https://github.com/juju-solutions/cdk-addons/pull/91))
+
+
 # 1.14
 
 ### March 27, 2019 - [canonical-kubernetes-466](https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-466/archive/bundle.yaml)
@@ -29,10 +44,10 @@ details, please see the [**CDK** CNI documentation][tigera-docs]
 
 - Additional options for High Availability
 
-Version 1.13 of **CDK** introduced support for **keepalived** to provide HA for the 
-api-loadbalancer. This new release adds support for both **HAcluster** and **MetalLB**. See 
+Version 1.13 of **CDK** introduced support for **keepalived** to provide HA for the
+api-loadbalancer. This new release adds support for both **HAcluster** and **MetalLB**. See
 the relevant [HAcluster][hacluster-docs] and [MetalLB][metallb-docs] pages in the
-documentation, as well as the [HA overview][haoverview] for more information. 
+documentation, as well as the [HA overview][haoverview] for more information.
 
 - Added CoreDNS support
 
@@ -44,11 +59,11 @@ continue to use **KubeDNS** until the operator chooses to upgrade to
 **CoreDNS**. See the [upgrade notes][upgrade-notes] for details.
 
  - Docker upgrades: Docker 18.09.2 is the new default in Ubuntu. CDK now includes a charm action to simplify [upgrading Docker across a set of worker nodes][upgrading-docker].
- 
+
 - Registry enhancements: Read-only mode, frontend support, and additional TLS configuration options have been added to the [Docker registry charm](https://jujucharms.com/u/containers/docker-registry/114).
 
 - Cloud integrations: New configuration options have been added to the
-[vSphere](https://jujucharms.com/u/containers/vsphere-integrator/) (`folder` and `respool_path`) and 
+[vSphere](https://jujucharms.com/u/containers/vsphere-integrator/) (`folder` and `respool_path`) and
 [OpenStack]( https://jujucharms.com/u/containers/openstack-integrator/) (`ignore-volume-az`, `bs-version`, `trust-device-path`) integrator charms.
 
 
@@ -102,7 +117,7 @@ Please see [this page][historic] for release notes of earlier versions.
 
 <!--LINKS-->
 [upgrade-notes]: /kubernetes/docs/upgrade-notes
-[bundle]: https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-xxx/archive/bundle.yaml
+[bundle]: https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-471/archive/bundle.yaml
 [historic]: /kubernetes/docs/release-notes-historic
 [upgrading-docker]: /kubernetes/docs/upgrading#upgrading-docker
 [tigera-home]: https://www.tigera.io/tigera-secure-ee/
