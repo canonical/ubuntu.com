@@ -7,6 +7,8 @@
 <!-- script -->
 <script>
 
+  var b = baffle(document.querySelectorAll('.u-obfuscate p', '.u-obfuscate li', '.u-obfuscate a'));
+
   /**
   * Given a form element, extract its data and its "action" target URL
   * and submit the form using Ajax
@@ -38,22 +40,10 @@
     request.send(formData);
   }
 
-  /**
-  * After submit has happened
-  * start download and send the user to the instructions page
-  */
+  // After submit has happened set a cookie and reveal the content
   afterSubmit = function() {
-    // Now start the download
-    setCookie('formFilled', 'true', 30);
-    revealText();
-
-    // And redirect to the instructions page
-    window.setTimeout(
-    function() {
-      window.location.href = "/{{ url|default:'whitepapers/robotics'}}#introduction";
-    },
-    1000
-    );
+    setCookie(getCookieName(), 'true', 30);
+    revealContent();
   }
 
   /**
@@ -62,7 +52,6 @@
   */
 
   backgroundSubmitHandlerClosure = function($) {
-
     return function(submitEvent) {
       // Prevent normal submit
       submitEvent.preventDefault ? submitEvent.preventDefault() : submitEvent.returnValue = false;
@@ -80,38 +69,40 @@
 
   // Attach the submit handler to the form
   document.querySelectorAll('.marketo-form').forEach(function(form) {
-    form.addEventListener(
-    'submit',
-    backgroundSubmitHandlerClosure(jQuery)
-    )
+    form.addEventListener('submit', backgroundSubmitHandlerClosure(jQuery));
   });
 
-  // hiding and showing content
+  // Returns a unique cookie name for this URL path
+  function getCookieName() {
+    var encodedPath = window.location.pathname.split('/').join('-');
+    return 'formFilled' + encodedPath;
+  }
 
-  // reveal text
-  function revealText () {
-    b = baffle(document.querySelectorAll('.u-obfuscate p', '.u-obfuscate li', '.u-obfuscate a'))
-    b.reveal(500);
-    var obfuscate = document.getElementsByClassName("u-obfuscate");
-    while (obfuscate[0]) {
-      obfuscate[0].classList.remove('u-obfuscate')
+  function revealContent() {
+    // Reveal the obfuscated content
+    b.reveal(5000);
+
+    console.log('Revealing');
+
+    // Remove the obfuscating styling
+    var obfuscateItems = document.querySelectorAll('.u-obfuscate');
+    obfuscateItems.forEach(function(obfuscateItem) {
+      obfuscateItem.classList.remove('u-obfuscate');
+    });
+
+    // Hide the sign up form
+    var formElement = document.querySelector('.signup-form');
+    if (formElement) {
+      formElement.classList.add("u-hide");
     }
-    document.getElementsByClassName("signup-form")[0].classList.add("u-hide");
-    return;
   }
 
-  // hide text
-  function hideText () {
-    // Start baffle to obfucast the text
-    let b = baffle(document.querySelectorAll('.u-obfuscate p', '.u-obfuscate li', '.u-obfuscate a'))
-    b.set({
-      characters: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    })
+  function hideContent() {
+    // Baffle to obfucast the text
+    b.set({characters: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'})
     b.once();
-    return;
   }
 
-  // cookie stuff
   function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -134,27 +125,11 @@
     return null;
   }
 
-
-  // get params
-  function findGetParameter(parameterName) {
-    var result = null;
-    var search_params = new URLSearchParams(location.search);
-    var result = search_params.get(parameterName);
-    return result;
-  }
-
-  window.onload = function(){
-
-    // Test if the person has filled in the form to be able to see the doc
-    var formTest = getCookie("formFilled");
-    if (formTest  === null) {
-      formTest = findGetParameter("formFilled");
-    }
-
-    if (formTest) {
-      revealText();
+  window.onload = function() {
+    if (getCookie(getCookieName())) {
+      revealContent();
     } else {
-      hideText();
+      hideContent();
     }
   };
 </script>
