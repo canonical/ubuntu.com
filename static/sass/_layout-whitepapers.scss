@@ -51,16 +51,6 @@
       }
     }
 
-    .u-hidden-anchor:target {
-      position: relative;
-
-      h2,
-      h3 {
-        position: absolute;
-        top: -3rem;
-      }
-    }
-
     .p-caption {
       font-style: italic;
       margin-bottom: 1.2rem;
@@ -77,6 +67,12 @@
         color: transparent;
         text-shadow: 0 0 5px $color-shadow;
         user-select: none;
+      }
+
+      .p-pull-quote p::before,
+      .p-pull-quote p::after {
+        color: $color-mid-light;
+        opacity: .5;
       }
 
       img {

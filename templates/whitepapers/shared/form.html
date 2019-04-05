@@ -44,6 +44,7 @@
   afterSubmit = function() {
     setCookie(getCookieName(), 'true', 30);
     revealContent();
+    window.location.hash = '#wp-introduction';
   }
 
   /**
@@ -82,8 +83,6 @@
     // Reveal the obfuscated content
     b.reveal(0);
 
-    console.log('Revealing');
-
     // Remove the obfuscating styling
     var obfuscateItems = document.querySelectorAll('.u-obfuscate');
     obfuscateItems.forEach(function(obfuscateItem) {
@@ -98,7 +97,6 @@
   }
 
   function hideContent() {
-    console.log('hide', b)
     // Baffle to obfucast the text
     b.set({characters: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'})
     b.once();
