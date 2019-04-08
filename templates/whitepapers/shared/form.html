@@ -1,0 +1,133 @@
+
+<!-- dependencies -->
+<script src="{{ ASSET_SERVER_URL }}ec520d10-XMLHttpRequest.min.js"></script>
+<script src="{{ ASSET_SERVER_URL }}4176b39e-serialize.js"></script>
+<script src="{{ ASSET_SERVER_URL }}6b7597df-event-listener-polyfill.js"></script>
+
+<script>
+
+  /**
+  * Given a form element, extract its data and its "action" target URL
+  * and submit the form using Ajax
+  */
+  backgroundSubmit = function(formElement, submitCallback) {
+    var request = new XMLHttpRequest();
+    var submitUrl = formElement.getAttribute('action');
+    var formData = serialize(formElement)
+
+    request.open("POST", submitUrl, true);
+
+    //Send the proper header information along with the request
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    // When request has finished, call the callback function
+    if (submitCallback) {
+      request.addEventListener(
+      'readystatechange',
+      function() {
+        if (this.readyState == 4) {
+          // Pass context and arguments on to submitCallback
+          submitCallback.apply(this, arguments);
+        }
+      }
+      );
+    }
+
+    // Send off the POST request
+    request.send(formData);
+  }
+
+  // After submit has happened set a cookie and reveal the content
+  afterSubmit = function() {
+    setCookie(getCookieName(), 'true', 30);
+    revealContent();
+    window.location.hash = '#wp-introduction';
+  }
+
+  /**
+  * Handler for a form submit event
+  * to disable the normal submit, and instead use backgroundSubmit
+  */
+
+  backgroundSubmitHandlerClosure = function($) {
+    return function(submitEvent) {
+      // Prevent normal submit
+      submitEvent.preventDefault ? submitEvent.preventDefault() : submitEvent.returnValue = false;
+
+      marketoForm = document.getElementById(submitEvent.target.id);
+      // Check form is valid
+      if ($(marketoForm).valid()) {
+        // Change the submit location
+        marketoForm.action = "https://app-sjg.marketo.com/index.php/leadCapture/save2"
+        // Submit the form in the background
+        backgroundSubmit(marketoForm, afterSubmit);
+      }
+    }
+  }
+
+  // Attach the submit handler to the form
+  document.querySelectorAll('.marketo-form').forEach(function(form) {
+    form.addEventListener('submit', backgroundSubmitHandlerClosure(jQuery));
+  });
+
+  // Returns a unique cookie name for this URL path
+  function getCookieName() {
+    var encodedPath = window.location.pathname.split('/').join('-');
+    return 'formFilled' + encodedPath;
+  }
+
+  function revealContent() {
+    var contentContainer = document.querySelector('.l-content');
+    if (contentContainer) {
+      fetchContent('/whitepapers/_robotics-content', contentContainer);
+    }
+
+    // Hide the sign up form
+    var formElement = document.querySelector('.signup-form');
+    if (formElement) {
+      formElement.classList.add("u-hide");
+    }
+  }
+
+  function fetchContent(url, container) {
+    fetch(url)
+    .then(function(response) {
+      return response.text();
+    })
+    .then(function(text) {
+      container.innerHTML = text;
+      container.classList.add('u-reveal');
+    })
+    .catch(function(error) {
+      console.log('Request failed', error)
+    })
+  }
+
+  function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
+  function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return null;
+  }
+
+  window.onload = function() {
+    if (getCookie(getCookieName())) {
+      revealContent();
+    }
+  };
+</script>

@@ -1,12 +1,5 @@
 {% load versioned_static  %}
 <!doctype html>
-<link rel="preconnect" href="https://www.google-analytics.com">
-<link rel="preconnect" href="https://assets.ubuntu.com">
-
-<link rel="preload" as="font" type="font/woff2" href="https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="https://assets.ubuntu.com/v1/7f100985-Ubuntu-Th_W.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="https://assets.ubuntu.com/v1/f8097dea-Ubuntu-LI_W.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="https://assets.ubuntu.com/v1/fff37993-Ubuntu-R_W.woff2" crossorigin>
 
 {# Release versions - update as appropriate #}
 {% with latest_release_name="CosmicCuttlefish" latest_release='18.10' latest_release_with_point="18.10" latest_release_eol='July 2019' lts_release_name="BionicBeaver" lts_release="18.04" lts_release_full='18.04 LTS' lts_release_with_point="18.04.2" lts_release_full_with_point='18.04.2 <abbr title="Long-term support">LTS</abbr>' lts_release_eol='April 2023' lts_openstack_version="Queens" latest_openstack_version="Rocky" previous_lts_release="16.04" previous_lts_release_full='16.04 LTS' previous_lts_release_with_point="16.04.6" previous_lts_release_full_with_point='16.04.6 <abbr title="Long-term support">LTS</abbr>' %}
@@ -29,6 +22,14 @@
     <meta name="copydoc" content="{% block meta_copydoc %}https://drive.google.com/drive/folders/0B4s80tIYQW4BMjNiMGFmNzQtNDkxZC00YmQ0LWJiZWUtNTk2YThlY2MzZmJh{% endblock %}" />
 
     <title>{% block title %}{% endblock %} | Ubuntu</title>
+
+    <link rel="preconnect" href="https://www.google-analytics.com">
+    <link rel="preconnect" href="https://assets.ubuntu.com">
+
+    <link rel="preload" as="font" type="font/woff2" href="https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="https://assets.ubuntu.com/v1/7f100985-Ubuntu-Th_W.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="https://assets.ubuntu.com/v1/f8097dea-Ubuntu-LI_W.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="https://assets.ubuntu.com/v1/fff37993-Ubuntu-R_W.woff2" crossorigin>
 
     <link rel="canonical" href="{% block canonical_url %}https://www.ubuntu.com{{ request.get_full_path }}{% endblock %}" />
 
@@ -62,7 +63,7 @@
     <meta name="google-site-verification" content="ddh2iq7ZuKf1LpkL_gtM_T7DkKDVD7ibq6Ceue4a_3M" />
   </head>
 
-  <body>
+  <body class="{% block body_class %}{% endblock %}">
     <!-- google tag manager -->
     <noscript>
       <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K92JCQ" height="0" width="0" style="display:none;visibility:hidden"></iframe>
