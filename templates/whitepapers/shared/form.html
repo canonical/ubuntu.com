@@ -23,13 +23,13 @@
     // When request has finished, call the callback function
     if (submitCallback) {
       request.addEventListener(
-      'readystatechange',
-      function() {
-        if (this.readyState == 4) {
-          // Pass context and arguments on to submitCallback
-          submitCallback.apply(this, arguments);
+        'readystatechange',
+        function() {
+          if (this.readyState == 4) {
+            // Pass context and arguments on to submitCallback
+            submitCallback.apply(this, arguments);
+          }
         }
-      }
       );
     }
 
@@ -79,7 +79,7 @@
   function revealContent() {
     var contentContainer = document.querySelector('.l-content');
     if (contentContainer) {
-      fetchContent('/whitepapers/_robotics-content', contentContainer);
+      fetchContent('_content', contentContainer);
     }
 
     // Hide the sign up form

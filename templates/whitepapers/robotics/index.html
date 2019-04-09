@@ -1,4 +1,4 @@
-{% extends "whitepapers/base_whitepapers.html" %}
+{% extends "../base_whitepapers.html" %}
 {% load versioned_static %}
 
 {% block title %}Key considerations when choosing a robot’s operating system{% endblock %}
@@ -118,8 +118,8 @@
           <div class="signup-form prefix-1">
             <div class="col-6">
               <h3>Continue to read for free</h3>
-              {% include "../shared/forms/_landing_page_default.html" with id="3331" returnURL="https://pages.ubuntu.com/Secure_Booth_Whitepaper_TY.html" label="Download the whitepaper" %}
-              {% include "./shared/form.html" %}
+              {% include "../../shared/forms/_landing_page_default.html" with id="3331" returnURL="https://pages.ubuntu.com/Secure_Booth_Whitepaper_TY.html" label="Download the whitepaper" %}
+              {% include "../shared/form.html" %}
             </div>
           </div>
         </div>
