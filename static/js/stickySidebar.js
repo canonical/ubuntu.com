@@ -5,8 +5,10 @@ var didScroll = true;
 function isTabActive(tab) {
   var sectionId = tab.href.split('#')[1];
   var section = document.getElementById(sectionId);
-  var rect = section.getBoundingClientRect();
-  return (rect.top < stickyNav.clientHeight);
+  if (section) {
+    var rect = section.getBoundingClientRect();
+    return (rect.top < stickyNav.clientHeight);
+  }
 }
 
 function render() {
