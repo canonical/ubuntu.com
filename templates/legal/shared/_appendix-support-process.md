@@ -4,6 +4,7 @@
 
     1.  Upon commencement of the services, Canonical will provide access for a single technical representative to Landscape, the support portal and the online knowledge base.
     2.  The customer - through their initial technical representative - may select their chosen technical representatives to interface with Canonical based on the number of systems under support as represented in the table below. These technical representatives will hold credentials to the support portal and will act as primary points of contact for support requests.
+    3.  The customer may change their specified technical representatives at any time by submitting a support request via the support portal.
 
     <p style="text-align: center; margin: 1rem 0;">Table of machines under support</p>
 
@@ -16,7 +17,6 @@
     |1001-5000|12|
     |5001+|15|
 
-    4.  The customer may change their specified technical representatives at any time by submitting a support request via the support portal.
 
 2.  <h2 id="appendix-support-process-submitting-support-requests">Submitting support requests</h2>
 
