@@ -9,7 +9,7 @@
   </div>
   <div class="row">
     <div class="col-8">
-      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm">
+      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_{{formid}}">
         <fieldset>
           <h3>About you</h3>
           <ul class="p-list">
@@ -69,6 +69,7 @@
           </ul>
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formValidation" value="" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" class="mktoField" value="{{formid}}" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formVid" class="mktoField" value="{{formid}}" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpId" class="mktoField" value="{{lpId}}" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="subId" class="mktoField" value="30" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="munchkinId" class="mktoField" value="066-EOV-335" />
@@ -89,4 +90,4 @@
   </div>
 </section>
 
-{% include "shared/forms/_recaptcha.html" %}
+{% include "shared/forms/_form_validate_recaptcha.html" %}

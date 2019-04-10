@@ -9,7 +9,7 @@
   </div>
   <div class="row">
     <div class="col-8">
-      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm">
+      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_{{formid}}">
         <fieldset>
           <h3>Über Sie</h3>
           <ul class="p-list">
@@ -103,4 +103,4 @@
       </div>
     </div>
   </section>
-  {% include "shared/forms/_recaptcha.html" %}
+  {% include "shared/forms/_form_validate_recaptcha.html" %}

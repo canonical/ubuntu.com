@@ -1,10 +1,7 @@
 <div class="col-4 p-divider__block">
   <h3 class="p-heading--four">IoT newsletter</h3>
   <!-- MARKETO FORM -->
-  <script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
-  <script src="https://assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
-
-  <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm">
+  <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1670" class="marketo-form">
     <p>Receive regular updates from our IoT newsletter.</p>
     <ul class="p-list">
       <li class="mktFormReq mktField p-list__item">
@@ -36,15 +33,6 @@
     <input type="hidden" name="retURL" value="https://www.ubuntu.com/internet-of-things/thank-you?product=newsletter" />
     <input type="hidden" name="Consent_to_Processing__c" value="yes" />
   </form>
-  <script>
-    $("#mktoForm").validate({
-      errorElement: "span",
-      errorClass: "mktFormMsg mktError",
-      onkeyup: false,
-      onclick: false,
-      onblur: false
-    });
-  </script>
-  {% include "shared/forms/_recaptcha.html" %}
+  {% include "shared/forms/_form_validate_recaptcha.html" %}
   <!-- /MARKETO FORM -->
 </div>

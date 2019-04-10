@@ -1,7 +1,4 @@
 <!-- MARKETO FORM -->
-<script src="//assets.ubuntu.com/v1/37b1db88-jquery.min.js"></script>
-<script src="//assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
-<script src="//assets.ubuntu.com/v1/6ce35d3e-jquery-ui.min.js"></script>‌​
 <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" class="marketo-form" id="mktoForm_{{ id }}" style="margin-top: -1rem;">
   <fieldset class="u-no-padding--top" style="border-bottom-width: 1px;">
     <ul class="p-list">
@@ -76,29 +73,6 @@
   <input type="hidden" name="returnURL" aria-label="returnURL" value="{{ returnURL }}" />
   <input type="hidden" name="retURL" aria-label="retURL" value="{{ returnURL }}" />
 </form>
-<script>
-  $("#mktoForm").validate({
-    errorElement: "span",
-    errorClass: "mktFormMsg mktError",
-    onkeyup: false,
-    onclick: false,
-    onblur: false
-  });
-
-  $(function () {
-    $("#comments").hide()
-  });
-
-  $('#Ubuntu_User__c').on('change', function () {
-    var selection = $(this).val();
-    if (selection == 'Commercially only') {
-      $('#comments').show();
-    } else {
-      $('#comments').hide();
-    }
-  });
-
-</script>
 <script src="//assets.ubuntu.com/v1/f97fa297-stateCountry.js"></script>
-{% include "shared/forms/_recaptcha.html" %}
+{% include "shared/forms/_form_validate_recaptcha.html" %}
 <!-- /MARKETO FORM -->

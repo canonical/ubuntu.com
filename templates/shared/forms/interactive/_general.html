@@ -182,7 +182,7 @@
       <h3 class="p-heading--five">How should we get in touch?</h3>
       <div class="row u-no-padding">
         <div class="col-6">
-          <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm">
+          <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_{{ formid }}" class="marketo-form">
             <ul class="p-list">
               <li class="mktFormReq mktField p-list__item">
                 <label for="FirstName" class="mktoLabel">First name:</label>
@@ -255,4 +255,4 @@
 </div>
 
 <script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
-{% include "shared/forms/_recaptcha.html" %}
+{% include "shared/forms/_form_validate_recaptcha.html" %}
