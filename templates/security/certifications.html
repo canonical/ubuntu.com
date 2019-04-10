@@ -1,0 +1,120 @@
+{% extends "templates/one-column.html" %}
+
+{% block title %}Canonical security certifications{% endblock %}
+{% block meta_description %}Technical details on all of the security certifications for Ubuntu Advantage subscribers.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1CiF-dPqG1Y--h4FWfgKB1ft4G3nC2Boa8NT_JG7D6dQ/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h1>Security Certifications</h1>
+      <p>
+        Canonical has achieved FIPS 140-2 Level 1 certification for several cryptographic modules on Ubuntu 16.04. Canonical has also achieved Common Criteria EAL2 certification for Ubuntu 16.04. In addition, Defense Information System Agency (DISA) has published Ubuntu 16.04 Security Technical Implementation Guide (STIG) which allows Ubuntu to be used by Federal agencies. The Center for Internet Security (CIS) also publishings benchmarks for Ubuntu which hardens the configuration of Ubuntu systems to make them more secure.
+      </p>
+      <p>
+        Canonical has made its security certification offerings available to all Ubuntu Advantage “Server Advanced” customers.
+      </p>
+      <p><a href="/support">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 u-vertically-center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}2217d1c8-Security.svg" width="150" alt="">
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row  u-equal-height">
+    <div class="col-8">
+      <h2>FIPS 140-2</h2>
+      <p>
+        FIPS 140-2 is a US government computer security standard. It defines security requirements related to the design and implementation of a cryptographic module. It is a requirement for U.S Federal agencies to use FIPS 140-2 validated cryptography to protect sensitive information.
+      </p>
+      <p>
+        The standard puts stringent requirements on testing and ensuring that the cryptographic implementations meet the standards and work as expected. The testing and validation must be performed by a laboratory, which is accredited under the Cryptographic and Security Testing (CST) Laboratory Accreditation Program (LAP) and is part of NIST’s <a class="p-link--external" href="https://www.nist.gov/nvlap/">National Voluntary Laboratory Accreditation Program (NVLAP)</a>. The validation testing for Ubuntu 16.04 was performed by atsec Information Security, a U.S. Govt and BSI accredited laboratory.
+      </p>
+      <p>
+        Anyone deploying systems for U.S. Federal government use including the cloud services are required to use FIPS 140-2 compliant systems. FIPS 140-2 is also used commonly outside of US Federal space. It has been adopted in regulated industries like finance, healthcare, legal and manufacturing and few others where there are Federal regulations on data security.
+      </p>
+      <p>
+        Canonical has validated the following cryptographic modules for Ubuntu 16.04:
+      </p>
+      <ul class="">
+        <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/2907">OpenSSH-Client validated level 1 May 2017 (#2907)</a></li>
+        <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/2906">OpenSSH-Server validated level 1 May 2017 (#2906)</a></li>
+        <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/2888">OpenSSL validated level 1 April 2017 (#2888)</a></li>
+        <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/2962">Kernel Crypto API validated level 1 July 2017 (#2962)</a></li>
+        <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/2978">Strongswan validated level 1 July 2017 (#2978)</a></li>
+      </ul>
+      <p>
+        The modules are certified on Intel x86_64, IBM Power8 and IBM Z hardware platforms.
+      </p>
+    </div>
+    <div class="col-4 u-vertically-center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}6c2ebd36-fips-validated-140-2-logo.png" alt="FIPS validated 140-2" width="150">
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Common Criteria</h2>
+      <p>
+        Common Criteria (CC) for Information Technology Security Evaluation is an international standard ISO/IEC IS 15408 for Computer security certification. It validates that a product satisfies a defined set of security requirements. Ubuntu 16.04 has been evaluated to assurance level EAL2 through <a class="p-link--external" href="http://www.fmv.se/en/Our-activities/CSEC---The-Swedish-Certification-Body-for-IT-Security/">CSEC &mdash; The Swedish Certification Body for IT Security</a>. The consulting and evaluation was performed by atsec Information Security.
+      </p>
+      <p>
+        Common Criteria is an internationally recognized set of standards used by Federal agencies, financial institutions and many other organizations dealing with sensitive data. The evaluation was performed on Intel x86_64, IBM Power8 and IBM Z hardware platforms.
+      </p>
+      <p>
+        <a class="p-link--external" href="http://fmv.se/Global/Bilder/Verksamhet/CSEC/Certification%20Report%20Ubuntu%20LTS%2016.04.4.pdf">Read the CSEC certification report</a>
+      </p>
+    </div>
+    <div class="col-4 u-vertically-center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}905104b8-csec-logo.jpg?w=150" width="150" alt="cesc logo">
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>STIG</h2>
+      <p>
+        Security Technical Implementation Guides (STIG) are developed by the Defense Information System Agency (DISA) for the US Department of Defense (DoD). They are configuration guidelines for hardening systems to improve security. They contain technical guidance which when implemented, locks down software and systems to mitigate malicious attacks.
+      </p>
+      <p>
+        DISA has in conjunction with Canonical developed a STIG for Ubuntu 16.04.
+      </p>
+      <p>
+        <a class="p-link--external" href="https://iasecontent.disa.mil/stigs/zip/U_Canonical_Ubuntu_16-04_LTS_V1R1_STIG.zip">Read the STIG</a>
+      </p>
+    </div>
+    <div class="col-4 u-vertically-center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}ff9e7377-disa-logo.svg" width="150" alt="disa logo">
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>CIS Benchmark</h2>
+      <p>
+        Center for Internet Security (CIS) is a non-profit organization that uses a consensus process to release benchmarks to safeguard organizations against cyber attacks. The benchmark contains configuration checklists to harden a system making it less vulnerable to malicious attacks. The consensus review process consists of subject matter experts who provide perspective on different backgrounds like audit and compliance, security research, consulting and software development. Each benchmark undergoes two phases of consensus review. In the first phase, a benchmark is drafted with the help of subject matter experts and a initial version of the benchmark is published. In the second phase, feedback from the wider internet community is reviewed and incorporated into the benchmark. Canonical has actively participated in the drafting of Ubuntu 16.04 and Ubuntu 18.04 benchmarks. CIS has also published benchmarks for Ubuntu 12.04 and 14.04 releases.
+      </p>
+      <p>
+        <a class="p-link--external" href="https://www.cisecurity.org/cis-benchmarks/">Download CIS Benchmarks for Ubuntu</a>
+      </p>
+    </div>
+    <div class="col-4 u-vertically-center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}1acf78b2-cis-logo.jpg?w=150" width="150" alt="disa logo">
+    </div>
+  </div>
+</section>
+
+{% include "shared/forms/interactive/_general.html" with lpId="2154" formid="1257" lpurl="https://pages.ubuntu.com/things-contact-us.html" returnURL="https://www.ubuntu.com/contact-us/form/thank-you" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_security_discussion" second_item="_security_esm" third_item="_security_further_reading" %}
+
+{% endblock content %}
