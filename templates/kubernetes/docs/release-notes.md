@@ -16,8 +16,7 @@ toc: False
 
 # 1.14 Bugfix release
 
-### April 4th, 2019 -
-[canonical-kubernetes-471][bundle]
+### April 4th, 2019 - [canonical-kubernetes-471][bundle]
 
 ## Fixes
 
