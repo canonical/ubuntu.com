@@ -31,6 +31,14 @@
 
     <title>{% block title %}{% endblock %} | Ubuntu</title>
 
+    <link rel="preconnect" href="https://www.google-analytics.com">
+    <link rel="preconnect" href="https://assets.ubuntu.com">
+
+    <link rel="preload" as="font" type="font/woff2" href="https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="https://assets.ubuntu.com/v1/7f100985-Ubuntu-Th_W.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="https://assets.ubuntu.com/v1/f8097dea-Ubuntu-LI_W.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="https://assets.ubuntu.com/v1/fff37993-Ubuntu-R_W.woff2" crossorigin>
+
     <link rel="canonical" href="{% block canonical_url %}https://www.ubuntu.com{{ request.get_full_path }}{% endblock %}" />
 
     <link rel="icon" type="image/png" href="{{ ASSET_SERVER_URL }}cb22ba5d-favicon-16x16.png" sizes="16x16" />
@@ -63,7 +71,7 @@
     <meta name="google-site-verification" content="ddh2iq7ZuKf1LpkL_gtM_T7DkKDVD7ibq6Ceue4a_3M" />
   </head>
 
-  <body>
+  <body class="{% block body_class %}{% endblock %}">
     <!-- google tag manager -->
     <noscript>
       <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K92JCQ" height="0" width="0" style="display:none;visibility:hidden"></iframe>
