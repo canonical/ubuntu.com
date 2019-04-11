@@ -21,41 +21,41 @@
         <fieldset>
           <ul class="p-list">
             <li class="mktFormReq mktField p-list__item">
-              <label for="FirstName" class="mktoLabel">First name:</label>
-              <input required  id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" >
+              <label for="firstName" class="mktoLabel">First name:</label>
+              <input required  id="firstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" >
             </li>
             <li class="mktFormReq mktField p-list__item">
-              <label for="LastName" class="mktoLabel">Last name:</label>
-              <input required  id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired">
+              <label for="lastName" class="mktoLabel">Last name:</label>
+              <input required  id="lastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired">
             </li>
             <li class="mktFormReq mktField p-list__item">
-              <label for="Company" class="mktoLabel">Company Name:</label>
-              <input required  id="Company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired">
+              <label for="company" class="mktoLabel">Company Name:</label>
+              <input required  id="company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired">
             </li>
             <li class="mktFormReq mktField p-list__item">
-              <label for="Email" class="mktoLabel ">Work email address:</label>
-              <input required  id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired">
+              <label for="email" class="mktoLabel ">Work email address:</label>
+              <input required  id="email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired">
             </li>
             <li class="mktFormReq mktField p-list__item">
-              <label for="Phone" class="mktoLabel">Phone Number:</label>
-              <input required  id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired mktoInvalid">
+              <label for="phone" class="mktoLabel">Phone Number:</label>
+              <input required  id="phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired mktoInvalid">
             </li>
             {% include "shared/forms/_country.html" %}
             <li class="mktFormReq mktField p-list__item">
-              <label for="MktoPersonNotes" class="mktoLabel">Are you working on a commercial IoT deployment?</label>
-              <select required id="MktoPersonNotes" name="MktoPersonNotes" class="mktoField mktoRequired mktoInvalid"><option value="">Select...</option>
+              <label for="mktoPersonNotes" class="mktoLabel">Are you working on a commercial IoT deployment?</label>
+              <select required id="mktoPersonNotes" name="MktoPersonNotes" class="mktoField mktoRequired mktoInvalid"><option value="">Select...</option>
               <option value="Working on a commercial IoT deployment">Yes</option>
               <option value="Not working on a commercial IoT deployment">No</option></select>
             </li>
             <li class="mktField p-list__item">
-              <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
-              <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn"><small>I would like to receive occasional news from Canonical by email.</small></label>
+              <input class="mktoField" value="yes" id="CanonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+              <label class="mktoLabel mktoHasWidth" for="CanonicalUpdatesOptIn"><small>I would like to receive occasional news from Canonical by email.</small></label>
             </li>
             <li class="p-list__item">
               <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
             </li>
             <li class="mktField p-list__item">
-              <button type="submit" class="mktoButton p-button--positive" onsubmit="backgroundSubmitHandler();">Download the white paper</button>
+              <button type="submit" class="mktoButton p-button--positive">Download the white paper</button>
               <input type="hidden" name="formid" class="mktoField" value="1917">
               <input type="hidden" name="formVid" class="mktoField" value="1917">
               <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335">
@@ -67,11 +67,13 @@
       <input type="hidden" name="returnURL" value="https://pages.ubuntu.com/IoTSecurityWhitepaper-Fullreport.html" />
       <input type="hidden" name="retURL" value="https://pages.ubuntu.com/IoTSecurityWhitepaper-Fullreport.html" />
       </form>
-
-      <!-- marketo form dependencies -->
-      <script src="{{ ASSET_SERVER_URL }}f97fa297-stateCountry.js"></script>
     </div>
   </div>
 </section>
 
 {% include "shared/forms/_background_submit_download.html" with download_asset_url="https://assets.ubuntu.com/v1/fe2cb442-IoTSecurityWhitepaper-FinalReport.zip" %}
+
+{% block footer_extra %}
+  <!-- marketo form dependencies -->
+  <script src="{{ ASSET_SERVER_URL }}f97fa297-stateCountry.js" defer async></script>
+{% endblock footer_extra %}

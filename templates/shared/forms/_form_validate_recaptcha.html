@@ -3,47 +3,37 @@
   // move g-recaptcha-response to marketo field
   var marketoForm = document.querySelector("form[id^=mktoForm]");
   marketoForm.addEventListener(
-    'submit',
-    function() {
-      var input = marketoForm.querySelector('[name=grecaptcharesponse]')
-      if (! input) {
-        input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = "grecaptcharesponse";
-        this.appendChild(input);
-      }
-      input.value = grecaptcha.getResponse();
+  'submit',
+  function() {
+    var input = marketoForm.querySelector('[name=grecaptcharesponse]')
+    if (! input) {
+      input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = "grecaptcharesponse";
+      this.appendChild(input);
     }
+    input.value = grecaptcha.getResponse();
+  }
   )
 </script>
 
 
-// validate forms
 <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
 <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
-<script src="//assets.ubuntu.com/v1/6ce35d3e-jquery-ui.min.js"></script>‌​
 <script>
-  $("form[id^=mktoForm]").validate({
-    errorPlacement: function(error, element) {
-      error.appendTo( element.parent().addClass( "p-form-validation is-error" ));
-      error.appendTo( element.addClass( "p-form-validation__input" ));
-    },
-    errorElement: "span",
-    errorClass: "p-form-validation__message mktFormMsg",
-    onkeyup: false,
-    onclick: false,
-    onblur: false
-  });
-
-  $(function() {
-    $("#comments").hide()
-  });
-  $('#Ubuntu_User__c').on('change', function() {
-    var selection = $(this).val();
-    if (selection == 'Commercially only') {
-      $('#comments').show();
-    } else {
-      $('#comments').hide();
-    }
+  // validate forms
+  $('form').on('submit', function () {
+    var formid = this.id;
+    $(formid).validate({
+      errorPlacement: function(error, element) {
+        error.appendTo( element.parent().addClass( "p-form-validation is-error" ));
+        error.appendTo( element.addClass( "p-form-validation__input" ));
+      },
+      errorElement: "span",
+      errorClass: "p-form-validation__message mktFormMsg",
+      onkeyup: false,
+      onclick: false,
+      onblur: false
+    });
   });
 </script>
