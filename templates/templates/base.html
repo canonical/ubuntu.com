@@ -92,6 +92,7 @@
     <!-- footer content goes here -->
     {% include "templates/footer.html" %}
     {% include "shared/_polyfill.html" %}
+    {% include "shared/forms/_form-validation.html" %}
     <script src="{% versioned_static 'js/build/main.min.js' %}"></script>
     <script src="{{ ASSET_SERVER_URL }}f5bf3854-respond.min.js"></script>
     {% block footer_extra %}{% endblock %}
