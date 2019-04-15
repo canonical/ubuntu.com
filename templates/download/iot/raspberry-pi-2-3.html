@@ -4,14 +4,14 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1KgnSBa8mbR7qwlxxtqbE5a1wXh5GjtVums8TIB7IGVw/edit#{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip--light is-bordered">
+<section class="p-strip is-bordered">
   <div class="row">
     <div class="col-8">
       <div>
         <h1>Install Ubuntu Server on a Raspberry Pi 2 or 3</h1>
       </div>
     </div>
-    <div class="col-4 u-vertically-center u-align--center">
+    <div class="col-4 u-vertically-center">
       <img src="{{ ASSET_SERVER_URL }}31bd2627-logo-raspberry-pi.svg" width="100" alt="Raspberry Pi">
     </div>
   </div>
@@ -38,7 +38,7 @@
   </div>
 </section>
 
-<section class="p-strip is-deep is-bordered">
+<section class="p-strip--light is-deep is-bordered">
   <div class="row">
     <div class="col-12">
       <h2>Installation instructions</h2>
@@ -50,7 +50,7 @@
           </h3>
           <div class="p-list-step__content">
             <p>Get the correct Ubuntu Server image for your board:</p>
-            <ul class="u-no-margin--left">
+            <ul class="u-no-margin--left" style="list-style-type: disc;">
               <li><a class="p-link--external" href="http://cdimage.ubuntu.com/releases/bionic/release/ubuntu-{{ lts_release_with_point }}-preinstalled-server-armhf+raspi2.img.xz">Ubuntu Server image for Raspberry Pi 2.</a>
               </li>
               <li><a class="p-link--external" href="http://cdimage.ubuntu.com/releases/bionic/release/ubuntu-{{ lts_release_with_point }}-preinstalled-server-arm64+raspi3.img.xz">Ubuntu Server image for Raspberry Pi 3</a></li>
@@ -72,49 +72,43 @@
             </ol>
           </div>
         </li>
-        {% include "./_login.html" with number=4 %}
+        <li class="p-list-step__item">
+          <h3 class="p-list-step__title">
+            <span class="p-list-step__bullet">4</span>
+            Login
+          </h3>
+          <div class="p-list-step__content">
+            <p>When prompted to log in, use "ubuntu" for the username and the password. You will be asked to change this default password after you log in.</p>
+          </div>
+        </li>
       </ol>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light is-bordered">
+<section class="p-strip is-bordered">
   <div class="row u-equal-height">
     <div class="col-8">
       <h3>First boot tips</h3>
-      <ul>
-        <li>You can install a desktop if you like, here are some popular ones:
-          <ul>
-            <li>
-              <div class="p-code-snippet">
-                <input class="p-code-snippet__input" value="sudo apt-get install xubuntu-desktop" readonly="readonly">
-                <button class="p-code-snippet__action">Copy to clipboard</button>
-              </div>
-            </li>
-            <li>
-              <div class="p-code-snippet">
-                <input class="p-code-snippet__input" value="sudo apt-get install lubuntu-desktop" readonly="readonly">
-                <button class="p-code-snippet__action">Copy to clipboard</button>
-              </div>
-            </li>
-            <li>
-              <div class="p-code-snippet">
-                <input class="p-code-snippet__input" value="sudo apt-get install kubuntu-desktop" readonly="readonly">
-                <button class="p-code-snippet__action">Copy to clipboard</button>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <li>For more details about Raspberry Pi specific packages included with this image and further customisations, such as accelerated video drivers and optional PPAs, you can refer to the <a class="p-link--external" href="https://wiki.ubuntu.com/ARM/RaspberryPi#Packages">RaspberryPi wiki</a>.</li>
-      </ul>
-    </div>
-    <div class="col-4 u-hide--small u-align--center u-vertically-center">
-      <img src="{{ ASSET_SERVER_URL }}e2047558-pictogram-knowledge-orange-white-background.svg" alt="" width="180">
+      <p>You can install a desktop if you like, here are some popular ones:</p>
+          <div class="p-code-snippet">
+            <input class="p-code-snippet__input" value="sudo apt-get install xubuntu-desktop" readonly="readonly">
+            <button class="p-code-snippet__action">Copy to clipboard</button>
+          </div>
+          <div class="p-code-snippet">
+            <input class="p-code-snippet__input" value="sudo apt-get install lubuntu-desktop" readonly="readonly">
+            <button class="p-code-snippet__action">Copy to clipboard</button>
+          </div>
+          <div class="p-code-snippet">
+            <input class="p-code-snippet__input" value="sudo apt-get install kubuntu-desktop" readonly="readonly">
+            <button class="p-code-snippet__action">Copy to clipboard</button>
+          </div>
+        <p>For more details about Raspberry Pi specific packages included with this image and further customisations, such as accelerated video drivers and optional package repositories, you can refer to the <a class="p-link--external" href="https://wiki.ubuntu.com/ARM/RaspberryPi#Packages">RaspberryPi wiki</a>.</p>
     </div>
   </div>
 </section>
 
-{% include "./_install-snaps-strip.html" %}
+{% include "./_install-snaps-strip.html" with strip="p-strip--light" %}
 
 {% include "download/shared/_get-ebook-security.html"%}
 
