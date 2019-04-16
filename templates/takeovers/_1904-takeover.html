@@ -1,0 +1,38 @@
+<section class="p-strip--dark p-takeover js-takeover" >
+    <div class="row">
+      <div class="p-takeover__body u-clearfix u-vertically-center">
+        <div class="col-8">
+          <h1 class="p-takeover__title">What’s new in Ubuntu 19.04?</h1>
+          <p class="p-heading--four u-no-margin--right">Learn how the latest Ubuntu release is making new open source software accessible to developers and innovators.</p>
+          <p><a href="/download" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : '18.04 takeover', 'eventLabel' : 'Download 18.04 now', 'eventValue' : undefined });" class="p-button--neutral u-hide--small"><span>Register for the webinar</span></a></p>
+        </div>
+        <div class="col-4">
+            <p class="p-takeover__image u-align-text--center">
+                <img src="{{ ASSET_SERVER_URL }}a76865fa-disco_dingo_mascot.svg" alt="">
+            </p>
+            <p><a href="/download" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : '18.04 takeover', 'eventLabel' : 'Download 18.04 now', 'eventValue' : undefined });" class="p-button--neutral u-hide--large u-hide--medium"><span>Register for the webinar</span></a></p>
+        </div>
+      </div>
+    </div>
+    <style>
+    .p-takeover {
+        background-image: url('{{ ASSET_SERVER_URL }}8951dc67-suru-left.svg'), url('{{ ASSET_SERVER_URL }}55079ac4-suru-right.svg'),linear-gradient(0deg, #DD4814 0%, #BE3D2F 23%, #76236D 75%, #531A4D 100%);
+        background-position: left, right;
+        background-repeat: no-repeat, no-repeat;
+        background-size: auto 100%, auto 100%, cover;
+    }
+
+    .p-takeover__image {
+        mix-blend-mode: overlay;
+    }
+
+    @media (max-width: 874px) { 
+        .p-takeover {
+            background-image: linear-gradient(0deg, #DD4814 0%, #B83B34 22%, #76236D 60%, #531A4D 100%);
+        }
+          .p-takeover__image {
+            width:188px;
+          }
+        }  
+    </style>
+  </section>
