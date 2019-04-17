@@ -12,10 +12,10 @@ XML_FILE=${PROJECT_DIR}/etc/ubuntu-mirrors-rss.xml
 
 mkdir -p ${PROJECT_DIR}/etc
 rm -f $TEST_FILE
-wget -q -O $TEST_FILE https://launchpad.net/ubuntu/+cdmirrors-rss
 
+curl https://launchpad.net/ubuntu/+cdmirrors-rss -o $TEST_FILE
 RESULT=$(grep "Ubuntu CD Mirrors Status" $TEST_FILE)
 
 if [ "$RESULT" ]; then
-     mv $TEST_FILE $XML_FILE
+    mv $TEST_FILE $XML_FILE
 fi
