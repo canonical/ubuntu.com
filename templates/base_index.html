@@ -150,7 +150,7 @@
       var language = getPrimaryParentLanguage();
 
       // get notices matching the user language
-      notices = document.querySelectorAll(".notice[lang=" + language + "]");
+      var notices = document.querySelectorAll(".notice[lang=" + language + "]");
 
       // display only one matching notice
       if (notices.length > 0) {
