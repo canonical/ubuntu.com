@@ -2,7 +2,7 @@
 
 set -e
 
-RUN_COMMAND="talisker.gunicorn.gevent webapp.wsgi --bind $1 --worker-class gevent --name talisker-`hostname`"
+RUN_COMMAND="talisker.gunicorn webapp.wsgi --bind $1 --worker-class sync --name talisker-`hostname` --workers 5"
 
 if [ "${DJANGO_DEBUG}" = true ] || [ "${DJANGO_DEBUG}" = 1 ]; then
     echo ""
