@@ -7,14 +7,24 @@
           From the Linux Kernel to Openstack and Kubernetes: find out why the
           latest Ubuntu release is our most advanced to date.
         </p>
-        <p>
-          <a
-            href="/download"
-            onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : '19.04 takeover', 'eventLabel' : 'What’s new in Ubuntu 19.04?', 'eventValue' : undefined });"
-            class="p-button--neutral u-hide--small"
-            ><span>Download Ubuntu</span></a
-          >
-        </p>
+        <ul class="p-inline-list u-hide--small">
+          <li class="p-inline-list__item">
+            <a
+              href="/download"
+              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : '19.04 takeover', 'eventLabel' : 'What’s new in Ubuntu 19.04?', 'eventValue' : undefined });"
+              class="p-button--neutral"
+              ><span>Download Ubuntu</span></a
+            >
+          </li>
+          <li class="p-inline-list__item">
+            <a
+              href="https://www.brighttalk.com/webcast/6793/354804?utm_source=Takeover&utm_medium=Takeover&utm_campaign=CY19_DC_19.04_WBN_19.04"
+              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : '19.04 takeover', 'eventLabel' : 'Register for the webinar', 'eventValue' : undefined });"
+              class="p-link--inverted"
+              >Register for the webinar&nbsp;›</a
+            >
+          </li>
+        </ul>
       </div>
       <div class="col-4">
         <p class="p-takeover__image u-align-text--center">
@@ -23,12 +33,20 @@
             alt=""
           />
         </p>
-        <p>
+        <p class="u-hide--medium u-hide--large">
+          <a
+            href="/download"
+            onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : '19.04 takeover', 'eventLabel' : 'What’s new in Ubuntu 19.04?', 'eventValue' : undefined });"
+            class="p-button--neutral"
+            ><span>Download Ubuntu</span></a
+          >
+        </p>
+        <p class="u-hide--medium u-hide--large">
           <a
             href="https://www.brighttalk.com/webcast/6793/354804?utm_source=Takeover&utm_medium=Takeover&utm_campaign=CY19_DC_19.04_WBN_19.04"
-            onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : '19.04 takeover', 'eventLabel' : 'What’s new in Ubuntu 19.04?', 'eventValue' : undefined });"
-            class="p-button--neutral u-hide--large u-hide--medium"
-            ><span class="p-link--external">Register for the webinar</span></a
+            onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : '19.04 takeover', 'eventLabel' : 'Register for the webinar', 'eventValue' : undefined });"
+            class="p-link--inverted"
+            >Register for the webinar&nbsp;›</a
           >
         </p>
       </div>
@@ -48,6 +66,10 @@
       background-position: left, right;
       background-repeat: no-repeat, no-repeat;
       background-size: auto 100%, auto 100%, cover;
+    }
+
+    .p-takeover__image {
+      opacity: 0.4;
     }
 
     @media (max-width: 874px) {
