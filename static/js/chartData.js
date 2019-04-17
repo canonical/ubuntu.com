@@ -1,92 +1,32 @@
 export var serverAndDesktopReleases = [
   {
-    startDate: new Date('2010-04-01T00:00:00'),
-    endDate: new Date('2012-07-01T00:00:00'),
-    taskName: 'Ubuntu 10.04 LTS',
+    startDate: new Date('2022-04-01T00:00:00'),
+    endDate: new Date('2024-09-30T00:00:00'),
+    taskName: 'Ubuntu 22.04 LTS',
     status: 'HARDWARE_AND_MAINTENANCE_UPDATES'
   },
   {
-    startDate: new Date('2012-07-01T00:00:00'),
-    endDate: new Date('2015-04-01T00:00:00'),
-    taskName: 'Ubuntu 10.04 LTS',
+    startDate: new Date('2024-09-30T00:00:00'),
+    endDate: new Date('2027-04-01T00:00:00'),
+    taskName: 'Ubuntu 22.04 LTS',
     status: 'MAINTENANCE_UPDATES'
   },
   {
-    startDate: new Date('2012-04-01T00:00:00'),
-    endDate: new Date('2014-10-01T00:00:00'),
-    taskName: 'Ubuntu 12.04 LTS',
-    status: 'HARDWARE_AND_MAINTENANCE_UPDATES'
-  },
-  {
-    startDate: new Date('2014-10-01T00:00:00'),
-    endDate: new Date('2017-04-01T00:00:00'),
-    taskName: 'Ubuntu 12.04 LTS',
-    status: 'MAINTENANCE_UPDATES'
-  },
-  {
-    startDate: new Date('2017-04-01T00:00:00'),
-    endDate: new Date('2019-04-01T00:00:00'),
-    taskName: 'Ubuntu 12.04 LTS',
-    status: 'EXTENDED_SECURITY_MAINTENANCE_FOR_CUSTOMERS'
-  },
-  {
-    startDate: new Date('2014-04-01T00:00:00'),
-    endDate: new Date('2016-10-01T00:00:00'),
-    taskName: 'Ubuntu 14.04 LTS',
-    status: 'HARDWARE_AND_MAINTENANCE_UPDATES'
-  },
-  {
-    startDate: new Date('2016-10-01T00:00:00'),
-    endDate: new Date('2019-04-01T00:00:00'),
-    taskName: 'Ubuntu 14.04 LTS',
-    status: 'MAINTENANCE_UPDATES'
-  },
-  {
-    startDate: new Date('2016-04-01T00:00:00'),
-    endDate: new Date('2018-10-01T00:00:00'),
-    taskName: 'Ubuntu 16.04 LTS',
-    status: 'HARDWARE_AND_MAINTENANCE_UPDATES'
-  },
-  {
-    startDate: new Date('2018-10-01T00:00:00'),
-    endDate: new Date('2021-04-01T00:00:00'),
-    taskName: 'Ubuntu 16.04 LTS',
-    status: 'MAINTENANCE_UPDATES'
-  },
-  {
-    startDate: new Date('2017-10-01T00:00:00'),
-    endDate: new Date('2018-07-01T00:00:00'),
-    taskName: 'Ubuntu 17.10',
+    startDate: new Date('2021-10-01T00:00:00'),
+    endDate: new Date('2022-07-07T00:00:00'),
+    taskName: 'Ubuntu 21.10',
     status: 'STANDARD_RELEASE'
   },
   {
-    startDate: new Date('2018-04-01T00:00:00'),
-    endDate: new Date('2020-10-01T00:00:00'),
-    taskName: 'Ubuntu 18.04 LTS',
-    status: 'HARDWARE_AND_MAINTENANCE_UPDATES'
+    startDate: new Date('2021-04-01T00:00:00'),
+    endDate: new Date('2022-01-05T00:00:00'),
+    taskName: 'Ubuntu 21.04',
+    status: 'STANDARD_RELEASE'
   },
   {
     startDate: new Date('2020-10-01T00:00:00'),
-    endDate: new Date('2023-04-01T00:00:00'),
-    taskName: 'Ubuntu 18.04 LTS',
-    status: 'MAINTENANCE_UPDATES'
-  },
-  {
-    startDate: new Date('2018-10-01T00:00:00'),
-    endDate: new Date('2019-07-01T00:00:00'),
-    taskName: 'Ubuntu 18.10',
-    status: 'STANDARD_RELEASE'
-  },
-  {
-    startDate: new Date('2019-04-01T00:00:00'),
-    endDate: new Date('2019-12-31T00:00:00'),
-    taskName: 'Ubuntu 19.04',
-    status: 'STANDARD_RELEASE'
-  },
-  {
-    startDate: new Date('2019-10-01T00:00:00'),
-    endDate: new Date('2020-07-01T00:00:00'),
-    taskName: 'Ubuntu 19.10',
+    endDate: new Date('2021-07-07T00:00:00'),
+    taskName: 'Ubuntu 20.10',
     status: 'STANDARD_RELEASE'
   },
   {
@@ -97,8 +37,116 @@ export var serverAndDesktopReleases = [
   },
   {
     startDate: new Date('2022-10-01T00:00:00'),
-    endDate: new Date('2025-04-01T00:00:00'),
+    endDate: new Date('2025-04-02T00:00:00'),
     taskName: 'Ubuntu 20.04 LTS',
+    status: 'MAINTENANCE_UPDATES'
+  },
+  {
+    startDate: new Date('2019-10-01T00:00:00'),
+    endDate: new Date('2020-07-06T00:00:00'),
+    taskName: 'Ubuntu 19.10',
+    status: 'STANDARD_RELEASE'
+  },
+  {
+    startDate: new Date('2019-04-01T00:00:00'),
+    endDate: new Date('2020-01-05T00:00:00'),
+    taskName: 'Ubuntu 19.04',
+    status: 'STANDARD_RELEASE'
+  },
+  {
+    startDate: new Date('2018-10-01T00:00:00'),
+    endDate: new Date('2019-07-07T00:00:00'),
+    taskName: 'Ubuntu 18.10',
+    status: 'STANDARD_RELEASE'
+  },
+  {
+    startDate: new Date('2018-04-01T00:00:00'),
+    endDate: new Date('2020-09-30T00:00:00'),
+    taskName: 'Ubuntu 18.04 LTS',
+    status: 'HARDWARE_AND_MAINTENANCE_UPDATES'
+  },
+  {
+    startDate: new Date('2020-09-30T00:00:00'),
+    endDate: new Date('2023-04-02T00:00:00'),
+    taskName: 'Ubuntu 18.04 LTS',
+    status: 'MAINTENANCE_UPDATES'
+  },
+  {
+    startDate: new Date('2023-04-02T00:00:00'),
+    endDate: new Date('2028-04-01T00:00:00'),
+    taskName: 'Ubuntu 18.04 LTS',
+    status: 'EXTENDED_SECURITY_MAINTENANCE_FOR_CUSTOMERS'
+  },
+  {
+    startDate: new Date('2017-10-01T00:00:00'),
+    endDate: new Date('2018-07-07T00:00:00'),
+    taskName: 'Ubuntu 17.10',
+    status: 'STANDARD_RELEASE'
+  },
+  {
+    startDate: new Date('2016-04-01T00:00:00'),
+    endDate: new Date('2018-10-01T00:00:00'),
+    taskName: 'Ubuntu 16.04 LTS',
+    status: 'HARDWARE_AND_MAINTENANCE_UPDATES'
+  },
+  {
+    startDate: new Date('2018-10-01T00:00:00'),
+    endDate: new Date('2021-04-02T00:00:00'),
+    taskName: 'Ubuntu 16.04 LTS',
+    status: 'MAINTENANCE_UPDATES'
+  },
+  {
+    startDate: new Date('2021-04-02T00:00:00'),
+    endDate: new Date('2024-04-02T00:00:00'),
+    taskName: 'Ubuntu 16.04 LTS',
+    status: 'EXTENDED_SECURITY_MAINTENANCE_FOR_CUSTOMERS'
+  },
+  {
+    startDate: new Date('2014-04-01T00:00:00'),
+    endDate: new Date('2016-09-30T00:00:00'),
+    taskName: 'Ubuntu 14.04 LTS',
+    status: 'HARDWARE_AND_MAINTENANCE_UPDATES'
+  },
+  {
+    startDate: new Date('2016-09-30T00:00:00'),
+    endDate: new Date('2019-04-02T00:00:00'),
+    taskName: 'Ubuntu 14.04 LTS',
+    status: 'MAINTENANCE_UPDATES'
+  },
+  {
+    startDate: new Date('2019-04-02T00:00:00'),
+    endDate: new Date('2022-04-02T00:00:00'),
+    taskName: 'Ubuntu 14.04 LTS',
+    status: 'EXTENDED_SECURITY_MAINTENANCE_FOR_CUSTOMERS'
+  },
+  {
+    startDate: new Date('2012-04-01T00:00:00'),
+    endDate: new Date('2014-10-01T00:00:00'),
+    taskName: 'Ubuntu 12.04 LTS',
+    status: 'HARDWARE_AND_MAINTENANCE_UPDATES'
+  },
+  {
+    startDate: new Date('2014-10-01T00:00:00'),
+    endDate: new Date('2017-04-02T00:00:00'),
+    taskName: 'Ubuntu 12.04 LTS',
+    status: 'MAINTENANCE_UPDATES'
+  },
+  {
+    startDate: new Date('2017-04-02T00:00:00'),
+    endDate: new Date('2019-04-03T00:00:00'),
+    taskName: 'Ubuntu 12.04 LTS',
+    status: 'EXTENDED_SECURITY_MAINTENANCE_FOR_CUSTOMERS'
+  },
+  {
+    startDate: new Date('2010-04-01T00:00:00'),
+    endDate: new Date('2012-09-30T00:00:00'),
+    taskName: 'Ubuntu 10.04 LTS',
+    status: 'HARDWARE_AND_MAINTENANCE_UPDATES'
+  },
+  {
+    startDate: new Date('2012-09-30T00:00:00'),
+    endDate: new Date('2015-04-02T00:00:00'),
+    taskName: 'Ubuntu 10.04 LTS',
     status: 'MAINTENANCE_UPDATES'
   }
 ];
@@ -468,6 +516,10 @@ export var kubernetesStatus = {
 };
 
 export var desktopServerReleaseNames = [
+  'Ubuntu 22.04 LTS',
+  'Ubuntu 21.10',
+  'Ubuntu 21.04',
+  'Ubuntu 20.10',
   'Ubuntu 20.04 LTS',
   'Ubuntu 19.10',
   'Ubuntu 19.04',
@@ -527,13 +579,13 @@ export var openStackReleaseNames = [
 ];
 
 export var kubernetesReleaseNames = [
-  'Kubernetes 1.5',
-  'Kubernetes 1.6',
-  'Kubernetes 1.7',
-  'Kubernetes 1.8',
-  'Kubernetes 1.9',
-  'Kubernetes 1.10',
-  'Kubernetes 1.11',
+  'Kubernetes 1.13',
   'Kubernetes 1.12',
-  'Kubernetes 1.13'
+  'Kubernetes 1.11',
+  'Kubernetes 1.10',
+  'Kubernetes 1.9',
+  'Kubernetes 1.8',
+  'Kubernetes 1.7',
+  'Kubernetes 1.6',
+  'Kubernetes 1.5'
 ];
