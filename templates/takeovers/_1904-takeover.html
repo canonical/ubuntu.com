@@ -20,8 +20,8 @@
             <a
               href="https://www.brighttalk.com/webcast/6793/354804?utm_source=Takeover&utm_medium=Takeover&utm_campaign=CY19_DC_19.04_WBN_19.04"
               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : '19.04 takeover', 'eventLabel' : 'Register for the webinar', 'eventValue' : undefined });"
-              class="p-link--inverted"
-              >Register for the webinar&nbsp;›</a
+              class="p-link--inverted p-link--external"
+              >Register for the webinar</a
             >
           </li>
         </ul>
@@ -45,8 +45,8 @@
           <a
             href="https://www.brighttalk.com/webcast/6793/354804?utm_source=Takeover&utm_medium=Takeover&utm_campaign=CY19_DC_19.04_WBN_19.04"
             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Homepage Link', 'eventAction' : '19.04 takeover', 'eventLabel' : 'Register for the webinar', 'eventValue' : undefined });"
-            class="p-link--inverted"
-            >Register for the webinar&nbsp;›</a
+            class="p-link--inverted p-link--external"
+            >Register for the webinar</a
           >
         </p>
       </div>
@@ -69,7 +69,7 @@
     }
 
     .p-takeover__image {
-      opacity: 0.4;
+      mix-blend-mode: overlay;
     }
 
     @media (max-width: 874px) {
@@ -84,6 +84,13 @@
       }
       .p-takeover__image {
         width: 188px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .p-takeover__image {
+        opacity: 0.4;
+        mix-blend-mode: normal;
       }
     }
   </style>
