@@ -173,9 +173,6 @@
         // For browsers that support <template> (all but IE), grab the template's ".content"
         takeovers = 'content' in takeovers ? takeovers.content: takeovers;
 
-        // get the users language and remove any extra detail suffix (e.g. -gb)
-        var language = getPrimaryParentLanguage();
-
         // First, select takeovers that don't specify a language and don't exclude the users language
         var takeoverSelectors = [".js-takeover:not([lang]).js-takeover:not([lang-skip*=" + language + "])"]
 
