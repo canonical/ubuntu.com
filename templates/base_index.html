@@ -23,6 +23,9 @@
       </div>
     </section>
 
+    {% block notices_content %}
+    {% endblock notices_content %}
+
     <section class="p-strip is-deep is-bordered">
       {% include "shared/_insights_news_strip.html" with gtm_event_label="ubuntu.com homepage" %}
     </section>
@@ -143,6 +146,17 @@
         return language
       };
 
+      // get the users language and remove any extra detail suffix (e.g. -gb)
+      var language = getPrimaryParentLanguage();
+
+      // get notices matching the user language
+      var notices = document.querySelectorAll(".notice[lang=" + language + "]");
+
+      // display only one matching notice
+      if (notices.length > 0) {
+        notices[0].classList.remove("u-hide")
+      }
+
       if (window.localStorage && window.sessionStorage) {
         /**
          * Choose a takeover
@@ -158,9 +172,6 @@
 
         // For browsers that support <template> (all but IE), grab the template's ".content"
         takeovers = 'content' in takeovers ? takeovers.content: takeovers;
-
-        // get the users language and remove any extra detail suffix (e.g. -gb)
-        var language = getPrimaryParentLanguage();
 
         // First, select takeovers that don't specify a language and don't exclude the users language
         var takeoverSelectors = [".js-takeover:not([lang]).js-takeover:not([lang-skip*=" + language + "])"]

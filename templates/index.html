@@ -39,3 +39,27 @@
   {% include "takeovers/_snap-deltas-takeover.html" %}
   {% include "takeovers/_fin-serv-whitepaper-takeover.html" %}
 {% endblock takeover_content %}
+
+
+{#
+  # Creating notices
+
+  A notice is a single line of text, with a link and an optional icon and a language.
+  Only one notice per language will be visible to users.
+  They are useful when you want to notify a specific segment of our global audience
+  that something is available in their language.
+
+  ## Example
+
+    Let Japanese speaking users know that a localized website is available.
+    include "shared/_notice_default.html" with lang="ja" text="私たちの日本のウェブサイトを試してみてください" url="https://jp.ubuntu.com" icon="https://assets.ubuntu.com/v1/838316ab-cof-25x25.png"
+    
+    The French Ubuntu community is having a release party!
+    include "shared/_notice_default.html" with lang="fr" text="À Paris les 18 et 19 mai? Venez à l'Ubuntu Party!" url="https://ubuntu-paris.org/"
+#}
+
+
+{% block notices_content %}
+  {% include "shared/_notice_default.html" with lang="ja" text="私たちの日本のウェブサイトを試してみてください" url="https://jp.ubuntu.com" icon="https://assets.ubuntu.com/v1/8114528b-picto-ubuntu-orange.png" %}
+{% endblock notices_content %}
+
