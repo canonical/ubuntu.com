@@ -46,7 +46,7 @@ relations:
 To use this overlay with the **CDK** bundle, it is specified during deploy like this:
 
 ```bash
-juju deploy canonical-kubernetes  --overlay ~/path/aws-overlay.yaml
+juju deploy charmed-kubernetes  --overlay ~/path/aws-overlay.yaml
 ```
 
 Then run the command to share credentials with this charm:
@@ -279,6 +279,6 @@ juju debug-log --replay --include aws-integrator/0
 [quickstart]: /kubernetes/docs/quickstart
 [storage]: /kubernetes/docs/storage
 [ebs-info]: https://aws.amazon.com/ebs/features/
-[cloudtrail]: https://console.aws.amazon.com/cloudtrail/
+[cloudtrail]: console.aws.amazon.com/cloudtrail/
 [bugs]: https://bugs.launchpad.net/charmed-kubernetes
 [aws-integrator-readme]: https://jujucharms.com/u/containers/aws-integrator/
