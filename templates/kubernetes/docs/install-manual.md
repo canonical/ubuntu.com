@@ -135,11 +135,7 @@ versions of the **CDK** bundle are shown in the table below:
 
 | Kubernetes version | CDK bundle |
 | --- | --- |
-<<<<<<< HEAD
 | 1.14.x         | [charmed-kubernetes-3](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-3/archive/bundle.yaml?channel=stable) |
-=======
-| 1.14.x         | [canonical-kubernetes-471](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-471/archive/bundle.yaml?channel=stable) |
->>>>>>> 08f2fb860d29e5b46c35fd706f995a65019f0a49
 | 1.13.x         | [canonical-kubernetes-435](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-435/archive/bundle.yaml?channel=stable) |
 | 1.12.x         | [canonical-kubernetes-357](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-357/archive/bundle.yaml?channel=stable) |
 | 1.11.x         | [canonical-kubernetes-254](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-254/archive/bundle.yaml?channel=stable) |
