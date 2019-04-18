@@ -32,7 +32,7 @@ requires a minimum of 3 units for a quorum, so you will need 3 kubeapi-load-bala
 ### With Load Balancer
 
 ```bash
-juju deploy canonical-kubernetes
+juju deploy charmed-kubernetes
 juju add-unit -n 2 kubeapi-load-balancer
 juju deploy hacluster
 juju config kubeapi-load-balancer ha-cluster-vips=”192.168.0.1 192.168.0.2”
