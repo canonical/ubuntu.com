@@ -26,18 +26,19 @@
 
 {% block takeover_content %}
   {# GERMAN #}
-  {% include "takeovers/_german_ai_webinar.html" %}
-  {% include "takeovers/_german-compliance-webinar.html" %}
-  {% include "takeovers/_german_takeover_k8.html" %}
+  {# include "takeovers/_german_ai_webinar.html" #}
+  {# include "takeovers/_german-compliance-webinar.html" #}
+  {# include "takeovers/_german_takeover_k8.html" #}
   {# FRENCH #}
-  {% include "takeovers/_french-k8s-case-study.html" %}
-  {% include "takeovers/_french_takeover_openstack_made_easy.html" %}
-  {% include "takeovers/_french_14-04-esm.html" %}
+  {# include "takeovers/_french-k8s-case-study.html" #}
+  {# include "takeovers/_french_takeover_openstack_made_easy.html" #}
+  {# include "takeovers/_french_14-04-esm.html" #}
   {# ALL #}
-  {% include "takeovers/_ci-cd-webinar.html" %}
-  {% include "takeovers/_14-04-esm.html" %}
-  {% include "takeovers/_snap-deltas-takeover.html" %}
-  {% include "takeovers/_fin-serv-whitepaper-takeover.html" %}
+  {% include "takeovers/_1904-takeover.html" %}
+  {# include "takeovers/_ci-cd-webinar.html" #}
+  {# include "takeovers/_14-04-esm.html" #}
+  {# include "takeovers/_snap-deltas-takeover.html" #}
+  {# include "takeovers/_fin-serv-whitepaper-takeover.html" #}
 {% endblock takeover_content %}
 
 
@@ -53,7 +54,7 @@
 
     Let Japanese speaking users know that a localized website is available.
     include "shared/_notice_default.html" with lang="ja" text="私たちの日本のウェブサイトを試してみてください" url="https://jp.ubuntu.com" icon="https://assets.ubuntu.com/v1/838316ab-cof-25x25.png"
-    
+
     The French Ubuntu community is having a release party!
     include "shared/_notice_default.html" with lang="fr" text="À Paris les 18 et 19 mai? Venez à l'Ubuntu Party!" url="https://ubuntu-paris.org/"
 #}
