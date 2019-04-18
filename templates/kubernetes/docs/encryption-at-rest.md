@@ -48,7 +48,7 @@ To deploy **CDK** with this overlay - [download it][cdk-vault-overlay]), save it
 `cdk-vault-overlay.yaml`, and deploy with:
 
 ```
-juju deploy canonical-kubernetes --overlay cdk-vault-overlay.yaml
+juju deploy charmed-kubernetes --overlay cdk-vault-overlay.yaml
 ```
 
 Once **Vault** comes up (and any time it is rebooted), you will need to [unseal][]
