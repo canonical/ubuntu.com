@@ -47,7 +47,7 @@ applications:
 And then deployed with CDK like this:
 
 ```bash
-juju deploy canonical-kubernetes --overlay ~/path/aws-overlay.yaml --overlay ~/path/gpu-overlay.yaml
+juju deploy charmed-kubernetes --overlay ~/path/aws-overlay.yaml --overlay ~/path/gpu-overlay.yaml
 ```
 
 As demonstrated here, you can use multiple overlay files when deploying, so you
