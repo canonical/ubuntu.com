@@ -123,6 +123,8 @@ category/product/landscape/?: https://landscape.canonical.com/
 category/product/(server|ubuntu-server-edition)/?: /server
 category/product/ubuntu-advantage/?: /support
 category/product/ubuntu-light/?: http://lubuntu.net/
+cc/?: "/security/certifications"
+cis/?: "/security/certifications"
 cloud/?: "/public-cloud"
 cloud/awsome/?: "https://launchpad.net/awsome"
 cloud/azure/?: "/public-cloud"
@@ -398,6 +400,7 @@ es/?: "/"
 esm/faq/?: "/esm#faq"
 files/partners/ibm/ibm-smart-client-ubuntu-netbook-remix-02\.img\.gz/?: "https://insights.ubuntu.com"
 files/.*\.pdf?: "https://insights.ubuntu.com"
+fips/?: "/security/certifications"
 forum/?: "https://community.ubuntu.com/t/ubuntu-forums/22"
 forums/?: "https://community.ubuntu.com/t/ubuntu-forums/22"
 foundation-cloud/?: "/openstack/consulting"
@@ -719,3 +722,4 @@ usn/rss\.xml: "https://usn.ubuntu.com/rss.xml"
 (?P<page>.*)\.html: "/{page}"
 telco/?: "/telecommunications"
 telcos/?: "/telecommunications"
+
