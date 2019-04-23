@@ -46,7 +46,7 @@ relations:
 To use this overlay with the **CDK** bundle, it is specified during deploy like this:
 
 ```bash
-juju deploy canonical-kubernetes  --overlay ~/path/aws-overlay.yaml
+juju deploy charmed-kubernetes  --overlay ~/path/aws-overlay.yaml
 ```
 
 Then run the command to share credentials with this charm:

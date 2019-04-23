@@ -281,11 +281,9 @@ things you may wish to try:
 ## Additional Resources
 
 - [Kubernetes User Guide](https://kubernetes.io/docs/user-guide/)
-- [The Canonical Distribution of Kubernetes](https://jujucharms.com/canonical-kubernetes/bundle/)
-- [Canonical Kubernetes Demos](https://github.com/CanonicalLtd/canonical-kubernetes-demos)
-- [Canonical Kubernetes Third-party Integrations](https://github.com/CanonicalLtd/canonical-kubernetes-third-party-integrations)
-- [Bundle Source](https://github.com/juju-solutions/bundle-kubernetes-core)
-- [Bug tracker](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues)
+- [The Charmed Distribution of Kubernetes](https://jujucharms.com/charmed-kubernetes/)
+- [Bundle source][bundle-source]
+- [Bug tracker](https://bugs.launchpad.net/charmed-kubernetes)
 
 
 <!--LINKS-->
@@ -296,3 +294,4 @@ things you may wish to try:
 [logging]: /kubernetes/docs/logging
 [decommission]: /kubernetes/docs/decommissioning
 [get-in-touch]:  /kubernetes/docs/get-in-touch
+[bundle-source]: https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-3/archive/bundle.yaml?channel=stable

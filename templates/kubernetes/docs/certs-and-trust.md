@@ -84,7 +84,7 @@ can be used to provide additional names to be added to the SANs list.
 
 In order to provide for two-way security, some services require that clients
 identify themselves via a [client certificate][]. These are more or less the
-same as server certificates but are presented by a client to the service
+same as server certificates, but are presented by a client to the service
 they are connecting to so that the service can validate that client's identity.
 Client certificates can _only_ be used to identify a client and will be
 rejected by clients if presented by a service they are connecting to.
@@ -118,7 +118,6 @@ See the [operations documentation][vault-cdk] for details on how to deploy Vault
 
 
 
-[CDK]: http://jujucharms.com/canonical-kubernetes
 [TLS]: https://www.networkworld.com/article/2303073/lan-wan/lan-wan-what-is-transport-layer-security-protocol.html
 [PKI]: https://github.com/OpenVPN/easy-rsa/blob/master/doc/Intro-To-PKI.md
 [chain of trust]: https://en.wikipedia.org/wiki/Chain_of_trust

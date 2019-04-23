@@ -60,7 +60,7 @@ relations:
 Save this to a file named `k8s-vault.yaml` and deploy with:
 
 ```bash
-juju deploy cs:canonical-kubernetes --overlay ./k8s-vault.yaml
+juju deploy charmed-kubernetes --overlay ./k8s-vault.yaml
 ```
 
 Once the deployment settles, you will notice that several applications are in a
@@ -131,4 +131,4 @@ More details can be found [in the guide][vault-guide-ha].
 [vault-guide-ha]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html#enabling-ha
 [csr]: https://en.wikipedia.org/wiki/Certificate_signing_request
 [leadership]: https://docs.jujucharms.com/stable/en/authors-charm-leadership
-[cdk-bundle]: https://jujucharms.com/canonical-kubernetes
+[cdk-bundle]: https://jujucharms.com/charmed-kubernetes

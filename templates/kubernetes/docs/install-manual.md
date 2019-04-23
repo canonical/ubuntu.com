@@ -97,7 +97,7 @@ The **Juju Charm Store** hosts the **CDK** bundles as well as individual charms.
 deploy the latest, stable bundle, run the command:
 
 ```bash
-juju deploy canonical-kubernetes
+juju deploy charmed-kubernetes
 ```
 
 To get the status of the deployment, run `juju status`. For constant updates,
@@ -115,6 +115,17 @@ release, you could run:
 juju deploy cs:~containers/canonical-kubernetes-435
 ```
 
+<div class="p-notification--positive">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Older Versions:</span>
+Previous versions of <strong>CDK</strong> used the name
+<code>canonical-kubernetes</code>. These versions are still available under that name
+and links in the charm store. Versions from 1.14 onwards will use
+<code>charmed-kubernetes</code>.
+  </p>
+</div>
+
+
 The revision numbers for bundles are generated automatically when the bundle is
 updated, including for testing and beta versions, so it isn't always the case
 that a higher revision number is 'better'. The revision numbers for the release
@@ -124,7 +135,7 @@ versions of the **CDK** bundle are shown in the table below:
 
 | Kubernetes version | CDK bundle |
 | --- | --- |
-| 1.14.x         | [canonical-kubernetes-471](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-471/archive/bundle.yaml?channel=stable) |
+| 1.14.x         | [charmed-kubernetes-3](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-3/archive/bundle.yaml?channel=stable) |
 | 1.13.x         | [canonical-kubernetes-435](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-435/archive/bundle.yaml?channel=stable) |
 | 1.12.x         | [canonical-kubernetes-357](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-357/archive/bundle.yaml?channel=stable) |
 | 1.11.x         | [canonical-kubernetes-254](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-254/archive/bundle.yaml?channel=stable) |
@@ -272,7 +283,7 @@ specifying the charm to use, and further specifies the relationships to add.
 To use this overlay with the **CDK** bundle, it is specified during deploy like this:
 
 ```bash
-juju deploy canonical-kubernetes  --overlay ~/path/aws-overlay.yaml
+juju deploy charmed-kubernetes  --overlay ~/path/aws-overlay.yaml
 ```
 
 Substitute in the local path and filename to point to your YAML fragment.
@@ -408,7 +419,7 @@ For more information on the Juju GUI, see the [Juju documentation][juju-gui].
 [juju-gui]: https://docs.jujucharms.com/stable/en/controllers-gui
 [juju-constraints]: https://docs.jujucharms.com/stable/en/reference-constraints
 [asset-aws-overlay]: https://raw.githubusercontent.com/juju-solutions/kubernetes-docs/master/assets/aws-overlay.yaml
-[latest-bundle-file]: https://api.jujucharms.com/charmstore/v5/~containers/canonical-kubernetes/archive/bundle.yaml
+[latest-bundle-file]: https://api.jujucharms.com/charmstore/v5/charmed-kubernetes/archive/bundle.yaml?channel=stable
 [charm-kworker]: https://jujucharms.com/u/containers/kubernetes-worker/#configuration
 [snaps]: https://docs.snapcraft.io/snap-documentation
 [kubectl]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
