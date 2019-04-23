@@ -25,7 +25,7 @@ export var serverAndDesktopReleases = [
   },
   {
     startDate: new Date('2017-04-01T00:00:00'),
-    endDate: new Date('  2019-04-01T00:00:00'),
+    endDate: new Date('2019-04-01T00:00:00'),
     taskName: 'Ubuntu 12.04 LTS',
     status: 'EXTENDED_SECURITY_MAINTENANCE_FOR_CUSTOMERS'
   },
@@ -43,7 +43,7 @@ export var serverAndDesktopReleases = [
   },
   {
     startDate: new Date('2019-04-01T00:00:00'),
-    endDate: new Date('  2022-04-01T00:00:00'),
+    endDate: new Date('2022-04-01T00:00:00'),
     taskName: 'Ubuntu 14.04 LTS',
     status: 'EXTENDED_SECURITY_MAINTENANCE_FOR_CUSTOMERS'
   },
@@ -61,15 +61,9 @@ export var serverAndDesktopReleases = [
   },
   {
     startDate: new Date('2021-04-01T00:00:00'),
-    endDate: new Date('  2024-04-01T00:00:00'),
+    endDate: new Date('2024-04-01T00:00:00'),
     taskName: 'Ubuntu 16.04 LTS',
     status: 'EXTENDED_SECURITY_MAINTENANCE_FOR_CUSTOMERS'
-  },
-  {
-    startDate: new Date('2017-10-01T00:00:00'),
-    endDate: new Date('2018-07-01T00:00:00'),
-    taskName: 'Ubuntu 17.10',
-    status: 'INTERIM_RELEASE'
   },
   {
     startDate: new Date('2018-04-01T00:00:00'),
@@ -86,7 +80,7 @@ export var serverAndDesktopReleases = [
 
   {
     startDate: new Date('2023-04-01T00:00:00'),
-    endDate: new Date('  2028-04-01T00:00:00'),
+    endDate: new Date('2028-04-01T00:00:00'),
     taskName: 'Ubuntu 18.04 LTS',
     status: 'EXTENDED_SECURITY_MAINTENANCE_FOR_CUSTOMERS'
   },
@@ -119,6 +113,12 @@ export var serverAndDesktopReleases = [
     endDate: new Date('2025-04-01T00:00:00'),
     taskName: 'Ubuntu 20.04 LTS',
     status: 'MAINTENANCE_UPDATES'
+  },
+  {
+    startDate: new Date('2025-04-02T00:00:00'),
+    endDate: new Date('2030-04-02T00:00:00'),
+    taskName: 'Ubuntu 20.04 LTS',
+    status: 'EXTENDED_SECURITY_MAINTENANCE_FOR_CUSTOMERS'
   },
   {
     startDate: new Date('2020-10-01T00:00:00'),
@@ -329,7 +329,7 @@ export var kernelReleases = [
   },
   {
     startDate: new Date('2025-04-01T00:00:00'),
-    endDate: new Date(''),
+    endDate: new Date('2030-04-01T00:00:00'),
     taskName: 'Ubuntu 20.04 LTS',
     status: 'EXTENDED_SECURITY_MAINTENANCE_FOR_CUSTOMERS'
   },
@@ -574,7 +574,6 @@ export var desktopServerReleaseNames = [
   'Ubuntu 19.04',
   'Ubuntu 18.10',
   'Ubuntu 18.04 LTS',
-  'Ubuntu 17.10',
   'Ubuntu 16.04 LTS',
   'Ubuntu 14.04 LTS',
   'Ubuntu 12.04 LTS',
