@@ -26,22 +26,6 @@
       // get form
       var marketoForm = document.getElementById(submitEvent.target.id);
 
-      // get the download asset if it exists
-      var download_asset_url = marketoForm.querySelector('input[name=download_asset_url]');
-      if (download_asset_url != null) {
-        download_asset_url = download_asset_url.value;
-      }
-
-      // get the return url if it exists to redirect users after
-      var return_url = marketoForm.querySelector('input[name=return_url]');
-      if (return_url != null) {
-        return_url = return_url.value;
-      }
-
-      // check if it is a dynamic modal form
-      var isModal = marketoForm.classList.contains("modal-form");
-      var formid = this.id;
-
       // Change the form's action location
       marketoForm.action = "https://app-sjg.marketo.com/index.php/leadCapture/save2";
 
@@ -97,6 +81,26 @@
     // Send off the POST request
     request.send(formData);
 
+    // get the download asset if it exists
+    var download_asset_url = marketoForm.querySelector('input[name=download_asset_url]');
+    if (download_asset_url != null) {
+      download_asset_url = download_asset_url.value;
+    }
+
+    // get the return url if it exists to redirect users after
+    var return_url = marketoForm.querySelector('input[name=return_url]');
+    if (return_url != null) {
+      return_url = return_url.value;
+    }
+
+    // check if it is a dynamic modal form
+    var isModal = marketoForm.classList.contains("modal-form");
+    formid = this.id;
+
+    console.log("download_asset_url: " + download_asset_url);
+    console.log("return_url: " + return_url);
+    console.log("modal: " + isModal);
+
     // deal with the post submit actions
     afterSubmit(download_asset_url, return_url, isModal);
 
@@ -108,7 +112,7 @@
   * start download and send the user to the instructions page
   */
 
-  afterSubmit = function(download_asset_url, return_url) {
+  afterSubmit = function(download_asset_url, return_url, isModal) {
 
     // Now start the download
     if (download_asset_url) {
@@ -132,6 +136,8 @@
       document.getElementsByClassName('js-pagination--4')[0].classList.remove("u-hide");
     }
   }
+
+
   // recaptcha submitCallback
   var CaptchaCallback = function() {
     let recaptchas = document.querySelectorAll("div[class^=g-recaptcha]");
