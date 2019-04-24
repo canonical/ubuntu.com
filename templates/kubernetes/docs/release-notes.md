@@ -16,6 +16,30 @@ toc: False
 
 # 1.14 Bugfix release
 
+### April 23rd, 2019 - [charmed-kubernetes-33](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-33/archive/bundle.yaml)
+
+## Fixes
+
+ - Added automatic and manual cleanup for subnet tags ([Issue](https://github.com/juju-solutions/charm-aws-integrator/pull/36))
+ - Added action apply-manifest ([Issue](https://github.com/charmed-kubernetes/charm-kubernetes-master/pull/3))
+ - Added label to inform Juju of cloud ([Issue](https://github.com/charmed-kubernetes/charm-kubernetes-worker/pull/3))
+ - Added support for loadbalancer-ips ([Issue](https://github.com/charmed-kubernetes/charm-kubeapi-load-balancer/pull/1))
+ - Fixed handling "not found" error message ([Issue](https://github.com/juju-solutions/charm-azure-integrator/pull/20))
+ - Fixed snapd_refresh smashed by subordinate charm ([Issue](https://github.com/charmed-kubernetes/layer-etcd/pull/148))
+ - Fixed making sure cert has proper IP as well as DNS ([Issue](https://github.com/charmed-kubernetes/layer-etcd/pull/149))
+ - Fixed etcd charm stuck on "Requesting tls certificates" ([Issue](https://github.com/charmed-kubernetes/layer-etcd/pull/150))
+ - Fixed cert relation thrashing due to random SAN order ([Issue](https://github.com/charmed-kubernetes/layer-etcd/pull/151))
+ - Fixed contact point for keystone to be public address ([Issue](https://github.com/charmed-kubernetes/charm-kubernetes-master/pull/2))
+ - Fixed cluster tag not being sent to new worker applications ([Issue](https://github.com/charmed-kubernetes/charm-kubernetes-master/pull/4))
+ - Fixed removal of ceph relations causing trouble ([Issue](https://github.com/charmed-kubernetes/charm-kubernetes-master/pull/6))
+ - Fixed pause/resume actions ([Issue](https://github.com/charmed-kubernetes/charm-kubernetes-worker/pull/2))
+ - Fixed ingress address selection to avoid fan IPs ([Issue](https://github.com/charmed-kubernetes/layer-kubernetes-common/pull/1))
+ - Fixed snapd_refresh handler ([Issue](https://github.com/charmed-kubernetes/layer-kubernetes-master-worker-base/pull/2))
+ - Fixed credentials fields to allow for fallback and override ([Issue](https://github.com/juju-solutions/charm-openstack-integrator/pull/17))
+
+
+# 1.14 Bugfix release
+
 ### April 4th, 2019 - [canonical-kubernetes-471][bundle]
 
 ## Fixes
