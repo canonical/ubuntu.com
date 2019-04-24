@@ -7,18 +7,18 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1Qg3sgDrvH9w_sgJpb2fp5lyOA5R-xhGZM3aKcyuQT68/edit?ts=5cbee163#{% endblock meta_copydoc %}
 
 {% block content %}
-<!-- CTA & URL ??? -->
-{% include "engage/shared/_header.html" with title="Private cloud security" subtitle="Meeting the highest levels of enterprise requirements with OpenStack" url="#register-section" cta="White Paper pdf on Google Drive" class="p-strip--dark p-takeover--openstack"%}
+
+{% include "engage/shared/_header.html" with title="Private cloud security" subtitle="Meeting the highest levels of enterprise requirements with OpenStack" url="#the-form" cta="Download the whitepaper" class="p-strip--dark p-takeover--openstack"%}
 
 <section class="p-strip is-shallow is-bordered">
   <div class="row">
-    <div class="col-8">
+    <div class="col-7">
       <p>
         Telco, finance, insurance, healthcare, governments are among the regulated sectors, where security and in particular data privacy are fundamental to the design of your private cloud.  Encryption at rest is one of the key tenets of this design to prevent any hardware theft to expose the data. However encryption at rest without an adequate certificate lifecycle management is just creating a false sense of security. 
       </p>
-      <p>
+      <h4>
         Read this whitepaper to:
-      </p>
+      </h4>
       <ul class="p-list">
         <li class="p-list__item is-ticked">
           Understand uses cases where an Openstack private cloud on its own is not secure enough
@@ -30,10 +30,12 @@
           Investigate how 3rd party open source applications can be used to deliver these functionalities
         </li>
       </ul>
-      <!-- Add CTA for button -->
-      <p><a href="#" class="p-button--neutral">Secure your private cloud</a></p>
+    </div>
+    <div class="col-5" id="the-form">
+        {% include "../shared/forms/_landing_page_default.html" with id="3375" returnURL="https://pages.ubuntu.com/Openstack_Whitepaper_Security-TY.html" %}
     </div>
   </div>
+
   <style>
     .p-takeover--openstack {
       background-image: linear-gradient(44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%);
