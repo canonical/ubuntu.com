@@ -16,7 +16,7 @@ toc: False
 
 # 1.14 Bugfix release
 
-### April 23rd, 2019 - [charmed-kubernetes-33](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-33/archive/bundle.yaml)
+### April 23rd, 2019 - [charmed-kubernetes-31](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-31/archive/bundle.yaml)
 
 ## Fixes
 
