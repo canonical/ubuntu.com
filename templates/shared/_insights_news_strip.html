@@ -1,18 +1,18 @@
 {% if topic_id %}
-  {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?sticky=true&per_page=1&tags_exclude=3184&topic="|add:topic_id as spotlight_articles %}
+  {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?sticky=true&per_page=1&tags_exclude=3184,3265&topic="|add:topic_id as spotlight_articles %}
 
   {% if spotlight_articles %}
-    {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?sticky=false&per_page=3&tags_exclude=3184&topic="|add:topic_id as articles %}
+    {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?sticky=false&per_page=3&tags_exclude=3184,3265&topic="|add:topic_id as articles %}
   {% else %}
-    {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?sticky=false&per_page=4&tags_exclude=3184&topic="|add:topic_id as articles %}
+    {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?sticky=false&per_page=4&tags_exclude=3184,3265&topic="|add:topic_id as articles %}
   {% endif %}
 {% else %}
-  {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?sticky=true&tags_exclude=3184&per_page=1" as spotlight_articles %}
+  {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?sticky=true&tags_exclude=3184,3265&per_page=1" as spotlight_articles %}
 
   {% if spotlight_articles %}
-    {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?sticky=false&tags_exclude=3184&per_page=3" as articles %}
+    {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?sticky=false&tags_exclude=3184,3265&per_page=3" as articles %}
   {% else %}
-    {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?sticky=false&tags_exclude=3184&per_page=4" as articles %}
+    {% get_json_feed "https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?sticky=false&tags_exclude=3184,3265&per_page=4" as articles %}
   {% endif %}
 {% endif %}
 
