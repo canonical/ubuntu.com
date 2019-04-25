@@ -85,45 +85,57 @@
     <div class="row">
       <h3>Supported platforms</h3>
     </div>
-    <div class="row u-equal-height">
-      <div class="col-4">
-        <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/e3a042a7-raspberrypi-card.png?w=115" width="115" alt="Raspberry Pi">
-        <p>Install Ubuntu Core 18 on:</p>
-        <p><a href="/download/iot/raspberry-pi-2-3-core">Raspberry Pi 2 or  3&nbsp;&rsaquo;</a><br />
-          <a href="/download/iot/raspberry-pi-compute-module-3">Raspberry Pi CM3&nbsp;&rsaquo;</a></p>
+    <div class="row">
+      <ul class="p-matrix u-clearfix">
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <p><img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/e3a042a7-raspberrypi-card.png?w=115" width="115" alt="Raspberry Pi"></p>
+            <p>Install Ubuntu Core 18 on:</p>
+            <p><a href="/download/iot/raspberry-pi-2-3-core">Raspberry Pi 2 or  3&nbsp;&rsaquo;</a><br />
+              <a href="/download/iot/raspberry-pi-compute-module-3">Raspberry Pi CM3&nbsp;&rsaquo;</a></p>
+            </div>
+          </li>
+          <li class="p-matrix__item">
+            <div class="p-matrix__content">
+              <p><img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/a69b2863-intel+nuc.svg?h=35" height="35" alt="Intel NUC"></p>
+              <p><a href="/download/iot/intel-nuc">Install Ubuntu Core 18&nbsp;&rsaquo;</a></p>
+            </div>
+          </li>
+          <li class="p-matrix__item">
+            <div class="p-matrix__content">
+              <p><img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/ff8c23f4-logo-pic.png?h=35" height="35" alt="Intel IEI TANK 870"></p>
+              <p><a href="/download/iot/intel-iei-tank-870">Install Ubuntu Core 18&nbsp;&rsaquo;</a></p>
+            </div>
+          </li>
+          <li class="p-matrix__item">
+            <div class="p-matrix__content">
+              <p><img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/d9ccf84b-qualcoom.png?h=35" height="35" alt="Qualcomm Snapdragon"></p>
+              <p><a href="/download/iot/qualcomm-dragonboard-410c">Install Ubuntu Core 18&nbsp;&rsaquo;</a></p>
+            </div>
+          </li>
+          <li class="p-matrix__item">
+            <div class="p-matrix__content">
+              <p><img class="p-card__thumbnail" src="{{ ASSET_SERVER_URL }}bb9f2504-2018-logo-artik-01.png?h=40"  height="40" alt="Samsung Artik"></p>
+              <p><a href="/download/iot/samsung-artik-5-10">Install Ubuntu Core 16&nbsp;&rsaquo;</a></p>
+            </div>
+          </li>
+          <li class="p-matrix__item">
+            <div class="p-matrix__content">
+              <p><img class="p-card__thumbnail" src="{{ ASSET_SERVER_URL }}1f53b707-JOULE-LOGO.png?h=35" height="35" alt="Intel Joule"></p>
+              <p><a href="/download/iot/intel-joule">Install Ubuntu Core 16&nbsp;&rsaquo;</a></p>
+            </div>
+          </li>
+        </ul>
       </div>
-      <div class="col-4">
-        <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/a69b2863-intel+nuc.svg?h=35" height="35" alt="Intel NUC">
-        <p><a href="/download/iot/intel-nuc">Install Ubuntu Core 18&nbsp;&rsaquo;</a></p>
+      <div class="row" style="margin-top: 2rem;">
+        <p>
+          <a class="p-button--neutral" href="http://cdimage.ubuntu.com/ubuntu-core/18/stable/current/">
+            <span class="p-link--external">Browse all supported images</span>
+          </a>
+        </p>
       </div>
-      <div class="col-4">
-        <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/ff8c23f4-logo-pic.png?h=35" height="35" alt="Intel IEI TANK 870">
-        <p><a href="/download/iot/intel-iei-tank-870">Install Ubuntu Core 18&nbsp;&rsaquo;</a></p>
-      </div>
-    </div>
-    <div class="row u-equal-height" style="margin-top: 2rem;">
-      <div class="col-4">
-        <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/d9ccf84b-qualcoom.png?h=35" height="35" alt="Qualcomm Snapdragon">
-        <p><a href="/download/iot/qualcomm-dragonboard-410c">Install Ubuntu Core 18&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-4">
-        <img class="p-card__thumbnail" src="{{ ASSET_SERVER_URL }}bb9f2504-2018-logo-artik-01.png?h=40"  height="40" alt="Samsung Artik">
-        <p><a href="/download/iot/samsung-artik-5-10">Install Ubuntu Core 16&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-4">
-        <img class="p-card__thumbnail" src="{{ ASSET_SERVER_URL }}1f53b707-JOULE-LOGO.png?h=35" height="35" alt="Intel Joule">
-        <p><a href="/download/iot/intel-joule">Install Ubuntu Core 16&nbsp;&rsaquo;</a></p>
-      </div>
-    </div>
-    <div class="row" style="margin-top: 2rem;">
-      <p>
-        <a class="p-button--neutral" href="http://cdimage.ubuntu.com/ubuntu-core/18/stable/current/">
-          <span class="p-link--external">Browse all supported images</span>
-        </a>
-      </p>
-    </div>
-  </section>
+    </section>
 
-  {% include "shared/contextual_footers/_contextual_footer.html" with first_item="_core_learn_more" second_item="_core_contribute" third_item="_iot_further_reading" %}
+    {% include "shared/contextual_footers/_contextual_footer.html" with first_item="_core_learn_more" second_item="_core_contribute" third_item="_iot_further_reading" %}
 
-  {% endblock content %}
+    {% endblock content %}
