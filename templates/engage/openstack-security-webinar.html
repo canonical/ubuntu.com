@@ -8,7 +8,7 @@
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="Private cloud security" subtitle="How Charmed OpenStack is decreasing common security concerns" class="p-strip--dark p-takeover--openstack"%}
+{% include "engage/shared/_header.html" with title="Private cloud security" subtitle="How Charmed OpenStack is decreasing common security concerns" class="p-strip--dark p-takeover--openstack" url="#register-section" cta="Watch the webinar" %}
 
 <section class="p-strip is-shallow is-bordered">
   <div class="row">
@@ -30,7 +30,7 @@
           Examine how automation can help address these concerns
         </li>
         <li class="p-list__item is-ticked">
-          Explore how Charmes Openstack can help deploy key security features:
+          Explore how Charmed Openstack can help deploy key security features:
           <ul>
             <li>
               Offer encryption at rest as a service to private cloud users
@@ -41,7 +41,6 @@
           </ul>
         </li>
       </ul>
-      <p><a href="https://ubuntu.com/engage/openstack-security-webinar?utm_source=Takeover &utm_medium=Takeover&utm_campaign=CY19_DC_Openstack_WBN_OpenStackSecurity" class="p-button--positive">Register for webinar</a></p>
     </div>
   </div>
   <style>
@@ -49,6 +48,14 @@
       background-image: linear-gradient(44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%);
     }
   </style>
+</section>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2 id="register-section">Watch the webinar</h2>
+    </div>
+    <div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 355328, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>
+  </div>
 </section>
 
 {% endblock content %}
