@@ -2,7 +2,9 @@
 {% load versioned_static %}
 
 {% block title %}Ubuntu Extended Security Maintenance{% endblock %}
-{% block meta_description %}Extended Security Maintenance provides ongoing Linux security fixes for Ubuntu 12.04 LTS and Ubuntu 14.04 LTS releases for the Linux kernel and essential packages beyond the five-year security maintenance window for the most popular Linux OS.{% endblock meta_description %}
+
+{% block meta_description %}Extended Security Maintenance provides ongoing Linux security fixes for Ubuntu 14.04 LTS releases for the Linux kernel and essential packages beyond the five-year basic maintenance window.{% endblock meta_description %}
+
 {% block meta_copydoc %}https://docs.google.com/document/d/1BK-XXECYJJllG8jIe3WN3X8EMo_3wBBa03nlzYDP8xE/edit{% endblock meta_copydoc %}
 
 {% block content %}
@@ -24,13 +26,13 @@
 <nav class="p-tabs p-sticky-nav">
   <ul class="p-tabs__list" role="tablist">
     <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#benefits">Benefits</a>
-    </li>
-    <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#get-esm">Get ESM</a>
+      <a class="p-tabs__link js-sticky-tab" href="#benefits">Security and compliance</a>
     </li>
     <li class="p-tabs__item" role="presentation">
       <a class="p-tabs__link js-sticky-tab" href="#enable-esm">Enable ESM</a>
+    </li>
+    <li class="p-tabs__item" role="presentation">
+      <a class="p-tabs__link js-sticky-tab" href="#get-esm">Get ESM</a>
     </li>
     <li class="p-tabs__item" role="presentation">
       <a class="p-tabs__link js-sticky-tab" href="#faq">FAQ</a>
@@ -41,7 +43,7 @@
 <section class="p-strip is-deep is-bordered" id="benefits">
   <div class="row">
     <div class="col-8">
-      <h2>Benefits of ESM</h2>
+      <h2>Security and compliance</h2>
       <p>Aligning to organisational needs to build upon rapid release cycles, ESM ensures systems and the Linux kernel remain patched against security vulnerabilities through Ubuntu Advantage.</p>
       <p>Canonical&rsquo;s Ubuntu security team provide fixes on high and critical CVEs (common vulnerabilities and exposures) for the most commonly used server packages in the Ubuntu main archive. ESM provides the essential continuation of the security updates for 12.04 LTS (Precise Pangolin) and 14.04 LTS (Trusty Tahr) that Ubuntu users have always received via a secure, private archive.</p>
       <p><a href="/engage/ITstrategen-case-study">Learn how ITstrategen keeps legacy applications secure with ESM&nbsp;&rsaquo;</a></p>
@@ -49,31 +51,7 @@
   </div>
 </section>
 
-<section class="p-strip--light is-deep is-bordered" id="get-esm">
-  <div class="row">
-    <div class="col-10">
-      <h2>Get ESM with Ubuntu Advantage</h2>
-    </div>
-  </div>
-  <div class="row p-divider u-equal-height u-vertically-spaced">
-    <div class="col-4 p-divider__block">
-      <h4>Buy direct from the store</h4>
-      <p>Users interested in Ubuntu ESM updates can purchase Ubuntu Advantage from our online store.</p>
-      <p><a href="https://buy.ubuntu.com/" class="p-link--external">Purchase at buy.ubuntu.com</a></p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h4>Buy from the AWS Marketplace</h4>
-      <p>For Amazon AWS users, you can purchase Ubuntu Advantage through the AWS Marketplace.</p>
-      <p>Purchase <a href="https://aws.amazon.com/marketplace/pp/B01MZ1LSBQ?qid=1486382973569&sr=0-1&ref_=srh_res_product_title" class="p-link--external">Standard</a> or <a href="https://aws.amazon.com/marketplace/pp/B01N9JG6EM?qid=1490357851557&sr=0-7&ref_=srh_res_product_title" class="p-link--external">Advanced</a></p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h4>For existing subscribers </h4>
-      <p>If you&rsquo;re already a qualifying Ubuntu Advantage customer, you can request your credentials.</p>
-      <p>Ask on <a href="http://support.canonical.com/" class="p-link--external">support.canonical.com</a></p>
-    </div>
-  </div>
-</section>
-<div class="p-strip--accent is-dark is-bordered is-x-shallow" style="background-blend-mode: color;
+<section class="p-strip--accent is-dark is-bordered is-x-shallow" style="background-blend-mode: color;
 background-image: linear-gradient(-45deg, #5E2750 0%, #2C001E 100%);">
   <div class="row u-vertically-center">
     <div class="col-1 u-vertically-center u-hide--small">
@@ -90,8 +68,7 @@ background-image: linear-gradient(-45deg, #5E2750 0%, #2C001E 100%);">
         <a href="/support/contact-us" class="p-button--neutral js-invoke-modal">contact us online</a></p>
     </div>
   </div>
-</div>
-
+</section>
 
 <section class="p-strip is-deep is-bordered" id="enable-esm">
   <div class="row">
@@ -110,7 +87,30 @@ background-image: linear-gradient(-45deg, #5E2750 0%, #2C001E 100%);">
   </div>
 </section>
 
-
+<section class="p-strip--light is-deep is-bordered" id="get-esm">
+  <div class="row">
+    <div class="col-10">
+      <h2>Getting started with total estate coverage</h2>
+    </div>
+  </div>
+  <div class="row p-divider u-equal-height u-vertically-spaced">
+    <div class="col-4 p-divider__block">
+      <h4>Buy direct from the store</h4>
+      <p>Users interested in Ubuntu ESM updates can purchase Ubuntu Advantage from our online store.</p>
+      <p><a href="https://buy.ubuntu.com/" class="p-link--external">Purchase at buy.ubuntu.com</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h4>Buy from the AWS Marketplace</h4>
+      <p>For Amazon AWS users, you can purchase Ubuntu Advantage through the AWS Marketplace.</p>
+      <p>Purchase <a href="https://aws.amazon.com/marketplace/pp/B01MZ1LSBQ?qid=1486382973569&sr=0-1&ref_=srh_res_product_title" class="p-link--external">Standard</a> or <a href="https://aws.amazon.com/marketplace/pp/B01N9JG6EM?qid=1490357851557&sr=0-7&ref_=srh_res_product_title" class="p-link--external">Advanced</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h4>For existing subscribers</h4>
+      <p>If you&rsquo;re already a qualifying Ubuntu Advantage customer, you can request your credentials.</p>
+      <p>Ask on <a href="http://support.canonical.com/" class="p-link--external">support.canonical.com</a></p>
+    </div>
+  </div>
+</section>
 
 <section class="p-strip is-deep u-no-padding--bottom"id="faq">
   <div class="row u-equal-height">
