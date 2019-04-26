@@ -17,7 +17,7 @@
         </h2>
         <br class="u-hide--medium u-hide--large" />
         <p class="u-hide--medium u-hide--large">
-          <a href="#register-section" class="p-button--neutral">
+          <a href="#the-form" class="p-button--neutral">
             Read the case study
           </a>
         </p>
@@ -31,7 +31,7 @@
 
 <section class="p-strip is-shallow is-bordered">
   <div class="row">
-    <div class="col-8">
+    <div class="col-7">
       <p>
         There’s a widespread assumption that Linux users are only interested in free, open source software and won’t pay for proprietary solutions. Hiri, the business focused email client, demonstrated that assumption isn’t necessarily accurate when they launched their snap.
       </p>
@@ -53,6 +53,9 @@
         </li>
       </ul>
     </div>
+    <div class="col-5" id="the-form">
+    {% include "../shared/forms/_landing_page_default.html" with id="3374" returnURL="https://pages.ubuntu.com/snapcraft_CS_Hiri-TY.html" label="Download the case study" %}
+    </div>
   </div>
   <style>
     .p-takeover--hiri {
@@ -60,16 +63,5 @@
     }
   </style>
 </section>
-<section class="p-strip is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h2 id="register-section">Watch the webinar</h2>
-    </div>
-    <div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;">
-      <script src="//app-sjg.marketo.com/js/forms2/js/forms2.min.js"></script>
-      <form id="mktoForm_3374"></form>
-      <script>MktoForms2.loadForm("//app-sjg.marketo.com", "066-EOV-335", 3374);</script></div>
-    </div>
-  </section>
 
   {% endblock content %}
