@@ -1,4 +1,4 @@
-Django==1.11.20
+Django==2.2
 django-prometheus==1.0.15
 canonicalwebteam.custom_response_headers==0.2.0
 canonicalwebteam.versioned_static==1.0.2
@@ -7,14 +7,12 @@ canonicalwebteam.yaml-responses[django]==1.1.0
 canonicalwebteam.get-feeds==0.2.4
 canonicalwebteam.http==0.1.6
 whitenoise==4.1.2
-gunicorn[gevent]
 statsd==3.3.0
 prometheus_client==0.6.0
-talisker==0.14.2
+talisker[gunicorn]==0.14.3
 django-yaml-redirects==0.5.4
 django-asset-server-url==0.1
 django-static-root-finder==0.3.1
-django-unslashed==0.3.0
 feedparser==5.2.1
 requests==2.21.0
 requests-cache==0.4.13

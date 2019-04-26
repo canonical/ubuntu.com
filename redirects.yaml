@@ -720,6 +720,7 @@ certification(?P<page>(/.*)?): "https://certification.ubuntu.com{page}"
 usn/?: "https://usn.ubuntu.com/"
 usn/rss\.xml: "https://usn.ubuntu.com/rss.xml"
 (?P<page>.*)\.html: "/{page}"
+(?P<page>.+)/: "/{page}"
 telco/?: "/telecommunications"
 telcos/?: "/telecommunications"
 
