@@ -109,10 +109,6 @@ TEMPLATES = [
 
 ASSET_SERVER_URL = "https://assets.ubuntu.com/v1/"
 
-DATABASES = {
-    "default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "dummydb"}
-}
-
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -133,3 +129,5 @@ LOGGING = {
         }
     },
 }
+
+TESTRUNNER = "app.testrunner.NoDbTestRunner"
