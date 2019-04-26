@@ -407,7 +407,7 @@ class DownloadView(UbuntuTemplateFinder):
 
         try:
             with open(mirrors_path) as rss:
-                mirrors = parse(rss).entries
+                mirrors = parse(rss.read()).entries
         except IOError:
             mirrors = []
 
