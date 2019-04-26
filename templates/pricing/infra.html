@@ -1,0 +1,58 @@
+{% extends "pricing/base_pricing.html" %}
+
+{% block title %}Ubuntu Advantage Infrastructure | plans and pricing{% endblock %}
+{% block meta_description %}Canonical provides infrastructure solutions - OpenStack and Kubernetes training, consulting and managed services, and enterprise-grade support with a single subscription for open source software and security.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1Ynk0iLa9hjrdich6ATTsybtPbDwW_k4vRI0nk_HNhcI/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <h1>Open Infrastructure support & security</h1>
+    <p>Ubuntu Advantage for Infrastructure covers all aspects of open infrastructure - Ubuntu, KVM, OpenStack, Kubernetes, Docker, storage, networking, Ceph, SWIFT, SDN, logging, alerting and monitoring.</p>
+    <ul class="p-inline-list">
+      <li class="p-inline-list__item">
+        <a href="#get-in-touch" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Learn more', 'eventLabel' : 'Get in touch - Top CTA' : undefined });" class="p-button--positive">Get in touch</a>
+      </li>
+      <li class="p-inline-list__item">
+        <span>or see our <a href="/legal/ubuntu-advantage-service-description#uasd-subscriptions">service description</a>.</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="p-strip--light is-shallow" id="ua-infra">
+  <div class="row">
+    <h3>Security maintenance and support</h3>
+    {% include "shared/pricing/_ua-for-infrastructure.html" %}
+  </div>
+</section>
+
+<section class="p-strip is-shallow" id="storage">
+  <div class="row">
+    <h3>Software-defined storage - Ceph and Swift</h3>
+    <p>Only applies if attaching more than 12TB of usable Ceph/SWIFT disks (e.g 36TB raw with 3x replication) per node in the cluster. Priced by the amount exceeding the total of 12TB per node included in UA.</p>
+    {% include "shared/pricing/_ua-advanced-storage.html" %}
+  </div>
+</section>
+
+<section class="p-strip--light is-shallow" id="managed">
+  <div class="row">
+    <h3>Fully managed OpenStack, Kubernetes and LMA</h3>
+    <p>We manage infrastructure at both the host and the guest level. Infrastructure includes Ceph and SWIFT storage, Kubernetes, OpenStack and the recommended logging, monitoring and alerting stack - <a href="/infrastructure">see what’s covered</a>.</p>
+    {% include "shared/pricing/_openstack-kubernetes-lma.html" %}
+  </div>
+</section>
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <h3 id="maas">MAAS</h3>
+    <p>Support and commercial capabilities for MAAS are included with Ubuntu Advantage Infrastructure. These additional charges apply for machines managed by MAAS and *not* covered by a UA Infrastructure contract.</p>
+    {% include "shared/pricing/_maas-pricing.html" %}
+  </div>
+</section>
+
+{% include "shared/contextual_footers/_contextual_footer.html" with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
+{% include "shared/forms/interactive/_support.html" with formid="1240"   lpId="2065"  returnURL="https://www.ubuntu.com/support/thank-you" lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
+
+{% endblock content %}
