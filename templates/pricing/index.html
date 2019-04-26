@@ -1,8 +1,8 @@
-{% extends "support/base_support.html" %}
+{% extends "pricing/base_pricing.html" %}
 
-{% block title %}Support and management{% endblock %}
+{% block title %}Pricing{% endblock %}
 {% block meta_description %}Ubuntu Advantage for Infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry, with OpenStack support, Kubernetes support included, and Livepatch, Landscape and Extended Security Maintenance to address security and compliance concerns.{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1liY2ulrI3JiICSJquTn9cH0Hu-R6H3ufmEmYhive-QI/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1iOM6oBqsTkptsst3yG-U3sGaYLQqs27go_8yJQdhMBE{% endblock meta_copydoc %}
 
 {% block content %}
 
@@ -58,7 +58,7 @@
     </div>
   </section>
 
-  {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
+  {% include "shared/contextual_footers/_contextual_footer.html" with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
   {% include "shared/forms/interactive/_support.html" with formid="1240"   lpId="2065"  returnURL="https://www.ubuntu.com/support/thank-you" lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
 
 {% endblock content %}
