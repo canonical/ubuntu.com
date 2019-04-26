@@ -1,19 +1,15 @@
 {% extends "openstack/_base_openstack.html" %}
 
 {% block title %}Features | OpenStack{% endblock %}
-{% block meta_description %}Canonical OpenStack on Ubuntu features includes software-defined networking and storage options, architectural flexibility, and shared community-driven ops code independent of architecture.{% endblock meta_description %}
+{% block meta_description %}Canonical OpenStack on Ubuntu includes software-defined networking and storage options, architectural flexibility and shared community-driven ops code independent of architecture.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1odFXuFtN1GjuZvgd8tW48HB4J9PjZJtP3w6wY0xlmog/edit{% endblock meta_copydoc %}
 
 {% block content %}
   <section class="p-strip is-deep is-bordered">
     <div class="row">
-      <div class="col-9">
-        <h1>Fast, reliable and open source cloud</h1>
-        <p class="p-heading--three" style="max-width: none;">Architectural freedom. Fully automated operations. Telco&#8209;grade OpenStack for all.</p>
-      </div>
-    </div>
-    <div class="row">
       <div class="col-8">
+        <h1>Flexible, open, fast and reliable</h1>
+        <p class="p-heading--three" style="max-width: none;">Architectural freedom. Fully automated operations. Telco-grade OpenStack for all.</p>
         <p>Canonical&rsquo;s OpenStack on Ubuntu gives you the flexibility to place your OpenStack services exactly where you want them, while sharing all the operational code with a large community.</p>
         <p><a href="/openstack/contact-us" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact Us for OpenStack insights', 'eventLabel' : 'Contact Us for OpenStack insights - Top CTA', 'eventValue' : undefined });" class="p-button--positive js-invoke-modal">Contact us for OpenStack insights</a></p>
       </div>
@@ -28,7 +24,7 @@
         </header>
         <p>With SR-IOV for line-rate VNFs and CI/CD for dynamic cloud operations, our <a href="/telecommunications">telco reference architecture</a> for OpenStack meets both regulatory and operational requirements for highly automated telco infrastructure.</p>
         <p>Move beyond single-VNF clouds or NEP-specific clouds, and create a general platform for cost-effective network operations across vendors.</p>
-        <p><a href="https://www.brighttalk.com/webcast/6793/290067">Watch the Cloud to Edge webinar&nbsp;&rsaquo;</a></p>
+        <p><a href="https://www.brighttalk.com/webcast/6793/290067" class="p-link--external">Watch the Cloud to Edge webinar</a></p>
       </article>
       <article class="col-6 p-card">
         <header class="p-card__header">
@@ -47,7 +43,7 @@
         </header>
         <p>Hyper-converged storage and compute ensure maximum cost effectiveness for large-scale media processing, transcoding, digital workflows and storage.</p>
         <p>Kubernetes on top provides a high-performance workload operations regime with direct access to underlying media content.</p>
-        <p><a href="https://blog.ubuntu.com/2017/03/27/job-concurrency-in-kubernetes-lxd-cpu-pinning-to-the-rescue">Read about job concurrency in Kubernetes&nbsp;&rsaquo;</a></p>
+        <p><a href="https://blog.ubuntu.com/2017/03/27/job-concurrency-in-kubernetes-lxd-cpu-pinning-to-the-rescue" class="p-link--external">Read about job concurrency in Kubernetes</a></p>
       </article>
       <article class="col-6 p-card">
         <header class="p-card__header">
@@ -173,7 +169,7 @@
     <div class="row">
       <div class="col-8">
         <p>Our OpenStack consulting and design services will help you choose the right mix of these capabilities for the particular stage and scale of your private cloud journey; having built hundreds of private clouds, we’re well placed to advise on the tradeoffs and steer you to the right architecture. Perhaps most importantly, though, we can evolve OpenStack deployments over a series of iterations as your needs change, which keeps your options open.</p>
-        <p><a href="/openstack/consulting">Learn more our consulting services&nbsp;&rsaquo;</a></p>
+        <p><a href="/openstack/consulting">Learn more about our consulting services&nbsp;&rsaquo;</a></p>
       </div>
       <div class="col-4 prefix-1 u-hide--small">
         <img src="{{ ASSET_SERVER_URL }}4287c2b2-transfer.svg" width="234" alt="" />
@@ -246,12 +242,33 @@
     <div class="row">
       <div class="col-7">
         <h2>Storage</h2>
+        <p>Storage performance and economics are tricky to balance in a cloud environment. Canonical will help you architect your storage across the cluster to balance price and performance, ensuring the right mix of resilience, latency, IOPS and integrity for your particular deployment.</p>
+      </div>
+    </div>
+    <div class="row p-divider">
+      <div class="col-6 p-divider__block">
+        <div class="p-heading-icon">
+          <div class="p-heading-icon__header">
+            <img class="p-heading-icon__img" src="https://assets.ubuntu.com/v1/4f1e16bf-image-swift.svg">
+            <h3 class="p-heading-icon__title">Swift</h3>
+          </div>
+          <p>The high performance S3-compatible object store developed and shipped with OpenStack, ideal for storing unstructured data.</p>
+        </div>
+      </div>
+      <div class="col-6 p-divider__block">
+        <div class="p-heading-icon">
+          <div class="p-heading-icon__header">
+            <img class="p-heading-icon__img" src="https://assets.ubuntu.com/v1/636b94fd-ceph.svg">
+            <h3 class="p-heading-icon__title">Ceph</h3>
+          </div>
+          <p>A converged storage framework that has been designed to present object, block, and file storage from a single distributed computer cluster.</p>
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="col-7">
-        <p>Storage performance and economics are tricky to balance in a cloud environment. Canonical will help you architect your storage across the cluster to balance price and performance, ensuring the right mix of resilience, latency, IOPS and integrity for your particular deployment.</p>
-        <ul class="p-list is-split">
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">12TB usable storage per node included</li>
           <li class="p-list__item is-ticked">Mix of local direct-attach and network storage</li>
           <li class="p-list__item is-ticked">Distributed software-defined storage vs SAN assessment</li>
           <li class="p-list__item is-ticked">Performance tuning for local and network storage</li>
@@ -261,26 +278,7 @@
           <li class="p-list__item is-ticked">Object stores and other higher-level storage constructs</li>
           <li class="p-list__item is-ticked">Hierarchical storage configurations</li>
         </ul>
-        <p><a href="/openstack/storage" class="p-button--positive">Discover Ubuntu Advantage Storage</a></p>
-      </div>
-      <div class="col-5">
-        <ul class="p-inline-images">
-          <li class="p-inline-images__item">
-            <img src="{{ ASSET_SERVER_URL }}82bf0621-logo-ceph-160.png?w=144" width="144" alt="Ceph">
-          </li>
-          <li class="p-inline-images__item">
-            <img src="{{ ASSET_SERVER_URL }}4f1e16bf-image-swift.svg" width="88" alt="Swift">
-          </li>
-          <li class="p-inline-images__item">
-            <img src="{{ ASSET_SERVER_URL }}836420d5-Nexenta-logo-600-dpi.png?w=144" width="144" alt="Nexenta">
-          </li>
-          <li class="p-inline-images__item">
-            <img src="{{ ASSET_SERVER_URL }}973c4256-storpool.svg" width="80" alt="Storpool">
-          </li>
-          <li class="p-inline-images__item">
-            <img src="{{ ASSET_SERVER_URL }}1702709d-quobyte.png?w=100" width="100" alt="Quobyte">
-          </li>
-        </ul>
+        <p><a href="/openstack/storage" class="p-button--positive">Learn more about storage with Ubuntu Advantage for Infrastructure</a></p>
       </div>
     </div>
   </section>
