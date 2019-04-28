@@ -16,7 +16,7 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip--light is-bordered">
   <div class="row u-equal-height">
     <article class="col-6 p-card">
       <header class="p-card__header">
@@ -56,7 +56,7 @@
   </div>
 </section>
 
-<section class="p-strip--light is-bordered">
+<section class="p-strip is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>VMware migration</h2>
@@ -80,8 +80,7 @@
   </div>
 </section>
 
-
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row">
     <div class="col-8">
       <h2>Operations Automation</h2>
@@ -89,7 +88,8 @@
     </div>
   </div>
 </section>
-<section class="p-strip u-no-padding--top">
+
+<section class="p-strip--light u-no-padding--top">
   <div class="row">
     <div class="col-9">
       <h3>Model-driven operations deliver true open source automation</h3>
@@ -108,7 +108,7 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered u-no-padding--top">
+<section class="p-strip--light is-bordered u-no-padding--top">
   <div class="row">
     <div class="col-8">
       <h3>Total automation of bare metal infrastructure</h3>
@@ -141,7 +141,7 @@
   </div>
 </section>
 
-<section class="p-strip--light is-bordered">
+<section class="p-strip is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>Hyper-converged, containerised or isolated services</h2>
@@ -160,7 +160,7 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>OpenStack Consulting</h2>
@@ -259,19 +259,17 @@
       <p><a href="/openstack/storage" class="">Learn more about storage with Ubuntu Advantage for Infrastructure ›</a></p>
     </div>
     <div class="col-6">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header">
-          <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}4f1e16bf-image-swift.svg">
-          <h3 class="p-heading-icon__title">Swift</h3>
-        </div>
-        <p>The high performance S3-compatible object store developed and shipped with OpenStack, ideal for storing unstructured data.</p>
+      <div class="p-card">
+        <img class="p-card__thumbnail" src="{{ ASSET_SERVER_URL }}4f1e16bf-image-swift.svg" alt="Swift">
+        <hr class="u-sv1">
+        <h3 class="p-card__title">Swift</h3>
+        <p class="p-card__content">The high performance S3-compatible object store developed and shipped with OpenStack, ideal for storing unstructured data.</p>
       </div>
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header">
-          <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}636b94fd-ceph.svg">
-          <h3 class="p-heading-icon__title">Ceph</h3>
-        </div>
-        <p>A converged storage framework that has been designed to present object, block, and file storage from a single distributed computer cluster.</p>
+      <div class="p-card">
+        <img class="p-card__thumbnail" src="{{ ASSET_SERVER_URL }}636b94fd-ceph.svg" alt="Ceph">
+        <hr class="u-sv1">
+        <h3 class="p-card__title">Ceph</h3>
+        <p class="p-card__content">A converged storage framework that has been designed to present object, block, and file storage from a single distributed computer cluster.</p>
       </div>
     </div>
   </div>
@@ -347,8 +345,6 @@
     </div>
   </div>
 </section>
-
-
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_rfp" third_item="_cloud_further_reading" %}
 {% include "shared/forms/interactive/_openstack.html" with formid='1251'  lpId='2086' returnURL='https://www.ubuntu.com/openstack/thank-you' lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
