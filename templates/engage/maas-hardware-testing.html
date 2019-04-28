@@ -1,0 +1,60 @@
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Creating a cloud-like bare metal experience in the data centre{% endblock %}
+
+<!-- Change meta description -->
+{% block meta_description %}In regulated sectors, private cloud security needs to meet the highest requirements. This webinar explains how to deliver on these with an Openstack cloud.{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1SfZKopMr0ZXnxT5h1cEEebCysp6Carf9GSPzkL51c8E/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<!-- Add MAAS logo & change subtitle-->
+{% include "engage/shared/_header.html" with title="Creating a cloud-like bare metal experience in the data centre" subtitle="How Charmed OpenStack is decreasing common security concerns" class="p-strip--dark p-takeover--maas" url="#register-section" cta="Download the whitepaper" %}
+
+<section class="p-strip is-shallow is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <p>
+        For organisations looking to turn the management of bare-metal server resources into a cloud-like environment, hardware testing is a must-do.  
+        Not only does it lead to optimal hardware utilisation, it also reduces the cost of operations and increases developer productivity.           
+      </p>
+      <p>
+        Optimised testing also eases the hardware validation process by providing a framework that allows large-scale, automated testing of hardware with minimum effort to ensure that the physical infrastructure is ready to serve production workloads. Welcome to metal-as-a-service (MAAS).
+      </p>
+      <h4>
+        In this whitepaper, you will learn how MAAS provides a flexible and straightforward framework for administrators to test their hardware:
+      </h4>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">
+          What MAAS frameworks allow users to do
+        </li>
+        <li class="p-list__item is-ticked">
+          How MAAS installs dependencies, and tracks progress and results
+        </li>
+        <li class="p-list__item is-ticked">
+          The types of tests MAAS provides in relation to storage, CPU, memory and others
+        </li>
+        <li class="p-list__item is-ticked">
+          How MAAS tests servers at scale
+        </li>
+      </ul>
+    </div>
+  </div>
+  <style>
+    .p-takeover--openstack {
+      background-image: linear-gradient(44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%);
+    }
+  </style>
+</section>
+<!-- Update section -->
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2 id="register-section">Download the whitepaper</h2>
+    </div>
+    <div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 355328, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>
+  </div>
+</section>
+
+{% endblock content %}
