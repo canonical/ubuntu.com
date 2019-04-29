@@ -8,14 +8,22 @@
 <div class="p-strip is-deep is-bordered">
   <div class="row">
     <div class="col-12">
-      <h1>Scale out with Ubuntu Server</h1>
+      <h1>
+        Scale out with Ubuntu Server
+      </h1>
     </div>
   </div>
   <div class="row">
     <div class="u-equal-height">
       <div class="col-6">
-        <p>Ubuntu Server brings economic and technical scalability to your datacentre, public or private. Whether you want to deploy an OpenStack cloud, a Hadoop cluster or a 50,000-node render farm, Ubuntu Server delivers the best value scale-out performance available.</p>
-        <p><a class="p-button--positive" href="/download/server">Download Ubuntu Server</a></p>
+        <p>
+          Ubuntu Server brings economic and technical scalability to your datacentre, public or private. Whether you want to deploy an OpenStack cloud, a Kubernetes cluster or a 50,000-node render farm, Ubuntu Server delivers the best value scale-out performance available.
+        </p>
+        <p>
+          <a class="p-button--positive" href="/download/server">
+            Download Ubuntu Server
+          </a>
+        </p>
       </div>
       <div class="col-6 u-vertically-center u-align--center u-hide--small">
         <img src="{{ ASSET_SERVER_URL }}4b47cae5-image-server.svg" width="400" height="121" alt="" />
@@ -27,33 +35,40 @@
 <div class="p-strip--light is-deep is-bordered">
   <div class="row">
     <div class="col-12">
-      <h2>What&rsquo;s new in {{lts_release_full}}</h2>
+      <h2>
+        What&rsquo;s new in {{lts_release_full}}
+      </h2>
       <ul class="p-list is-split">
-        <li class="p-list__item is-ticked">Supported by Canonical until 2023</li>
+        <li class="p-list__item is-ticked">Supported by Canonical until 2023 with ESM coverage until 2028</li>
         <li class="p-list__item is-ticked">Runs on all major architectures &ndash; x86, x86-64, ARM v7, ARM64, POWER8 and IBM s390x (LinuxONE)</li>
         <li class="p-list__item is-ticked">New ubuntu-minimal images that are smaller and boot faster</li>
+        <li class="p-list__item is-ticked">Easily configure networking through <a class="p-link--external" href="https://netplan.io/">netplan</a></li>
         <li class="p-list__item is-ticked">Fast and accurate time synchronization with chrony</li>
         <li class="p-list__item is-ticked">A new, default server installer ISO with a new interface and faster install</li>
         <li class="p-list__item is-ticked">Supports ZFS, the next-generation volume management/ file system ideal for servers and containers</li>
-        <li class="p-list__item is-ticked">LXD 3.0 - Linux containers including clustering, Qos, and resource controls (CPU, memory, block I/O/ graphics, and storage quota)</li>
-        <li class="p-list__item is-ticked">Updates to LXD (v3.0), DPDK (v17.11.1), Postgresql (v10.3), Libvirt (v4.0), NGINX (v1.13), Qemu (v2.11.1), Docker (v17.03), Puppet (v4.10), MySQL (v5.7), PHP (v7.2), and more</li>
+        <li class="p-list__item is-ticked">LXD 3.0 - Linux containers including clustering, QoS, and resource controls (CPU, memory, block I/O, graphics, and storage quota)</li>
         <li class="p-list__item is-ticked">Install snaps for simple application installation and release management</li>
         <li class="p-list__item is-ticked">Linux 4.15 kernel</li>
         <li class="p-list__item is-ticked">Certification as a guest on AWS, Microsoft Azure, Joyent, IBM, Google Cloud Platform and Rackspace</li>
-        <li class="p-list__item is-ticked">Easily configure networking through netplan.io</li>
+        <li class="p-list__item is-ticked">Updates to LXD (v3.0), DPDK (v17.11.1), Postgresql (v10.3), Libvirt (v4.0), NGINX (v1.14), Qemu (v2.11.1), Docker (v17.03), Puppet (v4.10), MySQL (v5.7), PHP (v7.2), and more</li>
       </ul>
-      <p><a class="p-link--external"
-        href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes">Read more in the release notes
-      </a></p>
-    </div>
+      <p>
+        <a class="p-link--external"
+        href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes">
+        Read more in the release notes
+      </a>
+    </p>
   </div>
+</div>
 </div>
 
 
 <div class="p-strip--light is-deep is-bordered">
   <div class="row">
     <div class="col-12">
-      <h2>What&rsquo;s new in {{latest_release}}</h2>
+      <h2>
+        What&rsquo;s new in {{latest_release}}
+      </h2>
       <ul class="p-list is-split">
         <li class="p-list__item is-ticked">Supported by Canonical for 9 months</li>
         <li class="p-list__item is-ticked">Linux 5.0 kernel</li>
@@ -61,66 +76,39 @@
         <li class="p-list__item is-ticked">Fresh set of fixes and refreshes to the Ubuntu Server installer</li>
         <li class="p-list__item is-ticked">New Ubuntu Advantage experience</li>
       </ul>
-      <p><a class="p-link--external"
-        href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes">Read more in the release notes</a>
-      </p>
-    </div>
+      <p>
+        <a class="p-link--external"
+        href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes">
+        Read more in the release notes
+      </a>
+    </p>
   </div>
 </div>
-
-
-<div class="p-strip is-deep is-bordered">
-  <div class="row">
-    <div class="u-equal-height">
-      <div class="col-4 u-vertically-center u-align--center">
-        <img class="u-hide--small" src="{{ ASSET_SERVER_URL }}70b5df6e-landscape-logo.svg"
-        alt="Landscape pictogram" width="200" height="200" />
-      </div>
-      <div class="col-8">
-        <h2>Landscape: Server management</h2>
-        <p>Landscape allows you to manage thousands of Ubuntu machines as easily as one, making the administration of Ubuntu desktops, servers and cloud instances more cost-effective. It&rsquo;s easy to set up, easy to use and it requires no special hardware.</p>
-          <ul class="p-list is-split">
-            <li class="p-list__item is-ticked">Management at scale</li>
-            <li class="p-list__item is-ticked">Deploy security updates</li>
-            <li class="p-list__item is-ticked">Compliance reporting</li>
-            <li class="p-list__item is-ticked">Role-based access</li>
-            <li class="p-list__item is-ticked">Informative monitoring</li>
-          </ul>
-        <p><a href="https://landscape.canonical.com/" class="p-button--neutral"><span class="p-link--external">Learn more about Landscape</span></a></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="p-strip--light is-deep is-bordered">
-  <div class="row">
-    <div class="u-equal-height">
-      <div class="col-8">
-        <h2>Ubuntu Server on Power</h2>
-        <p>In addition to x86 and ARM servers, Ubuntu is supported on the Power architecture. For the enterprise datacentre, this means you can now build your infrastructure on any hardware you choose.</p>
-      </div>
-      <div class="col-4 u-vertically-center u-align--center">
-        <img class="u-hide--small" src="{{ ASSET_SERVER_URL }}683950fd-logo-ibm.svg" alt="IBM logo" width="200" />
-      </div>
-    </div>
-  </div>
 </div>
 
 <div class="p-strip is-deep" style="padding-bottom: 2rem;">
   <div class="row">
     <div class="col-12">
-      <h2 id="performance-and-versatility">Performance and versatility</h2>
-      <p class="p-heading--three">Agile, secure, deploy-anywhere technology for fast-moving companies</p>
-    </div>
+      <h2 id="performance-and-versatility">
+        Performance and versatility
+      </h2>
+      <p class="p-heading--three"
+      >Agile, secure, deploy-anywhere technology for fast-moving companies
+    </p>
   </div>
-  <div class="row">
-    <div class="col-6">
-      <p>It doesn&rsquo;t matter whether you want to deploy a NoSQL database, web farm or cloud. Ubuntu has the performance and versatility you need. Certified by leading hardware OEMs and with comprehensive deployment tools, so you can get the most from your infrastructure.</p>
-    </div>
-    <div class="col-6">
-      <p>Our regular release cycle means that we support most of the latest applications. A lean initial installation and integrated deployment and application modeling technologies make Ubuntu Server a great solution for simple deployment and management at scale.</p>
-    </div>
+</div>
+<div class="row">
+  <div class="col-6">
+    <p>
+      It doesn&rsquo;t matter whether you want to deploy a NoSQL database, web farm or cloud. Certified by leading hardware OEMs and with comprehensive deployment tools, so you can get the most from your infrastructure.
+    </p>
   </div>
+  <div class="col-6">
+    <p>
+      Our regular release cycle means access to the latest and most performant open source. A lean initial installation and integrated deployment and application modeling technologies make Ubuntu Server a great solution for simple deployment and management at scale.
+    </p>
+  </div>
+</div>
 </div>
 
 <div class="p-strip is-deep is-bordered" style="padding-top: 2rem;">
@@ -153,7 +141,9 @@
           <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}4efbd291-Arm_logo_blue_cropped.svg" width="144" alt="Arm" />
         </li>
       </ul>
-      <p class="u-align--center u-vertically-spaced"><a href="https://certification.ubuntu.com">View all certified hardware&nbsp;&rsaquo;</a></p>
+      <p class="u-align--center u-vertically-spaced"><a href="https://certification.ubuntu.com">
+        View all certified hardware&nbsp;&rsaquo;
+      </a></p>
 
       <ul class="p-inline-images">
         <li class="p-inline-images__item">
@@ -169,231 +159,153 @@
           <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}64493bba-logo-openbravo.png?w=144" width="144" alt="Openbravo" />
         </li>
       </ul>
-      <p class="u-align--center u-vertically-spaced"><a href="https://partners.ubuntu.com/programmes/software">View all certified software&nbsp;&rsaquo;</a></p>
+      <p class="u-align--center u-vertically-spaced">
+        <a href="https://partners.ubuntu.com/programmes/software">
+          View all certified software&nbsp;&rsaquo;
+        </a>
+      </p>
     </div>
   </div>
 </div>
 
 {% include "shared/_release_schedule.html" %}
 
-<div class="p-strip is-deep is-bordered">
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-7">
+      <h2>
+        Deploys anywhere
+      </h2>
+      <p>
+        Ubuntu is the most widely used developer platform for open‐source cloud building, the reference operating system for OpenStack, and the most popular cloud guest operating system on private and public clouds globally.
+      </p>
+      <p>
+        <a class="p-button" href="/public-cloud">
+          Learn more about Ubuntu Cloud
+        </a>
+        <a href="/openstack">
+          Learn more about OpenStack&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-deep is-bordered">
   <div class="row p-divider">
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
           <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}60bd6cf1-picto-juju.svg" alt="Juju logo" width="100" height="100" />
-          <h3 class="p-heading-icon__title">Juju &mdash; application modeling</h3>
+          <h3 class="p-heading-icon__title">
+            Juju &mdash; multi-cloud orchestration
+          </h3>
         </div>
-        <p>With the option of a command line or browser-based interface, Juju enables you to design and deploy entire workloads in just a few clicks. It works on public clouds like AWS and Microsoft Azure, private clouds built on OpenStack and even directly on bare metal, via MAAS.</p>
-        <p><a class="p-link--external" href="https://jujucharms.com/">Learn more about Juju</a></p>
+        <p>
+          With the option of a command line or browser-based interface, Juju enables you to design and deploy entire workloads in just a few clicks. It works on public clouds like AWS and Microsoft Azure, private clouds built on OpenStack and even directly on bare metal, via MAAS.
+        </p>
+        <p>
+          <a class="p-link--external" href="https://jujucharms.com/">
+            Learn more about Juju
+          </a>
+        </p>
       </div>
     </div>
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
           <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}0de4fcd5-logo-maas-icon.svg" alt="Maas logo" width="100" height="100" />
-          <h3 class="p-heading-icon__title">MAAS &mdash; bare metal provisioning</h3>
+          <h3 class="p-heading-icon__title">
+            MAAS &mdash; bare metal provisioning
+          </h3>
         </div>
-        <p>MAAS is a time-saving provisioning system which makes it quick and easy to set up the physical hardware to deploy complex services, like Ubuntu&rsquo;s OpenStack cloud infrastructure. Just plug in your servers, connect them to the network and let MAAS do the rest.</p>
-        <p><a class="p-link--external" href="https://maas.io/">Learn more about MAAS</a></p>
+        <p>
+          MAAS is a time-saving provisioning system which makes it quick and easy to set up the physical hardware to deploy complex services, like Ubuntu&rsquo;s OpenStack cloud infrastructure. Just plug in your servers, connect them to the network and let MAAS do the rest.
+        </p>
+        <p>
+          <a class="p-link--external" href="https://maas.io/">
+            Learn more about MAAS
+          </a>
+        </p>
       </div>
     </div>
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
           <img class="p-heading-icon__img" src="{{ ASSET_SERVER_URL }}425efe3a-lxd.svg" width="100" alt="LXD" />
-          <h3 class="p-heading-icon__title">LXD &mdash; system containers</h3>
+          <h3 class="p-heading-icon__title">
+            LXD &mdash; machine containers
+          </h3>
         </div>
-        <p>LXD, the Linux container hypervisor, merges the speed and density of containers with the manageability and security of traditional virtual machines. Economics are directly tied to density, and no other virtualisation technology is as fast or dense as LXD.</p>
-        <p><a class="p-link--external" href="https://linuxcontainers.org/">Learn more about LXD</a></p>
+        <p>
+          Economics are directly tied to compute density. LXD, the Linux container hypervisor, merges the speed and density of containers with the manageability and security of traditional virtual machines.
+        </p>
+        <p>
+          <a class="p-link--external" href="https://linuxcontainers.org/">
+            Learn more about LXD
+          </a>
+        </p>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="p-strip--light is-bordered">
+<section class="p-strip is-bordered">
   <div class="row">
     <div class="col-12">
-      <h2>Ubuntu Advantage: world class support</h2>
+      <h2>
+        Ubuntu Advantage for your Infrastructure
+      </h2>
     </div>
   </div>
   <div class="row">
     <div class="col-6">
-      <p>The Ubuntu Advantage service programme provides fast problem resolution, direct access to Ubuntu experts and efficient administration with the Ubuntu systems management package, Landscape.</p>
-      <p>Landscape allows you to manage thousands of Ubuntu machines as easily as one, making the administration of Ubuntu desktops, servers and cloud instances more cost-effective.</p>
-      <p><a href="/support">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+      <p>
+        Ubuntu Advantage for infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry. With OpenStack and Kubernetes support included, Ubuntu Advantage for Infrastructure provides everything you need to future-proof your data centre.
+      </p>
+      <p>
+        UA for Infrastructure, Advanced includes Server, OpenStack and Kubernetes support and is available at Standard (24x5) and Advanced (24x7) response times.
+      </p>
+      <p><a href="/pricing/infra">Learn more about Ubuntu Advantage for Infrastructure&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-5 prefix-1 u-float--right">
       <div class="p-card">
         <h3 class="p-card__title">Get in touch</h3>
-        <p class="p-card__content">Speak to our technical support team about your server requirements.</p>
+        <p class="p-card__content">Speak to our technical support team about your support requirements.</p>
         <p class="p-card__content"><a class="p-button--positive js-invoke-modal" href="/server/contact-us?product=server-overview">Contact us</a></p>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="p-strip is-deep" style="padding-bottom: 2rem;">
-  <div class="row">
-    <div class="col-8">
-      <h2 id="deploy-anywhere">Deploys anywhere</h2>
-      <h3>Choose from the most popular public clouds</h3>
-      <p>Use Ubuntu Server in the public cloud and get all the benefits of Ubuntu Server, specially tailored for public cloud infrastructures and without any licence restrictions.</p>
-      <p>Ubuntu is the most widely used developer platform for open&dash;source cloud building, the reference operating system for OpenStack, and the most popular cloud guest operating system on private and public clouds globally.</p>
-      <p><a href="/cloud/public-cloud">Learn more about Ubuntu Cloud&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-</div>
-
-<div class="p-strip is-deep is-bordered" style="padding-top: 2rem;">
-  <div class="row">
-    <div class="col-12">
-      {% include "shared/_partner-logos.html" with title="A selection of our public cloud partners" json_feed_url="http://partners.ubuntu.com/partners.json?programme=certified-public-cloud&featured=true" feed_item_limit=10 %}
-      <p class="u-align--center"><a href="http://partners.ubuntu.com/find-a-partner?programme=certified-public-cloud" class="p-link--external">See all of our public cloud partners</a></p>
-    </div>
-  </div>
-</div>
-
-<div class="p-strip is-deep" style="padding-bottom: 2rem;">
-  <div class="row">
-    <div class="col-8">
-      <h2 id="built-for-big-data">Built for big data and cloud</h2>
-      <h3>Speed and simplicity, on bare metal or in the cloud</h3>
-      <p>With its new rapid deployment tools, Ubuntu significantly speeds up the installation of server instances on bare metal. And our service orchestration tool, Juju, makes deploying big data services surprisingly simple &mdash; on bare metal or in the cloud. That&rsquo;s why vendors like 10gen, Cloudera, Couchbase, DataStax, Hortonworks, LexisNexis and Map-R partner with us.</p>
-      <p><a href="/cloud">Learn more about Ubuntu Cloud&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-</div>
-
-<div class="p-strip is-deep is-bordered" style="padding-top: 2rem;">
-  <div class="row">
-    <div class="col-12">
-      {% include "shared/_partner-logos.html" with title="A selection of our big data partners" json_feed_url="http://partners.ubuntu.com/partners.json?service_offered__name=Big+data" feed_item_limit=10 %}
-      <p class="u-align--center"><a href="http://partners.ubuntu.com/find-a-partner?service-offered=big-data" class="p-link--external">See all of our big data partners</a></p>
-    </div>
-  </div>
-</div>
-
-<div class="p-strip is-bordered">
-  <div class="row">
-    <h2 id="the-fast-track-to-virtualisation">The fast track to virtualisation and containers</h2>
-  </div>
-  <div class="row">
-    <div class="col-6">
-      <p>Ready to boost efficiencies and reduce costs? Virtualise your servers with Ubuntu Server, KVM and LXD. When you use a secure, lean version of Ubuntu as a guest operating system for your application, you can create virtual machines and machine containers in seconds. KVM, LXD, Xen, VMware, Vagrant, VirtualBox, and Docker are all first class experiences with Ubuntu Server. Ubuntu Server now supports KVM on ARM and IBM POWER8 architectures.</p>
-      <p>Canonical believes in choice &mdash; that's why we support an open ecosystem of operating system intercompatibility. By providing choice, users of Ubuntu for both servers and clouds are empowered to succeed with any workload. We encourage others to do the same and offer support for all (currently supported) versions of Ubuntu Server running on other virtualisation platforms, including KVM on other commercially available Linux distributions, VMware vSphere, and Microsoft Hyper&#8209;V.</p>
-    </div>
-    <div class="col-6">
-      <table>
-        <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col" colspan="2" class="u-align--center">Power and z&nbsp;Systems</th>
-            <th scope="col" colspan="2" class="u-align--center">x86</th>
-          </tr>
-          <tr>
-            <th></th>
-            <th scope="col" class="u-align--center">LXD</th>
-            <th scope="col" class="u-align--center">KVM</th>
-            <th scope="col" class="u-align--center">LXD</th>
-            <th scope="col" class="u-align--center">KVM</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td scope="row">Ubuntu</td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-          </tr>
-          <tr>
-            <td scope="row">Red Hat</td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-          </tr>
-          <tr>
-            <td scope="row">SLES</td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-          </tr>
-          <tr>
-            <td scope="row">CentOS</td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-          </tr>
-          <tr>
-            <td scope="row">Debian</td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-          </tr>
-          <tr>
-            <td scope="row">Fedora</td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-          </tr>
-          <tr>
-            <td scope="row">Windows</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td class="u-align--center"><img width="16" height="16" alt="Yes" src="{{ ASSET_SERVER_URL }}c4b02d61-tick-orange.svg" /></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12" style="padding-top: 5rem;">
-      <h3 class="p-muted-heading u-align--center">All guests are welcome on Ubuntu</h3>
-      <ul class="p-inline-images">
-        <li class="p-inline-images__item">
-          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}c037fd75-ubuntu-logo.png" width="150" alt="Ubuntu logo">
-        </li>
-        <li class="p-inline-images__item">
-          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}2eafb62e-openlogo.svg"  width="150" alt="Debian logo">
-        </li>
-        <li class="p-inline-images__item">
-          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}30574235-windows-logo.svg" width="120" alt="Windows logo">
-        </li>
-        <li class="p-inline-images__item">
-          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}c69a8b3c-centos-logo.png" width="150" alt="CentOS logo">
-        </li>
-        <li class="p-inline-images__item">
-          <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}eda6b94a-redhat-logo.svg" width="140" alt="Redhat logo">
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="p-strip--light">
+<section class="p-strip--light">
   <div class="row">
     <div class="u-equal-height">
       <div class="col-8">
-        <h2 id="a-thriving-community">A thriving community</h2>
-        <p>Exchange expertise and ideas with thousands of other IT professionals</p>
-        <p>Want to talk to other Ubuntu users straightaway? Share ideas and get advice and help from our large, active community of IT professionals. As a community, we set high standards for friendliness and tolerance, we welcome your questions and contributions!</p>
-        <p><a href="/community">Join the community&nbsp;&rsaquo;</a></p>
+        <h2 id="a-thriving-community">
+          A thriving community
+        </h2>
+        <p>
+          Exchange expertise and ideas with thousands of other IT professionals
+        </p>
+        <p>
+          Want to talk to other Ubuntu users straightaway? Share ideas and get advice and help from our large, active community of IT professionals. As a community, we set high standards for friendliness and tolerance, we welcome your questions and contributions!
+        </p>
+        <p>
+          <a href="/community">
+            Join the community&nbsp;&rsaquo;
+          </a>
+        </p>
       </div>
       <div class="col-3 u-vertically-center u-align--center">
         <img src="{{ ASSET_SERVER_URL }}039628d5-picto-community-orange.svg" class="u-hide--small" alt="" width="136" height="136" />
       </div>
     </div>
   </div>
-  </div>
+</section>
 
-  {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_server_download" second_item="_server_contact_us" third_item="_cloud_further_reading" %}
-  {% include "shared/forms/interactive/_support.html" with formid="1254"   lpId="2152"  returnURL="https://www.ubuntu.com/server/thank-you" lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
+{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_server_download" second_item="_server_contact_us" third_item="_cloud_further_reading" %}
 
-  {% endblock content %}
+{% include "shared/forms/interactive/_support.html" with formid="1254"   lpId="2152"  returnURL="https://www.ubuntu.com/server/thank-you" lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
+
+{% endblock content %}
