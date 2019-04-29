@@ -236,20 +236,15 @@ Add-ons constitute additional support services available separately on a per-Nod
     2. Trilio Support provide break-fix support for, and answering basic questions about, using Trilio in accordance with the compatibility matrix and support lifecycle published by Trilio Data, Inc.
     3. Trilio Support does not provide:
         1. Migration of workloads between Trilio versions.
-        2. Support for, or answering basic questions about, third party add-ons to Trilio.
+        2. Support for, or answering questions about, third party add-ons to Trilio.
         3. Installation of Trilio.
 3. <h4>Storage Support</h4>
     1. Ubuntu Advantage for Infrastructure includes an allowance for usable storage on a per-Node basis. See the “OpenStack & Kubernetes Support” section.
-    2. If the Node is covered at another service level or the allowance is exceeded, additional Storage Support needs to be acquired.
-    3. Storage Support is provided at the Advanced response times.
+    2. If the Node allowance is exceeded, additional Storage Support needs to be acquired.
+    3. Storage Support is provided at the corresponding response times.
     4. Storage Support is measured by the total amount of data stored across all storage pools, measured in gigabytes. This excludes free space and all replication and erasure coding overhead.
     5. Storage Support applies to support for Ceph and Swift.
     6. Customers who have purchased Storage Support for an unlimited amount of storage are limited to support in a single Ceph Cluster or Swift Cluster.
-    7. Storage Support provides:
-        1. Support for all packages required to run a Ceph or Swift deployment.
-        2. Support for all servers necessary to meet the storage and replication requirements. This includes auxiliary (non-storage) nodes such as Ceph monitors or Swift proxies.
-    8. Storage Support does not provide:
-        1. Support for workloads other than those required to run a Ceph or Swift deployment.
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
