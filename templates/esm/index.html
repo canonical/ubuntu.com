@@ -74,7 +74,8 @@ background-image: linear-gradient(-45deg, #5E2750 0%, #2C001E 100%);">
   <div class="row">
     <div class="col-8">
       <h2>How to enable ESM on your system</h2>
-      <p>To enable ESM on your Ubuntu LTS systems, from the command line type the following commands and follow the step-by-step instructions:</p>
+      <p>To enable ESM on your Ubuntu LTS systems, you will need a token which is issued when you purchase ESM coverage. Once you have the token, follow this guide.</p>
+      <p>From the command line type the following commands and follow the step-by-step instructions:</p>
       <div class="p-code-snippet">
         <input class="p-code-snippet__input" value="sudo ubuntu-advantage enable-esm [ENTER TOKEN]" readonly="readonly">
         <button class="p-code-snippet__action">Copy to clipboard</button>
@@ -84,6 +85,7 @@ background-image: linear-gradient(-45deg, #5E2750 0%, #2C001E 100%);">
         <button class="p-code-snippet__action">Copy to clipboard</button>
       </div>
     </div>
+    <p>ESM patches will now be offered as part of the standard APT upgrade procedure.</p>
   </div>
 </section>
 
@@ -116,9 +118,7 @@ background-image: linear-gradient(-45deg, #5E2750 0%, #2C001E 100%);">
   <div class="row u-equal-height">
     <div class="col-8">
       <h2>Frequently asked questions (FAQ)</h2>
-      <p>Following the end-of-life of Ubuntu LTS releases, Canonical offers Ubuntu ESM (Extended Security Maintenance), which provides important security fixes for the kernel and the most essential userspace packages. Below are several frequently asked questions about what happens when the Ubuntu LTS period ends.</p>
-
-      <p>If you have any more questions we encourage customers to reach out via Twitter <a class="p-link--external" href="https://twitter.com/ubuntu" title="twitter for @ubuntu">@ubuntu</a>.</p>
+      <p>If you have any more questions, feel free to get in touch.</p>
     </div>
     <div class="col-4 u-vertically-center u-align--center u-hide--small">
       <img src="{{ ASSET_SERVER_URL }}1b45cd30-picto-help-warmgrey.svg" width="140" alt="" />
@@ -135,26 +135,23 @@ background-image: linear-gradient(-45deg, #5E2750 0%, #2C001E 100%);">
       <h4 class="u-no-max-width">Which hardware platforms are supported under Ubuntu ESM?</h4>
       <p>Currently, we are maintaining the Ubuntu Cloud/Server 64-bit AMD/Intel binaries. We will extend support for other platforms in future updates.</p>
 
-      <h4 class="u-no-max-width">Do all levels of Ubuntu Advantage have access to Ubuntu ESM?</h4>
-      <p>Yes. Ubuntu ESM is available for UA Virtual Guest, UA Standard and UA Advanced customers. For more information on levels please visit <a class="p-link--external" href="https://buy.ubuntu.com">buy.ubuntu.com</a>. If you are a qualifying UA customer, you can request your credentials and have your system ready to receive updates without downtime or gaps.</p>
+      <h4 class="u-no-max-width">Do all levels of Ubuntu Advantage for Infrastructure have access to Ubuntu ESM?</h4>
+      <p>Yes. Ubuntu ESM is available for UA-I Essential, Standard and Advanced customers. For more information on levels please visit our <a href="/pricing">pricing page</a>. Existing UA customers can request their credentials through the Canonical support portal.</p>
 
-      <h4 class="u-no-max-width">How can we ensure the security of our Ubuntu systems after release end of life?</h4>
-      <p>Sign up to Ubuntu Advantage now, and you will benefit from UA services immediately without having a gap in service when a particular release reaches end-of-life. For more details of initial release dates (and hence release end-of-life dates, see <a href="https://wiki.ubuntu.com/Releases">wiki.ubuntu.com/Releases</a>). Ubuntu Advantage is available at <a class="p-link--external" href="https://buy.ubuntu.com/">buy.ubuntu.com</a>, and or for AWS users, you can purchase Ubuntu Advantage <a class="p-link--external" href="https://aws.amazon.com/marketplace/pp/B01MZ1LSBQ?qid=1486382973569&sr=0-1&ref_=srh_res_product_title">Standard</a> or <a class="p-link--external" href="https://aws.amazon.com/marketplace/pp/B01N9JG6EM?qid=1490357851557&sr=0-7&ref_=srh_res_product_title">Advanced</a> through the AWS Marketplace.</p>
+      <h4 class="u-no-max-width">How can we ensure the security of our Ubuntu systems after the end of Standard Security Maintenance?</h4>
+      <p>Sign up to Ubuntu Advantage now, and you will benefit from UA services immediately without having a gap in service when a particular release reaches the end of its Standard Security Maintenance window. For more details of initial release dates (and hence release end-of-life dates, see <a href="https://wiki.ubuntu.com/Releases">wiki.ubuntu.com/Releases</a>). Ubuntu Advantage is available at <a class="p-link--external" href="https://buy.ubuntu.com/">buy.ubuntu.com</a> and through the <a class="p-link--external" href="https://aws.amazon.com/marketplace/pp/B01MZ1LSBQ?qid=1486382973569&sr=0-1&ref_=srh_res_product_title">AWS Marketplace</a> .</p>
 
       <h4 class="u-no-max-width">How long will Ubuntu ESM be maintained?</h4>
-      <p>This depends on the release. Ubuntu 14.04 (Trusty Tahr) and 16.04 (Xenial Xerus) will have updates provided for up to three years from the <a href="/about/release-cycle">release end-of-life date</a>. Ubuntu 18.04 (Bionic Beaver) and subsequent releases until further announcement will have updates provided for up to five years from the release end-of-life date.</p>
+      <p>This depends on the release. Ubuntu 14.04 (Trusty Tahr) and 16.04 (Xenial Xerus) will have updates provided for up to three years after the end of the Standard Security Maintenance window. Ubuntu 18.04 (Bionic Beaver) and subsequent releases until further announcement will have ESM updates provided for up to five years.</p>
 
       <h4 class="u-no-max-width">Is it possible to purchase Ubuntu ESM months down the road when needed, with or without backdating the cost, or does it need to be in place in advance?</h4>
       <p>You can purchase Ubuntu Advantage support at any time. It does not need to be in place in advance, although we strongly recommend you eliminate the gap between when Ubuntu ESM is enabled on your system(s), to avoid exposing your systems to security vulnerabilities. Ubuntu Advantage is priced year-over-year so there is no backdating.</p>
 
-      <h4 class="u-no-max-width">We're mirroring the repository on our internal Landscape Server. Is there a guide on how to get Ubuntu ESM if using Landscape?</h4>
-      <p>ESM is just a regular Ubuntu archive, but authenticated and served over HTTPS. Archive mirroring is already available in Landscape, and is the only supported mechanism for mirroring the ESM archive.</p>
+      <h4 class="u-no-max-width">We're mirroring the repository on our internal Landscape server. Can we still get Ubuntu ESM if using Landscape?</h4>
+      <p>ESM is just a regular Ubuntu archive, but authenticated and served over HTTPS. Archive mirroring is already available in Landscape and is the only supported mechanism for mirroring the ESM archive.</p>
 
-      <h4 class="u-no-max-width">What will the LTS support situation look like during ESM? Will we be able to raise functionality tickets with Canonical or are you ending actual support and providing only security patches?</h4>
-      <p>The support window for Ubuntu 12.04 closes on April 28, 2017. The support team will not be able to fix bugs or build fixed packages once the 12.04 LTS archive is closed.</p>
-
-      <h4 class="u-no-max-width">Will Ubuntu ESM include patching my-favourite-package (e.g. PHP5.3)?</h4>
-      <p>Canonical's Ubuntu Security Team are committed to providing fixes for HIGH and CRITICAL CVEs against the most commonly used server packages in the Ubuntu Main archive. This is essentially a continuation of the same security updates that Ubuntu 12.04 Server users have always received.</p>
+      <h4 class="u-no-max-width">Will Ubuntu ESM include patching my-favourite-package?</h4>
+      <p>Canonical’s Ubuntu Security Team are committed to providing fixes for HIGH and CRITICAL CVEs against the most commonly used server packages in the Ubuntu Main archive. This is essentially a continuation of the same security updates that Ubuntu LTS Server users have always received.</p>
 
       <h4 class="u-no-max-width">Will source code for Ubuntu ESM patches be made available? If so, will that be publicly available on Launchpad or only through Ubuntu ESM?</h4>
       <p>Both the binary updates and source code will be available to Ubuntu ESM users. We will honour any and all licenses associated with the open source code in Ubuntu.</p>
