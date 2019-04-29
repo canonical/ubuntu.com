@@ -51,8 +51,11 @@
             <label for="priority-workloads-use-cases-openstack">OpenStack</label>
             <input type="checkbox" id="priority-workloads-use-cases-kubeflow">
             <label for="priority-workloads-use-cases-kubeflow">Kubeflow</label>
-            <input type="checkbox" id="priority-workloads-use-cases-other">
-            <label for="priority-workloads-use-cases-other">Other</label>
+            <div class="js-other-container">
+              <input type="checkbox" class="js-other-container__checkbox" id="priority-workloads-use-cases-other">
+              <label for="priority-workloads-use-cases-other">Other</label>
+              <input type="text" id="priority-workloads-use-cases-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other workloads">
+            </div>
           </div>
         </div>
       </div>
