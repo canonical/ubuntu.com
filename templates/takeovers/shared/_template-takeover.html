@@ -1,0 +1,60 @@
+<section class="{% if class %}p-strip {{ class }} p-takeover js-takeover{% else %}p-strip--dark p-takeover js-takeover{% endif %}">
+  <div class="row u-clearfix u-vertically-center">
+ 
+    <div class="{% if image %}col-8 {% else %}col-8{% endif %}">
+      <h1 class="{% if titleClass %}{{ titleClass }}{% else %}{% endif %}">
+        {{ title }}
+      </h1>
+      {% if subtitle %}<h4 class="{% if subtitleClass %}{{ subtitleClass }}{% else %}{% endif %}">
+        {{ subtitle }}
+      </h4>{% endif %}
+      {% if ctaBtn or ctaLink %}
+      <ul class="p-inline-list u-hide--small">
+          {% if ctaBtn %}
+          <li class="p-inline-list__item">
+            <a
+              href="{{ ctaBtnURL }}"
+              class="{% if ctaBtnClass %}{{ ctaBtnClass }}{% else %}p-button--positive{% endif %}"
+              ><span>{{ ctaBtn }}</span></a
+            >
+          </li>
+          {% endif %}
+          {% if ctaLink %}
+          <li class="p-inline-list__item">
+            <a
+              href="{{ ctaLinkURL }}"
+              class="{% if ctaLinkClass %}{{ ctaLinkClass }}{% else %}p-link--inverted{% endif %}"
+              >{{ ctaLink }}</a
+            >
+          </li>
+          {% endif %}
+        </ul>
+        {% endif %}
+    </div>
+
+    {% if image %}<div class="{% if imageClass %}col-4 u-align--center u-vertically-center {{ imageClass }}{% else %}col-4 u-hide--small u-align--center u-vertically-center{% endif %}">
+        <img src="{% if image != "http" %}{{ ASSET_SERVER_URL }}{% endif %}{{ image }}" alt="image for (( title ))" >
+      </div>{% endif %}
+    
+    {% if ctaBtn %}  
+    <p class="u-hide--medium u-hide--large">
+        <a
+          href="{{ ctaBtnURL }}"
+          class="{% if ctaBtnClass %}{{ ctaBtnClass }}{% else %}p-button--positive{% endif %}"
+          ><span>{{ ctaBtn }}</span></a
+        >
+      </p>
+      {% endif %}
+      {% if ctaLink %}  
+      <p class="u-hide--medium u-hide--large">
+        <a
+          href="{{ ctaLinkURL }}"
+          class="{% if ctaLinkClass %}{{ ctaLinkClass }}{% else %}p-link--inverted{% endif %}"
+          >{{ ctaLink }}</a
+        >
+      </p>
+      {% endif %}
+  </div>
+</section>
+
+
