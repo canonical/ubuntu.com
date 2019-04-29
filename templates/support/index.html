@@ -8,10 +8,9 @@
 <section class="p-strip is-deep is-bordered">
   <div class="row u-equal-height">
     <div class="col-7">
-      <h1>The Ubuntu Advantage</h1>
-      <h4>Open Source support for the enterprise</h4>
-      <p>Ubuntu Advantage for your infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry. With OpenStack and Kubernetes support included, Ubuntu Advantage for Infrastructure (UA-I) provides everything you need to future-proof your data centre.</p>
-      <p>Including Canonical Livepatch, Landscape and Extended Security Maintenance (ESM) to address security and compliance concerns, Ubuntu Advantage for Infrastructure provides a comprehensive single pane of glass for systems management, audit reporting and live kernel patching to prevent unplanned maintenance and downtime.</p>
+      <h1>Ubuntu Advantage</h1>
+      <h4>Open Source for the enterprise</h4>
+      <p>Ubuntu Advantage for infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry. With OpenStack and Kubernetes support included, Ubuntu Advantage for Infrastructure provides everything you need to future-proof your data centre.</p>
       <p>
         <a href="https://buy.ubuntu.com" class="p-button--positive"><span class="p-link--external">Visit the store</span></a>
         <a href="{{ ASSET_SERVER_URL }}63deda69-canonical-ua-datasheet-2018-09-14.pdf" class="p-button--neutral">Read the Ubuntu Advantage datasheet</a>
@@ -25,51 +24,61 @@
 
 {% include "shared/_call-sales.html" with colour="dark" %}
 
-<section class="p-strip is-deep is-bordered">
+<nav class="p-tabs p-sticky-nav">
+  <ul class="p-tabs__list" role="tablist">
+    <li class="p-tabs__item" role="presentation">
+      <a class="p-tabs__link js-sticky-tab" href="#what-is-ua">What's Ubuntu Advantage</a>
+    </li>
+    <li class="p-tabs__item" role="presentation">
+      <a class="p-tabs__link js-sticky-tab" href="#stories">Customer stories</a>
+    </li>
+    <li class="p-tabs__item" role="presentation">
+      <a class="p-tabs__link js-sticky-tab" href="#solutions">Solutions</a>
+    </li>
+    <li class="p-tabs__item" role="presentation">
+      <a class="p-tabs__link js-sticky-tab" href="#get-ua">Get Ubuntu Advantage</a>
+    </li>
+  </ul>
+</nav>
+
+<section class="p-strip is-deep is-bordered" id="what-is-ua">
   <div class="row">
     <h2>The most comprehensive Linux enterprise subscription</h2>
     <ul class="p-matrix is-trisected u-clearfix">
       <li class="p-matrix__item">
         <div class="p-matrix__content">
           <h3 class="p-matrix__title p-heading--four">Enterprise-grade security and auditing</h3>
-          <p class="p-matrix__desc">Access to the latest  open source software and our 24/7 support services, including the <a class="p-matrix__link" href="/livepatch">Canonical Livepatch Service</a>, <a class="p-matrix__link" href="/esm">ESM</a> and <a class="p-matrix__link p-link--external" href="https://landscape.canonical.com">Landscape</a> for audit and compliance reporting.</p>
+          <p class="p-matrix__desc">Access to the <a href="/server/livepatch">Canonical Livepatch Service</a>, <a href="/esm">ESM</a> and <a href="https://landscape.canonical.com/" class="p-link--external">Landscape</a> for audit and compliance reporting.</p>
         </div>
       </li>
       <li class="p-matrix__item">
         <div class="p-matrix__content">
           <h3 class="p-matrix__title p-heading--four">IP legal assurance</h3>
-          <p class="p-matrix__desc">The
-            <a class="p-matrix__link" href="/legal/ubuntu-advantage-assurance">Ubuntu Assurance Programme</a> provides indemnification against claims of intellectual property infringement. With over a decade of experience building and supporting Ubuntu, Canonical provides unmatched expertise on open source licenses for your peace of mind as you adopt open source innovation.</p>
+          <p class="p-matrix__desc">The <a href="/legal/ubuntu-advantage-assurance">Ubuntu Assurance Programme</a> provides indemnification against claims of intellectual property infringement.</p>
           </div>
         </li>
         <li class="p-matrix__item">
           <div class="p-matrix__content">
-            <h3 class="p-matrix__title p-heading--four">OpenStack and Kubernetes support</h3>
-            <p class="p-matrix__desc">No more double-paying for your infrastructure stack. OpenStack support, Kubernetes support and server support are all covered by a single subscription.</p>
+            <h3 class="p-matrix__title p-heading--four">OpenStack and Kubernetes included</h3>
+            <p class="p-matrix__desc">No more double-paying for your infrastructure stack. OpenStack, Kubernetes, Ceph and Linux support in a single subscription.</p>
           </div>
         </li>
         <li class="p-matrix__item">
           <div class="p-matrix__content">
             <h3 class="p-matrix__title p-heading--four">24/7 phone and web support</h3>
-            <p class="p-matrix__desc">UA-I includes access to our world-class enterprise support team through our web portal, knowledge base or via phone.</p>
+            <p class="p-matrix__desc">includes access to our world-class enterprise support team through our web portal, knowledge base or via phone.</p>
           </div>
         </li>
         <li class="p-matrix__item">
           <div class="p-matrix__content">
             <h3 class="p-matrix__title p-heading--four">Certified technology</h3>
-            <p class="p-matrix__desc">All major software vendors, hardware vendors, system integrators and cloud providers have certified their technologies on Ubuntu. We ensure Ubuntu runs everywhere you rely on it to power your mission-critical workloads.</p>
+            <p class="p-matrix__desc">Ubuntu runs everywhere you rely on it to power your mission-critical workloads.</p>
           </div>
         </li>
         <li class="p-matrix__item">
           <div class="p-matrix__content">
             <h3 class="p-matrix__title p-heading--four">Flexible managed services options</h3>
-            <p class="p-matrix__desc">With our flexible managed services add-ons, it’s easy to access  OpenStack and Kubernetes expertise. Simply <a  class="p-matrix__link js-invoke-modal" href="/support/contact-us?product=support-overview">get in touch</a> with a Canonical expert to get covered.</p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title p-heading--four">ESM</h3>
-            <p class="p-matrix__desc"><a class="p-matrix__link" href="/esm">Extended Security Maintenance</a> provides continuous security fixes through a secure, private archive available exclusively to UA-I customers.</p>
+            <p class="p-matrix__desc">Get quickly up and running with managed OpenStack, managed Kubernetes, or a combination of both.</p>
           </div>
         </li>
         <li class="p-matrix__item">
@@ -97,26 +106,22 @@
     {% include "shared/_case-study-itstrategen.html" %}
     {% include "shared/_case-study-allan-gray.html" %}
 
-    <section class="p-strip is-bordered is-deep u-image-position">
+    <section class="p-strip is-bordered is-deep u-image-position" id="solutions">
       <div class="row">
         <div class="col-7">
-          <h2>Infrastructure solutions</h2>
           <h3>Systems management and security at scale</h3>
           <p>Automate day-to-day management with Landscape, the most cost-effective tool to support and monitor large and rapidly expanding networks of clouds, servers and desktops. Use Landscape for audit reporting, security compliance and patch management at scale. Landscape is available as a service from the cloud or on-premises for compliance with stricter security requirements.</p>
-          <p>Take control of your infrastructure with:</p>
         </div>
       </div>
       <div class="row  u-equal-height">
         <div class="col-5">
           <ul class="p-list">
-            <li class="p-list__item is-ticked">Automate updates and manage physical, virtual and cloud-based systems from a single interface</li>
-            <li class="p-list__item is-ticked">Monitor and managed machines at scale</li>
+            <li class="p-list__item is-ticked">Manage physical, virtual and cloud-based systems</li>
+            <li class="p-list__item is-ticked">Automate package management</li>
             <li class="p-list__item is-ticked">Maintain security and compliance</li>
-            <li class="p-list__item is-ticked">Controlled inventory</li>
-            <li class="p-list__item is-ticked">Integrate with current systems</li>
-            <li class="p-list__item is-ticked">Install, upgrade or downgrade packages</li>
-            <li class="p-list__item is-ticked">Secure your infrastructure with Role-Based Access Control</li>
-            <li class="p-list__item is-ticked">Reduce downtime, maintain Ubuntu LTS security and compliance with the Canonical Livepatch Service</li>
+            <li class="p-list__item is-ticked">Control inventory</li>
+            <li class="p-list__item is-ticked">API access for integration and reporting</li>
+            <li class="p-list__item is-ticked">Role-Based Access Control</li>
           </ul>
           <p>
             <a class="p-link--external" href="https://landscape.canonical.com/">Learn more about Landscape</a>
@@ -134,8 +139,8 @@
           <img src="{{ ASSET_SERVER_URL }}4d62c90a-applying-Livepatches.png?w=500" width="500" alt="Screenshot of applying livepatches" />
         </div>
         <div class="col-7">
-          <h3>Critical kernel patches without rebooting</h3>
-          <p>Available with an Ubuntu Advantage for Infrastructure subscription, the Canonical Livepatch Service enables you to apply critical kernel security fixes to your Ubuntu systems without rebooting. Available on LTS-based systems, Livepatch reduces downtime while maintaining compliance and security.</p>
+          <h3>Apply critical kernel patches without rebooting</h3>
+          <p>The Canonical Livepatch Service enables you to apply critical kernel security fixes to your Ubuntu systems without rebooting. Available on LTS-based systems, Livepatch reduces downtime while maintaining compliance and security.</p>
           <p><a href="/livepatch">Learn more about the Canonical Livepatch Service&nbsp;&rsaquo;</a></p>
         </div>
       </section>
@@ -143,16 +148,16 @@
       <section class="p-strip is-bordered is-deep">
         <div class="row u-vertically-center">
           <div class="col-6">
-            <h3>Ongoing security and compliance of LTS systems</h3>
-            <p>ESM provides UA-I customers with exclusive access to critical security updates beyond the Eend of Llife of Ubuntu LTS releases. Our team is committed to providing the absolute best software security coverage in the open source world, period. Learn more about ESM</p>
-            <p><a href="/esm">Learn more about Extended Security Maintenance&nbsp;&rsaquo;</a></p>
+            <h3>The best security coverage in the open source world, period.</h3>
+            <p>Extended Security Maintenance (ESM) offers exclusive access to critical security updates for Ubuntu LTS.</p>
+            <p><a href="/esm">Learn more about ESM&nbsp;&rsaquo;</a></p>
           </div>
           <div class="col-6 u-vertically-center u-align--center u-hide--small">
             <img src="{{ ASSET_SERVER_URL }}9e59756d-shield-ESM.svg" width="150" alt="" />
           </div>
         </section>
 
-        <section class="p-strip--light is-deep is-bordered">
+        <section class="p-strip--light is-deep is-bordered" id="get-ua">
           <div class="row">
             <div class="col-10">
               <h2>How to get Ubuntu Advantage for Infrastructure</h2>
