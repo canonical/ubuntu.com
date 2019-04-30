@@ -9,8 +9,7 @@
 
 {% block content %}
 
-<!-- Add MAAS logo & change subtitle-->
-{% include "engage/shared/_header.html" with title="Creating a cloud-like bare metal experience in the data centre" subtitle="How Charmed OpenStack is decreasing common security concerns" class="p-strip--dark p-takeover--maas" url="#register-section" cta="Download the whitepaper" %}
+{% include "engage/shared/_header.html" with title="Creating a cloud-like bare metal experience in the data centre" class="p-strip--dark p-takeover--maas" image="0de4fcd5-logo-maas-icon.svg" url="#register-section" cta="Download the whitepaper" %}
 
 <section class="p-strip is-shallow is-bordered">
   <div class="row">
@@ -22,9 +21,9 @@
       <p>
         Optimised testing also eases the hardware validation process by providing a framework that allows large-scale, automated testing of hardware with minimum effort to ensure that the physical infrastructure is ready to serve production workloads. Welcome to metal-as-a-service (MAAS).
       </p>
-      <h4>
+      <p class="p-heading--four">
         In this whitepaper, you will learn how MAAS provides a flexible and straightforward framework for administrators to test their hardware:
-      </h4>
+      </p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">
           What MAAS frameworks allow users to do
