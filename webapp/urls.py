@@ -12,6 +12,7 @@ from .views import UbuntuTemplateFinder, DownloadView, ResourcesView, search
 urlpatterns = create_redirect_views()
 urlpatterns += create_deleted_views()
 urlpatterns += [
+    url(r"blog", include("canonicalwebteam.blog.django.urls")),
     url("", include("django_prometheus.urls")),
     url(
         r"^(?P<template>download/(desktop|server|cloud)/thank-you)$",
