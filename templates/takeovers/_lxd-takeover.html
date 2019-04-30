@@ -1,0 +1,55 @@
+<section class="p-takeover js-takeover">
+  <div class="row u-clearfix u-vertically-center">
+    <div class="col-7">
+      <h1>Build a lightweight system container cluster</h1>
+      <p class="p-heading--four u-sv2">
+        Learn how LXD can increase team efficiency and reduce costs.
+      </p>
+      <!-- Update link -->
+        <a
+          href="/engage/openstack-security-webinar?utm_source=takeover&utm_campaign=CY19_DC_Openstack_WBN_OpenStackSecurity"
+          class="u-hide--small p-button--positive"
+          >Download the whitepaper 
+        </a>
+    </div>
+    <div class="col-5">
+      <p class="p-takeover__image u-align-text--center">
+        <img
+          src="{{ ASSET_SERVER_URL }}d85ef015-image-lxd.svg"
+          alt=""
+        />
+      </p>
+      <p class="u-hide--medium u-hide--large">
+        <!-- Update link -->
+        <a
+          href="/engage/openstack-security-webinar?utm_source=takeover&utm_campaign=CY19_DC_Openstack_WBN_OpenStackSecurity"
+          class="p-button--positive"
+          >Download the whitepaper
+        </a>
+      </p>
+    </div>
+  </div>
+  <style>
+    .p-takeover {
+      background-image: url("{{ ASSET_SERVER_URL }}41d86147-suru-left.svg"),
+        url("{{ ASSET_SERVER_URL }}5b3b3bfe-suru-top-right.svg"),
+        url("{{ ASSET_SERVER_URL }}2699d0b1-suru-right-bottom.svg"),
+        linear-gradient(64deg, #DEDEDE 0%, #FFFFFF 100%);
+      background-position: left, right, right;
+      background-repeat: no-repeat, no-repeat, no-repeat;
+      background-size: auto 100%, auto 100%, auto 100%, cover;
+      background-blend-mode: multiply, multiply, multiply; 
+    }
+    .p-takeover__image {
+      width: 313px
+    }
+    @media (max-width: 874px) {
+      .p-takeover {
+        background-image: linear-gradient(64deg, #DEDEDE 0%, #FFFFFF 100%);
+      }
+      .p-takeover__image {
+        width: 261px;
+      }
+    }
+  </style>
+</section>
