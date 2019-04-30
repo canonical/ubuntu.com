@@ -194,6 +194,10 @@ function formatKeyLabel(key) {
  * Builds chart using supplied selector and data
  */
 export function createChart(chartSelector, taskTypes, taskStatus, tasks) {
+  var chartSelectorElement = document.querySelector(chartSelector)
+  if (!chartSelectorElement) {
+    return
+  }
   var margin = {
     top: 0,
     right: 40,
@@ -204,7 +208,7 @@ export function createChart(chartSelector, taskTypes, taskStatus, tasks) {
   var timeDomainStart = d3.time.year.offset(tasks[0].startDate, -1);
   var timeDomainEnd = d3.time.year.offset(tasks[tasks.length - 1].endDate, +1);
   var height = taskTypes.length * rowHeight;
-  var width = document.querySelector(chartSelector).clientWidth - margin.right - margin.left;
+  var width = chartSelectorElement.clientWidth - margin.right - margin.left;
 
   var x = d3.time
     .scale()
