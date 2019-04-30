@@ -1,6 +1,6 @@
-<section class="p-strip--dark p-takeover js-takeover">
+<section class="p-strip--dark is-shallow p-takeover js-takeover">
     <div class="row u-clearfix u-vertically-center">
-      <div class="col-8">
+      <div class="col-6">
         <h1>The transformation of the DevOps journey in IoT</h1>
         <p class="p-heading--four u-sv2">
           Learn how Ubuntu Core and snaps can accelerate the Linux development cycle in IoT.
@@ -11,7 +11,7 @@
           >Register for the webinar
         </a>
       </div>
-      <div class="col-4">
+      <div class="col-6">
         <p class="p-takeover__image u-align-text--center">
           <img
             src="{{ ASSET_SERVER_URL }}f3d518db-devops-iot.svg"
@@ -29,12 +29,12 @@
     </div>
     <style>
       .p-takeover {
-        background-image: url("{{ ASSET_SERVER_URL }}69d263b9-left.svg"),
-          url("{{ ASSET_SERVER_URL }}c6f9e52d-right.svg"),
+        background-image: url("{{ ASSET_SERVER_URL }}69d263b9-left.svg"),url("{{ ASSET_SERVER_URL }}373a184b-right-top.svg"),
+          url("{{ ASSET_SERVER_URL }}d4059d66-right-bottom.svg"),
           linear-gradient(134deg, #111111 0%, #212121 100%);
-        background-position: left, right;
-        background-repeat: no-repeat, no-repeat;
-        background-size: auto 100%, auto 100%, cover;
+        background-position: left, right, right;
+        background-repeat: no-repeat, no-repeat, no-repeat;
+        background-size: auto 100%, auto 100%, auto 100%, cover;
       }
       @media (max-width: 874px) {
         .p-takeover {
