@@ -95,14 +95,21 @@
 
     // check if it is a dynamic modal form
     var isModal = marketoForm.classList.contains("modal-form");
+
+    // check if there is a thank you message to post
+    var thankYouMessage = marketoForm.querySelector('input[name=thankyoumessage]');
+    if (thankYouMessage != null) {
+      thankYouMessage = thankYouMessage.value;
+    }
     formid = this.id;
 
     console.log("download_asset_url: " + download_asset_url);
     console.log("return_url: " + return_url);
     console.log("modal: " + isModal);
+    console.log("thankYouMessage: " + thankYouMessage);
 
     // deal with the post submit actions
-    afterSubmit(download_asset_url, return_url, isModal);
+    afterSubmit(download_asset_url, return_url, isModal, thankYouMessage);
 
     return true;
   }
@@ -112,7 +119,7 @@
   * start download and send the user to the instructions page
   */
 
-  afterSubmit = function(download_asset_url, return_url, isModal) {
+  afterSubmit = function(download_asset_url, return_url, isModal, thankYouMessage) {
 
     // Now start the download
     if (download_asset_url) {
@@ -135,8 +142,18 @@
       document.getElementsByClassName('js-pagination--3')[0].classList.add("u-hide");
       document.getElementsByClassName('js-pagination--4')[0].classList.remove("u-hide");
     }
-  }
 
+    // add a thank-you notification to the page
+    // if someone submitted a form without a thank you action
+    var thankYouMessage = thankYouMessage;
+    if (!return_url || !isModal) {
+      if (thankYouMessage == null) {
+        thankYouMessage = 'Thank you<br />A member of our team will be in touch within one working day';
+      }
+      document.getElementById('main-content').insertAdjacentHTML('afterbegin', '<div class="p-strip is-shallow u-no-padding--bottom"><div class="row"><div class="p-notification--positive"><p class="p-notification__response"><span class="p-notification__status">Success:</span> ' + thankYouMessage + '</p></div></div></div>');
+      window.scrollTo(0,0);
+    }
+  }
 
   // recaptcha submitCallback
   var CaptchaCallback = function() {

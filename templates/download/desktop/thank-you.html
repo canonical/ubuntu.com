@@ -23,7 +23,7 @@ Thank you for your contribution
 {% endif %}
 {% endif %}
 
-{% if request.GET.newsletter == 'true' %}
+{% if request.GET.newsletter == ' true' %}
 <div class="p-strip is-shallow u-no-padding--bottom">
   <div class="row">
     <div class="p-notification--positive">
@@ -48,17 +48,17 @@ Thank you for your contribution
         {% endif %}
       </p>
       <p>
-         You can <a href="https://tutorials.ubuntu.com/tutorial/tutorial-how-to-verify-ubuntu">verify</a>
-         your image using the
-         {% if architecture == 'amd64+mac' %}
-         <a href="http://cdimage.ubuntu.com/releases/{{ version }}/release/SHA256SUMS">SHA256 checksum</a>
-         and
-         <a href="http://cdimage.ubuntu.com/releases/{{ version }}/release/SHA256SUMS.gpg">signature</a>.
-         {% else %}
-         <a href="http://releases.ubuntu.com/{{ version }}/SHA256SUMS">SHA256 checksum</a>
-         and
-         <a href="http://releases.ubuntu.com/{{ version }}/SHA256SUMS.gpg">signature</a>.
-         {% endif %}
+        You can <a href="https://tutorials.ubuntu.com/tutorial/tutorial-how-to-verify-ubuntu">verify</a>
+        your image using the
+        {% if architecture == 'amd64+mac' %}
+        <a href="http://cdimage.ubuntu.com/releases/{{ version }}/release/SHA256SUMS">SHA256 checksum</a>
+        and
+        <a href="http://cdimage.ubuntu.com/releases/{{ version }}/release/SHA256SUMS.gpg">signature</a>.
+        {% else %}
+        <a href="http://releases.ubuntu.com/{{ version }}/SHA256SUMS">SHA256 checksum</a>
+        and
+        <a href="http://releases.ubuntu.com/{{ version }}/SHA256SUMS.gpg">signature</a>.
+        {% endif %}
       </p>
       {% else %}
       <h1>Thank you for your contribution</h1>
@@ -210,16 +210,19 @@ Thank you for your contribution
             </div>
             <div class="mktField mktLblRight u-margin-medium--top">
               <span class="mktInput mktLblRight">
-                  <input class="u-no-margin--top mktFormCheckbox" name="canonicalUpdatesOptIn" id="CanonicalUpdatesOptIn" value="Receive updates" type="checkbox" />
-                  <label for="CanonicalUpdatesOptIn" class="p-form__label u-no-margin--top">
-                    <small>I agree to receive information about Canonical’s products and services.</small>
-                  </label>
-                  <span class="mktFormMsg"></span>
+                <input class="u-no-margin--top mktFormCheckbox" name="canonicalUpdatesOptIn" id="CanonicalUpdatesOptIn" value="Receive updates" type="checkbox" />
+                <label for="CanonicalUpdatesOptIn" class="p-form__label u-no-margin--top">
+                  <small>I agree to receive information about Canonical’s products and services.</small>
+                </label>
+                <span class="mktFormMsg"></span>
               </span>
             </div>
+              <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
             <p class="u-margin-medium--top">
               <small>In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/newsletter">Canonical’s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</small>
             </p>
+
+
             <div class="u-margin-medium--top">
               <span class="mktoButtonWrap p-card--content">
                 <button type="submit" class="u-no-margin--bottom">Subscribe now</button>
@@ -229,6 +232,7 @@ Thank you for your contribution
               <input value="30" class="mktoField mktoFieldDescriptor" name="subId" type="hidden">
               <input name="lpurl" value="https://pages.canonical.com/Insights-Subscription_Insights-Subscription-test.html?cr={creative}&amp;kw={keyword}" type="hidden">
               <input value="1212" class="mktoField mktoFieldDescriptor" name="formid" type="hidden">
+              <input value="1212" class="mktoField mktoFieldDescriptor" name="formVid" type="hidden">
               <input type="hidden" name="ret" value="http://{{ http_host }}/download/desktop/thank-you?newsletter=true" />
               <input value="066-EOV-335" class="mktoField mktoFieldDescriptor" name="munchkinId" type="hidden">
               <input name="kw" value="" type="hidden">
@@ -236,6 +240,7 @@ Thank you for your contribution
               <input name="searchstr" value="" type="hidden">
               <input name="_mkt_disp" value="return" type="hidden">
               <input name="_mkt_trk" value="id:066-EOV-335&amp;token:_mch-ubuntu.com-1473266321199-95160" type="hidden">
+              <input type="hidden" name="thankyoumessage" value="Thank you for subscribing!<br />You will begin receiving emails as new content is posted. You may unsubscribe any time by clicking the link in the email.">
             </div>
           </form>
         </div>
@@ -341,14 +346,14 @@ Thank you for your contribution
     var matchingItem = false;
 
     items.forEach(
-      function(item, itemIndex) {
-        if (
-        item['price'] == totalAmount ||
-        (item['price'] > totalAmount && items[itemIndex - 1]['price'] < totalAmount)
-        ) {
-          matchingItem = items[itemIndex];
-        }
+    function(item, itemIndex) {
+      if (
+      item['price'] == totalAmount ||
+      (item['price'] > totalAmount && items[itemIndex - 1]['price'] < totalAmount)
+      ) {
+        matchingItem = items[itemIndex];
       }
+    }
     );
 
     var lastItem = items[items.length - 1];
@@ -382,9 +387,9 @@ Thank you for your contribution
     // Get the total amount of all the contribution items selected
     var total = 0;
     document.querySelectorAll('.p-slider__input').forEach(
-      function(valueElement) {
-        total += parseInt(valueElement.value || 0);
-      }
+    function(valueElement) {
+      total += parseInt(valueElement.value || 0);
+    }
     );
     var item = chooseEquivalentItem(total);
     document.querySelector('.js-total-amount').innerText = total;
@@ -442,24 +447,24 @@ Thank you for your contribution
 
   // Submit analytics before submitting form
   document.querySelector('#contributions-form').addEventListener(
-    'submit',
-    sendContributionFormAnalytics
+  'submit',
+  sendContributionFormAnalytics
   );
 
   /**
   * Reset fields back to 0, if missing values
   */
   document.querySelectorAll('.p-slider__input').forEach(
-    function(valueElement) {
-      valueElement.addEventListener(
-        'blur',
-        function() {
-          if (isNaN(parseInt(valueElement.value))) {
-            valueElement.value = 0;
-          }
-        }
-      )
+  function(valueElement) {
+    valueElement.addEventListener(
+    'blur',
+    function() {
+      if (isNaN(parseInt(valueElement.value))) {
+        valueElement.value = 0;
+      }
     }
+    )
+  }
   );
 
   var optionsArea = document.querySelector('.contribute__options');
