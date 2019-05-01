@@ -11,8 +11,9 @@
   </div>
 </section>
 
-{% if current_page and current_page == 1 and featured_posts %}
-  {% include "featured-posts.html" %}
+
+{% if current_page and current_page == 1 and featured_articles %}
+  {% include "blog/featured-articles.html" %}
 {% endif %}
 
 <section class="p-strip is-shallow">
