@@ -9,9 +9,9 @@ context:
 
 Capitalised terms shall have meanings as defined in the [Definitions section](#uasd-definitions).
 
-<h2 id="uasd-ua-infrastructure">Ubuntu Advantage for Infrastructure</h2>
+<h2 id="uasd-ua-infrastructure">Ubuntu Advantage for Infrastructure (UA-I)</h2>
 
-|Subscriptions|Essential|Standard|Advanced|
+|<br />Subscriptions|<br />Essential|UA-I Level<br />Standard|<br />Advanced|
 |-------------|:---------:|:--------:|:--------:|
 |Landscape Management|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
 |Kernel Livepatch Service|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
@@ -57,7 +57,7 @@ When an Ubuntu Advantage subscription is attached to a physical host running a S
   4. Specific kernel versions are not guaranteed to receive livepatches indefinitely.  
   5. Only the default LTS kernel is available for livepatching. This includes  its backport as the last HWE kernel to the previous LTS release.
 4. Extended Security Maintenance
-  1. Extended Security Maintenance provides available High and Critical CVE fixes for a number ofserver packages in the Ubuntu Main Repository. A complete list of packages included in Extended Security Maintenance for a given release can be found at: [https://wiki.ubuntu.com/SecurityTeam/ESM/](https://www.google.com/url?q=https://wiki.ubuntu.com/SecurityTeam/ESM/&sa=D&ust=1556713749211000)
+  1. Extended Security Maintenance provides available High and Critical CVE fixes for a number of server packages in the Ubuntu Main Repository. A complete list of packages included in Extended Security Maintenance for a given release can be found at: [https://wiki.ubuntu.com/SecurityTeam/ESM/](https://wiki.ubuntu.com/SecurityTeam/ESM/)
   2. Extended Security Maintenance is only included for 64-bit x86 AMD/Intel installations.
   3. Extended Security Maintenance does not provide:
     1. Bug fixes for packages in the end of life release, unless a bug was created by an Extended Security Maintenance security update
@@ -78,8 +78,8 @@ When an Ubuntu Advantage subscription is attached to a physical host running a S
 As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infrastructure Advanced customer, you are entitled to all of the benefits and services described under the Subscriptions section above, and in addition are entitled to the following benefits and services:
 
 1. 24x5 (Standard) or 24x7 (Advanced) phone and ticket support.
-  1. Releases. Canonical will provide support for installation, configuration, maintenance, and management of any standard release of Ubuntu when installed using official sources and within its product life cycle, including any applicable Extended Security Maintenance term. The life cycle for each version of Ubuntu is specified here: [https://www.ubuntu.com/about/release-cycle](https://www.google.com/url?q=https://www.ubuntu.com/about/release-cycle&sa=D&ust=1556713749214000).
-  2. Hardware. Ubuntu Certified hardware has passed Canonical’s extensive testing and review process. More information about the Ubuntu certification process and a list of certified hardware can be found on the Ubuntu Certification page: [http://www.ubuntu.com/certification/](https://www.google.com/url?q=http://www.ubuntu.com/certification/&sa=D&ust=1556713749215000). The services apply only with respect to customer’s hardware which has been certified. In the event a customer requests the services with respect to hardware which is not certified, Canonical will use reasonable efforts to provide support services, but may not adhere to the obligations described in this service description.
+  1. Releases. Canonical will provide support for installation, configuration, maintenance, and management of any standard release of Ubuntu when installed using official sources and within its product life cycle, including any applicable Extended Security Maintenance term. The life cycle for each version of Ubuntu is specified here: [https://www.ubuntu.com/about/release-cycle](https://www.ubuntu.com/about/release-cycle).
+  2. Hardware. Ubuntu Certified hardware has passed Canonical’s extensive testing and review process. More information about the Ubuntu certification process and a list of certified hardware can be found on the Ubuntu Certification page: [http://www.ubuntu.com/certification/](http://www.ubuntu.com/certification/ The services apply only with respect to customer’s hardware which has been certified. In the event a customer requests the services with respect to hardware which is not certified, Canonical will use reasonable efforts to provide support services, but may not adhere to the obligations described in this service description.
   3. Packages. The service applies to:
     1. Packages found in the Ubuntu Main Repository, including the “proposed” and “backports” repository pockets
     2. Packages in the Ubuntu Cloud Archive
@@ -89,7 +89,7 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
   4. Kernels.
     1. The kernel provided initially in the release of a Long Term Support (LTS) version of Ubuntu is supported for the entire lifecycle of the LTS.
     2. Canonical releases Hardware enablement (HWE) kernels during the standard support period of an LTS version which provides support for newer hardware in an LTS releases. HWE kernels are supported until the next LTS point release.
-    3. More information and details about kernel support can be found at [https://www.ubuntu.com/about/release-cycle](https://www.google.com/url?q=https://www.ubuntu.com/about/release-cycle&sa=D&ust=1556713749217000)
+    3. More information and details about kernel support can be found at [https://www.ubuntu.com/about/release-cycle](https://www.ubuntu.com/about/release-cycle)
     4. Access to Canonical Livepatch Service is included with all support offerings, unless otherwise noted.
   5. Landscape. All Landscape products, including Landscape on-premises (when purchased) are fully supported.
 2. OpenStack & Kubernetes Support. Canonical will provide the support set out in the section below:
@@ -97,7 +97,7 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
     1. OpenStack software support depends on the Ubuntu release deployed on the underlying Nodes:
         1. The version of OpenStack provided initially in the release of a Long Term Support (LTS) version of Ubuntu is supported for the entire lifecycle of that Ubuntu version.
         2. Releases of OpenStack released after an LTS version of Ubuntu are available in the Ubuntu Cloud Archive. Each OpenStack release in the Ubuntu Cloud Archive is supported on an Ubuntu LTS version for a minimum of 18 months from the release date of the Ubuntu version that included the applicable OpenStack version.
-        3. The OpenStack release support schedule is available here [https://www.ubuntu.com/about/release-cycle](https://www.google.com/url?q=https://www.ubuntu.com/about/release-cycle&sa=D&ust=1556713749219000)
+        3. The OpenStack release support schedule is available here [https://www.ubuntu.com/about/release-cycle](https://www.ubuntu.com/about/release-cycle)
     2. OpenStack support is provided at the Advanced response times.
     3. OpenStack support requires all Nodes that participate in the OpenStack Cloud  to be covered under an active support agreement.
     4. Full Stack support requirements:
@@ -115,7 +115,7 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
     6. OpenStack support does not include support beyond Bug-fix Support during the deployment or configuration of an OpenStack cloud.
     7. Charms:
         1. Each Charm version is supported for one year from the release date.
-        2. Canonical will not provide support for any Charms that have been modified from the supported version found in the page at [https://wiki.ubuntu.com/OpenStack/OpenStackCharms](https://www.google.com/url?q=https://wiki.ubuntu.com/OpenStack/OpenStackCharms&sa=D&ust=1556713749221000)
+        2. Canonical will not provide support for any Charms that have been modified from the supported version found in the page at [https://wiki.ubuntu.com/OpenStack/OpenStackCharms](https://wiki.ubuntu.com/OpenStack/OpenStackCharms)
     8. Canonical will provide support for 12 TB of usable storage per Node with Ceph or Swift storage exposed to the OpenStack cluster. This allowance can be used for Ceph, Swift, or a combination of these. If the number of these Nodes exceeds the number of compute Nodes in the covered OpenStack cluster, the supported Ceph and Swift storage will be limited to 12 TB per compute Node in the cluster.
     9. Ubuntu Advantage OpenStack includes a licence to use available Canonical provided Microsoft-certified drivers in Windows Guest instances.
     10. OpenStack support excludes:
@@ -127,13 +127,13 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
         1. Deployment of Charmed Distribution of Kubernetes (CDK) in at least the minimum deployment configuration, or a kubeadm-deployed cluster of unmodified upstream Kubernetes binaries as published by the CNCF deployed on Ubuntu as base OS.
         2. Highly-Available control plane either deployed using Charms in the CDK reference architecture or in a similar fashion using kubeadm.
         3. Support must be purchased for all nodes in the supported Kubernetes cluster.
-        4. Supported versions of Kubernetes include the current stable minor release and the two most recent minor releases in the stable release channel. Additional information can be found at: [https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions](https://www.google.com/url?q=https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions&sa=D&ust=1556713749223000)
+        4. Supported versions of Kubernetes include the current stable minor release and the two most recent minor releases in the stable release channel. Additional information can be found at: [https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions](https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions)
         5. For any deployment of the Charmed Distribution of Kubernetes carried out by Canonical while under contract for a deployment, which result in the customisation of any Charms, the customisation will be supported for 90 days after completion of the deployment.
     3. Unless Full-Stack Support requirements are met, support is limited to:
         1. The software packages and Charms necessary for running the Charmed Distribution of Kubernetes.
         2. The software packages available from apt.kubernetes.io and Kubernetes clusters deployed using kubeadm.
         3. Bug-fix support in the supplied software artefacts by Canonical.
-3. Ubuntu Legal Assurance programme. The customer is entitled to participate in the Ubuntu Assurance Programme, subject to its terms and conditions. Canonical may update the Assurance Programme and its terms periodically. The current Ubuntu Assurance Programme and its IP indemnification terms are available at Canonical’s Ubuntu Assurance page:[ http://www.ubuntu.com/legal/ubuntu-advantage/assurance](https://www.google.com/url?q=http://www.ubuntu.com/legal/ubuntu-advantage/assurance&sa=D&ust=1556713749224000)
+3. Ubuntu Legal Assurance programme. The customer is entitled to participate in the Ubuntu Assurance Programme, subject to its terms and conditions. Canonical may update the Assurance Programme and its terms periodically. The current Ubuntu Assurance Programme and its IP indemnification terms are available at Canonical’s Ubuntu Assurance page:[ http://www.ubuntu.com/legal/ubuntu-advantage/assurance](http://www.ubuntu.com/legal/ubuntu-advantage/assurance)
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
@@ -185,7 +185,7 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
     3. Network for instances.
   3. Downtime must be directly attributable to Canonical in order for it to count against the service level and is measured across a 12 month period. Planned maintenance windows and any requests by the customer are not taken into account when calculating uptime.
 
-    <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
+<div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
 
 <h2 id="uasd-virtual-machines">Virtual Machines and Cloud Instances</h2>
@@ -193,14 +193,14 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
 1. The Ubuntu Advantage for Infrastructure, Virtual services match those of the applicable Ubuntu Advantage for Infrastructure offering, subject to the exceptions listed below.
 2. The Ubuntu Advantage Infrastructure, Virtual services are provided for Ubuntu Server when installed and running as a guest in a virtualised environment either (1) in an Ubuntu Certified Public Cloud partner’s environment, or (2) on a physical host, provided the guest is running on a Covered Hypervisor.
 3. Note: Only underlying technology is listed. These can be provided via a cloud like OpenStack. If hypervisor vendor provides a specific list of supported Ubuntu versions only those will be eligible for Ubuntu Advantage for Infrastructure, Virtual service.
-4. Certified Public Cloud partners can be found in the Ubuntu partner listing: [https://www.ubuntu.com/public-cloud](https://www.google.com/url?q=https://www.ubuntu.com/public-cloud&sa=D&ust=1556713749234000)
+4. Certified Public Cloud partners can be found in the Ubuntu partner listing: [https://www.ubuntu.com/public-cloud](https://www.ubuntu.com/public-cloud)
 5. Kubernetes support is included as per definitions in the application section of Ubuntu Advantage for Infrastructure above.
 6. The Ubuntu Advantage for Infrastructure, Virtual service does not provide:
   1. Hypervisor support.
   2. OpenStack support.
   3. MAAS support.
   4. Providing native images for a chosen hypervisor.
-  5. Additionalexclusions match those of the applicable Ubuntu Advantage for Infrastructure service offering.
+  5. Additional exclusions match those of the applicable Ubuntu Advantage for Infrastructure service offering.
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
@@ -210,7 +210,7 @@ Add-Ons constitute additional support services available separately on a per-Nod
 
 1. Rancher Support
   1. Requirement: Node needs to be covered by Ubuntu Advantage for Infrastructure.
-  2. Rancher Support provides break-fix support for, and answering basic questions about, using Rancher 2.x in accordance with the compatibility matrix and support lifecycle published by Rancher Labs at [https://rancher.com/support-maintenance-terms/](https://www.google.com/url?q=https://rancher.com/support-maintenance-terms/&sa=D&ust=1556713749237000)when managing the Charmed Distribution of Kubernetes.
+  2. Rancher Support provides break-fix support for, and answering basic questions about, using Rancher 2.x in accordance with the compatibility matrix and support lifecycle published by Rancher Labs at [https://rancher.com/support-maintenance-terms/](https://rancher.com/support-maintenance-terms/) managing the Charmed Distribution of Kubernetes.
   3. Rancher Support does not provide:
     1. Migration of workloads from Rancher 1.x to Rancher 2.x.
     2. Support for, or answering basic questions about, third party add-ons to Rancher.
@@ -253,7 +253,7 @@ Add-Ons constitute additional support services available separately on a per-Nod
 <h2 id="uasd-ua-desktop">Ubuntu Advantage for Desktop</h2>
 
 1. Overview. Ubuntu Advantage for Desktop services match those of the applicable Ubuntu Advantage for Infrastructure, subject to the exceptions listed below.
-2. Scope. Ubuntu Advantage for Desktop covers all packages in the base Ubuntu desktop image and packages necessary for basic network authentication and connectivity using sssd, winbind,network-manager, and network-manager plugins in the Ubuntu Main repository.
+2. Scope. Ubuntu Advantage for Desktop covers all packages in the base Ubuntu desktop image and packages necessary for basic network authentication and connectivity using sssd, winbind, network-manager, and network-manager plugins in the Ubuntu Main repository.
 3. Out of scope. The following are not within the Ubuntu Advantage for Desktop scope:
   1. Virtual machines.
   2. Machine containers.
@@ -275,9 +275,9 @@ Add-Ons constitute additional support services available separately on a per-Nod
     1. Licence to download and install a single instance of Landscape on Premises.
     2. Ability to use Landscape on-premises management and monitoring services for machines (whether physical or virtual) for which the customer has purchased Ubuntu Advantage services.
     3. Deployment methods:
-      1. When installed using the “Quickstart” install method, support is included for the machine on which Landscape on Premises is installed.
-      2. When installed using a manual install method, support is included for up to two servers on which Landscape on Premises is installed.
-      3. When deployed using Juju, the “dense deployment” method will be supported.
+        1. When installed using the “Quickstart” install method, support is included for the machine on which Landscape on Premises is installed.
+        2. When installed using a manual install method, support is included for up to two servers on which Landscape on Premises is installed.
+        3. When deployed using Juju, the “dense deployment” method will be supported.
   3. Canonical will not provide support beyond that of the Landscape on Premises packages.
   4. Each release of Landscape on Premises will be supported for 1 year from its release date.
 2. Livepatch on Premises
@@ -332,7 +332,7 @@ Add-Ons constitute additional support services available separately on a per-Nod
 1. Service initiation
   1. Upon commencement of the services, Canonical will provide access for a single technical representative to Landscape, the support portal, and the online knowledge base.
   2. The customer, through their initial technical representative, may select their chosen technical representatives to interface with Canonical based on the number of systems under support as represented in the table below. These technical representatives will hold credentials to the support portal and will act as primary points of contact for support requests.
-  <p style="text-align: center; margin: 1rem 0;">Table of machines under support</p>
+  <p style="text-align: centre; margin: 1rem 0;">Table of machines under support</p>
 
   |Number of machines under Ubuntu Advantage support|Technical representatives|
   |:----|:----|
@@ -352,7 +352,7 @@ Add-Ons constitute additional support services available separately on a per-Nod
   5. When reporting a case, the customer should provide an impact statement to help Canonical determine the appropriate severity level. Customers with multiple concurrent support cases may be asked to prioritize cases according to severity of business impact.
   6. The customer is expected to provide all information requested by Canonical as we work to resolve the case.
   7. Canonical will keep a record of each case within the support portal enabling the customer to track and respond to all current cases and allowing for review of historical cases.
-3. Support severity levels<
+3. Support severity levels
   1. Once a support request is opened, a Canonical Support Engineer will validate the case information and determine the severity level, working with the customer to assess the urgency of the case.
   2. Response times will be as set forth in the Service Description for the applicable service offering.
   3. When setting the severity level, Canonical's Support Team will use the definitions as stated below:
@@ -380,7 +380,7 @@ Add-Ons constitute additional support services available separately on a per-Nod
 11. Management escalation. The customer may escalate support issues following the escalation process:
   1. Non-urgent needs. Request a management escalation within the case itself. A manager will be contacted to review the case and post a response within 1 business day.
   2. Urgent needs.
-      1. Escalate to Canonical’s Support & Technical Services Manager by emailing support-manager@canonical.com.
+      1. Escalate to Canonical’s Support & Technical Services Manager by emailing [support-manager@canonical.com](mailto:support-manager@canonical.com).
       2. If you require further escalation, email Canonical’s Support & Technical Services Director at [operations-director@canonical.com](mailto:operations-director@canonical.com).
 
 
@@ -418,7 +418,7 @@ This includes Charms listed at [https://wiki.ubuntu.com/OpenStack/OpenStackCharm
 - **Physical Node** means a single named/managed unit of physical compute infrastructure, essentially the shelf or rack unit. May contain multiple CPU sockets, cores, NICs, Storage controllers/devices.
 - **Public Cloud** means an Environment in which third parties (i.e. beyond just Canonical and the customer) are able to create and manage Guest or Container Instances.
 - **Rancher** means the software known as Rancher as published by Rancher Labs.        
-- **Region** means a discrete OpenStack environment with dedicated API endpoints that typically shares only the Identity (Keystone) service with other Regions. An OpenStack Region must be contained within a single datacenter.
+- **Region** means a discrete OpenStack environment with dedicated API endpoints that typically shares only the Identity (Keystone) service with other Regions. An OpenStack Region must be contained within a single datacentre.
 - **Support** means break-fix support and answering basic questions about Supported Packages. Deployment and Upgrade assistance, as well as configuration and optimization of Kubernetes fall outside the scope of support.
 - **Supported Kubernetes Packages** means packages containing the binary form of Kubernetes as distributed by Canonical or the CNCF via a suitable package repository.
 - **Supported Packages** means the combination of OpenStack Packages above and Kubernetes Packages.
