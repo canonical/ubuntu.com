@@ -30,16 +30,16 @@ function debounce(func, wait, immediate) {
 
 function buildCharts() {
   createChart('#server-desktop-eol', desktopServerReleaseNames, desktopServerStatus, serverAndDesktopReleases);
-  createChart('#kernel-eol', kernelReleaseNames, kernelStatus, kernelReleases);
-  createChart('#openstack-eol', openStackReleaseNames, openStackStatus, openStackReleases);
-  createChart('#kubernetes-eol', kubernetesReleaseNames, kubernetesStatus, kubernetesReleases);
+  // createChart('#kernel-eol', kernelReleaseNames, kernelStatus, kernelReleases);
+  // createChart('#openstack-eol', openStackReleaseNames, openStackStatus, openStackReleases);
+  // createChart('#kubernetes-eol', kubernetesReleaseNames, kubernetesStatus, kubernetesReleases);
 }
 
 function clearCharts() {
   document.querySelector('#server-desktop-eol').innerHTML = '';
-  document.querySelector('#kernel-eol').innerHTML = '';
-  document.querySelector('#openstack-eol').innerHTML = '';
-  document.querySelector('#kubernetes-eol').innerHTML = '';
+  // document.querySelector('#kernel-eol').innerHTML = '';
+  // document.querySelector('#openstack-eol').innerHTML = '';
+  // document.querySelector('#kubernetes-eol').innerHTML = '';
 }
 
 var mediumBreakpoint = 768;
