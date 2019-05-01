@@ -15,6 +15,7 @@
 @import "vanilla-placeholders";
 
 // import site specific patterns and overrides
+@import 'pattern_blog-featured';
 @import 'pattern_blog-list';
 @import 'pattern_blog-post';
 @import 'pattern_blog-card';
@@ -42,6 +43,7 @@
 @import "utility-animations";
 @import 'utility_crop';
 
+@include blog-p-featured;
 @include blog-p-list;
 @include blog-p-post;
 @include blog-p-card;
