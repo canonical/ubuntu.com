@@ -102,13 +102,13 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
     3. OpenStack support requires all Nodes that participate in the OpenStack Cloud  to be covered under an active support agreement.
     4. Full Stack support requirements:
         1. In addition to the requirements set out above, hardware must meet the minimum criteria for Charmed OpenStack.
-        2. The OpenStack Cloud was deployed via a Foundation OpenStack Build or was validated through a Cloud Validation engagement.
+        2. The OpenStack Cloud was deployed via a Private Cloud Build or was validated through a Cloud Validation engagement.
         3. Full Stack support includes:
           1. Support for the [Charms](#term-charms) deployed.
           2. For any deployments under contract with Canonical, which results in customisation of any Charms, customisation will be valid for 90 days after the official release of the Charm which includes the customisations.
           3. Support is included for all packages required to run OpenStack as deployed.
           4. [Upgrades](#term-upgrade) of OpenStack components as part of the regular Ubuntu LTS maintenance cycle.
-          5. Upgrades between versions of OpenStack (for instance, from OpenStack Newton to Mitaka) or LTS versions of Ubuntu (for instance, from Ubuntu 14.04 LTS to Ubuntu 16.04 LTS), Juju and MAAS are supported as long as the upgrade is performed following a documented process as specified by Canonical as part of the Foundation OpenStack Build or Cloud Validation Package.
+          5. Upgrades between versions of OpenStack (for instance, from OpenStack Newton to Mitaka) or LTS versions of Ubuntu (for instance, from Ubuntu 14.04 LTS to Ubuntu 16.04 LTS), Juju and MAAS are supported as long as the upgrade is performed following a documented process as specified by Canonical as part of the Private Cloud Build or Cloud Validation Package.
           6. Addition of new cloud Nodes and replacement of existing Nodes with new Nodes of equivalent capacity are both supported.
           7. [Full Stack Support](#term-full-stack-support) excludes customisations which are not considered [Valid Customisations](#term-valid-customisations).
     5. OpenStack clouds not deployed through a Private OpenStack Build or validated using the Cloud Validation Package are limited to [Bug-fix Support](#term-bug-fix-support).
@@ -201,6 +201,19 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
   3. MAAS support.
   4. Providing native images for a chosen hypervisor.
   5. Additional exclusions match those of the applicable Ubuntu Advantage for Infrastructure service offering.
+
+<div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
+
+<h2 id="uasd-desktop-support">Desktop support</h2>
+
+1. Desktop support services are subject to the exceptions listed below.
+2. Scope. Desktop support covers all packages in the base Ubuntu desktop image and packages necessary for basic network authentication and connectivity using sssd, winbind, network-manager, and network-manager plugins in the Ubuntu Main repository.
+3. Out of scope.
+  1. Dual-booting (cohabitating with other operating systems).
+  2. Peripherals which are not certified to work with Ubuntu.
+  3. Community flavours of Ubuntu.
+  4. Support for architectures other than x86_64.
+
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
@@ -341,12 +354,12 @@ Add-Ons constitute additional support services available separately on a per-Nod
   |**Severity Level 4**<br />Non-urgent request|Level 4 requests include cosmetic issues, informational requests, feature requests, and similar matters. Canonical does not provide a timeline or guarantee for inclusion of any feature requests. Canonical will review each level 4 case and determine whether it is a product enhancement to be considered for a future release, an issue to be fixed in the current release or an issue to be fixed in a future release. Canonical will review and respond to information requests with a reasonable level of effort during coverage hours. Canonical may close cases representing level 4 issues after responding if Canonical believes it is appropriate to do so.|
 4. Response times. Canonical will use reasonable efforts to respond to support requests made by the customer within the response times set forth below, based on the applicable service and severity level.
   1. Table of response times
-|    |Standard|Advanced|
-|----|--------|--------|
-|**Severity Level 1**|2 business hours|1 hour|
-|**Severity Level 2**|4 business hours|4 business hours|
-|**Severity Level 3**|10 business hours|6 business hours|
-|**Severity Level 4**|20 business hours|10 business hours|
+|                    |Standard         |Advanced|
+|--------------------|-----------------|--------|
+|**Severity Level 1**|4 hours, excluding weekends and holidays |1 hour  |
+|**Severity Level 2**|8 business hours |2 hours |
+|**Severity Level 3**|12 business hours|6 hours |
+|**Severity Level 4**|24 business hours|12 hours|
   2. Resolution. Canonical will use reasonable efforts to resolve support cases, but Canonical does not guarantee a work-around, resolution or resolution time.
 5. Hotfixes. To temporarily resolve critical support cases, Canonical may provide a version of the affected software (e.g. package) that applies a patch. Such versions are referred to as “hotfixes”. Hotfixes provided by Canonical are supported for 90 days after the corresponding patch has been incorporated into a release of the software in the Ubuntu Archives. However, if a patch is rejected by the applicable upstream project, the hotfix will no longer be supported and the case will remain open.
 6. Languages. Canonical will provide support in English. Other languages may be available at certain times.
@@ -403,7 +416,7 @@ This includes Charms listed at [https://wiki.ubuntu.com/OpenStack/OpenStackCharm
 - <strong id="term-tam">TAM</strong> means a Canonical support engineer who works remotely to personally collaborate with the customer’s staff and management.
 - <strong id="term-trilio">Trilio</strong> means the software known as Trilio as published by Trilio Data, Inc.
 - <strong id="term-upgrade">Upgrade</strong> means the process of upgrading Kubernetes between versions. An upgrade is considered successful once Juju reports all applications in a “started” state. Canonical will provide support for valid bugs encountered during the Upgrade process.
-- <strong id="term-valid-customisations">Valid Customisations</strong> means configurations made through Horizon or the OpenStack API of the OpenStack Packages. For the avoidance of doubt, valid customizations do not include architectural changes that are not expressly executed or authorized by Canonical. Configuration options set during Foundation OpenStack Build should be considered critical to the health of the Cloud. Any changes to these may render the cloud unsupported. Request for changes should be validated by Canonical to ensure continued support.
+- <strong id="term-valid-customisations">Valid Customisations</strong> means configurations made through Horizon or the OpenStack API of the OpenStack Packages. For the avoidance of doubt, valid customizations do not include architectural changes that are not expressly executed or authorized by Canonical. Configuration options set during Private Cloud Build should be considered critical to the health of the Cloud. Any changes to these may render the cloud unsupported. Request for changes should be validated by Canonical to ensure continued support.
 - <strong id="term-virtual-machine">Virtual Machine</strong> means a virtualized compute instance instantiated on a recognised hypervisor technology (KVM, VMWare ESXi, Openstack or Public Cloud).
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
