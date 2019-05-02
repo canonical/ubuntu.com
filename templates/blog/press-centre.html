@@ -1,0 +1,6 @@
+{% extends "templates/one-column.html" %} 
+{% block content %} 
+{% for article in articles %} 
+{% include 'blog/blog-card.html' %} 
+{% endfor %} 
+{% endblock %}
