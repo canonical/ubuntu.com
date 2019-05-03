@@ -2,21 +2,20 @@
 
 {% block title %}Creating a cloud-like bare metal experience in the data centre{% endblock %}
 
-<!-- Change meta description -->
-{% block meta_description %}In regulated sectors, private cloud security needs to meet the highest requirements. This webinar explains how to deliver on these with an Openstack cloud.{% endblock %}
+{% block meta_description %}For organisations looking to turn the management of bare-metal server resources into a cloud-like environment, hardware testing is a must-do. {% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1SfZKopMr0ZXnxT5h1cEEebCysp6Carf9GSPzkL51c8E/edit{% endblock meta_copydoc %}
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="Creating a cloud-like bare metal experience in the data centre" class="p-strip--dark p-takeover--maas" image="0de4fcd5-logo-maas-icon.svg" url="#register-section" cta="Download the whitepaper" %}
+{% include "engage/shared/_header.html" with title="Creating a cloud-like bare metal experience in the data centre" class="p-strip--dark p-takeover--maas" image="67e3e0f1-MAAS_white-orange_rgb.svg" url="#register-section" cta="Download the whitepaper" %}
 
 <section class="p-strip is-shallow is-bordered">
   <div class="row">
-    <div class="col-8">
+    <div class="col-7">
       <p>
         For organisations looking to turn the management of bare-metal server resources into a cloud-like environment, hardware testing is a must-do.  
-        Not only does it lead to optimal hardware utilisation, it also reduces the cost of operations and increases developer productivity.           
+        Not only does it lead to optimal hardware utilisation, it also reduces the cost of operations and increases developer productivity. 
       </p>
       <p>
         Optimised testing also eases the hardware validation process by providing a framework that allows large-scale, automated testing of hardware with minimum effort to ensure that the physical infrastructure is ready to serve production workloads. Welcome to metal-as-a-service (MAAS).
@@ -39,21 +38,16 @@
         </li>
       </ul>
     </div>
-  </div>
-  <style>
-    .p-takeover--openstack {
-      background-image: linear-gradient(44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%);
-    }
-  </style>
-</section>
-<!-- Update section -->
-<section class="p-strip is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h2 id="register-section">Download the whitepaper</h2>
+    <div class="col-5" id="register-section">
+      {% include "../shared/forms/_landing_page_default.html" with id="3366" returnURL="https://pages.ubuntu.com/IoT_Dev_Ops-TY.html" %}
     </div>
-    <div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 355328, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>
   </div>
 </section>
 
 {% endblock content %}
+
+<style>
+  .p-takeover--maas {
+    background-image: linear-gradient(180deg, #222222 0%, #111111 100%);
+  }
+</style>
