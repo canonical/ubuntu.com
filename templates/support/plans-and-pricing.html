@@ -17,14 +17,37 @@
 <section class="p-strip--light is-deep is-bordered">
   <div class="row">
     <div class="col-4 p-card">
-      <h3>Server</h3>
+      <h3>UA for Infrastructure</h3>
       <div class="p-card__footer">
-        <p class="p-heading--four">From $75 per year <sup><a href="#fn-pnp-1">*</a></sup></p>
+        <p class="p-heading--four">From $225 per year <sup><a href="#fn-pnp-1">*</a></sup></p>
       </div>
       <div class="p-card__footer">
-        <a href="#ua-support">Learn more&nbsp;&rsaquo;</a>
+        <a href="#ua-i-support">Learn more&nbsp;&rsaquo;</a>
       </div>
     </div>
+
+    <div class="col-4 p-card">
+      <h3>OpenStack packages</h3>
+      <div class="p-card__footer">
+        <p class="p-heading--four">From $75,000</p>
+      </div>
+      <div class="p-card__footer">
+        <a href="#openstack">Learn more&nbsp;&rsaquo;</a>
+      </div>
+    </div>
+
+    <div class="col-4 p-card">
+      <h3>Kubernetes packages</h3>
+      <div class="p-card__footer">
+        <p class="p-heading--four">From $19,500</p>
+      </div>
+      <div class="p-card__footer">
+        <a href="#kubernetes">Learn more&nbsp;&rsaquo;</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
 
     <div class="col-4 p-card">
       <h3>MAAS</h3>
@@ -37,44 +60,12 @@
     </div>
 
     <div class="col-4 p-card">
-      <h3>OpenStack</h3>
-      <div class="p-card__footer">
-        <p class="p-heading--four">From $4 per day <sup><a href="#fn-pnp-1">*</a></sup></p>
-      </div>
-      <div class="p-card__footer">
-        <a href="#openstack">Learn more&nbsp;&rsaquo;</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-4 p-card">
-      <h3>Kubernetes</h3>
-      <div class="p-card__footer">
-        <p class="p-heading--four">From $0.02 per hour <sup><a href="#fn-pnp-1">*</a></sup></p>
-      </div>
-      <div class="p-card__footer">
-        <a href="#kubernetes">Learn more&nbsp;&rsaquo;</a>
-      </div>
-    </div>
-
-    <div class="col-4 p-card">
       <h3>Storage</h3>
       <div class="p-card__footer">
         <p class="p-heading--four">From $0.01 per GB per month <sup><a href="#fn-pnp-1">*</a></sup></p>
       </div>
       <div class="p-card__footer">
         <a href="#storage">Learn more&nbsp;&rsaquo;</a>
-      </div>
-    </div>
-
-    <div class="col-4 p-card">
-      <h3>Consulting packages</h3>
-      <div class="p-card__footer">
-        <p class="p-heading--four">From $2,500 per day <sup><a href="#fn-pnp-1">*</a></sup></p>
-      </div>
-      <div class="p-card__footer">
-        <a href="#consulting">Learn more&nbsp;&rsaquo;</a>
       </div>
     </div>
   </div>
@@ -86,13 +77,13 @@
   </div>
 </section>
 
-<section class="p-strip--light is-deep u-no-padding--bottom" id="ua-support">
+<section class="p-strip--light is-deep u-no-padding--bottom" id="ua-i-support">
   <div class="row">
     <div class="col-12">
-      <h2>Ubuntu Advantage</h2>
-      <p>Ubuntu Advantage is the professional package of tools, technology and expertise from Canonical, helping organisations around the world get the most out of their Ubuntu deployments. It includes access to:</p>
+      <h2>Ubuntu Advantage for Infrastructure</h2>
+      <p>Ubuntu Advantage for Infrastructure is the professional package of tools, technology and expertise from Canonical, helping organisations around the world get the most out of their Ubuntu deployments. It includes access to: </p>
       <ul class="p-list">
-        <li class="p-list__item is-ticked">Extended Security Maintenance: critical security updates after Ubuntu end-of-life</li>
+        <li class="p-list__item is-ticked">Extended Security Maintenance (ESM): critical security updates after Ubuntu end-of-life</li>
         <li class="p-list__item is-ticked">Landscape: the systems management tool for using Ubuntu at scale</li>
         <li class="p-list__item is-ticked">Livepatch: automatic kernel security hotfixes without rebooting</li>
         <li class="p-list__item is-ticked">Knowledge Base: a private archive of expert-written articles and tutorials</li>
@@ -105,25 +96,35 @@
 </section>
 
 <section class="p-strip--light is-shallow">
-  <div class="row" style="overflow-x: auto;">
+  <div class="row">
     <div class="col-12">
-      <h3 id="server">For servers</h3>
-      {% include "shared/pricing/_ua-server-support.html" %}
+      <h3 id="ua-i-physical">Ubuntu Advantage for Infrastructure - Physical</h3>
     </div>
   </div>
+  {% include "shared/pricing/_ua-for-infrastructure-physical.html" %}
 </section>
 
-<section class="p-strip--light is-shallow u-no-padding--bottom">
+<section class="p-strip--light is-shallow">
+  <div class="row">
+    <div class="col-12">
+      <h3 id="ua-i-virtual">Ubuntu Advantage for Infrastructure - Virtual</h3>
+    </div>
+  </div>
+  {% include "shared/pricing/_ua-for-infrastructure-virtual.html" %}
+</section>
+
+
+<section class="p-strip--light is-shallow is-bordered">
+  {% include "shared/pricing/_ua-server-support-add-ons.html" %}
+</section>
+
+<section class="p-strip--light is-shallow is-bordered">
   <div class="row" style="overflow-x: auto;">
     <div class="col-12">
-      <h3 id="desktop">For desktops</h3>
+      <h2 id="desktop">For desktops</h2>
       {% include "shared/pricing/_ua-desktop-support.html" %}
     </div>
   </div>
-</section>
-
-<section class="p-strip--light is-deep u-no-padding--bottom">
-  {% include "shared/pricing/_ua-server-support-add-ons.html" %}
 </section>
 
 <section class="p-strip--light is-deep is-bordered" id="maas">
@@ -144,26 +145,11 @@
 <section class="p-strip--light is-deep is-bordered" id="openstack">
   <div class="row">
     <div class="col-12">
-      <h2>OpenStack</h2>
-      <p>Canonical provides support services, management tools, and the Cloud Archive which keeps thousands of businesses productive with their own local OpenStack clouds.</p>
-    </div>
-  </div>
-  {% include "shared/pricing/_openstack-support.html" %}
-  <div class="row">
-    <div class="col-12">
-      <p><a href="/openstack/contact-us" class="js-invoke-modal">Get in touch&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light is-deep is-bordered" id="consulting">
-  <div class="row">
-    <div class="col-12">
-      <h2>OpenStack service packages</h2>
+      <h2>OpenStack consulting and training packages</h2>
       <p>Canonical delivers turnkey OpenStack software solutions, on-site, through its field consulting team. Foundation Cloud is based on our award-winning reference architecture. And Foundation Plus packs in a complete set of enterprise features and architectural flexibility.</p>
     </div>
   </div>
-    {% include "shared/pricing/_openstack-consulting.html" %}
+  {% include "shared/pricing/_openstack-packages.html" %}
   <div class="row">
     <div class="col-12">
       <p>For more information about Foundation Cloud or if you are not sure which one is right for you, <a href="/openstack/contact-us?product=foundation-cloud" class="js-invoke-modal">contact us&nbsp;&rsaquo;</a></p>
@@ -172,19 +158,6 @@
 </section>
 
 <section class="p-strip--light is-deep is-bordered" id="kubernetes">
-  <div class="row">
-    <div class="col-12">
-      <h2>Kubernetes</h2>
-      <p>Scale-out container management is top of mind for savvy cloud architects around the world. Ubuntu is, by far, the world&rsquo;s leading platform for container-based workflows.  Canonical provides enterprise support for Kubernetes.</p>
-      <p>For more information about Kubernetes support, <a href="/containers/contact-us" class="js-invoke-modal">contact us&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-
-  {% include "shared/pricing/_kubernetes-enterprise-support.html" %}
-
-</section>
-
-<section class="p-strip--light is-deep is-bordered">
   <div class="row">
     <div class="col-12">
       <h2>Kubernetes consulting and training packages</h2>
@@ -215,7 +188,7 @@
   <div class="row">
     <div class="col-12">
       <h2>Ceph and Swift Storage</h2>
-      <p>Ubuntu Advantage Storage from Canonical embeds the proven open source software‐defined storage (SDS) technologies of Ceph and Swift into a 24x7 supported software solution with a unique usage-based pricing model.</p>
+      <p>Ubuntu Advantage for Infrastructure from Canonical embeds the proven open source software‐defined storage (SDS) technologies of Ceph and Swift into a 24x7 supported software solution with a unique usage-based pricing model. For customers going beyond the current storage allowance <a href="#fn-storage"><sup>*</sup></a> per node, the following pricing applies:</p>
     </div>
   </div>
 
@@ -225,15 +198,14 @@
     </div>
   </div>
 
-
-<div class="row">
-  <div class="col-12">
-    <div>
-      <p><a href="/cloud/contact-us?product=ubuntu-advantage-storage" class="p-button--neutral js-invoke-modal" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Contact us - cloud storage CTA' : undefined });">Contact us</a></p>
-      <p><a href="https://insights.ubuntu.com/2015/05/18/ubuntu-advantage-storage-factsheet/?_ga=2.122490379.1666167933.1504515501-463981611.1499434659" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Try it now', 'eventLabel' : 'Download the datasheet - cloud storage CTA' : undefined });">Download the datasheet</a></p>
+  <div class="row">
+    <div class="col-12">
+      <div>
+        <p id="fn-storage"><small><sup>*</sup> for current allowance limits, see our <a href="/legal/ubuntu-advantage-service-description">service description</a>.</small></p>
+        <p><a href="/cloud/contact-us?product=ubuntu-advantage-storage" class="p-button--neutral js-invoke-modal" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Contact us - cloud storage CTA' : undefined });">Contact us</a></p>
+      </div>
     </div>
   </div>
-</div>
 </section>
 
 <section class="p-strip--light is-deep">

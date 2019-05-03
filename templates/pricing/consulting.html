@@ -1,0 +1,45 @@
+{% extends "pricing/base_pricing.html" %}
+
+{% block title %}Consulting{% endblock %}
+{% block meta_description %}Open Infrastructure training and consulting on openstack, kubernetes and kubeflow. Learn how to design, deploy and operate open infrastructure at scale.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1sXeOQ9eLq53NcfbrorYstHkZYTdut33jbN5LyHoDdYY{% endblock meta_copydoc %}
+
+{% block content %}
+
+  <section class="p-strip">
+    <div class="row">
+      <div class="col-8">
+        <h1>Open Infrastructure consulting &amp; training</h1>
+      </div>
+    </div>
+  </section>
+  <section class="p-strip--light">
+    <div class="row">
+      <h2 id="openstack">OpenStack</h2>
+    </div>
+    <div class="row u-equal-height">
+      {% include "shared/pricing/_openstack-packages.html" with columns='2' %}
+    </div>
+    <div class="row">
+      <a href="/support/contact-us?product=openstack" class="js-invoke-modal p-button--positive">Get in touch</a>
+    </div>
+  </section>
+
+  <section class="p-strip">
+    <div class="row">
+      <h2 id="kubernetes">Kubernetes</h2>
+    </div>
+    {% include 'shared/pricing/_kubernetes-consulting.html' %}
+  </section>
+
+  <section class="p-strip--light">
+    <div class="row">
+      <h2 id="kubeflow">Kubeflow</h2>
+    </div>
+    {% include "shared/pricing/_kubernetes-consulting-add-ons.html" %}
+  </section>
+
+  {% include "shared/contextual_footers/_contextual_footer.html" with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
+  {% include "shared/forms/interactive/_support.html" with formid="1240"   lpId="2065"  returnURL="https://www.ubuntu.com/support/thank-you" lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
+
+{% endblock content %}

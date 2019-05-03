@@ -1,81 +1,34 @@
 {% extends "livepatch/base_livepatch.html" %}
 
 {% block title %}Canonical Livepatch Service{% endblock %}
-{% block meta_description %}Automatic updates for Ubuntu 14.04, 16.04, and 18.04 LTS, reducing downtime whilst keeping on top of compliance and security.{% endblock %}
+{% block meta_description %}Automatic Linux kernel updates for Ubuntu 16.04 and 18.04 LTS. Apply critical patches without rebooting and keep your systems secure and compliant.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1Ofw9bQ4I40gy9hDIjuDMApz6sDK8qSdHI03-oY7xs-A/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip is-deep u-no-padding--bottom">
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-7">
+      <h1 style="font-weight: 100;">Canonical Livepatch Service</h1>
+    </div>
+  </div>
   <div class="row">
     <div class="col-6">
-      <h1 style="font-weight: 100;">Canonical Livepatch Service</h1>
       <h2 class="p-heading--four">Apply critical kernel patches without rebooting.</h2>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Fixes are applied automatically, without restarting your system</li>
         <li class="p-list__item is-ticked">Reduces downtime, keeping your Ubuntu LTS systems secure and compliant</li>
-        <li class="p-list__item is-ticked">Included as part of all Ubuntu Advantage support packages</li>
+        <li class="p-list__item is-ticked">Included as part of all Ubuntu Advantage for Infrastructure support packages</li>
       </ul>
     </div>
-    <div class="col-6">
+    <div class="col-6 prefix-1">
       <div class="u-embedded-media">
         <iframe class="u-embedded-media__element" width="772" height="426" src="https://player.vimeo.com/video/225445183" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
       </div>
     </div>
   </div>
 </section>
-<section class="p-strip is-deep">
-  <div class="row">
-    <div class="col-12">
-      <hr/>
-    </div>
-  </div>
-</section>
-<section class="p-strip u-no-padding--top">
-  <div class="row">
-    <div class="col-10">
-      <h2>Subscribe to Livepatch</h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-4">
-      <p>
-        <a class="p-button--positive row"  href="https://auth.livepatch.canonical.com/"><span class="p-link--external">Free for up to 3 machines</span></a>
-      </p>
-    </div>
-    <div class="col-8">
-      <p>All you need is an Ubuntu One account.</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-4">
-      <p>
-        <a class="p-button--positive row"  href="https://buy.ubuntu.com"><span class="p-link--external">Buy direct</span></a>
-      </p>
-    </div>
-    <div class="col-8">
-      <p>Part of Ubuntu Advantage for desktops or datacenters.</p>
-    </div>
-  </div>
-</section>
 
-<section class="p-strip--light">
-  <div class="row">
-    <h2 class="p-muted-heading u-align-text--center">Used by</h2>
-    <div class="p-fluid-grid--centered">
-        <span class="p-logo-image p-fluid-grid__item--small u-align--center"><img src="{{ ASSET_SERVER_URL }}9ae8ff55-2018-logo-bloomberg.svg" width="145" alt="Bloomberg" /></span>
-        <span class="p-logo-image p-fluid-grid__item--small u-align--center"><img src="{{ ASSET_SERVER_URL }}d8f890fb-logo-at%26t.svg" width="145" alt="AT&T" /></span>
-        <span class="p-logo-image p-fluid-grid__item--small u-align--center"><img src="{{ ASSET_SERVER_URL }}ff209af1-2018-logo-walmart.svg" width="145" alt="Walmart" /></span>
-        <span class="p-logo-image p-fluid-grid__item--small u-align--center"><img src="{{ ASSET_SERVER_URL }}d199354d-2018-logo-deutsche-telekom.svg" width="145" alt="Deutcshe Telecom" /></span>
-        <span class="p-logo-image p-fluid-grid__item--small u-align--center"><img src="{{ ASSET_SERVER_URL }}675af314-2018-logo-eBay.svg" width="145" alt="eBay" /></span>
-        <span class="p-logo-image p-fluid-grid__item--small u-align--center"><img src="{{ ASSET_SERVER_URL }}8a4d26de-2018-logo-cisco.svg" width="145" alt="Cisco" /></span>
-        <span class="p-logo-image p-fluid-grid__item--small u-align--center"><img src="{{ ASSET_SERVER_URL }}94da9f2a-2018-logo-NTT.svg" width="145" alt="NTT" /></span>
-        <span class="p-logo-image p-fluid-grid__item--small u-align--center"><img src="{{ ASSET_SERVER_URL }}dcde7628-2018-logo-best-buy.svg" width="145" alt="Best Buy" /></span>
-        <span class="p-logo-image p-fluid-grid__item--small u-align--center"><img src="{{ ASSET_SERVER_URL }}9f7bc2d4-2018-logo-paypal.svg" width="145" alt="PayPal" /></span>
-      </div>
-    </div>
-</section>
-
-<section class="p-strip is-deep">
+<section class="p-strip--light is-deep is-bordered">
   <div class="row u-equal-height">
     <div class="col-3 suffix-1 u-vertically-center">
       <img src="{{ ASSET_SERVER_URL }}0326ac7d-dena-logo.png?w=144" width="144" alt="Dena logo" />
@@ -91,10 +44,70 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
-    <div class="col-7 suffix-1">
+    <div class="col-10">
+      <h2>Subscribe to Livepatch</h2>
+    </div>
+  </div>
+  <div class="row p-divider u-equal-height">
+    <div class="col-6 p-divider__block">
+      <h4>Free for 3 machines</h4>
+      <p>All you need is an Ubuntu One account.</p>
+      <p> <a class="p-button--positive"  href="https://auth.livepatch.canonical.com/"><span class="p-link--external">Get yours now</span></a></p>
+    </div>
+    <div class="col-6 p-divider__block">
+      <h4>Buy online</h4>
+      <p>Buy as part of Ubuntu Advantage from Canonical.</p>
+      <p> <a class="p-button--positive"  href="https://buy.ubuntu.com/"><span class="p-link--external">Visit buy.ubuntu.com</span></a></p>
+    </div>
+  </div>
+</section>
+
+<div class="p-strip--accent is-dark is-bordered is-x-shallow" style="background-blend-mode: color;
+background-image: linear-gradient(-45deg, #5E2750 0%, #2C001E 100%);">
+  <div class="row u-vertically-center">
+    <div class="col-1 u-vertically-center u-hide--small">
+      <img src="data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg version='1.1' viewBox='0 0 28 28' xmlns='http://www.w3.org/2000/svg'%3E%3Ctitle%3Epath4185%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(-131 -719)' fill='%23FFFFFF'%3E%3Cg transform='translate(-15 697)'%3E%3Cg transform='translate(157 34) scale(-1 1) translate(-17 -18)'%3E%3Cg transform='translate(.27856 .15983)'%3E%3Cg transform='translate(16.286 17.834) rotate(-90) translate(-17 -16)'%3E%3Cg transform='translate(17.282 16) scale(-1 1) translate(-16.5 -16)'%3E%3Cg transform='translate(16.641 16) scale(-1 1) translate(-16 -16)'%3E%3Cpath transform='translate(13.652 13.564) scale(1 -1) translate(-13.652 -13.564)' d='m27.303 5.8745c-0.574-2.5209-1.428-6.83-5.29-5.6848-4.907 1.4556-9.373 5.5584-12.791 8.9531v-1e-4c-0.0033 0.0034-0.0068 0.0067-0.0102 0.0101-0.0032 0.0034-0.0068 0.0067-0.0102 0.0101l1e-4 1e-4c-3.4165 3.396-7.5458 7.833-9.0107 12.709-1.1526 3.837 3.1842 4.686 5.7214 5.256l3.6037-8.142-1.7315-3.191c0.7581-1.18 2.6604-3.219 3.9284-4.48 1.269-1.26 3.321-3.1499 4.509-3.9032l2.886 2.0434 8.195-3.5807z'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A" width="28" alt="" />
+    </div>
+    <div class="col-11 u-no-margin--left u-no-margin--bottom">
+      <h4 style="margin-bottom: 0.5rem;">Any questions?</h4>
+      <p class="u-no-margin--bottom u-no-max-width">
+        <span style="margin-right: 0.25rem;">
+          Call us <tel href="+17372040291">+1&nbsp;737&nbsp;204&nbsp;0291</tel>&nbsp;(Americas),
+          <tel href="+442036565291">+44&nbsp;203&nbsp;656&nbsp;5291</tel>&nbsp;(RoW) or
+        </span>
+        <br class="u-hide--large u-hide--medium" /><br class="u-hide--large u-hide--medium" />
+        <a href="/support/contact-us" class="p-button--neutral js-invoke-modal">contact us online</a></p>
+    </div>
+  </div>
+</div>
+
+<section class="p-strip--light is bordered">
+  <div class="row">
+    <h2 class="p-muted-heading u-align-text--center">Livepatch is used by</h2>
+    <div class="prefix-1 suffix-1 p-fluid-grid--centered">
+        <span class="p-logo-image p-fluid-grid__item--small u-align--center"><img src="{{ ASSET_SERVER_URL }}9ae8ff55-2018-logo-bloomberg.svg" width="145" alt="Bloomberg" /></span>
+        <span class="p-logo-image p-fluid-grid__item--small u-align--center"><img src="{{ ASSET_SERVER_URL }}d8f890fb-logo-at%26t.svg" width="145" alt="AT&T" /></span>
+        <span class="p-logo-image p-fluid-grid__item--small u-align--center"><img src="{{ ASSET_SERVER_URL }}ff209af1-2018-logo-walmart.svg" width="145" alt="Walmart" /></span>
+        <span class="p-logo-image p-fluid-grid__item--small u-align--center"><img src="{{ ASSET_SERVER_URL }}d199354d-2018-logo-deutsche-telekom.svg" width="145" alt="Deutcshe Telecom" /></span>
+        <span class="p-logo-image p-fluid-grid__item--small u-align--center"><img src="{{ ASSET_SERVER_URL }}675af314-2018-logo-eBay.svg" width="145" alt="eBay" /></span>
+        <span class="p-logo-image p-fluid-grid__item--small u-align--center"><img src="{{ ASSET_SERVER_URL }}8a4d26de-2018-logo-cisco.svg" width="145" alt="Cisco" /></span>
+        <span class="p-logo-image p-fluid-grid__item--small u-align--center"><img src="{{ ASSET_SERVER_URL }}94da9f2a-2018-logo-NTT.svg" width="145" alt="NTT" /></span>
+        <span class="p-logo-image p-fluid-grid__item--small u-align--center"><img src="{{ ASSET_SERVER_URL }}dcde7628-2018-logo-best-buy.svg" width="145" alt="Best Buy" /></span>
+        <span class="p-logo-image p-fluid-grid__item--small u-align--center"><img src="{{ ASSET_SERVER_URL }}9f7bc2d4-2018-logo-paypal.svg" width="145" alt="PayPal" /></span>
+      </div>
+    </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-7">
       <h2>How to enable the Canonical Livepatch Service</h2>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-7 suffix-1">
       <ol class="p-list-step">
         <li class="p-list-step__item">
           <h3 class="p-list-step__title">
@@ -147,12 +160,15 @@
   </div>
 </section>
 
-<div class="p-strip">
+<div class="p-strip--light">
   <div class="row">
     <div class="col-8">
       <h2>Get started with Livepatch today</h2>
-      <p>Livepatch is free to use on your own PC or server. To discuss whether Livepatch is right for your business, talk to our sales team.</p>
-      <p class="u-no-margin--bottom"><a href="/support/contact-us" class="p-button u-no-margin--bottom js-invoke-modal">Contact us</a></p>
+      <p>Livepatch is free to use on your own PC or server. To discuss whether Livepatch is right for your business, talk to our team.</p>
+      <p class="u-no-margin--bottom"><a href="/support/contact-us" class="p-button u-no-margin--bottom js-invoke-modal">Get in touch</a></p>
+    </div>
+    <div class="col-3 u-vertically-center u-align--center u-hide--small">
+        <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="140" alt="" />
     </div>
   </div>
 </div>
