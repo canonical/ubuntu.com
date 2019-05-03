@@ -1,6 +1,6 @@
 <section class="p-strip--dark p-takeover js-takeover">
   <div class="row u-clearfix u-vertically-center">
-    <div class="col-8">
+    <div class="col-6">
       <h1>
         Building the agile data centre
       </h1>
@@ -16,7 +16,7 @@
     <div class="col-4">
       <p class="p-takeover__image u-align-text--center">
         <img
-          src="{{ ASSET_SERVER_URL }}0de4fcd5-logo-maas-icon.svg"
+          src="{{ ASSET_SERVER_URL }}67e3e0f1-MAAS_white-orange_rgb.svg"
           alt=""
         />
       </p>
@@ -31,22 +31,17 @@
   </div>
   <style>
     .p-takeover {
-      background-image: url("{{ ASSET_SERVER_URL }}69d263b9-left.svg"),
-        url("{{ ASSET_SERVER_URL }}c6f9e52d-right.svg"),
-        linear-gradient(134deg, #111111 0%, #212121 100%);
-      background-position: left, right;
-      background-repeat: no-repeat, no-repeat;
-      background-size: auto 100%, auto 100%, cover;
+    background-image: url(https://assets.ubuntu.com/v1/127c8ba7-hero-bg-maas-2.svg);
+    background-position: 50% 47%;
+    overflow: hidden;
+    position: relative;
     }
     .p-takeover__image {
-      width: 200px;
+      width: 312px;
     }
     @media (max-width: 874px) {
-      .p-takeover {
-        background-image: linear-gradient(134deg, #111111 0%, #212121 100%);
-      }
       .p-takeover__image {
-        width: 150px;
+        width: 200px;
       }
     }
   </style>
