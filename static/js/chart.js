@@ -194,12 +194,6 @@ function formatKeyLabel(key) {
  * Builds chart using supplied selector and data
  */
 export function createChart(chartSelector, taskTypes, taskStatus, tasks) {
-  var chartSelectorElement = document.querySelector(chartSelector);
-  console.log(chartSelectorElement);
-  console.log(chartSelectorElement.clientWidth);
-  // if (!chartSelectorElement) {
-  //   return
-  // }
   var margin = {
     top: 0,
     right: 40,
