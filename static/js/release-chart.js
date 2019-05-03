@@ -29,23 +29,46 @@ function debounce(func, wait, immediate) {
 }
 
 function buildCharts() {
-  createChart('#server-desktop-eol', desktopServerReleaseNames, desktopServerStatus, serverAndDesktopReleases);
-  createChart('#kernel-eol', kernelReleaseNames, kernelStatus, kernelReleases);
-  createChart('#openstack-eol', openStackReleaseNames, openStackStatus, openStackReleases);
-  createChart('#kubernetes-eol', kubernetesReleaseNames, kubernetesStatus, kubernetesReleases);
+  if (document.querySelector('#server-desktop-eol')) {
+    createChart('#server-desktop-eol', desktopServerReleaseNames, desktopServerStatus, serverAndDesktopReleases);
+  }
+  if (document.querySelector('#kernel-eol')) {
+    createChart('#kernel-eol', kernelReleaseNames, kernelStatus, kernelReleases);
+  }
+  if (document.querySelector('#openstack-eol')) {
+    createChart('#openstack-eol', openStackReleaseNames, openStackStatus, openStackReleases);
+  }
+  if (document.querySelector('#kubernetes-eol')) {
+    createChart('#kubernetes-eol', kubernetesReleaseNames, kubernetesStatus, kubernetesReleases);
+  }
 }
 
 function clearCharts() {
-  document.querySelector('#server-desktop-eol').innerHTML = '';
-  document.querySelector('#kernel-eol').innerHTML = '';
-  document.querySelector('#openstack-eol').innerHTML = '';
-  document.querySelector('#kubernetes-eol').innerHTML = '';
+  if (document.querySelector('#server-desktop-eol')) {
+    document.querySelector('#server-desktop-eol').innerHTML = '';
+  }
+  if (document.querySelector('#kernel-eol')) {
+    document.querySelector('#kernel-eol').innerHTML = '';
+  }
+  if (document.querySelector('#openstack-eol')) {
+    document.querySelector('#openstack-eol').innerHTML = '';
+  }
+  if (document.querySelector('#kubernetes-eol')) {
+    document.querySelector('#kubernetes-eol').innerHTML = '';
+  }
 }
 
 var mediumBreakpoint = 768;
 
+// A bit of a hack, but chart doesn't load with full year axis on first load,
+// It has to be loaded once, and then again
+// This will need looking into but this fix will work for now
 if (window.innerWidth >= mediumBreakpoint) {
   buildCharts();
+  setTimeout(function() {
+    clearCharts();
+    buildCharts();
+  }, 0);
 }
 
 window.addEventListener('resize', debounce(function() {
