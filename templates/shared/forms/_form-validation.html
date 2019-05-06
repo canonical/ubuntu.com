@@ -146,8 +146,9 @@
     // add a thank-you notification to the page
     // if someone submitted a form without a thank you action
     var thankYouMessage = thankYouMessage;
-    if (!return_url || !isModal) {
-      if (thankYouMessage == null) {
+    if (return_url === null || isModal === false) {
+      console.log("thank you: " + thankYouMessage);
+      if (thankYouMessage === null) {
         thankYouMessage = 'Thank you<br />A member of our team will be in touch within one working day';
       }
       document.getElementById('main-content').insertAdjacentHTML('afterbegin', '<div class="p-strip is-shallow u-no-padding--bottom"><div class="row"><div class="p-notification--positive"><p class="p-notification__response"><span class="p-notification__status">Success:</span> ' + thankYouMessage + '</p></div></div></div>');
