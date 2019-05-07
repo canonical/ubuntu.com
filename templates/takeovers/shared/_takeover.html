@@ -1,4 +1,4 @@
-<section class="{% if class %}p-strip {{ class }} p-takeover js-takeover{% else %}p-strip--dark p-takeover js-takeover{% endif %}">
+<section class="{% if titleClass %}{{ titleClass }}{% else %}p-strip--dark p-takeover js-takeover{% endif %}">
   <div class="row u-clearfix u-vertically-center">
  
     <div class="{% if image %}col-8 {% else %}col-8{% endif %}">
@@ -32,7 +32,7 @@
         {% endif %}
     </div>
 
-    {% if image %}<div class="{% if imageClass %}col-4 u-align--center u-vertically-center {{ imageClass }}{% else %}col-4 u-hide--small u-align--center u-vertically-center{% endif %}">
+    {% if image %}<div class="{% if imageClass %}{{ imageClass }}{% else %}col-4 u-hide--small u-align--center u-vertically-center{% endif %}">
         <img src="{% if image != "http" %}{{ ASSET_SERVER_URL }}{% endif %}{{ image }}" alt="image for (( title ))" >
       </div>{% endif %}
     
@@ -56,5 +56,3 @@
       {% endif %}
   </div>
 </section>
-
-

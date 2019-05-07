@@ -13,15 +13,84 @@
 
 <section class="p-strip">
   <div class="row">
-    <p>These headers have several options with only one required field and can be used for any takeover. These include the title, a subtitle (optional), a date (optional), a cta with a url  (optional), a class (optional) and a lang(uage) (optional).</p>
-
-    <h3>Everything - title, subtitle, date, cta and url, class</h3>
-
-    <h4>Include tag</h4>
-    <pre><code>&#123;% include "takeover/shared/_header.html" with title="What's New in Ubuntu 18.10"  image="d9105909-Dell_XPS_Laptop_Left-Desktop.png?w=413" subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar" date="Webinar is live on 3 December 2018 at 8pm GMT" url="#register-section" cta="Watch the webinar" class="test-class" lang="en" %}
-    </code></pre>
-    <h4>Output</h4>
+    <p>This include has several options with only three of them required. Default values are used for some of the classes if there is no option included</p>
   </div>
+  <div class="row">
+    <div class="col-12" style="overflow-x: auto;">
+      <table class="p-table" style="width: auto;">
+        <thead>
+          <tr>
+            <th>Option</th>
+            <th width="200" class="u-align--center">Mandatory</th>
+            <th width="400" class="u-align--center">Default value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>title</td>
+            <td class="u-align--center"><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes" /></td>
+            <td class="u-align--center">-</td>
+          </tr>
+          <tr>
+            <td>titleClass</td>
+            <td class="u-align--center"><img src="{{ ASSET_SERVER_URL }}9cdb5b1e-cross-darkaubergine.svg" width="16" height="16" alt="No" /></td>
+            <td class="u-align--center">p-strip--dark p-takeover js-takeover</td>
+          </tr>
+          <tr>
+            <td>subtitle</td>
+            <td class="u-align--center"><img src="{{ ASSET_SERVER_URL }}9cdb5b1e-cross-darkaubergine.svg" width="16" height="16" alt="No" /></td>
+            <td class="u-align--center">-</td>
+          </tr>
+          <tr>
+            <td>subtitleClass</td>
+            <td class="u-align--center"><img src="{{ ASSET_SERVER_URL }}9cdb5b1e-cross-darkaubergine.svg" width="16" height="16" alt="No" /></td>
+            <td class="u-align--center">-</td>
+          </tr>
+          <tr>
+            <td>ctaBtn</td>
+            <td class="u-align--center"><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes" /></td>
+            <td class="u-align--center">-</td>
+          </tr>
+          <tr>
+            <td>ctaBtnURL</td>
+            <td class="u-align--center"><img src="{{ ASSET_SERVER_URL }}f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes" /></td>
+            <td class="u-align--center">-</td>
+          </tr>
+          <tr>
+            <td>ctaBtnClass</td>
+            <td class="u-align--center"><img src="{{ ASSET_SERVER_URL }}9cdb5b1e-cross-darkaubergine.svg" width="16" height="16" alt="No" /></td>
+            <td class="u-align--center">p-button--positive</td>
+          </tr>
+          <tr>
+            <td>ctaLink</td>
+            <td class="u-align--center"><img src="{{ ASSET_SERVER_URL }}9cdb5b1e-cross-darkaubergine.svg" width="16" height="16" alt="No" /></td>
+            <td class="u-align--center">-</td>
+          </tr>
+          <tr>
+            <td>ctaLinkURL</td>
+            <td class="u-align--center"><img src="{{ ASSET_SERVER_URL }}9cdb5b1e-cross-darkaubergine.svg" width="16" height="16" alt="No" /></td>
+            <td class="u-align--center">-</td>
+          </tr>
+          <tr>
+            <td>ctaLinkClass</td>
+            <td class="u-align--center"><img src="{{ ASSET_SERVER_URL }}9cdb5b1e-cross-darkaubergine.svg" width="16" height="16" alt="No" /></td>
+            <td class="u-align--center">p-link--inverted</td>
+          </tr>
+          <tr>
+            <td>image</td>
+            <td class="u-align--center"><img src="{{ ASSET_SERVER_URL }}9cdb5b1e-cross-darkaubergine.svg" width="16" height="16" alt="No" /></td>
+            <td class="u-align--center">-</td>
+          </tr>
+          <tr>
+            <td>imageClass</td>
+            <td class="u-align--center"><img src="{{ ASSET_SERVER_URL }}9cdb5b1e-cross-darkaubergine.svg" width="16" height="16" alt="No" /></td>
+            <td class="u-align--center">col-4 u-hide--small u-align--center u-vertically-center</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
 </section>
 {% include "takeovers/shared/_takeover.html" with title="What's New in Ubuntu 18.10" subtitle="Some more text to go in here" subtitleClass="p-heading--four" %}
 <hr />
