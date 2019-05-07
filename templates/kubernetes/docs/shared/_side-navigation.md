@@ -17,6 +17,7 @@
   - [Scaling](/kubernetes/docs/scaling)
   - [Validation](/kubernetes/docs/validation)
   - [Decommissioning](/kubernetes/docs/decommissioning)
+  - [Authorisation and authentication](/kubernetes/docs/auth)
   - [Authentication with LDAP](/kubernetes/docs/ldap)
   - [Using Vault as a CA](/kubernetes/docs/using-vault)
   - [Encryption at rest](/kubernetes/docs/encryption-at-rest)
