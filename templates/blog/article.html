@@ -1,0 +1,37 @@
+{% extends "templates/one-column.html" %}
+{% block title %}{{article.title.rendered|safe}}{% endblock %}
+{% block content %}
+<section id="main-content" class="p-strip">
+  <div class="row">
+    <div class="col-8 p-blog-post">
+      <h1 class="p-heading--two">{{ article.title.rendered|safe }}</h1>
+      <p>by {{ article.author.name }} on {{ article.date }}</p>
+      {{ article.content.rendered|safe }}
+    </div>
+  </div>
+</section>
+
+{% if related_articles %}
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-12">
+      <h3>
+        Related posts
+      </h3>
+    </div>
+  </div>
+  <div class="row p-divider">
+    {% for related_article in related_articles %}
+    <div class="col-4 p-divider__block">
+      <h4>
+        <a href="/blog/{{ related_article.slug }}">
+          {{ related_article.title.rendered|safe }}
+        </a>
+      </h4>
+      <p>{{ related_article.excerpt.raw }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endblock %}
