@@ -1,65 +1,52 @@
 {% extends "engage/base_engage.html" %}
 
-{% block title %}The transformation of the DevOps journey in IoT{% endblock %}
+{% block title %}Traditional development methods do not scale into the IoT sphere{% endblock %}
 
-{% block meta_description %}raditional development methods do not scale into the IoT sphere. Strong inter-dependencies and blurred boundaries among components in the edge device stack result in fragmentation, slow updates, security issues, increased cost, and reduced reliability of platforms.{% endblock %}
+{% block meta_description %}Traditional development methods do not scale into the IoT sphere. Strong inter-dependencies and blurred boundaries among components in the edge device stack result in fragmentation, slow updates, security issues, increased cost, and reduced reliability of platforms{% endblock %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1imuKA06xisHD5RURurRhiJuoVeQ3qGojpOVX6odPxR0/edit?ts=5caa27c6{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1imuKA06xisHD5RURurRhiJuoVeQ3qGojpOVX6odPxR0/edit?ts=5caa27c6#heading=h.c6tdtgv4kzb0{% endblock meta_copydoc %}
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="The transformation of the DevOps journey in IoT" url="#register-section" cta="Download the whitepaper" class="p-strip--dark p-takeover--iot" lang="en" %}
+{% include "engage/shared/_header.html" with title="The transformation of the DevOps journey in IoT" url="#register-section" cta="Register for the webinar" class="p-strip--dark p-takeover--devops"%}
 
 <section class="p-strip is-shallow is-bordered">
   <div class="row">
-    <div class="col-8">
+    <div class="col-7">
       <p>
-        Traditional development methods do not scale into the IoT sphere. Strong inter-dependencies and blurred boundaries among components in the edge device stack result in fragmentation, slow updates, security issues, increased cost, and reduced reliability of platforms. 
+        Traditional development methods do not scale into the IoT sphere. Strong inter-dependencies and blurred boundaries among components in the edge device stack result in fragmentation, slow updates, security issues, increased cost, and reduced reliability of platforms.
       </p>
       <p>
-        This reality places a major strain on IoT players who need to contend with varying cycles and priorities in the development stack, limiting their flexibility to innovate and introduce changes into their products, both on the hardware and software sides. 
+        This reality places a major strain on IoT players who need to contend with varying cycles and priorities in the development stack, limiting their flexibility to innovate and introduce changes into their products, both on the hardware and software sides.  
       </p>
       <p>
         One notable way to reduce the complexity in multi-component stacks is through the use DevOps - a paradigm that combines development with operations in a single and streamlined process. However, DevOps alone cannot solve the complexity and dependency that exists in monolithic IoT products.
       </p>
       <h4>
-        Highlights of this whitepaper include: 
+        Highlights of this whitepaper include:  
       </h4>
       <ul class="p-list">
         <li class="p-list__item is-ticked">
           How the decoupling of components in a reliable and predictable fashion will reduce the inter-dependency, improve security and allow for faster development cycles. 
         </li>
         <li class="p-list__item is-ticked">
-          A look at the technical architecture of Ubuntu Core and snaps in the context of an IoT DevOps model. 
+          A look at the technical architecture of Ubuntu Core and snaps in the context of an IoT DevOps model.         
         </li>
         <li class="p-list__item is-ticked">
           Real life case studies of accelerated Linux development cycles as an alternative to the existing model. 
         </li>
       </ul>
     </div>
+    <!-- Change this section -->
+    <div class="col-5" id="register-section">
+      {% include "../shared/forms/_landing_page_default.html" with id="3348" returnURL="https://pages.ubuntu.com/LXD_Whitepaper_TY.html" %}
+    </div>
   </div>
-  <style>
-    /* Header color TBC */
-    .p-takeover--iot {
-      background-image: linear-gradient(181deg, #106363 12%, #083333 100%);
+    <style>
+    .p-takeover--devops {
+      background-image: linear-gradient(134deg, #111111 0%, #212121 100%);
     }
   </style>
-</section>
-<section class="p-strip is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h2 id="register-section">Download the whitepaper</h2>
-    </div>
-    <div
-      class="jsBrightTALKEmbedWrapper"
-      style="width:100%; height:100%; position:relative;background: #ffffff;"
-    >
-    <!-- Update script -->
-      <script src="//app-sjg.marketo.com/js/forms2/js/forms2.min.js"></script>
-        <form id="mktoForm_3374"></form>
-      <script>MktoForms2.loadForm("//app-sjg.marketo.com", "066-EOV-335", 3374);</script>
-    </div>
-  </div>
 </section>
 
 {% endblock content %}
