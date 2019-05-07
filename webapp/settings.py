@@ -12,6 +12,16 @@ import os
 import socket
 import yaml
 
+BLOG_CONFIG = {
+    "TAG_IDS": [],
+    "EXCLUDED_TAGS": [3184, 3265],
+    # the title of the blog
+    "BLOG_TITLE": "Blog",
+    # the tag name for generating a feed
+    "TAG_NAME": "",
+}
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "no_secret")
