@@ -5,46 +5,56 @@
 
 {% block content %}
 
-<section class="p-strip is-deep u-no-padding--bottom">
+<section class="p-strip is-deep">
   <div class="row">
     <div class="col-10">
       <h1>Download Ubuntu Server</h1>
     </div>
   </div>
-  <div class="row u-equal-height">
-    <div class="col-6 p-card--highlighted">
+  <div class="row">
+    <div class="col-12 p-card--highlighted">
       <h2>Ubuntu Server {{lts_release_with_point}} LTS</h2>
-      <div class="p-card__content">
-        <p>The long-term support version of Ubuntu Server, including the {{lts_openstack_version}} release of OpenStack and support guaranteed until {{lts_release_eol}} &mdash; 64-bit only.</p>
-        <p>This release uses our simplified installer, Subiquity. If you need complex functions such as encrypted filesystems, use <a href="/download/alternative-downloads#alternate-ubuntu-server-installer">the traditional installer</a>.</p>
-        <p><a href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu Server {{ lts_release }} LTS release notes</a></p>
-        <p><a href="/download/server/thank-you?version={{ lts_release_with_point }}&amp;architecture=amd64" class="p-button--positive u-no-margin--bottom" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{ lts_release_full }}', 'eventValue' : undefined });">Download</a></p>
+      <div class="u-equal-height p-divider">
+        <div class="col-8 p-divider__block">
+          <p class="p-card__content">The long-term support version of Ubuntu Server, including the {{lts_openstack_version}} release of OpenStack and support guaranteed until {{lts_release_eol}} &mdash; 64-bit only.</p>
+          <p class="p-card__content">This release uses our new installer, Subiquity. If you need support for options not implemented in Subiquity, such as encrypted filesystem support, the traditional installer can be found on the <a href="/download/alternative-downloads#alternate-ubuntu-server-installer">alternative downloads</a> page.</p>
+          <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu Server {{ lts_release }} LTS release notes</a></p>
+        </div>
+        <div class="col-4">
+          <p class="p-card__content"><a href="/download/server/thank-you?version={{ lts_release_with_point }}&amp;architecture=amd64" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{ lts_release_full }}', 'eventValue' : undefined });">Download</a></p>
+          <p><small>For other versions of Ubuntu including torrents, the network installer, a list of local mirrors, and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</small></p>
+        </div>
       </div>
     </div>
-    <div class="col-6 p-card--highlighted">
+  </div>
+  <div class="row">
+    <div class="col-12 p-card--highlighted">
       <h2>Ubuntu Server {{ latest_release_with_point }}</h2>
-      <div class="p-card__content">
-        <p>The latest version of Ubuntu Server, including nine months of security and maintenance updates, until {{latest_release_eol}}.</p>
-        <p><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu Server {{ latest_release }} release notes</a></p>
-        <p>
-          <a class="p-button--positive" href="/download/server/thank-you?version={{ latest_release_with_point }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{ latest_release }}', 'eventValue' : undefined });">Download</a></p>
-        </p>
+      <div class="u-equal-height p-divider">
+        <div class="col-8 p-divider__block">
+          <p class="p-card__content">The latest version of Ubuntu Server, including nine months of security and maintenance updates, until {{latest_release_eol}}.</p>
+          <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes" class="p-link--external">Ubuntu Server {{ latest_release }} release notes</a></p>
+        </div>
+        <div class="col-4">
+          <p class="p-card__content">
+            <a class="p-button--positive is-wide" href="/download/server/thank-you?version={{ latest_release_with_point }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{ latest_release }}', 'eventValue' : undefined });">Download</a></p>
+            <p><small>For other versions of Ubuntu including torrents, the network installer, a list of local mirrors, and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</small></p>
+          </p>
+        </div>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-12">
-      <p><small>For other versions of Ubuntu including torrents, the network installer, a list of local mirrors, and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</small></p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-shallow is-bordered">
-  <div class="row">
-    <div class="col-12 p-card">
+    <div class="col-12 p-card--highlighted">
       <h3>Ubuntu Server on Windows or macOS with Multipass</h3>
-      <p>Quickly launch Ubuntu Server virtual machines with Multipass. Downloading and updating images is handled automatically. And you can use cloud-init to customise images before your first login.  Available for Linux, Windows, and macOS.</p>
-      <p><a href="https://multipass.run/install" class="p-button--positive u-no-margin--bottom"><span class="p-link--external">Download Multipass</span></a></p>
+      <div class="u-equal-height p-divider">
+        <div class="col-8 p-divider__block">
+          <p>Quickly launch Ubuntu Server virtual machines with Multipass. Downloading and updating images is handled automatically. And you can use cloud-init to customise images before your first login.  Available for Linux, Windows, and macOS.</p>
+        </div>
+        <div class="col-4">
+          <p><a href="https://multipass.run/install" class="p-button--positive is-wide"><span class="p-link--external">Download Multipass</span></a></p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
