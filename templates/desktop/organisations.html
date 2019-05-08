@@ -183,17 +183,7 @@
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-6">
-      <img src="{{ ASSET_SERVER_URL }}d8c957cc-2018-04-20-release-eof-desktop.png?w=502" width="502" alt="">
-    </div>
-    <div class="col-6">
-      <h2>A release schedule you can depend on</h2>
-      <p>Every two years there is a new long-term support (LTS) release of Ubuntu Desktop that is supported for five years. During that time, there will be regular security fixes and other critical updates which are, and always will be, free of charge.</p>
-    </div>
-  </div>
-</section>
+{% include "shared/_release_schedule.html" %}
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_desktop_contact_us" second_item="_support" third_item="_desktop_further_reading" %}
 
