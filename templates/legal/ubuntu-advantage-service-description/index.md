@@ -11,33 +11,7 @@ Capitalised terms shall have meanings as defined in the [Definitions section](#
 
 <h2 id="uasd-ua-infrastructure">Ubuntu Advantage for Infrastructure (UA-I)</h2>
 
-|<br />Subscriptions|<br />Essential|UA-I Level<br />Standard|<br />Advanced|
-|-------------|:---------:|:--------:|:--------:|
-|Landscape Management|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
-|Kernel Livepatch Service|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
-|Extended Security Maintenance - Infrastructure|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
-|FIPS 140-2 Level 1 certified cryptographic modules|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
-|Common Criteria EAL2|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
-
-|Benefits|Essential|Standard|Advanced|
-|-------------|:---------:|:--------:|:--------:|
-|Ubuntu guest coverage|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
-|Ubuntu Legal Assurance||<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
-
-|Support|Essential|Standard|Advanced|
-|-------------|:---------:|:--------:|:--------:|
-|Knowledge base|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
-|Ubuntu OS||<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
-|OpenStack||<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
-|Kubernetes||<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
-|Ceph / Swift||<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
-|MAAS||<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
-|KVM / LXD||<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|<img src="https://assets.ubuntu.com/v1/c4b02d61-tick-orange.svg" width="16" height="16" alt="Yes" />|
-|**Phone and ticket support**| |**24x5**|**24x7**|
-|Severity Level 1 SLA||4 hours, excluding weekends and holidays|1 hour|
-|Severity Level 2 SLA||8 business hours|2 hours|
-|Severity Level 3 SLA||12 business hours|6 Hours|
-|Severity Level 4 SLA||24 business hours|12 hours|
+{% include "shared/pricing/_ua-for-infrastructure.html" %}
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
@@ -79,7 +53,7 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
 
 1. 24x5 (Standard) or 24x7 (Advanced) phone and ticket support.
   1. Releases. Canonical will provide support for installation, configuration, maintenance, and management of any standard release of Ubuntu when installed using official sources and within its product life cycle, including any applicable Extended Security Maintenance term. The life cycle for each version of Ubuntu is specified here: [https://www.ubuntu.com/about/release-cycle](https://www.ubuntu.com/about/release-cycle).
-  2. Hardware. Ubuntu Certified hardware has passed Canonical’s extensive testing and review process. More information about the Ubuntu certification process and a list of certified hardware can be found on the Ubuntu Certification page: [http://www.ubuntu.com/certification/](http://www.ubuntu.com/certification/ The services apply only with respect to customer’s hardware which has been certified. In the event a customer requests the services with respect to hardware which is not certified, Canonical will use reasonable efforts to provide support services, but may not adhere to the obligations described in this service description.
+  2. Hardware. Ubuntu Certified hardware has passed Canonical’s extensive testing and review process. More information about the Ubuntu certification process and a list of certified hardware can be found on the Ubuntu Certification page: [http://www.ubuntu.com/certification/](http://www.ubuntu.com/certification/] The services apply only with respect to customer’s hardware which has been certified. In the event a customer requests the services with respect to hardware which is not certified, Canonical will use reasonable efforts to provide support services, but may not adhere to the obligations described in this service description.
   3. Packages. The service applies to:
     1. Packages found in the Ubuntu Main Repository, including the “proposed” and “backports” repository pockets
     2. Packages in the Ubuntu Cloud Archive
@@ -98,9 +72,8 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
         1. The version of OpenStack provided initially in the release of a Long Term Support (LTS) version of Ubuntu is supported for the entire lifecycle of that Ubuntu version.
         2. Releases of OpenStack released after an LTS version of Ubuntu are available in the Ubuntu Cloud Archive. Each OpenStack release in the Ubuntu Cloud Archive is supported on an Ubuntu LTS version for a minimum of 18 months from the release date of the Ubuntu version that included the applicable OpenStack version.
         3. The OpenStack release support schedule is available here [https://www.ubuntu.com/about/release-cycle](https://www.ubuntu.com/about/release-cycle)
-    2. OpenStack support is provided at the Advanced response times.
-    3. OpenStack support requires all Nodes that participate in the OpenStack Cloud  to be covered under an active support agreement.
-    4. Full Stack support requirements:
+    2. OpenStack support requires all Nodes that participate in the OpenStack Cloud  to be covered under an active support agreement.
+    3. Full Stack support requirements:
         1. In addition to the requirements set out above, hardware must meet the minimum criteria for Charmed OpenStack.
         2. The OpenStack Cloud was deployed via a Private Cloud Build or was validated through a Cloud Validation engagement.
         3. Full Stack support includes:
@@ -111,25 +84,24 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
           5. Upgrades between versions of OpenStack (for instance, from OpenStack Newton to Mitaka) or LTS versions of Ubuntu (for instance, from Ubuntu 14.04 LTS to Ubuntu 16.04 LTS), Juju and MAAS are supported as long as the upgrade is performed following a documented process as specified by Canonical as part of the Private Cloud Build or Cloud Validation Package.
           6. Addition of new cloud Nodes and replacement of existing Nodes with new Nodes of equivalent capacity are both supported.
           7. [Full Stack Support](#term-full-stack-support) excludes customisations which are not considered [Valid Customisations](#term-valid-customisations).
-    5. OpenStack clouds not deployed through a Private OpenStack Build or validated using the Cloud Validation Package are limited to [Bug-fix Support](#term-bug-fix-support).
-    6. OpenStack support does not include support beyond Bug-fix Support during the deployment or configuration of an OpenStack cloud.
-    7. [Charms](#term-charms):
+    4. OpenStack clouds not deployed through a Private OpenStack Build or validated using the Cloud Validation Package are limited to [Bug-fix Support](#term-bug-fix-support).
+    5. OpenStack support does not include support beyond Bug-fix Support during the deployment or configuration of an OpenStack cloud.
+    6. [Charms](#term-charms):
         1. Each Charm version is supported for one year from the release date.
         2. Canonical will not provide support for any Charms that have been modified from the supported version found in the page at [https://wiki.ubuntu.com/OpenStack/OpenStackCharms](https://wiki.ubuntu.com/OpenStack/OpenStackCharms)
-    8. Canonical will provide support for 12 TB of usable storage per Node with Ceph or Swift storage exposed to the OpenStack cluster. This allowance can be used for Ceph, Swift, or a combination of these. If the number of these Nodes exceeds the number of compute Nodes in the covered OpenStack cluster, the supported Ceph and Swift storage will be limited to 12 TB per compute Node in the cluster.
-    9. Ubuntu Advantage OpenStack includes a licence to use available Canonical provided Microsoft-certified drivers in Windows Guest instances.
-    10. OpenStack support excludes:
+    7. Canonical will provide support for 12 TB of usable storage per Node with Ceph or Swift storage exposed to the OpenStack cluster. This allowance can be used for Ceph, Swift, or a combination of these. If the number of these Nodes exceeds the number of compute Nodes in the covered OpenStack cluster, the supported Ceph and Swift storage will be limited to 12 TB per compute Node in the cluster.
+    8. Ubuntu Advantage OpenStack includes a licence to use available Canonical provided Microsoft-certified drivers in Windows Guest instances.
+    9. OpenStack support excludes:
         1. Support for workloads other than those required to run an OpenStack deployment.
-        2. Support for guest instances other than [Cluster](#term-cloud-guests).
+        2. Support for guest instances other than [Cloud Guests](#term-cloud-guests).
   2. Support for Kubernetes
-    1. Kubernetes support as part of Ubuntu Advantage for Infrastructure is offered at the Advanced response times.
-    2. Full Stack support requirements:
+    1. Full Stack support requirements:
         1. [Deployment](#term-deployment) of [Charmed Distribution of Kubernetes](#term-cdk) (CDK) in at least the minimum deployment configuration, or a kubeadm-deployed cluster of unmodified upstream Kubernetes binaries as published by the CNCF deployed on Ubuntu as base OS.
         2. Highly-Available control plane either deployed using Charms in the CDK reference architecture or in a similar fashion using kubeadm.
         3. Support must be purchased for all nodes in the supported Kubernetes cluster.
         4. Supported versions of Kubernetes include the current stable minor release and the two most recent minor releases in the stable release channel. Additional information can be found at: [https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions](https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions)
         5. For any deployment of the Charmed Distribution of Kubernetes carried out by Canonical while under contract for a deployment, which result in the customisation of any Charms, the customisation will be supported for 90 days after completion of the deployment.
-    3. Unless Full-Stack Support requirements are met, support is limited to:
+    2. Unless Full-Stack Support requirements are met, support is limited to:
         1. The software packages and Charms necessary for running the Charmed Distribution of Kubernetes.
         2. The software packages available from apt.kubernetes.io and Kubernetes clusters deployed using kubeadm.
         3. Bug-fix support in the supplied software artefacts by Canonical.
@@ -153,7 +125,7 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
     3. Monitoring and logging system (restricted to read only access).
     4. Only Canonical will have login access to Environment Nodes.
   3. Environment size. The Managed Service will add or remove Nodes from the Environment as requested by the customer through a support ticket, provided that the Environment does not go under the [Minimum Size Requirement](#term-min-size). All Environment Nodes must be covered under the service, so additional fees may apply.<br /><br />
-  Ubuntu, OpenStack and Kubernetes upgrades. The Managed Service will ensure the customer’s Environment remains on a supported version of Ubuntu and OpenStack and/or Kubernetes. In most cases, Canonical will upgrade only to LTS releases where applicable, or to a specific release as agreed with the customer.<br /><br />
+  <p style="margin-left: -5rem;">Ubuntu, OpenStack and Kubernetes upgrades. The Managed Service will ensure the customer’s Environment remains on a supported version of Ubuntu and OpenStack and/or Kubernetes. In most cases, Canonical will upgrade only to LTS releases where applicable, or to a specific release as agreed with the customer.</p><br />
 4. Out of scope. The Managed Service does not provide:
   1. Relating to [Guest Instances](#term-guest-instance) or Container Instances:
     1. Managing the operating system or applications running within Guest Instances or Container Instances.
@@ -164,7 +136,7 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
   3. Alternative scheduling of updates or upgrades.
   4. Installation of packages or software other than those in the applicable Ubuntu Main Repository or updates to those packages delivered in the Ubuntu Cloud Archive.
   5. Supported version of Ubuntu, OpenStack or Kubernetes must be within the 5 year ‘general’ release window.<br /><br />
-  Installation of additional components (e.g. LBaaS, VPNaaS, SDN or SDS) beyond the software installed as part of the building of the Environment<br /><br />
+  <p style="margin-left: -5rem;">Installation of additional components (e.g. LBaaS, VPNaaS, SDN or SDS) beyond the software installed as part of the building of the Environment</p><br />
 5. Service conclusion. At the end of the service term, the Managed Service will initiate an operational transfer. Operational transfer includes:
   1. hand over of all credentials of the hosts and management software to the customer.
   2. hand over of the administrative credentials of Landscape (The continued operation of Landscape is subject to purchase and agreement of appropriate license terms.)
@@ -321,18 +293,16 @@ Add-Ons constitute additional support services available separately on a per-Nod
 
 1. Service initiation
   1. Upon commencement of the services, Canonical will provide access for a single technical representative to Landscape, the support portal, and the online knowledge base.
-  2. The customer, through their initial technical representative, may select their chosen technical representatives to interface with Canonical based on the number of systems under support as represented in the table below. These technical representatives will hold credentials to the support portal and will act as primary points of contact for support requests.
-  <p style="text-align: centre; margin: 1rem 0;">Table of machines under support</p>
-
+  2. The customer, through their initial technical representative, may select their chosen technical representatives to interface with Canonical based on the number of systems under support as represented in the table below. These technical representatives will hold credentials to the support portal and will act as primary points of contact for support requests.<br /><br />
   |Number of machines under Ubuntu Advantage support|Technical representatives|
-  |:----|:----|
+  |----:|----:|
   |1-20|2|
   |21-50|3|
   |51-250|6|
   |251-1000|9|
   |1001-5000|12|
   |5001+|15|
-
+  <br />
   3. The customer may change their specified technical representatives at any time by submitting a support request via the support portal.
 2. Submitting support requests
   1. The customer may open a support request once the customer account has been provisioned within the support portal.
