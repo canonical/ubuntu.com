@@ -109,6 +109,12 @@
 
       span {
         padding-left: $sp-x-small;
+
+        @media only screen and (min-width: $breakpoint-medium) {
+          color: $color-dark;
+          font-weight: normal;
+          padding-left: 0;
+        }
       }
 
       a:link,
