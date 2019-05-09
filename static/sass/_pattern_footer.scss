@@ -144,13 +144,13 @@
       }
 
       &.p-footer__title-text {
-        @media only screen and (min-width: $breakpoint-small) {
+        @media only screen and (min-width: $breakpoint-medium) {
           color: $color-dark;
           font-weight: 400;
         }
 
-        @media only screen and (max-width: $breakpoint-small) {
-          padding-left: 0.25rem;
+        @media only screen and (max-width: $breakpoint-medium) {
+          padding-left: $sp-x-small;
 
           a {
             color: $color-mid-dark;
