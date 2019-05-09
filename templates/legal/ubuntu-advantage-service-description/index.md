@@ -31,10 +31,10 @@ When an Ubuntu Advantage subscription is attached to a physical host running a [
   4. Specific kernel versions are not guaranteed to receive livepatches indefinitely.  
   5. Only the default LTS kernel is available for livepatching. This includes  its backport as the last HWE kernel to the previous LTS release.
 4. Extended Security Maintenance
-  1. Extended Security Maintenance provides available High and Critical CVE fixes for a number of server packages in the Ubuntu Main Repository. A complete list of packages included in Extended Security Maintenance for a given release can be found at: [https://wiki.ubuntu.com/SecurityTeam/ESM/](https://wiki.ubuntu.com/SecurityTeam/ESM/)
+  1. Extended Security Maintenance provides available High and Critical CVE fixes for a number of server packages. A complete list of packages included in Extended Security Maintenance for a given release can be found at: [https://wiki.ubuntu.com/SecurityTeam/ESM/](https://wiki.ubuntu.com/SecurityTeam/ESM/)
   2. Extended Security Maintenance is only included for 64-bit x86 AMD/Intel installations.
   3. Extended Security Maintenance does not provide:
-    1. Bug fixes for packages in the end of life release, unless a bug was created by an Extended Security Maintenance security update
+    1. Bug fixes, unless a bug was created by an Extended Security Maintenance security update
     2. Security fixes for packages not found in the Maintained Packages list.
     3. Security fixes for CVE’s that are not High or Critical
   4. Extended Security Maintenance does not guarantee secure software or fixes to all High or Critical CVEs.
@@ -124,8 +124,8 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
     2. Landscape (restricted to read only access).
     3. Monitoring and logging system (restricted to read only access).
     4. Only Canonical will have login access to Environment Nodes.
-  3. Environment size. The Managed Service will add or remove Nodes from the Environment as requested by the customer through a support ticket, provided that the Environment does not go under the [Minimum Size Requirement](#term-min-size). All Environment Nodes must be covered under the service, so additional fees may apply.<br /><br />
-  <p style="margin-left: -5rem;">Ubuntu, OpenStack and Kubernetes upgrades. The Managed Service will ensure the customer’s Environment remains on a supported version of Ubuntu and OpenStack and/or Kubernetes. In most cases, Canonical will upgrade only to LTS releases where applicable, or to a specific release as agreed with the customer.</p><br />
+  3. Environment size. The Managed Service will add or remove Nodes from the Environment as requested by the customer through a support ticket, provided that the Environment does not go under the [Minimum Size Requirement](#term-min-size). All Environment Nodes must be covered under the service, so additional fees may apply.
+  4. Ubuntu, OpenStack and Kubernetes upgrades. The Managed Service will ensure the customer’s Environment remains on a supported version of Ubuntu and OpenStack and/or Kubernetes. In most cases, Canonical will upgrade only to LTS releases where applicable, or to a specific release as agreed with the customer.
 4. Out of scope. The Managed Service does not provide:
   1. Relating to [Guest Instances](#term-guest-instance) or Container Instances:
     1. Managing the operating system or applications running within Guest Instances or Container Instances.
@@ -135,8 +135,8 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
   2. Architectural changes to the Environment.
   3. Alternative scheduling of updates or upgrades.
   4. Installation of packages or software other than those in the applicable Ubuntu Main Repository or updates to those packages delivered in the Ubuntu Cloud Archive.
-  5. Supported version of Ubuntu, OpenStack or Kubernetes must be within the 5 year ‘general’ release window.<br /><br />
-  <p style="margin-left: -5rem;">Installation of additional components (e.g. LBaaS, VPNaaS, SDN or SDS) beyond the software installed as part of the building of the Environment</p><br />
+  5. Supported version of Ubuntu, OpenStack or Kubernetes must be within the 5 year ‘general’ release window.
+  6. Installation of additional components (e.g. LBaaS, VPNaaS, SDN or SDS) beyond the software installed as part of the building of the Environment
 5. Service conclusion. At the end of the service term, the Managed Service will initiate an operational transfer. Operational transfer includes:
   1. hand over of all credentials of the hosts and management software to the customer.
   2. hand over of the administrative credentials of Landscape (The continued operation of Landscape is subject to purchase and agreement of appropriate license terms.)
@@ -163,8 +163,8 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
 <h2 id="uasd-virtual-machines">Virtual Machines and Cloud Instances</h2>
 
 1. The Ubuntu Advantage for Infrastructure, Virtual services match those of the applicable Ubuntu Advantage for Infrastructure offering, subject to the exceptions listed below.
-2. The Ubuntu Advantage Infrastructure, Virtual services are provided for Ubuntu Server when installed and running as a guest in a virtualised environment either (1) in an Ubuntu Certified Public Cloud partner’s environment, or (2) on a physical host, provided the guest is running on a [Covered Hypervisor](#term-hypervisor).
-3. Note: Only underlying technology is listed. These can be provided via a cloud like OpenStack. If hypervisor vendor provides a specific list of supported Ubuntu versions only those will be eligible for Ubuntu Advantage for Infrastructure, Virtual service.
+2. The Ubuntu Advantage Infrastructure, Virtual services are provided for Ubuntu Server when installed and running as a guest in a virtualised environment either (1) in an Ubuntu Certified Public Cloud partner’s environment, or (2) on a physical host, provided the guest is running on a [Covered Hypervisor](#term-hypervisor).<br /><br />
+Note: Only underlying technology is listed. These can be provided via a cloud like OpenStack. If hypervisor vendor provides a specific list of supported Ubuntu versions only those will be eligible for Ubuntu Advantage for Infrastructure, Virtual service.<br /><br />
 4. Certified Public Cloud partners can be found in the Ubuntu partner listing: [https://www.ubuntu.com/public-cloud](https://www.ubuntu.com/public-cloud)
 5. Kubernetes support is included as per definitions in the application section of Ubuntu Advantage for Infrastructure above.
 6. The Ubuntu Advantage for Infrastructure, Virtual service does not provide:
@@ -351,13 +351,13 @@ Add-Ons constitute additional support services available separately on a per-Nod
 - <strong id="term-bug-fix-support">Bug-fix Support</strong> means support for valid code bugs in Supported Packages only. This does not include troubleshooting of issues to determine if a bug is present.
 - <strong>Business hours</strong> means 08:00 - 18:00 Monday - Friday local to the customer’s headquarters unless another location is agreed. All times exclude public holidays.
 - <strong id="term-ceph-cluster">Ceph Cluster</strong> means a single Ceph installation in a single physical data centre and specified by a unique identifier.
-- <strong id="term-cdk">Charmed Distribution of Kubernetes</strong> means Kubernetes deployed using Juju and the official Canonical-Kubernetes bundle on bare metal, cloud guests, or virtual machines.
 - <strong id="term-charms">Charm</strong> means a set of scripts compatible with Juju application modelling for the purpose of deploying and configuring relationships between software packages .
-- <strong id="term-cloud">Cloud</strong> means the deployment of the OpenStack cloud computing environment to be managed by Canonical.
+- <strong id="term-cdk">Charmed Distribution of Kubernetes</strong> means Kubernetes deployed using Juju and the official Canonical-Kubernetes bundle on bare metal, cloud guests, or virtual machines.
+- <strong id="term-cloud">Cloud</strong> means the deployment of the OpenStack cloud computing environment.
+- <strong id="term-cloud-guests">Cloud Guest</strong> means a Guest Instance or Container Instance of Ubuntu Server the cloud as defined above.
 - <strong id="term-cluster">Cluster</strong> means the deployment of the Kubernetes computing environment to be managed by Canonical.
 - <strong id="term-container-instance">Container Instance</strong> means a container instance running in the Cluster.
 - <strong id="term-hypervisor">Covered Hypervisor</strong> means any of: KVM | Qemu | Bochs, VMWare ESXi, LXD | LXC, Xen, Hyper-V, VirtualBox, z/VM, Docker.
-- <strong id="term-cloud-guests">Cloud Guest</strong> means a Guest Instance or Container Instance of Ubuntu Server the cloud as defined above.
 - <strong id="term-deployment">Deployment</strong> means the process of deploying the Charmed Distribution of Kubernetes or Kubernetes using kubeadm. A deployment is considered successful once Juju reports all applications in a “started” state.
 - <strong id="term-dse">DSE</strong> means a Canonical dedicated support engineer dedicated to work full-time for a single customer acting as an extension of the customer’s support organization with a primary focus on integrating and supporting Canonicals offerings within the customer’s environment.
 - <strong id="term-dtam">DTAM</strong> means a Canonical support engineer dedicated to work full-time remotely for a single customer.
