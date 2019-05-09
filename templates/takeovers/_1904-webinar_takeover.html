@@ -1,0 +1,72 @@
+<section class="p-strip--dark p-takeover js-takeover">
+  <div class="row u-clearfix u-vertically-center">
+    <div class="col-8">
+      <h1>What’s new in Ubuntu 19.04?</h1>
+      <p class="p-heading--four u-sv2">
+        From the Linux Kernel to Openstack and Kubernetes: find out why the latest Ubuntu release is our most advanced to date.      
+      </p>
+      <a
+        href="/engage/19-04-webinar?utm_source=takeover&utm_campaign=CY19_DC_19.04_WBN_19.04"
+        class="p-button--positive u-hide--small"
+        >Watch the webinar
+      </a>
+     </div>
+    <div class="col-4">
+      <p class="p-takeover__image u-align-text--center">
+        <img
+          src="{{ ASSET_SERVER_URL }}a76865fa-disco_dingo_mascot.svg"
+          alt=""
+        />
+      </p>
+      <p class="u-hide--medium u-hide--large">
+        <a
+          href="/engage/19-04-webinar?utm_source=takeover&utm_campaign=CY19_DC_19.04_WBN_19.04"
+          class="p-button--positive"
+          >Watch the webinar
+        </a>
+      </p>
+    </div>
+  </div>
+  <style>
+    .p-takeover {
+      background-image: url("{{ ASSET_SERVER_URL }}8951dc67-suru-left.svg"),
+        url("{{ ASSET_SERVER_URL }}55079ac4-suru-right.svg"),
+        linear-gradient(
+          0deg,
+          #dd4814 0%,
+          #be3d2f 23%,
+          #76236d 75%,
+          #531a4d 100%
+        );
+      background-position: left, right;
+      background-repeat: no-repeat, no-repeat;
+      background-size: auto 100%, auto 100%, cover;
+    }
+
+    .p-takeover__image {
+      mix-blend-mode: overlay;
+    }
+
+    @media (max-width: 874px) {
+      .p-takeover {
+        background-image: linear-gradient(
+          0deg,
+          #dd4814 0%,
+          #b83b34 22%,
+          #76236d 60%,
+          #531a4d 100%
+        );
+      }
+      .p-takeover__image {
+        width: 188px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .p-takeover__image {
+        opacity: 0.4;
+        mix-blend-mode: normal;
+      }
+    }
+  </style>
+</section>
