@@ -182,19 +182,19 @@
       <h3 class="p-heading--five">How should we get in touch?</h3>
       <div class="row u-no-padding">
         <div class="col-6">
-          <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm">
+          <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_{{ formid }}" class="modal-form marketo-form">
             <ul class="p-list">
               <li class="mktFormReq mktField p-list__item">
                 <label for="FirstName" class="mktoLabel">First name:</label>
-                <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
+                <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" />
               </li>
               <li class="mktFormReq mktField p-list__item">
                 <label for="LastName" class="mktoLabel">Last name:</label>
-                <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
+                <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" />
               </li>
               <li class="mktFormReq mktField p-list__item">
                 <label for="Email" class="mktoLabel">Email address:</label>
-                <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" required="required" />
+                <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
               </li>
               <li class="mktField p-list__item">
                 <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
@@ -202,7 +202,7 @@
               </li>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical&rsquo;s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
               <li class="p-list__item">
-                <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
+                <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"></div>
               </li>
             </ul>
 
@@ -216,6 +216,7 @@
               </ul>
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formValidation" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" class="mktoField" value="{{ formid }}" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formVid" class="mktoField" value="{{ formid }}" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpId" class="mktoField" value="{{ lpId }}" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="subId" class="mktoField" value="30" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="munchkinId" class="mktoField" value="066-EOV-335" />
@@ -241,7 +242,7 @@
       <div class="row u-no-padding">
         <div class="u-equal-height">
           <div class="col-7">
-            <h3 class="p-heading--two">Thank you for enquiring about Ubuntu core</h3>
+            <h3 class="p-heading--two">Thank you for enquiring about Ubuntu</h3>
             <p class="p-heading--four">A member of our team will be in touch within one working day.</p>
           </div>
           <div class="col-5 u-vertically-center u-align--center u-hide--small">
