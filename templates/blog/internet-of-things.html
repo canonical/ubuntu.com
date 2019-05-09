@@ -1,6 +1,16 @@
 {% extends "templates/one-column.html" %} 
 {% block content %} 
+<div class="p-strip">
 {% for article in articles %} 
-{% include 'blog/blog-card.html' %} 
+  {% if forloop.counter|divisibleby:3 or forloop.counter == 0 %}
+  <div class="row u-equal-height u-clearfix">
+  {% endif %}
+
+    {% include 'blog/blog-card.html' %} 
+  
+  {% if forloop.counter|divisibleby:3 or forloop.last %}
+  </div>
+  {% endif %}
 {% endfor %} 
+</div>
 {% endblock %}
