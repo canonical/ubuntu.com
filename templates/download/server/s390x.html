@@ -101,19 +101,19 @@
               <li><p>All information provided will be handled in accordance with the Canonical <a href="/legal" target="_blank">privacy policy</a>. Your use of Ubuntu on IBM Z and LinuxONE in production constitutes <a href="/legal/short-terms">acceptance of these terms</a>.</p></li>
               <li class="mktField p-list__item">
                 <button onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'LinuxONE server', 'eventLabel' : '{{lts_release}}', 'eventValue' : undefined });" type="submit" class="mktoButton p-button--positive is-wide u-no-margin--bottom">Accept terms and download</button>
-                <input type="hidden" name="formid" class="mktoField " value="1400">
-                <input type="hidden" name="lpId" class="mktoField " value="2469">
-                <input type="hidden"
+                <input type="hidden" aria-hidden="true" name="formid" class="mktoField " value="1400">
+                <input type="hidden" aria-hidden="true" name="lpId" class="mktoField " value="2469">
+                <input type="hidden" aria-hidden="true"
                 name="subId" class="mktoField " value="30">
-                <input type="hidden" name="munchkinId" class="mktoField " value="066-EOV-335">
-                <input type="hidden" name="lpurl" class="mktoField " value="https://pages.ubuntu.com/download-LinuxONE.html?cr={creative}&amp;kw={keyword}">
+                <input type="hidden" aria-hidden="true" name="munchkinId" class="mktoField " value="066-EOV-335">
+                <input type="hidden" aria-hidden="true" name="lpurl" class="mktoField " value="https://pages.ubuntu.com/download-LinuxONE.html?cr={creative}&amp;kw={keyword}">
                 <input
-                type="hidden" name="cr" class="mktoField " value=""><input type="hidden" name="kw" class="mktoField " value=""><input type="hidden" name="q" class="mktoField " value="">
+                type="hidden" aria-hidden="true" name="cr" class="mktoField " value=""><input type="hidden" aria-hidden="true" name="kw" class="mktoField " value=""><input type="hidden" aria-hidden="true" name="q" class="mktoField " value="">
               </li>
             </ul>
           </fieldset>
-          <input type="hidden" name="returnURL" value="https://www.ubuntu.com/download/server/thank-you-s390x" />
-          <input type="hidden" name="retURL" value="https://www.ubuntu.com/download/server/thank-you-s390x" />
+          <input type="hidden" aria-hidden="true" name="returnURL" value="https://www.ubuntu.com/download/server/thank-you-s390x" />
+          <input type="hidden" aria-hidden="true" name="retURL" value="https://www.ubuntu.com/download/server/thank-you-s390x" />
         </form>
         <!-- /MARKETO FORM -->
       </div>
@@ -122,7 +122,5 @@
 </div>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_server_installation" second_item="_download_server_guide" third_item="_download_helping_hands" %}
-
-
 
 {% endblock content %}

@@ -169,6 +169,11 @@ fieldset:last-child {
   border-bottom-width: 1px !important;
 }
 
+// error to mirror vanilla for g-recaptcha
+.recaptcha-is-error {
+  border: 1px solid $color-negative;
+}
+
 // XXX Steve: Overriding default Vanilla style :(
 .p-heading--six {
   font-style: normal;

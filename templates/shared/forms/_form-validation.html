@@ -1,9 +1,5 @@
-<!-- background submit download inlcude start -->
-<style>
-  .recaptcha-is-error {
-    border: 1px solid red;
-  }
-</style>
+<!-- form validator-->
+
 <!-- dependencies -->
 <script src="{{ ASSET_SERVER_URL }}ec520d10-XMLHttpRequest.min.js"></script>
 <script src="{{ ASSET_SERVER_URL }}4176b39e-serialize.js"></script>
@@ -103,11 +99,6 @@
     }
     formid = this.id;
 
-    console.log("download_asset_url: " + download_asset_url);
-    console.log("return_url: " + return_url);
-    console.log("modal: " + isModal);
-    console.log("thankYouMessage: " + thankYouMessage);
-
     // deal with the post submit actions
     afterSubmit(download_asset_url, return_url, isModal, thankYouMessage);
 
@@ -145,9 +136,7 @@
 
     // add a thank-you notification to the page
     // if someone submitted a form without a thank you action
-    var thankYouMessage = thankYouMessage;
-    if (return_url === null || isModal === false) {
-      console.log("thank you: " + thankYouMessage);
+    if (return_url === null && isModal === false) {
       if (thankYouMessage === null) {
         thankYouMessage = 'Thank you<br />A member of our team will be in touch within one working day';
       }
