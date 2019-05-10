@@ -92,7 +92,10 @@
     <!-- footer content goes here -->
     {% include "templates/footer.html" %}
     {% include "shared/_polyfill.html" %}
-    {% include "shared/forms/_form-validation.html" %}
+    {% if "/whitepapers" not in request.path  %}
+    <!-- form validation -->
+      {% include "shared/forms/_form-validation.html" %}
+    {% endif %}
     <script src="{% versioned_static 'js/build/main.min.js' %}"></script>
     <script src="{{ ASSET_SERVER_URL }}f5bf3854-respond.min.js"></script>
     {% block footer_extra %}{% endblock %}
