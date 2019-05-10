@@ -92,7 +92,7 @@
     <!-- footer content goes here -->
     {% include "templates/footer.html" %}
     {% include "shared/_polyfill.html" %}
-    {% if "whitepapers" not in request.path  %}
+    {% if "/whitepapers" not in request.path  %}
     <!-- form validation -->
       {% include "shared/forms/_form-validation.html" %}
     {% endif %}
