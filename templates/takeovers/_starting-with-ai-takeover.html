@@ -1,0 +1,56 @@
+<section class="p-strip p-takeover js-takeover">
+  <div class="row u-clearfix u-vertically-center">
+    <div class="col-7">
+      <h1>Achieve your AI ambitions quickly, reliably and cost-effectively</h1>
+      <p class="p-heading--four u-sv2">
+        Multi-cloud operations for the full enterprise AI stack
+      </p>
+      <!-- Upate link utm -->
+      <a
+        href="/engage/starting-with-ai"
+        class="u-hide--small p-button--positive"
+        >Download the whitepaper 
+      </a>
+    </div>
+    <div class="col-5">
+      <p class="p-takeover__image u-align-text--center">
+        <img
+          src="{{ ASSET_SERVER_URL }}7d33e0a1-AI+illustration+hero.svg"
+          alt=""
+        />
+      </p>
+      <p class="u-hide--medium u-hide--large">
+        <!-- Update link utm -->
+        <a
+          href="/engage/starting-with-ai"
+          class="p-button--positive"
+          >Download the whitepaper
+        </a>
+      </p>
+    </div>
+  </div>
+  <style>
+    .p-takeover {
+      background-image: url("{{ ASSET_SERVER_URL }}41d86147-suru-left.svg"),
+        url("{{ ASSET_SERVER_URL }}5b3b3bfe-suru-top-right.svg"),
+        url("{{ ASSET_SERVER_URL }}2699d0b1-suru-right-bottom.svg"),
+        linear-gradient(64deg, #DEDEDE 0%, #FFFFFF 100%);
+      background-position: left, right, bottom right;
+      background-repeat: no-repeat, no-repeat, no-repeat;
+      background-size: auto 100%, auto 100%, auto 50%, cover;
+      background-blend-mode: multiply, multiply, multiply; 
+    }
+    .p-takeover__image {
+      width: 300px;
+
+    }
+    @media (max-width: 874px) {
+      .p-takeover {
+        background-image: linear-gradient(64deg, #DEDEDE 0%, #FFFFFF 100%);
+      }
+      .p-takeover__image {
+        width: 200px;
+      }
+    }
+  </style>
+</section>
