@@ -1,8 +1,8 @@
 ---
 wrapper_template: "../_base_legal_markdown.html"
 context:
-  title: "Privacy notice – Snapcraft NPS Survey"
-  description: This Privacy notice tells you about the information collected from you when you participate in the Snapcraft Net Promoter Score (NPS) survey.
+  title: "Privacy Notice – ESXi"
+  description: This privacy notice tells you about the information collected from you when you register to download the ESXi packer-template.
   copydoc: https://docs.google.com/document/d/1I1PtxFqV1KNsnnxJlo-Q9V7JDvkbmsAxAvVk4Nf9aLQ
 ---
 <h4 class="p-muted-heading">Version - May 2019</h4>
