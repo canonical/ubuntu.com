@@ -8,7 +8,26 @@
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="Getting Started with AI" image="29982bf9-illustration.svg" url="#register-section" cta="Download the whitepaper" class="p-strip p-takeover--ai"%}
+<section class="p-strip p-strip--dark p-takeover--ai">
+  <div class="row u-equal-height">
+    <div class="col-7  u-vertically-center">
+      <div>
+      <h1 class="u-no-margin--bottom">
+        Getting Started with AI
+      </h1>
+      <br class="u-hide--medium u-hide--large">
+      <p class="u-hide--medium u-hide--large">
+        <a href="#register-section" class="p-button--neutral">
+          Download the whitepaper
+        </a>
+      </p>
+      </div>
+    </div>
+    <div class="col-5 u-hide--small u-align--center u-vertically-center">
+      <img src="https://assets.ubuntu.com/v1/b497ea41-get-started-illustration.svg" alt="image for getting zstarted with ai">
+    </div>
+  </div>
+</section>
 
 <section class="p-strip is-shallow is-bordered">
   <div class="row">
@@ -50,7 +69,7 @@
   </div>
   <style>
     .p-takeover--ai {
-      background-image: linear-gradient(64deg, #DEDEDE 0%, #FFFFFF 100%);
+      background-image: linear-gradient(0deg, #48929B 0%, #2B585D 100%);
     }
   </style>
 </section>
