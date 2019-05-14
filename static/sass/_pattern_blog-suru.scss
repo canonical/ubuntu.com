@@ -1,0 +1,25 @@
+@mixin blog-p-strips-suru {
+  .p-strip--suru {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      background: rgba(17, 17, 17, 0.65);
+      content: '';
+      height: 100%;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 0;
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        background: linear-gradient(110deg, rgba(17, 17, 17, .65) 55%, rgba(255, 255, 255, 0) 55%);
+      }
+    }
+  }
+
+  .p-card--suru {
+    position: relative;
+    z-index: 1;
+  }
+}
