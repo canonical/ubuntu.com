@@ -1,7 +1,6 @@
 {% extends "templates/one-column.html" %} 
 {% block content %} 
 
-  <!-- This needs to be cleaned up and styled-->
   <section class="p-strip--image is-dark p-strip--suru" style="background-position: center center; background-image:url('https://assets.ubuntu.com/v1/d1d58769-drone-iceland-unsplash-no-logo.jpg')">
     <div class="row u-equal-height u-vertically-center">
       <div class="col-6 p-card--suru">
@@ -10,15 +9,13 @@
           All you need to know about building and managing IoT and embedded devices using Ubuntu.
         </h5>
         <p>
-          <a class="p-link--external p-link--inverted" href="https://www.ubuntu.com/things">Learn more about Internet of Things</a>
+          <a class="p-link--inverted" href="/internet-of-things">Learn more about Internet of Things&nbsp;›</a>
         </p>
       </div>
       <div id="rtp-banner" class="rtp-banner"></div>
     </div>
   </section>
-<section class="p-stri">
-  <div>{{ current_page }}</div>
-</section>
+
   <section class="p-strip is-shallow{% if current_page and current_page == 1 and upcoming_events %} is-bordered{% endif %}" id="posts-list">
     <div class="row">
       <div class="col-12 u-align--right">
