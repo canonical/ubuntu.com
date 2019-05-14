@@ -38,7 +38,7 @@ navDropdowns.forEach(function(dropdown) {
 // Close the menu if browser back button is clicked
 window.addEventListener('hashchange', function(event) {
   navDropdowns.forEach(function (dropdown) {
-    var dropdownContent = document.getElementById(dropdown.id + "-content");
+    const dropdownContent = document.getElementById(dropdown.id + "-content");
 
     if (dropdown.classList.contains('is-selected')) {
       closeMenu(dropdown, dropdownContent);
