@@ -16,6 +16,7 @@ navDropdowns.forEach(function(dropdown) {
       var dropdownContent = document.getElementById(dropdown.id + "-content");
 
       if (dropdown === clickedDropdown) {
+
         if (dropdown.classList.contains('is-selected')) {
           closeMenu(dropdown, dropdownContent);
         } else {
@@ -34,6 +35,16 @@ navDropdowns.forEach(function(dropdown) {
   });
 });
 
+// Not sure if this is the way to check
+window.addEventListener('hashchange', function(event) {
+  navDropdowns.forEach(function (dropdown) {
+    var dropdownContent = document.getElementById(dropdown.id + "-content");
+
+    if (dropdown.classList.contains('is-selected')) {
+      closeMenu(dropdown, dropdownContent);
+    }
+  });
+})
 
 dropdownWindowOverlay.addEventListener('click', function(event) {
   navDropdowns.forEach(function(dropdown) {
