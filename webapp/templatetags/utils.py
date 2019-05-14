@@ -30,6 +30,12 @@ def replace_admin(url):
 
 
 @register.filter
+def replace(value, args):
+    params = args.split(",")
+    return value.replace(params[0], params[1])
+
+
+@register.filter
 def keyvalue(dictionary, key_name):
     """
     A template filter to get a dictionary key using a variable.
