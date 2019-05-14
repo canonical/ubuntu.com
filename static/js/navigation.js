@@ -35,7 +35,7 @@ navDropdowns.forEach(function(dropdown) {
   });
 });
 
-// Not sure if this is the way to check
+// Close the menu if browser back button is clicked
 window.addEventListener('hashchange', function(event) {
   navDropdowns.forEach(function (dropdown) {
     var dropdownContent = document.getElementById(dropdown.id + "-content");
