@@ -1,6 +1,69 @@
 {% extends "templates/one-column.html" %} 
+
+{% block title %}Internet of Things{% endblock %}
+
+{% block meta_description %}All you need to know about building and managing IoT and embedded devices using Ubuntu.{% endblock %}
+
 {% block content %} 
-{% for article in articles %} 
-{% include 'blog/blog-card.html' %} 
-{% endfor %} 
+
+  <section class="p-strip--image is-dark p-strip--suru" style="background-position: center center; background-image:url('https://assets.ubuntu.com/v1/d1d58769-drone-iceland-unsplash-no-logo.jpg')">
+    <div class="row u-equal-height u-vertically-center">
+      <div class="col-6 p-card--suru">
+        <h1 class="p-heading--one">Internet of Things</h1>
+        <h5 style="line-height: 1.75rem;">
+          All you need to know about building and managing IoT and embedded devices using Ubuntu.
+        </h5>
+        <p>
+          <a class="p-link--inverted" href="/internet-of-things">Learn more about Internet of Things&nbsp;›</a>
+        </p>
+      </div>
+      <div id="rtp-banner" class="rtp-banner"></div>
+    </div>
+  </section>
+
+  <section class="p-strip is-shallow{% if current_page and current_page == 1 and upcoming_events %} is-bordered{% endif %}" id="posts-list">
+    <div class="row">
+      <div class="col-12 u-align--right">
+        <form action="" method="get" class="p-form p-form--inline">
+          <div class="p-form__group">
+            <label for="filter" aria-label="Filter the resources by type" class="p-form__label">Filter: </label>
+            <select class="js-submit-on-change p-form__control" id="filter" name="content" aria-label="Filter by content type" style="padding-right: 40px">
+              <option {% if not category %}selected="selected"{% endif %} value="/blog/internet-of-things#posts-list">All content types</option>
+              <option {% if category and category.slug == 'articles' %}selected="selected"{% endif %} value="/blog/internet-of-things?category=articles#posts-list">Articles</option>
+              <option {% if category and category.slug == 'case-studies' %}selected="selected"{% endif %} value="/blog/internet-of-things?category=case-studies#posts-list">Case studies</option>
+              <option {% if category and category.slug == 'news' %}selected="selected"{% endif %} value="/blog/internet-of-things?category=news#posts-list">News</option>
+              <option {% if category and category.slug == 'videos' %}selected="selected"{% endif %} value="/blog/internet-of-things?category=videos#posts-list">Videos</option>
+              <option {% if category and category.slug == 'webinars' %}selected="selected"{% endif %} value="/blog/internet-of-things?category=webinars#posts-list">Webinars</option>
+              <option {% if category and category.slug == 'white-papers' %}selected="selected"{% endif %} value="/blog/internet-of-things?category=white-papers#posts-list">White papers</option>
+            </select>
+            <input type="submit" value="Send Request" class="u-hide">
+            <input type="hidden" name="topic" value="cloud-and-server">
+          </div>
+        </form>
+        <script>
+        var select = document.querySelector('.js-submit-on-change');
+        select.addEventListener('change', function(e) {
+          var form = this.closest('form');
+          if (form) {
+            location.href=document.getElementById("filter").value;
+          }
+        });
+        </script>
+      </div>
+    </div>
+    <div class="row u-equal-height u-clearfix">
+    {% for article in articles %}
+      {% if forloop.counter|add:"-1"|divisibleby:"3" and forloop.counter > 1 %}
+        </div>
+        <div class="row u-equal-height u-clearfix">
+      {% endif %}
+      {% include 'blog/blog-card.html' %}
+    {% endfor %}
+    </div>
+  </section>
+
+  {% include 'blog/pagination.html' %}
+
 {% endblock %}
+
+
