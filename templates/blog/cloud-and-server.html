@@ -39,15 +39,6 @@
             <input type="hidden" name="topic" value="cloud-and-server">
           </div>
         </form>
-        <script>
-        var select = document.querySelector('.js-submit-on-change');
-        select.addEventListener('change', function(e) {
-          var form = this.closest('form');
-          if (form) {
-            location.href=document.getElementById("filter").value;
-          }
-        });
-        </script>
       </div>
     </div>
 
@@ -64,4 +55,13 @@
 
   {% include 'blog/pagination.html' %}
 
+  <script>
+  var select = document.querySelector('.js-submit-on-change');
+  select.addEventListener('change', function(e) {
+    var form = this.closest('form');
+    if (form) {
+      location.href=document.getElementById("filter").value;
+    }
+  });
+  </script>
 {% endblock %}
