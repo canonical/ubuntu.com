@@ -1,8 +1,8 @@
-<section class="{% if titleClass %}{{ titleClass }}{% else %}p-strip--dark p-takeover js-takeover{% endif %}">
+<section class="{% if class %}{{ class }}{% else %}p-strip--dark js-takeover{% endif %}">
   <div class="row u-clearfix u-vertically-center">
  
     <div class="{% if image %}col-8 {% else %}col-8{% endif %}">
-      <h1 class="{% if titleClass %}{{ titleClass }}{% else %}{% endif %}">
+      <h1>
         {{ title }}
       </h1>
       {% if subtitle %}<h4 class="{% if subtitleClass %}{{ subtitleClass }}{% else %}{% endif %}">
@@ -14,7 +14,7 @@
           <li class="p-inline-list__item">
             <a
               href="{{ ctaBtnURL }}"
-              class="{% if ctaBtnClass %}{{ ctaBtnClass }}{% else %}p-button--positive{% endif %}"
+              class="{% if ctaBtnClass %}{{ ctaBtnClass }}{% else %}p-button--neutral{% endif %}"
               ><span>{{ ctaBtn }}</span></a
             >
           </li>
@@ -32,15 +32,19 @@
         {% endif %}
     </div>
 
-    {% if image %}<div class="{% if imageClass %}{{ imageClass }}{% else %}col-4 u-hide--small u-align--center u-vertically-center{% endif %}">
-        <img src="{% if image != "http" %}{{ ASSET_SERVER_URL }}{% endif %}{{ image }}" alt="image for (( title ))" >
-      </div>{% endif %}
+    {% if image %}
+      <div class="col-4">
+        <p class="{% if imageClass %}{{ imageClass }}{% else %}u-hide-small u-align-text--center u-vertically-center{% endif %}">
+          <img src="{% if image != "http" %}{{ ASSET_SERVER_URL }}{% endif %}{{ image }}" alt="image for (( title ))" >
+        </p>
+      </div>
+    {% endif %}
     
     {% if ctaBtn %}  
     <p class="u-hide--medium u-hide--large">
         <a
           href="{{ ctaBtnURL }}"
-          class="{% if ctaBtnClass %}{{ ctaBtnClass }}{% else %}p-button--positive{% endif %}"
+          class="{% if ctaBtnClass %}{{ ctaBtnClass }}{% else %}p-button--neutral{% endif %}"
           ><span>{{ ctaBtn }}</span></a
         >
       </p>
