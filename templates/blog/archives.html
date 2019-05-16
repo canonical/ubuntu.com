@@ -37,9 +37,9 @@
                 <a href="/blog/{{ article.slug }}">{{ article.title.rendered|safe }}</a>
               </h3>
               <div class="p-media-object__content">
-                  <p>By <a href="/author/{{article.author.slug}}" title="More about {{ article.author.name }}">{{ article.author.name }}</a>, {{ article.date }}</p>
+                <p>By <a href="/author/{{article.author.slug}}" title="More about {{ article.author.name }}">{{ article.author.name }}</a>, {{ article.date }}</p>
                 
-                  <p>{{ article.excerpt.raw|cut:"[…]"|truncatewords:36 }}</p>
+                <p>{{ article.excerpt.raw|cut:"[…]"|truncatewords:36 }}</p>
               </div>
             </div>
           </div>
