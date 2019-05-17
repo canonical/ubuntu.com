@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from django import template
 import dateutil.parser
+import datetime
+import calendar
 
 
 register = template.Library()
@@ -32,3 +34,26 @@ def replace_admin(url):
 def replace(value, args):
     params = args.split(",")
     return value.replace(params[0], params[1])
+
+
+@register.filter
+def descending_years(end_year):
+    now = datetime.datetime.now()
+    return range(now.year, end_year, -1)
+
+
+@register.filter
+def month_name(string):
+    month = int(string)
+    return calendar.month_name[month]
+
+
+@register.filter
+def months_list(year):
+    months = []
+    now = datetime.datetime.now()
+    for i in range(1, 13):
+        date = datetime.date(year, i, 1)
+        if date < now.date():
+            months.append({"name": date.strftime("%b"), "number": i})
+    return months
