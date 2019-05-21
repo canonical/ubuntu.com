@@ -17,6 +17,18 @@
     contactButtons.forEach(function(contactButton) {
       contactButton.addEventListener('click', function(e) {
         e.preventDefault();
+        // Capture current path and stringify 
+        // eg. /kubernetes/install -> kubernetes-install
+        // fallbacks to "global"
+        var product = window.location.pathname.split("/").slice(1).join("-") || "global";
+        // If present, override with product parameter from button URL
+        contactButton.search.split("&").forEach(function(param) {
+          if (param.startsWith("product") || param.startsWith("?product")) {
+            product = param.split("=")[1];
+          } 
+        });
+        // Set product in form field
+        document.getElementById("product-context").value = product;
         open();
       });
     });
