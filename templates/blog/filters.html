@@ -4,16 +4,16 @@
       <div class="p-form__group">
         <label for="filter" aria-label="Filter the resources by type" class="p-form__label">Filter: </label>
         <select class="js-submit-on-change p-form__control" id="filter" name="content" aria-label="Filter by content type" style="padding-right: 40px">
-          <option {% if not category %}selected="selected"{% endif %} value="/blog/cloud-and-server#posts-list">All content types</option>
-          <option {% if category and category.slug == 'articles' %}selected="selected"{% endif %} value="/blog/cloud-and-server?category=articles#posts-list">Articles</option>
-          <option {% if category and category.slug == 'case-studies' %}selected="selected"{% endif %} value="/blog/cloud-and-server?category=case-studies#posts-list">Case studies</option>
-          <option {% if category and category.slug == 'news' %}selected="selected"{% endif %} value="/blog/cloud-and-server?category=news#posts-list">News</option>
-          <option {% if category and category.slug == 'videos' %}selected="selected"{% endif %} value="/blog/cloud-and-server?category=videos#posts-list">Videos</option>
-          <option {% if category and category.slug == 'webinars' %}selected="selected"{% endif %} value="/blog/cloud-and-server?category=webinars#posts-list">Webinars</option>
-          <option {% if category and category.slug == 'white-papers' %}selected="selected"{% endif %} value="/blog/cloud-and-server?category=white-papers#posts-list">White papers</option>
+          <option {% if not category %}selected="selected"{% endif %} value="/blog/{{topic}}#posts-list">All content types</option>
+          <option {% if category and category.slug == 'articles' %}selected="selected"{% endif %} value="/blog/{{topic}}?category=articles#posts-list">Articles</option>
+          <option {% if category and category.slug == 'case-studies' %}selected="selected"{% endif %} value="/blog/{{topic}}?category=case-studies#posts-list">Case studies</option>
+          <option {% if category and category.slug == 'news' %}selected="selected"{% endif %} value="/blog/{{topic}}?category=news#posts-list">News</option>
+          <option {% if category and category.slug == 'videos' %}selected="selected"{% endif %} value="/blog/{{topic}}?category=videos#posts-list">Videos</option>
+          <option {% if category and category.slug == 'webinars' %}selected="selected"{% endif %} value="/blog/{{topic}}?category=webinars#posts-list">Webinars</option>
+          <option {% if category and category.slug == 'white-papers' %}selected="selected"{% endif %} value="/blog/{{topic}}?category=white-papers#posts-list">White papers</option>
         </select>
         <input type="submit" value="Send Request" class="u-hide">
-        <input type="hidden" name="topic" value="cloud-and-server">
+        <input type="hidden" name="topic" value="{{topic}}">
       </div>
     </form>
   </div>
