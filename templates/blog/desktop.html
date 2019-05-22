@@ -22,7 +22,7 @@
   </section>
 
   <section class="p-strip is-shallow{% if current_page and current_page == 1 and upcoming_events %} is-bordered{% endif %}" id="posts-list">
-    {% include 'blog/filters.html' %}
+      {% include 'blog/filters.html' with topic="desktop" %}
       
     <div class="row u-equal-height u-clearfix">
     {% for article in articles %}
