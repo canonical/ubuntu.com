@@ -3,11 +3,13 @@
 
 {% block title %}
 {% if start_download %}
-Thanks for downloading Ubuntu Desktop
+Thank you for downloading Ubuntu Desktop
 {% else %}
 Thank you for your contribution
 {% endif %}
 {% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/187Vg9I0Jjlp1_yAjYtHdoEwFCJeVOaz9Kzeb6kptMpA{% endblock meta_copydoc %}
 
 {% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
 
@@ -62,44 +64,12 @@ Thank you for your contribution
 <div class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-8 suffix-1">
-      <h2 class="p-heading--three">Help shape the future of Ubuntu</h2>
+      <h2 class="p-heading--three">Help us to keep Ubuntu free to download, share and use by contributing to ...</h2>
       <noscript>
         <p>Contributions require JavaScript. Please enable JavaScript if you want to contribute.</p>
       </noscript>
       <form class="p-card contribute__options" action="https://www.paypal.com/cgi-bin/webscr" id="contributions-form" method="post" target="_top">
-        <section id="ubuntu-desktop" class="u-sv3">
-          <label for="amount-desktop">
-            <p class="p-heading--four">Ubuntu Desktop</p>
-          </label>
-          <div class="p-slider__wrapper">
-            <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-desktop" type="range">
-            <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-desktop-input" name="amount_1" value="3" tabindex="1" type="number">
-            <input type="hidden" name="item_name_1" value="Ubuntu Desktop">
-          </div>
-        </section>
-
-        <section id="ubuntu-for-cloud" class="u-sv3">
-          <label for="amount-cloud">
-            <p class="p-heading--four">Ubuntu for cloud computing</p>
-          </label>
-          <div class="p-slider__wrapper">
-            <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-cloud" type="range">
-            <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-cloud-input" name="amount_2" value="3" tabindex="2" type="number">
-            <input type="hidden" name="item_name_2" value="Ubuntu for cloud computing">
-          </div>
-        </section>
-
-        <section id="ubuntu-for-things" class="u-sv3">
-          <label for="amount-things">
-            <p class="p-heading--four">Ubuntu for things</p>
-          </label>
-          <div class="p-slider__wrapper">
-            <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-things" type="range">
-            <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-things-input" name="amount_3" value="3" tabindex="3" type="number">
-            <input type="hidden" name="item_name_3" value="Ubuntu for things">
-          </div>
-        </section>
-
+        
         <section id="community-projects" class="u-sv3">
           <label for="amount-community">
             <p class="p-heading--four">Community projects</p>
@@ -109,6 +79,23 @@ Thank you for your contribution
             <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-community-input" name="amount_4" value="3" tabindex="4" type="number">
             <input type="hidden" name="item_name_4" value="Community projects">
           </div>
+          <p>
+            I support LoCo teams, UbuCons and other events, upstream projects and all the good work the community does.
+          </p>
+        </section>
+
+        <section id="ubuntu-desktop" class="u-sv3">
+          <label for="amount-desktop">
+            <p class="p-heading--four">Ubuntu Desktop</p>
+          </label>
+          <div class="p-slider__wrapper">
+            <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-desktop" type="range">
+            <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-desktop-input" name="amount_1" value="3" tabindex="1" type="number">
+            <input type="hidden" name="item_name_1" value="Ubuntu Desktop">
+          </div>
+          <p>
+            Make the desktop even more amazing.
+          </p>
         </section>
 
         <section id="tip-to-canonical" class="u-sv3">
@@ -120,6 +107,37 @@ Thank you for your contribution
             <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-canonical-input" name="amount_5" value="3" tabindex="5" type="number">
             <input type="hidden" name="item_name_5" value="Tip to Canonical">
           </div>
+          <p>
+            Hats off for making Ubuntu possible. Keep it up.
+          </p>
+        </section>
+
+        <section id="ubuntu-for-things" class="u-sv3">
+          <label for="amount-things">
+            <p class="p-heading--four">Ubuntu for IoT</p>
+          </label>
+          <div class="p-slider__wrapper">
+            <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-things" type="range">
+            <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-things-input" name="amount_3" value="3" tabindex="3" type="number">
+            <input type="hidden" name="item_name_3" value="Ubuntu for things">
+          </div>
+          <p>
+            I want a secure, upgradeable Internet of Things, powered by Ubuntu.
+          </p>
+        </section>
+
+        <section id="ubuntu-for-cloud" class="u-sv3">
+          <label for="amount-cloud">
+            <p class="p-heading--four">Ubuntu Server & Cloud</p>
+          </label>
+          <div class="p-slider__wrapper">
+            <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-cloud" type="range">
+            <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-cloud-input" name="amount_2" value="3" tabindex="2" type="number">
+            <input type="hidden" name="item_name_2" value="Ubuntu for cloud computing">
+          </div>
+          <p>
+            I want Ubuntu Server running my servers, cloud and as a guest everywhere.
+          </p>
         </section>
 
         <div class="p-media-object u-no-margin--bottom u-sv3 u-vertically-center">
@@ -156,7 +174,7 @@ Thank you for your contribution
         </div>
       </form>
     </div>
-    <div class="col-4">
+    <div class="col-4" style="position: sticky; top: 2rem;">
       <div class="p-card">
         <header class="p-card__header">
           <h5 class="p-muted-heading">Newsletter signup</h5>
@@ -168,7 +186,7 @@ Thank you for your contribution
               <li class="p-list__item u-no-margin--top u-clearfix">
                 <label>
                   <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" type="checkbox" id="insightscloudserver" name="insightscloudserver" value="Cloud and server" />
-                  <label for="insightscloudserver">Cloud and server</label>
+                  <label for="insightscloudserver">Cloud and Server</label>
                 </label>
               </li>
               <li class="p-list__item u-no-margin--top u-clearfix">
@@ -483,7 +501,7 @@ Thank you for your contribution
     /Safari/i.test(navigator.userAgent) ? browser = 'Safari' :
     /NET/i.test(navigator.userAgent) ? browser = 'IE' :
     browser = 'Other';
-    var progressColour = '#335280';
+    var progressColour = '#E95420';
     var emptyColour = '#fff';
     var sliders = Array.prototype.slice.call(document.querySelectorAll('.p-slider'));
 
@@ -515,38 +533,31 @@ Thank you for your contribution
   })();
 </script>
 
-<div class="p-strip--light is-shallow">
+<div class="p-strip is-shallow">
   <div class="row">
     <div class="u-equal-height">
       <div class="col-4 p-card--highlighted">
-        <div class="u-align--center" style="margin: 1rem 0;">
-          <img alt="ubuntu one" src="{{ ASSET_SERVER_URL }}a9ed9a5c-picto-cddvd-warmgrey.svg" width="113" height="113" />
-        </div>
-        <h3>Installation guide</h3>
-        <p class="p-card__content">If you need some help installing Ubuntu, please check out our step-by-step guide.</p>
-        <p class="p-card__content"><a class="p-link--external"  href="https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-desktop">Read the installation instructions</a></p>
+        <h3>Learn how to try Ubuntu before you install</h3>
+        <p class="p-card__content">Run Ubuntu directly from either a USB stick or a DVD for a quick and easy way to experience how Ubuntu works.</p>
+        <p class="p-card__content"><a class="p-link--external"  href="https://tutorials.ubuntu.com/tutorial/try-ubuntu-before-you-install">Follow our simple guide</a></p>
       </div>
       <div class="col-4 p-card--highlighted">
-        <div class="u-align--center" style="margin: 1rem 0;">
-          <img alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}03c5463a-picto-business-warmgrey.svg" width="113" height="113" />
-        </div>
-        <h3>Ubuntu Advantage</h3>
-        <p class="p-card__content">Purchase our desktop support and access Ubuntu experts whenever you need to.</p>
-        <p class="p-card__content"><a href="https://buy.ubuntu.com/" class="p-link--external">Learn more</a></p>
+        <h3>Do you want to upgrade your OS?</h3>
+        <p class="p-card__content">If you are already running Ubuntu, you can upgrade with the Software Updater.</p>
+        <p class="p-card__content"><a href="https://tutorials.ubuntu.com/tutorial/tutorial-upgrading-ubuntu-desktop" class="p-link--external">Installation instructions</a></p>
       </div>
       <div class="col-4 p-card--highlighted">
-        <div class="u-align--center" style="margin: 1rem 0;">
-          <img alt="ubuntu advantage" src="{{ ASSET_SERVER_URL }}422b612c-picto-forum-warmgrey.svg" width="113" height="113" />
-        </div>
-        <h3>Ask Ubuntu</h3>
-        <p class="p-card__content">Need help? Ask your questions here.</p>
-        <p class="p-card__content"><a href="https://askubuntu.com" class="p-link--external">Get help</a></p>
+        <h3>Let’s connect</h3>
+        <p class="p-card__content">If you get stuck, help is always at hand.</p>
+        <p class="p-card__content"><a href="https://askubuntu.com" class="p-link--external">Ask Ubuntu</a></p>
+        <p class="p-card__content"><a href="https://ubuntuforums.org/" class="p-link--external">Ubuntu Forums</a></p>
+        <p class="p-card__content"><a href="https://wiki.ubuntu.com/IRC/ChannelList" class="p-link--external">IRC-based support</a></p>
       </div>
     </div>
   </div>
 </div>
 
-{% include "shared/contextual_footers/_contextual_footer.html" with first_item="_download_verify_your_download" second_item="_download_desktop_guide" third_item="_download_helping_hands" %}
+{% include "shared/contextual_footers/_contextual_footer.html" with first_item="_download_verify_your_download" second_item="_download_desktop_guide" third_item="_download_more_info_enterprise" %}
 
 
 {% endblock content %}
