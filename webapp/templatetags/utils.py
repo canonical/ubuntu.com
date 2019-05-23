@@ -25,3 +25,17 @@ def format_date(date):
 @register.filter
 def replace_admin(url):
     return url.replace("admin.insights.ubuntu.com", "blog.ubuntu.com")
+
+
+@register.filter
+def keyvalue(dictionary, key_name):
+    """
+    A template filter to get a dictionary key using a variable.
+    E.g.:
+
+    {{ dictionary | keyvalue:variable }}
+
+    (From https://stackoverflow.com/a/10700142/613540)
+    """
+
+    return dictionary.get(key_name)
