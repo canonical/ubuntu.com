@@ -1,38 +1,41 @@
 @mixin blog-p-featured {
+  $featured-bg-dark: #0d5777;
+  $featured-bg-light: #47929d;
+
   .p-strip--featured {
-    position: relative;
-    background-color: #0d5777;
+    background-color: $featured-bg-dark;
     background-image: linear-gradient(
       30deg,
-      #0d5777 0%,
-      #47929d 90%,
-      #47929d 100%
-    );
+      $featured-bg-dark 0%,
+      $featured-bg-light 90%,
+      $featured-bg-light 100%
+      );
     color: $color-light;
+    position: relative;
 
     @media only screen and (min-width: $breakpoint-medium) {
       &::before,
       &::after {
+        background-repeat: no-repeat;
+        background-size: contain;
         content: "";
+        height: 100%;
         position: absolute;
         top: 0;
         width: 100%;
-        height: 100%;
-        background-repeat: no-repeat;
-        background-size: contain;
         z-index: 0;
       }
 
       &::before {
-        left: 0;
         background-image: url("#{$assets-path}b17a85da-insights-background-leftside-fold.png");
         background-position: top left;
+        left: 0;
       }
 
       &::after {
-        right: 0;
         background-image: url("#{$assets-path}f6ea7ab1-insights-background-rightside-fold.png");
         background-position: top right;
+        right: 0;
       }
     }
   }
