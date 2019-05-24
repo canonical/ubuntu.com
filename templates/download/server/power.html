@@ -18,17 +18,17 @@
       <div class="col-6">
         <h2>Ubuntu Server</h2>
         <ul class="p-list">
-          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/releases/{{ latest_release_with_point }}/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ latest_release }}', 'eventValue' : undefined });">{{ latest_release_with_point }}&nbsp;&rsaquo;</a></li>
-          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/releases/{{ lts_release_with_point }}/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ lts_release }}', 'eventValue' : undefined });">{{ lts_release_full_with_point }}&nbsp;&rsaquo;</a></li>
-          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/releases/{{ previous_lts_release_with_point }}/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ previous_lts_release_with_point }}', 'eventValue' : undefined });">{{ previous_lts_release_with_point }} <abbr title="Long-term support">LTS</abbr>&nbsp;&rsaquo;</a></li>
+          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/releases/{{ releases.latest.full_version }}/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">{{ releases.latest.full_version }}&nbsp;&rsaquo;</a></li>
+          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/releases/{{ releases.lts.full_version }}/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">{{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>&nbsp;&rsaquo;</a></li>
+          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/releases/{{ releases.previous_lts.full_version }}/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases.previous_lts.full_version }}', 'eventValue' : undefined });">{{ releases.previous_lts.full_version }} <abbr title="Long-term support">LTS</abbr>&nbsp;&rsaquo;</a></li>
         </ul>
       </div>
       <div class="col-6">
         <h2>Netboot image</h2>
         <ul class="p-list">
-          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/netboot/{{ latest_release_with_point }}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER netboot', 'eventLabel' : '{{ latest_release }}', 'eventValue' : undefined });">{{ latest_release_with_point }}&nbsp;&rsaquo;</a></li>
-          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/netboot/{{ lts_release_with_point }}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER netboot', 'eventLabel' : '{{ lts_release }}', 'eventValue' : undefined });">{{ lts_release_full_with_point }}&nbsp;&rsaquo;</a></li>
-          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/netboot/{{ previous_lts_release }}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER netboot', 'eventLabel' : '{{ previous_lts_release }}', 'eventValue' : undefined });">{{ previous_lts_release_full }}&nbsp;&rsaquo;</a></li>
+          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/netboot/{{ releases.latest.full_version }}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER netboot', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">{{ releases.latest.full_version }}&nbsp;&rsaquo;</a></li>
+          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/netboot/{{ releases.lts.full_version }}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER netboot', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">{{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>&nbsp;&rsaquo;</a></li>
+          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/netboot/{{ releases.previous_lts.short_version }}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER netboot', 'eventLabel' : '{{ releases.previous_lts.short_version }}', 'eventValue' : undefined });">{{ releases.previous_lts.short_version }} LTS&nbsp;&rsaquo;</a></li>
         </ul>
         <p>
           <a class="p-link--external" href="http://cdimage.ubuntu.com/netboot/">Older versions of the netboot installer</a>
@@ -41,9 +41,9 @@
 <div class="p-strip--light is-bordered">
   <div class="row u-equal-height p-divider">
     <div class="col-6 p-divider__block">
-      <h3>Ubuntu {{ lts_release }} <abbr title="Long-term support">LTS</abbr> for IBM POWER</h3>
-      <p>Ubuntu {{ lts_release }} LTS adds support for Openstack Queens, LXD 3.0 with clustering and resource quotas, netplan.io, Chrony, and fresh package updates throughout the distribution.  Ubuntu 18.04 is the first release to support Power9.</p>
-      <p><a href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes">Ubuntu Server {{ lts_release }} <abbr title="Long-term support">LTS</abbr> release notes&nbsp;&rsaquo;</a></p>
+      <h3>Ubuntu {{ releases.lts.short_version }} <abbr title="Long-term support">LTS</abbr> for IBM POWER</h3>
+      <p>Ubuntu {{ releases.lts.short_version }} LTS adds support for Openstack Queens, LXD 3.0 with clustering and resource quotas, netplan.io, Chrony, and fresh package updates throughout the distribution.  Ubuntu 18.04 is the first release to support Power9.</p>
+      <p><a href="https://wiki.ubuntu.com/{{ releases.lts.slug }}/ReleaseNotes">Ubuntu Server {{ releases.lts.short_version }} <abbr title="Long-term support">LTS</abbr> release notes&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-6 p-divider__block">
       <h3>Ubuntu 16.04 <abbr title="Long-term support">LTS</abbr> for IBM POWER8</h3>

@@ -1,5 +1,6 @@
 from django.conf import settings
 from copy import deepcopy
+import yaml
 
 
 def _remove_hidden(pages):
@@ -15,7 +16,8 @@ def _remove_hidden(pages):
 
 def navigation(request):
     """
-    Set any context that we want to pass to all pages
+    Set "nav_sections" and "breadcrumbs" dictionaries
+    as global template variables
     """
 
     path = request.path
@@ -62,3 +64,14 @@ def navigation(request):
                         break
 
     return {"nav_sections": nav_sections, "breadcrumbs": breadcrumbs}
+
+
+def releases(request):
+    """
+    Read releases as a dictionary from releases.yaml,
+    and provide the contents as a dictionary in the global
+    template context
+    """
+
+    with open("releases.yaml") as releases:
+        return {"releases": yaml.load(releases, Loader=yaml.FullLoader)}

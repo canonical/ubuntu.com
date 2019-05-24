@@ -36,7 +36,7 @@
   <div class="row">
     <div class="col-12">
       <h2>
-        What&rsquo;s new in {{lts_release_full}}
+        What&rsquo;s new in {{ releases.lts.short_version }} LTS
       </h2>
       <ul class="p-list is-split">
         <li class="p-list__item is-ticked">Supported by Canonical until 2023 with ESM coverage until 2028</li>
@@ -54,7 +54,7 @@
       </ul>
       <p>
         <a class="p-link--external"
-        href="https://wiki.ubuntu.com/{{lts_release_name}}/ReleaseNotes">
+        href="https://wiki.ubuntu.com/{{ releases.lts.slug }}/ReleaseNotes">
         Read more in the release notes
       </a>
     </p>
@@ -67,7 +67,7 @@
   <div class="row">
     <div class="col-12">
       <h2>
-        What&rsquo;s new in {{latest_release}}
+        What&rsquo;s new in {{ releases.latest.short_version }}
       </h2>
       <ul class="p-list is-split">
         <li class="p-list__item is-ticked">Supported by Canonical for 9 months</li>
@@ -78,7 +78,7 @@
       </ul>
       <p>
         <a class="p-link--external"
-        href="https://wiki.ubuntu.com/{{latest_release_name}}/ReleaseNotes">
+        href="https://wiki.ubuntu.com/{{ releases.latest.slug }}/ReleaseNotes">
         Read more in the release notes
       </a>
     </p>
