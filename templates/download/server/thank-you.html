@@ -23,13 +23,7 @@
         <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-{{ architecture }}.iso">
           download now</a>.
       </p>
-      <p>
-         You can <a href="https://tutorials.ubuntu.com/tutorial/tutorial-how-to-verify-ubuntu">verify</a>
-         your image using the
-         <a href="http://releases.ubuntu.com/{{ version }}/SHA256SUMS">SHA256 checksum</a>
-         and
-         <a href="http://releases.ubuntu.com/{{ version }}/SHA256SUMS.gpg">signature</a>.
-      </p>
+      {% include "../shared/_verify-checksums.html" with version=version system="server" %}
       {% else %}
       <p>
         You didn&rsquo;t pick a version or architecture, please
