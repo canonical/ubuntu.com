@@ -1,0 +1,90 @@
+<div class="col-4" style="position: sticky; top: 2rem;">
+  <div class="p-card">
+    <header class="p-card__header">
+      <h5 class="p-muted-heading">Newsletter signup</h5>
+    </header>
+    <h3 class="p-card--title">Select topics you&rsquo;re interested in</h3>
+    <form action="https://pages.canonical.com/index.php/leadCapture/save" method="post" id="mktoForm_1212" novalidate="novalidate" onsubmit="ga('send', 'Newsletter', 'Signup', 'New homepage newsletter signup');">
+      <div class="p-card--content">
+        <ul class="p-list">
+          <li class="p-list__item u-no-margin--top u-clearfix">
+            <label>
+              <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" type="checkbox" id="insightscloudserver" name="insightscloudserver" value="Cloud and server" />
+              <label for="insightscloudserver">Cloud and Server</label>
+            </label>
+          </li>
+          <li class="p-list__item u-no-margin--top u-clearfix">
+            <label>
+              <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" type="checkbox" id="insightsdesktop" name="insightsdesktop" value="Desktop" />
+              <label for="insightsdesktop">Desktop</label>
+            </label>
+          </li>
+          <li class="p-list__item u-no-margin--top u-clearfix">
+            <label>
+              <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" type="checkbox" id="insightsiot" name="insightsiot" value="Internet of Things" />
+              <label for="insightsiot">Internet of Things</label>
+            </label>
+          </li>
+          <li class="p-list__item u-no-margin--top u-clearfix">
+            <label>
+              <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" id="insightstutorials" name="insightstutorials" value="Tutorials" type="checkbox">
+              <label for="insightstutorials">Tutorials</label>
+            </label>
+          </li>
+        </ul>
+        <div class="mktFormReq mktField u-margin-medium--top">
+          <label>
+            <span class="u-no-margin--top">Work email: <span>*</span></span>
+            <input required  id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
+          </label>
+        </div>
+        <div class="mktField mktLblRight u-margin-medium--top">
+          <span class="mktInput mktLblRight">
+            <input class="u-no-margin--top mktFormCheckbox" name="canonicalUpdatesOptIn" id="CanonicalUpdatesOptIn" value="Receive updates" type="checkbox" />
+            <label for="CanonicalUpdatesOptIn" class="p-form__label u-no-margin--top">
+              <small>I agree to receive information about Canonical’s products and services.</small>
+            </label>
+            <span class="mktFormMsg"></span>
+          </span>
+        </div>
+        <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
+        <p class="u-margin-medium--top">
+          <small>In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/newsletter">Canonical’s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</small>
+        </p>
+
+
+        <div class="u-margin-medium--top">
+          <span class="mktoButtonWrap p-card--content">
+            <button type="submit" class="u-no-margin--bottom">Subscribe now</button>
+          </span>
+          <input type="hidden" name="Consent_to_Processing__c" value="yes" />
+          <input value="1959" class="mktoField mktoFieldDescriptor" name="lpId" type="hidden">
+          <input value="30" class="mktoField mktoFieldDescriptor" name="subId" type="hidden">
+          <input name="lpurl" value="https://pages.canonical.com/Insights-Subscription_Insights-Subscription-test.html?cr={creative}&amp;kw={keyword}" type="hidden">
+          <input value="1212" class="mktoField mktoFieldDescriptor" name="formid" type="hidden">
+          <input type="hidden" name="ret" value="{{request.build_absolute_uri}}?newsletter=true" />
+          <input value="066-EOV-335" class="mktoField mktoFieldDescriptor" name="munchkinId" type="hidden">
+          <input name="kw" value="" type="hidden">
+          <input name="cr" value="" type="hidden">
+          <input name="searchstr" value="" type="hidden">
+          <input name="_mkt_disp" value="return" type="hidden">
+          <input name="_mkt_trk" value="id:066-EOV-335&amp;token:_mch-ubuntu.com-1473266321199-95160" type="hidden">
+          <input type="hidden" name="thankyoumessage" value="Thank you for subscribing!<br />You will begin receiving emails as new content is posted. You may unsubscribe any time by clicking the link in the email.">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
+<script src="https://assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
+<script>
+  $("#mktoForm_1212").validate({
+    errorPlacement: function(error, element) {
+      error.appendTo( element.parent().addClass( "p-form-validation is-error" ));
+      error.appendTo( element.addClass( "p-form-validation__input" ));
+    },
+    errorElement: "span",
+    errorClass: "p-form-validation__message"
+  });
+</script>
