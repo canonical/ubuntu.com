@@ -1,10 +1,12 @@
 @mixin blog-p-strips-suru {
+  $suru-bg-color: rgba(17, 17, 17, 0.65);
+
   .p-strip--suru {
-    position: relative;
     overflow: hidden;
+    position: relative;
 
     &::after {
-      background: rgba(17, 17, 17, 0.65);
+      background: $suru-bg-color;
       content: '';
       height: 100%;
       position: absolute;
@@ -13,7 +15,7 @@
       z-index: 0;
 
       @media only screen and (min-width: $breakpoint-medium) {
-        background: linear-gradient(110deg, rgba(17, 17, 17, .65) 55%, rgba(255, 255, 255, 0) 55%);
+        background: linear-gradient(110deg, $suru-bg-color 55%, transparent 55%);
       }
     }
   }
