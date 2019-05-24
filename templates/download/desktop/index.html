@@ -30,9 +30,6 @@
           <p class="p-card__content">
             <a class="p-button--positive is-wide" href="/download/desktop/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download</a>
           </p>
-
-          {% include "../shared/_verify-checksums.html" with version=releases.lts.full_version system="desktop" %}
-
           <p><small>For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors, and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</small></p>
         </div>
       </div>
@@ -50,9 +47,6 @@
             <p class="p-card__content">
               <a class="p-button--positive is-wide js-latest-download" href="/download/desktop/thank-you/?version={{ releases.latest.full_version }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download</a>
             </p>
-
-            {% include "../shared/_verify-checksums.html" with version=releases.latest.full_version system="desktop" %}
-
             <p class="p-card__content">
               <small><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></small>
             </p>

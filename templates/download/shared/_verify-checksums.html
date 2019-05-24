@@ -1,10 +1,15 @@
 <div class="p-card">
-  <p class="p-card__title"><small>SHA256SUM Checksum:</small></p>
+  <h4 class="p-card__title u-sv2">SHA256SUM Checksum:</h4>
   <div class="p-card__content">
+    <pre><code>{{ releases.checksums | keyvalue:system | keyvalue:version }}</code></pre>
+    <h4 class="p-card__title">Verify your download</h4>
+    <p><small>Run this command in your terminal in the directory the iso was downloaded</small></p>
     <div class="p-code-snippet">
-      <input class="p-code-snippet__input" value="{{ releases.checksums | keyvalue:system | keyvalue:version }}" readonly="readonly">
+      <input class="p-code-snippet__input" value='echo "{{ releases.checksums | keyvalue:system | keyvalue:version }}" | sha256sum --check' readonly="readonly">
       <button class="p-code-snippet__action">Copy to clipboard</button>
     </div>
-    <p><a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-how-to-verify-ubuntu"><small>How to verify downloads</small></a></p>
+    <p><small>You should get the following output:</small></p>
+    <pre><code>ubuntu-{{ version }}-{% if system == "server" %}live-server{% else %}{{ system }}{% endif %}-{{ architecture }}.iso: OK</code></pre>
+    <p><small>Or follow this tutorial to learn <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-how-to-verify-ubuntu">how to verify downloads</a></small></p>
   </div>
 </div>
