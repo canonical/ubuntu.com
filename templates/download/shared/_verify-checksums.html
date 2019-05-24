@@ -3,7 +3,7 @@
   <div class="p-card__content">
     <p><small>Run this command in your terminal in the directory the iso was downloaded to verify the SHA256 checksum:</small></p>
     <div class="p-code-snippet">
-      <textarea class="p-code-snippet__input" style="background-position: 0 0.25rem; padding-right: 1.5rem" readonly="readonly">echo "{{ releases.checksums | keyvalue:system | keyvalue:version }}" | sha256sum --check</textarea>
+      <textarea class="p-code-snippet__input" style="background-position: 0 0.25rem; color: rebeccapurple; padding-right: 1.5rem" readonly="readonly">echo "{{ releases.checksums | keyvalue:system | keyvalue:version }}" | sha256sum --check</textarea>
       <button class="p-code-snippet__action">Copy to clipboard</button>
     </div>
     <p><small>You should get the following output:</small></p>
