@@ -424,6 +424,12 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
     & .p-inline-list__item {
       @extend %small-text-fixed;
       list-style-type: none;
+
+      &::after {
+        @media only screen and (max-width: $breakpoint-medium - 1) {
+          display: none;
+        }
+      }
     }
 
     &__summary {
