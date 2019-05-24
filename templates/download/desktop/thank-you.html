@@ -37,19 +37,7 @@ Thank you for your contribution
         <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download now</a>.
         {% endif %}
       </p>
-      <p>
-        You can <a href="https://tutorials.ubuntu.com/tutorial/tutorial-how-to-verify-ubuntu">verify</a>
-        your image using the
-        {% if architecture == 'amd64+mac' %}
-        <a href="http://cdimage.ubuntu.com/releases/{{ version }}/release/SHA256SUMS">SHA256 checksum</a>
-        and
-        <a href="http://cdimage.ubuntu.com/releases/{{ version }}/release/SHA256SUMS.gpg">signature</a>.
-        {% else %}
-        <a href="http://releases.ubuntu.com/{{ version }}/SHA256SUMS">SHA256 checksum</a>
-        and
-        <a href="http://releases.ubuntu.com/{{ version }}/SHA256SUMS.gpg">signature</a>.
-        {% endif %}
-      </p>
+      {% include "../shared/_verify-checksums.html" with version=version system="desktop" architecture=architecture %}
       {% else %}
       <h1>Thank you for your contribution</h1>
       <p>It will help further the open source development of Ubuntu.</p>
@@ -69,7 +57,7 @@ Thank you for your contribution
         <p>Contributions require JavaScript. Please enable JavaScript if you want to contribute.</p>
       </noscript>
       <form class="p-card contribute__options" action="https://www.paypal.com/cgi-bin/webscr" id="contributions-form" method="post" target="_top">
-        
+
         <section id="community-projects" class="u-sv3">
           <label for="amount-community">
             <p class="p-heading--four">Community projects</p>

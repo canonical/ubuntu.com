@@ -7,10 +7,17 @@ lts:
   slug: BionicBeaver
   short_version: "18.04"
   full_version: "18.04.2"
-  # full_version: "18.04 LTS"
   eol: April 2023
 openstack_lts:
   slug: Queens
 previous_lts:
   short_version: "16.04"
   full_version: "16.04.6"
+
+checksums:
+  desktop:
+    "19.04": 2da6f8b5c65b71b040c5c510311eae1798545b8ba801c9b63e9e3fd3c0457cbe *ubuntu-19.04-desktop-amd64.iso
+    "18.04.2": 22580b9f3b186cc66818e60f44c46f795d708a1ad86b9225c458413b638459c4 *ubuntu-18.04.2-desktop-amd64.iso
+  live-server:
+    "19.04": 25d483341ccd0d522a6660b00db933787c86c47b42f1845bcf997127f4b61e9d *ubuntu-19.04-live-server-amd64.iso
+    "18.04.2": ea6ccb5b57813908c006f42f7ac8eaa4fc603883a2d07876cf9ed74610ba2f53 *ubuntu-18.04.2-live-server-amd64.iso
