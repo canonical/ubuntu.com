@@ -68,7 +68,7 @@
     {% if breadcrumbs.children %}
     <ul class="breadcrumbs--secondary col-12">
       {% for child in breadcrumbs.children %}
-        {% if child.path != '/blog/archives' %}
+        {% if child.path != '/blog/archives' and child.path != '/blog/upcoming'%}
         <li class="breadcrumbs__item">
           <a class="breadcrumbs__link {% if child.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ child.path }}">{{ child.title }}</a>
         </li>
