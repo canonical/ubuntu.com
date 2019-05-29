@@ -16,6 +16,8 @@
       {% endif %}
       {% if forloop.counter == 3 %}
         {% include 'blog/newsletter-form.html' %}
+      {% elif forloop.counter <= 2 %}
+        {% include 'blog/blog-card.html' with summary_visible=True %}
       {% else %}
         {% include 'blog/blog-card.html' %}
       {% endif %}
