@@ -1,17 +1,13 @@
 <div class="col-4 blog-p-card--post">
-  {% if article.group %}
-  <header class="blog-p-card__header blog-p-card__header--{{ article.group.slug }}">
+  <header class="blog-p-card__header{% if article.group %}--{{ article.group.slug }}{% endif %}">
     <h5 class="p-muted-heading u-no-margin--bottom">
-      {{ article.group.name }}
+      {% if article.group %}
+        {{ article.group.name }}
+      {% else %}
+        Ubuntu
+      {% endif %}
     </h5>
   </header>
-  {% else %}
-  <header class="blog-p-card__header">
-    <h5 class="p-muted-heading u-no-margin--bottom">
-      Ubuntu
-    </h5>
-  </header>
-  {% endif %}
   <div class="blog-p-card__content">
     {% if article.image and article.image.source_url %}
     <div class="u-crop--16-9">
