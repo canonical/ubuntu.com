@@ -31,9 +31,11 @@
       </a>
     </div>
     {% endif %}
+    
     <h3 class="p-heading--four">
       <a href="/blog/{{ article.slug }}">{{ article.title.rendered|safe }}</a>
     </h3>
+
     <p>
       <em
         >by
@@ -43,10 +45,12 @@
         on {{ article.date }}</em
       >
     </p>
-    {% if not article.image %}
-    <p class="u-no-padding--bottom">{{ article.excerpt.raw }}</p>
+
+    {% if summary_visible or not article.image %}
+    <p class="u-no-padding--bottom{% if summary_visible %} u-hide--small{% endif %}">{{ article.excerpt.raw|cut:"[…]"|truncatewords:36 }}</p>
     {% endif %}
   </div>
+
   <p class="blog-p-card__footer">
     {% include 'blog/singular-category.html' %}
   </p>
