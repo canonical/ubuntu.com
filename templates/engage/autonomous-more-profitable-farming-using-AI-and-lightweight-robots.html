@@ -1,0 +1,32 @@
+{% extends "engage/base_engage.html" %}
+
+{% block meta_description %}In Europe, the cost of running a cereal farm – cultivating wheat, rice, and other grains – has risen by 85% in the last 25 years, yet crop yields and revenues have stagnated. And while farms struggle to remain profitable, it won’t be long before those static yields become insufficient to support growing populations.{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1uxXjTwzzhOQK7x9xpppWgRNVPLpnYA5BN1Mr1Zp2rHI/edit?ts=5ce644a0#heading=h.ud7r143one49{% endblock meta_copydoc %}
+
+{% block content %}
+
+{% include "engage/shared/_header.html" with title=" Small Robot Company sows the seeds for autonomous and more profitable farming using AI and lightweight robots" url="#register-section" cta="Download the case study" class="p-strip"%}
+
+<section class="p-strip is-shallow is-bordered">
+  <div class="row">
+    <div class="col-7">
+      <p>In Europe, the cost of running a cereal farm – cultivating wheat, rice, and other grains – has risen by 85% in the last 25 years, yet crop yields and revenues have stagnated. And while farms struggle to remain profitable, it won’t be long before those static yields become insufficient to support growing populations.</p>
+      <p>Reliance on tractors is at the heart of both of these problems. Not only are tractors immensely costly to buy and maintain, they are also inefficient.</p>
+      <blockquote class="p-pull-quote">
+        <p>Robots are cheaper to run than tractors and generate far higher yields thanks to AI-driven precision.</p>
+      </blockquote>
+      <p>The Small Robot Company (SRC), a UK based agri-tech start up, is working to overturn this paradigm by replacing tractors with lightweight robots. Developed using Ubuntu, these <a href="https://blog.ubuntu.com/2018/09/13/ubuntu-robot">robots</a> are greener and cheaper to run than tractors, and generate far higher yields thanks to AI-driven precision.</p>
+      <h4>In this innovative deployment of robotics and AI for commercial farming, you’ll learn:</h4>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">How the agri-tech start up is using robotics to grow crops and reduce waste, including its current partnership with a leading UK supermarket chain.</li>
+        <li class="p-list__item is-ticked">The emergence of Farming as a Service (FaaS) business model, eliminating the need to invest upfront in expensive machinery.</li>
+        <li class="p-list__item is-ticked">How the use of Ubuntu in the cloud and on the hardware powers SRC’s three robots - Tom, Dick and Harry - plus Wilma, its AI system, to accelerate development and provide a stable platform.</li>
+      </ul>
+    </div>
+    <div class="col-5" id="register-section">
+      {% include "engage/shared/_en_engage_form.html" with id="3403" returnURL="https://pages.ubuntu.com/CStudy_SRC-TYvanilla.html" cta="Download the case study" %}
+    </div>
+  </div>
+</section>
+{% endblock content %}
