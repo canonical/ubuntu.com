@@ -60,9 +60,9 @@ urlpatterns += [
         name="topic",
     ),
     path(
-        r"blog/topics/juju",
+        r"blog/topics/snappy",
         topic,
-        {"slug": "juju", "template_path": "blog/topics/juju.html"},
+        {"slug": "snappy", "template_path": "blog/topics/snappy.html"},
         name="topic",
     ),
     path(r"blog", include("canonicalwebteam.blog.django.urls")),
