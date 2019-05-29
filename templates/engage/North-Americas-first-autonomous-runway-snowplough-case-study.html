@@ -1,0 +1,37 @@
+{% extends "engage/base_engage.html" %}
+
+{% block meta_description %}Northstar Robotics, a Canadian tech start-up founded in 2016, wants to address these challenges by developing autonomous vehicles and wanted to find out if an entire network of vehicles can be powered by a single intelligent control system.{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1uxXjTwzzhOQK7x9xpppWgRNVPLpnYA5BN1Mr1Zp2rHI/edit?ts=5ce644a0#heading=h.ud7r143one49{% endblock meta_copydoc %}
+
+{% block content %}
+
+{% include "engage/shared/_header.html" with title="North America’s first autonomous runway snowplough, powered by Ubuntu, may be the answer to seasonal labour shortage" url="#register-section" cta="Download the case study" class="p-strip"%}
+
+<section class="p-strip is-shallow is-bordered">
+  <div class="row">
+    <div class="col-7">
+      <p>Although critical, seasonal tasks can be dull and are often hazardous for human workers to carry out such as clearing snow from busy airport runways in slippery, sub-zero temperatures during winter. Added to this, finding skilled workers to operate the heavy machinery needed to perform these jobs is reportedly in short supply.</p>
+      <p>Northstar Robotics, a Canadian tech start-up founded in 2016, wants to address these challenges by developing autonomous vehicles and wanted to find out if an entire network of vehicles can be powered by a single intelligent control system.</p>
+      <blockquote class="p-pull-quote">
+        <p>Can an entire network of vehicles be powered by a single intelligent control system?</p>
+      </blockquote>
+      <p>The robotics company recently launched a pilot of the first autonomous runway snowplough in North America at Winnipeg Richardson International Airport, Canada’s seventh busiest airport, overcoming many hurdles to ensure its success.</p>
+      <h4>Read about the complex software requirements Northstar Robotics had in order to develop its autonomous snowplough, and:</h4>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Why it believes autonomous robots are the answer to North America’s critical skills shortage.</li>
+        <li class="p-list__item is-ticked">The results of its driverless snowplough deployment at Canada’s Winnipeg Richardson International Airport and what it means going forward.</li>
+        <li class="p-list__item is-ticked">Why it chose support from Ubuntu above alternative distros.</li>
+      </ul>
+    </div>
+    <div class="col-5" id="register-section">
+      {% include "engage/shared/_en_engage_form.html" with id="3402" returnURL="https://pages.ubuntu.com/CStudy_Northstar-TY.html" cta="Download the case study" %}
+    </div>
+  </div>
+  <!-- <style>
+    .p-takeover--northstar {
+      background-image: linear-gradient(134deg, #111111 0%, #212121 100%);
+    }
+  </style> -->
+</section>
+{% endblock content %}
