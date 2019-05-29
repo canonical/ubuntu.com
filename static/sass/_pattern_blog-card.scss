@@ -84,6 +84,7 @@
 
   .blog-p-card__header {
     @extend %post-card-header;
+    border-top: 3px solid #666; //sass-lint:disable-line no-color-literals
 
     &--cloud-and-server {
       @extend %post-card-header;
