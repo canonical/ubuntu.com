@@ -1,0 +1,9 @@
+<div class="row u-equal-height u-clearfix">
+{% for article in articles %}
+  {% if forloop.counter|add:"-1"|divisibleby:"3" and forloop.counter > 1 %}
+    </div>
+    <div class="row u-equal-height u-clearfix">
+  {% endif %}
+  {% include 'blog/blog-card.html' %}
+{% endfor %}
+</div>
