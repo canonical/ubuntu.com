@@ -5,7 +5,7 @@ from canonicalwebteam.yaml_responses.django_helpers import (
     create_deleted_views,
     create_redirect_views,
 )
-from canonicalwebteam.blog.django.views import group
+from canonicalwebteam.blog.django.views import group, topic
 
 # Local code
 from .views import UbuntuTemplateFinder, DownloadView, ResourcesView, search
@@ -46,6 +46,12 @@ urlpatterns += [
             "template_path": "blog/internet-of-things.html",
         },
         name="group",
+    ),
+    path(
+        r"blog/topics/maas",
+        topic,
+        {"slug": "maas", "template_path": "blog/topics/maas.html"},
+        name="topic",
     ),
     path(r"blog", include("canonicalwebteam.blog.django.urls")),
     url("", include("django_prometheus.urls")),
