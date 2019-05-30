@@ -6,7 +6,8 @@
 
 {% block content %}
 
-<section class="p-strip--light">
+
+<section class="p-strip--dark p-engage--src">
   <div class="row u-equal-height">
     <div class="col-7 u-vertically-center">
       <div>
@@ -22,9 +23,14 @@
       </div>
     </div>
     <div class="col-5 u-hide--small u-align--center u-vertically-center">
-      <img src="{{ ASSET_SERVER_URL }}2d645bd4-robot03.svg" width="175"  alt="">
+      <img src="{{ ASSET_SERVER_URL }}39ebd977-robot.svg" width="175"  alt="">
     </div>
   </div>
+  <style>
+    .p-engage--src {
+      background-image: linear-gradient(214deg, #E95420 0%, #C44631 6%, #A33940 12%, #8B304A 18%, #7C2B51 24%, #772953 29%, #55163B 51%, #370626 75%, #2C001E 89%);
+    }
+  </style>
 </section>
 
 <section class="p-strip is-shallow is-bordered">
