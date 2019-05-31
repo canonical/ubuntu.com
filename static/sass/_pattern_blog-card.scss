@@ -82,42 +82,40 @@
     }
   }
 
-  .blog-p-card__header {
+  // a fallback to catch any instances where a post.group exists,
+  // but we haven't yet defined a BEM variant to match
+  [class*="blog-p-card__header"] {
     @extend %post-card-header;
+    border-top: 3px solid $color-mid-dark;
+  }
+
+  .blog-p-card__header {
+    &--canonical-announcements {
+      border-color: #ff8936; //sass-lint:disable-line no-color-literals
+    }
 
     &--cloud-and-server {
-      @extend %post-card-header;
-      border-top: 3px solid #a87ca0; //sass-lint:disable-line no-color-literals
+      border-color: #a87ca0; //sass-lint:disable-line no-color-literals
     }
 
     &--desktop {
-      @extend %post-card-header;
-      border-top: 3px solid #faba54; //sass-lint:disable-line no-color-literals
+      border-color: #faba54; //sass-lint:disable-line no-color-literals
     }
 
     &--internet-of-things {
-      @extend %post-card-header;
-      border-top: 3px solid #8db255; //sass-lint:disable-line no-color-literals
-    }
-
-    &--canonical-announcements {
-      @extend %post-card-header;
-      border-top: 3px solid #ff8936; //sass-lint:disable-line no-color-literals
+      border-color: #8db255; //sass-lint:disable-line no-color-literals
     }
 
     &--phone-and-tablet {
-      @extend %post-card-header;
-      border-top: 3px solid $color-mid-light;
+      border-color: $color-mid-light;
     }
 
     &--webinar {
-      @extend %post-card-header;
-      border-top: 3px solid #48929b; //sass-lint:disable-line no-color-literals
+      border-color: #48929b; //sass-lint:disable-line no-color-literals
     }
 
     &--tutorials {
-      @extend %post-card-header;
-      border-top: 3px solid #47919e; //sass-lint:disable-line no-color-literals
+      border-color: #47919e; //sass-lint:disable-line no-color-literals
     }
   }
 
