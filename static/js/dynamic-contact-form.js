@@ -90,7 +90,6 @@
     });
 
     function setProductContext(contactButton) {
-      console.log('setProductContext');
       // Capture current path and stringify
       // eg. /kubernetes/install -> kubernetes-install
       // fallbacks to "global"
