@@ -28,12 +28,8 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet" type="text/css" media="screen" href="{% versioned_static 'css/styles.css' %}" />
-
     <link rel="stylesheet" type="text/css" media="print" href="{% versioned_static 'css/print.css' %}" />
 
-    <!-- javascript -->
-    {% include "shared/_html5_shiv.html" %}
-    <!-- replace no-js -->
     <script>
       var html = document.documentElement
       html.classList.replace("no-js", "js");
@@ -74,6 +70,6 @@
         {% endblock content_container %}
       </div><!-- /.inner-wrapper -->
     </div><!-- /.wrapper -->
-    
+
   </body>
 </html>

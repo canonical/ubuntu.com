@@ -24,8 +24,8 @@
       <p>The network installer lets you install Ubuntu over a network. It includes the minimal set of packages needed to start and the rest of the packages are downloaded over the network. Since only current packages are downloaded, there is no need to upgrade packages immediately after installation.</p>
       <p>The network installer is ideal if you have a computer that cannot run the graphical installer, for example, because it does not meet the minimum requirements for the live CD/DVD, or because the computer requires extra configuration before a graphical desktop can be used. The network installer is also useful if you want to install Ubuntu on a large number of computers at once.</p>
       <ul class="p-list">
-        <li class="p-list__item is-ticked"><a class="download-network p-link--external" href="http://cdimage.ubuntu.com/netboot/{{ latest_release }}/">Download the network installer for {{ latest_release }}</a></li>
-        <li class="p-list__item is-ticked"><a class="download-network p-link--external" href="http://cdimage.ubuntu.com/netboot/{{ lts_release }}/">Download the network installer for {{ lts_release_full }}</a></li>
+        <li class="p-list__item is-ticked"><a class="download-network p-link--external" href="http://cdimage.ubuntu.com/netboot/{{ releases.latest.short_version }}/">Download the network installer for {{ releases.latest.short_version }}</a></li>
+        <li class="p-list__item is-ticked"><a class="download-network p-link--external" href="http://cdimage.ubuntu.com/netboot/{{ releases.lts.short_version }}/">Download the network installer for {{ releases.lts.short_version }} LTS</a></li>
         <li class="p-list__item is-ticked"><a class="download-network p-link--external" href="http://cdimage.ubuntu.com/netboot/16.04/">Download the network installer for 16.04 LTS</a></li>
       </ul>
     </div>
@@ -42,26 +42,26 @@
 
   <div class="row">
     <div class="col-3">
-      <h3 class="p-heading--four"><span>Ubuntu {{latest_release_with_point}}</span></h3>
+      <h3 class="p-heading--four"><span>Ubuntu {{ releases.latest.full_version }}</span></h3>
       <ul class="p-list--divided">
-        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{ latest_release }}/ubuntu-{{ latest_release_with_point }}-desktop-amd64.iso.torrent">Ubuntu {{ latest_release_with_point }} Desktop (64-bit)</a></li>
-        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{ latest_release }}/ubuntu-{{ latest_release_with_point }}-live-server-amd64.iso.torrent">Ubuntu {{ latest_release_with_point }} Server (64-bit)</a></li>
+        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{ releases.latest.short_version }}/ubuntu-{{ releases.latest.full_version }}-desktop-amd64.iso.torrent">Ubuntu {{ releases.latest.full_version }} Desktop (64-bit)</a></li>
+        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{ releases.latest.short_version }}/ubuntu-{{ releases.latest.full_version }}-live-server-amd64.iso.torrent">Ubuntu {{ releases.latest.full_version }} Server (64-bit)</a></li>
       </ul>
     </div>
     <div class="col-3">
-      <h3 class="p-heading--four"><span>Ubuntu {{lts_release_full_with_point}}</span></h3>
+      <h3 class="p-heading--four"><span>Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></span></h3>
       <ul class="p-list--divided">
-        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{ lts_release }}/ubuntu-{{ lts_release_with_point }}-desktop-amd64.iso.torrent">Ubuntu {{ lts_release_with_point }} Desktop (64-bit)</a></li>
-        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{ lts_release }}/ubuntu-{{ lts_release_with_point }}-live-server-amd64.iso.torrent">Ubuntu {{ lts_release_with_point }} Server (64-bit)</a></li>
+        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-desktop-amd64.iso.torrent">Ubuntu {{ releases.lts.full_version }} Desktop (64-bit)</a></li>
+        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-live-server-amd64.iso.torrent">Ubuntu {{ releases.lts.full_version }} Server (64-bit)</a></li>
       </ul>
     </div>
     <div class="col-3">
-      <h3 class="p-heading--four"><span>Ubuntu {{previous_lts_release_full_with_point}}</span></h3>
+      <h3 class="p-heading--four"><span>Ubuntu {{ releases.previous_lts.full_version }} <abbr title="Long-term support">LTS</abbr></span></h3>
       <ul class="p-list--divided">
-        <li class="p-list__item"><a class="download-lts" href="http://releases.ubuntu.com/{{ previous_lts_release }}/ubuntu-{{ previous_lts_release_with_point }}-desktop-amd64.iso.torrent">Ubuntu {{ previous_lts_release_with_point }} Desktop (64-bit)</a></li>
-        <li class="p-list__item"><a class="download-lts" href="http://releases.ubuntu.com/{{ previous_lts_release }}/ubuntu-{{ previous_lts_release_with_point }}-desktop-i386.iso.torrent">Ubuntu {{ previous_lts_release_with_point }} Desktop (32-bit)</a></li>
-        <li class="p-list__item"><a class="download-lts" href="http://releases.ubuntu.com/{{ previous_lts_release }}/ubuntu-{{ previous_lts_release_with_point }}-server-amd64.iso.torrent">Ubuntu {{ previous_lts_release_with_point }} Server (64-bit)</a></li>
-        <li class="p-list__item"><a class="download-lts" href="http://releases.ubuntu.com/{{ previous_lts_release }}/ubuntu-{{ previous_lts_release_with_point }}-server-i386.iso.torrent">Ubuntu {{ previous_lts_release_with_point }} Server (32-bit)</a></li>
+        <li class="p-list__item"><a class="download-lts" href="http://releases.ubuntu.com/{{ releases.previous_lts.short_version }}/ubuntu-{{ releases.previous_lts.full_version }}-desktop-amd64.iso.torrent">Ubuntu {{ releases.previous_lts.full_version }} Desktop (64-bit)</a></li>
+        <li class="p-list__item"><a class="download-lts" href="http://releases.ubuntu.com/{{ releases.previous_lts.short_version }}/ubuntu-{{ releases.previous_lts.full_version }}-desktop-i386.iso.torrent">Ubuntu {{ releases.previous_lts.full_version }} Desktop (32-bit)</a></li>
+        <li class="p-list__item"><a class="download-lts" href="http://releases.ubuntu.com/{{ releases.previous_lts.short_version }}/ubuntu-{{ releases.previous_lts.full_version }}-server-amd64.iso.torrent">Ubuntu {{ releases.previous_lts.full_version }} Server (64-bit)</a></li>
+        <li class="p-list__item"><a class="download-lts" href="http://releases.ubuntu.com/{{ releases.previous_lts.short_version }}/ubuntu-{{ releases.previous_lts.full_version }}-server-i386.iso.torrent">Ubuntu {{ releases.previous_lts.full_version }} Server (32-bit)</a></li>
       </ul>
     </div>
   </div>
@@ -73,10 +73,10 @@
       <h2 id="alternate-ubuntu-server-installer">Alternative Ubuntu Server installer</h2>
       <p>If you want to reuse your existing partitions, you will need to use the alternate installer.</p>
       <p>
-        <a href="http://cdimage.ubuntu.com/releases/{{ lts_release_with_point }}/release/" class="p-link--external">Ubuntu {{lts_release_full_with_point}} alternative installer</a>
+        <a href="http://cdimage.ubuntu.com/releases/{{ releases.lts.full_version }}/release/" class="p-link--external">Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr> alternative installer</a>
       </p>
       <p>
-        <a href="http://cdimage.ubuntu.com/releases/{{ latest_release_with_point }}/release/" class="p-link--external">Ubuntu {{latest_release_with_point}} alternative installer</a>
+        <a href="http://cdimage.ubuntu.com/releases/{{ releases.latest.full_version }}/release/" class="p-link--external">Ubuntu {{ releases.latest.full_version }} alternative installer</a>
       </p>
     </div>
     <div class="col-4 p-divider__block">

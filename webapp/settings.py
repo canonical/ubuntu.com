@@ -89,7 +89,7 @@ STATICFILES_FINDERS = ["django_static_root_finder.finders.StaticRootFinder"]
 
 # Read navigation.yaml
 with open("navigation.yaml") as navigation_file:
-    NAV_SECTIONS = yaml.load(navigation_file.read())
+    NAV_SECTIONS = yaml.load(navigation_file.read(), Loader=yaml.FullLoader)
 
 TEMPLATES = [
     {
@@ -104,6 +104,7 @@ TEMPLATES = [
             "context_processors": [
                 "django_asset_server_url.asset_server_url",
                 "webapp.context_processors.navigation",
+                "webapp.context_processors.releases",
                 "django.template.context_processors.request",
             ],
         },
