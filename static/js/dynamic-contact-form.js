@@ -17,22 +17,7 @@
     contactButtons.forEach(function(contactButton) {
       contactButton.addEventListener('click', function(e) {
         e.preventDefault();
-        // Capture current path and stringify
-        // eg. /kubernetes/install -> kubernetes-install
-        // fallbacks to "global"
-        var product = window.location.pathname.split("/").slice(1).join("-") || "global";
-        // If present, override with product parameter from button URL
-        contactButton.search.split("&").forEach(function(param) {
-          if (param.startsWith("product") || param.startsWith("?product")) {
-            product = param.split("=")[1];
-          }
-        });
-
-        // Set product in form field
-        var productContext = document.getElementById("product-context");
-        if (productContext) {
-          productContext.value = product;
-        }
+        setProductContext(contactButton);
         open();
       });
     });
@@ -103,6 +88,29 @@
         }
       });
     });
+
+    function setProductContext(contactButton) {
+      console.log('setProductContext');
+      // Capture current path and stringify
+      // eg. /kubernetes/install -> kubernetes-install
+      // fallbacks to "global"
+      var product = window.location.pathname.split("/").slice(1).join("-") || "global";
+      // If present, override with product parameter from button URL
+      if (contactButton) {
+        contactButton.search.split("&").forEach(function(param) {
+          if (param.startsWith("product") || param.startsWith("?product")) {
+            product = param.split("=")[1];
+          }
+        });
+      }
+
+      // Set product in form field
+      var productContext = document.getElementById("product-context");
+      if (productContext) {
+        productContext.value = product;
+      }
+    }
+
 
     // Hack for now but updates the styling based on the thank you panel
     function checkThankYou() {
@@ -218,6 +226,7 @@
 
     // Opens the form when the initial hash matches the trigger
     if (window.location.hash === triggeringHash) {
+      setProductContext();
       open();
     }
 
@@ -225,6 +234,7 @@
     // Listens for hash changes and opens the form if it matches the trigger
     function locationHashChanged() {
       if (window.location.hash === triggeringHash) {
+        setProductContext();
         open();
       }
     }
