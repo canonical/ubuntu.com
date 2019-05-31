@@ -68,6 +68,12 @@
 @import "layout-whitepapers";
 @include layout-whitepapers;
 
+// Performant web font loading
+// https://developers.google.com/web/updates/2016/02/font-display
+body {
+  font-display: swap;
+}
+
 // Bug fixes
 // Each of the the rules below are bug fixes which need to be addressed further upstream
 // either at theme level or in Vanilla Framework directly.
