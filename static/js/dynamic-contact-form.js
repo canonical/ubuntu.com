@@ -17,7 +17,7 @@
     contactButtons.forEach(function(contactButton) {
       contactButton.addEventListener('click', function(e) {
         e.preventDefault();
-        // Capture current path and stringify 
+        // Capture current path and stringify
         // eg. /kubernetes/install -> kubernetes-install
         // fallbacks to "global"
         var product = window.location.pathname.split("/").slice(1).join("-") || "global";
@@ -25,10 +25,14 @@
         contactButton.search.split("&").forEach(function(param) {
           if (param.startsWith("product") || param.startsWith("?product")) {
             product = param.split("=")[1];
-          } 
+          }
         });
+
         // Set product in form field
-        document.getElementById("product-context").value = product;
+        var productContext = document.getElementById("product-context");
+        if (productContext) {
+          productContext.value = product;
+        }
         open();
       });
     });
