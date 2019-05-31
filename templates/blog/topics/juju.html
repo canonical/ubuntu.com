@@ -6,7 +6,7 @@
 
 {% block content %} 
 
-  <section class="p-strip--accent p-blog-topic__strip is-dark is-shallow u-image-position" style="overflow: hidden; background-color: #333">
+  <section class="p-strip--accent p-blog-topic__strip is-dark is-deep u-image-position" style="overflow: hidden; background-color: #333">
     <div class="row header-strip u-equal-height">
       <div class="col-6">
         <div class="p-heading-icon">
@@ -24,13 +24,13 @@
         <img
           src="{{ASSET_SERVER_URL}}e8b86f15-Juju-Visual-Screen.png?w=576"
           class="u-hidden--small u-image-position--bottom"
-          style="padding-top: 1rem; max-height: 100%;"
+          style="padding-top: 2.5rem; max-height: 100%;"
           alt="" />
       </div>
     </div>
   </section>
 
-  <section class="p-strip is-shallow{% if current_page and current_page == 1 and upcoming_events %} is-bordered{% endif %}" id="posts-list">
+  <section class="p-strip is-shallow" id="posts-list">
     <div class="row u-equal-height u-clearfix">
     {% for article in articles %}
       {% if forloop.counter|add:"-1"|divisibleby:"3" and forloop.counter > 1 %}
