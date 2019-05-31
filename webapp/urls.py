@@ -57,6 +57,13 @@ urlpatterns += [
         r"blog/topics/design",
         topic,
         {"slug": "design", "template_path": "blog/topics/design.html"},
+        r"blog/topics/juju",
+        name="topic",
+    ),
+    path(
+        r"blog/topics/juju",
+        topic,
+        {"slug": "juju", "template_path": "blog/topics/juju.html"},
         name="topic",
     ),
     path(r"blog", include("canonicalwebteam.blog.django.urls")),
