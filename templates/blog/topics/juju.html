@@ -30,16 +30,8 @@
     </div>
   </section>
 
-  <section class="p-strip is-shallow" id="posts-list">
-    <div class="row u-equal-height u-clearfix">
-    {% for article in articles %}
-      {% if forloop.counter|add:"-1"|divisibleby:"3" and forloop.counter > 1 %}
-        </div>
-        <div class="row u-equal-height u-clearfix">
-      {% endif %}
-      {% include 'blog/blog-card.html' %}
-    {% endfor %}
-    </div>
+  <section class="p-strip is-shallow">
+    {% include 'blog/posts.html' %}
   </section>
 
   {% include 'blog/pagination.html' %}
