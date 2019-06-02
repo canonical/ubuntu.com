@@ -57,7 +57,6 @@ urlpatterns += [
         r"blog/topics/design",
         topic,
         {"slug": "design", "template_path": "blog/topics/design.html"},
-        r"blog/topics/juju",
         name="topic",
     ),
     path(
