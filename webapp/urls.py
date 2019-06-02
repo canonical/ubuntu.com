@@ -59,6 +59,12 @@ urlpatterns += [
         {"slug": "design", "template_path": "blog/topics/design.html"},
         name="topic",
     ),
+    path(
+        r"blog/topics/juju",
+        topic,
+        {"slug": "juju", "template_path": "blog/topics/juju.html"},
+        name="topic",
+    ),
     path(r"blog", include("canonicalwebteam.blog.django.urls")),
     url("", include("django_prometheus.urls")),
     url(
