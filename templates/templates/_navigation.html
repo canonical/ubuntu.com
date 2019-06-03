@@ -68,7 +68,21 @@
     {% if breadcrumbs.children %}
     <ul class="breadcrumbs--secondary col-12">
       {% for child in breadcrumbs.children %}
-        {% if child.path != '/blog/archives' and child.path != '/blog/upcoming'%}
+        {% if child.path == '/blog/topics' %}
+        <li class="breadcrumbs__item p-contextual-menu">
+          <a aria-controls="#topics" class="breadcrumbs__link p-link--soft p-contextual-menu__toggle" href="#">{{ child.title }}</a>
+
+          <span class="p-contextual-menu__dropdown" id="topics" aria-hidden="true" aria-label="submenu" style="left: 1rem; font-size: 14px;">
+            <span class="p-contextual-menu__group">
+              <a href="/blog/topics/design" class="p-contextual-menu__link">Design</a>
+              <a href="/blog/topics/juju" class="p-contextual-menu__link">Juju</a>
+              <a href="/blog/topics/maas" class="p-contextual-menu__link">MAAS</a>
+              <a href="/blog/topics/robotics" class="p-contextual-menu__link">Robotics</a>
+              <a href="/blog/topics/snappy" class="p-contextual-menu__link">Snapcraft</a>
+            </span>
+          </span>
+        </li>
+        {% elif child.path != '/blog/archives' and child.path != '/blog/upcoming' %}
         <li class="breadcrumbs__item">
           <a class="breadcrumbs__link {% if child.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ child.path }}">{{ child.title }}</a>
         </li>
@@ -116,4 +130,58 @@
       console.log('Request failed', error)
     })
   }
+</script>
+
+<script>
+  function toggleMenu(toggle, dropdown, show) {
+    toggle.setAttribute('aria-expanded', show);
+    dropdown.setAttribute('aria-hidden', !show);
+  }
+
+  function setupContextualMenuListeners(contextualMenuSelector) {
+    var menus = document.querySelectorAll(contextualMenuSelector);
+    
+    for (var i = 0; i < menus.length; i++) {
+      var toggle = menus[i].querySelector('.p-contextual-menu__toggle'),
+          dropdown = menus[i].querySelector('.p-contextual-menu__dropdown'),
+          timer = null;
+
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+      });
+
+      toggle.addEventListener('mouseover', function() {
+        clearTimeout(timer);
+        toggleMenu(toggle, dropdown, true);
+      });
+
+      toggle.addEventListener('mouseleave', function() {
+        toggleMenu(toggle, dropdown, true);
+
+        timer = setTimeout(function() {
+          toggleMenu(toggle, dropdown, false);
+        }, 50);
+      });
+
+      dropdown.addEventListener('mouseover', function() {
+        clearTimeout(timer);
+      });
+
+      dropdown.addEventListener('mouseleave', function() {
+        timer = setTimeout(function() {
+          toggleMenu(toggle, dropdown, false);
+        }, 50);
+      });
+
+      document.onkeydown = function(e) {
+        e = e || window.event;
+
+        if (e.keyCode === 27) {
+          toggleMenu(toggle, dropdown, false);
+        }
+      };
+    };
+  }
+
+  setupContextualMenuListeners('.p-contextual-menu');
 </script>
