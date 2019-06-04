@@ -60,7 +60,13 @@ urlpatterns += [
         name="topic",
     ),
     path(
-        "blog/topics/juju",
+        r"blog/topics/snappy",
+        topic,
+        {"slug": "snappy", "template_path": "blog/topics/snappy.html"},
+        name="topic",
+    ),
+    path(
+        r"blog/topics/juju",
         topic,
         {"slug": "juju", "template_path": "blog/topics/juju.html"},
         name="topic",
