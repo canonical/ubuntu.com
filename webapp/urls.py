@@ -15,7 +15,7 @@ urlpatterns = create_redirect_views()
 urlpatterns += create_deleted_views()
 urlpatterns += [
     path(
-        r"blog/cloud-and-server",
+        "blog/cloud-and-server",
         group,
         {
             "slug": "cloud-and-server",
@@ -24,13 +24,13 @@ urlpatterns += [
         name="group",
     ),
     path(
-        r"blog/desktop",
+        "blog/desktop",
         group,
         {"slug": "desktop", "template_path": "blog/desktop.html"},
         name="group",
     ),
     path(
-        r"blog/press-centre",
+        "blog/press-centre",
         group,
         {
             "slug": "canonical-announcements",
@@ -39,7 +39,7 @@ urlpatterns += [
         name="group",
     ),
     path(
-        r"blog/internet-of-things",
+        "blog/internet-of-things",
         group,
         {
             "slug": "internet-of-things",
@@ -48,13 +48,13 @@ urlpatterns += [
         name="group",
     ),
     path(
-        r"blog/topics/maas",
+        "blog/topics/maas",
         topic,
         {"slug": "maas", "template_path": "blog/topics/maas.html"},
         name="topic",
     ),
     path(
-        r"blog/topics/design",
+        "blog/topics/design",
         topic,
         {"slug": "design", "template_path": "blog/topics/design.html"},
         name="topic",
@@ -71,7 +71,13 @@ urlpatterns += [
         {"slug": "juju", "template_path": "blog/topics/juju.html"},
         name="topic",
     ),
-    path(r"blog", include("canonicalwebteam.blog.django.urls")),
+    path(
+        "blog/topics/robotics",
+        topic,
+        {"slug": "robotics", "template_path": "blog/topics/robotics.html"},
+        name="topic",
+    ),
+    path("blog", include("canonicalwebteam.blog.django.urls")),
     url("", include("django_prometheus.urls")),
     url(
         r"^(?P<template>download/(desktop|server|cloud)/thank-you)$",
