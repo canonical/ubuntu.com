@@ -1,7 +1,7 @@
 <meta content="ubuntu.com" property="og:site_name">
     <meta content="en_GB" property="og:locale" />
-    <meta content="{% block title %}Ubuntu{% endblock %}" property="og:title">
+    <meta content="{{ title }}" property="og:title">
     <meta content="{% if "/engage" in request.path %}article{% else %}website{% endif %}" property="og:type">
-    <meta content="{% block meta_description %}Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things.{% endblock %}" property="og:description">
-    <meta content="{{ request.path }}" property="og:url">
-    <meta content="{% if meta_image %}{{ ASSET_SERVER_URL }}{{ meta_image }}{% else %}{{ ASSET_SERVER_URL }}3361409d-apple-touch-icon-144x144-precomposed.png{% endif %}" property="og:image">
+    <meta content="{{ description }}" property="og:description">
+    <meta content="https://www.ubuntu.com{{ request.path }}" property="og:url">
+    <meta content="{% if image %}{{ ASSET_SERVER_URL }}{{ image }}{% else %}{{ ASSET_SERVER_URL }}3361409d-apple-touch-icon-144x144-precomposed.png{% endif %}" property="og:image">
