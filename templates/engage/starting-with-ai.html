@@ -1,13 +1,19 @@
 {% extends "engage/base_engage.html" %}
 
-{% block title %}Getting Started with AI{% endblock %}
+{% setvar "Getting Started with AI" as meta_title %}
 
-{% block meta_description %}From the smallest startups to the largest enterprises alike, organizations are using Artificial Intelligence and Machine Learning to make the best, fastest, most informed decisions to overcome their biggest business challenges.{% endblock %}
+{% setvar "From the smallest startups to the largest enterprises alike, organizations are using Artificial Intelligence and Machine Learning to make the best, fastest, most informed decisions to overcome their biggest business challenges." as description %}
+
+{% setvar "166a4103-ai-get-started.svg" as image %}
+
+{% block title %}{{ meta_title }}{% endblock %}
+
+{% block meta_description %}{{ description }}{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1oC74jvhUvWudAG4dQ7TluAQlY6DiM_b28_tDvL_ue-Q{% endblock meta_copydoc %}
 
-{% block content %}
 
+{% block content %}
 <section class="p-strip p-strip--dark p-takeover--ai">
   <div class="row u-equal-height">
     <div class="col-7  u-vertically-center">
@@ -32,6 +38,9 @@
 <section class="p-strip is-shallow is-bordered">
   <div class="row">
     <div class="col-7">
+      {% setvar "Getting Started with AI" as meta_title %}
+
+      <h1>{{ meta_title }}</h1>
       <p>
         From the smallest startups to the largest enterprises alike, organizations are using Artificial Intelligence and Machine Learning to make the best, fastest, most informed decisions to overcome their biggest business challenges.
       </p>
