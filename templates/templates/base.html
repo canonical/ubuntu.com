@@ -18,6 +18,8 @@
 
     <meta charset="UTF-8" />
     <meta name="description" content="{% block meta_description %}Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things.{% endblock %}" />
+    <meta name="description" content="{% block meta_description %}Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things.{% endblock %}" />
+
 
     <meta name="author" content="Canonical" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -58,6 +60,10 @@
     </script>
 
     {% block head_extra %}{% endblock %}
+
+    {% include "shared/meta_data/schema-org-article.html" with meta_description=meta_description %}
+    {% include "shared/meta_data/open-graph.html" %}
+    {% include "shared/meta_data/twitter.html" %}
 
     {% block crazy_egg %}{% endblock crazy_egg %}
     <!-- google webmaster tools verification -->

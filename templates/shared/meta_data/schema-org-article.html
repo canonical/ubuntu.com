@@ -1,0 +1,21 @@
+<script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://google.com/article"
+        },
+        "headline": "{% block title %}Ubuntu{% endblock %}",
+        "image": "{% if meta_image %}{{ ASSET_SERVER_URL }}{{ meta_image }}{% else %}{{ ASSET_SERVER_URL }}3361409d-apple-touch-icon-144x144-precomposed.png{% endif %}",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Canonical",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "{{ ASSET_SERVER_URL }}3361409d-apple-touch-icon-144x144-precomposed.png"
+          }
+        },
+        "description": "{{ meta_description }}"
+      }
+    </script>
