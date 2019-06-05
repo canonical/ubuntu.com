@@ -20,6 +20,7 @@
 @import 'pattern_blog-post';
 @import 'pattern_blog-card';
 @import 'pattern_blog-suru';
+@import "pattern_blog-topic";
 @import "pattern_buttons";
 @import "pattern_card";
 @import "pattern_chart";
@@ -30,6 +31,7 @@
 @import "pattern_grid";
 @import "pattern_footer";
 @import "pattern_heading-icon";
+@import "pattern_icons";
 @import "pattern_inline-images";
 @import "pattern_lists";
 @import "pattern_navigation";
@@ -44,12 +46,15 @@
 @import "utility-animations";
 @import 'utility_crop';
 
+@include blog-p-card;
+@include blog-u-crop;
 @include blog-p-featured;
+@include blog-p-icons;
 @include blog-p-list;
 @include blog-p-post;
-@include blog-p-card;
 @include blog-p-strips-suru;
 @include blog-u-crop;
+@include blog-p-topic;
 @include ubuntu-p-buttons;
 @include ubuntu-p-card;
 @include ubuntu-p-contact-modal;
