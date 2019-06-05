@@ -68,7 +68,8 @@ def do_extends_with_args(parser, token):
     kwargs = {}
     if "with" in bits:
         pos = bits.index("with")
-        argslist = bits[pos + 1:]
+        argspos = pos + 1
+        argslist = bits[argspos:]
         bits = bits[:pos]
         for i in argslist:
             a, b = i.split("=", 1)
