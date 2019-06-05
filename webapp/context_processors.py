@@ -21,10 +21,16 @@ def navigation(request):
     path = request.path
     breadcrumbs = {}
     nav_sections = deepcopy(settings.NAV_SECTIONS)
+    is_topic_page = path.startswith("/blog/topics")
 
     for nav_section_name, nav_section in nav_sections.items():
         for child in nav_section["children"]:
-            if child["path"] == path:
+            if is_topic_page and child["path"] == ("/blog/topics"):
+                child["active"] = True
+                breadcrumbs["section"] = nav_section
+                breadcrumbs["children"] = nav_section.get("children", [])
+                break
+            elif child["path"] == path:
                 child["active"] = True
                 nav_section["active"] = True
                 breadcrumbs["section"] = nav_section
