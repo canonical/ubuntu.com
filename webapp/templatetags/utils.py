@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import template
+from django.template.loader_tags import do_extends
 import dateutil.parser
 
 register = template.Library()
@@ -39,3 +40,45 @@ def keyvalue(dictionary, key_name):
     """
 
     return dictionary.get(key_name)
+
+
+class ExtendsWithArgsNode(template.Node):
+    def __init__(self, node, kwargs):
+        self.node = node
+        self.kwargs = kwargs
+
+    def render(self, context):
+        context.update(self.kwargs)
+        try:
+            return self.node.render(context)
+        finally:
+            context.pop()
+
+
+def do_extends_with_args(parser, token):
+    """
+    Parse extends_with_args extension declarations.
+    Arguments are made available in context to the extended template
+    and its includes.
+    E.g.:
+
+    {% extends_with_args "base.html" with foo="bar" baz="toto" %}
+    """
+    bits = token.split_contents()
+    kwargs = {}
+    if "with" in bits:
+        pos = bits.index("with")
+        argslist = bits[pos + 1:]
+        bits = bits[:pos]
+        for i in argslist:
+            a, b = i.split("=", 1)
+            a = a.strip()
+            b = b.strip()
+            # Strip double quotes from value
+            kwargs[str(a)] = b.strip('"')
+        token.contents = " ".join(bits)
+    # Use do_extends to parse the tag
+    return ExtendsWithArgsNode(do_extends(parser, token), kwargs)
+
+
+register.tag("extends_with_args", do_extends_with_args)
