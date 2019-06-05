@@ -69,16 +69,14 @@
     <ul class="breadcrumbs--secondary col-12">
       {% for child in breadcrumbs.children %}
         {% if child.path == '/blog/topics' %}
-        <li class="breadcrumbs__item p-contextual-menu">
-          <a aria-controls="#topics" class="breadcrumbs__link p-link--soft p-contextual-menu__toggle" href="#">{{ child.title }}</a>
+        <li class="breadcrumbs__item p-contextual-menu u-hide--small">
+          <a aria-controls="#topics" class="breadcrumbs__link {% if child.active %}p-link--active{% else %}p-link--soft{% endif %} p-contextual-menu__toggle" href="#">{{ child.title }}</a>
 
           <span class="p-contextual-menu__dropdown" id="topics" aria-hidden="true" aria-label="submenu" style="left: 1rem; font-size: .875rem;">
             <span class="p-contextual-menu__group">
-              <a href="/blog/topics/design" class="p-contextual-menu__link breadcrumbs p-link--soft">Design</a>
-              <a href="/blog/topics/juju" class="p-contextual-menu__link breadcrumbs p-link--soft">Juju</a>
-              <a href="/blog/topics/maas" class="p-contextual-menu__link breadcrumbs p-link--soft">MAAS</a>
-              <a href="/blog/topics/robotics" class="p-contextual-menu__link breadcrumbs p-link--soft">Robotics</a>
-              <a href="/blog/topics/snappy" class="p-contextual-menu__link breadcrumbs p-link--soft">Snapcraft</a>
+              {% for item in child.children %}
+              <a href="{{ item.path }}" class="p-contextual-menu__link breadcrumbs p-link--soft">{{ item.title }}</a>
+              {% endfor %}
             </span>
           </span>
         </li>
@@ -87,16 +85,27 @@
           <a class="breadcrumbs__link {% if child.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ child.path }}">{{ child.title }}</a>
         </li>
         {% endif %}
-      {% if breadcrumbs.grandchildren %}
-      <li class="breadcrumbs__item"><span class="breadcrumbs__chevron u-hide--small">&rsaquo;</span><span class="u-show--small">&nbsp;</span></li>
-      {% for grandchild in breadcrumbs.grandchildren %}
-      <li class="breadcrumbs__item">
-        <a class="breadcrumbs__link {% if grandchild.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ grandchild.path }}">
-          {{ grandchild.title }}
-        </a>
-      </li>
+
+        {% if breadcrumbs.grandchildren %}
+        <li class="breadcrumbs__item"><span class="breadcrumbs__chevron u-hide--small">&rsaquo;</span><span class="u-show--small">&nbsp;</span></li>
+          {% for grandchild in breadcrumbs.grandchildren %}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link {% if grandchild.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ grandchild.path }}">
+              {{ grandchild.title }}
+            </a>
+          </li>
+          {% endfor %}
+        {% endif %}
       {% endfor %}
-      {% endif %}
+      
+      {% for child in breadcrumbs.children %}
+        {% if child.path == "/blog/topics" %}
+          {% for item in child.children %}
+          <li class="breadcrumbs__item u-hide--medium u-hide--large">
+            <a class="breadcrumbs__link p-link--soft" href="{{ item.path }}">{{ item.title }}</a>
+          </li>
+          {% endfor %}
+        {% endif %}
       {% endfor %}
     </ul>
     {% endif %}
