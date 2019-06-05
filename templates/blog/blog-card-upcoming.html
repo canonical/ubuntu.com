@@ -1,46 +1,46 @@
-{% for article in upcoming %}
-  <div class="col-4 blog-p-card--post">
-    <header class="blog-p-card__header--{{article.group.slug}}">
-      <h5 class="p-muted-heading">{{ article.group.name }}</h5>
-    </header>
+<div class="col-4 blog-p-card--post">
+  <header class="blog-p-card__header--{{article.group.slug}}">
+    <h5 class="p-muted-heading">{{ article.group.name }}</h5>
+  </header>
 
-    <div class="blog-p-card__content">
-      {% if article.image %}
-        <div class="u-crop--16-9">
-          <a href="/blog/{{ article.slug }}">
-            <img
-              src="https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_460/{{ article.image.source_url }}"
-              srcset="https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_460/{{ article.image.source_url }} 460w, https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_620/{{ article.image.source_url }} 620w, https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_875/{{ article.image.source_url }} 875w"
-              sizes="(min-width: 1031px) 460px, (max-width: 1030px) and (min-width: 876px) 460px, (max-width: 875px) and (min-width: 621px) 875px, (max-width: 620px) and (min-width: 461px) 620px, (max-width: 460px) 460px"
-              alt=""
-            />
-          </a>
-        </div>
-      {% endif %}
-      
-      <h3 class="p-heading--four">
-        <a href="/blog/{{ article.slug }}">{{ article.title.rendered|safe}}</a>
-      </h3>
+  <div class="blog-p-card__content">
+    {% if article.image %}
+      <div class="u-crop--16-9">
+        <a href="/blog/{{ article.slug }}">
+          <img
+            src="https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_460/{{ article.image.source_url }}"
+            srcset="https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_460/{{ article.image.source_url }} 460w, https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_620/{{ article.image.source_url }} 620w, https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_875/{{ article.image.source_url }} 875w"
+            sizes="(min-width: 1031px) 460px, (max-width: 1030px) and (min-width: 876px) 460px, (max-width: 875px) and (min-width: 621px) 875px, (max-width: 620px) and (min-width: 461px) 620px, (max-width: 460px) 460px"
+            alt=""
+          />
+        </a>
+      </div>
+    {% endif %}
+    
+    <h3 class="p-heading--four">
+      <a href="/blog/{{ article.slug }}">{{ article.title.rendered|safe}}</a>
+    </h3>
 
-      {% if not article.image %}
-        <p class="u-no-padding--bottom">{{ article.excerpt.raw|cut:"[…]"|truncatewords:36|urlize }}</p>
-      {% endif %}
+    {% if not article.image %}
+      <p class="u-no-padding--bottom">{{ article.excerpt.raw|cut:"[…]"|truncatewords:36|urlize }}</p>
+    {% endif %}
 
-      {% if article.start_date and article.end_date %}
-        <ul class="p-list u-no-margin--top">
-          <li class="p-list__item">
-            <i class="p-icon--calendar"></i>&nbsp;
-            {{ article.start_date }}{% if article.start_date != article.end_date %} &ndash; {{ article.end_date }}{% endif %}
-          </li>
-        </ul>
-      {% endif %}
-    </div>
-
-    <p class="blog-p-card__footer">
-      {% if article.display_category %}
-        {{ article.display_category.name }}
-      {% endif %}
-    </p>
+    {% if article.start_date and article.end_date %}
+      <ul class="p-list u-no-margin--top">
+        <li class="p-list__item">
+          <i class="p-icon--calendar"></i>&nbsp;
+          {{ article.start_date }}
+          {% if article.start_date != article.end_date %}
+           &ndash; {{ article.end_date }}
+          {% endif %}
+        </li>
+      </ul>
+    {% endif %}
   </div>
-{% endfor %}
 
+  <p class="blog-p-card__footer">
+    {% if article.display_category %}
+      {{ article.display_category.name }}
+    {% endif %}
+  </p>
+</div>

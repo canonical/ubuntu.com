@@ -34,12 +34,14 @@
       </div>
     
       <div class="row u-equal-height u-clearfix">
-        {% include 'blog/blog-card-upcoming.html' %}
+        {% for article in upcoming %}
+          {% include 'blog/blog-card-upcoming.html' %}
+        {% endfor %}
       </div>
 
       <div class="row">
         <div class="col-12">
-          <p><a href="/blog/archives?category=events,webinars">See more&nbsp;&rsaquo;</a></p>
+          <p><a href="/blog/upcoming">See more&nbsp;&rsaquo;</a></p>
         </div>
       </div>
     </section>
