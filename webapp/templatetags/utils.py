@@ -57,3 +57,17 @@ def months_list(year):
         if date < now.date():
             months.append({"name": date.strftime("%b"), "number": i})
     return months
+
+
+@register.filter
+def build_path_with_params(request):
+    query_params = request.GET.copy()
+    query_string = "?"
+
+    if "page" in query_params:
+        query_params.pop("page")
+
+    if len(query_params) > 0:
+        query_string += query_params.urlencode()
+
+    return request.path + query_string

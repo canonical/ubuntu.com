@@ -1,16 +1,13 @@
 <div class="col-4 blog-p-card--post">
-  {% if article.group %}
-  <header class="blog-p-card__header blog-p-card__header--{{ article.group.slug }}">
+  <header class="blog-p-card__header{% if article.group %}--{{ article.group.slug }}{% endif %}">
     <h5 class="p-muted-heading u-no-margin--bottom">
-      {{ article.group.name }}
+      {% if article.group %}
+        {{ article.group.name }}
+      {% else %}
+        Ubuntu
+      {% endif %}
     </h5>
   </header>
-  {% else %}
-  <header class="blog-p-card__header">
-    <h5 class="p-muted-heading u-no-margin--bottom">
-    </h5>
-  </header>
-  {% endif %}
   <div class="blog-p-card__content">
     {% if article.image and article.image.source_url %}
     <div class="u-crop--16-9">
@@ -30,9 +27,11 @@
       </a>
     </div>
     {% endif %}
+    
     <h3 class="p-heading--four">
       <a href="/blog/{{ article.slug }}">{{ article.title.rendered|safe }}</a>
     </h3>
+
     <p>
       <em
         >by
@@ -42,14 +41,14 @@
         on {{ article.date }}</em
       >
     </p>
-    {% if not article.image %}
-    <p class="u-no-padding--bottom">{{ article.excerpt.raw }}</p>
+
+    {% if summary_visible or not article.image %}
+    <p class="u-no-padding--bottom{% if summary_visible %} u-hide--small{% endif %}">{{ article.excerpt.raw|cut:"[…]"|truncatewords:36 }}</p>
     {% endif %}
   </div>
+
   <p class="blog-p-card__footer">
-  {% if article.display_category %}
-     {{ article.display_category.name }}
-  {% endif %}
+    {% include 'blog/singular-category.html' %}
   </p>
 </div>
 

@@ -5,7 +5,7 @@ from canonicalwebteam.yaml_responses.django_helpers import (
     create_deleted_views,
     create_redirect_views,
 )
-from canonicalwebteam.blog.django.views import group
+from canonicalwebteam.blog.django.views import group, topic
 
 # Local code
 from .views import UbuntuTemplateFinder, DownloadView, ResourcesView, search
@@ -15,7 +15,7 @@ urlpatterns = create_redirect_views()
 urlpatterns += create_deleted_views()
 urlpatterns += [
     path(
-        r"blog/cloud-and-server",
+        "blog/cloud-and-server",
         group,
         {
             "slug": "cloud-and-server",
@@ -24,13 +24,13 @@ urlpatterns += [
         name="group",
     ),
     path(
-        r"blog/desktop",
+        "blog/desktop",
         group,
         {"slug": "desktop", "template_path": "blog/desktop.html"},
         name="group",
     ),
     path(
-        r"blog/press-centre",
+        "blog/press-centre",
         group,
         {
             "slug": "canonical-announcements",
@@ -39,7 +39,7 @@ urlpatterns += [
         name="group",
     ),
     path(
-        r"blog/internet-of-things",
+        "blog/internet-of-things",
         group,
         {
             "slug": "internet-of-things",
@@ -47,7 +47,37 @@ urlpatterns += [
         },
         name="group",
     ),
-    path(r"blog", include("canonicalwebteam.blog.django.urls")),
+    path(
+        "blog/topics/maas",
+        topic,
+        {"slug": "maas", "template_path": "blog/topics/maas.html"},
+        name="topic",
+    ),
+    path(
+        "blog/topics/design",
+        topic,
+        {"slug": "design", "template_path": "blog/topics/design.html"},
+        name="topic",
+    ),
+    path(
+        r"blog/topics/snappy",
+        topic,
+        {"slug": "snappy", "template_path": "blog/topics/snappy.html"},
+        name="topic",
+    ),
+    path(
+        r"blog/topics/juju",
+        topic,
+        {"slug": "juju", "template_path": "blog/topics/juju.html"},
+        name="topic",
+    ),
+    path(
+        "blog/topics/robotics",
+        topic,
+        {"slug": "robotics", "template_path": "blog/topics/robotics.html"},
+        name="topic",
+    ),
+    path("blog", include("canonicalwebteam.blog.django.urls")),
     url("", include("django_prometheus.urls")),
     url(
         r"^(?P<template>download/(desktop|server|cloud)/thank-you)$",
