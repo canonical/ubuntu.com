@@ -96,12 +96,14 @@ class ExtendsWithArgsNode(template.Node):
     def render(self, context):
         context.update(self.kwargs)
         try:
+            self.node.origin = self.origin
             return self.node.render(context)
         finally:
             context.pop()
 
 
-def do_extends_with_args(parser, token):
+@register.tag
+def extends_with_args(parser, token):
     """
     Parse extends_with_args extension declarations.
     Arguments are made available in context to the extended template
@@ -126,6 +128,3 @@ def do_extends_with_args(parser, token):
         token.contents = " ".join(bits)
     # Use do_extends to parse the tag
     return ExtendsWithArgsNode(do_extends(parser, token), kwargs)
-
-
-register.tag("extends_with_args", do_extends_with_args)
