@@ -1,0 +1,34 @@
+{% extends "templates/one-column.html" %} 
+
+{% block title %}Events and webinars{% endblock %}
+
+{% block meta_description %}Events and webinars{% endblock %}
+
+{% block content %} 
+  <section class="p-strip--accent is-dark is-deep" style="background-color: #333;">
+    <div class="row u-equal-height u-vertically-center">
+      <div class="col-10">
+        <h1>
+          Events and webinars
+        </h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip--light is-shallow">
+    <div class="row u-equal-height u-clearfix">
+    {% for article in articles %}
+      {% if forloop.counter|add:"-1"|divisibleby:"3" and forloop.counter > 1 %}
+        </div>
+        <div class="row u-equal-height u-clearfix">
+      {% endif %}
+      {% include 'blog/blog-card-upcoming.html' %}
+    {% endfor %}
+    </div>
+  </section>
+
+  {% include 'blog/pagination.html' %}
+
+{% endblock %}
+
+

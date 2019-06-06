@@ -1,0 +1,70 @@
+{% extends "templates/one-column.html" %} 
+
+{% block title %}Archives{% endblock %}
+
+{% block content %} 
+  <section class="p-strip--accent is-dark is-deep" style="background-color: #333;">
+    <div class="row u-equal-height u-vertically-center">
+      <div class="col-10">
+        <h1>
+          {% if group %}
+            {{group.name}} archives
+          {% else %}
+            Archives
+          {% endif %}
+        </h1>
+
+        <p>
+          {{ total_posts }} post{{ total_posts|pluralize }}
+          
+          {% if request.GET.month or request.GET.year %} from{% endif %}
+
+          {% if request.GET.month %} {{request.GET.month|month_name}}{% endif %}
+
+          {% if request.GET.year %} {{ request.GET.year }}{% endif %}
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="p-strip is-shallow{% if current_page %} is-bordered{% endif %}" id="posts-list">
+    <div class="row">
+      <div class="col-8">
+        {% for article in articles %}
+          <div class="p-media-object">
+            <div class="p-media-object__details">
+              <h3 class="p-media-object__title">
+                <a href="/blog/{{ article.slug }}">{{ article.title.rendered|safe }}</a>
+              </h3>
+              <div class="p-media-object__content">
+                <p>By <a href="/blog/author/{{article.author.slug}}" title="More about {{ article.author.name }}">{{ article.author.name }}</a>, {{ article.date }}</p>
+                
+                <p>{{ article.excerpt.raw|cut:"[…]"|truncatewords:36 }}</p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="col-4">
+        <h3>Archives</h3>
+
+        <ul class="p-list">
+          {% for year in 2006|descending_years %}
+            <li class="p-list__item">
+              <h5><a class="p-link--soft" href="/blog/archives?year={{year}}">{{year}}</a></h5>
+              
+              <ul class="p-inline-list--middot">
+                {% for month in year|months_list %}
+                  <li class="p-inline-list__item"><a class="p-link--soft" href="/blog/archives?year={{year}}&amp;month={{month.number}}{% if group %}&group={{group.slug}}{% endif %}">{{ month.name }}</a></li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {% include 'blog/pagination.html' %}
+{% endblock %}

@@ -22,7 +22,7 @@ except ImportError:
 # Search service
 if settings.SEARCH_API_KEY:
     search_session = CachedSession(
-        expire_after=settings.SEARCH_CACHE_EXPIRY_SECONDS
+        fallback_cache_duration=settings.SEARCH_CACHE_EXPIRY_SECONDS
     )
 
 
@@ -407,7 +407,7 @@ class DownloadView(UbuntuTemplateFinder):
 
         try:
             with open(mirrors_path) as rss:
-                mirrors = parse(rss).entries
+                mirrors = parse(rss.read()).entries
         except IOError:
             mirrors = []
 

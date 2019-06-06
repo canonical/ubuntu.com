@@ -12,6 +12,16 @@ import os
 import socket
 import yaml
 
+BLOG_CONFIG = {
+    "TAG_IDS": [],
+    "EXCLUDED_TAGS": [3184, 3265],
+    # the title of the blog
+    "BLOG_TITLE": "Blog",
+    # the tag name for generating a feed
+    "TAG_NAME": "",
+}
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "no_secret")
@@ -55,7 +65,6 @@ USE_TZ = False
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 APPEND_SLASH = False
-REMOVE_SLASH = True
 
 # Use the IP address for now, as Docker doesn't use the
 # VPN DNS server
@@ -66,21 +75,18 @@ REMOVE_SLASH = True
 SEARCH_SERVER_URL = "http://10.22.112.8/search"
 SEARCH_TIMEOUT = 10
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "canonicalwebteam.custom_response_headers.Middleware",
-    "unslashed.middleware.RemoveSlashMiddleware",
 ]
 
 # Prometheus
 if not DEBUG:
     INSTALLED_APPS.append("django_prometheus")
-    MIDDLEWARE_CLASSES.insert(
+    MIDDLEWARE.insert(
         0, "django_prometheus.middleware.PrometheusBeforeMiddleware"
     )
-    MIDDLEWARE_CLASSES.append(
-        "django_prometheus.middleware.PrometheusAfterMiddleware"
-    )
+    MIDDLEWARE.append("django_prometheus.middleware.PrometheusAfterMiddleware")
     # Run the prometheus exporters on a range of ports
     PROMETHEUS_METRICS_EXPORT_PORT_RANGE = range(9990, 9999)
 
@@ -133,3 +139,5 @@ LOGGING = {
         }
     },
 }
+
+TESTRUNNER = "app.testrunner.NoDbTestRunner"

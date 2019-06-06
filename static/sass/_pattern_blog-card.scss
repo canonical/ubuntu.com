@@ -1,0 +1,128 @@
+@mixin  blog-p-card {
+
+  .blog-p-card__category {
+    background: url('#{$assets-path}ed42aefa-icon-resource-hub-icon-document.png') left center no-repeat;
+    color: $color-mid-dark;
+    font-size: $sp-medium;
+    line-height: 1.5;
+    padding: 0 0 0 $sp-large;
+    text-transform: uppercase;
+
+    > a:link,
+    > a:visited {
+      color: $color-mid-dark;
+      text-decoration: none;
+    }
+
+    > a:hover,
+    > a:active {
+      color: $color-brand;
+      text-decoration: underline;
+    }
+  }
+
+  %post-card-header {
+    border-radius: 2px;
+    padding: $sp-medium $sp-medium $sp-small;
+  }
+
+  .blog-p-card--post {
+    @extend %p-card--highlighted;
+    display: flex !important;
+    flex-direction: column;
+    padding: 0;
+
+    .p-strip--featured & {
+      background-color: rgba(255, 255, 255, .9); //sass-lint:disable-line no-color-literals
+      position: relative;
+      z-index: 1;
+    }
+
+    > .blog-p-card__content {
+      border-top: 1px dotted $color-mid-light;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      margin: 0 $sp-small;
+      padding: $sp-medium $sp-small $sp-small;
+
+      > a,
+      h3,
+      p {
+        display: block;
+        margin: $sp-small 0;
+      }
+    }
+
+    .blog-p-card__footer {
+      border-top: 1px dotted $color-mid-light;
+      font-size: .875rem;
+      margin: auto $sp-small 0;
+      max-width: inherit;
+      padding: $sp-medium $sp-small;
+    }
+  }
+
+  .blog-p-card--muted {
+    @extend .p-card; //sass-lint:disable-line placeholder-in-extend
+    background-color: $color-light;
+    box-shadow: 0 1px 2px 0 transparentize($color-dark, .8);
+    padding: 0;
+
+    > .blog-p-card__header  {
+      border-bottom: 0;
+      border-top: 3px solid $color-light;
+      margin-bottom: 0;
+    }
+
+    > .blog-p-card__content {
+      border-top: 1px dotted $color-mid-light;
+      margin: 0 $sp-small $sp-small;
+      padding: $sp-medium $sp-small $sp-small;
+    }
+  }
+
+  // a fallback to catch any instances where a post.group exists,
+  // but we haven't yet defined a BEM variant to match
+  [class*="blog-p-card__header"] {
+    @extend %post-card-header;
+    border-top: 3px solid $color-mid-dark;
+  }
+
+  .blog-p-card__header {
+    &--canonical-announcements {
+      border-color: #ff8936; //sass-lint:disable-line no-color-literals
+    }
+
+    &--cloud-and-server {
+      border-color: #a87ca0; //sass-lint:disable-line no-color-literals
+    }
+
+    &--desktop {
+      border-color: #faba54; //sass-lint:disable-line no-color-literals
+    }
+
+    &--internet-of-things {
+      border-color: #8db255; //sass-lint:disable-line no-color-literals
+    }
+
+    &--phone-and-tablet {
+      border-color: $color-mid-light;
+    }
+
+    &--webinar {
+      border-color: #48929b; //sass-lint:disable-line no-color-literals
+    }
+
+    &--tutorials {
+      border-color: #47919e; //sass-lint:disable-line no-color-literals
+    }
+  }
+
+  .blog-p-card__date {
+    @extend .p-media-object__meta-list; //sass-lint:disable-line placeholder-in-extend
+    display: flex;
+    margin-top: auto;
+    padding-top: $sp-medium;
+  }
+}

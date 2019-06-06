@@ -1,0 +1,15 @@
+{% if article.display_category.name == 'Articles' %}
+  Article
+{% elif article.display_category.name == 'Case studies' %}
+  Case study
+{% elif article.display_category.name == 'News' %}
+  News
+{% elif article.display_category.name == 'Webinars' %}
+  Webinar
+{% elif article.display_category.name == 'White papers' %}
+  White paper
+{% elif article.display_category.name %}
+  {{ article.display_category.name }}
+{% else %}
+  Article
+{% endif %}

@@ -99,6 +99,10 @@
     }
     formid = this.id;
 
+    // reset form and captcha
+    marketoForm.reset();
+    grecaptcha.reset();
+
     // deal with the post submit actions
     afterSubmit(download_asset_url, return_url, isModal, thankYouMessage);
 

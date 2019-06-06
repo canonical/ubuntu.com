@@ -33,13 +33,6 @@ openstack:
           path: /openstack/thank-you
           hidden: True
 
-ai:
-  title: AI/ML
-  path: /ai
-  children:
-    - title: Features
-      path: /ai/features
-
 publiccloud:
   title: Public cloud
   path: /public-cloud
@@ -207,7 +200,6 @@ kubernetes:
           path: /kubernetes/thank-you
           hidden: True
 
-
 ai:
   title: AI
   path: /ai
@@ -230,6 +222,41 @@ ai:
         - title: Thank you
           path: /ai/thank-you
           hidden: True
+
+blog:
+  title: Blog
+  path: /blog
+
+  children:
+    - title: Overview
+      path: /blog
+    - title: Internet of Things
+      path: /blog/internet-of-things          
+    - title: Desktop
+      path: /blog/desktop          
+    - title: Cloud and Server
+      path: /blog/cloud-and-server         
+    - title: Topics
+      path: /blog/topics
+
+      children:
+        - title: Design
+          path: /blog/topics/design
+        - title: Juju
+          path: /blog/topics/juju
+        - title: MAAS
+          path: /blog/topics/maas
+        - title: Robotics
+          path: /blog/topics/robotics
+        - title: Snapcraft
+          path: /blog/topics/snappy
+
+    - title: Press centre
+      path: /blog/press-centre
+    - title: Archives
+      path: /blog/archives
+    - title: Upcoming
+      path: /blog/upcoming   
 
 desktop:
   title: Desktop

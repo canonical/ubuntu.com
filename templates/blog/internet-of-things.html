@@ -1,0 +1,32 @@
+{% extends "templates/one-column.html" %} 
+
+{% block title %}Internet of Things{% endblock %}
+
+{% block meta_description %}All you need to know about building and managing IoT and embedded devices using Ubuntu.{% endblock %}
+
+{% block content %} 
+
+  <section class="p-strip--image is-dark p-strip--suru" style="background-position: center center; background-image:url('{{ASSET_SERVER_URL}}d1d58769-drone-iceland-unsplash-no-logo.jpg')">
+    <div class="row u-equal-height u-vertically-center">
+      <div class="col-6 p-card--suru">
+        <h1 class="p-heading--one">Internet of Things</h1>
+        <h5 style="line-height: 1.75rem;">
+          All you need to know about building and managing IoT and embedded devices using Ubuntu.
+        </h5>
+        <p>
+          <a class="p-link--inverted" href="/internet-of-things">Learn more about Internet of Things&nbsp;›</a>
+        </p>
+      </div>
+      <div id="rtp-banner" class="rtp-banner"></div>
+    </div>
+  </section>
+
+  <section class="p-strip is-shallow{% if current_page and current_page == 1 and upcoming_events %} is-bordered{% endif %}" id="posts-list">
+    {% include 'blog/filters.html' with topic="internet-of-things" %}
+    {% include 'blog/posts.html' %}
+  </section>
+
+  {% include 'blog/pagination.html' %}
+{% endblock %}
+
+

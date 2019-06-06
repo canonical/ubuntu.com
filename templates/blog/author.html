@@ -1,0 +1,59 @@
+{% extends "templates/one-column.html" %}
+
+{% block title %}{{ author.name }}{% endblock %}
+
+{% block description %}{% if author.id == 217 %}Canonical produces Ubuntu, provides commercial services for Ubuntu’s users, and works with hardware manufacturers, software vendors and cloud partners to certify Ubuntu.{% else %}{{ author.description|safe }}{% endif %}{% endblock %}
+
+{% block content %}
+<div class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <div class="p-media-object">
+        <img src="{% if author.id == 217 %}https://assets.ubuntu.com/v1/60d9b81e-picto-canonical.svg{% elif author.user_photo %}{{ author.user_photo }}{% else %}{{ author.avatar_urls.96 }}{% endif %}" class="p-media-object__image is-round">
+
+        <div class="p-media-object__details">
+          <h1 class="p-media-object__title">
+            {{ author.name }}
+          </h1>
+          {% if author.user_job_title %}
+            <p class="p-media-object__content"><em>{{ author.user_job_title }}</em></p>
+          {% endif %}
+
+          {% if author.id == 217 %}
+            <p class="p-media-object__content">Canonical produces Ubuntu, provides commercial services for Ubuntu’s users, and works with hardware manufacturers, software vendors and cloud partners to certify Ubuntu.</p>
+          {% elif author.description %}
+            <p class="p-media-object__content">{{ author.description | safe }}</p>
+          {% endif %}
+
+          <ul class="p-inline-list">
+            {% if author.user_twitter %}
+              <li class="p-inline-list__item">
+                <a href="https://twitter.com/{{ author.user_twitter }}"><i class="p-icon--twitter"></i></a>
+              </li>
+            {% endif %}
+            
+            {% if author.user_facebook %}
+              <li class="p-inline-list__item">
+                <a href="https://www.facebook.com/{{ author.user_facebook }}"><i class="p-icon--facebook"></i></a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip--light">
+  <div class="row">
+    <div class="col-8 prefix-1">
+      <h3 class="p-heading--five">Recently posted by {{ author.name }}</h3>
+      <ul class="p-list--divided">
+        {% for article in latest_articles %}
+          <li class="p-list__item"><a href="{{ article.link }}">{{ article.title.rendered|safe }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

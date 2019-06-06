@@ -1,0 +1,29 @@
+{% extends "templates/one-column.html" %} 
+
+{% block title %}Cloud and Server{% endblock %}
+
+{% block meta_description %}All you need to know about designing, building and managing your Openstack private cloud, Kubernetes cluster or Ubuntu Server scale‑out deployment.{% endblock %}
+
+{% block content %} 
+  <section class="p-strip--image is-dark p-strip--suru" style="background-position: center center; background-image:url('https://assets.ubuntu.com/v1/78c2eae0-image-server-room.jpg')">
+    <div class="row u-equal-height u-vertically-center">
+      <div class="col-6 p-card--suru">
+        <h1 class="p-heading--one">Cloud and Server</h1>
+        <h5 style="line-height: 1.75rem;">
+          All you need to know about designing, building and managing your Openstack private cloud, Kubernetes cluster or Ubuntu Server scale‑out deployment.
+        </h5>
+        <p>
+          <a class="p-link--inverted" href="/cloud">Learn more about Cloud and Server&nbsp;›</a>
+        </p>
+      </div>
+      <div id="rtp-banner" class="rtp-banner"></div>
+    </div>
+  </section>
+
+  <section class="p-strip is-shallow{% if current_page and current_page == 1 and upcoming_events %} is-bordered{% endif %}" id="posts-list">
+    {% include 'blog/filters.html' with topic="cloud-and-server" %}
+    {% include 'blog/posts.html' %}
+  </section>
+
+  {% include 'blog/pagination.html' %}
+{% endblock %}
