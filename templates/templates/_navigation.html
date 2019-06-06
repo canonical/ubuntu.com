@@ -102,7 +102,7 @@
         {% if child.path == "/blog/topics" %}
           {% for item in child.children %}
           <li class="breadcrumbs__item u-hide--medium u-hide--large">
-            <a class="breadcrumbs__link p-link--soft" href="{{ item.path }}">{{ item.title }}</a>
+            <a class="breadcrumbs__link {% if request.path == item.path %}p-link--active{% else %}p-link--soft {% endif %}" href="{{ item.path }}">{{ item.title }}</a>
           </li>
           {% endfor %}
         {% endif %}
