@@ -1,6 +1,6 @@
 // placeholders that need to be moved to vanilla
 
-$nudge--small: .55rem;
+$nudge--small: map-get($nudges, nudge--small);
 $p-small-lh-diff: map-get($line-heights, default-text) - map-get($line-heights, small);
 
 %small-text-base {
