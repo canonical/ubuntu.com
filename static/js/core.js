@@ -58,7 +58,7 @@ core.mobileNav = function () {
 
 core.supportsSvg();
 core.mobileNav();
-createNav();
+createNav({maxWidth:'72rem'});
 
 var options = {
   content:
