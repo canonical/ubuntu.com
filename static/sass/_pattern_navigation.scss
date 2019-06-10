@@ -209,7 +209,8 @@ $ubuntu-logo-width--mobile: calc($ubuntu-logo-svg-width + #{2 * $sph-inner});
         align-items: center;
         color: $color-x-light;
         display: flex;
-        margin-bottom: $sp-unit * 2 - map-get($nudges, nudge--p);
+        margin-bottom: $spv-inner--small;
+        padding-top:  $spv-inner--small;
         position: relative;
 
         @media (max-width: $breakpoint-navigation-threshold - 1) {
@@ -298,7 +299,7 @@ $ubuntu-logo-width--mobile: calc($ubuntu-logo-svg-width + #{2 * $sph-inner});
           }
 
           @media (min-width: $breakpoint-navigation-threshold) {
-            padding: map-get($nudges, nudge--p) $sph-inner $sp-unit + $spv-nudge-compensation 0;
+            padding: $spv-inner--small $sph-inner $spv-inner--small 0;
           }
 
           &.p-link--active {
