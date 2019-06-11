@@ -192,8 +192,6 @@ $ubuntu-logo-width--mobile: calc($ubuntu-logo-svg-width + #{2 * $sph-inner});
       width: 100%;
       z-index: 38;
 
-
-
       &__banner {
         background-color: $color-brand;
         float: left;
@@ -279,7 +277,7 @@ $ubuntu-logo-width--mobile: calc($ubuntu-logo-svg-width + #{2 * $sph-inner});
         }
 
         &__chevron {
-          font-size: .875rem;
+          margin-left: #{-0.5 * $sph-inner};
           padding: .55rem 0 .2rem 0;
         }
 
@@ -293,14 +291,7 @@ $ubuntu-logo-width--mobile: calc($ubuntu-logo-svg-width + #{2 * $sph-inner});
 
         &__link {
           line-height: map-get($line-heights, default-text);
-
-          @media (max-width: $breakpoint-navigation-threshold) {
-            padding: $spv-inner--small $sph-inner $spv-inner--small 0;
-          }
-
-          @media (min-width: $breakpoint-navigation-threshold) {
-            padding: $spv-inner--small $sph-inner $spv-inner--small 0;
-          }
+          padding: $spv-inner--small $sph-inner $spv-inner--small 0;
 
           &.p-link--active {
             color: $color-brand;
