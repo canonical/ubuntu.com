@@ -1,5 +1,7 @@
 {% extends "templates/base.html" %}
 
+{% load versioned_static  %}
+
 {% block title %}The leading operating system for PCs, IoT devices, servers and the cloud{% endblock %}
 {% block extra_body_class %}homepage {% block takeover_body_class %}{% endblock takeover_body_class %}{% endblock extra_body_class %}
 
@@ -214,6 +216,10 @@
       }
     </script>
 
-    {% include "shared/forms/interactive/_general.html" with lpId="2154" formid="1257" lpurl="https://pages.ubuntu.com/things-contact-us.html" returnURL="https://www.ubuntu.com/contact-us/form/thank-you" %}
+    <!-- Set default Marketo information for contact form below-->
+    <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_general.html" data-form-id="2154" data-lp-id="1257" data-return-url="https://www.ubuntu.com/contact-us/form/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+    </div>
+
+    <script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
   {% endblock content %}
 {% endblock outer_content %}
