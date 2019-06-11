@@ -1,3 +1,10 @@
+---
+name: Takeover PR
+about: All the requirements for a default takeover pull request
+title: ''
+labels: ''
+assignees: ''
+---
 ## Done
 
 [List of work items including drive-bys]
