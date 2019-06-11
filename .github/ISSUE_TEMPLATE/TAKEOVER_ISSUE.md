@@ -6,6 +6,7 @@
     - [ ] utm codes
     - [ ] marketo thank you page url and form_id (for whitepapers and case studies)
     - [ ] brighttalk embed html (for webinars)
+    - [ ] Metadata
     - [ ] [engage page copy]()
     - [ ] social media requirements
     - [ ] twitter card requirements
