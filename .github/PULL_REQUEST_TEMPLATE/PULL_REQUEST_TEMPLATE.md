@@ -13,7 +13,7 @@
 
 ## Issue / Card
 
-[List of links to Github issues/bugs and cards if needed - e.g. `Fixes #1`]
+Fixes #
 
 ## Screenshots
 
