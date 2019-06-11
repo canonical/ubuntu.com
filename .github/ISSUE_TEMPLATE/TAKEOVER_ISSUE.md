@@ -1,4 +1,10 @@
-
+---
+name: Takeover epic issue
+about: All the requirements for creating a takeover epic
+title: ''
+labels: ''
+assignees: '@SirSamTumless'
+---
 ## Marketing requirements
 
 - [ ] A complete [brief]() with:
