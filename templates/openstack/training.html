@@ -1,5 +1,7 @@
 {% extends "openstack/_base_openstack.html" %}
 
+{% load versioned_static  %}
+
 {% block title %}Training | OpenStack{% endblock %}
 {% block meta_description %}Canonical run OpenStack, Kubernetes and Ubuntu training programmes to suit all environments and all levels of experience.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1gyxy75qXC5Ta08o6Vnm13yK6aeN4qOnsETB2gZ4e0ZY/edit{% endblock meta_copydoc %}
@@ -231,9 +233,12 @@
     </div>
   </div>
 </section>
-{% include "shared/forms/interactive/_openstack.html" with formid="1263" lpId="2163" returnURL="https://www.ubuntu.com/openstack/thank-you?product=openstack-training" lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
 
-{% include "shared/forms/interactive/_openstack.html" with lpId="2086" formid="1251" lpurl="https://pages.ubuntu.com/things-contact-us.html" returnURL="https://www.ubuntu.com/contact-us/form/thank-you" %}
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_openstack.html" data-form-id="1263" data-lp-id="2163" data-return-url="https://www.ubuntu.com/openstack/thank-you?product=openstack-training" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
 
 {% endblock content %}
 {% endblock outer_content %}
