@@ -37,8 +37,11 @@ CUSTOM_SEARCH_ID = "009048213575199080868:i3zoqdwqk8o"
 INSTALLED_APPS = [
     "canonicalwebteam",
     "whitenoise.runserver_nostatic",
+    "raven.contrib.django.raven_compat",
     "django.contrib.staticfiles",  # Needed for STATICFILES_DIRS to work
 ]
+
+SENTRY_CLIENT = "talisker.django.SentryClient"
 
 WHITENOISE_MAX_AGE = 31557600
 WHITENOISE_ALLOW_ALL_ORIGINS = False
