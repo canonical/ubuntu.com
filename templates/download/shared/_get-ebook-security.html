@@ -41,6 +41,7 @@
               <input required  id="phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired mktoInvalid">
             </li>
             {% include "shared/forms/_country.html" %}
+            {% include "shared/forms/_state.html" %}
             <li class="mktFormReq mktField p-list__item">
               <label for="mktoPersonNotes" class="mktoLabel">Are you working on a commercial IoT deployment?</label>
               <select required id="mktoPersonNotes" name="MktoPersonNotes" class="mktoField mktoRequired mktoInvalid"><option value="">Select...</option>
@@ -72,8 +73,3 @@
     </div>
   </div>
 </section>
-
-{% block footer_extra %}
-  <!-- marketo form dependencies -->
-  <script src="{{ ASSET_SERVER_URL }}f97fa297-stateCountry.js" defer async></script>
-{% endblock footer_extra %}
