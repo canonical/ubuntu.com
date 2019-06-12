@@ -83,17 +83,6 @@ MIDDLEWARE = [
     "canonicalwebteam.custom_response_headers.Middleware",
 ]
 
-# Prometheus
-if not DEBUG:
-    INSTALLED_APPS.append("django_prometheus")
-    MIDDLEWARE.insert(
-        0, "django_prometheus.middleware.PrometheusBeforeMiddleware"
-    )
-    MIDDLEWARE.append("django_prometheus.middleware.PrometheusAfterMiddleware")
-    # Run the prometheus exporters on a range of ports
-    PROMETHEUS_METRICS_EXPORT_PORT_RANGE = range(9990, 9999)
-
-
 STATICFILES_FINDERS = ["django_static_root_finder.finders.StaticRootFinder"]
 
 # Read navigation.yaml
