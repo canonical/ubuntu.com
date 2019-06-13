@@ -1,7 +1,5 @@
 {% extends "ai/base_ai.html" %}
 
-{% load versioned_static  %}
-
 {% block title %}AI and Machine Learning on Ubuntu{% endblock %}
 {% block meta_description %}The default platform for Tensorflow and other AI/ML frameworks, with automatic hardware GPGPU acceleration on Ubuntu. Canonical provides training and K8s-based ML expertise.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1mJq8PxH8FVRVF9i1Xzh0f6M73eyjqZE4NaKYHRcRAKM/edit{% endblock meta_copydoc %}
@@ -207,11 +205,6 @@
 </section>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_containers_juju" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
-
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_kubeflow.html" data-form-id="3231" data-lp-id="6279" data-return-url="https://www.ubuntu.com/ai/thank-you?product=ai-managed" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
-
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+{% include "shared/forms/interactive/_kubeflow.html" with formid='3231'  lpId='6279' returnURL='https://www.ubuntu.com/ai/thank-you?product=ai-managed' lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
 
 {% endblock content %}

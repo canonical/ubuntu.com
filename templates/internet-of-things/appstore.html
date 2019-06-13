@@ -1,7 +1,5 @@
 {% extends "internet-of-things/base_things.html" %}
 
-{% load versioned_static  %}
-
 {% block title %}White label app store for IOT | Ubuntu for the Internet of Things {% endblock %}
 {% block meta_description %}For cloud based and enterprise IoT app stores, control, manage and monetise software deployments on your connected Linux devices.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1CKwmPDDtXOIgw-jSZFwzP-qLMc_rS_dUACpHQXlg0fA/edit{% endblock meta_copydoc %}
@@ -250,12 +248,8 @@
   </div>
 </section>
 
+{% include "shared/forms/interactive/_embedded.html" with formid="2639" lpId="5811" returnURL="https://ubuntu.com/internet-of-things/thank-you?product=appstore" lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
+
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_iot_newsletter_signup" third_item="_iot_further_reading" %}
-
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_embedded.html" data-form-id="2639" data-lp-id="5811" data-return-url="https://ubuntu.com/internet-of-things/thank-you?product=appstore" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
-
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
 
 {% endblock content %}

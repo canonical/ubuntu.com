@@ -1,14 +1,8 @@
 {% extends "templates/base.html" %}
 
-{% load versioned_static  %}
-
 {% block meta_copydoc %}https://drive.google.com/drive/folders/0B7On4yuSCsiPbnJ2bWpQbzhSVWc{% endblock meta_copydoc %}
 
 {% block outer_content %}
   {% block content %}{% endblock %}
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_general.html" data-form-id="1964" data-lp-id="3828" data-return-url="https://www.ubuntu.com/containers/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-  </div>
-
-  <script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+  {% include "shared/forms/interactive/_general.html" with formid='1964'  lpId='3828' returnURL='https://www.ubuntu.com/containers/thank-you' lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
 {% endblock %}

@@ -1,7 +1,5 @@
 {% extends "server/base_server.html" %}
 
-{% load versioned_static  %}
-
 {% block title %}Ubuntu Server and hyperscale | Server{% endblock %}
 {% block meta_description %}Unlock the promise of new extreme low-energy server technology{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1f56CCzH519lIVa4KvxDt0QpxYFMK-bMdVlKo4TvPSIk/edit{% endblock meta_copydoc %}
@@ -207,11 +205,6 @@
 </div>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_server_download" second_item="_server_contact_us" third_item="_cloud_further_reading" %}
-
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_support.html" data-form-id="1254" data-lp-id="2152" data-return-url="https://www.ubuntu.com/server/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
-
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+{% include "shared/forms/interactive/_support.html" with formid="1254"   lpId="2152"  returnURL="https://www.ubuntu.com/server/thank-you" lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
 
 {% endblock content %}

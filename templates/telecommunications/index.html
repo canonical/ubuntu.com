@@ -1,7 +1,5 @@
 {% extends "templates/one-column.html" %}
 
-{% load versioned_static  %}
-
 {% block title %}Ubuntu solutions for telecommunications{% endblock %}
 {% block meta_description %}Companies around the world rely on Ubuntu for secure open source solutions. We work with our customers to meet the highest security standards.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/15FY_IaT39V81FQcoSoEJpmRRjBX80PJ7uxjgzHnDDws/edit{% endblock meta_copydoc %}
@@ -233,12 +231,6 @@
   </div>
 </section>
 
+{% include "shared/forms/interactive/_general.html" with lpId="2154" formid="1257" lpurl="https://pages.ubuntu.com/things-contact-us.html" returnURL="https://www.ubuntu.com/contact-us/form/thank-you" %}
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_newsletter" third_item="_telco_further_reading" %}
-
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_general.html" data-form-id="1257" data-lp-id="2154" data-return-url="https://www.ubuntu.com/contact-us/form/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
-
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
-
 {% endblock content %}

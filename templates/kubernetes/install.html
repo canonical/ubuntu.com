@@ -1,7 +1,5 @@
 {% extends "kubernetes/base_kubernetes.html" %}
 
-{% load versioned_static  %}
-
 {% block title %}Install Charmed Kubernetes{% endblock %}
 {% block meta_description %}A step-by-step installation guide to Kubernetes on your software defined infrastructure.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1oiD6UUomf2daZitS3UOosujYBXPbiOMzPtXVZBq-ph0/edit{% endblock meta_copydoc %}
@@ -165,11 +163,6 @@
 </section>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_ubuntu_advantage" third_item="_cloud_further_reading" %}
-
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_kubernetes.html" data-form-id="3230" data-lp-id="6274" data-return-url="https://www.ubuntu.com/kubernetes/thank-you?product=kubernetes-install" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
-
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+{% include "shared/forms/interactive/_kubernetes.html" with formid='3230'  lpId='6274' returnURL='https://www.ubuntu.com/kubernetes/thank-you?product=kubernetes-install' lpurl="https://pages.ubuntu.com/things-contact-us.html"  %}
 
 {% endblock content %}

@@ -1,4 +1,6 @@
-<div class="p-modal" id="contact-modal">
+{% load versioned_static  %}
+
+<div class="p-modal u-hide" id="contact-modal">
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
     <header class="p-modal__header" style="display: block; border-bottom: 0;">
       <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
@@ -147,7 +149,7 @@
       <h3 class="p-heading--five">How should we get in touch?</h3>
       <div class="row u-no-padding">
         <div class="col-6">
-          <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_%% formid %%" class="modal-form marketo-form">
+          <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_{{ formid }}" class="modal-form marketo-form">
             <ul class="p-list">
               <li class="mktFormReq mktField p-list__item">
                 <label for="FirstName" class="mktoLabel">First name:</label>
@@ -180,17 +182,17 @@
                 </li>
               </ul>
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formValidation" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" class="mktoField" value="%% formid %%" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formVid" class="mktoField" value="%% formid %%" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpId" class="mktoField" value="%% lpId %%" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" class="mktoField" value="{{ formid }}" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formVid" class="mktoField" value="{{ formid }}" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpId" class="mktoField" value="{{ lpId }}" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="subId" class="mktoField" value="30" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="munchkinId" class="mktoField" value="066-EOV-335" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpurl" class="mktoField" value="%% lpurl %%?cr={creative}&amp;kw={keyword}" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpurl" class="mktoField" value="{{ lpurl }}?cr={creative}&amp;kw={keyword}" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="cr" class="mktoField" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="kw" class="mktoField" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="q" class="mktoField" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="%% returnURL %%" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="retURL" value="%% returnURL %%" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="{{ returnURL }}" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="retURL" value="{{ returnURL }}" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="productContext" id="product-context" value="{{ product }}" />
             </div>
@@ -220,3 +222,5 @@
     </div>
   </div>
 </div>
+
+<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
