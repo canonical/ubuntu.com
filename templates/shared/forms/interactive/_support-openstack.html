@@ -621,7 +621,7 @@
                 aria-label="hidden field"
                 name="lpId"
                 class="mktoField"
-                value="%% lpId %%"
+                value="{{ lpId }}"
               />
               <input
                 type="hidden"
@@ -645,7 +645,7 @@
                 aria-label="hidden field"
                 name="lpurl"
                 class="mktoField"
-                value="%% lpurl %%?cr={creative}&amp;kw={keyword}"
+                value="{{ lpurl }}?cr={creative}&amp;kw={keyword}"
               />
               <input
                 type="hidden"
@@ -676,14 +676,14 @@
                 aria-hidden="true"
                 aria-label="hidden field"
                 name="returnURL"
-                value="%% returnURL %%"
+                value="{{ returnURL }}"
               />
               <input
                 type="hidden"
                 aria-hidden="true"
                 aria-label="hidden field"
                 name="retURL"
-                value="%% returnURL %%"
+                value="{{ returnURL }}"
               />
               <input
                 type="hidden"
@@ -692,13 +692,6 @@
                 name="Consent_to_Processing__c"
                 value="yes"
               />
-              <input 
-                type="hidden" 
-                aria-hidden="true" 
-                aria-label="hidden field" 
-                name="productContext" 
-                id="product-context" 
-                value="{{ product }}" />
             </div>
 
             <div class="pagination">
