@@ -12,7 +12,14 @@ Thank you for your contribution
 {% block meta_copydoc %}https://docs.google.com/document/d/187Vg9I0Jjlp1_yAjYtHdoEwFCJeVOaz9Kzeb6kptMpA{% endblock meta_copydoc %}
 
 {% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
-
+{% block content-experiment %}
+        <style>.async-hide { opacity: 0 !important} </style>
+        <script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
+        h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
+        (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
+        })(window,document.documentElement,'async-hide','dataLayer',1000,
+        {'GTM-N2MDH37':true});</script>
+{% endblock %}
 {% block content %}
 
 {% if start_download %}
