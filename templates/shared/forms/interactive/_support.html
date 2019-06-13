@@ -1,3 +1,5 @@
+{% load versioned_static  %}
+
 <div class="p-modal u-hide" id="contact-modal">
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
     <header class="p-modal__header" style="display: block; border-bottom: 0;">
@@ -223,3 +225,5 @@
     </div>
   </div>
 </div>
+
+<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
