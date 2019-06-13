@@ -1,7 +1,5 @@
 {% extends "internet-of-things/base_things.html" %}
 
-{% load versioned_static  %}
-
 {% block title %}Digital signage | Ubuntu for the Internet of Things {% endblock %}
 {% block meta_description %}With hundreds of thousands of devices deployed the world over, Ubuntu Core is the perfect robust, reliable and secure OS for the digital signage sector.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1fFvBl-ZZvKDFV6OMv7O4kudQKtyxfvSU60rfVdKluAQ/edit{% endblock meta_copydoc %}
@@ -212,12 +210,8 @@
   </div>
 </div>
 
+{% include "shared/forms/interactive/_embedded.html" with formid="1422" lpId="2166" returnURL="https://ubuntu.com/internet-of-things/thank-you?product=digital-signage" lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
+
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_iot_newsletter_signup" third_item="_iot_further_reading" %}
-
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_embedded.html" data-form-id="1422" data-lp-id="2166" data-return-url="https://ubuntu.com/internet-of-things/thank-you?product=digital-signage" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
-
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
 
 {% endblock content %}

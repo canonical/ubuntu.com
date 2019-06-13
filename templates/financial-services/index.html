@@ -1,7 +1,5 @@
 {% extends "templates/one-column.html" %}
 
-{% load versioned_static  %}
-
 {% block title %}Financial services{% endblock %}
 {% block meta_description %}With evolving regulations, growing security threats and increasing costs – plus the emergence of game-changing new technologies like AI and Blockchain – the finance world needs practical solutions, now more than ever.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1o9s_MFaiZZIS26tusRi0ALNrcqUihhTSZgxS55oHZj4/edit{% endblock meta_copydoc %}
@@ -238,11 +236,6 @@
   </div>
 </section>
 
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_general.html" data-form-id="1257" data-lp-id="2154" data-return-url="https://www.ubuntu.com/contact-us/form/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
-
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
-
 {% endblock content %}
 
+{% include "shared/forms/interactive/_general.html" with lpId="2154" formid="1257" lpurl="https://pages.ubuntu.com/things-contact-us.html" returnURL="https://www.ubuntu.com/contact-us/form/thank-you" %}

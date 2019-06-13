@@ -1,7 +1,5 @@
 {% extends "support/base_support.html" %}
 
-{% load versioned_static  %}
-
 {% block title %}Community support{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1vrnljXUx71ZZhz3cQ6NupUNw6yNqW2OWkyY8Ozx2bqw/edit{% endblock meta_copydoc %}
 
@@ -46,12 +44,7 @@
 </div>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
-
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_support.html" data-form-id="1240" data-lp-id="2065" data-return-url="https://www.ubuntu.com/support/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
-
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+{% include "shared/forms/interactive/_support.html" with formid="1240"   lpId="2065"  returnURL="https://www.ubuntu.com/support/thank-you" lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}
