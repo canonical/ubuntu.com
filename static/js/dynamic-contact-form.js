@@ -20,7 +20,6 @@
         })
         .then(function (text) {
           formContainer.classList.remove('u-hide');
-          text.replace('%% formid %%','1240');
           formContainer.innerHTML = text;
           initialiseForm();
         })

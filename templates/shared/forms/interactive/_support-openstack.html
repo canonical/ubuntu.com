@@ -505,7 +505,7 @@
           <form
             action="https://pages.ubuntu.com/index.php/leadCapture/save"
             method="post"
-            id="mktoForm_%% formid %%"
+            id="mktoForm_{{ formid }}"
             class="modal-form marketo-form"
           >
             <ul class="p-list">
@@ -605,7 +605,7 @@
                 aria-label="hidden field"
                 name="formid"
                 class="mktoField"
-                value="%% formid %%"
+                value="{{ formid }}"
               />
               <input
                 type="hidden"
@@ -613,7 +613,7 @@
                 aria-label="hidden field"
                 name="formVid"
                 class="mktoField"
-                value="%% formid %%"
+                value="{{ formid }}"
               />
               <input
                 type="hidden"
