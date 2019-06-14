@@ -23,14 +23,18 @@ def navigation(request):
     path = request.path
     breadcrumbs = {}
     nav_sections = deepcopy(settings.NAV_SECTIONS)
-    is_topic_page = path.startswith("/blog/topics")
+    is_topic_page = path.startswith("/blog/topics/")
 
     for nav_section_name, nav_section in nav_sections.items():
+        # Persist parent navigation on child pages in certain cases
+        if nav_section.get("persist") and path.startswith(nav_section["path"]):
+            breadcrumbs["section"] = nav_section
+            breadcrumbs["children"] = nav_section.get("children", [])
+
         for child in nav_section["children"]:
-            if is_topic_page and child["path"] == ("/blog/topics"):
+            if is_topic_page and child["path"] == "/blog/topics":
+                # always show "Topics" as active on child topic pages
                 child["active"] = True
-                breadcrumbs["section"] = nav_section
-                breadcrumbs["children"] = nav_section.get("children", [])
                 break
             elif child["path"] == path:
                 child["active"] = True
