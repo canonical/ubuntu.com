@@ -1,0 +1,18 @@
+{% extends "templates/one-column.html" %}
+
+{% block content %}
+  <div class="p-strip--light is-shallow">
+    <div class="row">
+      <div class="col-8">
+        <h1 class="u-no-margin--bottom">{{ tag.name }}</h1>
+        <div id="rtp-banner" class="rtp-banner"></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="p-strip is-shallow" id="posts-list">
+    {% include "blog/posts.html" %}
+  </section>
+
+  {% include "blog/pagination.html" %}
+{% endblock %}
