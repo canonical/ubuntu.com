@@ -1,4 +1,4 @@
-{% extends_with_args "engage/base_engage.html" with title="The future of mobile connectivity " meta_image="{{ ASSET_SERVER_URL }}1d93a6b3-social.jpg" meta_description="Unlike the introduction of 4G which was dominated by consumer benefits, 5G is expected to be driven by enterprise use. According to IDC, enterprises will generate 60 percent of the world’s data by 2025." %}
+{% extends_with_args "engage/base_engage.html" with title="The future of mobile connectivity " meta_image="https://assets.ubuntu.com/v1/b739cc2c-social.jpg" meta_description="Unlike the introduction of 4G which was dominated by consumer benefits, 5G is expected to be driven by enterprise use. According to IDC, enterprises will generate 60 percent of the world’s data by 2025." %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/126V5e7cQ7ICiP0MAZlrTNsZ_xHknG5VTtcj_T-cUrwM{% endblock meta_copydoc %}
 
@@ -21,7 +21,7 @@
     </div>
 
     <div class="col-5 u-hide--small u-align--center u-vertically-center">
-      <img src="{{ ASSET_SERVER_URL }}2b86e4d3-Lime+Hi-Res_logo.svg" alt="Lime Microsystems logo" style="width: 320px;">
+      <img src="{{ ASSET_SERVER_URL }}4ba0e3a6-Joint+Lime-illustration-white.svg" alt="Lime Microsystems logo" style="width: 320px;">
     </div>
   </div>
 </section>
@@ -55,25 +55,20 @@
   
   <style>
     .p-takeover {
-      background-image: url("{{ ASSET_SERVER_URL }}4aca8ea6-suru.svg"), linear-gradient(45deg, #333333 0%, #111111 60%, #111111 100%);
-      background-position: right;
+      background-image: url("{{ ASSET_SERVER_URL }}e9f7cb35-left.svg"), url("{{ ASSET_SERVER_URL }}9e4ec700-right.svg"), linear-gradient(44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%);
+      background-position: left, right, center;
       background-repeat: no-repeat;
-      background-size: auto 100%, cover;
-    }
-
-    .p-takeover__image {
-      width: 311px;
+      background-size: auto 100%, auto 100%, cover;
     }
 
     @media (max-width: 874px) {
       .p-takeover {
-        background-image: linear-gradient(45deg, #333333 0%, #111111 60%, #111111 100%);
+        background-image: linear-gradient(44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%);
       }
 
       .p-takeover__image {
         margin-bottom: 2.2rem;
         max-width: 100%;
-        width: 270px;
       }
     }
   </style>
