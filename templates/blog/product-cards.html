@@ -1,0 +1,68 @@
+{% if article.group and article.group.slug == "cloud" %}
+<div class="p-card" id="rtp-cloud">
+  <h3>
+    <a href="http://www.ubuntu.com/cloud" class="p-link--external">
+      Ubuntu cloud
+    </a>
+  </h3>
+  <p>
+    Ubuntu offers all the training, software infrastructure, tools,
+    services and support you need for your public and private clouds.
+  </p>
+</div>
+{% elif article.group and article.group.slug == "internet-of-things" %}
+<div class="p-card" id="rtp-iot">
+  <h3>
+    <a href="http://www.ubuntu.com/internet-of-things" class="p-link--external">
+      Internet of Things
+    </a>
+  </h3>
+  <p>
+    From home control to drones, robots and industrial systems, Ubuntu Core and Snaps provide robust security, app stores and reliable updates for all your IoT devices.
+  </p>
+</div>
+{% elif article.group and article.group.slug == "support" %}
+<div class="p-card" id="rtp-support">
+  <h3>
+    <a href="http://www.ubuntu.com/support" class="p-link--external">
+      Ubuntu Advantage support
+    </a>
+  </h3>
+  <p>
+    If you are running Ubuntu in your organisation, you should talk to us about getting Ubuntu Advantage support with Landscape management tools.
+  </p>
+</div>
+{% elif article.group and article.group.slug == "desktop" %}
+<div class="p-card" id="rtp-desktop">
+  <h3>
+    <a href="http://www.ubuntu.com/desktop" class="p-link--external">
+      Ubuntu desktop
+    </a>
+  </h3>
+  <p>
+    Learn how the Ubuntu desktop operating system powers millions of PCs and laptops around the world.
+  </p>
+</div>
+{% elif article.group and article.group.slug == "server" %}
+<div class="p-card" id="rtp-server">
+  <h3>
+    <a href="http://www.ubuntu.com/server" class="p-link--external">
+      Ubuntu Server
+    </a>
+  </h3>
+  <p>
+    The leading platform for scale-out computing, Ubuntu Server delivers the best value scale-out performance available.
+  </p>
+</div>
+{% else %}
+<div class="p-card" id="rtp-contact-us">
+  <h3>
+    <a href="https://www.ubuntu.com/about/contact-us/form" class="p-link--external">
+      Talk to us today
+    </a>
+  </h3>
+  <p>
+    Interested in running Ubuntu Desktop in your organisation?
+  </p>
+</div>
+{% endif %}
