@@ -1,8 +1,4 @@
-{% extends "templates/one-column.html" %}
-
-{% block title %}{{ article.title.rendered|safe }}{% endblock %}
-
-{% block meta_description %}{{ article.excerpt.raw }}{% endblock %}
+{% extends_with_args "templates/one-column.html" with title=article.title.rendered meta_description=article.excerpt.raw  meta_image=article.image.source_url %}
 
 {% block content %}
 
@@ -36,7 +32,7 @@
             Share on:
           </li>
           <li class="p-inline-list__item">
-            <a class="p-icon--facebook" title="Share on Facebook" href="http://www.facebook.com/sharer.php?s=100&amp;p[url]=https://blog.ubuntu.com{{ article.link }}&#9;&#9;&#9;&amp;p[title]={{ article.title.rendered | safe | urlencode }}&amp;p[summary]={{ article.excerpt.raw|cut:'[…]'|truncatewords:36|urlencode }}{% if article.image and article.image.source_url %}&amp;p[images][0]=https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_460/{{ article.image.source_url }}{% endif %}">
+            <a class="p-icon--facebook" title="Share on Facebook" href="http://www.facebook.com/sharer.php?s=100&amp;p[url]=https://www.ubuntu.com/blog/{{ article.slug }}&#9;&#9;&#9;&amp;p[title]={{ article.title.rendered | safe | urlencode }}&amp;p[summary]={{ article.excerpt.raw|cut:'[…]'|truncatewords:36|urlencode }}{% if article.image and article.image.source_url %}&amp;p[images][0]=https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_460/{{ article.image.source_url }}{% endif %}">
               Facebook
             </a>
           </li>
