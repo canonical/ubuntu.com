@@ -284,7 +284,7 @@ Ubuntu Advantage for Infrastructure StandardまたはUbuntu Advantage for Infras
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
-<h2 id="uasd-ua-support-services">Ubuntuアドバンテージのサポート<br />サービス</h2>
+<h2 id="uasd-ua-support-services">Ubuntuアドバンテージのサポート<br/>サービスプロセス</h2>
 
 1. サービス開始
   1. サービスの開始時に、Canonicalはランドスケープ、サポートポータル、およびオンラインナレッジベースの技術担当者一名へのアクセスを提供します。
