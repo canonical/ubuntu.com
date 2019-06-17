@@ -284,7 +284,7 @@ Ubuntu Advantage for Infrastructure StandardまたはUbuntu Advantage for Infras
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
-<h2 id="uasd-ua-support-services">Ubuntuアドバンテージのサポートサービス</h2>
+<h2 id="uasd-ua-support-services">Ubuntuアドバンテージのサポート<br />サービス</h2>
 
 1. サービス開始
   1. サービスの開始時に、Canonicalはランドスケープ、サポートポータル、およびオンラインナレッジベースの技術担当者一名へのアクセスを提供します。
@@ -321,7 +321,7 @@ Ubuntu Advantage for Infrastructure StandardまたはUbuntu Advantage for Infras
   1. 応答時間の表
   |                    |Standard         |Advanced|
   |--------------------|-----------------|--------|
-  |**重大度レベル1**|4時間（週末と休日を除く）|1時間|
+  |**重大度レベル1**|4時間<br />（週末と休日を除く）|1時間|
   |**重大度レベル2**|8営業時間|2時間|
   |**重大度レベル3**|12営業時間|6時間|
   |**重大度レベル4**|24営業時間|12時間|
