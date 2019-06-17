@@ -8,6 +8,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
+import logging.config
 import os
 import socket
 import yaml
@@ -81,6 +82,7 @@ SEARCH_TIMEOUT = 10
 MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "canonicalwebteam.custom_response_headers.Middleware",
+    "talisker.django.middleware",
 ]
 
 STATICFILES_FINDERS = ["django_static_root_finder.finders.StaticRootFinder"]
@@ -111,6 +113,8 @@ TEMPLATES = [
 
 ASSET_SERVER_URL = "https://assets.ubuntu.com/v1/"
 
+LOGGING_CONFIG = None
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -131,5 +135,7 @@ LOGGING = {
         }
     },
 }
+
+logging.config.dictConfig(LOGGING)
 
 TESTRUNNER = "app.testrunner.NoDbTestRunner"
