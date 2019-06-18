@@ -1,5 +1,7 @@
 {% extends "ai/base_ai.html" %}
 
+{% load versioned_static  %}
+
 {% block title %}Install Kubeflow yourself{% endblock %}
 {% block meta_description %}A step-by-step installation guide to Ubuntu OpenStack with Kubernetes and Kubeflow on bare metal servers.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1KVyyvZsDyrfoi5tK2m5SLWs9YuHg9hgqVz0c8cWHsf8/edit{% endblock meta_copydoc %}
@@ -108,6 +110,11 @@
 </div>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_ubuntu_advantage" third_item="_cloud_further_reading" %}
-{% include "shared/forms/interactive/_kubeflow.html" with  formid='3231'  lpId='6279' returnURL='https://www.ubuntu.com/ai/thank-you?product=ai-managed' lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_kubeflow.html" data-form-id="3231" data-lp-id="6279" data-return-url="https://www.ubuntu.com/ai/thank-you?product=ai-managed" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
 
 {% endblock content %}

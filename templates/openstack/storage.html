@@ -1,5 +1,7 @@
 {% extends "openstack/_base_openstack.html" %}
 
+{% load versioned_static  %}
+
 {% block title %}Ubuntu Advantage Storage | OpenStack{% endblock %}
 {% block meta_description %}Canonical includes proven software-defined storage - Ceph, NexentaEdge, Swift and SwiftStack, in a 24x7 supported OpenStack with pay-for-what-you-use metered pricing options.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1iw2SWNmoj4GZ2pUh0yB8gbtVXK0oXfyEaXT44bQbPlI/edit{% endblock meta_copydoc %}
@@ -102,6 +104,11 @@
 </section>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_rfp" third_item="_cloud_further_reading" %}
-{% include "shared/forms/interactive/_openstack.html" with formid="1233" lpId="2001" returnURL="https://www.ubuntu.com/openstack/thank-you?product=ubuntu-advantage-storage" lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_openstack.html" data-form-id="1233" data-lp-id="2001" data-return-url="https://www.ubuntu.com/openstack/thank-you?product=ubuntu-advantage-storage" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
 
 {% endblock content %}

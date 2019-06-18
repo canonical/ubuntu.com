@@ -1,5 +1,7 @@
 {% extends "openstack/_base_openstack.html" %}
 
+{% load versioned_static  %}
+
 {% block title %}Consulting | OpenStack{% endblock %}
 {% block meta_description %}Private Cloud Build is a service that builds, supports and manages your cloud for you.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1f83OSIHVQGMjF7b0pZUKFvoubMGqi_b-OYbSpyhveX4/edit{% endblock meta_copydoc %}
@@ -232,6 +234,11 @@
   </section>
 
   {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_rfp" third_item="_cloud_further_reading" %}
-  {% include "shared/forms/interactive/_openstack.html" with formid='1251'  lpId='2086' returnURL='https://www.ubuntu.com/openstack/thank-you?product=foundation-cloud' lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
+
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_openstack.html" data-form-id="1251" data-lp-id="2086" data-return-url="https://www.ubuntu.com/openstack/thank-you?product=foundation-cloud" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+  </div>
+
+  <script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
 
 {% endblock content %}
