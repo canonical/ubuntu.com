@@ -2,7 +2,7 @@
 
 {% load versioned_static  %}
 
-{% block title %}Install Kubernetes on Ubuntu{% endblock %}
+{% block title %}Install Kubernetes{% endblock %}
 {% block meta_description %}A step-by-step installation guide to Kubernetes on your software defined infrastructure.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1oiD6UUomf2daZitS3UOosujYBXPbiOMzPtXVZBq-ph0/edit{% endblock meta_copydoc %}
 
@@ -77,12 +77,6 @@
     </div>
   </div>
 </section>
-
-
-
-
-
-
 
 <section id="single-node" class="p-strip--light is-bordered">
   <div class="row">
@@ -164,19 +158,15 @@
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">2</span>List specific Kubernetes versions - optional</h3>
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">2</span>Install specific versions of microk8s</h3>
           <div class="p-list-step__content">
+            <p><strong>List specific Kubernetes versions</strong></p>
             <p>The following command will list all versions of MicroK8s that can be installed:</p>
             <div class="p-code-snippet">
               <input class="p-code-snippet__input" value="snap info microk8s" readonly="readonly">
               <button class="p-code-snippet__action">Copy to clipboard</button>
             </div>
-          </div>
-        </li>
-
-        <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">3</span>Install specific Kubernetes version - optional</h3>
-          <div class="p-list-step__content">
+            <p><strong>Install specific Kubernetes version</strong></p>
             <p>This command will install a the stable 1.14 version of MicroK8s:</p>
             <div class="p-code-snippet">
               <input class="p-code-snippet__input" value="sudo snap install microk8s --classic --channel=1.14/stable" readonly="readonly">
@@ -186,7 +176,7 @@
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">4</span>Useful tips</h3>
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">3</span>Useful tips</h3>
           <div class="p-list-step__content">
             <p>This command will install a the stable 1.14 version of MicroK8s:</p>
             <p>After installing MicroK8s, you should verify it is ready. Use this command:</p>
@@ -234,14 +224,12 @@
       </ul>
       <h4>How to install Kubernetes on AWS</h4>
       <p>These instructions represent the complete set of commands you need to enter into your terminal to install Charmed Kubernetes on AWS. The next section describes each step in more detail.</p>
-      <pre><code>
-        $ sudo snap install juju --classic
-        $ juju add-credential aws
-        $ juju bootstrap aws my-cloud-controller
-        $ juju add-model k8s-test
-        $ juju deploy charmed-kubernetes
-        $ watch -c juju status --color
-      </code></pre>
+      <pre><code>$ sudo snap install juju --classic
+$ juju add-credential aws
+$ juju bootstrap aws my-cloud-controller
+$ juju add-model k8s-test
+$ juju deploy charmed-kubernetes
+$ watch -c juju status --color</code></pre>
       <p>Not using AWS? <a href="/kubernetes/docs/install-manual">Install Charmed Kubernetes on any public cloud, private cloud (VMware, OpenStack) or on bare metal with MAAS&nbsp;&rsaquo;</a></p>
       <p><a href="/kubernetes/docs/operations">Now find out what you can do with CDK&nbsp;&rsaquo;</a></p>
     </div>
@@ -350,18 +338,18 @@
 $ juju scp kubernetes-master/0:config ~/.kube/config
 $ snap install kubectl --classic
 $ kubectl cluster-info</code></pre>
-            <p><strong>Useful Links:</strong> Find out more about Charmed Kubernetes.</p>
-            <p><a href="/kubernetes/docs/install-manual">Manual Install&nbsp;&rsaquo;</a></p>
-            <p><a class="p-link--external" href="https://docs.jujucharms.com/maas-cloud">Find out more about MAAS as a Cloud in Juju&nbsp;&rsaquo;</a></p>
-          </div>
-        </li>
+              <p><strong>Useful Links:</strong> Find out more about Charmed Kubernetes.</p>
+              <p><a href="/kubernetes/docs/install-manual">Manual Install&nbsp;&rsaquo;</a></p>
+              <p><a class="p-link--external" href="https://docs.jujucharms.com/maas-cloud">Find out more about MAAS as a Cloud in Juju&nbsp;&rsaquo;</a></p>
+            </div>
+          </li>
 
-      </ol>
-      <p><a class="p-link--external" href="https://docs.jujucharms.com/">Full Juju documentation</a></p>
+        </ol>
+        <p><a class="p-link--external" href="https://docs.jujucharms.com/">Full Juju documentation</a></p>
 
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <section class="p-strip--light is-bordered">
     <div class="row">
