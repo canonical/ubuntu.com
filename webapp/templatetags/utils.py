@@ -94,6 +94,16 @@ class ExtendsWithArgsNode(template.Node):
         self.kwargs = kwargs
 
     def render(self, context):
+        # Parse variables passed as args
+        for k, v in self.kwargs.items():
+            # Don't try to parse strings
+            if v.startswith('"') and v.endswith('"'):
+                self.kwargs[k] = v.strip('"')
+            else:
+                try:
+                    self.kwargs[k] = template.Variable(v).resolve(context)
+                except template.VariableDoesNotExist:
+                    self.kwargs[k] = ""
         context.update(self.kwargs)
         try:
             self.node.origin = self.origin
@@ -123,8 +133,7 @@ def extends_with_args(parser, token):
             a, b = i.split("=", 1)
             a = a.strip()
             b = b.strip()
-            # Strip double quotes from value
-            kwargs[str(a)] = b.strip('"')
+            kwargs[str(a)] = b
         token.contents = " ".join(bits)
     # Use do_extends to parse the tag
     return ExtendsWithArgsNode(do_extends(parser, token), kwargs)
