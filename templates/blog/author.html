@@ -8,7 +8,7 @@
 <div class="p-strip">
   <div class="row">
     <div class="col-8">
-      <div class="p-media-object">
+      <div class="p-media-object u-no-margin--bottom">
         <img src="{% if author.id == 217 %}https://assets.ubuntu.com/v1/60d9b81e-picto-canonical.svg{% else %}{{ author.avatar_urls.96 }}{% endif %}" class="p-media-object__image is-round">
 
         <div class="p-media-object__details">
@@ -20,12 +20,12 @@
           {% endif %}
 
           {% if author.id == 217 %}
-            <p class="p-media-object__content">Canonical produces Ubuntu, provides commercial services for Ubuntu’s users, and works with hardware manufacturers, software vendors and cloud partners to certify Ubuntu.</p>
+            <p class="p-media-object__content" style="margin-top: 1rem;">Canonical produces Ubuntu, provides commercial services for Ubuntu’s users, and works with hardware manufacturers, software vendors and cloud partners to certify Ubuntu.</p>
           {% elif author.description %}
-            <p class="p-media-object__content">{{ author.description | safe }}</p>
+            <p class="p-media-object__content" style="margin-top: 1rem;">{{ author.description | safe }}</p>
           {% endif %}
 
-          <ul class="p-inline-list">
+          <ul class="p-inline-list u-no-margin--bottom">
             {% if author.user_twitter %}
               <li class="p-inline-list__item">
                 <a href="https://twitter.com/{{ author.user_twitter }}"><i class="p-icon--twitter"></i></a>
@@ -46,14 +46,21 @@
 
 <div class="p-strip--light">
   <div class="row">
-    <div class="col-8 prefix-1">
-      <h3 class="p-heading--five">Recently posted by {{ author.name }}</h3>
-      <ul class="p-list--divided">
-        {% for article in latest_articles %}
-          <li class="p-list__item"><a href="{{ article.link }}">{{ article.title.rendered|safe }}</a></li>
+    <div class="col-12">
+      <h3 class="p-heading--five">{{ total_posts }} posts by {{ author.name }}</h3>
+      
+      <div class="row u-equal-height u-clearfix">
+        {% for article in articles %}
+          {% if forloop.counter|add:"-1"|divisibleby:"3" and forloop.counter > 1 %}
+            </div>
+            <div class="row u-equal-height u-clearfix">
+          {% endif %}
+          
+          {% include 'blog/blog-card.html' %}
         {% endfor %}
-      </ul>
+      </div>
     </div>
   </div>
+  {% include "blog/pagination.html" %}
 </div>
 {% endblock %}
