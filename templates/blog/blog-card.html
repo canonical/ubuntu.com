@@ -42,7 +42,7 @@
       >
     </p>
 
-    {% if summary_visible or not article.image %}
+    {% if summary_visible or not article.image.source_url %}
     <p class="u-no-padding--bottom{% if summary_visible %} u-hide--small{% endif %}">{{ article.excerpt.raw|cut:"[…]"|truncatewords:36 }}</p>
     {% endif %}
   </div>
