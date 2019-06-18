@@ -1,5 +1,4 @@
 Django==2.2
-django-prometheus==1.0.15
 canonicalwebteam.blog==1.5.15
 canonicalwebteam.custom_response_headers==0.2.0
 canonicalwebteam.django_views==1.3.4
@@ -8,8 +7,7 @@ canonicalwebteam.http==1.0.1
 canonicalwebteam.versioned_static==1.0.2
 canonicalwebteam.yaml-responses[django]==1.1.0
 whitenoise==4.1.2
-statsd==3.3.0
-talisker[gunicorn]==0.14.3
+talisker[gunicorn,prometheus,raven,django]==0.14.3
 django-yaml-redirects==0.5.4
 django-asset-server-url==0.1
 django-static-root-finder==0.3.1
@@ -18,4 +16,3 @@ requests==2.21.0
 requests-cache==0.4.13
 python-dateutil==2.8.0
 pyyaml==5.1
-raven==6.10.0
