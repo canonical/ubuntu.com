@@ -2,7 +2,7 @@
 
 {% load versioned_static  %}
 
-{% block title %}Install Charmed Kubernetes{% endblock %}
+{% block title %}Install Kubernetes{% endblock %}
 {% block meta_description %}A step-by-step installation guide to Kubernetes on your software defined infrastructure.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1oiD6UUomf2daZitS3UOosujYBXPbiOMzPtXVZBq-ph0/edit{% endblock meta_copydoc %}
 
@@ -11,8 +11,8 @@
 <section class="p-strip is-bordered">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-8">
-      <h1>Install Kubernetes yourself</h1>
-      <p>Ubuntu is the standard platform for Kubernetes &mdash; from development to production, on bare metal, on public cloud, on VMware and on OpenStack. All major clouds offer Ubuntu as the worker node for their Kubernetes SAAS offerings.</p>
+      <h1>Install Kubernetes on Ubuntu</h1>
+      <p>Kubernetes on Ubuntu is free to use and always current - you get the latest innovations from the Kubernetes community within a week of upstream release.  It works on any cloud (public, private, and bare-metal). Kubernetes on Ubuntu is the productive, open source way to manage containers and microservices, automating the time-consuming tasks of installing, patching, upgrading, and carrying out cluster health checks.</p>
     </div>
     <div class="col-4 u-align--center u-hide--small">
       <img src="{{ ASSET_SERVER_URL }}96d35aa4-certified-kubernetes-logo.svg" width="200" alt="Kubernetes Certified Service Provider" />
@@ -22,154 +22,313 @@
 
 <section class="p-strip--light is-bordered">
   <div class="row">
-    <h2>Three ways to get Kubernetes on Ubuntu</h2>
+    <div class="col-8">
+      <h2>Deploy Kubernetes cluster</h2>
+      <h4>Where do you want to deploy Kubernetes?</h4>
+    </div>
   </div>
   <div class="row u-equal-height">
-    <div class="col-4 p-card">
+    <div class="col-6 p-card">
       <div class="p-card__header">
-        <h3>Workstation</h3>
+        <h3><a href="#single-node">Single node with MicroK8s</a></h3>
       </div>
-      <p><a class="p-link--external" href="https://microk8s.io/">Microk8s</a> is a single-package install that brings up a standard workstation K8s in under 60 seconds.</p>
-      <p>
-        <a class="p-button--positive" href="https://microk8s.io/">
-          <span class="p-link--external">Install now</span>
-        </a></p>
+      <div class="p-card__content">
+        <p>Install MicroK8s, the Linux snap that downloads  in seconds. Microk8s is lightweight and deploys all Kubernetes services natively on Ubuntu.  Ideal for:</p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked"><strong>Laptops:</strong> develop microservices locally</li>
+          <li class="p-list__item is-ticked"><strong>Workstations:</strong> develop and train machine learning models locally</li>
+          <li class="p-list__item is-ticked"><strong>CI pipelines:</strong> create ephemeral Kubernetes quickly for testing microservices</li>
+          <li class="p-list__item is-ticked"><strong>IoT devices:</strong> embed upgradeable Kubernetes in your Iot devices for easy evolution</li>
+          <li class="p-list__item is-ticked"><strong>Small edge clouds:</strong> create simple Kubernetes clusters for your edge clouds</li>
+        </ul>
+      </div>
     </div>
-    <div class="col-4 p-card">
+    <div class="col-6 p-card">
       <div class="p-card__header">
-        <h3>Create your own cluster</h3>
+        <h3><a href="#multi-node">Multi node with Charmed Kubernetes</a></h3>
       </div>
-      <p>The standard guided cluster installation with Ubuntu on any cloud or data centre from the CLI, try <a class="p-link--external" href="https://conjure-up.io/"><code>conjure-up kubernetes</code></a> to install CDK, the Charmed Distribution of Kubernetes.</p>
-      <p>
-        <a class="p-button--neutral" href="https://conjure-up.io/">
-          <span class="p-link--external">Deploy K8s</span>
-        </a>
-      </p>
+      <div class="p-card__content">
+        <p>Install Charmed Kubernetes, Ubuntu’s highly available, multi node Kubernetes cluster on your infrastructure of choice:</p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked"><strong>Bare metal:</strong> deploying Kubernetes on bare metal is easy using Charmed Kubernetes and MAAS (Metal-as-a-Service).</li>
+          <li class="p-list__item is-ticked"><strong>Private clouds:</strong> take advantage of your on-premises clouds  to deploy one or more Kubernetes clusters (VMware vSphere, OpenStack, LXD)</li>
+          <li class="p-list__item is-ticked"><strong>Public clouds:</strong> deploy Charmed Kubernetes to AWS, GCP, Azure, IBM, and Oracle</li>
+        </ul>
+      </div>
     </div>
-    <div class="col-4 p-card">
-      <div class="p-card__header">
-        <h3>Public cloud CAAS</h3>
-      </div>
-      <p>Leading public clouds offer Ubuntu K8s worker nodes for hybrid Kubernetes operations.</p>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <p>Other deployment options:</p>
       <ul class="p-list">
-        <li class="p-list__item"><a class="p-link--external" href="https://azure.microsoft.com/en-us/services/kubernetes-service/">Azure AKS</a></li>
-        <li class="p-list__item"><a class="p-link--external" href="https://cloud.google.com/kubernetes-engine/docs/concepts/node-images#ubuntu">Google GKE</a></li>
-        <li class="p-list__item"><a class="p-link--external" href="https://www.ibm.com/cloud/container-service">IBM Kubernetes Service</a></li>
+        <li class="p-list__item is-ticked"><strong>Hosted Kubernetes:</strong> Use Ubuntu’s platform to run worker nodes on all public clouds ( AKS, EKS, and GKE)</li>
+        <li class="p-list__item is-ticked"><strong>Kubeadm install support:</strong>  let our experts set up your cluster using kubeadm, the install tool available with Kubernetes 1.4.0</li>
+        <li class="p-list__item is-ticked"><strong>Managed Kubernetes:</strong> take advantage of our cost effective, fully supported kubernetes clusters</li>
       </ul>
+      <p>Looking for help running Kubernetes?</p>
+      <p><a class="js-invoke-modal" href="/kubernetes/contact-us?product=kubernetes-install">Get in touch with Canonical to talk about hosting&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
 
-<section class="p-strip is-bordered">
-  <div class="row">
-    <h2 style="max-width: none">Getting started with Ubuntu and Kubernetes</h2>
-  </div>
-  <div class="row">
-    <div class="u-embedded-media">
-      <iframe class="u-embedded-media__element" width="453" height="255" src="https://player.vimeo.com/video/190300823?byline=0&portrait=0" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </div>
-</section>
-
-{% include "kubernetes/_get_ebook.html" %}
-
-<section class="p-strip is-bordered">
+<section class="p-strip u-no-padding--bottom">
   <div class="row">
     <div class="col-8">
-      <h2>Full cluster deployment instructions</h2>
-      <p>The standard Charmed Distribution of Kubernetes installation process creates a high-availability cluster of physical or virtual machines. It works on AWS, Azure, Google Cloud, VMware, OpenStack, and Metal-as-a-Service (MAAS). There is an optional logging, monitoring and alerting capability which uses the ELK stack to organise logs from the entire cluster. Support for various storage, networking and container runtime plugins is standard.</p>
-      <p>
-        <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/install-kubernetes-with-conjure-up">Install Charmed Kubernetes</a>
-      </p>
+      <h2 id="single-node">How to install Kubernetes on Ubuntu</h2>
+      <h3>Single node cluster</h3>
+      <h5>MicroK8s installs a single node, CNCF-certified Kubernetes cluster in seconds</h5>
+      <p>MicroK8s is built to run on any Linux. It’s lightweight and deploys all Kubernetes services natively on Ubuntu (i.e. no virtual machines required) while packing the entire set of libraries and binaries needed. It’s suited for laptops, workstations, CI pipelines, IoT devices, and small edge clouds because of its small footprint.</p>
     </div>
   </div>
 </section>
 
 <section class="p-strip is-bordered">
   <div class="row">
-    <div class="col-8">
-      <h2>Workstation installation instructions</h2>
-      <p>Developers often don’t need high availability, and would rather get a fast, local install of K8s which can be started or stopped on demand, for test and development iterations.</p>
-      <p>Microk8s is a simple, streamlined single-package install of Kubernetes that works for all classes of device - you can use it on your laptop, or a server, or a cloud VM. It will give you a full upstream install that is single-node only, but it’s a perfect way to get K8s for development or for edge/gateway environments. Microk8s is quick to install and has a small footprint. </p>
+    <div class="col-12">
+      <ol class="p-stepped-list--detailed">
+        <li class="p-list-step__item col-12">
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">1</span>Install latest MicroK8s</h3>
+          <div class="p-list-step__content">
+            <p>MicroK8s is packaged as a snap which requires snapd to be installed. The latest Ubuntu release comes with this already built in. For other Linux systems install snapd first. Use this command to get the latest version of MicroK8s:</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="sudo snap install microk8s --classic" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+          </div>
+        </li>
+
+        <li class="p-list-step__item col-12">
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">2</span>Install specific versions of MicroK8s</h3>
+          <div class="p-list-step__content">
+            <p><strong>List specific Kubernetes versions</strong></p>
+            <p>The following command will list all versions of MicroK8s that can be installed:</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="snap info microk8s" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <p><strong>Install specific Kubernetes version</strong></p>
+            <p>This command will install a the stable 1.14 version of MicroK8s:</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="sudo snap install microk8s --classic --channel=1.14/stable" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+          </div>
+        </li>
+
+        <li class="p-list-step__item col-12">
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">3</span>Useful tips</h3>
+          <div class="p-list-step__content">
+            <p>This command will install a the stable 1.14 version of MicroK8s:</p>
+            <p>After installing MicroK8s, you should verify it is ready. Use this command:</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="microk8s.status" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <p>To block until MicroK8s is ready, use the following command:</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="microk8s.status --wait-ready" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <p><strong>Accessing Kubernetes:</strong> MicroK8s embeds a kubectl and a .kubeconfig file required for accessing the installed MicroK8s. This avoids  colliding with any local versions  that might be already installed. Here is an example of how to use this:</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="microk8s.kubectl" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <p>If you would like to use the MicroK8s kubectl and .kubeconfig file locally, you can do the following:</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="snap alias microk8s.kubectl kubectl" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="microk8s.kubectl config view --raw > $HOME/.kube/config" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+          </div>
+        </li>
+
+      </ol>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-6">
-      <div class="p-code-snippet">
-        <input class="p-code-snippet__input" value="snap install microk8s --classic" readonly="readonly">
-        <button class="p-code-snippet__action">Copy to clipboard</button>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <ul class="p-list">
-      <li class="p-list__item">
-        <a class="p-link--external" href="https://microk8s.io/">Visit microk8s.io for docs and community</a>
-      </li>
-      <li class="p-list__item">
-        <a class="p-link--external" href="https://github.com/ubuntu/microk8s">Find the code on github</a>
-      </li>
-    </ul>
+    <p>The MicroK8s install instructions above are a summary of those found at <a class="p-link--external" href="https://microk8s.io/">microk8s.io</a>.</p>
+    <p><a class="p-link--external" href="https://microk8s.io/docs">Full MicroK8s documentation</a></p>
   </div>
 </section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip--light u-no-padding--bottom">
   <div class="row">
     <div class="col-8">
-      <h2>Install on a physical cluster</h2>
-      <p>Deploy on an OpenStack cloud using MAAS to provision the physical servers and conjure-up to install OpenStack and Kubernetes.</p>
+      <h3 id="multi-node">Multi node cluster</h3>
+      <h5>A highly available, multi node Kubernetes cluster that runs wherever, whenever</h5>
+      <p>Charmed Kubernetes is Ubuntu’s fully automated, model-driven approach to installing and managing Kubernetes that coordinates logging, monitoring and alerting. <a href="/kubernetes/docs/overview">Charmed Kubernetes</a> runs on any infrastructure - deploy it on bare-metal, VMware, OpenStack and public clouds like AWS, GCP, Azure and IBM.</p>
+      <p>You can use a CLI tool or a GUI tool:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked"><strong>CLI Based Installer:</strong> ideal for scripting or manually interacting with your cluster from a shell prompt, or as part of your automation toolkit.</li>
+        <li class="p-list__item is-ticked"><strong>GUI Based Installer:</strong> a complete graphical and interactive Kubernetes deployment and management tool.</li>
+      </ul>
+      <h4>How to install Kubernetes on AWS</h4>
+      <p>These instructions represent the complete set of commands you need to enter into your terminal to install Charmed Kubernetes on AWS.</p>
+      <p><a href="/kubernetes/docs/install-manual">Not using AWS, see our other guides&nbsp;&rsaquo;</a></p>
+      <p><a href="/kubernetes/docs/operations">Now find out what you can do with Charmed Kubernetes&nbsp;&rsaquo;</a></p>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-6">
-      <div class="p-code-snippet">
-        <input class="p-code-snippet__input" value="sudo snap install conjure-up --classic" readonly="readonly">
-        <button class="p-code-snippet__action">Copy to clipboard</button>
-      </div>
-      <div class="p-code-snippet">
-        <input class="p-code-snippet__input" value="conjure-up canonical-kubernetes" readonly="readonly">
-        <button class="p-code-snippet__action">Copy to clipboard</button>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <ul class="p-list">
-      <li class="p-list__item">
-        <a class="p-link--external" href="https://docs.conjure-up.io/stable/en/walkthrough">conjure-up kubernetes walk-through</a>
-      </li>
-      <li class="p-list__item">
-        <a class="p-link--external" href="https://conjure-up.io/">Use conjure-up to install OpenStack or Kubernetes</a>
-      </li>
-      <li class="p-list__item">
-        <a class="p-link--external" href="https://maas.io/">Find out more about MAAS</a>
-      </li>
-    </ul>
   </div>
 </section>
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <ol class="p-stepped-list--detailed">
 
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-4 u-vertically-center u-align--center u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="200" alt="" />
+        <li class="p-list-step__item col-12">
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">1</span>Install Juju</h3>
+          <div class="p-list-step__content">
+            <p>Juju simplifies how you configure, scale and operate today’s complex software. Juju deploys everywhere: to public or private clouds. It is packaged as a snap which requires snapd to be installed. The latest Ubuntu release comes with this already built in. For other Linux systems install snapd first:</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="sudo snap install juju --classic" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+          </div>
+        </li>
+
+        <li class="p-list-step__item col-12">
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">2</span>Add your cloud - optional</h3>
+          <div class="p-list-step__content">
+            <p>This interactive step allows you to register a cloud that isn’t known to Juju by default. In the summary instructions above, since AWS is used, this step isn’t necessary - AWS and other public clouds have well-known IP addresses. For private clouds you need to give some details to juju. An example is a MAAS cloud, which operates your bare metal infrastructure.</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="juju add-cloud" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <p>What clouds can you deploy to?</p>
+            <ul style="list-style-type: disc;">
+              <li>Amazon AWS <sup><a href="#fn1">*</a></sup></li>
+              <li>Microsoft Azure <sup><a href="#fn1">*</a></sup></li>
+              <li>Google GCE <sup><a href="#fn1">*</a></sup></li>
+              <li>Oracle <sup><a href="#fn1">*</a></sup></li>
+              <li>Rackspace <sup><a href="#fn1">*</a></sup></li>
+              <li>LXD (local) <sup><a href="#fn1">*</a></sup></li>
+              <li>LXD (remote)</li>
+              <li>VMware vSphere</li>
+              <li>OpenStack</li>
+              <li><a class="p-link--external" href="https://maas.io">MAAS</a></li>
+              <li>Manual</li>
+            </ul>
+            <p id="fn1"><sup>*</sup> Denotes clouds that are known to Juju by default. For example, Juju knows how to reach AWS, but not an OpenStack cluster that has been created.</p>
+            <p><a class="p-link--external" href="https://docs.jujucharms.com/clouds">Find out more about Clouds in Juju</a></p>
+          </div>
+        </li>
+
+        <li class="p-list-step__item col-12">
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">3</span>Add Credentials</h3>
+          <div class="p-list-step__content">
+            <p>Most clouds require credentials so that the cloud knows which operations are authorised and on which account. If you choose to use AWS, for example, you would run <code>juju add-credential aws</code></p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="juju add-credential aws" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+          </div>
+        </li>
+
+        <li class="p-list-step__item col-12">
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">4</span>Add Controller</h3>
+          <div class="p-list-step__content">
+            <p>The Juju controller is used to manage the software deployed through Juju, from deployment to upgrades to day-two operations.</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="juju bootstrap aws my-cloud-controller" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+          </div>
+        </li>
+
+        <li class="p-list-step__item col-12">
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">5</span>Add Model</h3>
+          <div class="p-list-step__content">
+            <p>The model holds a specific deployment, like Kubernetes, which includes all necessary applications and the number of instances of each one. This is where the number of Kubernetes worker nodes are scaled up or down.</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="juju add-model k8s-test" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+          </div>
+        </li>
+
+        <li class="p-list-step__item col-12">
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">6</span>Deploy Kubernetes</h3>
+          <div class="p-list-step__content">
+            <p>Add the Kubernetes bundle to the model and deploy the components, including the default number of components, like worker nodes.</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="juju deploy charmed-kubernetes" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+          </div>
+        </li>
+
+        <li class="p-list-step__item col-12">
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">&#9734;</span>Useful tips</h3>
+          <div class="p-list-step__content">
+            <p><strong>Observe installation progress:</strong> Watch the deployment process in real-time:</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="watch -c juju status --color" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <p><strong>Observe log messages:</strong> To  view the last twenty log messages for the “k8s-test” model:</p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="juju debug-log -m k8s-test -n 20" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <p><strong>Accessing Kubernetes:</strong> Juju creates a .kubeconfig file that is required  for accessing the Kubernetes cluster it created. Follow these instructions to install kubectl (if needed) and export the configuration file: (use kubectl to run commands against Kubernetes clusters)</p>
+            <pre><code>$ mkdir -p ~/.kube
+$ juju scp kubernetes-master/0:config ~/.kube/config
+$ snap install kubectl --classic
+$ kubectl cluster-info</code></pre>
+              <p><strong>Useful Links:</strong> Find out more about Charmed Kubernetes.</p>
+              <ul style="list-style-type: disc;">
+                <li><a href="/kubernetes/docs/install-manual">Manual Install&nbsp;&rsaquo;</a></li>
+                <li><a class="p-link--external" href="https://docs.jujucharms.com/maas-cloud">Find out more about MAAS as a Cloud in Juju</a></li>
+                <li><a class="p-link--external" href="https://docs.jujucharms.com/">Full Juju documentation</a></li>
+                <li><a href="/kubernetes/docs">Full Kubernetes documentation&nbsp;&rsaquo;</a></li>
+              </ul>
+            </div>
+          </li>
+
+        </ol>
+
+      </div>
     </div>
-    <div class="col-7 prefix-1 u-vertically-center">
-      <div class="row">
-        <div class="col-12">
-          <h2>Need more help?</h2>
-          <p>Let our cloud experts help you take the next step.</p>
-          <p><a class="p-button--positive js-invoke-modal" href="/kubernetes/contact-us?product=kubernetes-install">Contact us</a></p>
+  </section>
+
+  <section class="p-strip is-bordered">
+    <div class="row">
+      <h2 style="max-width: none">Easy Kubernetes deployment with Juju As A Service by Canonical</h2>
+      <p>This video explains how to easily deploy a production environment of Kubernetes with JAAS.</p>
+    </div>
+    <div class="row">
+      <div class="u-embedded-media">
+        <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/0Le2A-Uzr1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  {% include "kubernetes/_get_ebook.html" %}
+
+  <section class="p-strip">
+    <div class="row u-equal-height">
+      <div class="col-4 u-vertically-center u-align--center u-hide--small">
+        <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="200" alt="" />
+      </div>
+      <div class="col-7 prefix-1 u-vertically-center">
+        <div class="row">
+          <div class="col-12">
+            <h2>Need more help?</h2>
+            <p>Let our cloud experts help you take the next step.</p>
+            <p><a class="p-button--positive js-invoke-modal" href="/kubernetes/contact-us?product=kubernetes-install">Contact us</a></p>
+          </div>
         </div>
       </div>
     </div>
+  </section>
+
+  {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_ubuntu_advantage" third_item="_cloud_further_reading" %}
+
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_kubernetes.html" data-form-id="3230" data-lp-id="6274" data-return-url="https://www.ubuntu.com/kubernetes/thank-you?product=kubernetes-install" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
   </div>
-</section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_ubuntu_advantage" third_item="_cloud_further_reading" %}
+  <script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
 
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_kubernetes.html" data-form-id="3230" data-lp-id="6274" data-return-url="https://www.ubuntu.com/kubernetes/thank-you?product=kubernetes-install" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
-
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
-
-{% endblock content %}
+  {% endblock content %}
