@@ -196,7 +196,7 @@
               <button class="p-code-snippet__action">Copy to clipboard</button>
             </div>
             <p>What clouds can you deploy to?</p>
-            <ul>
+            <ul style="list-style-type: disc;">
               <li>Amazon AWS <sup><a href="#fn1">*</a></sup></li>
               <li>Microsoft Azure <sup><a href="#fn1">*</a></sup></li>
               <li>Google GCE <sup><a href="#fn1">*</a></sup></li>
@@ -259,7 +259,7 @@
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">7</span>Useful tips</h3>
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">&#9734;</span>Useful tips</h3>
           <div class="p-list-step__content">
             <p><strong>Observe installation progress:</strong> Watch the deployment process in real-time:</p>
             <div class="p-code-snippet">
@@ -277,14 +277,16 @@ $ juju scp kubernetes-master/0:config ~/.kube/config
 $ snap install kubectl --classic
 $ kubectl cluster-info</code></pre>
               <p><strong>Useful Links:</strong> Find out more about Charmed Kubernetes.</p>
-              <p><a href="/kubernetes/docs/install-manual">Manual Install&nbsp;&rsaquo;</a></p>
-              <p><a class="p-link--external" href="https://docs.jujucharms.com/maas-cloud">Find out more about MAAS as a Cloud in Juju&nbsp;&rsaquo;</a></p>
+              <ul style="list-style-type: disc;">
+                <li><a href="/kubernetes/docs/install-manual">Manual Install&nbsp;&rsaquo;</a></li>
+                <li><a class="p-link--external" href="https://docs.jujucharms.com/maas-cloud">Find out more about MAAS as a Cloud in Juju</a></li>
+                <li><a class="p-link--external" href="https://docs.jujucharms.com/">Full Juju documentation</a></li>
+                <li><a href="/kubernetes/docs">Full Kubernetes documentation&nbsp;&rsaquo;</a></li>
+              </ul>
             </div>
           </li>
 
         </ol>
-        <p><a class="p-link--external" href="https://docs.jujucharms.com/">Full Juju documentation</a></p>
-        <p><a href="/kubernetes/docs">Full Kubernetes documentation&nbsp;&rsaquo;</a></p>
 
       </div>
     </div>
