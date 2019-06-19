@@ -65,31 +65,24 @@
         <li class="p-list__item is-ticked"><strong>Kubeadm install support:</strong>  let our experts set up your cluster using kubeadm, the install tool available with Kubernetes 1.4.0</li>
         <li class="p-list__item is-ticked"><strong>Managed Kubernetes:</strong> take advantage of our cost effective, fully supported kubernetes clusters</li>
       </ul>
+      <p>Looking for help running Kubernetes?</p>
+      <p><a class="js-invoke-modal" href="/kubernetes/contact-us?product=kubernetes-install">Get in touch with Canonical to talk about hosting&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
 
-<section class="p-strip is-shallow is-bordered">
+<section class="p-strip u-no-padding--bottom">
   <div class="row">
     <div class="col-8">
-      <h4>Need more help?</h4>
-      <p><a class="p-button--positive js-invoke-modal" href="/kubernetes/contact-us?product=kubernetes-install">Contact us</a></p>
-    </div>
-  </div>
-</section>
-
-<section id="single-node" class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>How to install Kubernetes on Ubuntu</h2>
+      <h2 id="single-node">How to install Kubernetes on Ubuntu</h2>
       <h3>Single node cluster</h3>
       <h5>MicroK8s installs a single node, CNCF-certified Kubernetes cluster in seconds</h5>
       <p>MicroK8s is built to run on any Linux. It’s lightweight and deploys all Kubernetes services natively on Ubuntu (i.e. no virtual machines required) while packing the entire set of libraries and binaries needed. It’s suited for laptops, workstations, CI pipelines, IoT devices, and small edge clouds because of its small footprint.</p>
-      <h4>Quick install steps</h4>
       <p>The MicroK8s install instructions below are a summary of those found at <a class="p-link--external" href="https://microk8s.io/">microk8s.io</a>.</p>
+      <p><a class="p-link--external" href="https://microk8s.io/docs">Full MicroK8s documentation</a></p>
     </div>
   </div>
-
+</section>
   {% comment %}
   <div class="row">
     <div class="col-8">
@@ -143,6 +136,7 @@
   </div>
   {% endcomment %}
 
+<section class="p-strip is-bordered">
   <div class="row">
     <div class="col-12">
       <ol class="p-stepped-list--detailed">
@@ -205,16 +199,16 @@
             </div>
           </div>
         </li>
+
       </ol>
-      <p><a class="p-link--external" href="https://microk8s.io/docs">Full MicroK8s documentation</a></p>
     </div>
   </div>
 </section>
 
-<section id="multi-node" class="p-strip is-bordered">
+<section class="p-strip--light u-no-padding--bottom">
   <div class="row">
     <div class="col-8">
-      <h3>Multi node cluster</h3>
+      <h3 id="multi-node">Multi node cluster</h3>
       <h5>A highly available, multi node Kubernetes cluster that runs wherever, whenever</h5>
       <p>Charmed Kubernetes is Ubuntu’s fully automated, model-driven approach to installing and managing Kubernetes that coordinates logging, monitoring and alerting. <a href="/kubernetes/docs/overview">Charmed Kubernetes</a> runs on any infrastructure - deploy it on bare-metal, VMware, OpenStack and public clouds like AWS, GCP, Azure and IBM.</p>
       <p>You can use a CLI tool or a GUI tool:</p>
@@ -228,6 +222,8 @@
       <p><a href="/kubernetes/docs/operations">Now find out what you can do with CDK&nbsp;&rsaquo;</a></p>
     </div>
   </div>
+</section>
+<section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-12">
       <ol class="p-stepped-list--detailed">
@@ -345,7 +341,7 @@ $ kubectl cluster-info</code></pre>
     </div>
   </section>
 
-  <section class="p-strip--light is-bordered">
+  <section class="p-strip is-bordered">
     <div class="row">
       <h2 style="max-width: none">Easy Kubernetes deployment with Juju As A Service by Canonical</h2>
       <p>This video explains how to easily deploy a production environment of Kubernetes with JAAS.</p>
@@ -359,7 +355,7 @@ $ kubectl cluster-info</code></pre>
 
   {% include "kubernetes/_get_ebook.html" %}
 
-  <section class="p-strip--light">
+  <section class="p-strip">
     <div class="row u-equal-height">
       <div class="col-4 u-vertically-center u-align--center u-hide--small">
         <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="200" alt="" />
