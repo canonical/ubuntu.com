@@ -30,7 +30,7 @@
   <div class="row u-equal-height">
     <div class="col-6 p-card">
       <div class="p-card__header">
-        <h3><a href="#single-node">Single node</a></h3>
+        <h3><a href="#single-node">Single node with MicroK8s</a></h3>
       </div>
       <div class="p-card__content">
         <p>Install MicroK8s, the Linux snap that downloads  in seconds. Microk8s is lightweight and deploys all Kubernetes services natively on Ubuntu.  Ideal for:</p>
@@ -45,7 +45,7 @@
     </div>
     <div class="col-6 p-card">
       <div class="p-card__header">
-        <h3><a href="#multi-node">Multi node</a></h3>
+        <h3><a href="#multi-node">Multi node with Charmed Kubernetes</a></h3>
       </div>
       <div class="p-card__content">
         <p>Install Charmed Kubernetes, Ubuntu’s highly available, multi node Kubernetes cluster on your infrastructure of choice:</p>
@@ -78,63 +78,9 @@
       <h3>Single node cluster</h3>
       <h5>MicroK8s installs a single node, CNCF-certified Kubernetes cluster in seconds</h5>
       <p>MicroK8s is built to run on any Linux. It’s lightweight and deploys all Kubernetes services natively on Ubuntu (i.e. no virtual machines required) while packing the entire set of libraries and binaries needed. It’s suited for laptops, workstations, CI pipelines, IoT devices, and small edge clouds because of its small footprint.</p>
-      <p>The MicroK8s install instructions below are a summary of those found at <a class="p-link--external" href="https://microk8s.io/">microk8s.io</a>.</p>
-      <p><a class="p-link--external" href="https://microk8s.io/docs">Full MicroK8s documentation</a></p>
     </div>
   </div>
 </section>
-  {% comment %}
-  <div class="row">
-    <div class="col-8">
-      <h4>Install latest MicroK8s</h4>
-      <p>MicroK8s is packaged as a snap which requires snapd to be installed. The latest Ubuntu release comes with this already built in. For other Linux systems install snapd first. Use this command to get the latest version of MicroK8s:</p>
-      <div class="p-code-snippet">
-        <input class="p-code-snippet__input" value="sudo snap install microk8s --classic" readonly="readonly">
-        <button class="p-code-snippet__action">Copy to clipboard</button>
-      </div>
-
-      <h4>List specific Kubernetes versions - optional</h4>
-      <p>The following command will list all versions of MicroK8s that can be installed:</p>
-      <div class="p-code-snippet">
-        <input class="p-code-snippet__input" value="snap info microk8s" readonly="readonly">
-        <button class="p-code-snippet__action">Copy to clipboard</button>
-      </div>
-
-      <h4>Install specific Kubernetes version - optional</h4>
-      <p>This command will install a the stable 1.14 version of MicroK8s:</p>
-      <div class="p-code-snippet">
-        <input class="p-code-snippet__input" value="sudo snap install microk8s --classic --channel=1.14/stable" readonly="readonly">
-        <button class="p-code-snippet__action">Copy to clipboard</button>
-      </div>
-
-      <h4>Useful Tips</h4>
-      <p>After installing MicroK8s, you should verify it is ready. Use this command:</p>
-      <div class="p-code-snippet">
-        <input class="p-code-snippet__input" value="microk8s.status" readonly="readonly">
-        <button class="p-code-snippet__action">Copy to clipboard</button>
-      </div>
-      <p>To block until MicroK8s is ready, use the following command:</p>
-      <div class="p-code-snippet">
-        <input class="p-code-snippet__input" value="microk8s.status --wait-ready" readonly="readonly">
-        <button class="p-code-snippet__action">Copy to clipboard</button>
-      </div>
-      <p><strong>Accessing Kubernetes:</strong> MicroK8s embeds a kubectl and a .kubeconfig file required for accessing the installed MicroK8s. This avoids  colliding with any local versions  that might be already installed. Here is an example of how to use this:</p>
-      <div class="p-code-snippet">
-        <input class="p-code-snippet__input" value="microk8s.kubectl" readonly="readonly">
-        <button class="p-code-snippet__action">Copy to clipboard</button>
-      </div>
-      <p>If you would like to use the MicroK8s kubectl and .kubeconfig file locally, you can do the following:</p>
-      <div class="p-code-snippet">
-        <input class="p-code-snippet__input" value="snap alias microk8s.kubectl kubectl" readonly="readonly">
-        <button class="p-code-snippet__action">Copy to clipboard</button>
-      </div>
-      <div class="p-code-snippet">
-        <input class="p-code-snippet__input" value="microk8s.kubectl config view --raw > $HOME/.kube/config" readonly="readonly">
-        <button class="p-code-snippet__action">Copy to clipboard</button>
-      </div>
-    </div>
-  </div>
-  {% endcomment %}
 
 <section class="p-strip is-bordered">
   <div class="row">
@@ -152,7 +98,7 @@
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">2</span>Install specific versions of microk8s</h3>
+          <h3 class="p-list-step__title"><span class="p-list-step__bullet">2</span>Install specific versions of MicroK8s</h3>
           <div class="p-list-step__content">
             <p><strong>List specific Kubernetes versions</strong></p>
             <p>The following command will list all versions of MicroK8s that can be installed:</p>
@@ -202,6 +148,8 @@
 
       </ol>
     </div>
+    <p>The MicroK8s install instructions above are a summary of those found at <a class="p-link--external" href="https://microk8s.io/">microk8s.io</a>.</p>
+    <p><a class="p-link--external" href="https://microk8s.io/docs">Full MicroK8s documentation</a></p>
   </div>
 </section>
 
@@ -336,6 +284,7 @@ $ kubectl cluster-info</code></pre>
 
         </ol>
         <p><a class="p-link--external" href="https://docs.jujucharms.com/">Full Juju documentation</a></p>
+        <p><a href="/kubernetes/docs">Full Kubernetes documentation&nbsp;&rsaquo;</a></p>
 
       </div>
     </div>
