@@ -1,5 +1,7 @@
 {% extends "kubernetes/base_kubernetes.html" %}
 
+{% load versioned_static  %}
+
 {% block title %}Multi-cloud Kubernetes on Ubuntu{% endblock %}
 
 {% block meta_description %}Ubuntu and Canonical deliver a pure upstream K8s experience, tested across a wide range of multi-cloud architectures for optimum Kubernetes performance and integrated with modern metrics and monitoring.{% endblock meta_description %}
@@ -65,7 +67,7 @@
 
       <p><a href="/kubernetes/install">Install instructions&nbsp;&rsaquo;</a></p>
       <p><a href="/kubernetes/managed">Fully managed Kubernetes options&nbsp;&rsaquo;</a>
-        <p><a href="{{ ASSET_SERVER_URL }}223eab1a-canonical-kubernetes-enterprise-2018-25-07.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Download the Services datasheet', 'eventLabel' : 'Download the Services datasheet' : undefined });">Charmed Kubernetes datasheet&nbsp;&rsaquo;</a></p>
+        <p><a href="{{ ASSET_SERVER_URL }}62e71815-Kubernetes-for-the-Enterprise.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Download the Services datasheet', 'eventLabel' : 'Download the Services datasheet' : undefined });">Charmed Kubernetes datasheet&nbsp;&rsaquo;</a></p>
       </div>
 
       <div class="col-6 p-card">
@@ -273,7 +275,7 @@
     <div class="row">
       <div class="col-12">
         <p>
-          <a href="{{ ASSET_SERVER_URL }}223eab1a-canonical-kubernetes-enterprise-2018-25-07.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Download the Services datasheet', 'eventLabel' : 'Download the Services datasheet' : undefined });">
+          <a href="{{ ASSET_SERVER_URL }}62e71815-Kubernetes-for-the-Enterprise.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Download the Services datasheet', 'eventLabel' : 'Download the Services datasheet' : undefined });">
             Download the Enterprise Kubernetes datasheet&nbsp;&rsaquo;
           </a>
         </p>
@@ -321,6 +323,11 @@
   </section>
 
   {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_containers_juju" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
-  {% include "shared/forms/interactive/_kubernetes.html" with formid='3230'  lpId='6274' returnURL='https://www.ubuntu.com/kubernetes/thank-you' lpurl="https://pages.ubuntu.com/things-contact-us.html"  %}
+
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_kubernetes.html" data-form-id="3230" data-lp-id="6274" data-return-url="https://www.ubuntu.com/kubernetes/thank-you?product=kubernetes-features" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+  </div>
+
+  <script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
 
   {% endblock content %}

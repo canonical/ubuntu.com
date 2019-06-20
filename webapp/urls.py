@@ -78,7 +78,6 @@ urlpatterns += [
         name="topic",
     ),
     path("blog", include("canonicalwebteam.blog.django.urls")),
-    url("", include("django_prometheus.urls")),
     url(
         r"^(?P<template>download/(desktop|server|cloud)/thank-you)$",
         DownloadView.as_view(),

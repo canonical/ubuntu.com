@@ -1,5 +1,7 @@
 {% extends "ai/base_ai.html" %} 
 
+{% load versioned_static  %}
+
 {% block title %}AI Consulting and Delivery{% endblock %} 
 {% block meta_description %}Consulting on artificial intelligence and machine learning for enterprise data analytics. Infrastructure for multi-cloud operations with Kubeflow, Tensorflow on Kubernetes.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/19Mx1zRJKqH2hz5kRF_oDsgyFUw67FgJvW4I_OGda-wk/edit#{% endblock meta_copydoc %}
@@ -23,7 +25,7 @@
         >
         <a
           class="p-link--external"
-          href="{{ ASSET_SERVER_URL }}223eab1a-canonical-kubernetes-enterprise-2018-25-07.pdf"
+          href="{{ ASSET_SERVER_URL }}62e71815-Kubernetes-for-the-Enterprise.pdf"
           >Read our consulting datasheet</a
         >
       </p>
@@ -213,7 +215,7 @@
       Get more detailed information in our
       <a
         class="p-link--external"
-        href="{{ ASSET_SERVER_URL }}223eab1a-canonical-kubernetes-enterprise-2018-25-07.pdf"
+        href="{{ ASSET_SERVER_URL }}62e71815-Kubernetes-for-the-Enterprise.pdf"
         >consulting datasheet</a 
       >
     </p>
@@ -295,6 +297,11 @@
 </section>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_ubuntu_advantage" third_item="_cloud_further_reading" %}
-{% include "shared/forms/interactive/_kubeflow.html" with  formid='3231'  lpId='6279' returnURL='https://www.ubuntu.com/ai/thank-you?product=ai-managed' lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_kubeflow.html" data-form-id="3231" data-lp-id="6279" data-return-url="https://www.ubuntu.com/ai/thank-you?product=ai-managed" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
 
 {% endblock content %}

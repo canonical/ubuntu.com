@@ -1,5 +1,7 @@
 {% extends "pricing/base_pricing.html" %}
 
+{% load versioned_static  %}
+
 {% block title %}Consulting{% endblock %}
 {% block meta_description %}Open Infrastructure training and consulting on openstack, kubernetes and kubeflow. Learn how to design, deploy and operate open infrastructure at scale.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1sXeOQ9eLq53NcfbrorYstHkZYTdut33jbN5LyHoDdYY{% endblock meta_copydoc %}
@@ -21,7 +23,7 @@
       {% include "shared/pricing/_openstack-packages.html" with columns='2' %}
     </div>
     <div class="row">
-      <a href="/support/contact-us?product=openstack" class="js-invoke-modal p-button--positive">Get in touch</a>
+      <a href="/support/contact-us?product=openstack" data-form-location="/shared/forms/interactive/_support-openstack.html" data-form-id="1240" data-lp-id="2065" data-return-url="https://www.ubuntu.com/support/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html" class="js-invoke-modal p-button--positive">Get in touch</a>
     </div>
   </section>
 
@@ -40,6 +42,11 @@
   </section>
 
   {% include "shared/contextual_footers/_contextual_footer.html" with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
-  {% include "shared/forms/interactive/_support.html" with formid="1240"   lpId="2065"  returnURL="https://www.ubuntu.com/support/thank-you" lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
+  
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_support.html" data-form-id="1240" data-lp-id="2065" data-return-url="https://www.ubuntu.com/support/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+  </div>
+
+  <script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
 
 {% endblock content %}

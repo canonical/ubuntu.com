@@ -1,3 +1,10 @@
+---
+name: Default Pull Request
+about: Default PR
+title: ''
+labels: ''
+assignees: ''
+---
 ## Done
 
 [List of work items including drive-bys]
@@ -6,14 +13,14 @@
 
 - Check out this feature branch
 - Run the site using the command `./run serve`
-- View the site locally in your web browser at: [http://0.0.0.0:8001/](http://0.0.0.0:8001/)
+- View the site locally in your web browser at: http://0.0.0.0:8001/
 - Run through the following [QA steps](https://canonical-web-and-design.github.io/practices/workflow/qa-steps.html)
 - [List additional steps to QA the new features or prove the bug has been resolved]
 
 
 ## Issue / Card
 
-[List of links to Github issues/bugs and cards if needed - e.g. `Fixes #1`]
+Fixes #
 
 ## Screenshots
 

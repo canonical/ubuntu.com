@@ -1,5 +1,7 @@
 {% extends "kubernetes/base_kubernetes.html" %}
 
+{% load versioned_static  %}
+
 {% block title %}Managed Kubernetes | Kubernetes{% endblock %}
 {% block meta_description %}Canonical is the leading managed private cloud provider. We will build, support and manage your Kubernetes private cloud for only $5-15 per server per day.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/15jzhasokjH5Ql9Za56ZxRknXNNhEXYdIFXXtLODGxns/edit#heading=h.q9m33avd7enn{% endblock meta_copydoc %}
@@ -21,7 +23,7 @@
           <li>Monitoring and log management integration</li>
         </ul>
         <div>
-          <a href="{{ ASSET_SERVER_URL }}223eab1a-canonical-kubernetes-enterprise-2018-25-07.pdf" class="p-button--positive">Read the datasheet</a>
+          <a href="{{ ASSET_SERVER_URL }}62e71815-Kubernetes-for-the-Enterprise.pdf" class="p-button--positive">Read the datasheet</a>
 
           <a href="/kubernetes/contact-us?product=kubernetes-managed" class="p-button--neutral js-invoke-modal">Talk to us</a>
         </div>
@@ -63,7 +65,7 @@
               <img class="p-heading-icon__img p-heading-icon__img--small" src="{{ ASSET_SERVER_URL }}75902002-news-feed-strip-stock_ebook.svg" width="32" alt="" />
               <h4 class="p-heading-icon__title">Datasheet</h4>
             </div>
-            <h3 class="p-heading--four"><a class="p-link--external" href="{{ ASSET_SERVER_URL }}223eab1a-canonical-kubernetes-enterprise-2018-25-07.pdf">Kubernetes for the enterprise</a></h3>
+            <h3 class="p-heading--four"><a class="p-link--external" href="{{ ASSET_SERVER_URL }}62e71815-Kubernetes-for-the-Enterprise.pdf">Kubernetes for the enterprise</a></h3>
           </div>
         </div>
         <div class="col-4 p-divider__block">
@@ -402,7 +404,12 @@
     </div>
   </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_containers_juju" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
-{% include "shared/forms/interactive/_kubernetes.html" with formid='3230'  lpId='6274' returnURL='https://www.ubuntu.com/kubernetes/thank-you?product=kubernetes-managed' lpurl="https://pages.ubuntu.com/things-contact-us.html"  %}
+  {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_containers_juju" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
+
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_kubernetes.html" data-form-id="3230" data-lp-id="6274" data-return-url="https://www.ubuntu.com/kubernetes/thank-you?product=kubernetes-managed" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+  </div>
+
+  <script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
 
 {% endblock content %}

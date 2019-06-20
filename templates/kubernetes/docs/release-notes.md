@@ -16,6 +16,17 @@ toc: False
 
 # 1.14 Bugfix release
 
+### June 6th, 2019 - [charmed-kubernetes-96](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-96/archive/bundle.yaml)
+
+## Fixes
+
+ - Fixed leader_get import error in .reactive/kubernetes_master_worker_base.py ([Issue](https://bugs.launchpad.net/charm-kubernetes-worker/+bug/1831550))
+ - Fixed kernel network tunables need better defaults and to be configurable ([Issue](https://bugs.launchpad.net/charm-kubernetes-worker/+bug/1825436))
+ - Fixed proxy-extra-args config missing from kubernetes-master ([Issue](https://github.com/charmed-kubernetes/layer-kubernetes-master-worker-base/pull/3))
+
+
+# 1.14 Bugfix release
+
 ### May 23rd, 2019 - [charmed-kubernetes-74](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-74/archive/bundle.yaml)
 
 ## Fixes

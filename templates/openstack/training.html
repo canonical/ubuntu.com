@@ -1,5 +1,7 @@
 {% extends "openstack/_base_openstack.html" %}
 
+{% load versioned_static  %}
+
 {% block title %}Training | OpenStack{% endblock %}
 {% block meta_description %}Canonical run OpenStack, Kubernetes and Ubuntu training programmes to suit all environments and all levels of experience.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1gyxy75qXC5Ta08o6Vnm13yK6aeN4qOnsETB2gZ4e0ZY/edit{% endblock meta_copydoc %}
@@ -33,8 +35,8 @@
   </div>
   <div class="row p-divider">
     <div class="col-7 p-divider__block">
-      <p>A three-day hands on course at your premises for up to 15 people that will give you the best introduction for setting up and running your own Ubuntu OpenStack cloud.</p>
-      <p><a class="p-link--external" href="http://insights.ubuntu.com/wp-content/uploads/Ubuntu_OpenStack_Fundamentals_Training.pdf">Read the course outline (PDF)</a></p>
+      <p>A three-day hands-on course at your premises for up to 15 people that will give you the best introduction for setting up and running your own Ubuntu OpenStack cloud.</p>
+      <p><a class="p-link--external" href="https://assets.ubuntu.com/v1/8408628d-OpenStack+Fundamentals+Training+Curriculum.pdf">Read the course outline (PDF)</a></p>
     </div>
     <div class="col-5 p-divider__block">
       <dl class="p-inline-definition-list" itemscope itemtype="https://schema.org/Product">
@@ -89,7 +91,7 @@
   </div>
   <div class="row p-divider">
     <div class="col-7 p-divider__block">
-      <p>A five-day hands on course at your premises for up to 15 people that guides you through all aspects of performing effective operations on your Ubuntu OpenStack cloud. A follow-up course to OpenStack Fundamentals, it guides you through operational tasks such as monitoring, troubleshooting, patching, scaling, and upgrading, while keeping your cloud available and performing.</p>
+      <p>A five-day hands-on course at your premises for up to 15 people that guides you through all aspects of performing effective operations on your Ubuntu OpenStack cloud. A follow-up course to OpenStack Fundamentals, it guides you through operational tasks such as monitoring, troubleshooting, patching, scaling, and upgrading, while keeping your cloud available and performing.</p>
     </div>
     <div class="col-5 p-divider__block">
       <dl class="p-inline-definition-list" itemscope itemtype="https://schema.org/Product">
@@ -116,7 +118,7 @@
   </div>
   <div class="row p-divider">
     <div class="col-7 p-divider__block">
-      <p>A three-day hands on course at your premises for up to 15 students, that teaches you how to install and administer Ubuntu Server.</p>
+      <p>A three-day hands-on course at your premises for up to 15 students, that teaches you how to install and administer Ubuntu Server.</p>
       <p><a class="p-link--external" href="http://insights.ubuntu.com/wp-content/uploads/1ee7/Training_basic-Ubuntu-server-administration.pdf">Read the course outline (PDF)</a></p>
     </div>
     <div class="col-5 p-divider__block">
@@ -141,7 +143,7 @@
   </div>
   <div class="row p-divider">
     <div class="col-7 p-divider__block">
-      <p>You&rsquo;ve been using Ubuntu Server for a while and want to advance your skills. The Ubuntu Advanced Server course is an intensive three-day hands on course in which you will learn and use advanced techniques.</p>
+      <p>You&rsquo;ve been using Ubuntu Server for a while and want to advance your skills. The Ubuntu Advanced Server course is an intensive three-day hands-on course in which you will learn and use advanced techniques.</p>
       <p><a class="p-link--external" href="https://insights.ubuntu.com/wp-content/uploads/138d/Training_Advanced-server-administration_02.17.pdf">Read the course outline (PDF)</a></p>
     </div>
     <div class="col-5 p-divider__block">
@@ -170,13 +172,13 @@
   <div class="row">
     <div class="col-12">
       <hr />
-      <h3>On-site Charmed Kubernetes training</h3>
+      <h3>On-site training</h3>
     </div>
   </div>
 
   <div class="row p-divider">
     <div class="col-7 p-divider__block">
-      <p>A three-day hands on course at your premises for up to 15 people that guides you through Charmed Kubernetes. You will learn about Kubernetes, how to deploy and configure it, as well as how to perform operational actions such as live upgrades.</p>
+      <p>A three-day hands-on course at your premises for up to 15 people that guides you through Charmed Kubernetes. You will learn about Kubernetes, how to deploy it and configure it, as well as how to perform operational actions such as live upgrades.</p>
       <p><a class="p-link--external" href="https://assets.ubuntu.com/v1/bdff2205-Kubernetes+Training+Curriculum.pdf">Read the course outline (PDF)</a></p>
     </div>
     <div class="col-5 p-divider__block">
@@ -231,9 +233,12 @@
     </div>
   </div>
 </section>
-{% include "shared/forms/interactive/_openstack.html" with formid="1263" lpId="2163" returnURL="https://www.ubuntu.com/openstack/thank-you?product=openstack-training" lpurl="https://pages.ubuntu.com/things-contact-us.html" %}
 
-{% include "shared/forms/interactive/_openstack.html" with lpId="2086" formid="1251" lpurl="https://pages.ubuntu.com/things-contact-us.html" returnURL="https://www.ubuntu.com/contact-us/form/thank-you" %}
+<!-- Set default Marketo information for contact form below -->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_openstack.html" data-form-id="1263" data-lp-id="2163" data-return-url="https://www.ubuntu.com/openstack/thank-you?product=openstack-training" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
 
 {% endblock content %}
 {% endblock outer_content %}
