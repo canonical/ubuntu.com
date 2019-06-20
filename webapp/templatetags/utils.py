@@ -89,27 +89,31 @@ def build_path_with_params(request):
 
 
 class ExtendsWithArgsNode(template.Node):
-    def __init__(self, node, kwargs):
+    def __init__(self, node, arguments):
         self.node = node
-        self.kwargs = kwargs
+        self.arguments = arguments
 
     def render(self, context):
-        # Parse variables passed as args
-        for k, v in self.kwargs.items():
-            # Don't try to parse strings
-            if v.startswith('"') and v.endswith('"'):
-                self.kwargs[k] = v.strip('"')
+        extra_context = {}
+
+        for item in self.arguments:
+            if "=" not in item:
+                continue
+
+            key, value = item.split("=")
+
+            if value == "":
+                extra_context[key] = value
+            elif value[0] in ('"', "'") and value[-1] in ('"', "'"):
+                # It's a string
+                extra_context[key] = value[1:-1]
             else:
-                try:
-                    self.kwargs[k] = template.Variable(v).resolve(context)
-                except template.VariableDoesNotExist:
-                    self.kwargs[k] = ""
-        context.update(self.kwargs)
-        try:
-            self.node.origin = self.origin
-            return self.node.render(context)
-        finally:
-            context.pop()
+                # It's a variable
+                extra_context[key] = template.Variable(value).resolve(context)
+
+        context.update(extra_context)
+        self.node.origin = self.origin
+        return self.node.render(context)
 
 
 @register.tag
@@ -120,20 +124,11 @@ def extends_with_args(parser, token):
     and its includes.
     E.g.:
 
-    {% extends_with_args "base.html" with foo="bar" baz="toto" %}
+    {% extends_with_args "base.html" foo="bar" baz="toto" %}
     """
-    bits = token.split_contents()
-    kwargs = {}
-    if "with" in bits:
-        pos = bits.index("with")
-        argspos = pos + 1
-        argslist = bits[argspos:]
-        bits = bits[:pos]
-        for i in argslist:
-            a, b = i.split("=", 1)
-            a = a.strip()
-            b = b.strip()
-            kwargs[str(a)] = b
-        token.contents = " ".join(bits)
+
+    all_arguments = token.split_contents()
+    token.contents = " ".join(all_arguments[:2])
+
     # Use do_extends to parse the tag
-    return ExtendsWithArgsNode(do_extends(parser, token), kwargs)
+    return ExtendsWithArgsNode(do_extends(parser, token), all_arguments[2:])
