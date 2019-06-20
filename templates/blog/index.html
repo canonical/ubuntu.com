@@ -15,7 +15,9 @@
         <div class="row u-equal-height u-clearfix">
       {% endif %}
       {% if forloop.counter == 3 %}
-        {% include 'blog/newsletter-form.html' %}
+        <div class="col-4">
+          {% include 'blog/newsletter-form.html' %}
+        </div>
       {% elif forloop.counter <= 2 %}
         {% include 'blog/blog-card.html' with summary_visible=True %}
       {% else %}

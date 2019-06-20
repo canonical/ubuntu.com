@@ -1,25 +1,127 @@
-{% extends "templates/one-column.html" %}
-{% block title %}{{article.title.rendered|safe}}{% endblock %}
+{% extends_with_args "templates/one-column.html" with title=article.title.rendered meta_description=article.excerpt.raw  meta_image=article.image.source_url %}
+
+{# Change canonical URL for "snapcraft.io" articles (2996 is the ID of the "snapcraft.io" tag) #}
+{% block canonical_url %}{% if 2996 in article.tags %}https://snapcraft.io/blog/{{ article.slug }}{% else %}{{ block.super }}{% endif %}{% endblock canonical_url %}
+
 {% block content %}
-<section id="main-content" class="p-strip">
-  <div class="row">
-    <div class="col-8 p-blog-post">
-      <h1 class="p-heading--two">{{ article.title.rendered|safe }}</h1>
-      <p>by {{ article.author.name }} on {{ article.date }}</p>
-      {{ article.content.rendered|safe }}
+<article>
+  <header class="p-strip--image is-shallow" style="background-image: url({{ ASSET_SERVER_URL }}f8a323a7-image-background-paper.png);">
+    <div class="row">
+      <div class="col-8">
+        <h1>{{ article.title.rendered|safe }}</h1>
+      </div>
     </div>
-  </div>
-</section>
+    
+    <div class="row">
+      <div class="col-8">
+        <div class="p-media-object">
+          {% if article.author %}
+            <img src="{% if article.author.id == 217 %}{{ ASSET_SERVER_URL }}60d9b81e-picto-canonical.svg{% else %}{{ article.author.avatar_urls.96 }}{% endif %}" class="p-media-object__image is-round">
+          {% endif %}
+
+          <div class="p-media-object__details">
+            {% if article.author %}
+              <h3 class="p-media-object__title">
+                <a href="/blog/author/{{ article.author.slug }}" title="More about {{ article.author.name }}">{{ article.author.name }}</a>
+              </h3>
+            {% endif %}
+            <p class="p-media-object__content">on {{ article.date }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <ul class="p-inline-list u-vertically-center p-social-widget">
+          <li class="p-inline-list__item">
+            Share on:
+          </li>
+
+          <li class="p-inline-list__item">
+            <a class="p-icon--facebook" title="Share on Facebook" href="http://www.facebook.com/sharer/sharer.php?u=https://www.ubuntu.com/blog/{{ article.slug }}">
+              Facebook
+            </a>
+          </li>
+
+          <li class="p-inline-list__item">
+            <a class="p-icon--twitter" title="Share on Twitter" href="http://twitter.com/share?text={{ article.title.rendered|safe|urlencode }}&amp;url=https://www.ubuntu.com/blog/{{ article.slug }}&amp;hashtags=ubuntu">
+              Twitter
+            </a>
+          </li>
+
+          <li class="p-inline-list__item">
+            <a class="p-icon--linkedin" title="Share on LinkedIn" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.ubuntu.com/blog/{{ article.slug }}&amp;title={{ article.title.rendered|safe|urlencode }}">
+            LinkedIn
+          </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    {% if tags %}
+      <div class="row">
+        <div class="col-10">
+          <p>
+            <strong>Tags:</strong>
+            {% for tag in tags %}
+              <a href="/blog/tag/{{ tag.slug }}">
+                {{ tag.name }}
+              </a>{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          </p>
+        </div>
+      </div>
+    {% endif %}
+  </header>
+
+  <section class="p-strip is-shallow" style="overflow-x: initial;">
+    <div class="row u-equal-height">
+      <div class="col-8">
+        <div class="p-post__content">
+          {{ article.content.rendered|safe }}
+        </div>
+      </div>
+
+      <div class="col-4">
+        {% include 'blog/product-cards.html' %}
+
+        <div style="position: sticky; top: 2rem;">
+          {% include 'blog/newsletter-form.html' %}
+        </div>
+      </div>
+    </div>
+  </section>
+</article>
+
+{% for tag in tags %}
+  {% if tag.name == 'robotics' %}
+    <section class="p-strip--image is-dark"
+      style="background-image: linear-gradient(44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%);">
+      <div class="row">
+        <div class="col-8">
+          <h3>Are you building a robot on top of Ubuntu and looking for a partner? Talk to us!</h3>
+
+          <p>
+            <a href="/internet-of-things/contact-us?product=robotics" class="p-button--positive">
+              Contact Us
+            </a>
+          </p>
+        </div>
+
+        <div class="col-4 u-align--center u-vertically-center u-hide--small">
+          <img width="100" src="{{ ASSET_SERVER_URL }}39ebd977-robot.svg" alt="" />
+        </div>
+      </div>
+    </section>
+  {% endif %}
+{% endfor %}
 
 {% if related_articles %}
-<section class="p-strip is-shallow">
+<section class="p-strip--light is-shallow">
   <div class="row">
-    <div class="col-12">
-      <h3>
-        Related posts
-      </h3>
+    <div class="col-8">
+      <h3>Related posts</h3>
     </div>
   </div>
+
   <div class="row p-divider">
     {% for related_article in related_articles %}
     <div class="col-4 p-divider__block">
@@ -28,7 +130,7 @@
           {{ related_article.title.rendered|safe }}
         </a>
       </h4>
-      <p>{{ related_article.excerpt.raw }}</p>
+      <p>{{ related_article.excerpt.raw|cut:"[…]"|truncatewords:36 }}</p>
     </div>
     {% endfor %}
   </div>

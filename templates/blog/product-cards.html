@@ -1,0 +1,68 @@
+{% if article.group and article.group.slug == "cloud-and-server" %}
+<div class="p-card" id="rtp-cloud">
+  <h3>
+    <a href="/cloud">
+      Ubuntu cloud
+    </a>
+  </h3>
+  <p>
+    Ubuntu offers all the training, software infrastructure, tools,
+    services and support you need for your public and private clouds.
+  </p>
+</div>
+{% elif article.group and article.group.slug == "internet-of-things" %}
+<div class="p-card" id="rtp-iot">
+  <h3>
+    <a href="/internet-of-things">
+      Internet of Things
+    </a>
+  </h3>
+  <p>
+    From home control to drones, robots and industrial systems, Ubuntu Core and Snaps provide robust security, app stores and reliable updates for all your IoT devices.
+  </p>
+</div>
+{% elif article.group and article.group.slug == "support" %}
+<div class="p-card" id="rtp-support">
+  <h3>
+    <a href="/support">
+      Ubuntu Advantage support
+    </a>
+  </h3>
+  <p>
+    If you are running Ubuntu in your organisation, you should talk to us about getting Ubuntu Advantage support with Landscape management tools.
+  </p>
+</div>
+{% elif article.group and article.group.slug == "desktop" %}
+<div class="p-card" id="rtp-desktop">
+  <h3>
+    <a href="/desktop">
+      Ubuntu desktop
+    </a>
+  </h3>
+  <p>
+    Learn how the Ubuntu desktop operating system powers millions of PCs and laptops around the world.
+  </p>
+</div>
+{% elif article.group and article.group.slug == "server" %}
+<div class="p-card" id="rtp-server">
+  <h3>
+    <a href="/server">
+      Ubuntu Server
+    </a>
+  </h3>
+  <p>
+    The leading platform for scale-out computing, Ubuntu Server delivers the best value scale-out performance available.
+  </p>
+</div>
+{% else %}
+<div class="p-card" id="rtp-contact-us">
+  <h3>
+    <a href="/about/contact-us/form">
+      Talk to us today
+    </a>
+  </h3>
+  <p>
+    Interested in running Ubuntu Desktop in your organisation?
+  </p>
+</div>
+{% endif %}
