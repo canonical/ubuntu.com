@@ -86,7 +86,7 @@ Ubuntu Advantage for Infrastructure StandardまたはUbuntu Advantage for Infras
       6. チャームについて：
         1. チャームの各バージョンは、リリース日から1年間サポート対象となります。
         2. Canonicalでは、[https://wiki.ubuntu.com/OpenStack/OpenStackCharms](https://wiki.ubuntu.com/OpenStack/OpenStackCharms)のページに記載するサポート対象バージョンをもとに改変されたチャームのサポートは一切行いません。
-      7. Canonicalでは、OpenStackクラスタにエクスポーズしたCephまたはSwiftストレージのあるノード1つにつき、12TBの使用可能ストレージ容量のサポートを提供します。この容量は、Ceph、Swiftまたはこの両方の組み合わせに利用可能です。このノード数が、対応するOpenStackクラスタ内のコンピュートノード数を上回る場合、サポート対象となるCephおよびSwiftストレージは、クラスタ内のコンピュートノード1つにつき12TBに制限されます。
+      7. Canonicalでは、OpenStackクラスタにエクスポーズしたCephまたはSwiftストレージのあるノード1つにつき、48TBの未加工ストレージ容量をサポートします。この容量は、Ceph、Swiftまたはこの両方の組み合わせに利用可能です。このノード数が、対応するOpenStackクラスタ内のコンピュートノード数を上回る場合、サポート対象となるCephおよびSwiftストレージは、クラスタ内のコンピュートノード1つにつき12TBに制限されます。
       8. Ubuntu Advantage OpenStackには、Canonicalの提供する利用可能なMicrosoft認定ドライバをWindowsゲストのインスタンスで使用するライセンスが含まれています。
       9. OpenStackのサポートには、以下は含まれません。
         1. OpenStackのデプロイメント実行に必要な作業負荷以外に関するサポート
@@ -157,7 +157,7 @@ Ubuntu Advantage for Infrastructure StandardまたはUbuntu Advantage for Infras
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
 <h2 id="uasd-virtual-machines">仮想マシンとクラウドインスタンス</h2>
-    
+
 1. Ubuntu Advantage for Infrastructure, Virtualサービスは、該当する Ubuntu Advantage for Infrastructureの提供内容に合致し、以下に記載された例外事項の対象となります。
 2. Ubuntu Advantage Infrastructure, Virtualサービスは、インストースされるとUbuntuサーバ向けに提供され、(1) Ubuntu認証済みパブリッククラウドパートナーの環境内において、または(2) ゲストがCovered Hypervisor上で運用しているという条件下で物理的ホスト上で、仮想化した環境内のゲストとして運用されます。<br />
 注: 基盤技術のみが一覧表示されます。これらは、OpenStackのようなクラウド経由で提供可能です。ハイパーバイザのベンダーがUbuntuのサポート対象バージョンの特定一覧を提供する場合、これらバージョンのみがUbuntu Advantage for Infrastructure, Virtualサービスで利用可能となります。
@@ -172,7 +172,7 @@ Ubuntu Advantage for Infrastructure StandardまたはUbuntu Advantage for Infras
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
-<h2 id="uasd-desktop-support">デスクトップサポート</h2> 
+<h2 id="uasd-desktop-support">デスクトップサポート</h2>
 
 1. デスクトップサポートサービスは、以下に記載された例外事項の対象となっています。
 2. 対象範囲：デスクトップサポートは、基本ネットワーク認証に必要なUbuntuデスクトップISO内のパッケージすべてと、sssd、winbind、ネットワークマネージャおよびUbuntuメインレポジトリ内のネットワークマネージャプラグインを用いた接続に必要なパッケージをカバーしています。
@@ -384,6 +384,3 @@ Ubuntu Advantage for Infrastructure StandardまたはUbuntu Advantage for Infras
 - 「仮想マシン」とは、認識されているハイパーバイザーテクノロジー（KVM、VMWare ESXi、OpenStack、またはパブリッククラウド）上でインスタンス化された仮想化コンピューティングインスタンスを意味します。
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
-
-
-
