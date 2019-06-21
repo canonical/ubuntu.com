@@ -10,7 +10,7 @@
   <div class="row">
     <div class="col-6">
       <h1>Ubuntu resources</h1>
-      <h5>Selected resources from <a href="https://blog.ubuntu.com" class="p-link--external">blog.ubuntu.com</a></h5>
+      <h5>Selected resources from <a href="/blog">Ubuntu blog</a></h5>
     </div>
   </div>
 </section>
@@ -94,7 +94,7 @@
       {% endif %}
         <hr class="u-sv1">
         {% if resource.featuredmedia.source_url %}
-        <a href="{{resource.link|replace_admin}}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Clicked resource', 'eventLabel' : '{{resource.title.rendered}}', 'eventValue' : undefined });" >
+        <a href="/blog/{{resource.slug}}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Clicked resource', 'eventLabel' : '{{resource.title.rendered}}', 'eventValue' : undefined });" >
           <img
             src="https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_460/{{resource.featuredmedia.source_url}}"
             srcset="https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_460/{{resource.featuredmedia.source_url}} 460w,
@@ -109,7 +109,7 @@
           />
         </a>
         {% endif %}
-        <h3 class="p-heading--four"><a href="{{resource.link|replace_admin}}">{{resource.title.rendered | safe}}</a></h3>
+        <h3 class="p-heading--four"><a href="/blog/{{resource.slug}}">{{resource.title.rendered | safe}}</a></h3>
         {% if not resource.featuredmedia.source_url %}
           {{resource.excerpt.rendered | truncatewords:25 | safe}}
         {% endif %}
