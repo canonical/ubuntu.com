@@ -1,22 +1,17 @@
 import json
+import math
 import os
 import re
 
 from canonicalwebteam.get_feeds import get_json_feed_content
 from canonicalwebteam.django_views import TemplateFinder
 from collections import OrderedDict
-from copy import copy
 from django.views.generic.base import TemplateView
 from django.conf import settings
 from django.shortcuts import render
 from feedparser import parse
 from canonicalwebteam.http import CachedSession
 import traceback
-
-try:
-    from urllib.parse import urlencode
-except ImportError:
-    from urllib import urlencode
 
 
 # Search service
@@ -178,32 +173,6 @@ class ResourcesView(TemplateView):
 
         return resources
 
-    def _generate_pagination_queries(self, index, posts_length):
-        previous_payload = copy(self.request.GET)
-        previous_index = index - 1
-        previous_payload["page"] = previous_index
-        previous_link = "?{query}".format(query=urlencode(previous_payload))
-        previous_enable = True
-        if index == 1:
-            previous_enable = False
-
-        next_payload = copy(self.request.GET)
-        next_index = index + 1
-        next_payload["page"] = next_index
-        next_link = "?{query}".format(query=urlencode(next_payload))
-        next_enable = True
-        if posts_length <= self.PER_PAGE:
-            next_enable = False
-
-        return {
-            "next_link": next_link,
-            "previous_link": previous_link,
-            "next_index": next_index,
-            "previous_index": previous_index,
-            "previous_enable": previous_enable,
-            "next_enable": next_enable,
-        }
-
     def _get_resources(self):
         topic = self.request.GET.get("topic")
         content = self.request.GET.get("content")
@@ -347,10 +316,9 @@ class ResourcesView(TemplateView):
                 feed_items["posts"][topic] = {}
                 feed_items["posts"][topic]["posts"] = posts[: self.PER_PAGE]
                 feed_items["posts"][topic]["group_name"] = topic
+        feed_items["current_page"] = page
         feed_items["posts_length"] = posts_length
-        feed_items["pagination"] = self._generate_pagination_queries(
-            page, posts_length
-        )
+        feed_items["total_pages"] = math.ceil(posts_length / self.PER_PAGE)
         return feed_items
 
     def get_context_data(self, **kwargs):
