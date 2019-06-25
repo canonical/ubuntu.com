@@ -14,6 +14,103 @@ toc: False
 ---
 
 
+# 1.15
+
+### DATE - TBC, REVISION TBC
+
+## What's new
+
+- Containerd support
+
+Although Docker is still supported, [containerd](https://containerd.io/) is now 
+the default container runtime in Charmed Kubernetes. Containerd brings significant
+[peformance improvements](https://kubernetes.io/blog/2018/05/24/kubernetes-containerd-integration-goes-ga/)
+and prepares the way for Charmed Kubernetes integration with
+[Kata](https://katacontainers.io/) in the future.
+
+Container runtime code has been moved out of the kubernetes-worker charm, and
+into subordinate charms (one for Docker and one for containerd). This allows 
+the operator to swap the container runtime as desired, and even mix
+container runtimes within a cluster. It also allows for additional container
+runtimes to be supported in the future. Because this is a significant change, you 
+are advised to read the [upgrade notes](/kubernetes/docs/upgrade-notes) before
+upgrading from a previous version.
+
+- Calico 3.x support
+
+The Calico and Canal charms have been updated to install Calico 3.6.1 by
+default. For users currently running Calico 2.x, the next time you upgrade your
+Calico or Canal charm, the charm will automatically upgrade to Calico 3.6.1
+with no user intervention required.
+
+The Calico charm's `ipip` config option has been changed from a boolean to a
+string to allow for the addition of a new mode. This change is illustrated in
+the table below:
+
+| New value     | Old value         | Description                                           |
+|---------------|-------------------|-------------------------------------------------------|
+| "Never"       | false             | Never use IPIP encapsulation. (The default)           |
+| "Always"      | true              | Always use IPIP encapsulation.                        |
+| "CrossSubnet" | \<Not supported\> | Only use IPIP encapsulation for cross-subnet traffic. |
+
+- Calico BGP support
+
+Several new config options have been added to the Calico charm to support BGP
+functionality within Calico. These additions make it possible to configure
+external BGP peers, route reflectors, and multiple IP pools. For instructions
+on how to use the new config options, see the
+[CNI with Calico documentation][cni-calico].
+
+- Custom load balancer addresses
+
+Support has been added to specify the IP address of an external load balancer.
+This support is in the kubeapi-load-balancer and the kubernetes-master charms.
+This allows a virtual IP address on the kubeapi-load-balancer charm or the
+IP address of an external load balancer. See the
+[custom load balancer page](https://www.ubuntu.com/kubernetes/docs/custom-loadbalancer)
+for more information.
+
+- Container image registry
+
+By default, all container images required by the deployment come from the
+[Canonical image registry](https://image-registry.canonical.com:5000). This includes
+images used by the cdk-addons snap, ingress, dns, storage providers, etc. The registry
+can be configured with the new `image-registry` config option on the `kubernetes-master`
+charm.
+
+The `addons-registry` config option is now deprecated. If set, this will take precedence
+over the new `image-registry` option when deploying images from the cdk-addons snap.
+However, the `addons-registry` option will be removed in 1.17. Users are encouraged
+to migrate to the new `image-registry` option as soon as possible.
+
+## Fixes
+
+A list of bug fixes and other minor feature updates in this release can be found at
+[https://launchpad.net/charmed-kubernetes/+milestone/1.15](https://launchpad.net/charmed-kubernetes/+milestone/1.15).
+
+## Known Issues
+
+- Docker-registry interface does not support containerd ([bug 1833579](https://bugs.launchpad.net/charm-kubernetes-worker/+bug/1833579))
+
+When a `docker-registry` charm is related, `kubernetes-worker` units will attempt to configure
+the Docker `daemon.json` configuration file and may also attempt to use `docker login` to
+authenticate with the connected registry. This will not work in a containerd environment,
+as there is no `daemon.json` file nor `docker` command available to invoke.
+
+Users relying on `docker-registry` to serve container images to Kubernetes deployments should
+continue to use the Docker subordinate runtime as outlined in the [upgrade notes](/kubernetes/docs/upgrade-notes#1.15),
+under the heading "To keep Docker as the container runtime".
+
+
+# 1.14 Bugfix release
+
+### June 19th, 2019 - [charmed-kubernetes-124](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-124/archive/bundle.yaml)
+
+## Fixes
+
+ - Fixed leader_set being called by kubernetes-master followers ([Issue](https://bugs.launchpad.net/charm-kubernetes-master/+bug/1833089))
+
+
 # 1.14 Bugfix release
 
 ### June 6th, 2019 - [charmed-kubernetes-96](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-96/archive/bundle.yaml)
@@ -173,3 +270,5 @@ Please see [this page][historic] for release notes of earlier versions.
 [haoverview]: /kubernetes/docs/high-availability
 [metallb-docs]: /kubernetes/docs/metallb
 [hacluster-docs]: /kubernetes/docs/hacluster
+[cni-calico]: /kubernetes/docs/cni-calico
+[containerd]: /kubernetes/docs/containerd

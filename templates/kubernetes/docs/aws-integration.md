@@ -244,8 +244,6 @@ If you create ELBs and subsequently tear down the cluster, check with the AWS co
 to make sure all the associated resources have also been released.
   </p>
 </div>
-Note that if you subsequently decommission this service, it is useful to check through
-the AWS console that the ELB resources are also released.
 
 ### Upgrading the integrator-charm
 
@@ -275,7 +273,7 @@ juju debug-log --replay --include aws-integrator/0
 
 <!-- LINKS -->
 
-[asset-aws-overlay]: https://raw.githubusercontent.com/juju-solutions/kubernetes-docs/master/assets/aws-overlay.yaml
+[asset-aws-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/kubernetes-docs/master/assets/aws-overlay.yaml
 [quickstart]: /kubernetes/docs/quickstart
 [storage]: /kubernetes/docs/storage
 [ebs-info]: https://aws.amazon.com/ebs/features/

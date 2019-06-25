@@ -5,6 +5,12 @@ markdown_includes:
 context:
   title: "Backups"
   description: How to backup and restore the state of your Kubernetes cluster in the etcd datastore.
+keywords: juju, backup, etcd
+tags: [operating]
+sidebar: k8smain-sidebar
+permalink: backups.html
+layout: [base, ubuntu-com]
+toc: False
 ---
 
 The state of your **Kubernetes** cluster is kept in the **etcd** datastore. This page shows how to backup and restore the etcd included in the **Charmed Distribution of Kubernetes <sup>&reg;</sup>**.

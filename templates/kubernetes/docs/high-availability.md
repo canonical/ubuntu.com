@@ -15,21 +15,21 @@ toc: False
 
 It is desirable to have a **CDK** cluster that is resilient to failure and highly available. For
 clusters operating in public cloud environments the options and the methodology are
-usually straightforward - cloud providers have HA solutions which will work well in these 
+usually straightforward - cloud providers have HA solutions which will work well in these
 environments, and these should be used for **CDK**.
 
 For 'on-premises' or private cloud deployments, there are a number of options. This
 documentation will present the strategies and methodology for software solutions only -
 if you have a hardware load-balancer, that would obviously be a better option.
 
- We start with the two basic components of a **CDK** cluster: 
- 
+ We start with the two basic components of a **CDK** cluster:
+
  - your control plane, the `kubernetes-master` charm
  - the worker units, the `kubernetes-worker` charm
 
 ## Control Plane
 
-An initial plan to make the control plane more resilient might be to simply add more 
+An initial plan to make the control plane more resilient might be to simply add more
 master nodes with  `juju add-unit kubernetes-master`:
 
 ![multi-master worker image][img-multi-master]
@@ -82,7 +82,7 @@ Multiple virtual IPs would be a good choice in front of the workers. This allows
 bit of load balancing with round-robin DNS and also allows individual workers to fail.
 A more robust option would be to add load balancers in front of the workers and
 float virtual IPs on those. Note a downside here is the increase in internal traffic as it may
-need to be routed due to load or just to find a worker with the correct destination pod. 
+need to be routed due to load or just to find a worker with the correct destination pod.
 This problem is under active development with projects that are Kubernetes-aware such
 as MetalLB.
 
@@ -94,6 +94,7 @@ software to enable HA
   - [Keepalived][keepalived]
   - [HAcluster][hacluster]
   - [MetalLB][metallb]
+  - [Custom Load Balancer/Virtual IP][customlb]
 
 <!-- IMAGES -->
 
@@ -106,3 +107,4 @@ software to enable HA
 [keepalived]: /kubernetes/docs/keepalived
 [hacluster]: /kubernetes/docs/hacluster
 [metallb]: /kubernetes/docs/metallb
+[customlb]: /kubernetes/docs/custom-loadbalancer

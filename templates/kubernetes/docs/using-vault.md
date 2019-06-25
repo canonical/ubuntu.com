@@ -40,6 +40,7 @@ applications:
     charm: cs:~openstack-charmers-next/vault
     num_units: 1
     options:
+      # this makes Vault act as a self-signed root CA
       auto-generate-root-ca-cert: true
   percona-cluster:
     charm: cs:percona-cluster
@@ -111,12 +112,25 @@ to the `options` section of `vault` in the overlay above:
 
 ## Using Vault with HA
 
-To enable HA for **Vault**, you will need to add [hacluster][], as well as a
-relation between Vault and **etcd**. You may also need **EasyRSA** to provide a
-certificate for **etcd** before Vault can be brought up, although it may be
-possible to first bring up **Vault** in non-HA mode and then transition to HA.
+To enable HA for **Vault**, you will need to first bring up the deployment with
+**Vault** in non-HA mode using the instructions above, waiting for everything
+to settle, and then transitioning **Vault** to HA mode. This is necessary
+because **Vault** requires **etcd** to be running to enter HA mode, but
+**etcd** requires PKI certificates to get up and running, leading to a
+chicken-and-egg conflict.
 
-More details can be found [in the guide][vault-guide-ha].
+Once the deployment is up and settled according to the instructions above,
+with **Vault** unsealed and everything functioning, you can then transition
+**Vault** to HA mode with the following commands:
+
+```bash
+juju add-relation vault:etcd etcd
+juju add-unit vault
+```
+
+Once the second unit of **Vault** is up, you will also need to unseal it
+using the same instructions above with any three of the five unseal keys
+and the root token you generated previously.
 
 
 <!-- LINKS -->
@@ -128,7 +142,6 @@ More details can be found [in the guide][vault-guide-ha].
 [hacluster]: https://jujucharms.com/hacluster/
 [vault-guide-csr]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-certificate-management.html
 [vault-guide-unseal]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html#initialize-and-unseal-vault
-[vault-guide-ha]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html#enabling-ha
 [csr]: https://en.wikipedia.org/wiki/Certificate_signing_request
 [leadership]: https://docs.jujucharms.com/stable/en/authors-charm-leadership
 [cdk-bundle]: https://jujucharms.com/charmed-kubernetes

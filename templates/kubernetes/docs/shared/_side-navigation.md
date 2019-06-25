@@ -8,6 +8,13 @@
 - **Cloud Integration**
   - [AWS integration](/kubernetes/docs/aws-integration)
   - [GCP integration](/kubernetes/docs/gcp-integration)
+  - [OpenStack integration](/kubernetes/docs/openstack-integration)
+- **Networking**
+  - [CNI overview](/kubernetes/docs/cni-overview)  
+  - [Flannel](/kubernetes/docs/cni-flannel)
+  - [Calico](/kubernetes/docs/cni-calico)
+  - [Canal](/kubernetes/docs/cni-canal)
+  - [Tigera Secure EE](/kubernetes/docs/tigera-secure-ee)  
 - **Operations**
   - [Basic operations](/kubernetes/docs/operations)
   - [Logging](/kubernetes/docs/logging)
@@ -26,11 +33,13 @@
   - [Audit Logging](/kubernetes/docs/audit-logging)
   - [Using Tigera Secure EE](/kubernetes/docs/tigera-secure-ee)
   - [Troubleshooting](/kubernetes/docs/troubleshooting)
+  - [Containerd and Docker](/kubernetes/docs/container-runtime)
 - **High Availability**
   - [Overview](/kubernetes/docs/high-availability)
   - [keepalived](/kubernetes/docs/keepalived)
   - [HAcluster](/kubernetes/docs/hacluster)
   - [MetalLB](/kubernetes/docs/metallb)
+  - [Custom load balancer](/kubernetes/docs/custom-loadbalancer)
 - **Reference**
   - [Release notes](/kubernetes/docs/release-notes)
   - [Upgrade notes](/kubernetes/docs/upgrade-notes)
