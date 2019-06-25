@@ -109,7 +109,11 @@ class ExtendsWithArgsNode(template.Node):
                 extra_context[key] = value[1:-1]
             else:
                 # It's a variable
-                extra_context[key] = template.Variable(value).resolve(context)
+                try:
+                    variable = template.Variable(value)
+                    extra_context[key] = variable.resolve(context)
+                except template.VariableDoesNotExist:
+                    extra_context[key] = ""
 
         context.update(extra_context)
         self.node.origin = self.origin
