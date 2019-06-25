@@ -86,7 +86,7 @@ Ubuntu Advantage for Infrastructure StandardまたはUbuntu Advantage for Infras
       6. チャームについて：
         1. チャームの各バージョンは、リリース日から1年間サポート対象となります。
         2. Canonicalでは、[https://wiki.ubuntu.com/OpenStack/OpenStackCharms](https://wiki.ubuntu.com/OpenStack/OpenStackCharms)のページに記載するサポート対象バージョンをもとに改変されたチャームのサポートは一切行いません。
-      7. Canonicalでは、OpenStackクラスタにエクスポーズしたCephまたはSwiftストレージのあるノード1つにつき、48TBの未加工ストレージ容量をサポートします。この容量は、Ceph、Swiftまたはこの両方の組み合わせに利用可能です。このノード数が、対応するOpenStackクラスタ内のコンピュートノード数を上回る場合、サポート対象となるCephおよびSwiftストレージは、クラスタ内のコンピュートノード1つにつき12TBに制限されます。
+      7. Canonicalでは、OpenStackクラスタにエクスポーズしたCephまたはSwiftストレージのあるノード1つにつき、48TBの未加工ストレージ容量をサポートします。この容量は、Ceph、Swiftまたはこの両方の組み合わせに利用可能です。このノード数が、対応するOpenStackクラスタ内のコンピュートノード数を上回る場合、サポート対象となるCephおよびSwiftストレージは、クラスタ内のコンピュートノード1つにつき48TBに制限されます。
       8. Ubuntu Advantage OpenStackには、Canonicalの提供する利用可能なMicrosoft認定ドライバをWindowsゲストのインスタンスで使用するライセンスが含まれています。
       9. OpenStackのサポートには、以下は含まれません。
         1. OpenStackのデプロイメント実行に必要な作業負荷以外に関するサポート
