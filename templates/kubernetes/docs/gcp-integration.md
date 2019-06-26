@@ -309,7 +309,7 @@ juju debug-log --replay --include gcp-integrator/0
 [quickstart]: /kubernetes/docs/quickstart
 [owner]: https://console.cloud.google.com/iam-admin/iam
 [iam-roles]: https://cloud.google.com/compute/docs/access/iam
-[asset-gcp-overlay]: https://raw.githubusercontent.com/juju-solutions/kubernetes-docs/master/assets/gcp-overlay.yaml
+[asset-gcp-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/kubernetes-docs/master/assets/gcp-overlay.yaml
 [operations]: https://console.cloud.google.com/compute/operations
 [storage]: /kubernetes/docs/storage
 [bugs]: https://bugs.launchpad.net/charmed-kubernetes

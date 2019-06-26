@@ -5,6 +5,12 @@ markdown_includes:
 context:
   title: "Ceph storage"
   description: How to get Ceph deployed and related to Kubernetes in order to have a default storage class. This allows for easy storage allocation.
+keywords: quickstart
+tags: [getting_started]
+sidebar: k8smain-sidebar
+permalink: ceph.html
+layout: [base, ubuntu-com]
+toc: False
 ---
 
 ## How to add **Ceph** storage

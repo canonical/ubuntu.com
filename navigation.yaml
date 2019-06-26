@@ -111,6 +111,24 @@ kubernetes:
         - title: GCP integration
           path: /kubernetes/docs/gcp-integration
           hidden: True
+        - title: OpenStack integration
+          path: /kubernetes/docs/openstack-integration
+          hidden: True
+        - title: CNI overview
+          path: /kubernetes/docs/cni-overview
+          hidden: True
+        - title: Flannel
+          path: /kubernetes/docs/cni-flannel
+          hidden: True
+        - title: Calico
+          path: /kubernetes/docs/cni-calico
+          hidden: True
+        - title: Canal
+          path: /kubernetes/docs/cni-canal
+          hidden: True
+        - title: Using Tigera Secure EE
+          path: /kubernetes/docs/tigera-secure-ee
+          hidden: True
         - title: Basic Operations
           path: /kubernetes/docs/operations
           hidden: True
@@ -156,11 +174,11 @@ kubernetes:
         - title: Audit Logging
           path: /kubernetes/docs/audit-logging
           hidden: True
-        - title: Using Tigera Secure EE
-          path: /kubernetes/docs/tigera-secure-ee
-          hidden: True
         - title: Troubleshooting
           path: /kubernetes/docs/troubleshooting
+          hidden: True
+        - title: Containerd and Docker
+          path: /kubernetes/docs/container-runtime
           hidden: True
         - title: Overview
           path: /kubernetes/docs/high-availability
@@ -173,6 +191,9 @@ kubernetes:
           hidden: True
         - title: MetalLB
           path: /kubernetes/docs/metallb
+          hidden: True
+        - title: Custom loadbalancer
+          path: /kubernetes/docs/custom-loadbalancer
           hidden: True
         - title: Release notes
           path: /kubernetes/docs/release-notes

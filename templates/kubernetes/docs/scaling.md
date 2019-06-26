@@ -17,6 +17,13 @@ The **Charmed Distribution of Kubernetes<sup>&reg;</sup>** has been designed to
 be flexible enough to efficiently run your workloads. Various components of **CDK**
 can be horizontally scaled to meet demand or to increase reliability, as detailed below.
 
+<div class="p-notification--positive"><p markdown="1" class="p-notification__response">
+<span class="p-notification__status">Note:</span>
+The information here is for scaling the installed Kubernetes<sup>&reg;</sup> itself. For
+information about pod autoscaling,  please see the
+<a href="https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/">
+Kubernetes  autoscaling</a> documentation for details. </p></div>
+
 ## kubernetes-master
 
 The kubernetes-master nodes act as the control plane for the cluster. **CDK** was

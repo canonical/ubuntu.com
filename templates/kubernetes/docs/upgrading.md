@@ -13,9 +13,9 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-It is recommended that you keep your **Kubernetes** deployment updated to the latest available stable version. You should also update the other applications which make up the **Charmed Distribution of Kubernetes<sup>&reg;</sup>.** Keeping up to date ensures you have the latest bug-fixes and security patches for smooth operation of your cluster.
+It is recommended that you keep your **Kubernetes** deployment updated to the latest available stable version. You should also update the other applications which make up the **Charmed Kubernetes**. Keeping up to date ensures you have the latest bug-fixes and security patches for smooth operation of your cluster.
 
-New minor versions of **Kubernetes** are set to release once per quarter. You can check the latest release version on the [Kubernetes release page on GitHub][k8s-release]. The **CDK** is kept in close sync with upstream Kubernetes: updated versions will be released within a week of a new upstream version of **Kubernetes**.
+New minor versions of **Kubernetes** are set to release once per quarter. You can check the latest release version on the [Kubernetes release page on GitHub][k8s-release]. **Charmed Kubernetes** is kept in close sync with upstream Kubernetes: updated versions will be released within a week of a new upstream version of **Kubernetes**.
 
 <div class="p-notification--information">
   <p markdown="1" class="p-notification__response">
@@ -62,16 +62,31 @@ Note that this may include other applications which you may have installed, such
 
 ### Upgrading Docker
 
-**CDK** will use the latest stable version of Docker when it is deployed. Since upgrading Docker
+**Charmed Kubernetes** will use the latest stable version of Docker when it is deployed. Since upgrading Docker
 can cause service disruption, there will be no automatic upgrades and instead this process must
 be triggered by the operator.
 
+Note that this upgrade step only applies to deployments which actually use the Docker
+container runtime. Versions 1.15 and later use containerd by default, and you should
+instead follow the [instructions below](#upgrading-containerd).
+
+#### Version 1.15 and later
+
+The `kubernetes-master` and `kubernetes-worker` are related to the docker subordinate
+charm where present. Whether you are running Docker on its own, or mixed with Containerd,
+the upgrade process is the same:
+
+```bash
+juju upgrade-charm docker
+```
+
+#### Versions prior to 1.15
 Only the `kubernetes-master` and `kubernetes-worker` units require Docker. The charms for each
 include an action to trigger the upgrade.
 
 Before the upgrade, it is useful to list all the units effected:
 
-```bash 
+```bash
 juju status kubernetes-* --format=short
 ```
 
@@ -93,36 +108,56 @@ juju run-action kubernetes-master/1 upgrade-docker --wait
 Once all the `kubernetes-master` units have been upgraded and the pods have respawned, the
 same procedure can then be applied to the `kubernetes-worker` units.
 
-```bash 
+```bash
 juju run-action kubernetes-worker/0 upgrade-docker --wait
 ```
 
 As previously, wait between running the action on sucessive units to allow pods to migrate.
 
 
+<a id='upgrading-containerd'> </a>
+
+### Upgrading containerd
+
+By default, Versions 1.15 and later use Containerd as the container
+runtime. This subordinate charm can be upgraded with the command:
+
+```bash
+juju upgrade-charm containerd
+```
+
 ### Upgrading etcd
 
-As **etcd** manages critical data for the cluster, it is advisable to create a snapshot of this data before running an upgrade. This is covered in more detail in the [documentation on backups][backups], but the basic steps are:
+As **etcd** manages critical data for the cluster, it is advisable to create a snapshot of
+this data before running an upgrade. This is covered in more detail in the
+[documentation on backups][backups], but the basic steps are:
 
 #### 1. Run the snapshot action on the charm
 
 ```bash
 juju run-action etcd/0 snapshot --wait
 ```
-You should see confirmation of the snapshot being created, and the location of the file _on the **etcd** unit_
+You should see confirmation of the snapshot being created, and the location of the file
+_on the **etcd** unit_
 
 #### 2. Fetch a local copy of the snapshot
 
-Knowing the path to the snapshot file from the output of the above command, you can download a local copy:
+Knowing the path to the snapshot file from the output of the above command, you can
+download a local copy:
 `bash juju scp etcd/0:/home/ubuntu/etcd-snapshots/<filename>.tar.gz .`
+
+#### 3. Upgrade
+
 You can now upgrade **etcd**:
+
 ```bash
 juju upgrade-charm etcd
 ```
 
 ### Upgrading additional components
 
-The other infrastructure applications can be upgraded by running the `upgrade-charm` command:
+The other infrastructure applications can be upgraded by running the `upgrade-charm`
+command:
 
 ```bash
 juju upgrade-charm flannel
@@ -134,15 +169,23 @@ Any other infrastructure charms can be upgraded in a similar way.
 <div class="p-notification--caution">
   <p markdown="1" class="p-notification__response">
     <span class="p-notification__status">Note:</span>
-Some services may be briefly interrupted during the upgrade process. Upgrading <strong>flannel</strong> will cause a small amount of network downtime. Upgrading <strong>easyrsa</strong> will not cause any downtime. The behaviour of other components you have added to your cluster may vary - check individual documentation for these charms for more information on upgrades.
+Some services may be briefly interrupted during the upgrade process. Upgrading
+<strong>flannel</strong> will cause a small amount of network downtime. Upgrading
+<strong>easyrsa</strong> will not cause any downtime. The behaviour of other
+components you have added to your cluster may vary - check individual documentation
+for these charms for more information on upgrades.
   </p>
 </div>
 
 ## Upgrading Kubernetes
 
-Before you upgrade the **Kubernetes** components, you should be aware of the exact release you wish to upgrade to.
+Before you upgrade the **Kubernetes** components, you should be aware of the exact
+release you wish to upgrade to.
 
-The **Kubernetes** charms use **snap** _channels_ to manage the version of **Kubernetes** to use. Channels are explained in more detail in the [official snap documentation][snap-channels], but in terms of **Kubernetes** all you need to know are the major and minor version numbers and the 'risk-level':
+The **Kubernetes** charms use **snap** _channels_ to manage the version of
+**Kubernetes** to use. Channels are explained in more detail in the
+[official snap documentation][snap-channels], but in terms of **Kubernetes** all you
+need to know are the major and minor version numbers and the 'risk-level':
 
 | Risk level | Description                                               |
 | ---------- | --------------------------------------------------------- |
@@ -155,13 +198,17 @@ For most use cases, it is strongly recommended to use the 'stable' version of ch
 
 ### Upgrading the **kube-api-loadbalancer**
 
-A core part of **CDK** is the kubeapi-load-balancer component. To ensure API service continuity this upgrade should precede any upgrades to the **Kubernetes** master and worker units.
+A core part of **CDK** is the kubeapi-load-balancer component. To ensure API service
+continuity this upgrade should precede any upgrades to the **Kubernetes** master and
+worker units.
 
 ```bash
 juju upgrade-charm kubeapi-load-balancer
 ```
 
-The load balancer itself is based on NGINX, and the version reported by `juju status` is that of NGINX rather than Kubernetes. Unlike the other Kubernetes components, there is no need to set a specific channel or version for this charm. 
+The load balancer itself is based on NGINX, and the version reported by `juju status` is
+that of NGINX rather than Kubernetes. Unlike the other Kubernetes components, there
+is no need to set a specific channel or version for this charm.
 
 ### Upgrading the **kubernetes-master** units
 

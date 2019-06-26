@@ -103,9 +103,9 @@ This will automatically ssh you to the easyrsa unit.
 
 ## Collecting debug information
 
-Sometimes it is useful to collect all the information from a cluster to share with a developer to identify problems. This is best accomplished with [CDK Field Agent](https://github.com/juju-solutions/cdk-field-agent).
+Sometimes it is useful to collect all the information from a cluster to share with a developer to identify problems. This is best accomplished with [CDK Field Agent](https://github.com/charmed-kubernetes/cdk-field-agent).
 
-Download and execute the collect.py script from [CDK Field Agent](https://github.com/juju-solutions/cdk-field-agent) on a box that has a Juju client configured with the current controller and model pointing at the CDK deployment of interest.
+Download and execute the collect.py script from [CDK Field Agent](https://github.com/charmed-kubernetes/cdk-field-agent) on a box that has a Juju client configured with the current controller and model pointing at the CDK deployment of interest.
 
 Running the script will generate a tarball of system information and includes basic information such as systemctl status, Juju logs, charm unit data, etc. Additional application-specific information may be included as well.
 
@@ -334,7 +334,6 @@ monitoring-influxdb         10.1.31.2:8086,10.1.31.2:8083   136m
 ### Attempt to authenticate directly to the service
 
 Use a token to auth with the Keystone service directly:
-
 
 ```bash
 cat <<EOF | curl -ks -XPOST -d @- https://10.152.183.200:8443/webhook | python -mjson.tool
