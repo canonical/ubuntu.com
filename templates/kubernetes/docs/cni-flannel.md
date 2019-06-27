@@ -31,7 +31,7 @@ flannel will be used for CNI.
 
 
 | Name                  |  Type     |  Default value | Description  |
-|=============|=======|============|====================================|
+|-----------------------|-----------|----------------|--------------|
 | cidr                       | string     | 10.1.0.0/16      | Network CIDR to assign to Flannel  |
 | iface                      | string     | see description>  |  The interface to bind flannel overlay networking. The default value is the interface bound to the CNI endpoint. |
 |  nagios_context |  string |  juju  |  A string that will be prepended to instance name to set the host name in nagios. If you're running multiple environments with the same services in them this allows you to differentiate between them. Used by the nrpe subordinate charm. |

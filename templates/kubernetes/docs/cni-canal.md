@@ -36,7 +36,7 @@ that would apply to `charmed-kubernetes` to this bundle also.
 ## Canal configuration options
 
 |Name                  | Type    | Default   | Description                      |
-|======================|=========|===========|==================================|
+|----------------------|---------|-----------|----------------------------------|
 | calico-node-image    | string  | docker.io/calico/node:v3.6.1|The image id to use for calico/node. |
 | calico-policy-image  | string  | docker.io/calico/kube-controllers:v3.6.1|The image id to use for calico/kube-controllers. |
 | cidr                 | string  | 10.1.0.0/16|Network CIDR to assign to Flannel |
