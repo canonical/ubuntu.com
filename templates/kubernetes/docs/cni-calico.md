@@ -61,7 +61,7 @@ that would apply to `charmed-kubernetes` to this bundle also.
 ## Calico configuration options
 
 | Name                |  Type  |  Default value                           | Description                                                    |
-|=====================|========|==========================================|================================================================|
+|---------------------|--------|------------------------------------------|----------------------------------------------------------------|
 | calico-node-image   | string | docker.io/calico/node:v3.6.1             | The image id to use for calico/node                            |
 | calico-policy-image | string | docker.io/calico/kube-controllers:v3.6.1 | The image id to use for calico/kube-controllers                |
 | ipip                | string | Never                                    | IPIP mode. Must be one of "Always", "CrossSubnet", or "Never". |

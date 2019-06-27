@@ -16,23 +16,23 @@ toc: False
 
 # 1.15
 
-### June 26, 2019 -  [charmed-kubernetes-139](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-139/archive/bundle.yaml))
+### June 26, 2019 -  [charmed-kubernetes-139](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-139/archive/bundle.yaml)
 
 ## What's new
 
 - Containerd support
 
-Although Docker is still supported, [containerd](https://containerd.io/) is now
+Although Docker is still supported, [containerd](https://containerd.io/) is now 
 the default container runtime in Charmed Kubernetes. Containerd brings significant
 [peformance improvements](https://kubernetes.io/blog/2018/05/24/kubernetes-containerd-integration-goes-ga/)
 and prepares the way for Charmed Kubernetes integration with
 [Kata](https://katacontainers.io/) in the future.
 
 Container runtime code has been moved out of the kubernetes-worker charm, and
-into subordinate charms (one for Docker and one for containerd). This allows
+into subordinate charms (one for Docker and one for containerd). This allows 
 the operator to swap the container runtime as desired, and even mix
 container runtimes within a cluster. It also allows for additional container
-runtimes to be supported in the future. Because this is a significant change, you
+runtimes to be supported in the future. Because this is a significant change, you 
 are advised to read the [upgrade notes](/kubernetes/docs/upgrade-notes) before
 upgrading from a previous version.
 
