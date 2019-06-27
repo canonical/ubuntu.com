@@ -27,7 +27,7 @@ of **Charmed Kubernetes**.
 Settings which require additional explanation are described below.
 
 |Name             |   Type         |  Default Value                              |  Description                           |
-|==========|=========|========================|=====================|
+|-----------------|----------------|---------------------------------------------|--------------|
 | custom_registries:   |  json |  '[]' |  Setting this config allows images to be pulled from registries requiring auth. [See below](#custom-registries).  |
 |enable-cgroups   | bool   | False   |   WARNING changing this option will reboot the host - [see notes](#enable-cgroups).|
 |extra-packages | string  | ""  | Space separated list of extra deb packages to install.  |
