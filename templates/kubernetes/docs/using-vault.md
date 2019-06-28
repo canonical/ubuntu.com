@@ -87,6 +87,33 @@ Note that it is _critical_ that you save all five unseal keys as well as the
 root token.  If the **Vault** unit is ever rebooted, you will have to repeat the
 unseal steps (but not the init step) before the CA can become functional again.
 
+## Transitioning an existing CDK from EasyRSA to Vault
+
+An existing **CDK** deployment which is using Vault can easily transition to
+**Vault** simply by following the same steps as above, redeploying the same
+base bundle that you initially deployed on top of the existing deployment
+with the addition of the overlay and then following the steps to unseal
+**Vault**. This will transition all of the components of the cluster to
+the new CA and certificates (this will include restarting all of the worker
+nodes and result in a brief bit of downtime). Once that is complete, you will
+need to re-download the `kubectl` config file, since it contains the certificate
+info for connecting to the cluster.  Once you are satisfied with the state of
+the cluster, you can remove the **EasyRSA** application with:
+
+```bash
+juju remove-application easyrsa
+```
+
+<div class="p-notification--information">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Note:</span>
+    Using an unpinned bundle revision may result in the cluster charms being
+    upgraded. To avoid this, specify the exact bundle revision you deployed
+    with originally, or use `juju export-bundle` to create a custom bundle
+    based on exactly what you currently have deployed.
+  </p>
+</div>
+
 ## Using Vault as an intermediary CA
 
 If you don't wish **Vault** to act as a self-signed root CA, you can remove the
