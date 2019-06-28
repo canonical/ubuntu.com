@@ -56,5 +56,4 @@ Further configuration can be performed by using a [MetalLB configmap][configmap]
 [metallb]: https://metallb.universe.tf
 [arp]: https://tools.ietf.org/html/rfc826
 [bgp]: https://tools.ietf.org/html/rfc1105
-[helm]: /kubernetes/docs/helm
 [configmap]: https://metallb.universe.tf/configuration/
