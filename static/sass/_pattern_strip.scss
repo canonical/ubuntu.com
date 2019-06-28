@@ -17,14 +17,14 @@
     @extend %vf-strip;
     background-blend-mode: multiply, multiply, normal, normal;
     background-image:
-      url("https://assets.ubuntu.com/v1/f6dcb4a2-suru-left.svg"), // sass-lint:disable-line no-url-protocols, no-url-domains
-      url("https://assets.ubuntu.com/v1/07b039fb-suru-right.svg"), // sass-lint:disable-line no-url-protocols, no-url-domains
+      linear-gradient(to bottom right, rgb(216, 216, 216) 0%, rgba(216, 216, 216, 1) 49.9%, rgba(216, 216, 216, 0) 50%, rgba(216, 216, 216, 0) 100%), // sass-lint:disable-line no-color-literals
+      linear-gradient(to bottom left, rgb(216, 216, 216) 0%, rgba(216, 216, 216, 1) 49.9%, rgba(216, 216, 216, 0) 50%, rgba(216, 216, 216, 0) 100%), // sass-lint:disable-line no-color-literals
       linear-gradient(to top right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%), // sass-lint:disable-line no-color-literals
       linear-gradient(to top right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%), // sass-lint:disable-line no-color-literals
       linear-gradient(194deg, #E95420 0%, #772953 42%, #5E2750 100%); // sass-lint:disable-line hex-notation no-color-literals
     background-position: 0% 0%, top right, right 0 bottom 4rem, right bottom, 0% 0%;
     background-repeat: no-repeat;
-    background-size: 100% calc(100% - 4rem), contain, 100% 4rem, 100% 4rem, auto;
+    background-size: 100% calc(100% - 4rem), 30% 100%, 100% 4rem, 100% 4rem, auto;
     margin-bottom: -4rem;
     overflow: hidden;
     padding-bottom: 12rem;
