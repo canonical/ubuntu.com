@@ -1,5 +1,5 @@
 ---
-wrapper_template: "base_docs.html"
+wrapper_template: "base-docs.html"
 markdown_includes:
   nav: "shared/_side-navigation.md"
 context:
@@ -14,7 +14,7 @@ toc: False
 ---
 
 Deliver ‘Containers as a Service’ across the enterprise with
-**Charmed Kubernetes** , enabling each
+**Charmed Kubernetes<sup>&reg;</sup>** , enabling each
 project to spin up a standardised K8s of arbitrary scale, on demand, with centralised
 operational control. **Charmed Kubernetes** provides a well integrated, turn-key
 **Kubernetes<sup>&reg;</sup>** platform that is open, extensible, and secure.
@@ -53,7 +53,7 @@ aggregation and systems monitoring dashboards with every cloud, using
 ### Cloud integration
 
 Depending on your choice of cloud, **Charmed Kubernetes** will also install an integration application.
-This enables your cluster to seamlessly access cloud resources and components without
+This enables **Charmed Kubernetes** to seamlessly access cloud resources and components without
 additional configuration or hassle.
 
 <!-- LINKS -->

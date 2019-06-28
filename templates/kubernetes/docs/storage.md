@@ -15,13 +15,14 @@ toc: False
 
 On-disk files in a container are ephemeral and can't be shared with other members of a pod. For some applications, this is not an issue, but for many persistent storage is required.
 
-The **Charmed Distribution of Kubernetes**<sup>&reg;</sup> makes it easy to add and configure different types of persistent storage for your **Kubernetes** cluster, as outlined below. For more detail on the concept of storage volumes in **Kubernetes**, please see the [Kubernetes documentation][kubernetes-storage-docs].
+**Charmed Kubernetes**<sup>&reg;</sup> makes it easy to add and configure different types of persistent storage for your **Kubernetes** cluster, as outlined below. For more detail on the concept of storage volumes in **Kubernetes**, please see the [Kubernetes documentation][kubernetes-storage-docs].
 
 ## Ceph storage
 
-**CDK** can make use of [Ceph][ceph-home] to provide persistent storage
-volumes. The following sections assume you have already deployed a **CDK**
-cluster and you have internet access to the **Juju** Charm Store.
+**Charmed Kubernetes** can make use of [Ceph][ceph-home] to provide persistent storage
+volumes. The following sections assume you have already deployed a
+**Charmed Kubernetes** cluster and you have internet access to the
+**Juju** Charm Store.
 
 ### Deploy Ceph
 
@@ -52,7 +53,7 @@ So, for example, to deploy three `ceph-osd` storage nodes, using the default sto
 For a more detailed explanation of Juju's storage pools and options, please see the relevant <a href="https://docs.jujucharms.com/stable/en/charms-storage">Juju documentation</a>.
 </p></div>
 
-Note that actually deploying these charms with storage may take some time, but you can continue
+Note that actually deploying these charms with storage may take some time, but you can continue to run other Juju commands in the meantime.
 
 The `ceph-osd` and `ceph-mon` deployments should then be connected:
 
@@ -60,9 +61,9 @@ The `ceph-osd` and `ceph-mon` deployments should then be connected:
 juju add-relation ceph-osd ceph-mon
 ```
 
-### Relate to CDK
+### Relate to Charmed Kubernetes
 
-Making **CDK** aware of your **Ceph** cluster requires 2 **Juju** relations.
+Making **Charmed Kubernetes** aware of your **Ceph** cluster requires 2 **Juju** relations.
 
 ```bash
 juju add-relation ceph-mon:admin kubernetes-master
@@ -123,7 +124,7 @@ unit-ceph-mon-0:
 
 ### Verification
 
-Now you can look at your **CDK** cluster to verify things are working. Running:
+Now you can look at your **Charmed Kubernetes** cluster to verify things are working. Running:
 
 ```bash
 kubectl get sc,po
@@ -175,7 +176,7 @@ juju add-storage ceph-osd/2 --storage osd-devices=32G,2
 
 ### Using a separate Juju model
 
-In some circumstances it can be useful to locate the persistent storage in a different **Juju** model, for example to have one set of storage used by different clusters. The only change required is in adding relations between **Ceph** and CDK.
+In some circumstances it can be useful to locate the persistent storage in a different **Juju** model, for example to have one set of storage used by different clusters. The only change required is in adding relations between **Ceph** and **Charmed Kuberentes**.
 
 For more information on how to achieve this, please see the [Juju documentation][juju-cmr] on cross-model relations.
 
@@ -191,7 +192,7 @@ Make use of **Juju** constraints to allocate an instance with the required amoun
 juju deploy nfs --constraints root-disk=200G
 ```
 
-### Relate to CDK
+### Relate to Charmed Kubernetes
 
 The NFS units can be related directly to the **Kubernetes** workers:
 
@@ -201,7 +202,8 @@ The NFS units can be related directly to the **Kubernetes** workers:
 
 ### Verification
 
-Now you can look at your **CDK** cluster to verify things are working. Running:
+Now you can look at your **Charmed Kubernetes** cluster to verify things
+are working. Running:
 
 ```bash
 kubectl get sc,po

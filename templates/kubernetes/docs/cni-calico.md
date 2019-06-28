@@ -48,14 +48,14 @@ documentation for instructions.
 
 ## Deploying Charmed Kubernetes with Calico
 
-To deploy CDK with Calico, deploy the kubernetes-calico bundle:
+To deploy Charmed Kubernetes with Calico, deploy the kubernetes-calico bundle:
 
 ```bash
 juju deploy cs:~containers/kubernetes-calico
 ```
 
-The calico bundle is identical to the standard `charmed-kubernetes` bundle with the
-exception of replacing flannel with calico. You can apply any customisation overlays
+The Calico bundle is identical to the standard `charmed-kubernetes` bundle with the
+exception of replacing Flannel with Calico. You can apply any customisation overlays
 that would apply to `charmed-kubernetes` to this bundle also.
 
 ## Calico configuration options
@@ -116,6 +116,16 @@ juju config calico ipip=CrossSubnet
 The default configuration of Calico uses BGP mode, with all Calico nodes
 connected in a full node-to-node mesh, and with no external peerings. This
 comes with some limitations which will be explained in the following sections.
+
+<div class="p-notification--positive">
+<p markdown="1" class="p-notification__response">
+<span class="p-notification__status">Note:</span>
+If you intend to use MetalLB with Calico in BGP mode,
+please also refer to this
+<a href="https://metallb.universe.tf/configuration/calico/">
+explanation of the required MetalLB configuration</a> from the
+<a href="https://metallb.universe.tf/"> MetalLB website</a>
+</p></div>
 
 ### BGP with multiple subnets
 
