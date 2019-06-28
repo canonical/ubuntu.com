@@ -7,13 +7,23 @@
 
 {% block content %}
 
-<section class="p-strip is-deep p-takeover--private-cloud-economics" lang="fr">
-  <div class="row u-equal-height">
+<section class="p-strip--dark is-deep p-takeover--esm" lang="fr">
+  <div class="row u-vertically-center">
     <div class="col-8">
       <h1 class="p-takeover__title">Extension Sécurité et Maintenance pour Ubuntu 14.04</h1>
-      <h3>Sécurité, conformité, RGPD: gardez vos serveurs en sécurité après la fin de support officielle d'Ubuntu 14.04 LTS en avril 2019.</h3>
-      <p class="p-takeover__text">
-      Aujourd’hui, Ubuntu est le point de départ pour la majorité des applications cloud. Avec plus de 450 million d’instances clouds publiques déployées depuis la sortie d’Ubuntu 16.04 LTS, on constate que la plupart des déploiements les plus larges - à l’échelle du web - utilisent Ubuntu.</p>
+      <h2 class="p-heading--four">Sécurité, conformité, RGPD: gardez vos serveurs en sécurité après la fin de support officielle d'Ubuntu 14.04 LTS en avril 2019.</h2>
+    </div>
+
+    <div class="col-4 u-hide--small u-align--center">
+      <img class="p-takeover__image" src="{{ ASSET_SERVER_URL }}9e59756d-shield-ESM.svg" alt="" class="u-hide--small">
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-7">
+      <p>Aujourd’hui, Ubuntu est le point de départ pour la majorité des applications cloud. Avec plus de 450 million d’instances clouds publiques déployées depuis la sortie d’Ubuntu 16.04 LTS, on constate que la plupart des déploiements les plus larges - à l’échelle du web - utilisent Ubuntu.</p>
 
       <p>Ce sont notamment des applications financières, de big data et de distribution de contenu, qui dépendent de la stabilité et de la continuité du système d’exploitation sous-jacent pour fournir les services essentiels dont leurs clients dépendent.</p>
 
@@ -42,17 +52,22 @@
       <p>Elle est en option dans le pack de support technique commercial de Canonical, <a href="/esm">Ubuntu Advantage</a>.</p>
 
       <p>Contactez ci-dessous les équipes de vente de Canonical pour commencer à planifier la fin de vie d’Ubuntu 14.04 ou pour parler de vos systèmes sous Ubuntu 12.04: l’ESM facilitera votre processus de migration, tout en assurant votre conformité aux normes et votre sécurité.</p>
-
     </div>
-    <div class="col-4 u-hide--small u-align--center">
-      <img class="p-takeover__image" src="{{ ASSET_SERVER_URL }}9e59756d-shield-ESM.svg" alt="" class="u-hide--small">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8">
+  
+    <div class="col-5">
       {% include "engage/shared/_fr_engage_form.html" with id="1240" returnURL="https://www.ubuntu.com/support/thank-you" cta="Planifiez votre passage à l'ESM" %}
     </div>
   </div>
 </section>
+
+<style>
+  .p-takeover--esm {
+    background-image: linear-gradient(44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%);
+  }
+
+  .p-takeover__image {
+    width: 160px;
+  }
+</style>
 
 {% endblock content %}
