@@ -5,40 +5,51 @@
 
 {% block content %}
 
-<section class="p-strip is-deep p-takeover--private-cloud-economics" lang="fr">
-  <div class="row u-equal-height">
+<section class="p-strip--dark is-deep p-takeover--openstack" lang="fr">
+  <div class="row">
     <div class="col-8">
       <h1 class="p-takeover__title">Installez et mettez OpenStack à l'échelle en toute simplicité</h1>
       <p class="u-hide--medium u-hide--large u-align--center">
         <img class="p-takeover__image" src="{{ ASSET_SERVER_URL }}35515576-openstack-cloud.svg" alt="">
       </p>
     </div>
-    <div class="col-3 u-hide--small u-align--left">
+    <div class="col-4 u-hide--small u-align--left">
       <img class="p-takeover__image" src="{{ ASSET_SERVER_URL }}35515576-openstack-cloud.svg" alt="" class="u-hide--small">
     </div>
   </div>
+</section>
+
+<section class="p-strip">
   <div class="row">
-    <div class="col-7 p-takeover__text">
-      <h3>Avec les bons outils, OpenStack est un jeu d'enfant.</h3>
-      <p style="font-size:16px;">L'utilisation de plus en plus fréquente de gros logiciels basés sur des microservices multi-hôtes au lieu de logiciels  monolithiques traditionnels exige des perspectives et des approches fondamentalement nouvelles en matière d'installation, d'intégration et d'exploitation.</p>
-      <p style="font-size:16px;">Cet eBook vous permettra de mieux comprendre pourquoi l'installation et l'exécution d'OpenStack peut sembler complexe, et comment Canonical OpenStack simplifie les choses et peut vous aider à construire une infrastructure cloud privée moderne, évolutive, répliquable et abordable.</p>
+    <div class="col-8">
+      <h2>Avec les bons outils, OpenStack est un jeu d'enfant.</h3>
+      
+      <p>L'utilisation de plus en plus fréquente de gros logiciels basés sur des microservices multi-hôtes au lieu de logiciels  monolithiques traditionnels exige des perspectives et des approches fondamentalement nouvelles en matière d'installation, d'intégration et d'exploitation.</p>
+      
+      <p>Cet eBook vous permettra de mieux comprendre pourquoi l'installation et l'exécution d'OpenStack peut sembler complexe, et comment Canonical OpenStack simplifie les choses et peut vous aider à construire une infrastructure cloud privée moderne, évolutive, répliquable et abordable.</p>
+
       <h3 class="p-muted-heading u-align--center">Nous fournissons des clouds privés aux plus grandes entreprises</h3>
+      
       <ul class="p-inline-images">
         <li class="p-inline-images__item">
           <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}4ef05fb7-bestbuy.jpg" alt="BestBuy" style="max-width:90px;"/>
         </li>
+
         <li class="p-inline-images__item">
           <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}b1fecbf0-logo-att-horizontal.png" width="242" alt="ATT" style="max-width:130px;"/>
         </li>
+
         <li class="p-inline-images__item">
           <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}b7693339-logo-bloomberg.svg" alt="Bloomberg" style="max-width:100px;"/>
         </li>
+
         <li class="p-inline-images__item">
           <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}1ccb6d93-logo-deutschetelekom.svg" alt="Deutsche Telekom" />
         </li>
       </ul>
     </div>
-    <div class="col-5">
+
+    <div class="col-4">
             <!-- MARKETO FORM -->
       <script src="{{ ASSET_SERVER_URL }}37b1db88-jquery.min.js"></script>
       <script src="{{ ASSET_SERVER_URL }}d55f58bb-jquery.validate.js"></script>
@@ -115,5 +126,15 @@
     </div>
   </div>
 </section>
+
+<style>
+  .p-takeover--openstack {
+    background-image: linear-gradient(44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%);
+  }
+
+  .p-takeover__image {
+    width: 160px;
+  }
+</style>
 
 {% endblock content %}
