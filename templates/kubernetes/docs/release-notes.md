@@ -101,6 +101,13 @@ Users relying on `docker-registry` to serve container images to Kubernetes deplo
 continue to use the Docker subordinate runtime as outlined in the [upgrade notes](/kubernetes/docs/upgrade-notes#1.15),
 under the heading "To keep Docker as the container runtime".
 
+- Containerd charm does not work on LXD ([bug 1834524](https://bugs.launchpad.net/charm-containerd/+bug/1834524))
+
+We intend to fix this shortly after release. For now, if you want to deploy
+Charmed Kubernetes on LXD, we recommend using the Docker subordinate charm
+instead. Instructions for this can be found in the
+[Container runtimes][container-runtime] section of our documentation.
+
 
 # 1.14 Bugfix release
 
@@ -272,3 +279,4 @@ Please see [this page][historic] for release notes of earlier versions.
 [hacluster-docs]: /kubernetes/docs/hacluster
 [cni-calico]: /kubernetes/docs/cni-calico
 [containerd]: /kubernetes/docs/containerd
+[container-runtime]: /kubernetes/docs/container-runtime
