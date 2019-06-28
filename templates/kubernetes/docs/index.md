@@ -32,5 +32,3 @@ Google, Microsoft, and many other institutions run Kubernetes on Ubuntu because 
     </div>
   </div>
 </div>
-
-{% include links.html %}
