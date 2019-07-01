@@ -24,7 +24,7 @@ toc: False
 
 Although Docker is still supported, [containerd](https://containerd.io/) is now 
 the default container runtime in Charmed Kubernetes. Containerd brings significant
-[peformance improvements](https://kubernetes.io/blog/2018/05/24/kubernetes-containerd-integration-goes-ga/)
+[peformance improvements](https://kubernetes.io/blog/kubernetes-containerd-integration-goes-ga/)
 and prepares the way for Charmed Kubernetes integration with
 [Kata](https://katacontainers.io/) in the future.
 
