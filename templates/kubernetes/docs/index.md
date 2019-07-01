@@ -8,7 +8,7 @@ context:
 toc: False
 ---
 
- Charmed Kubernetes<sup>&reg;</sup>, is pure Kubernetes tested across the widest range of clouds with modern metrics and monitoring, brought to you by the people who deliver Ubuntu.
+ Charmed Kubernetes<sup>&reg;</sup> is pure Kubernetes tested across the widest range of clouds with modern metrics and monitoring, brought to you by the people who deliver Ubuntu.
 
 Google, Microsoft, and many other institutions run Kubernetes on Ubuntu because we focus on the latest container capabilities in modern kernels. That’s why it’s the top choice for enterprise Kubernetes, too.
 
