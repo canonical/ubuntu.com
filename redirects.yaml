@@ -736,5 +736,40 @@ usn/rss\.xml: "https://usn.ubuntu.com/rss.xml"
 (?P<page>.+)/: "/{page}"
 telco/?: "/telecommunications"
 telcos/?: "/telecommunications"
+
+# Blog redirects
 blog/search/?: /search
 blog(?P<page>(/.+)?)/feed?: "https://admin.insights.ubuntu.com{page}/feed"
+
+# Copied from https://github.com/canonical-web-and-design/blog.ubuntu.com/blob/master/redirects.yaml
+
+# Wordpress CMS pages & resources
+blog/admin(?P<page>(/.*)?): https://admin.insights.ubuntu.com/admin{page}
+blog/wp-(?P<page>.+): https://admin.insights.ubuntu.com/wp-{page}
+
+# Archive pages
+blog/page/(?P<page>[0-9]+)/?: /blog/archives?page={page}
+
+# Category archive pages
+blog/articles/?: /blog/archives?category=articles
+blog/case-studies/?: /blog/archives?category=case-studies
+blog/news/?: /blog/archives?category=news
+blog/tutorials/?: /blog/archives?category=tutorials
+blog/webinars/?: /blog/archives?category=webinars
+blog/category/(?P<category>[^/]+)/?: /blog/archives?category={category}
+blog/category/(?P<category>[^/]+)/year/(?P<year>[0-9]{4})/?: /blog/archives?category={category}&year={year}
+
+# Group archive pages
+blog/canonical-announcements/?: /blog/press-centre
+blog/people-and-culture/?: /blog/archives?group=people-and-culture
+blog/phone-and-tablet/?: /blog/archives?group=phone-and-tablet
+blog/page/(?P<page>[0-9]+)/(?P<group>[^/]+)/?: /blog/archives?group={group}&page={page}
+blog/group/(?P<group>[^/]+)/?: /blog/archives?group={group}
+blog/topic/(?P<group>(canonical-announcements|cloud|desktop|internet-of-things))/?: /blog/archives?group={group}
+
+# alternative homepage used for a/b test
+blog/home/?: /
+
+# specific article redirects
+blog/event/mobile-world-congress-2018/?:  /blog/nvidia-gtc-2018
+blog/(2019/02/05/)?ubuntu-14-04-trusty-tahr-end-of-life/?: /blog/ubuntu-14-04-trusty-tahr
