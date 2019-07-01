@@ -76,7 +76,7 @@
     <div class="col-12">
       <ol class="p-stepped-list--detailed">
         <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">1</span>Minimum requirements</h3>
+          <h3 class="p-list-step__title">Minimum requirements</h3>
           <div class="p-list-step__content">
             <p>4 x Intel, POWER or ARM servers each with:</p>
             <ul class="p-list">
@@ -90,7 +90,7 @@
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">2</span>Set up your MAAS hardware</h3>
+          <h3 class="p-list-step__title">Set up your MAAS hardware</h3>
           <div class="p-list-step__content">
             <p>Connect the both NICs of the servers to the same network switch.</p>
             <p>Identify the smallest server, if they are not identical. You will use this for <a href="https://maas.io/" class="p-link--external">MAAS</a>, the &lsquo;Metal as a Service&rsquo; provisioning system which will drive automated installation of the OS on the rest of the cluster.</p>
@@ -99,7 +99,7 @@
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">3</span>Install MAAS</h3>
+          <h3 class="p-list-step__title">Install MAAS</h3>
           <div class="p-list-step__content">
             <p>On your Ubuntu Server 16.04 LTS machine:</p>
             <div class="p-code-snippet">
@@ -122,7 +122,7 @@
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">4</span>Configure the subnet and&nbsp;DHCP</h3>
+          <h3 class="p-list-step__title">Configure the subnet and&nbsp;DHCP</h3>
           <div class="p-list-step__content">
             <p>Go to the &ldquo;Subnets&rdquo; tab and verify that &ldquo;gateway&rdquo; and &ldquo;DNS&rdquo; are correct for your subnet.</p>
             <p>MAAS will provide DHCP and DNS for the /24 network on your isolated LAN switch.</p>
@@ -132,14 +132,14 @@
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">5</span>Verify image syncing</h3>
+          <h3 class="p-list-step__title">Verify image syncing</h3>
           <div class="p-list-step__content">
             <p>Go to the &ldquo;Images&rdquo; tab and check if the Ubuntu images have all been downloaded and are in a &ldquo;Synced&rdquo; state. Depending on your bandwidth it may take a while for it to finish. You can only proceed with the next steps if the images are synced.</p>
           </div>
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">6</span>Register your hardware with<br /> MAAS</h3>
+          <h3 class="p-list-step__title">Register your hardware with<br /> MAAS</h3>
           <div class="p-list-step__content">
             <p>For the rest of the machines in the cluster:</p>
             <ul>
@@ -158,7 +158,7 @@
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">7</span>Install and launch conjure-up</h3>
+          <h3 class="p-list-step__title">Install and launch conjure-up</h3>
           <div class="p-list-step__content">
             <p>Install conjure-up on the MAAS server:</p>
             <div class="p-code-snippet">
@@ -179,7 +179,7 @@
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">8</span>Select OpenStack hypervisor</h3>
+          <h3 class="p-list-step__title">Select OpenStack hypervisor</h3>
           <div class="p-list-step__content">
             <p>conjure-up offers two options with OpenStack:</p>
             <p>1. OpenStack with NovaLXD</p>
@@ -195,7 +195,7 @@
         </li>
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title"><span class="p-list-step__bullet">9</span>Configure a new cloud</h3>
+          <h3 class="p-list-step__title">Configure a new cloud</h3>
           <div class="p-list-step__content">
             <p>Once you have selected &lsquo;OpenStack with &lsquo;NovaKVM&rsquo;, you will be prompted to create a new cloud with MAAS.</p>
             <p>
@@ -266,7 +266,7 @@
     <h2>Installation instructions</h2>
     <ol class="p-stepped-list--detailed">
       <li class="p-list-step__item col-12">
-        <h3 class="p-list-step__title"><span class="p-list-step__bullet">1</span>Minimum requirements</h3>
+        <h3 class="p-list-step__title">Minimum requirements</h3>
         <div class="p-list-step__content">
           <ul class="p-list">
             <li class="p-list__item">Single machine with 16GB RAM running Ubuntu 16.04 LTS or later and at least 40GB of free disk space</li>
@@ -276,7 +276,7 @@
       </li>
 
       <li class="p-list-step__item col-12">
-        <h3 class="p-list-step__title"><span class="p-list-step__bullet">2</span>Install conjure-up</h3>
+        <h3 class="p-list-step__title">Install conjure-up</h3>
         <div class="p-list-step__content">
           <p><code>conjure-up</code> provides a text-based wizard to walk you through the process of setting up OpenStack. It can be used with full bare metal clusters, or on your workstation with LXD. We&rsquo;ll be using LXD to create a set of container machines for the OpenStack services.</p>
           <p>Follow these step-by-step instructions.</p>
@@ -320,7 +320,7 @@ Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:</
         </div>
       </li>
       <li class="p-list-step__item col-12">
-        <h3 class="p-list-step__title"><span class="p-list-step__bullet">3</span>Deploy OpenStack</h3>
+        <h3 class="p-list-step__title">Deploy OpenStack</h3>
         <div class="p-list-step__content">
           <p>Now you are ready to start the OpenStack deployment process on your workstation.</p>
           <div class="p-code-snippet">
@@ -332,7 +332,7 @@ Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:</
         </div>
       </li>
       <li class="p-list-step__item col-12">
-        <h3 class="p-list-step__title"><span class="p-list-step__bullet">4</span>Follow the on-screen instructions</h3>
+        <h3 class="p-list-step__title">Follow the on-screen instructions</h3>
         <div class="p-list-step__content">
           <p>The conjure-up wizard will now prompt you for:</p>
           <ol>
@@ -349,7 +349,7 @@ Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:</
         </div>
       </li>
       <li class="p-list-step__item col-12">
-        <h3 class="p-list-step__title"><span class="p-list-step__bullet">5</span>Launch an instance</h3>
+        <h3 class="p-list-step__title">Launch an instance</h3>
         <div class="p-list-step__content">
           <p>Conjure-up will have created the basic building blocks for launching an instance . To launch an instance on the new cloud using the Openstack Dashboard, Horizon:</p>
           <ol>
