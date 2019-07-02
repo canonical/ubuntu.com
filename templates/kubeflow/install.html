@@ -11,10 +11,10 @@
   <div class="row">
     <div class="col-8">
       <h1>Install Kubeflow on Ubuntu</h1>
-      <p>Canonical continues to innovate and develop best practices for supporting developers and operators.</p>
+      <p>Create and train machine learning models on your laptop, in your data center, or in the cloud.</p>
     </div>
     <div class="col-4 prefix-1 u-align--center u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}dba11aee-kubernetes.svg?w=275" alt="" width="275" />
+      <img src="{{ ASSET_SERVER_URL }}1ec1605a-kubeflow.svg?w=275" alt="" width="275" />
     </div>
   </div>
 </section>
@@ -22,24 +22,24 @@
 <div class="p-strip is-deep is-bordered" id="instructions">
   <div class="row">
     <div class="col-12">
-      <h2>Deploy Kubeflow to Kubernetes</h2>
+      <h2>How to deploy Kubeflow</h2>
       <p>
-        If you already have Ubuntu or linux, the following instructions are all you need. However, if you are on Windows or Mac, consider starting with Multipass. With <a class="p-link--external" href="https://github.com/CanonicalLtd/multipass">multipass</a> you can easily create an Ubuntu VM to work with.
+        If you already have Ubuntu or another Linux, the following instructions are all you need. However, if you are on Windows or Mac, consider using <a class="p-link--external" href="https://github.com/CanonicalLtd/multipass">Multipass</a> to easily create an Ubuntu VM to work with.
+      </p>
+      <p>
+        Kubeflow runs on top of Kubernetes. Visit our <a href="/kubernetes/install">Kubernetes install</a> page and follow the instructions to install the Kubernetes as you want.
+      </p>
+      <p>
+        The following step assumes you want to install <a class="p-link--external" href="https://microk8s.io/">MicroK8s</a> as your Kubernetes cluster.
       </p>
       <ol class="p-stepped-list--detailed">
 
         <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title">Install Kubernetes</h3>
+          <h3 class="p-list-step__title">Install MicroK8s</h3>
           <div class="p-list-step__content">
-            <p>Kubeflow runs on top of Kubernetes, and Charmed Kubernetes is the best foundation for Kubeflow.</p>
-            <p>Visit our <a href="/kubernetes/install">Kubernetes install</a> page and follow the instructions to install the Kubernetes as you want.</p>
-            <p>The following step assumes you want to install <a class="p-link--external" href="https://microk8s.io/">microk8s</a> as your Kubernetes cluster.</p>
-          </div>
-        </li>
-
-        <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title">Install microk8s</h3>
-          <div class="p-list-step__content">
+            <p>
+              MicroK8s can be installed with one command. However, to get the most out of the installation, there are a few extra steps that need to be done, particularly if executing these steps in a virtual machine. The <code>setup-microk8s.sh</code> script will automate these steps for you.
+            </p>
             <p>Clone the kubernetes-tools project</p>
             <div class="p-code-snippet">
               <input class="p-code-snippet__input" value="git clone https://github.com/canonical-labs/kubernetes-tools" readonly="readonly">
