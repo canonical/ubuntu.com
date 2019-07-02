@@ -1,8 +1,8 @@
-{% extends "ai/base_ai.html" %}
+{% extends "kubeflow/base_kubeflow.html" %}
 
 {% load versioned_static  %}
 
-{% block title %}AI and Machine Learning on Ubuntu{% endblock %}
+{% block title %}Kubeflow: AI and Machine Learning on Ubuntu{% endblock %}
 {% block meta_description %}The default platform for Tensorflow and other AI/ML frameworks, with automatic hardware GPGPU acceleration on Ubuntu. Canonical provides training and K8s-based ML expertise.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1mJq8PxH8FVRVF9i1Xzh0f6M73eyjqZE4NaKYHRcRAKM/edit{% endblock meta_copydoc %}
 
@@ -14,8 +14,8 @@
       <p>Ubuntu is the platform to power your Artificial Intelligence ambitions &mdash; from developer workstations, to racks, to clouds and to the edge with smart connected IoT.</p>
       <p>Canonical&rsquo;s Kubeflow supports the most popular tools for machine learning &mdash; starting with JupyterHub and Tensorflow &mdash; in a standardised workflow running on Kubernetes.</p>
       <p>
-        <a class="p-button--positive" href="/ai/install">Get started by installing Kubeflow</a>
-        <a class="p-button--neutral js-invoke-modal" href="/ai/contact-us?product=ai-index">Call the experts</a>
+        <a class="p-button--positive" href="/kubeflow/install">Get started by installing Kubeflow</a>
+        <a class="p-button--neutral js-invoke-modal" href="/kubeflow/contact-us?product=ai-index">Call the experts</a>
       </p>
     </div>
   </div>
@@ -106,7 +106,7 @@
     </div>
   </div>
   <div class="row">
-    <p><a href="/ai/install">Install Kubeflow&nbsp;&rsaquo;</a></p>
+    <p><a href="/kubeflow/install">Install Kubeflow&nbsp;&rsaquo;</a></p>
   </div>
 </section>
 <section class="p-strip--light is-bordered">
@@ -212,15 +212,15 @@
 <section class="p-strip">
   <div class="row">
     <h2>Get started with AI and Machine learning today.</h2>
-    <p><a class="p-button--positive" href="/ai/install">Test drive Kubeflow now</a></p>
-    <p>Or <a class="js-invoke-modal" href="/ai/contact-us?product=ai-index">contact our experts</a> to get started with consulting, training or outsourced operations.</p>
+    <p><a class="p-button--positive" href="/kubeflow/install">Test drive Kubeflow now</a></p>
+    <p>Or <a class="js-invoke-modal" href="/kubeflow/contact-us?product=ai-index">contact our experts</a> to get started with consulting, training or outsourced operations.</p>
   </div>
 </section>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_containers_juju" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
 
 <!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_kubeflow.html" data-form-id="3231" data-lp-id="6279" data-return-url="https://www.ubuntu.com/ai/thank-you?product=ai-managed" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_kubeflow.html" data-form-id="3231" data-lp-id="6279" data-return-url="https://www.ubuntu.com/kubeflow/thank-you?product=ai-managed" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
 <script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>

@@ -1,8 +1,8 @@
-{% extends "ai/base_ai.html" %}
+{% extends "kubeflow/base_kubeflow.html" %}
 
 {% load versioned_static  %}
 
-{% block title %}Install Kubeflow yourself{% endblock %}
+{% block title %}Install Kubeflow on Ubuntu{% endblock %}
 {% block meta_description %}A step-by-step installation guide to Ubuntu OpenStack with Kubernetes and Kubeflow on bare metal servers.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1KVyyvZsDyrfoi5tK2m5SLWs9YuHg9hgqVz0c8cWHsf8/edit{% endblock meta_copydoc %}
 
@@ -10,7 +10,7 @@
 <section class="p-strip--light is-deep is-bordered">
   <div class="row">
     <div class="col-8">
-      <h1>Install Kubeflow yourself</h1>
+      <h1>Install Kubeflow on Ubuntu</h1>
       <p>Canonical continues to innovate and develop best practices for supporting developers and operators.</p>
     </div>
     <div class="col-4 prefix-1 u-align--center u-hide--small">
@@ -101,7 +101,7 @@
           <div class="col-12">
             <h2>Need more help?</h2>
             <p>Let our Kubernetes experts help you take the next step.</p>
-            <p><a class="p-button--positive js-invoke-modal" href="/ai/contact-us?product=ai-install">Contact us</a></p>
+            <p><a class="p-button--positive js-invoke-modal" href="/kubeflow/contact-us?product=ai-install">Contact us</a></p>
           </div>
         </div>
       </div>
@@ -112,7 +112,7 @@
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_ubuntu_advantage" third_item="_cloud_further_reading" %}
 
 <!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_kubeflow.html" data-form-id="3231" data-lp-id="6279" data-return-url="https://www.ubuntu.com/ai/thank-you?product=ai-managed" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_kubeflow.html" data-form-id="3231" data-lp-id="6279" data-return-url="https://www.ubuntu.com/kubeflow/thank-you?product=ai-managed" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
 <script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
