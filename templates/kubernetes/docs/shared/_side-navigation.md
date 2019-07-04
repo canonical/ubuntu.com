@@ -19,6 +19,7 @@
   - [Basic operations](/kubernetes/docs/operations)
   - [Logging](/kubernetes/docs/logging)
   - [Monitoring](/kubernetes/docs/monitoring)
+  - [Backups](/kubernetes/docs/backups)
   - [Upgrading](/kubernetes/docs/upgrading)
   - [Storage](/kubernetes/docs/storage)
   - [Scaling](/kubernetes/docs/scaling)

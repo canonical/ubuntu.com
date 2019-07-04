@@ -78,15 +78,18 @@ Restoring a snapshot should not be performed when there is more than one unit of
 As restoring only works when there is a single unit of **etcd**, it is usual to deploy a new instance of the application first.
 
 ```bash
-juju deploy etcd new-etcd --series=bionic
+juju deploy etcd new-etcd --series=bionic --config channel=3.2/stable
+juju deploy cs:~containers/easyrsa new-easyrsa --series=bionic
+juju add-relation new-etcd:certificates new-easyrsa:client
 ```
 
 The `--series` option is included here to illustrate how to specify which series the new unit should be running on.
+The `--config` option is required to specify the same channel of etcd as the original unit.
 
 Next we upload and identify the snapshot file to this new unit:
 
 ```bash
-juju attach newer-etcd snapshot=./etcd-snapshot-2018-09-26-18.04.02.tar.gz
+juju attach new-etcd snapshot=./etcd-snapshot-2018-09-26-18.04.02.tar.gz
 ```
 
 Then run the restore action:
