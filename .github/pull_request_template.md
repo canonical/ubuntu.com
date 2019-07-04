@@ -1,10 +1,3 @@
----
-name: Default Pull Request
-about: Default PR
-title: ''
-labels: ''
-assignees: ''
----
 ## Done
 
 [List of work items including drive-bys]
