@@ -26,6 +26,13 @@ if settings.SEARCH_API_KEY:
     )
 
 
+def str_to_int(string, default_value=1):
+    try:
+        return int(string)
+    except ValueError:
+        return default_value
+
+
 def _get_search_results(query, start, num, site=None):
     """
     Query the Google Custom Search API for search results
@@ -60,8 +67,8 @@ def search(request):
 
     query = request.GET.get("q")
     site = request.GET.get("siteSearch") or request.GET.get("domain")
-    num = int(request.GET.get("num", "10"))
-    start = int(request.GET.get("start", "1"))
+    num = str_to_int(request.GET.get("num", 10), 10)
+    start = str_to_int(request.GET.get("start", "1"))
 
     context = {"query": query, "start": start, "siteSearch": site, "num": num}
 
@@ -70,7 +77,7 @@ def search(request):
             context["results"] = _get_search_results(query, start, num, site)
 
             if "searchInformation" in context["results"]:
-                context["estimatedTotal"] = int(
+                context["estimatedTotal"] = str_to_int(
                     context["results"]["searchInformation"]["totalResults"]
                 )
             else:
@@ -207,7 +214,7 @@ class ResourcesView(TemplateView):
     def _get_resources(self):
         topic = self.request.GET.get("topic")
         content = self.request.GET.get("content")
-        page = int(self.request.GET.get("page", 1))
+        page = str_to_int(self.request.GET.get("page", 1))
         offset = (page - 1) * self.PER_PAGE
         search = self.request.GET.get("q")
         feed_items = {}
@@ -367,7 +374,7 @@ class ResourcesView(TemplateView):
 
         context["topic_slug"] = self.request.GET.get("topic")
         context["content_slug"] = self.request.GET.get("content")
-        context["page_index"] = int(self.request.GET.get("page", 1))
+        context["page_index"] = str_to_int(self.request.GET.get("page", 1))
         context["search_slug"] = self.request.GET.get("q", "")
         return context
 
