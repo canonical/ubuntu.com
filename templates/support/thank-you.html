@@ -2,6 +2,7 @@
 
 {% block title %}Thank you | Support{% endblock %}
 {% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
+{% block meta_description %}Ubuntu Advantage for Infrastructure provides a single subscription for security maintenance and support for your open source infrastructure, including OpenStack and Kubernetes.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1Vya-1Uq7bqJ7SFQ36j9-REp1iDT3rFENjYyCzuY02r4/edit{% endblock meta_copydoc %}
 
 {% block content %}
@@ -9,9 +10,9 @@
 <section class="p-strip is-bordered is-deep">
   <div class="row">
     <div class="u-equal-height">
-      <div class="col-6">
-        <h1>Thank you for contacting us about Ubuntu&nbsp;Advantage</h1>
-        <p class="p-heading--four">A member of our team will be in touch within one working day.</p>
+      <div class="col-7">
+        <h1>Thank you for contacting us about Ubuntu Advantage for Infrastructure</h1>
+        <p class="p-heading--four">A member of our team will be in touch within one working day or you can <a class="p-link--external" href="https://buy.ubuntu.com">visit our store</a> to purchase UA Infrastructure.</p>
       </div>
       <div class="col-5 u-vertically-center u-align--center u-hide--small">
         <img src="{{ ASSET_SERVER_URL }}52d53696-picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
@@ -20,7 +21,33 @@
   </div>
 </section>
 
-{% include "shared/_thank_you_footer.html" %}
+<div class="p-strip--light">
+  <div class="row">
+    <div class="col-10">
+      <h2>More about our enterprise services</h2>
+    </div>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">Fully managed infrastructure</h3>
+      <p>Canonical offers fully managed infrastructure, including Kubernetes, OpenStack, Ceph and SWIFT storage and the recommended LMA stack.</p>
+      <p><a href="/pricing/infra#managed">Managed open infrastructure&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">Consulting and deployment</h3>
+      <p>Open infrastructure consulting and training is also provided by Canonical, with optimal and custom architecture design and deployment.</p>
+      <p><a href="/pricing/consulting">Consulting, deployment from Canonical&nbsp;&rsaquo;</a></p>
+      <p><a href="/training">OpenStack, K8s, Kubeflow consulting &amp; training&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">Infrastructure support &amp; security</h3>
+      <p>Access critical security fixes, legal assurance and phone and ticket support for OpenStack, K8s, Docker, Ceph and more through UA Infrastructure.</p>
+      <p><a href="/pricing/infra">Security maintenance and support&nbsp;&rsaquo;</a></p>
+      <p><a class="p-link--external" href="https://buy.ubuntu.com/">Purchase from our store</a></p>
+    </div>
+  </div>
+</div>
+
 
 {% endblock content %}
 {% block footer_extra %}
