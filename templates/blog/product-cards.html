@@ -1,4 +1,40 @@
-{% if article.group and article.group.slug == "cloud-and-server" %}
+{% if article.group and article.group.slug == "kubernetes" %}
+<div class="p-card" id="rtp-k8s">
+  <h3>
+    <a href="/kubernetes">
+      Multi-cloud Kubernetes on Ubuntu
+    </a>
+  </h3>
+  <p>
+    Deploy, scale and upgrade Kubernetes clusters across multiple physical or virtual machines with Charmed Kubernetes, with full support available.
+  </p>
+  <p><a href="/kubernetes">Get started with Charmed K8s&nbsp;&rsaquo;</a></p>
+</div>
+{% elif article.group and article.group.slug == "openstack" %}
+<div class="p-card" id="rtp-openstack">
+  <h3>
+    <a href="/openstack">
+      OpenStack deployment made easy
+    </a>
+  </h3>
+  <p>
+    Ready to move from expensive, proprietary virtualisation to OpenStack? Canonical designs, builds, operates and supports OpenStack private clouds.
+  </p>
+  <p><a href="/openstack">Move to OpenStack&nbsp;&rsaquo;</a></p>
+</div>
+{% elif article.group and article.group.slug == "support" %}
+<div class="p-card" id="rtp-support">
+  <h3>
+    <a href="/support">
+      Open source enterprise support
+    </a>
+  </h3>
+  <p>
+    UA Infrastructure is a single subscription for open source software, security and IaaS support, with OpenStack and Kubernetes included.
+  </p>
+  <p><a href="/support">Solve open source security and compliance&nbsp;&rsaquo;</a></p>
+</div>
+{% elif article.group and article.group.slug == "cloud-and-server" %}
 <div class="p-card" id="rtp-cloud">
   <h3>
     <a href="/cloud">
@@ -19,17 +55,6 @@
   </h3>
   <p>
     From home control to drones, robots and industrial systems, Ubuntu Core and Snaps provide robust security, app stores and reliable updates for all your IoT devices.
-  </p>
-</div>
-{% elif article.group and article.group.slug == "support" %}
-<div class="p-card" id="rtp-support">
-  <h3>
-    <a href="/support">
-      Ubuntu Advantage support
-    </a>
-  </h3>
-  <p>
-    If you are running Ubuntu in your organisation, you should talk to us about getting Ubuntu Advantage support with Landscape management tools.
   </p>
 </div>
 {% elif article.group and article.group.slug == "desktop" %}
