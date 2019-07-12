@@ -242,3 +242,9 @@ abbr[title] {
   height: auto !important;
   width: 100% !important;
 }
+
+// Override for wordpress use of <figure>
+.blog-article figure {
+  max-width: 37rem;
+  text-align: center;
+}
