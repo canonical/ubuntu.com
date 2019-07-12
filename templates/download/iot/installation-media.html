@@ -15,7 +15,7 @@
             <span class="p-notification__status">WARNING:</span>This will erase any existing content on the removable drive!
           </p>
         </div>
-        <p>View instructions for: <a href="#ubuntu">Ubuntu</a>, <a href="#windows">Windows</a>, or <a href="#macos">MacOS</a>.</p>
+        <p>View instructions for: <a href="#ubuntu">Ubuntu</a> or <a href="#windows">Windows</a>.</p>
       </div>
     </div>
   </div>
@@ -150,87 +150,6 @@
         </li>
       </ol>
     </section>
-
-    <section class="p-strip--light is-bordered">
-      <div class="row" id="macos">
-        <div class="col-12">
-          <h2>On MacOS</h2>
-          <ol class="p-list-step">
-            <li class="p-list-step__item col-8">
-              <p class="p-list-step__title">
-
-                Download the Ubuntu image for your device in your <strong>`Downloads`</strong> folder
-              </p>
-            </li>
-            <li class="p-list-step__item col-8">
-              <p class="p-list-step__title">
-
-                Insert your SD card or USB flash drive
-              </p>
-            </li>
-            <li class="p-list-step__item col-8">
-              <p class="p-list-step__title">
-
-                Open a terminal window (Go to <strong>Application</strong> » <strong>Utilities</strong>, you will find the Terminal app there), then run the following command:
-              </p>
-              <p><pre><code>diskutil list</code></pre></p>
-            </li>
-            <li class="p-list-step__item col-8">
-              <p class="p-list-step__title">
-
-                In the results, identify your removable drive device address, it will probably look like an entry like the ones below:
-              </p>
-              <pre>
-                <code>/dev/disk0
-                  #:                       TYPE NAME                    SIZE       IDENTIFIER
-                  0:      GUID_partition_scheme                        *500.3 GB   disk0
-                  /dev/disk2
-                  #:                       TYPE NAME                    SIZE       IDENTIFIER
-                  0:                  Apple_HFS Macintosh HD           *428.8 GB   disk1
-                  Logical Volume on disk0s2
-                  E2E7C215-99E4-486D-B3CC-DAB8DF9E9C67
-                  Unlocked Encrypted
-                  /dev/disk3
-                  #:                       TYPE NAME                    SIZE       IDENTIFIER
-                  0:     FDisk_partition_scheme                        *7.9 GB     disk3
-                  1:                 DOS_FAT_32 NO NAME                 7.9 GB     disk3s1
-                </code></pre>
-                <p><strong>Note</strong> that your removable drive must be <code>DOS_FAT_32</code> formatted. In this example, <code>/dev/disk3</code> is the drive address of an 8GB SD card.</p>
-              </li>
-              <li class="p-list-step__item col-8">
-                <p class="p-list-step__title">
-
-                  Unmount your SD card with the following command
-                </p>
-                <pre><code>diskutil unmountDisk &lt; drive address &gt;</code></pre>
-              </li>
-              <li class="p-list-step__item col-8">
-                <p class="p-list-step__title">
-
-                  When successful, you should see a message similar to this one:
-                </p>
-                <pre><code>Unmount of all volumes on &lt; drive address &gt; was successful</code></pre>
-              </li>
-              <li class="p-list-step__item col-8">
-                <p class="p-list-step__title">
-
-                  You can now copy the image to the SD card, using the following command:
-                </p>
-                <pre><code>sudo sh -c 'xzcat ~/Downloads/&lt; image file &gt; | sudo dd of=&lt; drive address &gt; bs=32m'</code></pre>
-                <p>When finalised you will see the following message:</p>
-                <pre>
-                  <code>3719+1 records in
-                    3719+1 records out
-                    3899999744 bytes transferred in 642.512167 secs (6069924 bytes/sec)
-                  </code></pre>
-                </li>
-                <li class="p-list-step__item col-8">
-                  <p class="p-list-step__title">
-
-                    You can now eject your removable drive. You are ready to <a href="/download/iot">install Ubuntu on your device ›</a>
-                  </p>
-                </li>
-              </section>
 
               {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_core_learn_more" second_item="_core_contribute" third_item="_iot_further_reading" %}
 
