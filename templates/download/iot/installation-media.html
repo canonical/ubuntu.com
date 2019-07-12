@@ -15,7 +15,7 @@
             <span class="p-notification__status">WARNING:</span>This will erase any existing content on the removable drive!
           </p>
         </div>
-        <p>View instructions for: <a href="#ubuntu">Ubuntu</a>, <a href="#windows">Windows</a>, or <a href="#macos">MacOS</a>.</p>
+        <p>View instructions for: <a href="#ubuntu">Ubuntu</a>, <a href="#windows">Windows</a>, or <a href="#macos">macOS</a>.</p>
       </div>
     </div>
   </div>
@@ -154,12 +154,12 @@
     <section class="p-strip--light is-bordered">
       <div class="row" id="macos">
         <div class="col-12">
-          <h2>On MacOS</h2>
+          <h2>On macOS</h2>
           <ol class="p-list-step">
             <li class="p-list-step__item col-8">
               <p class="p-list-step__title">
 
-                Download the Ubuntu image for your device in your <strong>`Downloads`</strong> folder
+                Download the Ubuntu image for your device in your <strong>Downloads</strong> folder
               </p>
             </li>
             <li class="p-list-step__item col-8">
@@ -171,7 +171,7 @@
             <li class="p-list-step__item col-8">
               <p class="p-list-step__title">
 
-                Open a terminal window (Go to <strong>Application</strong> » <strong>Utilities</strong>, you will find the Terminal app there), then run the following command:
+                Open a terminal window (Go to <strong>Application</strong> » <strong>Utilities</strong>, you will find the Terminal app there), then run this command:
               </p>
               <p><pre><code>diskutil list</code></pre></p>
             </li>
@@ -195,29 +195,29 @@
                   0:     FDisk_partition_scheme                        *7.9 GB     disk3
                   1:                 DOS_FAT_32 NO NAME                 7.9 GB     disk3s1
                 </code></pre>
-                <p><strong>Note</strong> that your removable drive must be <code>DOS_FAT_32</code> formatted. In this example, <code>/dev/disk3</code> is the drive address of an 8GB SD card.</p>
+                <p>Your removable drive must be <code>DOS_FAT_32</code> formatted. In this example, <code>/dev/disk3</code> is the drive address of an 8GB SD card.</p>
               </li>
               <li class="p-list-step__item col-8">
                 <p class="p-list-step__title">
 
-                  Unmount your SD card with the following command
+                  Unmount your SD card with this command:
                 </p>
                 <pre><code>diskutil unmountDisk &lt; drive address &gt;</code></pre>
               </li>
               <li class="p-list-step__item col-8">
                 <p class="p-list-step__title">
 
-                  When successful, you should see a message similar to this one:
+                  When successful, you should see a message similar to this:
                 </p>
                 <pre><code>Unmount of all volumes on &lt; drive address &gt; was successful</code></pre>
               </li>
               <li class="p-list-step__item col-8">
                 <p class="p-list-step__title">
 
-                  You can now copy the image to the SD card, using the following command:
+                  You can now copy the image to the SD card:
                 </p>
-                <pre><code>sudo sh -c 'xzcat ~/Downloads/&lt; image file &gt; | sudo dd of=&lt; drive address &gt; bs=32m'</code></pre>
-                <p>When finalised you will see the following message:</p>
+                <pre><code>sudo sh -c 'gunzip ~/Downloads/&lt; image file &gt; | sudo dd of=&lt; drive address &gt; bs=32m'</code></pre>
+                <p>When finished you will see this message:</p>
                 <pre>
                   <code>3719+1 records in
                     3719+1 records out
