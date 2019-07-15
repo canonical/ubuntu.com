@@ -1,0 +1,34 @@
+{% extends "engage/base_engage.html" %}
+
+{% block title %}CTO’s guide to SDN, NFV & VNF{% endblock %}
+
+{% block meta_description %}DESCRIPTION{% endblock %}
+
+{% block meta_copydoc %}https://app-sjg.marketo.com/#LP5456A1LA1{% endblock meta_copydoc %}
+
+{% block content %}
+
+{% include "engage/shared/_header.html" with title="CTO’s guide to SDN, NFV & VNF" subtitle="Why is the transition happening and why is it important?" image="9f61b97f-logo-ubuntu.svg" url="#the-form" cta="Download the eBook" %}
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-7">
+        <p>Networking and communications standards and methodologies are undergoing the greatest transition since the migration from analogue to digital. The shift is from function-specific, proprietary devices to software-enabled commodity hardware.</p>
+        <p>Read this eBook to:</p>
+        <ul class="p-list">
+            <li class="p-list_item is-ticked">familiarise yourself with the three most popular terminologies today – SDN, NFV, and VNF</li>
+            <li class="p-list_item is-ticked">learn why the transition is happening</li>
+            <li class="p-list_item is-ticked">understand why it’s important for anyone responsible for a network to understand and embrace this emerging opportunity</li>
+            <li class="p-list_item is-ticked">learn about the potential benefits, and some deployment and management solutions for software-enabled networking</li>
+        </ul>
+        <p><span style="color:#E95420;font-size:18px;font-weight:bold">"</span><span>Deutsche Telekom is developing and deploying many new cloud applications on Ubuntu OpenStack as part of its secure and highly scaleable public cloud Business Marketplace ecosystem for SMB customers.</font></span><span style="color:#E95420;font-size:18px;font-weight:bold">"</span></p>
+    </div>
+    <div class="col-4 u-align-center u-vertically-center">
+      <img src="https://assets.ubuntu.com/sites/ubuntu/latest/u/img/logos/logo-pack/logo-ubuntu-orange.png" width="200" height="200" />
+    </div>
+    <div class="col-5" id="the-form">
+    {% include "engage/shared/_en_engage_form.html" with id="2485" returnURL="https://pages.ubuntu.com/rs/066-EOV-335/images/eBook_Cio-guide_%28Tom%29_04.16_AW.pdf" cta="Download the eBook" %}
+    </div>
+  </div>
+</section>
+{% endblock content %}
