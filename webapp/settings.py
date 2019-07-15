@@ -15,7 +15,7 @@ import yaml
 
 BLOG_CONFIG = {
     "TAG_IDS": [],
-    "EXCLUDED_TAGS": [3184, 3265],
+    "EXCLUDED_TAGS": [3184, 3265, 3408],
     # the title of the blog
     "BLOG_TITLE": "Blog",
     # the tag name for generating a feed
