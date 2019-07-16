@@ -1,8 +1,4 @@
-{% extends "engage/base_engage.html" %}
-
-{% block title %}ITstrategen keeps legacy applications secure with Extended Security Maintenance{% endblock %}
-
-{% block meta_description %}Extended Security Maintenance extends official support for the operating system, guaranteeing the continued security of ITstrategen’s servers and saving its clients from costly application updates.{% endblock %}
+{% extends_with_args "engage/base_engage.html" with title="ITstrategen keeps legacy applications secure with Extended Security Maintenance" meta_image="7005c900-pictogram_article01.png" meta_description="Extended Security Maintenance extends official support for the operating system, guaranteeing the continued security of ITstrategen’s servers and saving its clients from costly application updates." %}
 
 {% block meta_copydoc %}https://app-sjg.marketo.com/#LP5353A1LA1{% endblock meta_copydoc %}
 
@@ -13,14 +9,14 @@
 <section class="p-strip is-shallow">
   <div class="row">
     <div class="col-7">
-        <p>Extended Security Maintenance (ESM) extends official support for the operating system, guaranteeing the continued security of ITstrategen’s servers and saving its clients from costly application updates.</p>
-        <p>As the five-year support window for Ubuntu 12.04 came to an end, some of ITstrategen’s customers still depended on servers running the now out of support operating system and without support, the security of those servers was at risk. To tackle this issue, ITstrategen decided to purchase Extended Support Maintenance (ESM) for Ubuntu 12.04, a service offered as part of their Ubuntu  Advantage subscription.</p>
-        <h3>Highlights</h3>
-        <ul class="p-list">
-            <li class="p-list_item is-ticked">ESM saves ITstrategen’s customers from 6-figure application update costs</li>
-            <li class="p-list_item is-ticked">It eliminates need for time-consuming security workarounds</li>
-            <li class="p-list_item is-ticked">And boosts service quality and customer loyalty</li>
-        </ul>
+      <p>Extended Security Maintenance (ESM) extends official support for the operating system, guaranteeing the continued security of ITstrategen’s servers and saving its clients from costly application updates.</p>
+      <p>As the five-year support window for Ubuntu 12.04 came to an end, some of ITstrategen’s customers still depended on servers running the now out of support operating system and without support, the security of those servers was at risk. To tackle this issue, ITstrategen decided to purchase Extended Support Maintenance (ESM) for Ubuntu 12.04, a service offered as part of their Ubuntu  Advantage subscription.</p>
+      <h4>Highlights</h4>
+      <ul class="p-list">
+        <li class="p-list_item is-ticked">ESM saves ITstrategen’s customers from 6-figure application update costs</li>
+        <li class="p-list_item is-ticked">It eliminates need for time-consuming security workarounds</li>
+        <li class="p-list_item is-ticked">And boosts service quality and customer loyalty</li>
+      </ul>
     </div>
     <div class="col-5" id="the-form">
     {% include "engage/shared/_en_engage_form.html" with id="2495" returnURL="https://pages.ubuntu.com/Cloud_CS_ITstrategen_TY.html" cta="Download the case study" %}
