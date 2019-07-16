@@ -1,0 +1,26 @@
+{% extends_with_args "engage/base_engage.html" with title="BotsAndUs builds a social robot on Ubuntu" meta_image="781d61a8-botsandus_logo.jpg" meta_description="To bring its robot, Bo, to market, BotsAndUs needed an OS that could support the wide variety of hardware and software involved in the product; and the robotics company quickly discovered that Ubuntu offered the ideal combination of versatility and suitability for embedded projects." %}
+
+{% block meta_copydoc %}https://app-sjg.marketo.com/#LP5959A1LA1{% endblock meta_copydoc %}
+
+{% block content %}
+
+{% include "engage/shared/_header.html" with title="BotsAndUs builds a social robot on Ubuntu" image="781d61a8-botsandus_logo.jpg" url="#the-form" cta="Download the case study" %}
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-7">
+      <p>Manufacturing a hardware product is a complicated process – especially for a start-up building a ground-breaking customer service robot.</p>
+      <p>To bring its robot, Bo, to market, BotsAndUs needed an OS that could support the wide variety of hardware and software involved in the product; and the robotics company quickly discovered that Ubuntu offered the ideal combination of versatility and suitability for embedded projects. With Ubuntu, choosing and integrating hardware and software is easy, guaranteeing a smooth path to production for Bo.</p>
+      <h4>Highlights</h4>
+      <ul class="p-list">
+        <li class="p-list_item is-ticked">BotsAndUs chose Ubuntu as the OS for its flagship robot, Bo</li>
+        <li class="p-list_item is-ticked">Ubuntu offers extensive hardware support, widespread support from third-party vendors, and compatibility with ROS</li>
+        <li class="p-list_item is-ticked">Selecting and integrating hardware and software is easy with Ubuntu – significantly streamlining the path to production</li>
+      </ul>
+    </div>
+    <div class="col-5" id="the-form">
+    {% include "engage/shared/_en_engage_form.html" with id="2814" returnURL="https://pages.ubuntu.com/BotsAndUs_CS-TY.html" cta="Download the case study" %}
+    </div>
+  </div>
+</section>
+{% endblock content %}
