@@ -1,0 +1,26 @@
+{% extends_with_args "engage/base_engage.html" with title="Taking charge of the IoT's security vulnerabilities" meta_image="040356e8-security_whitepaper.png" meta_description="Canonical's report examines closely the behaviours and attitudes of UK consumers to IoT security, looks at some of the leading IoT security issues in the industry, and asks how they might be addressed." %}
+
+{% block meta_copydoc %}https://app-sjg.marketo.com/#LP4943A1LA1{% endblock meta_copydoc %}
+
+{% block content %}
+
+{% include "engage/shared/_header.html" with title="Taking charge of the IoT's security vulnerabilities" image="040356e8-security_whitepaper.png" url="#the-form" cta="Download the whitepaper" %}
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-7">
+      <p>Canonical's report examines closely the behaviours and attitudes of UK consumers to IoT security, looks at some of the leading IoT security issues in the industry, and asks how they might be addressed.</p>
+      <h4>Key findings</h4>
+      <p>A recent Canonical survey of 2000 consumers suggests that a shockingly high percentage of connected devices may be vulnerable to botnets, hackers and cyberattacks:</p>
+      <ul class="p-list">
+        <li class="p-list_item is-ticked">Only 31% of consumers update the firmware on their connected devices as soon as updates become available</li>
+        <li class="p-list_item is-ticked">40% of consumers have never performed firmware updates on their connected devices</li>
+        <li class="p-list_item is-ticked">40% of consumers believe that performing firmware updates on their connected devices is the responsibility of either software developers or the device manufacturer</li>
+      </ul>
+    </div>
+    <div class="col-5" id="the-form">
+    {% include "engage/shared/_en_engage_form.html" with id="1917" returnURL="https://pages.ubuntu.com/IoTSecurityWhitepaper-Fullreport.html" cta="Download the whitepaper" %}
+    </div>
+  </div>
+</section>
+{% endblock content %}
