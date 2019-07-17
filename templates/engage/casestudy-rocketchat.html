@@ -1,0 +1,26 @@
+{% extends_with_args "engage/base_engage.html" with title="Rocket.Chat communication platform enables simplicity through snaps" meta_image="1ad274f9-rocket-chat.svg" meta_description="As Rocket.Chat has evolved, it has been keen to get its platform into the hands of as many users as possible without the difficulties of installation often associated with bespoke Linux deployments." %}
+
+{% block meta_copydoc %}https://app-sjg.marketo.com/#LP5777A1LA1{% endblock meta_copydoc %}
+
+{% block content %}
+
+{% include "engage/shared/_header.html" with title="Rocket.Chat communication platform enables simplicity through snaps" image="1ad274f9-rocket-chat.svg" url="#the-form" cta="Download the case study" %}
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-7">
+      <p>Created in Brazil, Rocket.Chat provides an open source chat solution for organisations of all sizes around the world. Built on open source values and a love of efficiency, Rocket.Chat is driven by a community of contributors and has seen adoption in all aspects of business and education. As Rocket.Chat has evolved, it has been keen to get its platform into the hands of as many users as possible without the difficulties of installation often associated with bespoke Linux deployments.</p>
+      <p>By switching to snaps, Rocket.Chat has been able get its product into the hands of users with as few steps as possible, switching a multi-stage set-up process for a single command and instant installation. As a method of deployment, snaps are typically faster to install, easier to create and more secure than competitive packages.</p>
+      <h4>Highlights</h4>
+      <ul class="p-list">
+        <li class="p-list_item is-ticked">Rocket.Chat communication platform launches snap for super fast deployment and installation.</li>
+        <li class="p-list_item is-ticked">New snap, which has already received over 100,000 downloads, allows business and education professionals to unify communications across video, voice and chat.</li>
+        <li class="p-list_item is-ticked">Snaps have become Rocket.Chat's top deployment method, accounting for 42% of all installs</li>
+      </ul>
+    </div>
+    <div class="col-5" id="the-form">
+    {% include "engage/shared/_en_engage_form.html" with id="2571" returnURL="https://pages.ubuntu.com/CS_Rocket_Chat_TY.html" cta="Download the case study" %}
+    </div>
+  </div>
+</section>
+{% endblock content %}
