@@ -1,0 +1,30 @@
+{% extends_with_args "engage/base_engage.html" with title="Building a private cloud? Take the leap!" meta_image="9f61b97f-logo-ubuntu.svg" meta_description="With Ubuntu OpenStack, you can deploy a cloud infrastructure on your laptop or on a small group of test machines to get your cloud strategy underway." %}
+
+{% block meta_copydoc %}https://app-sjg.marketo.com/#LP5742A1LA1{% endblock meta_copydoc %}
+
+{% block content %}
+
+{% include "engage/shared/_header.html" with title="Building a private cloud? Take the leap!" image="9f61b97f-logo-ubuntu.svg" url="#the-form" cta="Download the eBook" %}
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-7">
+      <p>With Ubuntu OpenStack, you can deploy a cloud infrastructure on your laptop or on a small group of test machines to get your cloud strategy underway. However, the test environment is a lot smaller and a lot simpler than a production cloud, which means a proof of concept can only take you part of the way.</p>
+      <p>To make the transition from an Ubuntu OpenStack POC to private cloud in production, you have to be fully prepared for the organisational and technical complexity that
+      a cloud infrastructure introduces to your organisation.</p>
+      <p>In this eBook, you will learn:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">how to move your Ubuntu OpenStack private cloud from the proof-of-concept stage to a production environment;</li>
+        <li class="p-list__item is-ticked">best practices on running your Ubuntu OpenStack private cloud in production and making it future-proof.</li>
+      </ul>
+      <img src="https://pages.canonical.com/rs/canonical2/images/170px-NEC_logo.png"/>
+      <blockquote class="p-pull-quote">
+        <p class="p-pull-quote__quote">Using Ubuntu OpenStack is enabling NEC to maximise margins on cloud  services, minimise cloud deployment risks and speed up time to market.</p>
+      </blockquote>              
+    </div>
+    <div class="col-5" id="the-form">
+    {% include "engage/shared/_en_engage_form.html" with id="2631" returnURL="https://pages.ubuntu.com/PrivateCloud_TY.html" cta="Download the eBook" %}
+    </div>
+  </div>
+</section>
+{% endblock content %}
