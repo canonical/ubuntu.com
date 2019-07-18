@@ -248,3 +248,17 @@ abbr[title] {
   @extend %max-width--p;
   text-align: center;
 }
+
+// Fix-up html default accordian on download thank-you pages
+details[open] {
+  border: 1px solid $color-mid-light;
+}
+
+details {
+  margin-left: -$sp-medium;
+  padding: $sp-medium $sp-x-large $sp-medium $sp-medium;
+}
+
+summary {
+  margin: $sp-medium 0;
+}
