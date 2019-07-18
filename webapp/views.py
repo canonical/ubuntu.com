@@ -105,9 +105,22 @@ class UbuntuTemplateFinder(TemplateFinder):
 
         # Add common URL query params to context
         context["product"] = self.request.GET.get("product")
-        context["utm_source"] = self.request.GET.get("utm_source")
-        context["utm_campaign"] = self.request.GET.get("utm_campaign")
-        context["utm_medium"] = self.request.GET.get("utm_medium")
+
+        # Common UTM params
+        common_utms = ["source", "medium", "campaign"]
+        page_utms = ""
+        for param in common_utms:
+            utm_value = self.request.GET.get("utm_" + param)
+            # Pass value to context: {{ utm_<param> }}
+            context["utm_" + param] = utm_value
+            # Build complete string: {{ page_utms }}
+            if utm_value:
+                if page_utms:
+                    page_utms += "&"
+                else:
+                    page_utms += "?"
+                page_utms += "utm_" + param + "=" + utm_value
+        context["page_utms"] = page_utms
 
         # Add level_* context variables
         clean_path = self.request.path.strip("/")
