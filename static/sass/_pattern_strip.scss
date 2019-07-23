@@ -39,9 +39,9 @@
     }
 
     &.is-deep {
-      $padding: 4rem;
+      $padding: 3rem;
       background-position: 0% 0%, top right, right 0 bottom $padding, right bottom, 0% 0%;
-      background-size: 100% calc(100% - #{$padding}), 50% 100%, 100% $padding, 100% $padding, auto;
+      background-size: 100% calc(100% - #{$padding}), 100% 100%, 100% $padding, 100% $padding, auto;
       margin-bottom: -$padding;
       padding-bottom: ($padding * 3) !important;
 
