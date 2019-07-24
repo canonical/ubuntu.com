@@ -56,7 +56,7 @@
     include "shared/_notice_default.html" with lang="fr" text="À Paris les 18 et 19 mai? Venez à l'Ubuntu Party!" url="https://ubuntu-paris.org/"
 #}
 
-
 {% block notices_content %}
+  {% include "takeovers/_bt_announcement.html" %}
   {% include "shared/_notice_default.html" with lang="ja" text="私たちの日本のウェブサイトを試してみてください" url="https://jp.ubuntu.com" icon="https://assets.ubuntu.com/v1/8114528b-picto-ubuntu-orange.png" %}
 {% endblock notices_content %}
