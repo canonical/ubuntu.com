@@ -1,8 +1,4 @@
-{% extends "engage/base_engage.html" %}
-
-{% block title %}How to build a lightweight system container cluster{% endblock %}
-
-{% block meta_description %}LXD, the system container manager, developed by Canonical and shipped by default with Ubuntu, makes it possible to create many containers of various Linux distributions and manage them in a way similar to virtual machines (VMs) but with lower overhead costs associated with them.{% endblock %}
+{% extends_with_args "engage/base_engage.html" with title="How to build a lightweight system container cluster" meta_image="d85ef015-image-lxd.svg" meta_description="LXD, the system container manager, developed by Canonical and shipped by default with Ubuntu, makes it possible to create many containers of various Linux distributions and manage them in a way similar to virtual machines (VMs) but with lower overhead costs associated with them." %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1gcCaCuOdNBV8pqajXVCdAAxOTmO22cdPRD1h5j3oRbU/edit#heading=h.4ukgkign4yjt{% endblock meta_copydoc %}
 
