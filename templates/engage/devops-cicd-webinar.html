@@ -1,8 +1,4 @@
-{% extends "engage/base_engage.html" %}
-
-{% block meta_description %}A webinar to learn how to automate Continuous Integration, Continuous Delivery, and Continuous Deployment with Kubernetes{% endblock %}
-
-{% block title %}Get started with DevOps best practices: CI/CD{% endblock %}
+{% extends_with_args "engage/base_engage.html" with title="Get started with DevOps best practices: CI/CD" meta_image="c112058c-Automated_DevOp.svg" meta_description="A webinar to learn how to automate Continuous Integration, Continuous Delivery, and Continuous Deployment with Kubernetes" %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1zAv3ouUrzQcQDw2DSefaePXcMu35BAumIMpzqmIkycs/edit{% endblock meta_copydoc %}
 
