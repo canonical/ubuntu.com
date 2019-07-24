@@ -1,7 +1,4 @@
-{% extends "engage/base_engage.html" %}
-
-{% block title %}Avec les bons outils, OpenStack est un jeu d'enfant.{% endblock %}
-{% block meta_description %}Cet eBook vous permettra de mieux comprendre pourquoi l'installation et l'exécution d'OpenStack peut sembler complexe, et comment Canonical OpenStack simplifie les choses et peut vous aider à construire une infrastructure cloud privée moderne, évolutive, répliquable et abordable.{% endblock %}
+{% extends_with_args "engage/base_engage.html" with title="Avec les bons outils, OpenStack est un jeu d'enfant." meta_image="35515576-openstack-cloud.svg" meta_description="Cet eBook vous permettra de mieux comprendre pourquoi l'installation et l'exécution d'OpenStack peut sembler complexe, et comment Canonical OpenStack simplifie les choses et peut vous aider à construire une infrastructure cloud privée moderne, évolutive, répliquable et abordable." %}
 
 {% block content %}
 
