@@ -10,4 +10,48 @@
   .p-strip {
     overflow-x: hidden; // prevent horisontal overflow due to background images
   }
+
+  $suru-accent: #3fc8f2;
+
+  .p-strip--suru {
+    @extend %vf-strip;
+    background-blend-mode: multiply, multiply, normal, normal;
+    background-image:
+      linear-gradient(to bottom right, rgba(228, 228, 228, .54) 0%, rgba(228, 228, 228, .54) 49.9%, rgba(228, 228, 228, 0) 50%, rgba(228, 228, 228, 0) 100%), // sass-lint:disable-line no-color-literals
+      linear-gradient(to bottom left, rgba(216, 216, 216, .54) 0%, rgba(216, 216, 216, .54) 49.9%, rgba(216, 216, 216, 0) 50%, rgba(216, 216, 216, 0) 100%), // sass-lint:disable-line no-color-literals
+      linear-gradient(to top right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%), // sass-lint:disable-line no-color-literals
+      linear-gradient(to top right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%), // sass-lint:disable-line no-color-literals
+      linear-gradient(-89deg, #E95420 0%, #772953 38%, #2C001E 85%); // sass-lint:disable-line hex-notation no-color-literals
+    background-position: 0% 0%, top right, right 0 bottom 4rem, right bottom, 0% 0%;
+    background-repeat: no-repeat;
+    background-size: 100% calc(100% - 4rem), 50% 100%, 100% 4rem, 100% 4rem, auto;
+    margin-bottom: -4rem;
+    overflow: hidden;
+    padding-bottom: 12rem !important;
+    position: relative;
+
+    &.is-light {
+      color: $color-x-dark;
+    }
+
+    &.is-dark {
+      color: $color-x-light;
+    }
+
+    &.is-deep {
+      $padding: 3rem;
+      background-position: 0% 0%, top right, right 0 bottom $padding, right bottom, 0% 0%;
+      background-size: 100% calc(100% - #{$padding}), 100% 100%, 100% $padding, 100% $padding, auto;
+      margin-bottom: -$padding;
+      padding-bottom: ($padding * 3) !important;
+
+      @media (min-width: $breakpoint-medium) {
+        $padding: 6rem;
+        background-position: 0% 0%, top right, right 0 bottom $padding, right bottom, 0% 0%;
+        background-size: 100% calc(100% - #{$padding}), 50% 100%, 100% $padding, 100% $padding, auto;
+        margin-bottom: -$padding;
+        padding-bottom: ($padding * 3) !important;
+      }
+    }
+  }
 }

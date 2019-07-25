@@ -1,9 +1,8 @@
-{% extends "templates/base.html" %}
+{% extends_with_args "engage/base_engage.html" with title="Heading help" %}
 
 {% block head_extra %}
 <meta name="robots" content="noindex, nofollow">
 {% endblock %}
-{% block title %}Heading help{% endblock %}
 {% block outer_content %}
 <section class="p-strip--light">
   <div class="row">
