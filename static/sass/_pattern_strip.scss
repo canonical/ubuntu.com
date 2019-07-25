@@ -1,5 +1,6 @@
 @mixin ubuntu-p-strip {
   @include ubuntu-p-strip;
+  @include ubuntu-p-strip-suru-bottomed;
 }
 
 @mixin ubuntu-p-strip {
@@ -53,5 +54,11 @@
         padding-bottom: ($padding * 3) !important;
       }
     }
+  }
+}
+
+@mixin ubuntu-p-strip-suru-bottomed {
+  .p-strip--suru-bottomed {
+    @extend %vf-strip;
   }
 }
