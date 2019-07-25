@@ -1,8 +1,4 @@
-{% extends "engage/base_engage.html" %}
-
-{% block meta_description %}A technical overview of how Ubuntu Core with full disk encryption and secure boot can be implemented in IoT devices to provide protection in data sensitive scenarios.{% endblock %}
-
-{% block title %}Securing IoT device data against physical access{% endblock %}
+{% extends_with_args "engage/base_engage.html" with title="Securing IoT device data against physical access" meta_image="84db8ca6-Disc_encryption.svg" meta_description="A technical overview of how Ubuntu Core with full disk encryption and secure boot can be implemented in IoT devices to provide protection in data sensitive scenarios." %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1zAv3ouUrzQcQDw2DSefaePXcMu35BAumIMpzqmIkycs/edit{% endblock meta_copydoc %}
 
