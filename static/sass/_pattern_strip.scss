@@ -19,13 +19,12 @@
   .p-strip--suru {
     @extend %vf-strip;
     background-blend-mode: multiply, multiply, normal, normal;
-    // sass-lint:disable-block no-color-literals
     background-image:
       linear-gradient(to bottom right, rgba(228, 228, 228, .54) 0%, rgba(228, 228, 228, .54) 49.9%, rgba(228, 228, 228, 0) 50%, rgba(228, 228, 228, 0) 100%),
       linear-gradient(to bottom left, rgba(216, 216, 216, .54) 0%, rgba(216, 216, 216, .54) 49.9%, rgba(216, 216, 216, 0) 50%, rgba(216, 216, 216, 0) 100%),
       linear-gradient(to top right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%),
       linear-gradient(to top right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%),
-      linear-gradient(-89deg, #E95420 0%, #772953 38%, #2C001E 85%); // sass-lint:disable-line hex-notation no-color-literals
+      linear-gradient(-89deg, #E95420 0%, #772953 38%, #2C001E 85%);
     background-position: 0% 0%, top right, right 0 bottom 4rem, right bottom, 0% 0%;
     background-repeat: no-repeat;
     background-size: 100% calc(100% - 4rem), 50% 100%, 100% 4rem, 100% 4rem, auto;
@@ -64,7 +63,6 @@
   .p-strip--suru-bottomed {
     @extend %vf-strip;
     background-blend-mode: multiply, multiply, normal, normal;
-    // sass-lint:disable-block no-color-literals
     background-image:
       linear-gradient(to top right, rgba(228, 228, 228, .5) 0%, rgba(228, 228, 228, .5) 49.5%, rgba(228, 228, 228, 0) 50%, rgba(228, 228, 228, 0) 100%),
       linear-gradient(to top right, rgba(119, 41, 83, 0.16) 0%, rgba(119, 41, 83, 0.16) 49.5%, rgba(119, 41, 83, 0) 50%, rgba(119, 41, 83, 0) 100%),
