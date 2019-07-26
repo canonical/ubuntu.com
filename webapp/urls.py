@@ -62,7 +62,7 @@ urlpatterns += [
     path(
         "blog/topics/snappy",
         topic,
-        {"slug": "snappy", "template_path": "blog/topics/snappy.html"},
+        {"slug": "snapcraft", "template_path": "blog/topics/snappy.html"},
         name="topic",
     ),
     path(
