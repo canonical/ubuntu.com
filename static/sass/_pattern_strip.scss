@@ -1,6 +1,7 @@
 @mixin ubuntu-p-strip {
   @include ubuntu-p-strip-suru;
   @include ubuntu-p-strip-suru-bottomed;
+  @include ubuntu-p-strip-suru-image;
 }
 
 @mixin ubuntu-p-strip-suru {
@@ -72,5 +73,21 @@
     background-repeat: no-repeat;
     background-size: 42% 12rem, 65.2% 8rem, 73.7% 8rem, 73.7% 8rem;
     padding-bottom: 8rem;
+  }
+}
+
+@mixin ubuntu-p-strip-suru-image {
+  .p-strip--suru-image {
+    @extend %vf-strip;
+    background-blend-mode: normal;
+    // sass-lint:disable-block no-color-literals
+    background-image:
+      linear-gradient(to bottom left, rgba(228, 228, 228, 0.5) 0%, rgba(228, 228, 228, 0.5) 49.5%, rgba(228, 228, 228, 0) 50%, rgba(228, 228, 228, 0) 100%),
+      linear-gradient(to bottom left, rgba(119, 41, 83, 0.16) 0%, rgba(119, 41, 83, 0.16) 49.5%, rgba(119, 41, 83, 0) 50%, rgba(119, 41, 83, 0) 100%);
+    background-position: right top, right top;
+    background-repeat: no-repeat;
+    background-size: 37.7% calc(100% - 6rem);
+    padding-bottom: 4rem;
+    padding-top: 4rem;
   }
 }
