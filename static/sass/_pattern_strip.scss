@@ -1,6 +1,9 @@
+// sass-lint:disable no-color-literals hex-notation
 @mixin ubuntu-p-strip {
   @include ubuntu-p-strip-suru;
   @include ubuntu-p-strip-suru-topped;
+  @include ubuntu-p-strip-suru-bottomed;
+  @include ubuntu-p-strip-suru-half-and-half;
 }
 
 @mixin ubuntu-p-strip-suru {
@@ -23,7 +26,7 @@
       linear-gradient(to bottom left, rgba(216, 216, 216, .54) 0%, rgba(216, 216, 216, .54) 49.9%, rgba(216, 216, 216, 0) 50%, rgba(216, 216, 216, 0) 100%),
       linear-gradient(to top right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%),
       linear-gradient(to top right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%),
-      linear-gradient(-89deg, #E95420 0%, #772953 38%, #2C001E 85%); // sass-lint:disable-line hex-notation no-color-literals
+      linear-gradient(-89deg, #e95420 0%, #772953 38%, #2C001e 85%);
     background-position: 0% 0%, top right, right 0 bottom 4rem, right bottom, 0% 0%;
     background-repeat: no-repeat;
     background-size: 100% calc(100% - 4rem), 50% 100%, 100% 4rem, 100% 4rem, auto;
@@ -75,3 +78,65 @@
     padding-top: 6rem;
   }
 }
+
+@mixin ubuntu-p-strip-suru-bottomed {
+  .p-strip--suru-bottomed {
+    @extend %vf-strip;
+    background-blend-mode: multiply, multiply, normal, normal;
+    background-image:
+      linear-gradient(to top right, rgba(228, 228, 228, .5) 0%, rgba(228, 228, 228, .5) 49.5%, rgba(228, 228, 228, 0) 50%, rgba(228, 228, 228, 0) 100%),
+      linear-gradient(to top right, rgba(119, 41, 83, 0.16) 0%, rgba(119, 41, 83, 0.16) 49.5%, rgba(119, 41, 83, 0) 50%, rgba(119, 41, 83, 0) 100%),
+      linear-gradient(to top left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 49.5%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 100%),
+      linear-gradient(-89deg, rgb(233, 84, 32) 0%, rgb(119, 41, 83) 38%, rgb(44, 0, 30) 85%);
+    background-position: left bottom, left bottom, right bottom, right bottom;
+    background-repeat: no-repeat;
+    background-size: 42% 12rem, 65.2% 8rem, 73.7% 8rem, 73.7% 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+@mixin ubuntu-p-strip-suru-half-and-half {
+  .p-strip--suru-half-and-half-reversed {
+    @extend %vf-strip;
+    background-blend-mode: multiply, normal, normal, normal;
+    background-image:
+      linear-gradient(
+        25deg,
+        rgba(119, 41, 83, 0.16) 0%,
+        rgba(119, 41, 83, 0.16) 49.9%,
+        rgba(119, 41, 83, 0) 50%,
+        rgba(119, 41, 83, 0) 100%),
+      linear-gradient(
+        to left,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 1) 41.9%,
+        rgba(255, 255, 255, 0) 42%,
+        rgba(255, 255, 255, 0) 100%),
+      linear-gradient(
+        to top left,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 1) 49.9%,
+        rgba(255, 255, 255, 0) 50%,
+        rgba(255, 255, 255, 0) 100%),
+      linear-gradient(270deg, #e95420 20%, #772953 63%, #2C001e 100%);
+    background-position: top 60% left, top left, top 10% left 53.6%, center right;
+    background-repeat: no-repeat;
+    background-size: 90% 100%, 100% 100%, 10% 120%, cover;
+
+
+    @media (max-width: $breakpoint-medium) {
+      background-image: linear-gradient(270deg, #e95420 0%, #772953 43%, #2C001e 87%);
+      background-position: center right;
+      background-size: cover;
+    }
+
+    &.is-light {
+      color: $color-x-dark;
+    }
+
+    &.is-dark {
+      color: $color-x-light;
+    }
+  }
+}
+// sass-lint:enable no-color-literals hex-notation
