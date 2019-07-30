@@ -144,15 +144,17 @@
 @mixin ubuntu-p-strip-suru-background {
   .p-strip--suru-background {
     @extend %vf-strip;
-    background-blend-mode: multiply, multiply, normal, normal;
+    background-blend-mode: multiply, normal, normal, normal, normal;
     background-image:
       linear-gradient(to bottom right, rgba(119, 41, 83, 0.16) 0%, rgba(119, 41, 83, 0.16) 49.9%, rgba(119, 41, 83, 0) 50%, rgba(119, 41, 83, 0) 100%),
+      linear-gradient(to top right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.6%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%),
       linear-gradient(-89deg, rgba(233, 84, 32, 1) 0%, rgba(119, 41, 83, 1) 42%, rgba(44, 0, 30, 1) 94%),
       linear-gradient(to bottom right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.9%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%),
       linear-gradient(to bottom  right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%);
-    background-position: left top, left center, 43.2% top, left center;
+    background-position: left top, left bottom, left center, 43.2% top, left center;
     background-repeat: no-repeat;
-    background-size: 100% 100%, 55.6% 100%, 12.4% 100%, 43.2%, 100%;
+    background-size: 100% 100%, 100% 17.4%, 55.6% 100%, 12.4% 100%, 43.2%, 100%;
+    clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 43.2% 90.3%, 55.6% 0%);
     padding-bottom: 174px;
     padding-top: 6rem;
   }
