@@ -253,3 +253,20 @@ abbr[title] {
 summary {
   margin: $sp-medium 0;
 }
+
+.desktop-hero {
+  background-image: url('#{$assets-path}50c18622-insitu-laptop-overview.jpg');
+  background-position: right bottom;
+  background-size: 1200px auto;
+
+  @media only screen and (min-width: 2000px) {
+    background-size: 75%;
+  }
+
+  &--subtext {
+    max-width: 28em;
+    @media only screen and (max-width: 874px) and (min-width: 620px) {
+      width: 50%;
+    }
+  }
+}
