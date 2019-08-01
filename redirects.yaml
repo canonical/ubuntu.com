@@ -604,8 +604,8 @@ releases/?: "http://releases.ubuntu.com"
 releaseendoflife/?: "/about/release-cycle"
 robotics/?:  "/internet-of-things/robotics"
 robots.txt?: "/static/files/robots.txt"
-rss\.xml/?: "https://admin.insights.ubuntu.com/feed"
-rss\.xmlsubscribe=feed/?: "https://admin.insights.ubuntu.com/feed"
+rss\.xml/?: "/blog/feed"
+rss\.xmlsubscribe=feed/?: "/blog/feed"
 s/ubuntu.*/?: "https://insights.ubuntu.com"
 screenshots/?: "/desktop/features"
 screenshots/document_view/?: "/desktop"
@@ -682,7 +682,7 @@ syndicated/kubuntu-download/?: "https://kubuntu.org/"
 system/files/.*\.pdf: "https://insights.ubuntu.com"
 tag/.*/?: "https://insights.ubuntu.com"
 take-the-tour/?: "http://tour.ubuntu.com/en/"
-taxonomy/term/.*/.*/feed?: "https://admin.insights.ubuntu.com/feed"
+taxonomy/term/.*/.*/feed?: "/blog/feed"
 taxonomy/term/.*: "https://insights.ubuntu.com"
 telco/?: "/telecommunications"
 telcos/?: "/telecommunications"
@@ -745,7 +745,7 @@ telcos/?: "/telecommunications"
 
 # Blog redirects
 blog/search/?: /search
-blog(?P<page>(/.+)?)/feed?: "https://admin.insights.ubuntu.com{page}/feed"
+# blog(?P<page>(/.+)?)/feed?: "https://admin.insights.ubuntu.com{page}/feed"
 
 # Copied from https://github.com/canonical-web-and-design/blog.ubuntu.com/blob/master/redirects.yaml
 
