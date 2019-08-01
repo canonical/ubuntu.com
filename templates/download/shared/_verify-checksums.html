@@ -1,13 +1,37 @@
-<details>
-  <summary>Verify your download</summary>
-  <div class="p-card__content">
-    <p><small>Run this command in your terminal in the directory the iso was downloaded to verify the SHA256 checksum:</small></p>
-    <div class="p-code-snippet">
-      <textarea class="p-code-snippet__input" style="background-position: 0 0.25rem; color: rebeccapurple; padding-right: 1.5rem" readonly="readonly">echo "{{ releases.checksums | keyvalue:system | keyvalue:version }}" | shasum -a 256 --check</textarea>
-      <button class="p-code-snippet__action">Copy to clipboard</button>
-    </div>
-    <p><small>You should get the following output:</small></p>
-    <pre><code>ubuntu-{{ version }}-{{ system }}-{{ architecture }}.iso: OK</code></pre>
-    <p><small>Or follow this tutorial to learn <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-how-to-verify-ubuntu">how to verify downloads</a></small></p>
-  </div>
-</details>
+<aside class="p-accordion" role="tablist" aria-multiselect="true" style="border: 1px solid #cdcdcd;">
+  <ul class="p-accordion__list" style="margin-bottom: 0;">
+    <li class="p-accordion__group">
+      <button type="button" class="p-accordion__tab" id="tab1" role="tab" aria-controls="#tab1-section" aria-expanded="false" style="background-color: 0;">Verify your download</button>
+      <section class="p-accordion__panel" id="tab1-section" role="tabpanel" aria-hidden="true" aria-labelledby="tab1-section" style="margin-bottom: 1.5rem; border: 0; background: 0;">
+        <p style="margin-right: 2rem;"><small>Run this command in your terminal in the directory the iso was downloaded to verify the SHA256 checksum:</small></p>
+        <div style="margin-right: 2rem;">
+          <div class="p-code-snippet">
+            <textarea class="p-code-snippet__input" style="background-position: 0 0.25rem; color: rebeccapurple; padding-right: 1.5rem;" readonly="readonly">echo "{{ releases.checksums | keyvalue:system | keyvalue:version }}" | shasum -a 256 --check</textarea>
+            <button class="p-code-snippet__action">Copy to clipboard</button>
+          </div>
+        </div>
+        <p><small>You should get the following output:</small></p>
+        <pre style="margin-right: 2rem;"><code>ubuntu-{{ version }}-{{ system }}-{{ architecture }}.iso: OK</code></pre>
+        <p><small>Or follow this tutorial to learn <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-how-to-verify-ubuntu">how to verify downloads</a></small></p>
+      </section>
+    </li>
+  </ul>
+</aside>
+
+<script>
+  let toggleElements = document.querySelectorAll('.p-accordion__tab');
+  toggleElements.forEach(function(el) {
+    el.addEventListener(
+    "click",
+    function(e) {
+      e.preventDefault();
+      toggleElements.forEach(function(el) {
+        el.setAttribute('aria-expanded', el.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
+        panel = document.querySelector('.p-accordion__panel');
+        panel.setAttribute('aria-hidden', panel.getAttribute('aria-hidden') === 'true' ? 'false' : 'true');
+      });
+    },
+    false
+    );
+  });
+</script>

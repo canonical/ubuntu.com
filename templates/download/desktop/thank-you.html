@@ -13,12 +13,12 @@ Thank you for your contribution
 
 {% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
 {% block content-experiment %}
-        <style>.async-hide { opacity: 0 !important} </style>
-        <script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
-        h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
-        (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
-        })(window,document.documentElement,'async-hide','dataLayer',1000,
-        {'GTM-N2MDH37':true});</script>
+<style>.async-hide { opacity: 0 !important} </style>
+<script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
+  h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
+  (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
+})(window,document.documentElement,'async-hide','dataLayer',1000,
+{'GTM-N2MDH37':true});</script>
 {% endblock %}
 {% block content %}
 
@@ -32,31 +32,30 @@ Thank you for your contribution
 {% endif %}
 {% endif %}
 
-<div class="p-strip is-bordered">
-  <div class="row">
-    <div class="col-8">
-      {% if start_download %}
-      <h1 style="font-weight: 100;">Thank you for downloading Ubuntu Desktop</h1>
-      <p>Your download should start automatically. If it doesn&rsquo;t,
-        {% if architecture == 'amd64+mac' %}
-        <a href="http://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso">download now</a>.
+<section class="p-strip is-bordered u-no-padding--top u-no-padding--bottom">
+  <div class="p-strip--suru-topped">
+    <div class="row">
+      <div class="col-7">
+        {% if start_download %}
+        <h1 style="font-weight: 100;">Thank you for downloading Ubuntu Desktop</h1>
+        <p>Your download should start automatically. If it doesn&rsquo;t,
+          {% if architecture == 'amd64+mac' %}
+          <a href="http://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso">download now</a>.
+          {% else %}
+          <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download now</a>.
+          {% endif %}
+        </p>
+        {% include "../shared/_verify-checksums.html" with version=version system="desktop" architecture=architecture %}
         {% else %}
-        <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download now</a>.
+        <h1>Thank you for your contribution</h1>
+        <p>It will help further the open source development of Ubuntu.</p>
         {% endif %}
-      </p>
-      {% include "../shared/_verify-checksums.html" with version=version system="desktop" architecture=architecture %}
-      {% else %}
-      <h1>Thank you for your contribution</h1>
-      <p>It will help further the open source development of Ubuntu.</p>
-      {% endif %}
-    </div>
-    <div class="col-4 u-align--center">
-      <img src="{{ ASSET_SERVER_URL }}cbae9a60-thank_you_orange_cmyk.svg" width="162" alt="" />
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="p-strip--light is-bordered">
+<section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-8 suffix-1">
       <h2 class="p-heading--three">Help us to keep Ubuntu free to download, share and use by contributing to ...</h2>
@@ -224,7 +223,7 @@ Thank you for your contribution
                 <span class="mktFormMsg"></span>
               </span>
             </div>
-              <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
+            <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
             <p class="u-margin-medium--top">
               <small>In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/newsletter">Canonical’s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</small>
             </p>
@@ -265,387 +264,386 @@ Thank you for your contribution
         </script>
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<script>
-  /**
-  * Select an equivalent item for a certain contribution amount
-  */
-  var chooseEquivalentItem = function(totalAmount) {
-    var items = [{
-      imageFile: '86981cf1-skull.png?w=78',
-      price: 0,
-      description: 'Nothing. Use Ubuntu for free.'
-    },
-    {
-      imageFile: '0617b159-ace-of-spades.png?w=78',
-      price: 1,
-      description: 'the Ace of Spades download'
-    },
-    {
-      imageFile: 'b52102d9-mocca.png?w=78',
-      price: 2,
-      description: 'grande extra shot mocha latta chino'
-    },
-    {
-      imageFile: '0ca1e249-pint-of-ale.png?w=78',
-      price: 5,
-      description: 'pint of Micro-brew Nevada Pale Ale'
-    },
-    {
-      imageFile: 'bd982caa-happy-meal.png?w=78',
-      price: 7,
-      description: 'A Royale with Cheese '
-    },
-    {
-      imageFile: 'e474c36d-cinema-ticket.png?w=78',
-      price: 10,
-      description: 'a night at the movies. By yourself.'
-    },
-    {
-      imageFile: '274c40d3-king-kong.png?w=78',
-      price: 15,
-      description: 'King Kong versus Godzilla on DVD'
-    },
-    {
-      imageFile: 'b26d26e5-t-shirt.png?w=78',
-      price: 20,
-      description: 'Peace, Love and Linux t-shirt (shirt not included)'
-    },
-    {
-      imageFile: '86f3bcab-frying-pan.png?w=78',
-      price: 30,
-      description: 'stainless steel copper-bottom frying pan'
-    },
-    {
-      imageFile: '733a3650-sega-controller.png?w=78',
-      price: 50,
-      description: 'vintage SNES game bundle'
-    },
-    {
-      imageFile: 'd6d7d638-levi-501.png?w=78',
-      price: 60,
-      description: 'pair of vintage acid wash Levi 501s'
-    },
-    {
-      imageFile: '76f933b2-drum-kit.png?w=78',
-      price: 100,
-      description: 'pair of LP Matador bongo drums'
-    },
-    {
-      imageFile: 'ae1705f2-emu-chicks.png?w=78',
-      price: 200,
-      description: 'pair of sexed Emu chicks'
-    },
-    {
-      imageFile: '4cbbd365-ldn-nyc-flight.png?w=78',
-      price: 500,
-      description: 'flight from New York to London (one way)'
-    },
-    {
-      imageFile: '7a47693f-camel.png?w=78',
-      price: 1000,
-      description: 'an eight year-old dromedary camel'
-    }
-    ];
-
-    var matchingItem = false;
-
-    items.forEach(
-    function(item, itemIndex) {
-      if (
-      item['price'] == totalAmount ||
-      (item['price'] > totalAmount && items[itemIndex - 1]['price'] < totalAmount)
-      ) {
-        matchingItem = items[itemIndex];
+  <script>
+    /**
+    * Select an equivalent item for a certain contribution amount
+    */
+    var chooseEquivalentItem = function(totalAmount) {
+      var items = [{
+        imageFile: '86981cf1-skull.png?w=78',
+        price: 0,
+        description: 'Nothing. Use Ubuntu for free.'
+      },
+      {
+        imageFile: '0617b159-ace-of-spades.png?w=78',
+        price: 1,
+        description: 'the Ace of Spades download'
+      },
+      {
+        imageFile: 'b52102d9-mocca.png?w=78',
+        price: 2,
+        description: 'grande extra shot mocha latta chino'
+      },
+      {
+        imageFile: '0ca1e249-pint-of-ale.png?w=78',
+        price: 5,
+        description: 'pint of Micro-brew Nevada Pale Ale'
+      },
+      {
+        imageFile: 'bd982caa-happy-meal.png?w=78',
+        price: 7,
+        description: 'A Royale with Cheese '
+      },
+      {
+        imageFile: 'e474c36d-cinema-ticket.png?w=78',
+        price: 10,
+        description: 'a night at the movies. By yourself.'
+      },
+      {
+        imageFile: '274c40d3-king-kong.png?w=78',
+        price: 15,
+        description: 'King Kong versus Godzilla on DVD'
+      },
+      {
+        imageFile: 'b26d26e5-t-shirt.png?w=78',
+        price: 20,
+        description: 'Peace, Love and Linux t-shirt (shirt not included)'
+      },
+      {
+        imageFile: '86f3bcab-frying-pan.png?w=78',
+        price: 30,
+        description: 'stainless steel copper-bottom frying pan'
+      },
+      {
+        imageFile: '733a3650-sega-controller.png?w=78',
+        price: 50,
+        description: 'vintage SNES game bundle'
+      },
+      {
+        imageFile: 'd6d7d638-levi-501.png?w=78',
+        price: 60,
+        description: 'pair of vintage acid wash Levi 501s'
+      },
+      {
+        imageFile: '76f933b2-drum-kit.png?w=78',
+        price: 100,
+        description: 'pair of LP Matador bongo drums'
+      },
+      {
+        imageFile: 'ae1705f2-emu-chicks.png?w=78',
+        price: 200,
+        description: 'pair of sexed Emu chicks'
+      },
+      {
+        imageFile: '4cbbd365-ldn-nyc-flight.png?w=78',
+        price: 500,
+        description: 'flight from New York to London (one way)'
+      },
+      {
+        imageFile: '7a47693f-camel.png?w=78',
+        price: 1000,
+        description: 'an eight year-old dromedary camel'
       }
-    });
+      ];
 
-    var lastItem = items[items.length - 1];
-    if (!matchingItem && totalAmount > lastItem['price']) {
-      matchingItem = lastItem;
+      var matchingItem = false;
+
+      items.forEach(
+      function(item, itemIndex) {
+        if (
+        item['price'] == totalAmount ||
+        (item['price'] > totalAmount && items[itemIndex - 1]['price'] < totalAmount)
+        ) {
+          matchingItem = items[itemIndex];
+        }
+      });
+
+      var lastItem = items[items.length - 1];
+      if (!matchingItem && totalAmount > lastItem['price']) {
+        matchingItem = lastItem;
+      }
+
+      return matchingItem;
     }
 
-    return matchingItem;
-  }
+    var updateEquivalentItem = function(item, imageSelector, descriptionSelector, valueSelector) {
+      var image = document.querySelector('.js-equivalent-image');
+      var description = document.querySelector('.js-equivalent-description');
 
-  var updateEquivalentItem = function(item, imageSelector, descriptionSelector, valueSelector) {
-    var image = document.querySelector('.js-equivalent-image');
-    var description = document.querySelector('.js-equivalent-description');
-
-    image.src = '{{ ASSET_SERVER_URL }}' + item['imageFile'];
-    image.alt = item['description'];
-    description.innerText = item['description'];
-  }
-
-  var toggleSubmit = function(total) {
-    var submit = document.querySelector('.js-contribute-submit');
-
-    if (total == 0) {
-      submit.disabled.disabled = true;
-    } else {
-      submit.classList.disabled = false;
+      image.src = '{{ ASSET_SERVER_URL }}' + item['imageFile'];
+      image.alt = item['description'];
+      description.innerText = item['description'];
     }
-  }
 
-  var updateSummary = function() {
-    // Get the total amount of all the contribution items selected
-    var total = 0;
+    var toggleSubmit = function(total) {
+      var submit = document.querySelector('.js-contribute-submit');
+
+      if (total == 0) {
+        submit.disabled.disabled = true;
+      } else {
+        submit.classList.disabled = false;
+      }
+    }
+
+    var updateSummary = function() {
+      // Get the total amount of all the contribution items selected
+      var total = 0;
+      document.querySelectorAll('.p-slider__input').forEach(
+      function(valueElement) {
+        total += parseInt(valueElement.value || 0);
+      }
+      );
+      var item = chooseEquivalentItem(total);
+      document.querySelector('.js-total-amount').innerText = total;
+      updateEquivalentItem(item);
+      toggleSubmit(total);
+    }
+
+    /**
+    * Generate a random ID including the datestamp for uniqueness
+    */
+    function generateRandomId() {
+      // really crude unique ID
+      var date = new Date();
+      var random = Math.floor(Math.random() * 1000);
+      return date.valueOf() + '' + random;
+    }
+
+    /**
+    * Send form values to Google Analytics
+    * Also send which header has been shown
+    */
+    function sendContributionFormAnalytics(submitEvent) {
+      form = submitEvent.target;
+
+      // preparing GA submission. step 1 _addTrans
+      var orderId = generateRandomId();
+      var total = document.querySelector('.js-total-amount').innerText;
+      var transactionProducts = [];
+
+      // add the individual items
+      document.querySelectorAll('.p-slider__input').forEach(function(amountElement) {
+        var name = amountElement.parentNode.parentNode.id;
+        var value = amountElement.value || 0;
+        if (value > 0) {
+          transactionProducts.push({
+            'sku': name,
+            'name': name,
+            'category': '',
+            'price': value,
+            'quantity': 1
+          });
+        }
+      });
+
+      dataLayer.push({
+        'transactionId': orderId,
+        'transactionAffiliation': 'Ubuntu contributions',
+        'transactionTotal': total,
+        'transactionTax': 0,
+        'transactionShipping': 0,
+        'transactionProducts': transactionProducts,
+        'event': 'transactionComplete'
+      });
+    }
+
+    // Submit analytics before submitting form
+    document.querySelector('#contributions-form').addEventListener(
+    'submit',
+    sendContributionFormAnalytics
+    );
+
+    /**
+    * Reset fields back to 0, if missing values
+    */
     document.querySelectorAll('.p-slider__input').forEach(
     function(valueElement) {
-      total += parseInt(valueElement.value || 0);
+      valueElement.addEventListener(
+      'blur',
+      function() {
+        if (isNaN(parseInt(valueElement.value))) {
+          valueElement.value = 0;
+        }
+      }
+      )
     }
     );
-    var item = chooseEquivalentItem(total);
-    document.querySelector('.js-total-amount').innerText = total;
-    updateEquivalentItem(item);
-    toggleSubmit(total);
-  }
 
-  /**
-  * Generate a random ID including the datestamp for uniqueness
-  */
-  function generateRandomId() {
-    // really crude unique ID
-    var date = new Date();
-    var random = Math.floor(Math.random() * 1000);
-    return date.valueOf() + '' + random;
-  }
+    var optionsArea = document.querySelector('.contribute__options');
+    optionsArea.addEventListener('change', updateSummary);
+    optionsArea.addEventListener('input', updateSummary);
+    updateSummary();
+  </script>
 
-  /**
-  * Send form values to Google Analytics
-  * Also send which header has been shown
-  */
-  function sendContributionFormAnalytics(submitEvent) {
-    form = submitEvent.target;
+  <script>
+    (function() {
 
-    // preparing GA submission. step 1 _addTrans
-    var orderId = generateRandomId();
-    var total = document.querySelector('.js-total-amount').innerText;
-    var transactionProducts = [];
-
-    // add the individual items
-    document.querySelectorAll('.p-slider__input').forEach(function(amountElement) {
-      var name = amountElement.parentNode.parentNode.id;
-      var value = amountElement.value || 0;
-      if (value > 0) {
-        transactionProducts.push({
-          'sku': name,
-          'name': name,
-          'category': '',
-          'price': value,
-          'quantity': 1
-        });
+      function equaliseValues(receive, give) {
+        receive.value = give.value;
+        give.value = receive.value;
       }
-    });
 
-    dataLayer.push({
-      'transactionId': orderId,
-      'transactionAffiliation': 'Ubuntu contributions',
-      'transactionTotal': total,
-      'transactionTax': 0,
-      'transactionShipping': 0,
-      'transactionProducts': transactionProducts,
-      'event': 'transactionComplete'
-    });
-  }
-
-  // Submit analytics before submitting form
-  document.querySelector('#contributions-form').addEventListener(
-  'submit',
-  sendContributionFormAnalytics
-  );
-
-  /**
-  * Reset fields back to 0, if missing values
-  */
-  document.querySelectorAll('.p-slider__input').forEach(
-  function(valueElement) {
-    valueElement.addEventListener(
-    'blur',
-    function() {
-      if (isNaN(parseInt(valueElement.value))) {
-        valueElement.value = 0;
-      }
-    }
-    )
-  }
-  );
-
-  var optionsArea = document.querySelector('.contribute__options');
-  optionsArea.addEventListener('change', updateSummary);
-  optionsArea.addEventListener('input', updateSummary);
-  updateSummary();
-</script>
-
-<script>
-  (function() {
-
-    function equaliseValues(receive, give) {
-      receive.value = give.value;
-      give.value = receive.value;
-    }
-
-    // Fix for Chrome and Safari as they don't support CSS slider progress
-    function renderSlider(slider, progressColour, emptyColour) {
-      if (browser === 'Chrome' || browser === 'Safari') {
-        var value = (slider.value - slider.min) / (slider.max - slider.min);
-        slider.style.backgroundImage = '-webkit-gradient(linear, left top, right top, color-stop('
-        + value + ', ' + progressColour + '), color-stop(' + value + ', ' + emptyColour + '))';
-      }
-    }
-
-    var browser;
-    /Edge/i.test(navigator.userAgent) ? browser = 'Edge' :
-    /Chrome/i.test(navigator.userAgent) ? browser = 'Chrome' :
-    /Safari/i.test(navigator.userAgent) ? browser = 'Safari' :
-    /NET/i.test(navigator.userAgent) ? browser = 'IE' :
-    browser = 'Other';
-    var progressColour = '#E95420';
-    var emptyColour = '#fff';
-    var sliders = Array.prototype.slice.call(document.querySelectorAll('.p-slider'));
-
-    sliders.forEach(function(slider) {
-      var input = document.getElementById(slider.id + '-input');
-      renderSlider(slider, progressColour, emptyColour);
-
-      if (input) {
-        equaliseValues(input, slider);
-        input.oninput = function() {
-          if (!input.value) input.value = 0;
-          equaliseValues(slider, input);
-          renderSlider(slider, progressColour, emptyColour);
+      // Fix for Chrome and Safari as they don't support CSS slider progress
+      function renderSlider(slider, progressColour, emptyColour) {
+        if (browser === 'Chrome' || browser === 'Safari') {
+          var value = (slider.value - slider.min) / (slider.max - slider.min);
+          slider.style.backgroundImage = '-webkit-gradient(linear, left top, right top, color-stop('
+          + value + ', ' + progressColour + '), color-stop(' + value + ', ' + emptyColour + '))';
         }
       }
 
-      // Fix for IE as it doesn't support 'oninput'
-      if (browser === 'IE') {
-        slider.onchange = function() {
-          if (input) equaliseValues(input, slider)
-        }
-      } else {
-        slider.oninput = function() {
-          if (input) equaliseValues(input, slider);
-          renderSlider(slider, progressColour, emptyColour);
-        }
-      }
-    });
-  })();
-</script>
+      var browser;
+      /Edge/i.test(navigator.userAgent) ? browser = 'Edge' :
+      /Chrome/i.test(navigator.userAgent) ? browser = 'Chrome' :
+      /Safari/i.test(navigator.userAgent) ? browser = 'Safari' :
+      /NET/i.test(navigator.userAgent) ? browser = 'IE' :
+      browser = 'Other';
+      var progressColour = '#E95420';
+      var emptyColour = '#fff';
+      var sliders = Array.prototype.slice.call(document.querySelectorAll('.p-slider'));
 
-<div class="p-strip is-shallow">
-  <div class="row">
-    <div class="u-equal-height">
-      <div class="col-4 p-card--highlighted">
-        <h3>Learn how to try Ubuntu before you install</h3>
-        <p class="p-card__content">Run Ubuntu directly from either a USB stick or a DVD for a quick and easy way to experience how Ubuntu works.</p>
-        <p class="p-card__content"><a class="p-link--external"  href="https://tutorials.ubuntu.com/tutorial/try-ubuntu-before-you-install">Follow our simple guide</a></p>
-      </div>
-      <div class="col-4 p-card--highlighted">
-        <h3>Do you want to upgrade your OS?</h3>
-        <p class="p-card__content">If you are already running Ubuntu, you can upgrade with the Software Updater.</p>
-        <p class="p-card__content"><a href="https://tutorials.ubuntu.com/tutorial/tutorial-upgrading-ubuntu-desktop" class="p-link--external">Installation instructions</a></p>
-      </div>
-      <div class="col-4 p-card--highlighted">
-        <h3>Let’s connect</h3>
-        <p class="p-card__content">If you get stuck, help is always at hand.</p>
-        <p class="p-card__content"><a href="https://askubuntu.com" class="p-link--external">Ask Ubuntu</a></p>
-        <p class="p-card__content"><a href="https://ubuntuforums.org/" class="p-link--external">Ubuntu Forums</a></p>
-        <p class="p-card__content"><a href="https://wiki.ubuntu.com/IRC/ChannelList" class="p-link--external">IRC-based support</a></p>
+      sliders.forEach(function(slider) {
+        var input = document.getElementById(slider.id + '-input');
+        renderSlider(slider, progressColour, emptyColour);
+
+        if (input) {
+          equaliseValues(input, slider);
+          input.oninput = function() {
+            if (!input.value) input.value = 0;
+            equaliseValues(slider, input);
+            renderSlider(slider, progressColour, emptyColour);
+          }
+        }
+
+        // Fix for IE as it doesn't support 'oninput'
+        if (browser === 'IE') {
+          slider.onchange = function() {
+            if (input) equaliseValues(input, slider)
+          }
+        } else {
+          slider.oninput = function() {
+            if (input) equaliseValues(input, slider);
+            renderSlider(slider, progressColour, emptyColour);
+          }
+        }
+      });
+    })();
+  </script>
+
+  <div class="p-strip is-shallow">
+    <div class="row">
+      <div class="u-equal-height">
+        <div class="col-4 p-card--highlighted">
+          <h3>Learn how to try Ubuntu before you install</h3>
+          <p class="p-card__content">Run Ubuntu directly from either a USB stick or a DVD for a quick and easy way to experience how Ubuntu works.</p>
+          <p class="p-card__content"><a class="p-link--external"  href="https://tutorials.ubuntu.com/tutorial/try-ubuntu-before-you-install">Follow our simple guide</a></p>
+        </div>
+        <div class="col-4 p-card--highlighted">
+          <h3>Do you want to upgrade your OS?</h3>
+          <p class="p-card__content">If you are already running Ubuntu, you can upgrade with the Software Updater.</p>
+          <p class="p-card__content"><a href="https://tutorials.ubuntu.com/tutorial/tutorial-upgrading-ubuntu-desktop" class="p-link--external">Installation instructions</a></p>
+        </div>
+        <div class="col-4 p-card--highlighted">
+          <h3>Let’s connect</h3>
+          <p class="p-card__content">If you get stuck, help is always at hand.</p>
+          <p class="p-card__content"><a href="https://askubuntu.com" class="p-link--external">Ask Ubuntu</a></p>
+          <p class="p-card__content"><a href="https://ubuntuforums.org/" class="p-link--external">Ubuntu Forums</a></p>
+          <p class="p-card__content"><a href="https://wiki.ubuntu.com/IRC/ChannelList" class="p-link--external">IRC-based support</a></p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-{% include "shared/contextual_footers/_contextual_footer.html" with first_item="_download_verify_your_download" second_item="_download_desktop_guide" third_item="_download_enterprise_support" %}
+  {% include "shared/contextual_footers/_contextual_footer.html" with first_item="_download_verify_your_download" second_item="_download_desktop_guide" third_item="_download_enterprise_support" %}
 
 
-{% endblock content %}
+  {% endblock content %}
 
-{% block footer_extra %}
-{% if start_download %}
-<script>
-  // Download file information
-  var defaultLocation = 'http://releases.ubuntu.com/'; // Default to releases.ubuntu.com
-  var version = '{{ version }}';
-  var architecture = '{{ architecture }}';
+  {% block footer_extra %}
+  {% if start_download %}
+  <script>
+    // Download file information
+    var defaultLocation = 'http://releases.ubuntu.com/'; // Default to releases.ubuntu.com
+    var version = '{{ version }}';
+    var architecture = '{{ architecture }}';
 
-  // Mirrors for this country
-  var mirrors = {{ mirror_list|safe }};
+    // Mirrors for this country
+    var mirrors = {{ mirror_list|safe }};
 
-  if (version && architecture && architecture != 'amd64+mac') {
-    dataLayer.push({
-      'event': 'GAEvent',
-      'eventCategory': 'Download',
-      'eventAction': 'Downloaded',
-      'eventLabel': 'User downloaded Ubuntu (' + version + '-desktop-' + architecture + ')',
-      'eventValue': undefined
-    });
-    startDownload(mirrors, version, architecture, defaultLocation);
-  }
-
-  function startDownload(mirrors, version, architecture, defaultLocation) {
-    // Select a random mirror from list
-    var selectedMirror = chooseRandomMirror(mirrors);
-    var downloadLocation = defaultLocation;
-
-    // Build the download link
-    if (selectedMirror && selectedMirror.link) {
-      downloadLocation = selectedMirror.link;
+    if (version && architecture && architecture != 'amd64+mac') {
+      dataLayer.push({
+        'event': 'GAEvent',
+        'eventCategory': 'Download',
+        'eventAction': 'Downloaded',
+        'eventLabel': 'User downloaded Ubuntu (' + version + '-desktop-' + architecture + ')',
+        'eventValue': undefined
+      });
+      startDownload(mirrors, version, architecture, defaultLocation);
     }
-    var downloadLink = downloadLocation + version + '/ubuntu-' + version + '-desktop-' + architecture + '.iso';
 
-    // Start download
-    delayStartDownload(downloadLink, 3000);
-  }
+    function startDownload(mirrors, version, architecture, defaultLocation) {
+      // Select a random mirror from list
+      var selectedMirror = chooseRandomMirror(mirrors);
+      var downloadLocation = defaultLocation;
 
-  /**
-  * Kick off a download link
-  * after a certain delay in milliseconds
-  */
-  function delayStartDownload(downloadLink, delay) {
-    window.setTimeout(
-    function() {
-      window.location.href = downloadLink;
-    },
-    delay
-    )
-  }
-
-  /**
-  * Choose randomly from a given list of mirrors
-  * Weight the choice by the bandwidth of each mirror
-  */
-  function chooseRandomMirror(mirrors) {
-    var selectedMirror = null;
-
-    // Calculate total bandwidth
-    var totalBandwidth = 0;
-    mirrors.forEach(function(mirror) {
-      mirror.bandwidth = parseInt(mirror.bandwidth) ? parseInt(mirror.bandwidth) : 0;
-      totalBandwidth += mirror.bandwidth;
-    });
-
-    // Random weight-point to download
-    var downloadPoint = Math.floor(Math.random() * totalBandwidth);
-    var weightPoint = 0;
-
-    // Select a mirror based on weighting
-    for (var mirrorIndex = 0; mirrorIndex < mirrors.length; mirrorIndex++) {
-      var mirror = mirrors[mirrorIndex];
-      weightPoint += mirror.bandwidth;
-
-      // If this is the random point to download
-      if (downloadPoint < weightPoint) {
-        selectedMirror = mirror;
-        break;
+      // Build the download link
+      if (selectedMirror && selectedMirror.link) {
+        downloadLocation = selectedMirror.link;
       }
+      var downloadLink = downloadLocation + version + '/ubuntu-' + version + '-desktop-' + architecture + '.iso';
+
+      // Start download
+      delayStartDownload(downloadLink, 3000);
     }
 
-    return selectedMirror;
-  }
-</script>
-{% endif %}
+    /**
+    * Kick off a download link
+    * after a certain delay in milliseconds
+    */
+    function delayStartDownload(downloadLink, delay) {
+      window.setTimeout(
+      function() {
+        window.location.href = downloadLink;
+      },
+      delay
+      )
+    }
 
-{% endblock footer_extra %}
+    /**
+    * Choose randomly from a given list of mirrors
+    * Weight the choice by the bandwidth of each mirror
+    */
+    function chooseRandomMirror(mirrors) {
+      var selectedMirror = null;
+
+      // Calculate total bandwidth
+      var totalBandwidth = 0;
+      mirrors.forEach(function(mirror) {
+        mirror.bandwidth = parseInt(mirror.bandwidth) ? parseInt(mirror.bandwidth) : 0;
+        totalBandwidth += mirror.bandwidth;
+      });
+
+      // Random weight-point to download
+      var downloadPoint = Math.floor(Math.random() * totalBandwidth);
+      var weightPoint = 0;
+
+      // Select a mirror based on weighting
+      for (var mirrorIndex = 0; mirrorIndex < mirrors.length; mirrorIndex++) {
+        var mirror = mirrors[mirrorIndex];
+        weightPoint += mirror.bandwidth;
+
+        // If this is the random point to download
+        if (downloadPoint < weightPoint) {
+          selectedMirror = mirror;
+          break;
+        }
+      }
+
+      return selectedMirror;
+    }
+  </script>
+  {% endif %}
+
+  {% endblock footer_extra %}
