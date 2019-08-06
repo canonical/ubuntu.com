@@ -1,12 +1,12 @@
 @mixin ubuntu-p-tables {
   tr {
     th {
-      padding-top: $spv-intra;
+      padding-top: $spv-inner--small;
     }
 
     .p-table__cell--highlight {
       background: $color-x-light;
-      padding: $spv-intra $sph-intra--condensed;
+      padding: $spv-inner--small $sph-inner--small;
     }
   }
 }
