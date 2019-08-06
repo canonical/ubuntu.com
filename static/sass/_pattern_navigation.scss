@@ -1,6 +1,6 @@
-$ubuntu-logo-svg-width: 81 * $px; // width in rems
+$ubuntu-logo-svg-width: 81; // width in rems
 $ubuntu-logo-width--desktop: $ubuntu-logo-svg-width + 2 * $grid-margin-width;
-$ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
+$ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
 @mixin ubuntu-p-navigation {
   html {
@@ -107,8 +107,8 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
       }
 
       @media only screen and (min-width: $breakpoint-navigation-threshold) {
-        padding-left: $sph-intra;
-        padding-right: $sph-intra - $circle-of-friends-compensation;
+        padding-left: $sph-inner;
+        padding-right: $sph-inner - $circle-of-friends-compensation;
       }
 
       .p-navigation__link {
@@ -128,11 +128,11 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
       display: block;
 
       @media (max-width: $breakpoint-navigation-threshold) {
-        padding: $spv-intra--expanded $grid-margin-width $spv-intra--expanded $grid-margin-width;
+        padding: $spv-inner--medium $grid-margin-width $spv-inner--medium $grid-margin-width;
       }
 
       @media (min-width: $breakpoint-navigation-threshold + 1) {
-        padding: $spv-intra--expanded 2rem $spv-intra--expanded $sph-intra;
+        padding: $spv-inner--medium 2rem $spv-inner--medium $sph-inner;
       }
 
       &:focus,
@@ -241,16 +241,16 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
           @media only screen and (min-width: $breakpoint-navigation-threshold) {
             background-color: $color-light;
             display: block;
-            left: $sph-intra;
+            left: $sph-inner;
             opacity: .3;
-            right: $sph-intra - $circle-of-friends-compensation;
+            right: $sph-inner - $circle-of-friends-compensation;
           }
         }
 
         @media only screen and (min-width: $breakpoint-navigation-threshold) {
-          padding-left: $sph-intra;
-          padding-right: $sph-intra - $circle-of-friends-compensation;
-          width: $ubuntu-logo-svg-width + 2 * $sph-intra - $circle-of-friends-compensation;
+          padding-left: $sph-inner;
+          padding-right: $sph-inner - $circle-of-friends-compensation;
+          width: $ubuntu-logo-svg-width + 2 * $sph-inner - $circle-of-friends-compensation;
         }
       }
 
@@ -294,8 +294,8 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
           font-size: 1rem / pow($ms-ratio, 1); //XXX: move font-sizes to map in vanilla so it can be changed globally
           // line-height: map-get($line-heights, small);
           padding-bottom: map-get($sp-after, small) + $p-small-lh-diff - $nudge--small;
-          padding-left: $spv-intra--expanded;
-          padding-right: $spv-intra--expanded;
+          padding-left: $spv-inner--medium;
+          padding-right: $spv-inner--medium;
           padding-top: $nudge--small;
 
           @media (max-width: $breakpoint-x-small - 1) {
@@ -411,7 +411,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-intra;
       color: $color-dark;
 
       &:last-child {
-        padding-bottom: $spv-inter--shallow-scaleable / 1.5;
+        padding-bottom: $spv-outer--shallow-scaleable / 1.5;
       }
 
       @media (max-width: $breakpoint-x-small - 1) {
@@ -482,8 +482,8 @@ h2,
   @extend %bg--light;
   @include vf-p-card;
   flex-direction: column;
-  margin-bottom: $spv-inter--condensed-scaleable;
-  padding: $spv-intra--scaleable - $px;
+  margin-bottom: $spv-outer--small-scaleable;
+  padding: calc(#{$spv-inner--scaleable} - 1px);
   transition: all .2s;  // sass-lint:disable-line no-transition-all
 }
 
@@ -501,8 +501,8 @@ h2,
 
 .p-logomark {
   display: inline-block;
-  margin-bottom: $spv-intra--scaleable;
-  margin-right: $sph-intra--condensed;
+  margin-bottom: $spv-inner--scaleable;
+  margin-right: $sph-inner--small;
   max-height: 4 * $sp-unit;
   max-width: 4 * $sp-unit;
   position: relative;
