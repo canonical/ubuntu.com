@@ -236,7 +236,7 @@
 @mixin ubuntu-p-list-small {
   .p-text-list--small {
     @extend %small-text-fixed;
-    margin-bottom: $spv-inter--scaleable - $nudge--small + 1 * $sp-unit;
+    margin-bottom: $spv-outer--scaleable - $nudge--small + 1 * $sp-unit;
     margin-left: 0;
     padding-left: 0;
 
@@ -245,7 +245,7 @@
     }
 
     &.is-dense {
-      margin-bottom: $spv-inter--scaleable - $nudge--small;
+      margin-bottom: $spv-outer--scaleable - $nudge--small;
     }
 
     & .p-list__item {
