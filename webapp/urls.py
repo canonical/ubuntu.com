@@ -5,7 +5,7 @@ from canonicalwebteam.yaml_responses.django_helpers import (
     create_deleted_views,
     create_redirect_views,
 )
-from canonicalwebteam.blog.django.views import group, topic, feed
+from canonicalwebteam.blog.django.views import group, topic
 
 # Local code
 from .views import UbuntuTemplateFinder, DownloadView, ResourcesView, search
@@ -76,16 +76,6 @@ urlpatterns += [
         topic,
         {"slug": "robotics", "template_path": "blog/topics/robotics.html"},
         name="topic",
-    ),
-    path(
-        "blog/feed",
-        feed,
-        {
-            "title": "Ubuntu blog",
-            "subtitle": "Resources, articles and "
-            "news from Ubuntu and Canonical",
-        },
-        name="feed",
     ),
     path("blog", include("canonicalwebteam.blog.django.urls")),
     url(
