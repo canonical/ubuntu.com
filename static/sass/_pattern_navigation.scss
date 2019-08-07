@@ -1,4 +1,4 @@
-$ubuntu-logo-svg-width: 81; // width in rems
+$ubuntu-logo-svg-width: 5rem; // width in rems
 $ubuntu-logo-width--desktop: $ubuntu-logo-svg-width + 2 * $grid-margin-width;
 $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
@@ -294,8 +294,6 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
         &__link {
           font-size: 1rem / pow($ms-ratio, 1); //XXX: move font-sizes to map in vanilla so it can be changed globally
-          // line-height: map-get($line-heights, small);
-          padding-bottom: map-get($sp-after, small) + $p-small-lh-diff - $nudge--small;
           padding-left: $spv-inner--medium;
           padding-right: $spv-inner--medium;
           padding-top: $nudge--small;
