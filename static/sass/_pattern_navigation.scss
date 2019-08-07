@@ -151,6 +151,8 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       @extend %row-no-margins-on-mobile;
 
       &.row {
+        grid-gap: 0;
+
         @media (max-width: $breakpoint-x-small) {
           display: block;
           padding-left: 0 !important;
