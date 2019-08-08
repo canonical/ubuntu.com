@@ -13,12 +13,12 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-Now that you have installed your **CDK** cluster, what can you do with it? This page details
+Now that you have installed your **Charmed Kubernetes** cluster, what can you do with it? This page details
 some basic cluster operations, including how to check the status of your cluster and test
 that it is working with the built-in demo deployment.
 
 If you are already familiar with this, you may still like to check out the [Next steps][next]
-for more useful guides on operating CDK.
+for more useful guides on operating Kubernetes.
 
 ## Install and configure kubectl
 
