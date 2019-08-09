@@ -1,0 +1,59 @@
+{% extends_with_args "engage/base_engage.html" with title="A guide to developing Android apps on Ubuntu" meta_image="dab160e2-anroid_on_ubuntu-social.png" meta_description="Android is the most popular mobile operating system and is continuing to grow its market share.  IDC expects that Android will have 85.5% of the market by 2022, demonstrating that app development on Android will continue to be an in-demand skill." %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1xyNrWYsYcvux_gYtoWw39XD9cP4QmiAYJnDlLuV8CvE{% endblock meta_copydoc %}
+
+{% block content %}
+{% include "engage/shared/_header.html" with title="A guide to developing Android apps on Ubuntu" class="p-strip--dark p-takeover--android-on-ubuntu" image="30f461a5-android-on-ubuntu.svg" url="#register-section" cta="Download the whitepaper" %}
+  <section class="p-strip is-shallow is-bordered">
+    <div class="row">
+      <div class="col-7">
+        <p>
+          Android is the most popular mobile operating system and is continuing to grow its market share.  <a class="p-link--external" href="https://www.idc.com/promo/smartphone-market-share/os">IDC</a> expects that Android will have 85.5% of the market by 2022, demonstrating that app development on Android will continue to be an in-demand skill.
+        </p>
+        <p>
+          For developers looking to build Android apps, Ubuntu is the ideal platform in conjunction with Android Studio - the official Android development environment. Ubuntu features a wide variety of software development tools including numerous programming language compilers, integrated development environments (IDEs) and toolchains to enable developers to target multiple hardware platforms.
+        </p>
+        <p>
+          Developers using Ubuntu will be enabled to write an Android app and deploy it to emulated and physical devices using standard tooling all from their desktop.
+        </p>
+        <p>
+          In this guide, you will learn:
+        </p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">
+            Why Ubuntu Desktop is suited as a platform for Android developers building new apps
+          </li>
+          <li class="p-list__item is-ticked">
+            How to configure and install Android Studio as a snap to get started
+          </li>
+          <li class="p-list__item is-ticked">
+            A step by step guide on creating an Android app on Ubuntu targeting an array of devices
+          </li>
+        </ul>
+      </div>
+      <div class="col-5" id="register-section">
+        {% include "engage/shared/_en_engage_form.html" with id="3340" returnURL="https://pages.ubuntu.com/Whitepaper_AndroidonUbuntu-TY.html" %}
+      </div>
+    </div>
+    <style>
+      .p-takeover--android-on-ubuntu {
+        background-color: #2C001E;
+      }
+
+      .p-takeover--android-on-ubuntu .p-takeover__title {
+        font-weight: 100;
+      }
+
+      @media (min-width: 768px) {
+        .p-takeover--android-on-ubuntu {
+          background-color: #2C001E;
+          background-image: linear-gradient(199deg, #E95420 0%, #5E2750 25%, #2C001E 50%);
+          background-image: url('{{ ASSET_SERVER_URL }}1487c2c6-suru-background.svg');
+          background-position: right;
+          background-repeat: no-repeat;
+          background-size: contain;
+        }
+      }
+    </style>
+  </section>
+{% endblock content %}
