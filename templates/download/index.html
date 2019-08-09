@@ -4,55 +4,87 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1egsCcmFiz8czeHsvwoB9Jz815Ij5Urtf7Ngrru6Zd4o/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<div class="p-strip is-shallow">
-  <div class="row">
-    <div class="col-12">
-      <h1>Ubuntu downloads</h1>
+<section class="p-strip--light u-no-padding--top">
+  <div class="p-strip-suru-half-top">
+    <div class="row">
+      <div class="col-12">
+        <h1>
+          Ubuntu downloads
+        </h1>
+      </div>
     </div>
   </div>
-</div>
+  <div class="row u-vertically-center" style="margin-top: -2rem;" >
+    <div class="col-6">
+      <h2>
+        <a href="/download/desktop">
+          Ubuntu Desktop&nbsp;&rsaquo;
+        </a>
+      </h2>
+      <p>
+        Download Ubuntu desktop and replace your current operating system whether it&rsquo;s Windows or Mac OS, or, run Ubuntu alongside it.
+      </p>
+      <p>
+        <strong>Do you want to upgrade?</strong> <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-upgrading-ubuntu-desktop">Follow our simple guide</a>
+      </p>
+    </div>
+    <div class="col-6 u-align--center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}db6764bc-disco-dingo-grad.svg"
+    </div>
+  </div>
+</section>
 
-<div class="p-strip u-no-padding--top u-no-padding--bottom">
-
+<section class="p-strip">
   <div class="row">
-    <div class="col-12">
-      <div class="p-card">
-        <h2 class="p-card__title"><a href="/download/desktop">Ubuntu Desktop&nbsp;&rsaquo;</a></h2>
-        <p class="p-card__content">Download Ubuntu desktop and replace your current operating system whether it&rsquo;s Windows or Mac OS, or, run Ubuntu alongside it.</p>
-        <hr class="u-sv1">
-        <p class="u-no-margin--bottom"><strong>Do you want to upgrade?</strong> <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-upgrading-ubuntu-desktop">Follow our simple guide</a>
-      </div>
+    <div class="col-6">
+      <h2>
+        <a href="/download/server">
+          Ubuntu Server&nbsp;&rsaquo;
+        </a>
+      </h2>
+      <p>
+        Whether you want to configure a simple file server or build a fifty thousand-node cloud, you can rely on Ubuntu Server and its five years of guaranteed free upgrades.
+      </p>
     </div>
   </div>
-  <div class="row u-equal-height u-no-margin--bottom">
-    <div class="col-6 p-card u-equal-height">
-      <div>
-        <h2 class="p-card__title"><a href="/download/server">Ubuntu Server&nbsp;&rsaquo;</a></h2>
-        <p class="p-card__content">Whether you want to configure a simple file server or build a fifty thousand-node cloud, you can rely on Ubuntu Server and its five years of guaranteed free upgrades.</p>
-      </div>
-    </div>
-    <div class="col-6 p-card u-equal-height">
-      <div>
-        <h2 class="p-card__title"><a href="/download/cloud">Ubuntu Cloud&nbsp;&rsaquo;</a></h2>
-        <p class="p-card__content">Ubuntu is the reference OS for OpenStack. Try Canonical&rsquo;s OpenStack on a single machine or start building a production cloud on a cluster &mdash; just add servers.</p>
-      </div>
+  <div class="row">
+    <div class="col-6">
+      <h2>
+        <a href="/download/cloud">
+          Ubuntu Cloud&nbsp;&rsaquo;
+        </a>
+      </h2>
+      <p>
+        Ubuntu is the reference OS for OpenStack. Try Canonical&rsquo;s OpenStack on a single machine or start building a production cloud on a cluster &mdash; just add servers.
+      </p>
     </div>
   </div>
-  <div class="row u-equal-height u-no-margin--top u-no-margin--bottom">
-    <div class="col-6 p-card u-equal-height">
-      <div>
-        <h2 class="p-card__title"><a href="/download/ubuntu-flavours">Ubuntu flavours&nbsp;&rsaquo;</a></h2>
-        <p class="p-card__content">Ubuntu flavours offer a unique way to experience Ubuntu with different choices of default applications and settings, backed by the full Ubuntu archive for packages and updates.</p>
-      </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h2>
+        <a href="/download/ubuntu-flavours">
+          Ubuntu flavours&nbsp;&rsaquo;
+        </a>
+      </h2>
+      <p>
+        Ubuntu flavours offer a unique way to experience Ubuntu with different choices of default applications and settings, backed by the full Ubuntu archive for packages and updates.
+      </p>
     </div>
-    <div class="col-6 p-card u-equal-height">
-      <div>
-        <h2 class="p-card__title"><a href="/download/core">Ubuntu for IoT&nbsp;&rsaquo;</a></h2>
-        <p class="p-card__content">Are you a developer who wants to try snappy Ubuntu Core? The new, transactionally updated Ubuntu for clouds and devices.</p>
-      </div>
+    <div class="col-6">
+      <h2>
+        <a href="/download/core">
+          Ubuntu for IoT&nbsp;&rsaquo;
+        </a>
+      </h2>
+      <p>
+        Are you a developer who wants to try snappy Ubuntu Core? The new, transactionally updated Ubuntu for clouds and devices.
+      </p>
     </div>
   </div>
-</div>
+</section>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_enterprise_support" second_item="_download_documentation" third_item="_download_helping_hands" %}
 
