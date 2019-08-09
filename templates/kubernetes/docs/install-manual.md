@@ -3,9 +3,9 @@ wrapper_template: "base_docs.html"
 markdown_includes:
   nav: "shared/_side-navigation.md"
 context:
-  title: "Installing CDK manually"
-  description: How to install and customise the Charmed Distribution of Kubernetes using Juju bundles.
-keywords: lxd, conjure-up, requirements,developer
+  title: "Installing CDK"
+  description: How to install and customise Charmed Kubernetes using Juju bundles.
+keywords: lxd, requirements, developer
 tags: [install]
 sidebar: k8smain-sidebar
 permalink: install-manual.html
@@ -13,11 +13,10 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-The recommended way to install the
-**Charmed Distribution of Kubernetes <sup>&reg;</sup>** is using the
-**conjure-up** install tool as described in the
-['Quick start' documentation][quickstart]. However, in some cases it may be useful to
-customise the install in ways not possible with **conjure-up**:
+The ['Quick start' documentation][quickstart] explains how to perform
+a quick and easy general install of **Charmed Kubernetes**.
+However, in some cases it may be useful to
+customise the install:
 
   - Adding additional components
   - Configuring storage or networking  
@@ -25,100 +24,198 @@ customise the install in ways not possible with **conjure-up**:
   - Testing a pre-release version
   - ...and many more
 
-In many cases, using the bundle install method outlined here will be faster and more
-repeatable than customising a deployment post-install.
+## What you will need
 
-This documentation first presents the method for installing from the official release
-bundles, then explains how the bundle can be customised.
+The rest of this page assumes you already have Juju installed and  have added
+credentials for a cloud and bootstrapped a controller.
+
+If you still need to do this, please take a look at the [quickstart
+instructions][quickstart], or, for custom clouds (OpenStack, MAAS), please
+consult the [Juju documentation][juju-docs].
+
+To install **Charmed Kubernetes** entirely on your local machine (using
+containers to create a cluster), please see the separate
+[Localhost instructions][localhost].
 
 
-## Install CDK from the official bundle
+## Quick custom installs
 
-The following sections outline a standard installation of **CDK** using the stable release
-**Juju** bundles. The standard bundle includes all the components of Kubernetes, but you
-should also follow the [additional configuration](#config) steps at the end for
-Kubernetes  to be able to interact with the cloud it is deployed on.
 
-###  Install Juju
+The details of how to edit and customise the **Charmed Kubernetes** bundle are
+outlined [below](#). However, using overlays (also explained in more
+detail below) you can make some common quick customisations for networking and
+cloud integration.
 
-If Juju has not already been installed on your system, you need to install it first. For
-Ubuntu 16.04 and later, and other operating systems which support [snaps][snaps], run
-the command:
-
-```bash
-sudo snap install juju --classic
-```
-
-For other install options, please see the [Juju documentation][juju-docs].
-
-### Create a controller
-
-**Juju** requires a *controller*  instance to manage models and deployed applications.
-You can make use of a hosted controller ([JAAS][jaas]) or create one in a cloud of
-your choice. For public clouds, you will need to have added a credential first:
+Overlay files can be applied when deploying Charmed Kubernetes by specifying them along with the deploy command:
 
 ```bash
-juju add-credential
+juju deploy charmed-kubernetes --overlay your-overlay.yaml
 ```
 
-...will step through adding your credential for a specific cloud.
+Sample overlay files are available to download directly from
+the links shown here. Be advised that you should use only **one** overlay from
+each category!
 
 
-The Juju documentation has more information on [adding credentials][credentials] and
-[configuring a controller][controller-config].
+#### Networking
+
+---
 
 
-<!-- COMMENTED OUT UNTIL PAGE REFERRED TO IS ADDED
-<div class="p-notification--caution">
+<div class="CNI">
+ <div class="row">
+ <div class="col-2 ">
+   <span>Calico</span>
+ </div>
+  <div class="col-6 ">
+   <span>Calico provides out-of-the-box support for the
+   NetworkPolicy feature of Kubernetes, along with different modes of
+   network encapsulation. <a href="/kubernetes/docs/cni-calico"> Read more...</a></span>
+  </div>
+  <div class="col-4 ">
+    <span><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/calico-overlay.yaml" class="p-button--positive">Download calico-overlay.yaml</a></span>
+  </div>
+</div>
+<br>
+<div class="row">
+<div class="col-2">
+  <span>Canal</span>
+</div>
+ <div class="col-6">
+  <span>Shorthand for "Calico and Flannel", this combination brings in Calico's support for the NetworkPolicy feature of Kubernetes, while utilizing Flannel's UDP-based network traffic.<a href="/kubernetes/docs/cni-canal"> Read more...</a></span>
+ </div>
+ <div class="col-4">
+   <span class="u-vertically-center"><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/canal-overlay.yaml" class="p-button--positive">Download canal-overlay.yaml</a></span>
+ </div>
+</div>
+<br>
+<div class="row">
+<div class="col-2">
+  <span>Tigera Secure EE</span>
+</div>
+ <div class="col-6">
+  <span>Tigera Secure EE is a commercial version of
+  Calico with additional enterprise features. As well as deploying the software, you will need to configure
+  it with the relevant licence. <a href="/kubernetes/docs/tigera-secure-ee"> Read more...</a></span>
+ </div>
+ <div class="col-4">
+   <span class="u-vertically-center"><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/tigera-overlay.yaml" class="p-button--positive">Download tigera-overlay.yaml</a></span>
+ </div>
+</div>
+</div>
+<br>
+
+<div class="p-notification--positive">
   <p markdown="1" class="p-notification__response">
     <span class="p-notification__status">Note:</span>
-To manually install CDK locally using LXD, it is necessary to use a specific container profile before deploying.  See the <a href="/kubernetes/clouds-lxd">notes on LXD</a> before deployment.
+By default, Charmed Kubernetes uses <em>Flannel</em> for networking. You can read more about CNI support <a href="/kubernetes/docs/cni-overview"> here </a>.
   </p>
 </div>
--->
+
+#### Cloud integration
+
+---
+
+<div class="integration">
+ <div class="row">
+ <div class="col-2 ">
+   <span>AWS integrator</span>
+ </div>
+  <div class="col-6 ">
+   <span>Enables support for EBS storage and ELB load balancers. <a href="/kubernetes/docs/aws-integration"> Read more...</a></span>
+  </div>
+  <div class="col-4 ">
+    <span><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/aws-overlay.yaml" class="p-button--positive">Download aws-overlay.yaml</a></span>
+  </div>
+</div>
+<br>
+<div class="row">
+<div class="col-2 u-vertically-center">
+  <span>Azure integrator</span>
+</div>
+ <div class="col-6 u-vertically-center">
+  <span>Enables support for Azure's native Disk Storage and load balancers.</span>
+ </div>
+ <div class="col-4 u-vertically-center">
+   <span class="u-vertically-center"><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/azure-overlay.yaml" class="p-button--positive">Download azure-overlay.yaml</a></span>
+ </div>
+</div>
+<br>
+<div class="row">
+<div class="col-2">
+  <span>GCP integrator</span>
+</div>
+ <div class="col-6">
+  <span>Integrates with GCP for storage and loadbalancing. <a href="/kubernetes/docs/gcp-integration"> Read more...</a></span>
+ </div>
+ <div class="col-4">
+   <span class="u-vertically-center"><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/gcp-overlay.yaml" class="p-button--positive">Download gcp-overlay.yaml</a></span>
+ </div>
+</div>
+<br>
+ <div class="row">
+  <div class="col-2">
+   <span>OpenStack integrator</span>
+ </div>
+  <div class="col-6">
+   <span>Provides support for OpenStack native features such as Cinder volumes and LBaaS. <a href="/kubernetes/docs/openstack-integration"> Read more...</a></span>
+  </div>
+  <div class="col-4">
+    <span><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/openstack-overlay.yaml" class="p-button--positive u-no-margin--right">Download openstack-overlay.yaml</a></span>
+  </div>
+</div>
+<br>
+ <div class="row">
+  <div class="col-2">
+   <span>vSphere integrator</span>
+ </div>
+  <div class="col-6">
+   <span>Provides support for native storage in vSphere. </span>
+  </div>
+  <div class="col-4">
+    <span><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/vsphere-overlay.yaml" class="p-button--positive u-no-margin--right u-no-margin--left">Download vsphere-overlay.yaml</a></span>
+  </div>
+</div>
+</div>
 
 
-### Create a model
 
-The controller automatically creates a model named 'default'. It is useful to
-have a different model for each deployment of **CDK**, and for the models to have
-useful names. You can create a new model with the `add-model` command like
-this:
+
+
+
+You can use multiple overlays (of different types) if required.  Note that all
+the 'integrator' charms require the use of the `--trust` option. For example,
+to deploy with Calico networking and AWS integration:
 
 ```bash
-juju add-model cdk-test
+juju deploy charmed-kubernetes --overlay aws-overlay.yaml --trust --overlay calico-overlay.yaml
 ```
 
-...susbstituting the desired name.
+For more detail on overlays and how they work, see the section [below](#overlay).
 
-### Deploy the CDK bundle
+<a href="/kubernetes/docs/operations">Get started with your new cluster&nbsp;›</a>
 
-The **Juju Charm Store** hosts the **CDK** bundles as well as individual charms.  To
-deploy the latest, stable bundle, run the command:
+## Deploying a specific Charmed Kubernetes bundle
+
+The **Juju Charm Store** hosts the **Charmed Kubernetes** bundles as well as
+individual charms. To deploy the latest, stable bundle, run the command:
 
 ```bash
 juju deploy charmed-kubernetes
 ```
 
-To get the status of the deployment, run `juju status`. For constant updates,
-combine it with the `watch` command:
-
-```
-watch -c juju status --color
-```
-
 It is also possible to deploy a specific version of the bundle by including the
-revision number. For example, to deploy the **CDK** bundle for the Kubernetes 1.13
+revision number. For example, to deploy the **Charmed Kubernetes** bundle for the Kubernetes 1.14
 release, you could run:
 
 ```bash
-juju deploy cs:~containers/canonical-kubernetes-435
+juju deploy cs:~containers/charmed-kubernetes-124
 ```
 
 <div class="p-notification--positive">
   <p markdown="1" class="p-notification__response">
     <span class="p-notification__status">Older Versions:</span>
-Previous versions of <strong>CDK</strong> used the name
+Previous versions of <strong>Charmed Kubernetes</strong> used the name
 <code>canonical-kubernetes</code>. These versions are still available under that name
 and links in the charm store. Versions from 1.14 onwards will use
 <code>charmed-kubernetes</code>.
@@ -129,13 +226,13 @@ and links in the charm store. Versions from 1.14 onwards will use
 The revision numbers for bundles are generated automatically when the bundle is
 updated, including for testing and beta versions, so it isn't always the case
 that a higher revision number is 'better'. The revision numbers for the release
-versions of the **CDK** bundle are shown in the table below:
+versions of the **Charmed Kubernetes** bundle are shown in the table below:
 
 <a  id="table"></a>
 
-| Kubernetes version | CDK bundle |
+| Kubernetes version | Charmed Kubernetes bundle |
 | --- | --- |
-| 1.15.x         | [charmed-kubernetes-139](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-139/archive/bundle.yaml) |   
+| 1.15.x         | [charmed-kubernetes-139](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-139/archive/bundle.yaml) |
 | 1.14.x         | [charmed-kubernetes-124](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-124/archive/bundle.yaml) |
 | 1.13.x         | [canonical-kubernetes-435](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-435/archive/bundle.yaml?channel=stable) |
 | 1.12.x         | [canonical-kubernetes-357](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-357/archive/bundle.yaml?channel=stable) |
@@ -149,110 +246,28 @@ versions of the **CDK** bundle are shown in the table below:
 <div class="p-notification--caution">
   <p markdown="1" class="p-notification__response">
     <span class="p-notification__status">Note:</span>
-Only the latest three versions of CDK are supported at any time.
+Only the latest three versions of Charmed Kubernetes are supported at any time.
   </p>
 </div>
 
-<a id="config" ></a>
-
-### Configure kubectl
-
-You will need **kubectl** to be able to use your Kubernetes cluster. If it is not already
-installed, it is easy to add via a snap package:
-
-```bash
-sudo snap install kubectl --classic
-```
-
-For other platforms and install methods, please see the
-[Kubernetes documentation][kubectl].
-
-The config file for accessing the newly deployed cluster is stored in the cluster itself. You
-should use the following command to retrieve it:
-
-```bash
-juju scp kubernetes-master/0:config ~/.kube/config
-```
-
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Caution:</span>
-If you have multiple clusters you will need to manage the config file rather than just
-replacing it. See the <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/">
-Kubernetes documentation</a> for more information on managing multiple clusters.
-  </p>
-</div>
-
-
-You can verify that kubectl is configured correctly and can see the cluster by running:
-
-```bash
-kubectl cluster-info
-```
-
-You can now continue to operate your cluster. If you are new to CDK or Kubernetes, you
-should check out the [Basic operations documentation][operations], which will explain
-how to get familiar with your cluster. For further customisation options, including cloud
-integration, continue reading below first.
-
-
-### Additional configuration
-
-To allow Kubernetes to access resources and functionality of the underlying
-cloud upon which it is deployed, additional integrator charms are available. When
-installing with **conjure-up**, these charms are automatically added to the
-deployment and configured appropriately.
-
-Adding the integrator charms directly with **Juju** is not recommended - it is more
-reliable (and easier) to include these charms at deployment time, using the "overlay"
-method as [described below](#overlay). The manual deployment steps shown here are
-only for reference to give a better understanding of how these charms work in relation to
-**CDK**.
-
-This table explains which charms are
-used:
-
-| Cloud     | Integrator charm   |  Juju deploy command  | Notes/docs  |
-|------------|----------------------|-------------------------------------------------|-----------------------------------------------------------|
-| AWS        | aws-integrator       | juju deploy cs:~containers/aws-integrator       | [docs][aws-docs]      |
-| Azure      | azure-integrator     | juju deploy cs:~containers/azure-integrator     | [docs](https://jujucharms.com/u/containers/azure-integrator/)     |
-| Google     | gcp-integrator       | juju deploy cs:~containers/gcp-integrator       | [docs][gcp-docs]      |
-| Local      | N/A                  | N/A                                             |                                                           |
-| OpenStack  | openstack-integrator | juju deploy cs:~containers/openstack-integrator | [docs](https://jujucharms.com/u/containers/openstack-integrator/) |
-| Rackspace  | openstack-integrator | juju deploy cs:~containers/openstack-integrator | [docs](https://jujucharms.com/u/containers/openstack-integrator/) |
-| vSphere    | vsphere-integrator   | juju deploy cs:~containers/vsphere-integrator   | [docs](https://jujucharms.com/u/containers/vsphere-integrator/ )  |
-
-The charm should be deployed and relationships established with both the
-`kubernetes-worker` and `kubernetes-master` charms. For example, in the case of
-AWS:
-
-```bash
-juju deploy cs:~containers/aws-integrator
-juju trust aws-integrator
-juju add-relation aws-integrator kubernetes-master
-juju add-relation aws-integrator kubernetes-worker
-```
-
-The `juju trust` command allows the aws-integrator to make use of the
-credentials stored by **Juju**.
-
-This demonstrates how the charm relates to the rest of the **CDK** bundle, but it is
-recommended to use the [overlay](#overlay) method for installing in practice.
 
 ## Customising the bundle install
 
 A number of the scenarios outlined at the start of this document involved
-customising  the **CDK** install. There are two main ways to do this, using
-overlays or editing the bundle file itself.
+customising the **Charmed Kubernetes** install. There are two main ways to
+do this:
+
+ 1.  Using [overlays](#overlay) in conjunction with the published Charmed Kubernetes bundle.
+ 2.  [Editing the bundle file itself](#edit).
 
 Using an overlay means you can easily apply your customisation to different
-versions of the **CDK** bundle, with the possible downside that changes in the
-structure of  new versions of **CDK** may render your overlay obsolete or
-non-functional (depending on what exactly your overlay does).
+versions of the bundle, with the possible downside that changes in the
+structure of new versions of **Charmed Kubernetes** may render your overlay
+obsolete or non-functional (depending on what exactly your overlay does).
 
-Saving a copy of the **CDK** bundle file and editing that means that your
+Saving a copy of the bundle file and editing that means that your
 customisation will always work, but of course, requires that you create a new
-file for each version of **CDK**.
+file for each version of **Charmed Kubernetes**.
 
 Both methods are described below.
 
@@ -262,7 +277,7 @@ Both methods are described below.
 A _bundle overlay_ is a fragment of valid YAML which is dynamically merged on
 top of a bundle before deployment, rather like a patch file. The fragment can
 contain any additional or alternative YAML which is intelligible to **Juju**. For
-example, to replicate the steps used above to deploy and connect the
+example, to replicate the steps to deploy and connect the
 `aws-integrator` charm, the following fragment could be used:
 
 ```yaml
@@ -270,6 +285,7 @@ applications:
   aws-integrator:
     charm: cs:~containers/aws-integrator
     num_units: 1
+    trust: true
 relations:
   - ['aws-integrator', 'kubernetes-master']
   - ['aws-integrator', 'kubernetes-worker']
@@ -281,35 +297,34 @@ You can also [download the fragment here][asset-aws-overlay].
 [Juju documentation][juju-bundle]. In this example it merely adds a new application,
 specifying the charm to use, and further specifies the relationships to add.
 
-To use this overlay with the **CDK** bundle, it is specified during deploy like this:
+To use this overlay with the **Charmed Kubernetes** bundle, it is specified
+during deploy like this:
 
 ```bash
-juju deploy charmed-kubernetes  --overlay ~/path/aws-overlay.yaml
+juju deploy charmed-kubernetes  --overlay ~/path/aws-overlay.yaml --trust
 ```
 
-Substitute in the local path and filename to point to your YAML fragment.
-
-Note that you will still need to run the command to share credentials with this charm:
-
-```bash
-juju trust aws-integrator
-```
-
+Substitute in the local path and filename to point to your YAML fragment. Note
+that this overlay contains charms which require credential access, so you must
+use the `--trust` option to deploy it.
 
 #### Adding or changing constraints
 
-After adding additional components, the most common use of overlays is to change
-constraints (the resources requested for the application). Although these are specified
-already in the **CDK** bundle, they can be overridden by an overlay. It isn't necessary
-to replicate the entirety of an entry, just the parts you wish to change. For example:
+After adding additional components, the most common use of overlays is to
+change constraints (the resources requested for the application). Although
+these are specified already in the **Charmed Kubernetes** bundle, they can be
+overridden by an overlay. It isn't necessary to replicate the entirety of an
+entry, just the parts you wish to change. For example:
 
 ```yaml
 kubernetes-worker:
   constraints: cores=4 mem=8G root-disk=100G
   num_units: 6
 ```
-Changes the machine constraints for Kubernetes workers to add more root disk space,
-and also deploys six units instead of the three specified in the original bundle.
+
+Changes the machine constraints for Kubernetes workers to add more root disk
+space, and also deploys six units instead of the three specified in the
+original bundle.
 
 More information on the constraints you can use is available in the
 [Juju documentation][juju-constraints].
@@ -319,7 +334,7 @@ More information on the constraints you can use is available in the
 Configuration settings are mapped to "options" under the charm entries in the bundle
 YAML. Usually these are only expressed when they differ from the default value in the
 charm. For example, if you look at the fragment for the `kubernetes-worker` in the
-**CDK** bundle:
+**Charmed Kubernetes** bundle:
 
 ```yaml
 kubernetes-worker:
@@ -361,18 +376,20 @@ kubernetes-worker:
     snap_proxy: https://snap-proxy.example.com
 ```
 
+<a id="edit"></a>
 
 ### Editing a bundle
 
-Another way to change or customise an install is to store the YAML bundle file locally and
-edit it with a standard text editor.
+Another way to change or customise an install is to store the YAML bundle file
+locally and edit it with a standard text editor.
 
-The latest version of the **CDK** bundle can always be retrieved by
-[fetching the current stable version from the Juju Charm Store][latest-bundle-file]. For
-other versions, see the [table above](#table).
+The latest version of the **Charmed Kubernetes** bundle can always be retrieved
+by
+[fetching the current stable version from the Juju Charm Store][latest-bundle-file]. For other versions, see the [table above](#table).
 
-Care should be taken when editing the YAML file as the format is very strict. For more
-details on the format used by Juju, see the [Juju bundle documentation][juju-bundle].
+Care should be taken when editing the YAML file as the format is very strict.
+For more details on the format used by Juju, see the
+[Juju bundle documentation][juju-bundle].
 
 #### Retrieving a bundle from a running model
 
@@ -405,6 +422,12 @@ button near the top left of the screen.
 
 For more information on the Juju GUI, see the [Juju documentation][juju-gui].
 
+### Next Steps
+
+Now you have a cluster up and running, check out the
+[Operations guide][operations] for how to use it!
+
+
 <!-- IMAGES -->
 
 [image-gui]: https://assets.ubuntu.com/v1/19f13565-bundle-export.png
@@ -419,7 +442,7 @@ For more information on the Juju GUI, see the [Juju documentation][juju-gui].
 [juju-bundle]: https://docs.jujucharms.com/stable/en/charms-bundles
 [juju-gui]: https://docs.jujucharms.com/stable/en/controllers-gui
 [juju-constraints]: https://docs.jujucharms.com/stable/en/reference-constraints
-[asset-aws-overlay]: https://raw.githubusercontent.com/juju-solutions/kubernetes-docs/master/assets/aws-overlay.yaml
+[asset-aws-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/aws-overlay.yaml
 [latest-bundle-file]: https://api.jujucharms.com/charmstore/v5/charmed-kubernetes/archive/bundle.yaml?channel=stable
 [charm-kworker]: https://jujucharms.com/u/containers/kubernetes-worker/#configuration
 [snaps]: https://docs.snapcraft.io/snap-documentation
@@ -427,3 +450,4 @@ For more information on the Juju GUI, see the [Juju documentation][juju-gui].
 [aws-docs]: /kubernetes/docs/aws-integration
 [gcp-docs]: /kubernetes/docs/gcp-integration
 [operations]: /kubernetes/docs/operations
+[localhost]: /kubernetes/docs/install-local
