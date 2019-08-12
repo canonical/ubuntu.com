@@ -1,6 +1,6 @@
 {% extends_with_args "engage/base_engage.html" with title="A guide to developing Android apps on Ubuntu" meta_image="dab160e2-anroid_on_ubuntu-social.png" meta_description="Android is the most popular mobile operating system and is continuing to grow its market share.  IDC expects that Android will have 85.5% of the market by 2022, demonstrating that app development on Android will continue to be an in-demand skill." %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1xyNrWYsYcvux_gYtoWw39XD9cP4QmiAYJnDlLuV8CvE{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/10w-f6FEEYGPGcrFFPiZmWioZnfC3lfvfjqx_tMsi1nE/edit{% endblock meta_copydoc %}
 
 {% block content %}
 {% include "engage/shared/_header.html" with title="A guide to developing Android apps on Ubuntu" class="p-strip--dark p-takeover--android-on-ubuntu" image="30f461a5-android-on-ubuntu.svg" url="#register-section" cta="Download the whitepaper" %}
@@ -32,12 +32,17 @@
         </ul>
       </div>
       <div class="col-5" id="register-section">
-        {% include "engage/shared/_en_engage_form.html" with id="3340" returnURL="https://pages.ubuntu.com/Whitepaper_AndroidonUbuntu-TY.html" %}
+        {% include "engage/shared/_en_engage_form.html" with id="3440" returnURL="https://pages.ubuntu.com/Whitepaper_AndroidonUbuntu-TY.html" %}
       </div>
     </div>
     <style>
       .p-takeover--android-on-ubuntu {
         background-color: #2C001E;
+      }
+
+      .p-takeover--android-on-ubuntu img {
+        max-width: 380px !important;
+        width: 380px;
       }
 
       .p-takeover--android-on-ubuntu .p-takeover__title {
@@ -47,8 +52,8 @@
       @media (min-width: 768px) {
         .p-takeover--android-on-ubuntu {
           background-color: #2C001E;
-          background-image: linear-gradient(199deg, #E95420 0%, #5E2750 25%, #2C001E 50%);
-          background-image: url('{{ ASSET_SERVER_URL }}1487c2c6-suru-background.svg');
+          background-image: linear-gradient(199deg, #E95420 0%, #5E2750 25%, #2C001E 50%),
+          url('{{ ASSET_SERVER_URL }}1487c2c6-suru-background.svg');
           background-position: right;
           background-repeat: no-repeat;
           background-size: contain;
