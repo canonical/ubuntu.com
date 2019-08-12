@@ -25,21 +25,22 @@
   </div>
 
   <style>
-      .p-takeover--appelix {
-        background-color: #9AAF55;
-        background-image: linear-gradient(-46deg, #82A08D 0%, #9AAF55 100%);
+    .p-takeover--appelix {
+      background-color: #9AAF55;
+      background-image: linear-gradient(-46deg, #82A08D 0%, #9AAF55 100%);
+    }
+    @media (min-width: 874px) {
+      .p-takeover--appelix-suru {
+        background-blend-mode: multiply;
+        background-image: url("{{ ASSET_SERVER_URL }}2eb4cbf6-left.svg"),
+        url("{{ ASSET_SERVER_URL }}53ca89d2-right+1.svg"),
+        url("{{ ASSET_SERVER_URL }}35352e1c-right+2.svg"),
+        linear-gradient(74deg, #82A08D 0%, #9AAF55 92%);
+        background-position: bottom left, bottom right, top right;
+        background-repeat: no-repeat;
       }
-      @media (min-width: 874px) {
-        .p-takeover--appelix-suru {
-          background-blend-mode: multiply;
-          background-image: url("{{ ASSET_SERVER_URL }}2eb4cbf6-left.svg"),
-          url("{{ ASSET_SERVER_URL }}53ca89d2-right+1.svg"),
-          url("{{ ASSET_SERVER_URL }}35352e1c-right+2.svg"),
-          linear-gradient(74deg, #82A08D 0%, #9AAF55 92%);
-          background-position: bottom left, bottom right, top right;
-          background-repeat: no-repeat;
-        }
-        </style>
+    }
+  </style>
 </section>
 
 <style>
@@ -53,7 +54,7 @@
 </style>
 
 <section class="p-strip" id="register-section">
-  <div class="row">
+  <div class="u-fixed-width">
     <div class="jsBrightTALKEmbedWrapper" style="width:900px; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 338628, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>
   </div>
 </section>

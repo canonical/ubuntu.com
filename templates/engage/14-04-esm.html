@@ -15,7 +15,7 @@
         </a>
       </p>
     </div>
-    <div class="col-4 u-hide--small prefix-1">
+    <div class="col-3 col-start-large-9 u-hide--small">
       <img src="{{ ASSET_SERVER_URL }}2217d1c8-Security.svg" alt="Compliance Webinar" class="p-compliance-icon">
     </div>
   </div>
@@ -66,7 +66,7 @@
 </section>
 
 <section class="p-strip is-shallow" id="register-section">
-  <div class="row">
+  <div class="u-fixed-width">
     <div class="jsBrightTALKEmbedWrapper col-12" style="width:100%; height:100%; position:relative">
       <script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 349275, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script>
     </div>
@@ -74,58 +74,56 @@
 </section>
 
 <div class="p-strip p-contextual-footer">
-  <div class="row">
-    <div class="p-divider">
-      <div class="col-4 p-divider__block">
-        <h3 class="p-heading--four">Further reading</h3>
-        <ul class="p-list">
-          <li class="p-list__item"><a href="/blog/ubuntu-14-04-trusty-tahr/">Ubuntu 14.04 Trusty Tahr ESM&nbsp;&rsaquo;</a></li>
-          <li class="p-list__item"><a href="/blog/ubuntu-security-compliance/">Ubuntu, security & compliance&nbsp;&rsaquo;</a></li>
-          <li class="p-list__item"><a href="/blog/legacy-applications-secure-extended-security-maintenance">Keep legacy applications secure with Extended Security Maintenance&nbsp;&rsaquo;</a></li>
-          <li class="p-list__item"><a href="/blog/extended-security-maintenance-ubuntu-14-04-trusty-tahr">Announcing Extended Security Maintenance for Ubuntu 14.04 LTS – “Trusty Tahr”&nbsp;&rsaquo;</a></li>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">Further reading</h3>
+      <ul class="p-list">
+        <li class="p-list__item"><a href="/blog/ubuntu-14-04-trusty-tahr/">Ubuntu 14.04 Trusty Tahr ESM&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="/blog/ubuntu-security-compliance/">Ubuntu, security & compliance&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="/blog/legacy-applications-secure-extended-security-maintenance">Keep legacy applications secure with Extended Security Maintenance&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="/blog/extended-security-maintenance-ubuntu-14-04-trusty-tahr">Announcing Extended Security Maintenance for Ubuntu 14.04 LTS – “Trusty Tahr”&nbsp;&rsaquo;</a></li>
+      </ul>
+    </div>
+    <div class="col-4 p-divider__block">
+      <form class="mktoForm mktoNoJS" action="https://pages.canonical.com/index.php/leadCapture/save" method="post">
+        <h3 class="p-heading--four">Sign up for our monthly Cloud&nbsp;Newsletter</h3>
+        <ul class="p-list mktoFormRow u-clearfix">
+          <li class="mktoFormCol p-list__item">
+            <label class="u-off-screen mktoLabel" for="Email">Your email</label>
+            <input type="email" placeholder="Your email" class="mktoField mktoTextField" name="Email" id="Email" required="">
+          </li>
+          <li class="mktField mktLblRight p-list__item">
+            <span class="mktInput mktLblRight">
+              <input class="mktFormCheckbox" name="canonicalUpdatesOptIn" id="canonicalUpdatesOptIn" value="yes" type="checkbox">
+              <label class="contextual-footer__text--label" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>&nbsp;<span class="mktFormMsg"></span>
+            </span>
+          </li>
+          <li class="p-list__item u-no-margin--top">
+            <p>In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/newsletter">Canonical’s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</p>
+          </li>
+          <li class="p-list__item">
+            <span class="u-off-screen"><input type="text" name="_marketo_comments" value=""></span>
+            <span class="mktoButtonWrap"><button type="submit" class="mktoButton p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Cloud newsletter', 'eventLabel' : 'Sign-up for news updates', 'eventValue' : undefined });">Subscribe now</button></span>
+            <input type="hidden" aria-label="" name="Consent_to_Processing__c" value="yes">
+            <input value="1959" aria-label="" class="mktoField mktoFieldDescriptor" name="lpId" type="hidden">
+            <input value="30" aria-label="" class="mktoField mktoFieldDescriptor" name="subId" type="hidden">
+            <input type="hidden" aria-label="" name="lpurl" value="https://pages.canonical.com/Insights-Subscription_Insights-Subscription-test.html?cr={creative}&amp;kw={keyword}">
+            <input value="1212" aria-label="" class="mktoField mktoFieldDescriptor" name="formid" type="hidden">
+            <input type="hidden" aria-label="" name="ret" value="http://ubuntu.com/openstack/newsletter-thank-you">
+            <input value="066-EOV-335" aria-label="" class="mktoField mktoFieldDescriptor" name="munchkinId" type="hidden">
+            <input type="hidden" aria-label="" name="kw" value="">
+            <input type="hidden" aria-label="" name="cr" value="">
+            <input type="hidden" aria-label="" name="searchstr" value="">
+            <input type="hidden" aria-label="" name="_mkt_disp" value="return">
+            <input type="hidden" aria-label="" name="_mkt_trk" value="">
+          </li>
         </ul>
-      </div>
-      <div class="col-4 p-divider__block">
-        <form class="mktoForm mktoNoJS" action="https://pages.canonical.com/index.php/leadCapture/save" method="post">
-          <h3 class="p-heading--four">Sign up for our monthly Cloud&nbsp;Newsletter</h3>
-          <ul class="p-list mktoFormRow u-clearfix">
-            <li class="mktoFormCol p-list__item">
-              <label class="u-off-screen mktoLabel" for="Email">Your email</label>
-              <input type="email" placeholder="Your email" class="mktoField mktoTextField" name="Email" id="Email" required="">
-            </li>
-            <li class="mktField mktLblRight p-list__item">
-              <span class="mktInput mktLblRight">
-                <input class="mktFormCheckbox" name="canonicalUpdatesOptIn" id="canonicalUpdatesOptIn" value="yes" type="checkbox">
-                <label class="contextual-footer__text--label" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>&nbsp;<span class="mktFormMsg"></span>
-              </span>
-            </li>
-            <li class="p-list__item u-no-margin--top">
-              <p>In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/newsletter">Canonical’s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</p>
-            </li>
-            <li class="p-list__item">
-              <span class="u-off-screen"><input type="text" name="_marketo_comments" value=""></span>
-              <span class="mktoButtonWrap"><button type="submit" class="mktoButton p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Cloud newsletter', 'eventLabel' : 'Sign-up for news updates', 'eventValue' : undefined });">Subscribe now</button></span>
-              <input type="hidden" aria-label="" name="Consent_to_Processing__c" value="yes">
-              <input value="1959" aria-label="" class="mktoField mktoFieldDescriptor" name="lpId" type="hidden">
-              <input value="30" aria-label="" class="mktoField mktoFieldDescriptor" name="subId" type="hidden">
-              <input type="hidden" aria-label="" name="lpurl" value="https://pages.canonical.com/Insights-Subscription_Insights-Subscription-test.html?cr={creative}&amp;kw={keyword}">
-              <input value="1212" aria-label="" class="mktoField mktoFieldDescriptor" name="formid" type="hidden">
-              <input type="hidden" aria-label="" name="ret" value="http://ubuntu.com/openstack/newsletter-thank-you">
-              <input value="066-EOV-335" aria-label="" class="mktoField mktoFieldDescriptor" name="munchkinId" type="hidden">
-              <input type="hidden" aria-label="" name="kw" value="">
-              <input type="hidden" aria-label="" name="cr" value="">
-              <input type="hidden" aria-label="" name="searchstr" value="">
-              <input type="hidden" aria-label="" name="_mkt_disp" value="return">
-              <input type="hidden" aria-label="" name="_mkt_trk" value="">
-            </li>
-          </ul>
-        </form>
-      </div>
-      <div class="col-4 p-divider__block">
-        <h3 class="p-heading--four">Canonical is offering Extended Security Maintenance</h3>
-        <p>Canonical is offering Extended Security Maintenance (ESM) to provide ongoing security fixes and essential packages for Ubuntu LTS releases.</p>
-        <p><a href="/esm" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Support - ESM', 'eventLabel' : 'Find out more about ESM', 'eventValue' : undefined });">Find out more about ESM</a></p>
-      </div>
+      </form>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">Canonical is offering Extended Security Maintenance</h3>
+      <p>Canonical is offering Extended Security Maintenance (ESM) to provide ongoing security fixes and essential packages for Ubuntu LTS releases.</p>
+      <p><a href="/esm" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Support - ESM', 'eventLabel' : 'Find out more about ESM', 'eventValue' : undefined });">Find out more about ESM</a></p>
     </div>
   </div>
 </div>
