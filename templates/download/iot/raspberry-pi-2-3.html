@@ -7,17 +7,15 @@
 <section class="p-strip is-bordered">
   <div class="row">
     <div class="col-8">
-      <div>
-        <h1>Install Ubuntu Server on a Raspberry Pi 2 or 3</h1>
-      </div>
+      <h1>Install Ubuntu Server on a Raspberry Pi 2 or 3</h1>
     </div>
-    <div class="col-4 u-vertically-center">
+    <div class="col-4">
       <img src="{{ ASSET_SERVER_URL }}31bd2627-logo-raspberry-pi.svg" width="100" alt="Raspberry Pi">
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 p-card">
-      <div class="u-equal-height p-divider">
+  <div class="u-fixed-width">
+    <div class="p-card">
+      <div class="u-equal-height p-divider row u-no-padding--left u-no-padding--right">
         <div class="col-6 p-divider__block">
           <h2>Install Ubuntu Server</h2>
           <p>We will walk you through the steps of flashing Ubuntu Server on a Raspberry Pi 2 or 3. At the end of this process, you will have a fully fledged development or production environment..</p>
@@ -39,50 +37,48 @@
 </section>
 
 <section class="p-strip--light is-deep is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h2>Installation instructions</h2>
-      <ol class="p-stepped-list--detailed">
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
+  <div class="u-fixed-width">
+    <h2>Installation instructions</h2>
+    <ol class="p-stepped-list--detailed">
+      <li class="p-list-step__item">
+        <h3 class="p-list-step__title">
 
-            Download Ubuntu Server
-          </h3>
-          <div class="p-list-step__content">
-            <p>Get the correct Ubuntu Server image for your board:</p>
-            <ul class="u-no-margin--left" style="list-style-type: disc;">
-              <li><a class="p-link--external" href="http://cdimage.ubuntu.com/releases/bionic/release/ubuntu-{{ releases.lts.full_version }}-preinstalled-server-armhf+raspi2.img.xz">Ubuntu Server image for Raspberry Pi 2.</a>
-              </li>
-              <li><a class="p-link--external" href="http://cdimage.ubuntu.com/releases/bionic/release/ubuntu-{{ releases.lts.full_version }}-preinstalled-server-arm64+raspi3.img.xz">Ubuntu Server image for Raspberry Pi 3</a></li>
-              <li>You can verify the integrity of the files using the <a class="p-link--external" href="http://cdimage.ubuntu.com/releases/bionic/release/SHA256SUMS">SHA256SUM</a> and <a class="p-link--external" href="http://cdimage.ubuntu.com/releases/bionic/release/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.
-              </li>
-            </ul>
-          </div>
-        </li>
-        {% include "./_flash-image.html" with card="microSD card" %}
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
+          Download Ubuntu Server
+        </h3>
+        <div class="p-list-step__content">
+          <p>Get the correct Ubuntu Server image for your board:</p>
+          <ul class="u-no-margin--left" style="list-style-type: disc;">
+            <li><a class="p-link--external" href="http://cdimage.ubuntu.com/releases/bionic/release/ubuntu-{{ releases.lts.full_version }}-preinstalled-server-armhf+raspi2.img.xz">Ubuntu Server image for Raspberry Pi 2.</a>
+            </li>
+            <li><a class="p-link--external" href="http://cdimage.ubuntu.com/releases/bionic/release/ubuntu-{{ releases.lts.full_version }}-preinstalled-server-arm64+raspi3.img.xz">Ubuntu Server image for Raspberry Pi 3</a></li>
+            <li>You can verify the integrity of the files using the <a class="p-link--external" href="http://cdimage.ubuntu.com/releases/bionic/release/SHA256SUMS">SHA256SUM</a> and <a class="p-link--external" href="http://cdimage.ubuntu.com/releases/bionic/release/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.
+            </li>
+          </ul>
+        </div>
+      </li>
+      {% include "./_flash-image.html" with card="microSD card" %}
+      <li class="p-list-step__item">
+        <h3 class="p-list-step__title">
 
-            Install Ubuntu Server
-          </h3>
-          <div class="p-list-step__content">
-            <ol class="u-no-margin--left">
-              <li>Attach the monitor and keyboard to the board. You can alternatively use a serial cable.</li>
-              <li>Insert the microSD card and plug the power adaptor into the board.</li>
-            </ol>
-          </div>
-        </li>
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
+          Install Ubuntu Server
+        </h3>
+        <div class="p-list-step__content">
+          <ol class="u-no-margin--left">
+            <li>Attach the monitor and keyboard to the board. You can alternatively use a serial cable.</li>
+            <li>Insert the microSD card and plug the power adaptor into the board.</li>
+          </ol>
+        </div>
+      </li>
+      <li class="p-list-step__item">
+        <h3 class="p-list-step__title">
 
-            Login
-          </h3>
-          <div class="p-list-step__content">
-            <p>When prompted to log in, use "ubuntu" for the username and the password. You will be asked to change this default password after you log in.</p>
-          </div>
-        </li>
-      </ol>
-    </div>
+          Login
+        </h3>
+        <div class="p-list-step__content">
+          <p>When prompted to log in, use "ubuntu" for the username and the password. You will be asked to change this default password after you log in.</p>
+        </div>
+      </li>
+    </ol>
   </div>
 </section>
 
