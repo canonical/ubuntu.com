@@ -7,6 +7,7 @@
   @include ubuntu-p-strip-suru-image;
   @include ubuntu-p-strip-suru-half-and-half;
   @include ubuntu-p-strip-suru-background;
+  @include ubuntu-p-strip-suru-half-top;
 }
 
 @mixin ubuntu-p-strip-suru {
@@ -225,6 +226,62 @@
       background-size: 100% 100%;
       color: $color-x-light;
       padding-bottom: 3rem;
+      padding-top: 3rem;
+    }
+  }
+}
+
+@mixin ubuntu-p-strip-suru-half-top {
+  .p-strip-suru-half-top {
+    @extend %vf-strip;
+    background-blend-mode: multiply, multiply, normal, normal;
+    background-color: $color-light;
+    background-image:
+      linear-gradient(
+        to bottom right,
+        rgba(119, 41, 83, 0.16) 0%,
+        rgba(119, 41, 83, 0.16) 49.5%,
+        rgba(119, 41, 83, 0) 50%,
+        rgba(119, 41, 83, 0) 100%
+        ),
+      linear-gradient(
+        to bottom left,
+        rgba(228, 228, 228, 0.5) 0,
+        rgba(228, 228, 228, 0.5) 49.5%,
+        transparent 50%
+        ),
+      linear-gradient(
+        to top left,
+        $color-light 0%,
+        $color-light 49.5%,
+        transparent 50%
+      ),
+      linear-gradient(
+        251deg,
+        #E95422 0%,
+        #772953 49.5%,
+        #2C001E 100%
+        );
+    background-position: top left, top right, center 67%, left top;
+    background-repeat: no-repeat;
+    background-size: 63% 97%, 100% 66%, 100% 30%, 100% 76.5%;
+    color: $color-light;
+    padding-bottom: 10rem;
+    padding-top: 6rem;
+
+    @media only screen and (max-width: $breakpoint-small) {
+      background-blend-mode: normal;
+      background-image:
+        linear-gradient(
+          251deg,
+          #E95422 0%,
+          #772953 49.5%,
+          #2C001E 100%
+          );
+      background-position: left top;
+      background-repeat: no-repeat;
+      background-size: 100% 76.5%;
+      padding-bottom: 5rem;
       padding-top: 3rem;
     }
   }
