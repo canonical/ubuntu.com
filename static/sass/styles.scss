@@ -268,3 +268,19 @@ summary {
     }
   }
 }
+
+// Fix trailing quote spacing on pull-quote pattern
+// Being fixed in Vanilla: https://github.com/canonical-web-and-design/vanilla-framework/issues/2426
+.p-pull-quote {
+  .p-pull-quote__quote {
+    position: relative;
+
+    &:first-of-type::before {
+      left: -1.25rem;
+    }
+
+    &:last-of-type::after {
+      bottom: 0.5rem;
+    }
+  }
+}
