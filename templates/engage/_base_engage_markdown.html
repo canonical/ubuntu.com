@@ -1,0 +1,123 @@
+{% extends "templates/base.html" %}
+
+{% load versioned_static  %}
+
+{% block title %}{{ title }} | Ubuntu and Canonical Legal{% endblock title %}
+
+{% block meta_description %}{{ description }}{% endblock meta_description %}
+
+{% block meta_copydoc %}{{ copydoc }}{% endblock meta_copydoc %}
+
+{% block outer_content %}
+{% block content %}
+<section {% if header_lang %}lang="{{ header_lang }}"{% endif %} class="{% if header_class %}p-strip {{ header_class }}{% else %}p-strip--light{% endif %}">
+  <div class="row u-equal-height">
+    <div class="{% if header_image %}col-7 {% else %}col-8{% endif %} u-vertically-center">
+      <div>
+        <h1 {% if header_subtitle is None and header_date is None %}class="u-no-margin--bottom"{% endif %}>
+          {{ header_title }}
+        </h1>
+        {% if header_subtitle %}<h4>
+          {{ header_subtitle }}
+        </h4>{% endif %}
+        {% if header_date %}<p>
+          {{ header_date }}
+        </p>{% endif %}
+        {% if header_cta %}<br class="u-hide--medium u-hide--large" />
+        <p class="u-hide--medium u-hide--large">
+          <a href="{{ header_url }}" class="p-button--neutral">
+            {{ header_cta }}
+          </a>
+        </p>{% endif %}
+      </div>
+    </div>
+    {% if header_image %}<div class="col-5 u-hide--small u-align--center u-vertically-center">
+      <img src="{% if header_image != "http" %}{{ ASSET_SERVER_URL }}{% endif %}{{ header_image }}" width="413" style="max-height: 410px; max-width: 250px;" alt="image for {{ header_title }}" >
+    </div>{% endif %}
+  </div>
+</section>
+
+<section class="p-strip is-shallow is-bordered">
+  <div class="row">
+    <div class="col-7">
+      {{ html_content | safe }}
+    </div>
+    <div class="col-5" id="register-section">
+      <!-- MARKETO FORM -->
+      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" class="marketo-form" id="mktoForm_{{ form_id }}">
+        <fieldset class="u-no-padding--top" style="border-bottom-width: 1px;">
+          <ul class="p-list">
+            <li class="mktFormReq mktField p-list__item">
+              <label for="FirstName" class="mktoLabel">First Name:</label>
+              <input required id="FirstName" name="FirstName" maxlength="255" class="mktoField   mktoRequired" type="text"
+                aria-label="First Name">
+            </li>
+            <li class="mktFormReq mktField">
+              <label for="LastName" class="mktoLabel ">Last Name:</label>
+              <input required id="LastName" name="LastName" maxlength="255" class="mktoField   mktoRequired" type="text"
+                aria-label="Last Name">
+            </li>
+            <li class="mktFormReq mktField">
+              <label for="Email" class="mktoLabel ">Work email:</label>
+              <input required id="Email" name="Email" maxlength="255" class="mktoField mktoEmailField  mktoRequired" type="email"
+                aria-label="Email">
+            </li>
+            <li class="mktFormReq mktField">
+              <label for="Company" class="mktoLabel ">Company Name:</label>
+              <input required id="Company" name="Company" maxlength="255" class="mktoField   mktoRequired" type="text"
+                aria-label="Company Name">
+            </li>
+            <li class="mktFormReq mktField">
+              <label for="Title" class="mktoLabel ">Job Title:</label>
+              <input required id="Title" name="Title" maxlength="255" class="mktoField   mktoRequired" type="text" aria-label="Job Title">
+            </li>
+            <li class="mktFormReq mktField">
+              <label for="Phone" class="mktoLabel ">Phone Number:</label>
+              <input required id="Phone" name="Phone" maxlength="255" class="mktoField mktoTelField  mktoRequired" type="tel"
+                aria-label="Phone Number">
+            </li>
+            <li class="mktField">
+              <input name="utm_campaign" aria-label="utm_campaign" class="mktoField  mktoFormCol" value="{{utm_campaign}}"
+                type="hidden">
+            </li>
+            <li class="mktField">
+              <input name="utm_medium" aria-label="utm_medium" class="mktoField  mktoFormCol" value="{{utm_medium}}" type="hidden">
+            </li>
+            <li class="mktField">
+              <input name="utm_source" aria-label="utm_source" class="mktoField  mktoFormCol" value="{{utm_source}}" type="hidden">
+            </li>
+            <li class="mktField">
+              <input name="canonicalUpdatesOptIn" aria-label="canonicalUpdatesOptIn" id="canonicalUpdatesOptIn" value="yes"
+                class="mktoField" type="checkbox"><label for="canonicalUpdatesOptIn" class="mktoLabel ">I agree to receive
+                information about Canonical’s products and services.</label>
+            </li>
+            <li class="mktField">
+              <p>In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical&rsquo;s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
+                <input name="RichText" aria-label="RichText" type="hidden">
+              </p>
+            </li>
+            <li class="mktField">
+              <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
+            </li>
+            <li class="mktField">
+              <input name="Consent_to_Processing__c" aria-label="Consent" class="mktoField  mktoFormCol" value="Yes" type="hidden">
+            </li>
+            <li class="mktField">
+              <button type="submit" class="mktoButton u-no-margin--bottom">{% if form_cta %}{{ form_cta }}{% else %}Download the whitepaper{% endif %}</button>
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="munchkinId" class="mktoField" value="066-EOV-335" />
+              <input name="formid" aria-label="formid" class="mktoField" value="{{ form_id }}" type="hidden">
+              <input name="formVid" aria-label="formid" class="mktoField" value="{{ form_id }}" type="hidden">
+              <input type="hidden" name="returnURL" aria-label="returnURL" value="{{ form_return_url }}" />
+              <input type="hidden" name="retURL" aria-label="retURL" value="{{ form_return_url }}" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="return_url" value="{{ form_return_url }}" />
+            </li>
+          </ul>
+        </fieldset>
+      </form>
+      <!-- /MARKETO FORM -->
+
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% endblock %}
