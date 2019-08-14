@@ -39,24 +39,5 @@
         </p>
       </div>
     {% endif %}
-    
-    {% if ctaBtn %}  
-    <p class="u-hide--medium u-hide--large">
-        <a
-          href="{{ ctaBtnURL }}"
-          class="{% if ctaBtnClass %}{{ ctaBtnClass }}{% else %}p-button--neutral{% endif %}"
-          ><span>{{ ctaBtn }}</span></a
-        >
-      </p>
-      {% endif %}
-      {% if ctaLink %}  
-      <p class="u-hide--medium u-hide--large">
-        <a
-          href="{{ ctaLinkURL }}"
-          class="{% if ctaLinkClass %}{{ ctaLinkClass }}{% else %}p-link--inverted{% endif %}"
-          >{{ ctaLink }}</a
-        >
-      </p>
-      {% endif %}
   </div>
 </section>
