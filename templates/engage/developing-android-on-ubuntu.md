@@ -8,7 +8,7 @@ context:
      header_title: A guide to developing Android apps on Ubuntu
      header_subtitle:
      header_image: 30f461a5-android-on-ubuntu.svg
-     header_url: #register-section
+     header_url: '#register-section'
      header_cta: Download the whitepaper
      header_class: p-strip--dark p-takeover--android-on-ubuntu
      header_lang: en
