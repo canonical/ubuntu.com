@@ -10,7 +10,7 @@
 {% block content %}
 
 <section id="ua-infra" class="p-strip is-bordered">
-  <div class="row">
+  <div class="u-fixed-width">
     <h1>Open Infrastructure support & security</h1>
     <p>Ubuntu Advantage for Infrastructure covers all aspects of open infrastructure - Ubuntu, KVM, OpenStack, Kubernetes, Docker, storage, networking, Ceph, SWIFT, SDN, logging, alerting and monitoring.</p>
     <ul class="p-inline-list">
@@ -25,62 +25,53 @@
 </section>
 
 <section class="p-strip--light is-shallow" id="ua-infra">
-  <div class="row">
+  <div class="u-fixed-width">
     <h3>Security maintenance and support</h3>
   </div>
   {% with extra=" Please refer to the <a href='/uasd'>service description</a> for full details." %}{% include "shared/pricing/_ua-for-infrastructure.html" %}{% endwith %}
-  <div class="row">
-    <div class="col-12">
-      <p>
-        See our consulting, architecture, deployment and training packages for <a href="/pricing/consulting#openstack">OpenStack</a>, <a href="/pricing/consulting#kubernetes">Kubernetes</a> and <a href="/pricing/consulting#kubeflow">Kubeflow</a>.
-      </p>
-      <p>
-        <a href="/support/contact-us" class="p-button js-invoke-modal">Solve compliance and security for your Ubuntu estate</a>
-      </p>
-    </div>
+  <div class="u-fixed-width">
+    <p>
+      See our consulting, architecture, deployment and training packages for <a href="/pricing/consulting#openstack">OpenStack</a>, <a href="/pricing/consulting#kubernetes">Kubernetes</a> and <a href="/pricing/consulting#kubeflow">Kubeflow</a>.
+    </p>
+    <p>
+      <a href="/support/contact-us" class="p-button js-invoke-modal">Solve compliance and security for your Ubuntu estate</a>
+    </p>
   </div>
 </section>
 
 <section class="p-strip is-shallow" id="storage">
-  <div class="row">
+  <div class="u-fixed-width">
     <h3>Software-defined storage - Ceph and Swift</h3>
     <p>Only applies if attaching more than 48TB of raw Ceph/SWIFT disks per node in the cluster. Priced by the amount exceeding the total of 48TB per node included in UA.</p>
   </div>
   {% include "shared/pricing/_ua-advanced-storage.html" %}
-  <div class="row">
-    <div class="col-12">
-      <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
-    </div>
+  <div class="u-fixed-width">
+    <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
   </div>
 
 </section>
 
 <section class="p-strip--light is-shallow" id="managed">
-  <div class="row">
+  <div class="u-fixed-width">
     <h3>Fully managed OpenStack, Kubernetes and LMA</h3>
     <p>We manage infrastructure at both the host and the guest level. Infrastructure includes Ceph and SWIFT storage, Kubernetes, OpenStack and the recommended logging, monitoring and alerting stack.</p>
   </div>
   {% include "shared/pricing/_openstack-kubernetes-lma.html" %}
-  <div class="row">
-    <div class="col-12">
-      <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
-    </div>
+  <div class="u-fixed-width">
+    <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
   </div>
-
 </section>
 
 <section class="p-strip is-shallow">
-  <div class="row">
+  <div class="u-fixed-width">
     <h3 id="maas">MAAS</h3>
     <p>Support and commercial capabilities for MAAS are included with Ubuntu Advantage for Infrastructure. These additional charges apply for machines managed by MAAS and <em>not</em> covered by a UA Infrastructure contract.</p>
   </div>
   {% include "shared/pricing/_maas-pricing.html" %}
-  <div class="row">
-    <div class="col-12">
-      <p>
-        <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
-      </p>
-    </div>
+  <div class="u-fixed-width">
+    <p>
+      <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+    </p>
   </div>
 </section>
 
