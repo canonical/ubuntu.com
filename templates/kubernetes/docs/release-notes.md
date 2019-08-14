@@ -16,7 +16,7 @@ toc: False
 
 # 1.15
 
-### June 26, 2019 -  [charmed-kubernetes-139](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-139/archive/bundle.yaml)
+### June 28, 2019 -  [charmed-kubernetes-142](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-142/archive/bundle.yaml)
 
 ## What's new
 
@@ -24,7 +24,7 @@ toc: False
 
 Although Docker is still supported, [containerd](https://containerd.io/) is now 
 the default container runtime in Charmed Kubernetes. Containerd brings significant
-[peformance improvements](https://kubernetes.io/blog/kubernetes-containerd-integration-goes-ga/)
+[peformance improvements](https://kubernetes.io/blog/2018/05/24/kubernetes-containerd-integration-goes-ga/)
 and prepares the way for Charmed Kubernetes integration with
 [Kata](https://katacontainers.io/) in the future.
 
