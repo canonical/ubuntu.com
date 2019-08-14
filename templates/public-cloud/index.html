@@ -26,11 +26,9 @@
 </section>
 
 <section class="p-strip is-deep is-bordered">
-  <div class="row">
-    <div class="col-12">
-      {% include "shared/_partner-logos.html" with title="A selection of our certified public cloud partners" json_feed_url="https://partners.ubuntu.com/partners.json?programme__name=Certified%20Public%20Cloud&featured=true" feed_item_limit=10 %}
-      <p class="u-align--center"><a class="p-link--external" href="https://partners.ubuntu.com/find-a-partner?programme=certified-public-cloud ">View all certified public cloud partners</a></p>
-    </div>
+  <div class="u-fixed-width">
+    {% include "shared/_partner-logos.html" with title="A selection of our certified public cloud partners" json_feed_url="https://partners.ubuntu.com/partners.json?programme__name=Certified%20Public%20Cloud&featured=true" feed_item_limit=10 %}
+    <p class="u-align--center"><a class="p-link--external" href="https://partners.ubuntu.com/find-a-partner?programme=certified-public-cloud ">View all certified public cloud partners</a></p>
   </div>
 </section>
 
@@ -40,10 +38,10 @@
       <h2>Why use Ubuntu Server in the cloud?</h2>
       <p>
         <ul class="p-list">
-            <li class="p-list__item is-ticked">Proven for enterprise-scale workloads on all leading public clouds</li>
-            <li class="p-list__item is-ticked">Free from licence fees, regardless of how many images you run</li>
-            <li class="p-list__item is-ticked">Enterprise-grade support and management tools available direct from Canonical</li>
-            <li class="p-list__item is-ticked">Maintenance and security updates guaranteed for five years with Ubuntu LTS</li>
+          <li class="p-list__item is-ticked">Proven for enterprise-scale workloads on all leading public clouds</li>
+          <li class="p-list__item is-ticked">Free from licence fees, regardless of how many images you run</li>
+          <li class="p-list__item is-ticked">Enterprise-grade support and management tools available direct from Canonical</li>
+          <li class="p-list__item is-ticked">Maintenance and security updates guaranteed for five years with Ubuntu LTS</li>
         </ul>
       </p>
     </div>
@@ -81,8 +79,7 @@
 </section>
 
 <section class="p-strip is-deep is-bordered">
-  <div class="row">
-    <div class="u-equal-height u-vertically-center">
+  <div class="row u-equal-height u-vertically-center">
     <div class="col-5">
       <h2>Developers&rsquo; favourite</h2>
       <p>Ubuntu is the most popular Linux distribution for development and deployment. If your developers already use Ubuntu, moving to the cloud is even easier. </p>
@@ -107,7 +104,7 @@
 </section>
 
 <section class="p-strip">
-  <div class="row">
+  <div class="u-fixed-width">
     <p id="fn1" class="note">
       <a href="#r1">*</a> <a href="http://www.zdnet.com/article/ubuntu-linux-continues-to-rule-the-cloud/" class="p-link--external">zdnet.com</a>, 27 August 2015
     </p>
