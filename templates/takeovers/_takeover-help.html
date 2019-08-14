@@ -6,17 +6,17 @@
 {% block title %}Takeover help{% endblock %}
 {% block outer_content %}
 <section class="p-strip--light">
-  <div class="row">
+  <div class="u-fixed-width">
     <h1 class="u-no-margin--bottom">Takeover include help</h1>
   </div>
 </section>
 
 <section class="p-strip">
-  <div class="row">
+  <div class="u-fixed-width">
     <p>This include has several options with only three of them being mandatory to use. Default values are used for some of the classes if the option is not used.</p>
   </div>
-  <div class="row">
-    <div class="col-12" style="overflow-x: auto;">
+  <div class="u-fixed-width">
+    <div style="overflow-x: auto;">
       <table class="p-table" style="width: auto;">
         <thead>
           <tr>
@@ -90,7 +90,7 @@
       </table>
     </div>
   </div>
-  <div class="row">
+  <div class="u-fixed-width">
     <p>
       Custom styling classes can be defined as indicated below, including behavior for small screens:
     </p>
@@ -121,7 +121,7 @@
 </section>
 <hr />
 <section class="p-strip">
-  <div class="row">
+  <div class="u-fixed-width">
     <h3>Everything</h3>
     <h4>Include tag</h4>
     <pre><code>&#123;% include "takeovers/shared/_takeover.html" with title="Private cloud security" class="p-strip--dark p-takeover js-takeover" subtitle="Meeting the highest enterprise requirements with OpenStack." subtitleClass="p-heading--four" ctaBtn="Register for the webinar" ctaBtnURL="#" ctaBtnClass="p-button--positive" ctaLink="Download the whitepaper&nbsp;&rsaquo;" ctaLinkURL="#" ctaLinkClass="p-link--inverted" image="2c91289c-openstack-cloud.svg" imageClass="u-align-text--center u-vertically-center p-takeover__image" %}
@@ -133,7 +133,7 @@
 <hr />
 
 <section class="p-strip">
-  <div class="row">
+  <div class="u-fixed-width">
     <h3>No ctaLink</h3>
     <h4>Include tag</h4>
     <pre><code>&#123;% include "takeovers/shared/_takeover.html" with title="Private cloud security" class="p-strip--dark p-takeover js-takeover" subtitle="Meeting the highest enterprise requirements with OpenStack." subtitleClass="p-heading--four" ctaBtn="Register for the webinar" ctaBtnURL="#" ctaBtnClass="p-button--positive" image="2c91289c-openstack-cloud.svg" imageClass="u-align-text--center u-vertically-center p-takeover__image" %}
@@ -145,7 +145,7 @@
 <hr />
 
 <section class="p-strip">
-  <div class="row">
+  <div class="u-fixed-width">
     <h3>No image</h3>
     <h4>Include tag</h4>
     <pre><code>&#123;% include "takeovers/shared/_takeover.html" with title="Private cloud security" class="p-strip--dark p-takeover js-takeover" subtitle="Meeting the highest enterprise requirements with OpenStack." subtitleClass="p-heading--four" ctaBtn="Register for the webinar" ctaBtnURL="#" ctaBtnClass="p-button--positive" %}
@@ -157,7 +157,7 @@
 <hr />
 
 <section class="p-strip">
-  <div class="row">
+  <div class="u-fixed-width">
     <h3>No class</h3>
     <h4>Include tag</h4>
     <pre><code>&#123;% include "takeovers/shared/_takeover.html" with title="Private cloud security" subtitle="Meeting the highest enterprise requirements with OpenStack." subtitleClass="p-heading--four" ctaBtn="Register for the webinar" ctaBtnURL="#" ctaBtnClass="p-button--positive" %}</code></pre>
@@ -167,7 +167,7 @@
 <hr />
 
 <section class="p-strip">
-  <div class="row">
+  <div class="u-fixed-width">
     <h3>Minimal - no subtitle, subtitleClass or ctaBtnClass</h3>
     <h4>Include tag</h4>
     <pre><code>&#123;% include "takeovers/shared/_takeover.html" with title="Private cloud security" subtitleClass="p-heading--four" ctaBtn="Register for the webinar" ctaBtnURL="#" %}</code></pre>
