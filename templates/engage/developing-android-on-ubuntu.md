@@ -38,27 +38,23 @@ In this guide, you will learn:
 </ul>
 
 <style>
+.p-takeover--android-on-ubuntu {
+  background-color: #2C001E;
+}
+
+.p-takeover--android-on-ubuntu .p-takeover__title {
+  font-weight: 100;
+}
+
+@media (min-width: 768px) {
   .p-takeover--android-on-ubuntu {
     background-color: #2C001E;
+    background-image:
+            url('https://assets.ubuntu.com/v1/1487c2c6-suru-background.svg'),
+            linear-gradient(199deg, #E95420 0%, #5E2750 25%, #2C001E 50%);
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: contain;
   }
-
-  .p-takeover--android-on-ubuntu img {
-    max-width: 380px !important;
-    width: 380px;
-  }
-
-  .p-takeover--android-on-ubuntu .p-takeover__title {
-    font-weight: 100;
-  }
-
-  @media (min-width: 768px) {
-    .p-takeover--android-on-ubuntu {
-      background-color: #2C001E;
-      background-image: linear-gradient(199deg, #E95420 0%, #5E2750 25%, #2C001E 50%),
-      url('{{ ASSET_SERVER_URL }}1487c2c6-suru-background.svg');
-      background-position: right;
-      background-repeat: no-repeat;
-      background-size: contain;
-    }
-  }
+}
 </style>
