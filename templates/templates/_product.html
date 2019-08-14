@@ -24,7 +24,7 @@
     </section>
 
     <section class="p-strip--light is-bordered">
-      <div class="row">
+      <div class="u-fixed-width">
         <h2>Get started</h2>
       </div>
       <div class="row">
@@ -41,17 +41,15 @@
     </section>
 
     <section class="p-strip is-bordered">
-      <div class="row">
-        <div class="col-12">
-          <h2>{% block video_title %}{% endblock %}</h2>
-          <div class="u-embedded-media">
-            <iframe class="u-embedded-media__element" width="453" height="255" src="{% block video_url %}{% endblock %}" frameborder="0" allowfullscreen></iframe>
-          </div>
+      <div class="u-fixed-width">
+        <h2>{% block video_title %}{% endblock %}</h2>
+        <div class="u-embedded-media">
+          <iframe class="u-embedded-media__element" width="453" height="255" src="{% block video_url %}{% endblock %}" frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
     </section>
     <section class="p-strip is-bordered">
-      <div class="row">
+      <div class="u-fixed-width">
         <h2>Features</h2>
         <ul class="p-list is-split">
           {% block features %}{% endblock %}
@@ -60,9 +58,9 @@
     </section>
 
     <section class="p-strip--light is-deep is-bordered">
-      <div class="row">
+      <div class="u-fixed-width">
         <h2>{% block reassurance_title %}{% endblock %}</h2>
-        <div class="row p-divider">
+        <div class="row p-divider u-no-padding--left u-no-padding--right">
           <div class="col-4 p-divider__block">
             {% block reassurance_1 %}{% endblock %}
           </div>
@@ -77,18 +75,16 @@
     </section>
 
     <section class="p-strip is-bordered">
-      <div class="row">
-        <div class="col-12">
-          <h2 class="p-muted-heading u-align--center">MAAS is trusted by</h2>
-          <ul class="p-inline-images">
-            {% block logos %}{% endblock %}
-          </ul>
-        </div>
+      <div class="u-fixed-width">
+        <h2 class="p-muted-heading u-align--center">MAAS is trusted by</h2>
+        <ul class="p-inline-images">
+          {% block logos %}{% endblock %}
+        </ul>
       </div>
     </section>
 
     <section class="p-strip--light is-bordered">
-      <div class="row">
+      <div class="u-fixed-width">
         <h2>Pricing</h2>
       </div>
       <div class="row u-equal-height">
