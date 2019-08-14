@@ -7,13 +7,12 @@
 
 {% block content %}
 <div class="p-strip is-deep is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h1>
-        Scale out with Ubuntu Server
-      </h1>
-    </div>
+  <div class="u-fixed-width">
+    <h1>
+      Scale out with Ubuntu Server
+    </h1>
   </div>
+<<<<<<< HEAD
   <div class="row">
     <div class="u-equal-height">
       <div class="col-6">
@@ -29,75 +28,86 @@
       <div class="col-6 u-vertically-center u-align--center u-hide--small">
         <img src="https://assets.ubuntu.com/v1/4b47cae5-image-server.svg" width="400" height="121" alt="" />
       </div>
+=======
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <p>
+        Ubuntu Server brings economic and technical scalability to your datacentre, public or private. Whether you want to deploy an OpenStack cloud, a Kubernetes cluster or a 50,000-node render farm, Ubuntu Server delivers the best value scale-out performance available.
+      </p>
+      <p>
+        <a class="p-button--positive" href="/download/server">
+          Download Ubuntu Server
+        </a>
+      </p>
+    </div>
+    <div class="col-6 u-vertically-center u-align--center u-hide--small">
+      <img src="{{ ASSET_SERVER_URL }}4b47cae5-image-server.svg" width="400" height="121" alt="" />
+>>>>>>> update row/col markup on /server pages
     </div>
   </div>
 </div>
 
 <div class="p-strip--light is-deep is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h2>
-        What&rsquo;s new in {{ releases.lts.short_version }} LTS
-      </h2>
-      <ul class="p-list is-split">
-        <li class="p-list__item is-ticked">Supported by Canonical until 2023 with ESM coverage until 2028</li>
-        <li class="p-list__item is-ticked">Runs on all major architectures &ndash; x86, x86-64, ARM v7, ARM64, POWER8 and IBM s390x (LinuxONE)</li>
-        <li class="p-list__item is-ticked">New ubuntu-minimal images that are smaller and boot faster</li>
-        <li class="p-list__item is-ticked">Easily configure networking through <a class="p-link--external" href="https://netplan.io/">netplan</a></li>
-        <li class="p-list__item is-ticked">Fast and accurate time synchronization with chrony</li>
-        <li class="p-list__item is-ticked">A new, default server installer ISO with a new interface and faster install</li>
-        <li class="p-list__item is-ticked">Supports ZFS, the next-generation volume management/ file system ideal for servers and containers</li>
-        <li class="p-list__item is-ticked">LXD 3.0 - Linux containers including clustering, QoS, and resource controls (CPU, memory, block I/O, graphics, and storage quota)</li>
-        <li class="p-list__item is-ticked">Install snaps for simple application installation and release management</li>
-        <li class="p-list__item is-ticked">Linux 4.15 kernel</li>
-        <li class="p-list__item is-ticked">Certification as a guest on AWS, Microsoft Azure, Joyent, IBM, Google Cloud Platform and Rackspace</li>
-        <li class="p-list__item is-ticked">Updates to LXD (v3.0), DPDK (v17.11.1), Postgresql (v10.3), Libvirt (v4.0), NGINX (v1.14), Qemu (v2.11.1), Docker (v17.03), Puppet (v4.10), MySQL (v5.7), PHP (v7.2), and more</li>
-      </ul>
-      <p>
-        <a class="p-link--external"
-        href="https://wiki.ubuntu.com/{{ releases.lts.slug }}/ReleaseNotes">
-        Read more in the release notes
+  <div class="u-fixed-width">
+    <h2>
+      What&rsquo;s new in {{ releases.lts.short_version }} LTS
+    </h2>
+    <ul class="p-list is-split">
+      <li class="p-list__item is-ticked">Supported by Canonical until 2023 with ESM coverage until 2028</li>
+      <li class="p-list__item is-ticked">Runs on all major architectures &ndash; x86, x86-64, ARM v7, ARM64, POWER8 and IBM s390x (LinuxONE)</li>
+      <li class="p-list__item is-ticked">New ubuntu-minimal images that are smaller and boot faster</li>
+      <li class="p-list__item is-ticked">Easily configure networking through <a class="p-link--external" href="https://netplan.io/">netplan</a></li>
+      <li class="p-list__item is-ticked">Fast and accurate time synchronization with chrony</li>
+      <li class="p-list__item is-ticked">A new, default server installer ISO with a new interface and faster install</li>
+      <li class="p-list__item is-ticked">Supports ZFS, the next-generation volume management/ file system ideal for servers and containers</li>
+      <li class="p-list__item is-ticked">LXD 3.0 - Linux containers including clustering, QoS, and resource controls (CPU, memory, block I/O, graphics, and storage quota)</li>
+      <li class="p-list__item is-ticked">Install snaps for simple application installation and release management</li>
+      <li class="p-list__item is-ticked">Linux 4.15 kernel</li>
+      <li class="p-list__item is-ticked">Certification as a guest on AWS, Microsoft Azure, Joyent, IBM, Google Cloud Platform and Rackspace</li>
+      <li class="p-list__item is-ticked">Updates to LXD (v3.0), DPDK (v17.11.1), Postgresql (v10.3), Libvirt (v4.0), NGINX (v1.14), Qemu (v2.11.1), Docker (v17.03), Puppet (v4.10), MySQL (v5.7), PHP (v7.2), and more</li>
+    </ul>
+    <p>
+      <a class="p-link--external"
+      href="https://wiki.ubuntu.com/{{ releases.lts.slug }}/ReleaseNotes">
+      Read more in the release notes
       </a>
     </p>
   </div>
-</div>
 </div>
 
 
 <div class="p-strip--light is-deep is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h2>
-        What&rsquo;s new in {{ releases.latest.short_version }}
-      </h2>
-      <ul class="p-list is-split">
-        <li class="p-list__item is-ticked">Supported by Canonical for 9 months</li>
-        <li class="p-list__item is-ticked">Linux 5.0 kernel</li>
-        <li class="p-list__item is-ticked">Updates to LXD (v3.12), qemu (v3.1), dpdk (v18.11) and more</li>
-        <li class="p-list__item is-ticked">Fresh set of fixes and refreshes to the Ubuntu Server installer</li>
-        <li class="p-list__item is-ticked">New Ubuntu Advantage experience</li>
-      </ul>
-      <p>
-        <a class="p-link--external"
-        href="https://wiki.ubuntu.com/{{ releases.latest.slug }}/ReleaseNotes">
+  <div class="u-fixed-width">
+    <h2>
+      What&rsquo;s new in {{ releases.latest.short_version }}
+    </h2>
+    <ul class="p-list is-split">
+      <li class="p-list__item is-ticked">Supported by Canonical for 9 months</li>
+      <li class="p-list__item is-ticked">Linux 5.0 kernel</li>
+      <li class="p-list__item is-ticked">Updates to LXD (v3.12), qemu (v3.1), dpdk (v18.11) and more</li>
+      <li class="p-list__item is-ticked">Fresh set of fixes and refreshes to the Ubuntu Server installer</li>
+      <li class="p-list__item is-ticked">New Ubuntu Advantage experience</li>
+    </ul>
+    <p>
+      <a class="p-link--external"
+      href="https://wiki.ubuntu.com/{{ releases.latest.slug }}/ReleaseNotes">
         Read more in the release notes
       </a>
     </p>
   </div>
 </div>
-</div>
 
 <div class="p-strip is-deep" style="padding-bottom: 2rem;">
-  <div class="row">
-    <div class="col-12">
-      <h2 id="performance-and-versatility">
-        Performance and versatility
-      </h2>
-      <p class="p-heading--three"
-      >Agile, secure, deploy-anywhere technology for fast-moving companies
+  <div class="u-fixed-width">
+    <h2 id="performance-and-versatility">
+      Performance and versatility
+    </h2>
+    <p class="p-heading--three"
+    >Agile, secure, deploy-anywhere technology for fast-moving companies
     </p>
   </div>
 </div>
+
 <div class="row">
   <div class="col-6">
     <p>
@@ -110,9 +120,9 @@
     </p>
   </div>
 </div>
-</div>
 
 <div class="p-strip is-deep is-bordered" style="padding-top: 2rem;">
+<<<<<<< HEAD
   <div class="row">
     <div class="col-12">
       <h3 class="p-muted-heading u-align--center">Works with all your hardware and software</h3>
@@ -166,6 +176,59 @@
         </a>
       </p>
     </div>
+=======
+  <div class="u-fixed-width">
+    <h3 class="p-muted-heading u-align--center">Works with all your hardware and software</h3>
+    <ul class="p-inline-images">
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}68713fd5-logo-lenovo.svg" width="144" alt="Lenovo" />
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}5ddba83a-logo-dell.svg" width="88" alt="Dell" />
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}683950fd-logo-ibm.svg" width="144" alt="IBM" />
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}a298e7ec-logo-hp.svg" width="88" alt="HP" />
+      </li>
+      <li class="last-item p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}c24cb4b9-logo-intel.svg" width="132" alt="Intel" />
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}4d6054f9-logo-cisco.svg" width="144" alt="Cisco" />
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}731aab6c-logo-amd.svg" width="144" alt="AMD" />
+      </li>
+      <li class="last-item p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}4efbd291-Arm_logo_blue_cropped.svg" width="144" alt="Arm" />
+      </li>
+    </ul>
+    <p class="u-align--center u-vertically-spaced"><a href="https://certification.ubuntu.com">
+      View all certified hardware&nbsp;&rsaquo;
+    </a></p>
+
+    <ul class="p-inline-images">
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}76999dfc-logo-centrify.png?w=132" width="132" alt="Centrify" />
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}eed716e9-logo-openstack.svg" width="88" alt="OpenStack" width="100%" />
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}c228b4e9-logo-likewise.png?w=144" width="144" alt="Likewise" />
+      </li>
+      <li class="last-item p-inline-images__item">
+        <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}64493bba-logo-openbravo.png?w=144" width="144" alt="Openbravo" />
+      </li>
+    </ul>
+    <p class="u-align--center u-vertically-spaced">
+      <a href="https://partners.ubuntu.com/programmes/software">
+        View all certified software&nbsp;&rsaquo;
+      </a>
+    </p>
+>>>>>>> update row/col markup on /server pages
   </div>
 </div>
 
@@ -252,12 +315,10 @@
 </section>
 
 <section class="p-strip is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h2>
-        Ubuntu Advantage for your Infrastructure
-      </h2>
-    </div>
+  <div class="u-fixed-width">
+    <h2>
+      Ubuntu Advantage for your Infrastructure
+    </h2>
   </div>
   <div class="row">
     <div class="col-6">
@@ -269,7 +330,7 @@
       </p>
       <p><a href="/pricing/infra">Learn more about Ubuntu Advantage for Infrastructure&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-5 prefix-1 u-float--right">
+    <div class="col-4 col-start-large-9 u-float--right">
       <div class="p-card">
         <h3 class="p-card__title">Get in touch</h3>
         <p class="p-card__content">Speak to our technical support team about your support requirements.</p>
@@ -280,6 +341,7 @@
 </section>
 
 <section class="p-strip--light">
+<<<<<<< HEAD
   <div class="row">
     <div class="u-equal-height">
       <div class="col-8">
@@ -301,6 +363,27 @@
       <div class="col-3 u-vertically-center u-align--center">
         <img src="https://assets.ubuntu.com/v1/039628d5-picto-community-orange.svg" class="u-hide--small" alt="" width="136" height="136" />
       </div>
+=======
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2 id="a-thriving-community">
+        A thriving community
+      </h2>
+      <p>
+        Exchange expertise and ideas with thousands of other IT professionals
+      </p>
+      <p>
+        Want to talk to other Ubuntu users straightaway? Share ideas and get advice and help from our large, active community of IT professionals. As a community, we set high standards for friendliness and tolerance, we welcome your questions and contributions!
+      </p>
+      <p>
+        <a href="/community">
+          Join the community&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+    <div class="col-3 u-vertically-center u-align--center">
+      <img src="{{ ASSET_SERVER_URL }}039628d5-picto-community-orange.svg" class="u-hide--small" alt="" width="136" height="136" />
+>>>>>>> update row/col markup on /server pages
     </div>
   </div>
 </section>
