@@ -4,16 +4,14 @@
 
 {% block content %}
 <div class="p-strip is-deep">
-  <div class="row">
-    <div class="u-equal-height">
-      <div class="col-6 u-vertically-center u-align--center">
-        <img src="{{ ASSET_SERVER_URL }}bcdcf2c8-image-404.svg?w=365" alt="Error owl" width="365" />
-      </div>
-      <div class="col-6 u-vertically-center">
-        <div>
-          <h1>410: Page deleted</h1>
-          <p class="p-heading--four">{{ message | default:"This page has been removed" }}</p>
-        </div>
+  <div class="row u-equal-height">
+    <div class="col-6 u-vertically-center u-align--center">
+      <img src="{{ ASSET_SERVER_URL }}bcdcf2c8-image-404.svg?w=365" alt="Error owl" width="365" />
+    </div>
+    <div class="col-6 u-vertically-center">
+      <div>
+        <h1>410: Page deleted</h1>
+        <p class="p-heading--four">{{ message | default:"This page has been removed" }}</p>
       </div>
     </div>
   </div>
