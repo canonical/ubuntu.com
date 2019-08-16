@@ -19,19 +19,18 @@
 </section>
 
 <div class="p-strip is-deep is-bordered" id="instructions">
-  <div class="row">
-    <div class="col-12">
-      <h2>How to deploy Kubeflow</h2>
-      <p>
-        If you already have Ubuntu or another Linux, the following instructions are all you need. However, if you are on Windows or Mac, consider using <a class="p-link--external" href="https://github.com/CanonicalLtd/multipass">Multipass</a> to easily create an Ubuntu VM to work with.
-      </p>
-      <p>
-        Kubeflow runs on top of Kubernetes. Visit our <a href="/kubernetes/install">Kubernetes install</a> page and follow the instructions to install the Kubernetes as you want.
-      </p>
-      <p>
-        The following step assumes you want to install <a class="p-link--external" href="https://microk8s.io/">MicroK8s</a> as your Kubernetes cluster.
-      </p>
-      <ol class="p-stepped-list--detailed">
+  <div class="u-fixed-width">
+    <h2>How to deploy Kubeflow</h2>
+    <p>
+      If you already have Ubuntu or another Linux, the following instructions are all you need. However, if you are on Windows or Mac, consider using <a class="p-link--external" href="https://github.com/CanonicalLtd/multipass">Multipass</a> to easily create an Ubuntu VM to work with.
+    </p>
+    <p>
+      Kubeflow runs on top of Kubernetes. Visit our <a href="/kubernetes/install">Kubernetes install</a> page and follow the instructions to install the Kubernetes as you want.
+    </p>
+    <p>
+      The following step assumes you want to install <a class="p-link--external" href="https://microk8s.io/">MicroK8s</a> as your Kubernetes cluster.
+    </p>
+    <ol class="p-stepped-list--detailed">
 
         <li class="p-list-step__item col-12">
           <h3 class="p-list-step__title">Install MicroK8s</h3>
@@ -39,35 +38,35 @@
             <p>
               MicroK8s can be installed with one command.
             </p>
-            <div class="p-code-snippet">
-              <input class="p-code-snippet__input" value="sudo snap install microk8s --classic" readonly="readonly">
-              <button class="p-code-snippet__action">Copy to clipboard</button>
+            <div class="p-code-copyable">
+              <input class="p-code-copyable__input" value="sudo snap install microk8s --classic" readonly="readonly">
+              <button class="p-code-copyable__action">Copy to clipboard</button>
             </div>
-            <div class="p-code-snippet">
-              <input class="p-code-snippet__input" value="microk8s.status --wait-ready" readonly="readonly">
-              <button class="p-code-snippet__action">Copy to clipboard</button>
+            <div class="p-code-copyable">
+              <input class="p-code-copyable__input" value="microk8s.status --wait-ready" readonly="readonly">
+              <button class="p-code-copyable__action">Copy to clipboard</button>
             </div>
             <p>
               To get the most out of your Kubernetes cluster, including enabling required features like storage and dns, run these commands:
             </p>
-            <div class="p-code-snippet">
-              <input class="p-code-snippet__input" value="microk8s.enable dns storage dashboard" readonly="readonly">
-              <button class="p-code-snippet__action">Copy to clipboard</button>
+            <div class="p-code-copyable">
+              <input class="p-code-copyable__input" value="microk8s.enable dns storage dashboard" readonly="readonly">
+              <button class="p-code-copyable__action">Copy to clipboard</button>
             </div>
-            <div class="p-code-snippet">
-              <input class="p-code-snippet__input" value="sudo snap alias microk8s.kubectl kubectl" readonly="readonly">
-              <button class="p-code-snippet__action">Copy to clipboard</button>
+            <div class="p-code-copyable">
+              <input class="p-code-copyable__input" value="sudo snap alias microk8s.kubectl kubectl" readonly="readonly">
+              <button class="p-code-copyable__action">Copy to clipboard</button>
             </div>
-            <div class="p-code-snippet">
-              <input class="p-code-snippet__input" value="microk8s.kubectl config view --raw > $HOME/.kube/config" readonly="readonly">
-              <button class="p-code-snippet__action">Copy to clipboard</button>
+            <div class="p-code-copyable">
+              <input class="p-code-copyable__input" value="microk8s.kubectl config view --raw > $HOME/.kube/config" readonly="readonly">
+              <button class="p-code-copyable__action">Copy to clipboard</button>
             </div>
             <p>
               If you have a GPU, run:
             </p>
-            <div class="p-code-snippet">
-              <input class="p-code-snippet__input" value="microk8s.enable gpu" readonly="readonly">
-              <button class="p-code-snippet__action">Copy to clipboard</button>
+            <div class="p-code-copyable">
+              <input class="p-code-copyable__input" value="microk8s.enable gpu" readonly="readonly">
+              <button class="p-code-copyable__action">Copy to clipboard</button>
             </div>
           </li>
 
@@ -80,17 +79,17 @@
               <p>
                 The instructions below will download the binary as a compressed file, expand it into the current directory, and add it to the PATH.
               </p>
-              <div class="p-code-snippet">
-                <input class="p-code-snippet__input" value="export OPSYS=linux" readonly="readonly">
-                <button class="p-code-snippet__action">Copy to clipboard</button>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="export OPSYS=linux" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
               </div>
-              <div class="p-code-snippet">
-                <input class="p-code-snippet__input" value="curl -s https://api.github.com/repos/kubeflow/kubeflow/releases/latest | grep browser_download | grep $OPSYS | cut -d '&#34;' -f 4 | xargs curl -O -L &&  tar -zvxf kfctl_*_${OPSYS}.tar.gz" readonly="readonly">
-                <button class="p-code-snippet__action">Copy to clipboard</button>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="curl -s https://api.github.com/repos/kubeflow/kubeflow/releases/latest | grep browser_download | grep $OPSYS | cut -d '&#34;' -f 4 | xargs curl -O -L &&  tar -zvxf kfctl_*_${OPSYS}.tar.gz" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
               </div>
-              <div class="p-code-snippet">
-                <input class="p-code-snippet__input" value="export PATH=$PATH:$PWD" readonly="readonly">
-                <button class="p-code-snippet__action">Copy to clipboard</button>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="export PATH=$PATH:$PWD" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
               </div>
             </div>
           </li>
@@ -101,47 +100,47 @@
               <p>
                 <code>kfctl</code> will install the standard set of Kubeflow components. The script below will create a directory, "kf-poc", which will store all the kubernetes kustomize yaml files.
               </p>
-              <div class="p-code-snippet">
-                <input class="p-code-snippet__input" value="export KFAPP=&#34;kf-poc&#34;" readonly="readonly">
-                <button class="p-code-snippet__action">Copy to clipboard</button>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="export KFAPP=&#34;kf-poc&#34;" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
               </div>
-              <div class="p-code-snippet">
-                <input class="p-code-snippet__input" value="export VERSION='curl -s https://api.github.com/repos/kubeflow/kubeflow/releases/latest |    grep tag_name | head -1 | cut -d '&#34;' -f 4'" readonly="readonly">
-                <button class="p-code-snippet__action">Copy to clipboard</button>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="export VERSION='curl -s https://api.github.com/repos/kubeflow/kubeflow/releases/latest |    grep tag_name | head -1 | cut -d '&#34;' -f 4'" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
               </div>
-              <div class="p-code-snippet">
-                <input class="p-code-snippet__input" value="export  CONFIG=&#34;https://raw.githubusercontent.com/kubeflow/kubeflow/${VERSION}/bootstrap/config/kfctl_k8s_istio.yaml&#34;" readonly="readonly">
-                <button class="p-code-snippet__action">Copy to clipboard</button>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="export  CONFIG=&#34;https://raw.githubusercontent.com/kubeflow/kubeflow/${VERSION}/bootstrap/config/kfctl_k8s_istio.yaml&#34;" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
               </div>
-              <div class="p-code-snippet">
-                <input class="p-code-snippet__input" value="kfctl init ${KFAPP} --config=${CONFIG} -V" readonly="readonly">
-                <button class="p-code-snippet__action">Copy to clipboard</button>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="kfctl init ${KFAPP} --config=${CONFIG} -V" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
               </div>
-              <div class="p-code-snippet">
-                <input class="p-code-snippet__input" value="cd ${KFAPP}" readonly="readonly">
-                <button class="p-code-snippet__action">Copy to clipboard</button>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="cd ${KFAPP}" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
               </div>
-              <div class="p-code-snippet">
-                <input class="p-code-snippet__input" value="kfctl generate all -V" readonly="readonly">
-                <button class="p-code-snippet__action">Copy to clipboard</button>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="kfctl generate all -V" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
               </div>
-              <div class="p-code-snippet">
-                <input class="p-code-snippet__input" value="kfctl apply all -V" readonly="readonly">
-                <button class="p-code-snippet__action">Copy to clipboard</button>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="kfctl apply all -V" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
               </div>
               <p>
                 It will take several minutes for the cluster to become operational - there are many containers that will be downloaded and started. To check the install status, run this command:
               </p>
-              <div class="p-code-snippet">
-                <input class="p-code-snippet__input" value="kubectl -n kubeflow get po" readonly="readonly">
-                <button class="p-code-snippet__action">Copy to clipboard</button>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="kubectl -n kubeflow get po" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
               </div>
               <p>
                 You can use watch to automatically update the status of the pods:
               </p>
-              <div class="p-code-snippet">
-                <input class="p-code-snippet__input" value="watch -c -n 10 kubectl -n kubeflow get po" readonly="readonly">
-                <button class="p-code-snippet__action">Copy to clipboard</button>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="watch -c -n 10 kubectl -n kubeflow get po" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
               </div>
             </div>
           </li>
@@ -158,9 +157,9 @@
               <p>
                 In addition to the IP address, to access the Kubeflow home page, you’ll need the port number. The default nodeport should be `31380`, but to confirm, you can run the following command. It will highlight the http port to use.
               </p>
-              <div class="p-code-snippet">
-                <input class="p-code-snippet__input" value="echo `kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name==&#34;http2&#34;)].nodePort}'`" readonly="readonly">
-                <button class="p-code-snippet__action">Copy to clipboard</button>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="echo `kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name==&#34;http2&#34;)].nodePort}'`" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
               </div>
               <p>
                 And now you should go to your browser and enter this URL:
