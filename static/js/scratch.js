@@ -14,9 +14,9 @@ core.footerMobileNav = function() {
 // Adds click eventlistener to the copy-to-clipboard buttons. Selects the input
 // and tries to copy the value to the clipboard.
 core.commandLine = function () {
-  document.querySelectorAll('.p-code-snippet').forEach(function(node) {
-    var copyButton = node.querySelector('.p-code-snippet__action');
-    var commandInput = node.querySelector('.p-code-snippet__input');
+  document.querySelectorAll('.p-code-copyable').forEach(function(node) {
+    var copyButton = node.querySelector('.p-code-copyable__action');
+    var commandInput = node.querySelector('.p-code-copyable__input');
     if (copyButton && commandInput) {
       copyButton.addEventListener('click', function(e) {
         commandInput.select();

@@ -98,18 +98,18 @@
         <h3 class="p-list-step__title">Install MAAS</h3>
         <div class="p-list-step__content">
           <p>On your Ubuntu Server 16.04 LTS machine:</p>
-          <div class="p-code-snippet">
-            <input class="p-code-snippet__input" value="sudo apt update" readonly="readonly">
-            <button class="p-code-snippet__action">Copy to clipboard</button>
+          <div class="p-code-copyable">
+            <input class="p-code-copyable__input" value="sudo apt update" readonly="readonly">
+            <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
-          <div class="p-code-snippet">
-            <input class="p-code-snippet__input" value="sudo apt install maas" readonly="readonly">
-            <button class="p-code-snippet__action">Copy to clipboard</button>
+          <div class="p-code-copyable">
+            <input class="p-code-copyable__input" value="sudo apt install maas" readonly="readonly">
+            <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
           <p>Create your admin credentials:</p>
-          <div class="p-code-snippet">
-            <input class="p-code-snippet__input" value="sudo maas init" readonly="readonly">
-            <button class="p-code-snippet__action">Copy to clipboard</button>
+          <div class="p-code-copyable">
+            <input class="p-code-copyable__input" value="sudo maas init" readonly="readonly">
+            <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
           <p>Login to the MAAS UI at <code>http://&lt;serverip&gt;/MAAS/</code></p>
           <p>Complete the setup wizard for MAAS and import images for Ubuntu. Importing images may take a while, but you can &lsquo;continue&rsquo; as soon as it&rsquo;s started and work on other aspects of MAAS setup while the import happens.</p>
@@ -157,13 +157,13 @@
         <h3 class="p-list-step__title">Install and launch conjure-up</h3>
         <div class="p-list-step__content">
           <p>Install conjure-up on the MAAS server:</p>
-          <div class="p-code-snippet">
-            <input class="p-code-snippet__input" value="sudo snap install conjure-up --classic" readonly="readonly">
-            <button class="p-code-snippet__action">Copy to clipboard</button>
+          <div class="p-code-copyable">
+            <input class="p-code-copyable__input" value="sudo snap install conjure-up --classic" readonly="readonly">
+            <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
-          <div class="p-code-snippet">
-            <input class="p-code-snippet__input" value="conjure-up" readonly="readonly">
-            <button class="p-code-snippet__action">Copy to clipboard</button>
+          <div class="p-code-copyable">
+            <input class="p-code-copyable__input" value="conjure-up" readonly="readonly">
+            <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
           <p>If successful you should see a screen as below:</p>
           <p>
@@ -280,14 +280,14 @@
           <p>
             <a href="https://snapcraft.io/">Snaps</a> are the recommended installation method for LXD, If you need to enable snap packages:
           </p>
-          <div class="p-code-snippet">
-            <input aria-label="code snippet" class="p-code-snippet__input" value="sudo snap install lxd" readonly="readonly">
-            <button class="p-code-snippet__action">Copy to clipboard</button>
+          <div class="p-code-copyable">
+            <input aria-label="code snippet" class="p-code-copyable__input" value="sudo snap install lxd" readonly="readonly">
+            <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
           <p>For the best experience, it is recommended to migrate from the <strong>deb</strong> LXD packaging. This will move all container specific data to the snap version and clean up the unused debian packages.  So, if you already had the the lxd package installed, run lxd.migrate. When prompted, uninstall the old LXD version so that only the snap version is available.</p>
-          <div class="p-code-snippet">
-            <input aria-label="code snippet" class="p-code-snippet__input" value="sudo lxd.migrate" readonly="readonly">
-            <button class="p-code-snippet__action">Copy to clipboard</button>
+          <div class="p-code-copyable">
+            <input aria-label="code snippet" class="p-code-copyable__input" value="sudo lxd.migrate" readonly="readonly">
+            <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
           <p>Now that lxd has been installed it needs to be initialised to set up, among other things, a network bridge and a storage pool. While mostly default options can be used, check the table below and ensure your answers match.</p>
           <pre><code>$ sudo lxd init
@@ -308,9 +308,9 @@ Would you like LXD to be available over the network? (yes/no) [default=no]:
 Would you like stale cached images to be updated automatically? (yes/no) [default=yes]
 Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:</code></pre>
             <p>Then install conjure-up:</p>
-            <div class="p-code-snippet">
-              <input aria-label="code snippet" class="p-code-snippet__input" value="sudo snap install conjure-up --classic" readonly="readonly">
-              <button class="p-code-snippet__action">Copy to clipboard</button>
+            <div class="p-code-copyable">
+              <input aria-label="code snippet" class="p-code-copyable__input" value="sudo snap install conjure-up --classic" readonly="readonly">
+              <button class="p-code-copyable__action">Copy to clipboard</button>
             </div>
         </div>
       </li>
@@ -318,9 +318,9 @@ Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:</
         <h3 class="p-list-step__title">Deploy OpenStack</h3>
         <div class="p-list-step__content">
           <p>Now you are ready to start the OpenStack deployment process on your workstation.</p>
-          <div class="p-code-snippet">
-            <input aria-label="code snippet" class="p-code-snippet__input" value="conjure-up" readonly="readonly">
-            <button class="p-code-snippet__action">Copy to clipboard</button>
+          <div class="p-code-copyable">
+            <input aria-label="code snippet" class="p-code-copyable__input" value="conjure-up" readonly="readonly">
+            <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
           <p>You will see a menu of 'spells' which are descriptions of distributed software systems that conjure-up can deploy for you. Choose &lsquo;OpenStack with NovaLXD&rsquo;.</p>
           <img src="{{ ASSET_SERVER_URL }}23a02e6d-conjure-up-install-openstack.png?w=444" width="444" alt="screenshot of the conjure-up interface with the 'OpenStack with NovaLXD' option selected" />
