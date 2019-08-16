@@ -25,17 +25,19 @@
 </section>
 
 <nav class="p-tabs p-sticky-nav">
-  <ul class="p-tabs__list" role="tablist">
-    <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#developers">Developers</a>
-    </li>
-    <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#apps">Apps</a>
-    </li>
-    <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#hardware">Hardware</a>
-    </li>
-  </ul>
+  <div class="u-fixed-width">
+    <ul class="p-tabs__list" role="tablist">
+      <li class="p-tabs__item" role="presentation">
+        <a class="p-tabs__link js-sticky-tab" href="#developers">Developers</a>
+      </li>
+      <li class="p-tabs__item" role="presentation">
+        <a class="p-tabs__link js-sticky-tab" href="#apps">Apps</a>
+      </li>
+      <li class="p-tabs__item" role="presentation">
+        <a class="p-tabs__link js-sticky-tab" href="#hardware">Hardware</a>
+      </li>
+    </ul>
+  </div>
 </nav>
 
 <section class="p-strip u-no-padding--bottom">
@@ -389,14 +391,14 @@
       <h4>Docker</h4>
       <p>Bring your cloud containers and CI/CD tooling to the edge.</p>
       <p>Using apt and debs:</p>
-      <div class="p-code-snippet">
-        <input class="p-code-snippet__input" value="apt install docker.io" readonly="readonly" aria-label="">
-        <button class="p-code-snippet__action">Copy to clipboard</button>
+      <div class="p-code-copyable">
+        <input class="p-code-copyable__input" value="apt install docker.io" readonly="readonly" aria-label="">
+        <button class="p-code-copyable__action">Copy to clipboard</button>
       </div>
       <p>Using snaps:</p>
-      <div class="p-code-snippet">
-        <input class="p-code-snippet__input" value="snap install docker" readonly="readonly" aria-label="">
-        <button class="p-code-snippet__action">Copy to clipboard</button>
+      <div class="p-code-copyable">
+        <input class="p-code-copyable__input" value="snap install docker" readonly="readonly" aria-label="">
+        <button class="p-code-copyable__action">Copy to clipboard</button>
       </div>
     </div>
   </div>
