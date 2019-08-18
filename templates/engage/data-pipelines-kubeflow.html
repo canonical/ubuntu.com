@@ -35,15 +35,21 @@
   </section>
   <style>
     .p-takeover--deepsense-ai {
-      background-color: #f7f7f7;
-      color: 	#111;
+      background-color: #213D7A;
+      background-image:
+        linear-gradient(199deg, #004BD1 0%, #0027AA 25%, #213D7A 50%);
+      color: #f7f7f7;
+      }
+
+    .p-takeover--deepsense-ai .p-takeover__title {
       font-weight: 100;
     }
 
     @media (min-width: 768px) {
       .p-takeover--deepsense-ai {
-        background-color: #f7f7f7;
-        background-image: url('{{ ASSET_SERVER_URL }}bc4ce721-suru-background.svg');
+        background-image:
+          url('{{ ASSET_SERVER_URL }}cbe63376-suru-background-white.svg'),
+          linear-gradient(199deg, #004BD1 0%, #0027AA 25%, #213D7A 50%);
         background-position: right;
         background-repeat: no-repeat;
         background-size: contain;
