@@ -4,7 +4,7 @@
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="Data Pipelines" subtitle="How Kubeflow and machine learning help you get the most out of your data" image="141f8edb-machine-learning.svg" class="p-takeover--deepsense-ai" url="#register-section" cta="Watch the webinar" %}
+{% include "engage/shared/_header.html" with title="Data Pipelines" subtitle="How Kubeflow and machine learning help you get the most out of your data" image="3f586cec-Machine+learning+-+white.svg" class="p-takeover--deepsense-ai" url="#register-section" cta="Watch the webinar" %}
 
 <section class="p-strip is-bordered">
   <div class="row u-vertically-center">
@@ -35,15 +35,21 @@
   </section>
   <style>
     .p-takeover--deepsense-ai {
-      background-color: #f7f7f7;
-      color: 	#111;
+      background-color: #213D7A;
+      background-image:
+        linear-gradient(199deg, #004BD1 0%, #0027AA 25%, #213D7A 50%);
+      color: #f7f7f7;
+      }
+
+    .p-takeover--deepsense-ai .p-takeover__title {
       font-weight: 100;
     }
 
     @media (min-width: 768px) {
       .p-takeover--deepsense-ai {
-        background-color: #f7f7f7;
-        background-image: url('{{ ASSET_SERVER_URL }}bc4ce721-suru-background.svg');
+        background-image:
+          url('{{ ASSET_SERVER_URL }}cbe63376-suru-background-white.svg'),
+          linear-gradient(199deg, #004BD1 0%, #0027AA 25%, #213D7A 50%);
         background-position: right;
         background-repeat: no-repeat;
         background-size: contain;
