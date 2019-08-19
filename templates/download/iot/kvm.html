@@ -32,89 +32,87 @@
 </section>
 
 <section class="p-strip is-deep is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h2>Installation instructions</h2>
-      <ol class="p-stepped-list--detailed">
-        {% include "download/iot/_setup-ubuntu-sso.html" %}
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
+  <div class="u-fixed-width">
+    <h2>Installation instructions</h2>
+    <ol class="p-stepped-list--detailed">
+      {% include "download/iot/_setup-ubuntu-sso.html" %}
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
 
-            Download Ubuntu Core
-          </h3>
-          <div class="p-list-step__content">
-            <ul class="u-no-margin--left">
-              <li>Download the <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/18/stable/current/ubuntu-core-18-amd64.img.xz">Ubuntu Core image for amd64</a></li>
-              <li>You can verify the integrity of the files using the <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/18/stable/current/SHA256SUMS">SHA256SUM</a> and <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/18/stable/current/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.</li>
-              <li>
-                <p>Uncompress the image with the following command:</p>
-                <pre><code>unxz ubuntu-core-18-amd64.img.xz</code></pre>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
-
-            Install KVM
-          </h3>
-          <div class="p-list-step__content">
-            <ol class="u-no-margin--left">
-              <li>
-                <p>Install the qemu-kvm package with the following command:</p>
-                <pre><code>sudo apt install qemu-kvm</code></pre>
-              </li>
-              <li>
-                <p>Then, run the kvm-ok command to check KVM status and your hardware:</p>
-                <pre><code>kvm-ok</code></pre>
-              </li>
-              <li>
-                <p>The message should say:</p>
-                <pre><code>INFO: /dev/kvm exists
-KVM acceleration can be used</code></pre>
-                <p>This is the best outcome — it means that Ubuntu Core will run fast on your system, taking advantage of hardware acceleration in your CPU.</p>
+          Download Ubuntu Core
+        </h3>
+        <div class="p-stepped-list__content">
+          <ul class="u-no-margin--left">
+            <li>Download the <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/18/stable/current/ubuntu-core-18-amd64.img.xz">Ubuntu Core image for amd64</a></li>
+            <li>You can verify the integrity of the files using the <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/18/stable/current/SHA256SUMS">SHA256SUM</a> and <a class="p-link--external" href="http://cdimage.ubuntu.com/ubuntu-core/18/stable/current/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.</li>
+            <li>
+              <p>Uncompress the image with the following command:</p>
+              <pre><code>unxz ubuntu-core-18-amd64.img.xz</code></pre>
             </li>
-            </ol>
-          </div>
-        </li>
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
+          </ul>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
 
-            Launch KVM
-          </h3>
-          <div class="p-list-step__content">
-            <p>You can now launch a virtual machine with KVM, using the following command:</p>
-            <pre><code>kvm -smp 2 -m 1500 -netdev user,id=mynet0,hostfwd=tcp::8022-:22,hostfwd=tcp::8090-:80 -device virtio-net-pci,netdev=mynet0 -vga qxl -drive file=ubuntu-core-18-amd64.img,format=raw</code></pre>
-            <p>
-              Note: this command sets up port redirections:
-              <ul>
-                <li><code>localhost:8022</code> is redirecting to port <code>22</code> of the virtual machine for accessing it through SSH</li>
-                <li><code>localhost:8090</code> is redirecting to its port <code>80</code></li>
-              </ul>
-            </p>
-            <p>
-              Note: this command is required for graphics such as mir-kiosk:
-              <ul>
-                <li><code>-vga qxl</code> sets the paravirtual graphics driver qxl</li>
-              </ul>
-            </p>
-            <p>You should now see a window, with your Ubuntu Core virtual machine booting inside it.</p>
-          </div>
-        </li>
-        {% with number=5 %}{% include "download/iot/_first-boot-setup.html" %}{% endwith %}
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
+          Install KVM
+        </h3>
+        <div class="p-stepped-list__content">
+          <ol class="u-no-margin--left">
+            <li>
+              <p>Install the qemu-kvm package with the following command:</p>
+              <pre><code>sudo apt install qemu-kvm</code></pre>
+            </li>
+            <li>
+              <p>Then, run the kvm-ok command to check KVM status and your hardware:</p>
+              <pre><code>kvm-ok</code></pre>
+            </li>
+            <li>
+              <p>The message should say:</p>
+              <pre><code>INFO: /dev/kvm exists
+KVM acceleration can be used</code></pre>
+              <p>This is the best outcome — it means that Ubuntu Core will run fast on your system, taking advantage of hardware acceleration in your CPU.</p>
+          </li>
+          </ol>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
 
-            Login
-          </h3>
-          <div class="p-list-step__content">
-            <p>Once setup is done, you can login with SSH into Ubuntu Core, using the following command:</p>
-            <pre><code>ssh -p 8022 &lt;Ubuntu SSO user name&gt;@localhost</code></pre>
-            <p>Your user name is your Ubuntu SSO user name, it has been reminded to you at the end of the account configuration step.</p>
-          </div>
-        </li>
-      </ol>
-    </div>
+          Launch KVM
+        </h3>
+        <div class="p-stepped-list__content">
+          <p>You can now launch a virtual machine with KVM, using the following command:</p>
+          <pre><code>kvm -smp 2 -m 1500 -netdev user,id=mynet0,hostfwd=tcp::8022-:22,hostfwd=tcp::8090-:80 -device virtio-net-pci,netdev=mynet0 -vga qxl -drive file=ubuntu-core-18-amd64.img,format=raw</code></pre>
+          <p>
+            Note: this command sets up port redirections:
+            <ul>
+              <li><code>localhost:8022</code> is redirecting to port <code>22</code> of the virtual machine for accessing it through SSH</li>
+              <li><code>localhost:8090</code> is redirecting to its port <code>80</code></li>
+            </ul>
+          </p>
+          <p>
+            Note: this command is required for graphics such as mir-kiosk:
+            <ul>
+              <li><code>-vga qxl</code> sets the paravirtual graphics driver qxl</li>
+            </ul>
+          </p>
+          <p>You should now see a window, with your Ubuntu Core virtual machine booting inside it.</p>
+        </div>
+      </li>
+      {% include "./_first-boot-setup.html" with number=5 %}
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
+
+          Login
+        </h3>
+        <div class="p-stepped-list__content">
+          <p>Once setup is done, you can login with SSH into Ubuntu Core, using the following command:</p>
+          <pre><code>ssh -p 8022 &lt;Ubuntu SSO user name&gt;@localhost</code></pre>
+          <p>Your user name is your Ubuntu SSO user name, it has been reminded to you at the end of the account configuration step.</p>
+        </div>
+      </li>
+    </ol>
   </div>
 </section>
 
