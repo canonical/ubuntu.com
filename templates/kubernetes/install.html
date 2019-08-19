@@ -85,9 +85,9 @@
 <section class="p-strip is-bordered">
   <div class="u-fixed-width">
     <ol class="p-stepped-list--detailed">
-      <li class="p-list-step__item">
-        <h3 class="p-list-step__title">Install latest MicroK8s</h3>
-        <div class="p-list-step__content">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Install latest MicroK8s</h3>
+        <div class="p-stepped-list__content">
           <p>MicroK8s is packaged as a snap which requires snapd to be installed. The latest Ubuntu release comes with this already built in. For other Linux systems install snapd first. Use this command to get the latest version of MicroK8s:</p>
           <div class="p-code-copyable">
             <input class="p-code-copyable__input" value="sudo snap install microk8s --classic" readonly="readonly">
@@ -96,9 +96,9 @@
         </div>
       </li>
 
-      <li class="p-list-step__item">
-        <h3 class="p-list-step__title">Install specific versions of MicroK8s</h3>
-        <div class="p-list-step__content">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Install specific versions of MicroK8s</h3>
+        <div class="p-stepped-list__content">
           <p><strong>List specific Kubernetes versions</strong></p>
           <p>The following command will list all versions of MicroK8s that can be installed:</p>
           <div class="p-code-copyable">
@@ -114,9 +114,9 @@
         </div>
       </li>
 
-      <li class="p-list-step__item">
-        <h3 class="p-list-step__title">Useful tips</h3>
-        <div class="p-list-step__content">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Useful tips</h3>
+        <div class="p-stepped-list__content">
           <p>This command will install a the stable 1.14 version of MicroK8s:</p>
           <p>After installing MicroK8s, you should verify it is ready. Use this command:</p>
           <div class="p-code-copyable">
@@ -174,9 +174,9 @@
 <section class="p-strip--light is-bordered">
   <div class="u-fixed-width">
     <ol class="p-stepped-list--detailed">
-      <li class="p-list-step__item">
-        <h3 class="p-list-step__title">Install Juju</h3>
-        <div class="p-list-step__content">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Install Juju</h3>
+        <div class="p-stepped-list__content">
           <p>Juju simplifies how you configure, scale and operate today’s complex software. Juju deploys everywhere: to public or private clouds. It is packaged as a snap which requires snapd to be installed. The latest Ubuntu release comes with this already built in. For other Linux systems install snapd first:</p>
           <div class="p-code-copyable">
             <input class="p-code-copyable__input" value="sudo snap install juju --classic" readonly="readonly">
@@ -185,9 +185,9 @@
         </div>
       </li>
 
-      <li class="p-list-step__item">
-        <h3 class="p-list-step__title">Add your cloud - optional</h3>
-        <div class="p-list-step__content">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Add your cloud - optional</h3>
+        <div class="p-stepped-list__content">
           <p>This interactive step allows you to register a cloud that isn’t known to Juju by default. In the summary instructions above, since AWS is used, this step isn’t necessary - AWS and other public clouds have well-known IP addresses. For private clouds you need to give some details to juju. An example is a MAAS cloud, which operates your bare metal infrastructure.</p>
           <div class="p-code-copyable">
             <input class="p-code-copyable__input" value="juju add-cloud" readonly="readonly">
@@ -212,9 +212,9 @@
         </div>
       </li>
 
-      <li class="p-list-step__item">
-        <h3 class="p-list-step__title">Add Credentials</h3>
-        <div class="p-list-step__content">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Add Credentials</h3>
+        <div class="p-stepped-list__content">
           <p>Most clouds require credentials so that the cloud knows which operations are authorised and on which account. If you choose to use AWS, for example, you would run <code>juju add-credential aws</code></p>
           <div class="p-code-copyable">
             <input class="p-code-copyable__input" value="juju add-credential aws" readonly="readonly">
@@ -223,9 +223,9 @@
         </div>
       </li>
 
-      <li class="p-list-step__item">
-        <h3 class="p-list-step__title">Add Controller</h3>
-        <div class="p-list-step__content">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Add Controller</h3>
+        <div class="p-stepped-list__content">
           <p>The Juju controller is used to manage the software deployed through Juju, from deployment to upgrades to day-two operations.</p>
           <div class="p-code-copyable">
             <input class="p-code-copyable__input" value="juju bootstrap aws my-cloud-controller" readonly="readonly">
@@ -234,9 +234,9 @@
         </div>
       </li>
 
-      <li class="p-list-step__item">
-        <h3 class="p-list-step__title">Add Model</h3>
-        <div class="p-list-step__content">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Add Model</h3>
+        <div class="p-stepped-list__content">
           <p>The model holds a specific deployment, like Kubernetes, which includes all necessary applications and the number of instances of each one. This is where the number of Kubernetes worker nodes are scaled up or down.</p>
           <div class="p-code-copyable">
             <input class="p-code-copyable__input" value="juju add-model k8s-test" readonly="readonly">
@@ -245,9 +245,9 @@
         </div>
       </li>
 
-      <li class="p-list-step__item">
-        <h3 class="p-list-step__title">Deploy Kubernetes</h3>
-        <div class="p-list-step__content">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Deploy Kubernetes</h3>
+        <div class="p-stepped-list__content">
           <p>Add the Kubernetes bundle to the model and deploy the components, including the default number of components, like worker nodes.</p>
           <div class="p-code-copyable">
             <input class="p-code-copyable__input" value="juju deploy charmed-kubernetes" readonly="readonly">
@@ -256,9 +256,9 @@
         </div>
       </li>
 
-      <li class="p-list-step__item">
-        <h3 class="p-list-step__title"><span class="p-list-step__bullet">&#9734;</span>Useful tips</h3>
-        <div class="p-list-step__content">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title"><span class="p-stepped-list__bullet">&#9734;</span>Useful tips</h3>
+        <div class="p-stepped-list__content">
           <p><strong>Observe installation progress:</strong> Watch the deployment process in real-time:</p>
           <div class="p-code-copyable">
             <input class="p-code-copyable__input" value="watch -c juju status --color" readonly="readonly">

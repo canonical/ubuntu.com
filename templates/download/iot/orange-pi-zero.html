@@ -37,49 +37,47 @@
 </section>
 
 <section class="p-strip is-deep is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h2>Installation instructions</h2>
-      <ol class="p-stepped-list--detailed">
-        {% include "./_setup-ubuntu-sso.html" %}
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
+  <div class="u-fixed-width">
+    <h2>Installation instructions</h2>
+    <ol class="p-stepped-list--detailed">
+      {% include "./_setup-ubuntu-sso.html" %}
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
 
-            Download Ubuntu Core
-          </h3>
-          <div class="p-list-step__content">
-            <p>Get the correct Ubuntu Core image for your board:</p>
-            <ul class="u-no-margin--left">
-              <li><a class="p-link--external" href="http://www.orangepi.org/downloadresources/orangepizero/2017-08-18/orangepizero_97899291e57c7a56ec9073f.html">Ubuntu Core 16 for Orange Pi Zero</a></li>
-            </ul>
-          </div>
-        </li>
-        {% include "./_flash-image.html" with card="microSD card" %}
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
+          Download Ubuntu Core
+        </h3>
+        <div class="p-stepped-list__content">
+          <p>Get the correct Ubuntu Core image for your board:</p>
+          <ul class="u-no-margin--left">
+            <li><a class="p-link--external" href="http://www.orangepi.org/downloadresources/orangepizero/2017-08-18/orangepizero_97899291e57c7a56ec9073f.html">Ubuntu Core 16 for Orange Pi Zero</a></li>
+          </ul>
+        </div>
+      </li>
+      {% include "./_flash-image.html" with card="microSD card" %}
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
 
-            Install Ubuntu Core
-          </h3>
-          <div class="p-list-step__content">
-            <ol class="u-no-margin--left">
-              <li>Insert the SD card into the board.</li>
-              <li>Connect the Ethernet cable to the board and to the network.</li>
-              <li>Connect the TTL end of the TTL to USB cable, to the three pins next to the Ethernet port. On this diagram, they are identified by the label "Debug serial port". The pin layout is, from the outside to the inside:
-                <ul>
-                  <li><code>GND</code> (black wire)</li>
-                  <li><code>RX</code> (white wire)</li>
-                  <li><code>TX</code> (green wire)</li>
-                </ul>
-              </li>
-              <li>Connect the USB end of the cable into your host computer, open a terminal and run <code>sudo screen /dev/ttyUSB0 115200</code> to open a listening connection to the board.</li>
-              <li>Power on the board. The terminal on your host computer should display the boot sequence. If not, please ensure the TTL to USB cable is correctly connected.</li>
-            </ol>
-          </div>
-        </li>
-        {% include "./_first-boot-setup.html" with number=5 %}
-        {% include "./_login.html" with number=6 %}
-      </ol>
-    </div>
+          Install Ubuntu Core
+        </h3>
+        <div class="p-stepped-list__content">
+          <ol class="u-no-margin--left">
+            <li>Insert the SD card into the board.</li>
+            <li>Connect the Ethernet cable to the board and to the network.</li>
+            <li>Connect the TTL end of the TTL to USB cable, to the three pins next to the Ethernet port. On this diagram, they are identified by the label "Debug serial port". The pin layout is, from the outside to the inside:
+              <ul>
+                <li><code>GND</code> (black wire)</li>
+                <li><code>RX</code> (white wire)</li>
+                <li><code>TX</code> (green wire)</li>
+              </ul>
+            </li>
+            <li>Connect the USB end of the cable into your host computer, open a terminal and run <code>sudo screen /dev/ttyUSB0 115200</code> to open a listening connection to the board.</li>
+            <li>Power on the board. The terminal on your host computer should display the boot sequence. If not, please ensure the TTL to USB cable is correctly connected.</li>
+          </ol>
+        </div>
+      </li>
+      {% include "./_first-boot-setup.html" with number=5 %}
+      {% include "./_login.html" with number=6 %}
+    </ol>
   </div>
 </section>
 
