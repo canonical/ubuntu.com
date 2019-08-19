@@ -85,12 +85,6 @@ export var serverAndDesktopReleases = [
     status: 'EXTENDED_SECURITY_MAINTENANCE_FOR_CUSTOMERS'
   },
   {
-    startDate: new Date('2018-10-01T00:00:00'),
-    endDate: new Date('2019-07-01T00:00:00'),
-    taskName: 'Ubuntu 18.10',
-    status: 'INTERIM_RELEASE'
-  },
-  {
     startDate: new Date('2019-04-01T00:00:00'),
     endDate: new Date('2020-01-01T00:00:00'),
     taskName: 'Ubuntu 19.04',
@@ -286,27 +280,21 @@ export var kernelReleases = [
     status: 'EXTENDED_SECURITY_MAINTENANCE_FOR_CUSTOMERS'
   },
   {
-    startDate: new Date('2018-10-01T00:00:00'),
-    endDate: new Date('2019-07-01T00:00:00'),
-    taskName: 'Ubuntu 18.10 (v4.18)',
-    status: 'INTERIM_RELEASE'
-  },
-  {
     startDate: new Date('2019-02-01T00:00:00'),
     endDate: new Date('2019-08-01T00:00:00'),
-    taskName: 'Ubuntu 18.04.2 LTS',
+    taskName: 'Ubuntu 18.04.2 LTS (v4.18)',
     status: 'UBUNTU_LTS_RELEASE_SUPPORT'
   },
   {
     startDate: new Date('2019-04-01T00:00:00'),
     endDate: new Date('2020-01-01T00:00:00'),
-    taskName: 'Ubuntu 19.04',
+    taskName: 'Ubuntu 19.04 (v5.0)',
     status: 'INTERIM_RELEASE'
   },
   {
     startDate: new Date('2019-08-01T00:00:00'),
     endDate: new Date('2020-02-01T00:00:00'),
-    taskName: 'Ubuntu 18.04.3 LTS',
+    taskName: 'Ubuntu 18.04.3 LTS (v5.0)',
     status: 'UBUNTU_LTS_RELEASE_SUPPORT'
   },
   {
@@ -459,7 +447,7 @@ export var openStackReleases = [
   {
     startDate: new Date('2019-08-01T00:00:00'),
     endDate: new Date('2021-02-01T00:00:00'),
-    taskName: 'OpenStack T',
+    taskName: 'OpenStack Train',
     status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
   },
   {
@@ -524,13 +512,13 @@ export var kubernetesReleases = [
     startDate: new Date('2018-07-01T00:00:00'),
     endDate: new Date('2019-03-01T00:00:00'),
     taskName: 'Kubernetes 1.11',
-    status: 'CDK_SUPPORT'
+    status: 'CDK_EXPIRED_SUPPORT'
   },
   {
     startDate: new Date('2018-09-01T00:00:00'),
     endDate: new Date('2019-06-01T00:00:00'),
     taskName: 'Kubernetes 1.12',
-    status: 'CDK_SUPPORT'
+    status: 'CDK_EXPIRED_SUPPORT'
   },
   {
     startDate: new Date('2018-12-01T00:00:00'),
@@ -572,7 +560,6 @@ export var desktopServerReleaseNames = [
   'Ubuntu 20.04 LTS',
   'Ubuntu 19.10',
   'Ubuntu 19.04',
-  'Ubuntu 18.10',
   'Ubuntu 18.04 LTS',
   'Ubuntu 16.04 LTS',
   'Ubuntu 14.04 LTS',
@@ -585,10 +572,9 @@ export var kernelReleaseNames = [
   'Ubuntu 20.04 LTS',
   'Ubuntu 18.04.4 LTS',
   'Ubuntu 19.10',
-  'Ubuntu 18.04.3 LTS',
-  'Ubuntu 19.04',
-  'Ubuntu 18.04.2 LTS',
-  'Ubuntu 18.10 (v4.18)',
+  'Ubuntu 18.04.3 LTS (v5.0)',
+  'Ubuntu 19.04 (v5.0)',
+  'Ubuntu 18.04.2 LTS (v4.18)',
   'Ubuntu 18.04.1 LTS (v4.15)',
   'Ubuntu 16.04.5 LTS (v4.15)',
   'Ubuntu 18.04.0 LTS (v4.15)',
@@ -606,7 +592,7 @@ export var openStackReleaseNames = [
   'OpenStack U LTS',
   'Ubuntu 20.04 LTS',
   'OpenStack U',
-  'OpenStack T',
+  'OpenStack Train',
   'OpenStack Stein',
   'OpenStack Rocky',
   'OpenStack Queens LTS',
