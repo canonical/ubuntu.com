@@ -5,7 +5,12 @@ from canonicalwebteam.yaml_responses.django_helpers import (
     create_deleted_views,
     create_redirect_views,
 )
-from canonicalwebteam.blog.django.views import group, topic
+from canonicalwebteam.blog.django.views import (
+    group,
+    group_feed,
+    topic,
+    topic_feed,
+)
 
 # Local code
 from .views import UbuntuTemplateFinder, DownloadView, ResourcesView, search
@@ -47,6 +52,7 @@ urlpatterns += [
         },
         name="group",
     ),
+    path("blog/group/<slug:slug>/feed", group_feed, name="group_feed"),
     path(
         "blog/topics/maas",
         topic,
@@ -77,6 +83,7 @@ urlpatterns += [
         {"slug": "robotics", "template_path": "blog/topics/robotics.html"},
         name="topic",
     ),
+    path("blog/topics/<slug:slug>/feed", topic_feed, name="topic_feed"),
     path("blog", include("canonicalwebteam.blog.django.urls")),
     url(
         r"^(?P<template>download/(desktop|server|cloud)/thank-you)$",
