@@ -32,10 +32,9 @@
       The following step assumes you want to install <a class="p-link--external" href="https://microk8s.io/">MicroK8s</a> as your Kubernetes cluster.
     </p>
     <ol class="p-stepped-list--detailed">
-
-      <li class="p-list-step__item col-12">
-        <h3 class="p-list-step__title">Install MicroK8s</h3>
-        <div class="p-list-step__content">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Install MicroK8s</h3>
+        <div class="p-stepped-list__content">
           <p>
             MicroK8s can be installed with one command. However, to get the most out of the installation, there are a few extra steps that need to be done, particularly if executing these steps in a virtual machine. The <code>setup-microk8s.sh</code> script will automate these steps for you.
           </p>
@@ -57,9 +56,9 @@
         </div>
       </li>
 
-      <li class="p-list-step__item col-12">
-        <h3 class="p-list-step__title">Install Kubeflow</h3>
-        <div class="p-list-step__content">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Install Kubeflow</h3>
+        <div class="p-stepped-list__content">
           <p>Clone the kubeflow-tools project</p>
           <div class="p-code-copyable">
             <input class="p-code-copyable__input" value="git clone https://github.com/canonical-labs/kubeflow-tools" readonly="readonly">
@@ -73,9 +72,9 @@
         </div>
       </li>
 
-      <li class="p-list-step__item col-12">
-        <h3 class="p-list-step__title">Access Kubeflow</h3>
-        <div class="p-list-step__content">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Access Kubeflow</h3>
+        <div class="p-stepped-list__content">
           <p>If you installed Microk8s on your local host, then you can use localhost as the IP address in your browser. Otherwise, if you used Multipass as per the instructions above, you can get the IP address of the VM with either <code>multipass list</code> or <code>multipass info kubeflow</code>.</p>
           <p>Point browser to either:</p>
           <ul>
