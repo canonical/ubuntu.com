@@ -39,50 +39,48 @@
 </section>
 
 <section class="p-strip--light is-deep is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h2>Installation instructions</h2>
-      <ol class="p-stepped-list--detailed">
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
+  <div class="u-fixed-width">
+    <h2>Installation instructions</h2>
+    <ol class="p-stepped-list--detailed">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
 
-            Download Ubuntu Server
-          </h3>
-          <div class="p-list-step__content">
-            <p>Get the correct Ubuntu Server image for your board:</p>
-            <ul class="u-no-margin--left" style="list-style-type: disc;">
-              <li><a class="p-link--external" href="http://cdimage.ubuntu.com/releases/bionic/release/ubuntu-{{ releases.lts.full_version }}-preinstalled-server-armhf+raspi2.img.xz">Ubuntu Server image for Raspberry Pi 2.</a>
-              </li>
-              <li><a class="p-link--external" href="http://cdimage.ubuntu.com/releases/bionic/release/ubuntu-{{ releases.lts.full_version }}-preinstalled-server-arm64+raspi3.img.xz">Ubuntu Server image for Raspberry Pi 3</a></li>
-              <li>You can verify the integrity of the files using the <a class="p-link--external" href="http://cdimage.ubuntu.com/releases/bionic/release/SHA256SUMS">SHA256SUM</a> and <a class="p-link--external" href="http://cdimage.ubuntu.com/releases/bionic/release/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.
-              </li>
-            </ul>
-          </div>
-        </li>
-        {% include "./_flash-image.html" with card="microSD card" %}
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
+          Download Ubuntu Server
+        </h3>
+        <div class="p-stepped-list__content">
+          <p>Get the correct Ubuntu Server image for your board:</p>
+          <ul class="u-no-margin--left" style="list-style-type: disc;">
+            <li><a class="p-link--external" href="http://cdimage.ubuntu.com/releases/bionic/release/ubuntu-{{ releases.lts.full_version }}-preinstalled-server-armhf+raspi2.img.xz">Ubuntu Server image for Raspberry Pi 2.</a>
+            </li>
+            <li><a class="p-link--external" href="http://cdimage.ubuntu.com/releases/bionic/release/ubuntu-{{ releases.lts.full_version }}-preinstalled-server-arm64+raspi3.img.xz">Ubuntu Server image for Raspberry Pi 3</a></li>
+            <li>You can verify the integrity of the files using the <a class="p-link--external" href="http://cdimage.ubuntu.com/releases/bionic/release/SHA256SUMS">SHA256SUM</a> and <a class="p-link--external" href="http://cdimage.ubuntu.com/releases/bionic/release/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.
+            </li>
+          </ul>
+        </div>
+      </li>
+      {% include "./_flash-image.html" with card="microSD card" %}
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
 
-            Install Ubuntu Server
-          </h3>
-          <div class="p-list-step__content">
-            <ol class="u-no-margin--left">
-              <li>Attach the monitor and keyboard to the board. You can alternatively use a serial cable.</li>
-              <li>Insert the microSD card and plug the power adaptor into the board.</li>
-            </ol>
-          </div>
-        </li>
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
+          Install Ubuntu Server
+        </h3>
+        <div class="p-stepped-list__content">
+          <ol class="u-no-margin--left">
+            <li>Attach the monitor and keyboard to the board. You can alternatively use a serial cable.</li>
+            <li>Insert the microSD card and plug the power adaptor into the board.</li>
+          </ol>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
 
-            Login
-          </h3>
-          <div class="p-list-step__content">
-            <p>When prompted to log in, use "ubuntu" for the username and the password. You will be asked to change this default password after you log in.</p>
-          </div>
-        </li>
-      </ol>
-    </div>
+          Login
+        </h3>
+        <div class="p-stepped-list__content">
+          <p>When prompted to log in, use "ubuntu" for the username and the password. You will be asked to change this default password after you log in.</p>
+        </div>
+      </li>
+    </ol>
   </div>
 </section>
 

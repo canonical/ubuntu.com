@@ -35,43 +35,41 @@
 </section>
 
 <section class="p-strip is-deep is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h2>Installation instructions</h2>
-      <ol class="p-stepped-list--detailed">
-        {% include "./_setup-ubuntu-sso.html" with number=1 %}
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
-            
-            Download Ubuntu Core
-          </h3>
-          <div class="p-list-step__content">
-            <p>Get the correct Ubuntu Core image for your board:</p>
-            <ul class="u-no-margin--left">
-              <li><a class="p-link--external" href="http://people.canonical.com/~platform/snappy/artik/uc-series16-final-image/artik5.img.xz">Ubuntu Core 16 image for Samsung Artik 5</a></li>
-              <li><a class="p-link--external" href="http://people.canonical.com/~platform/snappy/artik/uc-series16-final-image/artik10.img.xz">Ubuntu Core 16 image for Samsung Artik 10</a></li>
-              <li>You can verify the integrity of the file using the <a class="p-link--external" href="http://people.canonical.com/~platform/snappy/artik/uc-series16-final-image/md5sum">MD5sum</a> file.</li>
-            </ul>
-          </div>
-        </li>
-        {% include "./_flash-image.html" with card="SD card" number=3 %}
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
-            
-            Install Ubuntu Core
-          </h3>
-          <div class="p-list-step__content">
-            <ol class="u-no-margin--left">
-              <li>Prepare your Artik to boot from the SD card, by setting the "SW2" switches to <code>1:on</code> and <code>2:on</code></li>
-              <li>Insert the SD card</li>
-              <li>Connect the 5V power supply to the board, then use the power button on the board to switch it on</li>
-            </ol>
-          </div>
-        </li>
-        {% include "./_first-boot-setup.html" with number=5 %}
-        {% include "./_login.html" with number=6 %}
-      </ol>
-    </div>
+  <div class="u-fixed-width">
+    <h2>Installation instructions</h2>
+    <ol class="p-stepped-list--detailed">
+      {% include "./_setup-ubuntu-sso.html" with number=1 %}
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
+          
+          Download Ubuntu Core
+        </h3>
+        <div class="p-stepped-list__content">
+          <p>Get the correct Ubuntu Core image for your board:</p>
+          <ul class="u-no-margin--left">
+            <li><a class="p-link--external" href="http://people.canonical.com/~platform/snappy/artik/uc-series16-final-image/artik5.img.xz">Ubuntu Core 16 image for Samsung Artik 5</a></li>
+            <li><a class="p-link--external" href="http://people.canonical.com/~platform/snappy/artik/uc-series16-final-image/artik10.img.xz">Ubuntu Core 16 image for Samsung Artik 10</a></li>
+            <li>You can verify the integrity of the file using the <a class="p-link--external" href="http://people.canonical.com/~platform/snappy/artik/uc-series16-final-image/md5sum">MD5sum</a> file.</li>
+          </ul>
+        </div>
+      </li>
+      {% include "./_flash-image.html" with card="SD card" number=3 %}
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
+          
+          Install Ubuntu Core
+        </h3>
+        <div class="p-stepped-list__content">
+          <ol class="u-no-margin--left">
+            <li>Prepare your Artik to boot from the SD card, by setting the "SW2" switches to <code>1:on</code> and <code>2:on</code></li>
+            <li>Insert the SD card</li>
+            <li>Connect the 5V power supply to the board, then use the power button on the board to switch it on</li>
+          </ol>
+        </div>
+      </li>
+      {% include "./_first-boot-setup.html" with number=5 %}
+      {% include "./_login.html" with number=6 %}
+    </ol>
   </div>
 </section>
 
