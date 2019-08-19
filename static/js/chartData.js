@@ -526,6 +526,18 @@ export var kubernetesReleases = [
     taskName: 'Kubernetes 1.13',
     status: 'CDK_SUPPORT'
   },
+  {
+    startDate: new Date('2019-03-01T00:00:00'),
+    endDate: new Date('2019-12-01T00:00:00'),
+    taskName: 'Kubernetes 1.14',
+    status: 'CDK_SUPPORT'
+  },
+  {
+    startDate: new Date('2019-06-14T00:00:00'),
+    endDate: new Date('2020-03-02T00:00:00'),
+    taskName: 'Kubernetes 1.15',
+    status: 'CDK_SUPPORT'
+  }
 ];
 
 export var desktopServerStatus = {
@@ -611,6 +623,8 @@ export var openStackReleaseNames = [
 ];
 
 export var kubernetesReleaseNames = [
+  'Kubernetes 1.15',
+  'Kubernetes 1.14',
   'Kubernetes 1.13',
   'Kubernetes 1.12',
   'Kubernetes 1.11',
