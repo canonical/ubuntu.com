@@ -23,23 +23,6 @@
   </div>
 </section>
 
-<nav class="p-tabs p-sticky-nav">
-  <ul class="p-tabs__list" role="tablist">
-    <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#benefits">Security and compliance</a>
-    </li>
-    <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#enable-esm">Enable ESM</a>
-    </li>
-    <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#get-esm">Get ESM</a>
-    </li>
-    <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#faq">FAQ</a>
-    </li>
-  </ul>
-</nav>
-
 <section class="p-strip is-deep is-bordered" id="benefits">
   <div class="row">
     <div class="col-8">
@@ -52,25 +35,6 @@
 </section>
 
 {% include "shared/_call-sales.html" with colour="dark" %}
-
-<section class="p-strip is-deep is-bordered" id="enable-esm">
-  <div class="row">
-    <div class="col-8">
-      <h2>How to enable ESM on your system</h2>
-      <p>To enable ESM on your Ubuntu LTS systems, you will need a token which is issued when you purchase ESM coverage. Once you have the token, follow this guide.</p>
-      <p>From the command line type the following commands and follow the step-by-step instructions:</p>
-      <div class="p-code-snippet">
-        <input class="p-code-snippet__input" value="sudo ubuntu-advantage enable-esm [ENTER TOKEN]" readonly="readonly">
-        <button class="p-code-snippet__action">Copy to clipboard</button>
-      </div>
-      <div class="p-code-snippet">
-        <input class="p-code-snippet__input" value="sudo apt-get update" readonly="readonly">
-        <button class="p-code-snippet__action">Copy to clipboard</button>
-      </div>
-    </div>
-    <p>ESM patches will now be offered as part of the standard APT upgrade procedure.</p>
-  </div>
-</section>
 
 <section class="p-strip--light is-deep is-bordered" id="get-esm">
   <div class="row">
