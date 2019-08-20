@@ -105,14 +105,14 @@ core.contributorFormToggle = function(){
 
   if(individualContributorRadio) {
     individualContributorRadio.addEventListener('click', function(e) {
-      individualForm.classList.remove('u-hidden');
-      orgForm.classList.add('u-hidden');
+      individualForm.classList.remove('u-hide');
+      orgForm.classList.add('u-hide');
     });
   }
   if(orgContributorRadio) {
     orgContributorRadio.addEventListener('click', function(e) {
-      orgForm.classList.remove('u-hidden');
-      individualForm.classList.add('u-hidden');
+      orgForm.classList.remove('u-hide');
+      individualForm.classList.add('u-hide');
     });
   }
 };
