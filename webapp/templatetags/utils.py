@@ -8,12 +8,6 @@ register = template.Library()
 
 
 @register.filter
-def replace(value, args):
-    params = args.split(",")
-    return value.replace(params[0], params[1])
-
-
-@register.filter
 def descending_years(end_year):
     now = datetime.datetime.now()
     return range(now.year, end_year, -1)
@@ -34,20 +28,6 @@ def months_list(year):
         if date < now.date():
             months.append({"name": date.strftime("%b"), "number": i})
     return months
-
-
-@register.filter
-def keyvalue(dictionary, key_name):
-    """
-    A template filter to get a dictionary key using a variable.
-    E.g.:
-
-    {{ dictionary | keyvalue:variable }}
-
-    (From https://stackoverflow.com/a/10700142/613540)
-    """
-
-    return dictionary.get(key_name)
 
 
 @register.filter
