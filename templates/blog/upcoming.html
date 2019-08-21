@@ -18,7 +18,7 @@
   <section class="p-strip--light is-shallow">
     <div class="row u-equal-height u-clearfix">
     {% for article in articles %}
-      {% if forloop.counter|add:"-1"|divisibleby:"3" and forloop.counter > 1 %}
+      {% if forloop.counter - 1|divisibleby:"3" and forloop.counter > 1 %}
         </div>
         <div class="row u-equal-height u-clearfix">
       {% endif %}

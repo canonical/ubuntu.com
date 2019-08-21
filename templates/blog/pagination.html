@@ -5,24 +5,24 @@
         {% with page_prefix=request|build_path_with_params|add:"&page="|replace:"?&,?" %}
         <ul class="p-inline-list--middot u-align--center" style="margin-bottom: 1rem;">
           {% if current_page > 1 %}
-            <li class="p-inline-list__item"><a href="{{ page_prefix }}{{ current_page|add:"-1" }}">Previous</a></li>
+            <li class="p-inline-list__item"><a href="{{ page_prefix }}{{ current_page - 1 }}">Previous</a></li>
           {% endif %}
 
           {# always show 5 pages in pagination #}
           {% if current_page > 4 and current_page == total_pages %}
-            <li class="p-inline-list__item"><a class="p-link--soft" href="{{ page_prefix }}{{ current_page|add:"-4" }}">{{ current_page|add:"-4" }}</a></li>
+            <li class="p-inline-list__item"><a class="p-link--soft" href="{{ page_prefix }}{{ current_page - 4 }}">{{ current_page - 4 }}</a></li>
           {% endif %}
 
           {% if current_page > 3 and current_page >= total_pages|add:"1" %}
-            <li class="p-inline-list__item"><a class="p-link--soft" href="{{ page_prefix }}{{ current_page|add:"-3" }}">{{ current_page|add:"-3" }}</a></li>
+            <li class="p-inline-list__item"><a class="p-link--soft" href="{{ page_prefix }}{{ current_page - 3 }}">{{ current_page - 3 }}</a></li>
           {% endif %}
 
           {% if current_page > 2 %}
-            <li class="p-inline-list__item"><a class="p-link--soft" href="{{ page_prefix }}{{ current_page|add:"-2" }}">{{ current_page|add:"-2" }}</a></li>
+            <li class="p-inline-list__item"><a class="p-link--soft" href="{{ page_prefix }}{{ current_page - 2 }}">{{ current_page - 2 }}</a></li>
           {% endif %}
 
           {% if current_page > 1 %}
-            <li class="p-inline-list__item"><a class="p-link--soft" href="{{ page_prefix }}{{ current_page|add:"-1" }}">{{ current_page|add:"-1" }}</a></li>
+            <li class="p-inline-list__item"><a class="p-link--soft" href="{{ page_prefix }}{{ current_page - 1 }}">{{ current_page - 1 }}</a></li>
           {% endif %}
 
           <!-- current page -->
@@ -32,15 +32,15 @@
             <li class="p-inline-list__item"><a class="p-link--soft" href="{{ page_prefix }}{{ current_page|add:"1" }}">{{ current_page|add:"1" }}</a></li>
           {% endif %}
 
-          {% if current_page < total_pages|add:"-1" %}
+          {% if current_page < total_pages - 1 %}
             <li class="p-inline-list__item"><a class="p-link--soft" href="{{ page_prefix }}{{ current_page|add:"2" }}">{{ current_page|add:"2" }}</a></li>
           {% endif %}
 
-          {% if current_page <  total_pages|add:"-2" and current_page <= 2 %}
+          {% if current_page <  total_pages - 2 and current_page <= 2 %}
             <li class="p-inline-list__item"><a class="p-link--soft" href="{{ page_prefix }}{{ current_page|add:"3" }}">{{ current_page|add:"3" }}</a></li>
           {% endif %}
 
-          {% if current_page < total_pages|add:"-3"  and current_page == 1 %}
+          {% if current_page < total_pages - 3  and current_page == 1 %}
             <li class="p-inline-list__item"><a class="p-link--soft" href="{{ page_prefix }}{{ current_page|add:"4" }}">{{ current_page|add:"4" }}</a></li>
           {% endif %}
 
