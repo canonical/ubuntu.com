@@ -1,8 +1,8 @@
+{% extends "engage/base_engage.html" %}
+
 {% block title %}Mit den richtigen Tools wird OpenStack ganz einfach.{% endblock %}
 {% block meta_description %}Dieses eBook vermittelt Ihnen ein besseres Verständnis dafür, weshalb Installation und Betrieb von OpenStack komplex erscheinen können und wie OpenStack von Canonical Sie beim Aufbau einer modernen, skalierbaren, reproduzierbaren und erschwinglichen Private Cloud Infrastruktur unterstützt.{% endblock %}
 {% block meta_image %}https://assets.ubuntu.com/v1/35515576-openstack-cloud.svg{% endblock %}
-
-{% extends "engage/base_engage.html" %}
 
 {% block content %}
 
@@ -46,9 +46,7 @@
       </ul>
     </div>
     <div class="col-5">
-      {% with id="3266", returnURL="https://pages.ubuntu.com/openstack-made-easy-de-TY.html", cta="eBook herunterladen" %}
-        {% include "engage/shared/_de_engage_form.html" %}
-      {% endwith %}
+      {% include "engage/shared/_de_engage_form.html" with id="3266" returnURL="https://pages.ubuntu.com/openstack-made-easy-de-TY.html" cta="eBook herunterladen" %}
     </div>
   </div>
 </section>
