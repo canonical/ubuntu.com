@@ -1,6 +1,11 @@
+import datetime
+
+import yaml
+import dateutil
 from django.conf import settings
 from copy import deepcopy
-import yaml
+from canonicalwebteam.templatetags.versioned_static import versioned_static
+from canonicalwebteam.get_feeds import get_json_feed_content
 
 
 def _remove_hidden(pages):
@@ -12,6 +17,26 @@ def _remove_hidden(pages):
             filtered_pages.append(child)
 
     return filtered_pages
+
+
+def helpers(request):
+    """
+    Helpful functions
+    """
+
+    def current_year():
+        return datetime.datetime.now().year
+
+    def format_date(datestring):
+        date = dateutil.parser.parse(datestring)
+        return date.strftime("%-d %B %Y")
+
+    return {
+        "get_json_feed": get_json_feed_content,
+        "versioned_static": versioned_static,
+        "current_year": current_year,
+        "format_date": format_date,
+    }
 
 
 def navigation(request):

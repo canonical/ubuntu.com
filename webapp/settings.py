@@ -93,20 +93,17 @@ with open("navigation.yaml") as navigation_file:
 
 TEMPLATES = [
     {
-        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "BACKEND": "django.template.backends.jinja2.Jinja2",
         "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
-            "builtins": [
-                "canonicalwebteam.get_feeds.templatetags",
-                "webapp.templatetags.utils",
-            ],
             "context_processors": [
                 "django_asset_server_url.asset_server_url",
+                "webapp.context_processors.helpers",
                 "webapp.context_processors.navigation",
                 "webapp.context_processors.releases",
                 "django.template.context_processors.request",
-            ],
+            ]
         },
     }
 ]
