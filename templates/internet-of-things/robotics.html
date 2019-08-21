@@ -1,6 +1,5 @@
 {% extends "internet-of-things/base_things.html" %}
 
-{% load versioned_static  %}
 
 {% block title %}Robotics | Ubuntu for the Internet of Things {% endblock %}
 {% block meta_description %}With hundreds of thousands of drones and robots deployed the world over, Ubuntu Core is the perfect robust, reliable and secure OS for the robotics sector. {% endblock meta_description %}
@@ -315,6 +314,6 @@
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_robotics.html" data-form-id="1650" data-lp-id="2838" data-return-url="http://ubuntu.com/internet-of-things/thank-you?product=robotics" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+<script src="{{ versioned_static('js/build/dynamic-contact-form.min.js') }}"></script>
 
 {% endblock content %}

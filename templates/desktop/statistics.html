@@ -1,5 +1,4 @@
 {% extends "desktop/base_desktop.html" %}
-{% load versioned_static %}
 
 {% block title %}User statistics{% endblock %}
 {% block meta_description %}The Ubuntu user report showcases the data collected from users installing or upgrading to
@@ -394,6 +393,6 @@ Ubuntu 18.04 LTS.{% endblock %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-dsv/1.0.8/d3-dsv.min.js"></script>
 <script src="https://d3js.org/d3-fetch.v1.min.js"></script>
 <script src="https://unpkg.com/topojson-client@3"></script>
-<script src="{% versioned_static 'js/build/stickyNav.min.js' %}"></script>
-<script src="{% versioned_static 'js/build/desktopStatistics.min.js' %}"></script>
+<script src="{{ versioned_static('js/build/stickyNav.min.js') }}"></script>
+<script src="{{ versioned_static('js/build/desktopStatistics.min.js') }}"></script>
 {% endblock content %}

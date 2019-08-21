@@ -1,5 +1,4 @@
 {% extends "embedded/base_embedded.html" %}
-{% load versioned_static %}
 
 {% block title %}Ubuntu is the new standard for embedded Linux{% endblock %}
 
@@ -670,7 +669,7 @@
   }
 </style>
 
-<script src="{% versioned_static 'js/build/stickyNav.min.js' %}"></script>
+<script src="{{ versioned_static('js/build/stickyNav.min.js') }}"></script>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_core_learn_more" second_item="_core_contribute" third_item="_iot_further_reading" %}
 
@@ -678,7 +677,7 @@
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_embedded.html" data-form-id="1266" data-lp-id="2166" data-return-url="https://www.ubuntu.com/core/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+<script src="{{ versioned_static('js/build/dynamic-contact-form.min.js') }}"></script>
 
 {% endblock content %}
 

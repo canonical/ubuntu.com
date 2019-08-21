@@ -1,5 +1,4 @@
 {% extends "esm/base_esm.html" %}
-{% load versioned_static %}
 
 {% block title %}Ubuntu Extended Security Maintenance{% endblock %}
 
@@ -119,7 +118,7 @@
   </div>
 </section>
 
-<script src="{% versioned_static 'js/build/stickyNav.min.js' %}"></script>
+<script src="{{ versioned_static('js/build/stickyNav.min.js') }}"></script>
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
 

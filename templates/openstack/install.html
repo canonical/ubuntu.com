@@ -1,6 +1,5 @@
 {% extends "openstack/_base_openstack.html" %}
 
-{% load versioned_static  %}
 
 {% block title %}Install | OpenStack | Ubuntu{% endblock %}
 {% block meta_description %}A step-by-step installation guide to Ubuntu OpenStack on bare metal servers.{% endblock %}
@@ -404,7 +403,7 @@ Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:</
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_openstack.html" data-form-id="1251" data-lp-id="2086" data-return-url="https://www.ubuntu.com/openstack/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+<script src="{{ versioned_static('js/build/dynamic-contact-form.min.js') }}"></script>
 
 
 {% endblock content %}

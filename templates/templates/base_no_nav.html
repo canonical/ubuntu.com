@@ -24,11 +24,11 @@
     <link rel="apple-touch-icon" sizes="114x114" href="{{ ASSET_SERVER_URL }}5fe4d3c8-apple-touch-icon-114x114-precomposed.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="{{ ASSET_SERVER_URL }}09460d9a-apple-touch-icon-72x72-precomposed.png" />
     <link rel="apple-touch-icon" href="{{ ASSET_SERVER_URL }}c39e0fed-apple-touch-icon.png" />
-    <link type="text/plain" rel="author" href="{% versioned_static 'files/humans.txt' %}" />
+    <link type="text/plain" rel="author" href="{{ versioned_static('files/humans.txt') }}" />
 
     <!-- stylesheets -->
-    <link rel="stylesheet" type="text/css" media="screen" href="{% versioned_static 'css/styles.css' %}" />
-    <link rel="stylesheet" type="text/css" media="print" href="{% versioned_static 'css/print.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ versioned_static('css/styles.css') }}" />
+    <link rel="stylesheet" type="text/css" media="print" href="{{ versioned_static('css/print.css') }}" />
 
     <script>
       var html = document.documentElement

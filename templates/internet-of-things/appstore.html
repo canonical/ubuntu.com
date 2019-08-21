@@ -1,6 +1,5 @@
 {% extends "internet-of-things/base_things.html" %}
 
-{% load versioned_static  %}
 
 {% block title %}White label app store for IOT | Ubuntu for the Internet of Things {% endblock %}
 {% block meta_description %}For cloud based and enterprise IoT app stores, control, manage and monetise software deployments on your connected Linux devices.{% endblock meta_description %}
@@ -258,6 +257,6 @@
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_embedded.html" data-form-id="2639" data-lp-id="5811" data-return-url="https://ubuntu.com/internet-of-things/thank-you?product=appstore" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+<script src="{{ versioned_static('js/build/dynamic-contact-form.min.js') }}"></script>
 
 {% endblock content %}

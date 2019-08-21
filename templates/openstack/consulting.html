@@ -1,6 +1,5 @@
 {% extends "openstack/_base_openstack.html" %}
 
-{% load versioned_static  %}
 
 {% block title %}Consulting | OpenStack{% endblock %}
 {% block meta_description %}Private Cloud Build is a service that builds, supports and manages your cloud for you.{% endblock meta_description %}
@@ -239,6 +238,6 @@
   <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_openstack.html" data-form-id="1251" data-lp-id="2086" data-return-url="https://www.ubuntu.com/openstack/thank-you?product=foundation-cloud" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
   </div>
 
-  <script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+  <script src="{{ versioned_static('js/build/dynamic-contact-form.min.js') }}"></script>
 
 {% endblock content %}

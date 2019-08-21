@@ -1,6 +1,5 @@
 {% extends "internet-of-things/base_things.html" %}
 
-{% load versioned_static  %}
 
 {% block title %}Digital signage | Ubuntu for the Internet of Things {% endblock %}
 {% block meta_description %}With hundreds of thousands of devices deployed the world over, Ubuntu Core is the perfect robust, reliable and secure OS for the digital signage sector.{% endblock meta_description %}
@@ -217,6 +216,6 @@
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_embedded.html" data-form-id="1422" data-lp-id="2166" data-return-url="https://ubuntu.com/internet-of-things/thank-you?product=digital-signage" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+<script src="{{ versioned_static('js/build/dynamic-contact-form.min.js') }}"></script>
 
 {% endblock content %}

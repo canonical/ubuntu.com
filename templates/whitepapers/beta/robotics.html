@@ -1,5 +1,4 @@
 {% extends "whitepapers/base_whitepapers.html" %}
-{% load versioned_static %}
 
 {% block title %}Key considerations when choosing a robot’s operating system{% endblock %}
 
@@ -348,6 +347,6 @@
   </div>
 </section>
 
-<script src="{% versioned_static 'js/stickySidebar.js' %}"></script>
+<script src="{{ versioned_static('js/stickySidebar.js') }}"></script>
 
 {% endblock content %}

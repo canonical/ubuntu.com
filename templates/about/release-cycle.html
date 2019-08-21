@@ -1,5 +1,4 @@
 {% extends "templates/one-column.html" %}
-{% load versioned_static  %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1-l3B7AoyDoETaL80UhlfEWCVKmMWPdy3zoF5LpsGcYQ{% endblock meta_copydoc %}
 {% block meta_description %}Overview of the Ubuntu release cycle - maintenance, support and security coverage, lifetime, upgrade paths, kernel versions and the range of editions and images published by Canonical.{% endblock %}
 
@@ -642,6 +641,6 @@
       </section>
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
-      <script src="{% versioned_static 'js/build/release-chart.min.js' %}"></script>
+      <script src="{{ versioned_static('js/build/release-chart.min.js') }}"></script>
 
       {% endblock content %}

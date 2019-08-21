@@ -1,5 +1,4 @@
 {% extends "openstack/_base_openstack.html" %}
-{% load versioned_static  %}
 
 {% block title %}BootStack - managed OpenStack on Ubuntu | OpenStack{% endblock %}
 {% block meta_description %}With BootStack, Canonical will build, support and manage your cloud for only $15 per host per day.{% endblock meta_description %}
@@ -547,6 +546,6 @@
   <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_bootstack.html" data-form-id="1128" data-lp-id="1646" data-return-url="https://www.ubuntu.com/openstack/thank-you?product=openstack-managed-cloud" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
   </div>
 
-  <script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+  <script src="{{ versioned_static('js/build/dynamic-contact-form.min.js') }}"></script>
 
 {% endblock content %}
