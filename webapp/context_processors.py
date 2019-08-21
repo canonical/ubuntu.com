@@ -1,4 +1,5 @@
 import datetime
+import calendar
 
 import yaml
 import dateutil
@@ -31,11 +32,44 @@ def helpers(request):
         date = dateutil.parser.parse(datestring)
         return date.strftime("%-d %B %Y")
 
+    def build_path_with_params(request):
+        query_params = request.GET.copy()
+        query_string = "?"
+
+        if "page" in query_params:
+            query_params.pop("page")
+
+        if len(query_params) > 0:
+            query_string += query_params.urlencode()
+
+        return request.path + query_string
+
+    def months_list(year):
+        months = []
+        now = datetime.datetime.now()
+        for i in range(1, 13):
+            date = datetime.date(year, i, 1)
+            if date < now.date():
+                months.append({"name": date.strftime("%b"), "number": i})
+        return months
+
+    def month_name(string):
+        month = int(string)
+        return calendar.month_name[month]
+
+    def descending_years(end_year):
+        now = datetime.datetime.now()
+        return range(now.year, end_year, -1)
+
     return {
         "get_json_feed": get_json_feed_content,
         "versioned_static": versioned_static,
         "current_year": current_year,
         "format_date": format_date,
+        "build_path_with_params": build_path_with_params,
+        "months_list": months_list,
+        "month_name": month_name,
+        "descending_years": descending_years,
     }
 
 

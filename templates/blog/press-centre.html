@@ -96,7 +96,7 @@
         <div class="p-card">
           <h4>Archives</h4>
           <ul class="p-list">
-            {% for year in 2015|descending_years %}
+            {% for year in descending_years(2015) %}
               <li class="p-list__item"><h5><a class="p-link--soft" href="/blog/archives?group=canonical-announcements&amp;year={{ year }}">{{ year }}</a></h5></li>
             {% endfor %}
           </ul>
