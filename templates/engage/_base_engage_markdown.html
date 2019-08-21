@@ -31,7 +31,7 @@
       </div>
     </div>
     {% if header_image %}<div class="col-5 u-hide--small u-align--center u-vertically-center">
-      <img src="{% if header_image != "http" %}{{ ASSET_SERVER_URL }}{% endif %}{{ header_image }}" width="413" style="max-height: 410px; max-width: 250px;" alt="image for {{ header_title }}" >
+      <img src="{% if header_image != "http" %}https://assets.ubuntu.com/v1/{% endif %}{{ header_image }}" width="413" style="max-height: 410px; max-width: 250px;" alt="image for {{ header_title }}" >
     </div>{% endif %}
   </div>
 </section>

@@ -11,7 +11,7 @@
 
 {% block content %}
 <article>
-  <header class="p-strip--image is-shallow" style="background-image: url({{ ASSET_SERVER_URL }}f8a323a7-image-background-paper.png);">
+  <header class="p-strip--image is-shallow" style="background-image: url(https://assets.ubuntu.com/v1/f8a323a7-image-background-paper.png);">
     <div class="row">
       <div class="col-8">
         <h1>{{ article.title.rendered|safe }}</h1>
@@ -22,7 +22,7 @@
       <div class="col-8">
         <div class="p-media-object">
           {% if article.author %}
-            <img src="{% if article.author.id == 217 %}{{ ASSET_SERVER_URL }}60d9b81e-picto-canonical.svg{% else %}{{ article.author.avatar_urls.96 }}{% endif %}" class="p-media-object__image is-round">
+            <img src="{% if article.author.id == 217 %}https://assets.ubuntu.com/v1/60d9b81e-picto-canonical.svg{% else %}{{ article.author.avatar_urls.96 }}{% endif %}" class="p-media-object__image is-round">
           {% endif %}
 
           <div class="p-media-object__details">
@@ -113,7 +113,7 @@
         </div>
 
         <div class="col-4 u-align--center u-vertically-center u-hide--small">
-          <img width="100" src="{{ ASSET_SERVER_URL }}39ebd977-robot.svg" alt="" />
+          <img width="100" src="https://assets.ubuntu.com/v1/39ebd977-robot.svg" alt="" />
         </div>
       </div>
     </section>
