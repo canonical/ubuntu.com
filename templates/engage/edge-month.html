@@ -1,4 +1,8 @@
-{% extends_with_args "engage/base_engage.html" with title="A guide to edge computing and the tools you need" meta_image="https://assets.ubuntu.com/v1/3f92b40e-Social+banner.jpg" meta_description="Join Canonical Product Managers for a series of webinars on edge computing to learn what is driving businesses to process their data at the edge and how you can add an edge computing layer to your business infrastructure. " %}
+{% block title %}"A guide to edge computing and the tools you need"{% endblock %}
+{% block meta_description %}"Join Canonical Product Managers for a series of webinars on edge computing to learn what is driving businesses to process their data at the edge and how you can add an edge computing layer to your business infrastructure. "{% endblock %}
+{% block meta_image %}"https://assets.ubuntu.com/v1/3f92b40e-Social+banner.jpg"{% endblock %}
+
+{% extends "engage/base_engage.html" %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1D_CuxaO_II0Jh9jRO9mYgRnO1J99s3DY-Iq78fPpvTc{% endblock meta_copydoc %}
 

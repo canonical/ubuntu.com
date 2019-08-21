@@ -1,4 +1,8 @@
-{% extends_with_args "engage/base_engage.html" with title="Learn What's New In Ubuntu Server 14.04 LTS" meta_image="9f61b97f-logo-ubuntu.svg" meta_description="Released in April 2014, Ubuntu Server 14.04 is the latest LTS release of Ubuntu server. It includes OpenStack Icehouse and many new features and tools for cloud and hyperscale computing." %}
+{% block title %}"Learn What's New In Ubuntu Server 14.04 LTS"{% endblock %}
+{% block meta_description %}"Released in April 2014, Ubuntu Server 14.04 is the latest LTS release of Ubuntu server. It includes OpenStack Icehouse and many new features and tools for cloud and hyperscale computing."{% endblock %}
+{% block meta_image %}"9f61b97f-logo-ubuntu.svg"{% endblock %}
+
+{% extends "engage/base_engage.html" %}
 
 {% block meta_copydoc %}https://app-sjg.marketo.com/#LP5750A1LA1{% endblock meta_copydoc %}
 

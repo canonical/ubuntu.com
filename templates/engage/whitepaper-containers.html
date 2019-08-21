@@ -1,4 +1,8 @@
-{% extends_with_args "engage/base_engage.html" with title="For CTOs: the no-nonsense way to accelerate your business with containers" meta_image="a9aff224-Containers-illustration.svg" meta_description="This eBook is designed to help telecom executives understand industry best practices as they move towards ‘cloudification’ of their network infrastructure." %}
+{% block title %}"For CTOs: the no-nonsense way to accelerate your business with containers"{% endblock %}
+{% block meta_description %}"This eBook is designed to help telecom executives understand industry best practices as they move towards ‘cloudification’ of their network infrastructure."{% endblock %}
+{% block meta_image %}"a9aff224-Containers-illustration.svg"{% endblock %}
+
+{% extends "engage/base_engage.html" %}
 
 {% block meta_copydoc %}https://app-sjg.marketo.com/#LP5628A1LA1{% endblock meta_copydoc %}
 

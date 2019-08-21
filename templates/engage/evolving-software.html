@@ -1,4 +1,7 @@
-{% extends_with_args "engage/base_engage.html" with title="Keep up with evolving software" meta_description="Software keeps evolving and management complexity tends to increase with successive stack updates. Learn how using Juju can solve software management complexity and how it provides a familiar approach to managing any type of stack." %}
+{% block title %}"Keep up with evolving software"{% endblock %}
+{% block meta_description %}"Software keeps evolving and management complexity tends to increase with successive stack updates. Learn how using Juju can solve software management complexity and how it provides a familiar approach to managing any type of stack."{% endblock %}
+
+{% extends "engage/base_engage.html" %}
 
 {% block content %}
 <section class="p-strip--image is-dark p-hero--evolving-software">

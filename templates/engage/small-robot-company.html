@@ -1,4 +1,8 @@
-{% extends_with_args "engage/base_engage.html" with title="Small Robot Company sows the seeds for autonomous and more profitable farming" meta_image="https://assets.ubuntu.com/v1/2d645bd4-robot03.svg" meta_description="In Europe, the cost of running a cereal farm – cultivating wheat, rice, and other grains – has risen by 85% in the last 25 years, yet crop yields and revenues have stagnated. And while farms struggle to remain profitable, it won’t be long before those static yields become insufficient to support growing populations." %}
+{% block title %}"Small Robot Company sows the seeds for autonomous and more profitable farming"{% endblock %}
+{% block meta_description %}"In Europe, the cost of running a cereal farm – cultivating wheat, rice, and other grains – has risen by 85% in the last 25 years, yet crop yields and revenues have stagnated. And while farms struggle to remain profitable, it won’t be long before those static yields become insufficient to support growing populations."{% endblock %}
+{% block meta_image %}"https://assets.ubuntu.com/v1/2d645bd4-robot03.svg"{% endblock %}
+
+{% extends "engage/base_engage.html" %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1xhjiRveHItibFEqhZJdG_FYbgYVhWmZG2LAXYyzkyCk/edit?ts=5ced4c72{% endblock meta_copydoc %}
 

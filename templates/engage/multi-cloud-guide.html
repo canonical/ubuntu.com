@@ -1,4 +1,8 @@
-{% extends_with_args "engage/base_engage.html" with title="CIO guide to multi-cloud operations" meta_image="3899d03f-choosingacloud.svg" meta_description="What is the right cloud strategy for your business? A whitepaper with objective discussion of the various approaches to cloud computing and a clear definition for each of them: public cloud, private cloud, managed cloud, hybrid cloud and multi-cloud." %}
+{% block title %}"CIO guide to multi-cloud operations"{% endblock %}
+{% block meta_description %}"What is the right cloud strategy for your business? A whitepaper with objective discussion of the various approaches to cloud computing and a clear definition for each of them: public cloud, private cloud, managed cloud, hybrid cloud and multi-cloud."{% endblock %}
+{% block meta_image %}"3899d03f-choosingacloud.svg"{% endblock %}
+
+{% extends "engage/base_engage.html" %}
 
 {% block content %}
 <section class="p-strip--image is-deep js-takeover is-bordered p-takeover--multicloud-operations">

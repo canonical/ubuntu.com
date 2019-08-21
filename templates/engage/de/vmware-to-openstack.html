@@ -1,4 +1,7 @@
-{% extends_with_args "engage/base_engage.html" with title="Von VMware zu Canonical OpenStack" meta_description="Sind Sie bereit für die Migration von proprietärer Virtualisierung auf OpenStack?" %}
+{% block title %}"Von VMware zu Canonical OpenStack"{% endblock %}
+{% block meta_description %}"Sind Sie bereit für die Migration von proprietärer Virtualisierung auf OpenStack?"{% endblock %}
+
+{% extends "engage/base_engage.html" %}
 
 {% block content %}
 <section class="p-strip p-takeover--vmware-to-os">

@@ -5,16 +5,16 @@
 <meta property="og:url" content="https://ubuntu.com{{ request.get_full_path }}" />
 <meta property="og:site_name" content="Ubuntu" />
 
-{% if title %}
-    <meta name="twitter:title" content="{{ title }} | Ubuntu">
-    <meta property="og:title" content="{{ title }} | Ubuntu" />
+{% if self.title() %}
+    <meta name="twitter:title" content="{{ self.title() }} | Ubuntu">
+    <meta property="og:title" content="{{ self.title() }} | Ubuntu" />
 {% endif %}
-{% if meta_description %}
-    <meta name="twitter:description" content="{{ meta_description }}">
-    <meta property="og:description" content="{{ meta_description }}" />
+{% if self.meta_description() %}
+    <meta name="twitter:description" content="{{ self.meta_description() }}">
+    <meta property="og:description" content="{{ self.meta_description() }}" />
 {% endif %}
-{% if meta_image %}
+{% if self.meta_image() %}
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="{% if "http" not in meta_image %}{{ ASSET_SERVER_URL }}{% endif %}{{ meta_image }}">
-    <meta property="og:image" content="{% if "http" not in meta_image %}{{ ASSET_SERVER_URL }}{% endif %}{{ meta_image }}" />
+    <meta name="twitter:image" content="{% if "http" not in self.meta_image() %}{{ ASSET_SERVER_URL }}{% endif %}{{ self.meta_image() }}">
+    <meta property="og:image" content="{% if "http" not in self.meta_image() %}{{ ASSET_SERVER_URL }}{% endif %}{{ self.meta_image() }}" />
 {% endif %}

@@ -1,4 +1,8 @@
-{% extends_with_args "engage/base_engage.html" with title="How to face the challenges of becoming a cloud operator" meta_image="9f61b97f-logo-ubuntu.svg" meta_description="In a shifting market, the traditional revenues of telcos and service providers are under threat. Voice revenues are at an all-time low, and high wireless data costs are negatively impacting margins." %}
+{% block title %}"How to face the challenges of becoming a cloud operator"{% endblock %}
+{% block meta_description %}"In a shifting market, the traditional revenues of telcos and service providers are under threat. Voice revenues are at an all-time low, and high wireless data costs are negatively impacting margins."{% endblock %}
+{% block meta_image %}"9f61b97f-logo-ubuntu.svg"{% endblock %}
+
+{% extends "engage/base_engage.html" %}
 
 {% block meta_copydoc %}https://app-sjg.marketo.com/#LP5496A1LA1{% endblock meta_copydoc %}
 
