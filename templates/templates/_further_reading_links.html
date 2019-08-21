@@ -1,13 +1,13 @@
 {% set feed=get_json_fee(insights_news_url) %}
 
-{% if feed is False %}
+{% if feed == false %}
   <div class="p-notification--negative">
     <p class="p-notification__response"><span class="p-notification__status">Error:</span>The live news feed failed to load. Please <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new" class="external">report this bug</a> and our team will fix the problem as soon as&nbsp;possible.</p>
   </div>
 {% else %}
   <ul class='p-list'>
     {% for item in feed %}
-      <li class="p-list__item"><a href="{{item.link|replace_admin}}">{{item.title.rendered|safe}}&nbsp;&rsaquo;</a></li>
+      <li class="p-list__item"><a href="{{item.link.replace('admin.insights.ubuntu.com', 'blog.ubuntu.com')}}">{{item.title.rendered|safe}}&nbsp;&rsaquo;</a></li>
     {% endfor %}
   </ul>
 {% endif %}

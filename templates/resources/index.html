@@ -94,7 +94,7 @@
       {% endif %}
         <hr class="u-sv1">
         {% if resource.featuredmedia.source_url %}
-        <a href="{{resource.link|replace_admin}}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Clicked resource', 'eventLabel' : '{{resource.title.rendered}}', 'eventValue' : undefined });" >
+        <a href="{{resource.link.replace('admin.insights.ubuntu.com', 'blog.ubuntu.com')}}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Clicked resource', 'eventLabel' : '{{resource.title.rendered}}', 'eventValue' : undefined });" >
           <img
             src="https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_460/{{resource.featuredmedia.source_url}}"
             srcset="https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_460/{{resource.featuredmedia.source_url}} 460w,
@@ -109,7 +109,7 @@
           />
         </a>
         {% endif %}
-        <h3 class="p-heading--four"><a href="{{resource.link|replace_admin}}">{{resource.title.rendered | safe}}</a></h3>
+        <h3 class="p-heading--four"><a href="{{resource.link.replace('admin.insights.ubuntu.com', 'blog.ubuntu.com')}}">{{resource.title.rendered | safe}}</a></h3>
         {% if not resource.featuredmedia.source_url %}
           {{resource.excerpt.rendered | truncatewords:25 | safe}}
         {% endif %}
