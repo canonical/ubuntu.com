@@ -64,7 +64,7 @@
   </div>
 </section>
 
-{% include "shared/_call-sales.html" with colour="dark" %}
+{% with colour="dark" %}{% include "shared/_call-sales.html" %}{% endwith %}
 
 <section class="p-strip--light is bordered">
   <div class="row">
@@ -156,6 +156,6 @@
   </div>
 </div>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_server_download" second_item="_server_contact_us" third_item="_cloud_further_reading" %}
+{% with first_item="_server_download", second_item="_server_contact_us", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 {% endblock content %}

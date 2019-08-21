@@ -59,7 +59,7 @@
             </ul>
           </div>
         </li>
-        {% include "./_flash-image.html" with card="microSD card" %}
+        {% with card="microSD card" %}{% include "./_flash-image.html" %}{% endwith %}
         <li class="p-list-step__item">
           <h3 class="p-list-step__title">
 
@@ -108,10 +108,10 @@
   </div>
 </section>
 
-{% include "./_install-snaps-strip.html" with strip="p-strip--light" %}
+{% with strip="p-strip--light" %}{% include "./_install-snaps-strip.html" %}{% endwith %}
 
 {% include "download/shared/_get-ebook-security.html"%}
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_core_learn_more" second_item="_core_contribute" third_item="_iot_further_reading" %}
+{% with first_item="_core_learn_more", second_item="_core_contribute", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 {% endblock content %}

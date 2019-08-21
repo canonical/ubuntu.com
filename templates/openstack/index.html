@@ -74,7 +74,7 @@
   <div class="row u-equal-height">
     <h2>Choose your OpenStack package</h2>
   </div>
-  {% include "shared/pricing/_openstack-packages.html" with columns='3' %}
+  {% with columns='3' %}{% include "shared/pricing/_openstack-packages.html" %}{% endwith %}
 </section>
 
 <section class="p-strip--light">
@@ -137,7 +137,7 @@
 </section>
 
 <section class="p-strip--light is-bordered">
-  {% include "openstack/shared/_openstack_clients.html" with heading="A SELECTION OF OUR OPENSTACK CLIENTS" %}
+  {% with heading="A SELECTION OF OUR OPENSTACK CLIENTS" %}{% include "openstack/shared/_openstack_clients.html" %}{% endwith %}
 </section>
 
 <section class="p-strip u-no-padding--bottom">
@@ -306,7 +306,7 @@
   </div>
 </section>
 
-{% include "shared/_training.html" with type="OpenStack" %}
+{% with type="OpenStack" %}{% include "shared/_training.html" %}{% endwith %}
 
 <section class="p-strip--light">
   <div class="row">
@@ -325,7 +325,7 @@
   </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_ubuntu_advantage" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
+{% with first_item="_cloud_ubuntu_advantage", second_item="_cloud_contact_us", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_openstack.html" data-form-id="1251" data-lp-id="2086" data-return-url="https://www.ubuntu.com/openstack/thank-you?product=foundation-cloud" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">

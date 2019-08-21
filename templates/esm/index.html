@@ -33,7 +33,7 @@
   </div>
 </section>
 
-{% include "shared/_call-sales.html" with colour="dark" %}
+{% with colour="dark" %}{% include "shared/_call-sales.html" %}{% endwith %}
 
 <section class="p-strip--light is-deep is-bordered" id="get-esm">
   <div class="row">
@@ -120,7 +120,7 @@
 
 <script src="{{ versioned_static('js/build/stickyNav.min.js') }}"></script>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
+{% with first_item="_support_landscape", second_item="_support_contact_us", third_item="_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

@@ -85,5 +85,5 @@
   </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_newsletter" third_item="_telco_further_reading" %}
+{% with first_item="_cloud_bootstack", second_item="_cloud_newsletter", third_item="_telco_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 {% endblock content %}

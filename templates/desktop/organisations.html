@@ -185,6 +185,6 @@
 
 {% include "shared/_release_schedule.html" %}
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_desktop_contact_us" second_item="_support" third_item="_desktop_further_reading" %}
+{% with first_item="_desktop_contact_us", second_item="_support", third_item="_desktop_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 {% endblock content %}

@@ -28,7 +28,7 @@
   <div class="row">
     <h3>Security maintenance and support</h3>
   </div>
-  {% include "shared/pricing/_ua-for-infrastructure.html" with extra=" Please refer to the <a href='/uasd'>service description</a> for full details." %}
+  {% with extra=" Please refer to the <a href='/uasd'>service description</a> for full details." %}{% include "shared/pricing/_ua-for-infrastructure.html" %}{% endwith %}
   <div class="row">
     <div class="col-12">
       <p>
@@ -84,7 +84,7 @@
   </div>
 </section>
 
-{% include "shared/_call-sales.html" with colour="dark" %}
+{% with colour="dark" %}{% include "shared/_call-sales.html" %}{% endwith %}
 
 
 <!-- Set default Marketo information for contact form below-->

@@ -103,6 +103,6 @@
     </div>
   </section>
 
-  {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_desktop_download" second_item="_support-image" third_item="_desktop_flavours" %}
+  {% with first_item="_desktop_download", second_item="_support-image", third_item="_desktop_flavours" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
   {% endblock content %}

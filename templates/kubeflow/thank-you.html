@@ -6,19 +6,19 @@
 
 {% block content %}
   {% if product == 'ai-index-workshop' %}
-    {% include "shared/_thank_you.html" with thanks_context="enquiring about our AI workshop" %}
+    {% with thanks_context="enquiring about our AI workshop" %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% elif product == 'ai-index-assessment' %}
-    {% include "shared/_thank_you.html" with thanks_context="enquiring about our ML / Data Science assessment" %}
+    {% with thanks_context="enquiring about our ML / Data Science assessment" %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% elif product == 'ai-index-managed' %}
-    {% include "shared/_thank_you.html" with thanks_context="enquiring about our AI managed services" %}
+    {% with thanks_context="enquiring about our AI managed services" %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% elif product == 'ai-install' %}
-    {% include "shared/_thank_you.html" with thanks_context="enquiring about installing Kubeflow" %}
+    {% with thanks_context="enquiring about installing Kubeflow" %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% elif product == 'ai-consulting' %}
-    {% include "shared/_thank_you.html" with thanks_context="enquiring about Canonical consulting" %}
+    {% with thanks_context="enquiring about Canonical consulting" %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% elif product == 'ai-features' %}
-    {% include "shared/_thank_you.html" with thanks_context="enquiring about AI on Canonical" %}
+    {% with thanks_context="enquiring about AI on Canonical" %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% else %}
-    {% include "shared/_thank_you.html" with thanks_context="enquiring about AI" %}
+    {% with thanks_context="enquiring about AI" %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% endif %}
 {% endblock content %}
 

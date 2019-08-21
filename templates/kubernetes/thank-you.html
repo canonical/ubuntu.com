@@ -6,25 +6,25 @@
 
 {% block content %}
   {% if product == 'kubernetes' %}
-    {% include "shared/_thank_you.html" with thanks_context="enquiring about Kubernetes" %}
+    {% with thanks_context="enquiring about Kubernetes" %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% elif product == 'kubernetes-managed' %}
-    {% include "shared/_thank_you.html" with thanks_context="enquiring about Managed Kubernetes" %}
+    {% with thanks_context="enquiring about Managed Kubernetes" %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% elif product == 'kubernetes-install' %}
-      {% include "shared/_thank_you.html" with thanks_context="enquiring about Kubernetes" %}
+      {% with thanks_context="enquiring about Kubernetes" %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% elif product == 'kubernetes-kubeadm' %}
-      {% include "shared/_thank_you.html" with thanks_context="enquiring about kubeadm" %}
+      {% with thanks_context="enquiring about kubeadm" %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% elif product == 'multicloud' %}
-      {% include "shared/_thank_you.html" with thanks_context="contacting us about multicloud." %}
+      {% with thanks_context="contacting us about multicloud." %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% elif product == 'kubernetes-features' %}
-      {% include "shared/_thank_you.html" with thanks_context="enquiring about Kubernetes" %}
+      {% with thanks_context="enquiring about Kubernetes" %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% elif product == 'kubernetes-consulting' %}
-      {% include "shared/_thank_you.html" with thanks_context="enquiring about Kubernetes consulting" %}
+      {% with thanks_context="enquiring about Kubernetes consulting" %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% elif product == 'kubernetes-add-on' %}
-      {% include "shared/_thank_you.html" with thanks_context="enquiring about the Kubernetes AI/ML add-on" %}
+      {% with thanks_context="enquiring about the Kubernetes AI/ML add-on" %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% elif product == 'kubernetes-support' %}
-      {% include "shared/_thank_you.html" with thanks_context="enquiring about Kubernetes support" %}
+      {% with thanks_context="enquiring about Kubernetes support" %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% else %}
-      {% include "shared/_thank_you.html" with thanks_context="enquiring about Kubernetes" %}
+      {% with thanks_context="enquiring about Kubernetes" %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% endif %}
 {% endblock content %}
 

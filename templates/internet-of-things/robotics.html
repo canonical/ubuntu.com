@@ -28,7 +28,7 @@
 <div class="p-strip--light">
   <div class="row">
     <div class="col-12">
-      {% include "shared/_partner-logos.html" with title="Proven in the field - companies with robots on Ubuntu" json_feed_url="http://partners.ubuntu.com/partners.json?technology__name=Robotics" feed_item_limit=10 %}
+      {% with title="Proven, in the field - companies with robots on Ubuntu" json_feed_url="http://partners.ubuntu.com/partners.json?technology__name=Robotics", feed_item_limit=10 %}{% include "shared/_partner-logos.html" %}{% endwith %}
       <p class="u-align--center"><a href="http://partners.ubuntu.com/find-a-partner?technology=robotics" class="p-link--external">See all of our robotics partners</a></p>
     </div>
   </div>
@@ -308,7 +308,7 @@
   </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_developers" second_item="_iot_newsletter_signup" third_item="_iot_further_reading" %}
+{% with first_item="_iot_developers", second_item="_iot_newsletter_signup", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_robotics.html" data-form-id="1650" data-lp-id="2838" data-return-url="http://ubuntu.com/internet-of-things/thank-you?product=robotics" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">

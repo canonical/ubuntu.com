@@ -54,7 +54,7 @@
 
     </div>
     <div class="col-5" id="the-form">
-    {% include "engage/shared/_en_engage_form.html" with id="3306" returnURL="https://pages.ubuntu.com/Desktop_Whitepaper_ty.html" %}
+    {% with id="3306", returnURL="https://pages.ubuntu.com/Desktop_Whitepaper_ty.html" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

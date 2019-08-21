@@ -41,5 +41,5 @@
   </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_security_further_reading" second_item="_cloud_newsletter" third_item="_security_esm" %}
+{% with first_item="_security_further_reading", second_item="_cloud_newsletter", third_item="_security_esm" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 {% endblock content %}

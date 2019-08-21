@@ -44,7 +44,7 @@ Thank you for your contribution
           <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download now</a>.
           {% endif %}
         </p>
-        {% include "../shared/_verify-checksums.html" with version=version system="desktop" architecture=architecture %}
+        {% with version=version, system="desktop", architecture=architecture %}{% include "../shared/_verify-checksums.html" %}{% endwith %}
         {% else %}
         <h1>Thank you for your contribution</h1>
         <p>It will help further the open source development of Ubuntu.</p>
@@ -555,7 +555,7 @@ Thank you for your contribution
     </div>
   </div>
 
-  {% include "shared/contextual_footers/_contextual_footer.html" with first_item="_download_verify_your_download" second_item="_download_desktop_guide" third_item="_download_enterprise_support" %}
+  {% with first_item="_download_verify_your_download", second_item="_download_desktop_guide", third_item="_download_enterprise_support" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 
   {% endblock content %}

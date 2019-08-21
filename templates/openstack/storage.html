@@ -91,7 +91,7 @@
   </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_rfp" third_item="_cloud_further_reading" %}
+{% with first_item="_cloud_bootstack", second_item="_cloud_rfp", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_storage.html" data-form-id="1233" data-lp-id="2001" data-return-url="https://www.ubuntu.com/openstack/thank-you?product=ubuntu-advantage-storage" data-lp-url="https://www.ubuntu.com/openstack/contact-us?product=ubuntu-advantage-storage">

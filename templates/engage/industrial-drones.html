@@ -58,5 +58,5 @@
   </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_iot_further_reading" second_item="_iot_newsletter_signup" third_item="_iot_contact" %}
+{% with first_item="_iot_further_reading", second_item="_iot_newsletter_signup", third_item="_iot_contact" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 {% endblock content %}

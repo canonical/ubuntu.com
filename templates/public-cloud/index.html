@@ -28,7 +28,7 @@
 <section class="p-strip is-deep is-bordered">
   <div class="row">
     <div class="col-12">
-      {% include "shared/_partner-logos.html" with title="A selection of our certified public cloud partners" json_feed_url="https://partners.ubuntu.com/partners.json?programme__name=Certified%20Public%20Cloud&featured=true" feed_item_limit=10 %}
+      {% with title="A, selection of our certified public cloud partners" json_feed_url="https://partners.ubuntu.com/partners.json?programme__name=Certified%20Public%20Cloud&featured=true", feed_item_limit=10 %}{% include "shared/_partner-logos.html" %}{% endwith %}
       <p class="u-align--center"><a class="p-link--external" href="https://partners.ubuntu.com/find-a-partner?programme=certified-public-cloud ">View all certified public cloud partners</a></p>
     </div>
   </div>
@@ -114,6 +114,6 @@
   </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_newsletter" third_item="_cloud_further_reading" %}
+{% with first_item="_cloud_bootstack", second_item="_cloud_newsletter", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 {% endblock content %}

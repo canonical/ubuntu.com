@@ -23,7 +23,7 @@
           <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-{{ architecture }}.iso">
             download now</a>.
           </p>
-          {% include "../shared/_verify-checksums.html" with version=version system="live-server" architecture=architecture %}
+          {% with version=version, system="live-server", architecture=architecture %}{% include "../shared/_verify-checksums.html" %}{% endwith %}
           {% else %}
           <p>
             You didn&rsquo;t pick a version or architecture, please
@@ -61,7 +61,7 @@
     </div>
   </section>
 
-  {% include "download/shared/_get_ebook_maas.html" with return_url="https://www.ubuntu.com/download/server/thank-you#instructions" %}
+  {% with return_url="https://www.ubuntu.com/download/server/thank-you#instructions" %}{% include "download/shared/_get_ebook_maas.html" %}{% endwith %}
 
   <div class="p-strip is-shallow">
     <div class="row">
@@ -161,7 +161,7 @@
     </div>
   </div>
 
-  {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_verify_your_download" second_item="_download_server_guide" third_item="_download_helping_hands" %}
+  {% with first_item="_download_verify_your_download", second_item="_download_server_guide", third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
   {% endblock content %}
   {% block footer_extra %}

@@ -50,5 +50,5 @@
   </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_further_reading" second_item="_cloud_newsletter" third_item="_cloud_contact_us" %}
+{% with first_item="_cloud_further_reading", second_item="_cloud_newsletter", third_item="_cloud_contact_us" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 {% endblock content %}

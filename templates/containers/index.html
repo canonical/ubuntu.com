@@ -59,7 +59,7 @@
 <div class="p-strip is-bordered">
   <div class="row">
     <div class="col-12">
-      {% include "shared/_partner-logos.html" with title="Partnering with industry leaders" json_feed_url="http://partners.ubuntu.com/partners.json?technology__name=Containers" feed_item_limit=10 %}
+      {% with title="Partnering, with industry leaders" json_feed_url="http://partners.ubuntu.com/partners.json?technology__name=Containers", feed_item_limit=10 %}{% include "shared/_partner-logos.html" %}{% endwith %}
     </div>
   </div>
 </div>
@@ -127,6 +127,6 @@
   </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_containers_juju" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
+{% with first_item="_containers_juju", second_item="_cloud_lxd", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 {% endblock content %}
