@@ -1,4 +1,4 @@
-{% get_json_feed json_feed_url limit=feed_item_limit as partners %}
+{% set partners=get_json_feed(json_feed_url, limit=feed_item_limit) %}
 
 {% if partners is False %}
   <div class="p-notification--negative">
