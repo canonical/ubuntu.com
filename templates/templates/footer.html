@@ -6,30 +6,43 @@
     <nav id="main-navigation" class="p-footer__nav u-clearfix">
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
-          {% include 'templates/_footer_item.html' with section=nav_sections.openstack %}
+          {% with section=nav_sections.openstack %}
+            {% include 'templates/_footer_item.html' %}
+          {% endwith %}
         </ul>
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
-          {% include 'templates/_footer_item.html' with section=nav_sections.kubernetes %}
-          {% include 'templates/_footer_item.html' with section=nav_sections.ai %}
+          {% with section=nav_sections.kubernetes %}
+            {% include 'templates/_footer_item.html' %}
+          {% endwith %}
         </ul>
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
-          {% include 'templates/_footer_item.html' with section=nav_sections.desktop %}
-          {% include 'templates/_footer_item.html' with section=nav_sections.server %}
+          {% with section=nav_sections.desktop %}
+            {% include 'templates/_footer_item.html' %}
+          {% endwith %}
+          {% with section=nav_sections.server %}
+            {% include 'templates/_footer_item.html' %}
+          {% endwith %}
         </ul>
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
-          {% include 'templates/_footer_item.html' with section=nav_sections.iot %}
-          {% include 'templates/_footer_item.html' with section=nav_sections.support %}
+          {% with section=nav_sections.iot %}
+            {% include 'templates/_footer_item.html' %}
+          {% endwith %}
+          {% with section=nav_sections.support %}
+            {% include 'templates/_footer_item.html' %}
+          {% endwith %}
         </ul>
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
-          {% include 'templates/_footer_item.html' with section=nav_sections.download %}
+          {% with section=nav_sections.download %}
+            {% include 'templates/_footer_item.html' %}
+          {% endwith %}
         </ul>
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom last-col">
@@ -48,11 +61,21 @@
             </ul>
           </li>
           <ul class="second-level-nav second-level-nav-small">
-            {% include 'templates/_footer_item.html' with section=nav_sections.security %}
-            {% include 'templates/_footer_item.html' with section=nav_sections.publiccloud %}
-            {% include 'templates/_footer_item.html' with section=nav_sections.containers %}
-            {% include 'templates/_footer_item.html' with section=nav_sections.core %}
-            {% include 'templates/_footer_item.html' with section=nav_sections.resources %}
+            {% with section=nav_sections.security %}
+              {% include 'templates/_footer_item.html' %}
+            {% endwith %}
+              {% with section=nav_sections.publiccloud %}
+              {% include 'templates/_footer_item.html' %}
+            {% endwith %}
+              {% with section=nav_sections.containers %}
+              {% include 'templates/_footer_item.html' %}
+            {% endwith %}
+              {% with section=nav_sections.core %}
+              {% include 'templates/_footer_item.html' %}
+            {% endwith %}
+              {% with section=nav_sections.resources %}
+              {% include 'templates/_footer_item.html' %}
+            {% endwith %}
           </ul>
         </ul>
       </div>
@@ -86,7 +109,7 @@
           </ul>
         </nav>
 
-        <p class="p-footer--secondary__content"><small>&copy; {% now "Y" %} Canonical Ltd. Ubuntu and Canonical are registered trademarks of Canonical Ltd.</small></p>
+        <p class="p-footer--secondary__content"><small>&copy; {{ current_year() }} Canonical Ltd. Ubuntu and Canonical are registered trademarks of Canonical Ltd.</small></p>
         <nav>
           <ul class="p-inline-list--middot u-no-margin--bottom">
             <li class="p-inline-list__item">

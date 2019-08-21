@@ -1,10 +1,8 @@
 {% block header %}
-  {% include 'templates/_header_item_noscript.html' with section=nav_sections.openstack %}
-  {% include 'templates/_header_item_noscript.html' with section=nav_sections.kubernetes %}
-  {% include 'templates/_header_item_noscript.html' with section=nav_sections.ai %}
-  {% include 'templates/_header_item_noscript.html' with section=nav_sections.desktop %}
-  {% include 'templates/_header_item_noscript.html' with section=nav_sections.server %}
-  {% include 'templates/_header_item_noscript.html' with section=nav_sections.iot %}
-  {% include 'templates/_header_item_noscript.html' with section=nav_sections.support %}
-  {% include 'templates/_header_item_noscript.html' with section=nav_sections.download %}
+  {% with section=nav_sections.openstack %}{% include 'templates/_header_item_noscript.html' %}{% endwith %}
+  {% with section=nav_sections.kubernetes %}{% include 'templates/_header_item_noscript.html' %}{% endwith %}
+  {% with section=nav_sections.desktop %}{% include 'templates/_header_item_noscript.html' %}{% endwith %}
+  {% with section=nav_sections.iot %}{% include 'templates/_header_item_noscript.html' %}{% endwith %}
+  {% with section=nav_sections.support %}{% include 'templates/_header_item_noscript.html' %}{% endwith %}
+  {% with section=nav_sections.download %}{% include 'templates/_header_item_noscript.html' %}{% endwith %}
 {% endblock header %}

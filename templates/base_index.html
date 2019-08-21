@@ -1,7 +1,5 @@
 {% extends "templates/base.html" %}
 
-{% load versioned_static  %}
-
 {% block title %}The leading operating system for PCs, IoT devices, servers and the cloud{% endblock %}
 {% block extra_body_class %}homepage {% block takeover_body_class %}{% endblock takeover_body_class %}{% endblock extra_body_class %}
 
@@ -29,7 +27,9 @@
     {% endblock notices_content %}
 
     <section class="p-strip is-deep is-bordered">
-      {% include "shared/_insights_news_strip.html" with gtm_event_label="ubuntu.com homepage" %}
+      {% with gtm_event_label="ubuntu.com homepage" %}
+        {% include "shared/_insights_news_strip.html" %}
+      {% endwith %}
     </section>
 
     <section class="p-strip--light is-bordered">
@@ -118,14 +118,6 @@
         {% include "takeovers/takeunders/_openstack-ebook.html" %}
       </div>
     </section>
-
-    {% comment %}
-    <style type="text/css">
-    /* background image for the event feature */
-    /* get original using this //maps.googleapis.com/maps/api/staticmap?center=Tokyo%2C+Japan&zoom=14&scale=2&size=1200x320&maptype=satellite but with the location details from the insights event */
-    /*.featured--event:before { background-image: url('{{ ASSET_SERVER_URL }}62b7ce67-pasadena.png?fmt=jpg&q=20'); }*/
-    </style>
-    {% endcomment %}
 
     {% block footer_content %}
       {# include "ubuntu/takeovers/_footer_homepage.html" #}
@@ -220,6 +212,6 @@
     <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_general.html" data-form-id="1257" data-lp-id="2154" data-return-url="https://www.ubuntu.com/contact-us/form/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
     </div>
 
-    <script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+    <script src="{{ versioned_static('js/build/dynamic-contact-form.min.js') }}"></script>
   {% endblock content %}
 {% endblock outer_content %}
