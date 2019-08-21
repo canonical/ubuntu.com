@@ -173,7 +173,7 @@
     <pre><code>&#123;% include "takeovers/shared/_takeover.html" with title="Private cloud security" subtitleClass="p-heading--four" ctaBtn="Register for the webinar" ctaBtnURL="#" %}</code></pre>
 </div>
 </section>
-{% include "takeovers/shared/_takeover.html" with title="Private cloud security" subtitleClass="p-heading--four" ctaBtn="Register for the webinar" ctaBtnURL="#" %}
+{% with title="Private cloud security", subtitleClass="p-heading--four", ctaBtn=Register for the webinar, ctaBtnURL=# %}{% include "takeovers/shared/_takeover.html" %}{% endwith %}
 
 <style>
   .p-takeover {

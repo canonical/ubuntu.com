@@ -8,7 +8,7 @@
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="Sensape uses Landscape to remotely support revolutionary interactive retail displays" image="bcdbf966-Sensape_Logo_rgb_Animated-nobackground.gif" url="#the-form" cta="Download the case study" %}
+{% with title="Sensape uses Landscape to remotely support revolutionary interactive retail displays", image="bcdbf966-Sensape_Logo_rgb_Animated-nobackground.gif", url=#the-form, cta=Download the case study %}{% include "engage/shared/_header.html" %}{% endwith %}
 
 <section class="p-strip is-shallow">
   <div class="row">
@@ -23,7 +23,7 @@
       </ul>
     </div>
     <div class="col-5" id="the-form">
-    {% include "engage/shared/_en_engage_form.html" with id="2786" returnURL="https://pages.ubuntu.com/Cloud_UA_CS_Sensape_TY.html" cta="Download the case study" %}
+    {% with id="2786", returnURL="https://pages.ubuntu.com/Cloud_UA_CS_Sensape_TY.html", cta=Download the case study %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

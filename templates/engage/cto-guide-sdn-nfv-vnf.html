@@ -26,7 +26,7 @@
 </blockquote>
     </div>
     <div class="col-5" id="the-form">
-    {% include "engage/shared/_en_engage_form.html" with id="2540" returnURL="https://pages.ubuntu.com/CIO_Report_Thankyou.html" cta="Download the eBook" %}
+    {% with id="2540", returnURL="https://pages.ubuntu.com/CIO_Report_Thankyou.html", cta=Download the eBook %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

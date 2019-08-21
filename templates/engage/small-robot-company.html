@@ -51,7 +51,7 @@
       </ul>
     </div>
     <div class="col-5" id="register-section">
-      {% include "engage/shared/_en_engage_form.html" with id="3403" returnURL="https://pages.ubuntu.com/CStudy_SRC-TYvanilla.html" cta="Download the case study" %}
+      {% with id="3403", returnURL="https://pages.ubuntu.com/CStudy_SRC-TYvanilla.html", cta=Download the case study %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

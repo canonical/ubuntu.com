@@ -7,7 +7,7 @@
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="Why Ubuntu Core is the most secure choice for IoT" class="p-strip--dark p-takeover--core18" url="#register-section" cta="Watch the webinar" %}
+{% with title="Why Ubuntu Core is the most secure choice for IoT", class="p-strip--dark p-takeover--core18", url=#register-section, cta=Watch the webinar %}{% include "engage/shared/_header.html" %}{% endwith %}
 
 <section class="p-strip is-shallow is-bordered">
   <div class="row">

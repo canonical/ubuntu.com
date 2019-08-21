@@ -8,7 +8,7 @@
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="How to escape StuckStack and profit from your OpenStack investment" image="410edf8d-cost_%28piggy-bank%29.png" url="#the-form" cta="Download the eBook" %}
+{% with title="How to escape StuckStack and profit from your OpenStack investment", image="410edf8d-cost_%28piggy-bank%29.png", url=#the-form, cta=Download the eBook %}{% include "engage/shared/_header.html" %}{% endwith %}
 
 <section class="p-strip is-shallow">
   <div class="row">
@@ -23,7 +23,7 @@
       </ul>
     </div>
     <div class="col-5" id="the-form">
-    {% include "engage/shared/_en_engage_form.html" with id="2461" returnURL="https://pages.ubuntu.com/stuckstack_download.html" cta="Download the eBook" %}
+    {% with id="2461", returnURL="https://pages.ubuntu.com/stuckstack_download.html", cta=Download the eBook %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

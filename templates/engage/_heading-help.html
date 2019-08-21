@@ -58,7 +58,7 @@
     <pre><code>&#123;% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10" url="#register-section" cta="Watch the webinar"  %&#125;</code></pre>
 </div>
 </section>
-{% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10" url="#register-section" cta="Watch the webinar"  %}
+{% with title="What's New in Ubuntu 18.10", url="#register-section", cta=Watch the webinar %}{% include "engage/shared/_header.html" %}{% endwith %}
 <hr />
 
 <section class="p-strip">

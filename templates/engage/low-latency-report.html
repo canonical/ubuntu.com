@@ -8,7 +8,7 @@
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="Low latency and real time kernels for telco and NFV" image="9f61b97f-logo-ubuntu.svg" url="#the-form" cta="Download the report" %}
+{% with title="Low latency and real time kernels for telco and NFV", image="9f61b97f-logo-ubuntu.svg", url=#the-form, cta=Download the report %}{% include "engage/shared/_header.html" %}{% endwith %}
 
 <section class="p-strip is-shallow">
   <div class="row">
@@ -22,7 +22,7 @@
         <p><img src="http://assets.ubuntu.com/sites/ubuntu/1184/u/img/logos/logo-deutsche-telekom.png"></p>
     </div>
     <div class="col-5" id="the-form">
-    {% include "engage/shared/_en_engage_form.html" with id="2541" returnURL="https://pages.ubuntu.com/LowLatencyReport_TY.html" cta="Download the report" %}
+    {% with id="2541", returnURL="https://pages.ubuntu.com/LowLatencyReport_TY.html", cta=Download the report %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>
