@@ -61,6 +61,9 @@ def helpers(request):
         now = datetime.datetime.now()
         return range(now.year, end_year, -1)
 
+    def has_attr(obj, property_name):
+        return hasattr(obj, property_name)
+
     return {
         "get_json_feed": get_json_feed_content,
         "versioned_static": versioned_static,
@@ -70,6 +73,7 @@ def helpers(request):
         "months_list": months_list,
         "month_name": month_name,
         "descending_years": descending_years,
+        "has_attr": has_attr,
     }
 
 
