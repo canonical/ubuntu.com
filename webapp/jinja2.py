@@ -4,9 +4,26 @@ import calendar
 import yaml
 import dateutil
 from django.conf import settings
+from django_global_request.middleware import get_request
 from copy import deepcopy
 from canonicalwebteam.templatetags.versioned_static import versioned_static
 from canonicalwebteam.get_feeds import get_json_feed_content
+from jinja2 import Environment
+
+
+# Process data from YAML files
+# ===
+
+
+def releases():
+    """
+    Read releases as a dictionary from releases.yaml,
+    and provide the contents as a dictionary in the global
+    template context
+    """
+
+    with open("releases.yaml") as releases:
+        return yaml.load(releases, Loader=yaml.FullLoader)
 
 
 def _remove_hidden(pages):
@@ -20,70 +37,12 @@ def _remove_hidden(pages):
     return filtered_pages
 
 
-def helpers(request):
-    """
-    Helpful functions
-    """
-
-    def current_year():
-        return datetime.datetime.now().year
-
-    def format_date(datestring):
-        date = dateutil.parser.parse(datestring)
-        return date.strftime("%-d %B %Y")
-
-    def build_path_with_params(request):
-        query_params = request.GET.copy()
-        query_string = "?"
-
-        if "page" in query_params:
-            query_params.pop("page")
-
-        if len(query_params) > 0:
-            query_string += query_params.urlencode()
-
-        return request.path + query_string
-
-    def months_list(year):
-        months = []
-        now = datetime.datetime.now()
-        for i in range(1, 13):
-            date = datetime.date(year, i, 1)
-            if date < now.date():
-                months.append({"name": date.strftime("%b"), "number": i})
-        return months
-
-    def month_name(string):
-        month = int(string)
-        return calendar.month_name[month]
-
-    def descending_years(end_year):
-        now = datetime.datetime.now()
-        return range(now.year, end_year, -1)
-
-    def has_attr(obj, property_name):
-        return hasattr(obj, property_name)
-
-    return {
-        "get_json_feed": get_json_feed_content,
-        "versioned_static": versioned_static,
-        "current_year": current_year,
-        "format_date": format_date,
-        "build_path_with_params": build_path_with_params,
-        "months_list": months_list,
-        "month_name": month_name,
-        "descending_years": descending_years,
-        "has_attr": has_attr,
-    }
-
-
-def navigation(request):
+def navigation(path):
     """
     Set "nav_sections" and "breadcrumbs" dictionaries
     as global template variables
     """
 
-    path = request.path
     breadcrumbs = {}
     nav_sections = deepcopy(settings.NAV_SECTIONS)
     is_topic_page = path.startswith("/blog/topics/")
@@ -139,12 +98,77 @@ def navigation(request):
     return {"nav_sections": nav_sections, "breadcrumbs": breadcrumbs}
 
 
-def releases(request):
-    """
-    Read releases as a dictionary from releases.yaml,
-    and provide the contents as a dictionary in the global
-    template context
-    """
+# Helper functions
+# ===
 
-    with open("releases.yaml") as releases:
-        return {"releases": yaml.load(releases, Loader=yaml.FullLoader)}
+
+def current_year():
+    return datetime.datetime.now().year
+
+
+def format_date(datestring):
+    date = dateutil.parser.parse(datestring)
+    return date.strftime("%-d %B %Y")
+
+
+def build_path_with_params(request):
+    query_params = request.GET.copy()
+    query_string = "?"
+
+    if "page" in query_params:
+        query_params.pop("page")
+
+    if len(query_params) > 0:
+        query_string += query_params.urlencode()
+
+    return request.path + query_string
+
+
+def months_list(year):
+    months = []
+    now = datetime.datetime.now()
+    for i in range(1, 13):
+        date = datetime.date(year, i, 1)
+        if date < now.date():
+            months.append({"name": date.strftime("%b"), "number": i})
+    return months
+
+
+def month_name(string):
+    month = int(string)
+    return calendar.month_name[month]
+
+
+def descending_years(end_year):
+    now = datetime.datetime.now()
+    return range(now.year, end_year, -1)
+
+
+def has_attr(obj, property_name):
+    return hasattr(obj, property_name)
+
+
+def environment(**options):
+    env = Environment(**options)
+
+    request = get_request()
+
+    env.globals.update(navigation(request.path))
+
+    env.globals.update(
+        {
+            "get_json_feed": get_json_feed_content,
+            "versioned_static": versioned_static,
+            "current_year": current_year,
+            "format_date": format_date,
+            "build_path_with_params": build_path_with_params,
+            "months_list": months_list,
+            "month_name": month_name,
+            "descending_years": descending_years,
+            "has_attr": has_attr,
+            "releases": releases(),
+            "request": request,
+        }
+    )
+
+    return env
