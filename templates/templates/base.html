@@ -37,7 +37,9 @@
         <meta name="twitter:description" content="{{ self.meta_description() }}">
         <meta property="og:description" content="{{ self.meta_description() }}" />
     {% endif %}
-    {% block meta_image %}{% meta_image %}
+
+    <!-- Mate image: {% block meta_image %}{% endblock %} -->
+
     {% if self.meta_image() %}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="{% if "http" not in self.meta_image() %}{{ ASSET_SERVER_URL }}{% endif %}{{ self.meta_image() }}">
