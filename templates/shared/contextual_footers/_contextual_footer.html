@@ -2,13 +2,13 @@
   <div class="row">
     <div class="p-divider">
       {% if first_item %}
-        {% with "shared/contextual_footers/"|add:first_item|add:".html" as item_file %} {% include item_file %} {% endwith %}
+        {% with "shared/contextual_footers/" + first_item + ".html" as item_file %} {% include item_file %} {% endwith %}
       {% endif %}
       {% if second_item %}
-        {% with "shared/contextual_footers/"|add:second_item|add:".html" as item_file %} {% include item_file %} {% endwith %}
+        {% with "shared/contextual_footers/" + second_item + ".html" as item_file %} {% include item_file %} {% endwith %}
       {% endif %}
       {% if third_item %}
-        {% with "shared/contextual_footers/"|add:third_item|add:".html" as item_file %} {% include item_file %} {% endwith %}
+        {% with "shared/contextual_footers/" + third_item + ".html" as item_file %} {% include item_file %} {% endwith %}
       {% endif %}
     </div>
   </div>
