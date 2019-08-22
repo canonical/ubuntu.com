@@ -101,10 +101,10 @@
   <div class="row">
     <h3>No subtitle, image or class</h3>
     <h4>Include tag</h4>
-    <pre><code>&#123;% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10" url="#register-section" cta="Watch the webinar"  %&#125;</code></pre>
+    <pre><code>&#123;% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10" url="#register-section" cta=""Watch the webinar" " %&#125;</code></pre>
 </div>
 </section>
-{% with title="What's New in Ubuntu 18.10", url="#register-section", cta=Watch the webinar %}{% include "engage/shared/_header.html" %}{% endwith %}
+{% with title="What's New in Ubuntu 18.10", url="#register-section", cta="Watch the webinar" %}{% include "engage/shared/_header.html" %}{% endwith %}
 <hr />
 
 <section class="p-strip">
