@@ -26,7 +26,7 @@
       >
     </p>
     
-    <p class="u-no-padding--bottom">{{ article.excerpt.raw|cut:"[…]"|truncatewords:36 }}</p>
+    <p class="u-no-padding--bottom">{{ article.excerpt.raw|cut:"[…]"|truncate(36) }}</p>
   </div>
 
   <p class="blog-p-card__footer">
