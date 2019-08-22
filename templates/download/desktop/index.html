@@ -10,11 +10,11 @@
       <h1>Download Ubuntu Desktop</h1>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 p-card--highlighted u-equal-height">
-      <div class="row">
-        <div class="col-8">
-          <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
+  <div class="u-fixed-width">
+    <div class="p-card--highlighted">
+      <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
+      <div class="row u-equal-height p-divider u-no-padding--left u-no-padding--right">
+        <div class="col-8 p-divider__block">
           <p class="p-card__content">Download the latest <abbr title="Long-term support">LTS</abbr> version of Ubuntu, for desktop PCs and laptops. LTS stands for long-term support &mdash; which means five years, until {{ releases.lts.eol }}, of free security and maintenance updates, guaranteed.</p>
           <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{ releases.lts.slug }}/ReleaseNotes" class="p-link--external">Ubuntu {{ releases.lts.short_version }} LTS release notes</a></p>
           <p>Recommended system requirements:</p>
@@ -34,23 +34,23 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12 p-card--highlighted u-equal-height">
-        <div class="row">
-          <div class="col-8">
-            <h2>Ubuntu {{ releases.latest.full_version }}</h2>
-            <p class="p-card__content">The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ releases.latest.full_version }} comes with nine months, until {{ releases.latest.eol }}, of security and maintenance updates.</p>
-            <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{ releases.latest.slug }}/ReleaseNotes" class="p-link--external">Ubuntu {{ releases.latest.short_version }} release notes</a></p>
-            <p class="p-card__content">Recommended system requirements are the same as for Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>.</p>
-          </div>
-          <div class="col-4">
-            <p class="p-card__content">
-              <a class="p-button--positive is-wide js-latest-download" href="/download/desktop/thank-you/?version={{ releases.latest.full_version }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download</a>
-            </p>
-            <p class="p-card__content">
-              <small><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></small>
-            </p>
-          </div>
+  </div>
+  <div class="u-fixed-width">
+    <div class="p-card--highlighted">
+      <h2>Ubuntu {{ releases.latest.full_version }}</h2>
+      <div class="row u-equal-height p-divider u-no-padding--left u-no-padding--right">
+        <div class="col-8 p-divider__block">
+          <p class="p-card__content">The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ releases.latest.full_version }} comes with nine months, until {{ releases.latest.eol }}, of security and maintenance updates.</p>
+          <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{ releases.latest.slug }}/ReleaseNotes" class="p-link--external">Ubuntu {{ releases.latest.short_version }} release notes</a></p>
+          <p class="p-card__content">Recommended system requirements are the same as for Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>.</p>
+        </div>
+        <div class="col-4">
+          <p class="p-card__content">
+            <a class="p-button--positive is-wide js-latest-download" href="/download/desktop/thank-you/?version={{ releases.latest.full_version }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download</a>
+          </p>
+          <p class="p-card__content">
+            <small><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></small>
+          </p>
         </div>
       </div>
     </div>
@@ -64,9 +64,9 @@
 
   <div class="row u-equal-height">
     <div class="col-4 p-card">
-      <div class="p-heading-icon">
+      <div class="p-heading-icon--small">
         <div class="p-heading-icon__header">
-          <img class="p-heading-icon__img u-no-margin--top" src="https://assets.ubuntu.com/v1/cb3ecebb-picto-ubuntu.svg" width="60" alt="" />
+          <img class="p-heading-icon__img" src="https://assets.ubuntu.com/v1/cb3ecebb-picto-ubuntu.svg" width="60" alt="" />
           <h3 class="p-heading-icon__title">From an older version</h3>
         </div>
       </div>
@@ -78,9 +78,9 @@
     </div>
 
     <div class="col-4 p-card">
-      <div class="p-heading-icon">
+      <div class="p-heading-icon--small">
         <div class="p-heading-icon__header">
-          <img class="p-heading-icon__img u-no-margin--top" src="https://assets.ubuntu.com/v1/08563efa-picto-windows.svg" width="60"  alt="" />
+          <img class="p-heading-icon__img" src="https://assets.ubuntu.com/v1/08563efa-picto-windows.svg" width="60"  alt="" />
           <h3 class="p-heading-icon__title">From Windows</h3>
         </div>
       </div>
@@ -92,9 +92,9 @@
     </div>
 
     <div class="col-4 p-card">
-      <div class="p-heading-icon">
+      <div class="p-heading-icon--small">
         <div class="p-heading-icon__header">
-          <img class="p-heading-icon__img u-no-margin--top" src="https://assets.ubuntu.com/v1/4239507e-picto-mac.svg" width="60"  alt="" />
+          <img class="p-heading-icon__img" src="https://assets.ubuntu.com/v1/4239507e-picto-mac.svg" width="60"  alt="" />
           <h3 class="p-heading-icon__title">From macOS</h3>
         </div>
       </div>
