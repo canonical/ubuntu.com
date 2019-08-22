@@ -24,6 +24,12 @@
 
   // sass-lint:disable-block nesting-depth
   .p-inline-list-icons {
+    .p-inline-list__item {
+      display: inline-block;
+      line-height: 1rem;
+      vertical-align: middle;
+    }
+
     .p-inline-list__link {
       &--twitter {
         @extend %list-link;
