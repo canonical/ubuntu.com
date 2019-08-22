@@ -4,7 +4,6 @@ import calendar
 import yaml
 import dateutil
 from django.conf import settings
-from django_global_request.middleware import get_request
 from copy import deepcopy
 from canonicalwebteam.templatetags.versioned_static import versioned_static
 from canonicalwebteam.get_feeds import get_json_feed_content
@@ -151,10 +150,6 @@ def has_attr(obj, property_name):
 def environment(**options):
     env = Environment(**options)
 
-    request = get_request()
-
-    env.globals.update(navigation(request.path))
-
     env.globals.update(
         {
             "get_json_feed": get_json_feed_content,
@@ -166,8 +161,8 @@ def environment(**options):
             "month_name": month_name,
             "descending_years": descending_years,
             "has_attr": has_attr,
+            "navigation": navigation,
             "releases": releases(),
-            "request": request,
         }
     )
 

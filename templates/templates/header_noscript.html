@@ -1,3 +1,5 @@
+{% set nav_sections = navigation(request.path).nav_sections %}
+
 {% block header %}
   {% with section=nav_sections.openstack %}{% include 'templates/_header_item_noscript.html' %}{% endwith %}
   {% with section=nav_sections.kubernetes %}{% include 'templates/_header_item_noscript.html' %}{% endwith %}
