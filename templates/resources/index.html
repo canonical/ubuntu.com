@@ -117,7 +117,7 @@
         <p class="u-no-margin--bottom"><small>{{ resource.category.name }}</small></p>
       </article>
 
-      {% if forloop.counter|divisibleby:3 %}
+      {% if forloop.counter % 3 == 0 %}
         </div>
         <div class="row u-equal-height">
       {% endif %}
