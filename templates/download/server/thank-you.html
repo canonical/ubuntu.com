@@ -23,7 +23,7 @@
           <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-{{ architecture }}.iso">
             download now</a>.
           </p>
-          {% with version=version, system="live-server", architecture=architecture %}{% include "../shared/_verify-checksums.html" %}{% endwith %}
+          {% with version=version, system="live-server", architecture=architecture %}{% include "download/shared/_verify-checksums.html" %}{% endwith %}
           {% else %}
           <p>
             You didn&rsquo;t pick a version or architecture, please

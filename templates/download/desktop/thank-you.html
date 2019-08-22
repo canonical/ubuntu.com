@@ -44,7 +44,7 @@ Thank you for your contribution
           <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download now</a>.
           {% endif %}
         </p>
-        {% with version=version, system="desktop", architecture=architecture %}{% include "../shared/_verify-checksums.html" %}{% endwith %}
+        {% with version=version, system="desktop", architecture=architecture %}{% include "download/shared/_verify-checksums.html" %}{% endwith %}
         {% else %}
         <h1>Thank you for your contribution</h1>
         <p>It will help further the open source development of Ubuntu.</p>
