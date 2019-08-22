@@ -79,7 +79,7 @@
   </div>
   {% endif %}
 
-  {% for group_slug, resources in posts.items %}
+  {% for group_slug, resources in posts.items() %}
     <div class="row u-equal-height">
     {% for resource in resources.posts %}
       <article class="p-card--{{ resource.group.slug }} col-4" style="display: flex; flex-direction: column;">
