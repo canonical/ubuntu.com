@@ -44,7 +44,7 @@
     <div class="col-12">
       <h2>Installation instructions</h2>
       <ol class="p-stepped-list--detailed">
-        {% include "./_setup-ubuntu-sso.html" %}
+        {% include "download/iot/_setup-ubuntu-sso.html" %}
         <li class="p-list-step__item" id="step2">
           <h3 class="p-list-step__title">
 
@@ -128,16 +128,16 @@ sudo ./rpiboot</code></pre>
             </ol>
           </div>
         </li>
-        {% with number=6 %}{% include "./_first-boot-setup.html" %}{% endwith %}
-        {% with number=7 %}{% include "./_login.html" %}{% endwith %}
+        {% with number=6 %}{% include "download/iot/_first-boot-setup.html" %}{% endwith %}
+        {% with number=7 %}{% include "download/iot/_login.html" %}{% endwith %}
       </ol>
     </div>
   </div>
 </section>
 
-{% with strip="p-strip--light" %}{% include "./_boot-tips-strip.html" %}{% endwith %}
+{% with strip="p-strip--light" %}{% include "download/iot/_boot-tips-strip.html" %}{% endwith %}
 
-{% include "./_install-snaps-strip.html" %}
+{% include "download/iot/_install-snaps-strip.html" %}
 
 {% include "download/shared/_get-ebook-security.html"%}
 

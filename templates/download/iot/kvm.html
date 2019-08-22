@@ -36,7 +36,7 @@
     <div class="col-12">
       <h2>Installation instructions</h2>
       <ol class="p-stepped-list--detailed">
-        {% include "./_setup-ubuntu-sso.html" %}
+        {% include "download/iot/_setup-ubuntu-sso.html" %}
         <li class="p-list-step__item">
           <h3 class="p-list-step__title">
 
@@ -101,7 +101,7 @@ KVM acceleration can be used</code></pre>
             <p>You should now see a window, with your Ubuntu Core virtual machine booting inside it.</p>
           </div>
         </li>
-        {% with number=5 %}{% include "./_first-boot-setup.html" %}{% endwith %}
+        {% with number=5 %}{% include "download/iot/_first-boot-setup.html" %}{% endwith %}
         <li class="p-list-step__item">
           <h3 class="p-list-step__title">
 
@@ -118,10 +118,10 @@ KVM acceleration can be used</code></pre>
   </div>
 </section>
 
-{% with strip="p-strip--light" %}{% include "./_boot-tips-strip.html" %}{% endwith %}
+{% with strip="p-strip--light" %}{% include "download/iot/_boot-tips-strip.html" %}{% endwith %}
 
 {% with board="virtual machine" %}
-  {% include "./_install-snaps-strip.html" %}
+  {% include "download/iot/_install-snaps-strip.html" %}
 {% endwith %}
 
 {% include "download/shared/_get-ebook-security.html"%}
