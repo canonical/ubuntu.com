@@ -18,25 +18,26 @@ Ubuntu 18.04 LTS.{% endblock %}
 </section>
 
 <nav class="p-tabs p-sticky-nav">
-  <ul class="p-tabs__list" role="tablist">
-    <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#user-report">User report</a>
-    </li>
-    <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#desktop-specs">Desktop specs</a>
-    </li>
-    <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#configuration">Configuration</a>
-    </li>
-  </ul>
+  <div class="u-fixed-width">
+    <ul class="p-tabs__list" role="tablist">
+      <li class="p-tabs__item" role="presentation">
+        <a class="p-tabs__link js-sticky-tab" href="#user-report">User report</a>
+      </li>
+      <li class="p-tabs__item" role="presentation">
+        <a class="p-tabs__link js-sticky-tab" href="#desktop-specs">Desktop specs</a>
+      </li>
+      <li class="p-tabs__item" role="presentation">
+        <a class="p-tabs__link js-sticky-tab" href="#configuration">Configuration</a>
+      </li>
+    </ul>
+  </div>
 </nav>
 
 <section id="user-report" class="p-strip">
-  <div class="row">
-    <div class="col-12">
-      <h2>User Report</h2>
-    </div>
+  <div class="u-fixed-width">
+    <h2>User Report</h2>
   </div>
+
   <div class="row p-divider">
     <div class="col-6 p-divider__block">
       <h3>How many users opted in?</h3>
@@ -84,13 +85,11 @@ Ubuntu 18.04 LTS.{% endblock %}
         identifiable IP address.</p>
     </div>
   </div>
-  <div class="row">
-    <div class="p-strip-scroll--wrapper">
-      <div class="col-12 p-strip-scroll--wrapper__svg">
-        <div style="height: 500px; width: 1000px; position: relative;" id="where-are-users">
-        </div>
-        <div class="p-scale"></div>
+  <div class="u-fixed-width p-strip-scroll--wrapper">
+    <div class="p-strip-scroll--wrapper__svg">
+      <div style="height: 500px; width: 1000px; position: relative;" id="where-are-users">
       </div>
+      <div class="p-scale"></div>
     </div>
   </div>
 </section>
@@ -100,14 +99,12 @@ Ubuntu 18.04 LTS.{% endblock %}
       <h3>What language do they use?</h3>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 u-align--center">
-      <svg id="language-list-chart" height="250"></svg>
-    </div>
+  <div class="u-fixed-width u-align--center">
+    <svg id="language-list-chart" height="250"></svg>
   </div>
 </section>
 <section id="desktop-specs" class="p-strip--image">
-  <div class="row">
+  <div class="u-fixed-width">
     <h2>Desktop specs</h2>
     <p>This data was collected from user’s machines.</p>
   </div>
@@ -132,11 +129,11 @@ Ubuntu 18.04 LTS.{% endblock %}
 <section class="p-strip--light">
   <div class="row u-vertically-center">
     <div class="col-6">
-      <div class="u-equal-height u-align--center">
-        <div class="col-6 u-align--center">
+      <div class="row u-equal-height u-align--center">
+        <div class="col-3 u-align--center">
           <svg id="firmware-hw"></svg>
         </div>
-        <div class="col-6 u-align--center">
+        <div class="col-3 u-align--center">
           <svg id="firmware-vm"></svg>
         </div>
       </div>
@@ -147,7 +144,7 @@ Ubuntu 18.04 LTS.{% endblock %}
         </ul>
       </div>
     </div>
-    <div class="col-5 prefix-1">
+    <div class="col-5 col-start-large-7">
       <h3>Firmware</h3>
       <p>Firmware initialises hardware components and the operating system at startup.</p>
     </div>
@@ -177,22 +174,22 @@ Ubuntu 18.04 LTS.{% endblock %}
   </div>
 </section>
 <section class="p-strip--light">
-  <div class="row">
+  <div class="u-fixed-width">
     <h3>Popular screen sizes</h3>
     <p>This data set shows the 15 most popular screen sizes.</p>
   </div>
   <div class="row u-equal-height">
-    <div class="col-6 suffix-1">
+    <div class="col-5">
       <svg id="popular-screen-sizes" height="600"></svg>
     </div>
-    <div class="col-5 prefix-1">
+    <div class="col-5 col-start-large-8">
       <h4>Pixel density</h4>
       <svg id="pixel-density" height="320"></svg>
     </div>
   </div>
 </section>
 <section class="p-strip">
-  <div class="row">
+  <div class="u-fixed-width">
     <h3>What CPU and memory do users have?</h3>
   </div>
   <div class="row p-mobile-flex-col u-equal-height p-divider">
@@ -211,7 +208,7 @@ Ubuntu 18.04 LTS.{% endblock %}
   </div>
 </section>
 <section class="p-strip--light">
-  <div class="row">
+  <div class="u-fixed-width">
     <h3>What physical disks do people have?</h3>
   </div>
   <div class="row p-mobile-flex-col u-equal-height u-vertically-center">
@@ -226,7 +223,7 @@ Ubuntu 18.04 LTS.{% endblock %}
   </div>
 </section>
 <section class="p-strip--light u-no-padding">
-  <div class="row">
+  <div class="u-fixed-width">
     <hr class="u-no-margin--bottom" />
   </div>
 </section>
@@ -237,14 +234,12 @@ Ubuntu 18.04 LTS.{% endblock %}
       <p>There are a number of ways to partition a disk when installing Ubuntu depending on what the user wants to do.</p>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <svg id="partition-type" height="250"></svg>
-    </div>
+  <div class="u-fixed-width">
+    <svg id="partition-type" height="250"></svg>
   </div>
 </section>
 <section class="p-strip--light u-no-padding">
-  <div class="row">
+  <div class="u-fixed-width">
     <hr class="u-no-margin--bottom" />
   </div>
 </section>
@@ -261,13 +256,13 @@ Ubuntu 18.04 LTS.{% endblock %}
   </div>
 </section>
 <section id="configuration" class="p-strip">
-  <div class="row">
+  <div class="u-fixed-width">
     <h2>Configuring Ubuntu</h2>
     <p>Users configure Ubuntu in many different ways, we recorded some key points and this will help inform the design
       of future releases.</p>
   </div>
 </section>
-<div class="row">
+<div class="u-fixed-width">
   <hr class="u-no-margin--bottom" />
 </div>
 <section class="p-strip">
@@ -283,7 +278,7 @@ Ubuntu 18.04 LTS.{% endblock %}
     </div>
   </div>
 </section>
-<div class="row">
+<div class="u-fixed-width">
   <hr class="u-no-margin--bottom" />
 </div>
 <section class="p-strip">
@@ -299,25 +294,23 @@ Ubuntu 18.04 LTS.{% endblock %}
     </div>
   </div>
 </section>
-<div class="row">
+<div class="u-fixed-width">
   <hr class="u-no-margin--bottom" />
 </div>
 <section class="p-strip">
-  <div class="row">
-    <div class="row u-equal-height u-vertically-center">
-      <div class="col-6">
-        <p class="p-heading--four">Users who auto-login on start-up</p>
-      </div>
-      <div class="col-3 u-align--center">
-        <svg id="auto-login-hw"></svg>
-      </div>
-      <div class="col-3 u-align--center">
-        <svg id="auto-login-vm"></svg>
-      </div>
+  <div class="row u-equal-height u-vertically-center">
+    <div class="col-6">
+      <p class="p-heading--four">Users who auto-login on start-up</p>
+    </div>
+    <div class="col-3 u-align--center">
+      <svg id="auto-login-hw"></svg>
+    </div>
+    <div class="col-3 u-align--center">
+      <svg id="auto-login-vm"></svg>
     </div>
   </div>
 </section>
-<div class="row">
+<div class="u-fixed-width">
   <hr class="u-no-margin--bottom" />
 </div>
 <section class="p-strip">
@@ -334,7 +327,7 @@ Ubuntu 18.04 LTS.{% endblock %}
     </div>
   </div>
 </section>
-<div class="row">
+<div class="u-fixed-width">
   <hr class="u-no-margin--bottom" />
 </div>
 <section class="p-strip">
@@ -350,12 +343,12 @@ Ubuntu 18.04 LTS.{% endblock %}
     </div>
   </div>
 </section>
-<div class="row">
+<div class="u-fixed-width">
   <hr class="u-no-margin--bottom" />
 </div>
 <section class="p-strip">
   <div class="row">
-    <div class="col-6 prefix-1">
+    <div class="col-6">
       <img class="p-image--bordered" src="https://assets.ubuntu.com/v1/f3f53a95-ubuntu-18.04-survey-metrics.png?w=411" width="411" alt="User survey report">
     </div>
     <div class="col-6">
