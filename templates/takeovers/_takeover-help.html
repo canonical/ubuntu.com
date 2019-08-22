@@ -148,7 +148,15 @@
   <div class="row">
     <h3>No image</h3>
     <h4>Include tag</h4>
-    <pre><code>&#123;% include "takeovers/shared/_takeover.html" with title="Private cloud security" class="p-strip--dark p-takeover js-takeover" subtitle="Meeting the highest enterprise requirements with OpenStack." subtitleClass="p-heading--four" ctaBtn="Register for the webinar" ctaBtnURL="#" ctaBtnClass="p-button--positive" %}
+    <pre><code>&#123;% with title="Private cloud security",
+  class="p-strip--dark p-takeover js-takeover",
+  subtitle="Meeting the highest enterprise requirements with OpenStack.",
+  subtitleClass="p-heading--four",
+  ctaBtn="Register for the webinar",
+  ctaBtnURL="#",
+  ctaBtnClass="p-button--positive" %}
+  &#123;% include "takeovers/shared/_takeover.html" %}
+&#123;% endwith %}
     </code></pre>
     <h4>Output</h4>
   </div>
@@ -168,7 +176,14 @@
   <div class="row">
     <h3>No class</h3>
     <h4>Include tag</h4>
-    <pre><code>&#123;% include "takeovers/shared/_takeover.html" with title="Private cloud security" subtitle="Meeting the highest enterprise requirements with OpenStack." subtitleClass="p-heading--four" ctaBtn="Register for the webinar" ctaBtnURL="#" ctaBtnClass="p-button--positive" %}</code></pre>
+    <pre><code>&#123;% with title="Private cloud security",
+  subtitle="Meeting the highest enterprise requirements with OpenStack.",
+  subtitleClass="p-heading--four",
+  ctaBtn="Register for the webinar",
+  ctaBtnURL="#",
+  ctaBtnClass="p-button--positive" %}
+  &#123;% include "takeovers/shared/_takeover.html" %}
+&#123;% endwith %}</code></pre>
 </div>
 </section>
 {% with title="Private cloud security",
@@ -185,7 +200,12 @@
   <div class="row">
     <h3>Minimal - no subtitle, subtitleClass or ctaBtnClass</h3>
     <h4>Include tag</h4>
-    <pre><code>&#123;% include "takeovers/shared/_takeover.html" with title="Private cloud security" subtitleClass="p-heading--four" ctaBtn="Register for the webinar" ctaBtnURL="#" %}</code></pre>
+    <pre><code>&#123;% with title="Private cloud security",
+  subtitleClass="p-heading--four",
+  ctaBtn="Register for the webinar",
+  ctaBtnURL="#" %}
+  &#123;% include "takeovers/shared/_takeover.html" %}
+&#123;% endwith %}</code></pre>
 </div>
 </section>
 {% with title="Private cloud security", subtitleClass="p-heading--four", ctaBtn=Register for the webinar, ctaBtnURL=# %}{% include "takeovers/shared/_takeover.html" %}{% endwith %}
