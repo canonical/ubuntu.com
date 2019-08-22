@@ -39,7 +39,7 @@
               <div class="p-media-object__content">
                 <p>By <a href="/blog/author/{{article.author.slug}}" title="More about {{ article.author.name }}">{{ article.author.name }}</a>, {{ article.date }}</p>
                 
-                <p>{{ article.excerpt.raw|cut:"[…]"|truncate(162) }}</p>
+                <p>{{ article.excerpt.raw.replace("[…]", "")|truncate(162) }}</p>
               </div>
             </div>
           </div>
