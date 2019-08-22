@@ -22,7 +22,7 @@
   </section>
 
   <section class="p-strip is-shallow{% if current_page and current_page == 1 and upcoming_events %} is-bordered{% endif %}" id="posts-list">
-    {% include 'blog/filters.html' with topic="internet-of-things" %}
+    {% with topic="internet-of-things" %}{% include "blog/filters.html" %}{% endwith %}
     {% include 'blog/posts.html' %}
   </section>
 

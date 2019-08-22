@@ -7,7 +7,7 @@
 {% endif %}
 
   <section class="p-strip is-shallow" id="posts-list">
-    {% include 'blog/filters.html' with topic='' %}
+    {% with topic="" %}{% include "blog/filters.html" %}{% endwith %}
     <div class="row u-equal-height u-clearfix">
     {% for article in articles %}
       {% if (loop.index - 1) % 3 == 0 and loop.index > 1 %}
@@ -19,7 +19,7 @@
           {% include 'blog/newsletter-form.html' %}
         </div>
       {% elif loop.index <= 2 %}
-        {% include 'blog/blog-card.html' with summary_visible=True %}
+        {% with summary_visible=True %}{% include "blog/blog-card.html" %}{% endwith %}
       {% else %}
         {% include 'blog/blog-card.html' %}
       {% endif %}
